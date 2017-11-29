@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:40Z
+ * Date: 2017-11-28T23:28:05Z
  */
 ( function ( OO ) {
 
@@ -537,6 +537,23 @@ OO.ui.isSafeUrl = function ( url ) {
  */
 OO.ui.isMobile = function () {
 	return false;
+};
+
+/**
+ * Get the additional spacing that should be taken into account when displaying elements that are
+ * clipped to the viewport, e.g. dropdown menus and popups. This is meant to be overridden to avoid
+ * such menus overlapping any fixed headers/toolbars/navigation used by the site.
+ *
+ * @return {Object} Object with the properties 'top', 'right', 'bottom', 'left', each representing
+ *     the extra spacing from that edge of viewport (in pixels)
+ */
+OO.ui.getViewportSpacing = function () {
+	return {
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0
+	};
 };
 
 /*!
@@ -4393,17 +4410,22 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
  */
 OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
 	var elemRect, contRect, topEdgeInBounds, bottomEdgeInBounds, leftEdgeInBounds, rightEdgeInBounds,
-		startEdgeInBounds, endEdgeInBounds,
+		startEdgeInBounds, endEdgeInBounds, viewportSpacing,
 		direction = $element.css( 'direction' );
 
 	elemRect = $element[ 0 ].getBoundingClientRect();
 	if ( $container[ 0 ] === window ) {
+		viewportSpacing = OO.ui.getViewportSpacing();
 		contRect = {
 			top: 0,
 			left: 0,
 			right: document.documentElement.clientWidth,
 			bottom: document.documentElement.clientHeight
 		};
+		contRect.top += viewportSpacing.top;
+		contRect.left += viewportSpacing.left;
+		contRect.right -= viewportSpacing.right;
+		contRect.bottom -= viewportSpacing.bottom;
 	} else {
 		contRect = $container[ 0 ].getBoundingClientRect();
 	}
@@ -4795,6 +4817,50 @@ OO.ui.mixin.ClippableElement.prototype.setIdealSize = function ( width, height )
 };
 
 /**
+ * Return the side of the clippable on which it is "anchored" (aligned to something else).
+ * ClippableElement will clip the opposite side when reducing element's width.
+ *
+ * Classes that mix in ClippableElement should override this to return 'right' if their
+ * clippable is absolutely positioned and using 'right: Npx' (and not using 'left').
+ * If your class also mixes in FloatableElement, this is handled automatically.
+ *
+ * (This can't be guessed from the actual CSS because the computed values for 'left'/'right' are
+ * always in pixels, even if they were unset or set to 'auto'.)
+ *
+ * When in doubt, 'left' (or 'right' in RTL) is a sane fallback.
+ *
+ * @return {string} 'left' or 'right'
+ */
+OO.ui.mixin.ClippableElement.prototype.getHorizontalAnchorEdge = function () {
+	if ( this.computePosition && this.computePosition().right !== '' ) {
+		return 'right';
+	}
+	return 'left';
+};
+
+/**
+ * Return the side of the clippable on which it is "anchored" (aligned to something else).
+ * ClippableElement will clip the opposite side when reducing element's width.
+ *
+ * Classes that mix in ClippableElement should override this to return 'bottom' if their
+ * clippable is absolutely positioned and using 'bottom: Npx' (and not using 'top').
+ * If your class also mixes in FloatableElement, this is handled automatically.
+ *
+ * (This can't be guessed from the actual CSS because the computed values for 'left'/'right' are
+ * always in pixels, even if they were unset or set to 'auto'.)
+ *
+ * When in doubt, 'top' is a sane fallback.
+ *
+ * @return {string} 'top' or 'bottom'
+ */
+OO.ui.mixin.ClippableElement.prototype.getVerticalAnchorEdge = function () {
+	if ( this.computePosition && this.computePosition().bottom !== '' ) {
+		return 'bottom';
+	}
+	return 'top';
+};
+
+/**
  * Clip element to visible boundaries and allow scrolling when needed. You should call this method
  * when the element's natural height changes.
  *
@@ -4808,42 +4874,100 @@ OO.ui.mixin.ClippableElement.prototype.setIdealSize = function ( width, height )
  * @chainable
  */
 OO.ui.mixin.ClippableElement.prototype.clip = function () {
-	var $container, extraHeight, extraWidth, ccOffset,
-		$scrollableContainer, scOffset, scHeight, scWidth,
-		ccWidth, scrollerIsWindow, scrollTop, scrollLeft,
+	var extraHeight, extraWidth, viewportSpacing,
 		desiredWidth, desiredHeight, allotedWidth, allotedHeight,
 		naturalWidth, naturalHeight, clipWidth, clipHeight,
-		buffer = 7; // Chosen by fair dice roll
+		$item, itemRect, $viewport, viewportRect, availableRect,
+		direction, vertScrollbarWidth, horizScrollbarHeight,
+		// Extra tolerance so that the sloppy code below doesn't result in results that are off
+		// by one or two pixels. (And also so that we have space to display drop shadows.)
+		// Chosen by fair dice roll.
+		buffer = 7;
 
 	if ( !this.clipping ) {
 		// this.$clippableScrollableContainer and this.$clippableWindow are null, so the below will fail
 		return this;
 	}
 
-	$container = this.$clippableContainer || this.$clippable;
-	extraHeight = $container.outerHeight() - this.$clippable.outerHeight();
-	extraWidth = $container.outerWidth() - this.$clippable.outerWidth();
-	ccOffset = $container.offset();
-	if ( this.$clippableScrollableContainer.is( 'html, body' ) ) {
-		$scrollableContainer = this.$clippableWindow;
-		scOffset = { top: 0, left: 0 };
-	} else {
-		$scrollableContainer = this.$clippableScrollableContainer;
-		scOffset = $scrollableContainer.offset();
+	function rectIntersection( a, b ) {
+		var out = {};
+		out.top = Math.max( a.top, b.top );
+		out.left = Math.max( a.left, b.left );
+		out.bottom = Math.min( a.bottom, b.bottom );
+		out.right = Math.min( a.right, b.right );
+		return out;
 	}
-	scHeight = $scrollableContainer.innerHeight() - buffer;
-	scWidth = $scrollableContainer.innerWidth() - buffer;
-	ccWidth = $container.outerWidth() + buffer;
-	scrollerIsWindow = this.$clippableScroller[ 0 ] === this.$clippableWindow[ 0 ];
-	scrollTop = scrollerIsWindow ? this.$clippableScroller.scrollTop() : 0;
-	scrollLeft = scrollerIsWindow ? this.$clippableScroller.scrollLeft() : 0;
-	desiredWidth = ccOffset.left < 0 ?
-		ccWidth + ccOffset.left :
-		( scOffset.left + scrollLeft + scWidth ) - ccOffset.left;
-	desiredHeight = ( scOffset.top + scrollTop + scHeight ) - ccOffset.top;
+
+	viewportSpacing = OO.ui.getViewportSpacing();
+
+	if ( this.$clippableScrollableContainer.is( 'html, body' ) ) {
+		$viewport = $( this.$clippableScrollableContainer[ 0 ].ownerDocument.body );
+		// Dimensions of the browser window, rather than the element!
+		viewportRect = {
+			top: 0,
+			left: 0,
+			right: document.documentElement.clientWidth,
+			bottom: document.documentElement.clientHeight
+		};
+		viewportRect.top += viewportSpacing.top;
+		viewportRect.left += viewportSpacing.left;
+		viewportRect.right -= viewportSpacing.right;
+		viewportRect.bottom -= viewportSpacing.bottom;
+	} else {
+		$viewport = this.$clippableScrollableContainer;
+		viewportRect = $viewport[ 0 ].getBoundingClientRect();
+		// Convert into a plain object
+		viewportRect = $.extend( {}, viewportRect );
+	}
+
+	// Account for scrollbar gutter
+	direction = $viewport.css( 'direction' );
+	vertScrollbarWidth = $viewport.innerWidth() - $viewport.prop( 'clientWidth' );
+	horizScrollbarHeight = $viewport.innerHeight() - $viewport.prop( 'clientHeight' );
+	viewportRect.bottom -= horizScrollbarHeight;
+	if ( direction === 'rtl' ) {
+		viewportRect.left += vertScrollbarWidth;
+	} else {
+		viewportRect.right -= vertScrollbarWidth;
+	}
+
+	// Add arbitrary tolerance
+	viewportRect.top += buffer;
+	viewportRect.left += buffer;
+	viewportRect.right -= buffer;
+	viewportRect.bottom -= buffer;
+
+	$item = this.$clippableContainer || this.$clippable;
+
+	extraHeight = $item.outerHeight() - this.$clippable.outerHeight();
+	extraWidth = $item.outerWidth() - this.$clippable.outerWidth();
+
+	itemRect = $item[ 0 ].getBoundingClientRect();
+	// Convert into a plain object
+	itemRect = $.extend( {}, itemRect );
+
+	// Item might already be clipped, so we can't just use its dimensions (in case we might need to
+	// make it larger than before). Extend the rectangle to the maximum size we are allowed to take.
+	if ( this.getHorizontalAnchorEdge() === 'right' ) {
+		itemRect.left = viewportRect.left;
+	} else {
+		itemRect.right = viewportRect.right;
+	}
+	if ( this.getVerticalAnchorEdge() === 'bottom' ) {
+		itemRect.top = viewportRect.top;
+	} else {
+		itemRect.bottom = viewportRect.bottom;
+	}
+
+	availableRect = rectIntersection( viewportRect, itemRect );
+
+	desiredWidth = Math.max( 0, availableRect.right - availableRect.left );
+	desiredHeight = Math.max( 0, availableRect.bottom - availableRect.top );
 	// It should never be desirable to exceed the dimensions of the browser viewport... right?
-	desiredWidth = Math.min( desiredWidth, document.documentElement.clientWidth );
-	desiredHeight = Math.min( desiredHeight, document.documentElement.clientHeight );
+	desiredWidth = Math.min( desiredWidth,
+		document.documentElement.clientWidth - viewportSpacing.left - viewportSpacing.right );
+	desiredHeight = Math.min( desiredHeight,
+		document.documentElement.clientHeight - viewportSpacing.top - viewportSpacing.right );
 	allotedWidth = Math.ceil( desiredWidth - extraWidth );
 	allotedHeight = Math.ceil( desiredHeight - extraHeight );
 	naturalWidth = this.$clippable.prop( 'scrollWidth' );
@@ -4947,6 +5071,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *            of the popup with the center of $floatableContainer.
  * 'force-left': Alias for 'forwards' in LTR and 'backwards' in RTL
  * 'force-right': Alias for 'backwards' in RTL and 'forwards' in LTR
+ * @cfg {boolean} [autoFlip=true] Whether to automatically switch the popup's position between
+ *  'above' and 'below', or between 'before' and 'after', if there is not enough space in the
+ *  desired direction to display the popup without clipping
  * @cfg {jQuery} [$container] Constrain the popup to the boundaries of the specified container.
  *  See the [OOjs UI docs on MediaWiki][3] for an example.
  *  [3]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#containerExample
@@ -4999,6 +5126,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
 	this.setAlignment( config.align || 'center' );
 	this.setPosition( config.position || 'below' );
+	this.setAutoFlip( config.autoFlip === undefined || config.autoFlip );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
 	this.$popup
@@ -5156,6 +5284,7 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
 		this.anchored = show;
 	}
 };
+
 /**
  * Change which edge the anchor appears on.
  *
@@ -5196,7 +5325,7 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
-	var change;
+	var change, normalHeight, oppositeHeight, normalWidth, oppositeWidth;
 	show = show === undefined ? !this.isVisible() : !!show;
 
 	change = show !== this.isVisible();
@@ -5208,6 +5337,12 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	if ( show && !this.$floatableContainer && this.isElementAttached() ) {
 		// Fall back to the parent node if the floatableContainer is not set
 		this.setFloatableContainer( this.$element.parent() );
+	}
+
+	if ( change && show && this.autoFlip ) {
+		// Reset auto-flipping before showing the popup again. It's possible we no longer need to flip
+		// (e.g. if the user scrolled).
+		this.isAutoFlipped = false;
 	}
 
 	// Parent method
@@ -5223,6 +5358,54 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 			}
 			this.updateDimensions();
 			this.toggleClipping( true );
+
+			if ( this.autoFlip ) {
+				if ( this.popupPosition === 'above' || this.popupPosition === 'below' ) {
+					if ( this.isClippedVertically() ) {
+						// If opening the popup in the normal direction causes it to be clipped, open
+						// in the opposite one instead
+						normalHeight = this.$element.height();
+						this.isAutoFlipped = !this.isAutoFlipped;
+						this.position();
+						if ( this.isClippedVertically() ) {
+							// If that also causes it to be clipped, open in whichever direction
+							// we have more space
+							oppositeHeight = this.$element.height();
+							if ( oppositeHeight < normalHeight ) {
+								this.isAutoFlipped = !this.isAutoFlipped;
+								this.position();
+							}
+						}
+					}
+				}
+				if ( this.popupPosition === 'before' || this.popupPosition === 'after' ) {
+					if ( this.isClippedHorizontally() ) {
+						// If opening the popup in the normal direction causes it to be clipped, open
+						// in the opposite one instead
+						normalWidth = this.$element.width();
+						this.isAutoFlipped = !this.isAutoFlipped;
+						// Due to T180173 horizontally clipped PopupWidgets have messed up dimensions,
+						// which causes positioning to be off. Toggle clipping back and fort to work around.
+						this.toggleClipping( false );
+						this.position();
+						this.toggleClipping( true );
+						if ( this.isClippedHorizontally() ) {
+							// If that also causes it to be clipped, open in whichever direction
+							// we have more space
+							oppositeWidth = this.$element.width();
+							if ( oppositeWidth < normalWidth ) {
+								this.isAutoFlipped = !this.isAutoFlipped;
+								// Due to T180173 horizontally clipped PopupWidgets have messed up dimensions,
+								// which causes positioning to be off. Toggle clipping back and fort to work around.
+								this.toggleClipping( false );
+								this.position();
+								this.toggleClipping( true );
+							}
+						}
+					}
+				}
+			}
+
 			this.emit( 'ready' );
 		} else {
 			this.toggleClipping( false );
@@ -5292,9 +5475,15 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 OO.ui.PopupWidget.prototype.computePosition = function () {
 	var direction, align, vertical, start, end, near, far, sizeProp, popupSize, anchorSize, anchorPos,
 		anchorOffset, anchorMargin, parentPosition, positionProp, positionAdjustment, floatablePos,
-		offsetParentPos, containerPos,
+		offsetParentPos, containerPos, popupPosition, viewportSpacing,
 		popupPos = {},
 		anchorCss = { left: '', right: '', top: '', bottom: '' },
+		popupPositionOppositeMap = {
+			above: 'below',
+			below: 'above',
+			before: 'after',
+			after: 'before'
+		},
 		alignMap = {
 			ltr: {
 				'force-left': 'backwards',
@@ -5336,8 +5525,13 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	} );
 
 	align = alignMap[ direction ][ this.align ] || this.align;
+	popupPosition = this.popupPosition;
+	if ( this.isAutoFlipped ) {
+		popupPosition = popupPositionOppositeMap[ popupPosition ];
+	}
+
 	// If the popup is positioned before or after, then the anchor positioning is vertical, otherwise horizontal
-	vertical = this.popupPosition === 'before' || this.popupPosition === 'after';
+	vertical = popupPosition === 'before' || popupPosition === 'after';
 	start = vertical ? 'top' : ( direction === 'rtl' ? 'right' : 'left' );
 	end = vertical ? 'bottom' : ( direction === 'rtl' ? 'left' : 'right' );
 	near = vertical ? 'top' : 'left';
@@ -5345,9 +5539,9 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	sizeProp = vertical ? 'Height' : 'Width';
 	popupSize = vertical ? ( this.height || this.$popup.height() ) : this.width;
 
-	this.setAnchorEdge( anchorEdgeMap[ this.popupPosition ] );
-	this.horizontalPosition = vertical ? this.popupPosition : hPosMap[ align ];
-	this.verticalPosition = vertical ? vPosMap[ align ] : this.popupPosition;
+	this.setAnchorEdge( anchorEdgeMap[ popupPosition ] );
+	this.horizontalPosition = vertical ? popupPosition : hPosMap[ align ];
+	this.verticalPosition = vertical ? vPosMap[ align ] : popupPosition;
 
 	// Parent method
 	parentPosition = OO.ui.mixin.FloatableElement.prototype.computePosition.call( this );
@@ -5402,6 +5596,11 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 		{ top: 0, left: 0 } :
 		this.$container.offset();
 	containerPos[ far ] = containerPos[ near ] + this.$container[ 'inner' + sizeProp ]();
+	if ( this.$container[ 0 ] === document.documentElement ) {
+		viewportSpacing = OO.ui.getViewportSpacing();
+		containerPos[ near ] += viewportSpacing[ near ];
+		containerPos[ far ] -= viewportSpacing[ far ];
+	}
 	// Take into account how much the popup will move because of the adjustments we're going to make
 	popupPos[ near ] += ( positionProp === near ? 1 : -1 ) * positionAdjustment;
 	popupPos[ far ] += ( positionProp === near ? 1 : -1 ) * positionAdjustment;
@@ -5476,6 +5675,21 @@ OO.ui.PopupWidget.prototype.setPosition = function ( position ) {
  */
 OO.ui.PopupWidget.prototype.getPosition = function () {
 	return this.popupPosition;
+};
+
+/**
+ * Set popup auto-flipping.
+ *
+ * @param {boolean} autoFlip Whether to automatically switch the popup's position between
+ *  'above' and 'below', or between 'before' and 'after', if there is not enough space in the
+ *  desired direction to display the popup without clipping
+ */
+OO.ui.PopupWidget.prototype.setAutoFlip = function ( autoFlip ) {
+	autoFlip = !!autoFlip;
+
+	if ( this.autoFlip !== autoFlip ) {
+		this.autoFlip = autoFlip;
+	}
 };
 
 /**
@@ -7347,7 +7561,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
-	var change;
+	var change, belowHeight, aboveHeight;
 
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 	change = visible !== this.isVisible();
@@ -7357,8 +7571,15 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 		this.warnedUnattached = true;
 	}
 
-	if ( change && visible && ( this.width || this.$floatableContainer ) ) {
-		this.setIdealSize( this.width || this.$floatableContainer.width() );
+	if ( change ) {
+		if ( visible && ( this.width || this.$floatableContainer ) ) {
+			this.setIdealSize( this.width || this.$floatableContainer.width() );
+		}
+		if ( visible ) {
+			// Reset position before showing the popup again. It's possible we no longer need to flip
+			// (e.g. if the user scrolled).
+			this.setVerticalPosition( 'below' );
+		}
 	}
 
 	// Parent method
@@ -7371,6 +7592,22 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
+
+			if ( this.isClippedVertically() ) {
+				// If opening the menu downwards causes it to be clipped, flip it to open upwards instead
+				belowHeight = this.$element.height();
+				this.setVerticalPosition( 'above' );
+				if ( this.isClippedVertically() ) {
+					// If opening upwards also causes it to be clipped, flip it to open in whichever direction
+					// we have more space
+					aboveHeight = this.$element.height();
+					if ( aboveHeight < belowHeight ) {
+						this.setVerticalPosition( 'below' );
+					}
+				}
+			}
+			// Note that we do not flip the menu's opening direction if the clipping changes
+			// later (e.g. after the user scrolls), that seems like it would be annoying
 
 			this.$focusOwner.attr( 'aria-expanded', 'true' );
 
@@ -8929,7 +9166,6 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
  *
  * @class
  * @extends OO.ui.InputWidget
- * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -8940,19 +9176,11 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
-	// See InputWidget#reusePreInfuseDOM about config.$input
-	if ( config.$input ) {
-		config.$input.addClass( 'oo-ui-element-hidden' );
-	}
-
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.dropdownWidget = new OO.ui.DropdownWidget( config.dropdown );
 
 	// Parent constructor
 	OO.ui.DropdownInputWidget.parent.call( this, config );
-
-	// Mixin constructors
-	OO.ui.mixin.TitledElement.call( this, config );
 
 	// Events
 	this.dropdownWidget.getMenu().connect( this, { select: 'onMenuSelect' } );
@@ -8971,7 +9199,6 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.DropdownInputWidget, OO.ui.InputWidget );
-OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
 
 /* Methods */
 
@@ -8980,7 +9207,7 @@ OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
  * @protected
  */
 OO.ui.DropdownInputWidget.prototype.getInputElement = function () {
-	return $( '<input>' ).attr( 'type', 'hidden' );
+	return $( '<select>' );
 };
 
 /**
@@ -9025,26 +9252,44 @@ OO.ui.DropdownInputWidget.prototype.setDisabled = function ( state ) {
  */
 OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 	var
+		optionWidgets = [],
 		value = this.getValue(),
+		$optionsContainer = this.$input,
 		widget = this;
 
-	// Rebuild the dropdown menu
-	this.dropdownWidget.getMenu()
-		.clearItems()
-		.addItems( options.map( function ( opt ) {
-			var optValue = widget.cleanUpValue( opt.data );
+	this.dropdownWidget.getMenu().clearItems();
+	this.$input.empty();
 
-			if ( opt.optgroup === undefined ) {
-				return new OO.ui.MenuOptionWidget( {
-					data: optValue,
-					label: opt.label !== undefined ? opt.label : optValue
-				} );
-			} else {
-				return new OO.ui.MenuSectionOptionWidget( {
-					label: opt.optgroup
-				} );
-			}
-		} ) );
+	// Rebuild the dropdown menu: our visible one and the hidden `<select>`
+	options.forEach( function ( opt ) {
+		var optValue, $optionNode, optionWidget;
+
+		if ( opt.optgroup === undefined ) {
+			optValue = widget.cleanUpValue( opt.data );
+
+			$optionNode = $( '<option>' )
+				.attr( 'value', optValue )
+				.text( opt.label !== undefined ? opt.label : optValue );
+			optionWidget = new OO.ui.MenuOptionWidget( {
+				data: optValue,
+				label: opt.label !== undefined ? opt.label : optValue
+			} );
+
+			$optionsContainer.append( $optionNode );
+			optionWidgets.push( optionWidget );
+		} else {
+			$optionNode = $( '<optgroup>' )
+				.attr( 'label', opt.optgroup );
+			optionWidget = new OO.ui.MenuSectionOptionWidget( {
+				label: opt.optgroup
+			} );
+
+			widget.$input.append( $optionNode );
+			$optionsContainer = $optionNode;
+			optionWidgets.push( optionWidget );
+		}
+	} );
+	this.dropdownWidget.getMenu().addItems( optionWidgets );
 
 	// Restore the previous value, or reset to something sensible
 	if ( this.dropdownWidget.getMenu().getItemFromData( value ) ) {
@@ -9608,6 +9853,8 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
  * @cfg {boolean} [autocomplete=true] Should the browser support autocomplete for this field
+ * @cfg {boolean} [spellcheck] Should the browser support spellcheck for this field (`undefined` means
+ *  leaving it up to the browser).
  * @cfg {RegExp|Function|string} [validate] Validation pattern: when string, a symbolic name of a
  *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
  *  (the value must contain only numbers); when RegExp, a regular expression that must match the
@@ -9686,6 +9933,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 				this.$input.attr( 'autocomplete', 'off' );
 			}.bind( this )
 		} );
+	}
+	if ( config.spellcheck !== undefined ) {
+		this.$input.attr( 'spellcheck', config.spellcheck ? 'true' : 'false' );
 	}
 	if ( this.label ) {
 		this.isWaitingToBeAttached = true;

@@ -1,10 +1,46 @@
 /**
- * WikimediaUI Base v0.9.2
+ * WikimediaUI Base v0.10.0
  * Wikimedia Foundation user interface base variables
  */
 
-/* Colors */
+// == Breakpoints ==
+// Minimum available screen width at which a device can be considered a mobile device
+// Many older feature phones have screens smaller than this value.
+// Number is prone to change with new information.
+
+@width-breakpoint-mobile: 320px;
+
+
+// Minimum available screen width at which a device can be considered a tablet
+// The number is currently based on the device width of a Samsung Galaxy S5 mini and is low
+// enough to cover iPad (768px). Number is prone to change with new information.
+
+@width-breakpoint-tablet: 720px;
+
+
+// Minimum available screen width at which a device can be considered a desktop
+// Number is prone to change with new information.
+
+@width-breakpoint-desktop: 1000px;
+
+
+// Wider desktop breakpoint, currently used in Flow.
+// Number is prone to change with new information.
+
+@width-breakpoint-desktop-wide: 1200px;
+
+
+// Extra wide desktop breakpoint
+// Number is prone to change with new information.
+
+@width-breapoint-desktop-extrawide: 2000px;
+
+
+// == Colors ==
 // WikimediaUI (WMUI) color palette
+// Don't use those variables directly, instead define your vars
+// referring to them as applied further below
+
 @wmui-color-base0:    #000;    // = HSB 0°, 0%, 0%
 @wmui-color-base10:   #222;    // = HSB 0°, 0%, 13%
 @wmui-color-base20:   #54595d; // = HSB 207°, 10%, 36%; WCAG 2.0 level AAA 7.09:1 contrast ratio on `#fff`
@@ -84,13 +120,13 @@
 @opacity-icon-base--selected: 1;
 
 
-/* Positioning */
+// == Positioning ==
 // Z-Index
 @z-index-base:                0;
 
 
-/* Box Model properties */
-/* Max Widths */
+// == Box Model properties ==
+// Max Widths
 @max-width-button:            28.75em; // = `460px` at `16px` base, see T95367
 @max-width-input-inline:      100%;
 
@@ -102,12 +138,13 @@
 @border-color-base:           @wmui-color-base50;
 @border-color-base--hover:    @wmui-color-base50;
 @border-color-base--active:   @wmui-color-base30;
-@border-color-base--disabled: @color-base--disabled;
+@border-color-base--disabled: @wmui-color-base70;
 @border-color-filled--disabled: @color-filled--disabled;
 @border-color-primary--active: #859dcc;
 @border-color-destructive--active: #b77c79;
 @border-color-inset--focus:   @color-base--inverted;
 @border-color-heading:        @wmui-color-base70;
+@border-color-wikitable:      rgba( 84, 89, 93, 0.3 ); // See T168029
 // Border Widths
 @border-width-base:           1px;
 // Border Radius
@@ -118,11 +155,12 @@
 @box-shadow-primary--focus:   inset 0 0 0 1px @color-primary, inset 0 0 0 2px @color-base--inverted;
 @box-shadow-inset--inverted:  inset 0 0 0 1px @color-base--inverted;
 @box-shadow-filled--disabled: inset 0 0 0 1px @color-filled--disabled;
+@box-shadow-card:             0 1px 1px rgba( 0, 0, 0, 0.15 );
 @box-shadow-dialog:           0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
 @box-shadow-menu:             @box-shadow-dialog;
 
 
-/* Typography incl. print properties */
+// == Typography incl. print properties ==
 // Font Families
 @font-family-base:            @font-family-sans;
 @font-family-heading-main:    @font-family-serif;
@@ -130,6 +168,7 @@
 @font-family-sans--fallback:  sans-serif;
 @font-family-serif:           'Linux Libertine', 'Georgia', 'Times', serif;
 @font-family-serif--fallback: serif;
+@font-family-monospace:       monospace, monospace; // See T176636
 // Line Heights
 @line-height-base:            1.6;
 @line-height-heading:         1.25;
@@ -139,12 +178,12 @@
 @text-shadow-base--disabled:  @text-shadow-base;
 
 
-/* Other Properties */
+// == Other Properties ==
 // Cursors
 @cursor-base--disabled:       default;
 
 
-/* Animation & Transition */
+// == Animation & Transition ==
 // Transitions
 @transition-base:             @transition-duration-base;
 @transition-medium:           @transition-duration-medium;

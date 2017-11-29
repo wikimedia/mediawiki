@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:46Z
+ * Date: 2017-11-28T23:28:10Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -449,6 +449,10 @@
 body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: table-cell;
 }
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
+  display: none;
+}
+.oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header,
 .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
   color: inherit;
   display: inline-table;
@@ -457,9 +461,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   white-space: normal;
   float: left;
   width: 100%;
-}
-.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label:empty {
-  display: none;
 }
 .oo-ui-fieldsetLayout-group {
   clear: both;
@@ -936,10 +937,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-dropdownInputWidget .oo-ui-dropdownWidget,
-.oo-ui-dropdownInputWidget select {
+.oo-ui-dropdownInputWidget.oo-ui-dropdownInputWidget-php select {
   display: block;
 }
 .oo-ui-dropdownInputWidget select {
+  display: none;
   background-position: -9999em 0;
   background-repeat: no-repeat;
   width: 100%;
@@ -1176,6 +1178,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   z-index: 4;
   background-color: #fff;
   margin-top: -1px;
+  margin-bottom: -1px;
   border: 1px solid #ccc;
   border-radius: 0 0 0.25em 0.25em;
   box-shadow: 0 0.15em 1em 0 rgba(0, 0, 0, 0.2);
@@ -1194,9 +1197,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected > .oo-ui-iconElement-icon {
   background-image: url('themes/apex/images/icons/check.png');
-  background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-image: -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1359,7 +1360,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   visibility: visible;
   margin: 0.775em;
 }
-.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
+.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
   right: 0;
   max-height: 2.5em;
   margin: 0;

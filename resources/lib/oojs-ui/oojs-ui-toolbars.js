@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:40Z
+ * Date: 2017-11-28T23:28:05Z
  */
 ( function ( OO ) {
 
@@ -1856,6 +1856,33 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.ClippableElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.TabIndexedElement );
 
 /* Methods */
+
+/**
+ * @inheritdoc OO.ui.mixin.ClippableElement
+ */
+OO.ui.PopupToolGroup.prototype.getHorizontalAnchorEdge = function () {
+	var out;
+	if ( this.$element.hasClass( 'oo-ui-popupToolGroup-right' ) ) {
+		out = 'right';
+	} else {
+		out = 'left';
+	}
+	// Flip for RTL
+	if ( this.$element.css( 'direction' ) === 'rtl' ) {
+		out = ( out === 'left' ) ? 'right' : 'left';
+	}
+	return out;
+};
+
+/**
+ * @inheritdoc OO.ui.mixin.ClippableElement
+ */
+OO.ui.PopupToolGroup.prototype.getVerticalAnchorEdge = function () {
+	if ( this.toolbar.position === 'bottom' ) {
+		return 'bottom';
+	}
+	return 'top';
+};
 
 /**
  * @inheritdoc

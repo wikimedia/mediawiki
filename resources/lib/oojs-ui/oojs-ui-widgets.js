@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:40Z
+ * Date: 2017-11-28T23:28:05Z
  */
 ( function ( OO ) {
 
@@ -279,7 +279,6 @@ OO.ui.mixin.DraggableGroupElement = function OoUiMixinDraggableGroupElement( con
 	}
 	this.$element
 		.addClass( 'oo-ui-draggableGroupElement' )
-		.append( this.$status )
 		.toggleClass( 'oo-ui-draggableGroupElement-horizontal', this.orientation === 'horizontal' );
 };
 
