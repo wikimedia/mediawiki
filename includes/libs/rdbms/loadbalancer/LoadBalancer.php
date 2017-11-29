@@ -123,6 +123,10 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var int Default 'maxLag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
+	/** @var int Default 'waitTimeout' when unspecified */
+	const MAX_WAIT_DEFAULT = 10;
+	/** @var float Avoid masterPosWait() checks on a server if they fail at this rate */
+	const MAX_WAIT_FAILURE_RATE = 10;
 	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
@@ -159,7 +163,9 @@ class LoadBalancer implements ILoadBalancer {
 			$this->localDomainIdAlias = $this->localDomain->getDatabase();
 		}
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
+		$this->mWaitTimeout = isset( $params['waitTimeout'] )
+			? $params['waitTimeout']
+			: self::MAX_WAIT_DEFAULT;
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
@@ -346,7 +352,8 @@ class LoadBalancer implements ILoadBalancer {
 			$loads = $this->mLoads;
 		}
 
-		// Scale the configured load ratios according to each server's load and state
+		// Scale the configured load ratios according to each server's load and state.
+		// This reduces traffic to servers that are unavailable.
 		$this->getLoadMonitor()->scaleLoads( $loads, $domain );
 
 		// Pick a server to use, accounting for weights, load, lag, and mWaitForPos
@@ -363,6 +370,8 @@ class LoadBalancer implements ILoadBalancer {
 			// so update laggedReplicaMode as needed for consistency.
 			if ( !$this->doWait( $i ) ) {
 				$laggedReplicaMode = true;
+				// Let LoadMonitor know that this waited a full default timeout wait failed
+				$this->loadMonitor->pingFailure( $i, self::DOMAIN_ANY, LoadMonitor::TYPE_POS_SYNC );
 			}
 		}
 
@@ -382,7 +391,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param array $loads List of server weights
+	 * @param array $loads List of server weights already scaled by scaleLoads()
 	 * @param string|bool $domain
 	 * @return array (reader index, lagged replica mode) or false on failure
 	 */
@@ -418,6 +427,7 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					// All replica DBs lagged. Switch to read-only mode
 					$this->replLogger->error( "All replica DBs lagged. Switch to read-only mode" );
+					// Pick a server based only on the scaled weights provided
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -580,6 +590,16 @@ class LoadBalancer implements ILoadBalancer {
 			return true;
 		}
 
+		// Short-circuit if this is likely to just fail and waste time
+		$failureRate = $this->loadMonitor->getSyncFailureRate( $index, self::DOMAIN_ANY );
+		if ( $failureRate > self::MAX_WAIT_FAILURE_RATE ) {
+			$this->replLogger->warning( __METHOD__ .
+				': To many failures to wait for replica DB {dbserver} to catch up...',
+				[ 'dbserver' => $server ] );
+
+			return false;
+		}
+
 		// Find a connection to wait on, creating one if needed and allowed
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
@@ -602,16 +622,31 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->replLogger->info( __METHOD__ . ': Waiting for replica DB {dbserver} to catch up...',
+		$this->replLogger->info( __METHOD__ .
+			': Waiting for replica DB {dbserver} to catch up...',
 			[ 'dbserver' => $server ] );
+
 		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
-		if ( $result == -1 || is_null( $result ) ) {
-			// Timed out waiting for replica DB, use master instead
+		if ( $result === null ) {
+			$this->replLogger->warning(
+				__METHOD__ . ': Errored out waiting on {host} pos {pos}',
+				[
+					'host' => $server,
+					'pos' => $this->mWaitForPos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				]
+			);
+			$ok = false;
+		} elseif ( $result == -1 ) {
 			$this->replLogger->warning(
 				__METHOD__ . ': Timed out waiting on {host} pos {pos}',
-				[ 'host' => $server, 'pos' => $this->mWaitForPos ]
+				[
+					'host' => $server,
+					'pos' => $this->mWaitForPos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				]
 			);
 			$ok = false;
 		} else {
@@ -991,6 +1026,8 @@ class LoadBalancer implements ILoadBalancer {
 		// application calls LoadBalancer::commitMasterChanges() before the PHP script completes.
 		$server['flags'] = isset( $server['flags'] ) ? $server['flags'] : IDatabase::DBO_DEFAULT;
 
+		$i = $server['serverIndex'];
+
 		// Create a live connection object
 		try {
 			$db = Database::factory( $server['type'], $server );
@@ -998,6 +1035,8 @@ class LoadBalancer implements ILoadBalancer {
 			// FIXME: This is probably the ugliest thing I have ever done to
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
 			$db = $e->db;
+			// Make LoadMoniter aware of each time a connection attempt failed
+			$this->loadMonitor->pingFailure( $i, self::DOMAIN_ANY, LoadMonitor::TYPE_CONNECTION );
 		}
 
 		$db->setLBInfo( $server );
@@ -1006,7 +1045,7 @@ class LoadBalancer implements ILoadBalancer {
 		);
 		$db->setTableAliases( $this->tableAliases );
 
-		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
+		if ( $i === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
 				$this->applyTransactionRoundFlags( $db );
 			}
@@ -1648,8 +1687,11 @@ class LoadBalancer implements ILoadBalancer {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			if ( $result == -1 || is_null( $result ) ) {
 				$msg = __METHOD__ . ': Timed out waiting on {host} pos {pos}';
-				$this->replLogger->warning( $msg,
-					[ 'host' => $conn->getServer(), 'pos' => $pos ] );
+				$this->replLogger->warning( $msg, [
+					'host' => $conn->getServer(),
+					'pos' => $pos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				] );
 				$ok = false;
 			} else {
 				$this->replLogger->info( __METHOD__ . ': Done' );
