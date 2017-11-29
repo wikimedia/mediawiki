@@ -736,7 +736,7 @@ if ( !$wgDBerrorLogTZ ) {
 
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
-// Set user IP/agent information for causal consistency purposes
+// Set user IP/agent information for causal consistency improvement purposes
 $cpPosTime = $wgRequest->getFloat(
 	'cpPosTime',
 	isset( $_COOKIE['cpPosTime'] ) ? (float)$_COOKIE['cpPosTime'] : null
@@ -747,6 +747,10 @@ MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
 	'ChronologyPositionTime' => $cpPosTime
 ] );
+// Make sure that caching does not compromise the consistency improvements
+if ( $cpPosTime ) {
+	MediaWikiServices::getInstance()->getMainWANObjectCache()->useInterimHoldOffCaching( false );
+}
 unset( $cpPosTime );
 
 // Useful debug output
