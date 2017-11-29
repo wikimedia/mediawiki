@@ -23,7 +23,8 @@
 			"Umherirrender",
 			"Urhixidur",
 			"Florian",
-			"Tiin"
+			"Tiin",
+			"Rhirsch"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den „Letzten Änderungen“ ausblenden",
@@ -75,6 +76,7 @@
 	"login-security": "Verifizieren Sie Ihre Identität",
 	"userlogin-noaccount": "Sie haben noch kein Benutzerkonto?",
 	"userlogin-loggedin": "Sie sind bereits als {{GENDER:$1|$1}} angemeldet.\nBenutzen Sie das unten stehende Formular, um sich unter einem anderen Benutzernamen anzumelden.",
+	"userlogin-reauth": "Sie müssen sich erneut anmelden, um zu verifizieren, dass Sie Nutzer \"{{GENDER:$1|$1}}\" sind.",
 	"createacct-email-ph": "Geben Sie Ihre E-Mail-Adresse ein",
 	"createacct-reason-ph": "Warum erstellen Sie ein anderes Benutzerkonto?",
 	"createacct-benefit-heading": "{{SITENAME}} wird von Menschen wie Ihnen geschaffen.",
@@ -203,7 +205,6 @@
 	"search-nonefound": "Für Ihre Suchanfrage wurden keine Ergebnisse gefunden.",
 	"searchdisabled": "Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex von {{SITENAME}} veraltet sein kann.",
 	"prefsnologintext2": "Sie müssen sich einloggen, um Ihre Benutzereinstellungen zu ändern.",
-	"prefs-help-watchlist-token2": "Dies ist der geheime Schlüssel zum Webfeed Ihrer Beobachtungsliste.\nJeder, der ihn kennt, kann Ihre Beobachtungsliste lesen. Teilen Sie ihn deshalb nicht Anderen mit.\nSofern notwendig, [[Special:ResetTokens|können Sie ihn zurücksetzen]].",
 	"savedprefs": "Ihre Einstellungen wurden gespeichert.",
 	"prefs-reset-intro": "Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.\nDies kann nicht mehr rückgängig gemacht werden.",
 	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um Sie anzureden sowie als Hinweis für andere durch Verwendung des zutreffenden grammatikalischen Geschlechts.\nDiese Information ist öffentlich.",
@@ -357,5 +358,6 @@
 	"dberr-outofdate": "Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.",
 	"feedback-bugcheck": "Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.",
 	"feedback-bugornote": "Sofern Sie detailliert ein technisches Problem beschreiben möchten, melden Sie bitte [$1 einen Fehler].\nAnderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Kommentar wird, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.",
-	"feedback-thanks": "Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert."
+	"feedback-thanks": "Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.",
+	"changecredentials": "Anmeldeinformationen ändern"
 }

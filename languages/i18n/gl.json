@@ -1014,6 +1014,7 @@
 	"recentchangesdays-max": "Máximo: $1 {{PLURAL:$1|día|días}}",
 	"recentchangescount": "Número de edicións a mostrar por defecto:",
 	"prefs-help-recentchangescount": "Isto inclúe os cambios recentes, os historiais e mais os rexistros.",
+	"prefs-help-tokenmanagement": "Podes ver e restaurar a chave secreta para a túa conta que pode acceder á fonte web da túa lista de vixiancia. Calquera que coñeza a chave poderá leer a túa lista de vixiancia.",
 	"savedprefs": "Gardáronse as súas preferencias.",
 	"savedrights": "Gardáronse os grupos de {{GENDER:$1|usuario|usuaria}} de $1.",
 	"timezonelegend": "Fuso horario:",

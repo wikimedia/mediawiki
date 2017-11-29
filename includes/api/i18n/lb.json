@@ -203,6 +203,7 @@
 	"api-help-datatypes-header": "Datentypen",
 	"api-help-param-type-user": "Typ: {{PLURAL:$1|1=Benotzernumm|2=Lëscht vu Benotzernimm}}",
 	"api-help-param-multi-max-simple": "Maximal Zuel vun de Wäerter ass {{PLURAL:$1|$1}}.",
+	"api-help-param-maxbytes": "Däerf net méi laang si wéi {{PLURAL:$1|ee Byte|$1 Byten}}.",
 	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:",
 	"api-help-permissions": "{{PLURAL:$1|Autorisatioun|Autorisatiounen}}:",
 	"api-help-open-in-apisandbox": "<small>[an der Sandkëscht opmaachen]</small>",
