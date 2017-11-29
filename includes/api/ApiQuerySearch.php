@@ -145,9 +145,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		// Add the search results to the result
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 		$titles = [];
+		$metadata = [];
 		$count = 0;
 		$result = $matches->next();
 		$limit = $params['limit'];
+		$offset = $params['offset'] + 1;
 
 		while ( $result ) {
 			if ( ++$count > $limit ) {
@@ -175,6 +177,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				}
 			} else {
 				$titles[] = $result->getTitle();
+				$metadata[] = [
+					'title' => $result->getTitle(),
+					'data' => $this->getSearchResultData( $result, $prop, $terms ) + [
+						'index' => $count - 1 + $offset,
+					],
+				];
 			}
 
 			$result = $matches->next();
@@ -209,9 +217,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				return $current;
 			} );
 			$resultPageSet->populateFromTitles( $titles );
-			$offset = $params['offset'] + 1;
-			foreach ( $titles as $index => $title ) {
-				$resultPageSet->setGeneratorData( $title, [ 'index' => $index + $offset ] );
+			foreach ( $metadata as $data ) {
+				$resultPageSet->setGeneratorData( $data['title'], $data['data'] );
 			}
 		}
 	}
