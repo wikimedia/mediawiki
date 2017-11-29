@@ -793,7 +793,7 @@
 				.empty()
 				.append( $( '<p>' ).append( Util.parseMsg( 'apisandbox-intro' ) ) )
 				.append(
-					$( '<div>', { id: 'mw-apisandbox-ui' } )
+					$( '<div>' ).attr( 'id', 'mw-apisandbox-ui' )
 						.append( $toolbar )
 						.append( panel.$element )
 				);
@@ -1452,11 +1452,10 @@
 							width: 'auto',
 							padded: true,
 							$content: $( '<ul>' ).append( $.map( pi.helpurls, function ( link ) {
-								return $( '<li>' ).append( $( '<a>', {
-									href: link,
-									target: '_blank',
-									text: link
-								} ) );
+								return $( '<li>' ).append( $( '<a>' )
+									.attr( { href: link, target: '_blank' } )
+									.text( link )
+								);
 							} ) )
 						}
 					} ) );
@@ -1471,10 +1470,9 @@
 							width: 'auto',
 							padded: true,
 							$content: $( '<ul>' ).append( $.map( pi.examples, function ( example ) {
-								var a = $( '<a>', {
-									href: '#' + example.query,
-									html: example.description
-								} );
+								var a = $( '<a>' )
+									.attr( 'href', '#' + example.query )
+									.html( example.description );
 								a.find( 'a' ).contents().unwrap(); // Can't nest links
 								return $( '<li>' ).append( a );
 							} ) )
@@ -1508,14 +1506,14 @@
 							var $this = $( this );
 							$this.parent().prev( 'p' ).append( $this );
 						} );
-						descriptionContainer.append( $( '<div>', { addClass: 'description', append: tmp } ) );
+						descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( tmp ) );
 
 						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
 							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
-								descriptionContainer.append( $( '<div>', {
-									addClass: 'info',
-									append: Util.parseHTML( pi.parameters[ i ].info[ j ] )
-								} ) );
+								descriptionContainer.append( $( '<div>' )
+									.addClass( 'info' )
+									.append( Util.parseHTML( pi.parameters[ i ].info[ j ] ) )
+								);
 							}
 						}
 						flag = true;
@@ -1528,25 +1526,25 @@
 
 							case 'limit':
 								if ( pi.parameters[ i ].highmax !== undefined ) {
-									descriptionContainer.append( $( '<div>', {
-										addClass: 'info',
-										append: [
+									descriptionContainer.append( $( '<div>' )
+										.addClass( 'info' )
+										.append(
 											Util.parseMsg(
 												'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
 											),
 											' ',
 											Util.parseMsg( 'apisandbox-param-limit' )
-										]
-									} ) );
+										)
+									);
 								} else {
-									descriptionContainer.append( $( '<div>', {
-										addClass: 'info',
-										append: [
+									descriptionContainer.append( $( '<div>' )
+										.addClass( 'info' )
+										.append(
 											Util.parseMsg( 'api-help-param-limit', pi.parameters[ i ].max ),
 											' ',
 											Util.parseMsg( 'apisandbox-param-limit' )
-										]
-									} ) );
+										)
+									);
 								}
 								break;
 
@@ -1559,14 +1557,14 @@
 									tmp += 'max';
 								}
 								if ( tmp !== '' ) {
-									descriptionContainer.append( $( '<div>', {
-										addClass: 'info',
-										append: Util.parseMsg(
+									descriptionContainer.append( $( '<div>' )
+										.addClass( 'info' )
+										.append( Util.parseMsg(
 											'api-help-param-integer-' + tmp,
 											Util.apiBool( pi.parameters[ i ].multi ) ? 2 : 1,
 											pi.parameters[ i ].min, pi.parameters[ i ].max
-										)
-									} ) );
+										) )
+									);
 								}
 								break;
 
@@ -1595,23 +1593,23 @@
 								);
 							}
 							if ( tmp.length ) {
-								descriptionContainer.append( $( '<div>', {
-									addClass: 'info',
-									append: Util.parseHTML( tmp.join( ' ' ) )
-								} ) );
+								descriptionContainer.append( $( '<div>' )
+									.addClass( 'info' )
+									.append( Util.parseHTML( tmp.join( ' ' ) ) )
+								);
 							}
 						}
 						if ( 'maxbytes' in pi.parameters[ i ] ) {
-							descriptionContainer.append( $( '<div>', {
-								addClass: 'info',
-								append: Util.parseMsg( 'api-help-param-maxbytes', pi.parameters[ i ].maxbytes )
-							} ) );
+							descriptionContainer.append( $( '<div>' )
+								.addClass( 'info' )
+								.append( Util.parseMsg( 'api-help-param-maxbytes', pi.parameters[ i ].maxbytes ) )
+							);
 						}
 						if ( 'maxchars' in pi.parameters[ i ] ) {
-							descriptionContainer.append( $( '<div>', {
-								addClass: 'info',
-								append: Util.parseMsg( 'api-help-param-maxchars', pi.parameters[ i ].maxchars )
-							} ) );
+							descriptionContainer.append( $( '<div>' )
+								.addClass( 'info' )
+								.append( Util.parseMsg( 'api-help-param-maxchars', pi.parameters[ i ].maxchars ) )
+							);
 						}
 						helpField = new OO.ui.FieldLayout(
 							new OO.ui.Widget( {
