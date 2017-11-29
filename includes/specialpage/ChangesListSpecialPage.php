@@ -1596,8 +1596,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		# Collapsible
 		$collapsedState = $this->getRequest()->getCookie( 'changeslist-state' );
 		$collapsedClass = $collapsedState === 'collapsed' ? ' mw-collapsed' : '';
+		# Enhanced mode
+		$enhancedMode = $this->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+		$enhancedClass = $enhancedMode ? ' mw-enhanced' : '';
+
+		$legendClasses = $collapsedClass . $enhancedClass;
 		$legend =
-			'<div class="mw-changeslist-legend mw-collapsible' . $collapsedClass . '">' .
+			'<div class="mw-changeslist-legend mw-collapsible' . $legendClasses . '">' .
 				$legendHeading .
 				'<div class="mw-collapsible-content">' . $legend . '</div>' .
 			'</div>';
