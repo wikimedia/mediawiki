@@ -26,7 +26,6 @@ production.
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
-* Upgraded Moment.js from v2.15.0 to v2.19.3.
 * …
 
 ==== New external libraries ====
@@ -106,6 +105,9 @@ changes to languages because of Phabricator reports.
 * Use of Maintenance::error( $err, $die ) to exit script was deprecated. Use
   Maintenance::fatalError() instead.
 * Passing a ParserOptions object to OutputPage::parserOptions() is deprecated.
+* Browser support for Opera 12 and older was removed.
+  Opera 15+ continues at Grade A support.
+* …
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

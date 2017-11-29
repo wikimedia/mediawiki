@@ -33,7 +33,7 @@ window.mwNow = ( function () {
  * - IE 10+
  * - Firefox 4+
  * - Safari 5+
- * - Opera 12.10+
+ * - Opera 15+
  * - Mobile Safari 5.1+ (iOS 5+)
  * - Android 4.1+
  *
@@ -42,7 +42,7 @@ window.mwNow = ( function () {
  * - IE 6+
  * - Firefox 3+
  * - Safari 3+
- * - Opera 10+
+ * - Opera 15+
  * - Mobile Safari 5.0+ (iOS 4+)
  * - Android 2.0+
  * - WebOS < 1.5
