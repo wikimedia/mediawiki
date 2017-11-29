@@ -740,7 +740,11 @@ $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
 MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'IPAddress' => $wgRequest->getIP(),
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
-	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' )
+	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
+	'ChronologyPositionTime' => $wgRequest->getFloat(
+		'cpPosTime',
+		$wgRequest->getCookie( 'cpPosTime', '' )
+	)
 ] );
 
 // Useful debug output
