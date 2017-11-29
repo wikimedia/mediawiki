@@ -319,6 +319,7 @@ interface ILBFactory {
 	 *   - IPAddress : IP address
 	 *   - UserAgent : User-Agent HTTP header
 	 *   - ChronologyProtection : cookie/header value specifying ChronologyProtector usage
+	 *   - ChronologyPositionTime: timestamp used to get up-to-date DB positions for the agent
 	 */
 	public function setRequestInfo( array $info );
 }
