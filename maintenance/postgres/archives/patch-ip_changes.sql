@@ -2,7 +2,7 @@ CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
 
 CREATE TABLE ip_changes (
   ipc_rev_id        INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('ip_changes_ipc_rev_id_seq'),
-  ipc_rev_timestamp TIMESTAMPTZ NOT NULL DEFAULT '',
+  ipc_rev_timestamp TIMESTAMPTZ NOT NULL,
   ipc_hex           BYTEA NOT NULL DEFAULT ''
 );
 
