@@ -7,6 +7,7 @@ production.
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
+* Add ip_changes to postgres/tables.sql.
 
 === MySQL version requirement in 1.30 ===
 As of 1.30, MediaWiki now requires MySQL 5.5.8 or higher (see Compatibility
