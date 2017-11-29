@@ -461,9 +461,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function ignoreErrors( $ignoreErrors = null ) {
 		$res = $this->getFlag( self::DBO_IGNORE );
 		if ( $ignoreErrors !== null ) {
-			$ignoreErrors
-				? $this->setFlag( self::DBO_IGNORE )
-				: $this->clearFlag( self::DBO_IGNORE );
+			// setFlag()/clearFlag() do not allow DBO_IGNORE changes for sanity
+			if ( $ignoreErrors ) {
+				$this->mFlags |= self::DBO_IGNORE;
+			} else {
+				$this->mFlags &= ~self::DBO_IGNORE;
+			}
 		}
 
 		return $res;
@@ -621,6 +624,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		if ( ( $flag & self::DBO_IGNORE ) ) {
+			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+		}
+
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
 		}
@@ -628,6 +635,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		if ( ( $flag & self::DBO_IGNORE ) ) {
+			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+		}
+
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
 		}
