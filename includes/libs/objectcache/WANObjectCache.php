@@ -111,6 +111,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 	/** Seconds to keep dependency purge keys around */
 	const CHECK_KEY_TTL = self::TTL_YEAR;
+	/** Seconds to keep interim value keys for tombstoned keys around */
+	const INTERIM_KEY_TTL = 1;
+
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 10;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
@@ -1009,7 +1012,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$isTombstone = ( $curTTL !== null && $value === false );
 		if ( $isTombstone && $lockTSE <= 0 ) {
 			// Use the INTERIM value for tombstoned keys to reduce regeneration load
-			$lockTSE = 1;
+			$lockTSE = self::INTERIM_KEY_TTL;
 		}
 		// Assume a key is hot if requested soon after invalidation
 		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
