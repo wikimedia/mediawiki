@@ -1,3 +1,10 @@
+== MediaWiki 1.27.5 ==
+
+THIS IS NOT A RELEASE YET!
+
+=== Changes since 1.27.4 ===
+* Upgraded Moment.js from v2.8.4 to v2.19.3.
+
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
 
