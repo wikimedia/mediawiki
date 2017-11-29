@@ -653,30 +653,32 @@ TXT;
 	 * @since 1.25
 	 * @param ErrorException $e
 	 * @param string $channel
-	 * @param string $level
+	 * @param string $originalLevel
 	 */
 	protected static function logError(
-		ErrorException $e, $channel, $level = LogLevel::ERROR
+		ErrorException $e, $channel, $originalLevel = LogLevel::ERROR
 	) {
 		$catcher = self::CAUGHT_BY_HANDLER;
+		$context = [
+			'php_error_level' => $originalLevel,
+		];
 		// The set_error_handler callback is independent from error_reporting.
-		// Filter out unwanted errors manually (e.g. when
+		// Lower severity of unwanted errors to DEBUG (e.g. when
 		// MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
-		if ( !$suppressed ) {
-			$logger = LoggerFactory::getInstance( $channel );
-			$logger->log(
-				$level,
-				self::getLogNormalMessage( $e ),
-				self::getLogContext( $e, $catcher )
-			);
-		}
+		$level = $suppressed ? LogLevel::DEBUG : $originalLevel;
+		$logger = LoggerFactory::getInstance( $channel );
+		$logger->log(
+			$level,
+			self::getLogNormalMessage( $e ),
+			$context + self::getLogContext( $e, $catcher )
+		);
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
-			$logger->log( $level, $json, [ 'private' => true ] );
+			$logger->log( $originalLevel, $json, [ 'private' => true ] );
 		}
 
 		Hooks::run( 'LogException', [ $e, $suppressed ] );
