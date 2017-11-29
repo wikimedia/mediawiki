@@ -734,14 +734,20 @@ if ( !$wgDBerrorLogTZ ) {
 	$wgDBerrorLogTZ = $wgLocaltimezone;
 }
 
-// initialize the request object in $wgRequest
+// Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
 // Set user IP/agent information for causal consistency purposes
+$cpPosTime = $wgRequest->getFloat(
+	'cpPosTime',
+	isset( $_COOKIE['cpPosTime'] ) ? (float)$_COOKIE['cpPosTime'] : null
+);
 MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'IPAddress' => $wgRequest->getIP(),
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
-	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' )
+	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
+	'ChronologyPositionTime' => $cpPosTime
 ] );
+unset( $cpPosTime );
 
 // Useful debug output
 if ( $wgCommandLineMode ) {
