@@ -33,6 +33,10 @@ use WANObjectCache;
  * @ingroup Database
  */
 interface ILoadMonitor extends LoggerAwareInterface {
+	/** @var int A connection attempt */
+	const TYPE_CONNECTION = 1;
+	const TYPE_POS_SYNC = 2;
+
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *
@@ -59,8 +63,26 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 * Values may be "false" if replication is too broken to estimate
 	 *
 	 * @param int[] $serverIndexes
-	 * @param string $domain
+	 * @param string|bool $domain
 	 * @return array Map of (server index => float|int|bool)
 	 */
 	public function getLagTimes( array $serverIndexes, $domain );
+
+	/**
+	 * Inform the monitor that basic usage of server failed (error or timeout)
+	 *
+	 * @param int $serverIndex
+	 * @param string|bool $domain
+	 * @param int $type ILoadMonitor::TYPE_* constant
+	 */
+	public function pingFailure( $serverIndex, $domain, $type );
+
+	/**
+	 * Get the failure rate of replication sync attempts
+	 *
+	 * @param int $serverIndex
+	 * @param string|bool $domain
+	 * @return mixed
+	 */
+	public function getSyncFailureRate( $serverIndex, $domain );
 }
