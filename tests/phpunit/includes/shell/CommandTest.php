@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Shell\Command;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Shell
@@ -63,6 +64,16 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 			->includeStderr()
 			->execute();
 		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStdout() );
+	}
+
+	/**
+	 * Test that null values are skipped by params() and unsafeParams()
+	 */
+	public function testNullsAreSkipped() {
+		$command = TestingAccessWrapper::newFromObject( new Command );
+		$command->params( 'echo', 'a', null, 'b' );
+		$command->unsafeParams( 'c', null, 'd' );
+		$this->assertEquals( "'echo' 'a' 'b' c d", $command->command );
 	}
 
 	public function testT69870() {
