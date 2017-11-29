@@ -1,24 +1,17 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:46Z
+ * Date: 2017-11-28T23:28:10Z
  */
 /**
- * WikimediaUI Base v0.9.2
+ * WikimediaUI Base v0.10.0
  * Wikimedia Foundation user interface base variables
  */
-/* Colors */
-/* Positioning */
-/* Box Model properties */
-/* Max Widths */
-/* Typography incl. print properties */
-/* Other Properties */
-/* Animation & Transition */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
@@ -1141,6 +1134,7 @@
 }
 .oo-ui-capsuleMultiselectWidget-popup {
   margin-top: -1px;
+  margin-bottom: -1px;
 }
 .oo-ui-capsuleMultiselectWidget-popup > .oo-ui-popupWidget-popup {
   border: 0;

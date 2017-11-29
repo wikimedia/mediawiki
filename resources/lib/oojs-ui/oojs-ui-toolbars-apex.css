@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.2
+ * OOjs UI v0.24.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2017 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-07T22:52:46Z
+ * Date: 2017-11-28T23:28:10Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -403,9 +403,7 @@
 }
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
   background-image: url('themes/apex/images/icons/check.png');
-  background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-image: -o-linear-gradient(transparent, transparent), url('themes/apex/images/icons/check.png');
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
