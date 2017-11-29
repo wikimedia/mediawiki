@@ -769,8 +769,6 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$calls = 0;
 		$func = function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
-			// Immediately kill any mutex rather than waiting a second
-			$cache->delete( $cache::MUTEX_KEY_PREFIX . $key );
 			return $value;
 		};
 
@@ -778,7 +776,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $value, $ret );
 		$this->assertEquals( 1, $calls, 'Value was populated' );
 
-		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
+		// Acquire the mutex to verify that getWithSetCallback uses lockTSE properly
 		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
 
 		$checkKeys = [ wfRandomString() ]; // new check keys => force misses
@@ -795,8 +793,8 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 
 		$ret = $cache->getWithSetCallback( $key, 30, $func,
 			[ 'lockTSE' => 5, 'checkKeys' => $checkKeys ] );
-		$this->assertEquals( $value, $ret, 'Callback was not used; used interim' );
-		$this->assertEquals( 2, $calls, 'Callback was not used; used interim' );
+		$this->assertEquals( $value, $ret, 'Callback was not used; used interim (mutex failed)' );
+		$this->assertEquals( 2, $calls, 'Callback was not used; used interim (mutex failed)' );
 	}
 
 	/**
@@ -1185,6 +1183,58 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 			[ [], false ],
 			[ [ 'version' => 1 ], true ]
 		];
+	}
+
+	/**
+	 * @covers WANObjectCache::useInterimHoldOffCaching
+	 * @covers WANObjectCache::getInterimValue
+	 */
+	public function testInterimHoldOffCaching() {
+		$cache = $this->cache;
+
+		$value = 'CRL-40-940';
+		$wasCalled = 0;
+		$func = function () use ( &$wasCalled, $value ) {
+			$wasCalled++;
+
+			return $value;
+		};
+
+		$cache->useInterimHoldOffCaching( true );
+
+		$key = wfRandomString( 32 );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 1, $wasCalled, 'Value cached' );
+		$cache->delete( $key );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 2, $wasCalled, 'Value regenerated (got mutex)' ); // sets interim
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 3, $wasCalled, 'Value regenerated (got mutex)' ); // sets interim
+		// Lock up the mutex so interim cache is used
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 3, $wasCalled, 'Value interim cached (failed mutex)' );
+		$this->internalCache->delete( $cache::MUTEX_KEY_PREFIX . $key );
+
+		$cache->useInterimHoldOffCaching( false );
+
+		$wasCalled = 0;
+		$key = wfRandomString( 32 );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 1, $wasCalled, 'Value cached' );
+		$cache->delete( $key );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 2, $wasCalled, 'Value regenerated (got mutex)' );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 3, $wasCalled, 'Value still regenerated (got mutex)' );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 4, $wasCalled, 'Value still regenerated (got mutex)' );
+		// Lock up the mutex so interim cache is used
+		$this->internalCache->add( $cache::MUTEX_KEY_PREFIX . $key, 1, 0 );
+		$v = $cache->getWithSetCallback( $key, 60, $func );
+		$this->assertEquals( 5, $wasCalled, 'Value still regenerated (failed mutex)' );
 	}
 
 	/**
