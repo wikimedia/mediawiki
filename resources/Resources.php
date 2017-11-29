@@ -947,6 +947,7 @@ return [
 		],
 		'dependencies' => [
 			'jquery.footHovzer',
+			'oojs-ui-core',
 		],
 	],
 	'mediawiki.diff.styles' => [
