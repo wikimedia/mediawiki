@@ -43,4 +43,11 @@ class LoadMonitorNull implements ILoadMonitor {
 
 	public function clearCaches() {
 	}
+
+	public function pingFailure( $serverIndex, $domain, $type ) {
+	}
+
+	public function getSyncFailureRate( $serverIndex, $domain ) {
+		return 0.0;
+	}
 }
