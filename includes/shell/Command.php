@@ -106,6 +106,7 @@ class Command {
 
 	/**
 	 * Adds parameters to the command. All parameters are sanitized via Shell::escape().
+	 * Null values are ignored.
 	 *
 	 * @param string|string[] $args,...
 	 * @return $this
@@ -124,6 +125,7 @@ class Command {
 
 	/**
 	 * Adds unsafe parameters to the command. These parameters are NOT sanitized in any way.
+	 * Null values are ignored.
 	 *
 	 * @param string|string[] $args,...
 	 * @return $this
@@ -135,6 +137,11 @@ class Command {
 			// treat it as a list of arguments
 			$args = reset( $args );
 		}
+		$args = array_filter( $args,
+			function ( $value ) {
+				return $value !== null;
+			}
+		);
 		$this->command .= implode( ' ', $args );
 
 		return $this;

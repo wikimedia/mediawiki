@@ -103,6 +103,26 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStderr() );
 	}
 
+	/**
+	 * Test that null values are skipped by params() and unsafeParams()
+	 */
+	public function testNullsAreSkipped() {
+		$params = [ 'echo', 'a', null, 'b' ];
+
+		$command = new Command();
+		$result = $command
+			->params( $params )
+			->execute();
+		$this->assertEquals( "a b\n", $result->getStdout() );
+
+		$command = new Command();
+		$result = $command
+			->unsafeParams( $params )
+			->execute();
+		$this->assertEquals( "a b\n", $result->getStdout() );
+
+	}
+
 	public function testT69870() {
 		$commandLine = wfIsWindows()
 			// 333 = 331 + CRLF
