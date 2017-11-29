@@ -5,6 +5,9 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.30 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Changes since MediaWiki 1.30.0-rc.0 ===
+* Upgraded Moment.js from v2.15.0 to v2.19.3.
+
 === MySQL version requirement in 1.30 ===
 As of 1.30, MediaWiki now requires MySQL 5.5.8 or higher (see Compatibility
 section).
@@ -88,6 +91,7 @@ section).
 * Updated OOUI from v0.21.1 to v0.23.0.
 * Updated QUnit from v1.23.1 to v2.4.0.
 * Updated phpunit/phpunit from v4.8.35 to v4.8.36.
+* Upgraded Moment.js from v2.15.0 to v2.19.3.
 
 ==== New external libraries ====
 * The class \TestingAccessWrapper has been moved to the external library
