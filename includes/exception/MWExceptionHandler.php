@@ -659,18 +659,19 @@ TXT;
 		ErrorException $e, $channel, $level = LogLevel::ERROR
 	) {
 		$catcher = self::CAUGHT_BY_HANDLER;
+		$context = [
+			'php_error_level' => level,
+		];
 		// The set_error_handler callback is independent from error_reporting.
-		// Filter out unwanted errors manually (e.g. when
+		// Lower severity of unwanted errors to DEBUG (e.g. when
 		// MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
-		if ( !$suppressed ) {
-			$logger = LoggerFactory::getInstance( $channel );
-			$logger->log(
-				$level,
-				self::getLogNormalMessage( $e ),
-				self::getLogContext( $e, $catcher )
-			);
-		}
+		$logger = LoggerFactory::getInstance( $channel );
+		$logger->log(
+			$suppressed ? LogLevel::DEBUG : $level,
+			self::getLogNormalMessage( $e ),
+			$context + self::getLogContext( $e, $catcher )
+		);
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
