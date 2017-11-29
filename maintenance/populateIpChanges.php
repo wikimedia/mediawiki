@@ -62,9 +62,14 @@ TEXT
 	}
 
 	public function doDBUpdates() {
+		$dbw = $this->getDB( DB_MASTER );
+
+		if ( !$dbw->tableExists( 'ip_changes' ) ) {
+			$this->fatalError( 'ip_changes table does not exist' );
+		}
+
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-		$dbw = $this->getDB( DB_MASTER );
 		$throttle = intval( $this->getOption( 'throttle', 0 ) );
 		$maxRevId = intval( $this->getOption( 'max-rev-id', 0 ) );
 		$start = $this->getOption( 'rev-id', 0 );
