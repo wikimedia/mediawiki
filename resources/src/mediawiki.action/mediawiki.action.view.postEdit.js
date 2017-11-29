@@ -15,49 +15,15 @@
 	 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
 	 */
 
-	/**
-	 * After the listener for #postEdit removes the notification.
-	 *
-	 * @event postEdit_afterRemoval
-	 * @member mw.hook
-	 */
-
 	var postEdit = mw.config.get( 'wgPostEdit' );
 
 	function showConfirmation( data ) {
-		var $container, $popup, $content, timeoutId;
-
-		function fadeOutConfirmation() {
-			$popup.addClass( 'postedit-faded' );
-			setTimeout( function () {
-				$container.remove();
-				mw.hook( 'postEdit.afterRemoval' ).fire();
-			}, 250 );
-		}
-
 		data = data || {};
+		mw.notify( mw.msg( 'postedit-confirmation-saved', data.user || mw.user ) );
 
 		if ( data.message === undefined ) {
 			data.message = $.parseHTML( mw.message( 'postedit-confirmation-saved', data.user || mw.user ).escaped() );
 		}
-
-		$content = $( '<div>' ).addClass( 'postedit-icon postedit-icon-checkmark postedit-content' );
-		if ( typeof data.message === 'string' ) {
-			$content.text( data.message );
-		} else if ( typeof data.message === 'object' ) {
-			$content.append( data.message );
-		}
-
-		$popup = $( '<div>' ).addClass( 'postedit mw-notification' ).append( $content )
-			.click( function () {
-				clearTimeout( timeoutId );
-				fadeOutConfirmation();
-			} );
-
-		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
-		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
-
-		$( 'body' ).prepend( $container );
 	}
 
 	mw.hook( 'postEdit' ).add( showConfirmation );
