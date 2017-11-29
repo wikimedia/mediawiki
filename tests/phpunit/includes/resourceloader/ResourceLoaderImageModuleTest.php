@@ -207,7 +207,6 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 <<<TEXT
 background-image: url(rasterized.png);
 	background-image: linear-gradient(transparent, transparent), url(original.svg);
-	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
 TEXT
 			],
 			[
@@ -215,7 +214,6 @@ TEXT
 <<<TEXT
 background-image: url(rasterized.png);
 	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml);
-	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
 TEXT
 			],
 
