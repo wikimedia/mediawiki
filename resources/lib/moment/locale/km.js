@@ -3,13 +3,15 @@
 // author : Kruy Vanna : https://github.com/kruyvanna
 
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
         define(['moment'], factory); // AMD
     } else if (typeof exports === 'object') {
         module.exports = factory(require('../moment')); // Node
     } else {
         factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
+    }*/
+    factory(this.moment);
 }(function (moment) {
     return moment.defineLocale('km', {
         months: 'មករា_កុម្ភៈ_មិនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split('_'),

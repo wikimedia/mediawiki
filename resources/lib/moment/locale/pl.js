@@ -3,13 +3,15 @@
 // author : Rafal Hirsz : https://github.com/evoL
 
 (function (factory) {
-    if (typeof define === 'function' && define.amd) {
+    // Comment out broken wrapper, see T145382
+    /*if (typeof define === 'function' && define.amd) {
         define(['moment'], factory); // AMD
     } else if (typeof exports === 'object') {
         module.exports = factory(require('../moment')); // Node
     } else {
         factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
+    }*/
+    factory(this.moment);
 }(function (moment) {
     var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
         monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
