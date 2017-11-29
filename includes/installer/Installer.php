@@ -1485,6 +1485,11 @@ abstract class Installer {
 			}
 		}
 		if ( $status->isOk() ) {
+			$this->showMessage(
+				'config-install-success',
+				$this->getVar( 'wgServer' ),
+				$this->getVar( 'wgScriptPath' )
+			);
 			$this->setVar( '_InstallDone', true );
 		}
 
