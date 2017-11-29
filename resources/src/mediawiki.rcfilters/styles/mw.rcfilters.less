@@ -23,14 +23,24 @@
 	}
 
 	.mw-recentchanges-toplinks {
-		margin-bottom: 0.5em;
-		padding: 0 0.5em 0.5em 0.5em;
-		border: 1px solid transparent;
+		padding-left: 0.5em;
 
 		&:not( .mw-recentchanges-toplinks-collapsed ) {
-			// Same as the legend
-			border: 1px solid @colorGray12;
+			margin-bottom: 0.5em;
+			border: 1px solid @colorGray12; // Same as the legend
+			padding: 0 0.5em 0.5em 0.5em;
 		}
+
+		/* stylelint-disable declaration-no-important */
+		.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+			padding-right: 1.2em !important;
+
+			> .oo-ui-indicatorElement-indicator {
+				right: 0 !important;
+				width: 0.9375em !important;
+			}
+		}
+		/* stylelint-enable declaration-no-important */
 	}
 
 	body:not( .mw-rcfilters-ui-initialized ) {
