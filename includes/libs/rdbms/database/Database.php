@@ -3278,6 +3278,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
 	 *   - since: oldest UNIX timestamp of any of the DB lag estimates
 	 *   - pending: whether any of the DBs have uncommitted changes
+	 * @throws DBError
 	 * @since 1.27
 	 */
 	public static function getCacheSetOptions( IDatabase $db1 ) {

@@ -1690,6 +1690,7 @@ interface IDatabase {
 	 * instead.
 	 *
 	 * @return int|bool Database replication lag in seconds or false on error
+	 * @throws DBError
 	 */
 	public function getLag();
 
@@ -1704,6 +1705,7 @@ interface IDatabase {
 	 * indication of the staleness of subsequent reads.
 	 *
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
+	 * @throws DBError
 	 * @since 1.27
 	 */
 	public function getSessionLagStatus();
