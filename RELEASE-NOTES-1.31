@@ -26,6 +26,7 @@ production.
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
+* Upgraded Moment.js from v2.15.0 to v2.19.3.
 * …
 
 ==== New external libraries ====
