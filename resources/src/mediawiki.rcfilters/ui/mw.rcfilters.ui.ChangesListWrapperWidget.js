@@ -368,6 +368,8 @@
 			// Regular RC
 			$content.find( 'ul.special li' )
 				.prepend( $highlights.clone() );
+
+			$content.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhancedView' );
 		}
 	};
 

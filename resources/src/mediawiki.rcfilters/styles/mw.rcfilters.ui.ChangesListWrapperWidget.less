@@ -54,8 +54,26 @@
 		}
 	}
 
+	&-enhancedView {
+		.mw-changeslist-legend {
+			position: absolute;
+			right: 0;
+			float: none;
+			margin-top: -0.5em;
+
+			&:not( .mw-collapsed ) {
+				.box-shadow( 0 1px 1px rgba( 0, 0, 0, 0.15 ) );
+			}
+		}
+	}
+
 	.mw-changeslist-legend {
 		background-color: @background-color-base;
+		border: 1px solid @colorGray12;
+
+		&.mw-collapsed ~ ul.special > li {
+			clear: right;
+		}
 	}
 
 	// Correction for Enhanced RC
