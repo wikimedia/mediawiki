@@ -1,3 +1,10 @@
+== MediaWiki 1.29.3 ==
+
+THIS IS NOT A RELEASE YET!
+
+=== Changes since 1.29.2 ===
+* Upgraded Moment.js from v2.15.0 to v2.19.3.
+
 == MediaWiki 1.29.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.29 branch.
