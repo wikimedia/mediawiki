@@ -142,7 +142,7 @@ class Shell {
 	 * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
 	 *
 	 * @param string $args,... strings to escape and glue together, or a single array of
-	 *     strings parameter
+	 *     strings parameter. Null values are ignored.
 	 * @return string
 	 */
 	public static function escape( /* ... */ ) {
@@ -156,6 +156,9 @@ class Shell {
 		$first = true;
 		$retVal = '';
 		foreach ( $args as $arg ) {
+			if ( $arg === null ) {
+				continue;
+			}
 			if ( !$first ) {
 				$retVal .= ' ';
 			} else {
