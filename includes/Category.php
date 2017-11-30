@@ -119,9 +119,9 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param array $name A category name (no "Category:" prefix).  It need
+	 * @param string $name A category name (no "Category:" prefix).  It need
 	 *   not be normalized, with spaces replaced by underscores.
-	 * @return mixed Category, or false on a totally invalid name
+	 * @return Category|bool Category, or false on a totally invalid name
 	 */
 	public static function newFromName( $name ) {
 		$cat = new self();
