@@ -39,8 +39,7 @@
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
-			update: 'onModelUpdate',
-			newChangesExist: 'onNewChangesExist'
+			update: 'onModelUpdate'
 		} );
 
 		this.$element
@@ -49,8 +48,6 @@
 			// We keep the timeout class here and remove it later, since at this
 			// stage it is still needed to identify that the timeout occurred.
 			.removeClass( 'mw-changeslist-empty' );
-
-		this.setupNewChangesButtonContainer();
 	};
 
 	/* Initialization */
@@ -238,44 +235,6 @@
 		$newChanges
 			.hide()
 			.fadeIn( 1000 );
-	};
-
-	/**
-	 * Respond to changes list model newChangesExist
-	 *
-	 * @param {boolean} newChangesExist Whether new changes exist
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
-		this.showNewChangesLink.toggle( newChangesExist );
-	};
-
-	/**
-	 * Respond to the user clicking the 'show new changes' button
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onShowNewChangesClick = function () {
-		this.controller.showNewChanges();
-	};
-
-	/**
-	 * Setup the container for the 'new changes' button.
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function () {
-		this.showNewChangesLink = new OO.ui.ButtonWidget( {
-			framed: false,
-			label: mw.message( 'rcfilters-show-new-changes' ).text(),
-			flags: [ 'progressive' ]
-		} );
-		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
-		this.showNewChangesLink.toggle( false );
-
-		// HACK: Add the -newChanges div inside rcfilters-head, rather than right above us
-		// Visually it's the same place, but by putting it inside rcfilters-head we are
-		// able to use the min-height rule to prevent the page from jumping when this is added.
-		this.$element.parent().find( '.rcfilters-head' ).append(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
-				.append( this.showNewChangesLink.$element )
-		);
 	};
 
 	/**
