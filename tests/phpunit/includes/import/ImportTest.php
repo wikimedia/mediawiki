@@ -294,7 +294,7 @@ EOF
 		$row = $db->selectRow(
 			'revision',
 			[ 'rev_user', 'rev_user_text' ],
-			[ 'rev_timestamp' => "201601010{$n}0000" ],
+			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0000" ) ],
 			__METHOD__
 		);
 		$this->assertSame(
@@ -306,7 +306,7 @@ EOF
 		$row = $db->selectRow(
 			'revision',
 			[ 'rev_user', 'rev_user_text' ],
-			[ 'rev_timestamp' => "201601010{$n}0001" ],
+			[ 'rev_timestamp' => $db->timestamp( "201601010{$n}0001" ) ],
 			__METHOD__
 		);
 		$this->assertSame( ( $assign ? '' : 'Xxx>' ) . $user->getName(), $row->rev_user_text );
