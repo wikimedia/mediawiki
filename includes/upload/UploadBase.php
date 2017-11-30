@@ -674,7 +674,10 @@ abstract class UploadBase {
 			$warnings['was-deleted'] = $filename;
 		}
 
-		$dupes = $this->checkAgainstExistingDupes( $hash );
+		// If a file with the same name exists locally then the local file has already been tested
+		// for duplication of content
+		$ignoreLocalDupes = isset( $warnings[ 'exists '] );
+		$dupes = $this->checkAgainstExistingDupes( $hash, $ignoreLocalDupes );
 		if ( $dupes ) {
 			$warnings['duplicate'] = $dupes;
 		}
@@ -789,15 +792,19 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $hash sha1 hash of the file to check
+	 * @param bool $ignoreLocalDupes True to ignore local duplicates
 	 *
 	 * @return File[] Duplicate files, if found.
 	 */
-	private function checkAgainstExistingDupes( $hash ) {
+	private function checkAgainstExistingDupes( $hash, $ignoreLocalDupes ) {
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
-		// Remove all matches against self
 		foreach ( $dupes as $key => $dupe ) {
-			if ( $title->equals( $dupe->getTitle() ) ) {
+			if (
+				( $dupe instanceof LocalFile ) &&
+				$ignoreLocalDupes &&
+				$title->equals( $dupe->getTitle() )
+			) {
 				unset( $dupes[$key] );
 			}
 		}
