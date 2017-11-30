@@ -892,10 +892,26 @@ class Linker {
 	 */
 	public static function userLink( $userId, $userName, $altUserName = false ) {
 		$classes = 'mw-userlink';
+		$page = null;
 		if ( $userId == 0 ) {
-			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-			if ( $altUserName === false ) {
-				$altUserName = IP::prettifyIP( $userName );
+			$pos = strpos( $userName, '>' );
+			if ( $pos !== false ) {
+				$iw = explode( ':', substr( $userName, 0, $pos ) );
+				$firstIw = array_shift( $iw );
+				$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
+				if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
+					$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
+					if ( $iw ) {
+						$title = join( ':', $iw ) . ':' . $title;
+					}
+					$page = Title::makeTitle( NS_MAIN, $title, '', $firstIw );
+				}
+				$classes .= ' mw-extuserlink';
+			} else {
+				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
+				if ( $altUserName === false ) {
+					$altUserName = IP::prettifyIP( $userName );
+				}
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
@@ -903,11 +919,12 @@ class Linker {
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
-		return self::link(
-			$page,
-			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>',
-			[ 'class' => $classes ]
-		);
+		$linkText =
+			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>';
+
+		return $page
+			? self::link( $page, $linkText, [ 'class' => $classes ] )
+			: Html::rawElement( 'span', [ 'class' => $classes ], $linkText );
 	}
 
 	/**
@@ -930,6 +947,11 @@ class Linker {
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
+
+		if ( $userId == 0 && strpos( $userText, '>' ) !== false ) {
+			// No tools for an external user
+			return '';
+		}
 
 		$items = [];
 		if ( $talkable ) {
