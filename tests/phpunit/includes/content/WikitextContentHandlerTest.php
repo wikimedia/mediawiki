@@ -186,6 +186,13 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			],
 
 			[
+				null,
+				'',
+				EDIT_NEW,
+				'/^Created blank page$/'
+			],
+
+			[
 				'Hello there, world!',
 				'',
 				0,
@@ -225,6 +232,104 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			(bool)preg_match( $expected, $summary ),
 			"Autosummary didn't match expected pattern $expected: $summary"
 		);
+	}
+
+	public static function dataGetChangeTag() {
+		return [
+			[
+				null,
+				'#REDIRECT [[Foo]]',
+				0,
+				'mw-new-redirect'
+			],
+
+			[
+				'Lorem ipsum dolor',
+				'#REDIRECT [[Foo]]',
+				0,
+				'mw-new-redirect'
+			],
+
+			[
+				'#REDIRECT [[Foo]]',
+				'Lorem ipsum dolor',
+				0,
+				'mw-removed-redirect'
+			],
+
+			[
+				'#REDIRECT [[Foo]]',
+				'#REDIRECT [[Bar]]',
+				0,
+				'mw-changed-redirect-target'
+			],
+
+			[
+				null,
+				'Lorem ipsum dolor',
+				EDIT_NEW,
+				null // mw-newpage is not defined as a tag
+			],
+
+			[
+				null,
+				'',
+				EDIT_NEW,
+				null // mw-newblank is not defined as a tag
+			],
+
+			[
+				'Lorem ipsum dolor',
+				'',
+				0,
+				'mw-blank'
+			],
+
+			[
+				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+				'Ipsum',
+				0,
+				'mw-replace'
+			],
+
+			[
+				'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+				eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+				voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+				clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+				'Duis purus odio, rhoncus et finibus dapibus, facilisis ac urna. Pellentesque
+				arcu, tristique nec tempus nec, suscipit vel arcu. Sed non dolor nec ligula
+				congue tempor. Quisque pellentesque finibus orci a molestie. Nam maximus, purus
+				euismod finibus mollis, dui ante malesuada felis, dignissim rutrum diam sapien.',
+				0,
+				null
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider dataGetChangeTag
+	 * @covers WikitextContentHandler::getChangeTag
+	 */
+	public function testGetChangeTag( $old, $new, $flags, $expected ) {
+		$this->setMwGlobals( 'wgSoftwareTags', [
+			'mw-new-redirect' => true,
+			'mw-removed-redirect' => true,
+			'mw-changed-redirect-target' => true,
+			'mw-newpage' => true,
+			'mw-newblank' => true,
+			'mw-blank' => true,
+			'mw-replace' => true,
+		] );
+		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
+		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+
+		$tag = $this->handler->getChangeTag( $oldContent, $newContent, $flags );
+
+		$this->assertSame( $expected, $tag );
 	}
 
 	/**
