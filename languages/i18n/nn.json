@@ -1131,7 +1131,6 @@
 	"rcfilters-activefilters": "Aktive filter",
 	"rcfilters-advancedfilters": "Avanserte filter",
 	"rcfilters-limit-title": "Tal endringar som skal visast",
-	"rcfilters-limit-shownum": "Vis {{PLURAL:$1|den siste endringa|dei siste $1 endringane}}",
 	"rcfilters-days-title": "Dei siste dagane",
 	"rcfilters-hours-title": "Dei siste timane",
 	"rcfilters-days-show-days": "{{PLURAL:$1|Éin dag|$1 dagar}}",

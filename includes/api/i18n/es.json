@@ -29,7 +29,8 @@
 			"Igv",
 			"Fortega",
 			"Luzcaru",
-			"Javiersanp"
+			"Javiersanp",
+			"KATRINE1992"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> Todas las funciones mostradas en esta página deberían estar funcionando, pero la API aún está en desarrollo activo, y puede cambiar en cualquier momento. Suscribase a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] para aviso de actualizaciones.\n\n<strong>Erroneous requests:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para más información ver [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> Para facilitar la comprobación de las solicitudes de API, consulte [[Special:ApiSandbox]].",
@@ -239,6 +240,8 @@
 	"apihelp-import-extended-description": "Tenga en cuenta que el HTTP POST debe hacerse como una carga de archivos (es decir, el uso de multipart/form-data) al enviar un archivo para el parámetro <var>xml</var>.",
 	"apihelp-import-param-summary": "Resumen de importación de entrada del registro.",
 	"apihelp-import-param-xml": "Se cargó el archivo XML.",
+	"apihelp-import-param-interwikiprefix": "Para introducciones cargadas: el prefixo interwiki va ser aplicado para nombres de usuarios no conecidos (and known users if <var>$1assignknownusers</var> is set).",
+	"apihelp-import-param-assignknownusers": "Asinar ediciones a los usuarios concretos locales.",
 	"apihelp-import-param-interwikisource": "Para importaciones interwiki: wiki desde la que importar.",
 	"apihelp-import-param-interwikipage": "Para importaciones interwiki: página a importar.",
 	"apihelp-import-param-fullhistory": "Para importaciones interwiki: importar todo el historial, no solo la versión actual.",

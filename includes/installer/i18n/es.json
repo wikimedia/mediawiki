@@ -33,7 +33,8 @@
 			"Peter Bowman",
 			"Dgstranz",
 			"Irus",
-			"Tinss"
+			"Tinss",
+			"KATRINE1992"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -338,6 +339,7 @@
 	"config-install-mainpage-failed": "No se pudo insertar la página principal: $1",
 	"config-install-done": "<strong>¡Felicidades!</strong>\nHas instalado MediaWiki.\n\nEl instalador ha generado un archivo <code>LocalSettings.php</code>.\nEste contiene toda su configuración.\n\nDeberás descargarlo y ponerlo en la base de la instalación de wiki (el mismo directorio que index.php). La descarga debería haber comenzado automáticamente.\n\nSi no comenzó la descarga, o si se ha cancelado, puedes reiniciar la descarga haciendo clic en el siguiente enlace:\n\n$3\n\n<strong>Nota</strong>: si no haces esto ahora, este archivo de configuración generado no estará disponible más tarde si sales de la instalación sin descargarlo.\n\nCuando lo hayas hecho, podrás <strong>[$2 entrar en tu wiki]</strong>.",
 	"config-install-done-path": "<strong>¡Felicidades!</strong>\nHas instalado MediaWiki.\n\nEl instalador ha generado un archivo <code>LocalSettings.php</code>.\nEste contiene toda su configuración.\n\nDeberás descargarlo y ponerlo en <code>$4</code>. La descarga debería haber comenzado automáticamente.\n\nSi no comenzó la descarga, o si se ha cancelado, puedes reiniciar la descarga haciendo clic en el siguiente enlace:\n\n$3\n\n<strong>Nota</strong>: si no haces esto ahora, este archivo de configuración generado no estará disponible más tarde si sales de la instalación sin descargarlo.\n\nCuando lo hayas hecho, podrás <strong>[$2 entrar en tu wiki]</strong>.",
+	"config-install-success": "MediaWiki ha sido instalado con exito. Puede ahora visitar <$1$2> para ver a su wiki.\nSi tiene preguntas, ver a la lista de preguntas frecuentes:<https://www.mediawiki.org/wiki/Manual:FAQ> o utilizar forums conectados con esta pagina.",
 	"config-download-localsettings": "Descargar <code>LocalSettings.php</code>",
 	"config-help": "ayuda",
 	"config-help-tooltip": "haz clic para ampliar",

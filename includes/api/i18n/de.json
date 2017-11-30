@@ -220,6 +220,8 @@
 	"apihelp-import-extended-description": "Bitte beachte, dass der HTTP-POST-Vorgang als Dateiupload ausgeführt werden muss (z.B. durch multipart/form-data), um eine Datei über den <var>xml</var>-Parameter zu senden.",
 	"apihelp-import-param-summary": "Importzusammenfassung des Logbucheintrags.",
 	"apihelp-import-param-xml": "Hochgeladene XML-Datei.",
+	"apihelp-import-param-interwikiprefix": "Für hochgeladene Importe: Auf unbekannte Benutzernamen anzuwendendes Interwiki-Präfix (und bekannte Benutzer, falls <var>$1assignknownusers</var> festgelegt ist).",
+	"apihelp-import-param-assignknownusers": "Weist Bearbeitungen lokalen Benutzern zu, wo der benannte Benutzer lokal vorhanden ist.",
 	"apihelp-import-param-interwikisource": "Für Interwiki-Importe: Wiki, von dem importiert werden soll.",
 	"apihelp-import-param-interwikipage": "Für Interwiki-Importe: zu importierende Seite.",
 	"apihelp-import-param-fullhistory": "Für Interwiki-Importe: importiere die komplette Versionsgeschichte, nicht nur die aktuelle Version.",
