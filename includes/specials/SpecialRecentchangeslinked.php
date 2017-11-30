@@ -301,10 +301,13 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * Get a self-referential title object
 	 * with consideration to the given subpage.
 	 *
+	 * @param string|bool $subpage
 	 * @return Title
 	 * @since 1.23
 	 */
-	public function getPageTitle() {
-		return parent::getPageTitle( $this->rclTarget );
+	public function getPageTitle( $subpage = false ) {
+		$subpage = $subpage ? $subpage : $this->rclTarget;
+
+		return parent::getPageTitle( $subpage );
 	}
 }
