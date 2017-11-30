@@ -192,7 +192,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			if ( $sectionLabel ) {
 				$out[] = new OOUI\FieldsetLayout( [
 					'items' => [ $widget ],
-					'label' => $sectionLabel,
+					'label' => new OOUI\HtmlSnippet( $sectionLabel ),
 				] );
 			} else {
 				$out[] = $widget;
