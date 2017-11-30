@@ -560,7 +560,10 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 
 		$this->assertEquals( IP::toHex( $ip ), $row->ipc_hex );
-		$this->assertEquals( $orig->getTimestamp(), $row->ipc_rev_timestamp );
+		$this->assertEquals(
+			$orig->getTimestamp(),
+			wfTimestamp( TS_MW, $row->ipc_rev_timestamp )
+		);
 	}
 
 	public static function provideUserWasLastToEdit() {
