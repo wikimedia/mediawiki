@@ -2030,9 +2030,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			if ( is_array( $table ) ) {
 				// A parenthesized group
-				$joinedTable = '('
-					. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
-					. ')';
+				if ( count( $table ) > 1 ) {
+					$joinedTable = '('
+						. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
+						. ')';
+				} else {
+					// Degenerate case
+					$innerTable = reset( $table );
+					$innerAlias = key( $table );
+					$joinedTable = $this->tableNameWithAlias(
+						$innerTable,
+						is_string( $innerAlias ) ? $innerAlias : $innerTable
+					);
+				}
 			} else {
 				$joinedTable = $this->tableNameWithAlias( $table, $alias );
 			}

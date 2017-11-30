@@ -120,6 +120,13 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 				],
 				'table1 LEFT JOIN (table2 JOIN table3 ON ((t2_id = t3_id))) ON ((t1_id = t2_id))'
 			],
+			'join with degenerate parenthesized group' => [
+				[ 'table1', 'n' => [ 't2' => 'table2' ] ],
+				[
+					'n' => [ 'LEFT JOIN', 't1_id = t2_id' ],
+				],
+				'table1 LEFT JOIN table2 t2 ON ((t1_id = t2_id))'
+			],
 		];
 	}
 
