@@ -122,7 +122,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->will( $this->returnValue( 12 ) );
+			->will( $this->returnValue( '12' ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
@@ -153,7 +153,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->will( $this->returnValue( 7 ) );
+			->will( $this->returnValue( '7' ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
@@ -179,9 +179,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ]
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
 			),
 		];
 		$mockDb->expects( $this->once() )
@@ -245,9 +245,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ]
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
 			),
 		];
 		$mockDb->expects( $this->once() )
@@ -311,7 +311,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->will( $this->returnValue( 7 ) );
+			->will( $this->returnValue( '7' ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'addQuotes' )
 			->will( $this->returnCallback( function ( $value ) {
@@ -345,9 +345,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		];
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
+			$this->getFakeRow(
+				[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
+			),
 		];
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 ) )
@@ -434,14 +436,16 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		];
 
 		$dbResult = [
-			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => 0, 'watchers' => 100 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => 0, 'watchers' => 300 ] ),
-			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => 1, 'watchers' => 500 ] ),
+			$this->getFakeRow( [ 'wl_title' => 'SomeDbKey', 'wl_namespace' => '0', 'watchers' => '100' ] ),
+			$this->getFakeRow( [ 'wl_title' => 'OtherDbKey', 'wl_namespace' => '0', 'watchers' => '300' ] ),
 			$this->getFakeRow(
-				[ 'wl_title' => 'SomeNotExisitingDbKey', 'wl_namespace' => 0, 'watchers' => 100 ]
+				[ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
 			),
 			$this->getFakeRow(
-				[ 'wl_title' => 'OtherNotExisitingDbKey', 'wl_namespace' => 0, 'watchers' => 200 ]
+				[ 'wl_title' => 'SomeNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '100' ]
+			),
+			$this->getFakeRow(
+				[ 'wl_title' => 'OtherNotExisitingDbKey', 'wl_namespace' => '0', 'watchers' => '200' ]
 			),
 		];
 		$mockDb = $this->getMockDb();
@@ -596,7 +600,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				],
 				$this->isType( 'string' )
 			)
-			->will( $this->returnValue( 9 ) );
+			->will( $this->returnValue( '9' ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'set' );
@@ -631,7 +635,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' ),
 				[ 'LIMIT' => 50 ]
 			)
-			->will( $this->returnValue( 50 ) );
+			->will( $this->returnValue( '50' ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'set' );
@@ -669,7 +673,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' ),
 				[ 'LIMIT' => 50 ]
 			)
-			->will( $this->returnValue( 9 ) );
+			->will( $this->returnValue( '9' ) );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'set' );
@@ -721,8 +725,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 	public function testDuplicateEntry_somethingToDuplicate() {
 		$fakeRows = [
-			$this->getFakeRow( [ 'wl_user' => 1, 'wl_notificationtimestamp' => '20151212010101' ] ),
-			$this->getFakeRow( [ 'wl_user' => 2, 'wl_notificationtimestamp' => null ] ),
+			$this->getFakeRow( [ 'wl_user' => '1', 'wl_notificationtimestamp' => '20151212010101' ] ),
+			$this->getFakeRow( [ 'wl_user' => '2', 'wl_notificationtimestamp' => null ] ),
 		];
 
 		$mockDb = $this->getMockDb();
@@ -840,7 +844,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		LinkTarget $newTarget
 	) {
 		$fakeRows = [
-			$this->getFakeRow( [ 'wl_user' => 1, 'wl_notificationtimestamp' => '20151212010101' ] ),
+			$this->getFakeRow( [ 'wl_user' => '1', 'wl_notificationtimestamp' => '20151212010101' ] ),
 		];
 
 		$mockDb = $this->getMockDb();
@@ -1632,13 +1636,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb = $this->getMockDb();
 		$dbResult = [
 			$this->getFakeRow( [
-				'wl_namespace' => 0,
+				'wl_namespace' => '0',
 				'wl_title' => 'SomeDbKey',
 				'wl_notificationtimestamp' => '20151212010101',
 			] ),
 			$this->getFakeRow(
 				[
-					'wl_namespace' => 1,
+					'wl_namespace' => '1',
 					'wl_title' => 'AnotherDbKey',
 					'wl_notificationtimestamp' => null,
 				]
@@ -1774,7 +1778,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [
 				$this->getFakeRow(
-					[ 'wl_namespace' => 1, 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
+					[ 'wl_namespace' => '1', 'wl_title' => 'AnotherDbKey', 'wl_notificationtimestamp' => null, ]
 				)
 			] ) );
 
