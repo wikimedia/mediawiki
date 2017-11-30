@@ -11,7 +11,8 @@
 			"Macofe",
 			"Suchichi02",
 			"Kkairri",
-			"ネイ"
+			"ネイ",
+			"Omotecho"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|説明文書]]\n* [[mw:API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> このページに表示されている機能は全て動作するはずですが、この API は未だ活発に開発されており、変更される可能性があります。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。",
@@ -955,6 +956,8 @@
 	"api-help-param-limited-in-miser-mode": "<strong>注意:</strong> [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]] により、これを使用すると継続する前に <var>$1limit</var> より返される結果が少なくなることがあります; 極端な場合では、ゼロ件の結果が返ることもあります。",
 	"api-help-param-direction": "列挙の方向:\n;newer:古いものを先に表示します。注意: $1start は $1end 以前でなければなりません。\n;older:新しいものを先に表示します (既定)。注意: $1start は $1end 以降でなければなりません。",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(説明なし)</span>",
+	"api-help-param-maxbytes": "$1 {{PLURAL:$1|byte|バイト}}以下で入力してください。",
+	"api-help-param-maxchars": "$1 {{PLURAL:$1|character|文字}}以下で入力してください。",
 	"api-help-examples": "{{PLURAL:$1|例}}:",
 	"api-help-permissions": "{{PLURAL:$1|権限}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|権限を持つグループ}}: $2",

@@ -1106,7 +1106,6 @@
 	"rcfilters-other-review-tools": "અન્ય ચકાસણી સાધનો",
 	"rcfilters-activefilters": "સક્રિય ગાળકો",
 	"rcfilters-limit-title": "દર્શાવવાના ફેરફારો",
-	"rcfilters-limit-shownum": "છેલ્લા {{PLURAL:$1|ફેરફાર|$1 ફેરફારો}} દર્શાવો",
 	"rcfilters-days-title": "તાજેતરના દિવસો",
 	"rcfilters-hours-title": "તાજેતરના કલાકો",
 	"rcfilters-savedqueries-cancel-label": "રદ કરો",

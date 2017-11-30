@@ -1289,7 +1289,6 @@
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Jon badlao ke dekhae ke hai",
-	"rcfilters-limit-shownum": "Pichhlaa $1 badlao ke dekhao",
 	"rcfilters-days-title": "Kuchh pahile ke din",
 	"rcfilters-hours-title": "Kuch pahile ke ghantaa",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|din}}",
