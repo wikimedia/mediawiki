@@ -3686,23 +3686,6 @@ $wgResourceLoaderMaxage = [
 $wgResourceLoaderDebug = false;
 
 /**
- * Put each statement on its own line when minifying JavaScript. This makes
- * debugging in non-debug mode a bit easier.
- *
- * @deprecated since 1.27: Always false; no longer configurable.
- */
-$wgResourceLoaderMinifierStatementsOnOwnLine = false;
-
-/**
- * Maximum line length when minifying JavaScript. This is not a hard maximum:
- * the minifier will try not to produce lines longer than this, but may be
- * forced to do so in certain cases.
- *
- * @deprecated since 1.27: Always 1,000; no longer configurable.
- */
-$wgResourceLoaderMinifierMaxLineLength = 1000;
-
-/**
  * Whether to ensure the mediawiki.legacy library is loaded before other modules.
  *
  * @deprecated since 1.26: Always declare dependencies.
