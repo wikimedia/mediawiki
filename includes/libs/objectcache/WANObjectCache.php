@@ -980,6 +980,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 
 		// Get a collection name to describe this class of key
 		$kClass = $this->determineKeyClass( $key );
+		if ( preg_match( '/^[0-9a-f]{32}$/', $kClass ) ) {
+			$this->logger->warning(
+				"Got bad statsd class for key '{key}'",
+				[ 'key' => $key, 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			);
+		}
 
 		// Get the current key value
 		$curTTL = null;
