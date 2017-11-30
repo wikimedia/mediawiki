@@ -50,7 +50,6 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * is the execute() method. See docs/maintenance.txt for more info
  * and a quick demo of how to use it.
  *
- * @author Chad Horohoe <chad@anyonecanedit.org>
  * @since 1.16
  * @ingroup Maintenance
  */
