@@ -17,6 +17,8 @@ production.
   not have the right to mark things patrolled.
 * Wikis that contain imported revisions or CentralAuth global blocks should run
   maintenance/cleanupUsersWithNoId.php.
+* $wgResourceLoaderMinifierStatementsOnOwnLine and $wgResourceLoaderMinifierMaxLineLength
+  were removed (deprecated since 1.27).
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
