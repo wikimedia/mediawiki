@@ -1100,4 +1100,32 @@ more stuff
 		];
 	}
 
+	/**
+	 * @covers WikiPage::updateCategoryCounts
+	 */
+	public function testUpdateCategoryCounts() {
+		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+
+		// Add an initial category
+		$page->updateCategoryCounts( [ 'A' ], [], 0 );
+
+		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertEquals( 0, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+
+		// Add a new category
+		$page->updateCategoryCounts( [ 'B' ], [], 0 );
+
+		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertEquals( 0, Category::newFromName( 'C' )->getPageCount() );
+
+		// Add and remove a category
+		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
+
+		$this->assertEquals( 0, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertEquals( 1, Category::newFromName( 'C' )->getPageCount() );
+	}
+
 }
