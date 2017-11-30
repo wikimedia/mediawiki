@@ -32,10 +32,44 @@ class ChangeTags {
 	 */
 	const MAX_DELETE_USES = 5000;
 
+	private static $definedSoftwareTags = [
+		'mw-contentmodelchange',
+		'mw-new-redirect',
+		'mw-removed-redirect',
+		'mw-changed-redirect-target',
+		'mw-blank',
+		'mw-replace',
+		'mw-rollback'
+	];
+
 	/**
-	 * @var string[]
+	 * Loads defined core tags, checks for invalid types (if not array),
+	 * and filters for supported and enabled (if $all is false) tags only.
+	 *
+	 * @param bool $all If true, return all valid defined tags. Otherwise, return only enabled ones.
+	 * @return array Array of all defined/enabled tags.
 	 */
-	private static $coreTags = [ 'mw-contentmodelchange' ];
+	public static function getSoftwareTags( $all = false ) {
+		global $wgSoftwareTags;
+		$softwareTags = [];
+
+		if ( !is_array( $wgSoftwareTags ) ) {
+			wfWarn( 'wgSoftwareTags should be associative array of enabled tags.
+			Please refer to documentation for the list of tags you can enable' );
+			return $softwareTags;
+		}
+
+		$availableSoftwareTags = !$all ?
+			array_keys( array_filter( $wgSoftwareTags ) ) :
+			array_keys( $wgSoftwareTags );
+
+		$softwareTags = array_intersect(
+			$availableSoftwareTags,
+			self::$definedSoftwareTags
+		);
+
+		return $softwareTags;
+	}
 
 	/**
 	 * Creates HTML for the given tags
@@ -1210,7 +1244,7 @@ class ChangeTags {
 	 */
 	public static function listSoftwareActivatedTags() {
 		// core active tags
-		$tags = self::$coreTags;
+		$tags = self::getSoftwareTags();
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
 			return $tags;
 		}
@@ -1301,7 +1335,7 @@ class ChangeTags {
 	 */
 	public static function listSoftwareDefinedTags() {
 		// core defined tags
-		$tags = self::$coreTags;
+		$tags = self::getSoftwareTags( true );
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
 			return $tags;
 		}
