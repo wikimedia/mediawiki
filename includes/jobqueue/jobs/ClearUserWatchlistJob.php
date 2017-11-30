@@ -28,15 +28,10 @@ class ClearUserWatchlistJob extends Job {
 	/**
 	 * @param Title|null $title Not used by this job.
 	 * @param array $params
-	 *  - batchSize,      Number of watchlist entries to remove at once.
 	 *  - userId,         The ID for the user whose watchlist is being cleared.
 	 *  - maxWatchlistId, The maximum wl_id at the time the job was first created,
 	 */
 	public function __construct( Title $title = null, array $params ) {
-		if ( !array_key_exists( 'batchSize', $params ) ) {
-			$params['batchSize'] = 1000;
-		}
-
 		parent::__construct(
 			'clearUserWatchlist',
 			SpecialPage::getTitleFor( 'EditWatchlist', 'clear' ),
@@ -47,8 +42,10 @@ class ClearUserWatchlistJob extends Job {
 	}
 
 	public function run() {
+		global $wgUpdateRowsPerQuery;
 		$userId = $this->params['userId'];
 		$maxWatchlistId = $this->params['maxWatchlistId'];
+		$batchSize = $wgUpdateRowsPerQuery;
 
 		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbw = $loadBalancer->getConnection( DB_MASTER );
@@ -86,7 +83,7 @@ class ClearUserWatchlistJob extends Job {
 			__METHOD__,
 			[
 				'ORDER BY' => 'wl_id ASC',
-				'LIMIT' => $this->params['batchSize'],
+				'LIMIT' => $batchSize,
 			]
 		);
 
@@ -101,7 +98,9 @@ class ClearUserWatchlistJob extends Job {
 		$lbf->commitMasterChanges( __METHOD__ );
 		unset( $scopedLock );
 
-		if ( count( $watchlistIds ) == $this->params['batchSize'] ) {
+		if ( count( $watchlistIds ) === (int)$batchSize ) {
+			// Until we get less results than the limit, recursively push
+			// the same job again.
 			JobQueueGroup::singleton()->push( new self( $this->getTitle(), $this->getParams() ) );
 		}
 

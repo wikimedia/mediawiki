@@ -48,12 +48,13 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 		$watchedItemStore->addWatch( $user, new TitleValue( 0, 'C' ) );
 		$watchedItemStore->addWatch( $user, new TitleValue( 1, 'C' ) );
 
+		$this->setMwGlobals( 'wgUpdateRowsPerQuery', 2 );
+
 		JobQueueGroup::singleton()->push(
 			new ClearUserWatchlistJob(
 				null,
 				[
 					'userId' => $user->getId(),
-					'batchSize' => 2,
 					'maxWatchlistId' => $maxId,
 				]
 			)
