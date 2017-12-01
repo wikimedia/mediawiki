@@ -18,18 +18,18 @@
 $fallback = 'pt';
 
 $namespaceNames = [
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Multimédia',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Cumbersa',
 	NS_USER             => 'Outelizador(a)',
 	NS_USER_TALK        => 'Cumbersa_outelizador(a)',
-	NS_PROJECT_TALK     => '$1_cumbersa',
+	NS_PROJECT_TALK     => 'Cumbersa_$1',
 	NS_FILE             => 'Fexeiro',
 	NS_FILE_TALK        => 'Cumbersa_fexeiro',
 	NS_MEDIAWIKI        => 'Biqui',
 	NS_MEDIAWIKI_TALK   => 'Cumbersa_Biqui',
 	NS_TEMPLATE         => 'Modelo',
-	NS_TEMPLATE_TALK    => 'Cumbersa_Modelo',
+	NS_TEMPLATE_TALK    => 'Cumbersa_modelo',
 	NS_HELP             => 'Ajuda',
 	NS_HELP_TALK        => 'Cumbersa_ajuda',
 	NS_CATEGORY         => 'Catadorie',
@@ -46,12 +46,18 @@ $namespaceAliases = [
 	'Ficheiro_Discussão' => NS_FILE_TALK,
 	'Imagem' => NS_FILE,
 	'Imagem_Discussão' => NS_FILE_TALK,
+	"MediaWiki" => NS_MEDIAWIKI,
 	'MediaWiki_Discussão' => NS_MEDIAWIKI_TALK,
 	'Predefinição' => NS_TEMPLATE,
 	'Predefinição_Discussão' => NS_TEMPLATE_TALK,
 	'Ajuda_Discussão' => NS_HELP_TALK,
 	'Categoria' => NS_CATEGORY,
 	'Categoria_Discussão' => NS_CATEGORY_TALK,
+	"Media" => NS_MEDIA,
+	"Utilizador" => NS_USER,
+	"Utilizadora" => NS_USER,
+	"Cumbersa_Modelo" => NS_TEMPLATE_TALK,
+	"$1_cumbersa" => NS_PROJECT_TALK,
 ];
 
 $namespaceGenderAliases = [
