@@ -598,7 +598,52 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * This works like getCheckKeyTime() except it takes a list of keys
 	 * and returns a list of timestamps instead of just that of one key
 	 *
+	 * This might be useful when an entity depends on hundreds of other other entities,
+	 * which themselves are used by millions of entities. The later can use "check" keys
+	 * to invalidate their many dependee entities. However, it might be too expensive for the
+	 * former to fetch all the "check" keys of the entities it depends on within every single
+	 * getWithSetCallback() call. In this case the "check" keys can be fetched and compared to
+	 * only after a "time-till-verify" has passed. The verifications are middle ground between
+	 * a blind cache use and a full value computation.
+	 *
+	 * Example usage:
+	 * @code
+	 *     $value = $cache->getWithSetCallback(
+	 *         $cache->makeGlobalKey( 'wikibase-item', $id ),
+	 *         self::INITIAL_TTV, // initial time-till-verify
+	 *         function ( $oldValue, &$ttv, &$setOpts, $oldAsOf ) use ( $checkKeys, $cache ) {
+	 *             $now = microtime( true );
+	 *             // Use $oldValue if it passes max ultimate age and "check" key comparisons
+	 *             if ( $oldValue &&
+	 *                 $oldAsOf > max( $cache->getCheckKeyTimeMulti( $checkKeys ) ) &&
+	 *                 ( $now - $oldValue['ctime'] ) <= self::MAX_CACHE_AGE
+	 *             ) {
+	 *                 // Increase time-till-verify by 50% of last time to reduce overhead
+	 *                 $ttv = $cache->adaptiveTTL( $oldAsOf, self::MAX_TTV, self::MIN_TTV, 1.5 );
+	 *                 // Unlike $oldAsOf, "ctime" is the ultimate age of the cached data
+	 *                 return $oldValue;
+	 *             }
+	 *
+	 *             $mtimes = []; // mtimes of dependencies; passed by reference
+	 *             $value = [ 'data' => $this->computeValue( $mtimes ), 'ctime' => $now ];
+	 *             // Guess time-till-change among the dependencies, e.g. 1/(total change rate)
+	 *             $ttc = 1 / array_sum( array_map(
+	 *                 function ( $mtime ) use ( $now ) {
+	 *                     return 1 / ( $mtime ? ( $now - $mtime ) : 900 );
+	 *                 },
+	 *                 $mtimes
+	 *             ) );
+	 *             // The time-to-verify should not be overly pessimistic nor optimistic
+	 *             $ttv = min( max( $ttc, self::MIN_TTV ), self::MAX_TTV );
+	 *
+	 *             return $value;
+	 *         },
+	 *         [ 'staleTTL' => $cache::TTL_DAY ] // keep around to verify and re-save
+	 *     );
+	 * @endcode
+	 *
 	 * @see WANObjectCache::getCheckKeyTime()
+	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param array $keys
 	 * @return float[] Map of (key => UNIX timestamps)
