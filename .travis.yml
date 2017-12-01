@@ -33,6 +33,8 @@ matrix:
       php: hhvm-3.18
     - env: dbtype=mysql dbuser=root
       php: 7
+    - env: dbtype=mysql dbuser=root
+      php: 7.1
 
 services:
   - mysql
