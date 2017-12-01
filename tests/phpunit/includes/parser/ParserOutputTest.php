@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
@@ -87,6 +89,233 @@ class ParserOutputTest extends MediaWikiTestCase {
 		$properties = $po->getProperties();
 		$this->assertEquals( $po->getProperty( 'foo' ), false );
 		$this->assertArrayNotHasKey( 'foo', $properties );
+	}
+
+	/**
+	 * @covers ParserOutput::getText
+	 * @dataProvider provideGetText
+	 * @param array $options Options to getText()
+	 * @param array $poState ParserOptions state fields to set
+	 * @param string $text Parser text
+	 * @param string $expect Expected output
+	 */
+	public function testGetText( $options, $poState, $text, $expect ) {
+		$this->setMwGlobals( [
+			'wgArticlePath' => '/wiki/$1',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+		] );
+
+		$po = new ParserOutput( $text );
+
+		// Emulate Parser
+		$po->setEditSectionTokens( true );
+
+		if ( $poState ) {
+			$wrap = TestingAccessWrapper::newFromObject( $po );
+			foreach ( $poState as $key => $value ) {
+				$wrap->$key = $value;
+			}
+		}
+
+		$actual = $po->getText( $options );
+		$this->assertSame( $expect, $actual );
+	}
+
+	public static function provideGetText() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		$text = <<<EOF
+<p>Test document.
+</p>
+<mw:toc><div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+</mw:toc>
+<h2><span class="mw-headline" id="Section_1">Section 1</span><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><mw:editsection page="Test Page" section="3">Section 2.1</mw:editsection></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
+<p>Three
+</p>
+EOF;
+
+		return [
+			'No stateless options, default state' => [
+				[], [], $text, <<<EOF
+<p>Test document.
+</p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p>
+EOF
+			],
+			'No stateless options, TOC statefully disabled' => [
+				[], [ 'mTOCEnabled' => false ], $text, <<<EOF
+<p>Test document.
+</p>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p>
+EOF
+			],
+			'No stateless options, section edits statefully disabled' => [
+				[], [ 'mEditSectionTokens' => false ], $text, <<<EOF
+<p>Test document.
+</p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
+<p>Three
+</p>
+EOF
+			],
+			'Stateless options override stateful settings' => [
+				[ 'allowTOC' => true, 'enableSectionEditLinks' => true ],
+				[ 'mTOCEnabled' => false, 'mEditSectionTokens' => false ],
+				$text, <<<EOF
+<p>Test document.
+</p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p>
+EOF
+			],
+			'Statelessly disable section edit links' => [
+				[ 'enableSectionEditLinks' => false ], [], $text, <<<EOF
+<p>Test document.
+</p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
+<p>Three
+</p>
+EOF
+			],
+			'Statelessly disable TOC' => [
+				[ 'allowTOC' => false ], [], $text, <<<EOF
+<p>Test document.
+</p>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p>
+EOF
+			],
+		];
+		// @codingStandardsIgnoreEnd
 	}
 
 }
