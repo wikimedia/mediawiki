@@ -1280,6 +1280,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	 * @covers WANObjectCache::touchCheckKey
 	 * @covers WANObjectCache::resetCheckKey
 	 * @covers WANObjectCache::getCheckKeyTime
+	 * @covers WANObjectCache::getMultiCheckKeyTime
 	 * @covers WANObjectCache::makePurgeValue
 	 * @covers WANObjectCache::parsePurgeValue
 	 */
