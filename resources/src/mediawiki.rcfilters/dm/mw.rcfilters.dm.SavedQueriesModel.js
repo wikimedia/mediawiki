@@ -123,6 +123,11 @@
 				// the given data, if they exist
 				normalizedData.params = model.filtersModel.removeExcludedParams( normalizedData.params );
 
+				// Correct the invert state for effective selection
+				if ( normalizedData.params.invert && !normalizedData.params.namespaces ) {
+					delete normalizedData.params.invert;
+				}
+
 				model.cleanupHighlights( normalizedData );
 
 				id = String( id );
@@ -226,6 +231,11 @@
 			}
 		} );
 
+		// Correct the invert state for effective selection
+		if ( normalizedData.params.invert && !this.filtersModel.areNamespacesEffectivelyInverted() ) {
+			delete normalizedData.params.invert;
+		}
+
 		// Add item
 		this.addItems( [
 			new mw.rcfilters.dm.SavedQueryItemModel(
@@ -271,6 +281,11 @@
 	mw.rcfilters.dm.SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison ) {
 		// Minimize before comparison
 		fullQueryComparison = this.filtersModel.getMinimizedParamRepresentation( fullQueryComparison );
+
+		// Correct the invert state for effective selection
+		if ( fullQueryComparison.invert && !this.filtersModel.areNamespacesEffectivelyInverted() ) {
+			delete fullQueryComparison.invert;
+		}
 
 		return this.getItems().filter( function ( item ) {
 			return OO.compare(

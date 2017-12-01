@@ -1036,6 +1036,23 @@
 	};
 
 	/**
+	 * Check whether the invert state is a valid one. A valid invert state is one where
+	 * there are actual namespaces selected.
+	 *
+	 * This is done to compare states to previous ones that may have had the invert model
+	 * selected but effectively had no namespaces, so are not effectively different than
+	 * ones where invert is not selected.
+	 *
+	 * @return {boolean} Invert is effectively selected
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesEffectivelyInverted = function () {
+		return this.getInvertModel().isSelected() &&
+			this.getSelectedItems().some( function ( itemModel ) {
+				return itemModel.getGroupModel().getView() === 'namespace';
+			} );
+	};
+
+	/**
 	 * Get the item that matches the given name
 	 *
 	 * @param {string} name Filter name
