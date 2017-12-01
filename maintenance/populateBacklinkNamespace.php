@@ -88,7 +88,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize - 1;
 			$blockEnd += $batchSize - 1;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 		return true;
 	}

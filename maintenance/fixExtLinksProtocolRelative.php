@@ -63,7 +63,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			$count++;
 			if ( $count % 100 == 0 ) {
 				$this->output( $count . "\n" );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 			$db->insert( 'externallinks',
 				[

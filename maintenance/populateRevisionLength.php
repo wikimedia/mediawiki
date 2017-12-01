@@ -117,7 +117,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 
 		return $count;

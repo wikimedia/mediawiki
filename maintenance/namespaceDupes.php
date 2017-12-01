@@ -407,7 +407,7 @@ class NamespaceConflictChecker extends Maintenance {
 				"$titleField > $encLastTitle " .
 				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)" ];
 
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 	}
 
