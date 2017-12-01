@@ -39,10 +39,6 @@
  */
 
 /**
- * @defgroup Globalsettings Global settings
- */
-
-/**
  * @cond file_level_code
  * This is not a valid entry point, perform no further processing unless
  * MEDIAWIKI is defined
