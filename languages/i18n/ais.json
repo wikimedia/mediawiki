@@ -2069,7 +2069,7 @@
 	"protect-locked-blocked": "kasabelih malangat tuway, la’cus misumad midiput kasalaylay.\nisasa’ay kasabelih <strong>$1</strong> ayzaay a setin:",
 	"protect-locked-dblock": "nasulitan-sulu maazihen, la’cus misumad midiput kasalaylay.\nzikuz u kasabelih <strong>$1</strong> ayza setin:",
 	"protect-locked-access": "numisu a canghaw inayi’ ku tungus mabalic midiput kasaliyliy.\nisasa’ay kasabelih <strong>$1</strong> ayzaay a setin:",
-	"protect-cascadeon": "tina kasabelih madiput ayza, izay kasabelih mamicaliw isasa’ miteka patatusul midiput a {{PLURAL:$1|kasabelih}}.\nmisumad tina kasabelih a madiputay a kasaselal lawilaw patatusul midiput a sasahicaan.",
+	"protect-cascadeon": "tina kasabelih madiput ayza, zayhan kya kasabelhh maasip nay isasa’ay {{PLURAL:$1|kasabelih|kasabelih luyaluy}} kasatindud.\nmisumad tina kasabelih a madiputay a kasaselal lawilaw patatusul midiput a sasahicaan.",
 	"protect-default": "mahasa sacahamin misaungayay",
 	"protect-fallback": "mahasa dada’ ku \"$1\" situngusay a misaungayay",
 	"protect-level-autoconfirmed": "mahasa dada’ lunuk malucekay tu misaungayay",

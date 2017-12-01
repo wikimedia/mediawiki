@@ -66,7 +66,7 @@
 	"apihelp-compare-param-totitle": "Tweede paginanaam om te vergelijken.",
 	"apihelp-compare-param-toid": "Tweede pagina-ID om te vergelijken.",
 	"apihelp-compare-param-torev": "Tweede versie om te vergelijken.",
-	"apihelp-createaccount-summary": "Nieuwe gebruikersaccount aanmaken.",
+	"apihelp-createaccount-summary": "Nieuw gebruikersaccount aanmaken.",
 	"apihelp-createaccount-example-create": "Start het proces voor het aanmaken van de gebruiker <kbd>Example</kbd> met het wachtwoord <kbd>ExamplePassword</kbd>.",
 	"apihelp-createaccount-param-name": "Gebruikersnaam.",
 	"apihelp-createaccount-param-password": "Wachtwoord (genegeerd als <var>$1mailpassword</var> is ingesteld).",
