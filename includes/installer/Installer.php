@@ -688,7 +688,9 @@ abstract class Installer {
 
 		try {
 			$out = $wgParser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
-			$html = $out->getText();
+			$html = $out->getText( [
+				'enableSectionEditLinks' => false,
+			] );
 		} catch ( MediaWiki\Services\ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
 
