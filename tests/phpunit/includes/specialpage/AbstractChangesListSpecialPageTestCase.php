@@ -47,6 +47,8 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 		$this->changesListSpecialPage->registerFilters();
 	}
 
+	protected abstract function getPage();
+
 	protected function tearDown() {
 		global $wgGroupPermissions;
 
@@ -56,6 +58,8 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase 
 			$wgGroupPermissions['patrollers'] = $this->oldPatrollersGroup;
 		}
 	}
+
+	public abstract function provideParseParameters();
 
 	/**
 	 * @dataProvider provideParseParameters
