@@ -890,6 +890,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
+	 * @note Options added in 1.31: staleTTL, graceTTL
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
@@ -1502,7 +1503,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Disable the use of brief caching for tombstoned keys
+	 * Enable or disable the use of brief caching for tombstoned keys
 	 *
 	 * When a key is purged via delete(), there normally is a period where caching
 	 * is hold-off limited to an extremely short time. This method will disable that
