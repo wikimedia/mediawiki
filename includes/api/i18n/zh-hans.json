@@ -249,6 +249,8 @@
 	"apihelp-import-extended-description": "注意当发送用于<var>xml</var>参数的文件时，HTTP POST必须作为文件上传完成（即使用multipart/form-data）",
 	"apihelp-import-param-summary": "日志记录导入摘要。",
 	"apihelp-import-param-xml": "上传的XML文件。",
+	"apihelp-import-param-interwikiprefix": "对于上传导入：要应用到位置用户名的跨wiki前缀（如果设置了<var>$1assignknownusers</var>的话，则也包含已知用户）。",
+	"apihelp-import-param-assignknownusers": "分配编辑至本地用户，只要命名用户存在于本地。",
 	"apihelp-import-param-interwikisource": "用于跨wiki导入：导入的来源wiki。",
 	"apihelp-import-param-interwikipage": "用于跨wiki导入：导入的页面。",
 	"apihelp-import-param-fullhistory": "用于跨wiki导入：完整导入历史，而不只是最新版本。",

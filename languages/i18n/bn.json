@@ -1323,7 +1323,7 @@
 	"rcfilters-group-results-by-page": "পাতা অনুযায়ী দলের ফলাফল",
 	"rcfilters-activefilters": "সক্রিয় ছাঁকনিসমূহ",
 	"rcfilters-advancedfilters": "উন্নত ছাঁকনি",
-	"rcfilters-limit-title": "দেখানোর জন্য পরিবর্তনগুলি",
+	"rcfilters-limit-title": "যেসব ফলাফল দেখাবে",
 	"rcfilters-days-title": "সাম্প্রতিক দিন",
 	"rcfilters-hours-title": "সাম্প্রতিক ঘণ্টা",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|দিন}}",

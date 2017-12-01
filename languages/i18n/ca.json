@@ -1755,7 +1755,7 @@
 	"sharedupload-desc-create": "Aquest fitxer és de $1 i potser el fan servir altres projectes.\nPotser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].",
 	"filepage-nofile": "No hi ha cap fitxer amb aquest nom.",
 	"filepage-nofile-link": "No existeix cap fitxer amb aquest nom, però podeu [$1 carregar-lo].",
-	"uploadnewversion-linktext": "Carrega una nova versió d'aquest fitxer",
+	"uploadnewversion-linktext": "Carrega una versió nova d’aquest fitxer",
 	"shared-repo-from": "des de $1",
 	"shared-repo": "un repositori compartit",
 	"shared-repo-name-wikimediacommons": "Wikimedia Commons",

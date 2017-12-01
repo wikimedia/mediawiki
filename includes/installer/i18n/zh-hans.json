@@ -324,6 +324,7 @@
 	"config-install-mainpage-failed": "无法插入首页:$1",
 	"config-install-done": "<strong>恭喜！</strong>\n您已经安装了MediaWiki。\n\n安装程序已经生成了<code>LocalSettings.php</code>文件，其中包含了您所有的配置。\n\n您需要下载该文件，并将其放在您wiki的根目录（index.php的同级目录）中。稍后下载将自动开始。\n\n如果浏览器没有提示您下载，或者您取消了下载，您可以点击下面的链接重新开始下载：\n\n$3\n\n<strong>注意：</strong>如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。\n\n当本步骤完成后，您可以<strong>[$2 进入您的wiki]</strong>。",
 	"config-install-done-path": "<strong>祝贺！</strong>您已经安装了MediaWiki。\n\n安装程序已经生成了<code>LocalSettings.php</code>文件。它包含您所有的配置。\n\n您需要下载该文件，并将其放在<code>$4</code>。下载应已自动开始。\n\n如果没有提供下载，或者您取消了下载，您可以点击下面的链接重新开始下载：\n\n$3\n\n<strong>注意：</strong>如果您现在不完成本步骤，而是没有下载便退出了安装过程，此后您将无法获得自动生成的配置文件。\n\n当本步骤完成后，您可以<strong>[$2 进入您的wiki]</strong>。",
+	"config-install-success": "MediaWiki已成功安装。您现在可以访问<$1$2>以查看您的wiki。如果您有问题，请阅览我们的常见问题列表：<https://www.mediawiki.org/wiki/Manual:FAQ/zh>或使用在该页面上链接的支持论坛之一。",
 	"config-download-localsettings": "下载<code>LocalSettings.php</code>",
 	"config-help": "帮助",
 	"config-help-tooltip": "单击展开",

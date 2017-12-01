@@ -176,7 +176,7 @@
 	"history_small": "歷史",
 	"updatedmarker": "趁我最後蜀回訪問開始更新",
 	"printableversion": "Kō̤ páh-éng bēng-buōng",
-	"permalink": "永久鏈接",
+	"permalink": "Īng-giū lièng-giék",
 	"print": "拍印",
 	"view": "覷蜀覷",
 	"view-foreign": "敆$1𡅏看",
@@ -255,7 +255,7 @@
 	"editlink": "siŭ-gāi",
 	"viewsourcelink": "Káng nguòng-dâi-mā",
 	"editsectionhint": "修改段落：$1",
-	"toc": "目錄",
+	"toc": "Mŭk-liŏh",
 	"showtoc": "顯示",
 	"hidetoc": "囥起",
 	"collapsible-collapse": "掩",
@@ -716,11 +716,11 @@
 	"statistics-header-users": "用戶統計",
 	"brokenredirects-edit": "改",
 	"brokenredirects-delete": "刪",
-	"withoutinterwiki": "無跨語言其鏈接",
+	"withoutinterwiki": "Mò̤ ngṳ̄-nièng lièng-giék gì hiĕk",
 	"withoutinterwiki-summary": "下底其頁面無鏈接遘其它語言其版本。",
 	"fewestrevisions": "修改最少其頁面",
 	"nbytes": "$1{{PLURAL:$1}} bĭk dăng-sṳ̀",
-	"nlinks": "$1隻{{PLURAL:$1|鏈接}}",
+	"nlinks": "$1 ciáh {{PLURAL:$1|lièng-giék}}",
 	"nmembers": "$1隻成員{{PLURAL:$1}}",
 	"wantedcategories": "卜挃其類別",
 	"wantedpages": "卜挃其頁",
@@ -1036,5 +1036,5 @@
 	"specialpages": "Dĕk-sṳ̀-hiĕk",
 	"tag-filter": "[[Special:Tags|標籤]]過濾器：",
 	"tag-list-wrapper": "（[[Special:Tags|$1萆標籤]]：$2）",
-	"searchsuggest-search": "討 {{SITENAME}}"
+	"searchsuggest-search": "Tō̤ {{SITENAME}}"
 }

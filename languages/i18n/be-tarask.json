@@ -1299,7 +1299,7 @@
 	"rcfilters-group-results-by-page": "Групаваць вынікі паводле старонак",
 	"rcfilters-activefilters": "Актыўныя фільтры",
 	"rcfilters-advancedfilters": "Пашыраныя фільтры",
-	"rcfilters-limit-title": "Паказаць зьменаў",
+	"rcfilters-limit-title": "Паказаць вынікаў",
 	"rcfilters-days-title": "Апошнія дні",
 	"rcfilters-hours-title": "Апошнія гадзіны",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дні|дзён}}",
