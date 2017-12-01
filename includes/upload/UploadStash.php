@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Upload
  */
 
 /**
@@ -576,6 +575,9 @@ class UploadStash {
 	}
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashFile extends UnregisteredLocalFile {
 	private $fileKey;
 	private $urlName;
@@ -765,6 +767,9 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashException extends MWException implements ILocalizedException {
 	/** @var string|array|MessageSpecifier */
 	protected $messageSpec;
@@ -788,23 +793,44 @@ class UploadStashException extends MWException implements ILocalizedException {
 	}
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashFileNotFoundException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashBadPathException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashFileException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashZeroLengthFileException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashNotLoggedInException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashWrongOwnerException extends UploadStashException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadStashNoSuchKeyException extends UploadStashException {
 }

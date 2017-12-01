@@ -18,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @ingroup Upload
  */
 
 /**
@@ -31,6 +29,9 @@
  *
  * Since this is based on the user's session, in effect this creates a private temporary file area.
  * However, the URLs for the files cannot be shared.
+ *
+ * @ingroup SpecialPage
+ * @ingroup Upload
  */
 class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
@@ -447,5 +448,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	}
 }
 
+/**
+ * @ingroup SpecialPage
+ * @ingroup Upload
+ */
 class SpecialUploadStashTooLargeException extends UploadStashException {
 }

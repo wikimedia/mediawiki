@@ -1,10 +1,5 @@
 <?php
 /**
- * @defgroup Database Database
- *
- * This file deals with database interface functions
- * and query specifics/optimisations.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -30,6 +24,11 @@ use RuntimeException;
 use UnexpectedValueException;
 use stdClass;
 
+/**
+ * @defgroup Database Database
+ * This group deals with database interface functions
+ * and query specifics/optimisations.
+ */
 /**
  * Basic database interface for live and lazy-loaded relation database handles
  *
