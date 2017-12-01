@@ -258,8 +258,7 @@
 							label: 'label2',
 							data: {
 								params: {
-									filter1: '1',
-									invert: '1'
+									filter1: '1' // Invert will be dropped because there are no namespaces
 								},
 								highlights: {
 									group1__filter1_color: 'c3'
@@ -360,8 +359,7 @@
 			data: {
 				params: {
 					filter1: '1',
-					filter2: '1',
-					invert: '1'
+					filter2: '1'
 				},
 				highlights: {}
 			}
@@ -421,7 +419,6 @@
 				group2: 'filter5',
 				filter1: '0',
 				filter2: '0',
-				invert: '0',
 				group1__filter1_color: 'c5',
 				group3__group3option1_color: 'c1'
 			}
@@ -430,6 +427,94 @@
 			matchingItem.getID(),
 			id1,
 			'Finding matching item by "dirty" state with 0-base values'
+		);
+	} );
+
+	QUnit.test( 'Testing invert property', function ( assert ) {
+		var itemID, item,
+			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
+			queriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+			viewsDefinition = {
+				namespace: {
+					label: 'Namespaces',
+					trigger: ':',
+					groups: [ {
+						name: 'namespace',
+						label: 'Namespaces',
+						type: 'string_options',
+						separator: ';',
+						filters: [
+							{ name: 0, label: 'Main', cssClass: 'namespace-0' },
+							{ name: 1, label: 'Talk', cssClass: 'namespace-1' },
+							{ name: 2, label: 'User', cssClass: 'namespace-2' },
+							{ name: 3, label: 'User talk', cssClass: 'namespace-3' }
+						]
+					} ]
+				}
+			};
+
+		filtersModel.initializeFilters( filterDefinition, viewsDefinition );
+
+		// Start with an empty saved queries model
+		queriesModel.initialize( {} );
+
+		filtersModel.toggleFiltersSelected( {
+			group1__filter3: true,
+			invertGroup__invert: true
+		} );
+		itemID = queriesModel.addNewQuery(
+			'label1', // Label
+			filtersModel.getMinimizedParamRepresentation(),
+			true, // isDefault
+			'2345' // ID
+		);
+		item = queriesModel.getItemByID( itemID );
+
+		assert.deepEqual(
+			item.getState(),
+			{
+				label: 'label1',
+				data: {
+					params: {
+						filter1: '1',
+						filter2: '1'
+					},
+					highlights: {}
+				}
+			},
+			'Invert parameter is not saved if there are no namespaces.'
+		);
+
+		// Reset
+		filtersModel.initializeFilters( filterDefinition, viewsDefinition );
+		filtersModel.toggleFiltersSelected( {
+			group1__filter3: true,
+			invertGroup__invert: true,
+			namespace__1: true
+		} );
+		itemID = queriesModel.addNewQuery(
+			'label1', // Label
+			filtersModel.getMinimizedParamRepresentation(),
+			true, // isDefault
+			'1234' // ID
+		);
+		item = queriesModel.getItemByID( itemID );
+
+		assert.deepEqual(
+			item.getState(),
+			{
+				label: 'label1',
+				data: {
+					params: {
+						filter1: '1',
+						filter2: '1',
+						invert: '1',
+						namespace: '1'
+					},
+					highlights: {}
+				}
+			},
+			'Invert parameter saved if there are namespaces.'
 		);
 	} );
 }( mediaWiki ) );
