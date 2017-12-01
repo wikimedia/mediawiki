@@ -355,7 +355,7 @@ class ImportImages extends Maintenance {
 						$this->output( "\nWaiting for replica DBs...\n" );
 						// Wait for replica DBs.
 						sleep( 2.0 ); # Why this sleep?
-						wfWaitForSlaves();
+						wfGetLBFactory()->waitForReplication();
 
 						$this->output( "\nSetting image restrictions ... " );
 

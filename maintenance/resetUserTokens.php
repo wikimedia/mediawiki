@@ -101,7 +101,7 @@ class ResetUserTokens extends Maintenance {
 			$min = $max;
 			$max = $min + $this->getBatchSize();
 
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		} while ( $min <= $maxid );
 	}
 

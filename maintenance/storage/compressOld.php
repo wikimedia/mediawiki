@@ -305,7 +305,7 @@ class CompressOld extends Maintenance {
 		# $conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 
 			# Wake up
 			$dbr->ping();
@@ -463,7 +463,7 @@ class CompressOld extends Maintenance {
 				$this->output( "/" );
 				$this->commitTransaction( $dbw, __METHOD__ );
 				$i += $thisChunkSize;
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 			$this->output( "\n" );
 		}

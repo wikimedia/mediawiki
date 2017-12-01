@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @see wfWaitForSlaves()
+ * @see wfGetLBFactory()->waitForReplication();
  */
 
 use Wikimedia\Rdbms\DBConnectionError;
@@ -209,7 +209,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted revisions\n";
@@ -293,7 +293,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted orphan text rows\n";

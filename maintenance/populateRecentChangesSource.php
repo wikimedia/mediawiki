@@ -71,7 +71,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			);
 
 			$this->output( "." );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

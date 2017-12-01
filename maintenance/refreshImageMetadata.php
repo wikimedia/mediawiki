@@ -194,7 +194,7 @@ class RefreshImageMetadata extends Maintenance {
 				}
 			}
 			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		} while ( $res->numRows() === $batchSize );
 
 		$total = $upgraded + $leftAlone;

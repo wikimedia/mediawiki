@@ -176,7 +176,7 @@ class DeleteEqualMessages extends Maintenance {
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
 		$dbw = $this->getDB( DB_MASTER );
 		foreach ( $messageInfo['results'] as $result ) {
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );

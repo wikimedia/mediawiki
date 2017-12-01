@@ -94,7 +94,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 			// print status and let replica DBs catch up
 			$this->output( sprintf(
 				"id %d done (up to %d), %5.3f%%  \r", $lastId, $endId, $lastId / $endId * 100 ) );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		} while ( true );
 
 		$processingTime = microtime( true ) - $startTime;

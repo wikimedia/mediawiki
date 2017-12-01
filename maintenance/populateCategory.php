@@ -128,7 +128,7 @@ TEXT
 			++$i;
 			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 			usleep( $throttle * 1000 );
 		}

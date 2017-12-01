@@ -38,7 +38,7 @@ class TidyUpBug37714 extends Maintenance {
 					[ 'log_id' => $row->log_id ],
 					__METHOD__
 				);
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 		}
 	}

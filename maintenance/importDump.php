@@ -256,7 +256,7 @@ TEXT
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
 			}
 		}
-		wfWaitForSlaves();
+		wfGetLBFactory()->waitForReplication();
 	}
 
 	function progress( $string ) {
