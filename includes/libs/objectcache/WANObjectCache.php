@@ -596,9 +596,58 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Fetch the values of each timestamp "check" key
 	 *
 	 * This works like getCheckKeyTime() except it takes a list of keys
-	 * and returns a list of timestamps instead of just that of one key
+	 * and returns a map of timestamps instead of just that of one key
+	 *
+	 * This might be useful if both:
+	 *   - a) a class of entities each depend on hundreds of other entities
+	 *   - b) these other entities are depended upon by millions of entities
+	 *
+	 * The later entities can each use a "check" key to invalidate their dependee entities.
+	 * However, it is expensive for the former entities to verify against all of the relevant
+	 * "check" keys during each getWithSetCallback() call. A less expensive approach is to do
+	 * these verifications only after a "time-till-verify" (TTV) has passed. This is a middle
+	 * ground between using blind TTLs and using constant verification. The adaptiveTTL() method
+	 * can be used to dynamically adjust the TTV. Also, the initial TTV can make use of the
+	 * last-modified times of the dependant entities (either from the DB or the "check" keys).
+	 *
+	 * Example usage:
+	 * @code
+	 *     $value = $cache->getWithSetCallback(
+	 *         $cache->makeGlobalKey( 'wikibase-item', $id ),
+	 *         self::INITIAL_TTV, // initial time-till-verify
+	 *         function ( $oldValue, &$ttv, &$setOpts, $oldAsOf ) use ( $checkKeys, $cache ) {
+	 *             $now = microtime( true );
+	 *             // Use $oldValue if it passes max ultimate age and "check" key comparisons
+	 *             if ( $oldValue &&
+	 *                 $oldAsOf > max( $cache->getMultiCheckKeyTime( $checkKeys ) ) &&
+	 *                 ( $now - $oldValue['ctime'] ) <= self::MAX_CACHE_AGE
+	 *             ) {
+	 *                 // Increase time-till-verify by 50% of last time to reduce overhead
+	 *                 $ttv = $cache->adaptiveTTL( $oldAsOf, self::MAX_TTV, self::MIN_TTV, 1.5 );
+	 *                 // Unlike $oldAsOf, "ctime" is the ultimate age of the cached data
+	 *                 return $oldValue;
+	 *             }
+	 *
+	 *             $mtimes = []; // dependency last-modified times; passed by reference
+	 *             $value = [ 'data' => $this->fetchEntityData( $mtimes ), 'ctime' => $now ];
+	 *             // Guess time-till-change among the dependencies, e.g. 1/(total change rate)
+	 *             $ttc = 1 / array_sum( array_map(
+	 *                 function ( $mtime ) use ( $now ) {
+	 *                     return 1 / ( $mtime ? ( $now - $mtime ) : 900 );
+	 *                 },
+	 *                 $mtimes
+	 *             ) );
+	 *             // The time-to-verify should not be overly pessimistic nor optimistic
+	 *             $ttv = min( max( $ttc, self::MIN_TTV ), self::MAX_TTV );
+	 *
+	 *             return $value;
+	 *         },
+	 *         [ 'staleTTL' => $cache::TTL_DAY ] // keep around to verify and re-save
+	 *     );
+	 * @endcode
 	 *
 	 * @see WANObjectCache::getCheckKeyTime()
+	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param array $keys
 	 * @return float[] Map of (key => UNIX timestamps)
