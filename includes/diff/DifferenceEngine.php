@@ -634,7 +634,10 @@ class DifferenceEngine extends ContextSource {
 					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput',
 						[ $this, $out, $parserOutput, $wikiPage ] )
 					) {
-						$out->addParserOutput( $parserOutput );
+						$out->addParserOutput( $parserOutput, [
+							'enableSectionEditLinks' => $this->mNewRev->isCurrent()
+								&& $this->mNewRev->getTitle()->quickUserCan( 'edit', $this->getUser() ),
+						] );
 					}
 				}
 			}

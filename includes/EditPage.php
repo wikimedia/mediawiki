@@ -4012,7 +4012,10 @@ class EditPage {
 		$parserOutput->setEditSectionTokens( false ); // no section edit links
 		return [
 			'parserOutput' => $parserOutput,
-			'html' => $parserOutput->getText() ];
+			'html' => $parserOutput->getText( [
+				'enableSectionEditLinks' => false
+			] )
+		];
 	}
 
 	/**

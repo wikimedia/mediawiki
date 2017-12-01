@@ -608,7 +608,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				/*interface*/false,
 				$wgContLang
 			);
-			$content = $parserOutput->getText();
+			$content = $parserOutput->getText( [
+				'enableSectionEditLinks' => false,
+			] );
 			// Add only metadata here (including the language links), text is added below
 			$this->getOutput()->addParserOutputMetadata( $parserOutput );
 

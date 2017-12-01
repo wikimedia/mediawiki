@@ -455,7 +455,9 @@ class SpecialUndelete extends SpecialPage {
 			$popts->setEditSection( false );
 
 			$pout = $content->getParserOutput( $this->mTargetObj, $rev->getId(), $popts, true );
-			$out->addParserOutput( $pout );
+			$out->addParserOutput( $pout, [
+				'enableSectionEditLinks' => false,
+			] );
 		}
 
 		if ( $isText ) {
