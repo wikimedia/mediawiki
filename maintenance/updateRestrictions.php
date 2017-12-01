@@ -108,7 +108,7 @@ class UpdateRestrictions extends Maintenance {
 			}
 			$blockStart += $batchSize - 1;
 			$blockEnd += $batchSize - 1;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 		$this->output( "...removing dead rows from page_restrictions\n" );
 		// Kill any broken rows from previous imports

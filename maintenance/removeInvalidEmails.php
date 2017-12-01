@@ -63,7 +63,7 @@ class RemoveInvalidEmails extends Maintenance {
 					foreach ( $badIds as $badId ) {
 						User::newFromId( $badId )->invalidateCache();
 					}
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				} else {
 					$this->output( "Would have removed $badCount emails from the database.\n" );
 

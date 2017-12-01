@@ -94,7 +94,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 				$this->output( "done.\n" );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			} else {
 				// Not JSON...force it to wikitext. We need to update the
 				// revision table so that these revisions are always processed
@@ -114,7 +114,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 						[ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ],
 						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ]
 					);
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 				$this->output( "done.\n" );
 			}

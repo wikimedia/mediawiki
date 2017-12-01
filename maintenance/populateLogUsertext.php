@@ -76,7 +76,7 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 			$this->commitTransaction( $db, __METHOD__ );
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 		$this->output( "Done populating log_user_text field.\n" );
 

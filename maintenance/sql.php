@@ -106,7 +106,7 @@ class MwSql extends Maintenance {
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$this->sqlDoQuery( $db, $query, /* dieOnError */ true );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 			return;
 		}
 
@@ -149,7 +149,7 @@ class MwSql extends Maintenance {
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}
-		wfWaitForSlaves();
+		wfGetLBFactory()->waitForReplication();
 	}
 
 	protected function sqlDoQuery( IDatabase $db, $line, $dieOnError ) {

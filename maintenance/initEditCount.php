@@ -89,7 +89,7 @@ in the load balancer, usually indicating a replication environment.' );
 					$delta,
 					$rate ) );
 
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 		} else {
 			$this->output( "Using single-query mode...\n" );

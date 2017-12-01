@@ -109,7 +109,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 
 		return $count;
@@ -135,7 +135,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				$updateSize = 0;
 				$this->commitTransaction( $db, __METHOD__ );
 				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 				$this->beginTransaction( $db, __METHOD__ );
 			}
 		}

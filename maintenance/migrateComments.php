@@ -144,7 +144,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 		$primaryKey = (array)$primaryKey;
 		$pkFilter = array_flip( $primaryKey );
 		$this->output( "Beginning migration of $table.$oldField to $table.$newField\n" );
-		wfWaitForSlaves();
+		wfGetLBFactory()->waitForReplication();
 
 		$dbw = $this->getDB( DB_MASTER );
 		$next = '1=1';
@@ -207,7 +207,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 			}
 			$prompt = join( ' ', array_reverse( $prompt ) );
 			$this->output( "... $prompt\n" );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 
 		$this->output(
@@ -233,7 +233,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	protected function migrateToTemp( $table, $primaryKey, $oldField, $newPrimaryKey, $newField ) {
 		$newTable = $table . '_comment_temp';
 		$this->output( "Beginning migration of $table.$oldField to $newTable.$newField\n" );
-		wfWaitForSlaves();
+		wfGetLBFactory()->waitForReplication();
 
 		$dbw = $this->getDB( DB_MASTER );
 		$next = [];
@@ -282,7 +282,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 			// Calculate the "next" condition
 			$next = [ $primaryKey . ' > ' . $dbw->addQuotes( $row->$primaryKey ) ];
 			$this->output( "... {$row->$primaryKey}\n" );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 
 		$this->output(

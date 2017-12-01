@@ -120,7 +120,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			if ( $i % $this->getBatchSize() == 0 ) {
 				$this->output( sprintf(
 					"Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 
 			$file = wfLocalFile( $row->img_name );

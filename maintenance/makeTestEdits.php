@@ -56,7 +56,7 @@ class MakeTestEdits extends Maintenance {
 
 			$this->output( "Edited $title\n" );
 			if ( $i && ( $i % $this->getBatchSize() ) == 0 ) {
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 			}
 		}
 

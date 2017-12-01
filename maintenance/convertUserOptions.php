@@ -66,7 +66,7 @@ class ConvertUserOptions extends Maintenance {
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
 
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 
 			if ( $id ) {
 				$this->output( "--Converted to ID $id\n" );

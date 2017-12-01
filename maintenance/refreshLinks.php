@@ -139,7 +139,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 				$this->fixRedirect( $row->page_id );
 			}
@@ -160,7 +160,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
@@ -180,7 +180,7 @@ class RefreshLinks extends Maintenance {
 			for ( $id = $start; $id <= $end; $id++ ) {
 				if ( !( $id % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$id\n" );
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 				$this->fixRedirect( $id );
 			}
@@ -192,7 +192,7 @@ class RefreshLinks extends Maintenance {
 				for ( $id = $start; $id <= $end; $id++ ) {
 					if ( !( $id % self::REPORTING_INTERVAL ) ) {
 						$this->output( "$id\n" );
-						wfWaitForSlaves();
+						wfGetLBFactory()->waitForReplication();
 					}
 					self::fixLinksFromArticle( $id, $this->namespace );
 				}
@@ -294,7 +294,7 @@ class RefreshLinks extends Maintenance {
 	private function deleteLinksFromNonexistent( $start = null, $end = null, $batchSize = 100,
 		$chunkSize = 100000
 	) {
-		wfWaitForSlaves();
+		wfGetLBFactory()->waitForReplication();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		do {
@@ -374,7 +374,7 @@ class RefreshLinks extends Maintenance {
 					$dbw->delete( $table, [ $field => $ids ], __METHOD__ );
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 
 			} while ( $numIds >= $batchSize && ( $end === null || $tableStart <= $end ) );
@@ -463,7 +463,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					wfWaitForSlaves();
+					wfGetLBFactory()->waitForReplication();
 				}
 				$lastId = $row->page_id;
 				$timestamp = $row->cl_timestamp;

@@ -119,7 +119,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
 

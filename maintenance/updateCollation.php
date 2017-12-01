@@ -139,7 +139,7 @@ TEXT
 			} else {
 				$this->output( "Fixing collation for $count rows.\n" );
 			}
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 		$count = 0;
 		$batchCount = 0;
@@ -227,7 +227,7 @@ TEXT
 
 			if ( !$dryRun && ++$batchCount % self::SYNC_INTERVAL == 0 ) {
 				$this->output( "Waiting for replica DBs ... " );
-				wfWaitForSlaves();
+				wfGetLBFactory()->waitForReplication();
 				$this->output( "done\n" );
 			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
