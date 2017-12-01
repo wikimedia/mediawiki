@@ -1502,7 +1502,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Disable the use of brief caching for tombstoned keys
+	 * Enable or disable the use of brief caching for tombstoned keys
 	 *
 	 * When a key is purged via delete(), there normally is a period where caching
 	 * is hold-off limited to an extremely short time. This method will disable that
