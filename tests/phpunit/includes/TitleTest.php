@@ -911,4 +911,54 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetPrefixedDBKey( Title $title, $expected ) {
 		$this->assertEquals( $expected, $title->getPrefixedDBkey() );
 	}
+
+	/**
+	 * @dataProvider provideGetFragmentForURL
+	 *
+	 * @param string $titleStr
+	 * @param string $expected
+	 */
+	public function testGetFragmentForURL( $titleStr, $expected ) {
+		$this->setMwGlobals( [
+			'wgFragmentMode' => [ 'html5' ],
+			'wgExternalInterwikiFragmentMode' => 'legacy',
+		] );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->insert( 'interwiki',
+			[
+				[
+					'iw_prefix' => 'de',
+					'iw_url' => 'http://de.wikipedia.org/wiki/',
+					'iw_api' => 'http://de.wikipedia.org/w/api.php',
+					'iw_wikiid' => 'dewiki',
+					'iw_local' => 1,
+					'iw_trans' => 0,
+				],
+				[
+					'iw_prefix' => 'zz',
+					'iw_url' => 'http://zzwiki.org/wiki/',
+					'iw_api' => 'http://zzwiki.org/w/api.php',
+					'iw_wikiid' => 'zzwiki',
+					'iw_local' => 0,
+					'iw_trans' => 0,
+				],
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+
+		$title = Title::newFromText( $titleStr );
+		self::assertEquals( $expected, $title->getFragmentForURL() );
+
+		$dbw->delete( 'interwiki', '*', __METHOD__ );
+	}
+
+	public function provideGetFragmentForURL() {
+		return [
+			[ 'Foo', '' ],
+			[ 'Foo#ümlåût', '#ümlåût' ],
+			[ 'de:Foo#Bå®', '#Bå®' ],
+			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],
+		];
+	}
 }
