@@ -601,25 +601,54 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
 	 * @param string $key
-	 * @return float UNIX timestamp of the check key
+	 * @return float UNIX timestamp
 	 */
 	final public function getCheckKeyTime( $key ) {
-		$key = self::TIME_KEY_PREFIX . $key;
+		return $this->getMultiCheckKeyTime( [ $key ] )[$key];
+	}
 
-		$purge = self::parsePurgeValue( $this->cache->get( $key ) );
-		if ( $purge !== false ) {
-			$time = $purge[self::FLD_TIME];
-		} else {
-			// Casting assures identical floats for the next getCheckKeyTime() calls
-			$now = (string)$this->getCurrentTime();
-			$this->cache->add( $key,
-				$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
-				self::CHECK_KEY_TTL
-			);
-			$time = (float)$now;
+	/**
+	 * Fetch the values of each timestamp "check" key
+	 *
+	 * This works like getCheckKeyTime() except it takes a list of keys
+	 * and returns a list of timestamps instead of just that of one key
+	 *
+	 * @see WANObjectCache::getCheckKeyTime()
+	 *
+	 * @param array $keys
+	 * @return float[] Map of (key => UNIX timestamp)
+	 * @since 1.31
+	 */
+	final public function getMultiCheckKeyTime( array $keys ) {
+		$rawKeys = [];
+		foreach ( $keys as $key ) {
+			$rawKeys[] = self::TIME_KEY_PREFIX . $key;
 		}
 
-		return $time;
+		$rawValues = $this->cache->getMulti( $rawKeys );
+		$rawValues += array_fill_keys( $rawKeys, false );
+
+		$index = 0;
+		$times = [];
+		foreach ( $rawKeys as $rawKey ) {
+			$purge = self::parsePurgeValue( $rawValues[$rawKey] );
+			if ( $purge !== false ) {
+				$time = $purge[self::FLD_TIME];
+			} else {
+				// Casting assures identical floats for the next getCheckKeyTime() calls
+				$now = (string)$this->getCurrentTime();
+				$this->cache->add(
+					$rawKey,
+					$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
+					self::CHECK_KEY_TTL
+				);
+				$time = (float)$now;
+			}
+
+			$times[$keys[$index++]] = $time;
+		}
+
+		return $times;
 	}
 
 	/**
