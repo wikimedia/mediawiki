@@ -4,19 +4,13 @@
 ( function ( mw, $ ) {
 	$( function () {
 		var
-			timezoneWidget, $localtimeHolder, servertime;
+			$tzSelect, $tzTextbox, $localtimeHolder, servertime;
 
 		// Timezone functions.
 		// Guesses Timezone from browser and updates fields onchange.
 
-		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-		try {
-			timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $( '#wpTimeCorrection' ) );
-		} catch ( err ) {
-			// This preference could theoretically be disabled ($wgHiddenPrefs)
-			timezoneWidget = null;
-		}
-
+		$tzSelect = $( '#mw-input-wptimecorrection' );
+		$tzTextbox = $( '#mw-input-wptimecorrection-other' );
 		$localtimeHolder = $( '#wpLocalTime' );
 		servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
 
@@ -54,21 +48,21 @@
 
 		function updateTimezoneSelection() {
 			var minuteDiff, localTime,
-				type = timezoneWidget.dropdowninput.getValue();
+				type = $tzSelect.val();
 
 			if ( type === 'other' ) {
 				// User specified time zone manually in <input>
 				// Grab data from the textbox, parse it.
-				minuteDiff = hoursToMinutes( timezoneWidget.textinput.getValue() );
+				minuteDiff = hoursToMinutes( $tzTextbox.val() );
 			} else {
 				// Time zone not manually specified by user
 				if ( type === 'guess' ) {
 					// Get browser timezone & fill it in
 					minuteDiff = -( new Date().getTimezoneOffset() );
-					timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
-					timezoneWidget.dropdowninput.setValue( 'other' );
+					$tzTextbox.val( minutesToHours( minuteDiff ) );
+					$tzSelect.val( 'other' );
 				} else {
-					// Grab data from the dropdown value
+					// Grab data from the $tzSelect value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
 				}
 			}
@@ -82,9 +76,9 @@
 			$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 		}
 
-		if ( timezoneWidget ) {
-			timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
-			timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
+		if ( $tzSelect.length && $tzTextbox.length ) {
+			$tzSelect.change( updateTimezoneSelection );
+			$tzTextbox.blur( updateTimezoneSelection );
 			updateTimezoneSelection();
 		}
 
