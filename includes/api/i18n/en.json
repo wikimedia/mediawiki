@@ -581,6 +581,7 @@
 	"apihelp-query+allrevisions-summary": "List all revisions.",
 	"apihelp-query+allrevisions-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+allrevisions-param-end": "The timestamp to stop enumerating at.",
+	"apihelp-query+allrevisions-param-tag": "Only list revisions tagged with this tag.",
 	"apihelp-query+allrevisions-param-user": "Only list revisions by this user.",
 	"apihelp-query+allrevisions-param-excludeuser": "Don't list revisions by this user.",
 	"apihelp-query+allrevisions-param-namespace": "Only list pages in this namespace.",

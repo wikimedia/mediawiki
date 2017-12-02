@@ -548,6 +548,7 @@
 	"apihelp-query+allrevisions-summary": "{{doc-apihelp-summary|query+allrevisions}}",
 	"apihelp-query+allrevisions-param-start": "{{doc-apihelp-param|query+allrevisions|start}}",
 	"apihelp-query+allrevisions-param-end": "{{doc-apihelp-param|query+allrevisions|end}}",
+	"apihelp-query+allrevisions-param-tag": "{{doc-apihelp-param|query+allrevisions|tag}}",
 	"apihelp-query+allrevisions-param-user": "{{doc-apihelp-param|query+allrevisions|user}}",
 	"apihelp-query+allrevisions-param-excludeuser": "{{doc-apihelp-param|query+allrevisions|excludeuser}}",
 	"apihelp-query+allrevisions-param-namespace": "{{doc-apihelp-param|query+allrevisions|namespace}}",

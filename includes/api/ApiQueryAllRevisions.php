@@ -105,6 +105,14 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$this->addFields( 'ts_tags' );
 		}
 
+		if ( !is_null( $params['tag'] ) ) {
+			$this->addTables( 'change_tag' );
+			$this->addJoinConds(
+				[ 'change_tag' => [ 'INNER JOIN', [ 'rev_id=ct_rev_id' ] ] ]
+			);
+			$this->addWhereFld( 'ct_tag', $params['tag'] );
+		}
+
 		if ( $params['user'] !== null ) {
 			$id = User::idFromName( $params['user'] );
 			if ( $id ) {
@@ -254,6 +262,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
 			],
+			'tag' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
