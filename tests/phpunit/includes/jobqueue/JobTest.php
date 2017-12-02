@@ -75,8 +75,10 @@ class JobTest extends MediaWikiTestCase {
 				'someCommand  pages={"932737":[0,"Robert_James_Waller"]} ' .
 				'rootJobSignature=45868e99bba89064e4483743ebb9b682ef95c1a7 ' .
 				'rootJobTimestamp=20160309110158 masterPos=' .
-				'{"file":"db1023-bin.001288","pos":"308257743","asOfTime":1457521464.3814} ' .
-				'triggeredRecursive=1 ' .
+				'{"file":"db1023-bin.001288","pos":"308257743","asOfTime":' .
+				// Embed dynamically because TestSetup sets serialize_precision=17
+				// which, in PHP 7.1 and 7.2, produces 1457521464.3814001 instead
+				json_encode( 1457521464.3814 ) . '} ' . 'triggeredRecursive=1 ' .
 				$requestId
 			],
 		];
