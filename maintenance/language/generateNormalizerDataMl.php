@@ -42,7 +42,7 @@ class GenerateNormalizerDataMl extends Maintenance {
 
 	public function execute() {
 		$hexPairs = [
-			# From http://unicode.org/versions/Unicode5.1.0/#Malayalam_Chillu_Characters
+			# From https://www.unicode.org/versions/Unicode5.1.0/#Malayalam_Chillu_Characters
 			'0D23 0D4D 200D' => '0D7A',
 			'0D28 0D4D 200D' => '0D7B',
 			'0D30 0D4D 200D' => '0D7C',
