@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
@@ -1231,6 +1230,7 @@ function wfErrorLog( $text, $file, array $context = [] ) {
 
 /**
  * @todo document
+ * @todo Move logic to MediaWiki.php
  */
 function wfLogProfilingData() {
 	global $wgDebugLogGroups, $wgDebugRawPage;
@@ -1242,23 +1242,13 @@ function wfLogProfilingData() {
 	$profiler->setContext( $context );
 	$profiler->logData();
 
-	$config = $context->getConfig();
-	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-	if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
-		try {
-			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
-			$statsdHost = $statsdServer[0];
-			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
-			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
-			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
-			$statsdClient->send( $stats->getData() );
-		} catch ( Exception $ex ) {
-			MWExceptionHandler::logException( $ex );
-		}
-	}
+	// Send out any buffered statsd metrics as needed
+	MediaWiki::emitBufferedStatsdData(
+		MediaWikiServices::getInstance()->getStatsdDataFactory(),
+		$context->getConfig()
+	);
 
-	# Profiling must actually be enabled...
+	// Profiling must actually be enabled...
 	if ( $profiler instanceof ProfilerStub ) {
 		return;
 	}

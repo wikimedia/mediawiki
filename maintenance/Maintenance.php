@@ -591,36 +591,41 @@ abstract class Maintenance {
 		$lbFactory->setAgentName(
 			mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
 		);
-		self::setLBFactoryTriggers( $lbFactory );
+		self::setLBFactoryTriggers( $lbFactory, $this->getConfig() );
 	}
 
 	/**
 	 * @param LBFactory $LBFactory
+	 * @param Config $config
 	 * @since 1.28
 	 */
-	public static function setLBFactoryTriggers( LBFactory $LBFactory ) {
+	public static function setLBFactoryTriggers( LBFactory $LBFactory, Config $config ) {
+		$services = MediaWikiServices::getInstance();
+		$stats = $services->getStatsdDataFactory();
 		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lbFactory->setWaitForReplicationListener(
 			__METHOD__,
-			function () {
-				global $wgCommandLineMode;
+			function () use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
-				if ( $wgCommandLineMode ) {
+				if ( $config->get( 'CommandLineMode' ) ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
 				}
+				// Try to periodically flush buffered metrics to avoid OOMs
+				MediaWiki::emitBufferedStatsdData( $stats, $config );
 			}
 		);
 		// Check for other windows to run them. A script may read or do a few writes
 		// to the master but mostly be writing to something else, like a file store.
 		$lbFactory->getMainLB()->setTransactionListener(
 			__METHOD__,
-			function ( $trigger ) {
-				global $wgCommandLineMode;
+			function ( $trigger ) use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
-				if ( $wgCommandLineMode && $trigger === IDatabase::TRIGGER_COMMIT ) {
+				if ( $config->get( 'CommandLineMode' ) && $trigger === IDatabase::TRIGGER_COMMIT ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
 				}
+				// Try to periodically flush buffered metrics to avoid OOMs
+				MediaWiki::emitBufferedStatsdData( $stats, $config );
 			}
 		);
 	}

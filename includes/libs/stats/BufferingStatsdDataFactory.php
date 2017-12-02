@@ -116,6 +116,13 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	}
 
 	/**
+	 * Clear all data from the factory
+	 */
+	public function clearData() {
+		$this->buffer = [];
+	}
+
+	/**
 	 * Set collection enable status.
 	 * @param bool $enabled Will collection be enabled?
 	 * @return void
