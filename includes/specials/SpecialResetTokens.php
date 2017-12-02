@@ -121,7 +121,6 @@ class SpecialResetTokens extends FormSpecialPage {
 	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
-		$form->setSubmitDestructive();
 		if ( $this->getTokensList() ) {
 			$form->setSubmitTextMsg( 'resettokens-resetbutton' );
 		} else {
