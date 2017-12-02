@@ -220,6 +220,28 @@ table.toc td {
 	font-size: larger;
 }
 
+/* preference page with js-genrated toc */
+#preftoc {
+	float: left;
+	margin: 1em 1em 1em 1em;
+	width: 13em;
+}
+
+#preftoc li {
+	border: 1px solid #fff;
+}
+
+#preftoc li.selected {
+	background-color: #f9f9f9;
+	border: 1px dashed #aaa;
+}
+
+#preftoc a,
+#preftoc a:active {
+	display: block;
+	color: #005189;
+}
+
 .mw-prefs-buttons {
 	clear: left;
 	float: left;

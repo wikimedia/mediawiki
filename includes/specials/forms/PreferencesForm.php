@@ -18,10 +18,12 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Form to edit user preferences.
  */
-class PreferencesForm extends OOUIHTMLForm {
+class PreferencesForm extends HTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
 
@@ -69,6 +71,8 @@ class PreferencesForm extends OOUIHTMLForm {
 	 * @return string
 	 */
 	function getButtons() {
+		$attrs = [ 'id' => 'mw-prefs-restoreprefs' ];
+
 		if ( !$this->getModifiedUser()->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' ) ) {
 			return '';
 		}
@@ -78,14 +82,9 @@ class PreferencesForm extends OOUIHTMLForm {
 		if ( $this->getModifiedUser()->isAllowed( 'editmyoptions' ) ) {
 			$t = $this->getTitle()->getSubpage( 'reset' );
 
-			$html .= new OOUI\ButtonWidget( [
-				'infusable' => true,
-				'id' => 'mw-prefs-restoreprefs',
-				'label' => $this->msg( 'restoreprefs' )->text(),
-				'href' => $t->getLinkURL(),
-				'flags' => [ 'destructive' ],
-				'framed' => false,
-			] );
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+			$html .= "\n" . $linkRenderer->makeLink( $t, $this->msg( 'restoreprefs' )->text(),
+				Html::buttonAttributes( $attrs, [ 'mw-ui-quiet' ] ) );
 
 			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );
 		}
