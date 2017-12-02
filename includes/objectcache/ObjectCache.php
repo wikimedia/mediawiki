@@ -342,14 +342,15 @@ class ObjectCache {
 			$params['channels'][$action] = $channel;
 		}
 		$params['cache'] = self::newFromParams( $params['store'] );
-		$params['stats'] = $services->getStatsdDataFactory();
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
 		}
-		// Let pre-emptive refreshes happen post-send on HTTP requests
 		if ( !$wgCommandLineMode ) {
+			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
+			$params['stats'] = $services->getStatsdDataFactory();
+			// Let pre-emptive refreshes happen post-send on HTTP requests
 			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
 		$class = $params['class'];
