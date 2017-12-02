@@ -233,6 +233,8 @@
 	"apihelp-import-extended-description": "Note que o pedido POST de HTTP tem de ser feito como um carregamento de ficheiro (isto é, usando \"multipart/form-data\") ao enviar um ficheiro para o parâmetro <var>xml</var>.",
 	"apihelp-import-param-summary": "Resumo da importação para a entrada do registo.",
 	"apihelp-import-param-xml": "Ficheiro XML carregado.",
+	"apihelp-import-param-interwikiprefix": "Para importações carregadas: o prefixo interwikis a ser aplicado aos nomes de utilizador desconhecidos (e aos conhecidos se <var>$1assignknownusers</var> estiver definido).",
+	"apihelp-import-param-assignknownusers": "Atribuir as edições aos utilizadores locais se o utilizador nomeado existir localmente.",
 	"apihelp-import-param-interwikisource": "Para importações interwikis: a wiki de onde importar.",
 	"apihelp-import-param-interwikipage": "Para importações interwikis: a página a importar.",
 	"apihelp-import-param-fullhistory": "Para importações interwikis: importar o historial completo, não apenas a versão atual.",

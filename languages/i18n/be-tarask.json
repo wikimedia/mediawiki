@@ -1300,6 +1300,7 @@
 	"rcfilters-activefilters": "Актыўныя фільтры",
 	"rcfilters-advancedfilters": "Пашыраныя фільтры",
 	"rcfilters-limit-title": "Паказаць вынікаў",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|зьмены|зьмены|зьменаў}}, $2",
 	"rcfilters-days-title": "Апошнія дні",
 	"rcfilters-hours-title": "Апошнія гадзіны",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|дзень|дні|дзён}}",
