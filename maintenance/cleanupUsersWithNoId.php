@@ -199,7 +199,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 
 			list( $next, $display ) = $this->makeNextCond( $dbw, $orderby, $row );
 			$this->output( "... $display\n" );
-			wfWaitForSlaves();
+			wfGetLBFactory()->waitForReplication();
 		}
 
 		$this->output(
