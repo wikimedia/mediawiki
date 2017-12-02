@@ -1182,7 +1182,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 								],
 								$this->msg(
 									$loggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
-								)->escaped()
+								)->text()
 							)
 						);
 					},
