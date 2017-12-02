@@ -101,7 +101,7 @@ class FSFileBackend extends FileBackendStore {
 	public function getFeatures() {
 		if ( $this->isWindows && version_compare( PHP_VERSION, '7.1', 'lt' ) ) {
 			// PHP before 7.1 used 8-bit code page for filesystem paths on Windows;
-			// See http://php.net/manual/en/migration71.windows-support.php
+			// See https://secure.php.net/manual/en/migration71.windows-support.php
 			return 0;
 		} else {
 			return FileBackend::ATTR_UNICODE_PATHS;
