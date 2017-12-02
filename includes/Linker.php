@@ -189,6 +189,10 @@ class Linker {
 			return $ret;
 		}
 
+		if ( $html instanceof HtmlArmor ) {
+			$html = HtmlArmor::getHtml( $html );
+		}
+
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
