@@ -23,13 +23,13 @@ first-letters-root.ser: allkeys.txt ucd.all.grouped.xml
 	php ../maintenance/language/generateCollationData.php
 
 UnicodeData.txt:
-	wget http://www.unicode.org/Public/$(UNICODE_VERSION)/ucd/UnicodeData.txt
+	wget https://www.unicode.org/Public/$(UNICODE_VERSION)/ucd/UnicodeData.txt
 
 allkeys.txt:
-	wget http://www.unicode.org/Public/UCA/$(UNICODE_VERSION)/allkeys.txt
+	wget https://www.unicode.org/Public/UCA/$(UNICODE_VERSION)/allkeys.txt
 
 ucd.all.grouped.xml: ucd.all.grouped.zip
 	unzip ucd.all.grouped.zip ucd.all.grouped.xml
 
 ucd.all.grouped.zip:
-	wget http://www.unicode.org/Public/$(UNICODE_VERSION)/ucdxml/ucd.all.grouped.zip
+	wget https://www.unicode.org/Public/$(UNICODE_VERSION)/ucdxml/ucd.all.grouped.zip

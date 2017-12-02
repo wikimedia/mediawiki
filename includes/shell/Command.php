@@ -429,7 +429,7 @@ class Command {
 			}
 
 			// clear get_last_error without actually raising an error
-			// from http://php.net/manual/en/function.error-get-last.php#113518
+			// from https://secure.php.net/manual/en/function.error-get-last.php#113518
 			// TODO replace with clear_last_error when requirements are bumped to PHP7
 			set_error_handler( function () {
 			}, 0 );

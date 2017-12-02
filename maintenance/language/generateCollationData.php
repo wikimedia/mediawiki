@@ -67,8 +67,8 @@ class GenerateCollationData extends Maintenance {
 
 		// As of January 2013, these links work for all versions of Unicode
 		// between 5.1 and 6.2, inclusive.
-		$allkeysURL = "http://www.unicode.org/Public/UCA/<Unicode version>/allkeys.txt";
-		$ucdallURL = "http://www.unicode.org/Public/<Unicode version>/ucdxml/ucd.all.grouped.zip";
+		$allkeysURL = "https://www.unicode.org/Public/UCA/<Unicode version>/allkeys.txt";
+		$ucdallURL = "https://www.unicode.org/Public/<Unicode version>/ucdxml/ucd.all.grouped.zip";
 
 		if ( !$allkeysPresent || !$ucdallPresent ) {
 			$icuVersion = IcuCollation::getICUVersion();
