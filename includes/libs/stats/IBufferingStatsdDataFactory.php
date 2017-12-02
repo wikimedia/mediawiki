@@ -9,16 +9,21 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  */
 interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	/**
-	 * Check whether this data factory has any data.
+	 * Check whether this data factory has any data
 	 * @return bool
 	 */
 	public function hasData();
 
 	/**
-	 * Return data from the factory.
+	 * Return data from the factory
 	 * @return StatsdData[]
 	 */
 	public function getData();
+
+	/**
+	 * Clear all data from the factory
+	 */
+	public function clearData();
 
 	/**
 	 * Set collection enable status.
