@@ -517,8 +517,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory );
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		Maintenance::setLBFactoryTriggers( $lbFactory, $services->getMainConfig() );
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
