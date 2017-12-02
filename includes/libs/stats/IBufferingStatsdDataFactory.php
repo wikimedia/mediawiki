@@ -9,16 +9,29 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
  */
 interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	/**
-	 * Check whether this data factory has any data.
+	 * Check whether this data factory has any buffered data.
 	 * @return bool
 	 */
 	public function hasData();
 
 	/**
-	 * Return data from the factory.
+	 * Return the buffered data from the factory.
 	 * @return StatsdData[]
 	 */
 	public function getData();
+
+	/**
+	 * Clear all buffered data from the factory
+	 * @since 1.31
+	 */
+	public function clearData();
+
+	/**
+	 * Return the number of buffered statsd data entries
+	 * @return int
+	 * @since 1.31
+	 */
+	public function getDataCount();
 
 	/**
 	 * Set collection enable status.
@@ -26,5 +39,4 @@ interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	 * @return void
 	 */
 	public function setEnabled( $enabled );
-
 }

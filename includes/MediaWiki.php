@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DBConnectionError;
+use Liuggio\StatsdClient\Sender\SocketSender;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
@@ -910,6 +911,34 @@ class MediaWiki {
 		$lbFactory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
+	}
+
+	/**
+	 * Send out any buffered statsd data according to sampling rules
+	 *
+	 * @param IBufferingStatsdDataFactory $stats
+	 * @param Config $config
+	 * @throws ConfigException
+	 * @since 1.31
+	 */
+	public static function emitBufferedStatsdData(
+		IBufferingStatsdDataFactory $stats, Config $config
+	) {
+		if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
+			try {
+				$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+				$statsdHost = $statsdServer[0];
+				$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
+				$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
+				$statsdClient->send( $stats->getData() );
+
+				$stats->clearData(); // empty buffer for the next round
+			} catch ( Exception $ex ) {
+				MWExceptionHandler::logException( $ex );
+			}
+		}
 	}
 
 	/**
