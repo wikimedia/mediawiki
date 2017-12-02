@@ -515,8 +515,8 @@ class MWHttpRequestTester extends MWHttpRequest {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new DomainException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
-				'Http::$httpEngine is set to "curl"' );
+			throw new DomainException( __METHOD__ . ': curl (https://secure.php.net/curl) is not ' .
+				'installed, but Http::$httpEngine is set to "curl"' );
 		}
 
 		switch ( Http::$httpEngine ) {
@@ -526,7 +526,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
 					throw new DomainException( __METHOD__ .
 						': allow_url_fopen needs to be enabled for pure PHP HTTP requests to work. '
-							. 'If possible, curl should be used instead. See http://php.net/curl.' );
+							. 'If possible, curl should be used instead. See https://secure.php.net/curl.' );
 				}
 
 				return new PhpHttpRequestTester( $url, $options, $caller );
