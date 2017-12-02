@@ -122,6 +122,13 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 	}
 
 	/**
+	 * Clear all data from the factory
+	 */
+	public function clearData() {
+
+	}
+
+	/**
 	 * Set collection enable status.
 	 * @param bool $enabled Will collection be enabled?
 	 * @return void
