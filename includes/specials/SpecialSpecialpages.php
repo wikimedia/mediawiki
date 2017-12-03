@@ -101,8 +101,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				"specialpages-group-$group"
 			);
 			$out->addHTML(
-				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
-				. '<ul>'
+				Html::openElement( 'ul', [ 'class' => 'mw-specialpages-list' ] )
 			);
 			foreach ( $sortedPages as $desc => $specialpage ) {
 				list( $title, $restricted, $cached ) = $specialpage;
@@ -125,8 +124,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 					) . "\n" );
 			}
 			$out->addHTML(
-				Html::closeElement( 'ul' ) .
-				Html::closeElement( 'div' )
+				Html::closeElement( 'ul' )
 			);
 		}
 
