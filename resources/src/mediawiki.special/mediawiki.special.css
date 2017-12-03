@@ -100,7 +100,7 @@
 	font-weight: bold;
 }
 
-.mw-specialpages-list {
+.mw-specialpages-list > ul {
 	-webkit-columns: 16em 2;
 	-moz-columns: 16em 2;
 	columns: 16em 2;
