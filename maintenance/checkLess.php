@@ -53,7 +53,12 @@ class CheckLess extends Maintenance {
 			define( 'MW_PHPUNIT_TEST', true );
 		}
 
-		$textUICommand = new PHPUnit_TextUI_Command();
+		// TODO: Remove back compat when we don't support PHP 5.5, and therefore PHPUnit 4
+		if ( class_exists( 'PHPUnit\TextUI\Command' ) ) {
+			$textUICommand = new PHPUnit\TextUI\Command();
+		} else {
+			$textUICommand = new PHPUnit_TextUI_Command();
+		}
 		$argv = [
 			"$IP/tests/phpunit/phpunit.php",
 			"$IP/tests/phpunit/suites/LessTestSuite.php"
