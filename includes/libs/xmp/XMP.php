@@ -370,7 +370,7 @@ class XMPReader implements LoggerAwareInterface {
 				$col = xml_get_current_column_number( $this->xmlParser );
 				$offset = xml_get_current_byte_index( $this->xmlParser );
 
-				$this->logger->warning(
+				$this->logger->info(
 					'{method} : Error reading XMP content: {error} ' .
 					'(line: {line} column: {column} byte offset: {offset})',
 					[
