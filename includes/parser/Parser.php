@@ -1076,7 +1076,7 @@ class Parser {
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'table' );
 
-				$outLine = str_repeat( '<dl><dd>', $indent_level ) . "<table{$attributes}>";
+				$outLine = str_repeat( '<dl><dd>', $indent_level ) . "<table{$attributes}>\n";
 				array_push( $td_history, false );
 				array_push( $last_tag_history, '' );
 				array_push( $tr_history, false );
@@ -1088,7 +1088,7 @@ class Parser {
 				continue;
 			} elseif ( $first_two === '|}' ) {
 				# We are ending a table
-				$line = '</table>' . substr( $line, 2 );
+				$line = "\n</table>" . substr( $line, 2 );
 				$last_tag = array_pop( $last_tag_history );
 
 				if ( !array_pop( $has_opened_tr ) ) {
@@ -1096,7 +1096,7 @@ class Parser {
 				}
 
 				if ( array_pop( $tr_history ) ) {
-					$line = "</tr>{$line}";
+					$line = "\n</tr>{$line}";
 				}
 
 				if ( array_pop( $td_history ) ) {
@@ -1120,11 +1120,11 @@ class Parser {
 				array_push( $has_opened_tr, true );
 
 				if ( array_pop( $tr_history ) ) {
-					$line = '</tr>';
+					$line = "</tr>\n";
 				}
 
 				if ( array_pop( $td_history ) ) {
-					$line = "</{$last_tag}>{$line}";
+					$line = "</{$last_tag}>\n{$line}";
 				}
 
 				$outLine = $line;
@@ -1207,7 +1207,7 @@ class Parser {
 					array_push( $td_history, true );
 				}
 			}
-			$out .= $outLine . "\n";
+			$out .= $outLine;
 		}
 
 		# Closing open td, tr && table

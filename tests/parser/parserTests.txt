@@ -355,7 +355,7 @@ a
 b
 ----
 a
- <!--foo--> <!----> <!-- bar --> 
+ <!--foo--> <!----> <!-- bar -->
 b
 ----
 a
@@ -420,12 +420,12 @@ Paragraphs with newline spacing with non-empty white-space lines in between
 !! wikitext
 ----
 a
- 
+
 b
 ----
 a
- 
- 
+
+
 b
 ----
 !! html
@@ -435,7 +435,7 @@ b
 </p>
 <hr />
 <p>a
-</p><p><br /> 
+</p><p><br />
 b
 </p>
 <hr />
@@ -455,16 +455,16 @@ a
 b
 ----
 a
- 
+
 <!--foo-->
  <!--bar-->
 b
 ----
 a
- 
+
  <!--foo-->
  <!--bar-->
- 
+
 b
 ----
 !! html
@@ -482,7 +482,7 @@ b
 </p>
 <hr />
 <p>a
-</p><p><br /> 
+</p><p><br />
 b
 </p>
 <hr />
@@ -1707,7 +1707,7 @@ c
 !! html
 <p>a
 </p>
-<pre> b 
+<pre> b
 </pre>
 <p>c
 </p>
@@ -1839,7 +1839,7 @@ b
 Comment on its own line post-expand with non-significant whitespace
 !! wikitext
 a
- {{blank}} <!----> 
+ {{blank}} <!---->
 b
 !! html
 <p>a
@@ -2752,7 +2752,7 @@ Templates: Don't strip whitespace from positional-param values
 
 {{echo|{{echo|b}} }}
 
-{{echo| c 
+{{echo| c
 }}
 
 {{echo| {{echo|d}}
@@ -2767,10 +2767,10 @@ Templates: Don't strip whitespace from positional-param values
 {{echo|
  }}g
 !! html
-<p>a 
-</p><p>b 
+<p>a
+</p><p>b
 </p>
-<pre>c 
+<pre>c
 </pre>
 <p><br />
 </p>
@@ -2810,8 +2810,8 @@ Templates: Recognize targets when newlines and comments don't split the target
 !! options
 parsoid=wt2html
 !! wikitext
-{{  
- <!--X--> ech<!--X-->o<!--X-->  
+{{
+ <!--X--> ech<!--X-->o<!--X-->
    <!--X-->   <!--X-->
 
  |foo}}
@@ -3117,14 +3117,13 @@ c
  |}
 !! html
 <table>
-
 <tr>
 <th>h1</th>
-<th>h2
-</th>
+<th>h2</th>
 <td>foo</td>
-<td>bar
-</td></tr></table>
+<td>bar</td>
+</tr>
+</table>
 
 !!end
 
@@ -3137,10 +3136,10 @@ c
 |}
 !! html
 <table>
-
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td>
+</tr>
+</table>
 
 !!end
 
@@ -3153,11 +3152,11 @@ c
 |}
 !! html
 <table>
-<caption> foo
-</caption>
+<caption> foo</caption>
 <tr>
-<th> bar
-</th></tr></table>
+<th> bar</th>
+</tr>
+</table>
 
 !!end
 
@@ -3173,8 +3172,9 @@ c
 </pre>
 <table>
 <tr>
-<td> b
-</td></tr></table>
+<td> b</td>
+</tr>
+</table>
 
 !! html/parsoid
 <pre>a</pre>
@@ -3422,7 +3422,7 @@ Render paragraphs when indent-pre is suppressed in blocklevels
 5a. White-space in indent-pre
 !! wikitext
  a<br />
- 
+
  b
 !! html
 <pre>a<br />
@@ -3436,10 +3436,10 @@ b
 5b. White-space in indent-pre
 !! wikitext
  a
- 
+
  b
- 
- 
+
+
  c
 !! html
 <pre>a
@@ -3468,12 +3468,12 @@ c
 6. Pre-blocks should extend across lines with leading WS even when there is no wrappable content
 !! wikitext
  a
- 
+
  <!-- continue -->
  b
 
  c
- 
+
 d
 !! html
 <pre>a
@@ -3988,7 +3988,7 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 !! wikitext
 : {|
 |a
-|} 
+|}
 !! html/php
 <dl><dd><table>
 <tr>
@@ -6138,8 +6138,8 @@ A table with nothing but a caption
 |}
 !! html/php
 <table>
-<caption> caption
-</caption><tr><td></td></tr></table>
+<caption> caption</caption><tr><td></td></tr>
+</table>
 
 !! html/parsoid
 <table><caption> caption</caption></table>
@@ -6155,11 +6155,11 @@ A table with caption with default-spaced attributes and a table row
 |}
 !! html
 <table>
-<caption style="color: red;"> caption1
-</caption>
+<caption style="color: red;"> caption1</caption>
 <tr>
-<td> foo
-</td></tr></table>
+<td> foo</td>
+</tr>
+</table>
 
 !! end
 
@@ -6174,13 +6174,12 @@ A table with captions with non-default spaced attributes and a table row
 |}
 !! html
 <table>
-<caption style="color: red;">caption2
-</caption>
-<caption style="color: red;"> caption3
-</caption>
+<caption style="color: red;">caption2</caption>
+<caption style="color: red;"> caption3</caption>
 <tr>
-<td> foo
-</td></tr></table>
+<td> foo</td>
+</tr>
+</table>
 
 !! end
 
@@ -6466,7 +6465,7 @@ Accept "| !" at start of line in tables (ignore !-attribute)
 !!end
 
 !!test
-Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present, or in 1st cell when there is a space between "|" and +/- 
+Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present, or in 1st cell when there is a space between "|" and +/-
 !! wikitext
 {|
 |-
@@ -6548,19 +6547,18 @@ Nested table
 !! html
 <table border="1">
 <tr>
-<td> &#945;
-</td>
-<td>
-<table bgcolor="#ABCDEF" border="2">
+<td> &#945;</td>
+<td><table bgcolor="#ABCDEF" border="2">
 <tr>
-<td>nested
-</td></tr>
+<td>nested</td>
+</tr>
 <tr>
-<td>table
-</td></tr></table>
-</td>
-<td>the original table again
-</td></tr></table>
+<td>table</td>
+</tr>
+</table></td>
+<td>the original table again</td>
+</tr>
+</table>
 
 !! end
 
@@ -8186,10 +8184,10 @@ parsoid=wt2html
 
 {{echo|[http://www.example.com |123]]}}
 !! html/php
-<p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a> 
+<p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a>
 </p><p>[<a rel="nofollow" class="external text" href="http://www.example.com">|123</a>]
 </p><p>{{echo|[<a rel="nofollow" class="external text" href="http://www.example.com">|123</a>}}
-</p><p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a> 
+</p><p>[<a rel="nofollow" class="external free" href="http://www.example.com">http://www.example.com</a>
 </p>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[http://www.example.com "},"2":{"wt":"123]"}},"i":0}}]}'>[<a rel="mw:ExtLink" href="http://www.example.com">http://www.example.com</a> </p>
@@ -9222,9 +9220,9 @@ Whitespace in #REDIRECT with optional colon
 # modern syntax (without extra whitespace)
 parsoid=wt2html,html2html
 !! wikitext
- 
- #REDIRECT 
-: 
+
+ #REDIRECT
+:
 [[Main Page]]
 !! html/parsoid
 <link rel="mw:PageProp/redirect" href="./Main_Page"/>
@@ -9885,7 +9883,7 @@ Single-comment whitespace lines dont break lists, and neither do multi-comment w
 *b
  <!--This line will NOT split the list either-->
 *c
- <!--foo--> <!----> <!--This line NOT split the list either--> 
+ <!--foo--> <!----> <!--This line NOT split the list either-->
 *d
 !! html
 <ul><li>a</li>
@@ -9899,12 +9897,12 @@ Single-comment whitespace lines dont break lists, and neither do multi-comment w
 Replacing whitespace with tabs still doesn't break the list (gerrit 78327)
 !! wikitext
 *a
-<!--This line will NOT split the list-->	
+<!--This line will NOT split the list-->
 *b
-	<!--This line will NOT split the list either--> 	
+	<!--This line will NOT split the list either-->
 *c
 	<!--foo--> <!---->	<!--This line NOT split the list
-        either-->	 
+        either-->
 *d
 !! html
 <ul><li>a</li>
@@ -11616,7 +11614,7 @@ T2529: Template with table, not included at beginning of line
 !! wikitext
 foo {{table}}
 !! html
-<p>foo 
+<p>foo
 </p>
 <table>
 <tr>
@@ -11738,7 +11736,7 @@ Templates with intersecting and overlapping ranges
 !! article
 Template:MSGNW test
 !! text
-''None'' of '''this''' should be 
+''None'' of '''this''' should be
 * interpreted
  but rather passed unmodified
 {{test}}
@@ -11754,7 +11752,7 @@ msgnw keyword
 !! wikitext
 {{msgnw:MSGNW test}}
 !! html/php
-<p>&#39;&#39;None&#39;&#39; of &#39;&#39;&#39;this&#39;&#39;&#39; should be 
+<p>&#39;&#39;None&#39;&#39; of &#39;&#39;&#39;this&#39;&#39;&#39; should be
 &#42; interpreted
 &#32;but rather passed unmodified
 &#123;&#123;test&#125;&#125;
@@ -13457,7 +13455,7 @@ Templates: Ugly templates: 3. newline-only template parameter
 foo {{echo|
 }}
 !! html
-<p>foo 
+<p>foo
 </p>
 !! end
 
@@ -16127,18 +16125,18 @@ Bar
 parsoid=wt2html
 !! wikitext
 This
-   
+
 [[Category:Foo]] and this should be part of same paragraph (not an indent-pre)
-   
+
 {{echo|[[Category:Foo]] and so should this!}}
 !! html/php
 <p>This and this should be part of same paragraph (not an indent-pre) and so should this!
 </p>
 !! html/parsoid
 <p>This
-   
+
 <link rel="mw:PageProp/Category" href="./Category:Foo"/> and this should be part of same paragraph (not an indent-pre)
-   
+
 <link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Foo]] and so should this!"}},"i":0}}]}'/><span about="#mwt1"> and so should this!</span></p>
 !! end
 
@@ -16156,7 +16154,7 @@ This
 parsoid=wt2html
 !! wikitext
 * This
-   
+
 [[Category:Foo]] and this should be part of the same list item
 * So should this
 
@@ -16178,18 +16176,18 @@ parsoid=wt2html
 3. Categories and newlines: newline suppression for last list item should RT properly
 !! wikitext
 * a
-* b 
-   
+* b
+
 [[Category:Foo]]
-   
+
 [[Category:Bar]]
 [[Category:Baz]]
 !! html/parsoid
 <ul><li> a</li>
-<li> b</li></ul> 
-   
+<li> b</li></ul>
+
 <link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>
-   
+
 <link rel="mw:PageProp/Category" href="./Category:Bar" data-parsoid='{"stx":"simple","a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"}}'/>
 <link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"}}'/>
 !! end
@@ -16869,7 +16867,7 @@ http://example.com [[File:Foobar.jpg]]
 !! test
 Short headings with trailing space should match behavior of Parser::doHeadings (T21910)
 !! wikitext
-=== 
+===
 The line above must have a trailing space!
 === <!--
 --> <!-- -->
@@ -18476,7 +18474,7 @@ disabled
 !! wikitext
 <br id="foo" /><br id="foo" />
 !! html
-Something need to be done. foo-2 ? 
+Something need to be done. foo-2 ?
 !! end
 
 !! test
@@ -18865,7 +18863,7 @@ mailto:inline@mail.tld
 !! test
 Fuzz testing: Parser13
 !! wikitext
-{| 
+{|
 | http://a|
 !! html
 <table>
@@ -19032,7 +19030,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 # but the original bug was JavaScript injection, which is fixed in any case.
 # It's not clear that the original result listed was any more correct than the
 # current one.  Original result:
-# <p>{{{| 
+# <p>{{{|
 # </p>
 # <li class="&#124;&#124;">
 # }}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
@@ -19040,7 +19038,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 Fuzz testing: Parser25 (T8055)
 !! wikitext
 {{{
-| 
+|
 <LI CLASS=||
  >
 }}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
@@ -19048,7 +19046,7 @@ Fuzz testing: Parser25 (T8055)
 <p>&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 </p>
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":"\n"},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'> 
+<span about="#mwt1" typeof="mw:Param" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"}]]}' data-mw='{"parts":[{"templatearg":{"target":{"wt":"\n"},"params":{"1":{"wt":" \n&lt;LI CLASS="},"2":{"wt":""},"3":{"wt":"\n >\n"}},"i":0}},"blah\" onmouseover=\"alert(&#39;hello world&#39;);\" align=\"left\"&#39;&#39;&#39;MOVE MOUSE CURSOR OVER HERE"]}'>
 </span><p about="#mwt1">&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b></p>
 !! end
 
@@ -19689,7 +19687,7 @@ Sectiion with all-equals
 !! options
 section=2
 !! wikitext
-=== 
+===
 The line above must have a trailing space
 === <!--
 --> <!-- -->
@@ -20961,9 +20959,9 @@ ISBN  978-0-1234-56&#x20;789
 !! test
 ISBN followed by 5 spaces
 !! wikitext
-ISBN    
+ISBN
 !! html
-<p>ISBN    
+<p>ISBN
 </p>
 !! end
 
@@ -22846,7 +22844,7 @@ T2529: Uncovered bullet
 # Plain MediaWiki does not remove empty lists, but tidy actually does.
 # Templates in Wikipedia rely on this behavior, as tidy has always been
 # enabled there. These tests are normally run *without* tidy, so specify the
-# full output here. 
+# full output here.
 # To test realistic parsing behavior, apply a tidy-like transformation to both
 # the expected output and your parser's output.
 !! test
@@ -24898,15 +24896,15 @@ parsoid=html2wt
 !! html/parsoid
 <p>=a=</p>
 
-<p>=a=</p> 
+<p>=a=</p>
 
-<p>=a=</p>	
+<p>=a=</p>
 !! wikitext
 <nowiki>=a=</nowiki>
 
-<nowiki>=a=</nowiki> 
+<nowiki>=a=</nowiki>
 
-<nowiki>=a=</nowiki>	
+<nowiki>=a=</nowiki>
 !!end
 
 !! test
@@ -24917,19 +24915,19 @@ parsoid=html2wt
 <p>=a=
 b</p>
 
-<p>=a= 
+<p>=a=
 b</p>
 
-<p>=a=	
+<p>=a=
 b</p>
 !! wikitext
 <nowiki>=a=</nowiki>
 b
 
-<nowiki>=a=</nowiki> 
+<nowiki>=a=</nowiki>
 b
 
-<nowiki>=a=</nowiki>	
+<nowiki>=a=</nowiki>
 b
 !!end
 
@@ -26629,8 +26627,8 @@ parsoid=wt2html
 !! wikitext
  {|
  |foo
- 
- 
+
+
  |}
 !! html
 <table>
@@ -27585,7 +27583,7 @@ parsoid=html2wt
 </div>
 !! wikitext
 foo
- 
+
 <span>bar</span>
 
 <span>foo2
@@ -27700,7 +27698,7 @@ parsoid={
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt3" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">bar <link rel="mw:PageProp/Category" href="./Category:Baz" /> </span></li></ol>
 !! wikitext
-== foo <ref>bar 
+== foo <ref>bar
 [[Category:Baz]] </ref> ==
 
 <references />
@@ -28073,9 +28071,9 @@ f</pre>
  d
 
  e
- 
 
- 
+
+
  f
 !! end
 
@@ -28317,7 +28315,7 @@ parsoid=html2wt,wt2wt
 !! wikitext
 {|
 !-
-!- 
+!-
 |-
 |<nowiki>-</nowiki>
 |<nowiki>- </nowiki>
@@ -29478,7 +29476,7 @@ parsoid={
 Empty LI (T49673)
 !! wikitext
 * a
-* 
+*
 *
 * b
 !! html/php+tidy
