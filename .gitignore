@@ -33,6 +33,8 @@ sftp-config.json
 /images/thumb
 ## Extension:EasyTimeline
 /images/timeline
+## Extension:Score
+/images/lilypond
 /images/tmp
 /maintenance/.mweval_history
 /maintenance/.mwsql_history
