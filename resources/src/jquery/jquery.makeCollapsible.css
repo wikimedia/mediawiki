@@ -1,6 +1,7 @@
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
 	float: right;
+	margin-left: 0.2em;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -11,11 +12,13 @@
 .mw-content-ltr .mw-collapsible-toggle,
 .mw-content-rtl .mw-content-ltr .mw-collapsible-toggle {
 	float: right;
+	margin-left: 0.2em;
 }
 /* @noflip */
 .mw-content-rtl .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl .mw-collapsible-toggle {
 	float: left;
+	margin-right: 0.2em;
 }
 
 .mw-customtoggle,
