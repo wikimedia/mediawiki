@@ -177,3 +177,35 @@ $wgAutoloadClasses += [
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];
 // phpcs:enable
+
+/**
+ * Alias any PHPUnit 4 era PHPUnit_... class
+ * to it's PHPUnit 6 replacement. For most classes
+ * this is a direct _ -> \ replacement, but for
+ * some others we might need to maintain a manual
+ * mapping. Once we drop support for PHPUnit 4 this
+ * should be considered deprecated and eventually removed.
+ */
+spl_autoload_register( function( $class ) {
+	if ( strpos( $class, 'PHPUnit_' ) !== 0 ) {
+		// Skip if it doesn't start with the old prefix
+		return;
+	}
+
+	// Classes that don't map 100%
+	$map = [
+		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite'
+	];
+
+	if ( isset( $map[$class] ) ) {
+		$newForm = $map[$class];
+	} else {
+		$newForm = str_replace( '_', '\\', $class );
+	}
+
+	if ( class_exists( $newForm ) ) {
+		// If the new class name exists, alias
+		// the old name to it.
+		class_alias( $newForm, $class );
+	}
+} );

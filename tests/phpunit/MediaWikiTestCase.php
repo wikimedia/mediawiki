@@ -2019,4 +2019,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
 	}
+
+	/**
+	 * @see PHPUnit_Framework_TestCase::setExpectedException
+	 *
+	 * This function was renamed to expectException() in PHPUnit 6, so this
+	 * is a temporary backwards-compatibility layer while we transition.
+	 */
+	public function setExpectedException( $name, $message = '', $code = null ) {
+		if ( is_callable( [ $this, 'expectException' ] ) ) {
+			$this->expectException( $name, $message, $code );
+		} else {
+			parent::setExpectedException( $name, $message, $code );
+		}
+	}
 }
