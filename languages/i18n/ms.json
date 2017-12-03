@@ -981,6 +981,7 @@
 	"recentchangesdays-max": "(had $1 hari)",
 	"recentchangescount": "Bilangan suntingan yang dipaparkan mengikut tetapan asali:",
 	"prefs-help-recentchangescount": "Ini termasuklah perubahan terkini, sejarah laman dan log.",
+	"prefs-help-watchlist-token2": "Inilah kunci rahsia kepada suapan web senarai pantau anda.\nSesiapa yang mengetahuinya akan boleh membaca senarai pantau anda, jadi jangan kongsinya.\n[[Special:ResetTokens|Klik di sini jika anda perlu mengesetnya semula]].",
 	"savedprefs": "Keutamaan anda disimpan.",
 	"savedrights": "Hak pengguna {{GENDER:$1|$1}} telah disimpan.",
 	"timezonelegend": "Zon waktu:",

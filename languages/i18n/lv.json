@@ -854,6 +854,7 @@
 	"recentchangesdays-max": "Ne vairāk kā $1 {{PLURAL:$1|dienas|diena|dienas}}",
 	"recentchangescount": "Izmaiņu skaits, kuru rāda pēc noklusējuma:",
 	"prefs-help-recentchangescount": "Šis parametrs attiecas uz pēdējo izmaiņu un hronoloģijas lapām, kā arī uz sistēmas žurnāliem",
+	"prefs-help-watchlist-token2": "Šī ir slepena atslēga tavam uzraugāmo lapu sarakstam.\nIkvienam, kas to zinās, būs iespēja apskatīt tavu uzraugāmo lapu sarakstu, tāpēc nedalies ar to.\n[[Special:ResetTokens|Spied šeit, lai to atjaunotu]].",
 	"savedprefs": "Jūsu izvēles ir saglabātas.",
 	"timezonelegend": "Laika josla:",
 	"localtime": "Vietējais laiks:",
