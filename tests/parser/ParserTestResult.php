@@ -35,6 +35,14 @@ class ParserTestResult {
 	 * @return bool
 	 */
 	public function isSuccess() {
+		/*if($this->expected === $this->actual){
+
+		}else{
+			$str=file_get_contents("/vagrant/mediawiki/tests/parser/parserTests.txt");
+			$str=str_replace("$this->expected", "$this->actual", $str);
+			file_put_contents("/vagrant/mediawiki/tests/parser/parserTests.txt", $str);
+			//echo "$str\n\n\n\n\n\n\n\n\n";
+		}*/
 		return $this->expected === $this->actual;
 	}
 
