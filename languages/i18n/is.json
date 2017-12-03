@@ -2012,6 +2012,7 @@
 	"delete-toobig": "Þessi síða hefur stóra breytingaskrá, yfir $1 {{PLURAL:$1|breyting|breytingar}}.\nÓheimilt er að eyða slíkum síðum til að valda ekki óæskilegum truflunum á {{SITENAME}}.",
 	"delete-warning-toobig": "Þessi síða hefur stóra breytingaskrá, yfir $1 {{PLURAL:$1|breyting|breytingar}}.\nEyðing síðunnar gæti truflað vinnslu gangnasafns {{SITENAME}}; haltu áfram með varúð.",
 	"deleteprotected": "Þú getur ekki eytt þessari síðu því hún hefur verið vernduð.",
+	"deleting-backlinks-warning": "<strong>Viðvörun:</strong> [[Kerfissíða:Síður sem tengjast hingað/{{FULLPAGENAME}}|Aðrar síður]] tengjast eða inniheldur efni af síðunni sem þú ætlar að eyða.",
 	"rollback": "Taka aftur breytingar",
 	"rollbacklink": "taka aftur",
 	"rollbacklinkcount": "taka aftur $1 {{PLURAL:$1|breytingu|breytingar}}",

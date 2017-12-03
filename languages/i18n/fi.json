@@ -1024,6 +1024,7 @@
 	"recentchangesdays-max": "Enintään $1 {{PLURAL:$1|päivä|päivää}}",
 	"recentchangescount": "Näytettävien muutoksien määrä oletuksena",
 	"prefs-help-recentchangescount": "Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.",
+	"prefs-help-watchlist-token2": "Tämä on salainen avain tarkkailulistasi verkkosyötteeseen.\nKuka tahansa, joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä.\n[[Special:ResetTokens|Napsauta tästä, jos sinun pitää uudistaa se]].",
 	"savedprefs": "Asetuksesi on tallennettu.",
 	"savedrights": "Käyttäjän {{GENDER:$1|$1}} käyttäjäryhmät on tallennettu.",
 	"timezonelegend": "Aikavyöhyke",
