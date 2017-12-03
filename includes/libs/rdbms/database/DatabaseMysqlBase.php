@@ -1044,7 +1044,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return true;
 		}
 
-		$this->queryLogger->warning( __METHOD__ . " failed to acquire lock '{lockname}'",
+		$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
 			[ 'lockname' => $lockName ] );
 
 		return false;
