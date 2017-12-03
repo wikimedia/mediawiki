@@ -48,3 +48,13 @@ trait MediaWikiCoversValidator {
 		$this->assertEquals( '', $bad );
 	}
 }
+
+// Aliases for PHPUnit 4/6 compat, remove once we drop
+// PHPUnit 4 support.
+if ( !class_exists( PHPUnit_Util_Test::class ) ) {
+	class_alias( PHPUnit\Util\Test::class, PHPUnit_Util_Test::class );
+	class_alias(
+		PHPUnit\Framework\CodeCoverageException::class,
+		PHPUnit_Framework_CodeCoverageException::class
+	);
+}

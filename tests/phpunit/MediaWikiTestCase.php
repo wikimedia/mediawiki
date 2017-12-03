@@ -11,6 +11,12 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
+if ( !class_exists( PHPUnit_Framework_TestResult::class) ) {
+	// Use class_alias to fill in the old PHPUnit 4 era class name so we can
+	// meet strict standards in overriding run().
+	class_alias( \PHPUnit\Framework\TestResult::class, PHPUnit_Framework_TestResult::class );
+}
+
 /**
  * @since 1.18
  */
@@ -2018,5 +2024,19 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			self::assertFileExists( $fileName );
 		}
 		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
+	}
+
+	/**
+	 * @see PHPUnit_Framework_TestCase::setExpectedException
+	 *
+	 * This function was renamed to expectException() in PHPUnit 6, so this
+	 * is a temporary backwards-compatibility layer while we transition.
+	 */
+	public function setExpectedException( $name, $message = '', $code = null ) {
+		if ( is_callable( [ $this, 'expectException' ] ) ) {
+			$this->expectException( $name, $message, $code );
+		} else {
+			parent::setExpectedException( $name, $message, $code );
+		}
 	}
 }
