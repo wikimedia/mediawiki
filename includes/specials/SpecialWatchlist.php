@@ -855,11 +855,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return Html::rawElement(
 			'span',
 			$attribs,
-			Xml::checkLabel(
-				$this->msg( $message, '' )->text(),
-				$name,
-				$name,
-				(int)$value
+			// not using HTML::checkLabel because that would escape the contents
+			Html::check( $name, (int)$value, [ 'id' => $name ] ) . Html::rawElement(
+				'label',
+				$attribs + [ 'for' => $name ],
+				$this->msg( $message, '' )->parse()
 			)
 		);
 	}
