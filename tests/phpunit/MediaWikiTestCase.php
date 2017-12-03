@@ -17,6 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnitExpectExceptionCompat;
 
 	/**
 	 * The service locator created by prepareServices(). This service locator will
