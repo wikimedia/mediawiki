@@ -80,7 +80,7 @@ class PHPUnitMaintClass extends Maintenance {
 				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
-		$phpUnitClass = 'PHPUnit_TextUI_Command';
+
 
 		if ( $this->hasOption( 'with-phpunitclass' ) ) {
 			$phpUnitClass = $this->getOption( 'with-phpunitclass' );
@@ -91,6 +91,10 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key] ); // the option
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
+		} elseif ( class_exists( 'PHPUnit\TextUI\Command' ) ) {
+			$phpUnitClass = 'PHPUnit\TextUI\Command()';
+		} else {
+			$phpUnitClass = 'PHPUnit_TextUI_Command';
 		}
 
 		$key = array_search( '--debug-tests', $_SERVER['argv'] );
