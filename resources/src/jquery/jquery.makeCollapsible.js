@@ -309,6 +309,8 @@
 					// If the table has a caption, collapse to the caption
 					// as opposed to the first row
 					$caption = $collapsible.find( '> caption' );
+					// Trim inner HTML of caption to avoid extra spaces before "[Collapse]"
+					$caption.html($.trim($caption.html()));
 					if ( $caption.length ) {
 						$toggle = $caption.find( '> .mw-collapsible-toggle' );
 
