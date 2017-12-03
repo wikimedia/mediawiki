@@ -5,6 +5,7 @@
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	padding-left: 0.2em;
 }
 /* Align the toggle based on the direction of the content language */
 /* @noflip */
