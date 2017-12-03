@@ -80,7 +80,7 @@ class PHPUnitMaintClass extends Maintenance {
 				[ '--configuration', $IP . '/tests/phpunit/suite.xml' ] );
 		}
 
-		$phpUnitClass = 'PHPUnit_TextUI_Command';
+		$phpUnitClass = PHPUnit_TextUI_Command::class;
 
 		if ( $this->hasOption( 'with-phpunitclass' ) ) {
 			$phpUnitClass = $this->getOption( 'with-phpunitclass' );
