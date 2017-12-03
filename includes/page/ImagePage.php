@@ -589,7 +589,7 @@ EOT
 				# Show deletion log to be consistent with normal articles
 				LogEventsList::showLogExtract(
 					$out,
-					[ 'delete', 'move' ],
+					[ 'delete', 'move', 'protect' ],
 					$this->getTitle()->getPrefixedText(),
 					'',
 					[ 'lim' => 10,
