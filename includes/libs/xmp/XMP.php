@@ -2,6 +2,9 @@
 /**
  * Reader for XMP data containing properties relevant to images.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,9 +19,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Media
  */
 
 use Psr\Log\LoggerAwareInterface;
@@ -49,6 +49,7 @@ use Wikimedia\ScopedCallback;
  * Note XMP kind of looks like rdf. They are not the same thing - XMP is
  * encoded as a specific subset of rdf. This class can read XMP. It cannot
  * read rdf.
+ * @ingroup Media
  */
 class XMPReader implements LoggerAwareInterface {
 	/** @var array XMP item configuration array */

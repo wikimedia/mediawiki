@@ -4,6 +4,9 @@
  * persist the session. For use in the installer when ObjectCache doesn't
  * work anyway.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +21,15 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Deployment
  */
 
 use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 
+/**
+ * @ingroup Deployment
+ */
 class InstallerSessionProvider extends SessionProvider {
 	/**
 	 * Pretend there is a session, to avoid MWCryptRand overhead

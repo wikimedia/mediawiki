@@ -2,6 +2,10 @@
 /**
  * OpenStack Swift based file backend.
  *
+ * @file
+ * @author Russ Nelson
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,10 +20,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup FileBackend
- * @author Russ Nelson
  */
 
 /**
@@ -1814,6 +1814,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 /**
  * @see FileBackendStoreOpHandle
+ * @ingroup FileBackend
  */
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var array List of Requests for MultiHttpClient */
@@ -1950,6 +1951,7 @@ abstract class SwiftFileBackendList implements Iterator {
 
 /**
  * Iterator for listing directories
+ * @ingroup FileBackend
  */
 class SwiftFileBackendDirList extends SwiftFileBackendList {
 	/**
@@ -1967,6 +1969,7 @@ class SwiftFileBackendDirList extends SwiftFileBackendList {
 
 /**
  * Iterator for listing regular files
+ * @ingroup FileBackend
  */
 class SwiftFileBackendFileList extends SwiftFileBackendList {
 	/**

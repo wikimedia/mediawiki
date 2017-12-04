@@ -10,6 +10,14 @@
  * can be replied upon, much like if this had true support
  * for generics, which sadly enough is not possible in PHP.
  *
+ * @since 1.20
+ *
+ * @file
+ *
+ * @license GNU GPL v2+
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,14 +32,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @since 1.20
- *
- * @file
- *
- * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+
 abstract class GenericArrayObject extends ArrayObject {
 	/**
 	 * Returns the name of an interface/class that the element should implement/extend.

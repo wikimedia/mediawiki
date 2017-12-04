@@ -2,6 +2,11 @@
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
+ * @file
+ * @author Niklas Laxström
+ * @author Antoine Musso
+ */
+/*
  * Copyright © 2008, Niklas Laxström
  * Copyright © 2011, Antoine Musso
  * Copyright © 2013, Bartosz Dziewoński
@@ -20,10 +25,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @author Niklas Laxström
- * @author Antoine Musso
  */
 
 /**

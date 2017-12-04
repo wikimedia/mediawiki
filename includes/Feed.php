@@ -5,6 +5,9 @@
  * Contain a feed class as well as classes to build rss / atom ... feeds
  * Available feeds are defined in Defines.php
  *
+ * @file
+ */
+/*
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
@@ -22,14 +25,11 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 
 /**
  * @defgroup Feed Feed
  */
-
 /**
  * A base class for basic support for outputting syndication feeds in RSS and other formats.
  *

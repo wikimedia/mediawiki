@@ -2,6 +2,10 @@
 /**
  * Represents a filter group (used on ChangesListSpecialPage and descendants)
  *
+ * @file
+ * @author Matthew Flaschen
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,16 +20,12 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @author Matthew Flaschen
  */
 
 // TODO: Might want to make a super-class or trait to share behavior (especially re
 // conflicts) between ChangesListFilter and ChangesListFilterGroup.
 // What to call it.  FilterStructure?  That would also let me make
 // setUnidirectionalConflict protected.
-
 use Wikimedia\Rdbms\IDatabase;
 
 /**

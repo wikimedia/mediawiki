@@ -7,6 +7,9 @@
  * callback, entities will be fully expanded, but may report the XML is
  * invalid if expanding the entities are likely to cause a DoS.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,8 +24,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 
 class XmlTypeCheck {

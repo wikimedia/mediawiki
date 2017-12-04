@@ -2,6 +2,9 @@
 /**
  * This file contains database access object related constants.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,9 +19,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Database
  */
 
 /**
@@ -51,6 +51,7 @@
  *   - f) Commit transaction
  *
  * @since 1.20
+ * @ingroup Database
  */
 interface IDBAccessObject {
 	/** Constants for object loading bitfield flags (higher => higher QoS) */

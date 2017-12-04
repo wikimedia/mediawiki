@@ -2,6 +2,13 @@
 /**
  * Formatting of image metadata values into human readable form.
  *
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, 2009 Brent Garber, 2010 Brian Wolff
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,14 +23,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @ingroup Media
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason, 2009 Brent Garber, 2010 Brian Wolff
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
- * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
- * @file
  */
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 

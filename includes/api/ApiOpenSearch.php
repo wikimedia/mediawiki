@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  * Copyright © 2008 Brion Vibber <brion@wikimedia.org>
  * Copyright © 2014 Wikimedia Foundation and contributors
@@ -18,8 +18,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 
 use MediaWiki\MediaWikiServices;
