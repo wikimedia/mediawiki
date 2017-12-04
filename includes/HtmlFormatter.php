@@ -1,8 +1,5 @@
 <?php
 /**
- * Stub for extensions that haven't switched to Composer-based version of this class
- * @todo: remove in 1.28
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,6 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ */
+
+/**
+ * Stub for extensions that haven't switched to Composer-based version of this class
+ * @todo: remove in 1.28
+
  * @deprecated since 1.27, use HtmlFormatter\HtmlFormatter
  */
 class HtmlFormatter extends HtmlFormatter\HtmlFormatter {
