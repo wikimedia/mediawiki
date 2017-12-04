@@ -81,7 +81,7 @@ class FixUserRegistration extends Maintenance {
 				}
 			}
 			$this->output( "Waiting for replica DBs..." );
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			$this->output( " done.\n" );
 		} while ( $res->numRows() >= $this->getBatchSize() );
 	}
