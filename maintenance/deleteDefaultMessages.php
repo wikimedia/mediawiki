@@ -82,7 +82,7 @@ class DeleteDefaultMessages extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 
 		foreach ( $res as $row ) {
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			$dbw->ping();
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$page = WikiPage::factory( $title );

@@ -102,7 +102,7 @@ class BatchedQueryRunner extends Maintenance {
 
 			$affected = $dbw->affectedRows();
 			$this->output( "$affected rows affected\n" );
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		} while ( $res->numRows() );
 	}
 

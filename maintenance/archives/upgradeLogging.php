@@ -175,7 +175,7 @@ EOT;
 			$this->dbw->insert( $dstTable, $batch, __METHOD__ );
 			$numRowsCopied += count( $batch );
 
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 		echo "Copied $numRowsCopied rows\n";
 	}

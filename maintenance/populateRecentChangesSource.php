@@ -71,7 +71,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			);
 
 			$this->output( "." );
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

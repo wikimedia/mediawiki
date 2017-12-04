@@ -24,9 +24,9 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\ResultWrapper;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.
@@ -106,7 +106,7 @@ class MwSql extends Maintenance {
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$this->sqlDoQuery( $db, $query, /* dieOnError */ true );
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			return;
 		}
 
@@ -149,7 +149,7 @@ class MwSql extends Maintenance {
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}
-		wfWaitForSlaves();
+		\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 	}
 
 	protected function sqlDoQuery( IDatabase $db, $line, $dieOnError ) {

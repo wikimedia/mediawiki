@@ -304,6 +304,62 @@ abstract class LBFactory implements ILBFactory {
 		return $ret;
 	}
 
+    /**
+     * Waits for the replica DBs to catch up to the master position
+     *
+     * Use this when updating very large numbers of rows, as in maintenance scripts,
+     * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.
+     *
+     * By default this waits on the main DB cluster of the current wiki.
+     * If $cluster is set to "*" it will wait on all DB clusters, including
+     * external ones. If the lag being waiting on is caused by the code that
+     * does this check, it makes since to use $ifWritesSince, particularly if
+     * cluster is "*", to avoid excess overhead.
+     *
+     * Never call this function after a big DB write that is still in a transaction.
+     * This only makes sense after the possible lag inducing changes were committed.
+     *
+     * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
+     * @param string|bool $wiki Wiki identifier accepted by wfGetLB
+     * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
+     * @param int|null $timeout Max wait time. Default: 1 day (cli), ~10 seconds (web)
+     * @return bool Success (able to connect and no timeouts reached)
+     */
+	public function waitForSlaves(
+	    $ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
+    ) {
+        if ( $timeout === null ) {
+            $timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
+        }
+
+        if ( $cluster === '*' ) {
+            $cluster = false;
+            $wiki = false;
+        } elseif ( $wiki === false ) {
+            $wiki = wfWikiID();
+        }
+
+        try {
+            $this->waitForReplication( [
+                'wiki' => $wiki,
+                'cluster' => $cluster,
+                'timeout' => $timeout,
+                // B/C: first argument used to be "max seconds of lag"; ignore such values
+                'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
+            ] );
+        } catch ( DBReplicationWaitError $e ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @see LBFactory::waitForSlaves()
+     *
+     * @param array $opts
+     * @throws DBReplicationWaitError
+     */
 	public function waitForReplication( array $opts = [] ) {
 		$opts += [
 			'domain' => false,

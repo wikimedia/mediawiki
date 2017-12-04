@@ -258,7 +258,7 @@ class FixT22757 extends Maintenance {
 		static $iteration = 0;
 		++$iteration;
 		if ( ++$iteration > 50 == 0 ) {
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			$iteration = 0;
 		}
 	}

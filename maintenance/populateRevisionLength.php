@@ -117,7 +117,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 
 		return $count;

@@ -134,7 +134,7 @@ TEXT
 				}
 				$this->output( "--mode=$mode --begin=$name\n" );
 
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 				usleep( $throttle * 1000 );
 			}
 
@@ -188,7 +188,7 @@ TEXT
 
 				$this->output( "--mode=remove --begin=$name\n" );
 
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 				usleep( $throttle * 1000 );
 			}
 		}
