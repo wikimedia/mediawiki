@@ -11,6 +11,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			$this->tablesUsed,
 			[ 'page',
 				'revision',
+				'redirect',
 				'archive',
 				'category',
 				'ip_changes',
@@ -1181,6 +1182,57 @@ more stuff
 		$this->assertEquals( 0, Category::newFromName( 'A' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertEquals( 1, Category::newFromName( 'C' )->getPageCount() );
+	}
+
+	public function provideUpdateRedirectOn() {
+		yield [ '#REDIRECT [[Foo]]', true, null, true, true, 0 ];
+		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, false, 1 ];
+		yield [ 'SomeText', false, null, false, true, 0 ];
+		yield [ 'SomeText', false, 'Foo', false, false, 1 ];
+	}
+
+	/**
+	 * @dataProvider provideUpdateRedirectOn
+	 * @covers WikiPage::updateRedirectOn
+	 *
+	 * @param string $initialText
+	 * @param bool $initialRedirectState
+	 * @param string|null $redirectTitle
+	 * @param bool|null $lastRevIsRedirect
+	 * @param bool $expectedSuccess
+	 * @param int $expectedRowCount
+	 */
+	public function testUpdateRedirectOn(
+		$initialText,
+		$initialRedirectState,
+		$redirectTitle,
+		$lastRevIsRedirect,
+		$expectedSuccess,
+		$expectedRowCount
+	) {
+		static $pageCounter = 0;
+		$pageCounter++;
+
+		$page = $this->createPage( Title::newFromText( __METHOD__ . $pageCounter ), $initialText );
+		$this->assertSame( $initialRedirectState, $page->isRedirect() );
+
+		$redirectTitle = is_string( $redirectTitle )
+			? Title::newFromText( $redirectTitle )
+			: $redirectTitle;
+
+		$success = $page->updateRedirectOn( $this->db, $redirectTitle, $lastRevIsRedirect );
+		$this->assertSame( $expectedSuccess, $success, 'Success assertion' );
+		/**
+		 * updateRedirectOn explicitly updates the redirect table (and not the page table).
+		 * Most of core checks the page table for redirect status, so we have to be ugly and
+		 * assert a select from the table here.
+		 */
+		$this->assertSelect(
+			'redirect',
+			'COUNT(*)',
+			[ 'rd_from' => $page->getId() ],
+			[ [ strval( $expectedRowCount ) ] ]
+		);
 	}
 
 }
