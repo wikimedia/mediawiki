@@ -742,7 +742,7 @@
 	"nextn-title": "後$1之尋",
 	"shown-title": "每頁示 $1",
 	"viewprevnext": "見（$1 {{int:pipe-separator}} $2）（$3）",
-	"searchmenu-exists": "'''在此wiki中有頁為\"[[:$1]]\"。'''",
+	"searchmenu-exists": "<strong>君所欲求，蓋名曰\"[[:$1]]\"者乎？此共筆臺已有之。</strong> {{PLURAL:$2|0=|又羅得數條，悉列於下。}}",
 	"searchmenu-new": "'''在此共筆上建頁\"[[:$1]]\"！'''",
 	"searchprofile-articles": "容",
 	"searchprofile-images": "媒",

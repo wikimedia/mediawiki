@@ -1244,7 +1244,6 @@
 	"recentchanges-submit": "Shfaq",
 	"rcfilters-activefilters": "Filtrat aktiv",
 	"rcfilters-advancedfilters": "Filtra të avancuar",
-	"rcfilters-limit-shownum": "Shfaq {{PLURAL:$1|ndryshimin e fundit|$1 ndryshimet e fundit}}",
 	"rcfilters-quickfilters": "Filtrat e ruajtur",
 	"rcfilters-quickfilters-placeholder-title": "Asnjë lidhje e ruajtur",
 	"rcfilters-savedqueries-defaultlabel": "Filtrat e ruajtur",

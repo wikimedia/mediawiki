@@ -1186,7 +1186,6 @@
 	"rcfilters-activefilters": "Aktivni filteri",
 	"rcfilters-advancedfilters": "Napredni filteri",
 	"rcfilters-limit-title": "Prikazati izmena",
-	"rcfilters-limit-shownum": "Prikaži posljednjih $1 izmjena",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|dana|dana}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|sat|sata}}",
 	"rcfilters-quickfilters-placeholder-description": "Da biste sačuvali svoja podešavanja filtera i upotrebljavali ih kasnije, kliknite na ikonu za oznaku u području aktivnih filtera, ispod.",

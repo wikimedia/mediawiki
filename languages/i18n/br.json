@@ -991,6 +991,7 @@
 	"recentchangesdays-max": "D'ar muiañ $1 {{PLURAL:$1|deiz|deiz}}",
 	"recentchangescount": "Niver a gemmoù da ziskouez dre ziouer",
 	"prefs-help-recentchangescount": "Kemer a ra an dra-mañ e kont ar c'hemmoù diwezhañ, istor ar pajennoù hag ar marilhoù.",
+	"prefs-help-watchlist-token2": "Homañ zo an alc'hwez kuzh d'ho roll-evezhiañ davit boued war ar web. Forzh piv a anavez anezhañ a c'hall lenn ho roll-evezhiañ, setu na lavarit grit diwar e benn. M'ho pez ezhomm, e c'hallit [[Special:ResetTokens|assevel anezhañ]].",
 	"savedprefs": "Enrollet eo bet ar penndibaboù.",
 	"savedrights": "Enrollet eo bet strolladoù implijer {{GENDER:$1|$1}}.",
 	"timezonelegend": "Takad eur :",

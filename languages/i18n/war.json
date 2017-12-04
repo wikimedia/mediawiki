@@ -824,6 +824,7 @@
 	"recentchangesdays-max": "Pinakadamo $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}}",
 	"recentchangescount": "Ihap han mga pagliwat nga igpapakita nga ginpasingada:",
 	"prefs-help-recentchangescount": "Ini in naglalakip han mga kabag-ohan nga pagliwat, mga kaagi han pakli, ngan mga talaan.",
+	"prefs-help-watchlist-token2": "Ini in sekreto nga susi ngadto han web feed an imo talaan han binabantayan.\nKun hin-o man it maaram hini in puyde bumasa han imo talaan han binabantayan, tungod hini ayaw ini igsaro ha iba.\n[[Special:ResetTokens|Pidlita ini kun kinahanglan mo igreset ini]].",
 	"savedprefs": "Gintipig an im karuyag.",
 	"timezonelegend": "Zona hin oras",
 	"localtime": "Oras nga lokal",

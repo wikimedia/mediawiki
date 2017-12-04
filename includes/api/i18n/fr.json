@@ -254,6 +254,8 @@
 	"apihelp-import-extended-description": "Noter que le POST HTTP doit être effectué comme un import de fichier (c’est-à-dire en utilisant multipart/form-data) lors de l’envoi d’un fichier pour le paramètre <var>xml</var>.",
 	"apihelp-import-param-summary": "Résumé de l’importation de l’entrée de journal.",
 	"apihelp-import-param-xml": "Fichier XML téléversé.",
+	"apihelp-import-param-interwikiprefix": "Pour les importations téléchargées : le préfixe interwiki à appliquer aux noms d’utilisateur inconnus (et aux utilisateurs connus si <var>$1assignknownusers</var> est positionné).",
+	"apihelp-import-param-assignknownusers": "Affecter les modifications aux utilisateurs locaux quand l’utilisateur nommé existe localement.",
 	"apihelp-import-param-interwikisource": "Pour les importations interwiki : wiki depuis lequel importer.",
 	"apihelp-import-param-interwikipage": "Pour les importations interwiki : page à importer.",
 	"apihelp-import-param-fullhistory": "Pour les importations interwiki : importer tout l’historique, et pas seulement la version courante.",

@@ -97,7 +97,8 @@
 			"Wmr",
 			"逆襲的天邪鬼",
 			"WhitePhosphorus",
-			"A2093064"
+			"A2093064",
+			"EagerLin"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1491,8 +1492,8 @@
 	"rcfilters-view-tags-tooltip": "按编辑标签过滤结果",
 	"rcfilters-view-return-to-default-tooltip": "返回主过滤菜单",
 	"rcfilters-view-tags-help-icon-tooltip": "了解更多关于标记编辑的信息",
-	"rcfilters-liveupdates-button": "实时更新",
-	"rcfilters-liveupdates-button-title-on": "关闭实时更新",
+	"rcfilters-liveupdates-button": "动态更新",
+	"rcfilters-liveupdates-button-title-on": "关闭动态更新",
 	"rcfilters-liveupdates-button-title-off": "显示新更改（如有）",
 	"rcfilters-watchlist-markseen-button": "标记所有更改为已查看",
 	"rcfilters-watchlist-edit-watchlist-button": "编辑您的监视页面列表",
