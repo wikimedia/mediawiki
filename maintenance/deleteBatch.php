@@ -119,7 +119,7 @@ class DeleteBatch extends Maintenance {
 			if ( $interval ) {
 				sleep( $interval );
 			}
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 	}
 }
