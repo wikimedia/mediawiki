@@ -1545,4 +1545,71 @@ more stuff
 		$this->assertFalse( $result );
 	}
 
+	/**
+	 * @covers WikiPage::updateIfNewerOn
+	 */
+	public function testUpdateIfNewerOn_olderRevision() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$initialRevision = $page->getRevision();
+
+		$olderTimeStamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) - 1
+		);
+
+		$olderRevison = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => $olderTimeStamp,
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateIfNewerOn( $this->db, $olderRevison );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers WikiPage::updateIfNewerOn
+	 */
+	public function testUpdateIfNewerOn_newerRevision() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$initialRevision = $page->getRevision();
+
+		$newerTimeStamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) + 1
+		);
+
+		$newerRevision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => $newerTimeStamp,
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+		$result = $page->updateIfNewerOn( $this->db, $newerRevision );
+		$this->assertTrue( $result );
+	}
+
 }
