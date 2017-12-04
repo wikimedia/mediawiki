@@ -3,8 +3,8 @@ const Page = require( './page' );
 
 class PreferencesPage extends Page {
 
-	get realName() { return browser.element( '#mw-input-wprealname .oo-ui-inputWidget-input' ); }
-	get save() { return browser.element( '#prefcontrol .oo-ui-buttonElement-button' ); }
+	get realName() { return browser.element( '#mw-input-wprealname' ); }
+	get save() { return browser.element( '#prefcontrol' ); }
 
 	open() {
 		super.open( 'Special:Preferences' );

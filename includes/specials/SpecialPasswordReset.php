@@ -110,8 +110,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 	public function alterForm( HTMLForm $form ) {
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 
-		$form->setSubmitDestructive();
-
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
 		$i = 0;
