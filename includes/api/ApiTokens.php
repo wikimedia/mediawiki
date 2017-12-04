@@ -1,9 +1,5 @@
 <?php
-/**
- *
- *
- * Created on Jul 29, 2011
- *
+/*
  * Copyright © 2011 John Du Hart john@johnduhart.me
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +16,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 
 /**

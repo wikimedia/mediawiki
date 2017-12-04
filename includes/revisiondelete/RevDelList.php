@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -14,9 +14,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup RevisionDelete
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,6 +23,7 @@ use MediaWiki\MediaWikiServices;
  * needs to be able to make a query from a set of identifiers to pull
  * relevant rows, to return RevDelItem subclasses wrapping them, and
  * to wrap bulk update operations.
+ * @ingroup RevisionDelete
  */
 abstract class RevDelList extends RevisionListBase {
 	function __construct( IContextSource $context, Title $title, array $ids ) {

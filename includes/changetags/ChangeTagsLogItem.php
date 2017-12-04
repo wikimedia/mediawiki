@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -14,9 +14,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Change tagging
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,6 +23,7 @@ use MediaWiki\MediaWikiServices;
  * @todo Abstract out a base class for this and RevDelLogItem, similar to the
  * RevisionItem class but specifically for log items.
  * @since 1.25
+ * @ingroup Change tagging
  */
 class ChangeTagsLogItem extends RevisionItemBase {
 	public function getIdField() {

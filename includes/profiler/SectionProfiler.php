@@ -2,6 +2,9 @@
 /**
  * Arbitrary section name based PHP profiling.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,16 +19,15 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Profiler
  */
+
 use Wikimedia\ScopedCallback;
 
 /**
  * Custom PHP profiler for parser/DB type section names that xhprof/xdebug can't handle
  *
  * @since 1.25
+ * @ingroup Profiler
  */
 class SectionProfiler {
 	/** @var array Map of (mem,real,cpu) */
@@ -501,6 +503,7 @@ class SectionProfiler {
  * Subclass ScopedCallback to avoid call_user_func_array(), which is slow
  *
  * This class should not be used outside of SectionProfiler
+ * @ingroup Profiler
  */
 class SectionProfileCallback extends ScopedCallback {
 	/** @var SectionProfiler */

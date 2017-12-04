@@ -4,6 +4,9 @@
  * This is the part of the wikitext parser which handles automatic paragraphs
  * and conversion of start-of-line prefixes to HTML lists.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +21,9 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
+ */
+
+/**
  * @ingroup Parser
  */
 class BlockLevelPass {

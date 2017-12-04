@@ -3,6 +3,9 @@
 /**
  * Implements Special:Randomrootpage
  *
+ * @file
+ */
+/*
  * Copyright © 2008 Hojjat (aka Huji)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -19,11 +22,11 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup SpecialPage
  */
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialRandomrootpage extends RandomPage {
 
 	public function __construct() {

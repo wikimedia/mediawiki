@@ -2,6 +2,9 @@
 /**
  * Holds shared logic for login and account creation pages.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,9 +19,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup SpecialPage
  */
 
 use MediaWiki\Auth\AuthenticationRequest;
@@ -1388,6 +1388,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
  * actually happen through a template anymore. Just collects extra field definitions and allows
  * some other class to do decide what to do with threm..
  * TODO find the right place for adding extra fields and kill this
+ * @ingroup SpecialPage
  */
 class FakeAuthTemplate extends BaseTemplate {
 	public function execute() {
@@ -1457,6 +1458,7 @@ class FakeAuthTemplate extends BaseTemplate {
  * LoginForm as a special page has been replaced by SpecialUserLogin and SpecialCreateAccount,
  * but some extensions called its public methods directly, so the class is retained as a
  * B/C wrapper. Anything that used it before should use AuthManager instead.
+ * @ingroup SpecialPage
  */
 class LoginForm extends SpecialPage {
 	const SUCCESS = 0;
