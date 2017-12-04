@@ -1425,4 +1425,68 @@ more stuff
 		$this->assertNull( WikiPage::newFromID( 73574757437437743743 ) );
 	}
 
+	public function provideTestInsertProtectNullRevision() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		yield [
+			'goat-message-key',
+			[ 'edit' => 'sysop' ],
+			[ 'edit' => '20200101040404' ],
+			false,
+			'Goat Reason',
+			true,
+			'(goat-message-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
+		];
+		yield [
+			'goat-key',
+			[ 'edit' => 'sysop', 'move' => 'something' ],
+			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
+			false,
+			'Goat Goat',
+			true,
+			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
+		];
+		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+	}
+
+	/**
+	 * @dataProvider provideTestInsertProtectNullRevision
+	 * @covers WikiPge::insertProtectNullRevision
+	 * @covers WikiPge::protectDescription
+	 *
+	 * @param string $revCommentMsg
+	 * @param array $limit
+	 * @param array $expiry
+	 * @param bool $cascade
+	 * @param string $reason
+	 * @param bool|null $user true if the test sysop should be used, or null
+	 * @param string $expectedComment
+	 */
+	public function testInsertProtectNullRevision(
+		$revCommentMsg,
+		array $limit,
+		array $expiry,
+		$cascade,
+		$reason,
+		$user,
+		$expectedComment
+	) {
+		$this->setContentLang( 'qqx' );
+
+		$page = $this->createPage( __METHOD__, 'Goat' );
+
+		$user = $user === null ? $user : $this->getTestSysop()->getUser();
+
+		$result = $page->insertProtectNullRevision(
+			$revCommentMsg,
+			$limit,
+			$expiry,
+			$cascade,
+			$reason,
+			$user
+		);
+
+		$this->assertTrue( $result instanceof Revision );
+		$this->assertSame( $expectedComment, $result->getComment( Revision::RAW ) );
+	}
+
 }
