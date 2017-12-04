@@ -1227,12 +1227,83 @@ more stuff
 		 * Most of core checks the page table for redirect status, so we have to be ugly and
 		 * assert a select from the table here.
 		 */
+		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRowCount );
+	}
+
+	private function assertRedirectTableCountForPageId( $pageId, $expected ) {
 		$this->assertSelect(
 			'redirect',
 			'COUNT(*)',
-			[ 'rd_from' => $page->getId() ],
-			[ [ strval( $expectedRowCount ) ] ]
+			[ 'rd_from' => $pageId ],
+			[ [ strval( $expected ) ] ]
 		);
+	}
+
+	/**
+	 * @covers WikiPage::insertRedirectEntry
+	 */
+	public function testInsertRedirectEntry_insertsRedirectEntry() {
+		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+
+		$targetTitle = Title::newFromText( 'SomeTarget' );
+		$targetTitle->setFragment( 'Frag' );
+		$targetTitle->mInterwiki = 'eninter';
+		$page->insertRedirectEntry( $targetTitle, null );
+
+		$this->assertSelect(
+			'redirect',
+			[ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
+			[ 'rd_from' => $page->getId() ],
+			[ [
+				strval( $page->getId() ),
+				strval( $targetTitle->getNamespace() ),
+				strval( $targetTitle->getDBkey() ),
+				strval( $targetTitle->getFragment() ),
+				strval( $targetTitle->getInterwiki() ),
+			] ]
+		);
+	}
+
+	/**
+	 * @covers WikiPage::insertRedirectEntry
+	 */
+	public function testInsertRedirectEntry_insertsRedirectEntryWithPageLatest() {
+		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+
+		$targetTitle = Title::newFromText( 'SomeTarget' );
+		$targetTitle->setFragment( 'Frag' );
+		$targetTitle->mInterwiki = 'eninter';
+		$page->insertRedirectEntry( $targetTitle, $page->getLatest() );
+
+		$this->assertSelect(
+			'redirect',
+			[ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ],
+			[ 'rd_from' => $page->getId() ],
+			[ [
+				strval( $page->getId() ),
+				strval( $targetTitle->getNamespace() ),
+				strval( $targetTitle->getDBkey() ),
+				strval( $targetTitle->getFragment() ),
+				strval( $targetTitle->getInterwiki() ),
+			] ]
+		);
+	}
+
+	/**
+	 * @covers WikiPage::insertRedirectEntry
+	 */
+	public function testInsertRedirectEntry_doesNotInsertIfPageLatestIncorrect() {
+		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+
+		$targetTitle = Title::newFromText( 'SomeTarget' );
+		$targetTitle->setFragment( 'Frag' );
+		$targetTitle->mInterwiki = 'eninter';
+		$page->insertRedirectEntry( $targetTitle, 215251 );
+
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 	}
 
 }
