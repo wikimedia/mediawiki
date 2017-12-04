@@ -1615,4 +1615,87 @@ more stuff
 		$this->assertTrue( $result );
 	}
 
+	/**
+	 * @covers WikiPage::insertOn
+	 */
+	public function testInsertOn() {
+		$title = Title::newFromText( __METHOD__ );
+		$page = new WikiPage( $title );
+
+		$startTimeStamp = wfTimestampNow();
+		$result = $page->insertOn( $this->db );
+		$endTimeStamp = wfTimestampNow();
+
+		$this->assertInternalType( 'int', $result );
+		$this->assertTrue( $result > 0 );
+
+		$condition = [ 'page_id' => $result ];
+
+		// Check the default fields have been filled
+		$this->assertSelect(
+			'page',
+			[
+				'page_namespace',
+				'page_title',
+				'page_restrictions',
+				'page_is_redirect',
+				'page_is_new',
+				'page_latest',
+				'page_len',
+			],
+			$condition,
+			[ [
+				'0',
+				__METHOD__,
+				'',
+				'0',
+				'1',
+				'0',
+				'0',
+			] ]
+		);
+
+		// Check the page_random field has been filled
+		$pageRandom = $this->db->selectField( 'page', 'page_random', $condition );
+		$this->assertTrue( (float)$pageRandom < 1 && (float)$pageRandom > 0 );
+
+		// Assert the touched timestamp in the DB is roughly when we inserted the page
+		$pageTouched = $this->db->selectField( 'page', 'page_touched', $condition );
+		$this->assertTrue(
+			wfTimestamp( TS_UNIX, $startTimeStamp )
+			<= wfTimestamp( TS_UNIX, $pageTouched )
+		);
+		$this->assertTrue(
+			wfTimestamp( TS_UNIX, $endTimeStamp )
+			>= wfTimestamp( TS_UNIX, $pageTouched )
+		);
+
+		// Try inserting the same page again and checking the result is false (no change)
+		$result = $page->insertOn( $this->db );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers WikiPage::insertOn
+	 */
+	public function testInsertOn_idSpecified() {
+		$title = Title::newFromText( __METHOD__ );
+		$page = new WikiPage( $title );
+		$id = 3478952189;
+
+		$result = $page->insertOn( $this->db, $id );
+
+		$this->assertSame( $id, $result );
+
+		$condition = [ 'page_id' => $result ];
+
+		// Check there is actually a row in the db
+		$this->assertSelect(
+			'page',
+			[ 'page_title' ],
+			$condition,
+			[ [ __METHOD__ ] ]
+		);
+	}
+
 }
