@@ -782,7 +782,6 @@
 	"block": "Bloquer l’useur",
 	"unblock": "Débloquer l’useur",
 	"blockip": "Bloquer l’{{GENDER:$1|useur|useuse}}",
-	"blockip-legend": "Bloquer l’useur",
 	"ipbreason": "Raison:",
 	"ipb-unblock-addr": "Débloquer $1",
 	"ipb-unblock": "Débloquer un compte useur ou une adresse IP",

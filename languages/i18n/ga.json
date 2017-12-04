@@ -705,7 +705,6 @@
 	"rcfilters-activefilters": "Scagairí gníomhacha",
 	"rcfilters-advancedfilters": "Ardscagairí",
 	"rcfilters-limit-title": "Athruithe le taispeáint",
-	"rcfilters-limit-shownum": "Taispeáin an $1 athrú is déanaí",
 	"rcfilters-days-title": "Le líon áirithe laethanta anuas",
 	"rcfilters-hours-title": "Uaireanta is déanaí",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|lá}}",

@@ -943,6 +943,7 @@
 	"recentchangesdays-max": "Tewr zaf $1 {{PLURAL:$1|roc|roci}}",
 	"recentchangescount": "Halê est-amardışi ra mocnayışi rê amarê vırnayışan:",
 	"prefs-help-recentchangescount": "Ney de vurnayışê peyêni, tarixê pelan u cıkewteni asenê.",
+	"prefs-help-watchlist-token2": "Na pawıtış nımnayi kılta listada şımaya.\nOke kıliti zano şeno listeya tamaşann bıvino. Poğta coy ra kesiya me hesırne. \n[[Special:ResetTokens|Na kıliti reset kerdışi re tiyay bıploğne]].",
 	"savedprefs": "Tecihê şıma qeyd biy.",
 	"savedrights": "{{GENDER:$1|$1}}  gruba karberi qeyd  biya.",
 	"timezonelegend": "Warey saete:",

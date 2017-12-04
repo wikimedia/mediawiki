@@ -1045,7 +1045,6 @@
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcfilters-other-review-tools": "Башха тинтиу адырла",
 	"rcfilters-activefilters": "Актив фильтрле",
-	"rcfilters-limit-shownum": "Ахыр {{PLURAL:$1|тюрлениуню}} кёргюзт",
 	"rcfilters-quickfilters-placeholder-title": "Сакъланнган джибериуле алкъын джокъдула",
 	"rcfilters-savedqueries-defaultlabel": "Сакъланнган фильтрле",
 	"rcnotefrom": "Тюбюрекде <strong>$3, $4</strong> башлаб (<strong>$1</strong> дери) {{PLURAL:$5|тюрлендириу}} кёрюнедиле",

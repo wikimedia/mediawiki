@@ -872,6 +872,7 @@
 	"recentchangesdays-max": "Mâsim $1 {{PLURAL:$1|dé}}",
 	"recentchangescount": "Nómer ed mudéfichi da fêr vèder per default:",
 	"prefs-help-recentchangescount": "A gh'é dèinter al j ûltmi mudéfichi, stôri, e regéster.",
+	"prefs-help-watchlist-token2": "Còsta l'é la cêva secrēta p'r al flós web di tō tgnû 'd ôc specêl. Tót quî che la cgnòsen a sràn bòun ed lēşer i tō tgnû 'd ôc specêl, per còst an spartîrla mìa cun nisûn. [[Special:ResetTokens|Cléca ché s'ét ghê bişògn ed turnêrla impustêr]].",
 	"savedprefs": "Al preferèinsi în stêdi salvêdi.",
 	"timezonelegend": "Fûş urâri:",
 	"localtime": "Ōra lochêla:",
