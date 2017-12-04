@@ -6,11 +6,9 @@ use Wikimedia\Http\HttpAcceptNegotiator;
 /**
  * Request handler implementing a data interface for mediawiki pages.
  *
- * @license GPL-2.0+
  * @author Daniel Kinzler
  * @author Amir Sarabadanai
  */
-
 class PageDataRequestHandler {
 
 	/**
