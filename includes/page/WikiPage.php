@@ -1305,7 +1305,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Add row to the redirect table if this is a redirect, remove otherwise.
 	 *
 	 * @param IDatabase $dbw
-	 * @param Title $redirectTitle Title object pointing to the redirect target,
+	 * @param Title|null $redirectTitle Title object pointing to the redirect target,
 	 *   or NULL if this is not a redirect
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
