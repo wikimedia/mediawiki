@@ -18,9 +18,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
+/**
+ * @ingroup Language
+ */
 class EnConverter extends LanguageConverter {
 	/**
 	 * Dummy methods required by base class.
