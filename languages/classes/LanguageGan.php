@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
@@ -71,6 +70,8 @@ class GanConverter extends LanguageConverter {
 }
 
 /**
+ * Gan Chinese
+ *
  * class that handles both Traditional and Simplified Chinese
  * right now it only distinguish gan_hans, gan_hant.
  *

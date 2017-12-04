@@ -20,13 +20,21 @@
  *
  * @file
  * @ingroup Maintenance Testing
+ */
+
+/**
+ * @defgroup TermColorer TermColorer
+ * @ingroup Maintenance Testing
  * @todo Fixme: Make this more generic
+ *
+ * Set of classes to help with test output and such. Right now pretty specific
+ * to the parser tests but could be more useful one day :)
  */
 
 /**
  * Terminal that supports ANSI escape sequences.
  *
- * @ingroup Maintenance Testing
+ * @ingroup TermColorer
  */
 class AnsiTermColorer {
 	function __construct() {
@@ -59,7 +67,7 @@ class AnsiTermColorer {
 /**
  * A colour-less terminal
  *
- * @ingroup Maintenance Testing
+ * @ingroup TermColorer
  */
 class DummyTermColorer {
 	public function color( $color ) {

@@ -18,9 +18,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @defgroup PHPBugTests PHP known bugs tests
  */
 
+/**
+ * @defgroup PHPBugTests PHP known bugs tests
+ */
 /**
  * Test for PHP+libxml2 bug which breaks XML input subtly with certain versions.
  * Known fixed with PHP 5.2.9 + libxml2-2.7.3
