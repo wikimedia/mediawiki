@@ -1389,4 +1389,37 @@ more stuff
 		$assertions( $page, $this );
 	}
 
+	public function provideTestNewFromId_returnsNullOnBadPageId() {
+		yield[ 0 ];
+		yield[ -11 ];
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 * @dataProvider provideTestNewFromId_returnsNullOnBadPageId
+	 */
+	public function testNewFromId_returnsNullOnBadPageId( $pageId ) {
+		$this->assertNull( WikiPage::newFromID( $pageId ) );
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 */
+	public function testNewFromId_appearsToFetchCorrectRow() {
+		$createdPage = $this->createPage( __METHOD__, 'Xsfaij09' );
+		$fetchedPage = WikiPage::newFromID( $createdPage->getId() );
+		$this->assertSame( $createdPage->getId(), $fetchedPage->getId() );
+		$this->assertEquals(
+			$createdPage->getContent()->getNativeData(),
+			$fetchedPage->getContent()->getNativeData()
+		);
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 */
+	public function testNewFromId_returnsNullOnNonExistingId() {
+		$this->assertNull( WikiPage::newFromID( 73574757437437743743 ) );
+	}
+
 }
