@@ -1,6 +1,6 @@
 <?php
 /**
- * A title formatter service for %MediaWiki.
+ * A title formatter service for MediaWiki.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
