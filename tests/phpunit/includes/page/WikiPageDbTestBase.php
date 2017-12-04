@@ -1489,4 +1489,63 @@ more stuff
 		$this->assertSame( $expectedComment, $result->getComment( Revision::RAW ) );
 	}
 
+	/**
+	 * @covers WikiPage::updateRevisionOn
+	 */
+	public function testUpdateRevisionOn_existingPage() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateRevisionOn( $this->db, $revision );
+		$this->assertTrue( $result );
+		$this->assertSame( 9989, $page->getLatest() );
+		$this->assertEquals( $revision, $page->getRevision() );
+	}
+
+	/**
+	 * @covers WikiPage::updateRevisionOn
+	 */
+	public function testUpdateRevisionOn_NonExistingPage() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$page->doDeleteArticle( 'reason' );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateRevisionOn( $this->db, $revision );
+		$this->assertFalse( $result );
+	}
+
 }
