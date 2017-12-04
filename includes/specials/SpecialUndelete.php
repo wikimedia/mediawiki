@@ -460,32 +460,32 @@ class SpecialUndelete extends SpecialPage {
 			] );
 		}
 
+		$out->enableOOUI();
+		$buttonFields = [];
+
 		if ( $isText ) {
 			// source view for textual content
-			$sourceView = Xml::element(
-				'textarea',
-				[
-					'readonly' => 'readonly',
-					'cols' => 80,
-					'rows' => 25
-				],
-				$content->getNativeData() . "\n"
-			);
+			$sourceView = new OOUI\MultilineTextInputWidget( [
+				'readOnly' => true,
+				'rows' => 25,
+				'value' => $content->getNativeData() . "\n"
+			] );
 
-			$previewButton = Xml::element( 'input', [
+			$buttonFields[] = new OOUI\ButtonInputWidget( [
 				'type' => 'submit',
 				'name' => 'preview',
-				'value' => $this->msg( 'showpreview' )->text()
+				'label' => $this->msg( 'showpreview' )->text()
 			] );
 		} else {
 			$sourceView = '';
 			$previewButton = '';
 		}
 
-		$diffButton = Xml::element( 'input', [
+		$buttonFields[] = new OOUI\ButtonInputWidget( [
 			'name' => 'diff',
 			'type' => 'submit',
-			'value' => $this->msg( 'showdiff' )->text() ] );
+			'label' => $this->msg( 'showdiff' )->text()
+		] );
 
 		$out->addHTML(
 			$sourceView .
@@ -506,8 +506,13 @@ class SpecialUndelete extends SpecialPage {
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
 					'value' => $user->getEditToken() ] ) .
-				$previewButton .
-				$diffButton .
+				new OOUI\FieldLayout(
+					new OOUI\Widget( [
+						'content' => new OOUI\HorizontalLayout( [
+							'items' => $buttonFields
+						] )
+					] )
+				) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'div' )
 		);
