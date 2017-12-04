@@ -387,13 +387,13 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$purgeValues = [];
 		foreach ( $timeKeys as $timeKey ) {
 			$purge = isset( $wrappedValues[$timeKey] )
-				? self::parsePurgeValue( $wrappedValues[$timeKey] )
+				? $this->parsePurgeValue( $wrappedValues[$timeKey] )
 				: false;
 			if ( $purge === false ) {
 				// Key is not set or invalid; regenerate
 				$newVal = $this->makePurgeValue( $now, self::HOLDOFF_TTL );
 				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
-				$purge = self::parsePurgeValue( $newVal );
+				$purge = $this->parsePurgeValue( $newVal );
 			}
 			$purgeValues[] = $purge;
 		}
@@ -677,10 +677,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$rawValues = $this->cache->getMulti( $rawKeys );
 		$rawValues += array_fill_keys( $rawKeys, false );
 
-		$index = 0;
 		$times = [];
 		foreach ( $rawKeys as $key => $rawKey ) {
-			$purge = self::parsePurgeValue( $rawValues[$rawKey] );
+			$purge = $this->parsePurgeValue( $rawValues[$rawKey] );
 			if ( $purge !== false ) {
 				$time = $purge[self::FLD_TIME];
 			} else {
@@ -1477,7 +1476,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 * @since 1.28
 	 */
-	public function reap( $key, $purgeTimestamp, &$isStale = false ) {
+	final public function reap( $key, $purgeTimestamp, &$isStale = false ) {
 		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
 		$wrapped = $this->cache->get( self::VALUE_KEY_PREFIX . $key );
 		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
@@ -1506,7 +1505,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 * @since 1.28
 	 */
-	public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
+	final public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
 		$purge = $this->parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
 		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
 			$isStale = true;
@@ -1552,7 +1551,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return ArrayIterator Iterator yielding (cache key => entity ID) in $entities order
 	 * @since 1.28
 	 */
-	public function makeMultiKeys( array $entities, callable $keyFunc ) {
+	final public function makeMultiKeys( array $entities, callable $keyFunc ) {
 		$map = [];
 		foreach ( $entities as $entity ) {
 			$map[$keyFunc( $entity, $this )] = $entity;
@@ -1625,7 +1624,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param bool $enabled Whether to enable interim caching
 	 * @since 1.31
 	 */
-	public function useInterimHoldOffCaching( $enabled ) {
+	final public function useInterimHoldOffCaching( $enabled ) {
 		$this->useInterimHoldOffCaching = $enabled;
 	}
 
@@ -1719,7 +1718,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return int Number of warmup key cache misses last round
 	 * @since 1.30
 	 */
-	public function getWarmupKeyMisses() {
+	final public function getWarmupKeyMisses() {
 		return $this->warmupKeyMisses;
 	}
 
@@ -1926,7 +1925,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function unwrap( $wrapped, $now ) {
 		// Check if the value is a tombstone
-		$purge = self::parsePurgeValue( $wrapped );
+		$purge = $this->parsePurgeValue( $wrapped );
 		if ( $purge !== false ) {
 			// Purged values should always have a negative current $ttl
 			$curTTL = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
@@ -1994,7 +1993,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
 	 *  or false if value isn't a valid purge value
 	 */
-	protected static function parsePurgeValue( $value ) {
+	protected function parsePurgeValue( $value ) {
 		if ( !is_string( $value ) ) {
 			return false;
 		}
