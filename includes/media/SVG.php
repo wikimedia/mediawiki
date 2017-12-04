@@ -511,8 +511,6 @@ class SvgHandler extends ImageHandler {
 		} elseif ( $name == 'lang' ) {
 			// Validate $code
 			if ( $value === '' || !Language::isValidCode( $value ) ) {
-				wfDebug( "Invalid user language code\n" );
-
 				return false;
 			}
 
