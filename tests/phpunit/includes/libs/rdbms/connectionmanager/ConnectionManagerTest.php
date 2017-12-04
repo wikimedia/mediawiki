@@ -10,7 +10,6 @@ use Wikimedia\Rdbms\ConnectionManager;
 /**
  * @covers Wikimedia\Rdbms\ConnectionManager
  *
- * @license GPL-2.0+
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {

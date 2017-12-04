@@ -1,6 +1,6 @@
 <?php
 /**
- * A codec for %MediaWiki page titles.
+ * A codec for MediaWiki page titles.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Daniel Kinzler
  */
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -26,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
 
 /**
- * A codec for %MediaWiki page titles.
+ * A codec for MediaWiki page titles.
  *
  * @note Normalization and validation is applied while parsing, not when formatting.
  * It's possible to construct a TitleValue with an invalid title, and use MediaWikiTitleCodec

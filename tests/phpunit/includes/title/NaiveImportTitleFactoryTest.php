@@ -21,7 +21,6 @@
 
 /**
  * @covers NaiveImportTitleFactory
- *
  * @group Title
  */
 class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
