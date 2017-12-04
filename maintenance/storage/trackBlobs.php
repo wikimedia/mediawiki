@@ -209,7 +209,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted revisions\n";
@@ -293,7 +293,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted orphan text rows\n";

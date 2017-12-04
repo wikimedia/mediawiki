@@ -128,7 +128,7 @@ TEXT
 			++$i;
 			if ( !( $i % self::REPORTING_INTERVAL ) ) {
 				$this->output( "$name\n" );
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 			}
 			usleep( $throttle * 1000 );
 		}

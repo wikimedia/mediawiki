@@ -128,7 +128,7 @@ class UpdateSpecialPages extends Maintenance {
 			$this->output( "Reconnected\n\n" );
 		}
 		# Wait for the replica DB to catch up
-		wfWaitForSlaves();
+		\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {

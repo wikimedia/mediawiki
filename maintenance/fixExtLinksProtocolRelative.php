@@ -63,7 +63,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 			$count++;
 			if ( $count % 100 == 0 ) {
 				$this->output( $count . "\n" );
-				wfWaitForSlaves();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 			}
 			$db->insert( 'externallinks',
 				[

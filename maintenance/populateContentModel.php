@@ -23,8 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Usage:
@@ -89,7 +89,7 @@ class PopulateContentModel extends Maintenance {
 			[ 'page_id' => $pageIds ],
 			__METHOD__
 		);
-		wfWaitForSlaves();
+		\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		$this->output( "done.\n" );
 	}
 
@@ -227,7 +227,7 @@ class PopulateContentModel extends Maintenance {
 							[ $key => $id ],
 							__METHOD__
 						);
-						wfWaitForSlaves();
+						\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 						$this->clearCache( $row->{$page_id_column}, $row->{$rev_id_column} );
 						$this->output( "done.\n" );
 						continue;

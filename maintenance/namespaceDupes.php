@@ -28,8 +28,8 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\ResultWrapper;
 
 /**
  * Maintenance script that checks for articles to fix after
@@ -407,7 +407,7 @@ class NamespaceConflictChecker extends Maintenance {
 				"$titleField > $encLastTitle " .
 				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)" ];
 
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		}
 	}
 

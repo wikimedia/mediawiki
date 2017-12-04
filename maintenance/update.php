@@ -120,7 +120,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
 
-		wfWaitForSlaves();
+		\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
 			$this->compatChecks();

@@ -101,7 +101,7 @@ class ResetUserTokens extends Maintenance {
 			$min = $max;
 			$max = $min + $this->getBatchSize();
 
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		} while ( $min <= $maxid );
 	}
 
