@@ -308,7 +308,6 @@ class RequestContext implements IContextSource, MutableContext {
 
 		# Validate $code
 		if ( !$code || !Language::isValidCode( $code ) || $code === 'qqq' ) {
-			wfDebug( "Invalid user language code\n" );
 			$code = $wgLanguageCode;
 		}
 
