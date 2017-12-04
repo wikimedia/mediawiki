@@ -20,7 +20,6 @@ namespace Wikimedia\Rdbms;
  *
  * @since 1.29
  *
- * @license GPL-2.0+
  * @author Daniel Kinzler
  * @author Addshore
  */
