@@ -154,6 +154,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doDeleteArticle
+	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticle() {
 		$page = $this->createPage(
@@ -762,6 +763,7 @@ more stuff
 	/**
 	 * @todo FIXME: the above rollback test is better, but it keeps failing in jenkins for some reason.
 	 * @covers WikiPage::doRollback
+	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollback() {
 		$admin = $this->getTestSysop()->getUser();
@@ -812,6 +814,7 @@ more stuff
 
 	/**
 	 * @covers WikiPage::doRollback
+	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollbackFailureSameContent() {
 		$admin = $this->getTestSysop()->getUser();
