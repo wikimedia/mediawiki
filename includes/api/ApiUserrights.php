@@ -64,14 +64,15 @@ class ApiUserrights extends ApiBase {
 		} else {
 			$expiry = [ 'infinity' ];
 		}
-		if ( count( $expiry ) !== count( $params['add'] ) ) {
+		$add = (array)$params['add'];
+		if ( count( $expiry ) !== count( $add ) ) {
 			if ( count( $expiry ) === 1 ) {
-				$expiry = array_fill( 0, count( $params['add'] ), $expiry[0] );
+				$expiry = array_fill( 0, count( $add ), $expiry[0] );
 			} else {
 				$this->dieWithError( [
 					'apierror-toofewexpiries',
 					count( $expiry ),
-					count( $params['add'] )
+					count( $add )
 				] );
 			}
 		}
@@ -79,7 +80,7 @@ class ApiUserrights extends ApiBase {
 		// Validate the expiries
 		$groupExpiries = [];
 		foreach ( $expiry as $index => $expiryValue ) {
-			$group = $params['add'][$index];
+			$group = $add[$index];
 			$groupExpiries[$group] = UserrightsPage::expiryToTimestamp( $expiryValue );
 
 			if ( $groupExpiries[$group] === false ) {
@@ -109,7 +110,7 @@ class ApiUserrights extends ApiBase {
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
 		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
-			$user, (array)$params['add'], (array)$params['remove'],
+			$user, (array)$add, (array)$params['remove'],
 			$params['reason'], $tags, $groupExpiries
 		);
 
