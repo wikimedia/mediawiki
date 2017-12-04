@@ -18,14 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Matthew Flaschen
  */
 
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * An individual filter in a boolean group
+ * Represents a hide-based boolean filter (used on ChangesListSpecialPage and descendants)
  *
  * @since 1.29
  */

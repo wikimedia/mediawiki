@@ -10,8 +10,6 @@ use InvalidArgumentException;
  * This manages access to master and replica databases.
  *
  * @since 1.29
- *
- * @license GPL-2.0+
  * @author Addshore
  */
 class ConnectionManager {
