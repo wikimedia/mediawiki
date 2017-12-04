@@ -1,7 +1,9 @@
 /*!
  * Hide collapsable rows in a collapsed table.
  */
-table.collapsed tr.collapsable {
+
+ .mw_metadata.collapsed .mw-metadata-collapsible,
+ .mw_metadata.collapsed tr.collapsable {
 	display: none;
 }
 
@@ -9,14 +11,14 @@ table.collapsed tr.collapsable {
  * Exclude user interface elements from selection.
  */
 .mw-metadata-show-hide-extended {
-	-moz-user-select: none;
 	-webkit-user-select: none;
+	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
 
 @media print {
-	tr.mw-metadata-show-hide-extended {
+	.mw_metadata .mw-metadata-show-hide-extended {
 		display: none;
 	}
 }
