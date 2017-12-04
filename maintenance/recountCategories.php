@@ -162,7 +162,7 @@ TEXT
 			$affectedRows += $dbw->affectedRows();
 		}
 
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+		MediaWikiServices::getDBLoadBalancerFactory()->waitForReplication();
 
 		return $affectedRows;
 	}

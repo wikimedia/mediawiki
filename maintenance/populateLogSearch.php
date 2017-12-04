@@ -161,7 +161,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 		$this->output( "Done populating log_search table.\n" );
 

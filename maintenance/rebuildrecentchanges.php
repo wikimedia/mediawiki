@@ -24,6 +24,7 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -111,7 +112,7 @@ class RebuildRecentchanges extends Maintenance {
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
-			wfGetLBFactory()->waitForReplication();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
@@ -167,7 +168,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			}
 		}
 	}
@@ -257,7 +258,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastSize = $size;
 
 				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
-					wfGetLBFactory()->waitForReplication();
+					\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 				}
 			}
 		}
@@ -341,7 +342,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			}
 		}
 	}
@@ -399,7 +400,7 @@ class RebuildRecentchanges extends Maintenance {
 						[ 'rc_id' => $rcidBatch ],
 						__METHOD__
 					);
-					wfGetLBFactory()->waitForReplication();
+					\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 				}
 			}
 		}
@@ -475,7 +476,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 			}
 		}
 	}

@@ -3030,6 +3030,7 @@ function wfGetNull() {
  * @param int|null $timeout Max wait time. Default: 1 day (cli), ~10 seconds (web)
  * @return bool Success (able to connect and no timeouts reached)
  * @deprecated since 1.27 Use LBFactory::waitForReplication
+ * @deprecated since 1.31 Use LBFactory::waitForSlaves for full compatibility
  */
 function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null

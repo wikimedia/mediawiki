@@ -88,7 +88,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize - 1;
 			$blockEnd += $batchSize - 1;
-			wfWaitForSlaves();
+			\MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForSlaves();
 		}
 		return true;
 	}
