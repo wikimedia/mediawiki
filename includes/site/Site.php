@@ -3,6 +3,14 @@
 /**
  * Represents a single site.
  *
+ * @since 1.21
+ *
+ * @file
+ *
+ * @license GNU GPL v2+
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,14 +25,10 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @since 1.21
- *
- * @file
+ */
+
+/**
  * @ingroup Site
- *
- * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class Site implements Serializable {
 	const TYPE_UNKNOWN = 'unknown';

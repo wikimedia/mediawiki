@@ -2,6 +2,9 @@
 /**
  * Sends dump output via the bgzip2 compressor.
  *
+ * @file
+ */
+/*
  * Copyright © 2003, 2005, 2006 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
@@ -19,8 +22,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 
 /**

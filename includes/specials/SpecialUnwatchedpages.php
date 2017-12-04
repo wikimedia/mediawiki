@@ -2,6 +2,10 @@
 /**
  * Implements Special:Unwatchedpages
  *
+ * @file
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ */
+/*
  * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,10 +22,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 use Wikimedia\Rdbms\ResultWrapper;

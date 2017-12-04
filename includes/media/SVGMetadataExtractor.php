@@ -2,6 +2,13 @@
 /**
  * Extraction of SVG image metadata.
  *
+ * @file
+ * @author "Derk-Jan Hartman <hartman _at_ videolan d0t org>"
+ * @author Brion Vibber
+ * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,13 +23,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Media
- * @author "Derk-Jan Hartman <hartman _at_ videolan d0t org>"
- * @author Brion Vibber
- * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  */
 
 /**

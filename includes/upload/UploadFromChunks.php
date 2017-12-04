@@ -2,6 +2,9 @@
 /**
  * Backend for uploading files from chunks.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,9 +19,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup Upload
  */
 
 /**
@@ -414,12 +414,21 @@ class UploadFromChunks extends UploadFromFile {
 	}
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadChunkZeroLengthFileException extends MWException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadChunkFileException extends MWException {
 }
 
+/**
+ * @ingroup Upload
+ */
 class UploadChunkVerificationException extends MWException {
 	public $msg;
 	public function __construct( $res ) {

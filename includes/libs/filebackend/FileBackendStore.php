@@ -2,6 +2,9 @@
 /**
  * Base class for all backends using particular storage medium.
  *
+ * @file
+ */
+/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,10 +19,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup FileBackend
  */
+
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -1852,6 +1853,7 @@ abstract class FileBackendStore extends FileBackend {
  * param flag may result in a StatusValue that contains this object as a value.
  * This class is largely backend-specific and is mostly just "magic" to be
  * passed to FileBackendStore::executeOpHandlesInternal().
+ * @ingroup FileBackend
  */
 abstract class FileBackendStoreOpHandle {
 	/** @var array */
@@ -1947,6 +1949,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 
 /**
  * Iterator for listing directories
+ * @ingroup FileBackend
  */
 class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
 	protected function listFromShard( $container ) {
@@ -1962,6 +1965,7 @@ class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator
 
 /**
  * Iterator for listing regular files
+ * @ingroup FileBackend
  */
 class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
 	protected function listFromShard( $container ) {

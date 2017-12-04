@@ -2,6 +2,10 @@
 /**
  * Implements Special:Wantedfiles
  *
+ * @file
+ * @author Soxred93 <soxred93@gmail.com>
+ */
+/*
  * Copyright © 2008 Soxred93
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,10 +22,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
- * @ingroup SpecialPage
- * @author Soxred93 <soxred93@gmail.com>
  */
 
 /**
