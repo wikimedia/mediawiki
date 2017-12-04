@@ -1306,4 +1306,90 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 	}
 
+	private function getRow( array $overrides = [] ) {
+		$row = [
+			'page_id' => '44',
+			'page_len' => '76',
+			'page_is_redirect' => '1',
+			'page_latest' => '99',
+			'page_namespace' => '3',
+			'page_title' => 'JaJaTitle',
+			'page_restrictions' => 'edit=autoconfirmed,sysop:move=sysop',
+			'page_touched' => '20120101020202',
+			'page_links_updated' => '20140101020202',
+		];
+		foreach ( $overrides as $key => $value ) {
+			$row[$key] = $value;
+		}
+		return (object)$row;
+	}
+
+	public function provideNewFromRowSuccess() {
+		yield 'basic row' => [
+			$this->getRow(),
+			function( WikiPage $wikiPage, self $test ) {
+				$test->assertSame( 44, $wikiPage->getId() );
+				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
+				$test->assertTrue( $wikiPage->isRedirect() );
+				$test->assertSame( 99, $wikiPage->getLatest() );
+				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
+				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
+				$test->assertSame(
+					[
+						'edit' => [ 'autoconfirmed', 'sysop' ],
+						'move' => [ 'sysop' ],
+					],
+					$wikiPage->getTitle()->getAllRestrictions()
+				);
+				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
+				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
+			}
+		];
+		yield 'different timestamp formats' => [
+			$this->getRow( [
+				'page_touched' => '2012-01-01 02:02:02',
+				'page_links_updated' => '2014-01-01 02:02:02',
+			] ),
+			function( WikiPage $wikiPage, self $test ) {
+				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
+				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
+			}
+		];
+		yield 'no restrictions' => [
+			$this->getRow( [
+				'page_restrictions' => '',
+			] ),
+			function( WikiPage $wikiPage, self $test ) {
+			$test->assertSame(
+				[
+					'edit' => [],
+					'move' => [],
+				],
+				$wikiPage->getTitle()->getAllRestrictions()
+			);
+			}
+		];
+		yield 'not redirect' => [
+			$this->getRow( [
+				'page_redirect' => '0',
+			] ),
+			function( WikiPage $wikiPage, self $test ) {
+				$test->assertFalse( $wikiPage->isRedirect() );
+			}
+		];
+	}
+
+	/**
+	 * @covers WikiPage::newFromRow
+	 * @covers WikiPage::loadFromRow
+	 * @dataProvider provideNewFromRowSuccess
+	 *
+	 * @param array $row
+	 * @param callable $assertions
+	 */
+	public function testNewFromRow( $row, $assertions ) {
+		$page = WikiPage::newFromRow( (object)$row, 'fromdb' );
+		$assertions( $page, $this );
+	}
+
 }
