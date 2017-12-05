@@ -32,7 +32,7 @@
 		} );
 
 		this.$element
-			.addClass( 'mw-rcfilters-ui-changesLimitButtonWidget' );
+			.addClass( 'mw-rcfilters-ui-changesLimitAndDateButtonWidget' );
 	};
 
 	/* Initialization */
