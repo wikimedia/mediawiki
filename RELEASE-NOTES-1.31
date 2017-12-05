@@ -37,6 +37,11 @@ production.
   set $wgTidyConfig to null and also set $wgUseTidy to true.
 * $wgLogAutopatrol now defaults to false instead of true.
 * $wgValidateAllHtml was removed and will be ignored.
+* The HistoryBlob classes, and the corresponding 'object' flag in the text
+  table, have been deprecated. If you've used the core HistoryBlob classes in
+  the past, you'll want to run maintenance/storage/migrateHistoryBlobs.php. If
+  you've done something else with this functionality, you'll want to make other
+  arrangements.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
@@ -349,6 +354,19 @@ changes to languages because of Phabricator reports.
   used instead.
 * The function wfShellWikiCmd() has been deprecated, use
   MediaWiki\Shell::makeScriptCommand().
+* The 'object' flag in the text table has been deprecated, as have the
+  following classes designed for use with that feature:
+  * HistoryBlob
+  * ConcatenatedGzipHistoryBlob
+  * HistoryBlobStub
+  * HistoryBlobCurStub
+  * DiffHistoryBlob
+* The maintenance script maintenance/storage/compressOld.php has been removed.
+  Use maintenance/storage/recompressTracked.php instead.
+* The maintenance script maintenance/storage/fixT22757.php has been removed. If
+  you were affected by that bug, you should have run it years ago.
+* The maintenance script maintenance/storage/resolveStubs.php has been removed.
+  Use maintenance/storage/migrateHistoryBlobs.php instead.
 
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.

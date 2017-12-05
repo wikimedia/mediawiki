@@ -22,6 +22,9 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\ExternalStore\ConcatenatedMultiContentBlob;
+use MediaWiki\ExternalStore\XdiffMultiContentBlob;
+use MediaWiki\ExternalStore\MultiContentBlob;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 
@@ -113,9 +116,10 @@ class RecompressTracked {
 		} elseif ( $this->replicaId !== false ) {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->replicaId}: ";
 		}
-		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
-			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
-		$this->orphanBlobClass = ConcatenatedGzipHistoryBlob::class;
+		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' )
+			? XdiffMultiContentBlob::class
+			: ConcatenatedMultiContentBlob::class;
+		$this->orphanBlobClass = ConcatenatedMultiContentBlob::class;
 	}
 
 	function debug( $msg ) {
@@ -157,7 +161,9 @@ class RecompressTracked {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
-		$dbr->masterPosWait( $pos, 100000 );
+		if ( $pos !== false ) {
+			$dbr->masterPosWait( $pos, 100000 );
+		}
 	}
 
 	/**
@@ -273,7 +279,8 @@ class RecompressTracked {
 	function dispatch( /*...*/ ) {
 		$args = func_get_args();
 		$pipes = $this->replicaPipes;
-		$numPipes = stream_select( $x = [], $pipes, $y = [], 3600 );
+		$dummy1 = $dummy2 = [];
+		$numPipes = stream_select( $dummy1, $pipes, $dummy2, 3600 );
 		if ( !$numPipes ) {
 			$this->critical( "Error waiting to write to replica DBs. Aborting" );
 			exit( 1 );
@@ -702,9 +709,18 @@ class CgzCopyTransaction {
 	/** @var RecompressTracked */
 	public $parent;
 	public $blobClass;
-	/** @var ConcatenatedGzipHistoryBlob */
+	/** @var MultiContentBlob */
 	public $cgz;
 	public $referrers;
+
+	/**
+	 * @var int The maximum uncompressed size before the object becomes sad
+	 * Should be less than max_allowed_packet
+	 */
+	public $maxSize = 10000000;
+
+	/** @var int The maximum number of text items before the object becomes sad */
+	public $maxCount = 100;
 
 	/**
 	 * Create a transaction from a RecompressTracked object
@@ -734,7 +750,15 @@ class CgzCopyTransaction {
 		$this->referrers[$textId] = $hash;
 		$this->texts[$textId] = $text;
 
-		return $this->cgz->isHappy();
+		return $this->isHappy();
+	}
+
+	/**
+	 * Indicate whether $this->cgz is below the limits
+	 */
+	private function isHappy() {
+		return $this->cgz->getSize() < $this->maxSize
+			&& $this->cgz->getCount() < $this->maxCount;
 	}
 
 	function getSize() {
@@ -811,7 +835,7 @@ class CgzCopyTransaction {
 		$targetDB = $store->getMaster( $targetCluster );
 		$targetDB->clearFlag( DBO_TRX ); // we manage the transactions
 		$targetDB->begin( __METHOD__ );
-		$baseUrl = $this->parent->store->store( $targetCluster, serialize( $this->cgz ) );
+		$baseUrl = $this->parent->store->store( $targetCluster, $this->cgz->encode() );
 
 		// Write the new URLs to the blob_tracking table
 		foreach ( $this->referrers as $textId => $hash ) {

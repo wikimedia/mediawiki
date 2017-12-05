@@ -113,6 +113,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/externalstore
 	'ExternalStoreForTesting' => "$testDir/phpunit/includes/externalstore/ExternalStoreForTesting.php",
+	'MediaWiki\ExternalStore\TestMultiContentBlob' => "$testDir/phpunit/includes/externalstore/TestMultiContentBlob.php",
 
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
