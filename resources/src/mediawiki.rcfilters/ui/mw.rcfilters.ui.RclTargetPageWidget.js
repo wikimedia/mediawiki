@@ -22,7 +22,9 @@
 
 		this.titleSearch = new mw.widgets.TitleInputWidget( {
 			validate: false,
-			placeholder: mw.msg( 'rcfilters-target-page-placeholder' )
+			placeholder: mw.msg( 'rcfilters-target-page-placeholder' ),
+			showImages: true,
+			showDescriptions: true
 		} );
 
 		// Events
