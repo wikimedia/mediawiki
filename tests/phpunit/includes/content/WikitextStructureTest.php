@@ -105,8 +105,7 @@ END;
 		$this->assertEquals( "Opening text is opening.", $struct->getOpeningText() );
 		$this->assertEquals( "Opening text is opening.   Then we got more text   foo bar baz abc",
 			$struct->getMainText() );
-		// TODO: Remove extra spaces after T182074 is fixed
-		$this->assertEquals( [ "Header table   row in table   another row in table" ],
+		$this->assertEquals( [ "Header table row in table another row in table" ],
 			$struct->getAuxiliaryText() );
 	}
 }
