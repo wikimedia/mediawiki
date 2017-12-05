@@ -1523,7 +1523,7 @@ class Revision implements IDBAccessObject {
 		}
 
 		if ( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
+			# Deprecated generic compressed storage
 			$obj = unserialize( $text );
 			if ( !is_object( $obj ) ) {
 				// Invalid object
