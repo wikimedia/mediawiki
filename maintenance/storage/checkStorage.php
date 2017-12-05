@@ -21,32 +21,16 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\ExternalStore\MultiContentBlob;
 use MediaWiki\MediaWikiServices;
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	$optionsWithoutArgs = [ 'fix' ];
-	require_once __DIR__ . '/../commandLine.inc';
-
-	$cs = new CheckStorage;
-	$fix = isset( $options['fix'] );
-	if ( isset( $args[0] ) ) {
-		$xml = $args[0];
-	} else {
-		$xml = false;
-	}
-	$cs->check( $fix, $xml );
-}
-
-// ----------------------------------------------------------------------------------
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script to do various checks on external storage.
- *
- * @fixme this should extend the base Maintenance class
  * @ingroup Maintenance ExternalStorage
  */
-class CheckStorage {
-	const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
+class CheckStorage extends Maintenance {
 	public $oldIdMap, $errors;
 	public $dbStore = null;
 
@@ -58,7 +42,18 @@ class CheckStorage {
 		'fixable' => 'Errors which would already be fixed if --fix was specified',
 	];
 
-	function check( $fix = false, $xml = '' ) {
+	public function __construct() {
+		parent::__construct();
+		$this->addDescription( 'Maintenance script to do various checks on external storage.' );
+		$this->addOption( 'fix', 'Perform fixes', false, false );
+		$this->addOption( 'backup', 'Restore revisions from a backup XML file', false, true );
+		$this->setBatchSize( 1000 );
+	}
+
+	public function execute() {
+		$fix = $this->hasOption( 'fix' );
+		$xml = $this->getOption( 'backup', '' );
+
 		$dbr = wfGetDB( DB_REPLICA );
 		if ( $fix ) {
 			print "Checking, will fix errors if possible...\n";
@@ -66,7 +61,7 @@ class CheckStorage {
 			print "Checking...\n";
 		}
 		$maxRevId = $dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
-		$chunkSize = 1000;
+		$chunkSize = $this->getBatchSize();
 		$flagStats = [];
 		$objectStats = [];
 		$knownFlags = [ 'external', 'gzip', 'object', 'utf-8' ];
@@ -195,7 +190,7 @@ class CheckStorage {
 			}
 
 			// Check external concat blobs for the right header
-			$this->checkExternalConcatBlobs( $externalConcatBlobs );
+			$this->checkExternalConcatBlobs( $externalConcatBlobs, true );
 
 			// Check external normal blobs for existence
 			if ( count( $externalNormalBlobs ) ) {
@@ -260,6 +255,7 @@ class CheckStorage {
 
 					switch ( $className ) {
 						case 'concatenatedgziphistoryblob':
+						case 'diffhistoryblob':
 							// Good
 							break;
 						case 'historyblobstub':
@@ -324,15 +320,24 @@ class CheckStorage {
 								"Error: invalid flags \"{$row->old_flags}\" on concat bulk row {$row->old_id}",
 								$concatBlobs[$row->old_id] );
 						}
-					} elseif ( strcasecmp(
-						substr( $row->header, 0, strlen( self::CONCAT_HEADER ) ),
-						self::CONCAT_HEADER
-					) ) {
+					} elseif ( !preg_match( '/^O:(\d+):"(\w+)"/', $row->header, $matches ) ||
+						strlen( $matches[2] ) != $matches[1]
+					) {
 						$this->addError(
 							'restore text',
-							"Error: Incorrect object header for concat bulk row {$row->old_id}",
+							"Error: invalid object header for concat bulk row {$row->old_id}",
 							$concatBlobs[$row->old_id]
 						);
+						continue;
+					} elseif ( strtolower( $matches[2] ) !== 'concatenatedgziphistoryblob' &&
+						strtolower( $matches[2] ) !== 'diffhistoryblob'
+					) {
+						$this->addError(
+							'restore text',
+							"Error: unrecognised object class \"{$matches[2]}\" for concat bulk row {$row->old_id}",
+							$concatBlobs[$row->old_id]
+						);
+						continue;
 					} # else good
 
 					unset( $concatBlobs[$row->old_id] );
@@ -341,7 +346,7 @@ class CheckStorage {
 			}
 
 			// Check targets of unresolved stubs
-			$this->checkExternalConcatBlobs( $externalConcatBlobs );
+			$this->checkExternalConcatBlobs( $externalConcatBlobs, false );
 			// next chunk
 		}
 
@@ -373,7 +378,7 @@ class CheckStorage {
 		}
 	}
 
-	function addError( $type, $msg, $ids ) {
+	private function addError( $type, $msg, $ids ) {
 		if ( is_array( $ids ) && count( $ids ) == 1 ) {
 			$ids = reset( $ids );
 		}
@@ -396,7 +401,7 @@ class CheckStorage {
 		$this->errors[$type] = $this->errors[$type] + array_flip( $revIds );
 	}
 
-	function checkExternalConcatBlobs( $externalConcatBlobs ) {
+	private function checkExternalConcatBlobs( $externalConcatBlobs, $allowMultiContentBlobs ) {
 		if ( !count( $externalConcatBlobs ) ) {
 			return;
 		}
@@ -407,19 +412,41 @@ class CheckStorage {
 
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {
 			$blobIds = array_keys( $oldIds );
-			$extDb =& $this->dbStore->getSlave( $cluster );
+			$extDb = $this->dbStore->getSlave( $cluster );
 			$blobsTable = $this->dbStore->getTable( $extDb );
-			$headerLength = strlen( self::CONCAT_HEADER );
+			$headerLength = 300;
 			$res = $extDb->select( $blobsTable,
 				[ 'blob_id', "LEFT(blob_text, $headerLength) AS header" ],
 				[ 'blob_id' => $blobIds ],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
-				if ( strcasecmp( $row->header, self::CONCAT_HEADER ) ) {
+				if ( $allowMultiContentBlobs && substr( $row->header, 0, 6 ) === "\x7fMCB\xff\xfe" ) {
+					// MultiContentBlob
+					$err = MultiContentBlob::checkHeader( $row->header );
+					if ( $err !== true ) {
+						$this->addError(
+							'restore text',
+							"Error: invalid MultiContentBlob header on target $cluster/{$row->blob_id}"
+								. " of two-part ES URL: $err",
+							$oldIds[$row->blob_id]
+						);
+					}
+				} elseif ( !preg_match( '/^O:(\d+):"(\w+)"/', $row->header, $matches ) ||
+					strlen( $matches[2] ) != $matches[1]
+				) {
 					$this->addError(
 						'restore text',
 						"Error: invalid header on target $cluster/{$row->blob_id} of two-part ES URL",
+						$oldIds[$row->blob_id]
+					);
+				} elseif ( strtolower( $matches[2] ) !== 'concatenatedgziphistoryblob' &&
+					strtolower( $matches[2] ) !== 'diffhistoryblob'
+				) {
+					$this->addError(
+						'restore text',
+						"Error: unrecognised object class \"{$matches[2]}\" on target $cluster/{$row->blob_id}"
+							. " of two-part ES URL",
 						$oldIds[$row->blob_id]
 					);
 				}
@@ -438,7 +465,7 @@ class CheckStorage {
 		}
 	}
 
-	function restoreText( $revIds, $xml ) {
+	private function restoreText( $revIds, $xml ) {
 		global $wgDBname;
 		$tmpDir = wfTempDir();
 
@@ -499,7 +526,7 @@ class CheckStorage {
 		$importer->doImport();
 	}
 
-	function importRevision( &$revision, &$importer ) {
+	private function importRevision( &$revision, &$importer ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( Revision::RAW );
 		$id = $id ? $id : '';
@@ -554,3 +581,6 @@ class CheckStorage {
 		$this->errors['fixed'][$id] = true;
 	}
 }
+
+$maintClass = 'CheckStorage';
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -24,6 +24,7 @@
  * Base class for general text storage via the "object" flag in old_flags, or
  * two-part external storage URLs. Used for represent efficient concatenated
  * storage, and migration-related pointer objects.
+ * @deprecated since 1.32, MediaWiki\ExternalStore\MultiContentBlob is the successor.
  */
 interface HistoryBlob {
 	/**
@@ -69,6 +70,8 @@ interface HistoryBlob {
 /**
  * Concatenated gzip (CGZ) storage
  * Improves compression ratio by concatenating like objects before gzipping
+ * @deprecated since 1.32, MediaWiki\ExternalStore\ConcatenatedMultiContentBlob is the successor.
+ *  Use maintenance/storage/migrateHistoryBlobs.php to replace references in the DB.
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	public $mVersion = 0, $mCompressed = false, $mItems = [], $mDefaultHash = '';
@@ -183,6 +186,8 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 
 /**
  * Pointer object for an item within a CGZ blob stored in the text table.
+ * @deprecated since 1.32, but really should have been so since 1.5.
+ *  Use maintenance/storage/migrateHistoryBlobs.php to replace references in the DB.
  */
 class HistoryBlobStub {
 	/**
@@ -208,6 +213,7 @@ class HistoryBlobStub {
 	 */
 	function __construct( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
+		$this->mOldId = $oldid;
 	}
 
 	/**
@@ -307,6 +313,9 @@ class HistoryBlobStub {
  *
  * Serialized HistoryBlobCurStub objects will be inserted into the text table
  * on conversion if $wgLegacySchemaConversion is set to true.
+ *
+ * @deprecated since 1.32, but really should have been gone since 1.5.
+ *  Use maintenance/storage/migrateHistoryBlobs.php to replace references in the DB.
  */
 class HistoryBlobCurStub {
 	/** @var int */
@@ -345,6 +354,8 @@ class HistoryBlobCurStub {
 /**
  * Diff-based history compression
  * Requires xdiff 1.5+ and zlib
+ * @deprecated since 1.32, MediaWiki\ExternalStore\XdiffMultiContentBlob is the successor.
+ *  Use maintenance/storage/migrateHistoryBlobs.php to replace references in the DB.
  */
 class DiffHistoryBlob implements HistoryBlob {
 	/** @var array Uncompressed item cache */
