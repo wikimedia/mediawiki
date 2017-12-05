@@ -1470,6 +1470,8 @@
 	"rcfilters-watchlist-showupdated": "التغييرات للصفحات التي لم تزرها منذ حدوث التغييرات تكون <strong>بالخط العريض</strong>، مع علامات صلبة.",
 	"rcfilters-preference-label": "أخف النسخة المحسنة من أحدث التغييرات",
 	"rcfilters-preference-help": "يسترجع عملية إعادة تصميم الواجهة لعام 2017 وكل الأدوات التي أضيفت منذ ذلك الوقت.",
+	"rcfilters-filter-showlinkedto-label": "أظهر التغييرات في الصفحات الموصولة بصفحة:",
+	"rcfilters-target-page-placeholder": "اختر صفحة",
 	"rcnotefrom": "بالأسفل {{PLURAL:$5|التغيير|التغييرات}} منذ <strong>$2</strong> (إلى <strong>$1</strong> معروضة).",
 	"rclistfromreset": "إعادة ضبط خيار التاريخ",
 	"rclistfrom": "أظهر التغييرات بدء من $3 $2",

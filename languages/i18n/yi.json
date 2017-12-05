@@ -1307,6 +1307,7 @@
 	"rcfilters-filter-excluded": "אויסגעשלאסן",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:נישט</strong> $1",
 	"rcfilters-liveupdates-button": "לעבעדיקע דערהיינטיקונגען",
+	"rcfilters-target-page-placeholder": "קלייבט א בלאַט",
 	"rcnotefrom": "פֿאלגנד {{PLURAL:$5|איז די ענדערונג| זענען די ענדערונגען}} זײַט <strong>$3, $4</strong> (ביז <strong>$1</strong>).",
 	"rclistfrom": "װײַזן נײַע ענדערונגען פֿון $3 $2",
 	"rcshowhideminor": "$1 מינערדיגע ענדערונגען",
