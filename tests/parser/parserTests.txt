@@ -3117,14 +3117,11 @@ c
  |}
 !! html
 <table>
-
 <tr>
 <th>h1</th>
-<th>h2
-</th>
+<th>h2</th>
 <td>foo</td>
-<td>bar
-</td></tr></table>
+<td>bar</td></tr></table>
 
 !!end
 
@@ -3137,10 +3134,8 @@ c
 |}
 !! html
 <table>
-
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -3153,11 +3148,9 @@ c
 |}
 !! html
 <table>
-<caption> foo
-</caption>
+<caption>foo</caption>
 <tr>
-<th> bar
-</th></tr></table>
+<th>bar</th></tr></table>
 
 !!end
 
@@ -3173,8 +3166,7 @@ c
 </pre>
 <table>
 <tr>
-<td> b
-</td></tr></table>
+<td>b</td></tr></table>
 
 !! html/parsoid
 <pre>a</pre>
@@ -3412,8 +3404,7 @@ Render paragraphs when indent-pre is suppressed in blocklevels
 </pre>
 <table>
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -3940,10 +3931,9 @@ should be left alone
 !! html
 <dl><dd><dl><dd><table>
 <tr>
-<td>foo
-</td>
-<td>bar
-</td></tr></table></dd></dl></dd></dl>
+<td>foo</td>
+<td>bar</td></tr></table>
+</dd></dl></dd></dl>
 <p>this text
 should be left alone
 </p>
@@ -3992,8 +3982,8 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 !! html/php
 <dl><dd><table>
 <tr>
-<td>a
-</td></tr></table></dd></dl>
+<td>a</td></tr></table>
+</dd></dl>
 
 !! html/parsoid
 <dl><dd> <table>
@@ -4049,15 +4039,14 @@ Table / list interaction: indented table with lists in table contents
 |}
 !! html
 <dl><dd><table>
-
 <tr>
-<td> a
+<td>a
 <ul><li> b</li></ul>
-</td></tr>
-<tr>
-<td> c
+</td></tr><tr>
+<td>c
 <ul><li> d</li></ul>
-</td></tr></table></dd></dl>
+</td></tr></table>
+</dd></dl>
 
 !! end
 
@@ -4085,7 +4074,8 @@ Table / list interaction: lists nested in tables nested in indented lists
 <td>
 <ul><li>c</li>
 <li>d</li></ul>
-</td></tr></table></dd></dl>
+</td></tr></table>
+</dd></dl>
 <ul><li>e</li>
 <li>f</li></ul>
 
@@ -4602,12 +4592,12 @@ Definition Lists: colons and tables 1
 !! html
 <dl><dd><table>
 <tr>
-<td> x
-</td></tr></table></dd></dl>
+<td>x</td></tr></table>
+</dd></dl>
 <dl><dd><table>
 <tr>
-<td> y
-</td></tr></table></dd></dl>
+<td>y</td></tr></table>
+</dd></dl>
 
 !! end
 
@@ -6138,8 +6128,7 @@ A table with nothing but a caption
 |}
 !! html/php
 <table>
-<caption> caption
-</caption><tr><td></td></tr></table>
+<caption>caption</caption><tr><td></td></tr></table>
 
 !! html/parsoid
 <table><caption> caption</caption></table>
@@ -6155,11 +6144,8 @@ A table with caption with default-spaced attributes and a table row
 |}
 !! html
 <table>
-<caption style="color: red;"> caption1
-</caption>
-<tr>
-<td> foo
-</td></tr></table>
+<caption style="color: red;">caption1</caption><tr>
+<td>foo</td></tr></table>
 
 !! end
 
@@ -6174,13 +6160,9 @@ A table with captions with non-default spaced attributes and a table row
 |}
 !! html
 <table>
-<caption style="color: red;">caption2
-</caption>
-<caption style="color: red;"> caption3
-</caption>
-<tr>
-<td> foo
-</td></tr></table>
+<caption style="color: red;">caption2</caption>
+<caption style="color: red;">caption3</caption><tr>
+<td>foo</td></tr></table>
 
 !! end
 
@@ -6196,16 +6178,12 @@ Table td-cell syntax variations
 !! html
 <table>
 <tr>
-<td> baz
-</td>
-<td> foo bar foo </td>
-<td> baz
-</td>
-<td style="color:red;"> baz
-</td>
-<td> style='color:red;' </td>
-<td> baz
-</td></tr></table>
+<td>baz</td>
+<td>foo bar foo</td>
+<td>baz</td>
+<td style="color:red;">baz</td>
+<td>style='color:red;'</td>
+<td>baz</td></tr></table>
 
 !! end
 
@@ -6220,13 +6198,10 @@ Simple table
 !! html
 <table>
 <tr>
-<td> 1 </td>
-<td> 2
-</td></tr>
-<tr>
-<td> 3 </td>
-<td> 4
-</td></tr></table>
+<td>1</td>
+<td>2</td></tr><tr>
+<td>3</td>
+<td>4</td></tr></table>
 
 !! end
 
@@ -6241,11 +6216,8 @@ Simple table but with multiple dashes for row wikitext
 !! html
 <table>
 <tr>
-<td> foo
-</td></tr>
-<tr>
-<td> bar
-</td></tr></table>
+<td>foo</td></tr><tr>
+<td>bar</td></tr></table>
 
 !! end
 
@@ -6274,49 +6246,31 @@ Multiplication table
 |}
 !! html
 <table border="1" cellpadding="2">
-<caption>Multiplication table
-</caption>
-<tr>
-<th> &#215; </th>
-<th> 1 </th>
-<th> 2 </th>
-<th> 3
-</th></tr>
-<tr>
-<th> 1
-</th>
-<td> 1 </td>
-<td> 2 </td>
-<td> 3
-</td></tr>
-<tr>
-<th> 2
-</th>
-<td> 2 </td>
-<td> 4 </td>
-<td> 6
-</td></tr>
-<tr>
-<th> 3
-</th>
-<td> 3 </td>
-<td> 6 </td>
-<td> 9
-</td></tr>
-<tr>
-<th> 4
-</th>
-<td> 4 </td>
-<td> 8 </td>
-<td> 12
-</td></tr>
-<tr>
-<th> 5
-</th>
-<td> 5 </td>
-<td> 10 </td>
-<td> 15
-</td></tr></table>
+<caption>Multiplication table</caption><tr>
+<th>&#215;</th>
+<th>1</th>
+<th>2</th>
+<th>3</th></tr><tr>
+<th>1</th>
+<td>1</td>
+<td>2</td>
+<td>3</td></tr><tr>
+<th>2</th>
+<td>2</td>
+<td>4</td>
+<td>6</td></tr><tr>
+<th>3</th>
+<td>3</td>
+<td>6</td>
+<td>9</td></tr><tr>
+<th>4</th>
+<td>4</td>
+<td>8</td>
+<td>12</td></tr><tr>
+<th>5</th>
+<td>5</td>
+<td>10</td>
+<td>15</td></tr></table>
 
 !! end
 
@@ -6329,9 +6283,8 @@ Accept "||" in table headings
 !! html
 <table>
 <tr>
-<th>h1 </th>
-<th> h2
-</th></tr></table>
+<th>h1</th>
+<th>h2</th></tr></table>
 
 !! end
 
@@ -6344,9 +6297,8 @@ Accept "!!" in table data
 !! html
 <table>
 <tr>
-<td> Foo!! </td>
-<td>
-</td></tr></table>
+<td>Foo!!</td>
+<td></td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6363,9 +6315,9 @@ Accept "||" in indented table headings
 !! html
 <dl><dd><table>
 <tr>
-<th>h1 </th>
-<th> h2
-</th></tr></table></dd></dl>
+<th>h1</th>
+<th>h2</th></tr></table>
+</dd></dl>
 
 !! end
 
@@ -6379,8 +6331,7 @@ Accept "!!" in templates
 <table>
 <tr>
 <th>a b</th>
-<th>c
-</th></tr></table>
+<th>c</th></tr></table>
 
 !! html/parsoid
 <table>
@@ -6442,10 +6393,8 @@ Accept empty attributes in td/th cells (td/th cells starting with leading ||)
 !! html
 <table>
 <tr>
-<th> h1
-</th>
-<td> a
-</td></tr></table>
+<th>h1</th>
+<td>a</td></tr></table>
 
 !! end
 
@@ -6458,10 +6407,8 @@ Accept "| !" at start of line in tables (ignore !-attribute)
 |}
 !! html
 <table>
-
 <tr>
-<td> bar
-</td></tr></table>
+<td>bar</td></tr></table>
 
 !!end
 
@@ -6481,26 +6428,17 @@ Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present
 |}
 !! html
 <table>
-
 <tr>
-<td style="color:red;">+1
-</td>
-<td style="color:blue;">-1
-</td></tr>
-<tr>
-<td> 1 </td>
-<td> 2 </td>
-<td> 3
-</td>
-<td> 1 </td>
-<td>+2 </td>
-<td>-3
-</td></tr>
-<tr>
-<td> +1
-</td>
-<td> -1
-</td></tr></table>
+<td style="color:red;">+1</td>
+<td style="color:blue;">-1</td></tr><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>+2</td>
+<td>-3</td></tr><tr>
+<td>+1</td>
+<td>-1</td></tr></table>
 
 !!end
 
@@ -6518,17 +6456,11 @@ Table rowspan
 !! html
 <table border="1">
 <tr>
-<td> Cell 1, row 1
-</td>
-<td rowspan="2"> Cell 2, row 1 (and 2)
-</td>
-<td> Cell 3, row 1
-</td></tr>
-<tr>
-<td> Cell 1, row 2
-</td>
-<td> Cell 3, row 2
-</td></tr></table>
+<td>Cell 1, row 1</td>
+<td rowspan="2">Cell 2, row 1 (and 2)</td>
+<td>Cell 3, row 1</td></tr><tr>
+<td>Cell 1, row 2</td>
+<td>Cell 3, row 2</td></tr></table>
 
 !! end
 
@@ -6548,19 +6480,13 @@ Nested table
 !! html
 <table border="1">
 <tr>
-<td> &#945;
-</td>
-<td>
-<table bgcolor="#ABCDEF" border="2">
+<td>&#945;</td>
+<td><table bgcolor="#ABCDEF" border="2">
 <tr>
-<td>nested
-</td></tr>
-<tr>
-<td>table
-</td></tr></table>
+<td>nested</td></tr><tr>
+<td>table</td></tr></table>
 </td>
-<td>the original table again
-</td></tr></table>
+<td>the original table again</td></tr></table>
 
 !! end
 
@@ -6573,8 +6499,7 @@ Invalid attributes in table cell (T3830)
 !! html
 <table>
 <tr>
-<td>broken
-</td></tr></table>
+<td>broken</td></tr></table>
 
 !! end
 
@@ -6589,12 +6514,9 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 !! html/php
 <table>
 <tr>
-<td title="foo">bar
-</td>
-<td title="foo&#124;">bar
-</td>
-<td> title="foo|" bar
-</td></tr></table>
+<td title="foo">bar</td>
+<td title="foo&#124;">bar</td>
+<td>title="foo|" bar</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6618,8 +6540,7 @@ parsoid=wt2html,html2html
 <table>
 <tr>
 <td>[<a rel="nofollow" class="external free" href="ftp://%7Cx">ftp://%7Cx</a></td>
-<td>]" onmouseover="alert(document.cookie)"&gt;test
-</td>
+<td>]" onmouseover="alert(document.cookie)"&gt;test</td>
 </tr>
 </table>
 
@@ -6638,8 +6559,7 @@ Element attributes with double ! should not be broken up by <th>
 !! html/php
 <table>
 <tr>
-<th> hi <div class="!!">ha</div> ho
-</th></tr></table>
+<th>hi <div class="!!">ha</div> ho</th></tr></table>
 
 !! html/parsoid
 <table>
@@ -6656,8 +6576,7 @@ Element attributes with double ! should not be broken up by <th>
 !! html/php
 <table>
 <tr>
-<td> <div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
-</td></tr></table>
+<td><div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div></td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6677,9 +6596,8 @@ parsoid=wt2html
 !! html/php
 <table>
 <tr>
-<td> style="color: red !important;" data-contrived="put this here </td>
-<td> foo
-</td></tr></table>
+<td>style="color: red !important;" data-contrived="put this here</td>
+<td>foo</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6735,10 +6653,8 @@ parsoid=wt2html
 !! html/php
 <table style="border:1px solid black">
 <tr>
-<td style="color:blue"> 1
-</td>
-<td style="color:blue"> 2
-</td></tr></table>
+<td style="color:blue">1</td>
+<td style="color:blue">2</td></tr></table>
 
 !! html/parsoid
 <table style="border:1px solid black">
@@ -6785,19 +6701,13 @@ parsoid={
 !! html
 <table>
 <tr>
-<td style="color:red;">Foo
-</td>
-<td style="color:red;">Foo
-</td>
-<td> style="color:red;"</td>
-<td>Bar
-</td>
-<td style="color:red;">Foo
-</td>
-<td align="center" style="color:red;">Foo
-</td>
-<td align="center" style="color:red;">Foo
-</td></tr></table>
+<td style="color:red;">Foo</td>
+<td style="color:red;">Foo</td>
+<td>style="color:red;"</td>
+<td>Bar</td>
+<td style="color:red;">Foo</td>
+<td align="center" style="color:red;">Foo</td>
+<td align="center" style="color:red;">Foo</td></tr></table>
 
 !! end
 
@@ -6810,11 +6720,9 @@ parsoid={
 !! html/php
 <table>
 <tr>
-<td style="color:red;">Foo
-</td>
+<td style="color:red;">Foo</td>
 <td>Bar</td>
-<td>Baz
-</td></tr></table>
+<td>Baz</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6836,13 +6744,10 @@ parsoid={
 <tr>
 <th align="center" style="color:red;">Foo</th>
 <th style="color:red;"><i>Bar</i></th>
-<th style="color:brown;"><i>Foo</i> and Baz
-</th></tr>
-<tr>
+<th style="color:brown;"><i>Foo</i> and Baz</th></tr><tr>
 <td align="center" style="color:red;">Foo</td>
 <td style="color:red;"><i>Bar</i></td>
-<td style="color:brown;"><i>Foo</i> and Baz
-</td></tr></table>
+<td style="color:brown;"><i>Foo</i> and Baz</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6864,13 +6769,10 @@ parsoid={
 <tr>
 <th align="center" style="color:red;">Foo</th>
 <th style="color:red;"><i>Bar</i></th>
-<th style="color:brown;"><i>Foo</i> and Baz
-</th></tr>
-<tr>
+<th style="color:brown;"><i>Foo</i> and Baz</th></tr><tr>
 <td align="center" style="color:red;">Foo</td>
 <td style="color:red;"><i>Bar</i></td>
-<td style="color:brown;"><i>Foo</i> and Baz
-</td></tr></table>
+<td style="color:brown;"><i>Foo</i> and Baz</td></tr></table>
 
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":1}},"\n|-\n|align=center ",{"template":{"target":{"wt":"table_cells","href":"./Template:Table_cells"},"params":{},"i":2}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":3}}]}'>
@@ -6908,10 +6810,8 @@ parsoid=wt2html,html2html
 !! html/*
 <table>
 
-
 <tr>
-<th> foo
-</th></tr></table>
+<th>foo</th></tr></table>
 
 !! end
 
@@ -6928,10 +6828,8 @@ parsoid=wt2html,html2html
 !! html/*
 <table>
 
-
 <tr>
-<td> foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !! end
 
@@ -6946,8 +6844,7 @@ parsoid=wt2html,html2html
 !! html/php
 <table>
 <tr>
-<td style=""> hello
-</td></tr></table>
+<td style="">hello</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -6970,11 +6867,8 @@ Wikitext table with a lot of comments
 !! html
 <table>
 <tr>
-<td> foo
-</td></tr>
-<tr>
-<td>
-</td></tr></table>
+<td>foo</td></tr><tr>
+<td></td></tr></table>
 
 !! end
 
@@ -7025,10 +6919,8 @@ Table cell with a single comment
 !! html
 <table>
 <tr>
-<td>
-</td>
-<td> a
-</td></tr></table>
+<td></td>
+<td>a</td></tr></table>
 
 !! end
 
@@ -7043,10 +6935,8 @@ Table-cell after a comment-only-empty-line
 !! html
 <table>
 <tr>
-<td>a
-</td>
-<td> b
-</td></tr></table>
+<td>a</td>
+<td>b</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -7069,14 +6959,10 @@ Build table with {{!}}
 !! html
 <table class="wikitable">
 <tr>
-<th> header
-</th>
-<th> second header
-</th></tr>
-<tr style="color:red;">
-<td> data </td>
-<td style="color:red;"> second data
-</td></tr></table>
+<th>header</th>
+<th>second header</th></tr><tr style="color:red;">
+<td>data</td>
+<td style="color:red;">second data</td></tr></table>
 
 !! end
 
@@ -7096,22 +6982,14 @@ Build table with pipe as data
 !! html
 <table class="wikitable">
 <tr>
-<th> header
-</th>
-<th> second header
-</th></tr>
-<tr style="color:red;">
-<td> data </td>
-<td style="color:red;"> second data
-</td></tr>
-<tr>
-<td style="color:red;"> data with | </td>
-<td style="color:red;"> second data with |
-</td></tr>
-<tr>
-<td> data with | </td>
-<td> second data with |
-</td></tr></table>
+<th>header</th>
+<th>second header</th></tr><tr style="color:red;">
+<td>data</td>
+<td style="color:red;">second data</td></tr><tr>
+<td style="color:red;">data with |</td>
+<td style="color:red;">second data with |</td></tr><tr>
+<td>data with |</td>
+<td>second data with |</td></tr></table>
 
 !! end
 
@@ -7128,17 +7006,12 @@ Build table with wikilink
 !! html
 <table class="wikitable">
 <tr>
-<th> header </th>
-<th> second header
-</th></tr>
-<tr style="color:red;">
+<th>header</th>
+<th>second header</th></tr><tr style="color:red;">
 <td> data <a href="/wiki/Main_Page" title="Main Page">linktext</a> </td>
-<td> second data <a href="/wiki/Main_Page" title="Main Page">linktext</a>
-</td></tr>
-<tr>
-<td> data </td>
-<td> second data <a href="/wiki/Main_Page" title="Main Page">link|text with pipe</a>
-</td></tr></table>
+<td> second data <a href="/wiki/Main_Page" title="Main Page">linktext</a></td></tr><tr>
+<td>data</td>
+<td> second data <a href="/wiki/Main_Page" title="Main Page">link|text with pipe</a></td></tr></table>
 
 !! end
 
@@ -7170,7 +7043,6 @@ a
 |}
 !! html/php
 <table>
-
 a
 </table>
 
@@ -7194,7 +7066,6 @@ parsoid=wt2html,html2html
 |}
 !! html/php
 <table>
-
 <ul><li>a</li></ul>
 </table>
 
@@ -7301,12 +7172,10 @@ parsoid=wt2html,wt2wt
 !! html/php
 <table>
 <tr>
-<th> foo </th>
-<th> bar
-</th>
-<td> baz </td>
-<td> quux
-</td></tr></table>
+<th>foo</th>
+<th>bar</th>
+<td>baz</td>
+<td>quux</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -11459,8 +11328,7 @@ T2553: link with two variables in a piped link
 !! html/php
 <table>
 <tr>
-<td>[[{{{1}}}|{{{2}}}]]
-</td></tr></table>
+<td>[[{{{1}}}|{{{2}}}]]</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -11481,14 +11349,11 @@ Abort table cell attribute parsing on wikilink
 <table>
 <tr>
 <td> testing <a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a> | three </td>
-<td> four
-</td>
-<td> three </td>
-<td> four
-</td>
+<td>four</td>
+<td>three</td>
+<td>four</td>
 <td> testing="<a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a>" | three </td>
-<td> four
-</td></tr></table>
+<td>four</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -11620,13 +11485,10 @@ foo {{table}}
 </p>
 <table>
 <tr>
-<td> 1 </td>
-<td> 2
-</td></tr>
-<tr>
-<td> 3 </td>
-<td> 4
-</td></tr></table>
+<td>1</td>
+<td>2</td></tr><tr>
+<td>3</td>
+<td>4</td></tr></table>
 
 !! end
 
@@ -11640,13 +11502,10 @@ foo
 </p>
 <table>
 <tr>
-<td> 1 </td>
-<td> 2
-</td></tr>
-<tr>
-<td> 3 </td>
-<td> 4
-</td></tr></table>
+<td>1</td>
+<td>2</td></tr><tr>
+<td>3</td>
+<td>4</td></tr></table>
 
 !! end
 
@@ -11884,14 +11743,10 @@ Unbalanced includeonly and noinclude tags
 !! html
 <table>
 <tr>
-<td>a
-</td>
-<td>b
-</td>
-<td>c&lt;/includeonly&gt;
-</td>
-<td>d&lt;/includeonly&gt;&lt;/includeonly&gt;
-</td></tr></table>
+<td>a</td>
+<td>b</td>
+<td>c&lt;/includeonly&gt;</td>
+<td>d&lt;/includeonly&gt;&lt;/includeonly&gt;</td></tr></table>
 
 !!end
 
@@ -12119,12 +11974,9 @@ parsoid
 |}
 !! html
 <table>
-
-
 <tr>
 <td>a
-</td></tr>
-</table>
+</td></tr></table>
 
 !!end
 
@@ -12977,13 +12829,9 @@ Templates: Support for templates generating attributes and content
 |}
 !! html/php
 <table style="color:red;" title="T48811">
-
 <tr>
-<td>foo
-</td></tr>
-<tr>
-<td>bar
-</td></tr></table>
+<td>foo</td></tr><tr>
+<td>bar</td></tr></table>
 
 !! html/parsoid
 <table style="color:red;" title="T48811" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"parts":["{| ",{"template":{"target":{"wt":"mixed_attr_content_template","href":"./Template:Mixed_attr_content_template"},"params":{},"i":0}},"\n|-\n|bar\n|}"]}'>
@@ -13014,8 +12862,7 @@ Templates: Support for templates generating attributes and content
 !! html/php
 <table>
 <tr>
-<td style="background:#f9f9f9;">Foo
-</td></tr></table>
+<td style="background:#f9f9f9;">Foo</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -13032,8 +12879,7 @@ Templates: Support for templates generating attributes and content
 !! html/php
 <table>
 <tr>
-<td style="background:#f9f9f9;">Foo
-</td></tr></table>
+<td style="background:#f9f9f9;">Foo</td></tr></table>
 
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":1}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":2}}]}'>
@@ -13051,8 +12897,7 @@ Templates: Support for templates generating attributes and content
 !! html/php
 <table>
 <tr>
-<td style="background: red;"> hi
-</td></tr></table>
+<td style="background: red;">hi</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -13243,8 +13088,7 @@ Templates: Wiki Tables: 3. td-content via multiple templates
 !! html
 <table>
 <tr>
-<td>ab
-</td></tr></table>
+<td>ab</td></tr></table>
 
 !!end
 
@@ -13268,8 +13112,7 @@ Templates: Wiki Tables: 5. Templated tags, regular td-tags
 !! html
 <table>
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -13282,8 +13125,7 @@ Templates: Wiki Tables: 6. Templated tags, templated td-tags
 !! html
 <table>
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -15377,7 +15219,7 @@ parsoid=wt2html,wt2wt,html2html
 |}
 and some more text.]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is an example image thumbnail caption with a table <table> <tr> <th> Foo </th> <th> Bar </th></tr> <tr> <td> Foo1 </td> <td> Bar1 </td></tr></table> and some more text.</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is an example image thumbnail caption with a table <table> <tr> <th>Foo</th> <th>Bar</th></tr><tr> <td>Foo1</td> <td>Bar1</td></tr></table>  and some more text.</div></div></div>
 
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>This is an example image thumbnail caption with a table
@@ -17209,8 +17051,7 @@ parsoid=wt2html,html2html
 !! html/php
 <table title="id=">
 <tr>
-<td> hi
-</td></tr></table>
+<td>hi</td></tr></table>
 
 !! html/parsoid
 <table title="id=">
@@ -17260,8 +17101,7 @@ Table multiple attributes correction
 !! html
 <table>
 <tr>
-<th class="awesome"> status
-</th></tr></table>
+<th class="awesome">status</th></tr></table>
 
 !!end
 
@@ -18018,8 +17858,7 @@ Table attribute legitimate extension
 !! html
 <table>
 <tr>
-<th style="color:blue"> status
-</th></tr></table>
+<th style="color:blue">status</th></tr></table>
 
 !!end
 
@@ -18032,8 +17871,7 @@ Table attribute safety
 !! html
 <table>
 <tr>
-<th style="/* insecure input */"> status
-</th></tr></table>
+<th style="/* insecure input */">status</th></tr></table>
 
 !! end
 
@@ -18870,8 +18708,7 @@ Fuzz testing: Parser13
 !! html
 <table>
 <tr>
-<td>
-</td>
+<td></td>
 </tr>
 </table>
 
@@ -18942,8 +18779,7 @@ Fuzz testing: Parser16
 <th>https://</th>
 <th></th>
 <th></th>
-<th>
-</td>
+<th></td>
 </tr>
 </table>
 
@@ -18967,10 +18803,8 @@ Fuzz testing: Parser21
 !! html
 <table>
 <tr>
-<th> <a rel="nofollow" class="external free" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
-</th>
-<td>
-</td>
+<th><a rel="nofollow" class="external free" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"</th>
+<td></td>
 </tr>
 </table>
 
@@ -22703,10 +22537,8 @@ parsoid=wt2html,wt2wt,html2html
 |}
 !! html/php
 <table>
-
 <tr>
-<td> B
-</td></tr></table>
+<td> B</td></tr></table>
 
 !! html/parsoid
 <table>
@@ -22871,13 +22703,10 @@ y
 </p>
 <table>
 <tr>
-<td> 1 </td>
-<td> 2
-</td></tr>
-<tr>
-<td> 3 </td>
-<td> 4
-</td></tr></table>
+<td>1</td>
+<td>2</td></tr><tr>
+<td>3</td>
+<td>4</td></tr></table>
 <p>y
 </p>
 !! end
@@ -23700,8 +23529,7 @@ paragraphs</indicator>
 
 09=<table class="wikitable">
 <tr>
-<td> cell
-</td></tr></table>
+<td>cell</td></tr></table>
 
 10=<p>Two
 </p><p>paragraphs
@@ -24424,11 +24252,8 @@ Ignore pipe between table row attributes
 !! html
 <table>
 <tr>
-<td> quux
-</td></tr>
-<tr id="foo" style="color: red">
-<td> bar
-</td></tr></table>
+<td>quux</td></tr><tr id="foo" style="color: red">
+<td>bar</td></tr></table>
 
 !! end
 
@@ -25323,12 +25148,9 @@ parsoid=html2wt
 !! html/php
 <table>
 <tr>
-<td>foo||bar
-</td>
-<td>a<i>b||c</i>
-</td>
-<td>a<i><div>b||c</div></i>
-</td></tr></table>
+<td>foo||bar</td>
+<td>a<i>b||c</i></td>
+<td>a<i><div>b||c</div></i></td></tr></table>
 
 !! end
 
@@ -25339,8 +25161,7 @@ parsoid=html2wt
 !! html/*
 <table>
 <tr>
-<td>foo!!bar
-</td></tr></table>
+<td>foo!!bar</td></tr></table>
 
 !! wikitext
 {|
@@ -25355,8 +25176,7 @@ parsoid=html2wt
 !! html/*
 <table>
 <tr>
-<th>foo!bar
-</th></tr></table>
+<th>foo!bar</th></tr></table>
 
 !! wikitext
 {|
@@ -25385,14 +25205,10 @@ parsoid=html2wt
 !! html/php
 <table>
 <tr>
-<th>foo!!bar
-</th>
-<th><i>foo|bar</i>
-</th>
-<th><i>foo!!bar</i>
-</th>
-<th><i><span>foo!!bar</span></i>
-</th></tr></table>
+<th>foo!!bar</th>
+<th><i>foo|bar</i></th>
+<th><i>foo!!bar</i></th>
+<th><i><span>foo!!bar</span></i></th></tr></table>
 
 !! end
 
@@ -25413,10 +25229,8 @@ parsoid=html2wt
 !! html/php
 <table>
 <tr>
-<th>foo||bar
-</th>
-<th>foo||bar
-</th></tr></table>
+<th>foo||bar</th>
+<th>foo||bar</th></tr></table>
 
 !! end
 
@@ -25427,11 +25241,8 @@ parsoid=html2wt
 !! html/*
 <table>
 <tr>
-<th>-bar
-</th></tr>
-<tr>
-<td>-bar
-</td></tr></table>
+<th>-bar</th></tr><tr>
+<td>-bar</td></tr></table>
 
 !! wikitext
 {|
@@ -25448,11 +25259,8 @@ parsoid=html2wt
 !! html/*
 <table>
 <tr>
-<th>+bar
-</th></tr>
-<tr>
-<td>+bar
-</td></tr></table>
+<th>+bar</th></tr><tr>
+<td>+bar</td></tr></table>
 
 !! wikitext
 {|
@@ -25496,23 +25304,16 @@ bar|baz
 !! html/php
 <table>
 <tr>
-<td>foo-bar
-</td>
-<td>foo+bar
-</td></tr>
-<tr>
-<td><i>foo</i>-bar
-</td>
-<td><i>foo</i>+bar
-</td></tr>
-<tr>
+<td>foo-bar</td>
+<td>foo+bar</td></tr><tr>
+<td><i>foo</i>-bar</td>
+<td><i>foo</i>+bar</td></tr><tr>
 <td>foo
 <p>bar|baz
 +bar
 -bar
 </p>
-</td></tr>
-<tr>
+</td></tr><tr>
 <td>x
 <div>a|b</div>
 </td></tr></table>
@@ -25538,12 +25339,9 @@ parsoid=html2wt
 !! html/php
 <table>
 <tr>
-<td><a href="/wiki/Foo" title="Foo">Foo</a>-bar
-</td>
-<td>+1
-</td>
-<td>-2
-</td></tr></table>
+<td><a href="/wiki/Foo" title="Foo">Foo</a>-bar</td>
+<td>+1</td>
+<td>-2</td></tr></table>
 
 !! end
 
@@ -25576,10 +25374,24 @@ parsoid=html2wt
 !! html/php
 <table>
 <tr>
-<td> &lt;foo
-</td>
-<td> bar&gt;
-</td></tr></table>
+<td>&lt;foo</td>
+<td>bar&gt;</td></tr></table>
+
+!! end
+
+!! test
+T40797: Whitespace between syntax of table and percent sign is converted to a non-breaking space (French spaces)
+!! wikitext
+{| class="wikitable"
+|-
+| A
+| %
+|}
+!! html/php
+<table class="wikitable">
+<tr>
+<td>A</td>
+<td>%</td></tr></table>
 
 !! end
 
@@ -26427,14 +26239,12 @@ parsoid=wt2html,html2html
 !! html/php
 <table>
 <tr>
-<td title="Hello world">Foo
-</td></tr></table>
+<td title="Hello world">Foo</td></tr></table>
 
 !! html/parsoid
 <table>
 <tr>
-<td title="Hello world">Foo
-</td></tr></table>
+<td title="Hello world">Foo</td></tr></table>
 
 !! end
 
@@ -26450,10 +26260,8 @@ parsoid=wt2html,html2html
 !! html/php
 <table>
 <tr>
-<td title="Hello world">Foo
-</td>
-<td style="color:red">Bar
-</td></tr></table>
+<td title="Hello world">Foo</td>
+<td style="color:red">Bar</td></tr></table>
 
 !! html/parsoid
 <table><tbody>
@@ -26473,9 +26281,8 @@ Accept empty td cell attribute
 !! html
 <table>
 <tr>
-<td align="center"> foo </td>
-<td>
-</td></tr></table>
+<td align="center">foo</td>
+<td></td></tr></table>
 
 !!end
 
@@ -26488,9 +26295,8 @@ Non-empty attributes in th-cells
 !! html
 <table>
 <tr>
-<th> Foo </th>
-<th style="color: red"> Bar
-</th></tr></table>
+<th>Foo</th>
+<th style="color: red">Bar</th></tr></table>
 
 !!end
 
@@ -26503,9 +26309,8 @@ Accept empty attributes in th-cells
 !! html
 <table>
 <tr>
-<th> foo </th>
-<th> bar
-</th></tr></table>
+<th>foo</th>
+<th>bar</th></tr></table>
 
 !!end
 
@@ -26521,12 +26326,8 @@ Empty table rows go away
 !! html
 <table>
 <tr>
-<td> Hello
-</td>
-<td> there
-</td></tr>
-
-</table>
+<td>Hello</td>
+<td>there</td></tr></table>
 
 !! end
 
@@ -26544,7 +26345,6 @@ RT-ed inter-element separators should be valid separators
 |}
 !! html/php
 <table>
-
 </table>
 
 !! html/parsoid
@@ -26590,12 +26390,9 @@ Empty TD followed by TD with tpl-generated attribute
 |}
 !! html
 <table>
-
 <tr>
-<td>
-</td>
-<td>foo
-</td></tr></table>
+<td></td>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -26609,12 +26406,9 @@ Indented table with an empty td
  |}
 !! html
 <table>
-
 <tr>
-<td>
-</td>
-<td>foo
-</td></tr></table>
+<td></td>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -26634,10 +26428,8 @@ parsoid=wt2html
  |}
 !! html
 <table>
-
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !!end
 
@@ -26652,8 +26444,7 @@ Indented block & table
  <div>foo</div>
 <table>
 <tr>
-<td>foo
-</td></tr></table>
+<td>foo</td></tr></table>
 
 !! html/parsoid
  <div data-parsoid='{"stx":"html"}'>foo</div>
@@ -26671,10 +26462,8 @@ Indent and comment before table row
 |}
 !! html/php
 <table>
-
 <tr>
-<td> there
-</td></tr></table>
+<td>there</td></tr></table>
 
 !! html/parsoid
 <table>
