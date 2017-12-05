@@ -1,11 +1,6 @@
 /*!
- * Hide collapsable rows in a collapsed table.
+ * Styles for metadata.js.
  */
-
-.mw_metadata.collapsed .mw-metadata-collapsible,
-.mw_metadata.collapsed tr.collapsable {
-	display: none;
-}
 
 /*
  * Exclude user interface elements from selection.
