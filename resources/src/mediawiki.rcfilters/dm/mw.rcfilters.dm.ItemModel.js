@@ -14,6 +14,7 @@
 	 *  with 'default' and 'inverted' as keys.
 	 * @cfg {boolean} [active=true] The filter is active and affecting the result
 	 * @cfg {boolean} [selected] The item is selected
+	 * @cfg {*} [value] The value of this item
 	 * @cfg {string} [namePrefix='item_'] A prefix to add to the param name to act as a unique
 	 *  identifier
 	 * @cfg {string} [cssClass] The class identifying the results that match this filter
@@ -34,7 +35,7 @@
 		this.label = config.label || this.name;
 		this.labelPrefixKey = config.labelPrefixKey;
 		this.description = config.description || '';
-		this.selected = !!config.selected;
+		this.setValue( config.value || config.selected );
 
 		this.identifiers = config.identifiers || [];
 
@@ -151,7 +152,7 @@
 	 * @return {boolean} Filter is selected
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.isSelected = function () {
-		return this.selected;
+		return !!this.value;
 	};
 
 	/**
@@ -161,10 +162,38 @@
 	 * @fires update
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.toggleSelected = function ( isSelected ) {
-		isSelected = isSelected === undefined ? !this.selected : isSelected;
+		isSelected = isSelected === undefined ? !this.isSelected() : isSelected;
+		this.setValue( isSelected );
+	};
 
-		if ( this.selected !== isSelected ) {
-			this.selected = isSelected;
+	/**
+	 * Get the value
+	 *
+	 * @return {*}
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.getValue = function () {
+		return this.value;
+	};
+
+	/**
+	 * Convert a given value to the appropriate representation based on group type
+	 *
+	 * @param {*} value
+	 * @return {*}
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.coerceValue = function ( value ) {
+		return this.getGroupModel().getType() === 'any_value' ? value : !!value;
+	};
+
+	/**
+	 * Set the value
+	 *
+	 * @param {*} newValue
+	 */
+	mw.rcfilters.dm.ItemModel.prototype.setValue = function ( newValue ) {
+		newValue = this.coerceValue( newValue );
+		if ( this.value !== newValue ) {
+			this.value = newValue;
 			this.emit( 'update' );
 		}
 	};

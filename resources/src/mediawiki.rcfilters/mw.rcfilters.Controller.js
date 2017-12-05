@@ -10,12 +10,16 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Additional configuration
 	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
+	 * @cfg {string} daysPreferenceName Preference name for the days filter
+	 * @cfg {string} limitPreferenceName Preference name for the limit filter
 	 */
 	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+		this.daysPreferenceName = config.daysPreferenceName;
+		this.limitPreferenceName = config.limitPreferenceName;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -78,16 +82,19 @@
 					separator: ';',
 					fullCoverage: true,
 					filters: items
-				},
-				{
-					name: 'invertGroup',
-					type: 'boolean',
-					hidden: true,
-					filters: [ {
-						name: 'invert',
-						'default': '0'
-					} ]
 				} ]
+			};
+			views.invert = {
+				groups: [
+					{
+						name: 'invertGroup',
+						type: 'boolean',
+						hidden: true,
+						filters: [ {
+							name: 'invert',
+							'default': '0'
+						} ]
+					} ]
 			};
 		}
 		if ( tagList ) {
@@ -122,13 +129,8 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': displayConfig.limitDefault,
-					// Temporarily making this not sticky until we resolve the problem
-					// with the misleading preference. Note that if this is to be permanent
-					// we should remove all sticky behavior methods completely
-					// See T172156
-					// isSticky: true,
-					excludedFromSavedQueries: true,
+					'default': mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
+					sticky: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -150,10 +152,8 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': displayConfig.daysDefault,
-					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
-					excludedFromSavedQueries: true,
+					'default': mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
+					sticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5
@@ -177,11 +177,42 @@
 					type: 'boolean',
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
-					isSticky: true,
+					sticky: true,
 					filters: [
 						{
 							name: 'enhanced',
 							'default': String( mw.user.options.get( 'usenewrc', 0 ) )
+						}
+					]
+				}
+			]
+		};
+
+		views.recentChangesLinked = {
+			groups: [
+				{
+					name: 'page',
+					type: 'any_value',
+					title: '',
+					hidden: true,
+					isSticky: false,
+					filters: [
+						{
+							name: 'target',
+							'default': ''
+						}
+					]
+				},
+				{
+					name: 'toOrFrom',
+					type: 'boolean',
+					title: '',
+					hidden: true,
+					isSticky: false,
+					filters: [
+						{
+							name: 'showlinkedto',
+							'default': false
 						}
 					]
 				}
@@ -415,7 +446,7 @@
 	 * @return {boolean} Defaults are all false
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
-		return $.isEmptyObject( this._getDefaultParams( true ) );
+		return $.isEmptyObject( this._getDefaultParams() );
 	};
 
 	/**
@@ -512,7 +543,6 @@
 	 */
 	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
 		this.filtersModel.toggleInvertedNamespaces();
-
 		if (
 			this.filtersModel.getFiltersByView( 'namespaces' ).filter(
 				function ( filterItem ) { return filterItem.isSelected(); }
@@ -520,7 +550,36 @@
 		) {
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL();
 		}
+	};
+
+	/**
+	 * Set the value of the 'showlinkedto' parameter
+	 * @param {boolean} value
+	 */
+	mw.rcfilters.Controller.prototype.setShowLinkedTo = function ( value ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' ),
+			showLinkedToItem = this.filtersModel.getGroup( 'toOrFrom' ).getItemByParamName( 'showlinkedto' );
+
+		this.filtersModel.toggleFilterSelected( showLinkedToItem.getName(), value );
+		this.uriProcessor.updateURL();
+		// reload the results only when target is set
+		if ( targetItem.getValue() ) {
+			this.updateChangesList();
+		}
+	};
+
+	/**
+	 * Set the target page
+	 * @param {string} page
+	 */
+	mw.rcfilters.Controller.prototype.setTargetPage = function ( page ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' );
+		targetItem.setValue( page );
+		this.uriProcessor.updateURL();
+		this.updateChangesList();
 	};
 
 	/**
@@ -790,72 +849,48 @@
 	/**
 	 * Update the limit default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcfilters-rclimit', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		this.updateNumericPreference( this.limitPreferenceName, newValue );
 	};
 
 	/**
 	 * Update the days default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcdays' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcdays', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcdays', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		this.updateNumericPreference( this.daysPreferenceName, newValue );
 	};
 
 	/**
 	 * Update the group by page default value
 	 *
-	 * @param {number} newValue New value
+	 * @param {boolean} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateGroupByPageDefault = function ( newValue ) {
+		this.updateNumericPreference( 'usenewrc', Number( newValue ) );
+	};
+
+	/**
+	 * Update a numeric preference with a new value
+	 *
+	 * @param {string} prefName Preference name
+	 * @param {number|string} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'usenewrc' ) !== newValue ) {
+		if ( mw.user.options.get( prefName ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'usenewrc', newValue );
+			new mw.Api().saveOption( prefName, newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'usenewrc', newValue );
+			mw.user.options.set( prefName, newValue );
 		}
 	};
 
@@ -877,7 +912,7 @@
 	mw.rcfilters.Controller.prototype.updateStateFromUrl = function ( fetchChangesList ) {
 		fetchChangesList = fetchChangesList === undefined ? true : !!fetchChangesList;
 
-		this.uriProcessor.updateModelBasedOnQuery( new mw.Uri().query );
+		this.uriProcessor.updateModelBasedOnQuery();
 
 		// Update the sticky preferences, in case we received a value
 		// from the URL
@@ -933,14 +968,13 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
 		if ( this.savedQueriesModel.getDefault() ) {
-			return this.savedQueriesModel.getDefaultParams( excludeHiddenParams );
+			return this.savedQueriesModel.getDefaultParams();
 		} else {
-			return this.filtersModel.getDefaultParams( excludeHiddenParams );
+			return this.filtersModel.getDefaultParams();
 		}
 	};
 
@@ -1028,10 +1062,11 @@
 						};
 					}
 
-					$parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) );
+					$parsed = $( '<div>' ).append( $( $.parseHTML(
+						data ? data.content : ''
+					) ) );
 
 					return this._extractChangesListInfo( $parsed );
-
 				}.bind( this )
 			);
 	};

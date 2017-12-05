@@ -57,38 +57,20 @@
 	/**
 	 * Get an updated mw.Uri object based on the model state
 	 *
-	 * @param {Object} [uriQuery] An external URI query to build the new uri
-	 *  with. This is mainly for tests, to be able to supply external parameters
-	 *  and make sure they are retained.
+	 * @param {mw.Uri} [uri] An external URI to build the new uri
+	 *  with. This is mainly for tests, to be able to supply external query
+	 *  parameters and make sure they are retained.
 	 * @return {mw.Uri} Updated Uri
 	 */
-	mw.rcfilters.UriProcessor.prototype.getUpdatedUri = function ( uriQuery ) {
-		var titlePieces,
-			uri = new mw.Uri(),
-			unrecognizedParams = this.getUnrecognizedParams( uriQuery || uri.query );
+	mw.rcfilters.UriProcessor.prototype.getUpdatedUri = function ( uri ) {
+		var normalizedUri = this._normalizeTargetInUri( uri || new mw.Uri() ),
+			unrecognizedParams = this.getUnrecognizedParams( normalizedUri.query );
 
-		if ( uriQuery ) {
-			// This is mainly for tests, to be able to give the method
-			// an initial URI Query and test that it retains parameters
-			uri.query = uriQuery;
-		}
-
-		// Normalize subpage to use &target= so we are always
-		// consistent in Special:RecentChangesLinked between the
-		// ?title=Special:RecentChangesLinked/TargetPage and
-		// ?title=Special:RecentChangesLinked&target=TargetPage
-		if ( uri.query.title && uri.query.title.indexOf( '/' ) !== -1 ) {
-			titlePieces = uri.query.title.split( '/' );
-
-			unrecognizedParams.title = titlePieces.shift();
-			unrecognizedParams.target = titlePieces.join( '/' );
-		}
-
-		uri.query = this.filtersModel.getMinimizedParamRepresentation(
+		normalizedUri.query = this.filtersModel.getMinimizedParamRepresentation(
 			$.extend(
 				true,
 				{},
-				uri.query,
+				normalizedUri.query,
 				// The representation must be expanded so it can
 				// override the uri query params but we then output
 				// a minimized version for the entire URI representation
@@ -98,7 +80,44 @@
 		);
 
 		// Reapply unrecognized params and url version
-		uri.query = $.extend( true, {}, uri.query, unrecognizedParams, { urlversion: '2' } );
+		normalizedUri.query = $.extend(
+			true,
+			{},
+			normalizedUri.query,
+			unrecognizedParams,
+			{ urlversion: '2' }
+		);
+
+		return normalizedUri;
+	};
+
+	/**
+	 * Move the subpage to the target parameter
+	 *
+	 * @param {mw.Uri} uri
+	 * @return {mw.Uri}
+	 * @private
+	 */
+	mw.rcfilters.UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
+		var parts,
+			re = /^((?:\/.+\/)?.+:.+)\/(.+)$/; // matches [namespace:]Title/Subpage
+
+		// target in title param
+		if ( uri.query.title ) {
+			parts = uri.query.title.match( re );
+			if ( parts ) {
+				uri.query.title = parts[ 1 ];
+				uri.query.target = parts[ 2 ];
+			}
+		}
+
+		// target in path
+		parts = uri.path.match( re );
+		if ( parts ) {
+			uri.path = parts[ 1 ];
+			uri.query.target = parts[ 2 ];
+		}
+
 		return uri;
 	};
 
@@ -154,15 +173,16 @@
 	 * we consider the system synchronized, and the model serves
 	 * as the source of truth for the URL.
 	 *
-	 * This methods should only be called once on initialiation.
+	 * This methods should only be called once on initialization.
 	 * After initialization, the model updates the URL, not the
 	 * other way around.
 	 *
 	 * @param {Object} [uriQuery] URI query
 	 */
 	mw.rcfilters.UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
+		uriQuery = uriQuery || this._normalizeTargetInUri( new mw.Uri() ).query;
 		this.filtersModel.updateStateFromParams(
-			this._getNormalizedQueryParams( uriQuery || new mw.Uri().query )
+			this._getNormalizedQueryParams( uriQuery )
 		);
 	};
 
@@ -243,16 +263,15 @@
 		// wiki default.
 		// Any subsequent change of the URL through the RCFilters
 		// system will receive 'urlversion=2'
-		var hiddenParamDefaults = this.filtersModel.getDefaultHiddenParams(),
-			base = this.getVersion( uriQuery ) === 2 ?
-				{} :
-				this.filtersModel.getDefaultParams();
+		var base = this.getVersion( uriQuery ) === 2 ?
+			{} :
+			this.filtersModel.getDefaultParams();
 
 		return $.extend(
 			true,
 			{},
 			this.filtersModel.getMinimizedParamRepresentation(
-				$.extend( true, {}, hiddenParamDefaults, base, uriQuery )
+				$.extend( true, {}, base, uriQuery )
 			),
 			{ urlversion: '2' }
 		);

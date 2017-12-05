@@ -14,7 +14,6 @@
 
 		this.groups = {};
 		this.defaultParams = {};
-		this.defaultFiltersEmpty = null;
 		this.highlightEnabled = false;
 		this.parameterMap = {};
 		this.emptyParameterState = null;
@@ -386,7 +385,8 @@
 		$.each( this.groups, function ( group, groupModel ) {
 			if (
 				groupModel.getType() === 'send_unselected_if_any' ||
-				groupModel.getType() === 'boolean'
+				groupModel.getType() === 'boolean' ||
+				groupModel.getType() === 'any_value'
 			) {
 				// Individual filters
 				groupModel.getItems().forEach( function ( filterItem ) {
@@ -415,18 +415,18 @@
 	 * @param {Object} params Parameters object
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.updateStateFromParams = function ( params ) {
+		var filtersValue;
 		// For arbitrary numeric single_option values make sure the values
 		// are normalized to fit within the limits
 		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
 			params[ groupName ] = groupModel.normalizeArbitraryValue( params[ groupName ] );
 		} );
 
-		// Update filter states
-		this.toggleFiltersSelected(
-			this.getFiltersFromParameters(
-				params
-			)
-		);
+		// Update filter values
+		filtersValue = this.getFiltersFromParameters( params );
+		Object.keys( filtersValue ).forEach( function ( filterName ) {
+			this.getItemByName( filterName ).setValue( filtersValue[ filterName ] );
+		}.bind( this ) );
 
 		// Update highlight state
 		this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
@@ -494,114 +494,50 @@
 	/**
 	 * Get a representation of the full parameter list, including all base values
 	 *
-	 * @param {Object} [parameters] A given parameter state to minimize. If not given the current
-	 *  state of the system will be used.
-	 * @param {boolean} [removeExcluded] Remove excluded and sticky parameters
 	 * @return {Object} Full parameter representation
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getExpandedParamRepresentation = function ( parameters, removeExcluded ) {
-		var result = {};
-
-		parameters = parameters ? $.extend( true, {}, parameters ) : this.getCurrentParameterState();
-
-		result = $.extend(
+	mw.rcfilters.dm.FiltersViewModel.prototype.getExpandedParamRepresentation = function () {
+		return $.extend(
 			true,
 			{},
 			this.getEmptyParameterState(),
-			parameters
+			this.getCurrentParameterState()
 		);
-
-		if ( removeExcluded ) {
-			result = this.removeExcludedParams( result );
-		}
-
-		return result;
 	};
 
 	/**
 	 * Get a parameter representation of the current state of the model
 	 *
-	 * @param {boolean} [removeExcludedParams] Remove excluded filters from final result
+	 * @param {boolean} [removeStickyParams] Remove sticky filters from final result
 	 * @return {Object} Parameter representation of the current state of the model
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentParameterState = function ( removeExcludedParams ) {
-		var excludedParams,
-			state = this.getMinimizedParamRepresentation( $.extend(
-				true,
-				{},
-				this.getParametersFromFilters( this.getSelectedState() ),
-				this.getHighlightParameters()
-			) );
+	mw.rcfilters.dm.FiltersViewModel.prototype.getCurrentParameterState = function ( removeStickyParams ) {
+		var state = this.getMinimizedParamRepresentation( $.extend(
+			true,
+			{},
+			this.getParametersFromFilters( this.getSelectedState() ),
+			this.getHighlightParameters()
+		) );
 
-		if ( removeExcludedParams ) {
-			excludedParams = this.getExcludedParams();
-			// Delete all excluded filters
-			$.each( state, function ( param ) {
-				if ( excludedParams.indexOf( param ) > -1 ) {
-					delete state[ param ];
-				}
-			} );
+		if ( removeStickyParams ) {
+			state = this.removeStickyParams( state );
 		}
 
 		return state;
 	};
 
 	/**
-	 * Delete excluded and sticky filters from given object. If object isn't given, output
-	 * the current filter state without the excluded values
+	 * Delete sticky parameters from given object.
 	 *
-	 * @param {Object} [filterState] Filter state
-	 * @return {Object} Filter state without excluded filters
+	 * @param {Object} paramState Parameter state
+	 * @return {Object} Parameter state without sticky parameters
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.removeExcludedFilters = function ( filterState ) {
-		filterState = filterState !== undefined ?
-			$.extend( true, {}, filterState ) :
-			this.getFiltersFromParameters();
-
-		// Remove excluded filters
-		Object.keys( this.getExcludedFiltersState() ).forEach( function ( filterName ) {
-			delete filterState[ filterName ];
-		} );
-
-		// Remove sticky filters
-		Object.keys( this.getStickyFiltersState() ).forEach( function ( filterName ) {
-			delete filterState[ filterName ];
-		} );
-
-		return filterState;
-	};
-	/**
-	 * Delete excluded and sticky parameters from given object. If object isn't given, output
-	 * the current param state without the excluded values
-	 *
-	 * @param {Object} [paramState] Parameter state
-	 * @return {Object} Parameter state without excluded filters
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.removeExcludedParams = function ( paramState ) {
-		paramState = paramState !== undefined ?
-			$.extend( true, {}, paramState ) :
-			this.getCurrentParameterState();
-
-		// Remove excluded filters
-		this.getExcludedParams().forEach( function ( paramName ) {
-			delete paramState[ paramName ];
-		} );
-
-		// Remove sticky filters
+	mw.rcfilters.dm.FiltersViewModel.prototype.removeStickyParams = function ( paramState ) {
 		this.getStickyParams().forEach( function ( paramName ) {
 			delete paramState[ paramName ];
 		} );
 
 		return paramState;
-	};
-
-	/**
-	 * Get the names of all available filters
-	 *
-	 * @return {string[]} An array of filter names
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getFilterNames = function () {
-		return this.getItems().map( function ( item ) { return item.getName(); } );
 	};
 
 	/**
@@ -670,6 +606,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTrigger = function ( view ) {
 		return ( this.views[ view ] && this.views[ view ].trigger ) || '';
 	};
+
 	/**
 	 * Get the value of a specific parameter
 	 *
@@ -683,15 +620,18 @@
 	/**
 	 * Get the current selected state of the filters
 	 *
+	 * @param {boolean} [onlySelected] return an object containing only the filters with a value
 	 * @return {Object} Filters selected state
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedState = function () {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedState = function ( onlySelected ) {
 		var i,
 			items = this.getItems(),
 			result = {};
 
 		for ( i = 0; i < items.length; i++ ) {
-			result[ items[ i ].getName() ] = items[ i ].isSelected();
+			if ( !onlySelected || items[ i ].getValue() ) {
+				result[ items[ i ].getName() ] = items[ i ].getValue();
+			}
 		}
 
 		return result;
@@ -721,37 +661,14 @@
 	/**
 	 * Get an object representing default parameters state
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameter values
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultParams = function () {
 		var result = {};
 
 		// Get default filter state
 		$.each( this.groups, function ( name, model ) {
-			$.extend( true, result, model.getDefaultParams() );
-		} );
-
-		if ( excludeHiddenParams ) {
-			Object.keys( this.getDefaultHiddenParams() ).forEach( function ( paramName ) {
-				delete result[ paramName ];
-			} );
-		}
-
-		return result;
-	};
-
-	/**
-	 * Get an object representing defaults for the hidden parameters state
-	 *
-	 * @return {Object} Default values for hidden parameters
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getDefaultHiddenParams = function () {
-		var result = {};
-
-		// Get default filter state
-		$.each( this.groups, function ( name, model ) {
-			if ( model.isHidden() ) {
+			if ( !model.isSticky() ) {
 				$.extend( true, result, model.getDefaultParams() );
 			}
 		} );
@@ -801,66 +718,6 @@
 	};
 
 	/**
-	 * Get a filter representation of all sticky parameters
-	 *
-	 * @return {Object} Sticky filters values
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getStickyFiltersState = function () {
-		var result = {};
-
-		$.each( this.groups, function ( name, model ) {
-			if ( model.isSticky() ) {
-				$.extend( true, result, model.getSelectedState() );
-			}
-		} );
-
-		return result;
-	};
-
-	/**
-	 * Get a filter representation of all parameters that are marked
-	 * as being excluded from saved query.
-	 *
-	 * @return {Object} Excluded filters values
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getExcludedFiltersState = function () {
-		var result = {};
-
-		$.each( this.groups, function ( name, model ) {
-			if ( model.isExcludedFromSavedQueries() ) {
-				$.extend( true, result, model.getSelectedState() );
-			}
-		} );
-
-		return result;
-	};
-
-	/**
-	 * Get the parameter names that represent filters that are excluded
-	 * from saved queries.
-	 *
-	 * @return {string[]} Parameter names
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getExcludedParams = function () {
-		var result = [];
-
-		$.each( this.groups, function ( name, model ) {
-			if ( model.isExcludedFromSavedQueries() ) {
-				if ( model.isPerGroupRequestParameter() ) {
-					result.push( name );
-				} else {
-					// Each filter is its own param
-					result = result.concat( model.getItems().map( function ( filterItem ) {
-						return filterItem.getParamName();
-					} ) );
-				}
-			}
-		} );
-
-		return result;
-	};
-
-	/**
 	 * Analyze the groups and their filters and output an object representing
 	 * the state of the parameters they represent.
 	 *
@@ -883,7 +740,7 @@
 			// all filters (set to false)
 			this.getItems().forEach( function ( filterItem ) {
 				groupItemDefinition[ filterItem.getGroupName() ] = groupItemDefinition[ filterItem.getGroupName() ] || {};
-				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = !!filterDefinition[ filterItem.getName() ];
+				groupItemDefinition[ filterItem.getGroupName() ][ filterItem.getName() ] = filterItem.coerceValue( filterDefinition[ filterItem.getName() ] );
 			} );
 		}
 
@@ -1023,15 +880,20 @@
 	};
 
 	/**
-	 * Check whether the current filter state is set to all false.
+	 * Check whether no visible filter is selected.
 	 *
-	 * @return {boolean} Current filters are all empty
+	 * Filter groups that are hidden or sticky are not shown in the
+	 * active filters area and therefore not included in this check.
+	 *
+	 * @return {boolean} No visible filter is selected
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.areCurrentFiltersEmpty = function () {
+	mw.rcfilters.dm.FiltersViewModel.prototype.areVisibleFiltersEmpty = function () {
 		// Check if there are either any selected items or any items
 		// that have highlight enabled
 		return !this.getItems().some( function ( filterItem ) {
-			return !filterItem.getGroupModel().isHidden() && ( filterItem.isSelected() || filterItem.isHighlighted() );
+			var visible = !filterItem.getGroupModel().isSticky() && !filterItem.getGroupModel().isHidden(),
+				active = ( filterItem.isSelected() || filterItem.isHighlighted() );
+			return visible && active;
 		} );
 	};
 
@@ -1232,6 +1094,7 @@
 
 		return allSelected;
 	};
+
 	/**
 	 * Switch the current view
 	 *
@@ -1264,15 +1127,6 @@
 		viewName = viewName || this.getCurrentView();
 
 		return this.views[ viewName ] && this.views[ viewName ].title;
-	};
-
-	/**
-	 * Get an array of all available view names
-	 *
-	 * @return {string} Available view names
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getAvailableViews = function () {
-		return Object.keys( this.views );
 	};
 
 	/**

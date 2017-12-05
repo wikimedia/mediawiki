@@ -576,7 +576,7 @@
 	 * Respond to click event on the reset button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onResetButtonClick = function () {
-		if ( this.model.areCurrentFiltersEmpty() ) {
+		if ( this.model.areVisibleFiltersEmpty() ) {
 			// Reset to default filters
 			this.controller.resetToDefaults();
 		} else {
@@ -590,7 +590,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.reevaluateResetRestoreState = function () {
 		var defaultsAreEmpty = this.controller.areDefaultsEmpty(),
-			currFiltersAreEmpty = this.model.areCurrentFiltersEmpty(),
+			currFiltersAreEmpty = this.model.areVisibleFiltersEmpty(),
 			hideResetButton = currFiltersAreEmpty && defaultsAreEmpty;
 
 		this.resetButton.setIcon(
