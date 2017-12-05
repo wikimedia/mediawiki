@@ -24,20 +24,9 @@
 
 use Wikimedia\Rdbms\DBConnectionError;
 
-require __DIR__ . '/../commandLine.inc';
+require_once __DIR__ . '/../Maintenance.php';
 
-if ( count( $args ) < 1 ) {
-	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";
-	echo "Adds blobs from a given ES cluster to the blob_tracking table\n";
-	echo "Automatically deletes the tracking table and starts from the start again when restarted.\n";
-
-	exit( 1 );
-}
-$tracker = new TrackBlobs( $args );
-$tracker->run();
-echo "All done.\n";
-
-class TrackBlobs {
+class TrackBlobs extends Maintenance {
 	public $clusters, $textClause;
 	public $doBlobOrphans;
 	public $trackedBlobs = [];
@@ -45,19 +34,28 @@ class TrackBlobs {
 	public $batchSize = 1000;
 	public $reportingInterval = 10;
 
-	function __construct( $clusters ) {
-		$this->clusters = $clusters;
+	public function __construct() {
+		parent::__construct();
+		$this->addDescription(
+			'Adds blobs from a given external storage cluster to the blob_tracking table'
+		);
+		$this->addArg( 'cluster', 'ES cluster to process', true );
+		$this->addArg( 'cluster...', 'Additional ES clusters to process', false );
+		$this->setBatchSize( 1000 );
+	}
+
+	public function execute() {
+		$this->clusters = $this->mArgs;
+
 		if ( extension_loaded( 'gmp' ) ) {
 			$this->doBlobOrphans = true;
-			foreach ( $clusters as $cluster ) {
+			foreach ( $this->clusters as $cluster ) {
 				$this->trackedBlobs[$cluster] = gmp_init( 0 );
 			}
 		} else {
-			echo "Warning: the gmp extension is needed to find orphan blobs\n";
+			$this->output( "Warning: the gmp extension is needed to find orphan blobs\n" );
 		}
-	}
 
-	function run() {
 		$this->checkIntegrity();
 		$this->initTrackingTable();
 		$this->trackRevisions();
@@ -67,48 +65,41 @@ class TrackBlobs {
 		}
 	}
 
-	function checkIntegrity() {
-		echo "Doing integrity check...\n";
+	private function checkIntegrity() {
+		$this->output( "Doing integrity check...\n" );
 		$dbr = wfGetDB( DB_REPLICA );
 
-		// Scan for HistoryBlobStub objects in the text table (T22757)
+		// Scan for objects in the text table
 
-		$exists = $dbr->selectField( 'text', 1,
-			'old_flags LIKE \'%object%\' AND old_flags NOT LIKE \'%external%\' ' .
-			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
+		$exists = $dbr->selectField(
+			'text',
+			'1',
+			[ 'old_flags' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString() ) ],
 			__METHOD__
 		);
 
 		if ( $exists ) {
-			echo "Integrity check failed: found HistoryBlobStub objects in your text table.\n" .
-				"This script could destroy these objects if it continued. Run resolveStubs.php\n" .
-				"to fix this.\n";
-			exit( 1 );
+			$this->fatalError( "Integrity check failed: found objects in your text table." .
+				" Run migrateHistoryBlobs.php to fix this." );
 		}
 
-		// Scan the archive table for HistoryBlobStub objects or external flags (T24624)
-		$flags = $dbr->selectField( 'archive', 'ar_flags',
-			'ar_flags LIKE \'%external%\' OR (' .
-			'ar_flags LIKE \'%object%\' ' .
-			'AND LOWER(CONVERT(LEFT(ar_text,22) USING latin1)) = \'o:15:"historyblobstub"\' )',
+		// Scan the archive table for rows without ar_text_id
+		$exists = $dbr->selectField(
+			'archive',
+			'1',
+			[ 'ar_text_id' => null ],
 			__METHOD__
 		);
 
-		if ( strpos( $flags, 'external' ) !== false ) {
-			echo "Integrity check failed: found external storage pointers in your archive table.\n" .
-				"Run normaliseArchiveTable.php to fix this.\n";
-			exit( 1 );
-		} elseif ( $flags ) {
-			echo "Integrity check failed: found HistoryBlobStub objects in your archive table.\n" .
-				"These objects are probably already broken, continuing would make them\n" .
-				"unrecoverable. Run \"normaliseArchiveTable.php --fix-cgz-bug\" to fix this.\n";
-			exit( 1 );
+		if ( $exists ) {
+			$this->fatalError( "Integrity check failed: found text in your archive table." .
+				" Run migrateArchiveText.php to fix this." );
 		}
 
-		echo "Integrity check OK\n";
+		$this->output( "Integrity check OK\n" );
 	}
 
-	function initTrackingTable() {
+	private function initTrackingTable() {
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $dbw->tableExists( 'blob_tracking' ) ) {
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ) );
@@ -117,7 +108,7 @@ class TrackBlobs {
 		$dbw->sourceFile( __DIR__ . '/blob_tracking.sql' );
 	}
 
-	function getTextClause() {
+	private function getTextClause() {
 		if ( !$this->textClause ) {
 			$dbr = wfGetDB( DB_REPLICA );
 			$this->textClause = '';
@@ -132,7 +123,7 @@ class TrackBlobs {
 		return $this->textClause;
 	}
 
-	function interpretPointer( $text ) {
+	private function interpretPointer( $text ) {
 		if ( !preg_match( '!^DB://(\w+)/(\d+)(?:/([0-9a-fA-F]+)|)$!', $text, $m ) ) {
 			return false;
 		}
@@ -147,7 +138,7 @@ class TrackBlobs {
 	/**
 	 *  Scan the revision table for rows stored in the specified clusters
 	 */
-	function trackRevisions() {
+	private function trackRevisions() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -157,7 +148,7 @@ class TrackBlobs {
 		$batchesDone = 0;
 		$rowsInserted = 0;
 
-		echo "Finding revisions...\n";
+		$this->output( "Finding revisions...\n" );
 
 		while ( true ) {
 			$res = $dbr->select( [ 'revision', 'text' ],
@@ -183,11 +174,11 @@ class TrackBlobs {
 				$startId = $row->rev_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
-					echo "Invalid DB:// URL in rev_id {$row->rev_id}\n";
+					$this->output( "Invalid DB:// URL in rev_id {$row->rev_id}\n" );
 					continue;
 				}
 				if ( !in_array( $info['cluster'], $this->clusters ) ) {
-					echo "Invalid cluster returned in SQL query: {$info['cluster']}\n";
+					$this->output( "Invalid cluster returned in SQL query: {$info['cluster']}\n" );
 					continue;
 				}
 				$insertBatch[] = [
@@ -208,11 +199,11 @@ class TrackBlobs {
 			++$batchesDone;
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
-				echo "$startId / $endId\n";
+				$this->output( "$startId / $endId\n" );
 				wfWaitForSlaves();
 			}
 		}
-		echo "Found $rowsInserted revisions\n";
+		$this->output( "Found $rowsInserted revisions\n" );
 	}
 
 	/**
@@ -225,7 +216,9 @@ class TrackBlobs {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
-		$dbr->masterPosWait( $pos, 100000 );
+		if ( $pos !== false ) {
+			$dbr->masterPosWait( $pos, 100000 );
+		}
 
 		$textClause = $this->getTextClause( $this->clusters );
 		$startId = 0;
@@ -233,7 +226,7 @@ class TrackBlobs {
 		$rowsInserted = 0;
 		$batchesDone = 0;
 
-		echo "Finding orphan text...\n";
+		$this->output( "Finding orphan text...\n" );
 
 		# Scan the text table for orphan text
 		while ( true ) {
@@ -266,11 +259,11 @@ class TrackBlobs {
 				$startId = $row->old_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
-					echo "Invalid DB:// URL in old_id {$row->old_id}\n";
+					$this->error( "Invalid DB:// URL in old_id {$row->old_id}\n" );
 					continue;
 				}
 				if ( !in_array( $info['cluster'], $this->clusters ) ) {
-					echo "Invalid cluster returned in SQL query\n";
+					$this->error( "Invalid cluster returned in SQL query\n" );
 					continue;
 				}
 
@@ -292,11 +285,11 @@ class TrackBlobs {
 			++$batchesDone;
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
-				echo "$startId / $endId\n";
+				$this->output( "$startId / $endId\n" );
 				wfWaitForSlaves();
 			}
 		}
-		echo "Found $rowsInserted orphan text rows\n";
+		$this->output( "Found $rowsInserted orphan text rows\n" );
 	}
 
 	/**
@@ -308,7 +301,7 @@ class TrackBlobs {
 	 */
 	function findOrphanBlobs() {
 		if ( !extension_loaded( 'gmp' ) ) {
-			echo "Can't find orphan blobs, need bitfield support provided by GMP.\n";
+			$this->error( "Can't find orphan blobs, need bitfield support provided by GMP.\n" );
 
 			return;
 		}
@@ -316,15 +309,15 @@ class TrackBlobs {
 		$dbw = wfGetDB( DB_MASTER );
 
 		foreach ( $this->clusters as $cluster ) {
-			echo "Searching for orphan blobs in $cluster...\n";
+			$this->output( "Searching for orphan blobs in $cluster...\n" );
 			$lb = wfGetLBFactory()->getExternalLB( $cluster );
 			try {
 				$extDB = $lb->getConnection( DB_REPLICA );
 			} catch ( DBConnectionError $e ) {
 				if ( strpos( $e->error, 'Unknown database' ) !== false ) {
-					echo "No database on $cluster\n";
+					$this->error( "No database on $cluster\n" );
 				} else {
-					echo "Error on $cluster: " . $e->getMessage() . "\n";
+					$this->error( "Error on $cluster: " . $e->getMessage() . "\n" );
 				}
 				continue;
 			}
@@ -333,7 +326,7 @@ class TrackBlobs {
 				$table = 'blobs';
 			}
 			if ( !$extDB->tableExists( $table ) ) {
-				echo "No blobs table on cluster $cluster\n";
+				$this->error( "No blobs table on cluster $cluster\n" );
 				continue;
 			}
 			$startId = 0;
@@ -362,7 +355,7 @@ class TrackBlobs {
 				++$batchesDone;
 				if ( $batchesDone >= $this->reportingInterval ) {
 					$batchesDone = 0;
-					echo "$startId / $endId\n";
+					$this->output( "$startId / $endId\n" );
 				}
 			}
 
@@ -394,7 +387,10 @@ class TrackBlobs {
 			if ( $insertBatch ) {
 				$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
 			}
-			echo "Found $numOrphans orphan(s) in $cluster\n";
+			$this->output( "Found $numOrphans orphan(s) in $cluster\n" );
 		}
 	}
 }
+
+$maintClass = 'TrackBlobs';
+require_once RUN_MAINTENANCE_IF_MAIN;
