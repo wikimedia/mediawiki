@@ -14,7 +14,7 @@
 			return;
 		}
 		$tables.each( function () {
-			var $row, $col, $link,
+			var $link,
 				expandText = mw.msg( 'metadata-expand' ),
 				collapseText = mw.msg( 'metadata-collapse' ),
 				$table = $( this );
@@ -48,7 +48,9 @@
 			);
 		} );
 
-		// And collapse!
+		// Initial collapsed state
+		// (For back-compat with cached HTML from before ImagePage.php
+		// did this by default)
 		$table.addClass( 'collapsed' );
 	} );
 
