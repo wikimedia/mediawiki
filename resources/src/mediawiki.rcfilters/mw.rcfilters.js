@@ -44,9 +44,6 @@
 
 				return result;
 			}
-		},
-		featureFlags: {
-			liveUpdate: mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' )
 		}
 	};
 }( mediaWiki ) );
