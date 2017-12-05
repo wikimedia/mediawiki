@@ -87,6 +87,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $purgeChannel;
 	/** @var EventRelayer Bus that handles purge broadcasts */
 	protected $purgeRelayer;
+	/** @bar bool Whether to use mcrouter key prefixing for routing */
+	protected $mcrouterAware;
+	/** @var string Physical region for mcrouter use */
+	protected $region;
+	/** @var string Cache cluster name for mcrouter use */
+	protected $cluster;
 	/** @var LoggerInterface */
 	protected $logger;
 	/** @var StatsdDataFactoryInterface */
@@ -200,6 +206,16 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *       callback supplied by the getWithSetCallback() caller. The result will be saved
 	 *       as normal. The handler is expected to call the WAN cache callback at an opportune
 	 *       time (e.g. HTTP post-send), though generally within a few 100ms. [optional]
+	 *   - region: the current physical region. This is required when using mcrouter as the
+	 *       backing store proxy. [optional]
+	 *   - cluster: name of the cache cluster used by this WAN cache. The name must be the
+	 *       same on all datacenters; the ("region","cluster") tuple is what distinguishes
+	 *       the counterpart cache clusters that reside in each datacenter. The contents of
+	 *       https://github.com/facebook/mcrouter/wiki/Config-Files give background on this.
+	 *       This is required when using mcrouter as the backing store proxy. [optional]
+	 *   - mcrouterAware: set as true if mcrouter is the backing store proxy and mcrouter
+	 *       is configured to interpret /<region>/<cluster>/ key prefixes as routes. This
+	 *       requires that "region" and "cluster" are both set above. [optional]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -209,6 +225,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->purgeRelayer = isset( $params['relayers']['purge'] )
 			? $params['relayers']['purge']
 			: new EventRelayerNull( [] );
+		$this->region = isset( $params['region'] ) ? $params['region'] : 'main';
+		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : 'wan-main';
+		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
+
 		$this->setLogger( isset( $params['logger'] ) ? $params['logger'] : new NullLogger() );
 		$this->stats = isset( $params['stats'] ) ? $params['stats'] : new NullStatsdDataFactory();
 		$this->asyncHandler = isset( $params['asyncHandler'] ) ? $params['asyncHandler'] : null;
@@ -1764,10 +1784,11 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	protected function relayDelete( $key ) {
-		if ( $this->purgeRelayer instanceof EventRelayerNull ) {
-			// This handles the mcrouter and the single-DC case
-			$ok = $this->cache->delete( $key );
-		} else {
+		if ( $this->mcrouterAware ) {
+			// See https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
+			// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
+			$ok = $this->cache->delete( "/*/{$this->cluster}/{$key}" );
+		} elseif ( !( $this->purgeRelayer instanceof EventRelayerNull ) ) {
 			$event = $this->cache->modifySimpleRelayEvent( [
 				'cmd' => 'delete',
 				'key' => $key,
@@ -1777,6 +1798,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			if ( !$ok ) {
 				$this->lastRelayError = self::ERR_RELAY;
 			}
+		} else {
+			// Some other proxy handles broadcasting or there is only one datacenter
+			$ok = $this->cache->delete( $key );
 		}
 
 		return $ok;
