@@ -21,106 +21,102 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-define( 'REPORTING_INTERVAL', 1 );
+require_once __DIR__ . '/../Maintenance.php';
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	$optionsWithArgs = [ 'e', 's' ];
-	require_once __DIR__ . '/../commandLine.inc';
-	require_once 'resolveStubs.php';
+/**
+ * Move revisions' text to external storage
+ * @ingroup Maintenance ExternalStorage
+ */
+class MoveToExternal extends Maintenance {
+	const REPORTING_INTERVAL = 1;
 
-	$fname = 'moveToExternal';
-
-	if ( !isset( $args[0] ) ) {
-		print "Usage: php moveToExternal.php [-s <startid>] [-e <endid>] <cluster>\n";
-		exit;
+	public function __construct() {
+		parent::__construct();
+		$this->addDescription( 'Move revisions\' text to external storage' );
+		$this->addOption( 's', 'Starting revision ID', false, true );
+		$this->addOption( 'e', 'Starting revision ID', false, true );
+		$this->addOption( 'cluster', 'ExternalStore cluster', true, true );
+		$this->setBatchSize( 1000 );
 	}
 
-	$cluster = $args[0];
-	$dbw = wfGetDB( DB_MASTER );
+	public function execute() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_REPLICA );
 
-	if ( isset( $options['e'] ) ) {
-		$maxID = $options['e'];
-	} else {
-		$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
-	}
-	$minID = isset( $options['s'] ) ? $options['s'] : 1;
+		$minID = $this->getOption( 's', 1 );
+		if ( $this->hasOption( 'e' ) ) {
+			$maxID = $this->getOption( 'e' );
+		} else {
+			$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+		}
+		$cluster = $this->getOption( 'cluster' );
 
-	moveToExternal( $cluster, $maxID, $minID );
-}
-
-function moveToExternal( $cluster, $maxID, $minID = 1 ) {
-	$fname = 'moveToExternal';
-	$dbw = wfGetDB( DB_MASTER );
-	$dbr = wfGetDB( DB_REPLICA );
-
-	$count = $maxID - $minID + 1;
-	$blockSize = 1000;
-	$numBlocks = ceil( $count / $blockSize );
-	print "Moving text rows from $minID to $maxID to external storage\n";
-	$ext = new ExternalStoreDB;
-	$numMoved = 0;
-
-	for ( $block = 0; $block < $numBlocks; $block++ ) {
-		$blockStart = $block * $blockSize + $minID;
-		$blockEnd = $blockStart + $blockSize - 1;
-
-		if ( !( $block % REPORTING_INTERVAL ) ) {
-			print "oldid=$blockStart, moved=$numMoved\n";
-			wfWaitForSlaves();
+		$exists = $dbr->selectField(
+			'text',
+			'1',
+			[
+				"old_id BETWEEN $minID AND $maxID",
+				'old_flags' . $dbr->buildLike( $dbr->anyString(), 'object', $dbr->anyString() ),
+			],
+			__METHOD__
+		);
+		if ( $exists ) {
+			$this->fatalError( "Integrity check failed: found objects in your text table." .
+				" Run migrateHistoryBlobs.php to fix this." );
 		}
 
-		$res = $dbr->select( 'text', [ 'old_id', 'old_flags', 'old_text' ],
-			[
-				"old_id BETWEEN $blockStart AND $blockEnd",
-				'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
-			], $fname );
-		foreach ( $res as $row ) {
-			# Resolve stubs
-			$text = $row->old_text;
-			$id = $row->old_id;
-			if ( $row->old_flags === '' ) {
-				$flags = 'external';
-			} else {
-				$flags = "{$row->old_flags},external";
+		$count = $maxID - $minID + 1;
+		$blockSize = $this->getBatchSize();
+		$numBlocks = ceil( $count / $blockSize );
+		$this->output( "Moving text rows from $minID to $maxID to external storage\n" );
+		$ext = new ExternalStoreDB;
+		$numMoved = 0;
+
+		for ( $block = 0; $block < $numBlocks; $block++ ) {
+			$blockStart = $block * $blockSize + $minID;
+			$blockEnd = $blockStart + $blockSize - 1;
+
+			if ( !( $block % self::REPORTING_INTERVAL ) ) {
+				$this->output( "oldid=$blockStart, moved=$numMoved\n" );
+				wfWaitForSlaves();
 			}
 
-			if ( strpos( $flags, 'object' ) !== false ) {
-				$obj = unserialize( $text );
-				$className = strtolower( get_class( $obj ) );
-				if ( $className == 'historyblobstub' ) {
-					# resolveStub( $id, $row->old_text, $row->old_flags );
-					# $numStubs++;
-					continue;
-				} elseif ( $className == 'historyblobcurstub' ) {
-					$text = gzdeflate( $obj->getText() );
-					$flags = 'utf-8,gzip,external';
-				} elseif ( $className == 'concatenatedgziphistoryblob' ) {
-					// Do nothing
+			$res = $dbr->select( 'text', [ 'old_id', 'old_flags', 'old_text' ],
+				[
+					"old_id BETWEEN $blockStart AND $blockEnd",
+					'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
+				], __METHOD__ );
+			foreach ( $res as $row ) {
+				# Resolve stubs
+				$text = $row->old_text;
+				$id = $row->old_id;
+				if ( $row->old_flags === '' ) {
+					$flags = 'external';
 				} else {
-					print "Warning: unrecognised object class \"$className\"\n";
+					$flags = "{$row->old_flags},external";
+				}
+
+				if ( strlen( $text ) < 100 ) {
+					// Don't move tiny revisions
 					continue;
 				}
-			} else {
-				$className = false;
-			}
 
-			if ( strlen( $text ) < 100 && $className === false ) {
-				// Don't move tiny revisions
-				continue;
-			}
+				# $this->output( "Storing "  . strlen( $text ) . " bytes to $url\n" );
+				# $this->output( "old_id=$id\n" );
 
-			# print "Storing "  . strlen( $text ) . " bytes to $url\n";
-			# print "old_id=$id\n";
-
-			$url = $ext->store( $cluster, $text );
-			if ( !$url ) {
-				print "Error writing to external storage\n";
-				exit;
+				$url = $ext->store( $cluster, $text );
+				if ( !$url ) {
+					$this->fatalError( "Error writing to external storage\n" );
+				}
+				$dbw->update( 'text',
+					[ 'old_flags' => $flags, 'old_text' => $url ],
+					[ 'old_id' => $id ], __METHOD__ );
+				$numMoved++;
 			}
-			$dbw->update( 'text',
-				[ 'old_flags' => $flags, 'old_text' => $url ],
-				[ 'old_id' => $id ], $fname );
-			$numMoved++;
 		}
 	}
+
 }
+
+$maintClass = 'MoveToExternal';
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -15,6 +15,11 @@ production.
   $wgJpegQuality (default 80). This aligns the quality to what ImageMagick uses.
 * $wgExperimentalHtmlIds, deprecated since 1.30, has been removed. The
   'html5-legacy' value for $wgFragmentMode is no longer accepted.
+* The HistoryBlob classes, and the corresponding 'object' flag in the text
+  table, have been deprecated. If you've used the core HistoryBlob classes in
+  the past, you'll want to run maintenance/storage/migrateHistoryBlobs.php. If
+  you've done something else with this functionality, you'll want to make other
+  arrangements.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
@@ -87,6 +92,19 @@ because of Phabricator reports.
   of queueing style modules as well.
 * OutputPage::addModuleScripts() and ParserOutput::addModuleScripts are
   deprecated. Use addModules() instead.
+* The 'object' flag in the text table has been deprecated, as have the
+  following classes designed for use with that feature:
+  * HistoryBlob
+  * ConcatenatedGzipHistoryBlob
+  * HistoryBlobStub
+  * HistoryBlobCurStub
+  * DiffHistoryBlob
+* The maintenance script maintenance/storage/compressOld.php has been removed.
+  Use maintenance/storage/recompressTracked.php instead.
+* The maintenance script maintenance/storage/fixT22757.php has been removed. If
+  you were affected by that bug, you should have run it years ago.
+* The maintenance script maintenance/storage/resolveStubs.php has been removed.
+  Use maintenance/storage/migrateHistoryBlobs.php instead.
 
 === Other changes in 1.32 ===
 * …
