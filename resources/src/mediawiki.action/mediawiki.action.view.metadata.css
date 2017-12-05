@@ -13,7 +13,7 @@
 }
 
 @media print {
-	.mw_metadata .mw-metadata-show-hide-extended {
+	.mw-metadata-show-hide-extended {
 		display: none;
 	}
 }
