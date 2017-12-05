@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\ExternalStore\MultiContentBlob;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
@@ -53,13 +55,15 @@ class DumpRev extends Maintenance {
 			if ( preg_match( '!^DB://(\w+)/(\w+)/(\w+)$!', $text, $m ) ) {
 				$es = ExternalStore::getStoreObject( 'DB' );
 				$blob = $es->fetchBlob( $m[1], $m[2], $m[3] );
-				if ( strtolower( get_class( $blob ) ) == 'concatenatedgziphistoryblob' ) {
-					$this->output( "Found external CGZ\n" );
-					$blob->uncompress();
-					$this->output( "Items: (" . implode( ', ', array_keys( $blob->mItems ) ) . ")\n" );
+				if ( $blob instanceof HistoryBlob || $blob instanceof MultiContentBlob ) {
+					$this->output( "Found external " . get_class( $blob ) . "\n" );
+					if ( $blob instanceof ConcatenatedGzipHistoryBlob ) {
+						$this->output( "Items: (" . implode( ', ', array_keys( $blob->mItems ) ) . ")\n" );
+					}
 					$text = $blob->getItem( $m[3] );
 				} else {
-					$this->output( "CGZ expected at $text, got " . gettype( $blob ) . "\n" );
+					$type = is_object( $blob ) ? get_class( $blob ) : gettype( $blob );
+					$this->output( "HistoryBlob or MultiContentBlob expected at $text, got $type\n" );
 					$text = $blob;
 				}
 			} else {

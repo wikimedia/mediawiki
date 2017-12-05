@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\ExternalStore\MultiContentBlob;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
@@ -75,7 +76,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$ret = [];
 		foreach ( $batched as $cluster => $batchByCluster ) {
 			$res = $this->batchFetchBlobs( $cluster, $batchByCluster );
-			/** @var HistoryBlob $blob */
+			/** @var HistoryBlob|MultiContentBlob $blob */
 			foreach ( $res as $id => $blob ) {
 				foreach ( $batchByCluster[$id] as $itemID ) {
 					$url = $inverseUrlMap[$cluster][$id][$itemID];
@@ -182,7 +183,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster
 	 * @param string $id
 	 * @param string $itemID
-	 * @return HistoryBlob|bool Returns false if missing
+	 * @return string|HistoryBlob|MultiContentBlob|bool Returns false if missing
 	 */
 	private function fetchBlob( $cluster, $id, $itemID ) {
 		/**
@@ -220,8 +221,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			}
 		}
 		if ( $itemID !== false && $ret !== false ) {
-			// Unserialise object; caller extracts item
-			$ret = unserialize( $ret );
+			// Multi-content storage, caller extracts item
+			if ( preg_match( '/^O:\d+:"/', $ret ) ) {
+				// Deprecated serialized object
+				$ret = unserialize( $ret );
+			} else {
+				// MultiContentBlob subclass
+				$ret = MultiContentBlob::decode( $ret );
+			}
 		}
 
 		$externalBlobCache = [ $cacheID => $ret ];
@@ -286,7 +293,13 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				$ret[$id] = $row->blob_text;
 			} else {
 				// multi result stored per blob
-				$ret[$id] = unserialize( $row->blob_text );
+				if ( preg_match( '/^O:\d+:"/', $row->blob_text ) ) {
+					// Deprecated serialized object
+					$ret[$id] = unserialize( $row->blob_text );
+				} else {
+					// MultiContentBlob subclass
+					$ret[$id] = MultiContentBlob::decode( $row->blob_text );
+				}
 			}
 		}
 	}

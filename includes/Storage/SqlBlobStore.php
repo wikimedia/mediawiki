@@ -492,7 +492,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		}
 
 		if ( in_array( 'object', $blobFlags ) ) {
-			# Generic compressed storage
+			# Deprecated generic compressed storage
 			$obj = unserialize( $blob );
 			if ( !is_object( $obj ) ) {
 				// Invalid object
