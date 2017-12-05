@@ -78,16 +78,19 @@
 					separator: ';',
 					fullCoverage: true,
 					filters: items
-				},
-				{
-					name: 'invertGroup',
-					type: 'boolean',
-					hidden: true,
-					filters: [ {
-						name: 'invert',
-						'default': '0'
-					} ]
 				} ]
+			};
+			views.invert = {
+				groups: [
+					{
+						name: 'invertGroup',
+						type: 'boolean',
+						hidden: true,
+						filters: [ {
+							name: 'invert',
+							'default': '0'
+						} ]
+					} ]
 			};
 		}
 		if ( tagList ) {
@@ -512,7 +515,6 @@
 	 */
 	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
 		this.filtersModel.toggleInvertedNamespaces();
-
 		if (
 			this.filtersModel.getFiltersByView( 'namespaces' ).filter(
 				function ( filterItem ) { return filterItem.isSelected(); }
@@ -520,6 +522,8 @@
 		) {
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL();
 		}
 	};
 
