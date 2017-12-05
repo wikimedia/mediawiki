@@ -31,14 +31,6 @@ exports.config = {
 		password :
 		process.env.MEDIAWIKI_PASSWORD,
 	//
-	// ======
-	// Sauce Labs
-	// ======
-	//
-	services: [ 'sauce' ],
-	user: process.env.SAUCE_USERNAME,
-	key: process.env.SAUCE_ACCESS_KEY,
-	//
 	// ==================
 	// Specify Test Files
 	// ==================
@@ -168,7 +160,7 @@ exports.config = {
 	// Test reporter for stdout.
 	// The only one supported by default is 'dot'
 	// see also: http://webdriver.io/guide/testrunner/reporters.html
-	reporters: [ 'spec' ],
+	reporters: [ 'dot' ],
 	//
 	// Options to be passed to Mocha.
 	// See the full list at http://mochajs.org/
