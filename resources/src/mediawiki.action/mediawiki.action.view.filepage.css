@@ -111,3 +111,9 @@
 	padding-left: 5px;
 	margin: 0;
 }
+
+.client-js .mw_metadata.collapsed .mw-metadata-collapsible,
+/* Keep tr.collapsible for back-compat with cached HTML */
+.client-js .mw_metadata.collapsed tr.collapsable {
+	display: none;
+}
