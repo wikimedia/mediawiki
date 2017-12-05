@@ -1492,7 +1492,6 @@ return [
 		],
 	],
 	'mediawiki.action.view.metadata' => [
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => [
 			'metadata-expand',
