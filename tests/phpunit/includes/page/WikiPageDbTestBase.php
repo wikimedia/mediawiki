@@ -1303,4 +1303,396 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 	}
 
+	private function getRow( array $overrides = [] ) {
+		$row = [
+			'page_id' => '44',
+			'page_len' => '76',
+			'page_is_redirect' => '1',
+			'page_latest' => '99',
+			'page_namespace' => '3',
+			'page_title' => 'JaJaTitle',
+			'page_restrictions' => 'edit=autoconfirmed,sysop:move=sysop',
+			'page_touched' => '20120101020202',
+			'page_links_updated' => '20140101020202',
+		];
+		foreach ( $overrides as $key => $value ) {
+			$row[$key] = $value;
+		}
+		return (object)$row;
+	}
+
+	public function provideNewFromRowSuccess() {
+		yield 'basic row' => [
+			$this->getRow(),
+			function ( WikiPage $wikiPage, self $test ) {
+				$test->assertSame( 44, $wikiPage->getId() );
+				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
+				$test->assertTrue( $wikiPage->isRedirect() );
+				$test->assertSame( 99, $wikiPage->getLatest() );
+				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
+				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
+				$test->assertSame(
+					[
+						'edit' => [ 'autoconfirmed', 'sysop' ],
+						'move' => [ 'sysop' ],
+					],
+					$wikiPage->getTitle()->getAllRestrictions()
+				);
+				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
+				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
+			}
+		];
+		yield 'different timestamp formats' => [
+			$this->getRow( [
+				'page_touched' => '2012-01-01 02:02:02',
+				'page_links_updated' => '2014-01-01 02:02:02',
+			] ),
+			function ( WikiPage $wikiPage, self $test ) {
+				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
+				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
+			}
+		];
+		yield 'no restrictions' => [
+			$this->getRow( [
+				'page_restrictions' => '',
+			] ),
+			function ( WikiPage $wikiPage, self $test ) {
+			$test->assertSame(
+				[
+					'edit' => [],
+					'move' => [],
+				],
+				$wikiPage->getTitle()->getAllRestrictions()
+			);
+			}
+		];
+		yield 'not redirect' => [
+			$this->getRow( [
+				'page_is_redirect' => '0',
+			] ),
+			function ( WikiPage $wikiPage, self $test ) {
+				$test->assertFalse( $wikiPage->isRedirect() );
+			}
+		];
+	}
+
+	/**
+	 * @covers WikiPage::newFromRow
+	 * @covers WikiPage::loadFromRow
+	 * @dataProvider provideNewFromRowSuccess
+	 *
+	 * @param object $row
+	 * @param callable $assertions
+	 */
+	public function testNewFromRow( $row, $assertions ) {
+		$page = WikiPage::newFromRow( $row, 'fromdb' );
+		$assertions( $page, $this );
+	}
+
+	public function provideTestNewFromId_returnsNullOnBadPageId() {
+		yield[ 0 ];
+		yield[ -11 ];
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 * @dataProvider provideTestNewFromId_returnsNullOnBadPageId
+	 */
+	public function testNewFromId_returnsNullOnBadPageId( $pageId ) {
+		$this->assertNull( WikiPage::newFromID( $pageId ) );
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 */
+	public function testNewFromId_appearsToFetchCorrectRow() {
+		$createdPage = $this->createPage( __METHOD__, 'Xsfaij09' );
+		$fetchedPage = WikiPage::newFromID( $createdPage->getId() );
+		$this->assertSame( $createdPage->getId(), $fetchedPage->getId() );
+		$this->assertEquals(
+			$createdPage->getContent()->getNativeData(),
+			$fetchedPage->getContent()->getNativeData()
+		);
+	}
+
+	/**
+	 * @covers WikiPage::newFromID
+	 */
+	public function testNewFromId_returnsNullOnNonExistingId() {
+		$this->assertNull( WikiPage::newFromID( 73574757437437743743 ) );
+	}
+
+	public function provideTestInsertProtectNullRevision() {
+		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		yield [
+			'goat-message-key',
+			[ 'edit' => 'sysop' ],
+			[ 'edit' => '20200101040404' ],
+			false,
+			'Goat Reason',
+			true,
+			'(goat-message-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
+		];
+		yield [
+			'goat-key',
+			[ 'edit' => 'sysop', 'move' => 'something' ],
+			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
+			false,
+			'Goat Goat',
+			true,
+			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
+		];
+		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+	}
+
+	/**
+	 * @dataProvider provideTestInsertProtectNullRevision
+	 * @covers WikiPge::insertProtectNullRevision
+	 * @covers WikiPge::protectDescription
+	 *
+	 * @param string $revCommentMsg
+	 * @param array $limit
+	 * @param array $expiry
+	 * @param bool $cascade
+	 * @param string $reason
+	 * @param bool|null $user true if the test sysop should be used, or null
+	 * @param string $expectedComment
+	 */
+	public function testInsertProtectNullRevision(
+		$revCommentMsg,
+		array $limit,
+		array $expiry,
+		$cascade,
+		$reason,
+		$user,
+		$expectedComment
+	) {
+		$this->setContentLang( 'qqx' );
+
+		$page = $this->createPage( __METHOD__, 'Goat' );
+
+		$user = $user === null ? $user : $this->getTestSysop()->getUser();
+
+		$result = $page->insertProtectNullRevision(
+			$revCommentMsg,
+			$limit,
+			$expiry,
+			$cascade,
+			$reason,
+			$user
+		);
+
+		$this->assertTrue( $result instanceof Revision );
+		$this->assertSame( $expectedComment, $result->getComment( Revision::RAW ) );
+	}
+
+	/**
+	 * @covers WikiPage::updateRevisionOn
+	 */
+	public function testUpdateRevisionOn_existingPage() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateRevisionOn( $this->db, $revision );
+		$this->assertTrue( $result );
+		$this->assertSame( 9989, $page->getLatest() );
+		$this->assertEquals( $revision, $page->getRevision() );
+	}
+
+	/**
+	 * @covers WikiPage::updateRevisionOn
+	 */
+	public function testUpdateRevisionOn_NonExistingPage() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$page->doDeleteArticle( 'reason' );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateRevisionOn( $this->db, $revision );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers WikiPage::updateIfNewerOn
+	 */
+	public function testUpdateIfNewerOn_olderRevision() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$initialRevision = $page->getRevision();
+
+		$olderTimeStamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) - 1
+		);
+
+		$olderRevison = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => $olderTimeStamp,
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$result = $page->updateIfNewerOn( $this->db, $olderRevison );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers WikiPage::updateIfNewerOn
+	 */
+	public function testUpdateIfNewerOn_newerRevision() {
+		$user = $this->getTestSysop()->getUser();
+		$page = $this->createPage( __METHOD__, 'StartText' );
+		$initialRevision = $page->getRevision();
+
+		$newerTimeStamp = wfTimestamp(
+			TS_MW,
+			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) + 1
+		);
+
+		$newerRevision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . '-text',
+				'len' => strlen( __METHOD__ . '-text' ),
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => $newerTimeStamp,
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+		$result = $page->updateIfNewerOn( $this->db, $newerRevision );
+		$this->assertTrue( $result );
+	}
+
+	/**
+	 * @covers WikiPage::insertOn
+	 */
+	public function testInsertOn() {
+		$title = Title::newFromText( __METHOD__ );
+		$page = new WikiPage( $title );
+
+		$startTimeStamp = wfTimestampNow();
+		$result = $page->insertOn( $this->db );
+		$endTimeStamp = wfTimestampNow();
+
+		$this->assertInternalType( 'int', $result );
+		$this->assertTrue( $result > 0 );
+
+		$condition = [ 'page_id' => $result ];
+
+		// Check the default fields have been filled
+		$this->assertSelect(
+			'page',
+			[
+				'page_namespace',
+				'page_title',
+				'page_restrictions',
+				'page_is_redirect',
+				'page_is_new',
+				'page_latest',
+				'page_len',
+			],
+			$condition,
+			[ [
+				'0',
+				__METHOD__,
+				'',
+				'0',
+				'1',
+				'0',
+				'0',
+			] ]
+		);
+
+		// Check the page_random field has been filled
+		$pageRandom = $this->db->selectField( 'page', 'page_random', $condition );
+		$this->assertTrue( (float)$pageRandom < 1 && (float)$pageRandom > 0 );
+
+		// Assert the touched timestamp in the DB is roughly when we inserted the page
+		$pageTouched = $this->db->selectField( 'page', 'page_touched', $condition );
+		$this->assertTrue(
+			wfTimestamp( TS_UNIX, $startTimeStamp )
+			<= wfTimestamp( TS_UNIX, $pageTouched )
+		);
+		$this->assertTrue(
+			wfTimestamp( TS_UNIX, $endTimeStamp )
+			>= wfTimestamp( TS_UNIX, $pageTouched )
+		);
+
+		// Try inserting the same page again and checking the result is false (no change)
+		$result = $page->insertOn( $this->db );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * @covers WikiPage::insertOn
+	 */
+	public function testInsertOn_idSpecified() {
+		$title = Title::newFromText( __METHOD__ );
+		$page = new WikiPage( $title );
+		$id = 3478952189;
+
+		$result = $page->insertOn( $this->db, $id );
+
+		$this->assertSame( $id, $result );
+
+		$condition = [ 'page_id' => $result ];
+
+		// Check there is actually a row in the db
+		$this->assertSelect(
+			'page',
+			[ 'page_title' ],
+			$condition,
+			[ [ __METHOD__ ] ]
+		);
+	}
+
 }
