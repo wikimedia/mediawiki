@@ -108,7 +108,12 @@ class Title implements LinkTarget {
 	/** @var array Array of groups allowed to edit this article */
 	public $mRestrictions = [];
 
-	/** @var string|bool */
+	/**
+	 * @var string|bool Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
+	 */
 	protected $mOldRestrictions = false;
 
 	/** @var bool Cascade restrictions on this page to included templates and images? */
@@ -3046,8 +3051,10 @@ class Title implements LinkTarget {
 	 * Public for usage by LiquidThreads.
 	 *
 	 * @param array $rows Array of db result objects
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
-	 *   restrictions from page table (pre 1.10)
+	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -3116,8 +3123,10 @@ class Title implements LinkTarget {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
-	 *   restrictions from page table (pre 1.10)
+	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if ( $this->mRestrictionsLoaded ) {
