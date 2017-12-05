@@ -257,7 +257,7 @@ class ImagePage extends Article {
 				$class = str_replace( ' ', '_', $v['id'] );
 				if ( $type == 'collapsed' ) {
 					// Handled by mediawiki.action.view.metadata module.
-					$class .= ' collapsable';
+					$class .= ' mw-metadata-collapsible';
 				}
 				$r .= Html::rawElement( 'tr',
 					[ 'class' => $class ],
