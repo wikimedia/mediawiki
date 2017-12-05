@@ -177,7 +177,7 @@ class WikiTextStructure {
 		$this->allText = trim( Sanitizer::stripAllTags( $formatter->getText() ) );
 		foreach ( $auxiliaryElements as $auxiliaryElement ) {
 			$this->auxText[] =
-				trim( Sanitizer::stripAllTags( $formatter->getText( $auxiliaryElement ) ) );
+				trim( Sanitizer::stripAllTags( preg_replace('/<\/(th|td)>/i', '  </$1>', $formatter->getText( $auxiliaryElement ) ) ) );
 		}
 	}
 
