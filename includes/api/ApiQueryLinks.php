@@ -114,7 +114,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			}
 		} elseif ( $params['namespace'] ) {
 			$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
-			$multiNS = count( $params['namespace'] ) !== 1;
+			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
 		if ( !is_null( $params['continue'] ) ) {

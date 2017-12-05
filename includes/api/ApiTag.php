@@ -37,7 +37,7 @@ class ApiTag extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( count( $params['tags'] ) ) {
+		if ( $params['tags'] ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOk() ) {
 				$this->dieStatus( $ableToTag );

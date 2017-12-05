@@ -64,7 +64,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		$changes = [];
-		if ( count( $params['change'] ) ) {
+		if ( $params['change'] ) {
 			foreach ( $params['change'] as $entry ) {
 				$array = explode( '=', $entry, 2 );
 				$changes[$array[0]] = isset( $array[1] ) ? $array[1] : null;

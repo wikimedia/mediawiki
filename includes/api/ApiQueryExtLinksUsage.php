@@ -61,7 +61,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$miser_ns = [];
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$miser_ns = $params['namespace'];
+			$miser_ns = $params['namespace'] ?: [];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}

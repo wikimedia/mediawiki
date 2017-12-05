@@ -161,7 +161,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				}
 			} else {
 				$this->addWhereFld( "{$p}_from_namespace", $params['namespace'] );
-				if ( !empty( $settings['from_namespace'] ) && count( $params['namespace'] ) > 1 ) {
+				if ( !empty( $settings['from_namespace'] )
+					&& $params['namespace'] !== null && count( $params['namespace'] ) > 1
+				) {
 					$sortby["{$p}_from_namespace"] = 'int';
 				}
 			}

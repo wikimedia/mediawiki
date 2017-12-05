@@ -334,7 +334,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Apply change tags
-		if ( count( $params['tags'] ) ) {
+		if ( $params['tags'] ) {
 			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( $tagStatus->isOK() ) {
 				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );

@@ -43,7 +43,7 @@ class ApiImageRotate extends ApiBase {
 		] );
 
 		// Check if user can add tags
-		if ( count( $params['tags'] ) ) {
+		if ( $params['tags'] ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getUser() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
