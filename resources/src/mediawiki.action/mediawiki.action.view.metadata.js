@@ -14,38 +14,39 @@
 			return;
 		}
 		$tables.each( function () {
-			var $link,
+			var $table = $( this ),
+				$link = $table.find( '.mw-metadata-show-hide-extended a' ),
 				expandText = mw.msg( 'metadata-expand' ),
-				collapseText = mw.msg( 'metadata-collapse' ),
-				$table = $( this );
+				collapseText = mw.msg( 'metadata-collapse' );
 
-			$link = $( '<a>' )
-				.text( expandText )
-				.attr( {
-					role: 'button',
-					tabindex: 0
-				} )
-				.on( 'click keypress', function ( e ) {
-					if (
-						e.type === 'click' ||
-						e.type === 'keypress' && e.which === 13
-					) {
-						if ( $table.hasClass( 'collapsed' ) ) {
-							// From collapsed to expanded. Button will now collapse.
-							$( this ).text( collapseText );
-						} else {
-							// From expanded to collapsed. Button will now expand.
-							$( this ).text( expandText );
-						}
-						$table.toggleClass( 'collapsed' );
+			if ( !$link.length ) {
+				$link = $( '<a>' )
+					.text( expandText )
+					.attr( {
+						role: 'button',
+						tabindex: 0
+					} );
+				$table.find( 'tbody' ).append(
+					$( '<tr class="mw-metadata-show-hide-extended"></tr>' ).append(
+						$( '<td colspan="2"></td>' ).append( $link )
+					)
+				);
+			}
+			$link.on( 'click keypress', function ( e ) {
+				if (
+					e.type === 'click' ||
+					e.type === 'keypress' && e.which === 13
+				) {
+					if ( $table.hasClass( 'collapsed' ) ) {
+						// From collapsed to expanded. Button will now collapse.
+						$( this ).text( collapseText );
+					} else {
+						// From expanded to collapsed. Button will now expand.
+						$( this ).text( expandText );
 					}
-				} );
-
-			$table.find( 'tbody' ).append(
-				$( '<tr class="mw-metadata-show-hide-extended"></tr>' ).append(
-					$( '<td colspan="2"></td>' ).append( $link )
-				)
-			);
+					$table.toggleClass( 'collapsed' );
+				}
+			} );
 		} );
 
 		// Initial collapsed state

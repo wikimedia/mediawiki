@@ -113,7 +113,24 @@
 }
 
 .client-js .mw_metadata.collapsed .mw-metadata-collapsible,
+.client-nojs .mw-metadata-show-hide-extended,
 /* Keep tr.collapsible for back-compat with cached HTML */
 .client-js .mw_metadata.collapsed tr.collapsable {
 	display: none;
+}
+
+/*
+ * Exclude user interface elements from selection.
+ */
+.mw-metadata-show-hide-extended {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media print {
+	.mw-metadata-show-hide-extended {
+		display: none;
+	}
 }
