@@ -267,6 +267,20 @@ class ImagePage extends Article {
 				);
 			}
 		}
+		// Create button for metadata.js
+		$r .= Html::rawElement( 'tr',
+			[ 'class' => 'mw-metadata-show-hide-extended' ],
+			Html::rawElement( 'td',
+				[ 'colspan' => '2' ],
+				Html::element( 'a',
+					[
+						'role' => 'button',
+						'tabindex' => '0'
+					],
+					$this->getContext()->msg( 'metadata-expand' )->text()
+				)
+			)
+		);
 		$r .= "</table>\n</div>\n";
 		return $r;
 	}
