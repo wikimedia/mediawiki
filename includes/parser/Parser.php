@@ -1056,6 +1056,7 @@ class Parser {
 		$tr_attributes = []; # history of tr attributes
 		$has_opened_tr = []; # Did this table open a <tr> element?
 		$indent_level = 0; # indent level of the table
+		$text_is_inbetween = false; # If current line of text is in between "|" or "!"
 
 		foreach ( $lines as $outLine ) {
 			$line = trim( $outLine );
@@ -1076,7 +1077,7 @@ class Parser {
 				$attributes = $this->mStripState->unstripBoth( $matches[2] );
 				$attributes = Sanitizer::fixTagAttributes( $attributes, 'table' );
 
-				$outLine = str_repeat( '<dl><dd>', $indent_level ) . "<table{$attributes}>";
+				$outLine = str_repeat( '<dl><dd>', $indent_level ) . "<table{$attributes}>\n";
 				array_push( $td_history, false );
 				array_push( $last_tag_history, '' );
 				array_push( $tr_history, false );
@@ -1087,8 +1088,8 @@ class Parser {
 				$out .= $outLine . "\n";
 				continue;
 			} elseif ( $first_two === '|}' ) {
-				# We are ending a table
-				$line = '</table>' . substr( $line, 2 );
+				# We are ending a table (with a new return line)
+				$line = "</table>\n" . trim( substr( $line, 2 ) );
 				$last_tag = array_pop( $last_tag_history );
 
 				if ( !array_pop( $has_opened_tr ) ) {
@@ -1103,7 +1104,7 @@ class Parser {
 					$line = "</{$last_tag}>{$line}";
 				}
 				array_pop( $tr_attributes );
-				$outLine = $line . str_repeat( '</dd></dl>', $indent_level );
+				$outLine = $line . str_repeat( '</dd></dl>', $indent_level ) . "\n";
 			} elseif ( $first_two === '|-' ) {
 				# Now we have a table row
 				$line = preg_replace( '#^\|-+#', '', $line );
@@ -1203,11 +1204,26 @@ class Parser {
 						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
 					}
 
+					$text_is_inbetween = false;
+					if ( $first_character === '|' || $first_character === '!' ) {
+						$text_is_inbetween = true;
+					}
 					$outLine .= $cell;
 					array_push( $td_history, true );
 				}
+			} else {
+				# If current line is plain text
+				if ( $text_is_inbetween ) {
+					$text_is_inbetween = false;
+					$outLine = "\n{$outLine}";
+				}
+				$outLine .= "\n";
 			}
-			$out .= $outLine . "\n";
+			# T178998: No "\n" should be used here
+			# since it will create an extra return line
+			# inside `caption` or `td` tag (i.e. there
+			# should not be `<caption>something\n</caption>`)
+			$out .= $outLine;
 		}
 
 		# Closing open td, tr && table
