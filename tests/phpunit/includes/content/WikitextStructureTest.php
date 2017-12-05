@@ -101,7 +101,7 @@ END;
 		$this->assertEquals( "Opening text is opening.", $struct->getOpeningText() );
 		$this->assertEquals( "Opening text is opening.   Then we got more text",
 			$struct->getMainText() );
-		$this->assertEquals( [ "Header table  row in table  another row in table" ],
+		$this->assertEquals( [ "Header tablerow in tableanother row in table" ],
 			$struct->getAuxiliaryText() );
 	}
 }
