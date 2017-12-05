@@ -48,7 +48,9 @@
 			);
 		} );
 
-		// And collapse!
+		// Initial collapsed state
+		// (For back-compat with cached HTML from before ImagePage.php
+		// did this by default)
 		$tables.addClass( 'collapsed' );
 	} );
 

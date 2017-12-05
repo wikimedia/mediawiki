@@ -1498,6 +1498,7 @@ return [
 			'metadata-expand',
 			'metadata-collapse',
 		],
+		'dependencies' => 'mediawiki.action.view.filepage',
 	],
 	'mediawiki.action.view.categoryPage.styles' => [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.categoryPage.less',
