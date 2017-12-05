@@ -19,6 +19,11 @@ production.
   maintenance/cleanupUsersWithNoId.php.
 * $wgResourceLoaderMinifierStatementsOnOwnLine and $wgResourceLoaderMinifierMaxLineLength
   were removed (deprecated since 1.27).
+* The HistoryBlob classes, and the corresponding 'object' flag in the text
+  table, have been deprecated. If you've used the core HistoryBlob classes in
+  the past, you'll want to run maintenance/storage/migrateHistoryBlobs.php. If
+  you've done something else with this functionality, you'll want to make other
+  arrangements.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
@@ -146,6 +151,19 @@ changes to languages because of Phabricator reports.
   * WatchedItem::IGNORE_USER_RIGHTS
   * WatchedItem::CHECK_USER_RIGHTS
   * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
+* The 'object' flag in the text table has been deprecated, as have the
+  following classes designed for use with that feature:
+  * HistoryBlob
+  * ConcatenatedGzipHistoryBlob
+  * HistoryBlobStub
+  * HistoryBlobCurStub
+  * DiffHistoryBlob
+* The maintenance script maintenance/storage/compressOld.php has been removed.
+  Use maintenance/storage/recompressTracked.php instead.
+* The maintenance script maintenance/storage/fixT22757.php has been removed. If
+  you were affected by that bug, you should have run it years ago.
+* The maintenance script maintenance/storage/resolveStubs.php has been removed.
+  Use maintenance/storage/migrateHistoryBlobs.php instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
