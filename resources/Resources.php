@@ -1923,6 +1923,7 @@ return [
 			'recentchanges-noresult',
 			'recentchanges-timeout',
 			'recentchanges-network',
+			'recentchanges-notargetpage',
 			'quotation-marks',
 		],
 		'dependencies' => [

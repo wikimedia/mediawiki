@@ -17,11 +17,11 @@
 
 		this.showLinkedFrom = new OO.ui.MenuOptionWidget( {
 			data: 'from', // default (showlinkedto=0)
-			label: mw.msg( 'rcfilters-filter-showlinkedfrom-option-label' )
+			label: new OO.ui.HtmlSnippet( mw.msg( 'rcfilters-filter-showlinkedfrom-option-label' ) )
 		} );
 		this.showLinkedTo = new OO.ui.MenuOptionWidget( {
 			data: 'to', // showlinkedto=1
-			label: mw.msg( 'rcfilters-filter-showlinkedto-option-label' )
+			label: new OO.ui.HtmlSnippet( mw.msg( 'rcfilters-filter-showlinkedto-option-label' ) )
 		} );
 
 		// Parent

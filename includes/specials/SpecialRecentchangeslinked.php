@@ -310,4 +310,16 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 
 		return parent::getPageTitle( $subpage );
 	}
+
+	protected function outputNoResults() {
+		if ( $this->getTargetTitle() === false ) {
+			$this->getOutput()->addHTML(
+				'<div class="mw-changeslist-notargetpage">' .
+				$this->msg( 'recentchanges-notargetpage' )->parse() .
+				'</div>'
+			);
+		} else {
+			parent::outputNoResults();
+		}
+	}
 }
