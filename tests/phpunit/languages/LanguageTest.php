@@ -274,6 +274,38 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideMultiByteTruncateData
+	 * @covers Language::mb_truncate
+	 */
+	public function testMultiByteTruncate(
+		$expected, $string, $length, $ellipsis = '...', $adjustLength = true
+	) {
+		$this->assertEquals(
+			$expected,
+			$this->getLang()->mb_truncate( $string, $length, $ellipsis, $adjustLength )
+		);
+	}
+
+	/**
+	 * @return array Format is ($expected, $string, $length, $ellipsis, $adjustLength)
+	 */
+	public static function provideMultiByteTruncateData() {
+		return [
+			[ "", "тестирам да ли ради", 0, "XXX" ],
+			[ "testnXXX", "testni scenarij", 8, "XXX" ],
+			[ "حالة اختبار", "حالة اختبار", 5, "XXXXXXXXXXXXXXX" ],
+			[ "XXXедент", "прецедент", -8, "XXX" ],
+			[ "ആപ്പിൾ", "ആപ്പിൾ", -5, "XXXXXXXXXXXXXXX" ],
+			[ "神秘", "神秘                ", 9, "XXX" ],
+			[ "περίπτωσXXX", "περίπτωση             δοκιμής", 11, "XXX" ],
+			[ "XXXழக்கு", "சோதனை               வழக்கு", -8, "XXX" ],
+			[ "બ્રહ્માંડXXX", "બ્રહ્માંડ સુંદર છે", 9, "XXX", false ],
+			[ "ცხოვრება...", "ცხოვრება არის საოცარი", 8, "...", false ],
+			[ "ທ່ານບໍ່ຮູ...", "\nທ່ານບໍ່ຮູ້ຫນັງສື", 9, "...", false ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideHTMLTruncateData
 	 * @covers Language::truncateHTML
 	 */
