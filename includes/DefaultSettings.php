@@ -6951,6 +6951,7 @@ $wgUseTagFilter = true;
  * - 'mw-blank': Edit completely blanks the page
  * - 'mw-replace': Edit removes more than 90% of the content
  * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
+ * - 'mw-undo': Edit that undoes the change
  *
  * @var array
  * @since 1.31
@@ -6962,7 +6963,8 @@ $wgSoftwareTags = [
 	'mw-changed-redirect-target' => true,
 	'mw-blank' => true,
 	'mw-replace' => true,
-	'mw-rollback' => true
+	'mw-rollback' => true,
+	'mw-undo' => true
 ];
 
 /**
