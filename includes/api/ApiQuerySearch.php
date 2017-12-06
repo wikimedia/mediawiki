@@ -272,6 +272,14 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if ( isset( $prop['isfilematch'] ) ) {
 			$vals['isfilematch'] = $result->isFileMatch();
 		}
+
+		if ( isset( $prop['extra'] ) ) {
+			$extra = $result->getExtensionData();
+			if ( $extra ) {
+				$vals['extra'] = $extra;
+			}
+		}
+
 		return $vals;
 	}
 
@@ -372,6 +380,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'categorysnippet',
 					'score', // deprecated
 					'hasrelated', // deprecated
+					'extra',
 				],
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
