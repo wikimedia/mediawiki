@@ -3512,6 +3512,71 @@ class Language {
 	}
 
 	/**
+	 * Truncate a string to a specified number of characters, appending an optional
+	 * string (e.g. for ellipses).
+	 *
+	 * This provides multi byte version of truncate() method of this class, suitable for truncation
+	 * based on number of characters, instead of number of bytes.
+	 *
+	 * If $length is negative, the string will be truncated from the beginning.
+	 *
+	 * @param string $string String to truncate.
+	 * @param int $length Maximum number of characters (including ellipses).
+	 * @param string $ellipsis String to append to the end of truncated text.
+	 * @param bool $adjustLength Subtract length of ellipsis from $length.
+	 * @param string $encoding Encoding used in multibyte PHP string manipulation methods.
+	 *
+	 * @return string
+	 */
+	function mb_truncate(
+		$string, $length, $ellipsis = '...', $adjustLength = true, $encoding = 'UTF-8'
+	) {
+		// Use the localized ellipsis character
+		if ( $ellipsis === '...' ) {
+			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
+		}
+
+		// Strip whitespace from the beginning and end of a string
+		$string = trim( $string );
+
+		// Check if there is no need to truncate
+		if ( $length == 0 ) {
+			return ''; // convention
+		} elseif ( mb_strlen( $string, $encoding ) <= abs( $length ) ) {
+			return $string; // no need to truncate
+		}
+
+		$originalString = $string;
+		// If ellipsis length is >= $length then we can't apply $adjustLength
+		if ( $adjustLength && mb_strlen( $ellipsis, $encoding ) >= abs( $length ) ) {
+			$string = $ellipsis; // this can be slightly unexpected
+		// Otherwise, truncate and add ellipsis...
+		} else {
+			$ellipsisLength = $adjustLength ? mb_strlen( $ellipsis, $encoding ) : 0;
+			if ( $length > 0 ) {
+				$length -= $ellipsisLength;
+				$string = mb_substr( $string, 0, $length, $encoding ); // xyz...
+				$string = rtrim( $string );
+				$string = $string . $ellipsis;
+			} else {
+				$length += $ellipsisLength;
+				$string = mb_substr( $string, $length, null, $encoding ); // ...xyz
+				$string = ltrim( $string );
+				$string = $ellipsis . $string;
+			}
+		}
+
+		/* Do not truncate if the ellipsis makes the string longer/equal (T24181).
+		This check is *not* redundant if $adjustLength, due to the single case where
+		LEN($ellipsis) > ABS($length arg); $originalString could be shorter than $string.*/
+		if ( mb_strlen( $string, $encoding ) < mb_strlen( $originalString, $encoding ) ) {
+			return $string;
+		} else {
+			return $originalString;
+		}
+	}
+
+	/**
 	 * Remove bytes that represent an incomplete Unicode character
 	 * at the end of string (e.g. bytes of the char are missing)
 	 *
