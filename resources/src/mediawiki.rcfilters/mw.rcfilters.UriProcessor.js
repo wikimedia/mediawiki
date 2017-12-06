@@ -264,14 +264,19 @@
 		// Any subsequent change of the URL through the RCFilters
 		// system will receive 'urlversion=2'
 		var base = this.getVersion( uriQuery ) === 2 ?
-			{} :
-			this.filtersModel.getDefaultParams();
+				{} :
+				this.filtersModel.getDefaultParams(),
+			decodedQueryParams = {};
+
+		Object.keys( uriQuery ).forEach( function ( key ) {
+			decodedQueryParams[ key ] = mw.Uri.decode( uriQuery[ key ] );
+		} );
 
 		return $.extend(
 			true,
 			{},
 			this.filtersModel.getMinimizedParamRepresentation(
-				$.extend( true, {}, base, uriQuery )
+				$.extend( true, {}, base, decodedQueryParams )
 			),
 			{ urlversion: '2' }
 		);
