@@ -149,6 +149,9 @@ class CSSMinTest extends MediaWikiTestCase {
 			[ "foo { content: '\"'; }", "foo{content:'\"'}" ],
 			// - Whitespace in string values
 			[ 'foo { content: " "; }', 'foo{content:" "}' ],
+
+			// Whitespaces after starting and before ending parentheses and brackets
+			[ 'a:not( [ href ] ) { prop: url( foobar.png ); }', 'a:not([href]){prop:url(foobar.png)}' ],
 		];
 	}
 
