@@ -123,7 +123,7 @@
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 	) {
-		var conflictItem, noResultsKey,
+		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 			isEmpty = $changesListContent === 'NO_RESULTS',
@@ -151,21 +151,15 @@
 							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 					);
 			} else {
-				noResultsKey =
-					( noResultsDetails === 'NO_RESULTS_TIMEOUT' ) ?
-						'recentchanges-timeout' :
-						( noResultsDetails === 'NO_RESULTS_NETWORK_ERROR' ) ?
-							'recentchanges-network' :
-							'recentchanges-noresult';
-
 				$message
 					.append(
 						$( '<div>' )
 							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
-							.text( mw.message( noResultsKey ).text() )
+							.text( mw.msg( this.getMsgKeyForNoResults( noResultsDetails ) ) )
 					);
 
 				this.$element.removeClass( 'mw-changeslist-timeout' );
+				this.$element.removeClass( 'mw-changeslist-notargetpage' );
 			}
 
 			this.$element.append( $message );
@@ -196,6 +190,22 @@
 		} );
 	};
 
+	/**
+	 * Map a reason for having no results to its message key
+	 *
+	 * @param {string} reason One of the NO_RESULTS_* "constant" that represent
+	 * 	a reason for having no results
+	 * @return {string} Key for the message that explains why there is no results in this case
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
+		var reasonMsgKeyMap = {
+			NO_RESULTS_NORMAL: 'recentchanges-noresult',
+			NO_RESULTS_TIMEOUT: 'recentchanges-timeout',
+			NO_RESULTS_NETWORK_ERROR: 'recentchanges-network',
+			NO_RESULTS_NO_TARGET_PAGE: 'recentchanges-notargetpage'
+		};
+		return reasonMsgKeyMap[ reason ];
+	};
 	/**
 	 * Emphasize the elements (or groups) newer than the 'from' parameter
 	 * @param {string} from Anything newer than this is considered 'new'
