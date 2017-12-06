@@ -182,7 +182,11 @@
 	 * @return {*}
 	 */
 	mw.rcfilters.dm.ItemModel.prototype.coerceValue = function ( value ) {
-		return this.getGroupModel().getType() === 'any_value' ? value : !!value;
+		if ( this.getGroupModel().getType() === 'any_value' ) {
+			return decodeURIComponent( value );
+		} else {
+			return !!value;
+		}
 	};
 
 	/**
