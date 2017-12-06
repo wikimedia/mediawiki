@@ -787,13 +787,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					) {
 						// Parse description
 						$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
+						$truncatedDesc = $context->getLanguage()->truncate( $desc->parse(), 120 );
 
 						$result[] = [
 							'name' => $tagName,
 							'label' => Sanitizer::stripAllTags(
 								ChangeTags::tagDescription( $tagName, $context )
 							),
-							'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
+							'description' => $desc ? Sanitizer::stripAllTags( $truncatedDesc ) : '',
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 							'hits' => $hits,
 						];
