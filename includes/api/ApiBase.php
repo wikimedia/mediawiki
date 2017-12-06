@@ -2483,7 +2483,7 @@ abstract class ApiBase extends ContextSource {
 					}
 
 					$extpath = $ext['path'];
-					if ( !is_dir( $extpath ) ) {
+					if ( is_file( $extpath ) ) {
 						$extpath = dirname( $extpath );
 					}
 					self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
@@ -2492,7 +2492,7 @@ abstract class ApiBase extends ContextSource {
 			}
 			foreach ( ExtensionRegistry::getInstance()->getAllThings() as $ext ) {
 				$extpath = $ext['path'];
-				if ( !is_dir( $extpath ) ) {
+				if ( is_file( $extpath ) ) {
 					$extpath = dirname( $extpath );
 				}
 				self::$extensionInfo[realpath( $extpath ) ?: $extpath] =

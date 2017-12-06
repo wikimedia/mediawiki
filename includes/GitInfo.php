@@ -53,11 +53,16 @@ class GitInfo {
 	private static $viewers = false;
 
 	/**
-	 * @param string $repoDir The root directory of the repo where .git can be found
+	 * @param string $repoDir The root directory of the repository where the .git/ folder can be
+	 *  found, or any path to a regular file in the root directory.
 	 * @param bool $usePrecomputed Use precomputed information if available
 	 * @see precomputeValues
 	 */
 	public function __construct( $repoDir, $usePrecomputed = true ) {
+		if ( is_file( $repoDir ) ) {
+			$repoDir = dirname( $repoDir );
+		}
+
 		$this->cacheFile = self::getCacheFilePath( $repoDir );
 		wfDebugLog( 'gitinfo',
 			"Computed cacheFile={$this->cacheFile} for {$repoDir}"

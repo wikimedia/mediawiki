@@ -619,7 +619,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$ret['version'] = $ext['version'];
 				}
 				if ( isset( $ext['path'] ) ) {
-					$extensionPath = dirname( $ext['path'] );
+					$extensionPath = $ext['path'];
 					$gitInfo = new GitInfo( $extensionPath );
 					$vcsVersion = $gitInfo->getHeadSHA1();
 					if ( $vcsVersion !== false ) {
