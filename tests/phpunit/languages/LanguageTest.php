@@ -274,6 +274,38 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGraphemeTruncateData
+	 * @covers Language::truncateWithGraphemeLimit
+	 */
+	public function testGraphemeTruncate(
+		$expected, $string, $length, $ellipsis = '...', $adjustLength = true
+	) {
+		$this->assertEquals(
+			$expected,
+			$this->getLang()->truncateWithGraphemeLimit( $string, $length, $ellipsis, $adjustLength )
+		);
+	}
+
+	/**
+	 * @return array Format is ($expected, $string, $length, $ellipsis, $adjustLength)
+	 */
+	public static function provideGraphemeTruncateData() {
+		return [
+			[ "XXX", "тестирам да ли ради", 0, "XXX" ],
+			[ "testnXXX", "testni scenarij", 8, "XXX" ],
+			[ "حالة اختبار", "حالة اختبار", 5, "XXXXXXXXXXXXXXX" ],
+			[ "XXXедент", "прецедент", -8, "XXX" ],
+			[ "ആപ്പിൾ", "ആപ്പിൾ", -5, "XX" ],
+			[ "神秘XXX", "神秘                ", 9, "XXX" ],
+			[ "ΔημιουργXXX", "Δημιουργία           Σύμπαντος", 11, "XXX" ],
+			[ "XXXの家です", "地球は私たちの唯               の家です", -8, "XXX" ],
+			[ "زندگیXXX", "زندگی زیباست", 6, "XXX", false ],
+			[ "ცხოვრება...", "ცხოვრება არის საოცარი", 8, "...", false ],
+			[ "\nທ່ານ...", "\nທ່ານບໍ່ຮູ້ຫນັງສື", 4, "...", false ],
+		];
+	}
+
+	/**
 	 * @dataProvider provideHTMLTruncateData
 	 * @covers Language::truncateHTML
 	 */
