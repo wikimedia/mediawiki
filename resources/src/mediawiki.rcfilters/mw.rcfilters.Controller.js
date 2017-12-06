@@ -195,7 +195,7 @@
 					type: 'any_value',
 					title: '',
 					hidden: true,
-					isSticky: false,
+					sticky: true,
 					filters: [
 						{
 							name: 'target',
@@ -208,7 +208,7 @@
 					type: 'boolean',
 					title: '',
 					hidden: true,
-					isSticky: false,
+					sticky: true,
 					filters: [
 						{
 							name: 'showlinkedto',
