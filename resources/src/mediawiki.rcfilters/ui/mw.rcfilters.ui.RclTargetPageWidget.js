@@ -24,7 +24,8 @@
 			validate: false,
 			placeholder: mw.msg( 'rcfilters-target-page-placeholder' ),
 			showImages: true,
-			showDescriptions: true
+			showDescriptions: true,
+			addQueryInput: false
 		} );
 
 		// Events

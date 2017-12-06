@@ -319,7 +319,7 @@
 	 * @return {jQuery} return.fieldset Fieldset
 	 */
 	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root ) {
-		var info, isTimeout,
+		var info,
 			$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
 			areResults = !!$changesListContents.length;
 
@@ -329,8 +329,13 @@
 		};
 
 		if ( !areResults ) {
-			isTimeout = !!$root.find( '.mw-changeslist-timeout' ).length;
-			info.noResultsDetails = isTimeout ? 'NO_RESULTS_TIMEOUT' : 'NO_RESULTS_NORMAL';
+			if ( $root.find( '.mw-changeslist-timeout' ).length ) {
+				info.noResultsDetails = 'NO_RESULTS_TIMEOUT';
+			} else if ( $root.find( '.mw-changeslist-notargetpage' ).length ) {
+				info.noResultsDetails = 'NO_RESULTS_NO_TARGET_PAGE';
+			} else {
+				info.noResultsDetails = 'NO_RESULTS_NORMAL';
+			}
 		}
 
 		return info;

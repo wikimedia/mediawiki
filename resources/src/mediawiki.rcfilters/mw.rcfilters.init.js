@@ -34,7 +34,12 @@
 					controller, savedQueriesModel, { $overlay: $overlay }
 				),
 				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
-				$changesListRoot = $( '.mw-changeslist, .mw-changeslist-empty, .mw-changeslist-timeout' );
+				$changesListRoot = $( [
+					'.mw-changeslist',
+					'.mw-changeslist-empty',
+					'.mw-changeslist-timeout',
+					'.mw-changeslist-notargetpage'
+				].join( ', ' ) );
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
