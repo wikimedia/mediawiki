@@ -97,9 +97,9 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 		// Extra selectors to allow using the same icons for old-style MediaWiki UI code
 		if ( substr( $module, 0, 5 ) === 'icons' ) {
-			$definition['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';
+			$definition['selectorWithoutVariant'] = '.oo-ui-icon-{name}';
 			$definition['selectorWithVariant'] = '
-				.oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:before,
+				.oo-ui-image-{variant}.oo-ui-icon-{name},
 				/* Hack for Flow, see T110051 */
 				.mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before,
 				.mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before';
