@@ -34,6 +34,12 @@ use Wikimedia\Rdbms\IDatabase;
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
+	 * Maximum length of a tag description in UTF-8 characters.
+	 * Longer descriptions will be truncated.
+	 */
+	const TAG_DESC_CHARACTER_LIMIT = 120;
+
+	/**
 	 * Preference name for saved queries. Subclasses that use saved queries should override this.
 	 * @var string
 	 */
@@ -794,15 +800,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						isset( $explicitlyDefinedTags[ $tagName ] ) ||
 						isset( $softwareActivatedTags[ $tagName ] )
 					) {
-						// Parse description
-						$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
-
 						$result[] = [
 							'name' => $tagName,
 							'label' => Sanitizer::stripAllTags(
 								ChangeTags::tagDescription( $tagName, $context )
 							),
-							'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
+							'description' =>
+								ChangeTags::truncateTagDescription(
+									$tagName, self::TAG_DESC_CHARACTER_LIMIT, $context
+								),
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 							'hits' => $hits,
 						];
