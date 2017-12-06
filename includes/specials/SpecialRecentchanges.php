@@ -945,7 +945,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$links[] = Html::rawElement(
 				'span',
 				$attribs,
-				$this->msg( $msg )->rawParams( $link )->escaped()
+				$this->msg( $msg )->rawParams( $link )->parse()
 			);
 		}
 
