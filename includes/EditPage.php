@@ -2861,7 +2861,14 @@ class EditPage {
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
-			$this->showTextbox1();
+			$conflictTextBoxAttribs = [];
+			if ( $this->wasDeletedSinceLastEdit() ) {
+				$conflictTextBoxAttribs['style'] = 'display:none;';
+			} elseif ( $this->isOldRev ) {
+				$conflictTextBoxAttribs['class'] = 'mw-textarea-oldrev';
+			}
+
+			$out->addHTML( $editConflictHelper->getEditConflictMainTextBox( $conflictTextBoxAttribs ) );
 			$out->addHTML( $editConflictHelper->getEditFormHtmlAfterContent() );
 		} else {
 			$this->showContentForm();
@@ -3339,22 +3346,9 @@ class EditPage {
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
 			$attribs = [ 'style' => 'display:none;' ];
 		} else {
-			$classes = []; // Textarea CSS
-			if ( $this->mTitle->isProtected( 'edit' ) &&
-				MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== [ '' ]
-			) {
-				# Is the title semi-protected?
-				if ( $this->mTitle->isSemiProtected() ) {
-					$classes[] = 'mw-textarea-sprotected';
-				} else {
-					# Then it must be protected based on static groups (regular)
-					$classes[] = 'mw-textarea-protected';
-				}
-				# Is the title cascade-protected?
-				if ( $this->mTitle->isCascadeProtected() ) {
-					$classes[] = 'mw-textarea-cprotected';
-				}
-			}
+			$builder = new TextboxBuilder();
+			$classes = $builder->getTextboxProtectionCSSClasses( $this->getTitle() );
+
 			# Is an old revision being edited?
 			if ( $this->isOldRev ) {
 				$classes[] = 'mw-textarea-oldrev';
@@ -3366,12 +3360,7 @@ class EditPage {
 				$attribs += $customAttribs;
 			}
 
-			if ( count( $classes ) ) {
-				if ( isset( $attribs['class'] ) ) {
-					$classes[] = $attribs['class'];
-				}
-				$attribs['class'] = implode( ' ', $classes );
-			}
+			$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
 		}
 
 		$this->showTextbox(

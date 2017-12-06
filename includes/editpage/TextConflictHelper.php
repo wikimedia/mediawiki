@@ -154,6 +154,36 @@ class TextConflictHelper {
 	}
 
 	/**
+	 * HTML to build the textbox1 on edit conflicts
+	 *
+	 * @param mixed[]|null $customAttribs
+	 * @return string HTML
+	 */
+	public function getEditConflictMainTextBox( $customAttribs = null ) {
+		$builder = new TextboxBuilder();
+		$classes = $builder->getTextboxProtectionCSSClasses( $this->title );
+
+		$attribs = [ 'tabindex' => 1 ];
+
+		if ( is_array( $customAttribs ) ) {
+			$attribs += $customAttribs;
+		}
+
+		$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
+
+		$attribs = $builder->buildTextboxAttribs(
+			'wpTextbox1',
+			$attribs,
+			$this->out->getUser(),
+			$this->title
+		);
+
+		$this->out->addHTML(
+			Html::textarea( 'wpTextbox1', $builder->addNewLineAtEnd( $this->storedversion ), $attribs )
+		);
+	}
+
+	/**
 	 * Content to go in the edit form before textbox1
 	 *
 	 * @see EditPage::$editFormTextBeforeContent
