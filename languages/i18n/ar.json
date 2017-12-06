@@ -1360,7 +1360,7 @@
 	"rcfilters-days-title": "عدد الأيام الأخيرة",
 	"rcfilters-hours-title": "عدد الساعات الأخيرة",
 	"rcfilters-days-show-days": "{{PLURAL:$1|يوما واحدا|يومان|$1 أيام|$1 يوما}}",
-	"rcfilters-days-show-hours": "{{PLURAL:$1|ساعة واحدة|ساعتان|$1 ساعات|$1 ساعة}}",
+	"rcfilters-days-show-hours": "{{PLURAL:$1||ساعة واحدة|ساعتان|$1 ساعات|$1 ساعة}}",
 	"rcfilters-highlighted-filters-list": "معلمة: $1",
 	"rcfilters-quickfilters": "المرشحات المحفوظة",
 	"rcfilters-quickfilters-placeholder-title": "لا مرشحات تم حفظها بعد",

@@ -1414,6 +1414,7 @@
 	"rcfilters-watchlist-showupdated": "Зьмены старонак, якія вы не наведвалі пасьля гэтых зьменаў, пазначаныя <strong>тоўстым</strong> з адпаведнымі пазнакамі.",
 	"rcfilters-preference-label": "Схаваць палепшаную вэрсію апошніх зьменаў",
 	"rcfilters-preference-help": "Адкатвае рэдызайн інтэрфэйсу 2017 году і ўсе інструмэнты, дададзеныя з таго часу.",
+	"rcfilters-filter-showlinkedfrom-label": "Паказаць зьмены на старонках, на якія спасылаецца:",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|знаходзіцца зьмена|знаходзяцца зьмены}} з <strong>$4 $3</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfromreset": "Скінуць выбар даты",
 	"rclistfrom": "Паказаць зьмены з $2 $3",

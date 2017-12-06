@@ -1563,6 +1563,7 @@
 	"rcfilters-watchlist-showupdated": "Los cambios hechos a páginas que no has visitado desde que se efectuaron aparecen en <strong>negrita</strong>, acompañados de marcadores sólidos.",
 	"rcfilters-preference-label": "Ocultar la versión mejorada de Cambios recientes",
 	"rcfilters-preference-help": "Revierte el rediseño de interfaz de 2017 y desactiva todas las herramientas añadidas desde entonces.",
+	"rcfilters-target-page-placeholder": "Selecciona una página",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",

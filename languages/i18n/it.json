@@ -112,7 +112,8 @@
 			"Pequod76",
 			"Greis",
 			"Pierpao",
-			"Sakretsu"
+			"Sakretsu",
+			"Yiyi"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -513,7 +514,7 @@
 	"userlogin-helplink2": "Aiuto con l'accesso",
 	"userlogin-loggedin": "Sei già connesso come {{GENDER:$1|$1}}.\nUsa il modulo sottostante per accedere come altro utente.",
 	"userlogin-reauth": "Devi accedere di nuovo per verificare che sei {{GENDER:$1|$1}}.",
-	"userlogin-createanother": "Crea un'altra utenza",
+	"userlogin-createanother": "Crea un’altra utenza",
 	"createacct-emailrequired": "Indirizzo email",
 	"createacct-emailoptional": "Indirizzo di posta elettronica (opzionale)",
 	"createacct-email-ph": "Inserisci il tuo indirizzo email",
@@ -771,6 +772,7 @@
 	"yourtext": "Il tuo testo",
 	"storedversion": "La versione memorizzata",
 	"editingold": "<strong>Attenzione: si sta modificando una versione non aggiornata della pagina.</strong>\nSalvandola così, tutti i cambiamenti apportati dopo questa versione saranno sovrascritti.",
+	"unicode-support-fail": "Sembra che il tuo browser non supporti Unicode. Essendo richiesto per modificare le pagine, la tua modifica non sarà salvata.",
 	"yourdiff": "Differenze",
 	"copyrightwarning": "Per favore tieni presente che tutti i contributi a {{SITENAME}} si considerano pubblicati nei termini d'uso della licenza $2 (vedi $1 per maggiori dettagli).\nSe non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli qui.<br />\nInviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera.\n'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 	"copyrightwarning2": "Per favore tieni presente che tutti i contributi a {{SITENAME}} possono essere modificati, stravolti o cancellati da altri contributori.\nSe non vuoi che i tuoi testi possano essere alterati, allora non inserirli.<br />\nInviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera (vedi $1 per maggiori dettagli).\n'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
@@ -837,6 +839,7 @@
 	"parser-template-loop-warning": "Rilevato loop del template: [[$1]]",
 	"template-loop-category": "Pagine con template che richiamano sé stessi",
 	"template-loop-category-desc": "La pagina contiene un template che richiama sé stesso, cioè un template in cui è incluso lo stesso template.",
+	"template-loop-warning": "<strong>Attenzione:</strong> questa pagina richiama [[:$1]] che provoca un loop (una chiamata ricorsiva infinita del template).",
 	"parser-template-recursion-depth-warning": "È stato raggiunto il limite di ricorsione nel template ($1)",
 	"language-converter-depth-warning": "Limite di profondità del convertitore di lingua superato ($1)",
 	"node-count-exceeded-category": "Pagine che superano il numero di nodi",

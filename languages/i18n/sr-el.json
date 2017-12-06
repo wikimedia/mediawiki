@@ -1030,7 +1030,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|automatski potvrđen korisnik|automatski potvrđena korisnica}}",
 	"group-bot-member": "{{GENDER:$1|bot}}",
 	"group-sysop-member": "{{GENDER:$1|administrator|administratorka}}",
-	"group-bureaucrat-member": "{{GENDER:$1|birokrata}}",
+	"group-bureaucrat-member": "{{GENDER:$1|birokrata|birokratkinja}}",
 	"group-suppress-member": "{{GENDER:$1|brisač izmena}}",
 	"grouppage-user": "{{ns:project}}:Korisnici",
 	"grouppage-autoconfirmed": "{{ns:project}}:Automatski potvrđeni korisnici",

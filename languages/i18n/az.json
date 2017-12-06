@@ -703,6 +703,7 @@
 	"mergehistory-from": "Mənbə səhifəsi:",
 	"mergehistory-into": "Hədəf səhifəsi:",
 	"mergehistory-list": "Birləşdirilə bilən redaktə keçmişi",
+	"mergehistory-merge": "[[:$1]] məqaləsindəki aşağıdakı redaktələr [[:$2]] məqaləsinə birləşdirilə bilər.\nRadio düymələrindən istifadə edərək göstərilən tarixdəki və ya daha əvvəlki redaktələri birləşdirin.\nNəzərə alın ki, naviqasiya keçidlərindən istifadə etməyiniz bu sütunu poza bilər.",
 	"mergehistory-go": "Birləşdirilə bilən redaktələri göstər",
 	"mergehistory-submit": "Qarışıq düzəlişlər",
 	"mergehistory-empty": "Birləşdiriləcək redaktələr tapılmamışdır.",
