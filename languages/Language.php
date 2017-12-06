@@ -3472,27 +3472,103 @@ class Language {
 	}
 
 	/**
-	 * Truncate a string to a specified length in bytes, appending an optional
-	 * string (e.g. for ellipses)
+	 * This method is deprecated since 1.31 and kept as alias for truncateForDatabase, which
+	 * has replaced it. This method provides truncation suitable for DB.
 	 *
 	 * The database offers limited byte lengths for some columns in the database;
 	 * multi-byte character sets mean we need to ensure that only whole characters
-	 * are included, otherwise broken characters can be passed to the user
+	 * are included, otherwise broken characters can be passed to the user.
 	 *
-	 * If $length is negative, the string will be truncated from the beginning
+	 * @deprecated since 1.31, use truncateForDatabase or truncateForVisual as appropriate.
 	 *
 	 * @param string $string String to truncate
-	 * @param int $length Maximum length (including ellipses)
+	 * @param int $length Maximum length (including ellipsis)
 	 * @param string $ellipsis String to append to the truncated text
 	 * @param bool $adjustLength Subtract length of ellipsis from $length.
 	 *	$adjustLength was introduced in 1.18, before that behaved as if false.
 	 * @return string
 	 */
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+		return $this->truncateForDatabase( $string, $length, $ellipsis, $adjustLength );
+	}
+
+	/**
+	 * Truncate a string to a specified length in bytes, appending an optional
+	 * string (e.g. for ellipsis)
+	 *
+	 * If $length is negative, the string will be truncated from the beginning
+	 *
+	 * @since 1.31
+	 *
+	 * @param string $string String to truncate
+	 * @param int $length Maximum length in bytes
+	 * @param string $ellipsis String to append to the end of truncated text
+	 * @param bool $adjustLength Subtract length of ellipsis from $length
+	 *
+	 * @return string
+	 */
+	function truncateForDatabase( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+		return $this->truncateInternal(
+			$string, $length, $ellipsis, $adjustLength, 'strlen', 'substr'
+		);
+	}
+
+	/**
+	 * Truncate a string to a specified number of characters, appending an optional
+	 * string (e.g. for ellipsis).
+	 *
+	 * This provides multibyte version of truncate() method of this class, suitable for truncation
+	 * based on number of characters, instead of number of bytes.
+	 *
+	 * If $length is negative, the string will be truncated from the beginning.
+	 *
+	 * @since 1.31
+	 *
+	 * @param string $string String to truncate
+	 * @param int $length Maximum number of characters
+	 * @param string $ellipsis String to append to the end of truncated text
+	 * @param bool $adjustLength Subtract length of ellipsis from $length
+	 *
+	 * @return string
+	 */
+	function truncateForVisual( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+		// Passing encoding to mb_strlen and mb_substr is optional.
+		// Encoding defaults to mb_internal_encoding(), which is set to UTF-8 in Setup.php, so
+		// explicit specification of encoding is skipped.
+		// Note: Both multibyte methods are callables invoked in truncateInternal.
+		return $this->truncateInternal(
+			$string, $length, $ellipsis, $adjustLength, 'mb_strlen', 'mb_substr'
+		);
+	}
+
+	/**
+	 * Internal method used for truncation. This method abstracts text truncation into
+	 * one common method, allowing users to provide length measurement function and
+	 * function for finding substring.
+	 *
+	 * For usages, see truncateForDatabase and truncateForVisual.
+	 *
+	 * @param string $string String to truncate
+	 * @param int $length Maximum length of final text
+	 * @param string $ellipsis String to append to the end of truncated text
+	 * @param bool $adjustLength Subtract length of ellipsis from $length
+	 * @param callable $measureLength Callable function used for determining the length of text
+	 * @param callable $getSubstring Callable function used for getting the substrings
+	 *
+	 * @return string
+	 */
+	private function truncateInternal(
+		$string, $length, $ellipsis = '...', $adjustLength = true, $measureLength, $getSubstring
+	) {
+		if ( !is_callable( $measureLength ) || !is_callable( $getSubstring ) ) {
+			throw new InvalidArgumentException( 'Invalid callback provided' );
+		}
+
 		# Check if there is no need to truncate
-		if ( strlen( $string ) <= abs( $length ) ) {
+		if ( $measureLength( $string ) <= abs( $length ) ) {
 			return $string; // no need to truncate
 		}
+
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
@@ -3500,31 +3576,33 @@ class Language {
 		if ( $length == 0 ) {
 			return $ellipsis; // convention
 		}
+
 		$stringOriginal = $string;
 		# If ellipsis length is >= $length then we can't apply $adjustLength
-		if ( $adjustLength && strlen( $ellipsis ) >= abs( $length ) ) {
+		if ( $adjustLength && $measureLength( $ellipsis ) >= abs( $length ) ) {
 			$string = $ellipsis; // this can be slightly unexpected
 		# Otherwise, truncate and add ellipsis...
 		} else {
-			$eLength = $adjustLength ? strlen( $ellipsis ) : 0;
+			$ellipsisLength = $adjustLength ? $measureLength( $ellipsis ) : 0;
 			if ( $length > 0 ) {
-				$length -= $eLength;
-				$string = substr( $string, 0, $length ); // xyz...
+				$length -= $ellipsisLength;
+				$string = $getSubstring( $string, 0, $length ); // xyz...
 				$string = $this->removeBadCharLast( $string );
 				$string = rtrim( $string );
 				$string = $string . $ellipsis;
 			} else {
-				$length += $eLength;
-				$string = substr( $string, $length ); // ...xyz
+				$length += $ellipsisLength;
+				$string = $getSubstring( $string, $length ); // ...xyz
 				$string = $this->removeBadCharFirst( $string );
 				$string = ltrim( $string );
 				$string = $ellipsis . $string;
 			}
 		}
+
 		# Do not truncate if the ellipsis makes the string longer/equal (T24181).
 		# This check is *not* redundant if $adjustLength, due to the single case where
 		# LEN($ellipsis) > ABS($limit arg); $stringOriginal could be shorter than $string.
-		if ( strlen( $string ) < strlen( $stringOriginal ) ) {
+		if ( $measureLength( $string ) < $measureLength( $stringOriginal ) ) {
 			return $string;
 		} else {
 			return $stringOriginal;
