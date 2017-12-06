@@ -286,6 +286,11 @@
 					message: 'Target as subpage in path'
 				},
 				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Château',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Château',
+					message: 'Target as subpage in path with special characters'
+				},
+				{
 					input: 'http://host/wiki/Special:RecentChangesLinked/Moai/Sub1',
 					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai/Sub1',
 					message: 'Target as subpage also has a subpage'
