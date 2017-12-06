@@ -89,7 +89,7 @@ class SpecialVersion extends SpecialPage {
 						[ '<div class="mw-version-credits">', '</div>' ],
 						$wikiText );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
-					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
+					$file = $this->getExtAuthorsFileName( $extNode['path'] );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						if ( substr( $file, -4 ) === '.txt' ) {
@@ -724,7 +724,7 @@ class SpecialVersion extends SpecialPage {
 
 		if ( isset( $extension['path'] ) ) {
 			global $IP;
-			$extensionPath = dirname( $extension['path'] );
+			$extensionPath = $extension['path'];
 			if ( $this->coreId == '' ) {
 				wfDebug( 'Looking up core head id' );
 				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
@@ -1006,7 +1006,8 @@ class SpecialVersion extends SpecialPage {
 	 * Obtains the full path of an extensions authors or credits file if
 	 * one exists.
 	 *
-	 * @param string $extDir Path to the extensions root directory
+	 * @param string $extDir Path to the extensions root directory, or a path to any regular file in
+	 *  the extensions root directory.
 	 *
 	 * @since 1.23
 	 *
@@ -1016,6 +1017,10 @@ class SpecialVersion extends SpecialPage {
 	public static function getExtAuthorsFileName( $extDir ) {
 		if ( !$extDir ) {
 			return false;
+		}
+
+		if ( !is_dir( $extDir ) ) {
+			$extDir = dirname( $extDir );
 		}
 
 		foreach ( scandir( $extDir ) as $file ) {
@@ -1035,7 +1040,8 @@ class SpecialVersion extends SpecialPage {
 	 * Obtains the full path of an extensions copying or license file if
 	 * one exists.
 	 *
-	 * @param string $extDir Path to the extensions root directory
+	 * @param string $extDir Path to the extensions root directory, or a path to any regular file in
+	 *  the extensions root directory
 	 *
 	 * @since 1.23
 	 *
@@ -1045,6 +1051,10 @@ class SpecialVersion extends SpecialPage {
 	public static function getExtLicenseFileName( $extDir ) {
 		if ( !$extDir ) {
 			return false;
+		}
+
+		if ( !is_dir( $extDir ) ) {
+			$extDir = dirname( $extDir );
 		}
 
 		foreach ( scandir( $extDir ) as $file ) {
