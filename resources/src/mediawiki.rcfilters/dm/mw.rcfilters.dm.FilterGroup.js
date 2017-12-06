@@ -786,7 +786,7 @@
 		var state = {};
 
 		this.getItems().forEach( function ( filterItem ) {
-			state[ filterItem.getName() ] = filterItem.isSelected();
+			state[ filterItem.getName() ] = filterItem.getValue();
 		} );
 
 		return state;
