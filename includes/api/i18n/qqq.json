@@ -1077,6 +1077,7 @@
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "{{doc-apihelp-paramvalue|query+search|prop|sectiontitle}}",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "{{doc-apihelp-paramvalue|query+search|prop|categorysnippet}}",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "{{doc-apihelp-paramvalue|query+search|prop|isfilematch}}",
+	"apihelp-query+search-paramvalue-prop-extensiondata": "{{doc-apihelp-paramvalue|query+search|prop|extensiondata}}",
 	"apihelp-query+search-paramvalue-prop-score": "{{doc-apihelp-paramvalue|query+search|prop|score}}\n{{Identical|Ignored}}",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "{{doc-apihelp-paramvalue|query+search|prop|hasrelated}}\n{{Identical|Ignored}}",
 	"apihelp-query+search-param-limit": "{{doc-apihelp-param|query+search|limit}}",
