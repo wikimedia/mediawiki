@@ -34,6 +34,12 @@ use Wikimedia\Rdbms\IDatabase;
  */
 abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
+	 * Maximum length of a tag description in UTF-8 characters.
+	 * Longer descriptions will be truncated.
+	 */
+	const TAG_DESC_CHARACTER_LIMIT = 120;
+
+	/**
 	 * Preference name for saved queries. Subclasses that use saved queries should override this.
 	 * @var string
 	 */
@@ -777,6 +783,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				*/
 				$tagHitCounts = array_merge( $explicitlyDefinedTags, $softwareActivatedTags );
 
+				$ellipsis = wfMessage( 'ellipsis' )->
+					inLanguage( $context->getLanguage() )->escaped();
+				$maxLength = self::TAG_DESC_CHARACTER_LIMIT - mb_strlen( $ellipsis, 'UTF-8' );
+
 				// Build the list and data
 				$result = [];
 				foreach ( $tagHitCounts as $tagName => $hits ) {
@@ -786,14 +796,20 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						isset( $softwareActivatedTags[ $tagName ] )
 					) {
 						// Parse description
-						$desc = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
+						$originalDesc = ChangeTags::tagLongDescriptionMessage( $tagName, $context );
+						$taglessDesc = Sanitizer::stripAllTags( $originalDesc->parse() );
+						$desc = Sanitizer::escapeHtmlAllowEntities( $taglessDesc );
+
+						if ( mb_strlen( $desc, 'UTF-8' ) > $maxLength ) {
+							$desc = mb_substr( $desc, 0, $maxLength, 'UTF-8' ) . $ellipsis;
+						}
 
 						$result[] = [
 							'name' => $tagName,
 							'label' => Sanitizer::stripAllTags(
 								ChangeTags::tagDescription( $tagName, $context )
 							),
-							'description' => $desc ? Sanitizer::stripAllTags( $desc->parse() ) : '',
+							'description' => !$desc ? '' : $desc,
 							'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 							'hits' => $hits,
 						];
