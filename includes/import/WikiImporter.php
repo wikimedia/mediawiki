@@ -559,6 +559,7 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
+	 * @throws Exception
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -860,6 +861,7 @@ class WikiImporter {
 	/**
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
+	 * @throws MWException
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
