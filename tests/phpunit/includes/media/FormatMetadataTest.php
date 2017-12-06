@@ -95,4 +95,50 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @param mixed $input
+	 * @param mixed $output
+	 * @dataProvider provideGetFormattedData
+	 * @covers FormatMetadata::getFormattedData
+	 */
+	public function testGetFormattedData( $input, $output ) {
+		$this->assertEquals( $output, FormatMetadata::getFormattedData( $input ) );
+	}
+
+	public function provideGetFormattedData() {
+		return [
+			[
+				[ 'Software' => 'Adobe Photoshop CS6 (Macintosh)' ],
+				[ 'Software' => 'Adobe Photoshop CS6 (Macintosh)' ],
+			],
+			[
+				[ 'Software' => [ 'FotoWare FotoStation' ] ],
+				[ 'Software' => 'FotoWare FotoStation' ],
+			],
+			[
+				[ 'Software' => [ [ 'Capture One PRO', '3.7.7' ] ] ],
+				[ 'Software' => 'Capture One PRO (Version 3.7.7)' ],
+			],
+			[
+				[ 'Software' => [ [ 'FotoWare ColorFactory', '' ] ] ],
+				[ 'Software' => 'FotoWare ColorFactory (Version )' ],
+			],
+			[
+				[ 'Software' => [ 'x-default' => 'paint.net 4.0.12', '_type' => 'lang' ] ],
+				[ 'Software' => '<ul class="metadata-langlist">'.
+						'<li class="mw-metadata-lang-default">'.
+							'<span class="mw-metadata-lang-value">paint.net 4.0.12</span>'.
+						"</li>\n".
+					'</ul>'
+				],
+			],
+			[
+				// https://phabricator.wikimedia.org/T178130
+				// WebMHandler.php turns both 'muxingapp' & 'writingapp' to 'Software'
+				[ 'Software' => [ [ 'Lavf57.25.100' ], [ 'Lavf57.25.100' ] ] ],
+				[ 'Software' => "<ul><li>Lavf57.25.100</li>\n<li>Lavf57.25.100</li></ul>" ],
+			],
+		];
+	}
 }
