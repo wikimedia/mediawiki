@@ -1711,7 +1711,7 @@
 	"lockmanager-fail-closelock": "Could not close lock file for \"$1\".",
 	"lockmanager-fail-deletelock": "Could not delete lock file for \"$1\".",
 	"lockmanager-fail-acquirelock": "Could not acquire lock for \"$1\".",
-	"lockmanager-fail-openlock": "Could not open lock file for \"$1\".",
+	"lockmanager-fail-openlock": "Could not open lock file for \"$1\". Make sure your upload directory is configured correctly and your web server has permission to write to that directory. See https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory for more information.",
 	"lockmanager-fail-releaselock": "Could not release lock for \"$1\".",
 	"lockmanager-fail-db-bucket": "Could not contact enough lock databases in bucket $1.",
 	"lockmanager-fail-db-release": "Could not release locks on database $1.",
