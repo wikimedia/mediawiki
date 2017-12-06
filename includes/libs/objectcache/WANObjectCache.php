@@ -900,6 +900,40 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     );
 	 * @endcode
 	 *
+	 * Example usage (key holding an LRU subkey:value map; this can avoid flooding cache with
+	 * keys for an unlimited set of (constraint,situation) pairs, thereby avoiding elevated
+	 * cache evictions and wasted memory):
+	 * @code
+	 *     $catSituationTolerabilityCache = $this->cache->getWithSetCallback(
+	 *         // Group by constraint ID/hash, cat family ID/hash, or something else useful
+	 *         $this->cache->makeKey( 'cat-situation-tolerablity-checks', $groupKey ),
+	 *         WANObjectCache::TTL_DAY, // rarely used groups should fade away
+	 *         // The $scenarioKey format is $constraintId:<ID/hash of $situation>
+	 *         function ( $cacheMap ) use ( $scenarioKey, $constraintId, $situation ) {
+	 *             $lruCache = MapCacheLRU::newFromArray( $cacheMap ?: [], self::CACHE_SIZE );
+	 *             $result = $lruCache->get( $scenarioKey ); // triggers LRU bump if present
+	 *             if ( $result === null || $this->isScenarioResultExpired( $result ) ) {
+	 *                 $result = $this->checkScenarioTolerability( $constraintId, $situation );
+	 *                 $lruCache->set( $scenarioKey, $result, 3 / 8 );
+	 *             }
+	 *             // Save the new LRU cache map and reset the map's TTL
+	 *             return $lruCache->toArray();
+	 *         },
+	 *         [
+	 *             // Once map is > 1 sec old, consider refreshing
+	 *             'ageNew' => 1,
+	 *             // Update within 5 seconds after "ageNew" given a 1hz cache check rate
+	 *             'hotTTR' => 5,
+	 *             // Avoid querying cache servers multiple times in a request; this also means
+	 *             // that a request can only alter the value of any given constraint key once
+	 *             'pcTTL' => WANObjectCache::TTL_PROC_LONG
+	 *         ]
+	 *     );
+	 *     $tolerability = isset( $catSituationTolerabilityCache[$scenarioKey] )
+	 *         ? $catSituationTolerabilityCache[$scenarioKey]
+	 *         : $this->checkScenarioTolerability( $constraintId, $situation );
+	 * @endcode
+	 *
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
@@ -1678,7 +1712,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *                 $ttl = ( $newList === $oldValue )
 	 *                     // No change: cache for 150% of the age of $oldValue
 	 *                     ? $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, 1.5 )
-	 *                     // Changed: cache for %50 of the age of $oldValue
+	 *                     // Changed: cache for 50% of the age of $oldValue
 	 *                     : $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, .5 );
 	 *             }
 	 *
