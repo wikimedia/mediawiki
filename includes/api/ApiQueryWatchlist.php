@@ -53,7 +53,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$fld_flags = false, $fld_timestamp = false, $fld_user = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
 		$fld_notificationtimestamp = false, $fld_userid = false,
-		$fld_loginfo = false;
+		$fld_loginfo = false, $fld_tags;
 
 	/**
 	 * @param ApiPageSet $resultPageSet
@@ -82,6 +82,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_patrol = isset( $prop['patrol'] );
 			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 			$this->fld_loginfo = isset( $prop['loginfo'] );
+			$this->fld_tags = isset( $prop['tags'] );
 
 			if ( $this->fld_patrol ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
@@ -243,6 +244,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_loginfo ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_LOG_INFO;
 		}
+		if ( $this->fld_tags ) {
+			$includeFields[] = WatchedItemQueryService::INCLUDE_TAGS;
+		}
 		return $includeFields;
 	}
 
@@ -391,6 +395,16 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( $this->fld_tags ) {
+			if ( $recentChangeInfo['rc_tags'] ) {
+				$tags = explode( ',', $recentChangeInfo['rc_tags'] );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
+				$vals['tags'] = $tags;
+			} else {
+				$vals['tags'] = [];
+			}
+		}
+
 		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & Revision::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
@@ -453,6 +467,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'sizes',
 					'notificationtimestamp',
 					'loginfo',
+					'tags',
 				]
 			],
 			'show' => [

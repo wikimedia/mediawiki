@@ -1331,6 +1331,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Adds the old and new lengths of the page.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Adds timestamp of when the user was last notified about the edit.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Adds log information where appropriate.",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "Lists tags for the entry.",
 	"apihelp-query+watchlist-param-show": "Show only items that meet these criteria. For example, to see only minor edits done by logged-in users, set $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Which types of changes to show:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Regular page edits.",

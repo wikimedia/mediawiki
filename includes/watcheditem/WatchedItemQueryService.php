@@ -27,6 +27,7 @@ class WatchedItemQueryService {
 	const INCLUDE_PATROL_INFO = 'patrol';
 	const INCLUDE_SIZES = 'sizes';
 	const INCLUDE_LOG_INFO = 'loginfo';
+	const INCLUDE_TAGS = 'tags';
 
 	// FILTER_* constants are part of public API (are used in ApiQueryWatchlist and
 	// ApiQueryWatchlistRaw classes) and should not be changed.
@@ -335,6 +336,9 @@ class WatchedItemQueryService {
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$tables += $this->getCommentStore()->getJoin()['tables'];
 		}
+		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
+			$tables[] = 'tag_summary';
+		}
 		return $tables;
 	}
 
@@ -383,6 +387,10 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_LOG_INFO, $options['includeFields'] ) ) {
 			$fields = array_merge( $fields, [ 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ] );
+		}
+		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
+			// prefixed with rc_ to include the field in getRecentChangeFieldsFromRow
+			$fields['rc_tags'] = 'ts_tags';
 		}
 
 		return $fields;
@@ -677,6 +685,9 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$joinConds += $this->getCommentStore()->getJoin()['joins'];
+		}
+		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
+			$joinConds['tag_summary'] = [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ];
 		}
 		return $joinConds;
 	}
