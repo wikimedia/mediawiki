@@ -145,6 +145,7 @@ TEXT
 
 	/**
 	 * @param Title|Revision $obj
+	 * @throws MWException
 	 * @return bool
 	 */
 	private function skippedNamespace( $obj ) {
