@@ -2,8 +2,9 @@
 @import 'mediawiki.ui/variables';
 @import 'mw.rcfilters.mixins';
 
-@rcfilters-spinner-width: 70px;
-@rcfilters-head-min-height: 250px;
+@rcfilters-spinner-size: 12px;
+@rcfilters-head-min-height: 210px;
+@rcfilters-head-margin-bottom: 20px;
 @rcfilters-wl-head-min-height: 320px;
 
 // Corrections for the standard special page
@@ -15,6 +16,7 @@
 	// Reserve space for the UI while it loads
 	.rcfilters-head {
 		min-height: @rcfilters-head-min-height;
+		margin-bottom: @rcfilters-head-margin-bottom;
 	}
 
 	// On the watchlist, reserve a bit more
@@ -65,11 +67,6 @@
 		}
 	}
 
-	.rcfilters-container {
-		min-height: 100px;
-		margin: 0;
-	}
-
 	.mw-changeslist {
 		// Reserve space for the highlight circles
 		ul,
@@ -93,9 +90,8 @@
 		display: none;
 		position: absolute;
 		left: 50%;
-		width: @rcfilters-spinner-width;
 		// Make sure the middle of the spinner is centered, rather than its left edge
-		margin-left: -@rcfilters-spinner-width/2;
+		margin-left: -3 * @rcfilters-spinner-size / 2;
 
 		opacity: 0.8;
 		white-space: nowrap;
@@ -105,8 +101,8 @@
 		&:after {
 			content: '';
 			display: inline-block;
-			width: 12px;
-			height: 12px;
+			width: @rcfilters-spinner-size;
+			height: @rcfilters-spinner-size;
 			background-color: @colorGray12;
 			border-radius: 100%;
 			.animation( rcfiltersBouncedelay 1.5s ease-in-out -0.16s infinite both );
@@ -123,7 +119,7 @@
 	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-spinner {
 		display: block;
 		// When initializing, display the spinner on top of the area where the UI will appear
-		margin-top: -@rcfilters-head-min-height/2;
+		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 2;
 	}
 	body.mw-rcfilters-ui-loading .rcfilters-spinner {
 		display: block;
