@@ -900,6 +900,37 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     );
 	 * @endcode
 	 *
+	 * Example usage (key holding an LRU subkey:value map without per-subkey TTLs)
+	 * @code
+	 *     $catScenarioTolerabilityCache = $this->cache->getWithSetCallback(
+	 *         $this->cache->makeKey( 'cat-scenario-constraint-checks', $constraintId ),
+	 *         WANObjectCache::TTL_DAY,
+	 *         function ( $cacheMap ) use ( $constraintId, $hashOfScenario, $scenario ) {
+	 *             $lruCache = MapCacheLRU::newFromArray( $cacheMap ?: [], self::CACHE_SIZE );
+	 *             if ( $lruCache->has( $hashOfScenario ) ) {
+	 *                 $lruCache->get( $hashOfScenario ); // trigger LRU bump
+	 *             } else {
+	 *                 $result = $this->checkScenarioTolerability( $constraintId, $scenario );
+	 *                 $lruCache->set( $hashOfScenario, $result, 3 / 8 );
+	 *             }
+	 *             // Save the new LRU cache map and reset the TTL
+	 *             return $lruCache->toArray();
+	 *         },
+	 *         [
+	 *             // Once map is > 1 sec old, consider refreshing
+	 *             'ageNew' => 1,
+	 *             // Update 5 seconds after "ageNew" given a 1 query/sec cache check rate
+	 *             'hotTTR' => 5,
+	 *             // Avoid querying cache servers multiple times in a request; this also means
+	 *             // that a request can only alter the value of any given constraint key once
+	 *             'pcTTL' => WANObjectCache::TTL_PROC_LONG,
+	 *         ]
+	 *     );
+	 *     $tolerability = isset( $catScenarioTolerabilityCache[$hashOfScenario] )
+	 *         ? $catScenarioTolerabilityCache[$hashOfScenario]
+	 *         : $this->checkScenarioTolerability( $constraintId, $scenario );
+	 * @endcode
+	 *
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
@@ -1678,7 +1709,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *                 $ttl = ( $newList === $oldValue )
 	 *                     // No change: cache for 150% of the age of $oldValue
 	 *                     ? $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, 1.5 )
-	 *                     // Changed: cache for %50 of the age of $oldValue
+	 *                     // Changed: cache for 50% of the age of $oldValue
 	 *                     : $cache->adaptiveTTL( $oldAsOf, $maxTTL, $minTTL, .5 );
 	 *             }
 	 *
