@@ -901,6 +901,37 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *     );
 	 * @endcode
 	 *
+	 * Example usage (key holding an LRU subkey:value map without per-subkey TTLs)
+	 * @code
+	 *     $commonCatScenarioChecks = $this->cache->getWithSetCallback(
+	 *         $this->cache->makeKey( 'cat-constraint-checks', $constraintId ),
+	 *         WANObjectCache::TTL_DAY,
+	 *         function ( $cacheMap ) use ( $constraintId, $hashOfScenario, $scenario ) {
+	 *             $lruCache = MapCacheLRU::newFromArray( $cacheMap ?: [], self::CACHE_SIZE );
+	 *             if ( $lruCache->has( $hashOfScenario ) ) {
+	 *                 $lruCache->get( $hashOfScenario ); // trigger LRU bump
+	 *             } else {
+	 *                 $result = $this->checkAgainstContraint( $constraintId, $scenario );
+	 *                 $lruCache->set( $hashOfScenario, $result, 3 / 8 );
+	 *             }
+	 *             // Save the new LRU cache map and reset the TTL
+	 *             return $lruCache->toArray();
+	 *         },
+	 *         [
+	 *             // Once map is > 1 sec old, consider refreshing
+	 *             'ageNew' => 1,
+	 *             // Update 5 seconds after "ageNew" given a 1 query/sec cache check rate
+	 *             'hotTTR' => 5,
+	 *             // Avoid querying cache servers multiple times in a request; this also means
+	 *             // that a request can only alter the value of any given constraint key once
+	 *             'pcTTL' => WANObjectCache::TTL_PROC_LONG,
+	 *         ]
+	 *     );
+	 *     $checkResult = isset( $commonCatScenarioChecks[ $hashOfScenario ] )
+	 *         ? $commonCatScenarioChecks[ $hashOfScenario ]
+	 *         : $this->checkAgainstContraint( $constraintId, $scenario );
+	 * @endcode
+	 *
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
