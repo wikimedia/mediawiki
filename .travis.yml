@@ -35,6 +35,8 @@ matrix:
       php: 7
     - env: dbtype=mysql dbuser=root
       php: 7.1
+    - env: dbtype=mysql dbuser=root
+      php: 7.2
 
 services:
   - mysql
