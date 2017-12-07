@@ -163,7 +163,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			: $this->linkRenderer->makeLink( $title, $text ? new HtmlArmor( $text ) : null );
 
 		return "<span class='searchalttitle'>" .
-				$this->specialPage->msg( $msgKey )->rawParams( $inner )->text()
+				$this->specialPage->msg( $msgKey )->rawParams( $inner )->parse()
 			. "</span>";
 	}
 
