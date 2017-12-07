@@ -3108,10 +3108,28 @@ class Parser {
 					throw $ex;
 				}
 
-				# The interface for parser functions allows for extracting
-				# flags into the local scope. Extract any forwarded flags
-				# here.
-				extract( $result );
+				// Extract any forwarded flags
+				if ( isset( $result['found'] ) ) {
+					$found = $result['found'];
+				}
+				if ( isset( $result['text'] ) ) {
+					$text = $result['text'];
+				}
+				if ( isset( $result['nowiki'] ) ) {
+					$nowiki = $result['nowiki'];
+				}
+				if ( isset( $result['isHTML'] ) ) {
+					$isHTML = $result['isHTML'];
+				}
+				if ( isset( $result['forceRawInterwiki'] ) ) {
+					$forceRawInterwiki = $result['forceRawInterwiki'];
+				}
+				if ( isset( $result['isChildObj'] ) ) {
+					$isChildObj = $result['isChildObj'];
+				}
+				if ( isset( $result['isLocalObj'] ) ) {
+					$isLocalObj = $result['isLocalObj'];
+				}
 			}
 		}
 
@@ -3862,11 +3880,12 @@ class Parser {
 			}
 
 			if ( is_array( $output ) ) {
-				# Extract flags to local scope (to override $markerType)
+				// Extract flags
 				$flags = $output;
 				$output = $flags[0];
-				unset( $flags[0] );
-				extract( $flags );
+				if ( isset( $flags['markerType'] ) ) {
+					$markerType = $flags['markerType'];
+				}
 			}
 		} else {
 			if ( is_null( $attrText ) ) {
