@@ -85,6 +85,11 @@ class MwSql extends Maintenance {
 		}
 
 		if ( $index === DB_MASTER ) {
+			// FIXME work around T157651
+			global $wgHooks;
+			unset( $wgHooks['LoadExtensionSchemaUpdates'] );
+			// let's hope no one used Hooks::register :/
+
 			$updater = DatabaseUpdater::newForDB( $db, true, $this );
 			$db->setSchemaVars( $updater->getSchemaVars() );
 		}
