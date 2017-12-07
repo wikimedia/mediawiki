@@ -110,6 +110,10 @@ class FirejailCommand extends Command {
 			}
 		}
 
+		if ( $this->hasRestriction( Shell::NO_LOCALSETTINGS ) ) {
+			$cmd[] = '--blacklist=' . realpath( MW_CONFIG_FILE );
+		}
+
 		if ( $this->hasRestriction( Shell::NO_ROOT ) ) {
 			$cmd[] = '--noroot';
 		}

@@ -45,13 +45,13 @@ class Shell {
 	 * Apply a default set of restrictions for improved
 	 * security out of the box.
 	 *
-	 * Equal to NO_ROOT | SECCOMP | PRIVATE_DEV
+	 * Equal to NO_ROOT | SECCOMP | PRIVATE_DEV | NO_LOCALSETTINGS
 	 *
 	 * @note This value will change over time to provide increased security
 	 *       by default, and is not guaranteed to be backwards-compatible.
 	 * @since 1.31
 	 */
-	const RESTRICT_DEFAULT = 7;
+	const RESTRICT_DEFAULT = 39;
 
 	/**
 	 * Disallow any root access. Any setuid binaries
@@ -91,6 +91,13 @@ class Shell {
 	 * @since 1.31
 	 */
 	const NO_EXECVE = 16;
+
+	/**
+	 * Deny access to LocalSettings.php (MW_CONFIG_FILE)
+	 *
+	 * @since 1.31
+	 */
+	const NO_LOCALSETTINGS = 32;
 
 	/**
 	 * Returns a new instance of Command class
