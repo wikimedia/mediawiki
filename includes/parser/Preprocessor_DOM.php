@@ -560,7 +560,15 @@ class Preprocessor_DOM extends Preprocessor {
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
 					$flags = $stack->getFlags();
-					extract( $flags );
+					if ( isset( $flags['findEquals'] ) ) {
+						$findEquals = $flags['findEquals'];
+					}
+					if ( isset( $flags['findPipe'] ) ) {
+						$findPipe = $flags['findPipe'];
+					}
+					if ( isset( $flags['inHeading'] ) ) {
+						$inHeading = $flags['inHeading'];
+					}
 					$i += $count;
 				}
 			} elseif ( $found == 'line-end' ) {
@@ -611,7 +619,15 @@ class Preprocessor_DOM extends Preprocessor {
 				$stack->pop();
 				$accum =& $stack->getAccum();
 				$flags = $stack->getFlags();
-				extract( $flags );
+				if ( isset( $flags['findEquals'] ) ) {
+					$findEquals = $flags['findEquals'];
+				}
+				if ( isset( $flags['findPipe'] ) ) {
+					$findPipe = $flags['findPipe'];
+				}
+				if ( isset( $flags['inHeading'] ) ) {
+					$inHeading = $flags['inHeading'];
+				}
 
 				// Append the result to the enclosing accumulator
 				$accum .= $element;
@@ -641,7 +657,15 @@ class Preprocessor_DOM extends Preprocessor {
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
 					$flags = $stack->getFlags();
-					extract( $flags );
+					if ( isset( $flags['findEquals'] ) ) {
+						$findEquals = $flags['findEquals'];
+					}
+					if ( isset( $flags['findPipe'] ) ) {
+						$findPipe = $flags['findPipe'];
+					}
+					if ( isset( $flags['inHeading'] ) ) {
+						$inHeading = $flags['inHeading'];
+					}
 				} else {
 					# Add literal brace(s)
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
@@ -749,7 +773,15 @@ class Preprocessor_DOM extends Preprocessor {
 					}
 				}
 				$flags = $stack->getFlags();
-				extract( $flags );
+				if ( isset( $flags['findEquals'] ) ) {
+					$findEquals = $flags['findEquals'];
+				}
+				if ( isset( $flags['findPipe'] ) ) {
+					$findPipe = $flags['findPipe'];
+				}
+				if ( isset( $flags['inHeading'] ) ) {
+					$inHeading = $flags['inHeading'];
+				}
 
 				# Add XML element to the enclosing accumulator
 				$accum .= $element;
