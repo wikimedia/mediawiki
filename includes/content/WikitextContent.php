@@ -87,7 +87,7 @@ class WikitextContent extends TextContent {
 		if ( $sectionId === 'new' ) {
 			# Inserting a new section
 			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
-					->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
+					->plaintextParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 			if ( Hooks::run( 'PlaceNewSection', [ $this, $oldtext, $subject, &$text ] ) ) {
 				$text = strlen( trim( $oldtext ) ) > 0
 					? "{$oldtext}\n\n{$subject}{$text}"
