@@ -1450,6 +1450,7 @@
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-advancedfilters": "Filtros avanzados",
 	"rcfilters-limit-title": "Resultados que mostrar",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|cambio|$1 cambios}}, $2",
 	"rcfilters-days-title": "Días recientes",
 	"rcfilters-hours-title": "Horas recientes",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|día|días}}",
