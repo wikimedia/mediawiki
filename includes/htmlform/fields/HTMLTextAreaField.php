@@ -16,7 +16,7 @@ class HTMLTextAreaField extends HTMLFormField {
 		parent::__construct( $params );
 
 		if ( isset( $params['placeholder-message'] ) ) {
-			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->parse();
+			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->text();
 		} elseif ( isset( $params['placeholder'] ) ) {
 			$this->mPlaceholder = $params['placeholder'];
 		}
