@@ -12,6 +12,7 @@
 				topSection,
 				$watchlistDetails,
 				namespaces,
+				conditionalViews = {},
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
 				limitPreferenceName = mw.config.get( 'wgStructuredChangeFiltersLimitPreferenceName' ),
@@ -36,6 +37,40 @@
 				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
 				$changesListRoot = $( '.mw-changeslist, .mw-changeslist-empty, .mw-changeslist-timeout' );
 
+			if ( specialPage === 'Recentchangeslinked' ) {
+				conditionalViews.recentChangesLinked = {
+					groups: [
+						{
+							name: 'page',
+							type: 'any_value',
+							title: '',
+							hidden: true,
+							isSticky: false,
+							filters: [
+								{
+									name: 'target',
+									'default': ''
+								}
+							]
+						},
+						{
+							name: 'toOrFrom',
+							type: 'boolean',
+							title: '',
+							hidden: true,
+							isSticky: false,
+							filters: [
+								{
+									name: 'showlinkedto',
+									'default': false
+								}
+							]
+						}
+					]
+				};
+
+			}
+
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 
@@ -55,7 +90,8 @@
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
 				namespaces,
-				mw.config.get( 'wgRCFiltersChangeTags' )
+				mw.config.get( 'wgRCFiltersChangeTags' ),
+				conditionalViews
 			);
 
 			// eslint-disable-next-line no-new
