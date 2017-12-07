@@ -49,7 +49,7 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 			}
 			$redirect =
 				"<span class='searchalttitle'>" .
-					$this->specialSearch->msg( 'search-redirect' )->rawParams(
+					$this->specialSearch->msg( 'search-redirect' )->plaintextParams(
 						$this->linkRenderer->makeLink( $redirectTitle, $redirectText )
 					)->text() .
 				"</span>";

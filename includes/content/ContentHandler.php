@@ -855,7 +855,7 @@ abstract class ContentHandler {
 				);
 
 				return wfMessage( 'autoredircomment', $newTarget->getFullText() )
-					->rawParams( $truncatedtext )->inContentLanguage()->text();
+					->plaintextParams( $truncatedtext )->inContentLanguage()->text();
 			case 'changed-redirect-target':
 				$oldTarget = $oldContent->getRedirectTarget();
 				$newTarget = $newContent->getRedirectTarget();
