@@ -3268,7 +3268,7 @@ class Language {
 			}
 		}
 
-		return $number;
+		return (string)$number;
 	}
 
 	/**
