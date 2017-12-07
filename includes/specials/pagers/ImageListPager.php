@@ -288,7 +288,7 @@ class ImageListPager extends TablePager {
 
 			$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
 			$options = [ 'GROUP BY' => array_merge( [ 'img_user' ], $columnlist ) ];
-			$join_conds = [ 'oldimage' => [ 'LEFT JOIN', 'oi_name = img_name' ] ];
+			$join_conds['oldimage'] = [ 'LEFT JOIN', 'oi_name = img_name' ];
 		}
 
 		return [
