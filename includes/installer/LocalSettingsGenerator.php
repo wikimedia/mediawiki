@@ -185,7 +185,7 @@ class LocalSettingsGenerator {
 			$jsonFile = 'skin.json';
 			$function = 'wfLoadSkin';
 		} else {
-			throw new InvalidArgumentException( '$dir was not "extensions" or "skins' );
+			throw new InvalidArgumentException( '$dir was not "extensions" or "skins"' );
 		}
 
 		$encName = self::escapePhpString( $name );
