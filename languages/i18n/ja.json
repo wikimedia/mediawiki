@@ -87,7 +87,8 @@
 			"Delim",
 			"Hinaloe",
 			"Phantomize",
-			"Suzukaze-c"
+			"Suzukaze-c",
+			"Kkairri"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1488,6 +1489,7 @@
 	"rcfilters-liveupdates-button-title-off": "新しい編集を即座に読み表示する",
 	"rcfilters-watchlist-markseen-button": "すべての変更を訪問済みにする",
 	"rcfilters-watchlist-edit-watchlist-button": "ウォッチリストを編集",
+	"rcfilters-watchlist-showupdated": "最終訪問以降に変更されたページは、塗りつぶされた丸印と一緒に、<strong>太字</strong>で表示されます。",
 	"rcfilters-preference-label": "最近の更新の改善版を隠す",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",
