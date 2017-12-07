@@ -140,6 +140,15 @@ class TextConflictHelper {
 	 */
 	public function incrementResolvedStats() {
 		$this->stats->increment( 'edit.failures.conflict.resolved' );
+		// Only include 'standard' namespaces to avoid creating unknown numbers of statsd metrics
+		if (
+			$this->title->getNamespace() >= NS_MAIN &&
+			$this->title->getNamespace() <= NS_CATEGORY_TALK
+		) {
+			$this->stats->increment(
+				'edit.failures.conflict.resolved.byNamespaceId.' . $this->title->getNamespace()
+			);
+		}
 	}
 
 	/**
