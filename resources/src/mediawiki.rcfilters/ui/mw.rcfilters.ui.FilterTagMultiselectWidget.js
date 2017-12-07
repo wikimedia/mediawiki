@@ -88,7 +88,10 @@
 		if ( !mw.user.isAnon() ) {
 			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
 				this.controller,
-				this.queriesModel
+				this.queriesModel,
+				{
+					$overlay: this.$overlay
+				}
 			);
 
 			this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
