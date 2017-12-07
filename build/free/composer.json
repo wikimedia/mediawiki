@@ -61,6 +61,11 @@
 		"mediawiki/blue-spice-namespace-manager": "dev-master",
 		"mediawiki/blue-spice-blog": "dev-master",
 		"mediawiki/blue-spice-checklist": "dev-master",
+		"mediawiki/blue-spice-insert-magic": "dev-master",
+		"mediawiki/blue-spice-insert-file": "dev-master",
+		"mediawiki/blue-spice-insert-link": "dev-master",
+		"mediawiki/blue-spice-u-e-module-p-d-f": "dev-master",
+		"mediawiki/blue-spice-universal-export": "dev-master",
 		"mediawiki/visual-editor": "dev-9b73200",
 		"mediawiki/code-editor": "dev-3e49aff"
 	}
