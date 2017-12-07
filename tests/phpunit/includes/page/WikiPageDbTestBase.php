@@ -1447,8 +1447,8 @@ more stuff
 
 	/**
 	 * @dataProvider provideTestInsertProtectNullRevision
-	 * @covers WikiPge::insertProtectNullRevision
-	 * @covers WikiPge::protectDescription
+	 * @covers WikiPage::insertProtectNullRevision
+	 * @covers WikiPage::protectDescription
 	 *
 	 * @param string $revCommentMsg
 	 * @param array $limit
