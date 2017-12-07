@@ -1778,7 +1778,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return true;
 		}
 
-		return self::checkStructuredFilterUiEnabled(
+		return static::checkStructuredFilterUiEnabled(
 			$this->getConfig(),
 			$this->getUser()
 		);
