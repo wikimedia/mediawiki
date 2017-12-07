@@ -38,6 +38,11 @@ class GitInfo {
 	protected $basedir;
 
 	/**
+	 * Location of the repository
+	 */
+	protected $repoDir;
+
+	/**
 	 * Path to JSON cache file for pre-computed git information.
 	 */
 	protected $cacheFile;
@@ -58,6 +63,7 @@ class GitInfo {
 	 * @see precomputeValues
 	 */
 	public function __construct( $repoDir, $usePrecomputed = true ) {
+		$this->repoDir = $repoDir;
 		$this->cacheFile = self::getCacheFilePath( $repoDir );
 		wfDebugLog( 'gitinfo',
 			"Computed cacheFile={$this->cacheFile} for {$repoDir}"
@@ -230,10 +236,11 @@ class GitInfo {
 					'--format=format:%ct',
 					'HEAD',
 				];
+				$gitDir = realpath( $this->basedir );
 				$result = Shell::command( $cmd )
-					->environment( [ 'GIT_DIR' => $this->basedir ] )
+					->environment( [ 'GIT_DIR' => $gitDir ] )
 					->restrict( Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK )
-					->whitelistPaths( [ $this->basedir ] )
+					->whitelistPaths( [ $gitDir, $this->repoDir ] )
 					->execute();
 
 				if ( $result->getExitCode() === 0 ) {
