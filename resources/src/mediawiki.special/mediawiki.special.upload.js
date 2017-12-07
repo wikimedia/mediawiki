@@ -612,4 +612,41 @@
 			allowCloseWindow.release();
 		} );
 	} );
+
+	// Add tabindex to mw-editTools
+	$( function () {
+		// Function to change tabindex for all links within mw-editTools
+		function setEditTabindex( $val ) {
+			$( '.mw-editTools' ).find( 'a' ).each( function () {
+				$( this ).attr( 'tabindex', $val );
+			} );
+		}
+
+		// Change tabindex to 0 if user pressed spaced or enter while focused
+		$( '.mw-editTools' ).on( 'keypress', function ( e ) {
+			// Don't continue if pressed key was not enter or spacebar
+			if ( e.which !== 13 && e.which !== 32 ) {
+				return;
+			}
+
+			// Change tabindex for links to 0 and focus the first link
+			setEditTabindex( '0' );
+			$( this ).find( 'a' ).first().focus();
+		} );
+
+		// Reset tabindex for elements when user focused out mw-editTools
+		$( '.mw-editTools' ).on( 'focusout', function ( e ) {
+			// Don't continue if relatedTarget is within mw-editTools
+			if ( e.relatedTarget !== null && $( e.relatedTarget ).closest( '.mw-editTools' ).length > 0 ) {
+				return;
+			}
+
+			// Reset tabindex back to -1
+			setEditTabindex( '-1' );
+		} );
+
+		// Set initial tabindex for mw-editTools to 0 and to -1 for all links
+		$( '.mw-editTools' ).attr( 'tabindex', '0' );
+		setEditTabindex( '-1' );
+	} );
 }( mediaWiki, jQuery ) );
