@@ -44,12 +44,12 @@
 	 * @param {Object} [namespaceStructure] Namespace definition
 	 * @param {Object} [tagList] Tag definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
 		var parsedSavedQueries, pieces,
 			displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 			defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 			controller = this,
-			views = {},
+			views = $.extend( true, {}, conditionalViews ),
 			items = [],
 			uri = new mw.Uri();
 
@@ -182,37 +182,6 @@
 						{
 							name: 'enhanced',
 							'default': String( mw.user.options.get( 'usenewrc', 0 ) )
-						}
-					]
-				}
-			]
-		};
-
-		views.recentChangesLinked = {
-			groups: [
-				{
-					name: 'page',
-					type: 'any_value',
-					title: '',
-					hidden: true,
-					sticky: true,
-					filters: [
-						{
-							name: 'target',
-							'default': ''
-						}
-					]
-				},
-				{
-					name: 'toOrFrom',
-					type: 'boolean',
-					title: '',
-					hidden: true,
-					sticky: true,
-					filters: [
-						{
-							name: 'showlinkedto',
-							'default': false
 						}
 					]
 				}
