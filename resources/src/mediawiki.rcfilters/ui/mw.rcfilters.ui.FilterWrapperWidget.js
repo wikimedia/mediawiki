@@ -74,6 +74,7 @@
 		}
 
 		// Events
+		this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
 		this.changesListModel.connect( this, { newChangesExist: 'onNewChangesExist' } );
 		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
 		this.showNewChangesLink.toggle( false );

@@ -180,6 +180,8 @@
 
 		}
 
+		this.$element.prepend( $( '<div>' ).addClass( 'mw-changeslist-overlay' ) );
+
 		loaderPromise.done( function () {
 			if ( !isInitialDOM && !isEmpty ) {
 				// Make sure enhanced RC re-initializes correctly
@@ -188,6 +190,14 @@
 
 			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 		} );
+	};
+
+	/** Toggles overlay class on changes list
+	 *
+	 * @param {boolean} isVisible True if overlay should be visible
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.toggleOverlay = function ( isVisible ) {
+		this.$element.toggleClass( 'mw-rcfilters-ui-changesListWrapperWidget--overlaid', isVisible );
 	};
 
 	/**
@@ -206,6 +216,7 @@
 		};
 		return reasonMsgKeyMap[ reason ];
 	};
+
 	/**
 	 * Emphasize the elements (or groups) newer than the 'from' parameter
 	 * @param {string} from Anything newer than this is considered 'new'
