@@ -693,10 +693,6 @@ abstract class Installer {
 			] );
 		} catch ( MediaWiki\Services\ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );
-
-			if ( !empty( $this->debug ) ) {
-				$html .= "<!--\n" . $e->getTraceAsString() . "\n-->";
-			}
 		}
 
 		return $html;
