@@ -5147,6 +5147,7 @@ $wgGroupPermissions['user']['sendemail'] = true;
 $wgGroupPermissions['user']['applychangetags'] = true;
 $wgGroupPermissions['user']['changetags'] = true;
 $wgGroupPermissions['user']['editcontentmodel'] = true;
+$wgGroupPermissions['user']['sendemail-new-users'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;

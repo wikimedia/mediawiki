@@ -179,6 +179,7 @@ class User implements IDBAccessObject, UserIdentity {
 		'reupload-shared',
 		'rollback',
 		'sendemail',
+		'sendemail-new-users',
 		'siteadmin',
 		'suppressionlog',
 		'suppressredirect',
