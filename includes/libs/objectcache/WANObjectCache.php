@@ -91,8 +91,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	protected $logger;
 	/** @var StatsdDataFactoryInterface */
 	protected $stats;
-	/** @var bool Whether to use "interim" caching while keys are tombstoned */
-	protected $useInterimHoldOffCaching = true;
 	/** @var callable|null Function that takes a WAN cache callback and runs it later */
 	protected $asyncHandler;
 
@@ -1209,10 +1207,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @return mixed
 	 */
 	protected function getInterimValue( $key, $versioned, $minTime, &$asOf ) {
-		if ( !$this->useInterimHoldOffCaching ) {
-			return false; // disabled
-		}
-
 		$wrapped = $this->cache->get( self::INTERIM_KEY_PREFIX . $key );
 		list( $value ) = $this->unwrap( $wrapped, $this->getCurrentTime() );
 		if ( $value !== false && $this->isValid( $value, $versioned, $asOf, $minTime ) ) {
@@ -1602,30 +1596,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public function clearProcessCache() {
 		$this->processCaches = [];
-	}
-
-	/**
-	 * Enable or disable the use of brief caching for tombstoned keys
-	 *
-	 * When a key is purged via delete(), there normally is a period where caching
-	 * is hold-off limited to an extremely short time. This method will disable that
-	 * caching, forcing the callback to run for any of:
-	 *   - WANObjectCache::getWithSetCallback()
-	 *   - WANObjectCache::getMultiWithSetCallback()
-	 *   - WANObjectCache::getMultiWithUnionSetCallback()
-	 *
-	 * This is useful when both:
-	 *   - a) the database used by the callback is known to be up-to-date enough
-	 *        for some particular purpose (e.g. replica DB has applied transaction X)
-	 *   - b) the caller needs to exploit that fact, and therefore needs to avoid the
-	 *        use of inherently volatile and possibly stale interim keys
-	 *
-	 * @see WANObjectCache::delete()
-	 * @param bool $enabled Whether to enable interim caching
-	 * @since 1.31
-	 */
-	final public function useInterimHoldOffCaching( $enabled ) {
-		$this->useInterimHoldOffCaching = $enabled;
 	}
 
 	/**
