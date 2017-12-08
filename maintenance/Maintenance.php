@@ -662,7 +662,7 @@ abstract class Maintenance {
 		global $IP, $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
-		if ( isset( $_SERVER ) && isset( $_SERVER['REQUEST_METHOD'] ) ) {
+		if ( PHP_SAPI !== 'cli' ) {
 			$this->fatalError( 'This script must be run from the command line' );
 		}
 
