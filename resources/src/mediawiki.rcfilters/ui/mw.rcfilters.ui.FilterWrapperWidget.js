@@ -55,7 +55,8 @@
 			icon: 'reload',
 			framed: false,
 			label: mw.msg( 'rcfilters-show-new-changes' ),
-			flags: [ 'progressive' ]
+			flags: [ 'progressive' ],
+			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-showNewChanges' ]
 		} );
 
 		// Initialize

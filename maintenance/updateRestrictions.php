@@ -59,7 +59,8 @@ class UpdateRestrictions extends Maintenance {
 		$encodedExpiry = 'infinity';
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd out of $end\n" );
-			$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
+			$cond = "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd .
+				" AND page_restrictions !=''";
 			$res = $db->select(
 				'page',
 				[ 'page_id', 'page_namespace', 'page_restrictions' ],

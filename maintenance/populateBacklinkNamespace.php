@@ -67,7 +67,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
-			$cond = "page_id BETWEEN $blockStart AND $blockEnd";
+			$cond = "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd;
 			$res = $db->select( 'page', [ 'page_id', 'page_namespace' ], $cond, __METHOD__ );
 			foreach ( $res as $row ) {
 				$db->update( 'pagelinks',
