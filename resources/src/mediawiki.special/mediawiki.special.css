@@ -25,6 +25,13 @@
 	page-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
 }
+
+.mw-allpages-chunk,
+.mw-prefixindex-list {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .allpagesredirect {
 	font-style: italic;
 }
