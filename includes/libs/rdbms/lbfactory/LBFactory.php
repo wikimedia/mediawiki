@@ -115,8 +115,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->requestInfo = [
 			'IPAddress' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
 			'UserAgent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '',
-			'ChronologyProtection' => 'true',
-			'ChronologyPositionTime' => isset( $_GET['cpPosTime'] ) ? $_GET['cpPosTime'] : null
+			'ChronologyProtection' => 'true'
 		];
 
 		$this->cliMode = isset( $conf['cliMode'] ) ? $conf['cliMode'] : PHP_SAPI === 'cli';
@@ -441,7 +440,7 @@ abstract class LBFactory implements ILBFactory {
 				'ip' => $this->requestInfo['IPAddress'],
 				'agent' => $this->requestInfo['UserAgent'],
 			],
-			$this->requestInfo['ChronologyPositionTime']
+			isset( $_GET['cpPosTime'] ) ? $_GET['cpPosTime'] : null
 		);
 		$this->chronProt->setLogger( $this->replLogger );
 
