@@ -30,17 +30,6 @@ use MediaWiki\Linker\LinkTarget;
  * @ingroup Watchlist
  */
 class WatchedItem {
-
-	/**
-	 * @deprecated since 1.27, see User::IGNORE_USER_RIGHTS
-	 */
-	const IGNORE_USER_RIGHTS = User::IGNORE_USER_RIGHTS;
-
-	/**
-	 * @deprecated since 1.27, see User::CHECK_USER_RIGHTS
-	 */
-	const CHECK_USER_RIGHTS = User::CHECK_USER_RIGHTS;
-
 	/**
 	 * @deprecated Internal class use only
 	 */
@@ -129,72 +118,4 @@ class WatchedItem {
 		}
 		return $this->notificationTimestamp;
 	}
-
-	/**
-	 * Back compat pre 1.27 with the WatchedItemStore introduction
-	 * @todo remove in 1.28/9
-	 * -------------------------------------------------
-	 */
-
-	/**
-	 * @return Title
-	 * @deprecated Internal class use only
-	 */
-	public function getTitle() {
-		if ( !$this->title ) {
-			$this->title = Title::newFromLinkTarget( $this->linkTarget );
-		}
-		return $this->title;
-	}
-
-	/**
-	 * @deprecated since 1.27 Use the constructor, WatchedItemStore::getWatchedItem()
-	 *             or WatchedItemStore::loadWatchedItem()
-	 */
-	public static function fromUserTitle( $user, $title, $checkRights = User::CHECK_USER_RIGHTS ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return new self( $user, $title, self::DEPRECATED_USAGE_TIMESTAMP, (bool)$checkRights );
-	}
-
-	/**
-	 * @deprecated since 1.27 Use User::addWatch()
-	 * @return bool
-	 */
-	public function addWatch() {
-		wfDeprecated( __METHOD__, '1.27' );
-		$this->user->addWatch( $this->getTitle(), $this->checkRights );
-		return true;
-	}
-
-	/**
-	 * @deprecated since 1.27 Use User::removeWatch()
-	 * @return bool
-	 */
-	public function removeWatch() {
-		wfDeprecated( __METHOD__, '1.27' );
-		if ( $this->checkRights && !$this->user->isAllowed( 'editmywatchlist' ) ) {
-			return false;
-		}
-		$this->user->removeWatch( $this->getTitle(), $this->checkRights );
-		return true;
-	}
-
-	/**
-	 * @deprecated since 1.27 Use User::isWatched()
-	 * @return bool
-	 */
-	public function isWatched() {
-		wfDeprecated( __METHOD__, '1.27' );
-		return $this->user->isWatched( $this->getTitle(), $this->checkRights );
-	}
-
-	/**
-	 * @deprecated since 1.27 Use WatchedItemStore::duplicateAllAssociatedEntries()
-	 */
-	public static function duplicateEntries( Title $oldTitle, Title $newTitle ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$store->duplicateAllAssociatedEntries( $oldTitle, $newTitle );
-	}
-
 }
