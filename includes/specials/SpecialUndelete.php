@@ -465,11 +465,11 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $isText ) {
 			// source view for textual content
-			$sourceView = new OOUI\MultilineTextInputWidget( [
-				'readOnly' => true,
-				'rows' => 25,
-				'value' => $content->getNativeData() . "\n"
-			] );
+			$sourceView = Xml::element( 'textarea', [
+				'readonly' => 'readonly',
+				'cols' => 80,
+				'rows' => 25
+			], $content->getNativeData() . "\n" );
 
 			$buttonFields[] = new OOUI\ButtonInputWidget( [
 				'type' => 'submit',
