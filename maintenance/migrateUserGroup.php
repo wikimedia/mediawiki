@@ -63,7 +63,7 @@ class MigrateUserGroup extends Maintenance {
 			$dbw->update( 'user_groups',
 				[ 'ug_group' => $newGroup ],
 				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN $blockStart AND $blockEnd" ],
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__,
 				[ 'IGNORE' ]
 			);
@@ -74,7 +74,7 @@ class MigrateUserGroup extends Maintenance {
 			// user/group is UNIQUE.
 			$dbw->delete( 'user_groups',
 				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN $blockStart AND $blockEnd" ],
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__
 			);
 			$affected += $dbw->affectedRows();
@@ -86,7 +86,7 @@ class MigrateUserGroup extends Maintenance {
 				// were in the new group and not in the group.
 				$res = $dbw->select( 'user_groups', 'ug_user',
 					[ 'ug_group' => $newGroup,
-						"ug_user BETWEEN $blockStart AND $blockEnd" ],
+						"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 					__METHOD__
 				);
 				if ( $res !== false ) {

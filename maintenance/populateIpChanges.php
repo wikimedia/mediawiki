@@ -87,7 +87,7 @@ TEXT
 			$rows = $dbr->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				[ "rev_id BETWEEN $blockStart AND $blockEnd", 'rev_user' => 0 ],
+				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, 'rev_user' => 0 ],
 				__METHOD__
 			);
 
