@@ -1,8 +1,9 @@
 'use strict';
 const assert = require( 'assert' ),
-	EditPage = require( '../pageobjects/edit.page' ),
-	HistoryPage = require( '../pageobjects/history.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+	pageobjects = require( 'mediawiki-selenium-pageobjects' ),
+	EditPage = pageobjects.EditPage,
+	HistoryPage = pageobjects.HistoryPage,
+	UserLoginPage = pageobjects.UserLoginPage;
 
 describe( 'Page', function () {
 
