@@ -3537,6 +3537,7 @@
 	"tag-mw-removed-redirect-description": "Bewerkingen die een bestaande doorverwijzing veranderen in een niet-doorverwijzing",
 	"tag-mw-changed-redirect-target": "Doorverwijzingsdoel gewijzigd",
 	"tag-mw-changed-redirect-target-description": "Bewerkingen die het doel van een doorverwijzing veranderen",
+	"tag-mw-blank": "Leeghalen",
 	"tag-mw-blank-description": "Bewerkingen die een pagina leegmaken",
 	"tag-mw-replace": "Vervangen",
 	"tag-mw-replace-description": "Bewerkingen die meer dan 90% van de pagina verwijderen",

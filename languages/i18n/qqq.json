@@ -1930,7 +1930,7 @@
 	"uploadstash-bad-path-invalid": "Error message when the upload stash path is invalid.",
 	"uploadstash-bad-path-unknown-type": "Error message when the upload stash key is of an invalid type.\n\nParameters:\n* $1 - the type",
 	"uploadstash-bad-path-unrecognized-thumb-name": "Error message when the upload stash key is of an unrecognized thumbnail",
-	"uploadstash-bad-path-no-handler": "Error message when no handler can be found for the given upload stash key.\n\nParameters:\n* $1 - the mine type\n* $2 - the file path",
+	"uploadstash-bad-path-no-handler": "Error message when no handler can be found for the given upload stash key.\n\nParameters:\n* $1 - the MIME type\n* $2 - the file path",
 	"uploadstash-bad-path-bad-format": "Error message when the upload stash key if formatted incorrectly.\n\nParameters:\n* $1 - the stash key",
 	"uploadstash-file-not-found": "Error message when a stashed file can't be found.\n\nParameters:\n* $1 - the stash key",
 	"uploadstash-file-not-found-no-thumb": "Error message when no thumbnail could be generated.",
