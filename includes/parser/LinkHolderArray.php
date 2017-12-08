@@ -134,7 +134,7 @@ class LinkHolderArray {
 				$maxId = $newKey > $maxId ? $newKey : $maxId;
 			}
 		}
-		$texts = preg_replace_callback( '/(<!--LINK \d+:)(\d+)(-->)/',
+		$texts = preg_replace_callback( '/(<!--LINK\'" \d+:)(\d+)(-->)/',
 			[ $this, 'mergeForeignCallback' ], $texts );
 
 		# Renumber interwiki links
@@ -143,7 +143,7 @@ class LinkHolderArray {
 			$this->interwikis[$newKey] = $entry;
 			$maxId = $newKey > $maxId ? $newKey : $maxId;
 		}
-		$texts = preg_replace_callback( '/(<!--IWLINK )(\d+)(-->)/',
+		$texts = preg_replace_callback( '/(<!--IWLINK\'" )(\d+)(-->)/',
 			[ $this, 'mergeForeignCallback' ], $texts );
 
 		# Set the parent link ID to be beyond the highest used ID
@@ -172,7 +172,7 @@ class LinkHolderArray {
 		# Internal links
 		$pos = 0;
 		while ( $pos < strlen( $text ) ) {
-			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/',
+			if ( !preg_match( '/<!--LINK\'" (\d+):(\d+)-->/',
 				$text, $m, PREG_OFFSET_CAPTURE, $pos )
 			) {
 				break;
@@ -186,7 +186,7 @@ class LinkHolderArray {
 		# Interwiki links
 		$pos = 0;
 		while ( $pos < strlen( $text ) ) {
-			if ( !preg_match( '/<!--IWLINK (\d+)-->/', $text, $m, PREG_OFFSET_CAPTURE, $pos ) ) {
+			if ( !preg_match( '/<!--IWLINK\'" (\d+)-->/', $text, $m, PREG_OFFSET_CAPTURE, $pos ) ) {
 				break;
 			}
 			$key = $m[1][0];
@@ -249,12 +249,12 @@ class LinkHolderArray {
 				// Use a globally unique ID to keep the objects mergable
 				$key = $this->parent->nextLinkID();
 				$this->interwikis[$key] = $entry;
-				$retVal = "<!--IWLINK $key-->{$trail}";
+				$retVal = "<!--IWLINK'\" $key-->{$trail}";
 			} else {
 				$key = $this->parent->nextLinkID();
 				$ns = $nt->getNamespace();
 				$this->internals[$ns][$key] = $entry;
-				$retVal = "<!--LINK $ns:$key-->{$trail}";
+				$retVal = "<!--LINK'\" $ns:$key-->{$trail}";
 			}
 			$this->size++;
 		}
@@ -374,7 +374,7 @@ class LinkHolderArray {
 				$title = $entry['title'];
 				$query = isset( $entry['query'] ) ? $entry['query'] : [];
 				$key = "$ns:$index";
-				$searchkey = "<!--LINK $key-->";
+				$searchkey = "<!--LINK'\" $key-->";
 				$displayText = $entry['text'];
 				if ( isset( $entry['selflink'] ) ) {
 					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayText, $query );
@@ -408,7 +408,7 @@ class LinkHolderArray {
 
 		# Do the thing
 		$text = preg_replace_callback(
-			'/(<!--LINK .*?-->)/',
+			'/(<!--LINK\'" .*?-->)/',
 			$replacer->cb(),
 			$text
 		);
@@ -437,7 +437,7 @@ class LinkHolderArray {
 		$replacer = new HashtableReplacer( $replacePairs, 1 );
 
 		$text = preg_replace_callback(
-			'/<!--IWLINK (.*?)-->/',
+			'/<!--IWLINK\'" (.*?)-->/',
 			$replacer->cb(),
 			$text );
 	}
@@ -612,7 +612,7 @@ class LinkHolderArray {
 	 */
 	public function replaceText( $text ) {
 		$text = preg_replace_callback(
-			'/<!--(LINK|IWLINK) (.*?)-->/',
+			'/<!--(LINK|IWLINK)\'" (.*?)-->/',
 			[ $this, 'replaceTextCallback' ],
 			$text );
 

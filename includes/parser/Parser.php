@@ -3944,7 +3944,7 @@ class Parser {
 			$this->mForceTocPosition = true;
 
 			# Set a placeholder. At the end we'll fill it in with the TOC.
-			$text = $mw->replace( '<!--MWTOC-->', $text, 1 );
+			$text = $mw->replace( '<!--MWTOC\'"-->', $text, 1 );
 
 			# Only keep the first one.
 			$text = $mw->replace( '', $text );
@@ -4390,7 +4390,7 @@ class Parser {
 		$full .= implode( '', $sections );
 
 		if ( $this->mForceTocPosition ) {
-			return str_replace( '<!--MWTOC-->', $toc, $full );
+			return str_replace( '<!--MWTOC\'"-->', $toc, $full );
 		} else {
 			return $full;
 		}
