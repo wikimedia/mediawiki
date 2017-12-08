@@ -110,7 +110,7 @@ class MWDebugTest extends MediaWikiTestCase {
 			$this->assertArrayHasKey( $expectedKey, $data['debuginfo'], "debuginfo has $expectedKey" );
 		}
 
-		$xml = ApiFormatXml::recXmlPrint( 'help', $data );
+		$xml = ApiFormatXml::recXmlPrint( 'help', $data, null );
 
 		// exception not thrown
 		$this->assertInternalType( 'string', $xml );
