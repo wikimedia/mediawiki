@@ -192,33 +192,61 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testChronologyProtector() {
 		// (a) First HTTP request
-		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
+		$m1Pos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
+		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400', '794074907' );
 
 		$now = microtime( true );
-		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
-			->disableOriginalConstructor()
-			->getMock();
-		$mockDB->method( 'writesOrCallbacksPending' )->willReturn( true );
-		$mockDB->method( 'lastDoneWrites' )->willReturn( $now );
-		$mockDB->method( 'getMasterPos' )->willReturn( $mPos );
 
-		$lb = $this->getMockBuilder( 'LoadBalancer' )
+		// Master DB 1
+		$mockDB1 = $this->getMockBuilder( 'DatabaseMysqli' )
 			->disableOriginalConstructor()
 			->getMock();
-		$lb->method( 'getConnection' )->willReturn( $mockDB );
-		$lb->method( 'getServerCount' )->willReturn( 2 );
-		$lb->method( 'parentInfo' )->willReturn( [ 'id' => "main-DEFAULT" ] );
-		$lb->method( 'getAnyOpenConnection' )->willReturn( $mockDB );
-		$lb->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
-				function () use ( $mockDB ) {
+		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
+		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
+		$mockDB1->method( 'getMasterPos' )->willReturn( $m1Pos );
+		// Load balancer for master DB 1
+		$lb1 = $this->getMockBuilder( 'LoadBalancer' )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb1->method( 'getConnection' )->willReturn( $mockDB1 );
+		$lb1->method( 'getServerCount' )->willReturn( 2 );
+		$lb1->method( 'getAnyOpenConnection' )->willReturn( $mockDB1 );
+		$lb1->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+				function () use ( $mockDB1 ) {
 					$p = 0;
-					$p |= call_user_func( [ $mockDB, 'writesOrCallbacksPending' ] );
-					$p |= call_user_func( [ $mockDB, 'lastDoneWrites' ] );
+					$p |= call_user_func( [ $mockDB1, 'writesOrCallbacksPending' ] );
+					$p |= call_user_func( [ $mockDB1, 'lastDoneWrites' ] );
 
 					return (bool)$p;
 				}
 			) );
-		$lb->method( 'getMasterPos' )->willReturn( $mPos );
+		$lb1->method( 'getMasterPos' )->willReturn( $m1Pos );
+		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
+		// Master DB 2
+		$mockDB2 = $this->getMockBuilder( 'DatabaseMysqli' )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
+		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
+		$mockDB2->method( 'getMasterPos' )->willReturn( $m2Pos );
+		// Load balancer for master DB 2
+		$lb2 = $this->getMockBuilder( 'LoadBalancer' )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb2->method( 'getConnection' )->willReturn( $mockDB2 );
+		$lb2->method( 'getServerCount' )->willReturn( 2 );
+		$lb2->method( 'getAnyOpenConnection' )->willReturn( $mockDB2 );
+		$lb2->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
+			function () use ( $mockDB2 ) {
+				$p = 0;
+				$p |= call_user_func( [ $mockDB2, 'writesOrCallbacksPending' ] );
+				$p |= call_user_func( [ $mockDB2, 'lastDoneWrites' ] );
+
+				return (bool)$p;
+			}
+		) );
+		$lb2->method( 'getMasterPos' )->willReturn( $m2Pos );
+		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 
 		$bag = new HashBagOStuff();
 		$cp = new ChronologyProtector(
@@ -229,32 +257,60 @@ class LBFactoryTest extends MediaWikiTestCase {
 			]
 		);
 
-		$mockDB->expects( $this->exactly( 2 ) )->method( 'writesOrCallbacksPending' );
-		$mockDB->expects( $this->exactly( 2 ) )->method( 'lastDoneWrites' );
+		$mockDB1->expects( $this->exactly( 1 ) )->method( 'writesOrCallbacksPending' );
+		$mockDB1->expects( $this->exactly( 1 ) )->method( 'lastDoneWrites' );
+		$mockDB2->expects( $this->exactly( 1 ) )->method( 'writesOrCallbacksPending' );
+		$mockDB2->expects( $this->exactly( 1 ) )->method( 'lastDoneWrites' );
 
-		// Nothing to wait for
-		$cp->initLB( $lb );
-		// Record in stash
-		$cp->shutdownLB( $lb );
-		$cp->shutdown();
+		// Nothing to wait for on first HTTP request start
+		$cp->initLB( $lb1 );
+		$cp->initLB( $lb2 );
+		// Record positions in stash on first HTTP request end
+		$cp->shutdownLB( $lb1 );
+		$cp->shutdownLB( $lb2 );
+		$cpIndex = null;
+		$cp->shutdown( null, 'sync', $cpIndex );
+
+		$this->assertEquals( 1, $cpIndex, "CP write index set" );
 
 		// (b) Second HTTP request
+
+		// Load balancer for master DB 1
+		$lb1 = $this->getMockBuilder( 'LoadBalancer' )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb1->method( 'getServerCount' )->willReturn( 2 );
+		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
+		$lb1->expects( $this->once() )
+			->method( 'waitFor' )->with( $this->equalTo( $m1Pos ) );
+		// Load balancer for master DB 2
+		$lb2 = $this->getMockBuilder( 'LoadBalancer' )
+			->disableOriginalConstructor()
+			->getMock();
+		$lb2->method( 'getServerCount' )->willReturn( 2 );
+		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
+		$lb2->expects( $this->once() )
+			->method( 'waitFor' )->with( $this->equalTo( $m2Pos ) );
+
 		$cp = new ChronologyProtector(
 			$bag,
 			[
 				'ip' => '127.0.0.1',
 				'agent' => "Totally-Not-FireFox"
-			]
+			],
+			$cpIndex
 		);
 
-		$lb->expects( $this->once() )
-			->method( 'waitFor' )->with( $this->equalTo( $mPos ) );
+		// Wait for last positions to be reached on second HTTP request start
+		$cp->initLB( $lb1 );
+		$cp->initLB( $lb2 );
+		// Shutdown (nothing to record)
+		$cp->shutdownLB( $lb1 );
+		$cp->shutdownLB( $lb2 );
+		$cpIndex = null;
+		$cp->shutdown( null, 'sync', $cpIndex );
 
-		// Wait
-		$cp->initLB( $lb );
-		// Record in stash
-		$cp->shutdownLB( $lb );
-		$cp->shutdown();
+		$this->assertEquals( null, $cpIndex, "CP write index retained" );
 	}
 
 	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
