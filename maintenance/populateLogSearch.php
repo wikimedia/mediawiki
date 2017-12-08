@@ -76,7 +76,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		$delTypes = [ 'delete', 'suppress' ]; // revisiondelete types
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
-			$cond = "log_id BETWEEN $blockStart AND $blockEnd";
+			$cond = "log_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd;
 			$res = $db->select(
 				'logging', [ 'log_id', 'log_type', 'log_action', 'log_params' ], $cond, __FUNCTION__
 			);
