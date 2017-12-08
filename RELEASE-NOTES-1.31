@@ -135,6 +135,17 @@ changes to languages because of Phabricator reports.
   * OutputPage::enableSectionEditLinks()
   * OutputPage::sectionEditLinksEnabled()
   * The public ParserOutput state fields $mTOCEnabled and $mEditSectionTokens are also deprecated.
+* The following methods and constants from the WatchedItem class were deprecated in
+  1.27 have been removed.
+  * WatchedItem::getTitle()
+  * WatchedItem::fromUserTitle()
+  * WatchedItem::addWatch()
+  * WatchedItem::removeWatch()
+  * WatchedItem::isWatched()
+  * WatchedItem::duplicateEntries()
+  * WatchedItem::IGNORE_USER_RIGHTS
+  * WatchedItem::CHECK_USER_RIGHTS
+  * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
