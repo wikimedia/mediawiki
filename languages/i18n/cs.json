@@ -3516,6 +3516,7 @@
 	"tag-mw-blank-description": "Editace, které vyprázdní stránku",
 	"tag-mw-replace": "Nahrazeno",
 	"tag-mw-replace-description": "Editace, které odstraňují více než 90 % obsahu stránky",
+	"tag-mw-rollback": "Rychlý revert",
 	"tags-title": "Značky",
 	"tags-intro": "Tato stránka obsahuje seznam značek, kterými může software označovat jednotlivé editace, a jejich významy.",
 	"tags-tag": "Název značky",

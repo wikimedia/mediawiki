@@ -2931,7 +2931,7 @@
 	"weeks": "{{PLURAL:$1|$1 uke|$1 uker}}",
 	"months": "{{PLURAL:$1|$1 måned|$1 måneder}}",
 	"years": "{{PLURAL:$1|$1 år}}",
-	"ago": "$1 siden",
+	"ago": "for $1 siden",
 	"just-now": "nettopp",
 	"hours-ago": "$1 {{PLURAL:$1|time|timer}} siden",
 	"minutes-ago": "$1 {{PLURAL:$1|minutt|minutter}} siden",
