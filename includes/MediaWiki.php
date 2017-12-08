@@ -602,50 +602,62 @@ class MediaWiki {
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
-		// Decide when clients block on ChronologyProtector DB position writes
-		$urlDomainDistance = (
-			$request->wasPosted() &&
-			$output->getRedirect() &&
-			$lbFactory->hasOrMadeRecentMasterChanges( INF )
-		) ? self::getUrlDomainDistance( $output->getRedirect() ) : false;
+		if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) ) {
+			$redirectDomainDistance = $output->getRedirect()
+				? self::getUrlDomainDistance( $output->getRedirect() )
+				: false;
 
-		$allowHeaders = !( $output->isDisabled() || headers_sent() );
-		if ( $urlDomainDistance === 'local' || $urlDomainDistance === 'remote' ) {
-			// OutputPage::output() will be fast; $postCommitWork will not be useful for
-			// masking the latency of syncing DB positions accross all datacenters synchronously.
-			// Instead, make use of the RTT time of the client follow redirects.
-			$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
-			$cpPosTime = microtime( true );
-			// Client's next request should see 1+ positions with this DBMasterPos::asOf() time
-			if ( $urlDomainDistance === 'local' && $allowHeaders ) {
-				// Client will stay on this domain, so set an unobtrusive cookie
+			// Decide when clients block on ChronologyProtector DB position writes
+			$allowHeaders = !( $output->isDisabled() || headers_sent() );
+			if ( in_array( $redirectDomainDistance, [ 'local', 'remote' ] ) ) {
+				// OutputPage::output() will be fast; $postCommitWork will be useless for masking
+				// the latency of syncing DB positions accross all datacenters synchronously.
+				// Instead, make use of the RTT time of the client follow redirects.
+				$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
+				// Client's next request should see these new DB positions to wait on
+				if ( $redirectDomainDistance === 'local' && $allowHeaders ) {
+					// Client will stay on this domain, so set an unobtrusive cookie
+					$headerStrategy = 'cookie';
+				} else {
+					// Cookies may not work across wiki domains, so use a URL parameter
+					$headerStrategy = 'redirect';
+				}
+			} else {
+				// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
+				// the latency of syncing DB positions accross all datacenters synchronously
+				$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
+				if ( $allowHeaders ) {
+					// Set a cookie in case the DB position store cannot sync accross datacenters.
+					// This will at least cover the common case of the user staying on the domain.
+					$headerStrategy = 'cookie';
+				} else {
+					$headerStrategy = null;
+				}
+			}
+
+			// Record ChronologyProtector positions for DBs affected in this request at this point
+			$cpIndex = null;
+			$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex );
+			wfDebug( __METHOD__ . ': LBFactory shutdown completed; writes performed' );
+			if ( $cpIndex === null ) {
+				// No DB positions updated (e.g. no replication or if save failed)
+				wfDebug( __METHOD__ . ': LBFactory saved no DB positions' );
+			} elseif ( $headerStrategy === 'cookie' ) {
 				$expires = time() + ChronologyProtector::POSITION_TTL;
 				$options = [ 'prefix' => '' ];
-				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
-			} else {
-				// Cookies may not work across wiki domains, so use a URL parameter
+				$request->response()->setCookie( 'cpPosIndex', $cpIndex, $expires, $options );
+			} elseif ( $headerStrategy === 'redirect' ) {
 				$safeUrl = $lbFactory->appendPreShutdownTimeAsQuery(
 					$output->getRedirect(),
-					$cpPosTime
+					$cpIndex
 				);
 				$output->redirect( $safeUrl );
 			}
 		} else {
-			// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
-			// the latency of syncing DB positions accross all datacenters synchronously
-			$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
-			if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) && $allowHeaders ) {
-				$cpPosTime = microtime( true );
-				// Set a cookie in case the DB position store cannot sync accross datacenters.
-				// This will at least cover the common case of the user staying on the domain.
-				$expires = time() + ChronologyProtector::POSITION_TTL;
-				$options = [ 'prefix' => '' ];
-				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
-			}
+			// No writes happened, but go through the normal shutdown anyway
+			$lbFactory->shutdown( $lbFactory::SHUTDOWN_CHRONPROT_SYNC, $postCommitWork );
+			wfDebug( __METHOD__ . ': LBFactory shutdown completed; no writes performed' );
 		}
-		// Record ChronologyProtector positions for DBs affected in this request at this point
-		$lbFactory->shutdown( $flags, $postCommitWork );
-		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
