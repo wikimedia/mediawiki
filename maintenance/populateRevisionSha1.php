@@ -93,8 +93,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing $idCol from $blockStart to $blockEnd\n" );
-			$cond = "$idCol BETWEEN $blockStart AND $blockEnd
-				AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
+			$cond = "$idCol BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd .
+				" AND $idCol IS NOT NULL AND {$prefix}_sha1 = ''";
 			$res = $db->select(
 				$queryInfo['tables'], $queryInfo['fields'], $cond, __METHOD__, [], $queryInfo['joins']
 			);
