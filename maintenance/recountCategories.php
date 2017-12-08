@@ -156,7 +156,7 @@ TEXT
 				[ "cat_{$this->mode}" => $row->count ],
 				[
 					'cat_id' => $row->cat_id,
-					"cat_{$this->mode} != {$row->count}",
+					"cat_{$this->mode} != " . (int)( $row->count ),
 				],
 				__METHOD__ );
 			$affectedRows += $dbw->affectedRows();

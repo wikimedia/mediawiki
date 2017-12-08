@@ -64,7 +64,8 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
-			$cond = "log_id BETWEEN $blockStart AND $blockEnd AND log_user = user_id";
+			$cond = "log_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd .
+				" AND log_user = user_id";
 			$res = $db->select( [ 'logging', 'user' ],
 				[ 'log_id', 'user_name' ], $cond, __METHOD__ );
 
