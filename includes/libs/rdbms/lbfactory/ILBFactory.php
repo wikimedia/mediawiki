@@ -140,9 +140,10 @@ interface ILBFactory {
 	 * Prepare all tracked load balancers for shutdown
 	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
+	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector
 	 */
 	public function shutdown(
-		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null
+		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null, &$cpIndex = null
 	);
 
 	/**
@@ -304,7 +305,7 @@ interface ILBFactory {
 	public function setAgentName( $agent );
 
 	/**
-	 * Append ?cpPosTime parameter to a URL for ChronologyProtector purposes if needed
+	 * Append ?cpPosIndex parameter to a URL for ChronologyProtector purposes if needed
 	 *
 	 * Note that unlike cookies, this works accross domains
 	 *
@@ -312,14 +313,14 @@ interface ILBFactory {
 	 * @param float $time UNIX timestamp just before shutdown() was called
 	 * @return string
 	 */
-	public function appendPreShutdownTimeAsQuery( $url, $time );
+	public function appendShutdownCPIndexAsQuery( $url, $time );
 
 	/**
 	 * @param array $info Map of fields, including:
 	 *   - IPAddress : IP address
 	 *   - UserAgent : User-Agent HTTP header
 	 *   - ChronologyProtection : cookie/header value specifying ChronologyProtector usage
-	 *   - ChronologyPositionTime: timestamp used to get up-to-date DB positions for the agent
+	 *   - ChronologyPositionIndex: timestamp used to get up-to-date DB positions for the agent
 	 */
 	public function setRequestInfo( array $info );
 }
