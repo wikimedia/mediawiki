@@ -742,7 +742,8 @@ MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'IPAddress' => $wgRequest->getIP(),
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
 	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
-	'ChronologyPositionTime' => $cpPosTime
+	# Disabled; bug T182322. No replication waiting for single DC stripped main-stash anyway.
+	#'ChronologyPositionTime' => $cpPosTime
 ] );
 // Make sure that caching does not compromise the consistency improvements
 if ( $cpPosTime ) {
