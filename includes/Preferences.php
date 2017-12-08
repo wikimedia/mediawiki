@@ -1171,20 +1171,30 @@ class Preferences {
 		# Only show skins that aren't disabled in $wgSkipSkins
 		$validSkinNames = Skin::getAllowedSkins();
 
-		# Sort by UI skin name. First though need to update validSkinNames as sometimes
-		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
 		foreach ( $validSkinNames as $skinkey => &$skinname ) {
 			$msg = $context->msg( "skinname-{$skinkey}" );
 			if ( $msg->exists() ) {
 				$skinname = htmlspecialchars( $msg->text() );
 			}
 		}
-		asort( $validSkinNames );
 
 		$config = $context->getConfig();
 		$defaultSkin = $config->get( 'DefaultSkin' );
 		$allowUserCss = $config->get( 'AllowUserCss' );
 		$allowUserJs = $config->get( 'AllowUserJs' );
+
+		# Sort by the internal name, so that the ordering is the same for each display language,
+		# especially if some skin names are translated to use a different alphabet and some are not.
+		uksort( $validSkinNames, function ( $a, $b ) use ( $defaultSkin ) {
+			# Display the default first in the list by comparing it as lesser than any other.
+			if ( strcasecmp( $a, $defaultSkin ) === 0 ) {
+				return -1;
+			}
+			if ( strcasecmp( $b, $defaultSkin ) === 0 ) {
+				return 1;
+			}
+			return strcasecmp( $a, $b );
+		} );
 
 		$foundDefault = false;
 		foreach ( $validSkinNames as $skinkey => $sn ) {

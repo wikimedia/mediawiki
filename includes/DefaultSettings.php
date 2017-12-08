@@ -1806,7 +1806,7 @@ $wgDBtype = 'mysql';
 /**
  * Whether to use SSL in DB connection.
  *
- * This setting is only used $wgLBFactoryConf['class'] is set to
+ * This setting is only used if $wgLBFactoryConf['class'] is set to
  * 'LBFactorySimple' and $wgDBservers is an empty array; otherwise
  * the DBO_SSL flag must be set in the 'flags' option of the database
  * connection to achieve the same functionality.
