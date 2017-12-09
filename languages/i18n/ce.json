@@ -1165,6 +1165,8 @@
 	"rcfilters-activefilters": "Жигара литтарш",
 	"rcfilters-advancedfilters": "Шуьйра литтарш",
 	"rcfilters-limit-title": "Гойту хийцамаш",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|хийцам}}, $2",
+	"rcfilters-date-popup-title": "Лахарна хен",
 	"rcfilters-days-title": "ТӀеххьара денош",
 	"rcfilters-hours-title": "ТӀеххьара сахьташ",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|де}}",

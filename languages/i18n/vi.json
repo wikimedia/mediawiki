@@ -38,7 +38,8 @@
 			"Asmen",
 			"Stephanecbisson",
 			"Quoclinh94",
-			"Tmp1109"
+			"Tmp1109",
+			"Phjtieudoc"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -476,7 +477,7 @@
 	"nosuchusershort": "Không có thành viên nào có tên “$1”. Xin hãy kiểm tra lại chính tả.",
 	"nouserspecified": "Bạn phải chỉ định một tên người dùng.",
 	"login-userblocked": "Thành viên này đã bị cấm. Không cho phép đăng nhập.",
-	"wrongpassword": "Mật khẩu sai. Xin vui lòng nhập lại.",
+	"wrongpassword": "Tên đăng nhập hoặc mật khẩu sai. Xin vui lòng nhập lại.",
 	"wrongpasswordempty": "Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.",
 	"passwordtooshort": "Mật khẩu phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.",
 	"passwordtoolong": "Mật khẩu không thể dài hơn {{PLURAL:$1|1 ký tự|$1 ký tự}}.",
@@ -549,11 +550,11 @@
 	"botpasswords-insert-failed": "Không thể thêm tên bot \"$1\". Nó đã được thêm vào chưa?",
 	"botpasswords-update-failed": "Không thể khi cập nhật bot có tên “$1”. Có phải nó đã bị xóa?",
 	"botpasswords-created-title": "Mật khẩu bot đã được tạo",
-	"botpasswords-created-body": "Đã tạo mật khẩu cho bot “$1” của người dùng “$2”.",
+	"botpasswords-created-body": "Đã tạo mật khẩu cho bot tên \"$1\" của {{GENDER:$2|thành viên}} \"$2\".",
 	"botpasswords-updated-title": "Mật khẩu Bot đã được cập nhật",
-	"botpasswords-updated-body": "Đã cập nhật mật khẩu cho bot “$1” của người dùng “$2”.",
+	"botpasswords-updated-body": "Đã cập nhật mật khẩu cho bot tên \"$1\" của {{GENDER:$2|thành viên}} \"$2\".",
 	"botpasswords-deleted-title": "Mật khẩu bot đã bị xóa",
-	"botpasswords-deleted-body": "Đã xóa mật khẩu cho bot “$1” của người dùng “$2”.",
+	"botpasswords-deleted-body": "Đã xóa mật khẩu cho bot tên \"$1\" của {{GENDER:$2|thành viên}} \"$2\".",
 	"botpasswords-newpassword": "Mật khẩu mới để đăng nhập như <strong>$1</strong> là <strong>$2</strong>. <em>Xin hãy ghi lại mật khẩu này để mai mốt tham khảo.</em> <br> (Các bot cũ cần tên đăng nhập khớp với tên người dùng cuối cùng có thể sử  dụng tên người dùng <strong>$3</strong> và mật khẩu <strong>$4</strong>.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider không có sẵn.",
 	"botpasswords-restriction-failed": "Mật khẩu bot giới hạn ngăn chặn đăng nhập này.",

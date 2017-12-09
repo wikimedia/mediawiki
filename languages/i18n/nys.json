@@ -4,6 +4,7 @@
 			"Gnangarra"
 		]
 	},
+	"underline-never": "Warra",
 	"sunday": "Sunday",
 	"monday": "Monday",
 	"tuesday": "Tuesday",
@@ -54,6 +55,9 @@
 	"oct": "Oct",
 	"nov": "Nov",
 	"dec": "Dec",
+	"january-date": "January $1",
+	"february-date": "February $1",
+	"march-date": "March $1",
 	"pagecategories": "{{PLURAL:$1|Warrangan}}",
 	"category_header": "Warrangan bibol $1",
 	"subcategories": "Warrangang",
@@ -69,6 +73,7 @@
 	"about": "Nartj nitja",
 	"newwindow": "(yalgaranan yyinang window)",
 	"cancel": "nanap",
+	"mypage": "Bibol",
 	"mytalk": "Waarnk",
 	"navigation": "waardiny biirt",
 	"and": "&#32;wer",

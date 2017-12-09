@@ -1267,6 +1267,7 @@
 	"right-siteadmin": "锁定和解锁数据库",
 	"right-override-export-depth": "导出页面，包括最多5层链接",
 	"right-sendemail": "发送电子邮件给其他用户",
+	"right-sendemail-new-users": "发送电子邮件至没有日志记载操作的用户",
 	"right-managechangetags": "创建和（取消）激活[[Special:Tags|标签]]",
 	"right-applychangetags": "连同某人的更改一起应用[[Special:Tags|标签]]",
 	"right-changetags": "在个别修订和日志记录中添加和移除任意[[Special:Tags|标签]]",

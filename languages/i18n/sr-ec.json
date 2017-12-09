@@ -3437,6 +3437,7 @@
 	"tag-list-wrapper": "([[Special:Tags|$1 {{PLURAL:$1|ознака|ознаке|ознака}}]]: $2)",
 	"tag-mw-contentmodelchange": "промена модела садржаја",
 	"tag-mw-contentmodelchange-description": "Измене које мењају модел садржаја странице",
+	"tag-mw-rollback": "Враћање",
 	"tags-title": "Ознаке",
 	"tags-intro": "На овој страници је наведен списак ознака с којима програм може да означи измене и његово значење.",
 	"tags-tag": "Назив ознаке",

@@ -1205,6 +1205,7 @@
 	"right-siteadmin": "נעילה וביטול נעילה של בסיס הנתונים",
 	"right-override-export-depth": "ייצוא דפים כולל הדפים המקושרים (עד עומק של 5 דפים)",
 	"right-sendemail": "שליחת דואר אלקטרוני למשתמשים אחרים",
+	"right-sendemail-new-users": "שליחת דואר אלקטרוני למשתמשים שלא ביצעו פעולות מתועדות",
 	"right-managechangetags": "יצירה, הפעלה וביטול של [[Special:Tags|תגיות]]",
 	"right-applychangetags": "החלת [[Special:Tags|תגיות]] יחד עם שינויים",
 	"right-changetags": "הוספה והסרה של [[Special:Tags|תגיות]] לגרסאות ולרשומות יומן",

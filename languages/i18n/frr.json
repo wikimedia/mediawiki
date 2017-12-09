@@ -3047,6 +3047,8 @@
 	"tag-filter": "[[Special:Tags|Kääntiaken]] filter:",
 	"tag-filter-submit": "Filter",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Kääntiaken|Kääntiakens}}]]: $2)",
+	"tag-mw-new-redirect": "Nei widjerfeerang",
+	"tag-mw-new-redirect-description": "Feranrangen, diar en nei widjerfeerang iinracht.",
 	"tags-title": "Kääntiaken",
 	"tags-intro": "Det sidj wiset kääntiaken, diar för't bewerkin brükt wurd, an wat jo men.",
 	"tags-tag": "Kääntiaken-nööm",
