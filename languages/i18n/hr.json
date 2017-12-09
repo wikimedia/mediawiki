@@ -3270,6 +3270,8 @@
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Oznaka|Oznake|Oznaka}}]]: $2)",
 	"tag-mw-contentmodelchange": "promjena modela sadržaja",
 	"tag-mw-contentmodelchange-description": "Uređivanja koja [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mijenjanju model sadržaja] stranice",
+	"tag-mw-removed-redirect": "uklonjeno preusmjeravanje",
+	"tag-mw-replace": "preko 90 % zamijenjen tekst",
 	"tag-mw-rollback": "brzo uklanjanje",
 	"tags-title": "Oznake",
 	"tags-intro": "Ova stranica sadržava popis oznaka s kojima programska oprema može označivati promjene te njihova značenja.",
