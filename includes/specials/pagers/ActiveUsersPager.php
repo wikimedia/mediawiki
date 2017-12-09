@@ -117,7 +117,12 @@ class ActiveUsersPager extends UsersPager {
 
 		return [
 			'tables' => [ 'querycachetwo', 'user', 'recentchanges' ],
-			'fields' => [ 'user_name', 'user_id', 'recentedits' => 'COUNT(*)', 'qcc_title' ],
+			'fields' => [
+				'qcc_title',
+				'user_name' => 'qcc_title',
+				'user_id' => 'MAX(user_id)',
+				'recentedits' => 'COUNT(*)'
+			],
 			'options' => [ 'GROUP BY' => [ 'qcc_title' ] ],
 			'conds' => $conds
 		];
