@@ -4,6 +4,7 @@ use MediaWiki\Shell\Command;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers \MediaWiki\Shell\Command
  * @group Shell
  */
 class CommandTest extends PHPUnit_Framework_TestCase {

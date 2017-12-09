@@ -3,6 +3,7 @@
 use MediaWiki\Shell\Shell;
 
 /**
+ * @covers \MediaWiki\Shell\Shell
  * @group Shell
  */
 class ShellTest extends PHPUnit_Framework_TestCase {
