@@ -264,7 +264,7 @@
 	"noarticletext": "Mekwatc nama takon atisokesinihikan nta paskickwemakanik.\nKe ki totaman [[Special:Search/{{PAGENAME}}|nantowapaha ohwe icinikatamowin]] kotakahikw paskickwemakanik, \n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|paskickwemakan={{FULLPAGENAMEE}}}} nantowapata ka ici  mikowapihikemikak]\nkekotc [{{fullurl:{{FULLPAGENAME}}|tota=orocowata}} ocita paskickwemakan]</span>.",
 	"noarticletext-nopermission": "Mekwatc nama takon atisokesinihikan nta paskickwemakanik.\nKe ki totaman[[Special:Search/{{PAGENAME}}|nantowapaha ohwe icinikatamowin ]] kotakahikw paskickwemakanik,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|paskickwemakan={{FULLPAGENAMEE}}}} nantowapaha kotakihi wapatcikaniwoca ohwe ]</span>,nama aric ki mirikwin ohwe kata ocitain paskickwemakan.",
 	"editing": "Meckotcita $1",
-	"creating": "$1 Wir tipirowe ka ki ocitatc",
+	"creating": "\"$1\" mekwatc ka orisinahak",
 	"editingsection": "Ka ki meckotcitatc $1 (tipanitakiniwok)",
 	"templatesused": "{{PLURAL:$1|tapapitcikan ka apatak |tapapitcikan ka apatak}} nta paskickwemakanik:",
 	"template-protected": "(nakataweritcikatew)",

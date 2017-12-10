@@ -2402,7 +2402,6 @@
 	"sp-contributions-newonly": "새 글인 기여만 보기",
 	"sp-contributions-hideminor": "사소한 편집 숨기기",
 	"sp-contributions-submit": "검색",
-	"sp-contributions-explain": "",
 	"sp-contributions-outofrange": "결과를 표시할 수 없습니다. 요청된 IP 대역은 CIDR /$1 한도보다 더 큽니다.",
 	"whatlinkshere": "여기를 가리키는 문서",
 	"whatlinkshere-title": "\"$1\" 문서를 가리키는 문서 목록",
