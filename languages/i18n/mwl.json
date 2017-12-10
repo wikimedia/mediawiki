@@ -324,7 +324,7 @@
 	"nosuchuser": "Num eisiste nanhun outelizador cul nome \"$1\".\nLs nomes de outelizador son defrentes an lhetra grande ó pequeinha.\nBei cumo screbiste, ó [[Special:CreateAccount|cria ua nuoba cuonta]].",
 	"nosuchusershort": "Nun eisiste nanhun outelizador cul nome \"$1\".\nBei se l screbiste bien.",
 	"nouserspecified": "Tenes que dezir un nome de outelizador.",
-	"wrongpassword": "La palabra chabe ye ambálida.\nPor fabor, spurmenta outra beç.",
+	"wrongpassword": "L nome de outelizador ó la palabra chabe son ambálidos.\nPor fabor, spurmenta outra beç.",
 	"wrongpasswordempty": "Tenes que poner la palabra chabe.\nPor fabor, spurmenta outra beç.",
 	"passwordtooshort": "La tue palabra-chabe debe de tener pul menos $1 {{PLURAL:$1|carátele|caráteles}}.",
 	"password-name-match": "La tue palabra-chabe ten que ser defrente de l tou nome de outelizador.",

@@ -1371,6 +1371,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Ännert Är Lëscht vun iwwerwaachte Säiten",
 	"rcfilters-watchlist-showupdated": "Ännerungen op Säiten déi Dir net besicht hutt zanter d'Ännerunge gemaach goufen si <strong>fett</strong> geschriwwen.",
 	"rcfilters-preference-label": "Déi verbessert Versioun vun de rezenten Ännerunge verstoppen",
+	"rcfilters-target-page-placeholder": "Gitt en Numm vun enger Säit an",
 	"rcnotefrom": "Hei drënner {{PLURAL:$5|gëtt d'Ännerung|ginn d'Ännerungen}} zanter <strong>$3, $4</strong> (maximal <strong>$1</strong> Ännerunge gi gewisen).",
 	"rclistfromreset": "Eraussiche vum Datum zrécksetzen",
 	"rclistfrom": "Nei Ännerunge vum $3 $2 u weisen",
