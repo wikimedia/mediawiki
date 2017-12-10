@@ -3,7 +3,7 @@
 /**
  * @group Media
  */
-class SvgTest extends MediaWikiMediaTestCase {
+class SVGTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * @var SvgHandler

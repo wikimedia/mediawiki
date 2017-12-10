@@ -3,7 +3,7 @@
  * @group Media
  * @covers MimeAnalyzer
  */
-class MimeMagicTest extends PHPUnit_Framework_TestCase {
+class MimeAnalyzerTest extends PHPUnit_Framework_TestCase {
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
 
