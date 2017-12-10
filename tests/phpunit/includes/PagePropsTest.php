@@ -7,7 +7,7 @@
  * @group medium
  *	^--- tell phpunit that these test cases may take longer than 2 seconds.
  */
-class TestPageProps extends MediaWikiLangTestCase {
+class PagePropsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @var Title $title1

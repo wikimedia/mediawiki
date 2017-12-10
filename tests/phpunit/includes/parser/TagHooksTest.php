@@ -28,7 +28,7 @@
  * @covers PPNode_Hash_Array
  * @covers PPNode_Hash_Attr
  */
-class TagHookTest extends MediaWikiTestCase {
+class TagHooksTest extends MediaWikiTestCase {
 	public static function provideValidNames() {
 		return [
 			[ 'foo' ],

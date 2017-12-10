@@ -2,7 +2,7 @@
 
 use Wikimedia\TestingAccessWrapper;
 
-class EtcConfigTest extends PHPUnit_Framework_TestCase {
+class EtcdConfigTest extends PHPUnit_Framework_TestCase {
 
 	private function createConfigMock( array $options = [] ) {
 		return $this->getMockBuilder( EtcdConfig::class )

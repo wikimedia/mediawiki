@@ -1,6 +1,6 @@
 <?php
 
-class TestSample extends MediaWikiLangTestCase {
+class SampleTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Anything that needs to happen before your tests should go here.
