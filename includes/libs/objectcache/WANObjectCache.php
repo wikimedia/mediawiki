@@ -225,8 +225,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 */
 	public static function newEmpty() {
 		return new static( [
-			'cache'   => new EmptyBagOStuff(),
-			'pool'    => 'empty'
+			'cache'   => new EmptyBagOStuff()
 		] );
 	}
 
