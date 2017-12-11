@@ -162,18 +162,18 @@ class TestFileEditor {
 				if ( isset( $changes[$sectionName] ) ) {
 					$change = $changes[$sectionName];
 					switch ( $change['op'] ) {
-					case 'rename':
-						$test[$i]['name'] = $change['value'];
-						$test[$i]['headingLine'] = "!! {$change['value']}";
-						break;
-					case 'update':
-						$test[$i]['contents'] = $change['value'];
-						break;
-					case 'delete':
-						$test[$i]['deleted'] = true;
-						break;
-					default:
-						throw new Exception( "Unknown op: ${change['op']}" );
+						case 'rename':
+							$test[$i]['name'] = $change['value'];
+							$test[$i]['headingLine'] = "!! {$change['value']}";
+							break;
+						case 'update':
+							$test[$i]['contents'] = $change['value'];
+							break;
+						case 'delete':
+							$test[$i]['deleted'] = true;
+							break;
+						default:
+							throw new Exception( "Unknown op: ${change['op']}" );
 					}
 					// Acknowledge
 					// Note that we use the old section name for the rename op

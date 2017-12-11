@@ -194,15 +194,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	private static function convertSelectType( $type ) {
 		switch ( $type ) {
-		case 'fromdb':
-			return self::READ_NORMAL;
-		case 'fromdbmaster':
-			return self::READ_LATEST;
-		case 'forupdate':
-			return self::READ_LOCKING;
-		default:
-			// It may already be an integer or whatever else
-			return $type;
+			case 'fromdb':
+				return self::READ_NORMAL;
+			case 'fromdbmaster':
+				return self::READ_LATEST;
+			case 'forupdate':
+				return self::READ_LOCKING;
+			default:
+				// It may already be an integer or whatever else
+				return $type;
 		}
 	}
 
