@@ -2994,6 +2994,7 @@
 	"tag-mw-changed-redirect-target-description": "Endringar som endrar målet til ei omdirigering",
 	"tag-mw-blank-description": "Endringar som tømmer ei side",
 	"tag-mw-replace-description": "Endringar som fjernar meir enn 90&nbsp;% av innhaldet på ei side",
+	"tag-mw-rollback": "Attenderulling",
 	"tags-title": "Merke",
 	"tags-intro": "Denne sida listar opp merka som programvara kan merkja ei endring med, og kva desse tyder.",
 	"tags-tag": "Merkenamn",

@@ -1246,6 +1246,7 @@
 	"right-siteadmin": "Lås och öppna databasen",
 	"right-override-export-depth": "Exportera sidor inklusive länkade sidor till ett djup på 5",
 	"right-sendemail": "Skicka e-post till andra användare",
+	"right-sendemail-new-users": "Skicka e-post till användare utan loggade handlingar",
 	"right-managechangetags": "Skapa och (in)aktivera [[Special:Tags|märken]]",
 	"right-applychangetags": "Tillämpa [[Special:Tags|märken]] tillsammans med ens ändringar",
 	"right-changetags": "Lägg till och ta bort godtyckliga [[Special:Tags|märken]] på individuella sidversioner och loggposter.",

@@ -1453,7 +1453,7 @@
 	"rcfilters-liveupdates-button-title-off": "Mostra els nous canvis al moment",
 	"rcfilters-watchlist-markseen-button": "Marca tots els canvis com a vistos",
 	"rcfilters-watchlist-edit-watchlist-button": "Editeu la vostra llista de pàgines seguides",
-	"rcfilters-target-page-placeholder": "Selecciona una pàgina",
+	"rcfilters-target-page-placeholder": "Escriviu el nom d’una pàgina",
 	"rcnotefrom": "A sota hi ha {{PLURAL:$5|el canvi|els canvis}} a partir de <strong>$3, $4</strong> (fins a <strong>$1</strong>).",
 	"rclistfromreset": "Reinicialitza la selecció de data",
 	"rclistfrom": "Mostra els canvis nous des de $3, $2",
