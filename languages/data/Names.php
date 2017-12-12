@@ -295,7 +295,6 @@ class Names {
 		'mk' => 'македонски', # Macedonian
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
-		'mo' => 'молдовеняскэ', # Moldovan, deprecated
 		'mr' => 'मराठी', # Marathi
 		'mrj' => 'кырык мары', # Hill Mari
 		'ms' => 'Bahasa Melayu', # Malay
@@ -357,6 +356,7 @@ class Names {
 		'rmy' => 'Romani', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
+		'ro-cyrl' => 'молдовеняскэ', # Moldovan in Cyrillic script
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 693-3)
 		'roa-tara' => 'tarandíne', # Tarantino
 		'ru' => 'русский', # Russian

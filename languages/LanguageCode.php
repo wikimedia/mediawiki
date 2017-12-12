@@ -42,6 +42,7 @@ class LanguageCode {
 		'bat-smg' => 'sgs',
 		'be-x-old' => 'be-tarask',
 		'fiu-vro' => 'vro',
+		'mo' => 'ro-cyrl',
 		'roa-rup' => 'rup',
 		'zh-classical' => 'lzh',
 		'zh-min-nan' => 'nan',
