@@ -1359,6 +1359,7 @@
 	"recentchanges-noresult": "Não foi realizada nenhuma alteração que corresponda a estes critérios durante o período especificado.",
 	"recentchanges-timeout": "O tempo limite para esta pesquisa foi ultrapassado. Tente usar parâmetros de pesquisa diferentes.",
 	"recentchanges-network": "Devido a uma falha técnica, não foi possível carregar nenhum resultado. Tente atualizar a página, por favor.",
+	"recentchanges-notargetpage": "Introduza um nome de página acima para ver as alterações relacionadas a essa página.",
 	"recentchanges-feed-description": "Acompanhe neste ''feed'' as mudanças mais recentes da wiki.",
 	"recentchanges-label-newpage": "Esta edição criou uma nova página",
 	"recentchanges-label-minor": "Esta é uma edição menor",

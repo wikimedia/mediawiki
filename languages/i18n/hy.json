@@ -1808,7 +1808,7 @@
 	"pageinfo-lasttime": "Վերջին խմբագրման ամսաթիվ",
 	"pageinfo-edits": "Խմբագրումների քանակ",
 	"pageinfo-authors": "Առանձին հեղինակների քանակ",
-	"pageinfo-recent-edits": "Վերջին խմբագրումներ քանակ (վերջին $1)",
+	"pageinfo-recent-edits": "Վերջին խմբագրումների քանակ (վերջին $1)",
 	"pageinfo-recent-authors": "Վերջին առանձին հեղինակների քանակ",
 	"pageinfo-magic-words": "Մոգական {{PLURAL:$1|բառ|բառեր}} ($1)",
 	"pageinfo-hidden-categories": "Թաքնված {{PLURAL:$1|կաղապար|կաղապարներ}} ($1)",

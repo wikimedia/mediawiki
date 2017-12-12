@@ -1183,6 +1183,7 @@
 	"right-siteadmin": "Blocar e disblocar le base de datos",
 	"right-override-export-depth": "Exportar paginas includente paginas ligate usque a un profunditate de 5",
 	"right-sendemail": "Inviar e-mail a altere usatores",
+	"right-sendemail-new-users": "Inviar e-mail a usatores sin actiones in registro",
 	"right-managechangetags": "Crear e (de)activar [[Special:Tags|etiquettas]]",
 	"right-applychangetags": "Applicar [[Special:Tags|etiquettas]] al proprie modificationes",
 	"right-changetags": "Adder e remover qualcunque [[Special:Tags|etiquettas]] sur individual versiones e entratas de registro",

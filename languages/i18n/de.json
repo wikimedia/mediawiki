@@ -1089,6 +1089,7 @@
 	"timezoneregion-indian": "Indischer Ozean",
 	"timezoneregion-pacific": "Pazifischer Ozean",
 	"allowemail": "Anderen Benutzern erlauben, E-Mails an mich zu senden.",
+	"email-allow-new-users-label": "E-Mails von sehr neuen Benutzern erlauben",
 	"email-blacklist-label": "Diesen Benutzern das Versenden von E-Mails an mich verbieten:",
 	"prefs-searchoptions": "Suche",
 	"prefs-namespaces": "Namensräume",
