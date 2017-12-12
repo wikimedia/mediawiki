@@ -799,13 +799,13 @@ abstract class ContentHandler {
 		}
 
 		// New page created
-		if ( $flags & EDIT_NEW && $newContent && $newContent->getSize() > 0 ) {
-			return 'newpage';
-		}
-
-		// New blank page
-		if ( $flags & EDIT_NEW && $newContent && $newContent->getSize() === 0 ) {
-			return 'newblank';
+		if ( $flags & EDIT_NEW && $newContent ) {
+			if ( $newContent->getSize() === 0 ) {
+				// New blank page
+				return 'newblank';
+			} else {
+				return 'newpage';
+			}
 		}
 
 		// Removing more than 90% of the page
