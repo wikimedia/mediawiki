@@ -1,5 +1,5 @@
 <?php
-/** Moldavian (молдовеняскэ)
+/** Moldavian (молдовеняскэ) in Cyrillic script
  *
  * To improve a translation please visit https://translatewiki.net
  *
