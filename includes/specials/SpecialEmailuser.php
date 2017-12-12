@@ -238,9 +238,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'nowikiemail';
 		}
 
-		if (
-			$target->getEditCount() === 0
-			&& ( $sender === null || !$sender->isAllowed( 'sendemail-new-users' ) )
+		if ( $target->getEditCount() === 0 &&
+			( $sender === null || !$sender->isAllowed( 'sendemail-new-users' ) )
 		) {
 			// Determine if target has any other logged actions.
 			$dbr = wfGetDB( DB_REPLICA );
@@ -260,6 +259,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 				return 'nowikiemail';
 			}
+		}
+
+		if ( $sender !== null && !$target->getOption( 'email-allow-new-users' ) &&
+			$sender->isNewbie()
+		) {
+				wfDebug( "User does not allow user emails from new users.\n" );
+
+				return 'nowikiemail';
 		}
 
 		if ( $sender !== null ) {
