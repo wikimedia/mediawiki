@@ -84,13 +84,22 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the unique id of this item
-	 *
+	 * Get the unique id of this item, without any escaping
 	 * @return string
 	 */
-	public function getUniqueId() {
+	public function getUniqueIdUnescaped() {
 		if ( $this->uniqueId ) {
-			return $this->xmlEncode( wfExpandUrl( $this->uniqueId, PROTO_CURRENT ) );
+			return wfExpandUrl( $this->uniqueId, PROTO_CURRENT );
+		}
+	}
+	/**
+	 * Get the unique id of this item; already xml-encoded
+	 * @return string
+	 */
+	public function getUniqueID() {
+		$id = $this->getUniqueIDUnescaped();
+		if ( $id ) {
+			return $this->xmlEncode( $id );
 		}
 	}
 
@@ -115,12 +124,29 @@ class FeedItem {
 	}
 
 	/**
+	 * Get the title of this item without any escaping
+	 *
+	 * @return string
+	 */
+	public function getTitleUnescaped() {
+		return $this->title;
+	}
+
+	/**
 	 * Get the URL of this item; already xml-encoded
 	 *
 	 * @return string
 	 */
 	public function getUrl() {
 		return $this->xmlEncode( $this->url );
+	}
+
+	/** Get the URL of this item without any escaping
+	 *
+	 * @return string
+	 */
+	public function getUrlUnescaped() {
+		return $this->url;
 	}
 
 	/**
@@ -130,6 +156,14 @@ class FeedItem {
 	 */
 	public function getDescription() {
 		return $this->xmlEncode( $this->description );
+	}
+
+	/**
+	 * Get the description of this item without any escaping
+	 *
+	 */
+	public function getDescriptionUnescaped() {
+		return $this->description;
 	}
 
 	/**
@@ -161,12 +195,30 @@ class FeedItem {
 	}
 
 	/**
+	 * Get the author of this item without any escaping
+	 *
+	 * @return string
+	 */
+	public function getAuthorUnescaped() {
+		return $this->author;
+	}
+
+	/**
 	 * Get the comment of this item; already xml-encoded
 	 *
 	 * @return string
 	 */
 	public function getComments() {
 		return $this->xmlEncode( $this->comments );
+	}
+
+	/**
+	 * Get the comment of this item without any escaping
+	 *
+	 * @return string
+	 */
+	public function getCommentsUnescaped() {
+		return $this->comments;
 	}
 
 	/**
@@ -187,6 +239,22 @@ class FeedItem {
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
+
+	protected $templateParser;
+
+	/**
+	 * @param string|Title $title Feed's title
+	 * @param string $description
+	 * @param string $url URL uniquely designating the feed.
+	 * @param string $date Feed's date
+	 * @param string $author Author's user name
+	 * @param string $comments
+	 */
+	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+		parent::__construct( $title, $description, $url, $date, $author, $comments );
+		$this->templateParser = new TemplateParser();
+	}
+
 	/**
 	 * Generate Header of the feed
 	 * @par Example:
@@ -279,13 +347,15 @@ abstract class ChannelFeed extends FeedItem {
 class RSSFeed extends ChannelFeed {
 
 	/**
-	 * Format a date given a timestamp
+	 * Format a date given a timestamp. If a timestamp is not given, nothing is returned
 	 *
-	 * @param int $ts Timestamp
-	 * @return string Date string
+	 * @param int|null $ts Timestamp
+	 * @return string|null Date string
 	 */
 	function formatTime( $ts ) {
-		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
+		if ( $ts ) {
+			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
+		}
 	}
 
 	/**
@@ -295,15 +365,15 @@ class RSSFeed extends ChannelFeed {
 		global $wgVersion;
 
 		$this->outXmlHeader();
-		?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<channel>
-		<title><?php print $this->getTitle() ?></title>
-		<link><?php print wfExpandUrl( $this->getUrl(), PROTO_CURRENT ) ?></link>
-		<description><?php print $this->getDescription() ?></description>
-		<language><?php print $this->getLanguage() ?></language>
-		<generator>MediaWiki <?php print $wgVersion ?></generator>
-		<lastBuildDate><?php print $this->formatTime( wfTimestampNow() ) ?></lastBuildDate>
-<?php
+		$templateParams = [
+			'title' => $this->getTitleUnescaped(),
+			'url' => wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ),
+			'description' => $this->getDescriptionUnescaped(),
+			'language' => $this->getLanguage(),
+			'version' => $wgVersion,
+			'timestamp' => $this->formatTime( wfTimestampNow() )
+		];
+		print $this->templateParser->processTemplate( 'RSSHeader', $templateParams );
 	}
 
 	/**
@@ -311,28 +381,27 @@ class RSSFeed extends ChannelFeed {
 	 * @param FeedItem $item Item to be output
 	 */
 	function outItem( $item ) {
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-	?>
-		<item>
-			<title><?php print $item->getTitle(); ?></title>
-			<link><?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?></link>
-			<guid<?php if ( !$item->rssIsPermalink ) { print ' isPermaLink="false"'; } ?>><?php print $item->getUniqueId(); ?></guid>
-			<description><?php print $item->getDescription() ?></description>
-			<?php if ( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ); ?></pubDate><?php } ?>
-			<?php if ( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor(); ?></dc:creator><?php }?>
-			<?php if ( $item->getComments() ) { ?><comments><?php print wfExpandUrl( $item->getComments(), PROTO_CURRENT ); ?></comments><?php }?>
-		</item>
-<?php
-		// @codingStandardsIgnoreEnd
+		$templateParams = [
+			"title" => $item->getTitleUnescaped(),
+			"url" => wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ),
+			"permalink" => $item->rssIsPermalink,
+			"uniqueID" => $item->getUniqueIDUnescaped(),
+			"description" => $item->getDescriptionUnescaped(),
+			"date" => $this->formatTime( $item->getDate() ),
+			"author" => $item->getAuthorUnescaped()
+		];
+		$comments = $item->getCommentsUnescaped();
+		if ( $comments ) {
+			$templateParams["comments"] = wfExpandUrl( $comments, PROTO_CURRENT );
+		}
+		print $this->templateParser->processTemplate( 'RSSItem', $templateParams );
 	}
 
 	/**
 	 * Output an RSS 2.0 footer
 	 */
 	function outFooter() {
-	?>
-	</channel>
-</rss><?php
+		print "</channel></rss>";
 	}
 }
 
@@ -343,14 +412,16 @@ class RSSFeed extends ChannelFeed {
  */
 class AtomFeed extends ChannelFeed {
 	/**
-	 * Format a date given timestamp.
+	 * Format a date given timestamp, if one is given.
 	 *
-	 * @param string|int $timestamp
-	 * @return string
+	 * @param string|int|null $timestamp
+	 * @return string|null
 	 */
 	function formatTime( $timestamp ) {
-		// need to use RFC 822 time format at least for rss2.0
-		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $timestamp ) );
+		if ( $timestamp ) {
+			// need to use RFC 822 time format at least for rss2.0
+			return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $timestamp ) );
+		}
 	}
 
 	/**
@@ -358,20 +429,19 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outHeader() {
 		global $wgVersion;
-
 		$this->outXmlHeader();
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">
-		<id><?php print $this->getFeedId() ?></id>
-		<title><?php print $this->getTitle() ?></title>
-		<link rel="self" type="application/atom+xml" href="<?php print wfExpandUrl( $this->getSelfUrl(), PROTO_CURRENT ) ?>"/>
-		<link rel="alternate" type="text/html" href="<?php print wfExpandUrl( $this->getUrl(), PROTO_CURRENT ) ?>"/>
-		<updated><?php print $this->formatTime( wfTimestampNow() ) ?>Z</updated>
-		<subtitle><?php print $this->getDescription() ?></subtitle>
-		<generator>MediaWiki <?php print $wgVersion ?></generator>
 
-<?php
-		// @codingStandardsIgnoreEnd
+		$templateParams = [
+			'language' => $this->getLanguage(),
+			'feedID' => $this->getFeedID(),
+			'title' => $this->getTitleUnescaped(),
+			'url' => wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ),
+			'selfUrl' => $this->getSelfUrl(),
+			'timestamp' => $this->formatTime( wfTimestampNow() ),
+			'description' => $this->getDescriptionUnescaped(),
+			'version' => $wgVersion,
+		];
+		print $this->templateParser->processTemplate( 'AtomHeader', $templateParams );
 	}
 
 	/**
@@ -392,7 +462,7 @@ class AtomFeed extends ChannelFeed {
 	 */
 	private function getSelfUrl() {
 		global $wgRequest;
-		return htmlspecialchars( $wgRequest->getFullRequestURL() );
+		return $wgRequest->getFullRequestURL();
 	}
 
 	/**
@@ -401,30 +471,22 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outItem( $item ) {
 		global $wgMimeType;
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-	?>
-	<entry>
-		<id><?php print $item->getUniqueId(); ?></id>
-		<title><?php print $item->getTitle(); ?></title>
-		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?>"/>
-		<?php if ( $item->getDate() ) { ?>
-		<updated><?php print $this->formatTime( $item->getDate() ); ?>Z</updated>
-		<?php } ?>
-
-		<summary type="html"><?php print $item->getDescription() ?></summary>
-		<?php if ( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor(); ?></name></author><?php }?>
-	</entry>
-
-<?php /* @todo FIXME: Need to add comments
-	<?php if( $item->getComments() ) { ?><dc:comment><?php print $item->getComments() ?></dc:comment><?php }?>
-	  */
+		$templateParams = [
+			"uniqueID" => $item->getUniqueIDUnescaped(),
+			"title" => $item->getTitleUnescaped(),
+			"mimeType" => $wgMimeType,
+			"url" => wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ),
+			"date" => $this->formatTime( $item->getDate() ),
+			"description" => $item->getDescriptionUnescaped(),
+			"author" => $item->getAuthorUnescaped()
+		];
+		print $this->templateParser->processTemplate( 'AtomItem', $templateParams );
 	}
 
 	/**
 	 * Outputs the footer for Atom 1.0 feed (basically '\</feed\>').
 	 */
-	function outFooter() {?>
-	</feed><?php
-		// @codingStandardsIgnoreEnd
+	function outFooter() {
+		print "</feed>";
 	}
 }
