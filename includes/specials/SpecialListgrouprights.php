@@ -137,7 +137,7 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 
 	private function outputNamespaceProtectionInfo() {
-		global $wgParser, $wgContLang;
+		global $wgContLang;
 		$out = $this->getOutput();
 		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
 
@@ -145,11 +145,11 @@ class SpecialListGroupRights extends SpecialPage {
 			return;
 		}
 
-		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->parse();
+		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->text();
 		$out->addHTML(
 			Html::rawElement( 'h2', [], Html::element( 'span', [
 				'class' => 'mw-headline',
-				'id' => $wgParser->guessSectionNameFromWikiText( $header )
+				'id' => substr( Parser::guessSectionNameFromStrippedText( $header ), 1 )
 			], $header ) ) .
 			Xml::openElement( 'table', [ 'class' => 'wikitable' ] ) .
 			Html::element(
