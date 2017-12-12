@@ -43,6 +43,13 @@ class AutoloadGenerator {
 	protected $overrides = [];
 
 	/**
+	 * Directories that should be excluded
+	 *
+	 * @var string[]
+	 */
+	protected $excludePaths = [];
+
+	/**
 	 * @param string $basepath Root path of the project being scanned for classes
 	 * @param array|string $flags
 	 *
@@ -58,6 +65,32 @@ class AutoloadGenerator {
 		if ( in_array( 'local', $flags ) ) {
 			$this->variableName = 'wgAutoloadLocalClasses';
 		}
+	}
+
+	/**
+	 * Directories that should be excluded
+	 *
+	 * @since 1.31
+	 * @param string[] $paths
+	 */
+	public function setExcludePaths( array $paths ) {
+		$this->excludePaths = $paths;
+	}
+
+	/**
+	 * Whether the file should be excluded
+	 *
+	 * @param string $path File path
+	 * @return bool
+	 */
+	private function shouldExclude( $path ) {
+		foreach ( $this->excludePaths as $dir ) {
+			if ( strpos( $path, $dir ) === 0 ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -93,6 +126,9 @@ class AutoloadGenerator {
 		$len = strlen( $this->basepath );
 		if ( substr( $inputPath, 0, $len ) !== $this->basepath ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
+		}
+		if ( $this->shouldExclude( $inputPath ) ) {
+			return;
 		}
 		$result = $this->collector->getClasses(
 			file_get_contents( $inputPath )

@@ -567,6 +567,10 @@
 			"type": "object",
 			"description": "SpecialPages implemented in this extension (mapping of page name to class name)"
 		},
+		"AutoloadNamespaces": {
+			"type": "object",
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading"
+		},
 		"AutoloadClasses": {
 			"type": "object"
 		},

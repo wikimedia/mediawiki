@@ -196,6 +196,7 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
 		$autoloadClasses = [];
+		$autoloadNamespaces = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
 		$versionChecker = new VersionChecker( $wgVersion );
@@ -226,10 +227,15 @@ class ExtensionRegistry {
 				$incompatible[] = "$path: unsupported manifest_version: {$version}";
 			}
 
-			$autoload = $this->processAutoLoader( dirname( $path ), $info );
-			// Set up the autoloader now so custom processors will work
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
-			$autoloadClasses += $autoload;
+			$dir = dirname( $path );
+			if ( isset( $info['AutoloadClasses'] ) ) {
+				$autoload = $this->processAutoLoader( $dir, $info['AutoloadClasses'] );
+				$GLOBALS['wgAutoloadClasses'] += $autoload;
+				$autoloadClasses += $autoload;
+			}
+			if ( isset( $info['AutoloadNamespaces'] ) ) {
+				$autoloadNamespaces += $this->processAutoLoader( $dir, $info['AutoloadNamespaces'] );
+			}
 
 			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info );
@@ -241,7 +247,7 @@ class ExtensionRegistry {
 
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
+				$processor->getExtraAutoloaderPaths( $dir, $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -268,6 +274,7 @@ class ExtensionRegistry {
 		$data['globals']['wgAutoloadClasses'] = [];
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
+		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
 	}
 
@@ -313,6 +320,10 @@ class ExtensionRegistry {
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
 			}
+		}
+
+		if ( isset( $info['autoloaderNS'] ) ) {
+			Autoloader::$psr4Namespaces += $info['autoloaderNS'];
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
@@ -399,20 +410,16 @@ class ExtensionRegistry {
 	}
 
 	/**
-	 * Register classes with the autoloader
+	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
 	 * @param array $info
 	 * @return array
 	 */
 	protected function processAutoLoader( $dir, array $info ) {
-		if ( isset( $info['AutoloadClasses'] ) ) {
-			// Make paths absolute, relative to the JSON file
-			return array_map( function ( $file ) use ( $dir ) {
-				return "$dir/$file";
-			}, $info['AutoloadClasses'] );
-		} else {
-			return [];
-		}
+		// Make paths absolute, relative to the JSON file
+		return array_map( function ( $file ) use ( $dir ) {
+			return "$dir/$file";
+		}, $info );
 	}
 }
