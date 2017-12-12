@@ -100,8 +100,12 @@ class CheckStorage {
 			$missingTextRows = array_flip( $this->oldIdMap );
 			$externalRevs = [];
 			$objectRevs = [];
-			$res = $dbr->select( 'text', [ 'old_id', 'old_flags' ],
-				'old_id IN (' . implode( ',', $this->oldIdMap ) . ')', __METHOD__ );
+			$res = $dbr->select(
+				'text',
+				[ 'old_id', 'old_flags' ],
+				[ 'old_id' => $this->oldIdMap ],
+				__METHOD__
+			);
 			foreach ( $res as $row ) {
 				/**
 				 * @var $flags int
@@ -158,8 +162,12 @@ class CheckStorage {
 			$externalConcatBlobs = [];
 			$externalNormalBlobs = [];
 			if ( count( $externalRevs ) ) {
-				$res = $dbr->select( 'text', [ 'old_id', 'old_flags', 'old_text' ],
-					[ 'old_id IN (' . implode( ',', $externalRevs ) . ')' ], __METHOD__ );
+				$res = $dbr->select(
+					'text',
+					[ 'old_id', 'old_flags', 'old_text' ],
+					[ 'old_id' => $externalRevs ],
+					__METHOD__
+				);
 				foreach ( $res as $row ) {
 					$urlParts = explode( '://', $row->old_text, 2 );
 					if ( count( $urlParts ) !== 2 || $urlParts[1] == '' ) {
@@ -224,7 +232,7 @@ class CheckStorage {
 				$res = $dbr->select(
 					'text',
 					[ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ],
-					[ 'old_id IN (' . implode( ',', $objectRevs ) . ')' ],
+					[ 'old_id' => $objectRevs ],
 					__METHOD__
 				);
 				foreach ( $res as $row ) {
@@ -283,7 +291,7 @@ class CheckStorage {
 				$res = $dbr->select(
 					'text',
 					[ 'old_id', 'old_flags', "LEFT(old_text, $headerLength) AS header" ],
-					[ 'old_id IN (' . implode( ',', array_keys( $concatBlobs ) ) . ')' ],
+					[ 'old_id' => array_keys( $concatBlobs ) ],
 					__METHOD__
 				);
 				foreach ( $res as $row ) {
