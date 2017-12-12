@@ -1192,12 +1192,12 @@ class Linker {
 						$section = str_replace( '[[', '', $section );
 						$section = str_replace( ']]', '', $section );
 
-						$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # T24784
+						$section = substr( Parser::guessSectionNameFromStrippedText( $section ), 1 );
 						if ( $local ) {
-							$sectionTitle = Title::newFromText( '#' . $section );
+							$sectionTitle = Title::makeTitleSafe( NS_MAIN, '', $section );
 						} else {
 							$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-								$title->getDBkey(), Sanitizer::decodeCharReferences( $section ) );
+								$title->getDBkey(), $section );
 						}
 						if ( $sectionTitle ) {
 							$link = Linker::makeCommentLink( $sectionTitle, $wgLang->getArrow(), $wikiId, 'noclasses' );
