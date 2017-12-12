@@ -67,6 +67,7 @@ because of Phabricator reports.
 
 * (T193566) Added language support for Ambonese Malay (abs).
 * (T194047) Added language support for Shawiya, Latin script (shy-latn).
+* Renamed language code for Moldavian from 'mo' to 'ro-cyrl'.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
