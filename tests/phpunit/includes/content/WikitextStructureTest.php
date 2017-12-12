@@ -87,6 +87,10 @@ END;
 Opening text is opening.
 == Then comes header ==
 Then we got more<br>text
+== Another header ==
+foo<div>bar</div>baz
+
+a<i>b</i>c
 === And more headers ===
 {| class="wikitable"
 |-
@@ -99,9 +103,10 @@ Then we got more<br>text
 END;
 		$struct = $this->getStructure( $text );
 		$this->assertEquals( "Opening text is opening.", $struct->getOpeningText() );
-		$this->assertEquals( "Opening text is opening.   Then we got more text",
+		$this->assertEquals( "Opening text is opening.   Then we got more text   foo bar baz abc",
 			$struct->getMainText() );
-		$this->assertEquals( [ "Header table  row in table  another row in table" ],
+		// TODO: Remove extra spaces after T182074 is fixed
+		$this->assertEquals( [ "Header table   row in table   another row in table" ],
 			$struct->getAuxiliaryText() );
 	}
 }

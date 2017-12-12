@@ -174,10 +174,15 @@ class WikiTextStructure {
 		// preferred in highlighting.
 		$formatter->remove( $this->auxiliaryElementSelectors );
 		$auxiliaryElements = $formatter->filterContent();
-		$this->allText = trim( Sanitizer::stripAllTags( $formatter->getText() ) );
+		// preg_replace: T182667
+		$this->allText = trim( Sanitizer::stripAllTags(
+			preg_replace('/<\/? *div[^>]*>/i', ' ', $formatter->getText() )
+		) );
 		foreach ( $auxiliaryElements as $auxiliaryElement ) {
 			$this->auxText[] =
-				trim( Sanitizer::stripAllTags( $formatter->getText( $auxiliaryElement ) ) );
+				trim( Sanitizer::stripAllTags(
+					preg_replace('/<\/(th|td|caption)>/i', ' </$1>', $formatter->getText( $auxiliaryElement ) )
+					) );
 		}
 	}
 
