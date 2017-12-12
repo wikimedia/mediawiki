@@ -55,7 +55,7 @@
 }
 
 /* Absolute positioning to avoid table overlap with floating elements */
-.mw-changeslist-legend.mw-enhanced {
+.mw-changeslist > .mw-changeslist-legend.mw-enhanced {
 	background-color: #fff;
 	position: absolute;
 	right: 0;
