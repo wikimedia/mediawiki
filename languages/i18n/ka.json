@@ -1324,6 +1324,7 @@
 	"rcfilters-activefilters": "აქტიური ფილტრები",
 	"rcfilters-advancedfilters": "გაფართოებული ფილტრები",
 	"rcfilters-limit-title": "ცვლილელების ნახვა",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|ცვლილება|ცვლილება|ცვლილება}}, $2",
 	"rcfilters-date-popup-title": "საძიებო დროის მონაკვეთი",
 	"rcfilters-days-title": "უკანასკნელი დღეები",
 	"rcfilters-hours-title": "ბოლო საათები",

@@ -1467,6 +1467,7 @@
 	"rcfilters-watchlist-showupdated": "Perubahan di halaman-halaman yang belum Anda kunjungi sejak perubahan terjadi ditampilkan dalam <strong>huruf terbal</strong>, dan tanda titik tebal di daftar.",
 	"rcfilters-preference-label": "Sembunyikan versi terkini dari Perubahan Terbaru",
 	"rcfilters-preference-help": "Kembalikan perubahan antarmuka 2017 dan semua peralatan yang ditambahkan sejak saat itu.",
+	"rcfilters-target-page-placeholder": "Masukkan nama halaman",
 	"rcnotefrom": "Di bawah ini adalah {{PLURAL:$5|perubahan}} sejak <strong>$3, $4</strong> (ditampilkan sampai <strong>$1</strong> perubahan).",
 	"rclistfromreset": "Atur ulang pilihan tanggal",
 	"rclistfrom": "Perlihatkan perubahan terbaru sejak $3 $2",

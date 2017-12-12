@@ -71,7 +71,8 @@
 			"Similartothissimilartothat",
 			"Bunyk",
 			"Choomaq",
-			"SimondR"
+			"SimondR",
+			"Renamerr"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -1054,7 +1055,7 @@
 	"recentchangesdays-max": "(максимум $1 {{PLURAL:$1|день|дні|днів}})",
 	"recentchangescount": "Кількість редагувань для показу за замовчуванням:",
 	"prefs-help-recentchangescount": "Це стосується нових редагувань, історій сторінок і журналів.",
-	"prefs-help-watchlist-token2": "Це секретний ключ до веб-каналу вашого списку спостереження.\nБудь-хто, хто його знає, матиме можливість читати ваш список спостереження, тому не поширюйте його.\n[[Special:ResetTokens|Натисніть тут, якщо вам потрібно скинути його]].",
+	"prefs-help-watchlist-token2": "Це секретний ключ до веб-каналу вашого списку спостереження.\nБудь-хто, хто його знає, матиме можливість читати ваш список спостереження, тому не поширюйте його.\nЯкщо вам потрібно, [[Special:ResetTokens|ви можете скинути його]].",
 	"savedprefs": "Ваші налаштування збережено.",
 	"savedrights": "Групи {{GENDER:$1|користувача $1|користувачки $1}} було збережено.",
 	"timezonelegend": "Часовий пояс:",
@@ -1362,7 +1363,9 @@
 	"rcfilters-group-results-by-page": "Групувати результати за сторінкою",
 	"rcfilters-activefilters": "Активні фільтри",
 	"rcfilters-advancedfilters": "Розширені фільтри",
-	"rcfilters-limit-title": "Зміни, які слід показати",
+	"rcfilters-limit-title": "Результати, які треба показати",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|одна зміна|$1 змін}}, $2",
+	"rcfilters-date-popup-title": "Період часу для пошуку",
 	"rcfilters-days-title": "Останні дні",
 	"rcfilters-hours-title": "Останні години",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|день|дні|днів}}",

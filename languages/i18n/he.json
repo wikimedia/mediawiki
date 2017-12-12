@@ -1036,6 +1036,7 @@
 	"timezoneregion-indian": "האוקיינוס ההודי",
 	"timezoneregion-pacific": "האוקיינוס השקט",
 	"allowemail": "לאפשר למשתמשים אחרים לשלוח לי דואר אלקטרוני",
+	"email-allow-new-users-label": "לאפשר למשתמשים חדשים מאוד לשלוח לי דואר אלקטרוני",
 	"email-blacklist-label": "חסימת המשתמשים הבאים משליחת דואר אלקטרוני אליי:",
 	"prefs-searchoptions": "חיפוש",
 	"prefs-namespaces": "מרחבי שם",
