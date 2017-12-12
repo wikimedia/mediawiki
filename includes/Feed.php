@@ -86,11 +86,16 @@ class FeedItem {
 	/**
 	 * Get the unique id of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getUniqueId() {
+	public function getUniqueId( $escape = true ) {
 		if ( $this->uniqueId ) {
-			return $this->xmlEncode( wfExpandUrl( $this->uniqueId, PROTO_CURRENT ) );
+			$result = wfExpandUrl( $this->uniqueId, PROTO_CURRENT );
+			if ( $escape ) {
+				$result = $this->xmlEncode( $result );
+			}
+			return $result;
 		}
 	}
 
@@ -106,30 +111,45 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the title of this item; already xml-encoded
+	 * Get the title of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getTitle() {
-		return $this->xmlEncode( $this->title );
+	public function getTitle( $escape = true ) {
+		$title = $this->title;
+		if ( $escape ) {
+			$title = $this->xmlEncode( $title );
+		}
+		return $title;
 	}
 
 	/**
-	 * Get the URL of this item; already xml-encoded
+	 * Get the URL of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getUrl() {
-		return $this->xmlEncode( $this->url );
+	public function getUrl( $escape = true ) {
+		$url = $this->url;
+		if ( $escape ) {
+			$url = $this->xmlEncode( $url );
+		}
+		return $url;
 	}
 
 	/**
-	 * Get the description of this item; already xml-encoded
+	 * Get the description of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getDescription() {
-		return $this->xmlEncode( $this->description );
+	public function getDescription( $escape = true ) {
+		$desc = $this->description;
+		if ( $escape ) {
+			$desc = $this->xmlEncode( $desc );
+		}
+		return $desc;
 	}
 
 	/**
@@ -145,28 +165,43 @@ class FeedItem {
 	/**
 	 * Get the date of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getDate() {
-		return $this->date;
+	public function getDate( $escape = true ) {
+		$date = $this->date;
+		if ( $escape ) {
+			$date = $this->xmlEncode( $date );
+		}
+		return $date;
 	}
 
 	/**
-	 * Get the author of this item; already xml-encoded
+	 * Get the author of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getAuthor() {
-		return $this->xmlEncode( $this->author );
+	public function getAuthor( $escape = true ) {
+		$author = $this->author;
+		if ( $escape ) {
+			$author = $this->xmlEncode( $author );
+		}
+		return $author;
 	}
 
 	/**
-	 * Get the comment of this item; already xml-encoded
+	 * Get the comment of this item
 	 *
+	 * @param bool $escape Whether to xml-encode the returned string
 	 * @return string
 	 */
-	public function getComments() {
-		return $this->xmlEncode( $this->comments );
+	public function getComments( $escape = true ) {
+		$comments = $this->comments;
+		if ( $escape ) {
+			$comments = $this->xmlEncode( $comments );
+		}
+		return $comments;
 	}
 
 	/**
@@ -187,6 +222,22 @@ class FeedItem {
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
+
+	protected $templateParser;
+
+	/**
+	 * @param string|Title $title Feed's title
+	 * @param string $description
+	 * @param string $url URL uniquely designating the feed.
+	 * @param string $date Feed's date
+	 * @param string $author Author's user name
+	 * @param string $comments
+	 */
+	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+		parent::__construct( $title, $description, $url, $date, $author, $comments );
+		$this->templateParser = new TemplateParser();
+	}
+
 	/**
 	 * Generate Header of the feed
 	 * @par Example:
@@ -279,13 +330,15 @@ abstract class ChannelFeed extends FeedItem {
 class RSSFeed extends ChannelFeed {
 
 	/**
-	 * Format a date given a timestamp
+	 * Format a date given a timestamp. If a timestamp is not given, nothing is returned
 	 *
-	 * @param int $ts Timestamp
-	 * @return string Date string
+	 * @param int|null $ts Timestamp
+	 * @return string|null Date string
 	 */
 	function formatTime( $ts ) {
-		return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
+		if ( $ts ) {
+			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
+		}
 	}
 
 	/**
@@ -295,15 +348,17 @@ class RSSFeed extends ChannelFeed {
 		global $wgVersion;
 
 		$this->outXmlHeader();
-		?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
-	<channel>
-		<title><?php print $this->getTitle() ?></title>
-		<link><?php print wfExpandUrl( $this->getUrl(), PROTO_CURRENT ) ?></link>
-		<description><?php print $this->getDescription() ?></description>
-		<language><?php print $this->getLanguage() ?></language>
-		<generator>MediaWiki <?php print $wgVersion ?></generator>
-		<lastBuildDate><?php print $this->formatTime( wfTimestampNow() ) ?></lastBuildDate>
-<?php
+		$templateParams = [
+			// passing false here means not to escape the result, since escaping
+			// is handled by Mustache
+			'title' => $this->getTitle( false ),
+			'url' => wfExpandUrl( $this->getUrl( false ), PROTO_CURRENT ),
+			'description' => $this->getDescription( false ),
+			'language' => $this->getLanguage(),
+			'version' => $wgVersion,
+			'timestamp' => $this->formatTime( wfTimestampNow() )
+		];
+		print $this->templateParser->processTemplate( 'RSSHeader', $templateParams );
 	}
 
 	/**
@@ -311,28 +366,29 @@ class RSSFeed extends ChannelFeed {
 	 * @param FeedItem $item Item to be output
 	 */
 	function outItem( $item ) {
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-	?>
-		<item>
-			<title><?php print $item->getTitle(); ?></title>
-			<link><?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?></link>
-			<guid<?php if ( !$item->rssIsPermalink ) { print ' isPermaLink="false"'; } ?>><?php print $item->getUniqueId(); ?></guid>
-			<description><?php print $item->getDescription() ?></description>
-			<?php if ( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ); ?></pubDate><?php } ?>
-			<?php if ( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor(); ?></dc:creator><?php }?>
-			<?php if ( $item->getComments() ) { ?><comments><?php print wfExpandUrl( $item->getComments(), PROTO_CURRENT ); ?></comments><?php }?>
-		</item>
-<?php
-		// @codingStandardsIgnoreEnd
+		$templateParams = [
+			// passing false here means not to escape the result, since escaping
+			// is handled by Mustache
+			"title" => $item->getTitle( false ),
+			"url" => wfExpandUrl( $item->getTitle( false ), PROTO_CURRENT ),
+			"permalink" => $item->rssIsPermalink,
+			"uniqueID" => $item->getUniqueID( false ),
+			"description" => $item->getDescription( false ),
+			"date" => $this->formatTime( $item->getDate( false ) ),
+			"author" => $item->getAuthor( false )
+		];
+		$comments = $item->getComments( false );
+		if ( $comments ) {
+			$templateParams["comments"] = wfExpandUrl( $comments, PROTO_CURRENT );
+		}
+		print $this->templateParser->processTemplate( 'RSSItem', $templateParams );
 	}
 
 	/**
 	 * Output an RSS 2.0 footer
 	 */
 	function outFooter() {
-	?>
-	</channel>
-</rss><?php
+		print "</channel></rss>";
 	}
 }
 
@@ -343,14 +399,16 @@ class RSSFeed extends ChannelFeed {
  */
 class AtomFeed extends ChannelFeed {
 	/**
-	 * Format a date given timestamp.
+	 * Format a date given timestamp, if one is given.
 	 *
-	 * @param string|int $timestamp
-	 * @return string
+	 * @param string|int|null $timestamp
+	 * @return string|null
 	 */
 	function formatTime( $timestamp ) {
-		// need to use RFC 822 time format at least for rss2.0
-		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $timestamp ) );
+		if ( $timestamp ) {
+			// need to use RFC 822 time format at least for rss2.0
+			return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $timestamp ) );
+		}
 	}
 
 	/**
@@ -358,20 +416,21 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outHeader() {
 		global $wgVersion;
-
 		$this->outXmlHeader();
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-		?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="<?php print $this->getLanguage() ?>">
-		<id><?php print $this->getFeedId() ?></id>
-		<title><?php print $this->getTitle() ?></title>
-		<link rel="self" type="application/atom+xml" href="<?php print wfExpandUrl( $this->getSelfUrl(), PROTO_CURRENT ) ?>"/>
-		<link rel="alternate" type="text/html" href="<?php print wfExpandUrl( $this->getUrl(), PROTO_CURRENT ) ?>"/>
-		<updated><?php print $this->formatTime( wfTimestampNow() ) ?>Z</updated>
-		<subtitle><?php print $this->getDescription() ?></subtitle>
-		<generator>MediaWiki <?php print $wgVersion ?></generator>
 
-<?php
-		// @codingStandardsIgnoreEnd
+		$templateParams = [
+			// passing false here means not to escape the result, since escaping
+			// is handled by Mustache
+			'language' => $this->getLanguage(),
+			'feedID' => $this->getFeedID(),
+			'title' => $this->getTitle( false ),
+			'url' => wfExpandUrl( $this->getUrl( false ), PROTO_CURRENT ),
+			'selfUrl' => $this->getSelfUrl(),
+			'timestamp' => $this->formatTime( wfTimestampNow() ),
+			'description' => $this->getDescription( false ),
+			'version' => $wgVersion,
+		];
+		print $this->templateParser->processTemplate( 'AtomHeader', $templateParams );
 	}
 
 	/**
@@ -392,7 +451,7 @@ class AtomFeed extends ChannelFeed {
 	 */
 	private function getSelfUrl() {
 		global $wgRequest;
-		return htmlspecialchars( $wgRequest->getFullRequestURL() );
+		return $wgRequest->getFullRequestURL();
 	}
 
 	/**
@@ -401,30 +460,24 @@ class AtomFeed extends ChannelFeed {
 	 */
 	function outItem( $item ) {
 		global $wgMimeType;
-		// @codingStandardsIgnoreStart Ignore long lines and formatting issues.
-	?>
-	<entry>
-		<id><?php print $item->getUniqueId(); ?></id>
-		<title><?php print $item->getTitle(); ?></title>
-		<link rel="alternate" type="<?php print $wgMimeType ?>" href="<?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ); ?>"/>
-		<?php if ( $item->getDate() ) { ?>
-		<updated><?php print $this->formatTime( $item->getDate() ); ?>Z</updated>
-		<?php } ?>
-
-		<summary type="html"><?php print $item->getDescription() ?></summary>
-		<?php if ( $item->getAuthor() ) { ?><author><name><?php print $item->getAuthor(); ?></name></author><?php }?>
-	</entry>
-
-<?php /* @todo FIXME: Need to add comments
-	<?php if( $item->getComments() ) { ?><dc:comment><?php print $item->getComments() ?></dc:comment><?php }?>
-	  */
+		$templateParams = [
+			// passing false here means not to escape the result, since escaping
+			// is handled by Mustache
+			"uniqueID" => $item->getUniqueID( false ),
+			"title" => $item->getTitle( false ),
+			"mimeType" => $wgMimeType,
+			"url" => wfExpandUrl( $item->getUrl( false ), PROTO_CURRENT ),
+			"date" => $this->formatTime( $item->getDate( false ) ),
+			"description" => $item->getDescription( false ),
+			"author" => $item->getAuthor( false );
+		];
+		print $this->templateParser->processTemplate( 'AtomItem', $templateParams );
 	}
 
 	/**
 	 * Outputs the footer for Atom 1.0 feed (basically '\</feed\>').
 	 */
-	function outFooter() {?>
-	</feed><?php
-		// @codingStandardsIgnoreEnd
+	function outFooter() {
+		print "</feed>";
 	}
 }
