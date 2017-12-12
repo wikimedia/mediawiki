@@ -31,6 +31,12 @@ class AutoLoader {
 	static protected $autoloadLocalClassesLower = null;
 
 	/**
+	 * @private Only public for ExtensionRegistry
+	 * @var string[] Namespace (ends with \) => Path (ends with /)
+	 */
+	static public $psr4Namespaces = [];
+
+	/**
 	 * autoload - take a class name and attempt to load it
 	 *
 	 * @param string $className Name of class we're looking for.
@@ -67,6 +73,28 @@ class AutoLoader {
 			}
 		}
 
+		if ( !$filename && strpos( $className, '\\' ) !== false ) {
+			// This class is namespaced, so try looking at the namespace map
+			$prefix = $className;
+			while ( false !== $pos = strrpos( $prefix, '\\' ) ) {
+				// Check to see if this namespace prefix is in the map
+				$prefix = substr( $className, 0, $pos + 1 );
+				if ( isset( self::$psr4Namespaces[$prefix] ) ) {
+					$relativeClass = substr( $className, $pos + 1 );
+					// Build the expected filename, and see if it exists
+					$file = self::$psr4Namespaces[$prefix] .
+						str_replace( '\\', '/', $relativeClass ) . '.php';
+					if ( file_exists( $file ) ) {
+						$filename = $file;
+						break;
+					}
+				}
+
+				// Remove trailing separator for next iteration
+				$prefix = rtrim( $prefix, '\\' );
+			}
+		}
+
 		if ( !$filename ) {
 			// Class not found; let the next autoloader try to find it
 			return;
@@ -88,6 +116,22 @@ class AutoLoader {
 	static function resetAutoloadLocalClassesLower() {
 		self::$autoloadLocalClassesLower = null;
 	}
+
+	/**
+	 * Get a mapping of namespace => file path
+	 * The namespaces should follow the PSR-4 standard for autoloading
+	 *
+	 * @see <http://www.php-fig.org/psr/psr-4/>
+	 * @private Only public for usage in AutoloadGenerator
+	 * @since 1.31
+	 * @return string[]
+	 */
+	public static function getAutoloadNamespaces() {
+		return [
+			'MediaWiki\\Linker\\' => __DIR__ .'/linker/'
+		];
+	}
 }
 
+Autoloader::$psr4Namespaces = AutoLoader::getAutoloadNamespaces();
 spl_autoload_register( [ 'AutoLoader', 'autoload' ] );
