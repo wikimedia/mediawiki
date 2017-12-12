@@ -4832,7 +4832,12 @@ OO.ui.mixin.ClippableElement.prototype.setIdealSize = function ( width, height )
  * @return {string} 'left' or 'right'
  */
 OO.ui.mixin.ClippableElement.prototype.getHorizontalAnchorEdge = function () {
-	if ( this.computePosition && this.computePosition().right !== '' ) {
+	var position;
+	try {
+		position = this.computePosition && this.computePosition();
+	} catch ( err ) {
+	}
+	if ( position && position.right !== '' ) {
 		return 'right';
 	}
 	return 'left';
@@ -4854,7 +4859,12 @@ OO.ui.mixin.ClippableElement.prototype.getHorizontalAnchorEdge = function () {
  * @return {string} 'top' or 'bottom'
  */
 OO.ui.mixin.ClippableElement.prototype.getVerticalAnchorEdge = function () {
-	if ( this.computePosition && this.computePosition().bottom !== '' ) {
+	var position;
+	try {
+		position = this.computePosition && this.computePosition();
+	} catch ( err ) {
+	}
+	if ( position && position.bottom !== '' ) {
 		return 'bottom';
 	}
 	return 'top';
