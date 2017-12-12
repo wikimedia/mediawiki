@@ -512,6 +512,10 @@
 			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
 			oldInputValue = this.input.getValue().trim();
 
+		if ( !menuOption.isVisible() ) {
+			return;
+		}
+
 		this.menu.setUserSelecting( true );
 
 		// Reset input
