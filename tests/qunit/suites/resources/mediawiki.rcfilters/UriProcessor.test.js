@@ -286,14 +286,34 @@
 					message: 'Target as subpage in path'
 				},
 				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Moai/Sub1',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai/Sub1',
+					message: 'Target as subpage also has a subpage'
+				},
+				{
 					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo',
 					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo',
 					message: 'Target as subpage in path (with namespace)'
 				},
 				{
+					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo/Bar',
+					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo/Bar',
+					message: 'Target as subpage in path also has a subpage (with namespace)'
+				},
+				{
 					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai',
 					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai',
 					message: 'Target as subpage in title param'
+				},
+				{
+					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai/Sub1',
+					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai/Sub1',
+					message: 'Target as subpage in title param also has a subpage'
+				},
+				{
+					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Category:Foo/Bar',
+					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Category:Foo/Bar',
+					message: 'Target as subpage in title param also has a subpage (with namespace)'
 				},
 				{
 					input: 'http://host/wiki/Special:Watchlist',
