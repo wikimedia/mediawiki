@@ -117,11 +117,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 	}
 
-	public function isStructuredFilterUiEnabledByDefault() {
-		return $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
-			$this->getUser()->getDefaultOption( 'rcenhancedfilters' );
-	}
-
 	/**
 	 * Return an array of subpages that this special page will accept.
 	 *
