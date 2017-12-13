@@ -418,8 +418,9 @@ class ExtensionRegistry {
 	 */
 	protected function processAutoLoader( $dir, array $info ) {
 		// Make paths absolute, relative to the JSON file
-		return array_map( function ( $file ) use ( $dir ) {
-			return "$dir/$file";
-		}, $info );
+		foreach ( $info as &$file ) {
+			$file = "$dir/$file";
+		}
+		return $info;
 	}
 }

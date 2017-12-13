@@ -378,9 +378,11 @@ class ExtensionProcessor implements Processor {
 
 	protected function extractExtensionMessagesFiles( $dir, array $info ) {
 		if ( isset( $info['ExtensionMessagesFiles'] ) ) {
-			$this->globals["wgExtensionMessagesFiles"] += array_map( function ( $file ) use ( $dir ) {
-				return "$dir/$file";
-			}, $info['ExtensionMessagesFiles'] );
+			$tempExtensionMessagesFiles = $info['ExtensionMessagesFiles'];
+			foreach ( $tempExtensionMessagesFiles as &$file ) {
+				$file = "$dir/$file";
+			}
+			$this->globals["wgExtensionMessagesFiles"] += $tempExtensionMessagesFiles;
 		}
 	}
 
