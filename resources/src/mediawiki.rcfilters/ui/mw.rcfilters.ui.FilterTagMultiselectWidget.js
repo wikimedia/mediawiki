@@ -510,24 +510,22 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 		var widget = this,
 			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
-			oldInputValue = this.input.getValue().trim();
+			oldInputValue = this.input.getValue().trim(),
+			oldView = this.model.getCurrentView();
 
 		this.menu.setUserSelecting( true );
-
-		// Reset input
-		this.input.setValue( '' );
-
-		// Switch view
-		this.controller.switchView( tagItem.getView() );
 
 		// Parent method
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
 
-		this.menu.selectItem( menuOption );
-		this.selectTag( tagItem );
-
 		// Scroll to the item
-		if ( this.model.removeViewTriggers( oldInputValue ) ) {
+		if (
+			// If we are either changing views or changing search term
+			// that means that the list is changing, and we need to defer
+			// the scrolling
+			oldView !== tagItem.getView() ||
+			this.model.removeViewTriggers( oldInputValue )
+		) {
 			// We're binding a 'once' to the itemVisibilityChange event
 			// so this happens when the menu is ready after the items
 			// are visible again, in case this is done right after the
@@ -541,9 +539,16 @@
 			);
 		} else {
 			this.scrollToTop( menuOption.$element );
-			this.menu.setUserSelecting( false );
 		}
 
+		// Reset input to erase search results and switch view
+		// to the relevant one, in case it wasn't in that view already
+		this.input.setValue( this.model.getViewTrigger( tagItem.getView() ) );
+
+		this.selectTag( tagItem );
+		this.menu.selectItem( menuOption );
+
+		this.menu.setUserSelecting( false );
 	};
 
 	/**
