@@ -49,7 +49,7 @@
 		loadedScripts[ url ] = true;
 		s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
-		document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+		document.head.appendChild( s );
 		return s;
 	}
 
@@ -72,7 +72,7 @@
 		if ( media ) {
 			l.media = media;
 		}
-		document.getElementsByTagName( 'head' )[ 0 ].appendChild( l );
+		document.head.appendChild( l );
 		return l;
 	}
 

@@ -902,7 +902,7 @@
 				if ( nextNode && nextNode.parentNode ) {
 					nextNode.parentNode.insertBefore( s, nextNode );
 				} else {
-					document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+					document.head.appendChild( s );
 				}
 
 				return s;
