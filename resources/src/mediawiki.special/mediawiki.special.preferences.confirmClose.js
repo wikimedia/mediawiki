@@ -4,9 +4,11 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var allowCloseWindow;
+		var allowCloseWindow, saveButton, restoreButton;
 
-		// Check if all of the form values are unchanged
+		// Check if all of the form values are unchanged.
+		// (This function could be changed to infuse and check OOUI widgets, but that would only make it
+		// slower and more complicated. It works fine to treat them as HTML elements.)
 		function isPrefsChanged() {
 			var inputs = $( '#mw-prefs-form :input[name]' ),
 				input, $input, inputType,
@@ -41,12 +43,15 @@
 			return false;
 		}
 
+		saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
+		restoreButton = OO.ui.infuse( $( '#mw-prefs-restoreprefs' ) );
+
 		// Disable the button to save preferences unless preferences have changed
 		// Check if preferences have been changed before JS has finished loading
 		if ( !isPrefsChanged() ) {
-			$( '#prefcontrol' ).prop( 'disabled', true );
-			$( '#preferences > fieldset' ).one( 'change keydown mousedown', function () {
-				$( '#prefcontrol' ).prop( 'disabled', false );
+			saveButton.setDisabled( true );
+			$( '#preferences .oo-ui-fieldsetLayout' ).one( 'change keydown mousedown', function () {
+				saveButton.setDisabled( false );
 			} );
 		}
 
@@ -58,6 +63,11 @@
 			namespace: 'prefswarning'
 		} );
 		$( '#mw-prefs-form' ).submit( $.proxy( allowCloseWindow, 'release' ) );
-		$( '#mw-prefs-restoreprefs' ).click( $.proxy( allowCloseWindow, 'release' ) );
+		restoreButton.on( 'click', function () {
+			allowCloseWindow.release();
+			// The default behavior of events in OOUI is always prevented. Follow the link manually.
+			// Note that middle-click etc. still works, as it doesn't emit a OOUI 'click' event.
+			location.href = restoreButton.getHref();
+		} );
 	} );
 }( mediaWiki, jQuery ) );

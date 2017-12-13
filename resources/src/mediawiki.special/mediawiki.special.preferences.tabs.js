@@ -3,28 +3,9 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $preftoc, $preferences, $fieldsets, labelFunc, previousTab;
+		var $preferences, tabs, wrapper, previousTab;
 
-		labelFunc = function () {
-			return this.id.replace( /^mw-prefsection/g, 'preftab' );
-		};
-
-		$preftoc = $( '#preftoc' );
 		$preferences = $( '#preferences' );
-
-		$fieldsets = $preferences.children( 'fieldset' )
-			.attr( {
-				role: 'tabpanel',
-				'aria-labelledby': labelFunc
-			} );
-		$fieldsets.not( '#mw-prefsection-personal' )
-			.hide()
-			.attr( 'aria-hidden', 'true' );
-
-		// T115692: The following is kept for backwards compatibility with older skins
-		$preferences.addClass( 'jsprefs' );
-		$fieldsets.addClass( 'prefsection' );
-		$fieldsets.children( 'legend' ).addClass( 'mainLegend' );
 
 		// Make sure the accessibility tip is selectable so that screen reader users take notice,
 		// but hide it per default to reduce interface clutter. Also make sure it becomes visible
@@ -38,62 +19,76 @@
 				} else {
 					$( this ).css( 'height', 'auto' );
 				}
-			} ).insertBefore( $preftoc );
+			} ).prependTo( '#mw-content-text' );
 
-		/**
-		 * It uses document.getElementById for security reasons (HTML injections in $()).
-		 *
-		 * @ignore
-		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
-		 * @param {string} [mode] A hash will be set according to the current
-		 *  open section. Set mode 'noHash' to surpress this.
-		 */
-		function switchPrefTab( name, mode ) {
-			var $tab, scrollTop;
+		tabs = new OO.ui.IndexLayout( {
+			expanded: false,
+			// Do not remove focus from the tabs menu after choosing a tab
+			autoFocus: false
+		} );
+
+		mw.config.get( 'wgPreferencesTabs' ).forEach( function ( tabConfig ) {
+			var panel, $panelContents;
+
+			panel = new OO.ui.TabPanelLayout( tabConfig.name, {
+				expanded: false,
+				label: tabConfig.label
+			} );
+			$panelContents = $( '#mw-prefsection-' + tabConfig.name );
+
+			// Hide the unnecessary PHP PanelLayouts
+			// (Do not use .remove(), as that would remove event handlers for everything inside them)
+			$panelContents.parent().detach();
+
+			panel.$element.append( $panelContents );
+			tabs.addTabPanels( [ panel ] );
+
+			// Remove duplicate labels
+			// (This must be after .addTabPanels(), otherwise the tab item doesn't exist yet)
+			$panelContents.children( 'legend' ).remove();
+			$panelContents.attr( 'aria-labelledby', panel.getTabItem().getElementId() );
+		} );
+
+		wrapper = new OO.ui.PanelLayout( {
+			expanded: false,
+			padded: false,
+			framed: true
+		} );
+		wrapper.$element.append( tabs.$element );
+		$preferences.prepend( wrapper.$element );
+
+		function updateHash( panel ) {
+			var scrollTop, active;
 			// Handle hash manually to prevent jumping,
 			// therefore save and restore scrollTop to prevent jumping.
 			scrollTop = $( window ).scrollTop();
-			if ( mode !== 'noHash' ) {
-				location.hash = '#mw-prefsection-' + name;
+			// Changing the hash apparently causes keyboard focus to be lost?
+			// Save and restore it. This makes no sense though.
+			active = document.activeElement;
+			location.hash = '#mw-prefsection-' + panel.getName();
+			if ( active ) {
+				active.focus();
 			}
 			$( window ).scrollTop( scrollTop );
-
-			$preftoc.find( 'li' ).removeClass( 'selected' )
-				.find( 'a' ).attr( {
-					tabIndex: -1,
-					'aria-selected': 'false'
-				} );
-
-			$tab = $( document.getElementById( 'preftab-' + name ) );
-			if ( $tab.length ) {
-				$tab.attr( {
-					tabIndex: 0,
-					'aria-selected': 'true'
-				} ).focus()
-					.parent().addClass( 'selected' );
-
-				$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
-				$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
-			}
 		}
 
-		// Enable keyboard users to use left and right keys to switch tabs
-		$preftoc.on( 'keydown', function ( event ) {
-			var keyLeft = 37,
-				keyRight = 39,
-				$el;
+		tabs.on( 'set', updateHash );
 
-			if ( event.keyCode === keyLeft ) {
-				$el = $( '#preftoc li.selected' ).prev().find( 'a' );
-			} else if ( event.keyCode === keyRight ) {
-				$el = $( '#preftoc li.selected' ).next().find( 'a' );
-			} else {
-				return;
+		/**
+		 * @ignore
+		 * @param {string} name the name of a tab without the prefix ("mw-prefsection-")
+		 * @param {string} [mode] A hash will be set according to the current
+		 *  open section. Set mode 'noHash' to supress this.
+		 */
+		function switchPrefTab( name, mode ) {
+			if ( mode === 'noHash' ) {
+				tabs.off( 'set', updateHash );
 			}
-			if ( $el.length > 0 ) {
-				switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			tabs.setTabPanel( name );
+			if ( mode === 'noHash' ) {
+				tabs.on( 'set', updateHash );
 			}
-		} );
+		}
 
 		// Jump to correct section as indicated by the hash.
 		// This function is called onload and onhashchange.
@@ -115,15 +110,9 @@
 			}
 		}
 
-		// In browsers that support the onhashchange event we will not bind click
-		// handlers and instead let the browser do the default behavior (clicking the
-		// <a href="#.."> will naturally set the hash, handled by onhashchange.
-		// But other things that change the hash will also be caught (e.g. using
+		// Handle other things that change the hash (e.g. using
 		// the Back and Forward browser navigation).
-		// Note the special check for IE "compatibility" mode.
-		if ( 'onhashchange' in window &&
-			( document.documentMode === undefined || document.documentMode >= 8 )
-		) {
+		if ( 'onhashchange' in window ) {
 			$( window ).on( 'hashchange', function () {
 				var hash = location.hash;
 				if ( hash.match( /^#mw-[\w-]+/ ) ) {
@@ -131,22 +120,12 @@
 				} else if ( hash === '' ) {
 					switchPrefTab( 'personal', 'noHash' );
 				}
-			} )
-				// Run the function immediately to select the proper tab on startup.
-				.trigger( 'hashchange' );
-		// In older browsers we'll bind a click handler as fallback.
-		// We must not have onhashchange *and* the click handlers, otherwise
-		// the click handler calls switchPrefTab() which sets the hash value,
-		// which triggers onhashchange and calls switchPrefTab() again.
-		} else {
-			$preftoc.on( 'click', 'li a', function ( e ) {
-				switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
-				e.preventDefault();
 			} );
-			// If we've reloaded the page or followed an open-in-new-window,
-			// make the selected tab visible.
-			detectHash();
 		}
+
+		// If we've reloaded the page or followed an open-in-new-window,
+		// make the selected tab visible.
+		detectHash();
 
 		// Restore the active tab after saving the preferences
 		previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
@@ -157,7 +136,7 @@
 		}
 
 		$( '#mw-prefs-form' ).on( 'submit', function () {
-			var value = $( $preftoc ).find( 'li.selected a' ).attr( 'id' ).replace( 'preftab-', '' );
+			var value = tabs.getCurrentTabPanelName();
 			mw.storage.session.set( 'mwpreferences-prevTab', value );
 		} );
 
