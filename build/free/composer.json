@@ -8,7 +8,6 @@
 		"mediawiki/blue-spice-distribution-connector": "dev-master",
 		"mediawiki/blue-spice-echo-connector": "dev-master",
 		"mediawiki/blue-spice-edit-notify-connector": "dev-master",
-		"hallowelt/blue-spice-extensions": "dev-master",
 		"hallowelt/blue-spice-foundation": "dev-master",
 		"mediawiki/blue-spice-ldap-authentication-connector": "dev-master",
 		"mediawiki/blue-spice-user-merge-connector": "dev-master",
