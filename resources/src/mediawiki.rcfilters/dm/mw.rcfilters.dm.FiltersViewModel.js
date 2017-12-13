@@ -999,12 +999,13 @@
 			groupTitle,
 			result = {},
 			flatResult = [],
-			view = this.getViewByTrigger( query.substr( 0, 1 ) ),
+			view = this.getCurrentView(),
+			queryView = this.getViewByTrigger( query.substr( 0, 1 ) ),
 			items = this.getFiltersByView( view );
 
 		// Normalize so we can search strings regardless of case and view
 		query = query.trim().toLowerCase();
-		if ( view !== 'default' ) {
+		if ( queryView !== 'default' ) {
 			query = query.substr( 1 );
 		}
 		// Trim again to also intercept cases where the spaces were after the trigger
