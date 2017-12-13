@@ -4,17 +4,19 @@
 	 *
 	 * @mixins OO.EventEmitter
 	 *
+	 * @param {jQuery} $initialFieldset The initial server-generated legacy form content
 	 * @constructor
 	 */
-	mw.rcfilters.dm.ChangesListViewModel = function MwRcfiltersDmChangesListViewModel() {
+	mw.rcfilters.dm.ChangesListViewModel = function MwRcfiltersDmChangesListViewModel( $initialFieldset ) {
 		// Mixin constructor
 		OO.EventEmitter.call( this );
 
 		this.valid = true;
 		this.newChangesExist = false;
-		this.nextFrom = null;
 		this.liveUpdate = false;
 		this.unseenWatchedChanges = false;
+
+		this.extractNextFrom( $initialFieldset );
 	};
 
 	/* Initialization */
@@ -74,7 +76,6 @@
 	 * @param {jQuery|string} changesListContent
 	 * @param {jQuery} $fieldset
 	 * @param {string} noResultsDetails Type of no result error
-	 *   timeout.
 	 * @param {boolean} [isInitialDOM] Using the initial (already attached) DOM elements
 	 * @param {boolean} [separateOldAndNew] Whether a logical separation between old and new changes is needed
 	 * @fires update
@@ -114,7 +115,9 @@
 	 */
 	mw.rcfilters.dm.ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
 		var data = $fieldset.find( '.rclistfrom > a, .wlinfo' ).data( 'params' );
-		this.nextFrom = data ? data.from : null;
+		if ( data && data.from ) {
+			this.nextFrom = data.from;
+		}
 	};
 
 	/**
