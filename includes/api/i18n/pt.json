@@ -1070,6 +1070,7 @@
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "Adiciona o título da secção correspondente.",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "Adiciona um fragmento de código com a categoria correspondente, após análise sintática.",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "Adiciona um valor booleano que indica se a pesquisa encontrou correspondência no conteúdo de ficheiros.",
+	"apihelp-query+search-paramvalue-prop-extensiondata": "Acrescenta dados adicionais gerados por extensões.",
 	"apihelp-query+search-paramvalue-prop-score": "Ignorado.",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Ignorado.",
 	"apihelp-query+search-param-limit": "O número total de páginas a serem devolvidas.",

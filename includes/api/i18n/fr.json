@@ -28,7 +28,8 @@
 			"Pols12",
 			"The RedBurn",
 			"Umherirrender",
-			"Thibaut120094"
+			"Thibaut120094",
+			"KATRINE1992"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].",
@@ -1091,6 +1092,7 @@
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "Ajoute le titre de la section correspondante.",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "Ajoute un extrait analysé de la catégorie correspondante.",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "Ajoute un booléen indiquant si la recherche correspond au contenu du fichier.",
+	"apihelp-query+search-paramvalue-prop-extensiondata": "Va ajouter des donnees generees extra par extensions.",
 	"apihelp-query+search-paramvalue-prop-score": "Ignoré.",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Ignoré.",
 	"apihelp-query+search-param-limit": "Combien de pages renvoyer au total.",
