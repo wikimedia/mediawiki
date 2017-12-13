@@ -49,6 +49,19 @@
 		);
 		this.setClippableElement( this.$body );
 		this.setClippableContainer( this.$element );
+		// HACK: We need to make sure things happen as the input is changed
+		// and **before** item visibility is called. Right now, the only way to
+		// do that is to override OO.ui.MenuSelectWidget's onInputEditHandler to
+		// an intermediary method that does what we need it to do and *then*
+		// calls this.updateItemVisibility().
+		// TODO: This should be upstreamed so that we just need to extend
+		// the method responding to the inputEditHandler rather than
+		// overriding this in the constructor
+		this.onInputEditHandler = OO.ui.debounce( this.inputEditHandler.bind( this ), 100 );
+		// The original widget also doesn't account for the input changing by external
+		// forces. So we bind that to other types of changes without needing keyup/down
+		// event
+		this.$input.on( 'change', this.onInputEditHandler );
 
 		header = new mw.rcfilters.ui.FilterMenuHeaderWidget(
 			this.controller,
@@ -122,6 +135,19 @@
 	/* Methods */
 
 	/**
+	 * Respond to an edit on the input
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.inputEditHandler = function () {
+		var inputVal = this.$input.val().trim();
+
+		// Change view
+		this.controller.switchView(
+			this.model.getViewByTrigger( inputVal.substr( 0, 1 ) )
+		);
+		this.updateItemVisibility();
+	};
+
+	/**
 	 * Respond to model update event
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelUpdate = function () {
@@ -143,6 +169,7 @@
 	mw.rcfilters.ui.MenuSelectWidget.prototype.lazyMenuCreation = function () {
 		var widget = this,
 			viewGroupCount = {},
+			items = [],
 			groups = this.model.getFilterGroups();
 
 		if ( this.menuInitialized ) {
@@ -200,9 +227,12 @@
 				// without rebuilding the widgets each time
 				widget.views[ view ] = widget.views[ view ] || [];
 				widget.views[ view ] = widget.views[ view ].concat( currentItems );
+
+				items = items.concat( currentItems );
 			}
 		} );
 
+		this.addItems( items );
 		this.switchView( this.model.getCurrentView() );
 	};
 
@@ -222,8 +252,6 @@
 		viewName = viewName || 'default';
 
 		if ( this.views[ viewName ] && this.currentView !== viewName ) {
-			this.clearItems();
-			this.addItems( this.views[ viewName ] );
 			this.updateFooterVisibility( viewName );
 
 			this.$element
@@ -232,6 +260,7 @@
 				.addClass( 'mw-rcfilters-ui-menuSelectWidget-view-' + viewName );
 
 			this.currentView = viewName;
+			this.updateItemVisibility();
 			this.scrollToTop();
 			this.clip();
 		}
@@ -261,20 +290,23 @@
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		var i,
+			oldVisibleItems = this.getItems()
+				.filter( function ( itemWidget ) {
+					return itemWidget.isVisible();
+				} )
+				.map( function ( itemWidget ) {
+					return itemWidget.getName();
+				} ),
+			newVisibleItems = [],
 			itemWasSelected = false,
-			inputVal = this.$input.val(),
 			items = this.getItems();
 
-		// Since the method hides/shows items, we don't want to
-		// call it unless the input actually changed
-		if (
-			!this.userSelecting &&
-			this.inputValue !== inputVal
-		) {
-			// Parent method
-			mw.rcfilters.ui.MenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
+		// Parent method
+		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.updateItemVisibility.call( this );
 
-			// Select the first item in the list
+		// Unless we are in the middle of a process that will select an
+		// item for us, select the first item in the list
+		if ( !this.userSelecting ) {
 			for ( i = 0; i < items.length; i++ ) {
 				if (
 					!( items[ i ] instanceof OO.ui.MenuSectionOptionWidget ) &&
@@ -289,16 +321,21 @@
 			if ( !itemWasSelected ) {
 				this.selectItem( null );
 			}
+		}
 
-			// Cache value
-			this.inputValue = inputVal;
+		newVisibleItems = this.getItems()
+			.filter( function ( itemWidget ) {
+				return itemWidget.isVisible();
+			} )
+			.map( function ( itemWidget ) {
+				return itemWidget.getName();
+			} );
 
+		if ( !OO.compare( oldVisibleItems, newVisibleItems ) ) {
 			this.emit( 'itemVisibilityChange' );
 		}
 
-		this.noResults.toggle( !this.getItems().some( function ( item ) {
-			return item.isVisible();
-		} ) );
+		this.noResults.toggle( !newVisibleItems.length );
 	};
 
 	/**
