@@ -281,6 +281,7 @@
 	 * Extracts information from the changes list DOM
 	 *
 	 * @param {jQuery} $root Root DOM to find children from
+	 * @param {boolean} [statusCode] Server response status code
 	 * @return {Object} Information about changes list
 	 * @return {Object|string} return.changes Changes list, or 'NO_RESULTS' if there are no results
 	 *   (either normally or as an error)
@@ -288,10 +289,21 @@
 	 *   'NO_RESULTS_TIMEOUT' for no results due to a timeout, or omitted for more than 0 results
 	 * @return {jQuery} return.fieldset Fieldset
 	 */
-	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root ) {
+	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root, statusCode ) {
 		var info,
 			$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
-			areResults = !!$changesListContents.length;
+			areResults = !!$changesListContents.length,
+			checkForLogout = !areResults && statusCode === 200;
+
+		// We check if user logged out on different tab/browser or the session has expired.
+		// 205 status code returned from the server, which indicates that we need to reload the page
+		// is not usable on WL page, because we get redirected to login page, which gives 200 OK
+		// status code (if everything else goes well).
+		// Bug: T177717
+		if ( checkForLogout && !!$root.find( '#wpName1' ).length ) {
+			location.reload( false );
+			return;
+		}
 
 		info = {
 			changes: $changesListContents.length ? $changesListContents : 'NO_RESULTS',
@@ -611,10 +623,23 @@
 		}
 
 		this._checkForNewChanges()
-			.then( function ( newChanges ) {
+			.then( function ( statusCode ) {
+				// no result is 204 with the 'peek' param
+				// logged out is 205
+				var newChanges = statusCode === 200;
+
 				if ( !this._shouldCheckForNewChanges() ) {
 					// by the time the response is received,
 					// it may not be appropriate anymore
+					return;
+				}
+
+				// 205 is the status code returned from server when user's logged in/out
+				// status is not matching while fetching live update changes.
+				// This works only on Recent Changes page. For WL, look _extractChangesListInfo.
+				// Bug: T177717
+				if ( statusCode === 205 ) {
+					location.reload( false );
 					return;
 				}
 
@@ -653,12 +678,12 @@
 		var params = {
 			limit: 1,
 			peek: 1, // bypasses ChangesList specific UI
-			from: this.changesListModel.getNextFrom()
+			from: this.changesListModel.getNextFrom(),
+			isAnon: mw.user.isAnon()
 		};
 		return this._queryChangesList( 'liveUpdate', params ).then(
 			function ( data ) {
-				// no result is 204 with the 'peek' param
-				return data.status === 200;
+				return data.status;
 			}
 		);
 	};
@@ -1041,7 +1066,7 @@
 						data ? data.content : ''
 					) ) );
 
-					return this._extractChangesListInfo( $parsed );
+					return this._extractChangesListInfo( $parsed, data.status );
 				}.bind( this )
 			);
 	};
