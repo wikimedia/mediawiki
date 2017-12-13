@@ -59,6 +59,11 @@ class Preferences {
 	 * @return array|null
 	 */
 	public static function getPreferences( $user, IContextSource $context ) {
+		OutputPage::setupOOUI(
+			strtolower( $context->getSkin()->getSkinName() ),
+			$context->getLanguage()->getDir()
+		);
+
 		$preferencesFactory = self::getDefaultPreferencesFactory();
 		return $preferencesFactory->getFormDescriptor( $user, $context );
 	}
