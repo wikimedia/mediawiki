@@ -113,7 +113,7 @@
 		}
 
 		// target in path
-		parts = uri.path.match( re );
+		parts = mw.Uri.decode( uri.path ).match( re );
 		if ( parts ) {
 			uri.path = parts[ 1 ];
 			uri.query.target = parts[ 2 ];
