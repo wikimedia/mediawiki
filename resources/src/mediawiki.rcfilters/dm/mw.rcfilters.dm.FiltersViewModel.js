@@ -999,12 +999,13 @@
 			groupTitle,
 			result = {},
 			flatResult = [],
-			view = this.getViewByTrigger( query.substr( 0, 1 ) ),
+			view = this.getCurrentView(),
+			queryView = this.getViewByTrigger( query.substr( 0, 1 ) ),
 			items = this.getFiltersByView( view );
 
 		// Normalize so we can search strings regardless of case and view
 		query = query.trim().toLowerCase();
-		if ( view !== 'default' ) {
+		if ( queryView !== 'default' ) {
 			query = query.substr( 1 );
 		}
 		// Trim again to also intercept cases where the spaces were after the trigger
@@ -1145,6 +1146,20 @@
 		} );
 
 		return result;
+	};
+
+	/**
+	 * Get the requested view's trigger
+	 * If no view is given, the current view is used.
+	 *
+	 * @param {string} [view] View name
+	 * @return {string} Trigger
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getViewTrigger = function ( view ) {
+		if ( !view || !this.views[ view ] ) {
+			view = this.getCurrentView();
+		}
+		return this.views[ view ].trigger || '';
 	};
 
 	/**
