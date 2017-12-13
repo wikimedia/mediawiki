@@ -11,11 +11,12 @@
 			var $topSection,
 				mainWrapperWidget,
 				conditionalViews = {},
+				$initialFieldset = $( 'fieldset.cloptions' ),
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 				daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
 				limitPreferenceName = mw.config.get( 'wgStructuredChangeFiltersLimitPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
+				changesListModel = new mw.rcfilters.dm.ChangesListViewModel( $initialFieldset ),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
 				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
 				controller = new mw.rcfilters.Controller(
@@ -82,7 +83,7 @@
 						'.mw-changeslist-timeout',
 						'.mw-changeslist-notargetpage'
 					].join( ', ' ) ),
-					$formContainer: $( 'fieldset.cloptions' )
+					$formContainer: $initialFieldset
 				}
 			);
 
