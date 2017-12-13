@@ -879,8 +879,10 @@
 					// Cache
 					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
 					if ( !marker ) {
-						mw.log( 'Create <meta name="ResourceLoaderDynamicStyles"> dynamically' );
-						marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' )[ 0 ];
+						mw.log( 'Created ResourceLoaderDynamicStyles marker dynamically' );
+						marker = document.createElement( 'meta' );
+						marker.name = 'ResourceLoaderDynamicStyles';
+						document.head.appendChild( marker );
 					}
 				}
 				return marker;
@@ -2059,7 +2061,7 @@
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
-								$( 'head' ).append( l );
+								document.head.appendChild( l );
 								return;
 							}
 							if ( type === 'text/javascript' || type === undefined ) {
