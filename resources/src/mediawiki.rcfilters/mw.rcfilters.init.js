@@ -94,7 +94,7 @@
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
 				// All namespaces without Media namespace
-				this.getNamespaces( [ 'Media' ] ),
+				rcfilters.getNamespaces( [ 'Media' ] ),
 				mw.config.get( 'wgRCFiltersChangeTags' ),
 				conditionalViews
 			);
