@@ -162,5 +162,5 @@ window.isCompatible = function ( str ) {
 		// Callback
 		startUp();
 	};
-	document.getElementsByTagName( 'head' )[ 0 ].appendChild( script );
+	document.head.appendChild( script );
 }() );
