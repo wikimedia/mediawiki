@@ -25,7 +25,6 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
-require_once __DIR__ . '/../includes/export/DumpFilter.php';
 
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
@@ -418,22 +417,5 @@ class BackupDumper extends Maintenance {
 		if ( $this->reporting ) {
 			fwrite( $this->stderr, $string . "\n" );
 		}
-	}
-}
-
-class ExportProgressFilter extends DumpFilter {
-	function __construct( &$sink, &$progress ) {
-		parent::__construct( $sink );
-		$this->progress = $progress;
-	}
-
-	function writeClosePage( $string ) {
-		parent::writeClosePage( $string );
-		$this->progress->reportPage();
-	}
-
-	function writeRevision( $rev, $string ) {
-		parent::writeRevision( $rev, $string );
-		$this->progress->revCount();
 	}
 }
