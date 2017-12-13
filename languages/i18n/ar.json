@@ -1069,6 +1069,7 @@
 	"timezoneregion-indian": "المحيط الهندي",
 	"timezoneregion-pacific": "المحيط الهادي",
 	"allowemail": "اسمح للمستخدمين الآخرين بإرسال بريد إلكتروني إلي",
+	"email-allow-new-users-label": "اسمح بالبريد الإلكتروني من المستخدمين الجدد تمامًا",
 	"email-blacklist-label": "امنع هؤلاء المستخدمين من إرسال بريد إلكتروني لي:",
 	"prefs-searchoptions": "البحث",
 	"prefs-namespaces": "أسماء النطاقات",

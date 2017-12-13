@@ -1925,7 +1925,7 @@
 	"defemailsubject": "{{SITENAME}} e-mail od suradnika \"$1\"",
 	"usermaildisabled": "Suradnička e-pošta je onemogućena",
 	"usermaildisabledtext": "Ne možete slati e-poštu drugim suradnicima na ovom wikiju",
-	"noemailtitle": "Nema adrese primaoca",
+	"noemailtitle": "Nema adrese e-pošte",
 	"noemailtext": "Ovaj suradnik nije odredio valjanu adresu e-pošte.",
 	"nowikiemailtext": "Ovaj suradnik je odlučio ne primati e-mail od drugih suradnika.",
 	"emailnotarget": "Nepostojeće ili nevažeće suradničko ime za primatelja.",

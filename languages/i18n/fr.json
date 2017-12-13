@@ -1171,6 +1171,7 @@
 	"timezoneregion-indian": "Océan indien",
 	"timezoneregion-pacific": "Océan pacifique",
 	"allowemail": "Autoriser les autres utilisateurs à m'envoyer des courriels",
+	"email-allow-new-users-label": "Autoriser les courriels des utilisateurs marqués comme nouveaux",
 	"email-blacklist-label": "Empêcher ces utilisateurs de m'envoyer des courriels :",
 	"prefs-searchoptions": "Recherche",
 	"prefs-namespaces": "Espaces de noms",

@@ -2292,6 +2292,7 @@
 	"ilsubmit": "پلټل",
 	"bydate": "د نېټې له مخې",
 	"sp-newimages-showfrom": "هغه نوې دوتنې چې په $1 په $2 بجو پيلېږي ښکاره کول",
+	"minutes-abbrev": "$1 دقیقي",
 	"hours-abbrev": "$1 گ",
 	"seconds": "{{PLURAL:$1|$1 ثانيه|$1 ثانيې}}",
 	"minutes": "{{PLURAL:$1|$1 دقيقه|$1 دقيقې}}",
