@@ -580,6 +580,16 @@ abstract class SearchEngine {
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 
+		$before = $suggestions->count();
+		$suggestions = $suggestions->filter( function ( SearchSuggestion $sugg ) {
+			return $sugg->getSuggestedTitle()->isKnown();
+		} );
+		$after = $suggestions->count();
+		if ( $before !== $after ) {
+			MediaWikiServices::getInstance()->getStatsdDataFactory()
+				->updateCount( 'search.completion.missing', $before - $after );
+		}
+
 		$results = $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle()->getPrefixedText();
 		} );

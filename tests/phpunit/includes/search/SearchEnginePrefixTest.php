@@ -45,6 +45,12 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Talk:Example' );
 
 		$this->insertPage( 'User:Example' );
+		$this->insertPage( 'Barcelona' );
+		$this->insertPage( 'Barbara' );
+		$this->insertPage( 'Exile' );
+		$this->insertPage( 'Exist' );
+		$this->insertPage( 'External' );
+
 	}
 
 	protected function setUp() {
