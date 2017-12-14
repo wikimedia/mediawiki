@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -176,44 +177,32 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	public function listRevisions() {
-		$dbr = wfGetDB( DB_REPLICA );
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$queryInfo = $revisionStore->getArchiveQueryInfo();
 
-		$tables = [ 'archive' ] + $commentQuery['tables'];
-
-		$fields = [
-			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-			'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
-			'ar_page_id'
-		] + $commentQuery['fields'];
-
-		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'ar_content_format';
-			$fields[] = 'ar_content_model';
-		}
-
-		$conds = [ 'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey() ];
-
+		$conds = [
+			'ar_namespace' => $this->title->getNamespace(),
+			'ar_title' => $this->title->getDBkey(),
+		];
 		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
 
-		$join_conds = [] + $commentQuery['joins'];
-
 		ChangeTags::modifyDisplayQuery(
-			$tables,
-			$fields,
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			$conds,
-			$join_conds,
+			$queryInfo['joins'],
 			$options,
 			''
 		);
 
-		return $dbr->select( $tables,
-			$fields,
+		$dbr = wfGetDB( DB_REPLICA );
+		return $dbr->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			$conds,
 			__METHOD__,
 			$options,
-			$join_conds
+			$queryInfo['joins']
 		);
 	}
 
