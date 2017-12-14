@@ -413,13 +413,14 @@ class ExtensionRegistry {
 	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
-	 * @param array $info
+	 * @param array $files
 	 * @return array
 	 */
-	protected function processAutoLoader( $dir, array $info ) {
+	protected function processAutoLoader( $dir, array $files ) {
 		// Make paths absolute, relative to the JSON file
-		return array_map( function ( $file ) use ( $dir ) {
-			return "$dir/$file";
-		}, $info );
+		foreach ( $files as &$file ) {
+			$file = "$dir/$file";
+		}
+		return $files;
 	}
 }
