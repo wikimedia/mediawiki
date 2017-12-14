@@ -24,11 +24,10 @@
 /**
  * Router job that takes jobs and enqueues them to their proper queues
  *
- * This can be used for several things:
- *   - a) Making multi-job enqueues more robust by atomically enqueueing
- *        a single job that pushes the actual jobs (with retry logic)
- *   - b) Masking the latency of pushing jobs to different queues/wikis
- *   - c) Low-latency enqueues to push jobs from warm to hot datacenters
+ * This can be used for getting sets of multiple jobs or sets of jobs intended for multiple
+ * queues to be inserted more robustly. This is a single job that, upon running, enqueues the
+ * wrapped jobs. If some of those fail to enqueue then the EnqueueJob will be retried. Due to
+ * the possibility of duplicate enqueues, the wrapped jobs should be idempotent.
  *
  * @ingroup JobQueue
  * @since 1.25
