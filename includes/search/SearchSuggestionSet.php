@@ -88,6 +88,18 @@ class SearchSuggestionSet {
 	}
 
 	/**
+	 * Filter the suggestions array
+	 * @param callback $callback Callable accepting single SearchSuggestion
+	 *  instance returning bool false to remove the item.
+	 * @return int The number of suggestions removed
+	 */
+	public function filter( $callback ) {
+		$before = count( $this->suggestions );
+		$this->suggestions = array_values( array_filter( $this->suggestions, $callback ) );
+		return $before - count( $this->suggestions );
+	}
+
+	/**
 	 * Add a new suggestion at the end.
 	 * If the score of the new suggestion is greater than the worst one,
 	 * the new suggestion score will be updated (worst - 1).
