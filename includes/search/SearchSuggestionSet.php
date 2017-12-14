@@ -23,7 +23,7 @@
  * A set of search suggestions.
  * The set is always ordered by score, with the best match first.
  */
-class SearchSuggestionSet {
+class SearchSuggestionSet implements Countable {
 	/**
 	 * @var SearchSuggestion[]
 	 */
@@ -73,6 +73,19 @@ class SearchSuggestionSet {
 		return array_map( $callback, $this->suggestions );
 	}
 
+	/**
+	 * Filter the suggestions array
+	 * @param callback $callback
+	 * @return self
+	 */
+	public function filter( $callback ) {
+		$suggestions = array_filter( $this->suggestions, $callback );
+		if ( count( $suggestions ) === count( $this->suggestions ) ) {
+			return $this;
+		} else {
+			return new self( $suggestions );
+		}
+	}
 	/**
 	 * Add a new suggestion at the end.
 	 * If the score of the new suggestion is greater than the worst one,
@@ -168,6 +181,13 @@ class SearchSuggestionSet {
 		if ( count( $this->suggestions ) > $limit ) {
 			$this->suggestions = array_slice( $this->suggestions, 0, $limit );
 		}
+	}
+
+	/**
+	 * @return int The number of suggestions held
+	 */
+	public function count() {
+		return count( $this->suggestions );
 	}
 
 	/**
