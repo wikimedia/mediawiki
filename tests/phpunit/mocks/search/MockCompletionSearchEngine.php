@@ -1,27 +1,42 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * SearchEngine implementation for returning mocked completion search results.
  */
 class MockCompletionSearchEngine extends SearchEngine {
-	private static $completionSearchResult = [];
+	/** @var string[][] */
+	private static $results = [];
+
+	/**
+	 * Reset any mocked results
+	 */
+	public static function clearMockResults() {
+		self::$results = [];
+	}
+
+	/**
+	 * Allows returning arbitrary lists of titles for completion search.
+	 * Provided results will be sliced based on offset/limit of query.
+	 *
+	 * For results to exit the search engine they must pass Title::isKnown.
+	 * Injecting into link cache is not enough, as LinkBatch will mark them
+	 * bad, they need to be injected into the DB.
+	 *
+	 * @param string $query Search term as seen in completionSearchBackend
+	 * @param string[] $result List of titles to respond to query with
+	 */
+	public static function addMockResults( $query, array $result ) {
+		// Leading : ensures we don't treat another : as a namespace separator
+		$normalized = Title::newFromText( ":$query" )->getText();
+		self::$results[$normalized] = $result;
+	}
 
 	public function completionSearchBackend( $search ) {
-		if ( self::$completionSearchResult == null ) {
-			self::$completionSearchResult = [];
-			// TODO: Or does this have to be setup per-test?
-			$lc = MediaWikiServices::getInstance()->getLinkCache();
-			foreach ( range( 0, 10 ) as $i ) {
-				$dbkey = "Search_Result_$i";
-				$lc->addGoodLinkObj( 6543 + $i, new TitleValue( NS_MAIN, $dbkey ) );
-				self::$completionSearchResult[] = "Search Result $i";
-			}
+		if ( !isset( self::$results[$search] ) ) {
+			return SearchSuggestionSet::emptySuggestionSet();
 		}
-		$results = array_slice( self::$completionSearchResult, $this->offset, $this->limit );
+		$results = array_slice( self::$results[$search], $this->offset, $this->limit );
 
 		return SearchSuggestionSet::fromStrings( $results );
 	}
-
 }
