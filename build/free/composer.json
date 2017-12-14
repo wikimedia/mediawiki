@@ -70,6 +70,7 @@
 		"mediawiki/blue-spice-namespace-c-s-s": "dev-master",
 		"mediawiki/blue-spice-hide-title": "dev-master",
 		"mediawiki/blue-spice-insert-category": "dev-master",
+		"mediawiki/blue-spice-page-assignments": "dev-master",
 		"mediawiki/visual-editor": "dev-9b73200",
 		"mediawiki/code-editor": "dev-3e49aff"
 	}
