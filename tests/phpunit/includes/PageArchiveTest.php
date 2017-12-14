@@ -142,6 +142,12 @@ class PageArchiveTest extends MediaWikiTestCase {
 				'ar_content_format' => null,
 				'ar_content_model' => null,
 				'ts_tags' => null,
+				'ar_id' => '2',
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'ar_text' => '',
+				'ar_text_id' => '3',
+				'ar_parent_id' => '2',
 			],
 			$row1
 		);
@@ -161,6 +167,12 @@ class PageArchiveTest extends MediaWikiTestCase {
 				'ar_content_format' => null,
 				'ar_content_model' => null,
 				'ts_tags' => null,
+				'ar_id' => '1',
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'ar_text' => '',
+				'ar_text_id' => '2',
+				'ar_parent_id' => '0',
 			],
 			$row2
 		);
