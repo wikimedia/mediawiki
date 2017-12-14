@@ -3364,6 +3364,7 @@
 	"autosumm-blank": "გვერდის შიგთავსი დაცარიელდა",
 	"autosumm-replace": "შინაარსი შეიცვალა „$1“-ით",
 	"autoredircomment": "გადამისამართება [[$1]]-ზე",
+	"autosumm-removed-redirect": "წაშლილი გადამისამართება [[$1]]",
 	"autosumm-new": "ახალი გვერდი: $1",
 	"autosumm-newblank": "ცარიელი გვერდი შეიქმნა",
 	"size-bytes": "$1 ბ",
