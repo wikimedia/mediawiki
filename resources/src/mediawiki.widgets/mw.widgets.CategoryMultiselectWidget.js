@@ -201,14 +201,14 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.CategoryMultiselectWidget.prototype.getItemFromData = function ( data ) {
+	mw.widgets.CategoryMultiselectWidget.prototype.findItemFromData = function ( data ) {
 		// This is a bit of a hack... We have to canonicalize the data in the same way that
 		// #createItemWidget and CategoryCapsuleItemWidget will do, otherwise we won't find duplicates.
 		var title = mw.Title.makeTitle( NS_CATEGORY, data );
 		if ( !title ) {
 			return null;
 		}
-		return OO.ui.mixin.GroupElement.prototype.getItemFromData.call( this, title.getMainText() );
+		return OO.ui.mixin.GroupElement.prototype.findItemFromData.call( this, title.getMainText() );
 	};
 
 	/**
