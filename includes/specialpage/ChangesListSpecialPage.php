@@ -1778,6 +1778,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return true;
 		}
 
+		// Allow extensions to disable the structured filter UI
+		$enabled = null;
+		Hooks::run( 'ChangesListSpecialPageStructuredFilterUiEnabled', [ $this, &$enabled ] );
+		if ( $enabled !== null ) {
+			return (bool)$enabled;
+		}
+
 		return static::checkStructuredFilterUiEnabled(
 			$this->getConfig(),
 			$this->getUser()

@@ -1028,6 +1028,13 @@ See the constructor of each ChangesList* class for documentation of supported
 fields.
 $special: ChangesListSpecialPage instance
 
+'ChangesListSpecialPageStructuredFilterUiEnabled': Called to allow extensions to
+force-disable or force-enable the structured filters UI. To force-enable, set
+$enabled to true and return false. To force-disable, set $enabled to false and
+return false.
+$special: ChangesListSpecialPage instance
+$enabled: Whether the structured filters UI should be enabled (initially null)
+
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
 removed from all revisions and log entries to which it was applied). This gives
 extensions a chance to take it off their books.
