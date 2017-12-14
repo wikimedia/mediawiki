@@ -309,7 +309,7 @@
 		if ( this.default !== isDefault ) {
 			this.default = isDefault;
 			this.setIcon( this.default ? 'pushPin' : '' );
-			this.menu.getItemFromData( 'default' ).setLabel(
+			this.menu.findItemFromData( 'default' ).setLabel(
 				this.default ?
 					mw.msg( 'rcfilters-savedqueries-unsetdefault' ) :
 					mw.msg( 'rcfilters-savedqueries-setdefault' )

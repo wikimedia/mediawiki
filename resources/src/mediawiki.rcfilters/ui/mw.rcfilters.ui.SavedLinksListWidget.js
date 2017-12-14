@@ -131,7 +131,7 @@
 	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelAddItem = function ( item ) {
-		if ( this.menu.getItemFromData( item.getID() ) ) {
+		if ( this.menu.findItemFromData( item.getID() ) ) {
 			return;
 		}
 
@@ -147,7 +147,7 @@
 	 * @param {mw.rcfilters.ui.SavedLinksListItemWidget} item Menu item
 	 */
 	mw.rcfilters.ui.SavedLinksListWidget.prototype.onModelRemoveItem = function ( item ) {
-		this.menu.removeItems( [ this.menu.getItemFromData( item.getID() ) ] );
+		this.menu.removeItems( [ this.menu.findItemFromData( item.getID() ) ] );
 		this.placeholderItem.toggle( this.model.isEmpty() );
 	};
 }( mediaWiki ) );
