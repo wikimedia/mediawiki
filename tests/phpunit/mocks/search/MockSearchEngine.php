@@ -22,7 +22,7 @@ class MockSearchEngine extends SearchEngine {
 		self::$results[$query] = $results;
 		$lc = MediaWikiServices::getInstance()->getLinkCache();
 		foreach ( $results as $result ) {
-			// TODO: better page ids?
+			// TODO: better page ids? Does it matter?
 			$lc->addGoodLinkObj( mt_rand(), $result->getTitle() );
 		}
 	}
