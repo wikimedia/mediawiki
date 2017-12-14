@@ -45,6 +45,9 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'Talk:Example' );
 
 		$this->insertPage( 'User:Example' );
+		$this->insertPage( 'Barcelona' );
+		$this->insertPage( 'Barbara' );
+		$this->insertPage( 'External' );
 	}
 
 	protected function setUp() {
@@ -238,7 +241,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match not on top (T72958)',
+				'Exact match not in first result should be moved to the first result (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Bar',
@@ -252,7 +255,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match missing (T72958)',
+				'Exact match missing from results should be added as first result (T72958)',
 				'provision' => [
 					'Barcelona',
 					'Barbara',
@@ -266,7 +269,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 			] ],
 			[ [
-				'Exact match missing and not existing',
+				'Exact match missing and not existing pages should be dropped',
 				'provision' => [
 					'Exile',
 					'Exist',
@@ -274,8 +277,6 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 				],
 				'query' => 'Ex',
 				'results' => [
-					'Exile',
-					'Exist',
 					'External',
 				],
 			] ],
