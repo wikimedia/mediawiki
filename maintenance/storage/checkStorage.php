@@ -208,7 +208,9 @@ class CheckStorage {
 					$blobsTable = $this->dbStore->getTable( $extDb );
 					$res = $extDb->select( $blobsTable,
 						[ 'blob_id' ],
-						[ 'blob_id IN( ' . implode( ',', $blobIds ) . ')' ], __METHOD__ );
+						[ 'blob_id' => $blobIds ],
+						__METHOD__
+					);
 					foreach ( $res as $row ) {
 						unset( $xBlobIds[$row->blob_id] );
 					}
@@ -410,7 +412,9 @@ class CheckStorage {
 			$headerLength = strlen( self::CONCAT_HEADER );
 			$res = $extDb->select( $blobsTable,
 				[ 'blob_id', "LEFT(blob_text, $headerLength) AS header" ],
-				[ 'blob_id IN( ' . implode( ',', $blobIds ) . ')' ], __METHOD__ );
+				[ 'blob_id' => $blobIds ],
+				__METHOD__
+			);
 			foreach ( $res as $row ) {
 				if ( strcasecmp( $row->header, self::CONCAT_HEADER ) ) {
 					$this->addError(
