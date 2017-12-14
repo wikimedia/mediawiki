@@ -2755,7 +2755,7 @@
 			// If we have an exception object, log it to the warning channel to trigger
 			// proper stacktraces in browsers that support it.
 			if ( e && console.warn ) {
-				console.warn( String( e ), e );
+				console.warn( e );
 			}
 		}
 		/* eslint-enable no-console */
