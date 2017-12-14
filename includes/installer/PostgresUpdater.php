@@ -657,6 +657,13 @@ END;
 		}
 	}
 
+	protected function dropSequence( $table, $ns ) {
+		if ( $this->db->sequenceExists( $ns ) ) {
+			$this->output( "Dropping sequence $ns\n" );
+			$this->db->query( "DROP SEQUENCE $ns CASCADE" );
+		}
+	}
+
 	protected function renameSequence( $old, $new ) {
 		if ( $this->db->sequenceExists( $new ) ) {
 			$this->output( "...sequence $new already exists.\n" );
