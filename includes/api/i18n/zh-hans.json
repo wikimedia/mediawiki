@@ -1086,6 +1086,7 @@
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "添加匹配章节的标题。",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "添加已解析的匹配分类片段。",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "添加布尔值，表明搜索是否匹配文件内容。",
+	"apihelp-query+search-paramvalue-prop-extensiondata": "添加由扩展生成的额外数据。",
 	"apihelp-query+search-paramvalue-prop-score": "已忽略。",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "已忽略。",
 	"apihelp-query+search-param-limit": "返回的总计页面数。",
