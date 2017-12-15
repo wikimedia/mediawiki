@@ -135,6 +135,8 @@
 	mw.rcfilters.ui.MenuSelectWidget.prototype.toggle = function ( show ) {
 		this.lazyMenuCreation();
 		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.toggle.call( this, show );
+		// Always open this menu downwards. FilterTagMultiselectWidget scrolls it into view.
+		this.setVerticalPosition( 'below' );
 	};
 
 	/**
