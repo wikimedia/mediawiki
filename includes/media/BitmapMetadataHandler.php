@@ -170,7 +170,7 @@ class BitmapMetadataHandler {
 			}
 		}
 		if ( isset( $seg['XMP'] ) && $showXMP ) {
-			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ), $filename );
 			$xmp->parse( $seg['XMP'] );
 			foreach ( $seg['XMP_ext'] as $xmpExt ) {
 				/* Support for extended xmp in jpeg files
@@ -205,7 +205,7 @@ class BitmapMetadataHandler {
 		if ( isset( $array['text']['xmp']['x-default'] )
 			&& $array['text']['xmp']['x-default'] !== '' && $showXMP
 		) {
-			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ), $filename );
 			$xmp->parse( $array['text']['xmp']['x-default'] );
 			$xmpRes = $xmp->getResults();
 			foreach ( $xmpRes as $type => $xmpSection ) {
@@ -238,7 +238,7 @@ class BitmapMetadataHandler {
 		}
 
 		if ( $baseArray['xmp'] !== '' && XMPReader::isSupported() ) {
-			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ), $filename );
 			$xmp->parse( $baseArray['xmp'] );
 			$xmpRes = $xmp->getResults();
 			foreach ( $xmpRes as $type => $xmpSection ) {
