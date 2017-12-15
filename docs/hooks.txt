@@ -1840,7 +1840,7 @@ $revisionInfo: Array of revision information
 Return false to stop further processing of the tag
 $reader: XMLReader object
 
-'ImportHandleUnknownUser': When a user does exist locally, this hook is called
+'ImportHandleUnknownUser': When a user doesn't exist locally, this hook is called
 to give extensions an opportunity to auto-create it. If the auto-creation is
 successful, return false.
 $name: User name
