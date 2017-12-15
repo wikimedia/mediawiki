@@ -1675,6 +1675,7 @@
 	"uploadstash-not-logged-in": "Удзельнік не ўвайшоў у сыстэму, файлы мусяць належаць удзельнікам.",
 	"uploadstash-wrong-owner": "Гэты файл ($1) не належыць цяперашняму ўдзельніку.",
 	"uploadstash-no-such-key": "Няма такога ключа ($1), немагчыма выдаліць.",
+	"uploadstash-no-extension": "Пустое пашырэньне.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",
 	"img-auth-nopathinfo": "Адсутнічае PATH_INFO.\nВаш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.\nМагчма, ён працуе праз CGI і не падтрымлівае img_auth.\nГлядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",

@@ -1469,6 +1469,8 @@
 	"api-help-param-direction": "En que dirección enumerar:\n;newer:Lista os máis antigos primeiro. Nota: $1start ten que estar antes que $1end.\n;older:Lista os máis novos primeiro (por defecto). Nota: $1start ten que estar despois que $1end.",
 	"api-help-param-continue": "Cando estean dispoñibles máis resultados, use isto para continuar.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(sen descrición)</span>",
+	"api-help-param-maxbytes": "Non pode ser máis longo que $1 {{PLURAL:$1|byte|bytes}}.",
+	"api-help-param-maxchars": "Non pode ser máis longo que $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"api-help-examples": "{{PLURAL:$1|Exemplo|Exemplos}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permiso|Permisos}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Concedida a|Concedidas a}}: $2",

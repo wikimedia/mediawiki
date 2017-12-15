@@ -1077,6 +1077,7 @@
 	"timezoneregion-indian": "Indiska oceanen",
 	"timezoneregion-pacific": "Stilla havet",
 	"allowemail": "Låt andra användare skicka e-post till mig",
+	"email-allow-new-users-label": "Tillåt e-post från nyregistrerade användare",
 	"email-blacklist-label": "Förhindra följande användare att skicka e-post till mig:",
 	"prefs-searchoptions": "Sök",
 	"prefs-namespaces": "Namnrymder",

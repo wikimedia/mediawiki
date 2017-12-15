@@ -3643,7 +3643,7 @@
 	"tag-mw-changed-redirect-target-description": "Правки, которые изменяют цель перенаправления",
 	"tag-mw-blank": "Очистка",
 	"tag-mw-blank-description": "Правки, которые очищают страницу",
-	"tag-mw-replace": "Заменено",
+	"tag-mw-replace": "заменено",
 	"tag-mw-replace-description": "Правки, которые удаляют более 90 % содержимого страницы",
 	"tag-mw-rollback": "откат",
 	"tag-mw-rollback-description": "Правки, которые откатывают предыдущие правки по нажатию ссылки отката",
