@@ -213,6 +213,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	public function testGetQueryInfo( $contentHandlerUseDb, $options, $expected ) {
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( $contentHandlerUseDb );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, $store->getQueryInfo( $options ) );
 	}
 
@@ -242,6 +243,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	public function testGetArchiveQueryInfo_contentHandlerDb() {
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( true );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals(
 			[
 				'tables' => [
@@ -269,6 +271,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	public function testGetArchiveQueryInfo_noContentHandlerDb() {
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( false );
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals(
 			[
 				'tables' => [
