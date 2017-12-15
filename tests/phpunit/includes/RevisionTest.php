@@ -491,25 +491,25 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield '(ISO-8859-1 encoding), string in string out' => [
 			'ISO-8859-1',
-			iconv( 'utf8', 'ISO-8859-1', "1®Àþ1" ),
+			iconv( 'utf-8', 'ISO-8859-1', "1®Àþ1" ),
 			[],
 			'1®Àþ1',
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with gzip flags returns string' => [
 			'ISO-8859-1',
-			gzdeflate( iconv( 'utf8', 'ISO-8859-1', "4®Àþ4" ) ),
+			gzdeflate( iconv( 'utf-8', 'ISO-8859-1', "4®Àþ4" ) ),
 			[ 'gzip' ],
 			'4®Àþ4',
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object flags returns string' => [
 			'ISO-8859-1',
-			serialize( new TitleValue( 0, iconv( 'utf8', 'ISO-8859-1', "3®Àþ3" ) ) ),
+			serialize( new TitleValue( 0, iconv( 'utf-8', 'ISO-8859-1', "3®Àþ3" ) ) ),
 			[ 'object' ],
 			'3®Àþ3',
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object & gzip flags returns string' => [
 			'ISO-8859-1',
-			gzdeflate( serialize( new TitleValue( 0, iconv( 'utf8', 'ISO-8859-1', "2®Àþ2" ) ) ) ),
+			gzdeflate( serialize( new TitleValue( 0, iconv( 'utf-8', 'ISO-8859-1', "2®Àþ2" ) ) ) ),
 			[ 'gzip', 'object' ],
 			'2®Àþ2',
 		];
