@@ -323,7 +323,7 @@ class ExtensionRegistry {
 		}
 
 		if ( isset( $info['autoloaderNS'] ) ) {
-			Autoloader::$psr4Namespaces += $info['autoloaderNS'];
+			AutoLoader::$psr4Namespaces += $info['autoloaderNS'];
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
