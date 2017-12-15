@@ -74,7 +74,9 @@ class AutoloadGenerator {
 	 * @param string[] $paths
 	 */
 	public function setExcludePaths( array $paths ) {
-		$this->excludePaths = $paths;
+		foreach ( $paths as $path ) {
+			$this->excludePaths[] = self::normalizePathSeparator( $path );
+		}
 	}
 
 	/**
