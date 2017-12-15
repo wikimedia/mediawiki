@@ -37,8 +37,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::getCompressBlobs()
-	 * @covers SqlBlobStore::setCompressBlobs()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getCompressBlobs()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::setCompressBlobs()
 	 */
 	public function testGetSetCompressRevisions() {
 		$store = $this->getBlobStore();
@@ -48,9 +48,9 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::getLegacyEncoding()
-	 * @covers SqlBlobStore::getLegacyEncodingConversionLang()
-	 * @covers SqlBlobStore::setLegacyEncoding()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getLegacyEncoding()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getLegacyEncodingConversionLang()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::setLegacyEncoding()
 	 */
 	public function testGetSetLegacyEncoding() {
 		$store = $this->getBlobStore();
@@ -63,8 +63,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::getCacheExpiry()
-	 * @covers SqlBlobStore::setCacheExpiry()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getCacheExpiry()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::setCacheExpiry()
 	 */
 	public function testGetSetCacheExpiry() {
 		$store = $this->getBlobStore();
@@ -74,8 +74,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::getUseExternalStore()
-	 * @covers SqlBlobStore::setUseExternalStore()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getUseExternalStore()
+	 * @covers \MediaWiki\Storage\SqlBlobStore::setUseExternalStore()
 	 */
 	public function testGetSetUseExternalStore() {
 		$store = $this->getBlobStore();
@@ -138,7 +138,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDecompress
-	 * @covers SqlBlobStore::decompressData
+	 * @covers \MediaWiki\Storage\SqlBlobStore::decompressData
 	 *
 	 * @param string|bool $legacyEncoding
 	 * @param mixed $data
@@ -154,7 +154,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::compressData
+	 * @covers \MediaWiki\Storage\SqlBlobStore::compressData
 	 */
 	public function testCompressRevisionTextUtf8() {
 		$store = $this->getBlobStore();
@@ -170,7 +170,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SqlBlobStore::compressData
+	 * @covers \MediaWiki\Storage\SqlBlobStore::compressData
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
 		$store = $this->getBlobStore( false, true );
@@ -194,8 +194,8 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBlobs
-	 * @covers SqlBlobStore::storeBlob
-	 * @covers SqlBlobStore::getBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
 	 */
 	public function testSimpleStoreGetBlobSimpleRoundtrip( $blob ) {
 		$store = $this->getBlobStore();

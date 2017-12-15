@@ -125,7 +125,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsertRevisionOn_successes
-	 * @covers RevisionStore::insertRevisionOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_successes( Title $title, array $revDetails = [] ) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
@@ -138,7 +138,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::insertRevisionOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_blobAddressExists() {
 		$title = Title::newFromText( 'UTPage' );
@@ -228,7 +228,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideInsertRevisionOn_failures
-	 * @covers RevisionStore::insertRevisionOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_failures(
 		Title $title,
@@ -261,7 +261,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNewNullRevision
-	 * @covers RevisionStore::newNullRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::newNullRevision
 	 */
 	public function testNewNullRevision( Title $title, $comment, $minor ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -282,7 +282,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::newNullRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::newNullRevision
 	 */
 	public function testNewNullRevision_nonExistingTitle() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -297,7 +297,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
 	 */
 	public function testIsUnpatrolled_returnsRecentChangesId() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -317,7 +317,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
 	 */
 	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
 		// This assumes that sysops are auto patrolled
@@ -356,7 +356,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getRevisionById
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionById
 	 */
 	public function testGetRevisionById() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -374,7 +374,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getRevisionByTitle
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByTitle
 	 */
 	public function testGetRevisionByTitle() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -392,7 +392,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getRevisionByPageId
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByPageId
 	 */
 	public function testGetRevisionByPageId() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -410,7 +410,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getRevisionFromTimestamp
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionFromTimestamp
 	 */
 	public function testGetRevisionFromTimestamp() {
 		// Make sure there is 1 second between the last revision and the rev we create...
@@ -493,8 +493,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::newRevisionFromRow
-	 * @covers RevisionStore::newRevisionFromRow_1_29
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -514,8 +514,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::newRevisionFromRow
-	 * @covers RevisionStore::newRevisionFromRow_1_29
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -538,7 +538,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
 	 */
 	public function testNewRevisionFromArchiveRow() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -565,7 +565,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::loadRevisionFromId
+	 * @covers \MediaWiki\Storage\RevisionStore::loadRevisionFromId
 	 */
 	public function testLoadRevisionFromId() {
 		$title = Title::newFromText( __METHOD__ );
@@ -580,7 +580,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::loadRevisionFromPageId
+	 * @covers \MediaWiki\Storage\RevisionStore::loadRevisionFromPageId
 	 */
 	public function testLoadRevisionFromPageId() {
 		$title = Title::newFromText( __METHOD__ );
@@ -595,7 +595,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::loadRevisionFromTitle
+	 * @covers \MediaWiki\Storage\RevisionStore::loadRevisionFromTitle
 	 */
 	public function testLoadRevisionFromTitle() {
 		$title = Title::newFromText( __METHOD__ );
@@ -610,7 +610,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::loadRevisionFromTimestamp
+	 * @covers \MediaWiki\Storage\RevisionStore::loadRevisionFromTimestamp
 	 */
 	public function testLoadRevisionFromTimestamp() {
 		$title = Title::newFromText( __METHOD__ );
@@ -647,7 +647,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::listRevisionSizes
+	 * @covers \MediaWiki\Storage\RevisionStore::listRevisionSizes
 	 */
 	public function testGetParentLengths() {
 		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
@@ -683,7 +683,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getPreviousRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::getPreviousRevision
 	 */
 	public function testGetPreviousRevision() {
 		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
@@ -707,7 +707,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getNextRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::getNextRevision
 	 */
 	public function testGetNextRevision() {
 		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
@@ -731,7 +731,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getTimestampFromId
+	 * @covers \MediaWiki\Storage\RevisionStore::getTimestampFromId
 	 */
 	public function testGetTimestampFromId_found() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -749,7 +749,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getTimestampFromId
+	 * @covers \MediaWiki\Storage\RevisionStore::getTimestampFromId
 	 */
 	public function testGetTimestampFromId_notFound() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -767,7 +767,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::countRevisionsByPageId
+	 * @covers \MediaWiki\Storage\RevisionStore::countRevisionsByPageId
 	 */
 	public function testCountRevisionsByPageId() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -790,7 +790,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::countRevisionsByTitle
+	 * @covers \MediaWiki\Storage\RevisionStore::countRevisionsByTitle
 	 */
 	public function testCountRevisionsByTitle() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -813,7 +813,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::userWasLastToEdit
+	 * @covers \MediaWiki\Storage\RevisionStore::userWasLastToEdit
 	 */
 	public function testUserWasLastToEdit_false() {
 		$sysop = $this->getTestSysop()->getUser();
@@ -831,7 +831,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::userWasLastToEdit
+	 * @covers \MediaWiki\Storage\RevisionStore::userWasLastToEdit
 	 */
 	public function testUserWasLastToEdit_true() {
 		$startTime = wfTimestampNow();
@@ -856,7 +856,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionStore::getKnownCurrentRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::getKnownCurrentRevision
 	 */
 	public function testGetKnownCurrentRevision() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -951,7 +951,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideNewMutableRevisionFromArray
-	 * @covers RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testNewMutableRevisionFromArray( array $array ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
