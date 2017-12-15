@@ -596,7 +596,7 @@ class ParserOutput extends CacheTime {
 
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
-		$url = parser::normalizeLinkUrl( $url );
+		$url = Parser::normalizeLinkUrl( $url );
 
 		$registerExternalLink = true;
 		if ( !$wgRegisterInternalExternals ) {

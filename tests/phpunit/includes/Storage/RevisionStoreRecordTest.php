@@ -300,28 +300,28 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [
-			Revisionrecord::SUPPRESSED_ALL,
+			RevisionRecord::SUPPRESSED_ALL,
 			[ 'oversight' ],
 			true,
 			false
 		];
 
 		yield 'field accessible for oversighter' => [
-			Revisionrecord::DELETED_RESTRICTED | $field,
+			RevisionRecord::DELETED_RESTRICTED | $field,
 			[ 'oversight' ],
 			true,
 			false
 		];
 
 		yield 'field not accessible for sysops (ALL)' => [
-			Revisionrecord::SUPPRESSED_ALL,
+			RevisionRecord::SUPPRESSED_ALL,
 			[ 'sysop' ],
 			false,
 			false
 		];
 
 		yield 'field not accessible for sysops' => [
-			Revisionrecord::DELETED_RESTRICTED | $field,
+			RevisionRecord::DELETED_RESTRICTED | $field,
 			[ 'sysop' ],
 			false,
 			false
@@ -342,9 +342,9 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		];
 
 		yield 'unrelated field suppressed' => [
-			$field === Revisionrecord::DELETED_COMMENT
-				? Revisionrecord::DELETED_USER
-				: Revisionrecord::DELETED_COMMENT,
+			$field === RevisionRecord::DELETED_COMMENT
+				? RevisionRecord::DELETED_USER
+				: RevisionRecord::DELETED_COMMENT,
 			[ 'user' ],
 			true,
 			true

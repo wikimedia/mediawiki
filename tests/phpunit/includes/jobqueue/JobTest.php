@@ -101,7 +101,7 @@ class JobTest extends MediaWikiTestCase {
 	 * @covers Job::factory
 	 */
 	public function testJobFactory( $handler ) {
-		$this->mergeMWGlobalArrayValue( 'wgJobClasses', [ 'testdummy' => $handler ] );
+		$this->mergeMwGlobalArrayValue( 'wgJobClasses', [ 'testdummy' => $handler ] );
 
 		$job = Job::factory( 'testdummy', Title::newMainPage(), [] );
 		$this->assertInstanceOf( NullJob::class, $job );
