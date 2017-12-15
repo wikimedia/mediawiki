@@ -658,7 +658,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUserCanBitfield
-	 * @covers RevisionRecord::userCanBitfield
+	 * @covers \MediaWiki\Storage\RevisionRecord::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
 		$this->forceStandardPermissions();
@@ -744,7 +744,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHasSameContent
-	 * @covers RevisionRecord::hasSameContent
+	 * @covers \MediaWiki\Storage\RevisionRecord::hasSameContent
 	 * @group Database
 	 */
 	public function testHasSameContent(
@@ -802,7 +802,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsDeleted
-	 * @covers RevisionRecord::isDeleted
+	 * @covers \MediaWiki\Storage\RevisionRecord::isDeleted
 	 */
 	public function testIsDeleted( $revDeleted, $assertionMap ) {
 		$rev = $this->newRevision( [ 'rev_deleted' => $revDeleted ] );

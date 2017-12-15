@@ -11,7 +11,7 @@ use WikitextContent;
 class RevisionSlotsTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers RevisionSlots::getSlot
+	 * @covers \MediaWiki\Storage\RevisionSlots::getSlot
 	 */
 	public function testGetSlot() {
 		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
@@ -25,7 +25,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionSlots::getContent
+	 * @covers \MediaWiki\Storage\RevisionSlots::getContent
 	 */
 	public function testGetContent() {
 		$mainContent = new WikitextContent( 'A' );
@@ -41,7 +41,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionSlots::getSlotRoles
+	 * @covers \MediaWiki\Storage\RevisionSlots::getSlotRoles
 	 */
 	public function testGetSlotRoles_someSlots() {
 		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
@@ -52,7 +52,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionSlots::getSlotRoles
+	 * @covers \MediaWiki\Storage\RevisionSlots::getSlotRoles
 	 */
 	public function testGetSlotRoles_noSlots() {
 		$slots = new RevisionSlots( [] );
@@ -61,7 +61,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers RevisionSlots::getSlots
+	 * @covers \MediaWiki\Storage\RevisionSlots::getSlots
 	 */
 	public function testGetSlots() {
 		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
@@ -80,7 +80,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideComputeSize
-	 * @covers RevisionSlots::computeSize
+	 * @covers \MediaWiki\Storage\RevisionSlots::computeSize
 	 */
 	public function testComputeSize( $expected, $contentStrings ) {
 		$slotsArray = [];
@@ -100,7 +100,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideComputeSha1
-	 * @covers RevisionSlots::computeSha1
+	 * @covers \MediaWiki\Storage\RevisionSlots::computeSha1
 	 * @note this test is a bit brittle as the hashes are hardcoded, perhaps just check that strings
 	 *       are returned and different Slots objects return different strings?
 	 */
