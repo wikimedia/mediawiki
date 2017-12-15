@@ -1678,7 +1678,7 @@ more stuff
 	public function testInsertOn_idSpecified() {
 		$title = Title::newFromText( __METHOD__ );
 		$page = new WikiPage( $title );
-		$id = 3478952189;
+		$id = 1478952189;
 
 		$result = $page->insertOn( $this->db, $id );
 
