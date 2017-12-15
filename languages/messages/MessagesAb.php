@@ -6,6 +6,7 @@
  * @ingroup Language
  * @file
  *
+ * @author surprizi
  */
 
 $fallback = 'ru';
@@ -73,3 +74,5 @@ $magicWords = [
 	'special'                   => [ '0', 'цастәи', 'служебная', 'special' ],
 	'index'                     => [ '1', '__АИНДЕКС__', '__ИНДЕКС__', '__INDEX__' ],
 ];
+
+$linkTrail = '/^([a-zабвгҕдежзӡикқҟлмнопҧрстҭуфхҳцҵчҷҽҿшыҩџьә]+)(.*)$/sDu';
