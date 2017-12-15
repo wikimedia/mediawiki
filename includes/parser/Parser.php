@@ -406,13 +406,6 @@ class Parser {
 		$text, Title $title, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
 	) {
-		/**
-		 * First pass--just handle <nowiki> sections, pass the rest off
-		 * to internalParse() which does all the real work.
-		 */
-
-		global $wgShowHostnames;
-
 		if ( $clearState ) {
 			// We use U+007F DELETE to construct strip markers, so we have to make
 			// sure that this character does not occur in the input text.
@@ -474,7 +467,7 @@ class Parser {
 			}
 		}
 
-		# Done parsing! Compute runtime adaptive expiry if set
+		# Compute runtime adaptive expiry if set
 		$this->mOutput->finalizeAdaptiveCacheExpiry();
 
 		# Warn if too many heavyweight parser functions were used
@@ -485,110 +478,9 @@ class Parser {
 			);
 		}
 
-		# Information on include size limits, for the benefit of users who try to skirt them
+		# Information on limits, for the benefit of users who try to skirt them
 		if ( $this->mOptions->getEnableLimitReport() ) {
-			$max = $this->mOptions->getMaxIncludeSize();
-
-			$cpuTime = $this->mOutput->getTimeSinceStart( 'cpu' );
-			if ( $cpuTime !== null ) {
-				$this->mOutput->setLimitReportData( 'limitreport-cputime',
-					sprintf( "%.3f", $cpuTime )
-				);
-			}
-
-			$wallTime = $this->mOutput->getTimeSinceStart( 'wall' );
-			$this->mOutput->setLimitReportData( 'limitreport-walltime',
-				sprintf( "%.3f", $wallTime )
-			);
-
-			$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
-				[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
-			);
-			$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
-				[ $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() ]
-			);
-			$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
-				[ $this->mIncludeSizes['post-expand'], $max ]
-			);
-			$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
-				[ $this->mIncludeSizes['arg'], $max ]
-			);
-			$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
-				[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
-			);
-			$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
-				[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
-			);
-			Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
-
-			$limitReport = "NewPP limit report\n";
-			if ( $wgShowHostnames ) {
-				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
-			}
-			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
-			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
-			$limitReport .= 'Dynamic content: ' .
-				( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
-				"\n";
-
-			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
-				if ( Hooks::run( 'ParserLimitReportFormat',
-					[ $key, &$value, &$limitReport, false, false ]
-				) ) {
-					$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
-					$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
-						->inLanguage( 'en' )->useDatabase( false );
-					if ( !$valueMsg->exists() ) {
-						$valueMsg = new RawMessage( '$1' );
-					}
-					if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
-						$valueMsg->params( $value );
-						$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
-					}
-				}
-			}
-			// Since we're not really outputting HTML, decode the entities and
-			// then re-encode the things that need hiding inside HTML comments.
-			$limitReport = htmlspecialchars_decode( $limitReport );
-			// Run deprecated hook
-			Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ], '1.22' );
-
-			// Sanitize for comment. Note '‐' in the replacement is U+2010,
-			// which looks much like the problematic '-'.
-			$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
-			$text .= "\n<!-- \n$limitReport-->\n";
-
-			// Add on template profiling data in human/machine readable way
-			$dataByFunc = $this->mProfiler->getFunctionStats();
-			uasort( $dataByFunc, function ( $a, $b ) {
-				return $a['real'] < $b['real']; // descending order
-			} );
-			$profileReport = [];
-			foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
-				$profileReport[] = sprintf( "%6.2f%% %8.3f %6d %s",
-					$item['%real'], $item['real'], $item['calls'],
-					htmlspecialchars( $item['name'] ) );
-			}
-			$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
-			$text .= implode( "\n", $profileReport ) . "\n-->\n";
-
-			$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
-
-			// Add other cache related metadata
-			if ( $wgShowHostnames ) {
-				$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
-			}
-			$this->mOutput->setLimitReportData( 'cachereport-timestamp',
-				$this->mOutput->getCacheTime() );
-			$this->mOutput->setLimitReportData( 'cachereport-ttl',
-				$this->mOutput->getCacheExpiry() );
-			$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
-				$this->mOutput->hasDynamicContent() );
-
-			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
-				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
-					$this->mTitle->getPrefixedDBkey() );
-			}
+			$text .= $this->makeLimitReport();
 		}
 
 		# Wrap non-interface parser output in a <div> so it can be targeted
@@ -609,6 +501,120 @@ class Parser {
 		$this->currentRevisionCache = null;
 
 		return $this->mOutput;
+	}
+
+	/**
+	 * Set the limit report data in the current ParserOutput, and return the
+	 * limit report HTML comment.
+	 *
+	 * @return string
+	 */
+	protected function makeLimitReport() {
+		global $wgShowHostnames;
+
+		$maxIncludeSize = $this->mOptions->getMaxIncludeSize();
+
+		$cpuTime = $this->mOutput->getTimeSinceStart( 'cpu' );
+		if ( $cpuTime !== null ) {
+			$this->mOutput->setLimitReportData( 'limitreport-cputime',
+				sprintf( "%.3f", $cpuTime )
+			);
+		}
+
+		$wallTime = $this->mOutput->getTimeSinceStart( 'wall' );
+		$this->mOutput->setLimitReportData( 'limitreport-walltime',
+			sprintf( "%.3f", $wallTime )
+		);
+
+		$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
+			[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
+		);
+		$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
+			[ $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() ]
+		);
+		$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
+			[ $this->mIncludeSizes['post-expand'], $maxIncludeSize ]
+		);
+		$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
+			[ $this->mIncludeSizes['arg'], $maxIncludeSize ]
+		);
+		$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
+			[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
+		);
+		$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
+			[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
+		);
+		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
+
+		$limitReport = "NewPP limit report\n";
+		if ( $wgShowHostnames ) {
+			$limitReport .= 'Parsed by ' . wfHostname() . "\n";
+		}
+		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
+		$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
+		$limitReport .= 'Dynamic content: ' .
+			( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
+			"\n";
+
+		foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
+			if ( Hooks::run( 'ParserLimitReportFormat',
+				[ $key, &$value, &$limitReport, false, false ]
+			) ) {
+				$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
+				$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
+					->inLanguage( 'en' )->useDatabase( false );
+				if ( !$valueMsg->exists() ) {
+					$valueMsg = new RawMessage( '$1' );
+				}
+				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
+					$valueMsg->params( $value );
+					$limitReport .= "{$keyMsg->text()}: {$valueMsg->text()}\n";
+				}
+			}
+		}
+		// Since we're not really outputting HTML, decode the entities and
+		// then re-encode the things that need hiding inside HTML comments.
+		$limitReport = htmlspecialchars_decode( $limitReport );
+		// Run deprecated hook
+		Hooks::run( 'ParserLimitReport', [ $this, &$limitReport ], '1.22' );
+
+		// Sanitize for comment. Note '‐' in the replacement is U+2010,
+		// which looks much like the problematic '-'.
+		$limitReport = str_replace( [ '-', '&' ], [ '‐', '&amp;' ], $limitReport );
+		$text = "\n<!-- \n$limitReport-->\n";
+
+		// Add on template profiling data in human/machine readable way
+		$dataByFunc = $this->mProfiler->getFunctionStats();
+		uasort( $dataByFunc, function ( $a, $b ) {
+			return $a['real'] < $b['real']; // descending order
+		} );
+		$profileReport = [];
+		foreach ( array_slice( $dataByFunc, 0, 10 ) as $item ) {
+			$profileReport[] = sprintf( "%6.2f%% %8.3f %6d %s",
+				$item['%real'], $item['real'], $item['calls'],
+				htmlspecialchars( $item['name'] ) );
+		}
+		$text .= "<!--\nTransclusion expansion time report (%,ms,calls,template)\n";
+		$text .= implode( "\n", $profileReport ) . "\n-->\n";
+
+		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
+
+		// Add other cache related metadata
+		if ( $wgShowHostnames ) {
+			$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
+		}
+		$this->mOutput->setLimitReportData( 'cachereport-timestamp',
+			$this->mOutput->getCacheTime() );
+		$this->mOutput->setLimitReportData( 'cachereport-ttl',
+			$this->mOutput->getCacheExpiry() );
+		$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
+			$this->mOutput->hasDynamicContent() );
+
+		if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
+			wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
+				$this->mTitle->getPrefixedDBkey() );
+		}
+		return $text;
 	}
 
 	/**
