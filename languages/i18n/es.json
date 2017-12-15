@@ -1478,7 +1478,7 @@
 	"rcfilters-restore-default-filters": "Restaurar filtros predeterminados",
 	"rcfilters-clear-all-filters": "Borrar todos los filtros",
 	"rcfilters-show-new-changes": "Ver cambios más recientes",
-	"rcfilters-search-placeholder": "Filtrar cambios (usa el menú o buscar para aplicar filtro)",
+	"rcfilters-search-placeholder": "Filtrar cambios (utiliza el menú o busca el nombre de un filtro)",
 	"rcfilters-invalid-filter": "Filtro no válido",
 	"rcfilters-empty-filter": "No hay filtros activos. Se muestran todas las contribuciones.",
 	"rcfilters-filterlist-title": "Filtros",

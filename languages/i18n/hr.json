@@ -3098,6 +3098,7 @@
 	"autosumm-blank": "uklonjen cjelokupni sadržaj stranice",
 	"autosumm-replace": "Zamijenjen sadržaj stranice s »$1«",
 	"autoredircomment": "Preusmjeravanje stranice na [[$1]]",
+	"autosumm-removed-redirect": "Uklonjeno preusmjeravanje na [[$1]]",
 	"autosumm-new": "Stvorena nova stranica sa sadržajem: »$1«.",
 	"autosumm-newblank": "Stvorena prazna stranica.",
 	"size-bytes": "$1 {{PLURAL:$1|bajt|bajta|bajtova}}",

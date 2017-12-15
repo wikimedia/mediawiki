@@ -3862,7 +3862,7 @@
 	"logentry-delete-delete": "$1 a supprimé la page $3",
 	"logentry-delete-delete_redir": "$1 a {{GENDER:$2|supprimé}} la redirection vers $3 par écrasement",
 	"logentry-delete-restore": "$1 a restauré la page $3 ($4)",
-	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|a restauré}} la page $3",
+	"logentry-delete-restore-nocount": "$1 a restauré la page $3",
 	"restore-count-revisions": "{{PLURAL:$1|1 révision|$1 révisions}}",
 	"restore-count-files": "{{PLURAL:$1|1 fichier|$1 fichiers}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",

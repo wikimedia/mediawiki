@@ -267,7 +267,7 @@
 	"config-email-auth-help": "Si esta opción está habilitada, los usuarios tienen que confirmar su dirección de correo electrónico mediante un enlace que se les envía a ellos cuando éstos lo establecen o lo cambian.\nSolo las direcciones de correo electrónico autenticadas pueden recibir correos electrónicos de otros usuarios o correos electrónicos de notificación de cambios.\nEsta opción está '''recomendada''' para wikis públicos debido a posibles abusos de las características del correo electrónico.",
 	"config-email-sender": "Dirección de correo electrónico de retorno:",
 	"config-email-sender-help": "Escribe la dirección de correo electrónico que se usará como dirección de retorno en los mensajes electrónicos de salida.\nAquí llegarán los correos electrónicos que no lleguen a su destino.\nMuchos servidores de correo electrónico exigen que por lo menos la parte del nombre del dominio sea válida.",
-	"config-upload-settings": "Subidas de imágenes y archivos",
+	"config-upload-settings": "Cargas de imágenes y archivos",
 	"config-upload-enable": "Habilitar la subida de archivos",
 	"config-upload-help": "La subida de archivos potencialmente expone tu servidor a riesgos de seguridad.\nPara obtener más información, consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sección de seguridad] en el manual.\n\nPara activar la subida de archivos, cambia el modo en el subdirectorio <code>images</code> bajo el directorio raíz de MediaWiki para que el servidor web pueda escribir en él.\nLuego, activa esta opción.",
 	"config-upload-deleted": "Directorio para los archivos eliminados:",
