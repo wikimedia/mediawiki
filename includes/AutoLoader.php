@@ -133,5 +133,5 @@ class AutoLoader {
 	}
 }
 
-Autoloader::$psr4Namespaces = AutoLoader::getAutoloadNamespaces();
+AutoLoader::$psr4Namespaces = AutoLoader::getAutoloadNamespaces();
 spl_autoload_register( [ 'AutoLoader', 'autoload' ] );

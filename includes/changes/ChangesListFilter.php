@@ -468,7 +468,7 @@ abstract class ChangesListFilter {
 	 * @param FormOptions $opts
 	 * @return bool
 	 */
-	public function activelyInConflictWithFilter( ChangeslistFilter $filter, FormOptions $opts ) {
+	public function activelyInConflictWithFilter( ChangesListFilter $filter, FormOptions $opts ) {
 		if ( $this->isSelected( $opts ) && $filter->isSelected( $opts ) ) {
 			/** @var ChangesListFilter $siblingFilter */
 			foreach ( $this->getSiblings() as $siblingFilter ) {
@@ -484,7 +484,7 @@ abstract class ChangesListFilter {
 		return false;
 	}
 
-	private function hasConflictWithFilter( ChangeslistFilter $filter ) {
+	private function hasConflictWithFilter( ChangesListFilter $filter ) {
 		return in_array( $filter, $this->getConflictingFilters() );
 	}
 

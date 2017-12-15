@@ -55,7 +55,7 @@ class ResourcesTest extends MediaWikiTestCase {
 	public function testIllegalDependencies() {
 		$data = self::getAllModules();
 
-		$illegalDeps = ResourceLoaderStartupModule::getStartupModules();
+		$illegalDeps = ResourceLoaderStartUpModule::getStartupModules();
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( $module->isRaw() ) {
 				$illegalDeps[] = $moduleName;
