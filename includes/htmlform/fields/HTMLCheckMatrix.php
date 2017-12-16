@@ -106,6 +106,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				$tooltipAttribs = [
 					'class' => "mw-htmlform-tooltip $tooltipClass",
 					'title' => $this->mParams['tooltips'][$rowLabel],
+					'aria-label' => $this->mParams['tooltips'][$rowLabel]
 				];
 				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
 			}
