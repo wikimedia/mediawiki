@@ -111,8 +111,8 @@
 
         fixTitle: function() {
             var $e = this.$element;
-            if ($e.attr('title') || typeof($e.attr('original-title')) != 'string') {
-                $e.attr('original-title', $e.attr('title') || '').removeAttr('title');
+            if ($e.attr('title') || typeof($e.attr('aria-label')) != 'string') {
+                $e.attr('aria-label', $e.attr('title') || '').removeAttr('title');
             }
         },
 
@@ -120,7 +120,7 @@
             var title, $e = this.$element, o = this.options;
             this.fixTitle();
             if (typeof o.title == 'string') {
-                title = $e.attr(o.title == 'title' ? 'original-title' : o.title);
+                title = $e.attr(o.title == 'title' ? 'aria-label' : o.title);
             } else if (typeof o.title == 'function') {
                 title = o.title.call($e[0]);
             }
@@ -257,7 +257,7 @@
      * @param prefer (string, e.g. 'n', 'sw', 'w') - the direction to prefer
      *        if there are no viewable region edges effecting the tooltip's
      *        gravity. It will try to vary from this minimally, for example,
-     *        if 'sw' is preferred and an element is near the right viewable 
+     *        if 'sw' is preferred and an element is near the right viewable
      *        region edge, but not the top edge, it will set the gravity for
      *        that element's tooltip to be 'se', preserving the southern
      *        component.
