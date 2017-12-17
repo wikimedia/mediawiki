@@ -1205,7 +1205,7 @@
 	"right-siteadmin": "Zamykání a odemykání databáze",
 	"right-override-export-depth": "Exportovat stránky včetně odkazovaných stránek až do hloubky 5",
 	"right-sendemail": "Odesílání e-mailů ostatním uživatelům",
-	"right-sendemail-new-users": "Posílat e-maily uživatelům bez zaznamenaných činností",
+	"right-sendemail-new-users": "Posílání e-mailů uživatelům bez zaznamenaných činností",
 	"right-managechangetags": "Vytváření a (de)aktivace [[Special:Tags|značek]]",
 	"right-applychangetags": "Přidávání [[Special:Tags|značek]] k vlastním změnám",
 	"right-changetags": "Přidávání libovolných [[Special:Tags|značek]] na jednotlivé revize a protokolovací záznamy a jejich odebírání",

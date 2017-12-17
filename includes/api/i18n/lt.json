@@ -265,6 +265,7 @@
 	"apihelp-query+logevents-param-prop": "Kurias savybes gauti:",
 	"apihelp-query+logevents-paramvalue-prop-ids": "Prideda žurnalo įvykio ID.",
 	"apihelp-query+logevents-paramvalue-prop-type": "Prideda žurnalo įvykio tipą.",
+	"apihelp-query+search-paramvalue-prop-extensiondata": "Prideda papildomus duomenis, sugeneruotus plėtinių.",
 	"apihelp-query+transcludedin-paramvalue-prop-pageid": "Kiekvieno puslapio ID.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "Kiekvieno puslapio pavadinimas.",
 	"apihelp-query+transcludedin-param-limit": "Kiek gražinti.",

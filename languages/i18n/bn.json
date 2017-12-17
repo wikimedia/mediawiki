@@ -1036,6 +1036,7 @@
 	"timezoneregion-indian": "ভারত মহাসাগর",
 	"timezoneregion-pacific": "প্রশান্ত মহাসাগর",
 	"allowemail": "অন্য ব্যবহারকারীদেরকে আমাকে ইমেল করতে অনুমতি দিন",
+	"email-allow-new-users-label": "নতুন ব্যবহারকারীদেরকে ইমেলের অনুমতি দিন",
 	"email-blacklist-label": "আমাকে ইমেইল পাঠানো থেকে এই ব্যবহারকারীদের বিরত রাখুন:",
 	"prefs-searchoptions": "অনুসন্ধান",
 	"prefs-namespaces": "নামস্থানসমূহ",

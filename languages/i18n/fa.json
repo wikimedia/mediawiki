@@ -3535,6 +3535,7 @@
 	"tag-mw-contentmodelchange": "تغییر مدل محتوا",
 	"tag-mw-contentmodelchange-description": "ویرایش‌هایی که [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel مدل محتوای صفحه را تغییر می‌دهند]",
 	"tag-mw-removed-redirect": "تغییرمسیر حذف شد",
+	"tag-mw-rollback": "واگردانی",
 	"tags-title": "برچسب‌ها",
 	"tags-intro": "این صفحه فهرستی‌است از برچسب‌هایی که نرم‌افزار با آن‌ها ویرایش‌ها را علامت‌گذری می‌کند، به همراه معانی آن‌ها.",
 	"tags-tag": "نام برچسب",
