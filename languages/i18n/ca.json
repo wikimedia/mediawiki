@@ -1686,6 +1686,7 @@
 	"uploadstash-thumbnail": "mostra una miniatura",
 	"uploadstash-bad-path": "El camí no existeix.",
 	"uploadstash-bad-path-invalid": "El camí no és vàlid.",
+	"uploadstash-bad-path-unknown-type": "El tipus «$1» és desconegut.",
 	"invalid-chunk-offset": "El desplaçament del fragment no és vàlid",
 	"img-auth-accessdenied": "Accés denegat",
 	"img-auth-nopathinfo": "Hi manca PATH_INFO.\nEl servidor no està configurat per passar aquesta informació.\nPot estar basat en CGI i no ser compatible amb img_auth.\nConsulteu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
