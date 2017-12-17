@@ -337,8 +337,8 @@ class CoreParserFunctions {
 		// default
 		$gender = User::getDefaultOption( 'gender' );
 
-		// allow prefix.
-		$title = Title::newFromText( $username );
+		// allow prefix and normalize (e.g. "&#42;foo" -> "*foo" ).
+		$title = Title::newFromText( $username, NS_USER );
 
 		if ( $title && $title->inNamespace( NS_USER ) ) {
 			$username = $title->getText();
