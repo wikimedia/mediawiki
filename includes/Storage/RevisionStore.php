@@ -842,16 +842,17 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromId
 	 *
-	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 * Depending on $flags, this method may try to load the revision from a replica
+	 * before hitting the master database, or try the master database immediately.
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
-	 * @return RevisionRecord|null
+	 *
+	 * @throw RevisionAccessException if the revision is not found.
+	 * @return RevisionRecord
 	 */
 	public function getRevisionById( $id, $flags = 0 ) {
-		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags );
+		return $this->requireRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags );
 	}
 
 	/**
@@ -861,13 +862,15 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromTitle
 	 *
-	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 * Depending on $flags, this method may try to load the revision from a replica
+	 * before hitting the master database, try the master database immediately,
+	 * or give up after trying only the replica.
 	 *
 	 * @param LinkTarget $linkTarget
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
+	 *
+	 * @throw RevisionAccessException if $revId was given but the revision was not found.
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
@@ -876,19 +879,16 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			'page_title' => $linkTarget->getDBkey()
 		];
 		if ( $revId ) {
-			// Use the specified revision ID.
-			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
-			// Since the caller supplied a revision ID, we are pretty sure the revision is
-			// supposed to exist, so we should try hard to find it.
+			// Use the specified revision ID and fail hard if the revision is not found.
+			// requireRevisionFromConds() will try only use the master database if explicitly
+			// request by $flags, or if database updates were performed during the current request
+			// and the revision was not found on areplica.
 			$conds['rev_id'] = $revId;
-			return $this->newRevisionFromConds( $conds, $flags );
+			return $this->requireRevisionFromConds( $conds, $flags );
 		} else {
 			// Use a join to get the latest revision.
-			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
-			// if we are quite sure the revision exists because the caller supplied a revision ID.
-			// If the page isn't found at all on a replica, it probably simply does not exist.
+			// Note: page_latest is guaranteed to always point to an existing revision on the same
+			// database server.
 			$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 
 			$conds[] = 'rev_id=page_latest';
@@ -906,31 +906,30 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromPageId
 	 *
-	 * $flags include:
-	 *      IDBAccessObject::READ_LATEST: Select the data from the master (since 1.20)
-	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
+	 * Depending on $flags, this method may try to load the revision from a replica
+	 * before hitting the master database, try the master database immediately,
+	 * or give up after trying only the replica.
 	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
+	 *
+	 * @throw RevisionAccessException if $revId was given but the revision was not found.
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$conds = [ 'page_id' => $pageId ];
 		if ( $revId ) {
 			// Use the specified revision ID.
-			// Note that we use newRevisionFromConds here because we want to retry
-			// and fall back to master if the page is not found on a replica.
-			// Since the caller supplied a revision ID, we are pretty sure the revision is
-			// supposed to exist, so we should try hard to find it.
+			// requireRevisionFromConds() will try only use the master database if explicitly
+			// request by $flags, or if database updates were performed during the current request
+			// and the revision was not found on areplica.
 			$conds['rev_id'] = $revId;
-			return $this->newRevisionFromConds( $conds, $flags );
+			return $this->requireRevisionFromConds( $conds, $flags );
 		} else {
 			// Use a join to get the latest revision.
-			// Note that we don't use newRevisionFromConds here because we don't want to retry
-			// and fall back to master. The assumption is that we only want to force the fallback
-			// if we are quite sure the revision exists because the caller supplied a revision ID.
-			// If the page isn't found at all on a replica, it probably simply does not exist.
+			// Note: page_latest is guaranteed to always point to an existing revision on the same
+			// database server.
 			$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 
 			$conds[] = 'rev_id=page_latest';
@@ -939,29 +938,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$this->releaseDBConnection( $db );
 			return $rev;
 		}
-	}
-
-	/**
-	 * Load the revision for the given title with the given timestamp.
-	 * WARNING: Timestamps may in some circumstances not be unique,
-	 * so this isn't the best key to use.
-	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
-	 *
-	 * @param Title $title
-	 * @param string $timestamp
-	 * @return RevisionRecord|null
-	 */
-	public function getRevisionFromTimestamp( $title, $timestamp ) {
-		return $this->newRevisionFromConds(
-			[
-				'rev_timestamp' => $timestamp,
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
-			],
-			0,
-			$title
-		);
 	}
 
 	/**
@@ -1394,38 +1370,90 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * Given a set of conditions, fetch a revision
 	 *
 	 * This method should be used if we are pretty sure the revision exists.
-	 * Unless $flags has READ_LATEST set, this method will first try to find the revision
-	 * on a replica before hitting the master database.
+	 * If READ_LATEST is set in $flags, only the master database is tried.
+	 * If READ_LATEST is not set in $flags, this method will first try to find the revision
+	 * on a replica; if the revision is not found and READ_LATEST_IMMUTABLE is set or
+	 * the database was updated during the present request, this method will try to find the
+	 * revision on the master database.
 	 *
 	 * MCR migration note: this corresponds to Revision::newFromConds
 	 *
-	 * @param array $conditions
+	 * @param array $conditions Conditions by which to find the revision;
+	 *        must at least specify $conditions['rev_id'].
 	 * @param int $flags (optional)
 	 * @param Title $title
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function newRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
-		$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
-		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
-		$this->releaseDBConnection( $db );
+	private function requireRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
+		$row = $this->requireRevisionRowFromConds( $conditions, $flags );
+		if ( $row ) {
+			$rev = $this->newRevisionFromRow( $row, $flags, $title );
 
-		$lb = $this->getDBLoadBalancer();
-
-		// Make sure new pending/committed revision are visibile later on
-		// within web requests to certain avoid bugs like T93866 and T94407.
-		if ( !$rev
-			&& !( $flags & self::READ_LATEST )
-			&& $lb->getServerCount() > 1
-			&& $lb->hasOrMadeRecentMasterChanges()
-		) {
-			$flags = self::READ_LATEST;
-			$db = $this->getDBConnection( DB_MASTER );
-			$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
-			$this->releaseDBConnection( $db );
+			return $rev;
 		}
 
-		return $rev;
+		return null;
+	}
+
+	/**
+	 * Given a set of conditions, return a row with the
+	 * fields necessary to build RevisionRecord objects.
+	 *
+	 * If READ_LATEST is set in $flags, only the master database is tried.
+	 * If READ_LATEST is not set in $flags, this method will first try to find the revision
+	 * on a replica; if the revision is not found and READ_LATEST_IMMUTABLE is set, or
+	 * the database was updated during the present request, this method will try to find the
+	 * revision on the master database.
+	 *
+	 * MCR migration note: this corresponds to Revision::newFromConds
+	 *
+	 * @param array $conditions Conditions by which to find the revision;
+	 *        must at least specify $conditions['rev_id'].
+	 * @param int $flags (optional)
+	 * @param array &$cacheOpts Cache options, as an associative array; will be updated with
+	 *        database lag information according to Database::getCacheSetOptions.
+	 *
+	 * @return false|object data row as a raw object
+	 */
+	private function requireRevisionRowFromConds( $conditions, $flags = 0, array &$cacheOpts = [] ) {
+		Assert::parameter(
+			isset( $conditions['rev_id'] ),
+			'$conditions[\'rev_id\']',
+			'consition must be set'
+		);
+
+		$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
+		$row = $this->selectRevisionRowFromConds( $db, $conditions, $flags );
+		$this->releaseDBConnection( $db );
+
+		if ( $row ) {
+			$cacheOpts += Database::getCacheSetOptions( $db );
+		} else {
+			$lb = $this->getDBLoadBalancer();
+
+			// Make sure new pending/committed revision are visibile later on
+			// within web requests to certain avoid bugs like T93866 and T94407.
+			if ( !( $flags & self::READ_LATEST )
+				&& $lb->getServerCount() > 1
+				&& $lb->hasOrMadeRecentMasterChanges()
+			) {
+				$flags = self::READ_LATEST;
+				$db = $this->getDBConnection( DB_MASTER );
+				$row = $this->selectRevisionRowFromConds( $db, $conditions, $flags );
+				$this->releaseDBConnection( $db );
+			}
+
+			if ( $row ) {
+				$cacheOpts += Database::getCacheSetOptions( $db );
+			} else {
+				throw new RevisionAccessException(
+					'Revision not found with ID ' . $conditions['rev_id']
+				);
+			}
+		}
+
+		return $row;
 	}
 
 	/**
@@ -1447,7 +1475,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$flags = 0,
 		Title $title = null
 	) {
-		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags );
+		$row = $this->selectRevisionRowFromConds( $db, $conditions, $flags );
 		if ( $row ) {
 			$rev = $this->newRevisionFromRow( $row, $flags, $title );
 
@@ -1503,7 +1531,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * @return object|false data row as a raw object
 	 */
-	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
+	private function selectRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
 		$this->checkDatabaseWikiId( $db );
 
 		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
@@ -1891,8 +1919,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
 	public function getKnownCurrentRevision( Title $title, $revId ) {
-		$db = $this->getDBConnectionRef( DB_REPLICA );
-
 		$pageId = $title->getArticleID();
 
 		if ( !$pageId ) {
@@ -1915,16 +1941,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			// Page/rev IDs passed in from DB to reflect history merges
 			$this->getRevisionRowCacheKey( $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
-			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
-				$setOpts += Database::getCacheSetOptions( $db );
-
+			function ( $curValue, &$ttl, array &$setOpts ) use ( $pageId, $revId ) {
 				$conds = [
 					'rev_page' => intval( $pageId ),
 					'page_id' => intval( $pageId ),
 					'rev_id' => intval( $revId ),
 				];
 
-				$row = $this->fetchRevisionRowFromConds( $db, $conds );
+				$row = $this->requireRevisionRowFromConds( $conds, $setOpts );
 				return $row ?: false; // don't cache negatives
 			}
 		);

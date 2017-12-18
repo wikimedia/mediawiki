@@ -93,8 +93,13 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+		try {
+			$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
+			return new Revision( $rec, $flags );
+		} catch ( RevisionAccessException $ex ) {
+			wfLogWarning( __METHOD__ . ': Revision ' . $id . ' not found' );
+			return null;
+		}
 	}
 
 	/**
@@ -107,13 +112,18 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
 	 * @param LinkTarget $linkTarget
-	 * @param int $id (optional)
+	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return Revision|null
 	 */
-	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByTitle( $linkTarget, $id, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+	public static function newFromTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
+		try {
+			$rec = self::getRevisionStore()->getRevisionByTitle( $linkTarget, $revId, $flags );
+			return $rec === null ? null : new Revision( $rec, $flags );
+		} catch ( RevisionAccessException $ex ) {
+			wfLogWarning( __METHOD__ . ': Revision ' . $revId . ' not found' );
+			return null;
+		}
 	}
 
 	/**
@@ -131,8 +141,13 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByPageId( $pageId, $revId, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+		try {
+			$rec = self::getRevisionStore()->getRevisionByPageId( $pageId, $revId, $flags );
+			return $rec === null ? null : new Revision( $rec, $flags );
+		} catch ( RevisionAccessException $ex ) {
+			wfLogWarning( __METHOD__ . ': Revision ' . $revId . ' not found' );
+			return null;
+		}
 	}
 
 	/**

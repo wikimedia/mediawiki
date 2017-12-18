@@ -312,7 +312,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testNewFromTitle_withBadId() {
 		$latestRevId = $this->testPage->getLatest();
 
+		MediaWiki\suppressWarnings(); // bad revision ID will trigger a warning.
 		$rev = Revision::newFromTitle( $this->testPage->getTitle(), $latestRevId + 1 );
+		MediaWiki\suppressWarnings( 'end' );
 
 		$this->assertNull( $rev );
 	}

@@ -9,6 +9,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
@@ -374,6 +375,16 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionById
+	 */
+	public function testGetRevisionById_failsForUnknownId() {
+		$this->setExpectedException( RevisionAccessException::class );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$revRecord = $store->getRevisionById( 322175644 );
+	}
+
+	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByTitle
 	 */
 	public function testGetRevisionByTitle() {
@@ -403,31 +414,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revRecord = $store->getRevisionByPageId( $page->getId() );
-
-		$this->assertSame( $rev->getId(), $revRecord->getId() );
-		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
-		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
-	}
-
-	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionFromTimestamp
-	 */
-	public function testGetRevisionFromTimestamp() {
-		// Make sure there is 1 second between the last revision and the rev we create...
-		// Otherwise we might not get the correct revision and the test may fail...
-		// :(
-		sleep( 1 );
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
-		$content = new WikitextContent( __METHOD__ );
-		$status = $page->doEditContent( $content, __METHOD__ );
-		/** @var Revision $rev */
-		$rev = $status->value['revision'];
-
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revRecord = $store->getRevisionFromTimestamp(
-			$page->getTitle(),
-			$rev->getTimestamp()
-		);
 
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
 		$this->assertTrue( $revRecord->getSlot( 'main' )->getContent()->equals( $content ) );
