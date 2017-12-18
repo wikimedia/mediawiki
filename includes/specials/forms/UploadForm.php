@@ -320,6 +320,14 @@ class UploadForm extends HTMLForm {
 		if ( $this->mForReUpload ) {
 			$descriptor['DestFile']['readonly'] = true;
 		} else {
+			$descriptor['Patent'] = [
+				'type' => 'select',
+				'class' => 'Patents',
+				'section' => 'description',
+				'id' => 'wpPatent',
+				'label-message' => 'patent',
+			];
+
 			$descriptor['License'] = [
 				'type' => 'select',
 				'class' => 'Licenses',
@@ -409,11 +417,14 @@ class UploadForm extends HTMLForm {
 		$useAjaxDestCheck = $config->get( 'UseAjax' ) && $config->get( 'AjaxUploadDestCheck' );
 		$useAjaxLicensePreview = $config->get( 'UseAjax' ) &&
 			$config->get( 'AjaxLicensePreview' ) && $config->get( 'EnableAPI' );
+		$useAjaxPatentPreview = $config->get( 'UseAjax' ) &&
+			$config->get( 'AjaxPatentPreview' ) && $config->get( 'EnableAPI' );
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = [
 			'wgAjaxUploadDestCheck' => $useAjaxDestCheck,
 			'wgAjaxLicensePreview' => $useAjaxLicensePreview,
+			'wgAjaxPatentPreview' => $useAjaxPatentPreview,
 			'wgUploadAutoFill' => !$this->mForReUpload &&
 				// If we received mDestFile from the request, don't autofill
 				// the wpDestFile textbox

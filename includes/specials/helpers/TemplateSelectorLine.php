@@ -1,7 +1,5 @@
 <?php
 /**
- * License selector for use on Special:Upload.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,22 +17,49 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
 /**
- * A License class for use on Special:Upload (represents a single type of license).
- *
- * @deprecated since 1.31 Use TemplateSelectorLine instead
+ * Represents a line for use on Special:Upload license selector (represents a single type of
+ * license).
  */
-class License extends TemplateSelectorLine {
+class TemplateSelectorLine {
+	/** @var Title $title */
+	protected $title;
+
+	/** @var string */
+	public $template;
+
+	/** @var string */
+	public $text;
+
+	/**
+	 * @param string $str
+	 */
+	public function __construct( $str ) {
+		// the split method is quite crude, so we'll first attempt to parse the text
+		// as a message, so some acceptable wikitext (e.g. [[link|]]) won't confuse
+		// our splitting
+		$str = $this->parse( $str );
+		list( $this->template, $this->text ) = $this->split( $str );
+	}
+
 	/**
 	 * @param string $str
 	 * @return string
 	 */
 	protected function parse( $str ) {
-		return $str;
+		$msg = new RawMessage( $str );
+		return $msg->parse();
+	}
+
+	/**
+	 * @param string $str
+	 * @return string[] Array with [template, text]
+	 */
+	protected function split( $str ) {
+		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
+		return [strrev( $template ), strrev( $text )];
 	}
 }
