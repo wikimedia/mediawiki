@@ -272,7 +272,7 @@
 	"tooltip-ca-edit": "Usted puede editar esta página. Por favor, use el botón de previsualización antes de grabar.",
 	"tooltip-ca-history": "Versiones anteriores de esta página y sus autores",
 	"tooltip-ca-watch": "Añadir esta página a tu lista de seguimiento",
-	"tooltip-ca-unwatch": "Borrar esta página de su lista de seguimiento",
+	"tooltip-ca-unwatch": "Quitar esta página de su lista de seguimiento",
 	"tooltip-search": "Buscar en {{SITENAME}}",
 	"tooltip-search-fulltext": "Busca este texto en las páginas",
 	"tooltip-p-logo": "Visitar la página principal",

@@ -88,7 +88,8 @@
 			"Hinaloe",
 			"Phantomize",
 			"Suzukaze-c",
-			"Kkairri"
+			"Kkairri",
+			"Yusuke1109"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1096,6 +1097,7 @@
 	"timezoneregion-indian": "インド洋",
 	"timezoneregion-pacific": "太平洋",
 	"allowemail": "他の利用者からのメールを受け取る",
+	"email-allow-new-users-label": "新しいユーザーからのメールを許可する",
 	"email-blacklist-label": "次のユーザーからのメールを受け取らない：",
 	"prefs-searchoptions": "検索",
 	"prefs-namespaces": "名前空間",

@@ -531,7 +531,7 @@
 	"createaccountmail-help": "\nМожет использоваться, чтобы создать учетную запись для другого лица, не узнавая пароль.",
 	"createacct-realname": "Настоящее имя (необязательно)",
 	"createacct-reason": "Причина",
-	"createacct-reason-ph": "Зачем вы создаёте другую учетную запись",
+	"createacct-reason-ph": "Зачем вы создаёте другую учётную запись",
 	"createacct-reason-help": "Сообщение, отображаемое в журнале создания учётных записей",
 	"createacct-submit": "Создать учётную запись",
 	"createacct-another-submit": "Создать учётную запись",
