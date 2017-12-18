@@ -3521,6 +3521,12 @@ blank form with no error message; use UploadVerification and UploadVerifyFile
 instead.
 &$form: UploadForm object
 
+'UploadForm:getInitialPageText': After the initial page text for file uploads
+is generated, to allow it to be altered.
+&$pageText: the page text
+$msg: array of header messages
+$config: Config object
+
 'UploadForm:initial': Before the upload form is generated. You might set the
 member-variables $uploadFormTextTop and $uploadFormTextAfterSummary to inject
 text (HTML) either before or after the editform.
