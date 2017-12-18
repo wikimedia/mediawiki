@@ -37,6 +37,8 @@ production.
   users during an import.
 * Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
   the ParserOutput::getText() post-cache transformations.
+* Added a hook, UploadForm:getInitialPageText, to allow extensions to alter the
+  initial page text for file uploads.
 
 === External library changes in 1.31 ===
 
@@ -165,6 +167,7 @@ changes to languages because of Phabricator reports.
   has been deprecated since 1.27 and was removed as well.
 * The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
   HtmlFormatter\HtmlFormatter class should be used instead.
+* License::getLicenses has been deprecated; use License::getLines instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

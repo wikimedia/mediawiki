@@ -10,7 +10,7 @@
 /* global Uint8Array */
 
 ( function ( mw, $ ) {
-	var uploadWarning, uploadLicense,
+	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
 
@@ -113,43 +113,46 @@
 		}
 	};
 
-	uploadLicense = {
+	window.wgUploadTemplatePreviewObj = uploadTemplatePreview = {
 
 		responseCache: { '': '' },
 
-		fetchPreview: function ( license ) {
-			var $spinnerLicense;
-			if ( !mw.config.get( 'wgAjaxLicensePreview' ) ) {
-				return;
-			}
-			if ( this.responseCache.hasOwnProperty( license ) ) {
-				this.showPreview( this.responseCache[ license ] );
+		/**
+		 * @param {jQuery} $element The element whose .val() will be previewed
+		 * @param {jQuery} $previewContainer The container to display the preview in
+		 */
+		getPreview: function ( $element, $previewContainer ) {
+			var template = $element.val(),
+				$spinner;
+
+			if ( this.responseCache.hasOwnProperty( template ) ) {
+				this.showPreview( this.responseCache[ template ], $previewContainer );
 				return;
 			}
 
-			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
+			$spinner = $.createSpinner().insertAfter( $element );
 
 			( new mw.Api() ).get( {
 				formatversion: 2,
 				action: 'parse',
-				text: '{{' + license + '}}',
+				text: '{{' + template + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
 				pst: true
 			} ).done( function ( result ) {
-				uploadLicense.processResult( result, license );
+				uploadTemplatePreview.processResult( result, template, $previewContainer );
 			} ).always( function () {
-				$spinnerLicense.remove();
+				$spinner.remove();
 			} );
 		},
 
-		processResult: function ( result, license ) {
-			this.responseCache[ license ] = result.parse.text;
-			this.showPreview( this.responseCache[ license ] );
+		processResult: function ( result, template, $previewContainer ) {
+			this.responseCache[ template ] = result.parse.text;
+			this.showPreview( this.responseCache[ template ], $previewContainer );
 		},
 
-		showPreview: function ( preview ) {
-			$( '#mw-license-preview' ).html( preview );
+		showPreview: function ( preview, $previewContainer ) {
+			$previewContainer.html( preview );
 		}
 
 	};
@@ -177,7 +180,7 @@
 			// License selector check
 			$license.change( function () {
 				// We might show a preview
-				uploadLicense.fetchPreview( $license.val() );
+				uploadTemplatePreview.getPreview( $license, $( '#mw-license-preview' ) );
 			} );
 
 			// License selector table row
