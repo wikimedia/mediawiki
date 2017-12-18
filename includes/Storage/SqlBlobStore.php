@@ -26,6 +26,7 @@
 
 namespace MediaWiki\Storage;
 
+use Wikimedia\Rdbms\Database;
 use DBAccessObjectUtils;
 use ExternalStore;
 use IDBAccessObject;
@@ -269,7 +270,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			// TODO: change key, since this is not necessarily revision text!
 			$this->cache->makeKey( 'revisiontext', 'textid', $blobAddress ),
 			$this->getCacheTTL(),
-			function () use ( $blobAddress, $queryFlags ) {
+			function ( $unused, &$ttl, &$setOpts ) use ( $blobAddress, $queryFlags ) {
+				$setOpts += Database::getCacheSetOptions( $this->getDBConnection( DB_REPLICA ) );
+
 				return $this->fetchBlob( $blobAddress, $queryFlags );
 			},
 			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => IExpiringStore::TTL_PROC_LONG ]
