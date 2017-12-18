@@ -35,6 +35,7 @@ use Language;
 use MWException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -269,7 +270,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			// TODO: change key, since this is not necessarily revision text!
 			$this->cache->makeKey( 'revisiontext', 'textid', $blobAddress ),
 			$this->getCacheTTL(),
-			function () use ( $blobAddress, $queryFlags ) {
+			function ( $unused, &$ttl, &$setOpts ) use ( $blobAddress, $queryFlags ) {
+				list( $index ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+				$setOpts += Database::getCacheSetOptions( $this->getDBConnection( $index ) );
+
 				return $this->fetchBlob( $blobAddress, $queryFlags );
 			},
 			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => IExpiringStore::TTL_PROC_LONG ]
