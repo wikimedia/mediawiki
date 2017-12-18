@@ -8148,6 +8148,11 @@ $wgAjaxUploadDestCheck = true;
 $wgAjaxLicensePreview = true;
 
 /**
+ * Enable previewing patents via AJAX. Also requires $wgEnableAPI to be true.
+ */
+$wgAjaxPatentPreview = true;
+
+/**
  * Have clients send edits to be prepared when filling in edit summaries.
  * This gives the server a head start on the expensive parsing operation.
  */

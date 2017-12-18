@@ -10,9 +10,10 @@
 /* global Uint8Array */
 
 ( function ( mw, $ ) {
-	var uploadWarning, uploadLicense,
+	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
-		$license = $( '#wpLicense' );
+		$license = $( '#wpLicense' ),
+		$patent = $('input[name=wpPatent]');
 
 	window.wgUploadWarningObj = uploadWarning = {
 		responseCache: { '': '&nbsp;' },
@@ -113,43 +114,46 @@
 		}
 	};
 
-	uploadLicense = {
+	uploadTemplatePreview = {
 
 		responseCache: { '': '' },
 
-		fetchPreview: function ( license ) {
-			var $spinnerLicense;
-			if ( !mw.config.get( 'wgAjaxLicensePreview' ) ) {
-				return;
-			}
-			if ( this.responseCache.hasOwnProperty( license ) ) {
-				this.showPreview( this.responseCache[ license ] );
+		/**
+		 * @param {jQuery} $element The element whose .val() will be previewed
+		 * @param {jQuery} $previewContainer The container to display the preview in
+		 */
+		fetchPreview: function ( $element, $previewContainer ) {
+			var template = $element.val(),
+				$spinner;
+
+			if ( this.responseCache.hasOwnProperty( template ) ) {
+				this.showPreview( this.responseCache[ template ], $previewContainer );
 				return;
 			}
 
-			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
+			$spinner = $.createSpinner().insertAfter( $element );
 
 			( new mw.Api() ).get( {
 				formatversion: 2,
 				action: 'parse',
-				text: '{{' + license + '}}',
+				text: '{{' + template + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
 				pst: true
 			} ).done( function ( result ) {
-				uploadLicense.processResult( result, license );
+				uploadTemplatePreview.processResult( result, template, $previewContainer );
 			} ).always( function () {
-				$spinnerLicense.remove();
+				$spinner.remove();
 			} );
 		},
 
-		processResult: function ( result, license ) {
-			this.responseCache[ license ] = result.parse.text;
-			this.showPreview( this.responseCache[ license ] );
+		processResult: function ( result, template, $previewContainer ) {
+			this.responseCache[ template ] = result.parse.text;
+			this.showPreview( this.responseCache[ template ], $previewContainer );
 		},
 
-		showPreview: function ( preview ) {
-			$( '#mw-license-preview' ).html( preview );
+		showPreview: function ( preview, $previewContainer ) {
+			$previewContainer.html( preview );
 		}
 
 	};
@@ -174,12 +178,6 @@
 		}
 
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
-			// License selector check
-			$license.change( function () {
-				// We might show a preview
-				uploadLicense.fetchPreview( $license.val() );
-			} );
-
 			// License selector table row
 			$license.closest( 'tr' ).after(
 				$( '<tr>' ).append(
@@ -187,6 +185,28 @@
 					$( '<td>' ).attr( 'id', 'mw-license-preview' )
 				)
 			);
+
+			// License selector check
+			$license.change( function () {
+				// We might show a preview
+				uploadTemplatePreview.fetchPreview( $license, $( '#mw-license-preview' ) );
+			} );
+		}
+
+		if ( mw.config.get( 'wgAjaxPatentPreview' ) && $patent.length ) {
+			// Patent selector table row
+			$patent.closest( 'tr' ).after(
+				$( '<tr>' ).append(
+					$( '<td>' ),
+					$( '<td>' ).attr( 'id', 'mw-patent-preview' )
+				)
+			);
+
+			// Patent selector check
+			$patent.change( function ( e ) {
+				// We might show a preview
+				uploadTemplatePreview.fetchPreview( $( e.currentTarget ), $( '#mw-patent-preview' ) );
+			} );
 		}
 
 		// fillDestFile setup
@@ -308,6 +328,16 @@
 				sizeMsgs = sizeMsgs.slice( 1 );
 			}
 			return mw.msg( sizeMsgs[ 0 ], Math.round( s ) );
+		}
+
+		/**
+		 * @param {boolean} show True to show, false to hide
+		 */
+		function togglePatentSelector( show ) {
+			// select default value & show/hide the options
+			$patent.eq( 0 ).prop( 'checked', true );
+			$patent.closest( 'tr' ).toggle( show );
+			$( '#mw-patent-preview' ).closest( 'tr' ).toggle( show );
 		}
 
 		/**
@@ -551,6 +581,9 @@
 					if ( fileIsPreviewable( file ) ) {
 						showPreview( file );
 					}
+
+					// only show patent selector when the upload is an STL file
+					togglePatentSelector( file.name.split('.').pop().toLowerCase() === 'stl' );
 				}
 			} );
 		}
