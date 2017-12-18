@@ -1,6 +1,6 @@
 <?php
 /**
- * License selector for use on Special:Upload.
+ * Patent selector for use on Special:Upload.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,48 +19,51 @@
  *
  * @file
  * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
 /**
- * A License class for use on Special:Upload
+ * A Patent class for use on Special:Upload
  */
-class Licenses extends TemplateSelector {
+class Patents extends TemplateSelector {
 	/**
 	 * {@inheritdoc}
 	 */
 	public function __construct( $params ) {
-		$params['message'] = empty( $params['licenses'] )
-			? wfMessage( 'licenses' )->inContentLanguage()->plain()
-			: $params['licenses'];
+		$params['message'] = empty( $params['patents'] )
+			? wfMessage( 'patents' )->inContentLanguage()->plain()
+			: $params['patents'];
 
 		parent::__construct( $params );
-	}
-
-	/**
-	 * Accessor for $this->lines
-	 *
-	 * @return array
-	 *
-	 * @deprecated since 1.31 Use getLines() instead
-	 */
-	public function getLicenses() {
-		return $this->getLines();
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function getInputHTML( $value ) {
-		// add a default "no license selected" option
-		$default = $this->buildLine( '|nolicense' );
-		array_unshift( $this->lines, $default );
+		$options[$this->msg( 'nopatent' )->text()] = '';
+		$options += $this->getOptionsArray();
 
-		$html = parent::getInputHTML( $value );
+		$field = new HTMLRadioField( [
+			'name' => 'wpPatent',
+			'id' => 'wpPatent',
+			'options' => $options,
+		] );
+		return $field->getInputHTML( $value );
+	}
 
-		array_shift( $this->lines );
-		return $html;
+	/**
+	 * @return array
+	 */
+	protected function getOptionsArray() {
+		$lines = $this->getLines();
+		$options = [];
+		foreach ( $lines as $line ) {
+			$msgObj = $this->msg( $line->text );
+			$text = $msgObj->exists() ? $msgObj->text() : $line->text;
+
+			$options[$text] = $line->template;
+		}
+		return $options;
 	}
 }
