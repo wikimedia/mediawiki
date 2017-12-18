@@ -70,8 +70,10 @@ class PopulateContentModel extends Maintenance {
 
 	protected function clearCache( $page_id, $rev_id ) {
 		$contentModelKey = $this->wanCache->makeKey( 'page-content-model', $rev_id );
+
+		// NOTE: Cache key is defined by RevisionStore::getKnownCurrentRevision().
 		$revisionKey =
-			$this->wanCache->makeGlobalKey( 'revision', $this->wikiId, $page_id, $rev_id );
+			$this->wanCache->makeGlobalKey( 'revision-row-1.29', $this->wikiId, $page_id, $rev_id );
 
 		// WikiPage content model cache
 		$this->wanCache->delete( $contentModelKey );
