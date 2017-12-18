@@ -23,6 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 
@@ -34,6 +35,11 @@ class PopulateContentModel extends Maintenance {
 	protected $wikiId;
 	/** @var WANObjectCache */
 	protected $wanCache;
+
+	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
 
 	public function __construct() {
 		parent::__construct();
@@ -48,6 +54,7 @@ class PopulateContentModel extends Maintenance {
 
 		$this->wikiId = $dbw->getDomainID();
 		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$ns = $this->getOption( 'ns' );
 		if ( !ctype_digit( $ns ) && $ns !== 'all' ) {
@@ -70,8 +77,10 @@ class PopulateContentModel extends Maintenance {
 
 	protected function clearCache( $page_id, $rev_id ) {
 		$contentModelKey = $this->wanCache->makeKey( 'page-content-model', $rev_id );
+
+		// NOTE: Cache key is defined by RevisionStore::getKnownCurrentRevision().
 		$revisionKey =
-			$this->wanCache->makeGlobalKey( 'revision', $this->wikiId, $page_id, $rev_id );
+			$this->revisionStore->getRevisionRowCacheKey( $page_id, $rev_id );
 
 		// WikiPage content model cache
 		$this->wanCache->delete( $contentModelKey );
