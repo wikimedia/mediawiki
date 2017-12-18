@@ -1,0 +1,189 @@
+<?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup SpecialPage
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ */
+
+class TemplateSelector extends HTMLFormField {
+	/** @var string */
+	protected $msg;
+
+	/** @var array */
+	protected $lines = [];
+
+	/** @var string */
+	protected $html;
+	/**#@-*/
+
+	/**
+	 * @param array $params
+	 */
+	public function __construct( $params ) {
+		parent::__construct( $params );
+
+		$this->msg = empty( $params['message'] ) ? '' : $params['message'];
+		$this->selected = null;
+
+		$this->makeLines();
+	}
+
+	/**
+	 * @param string $line
+	 * @return TemplateSelectorLine
+	 */
+	protected function buildLine( $line ) {
+		return new TemplateSelectorLine( $line );
+	}
+
+	/**
+	 * @private
+	 */
+	protected function makeLines() {
+		$levels = [];
+		$lines = explode( "\n", $this->msg );
+
+		foreach ( $lines as $line ) {
+			if ( strpos( $line, '*' ) !== 0 ) {
+				continue;
+			} else {
+				list( $level, $line ) = $this->trimStars( $line );
+
+				if ( strpos( $line, '|' ) !== false ) {
+					$obj = $this->buildLine( $line );
+					$this->stackItem( $this->lines, $levels, $obj );
+				} else {
+					if ( $level < count( $levels ) ) {
+						$levels = array_slice( $levels, 0, $level );
+					}
+					if ( $level == count( $levels ) ) {
+						$levels[$level - 1] = $line;
+					} elseif ( $level > count( $levels ) ) {
+						$levels[] = $line;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param string $str
+	 * @return array
+	 */
+	protected function trimStars( $str ) {
+		$numStars = strspn( $str, '*' );
+		return [ $numStars, ltrim( substr( $str, $numStars ), ' ' ) ];
+	}
+
+	/**
+	 * @param array &$list
+	 * @param array $path
+	 * @param mixed $item
+	 */
+	protected function stackItem( &$list, $path, $item ) {
+		$position =& $list;
+		if ( $path ) {
+			foreach ( $path as $key ) {
+				$position =& $position[$key];
+			}
+		}
+		$position[] = $item;
+	}
+
+	/**
+	 * @param array $tagset
+	 * @param int $depth
+	 * @return string
+	 */
+	protected function makeHtml( $tagset, $depth = 0 ) {
+		$html = '';
+
+		foreach ( $tagset as $key => $val ) {
+			if ( is_array( $val ) ) {
+				$html .= $this->outputOption(
+					$key, '',
+					[
+						'disabled' => 'disabled',
+						'style' => 'color: GrayText', // for MSIE
+					],
+					$depth
+				);
+				$html .= $this->makeHtml( $val, $depth + 1 );
+			} else {
+				$html .= $this->outputOption(
+					$val->text, $val->template,
+					[ 'title' => '{{' . $val->template . '}}' ],
+					$depth
+				);
+			}
+		}
+
+		return $html;
+	}
+
+	/**
+	 * @param string $message
+	 * @param string $value
+	 * @param null|array $attribs
+	 * @param int $depth
+	 * @return string
+	 */
+	protected function outputOption( $message, $value, $attribs = null, $depth = 0 ) {
+		$msgObj = $this->msg( $message );
+		$text = $msgObj->exists() ? $msgObj->text() : $message;
+		$attribs['value'] = $value;
+		if ( $value === $this->selected ) {
+			$attribs['selected'] = 'selected';
+		}
+
+		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
+		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
+	}
+
+	/**#@-*/
+
+	/**
+	 *  Accessor for $this->lines
+	 *
+	 * @return array
+	 */
+	public function getLines() {
+		return $this->lines;
+	}
+
+	/**
+	 * @param bool $value
+	 *
+	 * @return string
+	 */
+	public function getInputHTML( $value ) {
+		$this->selected = $value;
+
+		$html = $this->makeHtml( $this->getLines() );
+
+		$attribs = [
+			'name' => $this->mName,
+			'id' => $this->mID
+		];
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+
+		return Html::rawElement( 'select', $attribs, $html );
+	}
+}

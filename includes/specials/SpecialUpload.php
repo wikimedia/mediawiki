@@ -62,6 +62,7 @@ class SpecialUpload extends SpecialPage {
 	public $mDesiredDestName;
 	public $mComment;
 	public $mLicense;
+	public $mPatent;
 
 	/** User input variables from the root section **/
 
@@ -105,6 +106,7 @@ class SpecialUpload extends SpecialPage {
 			$this->mDesiredDestName = $request->getFileName( 'wpUploadFile' );
 		}
 		$this->mLicense = $request->getText( 'wpLicense' );
+		$this->mPatent = $request->getText( 'wpPatent' );
 
 		$this->mDestWarningAck = $request->getText( 'wpDestFileWarningAck' );
 		$this->mIgnoreWarning = $request->getCheck( 'wpIgnoreWarning' )
@@ -536,7 +538,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Get the page text if this is not a reupload
 		if ( !$this->mForReUpload ) {
-			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
+			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense, $this->mPatent,
 				$this->mCopyrightStatus, $this->mCopyrightSource, $this->getConfig() );
 		} else {
 			$pageText = false;
@@ -585,12 +587,13 @@ class SpecialUpload extends SpecialPage {
 	 * Get the initial image page text based on a comment and optional file status information
 	 * @param string $comment
 	 * @param string $license
+	 * @param string $patent
 	 * @param string $copyStatus
 	 * @param string $source
 	 * @param Config $config Configuration object to load data from
 	 * @return string
 	 */
-	public static function getInitialPageText( $comment = '', $license = '',
+	public static function getInitialPageText( $comment = '', $license = '', $patent = '',
 		$copyStatus = '', $source = '', Config $config = null
 	) {
 		if ( $config === null ) {
@@ -612,23 +615,24 @@ class SpecialUpload extends SpecialPage {
 			}
 		}
 
+		$licenseText = '';
+		if ( $license !== '' || $patent !== '' ) {
+			$licenseText .= '== ' . $msg['license-header'] . " ==\n";
+			if ( $license !== '' ) {
+				$licenseText .= '{{' . $license . '}}' . "\n";
+			}
+			if ( $patent !== '' ) {
+				$licenseText .= '{{' . $patent . '}}' . "\n";
+			}
+		}
+
+		$pageText = $comment == '' ? '' : '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n";
 		if ( $config->get( 'UseCopyrightUpload' ) ) {
-			$licensetxt = '';
-			if ( $license != '' ) {
-				$licensetxt = '== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
-			}
-			$pageText = '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n" .
-				'== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n" .
-				"$licensetxt" .
-				'== ' . $msg['filesource'] . " ==\n" . $source;
+			$pageText .= '== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n";
+			$pageText .= $licenseText;
+			$pageText .= '== ' . $msg['filesource'] . " ==\n" . $source;
 		} else {
-			if ( $license != '' ) {
-				$filedesc = $comment == '' ? '' : '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n";
-					$pageText = $filedesc .
-					'== ' . $msg['license-header'] . " ==\n" . '{{' . $license . '}}' . "\n";
-			} else {
-				$pageText = $comment;
-			}
+			$pageText .= $licenseText;
 		}
 
 		return $pageText;
