@@ -1458,6 +1458,15 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	}
 
 	/**
+	 * Returns the domain ID for the wiki this RevisionStore is associated with
+	 *
+	 * @return string
+	 */
+	private function getDBDomainID() {
+		return $this->wikiId ?: wfWikiID();
+	}
+
+	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * RevisionStore is bound to.
 	 *
@@ -1850,6 +1859,25 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	}
 
 	/**
+	 * Returns the cache key for the given revision.
+	 *
+	 * Direct access to a cached revision row is discouraged.
+	 * This method is public only for use by maintenance scripts during database schema migrations.
+	 *
+	 * @param $pageId
+	 * @param $revId
+	 * @return string
+	 */
+	public function getRevisionRowCacheKey( $pageId, $revId ) {
+		return $this->cache->makeGlobalKey(
+			'revision-row-1.29',
+			$this->getDBDomainID(),
+			$pageId,
+			$revId
+		);
+	}
+
+	/**
 	 * Load a revision based on a known page ID and current revision ID from the DB
 	 *
 	 * This method allows for the use of caching, though accessing anything that normally
@@ -1885,7 +1913,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$row = $this->cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
-			$this->cache->makeGlobalKey( 'revision-row-1.29', $db->getDomainID(), $pageId, $revId ),
+			$this->getRevisionRowCacheKey( $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
 				$setOpts += Database::getCacheSetOptions( $db );
