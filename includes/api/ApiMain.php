@@ -1933,7 +1933,7 @@ class ApiMain extends ApiBase {
 			$id = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_PRIMARY );
 			$idFallback = Sanitizer::escapeIdForAttribute( 'main/datatypes', Sanitizer::ID_FALLBACK );
 			$headline = Linker::makeHeadline( min( 6, $level ),
-				' class="apihelp-header"',
+				' class="apihelp-header">',
 				$id,
 				$header,
 				'',
@@ -1961,7 +1961,7 @@ class ApiMain extends ApiBase {
 			$id = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_PRIMARY );
 			$idFallback = Sanitizer::escapeIdForAttribute( 'main/credits', Sanitizer::ID_FALLBACK );
 			$headline = Linker::makeHeadline( min( 6, $level ),
-				' class="apihelp-header"',
+				' class="apihelp-header">',
 				$id,
 				$header,
 				'',
