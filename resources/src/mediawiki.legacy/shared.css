@@ -760,11 +760,6 @@ table.floatleft {
 	vertical-align: baseline;
 	/* Reset line-height; headings tend to have it set to larger values */
 	line-height: 1em;
-	/* As .mw-editsection is a <span> (inline element), it is treated as part */
-	/* of the heading content when selecting text by multiple clicks and thus */
-	/* selected together with heading content, despite the user-select: none; */
-	/* rule set above. This enforces non-selection without changing the look. */
-	display: inline-block;
 }
 
 /* Correct directionality when page dir is different from site/user dir */
