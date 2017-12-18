@@ -606,7 +606,7 @@ class RevisionTest extends MediaWikiTestCase {
 				$this->isType( 'array' ),
 				$this->equalTo( $conditions ),
 				// Method name
-				$this->stringContains( 'fetchRevisionRowFromConds' ),
+				$this->stringContains( 'selectRevisionRowFromConds' ),
 				// We don't really care about the options here
 				$this->isType( 'array' ),
 				// We don't really care about the join conds are they come from the joinCond methods
