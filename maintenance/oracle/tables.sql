@@ -48,7 +48,7 @@ CREATE UNIQUE INDEX &mw_prefix.mwuser_u01 ON &mw_prefix.mwuser (user_name);
 CREATE INDEX &mw_prefix.mwuser_i01 ON &mw_prefix.mwuser (user_email_token);
 CREATE INDEX &mw_prefix.mwuser_i02 ON &mw_prefix.mwuser (user_email, user_name);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.mwuser_default_user_id BEFORE INSERT ON &mw_prefix.mwuser
+CREATE TRIGGER &mw_prefix.mwuser_seq_trg BEFORE INSERT ON &mw_prefix.mwuser
 	FOR EACH ROW WHEN (new.user_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(user_user_id_seq.nextval, :new.user_id);
@@ -116,7 +116,7 @@ CREATE INDEX &mw_prefix.page_i01 ON &mw_prefix.page (page_random);
 CREATE INDEX &mw_prefix.page_i02 ON &mw_prefix.page (page_len);
 CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_namespace, page_len);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.page_default_page_id BEFORE INSERT ON &mw_prefix.page
+CREATE TRIGGER &mw_prefix.page_seq_trg BEFORE INSERT ON &mw_prefix.page
 	FOR EACH ROW WHEN (new.page_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(page_page_id_seq.nextval, :new.page_id);
@@ -162,7 +162,7 @@ CREATE INDEX &mw_prefix.revision_i03 ON &mw_prefix.revision (rev_user,rev_timest
 CREATE INDEX &mw_prefix.revision_i04 ON &mw_prefix.revision (rev_user_text,rev_timestamp);
 CREATE INDEX &mw_prefix.revision_i05 ON &mw_prefix.revision (rev_page,rev_user,rev_timestamp);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.revision_default_rev_id BEFORE INSERT ON &mw_prefix.revision
+CREATE TRIGGER &mw_prefix.revision_seq_trg BEFORE INSERT ON &mw_prefix.revision
 	FOR EACH ROW WHEN (new.rev_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(revision_rev_id_seq.nextval, :new.rev_id);
@@ -177,7 +177,7 @@ CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
 );
 ALTER TABLE &mw_prefix.pagecontent ADD CONSTRAINT &mw_prefix.pagecontent_pk PRIMARY KEY (old_id);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.text_default_old_id BEFORE INSERT ON &mw_prefix.text
+CREATE TRIGGER &mw_prefix.pagecontent_seq_trg BEFORE INSERT ON &mw_prefix.pagecontent
 	FOR EACH ROW WHEN (new.old_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(text_old_id_seq.nextval, :new.old_id);
@@ -212,7 +212,7 @@ CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i03 ON &mw_prefix.archive (ar_rev_id);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.archive_default_ar_id BEFORE INSERT ON &mw_prefix.archive
+CREATE TRIGGER &mw_prefix.archive_seq_trg BEFORE INSERT ON &mw_prefix.archive
 	FOR EACH ROW WHEN (new.ar_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(archive_ar_id_seq.nextval, :new.ar_id);
@@ -273,7 +273,7 @@ ALTER TABLE &mw_prefix.category ADD CONSTRAINT &mw_prefix.category_pk PRIMARY KE
 CREATE UNIQUE INDEX &mw_prefix.category_u01 ON &mw_prefix.category (cat_title);
 CREATE INDEX &mw_prefix.category_i01 ON &mw_prefix.category (cat_pages);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.category_default_cat_id BEFORE INSERT ON &mw_prefix.category
+CREATE TRIGGER &mw_prefix.category_seq_trg BEFORE INSERT ON &mw_prefix.category
 	FOR EACH ROW WHEN (new.cat_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(category_cat_id_seq.nextval, :new.cat_id);
@@ -286,7 +286,7 @@ CREATE TABLE &mw_prefix.externallinks (
   el_from   NUMBER  NOT NULL,
   el_to     VARCHAR2(2048) NOT NULL,
   el_index  VARCHAR2(2048) NOT NULL,
-  el_index_60  VARBINARY(60) NOT NULL DEFAULT ''
+  el_index_60  VARCHAR2(60)
 );
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_pk PRIMARY KEY (el_id);
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_fk1 FOREIGN KEY (el_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -296,7 +296,7 @@ CREATE INDEX &mw_prefix.externallinks_i03 ON &mw_prefix.externallinks (el_index)
 CREATE INDEX &mw_prefix.externallinks_i04 ON &mw_prefix.externallinks (el_index_60, el_id);
 CREATE INDEX &mw_prefix.externallinks_i05 ON &mw_prefix.externallinks (el_from, el_index_60, el_id);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.externallinks_default_el_id BEFORE INSERT ON &mw_prefix.externallinks
+CREATE TRIGGER &mw_prefix.externallinks_seq_trg BEFORE INSERT ON &mw_prefix.externallinks
 	FOR EACH ROW WHEN (new.el_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(externallinks_el_id_seq.nextval, :new.el_id);
@@ -361,7 +361,7 @@ CREATE INDEX &mw_prefix.ipblocks_i03 ON &mw_prefix.ipblocks (ipb_timestamp);
 CREATE INDEX &mw_prefix.ipblocks_i04 ON &mw_prefix.ipblocks (ipb_expiry);
 CREATE INDEX &mw_prefix.ipblocks_i05 ON &mw_prefix.ipblocks (ipb_parent_block_id);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.ipblocks_default_ipb_id BEFORE INSERT ON &mw_prefix.ipblocks
+CREATE TRIGGER &mw_prefix.ipblocks_seq_trg BEFORE INSERT ON &mw_prefix.ipblocks
 	FOR EACH ROW WHEN (new.ipb_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(ipblocks_ipb_id_seq.nextval, :new.ipb_id);
@@ -452,7 +452,7 @@ CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_ti
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i05 ON &mw_prefix.filearchive (fa_sha1);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.filearchive_default_fa_id BEFORE INSERT ON &mw_prefix.filearchive
+CREATE TRIGGER &mw_prefix.filearchive_seq_trg BEFORE INSERT ON &mw_prefix.filearchive
 	FOR EACH ROW WHEN (new.fa_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(filearchive_fa_id_seq.nextval, :new.fa_id);
@@ -485,7 +485,7 @@ CREATE INDEX &mw_prefix.uploadstash_i01 ON &mw_prefix.uploadstash (us_user);
 CREATE INDEX &mw_prefix.uploadstash_i02 ON &mw_prefix.uploadstash (us_timestamp);
 CREATE UNIQUE INDEX &mw_prefix.uploadstash_u01 ON &mw_prefix.uploadstash (us_key);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.uploadstash_default_us_id BEFORE INSERT ON &mw_prefix.uploadstash
+CREATE TRIGGER &mw_prefix.uploadstash_seq_trg BEFORE INSERT ON &mw_prefix.uploadstash
 	FOR EACH ROW WHEN (new.us_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(uploadstash_us_id_seq.nextval, :new.us_id);
@@ -532,7 +532,7 @@ CREATE INDEX &mw_prefix.recentchanges_i06 ON &mw_prefix.recentchanges (rc_namesp
 CREATE INDEX &mw_prefix.recentchanges_i07 ON &mw_prefix.recentchanges (rc_user_text, rc_timestamp);
 CREATE INDEX &mw_prefix.recentchanges_i08 ON &mw_prefix.recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.recentchanges_default_rc_id BEFORE INSERT ON &mw_prefix.recentchanges
+CREATE TRIGGER &mw_prefix.recentchanges_seq_trg BEFORE INSERT ON &mw_prefix.recentchanges
 	FOR EACH ROW WHEN (new.rc_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(recentchanges_rc_id_seq.nextval, :new.rc_id);
@@ -617,7 +617,7 @@ CREATE INDEX &mw_prefix.logging_i05 ON &mw_prefix.logging (log_type, log_action,
 CREATE INDEX &mw_prefix.logging_i06 ON &mw_prefix.logging (log_user_text, log_type, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i07 ON &mw_prefix.logging (log_user_text, log_timestamp);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.logging_default_log_id BEFORE INSERT ON &mw_prefix.logging
+CREATE TRIGGER &mw_prefix.logging_seq_trg BEFORE INSERT ON &mw_prefix.logging
 	FOR EACH ROW WHEN (new.log_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(logging_log_id_seq.nextval, :new.log_id);
@@ -654,7 +654,7 @@ CREATE INDEX &mw_prefix.job_i03 ON &mw_prefix.job (job_sha1);
 CREATE INDEX &mw_prefix.job_i04 ON &mw_prefix.job (job_cmd,job_token,job_random);
 CREATE INDEX &mw_prefix.job_i05 ON &mw_prefix.job (job_attempts);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.job_default_job_id BEFORE INSERT ON &mw_prefix.job
+CREATE TRIGGER &mw_prefix.job_seq_trg BEFORE INSERT ON &mw_prefix.job
 	FOR EACH ROW WHEN (new.job_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(job_job_id_seq.nextval, :new.job_id);
@@ -706,7 +706,7 @@ CREATE INDEX &mw_prefix.page_restrictions_i01 ON &mw_prefix.page_restrictions (p
 CREATE INDEX &mw_prefix.page_restrictions_i02 ON &mw_prefix.page_restrictions (pr_level);
 CREATE INDEX &mw_prefix.page_restrictions_i03 ON &mw_prefix.page_restrictions (pr_cascade);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.page_restrictions_default_pr_id BEFORE INSERT ON &mw_prefix.page_restrictions
+CREATE TRIGGER &mw_prefix.page_restrictions_seq_trg BEFORE INSERT ON &mw_prefix.page_restrictions
 	FOR EACH ROW WHEN (new.pr_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(page_restrictions_pr_id_seq.nextval, :new.pr_id);
@@ -821,7 +821,7 @@ CREATE INDEX &mw_prefix.sites_i05 ON &mw_prefix.sites (site_protocol);
 CREATE INDEX &mw_prefix.sites_i06 ON &mw_prefix.sites (site_domain);
 CREATE INDEX &mw_prefix.sites_i07 ON &mw_prefix.sites (site_forward);
 /*$mw$*/
-CREATE TRIGGER &mw_prefix.sites_default_site_id BEFORE INSERT ON &mw_prefix.sites
+CREATE TRIGGER &mw_prefix.sites_seq_trg BEFORE INSERT ON &mw_prefix.sites
 	FOR EACH ROW WHEN (new.site_id IS NULL)
 BEGIN
 	&mw_prefix.lastval_pkg.setLastval(sites_site_id_seq.nextval, :new.site_id);
