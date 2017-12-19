@@ -28,6 +28,9 @@ define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 require_once __DIR__ . '/Maintenance.php';
 $maintClass = 'MergeMessageFileList';
 $mmfl = false;
+$toReplaceIPDirs = [
+	dirname( __DIR__ ),
+];
 
 /**
  * Maintenance script that merges $wgExtensionMessagesFiles from various
@@ -53,7 +56,7 @@ class MergeMessageFileList extends Maintenance {
 
 	public function execute() {
 		// @codingStandardsIgnoreStart Ignore error: Global variable "$mmfl" is lacking 'wg' prefix
-		global $mmfl;
+		global $mmfl, $toReplaceIPDirs;
 		// @codingStandardsIgnoreEnd
 		global $wgExtensionEntryPointListFiles;
 
@@ -80,6 +83,9 @@ class MergeMessageFileList extends Maintenance {
 			$extdirs = explode( ':', $extdir );
 			$entries = [];
 			foreach ( $extdirs as $extdir ) {
+				// strip extensions/ or skins/ from the directory name
+				$toReplaceIPDirs[] = dirname( $extdir );
+
 				$entries = scandir( $extdir );
 				foreach ( $entries as $extname ) {
 					if ( $extname == '.' || $extname == '..' || !is_dir( "$extdir/$extname" ) ) {
@@ -192,13 +198,9 @@ $s =
 	'$wgExtensionMessagesFiles = ' . var_export( $wgExtensionMessagesFiles, true ) . ";\n\n" .
 	'$wgMessagesDirs = ' . var_export( $wgMessagesDirs, true ) . ";\n\n";
 
-$dirs = [
-	$IP,
-	dirname( __DIR__ ),
-	realpath( $IP )
-];
-
-foreach ( $dirs as $dir ) {
+$toReplaceIPDirs[] = $IP;
+$toReplaceIPDirs[] = realpath( $IP );
+foreach ( $toReplaceIPDirs as $dir ) {
 	$s = preg_replace( "/'" . preg_quote( $dir, '/' ) . "([^']*)'/", '"$IP\1"', $s );
 }
 
