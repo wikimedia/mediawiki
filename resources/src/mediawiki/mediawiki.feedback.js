@@ -83,8 +83,7 @@
 
 	/**
 	 * Respond to dialog submit event. If the information was
-	 * submitted, either successfully or with an error, open
-	 * a MessageDialog to thank the user.
+	 * submitted successfully, open a MessageDialog to thank the user.
 	 *
 	 * @param {string} [status] A status of the end of operation
 	 *  of the main feedback dialog. Empty if the dialog was
@@ -92,37 +91,36 @@
 	 *  to the external task reporting site.
 	 */
 	mw.Feedback.prototype.onDialogSubmit = function ( status ) {
-		var dialogConfig = {};
-		switch ( status ) {
-			case 'submitted':
-				dialogConfig = {
-					title: mw.msg( 'feedback-thanks-title' ),
-					message: $( '<span>' ).msg(
-						'feedback-thanks',
-						this.feedbackPageTitle.getNameText(),
-						$( '<a>' ).attr( {
-							target: '_blank',
-							href: this.feedbackPageTitle.getUrl()
-						} )
-					),
-					actions: [
-						{
-							action: 'accept',
-							label: mw.msg( 'feedback-close' ),
-							flags: 'primary'
-						}
-					]
-				};
-				break;
+		var dialogConfig;
+
+		if ( status !== 'submitted' ) {
+			return;
 		}
 
+		dialogConfig = {
+			title: mw.msg( 'feedback-thanks-title' ),
+			message: $( '<span>' ).msg(
+				'feedback-thanks',
+				this.feedbackPageTitle.getNameText(),
+				$( '<a>' ).attr( {
+					target: '_blank',
+					href: this.feedbackPageTitle.getUrl()
+				} )
+			),
+			actions: [
+				{
+					action: 'accept',
+					label: mw.msg( 'feedback-close' ),
+					flags: 'primary'
+				}
+			]
+		};
+
 		// Show the message dialog
-		if ( !$.isEmptyObject( dialogConfig ) ) {
-			this.constructor.static.windowManager.openWindow(
-				this.thankYouDialog,
-				dialogConfig
-			);
-		}
+		this.constructor.static.windowManager.openWindow(
+			this.thankYouDialog,
+			dialogConfig
+		);
 	};
 
 	/**
@@ -421,14 +419,8 @@
 	 * @return {OO.ui.Error}
 	 */
 	mw.Feedback.Dialog.prototype.getErrorMessage = function () {
-		switch ( this.status ) {
-			case 'error1':
-			case 'error2':
-			case 'error3':
-			case 'error4':
-				// Messages: feedback-error1, feedback-error2, feedback-error3, feedback-error4
-				return new OO.ui.Error( mw.msg( 'feedback-' + this.status ) );
-		}
+		// Messages: feedback-error1, feedback-error2, feedback-error3, feedback-error4
+		return new OO.ui.Error( mw.msg( 'feedback-' + this.status ) );
 	};
 
 	/**
