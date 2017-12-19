@@ -1068,6 +1068,7 @@ $wgAutoloadLocalClasses = [
 	'PageProps' => __DIR__ . '/includes/PageProps.php',
 	'PageQueryPage' => __DIR__ . '/includes/specialpage/PageQueryPage.php',
 	'Pager' => __DIR__ . '/includes/pager/Pager.php',
+	'PaginatingSearchEngine' => __DIR__ . '/includes/search/PaginatingSearchEngine.php',
 	'ParameterizedPassword' => __DIR__ . '/includes/password/ParameterizedPassword.php',
 	'Parser' => __DIR__ . '/includes/parser/Parser.php',
 	'ParserCache' => __DIR__ . '/includes/parser/ParserCache.php',
