@@ -517,7 +517,15 @@ abstract class SearchEngine {
 			return SearchSuggestionSet::emptySuggestionSet(); // Return empty result
 		}
 		$search = $this->normalizeNamespaces( $search );
-		return $this->processCompletionResults( $search, $this->completionSearchBackend( $search ) );
+		// Over-fetch results so we can determine if pagination is possible in
+		// processCompletionResults
+		$this->limit++;
+		try {
+			$suggestions = $this->completionSearchBackend( $search );
+		} finally {
+			$this->limit--;
+		}
+		return $this->processCompletionResults( $search, $suggestions );
 	}
 
 	/**
@@ -531,23 +539,29 @@ abstract class SearchEngine {
 		}
 		$search = $this->normalizeNamespaces( $search );
 
-		$results = $this->completionSearchBackend( $search );
-		$fallbackLimit = $this->limit - $results->getSize();
-		if ( $fallbackLimit > 0 ) {
-			global $wgContLang;
+		// Over-fetch results so we can determine if more results exist (for pagination).
+		$this->limit++;
+		try {
+			$results = $this->completionSearchBackend( $search );
+			$fallbackLimit = $this->limit - $results->getSize();
+			if ( $fallbackLimit > 0 ) {
+				global $wgContLang;
 
-			$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
-			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
+				$fallbackSearches = $wgContLang->autoConvertToAllVariants( $search );
+				$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
-			foreach ( $fallbackSearches as $fbs ) {
-				$this->setLimitOffset( $fallbackLimit );
-				$fallbackSearchResult = $this->completionSearch( $fbs );
-				$results->appendAll( $fallbackSearchResult );
-				$fallbackLimit -= count( $fallbackSearchResult );
-				if ( $fallbackLimit <= 0 ) {
-					break;
+				foreach ( $fallbackSearches as $fbs ) {
+					$this->setLimitOffset( $fallbackLimit );
+					$fallbackSearchResult = $this->completionSearch( $fbs );
+					$results->appendAll( $fallbackSearchResult );
+					$fallbackLimit -= count( $fallbackSearchResult );
+					if ( $fallbackLimit <= 0 ) {
+						break;
+					}
 				}
 			}
+		} finally {
+			$this->limit--;
 		}
 		return $this->processCompletionResults( $search, $results );
 	}
@@ -571,6 +585,10 @@ abstract class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
+		// We over-fetched to determine pagination. Shrink back down if we have extra results
+		// and mark if pagination is possible
+		$suggestions->shrink( $this->limit );
+
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$titles = $suggestions->map( function ( SearchSuggestion $sugg ) {
