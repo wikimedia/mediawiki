@@ -1,8 +1,4 @@
 <?php
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\IncompleteRevisionException;
-use MediaWiki\Storage\RevisionRecord;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
@@ -76,7 +72,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
-
 		if ( !$this->testPage ) {
 			/**
 			 * We have to create a new page for each subclass as the page creation may result
@@ -107,24 +102,12 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$props['text'] = 'Lorem Ipsum';
 		}
 
-		if ( !isset( $props['user_text'] ) ) {
-			$props['user_text'] = 'Tester';
-		}
-
-		if ( !isset( $props['user'] ) ) {
-			$props['user'] = 0;
-		}
-
 		if ( !isset( $props['comment'] ) ) {
 			$props['comment'] = 'just a test';
 		}
 
 		if ( !isset( $props['page'] ) ) {
 			$props['page'] = $this->testPage->getId();
-		}
-
-		if ( !isset( $props['content_model'] ) ) {
-			$props['content_model'] = CONTENT_MODEL_WIKITEXT;
 		}
 
 		$rev = new Revision( $props );
@@ -219,23 +202,14 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$revId = $rev->insertOn( wfGetDB( DB_MASTER ) );
 
 		$this->assertInternalType( 'integer', $revId );
-		$this->assertSame( $revId, $rev->getId() );
-
-		// getTextId() must be an int!
 		$this->assertInternalType( 'integer', $rev->getTextId() );
-
-		$mainSlot = $rev->getRevisionRecord()->getSlot( 'main', RevisionRecord::RAW );
-
-		// we currently only support storage in the text table
-		$textId = MediaWikiServices::getInstance()
-			->getBlobStore()
-			->getTextIdFromAddress( $mainSlot->getAddress() );
+		$this->assertSame( $revId, $rev->getId() );
 
 		$this->assertSelect(
 			'text',
 			[ 'old_id', 'old_text' ],
-			"old_id = $textId",
-			[ [ strval( $textId ), 'Revision Text' ] ]
+			"old_id = {$rev->getTextId()}",
+			[ [ strval( $rev->getTextId() ), 'Revision Text' ] ]
 		);
 		$this->assertSelect(
 			'revision',
@@ -254,7 +228,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			[ [
 				strval( $rev->getId() ),
 				strval( $this->testPage->getId() ),
-				strval( $textId ),
+				strval( $rev->getTextId() ),
 				'0',
 				'0',
 				'0',
@@ -272,12 +246,11 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		// If an ExternalStore is set don't use it.
 		$this->setMwGlobals( 'wgDefaultExternalStore', false );
 		$this->setExpectedException(
-			IncompleteRevisionException::class,
-			"rev_page field must not be 0!"
+			MWException::class,
+			"Cannot insert revision: page ID must be nonzero"
 		);
 
-		$title = Title::newFromText( 'Nonexistant-' . __METHOD__ );
-		$rev = new Revision( [], 0, $title );
+		$rev = new Revision( [] );
 
 		$rev->insertOn( wfGetDB( DB_MASTER ) );
 	}
@@ -350,37 +323,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		];
 		yield [
 			function ( $f ) {
-				unset( $f['ar_text'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
 				unset( $f['ar_text_id'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
-				unset( $f['ar_page_id'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
-				unset( $f['ar_parent_id'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
-				unset( $f['ar_rev_id'] );
-				return $f;
-			},
-		];
-		yield [
-			function ( $f ) {
-				unset( $f['ar_sha1'] );
 				return $f;
 			},
 		];
@@ -391,17 +334,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRow( $selectModifier ) {
-		$services = MediaWikiServices::getInstance();
-
-		$store = new RevisionStore(
-			$services->getDBLoadBalancer(),
-			$services->getService( '_SqlBlobStore' ),
-			$services->getMainWANObjectCache()
-		);
-
-		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );
-		$this->setService( 'RevisionStore', $store );
-
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
 			'Lorem Ipsum',
@@ -422,8 +354,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 		$res->free();
 
-		// MCR migration note: $row is now required to contain ar_title and ar_namespace.
-		// Alternatively, a Title object can be passed to RevisionStore::newRevisionFromArchiveRow
 		$rev = Revision::newFromArchiveRow( $row );
 
 		$this->assertRevEquals( $orig, $rev );
@@ -452,7 +382,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 		$res->free();
 
-		$rev = Revision::newFromArchiveRow( $row, [ 'comment_text' => 'SOMEOVERRIDE' ] );
+		$rev = Revision::newFromArchiveRow( $row, [ 'comment' => 'SOMEOVERRIDE' ] );
 
 		$this->assertNotEquals( $orig->getComment(), $rev->getComment() );
 		$this->assertEquals( 'SOMEOVERRIDE', $rev->getComment() );
@@ -496,8 +426,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::newFromPageId
 	 */
 	public function testNewFromPageIdWithNotLatestId() {
-		$content = new WikitextContent( __METHOD__ );
-		$this->testPage->doEditContent( $content, __METHOD__ );
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getRevision()->getPrevious()->getId()
@@ -518,7 +447,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$id = $this->testPage->getRevision()->getId();
 
-		$this->hideDeprecated( 'Revision::fetchRevision' );
 		$res = Revision::fetchRevision( $this->testPage->getTitle() );
 
 		# note: order is unspecified
@@ -527,7 +455,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$rows[$row->rev_id] = $row;
 		}
 
-		$this->assertEmpty( $rows, 'expected empty set' );
+		$this->assertEquals( 1, count( $rows ), 'expected exactly one revision' );
+		$this->assertArrayHasKey( $id, $rows, 'missing revision with id ' . $id );
 	}
 
 	/**
@@ -612,10 +541,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'new null revision should have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 			'new null revision should have the same text id as the original revision' );
-		$this->assertEquals( $orig->getSha1(), $rev->getSha1(),
-			'new null revision should have the same SHA1 as the original revision' );
-		$this->assertTrue( $orig->getRevisionRecord()->hasSameContent( $rev->getRevisionRecord() ),
-			'new null revision should have the same content as the original revision' );
 		$this->assertEquals( __METHOD__, $rev->getContent()->getNativeData() );
 	}
 
@@ -681,7 +606,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'comment' => 'edit zero'
+			'summary' => 'edit zero'
 		] );
 		$revisions[0]->insertOn( $dbw );
 
@@ -693,7 +618,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'one',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'comment' => 'edit one'
+			'summary' => 'edit one'
 		] );
 		$revisions[1]->insertOn( $dbw );
 
@@ -704,7 +629,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'user' => $userB->getId(),
 			'text' => 'two',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'comment' => 'edit two'
+			'summary' => 'edit two'
 		] );
 		$revisions[2]->insertOn( $dbw );
 
@@ -715,7 +640,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'three',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'comment' => 'edit three'
+			'summary' => 'edit three'
 		] );
 		$revisions[3]->insertOn( $dbw );
 
@@ -726,23 +651,12 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'user' => $userA->getId(),
 			'text' => 'zero',
 			'content_model' => CONTENT_MODEL_WIKITEXT,
-			'comment' => 'edit four'
+			'summary' => 'edit four'
 		] );
 		$revisions[4]->insertOn( $dbw );
 
 		// test it ---------------------------------
 		$since = $revisions[$sinceIdx]->getTimestamp();
-
-		$allRows = iterator_to_array( $dbw->select(
-			'revision',
-			[ 'rev_id', 'rev_timestamp', 'rev_user' ],
-			[
-				'rev_page' => $page->getId(),
-				//'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ]
-		) );
 
 		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );
 
@@ -891,16 +805,12 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'text_id' => 123456789, // not in the test DB
 		] );
 
-		MediaWiki\suppressWarnings(); // bad text_id will trigger a warning.
-
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
 
 		// NOTE: check this twice, once for lazy initialization, and once with the cached value.
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
-
-		MediaWiki\suppressWarnings( 'end' );
 	}
 
 	public function provideGetSize() {
@@ -994,7 +904,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testLoadFromId() {
 		$rev = $this->testPage->getRevision();
-		$this->hideDeprecated( 'Revision::loadFromId' );
 		$this->assertRevEquals(
 			$rev,
 			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
@@ -1117,7 +1026,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev[1] = $this->testPage->getLatest();
 
 		$this->assertSame(
-			[ $rev[1] => $textLength ],
+			[ $rev[1] => strval( $textLength ) ],
 			Revision::getParentLengths(
 				wfGetDB( DB_MASTER ),
 				[ $rev[1] ]
@@ -1140,7 +1049,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev[2] = $this->testPage->getLatest();
 
 		$this->assertSame(
-			[ $rev[1] => $textOneLength, $rev[2] => $textTwoLength ],
+			[ $rev[1] => strval( $textOneLength ), $rev[2] => strval( $textTwoLength ) ],
 			Revision::getParentLengths(
 				wfGetDB( DB_MASTER ),
 				[ $rev[1], $rev[2] ]
@@ -1169,6 +1078,14 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				$rev->getTitle()
 			)
 		);
+	}
+
+	/**
+	 * @covers Revision::getTitle
+	 */
+	public function testGetTitle_forBadRevision() {
+		$rev = new Revision( [] );
+		$this->assertNull( $rev->getTitle() );
 	}
 
 	/**
@@ -1346,21 +1263,14 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev = $this->testPage->getRevision();
 
 		// Clear any previous cache for the revision during creation
-		$key = $cache->makeGlobalKey( 'revision-row-1.29',
-			$db->getDomainID(),
-			$rev->getPage(),
-			$rev->getId()
-		);
+		$key = $cache->makeGlobalKey( 'revision', $db->getDomainID(), $rev->getPage(), $rev->getId() );
 		$cache->delete( $key, WANObjectCache::HOLDOFF_NONE );
 		$this->assertFalse( $cache->get( $key ) );
 
 		// Get the new revision and make sure it is in the cache and correct
 		$newRev = Revision::newKnownCurrent( $db, $rev->getPage(), $rev->getId() );
 		$this->assertRevEquals( $rev, $newRev );
-
-		$cachedRow = $cache->get( $key );
-		$this->assertNotFalse( $cachedRow );
-		$this->assertEquals( $rev->getId(), $cachedRow->rev_id );
+		$this->assertRevEquals( $rev, $cache->get( $key ) );
 	}
 
 	public function provideUserCanBitfield() {
@@ -1467,7 +1377,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			]
 		);
 		$user = $this->getTestUser( $userGroups )->getUser();
-		$revision = new Revision( [ 'deleted' => $bitField ], 0, $this->testPage->getTitle() );
+		$revision = new Revision( [ 'deleted' => $bitField ] );
 
 		$this->assertSame(
 			$expected,
