@@ -3763,7 +3763,7 @@ $wgResourceLoaderValidateStaticJS = false;
  * @code
  *   $wgResourceLoaderLESSVars = [
  *     'exampleFontSize'  => '1em',
- *     'exampleBlue' => '#eee',
+ *     'exampleBlue' => '#36c',
  *   ];
  * @endcode
  * @since 1.22
