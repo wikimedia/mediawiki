@@ -9,8 +9,6 @@ use Wikimedia\Rdbms\ResultWrapper;
 class SqlSearchResultSet extends SearchResultSet {
 	/** @var ResultWrapper Result object from database */
 	protected $resultSet;
-	/** @var SearchResult[] SearchResult objects extracted from $resultSet */
-	private $results;
 	/** @var string Requested search query */
 	protected $terms;
 	/** @var int|null Total number of hits for $terms */
