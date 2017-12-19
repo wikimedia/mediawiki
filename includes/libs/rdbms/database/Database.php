@@ -237,6 +237,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $trxProfiler;
 
 	/**
+	 * @var bool Whether writing is allowed on this connection.
+	 *      Should be false for connections to replicas.
+	 */
+	protected $allowWrite = true;
+
+	/**
 	 * Constructor and database handle and attempt to connect to the DB server
 	 *
 	 * IDatabase classes should not be constructed directly in external
@@ -277,6 +283,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->errorLogger = $params['errorLogger'];
+		$this->allowWrite = empty( $params['noWrite'] );
 
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = DatabaseDomain::newUnspecified();
@@ -908,6 +915,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $isWrite ) {
+			if ( !$this->allowWrite ) {
+				throw new DBError(
+					$this,
+					'Write operations are not allowed on this database connection!'
+				);
+			}
+
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
 			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$reason = $this->getReadOnlyReason();
@@ -2951,6 +2965,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function begin( $fname = __METHOD__, $mode = self::TRANSACTION_EXPLICIT ) {
+		if ( !$this->allowWrite ) {
+			throw new DBError(
+				$this,
+				'Write operations are not allowed on this database connection!'
+			);
+		}
+
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->mTrxLevel ) {
 			if ( $this->mTrxAtomicLevels ) {
@@ -3012,6 +3033,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
+		if ( !$this->allowWrite ) {
+			// we should never get here, since begin() would already throw
+			throw new DBError(
+				$this,
+				'Write operations are not allowed on this database connection!'
+			);
+		}
+
 		if ( $this->mTrxLevel && $this->mTrxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
 			$levels = implode( ', ', $this->mTrxAtomicLevels );
