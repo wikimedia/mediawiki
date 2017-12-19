@@ -117,6 +117,8 @@
 
 			this.$element.addClass( classes.join( ' ' ) );
 		}
+
+		this.updateUiBasedOnState();
 	};
 
 	/* Initialization */
@@ -142,6 +144,7 @@
 			this.itemModel.isSelected() &&
 			this.invertModel.isSelected()
 		);
+		this.toggle( this.itemModel.isVisible() );
 	};
 
 	/**

@@ -406,15 +406,6 @@
 	};
 
 	/**
-	 * Switch the view of the filters model
-	 *
-	 * @param {string} view Requested view
-	 */
-	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
-		this.filtersModel.switchView( view );
-	};
-
-	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
@@ -1168,5 +1159,41 @@
 		} ).then( function () {
 			this.updateChangesList( null, 'markSeen' );
 		}.bind( this ) );
+	};
+
+	/**
+	 * Set the current search for the system.
+	 *
+	 * @param {string} searchQuery Search query, including triggers
+	 */
+	mw.rcfilters.Controller.prototype.setSearch = function ( searchQuery ) {
+		this.filtersModel.setSearch( searchQuery );
+	};
+
+	/**
+	 * Switch the view by changing the search query trigger
+	 * without changing the search term
+	 *
+	 * @param  {string} view View to change to
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view ) +
+			this.filtersModel.removeViewTriggers( this.filtersModel.getSearch() )
+		);
+	};
+
+	/**
+	 * Reset the search for a specific view. This means we null the search query
+	 * and replace it with the relevant trigger for the requested view
+	 *
+	 * @param  {string} [view='default'] View to change to
+	 */
+	mw.rcfilters.Controller.prototype.resetSearchForView = function ( view ) {
+		view = view || 'default';
+
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view )
+		);
 	};
 }( mediaWiki, jQuery ) );
