@@ -76,7 +76,7 @@ trait SearchApi {
 			if ( $alternatives[0] === null ) {
 				$alternatives[0] = self::$BACKEND_NULL_PARAM;
 			}
-			$this->allowedParams['backend'] = [
+			$params['backend'] = [
 				ApiBase::PARAM_DFLT => $searchConfig->getSearchType(),
 				ApiBase::PARAM_TYPE => $alternatives,
 			];
@@ -157,15 +157,7 @@ trait SearchApi {
 			$searchEngine = MediaWikiServices::getInstance()->getSearchEngineFactory()->create( $type );
 			$limit = $params['limit'];
 			$searchEngine->setNamespaces( $params['namespace'] );
-			$offset = null;
-			if ( isset( $params['offset'] ) ) {
-				// If the API supports offset then it probably
-				// wants to fetch limit+1 so it can check if
-				// more results are available to properly set
-				// the continue param
-				$offset = $params['offset'];
-				$limit += 1;
-			}
+			$offset = isset( $params['offset'] ) ? $params['offset'] : null;
 			$searchEngine->setLimitOffset( $limit, $offset );
 
 			// Initialize requested search profiles.
