@@ -4,9 +4,13 @@
 	 * URI Processor for RCFilters
 	 *
 	 * @param {mw.rcfilters.dm.FiltersViewModel} filtersModel Filters view model
+	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.UriProcessor = function MwRcfiltersController( filtersModel ) {
+	mw.rcfilters.UriProcessor = function MwRcfiltersController( filtersModel, config ) {
+		config = config || {};
 		this.filtersModel = filtersModel;
+
+		this.setNormalizeTarget( !!config.normalizeTarget );
 	};
 
 	/* Initialization */
@@ -102,6 +106,10 @@
 		var parts,
 			// matches [/wiki/]SpecialNS:RCL/[Namespace:]Title/Subpage/Subsubpage/etc
 			re = /^((?:\/.+?\/)?.*?:.*?)\/(.*)$/;
+
+		if ( !this.normalizeTarget ) {
+			return uri;
+		}
 
 		// target in title param
 		if ( uri.query.title ) {
@@ -276,5 +284,14 @@
 			),
 			{ urlversion: '2' }
 		);
+	};
+
+	/**
+	 * Set the option to normalize 'target' portion of the URL
+	 *
+	 * @param {boolean} isNormalized Target should be normalized
+	 */
+	mw.rcfilters.UriProcessor.prototype.setNormalizeTarget = function ( isNormalized ) {
+		this.normalizeTarget = !!isNormalized;
 	};
 }( mediaWiki, jQuery ) );

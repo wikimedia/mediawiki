@@ -20,6 +20,7 @@
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
 		this.daysPreferenceName = config.daysPreferenceName;
 		this.limitPreferenceName = config.limitPreferenceName;
+		this.normalizeTarget = !!config.normalizeTarget;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -213,7 +214,8 @@
 		this.filtersModel.initializeFilters( filterStructure, views );
 
 		this.uriProcessor = new mw.rcfilters.UriProcessor(
-			this.filtersModel
+			this.filtersModel,
+			{ normalizeTarget: this.normalizeTarget }
 		);
 
 		if ( !mw.user.isAnon() ) {

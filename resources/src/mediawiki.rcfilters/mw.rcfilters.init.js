@@ -24,7 +24,7 @@
 					{
 						savedQueriesPreferenceName: savedQueriesPreferenceName,
 						daysPreferenceName: daysPreferenceName,
-						limitPreferenceName: limitPreferenceName
+						limitPreferenceName: limitPreferenceName,
 					}
 				);
 
