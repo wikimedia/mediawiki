@@ -335,8 +335,8 @@ class HistoryAction extends FormlessAction {
 	 * @return FeedItem
 	 */
 	function feedItem( $row ) {
-		$rev = new Revision( $row, 0, $this->getTitle() );
-
+		$rev = new Revision( $row );
+		$rev->setTitle( $this->getTitle() );
 		$text = FeedUtils::formatDiffRow(
 			$this->getTitle(),
 			$this->getTitle()->getPreviousRevisionID( $rev->getId() ),
@@ -639,10 +639,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
 		$latest = false, $firstInList = false ) {
-		$rev = new Revision( $row, 0, $this->getTitle() );
+		$rev = new Revision( $row );
+		$rev->setTitle( $this->getTitle() );
 
 		if ( is_object( $next ) ) {
-			$prevRev = new Revision( $next, 0, $this->getTitle() );
+			$prevRev = new Revision( $next );
+			$prevRev->setTitle( $this->getTitle() );
 		} else {
 			$prevRev = null;
 		}

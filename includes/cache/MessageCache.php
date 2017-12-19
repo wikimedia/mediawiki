@@ -1048,7 +1048,8 @@ class MessageCache {
 		if ( $titleObj->getLatestRevID() ) {
 			$revision = Revision::newKnownCurrent(
 				$dbr,
-				$titleObj
+				$titleObj->getArticleID(),
+				$titleObj->getLatestRevID()
 			);
 		} else {
 			$revision = false;
