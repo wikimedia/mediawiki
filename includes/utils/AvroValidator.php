@@ -37,133 +37,133 @@ class AvroValidator {
 	 */
 	public static function getErrors( AvroSchema $schema, $datum ) {
 		switch ( $schema->type ) {
-		case AvroSchema::NULL_TYPE:
-			if ( !is_null( $datum ) ) {
-				return self::wrongType( 'null', $datum );
-			}
-			return [];
-		case AvroSchema::BOOLEAN_TYPE:
-			if ( !is_bool( $datum ) ) {
-				return self::wrongType( 'boolean', $datum );
-			}
-			return [];
-		case AvroSchema::STRING_TYPE:
-		case AvroSchema::BYTES_TYPE:
-			if ( !is_string( $datum ) ) {
-				return self::wrongType( 'string', $datum );
-			}
-			return [];
-		case AvroSchema::INT_TYPE:
-			if ( !is_int( $datum ) ) {
-				return self::wrongType( 'integer', $datum );
-			}
-			if ( AvroSchema::INT_MIN_VALUE > $datum
-				|| $datum > AvroSchema::INT_MAX_VALUE
-			) {
-				return self::outOfRange(
-					AvroSchema::INT_MIN_VALUE,
-					AvroSchema::INT_MAX_VALUE,
-					$datum
-				);
-			}
-			return [];
-		case AvroSchema::LONG_TYPE:
-			if ( !is_int( $datum ) ) {
-				return self::wrongType( 'integer', $datum );
-			}
-			if ( AvroSchema::LONG_MIN_VALUE > $datum
-				|| $datum > AvroSchema::LONG_MAX_VALUE
-			) {
-				return self::outOfRange(
-					AvroSchema::LONG_MIN_VALUE,
-					AvroSchema::LONG_MAX_VALUE,
-					$datum
-				);
-			}
-			return [];
-		case AvroSchema::FLOAT_TYPE:
-		case AvroSchema::DOUBLE_TYPE:
-			if ( !is_float( $datum ) && !is_int( $datum ) ) {
-				return self::wrongType( 'float or integer', $datum );
-			}
-			return [];
-		case AvroSchema::ARRAY_SCHEMA:
-			if ( !is_array( $datum ) ) {
-				return self::wrongType( 'array', $datum );
-			}
-			$errors = [];
-			foreach ( $datum as $d ) {
-				$result = self::getErrors( $schema->items(), $d );
-				if ( $result ) {
+			case AvroSchema::NULL_TYPE:
+				if ( !is_null( $datum ) ) {
+					return self::wrongType( 'null', $datum );
+				}
+				return [];
+			case AvroSchema::BOOLEAN_TYPE:
+				if ( !is_bool( $datum ) ) {
+					return self::wrongType( 'boolean', $datum );
+				}
+				return [];
+			case AvroSchema::STRING_TYPE:
+			case AvroSchema::BYTES_TYPE:
+				if ( !is_string( $datum ) ) {
+					return self::wrongType( 'string', $datum );
+				}
+				return [];
+			case AvroSchema::INT_TYPE:
+				if ( !is_int( $datum ) ) {
+					return self::wrongType( 'integer', $datum );
+				}
+				if ( AvroSchema::INT_MIN_VALUE > $datum
+					|| $datum > AvroSchema::INT_MAX_VALUE
+				) {
+					return self::outOfRange(
+						AvroSchema::INT_MIN_VALUE,
+						AvroSchema::INT_MAX_VALUE,
+						$datum
+					);
+				}
+				return [];
+			case AvroSchema::LONG_TYPE:
+				if ( !is_int( $datum ) ) {
+					return self::wrongType( 'integer', $datum );
+				}
+				if ( AvroSchema::LONG_MIN_VALUE > $datum
+					|| $datum > AvroSchema::LONG_MAX_VALUE
+				) {
+					return self::outOfRange(
+						AvroSchema::LONG_MIN_VALUE,
+						AvroSchema::LONG_MAX_VALUE,
+						$datum
+					);
+				}
+				return [];
+			case AvroSchema::FLOAT_TYPE:
+			case AvroSchema::DOUBLE_TYPE:
+				if ( !is_float( $datum ) && !is_int( $datum ) ) {
+					return self::wrongType( 'float or integer', $datum );
+				}
+				return [];
+			case AvroSchema::ARRAY_SCHEMA:
+				if ( !is_array( $datum ) ) {
+					return self::wrongType( 'array', $datum );
+				}
+				$errors = [];
+				foreach ( $datum as $d ) {
+					$result = self::getErrors( $schema->items(), $d );
+					if ( $result ) {
+						$errors[] = $result;
+					}
+				}
+				return $errors;
+			case AvroSchema::MAP_SCHEMA:
+				if ( !is_array( $datum ) ) {
+					return self::wrongType( 'array', $datum );
+				}
+				$errors = [];
+				foreach ( $datum as $k => $v ) {
+					if ( !is_string( $k ) ) {
+						$errors[] = self::wrongType( 'string key', $k );
+					}
+					$result = self::getErrors( $schema->values(), $v );
+					if ( $result ) {
+						$errors[$k] = $result;
+					}
+				}
+				return $errors;
+			case AvroSchema::UNION_SCHEMA:
+				$errors = [];
+				foreach ( $schema->schemas() as $schema ) {
+					$result = self::getErrors( $schema, $datum );
+					if ( !$result ) {
+						return [];
+					}
 					$errors[] = $result;
 				}
-			}
-			return $errors;
-		case AvroSchema::MAP_SCHEMA:
-			if ( !is_array( $datum ) ) {
-				return self::wrongType( 'array', $datum );
-			}
-			$errors = [];
-			foreach ( $datum as $k => $v ) {
-				if ( !is_string( $k ) ) {
-					$errors[] = self::wrongType( 'string key', $k );
+				if ( $errors ) {
+					return [ "Expected any one of these to be true", $errors ];
 				}
-				$result = self::getErrors( $schema->values(), $v );
-				if ( $result ) {
-					$errors[$k] = $result;
+				return "No schemas provided to union";
+			case AvroSchema::ENUM_SCHEMA:
+				if ( !in_array( $datum, $schema->symbols() ) ) {
+					$symbols = implode( ', ', $schema->symbols );
+					return "Expected one of $symbols but recieved $datum";
 				}
-			}
-			return $errors;
-		case AvroSchema::UNION_SCHEMA:
-			$errors = [];
-			foreach ( $schema->schemas() as $schema ) {
-				$result = self::getErrors( $schema, $datum );
-				if ( !$result ) {
-					return [];
+				return [];
+			case AvroSchema::FIXED_SCHEMA:
+				if ( !is_string( $datum ) ) {
+					return self::wrongType( 'string', $datum );
 				}
-				$errors[] = $result;
-			}
-			if ( $errors ) {
-				return [ "Expected any one of these to be true", $errors ];
-			}
-			return "No schemas provided to union";
-		case AvroSchema::ENUM_SCHEMA:
-			if ( !in_array( $datum, $schema->symbols() ) ) {
-				$symbols = implode( ', ', $schema->symbols );
-				return "Expected one of $symbols but recieved $datum";
-			}
-			return [];
-		case AvroSchema::FIXED_SCHEMA:
-			if ( !is_string( $datum ) ) {
-				return self::wrongType( 'string', $datum );
-			}
-			$len = strlen( $datum );
-			if ( $len !== $schema->size() ) {
-				return "Expected string of length {$schema->size()}, "
-					. "but recieved one of length $len";
-			}
-			return [];
-		case AvroSchema::RECORD_SCHEMA:
-		case AvroSchema::ERROR_SCHEMA:
-		case AvroSchema::REQUEST_SCHEMA:
-			if ( !is_array( $datum ) ) {
-				return self::wrongType( 'array', $datum );
-			}
-			$errors = [];
-			foreach ( $schema->fields() as $field ) {
-				$name = $field->name();
-				if ( !array_key_exists( $name, $datum ) ) {
-					$errors[$name] = 'Missing expected field';
-					continue;
+				$len = strlen( $datum );
+				if ( $len !== $schema->size() ) {
+					return "Expected string of length {$schema->size()}, "
+						. "but recieved one of length $len";
 				}
-				$result = self::getErrors( $field->type(), $datum[$name] );
-				if ( $result ) {
-					$errors[$name] = $result;
+				return [];
+			case AvroSchema::RECORD_SCHEMA:
+			case AvroSchema::ERROR_SCHEMA:
+			case AvroSchema::REQUEST_SCHEMA:
+				if ( !is_array( $datum ) ) {
+					return self::wrongType( 'array', $datum );
 				}
-			}
-			return $errors;
-		default:
-			return "Unknown avro schema type: {$schema->type}";
+				$errors = [];
+				foreach ( $schema->fields() as $field ) {
+					$name = $field->name();
+					if ( !array_key_exists( $name, $datum ) ) {
+						$errors[$name] = 'Missing expected field';
+						continue;
+					}
+					$result = self::getErrors( $field->type(), $datum[$name] );
+					if ( $result ) {
+						$errors[$name] = $result;
+					}
+				}
+				return $errors;
+			default:
+				return "Unknown avro schema type: {$schema->type}";
 		}
 	}
 

@@ -209,10 +209,10 @@ class SearchMySQL extends SearchDatabase {
 
 	public function supports( $feature ) {
 		switch ( $feature ) {
-		case 'title-suffix-filter':
-			return true;
-		default:
-			return parent::supports( $feature );
+			case 'title-suffix-filter':
+				return true;
+			default:
+				return parent::supports( $feature );
 		}
 	}
 

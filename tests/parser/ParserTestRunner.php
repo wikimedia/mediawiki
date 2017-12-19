@@ -708,15 +708,15 @@ class ParserTestRunner {
 	public function meetsRequirements( $requirements ) {
 		foreach ( $requirements as $requirement ) {
 			switch ( $requirement['type'] ) {
-			case 'hook':
-				$ok = $this->requireHook( $requirement['name'] );
-				break;
-			case 'functionHook':
-				$ok = $this->requireFunctionHook( $requirement['name'] );
-				break;
-			case 'transparentHook':
-				$ok = $this->requireTransparentHook( $requirement['name'] );
-				break;
+				case 'hook':
+					$ok = $this->requireHook( $requirement['name'] );
+					break;
+				case 'functionHook':
+					$ok = $this->requireFunctionHook( $requirement['name'] );
+					break;
+				case 'transparentHook':
+					$ok = $this->requireTransparentHook( $requirement['name'] );
+					break;
 			}
 			if ( !$ok ) {
 				return false;

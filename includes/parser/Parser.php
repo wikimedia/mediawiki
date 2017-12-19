@@ -5022,40 +5022,40 @@ class Parser {
 						$paramName = $paramMap[$magicName];
 
 						switch ( $paramName ) {
-						case 'gallery-internal-alt':
-							$alt = $this->stripAltText( $match, false );
-							break;
-						case 'gallery-internal-link':
-							$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
-							$chars = self::EXT_LINK_URL_CLASS;
-							$addr = self::EXT_LINK_ADDR;
-							$prots = $this->mUrlProtocols;
-							// check to see if link matches an absolute url, if not then it must be a wiki link.
-							if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
-								// Result of LanguageConverter::markNoConversion
-								// invoked on an external link.
-								$linkValue = substr( $linkValue, 4, -2 );
-							}
-							if ( preg_match( "/^($prots)$addr$chars*$/u", $linkValue ) ) {
-								$link = $linkValue;
-								$this->mOutput->addExternalLink( $link );
-							} else {
-								$localLinkTitle = Title::newFromText( $linkValue );
-								if ( $localLinkTitle !== null ) {
-									$this->mOutput->addLink( $localLinkTitle );
-									$link = $localLinkTitle->getLinkURL();
+							case 'gallery-internal-alt':
+								$alt = $this->stripAltText( $match, false );
+								break;
+							case 'gallery-internal-link':
+								$linkValue = strip_tags( $this->replaceLinkHoldersText( $match ) );
+								$chars = self::EXT_LINK_URL_CLASS;
+								$addr = self::EXT_LINK_ADDR;
+								$prots = $this->mUrlProtocols;
+								// check to see if link matches an absolute url, if not then it must be a wiki link.
+								if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
+									// Result of LanguageConverter::markNoConversion
+									// invoked on an external link.
+									$linkValue = substr( $linkValue, 4, -2 );
 								}
-							}
-							break;
-						default:
-							// Must be a handler specific parameter.
-							if ( $handler->validateParam( $paramName, $match ) ) {
-								$handlerOptions[$paramName] = $match;
-							} else {
-								// Guess not, consider it as caption.
-								wfDebug( "$parameterMatch failed parameter validation\n" );
-								$label = '|' . $parameterMatch;
-							}
+								if ( preg_match( "/^($prots)$addr$chars*$/u", $linkValue ) ) {
+									$link = $linkValue;
+									$this->mOutput->addExternalLink( $link );
+								} else {
+									$localLinkTitle = Title::newFromText( $linkValue );
+									if ( $localLinkTitle !== null ) {
+										$this->mOutput->addLink( $localLinkTitle );
+										$link = $localLinkTitle->getLinkURL();
+									}
+								}
+								break;
+							default:
+								// Must be a handler specific parameter.
+								if ( $handler->validateParam( $paramName, $match ) ) {
+									$handlerOptions[$paramName] = $match;
+								} else {
+									// Guess not, consider it as caption.
+									wfDebug( "$parameterMatch failed parameter validation\n" );
+									$label = '|' . $parameterMatch;
+								}
 						}
 
 					} else {
@@ -5217,52 +5217,52 @@ class Parser {
 					} else {
 						# Validate internal parameters
 						switch ( $paramName ) {
-						case 'manualthumb':
-						case 'alt':
-						case 'class':
-							# @todo FIXME: Possibly check validity here for
-							# manualthumb? downstream behavior seems odd with
-							# missing manual thumbs.
-							$validated = true;
-							$value = $this->stripAltText( $value, $holders );
-							break;
-						case 'link':
-							$chars = self::EXT_LINK_URL_CLASS;
-							$addr = self::EXT_LINK_ADDR;
-							$prots = $this->mUrlProtocols;
-							if ( $value === '' ) {
-								$paramName = 'no-link';
-								$value = true;
+							case 'manualthumb':
+							case 'alt':
+							case 'class':
+								# @todo FIXME: Possibly check validity here for
+								# manualthumb? downstream behavior seems odd with
+								# missing manual thumbs.
 								$validated = true;
-							} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
-								if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
-									$paramName = 'link-url';
-									$this->mOutput->addExternalLink( $value );
-									if ( $this->mOptions->getExternalLinkTarget() ) {
-										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
+								$value = $this->stripAltText( $value, $holders );
+								break;
+							case 'link':
+								$chars = self::EXT_LINK_URL_CLASS;
+								$addr = self::EXT_LINK_ADDR;
+								$prots = $this->mUrlProtocols;
+								if ( $value === '' ) {
+									$paramName = 'no-link';
+									$value = true;
+									$validated = true;
+								} elseif ( preg_match( "/^((?i)$prots)/", $value ) ) {
+									if ( preg_match( "/^((?i)$prots)$addr$chars*$/u", $value, $m ) ) {
+										$paramName = 'link-url';
+										$this->mOutput->addExternalLink( $value );
+										if ( $this->mOptions->getExternalLinkTarget() ) {
+											$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
+										}
+										$validated = true;
 									}
-									$validated = true;
+								} else {
+									$linkTitle = Title::newFromText( $value );
+									if ( $linkTitle ) {
+										$paramName = 'link-title';
+										$value = $linkTitle;
+										$this->mOutput->addLink( $linkTitle );
+										$validated = true;
+									}
 								}
-							} else {
-								$linkTitle = Title::newFromText( $value );
-								if ( $linkTitle ) {
-									$paramName = 'link-title';
-									$value = $linkTitle;
-									$this->mOutput->addLink( $linkTitle );
-									$validated = true;
-								}
-							}
-							break;
-						case 'frameless':
-						case 'framed':
-						case 'thumbnail':
-							// use first appearing option, discard others.
-							$validated = !$seenformat;
-							$seenformat = true;
-							break;
-						default:
-							# Most other things appear to be empty or numeric...
-							$validated = ( $value === false || is_numeric( trim( $value ) ) );
+								break;
+							case 'frameless':
+							case 'framed':
+							case 'thumbnail':
+								// use first appearing option, discard others.
+								$validated = !$seenformat;
+								$seenformat = true;
+								break;
+							default:
+								# Most other things appear to be empty or numeric...
+								$validated = ( $value === false || is_numeric( trim( $value ) ) );
 						}
 					}
 

@@ -162,18 +162,17 @@ class XCFHandler extends BitmapHandler {
 			// Unclear from base media type if it has an alpha layer,
 			// so just assume that it does since it "potentially" could.
 			switch ( $header['base_type'] ) {
-			case 0:
-				$metadata['colorType'] = 'truecolour-alpha';
-				break;
-			case 1:
-				$metadata['colorType'] = 'greyscale-alpha';
-				break;
-			case 2:
-				$metadata['colorType'] = 'index-coloured';
-				break;
-			default:
-				$metadata['colorType'] = 'unknown';
-
+				case 0:
+					$metadata['colorType'] = 'truecolour-alpha';
+					break;
+				case 1:
+					$metadata['colorType'] = 'greyscale-alpha';
+					break;
+				case 2:
+					$metadata['colorType'] = 'index-coloured';
+					break;
+				default:
+					$metadata['colorType'] = 'unknown';
 			}
 		} else {
 			// Marker to prevent repeated attempted extraction

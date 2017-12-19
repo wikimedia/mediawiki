@@ -1308,16 +1308,15 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	protected function formatPlaintext( $plaintext, $format ) {
 		switch ( $format ) {
-		case self::FORMAT_TEXT:
-		case self::FORMAT_PLAIN:
-			return $plaintext;
+			case self::FORMAT_TEXT:
+			case self::FORMAT_PLAIN:
+				return $plaintext;
 
-		case self::FORMAT_PARSE:
-		case self::FORMAT_BLOCK_PARSE:
-		case self::FORMAT_ESCAPED:
-		default:
-			return htmlspecialchars( $plaintext, ENT_QUOTES );
-
+			case self::FORMAT_PARSE:
+			case self::FORMAT_BLOCK_PARSE:
+			case self::FORMAT_ESCAPED:
+			default:
+				return htmlspecialchars( $plaintext, ENT_QUOTES );
 		}
 	}
 

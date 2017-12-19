@@ -97,17 +97,17 @@ class LCStoreStaticArray implements LCStore {
 		$data = $encoded[1];
 
 		switch ( $type ) {
-		case 'v':
-			return $data;
-		case 's':
-			return unserialize( $data );
-		case 'a':
-			return array_map( function ( $v ) {
-				return LCStoreStaticArray::decode( $v );
-			}, $data );
-		default:
-			throw new RuntimeException(
-				'Unable to decode ' . var_export( $encoded, true ) );
+			case 'v':
+				return $data;
+			case 's':
+				return unserialize( $data );
+			case 'a':
+				return array_map( function ( $v ) {
+					return LCStoreStaticArray::decode( $v );
+				}, $data );
+			default:
+				throw new RuntimeException(
+					'Unable to decode ' . var_export( $encoded, true ) );
 		}
 	}
 
