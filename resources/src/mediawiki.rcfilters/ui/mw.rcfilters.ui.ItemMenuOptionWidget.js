@@ -142,6 +142,7 @@
 			this.itemModel.isSelected() &&
 			this.invertModel.isSelected()
 		);
+		this.toggle( this.itemModel.isVisible() );
 	};
 
 	/**

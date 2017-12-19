@@ -109,6 +109,7 @@
 			'mw-rcfilters-ui-filterMenuSectionOptionWidget-active',
 			this.model.isActive()
 		);
+		this.toggle( this.model.isVisible() );
 	};
 
 	/**

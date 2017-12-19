@@ -121,6 +121,7 @@
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			update: 'onModelUpdate',
+			searchChange: 'onModelSearchChange',
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
@@ -237,20 +238,18 @@
 		this.focus();
 	};
 
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelSearchChange = function ( value ) {
+		this.input.setValue( value );
+	};
 	/**
 	 * Respond to input change event
 	 *
 	 * @param {string} value Value of the input
 	 */
-	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view;
-
-		value = value.trim();
-
-		view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
-
-		this.controller.switchView( view );
+	 mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
+		this.controller.setSearch( value );
 	};
+
 	/**
 	 * Respond to query button click
 	 */
@@ -508,42 +507,19 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-		var widget = this,
-			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
-			oldInputValue = this.input.getValue().trim();
+		var menuOption = this.menu.getItemFromModel( tagItem.getModel() );
 
 		this.menu.setUserSelecting( true );
-
-		// Reset input
-		this.input.setValue( '' );
-
-		// Switch view
-		this.controller.switchView( tagItem.getView() );
-
 		// Parent method
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
 
-		this.menu.selectItem( menuOption );
+		// Switch view
+		this.controller.resetSearchForView( tagItem.getView() );
+
 		this.selectTag( tagItem );
+		this.scrollToTop( menuOption.$element );
 
-		// Scroll to the item
-		if ( this.model.removeViewTriggers( oldInputValue ) ) {
-			// We're binding a 'once' to the itemVisibilityChange event
-			// so this happens when the menu is ready after the items
-			// are visible again, in case this is done right after the
-			// user filtered the results
-			this.getMenu().once(
-				'itemVisibilityChange',
-				function () {
-					widget.scrollToTop( menuOption.$element );
-					widget.menu.setUserSelecting( false );
-				}
-			);
-		} else {
-			this.scrollToTop( menuOption.$element );
-			this.menu.setUserSelecting( false );
-		}
-
+		this.menu.setUserSelecting( false );
 	};
 
 	/**
@@ -619,7 +595,7 @@
 			this.controller,
 			this.model,
 			$.extend( {
-				filterFromInput: true
+				// filterFromInput: true
 			}, menuConfig )
 		);
 	};

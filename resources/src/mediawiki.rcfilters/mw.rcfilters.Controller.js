@@ -406,15 +406,6 @@
 	};
 
 	/**
-	 * Switch the view of the filters model
-	 *
-	 * @param {string} view Requested view
-	 */
-	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
-		this.filtersModel.switchView( view );
-	};
-
-	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
@@ -1169,4 +1160,24 @@
 			this.updateChangesList( null, 'markSeen' );
 		}.bind( this ) );
 	};
+
+	mw.rcfilters.Controller.prototype.setSearch = function ( searchQuery ) {
+		this.filtersModel.setSearch( searchQuery );
+	};
+
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view ) +
+			this.filtersModel.removeViewTriggers( this.filtersModel.getSearch() )
+		);
+	};
+
+	mw.rcfilters.Controller.prototype.resetSearchForView = function ( view ) {
+		view = view || 'default';
+
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view )
+		);
+	};
+
 }( mediaWiki, jQuery ) );

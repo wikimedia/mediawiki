@@ -52,6 +52,7 @@
 		this.numericRange = config.range;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
+		this.visible = config.visible === undefined ? true : !!config.visible;
 
 		this.currSelected = null;
 		this.active = !!config.active;
@@ -943,5 +944,24 @@
 		}
 
 		return value;
+	};
+
+	mw.rcfilters.dm.FilterGroup.prototype.toggleVisible = function ( isVisible ) {
+		isVisible = isVisible === undefined ? !this.visible : isVisible;
+
+		if ( this.visible !== isVisible ) {
+			this.visible = isVisible;
+			this.emit( 'update' );
+		}
+	};
+
+	mw.rcfilters.dm.FilterGroup.prototype.isVisible = function () {
+		return this.visible;
+	};
+
+	mw.rcfilters.dm.FilterGroup.prototype.setVisibleItems = function ( visibleItems ) {
+		this.getItems().forEach( function ( itemModel ) {
+			itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
+		} );
 	};
 }( mediaWiki ) );
