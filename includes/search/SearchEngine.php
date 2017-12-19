@@ -77,7 +77,9 @@ abstract class SearchEngine {
 	 * @return SearchResultSet|Status|null
 	 */
 	public function searchText( $term ) {
-		return $this->doSearchText( $term );
+		return $this->maybePaginate( function () use ( $term ) {
+			return $this->doSearchText( $term );
+		} );
 	}
 
 	/**
@@ -132,7 +134,9 @@ abstract class SearchEngine {
 	 * @return SearchResultSet|null
 	 */
 	public function searchTitle( $term ) {
-		return $this->doSearchTitle( $term );
+		return $this->maybePaginate( function () use ( $term ) {
+			return $this->doSearchTitle( $term );
+		} );
 	}
 
 	/**
@@ -144,6 +148,40 @@ abstract class SearchEngine {
 	 */
 	protected function doSearchTitle( $term ) {
 		return null;
+	}
+
+	/**
+	 * Performs an overfetch and shrink operation to determine if
+	 * the next page is available for search engines that do not
+	 * explicitly implement their own pagination.
+	 *
+	 * @param Closure $fn Takes no arguments
+	 * @return SearchResultSet|Status<SearchResultSet>|null Result of calling $fn
+	 */
+	private function maybePaginate( Closure $fn ) {
+		if ( $this instanceof PaginatingSearchEngine ) {
+			return $fn();
+		}
+		$this->limit++;
+		try {
+			$resultSetOrStatus = $fn();
+		} finally {
+			$this->limit--;
+		}
+
+		$resultSet = null;
+		if ( $resultSetOrStatus instanceof SearchResultSet ) {
+			$resultSet = $resultSetOrStatus;
+		} elseif ( $resultSetOrStatus instanceof Status &&
+			$resultSetOrStatus->getValue() instanceof SearchResultSet
+		) {
+			$resultSet = $resultSetOrStatus->getValue();
+		}
+		if ( $resultSet ) {
+			$resultSet->shrink( $this->limit );
+		}
+
+		return $resultSetOrStatus;
 	}
 
 	/**
@@ -524,6 +562,22 @@ abstract class SearchEngine {
 	}
 
 	/**
+	 * Perform an overfetch of completion search results. This allows
+	 * determining if another page of results is available.
+	 *
+	 * @param string $search
+	 * @return SearchSuggestionSet
+	 */
+	protected function completionSearchBackendOverfetch( $search ) {
+		$this->limit++;
+		try {
+			return $this->completionSearchBackend( $search );
+		} finally {
+			$this->limit--;
+		}
+	}
+
+	/**
 	 * Perform a completion search.
 	 * Does not resolve namespaces and does not check variants.
 	 * Search engine implementations may want to override this function.
@@ -560,7 +614,8 @@ abstract class SearchEngine {
 			return SearchSuggestionSet::emptySuggestionSet(); // Return empty result
 		}
 		$search = $this->normalizeNamespaces( $search );
-		return $this->processCompletionResults( $search, $this->completionSearchBackend( $search ) );
+		$suggestions = $this->completionSearchBackendOverfetch( $search );
+		return $this->processCompletionResults( $search, $suggestions );
 	}
 
 	/**
@@ -574,8 +629,8 @@ abstract class SearchEngine {
 		}
 		$search = $this->normalizeNamespaces( $search );
 
-		$results = $this->completionSearchBackend( $search );
-		$fallbackLimit = $this->limit - $results->getSize();
+		$results = $this->completionSearchBackendOverfetch( $search );
+		$fallbackLimit = 1 + $this->limit - $results->getSize();
 		if ( $fallbackLimit > 0 ) {
 			global $wgContLang;
 
@@ -614,6 +669,10 @@ abstract class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
+		// We over-fetched to determine pagination. Shrink back down if we have extra results
+		// and mark if pagination is possible
+		$suggestions->shrink( $this->limit );
+
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$titles = $suggestions->map( function ( SearchSuggestion $sugg ) {
@@ -830,7 +889,6 @@ abstract class SearchEngine {
 		$setAugmentors = [];
 		$rowAugmentors = [];
 		Hooks::run( "SearchResultsAugment", [ &$setAugmentors, &$rowAugmentors ] );
-
 		if ( !$setAugmentors && !$rowAugmentors ) {
 			// We're done here
 			return;
