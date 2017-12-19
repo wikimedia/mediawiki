@@ -1,5 +1,5 @@
 <?php
-//Copy this File to 050-Auth.php and active PluggableAuth and SimpleSAMLphp there
+//Copy this File to 050-Auth.local.php and active PluggableAuth and SimpleSAMLphp there
 //wfLoadExtension( 'PluggableAuth' );
 //wfLoadExtension( 'SimpleSAMLphp' );
 //See https://www.mediawiki.org/wiki/Extension:SimpleSAMLphp for configuration details
