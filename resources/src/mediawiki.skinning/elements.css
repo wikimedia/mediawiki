@@ -205,11 +205,7 @@ tt,
 kbd,
 samp,
 .mw-code {
-	/*
-	 * Some browsers will render the monospace text too small, namely Firefox, Chrome and Safari.
-	 * Specifying any valid, second value will trigger correct behavior without forcing a different font.
-	 * See T176636
-	 */
+	/* Support: Blink, Gecko, Webkit; enable unified font sizes for monospace font. T176636 */
 	font-family: monospace, monospace;
 }
 
