@@ -1,7 +1,9 @@
 <?php
-//Copy this File to 050-Auth.local.php and active PluggableAuth and SimpleSAMLphp there
+//Copy this File to 050-Auth.local.php and activate PluggableAuth and SimpleSAMLphp there 
+//by removing comments of the folowing lines:
 //wfLoadExtension( 'PluggableAuth' );
 //wfLoadExtension( 'SimpleSAMLphp' );
+
 //See https://www.mediawiki.org/wiki/Extension:SimpleSAMLphp for configuration details
 //See https://simplesamlphp.org/ for simplesamlphp service provider
 //example setup instruction can be found here:
