@@ -2081,7 +2081,7 @@
 	"emailccsubject": "Kopio lähettämästäsi viestistä osoitteeseen $1: $2",
 	"emailsent": "Sähköposti lähetetty",
 	"emailsenttext": "Sähköpostiviestisi on lähetetty.",
-	"emailuserfooter": "Tämän sähköpostin {{GENDER:$1|lähetti}} $1 vastaanottajalle {{GENDER:$2|$2}} käyttämällä ”{{int:emailuser}}” -toimintoa {{GRAMMAR:inessive|{{SITENAME}}}}. Jos vastaat tähän sähköpostiin, sähköpostisi lähetetään suoraan {{GENDER:$1|alkuperäiselle lähettäjälle}}, paljastaen {{GENDER:$2|sinun}} sähköpostiosoitteesi {{GENDER:$1|hänelle}}.",
+	"emailuserfooter": "Tämän sähköpostin {{GENDER:$1|lähetti}} $1 vastaanottajalle {{GENDER:$2|$2}} käyttämällä ”{{int:emailuser}}” -toimintoa {{GRAMMAR:inessive|{{SITENAME}}}}. Jos vastaat tähän sähköpostiin, sinun sähköpostiviestisi lähetetään suoraan {{GENDER:$1|alkuperäiselle lähettäjälle}} ja samalla paljastetaan {{GENDER:$2|sinun}} sähköpostiosoitteesi {{GENDER:$1|hänelle}}.",
 	"usermessage-summary": "Jätetään järjestelmäviesti.",
 	"usermessage-editor": "Järjestelmäviestittäjä",
 	"watchlist": "Tarkkailulista",
