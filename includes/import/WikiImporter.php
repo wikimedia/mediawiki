@@ -543,13 +543,13 @@ class WikiImporter {
 		$buffer = "";
 		while ( $this->reader->read() ) {
 			switch ( $this->reader->nodeType ) {
-			case XMLReader::TEXT:
-			case XMLReader::CDATA:
-			case XMLReader::SIGNIFICANT_WHITESPACE:
-				$buffer .= $this->reader->value;
-				break;
-			case XMLReader::END_ELEMENT:
-				return $buffer;
+				case XMLReader::TEXT:
+				case XMLReader::CDATA:
+				case XMLReader::SIGNIFICANT_WHITESPACE:
+					$buffer .= $this->reader->value;
+					break;
+				case XMLReader::END_ELEMENT:
+					return $buffer;
 			}
 		}
 

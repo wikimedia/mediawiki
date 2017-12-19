@@ -112,11 +112,11 @@ abstract class SearchEngine {
 	 */
 	public function supports( $feature ) {
 		switch ( $feature ) {
-		case 'search-update':
-			return true;
-		case 'title-suffix-filter':
-		default:
-			return false;
+			case 'search-update':
+				return true;
+			case 'title-suffix-filter':
+			default:
+				return false;
 		}
 	}
 

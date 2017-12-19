@@ -1922,18 +1922,18 @@ class PPNode_Hash_Tree implements PPNode {
 				continue;
 			}
 			switch ( $child[self::NAME] ) {
-			case 'name':
-				$bits['name'] = new self( $children, $i );
-				break;
-			case 'attr':
-				$bits['attr'] = new self( $children, $i );
-				break;
-			case 'inner':
-				$bits['inner'] = new self( $children, $i );
-				break;
-			case 'close':
-				$bits['close'] = new self( $children, $i );
-				break;
+				case 'name':
+					$bits['name'] = new self( $children, $i );
+					break;
+				case 'attr':
+					$bits['attr'] = new self( $children, $i );
+					break;
+				case 'inner':
+					$bits['inner'] = new self( $children, $i );
+					break;
+				case 'close':
+					$bits['close'] = new self( $children, $i );
+					break;
 			}
 		}
 		if ( !isset( $bits['name'] ) ) {
@@ -2001,15 +2001,15 @@ class PPNode_Hash_Tree implements PPNode {
 				continue;
 			}
 			switch ( $child[self::NAME] ) {
-			case 'title':
-				$bits['title'] = new self( $children, $i );
-				break;
-			case 'part':
-				$parts[] = new self( $children, $i );
-				break;
-			case '@lineStart':
-				$bits['lineStart'] = '1';
-				break;
+				case 'title':
+					$bits['title'] = new self( $children, $i );
+					break;
+				case 'part':
+					$parts[] = new self( $children, $i );
+					break;
+				case '@lineStart':
+					$bits['lineStart'] = '1';
+					break;
 			}
 		}
 		if ( !isset( $bits['title'] ) ) {

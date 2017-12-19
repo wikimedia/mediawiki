@@ -3117,18 +3117,18 @@ class Language {
 	 */
 	function getArrow( $direction = 'forwards' ) {
 		switch ( $direction ) {
-		case 'forwards':
-			return $this->isRTL() ? '←' : '→';
-		case 'backwards':
-			return $this->isRTL() ? '→' : '←';
-		case 'left':
-			return '←';
-		case 'right':
-			return '→';
-		case 'up':
-			return '↑';
-		case 'down':
-			return '↓';
+			case 'forwards':
+				return $this->isRTL() ? '←' : '→';
+			case 'backwards':
+				return $this->isRTL() ? '→' : '←';
+			case 'left':
+				return '←';
+			case 'right':
+				return '→';
+			case 'up':
+				return '↑';
+			case 'down':
+				return '↓';
 		}
 	}
 

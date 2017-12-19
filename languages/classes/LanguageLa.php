@@ -47,65 +47,65 @@ class LanguageLa extends Language {
 		}
 
 		switch ( $case ) {
-		case 'genitive':
-			// only a few declensions, and even for those mostly the singular only
-			$in = [
-				'/u[ms]$/',                          # 2nd declension singular
-				'/ommunia$/',                        # 3rd declension neuter plural (partly)
-				'/a$/',                              # 1st declension singular
-				'/libri$/', '/nuntii$/', '/datae$/', # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
-				'/es$/'                              # 5th declension singular
-			];
-			$out = [
-				'i',
-				'ommunium',
-				'ae',
-				'librorum', 'nuntiorum', 'datorum',
-				'tionis', 'ntis', 'atis',
-				'ei'
-			];
-			return preg_replace( $in, $out, $word );
-		case 'accusative':
-			// only a few declensions, and even for those mostly the singular only
-			$in = [
-				'/u[ms]$/',                          # 2nd declension singular
-				'/a$/',                              # 1st declension singular
-				'/ommuniam$/',                       # 3rd declension neuter plural (partly)
-				'/libri$/', '/nuntii$/', '/datam$/', # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
-				'/es$/'                              # 5th declension singular
-			];
-			$out = [
-				'um',
-				'am',
-				'ommunia',
-				'libros', 'nuntios', 'data',
-				'tionem', 'ntem', 'atem',
-				'em'
-			];
-			return preg_replace( $in, $out, $word );
-		case 'ablative':
-			// only a few declensions, and even for those mostly the singular only
-			$in = [
-				'/u[ms]$/',                          # 2nd declension singular
-				'/ommunia$/',                        # 3rd declension neuter plural (partly)
-				'/a$/',                              # 1st declension singular
-				'/libri$/', '/nuntii$/', '/data$/',  # 2nd declension plural (partly)
-				'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
-				'/es$/'                              # 5th declension singular
-			];
-			$out = [
-				'o',
-				'ommunibus',
-				'a',
-				'libris', 'nuntiis', 'datis',
-				'tione', 'nte', 'ate',
-				'e'
-			];
-			return preg_replace( $in, $out, $word );
-		default:
-			return $word;
+			case 'genitive':
+				// only a few declensions, and even for those mostly the singular only
+				$in = [
+					'/u[ms]$/',                          # 2nd declension singular
+					'/ommunia$/',                        # 3rd declension neuter plural (partly)
+					'/a$/',                              # 1st declension singular
+					'/libri$/', '/nuntii$/', '/datae$/', # 2nd declension plural (partly)
+					'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+					'/es$/'                              # 5th declension singular
+				];
+				$out = [
+					'i',
+					'ommunium',
+					'ae',
+					'librorum', 'nuntiorum', 'datorum',
+					'tionis', 'ntis', 'atis',
+					'ei'
+				];
+				return preg_replace( $in, $out, $word );
+			case 'accusative':
+				// only a few declensions, and even for those mostly the singular only
+				$in = [
+					'/u[ms]$/',                          # 2nd declension singular
+					'/a$/',                              # 1st declension singular
+					'/ommuniam$/',                       # 3rd declension neuter plural (partly)
+					'/libri$/', '/nuntii$/', '/datam$/', # 2nd declension plural (partly)
+					'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+					'/es$/'                              # 5th declension singular
+				];
+				$out = [
+					'um',
+					'am',
+					'ommunia',
+					'libros', 'nuntios', 'data',
+					'tionem', 'ntem', 'atem',
+					'em'
+				];
+				return preg_replace( $in, $out, $word );
+			case 'ablative':
+				// only a few declensions, and even for those mostly the singular only
+				$in = [
+					'/u[ms]$/',                          # 2nd declension singular
+					'/ommunia$/',                        # 3rd declension neuter plural (partly)
+					'/a$/',                              # 1st declension singular
+					'/libri$/', '/nuntii$/', '/data$/',  # 2nd declension plural (partly)
+					'/tio$/', '/ns$/', '/as$/',          # 3rd declension singular (partly)
+					'/es$/'                              # 5th declension singular
+				];
+				$out = [
+					'o',
+					'ommunibus',
+					'a',
+					'libris', 'nuntiis', 'datis',
+					'tione', 'nte', 'ate',
+					'e'
+				];
+				return preg_replace( $in, $out, $word );
+			default:
+				return $word;
 		}
 	}
 }

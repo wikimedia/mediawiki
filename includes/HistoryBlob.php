@@ -560,26 +560,26 @@ class DiffHistoryBlob implements HistoryBlob {
 			$op = $x['op'];
 			++$p;
 			switch ( $op ) {
-			case self::XDL_BDOP_INS:
-				$x = unpack( 'Csize', substr( $diff, $p, 1 ) );
-				$p++;
-				$out .= substr( $diff, $p, $x['size'] );
-				$p += $x['size'];
-				break;
-			case self::XDL_BDOP_INSB:
-				$x = unpack( 'Vcsize', substr( $diff, $p, 4 ) );
-				$p += 4;
-				$out .= substr( $diff, $p, $x['csize'] );
-				$p += $x['csize'];
-				break;
-			case self::XDL_BDOP_CPY:
-				$x = unpack( 'Voff/Vcsize', substr( $diff, $p, 8 ) );
-				$p += 8;
-				$out .= substr( $base, $x['off'], $x['csize'] );
-				break;
-			default:
-				wfDebug( __METHOD__ . ": invalid op\n" );
-				return false;
+				case self::XDL_BDOP_INS:
+					$x = unpack( 'Csize', substr( $diff, $p, 1 ) );
+					$p++;
+					$out .= substr( $diff, $p, $x['size'] );
+					$p += $x['size'];
+					break;
+				case self::XDL_BDOP_INSB:
+					$x = unpack( 'Vcsize', substr( $diff, $p, 4 ) );
+					$p += 4;
+					$out .= substr( $diff, $p, $x['csize'] );
+					$p += $x['csize'];
+					break;
+				case self::XDL_BDOP_CPY:
+					$x = unpack( 'Voff/Vcsize', substr( $diff, $p, 8 ) );
+					$p += 8;
+					$out .= substr( $base, $x['off'], $x['csize'] );
+					break;
+				default:
+					wfDebug( __METHOD__ . ": invalid op\n" );
+					return false;
 			}
 		}
 		return $out;

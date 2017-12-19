@@ -479,23 +479,23 @@ class XmlTypeCheck {
 				continue;
 			}
 			switch ( $field ) {
-			case 'typepublic':
-			case 'typesystem':
-				$parsed['type'] = $value;
-				break;
-			case 'pubquote':
-			case 'pubapos':
-				$parsed['publicid'] = $value;
-				break;
-			case 'pubsysquote':
-			case 'pubsysapos':
-			case 'sysquote':
-			case 'sysapos':
-				$parsed['systemid'] = $value;
-				break;
-			case 'internal':
-				$parsed['internal'] = $value;
-				break;
+				case 'typepublic':
+				case 'typesystem':
+					$parsed['type'] = $value;
+					break;
+				case 'pubquote':
+				case 'pubapos':
+					$parsed['publicid'] = $value;
+					break;
+				case 'pubsysquote':
+				case 'pubsysapos':
+				case 'sysquote':
+				case 'sysapos':
+					$parsed['systemid'] = $value;
+					break;
+				case 'internal':
+					$parsed['internal'] = $value;
+					break;
 			}
 		}
 		return $parsed;

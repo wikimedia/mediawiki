@@ -182,44 +182,44 @@ abstract class BaseTemplate extends QuickTemplate {
 				continue;
 			}
 			switch ( $boxName ) {
-			case 'SEARCH':
-				// Search is a special case, skins should custom implement this
-				$boxes[$boxName] = [
-					'id' => 'p-search',
-					'header' => $this->getMsg( 'search' )->text(),
-					'generated' => false,
-					'content' => true,
-				];
-				break;
-			case 'TOOLBOX':
-				$msgObj = $this->getMsg( 'toolbox' );
-				$boxes[$boxName] = [
-					'id' => 'p-tb',
-					'header' => $msgObj->exists() ? $msgObj->text() : 'toolbox',
-					'generated' => false,
-					'content' => $this->getToolbox(),
-				];
-				break;
-			case 'LANGUAGES':
-				if ( $this->data['language_urls'] !== false ) {
-					$msgObj = $this->getMsg( 'otherlanguages' );
+				case 'SEARCH':
+					// Search is a special case, skins should custom implement this
 					$boxes[$boxName] = [
-						'id' => 'p-lang',
-						'header' => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
+						'id' => 'p-search',
+						'header' => $this->getMsg( 'search' )->text(),
 						'generated' => false,
-						'content' => $this->data['language_urls'] ?: [],
+						'content' => true,
 					];
-				}
-				break;
-			default:
-				$msgObj = $this->getMsg( $boxName );
-				$boxes[$boxName] = [
-					'id' => "p-$boxName",
-					'header' => $msgObj->exists() ? $msgObj->text() : $boxName,
-					'generated' => true,
-					'content' => $content,
-				];
-				break;
+					break;
+				case 'TOOLBOX':
+					$msgObj = $this->getMsg( 'toolbox' );
+					$boxes[$boxName] = [
+						'id' => 'p-tb',
+						'header' => $msgObj->exists() ? $msgObj->text() : 'toolbox',
+						'generated' => false,
+						'content' => $this->getToolbox(),
+					];
+					break;
+				case 'LANGUAGES':
+					if ( $this->data['language_urls'] !== false ) {
+						$msgObj = $this->getMsg( 'otherlanguages' );
+						$boxes[$boxName] = [
+							'id' => 'p-lang',
+							'header' => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
+							'generated' => false,
+							'content' => $this->data['language_urls'] ?: [],
+						];
+					}
+					break;
+				default:
+					$msgObj = $this->getMsg( $boxName );
+					$boxes[$boxName] = [
+						'id' => "p-$boxName",
+						'header' => $msgObj->exists() ? $msgObj->text() : $boxName,
+						'generated' => true,
+						'content' => $content,
+					];
+					break;
 			}
 		}
 

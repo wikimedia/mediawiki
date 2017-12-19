@@ -304,40 +304,40 @@ class SquidPurgeClient {
 	 */
 	protected function processReadBuffer() {
 		switch ( $this->readState ) {
-		case 'idle':
-			return 'done';
-		case 'status':
-		case 'header':
-			$lines = explode( "\r\n", $this->readBuffer, 2 );
-			if ( count( $lines ) < 2 ) {
+			case 'idle':
 				return 'done';
-			}
-			if ( $this->readState == 'status' ) {
-				$this->processStatusLine( $lines[0] );
-			} else { // header
-				$this->processHeaderLine( $lines[0] );
-			}
-			$this->readBuffer = $lines[1];
-			return 'continue';
-		case 'body':
-			if ( $this->bodyRemaining !== null ) {
-				if ( $this->bodyRemaining > strlen( $this->readBuffer ) ) {
-					$this->bodyRemaining -= strlen( $this->readBuffer );
+			case 'status':
+			case 'header':
+				$lines = explode( "\r\n", $this->readBuffer, 2 );
+				if ( count( $lines ) < 2 ) {
+					return 'done';
+				}
+				if ( $this->readState == 'status' ) {
+					$this->processStatusLine( $lines[0] );
+				} else { // header
+					$this->processHeaderLine( $lines[0] );
+				}
+				$this->readBuffer = $lines[1];
+				return 'continue';
+			case 'body':
+				if ( $this->bodyRemaining !== null ) {
+					if ( $this->bodyRemaining > strlen( $this->readBuffer ) ) {
+						$this->bodyRemaining -= strlen( $this->readBuffer );
+						$this->readBuffer = '';
+						return 'done';
+					} else {
+						$this->readBuffer = substr( $this->readBuffer, $this->bodyRemaining );
+						$this->bodyRemaining = 0;
+						$this->nextRequest();
+						return 'continue';
+					}
+				} else {
+					// No content length, read all data to EOF
 					$this->readBuffer = '';
 					return 'done';
-				} else {
-					$this->readBuffer = substr( $this->readBuffer, $this->bodyRemaining );
-					$this->bodyRemaining = 0;
-					$this->nextRequest();
-					return 'continue';
 				}
-			} else {
-				// No content length, read all data to EOF
-				$this->readBuffer = '';
-				return 'done';
-			}
-		default:
-			throw new MWException( __METHOD__ . ': unexpected state' );
+			default:
+				throw new MWException( __METHOD__ . ': unexpected state' );
 		}
 	}
 
