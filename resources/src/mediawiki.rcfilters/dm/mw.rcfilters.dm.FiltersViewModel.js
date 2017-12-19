@@ -20,6 +20,7 @@
 
 		this.views = {};
 		this.currentView = 'default';
+		this.searchQuery = null;
 
 		// Events
 		this.aggregate( { update: 'filterItemUpdate' } );
@@ -401,7 +402,8 @@
 			}
 		} );
 
-		this.currentView = 'default';
+		// this.currentView = 'default';
+		this.setSearch( '' );
 
 		this.updateHighlightedState();
 
@@ -1096,19 +1098,6 @@
 	};
 
 	/**
-	 * Switch the current view
-	 *
-	 * @param {string} view View name
-	 * @fires update
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.switchView = function ( view ) {
-		if ( this.views[ view ] && this.currentView !== view ) {
-			this.currentView = view;
-			this.emit( 'update' );
-		}
-	};
-
-	/**
 	 * Get the current view
 	 *
 	 * @return {string} Current view
@@ -1145,6 +1134,82 @@
 		} );
 
 		return result;
+	};
+
+	/**
+	 * Return a version of the given string that is without any
+	 * view triggers.
+	 *
+	 * @param {string} str Given string
+	 * @return {string} Result
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.removeViewTriggers = function ( str ) {
+		if ( this.getViewByTrigger( str.substr( 0, 1 ) ) !== 'default' ) {
+			str = str.substr( 1 );
+		}
+
+		return str;
+	};
+
+	/**
+	 * Get the view from the given string by a trigger, if it exists
+	 *
+	 * @param {string} str Given string
+	 * @return {string} View name
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getViewFromString = function ( str ) {
+		return this.getViewByTrigger( str.substr( 0, 1 ) );
+	};
+
+	/**
+	 * Set the current search for the system.
+	 * This also dictates what items and groups are visible according
+	 * to the search in #findMatches
+	 *
+	 * @param {string} searchQuery Search query, including triggers
+	 * @fires searchChange
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.setSearch = function ( searchQuery ) {
+		var visibleGroups, visibleGroupNames;
+
+		if ( this.searchQuery !== searchQuery ) {
+			// Check if the view changed
+			this.switchView( this.getViewFromString( searchQuery ) );
+
+			visibleGroups = this.findMatches( searchQuery );
+			visibleGroupNames = Object.keys( visibleGroups );
+
+			// Update visibility of items and groups
+			$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
+				// Check if the group is visible at all
+				groupModel.toggleVisible( visibleGroupNames.indexOf( groupName ) !== -1 );
+				groupModel.setVisibleItems( visibleGroups[ groupName ] || [] );
+			} );
+
+			this.searchQuery = searchQuery;
+			this.emit( 'searchChange', this.searchQuery );
+		}
+	};
+
+	/**
+	 * Get the current search
+	 *
+	 * @return {string} Current search query
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getSearch = function () {
+		return this.searchQuery;
+	};
+
+	/**
+	 * Switch the current view
+	 *
+	 * @private
+	 * @param {string} view View name
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.switchView = function ( view ) {
+		if ( this.views[ view ] && this.currentView !== view ) {
+			this.currentView = view;
+		}
 	};
 
 	/**
@@ -1209,18 +1274,4 @@
 		this.getItemByName( filterName ).clearHighlightColor();
 	};
 
-	/**
-	 * Return a version of the given string that is without any
-	 * view triggers.
-	 *
-	 * @param {string} str Given string
-	 * @return {string} Result
-	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.removeViewTriggers = function ( str ) {
-		if ( this.getViewByTrigger( str.substr( 0, 1 ) ) !== 'default' ) {
-			str = str.substr( 1 );
-		}
-
-		return str;
-	};
 }( mediaWiki, jQuery ) );
