@@ -329,6 +329,21 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 					'Redirect test',
 				],
 			] ],
+			[ [
+				"Extra results must not be returned",
+				'provision' => [
+					'Example',
+					'Example Bar',
+					'Example Foo',
+					'Example Foo/Bar'
+				],
+				'query' => 'foo',
+				'results' => [
+					'Example',
+					'Example Bar',
+					'Example Foo',
+				],
+			] ],
 		];
 	}
 
@@ -337,16 +352,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::searchBackend
 	 */
 	public function testSearchBackend( array $case ) {
-		$search = $stub = $this->getMockBuilder( SearchEngine::class )
-			->setMethods( [ 'completionSearchBackend' ] )->getMock();
-
-		$return = SearchSuggestionSet::fromStrings( $case['provision'] );
-
-		$search->expects( $this->any() )
-			->method( 'completionSearchBackend' )
-			->will( $this->returnValue( $return ) );
-
-		$search->setLimitOffset( 3 );
+		$search = $this->mockSearchWithResults( $case['provision'] );
 		$results = $search->completionSearch( $case['query'] );
 
 		$results = $results->map( function ( SearchSuggestion $s ) {
@@ -358,5 +364,44 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 			$results,
 			$case[0]
 		);
+	}
+
+	public function paginationProvider() {
+		$res = [ 'Example', 'Example Bar', 'Example Foo', 'Example Foo/Bar' ];
+		return [
+			'With less than requested results no pagination' => [
+				false, array_slice( $res, 0, 2 ),
+			],
+			'With same as requested results no pagination' => [
+				false, array_slice( $res, 0, 3 ),
+			],
+			'With extra result returned offer pagination' => [
+				true, $res,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider paginationProvider
+	 */
+	public function testPagination( $hasMoreResults, $provision ) {
+		$search = $this->mockSearchWithResults( $provision );
+		$results = $search->completionSearch( 'irrelevant' );
+
+		$this->assertEquals( $hasMoreResults, $results->hasMoreResults() );
+	}
+
+	private function mockSearchWithResults( $titleStrings, $limit = 3 ) {
+		$search = $stub = $this->getMockBuilder( SearchEngine::class )
+			->setMethods( [ 'completionSearchBackend' ] )->getMock();
+
+		$return = SearchSuggestionSet::fromStrings( $titleStrings );
+
+		$search->expects( $this->any() )
+			->method( 'completionSearchBackend' )
+			->will( $this->returnValue( $return ) );
+
+		$search->setLimitOffset( $limit );
+		return $search;
 	}
 }

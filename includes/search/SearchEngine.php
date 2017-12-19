@@ -78,7 +78,9 @@ abstract class SearchEngine {
 	 * @return SearchResultSet|Status|null
 	 */
 	public function searchText( $term ) {
-		return $this->doSearchText( $term );
+		return $this->maybePaginate( function () use ( $term ) {
+			return $this->doSearchText( $term );
+		} );
 	}
 
 	protected function doSearchText( $term ) {
@@ -100,7 +102,9 @@ abstract class SearchEngine {
 	 * @since 1.29
 	 */
 	public function searchArchiveTitle( $term ) {
-		return $this->doSearchArchiveTitle( $term );
+		return $this->maybePaginate( function () use ( $term ) {
+			return $this->doSearchArchiveTitle( $term );
+		} );
 	}
 
 	protected function doSearchArchiveTitle( $term ) {
@@ -119,11 +123,29 @@ abstract class SearchEngine {
 	 * @return SearchResultSet|null
 	 */
 	public function searchTitle( $term ) {
-		return $this->doSearchTitle( $term );
+		return $this->maybePaginate( function () use ( $term ) {
+			return $this->doSearchTitle( $term );
+		} );
 	}
 
 	protected function doSearchTitle( $term ) {
 		return null;
+	}
+
+	private function maybePaginate( Closure $fn ) {
+		if ( $this instanceof PaginatingSearchEngine ) {
+			return $fn();
+		}
+		$this->limit++;
+		try {
+			$resultSet = $fn();
+		} finally {
+			$this->limit--;
+		}
+		if ( $resultSet instanceof SearchResultSet ) {
+			$resultSet->shrink( $this->limit );
+		}
+		return $resultSet;
 	}
 
 	/**
@@ -490,6 +512,15 @@ abstract class SearchEngine {
 		return $search;
 	}
 
+	protected function completionSearchBackendOverfetch( $search ) {
+		$this->limit++;
+		try {
+			return $this->completionSearchBackend( $search );
+		} finally {
+			$this->limit--;
+		}
+	}
+
 	/**
 	 * Perform a completion search.
 	 * Does not resolve namespaces and does not check variants.
@@ -527,7 +558,8 @@ abstract class SearchEngine {
 			return SearchSuggestionSet::emptySuggestionSet(); // Return empty result
 		}
 		$search = $this->normalizeNamespaces( $search );
-		return $this->processCompletionResults( $search, $this->completionSearchBackend( $search ) );
+		$suggestions = $this->completionSearchBackendOverfetch( $search );
+		return $this->processCompletionResults( $search, $suggestions );
 	}
 
 	/**
@@ -541,8 +573,8 @@ abstract class SearchEngine {
 		}
 		$search = $this->normalizeNamespaces( $search );
 
-		$results = $this->completionSearchBackend( $search );
-		$fallbackLimit = $this->limit - $results->getSize();
+		$results = $this->completionSearchBackendOverfetch( $search );
+		$fallbackLimit = 1 + $this->limit - $results->getSize();
 		if ( $fallbackLimit > 0 ) {
 			global $wgContLang;
 
@@ -581,6 +613,10 @@ abstract class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	protected function processCompletionResults( $search, SearchSuggestionSet $suggestions ) {
+		// We over-fetched to determine pagination. Shrink back down if we have extra results
+		// and mark if pagination is possible
+		$suggestions->shrink( $this->limit );
+
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$titles = $suggestions->map( function ( SearchSuggestion $sugg ) {
@@ -797,7 +833,6 @@ abstract class SearchEngine {
 		$setAugmentors = [];
 		$rowAugmentors = [];
 		Hooks::run( "SearchResultsAugment", [ &$setAugmentors, &$rowAugmentors ] );
-
 		if ( !$setAugmentors && !$rowAugmentors ) {
 			// We're done here
 			return;

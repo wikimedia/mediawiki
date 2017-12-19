@@ -24,8 +24,7 @@
 /**
  * @ingroup Search
  */
-class SearchResultSet implements IteratorAggregate {
-
+class SearchResultSet implements Countable, IteratorAggregate {
 	/**
 	 * Types of interwiki results
 	 */
@@ -54,7 +53,7 @@ class SearchResultSet implements IteratorAggregate {
 	 * as an array.
 	 * @var SearchResult[]
 	 */
-	private $results;
+	protected $results;
 
 	/**
 	 * Set of result's extra data, indexed per result id
@@ -65,11 +64,25 @@ class SearchResultSet implements IteratorAggregate {
 	 */
 	protected $extraData = [];
 
-	/** @var ArrayIterator|null Iterator supporting BC iteration methods */
+	/**
+	 * @var boolean True when there are more pages of search results available.
+	 */
+	private $hasMoreResults;
+
+	/**
+	 * @var ArrayIterator|null Iterator supporting BC iteration methods
+	 */
 	private $bcIterator;
 
-	public function __construct( $containedSyntax = false ) {
+	/**
+	 * @param bool $containedSyntax True when query is not requesting a simple
+	 *  term match
+	 * @param bool $hasMoreResults True when there are more pages of search
+	 *  results available.
+	 */
+	public function __construct( $containedSyntax = false, $hasMoreResults = false ) {
 		$this->containedSyntax = $containedSyntax;
+		$this->hasMoreResults = $hasMoreResults;
 	}
 
 	/**
@@ -84,7 +97,11 @@ class SearchResultSet implements IteratorAggregate {
 	}
 
 	function numRows() {
-		return 0;
+		return $this->count();
+	}
+
+	public function count() {
+		return count( $this->extractResults() );
 	}
 
 	/**
@@ -225,6 +242,31 @@ class SearchResultSet implements IteratorAggregate {
 	 */
 	public function searchContainedSyntax() {
 		return $this->containedSyntax;
+	}
+
+	/**
+	 * @return bool True when there are more pages of search results available.
+	 */
+	public function hasMoreResults() {
+		return $this->hasMoreResults;
+	}
+
+	/**
+	 * @param int $limit Shrink result set to $limit and flag
+	 *  if more results are available.
+	 */
+	public function shrink( $limit ) {
+		if ( $this->count() > $limit ) {
+			$this->hasMoreResults = true;
+			// shrinking result set for implementations that
+			// have not implemented extractResults and use
+			// the default cache location. Other implementations
+			// must override this as well.
+			$this->extractResults();
+			if ( is_array( $this->results ) ) {
+				$this->results = array_slice( $this->results, 0, $limit );
+			}
+		}
 	}
 
 	/**
