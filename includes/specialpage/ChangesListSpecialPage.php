@@ -631,7 +631,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * redirect properly with all necessary query parameters.
 	 */
 	protected function considerActionsForDefaultSavedQuery() {
-		if ( !$this->isStructuredFilterUiEnabled() ) {
+		if ( !$this->isStructuredFilterUiEnabled() || $this->including() ) {
 			return;
 		}
 
@@ -704,7 +704,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function includeRcFiltersApp() {
 		$out = $this->getOutput();
-		if ( $this->isStructuredFilterUiEnabled() ) {
+		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
 			$jsData = $this->getStructuredFilterJsData();
 
 			$messages = [];
@@ -1649,7 +1649,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		] );
 		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
 
-		if ( $this->isStructuredFilterUiEnabled() ) {
+		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
 			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
 			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
 		}
