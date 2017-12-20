@@ -133,6 +133,7 @@ class Names {
 		'de' => 'Deutsch', # German ("Du")
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
+		'de-de' => "Deutsch (Deutschland)\u{200E}", # German (Germany)
 		'de-formal' => "Deutsch (Sie-Form)\u{200E}", # German - formal address ("Sie")
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
@@ -148,6 +149,7 @@ class Names {
 		'en' => 'English', # English
 		'en-ca' => 'Canadian English', # Canadian English
 		'en-gb' => 'British English', # British English
+		'en-us' => 'American English', # American English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
 		'es-formal' => "español (formal)\u{200E}", # Spanish formal address
@@ -245,6 +247,7 @@ class Names {
 		'kn' => 'ಕನ್ನಡ', # Kannada
 		'ko' => '한국어', # Korean
 		'ko-kp' => '조선말', # Korean (DPRK), T190324
+		'ko-kr' => "한국어 (한국)\u{200E}", # Korean (Republic of Korea)
 		'koi' => 'Перем Коми', # Komi-Permyak
 		'kr' => 'Kanuri', # Kanuri, Central
 		'krc' => 'къарачай-малкъар', # Karachay-Balkar
@@ -350,6 +353,7 @@ class Names {
 		'ps' => 'پښتو', # Pashto
 		'pt' => 'português', # Portuguese
 		'pt-br' => 'português do Brasil', # Brazilian Portuguese
+		'pt-pt' => 'português de Portugal', # Portuguese (Portugal)
 		'qu' => 'Runa Simi', # Southern Quechua
 		'qug' => 'Runa shimi', # Kichwa/Northern Quechua (temporarily used until Kichwa has its own)
 		'rgn' => 'Rumagnôl', # Romagnol
