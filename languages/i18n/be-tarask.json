@@ -1420,7 +1420,7 @@
 	"rcfilters-filter-showlinkedfrom-label": "Паказаць зьмены на старонках, на якія спасылаецца",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Старонкі, на якія спасылаецца</strong> абраная старонка",
 	"rcfilters-filter-showlinkedto-label": "Паказаць зьмены старонак, якія спасылаюцца на",
-	"rcfilters-filter-showlinkedto-option-label": "Паказаць зьмены старонак, якія спасылаюцца <strong>НА</strong> старонку",
+	"rcfilters-filter-showlinkedto-option-label": "<strong>Старонкі, якія спасылаюцца на</strong> абраную старонку",
 	"rcfilters-target-page-placeholder": "Увядзіце назву старонкі",
 	"rcnotefrom": "Ніжэй {{PLURAL:$5|знаходзіцца зьмена|знаходзяцца зьмены}} з <strong>$4 $3</strong> (да <strong>$1</strong> на старонку).",
 	"rclistfromreset": "Скінуць выбар даты",
