@@ -87,9 +87,6 @@ interface ILoadBalancer {
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTO = 1;
 
-	/** Disable writing for the given connection. Used internally. Do not use with DB_MASTER! */
-	const CONN_NO_WRITE = 2;
-
 	/**
 	 * Construct a manager of IDatabase connection objects
 	 *
