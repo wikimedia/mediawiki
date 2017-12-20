@@ -78,6 +78,7 @@ because of Phabricator reports.
 * (T193566) Added language support for Ambonese Malay (abs).
 * (T194047) Added language support for Shawiya, Latin script (shy-latn).
 * (T195940) Added language support for Batak Mandailing (btm).
+* Added language code 'en-us' with fallback to 'en'.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
