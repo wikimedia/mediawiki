@@ -2965,13 +2965,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function begin( $fname = __METHOD__, $mode = self::TRANSACTION_EXPLICIT ) {
-		if ( !$this->allowWrite ) {
-			throw new DBError(
-				$this,
-				'Write operations are not allowed on this database connection!'
-			);
-		}
-
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->mTrxLevel ) {
 			if ( $this->mTrxAtomicLevels ) {
@@ -3033,14 +3026,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
-		if ( !$this->allowWrite ) {
-			// we should never get here, since begin() would already throw
-			throw new DBError(
-				$this,
-				'Write operations are not allowed on this database connection!'
-			);
-		}
-
 		if ( $this->mTrxLevel && $this->mTrxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
 			$levels = implode( ', ', $this->mTrxAtomicLevels );
