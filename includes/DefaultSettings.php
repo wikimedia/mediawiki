@@ -2943,6 +2943,10 @@ $wgExtraLanguageCodes = [
 	'bh' => 'bho', // Bihari language family
 	'no' => 'nb', // Norwegian language family
 	'simple' => 'en', // Simple English
+	'de-de' => 'de', // German (Germany)
+	'en-us' => 'en', // American English
+	'ko-kr' => 'ko', // Korean (Republic of Korea)
+	'pt-pt' => 'ko', // Portuguese (Portugal)
 ];
 
 /**
