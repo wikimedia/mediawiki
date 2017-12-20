@@ -366,6 +366,8 @@
 	"mypreferencesprotected": "Jums nav tiesību rediģēt savus iestatījumus.",
 	"ns-specialprotected": "Nevar izmainīt īpašās lapas.",
 	"titleprotected": "Šī lapa ir aizsargāta pret izveidošanu. To aizsargāja [[User:$1|$1]].\nNorādītais iemesls bija <em>$2</em>.",
+	"invalidtitle-knownnamespace": "Nederīgs nosaukums ar vārdtelpu \"$2\" un tekstu \"$3\"",
+	"invalidtitle-unknownnamespace": "Nederīgs nosaukums ar nezināmu vārdtelpas numuru \"$1\" un tekstu \"$2\"",
 	"exception-nologin": "Neesat pieslēdzies",
 	"virus-badscanner": "Nekorekta konfigurācija: nezināms vīrusu skeneris: ''$1''",
 	"virus-scanfailed": "skenēšana neizdevās (kods $1)",

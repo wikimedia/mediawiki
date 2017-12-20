@@ -1561,7 +1561,7 @@
 	"rcfilters-activefilters": "Title for the filters selection showing the active filters.",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
-	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|rcfilters-days-title}} or {{msg-mw|rcfilters-hours-title}} is used as $2",
+	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|rcfilters-days-title}} or {{msg-mw|rcfilters-hours-title}} is used as $2\n{{Identical|Change}}",
 	"rcfilters-date-popup-title": "Section title of date options on recent changes results",
 	"rcfilters-days-title": "Title for the options to change the number of days for the results shown.",
 	"rcfilters-hours-title": "Title for the options to change the number of hours for the results shown.",
