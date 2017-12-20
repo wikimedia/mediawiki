@@ -2941,7 +2941,11 @@ $wgExtraLanguageNames = [];
  */
 $wgExtraLanguageCodes = [
 	'bh' => 'bho', // Bihari language family
+	'de-de' => 'de', // German (Germany)
+	'en-us' => 'en', // American English
+	'ko-kr' => 'ko', // Korean (Republic of Korea)
 	'no' => 'nb', // Norwegian language family
+	'pt-pt' => 'pt', // Portuguese (Portugal)
 	'simple' => 'en', // Simple English
 ];
 
