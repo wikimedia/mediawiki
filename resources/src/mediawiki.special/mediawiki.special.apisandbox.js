@@ -121,9 +121,9 @@
 			}
 		},
 
-		capsuleWidget: {
+		tagWidget: {
 			getApiValue: function () {
-				var items = this.getItemsData();
+				var items = this.getValue();
 				if ( items.join( '' ).indexOf( '|' ) === -1 ) {
 					return items.join( '|' );
 				} else {
@@ -132,13 +132,13 @@
 			},
 			setApiValue: function ( v ) {
 				if ( v === undefined || v === '' || v === '\x1f' ) {
-					this.setItemsFromData( [] );
+					this.setValue( [] );
 				} else {
 					v = String( v );
 					if ( v.indexOf( '\x1f' ) !== 0 ) {
-						this.setItemsFromData( v.split( '|' ) );
+						this.setValue( v.split( '|' ) );
 					} else {
-						this.setItemsFromData( v.substr( 1 ).split( '\x1f' ) );
+						this.setValue( v.substr( 1 ).split( '\x1f' ) );
 					}
 				}
 			},
@@ -149,8 +149,8 @@
 				if ( !suppressErrors ) {
 					ok = this.getApiValue() !== undefined && !(
 						pi.allspecifier !== undefined &&
-						this.getItemsData().length > 1 &&
-						this.getItemsData().indexOf( pi.allspecifier ) !== -1
+						this.getValue().length > 1 &&
+						this.getValue().indexOf( pi.allspecifier ) !== -1
 					);
 				}
 
@@ -158,8 +158,8 @@
 				this.setIconTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
 			},
-			createItemWidget: function ( data, label ) {
-				var item = OO.ui.CapsuleMultiselectWidget.prototype.createItemWidget.call( this, data, label );
+			createTagItemWidget: function ( data, label ) {
+				var item = OO.ui.TagMultiselectWidget.prototype.createTagItemWidget.call( this, data, label );
 				if ( this.paramInfo.deprecatedvalues &&
 					this.paramInfo.deprecatedvalues.indexOf( data ) >= 0
 				) {
@@ -336,13 +336,13 @@
 				case 'string':
 				case 'user':
 					if ( Util.apiBool( pi.multi ) ) {
-						widget = new OO.ui.CapsuleMultiselectWidget( {
+						widget = new OO.ui.TagMultiselectWidget( {
 							allowArbitrary: true,
 							allowDuplicates: Util.apiBool( pi.allowsduplicates ),
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.capsuleWidget );
+						$.extend( widget, WidgetMethods.tagWidget );
 					} else {
 						widget = new OO.ui.TextInputWidget( {
 							required: Util.apiBool( pi.required )
@@ -457,12 +457,12 @@
 							} ) );
 						}
 
-						widget = new OO.ui.CapsuleMultiselectWidget( {
+						widget = new OO.ui.MenuTagMultiselectWidget( {
 							menu: { items: items },
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.capsuleWidget );
+						$.extend( widget, WidgetMethods.tagWidget );
 					} else {
 						widget = new OO.ui.DropdownWidget( {
 							menu: { items: items },
@@ -497,12 +497,12 @@
 							} ) );
 						}
 
-						widget = new OO.ui.CapsuleMultiselectWidget( {
+						widget = new OO.ui.MenuTagMultiselectWidget( {
 							menu: { items: items },
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.capsuleWidget );
+						$.extend( widget, WidgetMethods.tagWidget );
 						if ( Util.apiBool( pi.submodules ) ) {
 							widget.getSubmodules = WidgetMethods.submoduleWidget.multi;
 							widget.on( 'change', ApiSandbox.updateUI );
@@ -551,7 +551,7 @@
 						throw new Error( 'Unknown multiMode "' + multiMode + '"' );
 				}
 
-				widget = new OO.ui.CapsuleMultiselectWidget( {
+				widget = new OO.ui.PopupTagMultiselectWidget( {
 					allowArbitrary: true,
 					allowDuplicates: Util.apiBool( pi.allowsduplicates ),
 					$overlay: true,
@@ -561,13 +561,13 @@
 					}
 				} );
 				widget.paramInfo = pi;
-				$.extend( widget, WidgetMethods.capsuleWidget );
+				$.extend( widget, WidgetMethods.tagWidget );
 
 				func = function () {
 					if ( !innerWidget.isDisabled() ) {
 						innerWidget.apiCheckValid().done( function ( ok ) {
 							if ( ok ) {
-								widget.addItemsFromData( [ innerWidget.getApiValue() ] );
+								widget.addTag( innerWidget.getApiValue() );
 								innerWidget.setApiValue( undefined );
 							}
 						} );
@@ -1577,10 +1577,10 @@
 						}
 						if ( Util.apiBool( pi.parameters[ i ].multi ) ) {
 							tmp = [];
-							if ( flag && !( widget instanceof OO.ui.CapsuleMultiselectWidget ) &&
+							if ( flag && !( widget instanceof OO.ui.TagMultiselectWidget ) &&
 								!(
 									widget instanceof OptionalWidget &&
-									widget.widget instanceof OO.ui.CapsuleMultiselectWidget
+									widget.widget instanceof OO.ui.TagMultiselectWidget
 								)
 							) {
 								tmp.push( mw.message( 'api-help-param-multi-separate' ).parse() );
