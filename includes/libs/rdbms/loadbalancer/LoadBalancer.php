@@ -434,7 +434,7 @@ class LoadBalancer implements ILoadBalancer {
 			$serverName = $this->getServerName( $i );
 			$this->connLogger->debug( __METHOD__ . ": Using reader #$i: $serverName..." );
 
-			$conn = $this->openConnection( $i, $domain );
+			$conn = $this->openConnection( $i, $domain, self::CONN_NO_WRITE );
 			if ( !$conn ) {
 				$this->connLogger->warning( __METHOD__ . ": Failed connecting to $i/$domain" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
@@ -588,7 +588,7 @@ class LoadBalancer implements ILoadBalancer {
 
 				return false;
 			} else {
-				$conn = $this->openConnection( $index, self::DOMAIN_ANY );
+				$conn = $this->openConnection( $index, self::DOMAIN_ANY, self::CONN_NO_WRITE );
 				if ( !$conn ) {
 					$this->replLogger->warning( __METHOD__ . ': failed to connect to {dbserver}',
 						[ 'dbserver' => $server ] );
