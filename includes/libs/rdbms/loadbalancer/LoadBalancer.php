@@ -645,12 +645,6 @@ class LoadBalancer implements ILoadBalancer {
 		$oldConnsOpened = $this->connsOpened; // connections open now
 
 		if ( $i == self::DB_MASTER ) {
-			if ( $flags & self::CONN_NO_WRITE ) {
-				throw new InvalidArgumentException(
-					'Cannot set CONN_NO_WRITE flag on master connection!'
-				);
-			}
-
 			$i = $this->getWriterIndex();
 		} else {
 			# Try to find an available server in any the query groups (in order)
@@ -661,9 +655,6 @@ class LoadBalancer implements ILoadBalancer {
 					break;
 				}
 			}
-
-			// Request no-write connection, even if $i == $this->getWriterIndex().
-			$flags |= self::CONN_NO_WRITE;
 		}
 
 		# Operation-based index
@@ -680,9 +671,6 @@ class LoadBalancer implements ILoadBalancer {
 				$this->reportConnectionError();
 				return null; // not reached
 			}
-
-			// Request no-write connection, even if $i == $this->getWriterIndex().
-			$flags |= self::CONN_NO_WRITE;
 		}
 
 		# Now we have an explicit index into the servers array
@@ -803,13 +791,6 @@ class LoadBalancer implements ILoadBalancer {
 		// a) those are usually set to implicitly use transaction rounds via DBO_TRX
 		// b) those must support the use of explicit transaction rounds via beginMasterChanges()
 		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
-		$noWrite = ( ( $flags & self::CONN_NO_WRITE ) == self::CONN_NO_WRITE );
-
-		if ( $noWrite && $i === $this->getWriterIndex() ) {
-			// We can't disable writes on the master connection!
-			// TODO: Wrap the master connection, so write operations fail!
-			$noWrite = false;
-		}
 
 		if ( $domain !== false ) {
 			// Connection is to a foreign domain
@@ -826,7 +807,6 @@ class LoadBalancer implements ILoadBalancer {
 				// Open a new connection
 				$server = $this->mServers[$i];
 				$server['serverIndex'] = $i;
-				$server['noWrite'] = $noWrite;
 				$server['autoCommitOnly'] = $autoCommit;
 				$conn = $this->reallyOpenConnection( $server, false );
 				$host = $this->getServerName( $i );
@@ -883,13 +863,6 @@ class LoadBalancer implements ILoadBalancer {
 		$dbName = $domainInstance->getDatabase();
 		$prefix = $domainInstance->getTablePrefix();
 		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
-		$noWrite = ( ( $flags & self::CONN_NO_WRITE ) == self::CONN_NO_WRITE );
-
-		if ( $noWrite && $i === $this->getWriterIndex() ) {
-			// We can't disable writes on the master connection!
-			// TODO: Wrap the master connection, so write operations fail!
-			$noWrite = false;
-		}
 
 		if ( $autoCommit ) {
 			$connFreeKey = self::KEY_FOREIGN_FREE_NOROUND;
@@ -937,7 +910,6 @@ class LoadBalancer implements ILoadBalancer {
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
 			$server['autoCommitOnly'] = $autoCommit;
-			$server['noWrite'] = $noWrite;
 			$conn = $this->reallyOpenConnection( $server, $dbName );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
