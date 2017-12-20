@@ -40,6 +40,7 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
+* Added language code 'en-us' with fallback to 'en'.
 * …
 
 === Breaking changes in 1.32 ===
