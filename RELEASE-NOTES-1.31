@@ -69,6 +69,9 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK namespaces.
+* Added language code 'de-de' with fallback to 'de'.
+* Added language code 'en-us' with fallback to 'en'.
+* Added language code 'pt-pt' with fallback to 'pt'.
 
 === Other changes in 1.31 ===
 * MessageBlobStore::insertMessageBlob() (deprecated in 1.27) was removed.
