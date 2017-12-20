@@ -53,8 +53,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertNotSame( $dbw, $dbr, 'Replica connection is not master connection' );
 		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
+		$this->assertWriteForbidden( $dbr );
 
 		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTO );
 		$this->assertFalse( $dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTO" );
@@ -114,6 +116,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertNotSame( $dbw, $dbr, 'Replica connection is not master connection' );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
