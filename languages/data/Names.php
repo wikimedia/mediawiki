@@ -131,6 +131,7 @@ class Names {
 		'de' => 'Deutsch', # German ("Du")
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
+		'de-de' => "Deutsch (Deutschland)\xE2\x80\x8E", # German (Germany)
 		'de-formal' => "Deutsch (Sie-Form)\xE2\x80\x8E", # German - formal address ("Sie")
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
@@ -146,6 +147,7 @@ class Names {
 		'en' => 'English', # English
 		'en-ca' => 'Canadian English', # Canadian English
 		'en-gb' => 'British English', # British English
+		'en-us' => 'American English', # American English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
 		'et' => 'eesti', # Estonian
