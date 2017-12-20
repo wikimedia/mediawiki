@@ -4,6 +4,7 @@
 global $wgAutoloadLocalClasses;
 
 $wgAutoloadLocalClasses = [
+	'AbkhazUppercaseCollation' => __DIR__ . '/includes/collation/AbkhazUppercaseCollation.php',
 	'APCBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCBagOStuff.php',
 	'APCUBagOStuff' => __DIR__ . '/includes/libs/objectcache/APCUBagOStuff.php',
 	'AbstractContent' => __DIR__ . '/includes/content/AbstractContent.php',
