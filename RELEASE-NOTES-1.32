@@ -50,6 +50,10 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T193566) Added language support for Ambonese Malay (abs).
+* Added language code 'de-de' with fallback to 'de'.
+* Added language code 'en-us' with fallback to 'en'.
+* Added language code 'ko-kr' with fallback to 'ko'.
+* Added language code 'pt-pt' with fallback to 'pt'.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
