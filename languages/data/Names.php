@@ -147,6 +147,7 @@ class Names {
 		'en' => 'English', # English
 		'en-ca' => 'Canadian English', # Canadian English
 		'en-gb' => 'British English', # British English
+		'en-us' => 'American English', # American English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
 		'es-formal' => 'español (formal)', # Spanish formal address
