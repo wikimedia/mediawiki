@@ -61,7 +61,6 @@
 		$( 'body' )
 			.append( this.$overlay )
 			.addClass( 'mw-rcfilters-ui-initialized' );
-		this.initFormWidget();
 	};
 
 	/* Initialization */
