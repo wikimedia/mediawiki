@@ -1374,8 +1374,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * This works the same as getWithSetCallback() except:
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
 	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
-	 *        for all entity IDs in $regenById and it takes the following arguments:
-	 *          - $ids: a list of entity IDs to regenerate
+	 *        for all entity IDs in $ids and it takes the following arguments:
+	 *          - $ids: a list of entity IDs that require cache regeneration
 	 *          - &$ttls: a reference to the (entity ID => new TTL) map
 	 *          - &$setOpts: a reference to options for set() which can be altered
 	 *   - c) The return value is a map of (cache key => value) in the order of $keyedIds
