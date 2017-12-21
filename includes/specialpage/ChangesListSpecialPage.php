@@ -677,7 +677,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					// but are still valid and requested in the URL
 					$query = array_merge( $this->getRequest()->getValues(), $query );
 					unset( $query[ 'title' ] );
-					$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+					$this->getOutput()->redirect( $this->getPageTitle( true )->getCanonicalURL( $query ) );
 				} else {
 					// There's a default, but the version is not 2, and the server can't
 					// actually recognize the query itself. This happens if it is before
