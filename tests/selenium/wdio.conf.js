@@ -1,6 +1,3 @@
-/* eslint-env node */
-/* eslint no-undef: "error" */
-/* eslint-disable no-console, comma-dangle */
 'use strict';
 
 const password = 'vagrant',
@@ -51,7 +48,7 @@ exports.config = {
 		relPath( './tests/selenium/specs/**/*.js' ),
 		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
 		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' ),
+		relPath( './skins/*/tests/selenium/specs/**/*.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -233,7 +230,7 @@ exports.config = {
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
-	},
+	}
 	//
 	// Hook that gets executed after the suite has ended
 	// afterSuite: function (suite) {
