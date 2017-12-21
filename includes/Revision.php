@@ -979,8 +979,10 @@ class Revision implements IDBAccessObject {
 
 		$this->mRecord = $rec;
 
+		// Avoid PHP 7.1 warning of passing $this by reference
+		$revision = $this;
 		// TODO: hard-deprecate in 1.32 (or even 1.31?)
-		Hooks::run( 'RevisionInsertComplete', [ $this, null, null ] );
+		Hooks::run( 'RevisionInsertComplete', [ &$revision, null, null ] );
 
 		return $rec->getId();
 	}
