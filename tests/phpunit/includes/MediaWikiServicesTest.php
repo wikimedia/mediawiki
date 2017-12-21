@@ -7,6 +7,9 @@ use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SqlBlobStore;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -331,6 +334,9 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
 			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
 			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
+			'BlobStore' => [ 'BlobStore', BlobStore::class ],
+			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
+			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
 		];
 	}
 
