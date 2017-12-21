@@ -3891,6 +3891,8 @@
 	"tag-mw-replace-description": "Edits that remove more than 90% of the content of a page",
 	"tag-mw-rollback": "Rollback",
 	"tag-mw-rollback-description": "Edits that roll back previous edits using the rollback link",
+	"tag-mw-undo": "Undo",
+	"tag-mw-undo-description": "Edits that undo previous edits using the undo link",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",
