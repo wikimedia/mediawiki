@@ -710,7 +710,7 @@
 
 		$.each( this.groups, function ( name, model ) {
 			if ( model.isSticky() ) {
-				$.extend( true, result, model.getDefaultParams() );
+				$.extend( true, result, model.getParamRepresentation() );
 			}
 		} );
 
