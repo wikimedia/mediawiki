@@ -24,7 +24,8 @@
 			"Banjo",
 			"Josep Maria Roca Peña",
 			"Luan",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Athena in Wonderland"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -1444,9 +1445,9 @@
 	"rcfilters-preference-label": "Ocultar a versión mellorada de cambios recentes",
 	"rcfilters-preference-help": "Reverte o redeseño da interface de 2017 e tódalas ferramentas engadidas dende entón.",
 	"rcfilters-filter-showlinkedfrom-label": "Amosar os cambios en páxinas ligadas desde",
-	"rcfilters-filter-showlinkedfrom-option-label": "Amosar os cambios en páxinas ligadas <strong>DESDE</strong> unha páxina",
+	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Páxinas ligadas desde</strong> a páxina seleccionada",
 	"rcfilters-filter-showlinkedto-label": "Amosar os cambios en páxinas que ligan con",
-	"rcfilters-filter-showlinkedto-option-label": "Amosar os cambios en páxinas que ligan <strong>CON</strong> unha páxina",
+	"rcfilters-filter-showlinkedto-option-label": "<strong>Páxinas que ligan</strong> para a páxina seleccionada",
 	"rcfilters-target-page-placeholder": "Insire un nome de páxina",
 	"rcnotefrom": "A continuación {{PLURAL:$5|móstrase o cambio feito|móstranse os cambios feitos}} desde o <strong>$3</strong> ás <strong>$4</strong> (móstranse <strong>$1</strong> como máximo).",
 	"rclistfromreset": "Reinicializar a selección da data",
@@ -3546,6 +3547,7 @@
 	"tag-mw-replace-description": "Edicións que eliminan máis do 90% do contido dunha páxina",
 	"tag-mw-rollback": "Desfacer",
 	"tag-mw-rollback-description": "Edicións que desfán modificacións previas usando a ligazón de desfacer",
+	"tag-mw-undo": "Desfacer",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta páxina lista as etiquetas coas que o software pode marcar unha edición, e mailos seus significados.",
 	"tags-tag": "Nome da etiqueta",

@@ -3563,6 +3563,8 @@
 	"tag-mw-replace-description": "Bearbeitungen, die mehr als 90 % des Inhalts einer Seite entfernen.",
 	"tag-mw-rollback": "Zurücksetzung",
 	"tag-mw-rollback-description": "Bearbeitungen, die frühere Bearbeitungen mithilfe des Zurücksetzen-Links rückgängig machen.",
+	"tag-mw-undo": "Rückgängigmachung",
+	"tag-mw-undo-description": "Bearbeitungen, die frühere Versionen mit dem Link „Rückgängig machen“ zurücksetzen",
 	"tags-title": "Markierungen",
 	"tags-intro": "Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet wurden, sowie deren Bedeutung. \n\nBei entsprechender Einstellung können die Missbrauchfilter beliebige Markierungen in die Versionsgeschichte setzen. Man kann die Versionsgeschichte dann nach den Markierungen filtern.",
 	"tags-tag": "Markierungsname",

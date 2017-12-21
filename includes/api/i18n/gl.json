@@ -12,7 +12,8 @@
 			"Macofe",
 			"Hamilton Abreu",
 			"Umherirrender",
-			"Fitoschido"
+			"Fitoschido",
+			"Athena in Wonderland"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discusión]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitudes]\n</div>\n<strong>Estado:</strong> Tódalas funcionalidades mostradas nesta páxina deberían estar funcionando, pero a API aínda está desenrolo, e pode ser modificada en calquera momento. Apúntese na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discusión mediawiki-api-announce] para estar informado acerca das actualizacións.\n\n<strong>Solicitudes incorrectas:</strong> Cando se envían solicitudes incorrectas á API, envíase unha cabeceira HTTP coa chave \"MediaWiki-API-Error\" e, a seguir, tanto o valor da cabeceira como o código de erro retornado serán definidos co mesmo valor. Para máis información, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Erros e avisos]].\n\n<strong>Test:</strong> Para facilitar as probas das peticións da API, consulte [[Special:ApiSandbox]].",
@@ -1458,7 +1459,7 @@
 	"api-help-param-upload": "Debe ser enviado como un ficheiro importado usando multipart/form-data.",
 	"api-help-param-multi-separate": "Separe os valores con <kbd>|</kbd> ou [[Special:ApiHelp/main#main/datatypes|outros]].",
 	"api-help-param-multi-max": "O número máximo de valores é {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} para os bots).",
-	"api-help-param-multi-max-simple": "O número máximo de valores é {{PLURAL:1$|1$}}.",
+	"api-help-param-multi-max-simple": "O número máximo de valores é {{PLURAL:$1|$1}}.",
 	"api-help-param-multi-all": "Para especificar tódolos valores use <kbd>$1</kbd>.",
 	"api-help-param-default": "Por defecto: $1",
 	"api-help-param-default-empty": "Por defecto: <span class=\"apihelp-empty\">(baleiro)</span>",

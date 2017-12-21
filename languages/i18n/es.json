@@ -165,7 +165,8 @@
 			"Luisangelrg",
 			"Pierpao",
 			"Ohlila",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Athena in Wonderland"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -3618,6 +3619,7 @@
 	"tag-mw-replace-description": "Ediciones que eliminan más del 90 % del contenido de una página",
 	"tag-mw-rollback": "Reversión",
 	"tag-mw-rollback-description": "Ediciones que deshacen modificaciones previas usando la herramienta de reversor",
+	"tag-mw-undo": "Deshacer",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta página lista las etiquetas con las que el software puede marcar una edición y su significado.",
 	"tags-tag": "Nombre de etiqueta",
