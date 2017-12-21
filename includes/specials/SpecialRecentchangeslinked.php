@@ -306,7 +306,9 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @since 1.23
 	 */
 	public function getPageTitle( $subpage = false ) {
-		$subpage = $subpage ? $subpage : $this->rclTarget;
+		if ( $subpage === true ) {
+			$subpage = $this->rclTarget;
+		}
 
 		return parent::getPageTitle( $subpage );
 	}
