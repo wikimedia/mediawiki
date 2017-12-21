@@ -1624,6 +1624,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$tags[] = $tag;
 		}
 
+		// Check for undo tag
+		if ( $undidRevId !== 0 && in_array( 'mw-undo', ChangeTags::getSoftwareTags() ) ) {
+			$tags[] = 'mw-undo';
+		}
+
 		// Provide autosummaries if summary is not provided and autosummaries are enabled
 		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );

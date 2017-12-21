@@ -39,7 +39,8 @@ class ChangeTags {
 		'mw-changed-redirect-target',
 		'mw-blank',
 		'mw-replace',
-		'mw-rollback'
+		'mw-rollback',
+		'mw-undo',
 	];
 
 	/**
