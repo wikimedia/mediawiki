@@ -79,6 +79,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers PageArchive::undelete
+	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// First make sure old revisions are archived
