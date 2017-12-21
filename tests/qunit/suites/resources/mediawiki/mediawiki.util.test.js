@@ -246,7 +246,7 @@
 		assert.equal( href, '/wiki/#Fragment', 'empty title with fragment' );
 
 		href = util.getUrl( '#Fragment', { action: 'edit' } );
-		assert.equal( href, '/w/index.php?action=edit#Fragment', 'epmty title with query string and fragment' );
+		assert.equal( href, '/w/index.php?action=edit#Fragment', 'empty title with query string and fragment' );
 
 		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?title=Foo:Sandbox_%C3%84&action=edit#Fragment_.C3.84', 'title with query string, fragment, and special characters' );
