@@ -133,7 +133,7 @@ return [
 
 	'jquery' => [
 		'scripts' => [
-			'resources/lib/jquery/jquery.js',
+			'vendor/npm-asset/jquery/dist/jquery.js',
 			'resources/lib/jquery/jquery.migrate.js',
 		],
 		'raw' => true,
