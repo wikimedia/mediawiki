@@ -67,12 +67,12 @@ class ApiBlock extends ApiBase {
 				$params['user'] = $username;
 			}
 		} else {
-			$target = User::newFromName( $params['user'] );
+			list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
 
 			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
-			if ( $target instanceof User &&
-				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+			if ( $type === Block::TYPE_USER &&
+				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $params['user'] ) )
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
 			}
