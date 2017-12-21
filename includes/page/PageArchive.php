@@ -176,44 +176,32 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	public function listRevisions() {
-		$dbr = wfGetDB( DB_REPLICA );
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$queryInfo = $revisionStore->getArchiveQueryInfo();
 
-		$tables = [ 'archive' ] + $commentQuery['tables'];
-
-		$fields = [
-			'ar_minor_edit', 'ar_timestamp', 'ar_user', 'ar_user_text',
-			'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
-			'ar_page_id'
-		] + $commentQuery['fields'];
-
-		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'ar_content_format';
-			$fields[] = 'ar_content_model';
-		}
-
-		$conds = [ 'ar_namespace' => $this->title->getNamespace(),
-			'ar_title' => $this->title->getDBkey() ];
-
+		$conds = [
+			'ar_namespace' => $this->title->getNamespace(),
+			'ar_title' => $this->title->getDBkey(),
+		];
 		$options = [ 'ORDER BY' => 'ar_timestamp DESC' ];
 
-		$join_conds = [] + $commentQuery['joins'];
-
 		ChangeTags::modifyDisplayQuery(
-			$tables,
-			$fields,
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			$conds,
-			$join_conds,
+			$queryInfo['joins'],
 			$options,
 			''
 		);
 
-		return $dbr->select( $tables,
-			$fields,
+		$dbr = wfGetDB( DB_REPLICA );
+		return $dbr->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			$conds,
 			__METHOD__,
 			$options,
-			$join_conds
+			$queryInfo['joins']
 		);
 	}
 
@@ -542,47 +530,23 @@ class PageArchive {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
-
-		$tables = [ 'archive', 'revision' ] + $commentQuery['tables'];
-
-		$fields = [
-			'ar_id',
-			'ar_rev_id',
-			'rev_id',
-			'ar_text',
-			'ar_user',
-			'ar_user_text',
-			'ar_timestamp',
-			'ar_minor_edit',
-			'ar_flags',
-			'ar_text_id',
-			'ar_deleted',
-			'ar_page_id',
-			'ar_len',
-			'ar_sha1'
-		] + $commentQuery['fields'];
-
-		if ( $this->config->get( 'ContentHandlerUseDB' ) ) {
-			$fields[] = 'ar_content_format';
-			$fields[] = 'ar_content_model';
-		}
-
-		$join_conds = [
-			'revision' => [ 'LEFT JOIN', 'ar_rev_id=rev_id' ],
-		] + $commentQuery['joins'];
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$queryInfo = $revisionStore->getArchiveQueryInfo();
+		$queryInfo['tables'][] = 'revision';
+		$queryInfo['fields'][] = 'rev_id';
+		$queryInfo['joins']['revision'] = [ 'LEFT JOIN', 'ar_rev_id=rev_id' ];
 
 		/**
 		 * Select each archived revision...
 		 */
 		$result = $dbw->select(
-			$tables,
-			$fields,
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			$oldWhere,
 			__METHOD__,
 			/* options */
 			[ 'ORDER BY' => 'ar_timestamp' ],
-			$join_conds
+			$queryInfo['joins']
 		);
 
 		$rev_count = $result->numRows();
