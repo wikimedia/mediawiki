@@ -144,9 +144,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			$this->fail( 'Write operation should have failed!' );
 		} catch ( DBError $ex ) {
 			// check that the exception message contains "Write operation"
-			$constriant = new PHPUnit_Framework_Constraint_StringContains( 'Write operation' );
+			$constraint = new PHPUnit_Framework_Constraint_StringContains( 'Write operation' );
 
-			if ( !$constriant->evaluate( $ex->getMessage(), '', true ) ) {
+			if ( !$constraint->evaluate( $ex->getMessage(), '', true ) ) {
 				// re-throw original error, to preserve stack trace
 				throw $ex;
 			}
