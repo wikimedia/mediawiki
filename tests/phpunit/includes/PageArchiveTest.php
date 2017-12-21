@@ -11,8 +11,9 @@
  * ^--- important, causes tests not to fail with timeout
  */
 class PageArchiveTest extends MediaWikiTestCase {
+
 	/**
-	 * @var WikiPage $archivedPage
+	 * @var PageArchive $archivedPage
 	 */
 	private $archivedPage;
 
@@ -107,4 +108,61 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$row = $res->fetchObject();
 		$this->assertEquals( IP::toHex( $this->ipEditor ), $row->ipc_hex );
 	}
+
+	/**
+	 * @covers PageArchive::listRevisions
+	 */
+	public function testListRevisions() {
+		$revisions = $this->archivedPage->listRevisions();
+		$this->assertEquals( 2, $revisions->numRows() );
+
+		// Get the rows as arrays
+		$row1 = (array)$revisions->current();
+		$row2 = (array)$revisions->next();
+		// Unset the timestamps (we assume they will be right...
+		$this->assertInternalType( 'string', $row1['ar_timestamp'] );
+		$this->assertInternalType( 'string', $row2['ar_timestamp'] );
+		unset( $row1['ar_timestamp'] );
+		unset( $row2['ar_timestamp'] );
+
+		$this->assertEquals(
+			[
+				'ar_minor_edit' => '0',
+				'ar_user' => '0',
+				'ar_user_text' => '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7',
+				'ar_len' => '11',
+				'ar_deleted' => '0',
+				'ar_rev_id' => '3',
+				'ar_sha1' => '0qdrpxl537ivfnx4gcpnzz0285yxryy',
+				'ar_page_id' => '2',
+				'ar_comment_text' => 'just a test',
+				'ar_comment_data' => null,
+				'ar_comment_cid' => null,
+				'ar_content_format' => null,
+				'ar_content_model' => null,
+				'ts_tags' => null,
+			],
+			$row1
+		);
+		$this->assertEquals(
+			[
+				'ar_minor_edit' => '0',
+				'ar_user' => '0',
+				'ar_user_text' => '127.0.0.1',
+				'ar_len' => '7',
+				'ar_deleted' => '0',
+				'ar_rev_id' => '2',
+				'ar_sha1' => 'pr0s8e18148pxhgjfa0gjrvpy8fiyxc',
+				'ar_page_id' => '2',
+				'ar_comment_text' => 'testing',
+				'ar_comment_data' => null,
+				'ar_comment_cid' => null,
+				'ar_content_format' => null,
+				'ar_content_model' => null,
+				'ts_tags' => null,
+			],
+			$row2
+		);
+	}
+
 }
