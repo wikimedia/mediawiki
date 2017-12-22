@@ -125,7 +125,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 	public static function provideGetText() {
 		// phpcs:disable Generic.Files.LineLength
 		$text = <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 <mw:toc><div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -150,13 +150,13 @@ class ParserOutputTest extends MediaWikiTestCase {
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
 <p>Three
-</p>
+</p></div>
 EOF;
 
 		return [
 			'No stateless options, default state' => [
 				[], [], $text, <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -181,12 +181,12 @@ EOF;
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Three
-</p>
+</p></div>
 EOF
 			],
 			'No stateless options, TOC statefully disabled' => [
 				[], [ 'mTOCEnabled' => false ], $text, <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
@@ -200,12 +200,12 @@ EOF
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Three
-</p>
+</p></div>
 EOF
 			],
 			'No stateless options, section edits statefully disabled' => [
 				[], [ 'mEditSectionTokens' => false ], $text, <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -230,14 +230,14 @@ EOF
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
 <p>Three
-</p>
+</p></div>
 EOF
 			],
 			'Stateless options override stateful settings' => [
 				[ 'allowTOC' => true, 'enableSectionEditLinks' => true ],
 				[ 'mTOCEnabled' => false, 'mEditSectionTokens' => false ],
 				$text, <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -262,12 +262,12 @@ EOF
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Three
-</p>
+</p></div>
 EOF
 			],
 			'Statelessly disable section edit links' => [
 				[ 'enableSectionEditLinks' => false ], [], $text, <<<EOF
-<p>Test document.
+<div class="mw-parser-output"><p>Test document.
 </p>
 <div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
 <ul>
@@ -292,13 +292,43 @@ EOF
 </p>
 <h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
 <p>Three
-</p>
+</p></div>
 EOF
 			],
 			'Statelessly disable TOC' => [
 				[ 'allowTOC' => false ], [], $text, <<<EOF
+<div class="mw-parser-output"><p>Test document.
+</p>
+
+<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>One
+</p>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two
+</p>
+<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=3" title="Edit section: Section 2.1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Two point one
+</p>
+<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Three
+</p></div>
+EOF
+			],
+			'Statelessly unwrap text' => [
+				[ 'unwrap' => true ], [], $text, <<<EOF
 <p>Test document.
 </p>
+<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
+</ul>
+</div>
 
 <h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>One
@@ -313,6 +343,12 @@ EOF
 <p>Three
 </p>
 EOF
+			],
+			'Unwrap with custom class name' => [
+				[ 'unwrap' => 'foobar' ], [], '<div class="foobar">Content</div>', 'Content'
+			],
+			'Unwrap with wrong custom class name' => [
+				[ 'unwrap' => 'foobaz' ], [], '<div class="foobar">Content</div>', '<div class="foobar">Content</div>'
 			],
 		];
 		// phpcs:enable
