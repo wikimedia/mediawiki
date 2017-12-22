@@ -148,6 +148,17 @@ class Revision implements IDBAccessObject {
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = [], Title $title = null ) {
+		/**
+		 * MCR Migration: https://phabricator.wikimedia.org/T183564
+		 * This method used to overwrite attributes, then passed to Revision::__construct
+		 * RevisionStore::newRevisionFromArchiveRow instead overrides row field names
+		 * So do a conversion here.
+		 */
+		if ( array_key_exists( 'page', $overrides ) ) {
+			$overrides['page_id'] = $overrides['page'];
+			unset( $overrides['page'] );
+		}
+
 		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
 		return new Revision( $rec, self::READ_NORMAL, $title );
 	}
