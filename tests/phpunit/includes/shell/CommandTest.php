@@ -151,4 +151,14 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 1, count( $logger->getBuffer() ) );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
 	}
+
+	public function testInput() {
+		$this->requirePosix();
+
+		$command = new Command();
+		$command->params( 'cat' );
+		$command->input( 'abc' );
+		$result = $command->execute();
+		$this->assertSame( 'abc', $result->getStdOut() );
+	}
 }

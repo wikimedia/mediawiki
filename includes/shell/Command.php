@@ -56,6 +56,9 @@ class Command {
 	/** @var string */
 	private $method;
 
+	/** @var string */
+	private $inputString;
+
 	/** @var bool */
 	private $doIncludeStderr = false;
 
@@ -185,6 +188,18 @@ class Command {
 	 */
 	public function profileMethod( $method ) {
 		$this->method = $method;
+
+		return $this;
+	}
+
+	/**
+	 * Sends the provided input to the command.
+	 * When set to null (default), the command will use the standard input.
+	 * @param string|null $inputString
+	 * @return $this
+	 */
+	public function input( $inputString ) {
+		$this->inputString = $inputString;
 
 		return $this;
 	}
@@ -349,7 +364,7 @@ class Command {
 		}
 
 		$desc = [
-			0 => [ 'file', 'php://stdin', 'r' ],
+			0 => $this->inputString === null ? [ 'file', 'php://stdin', 'r' ] : [ 'pipe', 'r' ],
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ],
 		];
@@ -363,6 +378,13 @@ class Command {
 			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
 			throw new ProcOpenError();
 		}
+
+		if ( $this->inputString ) {
+			fwrite( $pipes[0], $this->inputString );
+			fclose( $pipes[0] );
+			unset( $pipes[0] );
+		}
+
 		$outBuffer = $logBuffer = '';
 		$errBuffer = null;
 		$emptyArray = [];
