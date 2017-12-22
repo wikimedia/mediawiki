@@ -25,6 +25,7 @@
  */
 
 require_once __DIR__ . '/backup.inc';
+require_once __DIR__ . '/7zip.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
 use Wikimedia\Rdbms\IMaintainableDatabase;
