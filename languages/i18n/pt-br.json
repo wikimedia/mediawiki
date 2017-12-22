@@ -3549,6 +3549,8 @@
 	"tag-mw-replace-description": "Edições que removem mais de 90% do conteúdo de uma página",
 	"tag-mw-rollback": "Reverter",
 	"tag-mw-rollback-description": "Edições que revertem edições anteriores usando o link de reversão",
+	"tag-mw-undo": "Desfazer",
+	"tag-mw-undo-description": "Edições que desfazem edições anteriores usando o link de desfazer",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.",
 	"tags-tag": "Nome da etiqueta",

@@ -3535,6 +3535,8 @@
 	"tag-mw-replace-description": "Modifiche che rimuovono oltre il 90% del contenuto di una pagina",
 	"tag-mw-rollback": "Rollback",
 	"tag-mw-rollback-description": "Modifiche che ripristinano le versioni precedenti utilizzando il collegamento di rollback",
+	"tag-mw-undo": "Annulla",
+	"tag-mw-undo-description": "Modifiche che annullano le modifiche precedenti utilizzando il collegamento \"Annulla\"",
 	"tags-title": "Etichette",
 	"tags-intro": "Questa pagina elenca le etichette che il software potrebbe associare a una modifica e il loro significato.",
 	"tags-tag": "Nome dell'etichetta",

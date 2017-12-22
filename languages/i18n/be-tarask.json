@@ -3309,6 +3309,7 @@
 	"autosumm-blank": "Выдалены ўвесь зьмест старонкі",
 	"autosumm-replace": "Старонка замененая на '$1'",
 	"autoredircomment": "Перанакіроўвае на [[$1]]",
+	"autosumm-removed-redirect": "Выдаленае перанакіраваньне на [[$1]]",
 	"autosumm-new": "Створана старонка са зьместам '$1'",
 	"autosumm-newblank": "Створаная пустая старонка",
 	"size-bytes": "$1 б",

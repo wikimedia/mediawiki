@@ -3328,6 +3328,7 @@
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2)",
 	"tag-mw-new-redirect": "Ny omdirigering",
 	"tag-mw-removed-redirect": "Fjernede omdirigering",
+	"tag-mw-changed-redirect-target": "Omdigeringsmål ændret",
 	"tag-mw-blank": "Sidetømning",
 	"tag-mw-replace": "Erstattet",
 	"tag-mw-rollback": "Tilbagerulning",
