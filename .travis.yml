@@ -24,19 +24,19 @@ matrix:
     # Postgres has no user called 'root'.
     - env: dbtype=mysql dbuser=root
       php: 5.5
-    - env: dbtype=postgres dbuser=travis
-      php: 5.5
+    #- env: dbtype=postgres dbuser=travis
+    #  php: 5.5
     # https://docs.travis-ci.com/user/languages/php#HHVM-versions
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.12
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.18
+    #- env: dbtype=mysql dbuser=root
+    #  php: hhvm-3.12
+    #- env: dbtype=mysql dbuser=root
+    #  php: hhvm-3.18
     - env: dbtype=mysql dbuser=root
       php: 7
-    - env: dbtype=mysql dbuser=root
-      php: 7.1
-    - env: dbtype=mysql dbuser=root
-      php: 7.2
+    #- env: dbtype=mysql dbuser=root
+    #  php: 7.1
+    #- env: dbtype=mysql dbuser=root
+    #  php: 7.2
 
 services:
   - mysql
