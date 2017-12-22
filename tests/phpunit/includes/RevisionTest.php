@@ -824,6 +824,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testUserJoinCond() {
 		$this->hideDeprecated( 'Revision::userJoinCond' );
+		$this->hideDeprecated( 'RevisionMCR::userJoinCond' );
 		$this->assertEquals(
 			[ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 			Revision::userJoinCond()
@@ -835,6 +836,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testPageJoinCond() {
 		$this->hideDeprecated( 'Revision::pageJoinCond' );
+		$this->hideDeprecated( 'RevisionMCR::pageJoinCond' );
 		$this->assertEquals(
 			[ 'INNER JOIN', [ 'page_id = rev_page' ] ],
 			Revision::pageJoinCond()
@@ -891,6 +893,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSelectFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectFields' );
+		$this->hideDeprecated( 'RevisionMCR::selectFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectFields() );
@@ -950,6 +953,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSelectArchiveFields( $contentHandlerUseDB, $expected ) {
 		$this->hideDeprecated( 'Revision::selectArchiveFields' );
+		$this->hideDeprecated( 'RevisionMCR::selectArchiveFields' );
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $contentHandlerUseDB );
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, Revision::selectArchiveFields() );
@@ -960,6 +964,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSelectTextFields() {
 		$this->hideDeprecated( 'Revision::selectTextFields' );
+		$this->hideDeprecated( 'RevisionMCR::selectTextFields' );
 		$this->assertEquals(
 			[
 				'old_text',
@@ -974,6 +979,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSelectPageFields() {
 		$this->hideDeprecated( 'Revision::selectPageFields' );
+		$this->hideDeprecated( 'RevisionMCR::selectPageFields' );
 		$this->assertEquals(
 			[
 				'page_namespace',
@@ -992,6 +998,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSelectUserFields() {
 		$this->hideDeprecated( 'Revision::selectUserFields' );
+		$this->hideDeprecated( 'RevisionMCR::selectUserFields' );
 		$this->assertEquals(
 			[
 				'user_name',
