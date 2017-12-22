@@ -29,38 +29,39 @@ class FirejailCommandTest extends PHPUnit_Framework_TestCase {
 		// @codingStandardsIgnoreStart
 		$env = "'MW_INCLUDE_STDERR=;MW_CPU_LIMIT=180; MW_CGROUP='\'''\''; MW_MEM_LIMIT=307200; MW_FILE_SIZE_LIMIT=102400; MW_WALL_CLOCK_LIMIT=180; MW_USE_LOG_PIPE=yes'";
 		// @codingStandardsIgnoreEnd
-		$limit = "$IP/includes/shell/limit.sh";
+		$limit = "/bin/bash '$IP/includes/shell/limit.sh'";
 		$profile = "--profile=$IP/includes/shell/firejail.profile";
-		$default = '--noroot --seccomp=@default --private-dev';
+		$blacklist = '--blacklist=' . realpath( MW_CONFIG_FILE );
+		$default = "$blacklist --noroot --seccomp=@default --private-dev";
 		return [
 			[
 				'No restrictions',
-				'ls', 0, "/bin/bash '$limit' ''\''ls'\''' $env"
+				'ls', 0, "$limit ''\''ls'\''' $env"
 			],
 			[
 				'default restriction',
 				'ls', Shell::RESTRICT_DEFAULT,
-				"firejail --quiet $profile $default -- /bin/bash '$limit' ''\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile $default -- '\''ls'\''' $env"
 			],
 			[
 				'no network',
 				'ls', Shell::NO_NETWORK,
-				"firejail --quiet $profile --net=none -- /bin/bash '$limit' ''\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile --net=none -- '\''ls'\''' $env"
 			],
 			[
 				'default restriction & no network',
 				'ls', Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK,
-				"firejail --quiet $profile $default --net=none -- /bin/bash '$limit' ''\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile $default --net=none -- '\''ls'\''' $env"
 			],
 			[
 				'seccomp',
 				'ls', Shell::SECCOMP,
-				"firejail --quiet $profile --seccomp=@default -- /bin/bash '$limit' ''\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile --seccomp=@default -- '\''ls'\''' $env"
 			],
 			[
 				'seccomp & no execve',
 				'ls', Shell::SECCOMP | Shell::NO_EXECVE,
-				"firejail --quiet $profile --seccomp=@default,execve -- /bin/bash '$limit' ''\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile --shell=none --seccomp=@default,execve -- '\''ls'\''' $env"
 			],
 		];
 	}
@@ -75,7 +76,7 @@ class FirejailCommandTest extends PHPUnit_Framework_TestCase {
 			->params( $params )
 			->restrict( $flags );
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
-		$output = $wrapper->buildFinalCommand();
+		$output = $wrapper->buildFinalCommand( $wrapper->command );
 		$this->assertEquals( $expected, $output[0], $desc );
 	}
 

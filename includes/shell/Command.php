@@ -36,7 +36,7 @@ class Command {
 	use LoggerAwareTrait;
 
 	/** @var string */
-	private $command = '';
+	protected $command = '';
 
 	/** @var array */
 	private $limits = [
@@ -269,9 +269,10 @@ class Command {
 	 * String together all the options and build the final command
 	 * to execute
 	 *
+	 * @param string $command Already-escaped command to run
 	 * @return array [ command, whether to use log pipe ]
 	 */
-	protected function buildFinalCommand() {
+	protected function buildFinalCommand( $command ) {
 		$envcmd = '';
 		foreach ( $this->env as $k => $v ) {
 			if ( wfIsWindows() ) {
@@ -291,7 +292,7 @@ class Command {
 		}
 
 		$useLogPipe = false;
-		$cmd = $envcmd . trim( $this->command );
+		$cmd = $envcmd . trim( $command );
 
 		if ( is_executable( '/bin/bash' ) ) {
 			$time = intval( $this->limits['time'] );
@@ -335,7 +336,7 @@ class Command {
 
 		$profileMethod = $this->method ?: wfGetCaller();
 
-		list( $cmd, $useLogPipe ) = $this->buildFinalCommand();
+		list( $cmd, $useLogPipe ) = $this->buildFinalCommand( $this->command );
 
 		$this->logger->debug( __METHOD__ . ": $cmd" );
 
