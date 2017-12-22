@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 /**
  * @deprecated since 1.31, use RevisionRecord, RevisionStore, and BlobStore instead.
  */
-class Revision implements IDBAccessObject {
+class RevisionMCR implements IDBAccessObject {
 
 	/** @var RevisionRecord */
 	protected $mRecord;
