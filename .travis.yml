@@ -55,9 +55,13 @@ addons:
     packages:
     - djvulibre-bin
     - tidy
+    - curl
+    - gd
+    - xml
+    - mbstring
 
 before_script:
-  - composer install --prefer-source --quiet --no-interaction
+  - composer update --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
       php maintenance/install.php traviswiki admin
@@ -73,9 +77,9 @@ script:
 
 notifications:
   email: false
-  irc:
-    channels:
-      - "chat.freenode.net#mediawiki-feed"
+  #irc:
+  #  channels:
+  #    - "chat.freenode.net#mediawiki-feed"
     on_success: change
     on_failure: change
     skip_join: true
