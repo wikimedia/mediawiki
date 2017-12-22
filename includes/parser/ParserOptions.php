@@ -781,6 +781,7 @@ class ParserOptions {
 	 * CSS class to use to wrap output from Parser::parse()
 	 * @since 1.30
 	 * @param string|bool $className Set false to disable wrapping.
+	 *   Passing false is deprecated since MediaWiki 1.31
 	 * @return string|bool Current value
 	 */
 	public function setWrapOutputClass( $className ) {

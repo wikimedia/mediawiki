@@ -344,6 +344,7 @@ class ApiParse extends ApiBase {
 			$result_array['text'] = $p_result->getText( [
 				'allowTOC' => !$params['disabletoc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
+				'unwrap' => $params['wrapoutputclass'] === '',
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
@@ -538,9 +539,9 @@ class ApiParse extends ApiBase {
 		if ( $params['disabletidy'] ) {
 			$popts->setTidy( false );
 		}
-		$popts->setWrapOutputClass(
-			$params['wrapoutputclass'] === '' ? false : $params['wrapoutputclass']
-		);
+		if ( $params['wrapoutputclass'] !== '' ) {
+			$popts->setWrapOutputClass( $params['wrapoutputclass'] );
+		}
 
 		$reset = null;
 		$suppressCache = false;
