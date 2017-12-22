@@ -60,7 +60,6 @@ addons:
 
 before_script:
   - pecl install tidy
-  - pecl install curl
   - pecl install gd
   - pecl install xml
   - pecl install mbstring
