@@ -90,11 +90,12 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
+	 * @param Title $title (optional)
 	 * @return Revision|null
 	 */
-	public static function newFromId( $id, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
-		return $rec === null ? null : new Revision( $rec, $flags );
+	public static function newFromId( $id, $flags = 0, Title $title = null ) {
+		$rec = self::getRevisionStore()->getRevisionById( $id, $flags, $title );
+		return $rec === null ? null : new Revision( $rec, $flags, $title );
 	}
 
 	/**
