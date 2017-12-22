@@ -1016,6 +1016,8 @@
 	"rcfilters-activefilters": "Aktiv filtrlər",
 	"rcfilters-advancedfilters": "Geniş filtr",
 	"rcfilters-limit-title": "Göstərilməli dəyişikliklər",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|redaktə|redaktə}}, $2",
+	"rcfilters-date-popup-title": "Axtarış üçün vaxt aralığı",
 	"rcfilters-days-title": "Son günlər",
 	"rcfilters-hours-title": "Son saatlar",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|gün|gün}}",

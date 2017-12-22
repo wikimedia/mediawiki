@@ -3445,6 +3445,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> er ekki til.",
 	"htmlform-user-not-valid": "<strong>$1</strong> er ekki gilt notandanafn.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|eyddi}} síðunni $3",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|eyddi}} tilvísun $3 með því að yfirskrifa",
 	"logentry-delete-restore": "$1 {{GENDER:$2|endurvakti}} síðu $3 ($4)",
 	"logentry-delete-event": "$1 {{GENDER:$2|breytti}} sýnileika {{PLURAL:$5|færslu|$5 færslna}} á $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|breytti}} sýnileika {{PLURAL:$5|útgáfu|$5 útgáfna}} á $3: $4",
