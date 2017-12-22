@@ -34,6 +34,7 @@
 	 * @cfg {string} [whatsThis.body] The body of the whatsThis popup message
 	 * @cfg {string} [whatsThis.url] The url for the link in the whatsThis popup message
 	 * @cfg {string} [whatsThis.linkMessage] The text for the link in the whatsThis popup message
+	 * @cfg {boolean} [visible=true] The visibility of the group
 	 */
 	mw.rcfilters.dm.FilterGroup = function MwRcfiltersDmFilterGroup( name, config ) {
 		config = config || {};
@@ -52,6 +53,7 @@
 		this.numericRange = config.range;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
+		this.visible = config.visible === undefined ? true : !!config.visible;
 
 		this.currSelected = null;
 		this.active = !!config.active;
@@ -943,5 +945,39 @@
 		}
 
 		return value;
+	};
+
+	/**
+	 * Toggle the visibility of this group
+	 *
+	 * @param {boolean} [isVisible] Item is visible
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.toggleVisible = function ( isVisible ) {
+		isVisible = isVisible === undefined ? !this.visible : isVisible;
+
+		if ( this.visible !== isVisible ) {
+			this.visible = isVisible;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Check whether the group is visible
+	 *
+	 * @return {boolean} Group is visible
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isVisible = function () {
+		return this.visible;
+	};
+
+	/**
+	 * Set the visibility of the items under this group by the given items array
+	 *
+	 * @param {mw.rcfilters.dm.ItemModel[]} visibleItems An array of visible items
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.setVisibleItems = function ( visibleItems ) {
+		this.getItems().forEach( function ( itemModel ) {
+			itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
+		} );
 	};
 }( mediaWiki ) );

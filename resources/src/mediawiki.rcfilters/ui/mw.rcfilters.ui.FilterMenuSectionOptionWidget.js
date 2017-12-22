@@ -86,13 +86,14 @@
 		}
 
 		// Events
-		this.model.connect( this, { update: 'onModelUpdate' } );
+		this.model.connect( this, { update: 'updateUiBasedOnState' } );
 
 		// Initialize
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget' )
 			.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget-name-' + this.model.getName() )
 			.append( $header );
+		this.updateUiBasedOnState();
 	};
 
 	/* Initialize */
@@ -104,11 +105,12 @@
 	/**
 	 * Respond to model update event
 	 */
-	mw.rcfilters.ui.FilterMenuSectionOptionWidget.prototype.onModelUpdate = function () {
+	mw.rcfilters.ui.FilterMenuSectionOptionWidget.prototype.updateUiBasedOnState = function () {
 		this.$element.toggleClass(
 			'mw-rcfilters-ui-filterMenuSectionOptionWidget-active',
 			this.model.isActive()
 		);
+		this.toggle( this.model.isVisible() );
 	};
 
 	/**

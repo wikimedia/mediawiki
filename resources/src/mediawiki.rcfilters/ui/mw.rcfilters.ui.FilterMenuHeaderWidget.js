@@ -68,9 +68,10 @@
 			.connect( this, { click: 'onInvertNamespacesButtonClick' } );
 		this.model.connect( this, {
 			highlightChange: 'onModelHighlightChange',
-			update: 'onModelUpdate',
+			searchChange: 'onModelSearchChange',
 			initialize: 'onModelInitialize'
 		} );
+		this.view = this.model.getCurrentView();
 
 		// Initialize
 		this.$element
@@ -127,14 +128,17 @@
 	/**
 	 * Respond to model update event
 	 */
-	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelUpdate = function () {
+	mw.rcfilters.ui.FilterMenuHeaderWidget.prototype.onModelSearchChange = function () {
 		var currentView = this.model.getCurrentView();
 
-		this.setLabel( this.model.getViewTitle( currentView ) );
+		if ( this.view !== currentView ) {
+			this.setLabel( this.model.getViewTitle( currentView ) );
 
-		this.invertNamespacesButton.toggle( currentView === 'namespaces' );
-		this.backButton.toggle( currentView !== 'default' );
-		this.helpIcon.toggle( currentView === 'tags' );
+			this.invertNamespacesButton.toggle( currentView === 'namespaces' );
+			this.backButton.toggle( currentView !== 'default' );
+			this.helpIcon.toggle( currentView === 'tags' );
+			this.view = currentView;
+		}
 	};
 
 	/**
