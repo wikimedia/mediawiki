@@ -1,5 +1,3 @@
-/* eslint no-undef: "error" */
-/* eslint-env node */
 'use strict';
 const merge = require( 'deepmerge' ),
 	password = 'testpass',
