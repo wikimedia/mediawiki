@@ -811,10 +811,6 @@ class ParserTestRunner {
 		$options = ParserOptions::newFromContext( $context );
 		$options->setTimestamp( $this->getFakeTimestamp() );
 
-		if ( !isset( $opts['wrap'] ) ) {
-			$options->setWrapOutputClass( false );
-		}
-
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
 				$this->recorder->skipped( $test, 'tidy extension is not installed' );
@@ -854,7 +850,8 @@ class ParserTestRunner {
 		} else {
 			$output = $parser->parse( $test['input'], $title, $options, true, true, 1337 );
 			$out = $output->getText( [
-				'allowTOC' => !isset( $opts['notoc'] )
+				'allowTOC' => !isset( $opts['notoc'] ),
+				'unwrap' => !isset( $opts['wrap'] ),
 			] );
 			if ( isset( $opts['tidy'] ) ) {
 				$out = preg_replace( '/\s+$/', '', $out );
