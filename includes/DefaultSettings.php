@@ -8814,6 +8814,13 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Use the Revision class modified for MCR
+ * @since 1.31
+ * @var bool
+ */
+$wgUseMCRRevision = true;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

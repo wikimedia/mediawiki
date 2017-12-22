@@ -128,6 +128,13 @@ class AutoLoaderTest extends MediaWikiTestCase {
 			}
 		}
 
+		/**
+		 * These classes are actually in RevisionMCR and RevisionPreMCR
+		 * and switched by $wgUseMCRRevision in Revision.php
+		 */
+		unset( $expected['Revision'] );
+		unset( $actual['Revision'] );
+
 		return [
 			'expected' => $expected,
 			'actual' => $actual,

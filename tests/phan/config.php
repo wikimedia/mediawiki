@@ -51,6 +51,7 @@ return [
 			'maintenance/userOptions.inc',
 			'maintenance/language/checkLanguage.inc',
 			'maintenance/language/languages.inc',
+			'tests/phan/stubs/revision.php'
 		]
 	),
 
@@ -80,7 +81,9 @@ return [
 	 * This is useful for excluding hopelessly unanalyzable
 	 * files that can't be removed for whatever reason.
 	 */
-	'exclude_file_list' => [],
+	'exclude_file_list' => [
+		'includes/RevisionPreMCR.php'
+	],
 
 	/**
 	 * A list of directories holding code that we want

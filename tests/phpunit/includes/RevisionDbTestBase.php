@@ -519,6 +519,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$id = $this->testPage->getRevision()->getId();
 
 		$this->hideDeprecated( 'Revision::fetchRevision' );
+		$this->hideDeprecated( 'RevisionMCR::fetchRevision' );
 		$res = Revision::fetchRevision( $this->testPage->getTitle() );
 
 		# note: order is unspecified
@@ -995,6 +996,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testLoadFromId() {
 		$rev = $this->testPage->getRevision();
 		$this->hideDeprecated( 'Revision::loadFromId' );
+		$this->hideDeprecated( 'RevisionMCR::loadFromId' );
 		$this->assertRevEquals(
 			$rev,
 			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
