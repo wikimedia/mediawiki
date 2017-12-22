@@ -988,6 +988,7 @@ class MessageCache {
 	 * @return string|bool The message, or false if it does not exist or on error
 	 */
 	public function getMsgFromNamespace( $title, $code ) {
+		global $wgUseMCRRevision;
 		$this->load( $code );
 
 		if ( isset( $this->mCache[$code][$title] ) ) {
@@ -1046,10 +1047,19 @@ class MessageCache {
 		// Use newKnownCurrent() to avoid querying revision/user tables
 		$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
 		if ( $titleObj->getLatestRevID() ) {
-			$revision = Revision::newKnownCurrent(
-				$dbr,
-				$titleObj
-			);
+			if ( $wgUseMCRRevision ) {
+				$revision = Revision::newKnownCurrent(
+					$dbr,
+					$titleObj
+				);
+			} else {
+				$revision = Revision::newKnownCurrent(
+					$dbr,
+					$titleObj->getArticleID(),
+					$titleObj->getLatestRevID()
+				);
+			}
+
 		} else {
 			$revision = false;
 		}
