@@ -65,7 +65,6 @@ class ParserOptions {
 		'stubthreshold' => true,
 		'printable' => true,
 		'userlang' => true,
-		'wrapclass' => true,
 	];
 
 	/**
@@ -787,6 +786,9 @@ class ParserOptions {
 	public function setWrapOutputClass( $className ) {
 		if ( $className === true ) { // DWIM, they probably want the default class name
 			$className = 'mw-parser-output';
+		}
+		if ( $className === false ) {
+			wfDeprecated( __METHOD__ . '( false )', '1.31' );
 		}
 		return $this->setOption( 'wrapclass', $className );
 	}
