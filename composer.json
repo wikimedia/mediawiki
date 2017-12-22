@@ -104,7 +104,7 @@
 			"composer phpcs"
 		],
 		"post-update-cmd": [
-			"cd extensions/VisualEditor && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive",
+			"./load-git-submodules",
 			"ComposerVendorHtaccessCreator::onEvent"
 		]
 	},
