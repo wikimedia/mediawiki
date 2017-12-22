@@ -645,6 +645,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
 	protected function loadLastEdit() {
+		global $wgUseMCRRevision;
+
 		if ( $this->mLastRevision !== null ) {
 			return; // already loaded
 		}
@@ -672,7 +674,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		} else {
 			$dbr = wfGetDB( DB_REPLICA );
-			$revision = Revision::newKnownCurrent( $dbr, $this->getTitle(), $latest );
+			if ( $wgUseMCRRevision ) {
+				$revision = Revision::newKnownCurrent( $dbr, $this->getTitle(), $latest );
+			} else {
+				$revision = Revision::newKnownCurrent( $dbr, $this->getId(), $latest );
+			}
 		}
 
 		if ( $revision ) { // sanity
@@ -1246,6 +1252,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$lastRevIsRedirect = null
 	) {
 		global $wgContentHandlerUseDB;
+		global $wgUseMCRRevision;
 
 		// Assertion to try to catch T92046
 		if ( (int)$revision->getId() === 0 ) {
@@ -1266,7 +1273,9 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$revId = $revision->getId();
-		Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
+		if ( $wgUseMCRRevision ) {
+			Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
+		}
 
 		$row = [ /* SET */
 			'page_latest'      => $revId,

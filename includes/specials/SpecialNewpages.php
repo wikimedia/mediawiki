@@ -303,6 +303,19 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	/**
+	 * @param stdClass $result Result row from recent changes
+	 * @return bool|Revision
+	 */
+	private function revisionFromRcResultNoMCR( stdClass $result ) {
+		return new Revision( [
+			'comment' => CommentStore::newKey( 'rc_comment' )->getComment( $result )->text,
+			'deleted' => $result->rc_deleted,
+			'user_text' => $result->rc_user_text,
+			'user' => $result->rc_user,
+		] );
+	}
+
+	/**
 	 * Format a row, providing the timestamp, links to the page/history,
 	 * size, user links, and a comment
 	 *
@@ -310,11 +323,19 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return string
 	 */
 	public function formatRow( $result ) {
+		global $wgUseMCRRevision;
+
 		$title = Title::newFromRow( $result );
 
 		// Revision deletion works on revisions,
 		// so cast our recent change row to a revision row.
-		$rev = $this->revisionFromRcResult( $result, $title );
+		if ( $wgUseMCRRevision ) {
+			$rev = $this->revisionFromRcResult( $result, $title );
+		} else {
+			$rev = $this->revisionFromRcResultNoMCR( $result );
+			$rev->setTitle( $title );
+		}
+
 
 		$classes = [];
 		$attribs = [ 'data-mw-revid' => $result->rev_id ];
