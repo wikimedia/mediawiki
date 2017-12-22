@@ -77,6 +77,9 @@ abstract class DumpIterator extends Maintenance {
 
 		$importer->setRevisionCallback(
 			[ $this, 'handleRevision' ] );
+		$importer->setNoticeCallback( function ( $msg, $params ) {
+			echo wfMessage( $msg, $params )->text() . "\n";
+		} );
 
 		$this->from = $this->getOption( 'from', null );
 		$this->count = 0;
