@@ -1245,7 +1245,14 @@ class Message implements MessageSpecifier, Serializable {
 		);
 
 		return $out instanceof ParserOutput
-			? $out->getText( [ 'enableSectionEditLinks' => false ] )
+			? $out->getText( [
+				'enableSectionEditLinks' => false,
+				// Wrapping messages in an extra <div> is probably not expected. If
+				// they're outside the content area they probably shouldn't be
+				// targeted by CSS that's targeting the parser output, and if
+				// they're inside they already are from the outer div.
+				'unwrap' => true,
+			] )
 			: $out;
 	}
 

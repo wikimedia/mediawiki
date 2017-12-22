@@ -23,10 +23,11 @@
  */
 class ParserOutput extends CacheTime {
 	/**
-	 * Feature flag to indicate to extensions that MediaWiki core supports and
+	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
 	 */
 	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
 	 * @var string $mText The output text
@@ -266,8 +267,11 @@ class ParserOutput extends CacheTime {
 	 *     to generate one and `__NOTOC__` wasn't used. Default is true,
 	 *     but might be statefully overridden.
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
-	 *    section edit link tokens are present in the HTML. Default is true,
+	 *     section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
+	 *  - unwrap: (bool|string) Remove a wrapping mw-parser-output div. If
+	 *     passed a string, use that class instead of mw-parser-output. Default
+	 *     is false.
 	 * @return string HTML
 	 */
 	public function getText( $options = [] ) {
@@ -284,10 +288,24 @@ class ParserOutput extends CacheTime {
 			// In that situation, the historical behavior (possibly buggy) is to remove the TOC.
 			'allowTOC' => !empty( $this->mTOCEnabled ),
 			'enableSectionEditLinks' => $this->mEditSectionTokens,
+			'unwrap' => false,
 		];
 		$text = $this->mText;
 
 		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
+
+		if ( $options['unwrap'] !== false ) {
+			$start = Html::openElement( 'div', [
+				'class' => $options['unwrap'] === true ? 'mw-parser-output' : $options['unwrap']
+			] );
+			$startLen = strlen( $start );
+			$end = Html::closeElement( 'div' );
+			$endLen = strlen( $end );
+
+			if ( substr( $text, 0, $startLen ) === $start && substr( $text, -$endLen ) === $end ) {
+				$text = substr( $text, $startLen, -$endLen );
+			}
+		}
 
 		if ( $options['enableSectionEditLinks'] ) {
 			$text = preg_replace_callback(
