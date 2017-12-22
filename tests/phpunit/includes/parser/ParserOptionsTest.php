@@ -62,7 +62,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			'No overrides' => [ true, [] ],
 			'In-key options are ok' => [ true, [
 				'thumbsize' => 1e100,
-				'wrapclass' => false,
+				'printable' => false,
 			] ],
 			'Non-in-key options are not ok' => [ false, [
 				'removeComments' => false,
@@ -102,7 +102,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideOptionsHash() {
-		$used = [ 'wrapclass', 'printable' ];
+		$used = [ 'thumbsize', 'printable' ];
 
 		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
 		$classWrapper->getDefaults();
@@ -116,9 +116,9 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			'Canonical options, used some options' => [ $used, 'canonical', [] ],
 			'Used some options, non-default values' => [
 				$used,
-				'printable=1!wrapclass=foobar',
+				'printable=1!thumbsize=200',
 				[
-					'wrapclass' => 'foobar',
+					'thumbsize' => 200,
 					'printable' => true,
 				]
 			],
