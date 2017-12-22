@@ -59,10 +59,10 @@ class FirejailCommand extends Command {
 	/**
 	 * @inheritDoc
 	 */
-	protected function buildFinalCommand() {
+	protected function buildFinalCommand( $command ) {
 		// If there are no restrictions, don't use firejail
 		if ( $this->restrictions === 0 ) {
-			return parent::buildFinalCommand();
+			return parent::buildFinalCommand( $command );
 		}
 
 		if ( $this->firejail === false ) {
@@ -122,6 +122,10 @@ class FirejailCommand extends Command {
 
 		if ( $this->hasRestriction( Shell::NO_EXECVE ) ) {
 			$seccomp[] = 'execve';
+			// Normally firejail will run commands in a bash shell,
+			// but that won't work if we ban the execve syscall, so
+			// run the command without a shell.
+			$cmd[] = '--shell=none';
 		}
 
 		if ( $seccomp ) {
@@ -136,11 +140,10 @@ class FirejailCommand extends Command {
 			$cmd[] = '--net=none';
 		}
 
-		list( $fullCommand, $useLogPipe ) = parent::buildFinalCommand();
-
 		$builtCmd = implode( ' ', $cmd );
 
-		return [ "$builtCmd -- $fullCommand", $useLogPipe ];
+		// Prefix the firejail command in front of the wanted command
+		return parent::buildFinalCommand( "$builtCmd -- {$command}" );
 	}
 
 }
