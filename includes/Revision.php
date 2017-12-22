@@ -90,10 +90,54 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
-	 * @param Title $title (optional)
+	 * @param Title $title (optional) If known you can pass the Title in here.
+	 *                     Passing no Title may result in another Db Query if there are recent writes.
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0, Title $title = null ) {
+		/**
+		 * MCR RevisionStore Compat
+		 * If the title is not passed in as a param (already known) then select it here.
+		 * If we select the title here and pass it down it results in fewer queries
+		 * further down the stack
+		 *
+		 * This logic used to be in Revision::getTitle and also in Revision::newFromConds which was
+		 * called by Revision::newFromId
+		 *
+		 * Make sure new pending/committed revision are visible later on
+		 * within web requests to certain avoid bugs like T93866 and T94407.
+		 */
+		if ( !$title ) {
+			if (
+				!( $flags & self::READ_LATEST )
+				&& wfGetLB()->getServerCount() > 1
+				&& wfGetLB()->hasOrMadeRecentMasterChanges()
+			) {
+				$dbr = wfGetDB( DB_MASTER );
+			} else {
+				$dbr = wfGetDB( DB_REPLICA );
+			}
+			$row = $dbr->selectRow(
+				[ 'revision', 'page' ],
+				[
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+				],
+				[ 'rev_id' => $id ],
+				__METHOD__,
+				[],
+				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
+			);
+			if ( $row ) {
+				$title = Title::newFromRow( $row );
+			}
+			wfGetLB()->reuseConnection( $dbr );
+		}
+
 		$rec = self::getRevisionStore()->getRevisionById( $id, $flags, $title );
 		return $rec === null ? null : new Revision( $rec, $flags, $title );
 	}
