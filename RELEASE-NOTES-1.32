@@ -25,6 +25,8 @@ production.
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
+* (T12331) You can now log page creation events by setting $wgPageCreationLog
+	to true.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in temporary
   user groups.
