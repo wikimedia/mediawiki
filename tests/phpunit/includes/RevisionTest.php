@@ -57,7 +57,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray
 	 * @covers Revision::__construct
-	 * @covers RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArray( $rowArray ) {
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
@@ -68,7 +68,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromEmptyArray() {
 		$rev = new Revision( [], 0, $this->getMockTitle() );
@@ -106,7 +106,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray_userSetAsExpected
 	 * @covers Revision::__construct
-	 * @covers RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 *
 	 * @param array $rowArray
 	 * @param mixed $expectedUserId null to expect the current wgUser ID
