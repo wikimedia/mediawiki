@@ -142,13 +142,14 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param object $row
 	 * @param array $overrides
+	 * @param Title $title (optional)
 	 *
 	 * @throws MWException
 	 * @return Revision
 	 */
-	public static function newFromArchiveRow( $row, $overrides = [] ) {
-		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, null, $overrides );
-		return new Revision( $rec );
+	public static function newFromArchiveRow( $row, $overrides = [], Title $title = null ) {
+		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
+		return new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
 	/**
@@ -880,8 +881,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord );
-		return $rec === null ? null : new Revision( $rec );
+		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord, $this->getTitle() );
+		return $rec === null
+			? null
+			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
 	}
 
 	/**
@@ -890,8 +893,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord );
-		return $rec === null ? null : new Revision( $rec );
+		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord, $this->getTitle() );
+		return $rec === null
+			? null
+			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
 	}
 
 	/**
