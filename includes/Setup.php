@@ -95,6 +95,15 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 }
 
 /**
+ * MCR switch
+ */
+if ( $wgUseMCRRevision ) {
+	class_alias( RevisionMCR::class, 'Revision' );
+} else {
+	class_alias( RevisionPreMCR::class, 'Revision' );
+}
+
+/**
  * Customization point after all loading (constants, functions, classes,
  * DefaultSettings, LocalSettings). Specifically, this is before usage of
  * settings, before instantiation of Profiler (and other singletons), and
