@@ -1679,11 +1679,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev ) {
-		$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( $title === null ) {
+			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+		}
 		$prev = $title->getPreviousRevisionID( $rev->getId() );
 		if ( $prev ) {
 			return $this->getRevisionByTitle( $title, $prev );
@@ -1697,10 +1700,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev ) {
+	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( $title === null ) {
+			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+		}
 		$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		$next = $title->getNextRevisionID( $rev->getId() );
 		if ( $next ) {
