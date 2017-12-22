@@ -31,7 +31,8 @@ class FirejailCommandTest extends PHPUnit_Framework_TestCase {
 		// @codingStandardsIgnoreEnd
 		$limit = "/bin/bash '$IP/includes/shell/limit.sh'";
 		$profile = "--profile=$IP/includes/shell/firejail.profile";
-		$default = '--noroot --seccomp=@default --private-dev';
+		$blacklist = '--blacklist=' . realpath( MW_CONFIG_FILE );
+		$default = "$blacklist --noroot --seccomp=@default --private-dev";
 		return [
 			[
 				'No restrictions',
