@@ -322,6 +322,9 @@ TEXT
 			$this->pageCount = $nthPage - 1;
 		}
 		$importer->setPageCallback( [ $this, 'reportPage' ] );
+		$importer->setNoticeCallback( function ( $msg, $params ) {
+			echo wfMessage( $msg, $params )->text() . "\n";
+		} );
 		$this->importCallback = $importer->setRevisionCallback(
 			[ $this, 'handleRevision' ] );
 		$this->uploadCallback = $importer->setUploadCallback(
