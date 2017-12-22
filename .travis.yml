@@ -61,6 +61,11 @@ addons:
     - mbstring
 
 before_script:
+  - pecl install tidy
+  - pecl install curl
+  - pecl install gd
+  - pecl install xml
+  - pecl install mbstring
   - composer update --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
