@@ -7673,6 +7673,7 @@ $wgLogTypes = [
 	'block',
 	'protect',
 	'rights',
+	'create',
 	'delete',
 	'upload',
 	'move',
@@ -7781,11 +7782,13 @@ $wgLogActions = [];
  * @see LogFormatter
  */
 $wgLogActionsHandlers = [
+<<<<<<< HEAD
 	'block/block' => BlockLogFormatter::class,
 	'block/reblock' => BlockLogFormatter::class,
 	'block/unblock' => BlockLogFormatter::class,
 	'contentmodel/change' => ContentModelLogFormatter::class,
 	'contentmodel/new' => ContentModelLogFormatter::class,
+	'create/create' => LogFormatter::class,
 	'delete/delete' => DeleteLogFormatter::class,
 	'delete/delete_redir' => DeleteLogFormatter::class,
 	'delete/event' => DeleteLogFormatter::class,

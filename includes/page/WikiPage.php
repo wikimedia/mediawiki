@@ -1950,6 +1950,17 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$user->incEditCount();
 
+		// Log the creation
+		// @TODO: Do we want a 'recreate' action?
+		$logEntry = new ManualLogEntry( 'create', 'create' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $summary );
+		$logid = $logEntry->insert();
+		// Note that we don't publish page creation events to recentchanges
+		// (i.e. $logEntry->publish()) since this would create duplicate entries,
+		// one for the edit and one for the page creation.
+
 		$dbw->endAtomic( __METHOD__ );
 		$this->mTimestamp = $now;
 
