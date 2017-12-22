@@ -56,9 +56,7 @@ addons:
     - djvulibre-bin
     - tidy
     - curl
-    - gd
-    - xml
-    - mbstring
+    - imagemagick
 
 before_script:
   - pecl install tidy
