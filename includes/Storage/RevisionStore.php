@@ -848,10 +848,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
+	 * @param Title $title (optional)
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionById( $id, $flags = 0 ) {
-		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags );
+	public function getRevisionById( $id, $flags = 0, Title $title = null ) {
+		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags, $title );
 	}
 
 	/**
