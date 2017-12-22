@@ -125,7 +125,9 @@ class WikiImporter {
 		if ( is_callable( $this->mNoticeCallback ) ) {
 			call_user_func( $this->mNoticeCallback, $msg, $params );
 		} else { # No ImportReporter -> CLI
-			echo wfMessage( $msg, $params )->text() . "\n";
+			// T177997: the command line importers should call setNoticeCallback()
+			// for their own custom callback to echo the notice
+			wfDebug( wfMessage( $msg, $params )->text() . "\n" );
 		}
 	}
 
