@@ -24,3 +24,13 @@ th.mw-version-ext-col-label {
 	-moz-column-width: 18em;
 	-webkit-column-width: 18em;
 }
+
+.mw-version-license-info strong {
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
+.mw-version-license-info em {
+	text-transform: uppercase;
+	font-style: normal;
+}
