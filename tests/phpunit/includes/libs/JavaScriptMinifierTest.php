@@ -59,6 +59,20 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			[ "0xFF.\nx;", "0xFF.x;" ],
 			[ "5.3.\nx;", "5.3.x;" ],
 
+			// Cover failure case for incomplete hex literal
+			[ "0x;", false, false ],
+
+			// Cover failure case for number with no digits after E
+			[ "1.4E", false, false ],
+
+			// Cover failure case for number with several E
+			[ "1.4EE2", false, false ],
+			[ "1.4EE", false, false ],
+
+			// Cover failure case for number with several E (nonconsecutive)
+			// FIXME: This is invalid, but currently tolerated
+			[ "1.4E2E3", "1.4E2 E3", false ],
+
 			// Semicolon insertion between an expression having an inline
 			// comment after it, and a statement on the next line (T29046).
 			[
@@ -138,6 +152,7 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			[ "var a = 5.;", "var a=5.;" ],
 			[ "5.0.toString();", "5.0.toString();" ],
 			[ "5..toString();", "5..toString();" ],
+			// Cover failure case for too many decimal points
 			[ "5...toString();", false ],
 			[ "5.\n.toString();", '5..toString();' ],
 
@@ -153,8 +168,9 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideCases
 	 * @covers JavaScriptMinifier::minify
+	 * @covers JavaScriptMinifier::parseError
 	 */
-	public function testJavaScriptMinifierOutput( $code, $expectedOutput, $expectedValid = true ) {
+	public function testMinifyOutput( $code, $expectedOutput, $expectedValid = true ) {
 		$minified = JavaScriptMinifier::minify( $code );
 
 		// JSMin+'s parser will throw an exception if output is not valid JS.
