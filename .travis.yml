@@ -57,12 +57,10 @@ addons:
     - tidy
     - curl
     - imagemagick
+    
+before_install: phpenv config-add myconfig.ini
 
 before_script:
-  - pecl install tidy
-  - pecl install gd
-  - pecl install xml
-  - pecl install mbstring
   - composer update --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
