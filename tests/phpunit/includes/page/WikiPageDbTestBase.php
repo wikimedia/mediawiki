@@ -108,12 +108,20 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		$page->doEditContent( $content, "[[testing]] 1" );
 
+		$id = $page->getId();
+
+		// Test page creation logging
+		$this->assertSelect(
+			'logging',
+			[ 'log_type', 'log_action' ],
+			[ 'log_page' => $id ],
+			[ [ 'create', 'create' ] ]
+		);
+
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
-		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
+		$this->assertTrue( $id > 0, "WikiPage should have new page id" );
 		$this->assertTrue( $title->exists(), "Title object should indicate that the page now exists" );
 		$this->assertTrue( $page->exists(), "WikiPage object should indicate that the page now exists" );
-
-		$id = $page->getId();
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
