@@ -95,6 +95,12 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 }
 
 /**
+ * Load Revision with the MCR switch based on $wgUseMCRRevision
+ */
+define( 'MW_MCR_LOAD_REVISION', true );
+require_once "$IP/includes/Revision.php";
+
+/**
  * Customization point after all loading (constants, functions, classes,
  * DefaultSettings, LocalSettings). Specifically, this is before usage of
  * settings, before instantiation of Profiler (and other singletons), and

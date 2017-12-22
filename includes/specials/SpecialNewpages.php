@@ -314,7 +314,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		// Revision deletion works on revisions,
 		// so cast our recent change row to a revision row.
+
 		$rev = $this->revisionFromRcResult( $result, $title );
+		// TODO remove the below setTitle call when $wgUseMCRRevision is no longer in use
+		$rev->setTitle( $title );
 
 		$classes = [];
 		$attribs = [ 'data-mw-revid' => $result->rev_id ];

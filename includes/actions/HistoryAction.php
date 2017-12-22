@@ -336,6 +336,8 @@ class HistoryAction extends FormlessAction {
 	 */
 	function feedItem( $row ) {
 		$rev = new Revision( $row, 0, $this->getTitle() );
+		// TODO remove the below setTitle call when $wgUseMCRRevision is no longer in use
+		$rev->setTitle( $this->getTitle() );
 
 		$text = FeedUtils::formatDiffRow(
 			$this->getTitle(),
@@ -639,10 +641,22 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
 		$latest = false, $firstInList = false ) {
-		$rev = new Revision( $row, 0, $this->getTitle() );
+		global $wgUseMCRRevision;
+
+		if ( $wgUseMCRRevision ) {
+			$rev = new Revision( $row, 0, $this->getTitle() );
+		} else {
+			$rev = new Revision( $row );
+			$rev->setTitle( $this->getTitle() );
+		}
 
 		if ( is_object( $next ) ) {
-			$prevRev = new Revision( $next, 0, $this->getTitle() );
+			if ( $wgUseMCRRevision ) {
+				$prevRev = new Revision( $next, 0, $this->getTitle() );
+			} else {
+				$prevRev = new Revision( $next );
+				$prevRev->setTitle( $this->getTitle() );
+			}
 		} else {
 			$prevRev = null;
 		}

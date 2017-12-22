@@ -478,6 +478,8 @@ class PageArchive {
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+		global $wgUseMCRRevision;
+
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -608,13 +610,21 @@ class PageArchive {
 			$oldPageId = (int)$latestRestorableRow->ar_page_id; // pass this to ArticleUndelete hook
 
 			// grab the content to check consistency with global state before restoring the page.
-			$revision = Revision::newFromArchiveRow(
-				$latestRestorableRow,
-				[
-					'title' => $article->getTitle(), // used to derive default content model
-				],
-				$article->getTitle()
-			);
+			if ( $wgUseMCRRevision ) {
+				$revision = Revision::newFromArchiveRow(
+					$latestRestorableRow,
+					[
+						'title' => $article->getTitle(), // used to derive default content model
+					],
+					$article->getTitle()
+				);
+			} else {
+				$revision = Revision::newFromArchiveRow( $latestRestorableRow,
+					[
+						'title' => $article->getTitle(), // used to derive default content model
+					]
+				);
+			}
 			$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 			$content = $revision->getContent( Revision::RAW );
 
@@ -676,15 +686,26 @@ class PageArchive {
 				}
 				// Insert one revision at a time...maintaining deletion status
 				// unless we are specifically removing all restrictions...
-				$revision = Revision::newFromArchiveRow(
-					$row,
-					[
-						'page' => $pageId,
-						'title' => $this->title,
-						'deleted' => $unsuppress ? 0 : $row->ar_deleted
-					],
-					$this->title
-				);
+				if ( $wgUseMCRRevision ) {
+					$revision = Revision::newFromArchiveRow(
+						$row,
+						[
+							'page' => $pageId,
+							'title' => $this->title,
+							'deleted' => $unsuppress ? 0 : $row->ar_deleted
+						],
+						$this->title
+					);
+				} else {
+					$revision = Revision::newFromArchiveRow(
+						$row,
+						[
+							'page' => $pageId,
+							'title' => $this->title,
+							'deleted' => $unsuppress ? 0 : $row->ar_deleted
+						]
+					);
+				}
 
 				// This will also copy the revision to ip_changes if it was an IP edit.
 				$revision->insertOn( $dbw );
