@@ -149,6 +149,8 @@ changes to languages because of Phabricator reports.
   * WatchedItem::IGNORE_USER_RIGHTS
   * WatchedItem::CHECK_USER_RIGHTS
   * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
+* Support for the '$statementsOnOwnLine' parameter to JavaScriptMinifier::minify()
+  has been removed (deprecated in 1.27).
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
