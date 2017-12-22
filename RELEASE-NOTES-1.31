@@ -148,6 +148,9 @@ changes to languages because of Phabricator reports.
   * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
+* ParserOutput objects generated using a non-default value for
+  ParserOptions::setWrapOutputClass() can no longer be added to the parser
+  cache.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for

@@ -18,7 +18,6 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			'stubthreshold' => true,
 			'printable' => true,
 			'userlang' => true,
-			'wrapclass' => true,
 		];
 	}
 
@@ -63,6 +62,9 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			] ],
 			'Non-in-key options are not ok' => [ false, [
 				'removeComments' => false,
+			] ],
+			'Non-in-key options are not ok (2)' => [ false, [
+				'wrapclass' => 'foobar',
 			] ],
 			'Canonical override, not default (1)' => [ true, [
 				'tidy' => true,
@@ -210,7 +212,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$wgHooks['ParserOptionsRegister'] = [];
 		$this->assertSame( [
 			'dateformat', 'numberheadings', 'printable', 'stubthreshold',
-			'thumbsize', 'userlang', 'wrapclass',
+			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 
 		self::clearCache();
@@ -228,7 +230,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		};
 		$this->assertSame( [
 			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
-			'thumbsize', 'userlang', 'wrapclass',
+			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 	}
 
