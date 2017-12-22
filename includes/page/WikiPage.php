@@ -1874,7 +1874,7 @@ class WikiPage implements Page, IDBAccessObject {
 	private function doCreate(
 		Content $content, $flags, User $user, $summary, array $meta
 	) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgPageCreationLog;
 
 		$status = Status::newGood( [ 'new' => true, 'revision' => null ] );
 
@@ -1949,6 +1949,21 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$user->incEditCount();
+
+		if ( $wgPageCreationLog ) {
+			// Log the page creation
+			// @TODO: Do we want a 'recreate' action?
+			$logEntry = new ManualLogEntry( 'create', 'create' );
+			$logEntry->setPerformer( $user );
+			$logEntry->setTarget( $this->mTitle );
+			$logEntry->setComment( $summary );
+			$logEntry->setTimestamp( $now );
+			$logEntry->setAssociatedRevId( $revisionId );
+			$logid = $logEntry->insert();
+			// Note that we don't publish page creation events to recentchanges
+			// (i.e. $logEntry->publish()) since this would create duplicate entries,
+			// one for the edit and one for the page creation.
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 		$this->mTimestamp = $now;
