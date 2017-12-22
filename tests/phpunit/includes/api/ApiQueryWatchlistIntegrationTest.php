@@ -163,6 +163,11 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doListWatchlistRequest( array $params = [], $user = null ) {
+		// Do not include log entries in the API response, unless requested
+		if ( !array_key_exists( 'wltype', $params ) ) {
+			$params['wltype'] = 'edit|new';
+		}
+
 		return $this->doApiRequest(
 			array_merge(
 				[ 'action' => 'query', 'list' => 'watchlist' ],
@@ -651,7 +656,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$this->watchPages( $this->getLoggedInTestUser(), [ $target ] );
 
-		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'loginfo', ] );
+		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'loginfo', 'wltype' => 'log', ] );
 
 		$this->assertArraySubsetsEqual(
 			$this->getItemsFromApiResponse( $result ),
@@ -660,6 +665,12 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'type' => 'log',
 					'logtype' => 'delete',
 					'logaction' => 'delete',
+					'logparams' => [],
+				],
+				[
+					'type' => 'log',
+					'logtype' => 'create',
+					'logaction' => 'create',
 					'logparams' => [],
 				],
 			],
@@ -1031,6 +1042,41 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 	}
 
+	public function testCreationLogEntriesIncludedInResponseByDefault() {
+		$user = $this->getLoggedInTestUser();
+		$target = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
+		$this->doPageEdit(
+			$user,
+			$target,
+			'Some Content',
+			'Create the page'
+		);
+		$this->watchPages( $user, [ $target ] );
+
+		$result = $this->doApiRequest(
+			[ 'action' => 'query', 'list' => 'watchlist', 'wlprop' => 'title' ],
+			null,
+			false,
+			$user
+		);
+
+		$this->assertEquals(
+			[
+				[
+					'type' => 'log',
+					'ns' => $target->getNamespace(),
+					'title' => $this->getPrefixedText( $target ),
+				],
+				[
+					'type' => 'new',
+					'ns' => $target->getNamespace(),
+					'title' => $this->getPrefixedText( $target ),
+				],
+			],
+			$this->getItemsFromApiResponse( $result )
+		);
+	}
+
 	public function testLogTypeParameters() {
 		$user = $this->getLoggedInTestUser();
 		$subjectTarget = new TitleValue( 0, 'ApiQueryWatchlistIntegrationTestPage' );
@@ -1044,17 +1090,31 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 		$this->watchPages( $user, [ $subjectTarget, $talkTarget ] );
 
-		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'title', 'wltype' => 'log' ] );
+		$result = $this->doListWatchlistRequest( [ 'wlprop' => 'title|loginfo', 'wltype' => 'log' ] );
 
-		$this->assertEquals(
+		$this->assertArraySubsetsEqual(
+			$this->getItemsFromApiResponse( $result ),
 			[
+				[
+					'type' => 'log',
+					'ns' => $talkTarget->getNamespace(),
+					'title' => $this->getPrefixedText( $talkTarget ),
+					'logtype' => 'create',
+				],
 				[
 					'type' => 'log',
 					'ns' => $subjectTarget->getNamespace(),
 					'title' => $this->getPrefixedText( $subjectTarget ),
+					'logtype' => 'delete',
+				],
+				[
+					'type' => 'log',
+					'ns' => $subjectTarget->getNamespace(),
+					'title' => $this->getPrefixedText( $subjectTarget ),
+					'logtype' => 'create',
 				],
 			],
-			$this->getItemsFromApiResponse( $result )
+			[ 'ns', 'title', 'type', 'logtype' ]
 		);
 	}
 
