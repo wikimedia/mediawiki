@@ -1845,6 +1845,9 @@ return [
 			'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.WatchlistTopSectionWidget.less',
 		],
 		'skinStyles' => [
+			'vector' => [
+				'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.Overlay.vector.less',
+			],
 			'monobook' => [
 				'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.Overlay.monobook.less',
 				'resources/src/mediawiki.rcfilters/styles/mw.rcfilters.ui.CapsuleItemWidget.monobook.less',
