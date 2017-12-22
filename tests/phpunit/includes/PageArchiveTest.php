@@ -178,4 +178,66 @@ class PageArchiveTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers PageArchive::listPagesBySearch
+	 */
+	public function testListPagesBySearch() {
+		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
+		$this->assertEquals( 1, $pages->numRows() );
+
+		$page = (array)$pages->current();
+
+		$this->assertEquals(
+			[
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'count' => 2
+			],
+			$page
+		);
+	}
+
+	/**
+	 * @covers PageArchive::listPagesBySearch
+	 */
+	public function testListPagesByPrefix() {
+		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );
+		$this->assertEquals( 1, $pages->numRows() );
+
+		$page = (array)$pages->current();
+
+		$this->assertEquals(
+			[
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'count' => 2
+			],
+			$page
+		);
+	}
+
+
+	/**
+	 * @covers PageArchive::getTextFromRow
+	 */
+	public function testGetTextFromRow() {
+		$row = (object)[ 'ar_text_id' => 2 ];
+		$text = $this->archivedPage->getTextFromRow( $row );
+		$this->assertSame( 'testing', $text );
+	}
+
+	/**
+	 * @covers PageArchive::getLastRevisionText
+	 */
+	public function testGetLastRevisionText() {
+		$text = $this->archivedPage->getLastRevisionText();
+		$this->assertSame( 'Lorem Ipsum', $text );
+	}
+
+	/**
+	 * @covers PageArchive::isDeleted
+	 */
+	public function testIsDeleted() {
+		$this->assertTrue( $this->archivedPage->isDeleted() );
+	}
 }
