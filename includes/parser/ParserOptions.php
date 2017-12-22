@@ -65,7 +65,6 @@ class ParserOptions {
 		'stubthreshold' => true,
 		'printable' => true,
 		'userlang' => true,
-		'wrapclass' => true,
 	];
 
 	/**
@@ -780,13 +779,16 @@ class ParserOptions {
 	/**
 	 * CSS class to use to wrap output from Parser::parse()
 	 * @since 1.30
-	 * @param string|bool $className Set false to disable wrapping.
-	 *   Passing false is deprecated since MediaWiki 1.31
+	 * @param string $className Class name to use for wrapping.
+	 *   Passing false to indicate "no wrapping" was deprecated in MediaWiki 1.31.
 	 * @return string|bool Current value
 	 */
 	public function setWrapOutputClass( $className ) {
 		if ( $className === true ) { // DWIM, they probably want the default class name
 			$className = 'mw-parser-output';
+		}
+		if ( $className === false ) {
+			wfDeprecated( __METHOD__ . '( false )', '1.31' );
 		}
 		return $this->setOption( 'wrapclass', $className );
 	}
