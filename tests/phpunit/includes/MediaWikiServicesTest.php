@@ -334,6 +334,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'LocalServerObjectCache' => [ 'LocalServerObjectCache', BagOStuff::class ],
 			'VirtualRESTServiceClient' => [ 'VirtualRESTServiceClient', VirtualRESTServiceClient::class ],
 			'ShellCommandFactory' => [ 'ShellCommandFactory', CommandFactory::class ],
+			'BlobStoreFactory' => [ 'BlobStoreFactory', BlobStoreFactory::class ],
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],

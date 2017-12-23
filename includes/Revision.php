@@ -65,10 +65,14 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 *
 	 * @return SqlBlobStore
 	 */
-	protected static function getBlobStore() {
-		$store = MediaWikiServices::getInstance()->getBlobStore();
+	protected static function getBlobStore( $wiki = false ) {
+		$store = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore( $wiki );
 
 		if ( !$store instanceof SqlBlobStore ) {
 			throw new RuntimeException(
@@ -942,7 +946,7 @@ class Revision implements IDBAccessObject {
 
 		$cacheKey = isset( $row->old_id ) ? ( 'tt:' . $row->old_id ) : null;
 
-		return self::getBlobStore()->expandBlob( $text, $flags, $cacheKey );
+		return self::getBlobStore( $wiki )->expandBlob( $text, $flags, $cacheKey );
 	}
 
 	/**

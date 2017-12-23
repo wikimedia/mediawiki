@@ -42,6 +42,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 
@@ -466,28 +467,20 @@ return [
 		return $store;
 	},
 
+	'BlobStoreFactory' => function ( MediaWikiServices $services ) {
+		return new BlobStoreFactory(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			$services->getMainConfig()
+		);
+	},
+
 	'BlobStore' => function ( MediaWikiServices $services ) {
 		return $services->getService( '_SqlBlobStore' );
 	},
 
 	'_SqlBlobStore' => function ( MediaWikiServices $services ) {
-		global $wgContLang; // TODO: manage $wgContLang as a service
-
-		$store = new SqlBlobStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache()
-		);
-
-		$config = $services->getMainConfig();
-		$store->setCompressRevisions( $config->get( 'CompressRevisions' ) );
-		$store->setCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
-		$store->setUseExternalStore( $config->get( 'DefaultExternalStore' ) !== false );
-
-		if ( $config->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $config->get( 'LegacyEncoding' ), $wgContLang );
-		}
-
-		return $store;
+		return $services->getBlobStoreFactory()->newSqlBlobStore();
 	},
 
 	'ExternalStoreFactory' => function ( MediaWikiServices $services ) {
@@ -496,46 +489,6 @@ return [
 		return new ExternalStoreFactory(
 			$config->get( 'ExternalStores' )
 		);
-	},
-
-	'RevisionStore' => function ( MediaWikiServices $services ) {
-		/** @var SqlBlobStore $blobStore */
-		$blobStore = $services->getService( '_SqlBlobStore' );
-
-		$store = new RevisionStore(
-			$services->getDBLoadBalancer(),
-			$blobStore,
-			$services->getMainWANObjectCache()
-		);
-
-		$config = $services->getMainConfig();
-		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
-
-		return $store;
-	},
-
-	'BlobStore' => function ( MediaWikiServices $services ) {
-		return $services->getService( '_SqlBlobStore' );
-	},
-
-	'_SqlBlobStore' => function ( MediaWikiServices $services ) {
-		global $wgContLang; // TODO: manage $wgContLang as a service
-
-		$store = new SqlBlobStore(
-			$services->getDBLoadBalancer(),
-			$services->getMainWANObjectCache()
-		);
-
-		$config = $services->getMainConfig();
-		$store->setCompressBlobs( $config->get( 'CompressRevisions' ) );
-		$store->setCacheExpiry( $config->get( 'RevisionCacheExpiry' ) );
-		$store->setUseExternalStore( $config->get( 'DefaultExternalStore' ) !== false );
-
-		if ( $config->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $config->get( 'LegacyEncoding' ), $wgContLang );
-		}
-
-		return $store;
 	},
 
 	///////////////////////////////////////////////////////////////////////////
