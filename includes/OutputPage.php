@@ -3331,10 +3331,12 @@ class OutputPage extends ContextSource {
 		] );
 
 		if ( $config->get( 'ReferrerPolicy' ) !== false ) {
-			$tags['meta-referrer'] = Html::element( 'meta', [
-				'name' => 'referrer',
-				'content' => $config->get( 'ReferrerPolicy' )
-			] );
+			foreach ( array_reverse( (array)$config->get( 'ReferrerPolicy' ) ) as $i => $policy ) {
+				$tags["meta-referrer-$i"] = Html::element( 'meta', [
+					'name' => 'referrer',
+					'content' => $policy,
+				] );
+			}
 		}
 
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
