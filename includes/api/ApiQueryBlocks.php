@@ -334,9 +334,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=blocks'
+			'formatversion=2&action=query&list=blocks'
 				=> 'apihelp-query+blocks-example-simple',
-			'action=query&list=blocks&bkusers=Alice|Bob'
+			'formatversion=2&action=query&list=blocks&bkusers=Alice|Bob'
 				=> 'apihelp-query+blocks-example-users',
 		];
 	}

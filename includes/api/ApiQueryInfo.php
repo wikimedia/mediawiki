@@ -938,9 +938,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=info&titles=Main%20Page'
+			'formatversion=2&action=query&prop=info&titles=Main%20Page'
 				=> 'apihelp-query+info-example-simple',
-			'action=query&prop=info&inprop=protection&titles=Main%20Page'
+			'formatversion=2&action=query&prop=info&inprop=protection&titles=Main%20Page'
 				=> 'apihelp-query+info-example-protection',
 		];
 	}

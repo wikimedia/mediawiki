@@ -227,7 +227,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$path = $this->getModulePath();
 
 		return [
-			"action=query&prop={$name}&titles=Main%20Page"
+			"formatversion=2&action=query&prop={$name}&titles=Main%20Page"
 				=> "apihelp-{$path}-example-simple",
 			"action=query&generator={$name}&titles=Main%20Page&prop=info"
 				=> "apihelp-{$path}-example-generator",

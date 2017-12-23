@@ -184,9 +184,9 @@ class ApiBlock extends ApiBase {
 	protected function getExamplesMessages() {
 		// @codingStandardsIgnoreStart Generic.Files.LineLength
 		return [
-			'action=block&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=123ABC'
+			'formatversion=2&action=block&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=123ABC'
 				=> 'apihelp-block-example-ip-simple',
-			'action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
+			'formatversion=2&action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
 				=> 'apihelp-block-example-user-complex',
 		];
 		// @codingStandardsIgnoreEnd

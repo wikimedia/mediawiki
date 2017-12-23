@@ -107,9 +107,9 @@ class ApiTokens extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=tokens'
+			'formatversion=2&action=tokens'
 				=> 'apihelp-tokens-example-edit',
-			'action=tokens&type=email|move'
+			'formatversion=2&action=tokens&type=email|move'
 				=> 'apihelp-tokens-example-emailmove',
 		];
 	}

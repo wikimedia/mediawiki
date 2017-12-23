@@ -598,13 +598,13 @@ class ApiEditPage extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=edit&title=Test&summary=test%20summary&' .
+			'formatversion=2&action=edit&title=Test&summary=test%20summary&' .
 				'text=article%20content&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
 				=> 'apihelp-edit-example-edit',
-			'action=edit&title=Test&summary=NOTOC&minor=&' .
+			'formatversion=2&action=edit&title=Test&summary=NOTOC&minor=&' .
 				'prependtext=__NOTOC__%0A&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
 				=> 'apihelp-edit-example-prepend',
-			'action=edit&title=Test&undo=13585&undoafter=13579&' .
+			'formatversion=2&action=edit&title=Test&undo=13585&undoafter=13579&' .
 				'basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
 				=> 'apihelp-edit-example-undo',
 		];

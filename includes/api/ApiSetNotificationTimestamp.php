@@ -235,14 +235,14 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=setnotificationtimestamp&entirewatchlist=&token=123ABC'
+			'formatversion=2&action=setnotificationtimestamp&entirewatchlist=&token=123ABC'
 				=> 'apihelp-setnotificationtimestamp-example-all',
-			'action=setnotificationtimestamp&titles=Main_page&token=123ABC'
+			'formatversion=2&action=setnotificationtimestamp&titles=Main_page&token=123ABC'
 				=> 'apihelp-setnotificationtimestamp-example-page',
-			'action=setnotificationtimestamp&titles=Main_page&' .
+			'formatversion=2&action=setnotificationtimestamp&titles=Main_page&' .
 				'timestamp=2012-01-01T00:00:00Z&token=123ABC'
 				=> 'apihelp-setnotificationtimestamp-example-pagetimestamp',
-			'action=setnotificationtimestamp&generator=allpages&gapnamespace=2&token=123ABC'
+			'formatversion=2&action=setnotificationtimestamp&generator=allpages&gapnamespace=2&token=123ABC'
 				=> 'apihelp-setnotificationtimestamp-example-allpages',
 		];
 	}

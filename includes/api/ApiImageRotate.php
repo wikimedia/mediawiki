@@ -191,9 +191,9 @@ class ApiImageRotate extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=imagerotate&titles=File:Example.jpg&rotation=90&token=123ABC'
+			'formatversion=2&action=imagerotate&titles=File:Example.jpg&rotation=90&token=123ABC'
 				=> 'apihelp-imagerotate-example-simple',
-			'action=imagerotate&generator=categorymembers&gcmtitle=Category:Flip&gcmtype=file&' .
+			'formatversion=2&action=imagerotate&generator=categorymembers&gcmtitle=Category:Flip&gcmtype=file&' .
 				'rotation=180&token=123ABC'
 				=> 'apihelp-imagerotate-example-generator',
 		];

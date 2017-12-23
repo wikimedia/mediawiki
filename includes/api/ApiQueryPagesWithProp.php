@@ -164,9 +164,9 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
+			'formatversion=2&action=query&list=pageswithprop&pwppropname=displaytitle&pwpprop=ids|title|value'
 				=> 'apihelp-query+pageswithprop-example-simple',
-			'action=query&generator=pageswithprop&gpwppropname=notoc&prop=info'
+			'formatversion=2&action=query&generator=pageswithprop&gpwppropname=notoc&prop=info'
 				=> 'apihelp-query+pageswithprop-example-generator',
 		];
 	}

@@ -160,7 +160,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=querypage&qppage=Ancientpages'
+			'formatversion=2&action=query&list=querypage&qppage=Ancientpages'
 				=> 'apihelp-query+querypage-example-ancientpages',
 		];
 	}

@@ -583,9 +583,9 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=usercontribs&ucuser=Example'
+			'formatversion=2&action=query&list=usercontribs&ucuser=Example'
 				=> 'apihelp-query+usercontribs-example-user',
-			'action=query&list=usercontribs&ucuserprefix=192.0.2.'
+			'formatversion=2&action=query&list=usercontribs&ucuserprefix=192.0.2.'
 				=> 'apihelp-query+usercontribs-example-ipprefix',
 		];
 	}

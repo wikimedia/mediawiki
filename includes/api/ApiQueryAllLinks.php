@@ -294,7 +294,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$path = $this->getModulePath();
 
 		return [
-			"action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
+			"formatversion=2&action=query&list={$name}&{$p}from=B&{$p}prop=ids|title"
 				=> "apihelp-$path-example-B",
 			"action=query&list={$name}&{$p}unique=&{$p}from=B"
 				=> "apihelp-$path-example-unique",

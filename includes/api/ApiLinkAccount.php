@@ -118,7 +118,7 @@ class ApiLinkAccount extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=linkaccount&provider=Example&linkreturnurl=http://example.org/&linktoken=123ABC'
+			'formatversion=2&action=linkaccount&provider=Example&linkreturnurl=http://example.org/&linktoken=123ABC'
 				=> 'apihelp-linkaccount-example-link',
 		];
 	}

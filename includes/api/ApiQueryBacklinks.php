@@ -552,21 +552,21 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	protected function getExamplesMessages() {
 		static $examples = [
 			'backlinks' => [
-				'action=query&list=backlinks&bltitle=Main%20Page'
+				'formatversion=2&action=query&list=backlinks&bltitle=Main%20Page'
 					=> 'apihelp-query+backlinks-example-simple',
-				'action=query&generator=backlinks&gbltitle=Main%20Page&prop=info'
+				'formatversion=2&action=query&generator=backlinks&gbltitle=Main%20Page&prop=info'
 					=> 'apihelp-query+backlinks-example-generator',
 			],
 			'embeddedin' => [
-				'action=query&list=embeddedin&eititle=Template:Stub'
+				'formatversion=2&action=query&list=embeddedin&eititle=Template:Stub'
 					=> 'apihelp-query+embeddedin-example-simple',
-				'action=query&generator=embeddedin&geititle=Template:Stub&prop=info'
+				'formatversion=2&action=query&generator=embeddedin&geititle=Template:Stub&prop=info'
 					=> 'apihelp-query+embeddedin-example-generator',
 			],
 			'imageusage' => [
-				'action=query&list=imageusage&iutitle=File:Albert%20Einstein%20Head.jpg'
+				'formatversion=2&action=query&list=imageusage&iutitle=File:Albert%20Einstein%20Head.jpg'
 					=> 'apihelp-query+imageusage-example-simple',
-				'action=query&generator=imageusage&giutitle=File:Albert%20Einstein%20Head.jpg&prop=info'
+				'formatversion=2&action=query&generator=imageusage&giutitle=File:Albert%20Einstein%20Head.jpg&prop=info'
 					=> 'apihelp-query+imageusage-example-generator',
 			]
 		];

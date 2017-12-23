@@ -223,9 +223,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=categories&titles=Albert%20Einstein'
+			'formatversion=2&action=query&prop=categories&titles=Albert%20Einstein'
 				=> 'apihelp-query+categories-example-simple',
-			'action=query&generator=categories&titles=Albert%20Einstein&prop=info'
+			'formatversion=2&action=query&generator=categories&titles=Albert%20Einstein&prop=info'
 				=> 'apihelp-query+categories-example-generator',
 		];
 	}

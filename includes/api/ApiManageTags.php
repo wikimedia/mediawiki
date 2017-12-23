@@ -113,13 +113,13 @@ class ApiManageTags extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=managetags&operation=create&tag=spam&reason=For+use+in+edit+patrolling&token=123ABC'
+			'formatversion=2&action=managetags&operation=create&tag=spam&reason=For+use+in+edit+patrolling&token=123ABC'
 				=> 'apihelp-managetags-example-create',
-			'action=managetags&operation=delete&tag=vandlaism&reason=Misspelt&token=123ABC'
+			'formatversion=2&action=managetags&operation=delete&tag=vandlaism&reason=Misspelt&token=123ABC'
 				=> 'apihelp-managetags-example-delete',
-			'action=managetags&operation=activate&tag=spam&reason=For+use+in+edit+patrolling&token=123ABC'
+			'formatversion=2&action=managetags&operation=activate&tag=spam&reason=For+use+in+edit+patrolling&token=123ABC'
 				=> 'apihelp-managetags-example-activate',
-			'action=managetags&operation=deactivate&tag=spam&reason=No+longer+required&token=123ABC'
+			'formatversion=2&action=managetags&operation=deactivate&tag=spam&reason=No+longer+required&token=123ABC'
 				=> 'apihelp-managetags-example-deactivate',
 		];
 	}

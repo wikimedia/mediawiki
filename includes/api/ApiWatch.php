@@ -173,11 +173,11 @@ class ApiWatch extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=watch&titles=Main_Page&token=123ABC'
+			'formatversion=2&action=watch&titles=Main_Page&token=123ABC'
 				=> 'apihelp-watch-example-watch',
-			'action=watch&titles=Main_Page&unwatch=&token=123ABC'
+			'formatversion=2&action=watch&titles=Main_Page&unwatch=&token=123ABC'
 				=> 'apihelp-watch-example-unwatch',
-			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
+			'formatversion=2&action=watch&generator=allpages&gapnamespace=0&token=123ABC'
 				=> 'apihelp-watch-example-generator',
 		];
 	}

@@ -108,7 +108,7 @@ class ApiEmailUser extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=emailuser&target=WikiSysop&text=Content&token=123ABC'
+			'formatversion=2&action=emailuser&target=WikiSysop&text=Content&token=123ABC'
 				=> 'apihelp-emailuser-example-email',
 		];
 	}

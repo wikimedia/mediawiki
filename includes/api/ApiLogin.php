@@ -267,9 +267,9 @@ class ApiLogin extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=login&lgname=user&lgpassword=password'
+			'formatversion=2&action=login&lgname=user&lgpassword=password'
 				=> 'apihelp-login-example-gettoken',
-			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
+			'formatversion=2&action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
 				=> 'apihelp-login-example-login',
 		];
 	}

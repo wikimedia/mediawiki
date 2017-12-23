@@ -116,12 +116,12 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&meta=authmanagerinfo&amirequestsfor=' . urlencode( AuthManager::ACTION_LOGIN )
+			'formatversion=2&action=query&meta=authmanagerinfo&amirequestsfor=' . urlencode( AuthManager::ACTION_LOGIN )
 				=> 'apihelp-query+authmanagerinfo-example-login',
-			'action=query&meta=authmanagerinfo&amirequestsfor=' . urlencode( AuthManager::ACTION_LOGIN ) .
+			'formatversion=2&action=query&meta=authmanagerinfo&amirequestsfor=' . urlencode( AuthManager::ACTION_LOGIN ) .
 				'&amimergerequestfields=1'
 				=> 'apihelp-query+authmanagerinfo-example-login-merged',
-			'action=query&meta=authmanagerinfo&amisecuritysensitiveoperation=foo'
+			'formatversion=2&action=query&meta=authmanagerinfo&amisecuritysensitiveoperation=foo'
 				=> 'apihelp-query+authmanagerinfo-example-securitysensitiveoperation',
 		];
 	}

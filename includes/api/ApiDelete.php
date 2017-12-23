@@ -220,9 +220,9 @@ class ApiDelete extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=delete&title=Main%20Page&token=123ABC'
+			'formatversion=2&action=delete&title=Main%20Page&token=123ABC'
 				=> 'apihelp-delete-example-simple',
-			'action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
+			'formatversion=2&action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
 				=> 'apihelp-delete-example-reason',
 		];
 	}

@@ -69,7 +69,7 @@ class ApiLogout extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=logout'
+			'formatversion=2&action=logout'
 				=> 'apihelp-logout-example-logout',
 		];
 	}

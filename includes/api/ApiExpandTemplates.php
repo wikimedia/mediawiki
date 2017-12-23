@@ -222,7 +222,7 @@ class ApiExpandTemplates extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=expandtemplates&text={{Project:Sandbox}}'
+			'formatversion=2&action=expandtemplates&text={{Project:Sandbox}}'
 				=> 'apihelp-expandtemplates-example-simple',
 		];
 	}

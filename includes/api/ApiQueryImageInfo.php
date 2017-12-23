@@ -812,9 +812,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
+			'formatversion=2&action=query&titles=File:Albert%20Einstein%20Head.jpg&prop=imageinfo'
 				=> 'apihelp-query+imageinfo-example-simple',
-			'action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&' .
+			'formatversion=2&action=query&titles=File:Test.jpg&prop=imageinfo&iilimit=50&' .
 				'iiend=2007-12-31T23:59:59Z&iiprop=timestamp|user|url'
 				=> 'apihelp-query+imageinfo-example-dated',
 		];

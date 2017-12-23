@@ -925,11 +925,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics'
+			'formatversion=2&action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics'
 				=> 'apihelp-query+siteinfo-example-simple',
-			'action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local'
+			'formatversion=2&action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local'
 				=> 'apihelp-query+siteinfo-example-interwiki',
-			'action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb='
+			'formatversion=2&action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb='
 				=> 'apihelp-query+siteinfo-example-replag',
 		];
 	}

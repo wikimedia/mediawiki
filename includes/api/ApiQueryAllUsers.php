@@ -384,7 +384,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=allusers&aufrom=Y'
+			'formatversion=2&action=query&list=allusers&aufrom=Y'
 				=> 'apihelp-query+allusers-example-Y',
 		];
 	}

@@ -114,7 +114,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=pageprops&titles=Main%20Page|MediaWiki'
+			'formatversion=2&action=query&prop=pageprops&titles=Main%20Page|MediaWiki'
 				=> 'apihelp-query+pageprops-example-simple',
 		];
 	}

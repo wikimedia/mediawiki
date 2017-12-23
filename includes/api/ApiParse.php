@@ -902,9 +902,9 @@ class ApiParse extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=parse&page=Project:Sandbox'
+			'formatversion=2&action=parse&page=Project:Sandbox'
 				=> 'apihelp-parse-example-page',
-			'action=parse&text={{Project:Sandbox}}&contentmodel=wikitext'
+			'formatversion=2&action=parse&text={{Project:Sandbox}}&contentmodel=wikitext'
 				=> 'apihelp-parse-example-text',
 			'action=parse&text={{PAGENAME}}&title=Test'
 				=> 'apihelp-parse-example-texttitle',
