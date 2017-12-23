@@ -382,7 +382,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				return false;
 			}
 
-			if ( $cacheKey ) {
+			if ( $cacheKey && $this->wikiId === false ) {
 				// Make use of the wiki-local revision text cache.
 				// The cached value should be decompressed, so handle that and return here.
 				// NOTE: we rely on $this->cache being the right cache for $this->wikiId!
