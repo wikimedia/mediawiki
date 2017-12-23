@@ -97,7 +97,8 @@
 			"Alerque",
 			"Bulgu",
 			"Botansahin",
-			"Catrope"
+			"Catrope",
+			"Hedda"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1355,12 +1356,12 @@
 	"rcfilters-empty-filter": "Etkin süzgeç bulunmuyor. Tüm katkıları gösteriliyor.",
 	"rcfilters-filterlist-title": "Süzgeçler",
 	"rcfilters-filterlist-whatsthis": "Bunlar nasıl çalışır?",
-	"rcfilters-filterlist-feedbacklink": "Bu (yeni) süzgeç araçları konusunda ne düşündüğünüzü bize aktarın",
+	"rcfilters-filterlist-feedbacklink": "Bu (yeni) süzgeç araçları konusunda ne düşündüğünüzü bize bildirin",
 	"rcfilters-highlightbutton-title": "Sonuçları vurgula",
 	"rcfilters-highlightmenu-title": "Bir renk seçin",
 	"rcfilters-highlightmenu-help": "Bu özelliği vurgulamak için bir renk seçin",
 	"rcfilters-filterlist-noresults": "Süzgeç bulunamadı",
-	"rcfilters-noresults-conflict": "Hiçbir sonuç bulunamadı çünkü arama kriterleri çelişkili",
+	"rcfilters-noresults-conflict": "Arama kriterleri çelişkili olduğu için hiçbir sonuç bulunamadı",
 	"rcfilters-filtergroup-authorship": "Düzenleme sahipliği",
 	"rcfilters-filter-editsbyself-label": "Senin değişiklikleriniz",
 	"rcfilters-filter-editsbyself-description": "Kendi katkılarınız.",
