@@ -123,10 +123,10 @@ class ApiClientLogin extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=clientlogin&username=Example&password=ExamplePassword&'
+			'formatversion=2&action=clientlogin&username=Example&password=ExamplePassword&'
 				. 'loginreturnurl=http://example.org/&logintoken=123ABC'
 				=> 'apihelp-clientlogin-example-login',
-			'action=clientlogin&logincontinue=1&OATHToken=987654&logintoken=123ABC'
+			'formatversion=2&action=clientlogin&logincontinue=1&OATHToken=987654&logintoken=123ABC'
 				=> 'apihelp-clientlogin-example-login2',
 		];
 	}

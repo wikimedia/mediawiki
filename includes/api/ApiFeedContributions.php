@@ -229,7 +229,7 @@ class ApiFeedContributions extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=feedcontributions&user=Example'
+			'formatversion=2&action=feedcontributions&user=Example'
 				=> 'apihelp-feedcontributions-example-simple',
 		];
 	}

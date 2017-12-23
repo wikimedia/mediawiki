@@ -224,7 +224,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=exturlusage&euquery=www.mediawiki.org'
+			'formatversion=2&action=query&list=exturlusage&euquery=www.mediawiki.org'
 				=> 'apihelp-query+exturlusage-example-simple',
 		];
 	}

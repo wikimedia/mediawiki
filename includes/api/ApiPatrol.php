@@ -104,9 +104,9 @@ class ApiPatrol extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=patrol&token=123ABC&rcid=230672766'
+			'formatversion=2&action=patrol&token=123ABC&rcid=230672766'
 				=> 'apihelp-patrol-example-rcid',
-			'action=patrol&token=123ABC&revid=230672766'
+			'formatversion=2&action=patrol&token=123ABC&revid=230672766'
 				=> 'apihelp-patrol-example-revid',
 		];
 	}

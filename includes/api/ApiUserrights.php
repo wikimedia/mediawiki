@@ -202,14 +202,16 @@ class ApiUserrights extends ApiBase {
 
 	protected function getExamplesMessages() {
 		$a = [
-			'action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
+			'formatversion=2&action=userrights&user=FooBot&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-user',
-			'action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
+			'formatversion=2&action=userrights&userid=123&add=bot&remove=sysop|bureaucrat&token=123ABC'
 				=> 'apihelp-userrights-example-userid',
 		];
 		if ( $this->getUserRightsPage()->canProcessExpiries() ) {
-			$a['action=userrights&user=SometimeSysop&add=sysop&expiry=1%20month&token=123ABC']
-				= 'apihelp-userrights-example-expiry';
+			$a += [
+				'formatversion=2&action=userrights&user=SometimeSysop&add=sysop&expiry=1%20month&token=123ABC'
+					=> 'apihelp-userrights-example-expiry',
+			];
 		}
 		return $a;
 	}

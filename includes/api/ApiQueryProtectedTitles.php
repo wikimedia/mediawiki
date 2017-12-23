@@ -235,9 +235,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=protectedtitles'
+			'formatversion=2&action=query&list=protectedtitles'
 				=> 'apihelp-query+protectedtitles-example-simple',
-			'action=query&generator=protectedtitles&gptnamespace=0&prop=linkshere'
+			'formatversion=2&action=query&generator=protectedtitles&gptnamespace=0&prop=linkshere'
 				=> 'apihelp-query+protectedtitles-example-generator',
 		];
 	}

@@ -400,7 +400,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=users&ususers=Example&usprop=groups|editcount|gender'
+			'formatversion=2&action=query&list=users&ususers=Example&usprop=groups|editcount|gender'
 				=> 'apihelp-query+users-example-simple',
 		];
 	}

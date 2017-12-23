@@ -425,9 +425,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$etitle = rawurlencode( $title );
 
 		return [
-			"action=query&prop={$name}&titles={$etitle}"
+			"formatversion=2&action=query&prop={$name}&titles={$etitle}"
 				=> "apihelp-$path-example-simple",
-			"action=query&generator={$name}&titles={$etitle}&prop=info"
+			"formatversion=2&action=query&generator={$name}&titles={$etitle}&prop=info"
 				=> "apihelp-$path-example-generator",
 		];
 	}

@@ -139,7 +139,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=mystashedfiles&msfprop=size'
+			'formatversion=2&action=query&list=mystashedfiles&msfprop=size'
 				=> 'apihelp-query+mystashedfiles-example-simple',
 		];
 	}

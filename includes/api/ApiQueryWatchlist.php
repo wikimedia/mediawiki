@@ -491,17 +491,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=watchlist'
+			'formatversion=2&action=query&list=watchlist'
 				=> 'apihelp-query+watchlist-example-simple',
-			'action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment'
+			'formatversion=2&action=query&list=watchlist&wlprop=ids|title|timestamp|user|comment'
 				=> 'apihelp-query+watchlist-example-props',
-			'action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment'
+			'formatversion=2&action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment'
 				=> 'apihelp-query+watchlist-example-allrev',
-			'action=query&generator=watchlist&prop=info'
+			'formatversion=2&action=query&generator=watchlist&prop=info'
 				=> 'apihelp-query+watchlist-example-generator',
-			'action=query&generator=watchlist&gwlallrev=&prop=revisions&rvprop=timestamp|user'
+			'formatversion=2&action=query&generator=watchlist&gwlallrev=&prop=revisions'
+				. '&rvprop=timestamp|user'
 				=> 'apihelp-query+watchlist-example-generator-rev',
-			'action=query&list=watchlist&wlowner=Example&wltoken=123ABC'
+			'formatversion=2&action=query&list=watchlist&wlowner=Example&wltoken=123ABC'
 				=> 'apihelp-query+watchlist-example-wlowner',
 		];
 	}

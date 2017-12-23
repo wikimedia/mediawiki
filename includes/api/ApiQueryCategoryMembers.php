@@ -383,9 +383,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=categorymembers&cmtitle=Category:Physics'
+			'formatversion=2&action=query&list=categorymembers&cmtitle=Category:Physics'
 				=> 'apihelp-query+categorymembers-example-simple',
-			'action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info'
+			'formatversion=2&action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info'
 				=> 'apihelp-query+categorymembers-example-generator',
 		];
 	}

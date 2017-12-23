@@ -174,11 +174,11 @@ class ApiOptions extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=options&reset=&token=123ABC'
+			'formatversion=2&action=options&reset=&token=123ABC'
 				=> 'apihelp-options-example-reset',
-			'action=options&change=skin=vector|hideminor=1&token=123ABC'
+			'formatversion=2&action=options&change=skin=vector|hideminor=1&token=123ABC'
 				=> 'apihelp-options-example-change',
-			'action=options&reset=&change=skin=monobook&optionname=nickname&' .
+			'formatversion=2&action=options&reset=&change=skin=monobook&optionname=nickname&' .
 				'optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC'
 				=> 'apihelp-options-example-complex',
 		];

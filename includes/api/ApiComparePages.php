@@ -489,7 +489,7 @@ class ApiComparePages extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=compare&fromrev=1&torev=2'
+			'formatversion=2&action=compare&fromrev=1&torev=2'
 				=> 'apihelp-compare-example-1',
 		];
 	}

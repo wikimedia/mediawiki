@@ -344,11 +344,11 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=allpages&apfrom=B'
+			'formatversion=2&action=query&list=allpages&apfrom=B'
 				=> 'apihelp-query+allpages-example-B',
-			'action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info'
+			'formatversion=2&action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info'
 				=> 'apihelp-query+allpages-example-generator',
-			'action=query&generator=allpages&gaplimit=2&' .
+			'formatversion=2&action=query&generator=allpages&gaplimit=2&' .
 				'gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
 				=> 'apihelp-query+allpages-example-generator-revisions',
 		];

@@ -574,9 +574,9 @@ class ApiParamInfo extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=paraminfo&modules=parse|phpfm|query%2Ballpages|query%2Bsiteinfo'
+			'formatversion=2&action=paraminfo&modules=parse|phpfm|query%2Ballpages|query%2Bsiteinfo'
 				=> 'apihelp-paraminfo-example-1',
-			'action=paraminfo&modules=query%2B*'
+			'formatversion=2&action=paraminfo&modules=query%2B*'
 				=> 'apihelp-paraminfo-example-2',
 		];
 	}

@@ -128,7 +128,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=extlinks&titles=Main%20Page'
+			'formatversion=2&action=query&prop=extlinks&titles=Main%20Page'
 				=> 'apihelp-query+extlinks-example-simple',
 		];
 	}

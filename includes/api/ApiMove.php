@@ -285,7 +285,7 @@ class ApiMove extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
+			'formatversion=2&action=move&from=Badtitle&to=Goodtitle&token=123ABC&' .
 				'reason=Misspelled%20title&movetalk=&noredirect='
 				=> 'apihelp-move-example-move',
 		];

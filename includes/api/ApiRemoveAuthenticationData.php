@@ -100,7 +100,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		$path = $this->getModulePath();
 		$action = $this->getModuleName();
 		return [
-			"action={$action}&request=FooAuthenticationRequest&token=123ABC"
+			"formatversion=2&action={$action}&request=FooAuthenticationRequest&token=123ABC"
 				=> "apihelp-{$path}-example-simple",
 		];
 	}

@@ -210,9 +210,9 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=random&rnnamespace=0&rnlimit=2'
+			'formatversion=2&action=query&list=random&rnnamespace=0&rnlimit=2'
 				=> 'apihelp-query+random-example-simple',
-			'action=query&generator=random&grnnamespace=0&grnlimit=2&prop=info'
+			'formatversion=2&action=query&generator=random&grnnamespace=0&grnlimit=2&prop=info'
 				=> 'apihelp-query+random-example-generator',
 		];
 	}

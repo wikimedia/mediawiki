@@ -296,9 +296,9 @@ class ApiFeedWatchlist extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=feedwatchlist'
+			'formatversion=2&action=feedwatchlist'
 				=> 'apihelp-feedwatchlist-example-default',
-			'action=feedwatchlist&allrev=&hours=6'
+			'formatversion=2&action=feedwatchlist&allrev=&hours=6'
 				=> 'apihelp-feedwatchlist-example-all6hrs',
 		];
 	}

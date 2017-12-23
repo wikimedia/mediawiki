@@ -124,9 +124,9 @@ class ApiUnblock extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=unblock&id=105'
+			'formatversion=2&action=unblock&id=105'
 				=> 'apihelp-unblock-example-id',
-			'action=unblock&user=Bob&reason=Sorry%20Bob'
+			'formatversion=2&action=unblock&user=Bob&reason=Sorry%20Bob'
 				=> 'apihelp-unblock-example-user',
 		];
 	}

@@ -54,7 +54,7 @@ class ApiRsd extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=rsd'
+			'formatversion=2&action=rsd'
 				=> 'apihelp-rsd-example-simple',
 		];
 	}

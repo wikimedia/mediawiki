@@ -44,7 +44,7 @@ class ApiClearHasMsg extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=clearhasmsg'
+			'formatversion=2&action=clearhasmsg'
 				=> 'apihelp-clearhasmsg-example-1',
 		];
 	}

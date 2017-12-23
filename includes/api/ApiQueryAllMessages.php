@@ -248,9 +248,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&meta=allmessages&amprefix=ipb-'
+			'formatversion=2&action=query&meta=allmessages&amprefix=ipb-'
 				=> 'apihelp-query+allmessages-example-ipb',
-			'action=query&meta=allmessages&ammessages=august|mainpage&amlang=de'
+			'formatversion=2&action=query&meta=allmessages&ammessages=august|mainpage&amlang=de'
 				=> 'apihelp-query+allmessages-example-de',
 		];
 	}

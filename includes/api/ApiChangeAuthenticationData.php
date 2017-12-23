@@ -85,7 +85,7 @@ class ApiChangeAuthenticationData extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=changeauthenticationdata' .
+			'formatversion=2&action=changeauthenticationdata' .
 				'&changeauthrequest=MediaWiki%5CAuth%5CPasswordAuthenticationRequest' .
 				'&password=ExamplePassword&retype=ExamplePassword&changeauthtoken=123ABC'
 				=> 'apihelp-changeauthenticationdata-example-password',

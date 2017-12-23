@@ -273,9 +273,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=allrevisions&arvuser=Example&arvlimit=50'
+			'formatversion=2&action=query&list=allrevisions&arvuser=Example&arvlimit=50'
 				=> 'apihelp-query+allrevisions-example-user',
-			'action=query&list=allrevisions&arvdir=newer&arvlimit=50'
+			'formatversion=2&action=query&list=allrevisions&arvdir=newer&arvlimit=50'
 				=> 'apihelp-query+allrevisions-example-ns-main',
 		];
 	}
