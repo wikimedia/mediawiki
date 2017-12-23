@@ -127,10 +127,10 @@ class ApiMergeHistory extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
+			'formatversion=2&action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
 			'reason=Reason'
 			=> 'apihelp-mergehistory-example-merge',
-			'action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
+			'formatversion=2&action=mergehistory&from=Oldpage&to=Newpage&token=123ABC&' .
 			'reason=Reason&timestamp=2015-12-31T04%3A37%3A41Z' // TODO
 			=> 'apihelp-mergehistory-example-merge-timestamp',
 		];

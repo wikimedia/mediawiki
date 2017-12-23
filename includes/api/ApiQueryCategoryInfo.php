@@ -109,7 +109,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar'
+			'formatversion=2&action=query&prop=categoryinfo&titles=Category:Foo|Category:Bar'
 				=> 'apihelp-query+categoryinfo-example-simple',
 		];
 	}

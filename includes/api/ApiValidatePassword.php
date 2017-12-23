@@ -68,9 +68,9 @@ class ApiValidatePassword extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=validatepassword&password=foobar'
+			'formatversion=2&action=validatepassword&password=foobar'
 				=> 'apihelp-validatepassword-example-1',
-			'action=validatepassword&password=querty&user=Example'
+			'formatversion=2&action=validatepassword&password=querty&user=Example'
 				=> 'apihelp-validatepassword-example-2',
 		];
 	}

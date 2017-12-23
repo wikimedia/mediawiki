@@ -193,9 +193,9 @@ class ApiRollback extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=rollback&title=Main%20Page&user=Example&token=123ABC' =>
+			'formatversion=2&action=rollback&title=Main%20Page&user=Example&token=123ABC' =>
 				'apihelp-rollback-example-simple',
-			'action=rollback&title=Main%20Page&user=192.0.2.5&' .
+			'formatversion=2&action=rollback&title=Main%20Page&user=192.0.2.5&' .
 				'token=123ABC&summary=Reverting%20vandalism&markbot=1' =>
 				'apihelp-rollback-example-summary',
 		];

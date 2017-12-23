@@ -83,7 +83,7 @@ class ApiCheckToken extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=checktoken&type=csrf&token=123ABC'
+			'formatversion=2&action=checktoken&type=csrf&token=123ABC'
 				=> 'apihelp-checktoken-example-simple',
 		];
 	}

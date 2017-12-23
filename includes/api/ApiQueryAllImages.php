@@ -414,14 +414,14 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=allimages&aifrom=B'
+			'formatversion=2&action=query&list=allimages&aifrom=B'
 				=> 'apihelp-query+allimages-example-B',
-			'action=query&list=allimages&aiprop=user|timestamp|url&' .
+			'formatversion=2&action=query&list=allimages&aiprop=user|timestamp|url&' .
 				'aisort=timestamp&aidir=older'
 				=> 'apihelp-query+allimages-example-recent',
-			'action=query&list=allimages&aimime=image/png|image/gif'
+			'formatversion=2&action=query&list=allimages&aimime=image/png|image/gif'
 				=> 'apihelp-query+allimages-example-mimetypes',
-			'action=query&generator=allimages&gailimit=4&' .
+			'formatversion=2&action=query&generator=allimages&gailimit=4&' .
 				'gaifrom=T&prop=imageinfo'
 				=> 'apihelp-query+allimages-example-generator',
 		];

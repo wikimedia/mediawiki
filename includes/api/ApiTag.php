@@ -179,9 +179,9 @@ class ApiTag extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=tag&revid=123&add=vandalism&token=123ABC'
+			'formatversion=2&action=tag&revid=123&add=vandalism&token=123ABC'
 				=> 'apihelp-tag-example-rev',
-			'action=tag&logid=123&remove=spam&reason=Wrongly+applied&token=123ABC'
+			'formatversion=2&action=tag&logid=123&remove=spam&reason=Wrongly+applied&token=123ABC'
 				=> 'apihelp-tag-example-log',
 		];
 	}

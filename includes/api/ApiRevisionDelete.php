@@ -189,10 +189,10 @@ class ApiRevisionDelete extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
+			'formatversion=2&action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
 				'hide=content&token=123ABC'
 				=> 'apihelp-revisiondelete-example-revision',
-			'action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
+			'formatversion=2&action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .
 				'reason=BLP%20violation&token=123ABC'
 				=> 'apihelp-revisiondelete-example-log',
 		];

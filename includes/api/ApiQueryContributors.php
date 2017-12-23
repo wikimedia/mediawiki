@@ -248,7 +248,7 @@ class ApiQueryContributors extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=contributors&titles=Main_Page'
+			'formatversion=2&action=query&prop=contributors&titles=Main_Page'
 				=> 'apihelp-query+contributors-example-simple',
 		];
 	}

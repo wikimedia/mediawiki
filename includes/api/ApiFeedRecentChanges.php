@@ -184,9 +184,9 @@ class ApiFeedRecentChanges extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=feedrecentchanges'
+			'formatversion=2&action=feedrecentchanges'
 				=> 'apihelp-feedrecentchanges-example-simple',
-			'action=feedrecentchanges&days=30'
+			'formatversion=2&action=feedrecentchanges&days=30'
 				=> 'apihelp-feedrecentchanges-example-30days',
 		];
 	}

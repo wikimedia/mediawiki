@@ -164,9 +164,9 @@ class ApiPurge extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=purge&titles=Main_Page|API'
+			'formatversion=2&action=purge&titles=Main_Page|API'
 				=> 'apihelp-purge-example-simple',
-			'action=purge&generator=allpages&gapnamespace=0&gaplimit=10'
+			'formatversion=2&action=purge&generator=allpages&gapnamespace=0&gaplimit=10'
 				=> 'apihelp-purge-example-generator',
 		];
 	}

@@ -500,14 +500,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
+			'formatversion=2&action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
 				'drprop=user|comment|content'
 				=> 'apihelp-query+deletedrevs-example-mode1',
-			'action=query&list=deletedrevs&druser=Bob&drlimit=50'
+			'formatversion=2&action=query&list=deletedrevs&druser=Bob&drlimit=50'
 				=> 'apihelp-query+deletedrevs-example-mode2',
-			'action=query&list=deletedrevs&drdir=newer&drlimit=50'
+			'formatversion=2&action=query&list=deletedrevs&drdir=newer&drlimit=50'
 				=> 'apihelp-query+deletedrevs-example-mode3-main',
-			'action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
+			'formatversion=2&action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
 				=> 'apihelp-query+deletedrevs-example-mode3-talk',
 		];
 	}

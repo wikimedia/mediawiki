@@ -159,7 +159,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=tags&tgprop=displayname|description|hitcount|defined'
+			'formatversion=2&action=query&list=tags&tgprop=displayname|description|hitcount|defined'
 				=> 'apihelp-query+tags-example-simple',
 		];
 	}

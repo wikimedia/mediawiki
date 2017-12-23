@@ -171,7 +171,7 @@ class ApiImport extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
+			'formatversion=2&action=import&interwikisource=meta&interwikipage=Help:ParserFunctions&' .
 				'namespace=100&fullhistory=&token=123ABC'
 				=> 'apihelp-import-example-import',
 		];

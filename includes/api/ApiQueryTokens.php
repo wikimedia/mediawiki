@@ -114,9 +114,9 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&meta=tokens'
+			'formatversion=2&action=query&meta=tokens'
 				=> 'apihelp-query+tokens-example-simple',
-			'action=query&meta=tokens&type=watch|patrol'
+			'formatversion=2&action=query&meta=tokens&type=watch|patrol'
 				=> 'apihelp-query+tokens-example-types',
 		];
 	}

@@ -181,9 +181,9 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles'
+			'formatversion=2&action=query&titles=File:Albert_Einstein_Head.jpg&prop=duplicatefiles'
 				=> 'apihelp-query+duplicatefiles-example-simple',
-			'action=query&generator=allimages&prop=duplicatefiles'
+			'formatversion=2&action=query&generator=allimages&prop=duplicatefiles'
 				=> 'apihelp-query+duplicatefiles-example-generated',
 		];
 	}

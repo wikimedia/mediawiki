@@ -340,9 +340,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&meta=userinfo'
+			'formatversion=2&action=query&meta=userinfo'
 				=> 'apihelp-query+userinfo-example-simple',
-			'action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg'
+			'formatversion=2&action=query&meta=userinfo&uiprop=blockinfo|groups|rights|hasmsg'
 				=> 'apihelp-query+userinfo-example-data',
 		];
 	}

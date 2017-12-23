@@ -192,9 +192,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=allcategories&acprop=size'
+			'formatversion=2&action=query&list=allcategories&acprop=size'
 				=> 'apihelp-query+allcategories-example-size',
-			'action=query&generator=allcategories&gacprefix=List&prop=info'
+			'formatversion=2&action=query&generator=allcategories&gacprefix=List&prop=info'
 				=> 'apihelp-query+allcategories-example-generator',
 		];
 	}

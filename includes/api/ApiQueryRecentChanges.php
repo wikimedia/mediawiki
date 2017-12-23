@@ -702,9 +702,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=recentchanges'
+			'formatversion=2&action=query&list=recentchanges'
 				=> 'apihelp-query+recentchanges-example-simple',
-			'action=query&generator=recentchanges&grcshow=!patrolled&prop=info'
+			'formatversion=2&action=query&generator=recentchanges&grcshow=!patrolled&prop=info'
 				=> 'apihelp-query+recentchanges-example-generator',
 		];
 	}

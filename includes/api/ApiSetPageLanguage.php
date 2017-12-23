@@ -136,9 +136,9 @@ class ApiSetPageLanguage extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=setpagelanguage&title=Main%20Page&lang=eu&token=123ABC'
+			'formatversion=2&action=setpagelanguage&title=Main%20Page&lang=eu&token=123ABC'
 				=> 'apihelp-setpagelanguage-example-language',
-			'action=setpagelanguage&pageid=123&lang=default&token=123ABC'
+			'formatversion=2&action=setpagelanguage&pageid=123&lang=default&token=123ABC'
 				=> 'apihelp-setpagelanguage-example-default',
 		];
 	}

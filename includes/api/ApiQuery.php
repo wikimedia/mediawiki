@@ -529,10 +529,10 @@ class ApiQuery extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=revisions&meta=siteinfo&' .
+			'formatversion=2&action=query&prop=revisions&meta=siteinfo&' .
 				'titles=Main%20Page&rvprop=user|comment&continue='
 				=> 'apihelp-query-example-revisions',
-			'action=query&generator=allpages&gapprefix=API/&prop=revisions&continue='
+			'formatversion=2&action=query&generator=allpages&gapprefix=API/&prop=revisions&continue='
 				=> 'apihelp-query-example-allpages',
 		];
 	}

@@ -282,10 +282,10 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=deletedrevisions&titles=Main%20Page|Talk:Main%20Page&' .
+			'formatversion=2&action=query&prop=deletedrevisions&titles=Main%20Page|Talk:Main%20Page&' .
 				'drvprop=user|comment|content'
 				=> 'apihelp-query+deletedrevisions-example-titles',
-			'action=query&prop=deletedrevisions&revids=123456'
+			'formatversion=2&action=query&prop=deletedrevisions&revids=123456'
 				=> 'apihelp-query+deletedrevisions-example-revids',
 		];
 	}

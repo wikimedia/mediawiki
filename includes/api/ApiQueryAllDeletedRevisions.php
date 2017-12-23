@@ -450,9 +450,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=alldeletedrevisions&adruser=Example&adrlimit=50'
+			'formatversion=2&action=query&list=alldeletedrevisions&adruser=Example&adrlimit=50'
 				=> 'apihelp-query+alldeletedrevisions-example-user',
-			'action=query&list=alldeletedrevisions&adrdir=newer&adrnamespace=0&adrlimit=50'
+			'formatversion=2&action=query&list=alldeletedrevisions&adrdir=newer&adrnamespace=0&adrlimit=50'
 				=> 'apihelp-query+alldeletedrevisions-example-ns-main',
 		];
 	}

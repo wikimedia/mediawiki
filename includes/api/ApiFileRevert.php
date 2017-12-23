@@ -128,7 +128,7 @@ class ApiFileRevert extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=filerevert&filename=Wiki.png&comment=Revert&' .
+			'formatversion=2&action=filerevert&filename=Wiki.png&comment=Revert&' .
 				'archivename=20110305152740!Wiki.png&token=123ABC'
 				=> 'apihelp-filerevert-example-revert',
 		];

@@ -125,8 +125,8 @@ class ApiAMCreateAccount extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=createaccount&username=Example&password=ExamplePassword&retype=ExamplePassword'
-				. '&createreturnurl=http://example.org/&createtoken=123ABC'
+			'formatversion=2&action=createaccount&username=Example&password=ExamplePassword'
+				. '&retype=ExamplePassword&createreturnurl=http://example.org/&createtoken=123ABC'
 				=> 'apihelp-createaccount-example-create',
 		];
 	}

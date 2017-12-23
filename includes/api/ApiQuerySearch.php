@@ -409,11 +409,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=search&srsearch=meaning'
+			'formatversion=2&action=query&list=search&srsearch=meaning'
 				=> 'apihelp-query+search-example-simple',
-			'action=query&list=search&srwhat=text&srsearch=meaning'
+			'formatversion=2&action=query&list=search&srwhat=text&srsearch=meaning'
 				=> 'apihelp-query+search-example-text',
-			'action=query&generator=search&gsrsearch=meaning&prop=info'
+			'formatversion=2&action=query&generator=search&gsrsearch=meaning&prop=info'
 				=> 'apihelp-query+search-example-generator',
 		];
 	}

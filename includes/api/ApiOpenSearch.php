@@ -301,7 +301,7 @@ class ApiOpenSearch extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=opensearch&search=Te'
+			'formatversion=2&action=opensearch&search=Te'
 				=> 'apihelp-opensearch-example-te',
 		];
 	}

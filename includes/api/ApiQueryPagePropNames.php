@@ -101,7 +101,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=pagepropnames'
+			'formatversion=2&action=query&list=pagepropnames'
 				=> 'apihelp-query+pagepropnames-example-simple',
 		];
 	}

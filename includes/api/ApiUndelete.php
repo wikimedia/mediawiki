@@ -139,9 +139,9 @@ class ApiUndelete extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
+			'formatversion=2&action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
 				=> 'apihelp-undelete-example-page',
-			'action=undelete&title=Main%20Page&token=123ABC' .
+			'formatversion=2&action=undelete&title=Main%20Page&token=123ABC' .
 				'&timestamps=2007-07-03T22:00:45Z|2007-07-02T19:48:56Z'
 				=> 'apihelp-undelete-example-revisions',
 		];

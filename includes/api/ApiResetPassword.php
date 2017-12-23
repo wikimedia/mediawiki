@@ -123,10 +123,11 @@ class ApiResetPassword extends ApiBase {
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 
 		if ( !empty( $resetRoutes['username'] ) ) {
-			$ret['action=resetpassword&user=Example&token=123ABC'] = 'apihelp-resetpassword-example-user';
+			$ret['formatversion=2&action=resetpassword&user=Example&token=123ABC'] =
+				'apihelp-resetpassword-example-user';
 		}
 		if ( !empty( $resetRoutes['email'] ) ) {
-			$ret['action=resetpassword&user=user@example.com&token=123ABC'] =
+			$ret['formatversion=2&action=resetpassword&user=user@example.com&token=123ABC'] =
 				'apihelp-resetpassword-example-email';
 		}
 

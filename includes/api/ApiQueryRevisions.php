@@ -487,22 +487,22 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 	protected function getExamplesMessages() {
 		return [
-			'action=query&prop=revisions&titles=API|Main%20Page&' .
+			'formatversion=2&action=query&prop=revisions&titles=API|Main%20Page&' .
 				'rvprop=timestamp|user|comment|content'
 				=> 'apihelp-query+revisions-example-content',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			'formatversion=2&action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment'
 				=> 'apihelp-query+revisions-example-last5',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			'formatversion=2&action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment&rvdir=newer'
 				=> 'apihelp-query+revisions-example-first5',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			'formatversion=2&action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment&rvdir=newer&rvstart=2006-05-01T00:00:00Z'
 				=> 'apihelp-query+revisions-example-first5-after',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			'formatversion=2&action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1'
 				=> 'apihelp-query+revisions-example-first5-not-localhost',
-			'action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
+			'formatversion=2&action=query&prop=revisions&titles=Main%20Page&rvlimit=5&' .
 				'rvprop=timestamp|user|comment&rvuser=MediaWiki%20default'
 				=> 'apihelp-query+revisions-example-first5-user',
 		];
