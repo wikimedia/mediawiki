@@ -12,6 +12,7 @@ use Hooks;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
+use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
@@ -702,10 +703,18 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.31
+	 * @return BlobStoreFactory
+	 */
+	public function getBlobStoreFactory() {
+		return $this->getService( 'BlobStoreFactory' );
+	}
+
+	/**
+	 * @since 1.31
 	 * @return BlobStore
 	 */
 	public function getBlobStore() {
-		return $this->getService( 'BlobStore' );
+		return $this->getService( '_SqlBlobStore' );
 	}
 
 	/**
