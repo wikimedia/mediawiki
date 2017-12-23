@@ -944,6 +944,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
 	'MediaWiki\\Storage\\BlobAccessException' => __DIR__ . '/includes/Storage/BlobAccessException.php',
 	'MediaWiki\\Storage\\BlobStore' => __DIR__ . '/includes/Storage/BlobStore.php',
+	'MediaWiki\\Storage\\BlobStoreFactory' => __DIR__ . '/includes/Storage/BlobStoreFactory.php',
 	'MediaWiki\\Storage\\IncompleteRevisionException' => __DIR__ . '/includes/Storage/IncompleteRevisionException.php',
 	'MediaWiki\\Storage\\MutableRevisionRecord' => __DIR__ . '/includes/Storage/MutableRevisionRecord.php',
 	'MediaWiki\\Storage\\MutableRevisionSlots' => __DIR__ . '/includes/Storage/MutableRevisionSlots.php',

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IDatabase;
@@ -289,7 +290,7 @@ class RevisionTest extends MediaWikiTestCase {
 			) );
 
 		// Note override internal service, so RevisionStore uses it as well.
-		$this->setService( '_SqlBlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$row = (object)$arrayData;
 		$rev = new Revision( $row, 0, $this->getMockTitle() );
@@ -435,6 +436,20 @@ class RevisionTest extends MediaWikiTestCase {
 		return $blobStore;
 	}
 
+	private function mockBlobStoreFactory( $blobStore ) {
+		/** @var LoadBalancer $lb */
+		$factory = $this->getMockBuilder( BlobStoreFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$factory->expects( $this->any() )
+			->method( 'newBlobStore' )
+			->willReturn( $blobStore );
+		$factory->expects( $this->any() )
+			->method( 'newSqlBlobStore' )
+			->willReturn( $blobStore );
+		return $factory;
+	}
+
 	/**
 	 * @return RevisionStore
 	 */
@@ -478,7 +493,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionWithLegacyEncoding( $expected, $lang, $encoding, $rowData ) {
 		$blobStore = $this->getBlobStore();
 		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
-		$this->setService( 'BlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$this->testGetRevisionText( $expected, $rowData );
 	}
@@ -518,7 +533,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$blobStore = $this->getBlobStore();
 		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
-		$this->setService( 'BlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$this->testGetRevisionText( $expected, $rowData );
 	}
@@ -548,7 +563,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$blobStore = $this->getBlobStore();
 		$blobStore->setCompressBlobs( true );
-		$this->setService( 'BlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
@@ -693,7 +708,7 @@ class RevisionTest extends MediaWikiTestCase {
 			$blobStore->setLegacyEncoding( $legacyEncoding, Language::factory( 'en' ) );
 		}
 
-		$this->setService( 'BlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 		$this->assertSame(
 			$expected,
 			Revision::decompressRevisionText( $text, $flags )
@@ -802,7 +817,7 @@ class RevisionTest extends MediaWikiTestCase {
 			->getMock();
 
 		$blobStore = new SqlBlobStore( $lb, $cache );
-		$this->setService( 'BlobStore', $blobStore );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
 		$this->assertSame(
 			'AAAABBAAA',
