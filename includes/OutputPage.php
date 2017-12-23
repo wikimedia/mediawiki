@@ -3331,10 +3331,14 @@ class OutputPage extends ContextSource {
 		] );
 
 		if ( $config->get( 'ReferrerPolicy' ) !== false ) {
-			$tags['meta-referrer'] = Html::element( 'meta', [
-				'name' => 'referrer',
-				'content' => $config->get( 'ReferrerPolicy' )
-			] );
+			// Per https://w3c.github.io/webappsec-referrer-policy/#unknown-policy-values
+			// fallbacks should come before the primary value so we need to reverse the array.
+			foreach ( array_reverse( (array)$config->get( 'ReferrerPolicy' ) ) as $i => $policy ) {
+				$tags["meta-referrer-$i"] = Html::element( 'meta', [
+					'name' => 'referrer',
+					'content' => $policy,
+				] );
+			}
 		}
 
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
