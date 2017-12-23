@@ -951,7 +951,7 @@ $id: the page ID (original ID in case of page deletions)
 in a Category page. Gives extensions the opportunity to batch load any
 related data about the pages.
 $type: The category type. Either 'page', 'file' or 'subcat'
-$res: Query result from DatabaseBase::select()
+$res: Query result from Wikimedia\Rdbms\IDatabase::select()
 
 'CategoryViewer::generateLink': Before generating an output link allow
 extensions opportunity to generate a more specific or relevant link.
