@@ -2015,7 +2015,7 @@
 	"confirmdeletetext": "Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.\nMolim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
 	"actioncomplete": "Radnja je dovršena",
 	"actionfailed": "Radnja nije uspjela",
-	"deletedtext": "\"$1\" je izbrisana.\nVidi $2 za evidenciju nedavnih brisanja.",
+	"deletedtext": "Stranica »$1« je izbrisana.\nVidi pod $2 za zapise nedavnih brisanja.",
 	"dellogpage": "Evidencija brisanja",
 	"dellogpagetext": "Dolje je popis nedavnih brisanja.\nSva vremena su prema poslužiteljevom vremenu.",
 	"deletionlog": "evidencija brisanja",

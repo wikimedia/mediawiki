@@ -474,7 +474,7 @@
 	"apihelp-query+allimages-example-generator": "Mostrar informação sobre 4 ficheiros, começando pela letra <kbd>T</kbd>.",
 	"apihelp-query+alllinks-summary": "Enumerar todos os ''links'' que apontam para um determinado espaço nominal.",
 	"apihelp-query+alllinks-param-from": "O título da hiperligação a partir da qual será começada a enumeração.",
-	"apihelp-query+alllinks-param-to": "O título do ''link'' no qual será terminada a enumeração.",
+	"apihelp-query+alllinks-param-to": "O título da hiperligação na qual será terminada a enumeração.",
 	"apihelp-query+alllinks-param-prefix": "Procurar todos os títulos ligados que começam por este valor.",
 	"apihelp-query+alllinks-param-unique": "Mostrar só títulos ligados únicos. Não pode ser usado com <kbd>$1prop=ids</kbd>.\nAo ser usado como gerador, produz páginas de destino em vez de páginas de origem.",
 	"apihelp-query+alllinks-param-prop": "As informações que devem ser incluídas:",

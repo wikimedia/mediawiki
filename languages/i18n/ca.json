@@ -3435,6 +3435,7 @@
 	"fileduplicatesearch-noresults": "No s'ha trobat cap fitxer anomenat «$1».",
 	"specialpages": "Pàgines especials",
 	"specialpages-note-top": "Llegenda",
+	"specialpages-note-restricted": "* Pàgines especials normals.\n* <span class=\"mw-specialpagerestricted\">Pàgines especials restringides.</span>",
 	"specialpages-group-maintenance": "Informes de manteniment",
 	"specialpages-group-other": "Altres pàgines especials",
 	"specialpages-group-login": "Iniciar sessió / Crear un compte",
