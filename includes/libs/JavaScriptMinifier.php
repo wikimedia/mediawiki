@@ -449,18 +449,24 @@ class JavaScriptMinifier {
 			// We have to distinguish between regexp literals and division operators
 			// A division operator is only possible in certain states
 			} elseif( $ch === '/' && !isset( $divStates[$state] ) ) {
-				// Regexp literal, search to the end, skipping over backslash escapes and
-				// character classes
+				// Regexp literal
 				for( ; ; ) {
 					do{
+						// Skip until we find "/" (end of regexp), "\" (backslash escapes),
+						// or "[" (start of character classes).
 						$end += strcspn( $s, '/[\\', $end ) + 2;
+						// If backslash escape, keep searching...
 					} while( $end - 2 < $length && $s[$end - 2] === '\\' );
 					$end--;
+					// If the end, stop here.
 					if( $end - 1 >= $length || $s[$end - 1] === '/' ) {
 						break;
 					}
+					// (Implicit else), we must've found the start of a char class,
+					// skip until we find "]" (end of char class), or "\" (backslash escape)
 					do{
 						$end += strcspn( $s, ']\\', $end ) + 2;
+						// If backslash escape, keep searching...
 					} while( $end - 2 < $length && $s[$end - 2] === '\\' );
 					$end--;
 				};
