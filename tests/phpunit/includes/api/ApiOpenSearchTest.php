@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ApiOpenSearch
+ */
 class ApiOpenSearchTest extends MediaWikiTestCase {
 	public function testGetAllowedParams() {
 		$config = $this->replaceSearchEngineConfig();
