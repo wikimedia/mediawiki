@@ -74,11 +74,10 @@ class JavaScriptMinifier {
 	 *       or when required to guard against semicolon insertion.
 	 *
 	 * @param string $s JavaScript code to minify
-	 * @param bool $statementsOnOwnLine Whether to put each statement on its own line
 	 * @param int $maxLineLength Maximum length of a single line, or -1 for no maximum.
 	 * @return String Minified code
 	 */
-	public static function minify( $s, $statementsOnOwnLine = false, $maxLineLength = 1000 ) {
+	public static function minify( $s, $maxLineLength = 1000 ) {
 		// First we declare a few tables that contain our parsing rules
 
 		// $opChars : characters, which can be combined without whitespace in between them
@@ -387,23 +386,6 @@ class JavaScriptMinifier {
 			)
 		);
 
-		// Rules for when newlines should be inserted if
-		// $statementsOnOwnLine is enabled.
-		// $newlineBefore is checked before switching state,
-		// $newlineAfter is checked after
-		$newlineBefore = array(
-			self::STATEMENT => array(
-				self::TYPE_BRACE_CLOSE => true,
-			),
-		);
-		$newlineAfter = array(
-			self::STATEMENT => array(
-				self::TYPE_BRACE_OPEN => true,
-				self::TYPE_PAREN_CLOSE => true,
-				self::TYPE_SEMICOLON => true,
-			),
-		);
-
 		// $divStates : Contains all states that can be followed by a division operator
 		$divStates = array(
 			self::EXPRESSION_OP          => true,
@@ -580,15 +562,6 @@ class JavaScriptMinifier {
 			$pos = $end;
 			$newlineFound = false;
 
-			// Output a newline after the token if required
-			// This is checked before AND after switching state
-			$newlineAdded = false;
-			if ( $statementsOnOwnLine && !$newlineAdded && isset( $newlineBefore[$state][$type] ) ) {
-				$out .= "\n";
-				$lineLength = 0;
-				$newlineAdded = true;
-			}
-
 			// Now that we have output our token, transition into the new state.
 			if( isset( $push[$state][$type] ) && count( $stack ) < self::STACK_LIMIT ) {
 				$stack[] = $push[$state][$type];
@@ -597,12 +570,6 @@ class JavaScriptMinifier {
 				$state = array_pop( $stack );
 			} elseif( isset( $goto[$state][$type] ) ) {
 				$state = $goto[$state][$type];
-			}
-
-			// Check for newline insertion again
-			if ( $statementsOnOwnLine && !$newlineAdded && isset( $newlineAfter[$state][$type] ) ) {
-				$out .= "\n";
-				$lineLength = 0;
 			}
 		}
 		return $out;
