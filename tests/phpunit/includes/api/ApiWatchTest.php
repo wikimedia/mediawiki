@@ -5,6 +5,8 @@
  * @group Database
  * @group medium
  * @todo This test suite is severly broken and need a full review
+ *
+ * @covers ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
 	protected function setUp() {
