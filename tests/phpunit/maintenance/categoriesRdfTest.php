@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers CategoriesRdf
+ * @covers DumpCategoriesAsRdf
+ */
 class CategoriesRdfTest extends MediaWikiLangTestCase {
 	public function getCategoryIterator() {
 		return [
