@@ -9,7 +9,8 @@
 			"Maroen1990",
 			"محمد أحمد عبد الفتاح",
 			"ديفيد",
-			"ASHmed"
+			"ASHmed",
+			"Yasser Yousssef"
 		]
 	},
 	"apihelp-main-param-action": "أي فعل للعمل.",
@@ -30,7 +31,9 @@
 	"apihelp-block-param-noemail": "منع المستخدم من إرسال البريد الإلكتروني من خلال الويكي. (يتطلب صلاحية <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "إخفاء اسم المستخدم من سجل المنع. (يتطلب صلاحية <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "تسمح للمستخدم بتحرير صفحة النقاش الخاصة (يعتمد على <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
+	"apihelp-block-param-reblock": "إذا كان المستخدم محظوراً بالفعل، يستبدل الحظر القائم.",
 	"apihelp-block-param-watchuser": "مشاهدة صفحة المستخدم ونقاش IP.",
+	"apihelp-block-param-tags": "تغيير الوسوم للتطبيق على الإدخال في سجل الحظر.",
 	"apihelp-block-example-ip-simple": "منع عنوان IP <kbd>192.0.2.5</kbd> لمدة ثلاثة أيام بسبب >المخالفة الأولى</kbd>.",
 	"apihelp-block-example-user-complex": "منع المستخدم <kbd>المخرب</kbd> لأجل غير مسمى بسبب <kbd>التخريب</kbd>، ومنع إنشاء حساب جديد وإرسال بريد إلكتروني.",
 	"apihelp-changeauthenticationdata-summary": "تغيير بيانات المصادقة للمستخدم الحالي.",

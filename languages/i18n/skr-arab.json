@@ -1017,6 +1017,7 @@
 	"specialpages": "خاص ورقے",
 	"tag-filter": "[[Special:Tags|Tag]] نتارا:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ٹیگ|ٹیگز}}]]: $2)",
+	"tag-mw-undo": "واپس",
 	"tags-active-yes": "ڄیا",
 	"tags-active-no": "کو",
 	"tags-hitcount": "$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}",

@@ -2340,7 +2340,7 @@
 	"articleexists": "Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.\nMolimo odaberite drugo ime.",
 	"cantmove-titleprotected": "Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja",
 	"movetalk": "Premjesti i njezinu stranicu za razgovor ako je moguće.",
-	"move-subpages": "Premjesti podstranice (na $1)",
+	"move-subpages": "Premjesti podstranice (najviše do $1)",
 	"move-talk-subpages": "Premjesti podstranice od stranice za razgovor (na $1)",
 	"movepage-page-exists": "Stranica $1 već postoji i ne može biti automatski prepisana",
 	"movepage-page-moved": "Stranica $1 je premještena na $2.",
