@@ -332,7 +332,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		}
 	}
 
-	/*
+	/**
+	 * @covers ContentHandler::getAutosummary
+	 *
 	 * Test if we become a "Created blank page" summary from getAutoSummary if no Content added to
 	 * page.
 	 */
@@ -374,11 +376,17 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 	*/
 
+	/**
+	 * @covers ContentHandler::supportsCategories
+	 */
 	public function testSupportsCategories() {
 		$handler = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
 		$this->assertTrue( $handler->supportsCategories(), 'content model supports categories' );
 	}
 
+	/**
+	 * @covers ContentHandler::supportsDirectEditing
+	 */
 	public function testSupportsDirectEditing() {
 		$handler = new DummyContentHandlerForTesting( CONTENT_MODEL_JSON );
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing is not supported' );
@@ -407,6 +415,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers ContentHandler::getForModelID
 	 * @dataProvider provideGetModelForID
 	 */
 	public function testGetModelForID( $modelId, $handlerClass ) {
@@ -415,6 +424,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( $handlerClass, $handler );
 	}
 
+	/**
+	 * @covers ContentHandler::getFieldsForSearchIndex
+	 */
 	public function testGetFieldsForSearchIndex() {
 		$searchEngine = $this->newSearchEngine();
 
