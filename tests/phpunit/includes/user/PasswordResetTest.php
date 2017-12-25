@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthManager;
 
 /**
+ * @covers PasswordReset
  * @group Database
  */
 class PasswordResetTest extends MediaWikiTestCase {
