@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * @covers HTMLForm
+ */
 class HTMLFormTest extends MediaWikiTestCase {
 	public function testGetHTML_empty() {
 		$form = new HTMLForm( [] );
