@@ -3218,6 +3218,7 @@ class OutputPage extends ContextSource {
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 			'wgRequestId' => WebRequest::getRequestId(),
+			'wgRestrictionEdit' => [],
 		];
 
 		if ( $user->isLoggedIn() ) {
