@@ -23,6 +23,9 @@ namespace MediaWiki\Logger\Monolog;
 use MediaWikiTestCase;
 use PHPUnit_Framework_Error_Notice;
 
+/**
+ * @covers \MediaWiki\Logger\Monolog\AvroFormatter
+ */
 class AvroFormatterTest extends MediaWikiTestCase {
 
 	protected function setUp() {

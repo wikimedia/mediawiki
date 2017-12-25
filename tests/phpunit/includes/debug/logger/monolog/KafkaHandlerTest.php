@@ -24,6 +24,9 @@ use MediaWikiTestCase;
 use Monolog\Logger;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers \MediaWiki\Logger\Monolog\KafkaHandler
+ */
 class KafkaHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
