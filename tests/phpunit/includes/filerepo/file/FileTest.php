@@ -6,6 +6,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param bool $expected
 	 * @dataProvider providerCanAnimate
+	 * @covers File::canAnimateThumbIfAppropriate
 	 */
 	function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
 		$this->setMwGlobals( 'wgMaxAnimatedGifArea', 9000 );
