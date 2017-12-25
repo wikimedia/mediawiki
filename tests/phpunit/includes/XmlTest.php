@@ -141,6 +141,57 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals( '</element>', Xml::closeElement( 'element' ), 'closeElement() shortcut' );
 	}
 
+	public function provideMonthSelector() {
+		global $wgLang;
+
+		$header = '<select name="month" id="month" class="mw-month-selector">';
+		$header2 = '<select name="month" id="monthSelector" class="mw-month-selector">';
+		$monthsString = '';
+		for ( $i = 1; $i < 13; $i++ ) {
+			$monthName = $wgLang->getMonthName( $i );
+			$monthsString .= "<option value=\"{$i}\">{$monthName}</option>";
+			if ( $i !== 12 ) {
+				$monthsString .= "\n";
+			}
+		}
+		$monthsString2 = str_replace(
+			'<option value="12">December</option>',
+			'<option value="12" selected="">December</option>',
+			$monthsString
+		);
+		$end = '</select>';
+
+		$allMonths = "<option value=\"AllMonths\">all</option>\n";
+		return [
+			[ $header . $monthsString . $end, '', null, 'month' ],
+			[ $header . $monthsString2 . $end, 12, null, 'month' ],
+			[ $header2 . $monthsString . $end, '', null, 'monthSelector' ],
+			[ $header . $allMonths . $monthsString . $end, '', 'AllMonths', 'month' ],
+
+		];
+	}
+
+	/**
+	 * @covers Xml::monthSelector
+	 * @dataProvider provideMonthSelector
+	 */
+	public function testMonthSelector( $expected, $selected, $allmonths, $id ) {
+		$this->assertEquals(
+			$expected,
+			Xml::monthSelector( $selected, $allmonths, $id )
+		);
+	}
+
+	/**
+	 * @covers Xml::span
+	 */
+	public function testSpan() {
+		$this->assertEquals(
+			'<span class="foo" id="testSpan">element</span>',
+			Xml::span( 'element', 'foo', [ 'id' => 'testSpan' ] )
+		);
+	}
+
 	/**
 	 * @covers Xml::dateMenu
 	 */
@@ -531,6 +582,36 @@ class XmlTest extends MediaWikiTestCase {
 			"<fieldset class=\"bar\">\n<legend>Foo</legend>\n",
 			Xml::fieldset( 'Foo', false, [ 'class' => 'bar' ] ),
 			'Entire element with legend and attributes'
+		);
+	}
+
+	/**
+	 * @covers Xml::testBuildTable
+	 */
+	public function testBuildTable() {
+		$firstRow = [ 'foo', 'bar' ];
+		$secondRow = [ 'Berlin', 'Tehran' ];
+		$headers = [ 'header1', 'header2' ];
+		$expected = '<table id="testTable"><thead id="testTable"><th>header1</th>' .
+			'<th>header2</th></thead><tr><td>foo</td><td>bar</td></tr><tr><td>Berlin</td>' .
+			'<td>Tehran</td></tr></table>';
+		$this->assertEquals(
+			$expected,
+			Xml::buildTable(
+				[ $firstRow, $secondRow ],
+				[ 'id' => 'testTable' ],
+				$headers
+			)
+		);
+	}
+
+	/**
+	 * @covers Xml::testBuildTableRow
+	 */
+	public function testBuildTableRow() {
+		$this->assertEquals(
+			'<tr id="testRow"><td>foo</td><td>bar</td></tr>',
+			Xml::buildTableRow( [ 'id' => 'testRow' ], [ 'foo', 'bar' ] )
 		);
 	}
 }
