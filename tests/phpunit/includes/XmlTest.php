@@ -586,7 +586,7 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Xml::testBuildTable
+	 * @covers Xml::buildTable
 	 */
 	public function testBuildTable() {
 		$firstRow = [ 'foo', 'bar' ];
@@ -606,7 +606,7 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Xml::testBuildTableRow
+	 * @covers Xml::buildTableRow
 	 */
 	public function testBuildTableRow() {
 		$this->assertEquals(
