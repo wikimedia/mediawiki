@@ -5,6 +5,7 @@
 class UncategorizedCategoriesPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTestGetQueryInfoData
+	 * @covers UncategorizedCategoriesPage::getQueryInfo
 	 */
 	public function testGetQueryInfo( $msgContent, $expected ) {
 		$msg = new RawMessage( $msgContent );
