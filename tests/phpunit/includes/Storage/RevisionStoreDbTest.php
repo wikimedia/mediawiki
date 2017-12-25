@@ -340,6 +340,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $result );
 	}
 
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::getRecentChange
+	 */
 	public function testGetRecentChange() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$content = new WikitextContent( __METHOD__ );
