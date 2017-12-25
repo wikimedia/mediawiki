@@ -13,9 +13,7 @@ class CollationFaTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		if ( !extension_loaded( 'intl' ) ) {
-			$this->markTestSkipped( "PHP extension 'intl' is not loaded, skipping." );
-		}
+		$this->checkPHPExtension( 'intl' );
 	}
 
 	/**
