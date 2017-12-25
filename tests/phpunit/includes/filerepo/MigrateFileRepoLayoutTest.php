@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers MigrateFileRepoLayout
+ */
 class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 	protected $tmpPrefix;
 	protected $migratorMock;
