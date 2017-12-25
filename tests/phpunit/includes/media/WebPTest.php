@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @covers WebPHandler
+ */
 class WebPHandlerTest extends MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
