@@ -294,6 +294,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
+	 * @covers JavaScriptContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {

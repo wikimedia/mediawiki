@@ -4,6 +4,9 @@
  * @group ContentHandler
  */
 class TextContentHandlerTest extends MediaWikiLangTestCase {
+	/**
+	 * @covers TextContentHandler::supportsDirectEditing
+	 */
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );

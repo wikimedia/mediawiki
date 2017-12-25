@@ -83,6 +83,7 @@ class CssContentTest extends JavaScriptContentTest {
 	}
 
 	/**
+	 * @covers CssContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
