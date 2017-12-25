@@ -752,6 +752,9 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::wfMemcKey
+	 */
 	public function testWfMemcKey() {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$this->assertEquals(
@@ -760,6 +763,9 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::wfForeignMemcKey
+	 */
 	public function testWfForeignMemcKey() {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$keyspace = $this->readAttribute( $cache, 'keyspace' );
@@ -769,6 +775,9 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers ::wfGlobalCacheKey
+	 */
 	public function testWfGlobalCacheKey() {
 		$cache = ObjectCache::getLocalClusterInstance();
 		$this->assertEquals(

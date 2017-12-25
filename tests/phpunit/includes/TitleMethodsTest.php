@@ -325,6 +325,9 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
 	}
 
+	/**
+	 * @covers Title::clearCaches
+	 */
 	public function testClearCaches() {
 		$linkCache = LinkCache::singleton();
 
