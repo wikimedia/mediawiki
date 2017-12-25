@@ -115,6 +115,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
 	}
 
+	/**
+	 * @covers WikitextContentHandler::supportsDirectEditing
+	 */
 	public function testSupportsDirectEditing() {
 		$handler = new WikiTextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
@@ -349,6 +352,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	}
 	*/
 
+	/**
+	 * @covers WikitextContentHandler::getDataForSearchIndex
+	 */
 	public function testDataIndexFieldsFile() {
 		$mockEngine = $this->createMock( 'SearchEngine' );
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );

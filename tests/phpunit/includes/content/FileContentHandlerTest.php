@@ -2,6 +2,8 @@
 
 /**
  * @group ContentHandler
+ *
+ * @covers FileContentHandler
  */
 class FileContentHandlerTest extends MediaWikiLangTestCase {
 	/**
