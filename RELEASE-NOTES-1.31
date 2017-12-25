@@ -19,6 +19,8 @@ production.
   maintenance/cleanupUsersWithNoId.php.
 * $wgResourceLoaderMinifierStatementsOnOwnLine and $wgResourceLoaderMinifierMaxLineLength
   were removed (deprecated since 1.27).
+* (T180921) $wgReferrerPolicy now supports having fallbacks for browsers that are not
+  using the latest version of the Referrer Policy specification.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
