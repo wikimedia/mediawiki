@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers BlockLogFormatter
+ */
 class BlockLogFormatterTest extends LogFormatterTestCase {
 
 	/**

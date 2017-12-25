@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers PatrolLogFormatter
+ */
 class PatrolLogFormatterTest extends LogFormatterTestCase {
 
 	/**
