@@ -3445,6 +3445,8 @@
 	"tag-mw-replace-description": "Modificationes que elimina plus de 90% del contento de un pagina",
 	"tag-mw-rollback": "Revocation",
 	"tag-mw-rollback-description": "Modificationes que disface previe modificationes usante le ligamine \"revocar\"",
+	"tag-mw-undo": "Disfacer",
+	"tag-mw-undo-description": "Modificationes que disface previe modificationes usante le ligamine \"disfacer\"",
 	"tags-title": "Etiquettas",
 	"tags-intro": "Iste pagina lista le etiquettas con le quales le software pote marcar un modification, e lor significato.",
 	"tags-tag": "Nomine del etiquetta",
