@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers CustomUppercaseCollation
+ */
 class CustomUppercaseCollationTest extends MediaWikiTestCase {
 
 	public function setUp() {

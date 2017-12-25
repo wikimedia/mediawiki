@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @covers CollationFa
+ */
 class CollationFaTest extends MediaWikiTestCase {
 
 	/*
