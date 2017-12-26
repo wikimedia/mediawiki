@@ -257,6 +257,8 @@
 	"config-help-tooltip": "feu clic per ampliar",
 	"config-nofile": "No s'ha pogut trobar el fitxer «$1». S'ha suprimit?",
 	"config-extension-link": "Sabíeu que el vostre wiki permet l'ús d'[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nPodeu navegar les [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions per categoria] o la [https://www.mediawiki.org/wiki/Extension_Matrix matriu d'extensions] per a veure'n una llista sencera.",
+	"config-skins-screenshots": "$1 (captures de pantalla: $2)",
+	"config-screenshot": "captura de pantalla",
 	"mainpagetext": "<strong>MediaWiki s'ha instal·lat.</strong>",
 	"mainpagedocfooter": "Consulteu la [https://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar aquest programari wiki.\n\n== Primers passos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de paràmetres configurables]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ PMF del MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu per a anuncis del MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducció de MediaWiki en la vostra llengua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprengueu com combatre la brossa que pot atacar el vostre wiki]"
 }
