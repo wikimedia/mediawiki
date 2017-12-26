@@ -3716,6 +3716,8 @@
 	"tag-mw-replace-description": "Modifications qui enlèvent plus de 90% du contenu des pages",
 	"tag-mw-rollback": "Révocation",
 	"tag-mw-rollback-description": "Modifications qui annulent des modifications existantes en utilisant le lien de révocation (''rollback'')",
+	"tag-mw-undo": "Annuler",
+	"tag-mw-undo-description": "Modifications qui annulent des modifications précédentes en utilisant le lien annuler",
 	"tags-title": "Balises",
 	"tags-intro": "Cette page liste les balises que le logiciel peut utiliser pour marquer une modification et la signification de chacune d’elles.",
 	"tags-tag": "Nom de la balise",
