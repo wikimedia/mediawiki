@@ -4,6 +4,10 @@
  * Tests for BatchRowUpdate and its components
  *
  * @group db
+ *
+ * @covers BatchRowUpdate
+ * @covers BatchRowIterator
+ * @covers BatchRowWriter
  */
 class BatchRowUpdateTest extends MediaWikiTestCase {
 
