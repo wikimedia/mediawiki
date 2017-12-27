@@ -21,7 +21,7 @@ class ApiParseTest extends ApiTestCase {
 			ContentHandler::makeContent( 'Test for revdel', $title, CONTENT_MODEL_WIKITEXT ),
 			__METHOD__ . ' Test for revdel', 0, false, $user
 		);
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		self::$pageId = $status->value['revision']->getPage();
@@ -31,7 +31,7 @@ class ApiParseTest extends ApiTestCase {
 			ContentHandler::makeContent( 'Test for oldid', $title, CONTENT_MODEL_WIKITEXT ),
 			__METHOD__ . ' Test for oldid', 0, false, $user
 		);
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->fail( "Failed to edit $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		self::$revIds['oldid'] = $status->value['revision']->getId();
@@ -40,7 +40,7 @@ class ApiParseTest extends ApiTestCase {
 			ContentHandler::makeContent( 'Test for latest', $title, CONTENT_MODEL_WIKITEXT ),
 			__METHOD__ . ' Test for latest', 0, false, $user
 		);
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->fail( "Failed to edit $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		self::$revIds['latest'] = $status->value['revision']->getId();

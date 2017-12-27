@@ -29,7 +29,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		$status = $page->doEditContent(
 			$content, 'Test for ApiComparePagesTest: ' . $text, 0, false, $user
 		);
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		return $status->value['revision']->getId();

@@ -43,7 +43,7 @@ class RevisionTest extends MediaWikiTestCase {
 			->method( 'getPrefixedText' )
 			->will( $this->returnValue( 'RevisionTest' ) );
 		$mock->expects( $this->any() )
-			->method( 'getDBKey' )
+			->method( 'getDBkey' )
 			->will( $this->returnValue( 'RevisionTest' ) );
 		$mock->expects( $this->any() )
 			->method( 'getArticleID' )
