@@ -3,6 +3,9 @@
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\ScopedCallback;
 
+/**
+ * @covers ParserOptions
+ */
 class ParserOptionsTest extends MediaWikiTestCase {
 
 	private static function clearCache() {

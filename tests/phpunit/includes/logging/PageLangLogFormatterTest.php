@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers PageLangLogFormatter
+ */
 class PageLangLogFormatterTest extends LogFormatterTestCase {
 
 	protected function setUp() {

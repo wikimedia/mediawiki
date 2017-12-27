@@ -406,6 +406,7 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideIsReservedDataAttribute
+	 * @covers Sanitizer::isReservedDataAttribute
 	 */
 	public function testIsReservedDataAttribute( $attr, $expected ) {
 		$this->assertSame( $expected, Sanitizer::isReservedDataAttribute( $attr ) );

@@ -142,6 +142,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param float $expectedLength
 	 * @dataProvider provideGetLength
+	 * @covers PNGHandler::getLength
 	 */
 	public function testGetLength( $filename, $expectedLength ) {
 		$file = $this->dataFile( $filename, 'image/png' );
