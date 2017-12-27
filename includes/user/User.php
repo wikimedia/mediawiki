@@ -234,7 +234,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.29
 	 */
 	private $mGroups;
-	/** @var array Associative array of (group name => UserGroupMembership object) */
+	/** @var UserGroupMembership[] Associative array of (group name => UserGroupMembership object) */
 	protected $mGroupMemberships;
 	/** @var array */
 	protected $mOptionOverrides;
@@ -3317,7 +3317,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the list of explicit group memberships this user has, stored as
 	 * UserGroupMembership objects. Implicit groups are not included.
 	 *
-	 * @return array Associative array of (group name as string => UserGroupMembership object)
+	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
