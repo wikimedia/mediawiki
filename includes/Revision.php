@@ -214,8 +214,9 @@ class Revision implements IDBAccessObject {
 	 *
 	 * MCR migration note: replaced by RevisionStore::newRevisionFromRow(). Note that
 	 * newFromRow() also accepts arrays, while newRevisionFromRow() does not. Instead,
-	 * a MutableRevisionRecord should be constructed directly. RevisionStore::newRevisionFromArray()
-	 * can be used as a temporary replacement, but should be avoided.
+	 * a MutableRevisionRecord should be constructed directly.
+	 * RevisionStore::newMutableRevisionFromArray() can be used as a temporary replacement,
+	 * but should be avoided.
 	 *
 	 * @param object|array $row
 	 * @return Revision
@@ -285,7 +286,8 @@ class Revision implements IDBAccessObject {
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * @deprecated since 1.31, use RevisionStore::loadRevisionFromTimestamp() instead.
+	 * @deprecated since 1.31, use RevisionStore::getRevisionByTimestamp()
+	 *   or RevisionStore::loadRevisionFromTimestamp() instead.
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -293,7 +295,6 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
-		// XXX: replace loadRevisionFromTimestamp by getRevisionByTimestamp?
 		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
 		return $rec === null ? null : new Revision( $rec );
 	}
@@ -482,6 +483,9 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Do a batched query to get the parent revision lengths
+	 *
+	 * @deprecated use RevisionStore::getRevisionSizes instead.
+	 *
 	 * @param IDatabase $db
 	 * @param array $revIds
 	 * @return array
@@ -503,6 +507,8 @@ class Revision implements IDBAccessObject {
 		if ( $row instanceof RevisionRecord ) {
 			$this->mRecord = $row;
 		} elseif ( is_array( $row ) ) {
+			// If no user is specified, fall back to using the global user object, to stay
+			// compatible with pre-1.31 behavior.
 			if ( !isset( $row['user'] ) && !isset( $row['user_text'] ) ) {
 				$row['user'] = $wgUser;
 			}
@@ -794,7 +800,7 @@ class Revision implements IDBAccessObject {
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function isUnpatrolled() {
-		return self::getRevisionStore()->isUnpatrolled( $this->mRecord );
+		return self::getRevisionStore()->getRcIdIfUnpatrolled( $this->mRecord );
 	}
 
 	/**
