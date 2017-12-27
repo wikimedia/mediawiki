@@ -26,7 +26,9 @@
  * @ingroup Benchmark
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Base class for benchmark scripts.
