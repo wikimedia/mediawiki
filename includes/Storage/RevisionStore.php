@@ -562,9 +562,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	/**
 	 * MCR migration note: this replaces Revision::isUnpatrolled
 	 *
+	 * @todo This is overly specific, so move or kill this method.
+	 *
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
-	public function isUnpatrolled( RevisionRecord $rev ) {
+	public function getRcIdIfUnpatrolled( RevisionRecord $rev ) {
 		$rc = $this->getRecentChange( $rev );
 		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == 0 ) {
 			return $rc->getAttribute( 'rc_id' );
@@ -953,7 +955,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionFromTimestamp( $title, $timestamp ) {
+	public function getRevisionByTimestamp( $title, $timestamp ) {
 		return $this->newRevisionFromConds(
 			[
 				'rev_timestamp' => $timestamp,
@@ -1645,6 +1647,22 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * Do a batched query for the sizes of a set of revisions.
 	 *
 	 * MCR migration note: this replaces Revision::getParentLengths
+	 *
+	 * @param IDatabase $db
+	 * @param int[] $revIds
+	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
+	 *         of the corresponding revision.
+	 */
+	public function getRevisionSizes( array $revIds ) {
+		return $this->listRevisionSizes( $this->getDBConnection( DB_REPLICA ), $revIds );
+	}
+
+	/**
+	 * Do a batched query for the sizes of a set of revisions.
+	 *
+	 * MCR migration note: this replaces Revision::getParentLengths
+	 *
+	 * @deprecated use RevisionStore::getRevisionSizes instead.
 	 *
 	 * @param IDatabase $db
 	 * @param int[] $revIds
