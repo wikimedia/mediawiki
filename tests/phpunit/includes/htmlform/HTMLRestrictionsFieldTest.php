@@ -1,6 +1,6 @@
 <?php
 
-class HTMLRestrictionsFieldTest extends PHPUnit_Framework_TestCase {
+class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 	public function testConstruct() {
 		$field = new HTMLRestrictionsField( [ 'fieldname' => 'restrictions' ] );
 		$this->assertNotEmpty( $field->getLabel(), 'has a default label' );

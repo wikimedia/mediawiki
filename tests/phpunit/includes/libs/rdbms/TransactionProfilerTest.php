@@ -3,7 +3,7 @@
 use Wikimedia\Rdbms\TransactionProfiler;
 use Psr\Log\LoggerInterface;
 
-class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
+class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	public function testAffected() {
 		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
 		$logger->expects( $this->exactly( 3 ) )->method( 'info' );

@@ -105,7 +105,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 }
 
-class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
+class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes

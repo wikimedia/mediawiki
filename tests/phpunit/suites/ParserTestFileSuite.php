@@ -5,7 +5,7 @@
  * It is not invoked directly. Use --filter to select files, or
  * use parserTests.php.
  */
-class ParserTestFileSuite extends PHPUnit_Framework_TestSuite {
+class ParserTestFileSuite extends PHPUnit\Framework\TestSuite {
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;

@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers WatchedItemQueryService
  */
-class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
+class WatchedItemQueryServiceUnitTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|Database

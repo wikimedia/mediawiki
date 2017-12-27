@@ -10,7 +10,7 @@ use Wikimedia\ScopedCallback;
  * @group ParserTests
  * @group Database
  */
-class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
+class ParserTestTopLevelSuite extends PHPUnit\Framework\TestSuite {
 	/** @var ParserTestRunner */
 	private $ptRunner;
 

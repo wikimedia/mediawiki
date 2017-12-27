@@ -4,7 +4,7 @@ namespace Wikimedia\Tests\Rdbms;
 
 use IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\ConnectionManager;
 
 /**
@@ -13,7 +13,7 @@ use Wikimedia\Rdbms\ConnectionManager;
  * @license GPL-2.0+
  * @author Daniel Kinzler
  */
-class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
+class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject

@@ -9,7 +9,7 @@
  * dataprovider.
  */
 
-class AvroValidatorTest extends PHPUnit_Framework_TestCase {
+class AvroValidatorTest extends PHPUnit\Framework\TestCase {
 	public function setUp() {
 		if ( !class_exists( 'AvroSchema' ) ) {
 			$this->markTestSkipped( 'Avro is required to run the AvroValidatorTest' );

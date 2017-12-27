@@ -219,8 +219,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	public function testApiTestGroup() {
-		$groups = PHPUnit_Util_Test::getGroups( static::class );
-		$constraint = PHPUnit_Framework_Assert::logicalOr(
+		$groups = PHPUnit\Util\Test::getGroups( static::class );
+		$constraint = PHPUnit\Framework\Assert::logicalOr(
 			$this->contains( 'medium' ),
 			$this->contains( 'large' )
 		);

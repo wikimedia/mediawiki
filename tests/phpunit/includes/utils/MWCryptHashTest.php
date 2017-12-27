@@ -4,7 +4,7 @@
  * @group Hash
  */
 
-class MWCryptHashTest extends PHPUnit_Framework_TestCase {
+class MWCryptHashTest extends PHPUnit\Framework\TestCase {
 
 	public function testHashLength() {
 		if ( MWCryptHash::hashAlgo() !== 'whirlpool' ) {

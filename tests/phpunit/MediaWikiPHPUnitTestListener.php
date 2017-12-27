@@ -1,17 +1,17 @@
 <?php
 
 class MediaWikiPHPUnitTestListener
-	extends PHPUnit_TextUI_ResultPrinter implements PHPUnit_Framework_TestListener {
+	extends PHPUnit\TextUI\ResultPrinter implements PHPUnit\Framework\TestListener {
 
 	/**
 	 * @var string
 	 */
 	protected $logChannel = 'PHPUnitCommand';
 
-	protected function getTestName( PHPUnit_Framework_Test $test ) {
+	protected function getTestName( PHPUnit\Framework\Test $test ) {
 		$name = get_class( $test );
 
-		if ( $test instanceof PHPUnit_Framework_TestCase ) {
+		if ( $test instanceof PHPUnit\Framework\TestCase ) {
 			$name .= '::' . $test->getName( true );
 		}
 
@@ -32,7 +32,7 @@ class MediaWikiPHPUnitTestListener
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addError( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addError( PHPUnit\Framework\Test $test, Exception $e, $time ) {
 		parent::addError( $test, $e, $time );
 		wfDebugLog(
 			$this->logChannel,
@@ -47,8 +47,8 @@ class MediaWikiPHPUnitTestListener
 	 * @param PHPUnit_Framework_AssertionFailedError $e
 	 * @param float $time
 	 */
-	public function addFailure( PHPUnit_Framework_Test $test,
-		PHPUnit_Framework_AssertionFailedError $e, $time
+	public function addFailure( PHPUnit\Framework\Test $test,
+		PHPUnit\Framework\AssertionFailedError $e, $time
 	) {
 		parent::addFailure( $test, $e, $time );
 		wfDebugLog(
@@ -64,7 +64,7 @@ class MediaWikiPHPUnitTestListener
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addIncompleteTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addIncompleteTest( PHPUnit\Framework\Test $test, Exception $e, $time ) {
 		parent::addIncompleteTest( $test, $e, $time );
 		wfDebugLog(
 			$this->logChannel,
@@ -79,7 +79,7 @@ class MediaWikiPHPUnitTestListener
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addSkippedTest( PHPUnit_Framework_Test $test, Exception $e, $time ) {
+	public function addSkippedTest( PHPUnit\Framework\Test $test, Exception $e, $time ) {
 		parent::addSkippedTest( $test, $e, $time );
 		wfDebugLog(
 			$this->logChannel,
@@ -92,7 +92,7 @@ class MediaWikiPHPUnitTestListener
 	 *
 	 * @param PHPUnit_Framework_TestSuite $suite
 	 */
-	public function startTestSuite( PHPUnit_Framework_TestSuite $suite ) {
+	public function startTestSuite( PHPUnit\Framework\TestSuite $suite ) {
 		parent::startTestSuite( $suite );
 		wfDebugLog( $this->logChannel, 'START suite ' . $suite->getName() );
 	}
@@ -102,7 +102,7 @@ class MediaWikiPHPUnitTestListener
 	 *
 	 * @param PHPUnit_Framework_TestSuite $suite
 	 */
-	public function endTestSuite( PHPUnit_Framework_TestSuite $suite ) {
+	public function endTestSuite( PHPUnit\Framework\TestSuite $suite ) {
 		parent::endTestSuite( $suite );
 		wfDebugLog( $this->logChannel, 'END suite ' . $suite->getName() );
 	}
@@ -112,7 +112,7 @@ class MediaWikiPHPUnitTestListener
 	 *
 	 * @param PHPUnit_Framework_Test $test
 	 */
-	public function startTest( PHPUnit_Framework_Test $test ) {
+	public function startTest( PHPUnit\Framework\Test $test ) {
 		parent::startTest( $test );
 		wfDebugLog( $this->logChannel, 'Start test ' . $this->getTestName( $test ) );
 	}
@@ -123,7 +123,7 @@ class MediaWikiPHPUnitTestListener
 	 * @param PHPUnit_Framework_Test $test
 	 * @param float $time
 	 */
-	public function endTest( PHPUnit_Framework_Test $test, $time ) {
+	public function endTest( PHPUnit\Framework\Test $test, $time ) {
 		parent::endTest( $test, $time );
 		wfDebugLog( $this->logChannel, 'End test ' . $this->getTestName( $test ) );
 	}

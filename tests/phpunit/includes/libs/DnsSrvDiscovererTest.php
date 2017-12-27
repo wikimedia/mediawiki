@@ -1,6 +1,6 @@
 <?php
 
-class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
+class DnsSrvDiscovererTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers DnsSrvDiscoverer
 	 * @dataProvider provideRecords

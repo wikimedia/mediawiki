@@ -5,7 +5,7 @@
  * how to register your tests.
  */
 
-class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
+class ExtensionsTestSuite extends PHPUnit\Framework\TestSuite {
 	public function __construct() {
 		parent::__construct();
 

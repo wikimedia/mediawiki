@@ -4,7 +4,7 @@
  * @covers WikiReference
  */
 
-class WikiReferenceTest extends PHPUnit_Framework_TestCase {
+class WikiReferenceTest extends PHPUnit\Framework\TestCase {
 
 	public function provideGetDisplayName() {
 		return [

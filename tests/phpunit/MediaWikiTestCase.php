@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @since 1.18
  */
-abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
+abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * The service locator created by prepareServices(). This service locator will
@@ -377,7 +377,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
-	public function run( PHPUnit_Framework_TestResult $result = null ) {
+	public function run( PHPUnit\Framework\TestResult $result = null ) {
 		// Reset all caches between tests.
 		$this->doLightweightServiceReset();
 

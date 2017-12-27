@@ -9,7 +9,7 @@
  * dataprovider.
  */
 
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @covers IP::isIPAddress
 	 * @dataProvider provideInvalidIPs
