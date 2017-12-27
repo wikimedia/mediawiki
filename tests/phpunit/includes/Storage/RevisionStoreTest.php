@@ -291,4 +291,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		);
 	}
 
+	// FIXME: test getRevisionSizes and listRevisionSizes
+
 }
