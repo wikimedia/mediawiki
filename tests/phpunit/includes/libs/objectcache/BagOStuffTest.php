@@ -163,6 +163,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertTrue( $this->cache->add( $key, 'test' ) );
 	}
 
+	/**
+	 * @covers BagOStuff::get
+	 */
 	public function testGet() {
 		$value = [ 'this' => 'is', 'a' => 'test' ];
 

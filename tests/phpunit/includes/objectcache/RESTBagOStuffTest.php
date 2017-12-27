@@ -1,6 +1,8 @@
 <?php
 /**
  * @group BagOStuff
+ *
+ * @covers RESTBagOStuff
  */
 class RESTBagOStuffTest extends MediaWikiTestCase {
 

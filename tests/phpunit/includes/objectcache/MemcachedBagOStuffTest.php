@@ -70,6 +70,7 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider validKeyProvider
+	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncoding( $key ) {
 		$this->assertSame( $key, $this->cache->validateKeyEncoding( $key ) );
@@ -86,6 +87,7 @@ class MemcachedBagOStuffTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider invalidKeyProvider
+	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncodingThrowsException( $key ) {
 		$this->setExpectedException( 'Exception' );
