@@ -1204,6 +1204,10 @@ class Revision implements IDBAccessObject {
 			? $pageIdOrTitle
 			: Title::newFromID( $pageIdOrTitle );
 
+		if ( !$title ) {
+			return false;
+		}
+
 		$record = self::getRevisionStore()->getKnownCurrentRevision( $title, $revId );
 		return $record ? new Revision( $record ) : false;
 	}
