@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @covers NewUsersLogFormatter
  * @group Database
  */
 class NewUsersLogFormatterTest extends LogFormatterTestCase {
