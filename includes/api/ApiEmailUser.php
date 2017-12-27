@@ -71,7 +71,7 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		$result = array_filter( [
-			'result' => $retval->isGood() ? 'Success' : ( $retval->isOk() ? 'Warnings' : 'Failure' ),
+			'result' => $retval->isGood() ? 'Success' : ( $retval->isOK() ? 'Warnings' : 'Failure' ),
 			'warnings' => $this->getErrorFormatter()->arrayFromStatus( $retval, 'warning' ),
 			'errors' => $this->getErrorFormatter()->arrayFromStatus( $retval, 'error' ),
 		] );

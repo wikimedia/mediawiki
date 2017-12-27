@@ -60,7 +60,7 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 					$title = Title::makeTitleSafe( NS_CATEGORY, $titleStr );
 				}
 				if ( $title ) {
-					$this->exceptionList[] = $title->getDBKey();
+					$this->exceptionList[] = $title->getDBkey();
 				}
 			}
 		}
