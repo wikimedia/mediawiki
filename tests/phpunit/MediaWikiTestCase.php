@@ -1008,10 +1008,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$user = static::getTestSysop()->getUser();
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
-		// Avoid memory leak...?
-		// LinkCache::singleton()->clear();
-		// Maybe.  But doing this absolutely breaks $title->isRedirect() when called during unit tests....
-
 		$page = WikiPage::factory( $title );
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
 
