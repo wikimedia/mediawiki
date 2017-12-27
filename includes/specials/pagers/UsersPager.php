@@ -33,7 +33,7 @@
 class UsersPager extends AlphabeticPager {
 
 	/**
-	 * @var array A array with user ids as key and a array of groups as value
+	 * @var array[] A array with user ids as key and a array of groups as value
 	 */
 	protected $userGroupCache;
 
@@ -391,8 +391,8 @@ class UsersPager extends AlphabeticPager {
 	 * and the relevant UserGroupMembership objects
 	 *
 	 * @param int $uid User id
-	 * @param array|null $cache
-	 * @return array (group name => UserGroupMembership object)
+	 * @param array[]|null $cache
+	 * @return UserGroupMembership[] (group name => UserGroupMembership object)
 	 */
 	protected static function getGroupMemberships( $uid, $cache = null ) {
 		if ( $cache === null ) {

@@ -761,7 +761,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
-	 * @param array $usergroups Associative array of (group name as string =>
+	 * @param UserGroupMembership[] $usergroups Associative array of (group name as string =>
 	 *   UserGroupMembership object) for groups the user belongs to
 	 * @param User $user
 	 * @return Array with 2 elements: the XHTML table element with checkxboes, and
