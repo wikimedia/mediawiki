@@ -3243,6 +3243,7 @@ class OutputPage extends ContextSource {
 			&& ( $relevantTitle->exists() || $relevantTitle->quickUserCan( 'create', $user ) );
 
 		foreach ( $title->getRestrictionTypes() as $type ) {
+			// grep: wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}
 
