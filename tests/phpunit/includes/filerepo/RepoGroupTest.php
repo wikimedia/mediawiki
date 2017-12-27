@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @covers RepoGroup
+ */
 class RepoGroupTest extends MediaWikiTestCase {
 
 	function testHasForeignRepoNegative() {
