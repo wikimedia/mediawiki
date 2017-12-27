@@ -552,6 +552,7 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Title::newFromTitleValue
 	 * @dataProvider provideNewFromTitleValue
 	 */
 	public function testNewFromTitleValue( TitleValue $value ) {
@@ -572,6 +573,7 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Title::getTitleValue
 	 * @dataProvider provideGetTitleValue
 	 */
 	public function testGetTitleValue( $text ) {
@@ -603,6 +605,7 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Title::getFragment
 	 * @dataProvider provideGetFragment
 	 *
 	 * @param string $full
@@ -913,6 +916,7 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Title::getFragmentForURL
 	 * @dataProvider provideGetFragmentForURL
 	 *
 	 * @param string $titleStr

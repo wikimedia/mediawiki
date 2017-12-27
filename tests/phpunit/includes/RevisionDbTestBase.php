@@ -649,6 +649,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::userWasLastToEdit
 	 * @dataProvider provideUserWasLastToEdit
 	 */
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {

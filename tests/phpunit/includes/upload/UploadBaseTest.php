@@ -103,6 +103,8 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers UploadBase::verifyUpload
+	 *
 	 * test uploading a 100 bytes file with $wgMaxUploadSize = 100
 	 *
 	 * This method should be abstracted so we can test different settings.
@@ -126,6 +128,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers UploadBase::checkSvgScriptCallback
 	 * @dataProvider provideCheckSvgScriptCallback
 	 */
 	public function testCheckSvgScriptCallback( $svg, $wellFormed, $filterMatch, $message ) {
@@ -512,6 +515,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers UploadBase::detectScriptInSvg
 	 * @dataProvider provideDetectScriptInSvg
 	 */
 	public function testDetectScriptInSvg( $svg, $expected, $message ) {
@@ -552,6 +556,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers UploadBase::checkXMLEncodingMissmatch
 	 * @dataProvider provideCheckXMLEncodingMissmatch
 	 */
 	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {

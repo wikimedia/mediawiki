@@ -525,7 +525,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $outputPage->haveCacheVaryCookies() );
 	}
 
-	/*
+	/**
 	 * @covers OutputPage::addCategoryLinks
 	 * @covers OutputPage::getCategories
 	 */
