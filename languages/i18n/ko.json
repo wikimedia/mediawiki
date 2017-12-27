@@ -3376,7 +3376,7 @@
 	"autosumm-replace": "내용을 \"$1\"(으)로 바꿈",
 	"autoredircomment": "[[$1]] 문서로 넘겨주기",
 	"autosumm-removed-redirect": "[[$1]]에 대한 넘겨주기를 제거함",
-	"autosumm-changed-redirect-target": "넘겨주기 대상을 [[$1]]에서 [[$2]](으)로 변경했습니다",
+	"autosumm-changed-redirect-target": "넘겨주기 대상을 [[$1]]에서 [[$2]] 문서로 변경했습니다",
 	"autosumm-new": "새 문서: $1",
 	"autosumm-newblank": "빈 문서를 만듦",
 	"size-bytes": "$1 {{PLURAL:$1|바이트}}",

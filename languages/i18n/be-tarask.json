@@ -3450,6 +3450,7 @@
 	"tag-mw-contentmodelchange-description": "Рэдагаваньні, якія [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel зьмяняюць мадэль зьместу] старонкі",
 	"tag-mw-new-redirect": "Новае перанакіраваньне",
 	"tag-mw-new-redirect-description": "Рэдагаваньні, якія ствараюць новае перанакіраваньне ці зьмяняюць старонку на перанакіраваньне",
+	"tag-mw-removed-redirect": "Выдаленае перанакіраваньне",
 	"tags-title": "Меткі",
 	"tags-intro": "На гэтай старонцы знаходзіцца сьпіс метак, якімі праграмнае забесьпячэньне можа пазначыць рэдагаваньне, і іх значэньне.",
 	"tags-tag": "Назва меткі",

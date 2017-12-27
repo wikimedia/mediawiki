@@ -1506,6 +1506,7 @@
 	"rcfilters-preference-label": "最近の更新の改善版を隠す",
 	"rcfilters-preference-help": "2017年のインターフェース更新、当時追加したや以来の新しいツールの使用を断る。",
 	"rcfilters-filter-showlinkedfrom-label": "リンク先ページの変更を表示する",
+	"rcfilters-target-page-placeholder": "ページ名を入力",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",
 	"rclistfrom": "$3の$2以降の更新を表示する",
