@@ -9,6 +9,9 @@ abstract class PoolCounterAbstractMock extends PoolCounter {
 	}
 }
 
+/**
+ * @covers PoolCounter
+ */
 class PoolCounterTest extends MediaWikiTestCase {
 	public function testConstruct() {
 		$poolCounterConfig = [

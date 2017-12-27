@@ -903,6 +903,9 @@ class UserTest extends MediaWikiTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers User::isPingLimitable
+	 */
 	public function testIsPingLimitable() {
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
@@ -939,6 +942,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::getExperienceLevel
 	 * @dataProvider provideExperienceLevel
 	 */
 	public function testExperienceLevel( $editCount, $memberSince, $expLevel ) {
@@ -968,6 +972,9 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $expLevel, $user->getExperienceLevel() );
 	}
 
+	/**
+	 * @covers User::getExperienceLevel
+	 */
 	public function testExperienceLevelAnon() {
 		$user = User::newFromName( '10.11.12.13', false );
 

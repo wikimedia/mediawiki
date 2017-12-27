@@ -4,6 +4,10 @@
  * @group HKDF
  */
 
+/**
+ * @covers CryptHKDF
+ * @covers MWCryptHKDF
+ */
 class MWCryptHKDFTest extends MediaWikiTestCase {
 
 	protected function setUp() {

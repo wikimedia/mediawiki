@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * @covers PageProps
+ *
  * @group Database
  *	^--- tell jenkins this test needs the database
  *
