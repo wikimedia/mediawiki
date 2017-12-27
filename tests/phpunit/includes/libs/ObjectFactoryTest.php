@@ -18,7 +18,7 @@
  * @file
  */
 
-class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
+class ObjectFactoryTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers ObjectFactory::getObjectFromSpec

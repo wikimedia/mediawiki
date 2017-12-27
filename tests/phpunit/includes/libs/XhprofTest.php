@@ -18,7 +18,7 @@
  * @file
  */
 
-class XhprofTest extends PHPUnit_Framework_TestCase {
+class XhprofTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * Trying to enable Xhprof when it is already enabled causes an exception
 	 * to be thrown.

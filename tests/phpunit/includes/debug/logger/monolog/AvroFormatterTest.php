@@ -21,7 +21,7 @@
 namespace MediaWiki\Logger\Monolog;
 
 use MediaWikiTestCase;
-use PHPUnit_Framework_Error_Notice;
+use PHPUnit\Framework\Error\Notice;
 
 class AvroFormatterTest extends MediaWikiTestCase {
 
@@ -43,14 +43,14 @@ class AvroFormatterTest extends MediaWikiTestCase {
 
 	public function testSchemaNotAvailableReturnValue() {
 		$formatter = new AvroFormatter( [] );
-		$noticeEnabled = PHPUnit_Framework_Error_Notice::$enabled;
+		$noticeEnabled = Notice::$enabled;
 		// disable conversion of notices
-		PHPUnit_Framework_Error_Notice::$enabled = false;
+		Notice::$enabled = false;
 		// have to keep the user notice from being output
 		\MediaWiki\suppressWarnings();
 		$res = $formatter->format( [ 'channel' => 'marty' ] );
 		\MediaWiki\restoreWarnings();
-		PHPUnit_Framework_Error_Notice::$enabled = $noticeEnabled;
+		Notice::$enabled = $noticeEnabled;
 		$this->assertNull( $res );
 	}
 

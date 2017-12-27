@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group BagOStuff
  */
-class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
+class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers HashBagOStuff::__construct

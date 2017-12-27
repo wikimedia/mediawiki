@@ -14,7 +14,7 @@ use Wikimedia\ScopedCallback;
  *
  * @todo covers tags
  */
-class ParserIntegrationTest extends PHPUnit_Framework_TestCase {
+class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	/** @var array */
 	private $ptTest;
 

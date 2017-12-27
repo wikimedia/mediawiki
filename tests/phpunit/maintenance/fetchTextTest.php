@@ -51,12 +51,12 @@ class SemiMockedFetchText extends FetchText {
 	function getStdin( $len = null ) {
 		$this->mockInvocations['getStdin']++;
 		if ( $len !== null ) {
-			throw new PHPUnit_Framework_ExpectationFailedException(
+			throw new PHPUnit\Framework\ExpectationFailedException(
 				"Tried to get stdin with non null parameter" );
 		}
 
 		if ( !$this->mockSetUp ) {
-			throw new PHPUnit_Framework_ExpectationFailedException(
+			throw new PHPUnit\Framework\ExpectationFailedException(
 				"Tried to get stdin before setting up rerouting" );
 		}
 

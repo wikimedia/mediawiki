@@ -114,7 +114,7 @@ STR;
 			$exp = self::sanitizeResultArray( $exp );
 			$result = self::sanitizeResultArray( $result );
 			$this->assertEquals( $exp, $result );
-		} catch ( PHPUnit_Framework_ExpectationFailedException $e ) {
+		} catch ( PHPUnit\Framework\ExpectationFailedException $e ) {
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
@@ -125,7 +125,7 @@ STR;
 				$compEx = 'PHPUnit_Framework_ComparisonFailure';
 			}
 
-			throw new PHPUnit_Framework_ExpectationFailedException(
+			throw new PHPUnit\Framework\ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
 				new $compEx(
 					$exp,

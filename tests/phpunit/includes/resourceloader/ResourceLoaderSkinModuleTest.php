@@ -3,7 +3,7 @@
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderSkinModuleTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderSkinModuleTest extends PHPUnit\Framework\TestCase {
 
 	// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 	public static function provideGetStyles() {

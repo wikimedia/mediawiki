@@ -156,7 +156,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		// evil hax
 		TestingAccessWrapper::newFromObject( $mockMethod )->matcher->parametersMatcher =
-			new \PHPUnit_Framework_MockObject_Matcher_ConsecutiveParameters( [
+			new \PHPUnit\Framework\MockObject\Matcher\ConsecutiveParameters( [
 				[ $this->anything(), $this->anything(), [ 'words' ] ],
 				[ $this->anything(), $this->anything(), [ 'lines' ] ]
 			] );

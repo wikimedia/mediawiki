@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Shell\Command
  * @group Shell
  */
-class CommandTest extends PHPUnit_Framework_TestCase {
+class CommandTest extends PHPUnit\Framework\TestCase {
 	private function requirePosix() {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
