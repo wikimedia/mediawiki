@@ -236,6 +236,8 @@ class UserTest extends MediaWikiTestCase {
 	 * Test, if for all rights a right- message exist,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
+	 *
+	 * @coversNothing
 	 */
 	public function testAllRightsWithMessage() {
 		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
