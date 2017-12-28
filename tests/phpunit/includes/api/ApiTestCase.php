@@ -218,6 +218,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @coversNothing
+	 */
 	public function testApiTestGroup() {
 		$groups = PHPUnit_Util_Test::getGroups( static::class );
 		$constraint = PHPUnit_Framework_Assert::logicalOr(
