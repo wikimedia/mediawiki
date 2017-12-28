@@ -5,9 +5,12 @@
  * @group Media
  * @group medium
  *
- * @todo covers tags
+ * @covers BitmapHandler
  */
 class ExifRotationTest extends MediaWikiMediaTestCase {
+
+	/** @var BitmapHandler */
+	private $handler;
 
 	protected function setUp() {
 		parent::setUp();

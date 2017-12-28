@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ApiUsageException
+ */
 class ApiUsageExceptionTest extends MediaWikiTestCase {
 
 	public function testCreateWithStatusValue_CanGetAMessageObject() {

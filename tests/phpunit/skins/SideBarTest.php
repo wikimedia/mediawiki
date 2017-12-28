@@ -188,6 +188,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test $wgNoFollowLinks in sidebar
+	 * @covers Skin::addToSidebarPlain
 	 */
 	public function testRespectWgnofollowlinks() {
 		$this->setMwGlobals( 'wgNoFollowLinks', false );
@@ -201,6 +202,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/**
 	 * Test $wgExternaLinkTarget in sidebar
 	 * @dataProvider dataRespectExternallinktarget
+	 * @covers Skin::addToSidebarPlain
 	 */
 	public function testRespectExternallinktarget( $externalLinkTarget ) {
 		$this->setMwGlobals( 'wgExternalLinkTarget', $externalLinkTarget );

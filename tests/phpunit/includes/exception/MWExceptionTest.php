@@ -10,6 +10,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 
 	/**
 	 * @expectedException MWException
+	 * @covers MWException
 	 */
 	public function testMwexceptionThrowing() {
 		throw new MWException();
