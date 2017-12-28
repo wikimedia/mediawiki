@@ -1,10 +1,4 @@
 <?php
-
-use Wikimedia\Rdbms\LBFactorySimple;
-use Wikimedia\Rdbms\LBFactoryMulti;
-use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\MySQLMasterPos;
-
 /**
  * Holds tests for LBFactory abstract MediaWiki class.
  *
@@ -23,15 +17,26 @@ use Wikimedia\Rdbms\MySQLMasterPos;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @group Database
  * @file
  * @author Antoine Musso
  * @copyright © 2013 Antoine Musso
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
+
+use Wikimedia\Rdbms\LBFactorySimple;
+use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\MySQLMasterPos;
+
+/**
+ * @group Database
+ * @covers \Wikimedia\Rdbms\LBFactorySimple
+ * @covers \Wikimedia\Rdbms\LBFactoryMulti
+ */
 class LBFactoryTest extends MediaWikiTestCase {
 
 	/**
+	 * @covers MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
@@ -182,6 +187,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb->closeAll();
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\ChronologyProtector
+	 */
 	public function testChronologyProtector() {
 		// (a) First HTTP request
 		$mPos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );

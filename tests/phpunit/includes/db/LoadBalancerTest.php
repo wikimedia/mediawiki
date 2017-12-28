@@ -24,6 +24,8 @@ use Wikimedia\Rdbms\LoadBalancer;
  *
  * @group Database
  * @file
+ *
+ * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
