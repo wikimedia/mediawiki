@@ -14,7 +14,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	/**
 	 * @param string $id Session ID
 	 * @param array $data Session data
-	 * @param int $expiry Expiry
+	 * @param int $expiry
 	 * @param User $user User for metadata
 	 */
 	public function setSessionData( $id, array $data, $expiry = 0, User $user = null ) {
@@ -24,7 +24,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	/**
 	 * @param string $id Session ID
 	 * @param array $metadata Session metadata
-	 * @param int $expiry Expiry
+	 * @param int $expiry
 	 */
 	public function setSessionMeta( $id, array $metadata, $expiry = 0 ) {
 		$this->setSession( $id, [ 'metadata' => $metadata ], $expiry );
@@ -33,7 +33,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	/**
 	 * @param string $id Session ID
 	 * @param array $blob Session metadata and data
-	 * @param int $expiry Expiry
+	 * @param int $expiry
 	 * @param User $user User for metadata
 	 */
 	public function setSession( $id, array $blob, $expiry = 0, User $user = null ) {
@@ -54,7 +54,7 @@ class TestBagOStuff extends \CachedBagOStuff {
 	/**
 	 * @param string $id Session ID
 	 * @param array|mixed $blob Session metadata and data
-	 * @param int $expiry Expiry
+	 * @param int $expiry
 	 */
 	public function setRawSession( $id, $blob, $expiry = 0 ) {
 		if ( $expiry <= 0 ) {

@@ -156,22 +156,22 @@ class MessageCache {
 	}
 
 	/**
-	 * @param WANObjectCache $wanCache WAN cache instance
-	 * @param BagOStuff $clusterCache Cluster cache instance
-	 * @param BagOStuff $srvCache Server cache instance
+	 * @param WANObjectCache $wanCache
+	 * @param BagOStuff $clusterCache
+	 * @param BagOStuff $serverCache
 	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
 		BagOStuff $clusterCache,
-		BagOStuff $srvCache,
+		BagOStuff $serverCache,
 		$useDB,
 		$expiry
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
-		$this->srvCache = $srvCache;
+		$this->srvCache = $serverCache;
 
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;

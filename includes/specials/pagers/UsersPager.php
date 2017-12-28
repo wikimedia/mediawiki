@@ -407,7 +407,7 @@ class UsersPager extends AlphabeticPager {
 	 * Format a link to a group description page
 	 *
 	 * @param string|UserGroupMembership $group Group name or UserGroupMembership object
-	 * @param string $username Username
+	 * @param string $username
 	 * @return string
 	 */
 	protected function buildGroupLink( $group, $username ) {

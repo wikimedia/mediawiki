@@ -57,7 +57,7 @@ abstract class RevDelItem extends RevisionItemBase {
 	/**
 	 * Get the return information about the revision for the API
 	 * @since 1.23
-	 * @param ApiResult $result API result object
+	 * @param ApiResult $result
 	 * @return array Data for the API result
 	 */
 	abstract public function getApiData( ApiResult $result );

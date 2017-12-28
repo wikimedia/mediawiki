@@ -75,8 +75,8 @@ class JsonContent extends TextContent {
 	/**
 	 * Beautifies JSON prior to save.
 	 *
-	 * @param Title $title Title
-	 * @param User $user User
+	 * @param Title $title
+	 * @param User $user
 	 * @param ParserOptions $popts
 	 * @return JsonContent
 	 */

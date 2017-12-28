@@ -407,7 +407,7 @@ class WebRequest {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|null $default Optional default
+	 * @param string|null $default
 	 * @return string|null
 	 */
 	public function getRawVal( $name, $default = null ) {
