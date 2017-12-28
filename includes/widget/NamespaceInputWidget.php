@@ -1,14 +1,12 @@
 <?php
-/**
- * MediaWiki Widgets – NamespaceInputWidget class.
- *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
 /**
  * Namespace input widget. Displays a dropdown box with the choice of available namespaces.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license MIT
  */
 class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 

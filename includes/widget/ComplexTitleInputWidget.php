@@ -1,14 +1,12 @@
 <?php
-/**
- * MediaWiki Widgets – ComplexTitleInputWidget class.
- *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
 /**
  * Complex title input widget.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license MIT
  */
 class ComplexTitleInputWidget extends \OOUI\Widget {
 
