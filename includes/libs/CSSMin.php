@@ -29,8 +29,6 @@
  */
 class CSSMin {
 
-	/* Constants */
-
 	/** @var string Strip marker for comments. **/
 	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
 
@@ -41,8 +39,6 @@ class CSSMin {
 
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
-
-	/* Protected Static Members */
 
 	/** @var array List of common image files extensions and MIME-types */
 	protected static $mimeTypes = [
@@ -56,8 +52,6 @@ class CSSMin {
 		'xbm' => 'image/x-xbitmap',
 		'svg' => 'image/svg+xml',
 	];
-
-	/* Static Methods */
 
 	/**
 	 * Get a list of local files referenced in a stylesheet (includes non-existent files).

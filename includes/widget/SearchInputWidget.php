@@ -34,7 +34,6 @@ class SearchInputWidget extends TitleInputWidget {
 			'icon' => 'search',
 		], $config );
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties, which are ignored in PHP and just shipped back to JS

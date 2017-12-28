@@ -18,7 +18,6 @@
  */
 class JavaScriptMinifier {
 
-	/* Class constants */
 	/* Parsing states.
 	 * The state machine is only necessary to decide whether to parse a slash as division
 	 * operator or as regexp literal.
@@ -63,8 +62,6 @@ class JavaScriptMinifier {
 
 	// Sanity limit to avoid excessive memory usage
 	const STACK_LIMIT = 1000;
-
-	/* Static functions */
 
 	/**
 	 * Returns minified JavaScript code.

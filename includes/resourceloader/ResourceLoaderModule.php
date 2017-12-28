@@ -65,8 +65,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	# pages like Special:UserLogin and Special:Preferences
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
-	/* Protected Members */
-
 	protected $name = null;
 	protected $targets = [ 'desktop' ];
 
@@ -93,8 +91,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @var LoggerInterface
 	 */
 	protected $logger;
-
-	/* Methods */
 
 	/**
 	 * Get this module's name. This is set when the module is registered
