@@ -497,7 +497,16 @@ class Preprocessor_Hash extends Preprocessor {
 						'count' => $count ];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					extract( $stack->getFlags() );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 					$i += $count;
 				}
 			} elseif ( $found == 'line-end' ) {
@@ -554,7 +563,16 @@ class Preprocessor_Hash extends Preprocessor {
 				// Unwind the stack
 				$stack->pop();
 				$accum =& $stack->getAccum();
-				extract( $stack->getFlags() );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				// Append the result to the enclosing accumulator
 				array_splice( $accum, count( $accum ), 0, $element );
@@ -584,7 +602,16 @@ class Preprocessor_Hash extends Preprocessor {
 
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					extract( $stack->getFlags() );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 				} else {
 					# Add literal brace(s)
 					self::addLiteral( $accum, str_repeat( $curChar, $count ) );
@@ -695,7 +722,16 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 				}
 
-				extract( $stack->getFlags() );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				# Add XML element to the enclosing accumulator
 				array_splice( $accum, count( $accum ), 0, $element );

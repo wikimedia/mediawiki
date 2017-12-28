@@ -477,7 +477,16 @@ class Sanitizer {
 	public static function removeHTMLtags( $text, $processCallback = null,
 		$args = [], $extratags = [], $removetags = [], $warnCallback = null
 	) {
-		extract( self::getRecognizedTagData( $extratags, $removetags ) );
+		$tagData = self::getRecognizedTagData( $extratags, $removetags );
+		$htmlpairs = $tagData['htmlpairs'];
+		$htmlsingle = $tagData['htmlsingle'];
+		$htmlsingleonly = $tagData['htmlsingleonly'];
+		$htmlnest = $tagData['htmlnest'];
+		$tabletags = $tagData['tabletags'];
+		$htmllist = $tagData['htmllist'];
+		$listtags = $tagData['listtags'];
+		$htmlsingleallowed = $tagData['htmlsingleallowed'];
+		$htmlelements = $tagData['htmlelements'];
 
 		# Remove HTML comments
 		$text = self::removeHTMLcomments( $text );

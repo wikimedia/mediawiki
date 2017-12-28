@@ -559,8 +559,16 @@ class Preprocessor_DOM extends Preprocessor {
 						'count' => $count ];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					$flags = $stack->getFlags();
-					extract( $flags );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 					$i += $count;
 				}
 			} elseif ( $found == 'line-end' ) {
@@ -610,8 +618,16 @@ class Preprocessor_DOM extends Preprocessor {
 				// Unwind the stack
 				$stack->pop();
 				$accum =& $stack->getAccum();
-				$flags = $stack->getFlags();
-				extract( $flags );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				// Append the result to the enclosing accumulator
 				$accum .= $element;
@@ -640,8 +656,16 @@ class Preprocessor_DOM extends Preprocessor {
 
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					$flags = $stack->getFlags();
-					extract( $flags );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 				} else {
 					# Add literal brace(s)
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
@@ -748,8 +772,16 @@ class Preprocessor_DOM extends Preprocessor {
 						$accum .= $s;
 					}
 				}
-				$flags = $stack->getFlags();
-				extract( $flags );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				# Add XML element to the enclosing accumulator
 				$accum .= $element;
