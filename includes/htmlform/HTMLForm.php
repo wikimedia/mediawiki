@@ -213,11 +213,11 @@ class HTMLForm extends ContextSource {
 	protected $mAction = false;
 
 	/**
-	 * Form attribute autocomplete. false does not set the attribute
+	 * Form attribute autocomplete. A typical value is "off". null does not set the attribute
 	 * @since 1.27
-	 * @var bool|string
+	 * @var string|null
 	 */
-	protected $mAutocomplete = false;
+	protected $mAutocomplete = null;
 
 	protected $mUseMultipart = false;
 	protected $mHiddenFields = [];
@@ -1062,7 +1062,7 @@ class HTMLForm extends ContextSource {
 		if ( $this->mId ) {
 			$attribs['id'] = $this->mId;
 		}
-		if ( $this->mAutocomplete ) {
+		if ( is_string( $this->mAutocomplete ) ) {
 			$attribs['autocomplete'] = $this->mAutocomplete;
 		}
 		if ( $this->mName ) {
@@ -1868,12 +1868,12 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Set the value for the autocomplete attribute of the form.
-	 * When set to false (which is the default state), the attribute get not set.
+	 * Set the value for the autocomplete attribute of the form. A typical value is "off".
+	 * When set to null (which is the default state), the attribute get not set.
 	 *
 	 * @since 1.27
 	 *
-	 * @param string|bool $autocomplete
+	 * @param string|null $autocomplete
 	 *
 	 * @return HTMLForm $this for chaining calls
 	 */
