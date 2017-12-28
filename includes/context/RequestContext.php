@@ -81,17 +81,13 @@ class RequestContext implements IContextSource, MutableContext {
 	private static $instance = null;
 
 	/**
-	 * Set the Config object
-	 *
-	 * @param Config $c
+	 * @param Config $config
 	 */
-	public function setConfig( Config $c ) {
-		$this->config = $c;
+	public function setConfig( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
-	 * Get the Config object
-	 *
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -105,17 +101,13 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the WebRequest object
-	 *
-	 * @param WebRequest $r
+	 * @param WebRequest $request
 	 */
-	public function setRequest( WebRequest $r ) {
-		$this->request = $r;
+	public function setRequest( WebRequest $request ) {
+		$this->request = $request;
 	}
 
 	/**
-	 * Get the WebRequest object
-	 *
 	 * @return WebRequest
 	 */
 	public function getRequest() {
@@ -133,8 +125,6 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Get the Stats object
-	 *
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
 	 * @return IBufferingStatsdDataFactory
@@ -144,8 +134,6 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Get the timing object
-	 *
 	 * @return Timing
 	 */
 	public function getTiming() {
@@ -158,8 +146,6 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the Title object
-	 *
 	 * @param Title|null $title
 	 */
 	public function setTitle( Title $title = null ) {
@@ -169,8 +155,6 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Get the Title object
-	 *
 	 * @return Title|null
 	 */
 	public function getTitle() {
@@ -216,18 +200,16 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the WikiPage object
-	 *
 	 * @since 1.19
-	 * @param WikiPage $p
+	 * @param WikiPage $wikiPage
 	 */
-	public function setWikiPage( WikiPage $p ) {
-		$pageTitle = $p->getTitle();
+	public function setWikiPage( WikiPage $wikiPage ) {
+		$pageTitle = $wikiPage->getTitle();
 		if ( !$this->hasTitle() || !$pageTitle->equals( $this->getTitle() ) ) {
 			$this->setTitle( $pageTitle );
 		}
 		// Defer this to the end since setTitle sets it to null.
-		$this->wikipage = $p;
+		$this->wikipage = $wikiPage;
 	}
 
 	/**
@@ -253,15 +235,13 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * @param OutputPage $o
+	 * @param OutputPage $output
 	 */
-	public function setOutput( OutputPage $o ) {
-		$this->output = $o;
+	public function setOutput( OutputPage $output ) {
+		$this->output = $output;
 	}
 
 	/**
-	 * Get the OutputPage object
-	 *
 	 * @return OutputPage
 	 */
 	public function getOutput() {
@@ -273,17 +253,13 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the User object
-	 *
-	 * @param User $u
+	 * @param User $user
 	 */
-	public function setUser( User $u ) {
-		$this->user = $u;
+	public function setUser( User $user ) {
+		$this->user = $user;
 	}
 
 	/**
-	 * Get the User object
-	 *
 	 * @return User
 	 */
 	public function getUser() {
@@ -315,18 +291,16 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the Language object
-	 *
-	 * @param Language|string $l Language instance or language code
+	 * @param Language|string $language Language instance or language code
 	 * @throws MWException
 	 * @since 1.19
 	 */
-	public function setLanguage( $l ) {
-		if ( $l instanceof Language ) {
-			$this->lang = $l;
-		} elseif ( is_string( $l ) ) {
-			$l = self::sanitizeLangCode( $l );
-			$obj = Language::factory( $l );
+	public function setLanguage( $language ) {
+		if ( $language instanceof Language ) {
+			$this->lang = $language;
+		} elseif ( is_string( $language ) ) {
+			$language = self::sanitizeLangCode( $language );
+			$obj = Language::factory( $language );
 			$this->lang = $obj;
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
@@ -384,18 +358,14 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Set the Skin object
-	 *
-	 * @param Skin $s
+	 * @param Skin $skin
 	 */
-	public function setSkin( Skin $s ) {
-		$this->skin = clone $s;
+	public function setSkin( Skin $skin ) {
+		$this->skin = clone $skin;
 		$this->skin->setContext( $this );
 	}
 
 	/**
-	 * Get the Skin object
-	 *
 	 * @return Skin
 	 */
 	public function getSkin() {
@@ -441,8 +411,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->skin;
 	}
 
-	/** Helpful methods **/
-
 	/**
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
@@ -457,8 +425,6 @@ class RequestContext implements IContextSource, MutableContext {
 
 		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
-
-	/** Static methods **/
 
 	/**
 	 * Get the RequestContext object associated with the main request
