@@ -335,22 +335,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $tag );
 	}
 
-	/**
-	 * @todo Text case requires database, should be done by a test class in the Database group
-	 */
-	/*
-	public function testGetAutoDeleteReason( Title $title, &$hasHistory ) {}
-	*/
-
-	/**
-	 * @todo Text case requires database, should be done by a test class in the Database group
-	 */
-	/*
-	public function testGetUndoContent( Revision $current, Revision $undo,
-		Revision $undoafter = null
-	) {
-	}
-	*/
 
 	/**
 	 * @covers WikitextContentHandler::getDataForSearchIndex
