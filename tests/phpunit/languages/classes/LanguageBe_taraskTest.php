@@ -1,6 +1,9 @@
 <?php
 
 // @codingStandardsIgnoreStart Ignore Squiz.Classes.ValidClassName.NotCamelCaps
+/**
+ * @covers LanguageBe_tarask
+ */
 class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	// @codingStandardsIgnoreEnd
 	/**

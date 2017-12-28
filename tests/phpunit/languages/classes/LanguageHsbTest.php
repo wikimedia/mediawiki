@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageHsb.php */
+/**
+ * @covers LanguageHsb
+ */
 class LanguageHsbTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

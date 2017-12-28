@@ -6,7 +6,9 @@
  * @file
  */
 
-/** Tests for Ukrainian */
+/**
+ * @covers LanguageUk
+ */
 class LanguageUkTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

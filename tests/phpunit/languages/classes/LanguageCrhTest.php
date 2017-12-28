@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers LanguageCrh
+ * @covers CrhConverter
+ */
 class LanguageCrhTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
