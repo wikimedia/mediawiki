@@ -26,9 +26,9 @@ interface MutableContext {
 	/**
 	 * Set the Config object
 	 *
-	 * @param Config $c
+	 * @param Config $config
 	 */
-	public function setConfig( Config $c );
+	public function setConfig( Config $config );
 
 	/**
 	 * Set the WebRequest object

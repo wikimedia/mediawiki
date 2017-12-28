@@ -483,11 +483,11 @@ interface Content {
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page The deleted page
-	 * @param ParserOutput $parserOutput Optional parser output object
+	 * @param ParserOutput|null $parserOutput Optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
 	 *
-	 * @return DataUpdate[] A list of DataUpdate instances that will clean up the
+	 * @return DeferrableUpdate[] A list of DeferrableUpdate instances that will clean up the
 	 *    database after deletion.
 	 */
 	public function getDeletionUpdates( WikiPage $page,

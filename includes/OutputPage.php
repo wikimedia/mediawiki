@@ -366,8 +366,8 @@ class OutputPage extends ContextSource {
 	 * Add a new "<meta>" tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
 	 *
-	 * @param string $name Tag name
-	 * @param string $val Tag value
+	 * @param string $name Name of the meta tag
+	 * @param string $val Value of the meta tag
 	 */
 	function addMeta( $name, $val ) {
 		array_push( $this->mMetatags, [ $name, $val ] );

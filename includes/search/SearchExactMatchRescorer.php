@@ -100,7 +100,7 @@ class SearchExactMatchRescorer {
 	 * @return array redirect target prefixedText to index of title in titles
 	 *   that is a redirect to it.
 	 */
-	private function redirectTargetsToRedirect( $titles ) {
+	private function redirectTargetsToRedirect( array $titles ) {
 		$result = [];
 		foreach ( $titles as $key => $titleText ) {
 			$title = Title::newFromText( $titleText );
@@ -122,7 +122,7 @@ class SearchExactMatchRescorer {
 	 * @param int $key key to pull to the front
 	 * @return array $array with the item at $key pulled to the front
 	 */
-	private function pullFront( $key, $array ) {
+	private function pullFront( $key, array $array ) {
 		$cut = array_splice( $array, $key, 1 );
 		array_unshift( $array, $cut[0] );
 		return $array;

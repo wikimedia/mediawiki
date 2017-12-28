@@ -34,7 +34,6 @@ class DependencyWrapper {
 	private $deps;
 
 	/**
-	 * Create an instance.
 	 * @param mixed $value The user-supplied value
 	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
 	 *   array. All dependencies must be objects implementing CacheDependency.
