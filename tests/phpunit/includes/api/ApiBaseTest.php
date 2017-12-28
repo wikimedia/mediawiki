@@ -51,6 +51,7 @@ class ApiBaseTest extends ApiTestCase {
 	 * @param array $paramSettings
 	 * @param mixed $expected
 	 * @param string[] $warnings
+	 * @covers ApiBase::getParameterFromSettings
 	 */
 	public function testGetParameterFromSettings( $input, $paramSettings, $expected, $warnings ) {
 		$mock = new MockApi();
@@ -126,6 +127,9 @@ class ApiBaseTest extends ApiTestCase {
 		];
 	}
 
+	/**
+	 * @covers ApiBase::errorArrayToStatus
+	 */
 	public function testErrorArrayToStatus() {
 		$mock = new MockApi();
 

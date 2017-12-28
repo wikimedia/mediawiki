@@ -4,6 +4,7 @@
  * @group API
  * @group medium
  * @group Database
+ * @covers ApiPageSet
  */
 class ApiPageSetTest extends ApiTestCase {
 	public static function provideRedirectMergePolicy() {

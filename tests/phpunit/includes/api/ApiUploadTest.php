@@ -19,6 +19,8 @@
  * @group Database
  * @group medium
  * @group Broken
+ *
+ * @covers ApiUpload
  */
 class ApiUploadTest extends ApiTestCaseUpload {
 	/**
