@@ -540,7 +540,7 @@
 	"botpasswords-insert-failed": "Ezin izan da bot \"$1\" izen hori gehitu. Dagoeneko gehituta zegoen?",
 	"botpasswords-update-failed": "\"$1\" Errobota ezin eguneratu. Ezabatua izan al da?",
 	"botpasswords-created-title": "Botaren pasahitza sortu da",
-	"botpasswords-created-body": "$2 erabiltzailearen $1 errobot izenarentzako pasahitza sortu egin da.",
+	"botpasswords-created-body": "$2 erabiltzailearen $1 bot izenarentzako pasahitza sortu egin da.",
 	"botpasswords-updated-title": "Botaren pasahitza eguneratu da",
 	"botpasswords-updated-body": "$2 erabiltzailearen $1 errobot izenarentzako pasahitza gaurkotua izan da.",
 	"botpasswords-deleted-title": "Botaren pasahitza ezabatu da",

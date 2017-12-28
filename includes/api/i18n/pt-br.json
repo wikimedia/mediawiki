@@ -13,7 +13,8 @@
 			"Eduardo Addad de Oliveira",
 			"Warley Felipe C.",
 			"TheEduGobi",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Hamilton Abreu"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & solicitações]\n</div>\n<strong>Status:</strong> Todos os recursos exibidos nesta página devem estar funcionando, mas a API ainda está em desenvolvimento ativo e pode mudar a qualquer momento. Inscrever-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para aviso de atualizações.\n\n<strong>Requisições incorretas:</strong> Quando requisições erradas são enviadas para a API, um cabeçalho HTTP será enviado com a chave \"MediaWiki-API-Error\" e então o valor do cabeçalho e o código de erro enviados de volta serão definidos para o mesmo valor. Para mais informações, veja [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Erros e avisos]].\n\n<strong>Testando:</strong> Para facilitar o teste das requisições da API, consulte [[Special:ApiSandbox]].",

@@ -1247,6 +1247,7 @@
 	"recentchanges-legend-heading": "<strong>Ferklaarang:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (luke uk bi't [[Special:NewPages|list mä nei sidjen]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
+	"rcfilters-preference-label": "Det nei werjuun faan a Leetst Feranrangen versteeg",
 	"rcnotefrom": "Diar {{PLURAL:$5|woort det feranrang|wurd a feranrangen}} sant <strong>$3,$4</strong>uunwiset (ei muar üs <strong>$1</strong> feranrangen).",
 	"rclistfrom": "Bluas feranrangen sant $3 $2 wise",
 	"rcshowhideminor": "$1 letj feranrangen",
