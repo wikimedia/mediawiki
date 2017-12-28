@@ -20,7 +20,7 @@
  * @file
  */
 
-use \Cdb\Reader as CdbReader;
+use Cdb\Reader as CdbReader;
 
 /**
  * Functions to check passwords against a policy requirement

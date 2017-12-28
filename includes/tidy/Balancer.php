@@ -23,14 +23,15 @@
  * @since 1.27
  * @author C. Scott Ananian, 2016
  */
+
 namespace MediaWiki\Tidy;
 
+use ExplodeIterator;
+use IteratorAggregate;
+use ReverseArrayIterator;
+use Sanitizer;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
-use \ExplodeIterator;
-use \IteratorAggregate;
-use \ReverseArrayIterator;
-use \Sanitizer;
 
 // A note for future librarization[1] -- this file is a good candidate
 // for splitting into an independent library, except that it is currently

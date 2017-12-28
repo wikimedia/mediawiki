@@ -21,15 +21,15 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBConnectionError;
-use \MediaWiki\MediaWikiServices;
-use \Wikimedia\WaitConditionLoop;
-use \Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\WaitConditionLoop;
 
 /**
  * Class to store objects in the database

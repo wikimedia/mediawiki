@@ -21,8 +21,8 @@
  */
 
 use MediaWiki\Edit\PreparedEdit;
-use \MediaWiki\Logger\LoggerFactory;
-use \MediaWiki\MediaWikiServices;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
