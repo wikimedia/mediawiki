@@ -186,7 +186,7 @@ class InfoAction extends FormlessAction {
 	 * Adds a table to the content that will be added to the output.
 	 *
 	 * @param string $content The content that will be added to the output
-	 * @param string $table The table
+	 * @param string $table
 	 * @return string The content with the table added
 	 */
 	protected function addTable( $content, $table ) {

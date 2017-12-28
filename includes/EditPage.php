@@ -780,7 +780,7 @@ class EditPage {
 
 	/**
 	 * Display a read-only View Source page
-	 * @param Content $content content object
+	 * @param Content $content
 	 * @param string $errorMessage additional wikitext error message to display
 	 */
 	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {

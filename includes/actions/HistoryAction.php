@@ -611,7 +611,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * Creates a submit button
 	 *
 	 * @param string $message Text of the submit button, will be escaped
-	 * @param array $attributes Attributes
+	 * @param array $attributes
 	 * @return string HTML output for the submit button
 	 */
 	function submitButton( $message, $attributes = [] ) {

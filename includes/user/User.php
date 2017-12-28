@@ -4583,7 +4583,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * (T8957 with Gmail and Internet Explorer).
 	 *
 	 * @param string $page Special page
-	 * @param string $token Token
+	 * @param string $token
 	 * @return string Formatted URL
 	 */
 	protected function getTokenUrl( $page, $token ) {

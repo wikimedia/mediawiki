@@ -353,20 +353,20 @@ class IPTC {
 	 * @todo Potentially this should also capture the timezone offset.
 	 * @param array $date The date tag
 	 * @param array $time The time tag
-	 * @param string $c The charset
+	 * @param string $charset
 	 * @return string Date in EXIF format.
 	 */
-	private static function timeHelper( $date, $time, $c ) {
+	private static function timeHelper( $date, $time, $charset ) {
 		if ( count( $date ) === 1 ) {
 			// the standard says this should always be 1
 			// just double checking.
-			list( $date ) = self::convIPTC( $date, $c );
+			list( $date ) = self::convIPTC( $date, $charset );
 		} else {
 			return null;
 		}
 
 		if ( count( $time ) === 1 ) {
-			list( $time ) = self::convIPTC( $time, $c );
+			list( $time ) = self::convIPTC( $time, $charset );
 			$dateOnly = false;
 		} else {
 			$time = '000000+0000'; // placeholder
@@ -420,7 +420,7 @@ class IPTC {
 	/**
 	 * Helper function to convert charset for iptc values.
 	 * @param string|array $data The iptc string
-	 * @param string $charset The charset
+	 * @param string $charset
 	 *
 	 * @return string|array
 	 */
@@ -439,7 +439,7 @@ class IPTC {
 	/**
 	 * Helper function of a helper function to convert charset for iptc values.
 	 * @param string|array $data The IPTC string
-	 * @param string $charset The charset
+	 * @param string $charset
 	 *
 	 * @return string
 	 */

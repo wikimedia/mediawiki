@@ -440,7 +440,7 @@ class ImportImages extends Maintenance {
 	/**
 	 * Split a filename into filename and extension
 	 *
-	 * @param string $filename Filename
+	 * @param string $filename
 	 * @return array
 	 */
 	private function splitFilename( $filename ) {

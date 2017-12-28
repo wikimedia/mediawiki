@@ -115,9 +115,9 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 	 * Construct an appropriate failure response
 	 * @param User $user
 	 * @param User|null $creator
-	 * @param int $constant LoginForm constant
-	 * @param string|null $msg Message
-	 * @param string $hook Hook
+	 * @param int $constant One of the LoginForm::… constants
+	 * @param string|null $msg Optional message key, will be derived from $constant otherwise
+	 * @param string $hook Name of the hook for error logging and exception messages
 	 * @return StatusValue
 	 */
 	protected function makeFailResponse( $user, $creator, $constant, $msg, $hook ) {

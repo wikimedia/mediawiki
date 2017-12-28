@@ -294,7 +294,7 @@ class XmlTypeCheck {
 
 	/**
 	 * @param string $name element or attribute name, maybe with a full or short prefix
-	 * @param string $namespaceURI the namespaceURI
+	 * @param string $namespaceURI
 	 * @return string the name prefixed with namespaceURI
 	 */
 	private function expandNS( $name, $namespaceURI ) {
