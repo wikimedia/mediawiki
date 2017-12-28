@@ -7,7 +7,6 @@
 
 /**
  * Test class for MWNamespace.
- * @todo covers tags
  * @todo FIXME: this test file is a mess
  */
 class MWNamespaceTest extends MediaWikiTestCase {
