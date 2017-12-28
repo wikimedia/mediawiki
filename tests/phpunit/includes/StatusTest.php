@@ -5,11 +5,6 @@
  */
 class StatusTest extends MediaWikiLangTestCase {
 
-	public function testCanConstruct() {
-		new Status();
-		$this->assertTrue( true );
-	}
-
 	/**
 	 * @dataProvider provideValues
 	 * @covers Status::newGood
