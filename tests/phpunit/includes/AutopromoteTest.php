@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Autopromote
+ */
 class AutopromoteTest extends MediaWikiTestCase {
 	/**
 	 * T157718: Verify Autopromote does not perform edit count lookup if requirement is 0 or invalid

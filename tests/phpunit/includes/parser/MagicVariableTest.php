@@ -9,11 +9,13 @@
  * @author Antoine Musso
  * @copyright Copyright © 2011, Antoine Musso
  * @file
- * @todo covers tags
  *
  * @group Database
  */
 
+/**
+ * @covers Parser::getVariableValue
+ */
 class MagicVariableTest extends MediaWikiTestCase {
 	/**
 	 * @var Parser

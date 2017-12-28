@@ -81,6 +81,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * per T28425
+	 * @covers Block::__construct
 	 */
 	public function testBug26425BlockTimestampDefaultsToTime() {
 		$user = $this->getUserForBlocking();
@@ -366,6 +367,9 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $exResult, $block->mReason, 'Correct block type for XFF header ' . $xff );
 	}
 
+	/**
+	 * @covers Block::__construct
+	 */
 	public function testDeprecatedConstructor() {
 		$this->hideDeprecated( 'Block::__construct with multiple arguments' );
 		$username = 'UnthinkablySecretRandomUsername';
@@ -418,6 +422,11 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Block::getSystemBlockType
+	 * @covers Block::insert
+	 * @covers Block::doAutoblock
+	 */
 	public function testSystemBlocks() {
 		$user = $this->getUserForBlocking();
 		$this->addBlockForUser( $user );
