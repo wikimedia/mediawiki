@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageDsb.php */
+/**
+ * @covers LanguageDsb
+ */
 class LanguageDsbTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural

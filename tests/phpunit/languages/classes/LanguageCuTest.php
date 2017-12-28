@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/LanguageCu.php */
+/**
+ * @covers LanguageCu
+ */
 class LanguageCuTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
