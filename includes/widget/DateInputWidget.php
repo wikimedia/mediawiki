@@ -1,10 +1,4 @@
 <?php
-/**
- * MediaWiki Widgets – DateInputWidget class.
- *
- * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
 
 namespace MediaWiki\Widget;
 
@@ -14,6 +8,7 @@ use DateTime;
  * Date input widget.
  *
  * @since 1.29
+ * @license MIT
  */
 class DateInputWidget extends \OOUI\TextInputWidget {
 

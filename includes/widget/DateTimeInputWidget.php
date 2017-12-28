@@ -1,16 +1,13 @@
 <?php
-/**
- * MediaWiki Widgets – DateTimeInputWidget class.
- *
- * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
 use OOUI\Tag;
 
 /**
  * Date-time input widget.
+ *
+ * @license MIT
  */
 class DateTimeInputWidget extends \OOUI\InputWidget {
 

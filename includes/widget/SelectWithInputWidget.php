@@ -1,17 +1,14 @@
 <?php
-/**
- * MediaWiki Widgets – SelectWithInputWidget class.
- *
- * @copyright 2011-2017 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
-use \OOUI\TextInputWidget;
-use \OOUI\DropdownInputWidget;
+use OOUI\DropdownInputWidget;
+use OOUI\TextInputWidget;
 
 /**
  * Select and input widget.
+ *
+ * @license MIT
  */
 class SelectWithInputWidget extends \OOUI\Widget {
 
