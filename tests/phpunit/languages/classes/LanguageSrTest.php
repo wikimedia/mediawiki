@@ -16,7 +16,10 @@
  *  - Tests for LanguageConverter and Language should probably be separate..
  */
 
-/** Tests for MediaWiki languages/LanguageSr.php */
+/**
+ * @covers LanguageSr
+ * @covers SrConverter
+ */
 class LanguageSrTest extends LanguageClassesTestCase {
 	/**
 	 * @covers LanguageConverter::convertTo

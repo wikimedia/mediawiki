@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers LanguageTg
+ * @covers TgConverter
+ */
 class LanguageTgTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
