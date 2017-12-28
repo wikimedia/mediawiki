@@ -149,7 +149,7 @@ class Revision implements IDBAccessObject {
 	 * @throws MWException
 	 * @return Revision
 	 */
-	public static function newFromArchiveRow( $row, $overrides = [], Title $title = null ) {
+	public static function newFromArchiveRow( $row, $overrides = [] ) {
 		/**
 		 * MCR Migration: https://phabricator.wikimedia.org/T183564
 		 * This method used to overwrite attributes, then passed to Revision::__construct
@@ -161,8 +161,31 @@ class Revision implements IDBAccessObject {
 			unset( $overrides['page'] );
 		}
 
-		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
-		return new Revision( $rec, self::READ_NORMAL, $title );
+		/**
+		 * We require a Title for both the Revision object and the RevisionRecord.
+		 * Below is duplicated logic from RevisionStore::newRevisionFromArchiveRow
+		 * to fetch a title in order pass it into the Revision object.
+		 */
+		$title = null;
+		if ( isset( $overrides['title'] ) ) {
+			if ( !( $overrides['title'] instanceof Title ) ) {
+				throw new MWException( 'title field override must contain a Title object.' );
+			}
+
+			$title = $overrides['title'];
+		}
+		if ( $title !== null ) {
+			if ( isset( $row->ar_namespace ) && isset( $row->ar_title ) ) {
+				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+			} else {
+				throw new InvalidArgumentException(
+					'A Title or ar_namespace and ar_title must be given'
+				);
+			}
+		}
+
+		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, null, $overrides );
+		return new Revision( $rec, Revision::READ_NORMAL, $title );
 	}
 
 	/**
