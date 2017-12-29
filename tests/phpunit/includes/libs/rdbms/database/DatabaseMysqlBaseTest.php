@@ -106,6 +106,9 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 }
 
 class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes

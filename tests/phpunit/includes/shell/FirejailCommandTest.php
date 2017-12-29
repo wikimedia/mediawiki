@@ -24,6 +24,9 @@ use MediaWiki\Shell\Shell;
 use Wikimedia\TestingAccessWrapper;
 
 class FirejailCommandTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	public function provideBuildFinalCommand() {
 		global $IP;
 		// @codingStandardsIgnoreStart

@@ -5,6 +5,8 @@
  */
 class FileContentsHasherTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function provideSingleFile() {
 		return array_map( function ( $file ) {
 			return [ $file, file_get_contents( $file ) ];

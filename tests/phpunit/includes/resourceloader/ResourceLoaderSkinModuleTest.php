@@ -5,6 +5,8 @@
  */
 class ResourceLoaderSkinModuleTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 	public static function provideGetStyles() {
 		return [

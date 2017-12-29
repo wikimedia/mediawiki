@@ -6,6 +6,8 @@
  */
 class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected static function getContext() {
 		$request = new FauxRequest( [
 				'lang' => 'zh',

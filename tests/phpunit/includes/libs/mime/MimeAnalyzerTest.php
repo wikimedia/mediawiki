@@ -4,6 +4,9 @@
  * @covers MimeAnalyzer
  */
 class MimeAnalyzerTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
 

@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
 
 class DatabaseTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
 	}

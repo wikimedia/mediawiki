@@ -2,6 +2,8 @@
 
 class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public static function provideCases() {
 		return [
 

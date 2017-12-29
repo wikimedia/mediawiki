@@ -2,6 +2,8 @@
 
 class StringUtilsTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers StringUtils::isUtf8
 	 * @dataProvider provideStringsForIsUtf8Check

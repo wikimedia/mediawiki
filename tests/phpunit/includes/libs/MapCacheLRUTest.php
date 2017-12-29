@@ -3,6 +3,9 @@
  * @group Cache
  */
 class MapCacheLRUTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers MapCacheLRU::newFromArray()
 	 * @covers MapCacheLRU::toArray()

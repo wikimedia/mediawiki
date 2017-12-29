@@ -6,6 +6,8 @@
  */
 class XMPTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		parent::setUp();
 		# Requires libxml to do XMP parsing

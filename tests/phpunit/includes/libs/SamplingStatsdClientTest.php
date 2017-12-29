@@ -4,6 +4,9 @@ use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Sender\SenderInterface;
 
 class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider samplingDataProvider
 	 */

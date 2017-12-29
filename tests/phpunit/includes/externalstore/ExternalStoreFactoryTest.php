@@ -5,6 +5,8 @@
  */
 class ExternalStoreFactoryTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function testExternalStoreFactory_noStores() {
 		$factory = new ExternalStoreFactory( [] );
 		$this->assertFalse( $factory->getStoreObject( 'ForTesting' ) );

@@ -6,6 +6,8 @@
 
 class MWCryptHashTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function testHashLength() {
 		if ( MWCryptHash::hashAlgo() !== 'whirlpool' ) {
 			$this->markTestSkipped( 'Hash algorithm isn\'t whirlpool' );

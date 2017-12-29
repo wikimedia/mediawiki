@@ -10,6 +10,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group Shell
  */
 class CommandFactoryTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers MediaWiki\Shell\CommandFactory::create
 	 */

@@ -9,6 +9,8 @@
  */
 class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider nonStringProvider
 	 */

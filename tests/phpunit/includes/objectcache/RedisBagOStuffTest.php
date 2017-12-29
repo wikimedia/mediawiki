@@ -6,6 +6,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group BagOStuff
  */
 class RedisBagOStuffTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/** @var RedisBagOStuff */
 	private $cache;
 
