@@ -34,6 +34,15 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$this->setHeaders();
-		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+#		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+		$out =  $this->getOutput();
+
+		$out->enableOOUI();
+                $out->enableOOUI();
+                $out->addModules( 'mediawiki.widgets.SizeFiltertWidget' );
+                $out->addHTML( new MediaWiki\Widget\SizeFilterWidget( [
+                        'id' => 'herp',
+                        'infusable' => true,
+                ] ) );
 	}
 }
