@@ -2166,6 +2166,7 @@
 	"htmlform-submit": "呈",
 	"htmlform-reset": "復",
 	"htmlform-selectorother-other": "他",
+	"logentry-delete-delete": "$1 {{GENDER:$2|已削}} 頁 $3",
 	"revdelete-restricted": "應限至有秩",
 	"revdelete-unrestricted": "除限自有秩",
 	"logentry-newusers-create": "簿$1已{{GENDER:$2|增}}。",
