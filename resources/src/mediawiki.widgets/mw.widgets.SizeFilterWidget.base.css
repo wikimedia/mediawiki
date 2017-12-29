@@ -1,0 +1,23 @@
+/*!
+ * MediaWiki Widgets - base SelectWithInput styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-sizeFilterWidget .oo-ui-radioSelectInputWidget,
+.mw-widget-sizeFilterWidget .oo-ui-radioOptionWidget,
+.mw-widget-sizeFilterWidget .oo-ui-radioSelectInputWidget > div,
+.mw-widget-sizeFilterWidget .oo-ui-textInputWidget {
+	display: inline-block;
+}
+
+.mw-widget-sizeFilterWidget .oo-ui-radioOptionWidget,
+.mw-widget-sizeFilterWidget .oo-ui-radioSelectInputWidget > div {
+	width: auto;
+}
+
+.mw-widget-sizeFilterWidget .oo-ui-textInputWidget {
+	vertical-align: top;
+	max-width: 29.5em;
+}
