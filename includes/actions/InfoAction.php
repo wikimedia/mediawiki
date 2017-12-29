@@ -437,6 +437,25 @@ class InfoAction extends FormlessAction {
 			];
 		}
 
+		// Display image SHA-1 value
+		if ( $title->inNamespace( NS_FILE ) ) {
+			// Database query
+			$dbr = wfGetDB( DB_REPLICA );
+			$res = $dbr->select(
+				'image',
+				'img_sha1',
+				"img_name='$sortKey'"
+			);
+			foreach( $res as $row ) {
+				$output = $row->img_sha1;
+			}
+
+			$pageInfo['header-basic'][] = [
+				$this->msg( 'imageinfo-hash' ),
+				$output
+			];
+		}
+
 		// Page protection
 		$pageInfo['header-restrictions'] = [];
 
