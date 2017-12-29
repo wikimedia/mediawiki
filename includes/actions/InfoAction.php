@@ -437,6 +437,27 @@ class InfoAction extends FormlessAction {
 			];
 		}
 
+		// Display image SHA-1 value
+		if ( $title->inNamespace( NS_FILE ) and wfFindFile( $title ) !== false ) {
+			// Replace the space with an underscore
+			$imageName = preg_replace( '/\s/', '_', $sortKey );
+			// Database query
+			$dbr = wfGetDB( DB_REPLICA );
+			$res = $dbr->select(
+				'image',
+				'img_sha1',
+				"img_name='$imageName'"
+
+			foreach( $res as $row ) {
+				$result = $row->img_sha1;
+			}
+
+			$pageInfo['header-basic'][] = [
+				$this->msg( 'imageinfo-hash' ),
+				$output
+			];
+		}
+
 		// Page protection
 		$pageInfo['header-restrictions'] = [];
 
