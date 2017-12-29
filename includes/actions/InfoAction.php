@@ -437,6 +437,16 @@ class InfoAction extends FormlessAction {
 			];
 		}
 
+		// Display image SHA-1 value
+		if ( $title->inNamespace( NS_FILE ) and wfFindFile( $title ) !== false ) {
+			$output = wfFindFile( $title->mTextform )->getSha1();
+
+			$pageInfo['header-basic'][] = [
+				$this->msg( 'imageinfo-hash' ),
+				$output
+			];
+		}
+
 		// Page protection
 		$pageInfo['header-restrictions'] = [];
 
