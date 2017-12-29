@@ -145,7 +145,6 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param object $row
 	 * @param array $overrides
-	 * @param Title $title (optional)
 	 *
 	 * @throws MWException
 	 * @return Revision
@@ -895,10 +894,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord, $this->getTitle() );
-		return $rec === null
-			? null
-			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
+		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord );
+		return $rec === null ? null : new Revision( $rec );
 	}
 
 	/**
@@ -907,10 +904,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord, $this->getTitle() );
-		return $rec === null
-			? null
-			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
+		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord );
+		return $rec === null ? null : new Revision( $rec );
 	}
 
 	/**
