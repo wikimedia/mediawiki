@@ -32,7 +32,7 @@ use Content;
 use ContentHandler;
 use DBAccessObjectUtils;
 use Hooks;
-use \IDBAccessObject;
+use IDBAccessObject;
 use InvalidArgumentException;
 use IP;
 use LogicException;

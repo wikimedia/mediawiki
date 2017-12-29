@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Storage;
 
-use \IDBAccessObject;
+use IDBAccessObject;
 use MediaWiki\Linker\LinkTarget;
 use Title;
 

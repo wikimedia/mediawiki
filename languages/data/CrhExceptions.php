@@ -9,7 +9,7 @@
 
 namespace MediaWiki\Languages\Data;
 
-use \CrhConverter as Crh;
+use CrhConverter as Crh;
 
 class CrhExceptions {
 
