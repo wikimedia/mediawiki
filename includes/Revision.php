@@ -94,54 +94,11 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
-	 * @param Title $title (optional) If known you can pass the Title in here.
-	 *  Passing no Title may result in another DB query if there are recent writes.
 	 * @return Revision|null
 	 */
-	public static function newFromId( $id, $flags = 0, Title $title = null ) {
-		/**
-		 * MCR RevisionStore Compat
-		 *
-		 * If the title is not passed in as a param (already known) then select it here.
-		 *
-		 * Do the selection with MASTER if $flags includes READ_LATEST or recent changes
-		 * have happened on our load balancer.
-		 *
-		 * If we select the title here and pass it down it will results in fewer queries
-		 * further down the stack.
-		 */
-		if ( !$title ) {
-			if (
-				$flags & self::READ_LATEST ||
-				wfGetLB()->hasOrMadeRecentMasterChanges()
-			) {
-				$dbr = wfGetDB( DB_MASTER );
-			} else {
-				$dbr = wfGetDB( DB_REPLICA );
-			}
-			$row = $dbr->selectRow(
-				[ 'revision', 'page' ],
-				[
-					'page_namespace',
-					'page_title',
-					'page_id',
-					'page_latest',
-					'page_is_redirect',
-					'page_len',
-				],
-				[ 'rev_id' => $id ],
-				__METHOD__,
-				[],
-				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
-			);
-			if ( $row ) {
-				$title = Title::newFromRow( $row );
-			}
-			wfGetLB()->reuseConnection( $dbr );
-		}
-
-		$rec = self::getRevisionStore()->getRevisionById( $id, $flags, $title );
-		return $rec === null ? null : new Revision( $rec, $flags, $title );
+	public static function newFromId( $id, $flags = 0 ) {
+		$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
+		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
 	/**
@@ -188,7 +145,6 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param object $row
 	 * @param array $overrides
-	 * @param Title $title (optional)
 	 *
 	 * @throws MWException
 	 * @return Revision
@@ -938,10 +894,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord, $this->getTitle() );
-		return $rec === null
-			? null
-			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
+		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord );
+		return $rec === null ? null : new Revision( $rec );
 	}
 
 	/**
@@ -950,10 +904,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord, $this->getTitle() );
-		return $rec === null
-			? null
-			: new Revision( $rec, self::READ_NORMAL, $this->getTitle() );
+		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord );
+		return $rec === null ? null : new Revision( $rec );
 	}
 
 	/**
