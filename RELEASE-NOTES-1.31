@@ -159,6 +159,11 @@ changes to languages because of Phabricator reports.
 * The $statementsOnOwnLine parameter of JavaScriptMinifier::minify was removed.
   The corresponding configuration variable ($wgResourceLoaderMinifierStatementsOnOwnLine)
   has been deprecated since 1.27 and was removed as well.
+* (T61113) The following methods and constants from the Revision class were deprecated in
+  1.25 have been removed.
+  * Revision::getRawUser()
+  * Revision::getRawUserText()
+  * Revision::getRawComment()
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
