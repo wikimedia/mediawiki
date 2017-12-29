@@ -2579,6 +2579,23 @@ return [
 		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.SelectWithInputWidget.base.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.SizeFilterWidget' => [
+		'scripts' => 'resources/src/mediawiki.widgets/mw.widgets.SizeFilterWidget.js',
+		'dependencies' => [
+			'mediawiki.widgets.SizeFilterWidget.styles',
+			'oojs-ui-widgets',
+		],
+		'messages' => [
+			'minimum-size',
+			'maximum-size',
+			'pagesize',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.SizeFilterWidget.styles' => [
+		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.SizeFilterWidget.base.css',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.MediaSearch' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsProvider.js',
