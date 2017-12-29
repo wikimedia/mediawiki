@@ -632,7 +632,7 @@ EOT
 	 * @param string $sizeLinkBigImagePreview HTML for the current size
 	 * @return string HTML output
 	 */
-	private function getThumbPrevText( $params, $sizeLinkBigImagePreview ) {
+	protected function getThumbPrevText( $params, $sizeLinkBigImagePreview ) {
 		if ( $sizeLinkBigImagePreview ) {
 			// Show a different message of preview is different format from original.
 			$previewTypeDiffers = false;
@@ -670,7 +670,7 @@ EOT
 	 * @param int $height
 	 * @return string
 	 */
-	private function makeSizeLink( $params, $width, $height ) {
+	protected function makeSizeLink( $params, $width, $height ) {
 		$params['width'] = $width;
 		$params['height'] = $height;
 		$thumbnail = $this->displayImg->transform( $params );
