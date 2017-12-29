@@ -26,6 +26,8 @@
  */
 class XhprofDataTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers XhprofData::splitKey
 	 * @dataProvider provideSplitKey

@@ -5,6 +5,9 @@
  * NOTE: this test is more like an integration test than a unit test
  */
 class ZipDirectoryReaderTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	protected $zipDir;
 	protected $entries;
 

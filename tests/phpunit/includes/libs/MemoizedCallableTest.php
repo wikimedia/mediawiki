@@ -26,6 +26,8 @@ class ArrayBackedMemoizedCallable extends MemoizedCallable {
  */
 class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * The memoized callable should relate inputs to outputs in the same
 	 * way as the original underlying callable.

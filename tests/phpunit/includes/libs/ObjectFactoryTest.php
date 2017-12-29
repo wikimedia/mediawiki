@@ -20,6 +20,8 @@
 
 class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers ObjectFactory::getObjectFromSpec
 	 */

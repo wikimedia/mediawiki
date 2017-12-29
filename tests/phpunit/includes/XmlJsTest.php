@@ -5,6 +5,8 @@
  */
 class XmlJsTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers XmlJsCode::__construct
 	 * @dataProvider provideConstruction

@@ -9,6 +9,9 @@
  * @covers ResourceLoaderContext
  */
 class ResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	protected static function getResourceLoader() {
 		return new EmptyResourceLoader( new HashConfig( [
 			'ResourceLoaderDebug' => false,

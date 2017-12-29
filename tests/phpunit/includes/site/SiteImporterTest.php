@@ -31,6 +31,8 @@
  */
 class SiteImporterTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	private function newSiteImporter( array $expectedSites, $errorCount ) {
 		$store = $this->getMockBuilder( 'SiteStore' )->getMock();
 

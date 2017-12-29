@@ -8,6 +8,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group Shell
  */
 class CommandTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	private function requirePosix() {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );

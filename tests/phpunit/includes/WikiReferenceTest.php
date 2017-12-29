@@ -6,6 +6,8 @@
 
 class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function provideGetDisplayName() {
 		return [
 			'http' => [ 'foo.bar', 'http://foo.bar' ],

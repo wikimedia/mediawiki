@@ -19,6 +19,9 @@
  */
 
 class XhprofTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Trying to enable Xhprof when it is already enabled causes an exception
 	 * to be thrown.

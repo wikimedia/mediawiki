@@ -8,6 +8,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		parent::setUp();
 		// MediaWiki tests defaults $wgMainWANCache to CACHE_NONE.

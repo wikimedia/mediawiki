@@ -17,6 +17,9 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::setInterimValue
  */
 class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/** @var TimeAdjustableWANObjectCache */
 	private $cache;
 	/** @var BagOStuff */

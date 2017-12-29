@@ -28,6 +28,8 @@
  */
 abstract class GenericArrayObjectTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Returns objects that can serve as elements in the concrete
 	 * GenericArrayObject deriving class being tested.

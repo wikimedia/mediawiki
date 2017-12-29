@@ -7,6 +7,8 @@ use Psr\Log\NullLogger;
  */
 class XMPValidateTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideDates
 	 * @covers XMPValidate::validateDate
