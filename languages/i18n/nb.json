@@ -2395,7 +2395,7 @@
 	"sp-contributions-hideminor": "Skjul mindre endringer",
 	"sp-contributions-submit": "Søk",
 	"sp-contributions-outofrange": "Kan ikke vise resultater. Det gitte IP-intervallet er større enn CIDR-grensen på /$1.",
-	"whatlinkshere": "Det som lenker hit",
+	"whatlinkshere": "Hva lenker hit",
 	"whatlinkshere-title": "Sider som lenker til «$1»",
 	"whatlinkshere-page": "Side:",
 	"linkshere": "Følgende sider lenker til '''[[:$1]]''':",
