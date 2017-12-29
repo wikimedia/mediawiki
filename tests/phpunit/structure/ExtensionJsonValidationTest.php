@@ -22,6 +22,8 @@
  */
 class ExtensionJsonValidationTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @var ExtensionJsonValidator
 	 */

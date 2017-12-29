@@ -8,6 +8,8 @@ use MediaWiki\Services\ServiceContainer;
  */
 class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	private function newServiceContainer( $extraArgs = [] ) {
 		return new ServiceContainer( $extraArgs );
 	}

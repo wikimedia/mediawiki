@@ -5,6 +5,8 @@
  */
 class HtmlArmorTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public static function provideConstructor() {
 		return [
 			[ 'test' ],

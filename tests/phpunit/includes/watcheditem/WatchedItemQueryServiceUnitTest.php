@@ -8,6 +8,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|Database
 	 */

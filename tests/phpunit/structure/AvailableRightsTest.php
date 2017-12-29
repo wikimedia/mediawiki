@@ -8,6 +8,8 @@
  */
 class AvailableRightsTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Returns all rights that should be in $wgAvailableRights + all rights
 	 * registered via the 'UserGetAllRights' hook + all "core" rights.

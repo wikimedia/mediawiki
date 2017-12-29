@@ -15,6 +15,9 @@ use Wikimedia\ScopedCallback;
  * @todo covers tags
  */
 class ParserIntegrationTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/** @var array */
 	private $ptTest;
 

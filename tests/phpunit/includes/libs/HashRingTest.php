@@ -4,6 +4,9 @@
  * @group HashRing
  */
 class HashRingTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers HashRing
 	 */

@@ -21,6 +21,8 @@
 
 class TimingTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers Timing::clearMarks
 	 * @covers Timing::getEntries

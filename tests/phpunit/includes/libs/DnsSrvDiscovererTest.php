@@ -1,6 +1,9 @@
 <?php
 
 class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers DnsSrvDiscoverer
 	 * @dataProvider provideRecords

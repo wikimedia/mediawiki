@@ -4,6 +4,9 @@
  * @covers VersionChecker
  */
 class VersionCheckerTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideCheck
 	 */

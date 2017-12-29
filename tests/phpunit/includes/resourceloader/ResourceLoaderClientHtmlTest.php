@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected static function expandVariables( $text ) {
 		return strtr( $text, [
 			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION

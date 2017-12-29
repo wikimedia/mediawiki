@@ -6,6 +6,9 @@
  */
 
 class ArrayUtilsTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	private $search;
 
 	/**

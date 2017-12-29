@@ -1,6 +1,8 @@
 <?php
 class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected static $restrictionsForChecks;
 
 	public static function setUpBeforeClass() {
