@@ -96,15 +96,42 @@ class SpecialProtectedpages extends SpecialPage {
 		$size, $indefOnly, $cascadeOnly, $noRedirect
 	) {
 		$formDescriptor = [
-			'namespace' => $this->getNamespaceMenu( $namespace ),
+			'namespace' => [
+				'class' => 'HTMLSelectNamespace',
+				'name' => 'namespace',
+				'id' => 'namespace',
+				'cssclass' => 'namespaceselector',
+				'selected' => $namespace,
+				'all' => '',
+				'label' => $this->msg( 'namespace' )->text(),
+			],
 			'typemenu' => $this->getTypeMenu( $type ),
 			'levelmenu' => $this->getLevelMenu( $level ),
-
-			'expirycheck' => $this->getExpiryCheck( $indefOnly ),
-			'cascadecheck' => $this->getCascadeCheck( $cascadeOnly ),
-			'redirectcheck' => $this->getRedirectCheck( $noRedirect ),
-
-			'sizelimit' => $this->getSizeLimit( $sizetype, $size ),
+			'expirycheck' => [
+				'type' => 'check',
+				'label' => $this->msg( 'protectedpages-indef' )->text(),
+				'name' => 'indefonly',
+				'id' => 'indefonly',
+				'value' => $indefOnly
+			],
+			'cascadecheck' => [
+				'type' => 'check',
+				'label' => $this->msg( 'protectedpages-cascade' )->text(),
+				'name' => 'cascadeonly',
+				'id' => 'cascadeonly',
+				'value' => $cascadeOnly
+			],
+			'redirectcheck' => [
+				'type' => 'check',
+				'label' => $this->msg( 'protectedpages-noredirect' )->text(),
+				'name' => 'noredirect',
+				'id' => 'noredirect',
+				'value' => $noRedirect,
+			],
+			'sizelimit' => [
+				'class' => 'HTMLSizeFilterField',
+				'name' => 'size',
+			]
 		];
 		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
 		$htmlForm
@@ -113,81 +140,6 @@ class SpecialProtectedpages extends SpecialPage {
 			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );
 
 		return $htmlForm->prepareForm()->getHTML( false );
-	}
-
-	/**
-	 * Prepare the namespace filter drop-down; standard namespace
-	 * selector, sans the MediaWiki namespace
-	 *
-	 * @param string|null $namespace Pre-select namespace
-	 * @return array
-	 */
-	protected function getNamespaceMenu( $namespace = null ) {
-		return [
-			'class' => 'HTMLSelectNamespace',
-			'name' => 'namespace',
-			'id' => 'namespace',
-			'cssclass' => 'namespaceselector',
-			'selected' => $namespace,
-			'all' => '',
-			'label' => $this->msg( 'namespace' )->text(),
-		];
-	}
-
-	/**
-	 * @param bool $indefOnly
-	 * @return array
-	 */
-	protected function getExpiryCheck( $indefOnly ) {
-		return [
-			'type' => 'check',
-			'label' => $this->msg( 'protectedpages-indef' )->text(),
-			'name' => 'indefonly',
-			'id' => 'indefonly',
-			'value' => $indefOnly
-		];
-	}
-
-	/**
-	 * @param bool $cascadeOnly
-	 * @return array
-	 */
-	protected function getCascadeCheck( $cascadeOnly ) {
-		return [
-			'type' => 'check',
-			'label' => $this->msg( 'protectedpages-cascade' )->text(),
-			'name' => 'cascadeonly',
-			'id' => 'cascadeonly',
-			'value' => $cascadeOnly
-		];
-	}
-
-	/**
-	 * @param bool $noRedirect
-	 * @return array
-	 */
-	protected function getRedirectCheck( $noRedirect ) {
-		return [
-			'type' => 'check',
-			'label' => $this->msg( 'protectedpages-noredirect' )->text(),
-			'name' => 'noredirect',
-			'id' => 'noredirect',
-			'value' => $noRedirect,
-		];
-	}
-
-	/**
-	 * @param string $sizetype "min" or "max"
-	 * @param mixed $size
-	 * @return array
-	 */
-	protected function getSizeLimit( $sizetype, $size ) {
-		$max = $sizetype === 'max';
-
-		return [
-			'class' => 'HTMLSizeFilterField',
-			'name' => 'size',
-		];
 	}
 
 	/**
