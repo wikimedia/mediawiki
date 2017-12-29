@@ -1,0 +1,109 @@
+/*!
+ * MediaWiki Widgets - SizeFilterWidget class.
+ *
+ * @copyright 2011-2017 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+( function ( $, mw ) {
+
+	/**
+	 * ButtonSelectWidget and a TextInputWidget to set minimum or maximum byte size
+	 *
+	 *     mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
+	 *       var sf = new mw.widgets.SizeFilterWidget();
+	 *       $( 'body' ).append( sf.$element );
+	 *     } );
+	 *
+	 * @class mw.widgets.SizeFilterWidget
+	 * @extends OO.ui.Widget
+	 * @uses OO.ui.ButtonSelectWidget
+	 * @uses OO.ui.TextInputWidget
+	 *
+	 * @constructor
+	 * @param {Object} [config] Configuration options
+	 */
+	mw.widgets.SizeFilterWidget = function MwWidgetsSizeFilterWidget( config ) {
+		// Properties
+		this.buttonselect = new OO.ui.ButtonSelectWidget( { items: [
+			// TODO select one option
+			new OO.ui.ButtonOptionWidget( { data: 'min', label: mw.msg( 'minimum-size' )  } ),
+			new OO.ui.ButtonOptionWidget( { data: 'max', label: mw.msg( 'maximum-size' ) } ),
+		] } );
+		this.textinput = new OO.ui.TextInputWidget( {
+			type: 'number',
+			placeholder: mw.msg( 'pagesize' )
+		} );
+
+		// Parent constructor
+		mw.widgets.SizeFilterWidget.parent.call( this, config );
+
+		// Initialization
+		this.$element
+			.addClass( 'mw-widget-sizeFilterWidget' )
+			.append(
+				this.buttonselect.$element,
+				this.textinput.$element
+			);
+	};
+
+	/* Setup */
+	OO.inheritClass( mw.widgets.SizeFilterWidget, OO.ui.Widget );
+
+	/* Static Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SizeFilterWidget.static.reusePreInfuseDOM = function ( node, config ) {
+		config = mw.widgets.SizeFilterWidget.parent.static.reusePreInfuseDOM( node, config );
+		config.buttonselect = OO.ui.ButtonSelectWidget.static.reusePreInfuseDOM(
+			$( node ).find( '.oo-ui-buttonSelectWidget' ),
+			config.dropdowninput
+		);
+		config.textinput = OO.ui.TextInputWidget.static.reusePreInfuseDOM(
+			$( node ).find( '.oo-ui-textInputWidget' ),
+			config.textinput
+		);
+		return config;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SizeFilterWidget.static.gatherPreInfuseState = function ( node, config ) {
+		var state = mw.widgets.SizeFilterWidget.parent.static.gatherPreInfuseState( node, config );
+		state.buttonselect = OO.ui.ButtonSelectWidget.static.gatherPreInfuseState(
+			$( node ).find( '.oo-ui-buttonSelectWidget' ),
+			config.dropdowninput
+		);
+		state.textinput = OO.ui.TextInputWidget.static.gatherPreInfuseState(
+			$( node ).find( '.oo-ui-textInputWidget' ),
+			config.textinput
+		);
+		return state;
+	};
+
+	/* Methods */
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SizeFilterWidget.prototype.restorePreInfuseState = function ( state ) {
+		mw.widgets.SizeFilterWidget.parent.prototype.restorePreInfuseState.call( this, state );
+		this.buttonselect.restorePreInfuseState( state.dropdowninput );
+		this.textinput.restorePreInfuseState( state.textinput );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.SizeFilterWidget.prototype.setDisabled = function ( disabled ) {
+		var textinputIsHidden = this.or && this.dropdowninput.getValue() !== 'other';
+		mw.widgets.SizeFilterWidget.parent.prototype.setDisabled.call( this, disabled );
+		this.buttonselect.setDisabled( disabled );
+		// It is impossible to submit a form with hidden fields failing validation, e.g. one that
+		// is required. However, validity is not checked for disabled fields, as these are not
+		// submitted with the form. So we should also disable fields when hiding them.
+		this.textinput.setDisabled( textinputIsHidden || disabled );
+	};
+}( jQuery, mediaWiki ) );
