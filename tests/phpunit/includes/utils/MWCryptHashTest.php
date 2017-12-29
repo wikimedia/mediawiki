@@ -4,6 +4,9 @@
  * @group Hash
  */
 
+/**
+ * @covers MWCryptHash
+ */
 class MWCryptHashTest extends PHPUnit_Framework_TestCase {
 
 	public function testHashLength() {

@@ -3,6 +3,9 @@
 use Wikimedia\Rdbms\TransactionProfiler;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @covers \Wikimedia\Rdbms\TransactionProfiler
+ */
 class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
 	public function testAffected() {
 		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();

@@ -2,6 +2,9 @@
 
 use MediaWiki\Session\SessionManager;
 
+/**
+ * @covers FauxRequest
+ */
 class FauxRequestTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers FauxRequest::__construct
