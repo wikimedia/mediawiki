@@ -25,7 +25,8 @@
  */
 
 /**
- * API Serialized PHP output formatter
+ * Formatter that outputs nothing, for when you don't care about the response
+ * at all
  * @ingroup API
  */
 class ApiFormatNone extends ApiFormatBase {
