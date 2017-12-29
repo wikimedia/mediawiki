@@ -3250,6 +3250,7 @@
 	"pageinfo-category-subcats": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-files}}",
 	"pageinfo-category-files": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-subcats}}",
 	"pageinfo-user-id": "The numeric ID for a user\n{{Identical|User ID}}",
+	"pageinfo-file-hash": "SHA-1 value",
 	"markaspatrolleddiff": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolledtext}}\n{{Identical|Mark as patrolled}}",
 	"markaspatrolledlink": "{{notranslate}}\nParameters:\n* $1 - link which has text {{msg-mw|Markaspatrolledtext}}",
 	"markaspatrolledtext": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
