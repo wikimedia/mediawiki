@@ -1708,7 +1708,6 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		if ( $title === null ) {
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
-		$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		$next = $title->getNextRevisionID( $rev->getId() );
 		if ( $next ) {
 			return $this->getRevisionByTitle( $title, $next );
