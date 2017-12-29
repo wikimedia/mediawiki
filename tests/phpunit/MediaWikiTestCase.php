@@ -14,6 +14,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * The service locator created by prepareServices(). This service locator will
 	 * be restored after each test. Tests that pollute the global service locator
