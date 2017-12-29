@@ -3055,6 +3055,7 @@
 	"pageinfo-category-subcats": "Number of subcategories",
 	"pageinfo-category-files": "Number of files",
 	"pageinfo-user-id": "User ID",
+	"pageinfo-file-hash": "Base-36 SHA-1 value of this file",
 	"markaspatrolleddiff": "Mark as patrolled",
 	"markaspatrolledlink": "[$1]",
 	"markaspatrolledtext": "Mark this page as patrolled",
