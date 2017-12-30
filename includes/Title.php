@@ -4644,7 +4644,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param IDatabase $db Optional db
+	 * @param IDatabase|null $db
 	 * @return string|false Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {
