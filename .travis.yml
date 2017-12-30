@@ -28,8 +28,6 @@ matrix:
       php: 5.5
     # https://docs.travis-ci.com/user/languages/php#HHVM-versions
     - env: dbtype=mysql dbuser=root
-      php: hhvm-3.12
-    - env: dbtype=mysql dbuser=root
       php: hhvm-3.18
     - env: dbtype=mysql dbuser=root
       php: 7
