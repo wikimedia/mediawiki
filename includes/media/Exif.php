@@ -742,21 +742,24 @@ class Exif {
 				$ecount = 1; // checking individual elements
 			}
 		}
-		$count = count( $val );
-		if ( $ecount != $count ) {
-			$this->debug( $val, __FUNCTION__, "Expected $ecount elements for $tag but got $count" );
+		if ( is_array( $val ) ) {
+			$count = count( $val );
+			if ( $ecount != $count ) {
+				$this->debug( $val, __FUNCTION__, "Expected $ecount elements for $tag but got $count" );
 
-			return false;
-		}
-		if ( $count > 1 ) {
-			foreach ( $val as $v ) {
-				if ( !$this->validate( $section, $tag, $v, true ) ) {
-					return false;
-				}
+				return false;
 			}
+			if ( $count > 1 ) {
+				foreach ( $val as $v ) {
+					if ( !$this->validate( $section, $tag, $v, true ) ) {
+						return false;
+					}
+				}
 
-			return true;
+				return true;
+			}
 		}
+
 		// Does not work if not typecast
 		switch ( (string)$etype ) {
 			case (string)self::BYTE:
