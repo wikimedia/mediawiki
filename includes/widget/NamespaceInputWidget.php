@@ -24,7 +24,6 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 		// Configuration initialization
 		$config['options'] = $this->getNamespaceDropdownOptions( $config );
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties

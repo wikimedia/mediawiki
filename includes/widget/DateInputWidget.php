@@ -109,7 +109,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 			'placeholder' => $placeholder,
 		], $config );
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Calculate min/max attributes (which are skipped by TextInputWidget) and add to <input>

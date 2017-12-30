@@ -26,13 +26,9 @@
  */
 class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 
-	/* Protected Members */
-
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	protected $targets = [ 'desktop', 'mobile' ];
-
-	/* Methods */
 
 	/**
 	 * Fetch the tokens for the current user.

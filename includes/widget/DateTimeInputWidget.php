@@ -34,7 +34,6 @@ class DateTimeInputWidget extends \OOUI\InputWidget {
 			throw new \InvalidArgumentException( '$config[\'type\'] must be specified' );
 		}
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties, which are ignored in PHP and just shipped back to JS

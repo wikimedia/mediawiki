@@ -2124,8 +2124,6 @@ class Linker {
 		return Xml::tags( 'span', [ 'class' => 'mw-revdelundel-link' ], $htmlParentheses );
 	}
 
-	/* Deprecated methods */
-
 	/**
 	 * Returns the attributes for the tooltip and access key.
 	 *

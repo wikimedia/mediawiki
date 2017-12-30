@@ -30,7 +30,6 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	 *  be a valid title (default: true)
 	 */
 	public function __construct( array $config = [] ) {
-		// Parent constructor
 		parent::__construct(
 			array_merge( [ 'maxLength' => 255 ], $config )
 		);

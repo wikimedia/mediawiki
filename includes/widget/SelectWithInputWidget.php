@@ -38,7 +38,6 @@ class SelectWithInputWidget extends \OOUI\Widget {
 			$config
 		);
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties
