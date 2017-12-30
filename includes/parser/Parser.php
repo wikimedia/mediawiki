@@ -3115,6 +3115,9 @@ class Parser {
 				}
 
 				// Extract any forwarded flags
+				if ( isset( $result['title'] ) ) {
+					$title = $result['title'];
+				}
 				if ( isset( $result['found'] ) ) {
 					$found = $result['found'];
 				}
