@@ -23,6 +23,14 @@ use WikitextContent;
  */
 class RevisionStoreDbTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		$this->tablesUsed[] = 'archive';
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'comment';
+		parent::setUp();
+	}
+
 	private function assertLinkTargetsEqual( LinkTarget $l1, LinkTarget $l2 ) {
 		$this->assertEquals( $l1->getDBkey(), $l2->getDBkey() );
 		$this->assertEquals( $l1->getNamespace(), $l2->getNamespace() );
