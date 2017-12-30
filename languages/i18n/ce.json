@@ -1172,6 +1172,7 @@
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|де}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|сахьт}}",
 	"rcfilters-quickfilters": "Ӏалашдина литтарш",
+	"rcfilters-quickfilters-placeholder-title": "Ӏалашдина литтарш дац",
 	"rcfilters-quickfilters-placeholder-description": "Литтаран буламаш (хьайна) Ӏалашбан лаахь а, йуха уьш лелабан лаахь а, тӀетаӀйе \"жигара литтаран\" уллера хьаьрка.",
 	"rcfilters-savedqueries-defaultlabel": "Ӏалашдина литтарш",
 	"rcfilters-savedqueries-rename": "ЦӀе хийцар",
