@@ -488,7 +488,10 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
-		$installed = new ComposerInstalled( $path );
+		$composerInstalled = new ComposerInstalled( $path );
+		$installed = $composerInstalled->getInstalledDependencies();
+		Hooks::run( 'ExternalLibraryInfo', [ &$installed ] );
+
 		$out = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-libraries' ],
@@ -506,7 +509,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::element( 'th', [], $this->msg( 'version-libraries-authors' )->text() )
 			. Html::closeElement( 'tr' );
 
-		foreach ( $installed->getInstalledDependencies() as $name => $info ) {
+		foreach ( $installed as $name => $info ) {
 			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
