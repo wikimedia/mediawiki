@@ -742,7 +742,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objetu hustua",
 	"content-json-empty-array": "Matrize hutsa",
-	"deprecated-self-close-category": "HTML etiketa automatikoak ez diren balioak erabiltzen ari diren oriialdeak",
+	"deprecated-self-close-category": "HTML etiketen itxiera propio ez-baliagarria erabiltzen duten orrialdeak",
 	"deprecated-self-close-category-desc": "Orriak HTML etiketa autoitxi baliogabeak dauzka, adibidez <code>&lt;b/></code> edo <code>&lt;span/></code>. Hauen jarrera HTML5 zehaztapenekin bat egiteko goiz aldatuko dira, zaharkiturik geratzen direla wikitestuan.",
 	"duplicate-args-warning": "<strong>Oharra:</strong> [[:$1]]k [[:$2]] \"$3\" parametroarentzako balio bat baino gehiagorekin deitzen ari da. Emandako azken balioa bakarrik erabiliko da.",
 	"duplicate-args-category": "Txantiloi-deietan argumentu bikoiztuak erabiltzen dituzten orrialdeak",

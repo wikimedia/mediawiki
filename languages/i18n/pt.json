@@ -3521,7 +3521,7 @@
 	"tag-mw-changed-redirect-target": "Destino de redirecionamento alterado",
 	"tag-mw-changed-redirect-target-description": "Edições que modificam o destino de um redirecionamento",
 	"tag-mw-blank": "Esvaziamento",
-	"tag-mw-blank-description": "Edita que esvaziam uma página",
+	"tag-mw-blank-description": "Edições que esvaziam uma página",
 	"tag-mw-replace": "Substituição",
 	"tag-mw-replace-description": "Edições que removem mais de 90% do conteúdo de uma página",
 	"tag-mw-rollback": "Reversão",
