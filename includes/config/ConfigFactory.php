@@ -99,7 +99,7 @@ class ConfigFactory implements SalvageableService {
 	 * Will override if it's already registered.
 	 * Use "*" for $name to provide a fallback config for all unknown names.
 	 * @param string $name
-	 * @param callable|Config $callback A factory callabck that takes this ConfigFactory
+	 * @param callable|Config $callback A factory callback that takes this ConfigFactory
 	 *        as an argument and returns a Config instance, or an existing Config instance.
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
