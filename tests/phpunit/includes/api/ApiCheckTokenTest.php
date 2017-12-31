@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @group API
+ * @group medium
+ * @covers ApiCheckToken
+ */
+class ApiCheckTokenTest extends ApiTestCase {
+
+    /**
+     * Test result of checking previously queried token (should be valid)
+     */
+    public function testCheckTokenValid() {
+        // Query token which will be checked later
+        $tokens = $this->doApiRequest( [
+                'action' => 'query',
+                'meta' => 'tokens',
+        ] );
+
+        $data = $this->doApiRequest( [
+            'action' => 'checktoken',
+            'type' => 'csrf',
+            'token' => $tokens[0]['query']['tokens']['csrftoken'],
+        ], $tokens[1]->getSessionArray() );
+
+        $this->assertEquals( 'valid', $data[0]['checktoken']['result'] );
+        $this->assertTrue( isset( $data[0]['checktoken']['generated'] ) );
+    }
+
+    /**
+     * Test result of checking invalid token
+     */
+    public function testCheckTokenInvalid() {
+        $session = [];
+        $data = $this->doApiRequest( [
+            'action' => 'checktoken',
+            'type' => 'csrf',
+            'token' => 'invalid_token',
+        ], $session );
+
+        $this->assertEquals( 'invalid', $data[0]['checktoken']['result'] );
+    }
+
+    /**
+     * Test result of checking token with negative max age (should be expired)
+     */
+    public function testCheckTokenExpired() {
+        // Query token which will be checked later
+        $tokens = $this->doApiRequest( [
+                'action' => 'query',
+                'meta' => 'tokens',
+        ] );
+
+        $data = $this->doApiRequest( [
+            'action' => 'checktoken',
+            'type' => 'csrf',
+            'token' => $tokens[0]['query']['tokens']['csrftoken'],
+            'maxtokenage' => -1,
+        ], $tokens[1]->getSessionArray() );
+
+        $this->assertEquals( 'expired', $data[0]['checktoken']['result'] );
+        $this->assertTrue( isset( $data[0]['checktoken']['generated'] ) );
+    }
+
+}
