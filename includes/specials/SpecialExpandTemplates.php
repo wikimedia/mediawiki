@@ -172,6 +172,11 @@ class SpecialExpandTemplates extends SpecialPage {
 				'rows' => 10,
 				'default' => $input,
 				'id' => 'input',
+				// The following classes can be used here:
+				// * mw-editfont-monospace
+				// * mw-editfont-sans-serif
+				// * mw-editfont-serif
+				'cssclass' => 'mw-editfont-' . $this->getUser()->getOption( 'editfont' ),
 			],
 			'removecomments' => [
 				'type' => 'check',
@@ -203,6 +208,8 @@ class SpecialExpandTemplates extends SpecialPage {
 			],
 		];
 
+		$this->getOutput()->addModuleStyles( 'mediawiki.editfont.styles' );
+
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form
 			->setSubmitTextMsg( 'expand_templates_ok' )
@@ -226,7 +233,11 @@ class SpecialExpandTemplates extends SpecialPage {
 			$output,
 			10,
 			10,
-			[ 'id' => 'output', 'readonly' => 'readonly' ]
+			[
+				'id' => 'output',
+				'readonly' => 'readonly',
+				'class' => 'mw-editfont-' . $this->getUser()->getOption( 'editfont' )
+			]
 		);
 
 		return $out;
