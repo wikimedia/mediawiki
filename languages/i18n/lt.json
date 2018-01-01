@@ -3319,6 +3319,7 @@
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Žyma|Žymos}}]]: $2)",
 	"tag-mw-contentmodelchange": "turinio modulio keitimas",
 	"tag-mw-contentmodelchange-description": "Pakeitimai, kurie [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel keičia puslapio turinio modelį]",
+	"tag-mw-undo": "Anuliuoti",
 	"tags-title": "Žymos",
 	"tags-intro": "Šiame puslapyje yra žymų, kuriomis programinė įranga gali pažymėti keitimus, sąrašas bei jų reikšmės.",
 	"tags-tag": "Žymos pavadinimas",
