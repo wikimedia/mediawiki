@@ -9,6 +9,22 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	protected $printerName;
 
 	/**
+	 * Class being tested, if it's not already registered with
+	 * the module manager
+	 *
+	 * @var string|null
+	 */
+	protected $printerClass;
+
+	/**
+	 * Factory to register with the module manager to
+	 * create the class
+	 *
+	 * @var callable|null
+	 */
+	protected $printerFactory;
+
+	/**
 	 * Return general data to be encoded for testing
 	 * @return array See self::testGeneralEncoding
 	 * @throws Exception
@@ -21,16 +37,17 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	 * Get the formatter output for the given input data
 	 * @param array $params Query parameters
 	 * @param array $data Data to encode
-	 * @param string $class Printer class to use instead of the normal one
 	 * @return string
 	 * @throws Exception
 	 */
-	protected function encodeData( array $params, array $data, $class = null ) {
+	protected function encodeData( array $params, array $data ) {
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $params, true ) );
 		$main = new ApiMain( $context );
-		if ( $class !== null ) {
-			$main->getModuleManager()->addModule( $this->printerName, 'format', $class );
+		if ( $this->printerClass !== null ) {
+			$main->getModuleManager()->addModule(
+				$this->printerName, 'format', $this->printerClass, $this->printerFactory
+			);
 		}
 		$result = $main->getResult();
 		$result->addArrayType( null, 'default' );
@@ -57,6 +74,9 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 	public function testGeneralEncoding( array $data, $expect, array $params = [] ) {
 		if ( isset( $params['SKIP'] ) ) {
 			$this->markTestSkipped( $expect );
+		}
+		if ( isset( $params['exception'] ) ) {
+			$this->setExpectedException( $params['exception'][0], $params['exception'][1] );
 		}
 		$this->assertSame( $expect, $this->encodeData( $params, $data ) );
 	}
