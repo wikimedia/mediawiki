@@ -133,7 +133,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			'levelmenu' => $this->getLevelMenu( $level )
 		];
 
-		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedtitles' )
