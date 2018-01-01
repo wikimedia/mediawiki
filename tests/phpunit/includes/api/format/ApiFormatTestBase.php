@@ -56,6 +56,7 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 		$printer = $main->createPrinterByName( $printerName );
 		$printer->initPrinter();
 		$printer->execute();
+
 		ob_start();
 		try {
 			$printer->closePrinter();
