@@ -26,8 +26,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 
 		// Filter out skins that aren't installed
 		$possibleSkins = array_filter( $possibleSkins, function ( $skinDir ) use ( $styleDirectory ) {
-			return
-				is_file( "$styleDirectory/$skinDir/skin.json" )
+			return is_file( "$styleDirectory/$skinDir/skin.json" )
 				|| is_file( "$styleDirectory/$skinDir/$skinDir.php" );
 		} );
 

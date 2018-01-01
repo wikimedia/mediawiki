@@ -24,7 +24,7 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__ . "/..";
 
-// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
+// phpcs:disable Generic.Files.LineLength
 $wgAutoloadClasses += [
 
 	# tests/common
@@ -175,4 +175,4 @@ $wgAutoloadClasses += [
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
 ];
-// @codingStandardsIgnoreEnd
+// phpcs:enable

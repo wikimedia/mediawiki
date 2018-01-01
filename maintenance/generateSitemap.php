@@ -484,8 +484,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function indexEntry( $filename ) {
-		return
-			"\t<sitemap>\n" .
+		return "\t<sitemap>\n" .
 			"\t\t<loc>{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";
@@ -518,8 +517,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function fileEntry( $url, $date, $priority ) {
-		return
-			"\t<url>\n" .
+		return "\t<url>\n" .
 			// T36666: $url may contain bad characters such as ampersands.
 			"\t\t<loc>" . htmlspecialchars( $url ) . "</loc>\n" .
 			"\t\t<lastmod>$date</lastmod>\n" .

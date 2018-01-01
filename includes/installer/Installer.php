@@ -595,11 +595,10 @@ abstract class Installer {
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = [];
 
-		// @codingStandardsIgnoreStart
 		// LocalSettings.php should not call functions, except wfLoadSkin/wfLoadExtensions
 		// Define the required globals here, to ensure, the functions can do it work correctly.
+		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgExtensionDirectory, $wgStyleDirectory;
-		// @codingStandardsIgnoreEnd
 
 		MediaWiki\suppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );

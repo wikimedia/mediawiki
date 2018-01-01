@@ -44,7 +44,7 @@ class MWCryptHKDFTest extends MediaWikiTestCase {
 	 * Test vectors from Appendix A on https://tools.ietf.org/html/rfc5869
 	 */
 	public static function providerRfc5869() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// A.1
 			[
@@ -97,6 +97,6 @@ class MWCryptHKDFTest extends MediaWikiTestCase {
 				'0bd770a74d1160f7c9f12cd5912a06ebff6adcae899d92191fe4305673ba2ffe8fa3f1a4e5ad79f3f334b3b202b2173c486ea37ce3d397ed034c7f9dfeb15c5e927336d0441f4c4300e2cff0d0900b52d3b4' // okm
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 }

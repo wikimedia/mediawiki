@@ -86,9 +86,8 @@ class MoveBatch extends Maintenance {
 
 		# Setup complete, now start
 		$dbw = $this->getDB( DB_MASTER );
-		// @codingStandardsIgnoreStart Ignore avoid function calls in a FOR loop test part warning
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
-			// @codingStandardsIgnoreEnd
 			$line = fgets( $file );
 			if ( $line === false ) {
 				break;

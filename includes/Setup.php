@@ -370,9 +370,8 @@ if ( $wgRCFilterByAge ) {
 	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
 	sort( $wgRCLinkDays );
 
-	// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+	// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
-		// @codingStandardsIgnoreEnd
 		if ( $wgRCLinkDays[$i] >= $rcMaxAgeDays ) {
 			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
 			break;

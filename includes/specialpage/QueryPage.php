@@ -700,9 +700,8 @@ abstract class QueryPage extends SpecialPage {
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
-			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+			// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
-				// @codingStandardsIgnoreEnd
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
 					$html[] = $this->listoutput

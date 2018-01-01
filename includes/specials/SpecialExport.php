@@ -533,9 +533,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $depth > 0; --$depth ) {
-			// @codingStandardsIgnoreEnd
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
 				[ 'namespace' => 'pl_namespace', 'title' => 'pl_title' ],

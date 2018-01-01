@@ -8,8 +8,7 @@ class HTMLEditTools extends HTMLFormField {
 	public function getTableRow( $value ) {
 		$msg = $this->formatMsg();
 
-		return
-			'<tr><td></td><td class="mw-input">' .
+		return '<tr><td></td><td class="mw-input">' .
 			'<div class="mw-editTools">' .
 			$msg->parseAsBlock() .
 			"</div></td></tr>\n";

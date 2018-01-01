@@ -138,7 +138,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	}
 
 	public static function provideCheckSvgScriptCallback() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// html5sec SVG vectors
 			[
@@ -511,7 +511,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'DTD with aliased entities apos (Should be allowed)'
 			]
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**

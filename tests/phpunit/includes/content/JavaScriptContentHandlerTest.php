@@ -21,7 +21,7 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 	 * Keep this in sync with JavaScriptContentTest::provideGetRedirectTarget()
 	 */
 	public static function provideMakeRedirectContent() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'MediaWiki:MonoBook.js',
@@ -36,6 +36,6 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 }

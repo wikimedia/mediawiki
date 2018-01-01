@@ -24,9 +24,8 @@
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_DOM extends Preprocessor {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -1024,9 +1023,8 @@ class PPDPart {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_DOM implements PPFrame {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Preprocessor
@@ -1642,9 +1640,8 @@ class PPFrame_DOM implements PPFrame {
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_DOM extends PPFrame_DOM {
-	// @codingStandardsIgnoreEnd
 
 	public $numberedArgs, $namedArgs;
 
@@ -1821,9 +1818,8 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_DOM extends PPFrame_DOM {
-	// @codingStandardsIgnoreEnd
 
 	public $args;
 
@@ -1874,9 +1870,8 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_DOM implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var DOMElement

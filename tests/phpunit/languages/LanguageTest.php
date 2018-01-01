@@ -1326,7 +1326,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideCheckTitleEncodingData() {
-		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ "" ],
 			[ "United States of America" ], // 7bit ASCII
@@ -1377,7 +1377,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				)
 			]
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**

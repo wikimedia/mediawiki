@@ -99,7 +99,7 @@ class SiteListTest extends MediaWikiTestCase {
 		 * @var Site $site
 		 */
 		foreach ( $sites as $site ) {
-			if ( is_integer( $site->getInternalId() ) ) {
+			if ( is_int( $site->getInternalId() ) ) {
 				$this->assertEquals( $site, $sites->getSiteByInternalId( $site->getInternalId() ) );
 			}
 		}
@@ -155,7 +155,7 @@ class SiteListTest extends MediaWikiTestCase {
 		 * @var Site $site
 		 */
 		foreach ( $sites as $site ) {
-			if ( is_integer( $site->getInternalId() ) ) {
+			if ( is_int( $site->getInternalId() ) ) {
 				$this->assertTrue( $site, $sites->hasInternalId( $site->getInternalId() ) );
 			}
 		}

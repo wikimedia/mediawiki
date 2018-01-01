@@ -30,9 +30,8 @@
  * @ingroup Language
  * @see http://be-x-old.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
  */
-// @codingStandardsIgnoreStart Ignore class name is not in camel caps format error
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageBe_tarask extends Language {
-	// @codingStandardsIgnoreEnd
 	/**
 	 * The Belarusian language uses apostrophe sign,
 	 * but the characters used for this could be both U+0027 and U+2019.

@@ -26,9 +26,8 @@
  *
  * @ingroup Language
  */
-// @codingStandardsIgnoreStart Ignore class name is not in camel caps format error
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageKk_cyrl extends Language {
-	// @codingStandardsIgnoreEnd
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
 	/**

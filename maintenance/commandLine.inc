@@ -23,10 +23,9 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
-global $optionsWithArgs;
-global $optionsWithoutArgs;
-// @codingStandardsIgnoreEnd
+// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
+global $optionsWithArgs, $optionsWithoutArgs;
+
 if ( !isset( $optionsWithArgs ) ) {
 	$optionsWithArgs = [];
 }
@@ -36,9 +35,9 @@ if ( !isset( $optionsWithoutArgs ) ) {
 
 class CommandLineInc extends Maintenance {
 	public function __construct() {
-		// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $optionsWithArgs, $optionsWithoutArgs;
-		// @codingStandardsIgnoreEnd
+
 		parent::__construct();
 		foreach ( $optionsWithArgs as $name ) {
 			$this->addOption( $name, '', false, true );
@@ -60,9 +59,9 @@ class CommandLineInc extends Maintenance {
 	}
 
 	public function execute() {
-		// @codingStandardsIgnoreStart MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $args, $options;
-		// @codingStandardsIgnoreEnd
+
 		$args = $this->mArgs;
 		$options = $this->mOptions;
 	}
