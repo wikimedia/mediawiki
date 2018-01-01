@@ -58,6 +58,14 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 		$printer = $main->createPrinterByName( $this->printerName );
 		$printer->initPrinter();
 		$printer->execute();
+
+		if ( isset( $params['mime'] ) ) {
+			$this->assertEquals( $params['mime'], $printer->getMimeType() );
+		}
+		if ( isset( $params['filename'] ) ) {
+			$this->assertEquals( $params['filename'], $printer->getFilename() );
+		}
+
 		ob_start();
 		try {
 			$printer->closePrinter();
