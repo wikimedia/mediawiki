@@ -71,6 +71,12 @@ class SwiftFileBackend extends FileBackendStore {
 	/** @var bool Whether the server is an Ceph RGW */
 	protected $isRGW = false;
 
+	/** @var array Whitelist for the 'headers' argument of doOperations, as an array of regexps. */
+	protected $customHeaderWhitelist = [
+		// Standard and custom content attributes, but not Content-Length
+		'/^(?!content-length$)(x-)?content-/',
+	];
+
 	/**
 	 * @see FileBackendStore::__construct()
 	 * @param array $config Params include:
@@ -102,6 +108,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                          http://tracker.newdream.net/issues/3454.
 	 *   - readUsers           : Swift users that should have read access (account:username)
 	 *   - writeUsers          : Swift users that should have write access (account:username)
+	 *   - headerWhitelist     : Whitelist for custom headers that are allowed in the 'headers'
+	 *                           parameter of doOperations and similar commands, as an array of
+	 *                           regular expressions. Headers will be in lowercase. The provided
+	 *                           regular expressions will be appended to the default whitelist.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -148,6 +158,10 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->writeUsers = isset( $config['writeUsers'] )
 			? $config['writeUsers']
 			: [];
+		if ( isset( $config['headerWhitelist'] ) ) {
+			$this->customHeaderWhitelist = array_merge( $this->customHeaderWhitelist,
+				$config['headerWhitelist'] );
+		}
 	}
 
 	public function getFeatures() {
@@ -182,13 +196,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
 	protected function sanitizeHdrsStrict( array $params ) {
-		if ( !isset( $params['headers'] ) ) {
-			return [];
-		}
-
-		$headers = $this->getCustomHeaders( $params['headers'] );
+		$headers = $this->sanitizeHdrs( $params );
 		unset( $headers[ 'content-type' ] );
-
 		return $headers;
 	}
 
@@ -220,12 +229,11 @@ class SwiftFileBackend extends FileBackendStore {
 		// Normalize casing, and strip out illegal headers
 		foreach ( $rawHeaders as $name => $value ) {
 			$name = strtolower( $name );
-			if ( preg_match( '/^content-length$/', $name ) ) {
-				continue; // blacklisted
-			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
-				$headers[$name] = $value; // allowed
-			} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
-				$headers[$name] = $value; // allowed
+			foreach ( $this->customHeaderWhitelist as $regexp ) {
+				if ( preg_match( $regexp, $name ) ) {
+					$headers[$name] = $value;
+					break;
+				}
 			}
 		}
 		// By default, Swift has annoyingly low maximum header value limits
