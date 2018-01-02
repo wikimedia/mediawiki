@@ -184,7 +184,7 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
-		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, null, $overrides );
+		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
 		return new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
