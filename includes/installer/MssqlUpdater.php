@@ -105,6 +105,12 @@ class MssqlUpdater extends DatabaseUpdater {
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
 			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
+
+			// 1.31
+			[ 'addTable', 'slots', 'patch-slots.sql' ],
+			[ 'addTable', 'content', 'patch-content.sql' ],
+			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
+			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 		];
 	}
 
