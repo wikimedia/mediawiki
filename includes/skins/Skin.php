@@ -835,7 +835,7 @@ abstract class Skin extends ContextSource {
 			[ $this->getTitle(), $type, &$msg, &$link, &$forContent ]
 		);
 
-		return $this->msg( $msg )->rawParams( $link )->text();
+		return $this->msg( $msg )->rawParams( $link )->parse();
 	}
 
 	/**
