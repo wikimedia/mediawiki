@@ -133,6 +133,11 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertWriteForbidden( $dbr );
 
+		$db1 = $lb->getConnection( $lb->getReaderIndex() );
+		$this->assertSame( $dbr, $db1, 'getReaderIndex() is equivalent to DB_REPLICA' );
+		$this->assertTrue( $db1->getLBInfo( 'replica' ), 'Reader shows as replica' );
+		$this->assertWriteForbidden( $db1 );
+
 		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTO );
 		$this->assertFalse( $dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTO" );
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on master" );
@@ -145,6 +150,92 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$dbwAuto2 = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTO );
 		$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTO reuses connections" );
+
+		$lb->closeAll();
+	}
+
+	public function testWithGroups() {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+
+		$servers = [
+			[ // master
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 0,
+				'flags'       => DBO_TRX, // REPEATABLE-READ for consistency
+				'test-name'   => 'master',
+			],
+			[ // emulated replica for default group
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 100,
+				'groupLoads'  => [ 'foo' => 0 ],
+				'test-name'   => 'def-replica',
+			],
+			[ // emulated replica in foo group
+				'host'        => $wgDBserver,
+				'dbname'      => $wgDBname,
+				'user'        => $wgDBuser,
+				'password'    => $wgDBpassword,
+				'type'        => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load'        => 0,
+				'groupLoads'  => [ 'foo' => 100 ],
+				'test-name'   => 'foo-replica',
+			]
+		];
+
+		$lb = new LoadBalancer( [
+			'servers' => $servers,
+			'localDomain' => wfWikiID(),
+			'loadMonitorClass' => 'LoadMonitorNull'
+		] );
+
+		$db = $lb->getConnection( DB_MASTER );
+		$this->assertSame( 'master', $db->getLBInfo( 'test-name' ), 'DB_MASTER gets master' );
+
+		$db = $lb->getConnection( $lb->getWriterIndex() );
+		$this->assertSame( 'master', $db->getLBInfo( 'test-name' ), 'getWriterIndex get master' );
+
+		$db = $lb->getConnection( DB_REPLICA );
+		$this->assertSame( 'def-replica', $db->getLBInfo( 'test-name' ), 'DB_REPLICA get replica' );
+
+		$db = $lb->getConnection( $lb->getReaderIndex() );
+		$this->assertSame( 'def-replica', $db->getLBInfo( 'test-name' ), 'getReaderIndex get replica' );
+
+		$db = $lb->getConnection( DB_MASTER, [ 'foo' ] );
+		$this->assertSame( 'master', $db->getLBInfo( 'test-name' ), 'DB_MASTER ignores group' );
+
+		$db = $lb->getConnection( $lb->getWriterIndex(), [ 'foo' ] );
+		$this->assertSame( 'master', $db->getLBInfo( 'test-name' ), 'getWriterIndex ignores group' );
+
+		$db = $lb->getConnection( DB_REPLICA, [ 'foo' ] );
+		$this->assertSame( 'foo-replica', $db->getLBInfo( 'test-name' ), 'DB_REPLICA uses group' );
+
+		$db = $lb->getConnection( $lb->getReaderIndex( 'foo' ) );
+		$this->assertSame( 'foo-replica', $db->getLBInfo( 'test-name' ), 'getReaderIndex uses group' );
+
+		$db = $lb->getConnection( $lb->getReaderIndex(), [ 'foo' ] );
+		$this->assertSame(
+			'def-replica',
+			$db->getLBInfo( 'test-name' ),
+			'getReaderIndex forces group'
+		);
+
+		$db = $lb->getConnection( DB_REPLICA, [ 'xyzzy' ] );
+		$this->assertSame(
+			'def-replica',
+			$db->getLBInfo( 'test-name' ),
+			'bad group falls back to default'
+		);
 
 		$lb->closeAll();
 	}
