@@ -629,6 +629,15 @@ class LoadBalancer implements ILoadBalancer {
 		return $ok;
 	}
 
+	/**
+	 * @param int $i
+	 * @param array $groups
+	 * @param bool $domain
+	 * @param int $flags
+	 *
+	 * @return bool|null|Database|DBNoWriteWrapper|IDatabase
+	 * @throws DBConnectionError
+	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
 		$requestedIndex = $i;
 
@@ -641,17 +650,18 @@ class LoadBalancer implements ILoadBalancer {
 			$domain = false; // local connection requested
 		}
 
-		$groups = ( $groups === false || $groups === [] )
-			? [ false ] // check one "group": the generic pool
-			: (array)$groups;
-
 		$masterOnly = ( $i == self::DB_MASTER || $i == $this->getWriterIndex() );
 		$oldConnsOpened = $this->connsOpened; // connections open now
 
+		$this->mLastError = 'Unknown error'; // reset error string
+
 		if ( $i == self::DB_MASTER ) {
 			$i = $this->getWriterIndex();
-		} else {
-			# Try to find an available server in any the query groups (in order)
+		} elseif ( $i == self::DB_REPLICA ) {
+			$groups = (array)$groups;
+			$groups[] = false; // always check the default group.
+
+			// Try to find an available server in any the query groups (in order)
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $domain );
 				if ( $groupIndex !== false ) {
@@ -659,18 +669,11 @@ class LoadBalancer implements ILoadBalancer {
 					break;
 				}
 			}
-		}
 
-		# Operation-based index
-		if ( $i == self::DB_REPLICA ) {
-			$this->mLastError = 'Unknown error'; // reset error string
-			# Try the general server pool if $groups are unavailable.
-			$i = ( $groups === [ false ] )
-				? false // don't bother with this if that is what was tried above
-				: $this->getReaderIndex( false, $domain );
-			# Couldn't find a working server in getReaderIndex()?
-			if ( $i === false ) {
+			// Couldn't find a working server in getReaderIndex()
+			if ( $i == self::DB_REPLICA ) {
 				$this->mLastError = 'No working replica DB server: ' . $this->mLastError;
+
 				// Throw an exception
 				$this->reportConnectionError();
 				return null; // not reached
