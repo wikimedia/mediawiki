@@ -61,6 +61,7 @@ class UsersMultiselectWidget extends \OOUI\Widget {
 			$config['placeholder'] = $this->inputPlaceholder;
 		}
 
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 

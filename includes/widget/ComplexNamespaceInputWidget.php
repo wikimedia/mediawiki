@@ -113,6 +113,7 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 				)
 			)
 		);
+		$config['namespace']['dropdown']['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }

@@ -60,7 +60,9 @@ class ComplexTitleInputWidget extends \OOUI\Widget {
 
 	public function getConfig( &$config ) {
 		$config['namespace'] = $this->config['namespace'];
+		$config['namespace']['dropdown']['$overlay'] = true;
 		$config['title'] = $this->config['title'];
+		$config['title']['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }

@@ -60,6 +60,7 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 		$config['includeAllValue'] = $this->includeAllValue;
 		$config['exclude'] = $this->exclude;
 		// Skip DropdownInputWidget's getConfig(), we don't need 'options' config
+		$config['dropdown']['$overlay'] = true;
 		return \OOUI\InputWidget::getConfig( $config );
 	}
 }

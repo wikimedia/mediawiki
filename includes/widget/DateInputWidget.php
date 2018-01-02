@@ -25,7 +25,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	protected $precision = null;
 	protected $mustBeAfter = null;
 	protected $mustBeBefore = null;
-	protected $overlay = null;
 
 	/**
 	 * @param array $config Configuration options
@@ -52,11 +51,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
 	 * @param string $config['mustBeBefore'] Validates the date to be before this.
 	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
-	 * @param string $config['overlay'] The jQuery selector for the overlay layer on which to render
-	 *   the calendar. This configuration is useful in cases where the expanded calendar is larger
-	 *   than its container. The specified overlay layer is usually on top of the container and has
-	 *   a larger area. Applicable only if the widget is infused. By default, the calendar uses
-	 *   relative positioning.
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
@@ -89,9 +83,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( isset( $config['placeholderLabel'] ) ) {
 			$this->placeholderLabel = $config['placeholderLabel'];
-		}
-		if ( isset( $config['overlay'] ) ) {
-			$this->overlay = $config['overlay'];
 		}
 
 		// Set up placeholder text visible if the browser doesn't override it (logic taken from JS)
@@ -159,9 +150,7 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		if ( $this->mustBeBefore !== null ) {
 			$config['mustBeBefore'] = $this->mustBeBefore;
 		}
-		if ( $this->overlay !== null ) {
-			$config['overlay'] = $this->overlay;
-		}
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 
