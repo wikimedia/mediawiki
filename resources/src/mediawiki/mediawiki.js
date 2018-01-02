@@ -10,7 +10,6 @@
 
 /* global mwNow */
 /* eslint-disable no-use-before-define */
-
 ( function ( $ ) {
 	'use strict';
 
@@ -633,6 +632,34 @@
 				}
 				return true;
 			} );
+		},
+
+		/**
+		 * Get the deferred actions for this component
+		 *
+		 * @param {string} component Component name
+		 * @param {string} [action] Action name
+		 * @return {Object[]} The definition of deferred click actions for this component
+		 */
+		getDeferredActions: function ( component, action ) {
+			var result = [];
+
+			action = action || '';
+
+			window.mwDeferredAction = window.mwDeferredAction || [];
+			window.mwDeferredAction.forEach( function ( actionData ) {
+				var $element = $( actionData[ 0 ] ),
+					data = actionData[ 1 ];
+
+				if (
+					( !component || data.component === component ) &&
+					( !action || data.action === action )
+				) {
+					result.push( $.extend( { $element: $element }, data ) );
+				}
+			} );
+
+			return result;
 		},
 
 		// Expose Map constructor
