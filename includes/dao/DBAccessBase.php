@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -56,7 +56,7 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 * @param int $id Which connection to use
 	 * @param array $groups Query groups
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	protected function getConnection( $id, $groups = [] ) {
 		$loadBalancer = wfGetLB( $this->wiki );
@@ -71,9 +71,9 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param Database $db The database connection to release.
+	 * @param IDatabase $db The database connection to release.
 	 */
-	protected function releaseConnection( Database $db ) {
+	protected function releaseConnection( IDatabase $db ) {
 		if ( $this->wiki !== false ) {
 			$loadBalancer = $this->getLoadBalancer();
 			$loadBalancer->reuseConnection( $db );
