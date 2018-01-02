@@ -182,11 +182,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
 	protected function sanitizeHdrsStrict( array $params ) {
-		if ( !isset( $params['headers'] ) ) {
-			return [];
-		}
-
-		$headers = $this->getCustomHeaders( $params['headers'] );
+		$headers = $this->sanitizeHdrs( $params );
 		unset( $headers[ 'content-type' ] );
 
 		return $headers;
@@ -223,6 +219,8 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( preg_match( '/^content-length$/', $name ) ) {
 				continue; // blacklisted
 			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
+				$headers[$name] = $value; // allowed
+			} elseif ( preg_match( '/^x-mediawiki-/', $name ) ) {
 				$headers[$name] = $value; // allowed
 			} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
 				$headers[$name] = $value; // allowed
