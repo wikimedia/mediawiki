@@ -11,6 +11,7 @@
 		"play": { "file": {
 			"ltr": "images/icons/play-ltr.svg",
 			"rtl": "images/icons/play-rtl.svg"
-		} }
+		} },
+		"stop": { "file": "images/icons/stop.svg" }
 	}
 }

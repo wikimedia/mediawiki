@@ -51,11 +51,15 @@
 		"quotesAdd": { "file": {
 			"ltr": "images/icons/quotesAdd-ltr.svg",
 			"rtl": "images/icons/quotesAdd-rtl.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.26.0."
+		},
 		"redirect": { "file": {
 			"ltr": "images/icons/articleRedirect-ltr.svg",
 			"rtl": "images/icons/articleRedirect-rtl.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.26.0."
+		},
 		"searchCaseSensitive": { "file": "images/icons/case-sensitive.svg" },
 		"searchDiacritics": { "file": "images/icons/diacritic.svg" },
 		"searchRegularExpression": { "file": "images/icons/regular-expression.svg" },

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.3
+ * OOjs UI v0.24.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2018 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-28T23:28:10Z
+ * Date: 2018-01-02T19:09:04Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -1940,4 +1940,10 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
     -ms-transform: translate(350%);
     transform: translate(350%);
   }
+}
+.oo-ui-defaultOverlay {
+  position: absolute;
+  top: 0;
+  /* @noflip */
+  left: 0;
 }
