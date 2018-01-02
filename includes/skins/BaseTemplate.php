@@ -143,7 +143,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( [ 'href', 'class', 'text', 'dir', 'data' ] as $k ) {
+			foreach ( [ 'href', 'class', 'text', 'dir', 'data', 'deferredAction' ] as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -400,6 +400,13 @@ abstract class BaseTemplate extends QuickTemplate {
 					$attrs[ 'data-' . $key ] = $value;
 				}
 				unset( $attrs[ 'data' ] );
+			}
+
+			if ( isset( $attrs['deferredAction'] ) ) {
+				$attrs['onClick'] = 'window.mwDeferredAction=window.mwDeferredAction||[];' .
+					'window.mwDeferredAction.push( [ this, ' . json_encode( $attrs['deferredAction'] ) . ' ] );' .
+					'event.preventDefault();';
+				unset( $attrs[ 'deferredAction' ] );
 			}
 
 			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
