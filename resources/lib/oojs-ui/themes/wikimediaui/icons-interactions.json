@@ -61,6 +61,7 @@
 			"ltr": "images/icons/keyboard-ltr.svg",
 			"rtl": "images/icons/keyboard-rtl.svg"
 		} },
+		"lightbulb": { "file": "images/icons/lightbulb.svg" },
 		"logOut": { "file": {
 			"ltr": "images/icons/logOut-ltr.svg",
 			"rtl": "images/icons/logOut-rtl.svg"

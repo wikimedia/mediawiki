@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.3
+ * OOjs UI v0.24.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2018 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-28T23:28:05Z
+ * Date: 2018-01-02T19:08:58Z
  */
 ( function ( OO ) {
 
@@ -554,6 +554,20 @@ OO.ui.getViewportSpacing = function () {
 		bottom: 0,
 		left: 0
 	};
+};
+
+/**
+ * Get the default overlay, which is used by various widgets when they are passed `$overlay: true`.
+ * See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *
+ * @return {jQuery} Default overlay node
+ */
+OO.ui.getDefaultOverlay = function () {
+	if ( !OO.ui.$defaultOverlay ) {
+		OO.ui.$defaultOverlay = $( '<div>' ).addClass( 'oo-ui-defaultOverlay' );
+		$( 'body' ).append( OO.ui.$defaultOverlay );
+	}
+	return OO.ui.$defaultOverlay;
 };
 
 /*!
@@ -5789,7 +5803,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	OO.ui.mixin.PopupElement.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	// Events
 	this.connect( this, { click: 'onAction' } );
@@ -7700,8 +7714,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.DropdownWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
-	this.$handle = this.$( '<span>' );
-	this.$overlay = config.$overlay || this.$element;
+	this.$handle = $( '<span>' );
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -10907,7 +10921,7 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	OO.ui.ComboBoxInputWidget.parent.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.dropdownButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-comboBoxInputWidget-dropdownButton' ],
 		indicator: 'down',
