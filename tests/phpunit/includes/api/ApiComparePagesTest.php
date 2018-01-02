@@ -151,8 +151,8 @@ class ApiComparePagesTest extends ApiTestCase {
 	}
 
 	public static function provideDiff() {
+		// phpcs:disable Generic.Files.LineLength.TooLong
 		return [
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			'Basic diff, titles' => [
 				[
 					'fromtitle' => 'ApiComparePagesTest A',
@@ -604,8 +604,7 @@ class ApiComparePagesTest extends ApiTestCase {
 				[],
 				'missingcontent'
 			],
-
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 }

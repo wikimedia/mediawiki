@@ -133,7 +133,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function provideCasesForFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Linker::formatComment
 			[
@@ -257,7 +257,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				false, false, $wikiId
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -289,7 +289,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCasesForFormatLinksInComment() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
@@ -312,43 +312,43 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'enwiki',
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	public static function provideLinkBeginHook() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Modify $html
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$html = 'foobar';
 				},
 				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">foobar</a>'
 			],
 			// Modify $attribs
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$attribs['bar'] = 'baz';
 				},
 				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage" bar="baz">Special:BlankPage</a>'
 			],
 			// Modify $query
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$query['bar'] = 'baz';
 				},
 				'<a href="/w/index.php?title=Special:BlankPage&amp;bar=baz" title="Special:BlankPage">Special:BlankPage</a>'
 			],
 			// Force HTTP $options
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$options = [ 'http' ];
 				},
 				'<a href="http://example.org/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>'
 			],
 			// Force 'forcearticlepath' in $options
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$options = [ 'forcearticlepath' ];
 					$query['foo'] = 'bar';
 				},
@@ -356,14 +356,14 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 			// Abort early
 			[
-				function( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
+				function ( $dummy, $title, &$html, &$attribs, &$query, &$options, &$ret ) {
 					$ret = 'foobar';
 					return false;
 				},
 				'foobar'
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**

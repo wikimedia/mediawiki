@@ -184,9 +184,8 @@ class JobQueueFederated extends JobQueue {
 		// Try to insert the jobs and update $partitionsTry on any failures.
 		// Retry to insert any remaning jobs again, ignoring the bad partitions.
 		$jobsLeft = $jobs;
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $i = $this->maxPartitionsTry; $i > 0 && count( $jobsLeft ); --$i ) {
-			// @codingStandardsIgnoreEnd
 			try {
 				$partitionRing->getLiveRing();
 			} catch ( UnexpectedValueException $e ) {

@@ -380,16 +380,12 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes1; $i++ ) {
-			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes1;
 			$topRes1 = $res1->next();
 		}
 
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes2; $i++ ) {
-			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes2;
 			$topRes2 = $res2->next();
 		}

@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-// @codingStandardsIgnoreFile
+// phpcs:ignoreFile
 
 /**
  * @param string $text1

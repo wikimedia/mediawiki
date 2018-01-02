@@ -1318,7 +1318,7 @@ class XMPReader implements LoggerAwareInterface {
 		}
 	}
 
-	// @codingStandardsIgnoreStart Generic.Files.LineLength
+	// phpcs:disable Generic.Files.LineLength
 	/**
 	 * Process attributes.
 	 * Simple values can be stored as either a tag or attribute
@@ -1334,7 +1334,7 @@ class XMPReader implements LoggerAwareInterface {
 	 * @param array $attribs Array attribute=>value
 	 * @throws RuntimeException
 	 */
-	// @codingStandardsIgnoreEnd
+	// phpcs:enable
 	private function doAttribs( $attribs ) {
 		// first check for rdf:parseType attribute, as that can change
 		// how the attributes are interperted.

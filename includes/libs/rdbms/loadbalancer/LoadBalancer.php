@@ -939,7 +939,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return bool
 	 */
 	private function isOpen( $index ) {
-		if ( !is_integer( $index ) ) {
+		if ( !is_int( $index ) ) {
 			return false;
 		}
 

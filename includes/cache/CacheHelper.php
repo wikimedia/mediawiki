@@ -273,7 +273,7 @@ class CacheHelper implements ICacheHelper {
 				$itemKey = array_keys( array_slice( $this->cachedChunks, 0, 1 ) );
 				$itemKey = array_shift( $itemKey );
 
-				if ( !is_integer( $itemKey ) ) {
+				if ( !is_int( $itemKey ) ) {
 					wfWarn( "Attempted to get item with non-numeric key while " .
 						"the next item in the queue has a key ($itemKey) in " . __METHOD__ );
 				} elseif ( is_null( $itemKey ) ) {

@@ -1423,7 +1423,7 @@ more stuff
 	}
 
 	public function provideTestInsertProtectNullRevision() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		yield [
 			'goat-message-key',
 			[ 'edit' => 'sysop' ],
@@ -1442,7 +1442,7 @@ more stuff
 			true,
 			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
 		];
-		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+		// phpcs:enable
 	}
 
 	/**

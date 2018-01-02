@@ -4,12 +4,12 @@
  * @covers ChangesListFilterGroup
  */
 class ChangesListFilterGroupTest extends MediaWikiTestCase {
-	// @codingStandardsIgnoreStart
 	/**
+	 * phpcs:disable Generic.Files.LineLength
 	 * @expectedException MWException
 	 * @expectedExceptionMessage Group names may not contain '_'.  Use the naming convention: 'camelCase'
+	 * phpcs:enable
 	 */
-	// @codingStandardsIgnoreEnd
 	public function testReservedCharacter() {
 		new MockChangesListFilterGroup(
 			[

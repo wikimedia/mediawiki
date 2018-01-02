@@ -846,8 +846,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideUnionConditionPermutations() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
-			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 			[
 				[
 					'table' => [ 'table1', 'table2' ],
@@ -989,8 +989,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 				],
 				"SELECT  foo_id  FROM foo    WHERE baz IS NULL  ORDER BY foo_id LIMIT 150,25"
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**

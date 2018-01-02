@@ -38,7 +38,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	private $watchlistFilterGroupDefinition;
 
-	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
 
@@ -134,7 +133,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 		];
 	}
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Main execution point

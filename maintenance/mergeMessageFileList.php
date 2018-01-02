@@ -52,9 +52,8 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		// @codingStandardsIgnoreStart Ignore error: Global variable "$mmfl" is lacking 'wg' prefix
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $mmfl;
-		// @codingStandardsIgnoreEnd
 		global $wgExtensionEntryPointListFiles;
 
 		if ( !count( $wgExtensionEntryPointListFiles )

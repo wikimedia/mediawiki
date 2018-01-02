@@ -275,7 +275,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			. '%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%228%22 height='
 			. '%228%22%3E%0A%09%3Ccircle cx=%224%22 cy=%224%22 r=%222%22/%3E%0A%3C/svg%3E%0A';
 
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'Regular file',
@@ -492,7 +492,7 @@ class CSSMinTest extends MediaWikiTestCase {
 				'.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3/*{borderColorDefault}*/; background: #e6e6e6/*{bgColorDefault}*/ url(http://localhost/w/images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/; font-weight: normal/*{fwDefault}*/; color: #555555/*{fcDefault}*/; }',
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**

@@ -419,8 +419,7 @@ class ParserEditTests extends Maintenance {
 			print "Wrote updated file\n";
 		} else {
 			print "Cannot write updated file, here is a patch you can paste:\n\n";
-			print
-				"--- {$fileName}\n" .
+			print "--- {$fileName}\n" .
 				"+++ {$fileName}~\n" .
 				$this->unifiedDiff( $text, $result ) .
 				"\n";

@@ -39,9 +39,8 @@
  *
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -789,9 +788,8 @@ class Preprocessor_Hash extends Preprocessor {
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStack_Hash extends PPDStack {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct() {
 		$this->elementClass = 'PPDStackElement_Hash';
@@ -803,9 +801,8 @@ class PPDStack_Hash extends PPDStack {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash extends PPDStackElement {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct( $data = [] ) {
 		$this->partClass = 'PPDPart_Hash';
@@ -857,9 +854,8 @@ class PPDStackElement_Hash extends PPDStackElement {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash extends PPDPart {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct( $out = '' ) {
 		if ( $out !== '' ) {
@@ -875,9 +871,8 @@ class PPDPart_Hash extends PPDPart {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_Hash implements PPFrame {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -1475,9 +1470,8 @@ class PPFrame_Hash implements PPFrame {
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_Hash extends PPFrame_Hash {
-	// @codingStandardsIgnoreEnd
 
 	public $numberedArgs, $namedArgs, $parent;
 	public $numberedExpansionCache, $namedExpansionCache;
@@ -1658,9 +1652,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_Hash extends PPFrame_Hash {
-	// @codingStandardsIgnoreEnd
 
 	public $args;
 
@@ -1711,9 +1704,8 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Tree implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $name;
 
@@ -2059,9 +2051,8 @@ class PPNode_Hash_Tree implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Text implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $value;
 	private $store, $index;
@@ -2130,9 +2121,8 @@ class PPNode_Hash_Text implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Array implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $value;
 
@@ -2188,9 +2178,8 @@ class PPNode_Hash_Array implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Attr implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $name, $value;
 	private $store, $index;

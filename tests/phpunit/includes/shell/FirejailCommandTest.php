@@ -29,9 +29,8 @@ class FirejailCommandTest extends PHPUnit_Framework_TestCase {
 
 	public function provideBuildFinalCommand() {
 		global $IP;
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.Files.LineLength
 		$env = "'MW_INCLUDE_STDERR=;MW_CPU_LIMIT=180; MW_CGROUP='\'''\''; MW_MEM_LIMIT=307200; MW_FILE_SIZE_LIMIT=102400; MW_WALL_CLOCK_LIMIT=180; MW_USE_LOG_PIPE=yes'";
-		// @codingStandardsIgnoreEnd
 		$limit = "/bin/bash '$IP/includes/shell/limit.sh'";
 		$profile = "--profile=$IP/includes/shell/firejail.profile";
 		$blacklist = '--blacklist=' . realpath( MW_CONFIG_FILE );

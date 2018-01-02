@@ -123,7 +123,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 	}
 
 	public static function provideGetText() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -315,7 +315,7 @@ EOF
 EOF
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 }

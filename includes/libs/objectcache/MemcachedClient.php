@@ -1,5 +1,5 @@
 <?php
-// @codingStandardsIgnoreFile It's an external lib and it isn't. Let's not bother.
+// phpcs:ignoreFile -- It's an external lib and it isn't. Let's not bother.
 /**
  * Memcached client for PHP.
  *
