@@ -1,10 +1,6 @@
 <?php
 
-use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Test cases in RevisionTest should not interact with the Database.
@@ -58,10 +54,10 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 */
-	public function testConstructFromArray( $rowArray ) {
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
+	public function testConstructFromArray( array $rowArray ) {
+		$rev = new Revision( $rowArray );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContent()->getModel() );
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -69,7 +65,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 */
 	public function testConstructFromEmptyArray() {
 		$rev = new Revision( [], 0, $this->getMockTitle() );
@@ -94,20 +90,30 @@ class RevisionTest extends MediaWikiTestCase {
 			99,
 			'SomeTextUserName',
 		];
-		yield 'user text only' => [
+		// Note: the below XXX test cases are odd and probably result in unexpected behaviour if used
+		// in production code.
+		yield 'XXX: user text only' => [
 			[
 				'content' => new JavaScriptContent( 'hello world.' ),
 				'user_text' => '111.111.111.111',
 			],
-			0,
+			null,
 			'111.111.111.111',
+		];
+		yield 'XXX: user id only' => [
+			[
+				'content' => new JavaScriptContent( 'hello world.' ),
+				'user' => 9989,
+			],
+			9989,
+			null,
 		];
 	}
 
 	/**
 	 * @dataProvider provideConstructFromArray_userSetAsExpected
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 *
 	 * @param array $rowArray
 	 * @param mixed $expectedUserId null to expect the current wgUser ID
@@ -127,7 +133,7 @@ class RevisionTest extends MediaWikiTestCase {
 			$expectedUserName = $testUser->getName();
 		}
 
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
+		$rev = new Revision( $rowArray );
 		$this->assertEquals( $expectedUserId, $rev->getUser() );
 		$this->assertEquals( $expectedUserName, $rev->getUserText() );
 	}
@@ -137,37 +143,28 @@ class RevisionTest extends MediaWikiTestCase {
 			[
 				'content' => new WikitextContent( 'GOAT' ),
 				'text_id' => 'someid',
-			],
+				],
 			new MWException( "Text already stored in external store (id someid), " .
 				"can't serialize content object" )
 		];
-		yield 'unknown user id and no user name' => [
-			[
-				'content' => new JavaScriptContent( 'hello world.' ),
-				'user' => 9989,
-			],
-			new MWException( 'user_text not given, and unknown user ID 9989' )
-		];
 		yield 'with bad content object (class)' => [
 			[ 'content' => new stdClass() ],
-			new MWException( 'content field must contain a Content object.' )
+			new MWException( '`content` field must contain a Content object.' )
 		];
 		yield 'with bad content object (string)' => [
 			[ 'content' => 'ImAGoat' ],
-			new MWException( 'content field must contain a Content object.' )
+			new MWException( '`content` field must contain a Content object.' )
 		];
 		yield 'bad row format' => [
 			'imastring, not a row',
-			new InvalidArgumentException(
-				'$row must be a row object, an associative array, or a RevisionRecord'
-			)
+			new MWException( 'Revision constructor passed invalid row format.' )
 		];
 	}
 
 	/**
 	 * @dataProvider provideConstructFromArrayThrowsExceptions
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
 		$this->setExpectedException(
@@ -175,25 +172,23 @@ class RevisionTest extends MediaWikiTestCase {
 			$expectedException->getMessage(),
 			$expectedException->getCode()
 		);
-		new Revision( $rowArray, 0, $this->getMockTitle() );
+		new Revision( $rowArray );
 	}
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 */
 	public function testConstructFromNothing() {
-		$this->setExpectedException(
-			InvalidArgumentException::class
-		);
-		new Revision( [] );
+		$rev = new Revision( [] );
+		$this->assertNull( $rev->getId(), 'getId()' );
 	}
 
 	public function provideConstructFromRow() {
 		yield 'Full construction' => [
 			[
-				'rev_id' => '42',
-				'rev_page' => '23',
+				'rev_id' => '2',
+				'rev_page' => '1',
 				'rev_text_id' => '2',
 				'rev_timestamp' => '20171017114835',
 				'rev_user_text' => '127.0.0.1',
@@ -210,8 +205,8 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_content_model' => 'GOATMODEL',
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
-				$testCase->assertSame( 42, $rev->getId() );
-				$testCase->assertSame( 23, $rev->getPage() );
+				$testCase->assertSame( 2, $rev->getId() );
+				$testCase->assertSame( 1, $rev->getPage() );
 				$testCase->assertSame( 2, $rev->getTextId() );
 				$testCase->assertSame( '20171017114835', $rev->getTimestamp() );
 				$testCase->assertSame( '127.0.0.1', $rev->getUserText() );
@@ -226,10 +221,10 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->assertSame( 'GOATMODEL', $rev->getContentModel() );
 			}
 		];
-		yield 'default field values' => [
+		yield 'null fields' => [
 			[
-				'rev_id' => '42',
-				'rev_page' => '23',
+				'rev_id' => '2',
+				'rev_page' => '1',
 				'rev_text_id' => '2',
 				'rev_timestamp' => '20171017114835',
 				'rev_user_text' => '127.0.0.1',
@@ -241,24 +236,11 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_comment_cid' => null,
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
-				// parent ID may be null
-				$testCase->assertSame( null, $rev->getParentId(), 'revision id' );
-
-				// given fields
-				$testCase->assertSame( $rev->getTimestamp(), '20171017114835', 'timestamp' );
-				$testCase->assertSame( $rev->getUserText(), '127.0.0.1', 'user name' );
-				$testCase->assertSame( $rev->getUser(), 0, 'user id' );
-				$testCase->assertSame( $rev->getComment(), 'Goat Comment!' );
-				$testCase->assertSame( false, $rev->isMinor(), 'minor edit' );
-				$testCase->assertSame( 0, $rev->getVisibility(), 'visibility flags' );
-
-				// computed fields
-				$testCase->assertNotNull( $rev->getSize(), 'size' );
-				$testCase->assertNotNull( $rev->getSha1(), 'hash' );
-
-				// NOTE: model and format will be detected based on the namespace of the (mock) title
-				$testCase->assertSame( 'text/x-wiki', $rev->getContentFormat(), 'format' );
-				$testCase->assertSame( 'wikitext', $rev->getContentModel(), 'model' );
+				$testCase->assertNull( $rev->getSize() );
+				$testCase->assertNull( $rev->getParentId() );
+				$testCase->assertNull( $rev->getSha1() );
+				$testCase->assertSame( 'text/x-wiki', $rev->getContentFormat() );
+				$testCase->assertSame( 'wikitext', $rev->getContentModel() );
 			}
 		];
 	}
@@ -266,34 +248,11 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromRow
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers Revision::constructFromRowArray
 	 */
 	public function testConstructFromRow( array $arrayData, $assertions ) {
-		$data = 'Hello goat.'; // needs to match model and format
-
-		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$blobStore->method( 'getBlob' )
-			->will( $this->returnValue( $data ) );
-
-		$blobStore->method( 'getTextIdFromAddress' )
-			->will( $this->returnCallback(
-				function ( $address ) {
-					// Turn "tt:1234" into 12345.
-					// Note that this must be functional so we can test getTextId().
-					// Ideally, we'd un-mock getTextIdFromAddress and use its actual implementation.
-					$parts = explode( ':', $address );
-					return (int)array_pop( $parts );
-				}
-			) );
-
-		// Note override internal service, so RevisionStore uses it as well.
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
 		$row = (object)$arrayData;
-		$rev = new Revision( $row, 0, $this->getMockTitle() );
+		$rev = new Revision( $row );
 		$assertions( $this, $rev );
 	}
 
@@ -323,7 +282,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getId
 	 */
 	public function testGetId( $rowArray, $expectedId ) {
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
+		$rev = new Revision( $rowArray );
 		$this->assertEquals( $expectedId, $rev->getId() );
 	}
 
@@ -337,7 +296,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::setId
 	 */
 	public function testSetId( $input, $expected ) {
-		$rev = new Revision( [], 0, $this->getMockTitle() );
+		$rev = new Revision( [] );
 		$rev->setId( $input );
 		$this->assertSame( $expected, $rev->getId() );
 	}
@@ -352,7 +311,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::setUserIdAndName
 	 */
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
-		$rev = new Revision( [], 0, $this->getMockTitle() );
+		$rev = new Revision( [] );
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
 		$this->assertEquals( $name, $rev->getUserText( Revision::RAW ) );
@@ -369,7 +328,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getTextId()
 	 */
 	public function testGetTextId( $rowArray, $expected ) {
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
+		$rev = new Revision( $rowArray );
 		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
@@ -384,7 +343,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getParentId()
 	 */
 	public function testGetParentId( $rowArray, $expected ) {
-		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
+		$rev = new Revision( $rowArray );
 		$this->assertSame( $expected, $rev->getParentId() );
 	}
 
@@ -417,58 +376,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
-	private function getWANObjectCache() {
-		return new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-	}
-
-	/**
-	 * @return SqlBlobStore
-	 */
-	private function getBlobStore() {
-		/** @var LoadBalancer $lb */
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$cache = $this->getWANObjectCache();
-
-		$blobStore = new SqlBlobStore( $lb, $cache );
-		return $blobStore;
-	}
-
-	private function mockBlobStoreFactory( $blobStore ) {
-		/** @var LoadBalancer $lb */
-		$factory = $this->getMockBuilder( BlobStoreFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'newBlobStore' )
-			->willReturn( $blobStore );
-		$factory->expects( $this->any() )
-			->method( 'newSqlBlobStore' )
-			->willReturn( $blobStore );
-		return $factory;
-	}
-
-	/**
-	 * @return RevisionStore
-	 */
-	private function getRevisionStore() {
-		/** @var LoadBalancer $lb */
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$cache = $this->getWANObjectCache();
-
-		$blobStore = new RevisionStore( $lb, $this->getBlobStore(), $cache );
-		return $blobStore;
-	}
-
 	public function provideGetRevisionTextWithLegacyEncoding() {
 		yield 'Utf8Native' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'utf-8',
@@ -477,7 +387,6 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'Utf8Legacy' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => '',
@@ -490,11 +399,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionTextWithLegacyEncoding
 	 */
-	public function testGetRevisionWithLegacyEncoding( $expected, $lang, $encoding, $rowData ) {
-		$blobStore = $this->getBlobStore();
-		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
+	public function testGetRevisionWithLegacyEncoding( $expected, $encoding, $rowData ) {
+		$this->setMwGlobals( 'wgLegacyEncoding', $encoding );
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
@@ -506,7 +412,6 @@ class RevisionTest extends MediaWikiTestCase {
 		 */
 		yield 'Utf8NativeGzip' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'gzip,utf-8',
@@ -515,7 +420,6 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 		yield 'Utf8LegacyGzip' => [
 			"Wiki est l'\xc3\xa9cole superieur !",
-			'fr',
 			'iso-8859-1',
 			[
 				'old_flags' => 'gzip',
@@ -528,13 +432,9 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getRevisionText
 	 * @dataProvider provideGetRevisionTextWithGzipAndLegacyEncoding
 	 */
-	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $lang, $encoding, $rowData ) {
+	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $encoding, $rowData ) {
 		$this->checkPHPExtension( 'zlib' );
-
-		$blobStore = $this->getBlobStore();
-		$blobStore->setLegacyEncoding( $encoding, Language::factory( $lang ) );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
+		$this->setMwGlobals( 'wgLegacyEncoding', $encoding );
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
@@ -560,10 +460,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
 		$this->checkPHPExtension( 'zlib' );
-
-		$blobStore = $this->getBlobStore();
-		$blobStore->setCompressBlobs( true );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+		$this->setMwGlobals( 'wgCompressRevisions', true );
 
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
@@ -578,41 +475,20 @@ class RevisionTest extends MediaWikiTestCase {
 			Revision::getRevisionText( $row ), "getRevisionText" );
 	}
 
+	public function provideFetchFromConds() {
+		yield [ 0, [] ];
+		yield [ Revision::READ_LOCKING, [ 'FOR UPDATE' ] ];
+	}
+
 	/**
-	 * @covers Revision::loadFromTitle
+	 * @dataProvider provideFetchFromConds
+	 * @covers Revision::fetchFromConds
 	 */
-	public function testLoadFromTitle() {
-		$title = $this->getMockTitle();
-
-		$conditions = [
-			'rev_id=page_latest',
-			'page_namespace' => $title->getNamespace(),
-			'page_title' => $title->getDBkey()
-		];
-
-		$row = (object)[
-			'rev_id' => '42',
-			'rev_page' => $title->getArticleID(),
-			'rev_text_id' => '2',
-			'rev_timestamp' => '20171017114835',
-			'rev_user_text' => '127.0.0.1',
-			'rev_user' => '0',
-			'rev_minor_edit' => '0',
-			'rev_deleted' => '0',
-			'rev_len' => '46',
-			'rev_parent_id' => '1',
-			'rev_sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
-			'rev_comment_text' => 'Goat Comment!',
-			'rev_comment_data' => null,
-			'rev_comment_cid' => null,
-			'rev_content_format' => 'GOATFORMAT',
-			'rev_content_model' => 'GOATMODEL',
-		];
+	public function testFetchFromConds( $flags, array $options ) {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$conditions = [ 'conditionsArray' ];
 
 		$db = $this->getMock( IDatabase::class );
-		$db->expects( $this->any() )
-			->method( 'getDomainId' )
-			->will( $this->returnValue( wfWikiID() ) );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
@@ -621,24 +497,17 @@ class RevisionTest extends MediaWikiTestCase {
 				$this->isType( 'array' ),
 				$this->equalTo( $conditions ),
 				// Method name
-				$this->stringContains( 'fetchRevisionRowFromConds' ),
-				// We don't really care about the options here
-				$this->isType( 'array' ),
+				$this->equalTo( 'Revision::fetchFromConds' ),
+				$this->equalTo( $options ),
 				// We don't really care about the join conds are they come from the joinCond methods
 				$this->isType( 'array' )
 			)
-			->willReturn( $row );
+			->willReturn( 'RETURNVALUE' );
 
-		$revision = Revision::loadFromTitle( $db, $title );
+		$wrapper = TestingAccessWrapper::newFromClass( Revision::class );
+		$result = $wrapper->fetchFromConds( $db, $conditions, $flags );
 
-		$this->assertEquals( $title->getArticleID(), $revision->getTitle()->getArticleID() );
-		$this->assertEquals( $row->rev_id, $revision->getId() );
-		$this->assertEquals( $row->rev_len, $revision->getSize() );
-		$this->assertEquals( $row->rev_sha1, $revision->getSha1() );
-		$this->assertEquals( $row->rev_parent_id, $revision->getParentId() );
-		$this->assertEquals( $row->rev_timestamp, $revision->getTimestamp() );
-		$this->assertEquals( $row->rev_comment_text, $revision->getComment() );
-		$this->assertEquals( $row->rev_user_text, $revision->getUserText() );
+		$this->assertEquals( 'RETURNVALUE', $result );
 	}
 
 	public function provideDecompressRevisionText() {
@@ -703,12 +572,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @param mixed $expected
 	 */
 	public function testDecompressRevisionText( $legacyEncoding, $text, $flags, $expected ) {
-		$blobStore = $this->getBlobStore();
-		if ( $legacyEncoding ) {
-			$blobStore->setLegacyEncoding( $legacyEncoding, Language::factory( 'en' ) );
-		}
-
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+		$this->setMwGlobals( 'wgLegacyEncoding', $legacyEncoding );
+		$this->setMwGlobals( 'wgLanguageCode', 'en' );
 		$this->assertSame(
 			$expected,
 			Revision::decompressRevisionText( $text, $flags )
@@ -804,20 +669,14 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getRevisionText
 	 */
 	public function testGetRevisionText_external_oldId() {
-		$cache = $this->getWANObjectCache();
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
-
 		$this->setService(
 			'ExternalStoreFactory',
 			new ExternalStoreFactory( [ 'ForTesting' ] )
 		);
 
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$blobStore = new SqlBlobStore( $lb, $cache );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+		$cacheKey = $cache->makeKey( 'revisiontext', 'textid', '7777' );
 
 		$this->assertSame(
 			'AAAABBAAA',
@@ -829,8 +688,6 @@ class RevisionTest extends MediaWikiTestCase {
 				]
 			)
 		);
-
-		$cacheKey = $cache->makeKey( 'revisiontext', 'textid', 'tt:7777' );
 		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
 	}
 
@@ -1026,8 +883,6 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'ar_id',
 					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
 					'ar_rev_id',
 					'ar_text',
 					'ar_text_id',
@@ -1056,8 +911,6 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'ar_id',
 					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
 					'ar_rev_id',
 					'ar_text',
 					'ar_text_id',
@@ -1091,8 +944,6 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'ar_id',
 					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
 					'ar_rev_id',
 					'ar_text',
 					'ar_text_id',
@@ -1129,8 +980,6 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'ar_id',
 					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
 					'ar_rev_id',
 					'ar_text',
 					'ar_text_id',
@@ -1167,8 +1016,6 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'ar_id',
 					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
 					'ar_rev_id',
 					'ar_text',
 					'ar_text_id',
@@ -1200,11 +1047,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testGetArchiveQueryInfo( $globals, $expected ) {
 		$this->setMwGlobals( $globals );
-
-		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
-		$this->setService( 'RevisionStore', $revisionStore );
-
 		$this->assertEquals(
 			$expected,
 			Revision::getArchiveQueryInfo()
@@ -1556,11 +1398,6 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testGetQueryInfo( $globals, $options, $expected ) {
 		$this->setMwGlobals( $globals );
-
-		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
-		$this->setService( 'RevisionStore', $revisionStore );
-
 		$this->assertEquals(
 			$expected,
 			Revision::getQueryInfo( $options )

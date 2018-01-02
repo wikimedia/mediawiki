@@ -74,10 +74,6 @@ changes to languages because of Phabricator reports.
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK namespaces.
 
 === Other changes in 1.31 ===
-* Introducing multi-content-revision capability into the storage layer. For details,
-  see <https://www.mediawiki.org/wiki/Requests_for_comment/Multi-Content_Revisions>.
-* The Revision class was deprecated in favor of RevisionStore, BlobStore, and
-  RevisionRecord and its subclasses.
 * MessageBlobStore::insertMessageBlob() (deprecated in 1.27) was removed.
 * The global function wfBCP47 was renamed to LanguageCode::bcp47.
 * The global function wfBCP47 is now deprecated.
@@ -130,9 +126,6 @@ changes to languages because of Phabricator reports.
 * The Block class will no longer accept usable-but-missing usernames for
   'byText' or ->setBlocker(). Callers should either ensure the blocker exists
   locally or use a new interwiki-format username like "iw>Example".
-* The RevisionInsertComplete hook is now deprecated, use RevisionRecordInserted instead.
-  RevisionInsertComplete is still called, but the second and third parameter will always be null.
-  Hard deprecation is scheduled for 1.32.
 * The following methods that get and set ParserOutput state are deprecated.
   Callers should use the new stateless $options parameter to
   ParserOutput::getText() instead.

@@ -97,8 +97,7 @@ class RevisionStoreRecord extends RevisionRecord {
 			&& $this->mPageId !== $this->mTitle->getArticleID()
 		) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId .
-				' but actually belongs to ' . $this->mTitle->getArticleID()
+				'The given Title does not belong to page ID ' . $this->mPageId
 			);
 		}
 	}

@@ -1,4 +1,6 @@
 <?php
+namespace MediaWiki\Interwiki;
+
 /**
  * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).
  *
@@ -19,17 +21,14 @@
  *
  * @file
  */
-
-namespace MediaWiki\Interwiki;
-
-use Cdb\Exception as CdbException;
-use Cdb\Reader as CdbReader;
+use \Cdb\Exception as CdbException;
+use \Cdb\Reader as CdbReader;
+use Wikimedia\Rdbms\Database;
 use Hooks;
 use Interwiki;
 use Language;
 use MapCacheLRU;
 use WANObjectCache;
-use Wikimedia\Rdbms\Database;
 
 /**
  * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).

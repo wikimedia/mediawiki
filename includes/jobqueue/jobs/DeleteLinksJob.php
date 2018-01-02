@@ -20,8 +20,7 @@
  * @file
  * @ingroup JobQueue
  */
-
-use MediaWiki\MediaWikiServices;
+use \MediaWiki\MediaWikiServices;
 
 /**
  * Job to prune link tables for pages that were deleted

@@ -20,8 +20,7 @@
  * @file
  * @ingroup FileBackend
  */
-
-use MediaWiki\Logger\LoggerFactory;
+use \MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**

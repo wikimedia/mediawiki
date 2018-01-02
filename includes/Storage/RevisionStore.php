@@ -32,7 +32,7 @@ use Content;
 use ContentHandler;
 use DBAccessObjectUtils;
 use Hooks;
-use IDBAccessObject;
+use \IDBAccessObject;
 use InvalidArgumentException;
 use IP;
 use LogicException;
@@ -1075,7 +1075,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$pageId = isset( $row->rev_page ) ? $row->rev_page : 0; // XXX: also check page_id?
 			$revId = isset( $row->rev_id ) ? $row->rev_id : 0;
 
-			$title = $this->getTitle( $pageId, $revId, $queryFlags );
+			$title = $this->getTitle( $pageId, $revId );
 		}
 
 		if ( !isset( $row->page_latest ) ) {
@@ -1143,7 +1143,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$pageId = isset( $fields['page'] ) ? $fields['page'] : 0;
 			$revId = isset( $fields['id'] ) ? $fields['id'] : 0;
 
-			$title = $this->getTitle( $pageId, $revId, $queryFlags );
+			$title = $this->getTitle( $pageId, $revId );
 		}
 
 		if ( !isset( $fields['page'] ) ) {
