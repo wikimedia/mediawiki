@@ -83,6 +83,16 @@ class Article implements Page {
 	private $disableSectionEditForRender = false;
 
 	/**
+	 * Tolarance for recent changes age limit.
+	 * Used for bailing out cheaply when checking whether something is in the recentchanges table.
+	 * If the revision / log entry is older than RC retention time limit + tolerance, we assume
+	 * it can't be in the table.
+	 * Set to 6h because the RC might not be cleaned out regularly.
+	 * @var int Tolerance in seconds.
+	 */
+	private static $rcTolerance = 21600;
+
+	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
 	 * @param int $oldId Revision ID, null to fetch from request, zero for current
@@ -958,6 +968,149 @@ class Article implements Page {
 	}
 
 	/**
+	 * If the page can be patrolled via new page patrol, return the RC entry to patrol.
+	 * False if it has already been patrolled, is too old to patrol, or new page patrolling is
+	 * disabled.
+	 * @return false|RecentChange
+	 */
+	public function getNewPagePatrolChange() {
+		global $wgUseNPPatrol, $wgUseRCPatrol;
+		if ( !$wgUseRCPatrol && !$wgUseNPPatrol ) {
+			// Patrolling is disabled
+			return false;
+		}
+
+		// If the current revision is already too old to be in RC, we can save the effort of
+		// fetching the first revision.
+		if ( $this->mRevision
+			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), self::$rcTolerance )
+		) {
+			return false;
+		}
+
+		// Check for cached results
+		$title = $this->getTitle();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'unpatrollable-page', $title->getArticleID() );
+		if ( $cache->get( $key ) ) {
+			return false;
+		}
+
+		// Get the timestamp of the oldest revison which the revision table holds for the
+		// given page. Then we look whether it's within the RC lifespan and if it is, we try
+		// to get the recentchanges row belonging to that entry (with rc_new = 1).
+		$dbr = wfGetDB( DB_REPLICA );
+		$oldestRevisionTimestamp = $dbr->selectField(
+			'revision',
+			'MIN( rev_timestamp )',
+			[ 'rev_page' => $title->getArticleID() ],
+			__METHOD__
+		);
+		if ( !$oldestRevisionTimestamp
+			|| !RecentChange::isInRCLifespan( $oldestRevisionTimestamp, self::$rcTolerance )
+		) {
+			// Page is too old to be patrollable.
+			// This will never change so safe to cache forever.
+			$cache->set( $key, '2' );
+			return false;
+		}
+
+		$rc = RecentChange::newFromConds(
+			[
+				'rc_new' => 1,
+				'rc_timestamp' => $oldestRevisionTimestamp,
+				'rc_namespace' => $title->getNamespace(),
+				'rc_cur_id' => $title->getArticleID()
+			],
+			__METHOD__
+		);
+		if ( !$rc ) {
+			// RC entry probably too new to be visible due to replication lag. Fail but don't cache.
+			return false;
+		}
+
+		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
+			// Already patrolled. There is no way for a page to get unpatrolled so can be cached.
+			$cache->set( $key, '2' );
+			return false;
+		}
+
+		// Page is patrollable. Don't cache this since it can become unpatrollable as time passes.
+		return $rc;
+	}
+
+	/**
+	 * If the page can be patrolled via file patrol, return the RC entry to patrol.
+	 * False if it has already been patrolled, is too old to patrol, or file patrolling is disabled.
+	 * @return false|RecentChange
+	 */
+	public function getFilePatrolChange() {
+		global $wgUseFilePatrol;
+
+		$title = $this->getTitle();
+		if ( !$wgUseFilePatrol || !$title->inNamespace( NS_FILE ) ) {
+			// Page is not file-patrollable.
+			return false;
+		}
+
+		// Uploading a new file version creates a new page revision, so if the current revision is
+		// already too old to be in RC, we can save the effort of fetching the log entry.
+		if ( $this->mRevision
+			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), self::$rcTolerance )
+		) {
+			return false;
+		}
+
+		// Check for cached results
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'unpatrollable-file', $title->getArticleID() );
+		if ( $cache->get( $key ) ) {
+			return false;
+		}
+
+		// Retrieve timestamp of most recent upload
+		$dbr = wfGetDB( DB_REPLICA );
+		$newestUploadTimestamp = $dbr->selectField(
+			'image',
+			'MAX( img_timestamp )',
+			[ 'img_name' => $title->getDBkey() ],
+			__METHOD__
+		);
+		if ( !$newestUploadTimestamp
+			|| !RecentChange::isInRCLifespan( $newestUploadTimestamp, self::$rcTolerance )
+		) {
+			// Not a local file or too old to be patrollable. This only changes when a new
+			// version is uploaded, and we clear the cache then, so safe to cache forever.
+			$cache->set( $key, '1' );
+			return false;
+		}
+		$rc = RecentChange::newFromConds(
+			[
+				'rc_type' => RC_LOG,
+				'rc_log_type' => 'upload',
+				'rc_timestamp' => $newestUploadTimestamp,
+				'rc_namespace' => NS_FILE,
+				'rc_cur_id' => $title->getArticleID()
+			],
+			__METHOD__
+		);
+		if ( !$rc ) {
+			// RC entry probably too new to be visible due to replication lag. Fail but don't cache.
+			return false;
+		}
+
+		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
+			// Already patrolled. The only way for a file to get unpatrolled is new version
+			// upload and we clear the cache on that, so safe to cache.
+			$cache->set( $key, '1' );
+			return false;
+		}
+
+		// File is patrollable. Don't cache this since it can become unpatrollable as time passes.
+		return $rc;
+	}
+
+	/**
 	 * If patrol is possible, output a patrol UI box. This is called from the
 	 * footer section of ordinary page views. If patrol is not possible or not
 	 * desired, does nothing.
@@ -967,132 +1120,27 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgEnableAPI, $wgEnableWriteAPI;
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$title = $this->getTitle();
-		$rc = false;
 
-		if ( !$title->quickUserCan( 'patrol', $user )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol
-				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
-		) {
-			// Patrolling is disabled or the user isn't allowed to
+		if ( !$title->quickUserCan( 'patrol', $user ) ) {
+			// The user can't patrol
 			return false;
 		}
 
-		if ( $this->mRevision
-			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )
-		) {
-			// The current revision is already older than what could be in the RC table
-			// 6h tolerance because the RC might not be cleaned out regularly
-			return false;
-		}
-
-		// Check for cached results
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$key = $cache->makeKey( 'unpatrollable-page', $title->getArticleID() );
-		if ( $cache->get( $key ) ) {
-			return false;
-		}
-
-		$dbr = wfGetDB( DB_REPLICA );
-		$oldestRevisionTimestamp = $dbr->selectField(
-			'revision',
-			'MIN( rev_timestamp )',
-			[ 'rev_page' => $title->getArticleID() ],
-			__METHOD__
-		);
-
-		// New page patrol: Get the timestamp of the oldest revison which
-		// the revision table holds for the given page. Then we look
-		// whether it's within the RC lifespan and if it is, we try
-		// to get the recentchanges row belonging to that entry
-		// (with rc_new = 1).
-		$recentPageCreation = false;
-		if ( $oldestRevisionTimestamp
-			&& RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 )
-		) {
-			// 6h tolerance because the RC might not be cleaned out regularly
-			$recentPageCreation = true;
-			$rc = RecentChange::newFromConds(
-				[
-					'rc_new' => 1,
-					'rc_timestamp' => $oldestRevisionTimestamp,
-					'rc_namespace' => $title->getNamespace(),
-					'rc_cur_id' => $title->getArticleID()
-				],
-				__METHOD__
-			);
-			if ( $rc ) {
-				// Use generic patrol message for new pages
-				$markPatrolledMsg = wfMessage( 'markaspatrolledtext' );
-			}
-		}
-
-		// File patrol: Get the timestamp of the latest upload for this page,
-		// check whether it is within the RC lifespan and if it is, we try
-		// to get the recentchanges row belonging to that entry
-		// (with rc_type = RC_LOG, rc_log_type = upload).
-		$recentFileUpload = false;
-		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseFilePatrol
-			&& $title->getNamespace() === NS_FILE ) {
-			// Retrieve timestamp of most recent upload
-			$newestUploadTimestamp = $dbr->selectField(
-				'image',
-				'MAX( img_timestamp )',
-				[ 'img_name' => $title->getDBkey() ],
-				__METHOD__
-			);
-			if ( $newestUploadTimestamp
-				&& RecentChange::isInRCLifespan( $newestUploadTimestamp, 21600 )
-			) {
-				// 6h tolerance because the RC might not be cleaned out regularly
-				$recentFileUpload = true;
-				$rc = RecentChange::newFromConds(
-					[
-						'rc_type' => RC_LOG,
-						'rc_log_type' => 'upload',
-						'rc_timestamp' => $newestUploadTimestamp,
-						'rc_namespace' => NS_FILE,
-						'rc_cur_id' => $title->getArticleID()
-					],
-					__METHOD__,
-					[ 'USE INDEX' => 'rc_timestamp' ]
-				);
-				if ( $rc ) {
-					// Use patrol message specific to files
-					$markPatrolledMsg = wfMessage( 'markaspatrolledtext-file' );
-				}
-			}
-		}
-
-		if ( !$recentPageCreation && !$recentFileUpload ) {
-			// Page creation and latest upload (for files) is too old to be in RC
-
-			// We definitely can't patrol so cache the information
-			// When a new file version is uploaded, the cache is cleared
-			$cache->set( $key, '1' );
-
-			return false;
-		}
-
+		$markPatrolledMsg = wfMessage( 'markaspatrolledtext' );
+		$rc = $this->getNewPagePatrolChange();
 		if ( !$rc ) {
-			// Don't cache: This can be hit if the page gets accessed very fast after
-			// its creation / latest upload or in case we have high replica DB lag. In case
-			// the revision is too old, we will already return above.
-			return false;
-		}
-
-		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
-			// Patrolled RC entry around
-
-			// Cache the information we gathered above in case we can't patrol
-			// Don't cache in case we can patrol as this could change
-			$cache->set( $key, '1' );
-
-			return false;
+			$rc = $this->getFilePatrolChange();
+			if ( !$rc ) {
+				// Nothing to patrol
+				return false;
+			}
+			// Use patrol message specific to files
+			$markPatrolledMsg = wfMessage( 'markaspatrolledtext-file' );
 		}
 
 		if ( $rc->getPerformer()->equals( $user ) ) {
@@ -1126,14 +1174,30 @@ class Article implements Page {
 	}
 
 	/**
+	 * Purge the cache used to check whether the page has been patrolled.
+	 * For example, it is done during re-uploads when file patrol is used.
+	 * @param int $articleID ID of the article to purge
+	 * @param string $type 'file' or 'page'
+	 * @since 1.31
+	 */
+	public static function purgePatrolCache( $articleID, $type ) {
+		if ( $type !== 'page' && $type !== 'file' ) {
+			throw new LogicException( __METHOD__ . ': $type must be \'page\' or \'file\'' );
+		}
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cache->delete( $cache->makeKey( "unpatrollable-$type", $articleID ) );
+	}
+
+	/**
 	 * Purge the cache used to check if it is worth showing the patrol footer
 	 * For example, it is done during re-uploads when file patrol is used.
 	 * @param int $articleID ID of the article to purge
 	 * @since 1.27
+	 * @deprecated 1.31
 	 */
 	public static function purgePatrolFooterCache( $articleID ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$cache->delete( $cache->makeKey( 'unpatrollable-page', $articleID ) );
+		self::purgePatrolCache( $articleID, 'page' );
+		self::purgePatrolCache( $articleID, 'file' );
 	}
 
 	/**

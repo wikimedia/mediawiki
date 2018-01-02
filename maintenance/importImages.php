@@ -151,9 +151,12 @@ class ImportImages extends Maintenance {
 		# Initialise the user for this operation
 		$user = $this->hasOption( 'user' )
 			? User::newFromName( $this->getOption( 'user' ) )
-			: User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			: false;
 		if ( !$user instanceof User ) {
 			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			// system-imported files don't need to be patrolled
+			$user->getRights();
+			$user->mRights[] = 'autopatrol';
 		}
 		$wgUser = $user;
 
@@ -301,17 +304,10 @@ class ImportImages extends Maintenance {
 				} else {
 					$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 					$props = $mwProps->getPropsFromPath( $file, true );
-					$flags = 0;
-					$publishOptions = [];
-					$handler = MediaHandler::getHandler( $props['mime'] );
-					if ( $handler ) {
-						$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
-
-						$publishOptions['headers'] = $handler->getContentHeaders( $metadata );
-					} else {
-						$publishOptions['headers'] = [];
-					}
-					$archive = $image->publish( $file, $flags, $publishOptions );
+					$publishOptions = [
+						'headers' => LocalFile::getContentHeadersForNewFile( $props, $user ),
+					];
+					$archive = $image->publish( $file, 0, $publishOptions );
 					if ( !$archive->isGood() ) {
 						$this->output( "failed. (" .
 							 $archive->getWikiText( false, false, 'en' ) .

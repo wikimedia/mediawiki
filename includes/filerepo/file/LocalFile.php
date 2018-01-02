@@ -1289,19 +1289,9 @@ class LocalFile extends File {
 			}
 		}
 
-		$options = [];
-		$handler = MediaHandler::getHandler( $props['mime'] );
-		if ( $handler ) {
-			$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
-
-			if ( !is_array( $metadata ) ) {
-				$metadata = [];
-			}
-
-			$options['headers'] = $handler->getContentHeaders( $metadata );
-		} else {
-			$options['headers'] = [];
-		}
+		$options = [
+			'headers' => LocalFile::getContentHeadersForNewFile( $props, $user ),
+		];
 
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
@@ -1668,7 +1658,7 @@ class LocalFile extends File {
 						$wikiPage->getTitle()->invalidateCache();
 						$wikiPage->getTitle()->purgeSquid();
 						# Allow the new file version to be patrolled from the page footer
-						Article::purgePatrolFooterCache( $descId );
+						Article::purgePatrolCache( $descId, 'file' );
 					}
 
 					# Update associated rev id. This should be done by $logEntry->insert() earlier,
@@ -2124,6 +2114,65 @@ class LocalFile extends File {
 		}
 
 		return $this->sha1;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getContentHeaders() {
+		global $wgUseFilePatrol;
+
+		$headers = parent::getContentHeaders();
+
+		// If file patrolling is enabled, and file is unpatrolled, mark it so.
+		// Note that this is unreliable for very recently (re)uploaded files, due to the way
+		// Article::getFilePatrolChange works. If the file backend can remember headers, this
+		// method won't be used much, and if it can't, getContentHeaders() is not reliable anyway,
+		// so this should be good enough.
+		if ( $wgUseFilePatrol ) {
+			$article = Article::newFromTitle( $this->getTitle(), RequestContext::getMain() );
+			if ( $article->getFilePatrolChange() ) {
+				$headers += [
+					'X-MediaWiki-Patrol-Status' => 'unpatrolled',
+				];
+			}
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * Like File::getContentHeaders(), for new uploads (when the LocalFile object does not exist
+	 * yet, or is otherwise not usable, e.g. not written to disk).
+	 * @param array $props File props, as returned by MWFileProps::getPropsFromPath or something
+	 *   equivalent.
+	 * @param User $user The owner of the file.
+	 * @return array
+	 * @since 1.31
+	 */
+	public static final function getContentHeadersForNewFile( array $props, User $user ) {
+		global $wgUseFilePatrol;
+
+		$headers = [];
+
+		$handler = MediaHandler::getHandler( $props['mime'] );
+		if ( $handler ) {
+			$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
+
+			if ( !is_array( $metadata ) ) {
+				$metadata = [];
+			}
+
+			$headers = $handler->getContentHeaders( $metadata );
+		}
+
+		if ( $wgUseFilePatrol && !$user->isAllowed( 'autopatrol' ) ) {
+			$headers += [
+				'X-MediaWiki-Patrol-Status' => 'unpatrolled',
+			];
+		}
+
+		return $headers;
 	}
 
 	/**

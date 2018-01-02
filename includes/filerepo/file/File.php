@@ -2177,10 +2177,16 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * @return array HTTP header name/value map to use for HEAD/GET request responses
+	 * The HTTP headers with which the file should be served.
+	 * Note that depending on configuration, the headers might not be applied consistently.
+	 * To guarantee they are always there, the wiki must either be configured to always serve
+	 * files through PHP, ore use a FileBackend that can store headers (e.g. SwiftFileBackend).
+	 * @return array Name/value map.
 	 * @since 1.30
+	 * @see LocalFile::getContentHeadersForNewFile()
+	 * @see MediaHandler::getContentHeaders()
 	 */
-	function getContentHeaders() {
+	public function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			$metadata = $this->getMetadata();
