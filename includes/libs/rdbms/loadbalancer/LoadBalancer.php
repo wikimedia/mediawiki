@@ -628,6 +628,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
+		$requestedIndex = $i;
+
 		if ( $i === null || $i === false ) {
 			throw new InvalidArgumentException( 'Attempt to call ' . __METHOD__ .
 				' with invalid server index' );
@@ -691,6 +693,14 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $masterOnly ) {
 			# Make master-requested DB handles inherit any read-only mode setting
 			$conn->setLBInfo( 'readOnlyReason', $this->getReadOnlyReason( $domain, $conn ) );
+		}
+
+		// When returning the master connection for DB_REPLICA, wrap it to prevent writes.
+		if ( $requestedIndex !== DB_MASTER
+			&& $requestedIndex !== $this->getWriterIndex()
+			&& $conn->getLBInfo( 'master' )
+		) {
+			$conn = new DBNoWriteWrapper( $conn );
 		}
 
 		return $conn;

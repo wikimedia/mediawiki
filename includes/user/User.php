@@ -5149,7 +5149,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $dbw->affectedRows() == 0 ) {
 			// Now here's a goddamn hack...
 			$dbr = wfGetDB( DB_REPLICA );
-			if ( $dbr !== $dbw ) {
+			if ( $dbr->getLBInfo( 'replica' ) ) {
 				// If we actually have a replica DB server, the count is
 				// at least one behind because the current transaction
 				// has not been committed and replicated.
@@ -5164,7 +5164,7 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( $this->mEditCount === null ) {
 				$this->getEditCount();
 				$dbr = wfGetDB( DB_REPLICA );
-				$this->mEditCount += ( $dbr !== $dbw ) ? 1 : 0;
+				$this->mEditCount += $dbr->getLBInfo( 'replica' ) ? 1 : 0;
 			} else {
 				$this->mEditCount++;
 			}

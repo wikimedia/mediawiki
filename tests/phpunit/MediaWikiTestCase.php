@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
