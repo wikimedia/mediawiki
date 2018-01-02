@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @group Media
  * @covers MimeAnalyzer
  */

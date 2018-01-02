@@ -1,9 +1,10 @@
 <?php
-/**
- *
- * @group Hash
- */
 
+/**
+ * @group Hash
+ *
+ * @covers MWCryptHash
+ */
 class MWCryptHashTest extends PHPUnit_Framework_TestCase {
 
 	use MediaWikiCoversValidator;

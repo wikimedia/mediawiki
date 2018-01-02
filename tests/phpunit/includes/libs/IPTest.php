@@ -564,7 +564,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test for IP::splitHostAndPort().
+	 * @covers IP::splitHostAndPort()
 	 * @dataProvider provideSplitHostAndPort
 	 */
 	public function testSplitHostAndPort( $expected, $input, $description ) {
@@ -591,7 +591,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test for IP::combineHostAndPort()
+	 * @covers IP::combineHostAndPort()
 	 * @dataProvider provideCombineHostAndPort
 	 */
 	public function testCombineHostAndPort( $expected, $input, $description ) {
@@ -615,7 +615,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test for IP::sanitizeRange()
+	 * @covers IP::sanitizeRange()
 	 * @dataProvider provideIPCIDRs
 	 */
 	public function testSanitizeRange( $input, $expected, $description ) {
@@ -639,7 +639,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test for IP::prettifyIP()
+	 * @covers IP::prettifyIP()
 	 * @dataProvider provideIPsToPrettify
 	 */
 	public function testPrettifyIP( $ip, $prettified ) {

@@ -60,6 +60,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Highlight diff between assertEquals and assertNotSame
+	 * @coversNothing
 	 */
 	public function testPhpUnitArrayEquality() {
 		$one = [ 'A' => 1, 'B' => 2 ];
