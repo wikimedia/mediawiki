@@ -118,6 +118,11 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
+		$db0 = $lb->getConnection( $lb->getWriterIndex() );
+		$this->assertSame( $dbw, $db0, 'getWriterIndex() is equivalent to DB_MASTER' );
+		$this->assertTrue( $db0->getLBInfo( 'master' ), 'Writer shows as master' );
+		$this->assertWriteAllowed( $db0 );
+
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertNotSame( $dbw, $dbr, 'Replica connection is not master connection' );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );

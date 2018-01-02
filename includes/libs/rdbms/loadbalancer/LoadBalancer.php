@@ -648,7 +648,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $i == self::DB_MASTER ) {
 			$i = $this->getWriterIndex();
-		} else {
+		} elseif ( $i == self::DB_REPLICA ) {
 			# Try to find an available server in any the query groups (in order)
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $domain );
