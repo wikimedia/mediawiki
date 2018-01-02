@@ -87,6 +87,9 @@ interface ILoadBalancer {
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTO = 1;
 
+	/** Disable writing for the given connection. Used internally. Do not use with DB_MASTER! */
+	const CONN_NO_WRITE = 2;
+
 	/**
 	 * Construct a manager of IDatabase connection objects
 	 *
@@ -165,7 +168,7 @@ interface ILoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @return Database|bool False if no such connection is open
+	 * @return IDatabase|bool False if no such connection is open
 	 */
 	public function getAnyOpenConnection( $i );
 
@@ -180,7 +183,7 @@ interface ILoadBalancer {
 	 * @param int $flags Bitfield of CONN_* class constants
 	 *
 	 * @throws DBError
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
@@ -259,7 +262,7 @@ interface ILoadBalancer {
 	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
-	 * @return Database|bool Returns false on errors
+	 * @return IDatabase|bool Returns false on errors
 	 * @throws DBAccessError
 	 */
 	public function openConnection( $i, $domain = false, $flags = 0 );
