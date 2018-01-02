@@ -1663,6 +1663,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DBError' => __DIR__ . '/includes/libs/rdbms/exception/DBError.php',
 	'Wikimedia\\Rdbms\\DBExpectedError' => __DIR__ . '/includes/libs/rdbms/exception/DBExpectedError.php',
 	'Wikimedia\\Rdbms\\DBMasterPos' => __DIR__ . '/includes/libs/rdbms/database/position/DBMasterPos.php',
+	'Wikimedia\\Rdbms\\DBNoWriteWrapper' => __DIR__ . '/includes/libs/rdbms/database/DBNoWriteWrapper.php',
 	'Wikimedia\\Rdbms\\DBQueryError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryError.php',
 	'Wikimedia\\Rdbms\\DBQueryTimeoutError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryTimeoutError.php',
 	'Wikimedia\\Rdbms\\DBReadOnlyError' => __DIR__ . '/includes/libs/rdbms/exception/DBReadOnlyError.php',

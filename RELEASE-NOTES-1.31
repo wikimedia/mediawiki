@@ -165,6 +165,10 @@ changes to languages because of Phabricator reports.
   has been deprecated since 1.27 and was removed as well.
 * The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
   HtmlFormatter\HtmlFormatter class should be used instead.
+* LoadBalancer's getConnection and openConnection methods are now defined to
+  return an IDatabase instead of a Database. IDatabase defines the same
+  interface as the Database base class, but this change may still break type
+  hints and test cases.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
