@@ -510,39 +510,47 @@ class Parser {
 	 * @return string
 	 */
 	protected function makeLimitReport() {
-		global $wgShowHostnames;
+		global $wgShowHostnames, $wgLang;
+
+		$interfaceLang = $wgLang;
 
 		$maxIncludeSize = $this->mOptions->getMaxIncludeSize();
 
 		$cpuTime = $this->mOutput->getTimeSinceStart( 'cpu' );
 		if ( $cpuTime !== null ) {
 			$this->mOutput->setLimitReportData( 'limitreport-cputime',
-				sprintf( "%.3f", $cpuTime )
+				$interfaceLang->formatNum( sprintf( "%.3f", $cpuTime ) )
 			);
 		}
 
 		$wallTime = $this->mOutput->getTimeSinceStart( 'wall' );
 		$this->mOutput->setLimitReportData( 'limitreport-walltime',
-			sprintf( "%.3f", $wallTime )
+			$interfaceLang->formatNum( sprintf( "%.3f", $wallTime ) )
 		);
 
 		$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
-			[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
+			[ $interfaceLang->formatNum( $this->mPPNodeCount ),
+				$interfaceLang->formatNum( $this->mOptions->getMaxPPNodeCount() ) ]
 		);
 		$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
-			[ $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() ]
+			[ $interfaceLang->formatNum( $this->mGeneratedPPNodeCount ),
+				$interfaceLang->formatNum( $this->mOptions->getMaxGeneratedPPNodeCount() ) ]
 		);
 		$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
-			[ $this->mIncludeSizes['post-expand'], $maxIncludeSize ]
+			[ $interfaceLang->formatNum( $this->mIncludeSizes['post-expand'] ),
+				$interfaceLang->formatNum( $maxIncludeSize ) ]
 		);
 		$this->mOutput->setLimitReportData( 'limitreport-templateargumentsize',
-			[ $this->mIncludeSizes['arg'], $maxIncludeSize ]
+			[ $interfaceLang->formatNum( $this->mIncludeSizes['arg'] ),
+				$interfaceLang->formatNum( $maxIncludeSize ) ]
 		);
 		$this->mOutput->setLimitReportData( 'limitreport-expansiondepth',
-			[ $this->mHighestExpansionDepth, $this->mOptions->getMaxPPExpandDepth() ]
+			[ $interfaceLang->formatNum( $this->mHighestExpansionDepth ),
+				$interfaceLang->formatNum( $this->mOptions->getMaxPPExpandDepth() ) ]
 		);
 		$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
-			[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
+			[ $interfaceLang->formatNum( $this->mExpensiveFunctionCount ),
+				$interfaceLang->formatNum( $this->mOptions->getExpensiveParserFunctionLimit() ) ]
 		);
 		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
