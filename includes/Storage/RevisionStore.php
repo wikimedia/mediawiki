@@ -49,6 +49,7 @@ use User;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -1465,21 +1466,22 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
-		$dbWiki = $db->getDomainID();
+		$dbDomainId = $db->getDomainID();
 
-		if ( $dbWiki === $storeWiki ) {
+		if ( $this->wikiId ) {
+			$wikiId = $this->wikiId;
+		} else {
+			// XXX: we really want the default database ID...
+			$wikiId = wfWikiID();
+		}
+
+		$contextDomainId = DatabaseDomain::newFromId( $wikiId )->getId();
+		if ( $contextDomainId === $dbDomainId ) {
 			return;
 		}
 
-		// XXX: we really want the default database ID...
-		$storeWiki = $storeWiki ?: wfWikiID();
-		$dbWiki = $dbWiki ?: wfWikiID();
-
-		if ( $dbWiki !== $storeWiki ) {
-			throw new MWException( "RevisionStore for $storeWiki "
-				. "cannot be used with a DB connection for $dbWiki" );
-		}
+		throw new MWException( "RevisionStore for $contextDomainId "
+			. "cannot be used with a DB connection for $dbDomainId" );
 	}
 
 	/**
