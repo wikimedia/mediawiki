@@ -172,11 +172,7 @@ class SpecialExpandTemplates extends SpecialPage {
 				'rows' => 10,
 				'default' => $input,
 				'id' => 'input',
-				// The following classes can be used here:
-				// * mw-editfont-monospace
-				// * mw-editfont-sans-serif
-				// * mw-editfont-serif
-				'cssclass' => 'mw-editfont-' . $this->getUser()->getOption( 'editfont' ),
+				'useeditfont' => true,
 			],
 			'removecomments' => [
 				'type' => 'check',
