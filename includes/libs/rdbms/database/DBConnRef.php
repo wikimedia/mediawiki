@@ -153,6 +153,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getDomain() {
+		return DatabaseDomain::newFromId( $this->getDomainID() );
+	}
+
 	public function getDomainID() {
 		if ( $this->conn === null ) {
 			$domain = $this->params[self::FLD_DOMAIN];

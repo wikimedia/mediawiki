@@ -42,7 +42,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertEquals( $r1->getSize(), $r2->getSize() );
 		$this->assertEquals( $r1->getPageId(), $r2->getPageId() );
 		$this->assertEquals( $r1->getSlotRoles(), $r2->getSlotRoles() );
-		$this->assertEquals( $r1->getWikiId(), $r2->getWikiId() );
+		$this->assertEquals( $r1->getDbDomain(), $r2->getDbDomain() );
 		$this->assertEquals( $r1->isMinor(), $r2->isMinor() );
 		foreach ( $r1->getSlotRoles() as $role ) {
 			$this->assertEquals( $r1->getSlot( $role ), $r2->getSlot( $role ) );

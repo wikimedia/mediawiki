@@ -671,6 +671,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->$name;
 	}
 
+	public function getDomain() {
+		return $this->currentDomain;
+	}
+
 	public function getDomainID() {
 		return $this->currentDomain->getId();
 	}

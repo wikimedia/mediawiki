@@ -29,6 +29,7 @@ use MediaWiki\User\UserIdentity;
 use MWException;
 use Title;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
@@ -58,7 +59,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	) {
 		// TODO: ideally, we wouldn't need a Title here
 		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$rev = new MutableRevisionRecord( $title, $parent->getDbDomain() );
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );
@@ -80,15 +81,15 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * in RevisionStore instead.
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param DatabaseDomain|null $dbDomain the wiki DatabaseDomain of the site this Revision belongs to,
+	 *        or null for the local site.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, $wikiId = false ) {
+	function __construct( Title $title, DatabaseDomain $dbDomain = null ) {
 		$slots = new MutableRevisionSlots();
 
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots, $dbDomain );
 
 		$this->mSlots = $slots; // redundant, but nice for static analysis
 	}

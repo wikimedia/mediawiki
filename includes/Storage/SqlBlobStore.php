@@ -35,6 +35,7 @@ use Language;
 use MWException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -62,9 +63,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	private $cache;
 
 	/**
-	 * @var bool|string Wiki ID
+	 * @var DatabaseDomain|null DatabaseDomain or null for default wiki
 	 */
-	private $wikiId;
+	private $dbDomain;
 
 	/**
 	 * @var int
@@ -94,16 +95,17 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @param LoadBalancer $dbLoadBalancer A load balancer for acquiring database connections
 	 * @param WANObjectCache $cache A cache manager for caching blobs
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param DatabaseDomain|null $dbDomain The DatabaseDomain of the target wiki database.
+	 *  Use null for the local wiki.
 	 */
 	public function __construct(
 		LoadBalancer $dbLoadBalancer,
 		WANObjectCache $cache,
-		$wikiId = false
+		DatabaseDomain $dbDomain = null
 	) {
 		$this->dbLoadBalancer = $dbLoadBalancer;
 		$this->cache = $cache;
-		$this->wikiId = $wikiId;
+		$this->dbDomain = $dbDomain;
 	}
 
 	/**
@@ -194,7 +196,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	private function getDBConnection( $index ) {
 		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnection( $index, [], $this->wikiId );
+		return $lb->getConnection( $index, [], $this->dbDomain );
 	}
 
 	/**
@@ -382,24 +384,24 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				return false;
 			}
 
-			if ( $cacheKey && $this->wikiId === false ) {
+			if ( $cacheKey && $this->dbDomain === null ) {
 				// Make use of the wiki-local revision text cache.
 				// The cached value should be decompressed, so handle that and return here.
-				// NOTE: we rely on $this->cache being the right cache for $this->wikiId!
+				// NOTE: we rely on $this->cache being the right cache for $this->dbDomain!
 				return $this->cache->getWithSetCallback(
 					// TODO: change key, since this is not necessarily revision text!
 					$this->cache->makeKey( 'revisiontext', 'textid', $cacheKey ),
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
 						// No negative caching per BlobStore::getBlob()
-						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
 
 						return $this->decompressData( $blob, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 				);
 			} else {
-				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->dbDomain ] );
 				return $this->decompressData( $blob, $flags );
 			}
 		} else {
