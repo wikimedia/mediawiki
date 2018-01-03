@@ -13,6 +13,8 @@ use Html;
  * Renders one or more SearchResultSets into a sidebar grouped by
  * interwiki prefix. Includes a per-wiki header indicating where
  * the results are from.
+ *
+ * @deprecated since 1.31. Use InterwikiSearchResultSetWidget
  */
 class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 	/** @var SpecialSearch */
@@ -32,6 +34,7 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 		LinkRenderer $linkRenderer,
 		InterwikiLookup $iwLookup
 	) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->specialSearch = $specialSearch;
 		$this->resultWidget = $resultWidget;
 		$this->linkRenderer = $linkRenderer;
