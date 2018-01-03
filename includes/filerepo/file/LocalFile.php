@@ -2171,6 +2171,76 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Called when a file was marked as patrolled.
+	 * Removes the X-MediaWiki-Patrol-Status header from current and old versions of the file.
+	 * @param bool $purgeThumbnails Also purge thumbnails for affected file versions. Normally
+	 *   this should be done to keep headers consistent; the flag is provided in case other code
+	 *   did it already.
+	 * @since 1.31
+	 */
+	public function onMarkPatrolled( $purgeThumbnails = true ) {
+		if ( !$this->getRepo()->getBackend()->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
+			return;
+		}
+		DeferredUpdates::addCallableUpdate( function () use ( $purgeThumbnails ) {
+			$fileVersions = $this->getHistory();
+			array_unshift( $fileVersions, $this );
+
+			// Deleting thumbnails is costly, try avoid it if we can, by fetching
+			// current headers (can be done in a single parallel HTTP request) and
+			// only updating / deleting thumbnails when there is an XMPS header that
+			// needs to be removed.
+			$srcs = [];
+			foreach ( $fileVersions as $file ) {
+				$srcs[] = $file->getPath();
+			}
+			$file->getRepo()->getBackend()->preloadFileStat( [ 'srcs' => $srcs ] );
+			foreach ( $fileVersions as $file ) {
+				$stat = $file->getRepo()->getBackend()->getFileStat( [ 'src' => $file->getPath() ] );
+				if ( !isset( $stat['xattr']['headers']['x-mediawiki-patrol-status'] ) ) {
+					continue;
+				}
+				$file->getRepo()->getBackend()->describe( [
+					'src' => $file->getPath(),
+					'headers' => [
+						'X-MediaWiki-Patrol-Status' => '',
+					],
+				] );
+				if ( $purgeThumbnails ) {
+					$file->purgeCache( [ 'forThumbRefresh' => true ] );
+				}
+			}
+		} );
+	}
+
+	/**
+	 * Update the X-MediaWiki-Patrol-Status header of the file (all versions)
+	 * based on the patrol status.
+	 *
+	 * Assumes that XMPS headers are never erroneously missing, and takes advantage
+	 * of the fact that there is no way for a patrolled file to become unpatrolled,
+	 * and only updates in the header present -> header removed direction.
+	 *
+	 * @param bool $purgeThumbnails Also purge thumbnails for affected file versions. Normally
+	 *   this should be done to keep headers consistent; the flag is provided in case other code
+	 *   did it already.
+	 */
+	public function updatePatrolHeaders( $purgeThumbnails = true ) {
+		global $wgUseFilePatrol;
+		if (
+			!$wgUseFilePatrol
+			|| !$this->getRepo()->getBackend()->hasFeatures( FileBackend::ATTR_HEADERS )
+		) {
+			return;
+		}
+
+		$article = Article::newFromTitle( $this->getTitle(), RequestContext::getMain() );
+		if ( !$article->getFilePatrolChange() ) {
+			$this->onMarkPatrolled( $purgeThumbnails );
+		}
+	}
+
+	/**
 	 * @return bool Whether to cache in RepoGroup (this avoids OOMs)
 	 */
 	function isCacheable() {
