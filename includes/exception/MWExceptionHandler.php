@@ -121,7 +121,7 @@ class MWExceptionHandler {
 		self::handleException( $e );
 
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
-		if ( PHP_SAPI === 'cli' ) {
+		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
 			register_shutdown_function(
 				function () {
 					exit( 255 );

@@ -3031,7 +3031,7 @@ function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
 	if ( $timeout === null ) {
-		$timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
+		$timeout = ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) ? 86400 : 10;
 	}
 
 	if ( $cluster === '*' ) {

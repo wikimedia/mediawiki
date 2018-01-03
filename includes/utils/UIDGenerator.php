@@ -367,7 +367,9 @@ class UIDGenerator {
 		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
 		// Counter values would not survive accross script instances in CLI mode.
 		$cache = null;
-		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
+		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli'
+			&& PHP_SAPI !== 'phpdbg'
+		) {
 			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		}
 		if ( $cache ) {
