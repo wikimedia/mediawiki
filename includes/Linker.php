@@ -1968,8 +1968,9 @@ class Linker {
 	 *
 	 * @since 1.16.3 $msgParams added in 1.27
 	 * @param string $name Id of the element, minus prefixes.
-	 * @param string|null $options Null or the string 'withaccess' to add an access-
-	 *   key hint
+	 * @param string|array|null $options Null or the string or array containing some of the following options:
+	 *   - 'withaccess' to add an access-key hint
+	 *   - 'nonexisting' to add an accessibility hint that page does not exist
 	 * @param array $msgParams Parameters to pass to the message
 	 *
 	 * @return string Contents of the title attribute (which you must HTML-
@@ -1989,7 +1990,17 @@ class Linker {
 			}
 		}
 
-		if ( $options == 'withaccess' ) {
+		$options = (array)$options;
+
+		if ( in_array( 'nonexisting', $options ) ) {
+			if ( $tooltip === false || $tooltip === '' ) {
+				$tooltip = wfMessage( 'nonexisting' )->text();
+			} else {
+				$tooltip .= wfMessage( 'word-separator' )->text();
+				$tooltip .= wfMessage( 'nonexisting' )->text();
+			}
+		}
+		if ( in_array( 'withaccess', $options ) ) {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
 				// Should be build the same as in jquery.accessKeyLabel.js
@@ -2132,12 +2143,18 @@ class Linker {
 	 * @since 1.16.3. $msgParams introduced in 1.27
 	 * @param string $name
 	 * @param array $msgParams Params for constructing the message
+	 * @param string|null $options Options to be passed to titleAttrib.
+	 *
+	 * @see Linker::titleAttrib
 	 *
 	 * @return array
 	 */
-	public static function tooltipAndAccesskeyAttribs( $name, array $msgParams = [] ) {
+	public static function tooltipAndAccesskeyAttribs( $name, array $msgParams = [], $options = null ) {
+		$options = (array)$options;
+		$options[] = 'withaccess';
+
 		$attribs = [
-			'title' => self::titleAttrib( $name, 'withaccess', $msgParams ),
+			'title' => self::titleAttrib( $name, $options, $msgParams ),
 			'accesskey' => self::accesskey( $name )
 		];
 		if ( $attribs['title'] === false ) {
