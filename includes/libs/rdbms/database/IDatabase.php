@@ -336,6 +336,12 @@ interface IDatabase {
 	public function getFlag( $flag );
 
 	/**
+	 * @since 1.31
+	 * @return DatabaseDomain
+	 */
+	public function getDomain();
+
+	/**
 	 * @return string
 	 */
 	public function getDomainID();

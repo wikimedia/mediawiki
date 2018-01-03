@@ -31,7 +31,7 @@ use MediaWiki\User\UserIdentity;
 use MWException;
 use Title;
 use User;
-use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Page revision base class.
@@ -56,8 +56,8 @@ abstract class RevisionRecord {
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
 
-	/** @var string Wiki ID; false means the current wiki */
-	protected $mWiki = false;
+	/** @var DatabaseDomain|null Wiki DatabaseDomain; null means the current wiki */
+	protected $dbDomain = false;
 	/** @var int|null */
 	protected $mId;
 	/** @var int|null */
@@ -91,17 +91,15 @@ abstract class RevisionRecord {
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param DatabaseDomain|null $dbDomain the wiki DatabaseDomain of the site this Revision belongs to,
+	 *        or null for the local site.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $wikiId = false ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-
+	function __construct( Title $title, RevisionSlots $slots, DatabaseDomain $dbDomain = null ) {
 		$this->mTitle = $title;
 		$this->mSlots = $slots;
-		$this->mWiki = $wikiId;
+		$this->dbDomain = $dbDomain;
 
 		// XXX: this is a sensible default, but we may not have a Title object here in the future.
 		$this->mPageId = $title->getArticleID();
@@ -270,12 +268,12 @@ abstract class RevisionRecord {
 	}
 
 	/**
-	 * Get the ID of the wiki this revision belongs to.
+	 * Get the DatabaseDomain of the wiki this revision belongs to.
 	 *
-	 * @return string|false The wiki's logical name, of false to indicate the local wiki.
+	 * @return DatabaseDomain|null The DatabaseDomain, of null to indicate the local wiki.
 	 */
-	public function getWikiId() {
-		return $this->mWiki;
+	public function getDbDomain() {
+		return $this->dbDomain;
 	}
 
 	/**

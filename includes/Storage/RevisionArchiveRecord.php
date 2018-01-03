@@ -27,6 +27,7 @@ use MediaWiki\User\UserIdentity;
 use Title;
 use User;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * A RevisionRecord representing a revision of a deleted page persisted in the archive table.
@@ -53,8 +54,8 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @param object $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
+	 * @param DatabaseDomain|null $dbDomain the wiki DatabaseDomain of the site this Revision belongs to,
+	 *        or null for the local site.
 	 */
 	function __construct(
 		Title $title,
@@ -62,9 +63,9 @@ class RevisionArchiveRecord extends RevisionRecord {
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		DatabaseDomain $dbDomain = null
 	) {
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots, $dbDomain );
 		Assert::parameterType( 'object', $row, '$row' );
 
 		$this->mArchiveId = intval( $row->ar_id );

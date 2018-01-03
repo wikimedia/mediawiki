@@ -168,7 +168,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 
 		$this->assertSame( $slots->getSlotRoles(), $rec->getSlotRoles(), 'getSlotRoles' );
-		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
+		$this->assertSame( $wikiId, $rec->getDbDomain(), 'getWikiId' );
 
 		$this->assertSame( (int)$row->rev_id, $rec->getId(), 'getId' );
 		$this->assertSame( (int)$row->rev_page, $rec->getPageId(), 'getId' );
