@@ -3,7 +3,7 @@
 /**
  * @covers DeferredStringifier
  */
-class DeferredStringifierTest extends PHPUnit_Framework_TestCase {
+class DeferredStringifierTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

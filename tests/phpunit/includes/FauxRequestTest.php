@@ -2,7 +2,7 @@
 
 use MediaWiki\Session\SessionManager;
 
-class FauxRequestTest extends PHPUnit_Framework_TestCase {
+class FauxRequestTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

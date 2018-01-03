@@ -27,7 +27,7 @@
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SitesCacheFileBuilderTest extends PHPUnit_Framework_TestCase {
+class SitesCacheFileBuilderTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

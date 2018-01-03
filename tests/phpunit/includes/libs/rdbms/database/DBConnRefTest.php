@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\ResultWrapper;
 /**
  * @covers Wikimedia\Rdbms\DBConnRef
  */
-class DBConnRefTest extends PHPUnit_Framework_TestCase {
+class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @return ILoadBalancer

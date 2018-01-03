@@ -1,6 +1,6 @@
 <?php
 
-class WfArrayFilterTest extends \PHPUnit_Framework_TestCase {
+class WfArrayFilterTest extends \PHPUnit\Framework\TestCase {
 	public function testWfArrayFilter() {
 		$arr = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
 		$filtered = wfArrayFilter( $arr, function ( $val, $key ) {

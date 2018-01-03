@@ -5,7 +5,7 @@ use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
 
-class DatabaseTest extends PHPUnit_Framework_TestCase {
+class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

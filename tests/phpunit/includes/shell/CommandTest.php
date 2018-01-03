@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Shell\Command
  * @group Shell
  */
-class CommandTest extends PHPUnit_Framework_TestCase {
+class CommandTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

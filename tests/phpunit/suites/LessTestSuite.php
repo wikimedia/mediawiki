@@ -3,7 +3,7 @@
 /**
  * @author Sam Smith <samsmith@wikimedia.org>
  */
-class LessTestSuite extends PHPUnit_Framework_TestSuite {
+class LessTestSuite extends PHPUnit\Framework\TestSuite {
 	public function __construct() {
 		parent::__construct();
 

@@ -8,7 +8,7 @@
  * @licence GNU GPL v2+
  * @author Thiemo Kreuz
  */
-class JobQueueMemoryTest extends PHPUnit_Framework_TestCase {
+class JobQueueMemoryTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

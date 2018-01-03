@@ -5,7 +5,7 @@ use Psr\Log\NullLogger;
 /**
  * @group Media
  */
-class XMPValidateTest extends PHPUnit_Framework_TestCase {
+class XMPValidateTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

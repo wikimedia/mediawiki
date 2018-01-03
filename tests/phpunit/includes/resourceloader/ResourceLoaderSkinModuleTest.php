@@ -3,7 +3,7 @@
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderSkinModuleTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderSkinModuleTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

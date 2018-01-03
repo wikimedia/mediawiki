@@ -5,7 +5,7 @@
  * @group Xml
  * @covers XMLTypeCheck
  */
-class XmlTypeCheckTest extends PHPUnit_Framework_TestCase {
+class XmlTypeCheckTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

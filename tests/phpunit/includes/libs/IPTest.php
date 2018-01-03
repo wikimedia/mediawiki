@@ -9,7 +9,7 @@
  * dataprovider.
  */
 
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

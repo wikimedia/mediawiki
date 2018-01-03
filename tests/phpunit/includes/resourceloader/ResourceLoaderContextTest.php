@@ -8,7 +8,7 @@
  * @group Cache
  * @covers ResourceLoaderContext
  */
-class ResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
