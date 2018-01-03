@@ -5,6 +5,7 @@ class HTMLTextAreaField extends HTMLFormField {
 	const DEFAULT_ROWS = 25;
 
 	protected $mPlaceholder = '';
+	protected $mUseEditFont = false;
 
 	/**
 	 * @param array $params
@@ -19,6 +20,10 @@ class HTMLTextAreaField extends HTMLFormField {
 			$this->mPlaceholder = $this->getMessage( $params['placeholder-message'] )->text();
 		} elseif ( isset( $params['placeholder'] ) ) {
 			$this->mPlaceholder = $params['placeholder'];
+		}
+
+		if ( isset( $params['useeditfont'] ) ) {
+			$this->mUseEditFont = $params['useeditfont'];
 		}
 	}
 
@@ -40,6 +45,8 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	public function getInputHTML( $value ) {
+		global $wgUser;
+
 		$attribs = [
 				'id' => $this->mID,
 				'cols' => $this->getCols(),
@@ -49,6 +56,12 @@ class HTMLTextAreaField extends HTMLFormField {
 
 		if ( $this->mClass !== '' ) {
 			$attribs['class'] = $this->mClass;
+		}
+		if ( $this->mUseEditFont ) {
+			if ( !isset( $attribs['classes'] ) ) {
+				$attribs['classes'] = [];
+			}
+			array_push( $attribs['classes'], 'mw-editfont-' . $wgUser->getOption( 'editfont' ) );
 		}
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;
@@ -67,6 +80,8 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	function getInputOOUI( $value ) {
+		global $wgUser;
+
 		if ( isset( $this->mParams['cols'] ) ) {
 			throw new Exception( "OOUIHTMLForm does not support the 'cols' parameter for textareas" );
 		}
@@ -75,6 +90,12 @@ class HTMLTextAreaField extends HTMLFormField {
 
 		if ( $this->mClass !== '' ) {
 			$attribs['classes'] = [ $this->mClass ];
+		}
+		if ( $this->mUseEditFont ) {
+			if ( !isset( $attribs['classes'] ) ) {
+				$attribs['classes'] = [];
+			}
+			array_push( $attribs['classes'], 'mw-editfont-' . $wgUser->getOption( 'editfont' ) );
 		}
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;
