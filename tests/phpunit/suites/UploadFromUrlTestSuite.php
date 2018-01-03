@@ -2,7 +2,7 @@
 
 require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
-class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
+class UploadFromUrlTestSuite extends PHPUnit\Framework\TestSuite {
 	public $savedGlobals = [];
 
 	public static function addTables( &$tables ) {

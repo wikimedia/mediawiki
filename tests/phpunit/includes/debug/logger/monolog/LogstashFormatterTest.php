@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-class LogstashFormatterTest extends \PHPUnit_Framework_TestCase {
+class LogstashFormatterTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideV1
 	 * @param array $record The input record.

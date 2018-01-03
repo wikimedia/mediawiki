@@ -3,7 +3,7 @@
 /**
  * @covers FileContentsHasherTest
  */
-class FileContentsHasherTest extends PHPUnit_Framework_TestCase {
+class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

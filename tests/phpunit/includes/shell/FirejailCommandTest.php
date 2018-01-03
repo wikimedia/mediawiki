@@ -23,7 +23,7 @@ use MediaWiki\Shell\FirejailCommand;
 use MediaWiki\Shell\Shell;
 use Wikimedia\TestingAccessWrapper;
 
-class FirejailCommandTest extends PHPUnit_Framework_TestCase {
+class FirejailCommandTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

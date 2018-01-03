@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers Benchmarker
  */
-class BenchmarkerTest extends PHPUnit_Framework_TestCase {
+class BenchmarkerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

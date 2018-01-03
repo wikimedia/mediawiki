@@ -9,7 +9,7 @@
  *
  * @group Cache
  */
-class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
+class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
