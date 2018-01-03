@@ -394,7 +394,8 @@ class SpecialSearch extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
 
-		if ( $search->getFeatureData( 'enable-new-crossproject-page' ) ) {
+		// Default (null) on. Can be explicitly disabled.
+		if ( $search->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
 			$sidebarResultWidget = new InterwikiSearchResultWidget( $this, $linkRenderer );
 			$sidebarResultsWidget = new InterwikiSearchResultSetWidget(
 				$this,
