@@ -1,0 +1,8 @@
+Code-Review+1: Esanders <esanders@wikimedia.org>
+Code-Review+2: Reedy <reedy@wikimedia.org>
+Verified+2: jenkins-bot
+Submitted-by: jenkins-bot
+Submitted-at: Wed, 03 Jan 2018 00:47:09 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/401581
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.31.0-wmf.15
