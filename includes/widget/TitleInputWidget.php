@@ -75,6 +75,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		if ( $this->validateTitle !== null ) {
 			$config['validateTitle'] = $this->validateTitle;
 		}
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }

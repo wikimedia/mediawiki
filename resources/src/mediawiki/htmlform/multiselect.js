@@ -64,6 +64,7 @@
 			} );
 		} );
 		capsulesWidget = new OO.ui.CapsuleMultiselectWidget( {
+			$overlay: true,
 			menu: {
 				items: capsulesOptions
 			}

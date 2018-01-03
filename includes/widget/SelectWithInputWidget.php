@@ -58,6 +58,7 @@ class SelectWithInputWidget extends \OOUI\Widget {
 	public function getConfig( &$config ) {
 		$config['textinput'] = $this->config['textinput'];
 		$config['dropdowninput'] = $this->config['dropdowninput'];
+		$config['dropdowninput']['dropdown']['$overlay'] = true;
 		$config['or'] = $this->config['or'];
 		return parent::getConfig( $config );
 	}

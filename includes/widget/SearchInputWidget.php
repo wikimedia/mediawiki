@@ -68,6 +68,7 @@ class SearchInputWidget extends TitleInputWidget {
 		if ( $this->dataLocation ) {
 			$config['dataLocation'] = $this->dataLocation;
 		}
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }
