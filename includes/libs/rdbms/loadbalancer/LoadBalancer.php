@@ -232,7 +232,9 @@ class LoadBalancer implements ILoadBalancer {
 		$this->host = isset( $params['hostname'] )
 			? $params['hostname']
 			: ( gethostname() ?: 'unknown' );
-		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
+		$this->cliMode = isset( $params['cliMode'] )
+			? $params['cliMode']
+			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 
 		if ( isset( $params['chronologyProtector'] ) ) {

@@ -2089,6 +2089,16 @@ function wfIsHHVM() {
 }
 
 /**
+ * Check if we are running from the commandline
+ *
+ * @since 1.31
+ * @return bool
+ */
+function wfIsCLI() {
+	return PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg';
+}
+
+/**
  * Tries to get the system directory for temporary files. First
  * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
  * environment variables are then checked in sequence, then
@@ -3031,7 +3041,7 @@ function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
 	if ( $timeout === null ) {
-		$timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
+		$timeout = wfIsCLI() ? 86400 : 10;
 	}
 
 	if ( $cluster === '*' ) {

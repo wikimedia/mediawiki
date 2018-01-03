@@ -39,7 +39,7 @@ class WikiProcessor {
 		$record['extra']['wiki'] = wfWikiID();
 		$record['extra']['mwversion'] = $wgVersion;
 		$record['extra']['reqId'] = \WebRequest::getRequestId();
-		if ( PHP_SAPI === 'cli' && isset( $_SERVER['argv'] ) ) {
+		if ( wfIsCLI() && isset( $_SERVER['argv'] ) ) {
 			$record['extra']['cli_argv'] = implode( ' ', $_SERVER['argv'] );
 		}
 		return $record;

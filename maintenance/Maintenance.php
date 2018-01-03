@@ -410,7 +410,7 @@ abstract class Maintenance {
 			$this->fatalError( $err, intval( $die ) );
 		}
 		$this->outputChanneled( false );
-		if ( PHP_SAPI == 'cli' ) {
+		if ( PHP_SAPI == 'cli' || PHP_SAPI == 'phpdbg' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
 			print $err;
@@ -672,7 +672,8 @@ abstract class Maintenance {
 		global $IP, $wgCommandLineMode, $wgRequestTime;
 
 		# Abort if called from a web server
-		if ( PHP_SAPI !== 'cli' ) {
+		# wfIsCLI() is not available yet
+		if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
 			$this->fatalError( 'This script must be run from the command line' );
 		}
 
