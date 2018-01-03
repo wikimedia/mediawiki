@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @since 1.18
  */
-abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
+abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

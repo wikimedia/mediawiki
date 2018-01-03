@@ -6,7 +6,7 @@ use MediaWiki\Services\ServiceContainer;
  *
  * @group MediaWiki
  */
-class ServiceContainerTest extends PHPUnit_Framework_TestCase {
+class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -54,8 +54,8 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 			$name,
 			function ( $actualLocator, $extra ) use ( $services, $theService, &$count ) {
 				$count++;
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( $extra, 'Foo' );
+				PHPUnit\Framework\Assert::assertSame( $services, $actualLocator );
+				PHPUnit\Framework\Assert::assertSame( $extra, 'Foo' );
 				return $theService;
 			}
 		);
@@ -125,7 +125,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$name = 'TestService92834576';
 
 		$services->defineService( $name, function ( $actualLocator ) use ( $services, $theService ) {
-			PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+			PHPUnit\Framework\Assert::assertSame( $services, $actualLocator );
 			return $theService;
 		} );
 
@@ -252,7 +252,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$name = 'TestService92834576';
 
 		$services->defineService( $name, function () {
-			PHPUnit_Framework_Assert::fail(
+			PHPUnit\Framework\Assert::fail(
 				'The original instantiator function should not get called'
 			);
 		} );
@@ -261,8 +261,8 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$services->redefineService(
 			$name,
 			function ( $actualLocator, $extra ) use ( $services, $theService1 ) {
-				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
-				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				PHPUnit\Framework\Assert::assertSame( $services, $actualLocator );
+				PHPUnit\Framework\Assert::assertSame( 'Foo', $extra );
 				return $theService1;
 			}
 		);

@@ -1,6 +1,6 @@
 <?php
 
-class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
+class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

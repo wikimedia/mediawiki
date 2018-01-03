@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\ConnectionManager;
  *
  * @author Daniel Kinzler
  */
-class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {
+class ConnectionManagerTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject

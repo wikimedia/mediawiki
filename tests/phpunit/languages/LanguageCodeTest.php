@@ -6,7 +6,7 @@
  *
  * @author Thiemo Kreuz
  */
-class LanguageCodeTest extends PHPUnit_Framework_TestCase {
+class LanguageCodeTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

@@ -65,7 +65,7 @@ class TestUtils {
 	public static function getDummySessionBackend() {
 		$rc = new \ReflectionClass( SessionBackend::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
-			\PHPUnit_Framework_Assert::markTestSkipped(
+			\PHPUnit\Framework\Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
 			);
 		}
@@ -86,7 +86,7 @@ class TestUtils {
 	public static function getDummySession( $backend = null, $index = -1, $logger = null ) {
 		$rc = new \ReflectionClass( Session::class );
 		if ( !method_exists( $rc, 'newInstanceWithoutConstructor' ) ) {
-			\PHPUnit_Framework_Assert::markTestSkipped(
+			\PHPUnit\Framework\Assert::markTestSkipped(
 				'ReflectionClass::newInstanceWithoutConstructor isn\'t available'
 			);
 		}

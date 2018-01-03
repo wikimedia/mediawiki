@@ -5,7 +5,7 @@
  *
  * @covers MWCryptHash
  */
-class MWCryptHashTest extends PHPUnit_Framework_TestCase {
+class MWCryptHashTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

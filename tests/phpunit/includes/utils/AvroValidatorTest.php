@@ -12,7 +12,7 @@
 /**
  * @covers AvroValidator
  */
-class AvroValidatorTest extends PHPUnit_Framework_TestCase {
+class AvroValidatorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
