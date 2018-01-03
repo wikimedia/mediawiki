@@ -911,7 +911,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesEffectivelyInverted = function () {
 		return this.getInvertModel().isSelected() &&
 			this.getSelectedItems().some( function ( itemModel ) {
-				return itemModel.getGroupModel().getView() === 'namespace';
+				return itemModel.getGroupModel().getName() === 'namespace';
 			} );
 	};
 
