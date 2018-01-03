@@ -642,6 +642,7 @@ class SkinTemplate extends Skin {
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
 				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+				'exists' => $this->userpageUrlDetails['exists'],
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
 				'dir' => 'auto'
 			];
@@ -650,6 +651,7 @@ class SkinTemplate extends Skin {
 				'text' => $this->msg( 'mytalk' )->text(),
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
+				'exists' => $usertalkUrlDetails['exists'],
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
 			];
 			$href = self::makeSpecialUrl( 'Preferences' );
@@ -782,8 +784,10 @@ class SkinTemplate extends Skin {
 		if ( $selected ) {
 			$classes[] = 'selected';
 		}
+		$exists = true;
 		if ( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
+			$exists = false;
 			if ( $query !== '' ) {
 				$query = 'action=edit&redlink=1&' . $query;
 			} else {
@@ -821,6 +825,7 @@ class SkinTemplate extends Skin {
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
 			'href' => $title->getLocalURL( $query ),
+			'exists' => $exists,
 			'primary' => true ];
 		if ( $linkClass !== '' ) {
 			$result['link-class'] = $linkClass;
