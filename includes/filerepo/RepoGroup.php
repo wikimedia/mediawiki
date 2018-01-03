@@ -138,7 +138,7 @@ class RepoGroup {
 		$dbkey = $title->getDBkey();
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
-			&& empty( $options['bypassCache'] )
+			&& empty( $options['latest'] )
 		) {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
