@@ -21,13 +21,13 @@
 
 namespace Wikimedia\Rdbms;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Database error base class
  * @ingroup Database
  */
-class DBError extends Exception {
+class DBError extends RuntimeException {
 	/** @var IDatabase|null */
 	public $db;
 
