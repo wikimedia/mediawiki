@@ -1076,11 +1076,28 @@ class Article implements Page {
 			[ 'img_name' => $title->getDBkey() ],
 			__METHOD__
 		);
+		if ( !$newestUploadTimestamp ) {
+			// Might be a remote file with a local file page override.
+			$file = wfFindFile( $title );
+			if ( $file && !$file->isLocal() ) {
+				$cache->set( $key, '1' );
+				return false;
+			}
+
+			// Otherwise, must be a recent upload that's not visible due to replication lag.
+			$dbw = wfGetDB( DB_MASTER );
+			$newestUploadTimestamp = $dbw->selectField(
+				'image',
+				'MAX( img_timestamp )',
+				[ 'img_name' => $title->getDBkey() ],
+				__METHOD__
+			);
+		}
 		if ( !$newestUploadTimestamp
 			|| !RecentChange::isInRCLifespan( $newestUploadTimestamp, self::$rcTolerance )
 		) {
-			// Not a local file or too old to be patrollable. This only changes when a new
-			// version is uploaded, and we clear the cache then, so safe to cache forever.
+			// Too old to be patrollable. This only changes when a new version is uploaded, and
+			// we clear the cache then, so safe to cache forever.
 			$cache->set( $key, '1' );
 			return false;
 		}
@@ -1095,7 +1112,22 @@ class Article implements Page {
 			__METHOD__
 		);
 		if ( !$rc ) {
-			// RC entry probably too new to be visible due to replication lag. Fail but don't cache.
+			// Like above, check for replag.
+			$rc = RecentChange::newFromConds(
+				[
+					'rc_type' => RC_LOG,
+					'rc_log_type' => 'upload',
+					'rc_timestamp' => $newestUploadTimestamp,
+					'rc_namespace' => NS_FILE,
+					'rc_cur_id' => $title->getArticleID()
+				],
+				__METHOD__,
+				DB_MASTER
+			);
+		}
+		if ( !$rc ) {
+			// Change is probably in the tolerance interval and was deleted from RC recently.
+			$cache->set( $key, '1' );
 			return false;
 		}
 

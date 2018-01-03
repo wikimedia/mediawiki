@@ -2124,11 +2124,6 @@ class LocalFile extends File {
 
 		$headers = parent::getContentHeaders();
 
-		// If file patrolling is enabled, and file is unpatrolled, mark it so.
-		// Note that this is unreliable for very recently (re)uploaded files, due to the way
-		// Article::getFilePatrolChange works. If the file backend can remember headers, this
-		// method won't be used much, and if it can't, getContentHeaders() is not reliable anyway,
-		// so this should be good enough.
 		if ( $wgUseFilePatrol ) {
 			$article = Article::newFromTitle( $this->getTitle(), RequestContext::getMain() );
 			if ( $article->getFilePatrolChange() ) {
