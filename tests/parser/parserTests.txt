@@ -294,12 +294,16 @@ Template with colon
 ###
 ### Basic tests
 ###
+
 !! test
 Blank input
 !! wikitext
 !! html
 !! end
 
+## This isn't a great test in Parsoid since native template expansion in
+## parserTests takes us to the path of expansion loop detection, which isn't
+## present in production, since we don't do our own expansion.  See T64424
 !! test
 CircularRef
 !! wikitext
@@ -1888,6 +1892,7 @@ IE conditional comments
 ###
 ### paragraph wrapping tests
 ###
+
 !! test
 No block tags
 !! wikitext
@@ -2128,9 +2133,26 @@ parsoid=wt2html
 <link rel="mw:PageProp/Category" href="./Category:A1"/><p>a</p>
 !! end
 
+!! test
+No paragraph necessary for SOL transparent template
+!! wikitext
+<span><div>foo</div></span>
+[[Category:Foo]]
+
+<span><div>foo</div></span>
+{{echo|[[Category:Foo]]}}
+!! html/parsoid
+<span data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>foo</div></span>
+<link rel="mw:PageProp/Category" href="./Category:Foo"/>
+
+<span data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>foo</div></span>
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Foo]]"}},"i":0}}]}'/>
+!! end
+
 ###
 ### Preformatted text
 ###
+
 !! test
 Preformatted text
 !! wikitext
@@ -15811,7 +15833,7 @@ T93580: 2. <ref> inside inline images
 
 <references />
 !! html/parsoid
-<p><figure-inline class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: &lt;ref>foo&lt;/ref>"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt2\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,78,5,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-1\"},\"attrs\":{}}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure-inline></p>
+<p><figure-inline class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"Undisplayed caption in inline image with ref: &lt;ref>foo&lt;/ref>"}]}' data-mw='{"caption":"Undisplayed caption in inline image with ref: &lt;span about=\"#mwt4\" class=\"mw-ref\" id=\"cite_ref-1\" rel=\"dc:references\" typeof=\"mw:Extension/ref\" data-parsoid=&#39;{\"dsr\":[64,78,5,6]}&#39; data-mw=&#39;{\"name\":\"ref\",\"body\":{\"id\":\"mw-reference-text-cite_note-1\"},\"attrs\":{}}&#39;>&lt;a href=\"./Main_Page#cite_note-1\" style=\"counter-reset: mw-Ref 1;\" data-parsoid=\"{}\">&lt;span class=\"mw-reflink-text\" data-parsoid=\"{}\">[1]&lt;/span>&lt;/a>&lt;/span>"}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{"href":"File:Foobar.jpg"}}'><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></figure-inline></p>
 
 <ol class="mw-references references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !! end
@@ -16177,7 +16199,8 @@ Bar
 <p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
 <p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
 <p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
-<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'/></p>
+<p>Foo <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> Bar</p>
+<link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz"/> <link rel="mw:PageProp/Category" href="./Category:Baz" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"[[Category:Baz]]"}},"i":0}}]}'/>
 <link rel="mw:PageProp/Category" href="./Category:Baz"/>
 !! end
 
