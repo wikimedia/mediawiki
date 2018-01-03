@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
  *
  * Use call chaining with this class for expressiveness:
  *  $result = Shell::command( 'some command' )
+ *       ->input( 'foo' )
  *       ->environment( [ 'ENVIRONMENT_VARIABLE' => 'VALUE' ] )
  *       ->limits( [ 'time' => 300 ] )
  *       ->execute();
