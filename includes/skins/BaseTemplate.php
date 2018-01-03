@@ -143,7 +143,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
-			foreach ( [ 'href', 'class', 'text', 'dir', 'data' ] as $k ) {
+			foreach ( [ 'href', 'class', 'text', 'dir', 'data', 'exists' ] as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
@@ -391,7 +391,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
 			$attrs = $item;
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
-				'tooltip-params' ] as $k ) {
+				'tooltip-params', 'exists' ] as $k ) {
 				unset( $attrs[$k] );
 			}
 
@@ -412,13 +412,19 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 
 			if ( isset( $item['single-id'] ) ) {
+				$tooltipOption = isset( $item['exists'] ) && $item['exists'] === false ? 'nonexisting' : null;
+
 				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-					$title = Linker::titleAttrib( $item['single-id'], null, $tooltipParams );
+					$title = Linker::titleAttrib( $item['single-id'], $tooltipOption, $tooltipParams );
 					if ( $title !== false ) {
 						$attrs['title'] = $title;
 					}
 				} else {
-					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'], $tooltipParams );
+					$tip = Linker::tooltipAndAccesskeyAttribs(
+						$item['single-id'],
+						$tooltipParams,
+						$tooltipOption
+					);
 					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
 						$attrs['title'] = $tip['title'];
 					}
