@@ -42,6 +42,8 @@ production.
 
 ==== Upgraded external libraries ====
 * Updated jquery.chosen from v0.9.14 to v1.8.2.
+* Updated composer/spdx-licenses from 1.1.4 to
+  1.2.0 (development dependency).
 * …
 
 ==== New external libraries ====
