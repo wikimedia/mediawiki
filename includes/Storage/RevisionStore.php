@@ -1476,10 +1476,20 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$storeWiki = $storeWiki ?: wfWikiID();
 		$dbWiki = $dbWiki ?: wfWikiID();
 
-		if ( $dbWiki !== $storeWiki ) {
-			throw new MWException( "RevisionStore for $storeWiki "
-				. "cannot be used with a DB connection for $dbWiki" );
+		if ( $dbWiki === $storeWiki ) {
+			return;
 		}
+
+		// HACK: counteract encoding imposed by DatabaseDomain
+		$storeWiki = str_replace( '?h', '-', $storeWiki );
+		$dbWiki = str_replace( '?h', '-', $dbWiki );
+
+		if ( $dbWiki === $storeWiki ) {
+			return;
+		}
+
+		throw new MWException( "RevisionStore for $storeWiki "
+			. "cannot be used with a DB connection for $dbWiki" );
 	}
 
 	/**
