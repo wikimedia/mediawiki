@@ -2176,6 +2176,56 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Called when a file was marked as patrolled.
+	 * Removes the X-MediaWiki-Patrol-Status header from current and old versions of the file.
+	 * @since 1.31
+	 */
+	public function onMarkPatrolled() {
+		if ( !$this->getRepo()->getBackend()->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
+			return;
+		}
+		DeferredUpdates::addCallableUpdate( function () {
+			$fileVersions = $this->getHistory();
+			array_unshift( $fileVersions, $this );
+
+			$ops = [];
+			foreach ( $fileVersions as $file ) {
+				$ops[] = [
+					'op' => 'describe',
+					'src' => $file->getPath(),
+					'headers' => [
+						'X-MediaWiki-Patrol-Status' => '',
+					],
+				];
+			}
+			$this->getRepo()->getBackend()->doOperations( $ops );
+		} );
+	}
+
+	/**
+	 * Update the X-MediaWiki-Patrol-Status header of the file (all versions)
+	 * based on the patrol status.
+	 *
+	 * Assumes that XMPS headers are never erroneously missing, and takes advantage
+	 * of the fact that there is no way for a patrolled file to become unpatrolled,
+	 * and only updates in the header present -> header removed direction.
+	 */
+	public function updatePatrolHeaders() {
+		global $wgUseFilePatrol;
+		if (
+			!$wgUseFilePatrol
+			|| !$this->getRepo()->getBackend()->hasFeatures( FileBackend::ATTR_HEADERS )
+		) {
+			return;
+		}
+
+		$article = Article::newFromTitle( $this->getTitle(), RequestContext::getMain() );
+		if ( !$article->getFilePatrolChange() ) {
+			$this->onMarkPatrolled();
+		}
+	}
+
+	/**
 	 * @return bool Whether to cache in RepoGroup (this avoids OOMs)
 	 */
 	function isCacheable() {

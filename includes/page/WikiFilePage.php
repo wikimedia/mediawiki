@@ -173,6 +173,9 @@ class WikiFilePage extends WikiPage {
 
 		if ( $this->mFile->exists() ) {
 			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
+			if ( $this->mFile instanceof LocalFile ) {
+				$this->mFile->updatePatrolHeaders( false );
+			}
 			DeferredUpdates::addUpdate(
 				new HTMLCacheUpdate( $this->mTitle, 'imagelinks', 'file-purge' )
 			);
