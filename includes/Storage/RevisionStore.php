@@ -49,6 +49,7 @@ use User;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -1465,21 +1466,44 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
-		$dbWiki = $db->getDomainID();
+		$storeDomainId = $this->wikiId;
+		$dbDomainId = $db->getDomainID();
 
-		if ( $dbWiki === $storeWiki ) {
+		if ( $dbDomainId === $storeDomainId ) {
 			return;
 		}
 
-		// XXX: we really want the default database ID...
-		$storeWiki = $storeWiki ?: wfWikiID();
-		$dbWiki = $dbWiki ?: wfWikiID();
+		$storeDomainId = $storeDomainId ?: wfWikiID();
+		$dbDomainId = $dbDomainId ?: wfWikiID();
 
-		if ( $dbWiki !== $storeWiki ) {
-			throw new MWException( "RevisionStore for $storeWiki "
-				. "cannot be used with a DB connection for $dbWiki" );
+		if ( $dbDomainId === $storeDomainId ) {
+			return;
 		}
+
+		$storeDomain = $this->makeDatabaseDomain( $storeDomainId );
+		$dbDomain = $this->makeDatabaseDomain( $dbDomainId );
+
+		if ( $dbDomain->equals( $storeDomain) ) {
+			return;
+		}
+
+		throw new MWException( "RevisionStore for $storeDomainId "
+			. "cannot be used with a DB connection for $dbDomainId" );
+	}
+
+	/**
+	 * @param string|boolean $domain
+	 * @return DatabaseDomain
+	 */
+	private function makeDatabaseDomain( $domain ) {
+		// If empty, fall back to global default.
+		// @todo This is nasty, get rid of the need to support this!
+		$domain = $domain ?: wfWikiID();
+
+		list( $name, $prefix ) = wfSplitWikiID( $domain );
+
+		// TODO: support a schema name as well.
+		return new DatabaseDomain( $name, null, $prefix );
 	}
 
 	/**

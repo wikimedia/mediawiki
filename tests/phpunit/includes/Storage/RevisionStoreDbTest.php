@@ -4,17 +4,26 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use Exception;
+use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use Revision;
 use TestUserRegistry;
 use Title;
+use WANObjectCache;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\TransactionProfiler;
 use WikiPage;
 use WikitextContent;
 
@@ -22,6 +31,101 @@ use WikitextContent;
  * @group Database
  */
 class RevisionStoreDbTest extends MediaWikiTestCase {
+
+	/**
+	 * @return LoadBalancer
+	 */
+	private function getLoadBalancerMock( array $server ) {
+		$lb = $this->getMockBuilder( LoadBalancer::class )
+			->setMethods( [ 'reallyOpenConnection' ] )
+			->setConstructorArgs( [ [ 'servers' => [ $server ] ] ] )
+			->getMock();
+
+		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
+			function ( array $server, $dbNameOverride = false ) {
+				return $this->getDatabaseMock( $server );
+			}
+		);
+
+		return $lb;
+	}
+
+	/**
+	 * @return Database
+	 */
+	private function getDatabaseMock( array $params ) {
+		$db = $this->getMockBuilder( DatabaseSqlite::class )
+			->setMethods( [ 'select', 'doQuery', 'open', 'closeConnection', 'isOpen' ] )
+			->setConstructorArgs( [ $params ] )
+			->getMock();
+
+		$db->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );
+		$db->method( 'isOpen' )->willReturn( true );
+
+		return $db;
+	}
+
+	public function provideDomainCheck() {
+		yield [ false, 'test', '' ];
+		yield [ 'test', 'test', '' ];
+		yield [ false, 'test', 'foo_' ];
+		yield [ 'test-foo_', 'test', 'foo_' ];
+		yield [ false, 'dash-test', 'foo_' ];
+		yield [ 'dash-test', 'test', '' ];
+		yield [ false, 'underscore_test', 'foo_' ];
+		yield [ 'underscore_test-foo_', 'test', '' ];
+	}
+
+	/**
+	 * @dataProvider provideDomainCheck
+	 */
+	public function testDomainCheck( $wikiId, $dbName, $dbPrefix ) {
+		$this->setMwGlobals( [
+			                     'wgDBname' => $dbName,
+			                     'wgDBprefix' => $dbPrefix,
+		                     ] );
+
+		$loadBalancer = $this->getLoadBalancerMock(
+			[
+				'host' => '*dummy*',
+				'dbDirectory' => '*dummy*',
+				'user' => 'test',
+				'password' => 'test',
+				'flags' => 0,
+				'variables' => [],
+				'schema' => '',
+				'cliMode' => true,
+				'agent' => '',
+				'load' => 100,
+				'profiler' => null,
+				'trxProfiler' => new TransactionProfiler(),
+				'connLogger' => new \Psr\Log\NullLogger(),
+				'queryLogger' => new \Psr\Log\NullLogger(),
+				'errorLogger' => new \Psr\Log\NullLogger(),
+				'type' => 'test',
+				'dbname' => $dbName,
+				'tablePrefix' => $dbPrefix,
+			]
+		);
+		$db = $loadBalancer->getConnection( DB_REPLICA );
+
+		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$store = new RevisionStore(
+			$loadBalancer,
+			$blobStore,
+			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			$wikiId
+		);
+
+		$count = $store->countRevisionsByPageId( $db, 0 );
+
+		// Dummy check to make PhpUnit happy. We are really only interested in
+		// countRevisionsByPageId not failing due to the DB domain check.
+		$this->assertSame( 0, $count );
+	}
 
 	private function assertLinkTargetsEqual( LinkTarget $l1, LinkTarget $l2 ) {
 		$this->assertEquals( $l1->getDBkey(), $l2->getDBkey() );
