@@ -571,6 +571,16 @@ class RecentChange {
 		}
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
+		// If it's a file, notify it.
+		if ( $wgUseFilePatrol && $this->getTitle()->inNamespace( NS_FILE ) ) {
+			$file = wfFindFile( $this->getTitle() );
+			if ( !$file ) {
+				$file = wfFindFile( $this->getTitle(), [ 'latest' => true ] );
+			}
+			if ( $file && $file instanceof LocalFile ) {
+				$file->onMarkPatrolled();
+			}
+		}
 		// Log this patrol event
 		PatrolLog::record( $this, $auto, $user, $tags );
 
