@@ -132,6 +132,9 @@ class FindDeprecated extends Maintenance {
 		$this->addDescription( 'Find deprecated interfaces' );
 	}
 
+	/**
+	 * @return SplFileInfo[]
+	 */
 	public function getFiles() {
 		global $IP;
 
@@ -163,7 +166,7 @@ class FindDeprecated extends Maintenance {
 			}
 
 			$finder->setCurrentFile( substr( $file->getPathname(), strlen( $IP ) + 1 ) );
-			$nodes = $parser->parse( $code, [ 'throwOnError' => false ] );
+			$nodes = $parser->parse( $code );
 			$traverser->traverse( $nodes );
 
 			if ( $i % $chunkSize === 0 ) {
