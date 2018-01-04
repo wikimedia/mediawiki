@@ -606,7 +606,6 @@ $wgAutoloadLocalClasses = [
 	'Hooks' => __DIR__ . '/includes/Hooks.php',
 	'Html' => __DIR__ . '/includes/Html.php',
 	'HtmlArmor' => __DIR__ . '/includes/libs/HtmlArmor.php',
-	'HtmlFormatter' => __DIR__ . '/includes/HtmlFormatter.php',
 	'Http' => __DIR__ . '/includes/http/Http.php',
 	'HttpError' => __DIR__ . '/includes/exception/HttpError.php',
 	'HttpStatus' => __DIR__ . '/includes/libs/HttpStatus.php',
