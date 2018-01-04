@@ -36,7 +36,7 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgUseChangeTagStatisticsTable;
+		global $wgChangeTagsSchemaMigrationStage;
 		$params = $this->extractRequestParams();
 
 		$prop = array_flip( $params['prop'] );
@@ -56,19 +56,19 @@ class ApiQueryTags extends ApiQueryBase {
 		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
 
-		if ( $wgUseChangeTagStatisticsTable > 1 ) {
-			$this->addTables( 'change_tag_statistics' );
-			$this->addFields( [ 'cts_tag', 'cts_count', 'cts_timestamp' ] );
+		if ( $wgChangeTagsSchemaMigrationStage === MIGRATION_NEW ) {
+			$this->addTables( 'tag' );
+			$this->addFields( [ 'tag_name', 'tag_count', 'tag_timestamp' ] );
 			$this->addOption( 'LIMIT', $limit + 1 );
-			$this->addWhereRange( 'cts_tag', 'newer', $params['continue'], null );
+			$this->addWhereRange( 'tag_name', 'newer', $params['continue'], null );
 			$res = $this->select( __METHOD__ );
 
 			$hitCounts = [];
 			$timestamps = [];
 			foreach ( $res as $row ) {
-				if ( $row->cts_count ) {
-					$hitCounts[$row->cts_tag] = (int)$row->cts_count;
-					$timestamps[$row->cts_tag] = (string)$row->cts_timestamp;
+				if ( $row->tag_count ) {
+					$hitCounts[$row->tag_name] = (int)$row->tag_count;
+					$timestamps[$row->tag_name] = (string)$row->tag_timestamp;
 				}
 			}
 		} else {

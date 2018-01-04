@@ -6966,16 +6966,6 @@ $wgSoftwareTags = [
 ];
 
 /**
- * Temporary feature flag to handle deploy of change_tag_statistics table
- * For a live deploy, the following is recommended:
- * - create the change_tag_statistics table with patch-change_tag_statistics
- * - set $wgUseChangeTagStatisticsTable to 1: update-only mode
- * - run maintenance script populateTagUsageStatistics.php
- * - set $wgUseChangeTagStatisticsTable to 2: full mode
- */
-$wgUseChangeTagStatisticsTable = 0;
-
-/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
@@ -8818,6 +8808,21 @@ $wgInterwikiPrefixDisplayTypes = [];
  * @var int One of the MIGRATION_* constants
  */
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
+
+//$wgUseChangeTagStatisticsTable = 0;
+
+/**
+ * change_tag table schema migration stage.
+ *
+ * MIGRATION_OLD: Do not use tag table or ct_tag_id.
+ * MIGRATION_WRITE_BOTH: Write to the tag table and ct_tag_id, but read from the old schema
+ * MIGRATION_WRITE_NEW: Behaves the same as MIGRATION_WRITE_BOTH
+ * MIGRATION_NEW: Use the tag table and ct_tag_id, do read/write ct_tag
+ *
+ * @since 1.31
+ * @var int One of the MIGRATION_* constants
+ */
+$wgChangeTagsSchemaMigrationStage = MIGRATION_OLD;
 
 /**
  * For really cool vim folding this needs to be at the end:

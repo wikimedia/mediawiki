@@ -1685,8 +1685,19 @@ CREATE TABLE /*_*/updatelog (
   ul_value blob
 ) /*$wgDBTableOptions*/;
 
+-- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
+CREATE TABLE /*_*/tag (
+    tag_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    tag_name varchar(255) NOT NULL,
+    tag_count bigint unsigned NOT NULL default 0,
+    tag_timestamp varbinary(14) NULL
+) /*$wgDBTableOptions*/;
 
--- A table to track tags for revisions, logs and recent changes.
+CREATE UNIQUE INDEX /*i*/tag_name ON /*_*/tag (tag_name);
+-- Index to sort tags by popularity
+CREATE INDEX /*i*/tag_count ON /*_*/tag (tag_count);
+
+-- A table to track which revisions, logs and recent changes are tagged with what tag.
 CREATE TABLE /*_*/change_tag (
   ct_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- RCID for the change
@@ -1695,8 +1706,10 @@ CREATE TABLE /*_*/change_tag (
   ct_log_id int unsigned NULL,
   -- REVID for the change
   ct_rev_id int unsigned NULL,
-  -- Tag applied
+  -- Tag name (being migrated to ct_tag_id)
   ct_tag varchar(255) NOT NULL,
+  -- Tag ID (foreign key to tag.tag_id)
+  ct_tag_id int unsigned NOT NULL,
   -- Parameters for the tag, presently unused
   ct_params blob NULL
 ) /*$wgDBTableOptions*/;
@@ -1706,17 +1719,6 @@ CREATE UNIQUE INDEX /*i*/change_tag_log_tag ON /*_*/change_tag (ct_log_id,ct_tag
 CREATE UNIQUE INDEX /*i*/change_tag_rev_tag ON /*_*/change_tag (ct_rev_id,ct_tag);
 -- Covering index, so we can pull all the info only out of the index.
 CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
-
--- Table giving hit counts and timestamp of last addition for tags,
--- to avoid expansive queries on change_tag.
-CREATE TABLE /*_*/change_tag_statistics (
-  cts_tag varchar(255) NOT NULL PRIMARY KEY,
-  cts_count bigint unsigned NOT NULL default 0,
-  cts_timestamp varbinary(14) NULL
-) /*$wgDBTableOptions*/;
-
--- Index so we can sort by count
-CREATE INDEX /*i*/change_tag_statistics_count ON /*_*/change_tag_statistics (cts_count);
 
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
 -- that only works on MySQL 4.1+

@@ -235,7 +235,7 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
-		global $wgUseChangeTagStatisticsTable;
+		global $wgChangeTagsSchemaMigrationStage;
 
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
@@ -326,6 +326,7 @@ class ChangeTags {
 				$tagRow = array_filter(
 					[
 						'ct_tag' => $tag,
+						// TODO ct_tag_id
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id,
@@ -334,14 +335,14 @@ class ChangeTags {
 				);
 				$dbw->startAtomic( __METHOD__ );
 				$dbw->insert( 'change_tag', $tagRow, __METHOD__, [ 'IGNORE' ] );
-				if ( $dbw->affectedRows() && $wgUseChangeTagStatisticsTable > 0 ) {
+				if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
 					// increment tag hitcount and record timestamp
 					$timestamp = $dbw->timestamp();
 					$dbw->upsert(
-						'change_tag_statistics',
-						[ 'cts_tag' => $tag, 'cts_count' => 1, 'cts_timestamp' => $timestamp ],
-						[ 'cts_tag' ],
-						[ 'cts_count = cts_count + 1', 'cts_timestamp' => $timestamp ],
+						'tag',
+						[ 'tag_name' => $tag, 'tag_count' => 1, 'tag_timestamp' => $timestamp ],
+						[ 'tag_name' ],
+						[ 'tag_count = tag_count + 1', 'tag_timestamp' => $timestamp ],
 						__METHOD__
 					);
 				}
@@ -355,6 +356,7 @@ class ChangeTags {
 				$conds = array_filter(
 					[
 						'ct_tag' => $tag,
+						// TODO ct_tag_id
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id
@@ -362,18 +364,18 @@ class ChangeTags {
 				);
 				$dbw->startAtomic( __METHOD__ );
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
-				if ( $dbw->affectedRows() && $wgUseChangeTagStatisticsTable > 0 ) {
+				if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
 					// decrement tag hitcount
 					$dbw->update(
-						'change_tag_statistics',
-						[ 'cts_count = cts_count - 1' ],
-						[ 'cts_tag' => $tag ],
+						'tag',
+						[ 'tag_count = tag_count - 1' ],
+						[ 'tag_name' => $tag ],
 						__METHOD__
 					);
 					// delete row if it reaches count of zero
 					$dbw->delete(
-						'change_tag_statistics',
-						[ 'cts_tag' => $tag, 'cts_count' => 0 ],
+						'tag',
+						[ 'tag_name' => $tag, 'tag_count' => 0 ],
 						__METHOD__
 					);
 				}
@@ -1140,7 +1142,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
-		global $wgUseChangeTagStatisticsTable;
+		global $wgChangeTagsSchemaMigrationStage;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1163,8 +1165,8 @@ class ChangeTags {
 		// delete from change_tag
 		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
 
-		if ( $wgUseChangeTagStatisticsTable > 0 ) {
-			$dbw->delete( 'change_tag_statistics', [ 'cts_tag' => $tag ], __METHOD__ );
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->delete( 'tag', [ 'tag_name' => $tag ], __METHOD__ );
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1315,7 +1317,7 @@ class ChangeTags {
 	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
 	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
+	 * listSoftwareDefinedTags().
 	 *
 	 * @return string[] Array of strings: tags
 	 */
@@ -1446,19 +1448,19 @@ class ChangeTags {
 			$cache->makeKey( 'change-tag-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				global $wgUseChangeTagStatisticsTable;
+				global $wgChangeTagsSchemaMigrationStage;
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				if ( $wgUseChangeTagStatisticsTable > 1 ) {
-					// fetch from change_tag_statistics table
+				if ( $wgChangeTagsSchemaMigrationStage === MIGRATION_NEW ) {
+					// fetch from tag table
 					$res = $dbr->select(
-						'change_tag_statistics',
-						[ 'cts_tag', 'cts_count' ],
+						'tag',
+						[ 'tag_name', 'tag_count' ],
 						[],
 						$fname,
-						[ 'ORDER BY' => 'cts_count DESC' ]
+						[ 'ORDER BY' => 'tag_count DESC' ]
 					);
 
 					$out = [];
