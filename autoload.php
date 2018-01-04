@@ -1139,6 +1139,7 @@ $wgAutoloadLocalClasses = [
 	'PoolCounterWorkViaCallback' => __DIR__ . '/includes/poolcounter/PoolCounterWorkViaCallback.php',
 	'PoolCounter_Stub' => __DIR__ . '/includes/poolcounter/PoolCounter.php',
 	'PoolWorkArticleView' => __DIR__ . '/includes/poolcounter/PoolWorkArticleView.php',
+	'PopulateArchiveRevId' => __DIR__ . '/maintenance/populateArchiveRevId.php',
 	'PopulateBacklinkNamespace' => __DIR__ . '/maintenance/populateBacklinkNamespace.php',
 	'PopulateCategory' => __DIR__ . '/maintenance/populateCategory.php',
 	'PopulateContentModel' => __DIR__ . '/maintenance/populateContentModel.php',

@@ -558,11 +558,9 @@ CREATE TABLE /*_*/archive (
   -- When revisions are deleted, their unique rev_id is stored
   -- here so it can be retained after undeletion. This is necessary
   -- to retain permalinks to given revisions after accidental delete
-  -- cycles or messy operations like history merges.
-  --
-  -- Old entries from 1.4 will be NULL here, and a new rev_id will
-  -- be created on undeletion for those revisions.
-  ar_rev_id int unsigned,
+  -- cycles or messy operations like history merges, and for reference from the
+  -- 'slots' table.
+  ar_rev_id int unsigned NOT NULL,
 
   -- For newly deleted revisions, this is the text.old_id key to the
   -- actual stored text. To avoid breaking the block-compression scheme
