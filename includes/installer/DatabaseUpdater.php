@@ -1263,4 +1263,23 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	/**
+	 * Populate ar_rev_id, then make it not nullable
+	 * @since 1.31
+	 */
+	 protected function populateArchiveRevId() {
+		 $info = $this->db->fieldInfo( 'archive', 'ar_rev_id', __METHOD__ );
+		 if ( !$info ) {
+			 throw new MWException( 'Missing ar_rev_id field of archive table. Should not happen.' );
+		 }
+		 if ( $info->isNullable() ) {
+			 $this->output( "Populating ar_rev_id.\n" );
+			 $task = $this->maintenance->runChild( 'PopulateArchiveRevId', 'populateArchiveRevId.php' );
+			 if ( $task->execute() ) {
+				 $this->applyPatch( 'patch-ar_rev_id-not-null.sql', false,
+					 'Making ar_rev_id not nullable' );
+			 }
+		 }
+	 }
+
 }
