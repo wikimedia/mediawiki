@@ -381,11 +381,15 @@ abstract class Maintenance {
 	 * @param mixed $channel Unique identifier for the channel. See function outputChanneled.
 	 */
 	protected function output( $out, $channel = null ) {
-		// Try to periodically flush buffered metrics to avoid OOMs
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		if ( $stats->getDataCount() > 1000 ) {
-			MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
+		// This is sometimes called very early, before Setup.php is included.
+		if ( class_exists( MediaWikiServices::class ) ) {
+			// Try to periodically flush buffered metrics to avoid OOMs
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			if ( $stats->getDataCount() > 1000 ) {
+				MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
+			}
 		}
+
 		if ( $this->mQuiet ) {
 			return;
 		}
