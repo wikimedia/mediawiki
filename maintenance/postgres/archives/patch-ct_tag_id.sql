@@ -1,0 +1,2 @@
+ALTER TABLE change_tags
+    ADD COLUMN ct_tag_id INTEGER NOT NULL DEFAULT 0;

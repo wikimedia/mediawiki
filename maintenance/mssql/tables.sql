@@ -1195,6 +1195,16 @@ CREATE TABLE /*_*/updatelog (
   ul_value nvarchar(max)
 );
 
+-- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
+CREATE TABLE /*_*/tag (
+  tag_id int NOT NULL PRIMARY KEY IDENTITY,
+  tag_name nvarchar(255) NOT NULL,
+  tag_count int NOT NULL CONSTRAINT DF_tag_count DEFAULT 0,
+  tag_timestamp nvarchar(14) NULL
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/tag_name ON /*_*/tag (tag_name);
+CREATE INDEX /*i*/tag_count ON /*_*/tag (tag_count);
 
 -- A table to track tags for revisions, logs and recent changes.
 CREATE TABLE /*_*/change_tag (
@@ -1205,8 +1215,10 @@ CREATE TABLE /*_*/change_tag (
   ct_log_id int NULL REFERENCES /*_*/logging(log_id),
   -- REVID for the change
   ct_rev_id int NULL REFERENCES /*_*/revision(rev_id),
-  -- Tag applied
+  -- Tag name (being migrated to ct_tag_id)
   ct_tag nvarchar(255) NOT NULL,
+  -- Tag ID
+  ct_tag_id int NULL REFERENCES /*_*/tag(tag_id),
   -- Parameters for the tag, presently unused
   ct_params nvarchar(max) NULL
 );
@@ -1216,15 +1228,6 @@ CREATE UNIQUE INDEX /*i*/change_tag_log_tag ON /*_*/change_tag (ct_log_id,ct_tag
 CREATE UNIQUE INDEX /*i*/change_tag_rev_tag ON /*_*/change_tag (ct_rev_id,ct_tag);
 -- Covering index, so we can pull all the info only out of the index.
 CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
-
-CREATE TABLE /*_*/change_tag_statistics (
-  cts_tag nvarchar(255) NOT NULL CONSTRAINT PK_change_tag_statistics PRIMARY KEY,
-  cts_count int NOT NULL CONSTRAINT DF_cts_count DEFAULT 0,
-  cts_timestamp nvarchar(14) NULL
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/change_tag_statistics_count ON /*_*/change_tag_statistics (cts_count);
-
 
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
 -- that only works on MySQL 4.1+

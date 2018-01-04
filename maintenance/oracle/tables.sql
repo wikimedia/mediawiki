@@ -739,12 +739,23 @@ CREATE TABLE &mw_prefix.updatelog (
 );
 ALTER TABLE &mw_prefix.updatelog ADD CONSTRAINT &mw_prefix.updatelog_pk PRIMARY KEY (ul_key);
 
+CREATE TABLE &mw_prefix.tag (
+  tag_id NUMBER NOT NULL,
+  tag_name VARCHAR2(255) NOT NULL,
+  tag_count NUMBER NOT NULL DEFAULT 0,
+  tag_timestamp TIMESTAMP(6) WITH TIME ZONE
+);
+
+ALTER TABLE &mw_prefix.tag ADD CONSTRAINT &mw_prefix.tag_pk PRIMARY KEY (tag_id);
+CREATE INDEX &mw_prefix.tag_i01 ON &mw_prefix.tag (tag_count);
+
 CREATE TABLE &mw_prefix.change_tag (
   ct_id NUMBER NOT NULL,
   ct_rc_id NUMBER NULL,
   ct_log_id NUMBER NULL,
   ct_rev_id NUMBER NULL,
   ct_tag VARCHAR2(255) NOT NULL,
+  ct_tag_id NUMBER NOT NULL,
   ct_params BLOB NULL
 );
 ALTER TABLE &mw_prefix.change_tag ADD CONSTRAINT &mw_prefix.change_tag_pk PRIMARY KEY (ct_id);
@@ -752,15 +763,6 @@ CREATE UNIQUE INDEX &mw_prefix.change_tag_u01 ON &mw_prefix.change_tag (ct_rc_id
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u02 ON &mw_prefix.change_tag (ct_log_id,ct_tag);
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u03 ON &mw_prefix.change_tag (ct_rev_id,ct_tag);
 CREATE INDEX &mw_prefix.change_tag_i01 ON &mw_prefix.change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
-
-CREATE TABLE &mw_prefix.change_tag_statistics (
-  cts_tag VARCHAR2(255) NOT NULL,
-  cts_count NUMBER NOT NULL DEFAULT 0,
-  cts_timestamp TIMESTAMP(6) WITH TIME ZONE
-);
-
-ALTER TABLE &mw_prefix.change_tag_statistics ADD CONSTRAINT &mw_prefix.change_tag_statistics_pk PRIMARY KEY (cts_tag);
-CREATE INDEX &mw_prefix.change_tag_statistics_i01 ON &mw_prefix.change_tag_statistics (cts_count);
 
 CREATE TABLE &mw_prefix.tag_summary (
   ts_id NUMBER NOT NULL,

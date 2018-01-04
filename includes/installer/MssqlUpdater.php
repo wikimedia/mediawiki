@@ -107,7 +107,8 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
 
 			// 1.31
-			[ 'addTable', 'change_tag_statistics', 'patch-change_tag_statistics.sql' ],
+			[ 'addTable', 'tag', 'patch-tag_table.sql' ],
+			[ 'addField', 'change_tag', 'ct_tag_id', 'patch-ct_tag_id.sql' ],
 		];
 	}
 

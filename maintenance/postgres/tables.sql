@@ -26,6 +26,7 @@ DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS tag_tag_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS tag_summary_ts_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
@@ -704,6 +705,16 @@ CREATE TABLE category (
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
+CREATE SEQUENCE tag_tag_id_seq;
+CREATE TABLE tag (
+  tag_id        INTEGER  NOT NULL PRIMARY KEY DEFAULT nextval('tag_tag_id_seq'),
+  tag_name      TEXT     NOT NULL,
+  tag_count     INTEGER  NOT NULL DEFAULT 0,
+  tag_timestamp TIMESTAMPTZ  NULL
+);
+CREATE UNIQUE INDEX tag_name_idx ON tag(tag_name);
+CREATE INDEX tag_count_idx ON tag(tag_count);
+
 CREATE SEQUENCE change_tag_ct_id_seq;
 CREATE TABLE change_tag (
   ct_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq'),
@@ -711,20 +722,13 @@ CREATE TABLE change_tag (
   ct_log_id  INTEGER      NULL,
   ct_rev_id  INTEGER      NULL,
   ct_tag     TEXT     NOT NULL,
+  ct_tag_id  INTEGER  NOT NULL DEFAULT 0,
   ct_params  TEXT         NULL
 );
 CREATE UNIQUE INDEX change_tag_rc_tag ON change_tag(ct_rc_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_log_tag ON change_tag(ct_log_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_rev_tag ON change_tag(ct_rev_id,ct_tag);
 CREATE INDEX change_tag_tag_id ON change_tag(ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
-
-CREATE TABLE change_tag_statistics (
-  cts_tag TEXT NOT NULL PRIMARY KEY,
-  cts_count INTEGER NOT NULL DEFAULT 0,
-  cts_timestamp TIMESTAMPTZ
-);
-
-CREATE INDEX change_tag_statistics_count ON change_tag_statistics(cts_count);
 
 CREATE SEQUENCE tag_summary_ts_id_seq;
 CREATE TABLE tag_summary (
