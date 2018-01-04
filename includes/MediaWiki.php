@@ -727,10 +727,12 @@ class MediaWiki {
 		if ( function_exists( 'register_postsend_function' ) ) {
 			// https://github.com/facebook/hhvm/issues/1230
 			register_postsend_function( $callback );
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$blocksHttpClient = false;
 		} else {
 			if ( function_exists( 'fastcgi_finish_request' ) ) {
 				fastcgi_finish_request();
+				/** @noinspection PhpUnusedLocalVariableInspection */
 				$blocksHttpClient = false;
 			} else {
 				// Either all DB and deferred updates should happen or none.
