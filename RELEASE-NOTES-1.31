@@ -37,6 +37,11 @@ production.
   users during an import.
 * Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
   the ParserOutput::getText() post-cache transformations.
+* For certain file repo/backend configurations, unpatrolled files are served with
+  an 'X-MediaWiki-Patrol-Status: unpatrolled' header. This allows CDNs to limit
+  access to recent uploads until they get reviewed. The FileGetContentHeaders and
+  FileGetContentHeadersNew hooks and LocalFile::onMarkPatrolled method have been
+  added to aid extensions which want to interact with that.
 
 === External library changes in 1.31 ===
 
