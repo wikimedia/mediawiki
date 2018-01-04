@@ -2,7 +2,7 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
-use IDatabase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use PHPUnit_Framework_MockObject_MockObject;
 use Wikimedia\Rdbms\ConnectionManager;
