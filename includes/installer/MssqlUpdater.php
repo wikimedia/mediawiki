@@ -121,6 +121,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'migrateActors' ],
 			[ 'modifyField', 'revision', 'rev_text_id', 'patch-rev_text_id-default.sql' ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
+			[ 'populateArchiveRevId' ],
 		];
 	}
 
