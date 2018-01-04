@@ -5787,9 +5787,9 @@ class Parser {
 		global $wgFragmentMode;
 		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
-			$id = Sanitizer::escapeIdForAttribute( $text, Sanitizer::ID_FALLBACK );
+			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );
 		} else {
-			$id = Sanitizer::escapeIdForLink( $text );
+			$id = Sanitizer::escapeIdForLink( $sectionName );
 		}
 
 		return "#$id";
