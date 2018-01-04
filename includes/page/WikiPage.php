@@ -1425,14 +1425,15 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$dbr = wfGetDB( DB_REPLICA );
 			$rev = Revision::loadFromTimestamp( $dbr, $this->mTitle, $edittime );
 			// Try the master if this thread may have just added it.
 			// This could be abstracted into a Revision method, but we don't want
 			// to encourage loading of revisions by timestamp.
 			if ( !$rev
-				&& wfGetLB()->getServerCount() > 1
-				&& wfGetLB()->hasOrMadeRecentMasterChanges()
+				&& $lb->getServerCount() > 1
+				&& $lb->hasOrMadeRecentMasterChanges()
 			) {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );

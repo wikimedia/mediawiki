@@ -1551,7 +1551,10 @@ class AuthManager implements LoggerAwareInterface {
 		// Fetch the user ID from the master, so that we don't try to create the user
 		// when they already exist, due to replication lag
 		// @codeCoverageIgnoreStart
-		if ( !$localId && wfGetLB()->getReaderIndex() != 0 ) {
+		if (
+			!$localId &&
+			MediaWikiServices::getInstance()->getDBLoadBalancer()->getReaderIndex() != 0
+		) {
 			$localId = User::idFromName( $username, User::READ_LATEST );
 			$flags = User::READ_LATEST;
 		}
