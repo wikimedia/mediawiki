@@ -226,7 +226,7 @@ CREATE TABLE archive (
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   ar_flags          TEXT,
-  ar_rev_id         INTEGER,
+  ar_rev_id         INTEGER      NOT NULL,
   ar_text_id        INTEGER,
   ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
   ar_len            INTEGER          NULL,
