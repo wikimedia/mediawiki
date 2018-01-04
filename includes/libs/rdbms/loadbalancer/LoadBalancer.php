@@ -1080,26 +1080,6 @@ class LoadBalancer implements ILoadBalancer {
 		return isset( $this->mServers[$i]['type'] ) ? $this->mServers[$i]['type'] : 'unknown';
 	}
 
-	/**
-	 * @deprecated Since 1.30, no alternative
-	 */
-	public function getServerInfo( $i ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		if ( isset( $this->mServers[$i] ) ) {
-			return $this->mServers[$i];
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @deprecated Since 1.30, construct new object
-	 */
-	public function setServerInfo( $i, array $serverInfo ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$this->mServers[$i] = $serverInfo;
-	}
-
 	public function getMasterPos() {
 		# If this entire request was served from a replica DB without opening a connection to the
 		# master (however unlikely that may be), then we can fetch the position from the replica DB.
