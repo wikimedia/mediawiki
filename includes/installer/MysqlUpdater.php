@@ -338,6 +338,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
+			[ 'populateArchiveRevId' ],
 		];
 	}
 
