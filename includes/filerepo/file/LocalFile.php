@@ -2167,6 +2167,8 @@ class LocalFile extends File {
 			];
 		}
 
+		Hooks::run( 'FileGetContentHeadersNew', [ $props, $user, &$headers ] );
+
 		return $headers;
 	}
 

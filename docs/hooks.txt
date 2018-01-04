@@ -1553,6 +1553,25 @@ $user: User the list is being fetched for
 &$user: user who performed the deletion
 &$reason: reason
 
+'FileGetContentHeaders': Modify HTTP headers returned when a file is requested.
+Custom headers should start with 'X-MediaWiki-'. Unless MediaWiki is configured
+to stream files via PHP, this hook will not be used most of the time a file is
+served; for certain backends, the FileGetContentHeadersNew can be used to cover
+those cases.
+$file: the File in question.
+&$headers: headers as an associative array. See the documentation for the
+  'headers' parameter of FileBackend::doOperations for details.
+
+'FileGetContentHeadersNew': Modify what HTTP headers should be returned when
+a file is requested. Called when the file is created (so the hook should not
+rely on the File object already existing). The headers will be passed to the
+backend (so this hook is only useful with a FileBackend with the ATTR_HEADERS
+feature).
+$props: array of file properties (in the format returned by MWFileProps).
+$user: the User uploading the file.
+&$headers: headers as an associative array. See the documentation for the
+  'headers' parameter of FileBackend::doOperations for details.
+
 'FileTransformed': When a file is transformed and moved into storage.
 $file: reference to the File object
 $thumb: the MediaTransformOutput object
