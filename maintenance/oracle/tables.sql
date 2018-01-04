@@ -196,7 +196,7 @@ CREATE TABLE &mw_prefix.archive (
   ar_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   ar_minor_edit  CHAR(1)         DEFAULT '0' NOT NULL,
   ar_flags       VARCHAR2(255),
-  ar_rev_id      NUMBER,
+  ar_rev_id      NUMBER NOT NULL,
   ar_text_id     NUMBER,
   ar_deleted     CHAR(1)      DEFAULT '0' NOT NULL,
   ar_len         NUMBER,

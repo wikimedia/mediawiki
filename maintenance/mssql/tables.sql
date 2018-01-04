@@ -213,7 +213,7 @@ CREATE TABLE /*_*/archive (
    ar_timestamp varchar(14) NOT NULL default '',
    ar_minor_edit BIT NOT NULL DEFAULT 0,
    ar_flags NVARCHAR(255) NOT NULL,
-   ar_rev_id INT NULL, -- NOT a FK, the row gets deleted from revision and moved here
+   ar_rev_id INT NOT NULL, -- NOT a FK, the row gets deleted from revision and moved here
    ar_text_id INT CONSTRAINT ar_text_id__old_id__fk FOREIGN KEY REFERENCES /*_*/text(old_id) ON DELETE CASCADE,
    ar_deleted TINYINT NOT NULL DEFAULT 0,
    ar_len INT,

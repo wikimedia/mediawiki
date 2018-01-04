@@ -199,6 +199,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 			[ 'addTable', 'slots', 'patch-slots.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ]
+			[ 'populateArchiveRevId' ],
 		];
 	}
 
