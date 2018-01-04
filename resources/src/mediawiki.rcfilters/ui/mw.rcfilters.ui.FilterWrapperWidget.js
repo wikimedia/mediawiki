@@ -43,7 +43,7 @@
 			this.changesListModel
 		);
 
-		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitAndDateButtonWidget(
+		this.numChangesAndDateWidget = new mw.rcfilters.ui.ChangesLimitAndDateButtonWidget(
 			this.controller,
 			this.model,
 			{
@@ -59,6 +59,12 @@
 			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-showNewChanges' ]
 		} );
 
+		// Events
+		this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
+		this.changesListModel.connect( this, { newChangesExist: 'onNewChangesExist' } );
+		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
+		this.showNewChangesLink.toggle( false );
+
 		// Initialize
 		this.$top = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' );
@@ -67,18 +73,12 @@
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
 			.append(
 				this.showNewChangesLink.$element,
-				this.numChangesWidget.$element
+				this.numChangesAndDateWidget.$element
 			);
 
-		if ( mw.rcfilters.featureFlags.liveUpdate ) {
+		if ( mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' ) ) {
 			$bottom.prepend( this.liveUpdateButton.$element );
 		}
-
-		// Events
-		this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
-		this.changesListModel.connect( this, { newChangesExist: 'onNewChangesExist' } );
-		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
-		this.showNewChangesLink.toggle( false );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget' )
