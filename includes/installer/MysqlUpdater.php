@@ -871,7 +871,8 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->applyPatch( 'patch-templatelinks.sql', false, "Creating templatelinks table" );
 
 		$this->output( "Populating...\n" );
-		if ( wfGetLB()->getServerCount() > 1 ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getDBLoadBalancer()->getServerCount() > 1 ) {
 			// Slow, replication-friendly update
 			$res = $this->db->select( 'pagelinks', [ 'pl_from', 'pl_namespace', 'pl_title' ],
 				[ 'pl_namespace' => NS_TEMPLATE ], __METHOD__ );
@@ -879,7 +880,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					$lbFactory = $services->getDBLoadBalancerFactory();
 					$lbFactory->waitForReplication( [ 'wiki' => wfWikiID() ] );
 				}
 				$this->db->insert( 'templatelinks',

@@ -1452,7 +1452,7 @@ class ApiMain extends ApiBase {
 
 		if ( $module->isWriteMode()
 			&& $this->getUser()->isBot()
-			&& wfGetLB()->getServerCount() > 1
+			&& MediaWikiServices::getInstance()->getDBLoadBalancer()->getServerCount() > 1
 		) {
 			$this->checkBotReadOnly();
 		}
@@ -1466,7 +1466,7 @@ class ApiMain extends ApiBase {
 		$numLagged = 0;
 		$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
 		$laggedServers = [];
-		$loadBalancer = wfGetLB();
+		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		foreach ( $loadBalancer->getLagTimes() as $serverIndex => $lag ) {
 			if ( $lag > $lagLimit ) {
 				++$numLagged;
@@ -1475,7 +1475,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// If a majority of replica DBs are too lagged then disallow writes
-		$replicaCount = wfGetLB()->getServerCount() - 1;
+		$replicaCount = $loadBalancer->getServerCount() - 1;
 		if ( $numLagged >= ceil( $replicaCount / 2 ) ) {
 			$laggedServers = implode( ', ', $laggedServers );
 			wfDebugLog(

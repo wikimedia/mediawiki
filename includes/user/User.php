@@ -390,7 +390,8 @@ class User implements IDBAccessObject, UserIdentity {
 				break;
 			case 'name':
 				// Make sure this thread sees its own changes
-				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				if ( $lb->hasOrMadeRecentMasterChanges() ) {
 					$flags |= self::READ_LATEST;
 					$this->queryFlagsUsed = $flags;
 				}

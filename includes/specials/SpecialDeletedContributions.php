@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
@@ -97,7 +99,8 @@ class DeletedContributionsPage extends SpecialPage {
 		}
 
 		# Show a message about replica DB lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $pager->getDatabase() );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lag = $lb->safeGetLag( $pager->getDatabase() );
 		if ( $lag > 0 ) {
 			$out->showLagWarning( $lag );
 		}
