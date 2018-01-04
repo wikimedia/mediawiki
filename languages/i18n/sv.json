@@ -1424,7 +1424,7 @@
 	"rcfilters-filtergroup-automated": "Automatiserade bidrag",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-bots-description": "Redigeringar gjorda av automatiserade verktyg.",
-	"rcfilters-filter-humans-label": "Människa (inte bot)",
+	"rcfilters-filter-humans-label": "Mänskliga (inte bot)",
 	"rcfilters-filter-humans-description": "Redigeringar gjorda av mänskliga redigerare.",
 	"rcfilters-filtergroup-reviewstatus": "Granskningsstatus",
 	"rcfilters-filter-patrolled-label": "Patrullerade",

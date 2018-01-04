@@ -55,7 +55,8 @@
 			"Ftsalamp",
 			"Kostas20142",
 			"Nikosgranturismogt",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1673,7 +1674,7 @@
 	"uploadstash-bad-path-unrecognized-thumb-name": "Nom feuilleté non classifié.",
 	"uploadstash-bad-path-no-handler": "Δεν βρέθηκε χειριστής για την αντιγραφή του φακέλλου",
 	"uploadstash-bad-path-bad-format": "Ο κωδικός ''$1' δεν έχει τον κατάλληλο τύπο.",
-	"uploadstash-file-not-found": "Le code ''$1'' ñ'a pas été trouvé en planque",
+	"uploadstash-file-not-found": "",
 	"uploadstash-file-not-found-no-thumb": "Δεν μπόρεσε να αποκτήσει το ''thumbnail''.",
 	"uploadstash-file-not-found-no-local-path": "Δεν υπάρχει τρόπος τοπικά για το κλιμακούμενο αντικείμενο",
 	"uploadstash-file-not-found-no-object": "Δεν μπόρεσε να δημιουργήσει τοπικό φάκελλο ''thumbnail''.",

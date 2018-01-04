@@ -2950,7 +2950,7 @@
 	"newimages-newbies": "新規利用者の投稿のみ表示",
 	"newimages-showbots": "ボットによるアップロードを表示",
 	"newimages-hidepatrolled": "巡回済みのアップロードを隠す",
-	"newimages-mediatype": "メディアの種類：",
+	"newimages-mediatype": "メディアの種類:",
 	"noimages": "表示できるものがありません。",
 	"gallery-slideshow-toggle": "サムネイルを切り替える",
 	"ilsubmit": "検索",

@@ -3163,6 +3163,7 @@
 	"autosumm-blank": "Sayfa boşaltıldı",
 	"autosumm-replace": "Sayfa içeriği '$1' ile değiştirildi",
 	"autoredircomment": "[[$1]] sayfasına yönlendirildi",
+	"autosumm-removed-redirect": "[[$1]] sayfasına yapılmış yönlendirme kaldırıldı",
 	"autosumm-new": "\"$1\" içeriğiyle yeni sayfa oluşturdu",
 	"autosumm-newblank": "Boş bir sayfa oluşturdu",
 	"lag-warn-normal": "$1 {{PLURAL:$1|saniyeden|saniyeden}} yeni değişiklikler bu listede görünmeyebilir.",
