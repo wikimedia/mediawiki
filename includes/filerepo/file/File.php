@@ -2187,6 +2187,8 @@ abstract class File implements IDBAccessObject {
 	 * @see MediaHandler::getContentHeaders()
 	 */
 	public function getContentHeaders() {
+		$headers = [];
+
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			$metadata = $this->getMetadata();
@@ -2199,10 +2201,12 @@ abstract class File implements IDBAccessObject {
 				$metadata = [];
 			}
 
-			return $handler->getContentHeaders( $metadata );
+			$headers = $handler->getContentHeaders( $metadata );
 		}
 
-		return [];
+		Hooks::run( 'FileGetContentHeaders', [ $this, &$headers ] );
+
+		return $headers;
 	}
 
 	/**
