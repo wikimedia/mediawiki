@@ -320,6 +320,7 @@ class Names {
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
+		'nys' => 'Nyunga', # Nyungar
 		'oc' => 'occitan', # Occitan
 		'olo' => 'Livvinkarjala', # Livvi-Karelian
 		'om' => 'Oromoo', # Oromo
