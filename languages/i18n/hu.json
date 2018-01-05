@@ -2190,7 +2190,7 @@
 	"enotif_body_intro_created": "$2 létrehozta a(z) $1 {{SITENAME}}-oldalt $PAGEEDITDATE dátumon, lásd az aktuális verziót itt: $3.",
 	"enotif_body_intro_moved": "$2 átmozgatta a(z) $1 {{SITENAME}}-oldalt $PAGEEDITDATE dátumon, lásd az aktuális verziót itt: $3.",
 	"enotif_body_intro_restored": "$2 visszaállította a(z) $1 {{SITENAME}}-oldalt $PAGEEDITDATE dátumon, lásd az aktuális verziót itt: $3.",
-	"enotif_body_intro_changed": "$2 megváltoztatta a(z) $1 {{SITENAME}}-oldalt $PAGEEDITDATE dátumon, az aktuális verziót lásd itt: $3.",
+	"enotif_body_intro_changed": "$2 megváltoztatta a(z) $1 {{SITENAME}}-oldalt $PAGEEDITDATE dátumon, az aktuális verziót lásd a $3 címen.",
 	"enotif_lastvisited": "Az utolsó látogatásod óta történt változtatásokért lásd: $1",
 	"enotif_lastdiff": "Ezen változtatás megtekintéséhez lásd: $1",
 	"enotif_anon_editor": "$1 névtelen felhasználó",
