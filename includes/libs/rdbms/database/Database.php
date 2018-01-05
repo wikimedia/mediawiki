@@ -122,7 +122,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $preparedArgs;
 	/** @var string|bool|null Stashed value of html_errors INI setting */
 	protected $htmlErrors;
-	/** @var string */
+	/** @var string Used by sourceStream to reset $delimiter */
+	protected $defaultDelimiter = ';';
+	/** @var string Used by and can be modified by streamStatementEnd() */
 	protected $delimiter = ';';
 	/** @var DatabaseDomain */
 	protected $currentDomain;
@@ -3391,6 +3393,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		callable $inputCallback = null
 	) {
 		$cmd = '';
+		$this->delimiter = $this->defaultDelimiter;
 
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
