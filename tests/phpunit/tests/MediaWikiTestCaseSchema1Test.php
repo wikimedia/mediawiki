@@ -8,11 +8,19 @@
  */
 class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 
+	public static $hasRun = false;
+
 	public function getSchemaOverrides() {
 		return [
 			[ 'imagelinks', 'MediaWikiTestCaseTestTable' ],
 			[ __DIR__ . '/MediaWikiTestCaseSchemaTest.sql' ]
 		];
+	}
+
+	public function testMediaWikiTestCaseSchemaTestOrder() {
+		// The test must be run before the second test
+		self::$hasRun = true;
+		$this->assertTrue( self::$hasRun );
 	}
 
 	public function testSchemaExtension() {
