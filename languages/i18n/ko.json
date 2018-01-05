@@ -3804,7 +3804,7 @@
 	"expand_templates_preview": "미리 보기",
 	"expand_templates_preview_fail_html": "<em>{{SITENAME}}에서 순수 HTML 입력을 허용한 상태에서 세션 데이터가 분실되었습니다. 그러므로 자바스크립트 공격을 예방하기 위해 미리 보기는 숨겨져 있습니다.</em>\n\n<strong>적합하게 미리 보기를 시도했다면 다시 시도해 주십시오.</strong>\n그래도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인하여 사용자의 브라우저가 이 사이트에서 쿠키를 허용하는지 확인해 주십시오.",
 	"expand_templates_preview_fail_html_anon": "<em>{{SITENAME}}에서 순수 HTML 입력을 허용한 상태에서 사용자는 로그인되어 있지 않습니다. 그러므로 자바스크립트 공격을 예방하기 위해 미리 보기는 숨겨져 있습니다.</em>\n\n<strong>적합하게 미리 보기를 시도했다면 [[Special:UserLogin|로그인]]한 다음 다시 시도해 주십시오.</strong>",
-	"expand_templates_input_missing": "전개할 내용을 입력해야 합니다.",
+	"expand_templates_input_missing": "적어도 일부 입력 위키텍스트를 지정해야 합니다.",
 	"pagelanguage": "문서 언어 바꾸기",
 	"pagelang-name": "문서",
 	"pagelang-language": "언어",
