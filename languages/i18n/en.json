@@ -1487,7 +1487,7 @@
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Pages linked from</strong> the selected page",
 	"rcfilters-filter-showlinkedto-label": "Show changes on pages linking to",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Pages linking to</strong> the selected page",
-	"rcfilters-target-page-placeholder": "Enter a page name",
+	"rcfilters-target-page-placeholder": "Enter a page name (or category)",
 	"rcnotefrom": "Below {{PLURAL:$5|is the change|are the changes}} since <strong>$3, $4</strong> (up to <strong>$1</strong> shown).",
 	"rclistfromreset": "Reset date selection",
 	"rclistfrom": "Show new changes starting from $2, $3",
