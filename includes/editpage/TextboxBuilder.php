@@ -25,6 +25,7 @@
 namespace MediaWiki\EditPage;
 
 use MWNamespace;
+use Sanitizer;
 use Title;
 use User;
 
@@ -61,12 +62,10 @@ class TextboxBuilder {
 			return $attribs;
 		}
 
-		if ( isset( $attribs['class'] ) ) {
-			$classes[] = $attribs['class'];
-		}
-		$attribs['class'] = implode( ' ', $classes );
-
-		return $attribs;
+		return Sanitizer::mergeAttributes(
+			$attribs,
+			[ 'class' => implode( ' ', $classes ) ]
+		);
 	}
 
 	/**

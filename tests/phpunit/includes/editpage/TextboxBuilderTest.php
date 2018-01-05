@@ -112,7 +112,12 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 			[
 				[ 'mw-new-classname' ],
 				[ 'class' => 'mw-existing-classname' ],
-				[ 'class' => 'mw-new-classname mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname mw-new-classname' ],
+			],
+			[
+				[ 'mw-new-classname', 'mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname mw-new-classname' ],
 			],
 		];
 	}
