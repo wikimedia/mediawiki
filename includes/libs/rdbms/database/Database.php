@@ -3390,6 +3390,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		callable $inputCallback = null
 	) {
+		$delimiterReset = new ScopedCallback(
+			function ( $delimiter ) {
+				$this->delimiter = $delimiter;
+			},
+			[ $this->delimiter ]
+		);
 		$cmd = '';
 
 		while ( !feof( $fp ) ) {
@@ -3435,6 +3441,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
+		ScopedCallback::consume( $delimiterReset );
 		return true;
 	}
 
