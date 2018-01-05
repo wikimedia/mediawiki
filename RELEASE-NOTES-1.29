@@ -4,6 +4,7 @@ THIS IS NOT A RELEASE YET!
 
 === Changes since 1.29.2 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
+* (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
 
 == MediaWiki 1.29.2 ==
 
