@@ -1,0 +1,19 @@
+{
+    "ignore": [
+        "./maintenance/dev/install.sh",
+        "./maintenance/dev/installmw.sh",
+        "./maintenance/dev/installphp.sh",
+        "./maintenance/dev/start.sh",
+        "./maintenance/hhvm/run-server",
+        "./maintenance/language/zhtable/Makefile.py",
+        "./maintenance/mwjsduck-gen",
+        "./maintenance/postgres/compare_schemas.pl",
+        "./maintenance/postgres/mediawiki_mysql2postgres.pl",
+        "./maintenance/resources/update-oojs-ui.sh",
+        "./maintenance/resources/update-oojs.sh",
+        "./maintenance/storage/make-blobs",
+        "./maintenance/update.php",
+        "./tests/phan/bin/phan",
+        "./tests/phpunit/phpunit.php",
+    ]
+}
