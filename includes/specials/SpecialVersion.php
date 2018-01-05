@@ -169,7 +169,9 @@ class SpecialVersion extends SpecialPage {
 		$ret .= '<div class="plainlinks">';
 		$ret .= "__NOTOC__
 		" . self::getCopyrightAndAuthorList() . "\n
-		" . wfMessage( 'version-license-info' )->text();
+		" . '<div class="mw-version-license-info">' .
+		wfMessage( 'version-license-info' )->text() .
+		'</div>';
 		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
