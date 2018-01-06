@@ -38,6 +38,8 @@
  * @file
  */
 
+use MediaWiki\Shell\Shell;
+
 /**
  * @cond file_level_code
  * This is not a valid entry point, perform no further processing unless
@@ -8304,6 +8306,14 @@ $wgShellLocale = 'C.UTF-8';
  * @var string|bool
  */
 $wgShellRestrictionMethod = false;
+
+/**
+ * Default shell execution restriction. Does not apply to legacy calls to wfShellExec()
+ * Does not use Shell::RESTRICT_DEFAULT to isolate library changes from configuration.
+ *
+ * @since 1.31
+ */
+$wgShellDefaultRestriction = Shell::NO_ROOT | Shell::NO_NETWORK | Shell::NO_LOCALSETTINGS;
 
 /** @} */ # End shell }
 

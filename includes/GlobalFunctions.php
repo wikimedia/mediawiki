@@ -2315,6 +2315,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 			->limits( $limits )
 			->includeStderr( $includeStderr )
 			->profileMethod( $profileMethod )
+			// For b/c
+			->restrict( Shell::RESTRICT_NONE )
 			->execute();
 	} catch ( ProcOpenError $ex ) {
 		$retval = -1;
