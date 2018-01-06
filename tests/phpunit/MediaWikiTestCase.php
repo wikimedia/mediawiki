@@ -1613,13 +1613,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string|array $fields The columns to include in the result (and to sort by)
 	 * @param string|array $condition "where" condition(s)
 	 * @param array $expectedRows An array of arrays giving the expected rows.
+	 * @param array $options Options for the query
+	 * @param array $join_conds Join conditions for the query
 	 *
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
 	 *         needsDB() method.
 	 */
-	protected function assertSelect( $table, $fields, $condition, array $expectedRows ) {
+	protected function assertSelect(
+		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
+	) {
 		if ( !$this->needsDB() ) {
 			throw new MWException( 'When testing database state, the test cases\'s needDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
@@ -1627,7 +1631,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_REPLICA );
 
-		$res = $db->select( $table, $fields, $condition, wfGetCaller(), [ 'ORDER BY' => $fields ] );
+		$res = $db->select(
+			$table,
+			$fields,
+			$condition,
+			wfGetCaller(),
+			$options + [ 'ORDER BY' => $fields ],
+			$join_conds
+		);
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;
