@@ -100,6 +100,7 @@ class CommandFactory {
 	public function create() {
 		if ( $this->restrictionMethod === 'firejail' ) {
 			$command = new FirejailCommand( $this->findFirejail() );
+			$command->restrict( Shell::RESTRICT_DEFAULT );
 		} else {
 			$command = new Command();
 		}
