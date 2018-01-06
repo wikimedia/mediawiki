@@ -255,6 +255,8 @@ changes to languages because of Phabricator reports.
   MWTidy::checkErrors() and its callee TidyDriverBase::validate() are removed, as are
   MediaWikiTestCase::assertValidHtmlSnippet() and ::assertValidHtmlDocument(). The
   $wgValidateAllHtml configuration option is removed and will be ignored.
+* Execution of external programs using MediaWiki\Shell\Command now applies RESTRICT_DEFAULT
+  Firejail restriction by default.
 
 === Deprecations in 1.31 ===
 * The Revision class was deprecated in favor of RevisionStore, BlobStore, and
