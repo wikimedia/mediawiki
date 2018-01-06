@@ -101,6 +101,13 @@ class Shell {
 	const NO_LOCALSETTINGS = 32;
 
 	/**
+	 * Don't apply any restrictions
+	 *
+	 * @since 1.31
+	 */
+	const RESTRICT_NONE = 0;
+
+	/**
 	 * Returns a new instance of Command class
 	 *
 	 * @param string|string[] $command String or array of strings representing the command to
