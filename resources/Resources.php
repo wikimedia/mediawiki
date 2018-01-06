@@ -1776,6 +1776,7 @@ return [
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.api.options',
+			'mediawiki.jqueryMsg',
 			'mediawiki.Uri',
 			'mediawiki.user',
 		],
@@ -1934,6 +1935,7 @@ return [
 		'dependencies' => [
 			'oojs-ui-widgets',
 			'jquery.makeCollapsible',
+			'mediawiki.jqueryMsg',
 			'mediawiki.language',
 			'mediawiki.user',
 			'mediawiki.util',
