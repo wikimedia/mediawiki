@@ -445,8 +445,9 @@ return [
 		];
 		$cgroup = $config->get( 'ShellCgroup' );
 		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
+		$restriction = $config->get( 'ShellDefaultRestriction' );
 
-		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
+		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod, $restriction );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 		$factory->logStderr();
 

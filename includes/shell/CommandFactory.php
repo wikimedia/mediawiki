@@ -46,6 +46,9 @@ class CommandFactory {
 	 */
 	private $restrictionMethod;
 
+	/** @var int */
+	private $defaultRestriction;
+
 	/**
 	 * @var string|bool
 	 */
@@ -58,7 +61,7 @@ class CommandFactory {
 	 * @param string|bool $cgroup See {@see Command::cgroup()}
 	 * @param string|bool $restrictionMethod
 	 */
-	public function __construct( array $limits, $cgroup, $restrictionMethod ) {
+	public function __construct( array $limits, $cgroup, $restrictionMethod, $defaultRestriction ) {
 		$this->limits = $limits;
 		$this->cgroup = $cgroup;
 		if ( $restrictionMethod === 'autodetect' ) {
@@ -71,6 +74,7 @@ class CommandFactory {
 		} else {
 			$this->restrictionMethod = $restrictionMethod;
 		}
+		$this->defaultRestriction = $defaultRestriction;
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -108,6 +112,7 @@ class CommandFactory {
 		return $command
 			->limits( $this->limits )
 			->cgroup( $this->cgroup )
-			->logStderr( $this->doLogStderr );
+			->logStderr( $this->doLogStderr )
+			->restrict( $this->defaultRestriction );
 	}
 }
