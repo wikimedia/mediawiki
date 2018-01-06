@@ -1776,8 +1776,13 @@ return [
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.api.options',
+			'mediawiki.jqueryMsg',
 			'mediawiki.Uri',
 			'mediawiki.user',
+		],
+		'messages' => [
+			'quotation-marks',
+			'rcfilters-filterlist-title',
 		],
 	],
 	'mediawiki.rcfilters.filters.ui' => [
@@ -1934,6 +1939,7 @@ return [
 		'dependencies' => [
 			'oojs-ui-widgets',
 			'jquery.makeCollapsible',
+			'mediawiki.jqueryMsg',
 			'mediawiki.language',
 			'mediawiki.user',
 			'mediawiki.util',
