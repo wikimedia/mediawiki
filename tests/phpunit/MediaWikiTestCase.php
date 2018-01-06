@@ -1393,9 +1393,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		foreach ( $tables as $tbl ) {
-			$tmp = self::$useTemporaryTables ? ' TEMPORARY ' : '';
 			$tbl = $db->tableName( $tbl );
-			$db->query( "DROP $tmp TABLE IF EXISTS $tbl", __METHOD__ );
+			$db->query( "DROP TABLE IF EXISTS $tbl", __METHOD__ );
 
 			if ( $tbl === 'page' ) {
 				// Forget about the pages since they don't
