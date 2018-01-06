@@ -3648,7 +3648,7 @@
 	"expand_templates_preview": "Rakwelet",
 	"expand_templates_preview_fail_html": "<em>Dre m'eo gweredekaet HTML kriz {{SITENAME}} ha dre ma'z eus bet kollet roadennoù e-pad an dalc'h eo kuzhet ar rakwel abalamour d'en em wareziñ diouzh tagadennoù JavaScript.</em>\n\n<strong>Klaskit en-dro m'eo dinoaz ho koulenn rakwel.</strong>\nMa ne'z a ket en-dro c'hoazh, klaskit [[Special:UserLogout|digevreañ]] hag adkevreañ goude-se, goude bezañ gwiriet mat eo digor ho merdeer d'an toupinoù evit al lec'hienn-mañ.",
 	"expand_templates_preview_fail_html_anon": "<em>Dre m'eo gweredekaet HTML kriz {{SITENAME}} ha dre ma n'oc'h ket kevreet eo kuzhet ar rakwel abalamour d'en em wareziñ diouzh tagadennoù JavaScript.</em>\n\n<strong>M'eo dinoaz ho koulenn rakwel, [[Special:UserLogin|kevreit]] ha klaskit en-dro.</strong>",
-	"expand_templates_input_missing": "Ret eo deoc'h lakaat da nebeutañ un tamm testenn wiki moned.",
+	"expand_templates_input_missing": "Ret eo deoc'h lakaat un tamm testenn wiki da nebeutañ.",
 	"pagelanguage": "Kemmañ yezh ar bajenn",
 	"pagelang-name": "Pajenn",
 	"pagelang-language": "Yezh",

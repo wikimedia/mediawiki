@@ -1004,6 +1004,7 @@
 	"timezoneregion-indian": "Индийски океан",
 	"timezoneregion-pacific": "Тихи океан",
 	"allowemail": "Възможност за получаване на писма от други потребители",
+	"email-allow-new-users-label": "Позволяване на писма от съвсем нови потребители",
 	"email-blacklist-label": "Забраняване на следните потребители да ми изпращат писма:",
 	"prefs-searchoptions": "Търсене",
 	"prefs-namespaces": "Именни пространства",

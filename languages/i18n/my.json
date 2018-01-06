@@ -760,7 +760,7 @@
 	"prefs-emailconfirm-label": "အီးမေးအတည်ပြုရန်",
 	"youremail": "အီး​မေး -",
 	"username": "{{GENDER:$1|အသုံးပြုသူအမည်}} -",
-	"prefs-memberingroups": "{{PLURAL:$1|အုပ်စု|အုပ်စုများ}}၏ {{GENDER:$2|အဖွဲ့ဝင်}}",
+	"prefs-memberingroups": "{{PLURAL:$1|အုပ်စု|အုပ်စုများ}}၏ {{GENDER:$2|အဖွဲ့ဝင်}} -",
 	"prefs-registration": "မှတ်ပုံတင်သည့် အချိန် -",
 	"yourrealname": "နာမည်ရင်း -",
 	"yourlanguage": "ဘာသာစကား:",

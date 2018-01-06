@@ -263,7 +263,7 @@
 	"apihelp-paraminfo-example-1": "Információk megjelenítése az <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd> és <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> lekérdezésekhez.",
 	"apihelp-paraminfo-example-2": "Információk megjelenítése az <kbd>[[Special:ApiHelp/query|action=query]]</kbd> összes almoduljához.",
 	"apihelp-parse-summary": "Tartalom feldolgozása.",
-	"apihelp-parse-extended-description": "Lásd az <kbd>[[Special:ApiHelp/query|action=query]]</kbd> számos prop-modulját a információk lekérésére a lap aktuális változatáról.\n\nTöbbféle módon megadható a feldolgozandó szöveg:\n# Egy lap vagy lapváltozat megadásával, a <var>$1page</var>, <var>$1pageid</var> vagy <var>$1oldid</var> paraméterrel.\n# Magának a tartalomnak a megadásával, a <var>$1text</var>, <var>$1title</var> és <var>$1contentmodel</var> paraméterrel.\n# Csak egy összefoglaló feldolgozása. A <var>$1prop</var> paraméternek üresnek kell lennie.",
+	"apihelp-parse-extended-description": "Lásd az <kbd>[[Special:ApiHelp/query|action=query]]</kbd> számos prop-modulját a információk lekérésére a lap aktuális változatáról.\n\nTöbbféle módon megadható a feldolgozandó szöveg:\n# Egy lap vagy lapváltozat megadásával, a <var>$1page</var>, <var>$1pageid</var> vagy <var>$1oldid</var> paraméterrel.\n# Magának a tartalomnak a megadásával, a <var>$1text</var>, <var>$1title</var>, <var>$1revid</var> és <var>$1contentmodel</var> paraméterrel.\n# Csak egy összefoglaló feldolgozása. A <var>$1prop</var> paraméternek üresnek kell lennie.",
 	"apihelp-parse-param-title": "A lapnak a címe, amihez a szöveg tartozik. Ha nincs megadva, a <var>$1contentmodel</var> paraméter kötelező, és a cím [[API]] lesz.",
 	"apihelp-parse-param-text": "A feldolgozandó szöveg. Használd a <var>$1title</var> vagy <var>$1contentmodel</var> paramétert a tartalommodell megadásához.",
 	"apihelp-parse-param-summary": "Feldolgozandó szerkesztési összefoglaló.",
@@ -1164,5 +1164,6 @@
 	"api-help-param-integer-max": "Az {{PLURAL:$1|1=érték nem lehet nagyobb|2=értékek nem lehetnek nagyobbak}} mint $3.",
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Az értéknek $2 és $3 között kell lennie.|2=Az értékeknek $2 és $3 között kell lenniük.}}",
 	"api-help-param-default": "Alapértelmezett: $1",
+	"api-help-examples": "{{PLURAL:$1|Példa|Példák}}:",
 	"apierror-timeout": "A kiszolgáló nem adott választ a várt időn belül."
 }

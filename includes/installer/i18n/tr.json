@@ -18,7 +18,8 @@
 			"McAang",
 			"Elftrkn",
 			"Vito Genovese",
-			"Incelemeelemani"
+			"Incelemeelemani",
+			"Hedda"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -76,7 +77,7 @@
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] kurulu",
 	"config-apc": "[http://www.php.net/apc APC] kurulu",
-	"config-apcu": "[http://www.php.net/apcu APCu] kurulu",
+	"config-apcu": "[http://www.php.net/apcu APCu] yüklendi",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] kurulu",
 	"config-no-cache-apcu": "<strong>Uyarı:</strong> [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ya da [http://www.iis.net/download/WinCacheForPhp WinCache] kurulumu bulunamadı.\nNesne önbellekleme etkin değil.",
 	"config-mod-security": "<strong>'''Uyarı:'''</strong> Web sunucunuz [http://modsecurity.org/mod_security2 mod_security] etkin. Bunun birçok yaygın yapılandırması bulunur ve eğer yanlış yapılandırılmış ise, bu MediaWiki ve kullanıcılara isteğe bağlı içerik göndermesine izin veren diğer yazılımlar için sorun oluşturabilir.\nMümkünse bu devre dışı bırakılmalıdır. Aksi takdirde rastgele hatalar alırsanız [http://modsecurity.org/documentation/ mod_security belgelemesine] bakın ya da sunucunuzun desteğine başvurun.",

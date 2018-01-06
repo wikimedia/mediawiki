@@ -49,7 +49,8 @@
 			"Notramo",
 			"Urbalazs",
 			"Bencemac",
-			"Rodrigo"
+			"Rodrigo",
+			"Tothasze"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2854,6 +2855,7 @@
 	"pageinfo-category-subcats": "Alkategóriák száma",
 	"pageinfo-category-files": "Fájlok száma",
 	"pageinfo-user-id": "Felhasználóazonosító",
+	"pageinfo-file-hash": "Hash érték",
 	"markaspatrolleddiff": "Ellenőrzöttnek jelölöd",
 	"markaspatrolledtext": "Ellenőriztem",
 	"markaspatrolledtext-file": "Ellenőriztem",

@@ -1445,7 +1445,7 @@
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>דפים שמקושרים מתוך</strong> הדף שנבחר",
 	"rcfilters-filter-showlinkedto-label": "הצגת שינויים בדפים שמקשרים אל",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>דפים שמקשרים אל</strong> הדף שנבחר",
-	"rcfilters-target-page-placeholder": "הקלדת שם דף",
+	"rcfilters-target-page-placeholder": "הקלדת שם דף (או קטגוריה)",
 	"rcnotefrom": "להלן {{PLURAL:$5|השינוי שבוצע|השינויים שבוצעו}} מאז <strong>$3, $4</strong> (מוצגים עד <strong>$1</strong>).",
 	"rclistfromreset": "איפוס בחירת התאריך",
 	"rclistfrom": "הצגת שינויים חדשים החל מ־$2, $3",
