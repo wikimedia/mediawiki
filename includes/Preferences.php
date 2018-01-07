@@ -315,6 +315,7 @@ class Preferences {
 	/**
 	 * @param array $formData
 	 * @param PreferencesForm $form
+	 * @return Status
 	 */
 	public static function tryUISubmit( $formData, $form ) {
 		$preferencesFactory = self::getDefaultPreferencesFactory();

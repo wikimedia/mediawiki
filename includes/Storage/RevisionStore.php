@@ -562,6 +562,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	/**
 	 * MCR migration note: this replaces Revision::isUnpatrolled
 	 *
+	 * @param RevisionRecord $rev
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function isUnpatrolled( RevisionRecord $rev ) {

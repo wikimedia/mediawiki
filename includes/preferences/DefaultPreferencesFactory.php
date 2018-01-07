@@ -70,6 +70,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var LinkRenderer */
 	protected $linkRenderer;
 
+	/**
+	 * @param Config $config
+	 * @param Language $contLang
+	 * @param AuthManager $authManager
+	 * @param LinkRenderer $linkRenderer
+	 */
 	public function __construct(
 		Config $config,
 		Language $contLang,

@@ -78,6 +78,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
 	}
 
+	/**
+	 * @param StatsdDataFactoryInterface $stats
+	 */
 	public function setStatsdDataFactory( StatsdDataFactoryInterface $stats ) {
 		$this->stats = $stats;
 	}
@@ -241,6 +244,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.31
+	 * @param User $user
+	 * @return int
 	 */
 	public function countWatchedItems( User $user ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -258,6 +263,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param LinkTarget $target
+	 * @return int
 	 */
 	public function countWatchers( LinkTarget $target ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -276,6 +283,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param LinkTarget $target
+	 * @param string|int $threshold
+	 * @return int
 	 */
 	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
@@ -297,6 +307,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param LinkTarget[] $targets
+	 * @param array $options
+	 * @return array
 	 */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
@@ -330,6 +343,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param array $targetsWithVisitThresholds
+	 * @param int|null $minimumWatchers
+	 * @return array
 	 */
 	public function countVisitingWatchersMultiple(
 		array $targetsWithVisitThresholds,
@@ -410,6 +426,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return bool
 	 */
 	public function getWatchedItem( User $user, LinkTarget $target ) {
 		if ( $user->isAnon() ) {
@@ -427,6 +446,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return bool
 	 */
 	public function loadWatchedItem( User $user, LinkTarget $target ) {
 		// Only loggedin user can have a watchlist
@@ -458,6 +480,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param array $options
+	 * @return WatchedItem[]
 	 */
 	public function getWatchedItemsForUser( User $user, array $options = [] ) {
 		$options += [ 'forWrite' => false ];
@@ -499,6 +524,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return bool
 	 */
 	public function isWatched( User $user, LinkTarget $target ) {
 		return (bool)$this->getWatchedItem( $user, $target );
@@ -506,6 +534,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 * @return array
 	 */
 	public function getNotificationTimestampsBatch( User $user, array $targets ) {
 		$timestamps = [];
@@ -555,6 +586,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget $target
 	 */
 	public function addWatch( User $user, LinkTarget $target ) {
 		$this->addWatchBatchForUser( $user, [ $target ] );
@@ -562,6 +595,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget[] $targets
+	 * @return bool
 	 */
 	public function addWatchBatchForUser( User $user, array $targets ) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -611,6 +647,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return bool
 	 */
 	public function removeWatch( User $user, LinkTarget $target ) {
 		// Only logged in user can have a watchlist
@@ -635,6 +674,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param string|int $timestamp
+	 * @param LinkTarget[] $targets
+	 * @return bool
 	 */
 	public function setNotificationTimestampsForUser( User $user, $timestamp, array $targets = [] ) {
 		// Only loggedin user can have a watchlist
@@ -668,6 +711,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $editor
+	 * @param LinkTarget $target
+	 * @param string|int $timestamp
+	 * @return int
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
@@ -724,6 +771,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param Title $title
+	 * @param string $force
+	 * @param int $oldid
+	 * @return bool
 	 */
 	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 ) {
 		// Only loggedin user can have a watchlist
@@ -813,6 +865,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param User $user
+	 * @param int|null $unreadLimit
+	 * @return int|bool
 	 */
 	public function countUnreadNotifications( User $user, $unreadLimit = null ) {
 		$queryOptions = [];
@@ -846,6 +901,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param LinkTarget $oldTarget
+	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
 		$oldTarget = Title::newFromLinkTarget( $oldTarget );
@@ -857,6 +914,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
+	 * @param LinkTarget $oldTarget
+	 * @param LinkTarget $newTarget
 	 */
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );

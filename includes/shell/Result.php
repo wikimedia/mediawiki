@@ -38,6 +38,7 @@ class Result {
 	/**
 	 * @param int $exitCode
 	 * @param string $stdout
+	 * @param string|null $stderr
 	 */
 	public function __construct( $exitCode, $stdout, $stderr = null ) {
 		$this->exitCode = $exitCode;

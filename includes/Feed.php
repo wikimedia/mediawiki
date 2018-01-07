@@ -153,6 +153,7 @@ class FeedItem {
 	/**
 	 * Get the description of this item without any escaping
 	 *
+	 * @return string
 	 */
 	public function getDescriptionUnescaped() {
 		return $this->description;

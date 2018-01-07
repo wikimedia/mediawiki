@@ -214,6 +214,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$this->asyncHandler = isset( $params['asyncHandler'] ) ? $params['asyncHandler'] : null;
 	}
 
+	/**
+	 * @param LoggerInterface $logger
+	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -1238,7 +1241,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param string $key
 	 * @param bool $versioned
 	 * @param float $minTime
-	 * @param mixed $asOf
+	 * @param mixed &$asOf
 	 * @return mixed
 	 */
 	protected function getInterimValue( $key, $versioned, $minTime, &$asOf ) {
