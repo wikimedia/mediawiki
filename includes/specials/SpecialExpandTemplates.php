@@ -56,6 +56,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		global $wgParser;
 
 		$this->setHeaders();
+		$this->addHelpLink( 'Help:ExpandTemplates' );
 
 		$request = $this->getRequest();
 		$titleStr = $request->getText( 'wpContextTitle' );
