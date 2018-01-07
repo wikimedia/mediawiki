@@ -690,7 +690,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
-	 * @param string[] $modules List of module names
 	 * @return string Hash
 	 */
 	public function makeVersionQuery( ResourceLoaderContext $context ) {

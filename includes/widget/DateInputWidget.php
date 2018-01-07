@@ -28,29 +28,29 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 
 	/**
 	 * @param array $config Configuration options
-	 * @param string $config['inputFormat'] Date format string to use for the textual input field.
-	 *   Displayed while the widget is active, and the user can type in a date in this format.
-	 *   Should be short and easy to type. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
-	 *   `precision`)
-	 * @param string $config['displayFormat'] Date format string to use for the clickable label.
-	 *   while the widget is inactive. Should be as unambiguous as possible (for example, prefer
-	 *   to spell out the month, rather than rely on the order), even if that makes it longer.
-	 *   Applicable only if the widget is infused. (default: language-specific)
-	 * @param string $config['longDisplayFormat'] If a custom displayFormat is not specified, use
-	 *   unabbreviated day of the week and month names in the default language-specific
-	 *   displayFormat. (default: false)
-	 * @param string $config['placeholderLabel'] Placeholder text shown when the widget is not
-	 *   selected. Applicable only if the widget is infused. (default: taken from message
-	 *   `mw-widgets-dateinput-no-date`)
-	 * @param string $config['placeholderDateFormat'] User-visible date format string displayed
-	 *   in the textual input field when it's empty. Should be the same as `inputFormat`, but
-	 *   translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
-	 *   `precision`)
-	 * @param string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
-	 * @param string $config['mustBeAfter']	Validates the date to be after this.
-	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
-	 * @param string $config['mustBeBefore'] Validates the date to be before this.
-	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
+	 *   - string $config['inputFormat'] Date format string to use for the textual input field.
+	 *     Displayed while the widget is active, and the user can type in a date in this format.
+	 *     Should be short and easy to type. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
+	 *     `precision`)
+	 *   - string $config['displayFormat'] Date format string to use for the clickable label.
+	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer
+	 *     to spell out the month, rather than rely on the order), even if that makes it longer.
+	 *     Applicable only if the widget is infused. (default: language-specific)
+	 *   - string $config['longDisplayFormat'] If a custom displayFormat is not specified, use
+	 *     unabbreviated day of the week and month names in the default language-specific
+	 *     displayFormat. (default: false)
+	 *   - string $config['placeholderLabel'] Placeholder text shown when the widget is not
+	 *     selected. Applicable only if the widget is infused. (default: taken from message
+	 *     `mw-widgets-dateinput-no-date`)
+	 *   - string $config['placeholderDateFormat'] User-visible date format string displayed
+	 *     in the textual input field when it's empty. Should be the same as `inputFormat`, but
+	 *     translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
+	 *     `precision`)
+	 *   - string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
+	 *   - string $config['mustBeAfter']	Validates the date to be after this.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
+	 *   - string $config['mustBeBefore'] Validates the date to be before this.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [

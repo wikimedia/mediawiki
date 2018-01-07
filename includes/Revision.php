@@ -65,7 +65,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param bool|string $wikiId The ID of the target wiki database. Use false for the local wiki.
+	 * @param bool|string $wiki The ID of the target wiki database. Use false for the local wiki.
 	 *
 	 * @return SqlBlobStore
 	 */

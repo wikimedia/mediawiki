@@ -532,8 +532,8 @@ class Xml {
 	 *
 	 * @param string $list Correctly formatted text (newline delimited) to be
 	 *   used to generate the options.
-	 * @param array $params Extra parameters
-	 * @param string $params['other'] If set, add an option with this as text and a value of 'other'
+	 * @param array $params Extra parameters:
+	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 */
 	public static function listDropDownOptions( $list, $params = [] ) {
