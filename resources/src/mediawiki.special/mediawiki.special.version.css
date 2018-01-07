@@ -25,6 +25,11 @@ th.mw-version-ext-col-label {
 	-webkit-column-width: 18em;
 }
 
+.mw-version-credits ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .mw-version-license-info strong {
 	font-weight: normal;
 }
