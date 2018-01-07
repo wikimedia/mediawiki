@@ -24,7 +24,8 @@
 			"Urhixidur",
 			"Florian",
 			"Tiin",
-			"Rhirsch"
+			"Rhirsch",
+			"Metalhead64"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den „Letzten Änderungen“ ausblenden",
@@ -37,8 +38,8 @@
 	"tog-editondblclick": "Seiten mit Doppelklick bearbeiten",
 	"tog-editsectiononrightclick": "Einzelne Abschnitte per Rechtsklick bearbeiten",
 	"tog-enotifrevealaddr": "Ihre E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen",
-	"view-pool-error": "Entschuldigung, die Server sind im Moment überlastet.\nZu viele Benutzer versuchen, diese Seite zu besuchen.\nBitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.\n\n$1",
-	"generic-pool-error": "Leider sind die Server derzeit überlastet.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
+	"view-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer versuchen, diese Seite zu besuchen.\nBitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.\n\n$1",
+	"generic-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
 	"badaccess-group0": "Sie haben nicht die erforderlichen Benutzerrechte für diese Aktion.",
 	"versionrequiredtext": "Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen.\nSehen Sie auf die [[Special:Version|Versionsseite]]",
 	"youhavenewmessages": "Sie haben $1 ($2).",

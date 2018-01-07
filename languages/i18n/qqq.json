@@ -4087,7 +4087,7 @@
 	"tag-mw-replace-description": "Description for \"replace\" change tag",
 	"tag-mw-rollback": "Change tag for rolling back an edit\n{{Identical|Rollback}}",
 	"tag-mw-rollback-description": "Description for \"rollback\" change tag",
-	"tag-mw-undo": "Change tag for undoing an edit",
+	"tag-mw-undo": "Change tag for undoing an edit\n{{Identical|Undo}}",
 	"tag-mw-undo-description": "Description for \"undo\" change tag",
 	"tags-title": "The title of [[Special:Tags]].\n{{Identical|Tag}}",
 	"tags-intro": "Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",

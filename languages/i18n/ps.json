@@ -2957,7 +2957,7 @@
 	"api-error-unknownerror": "ناڅرگنده تېروتنه: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|ثانيه|ثانيې}}",
 	"duration-minutes": "$1 {{PLURAL:$1|دقيقه|دقيقې}}",
-	"duration-hours": "$1 {{PLURAL:$1|hour|ساعتونه}}",
+	"duration-hours": "$1 {{PLURAL:$1|hour|ساعته}}",
 	"duration-days": "$1 {{PLURAL:$1|ورځ|ورځې}}",
 	"duration-weeks": "$1 {{PLURAL:$1|اونۍ|اونۍ}}",
 	"duration-years": "$1 {{PLURAL:$1|کال|کالونه}}",
