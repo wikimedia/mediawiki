@@ -342,7 +342,7 @@
 	"config-install-success": "Se instaló MediaWiki correctamente. Ahora puedes visitar\n<$1$2> para ver el wiki.\nSi tienes dudas, echa un vistazo a la lista de preguntas frecuentes:\n<https://www.mediawiki.org/wiki/Manual:FAQ>, o bien, utiliza uno de\nlos foros de asistencia que se enumeran en esa página.",
 	"config-download-localsettings": "Descargar <code>LocalSettings.php</code>",
 	"config-help": "ayuda",
-	"config-help-tooltip": "haz clic para ampliar",
+	"config-help-tooltip": "pulsa para ampliar",
 	"config-nofile": "No se pudo encontrar el archivo «$1». Quizá se eliminó.",
 	"config-extension-link": "¿Sabías que tu wiki admite [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar el [https://www.mediawiki.org/wiki/Extension_Matrix centro de extensiones] para ver una lista completa.",
 	"config-skins-screenshots": "$1 (capturas de pantalla: $2)",

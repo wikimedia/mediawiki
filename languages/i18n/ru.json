@@ -117,7 +117,8 @@
 			"Ernác",
 			"Wertuose",
 			"Helpau",
-			"Staspotanin2"
+			"Staspotanin2",
+			"Edible Melon"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1531,7 +1532,7 @@
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Страницы, на которые ссылается</strong> выбранная",
 	"rcfilters-filter-showlinkedto-label": "Показать правки на ссылающихся страницах",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Страницы, ссылающиеся</strong> на выбранную",
-	"rcfilters-target-page-placeholder": "Введите имя страницы",
+	"rcfilters-target-page-placeholder": "Введите имя страницы (или категории)",
 	"rcnotefrom": "Ниже {{PLURAL:$5|указано изменение|перечислены изменения}} с <strong>$3, $4</strong> (показано не более <strong>$1</strong>).",
 	"rclistfromreset": "Сбросить выбор даты",
 	"rclistfrom": "Показать изменения с $3 $2.",
@@ -3595,7 +3596,7 @@
 	"version-poweredby-others": "другие",
 	"version-poweredby-translators": "переводчики translatewiki.net",
 	"version-credits-summary": "Хотим поблагодарить следующих участников за их вклад в развитие [[Special:Version|MediaWiki]].",
-	"version-license-info": "MediaWiki — свободное программное обеспечение, которое вы можете распространять и/или изменять в соответствии с условиями опубликованной Фондом свободного программного обеспечения лицензии GNU General Public License второй или любой более поздней версии (по вашему выбору).\n\nMediaWiki распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЁННОЙ ЦЕЛИ. См. лицензию GNU General Public License для более подробной информации.\n\nВы должны были получить [{{SERVER}}{{SCRIPTPATH}}/COPYING копию GNU General Public License] вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].",
+	"version-license-info": "MediaWiki — свободное программное обеспечение, которое вы можете распространять и/или изменять в соответствии с условиями опубликованной Фондом свободного программного обеспечения лицензии GNU General Public License второй или любой более поздней версии (по вашему выбору).\n\nMediaWiki распространяется в надежде, что она будет полезной, но <em>БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ</em>, даже без подразумеваемых гарантий <strong>КОММЕРЧЕСКОЙ ЦЕННОСТИ</strong> или <strong>ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЁННОЙ ЦЕЛИ</strong>. См. лицензию GNU General Public License для более подробной информации.\n\nВы должны были получить [{{SERVER}}{{SCRIPTPATH}}/COPYING копию GNU General Public License] вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].",
 	"version-software": "Установленное программное обеспечение",
 	"version-software-product": "Продукт",
 	"version-software-version": "Версия",
