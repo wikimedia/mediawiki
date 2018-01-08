@@ -43,7 +43,12 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
 			function ( array $server, $dbNameOverride = false ) {
-				return $this->getDatabaseMock( $server );
+				// match behavior of LoadBalancer::reallyOpenConnection
+				if ( $dbNameOverride !== false ) {
+					$server['dbname'] = $dbNameOverride;
+				}
+
+				return $this->getDatabaseMock( $server, $dbNameOverride );
 			}
 		);
 
@@ -73,7 +78,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		yield [ 'test-foo_', 'test', 'foo_' ];
 
 		yield [ false, 'dash-test', '' ];
-		yield [ 'dash-test', 'dash-test', '' ];
+		yield [ 'dash?htest', 'dash-test', '' ];
 
 		yield [ false, 'underscore_test', 'foo_' ];
 		yield [ 'underscore_test-foo_', 'underscore_test', 'foo_' ];
@@ -81,7 +86,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideDomainCheck
-	 * @covers \MediaWiki\Storage\RevisionStore::checkDatabaseWikiId
+	 * @covers \MediaWiki\Storage\RevisionStore::checkDatabaseDomain
 	 */
 	public function testDomainCheck( $wikiId, $dbName, $dbPrefix ) {
 		$this->setMwGlobals(

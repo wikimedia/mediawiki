@@ -176,7 +176,8 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain Domain ID, or false for the local domain.
+	 *        See DatabaseDomain::newFromId for details.
 	 * @param int $flags Bitfield of CONN_* class constants
 	 *
 	 * @throws DBError
@@ -206,7 +207,8 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain Domain ID, or false for the local domain.
+	 *        See DatabaseDomain::newFromId for details.
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
 	 * @return DBConnRef
 	 */
@@ -223,7 +225,8 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain Domain ID, or false for the local domain.
+	 *        See DatabaseDomain::newFromId for details.
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
 	 * @return DBConnRef
 	 */
@@ -240,7 +243,8 @@ interface ILoadBalancer {
 	 *
 	 * @param int $db Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain Domain ID, or false for the local domain.
+	 *        See DatabaseDomain::newFromId for details.
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
 	 * @return MaintainableDBConnRef
 	 */
@@ -257,7 +261,8 @@ interface ILoadBalancer {
 	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
 	 *
 	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
-	 * @param string|bool $domain Domain ID, or false for the current domain
+	 * @param string|bool $domain Domain ID, or false for the local domain.
+	 *        See DatabaseDomain::newFromId for details.
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
 	 * @return Database|bool Returns false on errors
 	 * @throws DBAccessError

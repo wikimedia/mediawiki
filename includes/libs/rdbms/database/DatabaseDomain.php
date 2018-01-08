@@ -57,7 +57,18 @@ class DatabaseDomain {
 	}
 
 	/**
-	 * @param DatabaseDomain|string $domain Result of DatabaseDomain::toString()
+	 * Constructs a DatabaseDomain by decoding a symbolic domain name.
+	 * The database domain can be given as one, two, or three parts, separated by a dash:
+	 * <dbname> or <dbname>-<prefix> or <dbname>-<schema>-<prefix>.
+	 * In each part, the dash itself must be encoded as '?h' and the question mark as '??'.
+	 *
+	 * @todo clarify the relationship between this and getWikiId().
+	 * @todo clarify the relationship between this and Site::getGlobalId().
+	 * @todo clarify the relationship between this and WikiMap::getWiki( $wikiID ).
+	 *
+	 * This method is round-trip-compatible with DatabaseDomain::toString().
+	 *
+	 * @param DatabaseDomain|string $domain
 	 * @return DatabaseDomain
 	 */
 	public static function newFromId( $domain ) {
