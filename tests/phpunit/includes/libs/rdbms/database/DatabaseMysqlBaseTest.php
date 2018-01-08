@@ -79,12 +79,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 			// unicode chars
 			[
-				self::createUnicodeString( '`\u0001a\uFFFFb`' ),
-				self::createUnicodeString( '\u0001a\uFFFFb' )
+				"`\u{0001}a\u{FFFF}b`",
+				"\u{0001}a\u{FFFF}b"
 			],
 			[
-				self::createUnicodeString( '`\u0001\uFFFF`' ),
-				self::createUnicodeString( '\u0001\u0000\uFFFF\u0000' )
+				"`\u{0001}\u{FFFF}`",
+				"\u{0001}\u{0000}\u{FFFF}\u{0000}"
 			],
 			[ '`☃`', '☃' ],
 			[ '`メインページ`', 'メインページ' ],
@@ -95,10 +95,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			[ '`Backtick: ```', 'Backtick: `' ],
 			[ '`This is a test`', 'This is a test' ],
 		];
-	}
-
-	private static function createUnicodeString( $str ) {
-		return json_decode( '"' . $str . '"' );
 	}
 
 	private function getMockForViews() {
