@@ -138,7 +138,8 @@
 				text: '{{' + template + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
-				pst: true
+				pst: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
 				uploadTemplatePreview.processResult( result, template, $previewContainer );
 			} ).always( function () {
