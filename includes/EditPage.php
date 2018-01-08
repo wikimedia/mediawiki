@@ -3670,11 +3670,6 @@ class EditPage {
 		$out->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
 
 		$cancel = $this->getCancelLink();
-		if ( $cancel !== '' ) {
-			$cancel .= Html::element( 'span',
-				[ 'class' => 'mw-editButtons-pipe-separator' ],
-				$this->context->msg( 'pipe-separator' )->text() );
-		}
 
 		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
