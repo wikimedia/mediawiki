@@ -74,6 +74,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private $wikiId;
 
 	/**
+	 * @var null|string
+	 */
+	private $dbDomainId;
+
+	/**
 	 * @var boolean
 	 */
 	private $contentHandlerUseDB = true;
@@ -94,7 +99,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
-	 * @param bool|string $wikiId
+	 * @param bool|string $wikiId A wiki database domain, as expected by LoadBalancer::getConnection.
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
@@ -270,7 +275,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 */
 	public function insertRevisionOn( RevisionRecord $rev, IDatabase $dbw ) {
 		// TODO: pass in a DBTransactionContext instead of a database connection.
-		$this->checkDatabaseWikiId( $dbw );
+		$this->checkDatabaseDomain( $dbw );
 
 		if ( !$rev->getSlotRoles() ) {
 			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
@@ -509,7 +514,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$minor,
 		User $user
 	) {
-		$this->checkDatabaseWikiId( $dbw );
+		$this->checkDatabaseDomain( $dbw );
 
 		$fields = [ 'page_latest', 'page_namespace', 'page_title',
 			'rev_id', 'rev_text_id', 'rev_len', 'rev_sha1' ];
@@ -1477,31 +1482,27 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	}
 
 	/**
+	 * Determines the database domain ID this RevisionStore is bound to.
+	 *
+	 * @return string
+	 */
+	private function getDomainID() {
+		if ( !$this->dbDomainId ) {
+			$this->dbDomainId = $this->getDBConnectionRef( DB_REPLICA )->getDomainID();
+		}
+		return $this->dbDomainId;
+	}
+
+	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * RevisionStore is bound to.
 	 *
 	 * @param IDatabase $db
 	 * @throws MWException
 	 */
-	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
+	private function checkDatabaseDomain( IDatabase $db ) {
+		$storeWiki = $this->getDomainID();
 		$dbWiki = $db->getDomainID();
-
-		if ( $dbWiki === $storeWiki ) {
-			return;
-		}
-
-		// XXX: we really want the default database ID...
-		$storeWiki = $storeWiki ?: wfWikiID();
-		$dbWiki = $dbWiki ?: wfWikiID();
-
-		if ( $dbWiki === $storeWiki ) {
-			return;
-		}
-
-		// HACK: counteract encoding imposed by DatabaseDomain
-		$storeWiki = str_replace( '?h', '-', $storeWiki );
-		$dbWiki = str_replace( '?h', '-', $dbWiki );
 
 		if ( $dbWiki === $storeWiki ) {
 			return;
@@ -1524,7 +1525,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return object|false data row as a raw object
 	 */
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
@@ -1695,7 +1696,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *         of the corresponding revision.
 	 */
 	public function listRevisionSizes( IDatabase $db, array $revIds ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$revLens = [];
 		if ( !$revIds ) {
@@ -1770,7 +1771,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return int
 	 */
 	private function getPreviousRevisionId( IDatabase $db, RevisionRecord $rev ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		if ( $rev->getPageId() === null ) {
 			return 0;
@@ -1826,7 +1827,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return int
 	 */
 	public function countRevisionsByPageId( IDatabase $db, $id ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		$row = $db->selectRow( 'revision',
 			[ 'revCount' => 'COUNT(*)' ],
@@ -1875,7 +1876,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return bool True if the given user was the only one to edit since the given timestamp
 	 */
 	public function userWasLastToEdit( IDatabase $db, $pageId, $userId, $since ) {
-		$this->checkDatabaseWikiId( $db );
+		$this->checkDatabaseDomain( $db );
 
 		if ( !$userId ) {
 			return false;
