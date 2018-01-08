@@ -394,7 +394,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : ( PHP_SAPI === 'cli' );
+			$p['cliMode'] = isset( $p['cliMode'] )
+				? $p['cliMode']
+				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
 			if ( !isset( $p['connLogger'] ) ) {
 				$p['connLogger'] = new \Psr\Log\NullLogger();

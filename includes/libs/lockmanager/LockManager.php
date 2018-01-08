@@ -83,7 +83,7 @@ abstract class LockManager {
 		$this->domain = isset( $config['domain'] ) ? $config['domain'] : 'global';
 		if ( isset( $config['lockTTL'] ) ) {
 			$this->lockTTL = max( 5, $config['lockTTL'] );
-		} elseif ( PHP_SAPI === 'cli' ) {
+		} elseif ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
 			$this->lockTTL = 3600;
 		} else {
 			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
