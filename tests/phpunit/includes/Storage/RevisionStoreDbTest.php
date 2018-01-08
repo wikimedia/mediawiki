@@ -407,9 +407,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::getRcIdIfUnpatrolled
 	 */
-	public function testIsUnpatrolled_returnsRecentChangesId() {
+	public function testGetRcIdIfUnpatrolled_returnsRecentChangesId() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$status = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		/** @var Revision $rev */
@@ -417,7 +417,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revisionRecord = $store->getRevisionById( $rev->getId() );
-		$result = $store->isUnpatrolled( $revisionRecord );
+		$result = $store->getRcIdIfUnpatrolled( $revisionRecord );
 
 		$this->assertGreaterThan( 0, $result );
 		$this->assertSame(
@@ -427,9 +427,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::getRcIdIfUnpatrolled
 	 */
-	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
+	public function testGetRcIdIfUnpatrolled_returnsZeroIfPatrolled() {
 		// This assumes that sysops are auto patrolled
 		$sysop = $this->getTestSysop()->getUser();
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -445,7 +445,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revisionRecord = $store->getRevisionById( $rev->getId() );
-		$result = $store->isUnpatrolled( $revisionRecord );
+		$result = $store->getRcIdIfUnpatrolled( $revisionRecord );
 
 		$this->assertSame( 0, $result );
 	}
@@ -523,9 +523,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionFromTimestamp
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByTimestamp
 	 */
-	public function testGetRevisionFromTimestamp() {
+	public function testGetRevisionByTimestamp() {
 		// Make sure there is 1 second between the last revision and the rev we create...
 		// Otherwise we might not get the correct revision and the test may fail...
 		// :(
@@ -537,7 +537,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$rev = $status->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revRecord = $store->getRevisionFromTimestamp(
+		$revRecord = $store->getRevisionByTimestamp(
 			$page->getTitle(),
 			$rev->getTimestamp()
 		);
