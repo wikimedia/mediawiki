@@ -152,7 +152,6 @@ TEXT
 		}
 
 		if ( $this->hasOption( 'prefetch' ) ) {
-			require_once "$IP/maintenance/backupPrefetch.inc";
 			$url = $this->processFileOpt( $this->getOption( 'prefetch' ) );
 			$this->prefetch = new BaseDump( $url );
 		}
