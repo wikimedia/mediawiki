@@ -135,7 +135,7 @@ class ApiModuleManager extends ContextSource {
 			throw new InvalidArgumentException( '$class must be a string' );
 		}
 
-		if ( $factory !== null && !is_callable( $factory ) ) {
+		if ( $factory !== null && !is_callable( $factory, true ) ) {
 			throw new InvalidArgumentException( '$factory must be a callable (or null)' );
 		}
 
