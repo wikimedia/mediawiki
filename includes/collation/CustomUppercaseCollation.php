@@ -45,24 +45,18 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	private $puaSubset;
 
 	/**
-	 * @note This assumes $alphabet does not contain U+F3000-U+F303F
+	 * @note This assumes $alphabet does not contain U+F3000-U+FFFFD
 	 *
 	 * @param array $alphabet Sorted array of uppercase characters.
 	 * @param Language $lang What language for number sorting.
 	 */
 	public function __construct( array $alphabet, Language $lang ) {
-		// It'd be trivial to extend this past 64, you'd just
-		// need a bit of bit-fiddling. Doesn't seem necessary right
-		// now.
-		if ( count( $alphabet ) < 1 || count( $alphabet ) >= 64 ) {
-			throw new UnexpectedValueException( "Alphabet must be < 64 items" );
-		}
 		$this->alphabet = $alphabet;
 
 		$this->puaSubset = [];
 		$len = count( $alphabet );
 		for ( $i = 0; $i < $len; $i++ ) {
-			$this->puaSubset[] = "\xF3\xB3\x80" . chr( $i + 128 );
+			$this->puaSubset[] = IntlChar::chr( 0xF3000 + $i );
 		}
 		parent::__construct( $lang );
 	}
