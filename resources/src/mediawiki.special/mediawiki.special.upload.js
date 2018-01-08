@@ -135,7 +135,8 @@
 				text: '{{' + license + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
-				pst: true
+				pst: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
 				uploadLicense.processResult( result, license );
 			} ).always( function () {
