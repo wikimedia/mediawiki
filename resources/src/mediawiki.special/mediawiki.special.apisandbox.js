@@ -1112,7 +1112,7 @@
 						return xhr;
 					}
 				} )
-					.then( null, function ( code, data, result, jqXHR ) {
+					.catch( function ( code, data, result, jqXHR ) {
 						var deferred = $.Deferred();
 
 						if ( code !== 'http' ) {

@@ -203,7 +203,7 @@
 
 		// Don't cache error (T67268)
 		return api.getToken( 'testerror' )
-			.then( null, function ( err ) {
+			.catch( function ( err ) {
 				assert.equal( err, 'bite-me', 'Expected error' );
 
 				return api.getToken( 'testerror' );

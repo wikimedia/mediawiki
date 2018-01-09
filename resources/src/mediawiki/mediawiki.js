@@ -2780,9 +2780,9 @@
 		// We only need a callback, not any actual module. First try a single using()
 		// for all loading modules. If one fails, fall back to tracking each module
 		// separately via $.when(), this is expensive.
-		loading = mw.loader.using( modules ).then( null, function () {
+		loading = mw.loader.using( modules ).catch( function () {
 			var all = modules.map( function ( module ) {
-				return mw.loader.using( module ).then( null, function () {
+				return mw.loader.using( module ).catch( function () {
 					return $.Deferred().resolve();
 				} );
 			} );
