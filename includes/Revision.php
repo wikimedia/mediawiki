@@ -22,6 +22,8 @@
 
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionFactory;
+use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreRecord;
@@ -65,6 +67,20 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @return RevisionLookup
+	 */
+	protected static function getRevisionLookup() {
+		return MediaWikiServices::getInstance()->getRevisionLookup();
+	}
+
+	/**
+	 * @return RevisionFactory
+	 */
+	protected static function getRevisionFactory() {
+		return MediaWikiServices::getInstance()->getRevisionFactory();
+	}
+
+	/**
 	 * @param bool|string $wiki The ID of the target wiki database. Use false for the local wiki.
 	 *
 	 * @return SqlBlobStore
@@ -97,7 +113,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
+		$rec = self::getRevisionLookup()->getRevisionById( $id, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -116,7 +132,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByTitle( $linkTarget, $id, $flags );
+		$rec = self::getRevisionLookup()->getRevisionByTitle( $linkTarget, $id, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -135,7 +151,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByPageId( $pageId, $revId, $flags );
+		$rec = self::getRevisionLookup()->getRevisionByPageId( $pageId, $revId, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -184,7 +200,7 @@ class Revision implements IDBAccessObject {
 			}
 		}
 
-		$rec = self::getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
+		$rec = self::getRevisionFactory()->newRevisionFromArchiveRow( $row, 0, $title, $overrides );
 		return new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
@@ -202,9 +218,9 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newFromRow( $row ) {
 		if ( is_array( $row ) ) {
-			$rec = self::getRevisionStore()->newMutableRevisionFromArray( $row );
+			$rec = self::getRevisionFactory()->newMutableRevisionFromArray( $row );
 		} else {
-			$rec = self::getRevisionStore()->newRevisionFromRow( $row );
+			$rec = self::getRevisionFactory()->newRevisionFromRow( $row );
 		}
 
 		return new Revision( $rec );
@@ -492,13 +508,13 @@ class Revision implements IDBAccessObject {
 				$row['user'] = $wgUser;
 			}
 
-			$this->mRecord = self::getRevisionStore()->newMutableRevisionFromArray(
+			$this->mRecord = self::getRevisionFactory()->newMutableRevisionFromArray(
 				$row,
 				$queryFlags,
 				$this->ensureTitle( $row, $queryFlags, $title )
 			);
 		} elseif ( is_object( $row ) ) {
-			$this->mRecord = self::getRevisionStore()->newRevisionFromRow(
+			$this->mRecord = self::getRevisionFactory()->newRevisionFromRow(
 				$row,
 				$queryFlags,
 				$this->ensureTitle( $row, $queryFlags, $title )
@@ -976,7 +992,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getPrevious() {
 		$title = $this->getTitle();
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord, $title );
+		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord, $title );
 		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
@@ -987,7 +1003,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getNext() {
 		$title = $this->getTitle();
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord, $title );
+		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord, $title );
 		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
@@ -1247,7 +1263,7 @@ class Revision implements IDBAccessObject {
 			return false;
 		}
 
-		$record = self::getRevisionStore()->getKnownCurrentRevision( $title, $revId );
+		$record = self::getRevisionLookup()->getKnownCurrentRevision( $title, $revId );
 		return $record ? new Revision( $record ) : false;
 	}
 }

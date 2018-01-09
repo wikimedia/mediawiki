@@ -14,6 +14,8 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\RevisionFactory;
+use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\LBFactory;
 use LinkCache;
@@ -724,6 +726,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionStore() {
 		return $this->getService( 'RevisionStore' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return RevisionLookup
+	 */
+	public function getRevisionLookup() {
+		return $this->getService( 'RevisionLookup' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return RevisionFactory
+	 */
+	public function getRevisionFactory() {
+		return $this->getService( 'RevisionFactory' );
 	}
 
 	/**
