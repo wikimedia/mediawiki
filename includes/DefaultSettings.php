@@ -6855,7 +6855,7 @@ $wgUseFilePatrol = true;
 /**
  * Log autopatrol actions to the log table
  */
-$wgLogAutopatrol = true;
+$wgLogAutopatrol = false;
 
 /**
  * Provide syndication feeds (RSS, Atom) for, e.g., Recentchanges, Newpages
