@@ -11,6 +11,7 @@ use MediaWiki\Services\ServiceDisabledException;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 
@@ -341,6 +342,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
+			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 		];
 	}
