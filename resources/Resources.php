@@ -1474,16 +1474,6 @@ return [
 	'mediawiki.action.history.styles' => [
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.styles.css',
 	],
-	// using this module is deprecated, for diff styles use mediawiki.diff.styles instead
-	'mediawiki.action.history.diff' => [
-		'styles' => [
-			'resources/src/mediawiki/mediawiki.diff.styles.css',
-			'resources/src/mediawiki/mediawiki.diff.styles.print.css' => [
-				'media' => 'print'
-			],
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.action.view.dblClickEdit' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
 		'dependencies' => [
