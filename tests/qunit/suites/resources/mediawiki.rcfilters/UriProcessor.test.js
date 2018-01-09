@@ -62,7 +62,7 @@
 		var uriProcessor,
 			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 			makeUri = function ( queryParams ) {
-				var uri = new mw.Uri();
+				var uri = new mw.Uri( 'http://server/wiki/Special:RC' );
 				uri.query = queryParams;
 				return uri;
 			};
