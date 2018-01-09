@@ -210,8 +210,8 @@
 									"description": "Group which this module should be loaded together with"
 								},
 								"deprecated": {
-									"type": ["object", "boolean"],
-									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean or an object with key message can be used to customise deprecation message."
+									"type": ["object", "string", "boolean"],
+									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean, or a string or an object with key message can be used to customise deprecation message."
 								},
 								"position": {
 									"type": "string",
