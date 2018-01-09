@@ -3917,14 +3917,15 @@ dumps. One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'WikiPageDeletionUpdates': manipulate the list of DataUpdates to be applied when
+'WikiPageDeletionUpdates': manipulate the list of DeferrableUpdates to be applied when
 a page is deleted. Called in WikiPage::getDeletionUpdates(). Note that updates
 specific to a content model should be provided by the respective Content's
 getDeletionUpdates() method.
 $page: the WikiPage
-$content: the Content to generate updates for (or null, if the Content could not be loaded
-due to an error)
-&$updates: the array of DataUpdate objects. Hook function may want to add to it.
+$content: the Content to generate updates for, or null in case the page revision could not be
+  loaded. The delete will succeed despite this.
+&$updates: the array of objects that implement DeferrableUpdate. Hook function may want to add to
+  it.
 
 'WikiPageFactory': Override WikiPage class used for a title
 $title: Title of the page
