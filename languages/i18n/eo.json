@@ -1870,7 +1870,7 @@
 	"suppress": "Forigu",
 	"querypage-disabled": "Tiu ĉi speciala paĝo estas malfunkciigita pro rendimentaj kialoj.",
 	"apihelp": "Helpo pri API",
-	"apihelp-no-such-module": "Modulo \"$1\" ne estis trovita.",
+	"apihelp-no-such-module": "La modjulo „$1” ne estis trovita.",
 	"apisandbox": "API testejo",
 	"apisandbox-jsonly": "JavaScript estas postulita por uzi la API provejon.",
 	"apisandbox-api-disabled": "API estas malŝalta en ĉi tiu retejo.",

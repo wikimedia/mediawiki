@@ -1940,7 +1940,7 @@
 	"suppress": "Supressió",
 	"querypage-disabled": "Aquesta pàgina especial està desactivada per a no perjudicar el rendiment.",
 	"apihelp": "Ajuda de l'API",
-	"apihelp-no-such-module": "No s'ha trobat el mòdul \"$1\".",
+	"apihelp-no-such-module": "No s’ha trobat el mòdul «$1».",
 	"apisandbox": "Pàgina de proves de l'API",
 	"apisandbox-jsonly": "Es necessita JavaScript per utilitzar l'espai de proves API.",
 	"apisandbox-api-disabled": "L'API està desactivada en aquest lloc.",

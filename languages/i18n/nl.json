@@ -1377,7 +1377,7 @@
 	"rcfilters-activefilters": "Actieve filters",
 	"rcfilters-advancedfilters": "Geavanceerde filters",
 	"rcfilters-limit-title": "Resultaten om te tonen",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|wijziging|$1 wijzigingen}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|wijziging|wijzigingen}}, $2",
 	"rcfilters-date-popup-title": "Tijdsperiode om te doorzoeken",
 	"rcfilters-days-title": "Afgelopen dagen",
 	"rcfilters-hours-title": "Afgelopen uren",
@@ -2594,8 +2594,8 @@
 	"movenologintext": "U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.",
 	"movenotallowed": "U hebt geen rechten om pagina's te hernoemen.",
 	"movenotallowedfile": "U hebt geen rechten om bestanden te hernoemen.",
-	"cant-move-user-page": "U hebt geen rechten om gebruikerspagina's te hernoemen (met uitzondering van subpagina's).",
-	"cant-move-to-user-page": "U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een subpagina is wel mogelijk.",
+	"cant-move-user-page": "U hebt geen rechten om gebruikerspagina's te hernoemen (met uitzondering van deelpagina's).",
+	"cant-move-to-user-page": "U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een deelpagina is wel mogelijk.",
 	"cant-move-category-page": "U hebt geen rechten om categoriepagina's te hernoemen.",
 	"cant-move-to-category-page": "U hebt geen rechten om een pagina naar een categoriepagina te hernoemen.",
 	"cant-move-subpages": "U hebt geen rechten om deelpagina's te hernoemen.",
@@ -4062,7 +4062,7 @@
 	"undelete-cantedit": "U kunt deze pagina niet terug plaatsen omdat u niet het recht hebt om deze pagina te bewerken.",
 	"undelete-cantcreate": "U kunt deze pagina niet terugplaatsen omdat er geen bestaande pagina met deze naam is en u geen toestemming hebt om deze pagina aan te maken.",
 	"pagedata-title": "Pagina data",
-	"pagedata-text": "Deze pagina biedt een data-interface voor pagina's. Geef een paginatitel op door deze in de URL op te nemen, op de manier van een subpagina.\n* De inhoud wordt afgestemd op de door de client meegestuurde Accept Header. Dit betekent dat de gegevens voor de pagina worden aangeboden in het voorkeursformaat van uw client.",
+	"pagedata-text": "Deze pagina biedt een data-interface voor pagina's. Geef een paginatitel op door deze in de URL op te nemen, op de manier van een deelpagina.\n* De inhoud wordt afgestemd op de door de client meegestuurde Accept Header. Dit betekent dat de gegevens voor de pagina worden aangeboden in het voorkeursformaat van uw client.",
 	"pagedata-not-acceptable": "Er is geen overeenkomende indeling gevonden. Ondersteunde MIME-typen: $1",
 	"pagedata-bad-title": "Ongeldige titel: $1."
 }

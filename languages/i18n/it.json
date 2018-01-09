@@ -1397,7 +1397,7 @@
 	"rcfilters-activefilters": "Filtri attivi",
 	"rcfilters-advancedfilters": "Filtri avanzati",
 	"rcfilters-limit-title": "Risultati da mostrare",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|modifica|$1 modifiche}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|modifica|modifiche}}, $2",
 	"rcfilters-date-popup-title": "Periodo di tempo per la ricerca",
 	"rcfilters-days-title": "Giorni recenti",
 	"rcfilters-hours-title": "Ore recenti",

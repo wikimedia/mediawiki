@@ -3655,7 +3655,7 @@
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|1=Метка|Метки}}]]: $2)",
 	"tag-mw-contentmodelchange": "изменение модели содержимого",
 	"tag-mw-contentmodelchange-description": "Правки, которые [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel изменяют модель содержимого] страницы",
-	"tag-mw-new-redirect": "Новое перенаправление",
+	"tag-mw-new-redirect": "новое перенаправление",
 	"tag-mw-new-redirect-description": "Правки, которые создают новое перенаправление или изменяют страницу на перенаправление",
 	"tag-mw-removed-redirect": "удалённое перенаправление",
 	"tag-mw-removed-redirect-description": "Правки, которые изменяют существующее перенаправление на не-перенаправление",

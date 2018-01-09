@@ -1353,7 +1353,7 @@
 	"rcfilters-activefilters": "사용 중인 필터",
 	"rcfilters-advancedfilters": "고급 필터",
 	"rcfilters-limit-title": "표시할 결과 수",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|변경사항|변경사항 $1개}}, $2",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|변경사항}} $1개, $2",
 	"rcfilters-date-popup-title": "검색 시한",
 	"rcfilters-days-title": "최근 날",
 	"rcfilters-hours-title": "최근 시간",
