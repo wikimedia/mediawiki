@@ -6869,8 +6869,11 @@ $wgUseFilePatrol = true;
 
 /**
  * Log autopatrol actions to the log table
+ * The default used to be true before 1.30
+ *
+ * @since 1.31
  */
-$wgLogAutopatrol = true;
+$wgLogAutopatrol = false;
 
 /**
  * Provide syndication feeds (RSS, Atom) for, e.g., Recentchanges, Newpages
