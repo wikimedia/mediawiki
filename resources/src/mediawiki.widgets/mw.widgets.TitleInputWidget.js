@@ -131,7 +131,7 @@
 		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
 
 		return $.trimByteLength( this.value, value, this.maxLength, function ( value ) {
-			var title = widget.getTitle( value );
+			var title = widget.getMWTitle( value );
 			return title ? title.getMain() : value;
 		} ).newVal;
 	};

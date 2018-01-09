@@ -355,7 +355,7 @@
 	 * @param {string} [value] Value to get a title for
 	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
-	mw.widgets.TitleWidget.prototype.getTitle = function ( value ) {
+	mw.widgets.TitleWidget.prototype.getMWTitle = function ( value ) {
 		var title = value !== undefined ? value : this.getQueryValue(),
 			// mw.Title doesn't handle null well
 			titleObj = mw.Title.newFromText( title, this.namespace !== null ? this.namespace : undefined );
@@ -369,7 +369,7 @@
 	 * @return {boolean} The query is valid
 	 */
 	mw.widgets.TitleWidget.prototype.isQueryValid = function () {
-		return this.validateTitle ? !!this.getTitle() : true;
+		return this.validateTitle ? !!this.getMWTitle() : true;
 	};
 
 }( jQuery, mediaWiki ) );
