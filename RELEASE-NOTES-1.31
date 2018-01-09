@@ -31,6 +31,7 @@ production.
 * (T188472) The 'comma' value for $wgArticleCountMethod is no longer supported for
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
+* $wgLogAutopatrol now defaults to false instead of true.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
@@ -76,6 +77,8 @@ production.
 * (T189785) Added a monthly heartbeat ping to the pingback feature.
 * The CLI installer (maintenance/install.php) learned to detect and include
   extensions. Pass --with-extensions to enable that feature.
+* (T184791) rc_patrolled now has three states: "0" for unpatrolled,
+  "1" for manually patrolled and "2" for autopatrolled actions.
 
 === External library changes in 1.31 ===
 
