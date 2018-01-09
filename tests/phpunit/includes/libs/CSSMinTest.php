@@ -271,9 +271,9 @@ class CSSMinTest extends MediaWikiTestCase {
 		// data: URIs for red.gif, green.gif, circle.svg
 		$red   = 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=';
 		$green = 'data:image/gif;base64,R0lGODlhAQABAIAAAACAADAAACwAAAAAAQABAAACAkQBADs=';
-		$svg = 'data:image/svg+xml,%3C%3Fxml version=%221.0%22 encoding=%22UTF-8%22%3F%3E%0A'
+		$svg = 'data:image/svg+xml,%3C%3Fxml version=%221.0%22 encoding=%22UTF-8%22%3F%3E '
 			. '%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%228%22 height='
-			. '%228%22%3E%0A%09%3Ccircle cx=%224%22 cy=%224%22 r=%222%22/%3E%0A%3C/svg%3E%0A';
+			. '%228%22%3E %3Ccircle cx=%224%22 cy=%224%22 r=%222%22/%3E %3C/svg%3E';
 
 		// phpcs:disable Generic.Files.LineLength
 		return [
