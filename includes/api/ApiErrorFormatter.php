@@ -112,7 +112,7 @@ class ApiErrorFormatter {
 	 * Add warnings and errors from a StatusValue object to the result
 	 * @param string|null $modulePath
 	 * @param StatusValue $status
-	 * @param string[] $types 'warning' and/or 'error'
+	 * @param string[]|string $types 'warning' and/or 'error'
 	 */
 	public function addMessagesFromStatus(
 		$modulePath, StatusValue $status, $types = [ 'warning', 'error' ]
