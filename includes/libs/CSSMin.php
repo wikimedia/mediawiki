@@ -132,6 +132,9 @@ class CSSMin {
 	 */
 	public static function encodeStringAsDataURI( $contents, $type, $ie8Compat = true ) {
 		// Try #1: Non-encoded data URI
+
+		// Remove XML declaration, it's not needed with data URI usage
+		$contents = preg_replace( "/<\\?xml.*\\?>/", '', $contents );
 		// The regular expression matches ASCII whitespace and printable characters.
 		if ( preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents ) ) {
 			// Do not base64-encode non-binary files (sane SVGs).
@@ -151,6 +154,7 @@ class CSSMin {
 			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
 			// Remove leading and trailing spaces
 			$encoded = preg_replace( '/^ | $/', '', $encoded );
+
 			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
 				return $uri;
