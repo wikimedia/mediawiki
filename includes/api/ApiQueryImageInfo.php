@@ -503,32 +503,36 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $url ) {
-			if ( !is_null( $thumbParams ) ) {
-				$mto = $file->transform( $thumbParams );
-				self::$transformCount++;
-				if ( $mto && !$mto->isError() ) {
-					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
+			if ( $file->exists() ) {
+				if ( !is_null( $thumbParams ) ) {
+					$mto = $file->transform( $thumbParams );
+					self::$transformCount++;
+					if ( $mto && !$mto->isError() ) {
+						$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
 
-					// T25834 - If the URLs are the same, we haven't resized it, so shouldn't give the wanted
-					// thumbnail sizes for the thumbnail actual size
-					if ( $mto->getUrl() !== $file->getUrl() ) {
-						$vals['thumbwidth'] = intval( $mto->getWidth() );
-						$vals['thumbheight'] = intval( $mto->getHeight() );
-					} else {
-						$vals['thumbwidth'] = intval( $file->getWidth() );
-						$vals['thumbheight'] = intval( $file->getHeight() );
-					}
+						// T25834 - If the URLs are the same, we haven't resized it, so shouldn't give the wanted
+						// thumbnail sizes for the thumbnail actual size
+						if ( $mto->getUrl() !== $file->getUrl() ) {
+							$vals['thumbwidth'] = intval( $mto->getWidth() );
+							$vals['thumbheight'] = intval( $mto->getHeight() );
+						} else {
+							$vals['thumbwidth'] = intval( $file->getWidth() );
+							$vals['thumbheight'] = intval( $file->getHeight() );
+						}
 
-					if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
-						list( , $mime ) = $file->getHandler()->getThumbType(
-							$mto->getExtension(), $file->getMimeType(), $thumbParams );
-						$vals['thumbmime'] = $mime;
+						if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
+							list( , $mime ) = $file->getHandler()->getThumbType(
+								$mto->getExtension(), $file->getMimeType(), $thumbParams );
+							$vals['thumbmime'] = $mime;
+						}
+					} elseif ( $mto && $mto->isError() ) {
+						$vals['thumberror'] = $mto->toText();
 					}
-				} elseif ( $mto && $mto->isError() ) {
-					$vals['thumberror'] = $mto->toText();
 				}
+				$vals['url'] = wfExpandUrl( $file->getFullUrl(), PROTO_CURRENT );
+			} else {
+				$vals['filemissing'] = true;
 			}
-			$vals['url'] = wfExpandUrl( $file->getFullUrl(), PROTO_CURRENT );
 			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl(), PROTO_CURRENT );
 
 			$shortDescriptionUrl = $file->getDescriptionShortUrl();
