@@ -22,6 +22,7 @@
 
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreRecord;
@@ -65,6 +66,13 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @return RevisionLookup
+	 */
+	protected static function getRevisionLookup() {
+		return MediaWikiServices::getInstance()->getRevisionLookup();
+	}
+
+	/**
 	 * @param bool|string $wiki The ID of the target wiki database. Use false for the local wiki.
 	 *
 	 * @return SqlBlobStore
@@ -97,7 +105,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromId( $id, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionById( $id, $flags );
+		$rec = self::getRevisionLookup()->getRevisionById( $id, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -116,7 +124,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByTitle( $linkTarget, $id, $flags );
+		$rec = self::getRevisionLookup()->getRevisionByTitle( $linkTarget, $id, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -135,7 +143,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
-		$rec = self::getRevisionStore()->getRevisionByPageId( $pageId, $revId, $flags );
+		$rec = self::getRevisionLookup()->getRevisionByPageId( $pageId, $revId, $flags );
 		return $rec === null ? null : new Revision( $rec, $flags );
 	}
 
@@ -923,7 +931,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord );
+		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord );
 		return $rec === null ? null : new Revision( $rec );
 	}
 
@@ -933,7 +941,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord );
+		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord );
 		return $rec === null ? null : new Revision( $rec );
 	}
 
@@ -1189,7 +1197,7 @@ class Revision implements IDBAccessObject {
 			return false;
 		}
 
-		$record = self::getRevisionStore()->getKnownCurrentRevision( $title, $revId );
+		$record = self::getRevisionLookup()->getKnownCurrentRevision( $title, $revId );
 		return $record ? new Revision( $record ) : false;
 	}
 }
