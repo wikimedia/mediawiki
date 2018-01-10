@@ -923,8 +923,9 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
-		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord );
-		return $rec === null ? null : new Revision( $rec );
+		$title = $this->getTitle();
+		$rec = self::getRevisionStore()->getPreviousRevision( $this->mRecord, $title );
+		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
 	/**
@@ -933,8 +934,9 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getNext() {
-		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord );
-		return $rec === null ? null : new Revision( $rec );
+		$title = $this->getTitle();
+		$rec = self::getRevisionStore()->getNextRevision( $this->mRecord, $title );
+		return $rec === null ? null : new Revision( $rec, self::READ_NORMAL, $title );
 	}
 
 	/**

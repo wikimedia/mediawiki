@@ -303,7 +303,6 @@ abstract class RevisionRecord {
 	 *   RevisionRecord::RAW              get the ID regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
-	 * @return UserIdentity|null
 	 */
 	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if ( !$this->audienceCan( self::DELETED_USER, $audience, $user ) ) {
