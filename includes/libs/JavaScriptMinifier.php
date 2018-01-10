@@ -455,6 +455,12 @@ class JavaScriptMinifier {
 				} while( $end - 2 < $length && $s[$end - 2] === '\\' );
 				// Correction (1): Undo speculative add, keep only one (end of string literal)
 				$end--;
+				if ($end > $length) {
+					// Correction (2): Loop wrongly assumed an end quote ended the search,
+					// but search ended because we've reached the end. Correct $end.
+					// TODO: This is invalid and should throw,
+					$end--;
+				}
 			// We have to distinguish between regexp literals and division operators
 			// A division operator is only possible in certain states
 			} elseif( $ch === '/' && !isset( $divStates[$state] ) ) {
@@ -471,8 +477,14 @@ class JavaScriptMinifier {
 					} while( $end - 2 < $length && $s[$end - 2] === '\\' );
 					// Correction (1): Undo speculative add, keep only one (end of regexp)
 					$end--;
-					// If the end, stop here.
-					if( $end - 1 >= $length || $s[$end - 1] === '/' ) {
+					if( $end > $length ) {
+						// Correction (2): Loop wrongly assumed end slash was seen
+						// String ended without end of regexp. Correct $end.
+						// TODO: This is invalid and should throw,
+						$end--;
+						break;
+					}
+					if ( $s[$end - 1] === '/' ) {
 						break;
 					}
 					// (Implicit else), we must've found the start of a char class,
