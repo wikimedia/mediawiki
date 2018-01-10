@@ -177,11 +177,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		$title = null;
+		$titleFlags = $queryFlags >= self::READ_LATEST ? Title::GAID_FOR_UPDATE : 0;
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
 		if ( $pageId !== null && $pageId > 0 && $this->wikiId === false ) {
 			// TODO: better foreign title handling (introduce TitleFactory)
-			$title = Title::newFromID( $pageId, $queryFlags );
+			$title = Title::newFromID( $pageId, $titleFlags );
 		}
 
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
