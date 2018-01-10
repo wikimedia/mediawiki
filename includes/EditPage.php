@@ -3604,6 +3604,8 @@ class EditPage {
 	 * @return string HTML
 	 */
 	public static function getPreviewLimitReport( $output ) {
+		global $wgLang;
+
 		if ( !$output || !$output->getLimitReportData() ) {
 			return '';
 		}
@@ -3632,7 +3634,9 @@ class EditPage {
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::rawElement( 'td', null,
+							$wgLang->formatNum( $valueMsg->params( $value )->parse() )
+						) .
 						Html::closeElement( 'tr' );
 				}
 			}
