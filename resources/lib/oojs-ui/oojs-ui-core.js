@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.4
+ * OOjs UI v0.25.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2018 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-02T19:08:58Z
+ * Date: 2018-01-10T00:26:02Z
  */
 ( function ( OO ) {
 
@@ -2403,15 +2403,15 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
 };
 
 /**
- * Get an item by its data.
+ * Find an item by its data.
  *
  * Only the first item with matching data will be returned. To return all matching items,
- * use the #getItemsFromData method.
+ * use the #findItemsFromData method.
  *
  * @param {Object} data Item data to search for
  * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
  */
-OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
+OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
 	var i, len, item,
 		hash = OO.getHash( data );
 
@@ -2426,14 +2426,26 @@ OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
 };
 
 /**
- * Get items by their data.
+ * Get an item by its data.
  *
- * All items with matching data will be returned. To return only the first match, use the #getItemFromData method instead.
+ * @deprecated Since v0.25.0; use {@link #findItemFromData} instead.
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
+ */
+OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
+	OO.ui.warnDeprecation( 'GroupElement#getItemFromData. Deprecated function. Use findItemFromData instead. See T76630' );
+	return this.findItemFromData( data );
+};
+
+/**
+ * Find items by their data.
+ *
+ * All items with matching data will be returned. To return only the first match, use the #findItemFromData method instead.
  *
  * @param {Object} data Item data to search for
  * @return {OO.ui.Element[]} Items with equivalent data
  */
-OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
+OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
 	var i, len, item,
 		hash = OO.getHash( data ),
 		items = [];
@@ -2446,6 +2458,18 @@ OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
 	}
 
 	return items;
+};
+
+/**
+ * Find items by their data.
+ *
+ * @deprecated Since v0.25.0; use {@link #findItemsFromData} instead.
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element[]} Items with equivalent data
+ */
+OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
+	OO.ui.warnDeprecation( 'GroupElement#getItemsFromData. Deprecated function. Use findItemsFromData instead. See T76630' );
+	return this.findItemsFromData( data );
 };
 
 /**
@@ -3125,7 +3149,6 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *
  * - **progressive**:  Progressive styling is applied to convey that the widget will move the user forward in a process.
  * - **destructive**: Destructive styling is applied to convey that the widget will remove something.
- * - **constructive**: Constructive styling is deprecated since v0.23.2 and equivalent to progressive.
  *
  * The flags affect the appearance of the buttons:
  *
@@ -4272,6 +4295,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	this.$floatableContainer = null;
 	this.$floatableWindow = null;
 	this.$floatableClosestScrollable = null;
+	this.floatableOutOfView = false;
 	this.onFloatableScrollHandler = this.position.bind( this );
 	this.onFloatableWindowResizeHandler = this.position.bind( this );
 
@@ -4476,6 +4500,15 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
 };
 
 /**
+ * Check if the floatable is hidden to the user because it was offscreen.
+ *
+ * @return {boolean} Floatable is out of view
+ */
+OO.ui.mixin.FloatableElement.prototype.isFloatableOutOfView = function () {
+	return this.floatableOutOfView;
+};
+
+/**
  * Position the floatable below its container.
  *
  * This should only be done when both of them are attached to the DOM and visible.
@@ -4501,7 +4534,8 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	}
 
-	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+	this.floatableOutOfView = this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable );
+	if ( this.floatableOutOfView ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return this;
 	} else {
@@ -5375,13 +5409,13 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 
 			if ( this.autoFlip ) {
 				if ( this.popupPosition === 'above' || this.popupPosition === 'below' ) {
-					if ( this.isClippedVertically() ) {
+					if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped, open
 						// in the opposite one instead
 						normalHeight = this.$element.height();
 						this.isAutoFlipped = !this.isAutoFlipped;
 						this.position();
-						if ( this.isClippedVertically() ) {
+						if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							oppositeHeight = this.$element.height();
@@ -5393,7 +5427,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 					}
 				}
 				if ( this.popupPosition === 'before' || this.popupPosition === 'after' ) {
-					if ( this.isClippedHorizontally() ) {
+					if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped, open
 						// in the opposite one instead
 						normalWidth = this.$element.width();
@@ -5403,7 +5437,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 						this.toggleClipping( false );
 						this.position();
 						this.toggleClipping( true );
-						if ( this.isClippedHorizontally() ) {
+						if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							oppositeWidth = this.$element.width();
@@ -6684,11 +6718,11 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
 };
 
 /**
- * Get selected item.
+ * Find selected item.
  *
  * @return {OO.ui.OptionWidget|null} Selected item, `null` if no item is selected
  */
-OO.ui.SelectWidget.prototype.getSelectedItem = function () {
+OO.ui.SelectWidget.prototype.findSelectedItem = function () {
 	var i, len;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
@@ -6697,6 +6731,17 @@ OO.ui.SelectWidget.prototype.getSelectedItem = function () {
 		}
 	}
 	return null;
+};
+
+/**
+ * Get selected item.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItem} instead.
+ * @return {OO.ui.OptionWidget|null} Selected item, `null` if no item is selected
+ */
+OO.ui.SelectWidget.prototype.getSelectedItem = function () {
+	OO.ui.warnDeprecation( 'SelectWidget#getSelectedItem: Deprecated function. Use findSelectedItem instead. See T76630.' );
+	return this.findSelectedItem();
 };
 
 /**
@@ -6713,17 +6758,6 @@ OO.ui.SelectWidget.prototype.findHighlightedItem = function () {
 		}
 	}
 	return null;
-};
-
-/**
- * Get highlighted item.
- *
- * @deprecated 0.23.1 Use {@link #findHighlightedItem} instead.
- * @return {OO.ui.OptionWidget|null} Highlighted item, `null` if no item is highlighted
- */
-OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
-	OO.ui.warnDeprecation( 'SelectWidget#getHighlightedItem: Deprecated function. Use findHighlightedItem instead. See T76630.' );
-	return this.findHighlightedItem();
 };
 
 /**
@@ -6843,7 +6877,7 @@ OO.ui.SelectWidget.prototype.selectItemByLabel = function ( label, prefix ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
-	var itemFromData = this.getItemFromData( data );
+	var itemFromData = this.findItemFromData( data );
 	if ( data === undefined || !itemFromData ) {
 		return this.selectItem();
 	}
@@ -6975,24 +7009,6 @@ OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direc
 };
 
 /**
- * Get an option by its position relative to the specified item (or to the start of the option array,
- * if item is `null`). The direction in which to search through the option array is specified with a
- * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
- * `null` if there are no options in the array.
- *
- * @deprecated 0.23.1 Use {@link #findRelativeSelectableItem} instead
- * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
- * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
- * @param {Function} [filter] Only consider items for which this function returns
- *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
- * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
- */
-OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction, filter ) {
-	OO.ui.warnDeprecation( 'SelectWidget#getRelativeSelectableItem: Deprecated function. Use findRelativeSelectableItem instead. See T76630.' );
-	return this.findRelativeSelectableItem( item, direction, filter );
-};
-
-/**
  * Find the next selectable item or `null` if there are no selectable items.
  * Disabled options and menu-section markers and breaks are not selectable.
  *
@@ -7000,18 +7016,6 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
  */
 OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
 	return this.findRelativeSelectableItem( null, 1 );
-};
-
-/**
- * Get the next selectable item or `null` if there are no selectable items.
- * Disabled options and menu-section markers and breaks are not selectable.
- *
- * @deprecated 0.23.1 Use {@link OO.ui.SelectWidget#findFirstSelectableItem} instead.
- * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
- */
-OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
-	OO.ui.warnDeprecation( 'SelectWidget#getFirstSelectableItem: Deprecated function. Use findFirstSelectableItem instead. See T76630.' );
-	return this.findFirstSelectableItem();
 };
 
 /**
@@ -7607,11 +7611,11 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
-			if ( this.isClippedVertically() ) {
+			if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 				// If opening the menu downwards causes it to be clipped, flip it to open upwards instead
 				belowHeight = this.$element.height();
 				this.setVerticalPosition( 'above' );
-				if ( this.isClippedVertically() ) {
+				if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 					// If opening upwards also causes it to be clipped, flip it to open in whichever direction
 					// we have more space
 					aboveHeight = this.$element.height();
@@ -8161,25 +8165,47 @@ OO.mixinClass( OO.ui.MultiselectWidget, OO.ui.mixin.GroupWidget );
 /* Methods */
 
 /**
- * Get options that are selected.
+ * Find options that are selected.
  *
  * @return {OO.ui.MultioptionWidget[]} Selected options
  */
-OO.ui.MultiselectWidget.prototype.getSelectedItems = function () {
+OO.ui.MultiselectWidget.prototype.findSelectedItems = function () {
 	return this.items.filter( function ( item ) {
 		return item.isSelected();
 	} );
 };
 
 /**
- * Get the data of options that are selected.
+ * Get options that are selected.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItems} instead.
+ * @return {OO.ui.MultioptionWidget[]} Selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItems = function () {
+	OO.ui.warnDeprecation( 'MultiselectWidget#getSelectedItems: Deprecated function. Use findSelectedItems instead. See T76630.' );
+	return this.findSelectedItems();
+};
+
+/**
+ * Find the data of options that are selected.
  *
  * @return {Object[]|string[]} Values of selected options
  */
-OO.ui.MultiselectWidget.prototype.getSelectedItemsData = function () {
-	return this.getSelectedItems().map( function ( item ) {
+OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
+	return this.findSelectedItems().map( function ( item ) {
 		return item.data;
 	} );
+};
+
+/**
+ * Get the data of options that are selected.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItemsData} instead.
+ * @return {Object[]|string[]} Values of selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItemsData = function () {
+	OO.ui.warnDeprecation( 'MultiselectWidget#getSelectedItemsData: Deprecated function. Use findSelectedItemsData instead. See T76630.' );
+	return this.findSelectedItemsData();
 };
 
 /**
@@ -8206,7 +8232,7 @@ OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
 	var items,
 		widget = this;
 	items = datas.map( function ( data ) {
-		return widget.getItemFromData( data );
+		return widget.findItemFromData( data );
 	} );
 	this.selectItems( items );
 	return this;
@@ -9241,7 +9267,7 @@ OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	var selected;
 	value = this.cleanUpValue( value );
 	// Only allow setting values that are actually present in the dropdown
-	selected = this.dropdownWidget.getMenu().getItemFromData( value ) ||
+	selected = this.dropdownWidget.getMenu().findItemFromData( value ) ||
 		this.dropdownWidget.getMenu().findFirstSelectableItem();
 	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
@@ -9306,7 +9332,7 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 	this.dropdownWidget.getMenu().addItems( optionWidgets );
 
 	// Restore the previous value, or reset to something sensible
-	if ( this.dropdownWidget.getMenu().getItemFromData( value ) ) {
+	if ( this.dropdownWidget.getMenu().findItemFromData( value ) ) {
 		// Previous value is still available, ensure consistency with the dropdown
 		this.setValue( value );
 	} else {
@@ -9608,7 +9634,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 		} ) );
 
 	// Restore the previous value, or reset to something sensible
-	if ( this.radioSelectWidget.getItemFromData( value ) ) {
+	if ( this.radioSelectWidget.findItemFromData( value ) ) {
 		// Previous value is still available, ensure consistency with the radioSelect
 		this.setValue( value );
 	} else {
@@ -9768,7 +9794,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value )
 		singleValue =
 			OO.ui.CheckboxMultiselectInputWidget.parent.prototype.cleanUpValue.call( this, value[ i ] );
 		// Remove options that we don't have here
-		if ( !this.checkboxMultiselectWidget.getItemFromData( singleValue ) ) {
+		if ( !this.checkboxMultiselectWidget.findItemFromData( singleValue ) ) {
 			continue;
 		}
 		cleanValue.push( singleValue );
@@ -10644,7 +10670,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
  *  Use the #maxRows config to specify a maximum number of displayed rows.
- * @cfg {boolean} [maxRows] Maximum number of rows to display when #autosize is set to true.
+ * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
  *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
  */
 OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
@@ -11003,7 +11029,7 @@ OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
  * @param {string} value New value
  */
 OO.ui.ComboBoxInputWidget.prototype.onInputChange = function ( value ) {
-	var match = this.menu.getItemFromData( value );
+	var match = this.menu.findItemFromData( value );
 
 	this.menu.selectItem( match );
 	if ( this.menu.findHighlightedItem() ) {
@@ -11052,7 +11078,7 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuChoose = function ( item ) {
  * @private
  */
 OO.ui.ComboBoxInputWidget.prototype.onMenuItemsChange = function () {
-	var match = this.menu.getItemFromData( this.getValue() );
+	var match = this.menu.findItemFromData( this.getValue() );
 	this.menu.selectItem( match );
 	if ( this.menu.findHighlightedItem() ) {
 		this.menu.highlightItem( match );
@@ -11324,10 +11350,10 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		}
 		// Reorder elements
 		if ( value === 'top' ) {
-			this.$header.append( this.$label, this.$help );
+			this.$header.append( this.$help, this.$label );
 			this.$body.append( this.$header, this.$field );
 		} else if ( value === 'inline' ) {
-			this.$header.append( this.$label, this.$help );
+			this.$header.append( this.$help, this.$label );
 			this.$body.append( this.$field, this.$header );
 		} else {
 			this.$header.append( this.$label );

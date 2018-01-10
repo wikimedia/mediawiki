@@ -9,6 +9,12 @@
 		"arrowLast": { "file": {
 			"ltr": "images/icons/arrow-rtl.svg",
 			"rtl": "images/icons/arrow-ltr.svg"
+		},
+			"deprecated": "Renamed since v0.25.0, use 'arrowPrevious' instead."
+		},
+		"arrowPrevious": { "file": {
+			"ltr": "images/icons/arrow-rtl.svg",
+			"rtl": "images/icons/arrow-ltr.svg"
 		} },
 		"collapse": { "file": "images/icons/collapse.svg" },
 		"downTriangle": { "file": "images/icons/downTriangle.svg" },

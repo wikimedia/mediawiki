@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Muhammad Shuaib",
-			"Zainab Meher"
+			"Zainab Meher",
+			"BukhariSaeed"
 		]
 	},
 	"ooui-outline-control-move-down": "مد نیچے کھسکائیں",
@@ -13,7 +14,7 @@
 	"ooui-toolgroup-collapse": "کم کریں",
 	"ooui-item-remove": "ھٹادیں",
 	"ooui-dialog-message-accept": "ٹھیک",
-	"ooui-dialog-message-reject": "حزف کریں",
+	"ooui-dialog-message-reject": "منسوخ کریں",
 	"ooui-dialog-process-error": "کچھ غلط ہو گیا ہے",
 	"ooui-dialog-process-dismiss": "موقوف کریں",
 	"ooui-dialog-process-retry": "دوبارہ کوشش کریں",

@@ -11,9 +11,6 @@
 			"color": "#36c",
 			"global": true
 		},
-		"constructive": {
-			"color": "#36c"
-		},
 		"destructive": {
 			"color": "#d33"
 		},
@@ -27,8 +24,8 @@
 			"ltr": "images/icons/unBlock-ltr.svg",
 			"rtl": "images/icons/unBlock-rtl.svg"
 		} },
-		"clip": { "file": "images/icons/clip.svg", "variants": [ "progressive" ] },
-		"unClip": { "file": "images/icons/unClip.svg", "variants": [ "progressive" ] },
+		"clip": { "file": "images/icons/clip.svg" },
+		"unClip": { "file": "images/icons/unClip.svg" },
 		"flag": { "file": {
 			"ltr": "images/icons/flag-ltr.svg",
 			"rtl": "images/icons/flag-rtl.svg"
@@ -45,24 +42,21 @@
 			"ltr": "images/icons/unLock-ltr.svg",
 			"rtl": "images/icons/unLock-rtl.svg"
 		}, "variants": [ "destructive" ] },
-		"star": { "file": "images/icons/star.svg", "variants": [ "constructive", "progressive" ] },
+		"star": { "file": "images/icons/star.svg" },
 		"halfStar": { "file": {
 			"ltr": "images/icons/halfStar-ltr.svg",
 			"rtl": "images/icons/halfStar-rtl.svg"
-		}, "variants": [ "constructive", "progressive" ] },
-		"unStar": { "file": "images/icons/unStar.svg", "variants": [ "constructive", "progressive" ] },
+		} },
+		"unStar": { "file": "images/icons/unStar.svg" },
 		"trash": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
 		"unTrash": { "file": {
 			"ltr": "images/icons/unTrash-ltr.svg",
 			"rtl": "images/icons/unTrash-rtl.svg"
 		} },
-		"pushPin": { "file": "images/icons/pushPin.svg", "variants": [ "progressive" ] },
-		"ongoingConversation": {
-			"file": {
-				"ltr": "images/icons/ongoingConversation-ltr.svg",
-				"rtl": "images/icons/ongoingConversation-rtl.svg"
-			},
-			"variants": [ "progressive" ]
-		}
+		"pushPin": { "file": "images/icons/pushPin.svg" },
+		"ongoingConversation": { "file": {
+			"ltr": "images/icons/ongoingConversation-ltr.svg",
+			"rtl": "images/icons/ongoingConversation-rtl.svg"
+		} }
 	}
 }

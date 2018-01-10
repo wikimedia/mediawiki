@@ -11,9 +11,6 @@
 			"color": "#36c",
 			"global": true
 		},
-		"constructive": {
-			"color": "#36c"
-		},
 		"destructive": {
 			"color": "#d33"
 		},
