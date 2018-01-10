@@ -14,7 +14,14 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SessionManagerTest extends MediaWikiTestCase {
 
-	protected $config, $logger, $store;
+	/** @var \HashConfig */
+	private $config;
+
+	/** @var \TestLogger */
+	private $logger;
+
+	/** @var TestBagOStuff */
+	private $store;
 
 	protected function getManager() {
 		\ObjectCache::$instances['testSessionStore'] = new TestBagOStuff();
