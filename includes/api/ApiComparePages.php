@@ -167,7 +167,10 @@ class ApiComparePages extends ApiBase {
 			ApiResult::setContentValue( $vals, 'body', $difftext );
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), $vals );
+		// Diffs can be really big and there's little point in having
+		// ApiResult truncate it to an empty response since the diff is the
+		// whole reason this module exists. So pass NO_SIZE_CHECK here.
+		$this->getResult()->addValue( null, $this->getModuleName(), $vals, ApiResult::NO_SIZE_CHECK );
 	}
 
 	/**
