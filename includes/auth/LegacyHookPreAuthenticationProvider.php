@@ -58,14 +58,14 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 		$msg = null;
 		if ( !\Hooks::run( 'LoginUserMigrated', [ $user, &$msg ] ) ) {
 			return $this->makeFailResponse(
-				$user, null, LoginForm::USER_MIGRATED, $msg, 'LoginUserMigrated'
+				$user, LoginForm::USER_MIGRATED, $msg, 'LoginUserMigrated'
 			);
 		}
 
 		$abort = LoginForm::ABORTED;
 		$msg = null;
 		if ( !\Hooks::run( 'AbortLogin', [ $user, $password, &$abort, &$msg ] ) ) {
-			return $this->makeFailResponse( $user, null, $abort, $msg, 'AbortLogin' );
+			return $this->makeFailResponse( $user, $abort, $msg, 'AbortLogin' );
 		}
 
 		return StatusValue::newGood();
@@ -103,7 +103,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 				// Hook point to add extra creation throttles and blocks
 				$this->logger->debug( __METHOD__ . ": a hook blocked auto-creation: $abortError\n" );
 				return $this->makeFailResponse(
-					$user, $user, LoginForm::ABORTED, $abortError, 'AbortAutoAccount'
+					$user, LoginForm::ABORTED, $abortError, 'AbortAutoAccount'
 				);
 			}
 		}
@@ -114,13 +114,12 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 	/**
 	 * Construct an appropriate failure response
 	 * @param User $user
-	 * @param User|null $creator
 	 * @param int $constant LoginForm constant
 	 * @param string|null $msg Message
 	 * @param string $hook Hook
 	 * @return StatusValue
 	 */
-	protected function makeFailResponse( $user, $creator, $constant, $msg, $hook ) {
+	private function makeFailResponse( $user, $constant, $msg, $hook ) {
 		switch ( $constant ) {
 			case LoginForm::SUCCESS:
 				// WTF?
@@ -171,11 +170,8 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 				$error = $msg ?: 'login-migrated-generic';
 				return call_user_func_array( 'StatusValue::newFatal', (array)$error );
 
-			// @codeCoverageIgnoreStart
-			case LoginForm::CREATE_BLOCKED: // Can never happen
 			default:
 				throw new \DomainException( __METHOD__ . ": Unhandled case value from $hook" );
 		}
-			// @codeCoverageIgnoreEnd
 	}
 }
