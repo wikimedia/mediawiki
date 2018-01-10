@@ -11,9 +11,6 @@
 			"color": "#36c",
 			"global": true
 		},
-		"constructive": {
-			"color": "#36c"
-		},
 		"destructive": {
 			"color": "#d33"
 		},
@@ -72,7 +69,7 @@
 			"ltr": "images/icons/newspaper-ltr.svg",
 			"rtl": "images/icons/newspaper-rtl.svg"
 		} },
-		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning", "constructive" ] },
+		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning" ] },
 		"upload": { "file": {
 			"ltr": "images/icons/upload-ltr.svg",
 			"rtl": "images/icons/upload-rtl.svg"
