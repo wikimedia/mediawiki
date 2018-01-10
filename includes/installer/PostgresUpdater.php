@@ -489,6 +489,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'content', 'patch-content-table.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models-table.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
+			[ 'migrateArchiveText' ],
 		];
 	}
 
