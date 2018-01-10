@@ -176,18 +176,18 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
 
+		list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		$titleFlags = $dbMode == DB_MASTER ? Title::GAID_FOR_UPDATE : 0;
 		$title = null;
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
 		if ( $pageId !== null && $pageId > 0 && $this->wikiId === false ) {
 			// TODO: better foreign title handling (introduce TitleFactory)
-			$title = Title::newFromID( $pageId, $queryFlags );
+			$title = Title::newFromID( $pageId, $titleFlags );
 		}
 
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( !$title && $revId !== null && $revId > 0 ) {
-			list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-
 			$dbr = $this->getDbConnectionRef( $dbMode );
 			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
