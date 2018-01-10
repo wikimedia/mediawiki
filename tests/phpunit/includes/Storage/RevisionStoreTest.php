@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -25,7 +26,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		return new RevisionStore(
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
-			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache()
+			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
+			new NullLogger()
 		);
 	}
 

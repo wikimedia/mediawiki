@@ -42,6 +42,7 @@ use MediaWiki\User\UserIdentityValue;
 use Message;
 use MWException;
 use MWUnknownContentModelException;
+use Psr\Log\LoggerInterface;
 use RecentChange;
 use stdClass;
 use Title;
@@ -89,6 +90,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private $cache;
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
 	 * @param LoadBalancer $loadBalancer
@@ -100,6 +106,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		LoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
+		LoggerInterface $logger,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -107,6 +114,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
+		$this->logger = $logger;
 		$this->wikiId = $wikiId;
 	}
 
@@ -176,16 +184,21 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
 
-		$title = null;
+		$canUseTitleNewFromId = $pageId !== null && $pageId > 0 && $this->wikiId === false;
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
-		if ( $pageId !== null && $pageId > 0 && $this->wikiId === false ) {
+		if ( $canUseTitleNewFromId ) {
 			// TODO: better foreign title handling (introduce TitleFactory)
 			$title = Title::newFromID( $pageId, $queryFlags );
+			if ( $title ) {
+				return $title;
+			}
 		}
 
+		$canUseRevId = $revId !== null && $revId > 0;
+
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
-		if ( !$title && $revId !== null && $revId > 0 ) {
+		if ( $canUseRevId ) {
 			list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 
 			$dbr = $this->getDbConnectionRef( $dbMode );
@@ -207,17 +220,26 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			);
 			if ( $row ) {
 				// TODO: better foreign title handling (introduce TitleFactory)
-				$title = Title::newFromRow( $row );
+				return Title::newFromRow( $row );
 			}
 		}
 
-		if ( !$title ) {
-			throw new RevisionAccessException(
-				"Could not determine title for page ID $pageId and revision ID $revId"
-			);
+		// If we still don't have a title use READ_LATEST_IMMUTABLE and try one last time
+		if ( $canUseTitleNewFromId ) {
+			// TODO: better foreign title handling (introduce TitleFactory)
+			$title = Title::newFromID( $pageId, self::READ_LATEST_IMMUTABLE );
+			if ( $title ) {
+				$this->logger->info(
+					__METHOD__ . ' fell back to READ_LATEST_IMMUTABLE and got a Title.',
+					[ 'trace' => wfDebugBacktrace() ]
+				);
+				return $title;
+			}
 		}
 
-		return $title;
+		throw new RevisionAccessException(
+			"Could not determine title for page ID $pageId and revision ID $revId"
+		);
 	}
 
 	/**

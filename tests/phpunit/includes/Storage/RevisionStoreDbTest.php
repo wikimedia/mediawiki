@@ -15,6 +15,7 @@ use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use Psr\Log\NullLogger;
 use Revision;
 use TestUserRegistry;
 use Title;
@@ -123,6 +124,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$loadBalancer,
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			new NullLogger(),
 			$wikiId
 		);
 
