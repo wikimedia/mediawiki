@@ -433,27 +433,43 @@ class JavaScriptMinifier {
 				continue;
 			}
 
-			// Find out which kind of token we're handling. $end will point past the end of it.
+			// Find out which kind of token we're handling.
+			// Note: $end must point past the end of the current token
+			// so that `substr($s, $pos, $end - $pos)` would be the entire token.
+			// In order words, $end will be the offset of the last relevant character
+			// in the stream + 1, or simply put: The offset of the first character
+			// of any next token in the stream.
 			$end = $pos + 1;
 			// Handle string literals
 			if( $ch === "'" || $ch === '"' ) {
 				// Search to the end of the string literal, skipping over backslash escapes
 				$search = $ch . '\\';
 				do{
+					// Speculatively add 2 to the end so that if we see a backslash,
+					// the next iteration will start 2 characters further (one for the
+					// backslash, one for the escaped character).
+					// We'll correct this outside the loop.
 					$end += strcspn( $s, $search, $end ) + 2;
+					// If the last character in our search for a quote or a backlash
+					// matched a backslash and we haven't reached the end, keep searching..
 				} while( $end - 2 < $length && $s[$end - 2] === '\\' );
+				// Correction (1): Undo speculative add, keep only one (end of string literal)
 				$end--;
 			// We have to distinguish between regexp literals and division operators
 			// A division operator is only possible in certain states
 			} elseif( $ch === '/' && !isset( $divStates[$state] ) ) {
 				// Regexp literal
 				for( ; ; ) {
+					// Search until we find "/" (end of regexp), "\" (backslash escapes),
+					// or "[" (start of character classes).
 					do{
-						// Skip until we find "/" (end of regexp), "\" (backslash escapes),
-						// or "[" (start of character classes).
+						// Speculatively add 2 to ensure next iteration skips
+						// over backslash and escaped character.
+						// We'll correct this outside the loop.
 						$end += strcspn( $s, '/[\\', $end ) + 2;
 						// If backslash escape, keep searching...
 					} while( $end - 2 < $length && $s[$end - 2] === '\\' );
+					// Correction (1): Undo speculative add, keep only one (end of regexp)
 					$end--;
 					// If the end, stop here.
 					if( $end - 1 >= $length || $s[$end - 1] === '/' ) {
@@ -462,11 +478,13 @@ class JavaScriptMinifier {
 					// (Implicit else), we must've found the start of a char class,
 					// skip until we find "]" (end of char class), or "\" (backslash escape)
 					do{
+						// Speculatively add 2 for backslash escape.
+						// We'll substract one outside the loop.
 						$end += strcspn( $s, ']\\', $end ) + 2;
 						// If backslash escape, keep searching...
 					} while( $end - 2 < $length && $s[$end - 2] === '\\' );
 					$end--;
-				};
+				}
 				// Search past the regexp modifiers (gi)
 				while( $end < $length && ctype_alpha( $s[$end] ) ) {
 					$end++;
