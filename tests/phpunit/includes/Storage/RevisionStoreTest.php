@@ -332,6 +332,71 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->assertSame( 'Food', $title->getDBkey() );
 	}
 
+	public function testGetTitle_successFromPageIdOnFallback() {
+		$mockLoadBalancer = $this->getMockLoadBalancer();
+		// Title calls wfGetDB() so we have to set the main service
+		$this->setService( 'DBLoadBalancer', $mockLoadBalancer );
+
+		$db = $this->getMockDatabase();
+		// Title calls wfGetDB() which uses a regular Connection
+		// Assert that the first call uses a REPLICA and the second falls back to master
+		$mockLoadBalancer->expects( $this->exactly( 2 ) )
+			->method( 'getConnection' )
+			->willReturnCallback( function ( $masterOrReplica ) use ( $db ) {
+				static $callCounter = 0;
+				$callCounter++;
+				if ( $callCounter === 1 ) {
+					$this->assertSame( DB_REPLICA, $masterOrReplica );
+				} elseif ( $callCounter === 2 ) {
+					$this->assertSame( DB_MASTER, $masterOrReplica );
+				}
+				return $db;
+			} );
+		// RevisionStore getTitle uses a ConnectionRef
+		$mockLoadBalancer->expects( $this->atLeastOnce() )
+			->method( 'getConnectionRef' )
+			->willReturn( $db );
+
+		// First call to Title::newFromID, faking no result (db lag?)
+		$db->expects( $this->at( 0 ) )
+			->method( 'selectRow' )
+			->with(
+				'page',
+				$this->anything(),
+				[ 'page_id' => 1 ]
+			)
+			->willReturn( false );
+
+		// First select using rev_id, faking no result (db lag?)
+		$db->expects( $this->at( 1 ) )
+			->method( 'selectRow' )
+			->with(
+				[ 'revision', 'page' ],
+				$this->anything(),
+				[ 'rev_id' => 2 ]
+			)
+			->willReturn( false );
+
+		// Second call to Title::newFromID, no result
+		$db->expects( $this->at( 2 ) )
+			->method( 'selectRow' )
+			->with(
+				'page',
+				$this->anything(),
+				[ 'page_id' => 1 ]
+			)
+			->willReturn( (object)[
+				'page_namespace' => '2',
+				'page_title' => 'Foodey',
+			] );
+
+		$store = $this->getRevisionStore( $mockLoadBalancer );
+		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
+
+		$this->assertSame( 2, $title->getNamespace() );
+		$this->assertSame( 'Foodey', $title->getDBkey() );
+	}
+
 	public function testGetTitle_successFromRevId() {
 		$mockLoadBalancer = $this->getMockLoadBalancer();
 		// Title calls wfGetDB() so we have to set the main service
@@ -387,9 +452,19 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 		$db = $this->getMockDatabase();
 		// Title calls wfGetDB() which uses a regular Connection
-		$mockLoadBalancer->expects( $this->atLeastOnce() )
+		// Assert that the first call uses a REPLICA and the second falls back to master
+		$mockLoadBalancer->expects( $this->exactly( 2 ) )
 			->method( 'getConnection' )
-			->willReturn( $db );
+			->willReturnCallback( function ( $masterOrReplica ) use ( $db ) {
+				static $callCounter = 0;
+				$callCounter++;
+				if ( $callCounter === 1 ) {
+					$this->assertSame( DB_REPLICA, $masterOrReplica );
+				} elseif ( $callCounter === 2 ) {
+					$this->assertSame( DB_MASTER, $masterOrReplica );
+				}
+				return $db;
+			} );
 		// RevisionStore getTitle uses a ConnectionRef
 		$mockLoadBalancer->expects( $this->atLeastOnce() )
 			->method( 'getConnectionRef' )
@@ -412,6 +487,16 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				[ 'revision', 'page' ],
 				$this->anything(),
 				[ 'rev_id' => 2 ]
+			)
+			->willReturn( false );
+
+		// Second call to Title::newFromID, no result
+		$db->expects( $this->at( 2 ) )
+			->method( 'selectRow' )
+			->with(
+				'page',
+				$this->anything(),
+				[ 'page_id' => 1 ]
 			)
 			->willReturn( false );
 
