@@ -3,6 +3,7 @@
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -461,7 +462,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$cache = $this->getWANObjectCache();
 
-		$blobStore = new RevisionStore( $lb, $this->getBlobStore(), $cache );
+		$blobStore = new RevisionStore( $lb, $this->getBlobStore(), $cache, new NullLogger() );
 		return $blobStore;
 	}
 

@@ -3,6 +3,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\RevisionRecord;
+use Psr\Log\NullLogger;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
@@ -396,7 +397,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$store = new RevisionStore(
 			$services->getDBLoadBalancer(),
 			$services->getService( '_SqlBlobStore' ),
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			new NullLogger()
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );

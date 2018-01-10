@@ -468,7 +468,8 @@ return [
 		$store = new RevisionStore(
 			$services->getDBLoadBalancer(),
 			$blobStore,
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'RevisionStore' )
 		);
 
 		$config = $services->getMainConfig();
