@@ -85,8 +85,8 @@ class PHPVersionCheck {
 				'implementation' => 'HHVM',
 				'version' => defined( 'HHVM_VERSION' ) ? HHVM_VERSION : 'undefined',
 				'vendor' => 'Facebook',
-				'upstreamSupported' => '3.6.5',
-				'minSupported' => '3.6.5',
+				'upstreamSupported' => '3.18.5',
+				'minSupported' => '3.18.5',
 				'upgradeURL' => 'https://docs.hhvm.com/hhvm/installation/introduction',
 			);
 		}
