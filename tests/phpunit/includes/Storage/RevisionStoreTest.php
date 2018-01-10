@@ -381,6 +381,7 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @group Addshore
 	 * @covers \MediaWiki\Storage\RevisionStore::getTitle
 	 */
 	public function testGetTitle_throwsExceptionAfterFallbacks() {
@@ -415,6 +416,16 @@ class RevisionStoreTest extends MediaWikiTestCase {
 				[ 'revision', 'page' ],
 				$this->anything(),
 				[ 'rev_id' => 2 ]
+			)
+			->willReturn( false );
+
+		// Fallback call
+		$db->expects( $this->at( 2 ) )
+			->method( 'selectRow' )
+			->with(
+				'page',
+				$this->anything(),
+				[ 'page_id' => 1 ]
 			)
 			->willReturn( false );
 
