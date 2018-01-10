@@ -224,52 +224,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			wfDebug( "Target is invalid user.\n" );
 
 			return 'notarget';
-		}
-
-		if ( !$target->isEmailConfirmed() ) {
+		} elseif ( !$target->isEmailConfirmed() ) {
 			wfDebug( "User has no valid email.\n" );
 
 			return 'noemail';
-		}
-
-		if ( !$target->canReceiveEmail() ) {
+		} elseif ( !$target->canReceiveEmail() ) {
 			wfDebug( "User does not allow user emails.\n" );
 
 			return 'nowikiemail';
-		}
-
-		if ( $target->getEditCount() === 0 &&
-			( $sender === null || !$sender->isAllowed( 'sendemail-new-users' ) )
-		) {
-			// Determine if target has any other logged actions.
-			$dbr = wfGetDB( DB_REPLICA );
-			$log_id = $dbr->selectField(
-				'logging',
-				'log_id',
-				[
-					'log_user' => $target->getId(),
-					"NOT (log_type = 'newusers' AND log_action = 'autocreate')",
-				],
-				__METHOD__,
-				[ 'LIMIT' => 1 ]
-			);
-
-			if ( !$log_id ) {
-				wfDebug( "User has no logged actions on this wiki.\n" );
-
-				return 'nowikiemail';
-			}
-		}
-
-		if ( $sender !== null && !$target->getOption( 'email-allow-new-users' ) &&
-			$sender->isNewbie()
-		) {
-				wfDebug( "User does not allow user emails from new users.\n" );
-
-				return 'nowikiemail';
-		}
-
-		if ( $sender !== null ) {
+		} elseif ( $sender !== null ) {
 			$blacklist = $target->getOption( 'email-blacklist', [] );
 			if ( $blacklist ) {
 				$lookup = CentralIdLookup::factory();
