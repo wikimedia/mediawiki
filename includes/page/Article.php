@@ -19,7 +19,9 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Class for viewing MediaWiki article and history.
@@ -1011,7 +1013,12 @@ class Article implements Page {
 		) {
 			// Page is too old to be patrollable.
 			// This will never change so safe to cache forever.
-			$cache->set( $key, '2' );
+			$cache->set(
+				$key,
+				'2',
+				WANObjectCache::TTL_INDEFINITE,
+				Database::getCacheSetOptions( $dbr )
+			);
 			return false;
 		}
 
@@ -1031,7 +1038,12 @@ class Article implements Page {
 
 		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
 			// Already patrolled. There is no way for a page to get unpatrolled so can be cached.
-			$cache->set( $key, '2' );
+			$cache->set(
+				$key,
+				'2',
+				WANObjectCache::TTL_INDEFINITE,
+				Database::getCacheSetOptions( $dbr )
+			);
 			return false;
 		}
 
@@ -1081,7 +1093,12 @@ class Article implements Page {
 		) {
 			// Not a local file or too old to be patrollable. This only changes when a new
 			// version is uploaded, and we clear the cache then, so safe to cache forever.
-			$cache->set( $key, '1' );
+			$cache->set(
+				$key,
+				'1',
+				WANObjectCache::TTL_INDEFINITE,
+				Database::getCacheSetOptions( $dbr )
+			);
 			return false;
 		}
 		$rc = RecentChange::newFromConds(
@@ -1102,7 +1119,12 @@ class Article implements Page {
 		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
 			// Already patrolled. The only way for a file to get unpatrolled is new version
 			// upload and we clear the cache on that, so safe to cache.
-			$cache->set( $key, '1' );
+			$cache->set(
+				$key,
+				'1',
+				WANObjectCache::TTL_INDEFINITE,
+				Database::getCacheSetOptions( $dbr )
+			);
 			return false;
 		}
 
