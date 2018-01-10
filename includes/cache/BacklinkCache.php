@@ -28,6 +28,7 @@
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class for fetching backlink lists, approximate backlink counts and
@@ -122,11 +123,14 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Clear locally stored data and database object.
+	 * Clear locally stored data and database object. Invalidate data in memcache.
 	 */
 	public function clear() {
 		$this->partitionCache = [];
 		$this->fullResultCache = [];
+		MediaWikiServices::getInstance()
+			->getMainWANObjectCache()
+			->touchCheckKey( $this->makeCheckKey() );
 		unset( $this->db );
 	}
 
@@ -344,8 +348,15 @@ class BacklinkCache {
 		);
 
 		// 3) ... fallback to memcached ...
-		$count = $cache->get( $memcKey );
-		if ( $count ) {
+		$curTTL = INF;
+		$count = $cache->get(
+			$memcKey,
+			$curTTL,
+			[
+				$this->makeCheckKey()
+			]
+		);
+		if ( $count && ( $curTTL > 0 ) ) {
 			return min( $max, $count );
 		}
 
@@ -403,8 +414,15 @@ class BacklinkCache {
 		);
 
 		// 3) ... fallback to memcached ...
-		$memcValue = $cache->get( $memcKey );
-		if ( is_array( $memcValue ) ) {
+		$curTTL = 0;
+		$memcValue = $cache->get(
+			$memcKey,
+			$curTTL,
+			[
+				$this->makeCheckKey()
+			]
+		);
+		if ( is_array( $memcValue ) && ( $curTTL > 0 ) ) {
 			$cacheEntry = $memcValue;
 			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
 
@@ -542,5 +560,19 @@ class BacklinkCache {
 
 		return TitleArray::newFromResult(
 			new FakeResultWrapper( array_values( $mergedRes ) ) );
+	}
+
+	/**
+	 * Returns check key for the backlinks cache for a particular title
+	 *
+	 * @return String
+	 */
+	private function makeCheckKey() {
+		return MediaWikiServices::getInstance()
+			->getMainWANObjectCache()
+			->makeKey(
+				'backlinks',
+				md5( $this->title->getPrefixedDBkey() )
+			);
 	}
 }

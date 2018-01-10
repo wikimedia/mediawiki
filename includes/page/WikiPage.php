@@ -3353,6 +3353,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleDelete( Title $title ) {
 		// Update existence markers on article/talk tabs...
+		// ... but clear Backlink cache first
+		BacklinkCache::get( $title )->clear();
 		$other = $title->getOtherPage();
 
 		$other->purgeSquid();
