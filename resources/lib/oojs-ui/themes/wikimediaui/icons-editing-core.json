@@ -11,9 +11,6 @@
 			"color": "#36c",
 			"global": true
 		},
-		"constructive": {
-			"color": "#36c"
-		},
 		"destructive": {
 			"color": "#d33"
 		},
@@ -25,7 +22,7 @@
 		"edit": { "file": {
 			"ltr": "images/icons/edit-ltr.svg",
 			"rtl": "images/icons/edit-rtl.svg"
-		}, "variants": [ "progressive" ] },
+		} },
 		"editLock": { "file": {
 			"ltr": "images/icons/editLock-ltr.svg",
 			"rtl": "images/icons/editLock-rtl.svg"

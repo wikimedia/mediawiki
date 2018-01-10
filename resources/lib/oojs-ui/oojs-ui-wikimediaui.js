@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.4
+ * OOjs UI v0.25.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2018 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-02T19:08:58Z
+ * Date: 2018-01-10T00:26:02Z
  */
 ( function ( OO ) {
 
@@ -39,7 +39,6 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 			warning: false,
 			invert: false,
 			progressive: false,
-			constructive: false,
 			destructive: false
 		},
 		// Parent method
@@ -62,7 +61,6 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 		} else if ( !element.isDisabled() ) {
 			// Any other kind of button, use the right colored icon / indicator if available
 			variants.progressive = element.hasFlag( 'progressive' );
-			variants.constructive = element.hasFlag( 'constructive' );
 			variants.destructive = element.hasFlag( 'destructive' );
 			variants.warning = element.hasFlag( 'warning' );
 		}

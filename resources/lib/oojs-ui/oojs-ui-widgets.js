@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.4
+ * OOjs UI v0.25.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2018 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-02T19:08:58Z
+ * Date: 2018-01-10T00:26:02Z
  */
 ( function ( OO ) {
 
@@ -2020,34 +2020,22 @@ OO.ui.BookletLayout.prototype.findClosestPage = function ( page ) {
 		prev = pages[ index - 1 ];
 		// Prefer adjacent pages at the same level
 		if ( this.outlined ) {
-			level = this.outlineSelectWidget.getItemFromData( page.getName() ).getLevel();
+			level = this.outlineSelectWidget.findItemFromData( page.getName() ).getLevel();
 			if (
 				prev &&
-				level === this.outlineSelectWidget.getItemFromData( prev.getName() ).getLevel()
+				level === this.outlineSelectWidget.findItemFromData( prev.getName() ).getLevel()
 			) {
 				return prev;
 			}
 			if (
 				next &&
-				level === this.outlineSelectWidget.getItemFromData( next.getName() ).getLevel()
+				level === this.outlineSelectWidget.findItemFromData( next.getName() ).getLevel()
 			) {
 				return next;
 			}
 		}
 	}
 	return prev || next || null;
-};
-
-/**
- * Get the page closest to the specified page.
- *
- * @deprecated 0.23.0 Use {@link OO.ui.BookletLayout#findClosestPage} instead.
- * @param {OO.ui.PageLayout} page Page to use as a reference point
- * @return {OO.ui.PageLayout|null} Page closest to the specified page
- */
-OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
-	OO.ui.warnDeprecation( 'BookletLayout#getClosestPage: Deprecated function. Use findClosestPage instead. See T76630.' );
-	return this.findClosestPage( page );
 };
 
 /**
@@ -2176,7 +2164,7 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 		name = page.getName();
 		delete this.pages[ name ];
 		if ( this.outlined ) {
-			items.push( this.outlineSelectWidget.getItemFromData( name ) );
+			items.push( this.outlineSelectWidget.findItemFromData( name ) );
 			page.setOutlineItem( null );
 		}
 	}
@@ -2499,16 +2487,16 @@ OO.ui.IndexLayout.prototype.getClosestTabPanel = function ( tabPanel ) {
 		next = tabPanels[ index + 1 ];
 		prev = tabPanels[ index - 1 ];
 		// Prefer adjacent tab panels at the same level
-		level = this.tabSelectWidget.getItemFromData( tabPanel.getName() ).getLevel();
+		level = this.tabSelectWidget.findItemFromData( tabPanel.getName() ).getLevel();
 		if (
 			prev &&
-			level === this.tabSelectWidget.getItemFromData( prev.getName() ).getLevel()
+			level === this.tabSelectWidget.findItemFromData( prev.getName() ).getLevel()
 		) {
 			return prev;
 		}
 		if (
 			next &&
-			level === this.tabSelectWidget.getItemFromData( next.getName() ).getLevel()
+			level === this.tabSelectWidget.findItemFromData( next.getName() ).getLevel()
 		) {
 			return next;
 		}
@@ -2626,7 +2614,7 @@ OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
 		tabPanel = tabPanels[ i ];
 		name = tabPanel.getName();
 		delete this.tabPanels[ name ];
-		items.push( this.tabSelectWidget.getItemFromData( name ) );
+		items.push( this.tabSelectWidget.findItemFromData( name ) );
 		tabPanel.setTabItem( null );
 	}
 	if ( items.length ) {
@@ -3980,7 +3968,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.setItemsFromData = function ( datas ) {
 
 	$.each( datas, function ( i, data ) {
 		var j, label,
-			item = menu.getItemFromData( data );
+			item = menu.findItemFromData( data );
 
 		if ( item ) {
 			label = item.label;
@@ -4028,8 +4016,8 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
 	$.each( datas, function ( i, data ) {
 		var item;
 
-		if ( !widget.getItemFromData( data ) || widget.allowDuplicates ) {
-			item = menu.getItemFromData( data );
+		if ( !widget.findItemFromData( data ) || widget.allowDuplicates ) {
+			item = menu.findItemFromData( data );
 			if ( item ) {
 				item = widget.createItemWidget( data, item.label );
 			} else if ( widget.allowArbitrary ) {
@@ -4080,7 +4068,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.removeItemsFromData = function ( datas 
 		items = [];
 
 	$.each( datas, function ( i, data ) {
-		var item = widget.getItemFromData( data );
+		var item = widget.findItemFromData( data );
 		if ( item ) {
 			items.push( item );
 		}
@@ -4732,8 +4720,6 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * A basic tag multiselect widget, similar in concept to {@link OO.ui.ComboBoxInputWidget combo box widget}
  * that allows the user to add multiple values that are displayed in a tag area.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  * This widget is a base widget; see {@link OO.ui.MenuTagMultiselectWidget MenuTagMultiselectWidget} and
  * {@link OO.ui.PopupTagMultiselectWidget PopupTagMultiselectWidget} for the implementations that use
  * a menu and a popup respectively.
@@ -4746,8 +4732,6 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *         selected: [ 'Option 1' ]
  *     } );
  *     $( 'body' ).append( widget.$element );
- *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.Widget
@@ -5216,7 +5200,7 @@ OO.ui.TagMultiselectWidget.prototype.clearInput = function () {
  * @return {boolean} Value is duplicate
  */
 OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
-	return !!this.getItemFromData( data );
+	return !!this.findItemFromData( data );
 };
 
 /**
@@ -5341,7 +5325,7 @@ OO.ui.TagMultiselectWidget.prototype.addTag = function ( data, label ) {
  * @param {string|Object} data Tag data
  */
 OO.ui.TagMultiselectWidget.prototype.removeTagByData = function ( data ) {
-	var item = this.getItemFromData( data );
+	var item = this.findItemFromData( data );
 
 	this.removeItems( [ item ] );
 };
@@ -5546,8 +5530,6 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  * PopupTagMultiselectWidget is a {@link OO.ui.TagMultiselectWidget OO.ui.TagMultiselectWidget} intended
  * to use a popup. The popup can be configured to have a default input to insert values into the widget.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  *     @example
  *     // Example: A basic PopupTagMultiselectWidget.
  *     var widget = new OO.ui.PopupTagMultiselectWidget();
@@ -5562,8 +5544,6 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  *            }
  *         } );
  *     $( 'body' ).append( widget.$element );
- *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.TagMultiselectWidget
@@ -5706,8 +5686,6 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * MenuTagMultiselectWidget is a {@link OO.ui.TagMultiselectWidget OO.ui.TagMultiselectWidget} intended
  * to use a menu of selectable options.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  *     @example
  *     // Example: A basic MenuTagMultiselectWidget.
  *     var widget = new OO.ui.MenuTagMultiselectWidget( {
@@ -5720,8 +5698,6 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  *         selected: [ 'option1', 'option2' ]
  *     } );
  *     $( 'body' ).append( widget.$element );
- *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.TagMultiselectWidget
@@ -5747,7 +5723,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		$input: this.hasInput ? this.input.$input : null,
 		filterFromInput: !!this.hasInput,
 		$autoCloseIgnore: this.hasInput ?
-			this.input.$element.add( this.$overlay ) : this.$overlay,
+			this.input.$element : $( [] ),
 		$floatableContainer: this.hasInput && this.inputPosition === 'outline' ?
 			this.input.$element : this.$element,
 		$overlay: this.$overlay,
@@ -5834,11 +5810,16 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
  * @inheritdoc
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-	var menuItem = this.menu.getItemFromData( tagItem.getData() );
+	var menuItem = this.menu.findItemFromData( tagItem.getData() );
 	// Override the base behavior from TagMultiselectWidget; the base behavior
 	// in TagMultiselectWidget is to remove the tag to edit it in the input,
 	// but in our case, we want to utilize the menu selection behavior, and
 	// definitely not remove the item.
+
+	// If there is an input that is used for filtering, erase the value so we don't filter
+	if ( this.hasInput && this.menu.filterFromInput ) {
+		this.input.setValue( '' );
+	}
 
 	// Select the menu item
 	this.menu.selectItem( menuItem );
@@ -5853,7 +5834,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 	var inputValue = this.input.getValue(),
 		validated = false,
 		highlightedItem = this.menu.findHighlightedItem(),
-		item = this.menu.getItemFromData( inputValue );
+		item = this.menu.findItemFromData( inputValue );
 
 	// Override the parent method so we add from the menu
 	// rather than directly from the input
