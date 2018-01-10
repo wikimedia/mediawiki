@@ -85,10 +85,8 @@ class SpecialProtectedtitles extends SpecialPage {
 		}
 
 		$link = $this->getLinkRenderer()->makeLink( $title );
-		$description_items = [];
 		// Messages: restriction-level-sysop, restriction-level-autoconfirmed
-		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
-		$description_items[] = $protType;
+		$description = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 		$lang = $this->getLanguage();
 		$expiry = strlen( $row->pt_expiry ) ?
 			$lang->formatExpiry( $row->pt_expiry, TS_MW ) :
@@ -96,7 +94,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		if ( $expiry !== 'infinity' ) {
 			$user = $this->getUser();
-			$description_items[] = $this->msg(
+			$description .= $this->msg( 'comma-separator' )->escaped() . $this->msg(
 				'protect-expiring-local',
 				$lang->userTimeAndDate( $expiry, $user ),
 				$lang->userDate( $expiry, $user ),
@@ -104,8 +102,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			)->escaped();
 		}
 
-		// @todo i18n: This should use a comma separator instead of a hard coded comma, right?
-		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . $lang->specialList( $link, $description ) . "</li>\n";
 	}
 
 	/**
