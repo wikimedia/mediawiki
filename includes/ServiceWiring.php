@@ -471,6 +471,8 @@ return [
 			$services->getMainWANObjectCache()
 		);
 
+		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
+
 		$config = $services->getMainConfig();
 		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
 
