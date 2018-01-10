@@ -1240,7 +1240,6 @@
 	"right-siteadmin": "Lock and unlock the database",
 	"right-override-export-depth": "Export pages including linked pages up to a depth of 5",
 	"right-sendemail": "Send email to other users",
-	"right-sendemail-new-users": "Send email to users with no logged actions",
 	"right-managechangetags": "Create and (de)activate [[Special:Tags|tags]]",
 	"right-applychangetags": "Apply [[Special:Tags|tags]] along with one's changes",
 	"right-changetags": "Add and remove arbitrary [[Special:Tags|tags]] on individual revisions and log entries",
