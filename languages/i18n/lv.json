@@ -346,6 +346,7 @@
 	"title-invalid-interwiki": "Pieprasītais lapas nosaukums satur interwiki saiti, bet tās nevar lietot nosaukumos.",
 	"title-invalid-talk-namespace": "Pieprasītais lapas nosaukums norāda uz diskusijas lapu, kas nevar pastāvēt.",
 	"title-invalid-characters": "Pieprasītais lapas nosaukums satur nederīgus simbolus: \"$1\".",
+	"title-invalid-magic-tilde": "Pieprasītās lapas nosaukums satur nederīgu maģiskās tildes virkni (<nowiki>~~~</nowiki>).",
 	"title-invalid-leading-colon": "Pieprasītās lapas nosaukums satur neatļautu kolu tā sākumā.",
 	"perfcached": "Šie dati ir no servera kešatmiņas un var būt novecojuši. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1. Kešatmiņā {{PLURAL:$4|pieejami|pieejams|pieejami}} ne vairāk kā {{PLURAL:$4|$4 rezultāti|viens rezultāts|$4 rezultāti}}.",
@@ -2992,9 +2993,11 @@
 	"authprovider-confirmlink-success-line": "$1: Veiksmīgi sasaistīts.",
 	"authprovider-resetpass-skip-label": "Izlaist",
 	"specialpage-securitylevel-not-allowed-title": "Nav atļauts",
+	"cannotauth-not-allowed-title": "Atļauja liegta",
 	"credentialsform-account": "Konta nosaukums:",
 	"revid": "versija $1",
 	"pageid": "lapas ID $1",
 	"gotointerwiki-invalid": "Norādītais nosaukums ir nederīgs.",
+	"pagedata-title": "Lapas dati",
 	"pagedata-bad-title": "Nederīgs nosaukums: $1."
 }

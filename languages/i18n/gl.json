@@ -1329,7 +1329,7 @@
 	"rcfilters-activefilters": "Filtros activos",
 	"rcfilters-advancedfilters": "Filtros avanzados",
 	"rcfilters-limit-title": "Resultados a amosar",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|cambio|$1 cambios}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|cambio|cambios}}, $2",
 	"rcfilters-date-popup-title": "Período de tempo a procurar",
 	"rcfilters-days-title": "Últimos días",
 	"rcfilters-hours-title": "Últimas horas",

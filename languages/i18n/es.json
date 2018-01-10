@@ -167,7 +167,8 @@
 			"Ohlila",
 			"KATRINE1992",
 			"Athena in Wonderland",
-			"Truebamateo"
+			"Truebamateo",
+			"La Mantis"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1574,7 +1575,7 @@
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Páginas enlazadas desde</strong> la página seleccionada",
 	"rcfilters-filter-showlinkedto-label": "Mostrar cambios en páginas que enlazan a",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Páginas que enlazan hacia</strong> la página seleccionada",
-	"rcfilters-target-page-placeholder": "Escribe el nombre de una página (o de una categoría)",
+	"rcfilters-target-page-placeholder": "Escribe un nombre de página (o de categoría)",
 	"rcnotefrom": "Debajo {{PLURAL:$5|aparece el cambio|aparecen los cambios}} desde <strong>$3, $4</strong> (se muestran hasta <strong>$1</strong>).",
 	"rclistfromreset": "Restablecer selección de fecha",
 	"rclistfrom": "Mostrar cambios nuevos desde las $2 del $3",
@@ -2552,7 +2553,7 @@
 	"badipaddress": "La dirección IP no tiene el formato correcto.",
 	"blockipsuccesssub": "Bloqueo realizado con éxito",
 	"blockipsuccesstext": "\"[[Special:Contributions/$1|$1]]\" ha sido bloqueado.<br />\nVéase la [[Special:BlockList|lista de bloqueos]] para revisarlo.",
-	"ipb-blockingself": "¡Estás a punto de bloquearte a ti mismo!  ¿Estás seguro de que quieres hacerlo?",
+	"ipb-blockingself": "¡Estás a punto de bloquearte a ti mismo! ¿Confirmas que quieres hacerlo?",
 	"ipb-confirmhideuser": "Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?",
 	"ipb-confirmaction": "Si estás seguro de querer hacerlo, por favor, marca el campo «{{int:ipb-confirm}}» que hay al final.",
 	"ipb-edit-dropdown": "Editar motivo del bloqueo",
