@@ -84,10 +84,11 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev );
+	public function getPreviousRevision( RevisionRecord $rev, Title $title = null );
 
 	/**
 	 * Get next revision for this title
@@ -95,10 +96,11 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev );
+	public function getNextRevision( RevisionRecord $rev, Title $title = null );
 
 	/**
 	 * Load a revision based on a known page ID and current revision ID from the DB
