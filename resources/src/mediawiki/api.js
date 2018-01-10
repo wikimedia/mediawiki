@@ -321,9 +321,7 @@
 					return abortedPromise;
 				}
 
-				return ( abortable = api.post( params, ajaxOptions ) ).then(
-					// If no error, return to caller as-is
-					null,
+				return ( abortable = api.post( params, ajaxOptions ) ).catch(
 					// Error handler
 					function ( code ) {
 						if ( code === 'badtoken' ) {

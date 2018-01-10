@@ -113,8 +113,7 @@
 					} )
 				);
 			}
-		).then(
-			null,
+		).catch(
 			// Always resolve, never reject
 			function () { return $.Deferred().resolve(); }
 		);
