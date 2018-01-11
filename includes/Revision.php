@@ -1066,6 +1066,12 @@ class Revision implements IDBAccessObject {
 		$comment = CommentStoreComment::newUnsavedComment( $summary, null );
 
 		$title = Title::newFromID( $pageId );
+
+		if ( !$title ) {
+			// page not found
+			return null;
+		}
+
 		$rec = self::getRevisionStore()->newNullRevision( $dbw, $title, $comment, $minor, $user );
 
 		return new Revision( $rec );
