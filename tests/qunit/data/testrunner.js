@@ -309,14 +309,14 @@
 					// Test should use fake XHR, wait for requests, or call abort()
 					$activeLen = $.active;
 					if ( $activeLen !== undefined && $activeLen !== 0 ) {
-						pending = $.grep( ajaxRequests, function ( ajax ) {
+						pending = ajaxRequests.filter( function ( ajax ) {
 							return ajax.xhr.state() === 'pending';
 						} );
 						if ( pending.length !== $activeLen ) {
 							mw.log.warn( 'Pending requests does not match jQuery.active count' );
 						}
 						// Force requests to stop to give the next test a clean start
-						$.each( ajaxRequests, function ( i, ajax ) {
+						ajaxRequests.forEach( function ( ajax, i ) {
 							mw.log.warn(
 								'AJAX request #' + i + ' (state: ' + ajax.xhr.state() + ')',
 								ajax.options
