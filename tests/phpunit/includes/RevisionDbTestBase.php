@@ -620,6 +620,16 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::newNullRevision
+	 */
+	public function testNewNullRevision_badPage() {
+		$dbw = wfGetDB( DB_MASTER );
+		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false );
+
+		$this->assertNull( $rev );
+	}
+
+	/**
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn() {
