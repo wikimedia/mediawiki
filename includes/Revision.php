@@ -608,20 +608,27 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the length of the text in this revision, or null if unknown.
 	 *
-	 * @return int
+	 * @return int|null
 	 */
 	public function getSize() {
-		return $this->mRecord->getSize();
+		try {
+			return $this->mRecord->getSize();
+		} catch ( RevisionAccessException $ex ) {
+			return null;
+		}
 	}
 
 	/**
 	 * Returns the base36 sha1 of the content in this revision, or null if unknown.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getSha1() {
-		// XXX: we may want to drop all the hashing logic, it's not worth the overhead.
-		return $this->mRecord->getSha1();
+		try {
+			return $this->mRecord->getSha1();
+		} catch ( RevisionAccessException $ex ) {
+			return null;
+		}
 	}
 
 	/**
