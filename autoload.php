@@ -462,6 +462,7 @@ $wgAutoloadLocalClasses = [
 	'ExternalStoreHttp' => __DIR__ . '/includes/externalstore/ExternalStoreHttp.php',
 	'ExternalStoreMedium' => __DIR__ . '/includes/externalstore/ExternalStoreMedium.php',
 	'ExternalStoreMwstore' => __DIR__ . '/includes/externalstore/ExternalStoreMwstore.php',
+	'ExternalUsernameHandler' => __DIR__ . '/includes/user/ExternalUsernameHandler.php',
 	'FSFile' => __DIR__ . '/includes/libs/filebackend/fsfile/FSFile.php',
 	'FSFileBackend' => __DIR__ . '/includes/libs/filebackend/FSFileBackend.php',
 	'FSFileBackendDirList' => __DIR__ . '/includes/libs/filebackend/FSFileBackend.php',

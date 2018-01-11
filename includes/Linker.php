@@ -894,24 +894,15 @@ class Linker {
 		$classes = 'mw-userlink';
 		$page = null;
 		if ( $userId == 0 ) {
-			$pos = strpos( $userName, '>' );
-			if ( $pos !== false ) {
-				$iw = explode( ':', substr( $userName, 0, $pos ) );
-				$firstIw = array_shift( $iw );
-				$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
-				if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
-					$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
-					if ( $iw ) {
-						$title = join( ':', $iw ) . ':' . $title;
-					}
-					$page = Title::makeTitle( NS_MAIN, $title, '', $firstIw );
-				}
-				$classes .= ' mw-extuserlink';
-			} else {
-				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
+			$page = ExternalUsernameHandler::getExternalUsernameTitle( $userName );
+
+			// The user is an IP
+			if ( $page instanceof SpecialPage ) {
 				if ( $altUserName === false ) {
 					$altUserName = IP::prettifyIP( $userName );
 				}
+			} else {
+				$classes .= ' mw-extuserlink';
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
