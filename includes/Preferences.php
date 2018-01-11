@@ -204,7 +204,7 @@ class Preferences {
 	}
 
 	/**
-	 * @param User $user The User object
+	 * @param User $user
 	 * @param IContextSource $context
 	 * @return array Text/links to display as key; $skinkey as value
 	 */

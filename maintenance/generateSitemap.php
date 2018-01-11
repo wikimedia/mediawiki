@@ -440,8 +440,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @param int $namespace The namespace
-	 * @param int $count The count
+	 * @param int $namespace
+	 * @param int $count
 	 * @return string
 	 */
 	function sitemapFilename( $namespace, $count ) {

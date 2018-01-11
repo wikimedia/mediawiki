@@ -97,7 +97,7 @@ final class SessionBackend {
 	private $shutdown = false;
 
 	/**
-	 * @param SessionId $id Session ID object
+	 * @param SessionId $id
 	 * @param SessionInfo $info Session info to populate from
 	 * @param CachedBagOStuff $store Backend data store
 	 * @param LoggerInterface $logger

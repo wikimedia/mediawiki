@@ -823,7 +823,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * Makes change an option link which carries all the other options
 	 *
-	 * @param string $title Title
+	 * @param string $title
 	 * @param array $override Options to override
 	 * @param array $options Current options
 	 * @param bool $active Whether to show the link in bold

@@ -233,7 +233,7 @@ class StripState {
 	/**
 	 * Remove any strip markers found in the given text.
 	 *
-	 * @param string $text Input string
+	 * @param string $text
 	 * @return string
 	 */
 	public function killMarkers( $text ) {

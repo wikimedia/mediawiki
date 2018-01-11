@@ -4679,7 +4679,7 @@ class Parser {
 	 * Wrapper for preprocess()
 	 *
 	 * @param string $text The text to preprocess
-	 * @param ParserOptions $options Options
+	 * @param ParserOptions $options
 	 * @param Title|null $title Title object or null to use $wgTitle
 	 * @return string
 	 */
@@ -5972,7 +5972,7 @@ class Parser {
 	/**
 	 * Remove any strip markers found in the given text.
 	 *
-	 * @param string $text Input string
+	 * @param string $text
 	 * @return string
 	 */
 	public function killMarkers( $text ) {

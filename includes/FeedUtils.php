@@ -97,7 +97,7 @@ class FeedUtils {
 	/**
 	 * Really format a diff for the newsfeed
 	 *
-	 * @param Title $title Title object
+	 * @param Title $title
 	 * @param int $oldid Old revision's id
 	 * @param int $newid New revision's id
 	 * @param int $timestamp New revision's timestamp

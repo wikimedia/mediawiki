@@ -1030,7 +1030,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $paramName Parameter name
 	 * @param array|mixed $paramSettings Default value or an array of settings
 	 *  using PARAM_* constants.
-	 * @param bool $parseLimit Parse limit?
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {

@@ -186,7 +186,7 @@ class IEUrlExtension {
 	 * - if we find a possible extension followed by a dot or another illegal
 	 *   character, we ignore it and continue searching
 	 *
-	 * @param string $url URL
+	 * @param string $url
 	 * @return mixed Detected extension (string), or false if none found
 	 */
 	public static function findIE6Extension( $url ) {

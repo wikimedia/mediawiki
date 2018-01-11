@@ -45,7 +45,7 @@ class LocalizedException extends Exception implements ILocalizedException {
 
 	/**
 	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
-	 * @param int $code Exception code
+	 * @param int $code
 	 * @param Exception|Throwable $previous The previous exception used for the exception chaining.
 	 */
 	public function __construct( $messageSpec, $code = 0, $previous = null ) {

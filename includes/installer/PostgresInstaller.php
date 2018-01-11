@@ -152,7 +152,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	/**
 	 * Open a PG connection with given parameters
 	 * @param string $user User name
-	 * @param string $password Password
+	 * @param string $password
 	 * @param string $dbName Database name
 	 * @param string $schema Database schema
 	 * @return Status

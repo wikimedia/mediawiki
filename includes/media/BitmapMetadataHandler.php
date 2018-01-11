@@ -292,7 +292,7 @@ class BitmapMetadataHandler {
 	 * Read the first 2 bytes of a tiff file to figure out
 	 * Little Endian or Big Endian. Needed for exif stuff.
 	 *
-	 * @param string $filename The filename
+	 * @param string $filename
 	 * @return string 'BE' or 'LE' or false
 	 */
 	static function getTiffByteOrder( $filename ) {

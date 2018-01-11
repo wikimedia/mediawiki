@@ -323,7 +323,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Redirect to $url rather than displaying the normal page
 	 *
-	 * @param string $url URL
+	 * @param string $url
 	 * @param string $responsecode HTTP status code
 	 */
 	public function redirect( $url, $responsecode = '302' ) {

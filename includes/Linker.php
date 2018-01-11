@@ -1023,7 +1023,7 @@ class Linker {
 
 	/**
 	 * @since 1.16.3
-	 * @param int $userId Userid
+	 * @param int $userId
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with block link
 	 */
@@ -1037,7 +1037,7 @@ class Linker {
 	}
 
 	/**
-	 * @param int $userId Userid
+	 * @param int $userId
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with e-mail user link
 	 */

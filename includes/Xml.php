@@ -160,8 +160,9 @@ class Xml {
 	}
 
 	/**
-	 * @param int $year
-	 * @param int $month
+	 * @param int|string $year Use '' or 0 to start with no year preselected.
+	 * @param int|string $month A month in the 1..12 range. Use '', 0 or -1 to start with no month
+	 *  preselected.
 	 * @return string Formatted HTML
 	 */
 	public static function dateMenu( $year, $month ) {

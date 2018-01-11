@@ -34,7 +34,7 @@ class SearchExactMatchRescorer {
 	 * may sort based on other algorithms that may cause the exact title match
 	 * to not be in the results or be lower down the list.
 	 * @param string $search the query
-	 * @param int[] $namespaces the namespaces
+	 * @param int[] $namespaces
 	 * @param string[] $srchres results
 	 * @param int $limit the max number of results to return
 	 * @return string[] munged results
@@ -96,7 +96,7 @@ class SearchExactMatchRescorer {
 	}
 
 	/**
-	 * @param string[] $titles as strings
+	 * @param string[] $titles
 	 * @return array redirect target prefixedText to index of title in titles
 	 *   that is a redirect to it.
 	 */
