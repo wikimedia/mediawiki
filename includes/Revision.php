@@ -495,19 +495,56 @@ class Revision implements IDBAccessObject {
 			$this->mRecord = self::getRevisionStore()->newMutableRevisionFromArray(
 				$row,
 				$queryFlags,
-				$title
+				$this->ensureTitle( $row, $queryFlags, $title )
 			);
 		} elseif ( is_object( $row ) ) {
 			$this->mRecord = self::getRevisionStore()->newRevisionFromRow(
 				$row,
 				$queryFlags,
-				$title
+				$this->ensureTitle( $row, $queryFlags, $title )
 			);
 		} else {
 			throw new InvalidArgumentException(
 				'$row must be a row object, an associative array, or a RevisionRecord'
 			);
 		}
+	}
+
+	/**
+	 * Make sure we have *some* Title object for use by the constructor.
+	 * For B/C, the constructor shouldn't fail even for a bad page ID or bad revision ID.
+	 *
+	 * @param array|object $row
+	 * @param int $queryFlags
+	 * @param Title|null $title
+	 *
+	 * @return Title $title if not null, or a Title constructed from information in $row.
+	 */
+	private function ensureTitle( $row, $queryFlags, $title = null ) {
+		if ( $title ) {
+			return $title;
+		}
+
+		if ( is_array( $row ) ) {
+			$pageId = isset( $row['page'] ) ? $row['page'] : 0;
+			$revId = isset( $row['id'] ) ? $row['id'] : 0;
+		} else {
+			$pageId = isset( $row->rev_page ) ? $row->rev_page : 0;
+			$revId = isset( $row->rev_id ) ? $row->rev_id : 0;
+		}
+
+		try {
+			$title = self::getRevisionStore()->getTitle( $pageId, $revId, $queryFlags );
+		} catch ( RevisionAccessException $ex ) {
+			// construct a dummy title!
+			wfLogWarning( __METHOD__ . ': ' . $ex->getMessage() );
+
+			// NOTE: this Title will only be used inside RevisionRecord
+			$title = Title::makeTitleSafe( NS_SPECIAL, "Badtitle/ID=$pageId" );
+			$title->resetArticleID( $pageId );
+		}
+
+		return $title;
 	}
 
 	/**
