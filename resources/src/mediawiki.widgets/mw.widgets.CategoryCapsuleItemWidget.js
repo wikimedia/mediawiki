@@ -61,7 +61,7 @@
 			$.each( response.query.pages, function ( index, page ) {
 				pages[ page.title ] = !page.missing;
 			} );
-			$.each( titles, function ( index, title ) {
+			titles.forEach( function ( title ) {
 				var normalizedTitle = title;
 				while ( normalized[ normalizedTitle ] ) {
 					normalizedTitle = normalized[ normalizedTitle ];
