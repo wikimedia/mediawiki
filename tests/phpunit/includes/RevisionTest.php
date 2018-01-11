@@ -80,6 +80,17 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertNull( $rev->getContent(), 'no content object should be available' );
 	}
 
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromArrayWithBadPageId() {
+		MediaWiki\suppressWarnings();
+		$rev = new Revision( [ 'page' => 77777777 ] );
+		$this->assertSame( 77777777, $rev->getPage() );
+		MediaWiki\restoreWarnings();
+	}
+
 	public function provideConstructFromArray_userSetAsExpected() {
 		yield 'no user defaults to wgUser' => [
 			[
@@ -299,6 +310,17 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = (object)$arrayData;
 		$rev = new Revision( $row, 0, $this->getMockTitle() );
 		$assertions( $this, $rev );
+	}
+
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromRowWithBadPageId() {
+		MediaWiki\suppressWarnings();
+		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
+		$this->assertSame( 77777777, $rev->getPage() );
+		MediaWiki\restoreWarnings();
 	}
 
 	public function provideGetRevisionText() {
