@@ -3809,12 +3809,16 @@ After a user's group memberships are changed.
 $add: Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
-'UserSaveOptions': Called just before saving user preferences/options.
-$user: User object
-&$options: Options, modifiable
+'UserSaveOptions': Called just before saving user preferences. Hook handlers can either add or
+manipulate options, or reset one back to it's default to block changing it. Hook handlers are also
+allowed to abort the process by returning false, e.g. to save to a global profile instead. Compare
+to the UserSaveSettings hook, which is called after the preferences have been saved.
+$user: The User for which the options are going to be saved
+&$options: The users options as an associative array, modifiable
 
-'UserSaveSettings': Called when saving user settings.
-$user: User object
+'UserSaveSettings': Called directly after user preferences (user_properties in the database) have
+been saved. Compare to the UserSaveOptions hook, which is called before.
+$user: The User for which the options have been saved
 
 'UserSetCookies': DEPRECATED! If you're trying to replace core session cookie
 handling, you want to create a subclass of MediaWiki\Session\CookieSessionProvider
