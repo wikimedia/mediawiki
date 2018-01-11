@@ -6,6 +6,7 @@ use CommentStoreComment;
 use Exception;
 use HashBagOStuff;
 use InvalidArgumentException;
+use Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\IncompleteRevisionException;
@@ -1026,6 +1027,22 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'content' => new WikitextContent( 'Some Content' ),
 			]
 		];
+		yield 'Basic array, serialized text' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'text' => ( new WikitextContent( 'Söme Content' ) )->serialize(),
+			]
+		];
 		yield 'Basic array, with title' => [
 			[
 				'title' => Title::newFromText( 'SomeText' ),
@@ -1092,6 +1109,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$this->assertTrue(
 				$result->getSlot( 'main' )->getContent()->equals( $array['content'] )
 			);
+		} elseif ( isset( $array['text'] ) ) {
+			$this->assertSame( $array['text'], $result->getSlot( 'main' )->getContent()->serialize() );
 		} else {
 			$this->assertSame(
 				$array['content_format'],
@@ -1099,6 +1118,31 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			);
 			$this->assertSame( $array['content_model'], $result->getSlot( 'main' )->getModel() );
 		}
+	}
+
+	/**
+	 * @dataProvider provideNewMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testNewMutableRevisionFromArray_legacyEncoding( array $array ) {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
+		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
+
+		$factory = $this->getMockBuilder( BlobStoreFactory::class )
+			->setMethods( [ 'newBlobStore', 'newSqlBlobStore' ] )
+			->disableOriginalConstructor()
+			->getMock();
+		$factory->expects( $this->any() )
+			->method( 'newBlobStore' )
+			->willReturn( $blobStore );
+		$factory->expects( $this->any() )
+			->method( 'newSqlBlobStore' )
+			->willReturn( $blobStore );
+
+		$this->setService( 'BlobStoreFactory', $factory );
+
+		$this->testNewMutableRevisionFromArray( $array );
 	}
 
 }
