@@ -134,6 +134,18 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 			[ 'gzip', 'object' ],
 			'2®Àþ2',
 		];
+		yield 'T184749 (windows-1252 encoding), string in string out' => [
+			'windows-1252',
+			iconv( 'utf-8', 'windows-1252', "sammansättningar" ),
+			[],
+			'sammansättningar',
+		];
+		yield 'T184749 (windows-1252 encoding), string in string out with gzip' => [
+			'windows-1252',
+			gzdeflate( iconv( 'utf-8', 'windows-1252', "sammansättningar" ) ),
+			[ 'gzip' ],
+			'sammansättningar',
+		];
 	}
 
 	/**
@@ -187,9 +199,11 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 			gzinflate( $row->old_text ), "Direct check" );
 	}
 
+
 	public function provideBlobs() {
 		yield [ '' ];
 		yield [ 'someText' ];
+		yield [ "sammansättningar" ];
 	}
 
 	/**
@@ -199,6 +213,28 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 */
 	public function testSimpleStoreGetBlobSimpleRoundtrip( $blob ) {
 		$store = $this->getBlobStore();
+		$address = $store->storeBlob( $blob );
+		$this->assertSame( $blob, $store->getBlob( $address ) );
+	}
+
+	/**
+	 * @dataProvider provideBlobs
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
+	 */
+	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncoding( $blob ) {
+		$store = $this->getBlobStore( 'windows-1252' );
+		$address = $store->storeBlob( $blob );
+		$this->assertSame( $blob, $store->getBlob( $address ) );
+	}
+
+	/**
+	 * @dataProvider provideBlobs
+	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
+	 */
+	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncodingGzip( $blob ) {
+		$store = $this->getBlobStore( 'windows-1252', true );
 		$address = $store->storeBlob( $blob );
 		$this->assertSame( $blob, $store->getBlob( $address ) );
 	}
