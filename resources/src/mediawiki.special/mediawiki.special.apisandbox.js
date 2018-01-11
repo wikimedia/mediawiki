@@ -1074,7 +1074,7 @@
 								label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 							}
 						).$element,
-						$.map( formatItems, function ( item ) {
+						formatItems.map( function ( item ) {
 							return item.getData().$element;
 						} ),
 						$result

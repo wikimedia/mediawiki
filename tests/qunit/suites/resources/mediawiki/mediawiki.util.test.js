@@ -53,7 +53,7 @@
 		];
 
 	Array.prototype.push.apply( IPV6_CASES,
-		$.map( [
+		[
 			'fc:100::',
 			'fc:100:a::',
 			'fc:100:a:d::',
@@ -69,8 +69,8 @@
 			'::fc:100:a:d:1:e',
 			'::fc:100:a:d:1:e:ac',
 			'fc:100:a:d:1:e:ac:0'
-		], function ( el ) {
-			return [ [ true, el, el + ' is a valid IP' ] ];
+		].map( function ( el ) {
+			return [ true, el, el + ' is a valid IP' ];
 		} )
 	);
 
@@ -132,7 +132,7 @@
 			newExperimental = [ 'html5', 'html5-legacy' ];
 
 		// Test cases are kept in sync with SanitizerTest.php
-		$.each( [
+		[
 			// Pure legacy: how MW worked before 2017
 			[ legacy, text, legacyEncoded ],
 			// Transition to a new world: legacy links with HTML5 fallback
@@ -145,7 +145,7 @@
 			[ experimentalLegacy, text, html5Experimental ],
 			// Migration from $wgExperimentalHtmlIds to modern HTML5
 			[ newExperimental, text, html5Encoded ]
-		], function ( index, testCase ) {
+		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
 			assert.equal( util.escapeIdForAttribute( testCase[ 1 ] ), testCase[ 2 ] );
@@ -166,7 +166,7 @@
 			experimentalLegacy = [ 'html5-legacy', 'legacy' ],
 			newExperimental = [ 'html5', 'html5-legacy' ];
 
-		$.each( [
+		[
 			// Pure legacy: how MW worked before 2017
 			[ legacy, text, legacyEncoded ],
 			// Transition to a new world: legacy links with HTML5 fallback
@@ -179,7 +179,7 @@
 			[ experimentalLegacy, text, html5Experimental ],
 			// Migration from wgExperimentalHtmlIds to modern HTML5
 			[ newExperimental, text, html5Encoded ]
-		], function ( index, testCase ) {
+		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
 			assert.equal( util.escapeIdForLink( testCase[ 1 ] ), testCase[ 2 ] );
@@ -432,23 +432,23 @@
 	} );
 
 	QUnit.test( 'isIPv6Address', function ( assert ) {
-		$.each( IPV6_CASES, function ( i, ipCase ) {
+		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
 	QUnit.test( 'isIPv4Address', function ( assert ) {
-		$.each( IPV4_CASES, function ( i, ipCase ) {
+		IPV4_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
 	QUnit.test( 'isIPAddress', function ( assert ) {
-		$.each( IPV4_CASES, function ( i, ipCase ) {
+		IPV4_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 
-		$.each( IPV6_CASES, function ( i, ipCase ) {
+		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
