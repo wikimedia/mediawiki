@@ -242,6 +242,7 @@ abstract class RevisionRecord {
 	 *
 	 * MCR migration note: this replaces Revision::getSize
 	 *
+	 * @throws RevisionAccessException if the size was unknown and could not be calculated.
 	 * @return int
 	 */
 	abstract public function getSize();
@@ -254,6 +255,7 @@ abstract class RevisionRecord {
 	 *
 	 * MCR migration note: this replaces Revision::getSha1
 	 *
+	 * @throws RevisionAccessException if the hash was unknown and could not be calculated.
 	 * @return string
 	 */
 	abstract public function getSha1();
