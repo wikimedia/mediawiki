@@ -63,17 +63,19 @@ class JavaScriptMinifier {
 	const STACK_LIMIT = 1000;
 
 	/**
+	 * NOTE: This isn't a strict maximum. Longer lines will be produced when
+	 *       literals (e.g. quoted strings) longer than this are encountered
+	 *       or when required to guard against semicolon insertion.
+	 */
+	const MAX_LINE_LENGTH = 1000;
+
+	/**
 	 * Returns minified JavaScript code.
 	 *
-	 * NOTE: $maxLineLength isn't a strict maximum. Longer lines will be produced when
-	 *       literals (e.g. quoted strings) longer than $maxLineLength are encountered
-	 *       or when required to guard against semicolon insertion.
-	 *
 	 * @param string $s JavaScript code to minify
-	 * @param int $maxLineLength Maximum length of a single line, or -1 for no maximum.
 	 * @return String Minified code
 	 */
-	public static function minify( $s, $maxLineLength = 1000 ) {
+	public static function minify( $s ) {
 		// First we declare a few tables that contain our parsing rules
 
 		// $opChars : characters, which can be combined without whitespace in between them
@@ -571,7 +573,7 @@ class JavaScriptMinifier {
 				$out .= "\n";
 				$state = self::STATEMENT;
 				$lineLength = 0;
-			} elseif ( $maxLineLength > 0 && $lineLength + $end - $pos > $maxLineLength &&
+			} elseif ( $lineLength + $end - $pos > self::MAX_LINE_LENGTH &&
 					!isset( $semicolon[$state][$type] ) && $type !== self::TYPE_INCR_OP ) {
 				// This line would get too long if we added $token, so add a newline first.
 				// Only do this if it won't trigger semicolon insertion and if it won't
