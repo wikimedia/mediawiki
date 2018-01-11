@@ -149,6 +149,7 @@ class CSSMin {
 				'%0A' => ' ', // Change newlines to spaces
 				'%0D' => ' ', // Change carriage returns to spaces
 				'%09' => ' ', // Change tabs to spaces
+				'%22' => "'", // Unencode double quotes
 			] );
 			// Consolidate runs of multiple spaces in a row
 			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
