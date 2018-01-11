@@ -18,7 +18,8 @@
 			"Kipala",
 			"Kwisha",
 			"Macofe",
-			"Muddyb"
+			"Muddyb",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -1480,7 +1481,7 @@
 	"pager-older-n": "{{PLURAL:$1|$1 ya zamani zaidi}}",
 	"suppress": "Uangalizi",
 	"apihelp": "Usaisiz wa API",
-	"apihelp-no-such-module": "Moduli \"$ 1\" haikupatikana.",
+	"apihelp-no-such-module": "Moduli \"$1\" haikupatikana.",
 	"apisandbox-submit": "Weka ombi",
 	"apisandbox-reset": "Tandua",
 	"apisandbox-examples": "Mfano",

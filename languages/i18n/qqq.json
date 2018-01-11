@@ -4384,7 +4384,7 @@
 	"expandtemplates": "{{doc-special|ExpandTemplates}}\nThe name of the [[mw:Extension:ExpandTemplates|Expand Templates extension]].",
 	"expand_templates_intro": "This is the explanation given in the heading of the [[Special:ExpandTemplates]] page; it describes its functionality to the users.\nFor more information, see [[mw:Extension:ExpandTemplates]]",
 	"expand_templates_title": "The label of the input box for the context title on the form displayed at [[Special:ExpandTemplates]] page.",
-	"expand_templates_input": "{{Identical|Input text}}",
+	"expand_templates_input": "Used as an indicator.",
 	"expand_templates_output": "{{Identical|Result}}",
 	"expand_templates_xml_output": "Used as HTML <code><nowiki><h2></nowiki></code> heading.",
 	"expand_templates_html_output": "Used as HTML <code><nowiki><h2></nowiki></code> heading.",

@@ -1348,7 +1348,7 @@
 	"rcfilters-activefilters": "Filtres actius",
 	"rcfilters-advancedfilters": "Filtres avançats",
 	"rcfilters-limit-title": "Resultats a mostrar",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|canvi|$1 canvis}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|canvi|canvis}}, $2",
 	"rcfilters-date-popup-title": "Període de temps per cercar",
 	"rcfilters-days-title": "Darrers dies",
 	"rcfilters-hours-title": "Hores recents",

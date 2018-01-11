@@ -2651,6 +2651,7 @@
 	"autosumm-blank": "پەڕەکەی واڵا کردەوە",
 	"autosumm-replace": "«$1»ی لە جێی ناوەرۆک دانا",
 	"autoredircomment": "ڕەوانە کرا بۆ [[$1]]",
+	"autosumm-removed-redirect": "ڕەوانەکەرەکەی بۆ [[$1]] داندرا بوو لابرد",
 	"autosumm-new": "پەڕەی دروست کرد بە «$1»ەوە",
 	"autosumm-newblank": "پەڕەی واڵای دروست کرد",
 	"size-bytes": "$1 بایت",

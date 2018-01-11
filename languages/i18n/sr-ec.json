@@ -1288,7 +1288,7 @@
 	"rcfilters-activefilters": "Активни филтери",
 	"rcfilters-advancedfilters": "Напредни филтери",
 	"rcfilters-limit-title": "Приказати измена",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|измена|$1 измена}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|измена|измена}}, $2",
 	"rcfilters-date-popup-title": "Временски оквир",
 	"rcfilters-days-title": "Претходних неколико дана",
 	"rcfilters-hours-title": "Претходних неколико сати",

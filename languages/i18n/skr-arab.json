@@ -601,6 +601,7 @@
 	"recentchanges-legend-heading": "<strong>اختصارات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ایہ وی ݙیکھو [[Special:NewPages|نویں ورقیاں دی لسٹ]])",
 	"recentchanges-submit": "ݙیکھاؤ",
+	"rcfilters-limit-and-date-label": "$1{{PLURAL:$1|تبدیلی|تبدیلیاں}}، $2",
 	"rcfilters-days-title": "موجودہ ݙینہ",
 	"rcfilters-hours-title": "موجودہ گھنٹے",
 	"rcfilters-savedqueries-rename": "نواں ناں لکھو",
