@@ -1199,7 +1199,7 @@
 			}
 
 			// Remove explicit plural forms from the forms. They were set undefined in the above loop.
-			forms = $.map( forms, function ( form ) {
+			forms = forms.map( function ( form ) {
 				return form;
 			} );
 

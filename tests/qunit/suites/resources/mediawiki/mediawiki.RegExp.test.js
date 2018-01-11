@@ -28,7 +28,7 @@
 			'0123456789'
 		].join( '' );
 
-		$.each( specials, function ( i, str ) {
+		specials.forEach( function ( str ) {
 			assert.propEqual( str.match( new RegExp( mw.RegExp.escape( str ) ) ), [ str ], 'Match ' + str );
 		} );
 

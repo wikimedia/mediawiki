@@ -10,7 +10,7 @@
 		}
 	} ) );
 
-	$.each( [ true, false ], function ( i, strictMode ) {
+	[ true, false ].forEach( function ( strictMode ) {
 		QUnit.test( 'Basic construction and properties (' + ( strictMode ? '' : 'non-' ) + 'strict mode)', function ( assert ) {
 			var uriString, uri;
 			uriString = 'http://www.ietf.org/rfc/rfc2396.txt';
