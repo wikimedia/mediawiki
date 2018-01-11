@@ -55,7 +55,7 @@
 				}
 				graph[ moduleName ].requires = dependencies;
 
-				$.each( dependencies, function ( depIndex, depName ) {
+				dependencies.forEach( function ( depName ) {
 					if ( !hasOwn.call( graph, depName ) ) {
 						graph[ depName ] = { requiredBy: [] };
 					}
