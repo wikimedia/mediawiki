@@ -135,6 +135,7 @@ abstract class Installer {
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
 		'envCheck64Bit',
+		'envCheckCurl'
 	];
 
 	/**
@@ -1102,6 +1103,20 @@ abstract class Installer {
 	protected function envCheck64Bit() {
 		if ( PHP_INT_SIZE == 4 ) {
 			$this->showMessage( 'config-using-32bit' );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Checks if PHP has loaded curl extension.
+	 * InstantCommons feature relies on curl extension.
+	 *
+	 * @return bool
+	 */
+	protected function envCheckCurl() {
+		if ( !extension_loaded( 'curl' ) ) {
+			$this->showMessage( 'config-without-curl' );
 		}
 
 		return true;
