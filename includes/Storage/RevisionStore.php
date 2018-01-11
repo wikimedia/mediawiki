@@ -178,6 +178,8 @@ class RevisionStore
 	 *
 	 * MCR migration note: this corresponds to Revision::getTitle
 	 *
+	 * @note this method should be private, external use should be avoided!
+	 *
 	 * @param int|null $pageId
 	 * @param int|null $revId
 	 * @param int $queryFlags
@@ -185,7 +187,7 @@ class RevisionStore
 	 * @return Title
 	 * @throws RevisionAccessException
 	 */
-	private function getTitle( $pageId, $revId, $queryFlags = 0 ) {
+	public function getTitle( $pageId, $revId, $queryFlags = 0 ) {
 		if ( !$pageId && !$revId ) {
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
