@@ -135,6 +135,7 @@ abstract class Installer {
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
 		'envCheck64Bit',
+		'envCheckInstantCommons'
 	];
 
 	/**
@@ -1102,6 +1103,20 @@ abstract class Installer {
 	protected function envCheck64Bit() {
 		if ( PHP_INT_SIZE == 4 ) {
 			$this->showMessage( 'config-using-32bit' );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Checks if PHP has loaded curl extension or enabled allow_url_fopen
+	 * InstantCommons feature relies on curl extension or allow_url_fopen.
+	 *
+	 * @return bool
+	 */
+	protected function envCheckInstantCommons() {
+		if ( !extension_loaded( 'curl' ) && ini_get( 'allow_url_fopen' ) == 0 ) {
+			$this->showMessage( 'config-nowork-instantcommons' );
 		}
 
 		return true;
