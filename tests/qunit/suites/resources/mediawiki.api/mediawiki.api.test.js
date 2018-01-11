@@ -449,7 +449,7 @@
 		} );
 		this.api.abort();
 		assert.ok( this.requests.length === 2, 'Check both requests triggered' );
-		$.each( this.requests, function ( i, request ) {
+		this.requests.forEach( function ( request, i ) {
 			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
 		} );
 	} );

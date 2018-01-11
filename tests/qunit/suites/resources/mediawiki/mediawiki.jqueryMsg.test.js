@@ -898,7 +898,7 @@
 		var queue;
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-		queue = $.map( formatnumTests, function ( test ) {
+		queue = formatnumTests.map( function ( test ) {
 			var done = assert.async();
 			return function ( next, abort ) {
 				getMwLanguage( test.lang )
