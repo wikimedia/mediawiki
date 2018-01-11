@@ -894,24 +894,12 @@ class Linker {
 		$classes = 'mw-userlink';
 		$page = null;
 		if ( $userId == 0 ) {
-			$pos = strpos( $userName, '>' );
-			if ( $pos !== false ) {
-				$iw = explode( ':', substr( $userName, 0, $pos ) );
-				$firstIw = array_shift( $iw );
-				$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
-				if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
-					$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
-					if ( $iw ) {
-						$title = join( ':', $iw ) . ':' . $title;
-					}
-					$page = Title::makeTitle( NS_MAIN, $title, '', $firstIw );
-				}
+			$page = ExternalUserNames::getUserLinkTitle( $userName );
+
+			if ( ExternalUserNames::isExternal( $userName ) ) {
 				$classes .= ' mw-extuserlink';
-			} else {
-				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-				if ( $altUserName === false ) {
-					$altUserName = IP::prettifyIP( $userName );
-				}
+			} elseif ( $altUserName === false ) {
+				$altUserName = IP::prettifyIP( $userName );
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
@@ -948,7 +936,7 @@ class Linker {
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
 
-		if ( $userId == 0 && strpos( $userText, '>' ) !== false ) {
+		if ( $userId == 0 && ExternalUserNames::isExternal( $userText ) ) {
 			// No tools for an external user
 			return '';
 		}
