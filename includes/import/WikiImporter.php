@@ -48,8 +48,8 @@ class WikiImporter {
 	/** @var bool */
 	private $disableStatisticsUpdate = false;
 	private $usernamePrefix = 'imported';
-	private $assignKnownUsers = false;
-	private $triedCreations = [];
+	/** @var ExternalUsernameHandler */
+	private $externalUserHandler;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -94,6 +94,7 @@ class WikiImporter {
 		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
 
 		$this->importTitleFactory = new NaiveImportTitleFactory();
+		$this->externalUserHandler = new ExternalUsernameHandler();
 	}
 
 	/**
@@ -323,7 +324,7 @@ class WikiImporter {
 	 */
 	public function setUsernamePrefix( $usernamePrefix, $assignKnownUsers ) {
 		$this->usernamePrefix = rtrim( (string)$usernamePrefix, ':>' );
-		$this->assignKnownUsers = (bool)$assignKnownUsers;
+		$this->externalUserHandler->setUsernamePrefix( $usernamePrefix, $assignKnownUsers );
 	}
 
 	/**
@@ -734,7 +735,9 @@ class WikiImporter {
 		if ( !isset( $logInfo['contributor']['username'] ) ) {
 			$revision->setUsername( $this->usernamePrefix . '>Unknown user' );
 		} else {
-			$revision->setUsername( $this->prefixUsername( $logInfo['contributor']['username'] ) );
+			$revision->setUsername(
+				$this->externalUserHandler->prefixUsername( $logInfo['contributor']['username'] )
+			);
 		}
 
 		return $this->logItemCallback( $revision );
@@ -928,7 +931,9 @@ class WikiImporter {
 		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
 		} elseif ( isset( $revisionInfo['contributor']['username'] ) ) {
-			$revision->setUsername( $this->prefixUsername( $revisionInfo['contributor']['username'] ) );
+			$revision->setUsername(
+				$this->externalUserHandler->prefixUsername( $revisionInfo['contributor']['username'] )
+			);
 		} else {
 			$revision->setUsername( $this->usernamePrefix . '>Unknown user' );
 		}
@@ -1037,41 +1042,13 @@ class WikiImporter {
 			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
-			$revision->setUsername( $this->prefixUsername( $uploadInfo['contributor']['username'] ) );
+			$revision->setUsername(
+				$this->externalUserHandler->prefixUsername( $uploadInfo['contributor']['username'] )
+			);
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
 		return call_user_func( $this->mUploadCallback, $revision );
-	}
-
-	/**
-	 * Add an interwiki prefix to the username, if appropriate
-	 * @since 1.31
-	 * @param string $name Name being imported
-	 * @return string Name, possibly with the prefix prepended.
-	 */
-	protected function prefixUsername( $name ) {
-		if ( !User::isUsableName( $name ) ) {
-			return $name;
-		}
-
-		if ( $this->assignKnownUsers ) {
-			if ( User::idFromName( $name ) ) {
-				return $name;
-			}
-
-			// See if any extension wants to create it.
-			if ( !isset( $this->triedCreations[$name] ) ) {
-				$this->triedCreations[$name] = true;
-				if ( !Hooks::run( 'ImportHandleUnknownUser', [ $name ] ) &&
-					User::idFromName( $name, User::READ_LATEST )
-				) {
-					return $name;
-				}
-			}
-		}
-
-		return substr( $this->usernamePrefix . '>' . $name, 0, 255 );
 	}
 
 	/**
