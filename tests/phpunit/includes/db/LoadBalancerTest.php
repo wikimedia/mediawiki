@@ -1,8 +1,9 @@
 <?php
 
 use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Holds tests for LoadBalancer MediaWiki class.
@@ -35,6 +36,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -46,8 +48,12 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
+
+		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
+		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
+		$this->assertEquals( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
@@ -81,6 +87,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[ // master
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -91,6 +98,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[ // emulated replica
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -102,7 +110,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID(),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'loadMonitorClass' => 'LoadMonitorNull'
 		] );
 
@@ -140,9 +148,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb->closeAll();
 	}
 
-	private function assertWriteForbidden( IDatabase $db ) {
+	private function assertWriteForbidden( Database $db ) {
 		try {
-			$db->delete( 'user', [ 'user_id' => 57634126 ], 'TEST' );
+			$db->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
 			$this->fail( 'Write operation should have failed!' );
 		} catch ( DBError $ex ) {
 			// check that the exception message contains "Write operation"
@@ -157,9 +165,26 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		}
 	}
 
-	private function assertWriteAllowed( IDatabase $db ) {
+	private function assertWriteAllowed( Database $db ) {
+		$table = $db->tableName( 'some_table' );
 		try {
-			$this->assertNotSame( false, $db->delete( 'user', [ 'user_id' => 57634126 ] ) );
+			$db->dropTable( 'some_table' ); // clear for sanity
+			// Use only basic SQL and trivial types for these queries for compatibility
+			$this->assertNotSame(
+				false,
+				$db->query( "CREATE TABLE $table (id INT, time INT)", __METHOD__ ),
+				"table created"
+			);
+			$this->assertNotSame(
+				false,
+				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
+				"delete query"
+			);
+			$this->assertNotSame(
+				false,
+				$db->query( "DROP TABLE $table", __METHOD__ ),
+				"table dropped"
+			);
 		} finally {
 			$db->rollback( __METHOD__, 'flush' );
 		}
