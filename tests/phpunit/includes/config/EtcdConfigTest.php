@@ -461,6 +461,26 @@ class EtcdConfigTest extends PHPUnit_Framework_TestCase {
 					false // retry
 				],
 			],
+			'200 OK - Directory with non-array "nodes" key' => [
+				'http' => [
+					'code' => 200,
+					'reason' => 'OK',
+					'headers' => [],
+					'body' => json_encode( [ 'node' => [ 'nodes' => [
+						[
+							'key' => '/example/a',
+							'dir' => true,
+							'nodes' => 'not an array'
+						],
+					] ] ] ),
+					'error' => '',
+				],
+				'expect' => [
+					null,
+					"Unexpected JSON response in dir 'a'; 'nodes' is not an array.",
+					false // retry
+				],
+			],
 			'200 OK - Correctly encoded garbage response' => [
 				'http' => [
 					'code' => 200,
