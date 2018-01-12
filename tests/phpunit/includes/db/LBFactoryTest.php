@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\MySQLMasterPos;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * @group Database
@@ -314,7 +315,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
-		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBprefix, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		return new LBFactoryMulti( $baseOverride + [
 			'sectionsByDB' => [],
@@ -325,6 +327,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			],
 			'serverTemplate' => $serverOverride + [
 				'dbname' => $wgDBname,
+				'tablePrefix' => $wgDBprefix,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
@@ -335,7 +338,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'test-db1' => $wgDBserver,
 			],
 			'loadMonitorClass' => 'LoadMonitorNull',
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix )
 		] );
 	}
 
@@ -361,7 +364,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		if ( $wgDBtype !== 'sqlite' ) {
 			$db = $lb->getConnectionRef( DB_MASTER );
 			$this->assertEquals(
-				$wgDBname,
+				wfWikiID(),
 				$db->getDomainID()
 			);
 			unset( $db );
@@ -369,34 +372,45 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
-		$lb->reuseConnection( $db ); // don't care
 
 		$this->assertEquals(
-			'',
-			$db->getDomainID()
+			$wgDBname,
+			$db->getDomainId(),
+			'Main domain ID handle used; same DB name'
 		);
-
+		$this->assertEquals(
+			$wgDBname,
+			$db->getDBname(),
+			'Main domain ID handle used; same DB name'
+		);
+		$this->assertEquals(
+			'',
+			$db->tablePrefix(),
+			'Main domain ID handle used; prefix is empty though'
+		);
 		$this->assertEquals(
 			$this->quoteTable( $db, 'page' ),
 			$db->tableName( 'page' ),
 			"Correct full table name"
 		);
-
 		$this->assertEquals(
 			$this->quoteTable( $db, $wgDBname ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( "$wgDBname.page" ),
 			"Correct full table name"
 		);
-
 		$this->assertEquals(
 			$this->quoteTable( $db, 'nice_db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'nice_db.page' ),
 			"Correct full table name"
 		);
 
+		$lb->reuseConnection( $db ); // don't care
+
+		$db = $lb->getConnection( DB_MASTER ); // local domain connection
 		$factory->setDomainPrefix( 'my_' );
+
 		$this->assertEquals(
-			'',
+			"$wgDBname-my_",
 			$db->getDomainID()
 		);
 		$this->assertEquals(
@@ -415,7 +429,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testTrickyDomain() {
-		global $wgDBtype;
+		global $wgDBtype, $wgDBname;
 
 		if ( $wgDBtype === 'sqlite' ) {
 			$tmpDir = $this->getNewTempDirectory();
@@ -427,18 +441,17 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$dbPath = null;
 		}
 
-		$dbname = 'unittest-domain';
+		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
-			[ 'localDomain' => $dbname ],
-			[ 'dbname' => $dbname, 'dbFilePath' => $dbPath ]
+			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
+			[ 'dbFilePath' => $dbPath ]
 		);
 		$lb = $factory->getMainLB();
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
-		$lb->reuseConnection( $db ); // don't care
 
 		$this->assertEquals(
-			'',
+			$wgDBname,
 			$db->getDomainID()
 		);
 
@@ -460,7 +473,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 			"Correct full table name"
 		);
 
+		$lb->reuseConnection( $db ); // don't care
+
 		$factory->setDomainPrefix( 'my_' );
+		$db = $lb->getConnection( DB_MASTER, [], "$wgDBname-my_" );
 
 		$this->assertEquals(
 			$this->quoteTable( $db, 'my_page' ),
@@ -472,7 +488,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$db->tableName( 'other_nice_db.page' ),
 			"Correct full table name"
 		);
-
 		$this->assertEquals(
 			$this->quoteTable( $db, 'garbage-db' ) . '.' . $this->quoteTable( $db, 'page' ),
 			$db->tableName( 'garbage-db.page' ),
@@ -493,6 +508,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
 			\MediaWiki\restoreWarnings();
 		}
+
+		$lb->reuseConnection( $db ); // don't care
 
 		$factory->closeAll();
 		$factory->destroy();
