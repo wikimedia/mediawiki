@@ -808,6 +808,9 @@ class SqlBagOStuff extends BagOStuff {
 
 		// Main LB is used; wait for any replica DBs to catch up
 		$masterPos = $lb->getMasterPos();
+		if ( !$masterPos ) {
+			return true; // not applicable
+		}
 
 		$loop = new WaitConditionLoop(
 			function () use ( $lb, $masterPos ) {

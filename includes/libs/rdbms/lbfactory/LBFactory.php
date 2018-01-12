@@ -358,7 +358,7 @@ abstract class LBFactory implements ILBFactory {
 		$failed = [];
 		foreach ( $lbs as $i => $lb ) {
 			if ( $masterPositions[$i] ) {
-				// The DBMS may not support getMasterPos()
+				// The RDBMS may not support getMasterPos()
 				if ( !$lb->waitForAll( $masterPositions[$i], $opts['timeout'] ) ) {
 					$failed[] = $lb->getServerName( $lb->getWriterIndex() );
 				}
