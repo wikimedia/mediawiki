@@ -1978,7 +1978,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
 			this.setFlags( { progressive: true } );
 			this.toggleClipping( true );
-			if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
+			if ( this.isClippedHorizontally() ) {
 				// Anchoring to the left caused the popup to clip, so anchor it to the right instead
 				this.toggleClipping( false );
 				this.$element
@@ -1986,7 +1986,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 					.addClass( 'oo-ui-popupToolGroup-right' );
 				this.toggleClipping( true );
 			}
-			if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
+			if ( this.isClippedHorizontally() ) {
 				// Anchoring to the right also caused the popup to clip, so just make it fill the container
 				containerWidth = this.$clippableScrollableContainer.width();
 				containerLeft = this.$clippableScrollableContainer[ 0 ] === document.documentElement ?
