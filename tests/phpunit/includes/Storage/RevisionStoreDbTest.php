@@ -44,7 +44,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			->getMock();
 
 		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
-			function ( array $server, $dbNameOverride = false ) {
+			function ( array $server, $dbNameOverride ) {
 				return $this->getDatabaseMock( $server );
 			}
 		);
