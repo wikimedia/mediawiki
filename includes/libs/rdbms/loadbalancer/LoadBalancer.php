@@ -810,9 +810,10 @@ class LoadBalancer implements ILoadBalancer {
 				$server = $this->mServers[$i];
 				$server['serverIndex'] = $i;
 				$server['autoCommitOnly'] = $autoCommit;
-				$conn = $this->reallyOpenConnection( $server, false );
+				$conn = $this->reallyOpenConnection( $server, $this->localDomain->getDatabase() );
 				$host = $this->getServerName( $i );
 				if ( $conn->isOpen() ) {
+					$conn->tablePrefix( $this->localDomain->getTablePrefix() ); // local domain
 					$this->connLogger->debug( "Connected to database $i at '$host'." );
 					$this->mConns[$connKey][$i][0] = $conn;
 				} else {
@@ -888,8 +889,9 @@ class LoadBalancer implements ILoadBalancer {
 			// Reuse a free connection from another domain
 			$conn = reset( $this->mConns[$connFreeKey][$i] );
 			$oldDomain = key( $this->mConns[$connFreeKey][$i] );
-			// The empty string as a DB name means "don't care".
-			// DatabaseMysqlBase::open() already handle this on connection.
+			// Change the domain of the handle to that of $domain. If $domain uses an empty
+			// string to specify the DB name, that means that the caller doesn't care what
+			// database is selected for use (e.g. leave it as is).
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database '$dbName' on server " .
 					$conn->getServer() . " from client host {$this->host}";
@@ -918,7 +920,7 @@ class LoadBalancer implements ILoadBalancer {
 				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
-				$conn->tablePrefix( $prefix );
+				$conn->tablePrefix( $prefix ); // as specified
 				$this->mConns[$connInUseKey][$i][$domain] = $conn;
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 			}
@@ -949,24 +951,22 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Really opens a connection. Uncached.
+	 * Open a new network connection to a server (uncached)
+	 *
 	 * Returns a Database object whether or not the connection was successful.
-	 * @access private
 	 *
 	 * @param array $server
-	 * @param string|bool $dbNameOverride Use "" to not select any database
+	 * @param string $dbNameOverride Use "" to not select any database
 	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
-	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( array $server, $dbNameOverride ) {
 		if ( $this->disabled ) {
 			throw new DBAccessError();
 		}
 
-		if ( $dbNameOverride !== false ) {
-			$server['dbname'] = $dbNameOverride;
-		}
+		$server['dbname'] = $dbNameOverride;
 
 		// Let the handle know what the cluster master is (e.g. "db1052")
 		$masterName = $this->getServerName( $this->getWriterIndex() );
