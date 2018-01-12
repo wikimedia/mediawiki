@@ -156,7 +156,7 @@
 			mw.util.getParamValue( 'undo' ) !== null ||
 			// Pressing "show changes" and "preview" also signify that the user will
 			// probably save the page soon
-			$.inArray( $form.find( '#mw-edit-mode' ).val(), [ 'preview', 'diff' ] ) > -1
+			[ 'preview', 'diff' ].indexOf( $form.find( '#mw-edit-mode' ).val() ) > -1
 		) {
 			checkStash();
 		}

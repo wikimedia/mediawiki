@@ -289,8 +289,8 @@
 
 	function uniqueElements( array ) {
 		var uniques = [];
-		$.each( array, function ( i, elem ) {
-			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
+		array.forEach( function ( elem ) {
+			if ( elem !== undefined && uniques.indexOf( elem ) === -1 ) {
 				uniques.push( elem );
 			}
 		} );
@@ -925,9 +925,8 @@
 						cell = this;
 						// Get current column index
 						columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
-						newSortList = $.map( columns, function ( c ) {
-							// jQuery "helpfully" flattens the arrays...
-							return [ [ c, $cell.data( 'order' ) ] ];
+						newSortList = columns.map( function ( c ) {
+							return [ c, $cell.data( 'order' ) ];
 						} );
 						// Index of first column belonging to this header
 						i = columns[ 0 ];

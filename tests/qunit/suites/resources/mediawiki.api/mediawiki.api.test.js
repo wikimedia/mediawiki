@@ -18,7 +18,7 @@
 	}
 
 	function sequenceBodies( status, headers, bodies ) {
-		jQuery.each( bodies, function ( i, body ) {
+		bodies.forEach( function ( body, i ) {
 			bodies[ i ] = [ status, headers, body ];
 		} );
 		return sequence( bodies );
