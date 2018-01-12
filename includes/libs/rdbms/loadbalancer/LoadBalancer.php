@@ -243,6 +243,17 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
+	 * Get the local (and default) database domain ID of connection handles
+	 *
+	 * @see DatabaseDomain
+	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
+	 * @since 1.31
+	 */
+	public function getLocalDomainID() {
+		return $this->localDomain->getId();
+	}
+
+	/**
 	 * Get a LoadMonitor instance
 	 *
 	 * @return ILoadMonitor

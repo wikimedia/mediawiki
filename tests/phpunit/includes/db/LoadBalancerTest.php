@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Holds tests for LoadBalancer MediaWiki class.
@@ -29,11 +30,13 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBname, $wgDBprefix, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		$servers = [
 			[
 				'host'        => $wgDBserver,
+				'tablePrefix' => $wgDBprefix,
 				'dbname'      => $wgDBname,
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
@@ -46,8 +49,12 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix )
 		] );
+
+		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
+		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
+		$this->assertEquals( $wgDBprefix, $ld->getTablePrefix(), 'local domain prefix set' );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
