@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\MySQLMasterPos;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * @group Database
@@ -314,7 +315,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	private function newLBFactoryMulti( array $baseOverride = [], array $serverOverride = [] ) {
-		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBprefix, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		return new LBFactoryMulti( $baseOverride + [
 			'sectionsByDB' => [],
@@ -325,6 +327,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			],
 			'serverTemplate' => $serverOverride + [
 				'dbname' => $wgDBname,
+				'tablePrefix' => $wgDBprefix,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
 				'type' => $wgDBtype,
@@ -335,7 +338,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'test-db1' => $wgDBserver,
 			],
 			'loadMonitorClass' => 'LoadMonitorNull',
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix )
 		] );
 	}
 
@@ -361,7 +364,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		if ( $wgDBtype !== 'sqlite' ) {
 			$db = $lb->getConnectionRef( DB_MASTER );
 			$this->assertEquals(
-				$wgDBname,
+				wfWikiID(),
 				$db->getDomainID()
 			);
 			unset( $db );
