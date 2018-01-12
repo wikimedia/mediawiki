@@ -689,7 +689,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$content = null;
 		$blobData = null;
-		$blobFlags = '';
+		$blobFlags = null;
 
 		if ( is_object( $row ) ) {
 			// archive row
@@ -706,7 +706,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			if ( isset( $row->old_text ) ) {
 				// this happens when the text-table gets joined directly, in the pre-1.30 schema
 				$blobData = isset( $row->old_text ) ? strval( $row->old_text ) : null;
-				$blobFlags = isset( $row->old_flags ) ? strval( $row->old_flags ) : '';
+				// Check against selects that might have not included old_flags
+				if ( !property_exists( $row, 'old_flags' ) ) {
+					throw new InvalidArgumentException( 'old_flags was not set in $row' );
+				}
+				$blobFlags = ( $row->old_flags === null ) ? '' : $row->old_flags;
 			}
 
 			$mainSlotRow->slot_revision = intval( $row->rev_id );
@@ -735,7 +739,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$mainSlotRow->format_name = isset( $row['content_format'] )
 				? strval( $row['content_format'] ) : null;
 			$blobData = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
-			$blobFlags = isset( $row['flags'] ) ? trim( strval( $row['flags'] ) ) : '';
+			// XXX: If the flags field is not set then $blobFlags should be null so that no
+			// decoding will happen. An empty string will result in default decodings.
+			$blobFlags = isset( $row['flags'] ) ? trim( strval( $row['flags'] ) ) : null;
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
@@ -797,7 +803,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
-	 * @param string $blobFlags Flags indicating how $blobData needs to be processed
+	 * @param string|null $blobFlags Flags indicating how $blobData needs to be processed.
+	 *  null if no processing should happen.
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
 	 *
@@ -807,23 +814,27 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private function loadSlotContent(
 		SlotRecord $slot,
 		$blobData = null,
-		$blobFlags = '',
+		$blobFlags = null,
 		$blobFormat = null,
 		$queryFlags = 0
 	) {
 		if ( $blobData !== null ) {
 			Assert::parameterType( 'string', $blobData, '$blobData' );
-			Assert::parameterType( 'string', $blobFlags, '$blobFlags' );
+			Assert::parameterType( 'string|null', $blobFlags, '$blobFlags' );
 
 			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
 
-			$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
-
-			if ( $data === false ) {
-				throw new RevisionAccessException(
-					"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
-				);
+			if ( $blobFlags === null ) {
+				$data = $blobData;
+			} else {
+				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
+				if ( $data === false ) {
+					throw new RevisionAccessException(
+						"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
+					);
+				}
 			}
+
 		} else {
 			$address = $slot->getAddress();
 			try {
