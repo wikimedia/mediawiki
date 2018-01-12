@@ -4,7 +4,8 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\RevisionTitleLookup;
+use MediaWiki\Storage\SingleContentRevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IDatabase;
@@ -62,7 +63,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArray( $rowArray ) {
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
@@ -73,7 +74,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromEmptyArray() {
 		$rev = new Revision( [], 0, $this->getMockTitle() );
@@ -82,7 +83,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayWithBadPageId() {
 		MediaWiki\suppressWarnings();
@@ -122,7 +123,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArray_userSetAsExpected
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 *
 	 * @param array $rowArray
 	 * @param mixed $expectedUserId null to expect the current wgUser ID
@@ -182,7 +183,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromArrayThrowsExceptions
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
 		$this->setExpectedException(
@@ -195,7 +196,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromNothing() {
 		$this->setExpectedException(
@@ -281,7 +282,7 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideConstructFromRow
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRow( array $arrayData, $assertions ) {
 		$data = 'Hello goat.'; // needs to match model and format
@@ -314,7 +315,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::__construct
-	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\SingleContentRevisionFactory::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
 		MediaWiki\suppressWarnings();
@@ -477,7 +478,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return RevisionStore
+	 * @return SingleContentRevisionStore
 	 */
 	private function getRevisionStore() {
 		/** @var LoadBalancer $lb */
@@ -485,10 +486,13 @@ class RevisionTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$cache = $this->getWANObjectCache();
+		$revisionStore = new SingleContentRevisionStore(
+			$lb,
+			$this->getBlobStore(),
+			new RevisionTitleLookup( $lb )
+		);
 
-		$blobStore = new RevisionStore( $lb, $this->getBlobStore(), $cache );
-		return $blobStore;
+		return $revisionStore;
 	}
 
 	public function provideGetRevisionTextWithLegacyEncoding() {
