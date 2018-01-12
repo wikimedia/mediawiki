@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on June 1, 2008
- *
  * Copyright © 2008 Bryan Tong Minh <Bryan.TongMinh@Gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

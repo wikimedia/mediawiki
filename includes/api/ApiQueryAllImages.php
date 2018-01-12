@@ -3,8 +3,6 @@
 /**
  * API for MediaWiki 1.12+
  *
- * Created on Mar 16, 2008
- *
  * Copyright © 2008 Vasiliev Victor vasilvv@gmail.com,
  * based on ApiQueryAllPages.php
  *

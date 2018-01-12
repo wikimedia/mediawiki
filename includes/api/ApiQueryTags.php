@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Jul 9, 2009
- *
  * Copyright © 2009
  *
  * This program is free software; you can redistribute it and/or modify

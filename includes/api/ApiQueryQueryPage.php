@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Dec 22, 2010
- *
  * Copyright © 2010 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify

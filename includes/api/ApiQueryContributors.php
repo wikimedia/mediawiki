@@ -2,8 +2,6 @@
 /**
  * Query the list of contributors to a page
  *
- * Created on Nov 14, 2013
- *
  * Copyright © 2013 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
