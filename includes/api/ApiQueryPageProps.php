@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Aug 7, 2010
- *
  * Copyright © 2010 soxred93, Bryan Tong Minh
  *
  * This program is free software; you can redistribute it and/or modify

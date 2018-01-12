@@ -1,10 +1,6 @@
 <?php
 
 /**
- *
- *
- * Created on Monday, January 28, 2008
- *
  * Copyright © 2008 Brent Garber
  *
  * This program is free software; you can redistribute it and/or modify

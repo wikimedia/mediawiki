@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on June 06, 2011
- *
  * Copyright © 2011 Sam Reed
  *
  * This program is free software; you can redistribute it and/or modify

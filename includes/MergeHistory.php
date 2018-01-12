@@ -1,10 +1,6 @@
 <?php
 
 /**
- *
- *
- * Created on Dec 29, 2015
- *
  * Copyright © 2015 Geoffrey Mon <geofbot@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

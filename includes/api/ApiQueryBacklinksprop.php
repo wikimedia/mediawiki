@@ -2,8 +2,6 @@
 /**
  * API module to handle links table back-queries
  *
- * Created on Aug 19, 2014
- *
  * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify

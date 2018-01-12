@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Oct 19, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify

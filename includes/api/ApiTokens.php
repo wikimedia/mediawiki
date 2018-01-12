@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Jul 29, 2011
- *
  * Copyright © 2011 John Du Hart john@johnduhart.me
  *
  * This program is free software; you can redistribute it and/or modify

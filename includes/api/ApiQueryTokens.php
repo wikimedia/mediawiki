@@ -2,8 +2,6 @@
 /**
  * Module to fetch tokens via action=query&meta=tokens
  *
- * Created on August 8, 2014
- *
  * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify

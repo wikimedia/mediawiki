@@ -1,7 +1,5 @@
 <?php
 /**
- * Created on Oct 3, 2014
- *
  * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * Heavily based on ApiQueryDeletedrevs,
