@@ -24,7 +24,6 @@
 	bottom: 0;
 	right: 0;
 	background: #fff;
-	z-index: 100;
 }
 
 .mw-apisandbox-fullscreen .mw-apisandbox-container {
@@ -52,10 +51,10 @@
 
 .mw-apisandbox-optionalWidget.oo-ui-widget-disabled {
 	position: relative;
-	z-index: 0; /* New stacking context to prevent the overlay from leaking out */
+	z-index: 0; /* New stacking context to prevent the cover from leaking out */
 }
 
-.mw-apisandbox-optionalWidget-overlay {
+.mw-apisandbox-optionalWidget-cover {
 	position: absolute;
 	left: 0;
 	right: 0;
