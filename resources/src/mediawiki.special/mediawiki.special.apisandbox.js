@@ -1420,7 +1420,7 @@
 							for ( j = 0; j < tmp.length; j++ ) {
 								availableFormats[ tmp[ j ] ] = true;
 							}
-							pi.parameters[ i ].type = $.grep( tmp, filterFmModules );
+							pi.parameters[ i ].type = tmp.filter( filterFmModules );
 							pi.parameters[ i ][ 'default' ] = 'json';
 							pi.parameters[ i ].required = true;
 						}
@@ -1429,7 +1429,7 @@
 
 				// Hide the 'wrappedhtml' parameter on format modules
 				if ( pi.group === 'format' ) {
-					pi.parameters = $.grep( pi.parameters, function ( p ) {
+					pi.parameters = pi.parameters.filter( function ( p ) {
 						return p.name !== 'wrappedhtml';
 					} );
 				}
@@ -1451,7 +1451,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
-							$content: $( '<ul>' ).append( $.map( pi.helpurls, function ( link ) {
+							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
 								return $( '<li>' ).append( $( '<a>' )
 									.attr( { href: link, target: '_blank' } )
 									.text( link )
@@ -1469,7 +1469,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
-							$content: $( '<ul>' ).append( $.map( pi.examples, function ( example ) {
+							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
 								var a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
 									.html( example.description );

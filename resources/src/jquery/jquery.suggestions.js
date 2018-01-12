@@ -293,7 +293,7 @@
 									expandFrom = 'left';
 
 								// Catch invalid values, default to 'auto'
-								} else if ( $.inArray( expandFrom, [ 'left', 'right', 'start', 'end', 'auto' ] ) === -1 ) {
+								} else if ( [ 'left', 'right', 'start', 'end', 'auto' ].indexOf( expandFrom ) === -1 ) {
 									expandFrom = 'auto';
 								}
 
@@ -757,7 +757,7 @@
 						];
 						if ( context.data.keypressedCount === 0 &&
 							e.which === context.data.keypressed &&
-							$.inArray( e.which, allowed ) !== -1
+							allowed.indexOf( e.which ) !== -1
 						) {
 							$.suggestions.keypress( e, context, context.data.keypressed );
 						}

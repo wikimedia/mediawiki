@@ -42,7 +42,7 @@
 			'import',
 			'options'
 		];
-		if ( $.inArray( action, csrfActions ) !== -1 ) {
+		if ( csrfActions.indexOf( action ) !== -1 ) {
 			mw.track( 'mw.deprecate', 'apitoken_' + action );
 			mw.log.warn( 'Use of the "' + action + '" token is deprecated. Use "csrf" instead.' );
 			return 'csrf';

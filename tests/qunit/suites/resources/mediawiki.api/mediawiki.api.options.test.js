@@ -30,7 +30,7 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			if ( $.inArray( request.requestBody, [
+			if ( [
 				// simple
 				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options
@@ -43,7 +43,7 @@
 				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
-			] ) !== -1 ) {
+			].indexOf( request.requestBody ) !== -1 ) {
 				assert.ok( true, 'Repond to ' + request.requestBody );
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "options": "success" }' );
@@ -88,7 +88,7 @@
 
 		// Requests are POST, match requestBody instead of url
 		this.server.respond( function ( request ) {
-			if ( $.inArray( request.requestBody, [
+			if ( [
 				// simple
 				'action=options&format=json&formatversion=2&change=foo%3Dbar&token=%2B%5C',
 				// two options
@@ -102,7 +102,7 @@
 				'action=options&format=json&formatversion=2&change=foo&token=%2B%5C',
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
-			] ) !== -1 ) {
+			].indexOf( request.requestBody ) !== -1 ) {
 				assert.ok( true, 'Repond to ' + request.requestBody );
 				request.respond(
 					200,

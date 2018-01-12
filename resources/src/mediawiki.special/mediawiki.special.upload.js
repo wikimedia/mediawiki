@@ -219,17 +219,14 @@
 				if (
 					mw.config.get( 'wgCheckFileExtensions' ) &&
 					mw.config.get( 'wgStrictFileExtensions' ) &&
-					mw.config.get( 'wgFileExtensions' ) &&
+					Array.isArray( mw.config.get( 'wgFileExtensions' ) ) &&
 					$( this ).attr( 'id' ) !== 'wpUploadFileURL'
 				) {
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
-						$.inArray(
-							fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase(),
-							$.map( mw.config.get( 'wgFileExtensions' ), function ( element ) {
-								return element.toLowerCase();
-							} )
-						) === -1
+						mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
+							return element.toLowerCase();
+						} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
 					) {
 						// Not a valid extension
 						// Clear the upload and set mw-upload-permitted to error
@@ -291,7 +288,7 @@
 		function fileIsPreviewable( file ) {
 			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml' ],
 				tooHuge = 10 * 1024 * 1024;
-			return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
+			return ( known.indexOf( file.type ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
 
 		/**

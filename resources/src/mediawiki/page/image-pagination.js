@@ -23,7 +23,7 @@
 		// Try the cache
 		if ( cache[ url ] ) {
 			// Update access freshness
-			cacheOrder.splice( $.inArray( url, cacheOrder ), 1 );
+			cacheOrder.splice( cacheOrder.indexOf( url ), 1 );
 			cacheOrder.push( url );
 			return $.Deferred().resolve( cache[ url ] ).promise();
 		}
