@@ -45,7 +45,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\LBSingleContentRevisionLookup;
+use MediaWiki\Storage\RevisionTitleLookup;
+use MediaWiki\Storage\SingleContentRevisionStore;
+use MediaWiki\Storage\SingleContentRevisionFactory;
 use MediaWiki\Storage\SqlBlobStore;
 
 return [
@@ -469,19 +472,65 @@ return [
 	'RevisionStore' => function ( MediaWikiServices $services ) {
 		/** @var SqlBlobStore $blobStore */
 		$blobStore = $services->getService( '_SqlBlobStore' );
+		/** @var RevisionTitleLookup $revisionTitleLookup */
+		$revisionTitleLookup = $services->getService( '_RevisionTitleLookup' );
 
-		$store = new RevisionStore(
+		$store = new SingleContentRevisionStore(
 			$services->getDBLoadBalancer(),
 			$blobStore,
-			$services->getMainWANObjectCache()
+			$revisionTitleLookup
 		);
-
-		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
 
 		$config = $services->getMainConfig();
 		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
 
 		return $store;
+	},
+
+	'RevisionLookup' => function ( MediaWikiServices $services ) {
+		/** @var RevisionTitleLookup $revisionTitleLookup */
+		$revisionTitleLookup = $services->getService( '_RevisionTitleLookup' );
+
+		$lookup = new LBSingleContentRevisionLookup(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			$services->getRevisionFactory(),
+			$revisionTitleLookup
+		);
+
+		$lookup->setLogger( LoggerFactory::getInstance( 'RevisionLookup' ) );
+
+		$config = $services->getMainConfig();
+		$lookup->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
+
+		return $lookup;
+	},
+
+	'RevisionFactory' => function ( MediaWikiServices $services ) {
+		/** @var SqlBlobStore $blobStore */
+		$blobStore = $services->getService( '_SqlBlobStore' );
+
+		/** @var RevisionTitleLookup $revisionTitleLookup */
+		$revisionTitleLookup = $services->getService( '_RevisionTitleLookup' );
+
+		$factory = new SingleContentRevisionFactory(
+			$services->getDBLoadBalancer(),
+			$blobStore,
+			$revisionTitleLookup
+		);
+
+		$config = $services->getMainConfig();
+		$factory->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
+
+		return $factory;
+	},
+
+	'_RevisionTitleLookup' => function ( MediaWikiServices $services ) {
+		$lookup = new RevisionTitleLookup(
+			$services->getDBLoadBalancer()
+		);
+		$lookup->setLogger( LoggerFactory::getInstance( 'RevisionTitleLookup' ) );
+		return $lookup;
 	},
 
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) {

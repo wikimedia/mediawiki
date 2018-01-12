@@ -117,4 +117,17 @@ interface RevisionLookup extends IDBAccessObject {
 	 */
 	public function getKnownCurrentRevision( Title $title, $revId );
 
+	/**
+	 * Load the revision for the given title with the given timestamp.
+	 * WARNING: Timestamps may in some circumstances not be unique,
+	 * so this isn't the best key to use.
+	 *
+	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 *
+	 * @param Title $title
+	 * @param string $timestamp
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionByTimestamp( $title, $timestamp );
+
 }
