@@ -177,7 +177,9 @@ class PageArchive {
 	 */
 	public function listRevisions() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$queryInfo = $revisionStore->getArchiveQueryInfo();
+
+		$queryInfoOptions = $revisionStore->getContentHandlerUseDB() ? [ 'useContentHandler' ] : [];
+		$queryInfo = $revisionStore->getArchiveQueryInfo( $queryInfoOptions );
 
 		$conds = [
 			'ar_namespace' => $this->title->getNamespace(),
@@ -531,7 +533,8 @@ class PageArchive {
 		}
 
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$queryInfo = $revisionStore->getArchiveQueryInfo();
+		$queryInfoOptions = $revisionStore->getContentHandlerUseDB() ? [ 'useContentHandler' ] : [];
+		$queryInfo = $revisionStore->getArchiveQueryInfo( $queryInfoOptions );
 		$queryInfo['tables'][] = 'revision';
 		$queryInfo['fields'][] = 'rev_id';
 		$queryInfo['joins']['revision'] = [ 'LEFT JOIN', 'ar_rev_id=rev_id' ];
