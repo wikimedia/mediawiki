@@ -798,7 +798,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
 	 * @param string|null $blobFlags Flags indicating how $blobData needs to be processed.
-	 *  null if no processing should happen.
+	 *        Use null if no processing should happen. That is in constrast to the empty string,
+	 *        which causes the blob to be decoded according to the configured legacy encoding.
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
 	 *
@@ -819,6 +820,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
 
 			if ( $blobFlags === null ) {
+				// No blob flags, so use the blob verbatim.
 				$data = $blobData;
 			} else {
 				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
