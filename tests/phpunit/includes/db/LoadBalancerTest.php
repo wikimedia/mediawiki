@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
  * Holds tests for LoadBalancer MediaWiki class.
@@ -35,6 +36,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -46,8 +48,12 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
+
+		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
+		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
+		$this->assertEquals( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
@@ -81,6 +87,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[ // master
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -91,6 +98,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			[ // emulated replica
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -102,7 +110,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID(),
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'loadMonitorClass' => 'LoadMonitorNull'
 		] );
 
