@@ -9,7 +9,7 @@ use MediaWiki\Services\ServiceDisabledException;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SingleContentRevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 
 /**
@@ -338,7 +338,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStoreFactory' => [ 'BlobStoreFactory', BlobStoreFactory::class ],
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
-			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
+			'RevisionStore' => [ 'RevisionStore', SingleContentRevisionStore::class ],
 		];
 	}
 

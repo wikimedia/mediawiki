@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\RevisionTitleLookup;
+use MediaWiki\Storage\SingleContentRevisionStore;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\RevisionRecord;
 
@@ -393,10 +394,10 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testNewFromArchiveRow( $selectModifier ) {
 		$services = MediaWikiServices::getInstance();
 
-		$store = new RevisionStore(
+		$store = new SingleContentRevisionStore(
 			$services->getDBLoadBalancer(),
 			$services->getService( '_SqlBlobStore' ),
-			$services->getMainWANObjectCache()
+			new RevisionTitleLookup( $services->getDBLoadBalancer() )
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );
