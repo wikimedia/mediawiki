@@ -369,6 +369,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 *        May be the blob itself, or the blob compressed, or just the address
 	 *        of the actual blob, depending on $flags.
 	 * @param string|string[] $flags Blob flags, such as 'external' or 'gzip'.
+	 *   Note that not including 'utf-8' in $flags will cause the data to be decoded
+	 *   according to the legacy encoding specified via setLegacyEncoding.
 	 * @param string|null $cacheKey May be used for caching if given
 	 *
 	 * @return false|string The expanded blob or false on failure
@@ -431,7 +433,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$blobFlags = [];
 
 		// Revisions not marked as UTF-8 will have legacy decoding applied by decompressData().
-		// XXX: if $this->legacyEncoding is not set, we could skip this. May be risky, though.
+		// XXX: if $this->legacyEncoding is not set, we could skip this. That would however be
+		// risky, since $this->legacyEncoding being set in the future would lead to data corruption.
 		$blobFlags[] = 'utf-8';
 
 		if ( $this->compressBlobs ) {
@@ -460,11 +463,13 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @todo make this private, there should be no need to use this method outside this class.
 	 *
 	 * @param mixed $blob Reference to a text
-	 * @param array $blobFlags Compression flags
+	 * @param array $blobFlags Compression flags, such as 'gzip'.
+	 *   Note that not including 'utf-8' in $blobFlags will cause the data to be decoded
+	 *   according to the legacy encoding specified via setLegacyEncoding.
 	 *
 	 * @return string|bool Decompressed text, or false on failure
 	 */
-	public function decompressData( $blob, $blobFlags ) {
+	public function decompressData( $blob, array $blobFlags ) {
 		if ( $blob === false ) {
 			// Text failed to be fetched; nothing to do
 			return false;
