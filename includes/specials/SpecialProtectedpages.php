@@ -101,7 +101,6 @@ class SpecialProtectedpages extends SpecialPage {
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'cssclass' => 'namespaceselector',
-				'selected' => $namespace,
 				'all' => '',
 				'label' => $this->msg( 'namespace' )->text(),
 			],
@@ -112,21 +111,18 @@ class SpecialProtectedpages extends SpecialPage {
 				'label' => $this->msg( 'protectedpages-indef' )->text(),
 				'name' => 'indefonly',
 				'id' => 'indefonly',
-				'value' => $indefOnly
 			],
 			'cascadecheck' => [
 				'type' => 'check',
 				'label' => $this->msg( 'protectedpages-cascade' )->text(),
 				'name' => 'cascadeonly',
 				'id' => 'cascadeonly',
-				'value' => $cascadeOnly
 			],
 			'redirectcheck' => [
 				'type' => 'check',
 				'label' => $this->msg( 'protectedpages-noredirect' )->text(),
 				'name' => 'noredirect',
 				'id' => 'noredirect',
-				'value' => $noRedirect,
 			],
 			'sizelimit' => [
 				'class' => 'HTMLSizeFilterField',
@@ -166,7 +162,6 @@ class SpecialProtectedpages extends SpecialPage {
 		return [
 			'type' => 'select',
 			'options' => $options,
-			'value' => $pr_type,
 			'label' => $this->msg( 'restriction-type' )->text(),
 			'name' => $this->IdType,
 			'id' => $this->IdType,
@@ -200,7 +195,6 @@ class SpecialProtectedpages extends SpecialPage {
 		return [
 			'type' => 'select',
 			'options' => $options,
-			'value' => $pr_level,
 			'label' => $this->msg( 'restriction-level' )->text(),
 			'name' => $this->IdLevel,
 			'id' => $this->IdLevel
