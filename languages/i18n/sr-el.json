@@ -3379,7 +3379,7 @@
 	"feedback-termsofuse": "Prihvatam da pošaljem povratne informacije u skladu sa uslovima korišćenja.",
 	"feedback-thanks": "Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.",
 	"feedback-thanks-title": "Hvala vam!",
-	"searchsuggest-search": "Pretraga projekta {{SITENAME}}",
+	"searchsuggest-search": "Pretraga",
 	"searchsuggest-containing": "sadrži...",
 	"api-error-badtoken": "Unutrašnja greška: neispravan žeton.",
 	"api-error-emptypage": "Stvaranje novih praznih stranica nije dozvoljeno.",

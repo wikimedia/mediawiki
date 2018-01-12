@@ -1325,7 +1325,7 @@
 	"rcfilters-activefilters": "Aktivní filtry",
 	"rcfilters-advancedfilters": "Pokročilé filtry",
 	"rcfilters-limit-title": "Zobrazené výsledky",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|změna|$1 změny|$1 změn}}, $2",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Jedna změna|$1 změny|$1 změn}}, $2",
 	"rcfilters-date-popup-title": "Hledané časové období",
 	"rcfilters-days-title": "Poslední dny",
 	"rcfilters-hours-title": "Poslední hodiny",

@@ -1277,7 +1277,7 @@
 	"rcfilters-activefilters": "Активни филтри",
 	"rcfilters-advancedfilters": "Разширени филтри",
 	"rcfilters-limit-title": "Резултати за показване",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|промяна|$1 промени}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|промяна|промени}}, $2",
 	"rcfilters-date-popup-title": "Период за търсене",
 	"rcfilters-days-title": "Последните дни",
 	"rcfilters-hours-title": "Последните часове",

@@ -934,7 +934,7 @@
 	"shown-title": "فی صفحہ $1 {{PLURAL:$1|نتیجہ|نتائج}} دکھائیں",
 	"viewprevnext": "($1 {{int:pipe-separator}} $2) دیکھیں ($3)",
 	"searchmenu-exists": "<strong>اِس ویکی پر «[[:$1]]» نامی ایک صفحہ موجود ہے۔</strong> {{PLURAL:$2|0=|تلاش کے دیگر نتائج بھی ملاحظہ فرمائیں۔}}",
-	"searchmenu-new": "<strong>صفحہ \"[[:$1]]\" کو اس ویکی پر تخلیق کریں</strong> {{PLURAL:$2|0=|وہ صفحہ بھی دیکھے جو ٓپ کے تلاش میں پایا گیا|ان نتائج کو بھی دیکھے جو پائے گئے}}",
+	"searchmenu-new": "<strong>صفحہ \"[[:$1]]\" کو اس ویکی پر تخلیق کریں</strong> {{PLURAL:$2|0=|وہ صفحہ بھی دیکھیں جو تلاش میں پایا گیا|ان نتائج کو بھی دیکھیں جو پائے گئے۔}}",
 	"searchprofile-articles": "مواد کے حامل صفحات",
 	"searchprofile-images": "ملٹی میڈیا",
 	"searchprofile-everything": "سب کچھ",
