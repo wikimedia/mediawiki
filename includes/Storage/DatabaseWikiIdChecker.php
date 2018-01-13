@@ -18,7 +18,7 @@ trait DatabaseWikiIdChecker {
 	 * @param string $wikiId
 	 * @throws MWException
 	 */
-	private function checkDatabaseWikiId( IDatabase $db, $wikiId ) {
+	public function checkDatabaseWikiId( IDatabase $db, $wikiId ) {
 		$dbWiki = $db->getDomainID();
 
 		if ( $dbWiki === $wikiId ) {

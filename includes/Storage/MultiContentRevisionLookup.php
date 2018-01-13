@@ -2,41 +2,27 @@
 
 namespace MediaWiki\Storage;
 
-use WANObjectCache;
-use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
 
-/**
- * RevisionLookup implementation using the old single content schema.
- */
-abstract class SingleContentRevisionLookup extends AbstractRevisionLookup {
-
-	use SingleContentRevisionQueryInfo;
+class MultiContentRevisionLookup extends AbstractRevisionLookup {
 
 	/**
-	 * @var bool|string
+	 * @param int $mode DB_MASTER or DB_REPLICA
+	 *
+	 * @return IDatabase
 	 */
-	protected $wikiId;
+	protected function getDBConnection( $mode ) {
+		throw new \RuntimeException( 'Not yet implemented' );
+	}
 
 	/**
-	 * @param LoadBalancer $loadBalancer
-	 * @param WANObjectCache $cache
-	 * @param RevisionFactory $revisionFactory
-	 * @param RevisionTitleLookup $revisionTitleLookup
-	 * @param bool|string $wikiId
+	 * @param int $mode DB_MASTER or DB_REPLICA
+	 *
+	 * @return DBConnRef
 	 */
-	public function __construct(
-		LoadBalancer $loadBalancer,
-		WANObjectCache $cache,
-		RevisionFactory $revisionFactory,
-		RevisionTitleLookup $revisionTitleLookup,
-		$wikiId = false
-	) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-		parent::__construct( $loadBalancer, $cache, $revisionFactory, $revisionTitleLookup );
-
-		$this->wikiId = $wikiId;
+	protected function getDBConnectionRef( $mode ) {
+		throw new \RuntimeException( 'Not yet implemented' );
 	}
 
 	/**
@@ -59,6 +45,9 @@ abstract class SingleContentRevisionLookup extends AbstractRevisionLookup {
 			$queryInfoOptions[] = 'useContentHandler';
 		}
 
+		// TODO actually the 'abstract' bit is the query info only.... (if we can do this in 1
+		// query...)
+
 		$revQuery = self::getQueryInfo( $queryInfoOptions );
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
@@ -73,7 +62,4 @@ abstract class SingleContentRevisionLookup extends AbstractRevisionLookup {
 			$revQuery['joins']
 		);
 	}
-
-	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
-
 }
