@@ -142,7 +142,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );
-		$this->assertInstanceOf( 'User', $backend->getUser() );
+		$this->assertInstanceOf( User::class, $backend->getUser() );
 		$this->assertSame( 'UTSysop', $backend->getUser()->getName() );
 		$this->assertSame( $info->wasPersisted(), $backend->isPersistent() );
 		$this->assertSame( $info->wasRemembered(), $backend->shouldRememberUser() );
@@ -164,7 +164,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );
-		$this->assertInstanceOf( 'User', $backend->getUser() );
+		$this->assertInstanceOf( User::class, $backend->getUser() );
 		$this->assertTrue( $backend->getUser()->isAnon() );
 		$this->assertSame( $info->wasPersisted(), $backend->isPersistent() );
 		$this->assertSame( $info->wasRemembered(), $backend->shouldRememberUser() );

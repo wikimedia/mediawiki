@@ -22,7 +22,7 @@
  * Profiler that only tracks explicit profiling sections
  *
  * @code
- * $wgProfiler['class'] = 'ProfilerSectionOnly';
+ * $wgProfiler['class'] = ProfilerSectionOnly::class;
  * $wgProfiler['output'] = 'text';
  * $wgProfiler['visible'] = true;
  * @endcode

@@ -83,7 +83,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 
 		$page = SpecialPageFactory::getPage( 'testdummy' );
-		$this->assertInstanceOf( 'SpecialPage', $page );
+		$this->assertInstanceOf( SpecialPage::class, $page );
 
 		$page2 = SpecialPageFactory::getPage( 'testdummy' );
 		$this->assertEquals( $shouldReuseInstance, $page2 === $page, "Should re-use instance:" );

@@ -12,7 +12,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testConstructor( $params ) {
 		$module = new ResourceLoaderWikiModule( $params );
-		$this->assertInstanceOf( 'ResourceLoaderWikiModule', $module );
+		$this->assertInstanceOf( ResourceLoaderWikiModule::class, $module );
 	}
 
 	public static function provideConstructor() {

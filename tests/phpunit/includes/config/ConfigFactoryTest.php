@@ -101,7 +101,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
 
 		$conf = $factory->makeConfig( 'unittest' );
-		$this->assertInstanceOf( 'Config', $conf );
+		$this->assertInstanceOf( Config::class, $conf );
 		$this->assertSame( $conf, $factory->makeConfig( 'unittest' ) );
 	}
 
@@ -122,7 +122,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory = new ConfigFactory();
 		$factory->register( '*', 'GlobalVarConfig::newInstance' );
 		$conf = $factory->makeConfig( 'unittest' );
-		$this->assertInstanceOf( 'Config', $conf );
+		$this->assertInstanceOf( Config::class, $conf );
 	}
 
 	/**
@@ -153,7 +153,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		// NOTE: the global config factory returned here has been overwritten
 		// for operation in test mode. It may not reflect LocalSettings.
 		$factory = MediaWikiServices::getInstance()->getConfigFactory();
-		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'main' ) );
+		$this->assertInstanceOf( Config::class, $factory->makeConfig( 'main' ) );
 	}
 
 }

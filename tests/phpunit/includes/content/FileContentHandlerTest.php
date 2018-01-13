@@ -43,7 +43,7 @@ class FileContentHandlerTest extends MediaWikiLangTestCase {
 			'file_text' => 1,
 		];
 		foreach ( $map as $name => $field ) {
-			$this->assertInstanceOf( 'SearchIndexField', $field );
+			$this->assertInstanceOf( SearchIndexField::class, $field );
 			$this->assertEquals( $name, $field->getName() );
 			unset( $expect[$name] );
 		}

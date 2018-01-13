@@ -69,7 +69,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 				&& ( $wgLocalisationCacheConf['store'] == 'db'
 					|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
 			) {
-				$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+				$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 			}
 		}
 

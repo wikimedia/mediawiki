@@ -13,7 +13,7 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 		] );
 		$ch = new CssContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
-		$this->assertInstanceOf( 'CssContent', $content );
+		$this->assertInstanceOf( CssContent::class, $content );
 		$this->assertEquals( $expected, $content->serialize( CONTENT_FORMAT_CSS ) );
 	}
 

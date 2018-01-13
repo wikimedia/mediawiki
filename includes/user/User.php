@@ -3105,7 +3105,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$multiselectOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+					( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class ) ) {
 				$opts = HTMLFormField::flattenOptions( $info['options'] );
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
 
@@ -3119,7 +3119,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$checkmatrixOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-					( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
+					( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class ) ) {
 				$columns = HTMLFormField::flattenOptions( $info['columns'] );
 				$rows = HTMLFormField::flattenOptions( $info['rows'] );
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;

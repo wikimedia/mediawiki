@@ -258,7 +258,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$fields = $mockEngine->getSearchIndexFields();
 		$this->assertArrayHasKey( 'language', $fields );
 		$this->assertArrayHasKey( 'category', $fields );
-		$this->assertInstanceOf( 'SearchIndexField', $fields['testField'] );
+		$this->assertInstanceOf( SearchIndexField::class, $fields['testField'] );
 
 		$mapping = $fields['testField']->getMapping( $mockEngine );
 		$this->assertArrayHasKey( 'testData', $mapping );

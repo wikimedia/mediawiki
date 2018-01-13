@@ -42,7 +42,7 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 		$fields = $handler->getFieldsForSearchIndex( $mockEngine );
 		$mappedFields = [];
 		foreach ( $fields as $name => $field ) {
-			$this->assertInstanceOf( 'SearchIndexField', $field );
+			$this->assertInstanceOf( SearchIndexField::class, $field );
 			/**
 			 * @var $field SearchIndexField
 			 */
