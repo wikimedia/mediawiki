@@ -42,13 +42,13 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 
 		$sites = $store->getSites();
 
-		$this->assertInstanceOf( 'SiteList', $sites );
+		$this->assertInstanceOf( SiteList::class, $sites );
 
 		/**
 		 * @var Site $site
 		 */
 		foreach ( $sites as $site ) {
-			$this->assertInstanceOf( 'Site', $site );
+			$this->assertInstanceOf( Site::class, $site );
 		}
 
 		foreach ( $testSites as $site ) {
@@ -79,11 +79,11 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 		$this->assertTrue( $store->saveSites( $sites ) );
 
 		$site = $store->getSite( 'ertrywuutr' );
-		$this->assertInstanceOf( 'Site', $site );
+		$this->assertInstanceOf( Site::class, $site );
 		$this->assertEquals( 'en', $site->getLanguageCode() );
 
 		$site = $store->getSite( 'sdfhxujgkfpth' );
-		$this->assertInstanceOf( 'Site', $site );
+		$this->assertInstanceOf( Site::class, $site );
 		$this->assertEquals( 'nl', $site->getLanguageCode() );
 	}
 

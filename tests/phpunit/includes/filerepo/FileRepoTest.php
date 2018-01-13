@@ -50,6 +50,6 @@ class FileRepoTest extends MediaWikiTestCase {
 				'containerPaths' => []
 			] )
 		] );
-		$this->assertInstanceOf( 'FileRepo', $f );
+		$this->assertInstanceOf( FileRepo::class, $f );
 	}
 }

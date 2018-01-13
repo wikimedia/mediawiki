@@ -362,7 +362,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$plugin->expects( $this->once() )->method( 'getUserInstance' )
 			->with( $this->callback( function ( $user ) {
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertEquals( 'Foo', $user->getName() );
 				return true;
 			} ) )
@@ -382,7 +382,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			->will( $this->returnValue( true ) );
 		$plugin->expects( $this->once() )->method( 'getUserInstance' )
 			->with( $this->callback( function ( $user ) {
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertEquals( 'Foo', $user->getName() );
 				return true;
 			} ) )

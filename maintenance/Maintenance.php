@@ -182,7 +182,7 @@ abstract class Maintenance {
 		if ( $count < 2 ) {
 			return false; // sanity
 		}
-		if ( $bt[0]['class'] !== 'Maintenance' || $bt[0]['function'] !== 'shouldExecute' ) {
+		if ( $bt[0]['class'] !== Maintenance::class || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
 		}
 		$includeFuncs = [ 'require_once', 'require', 'include', 'include_once' ];

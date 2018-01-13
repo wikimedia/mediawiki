@@ -22,7 +22,7 @@ class SwiftFileBackendTest extends MediaWikiTestCase {
 		$this->backend = TestingAccessWrapper::newFromObject(
 			new SwiftFileBackend( [
 				'name'             => 'local-swift-testing',
-				'class'            => 'SwiftFileBackend',
+				'class'            => SwiftFileBackend::class,
 				'wikiId'           => 'unit-testing',
 				'lockManager'      => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 				'swiftAuthUrl'     => 'http://127.0.0.1:8080/auth', // unused

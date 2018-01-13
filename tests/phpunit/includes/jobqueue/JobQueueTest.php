@@ -26,7 +26,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			}
 			$baseConfig = $wgJobTypeConf[$name];
 		} else {
-			$baseConfig = [ 'class' => 'JobQueueDB' ];
+			$baseConfig = [ 'class' => JobQueueDB::class ];
 		}
 		$baseConfig['type'] = 'null';
 		$baseConfig['wiki'] = wfWikiID();

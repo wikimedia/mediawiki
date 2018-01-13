@@ -14,7 +14,7 @@ class ApiFormatRawTest extends ApiFormatTestBase {
 	 */
 	public static function provideGeneralEncoding() {
 		$options = [
-			'class' => 'ApiFormatRaw',
+			'class' => ApiFormatRaw::class,
 			'factory' => function ( ApiMain $main ) {
 				return new ApiFormatRaw( $main, new ApiFormatJson( $main, 'json' ) );
 			}
@@ -105,7 +105,7 @@ class ApiFormatRawTest extends ApiFormatTestBase {
 			'{"mime":"text/plain","text":"some text","error":"some error"}',
 			[],
 			[
-				'class' => 'ApiFormatRaw',
+				'class' => ApiFormatRaw::class,
 				'factory' => function ( ApiMain $main ) use ( &$apiMain ) {
 					$apiMain = $main;
 					$printer = new ApiFormatRaw( $main, new ApiFormatJson( $main, 'json' ) );

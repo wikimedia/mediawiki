@@ -822,7 +822,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::getConfig
 	 */
 	public function testGetConfig() {
-		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
+		$this->assertInstanceOf( Config::class, $this->m->getConfig() );
 		$this->assertSame(
 			MediaWikiServices::getInstance()->getMainConfig(),
 			$this->m->getConfig()

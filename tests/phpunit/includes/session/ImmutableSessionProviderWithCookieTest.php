@@ -91,7 +91,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$this->assertFalse( $provider->canChangeUser() );
 
 		$msg = $provider->whyNoSession();
-		$this->assertInstanceOf( 'Message', $msg );
+		$this->assertInstanceOf( \Message::class, $msg );
 		$this->assertSame( 'sessionprovider-nocookies', $msg->getKey() );
 	}
 

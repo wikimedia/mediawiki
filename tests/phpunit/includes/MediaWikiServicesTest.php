@@ -51,14 +51,14 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 	public function testGetInstance() {
 		$services = MediaWikiServices::getInstance();
-		$this->assertInstanceOf( 'MediaWiki\\MediaWikiServices', $services );
+		$this->assertInstanceOf( MediaWikiServices::class, $services );
 	}
 
 	public function testForceGlobalInstance() {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$this->assertInstanceOf( 'MediaWiki\\MediaWikiServices', $oldServices );
+		$this->assertInstanceOf( MediaWikiServices::class, $oldServices );
 		$this->assertNotSame( $oldServices, $newServices );
 
 		$theServices = MediaWikiServices::getInstance();

@@ -146,7 +146,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	public function testFillParserOutput( $data, $expected ) {
 		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
-		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
+		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
 		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 }

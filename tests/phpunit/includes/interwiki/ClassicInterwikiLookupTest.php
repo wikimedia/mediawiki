@@ -68,7 +68,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$this->assertFalse( $lookup->fetch( 'xyz' ), 'unknown prefix' );
 
 		$interwiki = $lookup->fetch( 'de' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 		$this->assertSame( $interwiki, $lookup->fetch( 'de' ), 'in-process caching' );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
@@ -169,13 +169,13 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$this->assertTrue( $lookup->isValidInterwiki( 'zz' ), 'known prefix is valid' );
 
 		$interwiki = $lookup->fetch( 'de' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 
 		$interwiki = $lookup->fetch( 'zz' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 
 		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( false, $interwiki->isLocal(), 'isLocal' );
@@ -220,13 +220,13 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$this->assertTrue( $lookup->isValidInterwiki( 'zz' ), 'known prefix is valid' );
 
 		$interwiki = $lookup->fetch( 'de' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 
 		$interwiki = $lookup->fetch( 'zz' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 
 		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
 		$this->assertSame( false, $interwiki->isLocal(), 'isLocal' );

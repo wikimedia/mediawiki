@@ -290,10 +290,10 @@ class ParserTestRunner {
 		// Set up null lock managers
 		$setup['wgLockManagers'] = [ [
 			'name' => 'fsLockManager',
-			'class' => 'NullLockManager',
+			'class' => NullLockManager::class,
 		], [
 			'name' => 'nullLockManager',
-			'class' => 'NullLockManager',
+			'class' => NullLockManager::class,
 		] ];
 		$reset = function () {
 			LockManagerGroup::destroySingletons();
@@ -435,7 +435,7 @@ class ParserTestRunner {
 
 		return new RepoGroup(
 			[
-				'class' => 'MockLocalRepo',
+				'class' => MockLocalRepo::class,
 				'name' => 'local',
 				'url' => 'http://example.com/images',
 				'hashLevels' => 2,

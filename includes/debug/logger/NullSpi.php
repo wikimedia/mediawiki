@@ -29,7 +29,7 @@ use Psr\Log\NullLogger;
  * Usage:
  *
  *     $wgMWLoggerDefaultSpi = [
- *         'class' => '\\MediaWiki\\Logger\\NullSpi',
+ *         'class' => \MediaWiki\Logger\NullSpi::class,
  *     ];
  *
  * @see \MediaWiki\Logger\LoggerFactory

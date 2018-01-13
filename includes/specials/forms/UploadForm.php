@@ -159,7 +159,7 @@ class UploadForm extends HTMLForm {
 		}
 
 		$descriptor['UploadFile'] = [
-			'class' => 'UploadSourceField',
+			'class' => UploadSourceField::class,
 			'section' => 'source',
 			'type' => 'file',
 			'id' => 'wpUploadFile',
@@ -174,7 +174,7 @@ class UploadForm extends HTMLForm {
 		if ( $canUploadByUrl ) {
 			$this->mMaxUploadSize['url'] = UploadBase::getMaxUploadSize( 'url' );
 			$descriptor['UploadFileURL'] = [
-				'class' => 'UploadSourceField',
+				'class' => UploadSourceField::class,
 				'section' => 'source',
 				'id' => 'wpUploadFileURL',
 				'radio-id' => 'wpSourceTypeurl',
@@ -322,7 +322,7 @@ class UploadForm extends HTMLForm {
 		} else {
 			$descriptor['License'] = [
 				'type' => 'select',
-				'class' => 'Licenses',
+				'class' => Licenses::class,
 				'section' => 'description',
 				'id' => 'wpLicense',
 				'label-message' => 'license',

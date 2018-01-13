@@ -16,7 +16,7 @@ class ListToggleTest extends MediaWikiTestCase {
 
 		$listToggle = new ListToggle( $output );
 
-		$this->assertInstanceOf( 'ListToggle', $listToggle );
+		$this->assertInstanceOf( ListToggle::class, $listToggle );
 		$this->assertContains( 'mediawiki.checkboxtoggle', $output->getModules() );
 		$this->assertContains( 'mediawiki.checkboxtoggle.styles', $output->getModuleStyles() );
 	}

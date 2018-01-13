@@ -106,7 +106,7 @@ class InterwikiTest extends MediaWikiTestCase {
 		$this->assertFalse( $interwikiLookup->fetch( 'xyz' ), 'unknown prefix' );
 
 		$interwiki = $interwikiLookup->fetch( 'de' );
-		$this->assertInstanceOf( 'Interwiki', $interwiki );
+		$this->assertInstanceOf( Interwiki::class, $interwiki );
 		$this->assertSame( $interwiki, $interwikiLookup->fetch( 'de' ), 'in-process caching' );
 
 		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );

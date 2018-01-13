@@ -1004,15 +1004,15 @@ $wgParserTestMediaHandlers = [
  */
 $wgContentHandlers = [
 	// the usual case
-	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
+	CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
 	// dumb version, no syntax highlighting
-	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+	CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
 	// simple implementation, for use by extensions, etc.
-	CONTENT_MODEL_JSON => 'JsonContentHandler',
+	CONTENT_MODEL_JSON => JsonContentHandler::class,
 	// dumb version, no syntax highlighting
-	CONTENT_MODEL_CSS => 'CssContentHandler',
+	CONTENT_MODEL_CSS => CssContentHandler::class,
 	// plain text, for use by extensions, etc.
-	CONTENT_MODEL_TEXT => 'TextContentHandler',
+	CONTENT_MODEL_TEXT => TextContentHandler::class,
 ];
 
 /**
@@ -1997,7 +1997,7 @@ $wgDBservers = false;
  * The LBFactoryMulti class is provided for this purpose, please see
  * includes/db/LBFactoryMulti.php for configuration information.
  */
-$wgLBFactoryConf = [ 'class' => 'LBFactorySimple' ];
+$wgLBFactoryConf = [ 'class' => LBFactorySimple::class ];
 
 /**
  * After a state-changing request is done by a client, this determines
@@ -2309,34 +2309,34 @@ $wgLanguageConverterCacheType = CACHE_ANYTHING;
  * given, giving a callable function which will generate a suitable cache object.
  */
 $wgObjectCaches = [
-	CACHE_NONE => [ 'class' => 'EmptyBagOStuff', 'reportDupes' => false ],
-	CACHE_DB => [ 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ],
+	CACHE_NONE => [ 'class' => EmptyBagOStuff::class, 'reportDupes' => false ],
+	CACHE_DB => [ 'class' => SqlBagOStuff::class, 'loggroup' => 'SQLBagOStuff' ],
 
 	CACHE_ANYTHING => [ 'factory' => 'ObjectCache::newAnything' ],
 	CACHE_ACCEL => [ 'factory' => 'ObjectCache::getLocalServerInstance' ],
-	CACHE_MEMCACHED => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
+	CACHE_MEMCACHED => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 
 	'db-replicated' => [
-		'class'       => 'ReplicatedBagOStuff',
+		'class'       => ReplicatedBagOStuff::class,
 		'readFactory' => [
-			'class' => 'SqlBagOStuff',
+			'class' => SqlBagOStuff::class,
 			'args'  => [ [ 'slaveOnly' => true ] ]
 		],
 		'writeFactory' => [
-			'class' => 'SqlBagOStuff',
+			'class' => SqlBagOStuff::class,
 			'args'  => [ [ 'slaveOnly' => false ] ]
 		],
 		'loggroup'  => 'SQLBagOStuff',
 		'reportDupes' => false
 	],
 
-	'apc' => [ 'class' => 'APCBagOStuff', 'reportDupes' => false ],
-	'apcu' => [ 'class' => 'APCUBagOStuff', 'reportDupes' => false ],
-	'xcache' => [ 'class' => 'XCacheBagOStuff', 'reportDupes' => false ],
-	'wincache' => [ 'class' => 'WinCacheBagOStuff', 'reportDupes' => false ],
-	'memcached-php' => [ 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ],
-	'memcached-pecl' => [ 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ],
-	'hash' => [ 'class' => 'HashBagOStuff', 'reportDupes' => false ],
+	'apc' => [ 'class' => APCBagOStuff::class, 'reportDupes' => false ],
+	'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
+	'xcache' => [ 'class' => XCacheBagOStuff::class, 'reportDupes' => false ],
+	'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
+	'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
+	'memcached-pecl' => [ 'class' => MemcachedPeclBagOStuff::class, 'loggroup' => 'memcached' ],
+	'hash' => [ 'class' => HashBagOStuff::class, 'reportDupes' => false ],
 ];
 
 /**
@@ -2373,13 +2373,13 @@ $wgMainWANCache = false;
  */
 $wgWANObjectCaches = [
 	CACHE_NONE => [
-		'class'    => 'WANObjectCache',
+		'class'    => WANObjectCache::class,
 		'cacheId'  => CACHE_NONE,
 		'channels' => []
 	]
 	/* Example of a simple single data-center cache:
 	'memcached-php' => [
-		'class'    => 'WANObjectCache',
+		'class'    => WANObjectCache::class,
 		'cacheId'  => 'memcached-php',
 		'channels' => [ 'purge' => 'wancache-main-memcached-purge' ]
 	]
@@ -2526,7 +2526,7 @@ $wgAdaptiveMessageCache = false;
  *                  Use maintenance/rebuildLocalisationCache.php instead.
  */
 $wgLocalisationCacheConf = [
-	'class' => 'LocalisationCache',
+	'class' => LocalisationCache::class,
 	'store' => 'detect',
 	'storeClass' => false,
 	'storeDirectory' => false,
@@ -4168,8 +4168,8 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  * an extension setup function.
  */
 $wgParserConf = [
-	'class' => 'Parser',
-	# 'preprocessorClass' => 'Preprocessor_Hash',
+	'class' => Parser::class,
+	# 'preprocessorClass' => Preprocessor_Hash::class,
 ];
 
 /**
@@ -4761,7 +4761,7 @@ $wgPasswordDefault = 'pbkdf2';
  * An advanced example:
  * @code
  * $wgPasswordConfig['bcrypt-peppered'] = [
- *     'class' => 'EncryptedPassword',
+ *     'class' => EncryptedPassword::class,
  *     'underlying' => 'bcrypt',
  *     'secrets' => [],
  *     'cipher' => MCRYPT_RIJNDAEL_256,
@@ -4774,31 +4774,31 @@ $wgPasswordDefault = 'pbkdf2';
  */
 $wgPasswordConfig = [
 	'A' => [
-		'class' => 'MWOldPassword',
+		'class' => MWOldPassword::class,
 	],
 	'B' => [
-		'class' => 'MWSaltedPassword',
+		'class' => MWSaltedPassword::class,
 	],
 	'pbkdf2-legacyA' => [
-		'class' => 'LayeredParameterizedPassword',
+		'class' => LayeredParameterizedPassword::class,
 		'types' => [
 			'A',
 			'pbkdf2',
 		],
 	],
 	'pbkdf2-legacyB' => [
-		'class' => 'LayeredParameterizedPassword',
+		'class' => LayeredParameterizedPassword::class,
 		'types' => [
 			'B',
 			'pbkdf2',
 		],
 	],
 	'bcrypt' => [
-		'class' => 'BcryptPassword',
+		'class' => BcryptPassword::class,
 		'cost' => 9,
 	],
 	'pbkdf2' => [
-		'class' => 'Pbkdf2Password',
+		'class' => Pbkdf2Password::class,
 		'algo' => 'sha512',
 		'cost' => '30000',
 		'length' => '64',
@@ -6214,7 +6214,7 @@ $wgDebugLogGroups = [];
  *
  * @par To completely disable logging:
  * @code
- * $wgMWLoggerDefaultSpi = [ 'class' => '\\MediaWiki\\Logger\\NullSpi' ];
+ * $wgMWLoggerDefaultSpi = [ 'class' => \MediaWiki\Logger\NullSpi::class ];
  * @endcode
  *
  * @since 1.25
@@ -6222,7 +6222,7 @@ $wgDebugLogGroups = [];
  * @see MwLogger
  */
 $wgMWLoggerDefaultSpi = [
-	'class' => '\\MediaWiki\\Logger\\LegacySpi',
+	'class' => \MediaWiki\Logger\LegacySpi::class,
 ];
 
 /**
@@ -6774,7 +6774,7 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  *		'omit_bots' => true,
  *	];
  * @example $wgRCFeeds['example'] = [
- *		'class' => 'ExampleRCFeed',
+ *		'class' => ExampleRCFeed::class,
  *	];
  * @since 1.22
  */
@@ -6786,8 +6786,8 @@ $wgRCFeeds = [];
  * @since 1.22
  */
 $wgRCEngines = [
-	'redis' => 'RedisPubSubFeedEngine',
-	'udp' => 'UDPRCFeedEngine',
+	'redis' => RedisPubSubFeedEngine::class,
+	'udp' => UDPRCFeedEngine::class,
 ];
 
 /**
@@ -7439,24 +7439,24 @@ $wgServiceWiringFiles = [
  * or (since 1.30) a callback to use for creating the job object.
  */
 $wgJobClasses = [
-	'refreshLinks' => 'RefreshLinksJob',
-	'deleteLinks' => 'DeleteLinksJob',
-	'htmlCacheUpdate' => 'HTMLCacheUpdateJob',
-	'sendMail' => 'EmaillingJob',
-	'enotifNotify' => 'EnotifNotifyJob',
-	'fixDoubleRedirect' => 'DoubleRedirectJob',
-	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
-	'PublishStashedFile' => 'PublishStashedFileJob',
-	'ThumbnailRender' => 'ThumbnailRenderJob',
-	'recentChangesUpdate' => 'RecentChangesUpdateJob',
-	'refreshLinksPrioritized' => 'RefreshLinksJob',
-	'refreshLinksDynamic' => 'RefreshLinksJob',
-	'activityUpdateJob' => 'ActivityUpdateJob',
-	'categoryMembershipChange' => 'CategoryMembershipChangeJob',
-	'clearUserWatchlist' => 'ClearUserWatchlistJob',
-	'cdnPurge' => 'CdnPurgeJob',
-	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
-	'null' => 'NullJob'
+	'refreshLinks' => RefreshLinksJob::class,
+	'deleteLinks' => DeleteLinksJob::class,
+	'htmlCacheUpdate' => HTMLCacheUpdateJob::class,
+	'sendMail' => EmaillingJob::class,
+	'enotifNotify' => EnotifNotifyJob::class,
+	'fixDoubleRedirect' => DoubleRedirectJob::class,
+	'AssembleUploadChunks' => AssembleUploadChunksJob::class,
+	'PublishStashedFile' => PublishStashedFileJob::class,
+	'ThumbnailRender' => ThumbnailRenderJob::class,
+	'recentChangesUpdate' => RecentChangesUpdateJob::class,
+	'refreshLinksPrioritized' => RefreshLinksJob::class,
+	'refreshLinksDynamic' => RefreshLinksJob::class,
+	'activityUpdateJob' => ActivityUpdateJob::class,
+	'categoryMembershipChange' => CategoryMembershipChangeJob::class,
+	'clearUserWatchlist' => ClearUserWatchlistJob::class,
+	'cdnPurge' => CdnPurgeJob::class,
+	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
+	'null' => NullJob::class,
 ];
 
 /**
@@ -7505,7 +7505,7 @@ $wgJobSerialCommitThreshold = false;
  * These settings should be global to all wikis.
  */
 $wgJobTypeConf = [
-	'default' => [ 'class' => 'JobQueueDB', 'order' => 'random', 'claimTTL' => 3600 ],
+	'default' => [ 'class' => JobQueueDB::class, 'order' => 'random', 'claimTTL' => 3600 ],
 ];
 
 /**
@@ -7513,7 +7513,7 @@ $wgJobTypeConf = [
  * These settings should be global to all wikis.
  */
 $wgJobQueueAggregator = [
-	'class' => 'JobQueueAggregatorNull'
+	'class' => JobQueueAggregatorNull::class
 ];
 
 /**
@@ -7724,42 +7724,42 @@ $wgLogActions = [];
  * @see LogFormatter
  */
 $wgLogActionsHandlers = [
-	'block/block' => 'BlockLogFormatter',
-	'block/reblock' => 'BlockLogFormatter',
-	'block/unblock' => 'BlockLogFormatter',
-	'contentmodel/change' => 'ContentModelLogFormatter',
-	'contentmodel/new' => 'ContentModelLogFormatter',
-	'delete/delete' => 'DeleteLogFormatter',
-	'delete/delete_redir' => 'DeleteLogFormatter',
-	'delete/event' => 'DeleteLogFormatter',
-	'delete/restore' => 'DeleteLogFormatter',
-	'delete/revision' => 'DeleteLogFormatter',
-	'import/interwiki' => 'ImportLogFormatter',
-	'import/upload' => 'ImportLogFormatter',
-	'managetags/activate' => 'LogFormatter',
-	'managetags/create' => 'LogFormatter',
-	'managetags/deactivate' => 'LogFormatter',
-	'managetags/delete' => 'LogFormatter',
-	'merge/merge' => 'MergeLogFormatter',
-	'move/move' => 'MoveLogFormatter',
-	'move/move_redir' => 'MoveLogFormatter',
-	'patrol/patrol' => 'PatrolLogFormatter',
-	'patrol/autopatrol' => 'PatrolLogFormatter',
-	'protect/modify' => 'ProtectLogFormatter',
-	'protect/move_prot' => 'ProtectLogFormatter',
-	'protect/protect' => 'ProtectLogFormatter',
-	'protect/unprotect' => 'ProtectLogFormatter',
-	'rights/autopromote' => 'RightsLogFormatter',
-	'rights/rights' => 'RightsLogFormatter',
-	'suppress/block' => 'BlockLogFormatter',
-	'suppress/delete' => 'DeleteLogFormatter',
-	'suppress/event' => 'DeleteLogFormatter',
-	'suppress/reblock' => 'BlockLogFormatter',
-	'suppress/revision' => 'DeleteLogFormatter',
-	'tag/update' => 'TagLogFormatter',
-	'upload/overwrite' => 'UploadLogFormatter',
-	'upload/revert' => 'UploadLogFormatter',
-	'upload/upload' => 'UploadLogFormatter',
+	'block/block' => BlockLogFormatter::class,
+	'block/reblock' => BlockLogFormatter::class,
+	'block/unblock' => BlockLogFormatter::class,
+	'contentmodel/change' => ContentModelLogFormatter::class,
+	'contentmodel/new' => ContentModelLogFormatter::class,
+	'delete/delete' => DeleteLogFormatter::class,
+	'delete/delete_redir' => DeleteLogFormatter::class,
+	'delete/event' => DeleteLogFormatter::class,
+	'delete/restore' => DeleteLogFormatter::class,
+	'delete/revision' => DeleteLogFormatter::class,
+	'import/interwiki' => ImportLogFormatter::class,
+	'import/upload' => ImportLogFormatter::class,
+	'managetags/activate' => LogFormatter::class,
+	'managetags/create' => LogFormatter::class,
+	'managetags/deactivate' => LogFormatter::class,
+	'managetags/delete' => LogFormatter::class,
+	'merge/merge' => MergeLogFormatter::class,
+	'move/move' => MoveLogFormatter::class,
+	'move/move_redir' => MoveLogFormatter::class,
+	'patrol/patrol' => PatrolLogFormatter::class,
+	'patrol/autopatrol' => PatrolLogFormatter::class,
+	'protect/modify' => ProtectLogFormatter::class,
+	'protect/move_prot' => ProtectLogFormatter::class,
+	'protect/protect' => ProtectLogFormatter::class,
+	'protect/unprotect' => ProtectLogFormatter::class,
+	'rights/autopromote' => RightsLogFormatter::class,
+	'rights/rights' => RightsLogFormatter::class,
+	'suppress/block' => BlockLogFormatter::class,
+	'suppress/delete' => DeleteLogFormatter::class,
+	'suppress/event' => DeleteLogFormatter::class,
+	'suppress/reblock' => BlockLogFormatter::class,
+	'suppress/revision' => DeleteLogFormatter::class,
+	'tag/update' => TagLogFormatter::class,
+	'upload/overwrite' => UploadLogFormatter::class,
+	'upload/revert' => UploadLogFormatter::class,
+	'upload/upload' => UploadLogFormatter::class,
 ];
 
 /**
@@ -7890,7 +7890,7 @@ $wgActions = [
 	'credits' => true,
 	'delete' => true,
 	'edit' => true,
-	'editchangetags' => 'SpecialPageAction',
+	'editchangetags' => SpecialPageAction::class,
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,
@@ -7899,7 +7899,7 @@ $wgActions = [
 	'raw' => true,
 	'render' => true,
 	'revert' => true,
-	'revisiondelete' => 'SpecialPageAction',
+	'revisiondelete' => SpecialPageAction::class,
 	'rollback' => true,
 	'submit' => true,
 	'unprotect' => true,
@@ -8048,12 +8048,12 @@ $wgDebugAPI = false;
  * @code
  *  $wgAPIModules['foo'] = 'ApiFoo';
  *  $wgAPIModules['bar'] = [
- *    'class' => 'ApiBar',
+ *    'class' => ApiBar::class,
  *    'factory' => function( $main, $name ) { ... }
  *  ];
  *  $wgAPIModules['xyzzy'] = [
- *    'class' => 'ApiXyzzy',
- *    'factory' => [ 'XyzzyFactory', 'newApiModule' ]
+ *    'class' => ApiXyzzy::class,
+ *    'factory' => [ XyzzyFactory::class, 'newApiModule' ]
  *  ];
  * @endcode
  *
@@ -8476,7 +8476,7 @@ $wgRedirectOnLogin = null;
  * @par Example using local redis instance:
  * @code
  *   $wgPoolCounterConf = [ 'ArticleView' => [
- *     'class' => 'PoolCounterRedis',
+ *     'class' => PoolCounterRedis::class,
  *     'timeout' => 15, // wait timeout in seconds
  *     'workers' => 1, // maximum number of active threads in each pool
  *     'maxqueue' => 5, // maximum number of total threads in each pool
@@ -8488,7 +8488,7 @@ $wgRedirectOnLogin = null;
  * @par Example using C daemon from https://www.mediawiki.org/wiki/Extension:PoolCounter:
  * @code
  *   $wgPoolCounterConf = [ 'ArticleView' => [
- *     'class' => 'PoolCounter_Client',
+ *     'class' => PoolCounter_Client::class,
  *     'timeout' => 15, // wait timeout in seconds
  *     'workers' => 5, // maximum number of active threads in each pool
  *     'maxqueue' => 50, // maximum number of total threads in each pool
@@ -8636,7 +8636,7 @@ $wgPageLanguageUseDB = false;
  * Auto-mounting example for Parsoid:
  *
  * $wgVirtualRestConfig['paths']['/parsoid/'] = [
- *     'class' => 'ParsoidVirtualRESTService',
+ *     'class' => ParsoidVirtualRESTService::class,
  *     'options' => [
  *         'url' => 'http://localhost:8000',
  *         'prefix' => 'enwiki',
@@ -8733,7 +8733,7 @@ $wgMaxJobDBWriteDuration = false;
  */
 $wgEventRelayerConfig = [
 	'default' => [
-		'class' => 'EventRelayerNull',
+		'class' => EventRelayerNull::class,
 	]
 ];
 

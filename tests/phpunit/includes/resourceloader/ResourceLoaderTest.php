@@ -753,7 +753,7 @@ mw.example();
 			'foo' => self::getSimpleModuleMock( 'foo();' ),
 			'ferry' => self::getFailFerryMock(),
 			'bar' => self::getSimpleModuleMock( 'bar();' ),
-			'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+			'startup' => [ 'class' => ResourceLoaderStartUpModule::class ],
 		] );
 		$context = $this->getResourceLoaderContext(
 			[
