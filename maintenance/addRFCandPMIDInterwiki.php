@@ -91,5 +91,5 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'AddRFCAndPMIDInterwiki';
+$maintClass = AddRFCAndPMIDInterwiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -58,8 +58,8 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 			'wgCapitalLinkOverrides' => [ self::NS_NONCAP => false ],
 		] );
 
-		$this->originalHandlers = TestingAccessWrapper::newFromClass( 'Hooks' )->handlers;
-		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = [];
+		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
+		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
 
 		// Clear caches so that our new namespace appears
 		MWNamespace::clearCaches();
@@ -74,7 +74,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 		parent::tearDown();
 
-		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = $this->originalHandlers;
+		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;
 
 		SpecialPageFactory::resetList();
 	}

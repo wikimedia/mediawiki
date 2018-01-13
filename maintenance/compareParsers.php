@@ -185,5 +185,5 @@ class CompareParsers extends DumpIterator {
 	}
 }
 
-$maintClass = "CompareParsers";
+$maintClass = CompareParsers::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

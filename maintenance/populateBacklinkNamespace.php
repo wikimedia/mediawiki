@@ -94,5 +94,5 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateBacklinkNamespace";
+$maintClass = PopulateBacklinkNamespace::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -110,5 +110,5 @@ class BenchUtf8TitleCheck extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchUtf8TitleCheck';
+$maintClass = BenchUtf8TitleCheck::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

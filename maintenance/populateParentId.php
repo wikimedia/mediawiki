@@ -127,5 +127,5 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateParentId";
+$maintClass = PopulateParentId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

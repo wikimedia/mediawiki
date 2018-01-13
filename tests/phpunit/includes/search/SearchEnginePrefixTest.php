@@ -63,8 +63,8 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$this->search = MediaWikiServices::getInstance()->newSearchEngine();
 		$this->search->setNamespaces( [] );
 
-		$this->originalHandlers = TestingAccessWrapper::newFromClass( 'Hooks' )->handlers;
-		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = [];
+		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
+		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
 
 		SpecialPageFactory::resetList();
 	}
@@ -72,7 +72,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		TestingAccessWrapper::newFromClass( 'Hooks' )->handlers = $this->originalHandlers;
+		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;
 
 		SpecialPageFactory::resetList();
 	}
@@ -337,7 +337,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	 * @covers PrefixSearch::searchBackend
 	 */
 	public function testSearchBackend( array $case ) {
-		$search = $stub = $this->getMockBuilder( 'SearchEngine' )
+		$search = $stub = $this->getMockBuilder( SearchEngine::class )
 			->setMethods( [ 'completionSearchBackend' ] )->getMock();
 
 		$return = SearchSuggestionSet::fromStrings( $case['provision'] );

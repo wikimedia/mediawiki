@@ -69,5 +69,5 @@ class ListVariants extends Maintenance {
 	}
 }
 
-$maintClass = 'ListVariants';
+$maintClass = ListVariants::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

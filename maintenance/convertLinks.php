@@ -302,5 +302,5 @@ class ConvertLinks extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertLinks";
+$maintClass = ConvertLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

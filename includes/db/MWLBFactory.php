@@ -64,7 +64,7 @@ abstract class MWLBFactory {
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
-		if ( $lbConf['class'] === 'LBFactorySimple' ) {
+		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
 			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
@@ -132,7 +132,7 @@ abstract class MWLBFactory {
 			if ( !isset( $lbConf['externalClusters'] ) ) {
 				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
 			}
-		} elseif ( $lbConf['class'] === 'LBFactoryMulti' ) {
+		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
 					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );

@@ -90,7 +90,7 @@ class MWExceptionRenderer {
 	private static function useOutputPage( $e ) {
 		// Can the extension use the Message class/wfMessage to get i18n-ed messages?
 		foreach ( $e->getTrace() as $frame ) {
-			if ( isset( $frame['class'] ) && $frame['class'] === 'LocalisationCache' ) {
+			if ( isset( $frame['class'] ) && $frame['class'] === LocalisationCache::class ) {
 				return false;
 			}
 		}

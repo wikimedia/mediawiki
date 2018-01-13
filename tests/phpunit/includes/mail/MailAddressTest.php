@@ -7,7 +7,7 @@ class MailAddressTest extends MediaWikiTestCase {
 	 */
 	public function testConstructor() {
 		$ma = new MailAddress( 'foo@bar.baz', 'UserName', 'Real name' );
-		$this->assertInstanceOf( 'MailAddress', $ma );
+		$this->assertInstanceOf( MailAddress::class, $ma );
 	}
 
 	/**
@@ -17,7 +17,7 @@ class MailAddressTest extends MediaWikiTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
-		$user = $this->createMock( 'User' );
+		$user = $this->createMock( User::class );
 		$user->expects( $this->any() )->method( 'getName' )->will(
 			$this->returnValue( 'UserName' )
 		);
@@ -29,7 +29,7 @@ class MailAddressTest extends MediaWikiTestCase {
 		);
 
 		$ma = MailAddress::newFromUser( $user );
-		$this->assertInstanceOf( 'MailAddress', $ma );
+		$this->assertInstanceOf( MailAddress::class, $ma );
 		$this->setMwGlobals( 'wgEnotifUseRealName', true );
 		$this->assertEquals( 'Real name <foo@bar.baz>', $ma->toString() );
 		$this->setMwGlobals( 'wgEnotifUseRealName', false );

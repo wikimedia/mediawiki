@@ -22,14 +22,14 @@
  * Profiler wrapper for XHProf extension.
  *
  * @code
- * $wgProfiler['class'] = 'ProfilerXhprof';
+ * $wgProfiler['class'] = ProfilerXhprof::class;
  * $wgProfiler['flags'] = XHPROF_FLAGS_NO_BUILTINS;
  * $wgProfiler['output'] = 'text';
  * $wgProfiler['visible'] = true;
  * @endcode
  *
  * @code
- * $wgProfiler['class'] = 'ProfilerXhprof';
+ * $wgProfiler['class'] = ProfilerXhprof::class;
  * $wgProfiler['flags'] = XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY | XHPROF_FLAGS_NO_BUILTINS;
  * $wgProfiler['output'] = 'udp';
  * @endcode

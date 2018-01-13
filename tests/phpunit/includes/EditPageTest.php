@@ -717,7 +717,7 @@ hello
 		$ep->importFormData( $req );
 
 		$this->setExpectedException(
-			'MWException',
+			MWException::class,
 			'This content model is not supported: testing'
 		);
 

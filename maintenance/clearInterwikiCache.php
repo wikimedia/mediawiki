@@ -54,5 +54,5 @@ class ClearInterwikiCache extends Maintenance {
 	}
 }
 
-$maintClass = "ClearInterwikiCache";
+$maintClass = ClearInterwikiCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

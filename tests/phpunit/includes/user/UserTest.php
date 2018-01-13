@@ -121,7 +121,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'nukeworld', $rights );
 
 		// Add a Session that limits rights
-		$mock = $this->getMockBuilder( stdclass::class )
+		$mock = $this->getMockBuilder( stdClass::class )
 			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );

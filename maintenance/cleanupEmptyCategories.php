@@ -199,5 +199,5 @@ TEXT
 	}
 }
 
-$maintClass = 'CleanupEmptyCategories';
+$maintClass = CleanupEmptyCategories::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

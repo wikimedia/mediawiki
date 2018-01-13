@@ -73,5 +73,5 @@ class BenchWikimediaBaseConvert extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchWikimediaBaseConvert';
+$maintClass = BenchWikimediaBaseConvert::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

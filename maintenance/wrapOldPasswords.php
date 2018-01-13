@@ -121,5 +121,5 @@ class WrapOldPasswords extends Maintenance {
 	}
 }
 
-$maintClass = "WrapOldPasswords";
+$maintClass = WrapOldPasswords::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

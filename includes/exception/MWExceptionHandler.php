@@ -300,7 +300,7 @@ TXT;
 		$logger = LoggerFactory::getInstance( 'fatal' );
 		$logger->error( $msg, [
 			'fatal_exception' => [
-				'class' => 'ErrorException',
+				'class' => ErrorException::class,
 				'message' => "PHP Fatal Error: {$message}",
 				'code' => $level,
 				'file' => $file,

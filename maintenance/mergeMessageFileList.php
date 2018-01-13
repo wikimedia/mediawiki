@@ -26,7 +26,7 @@
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 
 require_once __DIR__ . '/Maintenance.php';
-$maintClass = 'MergeMessageFileList';
+$maintClass = MergeMessageFileList::class;
 $mmfl = false;
 
 /**

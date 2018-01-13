@@ -122,5 +122,5 @@ class MoveBatch extends Maintenance {
 	}
 }
 
-$maintClass = "MoveBatch";
+$maintClass = MoveBatch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

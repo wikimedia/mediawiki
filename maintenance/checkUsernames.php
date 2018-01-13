@@ -65,5 +65,5 @@ class CheckUsernames extends Maintenance {
 	}
 }
 
-$maintClass = "CheckUsernames";
+$maintClass = CheckUsernames::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -40,7 +40,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 				'skin' => $options['skin'],
 				'target' => 'phpunit',
 		] );
-		$ctx = $this->getMockBuilder( 'ResourceLoaderContext' )
+		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->setConstructorArgs( [ $resourceLoader, $request ] )
 			->setMethods( [ 'getDirection' ] )
 			->getMock();

@@ -74,5 +74,5 @@ class ShowSiteStats extends Maintenance {
 	}
 }
 
-$maintClass = "ShowSiteStats";
+$maintClass = ShowSiteStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

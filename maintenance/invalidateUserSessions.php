@@ -90,5 +90,5 @@ class InvalidateUserSesssions extends Maintenance {
 	}
 }
 
-$maintClass = "InvalidateUserSesssions";
+$maintClass = InvalidateUserSesssions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

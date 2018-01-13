@@ -241,7 +241,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	protected function mockDb() {
 		// @TODO: mock from Database
 		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache
-		$databaseMysql = $this->getMockBuilder( 'DatabaseMysqli' )
+		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$databaseMysql->expects( $this->any() )

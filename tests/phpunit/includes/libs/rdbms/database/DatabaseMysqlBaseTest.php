@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\DatabaseMysqlBase;
+use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -176,7 +177,7 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getMockForViews() {
-		$db = $this->getMockBuilder( 'DatabaseMysqli' )
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->setMethods( [ 'fetchRow', 'query' ] )
 			->getMock();
@@ -325,7 +326,7 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
 	 */
 	public function testPtHeartbeat( $lag ) {
-		$db = $this->getMockBuilder( 'DatabaseMysqli' )
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->setMethods( [
 				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )

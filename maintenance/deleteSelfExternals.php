@@ -54,5 +54,5 @@ class DeleteSelfExternals extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteSelfExternals";
+$maintClass = DeleteSelfExternals::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

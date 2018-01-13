@@ -55,7 +55,7 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::expandAttributes
 	 */
 	public function testExpandAttributesException() {
-		$this->setExpectedException( 'MWException' );
+		$this->setExpectedException( MWException::class );
 		Xml::expandAttributes( 'string' );
 	}
 

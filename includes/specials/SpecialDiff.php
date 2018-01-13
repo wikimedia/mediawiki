@@ -78,7 +78,7 @@ class SpecialDiff extends RedirectSpecialPage {
 			],
 			'diff' => [
 				'name' => 'diff',
-				'class' => 'HTMLTextField',
+				'class' => HTMLTextField::class,
 				'label-message' => 'diff-form-revid',
 			],
 		], $this->getContext(), 'diff-form' );

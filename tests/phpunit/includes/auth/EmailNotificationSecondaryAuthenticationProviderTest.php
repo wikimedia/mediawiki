@@ -58,24 +58,24 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Fram
 	public function testBeginSecondaryAccountCreation() {
 		$authManager = new AuthManager( new \FauxRequest(), new \HashConfig() );
 
-		$creator = $this->getMockBuilder( 'User' )->getMock();
-		$userWithoutEmail = $this->getMockBuilder( 'User' )->getMock();
+		$creator = $this->getMockBuilder( \User::class )->getMock();
+		$userWithoutEmail = $this->getMockBuilder( \User::class )->getMock();
 		$userWithoutEmail->expects( $this->any() )->method( 'getEmail' )->willReturn( '' );
 		$userWithoutEmail->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
-		$userWithEmailError = $this->getMockBuilder( 'User' )->getMock();
+		$userWithEmailError = $this->getMockBuilder( \User::class )->getMock();
 		$userWithEmailError->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 		$userWithEmailError->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->expects( $this->any() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newFatal( 'fail' ) );
-		$userExpectsConfirmation = $this->getMockBuilder( 'User' )->getMock();
+		$userExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
 		$userExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newGood() );
-		$userNotExpectsConfirmation = $this->getMockBuilder( 'User' )->getMock();
+		$userNotExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
 		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )

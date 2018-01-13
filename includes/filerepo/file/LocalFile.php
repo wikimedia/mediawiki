@@ -84,7 +84,7 @@ class LocalFile extends File {
 	protected $deleted;
 
 	/** @var string */
-	protected $repoClass = 'LocalRepo';
+	protected $repoClass = LocalRepo::class;
 
 	/** @var int Number of line to return by nextHistoryLine() (constructor) */
 	private $historyLine;

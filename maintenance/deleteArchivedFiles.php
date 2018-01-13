@@ -130,5 +130,5 @@ class DeleteArchivedFiles extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteArchivedFiles";
+$maintClass = DeleteArchivedFiles::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -33,7 +33,7 @@ class ForeignAPIFile extends File {
 	/** @var array */
 	private $mInfo = [];
 
-	protected $repoClass = 'ForeignApiRepo';
+	protected $repoClass = ForeignApiRepo::class;
 
 	/**
 	 * @param Title|string|bool $title

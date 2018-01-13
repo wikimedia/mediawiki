@@ -1171,7 +1171,7 @@ class Sanitizer {
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
-			[ 'Sanitizer', 'armorLinksCallback' ],
+			[ self::class, 'armorLinksCallback' ],
 			$encValue );
 		return $encValue;
 	}
@@ -1549,7 +1549,7 @@ class Sanitizer {
 	static function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ 'Sanitizer', 'normalizeCharReferencesCallback' ],
+			[ self::class, 'normalizeCharReferencesCallback' ],
 			$text );
 	}
 
@@ -1649,7 +1649,7 @@ class Sanitizer {
 	public static function decodeCharReferences( $text ) {
 		return preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
+			[ self::class, 'decodeCharReferencesCallback' ],
 			$text );
 	}
 
@@ -1667,7 +1667,7 @@ class Sanitizer {
 		global $wgContLang;
 		$text = preg_replace_callback(
 			self::CHAR_REFS_REGEX,
-			[ 'Sanitizer', 'decodeCharReferencesCallback' ],
+			[ self::class, 'decodeCharReferencesCallback' ],
 			$text,
 			-1, //limit
 			$count

@@ -124,7 +124,7 @@ class FileRepo {
 	protected $isPrivate;
 
 	/** @var array callable Override these in the base class */
-	protected $fileFactory = [ 'UnregisteredLocalFile', 'newFromTitle' ];
+	protected $fileFactory = [ UnregisteredLocalFile::class, 'newFromTitle' ];
 	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactory = false;
 	/** @var array callable|bool Override these in the base class */
@@ -1722,7 +1722,7 @@ class FileRepo {
 	 * @return Status
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
-		$status = call_user_func_array( [ 'Status', 'newFatal' ], func_get_args() );
+		$status = call_user_func_array( [ Status::class, 'newFatal' ], func_get_args() );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;

@@ -137,5 +137,5 @@ TEXT
 	}
 }
 
-$maintClass = "PopulateIpChanges";
+$maintClass = PopulateIpChanges::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

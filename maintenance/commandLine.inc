@@ -67,5 +67,5 @@ class CommandLineInc extends Maintenance {
 	}
 }
 
-$maintClass = 'CommandLineInc';
+$maintClass = CommandLineInc::class;
 require RUN_MAINTENANCE_IF_MAIN;

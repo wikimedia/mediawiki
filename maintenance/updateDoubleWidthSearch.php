@@ -77,5 +77,5 @@ class UpdateDoubleWidthSearch extends Maintenance {
 	}
 }
 
-$maintClass = "UpdateDoubleWidthSearch";
+$maintClass = UpdateDoubleWidthSearch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

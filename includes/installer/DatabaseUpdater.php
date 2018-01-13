@@ -1072,7 +1072,7 @@ abstract class DatabaseUpdater {
 				"maintenance/populateLogUsertext.php.\n"
 			);
 
-			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
+			$task = $this->maintenance->runChild( PopulateLogUsertext::class );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
@@ -1088,7 +1088,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateLogSearch.php.\n" );
 
-			$task = $this->maintenance->runChild( 'PopulateLogSearch' );
+			$task = $this->maintenance->runChild( PopulateLogSearch::class );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
@@ -1128,7 +1128,7 @@ abstract class DatabaseUpdater {
 			}
 
 			$this->output( "Updating category collations..." );
-			$task = $this->maintenance->runChild( 'UpdateCollation' );
+			$task = $this->maintenance->runChild( UpdateCollation::class );
 			$task->execute();
 			$this->output( "...done.\n" );
 		}
@@ -1139,7 +1139,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doMigrateUserOptions() {
 		if ( $this->db->tableExists( 'user_properties' ) ) {
-			$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
+			$cl = $this->maintenance->runChild( ConvertUserOptions::class, 'convertUserOptions.php' );
 			$cl->execute();
 			$this->output( "done.\n" );
 		}
@@ -1177,7 +1177,9 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var $cl RebuildLocalisationCache
 		 */
-		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
+		$cl = $this->maintenance->runChild(
+			RebuildLocalisationCache::class, 'rebuildLocalisationCache.php'
+		);
 		$this->output( "Rebuilding localisation cache...\n" );
 		$cl->setForce();
 		$cl->execute();
@@ -1224,7 +1226,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/migrateComments.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'MigrateComments', 'migrateComments.php' );
+			$task = $this->maintenance->runChild( MigrateComments::class, 'migrateComments.php' );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
@@ -1236,7 +1238,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function migrateArchiveText() {
 		$this->output( "Migrating archive ar_text to modern storage.\n" );
-		$task = $this->maintenance->runChild( 'MigrateArchiveText', 'migrateArchiveText.php' );
+		$task = $this->maintenance->runChild( MigrateArchiveText::class, 'migrateArchiveText.php' );
 		$task->execute();
 		$this->output( "done.\n" );
 	}

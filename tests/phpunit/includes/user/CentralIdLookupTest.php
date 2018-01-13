@@ -9,16 +9,16 @@ use Wikimedia\TestingAccessWrapper;
 class CentralIdLookupTest extends MediaWikiTestCase {
 
 	public function testFactory() {
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 
 		$this->setMwGlobals( [
 			'wgCentralIdLookupProviders' => [
-				'local' => [ 'class' => 'LocalIdLookup' ],
-				'local2' => [ 'class' => 'LocalIdLookup' ],
+				'local' => [ 'class' => LocalIdLookup::class ],
+				'local2' => [ 'class' => LocalIdLookup::class ],
 				'mock' => [ 'factory' => function () use ( $mock ) {
 					return $mock;
 				} ],
-				'bad' => [ 'class' => 'stdClass' ],
+				'bad' => [ 'class' => stdClass::class ],
 			],
 			'wgCentralIdLookupProvider' => 'mock',
 		] );
@@ -29,13 +29,13 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 
 		$local = CentralIdLookup::factory( 'local' );
 		$this->assertNotSame( $mock, $local );
-		$this->assertInstanceOf( 'LocalIdLookup', $local );
+		$this->assertInstanceOf( LocalIdLookup::class, $local );
 		$this->assertSame( $local, CentralIdLookup::factory( 'local' ) );
 		$this->assertSame( 'local', $local->getProviderId() );
 
 		$local2 = CentralIdLookup::factory( 'local2' );
 		$this->assertNotSame( $local, $local2 );
-		$this->assertInstanceOf( 'LocalIdLookup', $local2 );
+		$this->assertInstanceOf( LocalIdLookup::class, $local2 );
 		$this->assertSame( 'local2', $local2->getProviderId() );
 
 		$this->assertNull( CentralIdLookup::factory( 'unconfigured' ) );
@@ -44,14 +44,14 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 
 	public function testCheckAudience() {
 		$mock = TestingAccessWrapper::newFromObject(
-			$this->getMockForAbstractClass( 'CentralIdLookup' )
+			$this->getMockForAbstractClass( CentralIdLookup::class )
 		);
 
 		$user = static::getTestSysop()->getUser();
 		$this->assertSame( $user, $mock->checkAudience( $user ) );
 
 		$user = $mock->checkAudience( CentralIdLookup::AUDIENCE_PUBLIC );
-		$this->assertInstanceOf( 'User', $user );
+		$this->assertInstanceOf( User::class, $user );
 		$this->assertSame( 0, $user->getId() );
 
 		$this->assertNull( $mock->checkAudience( CentralIdLookup::AUDIENCE_RAW ) );
@@ -65,7 +65,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 	}
 
 	public function testNameFromCentralId() {
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
 				$this->equalTo( [ 15 => null ] ),
@@ -86,7 +86,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 	 * @param bool $succeeds
 	 */
 	public function testLocalUserFromCentralId( $name, $succeeds ) {
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->any() )->method( 'isAttached' )
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
@@ -101,13 +101,13 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
 		);
 		if ( $succeeds ) {
-			$this->assertInstanceOf( 'User', $user );
+			$this->assertInstanceOf( User::class, $user );
 			$this->assertSame( $name, $user->getName() );
 		} else {
 			$this->assertNull( $user );
 		}
 
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->any() )->method( 'isAttached' )
 			->will( $this->returnValue( false ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
@@ -133,7 +133,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 	}
 
 	public function testCentralIdFromName() {
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
 				$this->equalTo( [ 'FooBar' => 0 ] ),
@@ -149,7 +149,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 	}
 
 	public function testCentralIdFromLocalUser() {
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->any() )->method( 'isAttached' )
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
@@ -167,7 +167,7 @@ class CentralIdLookupTest extends MediaWikiTestCase {
 			)
 		);
 
-		$mock = $this->getMockForAbstractClass( 'CentralIdLookup' );
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->any() )->method( 'isAttached' )
 			->will( $this->returnValue( false ) );
 		$mock->expects( $this->never() )->method( 'lookupUserNames' );

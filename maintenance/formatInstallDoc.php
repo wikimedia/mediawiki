@@ -72,5 +72,5 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 	}
 }
 
-$maintClass = 'MaintenanceFormatInstallDoc';
+$maintClass = MaintenanceFormatInstallDoc::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

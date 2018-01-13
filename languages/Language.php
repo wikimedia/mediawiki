@@ -415,7 +415,7 @@ class Language {
 	function __construct() {
 		$this->mConverter = new FakeConverter( $this );
 		// Set the code to the name of the descendant
-		if ( static::class === 'Language' ) {
+		if ( static::class === self::class ) {
 			$this->mCode = 'en';
 		} else {
 			$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
@@ -4369,7 +4369,7 @@ class Language {
 	 */
 	public static function classFromCode( $code, $fallback = true ) {
 		if ( $fallback && $code == 'en' ) {
-			return 'Language';
+			return self::class;
 		} else {
 			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
 		}
