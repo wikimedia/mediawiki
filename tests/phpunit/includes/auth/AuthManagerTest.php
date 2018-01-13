@@ -968,7 +968,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$p->expects( $this->atMost( 1 ) )->method( 'postAuthentication' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
 					if ( $user !== null ) {
-						$this->assertInstanceOf( 'User', $user );
+						$this->assertInstanceOf( \User::class, $user );
 						$this->assertSame( 'UTSysop', $user->getName() );
 					}
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
@@ -1998,7 +1998,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				->willReturnCallback( function ( $user, $creator, $response )
 					use ( $constraint, $p, $username )
 				{
-					$this->assertInstanceOf( 'User', $user );
+					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( $username, $user->getName() );
 					$this->assertSame( 'UTSysop', $creator->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
@@ -3474,7 +3474,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$p->postCalled = false;
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountLink' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
-					$this->assertInstanceOf( 'User', $user );
+					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( 'UTSysop', $user->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );

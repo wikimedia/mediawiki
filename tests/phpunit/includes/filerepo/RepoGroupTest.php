@@ -38,7 +38,7 @@ class RepoGroupTest extends MediaWikiTestCase {
 	private function setUpForeignRepo() {
 		global $wgUploadDirectory;
 		$this->setMwGlobals( 'wgForeignFileRepos', [ [
-			'class' => 'ForeignAPIRepo',
+			'class' => ForeignAPIRepo::class,
 			'name' => 'wikimediacommons',
 			'backend' => 'wikimediacommons-backend',
 			'apibase' => 'https://commons.wikimedia.org/w/api.php',

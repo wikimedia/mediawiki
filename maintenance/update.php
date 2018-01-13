@@ -233,8 +233,8 @@ class UpdateMediaWiki extends Maintenance {
 		# This needs to be disabled early since extensions will try to use the l10n
 		# cache from $wgExtensionFunctions (T22471)
 		$wgLocalisationCacheConf = [
-			'class' => 'LocalisationCache',
-			'storeClass' => 'LCStoreNull',
+			'class' => LocalisationCache::class,
+			'storeClass' => LCStoreNull::class,
 			'storeDirectory' => false,
 			'manualRecache' => false,
 		];

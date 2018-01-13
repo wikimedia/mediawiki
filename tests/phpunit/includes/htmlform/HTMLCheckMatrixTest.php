@@ -15,7 +15,7 @@ class HTMLCheckMatrixTest extends MediaWikiTestCase {
 		try {
 			new HTMLCheckMatrix( [] );
 		} catch ( MWException $e ) {
-			$this->assertInstanceOf( 'HTMLFormFieldRequiredOptionsException', $e );
+			$this->assertInstanceOf( HTMLFormFieldRequiredOptionsException::class, $e );
 			return;
 		}
 

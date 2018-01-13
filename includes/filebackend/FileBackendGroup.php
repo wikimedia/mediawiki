@@ -91,7 +91,7 @@ class FileBackendGroup {
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
-				'class' => 'FSFileBackend',
+				'class' => FSFileBackend::class,
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
@@ -202,7 +202,7 @@ class FileBackendGroup {
 			LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
 		$config['fileJournal'] = isset( $config['fileJournal'] )
 			? FileJournal::factory( $config['fileJournal'], $name )
-			: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
+			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name );
 
 		return $config;
 	}

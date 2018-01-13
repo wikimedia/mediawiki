@@ -128,7 +128,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$factory = new LBFactorySimple( [
 			'servers' => $servers,
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 		$lb = $factory->getMainLB();
 
@@ -173,7 +173,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'test-db1'  => $wgDBserver,
 				'test-db2'  => $wgDBserver
 			],
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 		$lb = $factory->getMainLB();
 
@@ -334,7 +334,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'hostsByName' => [
 				'test-db1' => $wgDBserver,
 			],
-			'loadMonitorClass' => 'LoadMonitorNull',
+			'loadMonitorClass' => LoadMonitorNull::class,
 			'localDomain' => wfWikiID()
 		] );
 	}
@@ -486,7 +486,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			} catch ( \Wikimedia\Rdbms\DBConnectionError $e ) {
 				// expected
 			}
-			$this->assertInstanceOf( '\Wikimedia\Rdbms\DBConnectionError', $e );
+			$this->assertInstanceOf( \Wikimedia\Rdbms\DBConnectionError::class, $e );
 			$this->assertFalse( $db->isOpen() );
 		} else {
 			\MediaWiki\suppressWarnings();

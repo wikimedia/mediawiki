@@ -59,7 +59,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				[
-					'class' => 'ResourceLoaderImageModule',
+					'class' => ResourceLoaderImageModule::class,
 					'prefix' => 'oo-ui-icon',
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
@@ -100,7 +100,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'class' => 'ResourceLoaderImageModule',
+					'class' => ResourceLoaderImageModule::class,
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' =>
 						'.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',

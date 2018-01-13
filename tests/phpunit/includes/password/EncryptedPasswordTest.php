@@ -9,7 +9,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [
 			'both' => [
-				'class' => 'EncryptedPassword',
+				'class' => EncryptedPassword::class,
 				'underlying' => 'pbkdf2',
 				'secrets' => [
 					md5( 'secret1' ),
@@ -18,7 +18,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 				'cipher' => 'aes-256-cbc',
 			],
 			'secret1' => [
-				'class' => 'EncryptedPassword',
+				'class' => EncryptedPassword::class,
 				'underlying' => 'pbkdf2',
 				'secrets' => [
 					md5( 'secret1' ),
@@ -26,7 +26,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 				'cipher' => 'aes-256-cbc',
 			],
 			'secret2' => [
-				'class' => 'EncryptedPassword',
+				'class' => EncryptedPassword::class,
 				'underlying' => 'pbkdf2',
 				'secrets' => [
 					md5( 'secret2' ),
@@ -34,7 +34,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 				'cipher' => 'aes-256-cbc',
 			],
 			'pbkdf2' => [
-				'class' => 'Pbkdf2Password',
+				'class' => Pbkdf2Password::class,
 				'algo' => 'sha256',
 				'cost' => '10',
 				'length' => '64',

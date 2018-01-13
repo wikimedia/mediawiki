@@ -29,7 +29,7 @@ use MediaWiki\Logger\LoggerFactory;
  * Example config:
  *
  * $wgForeignFileRepos[] = [
- *   'class'                  => 'ForeignAPIRepo',
+ *   'class'                  => ForeignAPIRepo::class,
  *   'name'                   => 'shared',
  *   'apibase'                => 'https://en.wikipedia.org/w/api.php',
  *   'fetchDescription'       => true, // Optional

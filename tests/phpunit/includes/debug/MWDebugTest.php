@@ -99,7 +99,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 		MWDebug::appendDebugInfoToApiResult( $context, $result );
 
-		$this->assertInstanceOf( 'ApiResult', $result );
+		$this->assertInstanceOf( ApiResult::class, $result );
 		$data = $result->getResultData();
 
 		$expectedKeys = [ 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',

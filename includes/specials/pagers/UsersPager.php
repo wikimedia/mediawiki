@@ -277,7 +277,7 @@ class UsersPager extends AlphabeticPager {
 
 		$formDescriptor = [
 			'user' => [
-				'class' => 'HTMLUserTextField',
+				'class' => HTMLUserTextField::class,
 				'label' => $this->msg( 'listusersfrom' )->text(),
 				'name' => 'username',
 				'default' => $this->requestedUser,
@@ -286,7 +286,7 @@ class UsersPager extends AlphabeticPager {
 				'label' => $this->msg( 'group' )->text(),
 				'name' => 'group',
 				'default' => $this->requestedGroup,
-				'class' => 'HTMLSelectField',
+				'class' => HTMLSelectField::class,
 				'options' => $groupOptions,
 			],
 			'editsOnly' => [
@@ -311,7 +311,7 @@ class UsersPager extends AlphabeticPager {
 				'default' => $this->mDefaultDirection
 			],
 			'limithiddenfield' => [
-				'class' => 'HTMLHiddenField',
+				'class' => HTMLHiddenField::class,
 				'name' => 'limit',
 				'default' => $this->mLimit
 			]
@@ -322,14 +322,14 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $beforeSubmitButtonHookOut !== '' ) {
 			$formDescriptior[ 'beforeSubmitButtonHookOut' ] = [
-				'class' => 'HTMLInfoField',
+				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeSubmitButtonHookOut
 			];
 		}
 
 		$formDescriptor[ 'submit' ] = [
-			'class' => 'HTMLSubmitField',
+			'class' => HTMLSubmitField::class,
 			'buttonlabel-message' => 'listusers-submit',
 		];
 
@@ -338,7 +338,7 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $beforeClosingFieldsetHookOut !== '' ) {
 			$formDescriptior[ 'beforeClosingFieldsetHookOut' ] = [
-				'class' => 'HTMLInfoField',
+				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeClosingFieldsetHookOut
 			];

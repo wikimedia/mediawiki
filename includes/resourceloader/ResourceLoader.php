@@ -586,8 +586,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		if (
 			isset( $info['class'] ) &&
-			$info['class'] !== 'ResourceLoaderFileModule' &&
-			!is_subclass_of( $info['class'], 'ResourceLoaderFileModule' )
+			$info['class'] !== ResourceLoaderFileModule::class &&
+			!is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
 		) {
 			return false;
 		}

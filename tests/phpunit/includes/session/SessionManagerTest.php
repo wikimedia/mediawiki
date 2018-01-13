@@ -23,7 +23,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 			'SessionCacheType' => 'testSessionStore',
 			'ObjectCacheSessionExpiry' => 100,
 			'SessionProviders' => [
-				[ 'class' => 'DummySessionProvider' ],
+				[ 'class' => \DummySessionProvider::class ],
 			]
 		] );
 		$this->logger = new \TestLogger( false, function ( $m ) {
@@ -751,7 +751,7 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$manager = TestingAccessWrapper::newFromObject( $realManager );
 
 		$this->config->set( 'SessionProviders', [
-			[ 'class' => 'DummySessionProvider' ],
+			[ 'class' => \DummySessionProvider::class ],
 		] );
 		$providers = $manager->getProviders();
 		$this->assertArrayHasKey( 'DummySessionProvider', $providers );
@@ -761,8 +761,8 @@ class SessionManagerTest extends MediaWikiTestCase {
 		$this->assertSame( $realManager, $provider->getManager() );
 
 		$this->config->set( 'SessionProviders', [
-			[ 'class' => 'DummySessionProvider' ],
-			[ 'class' => 'DummySessionProvider' ],
+			[ 'class' => \DummySessionProvider::class ],
+			[ 'class' => \DummySessionProvider::class ],
 		] );
 		$manager->sessionProviders = null;
 		try {

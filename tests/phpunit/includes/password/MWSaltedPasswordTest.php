@@ -8,7 +8,7 @@
 class MWSaltedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [ 'B' => [
-			'class' => 'MWSaltedPassword',
+			'class' => MWSaltedPassword::class,
 		] ];
 	}
 
