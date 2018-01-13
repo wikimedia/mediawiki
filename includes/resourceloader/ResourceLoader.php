@@ -553,7 +553,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$object->setLogger( $this->logger );
 			} else {
 				if ( !isset( $info['class'] ) ) {
-					$class = 'ResourceLoaderFileModule';
+					$class = ResourceLoaderFileModule::class;
 				} else {
 					$class = $info['class'];
 				}
@@ -586,8 +586,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		if (
 			isset( $info['class'] ) &&
-			$info['class'] !== 'ResourceLoaderFileModule' &&
-			!is_subclass_of( $info['class'], 'ResourceLoaderFileModule' )
+			$info['class'] !== ResourceLoaderFileModule::class &&
+			!is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
 		) {
 			return false;
 		}

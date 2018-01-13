@@ -205,7 +205,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-				( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+				( isset( $info['class'] ) && $info['class'] == \HTMLMultiSelectField::class ) ) {
 			$options = HTMLFormField::flattenOptions( $info['options'] );
 			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
 			$val = [];
@@ -219,7 +219,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Handling for checkmatrix preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-				( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
+				( isset( $info['class'] ) && $info['class'] == \HTMLCheckMatrix::class ) ) {
 			$columns = HTMLFormField::flattenOptions( $info['columns'] );
 			$rows = HTMLFormField::flattenOptions( $info['rows'] );
 			$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
@@ -799,7 +799,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		$defaultPreferences['timecorrection'] = [
-			'class' => 'HTMLSelectOrOtherField',
+			'class' => \HTMLSelectOrOtherField::class,
 			'label-message' => 'timezonelegend',
 			'options' => $tzOptions,
 			'default' => $tzSetting,
@@ -1401,7 +1401,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $context,
-		$formClass = 'PreferencesForm',
+		$formClass = PreferencesForm::class,
 		array $remove = []
 	) {
 		$formDescriptor = $this->getFormDescriptor( $user, $context );

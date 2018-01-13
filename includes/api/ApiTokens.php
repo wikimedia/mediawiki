@@ -62,11 +62,11 @@ class ApiTokens extends ApiBase {
 		if ( $types ) {
 			return $types;
 		}
-		$types = [ 'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ] ];
+		$types = [ 'patrol' => [ ApiQueryRecentChanges::class, 'getPatrolToken' ] ];
 		$names = [ 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
 			'email', 'import', 'watch', 'options' ];
 		foreach ( $names as $name ) {
-			$types[$name] = [ 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' ];
+			$types[$name] = [ ApiQueryInfo::class, 'get' . ucfirst( $name ) . 'Token' ];
 		}
 		Hooks::run( 'ApiTokensGetTokenTypes', [ &$types ] );
 

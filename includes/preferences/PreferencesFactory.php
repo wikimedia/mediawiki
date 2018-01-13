@@ -62,7 +62,7 @@ interface PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $contextSource,
-		$formClass = 'PreferencesForm',
+		$formClass = \PreferencesForm::class,
 		array $remove = []
 	);
 

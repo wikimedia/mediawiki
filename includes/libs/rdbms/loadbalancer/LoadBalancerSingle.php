@@ -77,4 +77,4 @@ class LoadBalancerSingle extends LoadBalancer {
 	}
 }
 
-class_alias( 'Wikimedia\Rdbms\LoadBalancerSingle', 'LoadBalancerSingle' );
+class_alias( LoadBalancerSingle::class, 'LoadBalancerSingle' );

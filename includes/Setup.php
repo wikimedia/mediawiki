@@ -249,12 +249,12 @@ $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
  */
 $wgLockManagers[] = [
 	'name' => 'fsLockManager',
-	'class' => 'FSLockManager',
+	'class' => FSLockManager::class,
 	'lockDirectory' => "{$wgUploadDirectory}/lockdir",
 ];
 $wgLockManagers[] = [
 	'name' => 'nullLockManager',
-	'class' => 'NullLockManager',
+	'class' => NullLockManager::class,
 ];
 
 /**
@@ -276,7 +276,7 @@ $wgGalleryOptions += [
  */
 if ( !$wgLocalFileRepo ) {
 	$wgLocalFileRepo = [
-		'class' => 'LocalRepo',
+		'class' => LocalRepo::class,
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
 		'scriptDirUrl' => $wgScriptPath,
@@ -295,7 +295,7 @@ if ( !$wgLocalFileRepo ) {
 if ( $wgUseSharedUploads ) {
 	if ( $wgSharedUploadDBname ) {
 		$wgForeignFileRepos[] = [
-			'class' => 'ForeignDBRepo',
+			'class' => ForeignDBRepo::class,
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
 			'url' => $wgSharedUploadPath,
@@ -315,7 +315,7 @@ if ( $wgUseSharedUploads ) {
 		];
 	} else {
 		$wgForeignFileRepos[] = [
-			'class' => 'FileRepo',
+			'class' => FileRepo::class,
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
 			'url' => $wgSharedUploadPath,
@@ -329,7 +329,7 @@ if ( $wgUseSharedUploads ) {
 }
 if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = [
-		'class' => 'ForeignAPIRepo',
+		'class' => ForeignAPIRepo::class,
 		'name' => 'wikimediacommons',
 		'apibase' => 'https://commons.wikimedia.org/w/api.php',
 		'url' => 'https://upload.wikimedia.org/wikipedia/commons',
@@ -349,7 +349,7 @@ if ( !isset( $wgLocalFileRepo['backend'] ) ) {
 	$wgLocalFileRepo['backend'] = $wgLocalFileRepo['name'] . '-backend';
 }
 foreach ( $wgForeignFileRepos as &$repo ) {
-	if ( !isset( $repo['directory'] ) && $repo['class'] === 'ForeignAPIRepo' ) {
+	if ( !isset( $repo['directory'] ) && $repo['class'] === ForeignAPIRepo::class ) {
 		$repo['directory'] = $wgUploadDirectory; // b/c
 	}
 	if ( !isset( $repo['backend'] ) ) {
@@ -538,16 +538,16 @@ if ( $wgNewUserLog ) {
 	$wgLogTypes[] = 'newusers';
 	$wgLogNames['newusers'] = 'newuserlogpage';
 	$wgLogHeaders['newusers'] = 'newuserlogpagetext';
-	$wgLogActionsHandlers['newusers/newusers'] = 'NewUsersLogFormatter';
-	$wgLogActionsHandlers['newusers/create'] = 'NewUsersLogFormatter';
-	$wgLogActionsHandlers['newusers/create2'] = 'NewUsersLogFormatter';
-	$wgLogActionsHandlers['newusers/byemail'] = 'NewUsersLogFormatter';
-	$wgLogActionsHandlers['newusers/autocreate'] = 'NewUsersLogFormatter';
+	$wgLogActionsHandlers['newusers/newusers'] = NewUsersLogFormatter::class;
+	$wgLogActionsHandlers['newusers/create'] = NewUsersLogFormatter::class;
+	$wgLogActionsHandlers['newusers/create2'] = NewUsersLogFormatter::class;
+	$wgLogActionsHandlers['newusers/byemail'] = NewUsersLogFormatter::class;
+	$wgLogActionsHandlers['newusers/autocreate'] = NewUsersLogFormatter::class;
 }
 
 if ( $wgPageLanguageUseDB ) {
 	$wgLogTypes[] = 'pagelang';
-	$wgLogActionsHandlers['pagelang/pagelang'] = 'PageLangLogFormatter';
+	$wgLogActionsHandlers['pagelang/pagelang'] = PageLangLogFormatter::class;
 }
 
 if ( $wgCookieSecure === 'detect' ) {
@@ -698,7 +698,7 @@ if ( $wgMainWANCache === false ) {
 	// Sites using multiple datacenters can configure a relayer.
 	$wgMainWANCache = 'mediawiki-main-default';
 	$wgWANObjectCaches[$wgMainWANCache] = [
-		'class'    => 'WANObjectCache',
+		'class'    => WANObjectCache::class,
 		'cacheId'  => $wgMainCacheType,
 		'channels' => [ 'purge' => 'wancache-main-default-purge' ]
 	];

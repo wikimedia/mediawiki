@@ -29,18 +29,18 @@ return [
 	/**
 	 * Special modules who have their own classes
 	 */
-	'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+	'startup' => [ 'class' => ResourceLoaderStartUpModule::class ],
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
-	'site' => [ 'class' => 'ResourceLoaderSiteModule' ],
-	'site.styles' => [ 'class' => 'ResourceLoaderSiteStylesModule' ],
+	'site' => [ 'class' => ResourceLoaderSiteModule::class ],
+	'site.styles' => [ 'class' => ResourceLoaderSiteStylesModule::class ],
 	'noscript' => [
-		'class' => 'ResourceLoaderWikiModule',
+		'class' => ResourceLoaderWikiModule::class,
 		'styles' => [ 'MediaWiki:Noscript.css' ],
 		'group' => 'noscript',
 	],
 	'filepage' => [
-		'class' => 'ResourceLoaderWikiModule',
+		'class' => ResourceLoaderWikiModule::class,
 		'styles' => [ 'MediaWiki:Filepage.css' ],
 	],
 	'user.groups' => [
@@ -50,16 +50,16 @@ return [
 	],
 
 	// Scripts managed by the current user (stored in their user space)
-	'user' => [ 'class' => 'ResourceLoaderUserModule' ],
-	'user.styles' => [ 'class' => 'ResourceLoaderUserStylesModule' ],
+	'user' => [ 'class' => ResourceLoaderUserModule::class ],
+	'user.styles' => [ 'class' => ResourceLoaderUserStylesModule::class ],
 
 	// Populate mediawiki.user placeholders with information about the current user
-	'user.defaults' => [ 'class' => 'ResourceLoaderUserDefaultsModule' ],
-	'user.options' => [ 'class' => 'ResourceLoaderUserOptionsModule' ],
-	'user.tokens' => [ 'class' => 'ResourceLoaderUserTokensModule' ],
+	'user.defaults' => [ 'class' => ResourceLoaderUserDefaultsModule::class ],
+	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
+	'user.tokens' => [ 'class' => ResourceLoaderUserTokensModule::class ],
 
 	// Scripts for the dynamic language specific data, like grammar forms.
-	'mediawiki.language.data' => [ 'class' => 'ResourceLoaderLanguageDataModule' ],
+	'mediawiki.language.data' => [ 'class' => ResourceLoaderLanguageDataModule::class ],
 
 	/* MediaWiki base skinning modules */
 
@@ -105,7 +105,7 @@ return [
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
-		'class' => 'ResourceLoaderSkinModule',
+		'class' => ResourceLoaderSkinModule::class,
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
@@ -832,7 +832,7 @@ return [
 	/* MediaWiki */
 
 	'mediawiki' => [
-		'class' => 'ResourceLoaderRawFileModule',
+		'class' => ResourceLoaderRawFileModule::class,
 		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => [
 			'resources/src/mediawiki/mediawiki.js',
@@ -1017,7 +1017,7 @@ return [
 	],
 	'mediawiki.ForeignApi' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'class' => 'ResourceLoaderForeignApiModule',
+		'class' => ResourceLoaderForeignApiModule::class,
 		// Additional dependencies generated dynamically
 		'dependencies' => 'mediawiki.ForeignApi.core',
 	],
@@ -1227,7 +1227,7 @@ return [
 		]
 	],
 	'mediawiki.ForeignStructuredUpload.config' => [
-		'class' => 'ResourceLoaderUploadDialogModule',
+		'class' => ResourceLoaderUploadDialogModule::class,
 	],
 	'mediawiki.ForeignStructuredUpload' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
@@ -1366,7 +1366,7 @@ return [
 		]
 	],
 	'mediawiki.util' => [
-		'class' => 'ResourceLoaderMediaWikiUtilModule',
+		'class' => ResourceLoaderMediaWikiUtilModule::class,
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => [
 			'jquery.accessKeyLabel',
@@ -1391,7 +1391,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.toolbar' => [
-		'class' => 'ResourceLoaderEditToolbarModule',
+		'class' => ResourceLoaderEditToolbarModule::class,
 		'scripts' => 'resources/src/mediawiki.toolbar/toolbar.js',
 		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
 		'dependencies' => 'jquery.textSelection',
@@ -1596,7 +1596,7 @@ return [
 
 	'mediawiki.jqueryMsg' => [
 		// Add data for mediawiki.jqueryMsg, such as allowed tags
-		'class' => 'ResourceLoaderJqueryMsgModule',
+		'class' => ResourceLoaderJqueryMsgModule::class,
 		'scripts' => 'resources/src/mediawiki/mediawiki.jqueryMsg.js',
 		'dependencies' => [
 			'mediawiki.util',
@@ -1616,10 +1616,10 @@ return [
 		)
 	],
 
-	'mediawiki.language.names' => [ 'class' => 'ResourceLoaderLanguageNamesModule' ],
+	'mediawiki.language.names' => [ 'class' => ResourceLoaderLanguageNamesModule::class ],
 
 	'mediawiki.language.specialCharacters' => [
-		'class' => 'ResourceLoaderSpecialCharacterDataModule'
+		'class' => ResourceLoaderSpecialCharacterDataModule::class
 	],
 
 	/* MediaWiki Libs */
@@ -2724,7 +2724,7 @@ return [
 
 	// The core JavaScript library.
 	'oojs-ui-core' => [
-		'class' => 'ResourceLoaderOOUIFileModule',
+		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => [
 			'resources/lib/oojs-ui/oojs-ui-core.js',
 			'resources/src/oojs-ui-local.js',
@@ -2744,7 +2744,7 @@ return [
 	],
 	// This contains only the styles required by core widgets.
 	'oojs-ui-core.styles' => [
-		'class' => 'ResourceLoaderOOUIFileModule',
+		'class' => ResourceLoaderOOUIFileModule::class,
 		'styles' => [
 			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
 			'resources/src/oojs-ui-local.css', // HACK, see inside the file
@@ -2754,7 +2754,7 @@ return [
 	],
 	// Additional widgets and layouts module.
 	'oojs-ui-widgets' => [
-		'class' => 'ResourceLoaderOOUIFileModule',
+		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
 		'themeStyles' => 'widgets',
 		'dependencies' => [
@@ -2779,7 +2779,7 @@ return [
 	],
 	// Toolbar and tools module.
 	'oojs-ui-toolbars' => [
-		'class' => 'ResourceLoaderOOUIFileModule',
+		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-toolbars.js',
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
@@ -2795,7 +2795,7 @@ return [
 	],
 	// Windows and dialogs module.
 	'oojs-ui-windows' => [
-		'class' => 'ResourceLoaderOOUIFileModule',
+		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-windows.js',
 		'themeStyles' => 'windows',
 		'dependencies' => [
@@ -2814,71 +2814,71 @@ return [
 	],
 
 	'oojs-ui.styles.indicators' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'indicators',
 	],
 	'oojs-ui.styles.textures' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'textures',
 	],
 	'oojs-ui.styles.icons-accessibility' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-accessibility',
 	],
 	'oojs-ui.styles.icons-alerts' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-alerts',
 	],
 	'oojs-ui.styles.icons-content' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-content',
 	],
 	'oojs-ui.styles.icons-editing-advanced' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-advanced',
 	],
 	'oojs-ui.styles.icons-editing-core' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-core',
 	],
 	'oojs-ui.styles.icons-editing-list' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-list',
 	],
 	'oojs-ui.styles.icons-editing-styling' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-editing-styling',
 	],
 	'oojs-ui.styles.icons-interactions' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-interactions',
 	],
 	'oojs-ui.styles.icons-layout' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-layout',
 	],
 	'oojs-ui.styles.icons-location' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-location',
 	],
 	'oojs-ui.styles.icons-media' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-media',
 	],
 	'oojs-ui.styles.icons-moderation' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-moderation',
 	],
 	'oojs-ui.styles.icons-movement' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-movement',
 	],
 	'oojs-ui.styles.icons-user' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-user',
 	],
 	'oojs-ui.styles.icons-wikimedia' => [
-		'class' => 'ResourceLoaderOOUIImageModule',
+		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-wikimedia',
 	],
 ];

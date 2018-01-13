@@ -50,143 +50,143 @@ class SpecialPageFactory {
 	 */
 	private static $coreList = [
 		// Maintenance Reports
-		'BrokenRedirects' => 'BrokenRedirectsPage',
-		'Deadendpages' => 'DeadendPagesPage',
-		'DoubleRedirects' => 'DoubleRedirectsPage',
-		'Longpages' => 'LongPagesPage',
-		'Ancientpages' => 'AncientPagesPage',
-		'Lonelypages' => 'LonelyPagesPage',
-		'Fewestrevisions' => 'FewestrevisionsPage',
-		'Withoutinterwiki' => 'WithoutInterwikiPage',
-		'Protectedpages' => 'SpecialProtectedpages',
-		'Protectedtitles' => 'SpecialProtectedtitles',
-		'Shortpages' => 'ShortPagesPage',
-		'Uncategorizedcategories' => 'UncategorizedCategoriesPage',
-		'Uncategorizedimages' => 'UncategorizedImagesPage',
-		'Uncategorizedpages' => 'UncategorizedPagesPage',
-		'Uncategorizedtemplates' => 'UncategorizedTemplatesPage',
-		'Unusedcategories' => 'UnusedCategoriesPage',
-		'Unusedimages' => 'UnusedimagesPage',
-		'Unusedtemplates' => 'UnusedtemplatesPage',
-		'Unwatchedpages' => 'UnwatchedpagesPage',
-		'Wantedcategories' => 'WantedCategoriesPage',
-		'Wantedfiles' => 'WantedFilesPage',
-		'Wantedpages' => 'WantedPagesPage',
-		'Wantedtemplates' => 'WantedTemplatesPage',
+		'BrokenRedirects' => BrokenRedirectsPage::class,
+		'Deadendpages' => DeadendPagesPage::class,
+		'DoubleRedirects' => DoubleRedirectsPage::class,
+		'Longpages' => LongPagesPage::class,
+		'Ancientpages' => AncientPagesPage::class,
+		'Lonelypages' => LonelyPagesPage::class,
+		'Fewestrevisions' => FewestrevisionsPage::class,
+		'Withoutinterwiki' => WithoutInterwikiPage::class,
+		'Protectedpages' => SpecialProtectedpages::class,
+		'Protectedtitles' => SpecialProtectedtitles::class,
+		'Shortpages' => ShortPagesPage::class,
+		'Uncategorizedcategories' => UncategorizedCategoriesPage::class,
+		'Uncategorizedimages' => UncategorizedImagesPage::class,
+		'Uncategorizedpages' => UncategorizedPagesPage::class,
+		'Uncategorizedtemplates' => UncategorizedTemplatesPage::class,
+		'Unusedcategories' => UnusedCategoriesPage::class,
+		'Unusedimages' => UnusedimagesPage::class,
+		'Unusedtemplates' => UnusedtemplatesPage::class,
+		'Unwatchedpages' => UnwatchedpagesPage::class,
+		'Wantedcategories' => WantedCategoriesPage::class,
+		'Wantedfiles' => WantedFilesPage::class,
+		'Wantedpages' => WantedPagesPage::class,
+		'Wantedtemplates' => WantedTemplatesPage::class,
 
 		// List of pages
-		'Allpages' => 'SpecialAllPages',
-		'Prefixindex' => 'SpecialPrefixindex',
-		'Categories' => 'SpecialCategories',
-		'Listredirects' => 'ListredirectsPage',
-		'PagesWithProp' => 'SpecialPagesWithProp',
-		'TrackingCategories' => 'SpecialTrackingCategories',
+		'Allpages' => SpecialAllPages::class,
+		'Prefixindex' => SpecialPrefixindex::class,
+		'Categories' => SpecialCategories::class,
+		'Listredirects' => ListredirectsPage::class,
+		'PagesWithProp' => SpecialPagesWithProp::class,
+		'TrackingCategories' => SpecialTrackingCategories::class,
 
 		// Authentication
-		'Userlogin' => 'SpecialUserLogin',
-		'Userlogout' => 'SpecialUserLogout',
-		'CreateAccount' => 'SpecialCreateAccount',
-		'LinkAccounts' => 'SpecialLinkAccounts',
-		'UnlinkAccounts' => 'SpecialUnlinkAccounts',
-		'ChangeCredentials' => 'SpecialChangeCredentials',
-		'RemoveCredentials' => 'SpecialRemoveCredentials',
+		'Userlogin' => SpecialUserLogin::class,
+		'Userlogout' => SpecialUserLogout::class,
+		'CreateAccount' => SpecialCreateAccount::class,
+		'LinkAccounts' => SpecialLinkAccounts::class,
+		'UnlinkAccounts' => SpecialUnlinkAccounts::class,
+		'ChangeCredentials' => SpecialChangeCredentials::class,
+		'RemoveCredentials' => SpecialRemoveCredentials::class,
 
 		// Users and rights
-		'Activeusers' => 'SpecialActiveUsers',
-		'Block' => 'SpecialBlock',
-		'Unblock' => 'SpecialUnblock',
-		'BlockList' => 'SpecialBlockList',
-		'AutoblockList' => 'SpecialAutoblockList',
-		'ChangePassword' => 'SpecialChangePassword',
-		'BotPasswords' => 'SpecialBotPasswords',
-		'PasswordReset' => 'SpecialPasswordReset',
-		'DeletedContributions' => 'DeletedContributionsPage',
-		'Preferences' => 'SpecialPreferences',
-		'ResetTokens' => 'SpecialResetTokens',
-		'Contributions' => 'SpecialContributions',
-		'Listgrouprights' => 'SpecialListGroupRights',
-		'Listgrants' => 'SpecialListGrants',
-		'Listusers' => 'SpecialListUsers',
-		'Listadmins' => 'SpecialListAdmins',
-		'Listbots' => 'SpecialListBots',
-		'Userrights' => 'UserrightsPage',
-		'EditWatchlist' => 'SpecialEditWatchlist',
+		'Activeusers' => SpecialActiveUsers::class,
+		'Block' => SpecialBlock::class,
+		'Unblock' => SpecialUnblock::class,
+		'BlockList' => SpecialBlockList::class,
+		'AutoblockList' => SpecialAutoblockList::class,
+		'ChangePassword' => SpecialChangePassword::class,
+		'BotPasswords' => SpecialBotPasswords::class,
+		'PasswordReset' => SpecialPasswordReset::class,
+		'DeletedContributions' => DeletedContributionsPage::class,
+		'Preferences' => SpecialPreferences::class,
+		'ResetTokens' => SpecialResetTokens::class,
+		'Contributions' => SpecialContributions::class,
+		'Listgrouprights' => SpecialListGroupRights::class,
+		'Listgrants' => SpecialListGrants::class,
+		'Listusers' => SpecialListUsers::class,
+		'Listadmins' => SpecialListAdmins::class,
+		'Listbots' => SpecialListBots::class,
+		'Userrights' => UserrightsPage::class,
+		'EditWatchlist' => SpecialEditWatchlist::class,
 
 		// Recent changes and logs
-		'Newimages' => 'SpecialNewFiles',
-		'Log' => 'SpecialLog',
-		'Watchlist' => 'SpecialWatchlist',
-		'Newpages' => 'SpecialNewpages',
-		'Recentchanges' => 'SpecialRecentChanges',
-		'Recentchangeslinked' => 'SpecialRecentChangesLinked',
-		'Tags' => 'SpecialTags',
+		'Newimages' => SpecialNewFiles::class,
+		'Log' => SpecialLog::class,
+		'Watchlist' => SpecialWatchlist::class,
+		'Newpages' => SpecialNewpages::class,
+		'Recentchanges' => SpecialRecentChanges::class,
+		'Recentchangeslinked' => SpecialRecentChangesLinked::class,
+		'Tags' => SpecialTags::class,
 
 		// Media reports and uploads
-		'Listfiles' => 'SpecialListFiles',
-		'Filepath' => 'SpecialFilepath',
-		'MediaStatistics' => 'MediaStatisticsPage',
-		'MIMEsearch' => 'MIMEsearchPage',
-		'FileDuplicateSearch' => 'FileDuplicateSearchPage',
-		'Upload' => 'SpecialUpload',
-		'UploadStash' => 'SpecialUploadStash',
-		'ListDuplicatedFiles' => 'ListDuplicatedFilesPage',
+		'Listfiles' => SpecialListFiles::class,
+		'Filepath' => SpecialFilepath::class,
+		'MediaStatistics' => MediaStatisticsPage::class,
+		'MIMEsearch' => MIMEsearchPage::class,
+		'FileDuplicateSearch' => FileDuplicateSearchPage::class,
+		'Upload' => SpecialUpload::class,
+		'UploadStash' => SpecialUploadStash::class,
+		'ListDuplicatedFiles' => ListDuplicatedFilesPage::class,
 
 		// Data and tools
-		'ApiSandbox' => 'SpecialApiSandbox',
-		'Statistics' => 'SpecialStatistics',
-		'Allmessages' => 'SpecialAllMessages',
-		'Version' => 'SpecialVersion',
-		'Lockdb' => 'SpecialLockdb',
-		'Unlockdb' => 'SpecialUnlockdb',
+		'ApiSandbox' => SpecialApiSandbox::class,
+		'Statistics' => SpecialStatistics::class,
+		'Allmessages' => SpecialAllMessages::class,
+		'Version' => SpecialVersion::class,
+		'Lockdb' => SpecialLockdb::class,
+		'Unlockdb' => SpecialUnlockdb::class,
 
 		// Redirecting special pages
-		'LinkSearch' => 'LinkSearchPage',
-		'Randompage' => 'RandomPage',
-		'RandomInCategory' => 'SpecialRandomInCategory',
-		'Randomredirect' => 'SpecialRandomredirect',
-		'Randomrootpage' => 'SpecialRandomrootpage',
-		'GoToInterwiki' => 'SpecialGoToInterwiki',
+		'LinkSearch' => LinkSearchPage::class,
+		'Randompage' => RandomPage::class,
+		'RandomInCategory' => SpecialRandomInCategory::class,
+		'Randomredirect' => SpecialRandomredirect::class,
+		'Randomrootpage' => SpecialRandomrootpage::class,
+		'GoToInterwiki' => SpecialGoToInterwiki::class,
 
 		// High use pages
-		'Mostlinkedcategories' => 'MostlinkedCategoriesPage',
-		'Mostimages' => 'MostimagesPage',
-		'Mostinterwikis' => 'MostinterwikisPage',
-		'Mostlinked' => 'MostlinkedPage',
-		'Mostlinkedtemplates' => 'MostlinkedTemplatesPage',
-		'Mostcategories' => 'MostcategoriesPage',
-		'Mostrevisions' => 'MostrevisionsPage',
+		'Mostlinkedcategories' => MostlinkedCategoriesPage::class,
+		'Mostimages' => MostimagesPage::class,
+		'Mostinterwikis' => MostinterwikisPage::class,
+		'Mostlinked' => MostlinkedPage::class,
+		'Mostlinkedtemplates' => MostlinkedTemplatesPage::class,
+		'Mostcategories' => MostcategoriesPage::class,
+		'Mostrevisions' => MostrevisionsPage::class,
 
 		// Page tools
-		'ComparePages' => 'SpecialComparePages',
-		'Export' => 'SpecialExport',
-		'Import' => 'SpecialImport',
-		'Undelete' => 'SpecialUndelete',
-		'Whatlinkshere' => 'SpecialWhatLinksHere',
-		'MergeHistory' => 'SpecialMergeHistory',
-		'ExpandTemplates' => 'SpecialExpandTemplates',
+		'ComparePages' => SpecialComparePages::class,
+		'Export' => SpecialExport::class,
+		'Import' => SpecialImport::class,
+		'Undelete' => SpecialUndelete::class,
+		'Whatlinkshere' => SpecialWhatLinksHere::class,
+		'MergeHistory' => SpecialMergeHistory::class,
+		'ExpandTemplates' => SpecialExpandTemplates::class,
 
 		// Other
-		'Booksources' => 'SpecialBookSources',
+		'Booksources' => SpecialBookSources::class,
 
 		// Unlisted / redirects
-		'ApiHelp' => 'SpecialApiHelp',
-		'Blankpage' => 'SpecialBlankpage',
-		'Diff' => 'SpecialDiff',
-		'EditTags' => 'SpecialEditTags',
-		'Emailuser' => 'SpecialEmailUser',
-		'Movepage' => 'MovePageForm',
-		'Mycontributions' => 'SpecialMycontributions',
-		'MyLanguage' => 'SpecialMyLanguage',
-		'Mypage' => 'SpecialMypage',
-		'Mytalk' => 'SpecialMytalk',
-		'Myuploads' => 'SpecialMyuploads',
-		'AllMyUploads' => 'SpecialAllMyUploads',
-		'PermanentLink' => 'SpecialPermanentLink',
-		'Redirect' => 'SpecialRedirect',
-		'Revisiondelete' => 'SpecialRevisionDelete',
-		'RunJobs' => 'SpecialRunJobs',
-		'Specialpages' => 'SpecialSpecialpages',
-		'PageData' => 'SpecialPageData'
+		'ApiHelp' => SpecialApiHelp::class,
+		'Blankpage' => SpecialBlankpage::class,
+		'Diff' => SpecialDiff::class,
+		'EditTags' => SpecialEditTags::class,
+		'Emailuser' => SpecialEmailUser::class,
+		'Movepage' => MovePageForm::class,
+		'Mycontributions' => SpecialMycontributions::class,
+		'MyLanguage' => SpecialMyLanguage::class,
+		'Mypage' => SpecialMypage::class,
+		'Mytalk' => SpecialMytalk::class,
+		'Myuploads' => SpecialMyuploads::class,
+		'AllMyUploads' => SpecialAllMyUploads::class,
+		'PermanentLink' => SpecialPermanentLink::class,
+		'Redirect' => SpecialRedirect::class,
+		'Revisiondelete' => SpecialRevisionDelete::class,
+		'RunJobs' => SpecialRunJobs::class,
+		'Specialpages' => SpecialSpecialpages::class,
+		'PageData' => SpecialPageData::class,
 	];
 
 	private static $list;
@@ -237,27 +237,27 @@ class SpecialPageFactory {
 			self::$list = self::$coreList;
 
 			if ( !$wgDisableInternalSearch ) {
-				self::$list['Search'] = 'SpecialSearch';
+				self::$list['Search'] = SpecialSearch::class;
 			}
 
 			if ( $wgEmailAuthentication ) {
-				self::$list['Confirmemail'] = 'EmailConfirmation';
-				self::$list['Invalidateemail'] = 'EmailInvalidation';
+				self::$list['Confirmemail'] = EmailConfirmation::class;
+				self::$list['Invalidateemail'] = EmailInvalidation::class;
 			}
 
 			if ( $wgEnableEmail ) {
-				self::$list['ChangeEmail'] = 'SpecialChangeEmail';
+				self::$list['ChangeEmail'] = SpecialChangeEmail::class;
 			}
 
 			if ( $wgEnableJavaScriptTest ) {
-				self::$list['JavaScriptTest'] = 'SpecialJavaScriptTest';
+				self::$list['JavaScriptTest'] = SpecialJavaScriptTest::class;
 			}
 
 			if ( $wgPageLanguageUseDB ) {
-				self::$list['PageLanguage'] = 'SpecialPageLanguage';
+				self::$list['PageLanguage'] = SpecialPageLanguage::class;
 			}
 			if ( $wgContentHandlerUseDB ) {
-				self::$list['ChangeContentModel'] = 'SpecialChangeContentModel';
+				self::$list['ChangeContentModel'] = SpecialChangeContentModel::class;
 			}
 
 			// Add extension special pages
