@@ -21,7 +21,7 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testNewDefault() {
 		$ret = MWRestrictions::newDefault();
-		$this->assertInstanceOf( 'MWRestrictions', $ret );
+		$this->assertInstanceOf( MWRestrictions::class, $ret );
 		$this->assertSame(
 			'{"IPAddresses":["0.0.0.0/0","::/0"]}',
 			$ret->toJson()
@@ -41,7 +41,7 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	public function testArray( $data, $expect ) {
 		if ( $expect === true ) {
 			$ret = MWRestrictions::newFromArray( $data );
-			$this->assertInstanceOf( 'MWRestrictions', $ret );
+			$this->assertInstanceOf( MWRestrictions::class, $ret );
 			$this->assertSame( $data, $ret->toArray() );
 		} else {
 			try {
@@ -89,7 +89,7 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	public function testJson( $json, $expect ) {
 		if ( is_array( $expect ) ) {
 			$ret = MWRestrictions::newFromJson( $json );
-			$this->assertInstanceOf( 'MWRestrictions', $ret );
+			$this->assertInstanceOf( MWRestrictions::class, $ret );
 			$this->assertSame( $expect, $ret->toArray() );
 
 			$this->assertSame( $json, $ret->toJson( false ) );
@@ -180,7 +180,7 @@ class MWRestrictionsTest extends PHPUnit_Framework_TestCase {
 	public function provideCheck() {
 		$ret = [];
 
-		$mockBuilder = $this->getMockBuilder( 'FauxRequest' )
+		$mockBuilder = $this->getMockBuilder( FauxRequest::class )
 			->setMethods( [ 'getIP' ] );
 
 		foreach ( self::provideCheckIP() as $checkIP ) {

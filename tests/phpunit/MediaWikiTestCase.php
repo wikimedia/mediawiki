@@ -260,7 +260,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		 * which we can't allow, as that would open a new connection for mysql.
 		 * Replace with a HashBag. They would not be going to persist anyway.
 		 */
-		$hashCache = [ 'class' => 'HashBagOStuff', 'reportDupes' => false ];
+		$hashCache = [ 'class' => HashBagOStuff::class, 'reportDupes' => false ];
 		$objectCaches = [
 				CACHE_DB => $hashCache,
 				CACHE_ACCEL => $hashCache,
@@ -273,7 +273,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
 		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
-		$defaultOverrides->set( 'JobTypeConf', [ 'default' => [ 'class' => 'JobQueueMemory' ] ] );
+		$defaultOverrides->set( 'JobTypeConf', [ 'default' => [ 'class' => JobQueueMemory::class ] ] );
 
 		// Use a fast hash algorithm to hash passwords.
 		$defaultOverrides->set( 'PasswordDefault', 'A' );

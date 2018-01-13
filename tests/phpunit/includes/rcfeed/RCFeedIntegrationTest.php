@@ -27,8 +27,8 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 	 * @covers MachineReadableRCFeedFormatter::getLine
 	 */
 	public function testNotify() {
-		$feed = $this->getMockBuilder( 'RCFeedEngine' )
-			->setConstructorArgs( [ [ 'formatter' => 'JSONRCFeedFormatter' ] ] )
+		$feed = $this->getMockBuilder( RCFeedEngine::class )
+			->setConstructorArgs( [ [ 'formatter' => JSONRCFeedFormatter::class ] ] )
 			->setMethods( [ 'send' ] )
 			->getMock();
 
@@ -71,7 +71,7 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 			'wgRCFeeds' => [
 				'myfeed' => [
 					'uri' => 'test://localhost:1234',
-					'formatter' => 'JSONRCFeedFormatter',
+					'formatter' => JSONRCFeedFormatter::class,
 				],
 			],
 			'wgRCEngines' => [

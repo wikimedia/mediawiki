@@ -174,7 +174,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertInstanceOf(
-			'Block',
+			Block::class,
 			$userBlock,
 			"'$username' block block object should be existent"
 		);

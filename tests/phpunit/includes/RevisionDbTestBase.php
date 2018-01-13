@@ -837,9 +837,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function provideGetContentHandler() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
-			[ 'hello world', 'Help:Hello', null, null, 'WikitextContentHandler' ],
-			[ 'hello world', 'User:hello/there.css', null, null, 'CssContentHandler' ],
-			[ serialize( 'hello world' ), 'Dummy:Hello', null, null, 'DummyContentHandlerForTesting' ],
+			[ 'hello world', 'Help:Hello', null, null, WikitextContentHandler::class ],
+			[ 'hello world', 'User:hello/there.css', null, null, CssContentHandler::class ],
+			[ serialize( 'hello world' ), 'Dummy:Hello', null, null, DummyContentHandlerForTesting::class ],
 		];
 	}
 

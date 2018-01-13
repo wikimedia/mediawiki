@@ -14,7 +14,7 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider getDateCondProvider
 	 */
 	public function testGetDateCond( $inputYear, $inputMonth, $inputDay, $expected ) {
-		$pager = $this->getMockForAbstractClass( 'RangeChronologicalPager' );
+		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
 		$this->assertEquals(
 			$expected,
 			wfTimestamp( TS_MW, $pager->getDateCond( $inputYear, $inputMonth, $inputDay ) )
@@ -42,7 +42,7 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider getDateRangeCondProvider
 	 */
 	public function testGetDateRangeCond( $start, $end, $expected ) {
-		$pager = $this->getMockForAbstractClass( 'RangeChronologicalPager' );
+		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
 		$this->assertArrayEquals( $expected, $pager->getDateRangeCond( $start, $end ) );
 	}
 
@@ -84,7 +84,7 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider getDateRangeCondInvalidProvider
 	 */
 	public function testGetDateRangeCondInvalid( $start, $end ) {
-		$pager = $this->getMockForAbstractClass( 'RangeChronologicalPager' );
+		$pager = $this->getMockForAbstractClass( RangeChronologicalPager::class );
 		$this->assertEquals( null, $pager->getDateRangeCond( $start, $end ) );
 	}
 

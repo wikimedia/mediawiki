@@ -22,7 +22,7 @@ class ApiContinuationManagerTest extends MediaWikiTestCase {
 		$generator = new MockApiQueryBase( 'generator' );
 
 		$manager = self::getManager( '', $allModules, [ 'mock1', 'mock2' ] );
-		$this->assertSame( 'ApiMain', $manager->getSource() );
+		$this->assertSame( ApiMain::class, $manager->getSource() );
 		$this->assertSame( false, $manager->isGeneratorDone() );
 		$this->assertSame( $allModules, $manager->getRunModules() );
 		$manager->addContinueParam( $allModules[0], 'm1continue', [ 1, 2 ] );

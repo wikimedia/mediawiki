@@ -48,7 +48,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	public function setUp() {
 		parent::setUp();
 		self::$notifyCallCounter = 0;
-		self::$mockRecentChange = self::getMock( 'RecentChange' );
+		self::$mockRecentChange = self::getMock( RecentChange::class );
 
 		$this->setContentLang( 'qqx' );
 	}

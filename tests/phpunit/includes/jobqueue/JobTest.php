@@ -18,7 +18,7 @@ class JobTest extends MediaWikiTestCase {
 	}
 
 	public function provideTestToString() {
-		$mockToStringObj = $this->getMockBuilder( 'stdClass' )
+		$mockToStringObj = $this->getMockBuilder( stdClass::class )
 			->setMethods( [ '__toString' ] )->getMock();
 		$mockToStringObj->expects( $this->any() )
 			->method( '__toString' )
@@ -86,7 +86,7 @@ class JobTest extends MediaWikiTestCase {
 
 	public function getMockJob( $params ) {
 		$mock = $this->getMockForAbstractClass(
-			'Job',
+			Job::class,
 			[ 'someCommand', new Title(), $params ],
 			'SomeJob'
 		);

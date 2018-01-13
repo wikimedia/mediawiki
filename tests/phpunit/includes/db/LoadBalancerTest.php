@@ -111,7 +111,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 
 		$dbw = $lb->getConnection( DB_MASTER );

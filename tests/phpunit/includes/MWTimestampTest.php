@@ -23,7 +23,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
-		$user = $this->createMock( 'User' );
+		$user = $this->createMock( User::class );
 		$user->expects( $this->any() )
 			->method( 'getOption' )
 			->with( 'timecorrection' )
@@ -156,7 +156,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
-		$user = $this->createMock( 'User' );
+		$user = $this->createMock( User::class );
 		$user->expects( $this->any() )
 			->method( 'getOption' )
 			->with( 'timecorrection' )
