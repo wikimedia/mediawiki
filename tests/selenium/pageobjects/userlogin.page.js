@@ -19,5 +19,9 @@ class UserLoginPage extends Page {
 		this.loginButton.click();
 	}
 
+	loginAdmin() {
+		this.login( browser.options.username, browser.options.password );
+	}
+
 }
 module.exports = new UserLoginPage();
