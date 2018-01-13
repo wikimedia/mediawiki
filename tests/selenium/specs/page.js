@@ -9,6 +9,10 @@ describe( 'Page', function () {
 	var content,
 		name;
 
+	function getTestString() {
+		return Math.random().toString() + '-öäü-♠♣♥♦';
+	}
+
 	before( function () {
 		// disable VisualEditor welcome dialog
 		UserLoginPage.open();
@@ -17,8 +21,8 @@ describe( 'Page', function () {
 
 	beforeEach( function () {
 		browser.deleteCookie();
-		content = Math.random().toString();
-		name = Math.random().toString();
+		content = getTestString();
+		name = getTestString();
 	} );
 
 	it( 'should be creatable', function () {
@@ -34,19 +38,17 @@ describe( 'Page', function () {
 
 	it( 'should be editable', function () {
 
-		var content2 = Math.random().toString();
-
 		// create
 		browser.call( function () {
 			return EditPage.apiEdit( name, content );
 		} );
 
 		// edit
-		EditPage.edit( name, content2 );
+		EditPage.edit( name, content );
 
 		// check
 		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content2 );
+		assert.equal( EditPage.displayedContent.getText(), content );
 
 	} );
 
