@@ -267,7 +267,7 @@ class Preferences {
 	public static function getFormObject(
 		$user,
 		IContextSource $context,
-		$formClass = 'PreferencesForm',
+		$formClass = PreferencesForm::class,
 		array $remove = []
 	) {
 		$preferencesFactory = self::getDefaultPreferencesFactory();

@@ -149,7 +149,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		if ( $canChangeUser !== null ) {
 			$methods[] = 'canChangeUser';
 		}
-		$provider = $this->getMockBuilder( 'DummySessionProvider' )
+		$provider = $this->getMockBuilder( \DummySessionProvider::class )
 			->setMethods( $methods )
 			->getMock();
 		$provider->expects( $this->any() )->method( '__toString' )
@@ -968,7 +968,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$p->expects( $this->atMost( 1 ) )->method( 'postAuthentication' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
 					if ( $user !== null ) {
-						$this->assertInstanceOf( 'User', $user );
+						$this->assertInstanceOf( \User::class, $user );
 						$this->assertSame( 'UTSysop', $user->getName() );
 					}
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
@@ -1998,7 +1998,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				->willReturnCallback( function ( $user, $creator, $response )
 					use ( $constraint, $p, $username )
 				{
-					$this->assertInstanceOf( 'User', $user );
+					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( $username, $user->getName() );
 					$this->assertSame( 'UTSysop', $creator->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
@@ -2262,7 +2262,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Set up lots of mocks...
 		$mock = $this->getMockForAbstractClass(
-			"MediaWiki\\Auth\\PrimaryAuthenticationProvider", []
+			\MediaWiki\Auth\PrimaryAuthenticationProvider::class, []
 		);
 		$mock->expects( $this->any() )->method( 'getUniqueId' )
 			->will( $this->returnValue( 'primary' ) );
@@ -2668,7 +2668,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Test addToDatabase fails
 		$session->clear();
-		$user = $this->getMockBuilder( 'User' )
+		$user = $this->getMockBuilder( \User::class )
 			->setMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->returnValue( \Status::newFatal( 'because' ) ) );
@@ -2690,7 +2690,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$backoffKey = wfMemcKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
 		$this->assertFalse( $cache->get( $backoffKey ), 'sanity check' );
 		$session->clear();
-		$user = $this->getMockBuilder( 'User' )
+		$user = $this->getMockBuilder( \User::class )
 			->setMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->throwException( new \Exception( 'Excepted' ) ) );
@@ -2714,7 +2714,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 		// Test addToDatabase fails because the user already exists.
 		$session->clear();
-		$user = $this->getMockBuilder( 'User' )
+		$user = $this->getMockBuilder( \User::class )
 			->setMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->returnCallback( function () use ( $username, &$user ) {
@@ -3474,7 +3474,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$p->postCalled = false;
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountLink' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
-					$this->assertInstanceOf( 'User', $user );
+					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( 'UTSysop', $user->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );

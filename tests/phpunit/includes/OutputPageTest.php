@@ -311,7 +311,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			'wgResourceLoaderDebug' => false,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
 		] );
-		$class = new ReflectionClass( 'OutputPage' );
+		$class = new ReflectionClass( OutputPage::class );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
 		$method->setAccessible( true );
 		$ctx = new RequestContext();
@@ -398,7 +398,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$ctx = new RequestContext();
 		$ctx->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'fallback' ) );
 		$ctx->setLanguage( 'en' );
-		$outputPage = $this->getMockBuilder( 'OutputPage' )
+		$outputPage = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ $ctx ] )
 			->setMethods( [ 'isUserCssPreview', 'buildCssLinksArray' ] )
 			->getMock();
@@ -434,7 +434,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 */
 	public function testVaryHeaders( $calls, $vary, $key ) {
 		// get rid of default Vary fields
-		$outputPage = $this->getMockBuilder( 'OutputPage' )
+		$outputPage = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
 			->setMethods( [ 'getCacheVaryCookies' ] )
 			->getMock();
@@ -539,7 +539,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				'page_title' => 'Test2'
 			]
 		] );
-		$outputPage = $this->getMockBuilder( 'OutputPage' )
+		$outputPage = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
 			->setMethods( [ 'addCategoryLinksToLBAndGetResult' ] )
 			->getMock();

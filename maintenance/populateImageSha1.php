@@ -178,5 +178,5 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateImageSha1";
+$maintClass = PopulateImageSha1::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

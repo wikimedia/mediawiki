@@ -129,5 +129,5 @@ class MinifyScript extends Maintenance {
 	}
 }
 
-$maintClass = 'MinifyScript';
+$maintClass = MinifyScript::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

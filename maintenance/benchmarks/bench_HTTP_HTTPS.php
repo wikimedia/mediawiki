@@ -59,5 +59,5 @@ class BenchHttpHttps extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchHttpHttps';
+$maintClass = BenchHttpHttps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

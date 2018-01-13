@@ -20,6 +20,6 @@ class LicensesTest extends MediaWikiTestCase {
 			'name' => 'AnotherName',
 			'licenses' => $str,
 		] );
-		$this->assertThat( $lc, $this->isInstanceOf( 'Licenses' ) );
+		$this->assertThat( $lc, $this->isInstanceOf( Licenses::class ) );
 	}
 }

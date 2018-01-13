@@ -111,5 +111,5 @@ class RollbackEdits extends Maintenance {
 	}
 }
 
-$maintClass = 'RollbackEdits';
+$maintClass = RollbackEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

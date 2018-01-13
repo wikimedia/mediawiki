@@ -238,7 +238,7 @@ class SpecialExport extends SpecialPage {
 
 		$formDescriptor += [
 			'textarea' => [
-				'class' => 'HTMLTextAreaField',
+				'class' => HTMLTextAreaField::class,
 				'name' => 'pages',
 				'label-message' => 'export-manual',
 				'nodata' => true,

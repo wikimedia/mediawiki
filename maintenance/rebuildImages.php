@@ -233,5 +233,5 @@ class ImageBuilder extends Maintenance {
 	}
 }
 
-$maintClass = 'ImageBuilder';
+$maintClass = ImageBuilder::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

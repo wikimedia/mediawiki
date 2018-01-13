@@ -73,5 +73,5 @@ class JSParseHelper extends Maintenance {
 	}
 }
 
-$maintClass = "JSParseHelper";
+$maintClass = JSParseHelper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

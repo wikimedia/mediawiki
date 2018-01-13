@@ -33,7 +33,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPasswordFactory();
-		$this->assertInstanceOf( 'PasswordFactory', $obj );
+		$this->assertInstanceOf( \PasswordFactory::class, $obj );
 		$this->assertSame( $obj, $providerPriv->getPasswordFactory() );
 	}
 
@@ -46,10 +46,10 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$obj = $providerPriv->getPassword( null );
-		$this->assertInstanceOf( 'Password', $obj );
+		$this->assertInstanceOf( \Password::class, $obj );
 
 		$obj = $providerPriv->getPassword( 'invalid' );
-		$this->assertInstanceOf( 'Password', $obj );
+		$this->assertInstanceOf( \Password::class, $obj );
 	}
 
 	public function testGetNewPasswordExpiry() {

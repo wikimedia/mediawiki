@@ -364,7 +364,7 @@ abstract class Installer {
 
 		// disable (problematic) object cache types explicitly, preserving all other (working) ones
 		// bug T113843
-		$emptyCache = [ 'class' => 'EmptyBagOStuff' ];
+		$emptyCache = [ 'class' => EmptyBagOStuff::class ];
 
 		$objectCaches = [
 				CACHE_NONE => $emptyCache,
@@ -1677,7 +1677,7 @@ abstract class Installer {
 		// implementation that won't stomp on PHP's cookies.
 		$GLOBALS['wgSessionProviders'] = [
 			[
-				'class' => 'InstallerSessionProvider',
+				'class' => InstallerSessionProvider::class,
 				'args' => [ [
 					'priority' => 1,
 				] ]

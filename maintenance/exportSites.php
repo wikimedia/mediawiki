@@ -52,5 +52,5 @@ class ExportSites extends Maintenance {
 
 }
 
-$maintClass = 'ExportSites';
+$maintClass = ExportSites::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

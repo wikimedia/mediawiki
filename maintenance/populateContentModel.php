@@ -250,5 +250,5 @@ class PopulateContentModel extends Maintenance {
 	}
 }
 
-$maintClass = 'PopulateContentModel';
+$maintClass = PopulateContentModel::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

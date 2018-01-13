@@ -71,7 +71,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$name = 'TestService92834576';
 
-		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
+		$this->setExpectedException( MediaWiki\Services\NoSuchServiceException::class );
 
 		$services->getService( $name );
 	}
@@ -113,7 +113,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 
 		$name = 'TestService92834576';
 
-		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
+		$this->setExpectedException( MediaWiki\Services\NoSuchServiceException::class );
 
 		$services->peekService( $name );
 	}
@@ -143,7 +143,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 			return $theService;
 		} );
 
-		$this->setExpectedException( 'MediaWiki\Services\ServiceAlreadyDefinedException' );
+		$this->setExpectedException( MediaWiki\Services\ServiceAlreadyDefinedException::class );
 
 		$services->defineService( $name, function () use ( $theService ) {
 			return $theService;
@@ -240,7 +240,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		];
 
 		// loading the same file twice should fail, because
-		$this->setExpectedException( 'MediaWiki\Services\ServiceAlreadyDefinedException' );
+		$this->setExpectedException( MediaWiki\Services\ServiceAlreadyDefinedException::class );
 
 		$services->loadWiringFiles( $wiringFiles );
 	}
@@ -298,7 +298,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService = new stdClass();
 		$name = 'TestService92834576';
 
-		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
+		$this->setExpectedException( MediaWiki\Services\NoSuchServiceException::class );
 
 		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
@@ -318,7 +318,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		// create the service, so it can no longer be redefined
 		$services->getService( $name );
 
-		$this->setExpectedException( 'MediaWiki\Services\CannotReplaceActiveServiceException' );
+		$this->setExpectedException( MediaWiki\Services\CannotReplaceActiveServiceException::class );
 
 		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
@@ -328,7 +328,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 	public function testDisableService() {
 		$services = $this->newServiceContainer( [ 'Foo' ] );
 
-		$destructible = $this->getMockBuilder( 'MediaWiki\Services\DestructibleService' )
+		$destructible = $this->getMockBuilder( MediaWiki\Services\DestructibleService::class )
 			->getMock();
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
@@ -367,7 +367,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$this->assertContains( 'Bar', $services->getServiceNames() );
 		$this->assertContains( 'Qux', $services->getServiceNames() );
 
-		$this->setExpectedException( 'MediaWiki\Services\ServiceDisabledException' );
+		$this->setExpectedException( MediaWiki\Services\ServiceDisabledException::class );
 		$services->getService( 'Qux' );
 	}
 
@@ -377,7 +377,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		$theService = new stdClass();
 		$name = 'TestService92834576';
 
-		$this->setExpectedException( 'MediaWiki\Services\NoSuchServiceException' );
+		$this->setExpectedException( MediaWiki\Services\NoSuchServiceException::class );
 
 		$services->redefineService( $name, function () use ( $theService ) {
 			return $theService;
@@ -387,7 +387,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 	public function testDestroy() {
 		$services = $this->newServiceContainer();
 
-		$destructible = $this->getMockBuilder( 'MediaWiki\Services\DestructibleService' )
+		$destructible = $this->getMockBuilder( MediaWiki\Services\DestructibleService::class )
 			->getMock();
 		$destructible->expects( $this->once() )
 			->method( 'destroy' );
@@ -406,7 +406,7 @@ class ServiceContainerTest extends PHPUnit_Framework_TestCase {
 		// destroy the container
 		$services->destroy();
 
-		$this->setExpectedException( 'MediaWiki\Services\ContainerDisabledException' );
+		$this->setExpectedException( MediaWiki\Services\ContainerDisabledException::class );
 		$services->getService( 'Bar' );
 	}
 

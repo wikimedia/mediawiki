@@ -53,8 +53,8 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( [
 			'wgLogTypes' => [ 'phpunit' ],
-			'wgLogActionsHandlers' => [ 'phpunit/test' => 'LogFormatter',
-				'phpunit/param' => 'LogFormatter' ],
+			'wgLogActionsHandlers' => [ 'phpunit/test' => LogFormatter::class,
+				'phpunit/param' => LogFormatter::class ],
 			'wgUser' => User::newFromName( 'Testuser' ),
 		] );
 

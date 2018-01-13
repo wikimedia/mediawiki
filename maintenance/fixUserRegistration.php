@@ -87,5 +87,5 @@ class FixUserRegistration extends Maintenance {
 	}
 }
 
-$maintClass = "FixUserRegistration";
+$maintClass = FixUserRegistration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

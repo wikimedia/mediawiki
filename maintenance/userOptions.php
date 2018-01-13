@@ -199,5 +199,5 @@ WARN
 	}
 }
 
-$maintClass = 'UserOptionsMaintenance';
+$maintClass = UserOptionsMaintenance::class;
 require RUN_MAINTENANCE_IF_MAIN;

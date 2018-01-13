@@ -64,7 +64,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	 * @return GenderCache
 	 */
 	private function getGenderCache() {
-		$genderCache = $this->getMockBuilder( 'GenderCache' )
+		$genderCache = $this->getMockBuilder( GenderCache::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -385,7 +385,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	 * @dataProvider provideParseTitle_invalid
 	 */
 	public function testParseTitle_invalid( $text ) {
-		$this->setExpectedException( 'MalformedTitleException' );
+		$this->setExpectedException( MalformedTitleException::class );
 
 		$codec = $this->makeCodec( 'en' );
 		$codec->parseTitle( $text, NS_MAIN );

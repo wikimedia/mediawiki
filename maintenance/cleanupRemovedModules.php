@@ -77,5 +77,5 @@ class CleanupRemovedModules extends Maintenance {
 	}
 }
 
-$maintClass = 'CleanupRemovedModules';
+$maintClass = CleanupRemovedModules::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

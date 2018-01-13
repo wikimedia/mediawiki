@@ -573,7 +573,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			// checkTitle can filter some options out, avoid empty sections
 			if ( count( $options ) > 0 ) {
 				$fields['TitlesNs' . $namespace] = [
-					'class' => 'EditWatchlistCheckboxSeriesField',
+					'class' => EditWatchlistCheckboxSeriesField::class,
 					'options' => $options,
 					'section' => "ns$namespace",
 				];

@@ -188,5 +188,5 @@ class BenchmarkParse extends Maintenance {
 	}
 }
 
-$maintClass = 'BenchmarkParse';
+$maintClass = BenchmarkParse::class;
 require RUN_MAINTENANCE_IF_MAIN;

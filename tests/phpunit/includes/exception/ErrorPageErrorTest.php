@@ -7,7 +7,7 @@
 class ErrorPageErrorTest extends MediaWikiTestCase {
 
 	private function getMockMessage() {
-		$mockMessage = $this->getMockBuilder( 'Message' )
+		$mockMessage = $this->getMockBuilder( Message::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockMessage->expects( $this->once() )
@@ -34,7 +34,7 @@ class ErrorPageErrorTest extends MediaWikiTestCase {
 		$title = 'Foo';
 		$params = [ 'Baz' ];
 
-		$mock = $this->getMockBuilder( 'OutputPage' )
+		$mock = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->once() )

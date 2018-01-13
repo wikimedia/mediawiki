@@ -16,7 +16,7 @@ class BadTitleErrorTest extends MediaWikiTestCase {
 	}
 
 	private function getMockWgOut() {
-		$mock = $this->getMockBuilder( 'OutputPage' )
+		$mock = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mock->expects( $this->once() )

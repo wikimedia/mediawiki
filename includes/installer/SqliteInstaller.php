@@ -321,7 +321,7 @@ EOT;
 		return "# SQLite-specific settings
 \$wgSQLiteDataDir = \"{$dir}\";
 \$wgObjectCaches[CACHE_DB] = [
-	'class' => 'SqlBagOStuff',
+	'class' => SqlBagOStuff::class,
 	'loggroup' => 'SQLBagOStuff',
 	'server' => [
 		'type' => 'sqlite',

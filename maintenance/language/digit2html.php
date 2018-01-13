@@ -65,5 +65,5 @@ class Digit2Html extends Maintenance {
 	}
 }
 
-$maintClass = "Digit2Html";
+$maintClass = Digit2Html::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

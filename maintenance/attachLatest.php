@@ -88,5 +88,5 @@ class AttachLatest extends Maintenance {
 	}
 }
 
-$maintClass = "AttachLatest";
+$maintClass = AttachLatest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

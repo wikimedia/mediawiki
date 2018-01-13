@@ -85,5 +85,5 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateLogUsertext";
+$maintClass = PopulateLogUsertext::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -89,5 +89,5 @@ class Protect extends Maintenance {
 	}
 }
 
-$maintClass = "Protect";
+$maintClass = Protect::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

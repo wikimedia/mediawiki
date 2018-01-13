@@ -26,7 +26,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			}
 			$baseConfig = $wgJobTypeConf[$name];
 		} else {
-			$baseConfig = [ 'class' => 'JobQueueDB' ];
+			$baseConfig = [ 'class' => JobQueueDB::class ];
 		}
 		$baseConfig['type'] = 'null';
 		$baseConfig['wiki'] = wfWikiID();
@@ -232,7 +232,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$j = $queue->pop();
 		// Make sure ack() of the twin did not delete the sibling data
-		$this->assertType( 'NullJob', $j );
+		$this->assertType( NullJob::class, $j );
 	}
 
 	/**

@@ -107,5 +107,5 @@ class PruneFileCache extends Maintenance {
 	}
 }
 
-$maintClass = "PruneFileCache";
+$maintClass = PruneFileCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

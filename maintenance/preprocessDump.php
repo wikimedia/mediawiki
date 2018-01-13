@@ -67,7 +67,7 @@ class PreprocessDump extends DumpIterator {
 		} elseif ( isset( $wgParserConf['preprocessorClass'] ) ) {
 			$name = $wgParserConf['preprocessorClass'];
 		} else {
-			$name = 'Preprocessor_DOM';
+			$name = Preprocessor_DOM::class;
 		}
 
 		$wgParser->firstCallInit();
@@ -94,5 +94,5 @@ class PreprocessDump extends DumpIterator {
 	}
 }
 
-$maintClass = "PreprocessDump";
+$maintClass = PreprocessDump::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

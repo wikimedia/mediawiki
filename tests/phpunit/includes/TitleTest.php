@@ -163,7 +163,7 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testSecureAndSplitValid( $text ) {
 		$this->secureAndSplitGlobals();
-		$this->assertInstanceOf( 'Title', Title::newFromText( $text ), "Valid: $text" );
+		$this->assertInstanceOf( Title::class, Title::newFromText( $text ), "Valid: $text" );
 	}
 
 	/**
@@ -434,7 +434,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->setContentLang( $contLang );
 
 		$title = Title::newFromText( $titleText );
-		$this->assertInstanceOf( 'Title', $title,
+		$this->assertInstanceOf( Title::class, $title,
 			"Test must be passed a valid title text, you gave '$titleText'"
 		);
 		$this->assertEquals( $expected,

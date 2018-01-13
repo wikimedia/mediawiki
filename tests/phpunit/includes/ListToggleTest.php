@@ -9,14 +9,14 @@ class ListToggleTest extends MediaWikiTestCase {
 	 * @covers ListToggle::__construct
 	 */
 	public function testConstruct() {
-		$output = $this->getMockBuilder( 'OutputPage' )
+		$output = $this->getMockBuilder( OutputPage::class )
 			->setMethods( null )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$listToggle = new ListToggle( $output );
 
-		$this->assertInstanceOf( 'ListToggle', $listToggle );
+		$this->assertInstanceOf( ListToggle::class, $listToggle );
 		$this->assertContains( 'mediawiki.checkboxtoggle', $output->getModules() );
 		$this->assertContains( 'mediawiki.checkboxtoggle.styles', $output->getModuleStyles() );
 	}
@@ -25,7 +25,7 @@ class ListToggleTest extends MediaWikiTestCase {
 	 * @covers ListToggle::getHTML
 	 */
 	public function testGetHTML() {
-		$output = $this->createMock( 'OutputPage' );
+		$output = $this->createMock( OutputPage::class );
 		$output->expects( $this->any() )
 			->method( 'msg' )
 			->will( $this->returnCallback( function ( $key ) {

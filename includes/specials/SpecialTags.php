@@ -441,7 +441,7 @@ class SpecialTags extends SpecialPage {
 		$out = $context->getOutput();
 
 		$tag = $data['HiddenTag'];
-		$status = call_user_func( [ 'ChangeTags', "{$form->tagAction}TagWithChecks" ],
+		$status = call_user_func( [ ChangeTags::class, "{$form->tagAction}TagWithChecks" ],
 			$tag, $data['Reason'], $context->getUser(), true );
 
 		if ( $status->isGood() ) {

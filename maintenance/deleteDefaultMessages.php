@@ -95,5 +95,5 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteDefaultMessages";
+$maintClass = DeleteDefaultMessages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

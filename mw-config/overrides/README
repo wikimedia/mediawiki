@@ -9,7 +9,7 @@ You can override 3 classes:
 
 Example override:
 
-$overrides['LocalSettingsGenerator'] = 'MyLocalSettingsGenerator';
+$overrides['LocalSettingsGenerator'] = MyLocalSettingsGenerator::class;
 
 class MyLocalSettingsGenerator extends LocalSettingsGenerator {
 	function getText() {

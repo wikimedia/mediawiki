@@ -152,5 +152,5 @@ class UploadStashCleanup extends Maintenance {
 	}
 }
 
-$maintClass = "UploadStashCleanup";
+$maintClass = UploadStashCleanup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

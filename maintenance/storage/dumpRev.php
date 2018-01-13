@@ -84,5 +84,5 @@ class DumpRev extends Maintenance {
 	}
 }
 
-$maintClass = "DumpRev";
+$maintClass = DumpRev::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

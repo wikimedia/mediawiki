@@ -20,7 +20,7 @@ class AutopromoteTest extends MediaWikiTestCase {
 		] );
 
 		/** @var PHPUnit_Framework_MockObject_MockObject|User $userMock */
-		$userMock = $this->getMock( 'User', [ 'getEditCount' ] );
+		$userMock = $this->getMock( User::class, [ 'getEditCount' ] );
 		if ( $requirement > 0 ) {
 			$userMock->expects( $this->once() )
 				->method( 'getEditCount' )

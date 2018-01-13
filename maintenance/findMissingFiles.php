@@ -115,5 +115,5 @@ class FindMissingFiles extends Maintenance {
 	}
 }
 
-$maintClass = 'FindMissingFiles';
+$maintClass = FindMissingFiles::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

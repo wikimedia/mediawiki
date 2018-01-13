@@ -74,5 +74,5 @@ class RemoveInvalidEmails extends Maintenance {
 	}
 }
 
-$maintClass = 'RemoveInvalidEmails';
+$maintClass = RemoveInvalidEmails::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

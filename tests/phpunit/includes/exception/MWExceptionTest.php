@@ -44,7 +44,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	}
 
 	private function getMockLanguage() {
-		return $this->getMockBuilder( 'Language' )
+		return $this->getMockBuilder( Language::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}
@@ -111,8 +111,8 @@ class MWExceptionTest extends MediaWikiTestCase {
 
 	public static function provideExceptionClasses() {
 		return [
-			[ 'Exception' ],
-			[ 'MWException' ],
+			[ Exception::class ],
+			[ MWException::class ],
 		];
 	}
 
@@ -147,7 +147,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 	 */
 	public static function provideJsonSerializedKeys() {
 		$testCases = [];
-		foreach ( [ 'Exception', 'MWException' ] as $exClass ) {
+		foreach ( [ Exception::class, MWException::class ] as $exClass ) {
 			$exTests = [
 				[ 'string', $exClass, 'id' ],
 				[ 'string', $exClass, 'file' ],

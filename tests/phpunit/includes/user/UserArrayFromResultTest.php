@@ -7,7 +7,7 @@
 class UserArrayFromResultTest extends MediaWikiTestCase {
 
 	private function getMockResultWrapper( $row = null, $numRows = 1 ) {
-		$resultWrapper = $this->getMockBuilder( 'ResultWrapper' )
+		$resultWrapper = $this->getMockBuilder( Wikimedia\Rdbms\ResultWrapper::class )
 			->disableOriginalConstructor();
 
 		$resultWrapper = $resultWrapper->getMock();
@@ -57,7 +57,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
-		$this->assertInstanceOf( 'User', $object->current );
+		$this->assertInstanceOf( User::class, $object->current );
 		$this->assertEquals( $username, $object->current->mName );
 	}
 
@@ -88,7 +88,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 		$username = 'addshore';
 		$userRow = $this->getRowWithUsername( $username );
 		$object = $this->getUserArrayFromResult( $this->getMockResultWrapper( $userRow ) );
-		$this->assertInstanceOf( 'User', $object->current() );
+		$this->assertInstanceOf( User::class, $object->current() );
 		$this->assertEquals( $username, $object->current()->mName );
 	}
 

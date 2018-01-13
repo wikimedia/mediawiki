@@ -155,5 +155,5 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "MigrateArchiveText";
+$maintClass = MigrateArchiveText::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

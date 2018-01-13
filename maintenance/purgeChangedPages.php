@@ -190,5 +190,5 @@ class PurgeChangedPages extends Maintenance {
 	}
 }
 
-$maintClass = "PurgeChangedPages";
+$maintClass = PurgeChangedPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

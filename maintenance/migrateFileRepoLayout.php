@@ -235,5 +235,5 @@ class MigrateFileRepoLayout extends Maintenance {
 	}
 }
 
-$maintClass = 'MigrateFileRepoLayout';
+$maintClass = MigrateFileRepoLayout::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

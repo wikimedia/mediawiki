@@ -169,5 +169,5 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateLogSearch";
+$maintClass = PopulateLogSearch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

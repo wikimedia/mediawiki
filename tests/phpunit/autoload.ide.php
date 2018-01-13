@@ -90,7 +90,7 @@ if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 			|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory )
 		)
 	) {
-		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+		$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 	}
 }
 

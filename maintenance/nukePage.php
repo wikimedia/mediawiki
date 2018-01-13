@@ -115,5 +115,5 @@ class NukePage extends Maintenance {
 	}
 }
 
-$maintClass = "NukePage";
+$maintClass = NukePage::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -291,5 +291,5 @@ class MigrateComments extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "MigrateComments";
+$maintClass = MigrateComments::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
