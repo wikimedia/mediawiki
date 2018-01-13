@@ -118,5 +118,5 @@ class RunJobs extends Maintenance {
 	}
 }
 
-$maintClass = "RunJobs";
+$maintClass = RunJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

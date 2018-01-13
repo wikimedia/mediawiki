@@ -170,5 +170,5 @@ class UpdateSpecialPages extends Maintenance {
 	}
 }
 
-$maintClass = "UpdateSpecialPages";
+$maintClass = UpdateSpecialPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

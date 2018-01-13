@@ -80,5 +80,5 @@ class OrphanStats extends Maintenance {
 	}
 }
 
-$maintClass = "OrphanStats";
+$maintClass = OrphanStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

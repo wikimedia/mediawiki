@@ -69,5 +69,5 @@ class ChangePassword extends Maintenance {
 	}
 }
 
-$maintClass = "ChangePassword";
+$maintClass = ChangePassword::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

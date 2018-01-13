@@ -115,5 +115,5 @@ class EraseArchivedFile extends Maintenance {
 	}
 }
 
-$maintClass = "EraseArchivedFile";
+$maintClass = EraseArchivedFile::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

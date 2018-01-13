@@ -152,5 +152,5 @@ class RefreshFileHeaders extends Maintenance {
 	}
 }
 
-$maintClass = 'RefreshFileHeaders';
+$maintClass = RefreshFileHeaders::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

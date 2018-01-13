@@ -65,5 +65,5 @@ class UpdateExtensionJsonSchema extends Maintenance {
 	}
 }
 
-$maintClass = 'UpdateExtensionJsonSchema';
+$maintClass = UpdateExtensionJsonSchema::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -78,5 +78,5 @@ class InitSiteStats extends Maintenance {
 	}
 }
 
-$maintClass = "InitSiteStats";
+$maintClass = InitSiteStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

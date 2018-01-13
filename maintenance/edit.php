@@ -103,5 +103,5 @@ class EditCLI extends Maintenance {
 	}
 }
 
-$maintClass = "EditCLI";
+$maintClass = EditCLI::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

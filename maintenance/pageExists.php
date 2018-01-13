@@ -49,5 +49,5 @@ class PageExists extends Maintenance {
 	}
 }
 
-$maintClass = "PageExists";
+$maintClass = PageExists::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

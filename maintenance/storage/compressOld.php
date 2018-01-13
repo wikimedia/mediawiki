@@ -471,5 +471,5 @@ class CompressOld extends Maintenance {
 	}
 }
 
-$maintClass = 'CompressOld';
+$maintClass = CompressOld::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

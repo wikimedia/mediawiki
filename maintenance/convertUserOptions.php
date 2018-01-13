@@ -120,5 +120,5 @@ class ConvertUserOptions extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertUserOptions";
+$maintClass = ConvertUserOptions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

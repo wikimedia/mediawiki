@@ -124,5 +124,5 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'FixDefaultJsonContentPages';
+$maintClass = FixDefaultJsonContentPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

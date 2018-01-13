@@ -157,5 +157,5 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateRevisionLength";
+$maintClass = PopulateRevisionLength::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

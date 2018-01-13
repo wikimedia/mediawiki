@@ -202,5 +202,5 @@ class FindDeprecated extends Maintenance {
 	}
 }
 
-$maintClass = 'FindDeprecated';
+$maintClass = FindDeprecated::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

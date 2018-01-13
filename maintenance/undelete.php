@@ -58,5 +58,5 @@ class Undelete extends Maintenance {
 	}
 }
 
-$maintClass = "Undelete";
+$maintClass = Undelete::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

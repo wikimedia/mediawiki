@@ -66,5 +66,5 @@ class GenerateNormalizerDataMl extends Maintenance {
 	}
 }
 
-$maintClass = 'GenerateNormalizerDataMl';
+$maintClass = GenerateNormalizerDataMl::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

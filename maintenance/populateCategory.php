@@ -150,5 +150,5 @@ TEXT
 	}
 }
 
-$maintClass = "PopulateCategory";
+$maintClass = PopulateCategory::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

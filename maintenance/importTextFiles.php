@@ -204,5 +204,5 @@ class ImportTextFiles extends Maintenance {
 	}
 }
 
-$maintClass = "ImportTextFiles";
+$maintClass = ImportTextFiles::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

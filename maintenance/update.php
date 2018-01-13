@@ -131,7 +131,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		// Check external dependencies are up to date
 		if ( !$this->hasOption( 'skip-external-dependencies' ) ) {
-			$composerLockUpToDate = $this->runChild( 'CheckComposerLockUpToDate' );
+			$composerLockUpToDate = $this->runChild( CheckComposerLockUpToDate::class );
 			$composerLockUpToDate->execute();
 		} else {
 			$this->output(
@@ -233,13 +233,13 @@ class UpdateMediaWiki extends Maintenance {
 		# This needs to be disabled early since extensions will try to use the l10n
 		# cache from $wgExtensionFunctions (T22471)
 		$wgLocalisationCacheConf = [
-			'class' => 'LocalisationCache',
-			'storeClass' => 'LCStoreNull',
+			'class' => LocalisationCache::class,
+			'storeClass' => LCStoreNull::class,
 			'storeDirectory' => false,
 			'manualRecache' => false,
 		];
 	}
 }
 
-$maintClass = 'UpdateMediaWiki';
+$maintClass = UpdateMediaWiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

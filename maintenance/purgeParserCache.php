@@ -93,5 +93,5 @@ class PurgeParserCache extends Maintenance {
 	}
 }
 
-$maintClass = 'PurgeParserCache';
+$maintClass = PurgeParserCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

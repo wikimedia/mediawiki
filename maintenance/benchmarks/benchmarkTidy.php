@@ -74,5 +74,5 @@ class BenchmarkTidy extends Maintenance {
 	}
 }
 
-$maintClass = 'BenchmarkTidy';
+$maintClass = BenchmarkTidy::class;
 require RUN_MAINTENANCE_IF_MAIN;

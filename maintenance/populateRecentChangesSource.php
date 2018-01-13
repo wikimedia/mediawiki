@@ -104,5 +104,5 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateRecentChangesSource";
+$maintClass = PopulateRecentChangesSource::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

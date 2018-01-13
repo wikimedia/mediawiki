@@ -252,5 +252,5 @@ class Orphans extends Maintenance {
 	}
 }
 
-$maintClass = "Orphans";
+$maintClass = Orphans::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

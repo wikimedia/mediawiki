@@ -124,5 +124,5 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	}
 }
 
-$maintClass = "UploadDumper";
+$maintClass = UploadDumper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

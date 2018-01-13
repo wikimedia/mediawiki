@@ -142,5 +142,5 @@ class SqliteMaintenance extends Maintenance {
 	}
 }
 
-$maintClass = "SqliteMaintenance";
+$maintClass = SqliteMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
