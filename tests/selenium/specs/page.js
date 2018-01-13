@@ -1,6 +1,7 @@
 'use strict';
 const assert = require( 'assert' ),
 	DeletePage = require( '../pageobjects/delete.page' ),
+	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
 	UserLoginPage = require( '../pageobjects/userlogin.page' );
@@ -84,6 +85,29 @@ describe( 'Page', function () {
 			DeletePage.displayedContent.getText(),
 			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\nReturn to Main Page.'
 		);
+
+	} );
+
+	it( 'should be restorable', function () {
+
+		// login
+		UserLoginPage.loginAdmin();
+
+		// create
+		browser.call( function () {
+			return EditPage.apiEdit( name, content );
+		} );
+
+		// delete
+		browser.call( function () {
+			return DeletePage.apiDelete( name, content + '-deletereason' );
+		} );
+
+		// restore
+		RestorePage.restore( name, content + '-restorereason' );
+
+		// check
+		assert.equal( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
 
 	} );
 
