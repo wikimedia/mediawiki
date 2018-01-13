@@ -2,7 +2,9 @@
 const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+	UserLoginPage = require( '../pageobjects/userlogin.page' ),
+	UserMessagePage = require( '../pageobjects/usermessage.page' ),
+	EditPage = require( '../pageobjects/edit.page' );
 
 describe( 'User', function () {
 
@@ -63,6 +65,26 @@ describe( 'User', function () {
 
 		// check
 		assert.equal( PreferencesPage.realName.getValue(), realName );
+
+	} );
+
+	it( 'should be able to view new message banner', function () {
+
+		// create user
+		browser.call( function () {
+			return CreateAccountPage.apiCreateAccount( username, password );
+		} );
+
+		// create talk page with content
+		browser.call( function () {
+			return EditPage.apiEdit( 'User_talk:' + username, Math.random().toString() );
+		} );
+
+		// log in
+		UserLoginPage.login( username, password );
+
+		// check
+		assert.equal( UserMessagePage.usermessage.getText(), 'You have a new message (last change).' );
 
 	} );
 
