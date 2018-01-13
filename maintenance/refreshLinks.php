@@ -489,5 +489,5 @@ class RefreshLinks extends Maintenance {
 	}
 }
 
-$maintClass = 'RefreshLinks';
+$maintClass = RefreshLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

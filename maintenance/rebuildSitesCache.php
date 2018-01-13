@@ -64,5 +64,5 @@ class RebuildSitesCache extends Maintenance {
 
 }
 
-$maintClass = "RebuildSitesCache";
+$maintClass = RebuildSitesCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

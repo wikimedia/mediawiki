@@ -105,5 +105,5 @@ class ShowJobs extends Maintenance {
 	}
 }
 
-$maintClass = "ShowJobs";
+$maintClass = ShowJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

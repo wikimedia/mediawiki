@@ -110,5 +110,5 @@ class CleanupAncientTables extends Maintenance {
 	}
 }
 
-$maintClass = "CleanupAncientTables";
+$maintClass = CleanupAncientTables::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

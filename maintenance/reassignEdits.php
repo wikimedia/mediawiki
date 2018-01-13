@@ -195,5 +195,5 @@ class ReassignEdits extends Maintenance {
 	}
 }
 
-$maintClass = "ReassignEdits";
+$maintClass = ReassignEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

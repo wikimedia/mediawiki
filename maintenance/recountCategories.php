@@ -168,5 +168,5 @@ TEXT
 	}
 }
 
-$maintClass = 'RecountCategories';
+$maintClass = RecountCategories::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

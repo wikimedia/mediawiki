@@ -94,5 +94,5 @@ class CopyJobQueue extends Maintenance {
 	}
 }
 
-$maintClass = 'CopyJobQueue';
+$maintClass = CopyJobQueue::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

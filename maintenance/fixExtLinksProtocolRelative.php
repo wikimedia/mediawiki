@@ -95,5 +95,5 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "FixExtLinksProtocolRelative";
+$maintClass = FixExtLinksProtocolRelative::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

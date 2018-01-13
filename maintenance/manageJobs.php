@@ -93,5 +93,5 @@ class ManageJobs extends Maintenance {
 	}
 }
 
-$maintClass = "ManageJobs";
+$maintClass = ManageJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -82,5 +82,5 @@ class CheckImages extends Maintenance {
 	}
 }
 
-$maintClass = "CheckImages";
+$maintClass = CheckImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

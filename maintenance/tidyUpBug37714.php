@@ -44,5 +44,5 @@ class TidyUpBug37714 extends Maintenance {
 	}
 }
 
-$maintClass = 'TidyUpBug37714';
+$maintClass = TidyUpBug37714::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

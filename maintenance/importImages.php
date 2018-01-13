@@ -519,5 +519,5 @@ class ImportImages extends Maintenance {
 
 }
 
-$maintClass = 'ImportImages';
+$maintClass = ImportImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

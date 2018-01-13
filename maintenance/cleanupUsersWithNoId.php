@@ -208,5 +208,5 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "CleanupUsersWithNoId";
+$maintClass = CleanupUsersWithNoId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -169,5 +169,5 @@ class CapsCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = "CapsCleanup";
+$maintClass = CapsCleanup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

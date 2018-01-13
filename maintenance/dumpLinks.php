@@ -75,5 +75,5 @@ class DumpLinks extends Maintenance {
 	}
 }
 
-$maintClass = "DumpLinks";
+$maintClass = DumpLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

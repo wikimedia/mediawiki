@@ -349,5 +349,5 @@ class FindHooks extends Maintenance {
 	}
 }
 
-$maintClass = 'FindHooks';
+$maintClass = FindHooks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

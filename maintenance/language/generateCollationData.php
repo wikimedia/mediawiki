@@ -464,5 +464,5 @@ class UcdXmlReader {
 	}
 }
 
-$maintClass = 'GenerateCollationData';
+$maintClass = GenerateCollationData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

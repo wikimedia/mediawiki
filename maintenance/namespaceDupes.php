@@ -616,5 +616,5 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 }
 
-$maintClass = "NamespaceConflictChecker";
+$maintClass = NamespaceConflictChecker::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

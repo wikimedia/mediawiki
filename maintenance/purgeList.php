@@ -143,5 +143,5 @@ class PurgeList extends Maintenance {
 	}
 }
 
-$maintClass = "PurgeList";
+$maintClass = PurgeList::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

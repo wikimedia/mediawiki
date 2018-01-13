@@ -131,5 +131,5 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 }
 
-$maintClass = "RemoveUnusedAccounts";
+$maintClass = RemoveUnusedAccounts::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

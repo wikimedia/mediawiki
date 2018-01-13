@@ -136,5 +136,5 @@ class FixDoubleRedirects extends Maintenance {
 	}
 }
 
-$maintClass = "FixDoubleRedirects";
+$maintClass = FixDoubleRedirects::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
