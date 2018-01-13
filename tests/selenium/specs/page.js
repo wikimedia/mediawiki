@@ -1,5 +1,7 @@
 'use strict';
 const assert = require( 'assert' ),
+	DeletePage = require( '../pageobjects/delete.page' ),
+	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
 	UserLoginPage = require( '../pageobjects/userlogin.page' );
@@ -62,6 +64,22 @@ describe( 'Page', function () {
 		// check
 		HistoryPage.open( name );
 		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+
+	} );
+
+	it( 'should be deletable', function () {
+
+		// create
+		browser.call( function () {
+			return EditPage.apiEdit( name, content );
+		} );
+
+		// edit
+		DeletePage.delete( name, content + '-deletereason' );
+
+		// check
+		assert.ok( DeletePage.displayedContent.includes( content + '" has been deleted.' ) );
+		//TODO check the log & history?
 
 	} );
 
