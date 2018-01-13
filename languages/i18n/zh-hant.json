@@ -2807,7 +2807,7 @@
 	"tooltip-recreate": "無論是否被刪除，重新建立該頁面。",
 	"tooltip-upload": "開始上傳",
 	"tooltip-rollback": "點選「還原」連結便可還原至上一位貢獻者對此頁面的編輯",
-	"tooltip-undo": "\"還原\" 可還原此編輯並以預覽模式開啟編輯表單，讓您可在摘要中加入原因。",
+	"tooltip-undo": "「撤銷」可還原此編輯並以預覽模式開啟編輯表單，讓您可在摘要中加入原因。",
 	"tooltip-preferences-save": "儲存偏好設定",
 	"tooltip-summary": "請輸入簡短摘要",
 	"interlanguage-link-title": "$1 – $2",

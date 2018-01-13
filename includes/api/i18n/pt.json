@@ -7,7 +7,8 @@
 			"Jkb8",
 			"Hamilton Abreu",
 			"Mansil",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Athena in Wonderland"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página devem ter o comportamento documentado, mas a API ainda está em desenvolvimento ativo e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].",
@@ -1238,6 +1239,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Adiciona os tamanhos novo e antigo da página.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Adiciona a data e hora da última vez em que o utilizador foi notificado da edição.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Adiciona informação do registo quando apropriado.",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "Lista as etiquetas da entrada.",
 	"apihelp-query+watchlist-param-show": "Mostrar só as entradas que correspondem a estes critérios. Por exemplo, para ver só as edições menores feitas por utilizadores autenticados, definir $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Os tipos de alterações a serem mostradas:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Edições normais.",

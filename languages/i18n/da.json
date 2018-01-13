@@ -65,7 +65,8 @@
 			"BoBrandt",
 			"R12ntech",
 			"Joedalton",
-			"EeveeSylveon"
+			"EeveeSylveon",
+			"Kenn.jensen"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -79,7 +80,7 @@
 	"tog-showtoolbar": "Vis værktøjslinje til redigering",
 	"tog-editondblclick": "Redigér sider med dobbeltklik",
 	"tog-editsectiononrightclick": "Redigér afsnit ved at højreklikke på deres titler",
-	"tog-watchcreations": "Føj sider, jeg opretter, og filer, jeg lægger op, til min overvågningsliste",
+	"tog-watchcreations": "Føj sider jeg opretter og filer jeg lægger op, til min overvågningsliste",
 	"tog-watchdefault": "Føj sider og filer, jeg redigerer, til min overvågningsliste",
 	"tog-watchmoves": "Føj sider og filer, jeg flytter, til min overvågningsliste",
 	"tog-watchdeletion": "Føj sider og filer, jeg sletter, til min overvågningsliste",

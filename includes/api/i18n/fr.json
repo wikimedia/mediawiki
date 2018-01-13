@@ -1261,6 +1261,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Ajoute les tailles ancienne et nouvelle de la page.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Ajoute l’horodatage de la dernière notification de la modification à l’utilisateur.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Ajoute l’information de trace le cas échéant.",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "Liste les balises associées à l'entrée.",
 	"apihelp-query+watchlist-param-show": "Afficher uniquement les éléments qui correspondent à ces critères. Par exemple, pour voir uniquement les modifications mineures faites par des utilisateurs connectés, mettre $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Quels types de modification afficher :",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Modifications normales de page.",

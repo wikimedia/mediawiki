@@ -34,7 +34,8 @@
 			"Matma Rex",
 			"Zoranzoki21",
 			"Obsuser",
-			"Prevodim"
+			"Prevodim",
+			"Acamicamacaraca"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -103,7 +104,7 @@
 	"fri": "пет",
 	"sat": "суб",
 	"january": "јануар",
-	"february": "фебруар",
+	"february": "Фебруар",
 	"march": "март",
 	"april": "април",
 	"may_long": "мај",
@@ -1449,7 +1450,7 @@
 	"recentchangeslinked-feed": "Сродне измене",
 	"recentchangeslinked-toolbox": "Сродне измене",
 	"recentchangeslinked-title": "Сродне измене са „$1“",
-	"recentchangeslinked-summary": "Ова посебна страница приказује списак последњих измена на страницама које су повезане (или чланови одређене категорије).\nСтранице с [[Special:Watchlist|вашег списка надгледања]] су '''подебљане'''.",
+	"recentchangeslinked-summary": "Унесите име странице да бисте видели промене на страницама које су повезане са или са те странице. (Да бисте видели чланове неке категорије, унесите Категорија:Назив категорије). Промене на страницама које су на [[Special:Watchlist|вашем списку надгледања]] су '''подебљане'''.",
 	"recentchangeslinked-page": "Назив странице:",
 	"recentchangeslinked-to": "Прикажи измене страница које су повезане с датом страницом",
 	"recentchanges-page-added-to-category": "[[:$1]] је додата у категорију",
