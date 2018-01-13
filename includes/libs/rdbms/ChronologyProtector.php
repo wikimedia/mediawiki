@@ -147,8 +147,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 		if ( $lb->getServerCount() > 1 ) {
 			$pos = $lb->getMasterPos();
-			$this->logger->info( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
-			$this->shutdownPositions[$masterName] = $pos;
+			if ( $pos ) {
+				$this->logger->info( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
+				$this->shutdownPositions[$masterName] = $pos;
+			}
 		} else {
 			$this->logger->info( __METHOD__ . ": DB '$masterName' touched\n" );
 		}
