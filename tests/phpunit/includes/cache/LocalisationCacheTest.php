@@ -19,7 +19,7 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 	 */
 	protected function getMockLocalisationCache() {
 		global $IP;
-		$lc = $this->getMockBuilder( 'LocalisationCache' )
+		$lc = $this->getMockBuilder( \LocalisationCache::class )
 			->setConstructorArgs( [ [ 'store' => 'detect' ] ] )
 			->setMethods( [ 'getMessagesDirs' ] )
 			->getMock();

@@ -57,7 +57,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		);
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, false );
 
-		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
+		$this->assertInstanceOf( RCCacheEntry::class, $cacheEntry );
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );
@@ -92,7 +92,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		);
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, false );
 
-		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
+		$this->assertInstanceOf( RCCacheEntry::class, $cacheEntry );
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );
@@ -126,7 +126,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		);
 		$cacheEntry = $cacheEntryFactory->newFromRecentChange( $recentChange, false );
 
-		$this->assertInstanceOf( 'RCCacheEntry', $cacheEntry );
+		$this->assertInstanceOf( RCCacheEntry::class, $cacheEntry );
 
 		$this->assertEquals( false, $cacheEntry->watched, 'watched' );
 		$this->assertEquals( '21:21', $cacheEntry->timestamp, 'timestamp' );

@@ -13,7 +13,7 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 		] );
 		$ch = new JavaScriptContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );
-		$this->assertInstanceOf( 'JavaScriptContent', $content );
+		$this->assertInstanceOf( JavaScriptContent::class, $content );
 		$this->assertEquals( $expected, $content->serialize( CONTENT_FORMAT_JAVASCRIPT ) );
 	}
 

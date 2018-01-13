@@ -109,7 +109,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		$reset[] = $this->getResetter( $rProp );
 
 		$this->setMwGlobals( [
-			'wgSessionProviders' => [ [ 'class' => 'DummySessionProvider' ] ],
+			'wgSessionProviders' => [ [ 'class' => \DummySessionProvider::class ] ],
 			'wgObjectCacheSessionExpiry' => 2,
 		] );
 

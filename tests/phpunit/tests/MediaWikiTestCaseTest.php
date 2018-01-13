@@ -165,7 +165,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$logger2 = LoggerFactory::getInstance( 'foo' );
 
 		$this->assertNotSame( $logger1, $logger2 );
-		$this->assertInstanceOf( '\Psr\Log\LoggerInterface', $logger2 );
+		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $logger2 );
 	}
 
 	/**

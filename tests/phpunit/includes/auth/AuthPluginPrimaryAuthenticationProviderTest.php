@@ -20,7 +20,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			);
 		}
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
@@ -51,7 +51,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testOnUserSaveSettings() {
 		$user = \User::newFromName( 'UTSysop' );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'updateExternalDB' )
 			->with( $this->identicalTo( $user ) );
@@ -63,7 +63,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testOnUserGroupsChanged() {
 		$user = \User::newFromName( 'UTSysop' );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'updateExternalDBGroups' )
 			->with(
@@ -79,14 +79,14 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testOnUserLoggedIn() {
 		$user = \User::newFromName( 'UTSysop' );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->exactly( 2 ) )->method( 'updateUser' )
 			->with( $this->identicalTo( $user ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		\Hooks::run( 'UserLoggedIn', [ $user ] );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'updateUser' )
 			->will( $this->returnCallback( function ( &$user ) {
@@ -107,14 +107,14 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testOnLocalUserCreated() {
 		$user = \User::newFromName( 'UTSysop' );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->exactly( 2 ) )->method( 'initUser' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( false ) );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		\Hooks::run( 'LocalUserCreated', [ $user, false ] );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'initUser' )
 			->will( $this->returnCallback( function ( &$user ) {
@@ -133,7 +133,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetUniqueId() {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$this->assertSame(
@@ -149,7 +149,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @param bool $allowPasswordChange
 	 */
 	public function testGetAuthenticationRequests( $action, $response, $allowPasswordChange ) {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'allowPasswordChange' )
 			->will( $this->returnValue( $allowPasswordChange ) );
@@ -178,7 +178,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$req->action = AuthManager::ACTION_LOGIN;
 		$reqs = [ PasswordAuthenticationRequest::class => $req ];
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->never() )->method( 'authenticate' );
@@ -206,7 +206,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$req->username = 'foo';
 		$req->password = 'bar';
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -220,7 +220,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -232,13 +232,13 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
 
-		$pluginUser = $this->getMockBuilder( 'AuthPluginUser' )
+		$pluginUser = $this->getMockBuilder( \AuthPluginUser::class )
 			->setMethods( [ 'isLocked' ] )
 			->disableOriginalConstructor()
 			->getMock();
 		$pluginUser->expects( $this->once() )->method( 'isLocked' )
 			->will( $this->returnValue( true ) );
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'getUserInstance', 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -252,7 +252,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -266,7 +266,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'authenticate', 'strict' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -280,7 +280,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'wrongpassword', $ret->message->getKey() );
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'authenticate', 'strictUserAuth' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )
@@ -296,7 +296,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'wrongpassword', $ret->message->getKey() );
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'domainList', 'validDomain', 'setDomain', 'userExists', 'authenticate' ] )
 			->getMock();
 		$plugin->expects( $this->any() )->method( 'domainList' )
@@ -321,7 +321,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testTestUserExists() {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'userExists' )
 			->with( $this->equalTo( 'Foo' ) )
@@ -330,7 +330,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 
 		$this->assertTrue( $provider->testUserExists( 'foo' ) );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'userExists' )
 			->with( $this->equalTo( 'Foo' ) )
@@ -341,7 +341,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testTestUserCanAuthenticate() {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'userExists' )
 			->with( $this->equalTo( 'Foo' ) )
@@ -350,19 +350,19 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$this->assertFalse( $provider->testUserCanAuthenticate( 'foo' ) );
 
-		$pluginUser = $this->getMockBuilder( 'AuthPluginUser' )
+		$pluginUser = $this->getMockBuilder( \AuthPluginUser::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$pluginUser->expects( $this->once() )->method( 'isLocked' )
 			->will( $this->returnValue( true ) );
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'userExists' )
 			->with( $this->equalTo( 'Foo' ) )
 			->will( $this->returnValue( true ) );
 		$plugin->expects( $this->once() )->method( 'getUserInstance' )
 			->with( $this->callback( function ( $user ) {
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertEquals( 'Foo', $user->getName() );
 				return true;
 			} ) )
@@ -370,19 +370,19 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$this->assertFalse( $provider->testUserCanAuthenticate( 'foo' ) );
 
-		$pluginUser = $this->getMockBuilder( 'AuthPluginUser' )
+		$pluginUser = $this->getMockBuilder( \AuthPluginUser::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$pluginUser->expects( $this->once() )->method( 'isLocked' )
 			->will( $this->returnValue( false ) );
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'userExists' )
 			->with( $this->equalTo( 'Foo' ) )
 			->will( $this->returnValue( true ) );
 		$plugin->expects( $this->once() )->method( 'getUserInstance' )
 			->with( $this->callback( function ( $user ) {
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertEquals( 'Foo', $user->getName() );
 				return true;
 			} ) )
@@ -392,7 +392,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testProviderRevokeAccessForUser() {
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'userExists', 'setPassword' ] )
 			->getMock();
 		$plugin->expects( $this->once() )->method( 'userExists' )->willReturn( true );
@@ -404,7 +404,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$provider->providerRevokeAccessForUser( 'foo' );
 
-		$plugin = $this->getMockBuilder( 'AuthPlugin' )
+		$plugin = $this->getMockBuilder( \AuthPlugin::class )
 			->setMethods( [ 'domainList', 'userExists', 'setPassword' ] )
 			->getMock();
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [ 'D1', 'D2', 'D3' ] );
@@ -433,7 +433,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testProviderAllowsPropertyChange() {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'allowPropChange' )
 			->will( $this->returnCallback( function ( $prop ) {
@@ -453,7 +453,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	 */
 	public function testProviderAllowsAuthenticationDataChange( $type, $allow, $expect ) {
 		$domains = $type instanceof PasswordDomainAuthenticationRequest ? [ 'foo', 'bar' ] : [];
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( $domains );
 		$plugin->expects( $allow === null ? $this->never() : $this->once() )
 			->method( 'allowPasswordChange' )->will( $this->returnValue( $allow ) );
@@ -502,7 +502,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	}
 
 	public function testProviderChangeAuthenticationData() {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->never() )->method( 'setPassword' );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
@@ -515,7 +515,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$req->username = 'foo';
 		$req->password = 'bar';
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'setPassword' )
 			->with( $this->callback( function ( $u ) {
@@ -525,7 +525,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$provider->providerChangeAuthenticationData( $req );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )->method( 'setPassword' )
 			->with( $this->callback( function ( $u ) {
@@ -541,7 +541,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$this->assertSame( 'authmanager-authplugin-setpass-failed-message', $e->msg );
 		}
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )
 			->will( $this->returnValue( [ 'Domain1', 'Domain2' ] ) );
 		$plugin->expects( $this->any() )->method( 'validDomain' )
@@ -569,7 +569,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @param string $expect
 	 */
 	public function testAccountCreationType( $can, $expect ) {
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->once() )
 			->method( 'canCreateAccounts' )->will( $this->returnValue( $can ) );
@@ -588,7 +588,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 	public function testTestForAccountCreation() {
 		$user = \User::newFromName( 'foo' );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$provider = new AuthPluginPrimaryAuthenticationProvider( $plugin );
 		$this->assertEquals(
@@ -606,7 +606,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$req->action = AuthManager::ACTION_CREATE;
 		$reqs = [ PasswordAuthenticationRequest::class => $req ];
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
 			->will( $this->returnValue( false ) );
@@ -621,7 +621,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			);
 		}
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
 			->will( $this->returnValue( true ) );
@@ -650,7 +650,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$req->username = 'foo';
 		$req->password = 'bar';
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
 			->will( $this->returnValue( true ) );
@@ -670,7 +670,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 			$provider->beginPrimaryAccountCreation( $user, $user, $reqs )
 		);
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'domainList' )->willReturn( [] );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
 			->will( $this->returnValue( true ) );
@@ -689,7 +689,7 @@ class AuthPluginPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
 		$this->assertSame( 'authmanager-authplugin-create-fail', $ret->message->getKey() );
 
-		$plugin = $this->createMock( 'AuthPlugin' );
+		$plugin = $this->createMock( \AuthPlugin::class );
 		$plugin->expects( $this->any() )->method( 'canCreateAccounts' )
 			->will( $this->returnValue( true ) );
 		$plugin->expects( $this->any() )->method( 'domainList' )

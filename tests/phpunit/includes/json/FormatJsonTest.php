@@ -159,12 +159,12 @@ class FormatJsonTest extends MediaWikiTestCase {
 		$this->assertJson( $json );
 
 		$st = FormatJson::parse( $json );
-		$this->assertInstanceOf( 'Status', $st );
+		$this->assertInstanceOf( Status::class, $st );
 		$this->assertTrue( $st->isGood() );
 		$this->assertEquals( $expected, $st->getValue() );
 
 		$st = FormatJson::parse( $json, FormatJson::FORCE_ASSOC );
-		$this->assertInstanceOf( 'Status', $st );
+		$this->assertInstanceOf( Status::class, $st );
 		$this->assertTrue( $st->isGood() );
 		$this->assertEquals( $value, $st->getValue() );
 	}
@@ -230,7 +230,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 		}
 
 		$st = FormatJson::parse( $value, FormatJson::TRY_FIXING );
-		$this->assertInstanceOf( 'Status', $st );
+		$this->assertInstanceOf( Status::class, $st );
 		if ( $expected === false ) {
 			$this->assertFalse( $st->isOK(), 'Expected isOK() == false' );
 		} else {
@@ -256,7 +256,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	 */
 	public function testParseErrors( $value ) {
 		$st = FormatJson::parse( $value );
-		$this->assertInstanceOf( 'Status', $st );
+		$this->assertInstanceOf( Status::class, $st );
 		$this->assertFalse( $st->isOK() );
 	}
 
@@ -313,7 +313,7 @@ class FormatJsonTest extends MediaWikiTestCase {
 	 */
 	public function testParseStripComments( $json, $expect ) {
 		$st = FormatJson::parse( $json, FormatJson::STRIP_COMMENTS );
-		$this->assertInstanceOf( 'Status', $st );
+		$this->assertInstanceOf( Status::class, $st );
 		$this->assertTrue( $st->isGood() );
 		$this->assertEquals( $expect, $st->getValue() );
 	}

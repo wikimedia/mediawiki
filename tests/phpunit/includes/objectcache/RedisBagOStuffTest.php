@@ -14,7 +14,7 @@ class RedisBagOStuffTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$cache = $this->getMockBuilder( 'RedisBagOStuff' )
+		$cache = $this->getMockBuilder( RedisBagOStuff::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$this->cache = TestingAccessWrapper::newFromObject( $cache );

@@ -164,7 +164,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 				[ $this->anything(), $this->anything(), [ 'lines' ] ]
 			] );
 
-		$formatter = $this->createMock( 'Monolog\Formatter\FormatterInterface' );
+		$formatter = $this->createMock( \Monolog\Formatter\FormatterInterface::class );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
@@ -195,7 +195,7 @@ class KafkaHandlerTest extends MediaWikiTestCase {
 			->method( 'send' )
 			->will( $this->returnValue( true ) );
 
-		$formatter = $this->createMock( 'Monolog\Formatter\FormatterInterface' );
+		$formatter = $this->createMock( \Monolog\Formatter\FormatterInterface::class );
 		$formatter->expects( $this->any() )
 			->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );

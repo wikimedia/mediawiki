@@ -83,7 +83,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		SpecialPageFactory::resetList();
 
 		$page = SpecialPageFactory::getPage( 'testdummy' );
-		$this->assertInstanceOf( 'SpecialPage', $page );
+		$this->assertInstanceOf( SpecialPage::class, $page );
 
 		$page2 = SpecialPageFactory::getPage( 'testdummy' );
 		$this->assertEquals( $shouldReuseInstance, $page2 === $page, "Should re-use instance:" );
@@ -93,7 +93,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getNames
 	 */
 	public function testGetNames() {
-		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', [ 'testdummy' => 'SpecialAllPages' ] );
+		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', [ 'testdummy' => SpecialAllPages::class ] );
 		SpecialPageFactory::resetList();
 
 		$names = SpecialPageFactory::getNames();
