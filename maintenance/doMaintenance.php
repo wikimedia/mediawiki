@@ -34,7 +34,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // Wasn't included from the file scope, halt execution (probably wanted the class)
 // If a class is using commandLine.inc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
-if ( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
+if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 
@@ -69,7 +69,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 				&& ( $wgLocalisationCacheConf['store'] == 'db'
 					|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
 			) {
-				$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+				$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 			}
 		}
 

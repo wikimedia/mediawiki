@@ -341,7 +341,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		# sanity check, because this test seems to fail for no reason for some people.
 		$c = $page->getContent();
-		$this->assertEquals( 'WikitextContent', get_class( $c ) );
+		$this->assertEquals( WikitextContent::class, get_class( $c ) );
 
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
@@ -1065,15 +1065,15 @@ more stuff
 	public function testWikiPageFactory() {
 		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
 		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiFilePage', get_class( $page ) );
+		$this->assertEquals( WikiFilePage::class, get_class( $page ) );
 
 		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
 		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiCategoryPage', get_class( $page ) );
+		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
 
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$page = WikiPage::factory( $title );
-		$this->assertEquals( 'WikiPage', get_class( $page ) );
+		$this->assertEquals( WikiPage::class, get_class( $page ) );
 	}
 
 	/**

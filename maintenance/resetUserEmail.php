@@ -68,5 +68,5 @@ class ResetUserEmail extends Maintenance {
 	}
 }
 
-$maintClass = 'ResetUserEmail';
+$maintClass = ResetUserEmail::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -7,7 +7,7 @@ class HashConfigTest extends MediaWikiTestCase {
 	 */
 	public function testNewInstance() {
 		$conf = HashConfig::newInstance();
-		$this->assertInstanceOf( 'HashConfig', $conf );
+		$this->assertInstanceOf( HashConfig::class, $conf );
 	}
 
 	/**
@@ -15,7 +15,7 @@ class HashConfigTest extends MediaWikiTestCase {
 	 */
 	public function testConstructor() {
 		$conf = new HashConfig();
-		$this->assertInstanceOf( 'HashConfig', $conf );
+		$this->assertInstanceOf( HashConfig::class, $conf );
 
 		// Test passing arguments to the constructor
 		$conf2 = new HashConfig( [
@@ -32,7 +32,7 @@ class HashConfigTest extends MediaWikiTestCase {
 			'one' => '1',
 		] );
 		$this->assertEquals( '1', $conf->get( 'one' ) );
-		$this->setExpectedException( 'ConfigException', 'HashConfig::get: undefined option' );
+		$this->setExpectedException( ConfigException::class, 'HashConfig::get: undefined option' );
 		$conf->get( 'two' );
 	}
 

@@ -822,7 +822,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::getConfig
 	 */
 	public function testGetConfig() {
-		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
+		$this->assertInstanceOf( Config::class, $this->m->getConfig() );
 		$this->assertSame(
 			MediaWikiServices::getInstance()->getMainConfig(),
 			$this->m->getConfig()
@@ -833,7 +833,7 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::setConfig
 	 */
 	public function testSetConfig() {
-		$conf = $this->createMock( 'Config' );
+		$conf = $this->createMock( Config::class );
 		$this->m->setConfig( $conf );
 		$this->assertSame( $conf, $this->m->getConfig() );
 	}

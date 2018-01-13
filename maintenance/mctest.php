@@ -102,5 +102,5 @@ class McTest extends Maintenance {
 	}
 }
 
-$maintClass = "McTest";
+$maintClass = McTest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

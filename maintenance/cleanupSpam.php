@@ -156,5 +156,5 @@ class CleanupSpam extends Maintenance {
 	}
 }
 
-$maintClass = "CleanupSpam";
+$maintClass = CleanupSpam::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

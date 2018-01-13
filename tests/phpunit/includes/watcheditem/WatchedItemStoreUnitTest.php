@@ -1118,7 +1118,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockNonAnonUserWithId( 1 ),
 			new TitleValue( 0, 'SomeDbKey' )
 		);
-		$this->assertInstanceOf( 'WatchedItem', $watchedItem );
+		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertEquals( 0, $watchedItem->getLinkTarget()->getNamespace() );
@@ -1317,7 +1317,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockNonAnonUserWithId( 1 ),
 			new TitleValue( 0, 'SomeDbKey' )
 		);
-		$this->assertInstanceOf( 'WatchedItem', $watchedItem );
+		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertEquals( 0, $watchedItem->getLinkTarget()->getNamespace() );
@@ -1457,7 +1457,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertInternalType( 'array', $watchedItems );
 		$this->assertCount( 2, $watchedItems );
 		foreach ( $watchedItems as $watchedItem ) {
-			$this->assertInstanceOf( 'WatchedItem', $watchedItem );
+			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		}
 		$this->assertEquals(
 			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
@@ -1516,7 +1516,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getMockReadOnlyMode()
 		);
 
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		$store->getWatchedItemsForUser(
 			$this->getMockNonAnonUserWithId( 1 ),
 			[ 'sort' => 'foo' ]

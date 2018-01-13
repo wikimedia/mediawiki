@@ -157,7 +157,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		);
 
 		$msg = $provider->whyNoSession();
-		$this->assertInstanceOf( 'Message', $msg );
+		$this->assertInstanceOf( \Message::class, $msg );
 		$this->assertSame( 'sessionprovider-nocookies', $msg->getKey() );
 	}
 
@@ -415,7 +415,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		);
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
-		$mock = $this->getMockBuilder( 'stdClass' )
+		$mock = $this->getMockBuilder( stdClass::class )
 			->setMethods( [ 'onUserSetCookies' ] )
 			->getMock();
 		$mock->expects( $this->never() )->method( 'onUserSetCookies' );
@@ -563,14 +563,14 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 	}
 
 	protected function getSentRequest() {
-		$sentResponse = $this->getMockBuilder( 'FauxResponse' )
+		$sentResponse = $this->getMockBuilder( \FauxResponse::class )
 			->setMethods( [ 'headersSent', 'setCookie', 'header' ] )->getMock();
 		$sentResponse->expects( $this->any() )->method( 'headersSent' )
 			->will( $this->returnValue( true ) );
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
-		$sentRequest = $this->getMockBuilder( 'FauxRequest' )
+		$sentRequest = $this->getMockBuilder( \FauxRequest::class )
 			->setMethods( [ 'response' ] )->getMock();
 		$sentRequest->expects( $this->any() )->method( 'response' )
 			->will( $this->returnValue( $sentResponse ) );
@@ -608,7 +608,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		// Anonymous user
-		$mock = $this->getMockBuilder( 'stdClass' )
+		$mock = $this->getMockBuilder( stdClass::class )
 			->setMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->never() )->method( 'onUserSetCookies' );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );

@@ -30,9 +30,9 @@ class InstallerOverrides {
 
 		if ( !$overrides ) {
 			$overrides = [
-				'LocalSettingsGenerator' => 'LocalSettingsGenerator',
-				'WebInstaller' => 'WebInstaller',
-				'CliInstaller' => 'CliInstaller',
+				'LocalSettingsGenerator' => LocalSettingsGenerator::class,
+				'WebInstaller' => WebInstaller::class,
+				'CliInstaller' => CliInstaller::class,
 			];
 			foreach ( glob( "$IP/mw-config/overrides/*.php" ) as $file ) {
 				require $file;

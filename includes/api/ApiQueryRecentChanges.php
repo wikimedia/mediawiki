@@ -65,7 +65,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$this->tokenFunctions = [
-			'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ]
+			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
 		Hooks::run( 'APIQueryRecentChangesTokens', [ &$this->tokenFunctions ] );
 

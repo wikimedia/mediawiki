@@ -51,5 +51,5 @@ class GetSlaveServer extends Maintenance {
 	}
 }
 
-$maintClass = "GetSlaveServer";
+$maintClass = GetSlaveServer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -25,7 +25,9 @@
 
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\MySQLMasterPos;
 
 /**
@@ -40,7 +42,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( 'DatabaseMysqli' )
+		$mockDB = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -128,7 +130,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$factory = new LBFactorySimple( [
 			'servers' => $servers,
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 		$lb = $factory->getMainLB();
 
@@ -173,7 +175,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'test-db1'  => $wgDBserver,
 				'test-db2'  => $wgDBserver
 			],
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 		$lb = $factory->getMainLB();
 
@@ -198,14 +200,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$now = microtime( true );
 
 		// Master DB 1
-		$mockDB1 = $this->getMockBuilder( 'DatabaseMysqli' )
+		$mockDB1 = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
 		$mockDB1->method( 'getMasterPos' )->willReturn( $m1Pos );
 		// Load balancer for master DB 1
-		$lb1 = $this->getMockBuilder( 'LoadBalancer' )
+		$lb1 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$lb1->method( 'getConnection' )->willReturn( $mockDB1 );
@@ -223,14 +225,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb1->method( 'getMasterPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Master DB 2
-		$mockDB2 = $this->getMockBuilder( 'DatabaseMysqli' )
+		$mockDB2 = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
 		$mockDB2->method( 'getMasterPos' )->willReturn( $m2Pos );
 		// Load balancer for master DB 2
-		$lb2 = $this->getMockBuilder( 'LoadBalancer' )
+		$lb2 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$lb2->method( 'getConnection' )->willReturn( $mockDB2 );
@@ -276,7 +278,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		// (b) Second HTTP request
 
 		// Load balancer for master DB 1
-		$lb1 = $this->getMockBuilder( 'LoadBalancer' )
+		$lb1 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$lb1->method( 'getServerCount' )->willReturn( 2 );
@@ -284,7 +286,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb1->expects( $this->once() )
 			->method( 'waitFor' )->with( $this->equalTo( $m1Pos ) );
 		// Load balancer for master DB 2
-		$lb2 = $this->getMockBuilder( 'LoadBalancer' )
+		$lb2 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
@@ -334,7 +336,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'hostsByName' => [
 				'test-db1' => $wgDBserver,
 			],
-			'loadMonitorClass' => 'LoadMonitorNull',
+			'loadMonitorClass' => LoadMonitorNull::class,
 			'localDomain' => wfWikiID()
 		] );
 	}
@@ -486,7 +488,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			} catch ( \Wikimedia\Rdbms\DBConnectionError $e ) {
 				// expected
 			}
-			$this->assertInstanceOf( '\Wikimedia\Rdbms\DBConnectionError', $e );
+			$this->assertInstanceOf( \Wikimedia\Rdbms\DBConnectionError::class, $e );
 			$this->assertFalse( $db->isOpen() );
 		} else {
 			\MediaWiki\suppressWarnings();

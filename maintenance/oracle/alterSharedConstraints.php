@@ -93,5 +93,5 @@ class AlterSharedConstraints extends Maintenance {
 	}
 }
 
-$maintClass = "AlterSharedConstraints";
+$maintClass = AlterSharedConstraints::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

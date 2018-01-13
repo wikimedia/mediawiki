@@ -74,8 +74,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->cache = $cache;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->stats = new NullStatsdDataFactory();
-		$this->deferredUpdatesAddCallableUpdateCallback = [ 'DeferredUpdates', 'addCallableUpdate' ];
-		$this->revisionGetTimestampFromIdCallback = [ 'Revision', 'getTimestampFromId' ];
+		$this->deferredUpdatesAddCallableUpdateCallback = [ DeferredUpdates::class, 'addCallableUpdate' ];
+		$this->revisionGetTimestampFromIdCallback = [ Revision::class, 'getTimestampFromId' ];
 	}
 
 	/**

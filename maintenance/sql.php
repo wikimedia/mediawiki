@@ -192,5 +192,5 @@ class MwSql extends Maintenance {
 	}
 }
 
-$maintClass = "MwSql";
+$maintClass = MwSql::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

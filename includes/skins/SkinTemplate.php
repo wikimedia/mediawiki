@@ -46,7 +46,7 @@ class SkinTemplate extends Skin {
 	 * @var string For QuickTemplate, the name of the subclass which will
 	 *   actually fill the template.  Child classes should override the default.
 	 */
-	public $template = 'QuickTemplate';
+	public $template = QuickTemplate::class;
 
 	public $thispage;
 	public $titletxt;

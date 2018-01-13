@@ -96,5 +96,5 @@ class MediaWikiShell extends Maintenance {
 
 }
 
-$maintClass = 'MediaWikiShell';
+$maintClass = MediaWikiShell::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

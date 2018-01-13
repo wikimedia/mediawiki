@@ -307,5 +307,5 @@ TEXT
 	}
 }
 
-$maintClass = 'CleanupInvalidDbKeys';
+$maintClass = CleanupInvalidDbKeys::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

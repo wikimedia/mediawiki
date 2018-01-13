@@ -142,7 +142,7 @@ class ApiLoginTest extends ApiTestCase {
 		libxml_use_internal_errors( true );
 		$sxe = simplexml_load_string( $req->getContent() );
 		$this->assertNotInternalType( "bool", $sxe );
-		$this->assertThat( $sxe, $this->isInstanceOf( "SimpleXMLElement" ) );
+		$this->assertThat( $sxe, $this->isInstanceOf( SimpleXMLElement::class ) );
 		$this->assertNotInternalType( "null", $sxe->login[0] );
 
 		$a = $sxe->login[0]->attributes()->result[0];

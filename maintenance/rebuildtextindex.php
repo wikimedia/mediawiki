@@ -157,5 +157,5 @@ class RebuildTextIndex extends Maintenance {
 	}
 }
 
-$maintClass = "RebuildTextIndex";
+$maintClass = RebuildTextIndex::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

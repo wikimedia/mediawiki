@@ -80,5 +80,5 @@ class InitUserPreference extends Maintenance {
 	}
 }
 
-$maintClass = 'InitUserPreference'; // Tells it to run the class
+$maintClass = InitUserPreference::class; // Tells it to run the class
 require_once RUN_MAINTENANCE_IF_MAIN;

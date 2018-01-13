@@ -192,5 +192,5 @@ class GetConfiguration extends Maintenance {
 	}
 }
 
-$maintClass = "GetConfiguration";
+$maintClass = GetConfiguration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

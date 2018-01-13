@@ -165,5 +165,5 @@ TEXT
 	}
 }
 
-$maintClass = 'MWDocGen';
+$maintClass = MWDocGen::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

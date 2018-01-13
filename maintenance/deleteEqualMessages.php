@@ -202,5 +202,5 @@ class DeleteEqualMessages extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteEqualMessages";
+$maintClass = DeleteEqualMessages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

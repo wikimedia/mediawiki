@@ -374,5 +374,5 @@ class CopyFileBackend extends Maintenance {
 	}
 }
 
-$maintClass = 'CopyFileBackend';
+$maintClass = CopyFileBackend::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

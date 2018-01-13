@@ -95,5 +95,5 @@ class WatchlistCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = "WatchlistCleanup";
+$maintClass = WatchlistCleanup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

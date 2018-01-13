@@ -199,22 +199,22 @@ class LocalisationCache {
 			switch ( $conf['store'] ) {
 				case 'files':
 				case 'file':
-					$storeClass = 'LCStoreCDB';
+					$storeClass = LCStoreCDB::class;
 					break;
 				case 'db':
-					$storeClass = 'LCStoreDB';
+					$storeClass = LCStoreDB::class;
 					break;
 				case 'array':
-					$storeClass = 'LCStoreStaticArray';
+					$storeClass = LCStoreStaticArray::class;
 					break;
 				case 'detect':
 					if ( !empty( $conf['storeDirectory'] ) ) {
-						$storeClass = 'LCStoreCDB';
+						$storeClass = LCStoreCDB::class;
 					} elseif ( $wgCacheDirectory ) {
 						$storeConf['directory'] = $wgCacheDirectory;
-						$storeClass = 'LCStoreCDB';
+						$storeClass = LCStoreCDB::class;
 					} else {
-						$storeClass = 'LCStoreDB';
+						$storeClass = LCStoreDB::class;
 					}
 					break;
 				default:

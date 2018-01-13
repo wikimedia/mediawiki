@@ -69,5 +69,5 @@ class UpdateArticleCount extends Maintenance {
 	}
 }
 
-$maintClass = "UpdateArticleCount";
+$maintClass = UpdateArticleCount::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

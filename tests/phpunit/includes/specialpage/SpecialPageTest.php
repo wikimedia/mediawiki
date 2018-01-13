@@ -67,7 +67,7 @@ class SpecialPageTest extends MediaWikiTestCase {
 		$specialPage->getContext()->setUser( $user );
 		$specialPage->getContext()->setLanguage( Language::factory( 'en' ) );
 
-		$this->setExpectedException( 'UserNotLoggedIn', $expected );
+		$this->setExpectedException( UserNotLoggedIn::class, $expected );
 
 		// $specialPage->requireLogin( [ $reason [, $title ] ] )
 		call_user_func_array(

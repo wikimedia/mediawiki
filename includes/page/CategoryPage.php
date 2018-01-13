@@ -27,7 +27,7 @@
  */
 class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.
-	protected $mCategoryViewerClass = 'CategoryViewer';
+	protected $mCategoryViewerClass = CategoryViewer::class;
 
 	/**
 	 * @var WikiCategoryPage

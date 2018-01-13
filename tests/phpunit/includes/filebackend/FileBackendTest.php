@@ -101,7 +101,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'backends' => [
 				[
 					'name' => 'localmultitesting1',
-					'class' => 'FSFileBackend',
+					'class' => FSFileBackend::class,
 					'containerPaths' => [
 						'unittest-cont1' => "{$tmpDir}/localtestingmulti1-cont1",
 						'unittest-cont2' => "{$tmpDir}/localtestingmulti1-cont2" ],
@@ -109,7 +109,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				],
 				[
 					'name' => 'localmultitesting2',
-					'class' => 'FSFileBackend',
+					'class' => FSFileBackend::class,
 					'containerPaths' => [
 						'unittest-cont1' => "{$tmpDir}/localtestingmulti2-cont1",
 						'unittest-cont2' => "{$tmpDir}/localtestingmulti2-cont2" ],
@@ -2411,7 +2411,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = Status::newGood();
 		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
-		$this->assertInstanceOf( 'ScopedLock', $sl,
+		$this->assertInstanceOf( ScopedLock::class, $sl,
 			"Scoped locking of files succeeded ($backendName)." );
 		$this->assertEquals( [], $status->getErrors(),
 			"Scoped locking of files succeeded ($backendName)." );
@@ -2436,7 +2436,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$be = TestingAccessWrapper::newFromObject( new MemoryFileBackend(
 			[
 				'name' => 'testing',
-				'class' => 'MemoryFileBackend',
+				'class' => MemoryFileBackend::class,
 				'wikiId' => 'meow',
 				'mimeCallback' => $mimeCallback
 			]
@@ -2471,13 +2471,13 @@ class FileBackendTest extends MediaWikiTestCase {
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
-						'class' => 'MemoryFileBackend',
+						'class' => MemoryFileBackend::class,
 						'isMultiMaster' => false,
 						'readAffinity' => true
 					],
 					[ // backend 1
 						'name' => 'multitesting1',
-						'class' => 'MemoryFileBackend',
+						'class' => MemoryFileBackend::class,
 						'isMultiMaster' => true
 					]
 				]
@@ -2521,12 +2521,12 @@ class FileBackendTest extends MediaWikiTestCase {
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
-						'class' => 'MemoryFileBackend',
+						'class' => MemoryFileBackend::class,
 						'isMultiMaster' => false
 					],
 					[ // backend 1
 						'name' => 'multitesting1',
-						'class' => 'MemoryFileBackend',
+						'class' => MemoryFileBackend::class,
 						'isMultiMaster' => true
 					]
 				],

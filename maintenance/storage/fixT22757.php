@@ -345,5 +345,5 @@ class FixT22757 extends Maintenance {
 	}
 }
 
-$maintClass = 'FixT22757';
+$maintClass = FixT22757::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -114,8 +114,8 @@ class RecompressTracked {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->replicaId}: ";
 		}
 		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
-			'DiffHistoryBlob' : 'ConcatenatedGzipHistoryBlob';
-		$this->orphanBlobClass = 'ConcatenatedGzipHistoryBlob';
+			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
+		$this->orphanBlobClass = ConcatenatedGzipHistoryBlob::class;
 	}
 
 	function debug( $msg ) {

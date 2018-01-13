@@ -40,7 +40,7 @@ use ObjectFactory;
  * default SPI provider:
  * @code
  * $wgMWLoggerDefaultSpi = [
- *   'class' => '\\MediaWiki\\Logger\\MonologSpi',
+ *   'class' => \MediaWiki\Logger\MonologSpi::class,
  *   'args' => [ [
  *       'loggers' => [
  *           '@default' => [
@@ -54,29 +54,29 @@ use ObjectFactory;
  *       ],
  *       'processors' => [
  *           'wiki' => [
- *               'class' => '\\MediaWiki\\Logger\\Monolog\\WikiProcessor',
+ *               'class' => \MediaWiki\Logger\Monolog\WikiProcessor::class,
  *           ],
  *           'psr' => [
- *               'class' => '\\Monolog\\Processor\\PsrLogMessageProcessor',
+ *               'class' => \Monolog\Processor\PsrLogMessageProcessor::class,
  *           ],
  *           'pid' => [
- *               'class' => '\\Monolog\\Processor\\ProcessIdProcessor',
+ *               'class' => \Monolog\Processor\ProcessIdProcessor::class,
  *           ],
  *           'uid' => [
- *               'class' => '\\Monolog\\Processor\\UidProcessor',
+ *               'class' => \Monolog\Processor\UidProcessor::class,
  *           ],
  *           'web' => [
- *               'class' => '\\Monolog\\Processor\\WebProcessor',
+ *               'class' => \Monolog\Processor\WebProcessor::class,
  *           ],
  *       ],
  *       'handlers' => [
  *           'stream' => [
- *               'class'     => '\\Monolog\\Handler\\StreamHandler',
+ *               'class'     => \Monolog\Handler\StreamHandler::class,
  *               'args'      => [ 'path/to/your.log' ],
  *               'formatter' => 'line',
  *           ],
  *           'redis' => [
- *               'class'     => '\\Monolog\\Handler\\RedisHandler',
+ *               'class'     => \Monolog\Handler\RedisHandler::class,
  *               'args'      => [ function() {
  *                       $redis = new Redis();
  *                       $redis->connect( '127.0.0.1', 6379 );
@@ -88,7 +88,7 @@ use ObjectFactory;
  *               'buffer' => true,
  *           ],
  *           'udp2log' => [
- *               'class' => '\\MediaWiki\\Logger\\Monolog\\LegacyHandler',
+ *               'class' => \MediaWiki\Logger\Monolog\LegacyHandler::class,
  *               'args' => [
  *                   'udp://127.0.0.1:8420/mediawiki
  *               ],
@@ -97,10 +97,10 @@ use ObjectFactory;
  *       ],
  *       'formatters' => [
  *           'line' => [
- *               'class' => '\\Monolog\\Formatter\\LineFormatter',
+ *               'class' => \Monolog\Formatter\LineFormatter::class,
  *            ],
  *            'logstash' => [
- *                'class' => '\\Monolog\\Formatter\\LogstashFormatter',
+ *                'class' => \Monolog\Formatter\LogstashFormatter::class,
  *                'args'  => [ 'mediawiki', php_uname( 'n' ), null, '', 1 ],
  *            ],
  *       ],

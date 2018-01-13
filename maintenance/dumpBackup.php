@@ -133,5 +133,5 @@ TEXT
 	}
 }
 
-$maintClass = 'DumpBackup';
+$maintClass = DumpBackup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

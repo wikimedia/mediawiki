@@ -123,5 +123,5 @@ class DeleteBatch extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteBatch";
+$maintClass = DeleteBatch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

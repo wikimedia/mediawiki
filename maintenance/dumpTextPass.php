@@ -986,5 +986,5 @@ TEXT
 	}
 }
 
-$maintClass = 'TextPassDumper';
+$maintClass = TextPassDumper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

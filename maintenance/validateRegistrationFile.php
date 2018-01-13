@@ -22,5 +22,5 @@ class ValidateRegistrationFile extends Maintenance {
 	}
 }
 
-$maintClass = 'ValidateRegistrationFile';
+$maintClass = ValidateRegistrationFile::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -41,5 +41,5 @@ class PurgeExpiredUserrights extends Maintenance {
 	}
 }
 
-$maintClass = "PurgeExpiredUserrights";
+$maintClass = PurgeExpiredUserrights::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

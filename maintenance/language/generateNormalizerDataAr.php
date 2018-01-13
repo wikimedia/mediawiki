@@ -127,5 +127,5 @@ class GenerateNormalizerDataAr extends Maintenance {
 	}
 }
 
-$maintClass = 'GenerateNormalizerDataAr';
+$maintClass = GenerateNormalizerDataAr::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
