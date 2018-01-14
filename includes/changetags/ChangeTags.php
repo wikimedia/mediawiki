@@ -417,8 +417,10 @@ class ChangeTags {
 			$dbw->delete( 'tag_summary', $tsConds, __METHOD__ );
 		} else {
 			$dbw->replace( 'tag_summary',
-				[ 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ],
-				array_filter( array_merge( $tsConds, [ 'ts_tags' => implode( ',', $newTags ) ] ) ),
+				[ [ 'ts_rev_id' ], [ 'ts_rc_id' ], [ 'ts_log_id' ] ],
+				array_filter(
+					array_merge( $tsConds, [ 'ts_tags' => implode( ',', $newTags ) ] )
+				),
 				__METHOD__
 			);
 		}
