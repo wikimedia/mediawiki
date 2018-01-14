@@ -79,8 +79,8 @@ abstract class RevisionRecord {
 	/** @var CommentStoreComment|null */
 	protected $mComment;
 
-	/**  @var Title */
-	protected $mTitle; // TODO: we only need the title for permission checks!
+	/**  @var LinkTarget */
+	protected $mLinkTarget;
 
 	/** @var RevisionSlots */
 	protected $mSlots;
@@ -89,22 +89,20 @@ abstract class RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param LinkTarget $linkTarget The title of the page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
 	 *        or false for the local site.
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $wikiId = false ) {
+	function __construct( LinkTarget $linkTarget, RevisionSlots $slots, $wikiId = false ) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
 
-		$this->mTitle = $title;
+		// FIXME: inject permission checker
+		$this->mLinkTarget = $linkTarget;
 		$this->mSlots = $slots;
 		$this->mWiki = $wikiId;
-
-		// XXX: this is a sensible default, but we may not have a Title object here in the future.
-		$this->mPageId = $title->getArticleID();
 	}
 
 	/**
@@ -288,7 +286,25 @@ abstract class RevisionRecord {
 	 * @return LinkTarget
 	 */
 	public function getPageAsLinkTarget() {
-		return $this->mTitle;
+		return $this->mLinkTarget;
+	}
+
+	/**
+	 * @note only needed for permission checks!
+	 *
+	 * @return Title
+	 */
+	private function getPageAsTitle() {
+		if ( $this->mLinkTarget instanceof  Title ) {
+			return $this->mLinkTarget;
+		} elseif ( $this->mPageId && !$this->getWikiId() ) {
+			// TODO: cache!
+			// XXX: this does a database query and relies on global state!
+			Title::newFromID( $this->mPageId );
+		} else {
+			// XXX: this needs to consider the wiki ID!
+			Title::newFromLinkTarget( $this->mLinkTarget );
+		}
 	}
 
 	/**
@@ -430,8 +446,13 @@ abstract class RevisionRecord {
 	 * @return bool
 	 */
 	protected function userCan( $field, User $user ) {
-		// TODO: use callback for permission checks, so we don't need to know a Title object!
-		return self::userCanBitfield( $this->getVisibility(), $field, $user, $this->mTitle );
+		// FIXME: use an injectable callback!
+		return self::userCanBitfield(
+			$this->getVisibility(),
+			$field,
+			$user,
+			$this->getPageAsTitle()
+		);
 	}
 
 	/**
@@ -451,6 +472,8 @@ abstract class RevisionRecord {
 	 * @return bool
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user, Title $title = null ) {
+		// FIXME: move this to RevisionStore
+
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permissions = [ 'suppressrevision', 'viewsuppressed' ];

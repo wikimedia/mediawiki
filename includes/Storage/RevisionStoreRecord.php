@@ -24,8 +24,8 @@ namespace MediaWiki\Storage;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
-use Title;
 use User;
 use Wikimedia\Assert\Assert;
 
@@ -44,7 +44,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
+	 * @param LinkTarget $linkTarget The title of the page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param object $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
@@ -54,14 +54,14 @@ class RevisionStoreRecord extends RevisionRecord {
 	 *        or false for the local site.
 	 */
 	function __construct(
-		Title $title,
+		LinkTarget $linkTarget,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $linkTarget, $slots, $wikiId );
 		Assert::parameterType( 'object', $row, '$row' );
 
 		$this->mId = intval( $row->rev_id );
@@ -89,17 +89,6 @@ class RevisionStoreRecord extends RevisionRecord {
 		// object. During page creation, that bad value would be 0.
 		if ( isset( $row->page_latest ) ) {
 			$this->mCurrent = ( $row->rev_id == $row->page_latest );
-		}
-
-		// sanity check
-		if (
-			$this->mPageId && $this->mTitle->exists()
-			&& $this->mPageId !== $this->mTitle->getArticleID()
-		) {
-			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId .
-				' but actually belongs to ' . $this->mTitle->getArticleID()
-			);
 		}
 	}
 
