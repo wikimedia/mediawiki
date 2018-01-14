@@ -54,7 +54,80 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
- * Service for looking up page revisions.
+ * Service for looking up and storing page revisions.
+ *
+ * Several methods in this class allow the creation of a RevisionRecord from a database row object,
+ * or a programmatically constructed array. The following rules apply when constructing a
+ * RevisionRecord from a row object: it is expected to be a database row object containing fields
+ * from the revision table, the text table, the page table, and possibly other auxiliary tables.
+ * Note that if rev_id is not present but ar_user is, the archive table is assumed to be used
+ * instead of the revision table, so the ar_* fields are used instead of the rev_* fields.
+ *
+ * The following fields are used when constructing a RevisionStoreRecord resp. a
+ * RevisionArchiveRecord from a database row:
+ * - rev_id (or ar_rev_id): the revision ID (required).
+ *   May also be used to load a Title if none is passed explicitly.
+ * - rev_page (or ar_page_id): the ID of the page the revision belongs to.
+ *   May be used to load a Title if none is passed explicitly.
+ * - ar_title and ar_namespace: used to construct a Title object of none is provided.
+ *   Note that page_title and page_namespace are not used in this way.
+ * - rev_comment (or ar_comment): handled by CommentStore::getCommentLegacy
+ * - rev_comment_* (or ar_comment_*): handled by CommentStore::getCommentLegacy
+ * - comment_*: handled by CommentStore
+ * - rev_user (or ar_user): the name of the user who created the revision.
+ *   (FUTURE: handled by ActorStore::getActorLegacy)
+ * - rev_user_text (or ar_user_text): the name the user who created the revision.
+ *   (FUTURE: handled by ActorStore::getActorLegacy)
+ * - rev_actor: (FUTURE) the actor ID of the user who created the revision, andled by ActorStore.
+ * - rev_parent_id (or ar_parent_id): The ID of the parent revision.
+ * - rev_minor (or ar_minor): 1 if the edit was marked as minor by the user.
+ * - rev_deleted (or ar_deleted): bitfield indicating what aspect of the revision is suppressed.
+ *
+ * The following fields are used when constructing the main slot content from a MW 1.29 style
+ * database row:
+ * - rev_id (or ar_id): the revision ID (required)
+ * - rev_text_id (or ar_text_id): a reference to a row in the text table; needed unless
+ *   old_text (or ar_text) is present.
+ * - rev_len (or ar_len): the nominal size of the main slot's content.
+ *   Calculated if missing or null.
+ * - rev_sha1 (or ar_sha1): the Base36 encoded SHA1 hash of the slot's content.
+ *   Calculated if missing or null.
+ * - rev_content_model (or ar_content_model): the main slot's content model.
+ *   Derived from the title of not given.
+ * - rev_content_format (or ar_content_format): the main slot's serialization format.
+ *   Derived from the model of not given.
+ * - old_text (or ar_text): the main slots content, with any encoding/compression/indirection
+ *   indicated by old_flags.
+ * - old_flags (or ar_flags): flags indicating any encoding/compression/indirection to be
+ *   undone when loading the main slot's content. Required if old_text/ar_text is present!
+ *   Note that the content will be converted according to any legacy encoding configured in
+ *   BlobStore unless the "utf-8" flag is present here!
+ *
+ * Code that constructs a revision programmatically has traditionally done so by passing an
+ * associative array to the constructor of Revision. New code is encouraged to directly use a
+ * MutableRevisionRecord instead. Construction from an associative array is still supported
+ * for easier migration.
+ *
+ * The following fields are used when constructing the main slot content from a MW 1.29 style
+ * associative array:
+ * - 'id': the revision ID
+ * - 'text_id': a reference to a row in the text table; needed unless 'text'
+ *   or 'content' are present.
+ * - 'len': the nominal size of the main slot's content.
+ *   Calculated if missing or null.
+ * - 'sha1': the Base36 encoded SHA1 hash of the slot's content.
+ *   Calculated if missing or null.
+ * - 'content_model': the main slot's content model.
+ *   Derived from the title of not given.
+ * - 'content_format': the main slot's serialization format.
+ *   Derived from the model of not given.
+ * - 'text': the main slots content. Assumed to be the serialized content,
+ *   unless some encoding/compression/indirection specified by the 'flags' field.
+ * - 'flags': flags indicating the encoding/compression/indirection to be
+ *   undone before deserializing the value of the 'text' field. If this field is null or absent,
+ *   'text' is assumed to contain the raw serialized content, and no conversion is applied.
+ *   Note that, if the field is present and not null, the content will be converted according to
+ *   any legacy encoding configured in BlobStore, unless the "utf-8" flag is present here!
  *
  * @since 1.31
  *
@@ -676,7 +749,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	/**
 	 * Constructs a RevisionRecord for the revisions main slot, based on the MW1.29 schema.
 	 *
-	 * @param object|array $row Either a database row or an array
+	 * @param object|array $row Either a database row or an associative array.
+	 *   See class level documentation for supported fields and their meaning.
 	 * @param int $queryFlags for callbacks
 	 * @param Title $title
 	 *
@@ -989,7 +1063,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromArchiveRow
 	 *
-	 * @param object $row
+	 * @param object $row Database row object.
+	 *   See class level documentation for supported fields and their meaning.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 * @param array $overrides associative array with fields of $row to override. This may be
@@ -1079,7 +1154,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @param object $row
+	 * @param object $row Database row object.
+	 *   See class level documentation for supported fields and their meaning.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
@@ -1121,7 +1197,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @param object $row
+	 * @param object $row Database row object.
+	 *   See class level documentation for supported fields and their meaning.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
@@ -1137,7 +1214,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::newFromRow
 	 *
-	 * @param array $fields
+	 * @param array $fields An associative array.
+	 *   See class level documentation for supported fields and their meaning.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
