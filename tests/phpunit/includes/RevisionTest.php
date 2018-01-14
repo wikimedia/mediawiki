@@ -91,6 +91,45 @@ class RevisionTest extends MediaWikiTestCase {
 		MediaWiki\restoreWarnings();
 	}
 
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromArray_LegacyEncoding_ignored() {
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( 'iso-8859-1', Language::factory( 'fr' ) );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+
+		$title = $this->getMockTitle();
+
+		// if 'flags' is not set, 'text' is assumed to be raw, with no conversion needed.
+		$array = [ 'text' => "Wiki est l'\xc3\xa9cole superieur !" ];
+		$rev = new Revision( $array, 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+
+		// 'utf-8' in flags means "do not apply legacy encoding"
+		$array = [ 'text' => "Wiki est l'\xc3\xa9cole superieur !", 'flags' => 'utf-8' ];
+		$rev = new Revision( $array, 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+	}
+
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromArray_LegacyEncoding_applied() {
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( 'iso-8859-1', Language::factory( 'fr' ) );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+
+		$title = $this->getMockTitle();
+
+		// empty 'flags' field means "apply legacy encoding"!
+		$array = [ 'text' => "Wiki est l'\xe9cole superieur !", 'flags' => '' ];
+		$rev = new Revision( $array, 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+	}
+
 	public function provideConstructFromArray_userSetAsExpected() {
 		yield 'no user defaults to wgUser' => [
 			[
@@ -317,18 +356,92 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
+		$row = [ 'rev_page' => 77777777 ];
+
 		MediaWiki\suppressWarnings();
-		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
+		$rev = new Revision( $this->makeRow( $row ) );
 		$this->assertSame( 77777777, $rev->getPage() );
 		MediaWiki\restoreWarnings();
 	}
 
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromRow_LegacyEncoding_ignored() {
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( 'iso-8859-1', Language::factory( 'fr' ) );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+
+		$title = $this->getMockTitle();
+
+		// 'utf-8' in flags means "do not apply legacy encoding"
+		$row = [ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !", 'old_flags' => 'utf-8' ];
+		$rev = new Revision( $this->makeRow( $row ), 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+	}
+
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromRow_LegacyEncoding_applied() {
+		$blobStore = $this->getBlobStore();
+		$blobStore->setLegacyEncoding( 'iso-8859-1', Language::factory( 'fr' ) );
+		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
+
+		$title = $this->getMockTitle();
+
+		// empty old_flags means "apply legacy encoding"!
+		$row = [ 'old_text' => "Wiki est l'\xe9cole superieur !", 'old_flags' => '' ];
+		$rev = new Revision( $this->makeRow( $row ), 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+
+		// old_flags = null means "apply legacy encoding"!
+		$row = [ 'old_text' => "Wiki est l'\xe9cole superieur !", 'old_flags' => null ];
+		$rev = new Revision( $this->makeRow( $row ), 0, $title );
+		$this->assertSame( "Wiki est l'\xc3\xa9cole superieur !", $rev->getContent()->serialize() );
+	}
+
+	private function makeRow( array $array ) {
+		$row = $array + [
+				'rev_id' => 7,
+				'rev_page' => 5,
+				'rev_text_id' => 11,
+				'rev_timestamp' => '20110101000000',
+				'rev_user_text' => 'Tester',
+				'rev_user' => 17,
+				'rev_minor_edit' => 0,
+				'rev_deleted' => 0,
+				'rev_len' => 100,
+				'rev_parent_id' => 0,
+				'rev_sha1' => 'deadbeef',
+				'rev_comment_text' => 'Testing',
+				'rev_comment_data' => '{}',
+				'rev_comment_cid' => 111,
+				'rev_content_format' => CONTENT_FORMAT_TEXT,
+				'rev_content_model' => CONTENT_MODEL_TEXT,
+				'page_namespace' => 0,
+				'page_title' => 'TEST',
+				'page_id' => 5,
+				'page_latest' => 7,
+				'page_is_redirect' => 0,
+				'page_len' => 100,
+				'user_name' => 'Tester',
+				'old_is' => 13,
+				'old_text' => 'Hello World',
+				'old_flags' => 'utf-8',
+			];
+
+		return (object)$row;
+	}
+
 	public function provideGetRevisionText() {
 		yield 'Generic test' => [
-			'This is a goat of revision text.',
+			'This is a goat of revision text with ümläüts.',
 			[
-				'old_flags' => '',
-				'old_text' => 'This is a goat of revision text.',
+				'old_flags' => 'utf-8',
+				'old_text' => 'This is a goat of revision text with ümläüts.',
 			],
 		];
 	}
