@@ -474,7 +474,8 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param object|array|RevisionRecord $row Either a database row or an array
+	 * @param object|array|RevisionRecord $row Either a database row or an array.
+	 *   See class level documentation of RevisionStore for supported fields and their meaning.
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
