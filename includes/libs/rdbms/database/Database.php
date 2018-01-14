@@ -2238,49 +2238,43 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		$quotedTable = $this->tableName( $table );
-
 		if ( count( $rows ) == 0 ) {
 			return;
 		}
 
-		# Single row case
+		// Single row case
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
 
-		// @FXIME: this is not atomic, but a trx would break affectedRows()
+		// @FIXME: this is not atomic, but a trx would break affectedRows()
 		foreach ( $rows as $row ) {
-			# Delete rows which collide
-			if ( $uniqueIndexes ) {
-				$sql = "DELETE FROM $quotedTable WHERE ";
-				$first = true;
-				foreach ( $uniqueIndexes as $index ) {
-					if ( $first ) {
-						$first = false;
-						$sql .= '( ';
-					} else {
-						$sql .= ' ) OR ( ';
-					}
-					if ( is_array( $index ) ) {
-						$first2 = true;
-						foreach ( $index as $col ) {
-							if ( $first2 ) {
-								$first2 = false;
-							} else {
-								$sql .= ' AND ';
-							}
-							$sql .= $col . '=' . $this->addQuotes( $row[$col] );
-						}
-					} else {
-						$sql .= $index . '=' . $this->addQuotes( $row[$index] );
-					}
+			// Delete rows which collide with this one
+			$indexWhereClauses = [];
+			foreach ( $uniqueIndexes as $index ) {
+				$indexColumns = (array)$index;
+				$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
+				if ( count( $indexRowValues ) != count( $indexColumns ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						'New record does not provide all values for unique key (' .
+							implode( ', ', $indexColumns ) . ')'
+					);
+				} elseif ( in_array( null, $indexRowValues, true ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						'New record has a null value for unique key (' .
+							implode( ', ', $indexColumns ) . ')'
+					);
 				}
-				$sql .= ' )';
-				$this->query( $sql, $fname );
+				$indexWhereClauses[] = $this->makeList( $indexRowValues, LIST_AND );
 			}
 
-			# Now insert the row
+			if ( $indexWhereClauses ) {
+				$this->delete( $table, $this->makeList( $indexWhereClauses, LIST_OR ), $fname );
+			}
+
+			// Now insert the row
 			$this->insert( $table, $row, $fname );
 		}
 	}
