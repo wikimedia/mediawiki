@@ -1254,6 +1254,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "添加页面的旧有长度和新长度。",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "添加最近被通知有关编辑的用户的时间戳。",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "在适当位置添加日志信息。",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "列举条目的标签。",
 	"apihelp-query+watchlist-param-show": "只显示满足这些标准的项目。例如，要只查看由登录用户做出的小编辑，设置$1show=minor|!anon。",
 	"apihelp-query+watchlist-param-type": "要显示的更改类型：",
 	"apihelp-query+watchlist-paramvalue-type-edit": "普通页面编辑。",

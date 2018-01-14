@@ -1497,7 +1497,7 @@
 	"rcfilters-filter-showlinkedfrom-label": "顯示連結自該頁面的頁面上的更改",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>連結自</strong>指定頁面的頁面",
 	"rcfilters-filter-showlinkedto-label": "顯示連結到該頁面的頁面上的更改",
-	"rcfilters-filter-showlinkedto-option-label": "<strong>連結到</strong>指定頁面的頁面上的更改",
+	"rcfilters-filter-showlinkedto-option-label": "<strong>連結到</strong>指定頁面的頁面",
 	"rcfilters-target-page-placeholder": "輸入頁面名稱（或分類）",
 	"rcnotefrom": "以下{{PLURAL:$5|為}}自 <strong>$3 $4</strong> 以來的變更 (最多顯示 <strong>$1</strong> 筆)。",
 	"rclistfromreset": "重設日期選擇",

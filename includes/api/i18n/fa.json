@@ -311,6 +311,7 @@
 	"apihelp-query+tags-param-prop": "خصوصیتی که باید گرفته شود:",
 	"apihelp-query+tags-paramvalue-prop-name": "افزودن نام برچسب.",
 	"apihelp-query+transcludedin-paramvalue-prop-title": "عنوان هر صفحه.",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "برچسب‌‌های یک مدخل را لیست می‌کند",
 	"apihelp-query+watchlist-paramvalue-type-log": "مدخل‌های سیاهه.",
 	"apihelp-stashedit-param-text": "محتوای صفحه.",
 	"apihelp-stashedit-param-contentmodel": "مدل محتوایی محتوای جدید",
