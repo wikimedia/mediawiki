@@ -1,0 +1,81 @@
+{{Automatic Taxobox
+| name = Honeyguides
+| image = Wahlberg's Honeyguide (Prodotiscus regulus).jpg
+| image_caption = [[Brown-backed honeybird]]
+| taxon = Indicatoridae
+| authority = [[William John Swainson|Swainson]], 1837
+| subdivision_ranks = Genera
+| subdivision =
+''[[Indicator (genus)|Indicator]]''<br/>
+''[[Melichneutes]]''<br/>
+''[[Melignomon]]''<br/>
+''[[Prodotiscus]]''
+}}
+
+'''Honeyguides''' ([[family (biology)|family]] '''Indicatoridae''') are [[near passerine]] [[bird]] species of the order [[Piciformes]]. They are also known as '''indicator birds''', or '''honey birds''', although the latter term is also used more narrowly to refer to species of the genus ''[[Prodotiscus]]''. They have an [[Old World]] tropical distribution, with the greatest number of species in [[Africa]] and two in [[Asia]]. These birds are best known for their interaction with humans. Honeyguides are noted and named for one or two species that will deliberately lead humans (but, contrary to popular claims, not [[honey badger]]s) directly to bee colonies, so that they can feast on the grubs and [[beeswax]] that are left behind.
+
+== Description ==
+[[File:Wahlberg's Honeyguide (Prodotiscus regulus) - Juvenile fed by host parent Rock-loving Cisticola.jpg|thumb|left|[[Brown-backed honeybird]] juvenile fed by host parent, a [[rock-loving cisticola]]]]
+
+Most honeyguides are dull-colored, though some have bright yellow coloring in the plumage. All have light outer tail feathers, which are white in all the African species.
+
+They are among the few birds that feed regularly on [[wax]]&mdash;[[beeswax]] in most species, and presumably the waxy secretions of [[scale insect]]s in the genus ''[[Prodotiscus]]'' and to a lesser extent in ''[[Melignomon]]'' and the smaller species of ''[[Indicator (genus)|Indicator]]''. They also feed on [[waxworm]]s which are the larvae of the waxmoth ''Galleria mellonella'', on [[bee]] colonies, and on flying and crawling insects, [[spider]]s, and occasional fruits. Many species join [[mixed-species feeding flock]]s.
+
+==Behavior==
+===Guiding===
+
+Honeyguides are named for a remarkable habit seen in one or two species: guiding humans to [[bee hive|bee colonies]]. Once the hive is open and the honey is taken, the bird feeds on the remaining larvae and wax. This behavior is well studied in the [[greater honeyguide]]; some authorities (following Friedmann, 1955) state that it also occurs in the [[scaly-throated honeyguide]], while others disagree (Short and Horne, 2002). Wild honeyguides have demonstrated the capability to understand a human call to accompany them to locate honey.<ref>{{cite journal |first1=Claire N. |last1=Spottiswoode |first2=Keith S. |last2=Begg |first3=Colleen M. |last3=Begg |title=Reciprocal signaling in honeyguide-human mutualism |journal=[[Science (journal)|Science]] |date=July 22, 2016 |doi=10.1126/science.aaf4885 |volume=353 |issue=6297 |pages=387–389 |pmid=27463674}}</ref> Despite popular belief, there is no evidence that honeyguides guide the [[honey badger]], though there are videos about this.<ref name=Dean_ConsBiol>{{cite journal|last=Dean|first=W. R. J.|author2=Siegfried, W. Roy |author3=MacDonald, I. A. W. |title=The Fallacy, Fact, and Fate of Guiding Behavior in the Greater Honeyguide|journal=Conservation Biology|date=1 March 1990|volume=4|issue=1|pages=99–101|doi=10.1111/j.1523-1739.1990.tb00272.x|url=http://onlinelibrary.wiley.com/doi/10.1111/j.1523-1739.1990.tb00272.x/abstract|accessdate=11 March 2013}}</ref><ref name=DiscoverBlog>{{cite web|last=Yong|first=Ed|title=Lies, damned lies, and honey badgers|url=http://blogs.discovermagazine.com/notrocketscience/2011/09/19/lies-damned-lies-and-honey-badgers/|publisher=Kalmbach|accessdate=11 March 2013|date=September 19, 2011}}</ref>
+
+Although most members of the family are not known to recruit "followers" in their quest for wax, they are also referred to as "honeyguides" by linguistic extrapolation.
+
+===Breeding===
+The breeding behavior of eight species in ''Indicator'' and ''Prodotiscus'' is known. They are all [[brood parasite]]s that lay one [[Bird egg|egg]] in a nest of another species, laying eggs in series of about five during a period of five to seven days. Most favor hole-nesting species, often the related [[Lybiidae|barbets]] and [[woodpecker]]s, but ''Prodotiscus'' parasitizes [[Cup nest#Cup|cup-nest]]ers such as [[white-eye]]s and [[Old World warbler|warbler]]s. Honeyguide nestlings have been known to physically eject their hosts' chicks from the nests and they have needle-sharp hooks on their [[beak]]s with which they puncture the hosts' eggs or kill the nestlings.<ref name=EoB>{{cite book |editor-last=Forshaw |editor-first=Joseph |last=Short |first=Lester L. |year=1991 |title=Encyclopaedia of Animals: Birds |publisher=Merehurst Press |location=London |page=155 |isbn=1-85391-186-0}}</ref>
+
+African honeyguide birds are known to lay their eggs in underground nests of other bee-eating bird species. The honeyguide chicks kill the hatchlings of the host using their needle-sharp beaks just after hatching, much as [[cuckoo]] hatchlings do. The honeyguide mother ensures her chick hatches first by internally incubating the egg for an extra day before laying it, so that it has a head start in development compared to the hosts' offspring.<ref>{{cite news |last=Davies |first=Ella |url=http://www.bbc.co.uk/nature/14802180 |title=Underground chick-killers filmed |publisher=[[British Broadcasting Corporation|BBC]] Nature |date=7 September 2011 }}</ref>
+
+== Species ==
+The Indicatoridae contains seventeen [[species]] in four [[genus|genera]]:
+
+'''FAMILY: INDICATORIDAE'''
+* '''Genus: ''[[Indicator (genus)|Indicator]]'''''
+** [[Spotted honeyguide]], ''I. maculatus''
+** [[Scaly-throated honeyguide]], ''I. variegatus''
+** [[Greater honeyguide]], ''I. indicator''
+** [[Malaysian honeyguide]], ''I. archipelagicus''
+** [[Lesser honeyguide]], ''I. minor''
+*** [[Thick-billed honeyguide]], ''I. (minor) conirostris''
+** [[Willcocks's honeyguide]], ''I. willcocksi''
+** [[Least honeyguide]], ''I. exilis''
+** [[Dwarf honeyguide]], ''I. pumilio''
+** [[Pallid honeyguide]], ''I. meliphilus''
+** [[Yellow-rumped honeyguide]], ''I. xanthonotus''
+* '''Genus: ''[[Melichneutes]]'''''
+** [[Lyre-tailed honeyguide]], ''M. robustus''
+* '''Genus: ''[[Melignomon]]'''''
+** [[Yellow-footed honeyguide]], ''M. eisentrauti''
+** [[Zenker's honeyguide]], ''M. zenkeri''
+* '''Genus: ''[[Prodotiscus]]'''''
+** [[Cassin's honeybird]], ''P. insignis''
+** [[Green-backed honeybird]], ''P. zambesiae''
+** [[Brown-backed honeybird]], ''P. regulus''
+
+==References==
+{{reflist}}
+* {{cite book | author = Friedmann, Herbert | title = The Honeyguides | publisher = U.S. National Museum (Bulletin 208) | year = 1955 | url = http://hdl.handle.net/10088/10101}}
+* {{cite book | author = Short, Lester, and [[Jennifer F. M. Horne|Jennifer Horne]] | title = Toucans, Barbets and Honeyguides | publisher = Oxford University Press | year = 2002 | isbn = 0-19-854666-1}}
+
+==External links==
+{{commons category|Indicatoridae}}
+*[http://montereybay.com/creagrus/honeyguides.html Don Roberson's Bird Families of the World]
+*{{YouTube|mVtSYRmlirg|Honey Guide Bird (Amazing Partnership) Guiding humans to Beehive}}
+*{{YouTube|KbgBllWeZ4k|Honey Guide Bird (BBC Documentary)}}
+*{{YouTube|JTXKeBx0I_8|Lesser Honeyguide (Indicator minor)}}
+
+{{Piciformes}}
+{{Brood parasite}}
+
+{{taxonbar}}
+
+[[Category:Brood parasites]]
+[[Category:Honeyguides]]
+[[Category:Symbiosis]]
