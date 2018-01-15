@@ -248,14 +248,24 @@
 		href = util.getUrl( '#Fragment', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?action=edit#Fragment', 'empty title with query string and fragment' );
 
+		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
 		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?title=Foo:Sandbox_%C3%84&action=edit#Fragment_.C3.84', 'title with query string, fragment, and special characters' );
+
+		mw.config.set( 'wgFragmentMode', [ 'html5' ] );
+		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
+		assert.equal( href, '/w/index.php?title=Foo:Sandbox_%C3%84&action=edit#Fragment_Ä', 'title with query string, fragment, and special characters' );
 
 		href = util.getUrl( 'Foo:%23#Fragment', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?title=Foo:%2523&action=edit#Fragment', 'title containing %23 (#), fragment, and a query string' );
 
+		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
 		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
+
+		mw.config.set( 'wgFragmentMode', [ 'html5' ] );
+		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
+		assert.equal( href, '/w/index.php?action=edit#+&=:;@$-_.!*/[]<>\'§', 'fragment with various characters' );
 	} );
 
 	QUnit.test( 'wikiScript', function ( assert ) {
