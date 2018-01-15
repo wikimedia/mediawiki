@@ -1,0 +1,9 @@
+Kein Mitglied des Aufgabenausschusses konnte diese Aufgabe lösen, sodass sie die Aufgabe einigen mit Zahlentheorie vertrauten Universitätsmathematikern vorlegten, die, bei einer begrenzten Bearbeitungszeit von 6&nbsp;Stunden, ebenfalls keinen Beweis fanden. Dennoch wurde die Aufgabe gestellt und von elf Schülern gelöst.<ref>Arthur Engel: ''Problem Solving Strategies.'' Springer 1998, ISBN 0-387-98219-1, S. 127.</ref>
+
+Die Aufgabe, bei der bisher (Stand 2016) die wenigsten Punkte vergeben wurden, stammt aus dem Jahr 2007:
+<blockquote>
+Es sei <math>n</math> eine positive ganze Zahl. Gegeben sei <math>S =\{(x, y, z): x, y, z \in \{0, 1, \ldots, n\}, x + y + z > 0\}</math> eine Menge von <math>(n + 1)^3 - 1</math> Punkten des drei-dimensionalen Raumes. Man bestimme die kleinstmögliche Anzahl von Ebenen, deren Vereinigung die Menge <math>S</math> umfasst, aber nicht den Punkt (0, 0, 0).
+</blockquote>
+Nur fünf Schülern gelang es, diese Aufgabe zu lösen, zwei Schüler erhielten 2 Punkte, 40 weitere einen. Die anderen 473 Schüler erhielten gar keinen Punkt in dieser Aufgabe, sodass nur 2,2 % der theoretisch möglichen Punkte vergeben wurden.<ref>Hans-Dietrich Gronau: ''[http://www.mathematik-olympiaden.de/IMOs/dokumente/imo07.pdf Bericht über die 48.&nbsp;Internationale Mathematik-Olympiade.]'' (PDF), abgerufen am 17. Juli 2012.</ref>
+
+== Preise ==

@@ -1,0 +1,100 @@
+<tr>
+  <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
+  <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
+</tr>
+<tr>
+  <td colspan="2" class="diff-empty">&#160;</td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>[[Datei:John_Calvin_"Jack"_Briggs,_II.jpg|mini|Ginger Rogers mit Ehemann Jack Briggs, Januar 1943]]</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>'''Ginger Rogers''', eigentlich ''Virginia Katherine McMath'', (*&amp;nbsp;[[16. Juli]] [[1911]] in [[Independence (Missouri)|Independence]], [[Missouri]]; † [[25. April]] [[1995]] in [[Rancho Mirage]], [[Kalifornien]]) war eine [[Vereinigte Staaten|US-amerikanische]] [[Schauspieler]]in, [[Tanz|Tänzerin]] und [[Gesang|Sängerin]]. Gemeinsam mit [[Fred Astaire]] bildete sie in zehn gemeinsamen Tanzfilmen ein weltberühmtes [[Leinwandpaar]]. Obwohl sie vor allem in [[Komödie]]n und [[Musical]]s spielte, konnte Rogers einen [[Oscar]] als ''Beste Hauptdarstellerin'' für ihre dramatische Rolle in ''[[Fräulein Kitty]]'' (1940) gewinnen.</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>'''Ginger Rogers''', eigentlich ''Virginia Katherine McMath'', (*&amp;nbsp;[[16. Juli]] [[1911]] in [[Independence (Missouri)|Independence]], [[Missouri]]; † [[25. April]] [[1995]] in [[Rancho Mirage]], [[Kalifornien]]) war eine [[Vereinigte Staaten|US-amerikanische]] [[Schauspieler]]in, [[Tanz|Tänzerin]] und [[Gesang|Sängerin]]. Gemeinsam mit [[Fred Astaire]] bildete sie in zehn gemeinsamen Tanzfilmen ein weltberühmtes [[Leinwandpaar]]. Obwohl sie vor allem in [[Komödie]]n und [[Musical]]s spielte, konnte Rogers einen [[Oscar]] als ''Beste Hauptdarstellerin'' für ihre dramatische Rolle in ''[[Fräulein Kitty]]'' (1940) gewinnen.</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Leben ==</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Leben ==</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>[[Datei:Ginger Rogers Grave.JPG|mini|Grab von Ginger Rogers und ihrer Mutter Lela auf dem Oakwood Memorial Park in [[Chatsworth (Kalifornien)| Chatsworth]]]]</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td colspan="2" class="diff-empty">&#160;</td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>Ginger Rogers wurde durch ihre alleinerziehende Mutter Lela, eine wenig erfolgreiche Drehbuchautorin, schon früh auf eine Karriere als Tänzerin vorbereitet. Ihren ersten Kontakt zum Showgeschäft hatte sie, als sie bei der Theatertruppe von Entertainer [[Eddie Foy]] einen [[Charleston (Tanz)|Charleston]]-Wettbewerb gewann. Anschließend trat die 14-jährige Rogers als Tänzerin in [[Vaudeville]]-Shows auf. Im Jahr 1929 machte sie ihr Debüt am [[Broadway (Theater)|Broadway]] in New York im Musical ''Top Speed'', das später auch mit [[Joe E. Brown]] in der Hauptrolle verfilmt wurde. Schon wenig später erhielt die erst 19-jährige Rogers eine Hauptrolle im Musical ''Girl Crazy'', das sie zu einem bekannten Namen machte. [[Paramount Pictures]] wurde auf Rogers aufmerksam und nahm sie unter einen der damals üblichen [[Studiovertrag|Studioverträge]]. Nach ihrem Filmdebüt 1929 im Kurzfilm ''A Day of a Man of Affairs'' hatte Rogers in zahlreichen Filmen mitgewirkt, allerdings meist nur als Nebendarstellerin. Erst 1933 wurde sie zum Filmstar durch ihren Auftritt neben [[Fred Astaire]] in der Komödie ''[[Flying Down to Rio]]''. Zwar hatten Astaire und Rogers auch hier nur Nebenrollen, doch harmonierten sie auf der Leinwand so gut, dass sie in der Folgezeit insgesamt zehn Filme zusammen drehen sollten. Die beiden wurden ein populäres [[Leinwandpaar]] und waren 1936 auf Platz 3 der kassenträchtigsten Schauspieler in Amerika. Bis heute gelten sie als das wohl berühmteste Tanzpaar der Filmgeschichte, zahlreiche der in den Filmen gesungenen Lieder wurden Teil des [[Great American Songbook]].</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>Ginger Rogers wurde durch ihre alleinerziehende Mutter Lela, eine wenig erfolgreiche Drehbuchautorin, schon früh auf eine Karriere als Tänzerin vorbereitet. Ihren ersten Kontakt zum Showgeschäft hatte sie, als sie bei der Theatertruppe von Entertainer [[Eddie Foy senior|Eddie Foy]] einen [[Charleston (Tanz)|Charleston]]-Wettbewerb gewann. Anschließend trat die 14-jährige Rogers als Tänzerin in [[Vaudeville]]-Shows auf. Im Jahr 1929 machte sie ihr Debüt am [[Broadway (Theater)|Broadway]] in New York im Musical ''Top Speed'', das später auch mit [[Joe E. Brown]] in der Hauptrolle verfilmt wurde. Schon wenig später erhielt die erst 19-jährige Rogers eine Hauptrolle im Musical ''Girl Crazy'', das sie zu einem bekannten Namen machte. [[Paramount Pictures]] wurde auf Rogers aufmerksam und nahm sie unter einen der damals üblichen [[Studiovertrag|Studioverträge]]. Nach ihrem Filmdebüt 1929 im Kurzfilm ''A Day of a Man of Affairs'' hatte Rogers in zahlreichen Filmen mitgewirkt, allerdings meist nur als Nebendarstellerin. Erst 1933 wurde sie zum Filmstar durch ihren Auftritt neben [[Fred Astaire]] in der Komödie ''[[Flying Down to Rio]]''. Zwar hatten Astaire und Rogers auch hier nur Nebenrollen, doch harmonierten sie auf der Leinwand so gut, dass sie in der Folgezeit insgesamt zehn Filme zusammen drehen sollten. Die beiden wurden ein populäres [[Leinwandpaar]] und waren 1936 auf Platz 3 der kassenträchtigsten Schauspieler in Amerika. Bis heute gelten sie als das wohl berühmteste Tanzpaar der Filmgeschichte, zahlreiche der in den Filmen gesungenen Lieder wurden Teil des [[Great American Songbook]].</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Rogers versuchte allerdings bereits früh, sich nicht auf das Image als Partnerin von Astaire festzulegen. Neben weiteren Musicals wie ''[[Goldgräber von 1933]]'' bewies die blonde Schauspielerin vor allem Talent für leichte Komödien, was sie rasch zu einem der größten Stars ihres Studios [[RKO Pictures|RKO]] werden liess. 1937 spielte sie gemeinsam mit [[Katharine Hepburn]] in [[Gregory La Cava]]s Film ''[[Bühneneingang]]'', für den sie ausgezeichnete Kritiken bekam. 1939 hatte sie einen ihrer größten Erfolge mit der Screwball-Komödie ''[[Die Findelmutter]]'', wo sie unfreiwillig zur Mutter eines Säuglings erklärt wird. Unzufrieden mit den meist leichten Drehbüchern, verlangte sie zunehmend ernsthaftere Rollen. Für ihre Darstellung einer lange leidenden Frau im Drama ''[[Fräulein Kitty]]'' bekam sie eher überraschend auf der [[Oscarverleihung 1941]] den [[Oscar/Beste Hauptdarstellerin|Oscar als beste Hauptdarstellerin]]. Ihre Darstellung einer Frau mit dubiosem Hintergrund in dem Melodram ''[[Primrose Path]]'' gewann ihr ebenfalls Lob und Anerkennung der Fachpresse. 1942 spielte sie neben [[Ray Milland]] die Hauptrolle in ''[[Der Major und das Mädchen]]'', dem amerikanischen Regiedebüt von [[Billy Wilder]]. Rogers verließ 1943 das Studio RKO, obwohl man ihr einen neuen Vertrag mit 330.000 US-Dollar Gage pro Jahr versprach.</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Rogers versuchte allerdings bereits früh, sich nicht auf das Image als Partnerin von Astaire festzulegen. Neben weiteren Musicals wie ''[[Goldgräber von 1933]]'' bewies die blonde Schauspielerin vor allem Talent für leichte Komödien, was sie rasch zu einem der größten Stars ihres Studios [[RKO Pictures|RKO]] werden liess. 1937 spielte sie gemeinsam mit [[Katharine Hepburn]] in [[Gregory La Cava]]s Film ''[[Bühneneingang]]'', für den sie ausgezeichnete Kritiken bekam. 1939 hatte sie einen ihrer größten Erfolge mit der Screwball-Komödie ''[[Die Findelmutter]]'', wo sie unfreiwillig zur Mutter eines Säuglings erklärt wird. Unzufrieden mit den meist leichten Drehbüchern, verlangte sie zunehmend ernsthaftere Rollen. Für ihre Darstellung einer lange leidenden Frau im Drama ''[[Fräulein Kitty]]'' bekam sie eher überraschend auf der [[Oscarverleihung 1941]] den [[Oscar/Beste Hauptdarstellerin|Oscar als beste Hauptdarstellerin]]. Ihre Darstellung einer Frau mit dubiosem Hintergrund in dem Melodram ''[[Primrose Path]]'' gewann ihr ebenfalls Lob und Anerkennung der Fachpresse. 1942 spielte sie neben [[Ray Milland]] die Hauptrolle in ''[[Der Major und das Mädchen]]'', dem amerikanischen Regiedebüt von [[Billy Wilder]]. Rogers verließ 1943 das Studio RKO, obwohl man ihr einen neuen Vertrag mit 330.000 US-Dollar Gage pro Jahr versprach.</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td colspan="2" class="diff-empty">&#160;</td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>[[Datei:Ginger Rogers Grave.JPG|mini|Grab von Ginger Rogers und ihrer Mutter Lela auf dem Oakwood Memorial Park in [[Chatsworth (Kalifornien)| Chatsworth]]]]</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Bis zum Ende der 1940er Jahre blieb Rogers eine erfolgreiche Schauspielerin mit entsprechend hohen Gagen. Zu ihren bekannteren Rollen zählte die Verfilmung des [[Kurt Weill|Kurt-Weill]]-Musicals ''[[Lady in the Dark]]'' von 1944 sowie ''Weekend At The Waldorf'', ein Remake von ''[[Menschen im Hotel (1932)|Menschen im Hotel]]'' aus dem Jahr 1945, wo sie die Rolle von [[Greta Garbo]] übernahm. 1949 ersetzte sie die erkrankte [[Judy Garland]] und spielte ein letztes Mal mit Fred Astaire zusammen in dem Film ''[[Die Tänzer vom Broadway]]''. Ab den 1950er-Jahren ließ ihr Erfolg auch altersbedingt nach. Eine ihrer bedeutendsten Rollen dieser Zeit war die der Ehefrau von [[Cary Grant]] in der Komödie ''[[Liebling, ich werde jünger]]'' von [[Howard Hawks]]. Später konzentrierte sich die Schauspielerin hauptsächlich auf das Theater, mit dem sie sich immer noch verbunden fühlte. Filmauftritte absolvierte sie dagegen nur noch selten. Im Jahr 1987 spielte sie ihre letzte Rolle mit einem Gastauftritt in der Fernsehserie ''[[Hotel (Fernsehserie)|Hotel]]''. 1991 veröffentlichte Rogers ihre Autobiografie unter dem Titel ''Ginger, My Story''. Ein Stern auf dem [[Hollywood Walk of Fame]], Höhe 6772 Hollywood Blvd., erinnert an die Schauspielerin.</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Bis zum Ende der 1940er Jahre blieb Rogers eine erfolgreiche Schauspielerin mit entsprechend hohen Gagen. Zu ihren bekannteren Rollen zählte die Verfilmung des [[Kurt Weill|Kurt-Weill]]-Musicals ''[[Lady in the Dark]]'' von 1944 sowie ''Weekend At The Waldorf'', ein Remake von ''[[Menschen im Hotel (1932)|Menschen im Hotel]]'' aus dem Jahr 1945, wo sie die Rolle von [[Greta Garbo]] übernahm. 1949 ersetzte sie die erkrankte [[Judy Garland]] und spielte ein letztes Mal mit Fred Astaire zusammen in dem Film ''[[Die Tänzer vom Broadway]]''. Ab den 1950er-Jahren ließ ihr Erfolg auch altersbedingt nach. Eine ihrer bedeutendsten Rollen dieser Zeit war die der Ehefrau von [[Cary Grant]] in der Komödie ''[[Liebling, ich werde jünger]]'' von [[Howard Hawks]]. Später konzentrierte sich die Schauspielerin hauptsächlich auf das Theater, mit dem sie sich immer noch verbunden fühlte. Filmauftritte absolvierte sie dagegen nur noch selten. Im Jahr 1987 spielte sie ihre letzte Rolle mit einem Gastauftritt in der Fernsehserie ''[[Hotel (Fernsehserie)|Hotel]]''. 1991 veröffentlichte Rogers ihre Autobiografie unter dem Titel ''Ginger, My Story''. Ein Stern auf dem [[Hollywood Walk of Fame]], Höhe 6772 Hollywood Blvd., erinnert an die Schauspielerin.</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Privatleben ==</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Privatleben ==</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>[[Datei:John_Calvin_"Jack"_Briggs,_II.jpg|mini|mit Jack Briggs, Januar 1943]]</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Ginger Rogers war fünfmal verheiratet: von 1929 bis 1931 mit dem Showmann Jack Pepper (1902–1979), von 1934 bis 1940 mit dem Schauspielkollegen [[Lew Ayres]] (1908–1996), von 1943 bis 1949 mit Jack Briggs (1920-1998), von 1953 bis 1959 mit dem französischen Schauspieler [[Jacques Bergerac]] (1927–2014) und von 1961 bis 1969 mit dem Bandleader William Marshall (1917–1994).</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Ginger Rogers war fünfmal verheiratet: von 1929 bis 1931 mit dem Showmann Jack Pepper (1902–1979), von 1934 bis 1940 mit dem Schauspielkollegen [[Lew Ayres]] (1908–1996), von 1943 bis 1949 mit Jack Briggs (1920-1998), von 1953 bis 1959 mit dem französischen Schauspieler [[Jacques Bergerac]] (1927–2014) und von 1961 bis 1969 mit dem Bandleader William Marshall (1917–1994).</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>

@@ -1,0 +1,53 @@
+<tr>
+  <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
+  <td colspan="2" class="diff-lineno"><!--LINE 1--></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Kein Mitglied des Aufgabenausschusses konnte diese Aufgabe lösen, sodass sie die Aufgabe einigen mit Zahlentheorie vertrauten Universitätsmathematikern vorlegten, die, bei einer begrenzten Bearbeitungszeit von 6&amp;nbsp;Stunden, ebenfalls keinen Beweis fanden. Dennoch wurde die Aufgabe gestellt und von elf Schülern gelöst.&lt;ref&gt;Arthur Engel: ''Problem Solving Strategies.'' Springer 1998, ISBN 0-387-98219-1, S. 127.&lt;/ref&gt;</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>Kein Mitglied des Aufgabenausschusses konnte diese Aufgabe lösen, sodass sie die Aufgabe einigen mit Zahlentheorie vertrauten Universitätsmathematikern vorlegten, die, bei einer begrenzten Bearbeitungszeit von 6&amp;nbsp;Stunden, ebenfalls keinen Beweis fanden. Dennoch wurde die Aufgabe gestellt und von elf Schülern gelöst.&lt;ref&gt;Arthur Engel: ''Problem Solving Strategies.'' Springer 1998, ISBN 0-387-98219-1, S. 127.&lt;/ref&gt;</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>Die Aufgabe, bei der bisher (Stand <del class="diffchange diffchange-inline">2016</del>) die wenigsten Punkte vergeben wurden, stammt aus dem Jahr <del class="diffchange diffchange-inline">2007</del>:</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>Die Aufgabe, bei der bisher (Stand <ins class="diffchange diffchange-inline">2017</ins>) die wenigsten Punkte vergeben wurden, stammt aus dem Jahr <ins class="diffchange diffchange-inline">2017 und behandelt ein geometrisches Spiel zwischen einem Jäger und einem Hasen. Nur zwei Schülern gelang es, diese Aufgabe zu lösen, ein Schüler erhielt 5 Punkte, einer 4 und 3 weitere einen. Die anderen 608 Schüler erhielten gar keinen Punkt in dieser Aufgabe, sodass nur 0,6 % der theoretisch möglichen Punkte vergeben wurden.&lt;ref&gt;{{Internetquelle|url=http</ins>:<ins class="diffchange diffchange-inline">//www.imo-official.org/year_statistics.aspx?year=2017|titel=International Mathematical Olympiade, Statistics 2017|autor=|hrsg=|werk=|datum=|sprache=en|zugriff=2017-07-22}}&lt;/ref&gt;</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>&lt;blockquote&gt;</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>Es sei &lt;math&gt;n&lt;/math&gt; eine positive ganze Zahl. Gegeben sei &lt;math&gt;S =\{(x, y, z): x, y, z \in \{0, 1, \ldots, n\}, x + y + z &gt; 0\}&lt;/math&gt; eine Menge von &lt;math&gt;(n + 1)^3 - 1&lt;/math&gt; Punkten des drei-dimensionalen Raumes. Man bestimme die kleinstmögliche Anzahl von Ebenen, deren Vereinigung die Menge &lt;math&gt;S&lt;/math&gt; umfasst, aber nicht den Punkt (0, 0, 0).</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>&lt;/blockquote&gt;</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>Nur fünf Schülern gelang es, diese Aufgabe zu lösen, zwei Schüler erhielten 2 Punkte, 40 weitere einen. Die anderen 473 Schüler erhielten gar keinen Punkt in dieser Aufgabe, sodass nur 2,2 % der theoretisch möglichen Punkte vergeben wurden.&lt;ref&gt;Hans-Dietrich Gronau: ''[http://www.mathematik-olympiaden.de/IMOs/dokumente/imo07.pdf Bericht über die 48.&amp;nbsp;Internationale Mathematik-Olympiade.]'' (PDF), abgerufen am 17. Juli 2012.&lt;/ref&gt;</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Preise ==</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Preise ==</div></td>
+</tr>

@@ -1,0 +1,58 @@
+<tr>
+  <td colspan="2" class="diff-lineno"><!--LINE 2--></td>
+  <td colspan="2" class="diff-lineno"><!--LINE 2--></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|-</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|-</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|[[2015 Marbella Cup|2015]]</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|[[2015 Marbella Cup|2015]]</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>|</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>|<ins class="diffchange diffchange-inline">{{flagicon|RUS}} [[FC Lokomotiv Moscow|Lokomotiv Moscow]]</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>|</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>|<ins class="diffchange diffchange-inline">Group state</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>|</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>|<ins class="diffchange diffchange-inline">{{flagicon|BRA}} [[Clube Atlético Paranaense|Atlético Paranaense]]</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>|</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>|<ins class="diffchange diffchange-inline">{{flagicon|ESP}} [[Marbella]], [[Spain]]</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>|<del class="diffchange diffchange-inline">January</del> <del class="diffchange diffchange-inline">28</del> to February <del class="diffchange diffchange-inline">1</del> 2015</div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>|<ins class="diffchange diffchange-inline">February</ins> <ins class="diffchange diffchange-inline">03</ins> to February <ins class="diffchange diffchange-inline">10</ins> 2015</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|}</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>|}</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>

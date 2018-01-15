@@ -1,0 +1,82 @@
+<!-- schweizbezogen -->
+{{Infobox Bahnhof
+| Breite = 
+| Name = Flüelen
+| Bild = Stationsgebäude Flüelen IMG 4584.jpg
+| Bildtext = Stationsgebäude, 2011
+| Bildbreite = 300px
+| Lage = Durchgangsbahnhof
+| Bahnsteiggleise = 3
+| Abkürzung = FL
+| IBNR = 8505112
+| Eröffnung = 1882
+| Stilllegung = 
+| Baustil = 
+| Architekt = Alfred Ramseyer
+| Gemeinde = Flüelen
+| Breitengrad = 46.899998
+| Längengrad = 8.623887
+| Region-ISO = CH-UR
+| Höhe = 435
+| Höhe-Bezug = CH
+| Strecken = * [[Gotthardbahn]]
+}}
+
+Der '''Bahnhof Flüelen''' ist der Bahnhof der Gemeinde [[Flüelen]] im [[Schweiz|Schweizer]] Kanton [[Kanton Uri|Uri]]. Er ist vor allem als Umsteigebahnhof zwischen der [[Gotthardbahn]] und der Schifffahrt des [[Vierwaldstättersee]]s bekannt, aber auch für seine [[Avantgarde|avantgardistische]] Architektur. Er befindet sich im Eigentum der [[Schweizerische Bundesbahnen|Schweizerischen Bundesbahnen]] und wird auch von deren Zügen im Fern- und Regionalverkehr bedient.
+
+== Geschichte ==
+=== Die Anfänge ===
+Anfangs sah die geplante Linienführung der Gotthardbahn die Umfahrung Flüelens im Berg vor, was auch vom Dorf bewilligt und subventioniert wurde.<ref>http://www.fluelen.ch/Verkehr/VER_Bahn_Geschichte.htm</ref> Bei dieser Idee war der Bahnhof auf einer Seeaufschüttung westlich des Dorfes geplant gewesen. Aufgrund fehlender finanzieller Mittel jedoch, wurde das Projekt geändert, so dass die Gleise den Berg wie im ersten Projekt beim Gruonbach zwischen Flüelen und Sisikon verlassen, dann aber parallel zur [[Axenstrasse]] das Dorf durchqueren und Richtung Erstfeld führen sollen. Die Bauarbeiten begannen 1879. In Flüelen stiess die verwirklichte Variante anfänglich nicht auf Wohlwollen, denn durch Aufschüttungen und Dammbau wurde dem Dorf den zuvor vorhandenen direkten Seeanstoss weggenommen. In den Jahren 1880 und 1881 wurde das Stationsgebäude erbaut. Während der Bauzeit erlebte das Dorf eine Blütezeit, die Einwohnerzahl betrug 1880 1425, während sie 1888, sechs Jahre nach der Vollendung, gerade mal 730 mass.
+
+=== Nach der Eröffnung ===
+Nach der Eröffnung der Gotthardbahn 1882 stieg Flüelen relativ schnell zum Schnellzugshalt des Urner Hauptortes [[Altdorf UR|Altdorf]] hoch, da dessen Bahnhof relativ weit ausserhalb des Dorfes lag. Von 1906 bis 1951 verkehrte die 3,1 km lange [[Strassenbahn Altdorf–Flüelen]] zwischen dem Bahnhof und dem [[Telldenkmal]] in Altdorf. In den 1920er-Jahren wurde die Gotthardbahn elektrifiziert und 1922 zwischen Immensee und [[Bahnhof Brunnen|Brunnen]] auf Doppelspur ausgebaut. Auch der Ausbau des Teilstücks zwischen Brunnen und Flüelen stand zur Diskussion. Im Zuge dieser Ausbaugedanken kam von Seiten der Flüeler Bevölkerung der Wunsch auf, doch noch eine Dorfumfahrung zu bauen, wenn auch nur für das zweite Gleis. Beide Ideen verliefen im Sand. 1942 wurde im Zuge des Doppelspurausbaus zwischen Sisikon und Flüelen das alte Bahnhofsgebäude abgebrochen.<ref>http://www.fluelen.ch/Gebaeude/Ge_Bahnhof_alt.htm</ref>
+
+=== Der neue Bahnhof ===
+Im November 1944 wurde das neue Bahnhofsgebäude nach Plänen des SBB-Architekten [[Alfred Ramseyer-Fieg]] erstellt, das für seine für die Zeit ungewöhnliche Moderne für Aufsehen sorgte. 1991 folgte der Bau des Mittelbahnsteigs und der Unterführungen. Die ebenerdigen Übergänge zwischen der Axenstrasse und der Schiffstation verschwanden.
+
+Infolge schwacher Nachfrage hat die SBB beschlossen, den Billettschalter per März 2016 zu schliessen. Im Gegenzug erlebte der Bahnhof mit der Eröffnung des Gotthard-Basistunnels einen Aufschwung: Er wurde Halt mehrerer EuroCity- und InterCity-Züge.
+
+===Ausblick===
+Die SBB und der Kanton Uri planen, die Fernverkehrszüge ab 2021 im neu ausgebauten [[Bahnhof Altdorf|Kantonsbahnhof Altdorf]] halten zu lassen.<ref>[https://www.srf.ch/news/regional/zentralschweiz/kantonsbahnhof-altdorf-wird-zur-neuen-drehscheibe|''Kantonsbahnhof Altdorf wird zur neuen Drehscheibe''], SRF, 16. März 2017, abgerufen am 4. Juli 2017</ref> Dadurch wird Flüelen nur noch von S-Bahn-Zügen angefahren. Ferner ist geplant, den Fernverkehr durch den geplanten [[Axentunnel]] zu leiten und damit das Dorf Flüelen zu umfahren.
+
+== Empfangsgebäude ==
+Das 1944 erbaute Empfangsgebäude umfasst nebst dem Hauptgebäude einen nach Norden halbrund ablaufenden Anbau und einen Uhrturm, in dem das Treppenhaus untergebracht ist.<ref>http://www.fluelen.ch/Gebaeude/Ge_Bahnhof.htm</ref> Der Bau ist ein [[Schweizerisches Inventar der Kulturgüter von nationaler und regionaler Bedeutung|Baudenkmal nationaler Bedeutung]], vor allem wegen der ungewöhnlichen Moderne. Des Weiteren umfasste er ein Bildstellwerk.
+So wurde der Bahnhof auf einer Briefmarke verewigt und der deutsche Modellbahnzubehörhersteller [[Gebrüder Faller GmbH|Faller]] hatte ein Modell des Bahnhofs in seinem Sortiment.<ref>http://www.modelleisenbahnfan.de/zubehor-h0-alt/faller-bahnhof-fluelen-111/</ref> Heute ist er mit einem gelben Fassadenanstrich versehen. Im Wartesaal befindet sich das vom Urner Maler [[Heinrich Danioth]] gemalte Gemälde ''Föhnwacht''.<ref>http://www.flueelen.ch/gemeinde/portraet/sehenswuerdigkeiten.html</ref>
+=== Die ''Föhnwacht'' ===
+Die Idee eines Gemäldes im neuen Bahnhof tauchte bereits in der Projektphase 1942 auf. Der Stanser Bildhauer [[Heinrich von Matt]] hatte die Idee, den Wartesaal mit einem malerischen Kunstwerk zu versehen. Danioths Projektierung zog sich über ein Jahr hin, denn die Suche nach einem idealen Thema gestaltete sich als schwierig. Anfangs zog Danioth die Bedeutung Flüelens als Umschlagplatz für den Gotthardtransit in Betracht, änderte seine Idee jedoch später ins Bildthema ''Bucht der Fischer''. Zwei Tage vor Einreichung jedoch änderte Danioth den Gestaltungsplan abermals und fertigte nun ein Projekt zum Thema des [[Föhn|Föhns]] an, der im Urner Reusstal allgegenwärtig ist. Das Bild wurde zeitgleich wie der Bahnhof 1944 eingeweiht.
+
+== Anlage ==
+Die Anlage umfasst vier Durchgangsgleise, wovon drei mit einem Bahnsteig versehen sind. Am Hausbahnsteig (Gleis 1) halten diejenigen Züge, die in Flüelen enden. Momentan sind das drei [[Stadtbahn Zug#Stadtbahnlinie S2|S2]]-Zugpaare in den Abendstunden, die nicht nach [[Bahnhof Erstfeld|Erstfeld]] verlängert werden. Am Mittelbahnsteig halten alle übrigen, weiterfahrenden Züge. Auf Gleis 2 diejenigen in Richtung [[Bahnhof Brunnen|Brunnen]], auf Gleis 3 diejenigen in Richtung [[Bahnhof Altdorf|Altdorf]]. Das vierte Gleis ist bahnsteiglos und dient als Überholgleis. Nach dem Bahnhof folgen diverse Anschlussgleise zu Kiesverladestellen am See.
+
+== Verkehr ==
+Der Bahnhof Flüelen wird von den SBB sowohl vom Fern- als auch vom Regionalverkehr ([[Stadtbahn Zug]]) im Stundentakt bedient, was eine Überlagerung zum Halbstundentakt bedeutet. Die [[InterRegio (Schweiz)|Interregio]]-Züge überlagern sich zu einem Stundentakt. Bis 2008 hielten an Randstunden noch vereinzelte [[EuroCity|Eurocity]]-Züge aus [[Milano Centrale|Mailand]], sie wurden jedoch bei der Umstellung auf [[ETR 470]] durch einen verlängerten Interregio-Stundentakt gestrichen. Seit dem Fahrplanwechsel am 10. Dezember 2011 hält zur morgendlichen Hauptverkehrszeit ein [[InterCity-Neigezug|Intercity-Neigezug (ICN)]] von Chiasso nach Zürich. Mit der Betriebsaufnahme des [[Gotthard-Basistunnel]]s wurde Flüelen zusätzlich Halt dreier Eurocity- und zweier ICN-Züge.<ref>[http://www.tilo.ch/en/dam/jcr:711038f2-e121-41de-9fb8-09b7a150a696/SBB_Gotthard_Kundenbrosch%C3%BCre_A5.pdf ''Ihr Gotthard. Das neue Angebot auf der Nord-Süd-Achse.''] [[SBB]]. Abgerufen am 4. Oktober 2017.</ref> Diese Halte werden nach Fertigstellung des [[Bahnhof Altdorf|Kantonsbahnhofs]] in Altdorf zu diesem verlegt.
+
+=== Fernverkehr ===
+* {{SBB-Linie|EC_Zürich_Milano|x|x|x}} (zweimal täglich in diese Richtung)
+* {{SBB-Linie|EC_Basel_Luzern_Milano|x|x|x}} (einmal täglich in diese Richtung)
+* {{SBB-Linie|2}} [[Bahnhof Chiasso|Chiasso]] – [[Bahnhof Bellinzona|Bellinzona]] – [[Bahnhof Arth-Goldau|Arth-Goldau]] – [[Zürcher Hauptbahnhof|Zürich HB]] {{Zuggattung-CH|RT}} {{Zuggattung-CH|RM}} <span title="Neigezug">'''''TT'''''</span> (einmal täglich in diese Richtung)
+* {{SBB-Linie|21}} [[Bahnhof Lugano|Lugano]] – [[Bahnhof Arth-Goldau|Arth-Goldau]] – [[Basel SBB]] {{SBB-Linie|21|n|n|x}} (zweimal täglich in diese Richtung)
+* {{SBB-Linie|26|x|x|x}}
+* {{SBB-Linie|46|x|x|x}}
+* {{SBB-Linie|GPE|x|x|x}}
+* {{SBB-Linie|GW|x|x|x}}
+
+=== Regionalverkehr ===
+* {{Bahnlinie|S|2||white|red|red}} [[Bahnhof Baar Lindenpark|Baar Lindenpark]]–Zug–Arth-Goldau–[[Bahnhof Brunnen|Brunnen]]–'''Flüelen'''–[[Bahnhof Altdorf|Altdorf]]–Erstfeld (stündlich)
+
+=== Busverkehr ===
+In der nahen Umgebung des Bahnhofs befinden sich zwei Bushaltestellen. Von der Haltestelle ''Flüelen Bahnhof'' auf dem Bahnhofplatz verkehren ausschliesslich [[Postauto]]-Kurse. Sie bieten Verbindungen über den [[Klausenpass]] nach [[Linthal GL|Linthal]], ins [[Isenthal]] sowie nach [[Stans]] an. Von der Haltestelle ''Flüelen Hauptplatz'' auf der anderen Seite der Bahngleise, die mit einer Unterführung an den Bahnhof angebunden ist, verkehrt die [[Auto AG Uri]] nach ''Flüelen Gruonbach'' sowie nach [[Altdorf UR|Altdorf]]–[[Schattdorf]](–[[Erstfeld]]–[[Amsteg]]–[[Göschenen]])
+
+== Erwähnenswertes ==
+* Der Flüeler Bahnhof wurde 1947 auf der so genannten ''Bundesfeierspende''-Marke der Schweizerischen Post veröffentlicht. Die Marke hatte anno dazumal einen Wert von 40 Rappen, wovon 10 der Nationalspende zugutekamen.<ref>http://www.fluelen.ch/Gewerbe/PO_Post_01.htm</ref>
+
+== Weblinks ==
+{{Commonscat|Flüelen train station|Bahnhof Flüelen}}
+
+== Einzelnachweise ==
+<references/>
+
+[[Kategorie:Bahnhof im Kanton Uri|Fluelen]]
+[[Kategorie:Kulturgut von nationaler Bedeutung im Kanton Uri]]
+[[Kategorie:Bahnhof in Europa|Fluelen]]
+[[Kategorie:Flüelen]]

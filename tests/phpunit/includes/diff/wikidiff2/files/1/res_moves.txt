@@ -1,0 +1,59 @@
+<tr>
+  <td colspan="2" class="diff-lineno"><!--LINE 30--></td>
+  <td colspan="2" class="diff-lineno"><!--LINE 30--></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>===Breeding===</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>===Breeding===</div></td>
+</tr>
+<tr>
+  <td colspan="2" class="diff-empty">&#160;</td>
+  <td class="diff-marker"><a class="mw-diff-movedpara-right" href="#movedpara_3_0_lhs">&#x26AB;</a></td>
+  <td class="diff-addedline"><div><a name="movedpara_1_0_rhs"></a>The breeding behavior of eight species in ''Indicator'' and ''Prodotiscus'' is known. They are all [[brood parasite]]s that lay one [[Bird egg|egg]] in a nest of another species, laying eggs in series of about five during a period of five to seven days. Most favor hole-nesting species, often the related [[Lybiidae|barbets]] and [[woodpecker]]s, but ''Prodotiscus'' parasitizes <ins class="diffchange diffchange-inline">[[Cup nest#Cup|</ins>cup-<ins class="diffchange diffchange-inline">nest]]ers</ins> such as [[white-eye]]s and [[Old World warbler|warbler]]s. Honeyguide nestlings have been known to physically eject their hosts' chicks from the nests and they have<ins class="diffchange diffchange-inline"> needle-sharp</ins> hooks on their [[beak]]s with which they puncture the hosts' eggs or kill the nestlings.&lt;ref name=EoB&gt;{{cite book |editor<ins class="diffchange diffchange-inline">-last</ins>=Forshaw |<ins class="diffchange diffchange-inline">editor-first</ins>=<ins class="diffchange diffchange-inline">Joseph</ins> <ins class="diffchange diffchange-inline">|last=</ins>Short <ins class="diffchange diffchange-inline">|first=</ins>Lester L.<ins class="diffchange diffchange-inline"> </ins>|year=1991<ins class="diffchange diffchange-inline"> </ins>|title=Encyclopaedia of Animals: Birds<ins class="diffchange diffchange-inline"> </ins>|publisher=Merehurst Press<ins class="diffchange diffchange-inline"> </ins>|location=London<ins class="diffchange diffchange-inline"> </ins>|<ins class="diffchange diffchange-inline">page</ins>=155<ins class="diffchange diffchange-inline"> </ins>|isbn=1-85391-186-0}}&lt;/ref&gt;</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker"><a class="mw-diff-movedpara-left" href="#movedpara_1_0_rhs">&#x26AB;</a></td>
+  <td class="diff-deletedline"><div><a name="movedpara_3_0_lhs"></a>The breeding behavior of eight species in ''Indicator'' and ''Prodotiscus'' is known. They are all [[brood parasite]]s that lay one [[Bird egg|egg]] in a nest of another species, laying eggs in series of about five during a period of five to seven days. Most favor hole-nesting species, often the related [[Lybiidae|barbets]] and [[woodpecker]]s, but ''Prodotiscus'' parasitizes cup-<del class="diffchange diffchange-inline">nesters</del> such as [[white-eye]]s and [[Old World warbler|warbler]]s. Honeyguide nestlings have been known to physically eject their hosts' chicks from the nests and they have hooks on their [[beak]]s<del class="diffchange diffchange-inline"> that are needle sharp</del> with which they puncture the hosts' eggs or kill the nestlings.&lt;ref name=EoB&gt;{{cite book |editor=Forshaw<del class="diffchange diffchange-inline">,</del> <del class="diffchange diffchange-inline">Joseph</del>|<del class="diffchange diffchange-inline">author</del>= Short<del class="diffchange diffchange-inline">,</del> Lester L.|year=1991|title=Encyclopaedia of Animals: Birds|publisher=<del class="diffchange diffchange-inline"> </del>Merehurst Press|location=London|<del class="diffchange diffchange-inline">pages</del>=<del class="diffchange diffchange-inline"> </del>155|isbn=<del class="diffchange diffchange-inline"> </del>1-85391-186-0}}&lt;/ref&gt;</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td colspan="2" class="diff-empty">&#160;</td>
+  <td class="diff-marker"><a class="mw-diff-movedpara-right" href="#movedpara_5_1_lhs">&#x26AB;</a></td>
+  <td class="diff-addedline"><div><a name="movedpara_4_0_rhs"></a>African honeyguide birds are known to lay their eggs in underground nests of other bee-eating bird species. The honeyguide chicks kill the hatchlings of the host using their needle-sharp beaks just after hatching, much as [[cuckoo]] hatchlings do. The honeyguide mother ensures her chick hatches first by internally incubating the egg for an extra day before laying it, so that it has a head start in development compared to the hosts' offspring.&lt;ref&gt;<ins class="diffchange diffchange-inline">{{cite news |last=</ins>Davies <ins class="diffchange diffchange-inline">|first=</ins>Ella <ins class="diffchange diffchange-inline">|url=</ins>http://www.bbc.co.uk/nature/14802180 <ins class="diffchange diffchange-inline">|title=</ins>Underground chick-killers filmed <ins class="diffchange diffchange-inline">|publisher=</ins>[[British Broadcasting Corporation|BBC]] Nature<ins class="diffchange diffchange-inline"> |date=7 September 2011 }}</ins>&lt;/ref&gt;</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker"><a class="mw-diff-movedpara-left" href="#movedpara_4_0_rhs">&#x26AB;</a></td>
+  <td class="diff-deletedline"><div><a name="movedpara_5_1_lhs"></a>African honeyguide birds are known to lay their eggs in underground nests of other bee-eating bird species. The honeyguide chicks kill the hatchlings of the host using their needle-sharp beaks just after hatching, much as [[cuckoo]] hatchlings do. The honeyguide mother ensures her chick hatches first by internally incubating the egg for an extra day before laying it, so that it has a head start in development compared to the hosts' offspring.&lt;ref&gt;Davies<del class="diffchange diffchange-inline">,</del> Ella <del class="diffchange diffchange-inline">[</del>http://www.bbc.co.uk/nature/14802180 <del class="diffchange diffchange-inline">"</del>Underground chick-killers filmed<del class="diffchange diffchange-inline">"],</del> <del class="diffchange diffchange-inline">''</del>[[British Broadcasting Corporation|BBC]] Nature<del class="diffchange diffchange-inline">''</del>&lt;/ref&gt;</div></td>
+  <td colspan="2" class="diff-empty">&#160;</td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Species ==</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Species ==</div></td>
+</tr>
