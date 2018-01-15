@@ -1,0 +1,34 @@
+<tr>
+  <td colspan="2" class="diff-lineno"><!--LINE 3--></td>
+  <td colspan="2" class="diff-lineno"><!--LINE 3--></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>* [[Startpage]]</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>* [[Startpage]]</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>* [[MetaGer]]</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>* [[MetaGer]]</div></td>
+</tr>
+<tr>
+  <td class="diff-marker">−</td>
+  <td class="diff-deletedline"><div>* [<del class="diffchange diffchange-inline">[</del>Disconnect]<del class="diffchange diffchange-inline">]</del></div></td>
+  <td class="diff-marker">+</td>
+  <td class="diff-addedline"><div>* [<ins class="diffchange diffchange-inline">https://search.disconnect.me </ins>Disconnect]<ins class="diffchange diffchange-inline"> (externe Seite)</ins></div></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"></td>
+</tr>
+<tr>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Weblinks ==</div></td>
+  <td class="diff-marker">&#160;</td>
+  <td class="diff-context"><div>== Weblinks ==</div></td>
+</tr>
