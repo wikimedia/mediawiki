@@ -3659,7 +3659,7 @@
 	"tag-mw-new-redirect-description": "Правки, которые создают новое перенаправление или изменяют страницу на перенаправление",
 	"tag-mw-removed-redirect": "удалённое перенаправление",
 	"tag-mw-removed-redirect-description": "Правки, которые изменяют существующее перенаправление на не-перенаправление",
-	"tag-mw-changed-redirect-target": "Изменение цели перенаправления",
+	"tag-mw-changed-redirect-target": "изменение цели перенаправления",
 	"tag-mw-changed-redirect-target-description": "Правки, которые изменяют цель перенаправления",
 	"tag-mw-blank": "очистка",
 	"tag-mw-blank-description": "Правки, которые очищают страницу",

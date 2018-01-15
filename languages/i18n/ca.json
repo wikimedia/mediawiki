@@ -1457,6 +1457,7 @@
 	"rcfilters-liveupdates-button-title-off": "Mostra els nous canvis al moment",
 	"rcfilters-watchlist-markseen-button": "Marca tots els canvis com a vistos",
 	"rcfilters-watchlist-edit-watchlist-button": "Editeu la vostra llista de pàgines seguides",
+	"rcfilters-watchlist-showupdated": "Els canvis fets en pàgines que no heu visitat des que s'efectuaren apareixen en <strong>negreta</strong> amb un punt sòlid al costat.",
 	"rcfilters-preference-label": "Amaga la versió millorada de Canvis recents",
 	"rcfilters-target-page-placeholder": "Escriviu el nom d’una pàgina (o d’una categoria)",
 	"rcnotefrom": "A sota hi ha {{PLURAL:$5|el canvi|els canvis}} a partir de <strong>$3, $4</strong> (fins a <strong>$1</strong>).",
