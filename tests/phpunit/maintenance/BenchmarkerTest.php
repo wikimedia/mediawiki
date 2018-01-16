@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Benchmarker;
+use MediaWikiCoversValidator;
 use PHPUnit_Framework_TestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -10,6 +11,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers Benchmarker
  */
 class BenchmarkerTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
 
 	public function testBenchSimple() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
