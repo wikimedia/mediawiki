@@ -524,9 +524,13 @@ class LoadBalancer implements ILoadBalancer {
 			$serverCount = count( $this->mServers );
 
 			$ok = true;
+			$since = microtime( true );
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				if ( $this->mLoads[$i] > 0 ) {
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
+					if ( ( microtime( true ) - $since ) >= $timeout ) {
+						break; // timeout reached
+					}
 				}
 			}
 		} finally {
