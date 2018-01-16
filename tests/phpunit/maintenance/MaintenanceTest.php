@@ -1,29 +1,31 @@
 <?php
 
-// It would be great if we were able to use PHPUnit's getMockForAbstractClass
-// instead of the MaintenanceFixup hack below. However, we cannot do
-// without changing the visibility and without working around hacks in
-// Maintenance.php
-// For the same reason, we cannot just use FakeMaintenance.
 use MediaWiki\MediaWikiServices;
 
 /**
- * makes parts of the API of Maintenance that is hidden by protected visibily
- * visible for testing, and makes up for a stream closing hack in Maintenance.php.
+ * Makes parts of Maintenance class API visible for testing, and makes up for a
+ * stream closing hack in Maintenance.php.
  *
  * This class is solely used for being able to test Maintenance right now
  * without having to apply major refactorings to fix some design issues in
  * Maintenance.php. Before adding more functions here, please consider whether
- * this approach is correct, or a refactoring Maintenance to separate concers
+ * this approach is correct, or a refactoring Maintenance to separate concerns
  * is more appropriate.
  *
- * Upon refactoring, keep in mind that besides the maintenance scrits themselves
- * and tests right here, also at least Extension:Maintenance make use of
- * Maintenance.
+ * Upon refactoring, keep in mind that besides the maintenance scripts themselves
+ * and tests right here, some extensions including Extension:Maintenance make
+ * use of the Maintenance class.
  *
  * Due to a hack in Maintenance.php using register_shutdown_function, be sure to
- * finally call simulateShutdown on MaintenanceFixup instance before a test
- * ends.
+ * call simulateShutdown on MaintenanceFixup instance before a test ends.
+ *
+ * FIXME:
+ * It would be great if we were able to use PHPUnit's getMockForAbstractClass
+ * instead of the MaintenanceFixup hack below. However, we cannot do so
+ * without changing method visibility and without working around hacks in
+ * Maintenance.php
+ *
+ * For the same reason, we cannot just use FakeMaintenance.
  */
 class MaintenanceFixup extends Maintenance {
 
@@ -42,7 +44,7 @@ class MaintenanceFixup extends Maintenance {
 	private $testCase;
 
 	/**
-	 * shutdownSimulated === true if simulateShutdown has done it's work
+	 * shutdownSimulated === true if simulateShutdown has done its work
 	 *
 	 * @var bool
 	 */
