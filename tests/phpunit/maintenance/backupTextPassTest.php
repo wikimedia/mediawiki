@@ -1,5 +1,15 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use MediaWikiLangTestCase;
+use Page;
+use TextContentHandler;
+use TextPassDumper;
+use Title;
+use WikiExporter;
+use WikiPage;
+
 require_once __DIR__ . "/../../../maintenance/dumpTextPass.php";
 
 /**
@@ -34,7 +44,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$this->tablesUsed[] = 'text';
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
-			"BackupTextPassTestModel" => "BackupTextPassTestModelHandler"
+			"BackupTextPassTestModel" => 'MediaWiki\Tests\Maintenance\BackupTextPassTestModelHandler',
 		] );
 
 		$ns = $this->getDefaultWikitextNS();
