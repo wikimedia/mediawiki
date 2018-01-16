@@ -10,6 +10,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
@@ -732,6 +733,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPreferencesFactory() {
 		return $this->getService( 'PreferencesFactory' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return HttpRequestFactory
+	 */
+	public function getHttpRequestFactory() {
+		return $this->getService( 'HttpRequestFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////
