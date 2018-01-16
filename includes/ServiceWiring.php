@@ -508,6 +508,10 @@ return [
 		return new DefaultPreferencesFactory( $config, $wgContLang, $authManager, $linkRenderer );
 	},
 
+	'HttpRequestFactory' => function ( MediaWikiServices $services ) {
+		return new \Mediawiki\Http\HttpRequestFactory();
+	},
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call
