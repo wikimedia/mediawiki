@@ -1,4 +1,13 @@
 <?php
+
+namespace MediaWiki\Tests\Maintenance;
+
+use DumpBackup;
+use ManualLogEntry;
+use Title;
+use User;
+use WikiExporter;
+
 /**
  * Tests for log dumps of BackupDumper
  *
