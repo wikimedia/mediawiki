@@ -45,6 +45,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\ObjectFactory;
@@ -512,6 +513,35 @@ return [
 
 	'_SqlBlobStore' => function ( MediaWikiServices $services ) {
 		return $services->getBlobStoreFactory()->newSqlBlobStore();
+	},
+
+	'ContentModelStore' => function ( MediaWikiServices $services ) {
+		return new NameTableStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'NameTableSqlStore' ),
+			'content_models',
+			'model_id',
+			'model_name'
+			/**
+			 * No strtolower normalization is added to the service as there are examples of
+			 * extensions that do not stick to this assumption.
+			 * - extensions/examples/DataPages define( 'CONTENT_MODEL_XML_DATA','XML_DATA' );
+			 * - extensions/Scribunto define( 'CONTENT_MODEL_SCRIBUNTO', 'Scribunto' );
+			 */
+		);
+	},
+
+	'SlotRoleStore' => function ( MediaWikiServices $services ) {
+		return new NameTableStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'NameTableSqlStore' ),
+			'slot_roles',
+			'role_id',
+			'role_name',
+			'strtolower'
+		);
 	},
 
 	'PreferencesFactory' => function ( MediaWikiServices $services ) {
