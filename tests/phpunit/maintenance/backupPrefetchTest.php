@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use BaseDump;
+use MediaWikiTestCase;
+
 /**
  * Tests for BaseDump
  *

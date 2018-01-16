@@ -150,7 +150,7 @@ $wgAutoloadClasses += [
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 
 	# tests/phpunit/maintenance
-	'DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
+	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
 
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
