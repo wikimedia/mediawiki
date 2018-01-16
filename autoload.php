@@ -878,6 +878,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\EditPage\\TextboxBuilder' => __DIR__ . '/includes/editpage/TextboxBuilder.php',
 	'MediaWiki\\Edit\\PreparedEdit' => __DIR__ . '/includes/edit/PreparedEdit.php',
 	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/HeaderCallback.php',
+	'MediaWiki\\Http\\HttpRequestFactory' => __DIR__ . '/includes/http/HttpRequestFactory.php',
 	'MediaWiki\\Interwiki\\ClassicInterwikiLookup' => __DIR__ . '/includes/interwiki/ClassicInterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookupAdapter' => __DIR__ . '/includes/interwiki/InterwikiLookupAdapter.php',
