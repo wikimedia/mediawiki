@@ -1198,7 +1198,6 @@
 	"right-siteadmin": "Panna lukku ja lukust lahti teha andmebaasi",
 	"right-override-export-depth": "Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni",
 	"right-sendemail": "Saata teistele kasutajatele e-kirju",
-	"right-sendemail-new-users": "Saata e-kirju logitud toiminguteta kasutajatele",
 	"right-managechangetags": "Koostada ja (in)aktiveerida [[Special:Tags|märgiseid]]",
 	"right-applychangetags": "Rakendada [[Special:Tags|märgiseid]] enda muudatuste suhtes",
 	"right-changetags": "Lisada ja eemaldada käsitsi rakendatavaid [[Special:Tags|märgiseid]] üksikute redaktsioonide ja logisissekannete juures",

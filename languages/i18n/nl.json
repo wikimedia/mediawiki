@@ -1257,7 +1257,6 @@
 	"right-siteadmin": "De database blokkeren en weer vrijgeven",
 	"right-override-export-depth": "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 	"right-sendemail": "E-mail versturen aan andere gebruikers",
-	"right-sendemail-new-users": "Emails versturen naar gebruikers zonder geregistreerde handelingen",
 	"right-managechangetags": "[[Special:Tags|Labels]] aanmaken en (de)activeren",
 	"right-applychangetags": "[[Special:Tags|Labels]] aan bewerkingen toewijzen",
 	"right-changetags": "Willekeurige [[Special:Tags|labels]] toevoegen aan en verwijderen van versies en logboekregels",

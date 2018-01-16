@@ -1220,7 +1220,6 @@
 	"right-siteadmin": "Låse og låse opp databasen",
 	"right-override-export-depth": "Eksporter sider inkludert lenkede sider til en dypde på 5",
 	"right-sendemail": "Sende e-post til andre brukere",
-	"right-sendemail-new-users": "Sende epost til brukere som ikke har loggførte handlinger",
 	"right-managechangetags": "Opprette og (de)aktivere [[Special:Tags|tagger]]",
 	"right-applychangetags": "Legge til [[Special:Tags|tagger]] sammen med ens endringer",
 	"right-changetags": "Legge til og fjerne vilkårlige [[Special:Tags|tagger]] på individuelle revisjoner og loggoppføringer",

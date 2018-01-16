@@ -1285,7 +1285,6 @@
 	"right-siteadmin": "Bloquear e desbloquear o banco de dados",
 	"right-override-export-depth": "Exportar páginas incluindo páginas ligadas até uma profundidade de 5",
 	"right-sendemail": "Enviar email a outros usuários",
-	"right-sendemail-new-users": "Enviar e-mail para usuários sem ações registradas",
 	"right-managechangetags": "Criar e (des)ativar [[Special:Tags|tags]]",
 	"right-applychangetags": "Aplicar [[Special:Tags|etiquetas]] juntamente com as alterações de alguém",
 	"right-changetags": "Adicionar e remover [[Special:Tags|etiquetas]] arbitrárias em revisões e ''logs'' individuais",

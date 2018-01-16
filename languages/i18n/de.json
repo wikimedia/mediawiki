@@ -1263,7 +1263,6 @@
 	"right-siteadmin": "Datenbank sperren und entsperren",
 	"right-override-export-depth": "Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5",
 	"right-sendemail": "E-Mails an andere Benutzer senden",
-	"right-sendemail-new-users": "E-Mails an Benutzer ohne Eintrag im Logbuch senden",
 	"right-managechangetags": "[[Special:Tags|Markierungen]] erstellen und (de)aktivieren",
 	"right-applychangetags": "[[Special:Tags|Markierungen]] zusammen mit den Änderungen anwenden",
 	"right-changetags": "Beliebige [[Special:Tags|Markierungen]] zu einzelnen Versionen und Logbucheinträgen hinzufügen und entfernen",

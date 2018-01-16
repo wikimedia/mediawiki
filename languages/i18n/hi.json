@@ -1263,7 +1263,6 @@
 	"right-siteadmin": "डाटाबेस को ताला लगायें या खोलें",
 	"right-override-export-depth": "पृष्ठ निर्यात करें, पाँच स्तर की गहराई तक जुड़े हुए पृष्ठों समेत",
 	"right-sendemail": "अन्य सदस्यों को ई-मेल भेजें",
-	"right-sendemail-new-users": "एक भी लॉग इन क्रिया नहीं करने वाले उपयोगकर्ताओं को ईमेल भेजें",
 	"right-managechangetags": "डेटाबेस से [[Special:Tags|चिप्पियाँ]] बनायें और हटायें",
 	"right-applychangetags": "प्रयोग में लाइये [[Special:Tags|tags]] किसी के बदलाव के साथ।",
 	"right-changetags": "जमा करो और हटाओ स्वतंत्र [[Special:Tags|टैग]] व्यक्तिगत अवतरणों और लॉग प्रविक्तियों पर",

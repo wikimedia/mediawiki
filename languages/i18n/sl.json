@@ -1185,7 +1185,6 @@
 	"right-siteadmin": "Zaklepanje in odklepanje baze podatkov",
 	"right-override-export-depth": "Izvoz strani, vključno s povezaimi straneh do globine 5",
 	"right-sendemail": "Pošiljanje e-pošte drugim uporabnikom",
-	"right-sendemail-new-users": "Pošlji e-pošto uporabnikom brez zabeleženih dejanj",
 	"right-managechangetags": "Ustvarjanje in (dez)aktivacijo [[Special:Tags|oznak]]",
 	"right-applychangetags": "Uveljavitev [[Special:Tags|oznak]] skupaj s spremembami",
 	"right-changetags": "Dodajanje in odstranjevanje poljubnih [[Special:Tags|oznak]] na posameznih redakcijah in dnevniških vnosih",

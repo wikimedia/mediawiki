@@ -1235,7 +1235,6 @@
 	"right-siteadmin": "Blocar i desblocar la base de dades",
 	"right-override-export-depth": "Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5",
 	"right-sendemail": "Enviar missatges de correu electrònic a altres usuaris",
-	"right-sendemail-new-users": "Envia un correu electrònic als usuaris amb cap acció registrada",
 	"right-managechangetags": "Crear, activar i desactivar [[Special:Tags|etiquetes]]",
 	"right-applychangetags": "Aplica les [[Special:Tags|etiquetes]] juntament amb els canvis propis",
 	"right-changetags": "Afegeix i suprimeix [[Special:Tags|etiquetes]] en revisions individuals i entrades de registre",

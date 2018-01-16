@@ -1183,7 +1183,6 @@
 	"right-siteadmin": "Candar y descandar la base de datos",
 	"right-override-export-depth": "Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5",
 	"right-sendemail": "Unviar corréu a otros usuarios",
-	"right-sendemail-new-users": "Unviar corréu electrónicu a usuarios ensin aiciones rexistraes",
 	"right-managechangetags": "Crear y (des)activar [[Special:Tags|etiquetes]]",
 	"right-applychangetags": "Aplicar [[Special:Tags|etiquetes]] xunto colos cambios propios",
 	"right-changetags": "Amestar y desaniciar [[Special:Tags|etiquetes]] arbitraries en revisiones individuales y entraes del rexistru",

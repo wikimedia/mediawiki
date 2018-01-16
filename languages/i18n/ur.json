@@ -1201,7 +1201,6 @@
 	"right-siteadmin": "ڈیٹابیس کو مقفل یا غیر مقفل کرنا",
 	"right-override-export-depth": "پانچویں سطح کی گہرائی تک مربوط صفحات پر مشتمل صفحات کی برآمد",
 	"right-sendemail": "دیگر صارفین کو برقی ڈاک بھیجیں",
-	"right-sendemail-new-users": "لاگ ان ہوئے بغیر صارفین کو ای میل بھیجیں",
 	"right-managechangetags": "[[Special:Tags|ٹیگوں]] کی تخلیق اور (غیر)فعالی",
 	"right-applychangetags": "کسی کی تبدیلیوں کے ساتھ [[Special:Tags|ٹیگوں]] کا اطلاق",
 	"right-changetags": "انفرادی نسخوں اور نوشتہ کے اندراج پر [[Special:Tags|ٹیگوں]] کا حذف و اضافہ",

@@ -1209,7 +1209,6 @@
 	"right-siteadmin": "Pechar e abrir a base de datos",
 	"right-override-export-depth": "Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5",
 	"right-sendemail": "Enviar correos electrónicos a outros usuarios",
-	"right-sendemail-new-users": "Enviar correo electrónico a usuarios sen accións rexistradas",
 	"right-managechangetags": "Crear e (des)activar [[Special:Tags|etiquetas]]",
 	"right-applychangetags": "Aplicar [[Special:Tags|etiquetas]] xunto coas modificacións propias",
 	"right-changetags": "Engadir e quitar [[Special:Tags|etiquetas]] arbitrarias a revisións individuais e entradas do rexistro",

@@ -1198,7 +1198,6 @@
 	"right-siteadmin": "Blokeatu eta desblokeatu datu basea blokeatu",
 	"right-override-export-depth": "5eko sakonerararteko loturiko orrialdeak barne esportatu",
 	"right-sendemail": "Beste erabiltzaileei e-posta bidali",
-	"right-sendemail-new-users": "Bidali mezu elektronikoa ekintzarik gabe dauden erabiltzaileei",
 	"right-managechangetags": "Sortu eta (des)aktibatzeko  [[Special:Tags|tags]]",
 	"right-applychangetags": "Aplikatu [[Special:Tags|tags]] bakoitzaren aldaketekin batera",
 	"right-changetags": "[[Special:Tags|tags]] arbitrarioak gehitu edo kendu berrikusketa eta sarrera indibidualetan",

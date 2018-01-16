@@ -1219,7 +1219,6 @@
 	"right-siteadmin": "adatbázis lezárása, felnyitása",
 	"right-override-export-depth": "Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig",
 	"right-sendemail": "e-mail küldése más felhasználóknak",
-	"right-sendemail-new-users": "e-mail küldése olyan felhasználóknak, akiknek nincs naplózott művelete",
 	"right-managechangetags": "[[Special:Tags|címkék]] létrehozása és (de)aktiválása",
 	"right-applychangetags": "[[Special:Tags|címkék]] alkalmazása saját változatokra",
 	"right-changetags": "egyedi lapváltozatokon és naplóbejegyzéseken tetszőleges [[Special:Tags|címkék]] hozzáadása és törlése",

@@ -1345,7 +1345,6 @@
 	"right-siteadmin": "Verrouiller ou déverrouiller la base de données",
 	"right-override-export-depth": "Exporter les pages en incluant les pages liées jusqu'à une profondeur de 5 niveaux",
 	"right-sendemail": "Envoyer un courriel aux autres utilisateurs",
-	"right-sendemail-new-users": "Envoyer un courriel aux utilisateurs dont le journal ne comporte pas d'enregistrement de connexion",
 	"right-managechangetags": "Créer et (dés)activer des [[Special:Tags|balises]]",
 	"right-applychangetags": "Appliquer [[Special:Tags|les balises]] avec ses propres modifications",
 	"right-changetags": "Ajouter et supprimer de façon arbitraire [[Special:Tags|des balises]] sur des révisions individuelles et des entrées de journal",

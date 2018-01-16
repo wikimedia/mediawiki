@@ -1174,7 +1174,6 @@
 	"right-siteadmin": "Zaključavanje i otključavanje baze podataka",
 	"right-override-export-depth": "Izvezi stranice uključujući i povezane stranice do dubine od 5",
 	"right-sendemail": "Slanje e-pošte drugim suradnicima",
-	"right-sendemail-new-users": "Pošalji e-poruku suradnicima bez radnji zabilježenih u evidencijama",
 	"right-managechangetags": "Stvaranje i (de)aktiviranje [[Special:Tags|oznaka]]",
 	"grant-generic": "Snop prava »$1«",
 	"grant-group-email": "Pošalji e-mail",

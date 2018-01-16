@@ -1234,7 +1234,6 @@
 	"right-siteadmin": "데이터베이스를 잠그거나 잠금 해제",
 	"right-override-export-depth": "5단계로 링크된 문서를 포함하여 문서를 내보내기",
 	"right-sendemail": "다른 사용자에게 이메일 보내기",
-	"right-sendemail-new-users": "기록된 동작이 없는 사용자에게 이메일 보내기",
 	"right-managechangetags": "데이터베이스에서 [[Special:Tags|태그]]를 만들거나 지우기",
 	"right-applychangetags": "자신이 편집할 때 [[Special:Tags|태그]]를 적용하기",
 	"right-changetags": "문서의 특정 판과 특정 기록 항목에 임의의 [[Special:Tags|태그]]를 추가하거나 제거하기",
