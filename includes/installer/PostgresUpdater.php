@@ -481,6 +481,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'protected_titles', 'pt_reason', 'NOT NULL', true ],
 			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			[ 'migrateComments' ],
 			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
 			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
 
