@@ -30,7 +30,7 @@ use Psr\Log\NullLogger;
  * Renamed from HttpRequest to MWHttpRequest to avoid conflict with
  * PHP's HTTP extension.
  */
-class MWHttpRequest implements LoggerAwareInterface {
+abstract class MWHttpRequest implements LoggerAwareInterface {
 	const SUPPORTS_FILE_POSTS = false;
 
 	/**
@@ -178,7 +178,7 @@ class MWHttpRequest implements LoggerAwareInterface {
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
 	 * @throws DomainException
-	 * @return CurlHttpRequest|PhpHttpRequest
+	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
 	public static function factory( $url, $options = null, $caller = __METHOD__ ) {
@@ -195,6 +195,15 @@ class MWHttpRequest implements LoggerAwareInterface {
 
 		if ( !isset( $options['logger'] ) ) {
 			$options['logger'] = LoggerFactory::getInstance( 'http' );
+		}
+
+		if ( !empty( $options['httpRequestImplementation'] ) ) {
+			if ( $options['httpRequestImplementation'] instanceof MWHttpRequest ) {
+				return $options['httpRequestImplementation'];
+			} else {
+				throw new DomainException( __METHOD__ .
+				                           ': $options[\'httpRequestImplementation\'] should be an instace of MWHttpRequest' );
+			}
 		}
 
 		switch ( Http::$httpEngine ) {
