@@ -2,7 +2,7 @@
 
 use Wikimedia\TestingAccessWrapper;
 
-class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
+abstract class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 	protected static $httpEngine;
 	protected $oldHttpEngine;
 
@@ -193,6 +193,23 @@ class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$status = $request->execute();
 		$this->assertFalse( $status->isOK() );
 		$this->assertSame( 401, $request->getStatus() );
+	}
+
+	public function testFactoryOverride() {
+		$mock = $this->getMockBuilder( MWHttpRequest::class )->disableOriginalConstructor()->getMock();
+		$request = MWHttpRequest::factory( 'http://httpbin.org/', [
+			'httpRequestImplementation' => $mock
+		] );
+		$this->assertSame( $mock, $request );
+	}
+
+	/**
+	 * @expectedException DomainException
+	 */
+	public function testFactoryOverrideBad() {
+		$request = MWHttpRequest::factory( 'http://httpbin.org/', [
+			'httpRequestImplementation' => new stdClass()
+		] );
 	}
 
 	// --------------------
