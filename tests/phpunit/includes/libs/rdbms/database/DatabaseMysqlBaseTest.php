@@ -52,7 +52,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function doQuery( $sql ) {
 	}
 
-	// From DatabaseMysql
+	// From DatabaseMysqli
 	protected function mysqlConnect( $realServer ) {
 	}
 

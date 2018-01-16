@@ -1940,6 +1940,7 @@ $wgSharedSchema = false;
  *   - user:        DB user
  *   - password:    DB password
  *   - type:        DB type
+ *   - driver:      DB driver (when there are multiple drivers)
  *
  *   - load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
  *                  If this is zero for any given server, no normal query traffic will be
