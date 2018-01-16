@@ -15,6 +15,7 @@ use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\NameTableSqlStore;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
@@ -743,6 +744,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionFactory() {
 		return $this->getService( 'RevisionFactory' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return NameTableSqlStore
+	 */
+	public function getContentModelSqlStore() {
+		return $this->getService( 'ContentModelSqlStore' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return NameTableSqlStore
+	 */
+	public function getSlotRoleSqlStore() {
+		return $this->getService( 'SlotRoleSqlStore' );
 	}
 
 	/**
