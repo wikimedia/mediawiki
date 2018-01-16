@@ -1,5 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use ContentHandler;
+use ExecutableFinder;
+use MediaWikiLangTestCase;
+use Page;
+use User;
+use XMLReader;
+
 /**
  * Base TestCase for dumps
  */
