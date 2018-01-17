@@ -79,10 +79,12 @@ class SpecialLog extends SpecialPage {
 		$qc = [];
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
 			$offender = User::newFromName( $opts->getValue( 'offender' ), false );
-			if ( $offender && $offender->getId() > 0 ) {
-				$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
-			} elseif ( $offender && IP::isIPAddress( $offender->getName() ) ) {
-				$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
+			if ( $offender ) {
+				if ( $offender->getId() > 0 ) {
+					$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
+				} else {
+					$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
+				}
 			}
 		} else {
 			// Allow extensions to add relations to their search types
