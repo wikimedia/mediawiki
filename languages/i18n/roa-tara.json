@@ -3651,7 +3651,7 @@
 	"expandtemplates": "Template spannute",
 	"expand_templates_intro": "Sta pàgena speciale pigghie quacche teste e spanne tutte le template jndr'à jidde recorsivamende.<br />\nJidde spanne pure le funziune de analise cumme<br />\n<code><nowiki>{{</nowiki>#language:…}}</code>, e variabbele cumme <br />\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.<br />\nIn pratiche tutte quidde ca stè jndr'à le doppie parendesi graffe.<br />",
 	"expand_templates_title": "Titele condestuale, pe {{FULLPAGENAME}} ecc.:",
-	"expand_templates_input": "Teste de input:",
+	"expand_templates_input": "Uicchiteste de input:",
 	"expand_templates_output": "Resultete",
 	"expand_templates_xml_output": "XML de output",
 	"expand_templates_html_output": "Resultate HTML grezze",

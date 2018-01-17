@@ -1218,6 +1218,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Añade la longitud vieja y la nueva de la página.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Añade fecha y hora de cuando el usuario fue notificado por última vez acerca de la edición.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Añade información del registro cuando corresponda.",
+	"apihelp-query+watchlist-paramvalue-prop-tags": "Enumera las etiquetas de la entrada.",
 	"apihelp-query+watchlist-param-show": "Muestra solo los elementos que cumplan estos criterios. Por ejemplo, para ver solo ediciones menores realizadas por usuarios conectados, introduce $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Qué tipos de cambios mostrar:",
 	"apihelp-query+watchlist-paramvalue-type-edit": "Ediciones comunes a páginas",

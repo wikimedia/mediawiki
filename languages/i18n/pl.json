@@ -1093,6 +1093,7 @@
 	"timezoneregion-indian": "Ocean Indyjski",
 	"timezoneregion-pacific": "Ocean Spokojny",
 	"allowemail": "Inni użytkownicy mogą przesyłać do mnie e‐maile",
+	"email-allow-new-users-label": "Zezwól na otrzymywanie e-maili od całkowicie nowych użytkowników",
 	"email-blacklist-label": "Zabroń tym użytkownikom na kontaktowanie się ze mną poprzez e-mail:",
 	"prefs-searchoptions": "Wyszukiwanie",
 	"prefs-namespaces": "Przestrzenie nazw",

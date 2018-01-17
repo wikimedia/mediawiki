@@ -78,7 +78,7 @@
 	"tog-watchlisthidecategorization": "Сакриј категоризацију страница",
 	"tog-ccmeonemails": "Пошаљи ми копије имејлова које пошаљем другим корисницима",
 	"tog-diffonly": "Не приказуј садржај странице испод разлика",
-	"tog-showhiddencats": "Прикажи скривене категорије",
+	"tog-showhiddencats": "Скривене категорије",
 	"tog-norollbackdiff": "Не приказуј разлику након извршеног враћања",
 	"tog-useeditwarning": "Упозори ме када напуштам страницу са несачуваним променама",
 	"tog-prefershttps": "Увек користи сигурну конекцију када сам пријављен.",
@@ -1289,7 +1289,7 @@
 	"rcfilters-activefilters": "Активни филтери",
 	"rcfilters-advancedfilters": "Напредни филтери",
 	"rcfilters-limit-title": "Приказати измена",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|измена|измена}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|измена|измене}}, $2",
 	"rcfilters-date-popup-title": "Временски оквир",
 	"rcfilters-days-title": "Претходних неколико дана",
 	"rcfilters-hours-title": "Претходних неколико сати",
@@ -3617,6 +3617,7 @@
 	"feedback-cancel": "Откажи",
 	"feedback-close": "Урађено",
 	"feedback-external-bug-report-button": "Пријави баг",
+	"feedback-dialog-title": "Пошаљи повратну информацију",
 	"feedback-error1": "Грешка: непрепознат резултат од АПИ-ја",
 	"feedback-error2": "Грешка: уређивање није успело",
 	"feedback-error3": "Грешка: нема одговора од АПИ-ја",
@@ -3782,5 +3783,7 @@
 	"gotointerwiki-invalid": "Одабрани наслов је невалидан.",
 	"gotointerwiki-external": "Управо ћете да напустите пројекат {{SITENAME}} да бисте на засебном веб-сајту посетили [[$2]].\n\n'''[$1 Продужи на $1]'''",
 	"undelete-cantedit": "Не можете повратити ову страницу јер немате дозволу да је уређујете.",
-	"undelete-cantcreate": "Не можете повратити ову страницу јер нема постојеће странице са овим именом и немате дозволу да направите ову страницу."
+	"undelete-cantcreate": "Не можете повратити ову страницу јер нема постојеће странице са овим именом и немате дозволу да направите ову страницу.",
+	"pagedata-title": "Подаци странице",
+	"pagedata-bad-title": "Неисправан наслов: $1."
 }

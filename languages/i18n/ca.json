@@ -1513,7 +1513,7 @@
 	"recentchanges-page-removed-from-category": "[[:$1]] treta de la categoria",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] treta de la categoria, [[Special:WhatLinksHere/$1|aquesta pàgina està inclosa en d'altres]]",
 	"autochange-username": "Canvi automàtic del MediaWiki",
-	"upload": "Pujar un fitxer",
+	"upload": "Puja un fitxer",
 	"uploadbtn": "Carrega un fitxer",
 	"reuploaddesc": "Torna al formulari per apujar.",
 	"upload-tryagain": "Envia la descripció del fitxer modificat",
