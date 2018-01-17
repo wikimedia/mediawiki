@@ -96,7 +96,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 		if ( substr( $licenseUrl, 0, 2 ) == '//' ) {
 			$licenseUrl = 'https:' . $licenseUrl;
 		}
-		$this->rdfWriter->about( wfExpandUrl( '/categoriesDump', PROTO_CANONICAL ) )
+		$this->rdfWriter->about( $this->categoriesRdf->getDumpURI() )
 			->a( 'schema', 'Dataset' )
 			->a( 'owl', 'Ontology' )
 			->say( 'cc', 'license' )->is( $licenseUrl )
