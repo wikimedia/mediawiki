@@ -4405,7 +4405,7 @@ class EditPage {
 			'inputId' => 'wpSave',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 			'useInputTag' => true,
-			'flags' => [ 'constructive', 'primary' ],
+			'flags' => [ 'progressive', 'primary' ],
 			'label' => $buttonLabel,
 			'infusable' => true,
 			'type' => 'submit',
