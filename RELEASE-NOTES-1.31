@@ -65,7 +65,9 @@ production.
 * (T90902) Non-breaking space in header ID breaks anchor
 
 === Action API changes in 1.31 ===
-* …
+* (T185058) The 'name' value to tgprop for action=query&list=tags has been
+  removed. It has never made a difference in the output, the name was always
+  returned regardless.
 
 === Action API internal changes in 1.31 ===
 * …
