@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use DumpCategoriesAsRdf;
+use MediaWikiLangTestCase;
+
 /**
  * @covers CategoriesRdf
  * @covers DumpCategoriesAsRdf

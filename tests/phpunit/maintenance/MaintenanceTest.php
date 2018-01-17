@@ -1,6 +1,10 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use Maintenance;
 use MediaWiki\MediaWikiServices;
+use MediaWikiTestCase;
 
 /**
  * Makes parts of Maintenance class API visible for testing, and makes up for a
