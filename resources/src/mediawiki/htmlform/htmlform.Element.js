@@ -3,7 +3,7 @@
 	mw.htmlform = {};
 
 	/**
-	 * Allows custom data specific to HTMLFormField to be set for OOjs UI forms. This picks up the
+	 * Allows custom data specific to HTMLFormField to be set for OOUI forms. This picks up the
 	 * extra config from a matching PHP widget (defined in HTMLFormElement.php) when constructed using
 	 * OO.ui.infuse().
 	 *

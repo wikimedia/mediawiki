@@ -669,7 +669,7 @@
 		},
 		"SkinOOUIThemes": {
 			"type": "object",
-			"description": "Map of skin names to OOjs UI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
+			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
 		"PasswordPolicy": {
 			"type": "object",

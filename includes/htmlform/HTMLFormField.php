@@ -673,7 +673,7 @@ abstract class HTMLFormField {
 	}
 
 	/**
-	 * Whether the field should be automatically infused. Note that all OOjs UI HTMLForm fields are
+	 * Whether the field should be automatically infused. Note that all OOUI HTMLForm fields are
 	 * infusable (you can call OO.ui.infuse() on them), but not all are infused by default, since
 	 * there is no benefit in doing it e.g. for buttons and it's a small performance hit on page load.
 	 *
@@ -686,7 +686,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get the list of extra ResourceLoader modules which must be loaded client-side before it's
-	 * possible to infuse this field's OOjs UI widget.
+	 * possible to infuse this field's OOUI widget.
 	 *
 	 * @return string[]
 	 */
