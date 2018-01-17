@@ -4392,7 +4392,11 @@ class EditPage {
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
+		$labelAsPublish =
+			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+
 		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
+		$buttonTooltip = $labelAsPublish ? 'publish' : 'save';
 
 		$buttons['save'] = new OOUI\ButtonInputWidget( [
 			'name' => 'wpSave',
@@ -4405,8 +4409,8 @@ class EditPage {
 			'label' => $buttonLabel,
 			'infusable' => true,
 			'type' => 'submit',
-			'title' => Linker::titleAttrib( 'save' ),
-			'accessKey' => Linker::accesskey( 'save' ),
+			'title' => Linker::titleAttrib( $buttonTooltip ),
+			'accessKey' => Linker::accesskey( $buttonTooltip ),
 		] );
 
 		$buttons['preview'] = new OOUI\ButtonInputWidget( [
