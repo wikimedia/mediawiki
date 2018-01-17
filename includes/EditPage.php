@@ -4392,7 +4392,11 @@ class EditPage {
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
+		$labelAsPublish =
+			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+
 		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
+		$buttonTooltip = $labelAsPublish ? 'publish' : 'save';
 
 		$buttons['save'] = new OOUI\ButtonInputWidget( [
 			'name' => 'wpSave',
@@ -4405,8 +4409,10 @@ class EditPage {
 			'label' => $buttonLabel,
 			'infusable' => true,
 			'type' => 'submit',
-			'title' => Linker::titleAttrib( 'save' ),
-			'accessKey' => Linker::accesskey( 'save' ),
+			// Messages used: tooltip-save, tooltip-publish
+			'title' => Linker::titleAttrib( $buttonTooltip ),
+			// Messages used: accesskey-save, accesskey-publish
+			'accessKey' => Linker::accesskey( $buttonTooltip ),
 		] );
 
 		$buttons['preview'] = new OOUI\ButtonInputWidget( [
@@ -4419,7 +4425,9 @@ class EditPage {
 			'label' => $this->context->msg( 'showpreview' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Message used: tooltip-preview
 			'title' => Linker::titleAttrib( 'preview' ),
+			// Message used: accesskey-preview
 			'accessKey' => Linker::accesskey( 'preview' ),
 		] );
 
@@ -4433,7 +4441,9 @@ class EditPage {
 			'label' => $this->context->msg( 'showdiff' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Message used: tooltip-diff
 			'title' => Linker::titleAttrib( 'diff' ),
+			// Message used: accesskey-diff
 			'accessKey' => Linker::accesskey( 'diff' ),
 		] );
 
