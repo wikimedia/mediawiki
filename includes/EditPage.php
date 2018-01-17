@@ -4394,13 +4394,9 @@ class EditPage {
 
 		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
 
-		$attribs = [
-			'name' => 'wpSave',
-			'tabindex' => ++$tabindex,
-		];
-
-		$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['save'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpSave',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpSaveWidget',
 			'inputId' => 'wpSave',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
@@ -4411,15 +4407,11 @@ class EditPage {
 			'type' => 'submit',
 			'title' => Linker::titleAttrib( 'save' ),
 			'accessKey' => Linker::accesskey( 'save' ),
-		] + $saveConfig );
+		] );
 
-		$attribs = [
-			'name' => 'wpPreview',
-			'tabindex' => ++$tabindex,
-		];
-
-		$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['preview'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpPreview',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpPreviewWidget',
 			'inputId' => 'wpPreview',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
@@ -4429,15 +4421,11 @@ class EditPage {
 			'type' => 'submit',
 			'title' => Linker::titleAttrib( 'preview' ),
 			'accessKey' => Linker::accesskey( 'preview' ),
-		] + $previewConfig );
+		] );
 
-		$attribs = [
-			'name' => 'wpDiff',
-			'tabindex' => ++$tabindex,
-		];
-
-		$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['diff'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpDiff',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpDiffWidget',
 			'inputId' => 'wpDiff',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
@@ -4447,7 +4435,7 @@ class EditPage {
 			'type' => 'submit',
 			'title' => Linker::titleAttrib( 'diff' ),
 			'accessKey' => Linker::accesskey( 'diff' ),
-		] + $diffConfig );
+		] );
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
