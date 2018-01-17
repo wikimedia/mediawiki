@@ -2,55 +2,33 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use Maintenance;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use Wikimedia\TestingAccessWrapper;
+
+/**
+ * Stub to allow us to instantiate and test an abstract Maintenance object.
+ */
+class ConcreteMaintenance extends Maintenance {
+	public function execute() {
+		// Now we're real.
+	}
+}
 
 /**
  * @covers Maintenance
  */
-class MaintenanceTest extends MediaWikiTestCase {
-
-	/**
-	 * The main Maintenance instance that is used for testing.
-	 *
-	 * @var MaintenanceFixup
-	 */
-	private $m;
+class MaintenanceTest extends MaintenanceBaseTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->m = new MaintenanceFixup( $this );
+
+		$this->maintenance = $this->createMaintenance();
 	}
 
-	protected function tearDown() {
-		if ( $this->m ) {
-			$this->m->simulateShutdown();
-			$this->m = null;
-		}
-		parent::tearDown();
-	}
-
-	/**
-	 * asserts the output before and after simulating shutdown
-	 *
-	 * This function simulates shutdown of self::m.
-	 *
-	 * @param string $preShutdownOutput Expected output before simulating shutdown
-	 * @param bool $expectNLAppending Whether or not shutdown simulation is expected
-	 *   to add a newline to the output. If false, $preShutdownOutput is the
-	 *   expected output after shutdown simulation. Otherwise,
-	 *   $preShutdownOutput with an appended newline is the expected output
-	 *   after shutdown simulation.
-	 */
-	private function assertOutputPrePostShutdown( $preShutdownOutput, $expectNLAppending ) {
-		$this->assertEquals( $preShutdownOutput, $this->getActualOutput(),
-			"Output before shutdown simulation" );
-
-		$this->m->simulateShutdown();
-		$this->m = null;
-
-		$postShutdownOutput = $preShutdownOutput . ( $expectNLAppending ? "\n" : "" );
-		$this->expectOutputString( $postShutdownOutput );
+	protected function createMaintenance() {
+		$obj = new ConcreteMaintenance();
+		return TestingAccessWrapper::newFromObject( $obj );
 	}
 
 	// Although the following tests do not seem to be too consistent (compare for
@@ -59,140 +37,140 @@ class MaintenanceTest extends MediaWikiTestCase {
 	// consistent behavior, but rather currently existing behavior.
 
 	function testOutputEmpty() {
-		$this->m->output( "" );
+		$this->maintenance->output( "" );
 		$this->assertOutputPrePostShutdown( "", false );
 	}
 
 	function testOutputString() {
-		$this->m->output( "foo" );
+		$this->maintenance->output( "foo" );
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
 	function testOutputStringString() {
-		$this->m->output( "foo" );
-		$this->m->output( "bar" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( "bar" );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputStringNL() {
-		$this->m->output( "foo\n" );
+		$this->maintenance->output( "foo\n" );
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testOutputStringNLNL() {
-		$this->m->output( "foo\n\n" );
+		$this->maintenance->output( "foo\n\n" );
 		$this->assertOutputPrePostShutdown( "foo\n\n", false );
 	}
 
 	function testOutputStringNLString() {
-		$this->m->output( "foo\nbar" );
+		$this->maintenance->output( "foo\nbar" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", false );
 	}
 
 	function testOutputStringNLStringNL() {
-		$this->m->output( "foo\nbar\n" );
+		$this->maintenance->output( "foo\nbar\n" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputStringNLStringNLLinewise() {
-		$this->m->output( "foo\n" );
-		$this->m->output( "bar\n" );
+		$this->maintenance->output( "foo\n" );
+		$this->maintenance->output( "bar\n" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputStringNLStringNLArbitrary() {
-		$this->m->output( "" );
-		$this->m->output( "foo" );
-		$this->m->output( "" );
-		$this->m->output( "\n" );
-		$this->m->output( "ba" );
-		$this->m->output( "" );
-		$this->m->output( "r\n" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "\n" );
+		$this->maintenance->output( "ba" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "r\n" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputStringNLStringNLArbitraryAgain() {
-		$this->m->output( "" );
-		$this->m->output( "foo" );
-		$this->m->output( "" );
-		$this->m->output( "\nb" );
-		$this->m->output( "a" );
-		$this->m->output( "" );
-		$this->m->output( "r\n" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "\nb" );
+		$this->maintenance->output( "a" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "r\n" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputWNullChannelEmpty() {
-		$this->m->output( "", null );
+		$this->maintenance->output( "", null );
 		$this->assertOutputPrePostShutdown( "", false );
 	}
 
 	function testOutputWNullChannelString() {
-		$this->m->output( "foo", null );
+		$this->maintenance->output( "foo", null );
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
 	function testOutputWNullChannelStringString() {
-		$this->m->output( "foo", null );
-		$this->m->output( "bar", null );
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->output( "bar", null );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputWNullChannelStringNL() {
-		$this->m->output( "foo\n", null );
+		$this->maintenance->output( "foo\n", null );
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testOutputWNullChannelStringNLNL() {
-		$this->m->output( "foo\n\n", null );
+		$this->maintenance->output( "foo\n\n", null );
 		$this->assertOutputPrePostShutdown( "foo\n\n", false );
 	}
 
 	function testOutputWNullChannelStringNLString() {
-		$this->m->output( "foo\nbar", null );
+		$this->maintenance->output( "foo\nbar", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar", false );
 	}
 
 	function testOutputWNullChannelStringNLStringNL() {
-		$this->m->output( "foo\nbar\n", null );
+		$this->maintenance->output( "foo\nbar\n", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputWNullChannelStringNLStringNLLinewise() {
-		$this->m->output( "foo\n", null );
-		$this->m->output( "bar\n", null );
+		$this->maintenance->output( "foo\n", null );
+		$this->maintenance->output( "bar\n", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputWNullChannelStringNLStringNLArbitrary() {
-		$this->m->output( "", null );
-		$this->m->output( "foo", null );
-		$this->m->output( "", null );
-		$this->m->output( "\n", null );
-		$this->m->output( "ba", null );
-		$this->m->output( "", null );
-		$this->m->output( "r\n", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "\n", null );
+		$this->maintenance->output( "ba", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "r\n", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputWNullChannelStringNLStringNLArbitraryAgain() {
-		$this->m->output( "", null );
-		$this->m->output( "foo", null );
-		$this->m->output( "", null );
-		$this->m->output( "\nb", null );
-		$this->m->output( "a", null );
-		$this->m->output( "", null );
-		$this->m->output( "r\n", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "\nb", null );
+		$this->maintenance->output( "a", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "r\n", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputWChannelString() {
-		$this->m->output( "foo", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo", true );
 	}
 
 	function testOutputWChannelStringNL() {
-		$this->m->output( "foo\n", "bazChannel" );
+		$this->maintenance->output( "foo\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo", true );
 	}
 
@@ -201,133 +179,133 @@ class MaintenanceTest extends MediaWikiTestCase {
 		// endings (although output's implementation in this situation calls
 		// outputChanneled with a string ending in a nl ... which is not allowed
 		// according to the documentation of outputChanneled)
-		$this->m->output( "foo\n\n", "bazChannel" );
+		$this->maintenance->output( "foo\n\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\n", true );
 	}
 
 	function testOutputWChannelStringNLString() {
-		$this->m->output( "foo\nbar", "bazChannel" );
+		$this->maintenance->output( "foo\nbar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputWChannelStringNLStringNL() {
-		$this->m->output( "foo\nbar\n", "bazChannel" );
+		$this->maintenance->output( "foo\nbar\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputWChannelStringNLStringNLLinewise() {
-		$this->m->output( "foo\n", "bazChannel" );
-		$this->m->output( "bar\n", "bazChannel" );
+		$this->maintenance->output( "foo\n", "bazChannel" );
+		$this->maintenance->output( "bar\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
 	function testOutputWChannelStringNLStringNLArbitrary() {
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "\n", "bazChannel" );
-		$this->m->output( "ba", "bazChannel" );
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "r\n", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "\n", "bazChannel" );
+		$this->maintenance->output( "ba", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "r\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
 	function testOutputWChannelStringNLStringNLArbitraryAgain() {
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "\nb", "bazChannel" );
-		$this->m->output( "a", "bazChannel" );
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "r\n", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "\nb", "bazChannel" );
+		$this->maintenance->output( "a", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "r\n", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputWMultipleChannelsChannelChange() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "bar", "bazChannel" );
-		$this->m->output( "qux", "quuxChannel" );
-		$this->m->output( "corge", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "bar", "bazChannel" );
+		$this->maintenance->output( "qux", "quuxChannel" );
+		$this->maintenance->output( "corge", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar\nqux\ncorge", true );
 	}
 
 	function testOutputWMultipleChannelsChannelChangeNL() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "bar\n", "bazChannel" );
-		$this->m->output( "qux\n", "quuxChannel" );
-		$this->m->output( "corge", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "bar\n", "bazChannel" );
+		$this->maintenance->output( "qux\n", "quuxChannel" );
+		$this->maintenance->output( "corge", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar\nqux\ncorge", true );
 	}
 
 	function testOutputWAndWOChannelStringStartWO() {
-		$this->m->output( "foo" );
-		$this->m->output( "bar", "bazChannel" );
-		$this->m->output( "qux" );
-		$this->m->output( "quux", "bazChannel" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( "bar", "bazChannel" );
+		$this->maintenance->output( "qux" );
+		$this->maintenance->output( "quux", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar\nquxquux", true );
 	}
 
 	function testOutputWAndWOChannelStringStartW() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "bar" );
-		$this->m->output( "qux", "bazChannel" );
-		$this->m->output( "quux" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "bar" );
+		$this->maintenance->output( "qux", "bazChannel" );
+		$this->maintenance->output( "quux" );
 		$this->assertOutputPrePostShutdown( "foo\nbarqux\nquux", false );
 	}
 
 	function testOutputWChannelTypeSwitch() {
-		$this->m->output( "foo", 1 );
-		$this->m->output( "bar", 1.0 );
+		$this->maintenance->output( "foo", 1 );
+		$this->maintenance->output( "bar", 1.0 );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputIntermittentEmpty() {
-		$this->m->output( "foo" );
-		$this->m->output( "" );
-		$this->m->output( "bar" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( "" );
+		$this->maintenance->output( "bar" );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputIntermittentFalse() {
-		$this->m->output( "foo" );
-		$this->m->output( false );
-		$this->m->output( "bar" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( false );
+		$this->maintenance->output( "bar" );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputIntermittentFalseAfterOtherChannel() {
-		$this->m->output( "qux", "quuxChannel" );
-		$this->m->output( "foo" );
-		$this->m->output( false );
-		$this->m->output( "bar" );
+		$this->maintenance->output( "qux", "quuxChannel" );
+		$this->maintenance->output( "foo" );
+		$this->maintenance->output( false );
+		$this->maintenance->output( "bar" );
 		$this->assertOutputPrePostShutdown( "qux\nfoobar", false );
 	}
 
 	function testOutputWNullChannelIntermittentEmpty() {
-		$this->m->output( "foo", null );
-		$this->m->output( "", null );
-		$this->m->output( "bar", null );
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->output( "", null );
+		$this->maintenance->output( "bar", null );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputWNullChannelIntermittentFalse() {
-		$this->m->output( "foo", null );
-		$this->m->output( false, null );
-		$this->m->output( "bar", null );
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->output( false, null );
+		$this->maintenance->output( "bar", null );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testOutputWChannelIntermittentEmpty() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( "", "bazChannel" );
-		$this->m->output( "bar", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( "", "bazChannel" );
+		$this->maintenance->output( "bar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
 	function testOutputWChannelIntermittentFalse() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->output( false, "bazChannel" );
-		$this->m->output( "bar", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->output( false, "bazChannel" );
+		$this->maintenance->output( "bar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
@@ -335,355 +313,355 @@ class MaintenanceTest extends MediaWikiTestCase {
 	// in \n, hence we do not test such strings.
 
 	function testOutputChanneledEmpty() {
-		$this->m->outputChanneled( "" );
+		$this->maintenance->outputChanneled( "" );
 		$this->assertOutputPrePostShutdown( "\n", false );
 	}
 
 	function testOutputChanneledString() {
-		$this->m->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "foo" );
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testOutputChanneledStringString() {
-		$this->m->outputChanneled( "foo" );
-		$this->m->outputChanneled( "bar" );
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "bar" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledStringNLString() {
-		$this->m->outputChanneled( "foo\nbar" );
+		$this->maintenance->outputChanneled( "foo\nbar" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledStringNLStringNLArbitraryAgain() {
-		$this->m->outputChanneled( "" );
-		$this->m->outputChanneled( "foo" );
-		$this->m->outputChanneled( "" );
-		$this->m->outputChanneled( "\nb" );
-		$this->m->outputChanneled( "a" );
-		$this->m->outputChanneled( "" );
-		$this->m->outputChanneled( "r" );
+		$this->maintenance->outputChanneled( "" );
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "" );
+		$this->maintenance->outputChanneled( "\nb" );
+		$this->maintenance->outputChanneled( "a" );
+		$this->maintenance->outputChanneled( "" );
+		$this->maintenance->outputChanneled( "r" );
 		$this->assertOutputPrePostShutdown( "\nfoo\n\n\nb\na\n\nr\n", false );
 	}
 
 	function testOutputChanneledWNullChannelEmpty() {
-		$this->m->outputChanneled( "", null );
+		$this->maintenance->outputChanneled( "", null );
 		$this->assertOutputPrePostShutdown( "\n", false );
 	}
 
 	function testOutputChanneledWNullChannelString() {
-		$this->m->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( "foo", null );
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testOutputChanneledWNullChannelStringString() {
-		$this->m->outputChanneled( "foo", null );
-		$this->m->outputChanneled( "bar", null );
+		$this->maintenance->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( "bar", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledWNullChannelStringNLString() {
-		$this->m->outputChanneled( "foo\nbar", null );
+		$this->maintenance->outputChanneled( "foo\nbar", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledWNullChannelStringNLStringNLArbitraryAgain() {
-		$this->m->outputChanneled( "", null );
-		$this->m->outputChanneled( "foo", null );
-		$this->m->outputChanneled( "", null );
-		$this->m->outputChanneled( "\nb", null );
-		$this->m->outputChanneled( "a", null );
-		$this->m->outputChanneled( "", null );
-		$this->m->outputChanneled( "r", null );
+		$this->maintenance->outputChanneled( "", null );
+		$this->maintenance->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( "", null );
+		$this->maintenance->outputChanneled( "\nb", null );
+		$this->maintenance->outputChanneled( "a", null );
+		$this->maintenance->outputChanneled( "", null );
+		$this->maintenance->outputChanneled( "r", null );
 		$this->assertOutputPrePostShutdown( "\nfoo\n\n\nb\na\n\nr\n", false );
 	}
 
 	function testOutputChanneledWChannelString() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo", true );
 	}
 
 	function testOutputChanneledWChannelStringNLString() {
-		$this->m->outputChanneled( "foo\nbar", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo\nbar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputChanneledWChannelStringString() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "bar", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
 	function testOutputChanneledWChannelStringNLStringNLArbitraryAgain() {
-		$this->m->outputChanneled( "", "bazChannel" );
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "", "bazChannel" );
-		$this->m->outputChanneled( "\nb", "bazChannel" );
-		$this->m->outputChanneled( "a", "bazChannel" );
-		$this->m->outputChanneled( "", "bazChannel" );
-		$this->m->outputChanneled( "r", "bazChannel" );
+		$this->maintenance->outputChanneled( "", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "", "bazChannel" );
+		$this->maintenance->outputChanneled( "\nb", "bazChannel" );
+		$this->maintenance->outputChanneled( "a", "bazChannel" );
+		$this->maintenance->outputChanneled( "", "bazChannel" );
+		$this->maintenance->outputChanneled( "r", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputChanneledWMultipleChannelsChannelChange() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "bar", "bazChannel" );
-		$this->m->outputChanneled( "qux", "quuxChannel" );
-		$this->m->outputChanneled( "corge", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", "bazChannel" );
+		$this->maintenance->outputChanneled( "qux", "quuxChannel" );
+		$this->maintenance->outputChanneled( "corge", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar\nqux\ncorge", true );
 	}
 
 	function testOutputChanneledWMultipleChannelsChannelChangeEnclosedNull() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "bar", null );
-		$this->m->outputChanneled( "qux", null );
-		$this->m->outputChanneled( "corge", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", null );
+		$this->maintenance->outputChanneled( "qux", null );
+		$this->maintenance->outputChanneled( "corge", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\nqux\ncorge", true );
 	}
 
 	function testOutputChanneledWMultipleChannelsChannelAfterNullChange() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "bar", null );
-		$this->m->outputChanneled( "qux", null );
-		$this->m->outputChanneled( "corge", "quuxChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", null );
+		$this->maintenance->outputChanneled( "qux", null );
+		$this->maintenance->outputChanneled( "corge", "quuxChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\nqux\ncorge", true );
 	}
 
 	function testOutputChanneledWAndWOChannelStringStartWO() {
-		$this->m->outputChanneled( "foo" );
-		$this->m->outputChanneled( "bar", "bazChannel" );
-		$this->m->outputChanneled( "qux" );
-		$this->m->outputChanneled( "quux", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "bar", "bazChannel" );
+		$this->maintenance->outputChanneled( "qux" );
+		$this->maintenance->outputChanneled( "quux", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\nqux\nquux", true );
 	}
 
 	function testOutputChanneledWAndWOChannelStringStartW() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "bar" );
-		$this->m->outputChanneled( "qux", "bazChannel" );
-		$this->m->outputChanneled( "quux" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar" );
+		$this->maintenance->outputChanneled( "qux", "bazChannel" );
+		$this->maintenance->outputChanneled( "quux" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\nqux\nquux\n", false );
 	}
 
 	function testOutputChanneledWChannelTypeSwitch() {
-		$this->m->outputChanneled( "foo", 1 );
-		$this->m->outputChanneled( "bar", 1.0 );
+		$this->maintenance->outputChanneled( "foo", 1 );
+		$this->maintenance->outputChanneled( "bar", 1.0 );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testOutputChanneledWOChannelIntermittentEmpty() {
-		$this->m->outputChanneled( "foo" );
-		$this->m->outputChanneled( "" );
-		$this->m->outputChanneled( "bar" );
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "" );
+		$this->maintenance->outputChanneled( "bar" );
 		$this->assertOutputPrePostShutdown( "foo\n\nbar\n", false );
 	}
 
 	function testOutputChanneledWOChannelIntermittentFalse() {
-		$this->m->outputChanneled( "foo" );
-		$this->m->outputChanneled( false );
-		$this->m->outputChanneled( "bar" );
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( false );
+		$this->maintenance->outputChanneled( "bar" );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledWNullChannelIntermittentEmpty() {
-		$this->m->outputChanneled( "foo", null );
-		$this->m->outputChanneled( "", null );
-		$this->m->outputChanneled( "bar", null );
+		$this->maintenance->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( "", null );
+		$this->maintenance->outputChanneled( "bar", null );
 		$this->assertOutputPrePostShutdown( "foo\n\nbar\n", false );
 	}
 
 	function testOutputChanneledWNullChannelIntermittentFalse() {
-		$this->m->outputChanneled( "foo", null );
-		$this->m->outputChanneled( false, null );
-		$this->m->outputChanneled( "bar", null );
+		$this->maintenance->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( false, null );
+		$this->maintenance->outputChanneled( "bar", null );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testOutputChanneledWChannelIntermittentEmpty() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( "", "bazChannel" );
-		$this->m->outputChanneled( "bar", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "", "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foobar", true );
 	}
 
 	function testOutputChanneledWChannelIntermittentFalse() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->outputChanneled( false, "bazChannel" );
-		$this->m->outputChanneled( "bar", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( false, "bazChannel" );
+		$this->maintenance->outputChanneled( "bar", "bazChannel" );
 		$this->assertOutputPrePostShutdown( "foo\nbar", true );
 	}
 
 	function testCleanupChanneledClean() {
-		$this->m->cleanupChanneled();
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "", false );
 	}
 
 	function testCleanupChanneledAfterOutput() {
-		$this->m->output( "foo" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
 	function testCleanupChanneledAfterOutputWNullChannel() {
-		$this->m->output( "foo", null );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo", null );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo", false );
 	}
 
 	function testCleanupChanneledAfterOutputWChannel() {
-		$this->m->output( "foo", "bazChannel" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo", "bazChannel" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterNLOutput() {
-		$this->m->output( "foo\n" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo\n" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterNLOutputWNullChannel() {
-		$this->m->output( "foo\n", null );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo\n", null );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterNLOutputWChannel() {
-		$this->m->output( "foo\n", "bazChannel" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->output( "foo\n", "bazChannel" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterOutputChanneledWOChannel() {
-		$this->m->outputChanneled( "foo" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->outputChanneled( "foo" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterOutputChanneledWNullChannel() {
-		$this->m->outputChanneled( "foo", null );
-		$this->m->cleanupChanneled();
+		$this->maintenance->outputChanneled( "foo", null );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testCleanupChanneledAfterOutputChanneledWChannel() {
-		$this->m->outputChanneled( "foo", "bazChannel" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->cleanupChanneled();
 		$this->assertOutputPrePostShutdown( "foo\n", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutput() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->output( "foo" );
+		$this->maintenance->output( "foo" );
 		$m2->output( "bar" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputWNullChannel() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->output( "foo", null );
+		$this->maintenance->output( "foo", null );
 		$m2->output( "bar", null );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputWChannel() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->output( "foo", "bazChannel" );
+		$this->maintenance->output( "foo", "bazChannel" );
 		$m2->output( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputWNullChannelNL() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->output( "foo\n", null );
+		$this->maintenance->output( "foo\n", null );
 		$m2->output( "bar\n", null );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputWChannelNL() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->output( "foo\n", "bazChannel" );
+		$this->maintenance->output( "foo\n", "bazChannel" );
 		$m2->output( "bar\n", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputChanneled() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->outputChanneled( "foo" );
+		$this->maintenance->outputChanneled( "foo" );
 		$m2->outputChanneled( "bar" );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputChanneledWNullChannel() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->outputChanneled( "foo", null );
+		$this->maintenance->outputChanneled( "foo", null );
 		$m2->outputChanneled( "bar", null );
 
 		$this->assertEquals( "foo\nbar\n", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foo\nbar\n", false );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionOutputChanneledWChannel() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$m2->outputChanneled( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before shutdown simulation (m2)" );
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar\n", true );
 	}
 
 	function testMultipleMaintenanceObjectsInteractionCleanupChanneledWChannel() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
-		$this->m->outputChanneled( "foo", "bazChannel" );
+		$this->maintenance->outputChanneled( "foo", "bazChannel" );
 		$m2->outputChanneled( "bar", "bazChannel" );
 
 		$this->assertEquals( "foobar", $this->getActualOutput(),
 			"Output before first cleanup" );
-		$this->m->cleanupChanneled();
+		$this->maintenance->cleanupChanneled();
 		$this->assertEquals( "foobar\n", $this->getActualOutput(),
 			"Output after first cleanup" );
 		$m2->cleanupChanneled();
 		$this->assertEquals( "foobar\n\n", $this->getActualOutput(),
 			"Output after second cleanup" );
 
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 		$this->assertOutputPrePostShutdown( "foobar\n\n", false );
 	}
 
@@ -691,10 +669,10 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 * @covers Maintenance::getConfig
 	 */
 	public function testGetConfig() {
-		$this->assertInstanceOf( 'Config', $this->m->getConfig() );
+		$this->assertInstanceOf( 'Config', $this->maintenance->getConfig() );
 		$this->assertSame(
 			MediaWikiServices::getInstance()->getMainConfig(),
-			$this->m->getConfig()
+			$this->maintenance->getConfig()
 		);
 	}
 
@@ -703,12 +681,13 @@ class MaintenanceTest extends MediaWikiTestCase {
 	 */
 	public function testSetConfig() {
 		$conf = $this->createMock( 'Config' );
-		$this->m->setConfig( $conf );
-		$this->assertSame( $conf, $this->m->getConfig() );
+		$this->maintenance->setConfig( $conf );
+		$this->assertSame( $conf, $this->maintenance->getConfig() );
 	}
 
 	function testParseArgs() {
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
+
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option does stuff', false, true, false, true );
 		$m2->loadWithArgv( [ '--multi', 'this1', '--multi', 'this2' ] );
@@ -717,9 +696,9 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$this->assertEquals( [ [ 'multi', 'this1' ], [ 'multi', 'this2' ] ],
 			$m2->orderedOptions );
 
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
 
 		$m2->addOption( 'multi', 'This option does stuff', false, false, false, true );
 		$m2->loadWithArgv( [ '--multi', '--multi' ] );
@@ -727,9 +706,10 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 1, 1 ], $m2->getOption( 'multi' ) );
 		$this->assertEquals( [ [ 'multi', 1 ], [ 'multi', 1 ] ], $m2->orderedOptions );
 
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 
-		$m2 = new MaintenanceFixup( $this );
+		$m2 = $this->createMaintenance();
+
 		// Create an option with an argument allowed to be specified multiple times
 		$m2->addOption( 'multi', 'This option doesn\'t actually support multiple occurrences' );
 		$m2->loadWithArgv( [ '--multi=yo' ] );
@@ -737,6 +717,6 @@ class MaintenanceTest extends MediaWikiTestCase {
 		$this->assertEquals( 'yo', $m2->getOption( 'multi' ) );
 		$this->assertEquals( [ [ 'multi', 'yo' ] ], $m2->orderedOptions );
 
-		$m2->simulateShutdown();
+		$m2->outputChanneled( false );
 	}
 }
