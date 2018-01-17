@@ -31,10 +31,13 @@ class Licenses extends HTMLFormField {
 	protected $msg;
 
 	/** @var array */
-	protected $licenses = [];
+	protected $lines = [];
 
 	/** @var string */
 	protected $html;
+
+	/** @var string|null */
+	protected $selected;
 	/**#@-*/
 
 	/**
@@ -43,18 +46,34 @@ class Licenses extends HTMLFormField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		$this->msg = empty( $params['licenses'] )
-			? wfMessage( 'licenses' )->inContentLanguage()->plain()
-			: $params['licenses'];
+		$this->msg = static::getMessageFromParams( $params );
 		$this->selected = null;
 
-		$this->makeLicenses();
+		$this->makeLines();
+	}
+
+	/**
+	 * @param array $params
+	 * @return string
+	 */
+	protected static function getMessageFromParams( $params ) {
+		return empty( $params['licenses'] )
+			? wfMessage( 'licenses' )->inContentLanguage()->plain()
+			: $params['licenses'];
+	}
+
+	/**
+	 * @param string $line
+	 * @return License
+	 */
+	protected function buildLine( $line ) {
+		return new License( $line );
 	}
 
 	/**
 	 * @private
 	 */
-	protected function makeLicenses() {
+	protected function makeLines() {
 		$levels = [];
 		$lines = explode( "\n", $this->msg );
 
@@ -65,8 +84,8 @@ class Licenses extends HTMLFormField {
 				list( $level, $line ) = $this->trimStars( $line );
 
 				if ( strpos( $line, '|' ) !== false ) {
-					$obj = new License( $line );
-					$this->stackItem( $this->licenses, $levels, $obj );
+					$obj = $this->buildLine( $line );
+					$this->stackItem( $this->lines, $levels, $obj );
 				} else {
 					if ( $level < count( $levels ) ) {
 						$levels = array_slice( $levels, 0, $level );
@@ -108,11 +127,14 @@ class Licenses extends HTMLFormField {
 	/**
 	 * @param array $tagset
 	 * @param int $depth
+	 * @return string
 	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
+		$html = '';
+
 		foreach ( $tagset as $key => $val ) {
 			if ( is_array( $val ) ) {
-				$this->html .= $this->outputOption(
+				$html .= $this->outputOption(
 					$key, '',
 					[
 						'disabled' => 'disabled',
@@ -120,15 +142,17 @@ class Licenses extends HTMLFormField {
 					],
 					$depth
 				);
-				$this->makeHtml( $val, $depth + 1 );
+				$html .= $this->makeHtml( $val, $depth + 1 );
 			} else {
-				$this->html .= $this->outputOption(
+				$html .= $this->outputOption(
 					$val->text, $val->template,
 					[ 'title' => '{{' . $val->template . '}}' ],
 					$depth
 				);
 			}
 		}
+
+		return $html;
 	}
 
 	/**
@@ -153,36 +177,50 @@ class Licenses extends HTMLFormField {
 	/**#@-*/
 
 	/**
-	 *  Accessor for $this->licenses
+	 * Accessor for $this->lines
 	 *
 	 * @return array
 	 */
-	public function getLicenses() {
-		return $this->licenses;
+	public function getLines() {
+		return $this->lines;
 	}
 
 	/**
-	 * Accessor for $this->html
+	 * Accessor for $this->lines
 	 *
-	 * @param bool $value
+	 * @return array
 	 *
-	 * @return string
+	 * @deprecated since 1.31 Use getLines() instead
+	 */
+	public function getLicenses() {
+		return $this->getLines();
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function getInputHTML( $value ) {
 		$this->selected = $value;
 
-		$this->html = $this->outputOption( wfMessage( 'nolicense' )->text(), '',
-			(bool)$this->selected ? null : [ 'selected' => 'selected' ] );
-		$this->makeHtml( $this->getLicenses() );
+		// add a default "no license selected" option
+		$default = $this->buildLine( '|nolicense' );
+		array_unshift( $this->lines, $default );
+
+		$html = $this->makeHtml( $this->getLines() );
 
 		$attribs = [
 			'name' => $this->mName,
 			'id' => $this->mID
 		];
 		if ( !empty( $this->mParams['disabled'] ) ) {
-			$attibs['disabled'] = 'disabled';
+			$attribs['disabled'] = 'disabled';
 		}
 
-		return Html::rawElement( 'select', $attribs, $this->html );
+		$html = Html::rawElement( 'select', $attribs, $html );
+
+		// remove default "no license selected" from lines again
+		array_shift( $this->lines );
+
+		return $html;
 	}
 }
