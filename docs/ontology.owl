@@ -38,6 +38,11 @@
     <rdfs:comment>MediaWiki category.</rdfs:comment>
   </owl:Class>
 
+  <owl:Class rdf:about="&mediawiki;HiddenCategory">
+    <rdfs:label>HiddenCategory</rdfs:label>
+    <rdfs:comment>MediaWiki hidden category.</rdfs:comment>
+  </owl:Class>
+
   <!--
   ///////////////////////////////////////////////////////////////////////////////////////
   //
@@ -52,5 +57,19 @@
       <rdfs:range rdf:resource="&mediawiki;Category"/>
       <rdfs:domain rdf:resource="&mediawiki;Category"/>
   </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="&mediawiki;pages">
+      <rdfs:label>pages</rdfs:label>
+      <rdfs:comment>Number of articles belonging to this category.</rdfs:comment>
+      <rdfs:range rdf:resource="&mediawiki;Category"/>
+      <rdfs:range rdf:resource="&xsd;integer"/>
+  </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&mediawiki;subcategories">
+      <rdfs:label>subcategories</rdfs:label>
+      <rdfs:comment>Number of subcategories belonging to this category.</rdfs:comment>
+      <rdfs:range rdf:resource="&mediawiki;Category"/>
+      <rdfs:range rdf:resource="&xsd;integer"/>
+  </owl:DatatypeProperty>
 
 </rdf:RDF>
