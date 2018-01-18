@@ -456,6 +456,31 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * @param object|string|int $from One of the following:
+	 *   - A DB query result object.
+	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *     using SELECT FOR UPDATE.
+	 *
+	 * @return boolean
+	 */
+	public function wasLoadedFrom( $from ) {
+		$from = self::convertSelectType( $from );
+
+		if ( !is_int( $from ) ) {
+			// No idea from where the caller got this data, assume replica DB.
+			$from = self::READ_NORMAL;
+		}
+
+		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Load the object from a database row
 	 *
 	 * @since 1.20
@@ -3725,4 +3750,5 @@ class WikiPage implements Page, IDBAccessObject {
 
 		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
 	}
+
 }
