@@ -161,10 +161,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::doModify
-	 * @covers WikiPage::doCreate
 	 * @covers WikiPage::prepareContentForEdit
-	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( __METHOD__ );
@@ -177,7 +174,18 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "[[testing]] 1" );
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -200,6 +208,17 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$retrieved = $page->getContent();
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
+
+		# ------------------------
+		$page = new WikiPage( $title );
+
+		$status = $page->doEditContent( $content, 'This changes nothing', EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNull( $status->value['revision'], 'revision' );
+		$this->assertNotNull( $page->getRevision() );
+		$this->assertTrue( $page->getRevision()->getContent()->equals( $content ), 'equals' );
+
 		# ------------------------
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
@@ -208,7 +227,20 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "testing 2" );
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertFalse(
+			$status->value['revision']->getContent()->equals( $content ),
+			'not equals (PST must substitute signature)'
+		);
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		# ------------------------
 		$page = new WikiPage( $title );
