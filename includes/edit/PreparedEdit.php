@@ -199,7 +199,7 @@ class PreparedEdit {
 	 *
 	 * @param RevisionSlots $newContent
 	 * @param UserIdentity $user
-	 * @param int $revid Revision ID, if ParserOutput depends on it.
+	 * @param int $revid Revision ID, if ParserOutput depends on it. 0 otherwise.
 	 * @return string
 	 */
 	public static function makeSignature(
