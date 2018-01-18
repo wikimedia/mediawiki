@@ -890,6 +890,7 @@ class Revision implements IDBAccessObject {
 			return $this->mRecord->getContent( 'main', $audience, $user );
 		}
 		catch ( RevisionAccessException $e ) {
+			MWExceptionHandler::logException( $e );
 			return null;
 		}
 	}
