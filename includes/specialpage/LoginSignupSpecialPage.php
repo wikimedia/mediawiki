@@ -735,7 +735,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
-		$template = new FakeAuthTemplate();
+		$template = new FakeAuthTemplate( MediaWikiServices::getInstance()->getMainConfig() );
 
 		// Pre-fill username (if not creating an account, T46775).
 		if ( $data->mUsername == '' && $this->isSignup() ) {
