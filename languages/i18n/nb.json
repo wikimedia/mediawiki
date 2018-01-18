@@ -1339,7 +1339,7 @@
 	"rcfilters-activefilters": "Aktive filtre",
 	"rcfilters-advancedfilters": "Avanserte filtre",
 	"rcfilters-limit-title": "Antall resultater som skal vises",
-	"rcfilters-limit-and-date-label": "{{PLURAL:$1|endring|$1 endringer}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|endring|endringer}}, $2",
 	"rcfilters-date-popup-title": "Tidsperiode å søke i",
 	"rcfilters-days-title": "De siste dagene",
 	"rcfilters-hours-title": "De siste timene",

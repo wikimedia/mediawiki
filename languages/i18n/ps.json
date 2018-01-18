@@ -2270,7 +2270,7 @@
 	"anonymous": "د {{SITENAME}} {{PLURAL:$1|ورکنومی کارن|ورکنومي کارنان}}",
 	"siteuser": "د {{SITENAME}} کارن $1",
 	"anonuser": "د {{SITENAME}} ورکنومی کارن $1",
-	"lastmodifiedatby": "دا مخ وروستی ځل د $3 لخوا په $2، $1 بدلون موندلی.",
+	"lastmodifiedatby": "دا مخ وروستی ځل $3 لخوا په $2، $1 بدلون موندلی.",
 	"othercontribs": "نور کار پر بنسټ",
 	"others": "نور",
 	"siteusers": "د {{SITENAME}} {{PLURAL:$2|کارن|کارنان}} $1",

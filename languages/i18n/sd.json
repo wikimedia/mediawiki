@@ -1201,6 +1201,7 @@
 	"nrevisions": "$1 {{PLURAL:$1|مسودو|مسودا}}",
 	"nimagelinks": "$1 {{PLURAL:$1|صفحي|صفحن}} ۾ استعمال ٿيل",
 	"ntransclusions": "$1 {{PLURAL:$1|صفحي|صفحن}} ۾ استعمال ٿيل",
+	"specialpage-empty": "ھن رپورٽ لاءِ ڪي-بہ نتيجا ناھن.",
 	"lonelypages": "يتيم صفحا",
 	"uncategorizedpages": "اڻ زمريل صفحا",
 	"uncategorizedcategories": "اڻزمرايل زمرا",
@@ -1942,7 +1943,10 @@
 	"special-characters-group-thai": "ٿائي",
 	"special-characters-group-lao": "لائو",
 	"mw-widgets-dateinput-no-date": "ڪا بہ تاريخ نہ چونڊيل",
+	"mw-widgets-mediasearch-noresults": "ڪي-بہ نتيجا نہ لڌا.",
 	"mw-widgets-titleinput-description-new-page": "اڃا اهو صفحو وجود نہ ٿو رکي",
 	"mw-widgets-titleinput-description-redirect": "$1 ڏانهن چوريل",
+	"date-range-from": "تاريخ کان:",
+	"date-range-to": "تاريخ تائين:",
 	"log-action-filter-all": "سڀ"
 }

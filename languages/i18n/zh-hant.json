@@ -1913,7 +1913,7 @@
 	"withoutinterwiki-legend": "字首",
 	"withoutinterwiki-submit": "顯示",
 	"fewestrevisions": "最少修訂的頁面",
-	"nbytes": "$1 個位元組",
+	"nbytes": "$1{{PLURAL:$1|位元組}}",
 	"ncategories": "$1 個分類",
 	"ninterwikis": "$1 個 Interwiki 連結",
 	"nlinks": "$1 個連結",

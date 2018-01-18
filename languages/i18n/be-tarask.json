@@ -1104,7 +1104,7 @@
 	"group-all": "(усе)",
 	"group-user-member": "{{GENDER:$1|удзельнік|удзельніца}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|аўтаматычна пацьверджаны ўдзельнік|аўтаматычна пацьверджаная ўдзельніца}}",
-	"group-bot-member": "робат",
+	"group-bot-member": "{{GENDER:$1|робат}}",
 	"group-sysop-member": "{{GENDER:$1|адміністратар|адміністратарка}}",
 	"group-bureaucrat-member": "{{GENDER:$1|бюракрат|бюракратка}}",
 	"group-suppress-member": "{{GENDER:$1|падаўляльнік|падаўляльніца}} вэрсіяў",

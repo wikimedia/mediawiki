@@ -709,6 +709,8 @@
 	"revdelete-nooldid-title": "Nederīga mērķa versija",
 	"revdelete-no-file": "Norādītais fails neeksistē.",
 	"revdelete-show-file-submit": "Jā",
+	"revdelete-selected-text": "Lapas \"[[:$2]]\" {{PLURAL:$1|izvēlētās versijas|izvēlētā versija|izvēlētās versijas}}:",
+	"revdelete-selected-file": "Faila \"[[:$2]]\" {{PLURAL:$1|izvēlētās versijas|izvēlētā versija|izvēlētās versijas}}:",
 	"logdelete-selected": "{{PLURAL:$1|Izvēlētie reģistra ieraksti|Izvēlētais reģistra ieraksts|Izvēlētie reģistra ieraksti}}:",
 	"revdelete-confirm": "Lūdzu apstiprini, ka Tu zini, ko dari, Tu apzinies sekas, tāpat Tu to dari saskaņā ar vadlīnijām.",
 	"revdelete-suppress-text": "Paslēpšanu izmantot vienīgi šādos gadījumos:\n* potenciāli apmelojoša informācija\n* nepiemērotā personīgā informācija\n*: ''mājas adrese, telefona numuri u.c.''",

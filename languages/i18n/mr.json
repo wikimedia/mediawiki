@@ -1411,6 +1411,7 @@
 	"rcfilters-liveupdates-button-title-off": "घडल्याबरोबर, नवीन बदल  दाखवा",
 	"rcfilters-watchlist-markseen-button": "सर्व बदल बघितले म्हणून खूण करा",
 	"rcfilters-watchlist-edit-watchlist-button": "आपल्या निरीक्षणसूचीमधील पानांची यादी संपादा",
+	"rcfilters-preference-label": "अलीकडील बदलाची सुधारीत आवृत्ती लपवा",
 	"rcfilters-target-page-placeholder": "पानाचे नाव (अथवा वर्ग) टाका",
 	"rcnotefrom": "खाली {{PLURAL:$5|हा बदल आहे|हे बदल आहेत}} <strong>$3, $4</strong>पासून ते(<strong>$1</strong>पर्यंतचे  बदल दाखविले आहेत).",
 	"rclistfromreset": "दिनांक निवडीची पुनर्स्थापना करा",
