@@ -286,8 +286,9 @@ return [
 
 		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
 		if ( $detectorCmd ) {
-			$params['detectCallback'] = function ( $file ) use ( $detectorCmd, $services ) {
-				$result = $services->getShellCommandFactory()
+			$factory = $services->getShellCommandFactory();
+			$params['detectCallback'] = function ( $file ) use ( $detectorCmd, $factory ) {
+				$result = $factory
 					->create()
 					// $wgMimeDetectorCommand can contain commands with parameters
 					->unsafeParams( $detectorCmd )
