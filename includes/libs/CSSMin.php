@@ -402,6 +402,7 @@ class CSSMin {
 			// Match these three variants separately to avoid broken urls when
 			// e.g. a double quoted url contains a parenthesis, or when a
 			// single quoted url contains a double quote, etc.
+			// FIXME: Simplify now we only support PHP 7.0.0+
 			// Note: PCRE doesn't support multiple capture groups with the same name by default.
 			// - PCRE 6.7 introduced the "J" modifier (PCRE_INFO_JCHANGED for PCRE_DUPNAMES).
 			//   https://secure.php.net/manual/en/reference.pcre.pattern.modifiers.php
