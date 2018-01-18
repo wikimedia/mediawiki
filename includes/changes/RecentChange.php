@@ -609,9 +609,9 @@ class RecentChange {
 	 * Makes an entry in the database corresponding to an edit
 	 *
 	 * @param string $timestamp
-	 * @param Title &$title
+	 * @param Title $title
 	 * @param bool $minor
-	 * @param User &$user
+	 * @param User $user
 	 * @param string $comment
 	 * @param int $oldId
 	 * @param string $lastTimestamp
@@ -625,7 +625,7 @@ class RecentChange {
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
-		$timestamp, &$title, $minor, &$user, $comment, $oldId, $lastTimestamp,
+		$timestamp, $title, $minor, $user, $comment, $oldId, $lastTimestamp,
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
 		$tags = []
 	) {
@@ -688,9 +688,9 @@ class RecentChange {
 	 * Note: the title object must be loaded with the new id using resetArticleID()
 	 *
 	 * @param string $timestamp
-	 * @param Title &$title
+	 * @param Title $title
 	 * @param bool $minor
-	 * @param User &$user
+	 * @param User $user
 	 * @param string $comment
 	 * @param bool $bot
 	 * @param string $ip
@@ -701,7 +701,7 @@ class RecentChange {
 	 * @return RecentChange
 	 */
 	public static function notifyNew(
-		$timestamp, &$title, $minor, &$user, $comment, $bot,
+		$timestamp, $title, $minor, $user, $comment, $bot,
 		$ip = '', $size = 0, $newId = 0, $patrol = 0, $tags = []
 	) {
 		$rc = new RecentChange;
@@ -760,8 +760,8 @@ class RecentChange {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title &$title
-	 * @param User &$user
+	 * @param Title $title
+	 * @param User $user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
@@ -773,7 +773,7 @@ class RecentChange {
 	 * @param string $actionCommentIRC
 	 * @return bool
 	 */
-	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip, $type,
+	public static function notifyLog( $timestamp, $title, $user, $actionComment, $ip, $type,
 		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
 	) {
 		global $wgLogRestrictions;
@@ -791,8 +791,8 @@ class RecentChange {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title &$title
-	 * @param User &$user
+	 * @param Title $title
+	 * @param User $user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
@@ -806,7 +806,7 @@ class RecentChange {
 	 * @param bool $isPatrollable Whether this log entry is patrollable
 	 * @return RecentChange
 	 */
-	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
+	public static function newLogEntry( $timestamp, $title, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false ) {
 		global $wgRequest;
