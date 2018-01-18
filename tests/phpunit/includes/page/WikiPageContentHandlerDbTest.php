@@ -31,8 +31,7 @@ class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
 	public function testGetContentHandler() {
 		$page = $this->createPage(
 			__METHOD__,
-			"some text",
-			CONTENT_MODEL_JAVASCRIPT
+			"some text",			CONTENT_MODEL_JAVASCRIPT
 		);
 
 		$page = new WikiPage( $page->getTitle() );
