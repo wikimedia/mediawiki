@@ -346,16 +346,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			// Don't interpret POST parameters starting with '@' as file uploads, because this
 			// makes it impossible to POST plain values starting with '@' (and causes security
 			// issues potentially exposing the contents of local files).
-			// The PHP manual says this option was introduced in PHP 5.5 defaults to true in PHP 5.6,
-			// but we support lower versions, and the option doesn't exist in HHVM 5.6.99.
-			if ( defined( 'CURLOPT_SAFE_UPLOAD' ) ) {
-				curl_setopt( $ch, CURLOPT_SAFE_UPLOAD, true );
-			} elseif ( is_array( $req['body'] ) ) {
-				// In PHP 5.2 and later, '@' is interpreted as a file upload if POSTFIELDS
-				// is an array, but not if it's a string. So convert $req['body'] to a string
-				// for safety.
-				$req['body'] = http_build_query( $req['body'] );
-			}
+			curl_setopt( $ch, CURLOPT_SAFE_UPLOAD, true );
 			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
 		} else {
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
