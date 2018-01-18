@@ -890,6 +890,11 @@ class Revision implements IDBAccessObject {
 			return $this->mRecord->getContent( 'main', $audience, $user );
 		}
 		catch ( RevisionAccessException $e ) {
+			wfDebugLog(
+				'T184670',
+				__METHOD__ . ": Cannot get content: " . $e->getMessage() .
+				"\n" . $e->getTraceAsString()
+			);
 			return null;
 		}
 	}
