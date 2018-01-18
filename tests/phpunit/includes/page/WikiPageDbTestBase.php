@@ -91,9 +91,6 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::doModify
-	 * @covers WikiPage::doCreate
-	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( __METHOD__ );
@@ -106,7 +103,12 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "[[testing]] 1" );
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -137,7 +139,11 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "testing 2" );
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
 
 		# ------------------------
 		$page = new WikiPage( $title );
