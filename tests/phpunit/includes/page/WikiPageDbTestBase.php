@@ -159,12 +159,46 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertNotContains( '~~~~', $pstContent->serialize() );
 	}
 
+
+	/**
+	 * @covers WikiPage::doEditUpdates
+	 */
+	public function testDoEditUpdates() {
+		$user = $this->getTestUser()->getUser();
+
+		$page = $this->createPage( __METHOD__, __METHOD__ );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . ' [[|foo]][[bar]]', // PST turns [[|foo]] into [[foo]]
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$page->doEditUpdates( $revision, $user );
+
+		// TODO: test various options; needs temporary hooks
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $page->getId() ] );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
+	}
+
 	/**
 	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::doModify
-	 * @covers WikiPage::doCreate
 	 * @covers WikiPage::prepareContentForEdit
-	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( __METHOD__ );
@@ -177,7 +211,18 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "[[testing]] 1" );
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -200,6 +245,17 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$retrieved = $page->getContent();
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
+
+		# ------------------------
+		$page = new WikiPage( $title );
+
+		$status = $page->doEditContent( $content, 'This changes nothing', EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNull( $status->value['revision'], 'revision' );
+		$this->assertNotNull( $page->getRevision() );
+		$this->assertTrue( $page->getRevision()->getContent()->equals( $content ), 'equals' );
+
 		# ------------------------
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
@@ -208,7 +264,20 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "testing 2" );
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertFalse(
+			$status->value['revision']->getContent()->equals( $content ),
+			'not equals (PST must substitute signature)'
+		);
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		# ------------------------
 		$page = new WikiPage( $title );

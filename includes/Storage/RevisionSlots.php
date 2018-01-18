@@ -201,4 +201,36 @@ class RevisionSlots {
 		}, null );
 	}
 
+	/**
+	 * Return all slots that are not inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getTouchedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return !$slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Return all slots that are inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getInheritedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return $slot->isInherited();
+			}
+		);
+	}
+
 }
