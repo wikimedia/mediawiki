@@ -40,13 +40,13 @@ abstract class QuickTemplate {
 	protected $config;
 
 	/**
-	 * @param Config $config
+	 * @param Config $config defaults to null.  If nothing is passed,
+	 * then the config object for MediaWiki core will be used.
 	 */
 	function __construct( Config $config = null ) {
 		$this->data = [];
 		$this->translator = new MediaWikiI18N();
 		if ( $config === null ) {
-			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
 			$config = MediaWikiServices::getInstance()->getMainConfig();
 		}
 		$this->config = $config;
