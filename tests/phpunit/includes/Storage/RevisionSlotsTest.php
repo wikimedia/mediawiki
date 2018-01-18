@@ -94,6 +94,34 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 'main' => $mainSlot, 'aux' => $auxSlot ], $slots->getSlots() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Storage\RevisionSlots::getInheritedSlots
+	 */
+	public function testGetInheritedSlots() {
+		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$auxSlot = SlotRecord::newInherited(
+			SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) )
+		);
+		$slotsArray = [ $mainSlot, $auxSlot ];
+		$slots = $this->newRevisionSlots( $slotsArray );
+
+		$this->assertEquals( [ 'aux' => $auxSlot ], $slots->getInheritedSlots() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionSlots::getTouchedSlots
+	 */
+	public function testGetTouchedSlots() {
+		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$auxSlot = SlotRecord::newInherited(
+			SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) )
+		);
+		$slotsArray = [ $mainSlot, $auxSlot ];
+		$slots = $this->newRevisionSlots( $slotsArray );
+
+		$this->assertEquals( [ 'main' => $mainSlot ], $slots->getTouchedSlots() );
+	}
+
 	public function provideComputeSize() {
 		yield [ 1, [ 'A' ] ];
 		yield [ 2, [ 'AA' ] ];
