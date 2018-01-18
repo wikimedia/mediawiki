@@ -168,6 +168,9 @@ changes to languages because of Phabricator reports.
 * The $statementsOnOwnLine parameter of JavaScriptMinifier::minify was removed.
   The corresponding configuration variable ($wgResourceLoaderMinifierStatementsOnOwnLine)
   has been deprecated since 1.27 and was removed as well.
+* The $maxLineLength parameter of JavaScriptMinifier::minify was removed.
+  The corresponding configuration variable ($wgResourceLoaderMinifierMaxLineLength)
+  has been deprecated since 1.27 and was removed as well.
 * The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
   HtmlFormatter\HtmlFormatter class should be used instead.
 * License::getLicenses has been deprecated; use License::getLines instead.
