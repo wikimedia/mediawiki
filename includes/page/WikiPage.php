@@ -23,11 +23,11 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\PageUpdater;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Class representing a MediaWiki article and history.
@@ -88,6 +88,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @var string
 	 */
 	protected $mLinksUpdated = '19700101000000';
+
+	/**
+	 * @var PageUpdater
+	 */
+	private $updater = null;
 
 	/**
 	 * Constructor and clear the article
@@ -453,6 +458,31 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$this->loadFromRow( $data, $from );
+	}
+
+	/**
+	 * @param object|string|int $from One of the following:
+	 *   - A DB query result object.
+	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *     using SELECT FOR UPDATE.
+	 *
+	 * @return bool
+	 */
+	public function wasLoadedFrom( $from ) {
+		$from = self::convertSelectType( $from );
+
+		if ( !is_int( $from ) ) {
+			// No idea from where the caller got this data, assume replica DB.
+			$from = self::READ_NORMAL;
+		}
+
+		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -1512,9 +1542,40 @@ class WikiPage implements Page, IDBAccessObject {
 		return $flags;
 	}
 
+	public function getUpdater() {
+		global $wgContLang, $wgAjaxEditStash, $wgRCWatchCategoryMembership;
+		global $wgUseAutomaticEditSummaries, $wgUseNPPatrol, $wgUseRCPatrol;
+
+		$services = MediaWikiServices::getInstance();
+
+		// We want to re-use the updater, so we don't have to re-calculate the PreparedEdit info
+		if ( !$this->updater ) {
+			$this->updater = new PageUpdater(
+				$this, // NOTE: eventually, PageUpdater should not know about WikiPage
+				$services->getDBLoadBalancer(),
+				$services->getRevisionStore(),
+				$services->getParserCache(),
+				JobQueueGroup::singleton(),
+				MessageCache::singleton(),
+				$wgContLang,
+				LoggerFactory::getInstance( 'SaveParse' )
+			);
+
+			$this->updater->setAjaxEditStash( $wgAjaxEditStash );
+			$this->updater->setRcWatchCategoryMembership( $wgRCWatchCategoryMembership );
+			$this->updater->setUseAutomaticEditSummaries( $wgUseAutomaticEditSummaries );
+			$this->updater->setUseNPPatrol( $wgUseNPPatrol );
+			$this->updater->setUseRCPatrol( $wgUseRCPatrol );
+		}
+
+		return $this->updater;
+	}
+
 	/**
 	 * Change an existing article or create a new article. Updates RC and all necessary caches,
 	 * optionally via the deferred update array.
+	 *
+	 * @deprecated since 1.31, use PageUpdater::commitUpdate instead.
 	 *
 	 * @param Content $content New content
 	 * @param string $summary Edit summary
@@ -1545,8 +1606,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   This is not the parent revision ID, rather the revision ID for older
 	 *   content used as the source for a rollback, for example.
 	 * @param User $user The user doing the edit
-	 * @param string $serialFormat Format for storing the content in the
-	 *   database.
+	 * @param string $serialFormat IGNORED.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
@@ -1574,403 +1634,47 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries;
+		global $wgUser;
 
-		// Old default parameter for $tags was null
-		if ( $tags === null ) {
-			$tags = [];
+		if ( !( $summary instanceof CommentStoreComment ) ) {
+			$summary = CommentStoreComment::newUnsavedComment( $summary );
 		}
 
-		// Low-level sanity check
-		if ( $this->mTitle->getText() === '' ) {
-			throw new MWException( 'Something is trying to edit an article with an empty title' );
-		}
-		// Make sure the given content type is allowed for this page
-		if ( !$content->getContentHandler()->canBeUsedOn( $this->mTitle ) ) {
-			return Status::newFatal( 'content-not-allowed-here',
-				ContentHandler::getLocalizedName( $content->getModel() ),
-				$this->mTitle->getPrefixedText()
-			);
+		if ( !$user ) {
+			$user = $wgUser;
 		}
 
-		// Load the data from the master database if needed.
-		// The caller may already loaded it from the master or even loaded it using
-		// SELECT FOR UPDATE, so do not override that using clear().
-		$this->loadPageData( 'fromdbmaster' );
+		$updater = $this->getUpdater();
+		$updater->setContent( 'main', $content );
+		$updater->setBaseRevisionId( $baseRevId );
+		$updater->setUndidRevisionId( $undidRevId );
 
-		$user = $user ?: $wgUser;
-		$flags = $this->checkFlags( $flags );
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
-		// Trigger pre-save hook (using provided edit summary)
-		$hookStatus = Status::newGood( [] );
-		$hook_args = [ &$wikiPage, &$user, &$content, &$summary,
-							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
-		// Check if the hook rejected the attempted save
-		if ( !Hooks::run( 'PageContentSave', $hook_args ) ) {
-			if ( $hookStatus->isOK() ) {
-				// Hook returned false but didn't call fatal(); use generic message
-				$hookStatus->fatal( 'edit-hook-aborted' );
-			}
-
-			return $hookStatus;
+		foreach ( $tags as $t ) {
+			$updater->addTag( $t );
 		}
 
-		$old_revision = $this->getRevision(); // current revision
-		$old_content = $this->getContent( Revision::RAW ); // current revision's content
-
-		$handler = $content->getContentHandler();
-		$tag = $handler->getChangeTag( $old_content, $content, $flags );
-		// If there is no applicable tag, null is returned, so we need to check
-		if ( $tag ) {
-			$tags[] = $tag;
-		}
-
-		// Check for undo tag
-		if ( $undidRevId !== 0 && in_array( 'mw-undo', ChangeTags::getSoftwareTags() ) ) {
-			$tags[] = 'mw-undo';
-		}
-
-		// Provide autosummaries if summary is not provided and autosummaries are enabled
-		if ( $wgUseAutomaticEditSummaries && ( $flags & EDIT_AUTOSUMMARY ) && $summary == '' ) {
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
-		}
-
-		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
-		if ( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) ) {
-			$useCache = false;
-		} else {
-			$useCache = true;
-		}
-
-		// Get the pre-save transform content and final parser output
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, $useCache );
-		$pstContent = $editInfo->pstContent; // Content object
-		$meta = [
-			'bot' => ( $flags & EDIT_FORCE_BOT ),
-			'minor' => ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' ),
-			'serialized' => $pstContent->serialize( $serialFormat ),
-			'serialFormat' => $serialFormat,
-			'baseRevId' => $baseRevId,
-			'oldRevision' => $old_revision,
-			'oldContent' => $old_content,
-			'oldId' => $this->getLatest(),
-			'oldIsRedirect' => $this->isRedirect(),
-			'oldCountable' => $this->isCountable(),
-			'tags' => ( $tags !== null ) ? (array)$tags : [],
-			'undidRevId' => $undidRevId
-		];
-
-		// Actually create the revision and create/update the page
-		if ( $flags & EDIT_UPDATE ) {
-			$status = $this->doModify( $pstContent, $flags, $user, $summary, $meta );
-		} else {
-			$status = $this->doCreate( $pstContent, $flags, $user, $summary, $meta );
-		}
-
-		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-			$user->addAutopromoteOnceGroups( 'onEdit' );
-			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
-		} );
-
-		return $status;
-	}
-
-	/**
-	 * @param Content $content Pre-save transform content
-	 * @param int $flags
-	 * @param User $user
-	 * @param string $summary
-	 * @param array $meta
-	 * @return Status
-	 * @throws DBUnexpectedError
-	 * @throws Exception
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	private function doModify(
-		Content $content, $flags, User $user, $summary, array $meta
-	) {
-		global $wgUseRCPatrol;
-
-		// Update article, but only if changed.
-		$status = Status::newGood( [ 'new' => false, 'revision' => null ] );
-
-		// Convenience variables
-		$now = wfTimestampNow();
-		$oldid = $meta['oldId'];
-		/** @var Content|null $oldContent */
-		$oldContent = $meta['oldContent'];
-		$newsize = $content->getSize();
-
-		if ( !$oldid ) {
-			// Article gone missing
-			$status->fatal( 'edit-gone-missing' );
-
-			return $status;
-		} elseif ( !$oldContent ) {
-			// Sanity check for T39225
-			throw new MWException( "Could not find text for current revision {$oldid}." );
-		}
-
-		$changed = !$content->equals( $oldContent );
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		if ( $changed ) {
-			// @TODO: pass content object?!
-			$revision = new Revision( [
-				'page'       => $this->getId(),
-				'title'      => $this->mTitle, // for determining the default content model
-				'comment'    => $summary,
-				'minor_edit' => $meta['minor'],
-				'text'       => $meta['serialized'],
-				'len'        => $newsize,
-				'parent_id'  => $oldid,
-				'user'       => $user->getId(),
-				'user_text'  => $user->getName(),
-				'timestamp'  => $now,
-				'content_model' => $content->getModel(),
-				'content_format' => $meta['serialFormat'],
-			] );
-
-			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-			$status->merge( $prepStatus );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-
-			$dbw->startAtomic( __METHOD__ );
-			// Get the latest page_latest value while locking it.
-			// Do a CAS style check to see if it's the same as when this method
-			// started. If it changed then bail out before touching the DB.
-			$latestNow = $this->lockAndGetLatest();
-			if ( $latestNow != $oldid ) {
-				$dbw->endAtomic( __METHOD__ );
-				// Page updated or deleted in the mean time
-				$status->fatal( 'edit-conflict' );
-
-				return $status;
-			}
-
-			// At this point we are now comitted to returning an OK
-			// status unless some DB query error or other exception comes up.
-			// This way callers don't have to call rollback() if $status is bad
-			// unless they actually try to catch exceptions (which is rare).
-
-			// Save the revision text
-			$revisionId = $revision->insertOn( $dbw );
-			// Update page_latest and friends to reflect the new revision
-			if ( !$this->updateRevisionOn( $dbw, $revision, null, $meta['oldIsRedirect'] ) ) {
-				throw new MWException( "Failed to update page row to use new revision." );
-			}
-
-			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $revision, $meta['baseRevId'], $user ] );
-
-			// Update recentchanges
-			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				// Mark as patrolled if the user can do so
-				$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-				// Add RC row to the DB
-				RecentChange::notifyEdit(
-					$now,
-					$this->mTitle,
-					$revision->isMinor(),
-					$user,
-					$summary,
-					$oldid,
-					$this->getTimestamp(),
-					$meta['bot'],
-					'',
-					$oldContent ? $oldContent->getSize() : 0,
-					$newsize,
-					$revisionId,
-					$patrolled,
-					$meta['tags']
-				);
-			}
-
-			$user->incEditCount();
-
-			$dbw->endAtomic( __METHOD__ );
-			$this->mTimestamp = $now;
-		} else {
-			// T34948: revision ID must be set to page {{REVISIONID}} and
-			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
-			// Since we don't insert a new revision into the database, the least
-			// error-prone way is to reuse given old revision.
-			$revision = $meta['oldRevision'];
-		}
-
-		if ( $changed ) {
-			// Return the new revision to the caller
-			$status->value['revision'] = $revision;
-		} else {
-			$status->warning( 'edit-no-change' );
-			// Update page_touched as updateRevisionOn() was not called.
-			// Other cache updates are managed in onArticleEdit() via doEditUpdates().
-			$this->mTitle->invalidateCache( $now );
-		}
-
-		// Do secondary updates once the main changes have been committed...
-		DeferredUpdates::addUpdate(
-			new AtomicSectionUpdate(
-				$dbw,
-				__METHOD__,
-				function () use (
-					$revision, &$user, $content, $summary, &$flags,
-					$changed, $meta, &$status
-				) {
-					// Update links tables, site stats, etc.
-					$this->doEditUpdates(
-						$revision,
-						$user,
-						[
-							'changed' => $changed,
-							'oldcountable' => $meta['oldCountable'],
-							'oldrevision' => $meta['oldRevision']
-						]
-					);
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$wikiPage = $this;
-					// Trigger post-save hook
-					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
-						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
-						$meta['undidRevId'] ];
-					Hooks::run( 'PageContentSaveComplete', $params );
-				}
-			),
-			DeferredUpdates::PRESEND
+		$updater->commitUpdate(
+			$summary,
+			$user,
+			$flags
 		);
 
-		return $status;
-	}
+		$status = $updater->getStatus();
 
-	/**
-	 * @param Content $content Pre-save transform content
-	 * @param int $flags
-	 * @param User $user
-	 * @param string $summary
-	 * @param array $meta
-	 * @return Status
-	 * @throws DBUnexpectedError
-	 * @throws Exception
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	private function doCreate(
-		Content $content, $flags, User $user, $summary, array $meta
-	) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		$revRec = $updater->getNewRevision();
 
-		$status = Status::newGood( [ 'new' => true, 'revision' => null ] );
+		// $revRec will be null if the edit failed, or if no new revision was created because
+		// the content did not change.
+		if ( $revRec ) {
+			// Convert RevisionRecord to old-style Revision object
+			$status->value['revision'] = new Revision( $revRec );
 
-		$now = wfTimestampNow();
-		$newsize = $content->getSize();
-		$prepStatus = $content->prepareSave( $this, $flags, $meta['oldId'], $user );
-		$status->merge( $prepStatus );
-		if ( !$status->isOK() ) {
-			return $status;
+			// update timestamp
+			$this->mTimestamp = $revRec->getTimestamp();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->startAtomic( __METHOD__ );
-
-		// Add the page record unless one already exists for the title
-		$newid = $this->insertOn( $dbw );
-		if ( $newid === false ) {
-			$dbw->endAtomic( __METHOD__ ); // nothing inserted
-			$status->fatal( 'edit-already-exists' );
-
-			return $status; // nothing done
-		}
-
-		// At this point we are now comitted to returning an OK
-		// status unless some DB query error or other exception comes up.
-		// This way callers don't have to call rollback() if $status is bad
-		// unless they actually try to catch exceptions (which is rare).
-
-		// @TODO: pass content object?!
-		$revision = new Revision( [
-			'page'       => $newid,
-			'title'      => $this->mTitle, // for determining the default content model
-			'comment'    => $summary,
-			'minor_edit' => $meta['minor'],
-			'text'       => $meta['serialized'],
-			'len'        => $newsize,
-			'user'       => $user->getId(),
-			'user_text'  => $user->getName(),
-			'timestamp'  => $now,
-			'content_model' => $content->getModel(),
-			'content_format' => $meta['serialFormat'],
-		] );
-
-		// Save the revision text...
-		$revisionId = $revision->insertOn( $dbw );
-		// Update the page record with revision data
-		if ( !$this->updateRevisionOn( $dbw, $revision, 0 ) ) {
-			throw new MWException( "Failed to update page row to use new revision." );
-		}
-
-		Hooks::run( 'NewRevisionFromEditComplete', [ $this, $revision, false, $user ] );
-
-		// Update recentchanges
-		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-			// Mark as patrolled if the user can do so
-			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
-				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-			// Add RC row to the DB
-			RecentChange::notifyNew(
-				$now,
-				$this->mTitle,
-				$revision->isMinor(),
-				$user,
-				$summary,
-				$meta['bot'],
-				'',
-				$newsize,
-				$revisionId,
-				$patrolled,
-				$meta['tags']
-			);
-		}
-
-		$user->incEditCount();
-
-		$dbw->endAtomic( __METHOD__ );
-		$this->mTimestamp = $now;
-
-		// Return the new revision to the caller
-		$status->value['revision'] = $revision;
-
-		// Do secondary updates once the main changes have been committed...
-		DeferredUpdates::addUpdate(
-			new AtomicSectionUpdate(
-				$dbw,
-				__METHOD__,
-				function () use (
-					$revision, &$user, $content, $summary, &$flags, $meta, &$status
-				) {
-					// Update links, etc.
-					$this->doEditUpdates( $revision, $user, [ 'created' => true ] );
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$wikiPage = $this;
-					// Trigger post-create hook
-					$params = [ &$wikiPage, &$user, $content, $summary,
-								$flags & EDIT_MINOR, null, null, &$flags, $revision ];
-					Hooks::run( 'PageContentInsertComplete', $params );
-					// Trigger post-save hook
-					$params = array_merge( $params, [ &$status, $meta['baseRevId'], 0 ] );
-					Hooks::run( 'PageContentSaveComplete', $params );
-				}
-			),
-			DeferredUpdates::PRESEND
-		);
+		// consume the updater, don't re-use it!
+		$this->updater = null;
 
 		return $status;
 	}
@@ -2007,11 +1711,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Prior to 1.30, this returned a stdClass object with the same class
 	 * members.
 	 *
+	 * @deprecated since 1.31, use PageUpdater::prepareContentForEdit.
+	 *
 	 * @param Content $content
 	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
 	 *        revision ID is also accepted, but this is deprecated.
 	 * @param User|null $user
-	 * @param string|null $serialFormat
+	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useCache Check shared prepared edit cache
 	 *
 	 * @return PreparedEdit
@@ -2022,126 +1728,21 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $revision = null, User $user = null,
 		$serialFormat = null, $useCache = true
 	) {
-		global $wgContLang, $wgUser, $wgAjaxEditStash;
+		global $wgUser;
 
-		if ( is_object( $revision ) ) {
-			$revid = $revision->getId();
-		} else {
-			$revid = $revision;
-			// This code path is deprecated, and nothing is known to
-			// use it, so performance here shouldn't be a worry.
-			if ( $revid !== null ) {
-				wfDeprecated( __METHOD__ . ' with $revision = revision ID', '1.25' );
-				$revision = Revision::newFromId( $revid, Revision::READ_LATEST );
-			} else {
-				$revision = null;
-			}
+		if ( !$user ) {
+			$user = $wgUser;
 		}
 
-		$user = is_null( $user ) ? $wgUser : $user;
-		// XXX: check $user->getId() here???
+		$updater = $this->getUpdater();
 
-		// Use a sane default for $serialFormat, see T59026
-		if ( $serialFormat === null ) {
-			$serialFormat = $content->getContentHandler()->getDefaultFormat();
-		}
-
-		if ( $this->mPreparedEdit
-			&& isset( $this->mPreparedEdit->newContent )
-			&& $this->mPreparedEdit->newContent->equals( $content )
-			&& $this->mPreparedEdit->revid == $revid
-			&& $this->mPreparedEdit->format == $serialFormat
-			// XXX: also check $user here?
-		) {
-			// Already prepared
-			return $this->mPreparedEdit;
-		}
-
-		// The edit may have already been prepared via api.php?action=stashedit
-		$cachedEdit = $useCache && $wgAjaxEditStash
-			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
-			: false;
-
-		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
-		Hooks::run( 'ArticlePrepareTextForEdit', [ $this, $popts ] );
-
-		$edit = new PreparedEdit();
-		if ( $cachedEdit ) {
-			$edit->timestamp = $cachedEdit->timestamp;
-		} else {
-			$edit->timestamp = wfTimestampNow();
-		}
-		// @note: $cachedEdit is safely not used if the rev ID was referenced in the text
-		$edit->revid = $revid;
-
-		if ( $cachedEdit ) {
-			$edit->pstContent = $cachedEdit->pstContent;
-		} else {
-			$edit->pstContent = $content
-				? $content->preSaveTransform( $this->mTitle, $user, $popts )
-				: null;
-		}
-
-		$edit->format = $serialFormat;
-		$edit->popts = $this->makeParserOptions( 'canonical' );
-		if ( $cachedEdit ) {
-			$edit->output = $cachedEdit->output;
-		} else {
-			if ( $revision ) {
-				// We get here if vary-revision is set. This means that this page references
-				// itself (such as via self-transclusion). In this case, we need to make sure
-				// that any such self-references refer to the newly-saved revision, and not
-				// to the previous one, which could otherwise happen due to replica DB lag.
-				$oldCallback = $edit->popts->getCurrentRevisionCallback();
-				$edit->popts->setCurrentRevisionCallback(
-					function ( Title $title, $parser = false ) use ( $revision, &$oldCallback ) {
-						if ( $title->equals( $revision->getTitle() ) ) {
-							return $revision;
-						} else {
-							return call_user_func( $oldCallback, $title, $parser );
-						}
-					}
-				);
-			} else {
-				// Try to avoid a second parse if {{REVISIONID}} is used
-				$dbIndex = ( $this->mDataLoadedFrom & self::READ_LATEST ) === self::READ_LATEST
-					? DB_MASTER // use the best possible guess
-					: DB_REPLICA; // T154554
-
-				$edit->popts->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {
-					return 1 + (int)wfGetDB( $dbIndex )->selectField(
-						'revision',
-						'MAX(rev_id)',
-						[],
-						__METHOD__
-					);
-				} );
-			}
-			$edit->output = $edit->pstContent
-				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
-				: null;
-		}
-
-		$edit->newContent = $content;
-		$edit->oldContent = $this->getContent( Revision::RAW );
-
-		// NOTE: B/C for hooks! don't use these fields!
-		$edit->newText = $edit->newContent
-			? ContentHandler::getContentText( $edit->newContent )
-			: '';
-		$edit->oldText = $edit->oldContent
-			? ContentHandler::getContentText( $edit->oldContent )
-			: '';
-		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialFormat ) : '';
-
-		if ( $edit->output ) {
-			$edit->output->setCacheTime( wfTimestampNow() );
-		}
-
-		// Process cache the result
-		$this->mPreparedEdit = $edit;
-
-		return $edit;
+		return $updater->prepareContentForEdit(
+			'main',
+			$content,
+			$revision ? $revision->getRevisionRecord() : null,
+			$user,
+			$useCache
+		);
 	}
 
 	/**
@@ -2149,6 +1750,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Update links tables, site stats, search index and message cache.
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
+	 *
+	 * @deprecated since 1.31, use PageUpdater::doEditUpdates instead.
 	 *
 	 * @param Revision $revision
 	 * @param User $user User object that did the revision
@@ -2166,162 +1769,12 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
-		global $wgRCWatchCategoryMembership;
+		$updater = $this->getUpdater();
 
-		$options += [
-			'changed' => true,
-			'created' => false,
-			'moved' => false,
-			'restored' => false,
-			'oldrevision' => null,
-			'oldcountable' => null
-		];
-		$content = $revision->getContent();
-
-		$logger = LoggerFactory::getInstance( 'SaveParse' );
-
-		// See if the parser output before $revision was inserted is still valid
-		$editInfo = false;
-		if ( !$this->mPreparedEdit ) {
-			$logger->debug( __METHOD__ . ": No prepared edit...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-revision...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision-id' )
-			&& $this->mPreparedEdit->output->getSpeculativeRevIdUsed() !== $revision->getId()
-		) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-revision-id with wrong ID...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
-		} else {
-			wfDebug( __METHOD__ . ": Using prepared edit...\n" );
-			$editInfo = $this->mPreparedEdit;
-		}
-
-		if ( !$editInfo ) {
-			// Parse the text again if needed. Be careful not to do pre-save transform twice:
-			// $text is usually already pre-save transformed once. Avoid using the edit stash
-			// as any prepared content from there or in doEditContent() was already rejected.
-			$editInfo = $this->prepareContentForEdit( $content, $revision, $user, null, false );
-		}
-
-		// Save it to the parser cache.
-		// Make sure the cache time matches page_touched to avoid double parsing.
-		MediaWikiServices::getInstance()->getParserCache()->save(
-			$editInfo->output, $this, $editInfo->popts,
-			$revision->getTimestamp(), $editInfo->revid
-		);
-
-		// Update the links tables and other secondary data
-		if ( $content ) {
-			$recursive = $options['changed']; // T52785
-			$updates = $content->getSecondaryDataUpdates(
-				$this->getTitle(), null, $recursive, $editInfo->output
-			);
-			foreach ( $updates as $update ) {
-				$update->setCause( 'edit-page', $user->getName() );
-				if ( $update instanceof LinksUpdate ) {
-					$update->setRevision( $revision );
-					$update->setTriggeringUser( $user );
-				}
-				DeferredUpdates::addUpdate( $update );
-			}
-			if ( $wgRCWatchCategoryMembership
-				&& $this->getContentHandler()->supportsCategories() === true
-				&& ( $options['changed'] || $options['created'] )
-				&& !$options['restored']
-			) {
-				// Note: jobs are pushed after deferred updates, so the job should be able to see
-				// the recent change entry (also done via deferred updates) and carry over any
-				// bot/deletion/IP flags, ect.
-				JobQueueGroup::singleton()->lazyPush( new CategoryMembershipChangeJob(
-					$this->getTitle(),
-					[
-						'pageId' => $this->getId(),
-						'revTimestamp' => $revision->getTimestamp()
-					]
-				) );
-			}
-		}
-
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
-		Hooks::run( 'ArticleEditUpdates', [ &$wikiPage, &$editInfo, $options['changed'] ] );
-
-		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ] ) ) {
-			// Flush old entries from the `recentchanges` table
-			if ( mt_rand( 0, 9 ) == 0 ) {
-				JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
-			}
-		}
-
-		if ( !$this->exists() ) {
-			return;
-		}
-
-		$id = $this->getId();
-		$title = $this->mTitle->getPrefixedDBkey();
-		$shortTitle = $this->mTitle->getDBkey();
-
-		if ( $options['oldcountable'] === 'no-change' ||
-			( !$options['changed'] && !$options['moved'] )
-		) {
-			$good = 0;
-		} elseif ( $options['created'] ) {
-			$good = (int)$this->isCountable( $editInfo );
-		} elseif ( $options['oldcountable'] !== null ) {
-			$good = (int)$this->isCountable( $editInfo ) - (int)$options['oldcountable'];
-		} else {
-			$good = 0;
-		}
-		$edits = $options['changed'] ? 1 : 0;
-		$total = $options['created'] ? 1 : 0;
-
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, $edits, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
-
-		// If this is another user's talk page, update newtalk.
-		// Don't do this if $options['changed'] = false (null-edits) nor if
-		// it's a minor edit and the user doesn't want notifications for those.
-		if ( $options['changed']
-			&& $this->mTitle->getNamespace() == NS_USER_TALK
-			&& $shortTitle != $user->getTitleKey()
-			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
-		) {
-			$recipient = User::newFromName( $shortTitle, false );
-			if ( !$recipient ) {
-				wfDebug( __METHOD__ . ": invalid username\n" );
-			} else {
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$wikiPage = $this;
-
-				// Allow extensions to prevent user notification
-				// when a new message is added to their talk page
-				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
-					if ( User::isIP( $shortTitle ) ) {
-						// An anonymous user
-						$recipient->setNewtalk( true, $revision );
-					} elseif ( $recipient->isLoggedIn() ) {
-						$recipient->setNewtalk( true, $revision );
-					} else {
-						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
-					}
-				}
-			}
-		}
-
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->updateMessageOverride( $this->mTitle, $content );
-		}
-
-		if ( $options['created'] ) {
-			self::onArticleCreate( $this->mTitle );
-		} elseif ( $options['changed'] ) { // T52785
-			self::onArticleEdit( $this->mTitle, $revision );
-		}
-
-		ResourceLoaderWikiModule::invalidateModuleCache(
-			$this->mTitle, $options['oldrevision'], $revision, wfWikiID()
+		$updater->doEditUpdates(
+			$revision ? $revision->getRevisionRecord() : null,
+			$user,
+			$options
 		);
 	}
 
@@ -3725,4 +3178,5 @@ class WikiPage implements Page, IDBAccessObject {
 
 		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle()->getTitleValue() );
 	}
+
 }
