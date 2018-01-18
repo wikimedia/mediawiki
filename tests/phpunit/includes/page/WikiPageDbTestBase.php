@@ -91,9 +91,6 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::doModify
-	 * @covers WikiPage::doCreate
-	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( __METHOD__ );
@@ -106,7 +103,17 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "[[testing]] 1" );
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision'], $page->getRevision() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -137,13 +144,29 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "testing 2" );
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision'], $page->getRevision() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		# ------------------------
 		$page = new WikiPage( $title );
 
 		$retrieved = $page->getContent();
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+
+		$status = $page->doEditContent( $content, 'This changes nothing', EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNull( $status->value['revision'], 'revision' );
+		$this->assertNotNull( $page->getRevision() );
+		$this->assertTrue( $page->getRevision()->getContent()->equals( $content ), 'equals' );
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
