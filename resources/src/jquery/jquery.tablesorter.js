@@ -761,14 +761,14 @@
 
 	/**
 	 * Converts sort objects [ { Integer: String }, ... ] to the internally used nested array
-	 * structure [ [ Integer , Integer ], ... ]
+	 * structure [ [ Integer, Integer ], ... ]
 	 *
 	 * @param {Array} sortObjects List of sort objects.
 	 * @return {Array} List of internal sort definitions.
 	 */
 	function convertSortList( sortObjects ) {
 		var sortList = [];
-		$.each( sortObjects, function ( i, sortObject ) {
+		sortObjects.forEach( function ( sortObject ) {
 			$.each( sortObject, function ( columnIndex, order ) {
 				var orderIndex = ( order === 'desc' ) ? 1 : 0;
 				sortList.push( [ parseInt( columnIndex, 10 ), orderIndex ] );

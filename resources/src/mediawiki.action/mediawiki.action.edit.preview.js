@@ -136,7 +136,7 @@
 
 			parseRequest = api.post( postData );
 			parseRequest.done( function ( response ) {
-				var li, newList, $displaytitle, $content, $parent, $list;
+				var newList, $displaytitle, $content, $parent, $list;
 				if ( response.parse.jsconfigvars ) {
 					mw.config.set( response.parse.jsconfigvars );
 				}
@@ -182,9 +182,8 @@
 					$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 				}
 				if ( response.parse.templates ) {
-					newList = [];
-					$.each( response.parse.templates, function ( i, template ) {
-						li = $( '<li>' )
+					newList = response.parse.templates.map( function ( template ) {
+						return $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
 									href: mw.util.getUrl( template.title ),
@@ -192,7 +191,6 @@
 								} )
 								.text( template.title )
 							);
-						newList.push( li );
 					} );
 
 					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
@@ -201,10 +199,9 @@
 					$( '.limitreport' ).html( response.parse.limitreporthtml );
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
-					newList = [];
-					$.each( response.parse.langlinks, function ( i, langlink ) {
+					newList = response.parse.langlinks.map( function ( langlink ) {
 						var bcp47 = mw.language.bcp47( langlink.lang );
-						li = $( '<li>' )
+						return $( '<li>' )
 							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
 							.append( $( '<a>' )
 								.attr( {
@@ -215,7 +212,6 @@
 								} )
 								.text( langlink.autonym )
 							);
-						newList.push( li );
 					} );
 					$list = $( '#p-lang ul' );
 					$parent = $list.parent();
