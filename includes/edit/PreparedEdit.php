@@ -257,6 +257,7 @@ class PreparedEdit {
 	 * @return ParserOutput
 	 */
 	public function getParserOutput( $role ) {
+		// FIXME: allow deferred creation of PO via callback!
 		if ( !isset( $this->slotParserOutput[$role] ) ) {
 			throw new InvalidArgumentException( 'No parser output defined for ' . $role );
 		}

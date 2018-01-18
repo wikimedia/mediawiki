@@ -278,6 +278,18 @@ interface Content {
 	// TODO: make RenderOutput and RenderOptions base classes
 
 	/**
+	 * Construct the redirect destination from this content and return an
+	 * array of Titles, or null if this content doesn't represent a redirect.
+	 * The last element in the array is the final destination after all redirects
+	 * have been resolved (up to $wgMaxRedirects times).
+	 *
+	 * @since 1.21
+	 *
+	 * @return Title[]|null List of Titles, with the destination last.
+	 */
+	public function getRedirectChain();
+
+	/**
 	 * Returns a list of DataUpdate objects for recording information about this
 	 * Content in some secondary data store. If the optional second argument,
 	 * $old, is given, the updates may model only the changes that need to be
@@ -294,6 +306,9 @@ interface Content {
 	 *
 	 * @note Implementations should call the SecondaryDataUpdates hook, like
 	 *   AbstractContent does.
+	 *   FIXME: document old and new expectations WRT LinksUpdate and SecondaryDataUpdates.
+	 *   FIXME: allow PreparedEdit to be passed instead of ParserOutput!!!
+	 *   FIXME: fix signature of SecondaryDataUpdates hook (or ditch it).
 	 *
 	 * @param Title $title The context for determining the necessary updates
 	 * @param Content $old An optional Content object representing the
@@ -303,26 +318,24 @@ interface Content {
 	 *    false).
 	 * @param ParserOutput $parserOutput Optional ParserOutput object.
 	 *    Provide if you have one handy, to avoid re-parsing of the content.
+	 * @param string|null $slot The slot role this content is being used for.
+	 *        What DataUpdates a Content object triggers should generally not depend on
+	 *        which the slot in which it resides. However, DataUpdates may wish to record
+	 *        in which slot some information is used, or avoid overwriting information
+	 *        from another slot on the same page. Note that MCR aware code should always
+	 *        pass a slot name here, passing null implies that the implementation should
+	 *        provide backwards compatibility with pre-1.31 semantics of this method.
+	 *        See above for more information on the change in semantics.
 	 *
 	 * @return DataUpdate[] A list of DataUpdate objects for putting information
 	 *    about this content object somewhere.
-	 *
 	 * @since 1.21
 	 */
-	public function getSecondaryDataUpdates( Title $title, Content $old = null,
-		$recursive = true, ParserOutput $parserOutput = null );
-
-	/**
-	 * Construct the redirect destination from this content and return an
-	 * array of Titles, or null if this content doesn't represent a redirect.
-	 * The last element in the array is the final destination after all redirects
-	 * have been resolved (up to $wgMaxRedirects times).
-	 *
-	 * @since 1.21
-	 *
-	 * @return Title[]|null List of Titles, with the destination last.
-	 */
-	public function getRedirectChain();
+	public function getSecondaryDataUpdates(
+		Title $title, Content $old = null,
+		$recursive = true, ParserOutput $parserOutput = null,
+		$slot = null
+	);
 
 	/**
 	 * Construct the redirect destination from this content and return a Title,
