@@ -95,7 +95,7 @@ class PHPVersionCheck {
 			'version' => PHP_VERSION,
 			'vendor' => 'the PHP Group',
 			'upstreamSupported' => '5.6.0',
-			'minSupported' => '5.5.9',
+			'minSupported' => '7.0.0',
 			'upgradeURL' => 'https://secure.php.net/downloads.php',
 		);
 	}
@@ -122,7 +122,7 @@ class PHPVersionCheck {
 				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
 				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
 				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
-				. " newer php executable with a different name, such as php5.\n\n";
+				. " newer php executable with a different name.\n\n";
 
 			// phpcs:ignore Generic.Files.LineLength
 			$longHtml = <<<HTML

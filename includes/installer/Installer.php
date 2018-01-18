@@ -1203,7 +1203,7 @@ abstract class Installer {
 		$scriptTypes = [
 			'php' => [
 				"<?php echo 'ex' . 'ec';",
-				"#!/var/env php5\n<?php echo 'ex' . 'ec';",
+				"#!/var/env php\n<?php echo 'ex' . 'ec';",
 			],
 		];
 
