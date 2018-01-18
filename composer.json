@@ -38,14 +38,14 @@
 		"wikimedia/ip-set": "1.1.0",
 		"wikimedia/php-session-serializer": "1.0.4",
 		"wikimedia/purtle": "1.0.6",
-		"wikimedia/relpath": "2.0.0",
+		"wikimedia/relpath": "2.1.1",
 		"wikimedia/remex-html": "1.0.2",
-		"wikimedia/running-stat": "1.1.0",
+		"wikimedia/running-stat": "1.2.0",
 		"wikimedia/scoped-callback": "1.0.0",
 		"wikimedia/utfnormal": "1.1.0",
 		"wikimedia/timestamp": "1.0.0",
 		"wikimedia/wait-condition-loop": "1.0.1",
-		"wikimedia/wrappedstring": "2.2.0",
+		"wikimedia/wrappedstring": "2.3.0",
 		"zordius/lightncandy": "0.23"
 	},
 	"require-dev": {
