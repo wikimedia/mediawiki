@@ -127,6 +127,10 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'doAutoIncrementTriggers' ],
 			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
 
+			// Should have been in 1.30
+			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			[ 'migrateComments' ],
+
 			// 1.31
 			[ 'addTable', 'slots', 'patch-slots.sql' ],
 			[ 'addTable', 'content', 'patch-content.sql' ],
