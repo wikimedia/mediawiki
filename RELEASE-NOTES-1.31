@@ -39,6 +39,9 @@ production.
   the ParserOutput::getText() post-cache transformations.
 * Added a hook, UploadForm:getInitialPageText, to allow extensions to alter the
   initial page text for file uploads.
+* (T181651) Display the file sha1 value in the file info page. When a visitor accesses
+  an info page of an existing file, base-36 sha1 value of this file will
+  displayed in the table of basic information.
 
 === External library changes in 1.31 ===
 
