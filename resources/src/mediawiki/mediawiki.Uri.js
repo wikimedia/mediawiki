@@ -324,6 +324,9 @@
 					} );
 				}
 				uri.query = q;
+
+				// Decode uri.fragment, otherwise it gets double-encoded when serializing
+				uri.fragment = Uri.decode( uri.fragment );
 			},
 
 			/**
