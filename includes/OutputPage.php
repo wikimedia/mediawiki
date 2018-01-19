@@ -4018,8 +4018,8 @@ class OutputPage extends ContextSource {
 		}
 		if ( $this->CSPNonce === null ) {
 			// XXX It might be expensive to generate randomness
-			// on every request, on windows.
-			$rand = MWCryptRand::generate( 15 );
+			// on every request, on Windows.
+			$rand = random_bytes( 15 );
 			$this->CSPNonce = base64_encode( $rand );
 		}
 		return $this->CSPNonce;
