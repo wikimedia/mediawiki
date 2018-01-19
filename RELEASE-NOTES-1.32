@@ -170,6 +170,9 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 * The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
   of the namespaced classes provided by the wikimedia/xmp-reader library.
+* Class CryptRand now always uses random_bytes() and thus its output is guaranteed
+  to be cryptographically secure. As a result, all its interface except for
+  generate() and generateHex() is deprecated.
 
 === Other changes in 1.32 ===
 * …
