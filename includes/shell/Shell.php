@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Shell;
 
+use Hooks;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -211,5 +212,33 @@ class Shell {
 			}
 		}
 		return $retVal;
+	}
+
+	/**
+	 * Generate a Command object to run a MediaWiki CLI script.
+	 * Note that $parameters should be a flat array and an option with an argument
+	 * should consist of two consecutive items in the array (do not use "--option value").
+	 *
+	 * @param string $script MediaWiki CLI script with full path
+	 * @param string[] $parameters Arguments and options to the script
+	 * @param array $options Associative array of options:
+	 *     'php': The path to the php executable
+	 *     'wrapper': Path to a PHP wrapper to handle the maintenance script
+	 * @return Command
+	 */
+	public static function makeScriptCommand( $script, $parameters, $options = [] ) {
+		global $wgPhpCli;
+		// Give site config file a chance to run the script in a wrapper.
+		// The caller may likely want to call wfBasename() on $script.
+		Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
+		$cmd = isset( $options['php'] ) ? [ $options['php'] ] : [ $wgPhpCli ];
+		if ( isset( $options['wrapper'] ) ) {
+			$cmd[] = $options['wrapper'];
+		}
+		$cmd[] = $script;
+
+		return self::command( $cmd )
+			->params( $parameters )
+			->restrict( self::RESTRICT_DEFAULT & ~self::NO_LOCALSETTINGS );
 	}
 }
