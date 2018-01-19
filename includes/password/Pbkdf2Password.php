@@ -47,7 +47,7 @@ class Pbkdf2Password extends ParameterizedPassword {
 
 	public function crypt( $password ) {
 		if ( count( $this->args ) == 0 ) {
-			$this->args[] = base64_encode( MWCryptRand::generate( 16, true ) );
+			$this->args[] = base64_encode( random_bytes( 16 ) );
 		}
 
 		if ( $this->shouldUseHashExtension() ) {
