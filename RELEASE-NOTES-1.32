@@ -157,6 +157,9 @@ because of Phabricator reports.
   constant INTL_ICU_VERSION directly in all versions that MediaWiki supports.
 * Parser::fetchFile() is deprecated. Use ::fetchFileAndTitle() instead.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
+* Class CryptRand now always uses random_bytes() and thus its output is guaranteed
+  to be cryptographically secure. As a result, all its interface except for
+  generate() and generateHex() is deprecated.
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
