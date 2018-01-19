@@ -383,6 +383,7 @@ changes to languages because of Phabricator reports.
   used instead.
 * The function wfShellWikiCmd() has been deprecated, use
   MediaWiki\Shell::makeScriptCommand().
+
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
 * Browser support for Opera 12 and older was dropped entirely. Opera 15+
