@@ -194,75 +194,73 @@
 		}
 
 		// fillDestFile setup
-		$.each( mw.config.get( 'wgUploadSourceIds' ), function ( index, sourceId ) {
-			$( '#' + sourceId ).change( function () {
-				var path, slash, backslash, fname;
-				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
-					return;
-				}
-				// Remove any previously flagged errors
-				$( '#mw-upload-permitted' ).attr( 'class', '' );
-				$( '#mw-upload-prohibited' ).attr( 'class', '' );
+		$( mw.config.get( 'wgUploadSourceIds' ).map( document.getElementById ) ).change( function () {
+			var path, slash, backslash, fname;
+			if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
+				return;
+			}
+			// Remove any previously flagged errors
+			$( '#mw-upload-permitted' ).attr( 'class', '' );
+			$( '#mw-upload-prohibited' ).attr( 'class', '' );
 
-				path = $( this ).val();
-				// Find trailing part
-				slash = path.lastIndexOf( '/' );
-				backslash = path.lastIndexOf( '\\' );
-				if ( slash === -1 && backslash === -1 ) {
-					fname = path;
-				} else if ( slash > backslash ) {
-					fname = path.slice( slash + 1 );
-				} else {
-					fname = path.slice( backslash + 1 );
-				}
+			path = $( this ).val();
+			// Find trailing part
+			slash = path.lastIndexOf( '/' );
+			backslash = path.lastIndexOf( '\\' );
+			if ( slash === -1 && backslash === -1 ) {
+				fname = path;
+			} else if ( slash > backslash ) {
+				fname = path.slice( slash + 1 );
+			} else {
+				fname = path.slice( backslash + 1 );
+			}
 
-				// Clear the filename if it does not have a valid extension.
-				// URLs are less likely to have a useful extension, so don't include them in the
-				// extension check.
+			// Clear the filename if it does not have a valid extension.
+			// URLs are less likely to have a useful extension, so don't include them in the
+			// extension check.
+			if (
+				mw.config.get( 'wgCheckFileExtensions' ) &&
+				mw.config.get( 'wgStrictFileExtensions' ) &&
+				Array.isArray( mw.config.get( 'wgFileExtensions' ) ) &&
+				$( this ).attr( 'id' ) !== 'wpUploadFileURL'
+			) {
 				if (
-					mw.config.get( 'wgCheckFileExtensions' ) &&
-					mw.config.get( 'wgStrictFileExtensions' ) &&
-					Array.isArray( mw.config.get( 'wgFileExtensions' ) ) &&
-					$( this ).attr( 'id' ) !== 'wpUploadFileURL'
+					fname.lastIndexOf( '.' ) === -1 ||
+					mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
+						return element.toLowerCase();
+					} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
 				) {
-					if (
-						fname.lastIndexOf( '.' ) === -1 ||
-						mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
-							return element.toLowerCase();
-						} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
-					) {
-						// Not a valid extension
-						// Clear the upload and set mw-upload-permitted to error
-						$( this ).val( '' );
-						$( '#mw-upload-permitted' ).attr( 'class', 'error' );
-						$( '#mw-upload-prohibited' ).attr( 'class', 'error' );
-						// Clear wpDestFile as well
-						$( '#wpDestFile' ).val( '' );
+					// Not a valid extension
+					// Clear the upload and set mw-upload-permitted to error
+					$( this ).val( '' );
+					$( '#mw-upload-permitted' ).attr( 'class', 'error' );
+					$( '#mw-upload-prohibited' ).attr( 'class', 'error' );
+					// Clear wpDestFile as well
+					$( '#wpDestFile' ).val( '' );
 
-						return false;
-					}
+					return false;
 				}
+			}
 
-				// Replace spaces by underscores
-				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed
-				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
-				}
+			// Replace spaces by underscores
+			fname = fname.replace( / /g, '_' );
+			// Capitalise first letter if needed
+			if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
+				fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
+			}
 
-				// Output result
-				if ( $( '#wpDestFile' ).length ) {
-					// Call decodeURIComponent function to remove possible URL-encoded characters
-					// from the file name (T32390). Especially likely with upload-form-url.
-					// decodeURIComponent can throw an exception if input is invalid utf-8
-					try {
-						$( '#wpDestFile' ).val( decodeURIComponent( fname ) );
-					} catch ( err ) {
-						$( '#wpDestFile' ).val( fname );
-					}
-					uploadWarning.checkNow( fname );
+			// Output result
+			if ( $( '#wpDestFile' ).length ) {
+				// Call decodeURIComponent function to remove possible URL-encoded characters
+				// from the file name (T32390). Especially likely with upload-form-url.
+				// decodeURIComponent can throw an exception if input is invalid utf-8
+				try {
+					$( '#wpDestFile' ).val( decodeURIComponent( fname ) );
+				} catch ( err ) {
+					$( '#wpDestFile' ).val( fname );
 				}
-			} );
+				uploadWarning.checkNow( fname );
+			}
 		} );
 	} );
 
