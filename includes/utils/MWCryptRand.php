@@ -39,10 +39,12 @@ class MWCryptRand {
 	 * random bytes generation in the previously run generate* call
 	 * was cryptographically strong.
 	 *
+	 * @deprecated since 1.32, always returns true
+	 *
 	 * @return bool Returns true if the source was strong, false if not.
 	 */
 	public static function wasStrong() {
-		return self::singleton()->wasStrong();
+		return true;
 	}
 
 	/**
@@ -52,13 +54,10 @@ class MWCryptRand {
 	 * was cryptographically strong.
 	 *
 	 * @param int $bytes The number of bytes of random data to generate
-	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
-	 *                          strong sources of entropy even if reading from them may steal
-	 *                          more entropy from the system than optimal.
 	 * @return string Raw binary random data
 	 */
-	public static function generate( $bytes, $forceStrong = false ) {
-		return self::singleton()->generate( $bytes, $forceStrong );
+	public static function generate( $bytes ) {
+		return self::singleton()->generate( $bytes );
 	}
 
 	/**
@@ -68,12 +67,9 @@ class MWCryptRand {
 	 * was cryptographically strong.
 	 *
 	 * @param int $chars The number of hex chars of random data to generate
-	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
-	 *                          strong sources of entropy even if reading from them may steal
-	 *                          more entropy from the system than optimal.
 	 * @return string Hexadecimal random data
 	 */
-	public static function generateHex( $chars, $forceStrong = false ) {
-		return self::singleton()->generateHex( $chars, $forceStrong );
+	public static function generateHex( $chars ) {
+		return self::singleton()->generateHex( $chars );
 	}
 }

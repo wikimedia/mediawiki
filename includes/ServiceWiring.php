@@ -188,27 +188,8 @@ return [
 		);
 	},
 
-	'CryptRand' => function ( MediaWikiServices $services ) {
-		$secretKey = $services->getMainConfig()->get( 'SecretKey' );
+	'CryptRand' => function () {
 		return new CryptRand(
-			[
-				// To try vary the system information of the state a bit more
-				// by including the system's hostname into the state
-				'wfHostname',
-				// It's mostly worthless but throw the wiki's id into the data
-				// for a little more variance
-				'wfWikiID',
-				// If we have a secret key set then throw it into the state as well
-				function () use ( $secretKey ) {
-					return $secretKey ?: '';
-				}
-			],
-			// The config file is likely the most often edited file we know should
-			// be around so include its stat info into the state.
-			// The constant with its location will almost always be defined, as
-			// WebStart.php defines MW_CONFIG_FILE to $IP/LocalSettings.php unless
-			// being configured with MW_CONFIG_CALLBACK (e.g. the installer).
-			defined( 'MW_CONFIG_FILE' ) ? [ MW_CONFIG_FILE ] : [],
 			LoggerFactory::getInstance( 'CryptRand' )
 		);
 	},
