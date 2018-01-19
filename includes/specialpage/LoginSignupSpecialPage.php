@@ -735,6 +735,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
+		$this->getConfig();
 		$template = new FakeAuthTemplate();
 
 		// Pre-fill username (if not creating an account, T46775).

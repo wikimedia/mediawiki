@@ -2375,6 +2375,8 @@ function wfInitShellLocale() {
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
  *
+ * @deprecated since 1.31, use Maintenance::executeMaintenanceScript()
+ *
  * @param string $script MediaWiki cli script path
  * @param array $parameters Arguments and options to the script
  * @param array $options Associative array of options:
