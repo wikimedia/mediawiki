@@ -194,7 +194,7 @@
 		}
 
 		// fillDestFile setup
-		$.each( mw.config.get( 'wgUploadSourceIds' ), function ( index, sourceId ) {
+		mw.config.get( 'wgUploadSourceIds' ).forEach( function ( sourceId ) {
 			$( '#' + sourceId ).change( function () {
 				var path, slash, backslash, fname;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
