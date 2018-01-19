@@ -1589,21 +1589,9 @@ abstract class Installer {
 	protected function doGenerateKeys( $keys ) {
 		$status = Status::newGood();
 
-		$strong = true;
 		foreach ( $keys as $name => $length ) {
-			$secretKey = MWCryptRand::generateHex( $length, true );
-			if ( !MWCryptRand::wasStrong() ) {
-				$strong = false;
-			}
-
+			$secretKey = MWCryptRand::generateHex( $length );
 			$this->setVar( $name, $secretKey );
-		}
-
-		if ( !$strong ) {
-			$names = array_keys( $keys );
-			$names = preg_replace( '/^(.*)$/', '\$$1', $names );
-			global $wgLang;
-			$status->warning( 'config-insecure-keys', $wgLang->listToText( $names ), count( $names ) );
 		}
 
 		return $status;

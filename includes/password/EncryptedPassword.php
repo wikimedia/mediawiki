@@ -60,7 +60,7 @@ class EncryptedPassword extends ParameterizedPassword {
 		if ( count( $this->args ) ) {
 			$iv = base64_decode( $this->args[0] );
 		} else {
-			$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
+			$iv = random_bytes( openssl_cipher_iv_length( $this->params['cipher'] ) );
 		}
 
 		$this->hash = openssl_encrypt(
@@ -102,7 +102,7 @@ class EncryptedPassword extends ParameterizedPassword {
 		$this->params = $this->getDefaultParams();
 
 		// Check the key size with the new params
-		$iv = MWCryptRand::generate( openssl_cipher_iv_length( $this->params['cipher'] ), true );
+		$iv = random_bytes( openssl_cipher_iv_length( $this->params['cipher'] ) );
 		$this->hash = openssl_encrypt(
 				$underlyingHash,
 				$this->params['cipher'],
