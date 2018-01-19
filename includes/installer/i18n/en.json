@@ -288,7 +288,6 @@
 	"config-install-interwiki-exists": "<strong>Warning:</strong> The interwiki table seems to already have entries.\nSkipping default list.",
 	"config-install-stats": "Initializing statistics",
 	"config-install-keys": "Generating secret keys",
-	"config-insecure-keys": "<strong>Warning:</strong> {{PLURAL:$2|A secure key|Secure keys}} ($1) generated during installation {{PLURAL:$2|is|are}} not completely safe. Consider changing {{PLURAL:$2|it|them}} manually.",
 	"config-install-updates": "Prevent running unneeded updates",
 	"config-install-updates-failed": "<strong>Error:</strong> Inserting update keys into tables failed with the following error: $1",
 	"config-install-sysop": "Creating administrator user account",

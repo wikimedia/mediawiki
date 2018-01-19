@@ -539,6 +539,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.28
+	 * @deprecated since 1.32, use random_bytes()/random_int()
 	 * @return CryptRand
 	 */
 	public function getCryptRand() {
