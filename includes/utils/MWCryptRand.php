@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 
 class MWCryptRand {
 	/**
+	 * @deprecated since 1.32
 	 * @return CryptRand
 	 */
 	protected static function singleton() {
@@ -39,41 +40,49 @@ class MWCryptRand {
 	 * random bytes generation in the previously run generate* call
 	 * was cryptographically strong.
 	 *
-	 * @return bool Returns true if the source was strong, false if not.
+	 * @deprecated since 1.32, always returns true
+	 *
+	 * @return bool Always true
 	 */
 	public static function wasStrong() {
-		return self::singleton()->wasStrong();
+		return true;
 	}
 
 	/**
-	 * Generate a run of (ideally) cryptographically random data and return
+	 * Generate a run of cryptographically random data and return
 	 * it in raw binary form.
-	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
-	 * was cryptographically strong.
+	 *
+	 * @deprecated since 1.32, use random_bytes()
 	 *
 	 * @param int $bytes The number of bytes of random data to generate
-	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
-	 *                          strong sources of entropy even if reading from them may steal
-	 *                          more entropy from the system than optimal.
 	 * @return string Raw binary random data
 	 */
-	public static function generate( $bytes, $forceStrong = false ) {
-		return self::singleton()->generate( $bytes, $forceStrong );
+	public static function generate( $bytes ) {
+		return random_bytes( floor( $bytes ) );
 	}
 
 	/**
-	 * Generate a run of (ideally) cryptographically random data and return
+	 * Generate a run of cryptographically random data and return
 	 * it in hexadecimal string format.
-	 * You can use MWCryptRand::wasStrong() if you wish to know if the source used
-	 * was cryptographically strong.
 	 *
 	 * @param int $chars The number of hex chars of random data to generate
-	 * @param bool $forceStrong Pass true if you want generate to prefer cryptographically
-	 *                          strong sources of entropy even if reading from them may steal
-	 *                          more entropy from the system than optimal.
 	 * @return string Hexadecimal random data
 	 */
-	public static function generateHex( $chars, $forceStrong = false ) {
-		return self::singleton()->generateHex( $chars, $forceStrong );
+	public static function generateHex( $chars ) {
+		// hex strings are 2x the length of raw binary so we divide the length in half
+		// odd numbers will result in a .5 that leads the generate() being 1 character
+		// short, so we use ceil() to ensure that we always have enough bytes
+		$bytes = ceil( $chars / 2 );
+		// Generate the data and then convert it to a hex string
+		$hex = bin2hex( random_bytes( $bytes ) );
+
+		// A bit of paranoia here, the caller asked for a specific length of string
+		// here, and it's possible (eg when given an odd number) that we may actually
+		// have at least 1 char more than they asked for. Just in case they made this
+		// call intending to insert it into a database that does truncation we don't
+		// want to give them too much and end up with their database and their live
+		// code having two different values because part of what we gave them is truncated
+		// hence, we strip out any run of characters longer than what we were asked for.
+		return substr( $hex, 0, $chars );
 	}
 }

@@ -481,7 +481,7 @@ final class Session implements \Countable, \Iterator, \ArrayAccess {
 
 		// Encrypt
 		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
-		$iv = \MWCryptRand::generate( 16, true );
+		$iv = random_bytes( 16 );
 		$algorithm = self::getEncryptionAlgorithm();
 		switch ( $algorithm[0] ) {
 			case 'openssl':
