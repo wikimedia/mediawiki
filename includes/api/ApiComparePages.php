@@ -397,7 +397,7 @@ class ApiComparePages extends ApiBase {
 		if ( $rev ) {
 			$title = $rev->getTitle();
 			if ( isset( $this->props['ids'] ) ) {
-				$vals["{$prefix}id"] = $title->getArticleId();
+				$vals["{$prefix}id"] = $title->getArticleID();
 				$vals["{$prefix}revid"] = $rev->getId();
 			}
 			if ( isset( $this->props['title'] ) ) {

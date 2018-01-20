@@ -190,7 +190,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( !$title && $revId !== null && $revId > 0 ) {
-			$dbr = $this->getDbConnectionRef( $dbMode );
+			$dbr = $this->getDBConnectionRef( $dbMode );
 			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
 				[ 'revision', 'page' ],
