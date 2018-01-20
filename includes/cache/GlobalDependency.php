@@ -1,6 +1,6 @@
 <?php
 /**
- * Data caching with dependencies.
+ * Global dependency for data caching with dependencies.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,15 +25,23 @@ use MediaWiki\MediaWikiServices;
 /**
  * @ingroup Cache
  */
-abstract class CacheDependency {
-	/**
-	 * Returns true if the dependency is expired, false otherwise
-	 */
-	abstract function isExpired();
+class GlobalDependency extends CacheDependency {
+	private $name;
+	private $value;
+
+	function __construct( $name ) {
+		$this->name = $name;
+		$this->value = $GLOBALS[$name];
+	}
 
 	/**
-	 * Hook to perform any expensive pre-serialize loading of dependency values.
+	 * @return bool
 	 */
-	function loadDependencyValues() {
+	function isExpired() {
+		if ( !isset( $GLOBALS[$this->name] ) ) {
+			return true;
+		}
+
+		return $GLOBALS[$this->name] != $this->value;
 	}
 }
