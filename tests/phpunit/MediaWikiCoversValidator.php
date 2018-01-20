@@ -30,6 +30,8 @@ trait MediaWikiCoversValidator {
 	/**
 	 * Test that all methods in this class that begin
 	 * with "test" have valid covers tags.
+	 *
+	 * @coversNothing
 	 */
 	public function testValidCovers() {
 		$methods = get_class_methods( $this );

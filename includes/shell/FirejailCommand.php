@@ -142,7 +142,7 @@ class FirejailCommand extends Command {
 		}
 
 		if ( $this->hasRestriction( Shell::PRIVATE_DEV ) ) {
-			$cmd[] = '--private-dev';
+			//$cmd[] = '--private-dev';
 		}
 
 		if ( $this->hasRestriction( Shell::NO_NETWORK ) ) {
