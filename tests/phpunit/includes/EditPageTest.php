@@ -41,40 +41,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
-	/**
-	 * @dataProvider provideExtractSectionTitle
-	 * @covers EditPage::extractSectionTitle
-	 */
-	public function testExtractSectionTitle( $section, $title ) {
-		$extracted = EditPage::extractSectionTitle( $section );
-		$this->assertEquals( $title, $extracted );
-	}
-
-	public static function provideExtractSectionTitle() {
-		return [
-			[
-				"== Test ==\n\nJust a test section.",
-				"Test"
-			],
-			[
-				"An initial section, no header.",
-				false
-			],
-			[
-				"An initial section with a fake heder (T34617)\n\n== Test == ??\nwtf",
-				false
-			],
-			[
-				"== Section ==\nfollowed by a fake == Non-section == ??\nnoooo",
-				"Section"
-			],
-			[
-				"== Section== \t\r\n followed by whitespace (T37051)",
-				'Section',
-			],
-		];
-	}
-
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
 		$dbw = wfGetDB( DB_MASTER );
 
