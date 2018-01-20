@@ -3411,7 +3411,7 @@ $wgExperimentalHtmlIds = false;
  *
  * @since 1.30
  */
-$wgFragmentMode = [ 'legacy' ];
+$wgFragmentMode = [ 'legacy', 'html5' ];
 
 /**
  * Which ID escaping mode should be used for external interwiki links? See documentation

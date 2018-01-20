@@ -21,6 +21,9 @@ production.
   were removed (deprecated since 1.27).
 * (T180921) $wgReferrerPolicy now supports having fallbacks for browsers that are not
   using the latest version of the Referrer Policy specification.
+* $wgFragmentMode is now set to [ 'legacy', 'html5' ] by default. This is a first step of
+  migration to human-readable section IDs that will later result in 'html5' being the
+  default mode.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
