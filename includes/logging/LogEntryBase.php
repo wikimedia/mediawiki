@@ -1,6 +1,6 @@
 <?php
 /**
- * Interface for log entries. Every log entry has these methods.
+ * Extends the LogEntryInterface with some basic functionality
  *
  * This is how I see the log system history:
  * - appending to plain wiki pages
@@ -31,78 +31,49 @@
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Interface for log entries. Every log entry has these methods.
+ * Extends the LogEntryInterface with some basic functionality
  *
  * @since 1.19
  */
-interface LogEntry {
+abstract class LogEntryBase implements LogEntry {
+
+	public function getFullType() {
+		return $this->getType() . '/' . $this->getSubtype();
+	}
+
+	public function isDeleted( $field ) {
+		return ( $this->getDeleted() & $field ) === $field;
+	}
 
 	/**
-	 * The main log type.
+	 * Whether the parameters for this log are stored in new or
+	 * old format.
 	 *
-	 * @return string
-	 */
-	public function getType();
-
-	/**
-	 * The log subtype.
-	 *
-	 * @return string
-	 */
-	public function getSubtype();
-
-	/**
-	 * The full logtype in format maintype/subtype.
-	 *
-	 * @return string
-	 */
-	public function getFullType();
-
-	/**
-	 * Get the extra parameters stored for this message.
-	 *
-	 * @return array
-	 */
-	public function getParameters();
-
-	/**
-	 * Get the user for performed this action.
-	 *
-	 * @return User
-	 */
-	public function getPerformer();
-
-	/**
-	 * Get the target page of this action.
-	 *
-	 * @return Title
-	 */
-	public function getTarget();
-
-	/**
-	 * Get the timestamp when the action was executed.
-	 *
-	 * @return string
-	 */
-	public function getTimestamp();
-
-	/**
-	 * Get the user provided comment.
-	 *
-	 * @return string
-	 */
-	public function getComment();
-
-	/**
-	 * Get the access restriction.
-	 *
-	 * @return string
-	 */
-	public function getDeleted();
-
-	/**
-	 * @param int $field One of LogPage::DELETED_* bitfield constants
 	 * @return bool
 	 */
-	public function isDeleted( $field );
+	public function isLegacy() {
+		return false;
+	}
+
+	/**
+	 * Create a blob from a parameter array
+	 *
+	 * @since 1.26
+	 * @param array $params
+	 * @return string
+	 */
+	public static function makeParamBlob( $params ) {
+		return serialize( (array)$params );
+	}
+
+	/**
+	 * Extract a parameter array from a blob
+	 *
+	 * @since 1.26
+	 * @param string $blob
+	 * @return array
+	 */
+	public static function extractParams( $blob ) {
+		return unserialize( $blob );
+	}
 }
