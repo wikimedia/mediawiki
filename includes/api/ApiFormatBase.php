@@ -30,7 +30,7 @@
  * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
-	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
+	private $mIsHtml, $mFormat;
 	private $mBuffer, $mDisabled = false;
 	private $mIsWrappedHtml = false;
 	private $mHttpStatus = false;
