@@ -105,7 +105,12 @@ class ConfigFactory implements SalvageableService {
 	 */
 	public function register( $name, $callback ) {
 		if ( !is_callable( $callback ) && !( $callback instanceof Config ) ) {
-			throw new InvalidArgumentException( 'Invalid callback provided' );
+			if ( is_array( $callback ) ) {
+				$callback = '[ ' . implode( ', ', $callback ) . ' ]';
+			} elseif ( is_object( $callback ) ) {
+				$callback = 'instanceof ' . get_class( $callback );
+			}
+			throw new InvalidArgumentException( 'Invalid callback \'' . $callback . '\' provided' );
 		}
 
 		unset( $this->configs[$name] );

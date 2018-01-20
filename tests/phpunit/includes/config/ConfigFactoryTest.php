@@ -25,6 +25,15 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ConfigFactory::register
 	 */
+	public function testRegisterInvalidInstance() {
+		$factory = new ConfigFactory();
+		$this->setExpectedException( InvalidArgumentException::class );
+		$factory->register( 'invalidInstance', new stdClass );
+	}
+
+	/**
+	 * @covers ConfigFactory::register
+	 */
 	public function testRegisterInstance() {
 		$config = GlobalVarConfig::newInstance();
 		$factory = new ConfigFactory();
