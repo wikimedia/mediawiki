@@ -25,13 +25,14 @@
  */
 
 /**
- * Special page pointing to current user's user page.
+ * Special page pointing to current user's uploaded files.
  *
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialArticle {
+class SpecialMyuploads extends RedirectSpecialPage {
 	public function __construct() {
-		parent::__construct( 'Mypage' );
+		parent::__construct( 'Myuploads' );
+		$this->mAllowedRedirectParams = [ 'limit', 'ilshowall', 'ilsearch' ];
 	}
 
 	/**
@@ -39,11 +40,7 @@ class SpecialMypage extends RedirectSpecialArticle {
 	 * @return Title
 	 */
 	public function getRedirect( $subpage ) {
-		if ( $subpage === null || $subpage === '' ) {
-			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
-		}
-
-		return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
+		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
 	}
 
 	/**

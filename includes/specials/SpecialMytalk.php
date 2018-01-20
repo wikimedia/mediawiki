@@ -25,13 +25,13 @@
  */
 
 /**
- * Special page pointing to current user's user page.
+ * Special page pointing to current user's talk page.
  *
  * @ingroup SpecialPage
  */
-class SpecialMypage extends RedirectSpecialArticle {
+class SpecialMytalk extends RedirectSpecialArticle {
 	public function __construct() {
-		parent::__construct( 'Mypage' );
+		parent::__construct( 'Mytalk' );
 	}
 
 	/**
@@ -40,10 +40,10 @@ class SpecialMypage extends RedirectSpecialArticle {
 	 */
 	public function getRedirect( $subpage ) {
 		if ( $subpage === null || $subpage === '' ) {
-			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
+			return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() );
 		}
 
-		return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
+		return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() . '/' . $subpage );
 	}
 
 	/**
