@@ -228,11 +228,6 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/**
-	 * @var array No longer used since 1.29; use User::getGroups() instead
-	 * @deprecated since 1.29
-	 */
-	private $mGroups;
 	/** @var UserGroupMembership[] Associative array of (group name => UserGroupMembership object) */
 	protected $mGroupMemberships;
 	/** @var array */
