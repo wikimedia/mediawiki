@@ -134,10 +134,7 @@
 
 			$spinner = $.createSpinner().insertAfter( $element );
 
-			( new mw.Api() ).get( {
-				formatversion: 2,
-				action: 'parse',
-				text: '{{' + template + '}}',
+			( new mw.Api() ).parse( '{{' + template + '}}', {
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
 				pst: true,
@@ -150,7 +147,7 @@
 		},
 
 		processResult: function ( result, template, $previewContainer ) {
-			this.responseCache[ template ] = result.parse.text;
+			this.responseCache[ template ] = result;
 			this.showPreview( this.responseCache[ template ], $previewContainer );
 		},
 
