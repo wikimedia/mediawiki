@@ -20,7 +20,6 @@
  * @file
  */
 
-use IPSet\IPSet;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
@@ -28,6 +27,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\IPSet;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
