@@ -63,23 +63,23 @@ window.mwNow = ( function () {
 window.isCompatible = function ( str ) {
 	var ua = str || navigator.userAgent;
 	return !!(
-		// http://caniuse.com/#feat=es5
-		// http://caniuse.com/#feat=use-strict
-		// http://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
+		// https://caniuse.com/#feat=es5
+		// https://caniuse.com/#feat=use-strict
+		// https://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
 		( function () {
 			'use strict';
 			return !this && !!Function.prototype.bind && !!window.JSON;
 		}() ) &&
 
-		// http://caniuse.com/#feat=queryselector
+		// https://caniuse.com/#feat=queryselector
 		'querySelector' in document &&
 
-		// http://caniuse.com/#feat=namevalue-storage
+		// https://caniuse.com/#feat=namevalue-storage
 		// https://developer.blackberry.com/html5/apis/v1_0/localstorage.html
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
 
-		// http://caniuse.com/#feat=addeventlistener
+		// https://caniuse.com/#feat=addeventlistener
 		'addEventListener' in window &&
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
