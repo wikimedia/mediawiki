@@ -61,7 +61,7 @@
 
 		timeout: function () {
 			var $spinnerDestCheck, title;
-			if ( !ajaxUploadDestCheck || this.nameToCheck === '' ) {
+			if ( !ajaxUploadDestCheck || this.nameToCheck.trim() === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
