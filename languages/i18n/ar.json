@@ -1358,7 +1358,7 @@
 	"rcfilters-activefilters": "المرشحات النشطة",
 	"rcfilters-advancedfilters": "مرشحات متقدمة",
 	"rcfilters-limit-title": "النتائج للعرض",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|تغيير|$1 تغييرات}}، $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|تغيير|تغييرات}}، $2",
 	"rcfilters-date-popup-title": "الفترة الزمنية للبحث",
 	"rcfilters-days-title": "عدد الأيام الأخيرة",
 	"rcfilters-hours-title": "عدد الساعات الأخيرة",

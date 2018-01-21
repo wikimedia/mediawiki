@@ -3292,6 +3292,8 @@
 	"tag-filter": "[[Special:Tags|Etiket]] süzgeci:",
 	"tag-filter-submit": "Süzgeç",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Etiket|Etiketler}}]]: $2)",
+	"tag-mw-new-redirect": "Yeni yönlendirme",
+	"tag-mw-changed-redirect-target": "Yönlendirme hedefi değiştirildi",
 	"tags-title": "Etiketler",
 	"tags-intro": "Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.",
 	"tags-tag": "Etiket adı",

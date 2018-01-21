@@ -1393,7 +1393,7 @@
 	"rcfilters-activefilters": "絞り込み",
 	"rcfilters-advancedfilters": "詳細フィルター",
 	"rcfilters-limit-title": "表示する件数",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|件の変更}}、$2",
+	"rcfilters-limit-and-date-label": "過去$2の$1{{PLURAL:$1|件の変更}}",
 	"rcfilters-date-popup-title": "検索期間",
 	"rcfilters-days-title": "日数",
 	"rcfilters-hours-title": "時間",
