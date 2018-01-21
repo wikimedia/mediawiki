@@ -138,7 +138,7 @@
 			promises = [],
 			deferred = $.Deferred();
 
-		if ( $.trim( input ) === '' ) {
+		if ( input.trim() === '' ) {
 			deferred.resolve( [] );
 			return deferred.promise();
 		}

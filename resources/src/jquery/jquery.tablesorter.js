@@ -105,7 +105,7 @@
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
 					cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
-					nodeValue = $.trim( getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] ) );
+					nodeValue = getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] ).trim();
 				}
 			} else {
 				nodeValue = '';
@@ -1090,7 +1090,7 @@
 		},
 		format: function ( s ) {
 			var tsc;
-			s = $.trim( s.toLowerCase() );
+			s = s.toLowerCase().trim();
 			if ( ts.collationRegex ) {
 				tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
@@ -1144,7 +1144,7 @@
 			return ts.rgx.url[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			return $.trim( s.replace( ts.rgx.url[ 1 ], '' ) );
+			return s.replace( ts.rgx.url[ 1 ], '' ).trim();
 		},
 		type: 'text'
 	} );
@@ -1207,7 +1207,7 @@
 		},
 		format: function ( s ) {
 			var match, y;
-			s = $.trim( s.toLowerCase() );
+			s = s.toLowerCase().trim();
 
 			if ( ( match = s.match( ts.dateRegex[ 0 ] ) ) !== null ) {
 				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgPageContentLanguage' ) === 'en' ) {
@@ -1266,7 +1266,7 @@
 	ts.addParser( {
 		id: 'number',
 		is: function ( s ) {
-			return $.tablesorter.numberRegex.test( $.trim( s ) );
+			return $.tablesorter.numberRegex.test( s.trim() );
 		},
 		format: function ( s ) {
 			return $.tablesorter.formatDigit( s );

@@ -1272,7 +1272,7 @@
 		 * @return {string} Localized namespace name
 		 */
 		ns: function ( nodes ) {
-			var ns = $.trim( textify( nodes[ 0 ] ) );
+			var ns = textify( nodes[ 0 ] ).trim();
 			if ( !/^\d+$/.test( ns ) ) {
 				ns = mw.config.get( 'wgNamespaceIds' )[ ns.replace( / /g, '_' ).toLowerCase() ];
 			}

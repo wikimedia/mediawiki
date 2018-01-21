@@ -115,7 +115,7 @@
 		compile: function ( src ) {
 			return {
 				render: function () {
-					return $( $.parseHTML( $.trim( src ) ) );
+					return $( $.parseHTML( src.trim() ) );
 				}
 			};
 		}
