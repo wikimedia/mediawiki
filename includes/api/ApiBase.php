@@ -1408,9 +1408,6 @@ abstract class ApiBase extends ContextSource {
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
 		$allSpecifier = null, $limit1 = null, $limit2 = null
 	) {
-		if ( ( trim( $value ) === '' || trim( $value ) === "\x1f" ) && $allowMultiple ) {
-			return [];
-		}
 		$limit1 = $limit1 ?: self::LIMIT_SML1;
 		$limit2 = $limit2 ?: self::LIMIT_SML2;
 
