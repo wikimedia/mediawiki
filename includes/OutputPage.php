@@ -24,8 +24,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\RelPath;
-use WrappedString\WrappedString;
-use WrappedString\WrappedStringList;
+use Wikimedia\WrappedString;
+use Wikimedia\WrappedStringList;
 
 /**
  * This class should be covered by a general architecture document which does

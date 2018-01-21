@@ -26,8 +26,8 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use WrappedString\WrappedString;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\WrappedString;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.
