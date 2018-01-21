@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\RelPath;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -527,7 +528,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public static function getRelativePaths( array $filePaths ) {
 		global $IP;
 		return array_map( function ( $path ) use ( $IP ) {
-			return RelPath\getRelativePath( $path, $IP );
+			return RelPath::getRelativePath( $path, $IP );
 		}, $filePaths );
 	}
 
@@ -541,7 +542,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public static function expandRelativePaths( array $filePaths ) {
 		global $IP;
 		return array_map( function ( $path ) use ( $IP ) {
-			return RelPath\joinPath( $IP, $path );
+			return RelPath::joinPath( $IP, $path );
 		}, $filePaths );
 	}
 

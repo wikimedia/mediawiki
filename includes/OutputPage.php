@@ -23,6 +23,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
+use Wikimedia\RelPath;
 use WrappedString\WrappedString;
 use WrappedString\WrappedStringList;
 
@@ -3818,7 +3819,7 @@ class OutputPage extends ContextSource {
 			$remotePathPrefix = $remotePath = $uploadPath;
 		}
 
-		$path = RelPath\getRelativePath( $path, $remotePath );
+		$path = RelPath::getRelativePath( $path, $remotePath );
 		return self::transformFilePath( $remotePathPrefix, $localDir, $path );
 	}
 
