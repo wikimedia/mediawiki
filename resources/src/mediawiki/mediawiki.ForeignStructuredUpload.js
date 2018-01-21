@@ -86,12 +86,9 @@
 	 * @param {string[]} categories Array of categories to which this upload will be added.
 	 */
 	ForeignStructuredUpload.prototype.addCategories = function ( categories ) {
-		var i, category;
-
-		for ( i = 0; i < categories.length; i++ ) {
-			category = categories[ i ];
-			this.categories.push( category );
-		}
+		// The length of the array must be less than 10000.
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push#Merging_two_arrays
+		Array.prototype.push.apply( this.categories, categories );
 	};
 
 	/**
@@ -183,18 +180,11 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
-		var i, desc, templateCalls = [];
-
-		for ( i = 0; i < this.descriptions.length; i++ ) {
-			desc = this.descriptions[ i ];
-			templateCalls.push(
-				this.config.format.description
-					.replace( '$LANGUAGE', desc.language )
-					.replace( '$TEXT', desc.text )
-			);
-		}
-
-		return templateCalls.join( '\n' );
+		return this.descriptions.map( function ( desc ) {
+			return this.config.format.description
+				.replace( '$LANGUAGE', desc.language )
+				.replace( '$TEXT', desc.text );
+		} ).join( '\n' );
 	};
 
 	/**
@@ -205,18 +195,13 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getCategories = function () {
-		var i, cat, categoryLinks = [];
-
 		if ( this.categories.length === 0 ) {
 			return this.config.format.uncategorized;
 		}
 
-		for ( i = 0; i < this.categories.length; i++ ) {
-			cat = this.categories[ i ];
-			categoryLinks.push( '[[Category:' + cat + ']]' );
-		}
-
-		return categoryLinks.join( '\n' );
+		return this.categories.map( function ( cat ) {
+			return '[[Category:' + cat + ']]';
+		} ).join( '\n' );
 	};
 
 	/**
