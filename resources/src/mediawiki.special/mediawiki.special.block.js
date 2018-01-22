@@ -23,7 +23,7 @@
 			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' );
 
 		function updateBlockOptions() {
-			var blocktarget = $.trim( blockTargetWidget.getValue() ),
+			var blocktarget = blockTargetWidget.getValue().trim(),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),

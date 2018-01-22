@@ -9,7 +9,7 @@
 			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-chosen|mw-htmlform-dropdown)/g, '' ),
 			$select = $( '<select>' ),
 			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
-		oldClass = $.trim( oldClass );
+		oldClass = oldClass.trim();
 		$select.attr( {
 			name: name,
 			multiple: 'multiple',
