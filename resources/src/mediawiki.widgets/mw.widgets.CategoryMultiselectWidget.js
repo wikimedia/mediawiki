@@ -5,7 +5,8 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
-	var NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
+	var hasOwn = Object.prototype.hasOwnProperty,
+		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
 	 * Category selector widget. Displays an OO.ui.CapsuleMultiselectWidget
@@ -273,7 +274,7 @@
 			cacheKey = input + searchType.toString();
 
 		// Check cache
-		if ( this.searchCache[ cacheKey ] !== undefined ) {
+		if ( hasOwn.call( this.searchCache, cacheKey ) ) {
 			return this.searchCache[ cacheKey ];
 		}
 
