@@ -1,0 +1,35 @@
+/*!
+ * Styles for elements of all action pages.
+ */
+
+/* Inline TOC */
+/* #filetoc for backwards compatibility */
+.mw-inlinetoc,
+#filetoc {
+	text-align: center;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.mw-inlinetoc li,
+#filetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
+}
+.mw-inlinetoc li:last-child,
+#filetoc li:last-child {
+	padding-right: 0;
+}
+
+@media screen and (max-width: 720px) {
+	.mw-inlinetoc li {
+		display: block;
+		padding-right: 0;
+	}
+}
