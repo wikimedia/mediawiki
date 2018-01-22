@@ -225,7 +225,7 @@ class GitInfo {
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
-			if ( is_file( $wgGitBin ) &&
+			if ( @is_file( $wgGitBin ) &&
 				is_executable( $wgGitBin ) &&
 				$this->getHead() !== false
 			) {
