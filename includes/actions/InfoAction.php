@@ -122,6 +122,14 @@ class InfoAction extends FormlessAction {
 		// Allow extensions to add additional information
 		Hooks::run( 'InfoAction', [ $this->getContext(), &$pageInfo ] );
 
+		// Add inline table of content
+		$headers = [];
+		foreach ( $pageInfo as $header => $infoTable ) {
+			$headers[] = '<li><a href="#mw-pageinfo-' . htmlspecialchars( $header ) . '">' .
+				$this->msg( "pageinfo-${header}" )->escaped() . '</a></li>';
+		}
+		$content .= '<ul class="mw-inlinetoc">' . implode( "\n", $headers ) . '</ul>';
+
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
 			// Messages:
