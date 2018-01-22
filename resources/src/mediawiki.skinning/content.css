@@ -113,6 +113,24 @@ table.toc td {
 	padding-right: 0;
 }
 
+/* Inline TOC */
+.inlinetoc {
+	text-align: center;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.inlinetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
+}
+
 /* Warning */
 .mw-warning {
 	margin-left: 50px;

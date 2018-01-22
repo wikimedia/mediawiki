@@ -237,7 +237,7 @@ class ImagePage extends Article {
 				'</a></li>';
 		}
 
-		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
+		return '<ul class="inlinetoc">' . implode( "\n", $r ) . '</ul>';
 	}
 
 	/**
