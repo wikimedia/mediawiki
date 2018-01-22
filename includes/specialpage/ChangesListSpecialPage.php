@@ -838,7 +838,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function outputTimeout() {
 		$this->getOutput()->addHTML(
-			'<div class="mw-changeslist-timeout">' .
+			'<div class="mw-changeslist-empty mw-changeslist-timeout">' .
 			$this->msg( 'recentchanges-timeout' )->parse() .
 			'</div>'
 		);
