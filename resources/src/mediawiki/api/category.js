@@ -14,21 +14,14 @@
 		 */
 		isCategory: function ( title ) {
 			var apiPromise = this.get( {
+				formatversion: 2,
 				prop: 'categoryinfo',
 				titles: String( title )
 			} );
 
 			return apiPromise
 				.then( function ( data ) {
-					var exists = false;
-					if ( data.query && data.query.pages ) {
-						$.each( data.query.pages, function ( id, page ) {
-							if ( page.categoryinfo ) {
-								exists = true;
-							}
-						} );
-					}
-					return exists;
+					return !!data.query.pages[ 0 ].categoryinfo;
 				} )
 				.promise( { abort: apiPromise.abort } );
 		},
@@ -46,6 +39,7 @@
 		getCategoriesByPrefix: function ( prefix ) {
 			// Fetch with allpages to only get categories that have a corresponding description page.
 			var apiPromise = this.get( {
+				formatversion: 2,
 				list: 'allpages',
 				apprefix: prefix,
 				apnamespace: mw.config.get( 'wgNamespaceIds' ).category
@@ -53,13 +47,9 @@
 
 			return apiPromise
 				.then( function ( data ) {
-					var texts = [];
-					if ( data.query && data.query.allpages ) {
-						$.each( data.query.allpages, function ( i, category ) {
-							texts.push( new mw.Title( category.title ).getMainText() );
-						} );
-					}
-					return texts;
+					return data.query.allpages.map( function ( category ) {
+						return new mw.Title( category.title ).getMainText();
+					} );
 				} )
 				.promise( { abort: apiPromise.abort } );
 		},
@@ -75,26 +65,21 @@
 		 */
 		getCategories: function ( title ) {
 			var apiPromise = this.get( {
+				formatversion: 2,
 				prop: 'categories',
 				titles: String( title )
 			} );
 
 			return apiPromise
 				.then( function ( data ) {
-					var titles = false;
-					if ( data.query && data.query.pages ) {
-						$.each( data.query.pages, function ( id, page ) {
-							if ( page.categories ) {
-								if ( titles === false ) {
-									titles = [];
-								}
-								$.each( page.categories, function ( i, cat ) {
-									titles.push( new mw.Title( cat.title ) );
-								} );
-							}
-						} );
+					var page = data.query.pages[ 0 ];
+
+					if ( !page.categories ) {
+						return false;
 					}
-					return titles;
+					return page.categories.map( function ( cat ) {
+						return new mw.Title( cat.title );
+					} );
 				} )
 				.promise( { abort: apiPromise.abort } );
 		}
