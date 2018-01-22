@@ -85,6 +85,9 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.toc' );
+
 		$content = '';
 
 		// Validate revision
@@ -118,6 +121,14 @@ class InfoAction extends FormlessAction {
 
 		// Get page information
 		$pageInfo = $this->pageInfo();
+
+		// Add inline table of content
+		$headers = [];
+		foreach ( $pageInfo as $header => $infoTable ) {
+			$headers[] = '<li><a href="#mw-pageinfo-' . $header . '">' .
+				$this->msg( "pageinfo-${header}" )->text() . '</a></li>';
+		}
+		$content .= '<ul class="inlinetoc">' . implode( "\n", $headers ) . '</ul>';
 
 		// Allow extensions to add additional information
 		Hooks::run( 'InfoAction', [ $this->getContext(), &$pageInfo ] );

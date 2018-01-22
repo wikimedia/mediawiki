@@ -131,6 +131,7 @@ class ImagePage extends Article {
 		}
 
 		if ( !$diff && $this->displayImg->exists() ) {
+			$out->addModules( [ 'mediawiki.toc' ] );
 			$out->addHTML( $this->showTOC( $showmeta ) );
 		}
 
@@ -237,7 +238,7 @@ class ImagePage extends Article {
 				'</a></li>';
 		}
 
-		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
+		return '<ul class="inlinetoc">' . implode( "\n", $r ) . '</ul>';
 	}
 
 	/**

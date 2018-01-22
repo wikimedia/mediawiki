@@ -1,5 +1,6 @@
 #toc.tochidden,
 .toc.tochidden,
-.toctoggle {
+.toctoggle,
+.inlinetoc {
 	display: none;
 }
