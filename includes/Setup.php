@@ -360,6 +360,7 @@ unset( $repo ); // no global pollution; destroy reference
 
 // Convert this deprecated setting to modern system
 if ( $wgExperimentalHtmlIds ) {
+	wfDeprecated( '$wgExperimentalHtmlIds', '1.30' );
 	$wgFragmentMode = [ 'html5-legacy', 'html5' ];
 }
 
