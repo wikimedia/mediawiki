@@ -204,6 +204,7 @@ class ImagePage extends Article {
 
 		$out->addModuleStyles( [
 			'filepage', // always show the local local Filepage.css, T31277
+			'mediawiki.action',
 			'mediawiki.action.view.filepage', // Add MediaWiki styles for a file page
 		] );
 	}
@@ -237,7 +238,7 @@ class ImagePage extends Article {
 				'</a></li>';
 		}
 
-		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
+		return '<ul class="mw-inlinetoc" id="filetoc">' . implode( "\n", $r ) . '</ul>';
 	}
 
 	/**

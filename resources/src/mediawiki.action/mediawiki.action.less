@@ -1,0 +1,31 @@
+/*!
+ * Styles for elements of all action pages.
+ */
+
+@import 'mediawiki.mixins';
+
+/* Inline TOC */
+/* #filetoc for backwards compatibility */
+.mw-inlinetoc,
+#filetoc {
+	text-align: center;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+
+	li {
+		display: block;
+
+		@media only screen and ( min-width: @deviceWidthTablet ) {
+			display: inline;
+			padding-right: 2em;
+			&:last-child {
+				padding-right: 0;
+			}
+		}
+	}
+}
