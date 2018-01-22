@@ -635,7 +635,7 @@
 	"resetpass-validity-soft": "您的密码无效：$1\n\n请选择一个新密码，或单击“{{int:authprovider-resetpass-skip-label}}”以稍后重置。",
 	"passwordreset": "重置密码",
 	"passwordreset-text-one": "请完成此表单来通过电子邮件接收临时密码。",
-	"passwordreset-text-many": "{{PLURAL:$1|在此键入您希望接收临时密码的邮件地址。}}",
+	"passwordreset-text-many": "{{PLURAL:$1|填写其中一个字段以通过电子邮件接收临时密码。}}",
 	"passwordreset-disabled": "此Wiki已经禁用密码重置。",
 	"passwordreset-emaildisabled": "此Wiki上无法使用邮件功能。",
 	"passwordreset-username": "用户名：",

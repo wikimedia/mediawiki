@@ -784,7 +784,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "كائن فارغ",
 	"content-json-empty-array": "مصفوفة فارغة",
-	"deprecated-self-close-category": "صفحات تستخدم وسوم أتش تي أم أل غير صالحة",
+	"deprecated-self-close-category": "صفحات تستخدم وسوم HTML غير صالحة",
 	"deprecated-self-close-category-desc": "هذه الصفحة تحتوي على وسوم HTML مغلقة ذاتيا، مثل  <code>&lt;b/></code> أو <code>&lt;span/></code>. سلوك هذه سيتغير سريعا ليكون متوافقا مع معيار HTML5، لذا فاستخدامهم في نص الويكي ينبغي أن يتم الاستغناء عنه.",
 	"duplicate-args-warning": "<strong>تنبيه:</strong> المدخل \"$3\" ل[[:$1]] المستعمل في [[:$2]] مكرر. آخر قيمة مكرر منه هي المعتمدة.",
 	"duplicate-args-category": "صفحات تستعمل قالبا ببيانات مكررة",

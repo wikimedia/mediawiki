@@ -163,7 +163,7 @@
 	"hidden-category-category": "Skrivene kategorije",
 	"category-subcat-count": "{{PLURAL:$2|1=Ova kategorija sadržava samo sljedeću potkategoriju.|Ova kategorija ima {{PLURAL:$1|sljedeću $1 potkategoriju|sljedeće $1 potkategorije|sljedećih $1 potkategorija}}, od ukupno $2.}}",
 	"category-subcat-count-limited": "Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.",
-	"category-article-count": "{{PLURAL:$2|Ova kategorija sadrži samo sljedeću stranicu.|{{PLURAL:$1|Prikazana stranica jedina je|Prikazane su $1 stranice su|Prikazano je $1 stranica}} u ovoj kategoriji, od ukupno $2.}}",
+	"category-article-count": "{{PLURAL:$2|1=Ova kategorija sadržava samo sljedeću stranicu.|{{PLURAL:$1|Prikazana je $1 stranica|Prikazane su $1 stranice|Prikazano je $1 stranica}} u ovoj kategoriji, od ukupno $2.}}",
 	"category-article-count-limited": "{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica je}} u ovoj kategoriji.",
 	"category-file-count": "Ova kategorija sadrži $2 {{PLURAL:$2|datoteku|datoteke|datoteka}}. {{PLURAL:$1|Slijedi $1 datoteka|Slijede $1 datoteke|Slijedi $1 datoteka}}.",
 	"category-file-count-limited": "{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji.",

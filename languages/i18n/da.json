@@ -1477,7 +1477,7 @@
 	"recentchangeslinked-feed": "Relaterede ændringer",
 	"recentchangeslinked-toolbox": "Relaterede ændringer",
 	"recentchangeslinked-title": "Ændringer der relaterer til \"$1\"",
-	"recentchangeslinked-summary": "Dette er en liste over de seneste ændringer af sider, der linkes til fra en bestemt side (eller medlemmer af en bestemt kategori).\nSider på [[Special:Watchlist|din overvågningsliste]] er vist med '''fed''' skrift.",
+	"recentchangeslinked-summary": "Indtast et sidenavn for at sændringer på sider henvist til eller fra den side. (For at se medlemmer af en kategori indtast Category:Kategorinavn). Ændringer til sider på [[Special:Watchlist|din overvågningsliste]] er vist med <strong>fed</strong> skrift.",
 	"recentchangeslinked-page": "Sidenavn:",
 	"recentchangeslinked-to": "Vis ændringer i sider der henviser til den angivne side i stedet",
 	"recentchanges-page-added-to-category": "[[:$1]] tilføjet til kategori",
