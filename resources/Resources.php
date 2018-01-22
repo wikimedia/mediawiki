@@ -2208,6 +2208,7 @@ return [
 			'jquery.spinner',
 			'mediawiki.jqueryMsg',
 			'mediawiki.api',
+			'mediawiki.api.parse',
 			'mediawiki.libs.jpegmeta',
 			'mediawiki.Title',
 			'mediawiki.util',
