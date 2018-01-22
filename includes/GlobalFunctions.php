@@ -2021,7 +2021,7 @@ function wfSuppressWarnings( $end = false ) {
  * Restore error level to previous value
  */
 function wfRestoreWarnings() {
-	MediaWiki\suppressWarnings( true );
+	MediaWiki\restoreWarnings();
 }
 
 /**
