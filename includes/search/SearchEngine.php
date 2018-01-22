@@ -543,7 +543,7 @@ abstract class SearchEngine {
 				$this->setLimitOffset( $fallbackLimit );
 				$fallbackSearchResult = $this->completionSearch( $fbs );
 				$results->appendAll( $fallbackSearchResult );
-				$fallbackLimit -= count( $fallbackSearchResult );
+				$fallbackLimit -= $fallbackSearchResult->getSize();
 				if ( $fallbackLimit <= 0 ) {
 					break;
 				}
