@@ -53,7 +53,8 @@
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "4.8.36",
 		"wikimedia/testing-access-wrapper": "~1.0",
-		"wikimedia/avro": "1.7.7"
+		"wikimedia/avro": "1.7.7",
+		"etsy/phan": "0.8"
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
@@ -93,9 +94,10 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/*/composer.json"
 			],
-			"merge-dev": false
+			"merge-dev": true
 		}
 	}
 }
