@@ -151,7 +151,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/maintenance
 	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
-	'MediaWiki\Tests\Maintenance\MaintenanceFixup' => "$testDir/phpunit/maintenance/MaintenanceFixup.php",
+	'MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
 
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
