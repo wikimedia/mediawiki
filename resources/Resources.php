@@ -1411,6 +1411,9 @@ return [
 
 	/* MediaWiki Action */
 
+	'mediawiki.action' => [
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.less',
+	],
 	'mediawiki.action.edit' => [
 		'scripts' => [
 			'resources/src/mediawiki.action/mediawiki.action.edit.js',

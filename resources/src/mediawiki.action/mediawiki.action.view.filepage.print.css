@@ -2,7 +2,6 @@
  * File description page - print style
  */
 
-span.mw-filepage-other-resolutions,
-#filetoc {
+span.mw-filepage-other-resolutions {
 	display: none;
 }
