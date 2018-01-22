@@ -38,6 +38,28 @@ describe( 'Page', function () {
 
 	} );
 
+	it( 'should be re-creatable', function () {
+		let initialContent = getTestString();
+
+		// create
+		browser.call( function () {
+			return EditPage.apiEdit( name, initialContent );
+		} );
+
+		// delete
+		browser.call( function () {
+			return DeletePage.apiDelete( name, 'delete prior to recreate' );
+		} );
+
+		// create
+		EditPage.edit( name, content );
+
+		// check
+		assert.equal( EditPage.heading.getText(), name );
+		assert.equal( EditPage.displayedContent.getText(), content );
+
+	} );
+
 	it( 'should be editable', function () {
 
 		// create
