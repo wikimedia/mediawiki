@@ -28,7 +28,7 @@
 			}, options ) ).then( function ( data ) {
 				var result = {};
 
-				$.each( data.query.allmessages, function ( i, obj ) {
+				data.query.allmessages.forEach( function ( obj ) {
 					if ( !obj.missing ) {
 						result[ obj.name ] = obj.content;
 					}
