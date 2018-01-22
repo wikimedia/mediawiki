@@ -71,7 +71,7 @@
 				formatversion: 2,
 				action: 'query',
 				// If title is empty, user input is invalid, the API call will produce details about why
-				titles: title ? title.getPrefixedText() : this.nameToCheck,
+				titles: [ title ? title.getPrefixedText() : this.nameToCheck ],
 				prop: 'imageinfo',
 				iiprop: 'uploadwarning',
 				errorformat: 'html',
