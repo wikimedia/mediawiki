@@ -75,10 +75,12 @@
 		}
 	}
 
-	// Temporarily hide any specific 'no result' message while we load rcfilters.
-	.mw-changeslist-empty,
-	.mw-changeslist-timeout,
-	.mw-changeslist-notargetpage {
+	// Temporarily hide the empty results section while we load rcfilters.
+	.mw-changeslist-empty {
+		display: none;
+	}
+
+	.errorbox {
 		display: none;
 	}
 
