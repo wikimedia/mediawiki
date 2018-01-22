@@ -320,6 +320,8 @@
 				info.noResultsDetails = 'NO_RESULTS_TIMEOUT';
 			} else if ( $root.find( '.mw-changeslist-notargetpage' ).length ) {
 				info.noResultsDetails = 'NO_RESULTS_NO_TARGET_PAGE';
+			} else if ( $root.find( '.mw-changeslist-invalidtargetpage' ).length ) {
+				info.noResultsDetails = 'NO_RESULTS_INVALID_TARGET_PAGE';
 			} else {
 				info.noResultsDetails = 'NO_RESULTS_NORMAL';
 			}

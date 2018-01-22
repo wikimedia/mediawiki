@@ -65,7 +65,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$outputPage->addHTML(
 				Html::errorBox( $this->msg( 'allpagesbadtitle' )->parse() )
 			);
-
 			return false;
 		}
 
@@ -295,10 +294,17 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	}
 
 	protected function outputNoResults() {
-		if ( $this->getTargetTitle() === false ) {
+		$targetTitle = $this->getTargetTitle();
+		if ( $targetTitle === false ) {
 			$this->getOutput()->addHTML(
-				'<div class="mw-changeslist-notargetpage">' .
+				'<div class="mw-changeslist-empty mw-changeslist-notargetpage">' .
 				$this->msg( 'recentchanges-notargetpage' )->parse() .
+				'</div>'
+			);
+		} elseif ( !$targetTitle || $targetTitle->isExternal() ) {
+			$this->getOutput()->addHTML(
+				'<div class="mw-changeslist-empty mw-changeslist-invalidtargetpage">' .
+				$this->msg( 'allpagesbadtitle' )->parse() .
 				'</div>'
 			);
 		} else {
