@@ -1916,7 +1916,7 @@
 	"doubleredirects-summary": "",
 	"doubleredirectstext": "This page lists pages that redirect to other redirect pages.\nEach row contains links to the first and second redirect, as well as the target of the second redirect, which is usually the \"real\" target page to which the first redirect should point.\n<del>Crossed out</del> entries have been solved.",
 	"double-redirect-fixed-move": "[[$1]] has been moved.\nIt was automatically updated and now it redirects to [[$2]].",
-	"double-redirect-fixed-maintenance": "Automatically fixing double redirect from [[$1]] to [[$2]] in a maintenance job.",
+	"double-redirect-fixed-maintenance": "Automatically fixing double redirect from [[$1]] to [[$2]] in a maintenance job",
 	"double-redirect-fixer": "Redirect fixer",
 	"brokenredirects": "Broken redirects",
 	"brokenredirects-summary": "",
