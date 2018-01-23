@@ -294,8 +294,6 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
-		// approximate error count: 1
-		"PhanAccessMethodProtected",
 		// approximate error count: 29
 		"PhanCommentParamOnEmptyParamList",
 		// approximate error count: 33

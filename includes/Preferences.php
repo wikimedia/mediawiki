@@ -303,6 +303,8 @@ class Preferences {
 	/**
 	 * Handle the form submission if everything validated properly
 	 *
+	 * @deprecated since 1.31, use PreferencesFactory
+	 *
 	 * @param array $formData
 	 * @param PreferencesForm $form
 	 * @return bool|Status|string

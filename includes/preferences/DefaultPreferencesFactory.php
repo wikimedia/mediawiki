@@ -1617,7 +1617,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param PreferencesForm $form
 	 * @return bool|Status|string
 	 */
-	protected function legacySaveFormData( $formData, PreferencesForm $form ) {
+	public function legacySaveFormData( $formData, PreferencesForm $form ) {
 		return $this->saveFormData( $formData, $form );
 	}
 
