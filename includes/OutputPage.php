@@ -528,7 +528,7 @@ class OutputPage extends ContextSource {
 	 * @param string $type
 	 * @return array
 	 */
-	protected function filterModules( array $modules, $position = null,
+	public function filterModules( array $modules, $position = null,
 		$type = ResourceLoaderModule::TYPE_COMBINED
 	) {
 		$resourceLoader = $this->getResourceLoader();
