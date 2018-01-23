@@ -291,7 +291,7 @@ class ExtensionRegistry {
 
 			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
 			// Will be O(1) performance.
-			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
+			if ( !array_key_exists( $key, $GLOBALS ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
 				continue;
 			}
