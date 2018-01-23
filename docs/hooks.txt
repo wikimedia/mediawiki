@@ -1666,6 +1666,13 @@ $query: query options passed to Title::getInternalURL()
 'GetIP': modify the ip of the current user (called only once).
 &$ip: string holding the ip as determined so far
 
+'GetLangPreferredVariant': Called in LanguageConverter#getPreferredVariant() to
+  allow fetching the language variant code from cookies or other such
+  alternative storage.
+&$req: language variant from the URL (string) or boolean false if no variant
+  was specified in the URL; the value of this variable comes from
+  LanguageConverter#getURLVariant()
+
 'GetLinkColours': modify the CSS class of an array of page links.
 $linkcolour_ids: array of prefixed DB keys of the pages linked to,
   indexed by page_id.

@@ -163,6 +163,8 @@ class LanguageConverter {
 
 		$req = $this->getURLVariant();
 
+		Hooks::run( 'GetLangPreferredVariant', [ &$req ] );
+
 		if ( $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
 			$req = $this->getUserVariant();
 		} elseif ( !$req ) {
