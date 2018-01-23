@@ -32,6 +32,7 @@
  * conflicts with other people using private use area)
  *
  * This does not support fancy things like secondary differences, etc.
+ * (It supports digraphs, trigraphs etc. though.)
  *
  * It is expected most people will subclass this and just override the
  * constructor to hard-code an alphabet.
@@ -45,25 +46,30 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	private $puaSubset;
 
 	/**
-	 * @note This assumes $alphabet does not contain U+F3000-U+F303F
+	 * @note This assumes $alphabet does not contain U+F3000-U+F3FFF
 	 *
 	 * @param array $alphabet Sorted array of uppercase characters.
 	 * @param Language $lang What language for number sorting.
 	 */
 	public function __construct( array $alphabet, Language $lang ) {
-		// It'd be trivial to extend this past 64, you'd just
-		// need a bit of bit-fiddling. Doesn't seem necessary right
-		// now.
-		if ( count( $alphabet ) < 1 || count( $alphabet ) >= 64 ) {
-			throw new UnexpectedValueException( "Alphabet must be < 64 items" );
+		if ( count( $alphabet ) < 1 || count( $alphabet ) >= 4096 ) {
+			throw new UnexpectedValueException( "Alphabet must be < 4096 items" );
 		}
-		$this->alphabet = $alphabet;
+		$this->firstLetters = $alphabet;
+		// For digraphs, only the first letter is capitalized in input
+		$this->alphabet = array_map( [ $lang, 'uc' ], $alphabet );
 
 		$this->puaSubset = [];
 		$len = count( $alphabet );
 		for ( $i = 0; $i < $len; $i++ ) {
-			$this->puaSubset[] = "\xF3\xB3\x80" . chr( $i + 128 );
+			$this->puaSubset[] = "\xF3\xB3" . chr( floor( $i / 64 ) + 128 ) . chr( ( $i % 64 ) + 128 );
 		}
+
+		// Sort these arrays so that any trigraphs, digraphs etc. are first
+		// (and they get replaced first in convertToPua()).
+		$lengths = array_map( 'mb_strlen', $this->alphabet );
+		array_multisort( $lengths, SORT_DESC, $this->firstLetters, $this->alphabet, $this->puaSubset );
+
 		parent::__construct( $lang );
 	}
 
@@ -76,12 +82,17 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	}
 
 	public function getFirstLetter( $string ) {
-		// In case a title has a PUA code in it, make it sort
-		// under the header for the character it would replace
-		// to avoid inconsistent behaviour. This class mostly
-		// assumes that people will not use PUA codes.
-		return parent::getFirstLetter(
-			str_replace( $this->puaSubset, $this->alphabet, $string )
-		);
+		$sortkey = $this->getSortKey( $string );
+
+		// In case a title begins with a character from our alphabet, return the corresponding
+		// first-letter. (This also happens if the title has a corresponding PUA code in it, to avoid
+		// inconsistent behaviour. This class mostly assumes that people will not use PUA codes.)
+		$index = array_search( substr( $sortkey, 0, 4 ), $this->puaSubset );
+		if ( $index !== false ) {
+			return $this->firstLetters[ $index ];
+		}
+
+		// String begins with a character outside of our alphabet, fall back
+		return parent::getFirstLetter( $string );
 	}
 }

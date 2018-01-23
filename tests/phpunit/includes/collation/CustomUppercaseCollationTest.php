@@ -9,6 +9,7 @@ class CustomUppercaseCollationTest extends MediaWikiTestCase {
 		$this->collation = new CustomUppercaseCollation( [
 			'D',
 			'C',
+			'Cs',
 			'B'
 		], Language::factory( 'en' ) );
 
@@ -34,6 +35,7 @@ class CustomUppercaseCollationTest extends MediaWikiTestCase {
 			[ '💩 ', 'C', 'Test relocated to end' ],
 			[ 'c', 'b', 'lowercase' ],
 			[ 'x', 'z', 'lowercase original' ],
+			[ 'Cz', 'Cs', 'digraphs' ],
 			[ 'C50D', 'C100', 'Numbers' ]
 		];
 	}
@@ -53,8 +55,14 @@ class CustomUppercaseCollationTest extends MediaWikiTestCase {
 			[ 'afdsa', 'A' ],
 			[ "\xF3\xB3\x80\x80Foo", 'D' ],
 			[ "\xF3\xB3\x80\x81Foo", 'C' ],
-			[ "\xF3\xB3\x80\x82Foo", 'B' ],
-			[ "\xF3\xB3\x80\x83Foo", "\xF3\xB3\x80\x83" ],
+			[ "\xF3\xB3\x80\x82Foo", 'Cs' ],
+			[ "\xF3\xB3\x80\x83Foo", 'B' ],
+			[ "\xF3\xB3\x80\x84Foo", "\xF3\xB3\x80\x84" ],
+			[ 'C', 'C' ],
+			[ 'Cz', 'C' ],
+			[ 'Cs', 'Cs' ],
+			[ 'CS', 'Cs' ],
+			[ 'cs', 'Cs' ],
 		];
 	}
 }
