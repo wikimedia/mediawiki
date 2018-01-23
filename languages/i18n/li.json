@@ -2865,6 +2865,7 @@
 	"autosumm-replace": "Teks vervange mit '$1'",
 	"autoredircomment": "Verwies door nao [[$1]]",
 	"autosumm-new": "Nuuj pazjena mit $1",
+	"autosumm-newblank": "haet 'n laeg pagina aangemaak",
 	"lag-warn-normal": "Verangeringe die nujer zeen es $1 {{PLURAL:$1|sekónd|sekónd}} waere mesjiens neet getuind in dees lies.",
 	"lag-warn-high": "Door 'ne hoege database-servertoeveur zeen verangeringe nujer es $1 {{PLURAL:$1|seconde|seconde}} mäögelik neet besjikbaar in de lies.",
 	"watchlistedit-normal-title": "Volglies bewirke",
