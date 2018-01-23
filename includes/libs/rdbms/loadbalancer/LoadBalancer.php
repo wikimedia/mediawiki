@@ -511,6 +511,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
+		$timeout = $timeout ?: $this->mWaitTimeout;
+
 		$oldPos = $this->mWaitForPos;
 		try {
 			$this->mWaitForPos = $pos;
@@ -519,7 +521,12 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				if ( $this->mLoads[$i] > 0 ) {
-					$ok = $this->doWait( $i, true, $timeout ) && $ok;
+					$start = microtime( true );
+					$ok = $this->doWait( $i, true, max( 1, (int)$timeout ) ) && $ok;
+					$timeout -= ( microtime( true ) - $start );
+					if ( $timeout <= 0 ) {
+						break; // timeout reached
+					}
 				}
 			}
 		} finally {
