@@ -1,4 +1,6 @@
 <?php
+
+use Mediawiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
@@ -339,6 +341,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
+			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 		];
 	}
 
