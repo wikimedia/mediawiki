@@ -59,7 +59,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
 
 		if ( isset( $prop['comment'] ) || isset( $prop['parsedcomment'] ) ) {
-			$commentStore = new CommentStore( 'pt_reason' );
+			$commentStore = CommentStore::newKey( 'pt_reason' );
 			$commentQuery = $commentStore->getJoin();
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );

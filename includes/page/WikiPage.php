@@ -2853,8 +2853,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$content = null;
 		}
 
-		$revCommentStore = new CommentStore( 'rev_comment' );
-		$arCommentStore = new CommentStore( 'ar_comment' );
+		$revCommentStore = CommentStore::newKey( 'rev_comment' );
+		$arCommentStore = CommentStore::newKey( 'ar_comment' );
 
 		$revQuery = Revision::getQueryInfo();
 		$bitfield = false;

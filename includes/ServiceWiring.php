@@ -520,6 +520,14 @@ return [
 		return new \MediaWiki\Http\HttpRequestFactory();
 	},
 
+	'CommentStoreFactory' => function ( MediaWikiServices $services ) {
+		global $wgContLang, $wgCommentTableSchemaMigrationStage;
+		return new CommentStoreFactory(
+			$wgContLang,
+			$wgCommentTableSchemaMigrationStage
+		);
+	}
+
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function
 	// in the MediaWikiServices class. The convenience getter should just call

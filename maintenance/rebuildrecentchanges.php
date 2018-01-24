@@ -80,8 +80,8 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = $this->getDB( DB_MASTER );
-		$revCommentStore = new CommentStore( 'rev_comment' );
-		$rcCommentStore = new CommentStore( 'rc_comment' );
+		$revCommentStore = CommentStore::newKey( 'rev_comment' );
+		$rcCommentStore = CommentStore::newKey( 'rc_comment' );
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
 			$this->cutoffFrom = wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
@@ -270,8 +270,8 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgLogTypes, $wgLogRestrictions;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$logCommentStore = new CommentStore( 'log_comment' );
-		$rcCommentStore = new CommentStore( 'rc_comment' );
+		$logCommentStore = CommentStore::newKey( 'log_comment' );
+		$rcCommentStore = CommentStore::newKey( 'rc_comment' );
 
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
