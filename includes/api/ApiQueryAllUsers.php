@@ -49,7 +49,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$db = $this->getDB();
-		$commentStore = new CommentStore( 'ipb_reason' );
+		$commentStore = CommentStore::getStore();
 
 		$prop = $params['prop'];
 		if ( !is_null( $prop ) ) {
@@ -264,7 +264,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$data['blockedby'] = $row->ipb_by_text;
 				$data['blockedbyid'] = (int)$row->ipb_by;
 				$data['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
-				$data['blockreason'] = $commentStore->getComment( $row )->text;
+				$data['blockreason'] = $commentStore->getComment( 'ipb_reason', $row )->text;
 				$data['blockexpiry'] = $row->ipb_expiry;
 			}
 			if ( $row->ipb_deleted ) {
