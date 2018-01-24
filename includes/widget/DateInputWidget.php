@@ -8,7 +8,7 @@ use DateTime;
  * Date input widget.
  *
  * @since 1.29
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
 class DateInputWidget extends \OOUI\TextInputWidget {
