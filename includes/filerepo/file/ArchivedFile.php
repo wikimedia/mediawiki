@@ -242,7 +242,7 @@ class ArchivedFile {
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
-		] + CommentStore::newKey( 'fa_description' )->getFields();
+		] + CommentStore::getStore()->getFields( 'fa_description' );
 	}
 
 	/**
@@ -255,7 +255,7 @@ class ArchivedFile {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::newKey( 'fa_description' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'fa_description' );
 		return [
 			'tables' => [ 'filearchive' ] + $commentQuery['tables'],
 			'fields' => [
@@ -302,9 +302,9 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = CommentStore::newKey( 'fa_description' )
+		$this->description = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text;
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
 		$this->user = $row->fa_user;
 		$this->user_text = $row->fa_user_text;
 		$this->timestamp = $row->fa_timestamp;

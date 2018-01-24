@@ -94,7 +94,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 			$flag = $attribs['rc_log_action'];
 		} else {
 			$comment = self::cleanupForIRC(
-				CommentStore::newKey( 'rc_comment' )->getComment( $attribs )->text
+				CommentStore::getStore()->getComment( 'rc_comment', $attribs )->text
 			);
 			$flag = '';
 			if ( !$attribs['rc_patrolled']
