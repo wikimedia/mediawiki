@@ -2106,6 +2106,7 @@ return [
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
 	],
 	'mediawiki.special.preferences' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => [
 			'resources/src/mediawiki.special/mediawiki.special.preferences.confirmClose.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.convertmessagebox.js',
@@ -2126,6 +2127,7 @@ return [
 		],
 	],
 	'mediawiki.special.preferences.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
 	],
 	'mediawiki.special.recentchanges' => [
