@@ -215,7 +215,7 @@ class LocalFile extends File {
 			'img_user_text',
 			'img_timestamp',
 			'img_sha1',
-		] + CommentStore::newKey( 'img_description' )->getFields();
+		] + CommentStore::getStore()->getFields( 'img_description' );
 	}
 
 	/**
@@ -230,7 +230,7 @@ class LocalFile extends File {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo( array $options = [] ) {
-		$commentQuery = CommentStore::newKey( 'img_description' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'img_description' );
 		$ret = [
 			'tables' => [ 'image' ] + $commentQuery['tables'],
 			'fields' => [
@@ -566,8 +566,8 @@ class LocalFile extends File {
 	function decodeRow( $row, $prefix = 'img_' ) {
 		$decoded = $this->unprefixRow( $row, $prefix );
 
-		$decoded['description'] = CommentStore::newKey( 'description' )
-			->getComment( (object)$decoded )->text;
+		$decoded['description'] = CommentStore::getStore()
+			->getComment( 'description', (object)$decoded )->text;
 
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
 
@@ -1424,9 +1424,9 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-		$commentStore = new CommentStore( 'img_description' );
+		$commentStore = CommentStore::getStore();
 		list( $commentFields, $commentCallback ) =
-			$commentStore->insertWithTempTable( $dbw, $comment );
+			$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
 		$dbw->insert( 'image',
 			[
 				'img_name' => $this->getName(),
@@ -1522,7 +1522,9 @@ class LocalFile extends File {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStore->insertWithTempTable( $dbw, $row->img_description );
+					list( , $callback ) = $commentStore->insertWithTempTable(
+						$dbw, 'img_description', $row->img_description
+					);
 					$callback( $row->img_name );
 				}
 			}
@@ -2403,10 +2405,7 @@ class LocalFileDeleteBatch {
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
-		$commentStoreFaReason = new CommentStore( 'fa_deleted_reason' );
+		$commentStore = CommentStore::getStore();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
@@ -2454,7 +2453,7 @@ class LocalFileDeleteBatch {
 
 			$fields += array_map(
 				[ $dbw, 'addQuotes' ],
-				$commentStoreFaReason->insert( $dbw, $this->reason )
+				$commentStore->insert( $dbw, 'fa_deleted_reason', $this->reason )
 			);
 
 			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
@@ -2484,7 +2483,7 @@ class LocalFileDeleteBatch {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStoreImgDesc->insertWithTempTable( $dbw, $row->img_description );
+					list( , $callback ) = $commentStore->insertWithTempTable( $dbw, 'img_description', $row->img_description );
 					$callback( $row->img_name );
 				}
 			}
@@ -2508,9 +2507,9 @@ class LocalFileDeleteBatch {
 			);
 			$rowsInsert = [];
 			if ( $res->numRows() ) {
-				$reason = $commentStoreFaReason->createComment( $dbw, $this->reason );
+				$reason = $commentStore->createComment( $dbw, 'fa_deleted_reason', $this->reason );
 				foreach ( $res as $row ) {
-					$comment = $commentStoreOiDesc->getComment( $row );
+					$comment = $commentStore->getComment( 'oi_description', $row );
 					$rowsInsert[] = [
 						// Deletion-specific fields
 						'fa_storage_group' => 'deleted',
@@ -2535,8 +2534,8 @@ class LocalFileDeleteBatch {
 						'fa_user_text' => $row->oi_user_text,
 						'fa_timestamp' => $row->oi_timestamp,
 						'fa_sha1' => $row->oi_sha1
-					] + $commentStoreFaReason->insert( $dbw, $reason )
-					+ $commentStoreFaDesc->insert( $dbw, $comment );
+					] + $commentStore->insert( $dbw, 'fa_deleted_reason', $reason )
+					+ $commentStore->insert( $dbw, 'fa_description', $comment );
 				}
 			}
 
@@ -2734,9 +2733,7 @@ class LocalFileRestoreBatch {
 
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
+		$commentStore = CommentStore::getStore();
 
 		$status = $this->file->repo->newGood();
 
@@ -2824,12 +2821,12 @@ class LocalFileRestoreBatch {
 				];
 			}
 
-			$comment = $commentStoreFaDesc->getComment( $row );
+			$comment = $commentStore->getComment( 'fa_description', $row );
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
 				list( $commentFields, $commentCallback ) =
-					$commentStoreImgDesc->insertWithTempTable( $dbw, $comment );
+					$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
@@ -2885,7 +2882,7 @@ class LocalFileRestoreBatch {
 					'oi_minor_mime' => $props['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
-				] + $commentStoreOiDesc->insert( $dbw, $comment );
+				] + $commentStore->insert( $dbw, 'oi_description', $comment );
 			}
 
 			$deleteIds[] = $row->fa_id;

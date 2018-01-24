@@ -360,7 +360,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		}
 
 		list( $commentFields, $commentCallback ) =
-			CommentStore::newKey( 'rev_comment' )->insertWithTempTable( $dbw, $comment );
+			CommentStore::getStore()->insertWithTempTable( $dbw, 'rev_comment', $comment );
 		$row += $commentFields;
 
 		if ( $this->contentHandlerUseDB ) {
@@ -1036,9 +1036,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$user = $this->getUserIdentityFromRowObject( $row, 'ar_' );
 
-		$comment = CommentStore::newKey( 'ar_comment' )
+		$comment = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), $row, true );
+			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'ar_comment', $row, true );
 
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
 		$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
@@ -1106,9 +1106,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$user = $this->getUserIdentityFromRowObject( $row );
 
-		$comment = CommentStore::newKey( 'rev_comment' )
+		$comment = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), $row, true );
+			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'rev_comment', $row, true );
 
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
 		$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
@@ -1581,7 +1581,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			'rev_sha1',
 		] );
 
-		$commentQuery = CommentStore::newKey( 'rev_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'rev_comment' );
 		$ret['tables'] = array_merge( $ret['tables'], $commentQuery['tables'] );
 		$ret['fields'] = array_merge( $ret['fields'], $commentQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $commentQuery['joins'] );
@@ -1638,7 +1638,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public function getArchiveQueryInfo() {
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'ar_comment' );
 
 		$ret = [
 			'tables' => array_merge( [ 'archive' ], $commentQuery['tables'] ),
