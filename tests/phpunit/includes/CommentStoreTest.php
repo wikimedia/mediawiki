@@ -20,11 +20,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	/**
 	 * Create a store for a particular stage
 	 * @param int $stage
-	 * @param string $key
 	 * @return CommentStore
 	 */
-	protected function makeStore( $stage, $key ) {
-		$store = new CommentStore( $key );
+	protected function makeStore( $stage ) {
+		global $wgContLang, $wgCommentTableSchemaMigrationStage;
+		$store = new CommentStore( $wgContLang, $wgCommentTableSchemaMigrationStage );
 		TestingAccessWrapper::newFromObject( $store )->stage = $stage;
 		return $store;
 	}
@@ -36,8 +36,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetFields( $stage, $key, $expect ) {
-		$store = $this->makeStore( $stage, $key );
-		$result = $store->getFields();
+		$store = $this->makeStore( $stage );
+		$result = $store->getFields( $key );
 		$this->assertEquals( $expect, $result );
 	}
 
@@ -111,8 +111,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetJoin( $stage, $key, $expect ) {
-		$store = $this->makeStore( $stage, $key );
-		$result = $store->getJoin();
+		$store = $this->makeStore( $stage );
+		$result = $store->getJoin( $key );
 		$this->assertEquals( $expect, $result );
 	}
 
@@ -343,13 +343,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
 			}
 
-			$wstore = $this->makeStore( $writeStage, $key );
+			$wstore = $this->makeStore( $writeStage );
 			$usesTemp = $key === 'rev_comment';
 
 			if ( $usesTemp ) {
-				list( $fields, $callback ) = $wstore->insertWithTempTable( $this->db, $comment, $data );
+				list( $fields, $callback ) = $wstore->insertWithTempTable(
+					$this->db, $key, $comment, $data
+				);
 			} else {
-				$fields = $wstore->insert( $this->db, $comment, $data );
+				$fields = $wstore->insert( $this->db, $key, $comment, $data );
 			}
 
 			if ( $writeStage <= MIGRATION_WRITE_BOTH ) {
@@ -370,16 +372,16 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			}
 
 			for ( $readStage = $readRange[0]; $readStage <= $readRange[1]; $readStage++ ) {
-				$rstore = $this->makeStore( $readStage, $key );
+				$rstore = $this->makeStore( $readStage );
 
 				$fieldRow = $this->db->selectRow(
 					$table,
-					$rstore->getFields(),
+					$rstore->getFields( $key ),
 					[ $pk => $id ],
 					__METHOD__
 				);
 
-				$queryInfo = $rstore->getJoin();
+				$queryInfo = $rstore->getJoin( $key );
 				$joinRow = $this->db->selectRow(
 					[ $table ] + $queryInfo['tables'],
 					$queryInfo['fields'],
@@ -391,12 +393,12 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 				$this->assertComment(
 					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
-					$rstore->getCommentLegacy( $this->db, $fieldRow ),
+					$rstore->getCommentLegacy( $this->db, $key, $fieldRow ),
 					"w=$writeStage, r=$readStage, from getFields()"
 				);
 				$this->assertComment(
 					$writeStage === MIGRATION_OLD || $readStage === MIGRATION_OLD ? $expectOld : $expect,
-					$rstore->getComment( $joinRow ),
+					$rstore->getComment( $key, $joinRow ),
 					"w=$writeStage, r=$readStage, from getJoin()"
 				);
 			}
@@ -521,23 +523,23 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		MediaWiki\suppressWarnings();
 		$reset = new ScopedCallback( 'MediaWiki\restoreWarnings' );
 
-		$store = $this->makeStore( MIGRATION_OLD, 'dummy' );
-		$res = $store->getComment( [ 'dummy' => 'comment' ] );
+		$store = $this->makeStore( MIGRATION_OLD );
+		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
 		$this->assertSame( '', $res->text );
-		$res = $store->getComment( [ 'dummy' => 'comment' ], true );
+		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 
-		$store = $this->makeStore( MIGRATION_NEW, 'dummy' );
+		$store = $this->makeStore( MIGRATION_NEW );
 		try {
-			$store->getComment( [ 'dummy' => 'comment' ] );
+			$store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame( '$row does not contain fields needed for comment dummy', $ex->getMessage() );
 		}
-		$res = $store->getComment( [ 'dummy' => 'comment' ], true );
+		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 		try {
-			$store->getComment( [ 'dummy_id' => 1 ] );
+			$store->getComment( 'dummy', [ 'dummy_id' => 1 ] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -547,19 +549,19 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			);
 		}
 
-		$store = $this->makeStore( MIGRATION_NEW, 'rev_comment' );
+		$store = $this->makeStore( MIGRATION_NEW );
 		try {
-			$store->getComment( [ 'rev_comment' => 'comment' ] );
+			$store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
 				'$row does not contain fields needed for comment rev_comment', $ex->getMessage()
 			);
 		}
-		$res = $store->getComment( [ 'rev_comment' => 'comment' ], true );
+		$res = $store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 		try {
-			$store->getComment( [ 'rev_comment_pk' => 1 ] );
+			$store->getComment( 'rev_comment', [ 'rev_comment_pk' => 1 ] );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -586,8 +588,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @expectedExceptionMessage Must use insertWithTempTable() for rev_comment
 	 */
 	public function testInsertWrong( $stage ) {
-		$store = $this->makeStore( $stage, 'rev_comment' );
-		$store->insert( $this->db, 'foo' );
+		$store = $this->makeStore( $stage );
+		$store->insert( $this->db, 'rev_comment', 'foo' );
 	}
 
 	/**
@@ -597,8 +599,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @expectedExceptionMessage Must use insert() for ipb_reason
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
-		$store = $this->makeStore( $stage, 'ipb_reason' );
-		$store->insertWithTempTable( $this->db, 'foo' );
+		$store = $this->makeStore( $stage );
+		$store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 	}
 
 	/**
@@ -610,8 +612,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$wrap->formerTempTables += [ 'ipb_reason' => '1.30' ];
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
-		$store = $this->makeStore( $stage, 'ipb_reason' );
-		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'foo' );
+		$store = $this->makeStore( $stage );
+		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 		$this->assertTrue( is_callable( $callback ) );
 	}
 
@@ -620,8 +622,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$truncated1 = str_repeat( '💣', 63 ) . '...';
 		$truncated2 = str_repeat( '💣', CommentStore::COMMENT_CHARACTER_LIMIT - 3 ) . '...';
 
-		$store = $this->makeStore( MIGRATION_WRITE_BOTH, 'ipb_reason' );
-		$fields = $store->insert( $this->db, $comment );
+		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$fields = $store->insert( $this->db, 'ipb_reason', $comment );
 		$this->assertSame( $truncated1, $fields['ipb_reason'] );
 		$stored = $this->db->selectField(
 			'comment', 'comment_text', [ 'comment_id' => $fields['ipb_reason_id'] ], __METHOD__
@@ -634,14 +636,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @expectedExceptionMessage Comment data is too long (65611 bytes, maximum is 65535)
 	 */
 	public function testInsertTooMuchData() {
-		$store = $this->makeStore( MIGRATION_WRITE_BOTH, 'ipb_reason' );
-		$store->insert( $this->db, 'foo', [
+		$store = $this->makeStore( MIGRATION_WRITE_BOTH );
+		$store->insert( $this->db, 'ipb_reason', 'foo', [
 			'long' => str_repeat( '💣', 16400 )
 		] );
 	}
 
 	public function testConstructor() {
-		$this->assertInstanceOf( CommentStore::class, CommentStore::newKey( 'dummy' ) );
+		$this->assertInstanceOf( CommentStore::class, CommentStore::getStore() );
 	}
 
 }
