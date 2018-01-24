@@ -49,7 +49,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$db = $this->getDB();
-		$commentStore = new CommentStore( 'ipb_reason' );
+		$commentStore = CommentStore::newKey( 'ipb_reason' );
 
 		$prop = $params['prop'];
 		if ( !is_null( $prop ) ) {

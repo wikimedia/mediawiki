@@ -85,7 +85,7 @@ class WatchedItemQueryService {
 
 	private function getCommentStore() {
 		if ( !$this->commentStore ) {
-			$this->commentStore = new CommentStore( 'rc_comment' );
+			$this->commentStore = CommentStore::newKey( 'rc_comment' );
 		}
 		return $this->commentStore;
 	}
