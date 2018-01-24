@@ -91,7 +91,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 
 			if ( $this->fld_comment || $this->fld_parsedcomment ) {
-				$this->commentStore = new CommentStore( 'rc_comment' );
+				$this->commentStore = CommentStore::newKey( 'rc_comment' );
 			}
 		}
 

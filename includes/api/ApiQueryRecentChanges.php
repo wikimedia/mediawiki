@@ -354,7 +354,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->token = $params['token'];
 
 		if ( $this->fld_comment || $this->fld_parsedcomment || $this->token ) {
-			$this->commentStore = new CommentStore( 'rc_comment' );
+			$this->commentStore = CommentStore::newKey( 'rc_comment' );
 			$commentQuery = $this->commentStore->getJoin();
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );

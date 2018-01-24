@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki;
 
+use CommentStoreFactory;
 use Config;
 use ConfigFactory;
 use CryptHKDF;
@@ -759,6 +760,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getHttpRequestFactory() {
 		return $this->getService( 'HttpRequestFactory' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return CommentStoreFactory
+	 */
+	public function getCommentStoreFactory() {
+		return $this->getService( 'CommentStoreFactory' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

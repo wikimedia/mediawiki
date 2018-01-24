@@ -44,7 +44,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$user = $this->getUser();
 		$db = $this->getDB();
-		$commentStore = new CommentStore( 'ar_comment' );
+		$commentStore = CommentStore::newKey( 'ar_comment' );
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
 		$fld_parentid = isset( $prop['parentid'] );
