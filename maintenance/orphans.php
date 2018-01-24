@@ -75,7 +75,7 @@ class Orphans extends Maintenance {
 	 */
 	private function checkOrphans( $fix ) {
 		$dbw = $this->getDB( DB_MASTER );
-		$commentStore = new CommentStore( 'rev_comment' );
+		$commentStore = CommentStore::newKey( 'rev_comment' );
 
 		if ( $fix ) {
 			$this->lockTables( $dbw );

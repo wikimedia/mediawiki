@@ -2735,7 +2735,7 @@ class Title implements LinkTarget {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$commentStore = new CommentStore( 'pt_reason' );
+			$commentStore = CommentStore::newKey( 'pt_reason' );
 			$commentQuery = $commentStore->getJoin();
 			$res = $dbr->select(
 				[ 'protected_titles' ] + $commentQuery['tables'],

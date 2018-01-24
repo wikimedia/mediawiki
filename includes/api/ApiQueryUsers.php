@@ -99,7 +99,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	public function execute() {
 		$db = $this->getDB();
-		$commentStore = new CommentStore( 'ipb_reason' );
+		$commentStore = CommentStore::newKey( 'ipb_reason' );
 
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );

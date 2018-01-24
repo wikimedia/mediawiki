@@ -45,7 +45,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
-		$this->commentStore = new CommentStore( 'log_comment' );
+		$this->commentStore = CommentStore::newKey( 'log_comment' );
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
 		$prop = array_flip( $params['prop'] );

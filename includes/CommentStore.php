@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -96,13 +97,12 @@ class CommentStore {
 	 *  field being fetched.
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to $wgContLang.
+	 * @param int $migrationStage One of the MIGRATION_* constants
 	 */
-	public function __construct( $key, Language $lang = null ) {
-		global $wgCommentTableSchemaMigrationStage, $wgContLang;
-
+	public function __construct( $key, Language $lang, $migrationStage ) {
 		$this->key = $key;
-		$this->stage = $wgCommentTableSchemaMigrationStage;
-		$this->lang = $lang ?: $wgContLang;
+		$this->stage = $migrationStage;
+		$this->lang = $lang;
 	}
 
 	/**
@@ -112,7 +112,9 @@ class CommentStore {
 	 * @return CommentStore
 	 */
 	public static function newKey( $key ) {
-		return new CommentStore( $key );
+		return MediaWikiServices::getInstance()
+			->getCommentStoreFactory()
+			->newForKey( $key );
 	}
 
 	/**

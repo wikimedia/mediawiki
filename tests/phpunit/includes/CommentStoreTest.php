@@ -24,7 +24,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @return CommentStore
 	 */
 	protected function makeStore( $stage, $key ) {
-		$store = new CommentStore( $key );
+		global $wgContLang, $wgCommentTableSchemaMigrationStage;
+		$store = new CommentStore( $key, $wgContLang, $wgCommentTableSchemaMigrationStage );
 		TestingAccessWrapper::newFromObject( $store )->stage = $stage;
 		return $store;
 	}

@@ -45,7 +45,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$this->commentStore = new CommentStore( 'rev_comment' );
+		$this->commentStore = CommentStore::newKey( 'rev_comment' );
 
 		$prop = array_flip( $this->params['prop'] );
 		$this->fld_ids = isset( $prop['ids'] );
