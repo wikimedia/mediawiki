@@ -55,8 +55,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
 
 		if ( isset( $prop['comment'] ) || isset( $prop['parsedcomment'] ) ) {
-			$commentStore = new CommentStore( 'pt_reason' );
-			$commentQuery = $commentStore->getJoin();
+			$commentStore = CommentStore::getStore();
+			$commentQuery = $commentStore->getJoin( 'pt_reason' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
@@ -130,12 +130,12 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['comment'] ) ) {
-					$vals['comment'] = $commentStore->getComment( $row )->text;
+					$vals['comment'] = $commentStore->getComment( 'pt_reason', $row )->text;
 				}
 
 				if ( isset( $prop['parsedcomment'] ) ) {
 					$vals['parsedcomment'] = Linker::formatComment(
-						$commentStore->getComment( $row )->text, $titles
+						$commentStore->getComment( 'pt_reason', $row )->text, $titles
 					);
 				}
 
