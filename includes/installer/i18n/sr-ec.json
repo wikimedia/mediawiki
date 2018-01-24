@@ -6,7 +6,8 @@
 			"Milicevic01",
 			"Aktron",
 			"Сербијана",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Acamicamacaraca"
 		]
 	},
 	"config-desc": "Инсталација за Медијавики",
@@ -84,8 +85,11 @@
 	"config-install-step-done": "готово",
 	"config-install-step-failed": "није успело",
 	"config-install-mainpage-exists": "Главна страна већ постоји, прескакање",
+	"config-download-localsettings": "Преузми <code>LocalSettings.php</code>",
 	"config-help": "помоћ",
 	"config-help-tooltip": "кликните да проширите",
+	"config-skins-screenshots": "„$1” (снимци екрана: $2)",
+	"config-screenshot": "снимак екрана",
 	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",
 	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
 }

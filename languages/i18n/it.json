@@ -1909,7 +1909,7 @@
 	"doubleredirects": "Redirect doppi",
 	"doubleredirectstext": "In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.\nCiascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione \"corretta\" alla quale dovrebbe puntare anche il primo redirect.\nI redirect <del>cancellati</del> sono stati corretti.",
 	"double-redirect-fixed-move": "[[$1]] è stata spostato.\nÈ stato automaticamente aggiornato e ora è un redirect a [[$2]].",
-	"double-redirect-fixed-maintenance": "Corretto automaticamente il doppio redirect da [[$1]] a [[$2]] nel lavoro di manutenzione.",
+	"double-redirect-fixed-maintenance": "Corretto automaticamente il doppio redirect da [[$1]] a [[$2]] nel lavoro di manutenzione",
 	"double-redirect-fixer": "Correttore di redirect",
 	"brokenredirects": "Redirect errati",
 	"brokenredirectstext": "I seguenti redirect puntano a pagine inesistenti:",

@@ -1917,7 +1917,7 @@
 	"doubleredirects": "双重重定向",
 	"doubleredirectstext": "本页面列出重定向至其他重定向页面的页面。每行含有第一及第二重定向的链接和第二重定向的目标（这通常是第一重定向应该指向的“实际”目标页面）。<del>带删除线的</del>条目已经被解决。",
 	"double-redirect-fixed-move": "[[$1]]已被移动。它已自动更新，并且现在重定向至[[$2]]。",
-	"double-redirect-fixed-maintenance": "在维护工作中自动修复双重重定向自[[$1]]至[[$2]]。",
+	"double-redirect-fixed-maintenance": "在维护工作中自动修复双重重定向自[[$1]]至[[$2]]",
 	"double-redirect-fixer": "重定向修复器",
 	"brokenredirects": "受损重定向",
 	"brokenredirectstext": "以下重定向链接至不存在的页面：",

@@ -1906,7 +1906,7 @@
 	"doubleredirects": "Dubbele doorverwijzingen",
 	"doubleredirectstext": "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.\nElke rij bevat koppelingen naar de eerste en de tweede doorverwijspagina en een koppeling naar de doelpagina van de tweede doorverwijspagina.\nMeestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou moeten doorverwijzen.\n<del>Doorgehaalde regels</del> geven aan dat het probleem al is opgelost.",
 	"double-redirect-fixed-move": "[[$1]] is verplaatst.\nHet is automatisch bijgewerkt en verwijst nu naar [[$2]].",
-	"double-redirect-fixed-maintenance": "Automatische dubbele doorverwijzing van [[$1]] naar [[$2]] herstellen in een onderhoudstaak.",
+	"double-redirect-fixed-maintenance": "Automatische dubbele doorverwijzing van [[$1]] naar [[$2]] herstellen in een onderhoudstaak",
 	"double-redirect-fixer": "Doorverwijzingen opschonen",
 	"brokenredirects": "Defecte doorverwijzingen",
 	"brokenredirectstext": "De onderstaande doorverwijzingen verwijzen naar niet-bestaande pagina's.",
