@@ -164,6 +164,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this corresponds to Revision::getTitle
 	 *
+	 * @note this method should be private, external use should be avoided!
+	 *
 	 * @param int|null $pageId
 	 * @param int|null $revId
 	 * @param int $queryFlags
@@ -171,23 +173,23 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @return Title
 	 * @throws RevisionAccessException
 	 */
-	private function getTitle( $pageId, $revId, $queryFlags = 0 ) {
+	public function getTitle( $pageId, $revId, $queryFlags = 0 ) {
 		if ( !$pageId && !$revId ) {
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
 
+		list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		$titleFlags = $dbMode == DB_MASTER ? Title::GAID_FOR_UPDATE : 0;
 		$title = null;
 
 		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
 		if ( $pageId !== null && $pageId > 0 && $this->wikiId === false ) {
 			// TODO: better foreign title handling (introduce TitleFactory)
-			$title = Title::newFromID( $pageId, $queryFlags );
+			$title = Title::newFromID( $pageId, $titleFlags );
 		}
 
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( !$title && $revId !== null && $revId > 0 ) {
-			list( $dbMode, $dbOptions, , ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-
 			$dbr = $this->getDbConnectionRef( $dbMode );
 			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
@@ -562,9 +564,13 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	/**
 	 * MCR migration note: this replaces Revision::isUnpatrolled
 	 *
+	 * @todo This is overly specific, so move or kill this method.
+	 *
+	 * @param RevisionRecord $rev
+	 *
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
-	public function isUnpatrolled( RevisionRecord $rev ) {
+	public function getRcIdIfUnpatrolled( RevisionRecord $rev ) {
 		$rc = $this->getRecentChange( $rev );
 		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == 0 ) {
 			return $rc->getAttribute( 'rc_id' );
@@ -683,7 +689,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		$content = null;
 		$blobData = null;
-		$blobFlags = '';
+		$blobFlags = null;
 
 		if ( is_object( $row ) ) {
 			// archive row
@@ -700,7 +706,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			if ( isset( $row->old_text ) ) {
 				// this happens when the text-table gets joined directly, in the pre-1.30 schema
 				$blobData = isset( $row->old_text ) ? strval( $row->old_text ) : null;
-				$blobFlags = isset( $row->old_flags ) ? strval( $row->old_flags ) : '';
+				// Check against selects that might have not included old_flags
+				if ( !property_exists( $row, 'old_flags' ) ) {
+					throw new InvalidArgumentException( 'old_flags was not set in $row' );
+				}
+				$blobFlags = ( $row->old_flags === null ) ? '' : $row->old_flags;
 			}
 
 			$mainSlotRow->slot_revision = intval( $row->rev_id );
@@ -729,7 +739,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$mainSlotRow->format_name = isset( $row['content_format'] )
 				? strval( $row['content_format'] ) : null;
 			$blobData = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
-			$blobFlags = isset( $row['flags'] ) ? trim( strval( $row['flags'] ) ) : '';
+			// XXX: If the flags field is not set then $blobFlags should be null so that no
+			// decoding will happen. An empty string will result in default decodings.
+			$blobFlags = isset( $row['flags'] ) ? trim( strval( $row['flags'] ) ) : null;
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
@@ -791,7 +803,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
-	 * @param string $blobFlags Flags indicating how $blobData needs to be processed
+	 * @param string|null $blobFlags Flags indicating how $blobData needs to be processed.
+	 *        Use null if no processing should happen. That is in constrast to the empty string,
+	 *        which causes the blob to be decoded according to the configured legacy encoding.
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
 	 *
@@ -801,23 +815,28 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private function loadSlotContent(
 		SlotRecord $slot,
 		$blobData = null,
-		$blobFlags = '',
+		$blobFlags = null,
 		$blobFormat = null,
 		$queryFlags = 0
 	) {
 		if ( $blobData !== null ) {
 			Assert::parameterType( 'string', $blobData, '$blobData' );
-			Assert::parameterType( 'string', $blobFlags, '$blobFlags' );
+			Assert::parameterType( 'string|null', $blobFlags, '$blobFlags' );
 
 			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
 
-			$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
-
-			if ( $data === false ) {
-				throw new RevisionAccessException(
-					"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
-				);
+			if ( $blobFlags === null ) {
+				// No blob flags, so use the blob verbatim.
+				$data = $blobData;
+			} else {
+				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
+				if ( $data === false ) {
+					throw new RevisionAccessException(
+						"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
+					);
+				}
 			}
+
 		} else {
 			$address = $slot->getAddress();
 			try {
@@ -952,7 +971,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionFromTimestamp( $title, $timestamp ) {
+	public function getRevisionByTimestamp( $title, $timestamp ) {
 		return $this->newRevisionFromConds(
 			[
 				'rev_timestamp' => $timestamp,
@@ -1476,10 +1495,20 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$storeWiki = $storeWiki ?: wfWikiID();
 		$dbWiki = $dbWiki ?: wfWikiID();
 
-		if ( $dbWiki !== $storeWiki ) {
-			throw new MWException( "RevisionStore for $storeWiki "
-				. "cannot be used with a DB connection for $dbWiki" );
+		if ( $dbWiki === $storeWiki ) {
+			return;
 		}
+
+		// HACK: counteract encoding imposed by DatabaseDomain
+		$storeWiki = str_replace( '?h', '-', $storeWiki );
+		$dbWiki = str_replace( '?h', '-', $dbWiki );
+
+		if ( $dbWiki === $storeWiki ) {
+			return;
+		}
+
+		throw new MWException( "RevisionStore for $storeWiki "
+			. "cannot be used with a DB connection for $dbWiki" );
 	}
 
 	/**
@@ -1645,6 +1674,21 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 *
 	 * MCR migration note: this replaces Revision::getParentLengths
 	 *
+	 * @param int[] $revIds
+	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
+	 *         of the corresponding revision.
+	 */
+	public function getRevisionSizes( array $revIds ) {
+		return $this->listRevisionSizes( $this->getDBConnection( DB_REPLICA ), $revIds );
+	}
+
+	/**
+	 * Do a batched query for the sizes of a set of revisions.
+	 *
+	 * MCR migration note: this replaces Revision::getParentLengths
+	 *
+	 * @deprecated use RevisionStore::getRevisionSizes instead.
+	 *
 	 * @param IDatabase $db
 	 * @param int[] $revIds
 	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
@@ -1678,11 +1722,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev ) {
-		$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( $title === null ) {
+			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+		}
 		$prev = $title->getPreviousRevisionID( $rev->getId() );
 		if ( $prev ) {
 			return $this->getRevisionByTitle( $title, $prev );
@@ -1696,11 +1743,14 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
+	 * @param Title $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev ) {
-		$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
+		if ( $title === null ) {
+			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
+		}
 		$next = $title->getNextRevisionID( $rev->getId() );
 		if ( $next ) {
 			return $this->getRevisionByTitle( $title, $next );

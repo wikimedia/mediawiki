@@ -520,6 +520,7 @@
 	"changepassword-success": "Nabago ang iyong password!",
 	"changepassword-throttled": "Masyadong madami ang kamakailan lamang mong pagsubok sa pag-login.\nMaghintay po muna ng $1 bago subukan uli.",
 	"botpasswords": "Mga password ng bot",
+	"botpasswords-label-appid": "Pangalan ng bot:",
 	"botpasswords-label-delete": "Burahin",
 	"botpasswords-label-resetpassword": "Itakdang-muli/baguhin ang hudyat (password)",
 	"botpasswords-label-grants-column": "Ipinagkaloob na",

@@ -5,8 +5,10 @@
  */
 class ResourceLoaderSkinModuleTest extends PHPUnit_Framework_TestCase {
 
-	// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+	use MediaWikiCoversValidator;
+
 	public static function provideGetStyles() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'parent' => [],
@@ -64,8 +66,8 @@ CSS
 				],
 			],
 		];
+		// phpcs:enable
 	}
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @dataProvider provideGetStyles

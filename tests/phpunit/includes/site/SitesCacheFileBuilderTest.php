@@ -29,6 +29,8 @@
  */
 class SitesCacheFileBuilderTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
 	}

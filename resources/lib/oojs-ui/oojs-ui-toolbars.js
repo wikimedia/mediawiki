@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.3
- * https://www.mediawiki.org/wiki/OOjs_UI
+ * OOUI v0.25.1
+ * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-28T23:28:05Z
+ * Date: 2018-01-17T01:47:15Z
  */
 ( function ( OO ) {
 
@@ -534,7 +534,7 @@ OO.ui.Toolbar.prototype.releaseTool = function ( tool ) {
 /**
  * Get accelerator label for tool.
  *
- * The OOjs UI library does not contain an accelerator system, but this is the hook for one. To
+ * The OOUI library does not contain an accelerator system, but this is the hook for one. To
  * use an accelerator system, subclass the toolbar and override this method, which is meant to return a label
  * that describes the accelerator keys for the tool passed (by symbolic name) to the method.
  *
@@ -560,8 +560,8 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  * {@link OO.ui.BarToolGroup BarToolGroup}, or {@link OO.ui.MenuToolGroup MenuToolGroup}), which determine how
  * the tool is displayed in the toolbar. See {@link OO.ui.Toolbar toolbars} for an example.
  *
- * For more information, please see the [OOjs UI documentation on MediaWiki][1].
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * For more information, please see the [OOUI documentation on MediaWiki][1].
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @abstract
  * @class
@@ -876,9 +876,9 @@ OO.ui.Tool.prototype.destroy = function () {
  * The options `exclude`, `promote`, and `demote` support the same formats.
  *
  * See {@link OO.ui.Toolbar toolbars} for a full example. For more information about toolbars in general,
- * please see the [OOjs UI documentation on MediaWiki][1].
+ * please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @abstract
  * @class
@@ -970,7 +970,7 @@ OO.ui.ToolGroup.static.titleTooltips = false;
 /**
  * Show acceleration labels in tooltips.
  *
- * Note: The OOjs UI library does not include an accelerator system, but does contain
+ * Note: The OOUI library does not include an accelerator system, but does contain
  * a hook for one. To use an accelerator system, subclass the {@link OO.ui.Toolbar toolbar} and
  * override the {@link OO.ui.Toolbar#getToolAccelerator getToolAccelerator} method, which is
  * meant to return a label that describes the accelerator keys for a given tool (e.g., 'Ctrl + M').
@@ -1237,9 +1237,9 @@ OO.ui.ToolGroup.prototype.destroy = function () {
  * and {@link OO.ui.ToolGroupTool ToolGroupTools}) must be registered with a tool factory. Tools are
  * registered by their symbolic name. See {@link OO.ui.Toolbar toolbars} for an example.
  *
- * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about toolbars in general, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @class
  * @extends OO.Factory
@@ -1379,9 +1379,9 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
  *
  * See {@link OO.ui.Toolbar toolbars} for an example.
  *
- * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about toolbars in general, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @class
  * @extends OO.Factory
@@ -1441,9 +1441,9 @@ OO.ui.ToolGroupFactory.static.getDefaultClasses = function () {
  *     toolFactory.register( HelpTool );
  *
  * For an example of a toolbar that contains a popup tool, see {@link OO.ui.Toolbar toolbars}. For more information about
- * toolbars in genreral, please see the [OOjs UI documentation on MediaWiki][1].
+ * toolbars in general, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @abstract
  * @class
@@ -1525,11 +1525,11 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
  *     };
  *     toolFactory.register( SettingsTool );
  *
- * For more information, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information, please see the [OOUI documentation on MediaWiki][1].
  *
  * Please note that this implementation is subject to change per [T74159] [2].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars#ToolGroupTool
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars#ToolGroupTool
  * [2]: https://phabricator.wikimedia.org/T74159
  *
  * @abstract
@@ -1716,9 +1716,9 @@ OO.ui.ToolGroupTool.prototype.createGroup = function ( group ) {
  *     toolbar.initialize();
  *
  * For more information about how to add tools to a bar tool group, please see {@link OO.ui.ToolGroup toolgroup}.
- * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about toolbars in general, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @class
  * @extends OO.ui.ToolGroup
@@ -2085,9 +2085,9 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     // Build the toolbar. This must be done after the toolbar has been appended to the document.
  *     toolbar.initialize();
  *
- * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about toolbars in general, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @class
  * @extends OO.ui.PopupToolGroup
@@ -2326,9 +2326,9 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     toolbar.emit( 'updateState' );
  *
  * For more information about how to add tools to a MenuToolGroup, please see {@link OO.ui.ToolGroup toolgroup}.
- * For more information about toolbars in general, please see the [OOjs UI documentation on MediaWiki] [1].
+ * For more information about toolbars in general, please see the [OOUI documentation on MediaWiki] [1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Toolbars
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Toolbars
  *
  * @class
  * @extends OO.ui.PopupToolGroup

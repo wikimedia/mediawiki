@@ -287,6 +287,18 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					],
 				],
 			],
+			[
+				'global is null before',
+				[
+					'NullGlobal' => null,
+				],
+				[
+					'NullGlobal' => 'not-null'
+				],
+				[
+					'NullGlobal' => null
+				],
+			],
 		];
 	}
 }

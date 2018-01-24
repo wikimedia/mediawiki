@@ -360,6 +360,7 @@ unset( $repo ); // no global pollution; destroy reference
 
 // Convert this deprecated setting to modern system
 if ( $wgExperimentalHtmlIds ) {
+	wfDeprecated( '$wgExperimentalHtmlIds', '1.30' );
 	$wgFragmentMode = [ 'html5-legacy', 'html5' ];
 }
 
@@ -370,9 +371,8 @@ if ( $wgRCFilterByAge ) {
 	// Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
 	sort( $wgRCLinkDays );
 
-	// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+	// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 	for ( $i = 0; $i < count( $wgRCLinkDays ); $i++ ) {
-		// @codingStandardsIgnoreEnd
 		if ( $wgRCLinkDays[$i] >= $rcMaxAgeDays ) {
 			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i + 1, false );
 			break;
@@ -737,19 +737,19 @@ if ( !$wgDBerrorLogTZ ) {
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
 // Set user IP/agent information for causal consistency purposes.
-// The cpPosTime cookie has no prefix and is set by MediaWiki::preOutputCommit().
-$cpPosTime = $wgRequest->getFloat( 'cpPosTime', $wgRequest->getCookie( 'cpPosTime', '' ) );
+// The cpPosIndex cookie has no prefix and is set by MediaWiki::preOutputCommit().
+$cpPosIndex = $wgRequest->getInt( 'cpPosIndex', (int)$wgRequest->getCookie( 'cpPosIndex', '' ) );
 MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'IPAddress' => $wgRequest->getIP(),
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
 	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
-	'ChronologyPositionTime' => $cpPosTime
+	'ChronologyPositionIndex' => $cpPosIndex
 ] );
 // Make sure that caching does not compromise the consistency improvements
-if ( $cpPosTime ) {
+if ( $cpPosIndex ) {
 	MediaWikiServices::getInstance()->getMainWANObjectCache()->useInterimHoldOffCaching( false );
 }
-unset( $cpPosTime );
+unset( $cpPosIndex );
 
 // Useful debug output
 if ( $wgCommandLineMode ) {

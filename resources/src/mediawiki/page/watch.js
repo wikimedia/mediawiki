@@ -79,7 +79,7 @@
 	 * @return {string} The extracted action, defaults to 'view'
 	 */
 	function mwUriGetAction( url ) {
-		var action, actionPaths, key, i, m, parts;
+		var action, actionPaths, key, m, parts;
 
 		// TODO: Does MediaWiki give action path or query param
 		// precedence? If the former, move this to the bottom
@@ -92,9 +92,7 @@
 		for ( key in actionPaths ) {
 			if ( actionPaths.hasOwnProperty( key ) ) {
 				parts = actionPaths[ key ].split( '$1' );
-				for ( i = 0; i < parts.length; i++ ) {
-					parts[ i ] = mw.RegExp.escape( parts[ i ] );
-				}
+				parts = parts.map( mw.RegExp.escape );
 				m = new RegExp( parts.join( '(.+)' ) ).exec( url );
 				if ( m && m[ 1 ] ) {
 					return key;

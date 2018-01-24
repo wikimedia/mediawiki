@@ -37,7 +37,7 @@ class ImportTest extends MediaWikiLangTestCase {
 	}
 
 	public function getUnknownTagsXML() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				<<< EOF
@@ -71,7 +71,7 @@ EOF
 				'TestImportPage'
 			]
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -102,7 +102,7 @@ EOF
 	}
 
 	public function getRedirectXML() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				<<< EOF
@@ -157,7 +157,7 @@ EOF
 				null
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -185,7 +185,7 @@ EOF
 	}
 
 	public function getSiteInfoXML() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				<<< EOF
@@ -217,7 +217,7 @@ EOF
 				]
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -248,7 +248,7 @@ EOF
 
 		$n = ( $assign ? 1 : 0 ) + ( $create ? 2 : 0 );
 
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		$source = $this->getDataSource( <<<EOF
 <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <page>
@@ -283,7 +283,7 @@ EOF
 </mediawiki>
 EOF
 		);
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 
 		$importer = new WikiImporter( $source, MediaWikiServices::getInstance()->getMainConfig() );
 		$importer->setUsernamePrefix( 'Xxx', $assign );

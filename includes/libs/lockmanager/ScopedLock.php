@@ -70,7 +70,7 @@ class ScopedLock {
 	public static function factory(
 		LockManager $manager, array $paths, $type, StatusValue $status, $timeout = 0
 	) {
-		$pathsByType = is_integer( $type ) ? [ $type => $paths ] : $paths;
+		$pathsByType = is_int( $type ) ? [ $type => $paths ] : $paths;
 		$lockStatus = $manager->lockByType( $pathsByType, $timeout );
 		$status->merge( $lockStatus );
 		if ( $lockStatus->isOK() ) {

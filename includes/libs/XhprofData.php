@@ -18,7 +18,7 @@
  * @file
  */
 
-use RunningStat\RunningStat;
+use Wikimedia\RunningStat;
 
 /**
  * Convenience class for working with XHProf profiling data

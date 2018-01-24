@@ -114,5 +114,5 @@ class GenerateCommonPassword extends Maintenance {
 	}
 }
 
-$maintClass = "GenerateCommonPassword";
+$maintClass = GenerateCommonPassword::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

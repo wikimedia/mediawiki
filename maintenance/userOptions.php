@@ -107,18 +107,16 @@ The new option is NOT validated.' );
 
 				$userValue = $user->getOption( $option );
 				if ( $userValue <> $defaultOptions[$option] ) {
-					// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 					@$ret[$option][$userValue]++;
-					// @codingStandardsIgnoreEnd
 				}
 			} else {
 
 				foreach ( $defaultOptions as $name => $defaultValue ) {
 					$userValue = $user->getOption( $name );
 					if ( $userValue != $defaultValue ) {
-						// @codingStandardsIgnoreStart Ignore silencing errors is discouraged warning
+						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 						@$ret[$name][$userValue]++;
-						// @codingStandardsIgnoreEnd
 					}
 				}
 			}
@@ -201,5 +199,5 @@ WARN
 	}
 }
 
-$maintClass = 'UserOptionsMaintenance';
+$maintClass = UserOptionsMaintenance::class;
 require RUN_MAINTENANCE_IF_MAIN;

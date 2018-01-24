@@ -24,6 +24,8 @@
 
 namespace MediaWiki\EditPage;
 
+use MWNamespace;
+use Sanitizer;
 use Title;
 use User;
 
@@ -48,6 +50,47 @@ class TextboxBuilder {
 			return $wikitext;
 		}
 		return $wikitext;
+	}
+
+	/**
+	 * @param string[] $classes
+	 * @param mixed[] $attribs
+	 * @return mixed[]
+	 */
+	public function mergeClassesIntoAttributes( array $classes, array $attribs ) {
+		if ( !count( $classes ) ) {
+			return $attribs;
+		}
+
+		return Sanitizer::mergeAttributes(
+			$attribs,
+			[ 'class' => implode( ' ', $classes ) ]
+		);
+	}
+
+	/**
+	 * @param Title $title
+	 * @return string[]
+	 */
+	public function getTextboxProtectionCSSClasses( Title $title ) {
+		$classes = []; // Textarea CSS
+		if ( $title->isProtected( 'edit' ) &&
+			MWNamespace::getRestrictionLevels( $title->getNamespace() ) !== [ '' ]
+		) {
+			# Is the title semi-protected?
+			if ( $title->isSemiProtected() ) {
+				$classes[] = 'mw-textarea-sprotected';
+			} else {
+				# Then it must be protected based on static groups (regular)
+				$classes[] = 'mw-textarea-protected';
+			}
+			# Is the title cascade-protected?
+			if ( $title->isCascadeProtected() ) {
+				$classes[] = 'mw-textarea-cprotected';
+			}
+		}
+
+		return $classes;
 	}
 
 	/**

@@ -2,10 +2,7 @@
 
 /**
  * @covers PageDataRequestHandler
- *
  * @group PageData
- *
- * @license GPL-2.0+
  */
 class PageDataRequestHandlerTest extends \MediaWikiTestCase {
 

@@ -121,7 +121,7 @@ class MWExceptionHandler {
 		self::handleException( $e );
 
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
-		if ( PHP_SAPI === 'cli' ) {
+		if ( wfIsCLI() ) {
 			register_shutdown_function(
 				function () {
 					exit( 255 );
@@ -279,7 +279,7 @@ class MWExceptionHandler {
 		// HHVM: Class undefined: foo
 		// PHP5: Class 'foo' not found
 		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $msg ) ) {
-			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
+			// phpcs:disable Generic.Files.LineLength
 			$msg = <<<TXT
 {$msg}
 
@@ -287,7 +287,7 @@ MediaWiki or an installed extension requires this class but it is not embedded d
 
 Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
 TXT;
-			// @codingStandardsIgnoreEnd
+			// phpcs:enable
 		}
 
 		// We can't just create an exception and log it as it is likely that

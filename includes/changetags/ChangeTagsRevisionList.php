@@ -80,9 +80,8 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 	 * @return Status
 	 */
 	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params, $reason, $user ) {
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $this->reset(); $this->current(); $this->next() ) {
-			// @codingStandardsIgnoreEnd
 			$item = $this->current();
 			$status = ChangeTags::updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
 				null, $item->getId(), null, $params, $reason, $user );

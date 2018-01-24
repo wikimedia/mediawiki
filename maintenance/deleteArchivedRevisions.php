@@ -61,5 +61,5 @@ class DeleteArchivedRevisions extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteArchivedRevisions";
+$maintClass = DeleteArchivedRevisions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

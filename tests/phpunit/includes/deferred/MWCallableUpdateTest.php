@@ -5,6 +5,8 @@
  */
 class MWCallableUpdateTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function testDoUpdate() {
 		$ran = 0;
 		$update = new MWCallableUpdate( function () use ( &$ran ) {

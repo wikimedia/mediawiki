@@ -476,7 +476,7 @@
 		this.controller.toggleFilterSelect( item.model.getName() );
 
 		// Select the tag if it exists, or reset selection otherwise
-		this.selectTag( this.getItemFromData( item.model.getName() ) );
+		this.selectTag( this.findItemFromData( item.model.getName() ) );
 
 		this.focus();
 	};

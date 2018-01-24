@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected static function expandVariables( $text ) {
 		return strtr( $text, [
 			'{blankVer}' => ResourceLoaderTestCase::BLANK_VERSION
@@ -205,7 +207,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			'test.exempt' => 'ready',
 		] );
 
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
@@ -217,7 +219,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
 		$this->assertEquals( $expected, $client->getHeadHtml() );
@@ -248,8 +250,8 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideMakeLoad() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
-			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			[
 				'context' => [],
 				'modules' => [ 'test.unknown' ],
@@ -347,8 +349,8 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 					. '<style>.orderingC{}.orderingD{}</style>' . "\n"
 					. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.ordering.e&amp;only=styles&amp;skin=fallback"/>'
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**

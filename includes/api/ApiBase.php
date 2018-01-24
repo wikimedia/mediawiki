@@ -155,6 +155,7 @@ abstract class ApiBase extends ContextSource {
 	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
 	 * mapping those values to $msg for ApiBase::makeMessage(). Any value not
 	 * having a mapping will use apihelp-{$path}-paramvalue-{$param}-{$value}.
+	 * Specify an empty array to use the default message key for all values.
 	 * @since 1.25
 	 */
 	const PARAM_HELP_MSG_PER_VALUE = 14;
@@ -1029,7 +1030,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $paramName Parameter name
 	 * @param array|mixed $paramSettings Default value or an array of settings
 	 *  using PARAM_* constants.
-	 * @param bool $parseLimit Parse limit?
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {

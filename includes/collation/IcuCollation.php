@@ -492,7 +492,6 @@ class IcuCollation extends Collation {
 	}
 
 	/**
-	 * @param string $index
 	 * @return string
 	 * @since 1.16.3
 	 */

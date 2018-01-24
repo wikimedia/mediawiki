@@ -168,6 +168,6 @@ class CommandLineInstaller extends Maintenance {
 	}
 }
 
-$maintClass = 'CommandLineInstaller';
+$maintClass = CommandLineInstaller::class;
 
 require_once RUN_MAINTENANCE_IF_MAIN;

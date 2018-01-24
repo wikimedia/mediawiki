@@ -620,6 +620,16 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Revision::newNullRevision
+	 */
+	public function testNewNullRevision_badPage() {
+		$dbw = wfGetDB( DB_MASTER );
+		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false );
+
+		$this->assertNull( $rev );
+	}
+
+	/**
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn() {
@@ -1362,6 +1372,24 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$cachedRow = $cache->get( $key );
 		$this->assertNotFalse( $cachedRow );
 		$this->assertEquals( $rev->getId(), $cachedRow->rev_id );
+	}
+
+	public function testNewKnownCurrent_withPageId() {
+		$db = wfGetDB( DB_MASTER );
+
+		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$rev = $this->testPage->getRevision();
+
+		$pageId = $this->testPage->getId();
+
+		$newRev = Revision::newKnownCurrent( $db, $pageId, $rev->getId() );
+		$this->assertRevEquals( $rev, $newRev );
+	}
+
+	public function testNewKnownCurrent_returnsFalseWhenTitleDoesntExist() {
+		$db = wfGetDB( DB_MASTER );
+
+		$this->assertFalse( Revision::newKnownCurrent( $db, 0 ) );
 	}
 
 	public function provideUserCanBitfield() {

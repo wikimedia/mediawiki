@@ -1,5 +1,5 @@
 <?php
-// @codingStandardsIgnoreFile It's an external lib and it isn't. Let's not bother.
+// phpcs:ignoreFile -- It's an external lib and it isn't. Let's not bother.
 /**
  * Memcached client for PHP.
  *
@@ -363,7 +363,7 @@ class MemcachedClient {
 	/**
 	 * Changes the TTL on a key from the server to $time
 	 *
-	 * @param string $key Key
+	 * @param string $key
 	 * @param int $time TTL in seconds
 	 *
 	 * @return bool True on success, false on failure

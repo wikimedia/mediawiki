@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Matthew Flaschen
  */
 
@@ -223,8 +222,7 @@ abstract class ChangesListFilterGroup {
 	 * (not filtered out), even for the hide-based filters.  So e.g. conflicting with
 	 * 'hideanons' means there is a conflict if only anonymous users are *shown*.
 	 *
-	 * @param ChangesListFilterGroup|ChangesListFilter $other Other
-	 *  ChangesListFilterGroup or ChangesListFilter
+	 * @param ChangesListFilterGroup|ChangesListFilter $other
 	 * @param string $globalKey i18n key for top-level conflict message
 	 * @param string $forwardKey i18n key for conflict message in this
 	 *  direction (when in UI context of $this object)
@@ -255,8 +253,7 @@ abstract class ChangesListFilterGroup {
 	 *
 	 * Internal use ONLY.
 	 *
-	 * @param ChangesListFilterGroup|ChangesListFilter $other Other
-	 *  ChangesListFilterGroup or ChangesListFilter
+	 * @param ChangesListFilterGroup|ChangesListFilter $other
 	 * @param string $globalDescription i18n key for top-level conflict message
 	 * @param string $contextDescription i18n key for conflict message in this
 	 *  direction (when in UI context of $this object)

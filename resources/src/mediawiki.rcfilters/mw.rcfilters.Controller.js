@@ -12,6 +12,9 @@
 	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
 	 * @cfg {string} daysPreferenceName Preference name for the days filter
 	 * @cfg {string} limitPreferenceName Preference name for the limit filter
+	 * @cfg {boolean} [normalizeTarget] Dictates whether or not to go through the
+	 *  title normalization to separate title subpage/parts into the target= url
+	 *  parameter
 	 */
 	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
@@ -20,6 +23,7 @@
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
 		this.daysPreferenceName = config.daysPreferenceName;
 		this.limitPreferenceName = config.limitPreferenceName;
+		this.normalizeTarget = !!config.normalizeTarget;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -213,7 +217,8 @@
 		this.filtersModel.initializeFilters( filterStructure, views );
 
 		this.uriProcessor = new mw.rcfilters.UriProcessor(
-			this.filtersModel
+			this.filtersModel,
+			{ normalizeTarget: this.normalizeTarget }
 		);
 
 		if ( !mw.user.isAnon() ) {

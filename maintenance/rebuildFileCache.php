@@ -179,5 +179,5 @@ class RebuildFileCache extends Maintenance {
 	}
 }
 
-$maintClass = "RebuildFileCache";
+$maintClass = RebuildFileCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

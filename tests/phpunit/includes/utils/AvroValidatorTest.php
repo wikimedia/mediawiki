@@ -9,7 +9,13 @@
  * dataprovider.
  */
 
+/**
+ * @covers AvroValidator
+ */
 class AvroValidatorTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	public function setUp() {
 		if ( !class_exists( 'AvroSchema' ) ) {
 			$this->markTestSkipped( 'Avro is required to run the AvroValidatorTest' );

@@ -26,7 +26,7 @@ class BlockLevelPass {
 	private $DTopen = false;
 	private $inPre = false;
 	private $lastSection = '';
-	private $linestart;
+	private $lineStart;
 	private $text;
 
 	# State constants for the definition list colon extraction

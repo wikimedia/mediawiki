@@ -135,7 +135,7 @@ class ChangeTags {
 	 * exists, provided it is not disabled. If the message is disabled,
 	 * we consider the tag hidden, and return false.
 	 *
-	 * @param string $tag Tag
+	 * @param string $tag
 	 * @param IContextSource $context
 	 * @return string|bool Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
@@ -162,7 +162,7 @@ class ChangeTags {
 	 * or if message is disabled, returns false. Otherwise, returns the message object
 	 * for the long description.
 	 *
-	 * @param string $tag Tag
+	 * @param string $tag
 	 * @param IContextSource $context
 	 * @return Message|bool Message object of the tag long description or false if
 	 *  there is no description.

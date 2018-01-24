@@ -11,9 +11,6 @@
 			"color": "#36c",
 			"global": true
 		},
-		"constructive": {
-			"color": "#36c"
-		},
 		"destructive": {
 			"color": "#d33"
 		},
@@ -22,25 +19,22 @@
 		}
 	},
 	"images": {
-		"add": { "file": "images/icons/add.svg", "variants": [ "constructive", "progressive" ] },
+		"add": { "file": "images/icons/add.svg" },
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"browser": { "file": {
 			"ltr": "images/icons/browser-ltr.svg",
 			"rtl": "images/icons/browser-rtl.svg"
 		} },
 		"cancel": { "file": "images/icons/cancel.svg", "variants": [ "destructive" ] },
-		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
+		"check": { "file": "images/icons/check.svg", "variants": [ "destructive" ] },
 		"clear": { "file": "images/icons/clear.svg" },
 		"clock": { "file": "images/icons/clock.svg" },
 		"close": { "file": "images/icons/close.svg" },
 		"ellipsis": { "file": "images/icons/ellipsis.svg" },
-		"feedback": {
-			"file": {
-				"ltr": "images/icons/feedback-ltr.svg",
-				"rtl": "images/icons/feedback-rtl.svg"
-			},
-			"variants": [ "progressive" ]
-		},
+		"feedback": { "file": {
+			"ltr": "images/icons/feedback-ltr.svg",
+			"rtl": "images/icons/feedback-rtl.svg"
+		} },
 		"funnel": { "file": {
 			"ltr": "images/icons/funnel-ltr.svg",
 			"rtl": "images/icons/funnel-rtl.svg"
@@ -61,6 +55,7 @@
 			"ltr": "images/icons/keyboard-ltr.svg",
 			"rtl": "images/icons/keyboard-rtl.svg"
 		} },
+		"lightbulb": { "file": "images/icons/lightbulb.svg" },
 		"logOut": { "file": {
 			"ltr": "images/icons/logOut-ltr.svg",
 			"rtl": "images/icons/logOut-rtl.svg"
@@ -83,12 +78,6 @@
 			}
 		},
 		"settings": { "file": "images/icons/settings.svg" },
-		"subtract": { "file": "images/icons/subtract.svg" },
-		"watchlist": { "file": {
-			"ltr": "images/icons/watchlist-ltr.svg",
-			"rtl": "images/icons/watchlist-rtl.svg"
-			},
-			"deprecated": "This will be removed in v0.24.0."
-		}
+		"subtract": { "file": "images/icons/subtract.svg" }
 	}
 }

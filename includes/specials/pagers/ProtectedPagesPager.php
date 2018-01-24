@@ -19,12 +19,10 @@
  * @ingroup Pager
  */
 
-use \MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkRenderer;
 
-/**
- * @todo document
- */
 class ProtectedPagesPager extends TablePager {
+
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 

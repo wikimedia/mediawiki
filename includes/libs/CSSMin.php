@@ -29,8 +29,6 @@
  */
 class CSSMin {
 
-	/* Constants */
-
 	/** @var string Strip marker for comments. **/
 	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
 
@@ -41,8 +39,6 @@ class CSSMin {
 
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
-
-	/* Protected Static Members */
 
 	/** @var array List of common image files extensions and MIME-types */
 	protected static $mimeTypes = [
@@ -56,8 +52,6 @@ class CSSMin {
 		'xbm' => 'image/x-xbitmap',
 		'svg' => 'image/svg+xml',
 	];
-
-	/* Static Methods */
 
 	/**
 	 * Get a list of local files referenced in a stylesheet (includes non-existent files).
@@ -138,6 +132,9 @@ class CSSMin {
 	 */
 	public static function encodeStringAsDataURI( $contents, $type, $ie8Compat = true ) {
 		// Try #1: Non-encoded data URI
+
+		// Remove XML declaration, it's not needed with data URI usage
+		$contents = preg_replace( "/<\\?xml.*?\\?>/", '', $contents );
 		// The regular expression matches ASCII whitespace and printable characters.
 		if ( preg_match( '/^[\r\n\t\x20-\x7e]+$/', $contents ) ) {
 			// Do not base64-encode non-binary files (sane SVGs).
@@ -149,7 +146,15 @@ class CSSMin {
 				'%2F' => '/', // Unencode slashes
 				'%3A' => ':', // Unencode colons
 				'%3D' => '=', // Unencode equals signs
+				'%0A' => ' ', // Change newlines to spaces
+				'%0D' => ' ', // Change carriage returns to spaces
+				'%09' => ' ', // Change tabs to spaces
 			] );
+			// Consolidate runs of multiple spaces in a row
+			$encoded = preg_replace( '/ {2,}/', ' ', $encoded );
+			// Remove leading and trailing spaces
+			$encoded = preg_replace( '/^ | $/', '', $encoded );
+
 			$uri = 'data:' . $type . ',' . $encoded;
 			if ( !$ie8Compat || strlen( $uri ) < self::DATA_URI_SIZE_LIMIT ) {
 				return $uri;

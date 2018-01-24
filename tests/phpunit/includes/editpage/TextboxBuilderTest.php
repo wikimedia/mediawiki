@@ -86,4 +86,125 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 		// classes ok when nothing to be merged
 		$this->assertSame( 'mw-editfont-monospace', $attribs3['class'] );
 	}
+
+	public function provideMergeClassesIntoAttributes() {
+		return [
+			[
+				[],
+				[],
+				[],
+			],
+			[
+				[ 'mw-new-classname' ],
+				[],
+				[ 'class' => 'mw-new-classname' ],
+			],
+			[
+				[],
+				[ 'title' => 'My Title' ],
+				[ 'title' => 'My Title' ],
+			],
+			[
+				[ 'mw-new-classname' ],
+				[ 'title' => 'My Title' ],
+				[ 'title' => 'My Title', 'class' => 'mw-new-classname' ],
+			],
+			[
+				[ 'mw-new-classname' ],
+				[ 'class' => 'mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname mw-new-classname' ],
+			],
+			[
+				[ 'mw-new-classname', 'mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname' ],
+				[ 'class' => 'mw-existing-classname mw-new-classname' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMergeClassesIntoAttributes
+	 */
+	public function testMergeClassesIntoAttributes( $inputClasses, $inputAttributes, $expected ) {
+		$builder = new TextboxBuilder();
+		$this->assertSame(
+			$expected,
+			$builder->mergeClassesIntoAttributes( $inputClasses, $inputAttributes )
+		);
+	}
+
+	public function provideGetTextboxProtectionCSSClasses() {
+		return [
+			[
+				[ '' ],
+				[ 'isProtected' ],
+				[],
+			],
+			[
+				true,
+				[],
+				[],
+			],
+			[
+				true,
+				[ 'isProtected' ],
+				[ 'mw-textarea-protected' ]
+			],
+			[
+				true,
+				[ 'isProtected', 'isSemiProtected' ],
+				[ 'mw-textarea-sprotected' ],
+			],
+			[
+				true,
+				[ 'isProtected', 'isCascadeProtected' ],
+				[ 'mw-textarea-protected', 'mw-textarea-cprotected' ],
+			],
+			[
+				true,
+				[ 'isProtected', 'isCascadeProtected', 'isSemiProtected' ],
+				[ 'mw-textarea-sprotected', 'mw-textarea-cprotected' ],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetTextboxProtectionCSSClasses
+	 */
+	public function testGetTextboxProtectionCSSClasses(
+		$restrictionLevels,
+		$protectionModes,
+		$expected
+	) {
+		$this->setMwGlobals( [
+			// set to trick MWNamespace::getRestrictionLevels
+			'wgRestrictionLevels' => $restrictionLevels
+		] );
+
+		$builder = new TextboxBuilder();
+		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses(
+			$this->mockProtectedTitle( $protectionModes )
+		) );
+	}
+
+	/**
+	 * @return Title
+	 */
+	private function mockProtectedTitle( $methodsToReturnTrue ) {
+		$title = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$title->expects( $this->any() )
+			->method( 'getNamespace' )
+			->will( $this->returnValue( 1 ) );
+
+		foreach ( $methodsToReturnTrue as $method ) {
+			$title->expects( $this->any() )
+				->method( $method )
+				->will( $this->returnValue( true ) );
+		}
+
+		return $title;
+	}
 }

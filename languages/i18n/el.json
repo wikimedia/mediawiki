@@ -55,7 +55,8 @@
 			"Ftsalamp",
 			"Kostas20142",
 			"Nikosgranturismogt",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -1484,7 +1485,7 @@
 	"recentchangeslinked-feed": "Σχετικές αλλαγές",
 	"recentchangeslinked-toolbox": "Σχετικές αλλαγές",
 	"recentchangeslinked-title": "Αλλαγές σχετικές με το «$1»",
-	"recentchangeslinked-summary": "Αυτός είναι ένα κατάλογος αλλαγών που έγιναν πρόσφατα σε σελίδες που συνδέονται από μια καθορισμένη σελίδα (ή σε μέλη μιας καθορισμένης κατηγορίας).\nΣελίδες που υπάρχουν στη [[Special:Watchlist|λίστα παρακολούθησής]] σας είναι '''έντονες'''.",
+	"recentchangeslinked-summary": "Εισαγάγετε ένα όνομα σελίδας για να δείτε τις αλλαγές σε σελίδες που συνδέονται ή από αυτή τη σελίδα. Για να δείτε τα μέλη μιας κατηγορίας, εισαγάγετε Κατηγορία:Όνομα κατηγορίας.)\nΑλλαγές σε σελίδες στην [[Special:Watchlist|λίστα παρακολούθησής]] σας είναι '''έντονες'''.",
 	"recentchangeslinked-page": "Όνομα σελίδας:",
 	"recentchangeslinked-to": "Εμφάνιση αλλαγών σε σελίδες συνδεδεμένες με την δεδομένη σελίδα αντί αυτής",
 	"recentchanges-page-added-to-category": "Η σελίδα [[:$1]] προστέθηκε στην κατηγορία",
@@ -1673,7 +1674,7 @@
 	"uploadstash-bad-path-unrecognized-thumb-name": "Nom feuilleté non classifié.",
 	"uploadstash-bad-path-no-handler": "Δεν βρέθηκε χειριστής για την αντιγραφή του φακέλλου",
 	"uploadstash-bad-path-bad-format": "Ο κωδικός ''$1' δεν έχει τον κατάλληλο τύπο.",
-	"uploadstash-file-not-found": "Le code ''$1'' ñ'a pas été trouvé en planque",
+	"uploadstash-file-not-found": "",
 	"uploadstash-file-not-found-no-thumb": "Δεν μπόρεσε να αποκτήσει το ''thumbnail''.",
 	"uploadstash-file-not-found-no-local-path": "Δεν υπάρχει τρόπος τοπικά για το κλιμακούμενο αντικείμενο",
 	"uploadstash-file-not-found-no-object": "Δεν μπόρεσε να δημιουργήσει τοπικό φάκελλο ''thumbnail''.",

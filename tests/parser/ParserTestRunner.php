@@ -1151,6 +1151,8 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	private function listTables() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
@@ -1159,6 +1161,13 @@ class ParserTestRunner {
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category'
 		];
+
+		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			// The new tables for comments are in use
+			$tables[] = 'comment';
+			$tables[] = 'revision_comment_temp';
+			$tables[] = 'image_comment_temp';
+		}
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite', 'oracle' ] ) ) {
 			array_push( $tables, 'searchindex' );

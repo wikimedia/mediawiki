@@ -3,7 +3,13 @@
 use Wikimedia\Rdbms\TransactionProfiler;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @covers \Wikimedia\Rdbms\TransactionProfiler
+ */
 class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	public function testAffected() {
 		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
 		$logger->expects( $this->exactly( 3 ) )->method( 'info' );

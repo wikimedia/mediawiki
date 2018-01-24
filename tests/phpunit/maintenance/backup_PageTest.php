@@ -1,4 +1,13 @@
 <?php
+
+namespace MediaWiki\Tests\Maintenance;
+
+use DumpBackup;
+use Language;
+use Title;
+use WikiExporter;
+use WikiPage;
+
 /**
  * Tests for page dumps of BackupDumper
  *
@@ -6,7 +15,6 @@
  * @group Dump
  * @covers BackupDumper
  */
-
 class BackupDumperPageTest extends DumpTestCase {
 
 	// We'll add several pages, revision and texts. The following variables hold the

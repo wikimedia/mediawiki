@@ -2,13 +2,13 @@
 
 /**
  * @covers LanguageCode
- *
  * @group Language
  *
- * @license GPL-2.0+
  * @author Thiemo Kreuz
  */
 class LanguageCodeTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
 
 	public function testConstructor() {
 		$instance = new LanguageCode();

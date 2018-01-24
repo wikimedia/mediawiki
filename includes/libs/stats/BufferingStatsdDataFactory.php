@@ -99,27 +99,22 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		return $this->buffer;
 	}
 
-	/**
-	 * Check whether this data factory has any data.
-	 * @return bool
-	 */
 	public function hasData() {
 		return !empty( $this->buffer );
 	}
 
-	/**
-	 * Return data from the factory.
-	 * @return StatsdData[]
-	 */
 	public function getData() {
 		return $this->buffer;
 	}
 
-	/**
-	 * Set collection enable status.
-	 * @param bool $enabled Will collection be enabled?
-	 * @return void
-	 */
+	public function clearData() {
+		$this->buffer = [];
+	}
+
+	public function getDataCount() {
+		return count( $this->buffer );
+	}
+
 	public function setEnabled( $enabled ) {
 		$this->enabled = $enabled;
 	}

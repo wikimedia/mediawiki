@@ -7,6 +7,7 @@
  */
 
 /**
+ * @group Preferences
  * @group Database
  *
  * @covers SpecialPreferences

@@ -167,7 +167,7 @@ class MwSql extends Maintenance {
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper|bool $res The results object
+	 * @param ResultWrapper|bool $res
 	 * @param IDatabase $db
 	 */
 	public function sqlPrintResult( $res, $db ) {
@@ -192,5 +192,5 @@ class MwSql extends Maintenance {
 	}
 }
 
-$maintClass = "MwSql";
+$maintClass = MwSql::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

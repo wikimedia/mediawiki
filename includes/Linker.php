@@ -894,24 +894,12 @@ class Linker {
 		$classes = 'mw-userlink';
 		$page = null;
 		if ( $userId == 0 ) {
-			$pos = strpos( $userName, '>' );
-			if ( $pos !== false ) {
-				$iw = explode( ':', substr( $userName, 0, $pos ) );
-				$firstIw = array_shift( $iw );
-				$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
-				if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
-					$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
-					if ( $iw ) {
-						$title = join( ':', $iw ) . ':' . $title;
-					}
-					$page = Title::makeTitle( NS_MAIN, $title, '', $firstIw );
-				}
+			$page = ExternalUserNames::getUserLinkTitle( $userName );
+
+			if ( ExternalUserNames::isExternal( $userName ) ) {
 				$classes .= ' mw-extuserlink';
-			} else {
-				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
-				if ( $altUserName === false ) {
-					$altUserName = IP::prettifyIP( $userName );
-				}
+			} elseif ( $altUserName === false ) {
+				$altUserName = IP::prettifyIP( $userName );
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
@@ -948,7 +936,7 @@ class Linker {
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
 
-		if ( $userId == 0 && strpos( $userText, '>' ) !== false ) {
+		if ( $userId == 0 && ExternalUserNames::isExternal( $userText ) ) {
 			// No tools for an external user
 			return '';
 		}
@@ -1023,7 +1011,7 @@ class Linker {
 
 	/**
 	 * @since 1.16.3
-	 * @param int $userId Userid
+	 * @param int $userId
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with block link
 	 */
@@ -1037,7 +1025,7 @@ class Linker {
 	}
 
 	/**
-	 * @param int $userId Userid
+	 * @param int $userId
 	 * @param string $userText User name in database.
 	 * @return string HTML fragment with e-mail user link
 	 */
@@ -1968,8 +1956,9 @@ class Linker {
 	 *
 	 * @since 1.16.3 $msgParams added in 1.27
 	 * @param string $name Id of the element, minus prefixes.
-	 * @param string|null $options Null or the string 'withaccess' to add an access-
-	 *   key hint
+	 * @param string|array|null $options Null, string or array with some of the following options:
+	 *   - 'withaccess' to add an access-key hint
+	 *   - 'nonexisting' to add an accessibility hint that page does not exist
 	 * @param array $msgParams Parameters to pass to the message
 	 *
 	 * @return string Contents of the title attribute (which you must HTML-
@@ -1989,7 +1978,12 @@ class Linker {
 			}
 		}
 
-		if ( $options == 'withaccess' ) {
+		$options = (array)$options;
+
+		if ( in_array( 'nonexisting', $options ) ) {
+			$tooltip = wfMessage( 'red-link-title', $tooltip ?: '' )->text();
+		}
+		if ( in_array( 'withaccess', $options ) ) {
 			$accesskey = self::accesskey( $name );
 			if ( $accesskey !== false ) {
 				// Should be build the same as in jquery.accessKeyLabel.js
@@ -2124,20 +2118,28 @@ class Linker {
 		return Xml::tags( 'span', [ 'class' => 'mw-revdelundel-link' ], $htmlParentheses );
 	}
 
-	/* Deprecated methods */
-
 	/**
 	 * Returns the attributes for the tooltip and access key.
 	 *
 	 * @since 1.16.3. $msgParams introduced in 1.27
 	 * @param string $name
 	 * @param array $msgParams Params for constructing the message
+	 * @param string|array|null $options Options to be passed to titleAttrib.
+	 *
+	 * @see Linker::titleAttrib for what options could be passed to $options.
 	 *
 	 * @return array
 	 */
-	public static function tooltipAndAccesskeyAttribs( $name, array $msgParams = [] ) {
+	public static function tooltipAndAccesskeyAttribs(
+		$name,
+		array $msgParams = [],
+		$options = null
+	) {
+		$options = (array)$options;
+		$options[] = 'withaccess';
+
 		$attribs = [
-			'title' => self::titleAttrib( $name, 'withaccess', $msgParams ),
+			'title' => self::titleAttrib( $name, $options, $msgParams ),
 			'accesskey' => self::accesskey( $name )
 		];
 		if ( $attribs['title'] === false ) {

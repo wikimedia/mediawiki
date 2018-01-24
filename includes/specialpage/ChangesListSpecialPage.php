@@ -1812,7 +1812,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 *
 	 * @since 1.31
 	 * @param Config $config
-	 * @param User $user User object
+	 * @param User $user
 	 * @return bool
 	 */
 	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {

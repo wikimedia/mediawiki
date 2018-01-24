@@ -58,5 +58,5 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchmarkJSMinPlus';
+$maintClass = BenchmarkJSMinPlus::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

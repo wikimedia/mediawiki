@@ -32,6 +32,10 @@ matrix:
     #- env: dbtype=mysql dbuser=root
     #  php: hhvm-3.18
     - env: dbtype=mysql dbuser=root
+      php: hhvm-3.21
+    - env: dbtype=mysql dbuser=root
+      php: hhvm-3.24
+    - env: dbtype=mysql dbuser=root
       php: 7
     #- env: dbtype=mysql dbuser=root
     #  php: 7.1

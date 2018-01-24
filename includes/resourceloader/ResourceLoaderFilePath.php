@@ -26,7 +26,6 @@
  * and local base path, for use with ResourceLoaderFileModule.
  */
 class ResourceLoaderFilePath {
-	/* Protected Members */
 
 	/** @var string Local base path */
 	protected $localBasePath;
@@ -37,8 +36,6 @@ class ResourceLoaderFilePath {
 	/**
 	 * @var string Path to the file */
 	protected $path;
-
-	/* Methods */
 
 	/**
 	 * @param string $path Path to the file.

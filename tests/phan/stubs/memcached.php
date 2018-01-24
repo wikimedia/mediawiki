@@ -5,7 +5,7 @@
  * that they are optional. Phan can not detect this and thus throws an error for a usage with
  * no params. So we have this small stub just for the constructor to allow no params.
  * @see https://secure.php.net/manual/en/memcached.construct.php
- * @codingStandardsIgnoreFile
+ * phpcs:ignoreFile
  */
 
 class Memcached {

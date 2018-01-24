@@ -7,6 +7,8 @@
  */
 class SanitizerValidateEmailTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	private function checkEmail( $addr, $expected = true, $msg = '' ) {
 		if ( $msg == '' ) {
 			$msg = "Testing $addr";

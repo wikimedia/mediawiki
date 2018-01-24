@@ -52,7 +52,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function doQuery( $sql ) {
 	}
 
-	// From DatabaseMysql
+	// From DatabaseMysqli
 	protected function mysqlConnect( $realServer ) {
 	}
 
@@ -106,6 +106,9 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 }
 
 class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes

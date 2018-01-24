@@ -34,7 +34,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // Wasn't included from the file scope, halt execution (probably wanted the class)
 // If a class is using commandLine.inc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
-if ( !Maintenance::shouldExecute() && $maintClass != 'CommandLineInc' ) {
+if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 
@@ -62,14 +62,14 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) && !defined( 'MW_CONFIG_FILE' ) ) {
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 	function wfMaintenanceSetup() {
-		// @codingStandardsIgnoreLine MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $maintenance, $wgLocalisationCacheConf, $wgCacheDirectory;
 		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
 			if ( $wgLocalisationCacheConf['storeClass'] === false
 				&& ( $wgLocalisationCacheConf['store'] == 'db'
 					|| ( $wgLocalisationCacheConf['store'] == 'detect' && !$wgCacheDirectory ) )
 			) {
-				$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+				$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 			}
 		}
 

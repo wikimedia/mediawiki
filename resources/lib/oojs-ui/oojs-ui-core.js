@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.3
- * https://www.mediawiki.org/wiki/OOjs_UI
+ * OOUI v0.25.1
+ * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-28T23:28:05Z
+ * Date: 2018-01-17T01:47:15Z
  */
 ( function ( OO ) {
 
@@ -68,7 +68,7 @@ OO.ui.elementId = 0;
  */
 OO.ui.generateElementId = function () {
 	OO.ui.elementId++;
-	return 'oojsui-' + OO.ui.elementId;
+	return 'ooui-' + OO.ui.elementId;
 };
 
 /**
@@ -411,7 +411,7 @@ OO.ui.infuse = function ( idOrNode ) {
 	 *
 	 *     $.i18n().load( languageMap ).done( function() {
 	 *         // Replace the built-in `msg` only once we've loaded the internationalization.
-	 *         // OOjs UI uses `OO.ui.deferMsg` for all initially-loaded messages. So long as
+	 *         // OOUI uses `OO.ui.deferMsg` for all initially-loaded messages. So long as
 	 *         // you put off creating any widgets until this promise is complete, no English
 	 *         // will be displayed.
 	 *         OO.ui.msg = $.i18n;
@@ -556,12 +556,26 @@ OO.ui.getViewportSpacing = function () {
 	};
 };
 
+/**
+ * Get the default overlay, which is used by various widgets when they are passed `$overlay: true`.
+ * See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
+ *
+ * @return {jQuery} Default overlay node
+ */
+OO.ui.getDefaultOverlay = function () {
+	if ( !OO.ui.$defaultOverlay ) {
+		OO.ui.$defaultOverlay = $( '<div>' ).addClass( 'oo-ui-defaultOverlay' );
+		$( 'body' ).append( OO.ui.$defaultOverlay );
+	}
+	return OO.ui.$defaultOverlay;
+};
+
 /*!
  * Mixin namespace.
  */
 
 /**
- * Namespace for OOjs UI mixins.
+ * Namespace for OOUI mixins.
  *
  * Mixins are named according to the type of object they are intended to
  * be mixed in to.  For example, OO.ui.mixin.GroupElement is intended to be
@@ -584,9 +598,9 @@ OO.ui.mixin = {};
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string[]} [classes] The names of the CSS classes to apply to the element. CSS styles are added
- *  to the top level (e.g., the outermost div) of the element. See the [OOjs UI documentation on MediaWiki][2]
+ *  to the top level (e.g., the outermost div) of the element. See the [OOUI documentation on MediaWiki][2]
  *  for an example.
- *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#cssExample
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Buttons_and_Switches#cssExample
  * @cfg {string} [id] The HTML id attribute used in the rendered tag.
  * @cfg {string} [text] Text to insert
  * @cfg {Array} [content] An array of content elements to append (after #text).
@@ -1620,7 +1634,7 @@ OO.inheritClass( OO.ui.Layout, OO.ui.Element );
 OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
 
 /**
- * Widgets are compositions of one or more OOjs UI elements that users can both view
+ * Widgets are compositions of one or more OOUI elements that users can both view
  * and interact with. All widgets can be configured and modified via a standard API,
  * and their state can change dynamically according to a model.
  *
@@ -2069,9 +2083,9 @@ OO.ui.mixin.TabIndexedElement.prototype.simulateLabelClick = function () {
 /**
  * ButtonElement is often mixed into other classes to generate a button, which is a clickable
  * interface element that can be configured with access keys for accessibility.
- * See the [OOjs UI documentation on MediaWiki] [1] for examples.
+ * See the [OOUI documentation on MediaWiki] [1] for examples.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Buttons
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Buttons_and_Switches#Buttons
  *
  * @abstract
  * @class
@@ -2326,12 +2340,12 @@ OO.ui.mixin.ButtonElement.prototype.isActive = function () {
 };
 
 /**
- * Any OOjs UI widget that contains other widgets (such as {@link OO.ui.ButtonWidget buttons} or
+ * Any OOUI widget that contains other widgets (such as {@link OO.ui.ButtonWidget buttons} or
  * {@link OO.ui.OptionWidget options}) mixes in GroupElement. Adding, removing, and clearing
  * items from the group is done through the interface the class provides.
- * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
+ * For more information, please see the [OOUI documentation on MediaWiki] [1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Groups
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Elements/Groups
  *
  * @abstract
  * @mixins OO.EmitterList
@@ -2389,15 +2403,15 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
 };
 
 /**
- * Get an item by its data.
+ * Find an item by its data.
  *
  * Only the first item with matching data will be returned. To return all matching items,
- * use the #getItemsFromData method.
+ * use the #findItemsFromData method.
  *
  * @param {Object} data Item data to search for
  * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
  */
-OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
+OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
 	var i, len, item,
 		hash = OO.getHash( data );
 
@@ -2412,14 +2426,26 @@ OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
 };
 
 /**
- * Get items by their data.
+ * Get an item by its data.
  *
- * All items with matching data will be returned. To return only the first match, use the #getItemFromData method instead.
+ * @deprecated Since v0.25.0; use {@link #findItemFromData} instead.
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
+ */
+OO.ui.mixin.GroupElement.prototype.getItemFromData = function ( data ) {
+	OO.ui.warnDeprecation( 'GroupElement#getItemFromData. Deprecated function. Use findItemFromData instead. See T76630' );
+	return this.findItemFromData( data );
+};
+
+/**
+ * Find items by their data.
+ *
+ * All items with matching data will be returned. To return only the first match, use the #findItemFromData method instead.
  *
  * @param {Object} data Item data to search for
  * @return {OO.ui.Element[]} Items with equivalent data
  */
-OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
+OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
 	var i, len, item,
 		hash = OO.getHash( data ),
 		items = [];
@@ -2432,6 +2458,18 @@ OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
 	}
 
 	return items;
+};
+
+/**
+ * Find items by their data.
+ *
+ * @deprecated Since v0.25.0; use {@link #findItemsFromData} instead.
+ * @param {Object} data Item data to search for
+ * @return {OO.ui.Element[]} Items with equivalent data
+ */
+OO.ui.mixin.GroupElement.prototype.getItemsFromData = function ( data ) {
+	OO.ui.warnDeprecation( 'GroupElement#getItemsFromData. Deprecated function. Use findItemsFromData instead. See T76630' );
+	return this.findItemsFromData( data );
 };
 
 /**
@@ -2552,10 +2590,10 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
  * IconElement is often mixed into other classes to generate an icon.
  * Icons are graphics, about the size of normal text. They are used to aid the user
  * in locating a control or to convey information in a space-efficient way. See the
- * [OOjs UI documentation on MediaWiki] [1] for a list of icons
+ * [OOUI documentation on MediaWiki] [1] for a list of icons
  * included in the library.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Icons
  *
  * @abstract
  * @class
@@ -2581,8 +2619,8 @@ OO.ui.mixin.GroupElement.prototype.clearItems = function () {
  *  Example of an i18n map:
  *
  *     { default: 'bold-a', en: 'bold-b', de: 'bold-f' }
- *  See the [OOjs UI documentation on MediaWiki] [2] for a list of icons included in the library.
- * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
+ *  See the [OOUI documentation on MediaWiki] [2] for a list of icons included in the library.
+ * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Icons
  * @cfg {string|Function} [iconTitle] A text string used as the icon title, or a function that returns title
  *  text. The icon title is displayed when users move the mouse over the icon.
  */
@@ -2748,9 +2786,9 @@ OO.ui.mixin.IconElement.prototype.getIconTitle = function () {
  *   that opens a menu instead of performing an action directly, for example).
  *
  * For a list of indicators included in the library, please see the
- * [OOjs UI documentation on MediaWiki] [1].
+ * [OOUI documentation on MediaWiki] [1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Indicators
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
  *
  * @abstract
  * @class
@@ -2760,9 +2798,9 @@ OO.ui.mixin.IconElement.prototype.getIconTitle = function () {
  * @cfg {jQuery} [$indicator] The indicator element created by the class. If this
  *  configuration is omitted, the indicator element will use a generated `<span>`.
  * @cfg {string} [indicator] Symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
- *  See the [OOjs UI documentation on MediaWiki][2] for a list of indicators included
+ *  See the [OOUI documentation on MediaWiki][2] for a list of indicators included
  *  in the library.
- * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Indicators
+ * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
  * @cfg {string|Function} [indicatorTitle] A text string used as the indicator title,
  *  or a function that returns title text. The indicator title is displayed when users move
  *  the mouse over the indicator.
@@ -2912,9 +2950,9 @@ OO.ui.mixin.IndicatorElement.prototype.getIndicatorTitle = function () {
 /**
  * LabelElement is often mixed into other classes to generate a label, which
  * helps identify the function of an interface element.
- * See the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * See the [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
  *
  * @abstract
  * @class
@@ -2925,8 +2963,8 @@ OO.ui.mixin.IndicatorElement.prototype.getIndicatorTitle = function () {
  *  configuration is omitted, the label element will use a generated `<span>`.
  * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] The label text. The label can be specified
  *  as a plaintext string, a jQuery selection of elements, or a function that will produce a string
- *  in the future. See the [OOjs UI documentation on MediaWiki] [2] for examples.
- *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
+ *  in the future. See the [OOUI documentation on MediaWiki] [2] for examples.
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Labels
  */
 OO.ui.mixin.LabelElement = function OoUiMixinLabelElement( config ) {
 	// Configuration initialization
@@ -3111,7 +3149,6 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *
  * - **progressive**:  Progressive styling is applied to convey that the widget will move the user forward in a process.
  * - **destructive**: Destructive styling is applied to convey that the widget will remove something.
- * - **constructive**: Constructive styling is deprecated since v0.23.2 and equivalent to progressive.
  *
  * The flags affect the appearance of the buttons:
  *
@@ -3128,9 +3165,9 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  *     $( 'body' ).append( button1.$element, button2.$element );
  *
  * {@link OO.ui.ActionWidget ActionWidgets}, which are a special kind of button that execute an action, use these flags: **primary** and **safe**.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Flagged
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Elements/Flagged
  *
  * @abstract
  * @class
@@ -3138,8 +3175,8 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string|string[]} [flags] The name or names of the flags (e.g., 'progressive' or 'primary') to apply.
- *  Please see the [OOjs UI documentation on MediaWiki] [2] for more information about available flags.
- *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Flagged
+ *  Please see the [OOUI documentation on MediaWiki] [2] for more information about available flags.
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Elements/Flagged
  * @cfg {jQuery} [$flagged] The flagged element. By default,
  *  the flagged functionality is applied to the element created by the class ($element).
  *  If a different element is specified, the flagged functionality will be applied to it instead.
@@ -3579,10 +3616,10 @@ OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( t
 /**
  * ButtonWidget is a generic widget for buttons. A wide variety of looks,
  * feels, and functionality can be customized via the class’s configuration options
- * and methods. Please see the [OOjs UI documentation on MediaWiki] [1] for more information
+ * and methods. Please see the [OOUI documentation on MediaWiki] [1] for more information
  * and examples.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Buttons_and_Switches
  *
  *     @example
  *     // A button widget
@@ -3887,7 +3924,7 @@ OO.ui.ButtonGroupWidget.prototype.simulateLabelClick = function () {
 
 /**
  * IconWidget is a generic widget for {@link OO.ui.mixin.IconElement icons}. In general, IconWidgets should be used with OO.ui.LabelWidget,
- * which creates a label that identifies the icon’s function. See the [OOjs UI documentation on MediaWiki] [1]
+ * which creates a label that identifies the icon’s function. See the [OOUI documentation on MediaWiki] [1]
  * for a list of icons included in the library.
  *
  *     @example
@@ -3902,7 +3939,7 @@ OO.ui.ButtonGroupWidget.prototype.simulateLabelClick = function () {
  *      } );
  *      $( 'body' ).append( myIcon.$element, iconLabel.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Icons
  *
  * @class
  * @extends OO.ui.Widget
@@ -3947,7 +3984,7 @@ OO.ui.IconWidget.static.tagName = 'span';
 /**
  * IndicatorWidgets create indicators, which are small graphics that are generally used to draw
  * attention to the status of an item or to clarify the function of a control. For a list of
- * indicators included in the library, please see the [OOjs UI documentation on MediaWiki][1].
+ * indicators included in the library, please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example of an indicator widget
@@ -3962,7 +3999,7 @@ OO.ui.IconWidget.static.tagName = 'span';
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Indicators
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
  *
  * @class
  * @extends OO.ui.Widget
@@ -4061,7 +4098,6 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 		} else {
 			this.$label.on( 'click', function () {
 				this.input.simulateLabelClick();
-				return false;
 			}.bind( this ) );
 		}
 	}
@@ -4258,6 +4294,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	this.$floatableContainer = null;
 	this.$floatableWindow = null;
 	this.$floatableClosestScrollable = null;
+	this.floatableOutOfView = false;
 	this.onFloatableScrollHandler = this.position.bind( this );
 	this.onFloatableWindowResizeHandler = this.position.bind( this );
 
@@ -4462,6 +4499,15 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
 };
 
 /**
+ * Check if the floatable is hidden to the user because it was offscreen.
+ *
+ * @return {boolean} Floatable is out of view
+ */
+OO.ui.mixin.FloatableElement.prototype.isFloatableOutOfView = function () {
+	return this.floatableOutOfView;
+};
+
+/**
  * Position the floatable below its container.
  *
  * This should only be done when both of them are attached to the DOM and visible.
@@ -4487,7 +4533,8 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 		return this;
 	}
 
-	if ( this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable ) ) {
+	this.floatableOutOfView = this.hideWhenOutOfView && !this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable );
+	if ( this.floatableOutOfView ) {
 		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return this;
 	} else {
@@ -5022,7 +5069,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 /**
  * PopupWidget is a container for content. The popup is overlaid and positioned absolutely.
  * By default, each popup has an anchor that points toward its origin.
- * Please see the [OOjs UI documentation on Mediawiki] [1] for more information and examples.
+ * Please see the [OOUI documentation on Mediawiki] [1] for more information and examples.
  *
  * Unlike most widgets, PopupWidget is initially hidden and must be shown by calling #toggle.
  *
@@ -5038,7 +5085,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *     // To display the popup, toggle the visibility to 'true'.
  *     popup.toggle( true );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Popups
  *
  * @class
  * @extends OO.ui.Widget
@@ -5075,16 +5122,16 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *  'above' and 'below', or between 'before' and 'after', if there is not enough space in the
  *  desired direction to display the popup without clipping
  * @cfg {jQuery} [$container] Constrain the popup to the boundaries of the specified container.
- *  See the [OOjs UI docs on MediaWiki][3] for an example.
- *  [3]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#containerExample
+ *  See the [OOUI docs on MediaWiki][3] for an example.
+ *  [3]: https://www.mediawiki.org/wiki/OOUI/Widgets/Popups#containerExample
  * @cfg {number} [containerPadding=10] Padding between the popup and its container, specified as a number of pixels.
  * @cfg {jQuery} [$content] Content to append to the popup's body
  * @cfg {jQuery} [$footer] Content to append to the popup's footer
  * @cfg {boolean} [autoClose=false] Automatically close the popup when it loses focus.
  * @cfg {jQuery} [$autoCloseIgnore] Elements that will not close the popup when clicked.
- *  This config option is only relevant if #autoClose is set to `true`. See the [OOjs UI docs on MediaWiki][2]
+ *  This config option is only relevant if #autoClose is set to `true`. See the [OOUI documentation on MediaWiki][2]
  *  for an example.
- *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#autocloseExample
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Popups#autocloseExample
  * @cfg {boolean} [head=false] Show a popup header that contains a #label (if specified) and close
  *  button.
  * @cfg {boolean} [padded=false] Add padding to the popup's body
@@ -5361,13 +5408,13 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 
 			if ( this.autoFlip ) {
 				if ( this.popupPosition === 'above' || this.popupPosition === 'below' ) {
-					if ( this.isClippedVertically() ) {
+					if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped, open
 						// in the opposite one instead
 						normalHeight = this.$element.height();
 						this.isAutoFlipped = !this.isAutoFlipped;
 						this.position();
-						if ( this.isClippedVertically() ) {
+						if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							oppositeHeight = this.$element.height();
@@ -5379,7 +5426,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 					}
 				}
 				if ( this.popupPosition === 'before' || this.popupPosition === 'after' ) {
-					if ( this.isClippedHorizontally() ) {
+					if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped, open
 						// in the opposite one instead
 						normalWidth = this.$element.width();
@@ -5389,7 +5436,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 						this.toggleClipping( false );
 						this.position();
 						this.toggleClipping( true );
-						if ( this.isClippedHorizontally() ) {
+						if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
 							oppositeWidth = this.$element.width();
@@ -5776,7 +5823,7 @@ OO.ui.mixin.PopupElement.prototype.getPopup = function () {
  * @cfg {jQuery} [$overlay] Render the popup into a separate layer. This configuration is useful in cases where
  *  the expanded popup is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the popup uses relative positioning.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	// Configuration initialization
@@ -5789,7 +5836,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	OO.ui.mixin.PopupElement.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	// Events
 	this.connect( this, { click: 'onAction' } );
@@ -5923,9 +5970,9 @@ OO.ui.mixin.ItemWidget.prototype.setElementGroup = function ( group ) {
  * OptionWidgets are special elements that can be selected and configured with data. The
  * data is often unique for each option, but it does not have to be. OptionWidgets are used
  * with OO.ui.SelectWidget to create a selection of mutually exclusive options. For more information
- * and examples, please see the [OOjs UI documentation on MediaWiki][1].
+ * and examples, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.Widget
@@ -6146,13 +6193,13 @@ OO.ui.OptionWidget.prototype.getMatchText = function () {
 };
 
 /**
- * A SelectWidget is of a generic selection of options. The OOjs UI library contains several types of
+ * A SelectWidget is of a generic selection of options. The OOUI library contains several types of
  * select widgets, including {@link OO.ui.ButtonSelectWidget button selects},
  * {@link OO.ui.RadioSelectWidget radio selects}, and {@link OO.ui.MenuSelectWidget
  * menu selects}.
  *
  * This class should be used together with OO.ui.OptionWidget or OO.ui.DecoratedOptionWidget. For more
- * information, please see the [OOjs UI documentation on MediaWiki][1].
+ * information, please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example of a select widget with three options
@@ -6174,7 +6221,7 @@ OO.ui.OptionWidget.prototype.getMatchText = function () {
  *     } );
  *     $( 'body' ).append( select.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @abstract
  * @class
@@ -6185,8 +6232,8 @@ OO.ui.OptionWidget.prototype.getMatchText = function () {
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.OptionWidget[]} [items] An array of options to add to the select.
  *  Options are created with {@link OO.ui.OptionWidget OptionWidget} classes. See
- *  the [OOjs UI documentation on MediaWiki] [2] for examples.
- *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ *  the [OOUI documentation on MediaWiki] [2] for examples.
+ *  [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  */
 OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Configuration initialization
@@ -6299,7 +6346,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	if ( event.target === this.$element[ 0 ] ) {
 		// This widget was focussed, e.g. by the user tabbing to it.
 		// The styles for focus state depend on one of the items being selected.
-		if ( !this.getSelectedItem() ) {
+		if ( !this.findSelectedItem() ) {
 			item = this.findFirstSelectableItem();
 		}
 	} else {
@@ -6436,7 +6483,7 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
 	var nextItem,
 		handled = false,
-		currentItem = this.findHighlightedItem() || this.getSelectedItem();
+		currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
@@ -6562,7 +6609,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	item = this.findHighlightedItem() || this.getSelectedItem();
+	item = this.findHighlightedItem() || this.findSelectedItem();
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
@@ -6670,11 +6717,11 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
 };
 
 /**
- * Get selected item.
+ * Find selected item.
  *
  * @return {OO.ui.OptionWidget|null} Selected item, `null` if no item is selected
  */
-OO.ui.SelectWidget.prototype.getSelectedItem = function () {
+OO.ui.SelectWidget.prototype.findSelectedItem = function () {
 	var i, len;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
@@ -6683,6 +6730,17 @@ OO.ui.SelectWidget.prototype.getSelectedItem = function () {
 		}
 	}
 	return null;
+};
+
+/**
+ * Get selected item.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItem} instead.
+ * @return {OO.ui.OptionWidget|null} Selected item, `null` if no item is selected
+ */
+OO.ui.SelectWidget.prototype.getSelectedItem = function () {
+	OO.ui.warnDeprecation( 'SelectWidget#getSelectedItem: Deprecated function. Use findSelectedItem instead. See T76630.' );
+	return this.findSelectedItem();
 };
 
 /**
@@ -6699,17 +6757,6 @@ OO.ui.SelectWidget.prototype.findHighlightedItem = function () {
 		}
 	}
 	return null;
-};
-
-/**
- * Get highlighted item.
- *
- * @deprecated 0.23.1 Use {@link #findHighlightedItem} instead.
- * @return {OO.ui.OptionWidget|null} Highlighted item, `null` if no item is highlighted
- */
-OO.ui.SelectWidget.prototype.getHighlightedItem = function () {
-	OO.ui.warnDeprecation( 'SelectWidget#getHighlightedItem: Deprecated function. Use findHighlightedItem instead. See T76630.' );
-	return this.findHighlightedItem();
 };
 
 /**
@@ -6829,7 +6876,7 @@ OO.ui.SelectWidget.prototype.selectItemByLabel = function ( label, prefix ) {
  * @chainable
  */
 OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
-	var itemFromData = this.getItemFromData( data );
+	var itemFromData = this.findItemFromData( data );
 	if ( data === undefined || !itemFromData ) {
 		return this.selectItem();
 	}
@@ -6961,24 +7008,6 @@ OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direc
 };
 
 /**
- * Get an option by its position relative to the specified item (or to the start of the option array,
- * if item is `null`). The direction in which to search through the option array is specified with a
- * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
- * `null` if there are no options in the array.
- *
- * @deprecated 0.23.1 Use {@link #findRelativeSelectableItem} instead
- * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
- * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
- * @param {Function} [filter] Only consider items for which this function returns
- *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
- * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
- */
-OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction, filter ) {
-	OO.ui.warnDeprecation( 'SelectWidget#getRelativeSelectableItem: Deprecated function. Use findRelativeSelectableItem instead. See T76630.' );
-	return this.findRelativeSelectableItem( item, direction, filter );
-};
-
-/**
  * Find the next selectable item or `null` if there are no selectable items.
  * Disabled options and menu-section markers and breaks are not selectable.
  *
@@ -6986,18 +7015,6 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
  */
 OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
 	return this.findRelativeSelectableItem( null, 1 );
-};
-
-/**
- * Get the next selectable item or `null` if there are no selectable items.
- * Disabled options and menu-section markers and breaks are not selectable.
- *
- * @deprecated 0.23.1 Use {@link OO.ui.SelectWidget#findFirstSelectableItem} instead.
- * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
- */
-OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
-	OO.ui.warnDeprecation( 'SelectWidget#getFirstSelectableItem: Deprecated function. Use findFirstSelectableItem instead. See T76630.' );
-	return this.findFirstSelectableItem();
 };
 
 /**
@@ -7086,7 +7103,7 @@ OO.ui.SelectWidget.prototype.setFocusOwner = function ( $focusOwner ) {
  * with an {@link OO.ui.mixin.IconElement icon} and/or {@link OO.ui.mixin.IndicatorElement indicator}.
  * This class is used with OO.ui.SelectWidget to create a selection of mutually exclusive
  * options. For more information about options and selects, please see the
- * [OOjs UI documentation on MediaWiki][1].
+ * [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Decorated options in a select widget
@@ -7106,7 +7123,7 @@ OO.ui.SelectWidget.prototype.setFocusOwner = function ( $focusOwner ) {
  *     } );
  *     $( 'body' ).append( select.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -7140,9 +7157,9 @@ OO.mixinClass( OO.ui.DecoratedOptionWidget, OO.ui.mixin.IndicatorElement );
 /**
  * MenuOptionWidget is an option widget that looks like a menu item. The class is used with
  * OO.ui.MenuSelectWidget to create a menu of mutually exclusive options. Please see
- * the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * the [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -7254,8 +7271,8 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  *
  * Unlike most widgets, MenuSelectWidget is initially hidden and must be shown by calling #toggle.
  *
- * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * Please see the [OOUI documentation on MediaWiki][1] for more information.
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -7355,7 +7372,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
-	var currentItem = this.findHighlightedItem() || this.getSelectedItem();
+	var currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
@@ -7593,11 +7610,11 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
-			if ( this.isClippedVertically() ) {
+			if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 				// If opening the menu downwards causes it to be clipped, flip it to open upwards instead
 				belowHeight = this.$element.height();
 				this.setVerticalPosition( 'above' );
-				if ( this.isClippedVertically() ) {
+				if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 					// If opening upwards also causes it to be clipped, flip it to open in whichever direction
 					// we have more space
 					aboveHeight = this.$element.height();
@@ -7611,9 +7628,9 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 			this.$focusOwner.attr( 'aria-expanded', 'true' );
 
-			if ( this.getSelectedItem() ) {
-				this.$focusOwner.attr( 'aria-activedescendant', this.getSelectedItem().getElementId() );
-				this.getSelectedItem().scrollElementIntoView( { duration: 0 } );
+			if ( this.findSelectedItem() ) {
+				this.$focusOwner.attr( 'aria-activedescendant', this.findSelectedItem().getElementId() );
+				this.findSelectedItem().scrollElementIntoView( { duration: 0 } );
 			}
 
 			// Auto-hide
@@ -7670,11 +7687,11 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  *
  *     dropDown.getMenu().selectItemByData( 'b' );
  *
- *     dropDown.getMenu().getSelectedItem().getData(); // returns 'b'
+ *     dropDown.getMenu().findSelectedItem().getData(); // returns 'b'
  *
- * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
+ * For more information, please see the [OOUI documentation on MediaWiki] [1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.Widget
@@ -7690,7 +7707,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Configuration initialization
@@ -7700,8 +7717,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.DropdownWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
-	this.$handle = this.$( '<span>' );
-	this.$overlay = config.$overlay || this.$element;
+	this.$handle = $( '<span>' );
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -7849,9 +7866,9 @@ OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 /**
  * RadioOptionWidget is an option widget that looks like a radio button.
  * The class is used with OO.ui.RadioSelectWidget to create a selection of radio options.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_option
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Button_selects_and_option
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -7941,7 +7958,7 @@ OO.ui.RadioOptionWidget.prototype.setDisabled = function ( disabled ) {
  * RadioSelectWidget is a {@link OO.ui.SelectWidget select widget} that contains radio
  * options and is used together with OO.ui.RadioOptionWidget. The RadioSelectWidget provides
  * an interface for adding, removing and selecting options.
- * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
+ * Please see the [OOUI documentation on MediaWiki][1] for more information.
  *
  * If you want to use this within an HTML form, such as a OO.ui.FormLayout, use
  * OO.ui.RadioSelectInputWidget instead.
@@ -7967,7 +7984,7 @@ OO.ui.RadioOptionWidget.prototype.setDisabled = function ( disabled ) {
  *
  *     $( 'body' ).append( radioSelect.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
 
  *
  * @class
@@ -8005,9 +8022,9 @@ OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.mixin.TabIndexedElement );
  * MultioptionWidgets are special elements that can be selected and configured with data. The
  * data is often unique for each option, but it does not have to be. MultioptionWidgets are used
  * with OO.ui.SelectWidget to create a selection of mutually exclusive options. For more information
- * and examples, please see the [OOjs UI documentation on MediaWiki][1].
+ * and examples, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Multioptions
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Multioptions
  *
  * @class
  * @extends OO.ui.Widget
@@ -8087,9 +8104,9 @@ OO.ui.MultioptionWidget.prototype.setSelected = function ( state ) {
 /**
  * MultiselectWidget allows selecting multiple options from a list.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about menus and options, please see the [OOUI documentation on MediaWiki][1].
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @abstract
@@ -8147,25 +8164,47 @@ OO.mixinClass( OO.ui.MultiselectWidget, OO.ui.mixin.GroupWidget );
 /* Methods */
 
 /**
- * Get options that are selected.
+ * Find options that are selected.
  *
  * @return {OO.ui.MultioptionWidget[]} Selected options
  */
-OO.ui.MultiselectWidget.prototype.getSelectedItems = function () {
+OO.ui.MultiselectWidget.prototype.findSelectedItems = function () {
 	return this.items.filter( function ( item ) {
 		return item.isSelected();
 	} );
 };
 
 /**
- * Get the data of options that are selected.
+ * Get options that are selected.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItems} instead.
+ * @return {OO.ui.MultioptionWidget[]} Selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItems = function () {
+	OO.ui.warnDeprecation( 'MultiselectWidget#getSelectedItems: Deprecated function. Use findSelectedItems instead. See T76630.' );
+	return this.findSelectedItems();
+};
+
+/**
+ * Find the data of options that are selected.
  *
  * @return {Object[]|string[]} Values of selected options
  */
-OO.ui.MultiselectWidget.prototype.getSelectedItemsData = function () {
-	return this.getSelectedItems().map( function ( item ) {
+OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
+	return this.findSelectedItems().map( function ( item ) {
 		return item.data;
 	} );
+};
+
+/**
+ * Get the data of options that are selected.
+ *
+ * @deprecated Since v0.25.0; use {@link #findSelectedItemsData} instead.
+ * @return {Object[]|string[]} Values of selected options
+ */
+OO.ui.MultiselectWidget.prototype.getSelectedItemsData = function () {
+	OO.ui.warnDeprecation( 'MultiselectWidget#getSelectedItemsData: Deprecated function. Use findSelectedItemsData instead. See T76630.' );
+	return this.findSelectedItemsData();
 };
 
 /**
@@ -8192,7 +8231,7 @@ OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
 	var items,
 		widget = this;
 	items = datas.map( function ( data ) {
-		return widget.getItemFromData( data );
+		return widget.findItemFromData( data );
 	} );
 	this.selectItems( items );
 	return this;
@@ -8201,9 +8240,9 @@ OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
 /**
  * CheckboxMultioptionWidget is an option widget that looks like a checkbox.
  * The class is used with OO.ui.CheckboxMultiselectWidget to create a selection of checkbox options.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_option
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Button_selects_and_option
  *
  * @class
  * @extends OO.ui.MultioptionWidget
@@ -8306,7 +8345,7 @@ OO.ui.CheckboxMultioptionWidget.prototype.onKeyDown = function ( e ) {
  * CheckboxMultiselectWidget is a {@link OO.ui.MultiselectWidget multiselect widget} that contains
  * checkboxes and is used together with OO.ui.CheckboxMultioptionWidget. The
  * CheckboxMultiselectWidget provides an interface for adding, removing and selecting options.
- * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
+ * Please see the [OOUI documentation on MediaWiki][1] for more information.
  *
  * If you want to use this within an HTML form, such as a OO.ui.FormLayout, use
  * OO.ui.CheckboxMultiselectInputWidget instead.
@@ -8330,7 +8369,7 @@ OO.ui.CheckboxMultioptionWidget.prototype.onKeyDown = function ( e ) {
  *
  *     $( 'body' ).append( multiselect.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.MultiselectWidget
@@ -8568,9 +8607,9 @@ OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
  * InputWidget is the base class for all input widgets, which
  * include {@link OO.ui.TextInputWidget text inputs}, {@link OO.ui.CheckboxInputWidget checkbox inputs},
  * {@link OO.ui.RadioInputWidget radio inputs}, and {@link OO.ui.ButtonInputWidget button inputs}.
- * See the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ * See the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @abstract
  * @class
@@ -8848,7 +8887,7 @@ OO.ui.HiddenInputWidget.static.tagName = 'input';
  * a OO.ui.FormLayout. If you do not need the button to work with HTML forms, you probably
  * want to use OO.ui.ButtonWidget instead. Button input widgets can be rendered as either an
  * HTML `<button>` (the default) or an HTML `<input>` tags. See the
- * [OOjs UI documentation on MediaWiki] [1] for more information.
+ * [OOUI documentation on MediaWiki] [1] for more information.
  *
  *     @example
  *     // A ButtonInputWidget rendered as an HTML button, the default.
@@ -8859,7 +8898,7 @@ OO.ui.HiddenInputWidget.static.tagName = 'input';
  *     } );
  *     $( 'body' ).append( button.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs#Button_inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs#Button_inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -8990,7 +9029,7 @@ OO.ui.ButtonInputWidget.prototype.getInputId = function () {
  * CheckboxInputWidgets, like HTML checkboxes, can be selected and/or configured with a value.
  * Note that these {@link OO.ui.InputWidget input widgets} are best laid out
  * in {@link OO.ui.FieldLayout field layouts} that use the {@link OO.ui.FieldLayout#align inline}
- * alignment. For more information, please see the [OOjs UI documentation on MediaWiki][1].
+ * alignment. For more information, please see the [OOUI documentation on MediaWiki][1].
  *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
@@ -9018,7 +9057,7 @@ OO.ui.ButtonInputWidget.prototype.getInputId = function () {
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9142,7 +9181,7 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
 /**
  * DropdownInputWidget is a {@link OO.ui.DropdownWidget DropdownWidget} intended to be used
  * within an HTML form, such as a OO.ui.FormLayout. The selected value is synchronized with the value
- * of a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
+ * of a hidden HTML `input` tag. Please see the [OOUI documentation on MediaWiki][1] for
  * more information about input widgets.
  *
  * A DropdownInputWidget always has a value (one of the options is always selected), unless there
@@ -9162,7 +9201,7 @@ OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
  *     } );
  *     $( 'body' ).append( dropdownInput.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9227,7 +9266,7 @@ OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	var selected;
 	value = this.cleanUpValue( value );
 	// Only allow setting values that are actually present in the dropdown
-	selected = this.dropdownWidget.getMenu().getItemFromData( value ) ||
+	selected = this.dropdownWidget.getMenu().findItemFromData( value ) ||
 		this.dropdownWidget.getMenu().findFirstSelectableItem();
 	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
@@ -9292,7 +9331,7 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
 	this.dropdownWidget.getMenu().addItems( optionWidgets );
 
 	// Restore the previous value, or reset to something sensible
-	if ( this.dropdownWidget.getMenu().getItemFromData( value ) ) {
+	if ( this.dropdownWidget.getMenu().findItemFromData( value ) ) {
 		// Previous value is still available, ensure consistency with the dropdown
 		this.setValue( value );
 	} else {
@@ -9325,7 +9364,7 @@ OO.ui.DropdownInputWidget.prototype.blur = function () {
  * RadioInputWidget creates a single radio button. Because radio buttons are usually used as a set,
  * in most cases you will want to use a {@link OO.ui.RadioSelectWidget radio select}
  * with {@link OO.ui.RadioOptionWidget radio options} instead of this class. For more information,
- * please see the [OOjs UI documentation on MediaWiki][1].
+ * please see the [OOUI documentation on MediaWiki][1].
  *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
@@ -9353,7 +9392,7 @@ OO.ui.DropdownInputWidget.prototype.blur = function () {
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9461,7 +9500,7 @@ OO.ui.RadioInputWidget.prototype.restorePreInfuseState = function ( state ) {
 /**
  * RadioSelectInputWidget is a {@link OO.ui.RadioSelectWidget RadioSelectWidget} intended to be used
  * within an HTML form, such as a OO.ui.FormLayout. The selected value is synchronized with the value
- * of a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
+ * of a hidden HTML `input` tag. Please see the [OOUI documentation on MediaWiki][1] for
  * more information about input widgets.
  *
  * This and OO.ui.DropdownInputWidget support the same configuration options.
@@ -9477,7 +9516,7 @@ OO.ui.RadioInputWidget.prototype.restorePreInfuseState = function ( state ) {
  *     } );
  *     $( 'body' ).append( radioSelectInput.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9594,7 +9633,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 		} ) );
 
 	// Restore the previous value, or reset to something sensible
-	if ( this.radioSelectWidget.getItemFromData( value ) ) {
+	if ( this.radioSelectWidget.findItemFromData( value ) ) {
 		// Previous value is still available, ensure consistency with the radioSelect
 		this.setValue( value );
 	} else {
@@ -9627,7 +9666,7 @@ OO.ui.RadioSelectInputWidget.prototype.blur = function () {
  * CheckboxMultiselectInputWidget is a
  * {@link OO.ui.CheckboxMultiselectWidget CheckboxMultiselectWidget} intended to be used within a
  * HTML form, such as a OO.ui.FormLayout. The selected values are synchronized with the value of
- * HTML `<input type=checkbox>` tags. Please see the [OOjs UI documentation on MediaWiki][1] for
+ * HTML `<input type=checkbox>` tags. Please see the [OOUI documentation on MediaWiki][1] for
  * more information about input widgets.
  *
  *     @example
@@ -9641,7 +9680,7 @@ OO.ui.RadioSelectInputWidget.prototype.blur = function () {
  *     } );
  *     $( 'body' ).append( multiselectInput.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9675,7 +9714,7 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 
 	// setValue when checkboxMultiselectWidget changes
 	this.checkboxMultiselectWidget.on( 'change', function () {
-		this.setValue( this.checkboxMultiselectWidget.getSelectedItemsData() );
+		this.setValue( this.checkboxMultiselectWidget.findSelectedItemsData() );
 	}.bind( this ) );
 };
 
@@ -9754,7 +9793,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value )
 		singleValue =
 			OO.ui.CheckboxMultiselectInputWidget.parent.prototype.cleanUpValue.call( this, value[ i ] );
 		// Remove options that we don't have here
-		if ( !this.checkboxMultiselectWidget.getItemFromData( singleValue ) ) {
+		if ( !this.checkboxMultiselectWidget.findItemFromData( singleValue ) ) {
 			continue;
 		}
 		cleanValue.push( singleValue );
@@ -9820,7 +9859,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  * with {@link OO.ui.mixin.IconElement icons}, {@link OO.ui.mixin.IndicatorElement indicators}, an optional
  * validation-pattern (used to determine if an input value is valid or not) and an input filter,
  * which modifies incoming values rather than validating them.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
@@ -9831,7 +9870,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *     } )
  *     $( 'body' ).append( textInput.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -9851,7 +9890,8 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  * @cfg {number} [maxLength] Maximum number of characters allowed in the input.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
- * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
+ * @cfg {boolean} [required=false] Mark the field as required with `true`. Implies `indicator: 'required'`.
+ *  Note that `false` & setting `indicator: 'required' will result in no indicator shown.
  * @cfg {boolean} [autocomplete=true] Should the browser support autocomplete for this field
  * @cfg {boolean} [spellcheck] Should the browser support spellcheck for this field (`undefined` means
  *  leaving it up to the browser).
@@ -10630,7 +10670,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
  *  Use the #maxRows config to specify a maximum number of displayed rows.
- * @cfg {boolean} [maxRows] Maximum number of rows to display when #autosize is set to true.
+ * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
  *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
  */
 OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
@@ -10840,7 +10880,7 @@ OO.ui.MultilineTextInputWidget.prototype.isAutosizing = function () {
  *
  * This widget can be used inside an HTML form, such as a OO.ui.FormLayout.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about menus and options, please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example: A ComboBoxInputWidget.
@@ -10875,7 +10915,7 @@ OO.ui.MultilineTextInputWidget.prototype.isAutosizing = function () {
  *     } );
  *     $( 'body' ).append( comboBox.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.TextInputWidget
@@ -10887,7 +10927,7 @@ OO.ui.MultilineTextInputWidget.prototype.isAutosizing = function () {
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
  *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Configuration initialization
@@ -10907,7 +10947,7 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	OO.ui.ComboBoxInputWidget.parent.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.dropdownButton = new OO.ui.ButtonWidget( {
 		classes: [ 'oo-ui-comboBoxInputWidget-dropdownButton' ],
 		indicator: 'down',
@@ -10989,7 +11029,7 @@ OO.ui.ComboBoxInputWidget.prototype.getInput = function () {
  * @param {string} value New value
  */
 OO.ui.ComboBoxInputWidget.prototype.onInputChange = function ( value ) {
-	var match = this.menu.getItemFromData( value );
+	var match = this.menu.findItemFromData( value );
 
 	this.menu.selectItem( match );
 	if ( this.menu.findHighlightedItem() ) {
@@ -11038,7 +11078,7 @@ OO.ui.ComboBoxInputWidget.prototype.onMenuChoose = function ( item ) {
  * @private
  */
 OO.ui.ComboBoxInputWidget.prototype.onMenuItemsChange = function () {
-	var match = this.menu.getItemFromData( this.getValue() );
+	var match = this.menu.findItemFromData( this.getValue() );
 	this.menu.selectItem( match );
 	if ( this.menu.findHighlightedItem() ) {
 		this.menu.highlightItem( match );
@@ -11109,9 +11149,9 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  *   An inline-alignment is best used with checkboxes or radio buttons.
  *
  * Help text is accessed via a help icon that appears in the upper right corner of the rendered field layout.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for examples and more information.
+ * Please see the [OOUI documentation on MediaWiki] [1] for examples and more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Layouts/Fields_and_Fieldsets
  *
  * @class
  * @extends OO.ui.Layout
@@ -11130,7 +11170,7 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
  * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  *
  * @throws {Error} An error is thrown if no widget is specified
  */
@@ -11208,7 +11248,6 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	} else {
 		this.$label.on( 'click', function () {
 			this.fieldWidget.simulateLabelClick();
-			return false;
 		}.bind( this ) );
 	}
 	this.$element
@@ -11310,10 +11349,10 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 		}
 		// Reorder elements
 		if ( value === 'top' ) {
-			this.$header.append( this.$label, this.$help );
+			this.$header.append( this.$help, this.$label );
 			this.$body.append( this.$header, this.$field );
 		} else if ( value === 'inline' ) {
-			this.$header.append( this.$label, this.$help );
+			this.$header.append( this.$help, this.$label );
 			this.$body.append( this.$field, this.$header );
 		} else {
 			this.$header.append( this.$label );
@@ -11482,7 +11521,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  * FieldsetLayouts are composed of one or more {@link OO.ui.FieldLayout FieldLayouts},
  * which each contain an individual widget and, optionally, a label. Each Fieldset can be
  * configured with a label as well. For more information and examples,
- * please see the [OOjs UI documentation on MediaWiki][1].
+ * please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example of a fieldset layout
@@ -11508,7 +11547,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Layouts/Fields_and_Fieldsets
  *
  * @class
  * @extends OO.ui.Layout
@@ -11523,7 +11562,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
  * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Configuration initialization
@@ -11591,7 +11630,7 @@ OO.ui.FieldsetLayout.static.tagName = 'fieldset';
  * FormLayouts are used to wrap {@link OO.ui.FieldsetLayout FieldsetLayouts} when you intend to use browser-based
  * form submission for the fields instead of handling them in JavaScript. Form layouts can be configured with an
  * HTML form action, an encoding type, and a method using the #action, #enctype, and #method configs, respectively.
- * See the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ * See the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
  * Only widgets from the {@link OO.ui.InputWidget InputWidget} family support form submission. It
  * includes standard form elements like {@link OO.ui.CheckboxInputWidget checkboxes}, {@link
@@ -11599,10 +11638,10 @@ OO.ui.FieldsetLayout.static.tagName = 'fieldset';
  * some fancier controls. Some controls have both regular and InputWidget variants, for example
  * OO.ui.DropdownWidget and OO.ui.DropdownInputWidget – only the latter support form submission and
  * often have simplified APIs to match the capabilities of HTML forms.
- * See the [OOjs UI Inputs documentation on MediaWiki] [2] for more information about InputWidgets.
+ * See the [OOUI documentation on MediaWiki] [2] for more information about InputWidgets.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Forms
- * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Layouts/Forms
+ * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
  *
  *     @example
  *     // Example of a form layout that wraps a fieldset layout

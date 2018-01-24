@@ -61,5 +61,5 @@ class CheckComposerLockUpToDate extends Maintenance {
 	}
 }
 
-$maintClass = 'CheckComposerLockUpToDate';
+$maintClass = CheckComposerLockUpToDate::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

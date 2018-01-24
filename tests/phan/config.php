@@ -41,7 +41,6 @@ return [
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backup.inc',
-			'maintenance/backupPrefetch.inc',
 			'maintenance/cleanupTable.inc',
 			'maintenance/CodeCleanerGlobalsPass.inc',
 			'maintenance/commandLine.inc',
@@ -295,8 +294,6 @@ return [
 	 * to this black-list to inhibit them from being reported.
 	 */
 	'suppress_issue_types' => [
-		// approximate error count: 1
-		"PhanAccessMethodProtected",
 		// approximate error count: 29
 		"PhanCommentParamOnEmptyParamList",
 		// approximate error count: 33

@@ -1,7 +1,11 @@
 <?php
 
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -74,6 +78,17 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testConstructFromEmptyArray() {
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$this->assertNull( $rev->getContent(), 'no content object should be available' );
+	}
+
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromArrayWithBadPageId() {
+		MediaWiki\suppressWarnings();
+		$rev = new Revision( [ 'page' => 77777777 ] );
+		$this->assertSame( 77777777, $rev->getPage() );
+		MediaWiki\restoreWarnings();
 	}
 
 	public function provideConstructFromArray_userSetAsExpected() {
@@ -295,6 +310,17 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = (object)$arrayData;
 		$rev = new Revision( $row, 0, $this->getMockTitle() );
 		$assertions( $this, $rev );
+	}
+
+	/**
+	 * @covers Revision::__construct
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testConstructFromRowWithBadPageId() {
+		MediaWiki\suppressWarnings();
+		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
+		$this->assertSame( 77777777, $rev->getPage() );
+		MediaWiki\restoreWarnings();
 	}
 
 	public function provideGetRevisionText() {
@@ -1565,6 +1591,104 @@ class RevisionTest extends MediaWikiTestCase {
 			$expected,
 			Revision::getQueryInfo( $options )
 		);
+	}
+
+	/**
+	 * @covers Revision::getSize
+	 */
+	public function testGetSize() {
+		$title = $this->getMockTitle();
+
+		$rec = new MutableRevisionRecord( $title );
+		$rev = new Revision( $rec, 0, $title );
+
+		$this->assertSame( 0, $rev->getSize(), 'Size of no slots is 0' );
+
+		$rec->setSize( 13 );
+		$this->assertSame( 13, $rev->getSize() );
+	}
+
+	/**
+	 * @covers Revision::getSize
+	 */
+	public function testGetSize_failure() {
+		$title = $this->getMockTitle();
+
+		$rec = $this->getMockBuilder( RevisionRecord::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$rec->method( 'getSize' )
+			->willThrowException( new RevisionAccessException( 'Oops!' ) );
+
+		$rev = new Revision( $rec, 0, $title );
+		$this->assertNull( $rev->getSize() );
+	}
+
+	/**
+	 * @covers Revision::getSha1
+	 */
+	public function testGetSha1() {
+		$title = $this->getMockTitle();
+
+		$rec = new MutableRevisionRecord( $title );
+		$rev = new Revision( $rec, 0, $title );
+
+		$emptyHash = SlotRecord::base36Sha1( '' );
+		$this->assertSame( $emptyHash, $rev->getSha1(), 'Sha1 of no slots is hash of empty string' );
+
+		$rec->setSha1( 'deadbeef' );
+		$this->assertSame( 'deadbeef', $rev->getSha1() );
+	}
+
+	/**
+	 * @covers Revision::getSha1
+	 */
+	public function testGetSha1_failure() {
+		$title = $this->getMockTitle();
+
+		$rec = $this->getMockBuilder( RevisionRecord::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$rec->method( 'getSha1' )
+			->willThrowException( new RevisionAccessException( 'Oops!' ) );
+
+		$rev = new Revision( $rec, 0, $title );
+		$this->assertNull( $rev->getSha1() );
+	}
+
+	/**
+	 * @covers Revision::getContent
+	 */
+	public function testGetContent() {
+		$title = $this->getMockTitle();
+
+		$rec = new MutableRevisionRecord( $title );
+		$rev = new Revision( $rec, 0, $title );
+
+		$this->assertNull( $rev->getContent(), 'Content of no slots is null' );
+
+		$content = new TextContent( 'Hello Kittens!' );
+		$rec->setContent( 'main', $content );
+		$this->assertSame( $content, $rev->getContent() );
+	}
+
+	/**
+	 * @covers Revision::getContent
+	 */
+	public function testGetContent_failure() {
+		$title = $this->getMockTitle();
+
+		$rec = $this->getMockBuilder( RevisionRecord::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$rec->method( 'getContent' )
+			->willThrowException( new RevisionAccessException( 'Oops!' ) );
+
+		$rev = new Revision( $rec, 0, $title );
+		$this->assertNull( $rev->getContent() );
 	}
 
 }

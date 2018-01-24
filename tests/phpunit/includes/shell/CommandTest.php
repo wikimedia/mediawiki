@@ -8,6 +8,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group Shell
  */
 class CommandTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	private function requirePosix() {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
@@ -150,5 +153,22 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$command->execute();
 		$this->assertSame( 1, count( $logger->getBuffer() ) );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
+	}
+
+	public function testInput() {
+		$this->requirePosix();
+
+		$command = new Command();
+		$command->params( 'cat' );
+		$command->input( 'abc' );
+		$result = $command->execute();
+		$this->assertSame( 'abc', $result->getStdout() );
+
+		// now try it with something that does not fit into a single block
+		$command = new Command();
+		$command->params( 'cat' );
+		$command->input( str_repeat( '!', 1000000 ) );
+		$result = $command->execute();
+		$this->assertSame( 1000000, strlen( $result->getStdout() ) );
 	}
 }

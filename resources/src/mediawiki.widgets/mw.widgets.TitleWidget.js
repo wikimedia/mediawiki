@@ -5,6 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
+	var hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * Mixin for title widgets
@@ -254,7 +255,7 @@
 				titles.push( suggestionPage.title );
 			}
 
-			redirects = redirectsTo[ suggestionPage.title ] || [];
+			redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
 			for ( i = 0, len = redirects.length; i < len; i++ ) {
 				pageData[ redirects[ i ] ] = {
 					missing: false,
@@ -278,7 +279,7 @@
 		// mismatch where normalisation would make them matching (T50476)
 
 		pageExistsExact = (
-			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&
+			hasOwn.call( pageData, this.getQueryValue() ) &&
 			(
 				!pageData[ this.getQueryValue() ].missing ||
 				pageData[ this.getQueryValue() ].known
@@ -286,7 +287,7 @@
 		);
 		pageExists = pageExistsExact || (
 			titleObj &&
-			Object.prototype.hasOwnProperty.call( pageData, titleObj.getPrefixedText() ) &&
+			hasOwn.call( pageData, titleObj.getPrefixedText() ) &&
 			(
 				!pageData[ titleObj.getPrefixedText() ].missing ||
 				pageData[ titleObj.getPrefixedText() ].known
@@ -303,7 +304,7 @@
 		}
 
 		for ( i = 0, len = titles.length; i < len; i++ ) {
-			page = pageData[ titles[ i ] ] || {};
+			page = hasOwn.call( pageData, titles[ i ] ) ? pageData[ titles[ i ] ] : {};
 			items.push( this.createOptionWidget( this.getOptionWidgetData( titles[ i ], page ) ) );
 		}
 
@@ -355,7 +356,7 @@
 	 * @param {string} [value] Value to get a title for
 	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
-	mw.widgets.TitleWidget.prototype.getTitle = function ( value ) {
+	mw.widgets.TitleWidget.prototype.getMWTitle = function ( value ) {
 		var title = value !== undefined ? value : this.getQueryValue(),
 			// mw.Title doesn't handle null well
 			titleObj = mw.Title.newFromText( title, this.namespace !== null ? this.namespace : undefined );
@@ -369,7 +370,7 @@
 	 * @return {boolean} The query is valid
 	 */
 	mw.widgets.TitleWidget.prototype.isQueryValid = function () {
-		return this.validateTitle ? !!this.getTitle() : true;
+		return this.validateTitle ? !!this.getMWTitle() : true;
 	};
 
 }( jQuery, mediaWiki ) );

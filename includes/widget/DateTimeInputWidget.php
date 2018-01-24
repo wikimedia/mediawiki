@@ -21,10 +21,10 @@ class DateTimeInputWidget extends \OOUI\InputWidget {
 
 	/**
 	 * @param array $config Configuration options
-	 * @param string $config['type'] 'date', 'time', or 'datetime'
-	 * @param string $config['min'] Minimum date, time, or datetime
-	 * @param string $config['max'] Maximum date, time, or datetime
-	 * @param bool $config['clearable'] Whether to provide for blanking the value.
+	 *   - string $config['type'] 'date', 'time', or 'datetime'
+	 *   - string $config['min'] Minimum date, time, or datetime
+	 *   - string $config['max'] Maximum date, time, or datetime
+	 *   - bool $config['clearable'] Whether to provide for blanking the value.
 	 */
 	public function __construct( array $config = [] ) {
 		// We need $this->type set before calling the parent constructor
@@ -34,7 +34,6 @@ class DateTimeInputWidget extends \OOUI\InputWidget {
 			throw new \InvalidArgumentException( '$config[\'type\'] must be specified' );
 		}
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties, which are ignored in PHP and just shipped back to JS

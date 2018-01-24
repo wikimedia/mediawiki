@@ -128,8 +128,8 @@
 				buttons = slice.call( arguments );
 			}
 			if ( isReady ) {
-				$.each( buttons, function () {
-					insertButton( this );
+				buttons.forEach( function ( button ) {
+					insertButton( button );
 				} );
 			} else {
 				// Push each button into the queue

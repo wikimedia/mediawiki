@@ -34,7 +34,6 @@ class DependencyWrapper {
 	private $deps;
 
 	/**
-	 * Create an instance.
 	 * @param mixed $value The user-supplied value
 	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
 	 *   array. All dependencies must be objects implementing CacheDependency.
@@ -99,7 +98,7 @@ class DependencyWrapper {
 	 * it will be generated with the callback function (if present), and the newly
 	 * calculated value will be stored to the cache in a wrapper.
 	 *
-	 * @param BagOStuff $cache A cache object
+	 * @param BagOStuff $cache
 	 * @param string $key The cache key
 	 * @param int $expiry The expiry timestamp or interval in seconds
 	 * @param bool|callable $callback The callback for generating the value, or false

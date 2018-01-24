@@ -45,7 +45,7 @@ if ( isset( $options['limit'] ) ) {
 	$limit = 1000;
 	$untilHappy = true;
 }
-$type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
+$type = isset( $options['type'] ) ? $options['type'] : ConcatenatedGzipHistoryBlob::class;
 
 $dbr = $this->getDB( DB_REPLICA );
 $revQuery = Revision::getQueryInfo( [ 'page', 'text' ] );

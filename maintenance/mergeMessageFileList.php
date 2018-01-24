@@ -26,7 +26,7 @@
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 
 require_once __DIR__ . '/Maintenance.php';
-$maintClass = 'MergeMessageFileList';
+$maintClass = MergeMessageFileList::class;
 $mmfl = false;
 
 /**
@@ -52,9 +52,8 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	public function execute() {
-		// @codingStandardsIgnoreStart Ignore error: Global variable "$mmfl" is lacking 'wg' prefix
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $mmfl;
-		// @codingStandardsIgnoreEnd
 		global $wgExtensionEntryPointListFiles;
 
 		if ( !count( $wgExtensionEntryPointListFiles )

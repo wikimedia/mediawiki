@@ -96,10 +96,9 @@ class Parser {
 	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
 	const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}])';
 	# RegExp to make image URLs (embeds IPv6 part of EXT_LINK_ADDR)
-	// @codingStandardsIgnoreStart Generic.Files.LineLength
+	// phpcs:ignore Generic.Files.LineLength
 	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
-	// @codingStandardsIgnoreEnd
 
 	# Regular expression for a non-newline space
 	const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
@@ -2139,11 +2138,8 @@ class Parser {
 
 		$useSubpages = $this->areSubpagesAllowed();
 
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		# Loop for each link
 		for ( ; $line !== false && $line !== null; $a->next(), $line = $a->current() ) {
-			// @codingStandardsIgnoreEnd
-
 			# Check for excessive memory usage
 			if ( $holders->isBig() ) {
 				# Too big
@@ -3115,6 +3111,9 @@ class Parser {
 				}
 
 				// Extract any forwarded flags
+				if ( isset( $result['title'] ) ) {
+					$title = $result['title'];
+				}
 				if ( isset( $result['found'] ) ) {
 					$found = $result['found'];
 				}
@@ -3574,9 +3573,8 @@ class Parser {
 		$deps = [];
 
 		# Loop to fetch the article, with up to 1 redirect
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
-			// @codingStandardsIgnoreEnd
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
 			Hooks::run( 'BeforeParserFetchTemplateAndtitle',
@@ -4250,9 +4248,8 @@ class Parser {
 			$anchor = $safeHeadline;
 			$fallbackAnchor = $fallbackHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
-				// @codingStandardsIgnoreStart
+				// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall,Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
-				// @codingStandardsIgnoreEnd
 				$anchor .= "_$i";
 				$linkAnchor .= "_$i";
 				$refers["${arrayKey}_$i"] = true;
@@ -4260,9 +4257,8 @@ class Parser {
 				$refers[$arrayKey] = true;
 			}
 			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
-				// @codingStandardsIgnoreStart
+				// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall,Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${fallbackArrayKey}_$i"] ); ++$i );
-				// @codingStandardsIgnoreEnd
 				$fallbackAnchor .= "_$i";
 				$refers["${fallbackArrayKey}_$i"] = true;
 			} else {
@@ -4683,7 +4679,7 @@ class Parser {
 	 * Wrapper for preprocess()
 	 *
 	 * @param string $text The text to preprocess
-	 * @param ParserOptions $options Options
+	 * @param ParserOptions $options
 	 * @param Title|null $title Title object or null to use $wgTitle
 	 * @return string
 	 */
@@ -5791,9 +5787,9 @@ class Parser {
 		global $wgFragmentMode;
 		if ( isset( $wgFragmentMode[1] ) && $wgFragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
-			$id = Sanitizer::escapeIdForAttribute( $text, Sanitizer::ID_FALLBACK );
+			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );
 		} else {
-			$id = Sanitizer::escapeIdForLink( $text );
+			$id = Sanitizer::escapeIdForLink( $sectionName );
 		}
 
 		return "#$id";
@@ -5976,7 +5972,7 @@ class Parser {
 	/**
 	 * Remove any strip markers found in the given text.
 	 *
-	 * @param string $text Input string
+	 * @param string $text
 	 * @return string
 	 */
 	public function killMarkers( $text ) {

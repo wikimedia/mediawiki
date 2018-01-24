@@ -62,7 +62,7 @@
 		var uriProcessor,
 			filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
 			makeUri = function ( queryParams ) {
-				var uri = new mw.Uri();
+				var uri = new mw.Uri( 'http://server/wiki/Special:RC' );
 				uri.query = queryParams;
 				return uri;
 			};
@@ -278,58 +278,73 @@
 	} );
 
 	QUnit.test( '_normalizeTargetInUri', function ( assert ) {
-		var uriProcessor = new mw.rcfilters.UriProcessor( null ),
-			cases = [
-				{
-					input: 'http://host/wiki/Special:RecentChangesLinked/Moai',
-					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai',
-					message: 'Target as subpage in path'
-				},
-				{
-					input: 'http://host/wiki/Special:RecentChangesLinked/Château',
-					output: 'http://host/wiki/Special:RecentChangesLinked?target=Château',
-					message: 'Target as subpage in path with special characters'
-				},
-				{
-					input: 'http://host/wiki/Special:RecentChangesLinked/Moai/Sub1',
-					output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai/Sub1',
-					message: 'Target as subpage also has a subpage'
-				},
-				{
-					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo',
-					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo',
-					message: 'Target as subpage in path (with namespace)'
-				},
-				{
-					input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo/Bar',
-					output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo/Bar',
-					message: 'Target as subpage in path also has a subpage (with namespace)'
-				},
-				{
-					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai',
-					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai',
-					message: 'Target as subpage in title param'
-				},
-				{
-					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai/Sub1',
-					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai/Sub1',
-					message: 'Target as subpage in title param also has a subpage'
-				},
-				{
-					input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Category:Foo/Bar',
-					output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Category:Foo/Bar',
-					message: 'Target as subpage in title param also has a subpage (with namespace)'
-				},
-				{
-					input: 'http://host/wiki/Special:Watchlist',
-					output: 'http://host/wiki/Special:Watchlist',
-					message: 'No target specified'
-				}
-			];
+		var cases = [
+			{
+				input: 'http://host/wiki/Special:RecentChangesLinked/Moai',
+				output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai',
+				message: 'Target as subpage in path'
+			},
+			{
+				input: 'http://host/wiki/Special:RecentChangesLinked/Château',
+				output: 'http://host/wiki/Special:RecentChangesLinked?target=Château',
+				message: 'Target as subpage in path with special characters'
+			},
+			{
+				input: 'http://host/wiki/Special:RecentChangesLinked/Moai/Sub1',
+				output: 'http://host/wiki/Special:RecentChangesLinked?target=Moai/Sub1',
+				message: 'Target as subpage also has a subpage'
+			},
+			{
+				input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo',
+				output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo',
+				message: 'Target as subpage in path (with namespace)'
+			},
+			{
+				input: 'http://host/wiki/Special:RecentChangesLinked/Category:Foo/Bar',
+				output: 'http://host/wiki/Special:RecentChangesLinked?target=Category:Foo/Bar',
+				message: 'Target as subpage in path also has a subpage (with namespace)'
+			},
+			{
+				input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai',
+				output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai',
+				message: 'Target as subpage in title param'
+			},
+			{
+				input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Moai/Sub1',
+				output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Moai/Sub1',
+				message: 'Target as subpage in title param also has a subpage'
+			},
+			{
+				input: 'http://host/w/index.php?title=Special:RecentChangesLinked/Category:Foo/Bar',
+				output: 'http://host/w/index.php?title=Special:RecentChangesLinked&target=Category:Foo/Bar',
+				message: 'Target as subpage in title param also has a subpage (with namespace)'
+			},
+			{
+				input: 'http://host/wiki/Special:Watchlist',
+				output: 'http://host/wiki/Special:Watchlist',
+				message: 'No target specified'
+			},
+			{
+				normalizeTarget: false,
+				input: 'http://host/wiki/Special:RecentChanges/Foo',
+				output: 'http://host/wiki/Special:RecentChanges/Foo',
+				message: 'Do not normalize if "normalizeTarget" is false.'
+			}
+		];
 
 		cases.forEach( function ( testCase ) {
+			var uriProcessor = new mw.rcfilters.UriProcessor(
+				null,
+				{
+					normalizeTarget: testCase.normalizeTarget === undefined ?
+						true : testCase.normalizeTarget
+				}
+			);
+
 			assert.equal(
-				uriProcessor._normalizeTargetInUri( new mw.Uri( testCase.input ) ).toString(),
+				uriProcessor._normalizeTargetInUri(
+					new mw.Uri( testCase.input )
+				).toString(),
 				new mw.Uri( testCase.output ).toString(),
 				testCase.message
 			);

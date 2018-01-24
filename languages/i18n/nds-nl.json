@@ -1545,6 +1545,7 @@
 	"booksources-search": "Zeuken",
 	"booksources-text": "Hieronder steet n lieste mit verwiezingen naor aandere websteeën die nieje of wat ouwere boeken verkopen, en daor hebben ze warschienlik meer informasie over t boek da'j zeuken:",
 	"booksources-invalid-isbn": "De op-egeven ISBN klop niet; kiek effen nao o'j gien fout emaakt hebben bie de invoer.",
+	"magiclink-tracking-isbn": "Ziejen die magiese ISBN-verwiezingen gebruken",
 	"specialloguserlabel": "Uutvoerende gebruker:",
 	"speciallogtitlelabel": "Doel (ziednaam of gebruker):",
 	"log": "Logboeken",

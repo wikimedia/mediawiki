@@ -12633,6 +12633,19 @@ parsoid=wt2html
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,14,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"echo\",\"href\":\"./Template:Echo\"},\"params\":{\"1\":{\"wt\":\"foo\"}},\"i\":0}}]}&#39;>foo&lt;/span>bar"}}'></span></p>
 !! end
 
+!! test
+Preprocessor precedence 17: template w/o target shouldn't prevent closing
+!! options
+parsoid=wt2html
+!! wikitext
+{{echo|hi {{}}}}
+!! html/php
+<p>hi {{}}
+</p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi {{}}"}},"i":0}}]}'>hi {{}}</p>
+!! end
+
 ###
 ### Token Stream Patcher tests
 ###
@@ -30607,4 +30620,26 @@ b
 
 </section><section data-mw-section-id="2"><h1 id="2"> 2 </h1>
 <p>b</p></section>
+!! end
+
+!! test
+Pseudo-sections emitted by templates should have id -2 
+!! options
+parsoid={
+  "wrapSections": true
+}
+!! wikitext
+foo
+{{echo|<div>
+== a ==
+== b ==
+</div>
+}}
+!! html/parsoid
+<section data-mw-section-id="-1"><p>foo</p>
+</section><section data-mw-section-id="-2"><div about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;div>\n== a ==\n== b ==\n&lt;/div>\n"}},"i":0}}]}'>
+<section data-mw-section-id="-1"><h2 id="a"> a </h2>
+</section><section data-mw-section-id="-1"><h2 id="b"> b </h2>
+</section></div><span about="#mwt1">
+</span></section>
 !! end

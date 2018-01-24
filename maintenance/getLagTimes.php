@@ -75,5 +75,5 @@ class GetLagTimes extends Maintenance {
 	}
 }
 
-$maintClass = "GetLagTimes";
+$maintClass = GetLagTimes::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

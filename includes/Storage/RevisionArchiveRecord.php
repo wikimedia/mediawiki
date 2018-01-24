@@ -107,6 +107,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	}
 
 	/**
+	 * @throws RevisionAccessException if the size was unknown and could not be calculated.
 	 * @return int The nominal revision size, never null. May be computed on the fly.
 	 */
 	public function getSize() {
@@ -120,6 +121,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	}
 
 	/**
+	 * @throws RevisionAccessException if the hash was unknown and could not be calculated.
 	 * @return string The revision hash, never null. May be computed on the fly.
 	 */
 	public function getSha1() {

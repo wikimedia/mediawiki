@@ -108,5 +108,5 @@ class CompareParserCache extends Maintenance {
 	}
 }
 
-$maintClass = "CompareParserCache";
+$maintClass = CompareParserCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

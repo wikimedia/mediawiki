@@ -7,7 +7,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Reptilien.19831209BE1"
 		]
 	},
 	"tog-underline": "Sorlignî les loyéns:",
@@ -464,6 +465,7 @@
 	"postedit-confirmation-saved": "vosse candjmint a stî schapé",
 	"edit-already-exists": "Li novele pâdje n' a savou esse ahivêye, ca cisse pâdje la egzistêye dedja.",
 	"editwarning-warning": "Cwiter cisse pådje ci vos frè piede tos les candjmints ki vos avoz fwait.\nSi vos estoz elodjî, vos ploz dismete cist adviertixhmint ci dins l' linwete «Boesse di tecse» di vos preferinces.",
+	"duplicate-args-category": "Pådje eployant des dobes parametes dins les uzaedjes di modele",
 	"post-expand-template-inclusion-warning": "'''Asteme:''' I gn a trop di modeles dins cisse pådje ci.\nSacwants di zels ni seront nén eployîs.",
 	"post-expand-template-inclusion-category": "Pådjes ki l' inclusion d' modeles est foû limite",
 	"viewpagelogs": "Vey les djournås po cisse pådje ci",

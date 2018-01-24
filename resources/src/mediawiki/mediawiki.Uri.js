@@ -288,7 +288,7 @@
 
 				// Apply parser regex and set all properties based on the result
 				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
-				$.each( properties, function ( i, property ) {
+				properties.forEach( function ( property, i ) {
 					uri[ property ] = matches[ i + 1 ];
 				} );
 
@@ -324,6 +324,11 @@
 					} );
 				}
 				uri.query = q;
+
+				// Decode uri.fragment, otherwise it gets double-encoded when serializing
+				if ( uri.fragment !== undefined ) {
+					uri.fragment = Uri.decode( uri.fragment );
+				}
 			},
 
 			/**
@@ -367,7 +372,7 @@
 				$.each( this.query, function ( key, val ) {
 					var k = Uri.encode( key ),
 						vals = Array.isArray( val ) ? val : [ val ];
-					$.each( vals, function ( i, v ) {
+					vals.forEach( function ( v ) {
 						if ( v === null ) {
 							args.push( k );
 						} else if ( k === 'title' ) {

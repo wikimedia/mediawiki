@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.24.3
- * https://www.mediawiki.org/wiki/OOjs_UI
+ * OOUI v0.25.1
+ * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2017 OOjs UI Team and other contributors.
+ * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2017-11-28T23:28:05Z
+ * Date: 2018-01-17T01:47:15Z
  */
 ( function ( OO ) {
 
@@ -618,9 +618,9 @@ OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
  * not the desired behavior, disable lookup menus with the #setLookupsDisabled method, then set the value, then
  * re-enable lookups.
  *
- * See the [OOjs UI demos][1] for an example.
+ * See the [OOUI demos][1] for an example.
  *
- * [1]: https://tools.wmflabs.org/oojs-ui/oojs-ui/demos/index.html#widgets-apex-vector-ltr
+ * [1]: https://doc.wikimedia.org/oojs-ui/master/demos/#LookupElement-try-inputting-an-integer
  *
  * @class
  * @abstract
@@ -629,7 +629,7 @@ OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$overlay] Overlay for the lookup menu; defaults to relative positioning.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  * @cfg {jQuery} [$container=this.$element] The container element. The lookup menu is rendered beneath the specified element.
  * @cfg {boolean} [allowSuggestionsWhenEmpty=false] Request and display a lookup menu when the text input is empty.
  *  By default, the lookup menu is not generated and displayed until the user begins to type.
@@ -644,7 +644,7 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	OO.ui.mixin.RequestManager.call( this, config );
 
 	// Properties
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.lookupMenu = new OO.ui.MenuSelectWidget( {
 		widget: this,
 		input: this,
@@ -858,7 +858,7 @@ OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
  * @chainable
  */
 OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection = function () {
-	if ( this.lookupHighlightFirstItem && !this.lookupMenu.getSelectedItem() ) {
+	if ( this.lookupHighlightFirstItem && !this.lookupMenu.findSelectedItem() ) {
 		this.lookupMenu.highlightItem( this.lookupMenu.findFirstSelectableItem() );
 	}
 };
@@ -2020,34 +2020,22 @@ OO.ui.BookletLayout.prototype.findClosestPage = function ( page ) {
 		prev = pages[ index - 1 ];
 		// Prefer adjacent pages at the same level
 		if ( this.outlined ) {
-			level = this.outlineSelectWidget.getItemFromData( page.getName() ).getLevel();
+			level = this.outlineSelectWidget.findItemFromData( page.getName() ).getLevel();
 			if (
 				prev &&
-				level === this.outlineSelectWidget.getItemFromData( prev.getName() ).getLevel()
+				level === this.outlineSelectWidget.findItemFromData( prev.getName() ).getLevel()
 			) {
 				return prev;
 			}
 			if (
 				next &&
-				level === this.outlineSelectWidget.getItemFromData( next.getName() ).getLevel()
+				level === this.outlineSelectWidget.findItemFromData( next.getName() ).getLevel()
 			) {
 				return next;
 			}
 		}
 	}
 	return prev || next || null;
-};
-
-/**
- * Get the page closest to the specified page.
- *
- * @deprecated 0.23.0 Use {@link OO.ui.BookletLayout#findClosestPage} instead.
- * @param {OO.ui.PageLayout} page Page to use as a reference point
- * @return {OO.ui.PageLayout|null} Page closest to the specified page
- */
-OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
-	OO.ui.warnDeprecation( 'BookletLayout#getClosestPage: Deprecated function. Use findClosestPage instead. See T76630.' );
-	return this.findClosestPage( page );
 };
 
 /**
@@ -2176,7 +2164,7 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 		name = page.getName();
 		delete this.pages[ name ];
 		if ( this.outlined ) {
-			items.push( this.outlineSelectWidget.getItemFromData( name ) );
+			items.push( this.outlineSelectWidget.findItemFromData( name ) );
 			page.setOutlineItem( null );
 		}
 	}
@@ -2231,7 +2219,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 
 	if ( name !== this.currentPageName ) {
 		if ( this.outlined ) {
-			selectedItem = this.outlineSelectWidget.getSelectedItem();
+			selectedItem = this.outlineSelectWidget.findSelectedItem();
 			if ( selectedItem && selectedItem.getData() !== name ) {
 				this.outlineSelectWidget.selectItemByData( name );
 			}
@@ -2277,7 +2265,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
  * @chainable
  */
 OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
-	if ( !this.outlineSelectWidget.getSelectedItem() ) {
+	if ( !this.outlineSelectWidget.findSelectedItem() ) {
 		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.findFirstSelectableItem() );
 	}
 
@@ -2499,16 +2487,16 @@ OO.ui.IndexLayout.prototype.getClosestTabPanel = function ( tabPanel ) {
 		next = tabPanels[ index + 1 ];
 		prev = tabPanels[ index - 1 ];
 		// Prefer adjacent tab panels at the same level
-		level = this.tabSelectWidget.getItemFromData( tabPanel.getName() ).getLevel();
+		level = this.tabSelectWidget.findItemFromData( tabPanel.getName() ).getLevel();
 		if (
 			prev &&
-			level === this.tabSelectWidget.getItemFromData( prev.getName() ).getLevel()
+			level === this.tabSelectWidget.findItemFromData( prev.getName() ).getLevel()
 		) {
 			return prev;
 		}
 		if (
 			next &&
-			level === this.tabSelectWidget.getItemFromData( next.getName() ).getLevel()
+			level === this.tabSelectWidget.findItemFromData( next.getName() ).getLevel()
 		) {
 			return next;
 		}
@@ -2626,7 +2614,7 @@ OO.ui.IndexLayout.prototype.removeTabPanels = function ( tabPanels ) {
 		tabPanel = tabPanels[ i ];
 		name = tabPanel.getName();
 		delete this.tabPanels[ name ];
-		items.push( this.tabSelectWidget.getItemFromData( name ) );
+		items.push( this.tabSelectWidget.findItemFromData( name ) );
 		tabPanel.setTabItem( null );
 	}
 	if ( items.length ) {
@@ -2677,7 +2665,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 		previousTabPanel = this.currentTabPanelName && this.tabPanels[ this.currentTabPanelName ];
 
 	if ( name !== this.currentTabPanelName ) {
-		selectedItem = this.tabSelectWidget.getSelectedItem();
+		selectedItem = this.tabSelectWidget.findSelectedItem();
 		if ( selectedItem && selectedItem.getData() !== name ) {
 			this.tabSelectWidget.selectItemByData( name );
 		}
@@ -2722,7 +2710,7 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
  * @chainable
  */
 OO.ui.IndexLayout.prototype.selectFirstSelectableTabPanel = function () {
-	if ( !this.tabSelectWidget.getSelectedItem() ) {
+	if ( !this.tabSelectWidget.findSelectedItem() ) {
 		this.tabSelectWidget.selectItem( this.tabSelectWidget.findFirstSelectableItem() );
 	}
 
@@ -2806,7 +2794,7 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  * configured with {@link OO.ui.mixin.IconElement icons}, {@link OO.ui.mixin.IndicatorElement indicators},
  * {@link OO.ui.mixin.TitledElement titles}, {@link OO.ui.mixin.FlaggedElement styling flags},
  * and {@link OO.ui.mixin.LabelElement labels}. Please see
- * the [OOjs UI documentation][1] on MediaWiki for more information.
+ * the [OOUI documentation][1] on MediaWiki for more information.
  *
  *     @example
  *     // Toggle buttons in the 'off' and 'on' state.
@@ -2820,7 +2808,7 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
  *     // Append the buttons to the DOM.
  *     $( 'body' ).append( toggleButton1.$element, toggleButton2.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Toggle_buttons
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Buttons_and_Switches#Toggle_buttons
  *
  * @class
  * @extends OO.ui.ToggleWidget
@@ -3156,7 +3144,7 @@ OO.ui.OutlineControlsWidget.prototype.setAbilities = function ( abilities ) {
 OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	var i, len, firstMovable, lastMovable,
 		items = this.outline.getItems(),
-		selectedItem = this.outline.getSelectedItem(),
+		selectedItem = this.outline.findSelectedItem(),
 		movable = this.abilities.move && selectedItem && selectedItem.isMovable(),
 		removable = this.abilities.remove && selectedItem && selectedItem.isRemovable();
 
@@ -3396,9 +3384,9 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.mixin.TabIndexedElement );
  * ButtonOptionWidget is a special type of {@link OO.ui.mixin.ButtonElement button element} that
  * can be selected and configured with data. The class is
  * used with OO.ui.ButtonSelectWidget to create a selection of button options. Please see the
- * [OOjs UI documentation on MediaWiki] [1] for more information.
+ * [OOUI documentation on MediaWiki] [1] for more information.
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Button_selects_and_options
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -3473,7 +3461,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  * button options and is used together with
  * OO.ui.ButtonOptionWidget. The ButtonSelectWidget provides an interface for
  * highlighting, choosing, and selecting mutually exclusive options. Please see
- * the [OOjs UI documentation on MediaWiki] [1] for more information.
+ * the [OOUI documentation on MediaWiki] [1] for more information.
  *
  *     @example
  *     // Example: A ButtonSelectWidget that contains three ButtonOptionWidgets
@@ -3500,7 +3488,7 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  *     } );
  *     $( 'body' ).append( buttonSelect.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -3709,7 +3697,7 @@ OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
  * CapsuleMultiselectWidgets are something like a {@link OO.ui.ComboBoxInputWidget combo box widget}
  * that allows for selecting multiple values.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
+ * For more information about menus and options, please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example: A CapsuleMultiselectWidget.
@@ -3743,7 +3731,7 @@ OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
  *     } );
  *     $( 'body' ).append( capsule.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.Widget
@@ -3771,7 +3759,7 @@ OO.ui.CapsuleItemWidget.prototype.onKeyDown = function ( e ) {
  *  its containing `<div>`. The specified overlay layer is usually on top of
  *  the containing `<div>` and has a larger area. By default, the menu uses
  *  relative positioning.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config ) {
 	var $tabFocus;
@@ -3782,8 +3770,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	// Configuration initialization
 	config = $.extend( {
 		allowArbitrary: false,
-		allowDuplicates: false,
-		$overlay: this.$element
+		allowDuplicates: false
 	}, config );
 
 	// Properties (must be set before mixin constructor calls)
@@ -3815,7 +3802,7 @@ OO.ui.CapsuleMultiselectWidget = function OoUiCapsuleMultiselectWidget( config )
 	this.$content = $( '<div>' );
 	this.allowArbitrary = config.allowArbitrary;
 	this.allowDuplicates = config.allowDuplicates;
-	this.$overlay = config.$overlay;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.menu = new OO.ui.MenuSelectWidget( $.extend(
 		{
 			widget: this,
@@ -3981,7 +3968,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.setItemsFromData = function ( datas ) {
 
 	$.each( datas, function ( i, data ) {
 		var j, label,
-			item = menu.getItemFromData( data );
+			item = menu.findItemFromData( data );
 
 		if ( item ) {
 			label = item.label;
@@ -4029,8 +4016,8 @@ OO.ui.CapsuleMultiselectWidget.prototype.addItemsFromData = function ( datas ) {
 	$.each( datas, function ( i, data ) {
 		var item;
 
-		if ( !widget.getItemFromData( data ) || widget.allowDuplicates ) {
-			item = menu.getItemFromData( data );
+		if ( !widget.findItemFromData( data ) || widget.allowDuplicates ) {
+			item = menu.findItemFromData( data );
 			if ( item ) {
 				item = widget.createItemWidget( data, item.label );
 			} else if ( widget.allowArbitrary ) {
@@ -4081,7 +4068,7 @@ OO.ui.CapsuleMultiselectWidget.prototype.removeItemsFromData = function ( datas 
 		items = [];
 
 	$.each( datas, function ( i, data ) {
-		var item = widget.getItemFromData( data );
+		var item = widget.findItemFromData( data );
 		if ( item ) {
 			items.push( item );
 		}
@@ -4733,8 +4720,6 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * A basic tag multiselect widget, similar in concept to {@link OO.ui.ComboBoxInputWidget combo box widget}
  * that allows the user to add multiple values that are displayed in a tag area.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  * This widget is a base widget; see {@link OO.ui.MenuTagMultiselectWidget MenuTagMultiselectWidget} and
  * {@link OO.ui.PopupTagMultiselectWidget PopupTagMultiselectWidget} for the implementations that use
  * a menu and a popup respectively.
@@ -4747,8 +4732,6 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *         selected: [ 'Option 1' ]
  *     } );
  *     $( 'body' ).append( widget.$element );
- *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.Widget
@@ -5217,7 +5200,7 @@ OO.ui.TagMultiselectWidget.prototype.clearInput = function () {
  * @return {boolean} Value is duplicate
  */
 OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
-	return !!this.getItemFromData( data );
+	return !!this.findItemFromData( data );
 };
 
 /**
@@ -5342,7 +5325,7 @@ OO.ui.TagMultiselectWidget.prototype.addTag = function ( data, label ) {
  * @param {string|Object} data Tag data
  */
 OO.ui.TagMultiselectWidget.prototype.removeTagByData = function ( data ) {
-	var item = this.getItemFromData( data );
+	var item = this.findItemFromData( data );
 
 	this.removeItems( [ item ] );
 };
@@ -5547,8 +5530,6 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  * PopupTagMultiselectWidget is a {@link OO.ui.TagMultiselectWidget OO.ui.TagMultiselectWidget} intended
  * to use a popup. The popup can be configured to have a default input to insert values into the widget.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  *     @example
  *     // Example: A basic PopupTagMultiselectWidget.
  *     var widget = new OO.ui.PopupTagMultiselectWidget();
@@ -5564,15 +5545,13 @@ OO.ui.TagMultiselectWidget.prototype.isValid = function () {
  *         } );
  *     $( 'body' ).append( widget.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
- *
  * @class
  * @extends OO.ui.TagMultiselectWidget
  * @mixins OO.ui.mixin.PopupElement
  *
  * @param {Object} config Configuration object
  * @cfg {jQuery} [$overlay] An overlay for the popup.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  * @cfg {Object} [popup] Configuration options for the popup
  * @cfg {OO.ui.InputWidget} [popupInput] An input widget inside the popup that will be
  *  focused when the popup is opened and will be used as replacement for the
@@ -5587,7 +5566,7 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 	// Parent constructor
 	OO.ui.PopupTagMultiselectWidget.parent.call( this, $.extend( { inputPosition: 'none' }, config ) );
 
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	if ( !config.popup ) {
 		// For the default base implementation, we give a popup
@@ -5707,8 +5686,6 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * MenuTagMultiselectWidget is a {@link OO.ui.TagMultiselectWidget OO.ui.TagMultiselectWidget} intended
  * to use a menu of selectable options.
  *
- * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
- *
  *     @example
  *     // Example: A basic MenuTagMultiselectWidget.
  *     var widget = new OO.ui.MenuTagMultiselectWidget( {
@@ -5722,8 +5699,6 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  *     } );
  *     $( 'body' ).append( widget.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
- *
  * @class
  * @extends OO.ui.TagMultiselectWidget
  *
@@ -5731,7 +5706,7 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * @param {Object} [config] Configuration object
  * @cfg {Object} [menu] Configuration object for the menu widget
  * @cfg {jQuery} [$overlay] An overlay for the menu.
- *  See <https://www.mediawiki.org/wiki/OOjs_UI/Concepts#Overlays>.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
  */
 OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config ) {
@@ -5740,7 +5715,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	// Parent constructor
 	OO.ui.MenuTagMultiselectWidget.parent.call( this, config );
 
-	this.$overlay = config.$overlay || this.$element;
+	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 
 	this.menu = this.createMenuWidget( $.extend( {
 		widget: this,
@@ -5748,7 +5723,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		$input: this.hasInput ? this.input.$input : null,
 		filterFromInput: !!this.hasInput,
 		$autoCloseIgnore: this.hasInput ?
-			this.input.$element.add( this.$overlay ) : this.$overlay,
+			this.input.$element : $( [] ),
 		$floatableContainer: this.hasInput && this.inputPosition === 'outline' ?
 			this.input.$element : this.$element,
 		$overlay: this.$overlay,
@@ -5835,11 +5810,16 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
  * @inheritdoc
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-	var menuItem = this.menu.getItemFromData( tagItem.getData() );
+	var menuItem = this.menu.findItemFromData( tagItem.getData() );
 	// Override the base behavior from TagMultiselectWidget; the base behavior
 	// in TagMultiselectWidget is to remove the tag to edit it in the input,
 	// but in our case, we want to utilize the menu selection behavior, and
 	// definitely not remove the item.
+
+	// If there is an input that is used for filtering, erase the value so we don't filter
+	if ( this.hasInput && this.menu.filterFromInput ) {
+		this.input.setValue( '' );
+	}
 
 	// Select the menu item
 	this.menu.selectItem( menuItem );
@@ -5854,7 +5834,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 	var inputValue = this.input.getValue(),
 		validated = false,
 		highlightedItem = this.menu.findHighlightedItem(),
-		item = this.menu.getItemFromData( inputValue );
+		item = this.menu.findItemFromData( inputValue );
 
 	// Override the parent method so we add from the menu
 	// rather than directly from the input
@@ -5958,14 +5938,14 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
  * SelectFileWidgets allow for selecting files, using the HTML5 File API. These
  * widgets can be configured with {@link OO.ui.mixin.IconElement icons} and {@link
  * OO.ui.mixin.IndicatorElement indicators}.
- * Please see the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
  *
  *     @example
  *     // Example of a file select widget
  *     var selectFile = new OO.ui.SelectFileWidget();
  *     $( 'body' ).append( selectFile.$element );
  *
- * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets
+ * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets
  *
  * @class
  * @extends OO.ui.Widget
@@ -6485,9 +6465,9 @@ OO.ui.SelectFileWidget.prototype.setDisabled = function ( disabled ) {
  * In general, search widgets are used inside a separate {@link OO.ui.Dialog dialog} window.
  *
  * Each time the query is changed, the search result menu is cleared and repopulated. Please see
- * the [OOjs UI demos][1] for an example.
+ * the [OOUI demos][1] for an example.
  *
- * [1]: https://tools.wmflabs.org/oojs-ui/oojs-ui/demos/#dialogs-mediawiki-vector-ltr
+ * [1]: https://doc.wikimedia.org/oojs-ui/master/demos/#SearchInputWidget-type-search
  *
  * @class
  * @extends OO.ui.Widget
@@ -6552,7 +6532,7 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 	if ( dir ) {
 		highlightedItem = this.results.findHighlightedItem();
 		if ( !highlightedItem ) {
-			highlightedItem = this.results.getSelectedItem();
+			highlightedItem = this.results.findSelectedItem();
 		}
 		nextItem = this.results.findRelativeSelectableItem( highlightedItem, dir );
 		this.results.highlightItem( nextItem );

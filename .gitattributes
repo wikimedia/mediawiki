@@ -2,3 +2,11 @@
 *.icc binary
 *.webp binary
 *.mp3 binary
+*~ export-ignore
+#*# export-ignore
+.* export-ignore
+package.json export-ignore
+README.mediawiki export-ignore
+Gemfile* export-ignore
+vendor/pear/net_smtp/README.rst export-ignore
+

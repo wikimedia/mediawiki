@@ -29,7 +29,8 @@
 			"Şeyx Şamil",
 			"Serkanland",
 			"Macofe",
-			"Archaeodontosaurus"
+			"Archaeodontosaurus",
+			"Neriman2003"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1080,6 +1081,7 @@
 	"rcfilters-view-tags-tooltip": "Nəticələri redaktə etiketləri əsasında filtrlə",
 	"rcfilters-view-tags-help-icon-tooltip": "Etiketli Redaktələr barədə ətraflı məlumat",
 	"rcfilters-liveupdates-button": "Canlı yenilənmə",
+	"rcfilters-target-page-placeholder": "Bir səhifə adı (və ya kateqoriya) daxil edin",
 	"rcnotefrom": "Aşağıda <strong>$3, $4</strong> tarixindən bu yana edilmiş {{PLURAL:$5|dəyişiklik göstərilib|dəyişikliklər göstərilib}} (<strong>$1</strong> dəyişiklikdən artıq olmayaraq göstərilib).",
 	"rclistfrom": "$3 $2 vaxtından başlayaraq yeni dəyişiklikləri göstər",
 	"rcshowhideminor": "Kiçik redaktələri $1",
@@ -2433,6 +2435,7 @@
 	"version-ext-colheader-credits": "Müəlliflər",
 	"version-poweredby-credits": "Bu wiki '''[https://www.mediawiki.org/ MediaWiki]''' proqramı istifadə edilərək yaradılmışdır, müəlliflik © 2001-$1 $2.",
 	"version-poweredby-others": "digərləri",
+	"version-license-info": "MediaWiki pulsuz proqramdır; Free Software Foundation tərəfindən dərc edildiyi kimi GNU General Public License şərtlərinə uyğun olaraq onu yenidən bölüşdürə və ya dəyişə bilərsiniz; lisenziyanın 2-ci versiyası və ya (hər hansı bir variantda) hər hansı bir sonrakı versiyası.\n\nMediaWiki, faydalı olacağı ümidində paylanır, lakin <em>WITHOUT ANY WARRANTY</ em>; <strong>SMERCHANTABILITY</strong> və ya <strong>FITNESS FOR A PARTICULAR PURPOSE</strong> kimi nəzərdə tutulan zəmanət olmadan. Daha ətraflı məlumat üçün GNU General Public License baxın.\n\nBu proqramla birlikdə [{{SERVER}}{{SCRIPTPATH}}/GNU Ümumi İctimai Lisenziyasının bir surətini KOPYALI] almalısınız; əgər yoxsa Free Software Foundation, Inc., 51 Franklin Street, Beşinci mərtəbə, Boston, MA 02110-1301, ABŞ və ya [//www.gnu.org/licenses/old-licenses/gpl-2.0.html onlayn oxuyun ].",
 	"version-software-product": "Məhsul",
 	"version-software-version": "Versiya",
 	"version-entrypoints-header-url": "URL",

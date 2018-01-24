@@ -82,7 +82,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param bool $value New value
+	 * @param bool $value
 	 * @return bool Old value
 	 * @since 1.28
 	 */

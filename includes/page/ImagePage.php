@@ -539,13 +539,13 @@ class ImagePage extends Article {
 				// The dirmark, however, must not be immediately adjacent
 				// to the filename, because it can get copied with it.
 				// See T27277.
-				// @codingStandardsIgnoreStart Ignore long line
+				// phpcs:disable Generic.Files.LineLength
 				$out->addWikiText( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
 				);
-				// @codingStandardsIgnoreEnd
+				// phpcs:enable
 			} else {
 				$out->addWikiText( <<<EOT
 <div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>

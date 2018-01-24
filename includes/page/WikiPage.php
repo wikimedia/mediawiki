@@ -434,8 +434,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( is_int( $from ) ) {
 			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
-			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$db = $loadBalancer->getConnection( $index );
+			$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
 
 			if ( !$data
 				&& $index == DB_REPLICA
@@ -444,7 +445,8 @@ class WikiPage implements Page, IDBAccessObject {
 			) {
 				$from = self::READ_LATEST;
 				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
-				$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
+				$db = $loadBalancer->getConnection( $index );
+				$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
 			}
 		} else {
 			// No idea from where the caller got this data, assume replica DB.
@@ -1425,16 +1427,17 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$dbr = $lb->getConnection( DB_REPLICA );
 			$rev = Revision::loadFromTimestamp( $dbr, $this->mTitle, $edittime );
 			// Try the master if this thread may have just added it.
 			// This could be abstracted into a Revision method, but we don't want
 			// to encourage loading of revisions by timestamp.
 			if ( !$rev
-				&& wfGetLB()->getServerCount() > 1
-				&& wfGetLB()->hasOrMadeRecentMasterChanges()
+				&& $lb->getServerCount() > 1
+				&& $lb->hasOrMadeRecentMasterChanges()
 			) {
-				$dbw = wfGetDB( DB_MASTER );
+				$dbw = $lb->getConnection( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
 			}
 			if ( $rev ) {
@@ -3353,6 +3356,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public static function onArticleDelete( Title $title ) {
 		// Update existence markers on article/talk tabs...
+		// Clear Backlink cache first so that purge jobs use more up-to-date backlink information
+		BacklinkCache::get( $title )->clear();
 		$other = $title->getOtherPage();
 
 		$other->purgeSquid();

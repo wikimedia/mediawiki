@@ -148,5 +148,5 @@ class CleanupBlocks extends Maintenance {
 	}
 }
 
-$maintClass = "CleanupBlocks";
+$maintClass = CleanupBlocks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

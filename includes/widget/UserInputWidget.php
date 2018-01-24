@@ -16,7 +16,6 @@ class UserInputWidget extends \OOUI\TextInputWidget {
 	 * @param array $config Configuration options
 	 */
 	public function __construct( array $config = [] ) {
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Initialization
@@ -25,5 +24,10 @@ class UserInputWidget extends \OOUI\TextInputWidget {
 
 	protected function getJavaScriptClassName() {
 		return 'mw.widgets.UserInputWidget';
+	}
+
+	public function getConfig( &$config ) {
+		$config['$overlay'] = true;
+		return parent::getConfig( $config );
 	}
 }

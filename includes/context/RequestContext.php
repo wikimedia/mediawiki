@@ -81,17 +81,13 @@ class RequestContext implements IContextSource, MutableContext {
 	private static $instance = null;
 
 	/**
-	 * Set the Config object
-	 *
-	 * @param Config $c
+	 * @param Config $config
 	 */
-	public function setConfig( Config $c ) {
-		$this->config = $c;
+	public function setConfig( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
-	 * Get the Config object
-	 *
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -441,8 +437,6 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->skin;
 	}
 
-	/** Helpful methods **/
-
 	/**
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
@@ -457,8 +451,6 @@ class RequestContext implements IContextSource, MutableContext {
 
 		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
-
-	/** Static methods **/
 
 	/**
 	 * Get the RequestContext object associated with the main request

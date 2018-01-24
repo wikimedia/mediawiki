@@ -64,5 +64,5 @@ class MakeTestEdits extends Maintenance {
 	}
 }
 
-$maintClass = "MakeTestEdits";
+$maintClass = MakeTestEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

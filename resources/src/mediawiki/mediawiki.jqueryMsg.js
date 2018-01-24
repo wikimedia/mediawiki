@@ -698,14 +698,14 @@
 
 				startTagName = startTagName.toLowerCase();
 				endTagName = endTagName.toLowerCase();
-				if ( startTagName !== endTagName || $.inArray( startTagName, settings.allowedHtmlElements ) === -1 ) {
+				if ( startTagName !== endTagName || settings.allowedHtmlElements.indexOf( startTagName ) === -1 ) {
 					return false;
 				}
 
 				for ( i = 0, len = attributes.length; i < len; i += 2 ) {
 					attributeName = attributes[ i ];
-					if ( $.inArray( attributeName, settings.allowedHtmlCommonAttributes ) === -1 &&
-						$.inArray( attributeName, settings.allowedHtmlAttributesByElement[ startTagName ] || [] ) === -1 ) {
+					if ( settings.allowedHtmlCommonAttributes.indexOf( attributeName ) === -1 &&
+						( settings.allowedHtmlAttributesByElement[ startTagName ] || [] ).indexOf( attributeName ) === -1 ) {
 						return false;
 					}
 				}
@@ -1272,7 +1272,7 @@
 		 * @return {string} Localized namespace name
 		 */
 		ns: function ( nodes ) {
-			var ns = $.trim( textify( nodes[ 0 ] ) );
+			var ns = textify( nodes[ 0 ] ).trim();
 			if ( !/^\d+$/.test( ns ) ) {
 				ns = mw.config.get( 'wgNamespaceIds' )[ ns.replace( / /g, '_' ).toLowerCase() ];
 			}

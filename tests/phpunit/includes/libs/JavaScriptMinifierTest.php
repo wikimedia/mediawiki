@@ -2,6 +2,8 @@
 
 class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public static function provideCases() {
 		return [
 
@@ -79,6 +81,14 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 				"var a = this //foo bar \n for ( b = 0; c < d; b++ ) {}",
 				"var a=this\nfor(b=0;c<d;b++){}"
 			],
+
+			// Cover failure case of incomplete regexp at end of file (T75556)
+			// FIXME: This is invalid, but currently tolerated
+			[ "*/", "*/", false ],
+
+			// Cover failure case of incomplete string at end of file (T75556)
+			// FIXME: This is invalid, but currently tolerated
+			[ "'a", "'a", false ],
 
 			// Token separation
 			[ "x  in  y", "x in y" ],

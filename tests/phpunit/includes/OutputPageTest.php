@@ -274,7 +274,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideMakeResourceLoaderLink() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Single only=scripts load
 			[
@@ -297,7 +297,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					. "});</script>"
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -345,6 +345,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideBuildExemptModules() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			'empty' => [
 				'exemptStyleModules' => [],
@@ -354,7 +355,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				'exemptStyleModules' => [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>',
 			],
-			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			'default logged-out' => [
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
@@ -377,8 +377,8 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=example.user&amp;only=styles&amp;skin=fallback&amp;version=0a56zyi"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=en&amp;modules=user.styles&amp;only=styles&amp;skin=fallback&amp;version=1e9z0ox"/>',
 			],
-			// @codingStandardsIgnoreEnd Generic.Files.LineLength
 		];
+		// phpcs:enable
 	}
 
 	/**

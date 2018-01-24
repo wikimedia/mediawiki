@@ -57,12 +57,12 @@ class SampleTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
+	 * phpcs:disable Generic.Files.LineLength
 	 * @dataProvider provideTitles
 	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.dataProvider
+	 * phpcs:enable
 	 */
-	// @codingStandardsIgnoreEnd
 	public function testCreateBasicListOfTitles( $titleName, $ns, $text ) {
 		$title = Title::newFromText( $titleName, $ns );
 		$this->assertEquals( $text, "$title", "see if '$titleName' matches '$text'" );
@@ -95,12 +95,10 @@ class SampleTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $title->isLocal() );
 	}
 
-	// @codingStandardsIgnoreStart Generic.Files.LineLength
 	/**
 	 * @expectedException InvalidArgumentException
 	 * See https://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
-	// @codingStandardsIgnoreEnd
 	public function testTitleObjectFromObject() {
 		$title = Title::newFromText( Title::newFromText( "test" ) );
 		$this->assertEquals( "Test", $title->isLocal() );

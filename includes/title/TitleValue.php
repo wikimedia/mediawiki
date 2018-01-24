@@ -1,6 +1,6 @@
 <?php
 /**
- * Representation of a page title within %MediaWiki.
+ * Representation of a page title within MediaWiki.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
 
 /**
- * Represents a page (or page fragment) title within %MediaWiki.
+ * Represents a page (or page fragment) title within MediaWiki.
  *
  * @note In contrast to Title, this is designed to be a plain value object. That is,
  * it is immutable, does not use global state, and causes no side effects.

@@ -105,7 +105,7 @@
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
 					cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
-					nodeValue = $.trim( getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] ) );
+					nodeValue = getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] ).trim();
 				}
 			} else {
 				nodeValue = '';
@@ -289,8 +289,8 @@
 
 	function uniqueElements( array ) {
 		var uniques = [];
-		$.each( array, function ( i, elem ) {
-			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
+		array.forEach( function ( elem ) {
+			if ( elem !== undefined && uniques.indexOf( elem ) === -1 ) {
 				uniques.push( elem );
 			}
 		} );
@@ -345,7 +345,7 @@
 				} );
 			} );
 			// We want to find the row that has the most columns (ignoring colspan)
-			$.each( exploded, function ( index, cellArray ) {
+			exploded.forEach( function ( cellArray, index ) {
 				headerCount = $( uniqueElements( cellArray ) ).filter( 'th' ).length;
 				if ( headerCount >= maxSeen ) {
 					maxSeen = headerCount;
@@ -423,9 +423,9 @@
 	 */
 	function setHeadersOrder( $headers, sortList, headerToColumns ) {
 		// Loop through all headers to retrieve the indices of the columns the header spans across:
-		$.each( headerToColumns, function ( headerIndex, columns ) {
+		headerToColumns.forEach( function ( columns, headerIndex ) {
 
-			$.each( columns, function ( i, columnIndex ) {
+			columns.forEach( function ( columnIndex, i ) {
 				var header = $headers[ headerIndex ],
 					$header = $( header );
 
@@ -437,7 +437,7 @@
 					} );
 				} else {
 					// Column shall be sorted: Apply designated count and order.
-					$.each( sortList, function ( j, sortColumn ) {
+					sortList.forEach( function ( sortColumn ) {
 						if ( sortColumn[ 0 ] === i ) {
 							$header.data( {
 								order: sortColumn[ 1 ],
@@ -622,8 +622,8 @@
 				}
 				return ret;
 			} );
-			$.each( rowspanCells, function () {
-				$.data( this, 'tablesorter' ).needResort = false;
+			rowspanCells.forEach( function ( cell ) {
+				$.data( cell, 'tablesorter' ).needResort = false;
 			} );
 		}
 		resortCells();
@@ -761,14 +761,14 @@
 
 	/**
 	 * Converts sort objects [ { Integer: String }, ... ] to the internally used nested array
-	 * structure [ [ Integer , Integer ], ... ]
+	 * structure [ [ Integer, Integer ], ... ]
 	 *
 	 * @param {Array} sortObjects List of sort objects.
 	 * @return {Array} List of internal sort definitions.
 	 */
 	function convertSortList( sortObjects ) {
 		var sortList = [];
-		$.each( sortObjects, function ( i, sortObject ) {
+		sortObjects.forEach( function ( sortObject ) {
 			$.each( sortObject, function ( columnIndex, order ) {
 				var orderIndex = ( order === 'desc' ) ? 1 : 0;
 				sortList.push( [ parseInt( columnIndex, 10 ), orderIndex ] );
@@ -925,9 +925,8 @@
 						cell = this;
 						// Get current column index
 						columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
-						newSortList = $.map( columns, function ( c ) {
-							// jQuery "helpfully" flattens the arrays...
-							return [ [ c, $cell.data( 'order' ) ] ];
+						newSortList = columns.map( function ( c ) {
+							return [ c, $cell.data( 'order' ) ];
 						} );
 						// Index of first column belonging to this header
 						i = columns[ 0 ];
@@ -1091,7 +1090,7 @@
 		},
 		format: function ( s ) {
 			var tsc;
-			s = $.trim( s.toLowerCase() );
+			s = s.toLowerCase().trim();
 			if ( ts.collationRegex ) {
 				tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
@@ -1145,7 +1144,7 @@
 			return ts.rgx.url[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			return $.trim( s.replace( ts.rgx.url[ 1 ], '' ) );
+			return s.replace( ts.rgx.url[ 1 ], '' ).trim();
 		},
 		type: 'text'
 	} );
@@ -1208,7 +1207,7 @@
 		},
 		format: function ( s ) {
 			var match, y;
-			s = $.trim( s.toLowerCase() );
+			s = s.toLowerCase().trim();
 
 			if ( ( match = s.match( ts.dateRegex[ 0 ] ) ) !== null ) {
 				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgPageContentLanguage' ) === 'en' ) {
@@ -1267,7 +1266,7 @@
 	ts.addParser( {
 		id: 'number',
 		is: function ( s ) {
-			return $.tablesorter.numberRegex.test( $.trim( s ) );
+			return $.tablesorter.numberRegex.test( s.trim() );
 		},
 		format: function ( s ) {
 			return $.tablesorter.formatDigit( s );

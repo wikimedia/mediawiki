@@ -30,11 +30,9 @@
  */
 class TextContentHandler extends ContentHandler {
 
-	// @codingStandardsIgnoreStart T59585
 	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = [ CONTENT_FORMAT_TEXT ] ) {
 		parent::__construct( $modelId, $formats );
 	}
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Returns the content's text as-is.

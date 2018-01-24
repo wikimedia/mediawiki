@@ -1423,7 +1423,7 @@ more stuff
 	}
 
 	public function provideTestInsertProtectNullRevision() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		yield [
 			'goat-message-key',
 			[ 'edit' => 'sysop' ],
@@ -1442,7 +1442,7 @@ more stuff
 			true,
 			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
 		];
-		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+		// phpcs:enable
 	}
 
 	/**
@@ -1692,6 +1692,237 @@ more stuff
 			[ 'page_title' ],
 			$condition,
 			[ [ __METHOD__ ] ]
+		);
+	}
+
+	public function provideTestDoUpdateRestrictions_setBasicRestrictions() {
+		// Note: Once the current dates passes the date in these tests they will fail.
+		yield 'move something' => [
+			true,
+			[ 'move' => 'something' ],
+			[],
+			[ 'edit' => [], 'move' => [ 'something' ] ],
+			[],
+		];
+		yield 'move something, edit blank' => [
+			true,
+			[ 'move' => 'something', 'edit' => '' ],
+			[],
+			[ 'edit' => [], 'move' => [ 'something' ] ],
+			[],
+		];
+		yield 'edit sysop, with expiry' => [
+			true,
+			[ 'edit' => 'sysop' ],
+			[ 'edit' => '21330101020202' ],
+			[ 'edit' => [ 'sysop' ], 'move' => [] ],
+			[ 'edit' => '21330101020202' ],
+		];
+		yield 'move and edit, move with expiry' => [
+			true,
+			[ 'move' => 'something', 'edit' => 'another' ],
+			[ 'move' => '22220202010101' ],
+			[ 'edit' => [ 'another' ], 'move' => [ 'something' ] ],
+			[ 'move' => '22220202010101' ],
+		];
+		yield 'move and edit, edit with infinity expiry' => [
+			true,
+			[ 'move' => 'something', 'edit' => 'another' ],
+			[ 'edit' => 'infinity' ],
+			[ 'edit' => [ 'another' ], 'move' => [ 'something' ] ],
+			[ 'edit' => 'infinity' ],
+		];
+		yield 'non existing, create something' => [
+			false,
+			[ 'create' => 'something' ],
+			[],
+			[ 'create' => [ 'something' ] ],
+			[],
+		];
+		yield 'non existing, create something with expiry' => [
+			false,
+			[ 'create' => 'something' ],
+			[ 'create' => '23451212112233' ],
+			[ 'create' => [ 'something' ] ],
+			[ 'create' => '23451212112233' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestDoUpdateRestrictions_setBasicRestrictions
+	 * @covers WikiPage::doUpdateRestrictions
+	 */
+	public function testDoUpdateRestrictions_setBasicRestrictions(
+		$pageExists,
+		array $limit,
+		array $expiry,
+		array $expectedRestrictions,
+		array $expectedRestrictionExpiries
+	) {
+		if ( $pageExists ) {
+			$page = $this->createPage( __METHOD__, 'ABC' );
+		} else {
+			$page = new WikiPage( Title::newFromText( __METHOD__ . '-nonexist' ) );
+		}
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+
+		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $user, [] );
+
+		$logId = $status->getValue();
+		$allRestrictions = $page->getTitle()->getAllRestrictions();
+
+		$this->assertTrue( $status->isGood() );
+		$this->assertInternalType( 'int', $logId );
+		$this->assertSame( $expectedRestrictions, $allRestrictions );
+		foreach ( $expectedRestrictionExpiries as $key => $value ) {
+			$this->assertSame( $value, $page->getTitle()->getRestrictionExpiry( $key ) );
+		}
+
+		// Make sure the log entry looks good
+		// log_params is not checked here
+		$this->assertSelect(
+			'logging',
+			[
+				'log_comment',
+				'log_user',
+				'log_user_text',
+				'log_namespace',
+				'log_title',
+			],
+			[ 'log_id' => $logId ],
+			[ [
+				'aReason',
+				(string)$user->getId(),
+				$user->getName(),
+				(string)$page->getTitle()->getNamespace(),
+				$page->getTitle()->getDBkey(),
+			] ]
+		);
+	}
+
+	/**
+	 * @covers WikiPage::doUpdateRestrictions
+	 */
+	public function testDoUpdateRestrictions_failsOnReadOnly() {
+		$page = $this->createPage( __METHOD__, 'ABC' );
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+
+		// Set read only
+		$readOnly = $this->getMockBuilder( ReadOnlyMode::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'isReadOnly', 'getReason' ] )
+			->getMock();
+		$readOnly->expects( $this->once() )
+			->method( 'isReadOnly' )
+			->will( $this->returnValue( true ) );
+		$readOnly->expects( $this->once() )
+			->method( 'getReason' )
+			->will( $this->returnValue( 'Some Read Only Reason' ) );
+		$this->setService( 'ReadOnlyMode', $readOnly );
+
+		$status = $page->doUpdateRestrictions( [], [], $cascade, 'aReason', $user, [] );
+		$this->assertFalse( $status->isOK() );
+		$this->assertSame( 'readonlytext', $status->getMessage()->getKey() );
+	}
+
+	/**
+	 * @covers WikiPage::doUpdateRestrictions
+	 */
+	public function testDoUpdateRestrictions_returnsGoodIfNothingChanged() {
+		$page = $this->createPage( __METHOD__, 'ABC' );
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+		$limit = [ 'edit' => 'sysop' ];
+
+		$status = $page->doUpdateRestrictions(
+			$limit,
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+
+		// The first entry should have a logId as it did something
+		$this->assertTrue( $status->isGood() );
+		$this->assertInternalType( 'int', $status->getValue() );
+
+		$status = $page->doUpdateRestrictions(
+			$limit,
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+
+		// The second entry should not have a logId as nothing changed
+		$this->assertTrue( $status->isGood() );
+		$this->assertNull( $status->getValue() );
+	}
+
+	/**
+	 * @covers WikiPage::doUpdateRestrictions
+	 */
+	public function testDoUpdateRestrictions_logEntryTypeAndAction() {
+		$page = $this->createPage( __METHOD__, 'ABC' );
+		$user = $this->getTestSysop()->getUser();
+		$cascade = false;
+
+		// Protect the page
+		$status = $page->doUpdateRestrictions(
+			[ 'edit' => 'sysop' ],
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+		$this->assertTrue( $status->isGood() );
+		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertSelect(
+			'logging',
+			[ 'log_type', 'log_action' ],
+			[ 'log_id' => $status->getValue() ],
+			[ [ 'protect', 'protect' ] ]
+		);
+
+		// Modify the protection
+		$status = $page->doUpdateRestrictions(
+			[ 'edit' => 'somethingElse' ],
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+		$this->assertTrue( $status->isGood() );
+		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertSelect(
+			'logging',
+			[ 'log_type', 'log_action' ],
+			[ 'log_id' => $status->getValue() ],
+			[ [ 'protect', 'modify' ] ]
+		);
+
+		// Remove the protection
+		$status = $page->doUpdateRestrictions(
+			[],
+			[],
+			$cascade,
+			'aReason',
+			$user,
+			[]
+		);
+		$this->assertTrue( $status->isGood() );
+		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertSelect(
+			'logging',
+			[ 'log_type', 'log_action' ],
+			[ 'log_id' => $status->getValue() ],
+			[ [ 'protect', 'unprotect' ] ]
 		);
 	}
 

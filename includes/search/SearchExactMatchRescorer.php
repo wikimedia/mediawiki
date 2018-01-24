@@ -34,7 +34,7 @@ class SearchExactMatchRescorer {
 	 * may sort based on other algorithms that may cause the exact title match
 	 * to not be in the results or be lower down the list.
 	 * @param string $search the query
-	 * @param int[] $namespaces the namespaces
+	 * @param int[] $namespaces
 	 * @param string[] $srchres results
 	 * @param int $limit the max number of results to return
 	 * @return string[] munged results
@@ -96,11 +96,11 @@ class SearchExactMatchRescorer {
 	}
 
 	/**
-	 * @param string[] $titles as strings
+	 * @param string[] $titles
 	 * @return array redirect target prefixedText to index of title in titles
 	 *   that is a redirect to it.
 	 */
-	private function redirectTargetsToRedirect( $titles ) {
+	private function redirectTargetsToRedirect( array $titles ) {
 		$result = [];
 		foreach ( $titles as $key => $titleText ) {
 			$title = Title::newFromText( $titleText );
@@ -122,7 +122,7 @@ class SearchExactMatchRescorer {
 	 * @param int $key key to pull to the front
 	 * @return array $array with the item at $key pulled to the front
 	 */
-	private function pullFront( $key, $array ) {
+	private function pullFront( $key, array $array ) {
 		$cut = array_splice( $array, $key, 1 );
 		array_unshift( $array, $cut[0] );
 		return $array;

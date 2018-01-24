@@ -105,7 +105,7 @@ abstract class DumpIterator extends Maintenance {
 		if ( $this->getDbType() == Maintenance::DB_NONE ) {
 			global $wgUseDatabaseMessages, $wgLocalisationCacheConf, $wgHooks;
 			$wgUseDatabaseMessages = false;
-			$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+			$wgLocalisationCacheConf['storeClass'] = LCStoreNull::class;
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 		}
 	}
@@ -185,5 +185,5 @@ class SearchDump extends DumpIterator {
 	}
 }
 
-$maintClass = "SearchDump";
+$maintClass = SearchDump::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

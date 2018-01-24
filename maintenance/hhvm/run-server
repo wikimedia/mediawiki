@@ -24,5 +24,5 @@ class RunHipHopServer extends Maintenance {
 		exit( $ret );
 	}
 }
-$maintClass = 'RunHipHopServer';
+$maintClass = RunHipHopServer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

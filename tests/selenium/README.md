@@ -23,7 +23,7 @@ Set up MediaWiki-Vagrant:
 
 To run only one file (for example page.js), you first need to spawn the chromedriver:
 
-    chromedriver --url-base=/wd/hub --port=4444
+    chromedriver --url-base=wd/hub --port=4444
 
 Then in another terminal:
 

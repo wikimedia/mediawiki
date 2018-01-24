@@ -24,7 +24,8 @@
 			"Urhixidur",
 			"Florian",
 			"Tiin",
-			"Rhirsch"
+			"Rhirsch",
+			"Metalhead64"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den „Letzten Änderungen“ ausblenden",
@@ -37,8 +38,9 @@
 	"tog-editondblclick": "Seiten mit Doppelklick bearbeiten",
 	"tog-editsectiononrightclick": "Einzelne Abschnitte per Rechtsklick bearbeiten",
 	"tog-enotifrevealaddr": "Ihre E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen",
-	"view-pool-error": "Entschuldigung, die Server sind im Moment überlastet.\nZu viele Benutzer versuchen, diese Seite zu besuchen.\nBitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.\n\n$1",
-	"generic-pool-error": "Leider sind die Server derzeit überlastet.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
+	"cancel": "Abbrechen",
+	"view-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer versuchen, diese Seite zu besuchen.\nBitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.\n\n$1",
+	"generic-pool-error": "Entschuldigen Sie bitte, dass die Server im Moment überlastet sind.\nZu viele Benutzer wollen diese Ressource ansehen.\nBitte warten Sie einen Moment, bevor Sie sie erneut aufrufen.",
 	"badaccess-group0": "Sie haben nicht die erforderlichen Benutzerrechte für diese Aktion.",
 	"versionrequiredtext": "Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen.\nSehen Sie auf die [[Special:Version|Versionsseite]]",
 	"youhavenewmessages": "Sie haben $1 ($2).",
@@ -113,6 +115,7 @@
 	"changepassword-success": "Ihr Passwort wurde erfolgreich geändert.",
 	"changepassword-throttled": "Sie haben zu viele Anmeldeversuche unternommen.\nBitte warten Sie $1, bevor Sie es erneut versuchen.",
 	"resetpass-no-info": "Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.",
+	"resetpass-submit-cancel": "Abbrechen",
 	"resetpass-wrong-oldpass": "Ungültiges temporäres oder aktuelles Passwort.\nMöglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.",
 	"resetpass-recycled": "Bitte setzen Sie Ihr Passwort auf ein anderes Passwort als Ihr aktuelles fest.",
 	"resetpass-temp-emailed": "Sie haben sich mit einem temporären E-Mail-Code angemeldet. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort festlegen:",
@@ -239,6 +242,7 @@
 	"filename-bad-prefix": "Der Dateiname beginnt mit '''„$1“'''. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.\nBitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.",
 	"upload-file-error-text": "Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.\nBitte informieren Sie einen [[Special:ListUsers/sysop|Administrator]].",
 	"upload-misc-error-text": "Beim Hochladen ist ein unbekannter Fehler aufgetreten.\nPrüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchen es erneut.\nWenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop|Administrator]].",
+	"upload-dialog-button-cancel": "Abbrechen",
 	"uploadstash-badtoken": "Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil Ihre Sitzungsdaten abgelaufen sind. Bitte versuchen Sie es erneut.",
 	"img-auth-nopathinfo": "PATH_INFO fehlt.\nIhr Server ist nicht dafür eingerichtet, diese Information weiterzugeben.\nSie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.\nSiehe auch http://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-nologinnWL": "Sie sind nicht angemeldet und „$1“ ist nicht in der weißen Liste.",
@@ -359,6 +363,11 @@
 	"dberr-outofdate": "Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.",
 	"feedback-bugcheck": "Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.",
 	"feedback-bugornote": "Sofern Sie detailliert ein technisches Problem beschreiben möchten, melden Sie bitte [$1 einen Fehler].\nAnderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Kommentar wird, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.",
+	"feedback-cancel": "Abbrechen",
 	"feedback-thanks": "Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.",
-	"changecredentials": "Anmeldeinformationen ändern"
+	"authmanager-provider-password": "Passwortbasierte Authentifizierung",
+	"changecredentials": "Anmeldeinformationen ändern",
+	"changecredentials-submit": "Anmeldeinformationen ändern",
+	"credentialsform-provider": "Typ der Anmeldeinformationen:",
+	"credentialsform-account": "Benutzername:"
 }

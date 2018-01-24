@@ -68,5 +68,5 @@ class PurgeModuleDeps extends Maintenance {
 	}
 }
 
-$maintClass = 'PurgeModuleDeps';
+$maintClass = PurgeModuleDeps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

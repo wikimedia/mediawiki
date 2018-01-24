@@ -186,7 +186,7 @@ class InfoAction extends FormlessAction {
 	 * Adds a table to the content that will be added to the output.
 	 *
 	 * @param string $content The content that will be added to the output
-	 * @param string $table The table
+	 * @param string $table
 	 * @return string The content with the table added
 	 */
 	protected function addTable( $content, $table ) {
@@ -435,6 +435,18 @@ class InfoAction extends FormlessAction {
 					$lang->formatNum( $fileCount )
 				]
 			];
+		}
+
+		// Display image SHA-1 value
+		if ( $title->inNamespace( NS_FILE ) ) {
+			$fileObj = wfFindFile( $title );
+			if ( $fileObj !== false ) {
+				$output = $fileObj->getSha1();
+				$pageInfo['header-basic'][] = [
+					$this->msg( 'pageinfo-file-hash' ),
+					$output
+				];
+			}
 		}
 
 		// Page protection

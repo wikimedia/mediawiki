@@ -61,5 +61,5 @@ class LangMemUsage extends Maintenance {
 	}
 }
 
-$maintClass = "LangMemUsage";
+$maintClass = LangMemUsage::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

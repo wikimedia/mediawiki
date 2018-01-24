@@ -7,7 +7,9 @@
 		"bellOn": { "file": {
 			"ltr": "images/icons/bellOn-ltr.svg",
 			"rtl": "images/icons/bellOn-rtl.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.26.0."
+		},
 		"comment": { "file": "images/icons/comment.svg" },
 		"message": { "file": {
 			"ltr": "images/icons/message-ltr.svg",

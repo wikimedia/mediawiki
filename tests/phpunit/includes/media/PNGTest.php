@@ -73,18 +73,18 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideIsMetadataValid() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ PNGHandler::BROKEN_FILE, PNGHandler::METADATA_GOOD ],
 			[ '', PNGHandler::METADATA_BAD ],
 			[ null, PNGHandler::METADATA_BAD ],
 			[ 'Something invalid!', PNGHandler::METADATA_BAD ],
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
 				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}',
 				PNGHandler::METADATA_GOOD
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**
@@ -101,8 +101,8 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetMetadata() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
 				'rgb-na-png.png',
 				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}'
@@ -111,8 +111,8 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 				'xmp.png',
 				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}'
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**

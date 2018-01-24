@@ -339,7 +339,7 @@
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							allowArbitrary: true,
 							allowDuplicates: Util.apiBool( pi.allowsduplicates ),
-							$overlay: $( '#mw-apisandbox-ui' )
+							$overlay: true
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -459,14 +459,14 @@
 
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items },
-							$overlay: $( '#mw-apisandbox-ui' )
+							$overlay: true
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
 					} else {
 						widget = new OO.ui.DropdownWidget( {
 							menu: { items: items },
-							$overlay: $( '#mw-apisandbox-ui' )
+							$overlay: true
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
@@ -499,7 +499,7 @@
 
 						widget = new OO.ui.CapsuleMultiselectWidget( {
 							menu: { items: items },
-							$overlay: $( '#mw-apisandbox-ui' )
+							$overlay: true
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.capsuleWidget );
@@ -510,7 +510,7 @@
 					} else {
 						widget = new OO.ui.DropdownWidget( {
 							menu: { items: items },
-							$overlay: $( '#mw-apisandbox-ui' )
+							$overlay: true
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
@@ -554,7 +554,7 @@
 				widget = new OO.ui.CapsuleMultiselectWidget( {
 					allowArbitrary: true,
 					allowDuplicates: Util.apiBool( pi.allowsduplicates ),
-					$overlay: $( '#mw-apisandbox-ui' ),
+					$overlay: true,
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
 						$content: $content
@@ -817,7 +817,7 @@
 			if ( ApiSandbox.isFullscreen ) {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-unfullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-unfullscreen-tooltip' ).text() );
-				$body.append( $ui );
+				OO.ui.getDefaultOverlay().prepend( $ui );
 			} else {
 				fullscreenButton.setLabel( mw.message( 'apisandbox-fullscreen' ).text() );
 				fullscreenButton.setTitle( mw.message( 'apisandbox-fullscreen-tooltip' ).text() );
@@ -1051,7 +1051,7 @@
 				if ( !formatDropdown ) {
 					formatDropdown = new OO.ui.DropdownWidget( {
 						menu: { items: [] },
-						$overlay: $( '#mw-apisandbox-ui' )
+						$overlay: true
 					} );
 					formatDropdown.getMenu().on( 'select', Util.onFormatDropdownChange );
 				}
@@ -1074,7 +1074,7 @@
 								label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 							}
 						).$element,
-						$.map( formatItems, function ( item ) {
+						formatItems.map( function ( item ) {
 							return item.getData().$element;
 						} ),
 						$result
@@ -1112,7 +1112,7 @@
 						return xhr;
 					}
 				} )
-					.then( null, function ( code, data, result, jqXHR ) {
+					.catch( function ( code, data, result, jqXHR ) {
 						var deferred = $.Deferred();
 
 						if ( code !== 'http' ) {
@@ -1176,7 +1176,7 @@
 										booklet.setPage( '|results|' );
 									} ).setDisabled( !paramsAreForced ) ).$element,
 									new OO.ui.PopupButtonWidget( {
-										$overlay: $( '#mw-apisandbox-ui' ),
+										$overlay: true,
 										framed: false,
 										icon: 'info',
 										popup: {
@@ -1420,7 +1420,7 @@
 							for ( j = 0; j < tmp.length; j++ ) {
 								availableFormats[ tmp[ j ] ] = true;
 							}
-							pi.parameters[ i ].type = $.grep( tmp, filterFmModules );
+							pi.parameters[ i ].type = tmp.filter( filterFmModules );
 							pi.parameters[ i ][ 'default' ] = 'json';
 							pi.parameters[ i ].required = true;
 						}
@@ -1429,7 +1429,7 @@
 
 				// Hide the 'wrappedhtml' parameter on format modules
 				if ( pi.group === 'format' ) {
-					pi.parameters = $.grep( pi.parameters, function ( p ) {
+					pi.parameters = pi.parameters.filter( function ( p ) {
 						return p.name !== 'wrappedhtml';
 					} );
 				}
@@ -1445,13 +1445,13 @@
 
 				if ( pi.helpurls.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
-						$overlay: $( '#mw-apisandbox-ui' ),
+						$overlay: true,
 						label: mw.message( 'apisandbox-helpurls' ).text(),
 						icon: 'help',
 						popup: {
 							width: 'auto',
 							padded: true,
-							$content: $( '<ul>' ).append( $.map( pi.helpurls, function ( link ) {
+							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
 								return $( '<li>' ).append( $( '<a>' )
 									.attr( { href: link, target: '_blank' } )
 									.text( link )
@@ -1463,13 +1463,13 @@
 
 				if ( pi.examples.length ) {
 					buttons.push( new OO.ui.PopupButtonWidget( {
-						$overlay: $( '#mw-apisandbox-ui' ),
+						$overlay: true,
 						label: mw.message( 'apisandbox-examples' ).text(),
 						icon: 'code',
 						popup: {
 							width: 'auto',
 							padded: true,
-							$content: $( '<ul>' ).append( $.map( pi.examples, function ( example ) {
+							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
 								var a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
 									.html( example.description );
@@ -1844,8 +1844,8 @@
 		config = config || {};
 
 		this.widget = widget;
-		this.$overlay = config.$overlay ||
-			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-overlay' );
+		this.$cover = config.$cover ||
+			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-cover' );
 		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
 			.on( 'change', this.onCheckboxChange, [], this );
 
@@ -1858,12 +1858,12 @@
 			}
 		}
 
-		this.$overlay.on( 'click', this.onOverlayClick.bind( this ) );
+		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
 
 		this.$element
 			.addClass( 'mw-apisandbox-optionalWidget' )
 			.append(
-				this.$overlay,
+				this.$cover,
 				$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-fields' ).append(
 					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-widget' ).append(
 						widget.$element
@@ -1890,7 +1890,7 @@
 		OptionalWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
 		this.widget.setDisabled( this.isDisabled() );
 		this.checkbox.setSelected( !this.isDisabled() );
-		this.$overlay.toggle( this.isDisabled() );
+		this.$cover.toggle( this.isDisabled() );
 		return this;
 	};
 

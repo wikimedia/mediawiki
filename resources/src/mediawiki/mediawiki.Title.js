@@ -537,7 +537,7 @@
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		// Normalise additional whitespace
-		title = $.trim( title.replace( /\s/g, ' ' ) );
+		title = title.replace( /\s/g, ' ' ).trim();
 
 		// Process initial colon
 		if ( title !== '' && title[ 0 ] === ':' ) {
@@ -579,7 +579,7 @@
 				ext = parts.pop();
 
 				// Remove whitespace of the name part (that W/O extension)
-				title = $.trim( parts.join( '.' ) );
+				title = parts.join( '.' ).trim();
 
 				// Cut, if too long and append file extension
 				title = trimFileNameToByteLength( title, ext );
@@ -587,7 +587,7 @@
 			} else {
 
 				// Missing file extension
-				title = $.trim( parts.join( '.' ) );
+				title = parts.join( '.' ).trim();
 
 				// Name has no file extension and a fallback wasn't provided either
 				return null;

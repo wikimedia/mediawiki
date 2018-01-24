@@ -21,6 +21,9 @@ production.
   were removed (deprecated since 1.27).
 * (T180921) $wgReferrerPolicy now supports having fallbacks for browsers that are not
   using the latest version of the Referrer Policy specification.
+* $wgFragmentMode is now set to [ 'legacy', 'html5' ] by default. This is a first step of
+  migration to human-readable section IDs that will later result in 'html5' being the
+  default mode.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
@@ -37,11 +40,23 @@ production.
   users during an import.
 * Added a hook, ParserOutputPostCacheTransform, to allow extensions to affect
   the ParserOutput::getText() post-cache transformations.
+* Added a hook, UploadForm:getInitialPageText, to allow extensions to alter the
+  initial page text for file uploads.
+* (T181651) The info page for File pages now displays the file's base-36 SHA1
+  hash value in the table of basic information.
 
 === External library changes in 1.31 ===
 
 ==== Upgraded external libraries ====
 * Updated jquery.chosen from v0.9.14 to v1.8.2.
+* Updated composer/spdx-licenses from 1.1.4 to
+  1.2.0 (development dependency).
+* Updated nikic/php-parser from 2.1.0 to 3.1.3
+  (development dependency).
+* Updated wikimedia/ip-set from 1.1.0 to 1.2.0.
+* Updated wikimedia/relpath from 2.0.0 to 2.1.1.
+* Updated wikimedia/running-stat from 1.1.0 to 1.2.0.
+* Updated wikimedia/wrappedstring from 2.2.0 to 2.3.0.
 * …
 
 ==== New external libraries ====
@@ -61,7 +76,9 @@ production.
 * (T90902) Non-breaking space in header ID breaks anchor
 
 === Action API changes in 1.31 ===
-* …
+* (T185058) The 'name' value to tgprop for action=query&list=tags has been
+  removed. It has never made a difference in the output, the name was always
+  returned regardless.
 
 === Action API internal changes in 1.31 ===
 * …
@@ -72,6 +89,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK namespaces.
+* (T182305) New language support: Nyungar (nys).
 
 === Other changes in 1.31 ===
 * Introducing multi-content-revision capability into the storage layer. For details,
@@ -159,10 +177,19 @@ changes to languages because of Phabricator reports.
 * The $statementsOnOwnLine parameter of JavaScriptMinifier::minify was removed.
   The corresponding configuration variable ($wgResourceLoaderMinifierStatementsOnOwnLine)
   has been deprecated since 1.27 and was removed as well.
+* The $maxLineLength parameter of JavaScriptMinifier::minify was removed.
+  The corresponding configuration variable ($wgResourceLoaderMinifierMaxLineLength)
+  has been deprecated since 1.27 and was removed as well.
+* The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
+  HtmlFormatter\HtmlFormatter class should be used instead.
+* License::getLicenses has been deprecated; use License::getLines instead.
+* The driver 'mysql' for MySQL, deprecated in MediaWiki 1.30, has been removed.
+  The driver has been deprecated since PHP 5.5 and was removed in PHP 7.0. The
+  default driver for MySQL has been 'mysqli' since MediaWiki 1.22.
 
 == Compatibility ==
-MediaWiki 1.31 requires PHP 5.5.9 or later. There is experimental support for
-HHVM 3.6.5 or later.
+MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
+it is generally advised to use PHP 5.5.9 or later for long term support.
 
 MySQL/MariaDB is the recommended DBMS. PostgreSQL or SQLite can also be used,
 but support for them is somewhat less mature. There is experimental support for

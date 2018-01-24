@@ -5,8 +5,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -408,6 +410,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// is available in subclass's setUpBeforeClass() and setUp() methods.
 			// This would also remove the need for the HACK that is oncePerClass().
 			if ( $this->oncePerClass() ) {
+				$this->setUpSchema( $this->db );
 				$this->addDBDataOnce();
 			}
 
@@ -517,8 +520,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory );
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		Maintenance::setLBFactoryTriggers( $lbFactory, $services->getMainConfig() );
 
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
@@ -1151,6 +1155,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
 		$dbClone->useTemporaryTables( self::$useTemporaryTables );
 
+		$db->_originalTablePrefix = $db->tablePrefix();
+
 		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 			CloneDatabase::changePrefix( $prefix );
 
@@ -1295,6 +1301,132 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @throws LogicException if the given database connection is not a set up to use
+	 * mock tables.
+	 */
+	private function ensureMockDatabaseConnection( IDatabase $db ) {
+		if ( $db->tablePrefix() !== $this->dbPrefix() ) {
+			throw new LogicException(
+				'Trying to delete mock tables, but table prefix does not indicate a mock database.'
+			);
+		}
+	}
+
+	/**
+	 * Stub. If a test suite needs to test against a specific database schema, it should
+	 * override this method and return the appropriate information from it.
+	 *
+	 * @return [ $tables, $scripts ] A tuple of two lists, with $tables being a list of tables
+	 *         that will be re-created by the scripts, and $scripts being a list of SQL script
+	 *         files for creating the tables listed.
+	 */
+	protected function getSchemaOverrides() {
+		return [ [], [] ];
+	}
+
+	/**
+	 * Applies any schema changes requested by calling setDbSchema().
+	 * Called once per test class, just before addDataOnce().
+	 */
+	private function setUpSchema( IMaintainableDatabase $db ) {
+		list( $tablesToAlter, $scriptsToRun ) = $this->getSchemaOverrides();
+
+		if ( $tablesToAlter && !$scriptsToRun ) {
+			throw new InvalidArgumentException(
+				'No scripts supplied for applying the database schema.'
+			);
+		}
+
+		if ( !$tablesToAlter && $scriptsToRun ) {
+			throw new InvalidArgumentException(
+				'No tables declared to be altered by schema scripts.'
+			);
+		}
+
+		$this->ensureMockDatabaseConnection( $db );
+
+		$previouslyAlteredTables = isset( $db->_alteredMockTables ) ? $db->_alteredMockTables : [];
+
+		if ( !$tablesToAlter && !$previouslyAlteredTables ) {
+			return; // nothing to do
+		}
+
+		$tablesToDrop = array_merge( $previouslyAlteredTables, $tablesToAlter );
+		$tablesToRestore = array_diff( $previouslyAlteredTables, $tablesToAlter );
+
+		if ( $tablesToDrop ) {
+			$this->dropMockTables( $db, $tablesToDrop );
+		}
+
+		if ( $tablesToRestore ) {
+			$this->recloneMockTables( $db, $tablesToRestore );
+		}
+
+		foreach ( $scriptsToRun as $script ) {
+			$db->sourceFile(
+				$script,
+				null,
+				null,
+				__METHOD__,
+				function ( $cmd ) {
+					return $this->mungeSchemaUpdateQuery( $cmd );
+				}
+			);
+		}
+
+		$db->_alteredMockTables = $tablesToAlter;
+	}
+
+	private function mungeSchemaUpdateQuery( $cmd ) {
+		return self::$useTemporaryTables
+			? preg_replace( '/\bCREATE\s+TABLE\b/i', 'CREATE TEMPORARY TABLE', $cmd )
+			: $cmd;
+	}
+
+	/**
+	 * Drops the given mock tables.
+	 *
+	 * @param IMaintainableDatabase $db
+	 * @param array $tables
+	 */
+	private function dropMockTables( IMaintainableDatabase $db, array $tables ) {
+		$this->ensureMockDatabaseConnection( $db );
+
+		foreach ( $tables as $tbl ) {
+			$tbl = $db->tableName( $tbl );
+			$db->query( "DROP TABLE IF EXISTS $tbl", __METHOD__ );
+
+			if ( $tbl === 'page' ) {
+				// Forget about the pages since they don't
+				// exist in the DB.
+				LinkCache::singleton()->clear();
+			}
+		}
+	}
+
+	/**
+	 * Re-clones the given mock tables to restore them based on the live database schema.
+	 *
+	 * @param IMaintainableDatabase $db
+	 * @param array $tables
+	 */
+	private function recloneMockTables( IMaintainableDatabase $db, array $tables ) {
+		$this->ensureMockDatabaseConnection( $db );
+
+		if ( !isset( $db->_originalTablePrefix ) ) {
+			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
+		}
+
+		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		$tables = array_intersect( $tables, $originalTables );
+
+		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+		$dbClone->cloneTableStructure();
+	}
+
+	/**
 	 * Empty all tables so they can be repopulated for tests
 	 *
 	 * @param Database $db|null Database to reset
@@ -1385,7 +1517,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	private static function isNotUnittest( $table ) {
-		return strpos( $table, 'unittest_' ) !== 0;
+		return strpos( $table, self::DB_PREFIX ) !== 0;
 	}
 
 	/**
@@ -1481,13 +1613,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string|array $fields The columns to include in the result (and to sort by)
 	 * @param string|array $condition "where" condition(s)
 	 * @param array $expectedRows An array of arrays giving the expected rows.
+	 * @param array $options Options for the query
+	 * @param array $join_conds Join conditions for the query
 	 *
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
 	 *         needsDB() method.
 	 */
-	protected function assertSelect( $table, $fields, $condition, array $expectedRows ) {
+	protected function assertSelect(
+		$table, $fields, $condition, array $expectedRows, array $options = [], array $join_conds = []
+	) {
 		if ( !$this->needsDB() ) {
 			throw new MWException( 'When testing database state, the test cases\'s needDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
@@ -1495,7 +1631,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$db = wfGetDB( DB_REPLICA );
 
-		$res = $db->select( $table, $fields, $condition, wfGetCaller(), [ 'ORDER BY' => $fields ] );
+		$res = $db->select(
+			$table,
+			$fields,
+			$condition,
+			wfGetCaller(),
+			$options + [ 'ORDER BY' => $fields ],
+			$join_conds
+		);
 		$this->assertNotEmpty( $res, "query failed: " . $db->lastError() );
 
 		$i = 0;

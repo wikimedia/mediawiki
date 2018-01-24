@@ -4,17 +4,28 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use Exception;
+use HashBagOStuff;
 use InvalidArgumentException;
+use Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\IncompleteRevisionException;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use Revision;
 use TestUserRegistry;
 use Title;
+use WANObjectCache;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\TransactionProfiler;
 use WikiPage;
 use WikitextContent;
 
@@ -22,6 +33,107 @@ use WikitextContent;
  * @group Database
  */
 class RevisionStoreDbTest extends MediaWikiTestCase {
+
+	/**
+	 * @return LoadBalancer
+	 */
+	private function getLoadBalancerMock( array $server ) {
+		$lb = $this->getMockBuilder( LoadBalancer::class )
+			->setMethods( [ 'reallyOpenConnection' ] )
+			->setConstructorArgs( [ [ 'servers' => [ $server ] ] ] )
+			->getMock();
+
+		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
+			function ( array $server, $dbNameOverride ) {
+				return $this->getDatabaseMock( $server );
+			}
+		);
+
+		return $lb;
+	}
+
+	/**
+	 * @return Database
+	 */
+	private function getDatabaseMock( array $params ) {
+		$db = $this->getMockBuilder( DatabaseSqlite::class )
+			->setMethods( [ 'select', 'doQuery', 'open', 'closeConnection', 'isOpen' ] )
+			->setConstructorArgs( [ $params ] )
+			->getMock();
+
+		$db->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );
+		$db->method( 'isOpen' )->willReturn( true );
+
+		return $db;
+	}
+
+	public function provideDomainCheck() {
+		yield [ false, 'test', '' ];
+		yield [ 'test', 'test', '' ];
+
+		yield [ false, 'test', 'foo_' ];
+		yield [ 'test-foo_', 'test', 'foo_' ];
+
+		yield [ false, 'dash-test', '' ];
+		yield [ 'dash-test', 'dash-test', '' ];
+
+		yield [ false, 'underscore_test', 'foo_' ];
+		yield [ 'underscore_test-foo_', 'underscore_test', 'foo_' ];
+	}
+
+	/**
+	 * @dataProvider provideDomainCheck
+	 * @covers \MediaWiki\Storage\RevisionStore::checkDatabaseWikiId
+	 */
+	public function testDomainCheck( $wikiId, $dbName, $dbPrefix ) {
+		$this->setMwGlobals(
+			[
+				'wgDBname' => $dbName,
+				'wgDBprefix' => $dbPrefix,
+			]
+		);
+
+		$loadBalancer = $this->getLoadBalancerMock(
+			[
+				'host' => '*dummy*',
+				'dbDirectory' => '*dummy*',
+				'user' => 'test',
+				'password' => 'test',
+				'flags' => 0,
+				'variables' => [],
+				'schema' => '',
+				'cliMode' => true,
+				'agent' => '',
+				'load' => 100,
+				'profiler' => null,
+				'trxProfiler' => new TransactionProfiler(),
+				'connLogger' => new \Psr\Log\NullLogger(),
+				'queryLogger' => new \Psr\Log\NullLogger(),
+				'errorLogger' => new \Psr\Log\NullLogger(),
+				'type' => 'test',
+				'dbname' => $dbName,
+				'tablePrefix' => $dbPrefix,
+			]
+		);
+		$db = $loadBalancer->getConnection( DB_REPLICA );
+
+		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$store = new RevisionStore(
+			$loadBalancer,
+			$blobStore,
+			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			$wikiId
+		);
+
+		$count = $store->countRevisionsByPageId( $db, 0 );
+
+		// Dummy check to make PhpUnit happy. We are really only interested in
+		// countRevisionsByPageId not failing due to the DB domain check.
+		$this->assertSame( 0, $count );
+	}
 
 	private function assertLinkTargetsEqual( LinkTarget $l1, LinkTarget $l2 ) {
 		$this->assertEquals( $l1->getDBkey(), $l2->getDBkey() );
@@ -297,9 +409,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::getRcIdIfUnpatrolled
 	 */
-	public function testIsUnpatrolled_returnsRecentChangesId() {
+	public function testGetRcIdIfUnpatrolled_returnsRecentChangesId() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$status = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		/** @var Revision $rev */
@@ -307,7 +419,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revisionRecord = $store->getRevisionById( $rev->getId() );
-		$result = $store->isUnpatrolled( $revisionRecord );
+		$result = $store->getRcIdIfUnpatrolled( $revisionRecord );
 
 		$this->assertGreaterThan( 0, $result );
 		$this->assertSame(
@@ -317,9 +429,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::isUnpatrolled
+	 * @covers \MediaWiki\Storage\RevisionStore::getRcIdIfUnpatrolled
 	 */
-	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
+	public function testGetRcIdIfUnpatrolled_returnsZeroIfPatrolled() {
 		// This assumes that sysops are auto patrolled
 		$sysop = $this->getTestSysop()->getUser();
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -335,7 +447,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$revisionRecord = $store->getRevisionById( $rev->getId() );
-		$result = $store->isUnpatrolled( $revisionRecord );
+		$result = $store->getRcIdIfUnpatrolled( $revisionRecord );
 
 		$this->assertSame( 0, $result );
 	}
@@ -413,9 +525,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionFromTimestamp
+	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByTimestamp
 	 */
-	public function testGetRevisionFromTimestamp() {
+	public function testGetRevisionByTimestamp() {
 		// Make sure there is 1 second between the last revision and the rev we create...
 		// Otherwise we might not get the correct revision and the test may fail...
 		// :(
@@ -427,7 +539,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$rev = $status->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revRecord = $store->getRevisionFromTimestamp(
+		$revRecord = $store->getRevisionByTimestamp(
 			$page->getTitle(),
 			$rev->getTimestamp()
 		);
@@ -501,9 +613,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
-			new WikitextContent( __METHOD__. 'a' ),
+			new WikitextContent( $text ),
 			__METHOD__. 'a'
 		)->value['revision'];
 
@@ -514,6 +627,32 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordMatchesRevision( $rev, $record );
+		$this->assertSame( $text, $rev->getContent()->serialize() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
+	 */
+	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
+		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
+		$this->overrideMwServices();
+		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$text = __METHOD__ . 'a-ä';
+		/** @var Revision $rev */
+		$rev = $page->doEditContent(
+			new WikitextContent( $text ),
+			__METHOD__. 'a'
+		)->value['revision'];
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$record = $store->newRevisionFromRow(
+			$this->revisionToRow( $rev ),
+			[],
+			$page->getTitle()
+		);
+		$this->assertRevisionRecordMatchesRevision( $rev, $record );
+		$this->assertSame( $text, $rev->getContent()->serialize() );
 	}
 
 	/**
@@ -522,9 +661,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 */
 	public function testNewRevisionFromRow_userEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$text = __METHOD__ . 'b-ä';
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
-			new WikitextContent( __METHOD__. 'b' ),
+			new WikitextContent( $text ),
 			__METHOD__ . 'b',
 			0,
 			false,
@@ -538,6 +678,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$page->getTitle()
 		);
 		$this->assertRevisionRecordMatchesRevision( $rev, $record );
+		$this->assertSame( $text, $rev->getContent()->serialize() );
 	}
 
 	/**
@@ -546,9 +687,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	public function testNewRevisionFromArchiveRow() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
+		$text = __METHOD__ . '-bä';
 		$page = WikiPage::factory( $title );
 		/** @var Revision $orig */
-		$orig = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
+		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision'];
 		$page->doDeleteArticle( __METHOD__ );
 
@@ -565,6 +707,38 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$record = $store->newRevisionFromArchiveRow( $row );
 
 		$this->assertRevisionRecordMatchesRevision( $orig, $record );
+		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromArchiveRow
+	 */
+	public function testNewRevisionFromArchiveRow_legacyEncoding() {
+		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
+		$this->overrideMwServices();
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$title = Title::newFromText( __METHOD__ );
+		$text = __METHOD__ . '-bä';
+		$page = WikiPage::factory( $title );
+		/** @var Revision $orig */
+		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
+			->value['revision'];
+		$page->doDeleteArticle( __METHOD__ );
+
+		$db = wfGetDB( DB_MASTER );
+		$arQuery = $store->getArchiveQueryInfo();
+		$res = $db->select(
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
+		);
+		$this->assertTrue( is_object( $res ), 'query failed' );
+
+		$row = $res->fetchObject();
+		$res->free();
+		$record = $store->newRevisionFromArchiveRow( $row );
+
+		$this->assertRevisionRecordMatchesRevision( $orig, $record );
+		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
 	}
 
 	/**
@@ -916,6 +1090,39 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'content' => new WikitextContent( 'Some Content' ),
 			]
 		];
+		yield 'Basic array, serialized text' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'text' => ( new WikitextContent( 'Söme Content' ) )->serialize(),
+			]
+		];
+		yield 'Basic array, serialized text, utf-8 flags' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'text' => ( new WikitextContent( 'Söme Content' ) )->serialize(),
+				'flags' => 'utf-8',
+			]
+		];
 		yield 'Basic array, with title' => [
 			[
 				'title' => Title::newFromText( 'SomeText' ),
@@ -982,6 +1189,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$this->assertTrue(
 				$result->getSlot( 'main' )->getContent()->equals( $array['content'] )
 			);
+		} elseif ( isset( $array['text'] ) ) {
+			$this->assertSame( $array['text'], $result->getSlot( 'main' )->getContent()->serialize() );
 		} else {
 			$this->assertSame(
 				$array['content_format'],
@@ -989,6 +1198,31 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			);
 			$this->assertSame( $array['content_model'], $result->getSlot( 'main' )->getModel() );
 		}
+	}
+
+	/**
+	 * @dataProvider provideNewMutableRevisionFromArray
+	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
+	 */
+	public function testNewMutableRevisionFromArray_legacyEncoding( array $array ) {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
+		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
+
+		$factory = $this->getMockBuilder( BlobStoreFactory::class )
+			->setMethods( [ 'newBlobStore', 'newSqlBlobStore' ] )
+			->disableOriginalConstructor()
+			->getMock();
+		$factory->expects( $this->any() )
+			->method( 'newBlobStore' )
+			->willReturn( $blobStore );
+		$factory->expects( $this->any() )
+			->method( 'newSqlBlobStore' )
+			->willReturn( $blobStore );
+
+		$this->setService( 'BlobStoreFactory', $factory );
+
+		$this->testNewMutableRevisionFromArray( $array );
 	}
 
 }

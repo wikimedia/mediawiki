@@ -1666,6 +1666,13 @@ $query: query options passed to Title::getInternalURL()
 'GetIP': modify the ip of the current user (called only once).
 &$ip: string holding the ip as determined so far
 
+'GetLangPreferredVariant': Called in LanguageConverter#getPreferredVariant() to
+  allow fetching the language variant code from cookies or other such
+  alternative storage.
+&$req: language variant from the URL (string) or boolean false if no variant
+  was specified in the URL; the value of this variable comes from
+  LanguageConverter#getURLVariant()
+
 'GetLinkColours': modify the CSS class of an array of page links.
 $linkcolour_ids: array of prefixed DB keys of the pages linked to,
   indexed by page_id.
@@ -3521,6 +3528,12 @@ blank form with no error message; use UploadVerification and UploadVerifyFile
 instead.
 &$form: UploadForm object
 
+'UploadForm:getInitialPageText': After the initial page text for file uploads
+is generated, to allow it to be altered.
+&$pageText: the page text
+$msg: array of header messages
+$config: Config object
+
 'UploadForm:initial': Before the upload form is generated. You might set the
 member-variables $uploadFormTextTop and $uploadFormTextAfterSummary to inject
 text (HTML) either before or after the editform.
@@ -3803,12 +3816,16 @@ After a user's group memberships are changed.
 $add: Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
-'UserSaveOptions': Called just before saving user preferences/options.
-$user: User object
-&$options: Options, modifiable
+'UserSaveOptions': Called just before saving user preferences. Hook handlers can either add or
+manipulate options, or reset one back to it's default to block changing it. Hook handlers are also
+allowed to abort the process by returning false, e.g. to save to a global profile instead. Compare
+to the UserSaveSettings hook, which is called after the preferences have been saved.
+$user: The User for which the options are going to be saved
+&$options: The users options as an associative array, modifiable
 
-'UserSaveSettings': Called when saving user settings.
-$user: User object
+'UserSaveSettings': Called directly after user preferences (user_properties in the database) have
+been saved. Compare to the UserSaveOptions hook, which is called before.
+$user: The User for which the options have been saved
 
 'UserSetCookies': DEPRECATED! If you're trying to replace core session cookie
 handling, you want to create a subclass of MediaWiki\Session\CookieSessionProvider
@@ -3917,14 +3934,15 @@ dumps. One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'WikiPageDeletionUpdates': manipulate the list of DataUpdates to be applied when
+'WikiPageDeletionUpdates': manipulate the list of DeferrableUpdates to be applied when
 a page is deleted. Called in WikiPage::getDeletionUpdates(). Note that updates
 specific to a content model should be provided by the respective Content's
 getDeletionUpdates() method.
 $page: the WikiPage
-$content: the Content to generate updates for (or null, if the Content could not be loaded
-due to an error)
-&$updates: the array of DataUpdate objects. Hook function may want to add to it.
+$content: the Content to generate updates for, or null in case the page revision could not be
+  loaded. The delete will succeed despite this.
+&$updates: the array of objects that implement DeferrableUpdate. Hook function may want to add to
+  it.
 
 'WikiPageFactory': Override WikiPage class used for a title
 $title: Title of the page

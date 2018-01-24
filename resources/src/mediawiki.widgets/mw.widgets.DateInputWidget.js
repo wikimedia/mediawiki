@@ -89,7 +89,7 @@
 	 *     calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
-		var placeholderDateFormat, mustBeAfter, mustBeBefore;
+		var placeholderDateFormat, mustBeAfter, mustBeBefore, $overlay;
 
 		// Config initialization
 		config = $.extend( {
@@ -189,14 +189,11 @@
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.$handle, this.textInput.$element, this.calendar.$element );
 
-		// config.overlay is the selector to be used for config.$overlay, specified from PHP
-		if ( config.overlay ) {
-			config.$overlay = $( config.overlay );
-		}
+		$overlay = config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay;
 
-		if ( config.$overlay ) {
+		if ( $overlay ) {
 			this.calendar.setFloatableContainer( this.$element );
-			config.$overlay.append( this.calendar.$element );
+			$overlay.append( this.calendar.$element );
 
 			// The text input and calendar are not in DOM order, so fix up focus transitions.
 			this.textInput.$input.on( 'keydown', function ( e ) {

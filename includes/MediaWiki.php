@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DBConnectionError;
+use Liuggio\StatsdClient\Sender\SocketSender;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
@@ -602,50 +603,54 @@ class MediaWiki {
 		DeferredUpdates::doUpdates( 'enqueue', DeferredUpdates::PRESEND );
 		wfDebug( __METHOD__ . ': pre-send deferred updates completed' );
 
-		// Decide when clients block on ChronologyProtector DB position writes
-		$urlDomainDistance = (
-			$request->wasPosted() &&
-			$output->getRedirect() &&
-			$lbFactory->hasOrMadeRecentMasterChanges( INF )
-		) ? self::getUrlDomainDistance( $output->getRedirect() ) : false;
+		// Should the client return, their request should observe the new ChronologyProtector
+		// DB positions. This request might be on a foreign wiki domain, so synchronously update
+		// the DB positions in all datacenters to be safe. If this output is not a redirect,
+		// then OutputPage::output() will be relatively slow, meaning that running it in
+		// $postCommitWork should help mask the latency of those updates.
+		$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
+		$strategy = 'cookie+sync';
 
 		$allowHeaders = !( $output->isDisabled() || headers_sent() );
-		if ( $urlDomainDistance === 'local' || $urlDomainDistance === 'remote' ) {
-			// OutputPage::output() will be fast; $postCommitWork will not be useful for
-			// masking the latency of syncing DB positions accross all datacenters synchronously.
-			// Instead, make use of the RTT time of the client follow redirects.
-			$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
-			$cpPosTime = microtime( true );
-			// Client's next request should see 1+ positions with this DBMasterPos::asOf() time
-			if ( $urlDomainDistance === 'local' && $allowHeaders ) {
-				// Client will stay on this domain, so set an unobtrusive cookie
-				$expires = time() + ChronologyProtector::POSITION_TTL;
-				$options = [ 'prefix' => '' ];
-				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
-			} else {
-				// Cookies may not work across wiki domains, so use a URL parameter
-				$safeUrl = $lbFactory->appendPreShutdownTimeAsQuery(
-					$output->getRedirect(),
-					$cpPosTime
-				);
-				$output->redirect( $safeUrl );
-			}
-		} else {
-			// OutputPage::output() is fairly slow; run it in $postCommitWork to mask
-			// the latency of syncing DB positions accross all datacenters synchronously
-			$flags = $lbFactory::SHUTDOWN_CHRONPROT_SYNC;
-			if ( $lbFactory->hasOrMadeRecentMasterChanges( INF ) && $allowHeaders ) {
-				$cpPosTime = microtime( true );
-				// Set a cookie in case the DB position store cannot sync accross datacenters.
-				// This will at least cover the common case of the user staying on the domain.
-				$expires = time() + ChronologyProtector::POSITION_TTL;
-				$options = [ 'prefix' => '' ];
-				$request->response()->setCookie( 'cpPosTime', $cpPosTime, $expires, $options );
+		if ( $output->getRedirect() && $lbFactory->hasOrMadeRecentMasterChanges( INF ) ) {
+			// OutputPage::output() will be fast, so $postCommitWork is useless for masking
+			// the latency of synchronously updating the DB positions in all datacenters.
+			// Try to make use of the time the client spends following redirects instead.
+			$domainDistance = self::getUrlDomainDistance( $output->getRedirect() );
+			if ( $domainDistance === 'local' && $allowHeaders ) {
+				$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
+				$strategy = 'cookie'; // use same-domain cookie and keep the URL uncluttered
+			} elseif ( $domainDistance === 'remote' ) {
+				$flags = $lbFactory::SHUTDOWN_CHRONPROT_ASYNC;
+				$strategy = 'cookie+url'; // cross-domain cookie might not work
 			}
 		}
+
 		// Record ChronologyProtector positions for DBs affected in this request at this point
-		$lbFactory->shutdown( $flags, $postCommitWork );
+		$cpIndex = null;
+		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex );
 		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
+
+		if ( $cpIndex > 0 ) {
+			if ( $allowHeaders ) {
+				$expires = time() + ChronologyProtector::POSITION_TTL;
+				$options = [ 'prefix' => '' ];
+				$request->response()->setCookie( 'cpPosIndex', $cpIndex, $expires, $options );
+			}
+
+			if ( $strategy === 'cookie+url' ) {
+				if ( $output->getRedirect() ) { // sanity
+					$safeUrl = $lbFactory->appendShutdownCPIndexAsQuery(
+						$output->getRedirect(),
+						$cpIndex
+					);
+					$output->redirect( $safeUrl );
+				} else {
+					$e = new LogicException( "No redirect; cannot append cpPosIndex parameter." );
+					MWExceptionHandler::logException( $e );
+				}
+			}
+		}
 
 		// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that handles this
 		// POST request (e.g. the "master" data center). Also have the user briefly bypass CDN so
@@ -726,10 +731,12 @@ class MediaWiki {
 		if ( function_exists( 'register_postsend_function' ) ) {
 			// https://github.com/facebook/hhvm/issues/1230
 			register_postsend_function( $callback );
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$blocksHttpClient = false;
 		} else {
 			if ( function_exists( 'fastcgi_finish_request' ) ) {
 				fastcgi_finish_request();
+				/** @noinspection PhpUnusedLocalVariableInspection */
 				$blocksHttpClient = false;
 			} else {
 				// Either all DB and deferred updates should happen or none.
@@ -910,6 +917,34 @@ class MediaWiki {
 		$lbFactory->shutdown( LBFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally\n" );
+	}
+
+	/**
+	 * Send out any buffered statsd data according to sampling rules
+	 *
+	 * @param IBufferingStatsdDataFactory $stats
+	 * @param Config $config
+	 * @throws ConfigException
+	 * @since 1.31
+	 */
+	public static function emitBufferedStatsdData(
+		IBufferingStatsdDataFactory $stats, Config $config
+	) {
+		if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
+			try {
+				$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+				$statsdHost = $statsdServer[0];
+				$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
+				$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
+				$statsdClient->send( $stats->getData() );
+
+				$stats->clearData(); // empty buffer for the next round
+			} catch ( Exception $ex ) {
+				MWExceptionHandler::logException( $ex );
+			}
+		}
 	}
 
 	/**

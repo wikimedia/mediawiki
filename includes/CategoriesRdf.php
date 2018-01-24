@@ -37,7 +37,13 @@ class CategoriesRdf {
 	/**
 	 * Current version of the dump format.
 	 */
-	const FORMAT_VERSION = "1.0";
+	const FORMAT_VERSION = "1.1";
+	/**
+	 * Special page for Dump identification.
+	 * Used as head URI for each wiki's category dump, e.g.:
+	 * https://en.wikipedia.org/wiki/Special:CategoryDump
+	 */
+	const SPECIAL_DUMP = 'Special:CategoryDump';
 	/**
 	 * @var RdfWriter
 	 */
@@ -74,22 +80,49 @@ class CategoriesRdf {
 	/**
 	 * Write out the data for single category.
 	 * @param string $categoryName Category name
+	 * @param bool $isHidden Hidden category?
+	 * @param int $pages Page count (note this includes only Wiki articles, not subcats or files)
+	 * @param int $subcategories Subcategory count
 	 */
-	public function writeCategoryData( $categoryName ) {
+	public function writeCategoryData( $categoryName, $isHidden, $pages, $subcategories ) {
 		$title = Title::makeTitle( NS_CATEGORY, $categoryName );
 		$this->rdfWriter->about( $this->titleToUrl( $title ) )
 			->say( 'a' )
 			->is( self::ONTOLOGY_PREFIX, 'Category' );
+		if ( $isHidden ) {
+			$this->rdfWriter->is( self::ONTOLOGY_PREFIX, 'HiddenCategory' );
+		}
 		$titletext = $title->getText();
 		$this->rdfWriter->say( 'rdfs', 'label' )->value( $titletext );
+		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'pages' )->value( $pages );
+		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'subcategories' )->value( $subcategories );
+		// TODO: do we want files too here? Easy to add, but don't have use case so far.
+	}
+
+	/**
+	 * Make URL from title label
+	 * @param string $titleLabel Short label (without namespace) of the category
+	 * @return string URL for the category
+	 */
+	public function labelToUrl( $titleLabel ) {
+		return $this->titleToUrl( Title::makeTitle( NS_CATEGORY, $titleLabel ) );
 	}
 
 	/**
 	 * Convert Title to link to target page.
 	 * @param Title $title
-	 * @return string
+	 * @return string URL for the category
 	 */
 	private function titleToUrl( Title $title ) {
 		return $title->getFullURL( '', false, PROTO_CANONICAL );
 	}
+
+	/**
+	 * Get URI of the dump for this particular wiki.
+	 * @return false|string
+	 */
+	public function getDumpURI() {
+		return $this->titleToUrl( Title::makeTitle( NS_MAIN, self::SPECIAL_DUMP ) );
+	}
+
 }

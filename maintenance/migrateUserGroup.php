@@ -106,5 +106,5 @@ class MigrateUserGroup extends Maintenance {
 	}
 }
 
-$maintClass = "MigrateUserGroup";
+$maintClass = MigrateUserGroup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

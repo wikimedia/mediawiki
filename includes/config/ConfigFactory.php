@@ -99,13 +99,18 @@ class ConfigFactory implements SalvageableService {
 	 * Will override if it's already registered.
 	 * Use "*" for $name to provide a fallback config for all unknown names.
 	 * @param string $name
-	 * @param callable|Config $callback A factory callabck that takes this ConfigFactory
+	 * @param callable|Config $callback A factory callback that takes this ConfigFactory
 	 *        as an argument and returns a Config instance, or an existing Config instance.
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
 	public function register( $name, $callback ) {
 		if ( !is_callable( $callback ) && !( $callback instanceof Config ) ) {
-			throw new InvalidArgumentException( 'Invalid callback provided' );
+			if ( is_array( $callback ) ) {
+				$callback = '[ ' . implode( ', ', $callback ) . ' ]';
+			} elseif ( is_object( $callback ) ) {
+				$callback = 'instanceof ' . get_class( $callback );
+			}
+			throw new InvalidArgumentException( 'Invalid callback \'' . $callback . '\' provided' );
 		}
 
 		unset( $this->configs[$name] );

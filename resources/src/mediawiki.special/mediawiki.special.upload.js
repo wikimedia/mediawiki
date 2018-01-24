@@ -10,7 +10,7 @@
 /* global Uint8Array */
 
 ( function ( mw, $ ) {
-	var uploadWarning, uploadLicense,
+	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
 
@@ -61,7 +61,7 @@
 
 		timeout: function () {
 			var $spinnerDestCheck, title;
-			if ( !ajaxUploadDestCheck || this.nameToCheck === '' ) {
+			if ( !ajaxUploadDestCheck || this.nameToCheck.trim() === '' ) {
 				return;
 			}
 			$spinnerDestCheck = $.createSpinner().insertAfter( '#wpDestFile' );
@@ -71,9 +71,11 @@
 				formatversion: 2,
 				action: 'query',
 				// If title is empty, user input is invalid, the API call will produce details about why
-				titles: title ? title.getPrefixedText() : this.nameToCheck,
+				titles: [ title ? title.getPrefixedText() : this.nameToCheck ],
 				prop: 'imageinfo',
-				iiprop: 'uploadwarning'
+				iiprop: 'uploadwarning',
+				errorformat: 'html',
+				errorlang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
 				var
 					resultOut = '',
@@ -81,7 +83,7 @@
 				if ( page.imageinfo ) {
 					resultOut = page.imageinfo[ 0 ].html;
 				} else if ( page.invalidreason ) {
-					resultOut = mw.html.escape( page.invalidreason );
+					resultOut = page.invalidreason.html;
 				}
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
 			} ).always( function () {
@@ -113,43 +115,44 @@
 		}
 	};
 
-	uploadLicense = {
+	window.wgUploadTemplatePreviewObj = uploadTemplatePreview = {
 
 		responseCache: { '': '' },
 
-		fetchPreview: function ( license ) {
-			var $spinnerLicense;
-			if ( !mw.config.get( 'wgAjaxLicensePreview' ) ) {
-				return;
-			}
-			if ( this.responseCache.hasOwnProperty( license ) ) {
-				this.showPreview( this.responseCache[ license ] );
+		/**
+		 * @param {jQuery} $element The element whose .val() will be previewed
+		 * @param {jQuery} $previewContainer The container to display the preview in
+		 */
+		getPreview: function ( $element, $previewContainer ) {
+			var template = $element.val(),
+				$spinner;
+
+			if ( this.responseCache.hasOwnProperty( template ) ) {
+				this.showPreview( this.responseCache[ template ], $previewContainer );
 				return;
 			}
 
-			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
+			$spinner = $.createSpinner().insertAfter( $element );
 
-			( new mw.Api() ).get( {
-				formatversion: 2,
-				action: 'parse',
-				text: '{{' + license + '}}',
+			( new mw.Api() ).parse( '{{' + template + '}}', {
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
-				pst: true
+				pst: true,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} ).done( function ( result ) {
-				uploadLicense.processResult( result, license );
+				uploadTemplatePreview.processResult( result, template, $previewContainer );
 			} ).always( function () {
-				$spinnerLicense.remove();
+				$spinner.remove();
 			} );
 		},
 
-		processResult: function ( result, license ) {
-			this.responseCache[ license ] = result.parse.text;
-			this.showPreview( this.responseCache[ license ] );
+		processResult: function ( result, template, $previewContainer ) {
+			this.responseCache[ template ] = result;
+			this.showPreview( this.responseCache[ template ], $previewContainer );
 		},
 
-		showPreview: function ( preview ) {
-			$( '#mw-license-preview' ).html( preview );
+		showPreview: function ( preview, $previewContainer ) {
+			$previewContainer.html( preview );
 		}
 
 	};
@@ -177,7 +180,7 @@
 			// License selector check
 			$license.change( function () {
 				// We might show a preview
-				uploadLicense.fetchPreview( $license.val() );
+				uploadTemplatePreview.getPreview( $license, $( '#mw-license-preview' ) );
 			} );
 
 			// License selector table row
@@ -190,7 +193,7 @@
 		}
 
 		// fillDestFile setup
-		$.each( mw.config.get( 'wgUploadSourceIds' ), function ( index, sourceId ) {
+		mw.config.get( 'wgUploadSourceIds' ).forEach( function ( sourceId ) {
 			$( '#' + sourceId ).change( function () {
 				var path, slash, backslash, fname;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
@@ -218,17 +221,14 @@
 				if (
 					mw.config.get( 'wgCheckFileExtensions' ) &&
 					mw.config.get( 'wgStrictFileExtensions' ) &&
-					mw.config.get( 'wgFileExtensions' ) &&
+					Array.isArray( mw.config.get( 'wgFileExtensions' ) ) &&
 					$( this ).attr( 'id' ) !== 'wpUploadFileURL'
 				) {
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
-						$.inArray(
-							fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase(),
-							$.map( mw.config.get( 'wgFileExtensions' ), function ( element ) {
-								return element.toLowerCase();
-							} )
-						) === -1
+						mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
+							return element.toLowerCase();
+						} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
 					) {
 						// Not a valid extension
 						// Clear the upload and set mw-upload-permitted to error
@@ -290,7 +290,7 @@
 		function fileIsPreviewable( file ) {
 			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml' ],
 				tooHuge = 10 * 1024 * 1024;
-			return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
+			return ( known.indexOf( file.type ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
 
 		/**

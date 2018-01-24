@@ -124,7 +124,7 @@
 				normalizedData.params = model.filtersModel.removeStickyParams( normalizedData.params );
 
 				// Correct the invert state for effective selection
-				if ( normalizedData.params.invert && !normalizedData.params.namespaces ) {
+				if ( normalizedData.params.invert && !normalizedData.params.namespace ) {
 					delete normalizedData.params.invert;
 				}
 

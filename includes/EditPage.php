@@ -780,7 +780,7 @@ class EditPage {
 
 	/**
 	 * Display a read-only View Source page
-	 * @param Content $content content object
+	 * @param Content $content
 	 * @param string $errorMessage additional wikitext error message to display
 	 */
 	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
@@ -2861,7 +2861,14 @@ class EditPage {
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
-			$this->showTextbox1();
+			$conflictTextBoxAttribs = [];
+			if ( $this->wasDeletedSinceLastEdit() ) {
+				$conflictTextBoxAttribs['style'] = 'display:none;';
+			} elseif ( $this->isOldRev ) {
+				$conflictTextBoxAttribs['class'] = 'mw-textarea-oldrev';
+			}
+
+			$out->addHTML( $editConflictHelper->getEditConflictMainTextBox( $conflictTextBoxAttribs ) );
 			$out->addHTML( $editConflictHelper->getEditFormHtmlAfterContent() );
 		} else {
 			$this->showContentForm();
@@ -3339,22 +3346,9 @@ class EditPage {
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
 			$attribs = [ 'style' => 'display:none;' ];
 		} else {
-			$classes = []; // Textarea CSS
-			if ( $this->mTitle->isProtected( 'edit' ) &&
-				MWNamespace::getRestrictionLevels( $this->mTitle->getNamespace() ) !== [ '' ]
-			) {
-				# Is the title semi-protected?
-				if ( $this->mTitle->isSemiProtected() ) {
-					$classes[] = 'mw-textarea-sprotected';
-				} else {
-					# Then it must be protected based on static groups (regular)
-					$classes[] = 'mw-textarea-protected';
-				}
-				# Is the title cascade-protected?
-				if ( $this->mTitle->isCascadeProtected() ) {
-					$classes[] = 'mw-textarea-cprotected';
-				}
-			}
+			$builder = new TextboxBuilder();
+			$classes = $builder->getTextboxProtectionCSSClasses( $this->getTitle() );
+
 			# Is an old revision being edited?
 			if ( $this->isOldRev ) {
 				$classes[] = 'mw-textarea-oldrev';
@@ -3366,12 +3360,7 @@ class EditPage {
 				$attribs += $customAttribs;
 			}
 
-			if ( count( $classes ) ) {
-				if ( isset( $attribs['class'] ) ) {
-					$classes[] = $attribs['class'];
-				}
-				$attribs['class'] = implode( ' ', $classes );
-			}
+			$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
 		}
 
 		$this->showTextbox(
@@ -3615,6 +3604,8 @@ class EditPage {
 	 * @return string HTML
 	 */
 	public static function getPreviewLimitReport( $output ) {
+		global $wgLang;
+
 		if ( !$output || !$output->getLimitReportData() ) {
 			return '';
 		}
@@ -3643,7 +3634,9 @@ class EditPage {
 				if ( !$keyMsg->isDisabled() && !$valueMsg->isDisabled() ) {
 					$limitReport .= Html::openElement( 'tr' ) .
 						Html::rawElement( 'th', null, $keyMsg->parse() ) .
-						Html::rawElement( 'td', null, $valueMsg->params( $value )->parse() ) .
+						Html::rawElement( 'td', null,
+							$wgLang->formatNum( $valueMsg->params( $value )->parse() )
+						) .
 						Html::closeElement( 'tr' );
 				}
 			}
@@ -3681,11 +3674,6 @@ class EditPage {
 		$out->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
 
 		$cancel = $this->getCancelLink();
-		if ( $cancel !== '' ) {
-			$cancel .= Html::element( 'span',
-				[ 'class' => 'mw-editButtons-pipe-separator' ],
-				$this->context->msg( 'pipe-separator' )->text() );
-		}
 
 		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
@@ -4404,34 +4392,32 @@ class EditPage {
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];
 
+		$labelAsPublish =
+			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+
 		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
+		$buttonTooltip = $labelAsPublish ? 'publish' : 'save';
 
-		$attribs = [
-			'name' => 'wpSave',
-			'tabindex' => ++$tabindex,
-		];
-
-		$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['save'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpSave',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpSaveWidget',
 			'inputId' => 'wpSave',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
 			'useInputTag' => true,
-			'flags' => [ 'constructive', 'primary' ],
+			'flags' => [ 'progressive', 'primary' ],
 			'label' => $buttonLabel,
 			'infusable' => true,
 			'type' => 'submit',
-			'title' => Linker::titleAttrib( 'save' ),
-			'accessKey' => Linker::accesskey( 'save' ),
-		] + $saveConfig );
+			// Messages used: tooltip-save, tooltip-publish
+			'title' => Linker::titleAttrib( $buttonTooltip ),
+			// Messages used: accesskey-save, accesskey-publish
+			'accessKey' => Linker::accesskey( $buttonTooltip ),
+		] );
 
-		$attribs = [
-			'name' => 'wpPreview',
-			'tabindex' => ++$tabindex,
-		];
-
-		$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['preview'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpPreview',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpPreviewWidget',
 			'inputId' => 'wpPreview',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
@@ -4439,17 +4425,15 @@ class EditPage {
 			'label' => $this->context->msg( 'showpreview' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Message used: tooltip-preview
 			'title' => Linker::titleAttrib( 'preview' ),
+			// Message used: accesskey-preview
 			'accessKey' => Linker::accesskey( 'preview' ),
-		] + $previewConfig );
+		] );
 
-		$attribs = [
-			'name' => 'wpDiff',
-			'tabindex' => ++$tabindex,
-		];
-
-		$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
 		$buttons['diff'] = new OOUI\ButtonInputWidget( [
+			'name' => 'wpDiff',
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpDiffWidget',
 			'inputId' => 'wpDiff',
 			// Support: IE 6 – Use <input>, otherwise it can't distinguish which button was clicked
@@ -4457,9 +4441,11 @@ class EditPage {
 			'label' => $this->context->msg( 'showdiff' )->text(),
 			'infusable' => true,
 			'type' => 'submit',
+			// Message used: tooltip-diff
 			'title' => Linker::titleAttrib( 'diff' ),
+			// Message used: accesskey-diff
 			'accessKey' => Linker::accesskey( 'diff' ),
-		] + $diffConfig );
+		] );
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;

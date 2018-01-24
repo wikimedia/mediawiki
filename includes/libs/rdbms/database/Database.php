@@ -317,8 +317,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - flags : Optional bitfield of DBO_* constants that define connection, protocol,
 	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this this database simply acts as a key/value store.
-	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is the old
-	 *      'mysql' driver and the newer 'mysqli' driver.
+	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
+	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
@@ -337,7 +337,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	final public static function factory( $dbType, $p = [] ) {
 		static $canonicalDBTypes = [
-			'mysql' => [ 'mysqli', 'mysql' ],
+			'mysql' => [ 'mysqli' ],
 			'postgres' => [],
 			'sqlite' => [],
 			'oracle' => [],
@@ -345,7 +345,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 		static $classAliases = [
 			'DatabaseMssql' => DatabaseMssql::class,
-			'DatabaseMysql' => DatabaseMysql::class,
 			'DatabaseMysqli' => DatabaseMysqli::class,
 			'DatabaseSqlite' => DatabaseSqlite::class,
 			'DatabasePostgres' => DatabasePostgres::class
@@ -394,7 +393,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : ( PHP_SAPI === 'cli' );
+			$p['cliMode'] = isset( $p['cliMode'] )
+				? $p['cliMode']
+				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
 			if ( !isset( $p['connLogger'] ) ) {
 				$p['connLogger'] = new \Psr\Log\NullLogger();
@@ -3390,6 +3391,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		callable $inputCallback = null
 	) {
+		$delimiterReset = new ScopedCallback(
+			function ( $delimiter ) {
+				$this->delimiter = $delimiter;
+			},
+			[ $this->delimiter ]
+		);
 		$cmd = '';
 
 		while ( !feof( $fp ) ) {
@@ -3418,7 +3425,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 
-				if ( !$inputCallback || call_user_func( $inputCallback, $cmd ) ) {
+				if ( $inputCallback ) {
+					$callbackResult = call_user_func( $inputCallback, $cmd );
+
+					if ( is_string( $callbackResult ) || !$callbackResult ) {
+						$cmd = $callbackResult;
+					}
+				}
+
+				if ( $cmd ) {
 					$res = $this->query( $cmd, $fname );
 
 					if ( $resultCallback ) {
@@ -3435,6 +3450,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
+		ScopedCallback::consume( $delimiterReset );
 		return true;
 	}
 

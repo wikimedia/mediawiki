@@ -9,7 +9,7 @@ use MediaWikiTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Storage\BlobStore
+ * @covers \MediaWiki\Storage\BlobStoreFactory
  */
 class BlobStoreFactoryTest extends MediaWikiTestCase {
 

@@ -11,6 +11,8 @@
  */
 class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Helper to verify emptiness of a cache object.
 	 * Compare against an array so we get the cache content difference.
@@ -58,6 +60,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Highlight diff between assertEquals and assertNotSame
+	 * @coversNothing
 	 */
 	public function testPhpUnitArrayEquality() {
 		$one = [ 'A' => 1, 'B' => 2 ];

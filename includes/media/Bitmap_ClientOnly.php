@@ -29,9 +29,8 @@
  *
  * @ingroup Media
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class BitmapHandler_ClientOnly extends BitmapHandler {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @param File $image

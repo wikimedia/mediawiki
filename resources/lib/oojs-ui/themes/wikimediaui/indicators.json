@@ -16,11 +16,15 @@
 		"next": { "file": {
 			"ltr": "images/indicators/arrow-ltr.svg",
 			"rtl": "images/indicators/arrow-rtl.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.26.0."
+		},
 		"previous": { "file": {
 			"ltr": "images/indicators/arrow-rtl.svg",
 			"rtl": "images/indicators/arrow-ltr.svg"
-		} },
+			},
+			"deprecated": "This will be removed in v0.26.0."
+		},
 		"required": { "file": "images/indicators/required.svg" },
 		"search": { "file": {
 			"ltr": "images/indicators/search-ltr.svg",

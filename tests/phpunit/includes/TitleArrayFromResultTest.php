@@ -6,6 +6,8 @@
  */
 class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	private function getMockResultWrapper( $row = null, $numRows = 1 ) {
 		$resultWrapper = $this->getMockBuilder( 'ResultWrapper' )
 			->disableOriginalConstructor();

@@ -179,12 +179,12 @@ abstract class DatabaseUpdater {
 	/**
 	 * @param Database $db
 	 * @param bool $shared
-	 * @param Maintenance $maintenance
+	 * @param Maintenance|null $maintenance
 	 *
 	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
-	public static function newForDB( Database $db, $shared = false, $maintenance = null ) {
+	public static function newForDB( Database $db, $shared = false, Maintenance $maintenance = null ) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
@@ -616,7 +616,7 @@ abstract class DatabaseUpdater {
 	 * 1.13...) with the values being arrays of updates, identical to how
 	 * updaters.inc did it (for now)
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	abstract protected function getCoreUpdateList();
 
@@ -1228,6 +1228,17 @@ abstract class DatabaseUpdater {
 			$task->execute();
 			$this->output( "done.\n" );
 		}
+	}
+
+	/**
+	 * Migrate ar_text to modern storage
+	 * @since 1.31
+	 */
+	protected function migrateArchiveText() {
+		$this->output( "Migrating archive ar_text to modern storage.\n" );
+		$task = $this->maintenance->runChild( 'MigrateArchiveText', 'migrateArchiveText.php' );
+		$task->execute();
+		$this->output( "done.\n" );
 	}
 
 }

@@ -1,9 +1,13 @@
 <?php
 
+/**
+ * @covers DeferredStringifier
+ */
 class DeferredStringifierTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
-	 * @covers DeferredStringifier
 	 * @dataProvider provideToString
 	 */
 	public function testToString( $params, $expected ) {

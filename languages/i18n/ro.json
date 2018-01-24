@@ -33,7 +33,8 @@
 			"Turbojet",
 			"Stephanecbisson",
 			"Matrafox",
-			"Cybernenea11"
+			"Cybernenea11",
+			"Andreyyshore"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -1026,6 +1027,8 @@
 	"timezoneregion-indian": "Oceanul Indian",
 	"timezoneregion-pacific": "Oceanul Pacific",
 	"allowemail": "Acceptă e-mail de la alți utilizatori",
+	"email-allow-new-users-label": "Acceptă e-mail de la utilizatorii noi",
+	"email-blacklist-label": "Respinge e-mail de la acești utilizatori:",
 	"prefs-searchoptions": "Căutare",
 	"prefs-namespaces": "Spații de nume",
 	"default": "standard",

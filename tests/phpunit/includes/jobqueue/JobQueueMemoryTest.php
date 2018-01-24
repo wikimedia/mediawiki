@@ -10,6 +10,8 @@
  */
 class JobQueueMemoryTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @return JobQueueMemory
 	 */

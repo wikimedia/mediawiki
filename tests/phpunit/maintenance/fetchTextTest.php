@@ -1,5 +1,15 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use ContentHandler;
+use FetchText;
+use MediaWikiTestCase;
+use MWException;
+use Title;
+use PHPUnit_Framework_ExpectationFailedException;
+use WikiPage;
+
 require_once __DIR__ . "/../../../maintenance/fetchText.php";
 
 /**

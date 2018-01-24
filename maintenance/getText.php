@@ -62,5 +62,5 @@ class GetTextMaint extends Maintenance {
 	}
 }
 
-$maintClass = "GetTextMaint";
+$maintClass = GetTextMaint::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

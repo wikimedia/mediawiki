@@ -335,11 +335,11 @@ class OracleInstaller extends DatabaseInstaller {
 	 * @return bool Whether the connection string is valid.
 	 */
 	public static function checkConnectStringFormat( $connect_string ) {
-		// @@codingStandardsIgnoreStart Long lines with regular expressions.
+		// phpcs:disable Generic.Files.LineLength
 		// @todo Very long regular expression. Make more readable?
 		$isValid = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
 		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
-		// @@codingStandardsIgnoreEnd
+		// phpcs:enable
 		return (bool)$isValid;
 	}
 }

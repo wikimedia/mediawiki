@@ -310,25 +310,6 @@ interface ILoadBalancer {
 	public function getServerType( $i );
 
 	/**
-	 * Return the server info structure for a given index, or false if the index is invalid.
-	 * @param int $i
-	 * @return array|bool
-	 *
-	 * @deprecated Since 1.30, no alternative
-	 */
-	public function getServerInfo( $i );
-
-	/**
-	 * Sets the server info structure for the given index. Entry at index $i
-	 * is created if it doesn't exist
-	 * @param int $i
-	 * @param array $serverInfo
-	 *
-	 * @deprecated Since 1.30, construct new object
-	 */
-	public function setServerInfo( $i, array $serverInfo );
-
-	/**
 	 * Get the current master position for chronology control purposes
 	 * @return DBMasterPos|bool Returns false if not applicable
 	 */

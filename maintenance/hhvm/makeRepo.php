@@ -157,5 +157,5 @@ class HHVMMakeRepo extends Maintenance {
 	}
 }
 
-$maintClass = 'HHVMMakeRepo';
+$maintClass = HHVMMakeRepo::class;
 require RUN_MAINTENANCE_IF_MAIN;

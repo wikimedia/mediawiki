@@ -185,7 +185,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.getFirstConflictedItem = function () {
 		var conflictedItem;
 
-		$.each( this.getItems(), function ( index, filterItem ) {
+		this.getItems().forEach( function ( filterItem ) {
 			if ( filterItem.isSelected() && filterItem.isConflicted() ) {
 				conflictedItem = filterItem;
 				return false;
@@ -911,7 +911,7 @@
 	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesEffectivelyInverted = function () {
 		return this.getInvertModel().isSelected() &&
 			this.getSelectedItems().some( function ( itemModel ) {
-				return itemModel.getGroupModel().getView() === 'namespace';
+				return itemModel.getGroupModel().getName() === 'namespace';
 			} );
 	};
 

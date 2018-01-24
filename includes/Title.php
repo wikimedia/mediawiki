@@ -1769,7 +1769,7 @@ class Title implements LinkTarget {
 	 * @see wfExpandUrl
 	 * @param string|string[] $query
 	 * @param string|string[]|bool $query2
-	 * @param string $proto Protocol type to use in URL
+	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
 	 */
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
@@ -4644,7 +4644,7 @@ class Title implements LinkTarget {
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param IDatabase $db Optional db
+	 * @param IDatabase|null $db
 	 * @return string|false Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {

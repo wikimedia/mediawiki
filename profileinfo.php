@@ -168,9 +168,8 @@ if ( isset( $_REQUEST['expand'] ) ) {
 	}
 }
 
-// @codingStandardsIgnoreStart
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class profile_point {
-	// @codingStandardsIgnoreEnd
 
 	public $name;
 	public $count;
@@ -222,7 +221,7 @@ class profile_point {
 				<?php echo htmlspecialchars( str_replace( ',', ', ', $this->name() ) ) . $extet ?>
 			</div>
 		</th>
-		<?php //@codingStandardsIgnoreStart ?>
+		<?php // phpcs:disable Generic.Files.LineLength,Generic.PHP.NoSilencedErrors ?>
 		<td class="mw-profileinfo-timep"><?php echo @wfPercent( $this->time() / self::$totaltime * 100 ); ?></td>
 		<td class="mw-profileinfo-memoryp"><?php echo @wfPercent( $this->memory() / self::$totalmemory * 100 ); ?></td>
 		<td class="mw-profileinfo-count"><?php echo $this->count(); ?></td>
@@ -231,7 +230,7 @@ class profile_point {
 		<td class="mw-profileinfo-mpc"><?php echo round( sprintf( '%.2f', $this->memoryPerCall() / 1024 ), 2 ); ?></td>
 		<td class="mw-profileinfo-tpr"><?php echo @round( sprintf( '%.2f', $this->time() / self::$totalcount ), 2 ); ?></td>
 		<td class="mw-profileinfo-mpr"><?php echo @round( sprintf( '%.2f', $this->memory() / self::$totalcount / 1024 ), 2 ); ?></td>
-		<?php //@codingStandardsIgnoreEnd ?>
+		<?php // phpcs:enable ?>
 	</tr>
 		<?php
 		if ( $ex ) {
@@ -258,33 +257,28 @@ class profile_point {
 	}
 
 	public function timePerCall() {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @( $this->time / $this->count );
-		// @codingStandardsIgnoreEnd
 	}
 
 	public function memoryPerCall() {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @( $this->memory / $this->count );
-		// @codingStandardsIgnoreEnd
 	}
 
 	public function callsPerRequest() {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @( $this->count / self::$totalcount );
-		// @codingStandardsIgnoreEnd
 	}
 
 	public function timePerRequest() {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @( $this->time / self::$totalcount );
-		// @codingStandardsIgnoreEnd
 	}
 
 	public function memoryPerRequest() {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		return @( $this->memory / self::$totalcount );
-		// @codingStandardsIgnoreEnd
 	}
 
 	public function fmttime() {
@@ -293,9 +287,9 @@ class profile_point {
 };
 
 function compare_point( profile_point $a, profile_point $b ) {
-	// @codingStandardsIgnoreStart
+	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 	global $sort;
-	// @codingStandardsIgnoreEnd
+
 	switch ( $sort ) {
 		case 'name':
 			return strcmp( $a->name(), $b->name() );
@@ -390,9 +384,8 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	profile_point::$totalmemory = 0.0;
 
 	function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = false ) {
-		// @codingStandardsIgnoreStart
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.wgPrefix
 		global $filter, $sort, $expand;
-		// @codingStandardsIgnoreEnd
 
 		if ( $_expand === false ) {
 			$_expand = $expand;
@@ -441,9 +434,8 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	}
 	$points[] = $s;
 
-	// @codingStandardsIgnoreStart
+	// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 	@usort( $points, 'compare_point' );
-	// @codingStandardsIgnoreEnd
 
 	foreach ( $points as $point ) {
 		if ( strlen( $filter ) && !strstr( $point->name(), $filter ) ) {

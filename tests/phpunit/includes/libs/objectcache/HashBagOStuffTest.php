@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class HashBagOStuffTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers HashBagOStuff::__construct
 	 */

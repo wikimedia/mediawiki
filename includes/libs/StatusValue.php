@@ -214,7 +214,7 @@ class StatusValue {
 	/**
 	 * Merge another status object into this one
 	 *
-	 * @param StatusValue $other Other StatusValue object
+	 * @param StatusValue $other
 	 * @param bool $overwriteValue Whether to override the "value" member
 	 */
 	public function merge( $other, $overwriteValue = false ) {

@@ -151,7 +151,7 @@ class XCFHandler extends BitmapHandler {
 	 *
 	 * @param File|FSFile $file The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
-	 * @param string $filename The filename
+	 * @param string $filename
 	 * @return string
 	 */
 	public function getMetadata( $file, $filename ) {

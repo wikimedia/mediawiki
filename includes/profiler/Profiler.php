@@ -74,7 +74,8 @@ abstract class Profiler {
 			}
 
 			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
-			if ( PHP_SAPI === 'cli' || !$inSample ) {
+			// wfIsCLI() is not available yet
+			if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || !$inSample ) {
 				$params['class'] = 'ProfilerStub';
 			}
 

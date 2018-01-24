@@ -100,5 +100,5 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = 'PopulatePPSortKey';
+$maintClass = PopulatePPSortKey::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
