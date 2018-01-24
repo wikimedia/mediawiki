@@ -2517,7 +2517,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$cascade = false;
 
 			if ( $limit['create'] != '' ) {
-				$commentFields = CommentStore::newKey( 'pt_reason' )->insert( $dbw, $reason );
+				$commentFields = CommentStore::getStore()->insert( $dbw, 'pt_reason', $reason );
 				$dbw->replace( 'protected_titles',
 					[ [ 'pt_namespace', 'pt_title' ] ],
 					[
@@ -2844,8 +2844,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$content = null;
 		}
 
-		$revCommentStore = new CommentStore( 'rev_comment' );
-		$arCommentStore = new CommentStore( 'ar_comment' );
+		$commentStore = CommentStore::getStore();
 
 		$revQuery = Revision::getQueryInfo();
 		$bitfield = false;
@@ -2881,7 +2880,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$ipRevIds = [];
 
 		foreach ( $res as $row ) {
-			$comment = $revCommentStore->getComment( $row );
+			$comment = $commentStore->getComment( 'rev_comment', $row );
 			$rowInsert = [
 				'ar_namespace'  => $namespace,
 				'ar_title'      => $dbKey,
@@ -2898,7 +2897,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_page_id'    => $id,
 				'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
 				'ar_sha1'       => $row->rev_sha1,
-			] + $arCommentStore->insert( $dbw, $comment );
+			] + $commentStore->insert( $dbw, 'ar_comment', $comment );
 			if ( $wgContentHandlerUseDB ) {
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;

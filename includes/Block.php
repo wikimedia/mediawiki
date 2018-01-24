@@ -222,7 +222,7 @@ class Block {
 			'ipb_block_email',
 			'ipb_allow_usertalk',
 			'ipb_parent_block_id',
-		] + CommentStore::newKey( 'ipb_reason' )->getFields();
+		] + CommentStore::getStore()->getFields( 'ipb_reason' );
 	}
 
 	/**
@@ -235,7 +235,7 @@ class Block {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
 		return [
 			'tables' => [ 'ipblocks' ] + $commentQuery['tables'],
 			'fields' => [
@@ -460,9 +460,9 @@ class Block {
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_REPLICA );
 		$this->mExpiry = $db->decodeExpiry( $row->ipb_expiry );
-		$this->mReason = CommentStore::newKey( 'ipb_reason' )
+		$this->mReason = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( $db, $row )->text;
+			->getCommentLegacy( $db, 'ipb_reason', $row )->text;
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );
@@ -654,7 +654,7 @@ class Block {
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
 			'ipb_parent_block_id'  => $this->mParentBlockId
-		] + CommentStore::newKey( 'ipb_reason' )->insert( $dbw, $this->mReason );
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason );
 
 		return $a;
 	}
@@ -670,7 +670,7 @@ class Block {
 			'ipb_create_account'   => $this->prevents( 'createaccount' ),
 			'ipb_deleted'          => (int)$this->mHideName, // typecast required for SQLite
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
-		] + CommentStore::newKey( 'ipb_reason' )->insert( $dbw, $this->mReason );
+		] + CommentStore::getStore()->insert( $dbw, 'ipb_reason', $this->mReason );
 	}
 
 	/**
