@@ -376,7 +376,7 @@ class XmlTypeCheck {
 		if ( !$externalCallback && !$generalCallback && !$checkIfSafe ) {
 			return;
 		}
-		$dtd = $reader->readOuterXML();
+		$dtd = $reader->readOuterXml();
 		$callbackReturn = false;
 
 		if ( $generalCallback ) {

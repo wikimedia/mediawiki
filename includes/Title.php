@@ -1812,10 +1812,10 @@ class Title implements LinkTarget {
 		if ( $this->isExternal() ) {
 			$target = SpecialPage::getTitleFor(
 				'GoToInterwiki',
-				$this->getPrefixedDBKey()
+				$this->getPrefixedDBkey()
 			);
 		}
-		return $target->getFullUrl( $query, false, $proto );
+		return $target->getFullURL( $query, false, $proto );
 	}
 
 	/**

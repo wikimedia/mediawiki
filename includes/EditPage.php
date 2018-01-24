@@ -3727,7 +3727,7 @@ class EditPage {
 
 		return new OOUI\ButtonWidget( [
 			'id' => 'mw-editform-cancel',
-			'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
+			'href' => $this->getContextTitle()->getLinkURL( $cancelParams ),
 			'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
 			'framed' => false,
 			'infusable' => true,
