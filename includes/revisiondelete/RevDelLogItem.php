@@ -102,7 +102,7 @@ class RevDelLogItem extends RevDelItem {
 		// User links and action text
 		$action = $formatter->getActionText();
 		// Comment
-		$comment = CommentStore::newKey( 'log_comment' )->getComment( $this->row )->text;
+		$comment = CommentStore::getStore()->getComment( 'log_comment', $this->row )->text;
 		$comment = $this->list->getLanguage()->getDirMark()
 			. Linker::commentBlock( $comment );
 
@@ -136,7 +136,8 @@ class RevDelLogItem extends RevDelItem {
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_COMMENT, $user ) ) {
 			$ret += [
-				'comment' => CommentStore::newKey( 'log_comment' )->getComment( $this->row )->text,
+				'comment' => CommentStore::getStore()->getComment( 'log_comment', $this->row )
+					->text,
 			];
 		}
 

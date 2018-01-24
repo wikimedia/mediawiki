@@ -127,7 +127,7 @@ class OldLocalFile extends LocalFile {
 			'oi_timestamp',
 			'oi_deleted',
 			'oi_sha1',
-		] + CommentStore::newKey( 'oi_description' )->getFields();
+		] + CommentStore::getStore()->getFields( 'oi_description' );
 	}
 
 	/**
@@ -142,7 +142,7 @@ class OldLocalFile extends LocalFile {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo( array $options = [] ) {
-		$commentQuery = CommentStore::newKey( 'oi_description' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'oi_description' );
 		$ret = [
 			'tables' => [ 'oldimage' ] + $commentQuery['tables'],
 			'fields' => [
@@ -434,7 +434,7 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 
-		$commentFields = CommentStore::newKey( 'oi_description' )->insert( $dbw, $comment );
+		$commentFields = CommentStore::getStore()->insert( $dbw, 'oi_description', $comment );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),

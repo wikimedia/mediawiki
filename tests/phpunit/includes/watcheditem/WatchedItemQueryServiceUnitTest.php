@@ -1,14 +1,31 @@
 <?php
 
-use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers WatchedItemQueryService
  */
-class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
+class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
+
+	private function overrideCommentStore() {
+		$mockStore = $this->getMockBuilder( CommentStore::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$mockStore->expects( $this->any() )
+			->method( 'getFields' )
+			->willReturn( [ 'commentstore' => 'fields' ] );
+		$mockStore->expects( $this->any() )
+			->method( 'getJoin' )
+			->willReturn( [
+				'tables' => [ 'commentstore' => 'table' ],
+				'fields' => [ 'commentstore' => 'field' ],
+				'joins' => [ 'commentstore' =>  'join' ],
+			] );
+
+		$this->setService( 'CommentStore', $mockStore );
+	}
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|Database
@@ -477,58 +494,11 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
 				null,
-				[],
-				[
-					'rc_comment_text' => 'rc_comment',
-					'rc_comment_data' => 'NULL',
-					'rc_comment_cid' => 'NULL',
-				],
+				[ 'commentstore' => 'table' ],
+				[ 'commentstore' => 'field' ],
 				[],
 				[],
-				[],
-				[ 'wgCommentTableSchemaMigrationStage' => MIGRATION_OLD ],
-			],
-			[
-				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
-				null,
-				[ 'comment_rc_comment' => 'comment' ],
-				[
-					'rc_comment_text' => 'COALESCE( comment_rc_comment.comment_text, rc_comment )',
-					'rc_comment_data' => 'comment_rc_comment.comment_data',
-					'rc_comment_cid' => 'comment_rc_comment.comment_id',
-				],
-				[],
-				[],
-				[ 'comment_rc_comment' => [ 'LEFT JOIN', 'comment_rc_comment.comment_id = rc_comment_id' ] ],
-				[ 'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_BOTH ],
-			],
-			[
-				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
-				null,
-				[ 'comment_rc_comment' => 'comment' ],
-				[
-					'rc_comment_text' => 'COALESCE( comment_rc_comment.comment_text, rc_comment )',
-					'rc_comment_data' => 'comment_rc_comment.comment_data',
-					'rc_comment_cid' => 'comment_rc_comment.comment_id',
-				],
-				[],
-				[],
-				[ 'comment_rc_comment' => [ 'LEFT JOIN', 'comment_rc_comment.comment_id = rc_comment_id' ] ],
-				[ 'wgCommentTableSchemaMigrationStage' => MIGRATION_WRITE_NEW ],
-			],
-			[
-				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
-				null,
-				[ 'comment_rc_comment' => 'comment' ],
-				[
-					'rc_comment_text' => 'comment_rc_comment.comment_text',
-					'rc_comment_data' => 'comment_rc_comment.comment_data',
-					'rc_comment_cid' => 'comment_rc_comment.comment_id',
-				],
-				[],
-				[],
-				[ 'comment_rc_comment' => [ 'JOIN', 'comment_rc_comment.comment_id = rc_comment_id' ] ],
-				[ 'wgCommentTableSchemaMigrationStage' => MIGRATION_NEW ],
+				[ 'commentstore' => 'join' ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_PATROL_INFO ] ],
@@ -836,22 +806,9 @@ class WatchedItemQueryServiceUnitTest extends PHPUnit_Framework_TestCase {
 		array $expectedExtraFields,
 		array $expectedExtraConds,
 		array $expectedDbOptions,
-		array $expectedExtraJoinConds,
-		array $globals = []
+		array $expectedExtraJoinConds
 	) {
-		// Sigh. This test class doesn't extend MediaWikiTestCase, so we have to reinvent setMwGlobals().
-		if ( $globals ) {
-			$resetGlobals = [];
-			foreach ( $globals as $k => $v ) {
-				$resetGlobals[$k] = $GLOBALS[$k];
-				$GLOBALS[$k] = $v;
-			}
-			$reset = new ScopedCallback( function () use ( $resetGlobals ) {
-				foreach ( $resetGlobals as $k => $v ) {
-					$GLOBALS[$k] = $v;
-				}
-			} );
-		}
+		$this->overrideCommentStore();
 
 		$expectedTables = array_merge( [ 'recentchanges', 'watchlist', 'page' ], $expectedExtraTables );
 		$expectedFields = array_merge(

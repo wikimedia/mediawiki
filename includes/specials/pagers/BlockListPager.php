@@ -173,7 +173,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$value = CommentStore::newKey( 'ipb_reason' )->getComment( $row )->text;
+				$value = CommentStore::getStore()->getComment( 'ipb_reason', $row )->text;
 				$formatted = Linker::formatComment( $value );
 				break;
 
@@ -209,7 +209,7 @@ class BlockListPager extends TablePager {
 	}
 
 	function getQueryInfo() {
-		$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
 
 		$info = [
 			'tables' => [ 'ipblocks', 'user' ] + $commentQuery['tables'],
