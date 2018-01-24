@@ -88,7 +88,7 @@ class FeedItem {
 	 * @return string
 	 */
 	public function getUniqueID() {
-		$id = $this->getUniqueIDUnescaped();
+		$id = $this->getUniqueIdUnescaped();
 		if ( $id ) {
 			return $this->xmlEncode( $id );
 		}
@@ -383,7 +383,7 @@ class RSSFeed extends ChannelFeed {
 			"title" => $item->getTitle(),
 			"url" => $this->xmlEncode( wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ) ),
 			"permalink" => $item->rssIsPermalink,
-			"uniqueID" => $item->getUniqueId(),
+			"uniqueID" => $item->getUniqueID(),
 			"description" => $item->getDescription(),
 			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
 			"author" => $item->getAuthor()
@@ -433,7 +433,7 @@ class AtomFeed extends ChannelFeed {
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
 			'language' => $this->xmlEncode( $this->getLanguage() ),
-			'feedID' => $this->getFeedID(),
+			'feedID' => $this->getFeedId(),
 			'title' => $this->getTitle(),
 			'url' => $this->xmlEncode( wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ) ),
 			'selfUrl' => $this->getSelfUrl(),
@@ -474,7 +474,7 @@ class AtomFeed extends ChannelFeed {
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
-			"uniqueID" => $item->getUniqueId(),
+			"uniqueID" => $item->getUniqueID(),
 			"title" => $item->getTitle(),
 			"mimeType" => $this->xmlEncode( $wgMimeType ),
 			"url" => $this->xmlEncode( wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ) ),

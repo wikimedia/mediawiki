@@ -124,7 +124,7 @@ class ApiOptions extends ApiBase {
 				$user->setOption( $key, $value );
 				$changed = true;
 			} else {
-				$this->addWarning( [ 'apiwarn-validationfailed', wfEscapeWikitext( $key ), $validation ] );
+				$this->addWarning( [ 'apiwarn-validationfailed', wfEscapeWikiText( $key ), $validation ] );
 			}
 		}
 
