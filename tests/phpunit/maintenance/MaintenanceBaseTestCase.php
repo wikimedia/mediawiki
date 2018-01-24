@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use Maintenance;
 use MediaWikiTestCase;
 use Wikimedia\TestingAccessWrapper;
 
