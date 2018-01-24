@@ -482,6 +482,14 @@ return [
 		return $store;
 	},
 
+	'RevisionLookup' => function ( MediaWikiServices $services ) {
+		return $services->getRevisionStore();
+	},
+
+	'RevisionFactory' => function ( MediaWikiServices $services ) {
+		return $services->getRevisionStore();
+	},
+
 	'BlobStoreFactory' => function ( MediaWikiServices $services ) {
 		global $wgContLang;
 		return new BlobStoreFactory(
