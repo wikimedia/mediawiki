@@ -435,7 +435,7 @@
 	"preview": "Pòdzérk",
 	"showpreview": "Wëskrzëni pòdzérk",
 	"showdiff": "Wëskrzëni zjinaczi",
-	"anoneditwarning": "<strong>Bôczë:</strong> Të nie jes wlogòwóny. Jeżlë wëkònôsz jakąs zmianã, twòja adresa IP mdze widocznô dlô wszëtczich. Jeżlë <strong>[$1 wlogùjesz sã]</strong> abò <strong>[$2 ùsadzysz kònto]</strong>twòje zjinaczi òstóną przëpisóné do kònta, co wicy mającë kònto dobëjesz rozmajité ùdogòdnienia.",
+	"anoneditwarning": "<strong>Bôczë:</strong> Të nie jes wlogòwóny. Jeżlë wëkònôsz jakąs zmianã, twòja adresa IP mdze widocznô dlô wszëtczich. Jeżlë <strong>[$1 wlogùjesz sã]</strong> abò <strong>[$2 ùsadzysz kònto]</strong>, twòje zjinaczi òstóną przëpisóné do kònta, co wicy mającë kònto dobëjesz rozmajité ùdogòdnienia.",
 	"anonpreviewwarning": "Të nie jes wlogòwóny. Jeżlë wprowadzysz jaczés zjinaczi, twòja adresa IP mdze ùmieszczónô w historie edicji starnë.",
 	"summary-preview": "Pòdzérk òpisënka zjinaków:",
 	"blockedtitle": "Brëkòwnik je zascëgóny",

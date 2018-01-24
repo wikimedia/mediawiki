@@ -1906,7 +1906,7 @@
 	"doubleredirects": "Redirecionamentos duplos",
 	"doubleredirectstext": "Esta página lista todas as páginas que redirecionam para outras páginas de redirecionamento.\nCada linha contém hiperligações para o primeiro e segundo redirecionamentos, bem como o destino do segundo redirecionamento, geralmente contendo a verdadeira página de destino, que devia ser o destino do primeiro redirecionamento.\n<del>Entradas cortadas</del> já foram solucionadas.",
 	"double-redirect-fixed-move": "[[$1]] foi movida.\nEla foi atualizada automaticamente e agora redireciona para [[$2]].",
-	"double-redirect-fixed-maintenance": "A corrigir automaticamente o redirecionamento duplo de [[$1]] para [[$2]] num processo de manutenção.",
+	"double-redirect-fixed-maintenance": "A corrigir automaticamente o redirecionamento duplo de [[$1]] para [[$2]] num processo de manutenção",
 	"double-redirect-fixer": "Corretor de redirecionamentos",
 	"brokenredirects": "Redirecionamentos quebrados",
 	"brokenredirectstext": "Os seguintes redirecionamentos contêm hiperligações para páginas inexistentes:",
