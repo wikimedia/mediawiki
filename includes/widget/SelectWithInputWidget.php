@@ -8,7 +8,7 @@ use OOUI\TextInputWidget;
 /**
  * Select and input widget.
  *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @copyright 2011-2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
 class SelectWithInputWidget extends \OOUI\Widget {
