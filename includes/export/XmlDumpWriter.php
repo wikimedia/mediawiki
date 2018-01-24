@@ -219,7 +219,7 @@ class XmlDumpWriter {
 		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$comment = CommentStore::newKey( 'rev_comment' )->getComment( $row )->text;
+			$comment = CommentStore::getStore()->getComment( 'rev_comment', $row )->text;
 			if ( $comment != '' ) {
 				$out .= "      " . Xml::elementClean( 'comment', [], strval( $comment ) ) . "\n";
 			}
@@ -303,7 +303,7 @@ class XmlDumpWriter {
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
 			$out .= "    " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$comment = CommentStore::newKey( 'log_comment' )->getComment( $row )->text;
+			$comment = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
 			if ( $comment != '' ) {
 				$out .= "    " . Xml::elementClean( 'comment', null, strval( $comment ) ) . "\n";
 			}

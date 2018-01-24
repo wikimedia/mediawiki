@@ -41,7 +41,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
-		$this->commentStore = new CommentStore( 'log_comment' );
+		$this->commentStore = CommentStore::getStore();
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
 		$prop = array_flip( $params['prop'] );
@@ -93,7 +93,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf( 'log_params', $this->fld_details );
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			$commentQuery = $this->commentStore->getJoin();
+			$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
@@ -338,7 +338,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
-				$comment = $this->commentStore->getComment( $row )->text;
+				$comment = $this->commentStore->getComment( 'log_comment', $row )->text;
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}
