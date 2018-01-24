@@ -729,7 +729,7 @@ class WikiRevision {
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_params' => $this->params
-		] + CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->getComment() );
+		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;
