@@ -235,7 +235,7 @@ class RecentChange {
 			'rc_log_type',
 			'rc_log_action',
 			'rc_params',
-		] + CommentStore::newKey( 'rc_comment' )->getFields();
+		] + CommentStore::getStore()->getFields( 'rc_comment' );
 	}
 
 	/**
@@ -248,7 +248,7 @@ class RecentChange {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
 		return [
 			'tables' => [ 'recentchanges' ] + $commentQuery['tables'],
 			'fields' => [
@@ -372,7 +372,7 @@ class RecentChange {
 		$row = $this->mAttribs;
 		$comment = $row['rc_comment'];
 		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
-		$row += CommentStore::newKey( 'rc_comment' )->insert( $dbw, $comment );
+		$row += CommentStore::getStore()->insert( $dbw, 'rc_comment', $comment );
 
 		# Don't reuse an existing rc_id for the new row, if one happens to be
 		# set for some reason.
@@ -995,9 +995,10 @@ class RecentChange {
 			}
 		}
 
-		$comment = CommentStore::newKey( 'rc_comment' )
+		$comment = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row, true )->text;
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $row, true )
+			->text;
 		$this->mAttribs['rc_comment'] = &$comment;
 		$this->mAttribs['rc_comment_text'] = &$comment;
 		$this->mAttribs['rc_comment_data'] = null;
@@ -1011,7 +1012,8 @@ class RecentChange {
 	 */
 	public function getAttribute( $name ) {
 		if ( $name === 'rc_comment' ) {
-			return CommentStore::newKey( 'rc_comment' )->getComment( $this->mAttribs, true )->text;
+			return CommentStore::getStore()
+				->getComment( 'rc_comment', $this->mAttribs, true )->text;
 		}
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
 	}

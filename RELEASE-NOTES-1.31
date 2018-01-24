@@ -186,6 +186,15 @@ changes to languages because of Phabricator reports.
 * The driver 'mysql' for MySQL, deprecated in MediaWiki 1.30, has been removed.
   The driver has been deprecated since PHP 5.5 and was removed in PHP 7.0. The
   default driver for MySQL has been 'mysqli' since MediaWiki 1.22.
+* CommentStore::newKey is deprecated. Get an instance from MediaWikiServices instead.
+* The following CommentStore methods have had their signatures changed to introduced a $key parameter,
+  usage of the methods on instances retrieved from CommentStore::newKey will remain unchanged but deprecated:
+  * CommentStore::getFields
+  * CommentStore::getJoin
+  * CommentStore::getComment
+  * CommentStore::getCommentLegacy
+  * CommentStore::insert
+  * CommentStore::insertWithTemplate
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,

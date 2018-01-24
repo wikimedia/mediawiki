@@ -1084,6 +1084,8 @@ more stuff
 	 */
 	public function testCommentMigrationOnDeletion( $writeStage, $readStage ) {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', $writeStage );
+		$this->overrideMwServices();
+
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$page = $this->createPage(
@@ -1102,6 +1104,7 @@ more stuff
 		}
 
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', $readStage );
+		$this->overrideMwServices();
 
 		$page->doDeleteArticle( "testing deletion" );
 
