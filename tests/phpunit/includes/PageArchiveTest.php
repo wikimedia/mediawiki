@@ -114,6 +114,9 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::listRevisions
 	 */
 	public function testListRevisions() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
+
 		$revisions = $this->archivedPage->listRevisions();
 		$this->assertEquals( 2, $revisions->numRows() );
 

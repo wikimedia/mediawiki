@@ -212,6 +212,15 @@ changes to languages because of Phabricator reports.
   * OutputPage::readOnlyPage(); deprecated in 1.25
   * OutputPage::rateLimited(); deprecated in 1.25
 * The no-op method Skin::showIPinHeader(), deprecated in 1.27, was removed.
+* CommentStore::newKey is deprecated. Get an instance from MediaWikiServices instead.
+* The following CommentStore methods have had their signatures changed to introduce a $key parameter,
+  usage of the methods on instances retrieved from CommentStore::newKey will remain unchanged but deprecated:
+  * CommentStore::getFields
+  * CommentStore::getJoin
+  * CommentStore::getComment
+  * CommentStore::getCommentLegacy
+  * CommentStore::insert
+  * CommentStore::insertWithTemplate
 * \ObjectFactory (no namespace) is deprecated, the namespaced \Wikimedia\ObjectFactory
   from the wikimedia/object-factory library should be used instead.
 

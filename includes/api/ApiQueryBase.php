@@ -451,7 +451,7 @@ abstract class ApiQueryBase extends ApiBase {
 				'ipb_expiry',
 				'ipb_timestamp'
 			] );
-			$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );

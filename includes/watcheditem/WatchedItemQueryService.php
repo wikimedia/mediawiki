@@ -56,12 +56,12 @@ class WatchedItemQueryService {
 	/** @var WatchedItemQueryServiceExtension[]|null */
 	private $extensions = null;
 
-	/**
-	 * @var CommentStore|null */
-	private $commentStore = null;
+	/** @var CommentStore */
+	private $commentStore;
 
 	public function __construct( LoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
+		$this->commentStore = CommentStore::getStore();
 	}
 
 	/**
@@ -81,13 +81,6 @@ class WatchedItemQueryService {
 	 */
 	private function getConnection() {
 		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
-	}
-
-	private function getCommentStore() {
-		if ( !$this->commentStore ) {
-			$this->commentStore = new CommentStore( 'rc_comment' );
-		}
-		return $this->commentStore;
 	}
 
 	/**
@@ -334,7 +327,7 @@ class WatchedItemQueryService {
 			$tables[] = 'page';
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$tables += $this->getCommentStore()->getJoin()['tables'];
+			$tables += $this->commentStore->getJoin( 'rc_comment' )['tables'];
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			$tables[] = 'tag_summary';
@@ -377,7 +370,7 @@ class WatchedItemQueryService {
 			$fields[] = 'rc_user';
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$fields += $this->getCommentStore()->getJoin()['fields'];
+			$fields += $this->commentStore->getJoin( 'rc_comment' )['fields'];
 		}
 		if ( in_array( self::INCLUDE_PATROL_INFO, $options['includeFields'] ) ) {
 			$fields = array_merge( $fields, [ 'rc_patrolled', 'rc_log_type' ] );
@@ -684,7 +677,7 @@ class WatchedItemQueryService {
 			$joinConds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$joinConds += $this->getCommentStore()->getJoin()['joins'];
+			$joinConds += $this->commentStore->getJoin( 'rc_comment' )['joins'];
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			$joinConds['tag_summary'] = [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ];

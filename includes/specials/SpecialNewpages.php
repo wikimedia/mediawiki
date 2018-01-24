@@ -295,7 +295,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 */
 	protected function revisionFromRcResult( stdClass $result, Title $title ) {
 		return new Revision( [
-			'comment' => CommentStore::newKey( 'rc_comment' )->getComment( $result )->text,
+			'comment' => CommentStore::getStore()->getComment( 'rc_comment', $result )->text,
 			'deleted' => $result->rc_deleted,
 			'user_text' => $result->rc_user_text,
 			'user' => $result->rc_user,
