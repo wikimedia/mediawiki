@@ -2788,7 +2788,8 @@ ERROR;
 
 		if ( $this->wasDeletedSinceLastEdit() && 'save' == $this->formtype ) {
 			$username = $this->lastDelete->user_name;
-			$comment = CommentStore::newKey( 'log_comment' )->getComment( $this->lastDelete )->text;
+			$comment = CommentStore::getStore()
+				->getComment( 'log_comment', $this->lastDelete )->text;
 
 			// It is better to not parse the comment at all than to have templates expanded in the middle
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
@@ -3800,7 +3801,7 @@ ERROR;
 	 */
 	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_REPLICA );
-		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 		$data = $dbr->selectRow(
 			[ 'logging', 'user' ] + $commentQuery['tables'],
 			[
