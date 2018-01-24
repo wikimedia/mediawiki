@@ -79,7 +79,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * Get the ParserOutput from this object, or false in case of failure
 	 *
-	 * @return ParserOutput
+	 * @return ParserOutput|bool
 	 */
 	public function getParserOutput() {
 		return $this->parserOutput;
