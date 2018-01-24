@@ -43,7 +43,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$user = $this->getUser();
 		$db = $this->getDB();
-		$commentStore = new CommentStore( 'fa_description' );
+		$commentStore = CommentStore::newKey( 'fa_description' );
 
 		$params = $this->extractRequestParams();
 

@@ -280,6 +280,7 @@ $wgAutoloadLocalClasses = [
 	'CommandLineInstaller' => __DIR__ . '/maintenance/install.php',
 	'CommentStore' => __DIR__ . '/includes/CommentStore.php',
 	'CommentStoreComment' => __DIR__ . '/includes/CommentStoreComment.php',
+	'CommentStoreFactory' => __DIR__ . '/includes/CommentStoreFactory.php',
 	'CompareParserCache' => __DIR__ . '/maintenance/compareParserCache.php',
 	'CompareParsers' => __DIR__ . '/maintenance/compareParsers.php',
 	'ComposerHookHandler' => __DIR__ . '/includes/composer/ComposerHookHandler.php',

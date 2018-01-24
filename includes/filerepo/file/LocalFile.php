@@ -1424,7 +1424,7 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-		$commentStore = new CommentStore( 'img_description' );
+		$commentStore = CommentStore::newKey( 'img_description' );
 		list( $commentFields, $commentCallback ) =
 			$commentStore->insertWithTempTable( $dbw, $comment );
 		$dbw->insert( 'image',
@@ -2403,10 +2403,10 @@ class LocalFileDeleteBatch {
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
-		$commentStoreFaReason = new CommentStore( 'fa_deleted_reason' );
+		$commentStoreImgDesc = CommentStore::newKey( 'img_description' );
+		$commentStoreOiDesc = CommentStore::newKey( 'oi_description' );
+		$commentStoreFaDesc = CommentStore::newKey( 'fa_description' );
+		$commentStoreFaReason = CommentStore::newKey( 'fa_deleted_reason' );
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
@@ -2734,9 +2734,9 @@ class LocalFileRestoreBatch {
 
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
+		$commentStoreImgDesc = CommentStore::newKey( 'img_description' );
+		$commentStoreOiDesc = CommentStore::newKey( 'oi_description' );
+		$commentStoreFaDesc = CommentStore::newKey( 'fa_description' );
 
 		$status = $this->file->repo->newGood();
 
