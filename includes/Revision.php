@@ -357,7 +357,7 @@ class Revision implements IDBAccessObject {
 			'rev_sha1',
 		];
 
-		$fields += CommentStore::newKey( 'rev_comment' )->getFields();
+		$fields += CommentStore::getStore()->getFields( 'rev_comment' );
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'rev_content_format';
@@ -394,7 +394,7 @@ class Revision implements IDBAccessObject {
 			'ar_sha1',
 		];
 
-		$fields += CommentStore::newKey( 'ar_comment' )->getFields();
+		$fields += CommentStore::getStore()->getFields( 'ar_comment' );
 
 		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';

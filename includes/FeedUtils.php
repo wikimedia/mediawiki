@@ -89,7 +89,7 @@ class FeedUtils {
 			$timestamp,
 			$row->rc_deleted & Revision::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
-				: CommentStore::newKey( 'rc_comment' )->getComment( $row )->text,
+				: CommentStore::getStore()->getComment( 'rc_comment', $row )->text,
 			$actiontext
 		);
 	}

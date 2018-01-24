@@ -170,7 +170,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return array
 	 */
 	public static function getSelectQueryData() {
-		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 
 		$tables = [ 'logging', 'user' ] + $commentQuery['tables'];
 		$fields = [
@@ -324,7 +324,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function getComment() {
-		return CommentStore::newKey( 'log_comment' )->getComment( $this->row )->text;
+		return CommentStore::getStore()->getComment( 'log_comment', $this->row )->text;
 	}
 
 	public function getDeleted() {
@@ -382,9 +382,9 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getComment() {
-		return CommentStore::newKey( 'rc_comment' )
+		return CommentStore::getStore()
 			// Legacy because the row may have used RecentChange::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), $this->row )->text;
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $this->row )->text;
 	}
 
 	public function getDeleted() {
@@ -626,7 +626,7 @@ class ManualLogEntry extends LogEntryBase {
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
 		}
-		$data += CommentStore::newKey( 'log_comment' )->insert( $dbw, $comment );
+		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $comment );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();
