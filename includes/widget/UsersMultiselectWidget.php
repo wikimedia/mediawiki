@@ -7,7 +7,7 @@ use OOUI\MultilineTextInputWidget;
 /**
  * Widget to select multiple users.
  *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @copyright 2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
 class UsersMultiselectWidget extends \OOUI\Widget {
