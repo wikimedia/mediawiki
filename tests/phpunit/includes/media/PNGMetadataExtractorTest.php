@@ -66,24 +66,6 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test extraction of pHYs tags, which can tell what the
-	 * actual resolution of the image is (aka in dots per meter).
-	 */
-	/*
-	public function testPngPhysTag() {
-		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
-			'Png-native-test.png' );
-
-		$this->assertArrayHasKey( 'text', $meta );
-		$meta = $meta['text'];
-
-		$this->assertEquals( '2835/100', $meta['XResolution'] );
-		$this->assertEquals( '2835/100', $meta['YResolution'] );
-		$this->assertEquals( 3, $meta['ResolutionUnit'] ); // 3 = cm
-	}
-	*/
-
-	/**
 	 * Given a normal static PNG, check the animation metadata returned.
 	 */
 	public function testStaticPngAnimationMetadata() {
