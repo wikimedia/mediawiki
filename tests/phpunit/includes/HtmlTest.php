@@ -1,5 +1,4 @@
 <?php
-/** tests for includes/Html.php */
 
 class HtmlTest extends MediaWikiTestCase {
 

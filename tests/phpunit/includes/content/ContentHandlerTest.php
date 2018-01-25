@@ -248,10 +248,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertNull( $text );
 	}
 
-	/*
-	public static function makeContent( $text, Title $title, $modelId = null, $format = null ) {}
-	*/
-
 	public static function dataMakeContent() {
 		return [
 			[ 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ],
@@ -369,12 +365,6 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$tag = $wikitextContentHandler->getChangeTag( $oldContent, $newContent, EDIT_UPDATE );
 		$this->assertSame( $tag, 'mw-contentmodelchange' );
 	}
-
-	/*
-	public function testSupportsSections() {
-		$this->markTestIncomplete( "not yet implemented" );
-	}
-	*/
 
 	/**
 	 * @covers ContentHandler::supportsCategories
