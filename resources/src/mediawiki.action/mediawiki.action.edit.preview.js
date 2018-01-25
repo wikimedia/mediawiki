@@ -99,7 +99,8 @@
 				rvdifftotext: $textbox.textSelection( 'getContents' ),
 				rvdifftotextpst: true,
 				rvprop: '',
-				rvsection: section === '' ? undefined : section
+				rvsection: section === '' ? undefined : section,
+				uselang: mw.config.get( 'wgUserLanguage' )
 			} );
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
