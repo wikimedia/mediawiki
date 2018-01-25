@@ -441,7 +441,8 @@ class InfoAction extends FormlessAction {
 		if ( $title->inNamespace( NS_FILE ) ) {
 			$fileObj = wfFindFile( $title );
 			if ( $fileObj !== false ) {
-				$output = $fileObj->getSha1();
+				$base36Hash = $fileObj->getSha1();
+				$output = Wikimedia\base_convert( $base36Hash, 36, 16, 40 );
 				$pageInfo['header-basic'][] = [
 					$this->msg( 'pageinfo-file-hash' ),
 					$output
