@@ -809,7 +809,7 @@ class SpecialPage implements MessageLocalizer {
 	public function getFinalGroupName() {
 		$name = $this->getName();
 
-		// Allow overbidding the group from the wiki side
+		// Allow overriding the group from the wiki side
 		$msg = $this->msg( 'specialpages-specialpagegroup-' . strtolower( $name ) )->inContentLanguage();
 		if ( !$msg->isBlank() ) {
 			$group = $msg->text();
