@@ -7,7 +7,7 @@ use OOUI\Tag;
 /**
  * Date-time input widget.
  *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
 class DateTimeInputWidget extends \OOUI\InputWidget {
