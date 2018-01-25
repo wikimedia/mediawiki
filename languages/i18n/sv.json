@@ -1825,7 +1825,7 @@
 	"upload-disallowed-here": "Du kan inte skriva över denna fil.",
 	"filerevert": "Återställ $1",
 	"filerevert-legend": "Återställ fil",
-	"filerevert-intro": "Du återställer '''[[Media:$1|$1]]''' till [$4 versionen från $2 kl. $3].",
+	"filerevert-intro": "Du håller på att återställa filen <strong>[[Media:$1|$1]]</strong> till [$4 versionen från $2 kl. $3].",
 	"filerevert-comment": "Anledning:",
 	"filerevert-defaultcomment": "Återställd till versionen från $1, kl. $2 ($3)",
 	"filerevert-submit": "Återställ",
