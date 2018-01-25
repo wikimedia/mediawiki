@@ -1639,9 +1639,10 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 */
 	public function getArchiveQueryInfo() {
 		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+
 		$ret = [
-			'tables' => [ 'archive' ] + $commentQuery['tables'],
-			'fields' => [
+			'tables' => array_merge( [ 'archive' ], $commentQuery['tables'] ),
+			'fields' => array_merge( [
 					'ar_id',
 					'ar_page_id',
 					'ar_namespace',
@@ -1657,7 +1658,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 					'ar_len',
 					'ar_parent_id',
 					'ar_sha1',
-				] + $commentQuery['fields'],
+				], $commentQuery['fields'] ),
 			'joins' => $commentQuery['joins'],
 		];
 
