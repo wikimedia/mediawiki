@@ -414,7 +414,10 @@ abstract class Maintenance {
 			$this->fatalError( $err, intval( $die ) );
 		}
 		$this->outputChanneled( false );
-		if ( PHP_SAPI == 'cli' || PHP_SAPI == 'phpdbg' ) {
+		if (
+			( PHP_SAPI == 'cli' || PHP_SAPI == 'phpdbg' ) &&
+			!defined( 'MW_PHPUNIT_TEST' )
+		) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
 			print $err;
