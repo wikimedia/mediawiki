@@ -81,17 +81,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the SiteConfiguration object
-	 *
-	 * @param Config $s
+	 * @param Config $config
 	 */
-	public function setConfig( Config $s ) {
-		$this->config = $s;
+	public function setConfig( Config $config ) {
+		$this->config = $config;
 	}
 
 	/**
-	 * Get the Config object
-	 *
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -103,8 +99,6 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Get the stats object
-	 *
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
 	 * @return IBufferingStatsdDataFactory
@@ -114,8 +108,6 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Get the timing object
-	 *
 	 * @return Timing
 	 */
 	public function getTiming() {
@@ -127,17 +119,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the WebRequest object
-	 *
-	 * @param WebRequest $r
+	 * @param WebRequest $request
 	 */
-	public function setRequest( WebRequest $r ) {
-		$this->request = $r;
+	public function setRequest( WebRequest $request ) {
+		$this->request = $request;
 	}
 
 	/**
-	 * Get the WebRequest object
-	 *
 	 * @return WebRequest
 	 */
 	public function getRequest() {
@@ -149,17 +137,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the Title object
-	 *
-	 * @param Title $t
+	 * @param Title $title
 	 */
-	public function setTitle( Title $t ) {
-		$this->title = $t;
+	public function setTitle( Title $title ) {
+		$this->title = $title;
 	}
 
 	/**
-	 * Get the Title object
-	 *
 	 * @return Title|null
 	 */
 	public function getTitle() {
@@ -189,13 +173,11 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the WikiPage object
-	 *
 	 * @since 1.19
-	 * @param WikiPage $p
+	 * @param WikiPage $wikiPage
 	 */
-	public function setWikiPage( WikiPage $p ) {
-		$this->wikipage = $p;
+	public function setWikiPage( WikiPage $wikiPage ) {
+		$this->wikipage = $wikiPage;
 	}
 
 	/**
@@ -216,17 +198,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the OutputPage object
-	 *
-	 * @param OutputPage $o
+	 * @param OutputPage $output
 	 */
-	public function setOutput( OutputPage $o ) {
-		$this->output = $o;
+	public function setOutput( OutputPage $output ) {
+		$this->output = $output;
 	}
 
 	/**
-	 * Get the OutputPage object
-	 *
 	 * @return OutputPage
 	 */
 	public function getOutput() {
@@ -238,17 +216,13 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the User object
-	 *
-	 * @param User $u
+	 * @param User $user
 	 */
-	public function setUser( User $u ) {
-		$this->user = $u;
+	public function setUser( User $user ) {
+		$this->user = $user;
 	}
 
 	/**
-	 * Get the User object
-	 *
 	 * @return User
 	 */
 	public function getUser() {
@@ -260,18 +234,16 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the Language object
-	 *
-	 * @param Language|string $l Language instance or language code
+	 * @param Language|string $language Language instance or language code
 	 * @throws MWException
 	 * @since 1.19
 	 */
-	public function setLanguage( $l ) {
-		if ( $l instanceof Language ) {
-			$this->lang = $l;
-		} elseif ( is_string( $l ) ) {
-			$l = RequestContext::sanitizeLangCode( $l );
-			$obj = Language::factory( $l );
+	public function setLanguage( $language ) {
+		if ( $language instanceof Language ) {
+			$this->lang = $language;
+		} elseif ( is_string( $language ) ) {
+			$language = RequestContext::sanitizeLangCode( $language );
+			$obj = Language::factory( $language );
 			$this->lang = $obj;
 		} else {
 			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
@@ -279,8 +251,6 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Get the Language object
-	 *
 	 * @return Language
 	 * @since 1.19
 	 */
@@ -293,18 +263,14 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	}
 
 	/**
-	 * Set the Skin object
-	 *
-	 * @param Skin $s
+	 * @param Skin $skin
 	 */
-	public function setSkin( Skin $s ) {
-		$this->skin = clone $s;
+	public function setSkin( Skin $skin ) {
+		$this->skin = clone $skin;
 		$this->skin->setContext( $this );
 	}
 
 	/**
-	 * Get the Skin object
-	 *
 	 * @return Skin
 	 */
 	public function getSkin() {

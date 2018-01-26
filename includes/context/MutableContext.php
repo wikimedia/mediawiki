@@ -23,60 +23,45 @@
  */
 
 interface MutableContext {
+
 	/**
-	 * Set the Config object
-	 *
 	 * @param Config $config
 	 */
 	public function setConfig( Config $config );
 
 	/**
-	 * Set the WebRequest object
-	 *
-	 * @param WebRequest $r
+	 * @param WebRequest $request
 	 */
-	public function setRequest( WebRequest $r );
+	public function setRequest( WebRequest $request );
 
 	/**
-	 * Set the Title object
-	 *
-	 * @param Title $t
+	 * @param Title $title
 	 */
-	public function setTitle( Title $t );
+	public function setTitle( Title $title );
 
 	/**
-	 * Set the WikiPage object
-	 *
-	 * @param WikiPage $p
+	 * @param WikiPage $wikiPage
 	 */
-	public function setWikiPage( WikiPage $p );
+	public function setWikiPage( WikiPage $wikiPage );
 
 	/**
-	 * Set the OutputPage object
-	 *
-	 * @param OutputPage $o
+	 * @param OutputPage $output
 	 */
-	public function setOutput( OutputPage $o );
+	public function setOutput( OutputPage $output );
 
 	/**
-	 * Set the User object
-	 *
-	 * @param User $u
+	 * @param User $user
 	 */
-	public function setUser( User $u );
+	public function setUser( User $user );
 
 	/**
-	 * Set the Language object
-	 *
-	 * @param Language|string $l Language instance or language code
+	 * @param Language|string $language Language instance or language code
 	 */
-	public function setLanguage( $l );
+	public function setLanguage( $language );
 
 	/**
-	 * Set the Skin object
-	 *
-	 * @param Skin $s
+	 * @param Skin $skin
 	 */
-	public function setSkin( Skin $s );
+	public function setSkin( Skin $skin );
 
 }
