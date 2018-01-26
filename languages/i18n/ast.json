@@ -3960,6 +3960,8 @@
 	"restrictionsfield-badip": "Direición o rangu IP inválidu: $1",
 	"restrictionsfield-label": "Rangos d'IP permitíos:",
 	"restrictionsfield-help": "Una única direición IP o rangu CIDR per llinia. P'activar toos, utiliza:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errores:\n\n$1",
 	"revid": "revisión $1",
 	"pageid": "ID de páxina $1",
 	"rawhtml-notallowed": "Les etiquetes &lt;html&gt; nun pueden usase fuera de les páxines normales.",

@@ -3611,5 +3611,7 @@
 	"linkaccounts-success-text": "Сметката беше свързана.",
 	"linkaccounts-submit": "Свързване на сметки",
 	"restrictionsfield-badip": "Невалиден IP-адрес или интервал от адреси: $1",
+	"edit-error-short": "Грешка: $1",
+	"edit-error-long": "Грешки:\n\n$1",
 	"revid": "версия $1"
 }
