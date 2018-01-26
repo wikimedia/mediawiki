@@ -331,9 +331,7 @@ class Parser {
 		CoreTagHooks::register( $this );
 		$this->initialiseVariables();
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserFirstCallInit', [ &$parser ] );
+		Hooks::run( 'ParserFirstCallInit', [ $this ] );
 	}
 
 	/**
@@ -384,9 +382,7 @@ class Parser {
 
 		$this->mProfiler = new SectionProfiler();
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserClearState', [ &$parser ] );
+		Hooks::run( 'ParserClearState', [ $this ] );
 	}
 
 	/**
@@ -435,13 +431,11 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserBeforeStrip', [ $this, &$text, &$this->mStripState ] );
 		# No more strip!
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ $this, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text );
-		Hooks::run( 'ParserAfterParse', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterParse', [ $this, &$text, &$this->mStripState ] );
 
 		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
@@ -639,10 +633,8 @@ class Parser {
 	 * @return string UNSAFE half-parsed HTML
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserBeforeStrip', [ $this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ $this, &$text, &$this->mStripState ] );
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -689,10 +681,8 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserBeforeStrip', [ $this, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserAfterStrip', [ $this, &$text, &$this->mStripState ] );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -1258,11 +1248,8 @@ class Parser {
 	public function internalParse( $text, $isMain = true, $frame = false ) {
 		$origText = $text;
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$parser, &$text, &$this->mStripState ] ) ) {
+		if ( !Hooks::run( 'ParserBeforeInternalParse', [ $this, &$text, &$this->mStripState ] ) ) {
 			return $text;
 		}
 
@@ -1282,7 +1269,7 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'InternalParseBeforeSanitize', [ $this, &$text, &$this->mStripState ] );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
 			[ $this, 'attributeStripCallback' ],
@@ -1291,7 +1278,7 @@ class Parser {
 			[],
 			[ $this, 'addTrackingCategory' ]
 		);
-		Hooks::run( 'InternalParseBeforeLinks', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'InternalParseBeforeLinks', [ $this, &$text, &$this->mStripState ] );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
@@ -1330,11 +1317,8 @@ class Parser {
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterUnstrip', [ &$parser, &$text ] );
+			Hooks::run( 'ParserAfterUnstrip', [ $this, &$text ] );
 		}
 
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
@@ -1373,7 +1357,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ] );
+			Hooks::run( 'ParserBeforeTidy', [ $this, &$text ] );
 		}
 
 		$text = $this->replaceTransparentTags( $text );
@@ -1414,7 +1398,7 @@ class Parser {
 		}
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterTidy', [ &$parser, &$text ] );
+			Hooks::run( 'ParserAfterTidy', [ $this, &$text ] );
 		}
 
 		return $text;
@@ -2483,21 +2467,18 @@ class Parser {
 				. ' called while parsing (no title set)' );
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
 		/**
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) ) {
+		if ( Hooks::run( 'ParserGetVariableValueVarCache', [ $this, &$this->mVarCache ] ) ) {
 			if ( isset( $this->mVarCache[$index] ) ) {
 				return $this->mVarCache[$index];
 			}
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
+		Hooks::run( 'ParserGetVariableValueTs', [ $this, &$ts ] );
 
 		$pageLang = $this->getFunctionLang();
 
@@ -2810,7 +2791,7 @@ class Parser {
 				$ret = null;
 				Hooks::run(
 					'ParserGetVariableValueSwitch',
-					[ &$parser, &$this->mVarCache, &$index, &$ret, &$frame ]
+					[ $this, &$this->mVarCache, &$index, &$ret, &$frame ]
 				);
 
 				return $ret;
@@ -3373,10 +3354,7 @@ class Parser {
 
 		list( $callback, $flags ) = $this->mFunctionHooks[$function];
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
-		$allArgs = [ &$parser ];
+		$allArgs = [ $this ];
 		if ( $flags & self::SFH_OBJECT_ARGS ) {
 			# Convert arguments to PPNodes and collect for appending to $allArgs
 			$funcArgs = [];
@@ -3870,9 +3848,7 @@ class Parser {
 			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
 				list( $callback, ) = $this->mFunctionTagHooks[$name];
 
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$parser = $this;
-				$output = call_user_func_array( $callback, [ &$parser, $frame, $content, $attributes ] );
+				$output = call_user_func_array( $callback, [ $this, $frame, $content, $attributes ] );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
 					htmlspecialchars( $name ) . '</span>';
@@ -4967,9 +4943,7 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'BeforeParserrenderImageGallery', [ &$parser, &$ig ] );
+		Hooks::run( 'BeforeParserrenderImageGallery', [ $this, &$ig ] );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {

@@ -179,9 +179,7 @@ class ApiPageSet extends ApiBase {
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$apiModule = $this;
-				Hooks::run( 'APIQueryGeneratorAfterExecute', [ &$generator, &$apiModule ] );
+				Hooks::run( 'APIQueryGeneratorAfterExecute', [ &$generator, $this ] );
 			} else {
 				// Prevent warnings from being reported on these parameters
 				$main = $this->getMain();

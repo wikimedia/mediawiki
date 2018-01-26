@@ -51,10 +51,8 @@ class OldChangesList extends ChangesList {
 
 		$attribs = $this->getDataAttributes( $rc );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$list = $this;
 		if ( !Hooks::run( 'OldChangesListRecentChangesLine',
-			[ &$list, &$html, $rc, &$classes, &$attribs ] )
+			[ $this, &$html, $rc, &$classes, &$attribs ] )
 		) {
 			return false;
 		}

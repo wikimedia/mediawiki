@@ -263,9 +263,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Register extension modules
 		$this->register( $config->get( 'ResourceModules' ) );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rl = $this;
-		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
+		Hooks::run( 'ResourceLoaderRegisterModules', [ $this ] );
 
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$this->registerTestModules();
@@ -414,9 +412,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$testModules = [];
 		$testModules['qunit'] = [];
 		// Get other test suites (e.g. from extensions)
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rl = $this;
-		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, &$rl ] );
+		Hooks::run( 'ResourceLoaderTestModules', [ &$testModules, $this ] );
 
 		// Add the testrunner (which configures QUnit) to the dependencies.
 		// Since it must be ready before any of the test suites are executed.

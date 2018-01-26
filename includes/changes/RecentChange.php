@@ -385,9 +385,7 @@ class RecentChange {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rc = $this;
-		Hooks::run( 'RecentChange_save', [ &$rc ] );
+		Hooks::run( 'RecentChange_save', [ $this ] );
 
 		if ( count( $this->tags ) ) {
 			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],

@@ -2161,9 +2161,7 @@ abstract class ApiBase extends ContextSource {
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetDescription', [ &$apiModule, &$desc ] );
+		Hooks::run( 'APIGetDescription', [ $this, &$desc ] );
 		$desc = self::escapeWikiText( $desc );
 		if ( is_array( $desc ) ) {
 			$desc = implode( "\n", $desc );
@@ -2230,9 +2228,7 @@ abstract class ApiBase extends ContextSource {
 			] + ( isset( $params['token'] ) ? $params['token'] : [] );
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetAllowedParams', [ &$apiModule, &$params, $flags ] );
+		Hooks::run( 'APIGetAllowedParams', [ $this, &$params, $flags ] );
 
 		return $params;
 	}
@@ -2251,9 +2247,7 @@ abstract class ApiBase extends ContextSource {
 
 		$desc = $this->getParamDescription();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetParamDescription', [ &$apiModule, &$desc ] );
+		Hooks::run( 'APIGetParamDescription', [ $this, &$desc ] );
 
 		if ( !$desc ) {
 			$desc = [];

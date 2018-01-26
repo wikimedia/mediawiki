@@ -271,9 +271,7 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$writer = $this;
-		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text ] );
+		Hooks::run( 'XmlDumpWriterWriteRevision', [ $this, &$out, $row, $text ] );
 
 		$out .= "    </revision>\n";
 

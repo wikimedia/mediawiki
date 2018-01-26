@@ -365,11 +365,8 @@ class WikiPage implements Page, IDBAccessObject {
 	protected function pageData( $dbr, $conditions, $options = [] ) {
 		$pageQuery = self::getQueryInfo();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
 		Hooks::run( 'ArticlePageDataBefore', [
-			&$wikiPage, &$pageQuery['fields'], &$pageQuery['tables'], &$pageQuery['joins']
+			$this, &$pageQuery['fields'], &$pageQuery['tables'], &$pageQuery['joins']
 		] );
 
 		$row = $dbr->selectRow(
@@ -381,7 +378,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$pageQuery['joins']
 		);
 
-		Hooks::run( 'ArticlePageDataAfter', [ &$wikiPage, &$row ] );
+		Hooks::run( 'ArticlePageDataAfter', [ $this, &$row ] );
 
 		return $row;
 	}
@@ -1162,10 +1159,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *  controlled how much purging was done.
 	 */
 	public function doPurge() {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
-		if ( !Hooks::run( 'ArticlePurge', [ &$wikiPage ] ) ) {
+		if ( !Hooks::run( 'ArticlePurge', [ $this ] ) ) {
 			return false;
 		}
 
@@ -1604,12 +1598,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$user = $user ?: $wgUser;
 		$flags = $this->checkFlags( $flags );
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
 		// Trigger pre-save hook (using provided edit summary)
 		$hookStatus = Status::newGood( [] );
-		$hook_args = [ &$wikiPage, &$user, &$content, &$summary,
+		$hook_args = [ $this, &$user, &$content, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
 		if ( !Hooks::run( 'PageContentSave', $hook_args ) ) {
@@ -1839,10 +1830,8 @@ class WikiPage implements Page, IDBAccessObject {
 							'oldrevision' => $meta['oldRevision']
 						]
 					);
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$wikiPage = $this;
 					// Trigger post-save hook
-					$params = [ &$wikiPage, &$user, $content, $summary, $flags & EDIT_MINOR,
+					$params = [ $this, &$user, $content, $summary, $flags & EDIT_MINOR,
 						null, null, &$flags, $revision, &$status, $meta['baseRevId'],
 						$meta['undidRevId'] ];
 					Hooks::run( 'PageContentSaveComplete', $params );
@@ -1961,10 +1950,8 @@ class WikiPage implements Page, IDBAccessObject {
 				) {
 					// Update links, etc.
 					$this->doEditUpdates( $revision, $user, [ 'created' => true ] );
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$wikiPage = $this;
 					// Trigger post-create hook
-					$params = [ &$wikiPage, &$user, $content, $summary,
+					$params = [ $this, &$user, $content, $summary,
 								$flags & EDIT_MINOR, null, null, &$flags, $revision ];
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
@@ -2246,12 +2233,9 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
+		Hooks::run( 'ArticleEditUpdates', [ $this, &$editInfo, $options['changed'] ] );
 
-		Hooks::run( 'ArticleEditUpdates', [ &$wikiPage, &$editInfo, $options['changed'] ] );
-
-		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ] ) ) {
+		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ $this ] ) ) {
 			// Flush old entries from the `recentchanges` table
 			if ( mt_rand( 0, 9 ) == 0 ) {
 				JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
@@ -2295,12 +2279,9 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( !$recipient ) {
 				wfDebug( __METHOD__ . ": invalid username\n" );
 			} else {
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$wikiPage = $this;
-
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
-				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
+				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ $this, $recipient ] ) ) {
 					if ( User::isIP( $shortTitle ) ) {
 						// An anonymous user
 						$recipient->setNewtalk( true, $revision );
@@ -2426,10 +2407,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$nullRevision = null;
 
 		if ( $id ) { // Protection of existing page
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$wikiPage = $this;
-
-			if ( !Hooks::run( 'ArticleProtect', [ &$wikiPage, &$user, $limit, $reason ] ) ) {
+			if ( !Hooks::run( 'ArticleProtect', [ $this, &$user, $limit, $reason ] ) ) {
 				return Status::newGood();
 			}
 
@@ -2515,12 +2493,9 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__
 			);
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$wikiPage = $this;
-
 			Hooks::run( 'NewRevisionFromEditComplete',
 				[ $this, $nullRevision, $latest, $user ] );
-			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
+			Hooks::run( 'ArticleProtectComplete', [ $this, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2801,12 +2776,9 @@ class WikiPage implements Page, IDBAccessObject {
 			return $status;
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
 		$user = is_null( $user ) ? $wgUser : $user;
 		if ( !Hooks::run( 'ArticleDelete',
-			[ &$wikiPage, &$user, &$reason, &$error, &$status, $suppress ]
+			[ $this, &$user, &$reason, &$error, &$status, $suppress ]
 		) ) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status

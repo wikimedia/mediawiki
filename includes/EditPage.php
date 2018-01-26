@@ -2675,9 +2675,7 @@ class EditPage {
 
 		$out = $this->context->getOutput();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPage::showEditForm:initial', [ &$editPage, &$out ] );
+		Hooks::run( 'EditPage::showEditForm:initial', [ $this, &$out ] );
 
 		$this->setHeaders();
 
@@ -2759,9 +2757,7 @@ class EditPage {
 			. Xml::closeElement( 'div' )
 		);
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPage::showEditForm:fields', [ &$editPage, &$out ] );
+		Hooks::run( 'EditPage::showEditForm:fields', [ $this, &$out ] );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
@@ -3701,9 +3697,7 @@ class EditPage {
 	 */
 	protected function showConflict() {
 		$out = $this->context->getOutput();
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$out ] ) ) {
+		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ $this, &$out ] ) ) {
 			$this->incrementConflictStats();
 
 			$this->getEditConflictHelper()->showEditFormTextAfterFooters();
@@ -4212,8 +4206,7 @@ class EditPage {
 			];
 		}
 
-		$editPage = $this;
-		Hooks::run( 'EditPageGetCheckboxesDefinition', [ $editPage, &$checkboxes ] );
+		Hooks::run( 'EditPageGetCheckboxesDefinition', [ $this, &$checkboxes ] );
 
 		return $checkboxes;
 	}
@@ -4266,9 +4259,7 @@ class EditPage {
 			$checkboxes[ $legacyName ] = $checkboxHtml;
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$editPage, &$checkboxes, &$tabindex ], '1.29' );
+		Hooks::run( 'EditPageBeforeEditChecks', [ $this, &$checkboxes, &$tabindex ], '1.29' );
 		return $checkboxes;
 	}
 
@@ -4346,9 +4337,7 @@ class EditPage {
 		foreach ( $checkboxes as $name => $oouiLayout ) {
 			$legacyCheckboxes[$name] = (string)$oouiLayout;
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$ep = $this;
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$ep, &$legacyCheckboxes, &$tabindex ], '1.29' );
+		Hooks::run( 'EditPageBeforeEditChecks', [ $this, &$legacyCheckboxes, &$tabindex ], '1.29' );
 		// Copy back any additional old-style checkboxes into the new-style structure
 		foreach ( $legacyCheckboxes as $name => $html ) {
 			if ( $html && !isset( $checkboxes[$name] ) ) {
@@ -4447,9 +4436,7 @@ class EditPage {
 			'accessKey' => Linker::accesskey( 'diff' ),
 		] );
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageBeforeEditButtons', [ &$editPage, &$buttons, &$tabindex ] );
+		Hooks::run( 'EditPageBeforeEditButtons', [ $this, &$buttons, &$tabindex ] );
 
 		return $buttons;
 	}
@@ -4464,9 +4451,7 @@ class EditPage {
 
 		$res = $this->context->msg( 'nosuchsectiontext', $this->section )->parseAsBlock();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageNoSuchSection', [ &$editPage, &$res ] );
+		Hooks::run( 'EditPageNoSuchSection', [ $this, &$res ] );
 		$out->addHTML( $res );
 
 		$out->returnToMain( false, $this->mTitle );

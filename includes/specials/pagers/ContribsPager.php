@@ -270,9 +270,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$this->tagFilter
 		);
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$pager = $this;
-		Hooks::run( 'ContribsPager::getQueryInfo', [ &$pager, &$queryInfo ] );
+		Hooks::run( 'ContribsPager::getQueryInfo', [ $this, &$queryInfo ] );
 
 		return $queryInfo;
 	}

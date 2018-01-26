@@ -85,9 +85,7 @@ class WantedPagesPage extends WantedQueryPage {
 			]
 		];
 		// Replacement for the WantedPages::getSQL hook
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$wantedPages = $this;
-		Hooks::run( 'WantedPages::getQueryInfo', [ &$wantedPages, &$query ] );
+		Hooks::run( 'WantedPages::getQueryInfo', [ $this, &$query ] );
 
 		return $query;
 	}

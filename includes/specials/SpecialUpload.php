@@ -207,9 +207,7 @@ class SpecialUpload extends SpecialPage {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$upload = $this;
-			if ( !Hooks::run( 'UploadForm:initial', [ &$upload ] ) ) {
+			if ( !Hooks::run( 'UploadForm:initial', [ $this ] ) ) {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
 
 				return;
@@ -487,9 +485,7 @@ class SpecialUpload extends SpecialPage {
 
 			return;
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		if ( !Hooks::run( 'UploadForm:BeforeProcessing', [ &$upload ] ) ) {
+		if ( !Hooks::run( 'UploadForm:BeforeProcessing', [ $this ] ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
@@ -575,9 +571,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$upload = $this;
-		Hooks::run( 'SpecialUploadComplete', [ &$upload ] );
+		Hooks::run( 'SpecialUploadComplete', [ $this ] );
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 

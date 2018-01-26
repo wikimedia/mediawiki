@@ -153,9 +153,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdateConstructed', [ &$linksUpdate ] );
+		Hooks::run( 'LinksUpdateConstructed', [ $this ] );
 	}
 
 	/**
@@ -170,9 +168,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$scopedLock = self::acquirePageLock( $this->getDB(), $this->mId );
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdate', [ &$linksUpdate ] );
+		Hooks::run( 'LinksUpdate', [ $this ] );
 		$this->doIncrementalUpdate();
 
 		// Commit and release the lock (if set)
@@ -180,9 +176,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 		// Run post-commit hooks without DBO_TRX
 		$this->getDB()->onTransactionIdle(
 			function () {
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$linksUpdate = $this;
-				Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate, $this->ticket ] );
+				Hooks::run( 'LinksUpdateComplete', [ $this, $this->ticket ] );
 			},
 			__METHOD__
 		);

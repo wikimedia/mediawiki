@@ -876,9 +876,7 @@ abstract class UploadBase {
 					User::IGNORE_USER_RIGHTS
 				);
 			}
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$uploadBase = $this;
-			Hooks::run( 'UploadComplete', [ &$uploadBase ] );
+			Hooks::run( 'UploadComplete', [ $this ] );
 
 			$this->postProcessUpload();
 		}

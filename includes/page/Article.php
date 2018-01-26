@@ -377,12 +377,9 @@ class Article implements Page {
 		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$articlePage = $this;
-
 		Hooks::run(
 			'ArticleAfterFetchContentObject',
-			[ &$articlePage, &$this->mContentObject ]
+			[ $this, &$this->mContentObject ]
 		);
 
 		return $this->mContentObject;
@@ -521,9 +518,7 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$articlePage = $this;
-					Hooks::run( 'ArticleViewHeader', [ &$articlePage, &$outputDone, &$useParserCache ] );
+					Hooks::run( 'ArticleViewHeader', [ $this, &$outputDone, &$useParserCache ] );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -871,12 +866,9 @@ class Article implements Page {
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
 		if ( isset( $this->mRedirectedFrom ) ) {
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$articlePage = $this;
-
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( Hooks::run( 'ArticleViewRedirect', [ &$articlePage ] ) ) {
+			if ( Hooks::run( 'ArticleViewRedirect', [ $this ] ) ) {
 				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
@@ -1310,10 +1302,7 @@ class Article implements Page {
 	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$articlePage = $this;
-
-		if ( !Hooks::run( 'DisplayOldSubtitle', [ &$articlePage, &$oldid ] ) ) {
+		if ( !Hooks::run( 'DisplayOldSubtitle', [ $this, &$oldid ] ) ) {
 			return;
 		}
 
@@ -1932,9 +1921,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$articlePage = $this;
-				$cacheable = Hooks::run( 'IsFileCacheable', [ &$articlePage ] );
+				$cacheable = Hooks::run( 'IsFileCacheable', [ $this ] );
 			}
 		}
 

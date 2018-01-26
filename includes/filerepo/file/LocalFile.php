@@ -1161,9 +1161,7 @@ class LocalFile extends File {
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		$opts['USE INDEX'] = [ 'oldimage' => 'oi_name_timestamp' ];
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$localFile = $this;
-		Hooks::run( 'LocalFile::getHistory', [ &$localFile, &$tables, &$fields,
+		Hooks::run( 'LocalFile::getHistory', [ $this, &$tables, &$fields,
 			&$conds, &$opts, &$join_conds ] );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );

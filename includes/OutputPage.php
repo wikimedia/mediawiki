@@ -1302,12 +1302,10 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
 		# Add the remaining categories to the skin
 		if ( Hooks::run(
 			'OutputPageMakeCategoryLinks',
-			[ &$outputPage, $categories, &$this->mCategoryLinks ] )
+			[ $this, $categories, &$this->mCategoryLinks ] )
 		) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			foreach ( $categories as $category => $type ) {
@@ -1851,10 +1849,8 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
 		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
-		Hooks::runWithoutAbort( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
+		Hooks::runWithoutAbort( 'OutputPageParserOutput', [ $this, $parserOutput ] );
 
 		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
 		// so that extensions may modify ParserOutput to toggle TOC.
@@ -1892,9 +1888,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputText( $parserOutput, $poOptions = [] ) {
 		$text = $parserOutput->getText( $poOptions );
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
-		Hooks::runWithoutAbort( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
+		Hooks::runWithoutAbort( 'OutputPageBeforeHTML', [ $this, &$text ] );
 		$this->addHTML( $text );
 	}
 
@@ -2445,11 +2439,9 @@ class OutputPage extends ContextSource {
 
 			MWDebug::addModules( $this );
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$outputPage = $this;
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			Hooks::runWithoutAbort( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
+			Hooks::runWithoutAbort( 'BeforePageDisplay', [ $this, &$sk ] );
 
 			try {
 				$sk->outputPage();

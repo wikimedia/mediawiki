@@ -784,11 +784,8 @@ class DifferenceEngine extends ContextSource {
 
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$diffEngine = $this;
-
 		// Save to cache for 7 days
-		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
+		if ( !Hooks::run( 'AbortDiffCache', [ $this ] ) ) {
 			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache.miss' );
