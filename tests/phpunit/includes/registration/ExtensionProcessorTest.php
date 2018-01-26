@@ -332,7 +332,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	public function testExtractCredits() {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, self::$default, 1 );
-		$this->setExpectedException( 'Exception' );
+		$this->setExpectedException( Exception::class );
 		$processor->extractInfo( $this->dir, self::$default, 1 );
 	}
 

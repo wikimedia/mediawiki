@@ -37,8 +37,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 	protected $mPreprocessors;
 
 	protected static $classNames = [
-		'Preprocessor_DOM',
-		'Preprocessor_Hash'
+		Preprocessor_DOM::class,
+		Preprocessor_Hash::class
 	];
 
 	protected function setUp() {

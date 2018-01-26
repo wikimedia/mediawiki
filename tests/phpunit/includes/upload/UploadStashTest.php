@@ -105,7 +105,7 @@ class UploadStashTest extends MediaWikiTestCase {
 			$stash->stashFile( $this->tmpFile );
 			$this->fail( 'Expected UploadStashFileException not thrown' );
 		} catch ( UploadStashFileException $e ) {
-			$this->assertInstanceOf( 'ILocalizedException', $e );
+			$this->assertInstanceOf( ILocalizedException::class, $e );
 		} catch ( Exception $e ) {
 			$this->fail( 'Unexpected exception class ' . get_class( $e ) );
 		}

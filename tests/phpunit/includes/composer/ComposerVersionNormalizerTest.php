@@ -17,7 +17,7 @@ class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 	public function testGivenNonString_normalizeThrowsInvalidArgumentException( $nonString ) {
 		$normalizer = new ComposerVersionNormalizer();
 
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		$normalizer->normalizeSuffix( $nonString );
 	}
 

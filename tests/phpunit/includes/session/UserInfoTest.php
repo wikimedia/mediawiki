@@ -41,7 +41,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo->getId() );
 		$this->assertSame( $user->getName(), $userinfo->getName() );
 		$this->assertSame( $user->getToken( true ), $userinfo->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo->getUser() );
 		$userinfo2 = $userinfo->verified();
 		$this->assertNotSame( $userinfo2, $userinfo );
 		$this->assertSame( "<-:{$user->getId()}:{$user->getName()}>", (string)$userinfo );
@@ -51,7 +51,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo2->getId() );
 		$this->assertSame( $user->getName(), $userinfo2->getName() );
 		$this->assertSame( $user->getToken( true ), $userinfo2->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo2->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo2->getUser() );
 		$this->assertSame( $userinfo2, $userinfo2->verified() );
 		$this->assertSame( "<+:{$user->getId()}:{$user->getName()}>", (string)$userinfo2 );
 
@@ -76,7 +76,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo->getId() );
 		$this->assertSame( $user->getName(), $userinfo->getName() );
 		$this->assertSame( $user->getToken( true ), $userinfo->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo->getUser() );
 		$userinfo2 = $userinfo->verified();
 		$this->assertNotSame( $userinfo2, $userinfo );
 		$this->assertSame( "<-:{$user->getId()}:{$user->getName()}>", (string)$userinfo );
@@ -86,7 +86,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo2->getId() );
 		$this->assertSame( $user->getName(), $userinfo2->getName() );
 		$this->assertSame( $user->getToken( true ), $userinfo2->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo2->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo2->getUser() );
 		$this->assertSame( $userinfo2, $userinfo2->verified() );
 		$this->assertSame( "<+:{$user->getId()}:{$user->getName()}>", (string)$userinfo2 );
 
@@ -103,7 +103,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo->getId() );
 		$this->assertSame( $user->getName(), $userinfo->getName() );
 		$this->assertSame( '', $userinfo->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo->getUser() );
 		$userinfo2 = $userinfo->verified();
 		$this->assertNotSame( $userinfo2, $userinfo );
 		$this->assertSame( "<-:{$user->getId()}:{$user->getName()}>", (string)$userinfo );
@@ -113,7 +113,7 @@ class UserInfoTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $userinfo2->getId() );
 		$this->assertSame( $user->getName(), $userinfo2->getName() );
 		$this->assertSame( '', $userinfo2->getToken() );
-		$this->assertInstanceOf( 'User', $userinfo2->getUser() );
+		$this->assertInstanceOf( User::class, $userinfo2->getUser() );
 		$this->assertSame( $userinfo2, $userinfo2->verified() );
 		$this->assertSame( "<+:{$user->getId()}:{$user->getName()}>", (string)$userinfo2 );
 

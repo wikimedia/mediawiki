@@ -7,7 +7,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	 */
 	public function testNewInstance() {
 		$config = GlobalVarConfig::newInstance();
-		$this->assertInstanceOf( 'GlobalVarConfig', $config );
+		$this->assertInstanceOf( GlobalVarConfig::class, $config );
 		$this->maybeStashGlobal( 'wgBaz' );
 		$GLOBALS['wgBaz'] = 'somevalue';
 		// Check prefix is set to 'wg'
@@ -24,7 +24,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 		$this->maybeStashGlobal( $var );
 		$GLOBALS[$var] = $rand;
 		$config = new GlobalVarConfig( $prefix );
-		$this->assertInstanceOf( 'GlobalVarConfig', $config );
+		$this->assertInstanceOf( GlobalVarConfig::class, $config );
 		$this->assertEquals( $rand, $config->get( 'GlobalVarConfigTest' ) );
 	}
 
@@ -83,7 +83,7 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 	public function testGet( $name, $prefix, $expected ) {
 		$config = new GlobalVarConfig( $prefix );
 		if ( $expected === false ) {
-			$this->setExpectedException( 'ConfigException', 'GlobalVarConfig::get: undefined option:' );
+			$this->setExpectedException( ConfigException::class, 'GlobalVarConfig::get: undefined option:' );
 		}
 		$this->assertEquals( $config->get( $name ), $expected );
 	}

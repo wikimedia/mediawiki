@@ -9,7 +9,7 @@ class Pbkdf2PasswordFallbackTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [
 			'pbkdf2' => [
-				'class' => 'Pbkdf2Password',
+				'class' => Pbkdf2Password::class,
 				'algo' => 'sha256',
 				'cost' => '10000',
 				'length' => '128',

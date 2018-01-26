@@ -36,7 +36,7 @@ class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
 		);
 
 		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( 'JavaScriptContentHandler', get_class( $page->getContentHandler() ) );
+		$this->assertEquals( JavaScriptContentHandler::class, get_class( $page->getContentHandler() ) );
 	}
 
 }

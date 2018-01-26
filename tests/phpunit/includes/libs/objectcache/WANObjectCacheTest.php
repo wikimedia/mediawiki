@@ -621,7 +621,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( count( $ids ), $calls, "Values cached" );
 
 		// Mock the BagOStuff to assure only one getMulti() call given process caching
-		$localBag = $this->getMockBuilder( 'HashBagOStuff' )
+		$localBag = $this->getMockBuilder( HashBagOStuff::class )
 			->setMethods( [ 'getMulti' ] )->getMock();
 		$localBag->expects( $this->exactly( 1 ) )->method( 'getMulti' )->willReturn( [
 			WANObjectCache::VALUE_KEY_PREFIX . 'k1' => 'val-id1',
@@ -1474,7 +1474,7 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testMcRouterSupport() {
-		$localBag = $this->getMockBuilder( 'EmptyBagOStuff' )
+		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
 			->setMethods( [ 'set', 'delete' ] )->getMock();
 		$localBag->expects( $this->never() )->method( 'set' );
 		$localBag->expects( $this->never() )->method( 'delete' );

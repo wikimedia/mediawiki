@@ -339,7 +339,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::getDataForSearchIndex
 	 */
 	public function testDataIndexFieldsFile() {
-		$mockEngine = $this->createMock( 'SearchEngine' );
+		$mockEngine = $this->createMock( SearchEngine::class );
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
 		$page = new WikiPage( $title );
 

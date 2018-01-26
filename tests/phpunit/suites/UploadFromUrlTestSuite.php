@@ -30,7 +30,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = [
-			'class' => 'LocalRepo',
+			'class' => LocalRepo::class,
 			'name' => 'local',
 			'url' => 'http://example.com/images',
 			'hashLevels' => 2,

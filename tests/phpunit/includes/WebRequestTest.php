@@ -126,7 +126,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	protected function mockWebRequest( $data = [] ) {
 		// Cannot use PHPUnit getMockBuilder() as it does not support
 		// overriding protected properties afterwards
-		$reflection = new ReflectionClass( 'WebRequest' );
+		$reflection = new ReflectionClass( WebRequest::class );
 		$req = $reflection->newInstanceWithoutConstructor();
 
 		$prop = $reflection->getProperty( 'data' );
