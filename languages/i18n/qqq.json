@@ -4620,6 +4620,8 @@
 	"restrictionsfield-badip": "An error message shown when one entered an invalid IP address or range in a restrictions field (such as Special:BotPassword). $1 is the IP address.",
 	"restrictionsfield-label": "Field label shown for restriction fields (e.g. on Special:BotPassword).",
 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
+	"edit-error-short": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-long}}\n{{Identical|Error}}",
+	"edit-error-long": "Error message. Parameters:\n* $1 - the error details\nSee also:\n* {{msg-mw|edit-error-short}}\n{{Identical|Error}}",
 	"revid": "Used to format a revision ID number in text. Parameters:\n* $1 - Revision ID number.\n{{Identical|Revision}}",
 	"pageid": "Used to format a page ID number in text. Parameters:\n* $1 - Page ID number.",
 	"rawhtml-notallowed": "Error message given when $wgRawHtml = true; is set and a user uses an &lt;html&gt; tag in a system message or somewhere other than a normal page.",
