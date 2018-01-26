@@ -63,6 +63,8 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/** @var string|null */
 	private $serverVersion = null;
+	/** @var bool|null */
+	private $insertSelectIsSafe = null;
 
 	/**
 	 * Additional $params include:
@@ -75,6 +77,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       ID of this server's master will be used. Set the "conds" field to
 	 *       override the query conditions, e.g. ['shard' => 's1'].
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
+	 *   - insertSelectIsSafe : force that native INSERT SELECT is or is not safe [default: null]
 	 *   - sslKeyPath : path to key file [default: null]
 	 *   - sslCertPath : path to certificate file [default: null]
 	 *   - sslCAFile: path to a single certificate authority PEM file [default: null]
@@ -98,6 +101,8 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		$this->sqlMode = isset( $params['sqlMode'] ) ? $params['sqlMode'] : '';
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
+		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
+			? (bool)$params['insertSelectIsSafe'] : null;
 
 		parent::__construct( $params );
 	}
@@ -499,6 +504,56 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		return $this->nativeReplace( $table, $rows, $fname );
+	}
+
+	protected function nativeInsertSelect(
+		$destTable, $srcTable, $varMap, $conds,
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	) {
+		if ( $this->insertSelectIsSafe === null ) {
+			// In MySQL, an INSERT SELECT is only replication safe with row-based
+			// replication or if innodb_autoinc_lock_mode is 0. When those
+			// conditions aren't met, use non-native mode.
+			// While we could try to determine if the insert is safe anyway by
+			// checking if the target table has an auto-increment column that
+			// isn't set in $varMap, that seems unlikely to be worth the extra
+			// complexity.
+			$row = $this->selectRow(
+				false,
+				[
+					'innodb_autoinc_lock_mode' => '@@innodb_autoinc_lock_mode',
+					'binlog_format' => '@@binlog_format',
+				],
+				[],
+				__METHOD__
+			);
+			$this->insertSelectIsSafe = $row->binlog_format === 'ROW' ||
+				(int)$row->innodb_autoinc_lock_mode === 0;
+		}
+
+		if ( !$this->insertSelectIsSafe ) {
+			return $this->nonNativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions,
+				$selectJoinConds
+			);
+		} else {
+			return parent::nativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions,
+				$selectJoinConds
+			);
+		}
 	}
 
 	/**

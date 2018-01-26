@@ -1255,6 +1255,11 @@ interface IDatabase {
 	 * INSERT SELECT wrapper. Takes data from a SELECT query and inserts it
 	 * into another table.
 	 *
+	 * @warning If the insert will use an auto-increment or sequence to
+	 *  determine the value of a column, this may break replication on
+	 *  databases using statement-based replication if the SELECT is not
+	 *  deterministically ordered.
+	 *
 	 * @param string $destTable The table name to insert into
 	 * @param string|array $srcTable May be either a table name, or an array of table names
 	 *    to include in a join.
