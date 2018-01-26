@@ -4425,6 +4425,8 @@
 	"restrictionsfield-badip": "Invalid IP address or range: $1",
 	"restrictionsfield-label": "Allowed IP ranges:",
 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errors:\n\n$1",
 	"revid": "revision $1",
 	"pageid": "page ID $1",
 	"rawhtml-notallowed": "&lt;html&gt; tags cannot be used outside of normal pages.",
