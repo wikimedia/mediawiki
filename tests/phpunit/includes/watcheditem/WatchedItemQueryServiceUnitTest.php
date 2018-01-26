@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -9,7 +10,10 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
-	private function overrideCommentStore() {
+	/**
+	 * @return PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 */
+	private function getMockCommentStore() {
 		$mockStore = $this->getMockBuilder( CommentStore::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -23,8 +27,18 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				'fields' => [ 'commentstore' => 'field' ],
 				'joins' => [ 'commentstore' => 'join' ],
 			] );
+		return $mockStore;
+	}
 
-		$this->setService( 'CommentStore', $mockStore );
+	/**
+	 * @param PHPUnit_Framework_MockObject_MockObject|Database $mockDb
+	 * @return WatchedItemQueryService
+	 */
+	private function newService( $mockDb ) {
+		return new WatchedItemQueryService(
+			$this->getMockLoadBalancer( $mockDb ),
+			$this->getMockCommentStore()
+		);
 	}
 
 	/**
@@ -249,7 +263,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				] ),
 			] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$startFrom = null;
@@ -409,7 +423,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				$startFrom = [ '20160203123456', 42 ];
 			} ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		TestingAccessWrapper::newFromObject( $queryService )->extensions = [ $mockExtension ];
 
 		$startFrom = null;
@@ -808,8 +822,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		array $expectedDbOptions,
 		array $expectedExtraJoinConds
 	) {
-		$this->overrideCommentStore();
-
 		$expectedTables = array_merge( [ 'recentchanges', 'watchlist', 'page' ], $expectedExtraTables );
 		$expectedFields = array_merge(
 			[
@@ -861,7 +873,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
@@ -898,7 +910,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$user = $this->getMockNonAnonUserWithIdAndNoPatrolRights( 1 );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
 			$user,
 			[ 'filters' => [ $filtersOption ] ]
@@ -959,7 +971,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			->method( 'getType' )
 			->will( $this->returnValue( $dbType ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
@@ -1058,7 +1070,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$user = $this->getMockNonAnonUserWithIdAndRestrictedPermissions( 1, $notAllowedAction );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
 
 		$this->assertEmpty( $items );
@@ -1098,7 +1110,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, [ 'allRevisions' => true ] );
@@ -1183,7 +1195,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( $this->anything() );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
@@ -1225,7 +1237,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
@@ -1267,7 +1279,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
@@ -1295,7 +1307,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 		$otherUser = $this->getMockUnrestrictedNonAnonUserWithId( 2 );
 		$otherUser->expects( $this->once() )
@@ -1326,7 +1338,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( $this->anything() );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 		$otherUser = $this->getMockUnrestrictedNonAnonUserWithId( 2 );
 		$otherUser->expects( $this->once() )
@@ -1363,7 +1375,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				] ),
 			] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockNonAnonUserWithId( 1 );
 
 		$items = $queryService->getWatchedItemsForUser( $user );
@@ -1463,7 +1475,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser( $user, $options );
 		$this->assertEmpty( $items );
@@ -1576,7 +1588,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnValue( [] ) );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser( $user, $options );
 		$this->assertEmpty( $items );
@@ -1614,7 +1626,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		array $options,
 		$expectedInExceptionMessage
 	) {
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $this->getMockDb() ) );
+		$queryService = $this->newService( $this->getMockDb() );
 
 		$this->setExpectedException( InvalidArgumentException::class, $expectedInExceptionMessage );
 		$queryService->getWatchedItemsForUser( $this->getMockNonAnonUserWithId( 1 ), $options );
@@ -1626,7 +1638,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->never() )
 			->method( $this->anything() );
 
-		$queryService = new WatchedItemQueryService( $this->getMockLoadBalancer( $mockDb ) );
+		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser( $this->getMockAnonUser() );
 		$this->assertEmpty( $items );

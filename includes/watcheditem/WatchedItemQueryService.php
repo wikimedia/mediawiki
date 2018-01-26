@@ -59,9 +59,12 @@ class WatchedItemQueryService {
 	/** @var CommentStore */
 	private $commentStore;
 
-	public function __construct( LoadBalancer $loadBalancer ) {
+	public function __construct(
+		LoadBalancer $loadBalancer,
+		CommentStore $commentStore
+	) {
 		$this->loadBalancer = $loadBalancer;
-		$this->commentStore = CommentStore::getStore();
+		$this->commentStore = $commentStore;
 	}
 
 	/**
