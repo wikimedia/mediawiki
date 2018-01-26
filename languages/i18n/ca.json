@@ -3927,6 +3927,8 @@
 	"userjsispublic": "Tingueu en compte que les subpàgines de JavaScript no haurien de contenir dades confidencials perquè poden ser visibles per altres usuaris.",
 	"restrictionsfield-badip": "Adreça o interval d'IP no vàlid: $1",
 	"restrictionsfield-label": "Intervals d'IP permesos:",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errors:\n\n$1",
 	"revid": "revisió $1",
 	"pageid": "ID de pàgina $1",
 	"gotointerwiki": "A punt d’abandonar {{SITENAME}}",

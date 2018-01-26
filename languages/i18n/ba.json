@@ -3779,5 +3779,6 @@
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"credentialsform-account": "Иҫәп яҙмаһы исеме:"
+	"credentialsform-account": "Иҫәп яҙмаһы исеме:",
+	"edit-error-short": "Хата: $1"
 }

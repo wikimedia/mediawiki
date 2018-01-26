@@ -4128,6 +4128,8 @@
 	"restrictionsfield-badip": "عنوان أيبي أو نطاق غير صحيح: $1",
 	"restrictionsfield-label": "نطاقات الأيبي المسموح بها:",
 	"restrictionsfield-help": "عنوان أيبي أو نطاق CIDR واحد لكل سطر. لتفعيل كل شيء، استخدم:\n<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "خطأ: $1",
+	"edit-error-long": "الأخطاء:\n\n$1",
 	"revid": "المراجعة $1",
 	"pageid": "معرف الصفحة $1",
 	"rawhtml-notallowed": "لا يمكن استخدام وسوم &lt;html&gt; خارج الصفحات العادية.",

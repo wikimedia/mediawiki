@@ -3219,5 +3219,7 @@
 	"specialpage-securitylevel-not-allowed-title": "Nie toegestaan",
 	"cannotauth-not-allowed-title": "Geen toegang",
 	"cannotauth-not-allowed": "U word nie toegelaat om die bladsy te gebruik nie",
-	"credentialsform-account": "Gebruikersnaam:"
+	"credentialsform-account": "Gebruikersnaam:",
+	"edit-error-short": "Fout: $1",
+	"edit-error-long": "Foute:\n\n$1"
 }
