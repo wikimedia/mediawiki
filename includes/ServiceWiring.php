@@ -175,7 +175,10 @@ return [
 	},
 
 	'WatchedItemQueryService' => function ( MediaWikiServices $services ) {
-		return new WatchedItemQueryService( $services->getDBLoadBalancer() );
+		return new WatchedItemQueryService(
+			$services->getDBLoadBalancer(),
+			$services->getCommentStore()
+		);
 	},
 
 	'CryptRand' => function ( MediaWikiServices $services ) {
