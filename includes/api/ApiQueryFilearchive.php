@@ -2,8 +2,6 @@
 /**
  * API for MediaWiki 1.12+
  *
- * Created on May 10, 2010
- *
  * Copyright © 2010 Sam Reed
  * Copyright © 2008 Vasiliev Victor vasilvv@gmail.com,
  * based on ApiQueryAllPages.php

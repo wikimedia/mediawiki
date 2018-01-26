@@ -3,8 +3,6 @@
 /**
  * API for MediaWiki 1.14+
  *
- * Created on Jun 18, 2012
- *
  * Copyright © 2012 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
