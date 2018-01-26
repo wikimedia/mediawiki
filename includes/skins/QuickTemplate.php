@@ -91,10 +91,14 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * @deprecated since 1.31 This function is a now-redundant optimisation intended
+	 *  for very old versions of PHP. The use of references here makes the code
+	 *  more fragile and is incompatible with plans like T140664. Use set() instead.
 	 * @param string $name
 	 * @param mixed &$value
 	 */
 	public function setRef( $name, &$value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->data[$name] =& $value;
 	}
 
