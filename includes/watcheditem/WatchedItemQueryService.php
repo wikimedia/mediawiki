@@ -53,11 +53,20 @@ class WatchedItemQueryService {
 	 */
 	private $loadBalancer;
 
+	/**
+	 * @var CommentStore
+	 */
+	private $commentStore;
+
 	/** @var WatchedItemQueryServiceExtension[]|null */
 	private $extensions = null;
 
-	public function __construct( LoadBalancer $loadBalancer ) {
+	public function __construct(
+		LoadBalancer $loadBalancer,
+		CommentStore $commentStore
+	) {
 		$this->loadBalancer = $loadBalancer;
+		$this->commentStore = $commentStore;
 	}
 
 	/**
@@ -323,7 +332,7 @@ class WatchedItemQueryService {
 			$tables[] = 'page';
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$tables += CommentStore::getStore()->getJoin( 'rc_comment' )['tables'];
+			$tables += $this->commentStore->getJoin( 'rc_comment' )['tables'];
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			$tables[] = 'tag_summary';
@@ -366,7 +375,7 @@ class WatchedItemQueryService {
 			$fields[] = 'rc_user';
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$fields += CommentStore::getStore()->getJoin( 'rc_comment' )['fields'];
+			$fields += $this->commentStore->getJoin( 'rc_comment' )['fields'];
 		}
 		if ( in_array( self::INCLUDE_PATROL_INFO, $options['includeFields'] ) ) {
 			$fields = array_merge( $fields, [ 'rc_patrolled', 'rc_log_type' ] );
@@ -673,7 +682,7 @@ class WatchedItemQueryService {
 			$joinConds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
-			$joinConds += CommentStore::getStore()->getJoin( 'rc_comment' )['joins'];
+			$joinConds += $this->commentStore->getJoin( 'rc_comment' )['joins'];
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			$joinConds['tag_summary'] = [ 'LEFT JOIN', [ 'rc_id=ts_rc_id' ] ];
