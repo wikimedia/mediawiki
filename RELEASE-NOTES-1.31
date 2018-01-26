@@ -190,6 +190,10 @@ changes to languages because of Phabricator reports.
   * PreparedEdit->newText
   * PreparedEdit->oldText
   * PreparedEdit->pst
+* QuickTemplate::setRef() was deprecated in favour of QuickTemplate::set().
+  Setting template variables by reference allowed violating the principle of data being
+  immutable once added to the skin template. In practice, this method was not being
+  used for that. Rather, setRef() existed as memory optimisation for PHP 4.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
