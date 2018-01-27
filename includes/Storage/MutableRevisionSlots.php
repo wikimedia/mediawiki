@@ -56,11 +56,12 @@ class MutableRevisionSlots extends RevisionSlots {
 		parent::__construct( $slots );
 	}
 
+	public static function newAsUpdate( $array ) {
+	}
+
 	/**
 	 * Sets the given slot.
 	 * If a slot with the same role is already present, it is replaced.
-	 *
-	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
 	 * @param SlotRecord $slot
 	 */
@@ -74,10 +75,18 @@ class MutableRevisionSlots extends RevisionSlots {
 	}
 
 	/**
-	 * Sets the content for the slot with the given role.
+	 * Sets the given slot to an inherited version of $parentSlot.
 	 * If a slot with the same role is already present, it is replaced.
 	 *
-	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 * @param SlotRecord $slot
+	 */
+	public function inheritSlot( SlotRecord $slot ) {
+		$this->setSlot( SlotRecord::newInherited( $slot ) );
+	}
+
+	/**
+	 * Sets the content for the slot with the given role.
+	 * If a slot with the same role is already present, it is replaced.
 	 *
 	 * @param string $role
 	 * @param Content $content
@@ -89,8 +98,6 @@ class MutableRevisionSlots extends RevisionSlots {
 
 	/**
 	 * Remove the slot for the given role, discontinue the corresponding stream.
-	 *
-	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
 	 * @param string $role
 	 */

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use Content;
+use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\RevisionAccessException;
@@ -41,8 +43,8 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 	 *
 	 * @param RevisionSlots $newSlots
 	 * @param RevisionSlots $parentSlots
-	 * @param $modified
-	 * @param $removed
+	 * @param string[] $modified
+	 * @param string[] $removed
 	 */
 	public function testNewFromRevisionSlots(
 		RevisionSlots $newSlots,
@@ -58,6 +60,44 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 		foreach ( $modified as $role ) {
 			$this->assertSame( $newSlots->getSlot( $role ), $update->getModifiedSlot( $role ) );
 		}
+	}
+
+	public function provideNewFromContent() {
+		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );
+		$slotB = SlotRecord::newUnsaved( 'B', new WikitextContent( 'B' ) );
+		$slotC = SlotRecord::newUnsaved( 'C', new WikitextContent( 'C' ) );
+
+		$parentSlots = new RevisionSlots( [
+			'A' => $slotA,
+			'B' => $slotB,
+			'C' => $slotC,
+		] );
+
+		$newContent = [
+			'A' => new WikitextContent( 'A' ),
+			'B' => new WikitextContent( 'B2' ),
+		];
+
+		yield [ $newContent, null, [ 'A', 'B' ] ];
+		yield [ $newContent, $parentSlots, [ 'B' ] ];
+	}
+
+	/**
+	 * @dataProvider provideNewFromContent
+	 *
+	 * @param Content[] $newContent
+	 * @param RevisionSlots $parentSlots
+	 * @param string[] $modified
+	 */
+	public function testNewFromContent(
+		array $newContent,
+		RevisionSlots $parentSlots = null,
+		array $modified = []
+	) {
+		$update = RevisionSlotsUpdate::newFromContent( $newContent, $parentSlots );
+
+		$this->assertEquals( $modified, $update->getModifiedRoles() );
+		$this->assertEmpty( $update->getRemovedRoles() );
 	}
 
 	public function testConstructor() {
@@ -195,6 +235,36 @@ class RevisionSlotsUpdateTest extends MediaWikiTestCase {
 	public function testHasSameUpdates( RevisionSlotsUpdate $a, RevisionSlotsUpdate $b, $same ) {
 		$this->assertSame( $same, $a->hasSameUpdates( $b ) );
 		$this->assertSame( $same, $b->hasSameUpdates( $a ) );
+	}
+
+	/**
+	 * @param string $role
+	 * @param Content $content
+	 * @return SlotRecord
+	 */
+	private function newSavedSlot( $role, Content $content ) {
+		return SlotRecord::newSaved( 7, 7, 'xyz', SlotRecord::newUnsaved( $role, $content ) );
+	}
+
+	public function testApplyUpdate() {
+		/** @var SlotRecord[] $parentSlots */
+		$parentSlots = [
+			'X' => $this->newSavedSlot( 'X', new WikitextContent( 'X' ) ),
+			'Y' => $this->newSavedSlot( 'Y', new WikitextContent( 'Y' ) ),
+			'Z' => $this->newSavedSlot( 'Z', new WikitextContent( 'Z' ) ),
+		];
+		$slots = MutableRevisionSlots::newFromParentRevisionSlots( $parentSlots );
+		$update = RevisionSlotsUpdate::newFromContent( [
+			'A' => new WikitextContent( 'A' ),
+			'Y' => new WikitextContent( 'yyy' ),
+		] );
+
+		$update->removeSlot( 'Z' );
+
+		$update->apply( $slots );
+		$this->assertSame( [ 'X', 'Y', 'A' ], $slots->getSlotRoles() );
+		$this->assertSame( $update->getModifiedSlot( 'A' ), $slots->getSlot( 'A' ) );
+		$this->assertSame( $update->getModifiedSlot( 'Y' ), $slots->getSlot( 'Y' ) );
 	}
 
 }
