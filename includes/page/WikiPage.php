@@ -2128,15 +2128,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$edit->newContent = $content;
 		$edit->oldContent = $this->getContent( Revision::RAW );
 
-		// NOTE: B/C for hooks! don't use these fields!
-		$edit->newText = $edit->newContent
-			? ContentHandler::getContentText( $edit->newContent )
-			: '';
-		$edit->oldText = $edit->oldContent
-			? ContentHandler::getContentText( $edit->oldContent )
-			: '';
-		$edit->pst = $edit->pstContent ? $edit->pstContent->serialize( $serialFormat ) : '';
-
 		if ( $edit->output ) {
 			$edit->output->setCacheTime( wfTimestampNow() );
 		}
