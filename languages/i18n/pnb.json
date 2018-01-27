@@ -15,7 +15,8 @@
 			"Saanvel",
 			"Satdeep gill",
 			"Abbas dhothar",
-			"Saraiki"
+			"Saraiki",
+			"BukhariSaeed"
 		]
 	},
 	"tog-underline": "جوڑ تھلے لین:",
@@ -576,7 +577,7 @@
 	"currentrev": "ہن آلی تبدیلی",
 	"currentrev-asof": "$1 ویلے دا صفحہ",
 	"revisionasof": "دی تبدیلیاں $1",
-	"revision-info": " $1 دی دہرائی  توں {{جنس:$6|$2}}$7",
+	"revision-info": "$1 دی دہرائی  توں {{GENDER:$6|$2}}$7",
 	"previousrevision": "← اوس توں پچھلا کم",
 	"nextrevision": "نویں تبدیلی →",
 	"currentrevisionlink": "موجودہ حالت",
@@ -2549,7 +2550,7 @@
 	"revdelete-uname-unhid": "ورتن والے دا ناں ںئیں لکیا",
 	"revdelete-restricted": "مکھیاں تے روکاں لگیاں",
 	"revdelete-unrestricted": "مکھیاں تے روکاں لتھیاں",
-	"logentry-move-move": "$1 {{جنس:$2|پلٹی}} صفہ $3 توں $4",
+	"logentry-move-move": "$1 {{GENDER:$2|پلٹی}} صفہ $3 توں $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|پلٹی}} صفہ $3 توں $4 اک ڑیڈائرکٹ چھڈے بنا",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|پلٹی}} صفہ $3 توں $4 ریڈائرکٹ",
 	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|پلٹی}} صفہ $3 توں $4 اک ریڈائرکٹ دے بنا کسے ریڈائرکٹ دتیاں",

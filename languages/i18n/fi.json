@@ -3973,6 +3973,8 @@
 	"restrictionsfield-badip": "Virheellinen IP-osoite tai alue: $1",
 	"restrictionsfield-label": "Sallitut IP-alueet:",
 	"restrictionsfield-help": "Yksi IP-osoite tai CIDR-alue per rivi. Ottaaksesi kaiken käyttöön, käytä:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "$1",
+	"edit-error-long": "Virheet:\n\n$1",
 	"revid": "versio $1",
 	"pageid": "sivun tunnistenumero $1",
 	"rawhtml-notallowed": "&lt;html&gt; komentoa ei voida käyttää normaalien sivujen ulkopuolella.",

@@ -4025,6 +4025,8 @@
 	"restrictionsfield-badip": "유효하지 않은 IP 주소나 대역: $1",
 	"restrictionsfield-label": "허용된 IP 대역:",
 	"restrictionsfield-help": "줄 단위의 하나의 IP 주소 또는 CIDR 대역입니다. 모든 곳에 적용하려면, 다음을 사용하세요:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "오류: $1",
+	"edit-error-long": "오류:\n\n$1",
 	"revid": "$1 판",
 	"pageid": "페이지 ID $1",
 	"rawhtml-notallowed": "&lt;html&gt; 태그는 일반 페이지 밖에서는 사용할 수 없습니다.",

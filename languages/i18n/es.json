@@ -4129,6 +4129,8 @@
 	"restrictionsfield-badip": "Dirección o intervalo IP no válidos: $1",
 	"restrictionsfield-label": "Intervalos de IP permitidos:",
 	"restrictionsfield-help": "Una dirección IP o intervalo de CIDR por renglón. Para activarlo todo, utiliza <pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errores:\n\n$1",
 	"revid": "revisión $1",
 	"pageid": "ID de página $1",
 	"rawhtml-notallowed": "No se pueden emplear las etiquetas &lt;html&gt; si no es en las páginas normales.",

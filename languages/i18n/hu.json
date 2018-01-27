@@ -3991,6 +3991,8 @@
 	"restrictionsfield-badip": "Érvénytelen IP-cím vagy -tartomány: $1",
 	"restrictionsfield-label": "Engedélyezett IP-tartományok:",
 	"restrictionsfield-help": "Egy IP-cím vagy CIDR-tartomány soronként. Minden engedélyezéséhez használd a következő tartományokat:\n<pre>\n0.0.0.0/0\n::/0\n</pre>",
+	"edit-error-short": "Hiba: $1",
+	"edit-error-long": "Hibák:\n\n$1",
 	"revid": "$1 változat",
 	"pageid": "$1 lapazonosító",
 	"rawhtml-notallowed": "&lt;html&gt; címkék nem használhatók normál lapokon kívül.",

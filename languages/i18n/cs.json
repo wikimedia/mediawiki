@@ -4026,6 +4026,8 @@
 	"restrictionsfield-badip": "Neplatná IP adresa nebo rozsah: $1",
 	"restrictionsfield-label": "Povolené rozsahy IP adres:",
 	"restrictionsfield-help": "Jedna IP adresa nebo CIDR rozsah na řádek. Všechno povolíte pomocí:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Chyba: $1",
+	"edit-error-long": "Chyby:\n\n$1",
 	"revid": "revize $1",
 	"pageid": "Stránka s ID $1",
 	"rawhtml-notallowed": "Značky &lt;html&gt; nelze používat mimo běžné stránky.",

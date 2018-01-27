@@ -14,7 +14,8 @@
 			"Srdjan m",
 			"Conquistador",
 			"Xð",
-			"Сербијана"
+			"Сербијана",
+			"Acamicamacaraca"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -1213,8 +1214,8 @@
 	"uploadlogpage": "Registar postavljanja",
 	"uploadlogpagetext": "Ispod je popis najnovijih postavljanja datoteka.\nVidi [[Special:NewFiles|galeriju novih datoteka]] za slikovitiji pregled.",
 	"filename": "Ime fajla / Име датотеке",
-	"filedesc": "Sažetak - Сажетак",
-	"fileuploadsummary": "Sažetak / Сажетак:",
+	"filedesc": "Sažetak - Опис",
+	"fileuploadsummary": "Sažetak / Опис:",
 	"filereuploadsummary": "Izmjene datoteke:",
 	"filestatus": "Status autorskih prava:",
 	"filesource": "Izvor / Извор",
@@ -1774,7 +1775,7 @@
 	"delete-legend": "Obriši",
 	"historywarning": "<strong>Upozorenje</strong>: Stranica koju želite da obrišete ima historiju sa otprilike $1 {{PLURAL:$1|revizijom|revizije|revizija}}:",
 	"confirmdeletetext": "Upravo ćete obrisati stranicu sa svom njenom historijom.\nMolimo da potvrdite da ćete to učiniti, da razumijete posljedice te da to činite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].",
-	"actioncomplete": "Akcija završena\n\nАкција завршена",
+	"actioncomplete": "Radnja završena\n\nРадња завршена",
 	"actionfailed": "Akcija nije uspjela",
 	"deletedtext": "\"$1\" je obrisan/a.\nV. $2 za registar nedavnih brisanja.",
 	"dellogpage": "Evidencija brisanja",
@@ -1980,7 +1981,7 @@
 	"ipb-disableusertalk": "Onemogući ovog korisnika da uređuje svoju vlastitu stranicu za razgovor dok je blokiran",
 	"ipb-change-block": "Ponovno blokiraj korisnika sa ovim postavkama",
 	"ipb-confirm": "Potvrdite blokiranje",
-	"badipaddress": "Neodgovarajuća IP adresa / Неодговарајућа ИП адреса",
+	"badipaddress": "Neodgovarajuća IP adresa / Неодговарајућа IP адреса",
 	"blockipsuccesssub": "Blokiranje je uspjelo",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />\nBlokiranja možete da pogledate [[Special:BlockList|ovde]].",
 	"ipb-blockingself": "Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?",

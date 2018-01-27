@@ -4072,6 +4072,8 @@
 	"restrictionsfield-badip": "Ungültige IP-Adresse oder ungültiger IP-Adressbereich: $1",
 	"restrictionsfield-label": "Erlaubte IP-Adressbereiche:",
 	"restrictionsfield-help": "Eine IP-Adresse oder ein CIDR-Bereich pro Zeile. Um alles zu aktivieren, verwende:\n<pre>\n0.0.0.0/0\n::/0\n</pre>",
+	"edit-error-short": "Fehler: $1",
+	"edit-error-long": "Fehler:\n\n$1",
 	"revid": "Version $1",
 	"pageid": "Seitenkennung $1",
 	"rawhtml-notallowed": "&lt;html&gt;-Tags können nicht außerhalb von normalen Seiten verwendet werden.",

@@ -4207,6 +4207,8 @@
 	"restrictionsfield-badip": "無効な IP アドレス、またはその範囲: $1",
 	"restrictionsfield-label": "許可する IP の範囲:",
 	"restrictionsfield-help": "一行につき、単一の IP アドレス、もしくは CIDR による範囲。全帯域からの接続を許可する場合: <pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "エラー: $1",
+	"edit-error-long": "エラー：\n\n\n\n$1",
 	"revid": "版 $1",
 	"pageid": "ページID $1",
 	"rawhtml-notallowed": "&lt;html&gt;タグは通常ページ以外では使用できません。",

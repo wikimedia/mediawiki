@@ -4033,6 +4033,8 @@
 	"restrictionsfield-badip": "Ogiltig IP-adress eller intervall: $1",
 	"restrictionsfield-label": "Tillåtna IP-intervall:",
 	"restrictionsfield-help": "En IP-adress eller CIDR-intervall per rad. För att aktivera allting, använd<br /><code>0.0.0.0/0</code><br /><code>::/0</code>",
+	"edit-error-short": "Fel: $1",
+	"edit-error-long": "Fel:\n\n$1",
 	"revid": "sidversion $1",
 	"pageid": "sid-ID $1",
 	"rawhtml-notallowed": "&lt;html&gt;-taggar kan inte användas utanför normala sidor.",

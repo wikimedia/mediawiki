@@ -3949,6 +3949,8 @@
 	"restrictionsfield-badip": "Adresse o intervallo IP non valide: $1",
 	"restrictionsfield-label": "Intervallos IP permittite:",
 	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Error: $1",
+	"edit-error-long": "Errores:\n\n$1",
 	"revid": "version $1",
 	"pageid": "ID de pagina $1",
 	"rawhtml-notallowed": "Etiquettas &lt;html&gt; non pote esser usate foras de paginas normal.",

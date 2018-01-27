@@ -2732,5 +2732,7 @@
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
-	"randomrootpage": "Ojúewé ìtẹ́dìí àrìnàkò"
+	"randomrootpage": "Ojúewé ìtẹ́dìí àrìnàkò",
+	"edit-error-short": "Àṣìṣe: $1",
+	"edit-error-long": "Àwọn àsìṣe:\n\n\n$1"
 }

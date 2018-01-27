@@ -1843,7 +1843,7 @@
 	"doubleredirects": "Birbideratze bikoitzak",
 	"doubleredirectstext": "Lerro bakoitzean lehen eta bigarren birzuzenketetarako loturak ikus daitezke, eta baita edukia daukan edo eduki beharko lukeen orrialderako lotura ere. Lehen birzuzenketak azken honetara <del>zuzendu</del> beharko luke.",
 	"double-redirect-fixed-move": "«[[$1]]» orria mugitu da.\nAutomatikoki eguneratu da, eta orain «[[$2]]» orrira darama.",
-	"double-redirect-fixed-maintenance": "«[[$1]]» orritik «[[$2]]» orrira egindako birbideratze bikoitza automatikoki konpondua, mantentze lanak egitean.",
+	"double-redirect-fixed-maintenance": "[[$1]] orritik [[$2]] orrira egindako birbideratze bikoitza automatikoki konpondua, mantentze lanak egitean.",
 	"double-redirect-fixer": "Birbideratze zuzentzailea",
 	"brokenredirects": "Hautsitako birzuzenketak",
 	"brokenredirectstext": "Ondorengo birbideratze hauek existitzen ez diren orrietara bideratuta daude:",

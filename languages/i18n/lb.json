@@ -3690,6 +3690,8 @@
 	"userjsispublic": "DEnkt drun: Op JavaScript-Ënnersäite solle keng vertraulech Informatioune stoe well se vun anere Benotzer kënne gesi ginn.",
 	"restrictionsfield-badip": "Net valabel IP-Adress oder Beräich: $1",
 	"restrictionsfield-label": "Zougeloossen IP-Beräicher:",
+	"edit-error-short": "Feeler: $1",
+	"edit-error-long": "Feeler:\n\n$1",
 	"revid": "Versioun $1",
 	"gotointerwiki": "{{SITENAME}} verloossen",
 	"gotointerwiki-invalid": "De spezifizéierten Titel ass net valabel.",
