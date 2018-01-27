@@ -20,6 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionSlots;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -200,19 +201,26 @@ class ApiStashEdit extends ApiBase {
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
 
 		// Reuse any freshly build matching edit stash cache
-		$editInfo = $cache->get( $key );
-		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+		$stashedInfo = $cache->get( $key );
+		if ( $stashedInfo && wfTimestamp( TS_UNIX, $stashedInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
 			$format = $content->getDefaultFormat();
 			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
 			$alreadyCached = false;
+			if ( $editInfo ) {
+				$stashedInfo = (object)[
+					'pstContent' => $editInfo->getTransformedContentSlots()->getContent( 'main' ),
+					'output'     => $editInfo->getParserOutput(),
+					'timestamp'  => wfTimestampNow(),
+				];
+			}
 		}
 
-		if ( $editInfo && $editInfo->output ) {
+		if ( $stashedInfo && $stashedInfo->output ) {
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit',
-				[ $page, $content, $editInfo->output, $summary, $user ] );
+				[ $page, $content, $stashedInfo->output, $summary, $user ] );
 
 			$titleStr = (string)$title;
 			if ( $alreadyCached ) {
@@ -222,9 +230,9 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
-				$editInfo->pstContent,
-				$editInfo->output,
-				$editInfo->timestamp,
+				$stashedInfo->pstContent,
+				$stashedInfo->output,
+				$stashedInfo->timestamp,
 				$user
 			);
 
