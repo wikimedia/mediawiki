@@ -4,6 +4,7 @@ define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -350,7 +351,6 @@ class UserTest extends MediaWikiTestCase {
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'rclimit', 200 );
-		$user->setOption( 'wpwatchlistdays', '0' );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -362,11 +362,6 @@ class UserTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
-
-		// Check that an option saved as a string '0' is returned as an integer.
-		$user = User::newFromName( $user->getName() );
-		$user->load( User::READ_LATEST );
-		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 	}
 
 	/**
@@ -1147,6 +1142,37 @@ class UserTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 		}
+	}
+
+	public function testNewFromIdentity() {
+		// Registered user
+		$user = $this->getTestUser()->getUser();
+
+		$this->assertSame( $user, User::newFromIdentity( $user ) );
+
+		// ID only
+		$identity = new UserIdentityValue( $user->getId(), '', 0 );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
+
+		// Name only
+		$identity = new UserIdentityValue( 0, $user->getName(), 0 );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
+
+		// Actor only
+		$identity = new UserIdentityValue( 0, '', $user->getActorId() );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
 	}
 
 	/**
