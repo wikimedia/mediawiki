@@ -218,6 +218,33 @@ abstract class RevisionRecord {
 	}
 
 	/**
+	 * Returns the slots defined for this revision.
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getSlots() {
+		return $this->mSlots;
+	}
+
+	/**
+	 * Returns the slots touched by for this revision.
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getTouchedSlots() {
+		return new RevisionSlots( $this->mSlots->getTouchedSlots() );
+	}
+
+	/**
+	 * Returns the slots inherited by for this revision.
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getInheritedSlots() {
+		return new RevisionSlots( $this->mSlots->getInheritedSlots() );
+	}
+
+	/**
 	 * Get revision ID. Depending on the concrete subclass, this may return null if
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
