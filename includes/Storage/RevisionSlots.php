@@ -54,6 +54,8 @@ class RevisionSlots {
 	 * @param SlotRecord[] $slots
 	 */
 	private function setSlotsInternal( array $slots ) {
+		Assert::parameterElementType( SlotRecord::class, $slots, '$slots' );
+
 		$this->slots = [];
 
 		// re-key the slot array
@@ -197,6 +199,38 @@ class RevisionSlots {
 				? $slot->getSha1()
 				: SlotRecord::base36Sha1( $accu . $slot->getSha1() );
 		}, null );
+	}
+
+	/**
+	 * Return all slots that are not inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getTouchedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return !$slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Return all slots that are inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getInheritedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return $slot->isInherited();
+			}
+		);
 	}
 
 }
