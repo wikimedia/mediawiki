@@ -54,6 +54,8 @@ class RevisionSlots {
 	 * @param SlotRecord[] $slots
 	 */
 	private function setSlotsInternal( array $slots ) {
+		Assert::parameterElementType( SlotRecord::class, $slots, '$slots' );
+
 		$this->slots = [];
 
 		// re-key the slot array
