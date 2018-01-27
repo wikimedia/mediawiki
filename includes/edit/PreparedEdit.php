@@ -27,6 +27,8 @@ use ParserOutput;
 /**
  * Represents information returned by WikiPage::prepareContentForEdit()
  *
+ * @deprecated since 1.31, use PageMetaDataUpdater instead.
+ *
  * @since 1.30
  */
 class PreparedEdit {
