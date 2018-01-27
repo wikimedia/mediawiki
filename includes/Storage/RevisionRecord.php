@@ -218,6 +218,48 @@ abstract class RevisionRecord {
 	}
 
 	/**
+	 * Returns the slots defined for this revision.
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getSlots() {
+		return $this->mSlots;
+	}
+
+	/**
+	 * Returns the slots that originate in this revision.
+	 *
+	 * Note that this does not include any slots inherited from some earlier revision,
+	 * even if they are different from the slots in the immediate parent revision.
+	 * This is the case for rollbacks: slots of a rollback revision are inherited from
+	 * the rollback target, and are different from the slots in the parent revision,
+	 * which was rolled back.
+	 *
+	 * To find all slots modified by this revision against its immediate parent
+	 * revision, use RevisionSlotsUpdate::newFromRevisionSlots().
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getOriginalSlots() {
+		return new RevisionSlots( $this->mSlots->getOriginalSlots() );
+	}
+
+	/**
+	 * Returns slots inherited from some previous revision.
+	 *
+	 * "Inherited" slots are all slots that do not originate in this revision.
+	 * Note that these slots may still differ from the one in the parent revision.
+	 * This is the case for rollbacks: slots of a rollback revision are inherited from
+	 * the rollback target, and are different from the slots in the parent revision,
+	 * which was rolled back.
+	 *
+	 * @return RevisionSlots
+	 */
+	public function getInheritedSlots() {
+		return new RevisionSlots( $this->mSlots->getInheritedSlots() );
+	}
+
+	/**
 	 * Get revision ID. Depending on the concrete subclass, this may return null if
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
