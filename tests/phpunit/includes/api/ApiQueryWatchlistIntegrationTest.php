@@ -89,17 +89,14 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		User $patrollingUser
 	) {
 		$title = Title::newFromLinkTarget( $target );
+		$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
 		$page = WikiPage::factory( $title );
-		$status = $page->doEditContent(
-			ContentHandler::makeContent( $content, $title ),
-			$summary,
-			0,
-			false,
-			$user
-		);
-		/** @var Revision $rev */
-		$rev = $status->value['revision'];
-		$rc = $rev->getRecentChange();
+
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', ContentHandler::makeContent( $content, $title ) );
+		$rev = $updater->createRevision( $summary );
+
+		$rc = MediaWikiServices::getInstance()->getRevisionStore()->getRecentChange( $rev );
 		$rc->doMarkPatrolled( $patrollingUser, false, [] );
 	}
 
