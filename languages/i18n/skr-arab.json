@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saraiki"
+			"Saraiki",
+			"BukhariSaeed"
 		]
 	},
 	"tog-underline": "لنک  ہیٹھ لکیر",
@@ -422,7 +423,7 @@
 	"currentrev": "موجودہ حالت",
 	"currentrev-asof": "حالیہ نسخہ بمطابق $1",
 	"revisionasof": "دی تبدیلیاں $1",
-	"revision-info": " $1 دی دہرائی  توں {{جنس:$6|$2}}$7",
+	"revision-info": "$1 دی دہرائی  توں {{GENDER:$6|$2}}$7",
 	"previousrevision": "→ پراݨا نسخہ",
 	"nextrevision": "نویں تبدیلی →",
 	"currentrevisionlink": "موجودہ حالت",

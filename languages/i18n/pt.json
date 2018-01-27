@@ -4030,6 +4030,8 @@
 	"restrictionsfield-badip": "Endereço IP (ou gama de endereços IP) inválido: $1",
 	"restrictionsfield-label": "Gamas de endereços IP permitidas:",
 	"restrictionsfield-help": "Um endereço IP ou uma gama CIDR por linha. Para ativar todos,\nuse: <pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Erro: $1",
+	"edit-error-long": "Erros:\n\n$1",
 	"revid": "revisão $1",
 	"pageid": "identificador de página $1",
 	"rawhtml-notallowed": "As etiquetas &lt;html&gt; não podem ser utilizadas fora de páginas normais.",

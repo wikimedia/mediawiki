@@ -4018,6 +4018,8 @@
 	"restrictionsfield-badip": "Địa chỉ hoặc dải IP không hợp lệ: $1.",
 	"restrictionsfield-label": "Các dải IP được cho phép:",
 	"restrictionsfield-help": "Mỗi dòng một địa chỉ IP hoặc dải CIDR. Để kích hoạt tất cả mọi địa chỉ IP, sử dụng:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Lỗi: $1",
+	"edit-error-long": "Lỗi:\n\n$1",
 	"revid": "phiên bản $1",
 	"pageid": "số trang $1",
 	"rawhtml-notallowed": "Không thể sử dụng thẻ &lt;html&gt; bên ngoài trang bình thường.",

@@ -3991,6 +3991,8 @@
 	"restrictionsfield-badip": "Vigane IP-aadress või -aadressivahemik: $1",
 	"restrictionsfield-label": "Lubatud IP-aadressivahemikud:",
 	"restrictionsfield-help": "Üks IP-aadress või CIDR-vahemik rea kohta. Et lubada kõik, kasuta järgmist süntaksit:<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Tõrge: $1",
+	"edit-error-long": "Tõrked:\n\n$1",
 	"revid": "redaktsioon $1",
 	"pageid": "lehekülje identifikaator $1",
 	"rawhtml-notallowed": "&lt;html&gt;-silte ei saa kasutada mujal kui harilikel lehekülgedel.",

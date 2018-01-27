@@ -4053,6 +4053,8 @@
 	"restrictionsfield-badip": "Endereço IP ou intervalo inválido: $1",
 	"restrictionsfield-label": "Intervalos IP permitidos:",
 	"restrictionsfield-help": "Um endereço IP ou intervalo CIDR por linha. Para ativar tudo, use\n<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Erro: $1",
+	"edit-error-long": "Erros:\n$1",
 	"revid": "revisão $1",
 	"pageid": "ID da página $1",
 	"rawhtml-notallowed": "As tags &lt;html&gt; não podem ser usadas fora das páginas normais.",

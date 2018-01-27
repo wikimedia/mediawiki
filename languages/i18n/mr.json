@@ -3585,5 +3585,7 @@
 	"log-action-filter-rights-rights": "मानवी बदल",
 	"log-action-filter-suppress-block": "रोधामार्फत सदस्य दाबणे",
 	"changecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) बदला",
-	"removecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) हटवा"
+	"removecredentials": "अधिकारपत्रे (क्रेडेंटियल्स) हटवा",
+	"edit-error-short": "त्रुटी: $1",
+	"edit-error-long": "त्रुटी:$1"
 }

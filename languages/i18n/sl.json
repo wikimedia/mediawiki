@@ -3957,6 +3957,8 @@
 	"restrictionsfield-badip": "Neveljaven IP-naslov ali obseg: $1",
 	"restrictionsfield-label": "Dovoljeni IP-obsegi:",
 	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite:\n<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Napaka: $1",
+	"edit-error-long": "Napake:\n\n$1",
 	"revid": "redakcija $1",
 	"pageid": "ID strani $1",
 	"rawhtml-notallowed": "Oznak &lt;html&gt; ni možno uporabljati izven normalnih strani.",

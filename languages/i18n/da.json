@@ -3633,5 +3633,6 @@
 	"removecredentials-invalidsubpage": "$1 er ikke en gyldig type for akkreditiver.",
 	"removecredentials-success": "Dine akkreditiver er blevet fjernet.",
 	"credentialsform-provider": "Akkreditivtype:",
-	"credentialsform-account": "Kontonavn:"
+	"credentialsform-account": "Kontonavn:",
+	"edit-error-short": "Fejl: $1"
 }

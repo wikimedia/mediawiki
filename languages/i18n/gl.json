@@ -4051,6 +4051,8 @@
 	"restrictionsfield-badip": "Enderezo IP ou rango de IP non válido: $1",
 	"restrictionsfield-label": "Rangos de IP permitidos:",
 	"restrictionsfield-help": "Un único enderezo IP ou rango CIDR por liña. Para habilitalos todos, utiliceː\n<pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Erro: $1",
+	"edit-error-long": "Erros:\n\n$1",
 	"revid": "revisión $1",
 	"pageid": "identificador de páxina $1",
 	"rawhtml-notallowed": "As marcas &lt;html&gt; non poden usarse fóra das páxinas normais.",

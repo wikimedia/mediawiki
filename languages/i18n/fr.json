@@ -4226,6 +4226,8 @@
 	"restrictionsfield-badip": "Adresse IP ou plage non valide : $1",
 	"restrictionsfield-label": "Plages IP autorisées :",
 	"restrictionsfield-help": "Une adresse IP ou une plage CIDR par ligne. Pour tout activer, utiliser <pre>0.0.0.0/0\n::/0</pre>",
+	"edit-error-short": "Erreur : $1",
+	"edit-error-long": "Erreurs :\n\n$1",
 	"revid": "version $1",
 	"pageid": "ID de page $1",
 	"rawhtml-notallowed": "Les balises &lt;html&gt; ne peuvent pas être utilisées en dehors des pages normales.",

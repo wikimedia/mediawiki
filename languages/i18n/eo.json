@@ -3894,6 +3894,8 @@
 	"restrictionsfield-badip": "Malvalida IP-adreso de la intervalo: $1",
 	"restrictionsfield-label": "Permesita IP-intervalo:",
 	"restrictionsfield-help": "Unu IP-adreso aŭ CIDR-intervalo per linio. Por permesigi ĉion, uzu:<pre>0.0.0.0/0</code>\n<code>::/0</pre>",
+	"edit-error-short": "Eraro: $1",
+	"edit-error-long": "Eraroj\n\n$1",
 	"revid": "revizio $1",
 	"pageid": "Identigilo de paĝo $1"
 }
