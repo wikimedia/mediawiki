@@ -20,6 +20,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\SlotRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -204,8 +206,18 @@ class ApiStashEdit extends ApiBase {
 		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
-			$format = $content->getDefaultFormat();
-			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+			// TODO: MCR: all slots!
+			$slots = new RevisionSlots( [ 'main' => SlotRecord::newUnsaved( 'main', $content ) ] );
+			$pageMetaData = $page->getMetaDataUpdater( $user, null, $slots );
+			$pageMetaData->prepareEdit( $user, $slots, [], false );
+			$output = $pageMetaData->getCanonicalParserOutput();
+
+			list( $editInfo, , ) = self::buildStashValue(
+				$pageMetaData->getRawContent( 'main' ), // post-PST
+				$output,
+				$output->getCacheTime(),
+				$user
+			);
 			$alreadyCached = false;
 		}
 
