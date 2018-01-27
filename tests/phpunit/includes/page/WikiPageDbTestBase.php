@@ -1,5 +1,11 @@
 <?php
 
+use MediaWiki\Storage\RevisionSlotsUpdate;
+use Wikimedia\TestingAccessWrapper;
+
+/**
+ * @covers WikiPage
+ */
 abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
@@ -78,26 +84,137 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 *
 	 * @return WikiPage
 	 */
-	protected function createPage( $page, $text, $model = null ) {
+	protected function createPage( $page, $text, $model = null, $user = null ) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->newPage( $page, $model );
 		}
 
 		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
-		$page->doEditContent( $content, "testing", EDIT_NEW );
+		$page->doEditContent( $content, "testing", EDIT_NEW, false, $user );
 
 		return $page;
 	}
 
 	/**
-	 * @covers WikiPage::doEditContent
-	 * @covers WikiPage::doModify
-	 * @covers WikiPage::doCreate
+	 * @covers WikiPage::prepareContentForEdit
+	 */
+	public function testPrepareContentForEdit() {
+		$user = $this->getTestUser()->getUser();
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
+
+		$page = $this->createPage( __METHOD__, __METHOD__, null, $user );
+		$title = $page->getTitle();
+
+		$content = ContentHandler::makeContent(
+			"[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
+			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+		$content2 = ContentHandler::makeContent(
+			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est. ~~~~",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$edit = $page->prepareContentForEdit( $content, null, $user, null, false );
+
+		$this->assertInstanceOf(
+			ParserOptions::class,
+			$edit->popts,
+			"pops"
+		);
+		$this->assertContains( '</a>', $edit->output->getText(), "output" );
+		$this->assertContains(
+			'consetetur sadipscing elitr',
+			$edit->output->getText(),
+			"output"
+		);
+
+		$this->assertTrue( $content->equals( $edit->newContent ), "newContent field" );
+		$this->assertTrue( $content->equals( $edit->pstContent ), "pstContent field" );
+		$this->assertSame( $edit->output, $edit->output, "output field" );
+		$this->assertSame( $edit->popts, $edit->popts, "popts field" );
+		$this->assertSame( null, $edit->revid, "revid field" );
+
+		// Re-using the prepared info if possible
+		$sameEdit = $page->prepareContentForEdit( $content, null, $user, null, false );
+		$this->assertEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
+		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
+		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
+
+		// Not re-using the same PreparedEdit if not possible
+		$rev = $page->getRevision();
+		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
+		$this->assertNotEquals( $edit, $edit2 );
+		$this->assertContains( 'At vero eos', $edit2->pstContent->serialize(), "content" );
+
+		// Check pre-safe transform
+		$this->assertContains( '[[gubergren]]', $edit2->pstContent->serialize() );
+		$this->assertNotContains( '~~~~', $edit2->pstContent->serialize() );
+
+		$edit3 = $page->prepareContentForEdit( $content2, null, $sysop, null, false );
+		$this->assertNotEquals( $edit2, $edit3 );
+
+		// TODO: test with passing revision, then same without revision.
+	}
+
+	/**
 	 * @covers WikiPage::doEditUpdates
+	 */
+	public function testDoEditUpdates() {
+		$user = $this->getTestUser()->getUser();
+
+		// NOTE: if site stats get out of whack and drop below 0,
+		// that causes a DB error during tear-down. So bump the
+		// numbers high enough to not drop below 0.
+		$siteStatsUpdate = SiteStatsUpdate::factory(
+			[ 'edits' => 1000, 'articles' => 1000, 'pages' => 1000 ]
+		);
+		$siteStatsUpdate->doUpdate();
+
+		$page = $this->createPage( __METHOD__, __METHOD__ );
+
+		$revision = new Revision(
+			[
+				'id' => 9989,
+				'page' => $page->getId(),
+				'title' => $page->getTitle(),
+				'comment' => __METHOD__,
+				'minor_edit' => true,
+				'text' => __METHOD__ . ' [[|foo]][[bar]]', // PST turns [[|foo]] into [[foo]]
+				'user' => $user->getId(),
+				'user_text' => $user->getName(),
+				'timestamp' => '20170707040404',
+				'content_model' => CONTENT_MODEL_WIKITEXT,
+				'content_format' => CONTENT_FORMAT_WIKITEXT,
+			]
+		);
+
+		$page->doEditUpdates( $revision, $user );
+
+		// TODO: test various options; needs temporary hooks
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $page->getId() ] );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertEquals( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
+	}
+
+	/**
+	 * @covers WikiPage::doEditContent
+	 * @covers WikiPage::prepareContentForEdit
 	 */
 	public function testDoEditContent() {
 		$page = $this->newPage( __METHOD__ );
 		$title = $page->getTitle();
+
+		$user1 = $this->getTestUser()->getUser();
+		// Use the confirmed group for user2 to make sure the user is different
+		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
 		$content = ContentHandler::makeContent(
 			"[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
@@ -106,7 +223,18 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "[[testing]] 1" );
+		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW, false, $user1 );
+
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertTrue( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		$this->assertTrue( $title->getArticleID() > 0, "Title object should have new page id" );
 		$this->assertTrue( $page->getId() > 0, "WikiPage should have new page id" );
@@ -130,20 +258,46 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
 
 		# ------------------------
+		$page = new WikiPage( $title );
+
+		// try null edit, with a different user
+		$status = $page->doEditContent( $content, 'This changes nothing', EDIT_UPDATE, false, $user2 );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNull( $status->value['revision'], 'revision' );
+		$this->assertNotNull( $page->getRevision() );
+		$this->assertTrue( $page->getRevision()->getContent()->equals( $content ), 'equals' );
+
+		# ------------------------
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
+				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est. ~~~~",
 			$title,
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$page->doEditContent( $content, "testing 2" );
+		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
+		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertFalse( $status->value['new'], 'new' );
+		$this->assertNotNull( $status->value['revision'], 'revision' );
+		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
+		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
+		$this->assertFalse(
+			$status->value['revision']->getContent()->equals( $content ),
+			'not equals (PST must substitute signature)'
+		);
+
+		$rev = $page->getRevision();
+		$this->assertNotNull( $rev->getRecentChange() );
+		$this->assertSame( $rev->getId(), (int)$rev->getRecentChange()->getAttribute( 'rc_this_oldid' ) );
 
 		# ------------------------
 		$page = new WikiPage( $title );
 
 		$retrieved = $page->getContent();
-		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+		$newText = $retrieved->serialize();
+		$this->assertContains( '[[gubergren]]', $newText, 'New text must replace old text.' );
+		$this->assertNotContains( '~~~~', $newText, 'PST must substitute signature.' );
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
@@ -1211,6 +1365,44 @@ more stuff
 	}
 
 	/**
+	 * @covers WikiPage::loadPageData
+	 * @covers WikiPage::wasLoadedFrom
+	 */
+	public function testLoadPageData() {
+		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
+		$page = WikiPage::factory( $title );
+
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
+
+		$page->loadPageData( IDBAccessObject::READ_NORMAL );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
+
+		$page->loadPageData( IDBAccessObject::READ_LATEST );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
+
+		$page->loadPageData( IDBAccessObject::READ_LOCKING );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
+		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
+
+		$page->loadPageData( IDBAccessObject::READ_EXCLUSIVE );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
+		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
+	}
+
+	/**
 	 * @dataProvider provideCommentMigrationOnDeletion
 	 *
 	 * @param int $writeStage
@@ -2064,6 +2256,91 @@ more stuff
 			[ 'log_id' => $status->getValue() ],
 			[ [ 'protect', 'unprotect' ] ]
 		);
+	}
+
+	/**
+	 * @covers WikiPage::newPageUpdater
+	 * @covers WikiPage::getDerivedDataUpdater
+	 */
+	public function testNewPageUpdater() {
+		$user = $this->getTestUser()->getUser();
+		$page = $this->newPage( __METHOD__, __METHOD__ );
+
+		/** @var Content $content */
+		$content = $this->getMockBuilder( WikitextContent::class )
+			->setConstructorArgs( [ 'Hello World' ] )
+			->setMethods( [ 'getParserOutput' ] )
+			->getMock();
+		$content->expects( $this->once() )
+			->method( 'getParserOutput' )
+			->willReturn( new ParserOutput( 'HTML' ) );
+
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', $content );
+		$revision = $updater->saveRevision(
+			CommentStoreComment::newUnsavedComment( 'test' ),
+			EDIT_NEW
+		);
+
+		$this->assertSame( $revision->getId(), $page->getLatest() );
+	}
+
+	/**
+	 * @covers WikiPage::newPageUpdater
+	 * @covers WikiPage::getDerivedDataUpdater
+	 */
+	public function testGetDerivedDataUpdater() {
+		$admin = $this->getTestSysop()->getUser();
+
+		/** @var object $page */
+		$page = $this->createPage( __METHOD__, __METHOD__ );
+		$page = TestingAccessWrapper::newFromObject( $page );
+
+		$revision = $page->getRevision()->getRevisionRecord();
+		$user = $revision->getUser();
+
+		$slotsUpdate = new RevisionSlotsUpdate();
+		$slotsUpdate->modifyContent( 'main', new WikitextContent( 'Hello World' ) );
+
+		// get a virgin updater
+		$updater1 = $page->getDerivedDataUpdater( $user );
+		$this->assertFalse( $updater1->isUpdatePrepared() );
+
+		$updater1->prepareUpdate( $revision );
+
+		// Re-use updater with same revision or content
+		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, $revision ) );
+
+		$slotsUpdate = RevisionSlotsUpdate::newFromContent(
+			[ 'main' => $revision->getContent( 'main' ) ]
+		);
+		$this->assertSame( $updater1, $page->getDerivedDataUpdater( $user, null, $slotsUpdate ) );
+
+		// Don't re-use with different user
+		$updater2a = $page->getDerivedDataUpdater( $admin, null, $slotsUpdate );
+		$updater2a->prepareContent( $admin, $slotsUpdate, false );
+
+		$updater2b = $page->getDerivedDataUpdater( $user, null, $slotsUpdate );
+		$updater2b->prepareContent( $user, $slotsUpdate, false );
+		$this->assertNotSame( $updater2a, $updater2b );
+
+		// Don't re-use with different content
+		$updater3 = $page->getDerivedDataUpdater( $admin, null, $slotsUpdate );
+		$updater3->prepareUpdate( $revision );
+		$this->assertNotSame( $updater2b, $updater3 );
+
+		// Don't re-use if no context given
+		$updater4 = $page->getDerivedDataUpdater( $admin );
+		$updater4->prepareUpdate( $revision );
+		$this->assertNotSame( $updater3, $updater4 );
+
+		// Don't re-use if AGAIN no context given
+		$updater5 = $page->getDerivedDataUpdater( $admin );
+		$this->assertNotSame( $updater4, $updater5 );
+
+		// Don't re-use cached "virgin" unprepared updater
+		$updater6 = $page->getDerivedDataUpdater( $admin, $revision );
+		$this->assertNotSame( $updater5, $updater6 );
 	}
 
 }
