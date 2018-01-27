@@ -637,6 +637,27 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
+	 * Returns a User object corresponding to the given UserIdentity.
+	 *
+	 * @since 1.32
+	 *
+	 * @param UserIdentity $identity
+	 *
+	 * @return User
+	 */
+	public static function newFromIdentity( UserIdentity $identity ) {
+		if ( $identity instanceof User ) {
+			return $identity;
+		}
+
+		return self::newFromAnyId(
+			$identity->getId() === 0 ? null : $identity->getId(),
+			$identity->getName() === '' ? null : $identity->getName(),
+			$identity->getActorId() === 0 ? null : $identity->getActorId()
+		);
+	}
+
+	/**
 	 * Static factory method for creation from an ID, name, and/or actor ID
 	 *
 	 * This does not check that the ID, name, and actor ID all correspond to
