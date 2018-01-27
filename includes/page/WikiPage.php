@@ -23,6 +23,8 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionSlots;
+use MediaWiki\Storage\RevisionSlots;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -849,7 +851,8 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $editInfo ) {
-			$content = $editInfo->pstContent;
+			// NOTE: only the main slot can make a page a redirect
+			$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
 		} else {
 			$content = $this->getContent();
 		}
@@ -868,7 +871,7 @@ class WikiPage implements Page, IDBAccessObject {
 				// to be really correct we would need to recurse in the array
 				// but the main array should only have items in it if there are
 				// links.
-				$hasLinks = (bool)count( $editInfo->output->getLinks() );
+				$hasLinks = (bool)count( $editInfo->getCombinedParserOutput()->getLinks() );
 			} else {
 				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
@@ -1650,7 +1653,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Get the pre-save transform content and final parser output
 		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat, $useCache );
-		$pstContent = $editInfo->pstContent; // Content object
+		$pstContent = $editInfo->getTransformedContentSlots()->getContent( 'main' ); // TODO: MCR
 		$meta = [
 			'bot' => ( $flags & EDIT_FORCE_BOT ),
 			'minor' => ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' ),
@@ -2007,12 +2010,13 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Prepare content which is about to be saved.
 	 *
-	 * Prior to 1.30, this returned a stdClass object with the same class
-	 * members.
+	 * Prior to 1.30, this returned a stdClass. Note that public members of PreparedEdit were
+	 * removed or deprecated  in 1.31.
 	 *
 	 * @param Content $content
-	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
-	 *        revision ID is also accepted, but this is deprecated.
+	 * @param Revision|int|null $revision Revision object or ID, if already known.
+	 *        Used with vary-revision or vary-revision-id.
+	 *
 	 * @param User|null $user
 	 * @param string|null $serialFormat
 	 * @param bool $useCache Check shared prepared edit cache
@@ -2030,32 +2034,18 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( is_object( $revision ) ) {
 			$revid = $revision->getId();
 		} else {
-			$revid = $revision;
-			// This code path is deprecated, and nothing is known to
-			// use it, so performance here shouldn't be a worry.
-			if ( $revid !== null ) {
-				wfDeprecated( __METHOD__ . ' with $revision = revision ID', '1.25' );
-				$revision = Revision::newFromId( $revid, Revision::READ_LATEST );
-			} else {
-				$revision = null;
-			}
+			$revid = (int)$revision;
 		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
-		// XXX: check $user->getId() here???
+		$title = $this->getTitle();
 
-		// Use a sane default for $serialFormat, see T59026
-		if ( $serialFormat === null ) {
-			$serialFormat = $content->getContentHandler()->getDefaultFormat();
-		}
+		$newContentSlots = new MutableRevisionSlots();
+		$newContentSlots->setContent( 'main', $content );
 
-		if ( $this->mPreparedEdit
-			&& isset( $this->mPreparedEdit->newContent )
-			&& $this->mPreparedEdit->newContent->equals( $content )
-			&& $this->mPreparedEdit->revid == $revid
-			&& $this->mPreparedEdit->format == $serialFormat
-			// XXX: also check $user here?
-		) {
+		$sig = PreparedEdit::makeSignature( $title, $newContentSlots, $user, $revid );
+
+		if ( $this->mPreparedEdit && $this->mPreparedEdit->getSignature() === $sig ) {
 			// Already prepared
 			return $this->mPreparedEdit;
 		}
@@ -2065,43 +2055,33 @@ class WikiPage implements Page, IDBAccessObject {
 			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
 			: false;
 
-		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
-		Hooks::run( 'ArticlePrepareTextForEdit', [ $this, $popts ] );
-
-		$edit = new PreparedEdit();
-		if ( $cachedEdit ) {
-			$edit->timestamp = $cachedEdit->timestamp;
-		} else {
-			$edit->timestamp = wfTimestampNow();
-		}
-		// @note: $cachedEdit is safely not used if the rev ID was referenced in the text
-		$edit->revid = $revid;
+		$userPopts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
+		Hooks::run( 'ArticlePrepareTextForEdit', [ $this, $userPopts ] );
 
 		if ( $cachedEdit ) {
-			$edit->pstContent = $cachedEdit->pstContent;
+			$pstContent = $cachedEdit->pstContent;
 		} else {
-			$edit->pstContent = $content
-				? $content->preSaveTransform( $this->mTitle, $user, $popts )
-				: null;
+			$pstContent = $content->preSaveTransform( $this->mTitle, $user, $userPopts );
 		}
 
-		$edit->format = $serialFormat;
-		$edit->popts = $this->makeParserOptions( 'canonical' );
+		$canonPopts = $this->makeParserOptions( 'canonical' );
 		if ( $cachedEdit ) {
-			$edit->output = $cachedEdit->output;
+			$output = $cachedEdit->output;
 		} else {
-			if ( $revision ) {
+			if ( $revid ) {
 				// We get here if vary-revision is set. This means that this page references
 				// itself (such as via self-transclusion). In this case, we need to make sure
 				// that any such self-references refer to the newly-saved revision, and not
 				// to the previous one, which could otherwise happen due to replica DB lag.
-				$oldCallback = $edit->popts->getCurrentRevisionCallback();
-				$edit->popts->setCurrentRevisionCallback(
-					function ( Title $title, $parser = false ) use ( $revision, &$oldCallback ) {
-						if ( $title->equals( $revision->getTitle() ) ) {
-							return $revision;
+				$oldCallback = $canonPopts->getCurrentRevisionCallback();
+				$canonPopts->setCurrentRevisionCallback(
+					function ( Title $parserTitle, $parser = false )
+						use ( $title, $revid, &$oldCallback )
+					{
+						if ( $parserTitle->equals( $title ) ) {
+							return $revid;
 						} else {
-							return call_user_func( $oldCallback, $title, $parser );
+							return call_user_func( $oldCallback, $parserTitle, $parser );
 						}
 					}
 				);
@@ -2111,31 +2091,42 @@ class WikiPage implements Page, IDBAccessObject {
 					? DB_MASTER // use the best possible guess
 					: DB_REPLICA; // T154554
 
-				$edit->popts->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {
-					return 1 + (int)wfGetDB( $dbIndex )->selectField(
-						'revision',
-						'MAX(rev_id)',
-						[],
-						__METHOD__
-					);
-				} );
+				$canonPopts->setSpeculativeRevIdCallback(
+					function () use ( $dbIndex ) {
+						return 1 + (int)wfGetDB( $dbIndex )->selectField(
+							'revision',
+							'MAX(rev_id)',
+							[],
+							__METHOD__
+						);
+					}
+				);
 			}
-			$edit->output = $edit->pstContent
-				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
+			$output = $pstContent
+				? $pstContent->getParserOutput( $this->mTitle, $revid, $canonPopts )
 				: null;
 		}
 
-		$edit->newContent = $content;
-		$edit->oldContent = $this->getContent( Revision::RAW );
-
-		if ( $edit->output ) {
-			$edit->output->setCacheTime( wfTimestampNow() );
+		if ( $output ) {
+			$output->setCacheTime( wfTimestampNow() );
 		}
 
-		// Process cache the result
-		$this->mPreparedEdit = $edit;
+		$pstContentSlots = new MutableRevisionSlots();
+		$pstContentSlots->setContent( 'main', $pstContent );
 
-		return $edit;
+		// Process cache the result
+		$this->mPreparedEdit = new PreparedEdit(
+			$title,
+			$newContentSlots,
+			$pstContentSlots,
+			$user,
+			$canonPopts,
+			[ 'main' => $output ],
+			$output,
+			$revid
+		);
+
+		return $this->mPreparedEdit;
 	}
 
 	/**
@@ -2173,22 +2164,26 @@ class WikiPage implements Page, IDBAccessObject {
 		$content = $revision->getContent();
 
 		$logger = LoggerFactory::getInstance( 'SaveParse' );
+		$output = null;
 
 		// See if the parser output before $revision was inserted is still valid
 		$editInfo = false;
 		if ( !$this->mPreparedEdit ) {
 			$logger->debug( __METHOD__ . ": No prepared edit...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-revision...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-revision-id' )
-			&& $this->mPreparedEdit->output->getSpeculativeRevIdUsed() !== $revision->getId()
-		) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-revision-id with wrong ID...\n" );
-		} elseif ( $this->mPreparedEdit->output->getFlag( 'vary-user' ) && !$options['changed'] ) {
-			$logger->info( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
 		} else {
-			wfDebug( __METHOD__ . ": Using prepared edit...\n" );
-			$editInfo = $this->mPreparedEdit;
+			$output = $this->mPreparedEdit->getCombinedParserOutput();
+			if ( $output->getFlag( 'vary-revision' ) ) {
+				$logger->info( __METHOD__ . ": Prepared edit has vary-revision...\n" );
+			} elseif ( $output->getFlag( 'vary-revision-id' )
+				&& $output->getSpeculativeRevIdUsed() !== $revision->getId()
+			) {
+				$logger->info( __METHOD__ . ": Prepared edit has vary-revision-id with wrong ID...\n" );
+			} elseif ( $output->getFlag( 'vary-user' ) && !$options['changed'] ) {
+				$logger->info( __METHOD__ . ": Prepared edit has vary-user and is null...\n" );
+			} else {
+				wfDebug( __METHOD__ . ": Using prepared edit...\n" );
+				$editInfo = $this->mPreparedEdit;
+			}
 		}
 
 		if ( !$editInfo ) {
@@ -2196,13 +2191,14 @@ class WikiPage implements Page, IDBAccessObject {
 			// $text is usually already pre-save transformed once. Avoid using the edit stash
 			// as any prepared content from there or in doEditContent() was already rejected.
 			$editInfo = $this->prepareContentForEdit( $content, $revision, $user, null, false );
+			$output = $editInfo->getCombinedParserOutput();
 		}
 
 		// Save it to the parser cache.
 		// Make sure the cache time matches page_touched to avoid double parsing.
 		MediaWikiServices::getInstance()->getParserCache()->save(
-			$editInfo->output, $this, $editInfo->popts,
-			$revision->getTimestamp(), $editInfo->revid
+			$output, $this, $editInfo->getParserOptions(),
+			$revision->getTimestamp(), $revision->getId()
 		);
 
 		// Update the links tables and other secondary data
