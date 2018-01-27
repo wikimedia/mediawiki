@@ -120,4 +120,41 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( $comment, $record->getComment() );
 	}
 
+	public function testSimpleGetTouchedAndInheritedSlots() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$mainSlot = new SlotRecord(
+			(object)[
+				'slot_id' => 1,
+				'slot_revision_id' => null, // unsaved
+				'slot_content_id' => 1,
+				'content_address' => null, // touched
+				'model_name' => 'x',
+				'role_name' => 'main',
+				'slot_origin' => null // touched
+			],
+			new WikitextContent( 'main' )
+		);
+		$auxSlot = new SlotRecord(
+			(object)[
+				'slot_id' => 2,
+				'slot_revision_id' => null, // unsaved
+				'slot_content_id' => 1,
+				'content_address' => 'foo', // inherited
+				'model_name' => 'x',
+				'role_name' => 'aux',
+				'slot_origin' => 1 // inherited
+			],
+			new WikitextContent( 'aux' )
+		);
+
+		$record->setSlot( $mainSlot );
+		$record->setSlot( $auxSlot );
+
+		$this->assertSame( [ 'main' ], $record->getTouchedSlots()->getSlotRoles() );
+		$this->assertSame( $mainSlot, $record->getTouchedSlots()->getSlot( 'main' ) );
+
+		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
+		$this->assertSame( $auxSlot, $record->getInheritedSlots()->getSlot( 'aux' ) );
+	}
+
 }
