@@ -90,9 +90,79 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers WikiPage::prepareContentForEdit
+	 */
+	public function testPrepareContentForEdit() {
+		$user = $this->getTestUser()->getUser();
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
+
+		$page = $this->newPage( __METHOD__ );
+		$title = $page->getTitle();
+
+		$content = ContentHandler::makeContent(
+			"[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
+			. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+		$content2 = ContentHandler::makeContent(
+			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
+			. "Stet clita kasd [[gubergren]], no sea takimata sanctus est. ~~~~",
+			$title,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$edit = $page->prepareContentForEdit( $content, null, $user, null, false );
+		$pstContent = $edit->getTransformedContentSlots()->getContent( 'main' );
+
+		$this->assertTrue( $content->equals( $pstContent ), "getTransformedContentSlots()" );
+		$this->assertInstanceOf(
+			ParserOptions::class,
+			$edit->getParserOptions(),
+			"getParserOptions()"
+		);
+		$this->assertInternalType( 'string', $edit->getSignature(), "getSignature()" );
+		$this->assertContains( '</a>', $edit->getParserOutput()->getText(), "getParserOutput()" );
+		$this->assertContains(
+			'consetetur sadipscing elitr',
+			$edit->getParserOutput()->getText(),
+			"getParserOutput()"
+		);
+
+		// Deprecated fields for compat:
+		// NOTE: the format, timestamp, and oldContent fields are unused and always null.
+		$this->assertTrue( $content->equals( $edit->newContent ), "newContent field" );
+		$this->assertTrue( $content->equals( $edit->pstContent ), "pstContent field" );
+		$this->assertSame( $edit->getParserOutput(), $edit->output, "output field" );
+		$this->assertSame( $edit->getParserOptions(), $edit->popts, "popts field" );
+		$this->assertSame( 0, $edit->revid, "revid field" );
+
+		// Re-using the same PreparedEdit if possible
+		$sameEdit = $page->prepareContentForEdit( $content, 0, $user, null, false );
+		$this->assertSame( $edit, $sameEdit, 're-use PreparedEdit' );
+
+		// Not re-using the same PreparedEdit if not possible
+		$otherEdit = $page->prepareContentForEdit( $content, 23, $user, null, false );
+		$this->assertNotEquals( $edit->getSignature(), $otherEdit->getSignature() );
+		$this->assertSame( 23, $otherEdit->revid, "revid field" );
+
+		$otherEdit = $page->prepareContentForEdit( $content, null, $sysop, null, false );
+		$this->assertNotEquals( $edit->getSignature(), $otherEdit->getSignature() );
+
+		// Check pre-safe transform
+		$otherEdit = $page->prepareContentForEdit( $content2, null, $user, null, false );
+		$this->assertNotEquals( $edit->getSignature(), $otherEdit->getSignature() );
+
+		$pstContent = $otherEdit->getTransformedContentSlots()->getContent( 'main' );
+		$this->assertContains( '[[gubergren]]', $pstContent->serialize() );
+		$this->assertNotContains( '~~~~', $pstContent->serialize() );
+	}
+
+	/**
 	 * @covers WikiPage::doEditContent
 	 * @covers WikiPage::doModify
 	 * @covers WikiPage::doCreate
+	 * @covers WikiPage::prepareContentForEdit
 	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditContent() {
@@ -132,7 +202,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		# ------------------------
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
+				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est. ~~~~",
 			$title,
 			CONTENT_MODEL_WIKITEXT
 		);
@@ -143,7 +213,9 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$page = new WikiPage( $title );
 
 		$retrieved = $page->getContent();
-		$this->assertTrue( $content->equals( $retrieved ), 'retrieved content doesn\'t equal original' );
+		$newText = $retrieved->serialize();
+		$this->assertContains( '[[gubergren]]', $newText, 'New text must replace old text.' );
+		$this->assertNotContains( '~~~~', $newText, 'PST must substitute signature.' );
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
