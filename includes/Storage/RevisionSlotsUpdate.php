@@ -73,6 +73,39 @@ class RevisionSlotsUpdate {
 	}
 
 	/**
+	 * Constructs a RevisionSlotsUpdate representing the update of $parentSlots
+	 * when changing $newContent. If a slot has the same content in $newContent
+	 * as in $parentSlots, that slot is considered inherited and thus omitted from
+	 * the resulting RevisionSlotsUpdate.
+	 *
+	 * In contrast to newFromRevisionSlots(), slots in $parentSlots that are not present
+	 * in $newContent are not considered removed. They are instead assumed to be inherited.
+	 *
+	 * @param Content[] $newContent The new content, using slot roles as array keys.
+	 *
+	 * @return RevisionSlotsUpdate
+	 */
+	public static function newFromContent( array $newContent, RevisionSlots $parentSlots = null ) {
+		$modified = [];
+
+		foreach ( $newContent as $role => $content ) {
+			$slot = SlotRecord::newUnsaved( $role, $content );
+
+			if ( $parentSlots
+				&& $parentSlots->hasSlot( $role )
+				&& $slot->hasSameContent( $parentSlots->getSlot( $role ) )
+			) {
+				// Skip slots that had the same content in the parent revision from $modified.
+				continue;
+			}
+
+			$modified[$role] = $slot;
+		}
+
+		return new RevisionSlotsUpdate( $modified );
+	}
+
+	/**
 	 * @param SlotRecord[] $modifiedSlots
 	 * @param string[] $removedRoles
 	 */
@@ -237,6 +270,22 @@ class RevisionSlotsUpdate {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Applies this update to the given MutableRevisionSlots, setting all modified slots,
+	 * and removing all removed roles.
+	 *
+	 * @param MutableRevisionSlots $slots
+	 */
+	public function apply( MutableRevisionSlots $slots ) {
+		foreach ( $this->getModifiedRoles() as $role ) {
+			$slots->setSlot( $this->getModifiedSlot( $role ) );
+		}
+
+		foreach ( $this->getRemovedRoles() as $role ) {
+			$slots->removeSlot( $role );
+		}
 	}
 
 }
