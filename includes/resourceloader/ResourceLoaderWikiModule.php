@@ -534,6 +534,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	) {
 		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
 
+		// TODO: MCR: differentiate between page functionality and content model!
+		//       Not all pages containing CSS or JS have to be modules! [PageType]
 		if ( $old && in_array( $old->getContentFormat(), $formats ) ) {
 			$purge = true;
 		} elseif ( $new && in_array( $new->getContentFormat(), $formats ) ) {
