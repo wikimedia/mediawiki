@@ -4,6 +4,7 @@ define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -1147,6 +1148,40 @@ class UserTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 		}
+	}
+
+	/**
+	 * @covers User::newFromIdentity
+	 */
+	public function testNewFromIdentity() {
+		// Registered user
+		$user = $this->getTestUser()->getUser();
+
+		$this->assertSame( $user, User::newFromIdentity( $user ) );
+
+		// ID only
+		$identity = new UserIdentityValue( $user->getId(), '', 0 );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
+
+		// Name only
+		$identity = new UserIdentityValue( 0, $user->getName(), 0 );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
+
+		// Actor only
+		$identity = new UserIdentityValue( 0, '', $user->getActorId() );
+		$result = User::newFromIdentity( $identity );
+		$this->assertInstanceOf( User::class, $result );
+		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
+		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
+		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
 	}
 
 	/**
