@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * @covers WikiPage
+ *
  * @group ContentHandler
  * @group Database
  * @group medium
