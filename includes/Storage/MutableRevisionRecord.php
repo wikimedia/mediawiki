@@ -140,8 +140,8 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param SlotRecord $parentSlot
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
-		$slot = SlotRecord::newInherited( $parentSlot );
-		$this->setSlot( $slot );
+		$this->mSlots->inheritSlot( $parentSlot );
+		$this->resetAggregateValues();
 	}
 
 	/**
@@ -178,6 +178,22 @@ class MutableRevisionRecord extends RevisionRecord {
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
 		$this->resetAggregateValues();
+	}
+
+	/**
+	 * @param RevisionSlotsUpdate $update
+	 */
+	public function applyUpdate( RevisionSlotsUpdate $update ) {
+		$this->mSlots->applyUpdate( $update );
+	}
+
+	/**
+	 * Returns a slots update representing the changes made by this revision.
+	 *
+	 * @return RevisionSlotsUpdate
+	 */
+	public function getSlotsUpdate() {
+		return $this->mSlots;
 	}
 
 	/**

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
@@ -118,6 +119,108 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertNull( $record->getComment() );
 		$record->setComment( $comment );
 		$this->assertSame( $comment, $record->getComment() );
+	}
+
+	public function testSimpleGetTouchedAndInheritedSlots() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$mainSlot = new SlotRecord(
+			(object)[
+				'slot_id' => 1,
+				'slot_revision_id' => null, // unsaved
+				'slot_content_id' => 1,
+				'content_address' => null, // touched
+				'model_name' => 'x',
+				'role_name' => 'main',
+				'slot_origin' => null // touched
+			],
+			new WikitextContent( 'main' )
+		);
+		$auxSlot = new SlotRecord(
+			(object)[
+				'slot_id' => 2,
+				'slot_revision_id' => null, // unsaved
+				'slot_content_id' => 1,
+				'content_address' => 'foo', // inherited
+				'model_name' => 'x',
+				'role_name' => 'aux',
+				'slot_origin' => 1 // inherited
+			],
+			new WikitextContent( 'aux' )
+		);
+
+		$record->setSlot( $mainSlot );
+		$record->setSlot( $auxSlot );
+
+		$this->assertSame( [ 'main' ], $record->getTouchedSlots()->getSlotRoles() );
+		$this->assertSame( $mainSlot, $record->getTouchedSlots()->getSlot( 'main' ) );
+
+		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
+		$this->assertSame( $auxSlot, $record->getInheritedSlots()->getSlot( 'aux' ) );
+	}
+
+	public function testSimpleremoveSlot() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$a = new WikitextContent( 'a' );
+		$b = new WikitextContent( 'b' );
+
+		$record->inheritSlot( SlotRecord::newSaved( 7, 3, 'a', SlotRecord::newUnsaved( 'a', $a ) ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 4, 'b', SlotRecord::newUnsaved( 'b', $b ) ) );
+
+		$record->removeSlot( 'b' );
+
+		$this->assertTrue( $record->hasSlot( 'a' ) );
+		$this->assertFalse( $record->hasSlot( 'b' ) );
+	}
+
+	public function testSimpleGetSlotsUpdate() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$a = new WikitextContent( 'a' );
+		$b = new WikitextContent( 'b' );
+		$c = new WikitextContent( 'c' );
+		$x = new WikitextContent( 'x' );
+
+		$record->inheritSlot( SlotRecord::newSaved( 7, 3, 'a', SlotRecord::newUnsaved( 'a', $a ) ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 4, 'b', SlotRecord::newUnsaved( 'b', $b ) ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 5, 'c', SlotRecord::newUnsaved( 'c', $c ) ) );
+
+		$record->setContent( 'b', $x );
+		$record->removeSlot( 'c' );
+		$record->removeSlot( 'd' );
+
+		$updates = $record->getSlotsUpdate();
+
+		$this->assertEquals( [ 'b' ], $updates->getModifiedRoles() );
+		$this->assertEquals( [ 'c', 'd' ], $updates->getRemovedRoles() );
+		$this->assertEquals( $a, $updates->getSlot( 'a' )->getContent() );
+		$this->assertEquals( $x, $updates->getSlot( 'b' )->getContent() );
+	}
+
+	public function testApplyUpdate() {
+		$update = new MutableRevisionSlots();
+
+		$a = new WikitextContent( 'a' );
+		$b = new WikitextContent( 'b' );
+		$c = new WikitextContent( 'c' );
+		$x = new WikitextContent( 'x' );
+
+		$update->setContent( 'b', $x );
+		$update->setContent( 'c', $x );
+		$update->removeSlot( 'c' );
+		$update->removeSlot( 'd' );
+
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 3, 'a', SlotRecord::newUnsaved( 'a', $a ) ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 4, 'b', SlotRecord::newUnsaved( 'b', $b ) ) );
+		$record->inheritSlot( SlotRecord::newSaved( 7, 5, 'c', SlotRecord::newUnsaved( 'c', $c ) ) );
+
+		$record->applyUpdate( $update );
+
+		$this->assertEquals( [ 'b' ], array_keys( $record->getTouchedSlots()->getSlots() ) );
+		$this->assertEquals( $a, $record->getSlot( 'a' )->getContent() );
+		$this->assertEquals( $x, $record->getSlot( 'b' )->getContent() );
+		$this->assertFalse( $record->hasSlot( 'c' ) );
 	}
 
 }
