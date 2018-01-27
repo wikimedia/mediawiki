@@ -120,4 +120,25 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( $comment, $record->getComment() );
 	}
 
+	public function testSimpleGetTouchedAndInheritedSlots() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$mainSlot = new SlotRecord(
+			(object)[ 'role_name' => 'main', 'slot_inherited' => 0 ],
+			new WikitextContent( 'main' )
+		);
+		$auxSlot = new SlotRecord(
+			(object)[ 'role_name' => 'aux', 'slot_inherited' => 1 ],
+			new WikitextContent( 'aux' )
+		);
+
+		$record->setSlot( $mainSlot );
+		$record->setSlot( $auxSlot );
+
+		$this->assertSame( [ 'main' ], $record->getTouchedSlots()->getSlotRoles() );
+		$this->assertSame( $mainSlot, $record->getTouchedSlots()->getSlot( 'main' ) );
+
+		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
+		$this->assertSame( $auxSlot, $record->getInheritedSlots()->getSlot( 'aux' ) );
+	}
+
 }
