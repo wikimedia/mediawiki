@@ -20,6 +20,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\SlotRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -168,7 +170,7 @@ class ApiStashEdit extends ApiBase {
 
 	/**
 	 * @param WikiPage $page
-	 * @param Content $content Edit content
+	 * @param Revision $content Edit content
 	 * @param User $user
 	 * @param string $summary Edit summary
 	 * @return string ApiStashEdit::ERROR_* constant
@@ -200,19 +202,34 @@ class ApiStashEdit extends ApiBase {
 		$cutoffTime = time() - self::PRESUME_FRESH_TTL_SEC;
 
 		// Reuse any freshly build matching edit stash cache
-		$editInfo = $cache->get( $key );
-		if ( $editInfo && wfTimestamp( TS_UNIX, $editInfo->timestamp ) >= $cutoffTime ) {
+		$stashedInfo = $cache->get( $key );
+
+		if ( !isset( $stashedInfo->pstSlots ) ) {
+			$stashedInfo = null;
+		}
+
+		if ( $stashedInfo && wfTimestamp( TS_UNIX, $stashedInfo->timestamp ) >= $cutoffTime ) {
 			$alreadyCached = true;
 		} else {
-			$format = $content->getDefaultFormat();
-			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+			// TODO: MCR: stash all slots!
+			$slots = new RevisionSlots( [ 'main' => SlotRecord::newUnsaved( 'main', $content ) ] );
+			$pageMetaData = $page->getMetaDataUpdater( $user, null, $slots );
+			$pageMetaData->prepareEdit( $user, $slots, [], false );
+			$output = $pageMetaData->getCanonicalParserOutput();
+
+			list( $stashedInfo, , ) = self::buildStashValue(
+				$pageMetaData->getRawContent( 'main' ), // post-PST
+				$output,
+				$output->getCacheTime(),
+				$user
+			);
 			$alreadyCached = false;
 		}
 
-		if ( $editInfo && $editInfo->output ) {
+		if ( $stashedInfo && $stashedInfo->output ) {
 			// Let extensions add ParserOutput metadata or warm other caches
 			Hooks::run( 'ParserOutputStashForEdit',
-				[ $page, $content, $editInfo->output, $summary, $user ] );
+				[ $page, $content, $stashedInfo->output, $summary, $user ] );
 
 			$titleStr = (string)$title;
 			if ( $alreadyCached ) {
@@ -222,9 +239,9 @@ class ApiStashEdit extends ApiBase {
 			}
 
 			list( $stashInfo, $ttl, $code ) = self::buildStashValue(
-				$editInfo->pstContent,
-				$editInfo->output,
-				$editInfo->timestamp,
+				$stashedInfo->pstContent,
+				$stashedInfo->output,
+				$stashedInfo->timestamp,
 				$user
 			);
 
@@ -420,6 +437,7 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		// Only store what is actually needed
+		// TODO: MCR: stash all
 		$stashInfo = (object)[
 			'pstContent' => $pstContent,
 			'output'     => $parserOutput,
