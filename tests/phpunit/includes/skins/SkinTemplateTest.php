@@ -7,7 +7,6 @@
  *
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
-
 class SkinTemplateTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider makeListItemProvider
