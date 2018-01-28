@@ -172,7 +172,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return int
 	 */
-	function affectedRows() {
+	protected function fetchAffectedRowCount() {
 		$conn = $this->getBindingHandle();
 
 		return $conn->affected_rows;
