@@ -354,7 +354,7 @@ class DatabaseOracle extends Database {
 		return $e['code'];
 	}
 
-	function affectedRows() {
+	protected function fetchAffectedRowCount() {
 		return $this->mAffectedRows;
 	}
 
