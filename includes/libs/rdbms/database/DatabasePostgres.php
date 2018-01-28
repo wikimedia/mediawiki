@@ -384,7 +384,7 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	public function affectedRows() {
+	public function fetchAffectedRowCount() {
 		if ( !is_null( $this->mAffectedRows ) ) {
 			// Forced result for simulated queries
 			return $this->mAffectedRows;

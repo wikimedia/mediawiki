@@ -53,6 +53,9 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	protected function doQuery( $sql ) {
 	}
 
+	protected function fetchAffectedRowCount() {
+	}
+
 	// From DatabaseMysqli
 	protected function mysqlConnect( $realServer ) {
 	}
