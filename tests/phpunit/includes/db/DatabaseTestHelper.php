@@ -174,7 +174,7 @@ class DatabaseTestHelper extends Database {
 		return false;
 	}
 
-	function affectedRows() {
+	function fetchAffectedRowCount() {
 		return -1;
 	}
 
