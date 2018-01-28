@@ -494,7 +494,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return int
 	 */
-	function affectedRows() {
+	function fetchAffectedRowCount() {
 		return $this->mAffectedRows;
 	}
 
