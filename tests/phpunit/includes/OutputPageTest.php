@@ -15,6 +15,135 @@ class OutputPageTest extends MediaWikiTestCase {
 	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
+	const RSS_RC_LINK =  '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
+	const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>'; 
+
+	const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
+	const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
+
+	private function setupFeedLinks( $feed, $types ) {
+		$outputPage = $this->newInstance( [
+			'AdvertisedFeedTypes' => $types,
+			'Feed' => $feed,
+			'OverrideSiteFeed' => false,
+			'Script' => '/w',
+			'Sitename' => false,
+		]);
+		$outputPage->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
+		$this->setMwGlobals( [
+			'wgScript' => '/w/index.php',
+		] );
+		return $outputPage;
+	}
+
+	private function assertFeedLinks( $outputPage, $message, $present, $non_present ) {
+		$links = $outputPage->getHeadLinksArray();
+		foreach ( $present as $link ) {
+			$this->assertContains( $link, $links, $message );
+		}
+		foreach ( $non_present as $link ) {
+			$this->assertNotContains( $link, $links, $message );
+		}
+	} 
+
+	private function assertFeedUILinks( $outputPage, $ui_links ) {
+		if ( $ui_links ) {
+			$this->assertTrue( $outputPage->isSyndicated(), 'Syndication should be offered' );
+			$this->assertGreaterThan( 0, count( $outputPage->getSyndicationLinks() ), 'Some syndication links should be there' );
+		} else {
+			$this->assertFalse( $outputPage->isSyndicated(), 'No syndication should be offered' );
+			$this->assertEquals( 0, count( $outputPage->getSyndicationLinks() ), 'No syndication links should be there' );
+		}
+	}
+
+	public function testFeedLinkRSS() {
+		$outputPage = $this->setupFeedLinks( true, [ 'rss' ] );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Only RSS RC link should be offerred',
+			[ self::RSS_RC_LINK ],
+			[ self::ATOM_RC_LINK ]
+		);
+	}
+
+	public function testFeedLinkAtom() {
+		$outputPage = $this->setupFeedLinks( true, [ 'atom' ] );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Only Atom RC link should be offerred',
+			[ self::ATOM_RC_LINK ],
+			[ self::RSS_RC_LINK ]
+		);
+    }
+
+	public function testFeedLinkNeither() {
+		$outputPage = $this->setupFeedLinks( true, [] );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'No RC feed formats should be offerred',
+			[],
+			[ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
+		);
+	}
+
+	public function testFeedLinkDisabled() {
+		$outputPage = $this->setupFeedLinks( false, [ 'atom' ] );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'No RC feeds should be offerred',
+			[],
+			[ self::ATOM_RC_LINK, self::RSS_RC_LINK ]
+		);
+	}
+
+	public function testFeedAddedLinkAtom() {
+		$outputPage = $this->setupFeedLinks( true, [ 'atom' ] );
+		$outputPage->addFeedLink( 'atom', 'fake-link' );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Additional Atom feed should be offered',
+			[ self::ATOM_TEST_LINK, self::ATOM_RC_LINK ],
+			[ self::RSS_TEST_LINK, self::RSS_RC_LINK ]
+		);
+		$this->assertFeedUILinks( $outputPage, true );
+	}
+
+	public function testFeedAddedLinkRSS() {
+		$outputPage = $this->setupFeedLinks( true, [ 'rss' ] );
+		$outputPage->addFeedLink( 'rss', 'fake-link' );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Additional RSS feed should be offered',
+			[ self::RSS_TEST_LINK, self::RSS_RC_LINK ],
+			[ self::ATOM_TEST_LINK, self::ATOM_RC_LINK ]
+		);
+		$this->assertFeedUILinks( $outputPage, true );
+	}
+
+	public function testFeedAddedLinkAtomForRSS() {
+		$outputPage = $this->setupFeedLinks( true, [ 'rss' ] );
+		$outputPage->addFeedLink( 'atom', 'fake-link' );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Additional Atom feed should NOT be offered',
+			[ self::RSS_RC_LINK ],
+			[ self::RSS_TEST_LINK, self::ATOM_TEST_LINK, self::ATOM_RC_LINK ]
+		);
+		$this->assertFeedUILinks( $outputPage, false );
+	}
+
+	public function testFeedAddedLinkAtomDisabled() {
+		$outputPage = $this->setupFeedLinks( false, [ 'atom' ] );
+		$outputPage->addFeedLink( 'atom', 'fake-link' );
+		$this->assertFeedLinks(
+			$outputPage,
+		    'Additional Atom feed should NOT be offered',
+			[],
+			[ self::RSS_TEST_LINK, self::ATOM_TEST_LINK, self::ATOM_RC_LINK, self::ATOM_RC_LINK ]
+		);
+		$this->assertFeedUILinks( $outputPage, false );
+	}
+
 	/**
 	 * @covers OutputPage::addMeta
 	 * @covers OutputPage::getMetaTags
