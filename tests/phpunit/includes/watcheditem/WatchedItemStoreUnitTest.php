@@ -1193,7 +1193,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 		$mockDb->expects( $this->once() )
-			->method( 'affectedRows' )
+			->method( 'affectedRowCount' )
 			->will( $this->returnValue( 1 ) );
 
 		$mockCache = $this->getMockCache();
@@ -1229,7 +1229,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				]
 			);
 		$mockDb->expects( $this->once() )
-			->method( 'affectedRows' )
+			->method( 'affectedRowCount' )
 			->will( $this->returnValue( 0 ) );
 
 		$mockCache = $this->getMockCache();
