@@ -505,6 +505,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$blobStore,
 			$cache,
 			$commentStore,
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$migration,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 		if ( !$expectException ) {
