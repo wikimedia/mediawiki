@@ -72,6 +72,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
 
 		MWNamespace::clearCaches();
 		// Reset namespace cache
@@ -392,6 +393,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getService( '_SqlBlobStore' ),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			MIGRATION_OLD,
 			$services->getActorMigration()
 		);
 
@@ -1355,7 +1359,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev = $this->testPage->getRevision();
 
 		// Clear any previous cache for the revision during creation
-		$key = $cache->makeGlobalKey( 'revision-row-1.29',
+		$key = $cache->makeGlobalKey( RevisionStore::ROW_CACHE_KEY,
 			$db->getDomainID(),
 			$rev->getPage(),
 			$rev->getId()

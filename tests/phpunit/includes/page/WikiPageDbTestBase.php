@@ -33,6 +33,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
 		$this->pagesToDelete = [];
 	}
 
@@ -154,14 +155,19 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
 
+	abstract public function provideMigrations();
+
 	/**
+	 * @dataProvider provideMigrations
+	 *
 	 * Undeletion is covered in PageArchiveTest::testUndeleteRevisions()
 	 * TODO: Revision deletion
 	 *
 	 * @covers WikiPage::doDeleteArticle
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
-	public function testDoDeleteArticle() {
+	public function testDoDeleteArticle( $migration ) {
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migration );
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
