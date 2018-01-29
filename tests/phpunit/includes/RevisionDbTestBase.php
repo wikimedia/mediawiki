@@ -396,7 +396,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$store = new RevisionStore(
 			$services->getDBLoadBalancer(),
 			$services->getService( '_SqlBlobStore' ),
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore()
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );

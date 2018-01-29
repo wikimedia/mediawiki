@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use HashBagOStuff;
 use Language;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -30,7 +31,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		return new RevisionStore(
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
-			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache()
+			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
+			MediaWikiServices::getInstance()->getCommentStore()
 		);
 	}
 
@@ -458,7 +460,12 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
 		$blobStore->setLegacyEncoding( $encoding, Language::factory( $locale ) );
 
-		$store = new RevisionStore( wfGetLB(), $blobStore, $cache );
+		$store = new RevisionStore(
+			wfGetLB(),
+			$blobStore,
+			$cache,
+			MediaWikiServices::getInstance()->getCommentStore()
+		);
 
 		$record = $store->newRevisionFromRow(
 			$this->makeRow( $row ),
@@ -484,7 +491,12 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
 		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
 
-		$store = new RevisionStore( wfGetLB(), $blobStore, $cache );
+		$store = new RevisionStore(
+			wfGetLB(),
+			$blobStore,
+			$cache,
+			MediaWikiServices::getInstance()->getCommentStore()
+		);
 
 		$record = $store->newRevisionFromRow(
 			$this->makeRow( $row ),
