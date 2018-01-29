@@ -17,6 +17,11 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class RevisionTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
+	}
+
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -488,6 +493,9 @@ class RevisionTest extends MediaWikiTestCase {
 			$this->getBlobStore(),
 			$cache,
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 		return $blobStore;
@@ -1081,42 +1089,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetArchiveQueryInfo() {
-		yield 'wgContentHandlerUseDB false' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
-			[
-				'tables' => [
-					'archive',
-					'commentstore' => 'table',
-					'actormigration' => 'table',
-				],
-				'fields' => [
-					'ar_id',
-					'ar_page_id',
-					'ar_namespace',
-					'ar_title',
-					'ar_rev_id',
-					'ar_text',
-					'ar_text_id',
-					'ar_timestamp',
-					'ar_minor_edit',
-					'ar_deleted',
-					'ar_len',
-					'ar_parent_id',
-					'ar_sha1',
-					'commentstore' => 'field',
-					'ar_user' => 'actormigration_user',
-					'ar_user_text' => 'actormigration_user_text',
-					'ar_actor' => 'actormigration_actor',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			]
-		];
-		yield 'wgContentHandlerUseDB true' => [
-			[
-				'wgContentHandlerUseDB' => true,
-			],
+		yield [
 			[
 				'tables' => [
 					'archive',
@@ -1153,24 +1126,53 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getArchiveQueryInfo
 	 * @dataProvider provideGetArchiveQueryInfo
 	 */
-	public function testGetArchiveQueryInfo( $globals, $expected ) {
-		$this->setMwGlobals( $globals );
+	public function testGetArchiveQueryInfo( $expected ) {
 		$this->overrideCommentStoreAndActorMigration();
 
 		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
-		$this->assertEquals(
-			$expected,
-			Revision::getArchiveQueryInfo()
+
+		$queryInfo = Revision::getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
 		);
 	}
 
+	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
+		$this->objectAssociativeSort( $expected );
+		$this->objectAssociativeSort( $actual );
+
+		// Remove all int keys and re add them at the end after sorting by value
+		// This will result in all int keys being in the same order with same ints at the end of
+		// the array
+		foreach ( $expected as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $expected[$key] );
+				$expected[] = $value;
+			}
+		}
+		foreach ( $actual as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $actual[$key] );
+				$actual[] = $value;
+			}
+		}
+
+		$this->assertArrayEquals( $expected, $actual, false, true );
+	}
+
 	public function provideGetQueryInfo() {
-		yield 'wgContentHandlerUseDB false, opts none' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
+		yield 'opts none' => [
 			[],
 			[
 				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
@@ -1184,6 +1186,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_len',
 					'rev_parent_id',
 					'rev_sha1',
+					'rev_content_model',
+					'rev_content_format',
 					'commentstore' => 'field',
 					'rev_user' => 'actormigration_user',
 					'rev_user_text' => 'actormigration_user_text',
@@ -1192,10 +1196,8 @@ class RevisionTest extends MediaWikiTestCase {
 				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, opts page' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
+		yield 'opts page' => [
+
 			[ 'page' ],
 			[
 				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'page' ],
@@ -1219,6 +1221,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'page_latest',
 					'page_is_redirect',
 					'page_len',
+					'rev_content_model',
+					'rev_content_format'
 				],
 				'joins' => [
 					'page' => [
@@ -1230,10 +1234,8 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, opts user' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
+		yield 'opts user' => [
+
 			[ 'user' ],
 			[
 				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'user' ],
@@ -1252,6 +1254,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_user_text' => 'actormigration_user_text',
 					'rev_actor' => 'actormigration_actor',
 					'user_name',
+					'rev_content_model',
+					'rev_content_format'
 				],
 				'joins' => [
 					'user' => [
@@ -1266,10 +1270,7 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, opts text' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
+		yield 'opts text' => [
 			[ 'text' ],
 			[
 				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table', 'text' ],
@@ -1289,6 +1290,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_actor' => 'actormigration_actor',
 					'old_text',
 					'old_flags',
+					'rev_content_model',
+					'rev_content_format'
 				],
 				'joins' => [
 					'text' => [
@@ -1300,10 +1303,7 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB false, opts 3' => [
-			[
-				'wgContentHandlerUseDB' => false,
-			],
+		yield 'opts 3' => [
 			[ 'text', 'page', 'user' ],
 			[
 				'tables' => [
@@ -1332,6 +1332,8 @@ class RevisionTest extends MediaWikiTestCase {
 					'user_name',
 					'old_text',
 					'old_flags',
+					'rev_content_model',
+					'rev_content_format'
 				],
 				'joins' => [
 					'page' => [
@@ -1354,50 +1356,31 @@ class RevisionTest extends MediaWikiTestCase {
 				],
 			],
 		];
-		yield 'wgContentHandlerUseDB true, opts none' => [
-			[
-				'wgContentHandlerUseDB' => true,
-			],
-			[],
-			[
-				'tables' => [ 'revision', 'commentstore' => 'table', 'actormigration' => 'table' ],
-				'fields' => [
-					'rev_id',
-					'rev_page',
-					'rev_text_id',
-					'rev_timestamp',
-					'rev_minor_edit',
-					'rev_deleted',
-					'rev_len',
-					'rev_parent_id',
-					'rev_sha1',
-					'commentstore' => 'field',
-					'rev_user' => 'actormigration_user',
-					'rev_user_text' => 'actormigration_user_text',
-					'rev_actor' => 'actormigration_actor',
-					'rev_content_format',
-					'rev_content_model',
-				],
-				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
-			],
-		];
 	}
 
 	/**
 	 * @covers Revision::getQueryInfo
 	 * @dataProvider provideGetQueryInfo
 	 */
-	public function testGetQueryInfo( $globals, $options, $expected ) {
-		$this->setMwGlobals( $globals );
+	public function testGetQueryInfo( $options, $expected ) {
 		$this->overrideCommentStoreAndActorMigration();
 
 		$revisionStore = $this->getRevisionStore();
-		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
 
-		$this->assertEquals(
-			$expected,
-			Revision::getQueryInfo( $options )
+		$queryInfo = Revision::getQueryInfo( $options );
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
 		);
 	}
 
