@@ -37,6 +37,7 @@ use InvalidArgumentException;
 use IP;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Message;
@@ -93,6 +94,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 */
 	private $commentStore;
 
+	/** @var int One of the MIGRATION_* constants */
+	private $stage;
+
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
@@ -100,6 +104,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
+	 * @param int $migrationStage
 	 * @param bool|string $wikiId
 	 */
 	public function __construct(
@@ -107,6 +112,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
+		$migrationStage,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -115,6 +121,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
+		$this->stage = $migrationStage;
 		$this->wikiId = $wikiId;
 	}
 
@@ -284,8 +291,11 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
 		}
 
-		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
-			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
+		// Only allow writing of the main slot until the migration is over
+		if ( $this->stage !== MIGRATION_NEW ) {
+			if ( $rev->getSlotRoles() !== [ 'main' ] ) {
+				throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
+			}
 		}
 
 		// TODO: we shouldn't need an actual Title here.
@@ -297,12 +307,15 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			: $rev->getParentId();
 
 		// Record the text (or external storage URL) to the blob store
+		// TODO allow writing of multiple slots
 		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
 
 		$size = $this->failOnNull( $rev->getSize(), 'size field' );
 		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
 
-		if ( !$slot->hasAddress() ) {
+		$slotAlreadyHadAddress = $slot->hasAddress();
+
+		if ( !$slotAlreadyHadAddress ) {
 			$content = $slot->getContent();
 			$format = $content->getDefaultFormat();
 			$model = $content->getModel();
@@ -349,7 +362,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 
 		# Record the edit in revisions
-		$row = [
+		$revisionRow = [
 			'rev_page'       => $pageId,
 			'rev_parent_id'  => $parentId,
 			'rev_text_id'    => $textId,
@@ -364,12 +377,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		if ( $rev->getId() !== null ) {
 			// Needed to restore revisions with their original ID
-			$row['rev_id'] = $rev->getId();
+			$revisionRow['rev_id'] = $rev->getId();
 		}
 
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
-		$row += $commentFields;
+		$revisionRow += $commentFields;
 
 		if ( $this->contentHandlerUseDB ) {
 			// MCR migration note: rev_content_model and rev_content_format will go away
@@ -377,38 +390,68 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+			$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
+			$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
 		}
 
-		$dbw->insert( 'revision', $row, __METHOD__ );
+		$dbw->insert( 'revision', $revisionRow, __METHOD__ );
 
-		if ( !isset( $row['rev_id'] ) ) {
+		if ( !isset( $revisionRow['rev_id'] ) ) {
 			// only if auto-increment was used
-			$row['rev_id'] = intval( $dbw->insertId() );
+			$revisionRow['rev_id'] = intval( $dbw->insertId() );
 		}
-		$commentCallback( $row['rev_id'] );
+		$commentCallback( $revisionRow['rev_id'] );
 
 		// Insert IP revision into ip_changes for use when querying for a range.
-		if ( $row['rev_user'] === 0 && IP::isValid( $row['rev_user_text'] ) ) {
+		if ( $revisionRow['rev_user'] === 0 && IP::isValid( $revisionRow['rev_user_text'] ) ) {
 			$ipcRow = [
-				'ipc_rev_id'        => $row['rev_id'],
-				'ipc_rev_timestamp' => $row['rev_timestamp'],
-				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+				'ipc_rev_id'        => $revisionRow['rev_id'],
+				'ipc_rev_timestamp' => $revisionRow['rev_timestamp'],
+				'ipc_hex'           => IP::toHex( $revisionRow['rev_user_text'] ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
-		$newSlot = SlotRecord::newSaved( $row['rev_id'], $blobAddress, $slot );
+		// Write to the new content tables if migration is in progress
+		if ( $this->stage >= MIGRATION_WRITE_BOTH ) {
+			// TODO inject...
+			$roleStore = MediaWikiServices::getInstance()->getSlotRoleSqlStore();
+			$modelStore = MediaWikiServices::getInstance()->getContentModelSqlStore();
+
+			// TODO same connection?
+			$roleId = $roleStore->acquire( $slot->getRole() );
+			$modelId = $modelStore->acquire( $slot->getModel() );
+
+			$contentRow = [
+				//TODO Is it okay to use the rev size and sha1 when only inserting 1 slot?
+				'content_size' => $size,
+				'content_sha1' => $sha1,
+				'content_model' => $modelId,
+				'content_address' => $blobAddress,
+			];
+			$dbw->insert( 'content', $contentRow, __METHOD__ );
+			$contentId = intval( $dbw->insertId() );
+
+			$slotRow = [
+				'slot_revision_id' => $revisionRow['rev_id'],
+				'slot_role_id' => $roleId,
+				'slot_content_id' => $contentId,
+				// TODO inherited content
+				'slot_inherited' => (int)$slotAlreadyHadAddress,
+			];
+			$dbw->insert( 'slots', $slotRow, __METHOD__ );
+		}
+
+		$newSlot = SlotRecord::newSaved( $revisionRow['rev_id'], $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
-		$user = new UserIdentityValue( intval( $row['rev_user'] ), $row['rev_user_text'] );
+		$user = new UserIdentityValue( intval( $revisionRow['rev_user'] ), $revisionRow['rev_user_text'] );
 
 		$rev = new RevisionStoreRecord(
 			$title,
 			$user,
 			$comment,
-			(object)$row,
+			(object)$revisionRow,
 			$slots,
 			$this->wikiId
 		);

@@ -126,6 +126,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MIGRATION_OLD,
 			$wikiId
 		);
 
