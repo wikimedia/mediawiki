@@ -478,7 +478,10 @@ return [
 			$services->getDBLoadBalancer(),
 			$blobStore,
 			$services->getMainWANObjectCache(),
-			$services->getCommentStore()
+			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			$services->getMainConfig()->get( 'RevisionStoreSchemaMigrationStage' )
 		);
 
 		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
