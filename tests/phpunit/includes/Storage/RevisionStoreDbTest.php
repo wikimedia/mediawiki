@@ -34,6 +34,14 @@ use WikitextContent;
  */
 class RevisionStoreDbTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		$this->tablesUsed[] = 'archive';
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'comment';
+		parent::setUp();
+	}
+
 	/**
 	 * @return LoadBalancer
 	 */
