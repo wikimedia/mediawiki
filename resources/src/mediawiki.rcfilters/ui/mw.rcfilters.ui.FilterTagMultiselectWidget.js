@@ -299,7 +299,7 @@
 
 			mw.hook( 'RcFilters.popup.open' ).fire();
 
-			if ( !this.getMenu().getSelectedItem() ) {
+			if ( !this.getMenu().findSelectedItem() ) {
 				// If there are no selected items, scroll menu to top
 				// This has to be in a setTimeout so the menu has time
 				// to be positioned and fixed
