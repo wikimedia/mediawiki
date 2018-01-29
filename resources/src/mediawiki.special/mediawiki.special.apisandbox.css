@@ -7,6 +7,10 @@
 	padding: 0.5em;
 }
 
+#mw-apisandbox-ui .mw-apisandbox-link {
+	display: none;
+}
+
 .mw-apisandbox-popup .oo-ui-popupWidget-body > .oo-ui-widget {
 	vertical-align: middle;
 }
