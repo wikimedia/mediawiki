@@ -113,9 +113,10 @@ class SlotRecord {
 
 		$row = [
 			'slot_id' => null, // not yet known
-			'slot_address' => null, // not yet known. need setter?
 			'slot_revision' => null, // not yet known
 			'slot_inherited' => $inherited,
+			'cont_id' => null, // not yet known. need setter?
+			'cont_address' => null, // not yet known. need setter?
 			'cont_size' => null, // compute later
 			'cont_sha1' => null, // compute later
 			'role_name' => $role,
@@ -128,20 +129,30 @@ class SlotRecord {
 	/**
 	 * Constructs a SlotRecord for a newly saved revision, based on the proto-slot that was
 	 * supplied to the code that performed the save operation. This adds information that
-	 * has only become available during saving, particularly the revision ID and blob address.
+	 * has only become available during saving, particularly the revision ID and blob address and
+	 * content ID.
 	 *
 	 * @param int $revisionId
+	 * @param int|null $contentId can be null during migration
 	 * @param string $blobAddress
 	 * @param SlotRecord $protoSlot The proto-slot that was provided to the code that then
 	 *
 	 * @return SlotRecord
 	 */
-	public static function newSaved( $revisionId, $blobAddress, SlotRecord $protoSlot ) {
+	public static function newSaved(
+		$revisionId,
+		$contentId,
+		$blobAddress,
+		SlotRecord $protoSlot
+	) {
 		Assert::parameterType( 'integer', $revisionId, '$revisionId' );
+		// TODO once migration is over $contentId this must be an integer
+		Assert::parameterType( 'integer|null', $contentId, '$contentId' );
 		Assert::parameterType( 'string', $blobAddress, '$blobAddress' );
 
 		return self::newDerived( $protoSlot, [
 			'slot_revision' => $revisionId,
+			'cont_id' => $contentId,
 			'cont_address' => $blobAddress,
 		] );
 	}
@@ -321,6 +332,15 @@ class SlotRecord {
 	 */
 	public function getRole() {
 		return $this->getStringField( 'role_name' );
+	}
+
+	/**
+	 * Returns the id of this slot's content.
+	 *
+	 * @return int
+	 */
+	public function getContentId() {
+		return $this->getIntField( 'cont_id' );
 	}
 
 	/**
