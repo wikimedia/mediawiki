@@ -39,4 +39,11 @@ class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
 		$this->assertEquals( JavaScriptContentHandler::class, get_class( $page->getContentHandler() ) );
 	}
 
+	public function provideMigrations() {
+		yield 'MIGRATION_OLD' => [ MIGRATION_OLD ];
+		yield 'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ];
+		yield 'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ];
+		yield 'MIGRATION_NEW' => [ MIGRATION_NEW ];
+	}
+
 }
