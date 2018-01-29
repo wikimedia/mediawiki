@@ -668,7 +668,7 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 CREATE TABLE /*_*/slots (
 
   -- reference to rev_id
-  slot_revision_id bigint unsigned NOT NULL,
+  slot_revision_id bigint unsigned NOT NULL,f
 
   -- reference to role_id
   slot_role_id smallint unsigned NOT NULL,

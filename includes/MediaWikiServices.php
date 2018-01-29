@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki;
 
+use ActorMigration;
 use CommentStore;
 use Config;
 use ConfigFactory;
