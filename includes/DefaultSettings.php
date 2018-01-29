@@ -8864,6 +8864,17 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables)
+ *
+ * @see Task: https://phabricator.wikimedia.org/T174028
+ * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
+ *
+ * @since 1.32
+ * @var int One of the MIGRATION_* constants
+ */
+$wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
+
+/**
  * Actor table schema migration stage.
  * @since 1.31
  * @var int One of the MIGRATION_* constants

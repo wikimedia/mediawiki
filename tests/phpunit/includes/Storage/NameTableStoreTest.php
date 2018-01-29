@@ -28,9 +28,14 @@ class NameTableStoreTest extends MediaWikiTestCase {
 
 	private function populateTable( $values ) {
 		$insertValues = [];
+
+		// don't rely on auto-increment, the counter may be off due to previous tests
+		$key = 1;
 		foreach ( $values as $name ) {
-			$insertValues[] = [ 'role_name' => $name ];
+			$insertValues[] = [ 'role_id' => $key, 'role_name' => $name ];
+			$key++;
 		}
+
 		$this->db->insert( 'slot_roles', $insertValues );
 	}
 
