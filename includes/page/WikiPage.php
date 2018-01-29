@@ -2786,7 +2786,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$tags = [], $logsubtype = 'delete'
 	) {
 		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage,
-			$wgActorTableSchemaMigrationStage;
+			$wgActorTableSchemaMigrationStage, $wgMultiContentRevisionSchemaMigrationStage;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2905,7 +2905,10 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
-			if ( $wgContentHandlerUseDB ) {
+			if (
+				$wgContentHandlerUseDB &&
+				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH
+			) {
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}

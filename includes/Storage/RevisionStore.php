@@ -79,7 +79,7 @@ class RevisionStore
 	private $wikiId;
 
 	/**
-	 * @var boolean
+	 * @var boolean true, as setContentHandlerUseDB does not allow this to be set to false.
 	 */
 	private $contentHandlerUseDB = true;
 
@@ -109,12 +109,26 @@ class RevisionStore
 	private $logger;
 
 	/**
+	 * @var NameTableStore
+	 */
+	private $contentModelStore;
+
+	/**
+	 * @var NameTableStore
+	 */
+	private $slotRoleStore;
+
+	/** @var int One of the MIGRATION_* constants */
+	private $migrationStage;
+
+	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
+	 * @param int $migrationStage
 	 * @param ActorMigration $actorMigration
 	 * @param bool|string $wikiId
 	 */
@@ -123,6 +137,9 @@ class RevisionStore
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
+		NameTableStore $contentModelStore,
+		NameTableStore $slotRoleStore,
+		$migrationStage,
 		ActorMigration $actorMigration,
 		$wikiId = false
 	) {
@@ -132,6 +149,9 @@ class RevisionStore
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
+		$this->contentModelStore = $contentModelStore;
+		$this->slotRoleStore = $slotRoleStore;
+		$this->migrationStage = $migrationStage;
 		$this->actorMigration = $actorMigration;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
@@ -157,8 +177,12 @@ class RevisionStore
 
 	/**
 	 * @param bool $contentHandlerUseDB
+	 * @throws MWException
 	 */
 	public function setContentHandlerUseDB( $contentHandlerUseDB ) {
+		if ( !$contentHandlerUseDB ) {
+			throw new MWException( 'Content model must be stored in the database.' );
+		}
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
 
@@ -319,6 +343,8 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::insertOn
 	 *
+	 * TODO when called from PageArchive->undeleteRevisions DO NOT try to re insert content etc...
+	 *
 	 * @param RevisionRecord $rev
 	 * @param IDatabase $dbw (master connection)
 	 *
@@ -333,6 +359,7 @@ class RevisionStore
 			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
 		}
 
+		// RevisionStore currently only supports writing a single slot
 		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
 			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
 		}
@@ -346,10 +373,13 @@ class RevisionStore
 			: $rev->getParentId();
 
 		// Record the text (or external storage URL) to the blob store
+		// TODO allow writing of multiple slots
 		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
 
 		$size = $this->failOnNull( $rev->getSize(), 'size field' );
 		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
+
+		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$slot->hasAddress() ) {
 			$content = $slot->getContent();
@@ -402,10 +432,9 @@ class RevisionStore
 		$this->failOnEmpty( $user->getName(), 'user_text field' );
 
 		# Record the edit in revisions
-		$row = [
+		$revisionRow = [
 			'rev_page'       => $pageId,
 			'rev_parent_id'  => $parentId,
-			'rev_text_id'    => $textId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
 			'rev_timestamp'  => $dbw->timestamp( $timestamp ),
 			'rev_deleted'    => $rev->getVisibility(),
@@ -415,54 +444,82 @@ class RevisionStore
 
 		if ( $rev->getId() !== null ) {
 			// Needed to restore revisions with their original ID
-			$row['rev_id'] = $rev->getId();
+			$revisionRow['rev_id'] = $rev->getId();
 		}
 
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
-		$row += $commentFields;
+		$revisionRow += $commentFields;
 
 		list( $actorFields, $actorCallback ) =
 			$this->actorMigration->getInsertValuesWithTempTable( $dbw, 'rev_user', $user );
-		$row += $actorFields;
+		$revisionRow += $actorFields;
 
-		if ( $this->contentHandlerUseDB ) {
+		if ( $this->migrationStage <= MIGRATION_WRITE_BOTH ) {
+			$revisionRow['rev_text_id'] = $textId;
+
 			// MCR migration note: rev_content_model and rev_content_format will go away
-
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+			$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
+			$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
 		}
 
-		$dbw->insert( 'revision', $row, __METHOD__ );
+		$dbw->insert( 'revision', $revisionRow, __METHOD__ );
 
-		if ( !isset( $row['rev_id'] ) ) {
+		if ( !isset( $revisionRow['rev_id'] ) ) {
 			// only if auto-increment was used
-			$row['rev_id'] = intval( $dbw->insertId() );
+			$revisionRow['rev_id'] = intval( $dbw->insertId() );
 		}
-		$commentCallback( $row['rev_id'] );
-		$actorCallback( $row['rev_id'], $row );
+		$commentCallback( $revisionRow['rev_id'] );
+		$actorCallback( $revisionRow['rev_id'], $revisionRow );
 
 		// Insert IP revision into ip_changes for use when querying for a range.
 		if ( $user->getId() === 0 && IP::isValid( $user->getName() ) ) {
 			$ipcRow = [
-				'ipc_rev_id'        => $row['rev_id'],
-				'ipc_rev_timestamp' => $row['rev_timestamp'],
+				'ipc_rev_id'        => $revisionRow['rev_id'],
+				'ipc_rev_timestamp' => $revisionRow['rev_timestamp'],
 				'ipc_hex'           => IP::toHex( $user->getName() ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
-		$newSlot = SlotRecord::newSaved( $row['rev_id'], $blobAddress, $slot );
+		// Write to the new content tables if migration is in progress and no address present
+		if ( $this->migrationStage >= MIGRATION_WRITE_BOTH && !$slot->hasAddress() ) {
+			$roleId = $this->slotRoleStore->acquireId( $slot->getRole() );
+			$modelId = $this->contentModelStore->acquireId( $slot->getModel() );
+
+			$contentRow = [
+				// Note: Is it still okay to use the rev size and sha1 when only inserting 1 slot
+				// XXX: Not if T185793 happens.
+				'content_size' => $slot->getSize(),
+				'content_sha1' => $slot->getSha1(),
+				'content_model' => $modelId,
+				'content_address' => $blobAddress,
+			];
+			$dbw->insert( 'content', $contentRow, __METHOD__ );
+			$contentId = intval( $dbw->insertId() );
+
+			$slotRow = [
+				'slot_revision_id' => $revisionRow['rev_id'],
+				'slot_role_id' => $roleId,
+				'slot_content_id' => $contentId,
+				'slot_inherited' => $slot->isInherited(),
+			];
+			$dbw->insert( 'slots', $slotRow, __METHOD__ );
+		}
+
+		$dbw->endAtomic( __METHOD__ );
+
+		$newSlot = SlotRecord::newSaved( $revisionRow['rev_id'], $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
 		$rev = new RevisionStoreRecord(
 			$title,
 			$user,
 			$comment,
-			(object)$row,
+			(object)$revisionRow,
 			$slots,
 			$this->wikiId
 		);
@@ -514,6 +571,7 @@ class RevisionStore
 			throw new MWException( "Can't use format $format with content model $model on $name" );
 		}
 
+		// TODO remove this bloc, contentHandlerUseDB will always be true in here
 		if ( !$this->contentHandlerUseDB ) {
 			// if $wgContentHandlerUseDB is not set,
 			// all revisions must use the default content model and format.
@@ -606,7 +664,7 @@ class RevisionStore
 				'sha1'       => $current->rev_sha1
 			];
 
-			if ( $this->contentHandlerUseDB ) {
+			if ( $this->migrationStage <= MIGRATION_WRITE_BOTH ) {
 				$fields['content_model'] = $current->rev_content_model;
 				$fields['content_format'] = $current->rev_content_format;
 			}
@@ -1601,7 +1659,6 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], [
 			'rev_id',
 			'rev_page',
-			'rev_text_id',
 			'rev_timestamp',
 			'rev_minor_edit',
 			'rev_deleted',
@@ -1620,9 +1677,30 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
-		if ( $this->contentHandlerUseDB ) {
+		if ( $this->migrationStage === MIGRATION_OLD ) {
+			$ret['fields'][] = 'rev_text_id';
 			$ret['fields'][] = 'rev_content_format';
 			$ret['fields'][] = 'rev_content_model';
+		} else {
+			$join = $this->migrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+			$ret['joins']['slots'] = [ $join, "slots.slot_revision_id = revision.rev_id" ];
+			$ret['joins']['content'] = [ $join, "content.content_id = slots.slot_content_id" ];
+			$ret['joins']['content_models'] = [ $join, "content.content_model = content_models.model_id" ];
+			$ret['tables'][] = 'slots';
+			$ret['tables'][] = 'content';
+			$ret['tables'][] = 'content_models';
+			if ( $this->migrationStage < MIGRATION_NEW ) {
+				$ret['fields']['rev_text_id'] = 'COALESCE( SUBSTR(content_address, 4), rev_text_id )';
+				// content_format does not have a place in the new schema, so don't COALESCE
+				$ret['fields']['rev_content_format'] = 'rev_content_format';
+				$ret['fields']['rev_content_model'] = 'COALESCE( content_models.model_name, rev_content_model )';
+			} else {
+				// content_address will be in the form tt:123, so strip the first 3 characters
+				$ret['fields']['rev_text_id'] = 'SUBSTR(content_address, 4)';
+				// content_format does not have a place in the new schema, so just select NULL
+				$ret['fields']['rev_content_format'] = 'NULL';
+				$ret['fields']['rev_content_model'] = 'content_models.model_name';
+			}
 		}
 
 		if ( in_array( 'page', $options, true ) ) {
@@ -1683,8 +1761,6 @@ class RevisionStore
 					'ar_namespace',
 					'ar_title',
 					'ar_rev_id',
-					'ar_text',
-					'ar_text_id',
 					'ar_timestamp',
 					'ar_minor_edit',
 					'ar_deleted',
@@ -1695,9 +1771,33 @@ class RevisionStore
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
-		if ( $this->contentHandlerUseDB ) {
+		if ( $this->migrationStage === MIGRATION_OLD ) {
+			$ret['fields'][] = 'ar_text';
+			$ret['fields'][] = 'ar_text_id';
 			$ret['fields'][] = 'ar_content_format';
 			$ret['fields'][] = 'ar_content_model';
+		} else {
+			$join = $this->migrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+			$ret['joins']['slots'] = [ $join, "slots.slot_revision_id = archive.ar_rev_id" ];
+			$ret['joins']['content'] = [ $join, "content.content_id = slots.slot_content_id" ];
+			$ret['joins']['content_models'] = [ $join, "content.content_model = content_models.model_id" ];
+			$ret['tables'][] = 'slots';
+			$ret['tables'][] = 'content';
+			$ret['tables'][] = 'content_models';
+			// ar_text will be removed https://phabricator.wikimedia.org/T33223
+			$ret['fields']['ar_text'] = 'NULL';
+			if ( $this->migrationStage < MIGRATION_NEW ) {
+				$ret['fields']['ar_text_id'] = 'COALESCE( SUBSTR(content_address, 4), ar_text_id )';
+				// content_format does not have a place in the new schema, so don't COALESCE
+				$ret['fields']['ar_content_format'] = 'ar_content_format';
+				$ret['fields']['ar_content_model'] = 'COALESCE( content_models.model_name, ar_content_model )';
+			} else {
+				// content_address will be in the form tt:123, so strip the first 3 characters
+				$ret['fields']['ar_text_id'] = 'SUBSTR(content_address, 4)';
+				// content_format does not have a place in the new schema, so just select NULL
+				$ret['fields']['ar_content_format'] = 'NULL';
+				$ret['fields']['ar_content_model'] = 'content_models.model_name';
+			}
 		}
 
 		return $ret;

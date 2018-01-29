@@ -398,6 +398,9 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getService( '_SqlBlobStore' ),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			MIGRATION_OLD,
 			$services->getActorMigration()
 		);
 
