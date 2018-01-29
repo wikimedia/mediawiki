@@ -4520,6 +4520,8 @@
 	"log-action-filter-managetags-deactivate": "{{doc-log-action-filter-action|managetags|deactivate}}",
 	"log-action-filter-move-move": "{{doc-log-action-filter-action|move|move}}",
 	"log-action-filter-move-move_redir": "{{doc-log-action-filter-action|move|move_redir}}",
+	"log-action-filter-move-move_keep_redir": "{{doc-log-action-filter-action|move|move_keep_redir}}",
+	"log-action-filter-move-move_suppress_redir": "{{doc-log-action-filter-action|move|move_suppress_redir}}",
 	"log-action-filter-newusers-create": "{{doc-log-action-filter-action|newusers|create}}",
 	"log-action-filter-newusers-create2": "{{doc-log-action-filter-action|newusers|create2}}",
 	"log-action-filter-newusers-autocreate": "{{doc-log-action-filter-action|newusers|autocreate}}",

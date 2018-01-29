@@ -35,14 +35,21 @@ class MoveLogFormatter extends LogFormatter {
 		return [ Title::newFromText( $params[3] ) ];
 	}
 
-	protected function getMessageKey() {
+	private function isMoveSuppressingRedirect() {
 		$key = parent::getMessageKey();
 		$params = $this->extractParameters();
-		if ( isset( $params[4] ) && $params[4] === '1' ) {
-			// Messages: logentry-move-move-noredirect, logentry-move-move_redir-noredirect
-			$key .= '-noredirect';
-		}
+		return (
+			( strpos( strrev( $key ), strrev( '_suppress_redir' ) ) === 0 ) ||
+			( isset( $params[4] ) && $params[4] === '1' )
+		);
+	}
 
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		if ( $this->isMoveSuppressingRedirect() ) {
+			// Messages: logentry-move-move-noredirect, logentry-move-move_redir-noredirect
+			$key = str_replace( '_suppress_redir', '', $key ) . '-noredirect';
+		}
 		return $key;
 	}
 
@@ -92,9 +99,7 @@ class MoveLogFormatter extends LogFormatter {
 
 		static $map = [
 			'4:title:target',
-			'5:bool:suppressredirect',
 			'4::target' => '4:title:target',
-			'5::noredir' => '5:bool:suppressredirect',
 		];
 		foreach ( $map as $index => $key ) {
 			if ( isset( $params[$index] ) ) {
@@ -103,9 +108,7 @@ class MoveLogFormatter extends LogFormatter {
 			}
 		}
 
-		if ( !isset( $params['5:bool:suppressredirect'] ) ) {
-			$params['5:bool:suppressredirect'] = false;
-		}
+		$params['5:bool:suppressredirect'] = $this->isMoveSuppressingRedirect();
 
 		return $params;
 	}
