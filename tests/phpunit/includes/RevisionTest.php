@@ -492,7 +492,9 @@ class RevisionTest extends MediaWikiTestCase {
 			$lb,
 			$this->getBlobStore(),
 			$cache,
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MIGRATION_OLD,
+			false
 		);
 		return $blobStore;
 	}
