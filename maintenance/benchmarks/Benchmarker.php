@@ -26,6 +26,8 @@
  * @ingroup Benchmark
  */
 
+use Wikimedia\RunningStat;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
 // @codeCoverageIgnoreEnd
@@ -68,7 +70,7 @@ abstract class Benchmarker extends Maintenance {
 			}
 
 			// Run benchmarks
-			$times = [];
+			$stat = new RunningStat();
 			for ( $i = 0; $i < $count; $i++ ) {
 				$t = microtime( true );
 				call_user_func_array( $bench['function'], $bench['args'] );
@@ -76,20 +78,8 @@ abstract class Benchmarker extends Maintenance {
 				if ( $verbose ) {
 					$this->verboseRun( $i );
 				}
-				$times[] = $t;
+				$stat->addObservation( $t );
 			}
-
-			// Collect metrics
-			sort( $times, SORT_NUMERIC );
-			$min = $times[0];
-			$max = end( $times );
-			if ( $count % 2 ) {
-				$median = $times[ ( $count - 1 ) / 2 ];
-			} else {
-				$median = ( $times[$count / 2] + $times[$count / 2 - 1] ) / 2;
-			}
-			$total = array_sum( $times );
-			$mean = $total / $count;
 
 			// Name defaults to name of called function
 			if ( is_string( $key ) ) {
@@ -108,12 +98,13 @@ abstract class Benchmarker extends Maintenance {
 
 			$this->addResult( [
 				'name' => $name,
-				'count' => $count,
-				'total' => $total,
-				'min' => $min,
-				'median' => $median,
-				'mean' => $mean,
-				'max' => $max,
+				'count' => $stat->getCount(),
+				// Get rate per second from mean (in ms)
+				'rate' => 1.0 / ( $stat->getMean() / 1000.0 ),
+				'total' => $stat->getMean() * $stat->getCount(),
+				'mean' => $stat->getMean(),
+				'max' => $stat->max,
+				'stddev' => $stat->getStdDev(),
 				'usage' => [
 					'mem' => memory_get_usage( true ),
 					'mempeak' => memory_get_peak_usage( true ),
@@ -137,12 +128,15 @@ abstract class Benchmarker extends Maintenance {
 	public function addResult( $res ) {
 		$ret = sprintf( "%s\n  %' 6s: %d\n",
 			$res['name'],
-			'times',
+			'count',
 			$res['count']
 		);
-
-		foreach ( [ 'total', 'min', 'median', 'mean', 'max' ] as $metric ) {
-			$ret .= sprintf( "  %' 6s: %6.2fms\n",
+		$ret .= sprintf( "  %' 6s: %8.1f/s\n",
+			'rate',
+			$res['rate']
+		);
+		foreach ( [ 'total', 'mean', 'max', 'stddev' ] as $metric ) {
+			$ret .= sprintf( "  %' 6s: %8.2fms\n",
 				$metric,
 				$res[$metric]
 			);
