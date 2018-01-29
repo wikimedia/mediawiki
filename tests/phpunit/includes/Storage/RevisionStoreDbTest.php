@@ -125,7 +125,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$loadBalancer,
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
-			$wikiId
+			$wikiId,
+			MediaWikiServices::getInstance()->getCommentStore()
 		);
 
 		$count = $store->countRevisionsByPageId( $db, 0 );
