@@ -32,7 +32,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MIGRATION_OLD
 		);
 	}
 
