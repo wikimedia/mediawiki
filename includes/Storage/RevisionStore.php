@@ -265,8 +265,8 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	}
 
 	/**
-	 * Insert a new revision into the database, returning the new revision ID
-	 * number on success and dies horribly on failure.
+	 * Insert a new revision into the database, returning the new revision record
+	 * on success and dies horribly on failure.
 	 *
 	 * MCR migration note: this replaces Revision::insertOn
 	 *
