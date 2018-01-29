@@ -28,7 +28,8 @@
 			"Obsuser",
 			"Zoranzoki21",
 			"Prevodim",
-			"Bugoslav"
+			"Bugoslav",
+			"Acamicamacaraca"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -1088,8 +1089,8 @@
 	"right-editmyuserjs": "uređivanje sopstvenih JavaScript datoteka",
 	"right-viewmywatchlist": "vidi sopstveni spisak nadgledanja",
 	"right-editmywatchlist": "uređivanje sopstvenog spiska nadgledanja; neke preduzete radnje će svejedno dodati stranice na spisak i bez ovog prava",
-	"right-viewmyprivateinfo": "Vidite svoje lične podatke (npr. imejl adresu, pravo ime)",
-	"right-editmyprivateinfo": "Уređivanje sopstvenih ličnih podataka (npr. imejl adresa, pravo ime)",
+	"right-viewmyprivateinfo": "vidite svoje lične podatke (npr. imejl adresu, pravo ime)",
+	"right-editmyprivateinfo": "uređivanje sopstvenih ličnih podataka (npr. imejl adresa, pravo ime)",
 	"right-editmyoptions": "uređivanje sopstvenih podešavanja",
 	"right-rollback": "brzo vraćanje izmena poslednjeg korisnika koji je menjao određenu stranicu",
 	"right-markbotedits": "označavanje vraćenih izmena kao izmene bota",

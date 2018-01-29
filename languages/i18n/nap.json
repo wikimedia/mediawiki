@@ -13,7 +13,8 @@
 			"Candalua",
 			"Macofe",
 			"V6rg",
-			"Nemo bis"
+			"Nemo bis",
+			"S4b1nuz E.656"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -3404,7 +3405,7 @@
 	"feedback-thanks": "Grazie! 'O feedback vuosto s'è mpizzato dint' 'a paggena \"[$2 $1]\".",
 	"feedback-thanks-title": "Ve ringraziammo!",
 	"feedback-useragent": "Aggente utente:",
-	"searchsuggest-search": "Truova",
+	"searchsuggest-search": "Truova dint'ô {{SITENAME}}",
 	"searchsuggest-containing": "tène...",
 	"api-error-badtoken": "Errore interno: 'O token nun è buono.",
 	"api-error-emptypage": "'A criazione 'e paggene nuove abbacante nun è permessa.",

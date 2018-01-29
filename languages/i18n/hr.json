@@ -3467,7 +3467,7 @@
 	"logentry-import-interwiki": "$1 {{GENDER:$2|uvezao|uvezla}} je $3 s drugog wikija",
 	"logentry-import-interwiki-details": "$1 {{GENDER:$2|uvezao|uvezla}} je $3 sa $5 ($4 {{PLURAL:$4|izmjena|izmjene|izmjena}})",
 	"logentry-merge-merge": "$1 je {{GENDER:$2|spojio|spojila}} $3 s $4 (izmjene do $5)",
-	"logentry-move-move": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4",
+	"logentry-move-move": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4",
 	"logentry-move-move-noredirect": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 bez preusmjeravanja",
 	"logentry-move-move_redir": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja",
 	"logentry-move-move_redir-noredirect": "$1 je {{GENDER:$2|premjestio|premjestila}} stranicu $3 na $4 preko preusmjeravanja bez ostavljanja preusmjeravanja",

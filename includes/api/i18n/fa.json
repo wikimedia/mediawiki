@@ -191,6 +191,7 @@
 	"apihelp-opensearch-param-suggest": "کاری نکنید اگر <var>[[mw:Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> false است.",
 	"apihelp-opensearch-param-format": "فرمت خروجی.",
 	"apihelp-opensearch-example-te": "یافتن صفحه‌هایی که با <kbd>Te</kbd> آغاز می‌شوند",
+	"apihelp-options-summary": "تغییر ترجیحات کاربر جاری",
 	"apihelp-options-param-reset": "ترجیحات را به مقادیر پیش فرض سایت بازمی گرداند.",
 	"apihelp-options-example-reset": "بازنشانی همه تنظیمات.",
 	"apihelp-paraminfo-param-helpformat": "ساختار راهنمای رشته‌ها",

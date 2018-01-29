@@ -1721,7 +1721,7 @@
 	"lockmanager-fail-closelock": "Die Sperrdatei für „$1“ konnte nicht geschlossen werden.",
 	"lockmanager-fail-deletelock": "Die Sperrdatei für „$1“ konnte nicht gelöscht werden.",
 	"lockmanager-fail-acquirelock": "Die Sperre für „$1“ konnte nicht abgerufen werden.",
-	"lockmanager-fail-openlock": "Die Sperrdatei für „$1“ konnte nicht geöffnet werden.",
+	"lockmanager-fail-openlock": "Die Sperrdatei für „$1“ konnte nicht geöffnet werden. Stelle sicher, dass dein Hochladerepositorium korrekt konfiguriert ist und dein Webserver eine Berechtigung zum Beschreiben dieses Repositoriums hat. Siehe https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory für weitere Informationen.",
 	"lockmanager-fail-releaselock": "Die Sperre für „$1“ konnte nicht freigegeben werden.",
 	"lockmanager-fail-db-bucket": "Es konnte mit Sammelabruf $1 keine ausreichende Anzahl an Verbindungen zu Sperrdatenbanken hergestellt werden.",
 	"lockmanager-fail-db-release": "Die Sperren auf Datenbank $1 konnten nicht freigegeben werden.",

@@ -1804,7 +1804,7 @@
 	"lockmanager-fail-closelock": "Impossible de fermer le fichier de verrou pour « $1 ».",
 	"lockmanager-fail-deletelock": "Impossible de supprimer le fichier de verrou pour « $1 ».",
 	"lockmanager-fail-acquirelock": "Impossible d'obtenir le verrou pour « $1 ».",
-	"lockmanager-fail-openlock": "Impossible d'ouvrir le fichier de verrou pour « $1» .",
+	"lockmanager-fail-openlock": "Impossible d’ouvrir le fichier de verrou pour « $1 » . Assurez-vous que votre répertoire de téléchargement est configuré correctement et que votre serveur web a le droit d’y écrire. Voyez https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory pour plus d’information.",
 	"lockmanager-fail-releaselock": "Impossible de relâcher le verrou pour « $1 ».",
 	"lockmanager-fail-db-bucket": "Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.",
 	"lockmanager-fail-db-release": "Impossible de relâcher les verrous sur la base de données $1.",
