@@ -68,6 +68,8 @@ use Wikimedia\Rdbms\LoadBalancer;
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
 
+	const ROW_CACHE_KEY = 'revision-row-1.29';
+
 	/**
 	 * @var SqlBlobStore
 	 */
@@ -109,12 +111,28 @@ class RevisionStore
 	private $logger;
 
 	/**
+	 * @var NameTableStore
+	 */
+	private $contentModelStore;
+
+	/**
+	 * @var NameTableStore
+	 */
+	private $slotRoleStore;
+
+	/** @var int One of the MIGRATION_* constants */
+	private $mcrMigrationStage;
+
+	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
+	 * @param NameTableStore $contentModelStore
+	 * @param NameTableStore $slotRoleStore
+	 * @param int $migrationStage
 	 * @param ActorMigration $actorMigration
 	 * @param bool|string $wikiId
 	 */
@@ -123,15 +141,22 @@ class RevisionStore
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
+		NameTableStore $contentModelStore,
+		NameTableStore $slotRoleStore,
+		$migrationStage,
 		ActorMigration $actorMigration,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		Assert::parameterType( 'integer', $migrationStage, '$migrationStage' );
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
+		$this->contentModelStore = $contentModelStore;
+		$this->slotRoleStore = $slotRoleStore;
+		$this->mcrMigrationStage = $migrationStage;
 		$this->actorMigration = $actorMigration;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
@@ -157,8 +182,14 @@ class RevisionStore
 
 	/**
 	 * @param bool $contentHandlerUseDB
+	 * @throws MWException
 	 */
 	public function setContentHandlerUseDB( $contentHandlerUseDB ) {
+		if ( !$contentHandlerUseDB && $this->mcrMigrationStage > MIGRATION_OLD ) {
+			throw new MWException(
+				'Content model must be stored in the database for multi content revision migration.'
+			);
+		}
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
 
@@ -333,6 +364,7 @@ class RevisionStore
 			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
 		}
 
+		// RevisionStore currently only supports writing a single slot
 		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
 			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
 		}
@@ -350,6 +382,8 @@ class RevisionStore
 
 		$size = $this->failOnNull( $rev->getSize(), 'size field' );
 		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
+
+		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$slot->hasAddress() ) {
 			$content = $slot->getContent();
@@ -401,11 +435,10 @@ class RevisionStore
 		$this->failOnNull( $user->getId(), 'user field' );
 		$this->failOnEmpty( $user->getName(), 'user_text field' );
 
-		# Record the edit in revisions
-		$row = [
+		// Record the edit in revisions
+		$revisionRow = [
 			'rev_page'       => $pageId,
 			'rev_parent_id'  => $parentId,
-			'rev_text_id'    => $textId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
 			'rev_timestamp'  => $dbw->timestamp( $timestamp ),
 			'rev_deleted'    => $rev->getVisibility(),
@@ -415,54 +448,101 @@ class RevisionStore
 
 		if ( $rev->getId() !== null ) {
 			// Needed to restore revisions with their original ID
-			$row['rev_id'] = $rev->getId();
+			$revisionRow['rev_id'] = $rev->getId();
 		}
 
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
-		$row += $commentFields;
+		$revisionRow += $commentFields;
 
 		list( $actorFields, $actorCallback ) =
 			$this->actorMigration->getInsertValuesWithTempTable( $dbw, 'rev_user', $user );
-		$row += $actorFields;
+		$revisionRow += $actorFields;
 
-		if ( $this->contentHandlerUseDB ) {
+		if ( $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH ) {
+			$revisionRow['rev_text_id'] = $textId;
+
 			// MCR migration note: rev_content_model and rev_content_format will go away
+			if ( $this->contentHandlerUseDB ) {
+				$defaultModel = ContentHandler::getDefaultModelFor( $title );
+				$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
-			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
-
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+				$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
+				$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+			}
+		} else {
+			/**
+			 * rev_text_id has NOT NULL and no DEFAULT, so set to 0 when we are not writing to it.
+			 * WARNING: This should NOT be removed after migration until a schema change has been
+			 * made in WMF production giving rev_text_id a DEFAULT value of 0 (otherwise inserts
+			 * will fail)
+			 * Task: https://phabricator.wikimedia.org/T190148#4064625
+			 */
+			$revisionRow['rev_text_id'] = 0;
 		}
 
-		$dbw->insert( 'revision', $row, __METHOD__ );
+		$dbw->insert( 'revision', $revisionRow, __METHOD__ );
 
-		if ( !isset( $row['rev_id'] ) ) {
-			// only if auto-increment was used
-			$row['rev_id'] = intval( $dbw->insertId() );
+		$hasSlots = false;
+		$contentId = false;
+
+		if ( $this->mcrMigrationStage > MIGRATION_OLD && $slot->hasContentId() ) {
+			// re-use content row of inherited slot!
+			$contentId = $slot->getContentId();
 		}
-		$commentCallback( $row['rev_id'] );
-		$actorCallback( $row['rev_id'], $row );
+
+		if ( isset( $revisionRow['rev_id'] ) ) {
+			// restoring a revision, slots should already exist,
+			// unless the archive row wasn't migrated yet.
+			if ( $this->mcrMigrationStage === MIGRATION_NEW ) {
+				$hasSlots = true;
+			} elseif ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+				$hasSlots = $this->findSlotContentId( $dbw, $revisionRow['rev_id'], 'main' );
+			}
+		} else {
+			// not restoring a revision, use auto-increment value
+			$revisionRow['rev_id'] = intval( $dbw->insertId() );
+		}
+
+		$revisionId = $revisionRow['rev_id'];
+
+		$commentCallback( $revisionId );
+		$actorCallback( $revisionId, $revisionRow );
 
 		// Insert IP revision into ip_changes for use when querying for a range.
 		if ( $user->getId() === 0 && IP::isValid( $user->getName() ) ) {
 			$ipcRow = [
-				'ipc_rev_id'        => $row['rev_id'],
-				'ipc_rev_timestamp' => $row['rev_timestamp'],
+				'ipc_rev_id'        => $revisionId,
+				'ipc_rev_timestamp' => $revisionRow['rev_timestamp'],
 				'ipc_hex'           => IP::toHex( $user->getName() ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
-		$newSlot = SlotRecord::newSaved( $row['rev_id'], $textId, $blobAddress, $slot );
+		if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			// Only insert content rows for new content (not inherited content)
+			if ( !$contentId ) {
+				$contentId = $this->insertContentRowOn( $slot, $dbw, $blobAddress );
+			}
+
+			// Only insert slot rows for new revisions (not restored revisions)
+			if ( !$hasSlots ) {
+				$this->insertSlotOn( $slot, $dbw, $revisionId, $contentId );
+			}
+		} else {
+			$contentId = null;
+		}
+
+		$dbw->endAtomic( __METHOD__ );
+
+		$newSlot = SlotRecord::newSaved( $revisionId, $contentId, $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
 		$rev = new RevisionStoreRecord(
 			$title,
 			$user,
 			$comment,
-			(object)$row,
+			(object)$revisionRow,
 			$slots,
 			$this->wikiId
 		);
@@ -484,12 +564,47 @@ class RevisionStore
 		Assert::postcondition( $newSlot !== null, 'revision must have a main slot' );
 		Assert::postcondition(
 			$newSlot->getAddress() !== null,
-			'main slot must have an addess'
+			'main slot must have an address'
 		);
 
 		Hooks::run( 'RevisionRecordInserted', [ $rev ] );
 
 		return $rev;
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 * @param IDatabase $dbw
+	 * @param int $revisionId
+	 * @param int $contentId
+	 */
+	private function insertSlotOn( SlotRecord $slot, IDatabase $dbw, $revisionId, $contentId ) {
+		$slotRow = [
+			'slot_revision_id' => $revisionId,
+			'slot_role_id' => $this->slotRoleStore->acquireId( $slot->getRole() ),
+			'slot_content_id' => $contentId,
+			// If the slot has a specific origin use that ID, otherwise use the ID of the revision
+			// that we just inserted.
+			'slot_origin' => $slot->hasOrigin() ? $slot->getOrigin() : $revisionId,
+		];
+		$dbw->insert( 'slots', $slotRow, __METHOD__ );
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 * @param IDatabase $dbw
+	 * @param string $blobAddress
+	 * @return int content row ID
+	 */
+	private function insertContentRowOn( SlotRecord $slot, IDatabase $dbw, $blobAddress ) {
+		$contentRow = [
+			'content_size' => $slot->getSize(),
+			'content_sha1' => $slot->getSha1(),
+			'content_model' => $this->contentModelStore->acquireId( $slot->getModel() ),
+			'content_address' => $blobAddress,
+		];
+		$dbw->insert( 'content', $contentRow, __METHOD__ );
+		return intval( $dbw->insertId() );
 	}
 
 	/**
@@ -573,23 +688,18 @@ class RevisionStore
 	) {
 		$this->checkDatabaseWikiId( $dbw );
 
-		$fields = [ 'page_latest', 'page_namespace', 'page_title',
-			'rev_id', 'rev_text_id', 'rev_len', 'rev_sha1' ];
-
-		if ( $this->contentHandlerUseDB ) {
-			$fields[] = 'rev_content_model';
-			$fields[] = 'rev_content_format';
-		}
+		$queryInfo = $this->getQueryInfo( [ 'page' ] );
 
 		$current = $dbw->selectRow(
-			[ 'page', 'revision' ],
-			$fields,
+			$queryInfo['tables'],
+			$queryInfo['fields'],
 			[
 				'page_id' => $title->getArticleID(),
 				'page_latest=rev_id',
 			],
 			__METHOD__,
-			[ 'FOR UPDATE' ] // T51581
+			[ 'FOR UPDATE' ], // T51581
+			$queryInfo['joins'] // FIXME T191892
 		);
 
 		if ( $current ) {
@@ -607,7 +717,7 @@ class RevisionStore
 				'sha1'        => $current->rev_sha1
 			];
 
-			if ( $this->contentHandlerUseDB ) {
+			if ( $this->contentHandlerUseDB && $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH ) {
 				$fields['content_model'] = $current->rev_content_model;
 				$fields['content_format'] = $current->rev_content_format;
 			}
@@ -750,7 +860,6 @@ class RevisionStore
 		$mainSlotRow->model_name = null;
 		$mainSlotRow->slot_revision_id = null;
 		$mainSlotRow->content_address = null;
-		$mainSlotRow->slot_content_id = null;
 
 		$content = null;
 		$blobData = null;
@@ -763,7 +872,6 @@ class RevisionStore
 			}
 
 			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
-				$mainSlotRow->slot_content_id = $row->rev_text_id;
 				$mainSlotRow->content_address = SqlBlobStore::makeAddressFromTextId(
 					$row->rev_text_id
 				);
@@ -798,9 +906,6 @@ class RevisionStore
 		} elseif ( is_array( $row ) ) {
 			$mainSlotRow->slot_revision_id = isset( $row['id'] ) ? intval( $row['id'] ) : null;
 
-			$mainSlotRow->slot_content_id = isset( $row['text_id'] )
-				? intval( $row['text_id'] )
-				: null;
 			$mainSlotRow->slot_origin = isset( $row['slot_origin'] )
 				? intval( $row['slot_origin'] )
 				: null;
@@ -869,7 +974,18 @@ class RevisionStore
 			};
 		}
 
-		$mainSlotRow->slot_id = $mainSlotRow->slot_revision_id;
+		// NOTE: this callback will be looped through RevisionSlot::newInherited(), allowing
+		// the inherited slot to have the same content_id as the original slot. In that case,
+		// $slot will be the inherited slot, while $mainSlotRow still refers to the original slot.
+		$mainSlotRow->slot_content_id =
+			function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
+				list( $dbMode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+				$db = $this->getDBConnectionRef( $dbMode );
+				return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, 'main' );
+			};
+
+		// use negative IDs for fake slot records.
+		$mainSlotRow->slot_id = -( $mainSlotRow->slot_revision_id );
 		return new SlotRecord( $mainSlotRow, $content );
 	}
 
@@ -1591,10 +1707,48 @@ class RevisionStore
 	}
 
 	/**
+	 * Finds the ID of a content row for a given revision and slot role.
+	 * This can be used to re-use content rows even while the content ID
+	 * is still missing from SlotRecords, in MIGRATION_WRITE_BOTH mode.
+	 *
+	 * @todo remove after MCR schema migration is complete.
+	 *
+	 * @param IDatabase $db
+	 * @param int $revId
+	 * @param string $role
+	 *
+	 * @return int|null
+	 */
+	private function findSlotContentId( IDatabase $db, $revId, $role ) {
+		if ( $this->mcrMigrationStage < MIGRATION_WRITE_BOTH ) {
+			return null;
+		}
+
+		try {
+			$roleId = $this->slotRoleStore->getId( $role );
+			$conditions = [
+				'slot_revision_id' => $revId,
+				'slot_role_id' => $roleId,
+			];
+
+			$contentId = $db->selectField( 'slots', 'slot_content_id', $conditions, __METHOD__ );
+
+			return $contentId ?: null;
+		} catch ( NameTableAccessException $ex ) {
+			// If the role is missing from the slot_roles table,
+			// the corresponding row in slots cannot exist.
+			return null;
+		}
+	}
+
+	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new revision object.
 	 *
 	 * MCR migration note: this replaces Revision::getQueryInfo
+	 *
+	 * If the format of fields returned changes in any way then the cache key provided by
+	 * self::getRevisionRowCacheKey should be updated.
 	 *
 	 * @since 1.31
 	 *
@@ -1619,7 +1773,6 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], [
 			'rev_id',
 			'rev_page',
-			'rev_text_id',
 			'rev_timestamp',
 			'rev_minor_edit',
 			'rev_deleted',
@@ -1638,9 +1791,13 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
-		if ( $this->contentHandlerUseDB ) {
-			$ret['fields'][] = 'rev_content_format';
-			$ret['fields'][] = 'rev_content_model';
+		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+			$ret['fields'][] = 'rev_text_id';
+
+			if ( $this->contentHandlerUseDB ) {
+				$ret['fields'][] = 'rev_content_format';
+				$ret['fields'][] = 'rev_content_model';
+			}
 		}
 
 		if ( in_array( 'page', $options, true ) ) {
@@ -1666,12 +1823,16 @@ class RevisionStore
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
+			if ( $this->mcrMigrationStage === MIGRATION_NEW ) {
+				throw new InvalidArgumentException( 'text table can no longer be joined directly' );
+			}
+
 			$ret['tables'][] = 'text';
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'old_text',
 				'old_flags'
 			] );
-			$ret['joins']['text'] = [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ];
+			$ret['joins']['text'] = [ 'LEFT JOIN', [ 'rev_text_id=old_id' ] ];
 		}
 
 		return $ret;
@@ -1701,7 +1862,6 @@ class RevisionStore
 					'ar_namespace',
 					'ar_title',
 					'ar_rev_id',
-					'ar_text_id',
 					'ar_timestamp',
 					'ar_minor_edit',
 					'ar_deleted',
@@ -1712,9 +1872,13 @@ class RevisionStore
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
-		if ( $this->contentHandlerUseDB ) {
-			$ret['fields'][] = 'ar_content_format';
-			$ret['fields'][] = 'ar_content_model';
+		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+			$ret['fields'][] = 'ar_text_id';
+
+			if ( $this->contentHandlerUseDB ) {
+				$ret['fields'][] = 'ar_content_format';
+				$ret['fields'][] = 'ar_content_model';
+			}
 		}
 
 		return $ret;
@@ -1990,7 +2154,7 @@ class RevisionStore
 
 		$row = $this->cache->getWithSetCallback(
 			// Page/rev IDs passed in from DB to reflect history merges
-			$this->cache->makeGlobalKey( 'revision-row-1.29', $db->getDomainID(), $pageId, $revId ),
+			$this->getRevisionRowCacheKey( $db, $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use ( $db, $pageId, $revId ) {
 				$setOpts += Database::getCacheSetOptions( $db );
@@ -2012,6 +2176,26 @@ class RevisionStore
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Get a cache key for use with a row as selected with self::getQueryInfo( [ 'page', 'user' ] )
+	 * Caching rows without 'page' or 'user' could lead to issues.
+	 * If the format of the rows returned by the query provided by self::getQueryInfo changes the
+	 * cache key should be updated to avoid conflicts.
+	 *
+	 * @param IDatabase $db
+	 * @param int $pageId
+	 * @param int $revId
+	 * @return string
+	 */
+	private function getRevisionRowCacheKey( IDatabase $db, $pageId, $revId ) {
+		return $this->cache->makeGlobalKey(
+			self::ROW_CACHE_KEY,
+			$db->getDomainID(),
+			$pageId,
+			$revId
+		);
 	}
 
 	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
