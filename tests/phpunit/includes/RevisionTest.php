@@ -17,6 +17,11 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class RevisionTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
+	}
+
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -488,6 +493,9 @@ class RevisionTest extends MediaWikiTestCase {
 			$this->getBlobStore(),
 			$cache,
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 		return $blobStore;
@@ -1160,10 +1168,44 @@ class RevisionTest extends MediaWikiTestCase {
 		$revisionStore = $this->getRevisionStore();
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
-		$this->assertEquals(
-			$expected,
-			Revision::getArchiveQueryInfo()
+
+		$queryInfo = Revision::getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
 		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
+		);
+	}
+
+	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
+		$this->objectAssociativeSort( $expected );
+		$this->objectAssociativeSort( $actual );
+
+		// Remove all int keys and re add them at the end after sorting by value
+		// This will result in all int keys being in the same order with same ints at the end of
+		// the array
+		foreach ( $expected as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $expected[$key] );
+				$expected[] = $value;
+			}
+		}
+		foreach ( $actual as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $actual[$key] );
+				$actual[] = $value;
+			}
+		}
+
+		$this->assertArrayEquals( $expected, $actual, false, true );
 	}
 
 	public function provideGetQueryInfo() {
@@ -1395,9 +1437,19 @@ class RevisionTest extends MediaWikiTestCase {
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
 
-		$this->assertEquals(
-			$expected,
-			Revision::getQueryInfo( $options )
+		$queryInfo = Revision::getQueryInfo( $options );
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
 		);
 	}
 
