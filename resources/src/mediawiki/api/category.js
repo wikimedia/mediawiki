@@ -16,12 +16,16 @@
 			var apiPromise = this.get( {
 				formatversion: 2,
 				prop: 'categoryinfo',
-				titles: String( title )
+				titles: [ String( title ) ]
 			} );
 
 			return apiPromise
 				.then( function ( data ) {
-					return !!data.query.pages[ 0 ].categoryinfo;
+					return !!(
+						data.query && // query is missing on title=""
+						data.query.pages && // query.pages is missing on title="#" or title="mw:"
+						data.query.pages[ 0 ].categoryinfo
+					);
 				} )
 				.promise( { abort: apiPromise.abort } );
 		},
@@ -67,13 +71,17 @@
 			var apiPromise = this.get( {
 				formatversion: 2,
 				prop: 'categories',
-				titles: String( title )
+				titles: [ String( title ) ]
 			} );
 
 			return apiPromise
 				.then( function ( data ) {
-					var page = data.query.pages[ 0 ];
+					var page;
 
+					if ( !data.query || !data.query.pages ) {
+						return false;
+					}
+					page = data.query.pages[ 0 ];
 					if ( !page.categories ) {
 						return false;
 					}
