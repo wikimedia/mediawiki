@@ -12,7 +12,7 @@ use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
  * @group Database
  * @group medium
  */
-class evisionNoContentModelDbTest extends RevisionDbTestBase {
+class RevisionNoContentModelDbTest extends RevisionDbTestBase {
 
 	use PreMcrSchemaOverride;
 
