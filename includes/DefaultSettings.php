@@ -8828,6 +8828,19 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables)
+ * @since 1.31
+ * @var int One of the MIGRATION_* constants
+ */
+$wgRevisionStoreSchemaMigrationStage = MIGRATION_OLD;
+
+/**
+ * @since 1.31
+ * @var bool does RevisionStore have any multi slot ability?
+ */
+$wgRevisionStoreMultiSlot = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
