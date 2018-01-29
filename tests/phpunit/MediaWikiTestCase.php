@@ -1436,8 +1436,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	private function resetDB( $db, $tablesUsed ) {
 		if ( $db ) {
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
-			$pageTables = [ 'page', 'revision', 'ip_changes', 'revision_comment_temp',
-				'revision_actor_temp', 'comment' ];
+			$pageTables = [
+				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment',
+				'revision_actor_temp', 'slots', 'content_models', 'slot_roles',
+				];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
 			// If any of the user or page tables were marked as used, we should clear all of them.
@@ -1692,13 +1694,25 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param array $actual
 	 * @param bool $ordered If the order of the values should match
 	 * @param bool $named If the keys should match
+	 * @param bool $ignoreIntKeysOrder If the order of integer key elements should be ignored
 	 */
 	protected function assertArrayEquals( array $expected, array $actual,
-		$ordered = false, $named = false
+		$ordered = false, $named = false, $ignoreIntKeysOrder = false
 	) {
 		if ( !$ordered ) {
 			$this->objectAssociativeSort( $expected );
 			$this->objectAssociativeSort( $actual );
+		}
+
+		if ( $ignoreIntKeysOrder ) {
+			foreach ( $expected as $key => $value ) {
+				unset( $expected[$key] );
+				$expected[] = $value;
+			}
+			foreach ( $actual as $key => $value ) {
+				unset( $actual[$key] );
+				$actual[] = $value;
+			}
 		}
 
 		if ( !$named ) {
