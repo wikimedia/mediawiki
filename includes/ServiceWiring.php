@@ -476,7 +476,8 @@ return [
 		$store = new RevisionStore(
 			$services->getDBLoadBalancer(),
 			$blobStore,
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore()
 		);
 
 		$config = $services->getMainConfig();
