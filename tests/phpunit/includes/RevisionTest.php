@@ -17,6 +17,11 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class RevisionTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
+	}
+
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -488,6 +493,9 @@ class RevisionTest extends MediaWikiTestCase {
 			$this->getBlobStore(),
 			$cache,
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 		return $blobStore;
@@ -1160,10 +1168,60 @@ class RevisionTest extends MediaWikiTestCase {
 		$revisionStore = $this->getRevisionStore();
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
-		$this->assertEquals(
-			$expected,
-			Revision::getArchiveQueryInfo()
+
+		$queryInfo = Revision::getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
 		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
+		);
+	}
+
+	/**
+	 * Assert that the two arrays passed are equal, ignoring the order of the values that integer
+	 * keys.
+	 *
+	 * Note: Failures of this assertion can be slightly confusing as the arrays are actually
+	 * split into a string key array and an int key array before assertions occur.
+	 *
+	 * @param array $expected
+	 * @param array $actual
+	 */
+	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
+		$this->objectAssociativeSort( $expected );
+		$this->objectAssociativeSort( $actual );
+
+		// Separate the int key values from the string key values so that assertion failures are
+		// easier to understand.
+		$expectedIntKeyValues = [];
+		$actualIntKeyValues = [];
+
+		// Remove all int keys and re add them at the end after sorting by value
+		// This will result in all int keys being in the same order with same ints at the end of
+		// the array
+		foreach ( $expected as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $expected[$key] );
+				$expectedIntKeyValues[] = $value;
+			}
+		}
+		foreach ( $actual as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $actual[$key] );
+				$actualIntKeyValues[] = $value;
+			}
+		}
+
+		$this->assertArrayEquals( $expected, $actual, false, true );
+		$this->assertArrayEquals( $expectedIntKeyValues, $actualIntKeyValues, false, true );
 	}
 
 	public function provideGetQueryInfo() {
@@ -1177,7 +1235,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1188,6 +1246,7 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_user' => 'actormigration_user',
 					'rev_user_text' => 'actormigration_user_text',
 					'rev_actor' => 'actormigration_actor',
+					'content_id' => 'NULL',
 				],
 				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			],
@@ -1202,7 +1261,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1219,6 +1278,7 @@ class RevisionTest extends MediaWikiTestCase {
 					'page_latest',
 					'page_is_redirect',
 					'page_len',
+					'content_id' => 'NULL',
 				],
 				'joins' => [
 					'page' => [
@@ -1240,7 +1300,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1252,6 +1312,7 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_user_text' => 'actormigration_user_text',
 					'rev_actor' => 'actormigration_actor',
 					'user_name',
+					'content_id' => 'NULL',
 				],
 				'joins' => [
 					'user' => [
@@ -1276,7 +1337,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1289,10 +1350,11 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_actor' => 'actormigration_actor',
 					'old_text',
 					'old_flags',
+					'content_id' => 'NULL',
 				],
 				'joins' => [
 					'text' => [
-						'INNER JOIN',
+						'LEFT JOIN',
 						[ 'rev_text_id=old_id' ],
 					],
 					'commentstore' => 'join',
@@ -1312,7 +1374,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1332,6 +1394,7 @@ class RevisionTest extends MediaWikiTestCase {
 					'user_name',
 					'old_text',
 					'old_flags',
+					'content_id' => 'NULL',
 				],
 				'joins' => [
 					'page' => [
@@ -1346,7 +1409,7 @@ class RevisionTest extends MediaWikiTestCase {
 						],
 					],
 					'text' => [
-						'INNER JOIN',
+						'LEFT JOIN',
 						[ 'rev_text_id=old_id' ],
 					],
 					'commentstore' => 'join',
@@ -1364,7 +1427,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'fields' => [
 					'rev_id',
 					'rev_page',
-					'rev_text_id',
+					'rev_text_id' => 'rev_text_id',
 					'rev_timestamp',
 					'rev_minor_edit',
 					'rev_deleted',
@@ -1377,6 +1440,7 @@ class RevisionTest extends MediaWikiTestCase {
 					'rev_actor' => 'actormigration_actor',
 					'rev_content_format',
 					'rev_content_model',
+					'content_id' => 'NULL',
 				],
 				'joins' => [ 'commentstore' => 'join', 'actormigration' => 'join' ],
 			],
@@ -1395,9 +1459,19 @@ class RevisionTest extends MediaWikiTestCase {
 		$revisionStore->setContentHandlerUseDB( $globals['wgContentHandlerUseDB'] );
 		$this->setService( 'RevisionStore', $revisionStore );
 
-		$this->assertEquals(
-			$expected,
-			Revision::getQueryInfo( $options )
+		$queryInfo = Revision::getQueryInfo( $options );
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
 		);
 	}
 
