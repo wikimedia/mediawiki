@@ -299,7 +299,7 @@
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 		var nextItem,
-			currentItem = this.findHighlightedItem() || this.getSelectedItem();
+			currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 		// Call parent
 		mw.rcfilters.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
