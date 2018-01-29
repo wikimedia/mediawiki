@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use CommentStore;
 use HashBagOStuff;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
@@ -13,6 +15,7 @@ use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreTest extends MediaWikiTestCase {
 
@@ -32,7 +35,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD
 		);
 	}
 
@@ -57,6 +63,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	private function getMockSqlBlobStore() {
 		return $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 */
+	private function getMockCommentStore() {
+		return $this->getMockBuilder( CommentStore::class )
 			->disableOriginalConstructor()->getMock();
 	}
 
@@ -530,6 +544,49 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			];
 
 		return (object)$row;
+	}
+
+	public function provideMigrationConstruction() {
+		return [
+			[ MIGRATION_OLD, false ],
+			[ MIGRATION_WRITE_BOTH, false ],
+			[ MIGRATION_WRITE_NEW, false ],
+			[ MIGRATION_NEW, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMigrationConstruction
+	 */
+	public function testMigrationConstruction( $migration, $expectException ) {
+		if ( $expectException ) {
+			$this->setExpectedException( InvalidArgumentException::class );
+		}
+		$loadBalancer = $this->getMockLoadBalancer();
+		$blobStore = $this->getMockSqlBlobStore();
+		$cache = $this->getHashWANObjectCache();
+		$commentStore = $this->getMockCommentStore();
+		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$store = new RevisionStore(
+			$loadBalancer,
+			$blobStore,
+			$cache,
+			$commentStore,
+			$contentModelStore,
+			$slotRoleStore,
+			$migration
+		);
+		if ( !$expectException ) {
+			$store = TestingAccessWrapper::newFromObject( $store );
+			$this->assertSame( $loadBalancer, $store->loadBalancer );
+			$this->assertSame( $blobStore, $store->blobStore );
+			$this->assertSame( $cache, $store->cache );
+			$this->assertSame( $commentStore, $store->commentStore );
+			$this->assertSame( $contentModelStore, $store->contentModelStore );
+			$this->assertSame( $slotRoleStore, $store->slotRoleStore );
+			$this->assertSame( $migration, $store->migrationStage );
+		}
 	}
 
 }

@@ -134,6 +134,9 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
 			$wikiId
 		);
 
@@ -218,7 +221,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
 	}
 
-	public function provideInsertRevisionOn_successes() {
+	public function provideInsertRevisionOn_successes_internal() {
 		yield 'Bare minimum revision insertion' => [
 			Title::newFromText( 'UTPage' ),
 			[
@@ -244,24 +247,60 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		];
 	}
 
+	public function provideMigrationStates() {
+		return [
+				'MIGRATION_OLD' => [ MIGRATION_OLD ],
+				'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ],
+				'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ],
+				'MIGRATION_NEW' => [ MIGRATION_NEW ],
+			];
+	}
+
+	public function provideInsertRevisionOn_successes() {
+		foreach ( $this->provideMigrationStates() as $stateName => $stateValue ) {
+			foreach ( $this->provideInsertRevisionOn_successes_internal() as $desc => $test ) {
+				yield $desc . ' ' . $stateName => array_merge( $test, $stateValue );
+			}
+		}
+	}
+
 	/**
 	 * @dataProvider provideInsertRevisionOn_successes
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
-	public function testInsertRevisionOn_successes( Title $title, array $revDetails = [] ) {
+	public function testInsertRevisionOn_successes(
+		Title $title,
+		array $revDetails = [],
+		$migrationStage
+	) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
+		$this->setMwGlobals( 'wgRevisionStoreSchemaMigrationStage', $migrationStage );
+		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 
 		$this->assertLinkTargetsEqual( $title, $return->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $rev, $return );
+
+		if ( $migrationStage >= MIGRATION_WRITE_BOTH ) {
+			$this->assertSelect(
+				'slots', [ 'count(*)' ], [ 'slot_revision_id' => $return->getId() ], [ [ '1' ] ]
+			);
+			$this->assertSelect(
+				'content',
+				[ 'count(*)' ],
+				[ 'content_address' => $return->getSlot( 'main' )->getAddress() ],
+				[ [ '1' ] ]
+			);
+		}
 	}
 
 	/**
+	 * @dataProvider provideMigrationStates
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
-	public function testInsertRevisionOn_blobAddressExists() {
+	public function testInsertRevisionOn_blobAddressExists( $migrationStage ) {
 		$title = Title::newFromText( 'UTPage' );
 		$revDetails = [
 			'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
@@ -271,6 +310,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			'user' => true,
 		];
 
+		$this->setMwGlobals( 'RevisionStoreSchemaMigrationStage', $migrationStage );
+		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Insert the first revision
@@ -298,7 +339,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideInsertRevisionOn_failures() {
+	public function provideInsertRevisionOn_failures_internal() {
 		yield 'no slot' => [
 			Title::newFromText( 'UTPage' ),
 			[
@@ -345,6 +386,14 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			],
 			new IncompleteRevisionException( 'user must not be NULL!' )
 		];
+	}
+
+	public function provideInsertRevisionOn_failures() {
+		foreach ( $this->provideMigrationStates() as $stateName => $stateValue ) {
+			foreach ( $this->provideInsertRevisionOn_failures_internal() as $desc => $test ) {
+				yield $desc . ' ' . $stateName => array_merge( $test, $stateValue );
+			}
+		}
 	}
 
 	/**

@@ -8829,6 +8829,17 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables)
+ *
+ * @see Task: https://phabricator.wikimedia.org/T174028
+ * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
+ *
+ * @since 1.31
+ * @var int One of the MIGRATION_* constants
+ */
+$wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

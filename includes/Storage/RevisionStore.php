@@ -94,12 +94,26 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	private $commentStore;
 
 	/**
+	 * @var NameTableStore
+	 */
+	private $contentModelStore;
+
+	/**
+	 * @var NameTableStore
+	 */
+	private $slotRoleStore;
+
+	/** @var int One of the MIGRATION_* constants */
+	private $migrationStage;
+
+	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
+	 * @param int $migrationStage
 	 * @param bool|string $wikiId
 	 */
 	public function __construct(
@@ -107,6 +121,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
 		CommentStore $commentStore,
+		NameTableStore $contentModelStore,
+		NameTableStore $slotRoleStore,
+		$migrationStage,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -115,6 +132,9 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
+		$this->contentModelStore = $contentModelStore;
+		$this->slotRoleStore = $slotRoleStore;
+		$this->migrationStage = $migrationStage;
 		$this->wikiId = $wikiId;
 	}
 
@@ -127,8 +147,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 	/**
 	 * @param bool $contentHandlerUseDB
+	 * @throws MWException
 	 */
 	public function setContentHandlerUseDB( $contentHandlerUseDB ) {
+		if ( $this->migrationStage > MIGRATION_OLD && $contentHandlerUseDB ) {
+			throw new MWException( 'Content Handler DB must be used with MCR DB Schema.' );
+		}
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
 
@@ -284,6 +308,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			throw new InvalidArgumentException( 'At least one slot needs to be defined!' );
 		}
 
+		// RevisionStore currently only supports writing a single slot
 		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
 			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
 		}
@@ -297,10 +322,13 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			: $rev->getParentId();
 
 		// Record the text (or external storage URL) to the blob store
+		// TODO allow writing of multiple slots
 		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
 
 		$size = $this->failOnNull( $rev->getSize(), 'size field' );
 		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
+
+		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$slot->hasAddress() ) {
 			$content = $slot->getContent();
@@ -349,7 +377,7 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 
 		# Record the edit in revisions
-		$row = [
+		$revisionRow = [
 			'rev_page'       => $pageId,
 			'rev_parent_id'  => $parentId,
 			'rev_text_id'    => $textId,
@@ -364,12 +392,12 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 
 		if ( $rev->getId() !== null ) {
 			// Needed to restore revisions with their original ID
-			$row['rev_id'] = $rev->getId();
+			$revisionRow['rev_id'] = $rev->getId();
 		}
 
 		list( $commentFields, $commentCallback ) =
 			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
-		$row += $commentFields;
+		$revisionRow += $commentFields;
 
 		if ( $this->contentHandlerUseDB ) {
 			// MCR migration note: rev_content_model and rev_content_format will go away
@@ -377,38 +405,70 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 			$defaultModel = ContentHandler::getDefaultModelFor( $title );
 			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+			$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
+			$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
 		}
 
-		$dbw->insert( 'revision', $row, __METHOD__ );
+		$dbw->insert( 'revision', $revisionRow, __METHOD__ );
 
-		if ( !isset( $row['rev_id'] ) ) {
+		if ( !isset( $revisionRow['rev_id'] ) ) {
 			// only if auto-increment was used
-			$row['rev_id'] = intval( $dbw->insertId() );
+			$revisionRow['rev_id'] = intval( $dbw->insertId() );
 		}
-		$commentCallback( $row['rev_id'] );
+		$commentCallback( $revisionRow['rev_id'] );
 
 		// Insert IP revision into ip_changes for use when querying for a range.
-		if ( $row['rev_user'] === 0 && IP::isValid( $row['rev_user_text'] ) ) {
+		if ( $revisionRow['rev_user'] === 0 && IP::isValid( $revisionRow['rev_user_text'] ) ) {
 			$ipcRow = [
-				'ipc_rev_id'        => $row['rev_id'],
-				'ipc_rev_timestamp' => $row['rev_timestamp'],
-				'ipc_hex'           => IP::toHex( $row['rev_user_text'] ),
+				'ipc_rev_id'        => $revisionRow['rev_id'],
+				'ipc_rev_timestamp' => $revisionRow['rev_timestamp'],
+				'ipc_hex'           => IP::toHex( $revisionRow['rev_user_text'] ),
 			];
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
-		$newSlot = SlotRecord::newSaved( $row['rev_id'], $blobAddress, $slot );
+		// TODO when MIGRATION_WRITE_NEW stop writing some of the old fields that we dont want to:
+
+		// Write to the new content tables if migration is in progress
+		if ( $this->migrationStage >= MIGRATION_WRITE_BOTH ) {
+			$roleId = $this->slotRoleStore->acquireId( $slot->getRole() );
+			$modelId = $this->contentModelStore->acquireId( $slot->getModel() );
+
+			$contentRow = [
+				// Note: Is it still okay to use the rev size and sha1 when only inserting 1 slot
+				// XXX: Not if T185793 happens.
+				'content_size' => $slot->getSize(),
+				'content_sha1' => $slot->getSha1(),
+				'content_model' => $modelId,
+				'content_address' => $blobAddress,
+			];
+			$dbw->insert( 'content', $contentRow, __METHOD__ );
+			$contentId = intval( $dbw->insertId() );
+
+			$slotRow = [
+				'slot_revision_id' => $revisionRow['rev_id'],
+				'slot_role_id' => $roleId,
+				'slot_content_id' => $contentId,
+				'slot_inherited' => $slot->isInherited(),
+			];
+			$dbw->insert( 'slots', $slotRow, __METHOD__ );
+		}
+
+		$dbw->endAtomic( __METHOD__ );
+
+		$newSlot = SlotRecord::newSaved( $revisionRow['rev_id'], $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
-		$user = new UserIdentityValue( intval( $row['rev_user'] ), $row['rev_user_text'] );
+		$user = new UserIdentityValue(
+			intval( $revisionRow['rev_user'] ),
+			$revisionRow['rev_user_text']
+		);
 
 		$rev = new RevisionStoreRecord(
 			$title,
 			$user,
 			$comment,
-			(object)$row,
+			(object)$revisionRow,
 			$slots,
 			$this->wikiId
 		);
