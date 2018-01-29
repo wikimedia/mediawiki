@@ -209,14 +209,14 @@ class XhprofData {
 			foreach ( $this->inclusive as $func => $stats ) {
 				foreach ( $stats as $name => $value ) {
 					if ( $value instanceof RunningStat ) {
-						$total = $value->m1 * $value->n;
+						$total = $value->getMean() * $value->getCount();
 						$percent = ( isset( $main[$name] ) && $main[$name] )
 							? 100 * $total / $main[$name]
 							: 0;
 						$this->inclusive[$func][$name] = [
 							'total' => $total,
 							'min' => $value->min,
-							'mean' => $value->m1,
+							'mean' => $value->getMean(),
 							'max' => $value->max,
 							'variance' => $value->m2,
 							'percent' => $percent,
