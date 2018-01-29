@@ -2786,7 +2786,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$tags = [], $logsubtype = 'delete'
 	) {
 		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage,
-			$wgActorTableSchemaMigrationStage;
+			$wgActorTableSchemaMigrationStage, $wgMultiContentRevisionSchemaMigrationStage;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2896,7 +2896,6 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_minor_edit' => $row->rev_minor_edit,
 				'ar_rev_id'     => $row->rev_id,
 				'ar_parent_id'  => $row->rev_parent_id,
-				'ar_text_id'    => $row->rev_text_id,
 				'ar_text'       => '',
 				'ar_flags'      => '',
 				'ar_len'        => $row->rev_len,
@@ -2905,9 +2904,15 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
-			if ( $wgContentHandlerUseDB ) {
+			if (
+				$wgContentHandlerUseDB &&
+				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH
+			) {
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
+			}
+			if ( $wgMultiContentRevisionSchemaMigrationStage !== MIGRATION_NEW ) {
+				$rowInsert['ar_text_id'] = $row->rev_text_id;
 			}
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;
