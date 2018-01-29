@@ -33,6 +33,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
 		$this->pagesToDelete = [];
 	}
 
