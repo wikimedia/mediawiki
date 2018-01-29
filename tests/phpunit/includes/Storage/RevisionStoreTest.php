@@ -2,17 +2,21 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use CommentStore;
 use HashBagOStuff;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use MWException;
 use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreTest extends MediaWikiTestCase {
 
@@ -33,6 +37,9 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 	}
@@ -61,21 +68,57 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()->getMock();
 	}
 
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 */
+	private function getMockCommentStore() {
+		return $this->getMockBuilder( CommentStore::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
 	}
 
+	public function provideSetContentHandlerUseDB() {
+		return [
+			// ContentHandlerUseDB can be true of false pre migration
+			[ false, MIGRATION_OLD, false ],
+			[ true, MIGRATION_OLD, false ],
+			// During migration it can not be false
+			[ false, MIGRATION_WRITE_BOTH, true ],
+			[ false, MIGRATION_WRITE_NEW, true ],
+			[ false, MIGRATION_NEW, true ],
+			// But it can be true
+			[ true, MIGRATION_WRITE_BOTH, false ],
+			[ true, MIGRATION_WRITE_NEW, false ],
+			[ true, MIGRATION_NEW, false ],
+		];
+	}
+
 	/**
+	 * @dataProvider provideSetContentHandlerUseDB
 	 * @covers \MediaWiki\Storage\RevisionStore::getContentHandlerUseDB
 	 * @covers \MediaWiki\Storage\RevisionStore::setContentHandlerUseDB
 	 */
-	public function testGetSetContentHandlerDb() {
-		$store = $this->getRevisionStore();
-		$this->assertTrue( $store->getContentHandlerUseDB() );
-		$store->setContentHandlerUseDB( false );
-		$this->assertFalse( $store->getContentHandlerUseDB() );
-		$store->setContentHandlerUseDB( true );
-		$this->assertTrue( $store->getContentHandlerUseDB() );
+	public function testSetContentHandlerUseDB( $contentHandlerDb, $migrationMode, $expectedFail ) {
+		if ( $expectedFail ) {
+			$this->setExpectedException( MWException::class );
+		}
+
+		$store = new RevisionStore(
+			$this->getMockLoadBalancer(),
+			$this->getMockSqlBlobStore(),
+			$this->getHashWANObjectCache(),
+			$this->getMockCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$migrationMode,
+			MediaWikiServices::getInstance()->getActorMigration()
+		);
+
+		$store->setContentHandlerUseDB( $contentHandlerDb );
+		$this->assertSame( $contentHandlerDb, $store->getContentHandlerUseDB() );
 	}
 
 	private function getDefaultQueryFields() {
@@ -244,7 +287,21 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( $contentHandlerUseDb );
-		$this->assertEquals( $expected, $store->getQueryInfo( $options ) );
+
+		$queryInfo = $store->getQueryInfo( $options );
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
+		);
 	}
 
 	private function getDefaultArchiveFields() {
@@ -274,27 +331,36 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( true );
-		$this->assertEquals(
+
+		$archiveQueryInfo = $store->getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
 			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-						'ar_content_format',
-						'ar_content_model',
-					]
-				),
-				'joins' => [],
+				'archive'
 			],
-			$store->getArchiveQueryInfo()
+			$archiveQueryInfo['tables']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			array_merge(
+				$this->getDefaultArchiveFields(),
+				[
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+					'ar_user_text' => 'ar_user_text',
+					'ar_user' => 'ar_user',
+					'ar_actor' => 'NULL',
+					'ar_content_format',
+					'ar_content_model',
+				]
+			),
+			$archiveQueryInfo['fields']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			[],
+			$archiveQueryInfo['joins']
 		);
 	}
 
@@ -307,25 +373,34 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( false );
-		$this->assertEquals(
+
+		$archiveQueryInfo = $store->getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
 			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-					]
-				),
-				'joins' => [],
+				'archive'
 			],
-			$store->getArchiveQueryInfo()
+			$archiveQueryInfo['tables']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			array_merge(
+				$this->getDefaultArchiveFields(),
+				[
+					'ar_comment_text' => 'ar_comment',
+					'ar_comment_data' => 'NULL',
+					'ar_comment_cid' => 'NULL',
+					'ar_user_text' => 'ar_user_text',
+					'ar_user' => 'ar_user',
+					'ar_actor' => 'NULL',
+				]
+			),
+			$archiveQueryInfo['fields']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			[],
+			$archiveQueryInfo['joins']
 		);
 	}
 
@@ -686,6 +761,73 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			];
 
 		return (object)$row;
+	}
+
+	public function provideMigrationConstruction() {
+		return [
+			[ MIGRATION_OLD, false ],
+			[ MIGRATION_WRITE_BOTH, false ],
+			[ MIGRATION_WRITE_NEW, false ],
+			[ MIGRATION_NEW, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMigrationConstruction
+	 */
+	public function testMigrationConstruction( $migration, $expectException ) {
+		if ( $expectException ) {
+			$this->setExpectedException( InvalidArgumentException::class );
+		}
+		$loadBalancer = $this->getMockLoadBalancer();
+		$blobStore = $this->getMockSqlBlobStore();
+		$cache = $this->getHashWANObjectCache();
+		$commentStore = $this->getMockCommentStore();
+		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$store = new RevisionStore(
+			$loadBalancer,
+			$blobStore,
+			$cache,
+			$commentStore,
+			$contentModelStore,
+			$slotRoleStore,
+			$migration,
+			MediaWikiServices::getInstance()->getActorMigration()
+		);
+		if ( !$expectException ) {
+			$store = TestingAccessWrapper::newFromObject( $store );
+			$this->assertSame( $loadBalancer, $store->loadBalancer );
+			$this->assertSame( $blobStore, $store->blobStore );
+			$this->assertSame( $cache, $store->cache );
+			$this->assertSame( $commentStore, $store->commentStore );
+			$this->assertSame( $contentModelStore, $store->contentModelStore );
+			$this->assertSame( $slotRoleStore, $store->slotRoleStore );
+			$this->assertSame( $migration, $store->mcrMigrationStage );
+		}
+	}
+
+	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
+		$this->objectAssociativeSort( $expected );
+		$this->objectAssociativeSort( $actual );
+
+		// Remove all int keys and re add them at the end after sorting by value
+		// This will result in all int keys being in the same order with same ints at the end of
+		// the array
+		foreach ( $expected as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $expected[$key] );
+				$expected[] = $value;
+			}
+		}
+		foreach ( $actual as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $actual[$key] );
+				$actual[] = $value;
+			}
+		}
+
+		$this->assertArrayEquals( $expected, $actual, false, true );
 	}
 
 }
