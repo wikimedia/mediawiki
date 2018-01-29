@@ -496,6 +496,9 @@ return [
 			$blobStore,
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			$services->getMainConfig()->get( 'MultiContentRevisionSchemaMigrationStage' ),
 			$services->getActorMigration()
 		);
 
