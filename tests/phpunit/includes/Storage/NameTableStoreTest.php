@@ -31,6 +31,9 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		foreach ( $values as $name ) {
 			$insertValues[] = [ 'role_name' => $name ];
 		}
+
+		// Clear the test table before inserting new values so that we know their IDs
+		$this->db->query( 'TRUNCATE TABLE ' . $this->db->tableName( 'slot_roles' ), __METHOD__ );
 		$this->db->insert( 'slot_roles', $insertValues );
 	}
 
