@@ -175,6 +175,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			$wikiId
 		);
@@ -312,11 +315,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideInsertRevisionOn_successes
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertSlotRowOn
+	 * @covers \MediaWiki\Storage\RevisionStore::insertContentRowOn
 	 */
 	public function testInsertRevisionOn_successes(
 		Title $title,
 		array $revDetails = []
 	) {
+		$migrationStage = $this->getMcrMigrationStage();
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
 		$this->overrideMwServices();
@@ -472,6 +478,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideNewNullRevision
 	 * @covers \MediaWiki\Storage\RevisionStore::newNullRevision
+	 * @covers \MediaWiki\Storage\RevisionStore::findSlotContentId
 	 */
 	public function testNewNullRevision( Title $title, $comment, $minor ) {
 		$this->overrideMwServices();
