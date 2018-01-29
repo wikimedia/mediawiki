@@ -1279,6 +1279,7 @@ class WikiPage implements Page, IDBAccessObject {
 		];
 
 		if ( $wgContentHandlerUseDB ) {
+			// TODO inset using NameTableStore too
 			$row['page_content_model'] = $revision->getContentModel();
 		}
 
@@ -2899,6 +2900,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment );
 			if ( $wgContentHandlerUseDB ) {
+				// TODO inset using NameTableStore too
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}

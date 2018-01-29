@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use CommentStore;
 use HashBagOStuff;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
@@ -32,7 +34,11 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
-			MediaWikiServices::getInstance()->getCommentStore()
+			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			MIGRATION_OLD,
+			false
 		);
 	}
 
@@ -57,6 +63,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	private function getMockSqlBlobStore() {
 		return $this->getMockBuilder( SqlBlobStore::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 */
+	private function getMockCommentStore() {
+		return $this->getMockBuilder( CommentStore::class )
 			->disableOriginalConstructor()->getMock();
 	}
 
@@ -530,6 +544,46 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			];
 
 		return (object)$row;
+	}
+
+	public function provideMigrationConstruction() {
+		return [
+			// mcr mode (currently not implemented)
+			[ MIGRATION_OLD, true, true ],
+			[ MIGRATION_WRITE_BOTH, true, true ],
+			[ MIGRATION_WRITE_NEW, true, true ],
+			[ MIGRATION_NEW, true, true ],
+			// Once implemented this shouldn't throw
+			//[ MIGRATION_NEW, true, false ],
+
+			// not mcr mode
+			[ MIGRATION_OLD, false, false ],
+			[ MIGRATION_WRITE_BOTH, false, false ],
+			[ MIGRATION_WRITE_NEW, false, false ],
+			[ MIGRATION_NEW, false, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMigrationConstruction
+	 */
+	public function testMigrationConstruction( $migration, $mcrState, $expectException ) {
+		if ( $expectException ) {
+			$this->setExpectedException( InvalidArgumentException::class );
+		}
+		new RevisionStore(
+			$this->getMockLoadBalancer(),
+			$this->getMockSqlBlobStore(),
+			$this->getHashWANObjectCache(),
+			$this->getMockCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$migration,
+			$mcrState
+		);
+		if ( !$expectException ) {
+			$this->assertTrue( true );
+		}
 	}
 
 }
