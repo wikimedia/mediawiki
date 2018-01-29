@@ -478,7 +478,11 @@ return [
 			$services->getDBLoadBalancer(),
 			$blobStore,
 			$services->getMainWANObjectCache(),
-			$services->getCommentStore()
+			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			$services->getMainConfig()->get( 'RevisionStoreSchemaMigrationStage' ),
+			$services->getMainConfig()->get( 'RevisionStoreMultiSlot' )
 		);
 
 		$config = $services->getMainConfig();
