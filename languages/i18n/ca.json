@@ -1874,7 +1874,7 @@
 	"uncategorizedimages": "Fitxers sense categoria",
 	"uncategorizedtemplates": "Plantilles sense categoria",
 	"uncategorized-categories-exceptionlist": " # Conté una llista de categories no no s'haurien de mencionar a Special:UncategorizedCategories. Una per línia, començant amb «*». Les línies que comencin amb un altre caràcter (incloent l'espai en blanc) són ignorades. Utilitzeu «#» per a comentaris.",
-	"unusedcategories": "Categories sense cap ús",
+	"unusedcategories": "Categories no utilitzades",
 	"unusedimages": "Fitxers no utilitzats",
 	"wantedcategories": "Categories demanades",
 	"wantedpages": "Pàgines demanades",

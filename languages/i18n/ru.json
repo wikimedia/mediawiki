@@ -119,7 +119,8 @@
 			"Helpau",
 			"Staspotanin2",
 			"Edible Melon",
-			"Adam-Yourist"
+			"Adam-Yourist",
+			"MaksimPinigin"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -4179,7 +4180,7 @@
 	"restrictionsfield-label": "Разрешённые диапазоны IP-адресов:",
 	"restrictionsfield-help": "По одному IP-адресу или CIDR-диапазону в строке. Чтобы разрешить всё, используйте:<pre>0.0.0.0/0\n::/0</pre>",
 	"edit-error-short": "Ошибка: $1",
-	"edit-error-long": "Ошибки: $1",
+	"edit-error-long": "Ошибки:\n\n$1",
 	"revid": "версия $1",
 	"pageid": "ID страницы $1",
 	"rawhtml-notallowed": "&lt;html&gt; теги могут быть использованы только в пределах обычных страниц.",

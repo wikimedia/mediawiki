@@ -1742,7 +1742,7 @@
 	"lockmanager-fail-closelock": "Não foi possível encerrar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-deletelock": "Não foi possível eliminar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-acquirelock": "Não foi possível obter uma referência de bloqueio para \"$1\".",
-	"lockmanager-fail-openlock": "Não foi possível abrir a referência de bloqueio para \"$1\".",
+	"lockmanager-fail-openlock": "Não foi possível abrir a referência de bloqueio para \"$1\". Certifique-se de que seu diretório de upload esteja configurado corretamente e seu servidor web tenha permissão para gravar nesse diretório. Veja https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory para maiores informações.",
 	"lockmanager-fail-releaselock": "Não foi possível liberar o bloqueio para \"$1\".",
 	"lockmanager-fail-db-bucket": "Não foi possível contatar suficientemente bloqueio das bases de dados no bucket $1 .",
 	"lockmanager-fail-db-release": "Não foi possível liberar os bloqueios para \"$1\".",

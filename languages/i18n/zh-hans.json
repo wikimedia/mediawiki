@@ -1725,7 +1725,7 @@
 	"lockmanager-fail-closelock": "无法关闭“$1”的锁文件。",
 	"lockmanager-fail-deletelock": "无法删除“$1”的锁文件。",
 	"lockmanager-fail-acquirelock": "无法为“$1”获取锁。",
-	"lockmanager-fail-openlock": "无法打开“$1”的锁文件。",
+	"lockmanager-fail-openlock": "无法打开“$1”的锁定文件。请确保您的上传目录正确配置，并且您的web服务器有权限写入至那个目录。参见https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory获取更多信息。",
 	"lockmanager-fail-releaselock": "无法为“$1”释放锁。",
 	"lockmanager-fail-db-bucket": "不能在$1池中联系到足够锁数据库。",
 	"lockmanager-fail-db-release": "不能在数据库$1上释放锁。",
