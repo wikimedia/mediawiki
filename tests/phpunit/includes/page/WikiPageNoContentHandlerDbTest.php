@@ -11,4 +11,8 @@ class WikiPageNoContentHandlerDbTest extends WikiPageDbTestBase {
 		return false;
 	}
 
+	public function provideMigrations() {
+		yield 'MIGRATION_OLD' => [ MIGRATION_OLD ];
+	}
+
 }
