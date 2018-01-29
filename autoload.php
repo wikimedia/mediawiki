@@ -197,6 +197,7 @@ $wgAutoloadLocalClasses = [
 	'BenchmarkLruHash' => __DIR__ . '/maintenance/benchmarks/benchmarkLruHash.php',
 	'BenchmarkParse' => __DIR__ . '/maintenance/benchmarks/benchmarkParse.php',
 	'BenchmarkPurge' => __DIR__ . '/maintenance/benchmarks/benchmarkPurge.php',
+	'BenchmarkSanitizer' => __DIR__ . '/maintenance/benchmarks/benchmarkSanitizer.php',
 	'BenchmarkTidy' => __DIR__ . '/maintenance/benchmarks/benchmarkTidy.php',
 	'Benchmarker' => __DIR__ . '/maintenance/benchmarks/Benchmarker.php',
 	'BitmapHandler' => __DIR__ . '/includes/media/Bitmap.php',
