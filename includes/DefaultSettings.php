@@ -7739,7 +7739,9 @@ $wgLogActionsHandlers = [
 	'managetags/delete' => LogFormatter::class,
 	'merge/merge' => MergeLogFormatter::class,
 	'move/move' => MoveLogFormatter::class,
+	'move/move_suppress_redir' => MoveLogFormatter::class,
 	'move/move_redir' => MoveLogFormatter::class,
+	'move/move_redir_suppress_redir' => MoveLogFormatter::class,
 	'patrol/patrol' => PatrolLogFormatter::class,
 	'patrol/autopatrol' => PatrolLogFormatter::class,
 	'protect/modify' => ProtectLogFormatter::class,
@@ -7795,8 +7797,10 @@ $wgActionFilteredLogs = [
 		'deactivate' => [ 'deactivate' ],
 	],
 	'move' => [
-		'move' => [ 'move' ],
-		'move_redir' => [ 'move_redir' ],
+		'move' => [ 'move', 'move_suppress_redir' ],
+		'move_redir' => [ 'move_redir', 'move_redir_suppress_redir' ],
+		'move_keep_redir' => [ 'move', 'move_redir', ],
+		'move_suppress_redir' => [ 'move_suppress_redir', 'move_redir_suppress_redir' ],
 	],
 	'newusers' => [
 		'create' => [ 'create', 'newusers' ],

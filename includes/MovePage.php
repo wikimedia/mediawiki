@@ -504,13 +504,16 @@ class MovePage {
 		$oldid = $this->oldTitle->getArticleID();
 		$logTitle = clone $this->oldTitle;
 
+		if ( !$redirectContent ) {
+			$logType .= '_suppress_redir';
+		}
+
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $user );
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
 		$logEntry->setParameters( [
 			'4::target' => $nt->getPrefixedText(),
-			'5::noredir' => $redirectContent ? '0' : '1',
 		] );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );

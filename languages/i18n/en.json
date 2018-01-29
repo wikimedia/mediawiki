@@ -4325,6 +4325,8 @@
 	"log-action-filter-managetags-deactivate": "Tag deactivation",
 	"log-action-filter-move-move": "Move without overwriting of redirects",
 	"log-action-filter-move-move_redir": "Move with overwriting of redirects",
+	"log-action-filter-move-move_keep_redir": "Move with keeping of redirects",
+	"log-action-filter-move-move_suppress_redir": "Move with suppressing of redirects",
 	"log-action-filter-newusers-create": "Creation by anonymous user",
 	"log-action-filter-newusers-create2": "Creation by registered user",
 	"log-action-filter-newusers-autocreate": "Automatic creation",

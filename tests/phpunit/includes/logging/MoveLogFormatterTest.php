@@ -22,7 +22,6 @@ class MoveLogFormatterTest extends LogFormatterTestCase {
 					'title' => 'OldPage',
 					'params' => [
 						'4::target' => 'NewPage',
-						'5::noredir' => '0',
 					],
 				],
 				[
@@ -36,6 +35,51 @@ class MoveLogFormatterTest extends LogFormatterTestCase {
 			],
 
 			// Current format - without redirect
+			[
+				[
+					'type' => 'move',
+					'action' => 'move_suppress_redir',
+					'comment' => 'move comment',
+					'namespace' => NS_MAIN,
+					'title' => 'OldPage',
+					'params' => [
+						'4::target' => 'NewPage',
+					],
+				],
+				[
+					'text' => 'User moved page OldPage to NewPage without leaving a redirect',
+					'api' => [
+						'target_ns' => 0,
+						'target_title' => 'NewPage',
+						'suppressredirect' => true,
+					],
+				],
+			],
+
+			// legacy format - with redirect
+			[
+				[
+					'type' => 'move',
+					'action' => 'move',
+					'comment' => 'move comment with redirect',
+					'namespace' => NS_MAIN,
+					'title' => 'OldPage',
+					'params' => [
+						'4::target' => 'NewPage',
+						'5::noredir' => '0',
+					],
+				],
+				[
+					'text' => 'User moved page OldPage to NewPage',
+					'api' => [
+						'target_ns' => 0,
+						'target_title' => 'NewPage',
+						'suppressredirect' => false,
+					],
+				],
+			],
+
+			// legacy format - without redirect
 			[
 				[
 					'type' => 'move',
@@ -155,7 +199,6 @@ class MoveLogFormatterTest extends LogFormatterTestCase {
 					'title' => 'OldPage',
 					'params' => [
 						'4::target' => 'NewPage',
-						'5::noredir' => '0',
 					],
 				],
 				[
@@ -169,6 +212,51 @@ class MoveLogFormatterTest extends LogFormatterTestCase {
 			],
 
 			// Current format - without redirect
+			[
+				[
+					'type' => 'move',
+					'action' => 'move_redir_suppress_redir',
+					'comment' => 'move comment',
+					'namespace' => NS_MAIN,
+					'title' => 'OldPage',
+					'params' => [
+						'4::target' => 'NewPage',
+					],
+				],
+				[
+					'text' => 'User moved page OldPage to NewPage over a redirect without leaving a redirect',
+					'api' => [
+						'target_ns' => 0,
+						'target_title' => 'NewPage',
+						'suppressredirect' => true,
+					],
+				],
+			],
+
+			// legacy format - with redirect
+			[
+				[
+					'type' => 'move',
+					'action' => 'move_redir',
+					'comment' => 'move comment with redirect',
+					'namespace' => NS_MAIN,
+					'title' => 'OldPage',
+					'params' => [
+						'4::target' => 'NewPage',
+						'5::noredir' => '0',
+					],
+				],
+				[
+					'text' => 'User moved page OldPage to NewPage over redirect',
+					'api' => [
+						'target_ns' => 0,
+						'target_title' => 'NewPage',
+						'suppressredirect' => false,
+					],
+				],
+			],
+
+			// legacy format - without redirect
 			[
 				[
 					'type' => 'move',
