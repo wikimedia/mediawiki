@@ -560,7 +560,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 				],
 				"DELETE FROM replace_table " .
-					"WHERE ( field='text' ); " .
+					"WHERE (field = 'text'); " .
 					"INSERT INTO replace_table " .
 					"(field,field2) " .
 					"VALUES ('text','text2')"
@@ -576,7 +576,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' AND md_skin='skin' ); " .
+					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps')"
@@ -598,12 +598,12 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' AND md_skin='skin' ); " .
+					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps'); " .
 					"DELETE FROM module_deps " .
-					"WHERE ( md_module='module2' AND md_skin='skin2' ); " .
+					"WHERE (md_module = 'module2' AND md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2')"
@@ -625,12 +625,12 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' ) OR ( md_skin='skin' ); " .
+					"WHERE (md_module = 'module') OR (md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps'); " .
 					"DELETE FROM module_deps " .
-					"WHERE ( md_module='module2' ) OR ( md_skin='skin2' ); " .
+					"WHERE (md_module = 'module2') OR (md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2')"
