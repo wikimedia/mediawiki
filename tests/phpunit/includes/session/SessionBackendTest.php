@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use Config;
 use MediaWikiTestCase;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -14,9 +15,16 @@ use Wikimedia\TestingAccessWrapper;
 class SessionBackendTest extends MediaWikiTestCase {
 	const SESSIONID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
+	/** @var SessionManager */
 	protected $manager;
+
+	/** @var Config */
 	protected $config;
+
+	/** @var SessionProvider */
 	protected $provider;
+
+	/** @var TestBagOStuff */
 	protected $store;
 
 	protected $onSessionMetadataCalled = false;
@@ -25,6 +33,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 	 * Returns a non-persistent backend that thinks it has at least one session active
 	 * @param User|null $user
 	 * @param string $id
+	 * @return SessionBackend
 	 */
 	protected function getBackend( User $user = null, $id = null ) {
 		if ( !$this->config ) {
@@ -149,7 +158,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertSame( $info->forceHTTPS(), $backend->shouldForceHTTPS() );
 
 		$expire = time() + 100;
-		$this->store->setSessionMeta( self::SESSIONID, [ 'expires' => $expire ], 2 );
+		$this->store->setSessionMeta( self::SESSIONID, [ 'expires' => $expire ] );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this->provider,
