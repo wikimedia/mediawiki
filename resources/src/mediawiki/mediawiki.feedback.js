@@ -57,6 +57,7 @@
 		this.feedbackPageTitle = config.title || new mw.Title( 'Feedback' );
 
 		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle, config.apiUrl );
+		this.foreignApi = config.apiUrl ? new mw.ForeignApi( config.apiUrl ) : null;
 
 		// Links
 		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/edit/form/1/';
@@ -85,12 +86,14 @@
 	 * Respond to dialog submit event. If the information was
 	 * submitted successfully, open a MessageDialog to thank the user.
 	 *
-	 * @param {string} [status] A status of the end of operation
+	 * @param {string} status A status of the end of operation
 	 *  of the main feedback dialog. Empty if the dialog was
 	 *  dismissed with no action or the user followed the button
 	 *  to the external task reporting site.
+	 * @param {string} feedbackPageName
+	 * @param {string} feedbackPageUrl
 	 */
-	mw.Feedback.prototype.onDialogSubmit = function ( status ) {
+	mw.Feedback.prototype.onDialogSubmit = function ( status, feedbackPageName, feedbackPageUrl ) {
 		var dialogConfig;
 
 		if ( status !== 'submitted' ) {
@@ -101,10 +104,10 @@
 			title: mw.msg( 'feedback-thanks-title' ),
 			message: $( '<span>' ).msg(
 				'feedback-thanks',
-				this.feedbackPageTitle.getNameText(),
+				feedbackPageName,
 				$( '<a>' ).attr( {
 					target: '_blank',
-					href: this.feedbackPageTitle.getUrl()
+					href: feedbackPageUrl
 				} )
 			),
 			actions: [
@@ -150,6 +153,7 @@
 			this.constructor.static.dialog,
 			{
 				title: mw.msg( this.dialogTitleMessageKey ),
+				foreignApi: this.foreignApi,
 				settings: {
 					messagePosterPromise: this.messagePosterPromise,
 					title: this.feedbackPageTitle,
@@ -306,6 +310,24 @@
 	mw.Feedback.Dialog.prototype.getSetupProcess = function ( data ) {
 		return mw.Feedback.Dialog.parent.prototype.getSetupProcess.call( this, data )
 			.next( function () {
+				// Get the URL of the target page, we want to use that in links in the intro
+				// and in the success dialog
+				var dialog = this;
+				if ( data.foreignApi ) {
+					return data.foreignApi.get( {
+						action: 'query',
+						prop: 'info',
+						inprop: 'url',
+						formatversion: 2,
+						titles: data.settings.title.getPrefixedText()
+					} ).then( function ( data ) {
+						dialog.feedbackPageUrl = OO.getProp( data, 'query', 'pages', 0, 'canonicalurl' );
+					} );
+				} else {
+					this.feedbackPageUrl = data.settings.title.getUrl();
+				}
+			}, this )
+			.next( function () {
 				var plainMsg, parsedMsg,
 					settings = data.settings;
 				data.contents = data.contents || {};
@@ -319,7 +341,6 @@
 				this.setBugReportLink( settings.bugsTaskSubmissionLink );
 				this.feedbackPageTitle = settings.title;
 				this.feedbackPageName = settings.title.getNameText();
-				this.feedbackPageUrl = settings.title.getUrl();
 
 				// Useragent checkbox
 				if ( settings.useragentCheckbox.show ) {
