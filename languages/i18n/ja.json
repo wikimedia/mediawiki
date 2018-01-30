@@ -1554,7 +1554,7 @@
 	"recentchangeslinked-feed": "関連ページの更新状況",
 	"recentchangeslinked-toolbox": "関連ページの更新状況",
 	"recentchangeslinked-title": "「$1」と関連する変更",
-	"recentchangeslinked-summary": "これは指定したページからリンクされている (または指定したカテゴリに含まれている) ページの最近の変更の一覧です。\n[[Special:Watchlist|自分のウォッチリスト]]にあるページは<strong>太字</strong>で表示されます。",
+	"recentchangeslinked-summary": "ページ名を入力すると、リンク関係 (そのページのリンク先もしくは他のページからのリンク) の最近の変更を調べることができます。 (下位カテゴリを参照するには、カテゴリ:カテゴリ名 (Category:Name of category) を入力)。[[Special:Watchlist|自分のウォッチリスト]]にあるページの変更は<strong>太字</strong>で表示されます。",
 	"recentchangeslinked-page": "ページ名:",
 	"recentchangeslinked-to": "このページへのリンク元での変更の表示に切り替え",
 	"recentchanges-page-added-to-category": "[[:$1]]をカテゴリに追加",

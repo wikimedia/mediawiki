@@ -1641,7 +1641,7 @@
 	"lockmanager-fail-closelock": "Ne morem zapreti zaklenitvene datoteke »$1«.",
 	"lockmanager-fail-deletelock": "Ne morem izbrisati zaklenitvene datoteke »$1«.",
 	"lockmanager-fail-acquirelock": "Ne morem pridobiti zaklenitvene datoteke »$1«.",
-	"lockmanager-fail-openlock": "Ne morem odpreti zaklenitvene datoteke »$1«.",
+	"lockmanager-fail-openlock": "Ne morem odpreti zaklenitvene datoteke »$1«. Prepričajte se, da je mapa za nalaganje nastavljena pravilno in da ima vaš spletni strežnik pravice za pisanje v tej mapi. Oglejte si https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory za več informacij.",
 	"lockmanager-fail-releaselock": "Ne morem sprostiti zaklepa »$1«.",
 	"lockmanager-fail-db-bucket": "Ne morem kontaktirati zadostnega števila zaklenitvenih zbirk podatkov v vedru $1.",
 	"lockmanager-fail-db-release": "Ne morem sprostiti zaklepov zbirke podatkov $1.",
