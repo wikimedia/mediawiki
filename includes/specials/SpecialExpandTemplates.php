@@ -164,7 +164,6 @@ class SpecialExpandTemplates extends SpecialPage {
 				'size' => 60,
 				'default' => $title,
 				'autofocus' => true,
-				'cssclass' => 'mw-ui-input-inline',
 			],
 			'input' => [
 				'type' => 'textarea',
