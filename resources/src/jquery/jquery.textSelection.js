@@ -554,7 +554,6 @@
 					// Return [start, end] instead of just start
 					startAndEnd: false
 				}, options );
-				// FIXME: We may not need character position-based functions if we insert markers in the right places
 				break;
 			case 'setSelection':
 				options = $.extend( {
@@ -567,7 +566,6 @@
 				if ( options.end === undefined ) {
 					options.end = options.start;
 				}
-				// FIXME: We may not need character position-based functions if we insert markers in the right places
 				break;
 			case 'scrollToCaretPosition':
 				options = $.extend( {
