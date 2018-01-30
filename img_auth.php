@@ -51,7 +51,7 @@ $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
-	global $wgImgAuthUrlPathMap;
+	global $wgImgAuthUrlPathMap, $wgUploadDirectory;
 
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', User::getGroupPermissions( [ '*' ] ), true );
@@ -127,7 +127,11 @@ function wfImageAuthMain() {
 		} else {
 			$file = $repo->newFile( $name );
 		}
-		if ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
+
+		if( file_exists( $wgUploadDirectory . $path ) && !$file->exists() ) {
+			// Don't throw anything since the file exists in the images folder
+			// but isn't known in the mw-filestore.
+		} elseif ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
 			return;
 		}
