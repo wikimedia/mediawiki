@@ -84,9 +84,7 @@ abstract class LBFactory implements ILBFactory {
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
 
 	public function __construct( array $conf ) {
-		$this->localDomain = isset( $conf['localDomain'] )
-			? DatabaseDomain::newFromId( $conf['localDomain'] )
-			: DatabaseDomain::newUnspecified();
+		$this->localDomain = $conf['localDomain'];
 
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
@@ -142,6 +140,17 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
+	}
+
+	/**
+	 * Get the local (and default) database domain ID of connection handles
+	 *
+	 * @see DatabaseDomain
+	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
+	 * @since 1.31
+	 */
+	public function getLocalDomainID() {
+		return $this->localDomain->getId();
 	}
 
 	/**
