@@ -825,7 +825,7 @@ class LoadBalancer implements ILoadBalancer {
 					// Use the local domain table prefix if the local domain is specified
 					$server['tablePrefix'] = $this->localDomain->getTablePrefix();
 				}
-				$conn = $this->reallyOpenConnection( $server, $this->localDomain->getDatabase() );
+				$conn = $this->reallyOpenConnection( $server, $this->localDomain );
 				$host = $this->getServerName( $i );
 				if ( $conn->isOpen() ) {
 					$this->connLogger->debug( "Connected to database $i at '$host'." );
@@ -926,7 +926,7 @@ class LoadBalancer implements ILoadBalancer {
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
 			$server['autoCommitOnly'] = $autoCommit;
-			$conn = $this->reallyOpenConnection( $server, $dbName );
+			$conn = $this->reallyOpenConnection( $server, $domainInstance );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
 				$this->errorConnection = $conn;
@@ -969,18 +969,19 @@ class LoadBalancer implements ILoadBalancer {
 	 * Returns a Database object whether or not the connection was successful.
 	 *
 	 * @param array $server
-	 * @param string|null $dbNameOverride Use "" to not select any database
+	 * @param DatabaseDomain $domainOverride Use an unspecified domain to not select any database
 	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
-	protected function reallyOpenConnection( array $server, $dbNameOverride ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
 		if ( $this->disabled ) {
 			throw new DBAccessError();
 		}
 
-		if ( $dbNameOverride !== null ) {
-			$server['dbname'] = $dbNameOverride;
+		if ( $domainOverride->getDatabase() !== null ) {
+			$server['dbname'] = $domainOverride->getDatabase();
+			$server['schema'] = $domainOverride->getSchema();
 		}
 
 		// Let the handle know what the cluster master is (e.g. "db1052")

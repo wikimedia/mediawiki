@@ -46,7 +46,7 @@ abstract class MWLBFactory {
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
 				$mainConfig->get( 'DBname' ),
-				null,
+				$mainConfig->get( 'DBmwschema' ),
 				$mainConfig->get( 'DBprefix' )
 			),
 			'profiler' => Profiler::instance(),
