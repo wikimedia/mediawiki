@@ -48,19 +48,16 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Generate the JavaScript content of this module.
-	 *
-	 * Add FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
-	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall(
+		// Use FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
+		return ResourceLoader::FILTER_NOMIN . Xml::encodeJsCall(
 			'mw.user.tokens.set',
 			[ $this->contextUserTokens( $context ) ],
 			ResourceLoader::inDebugMode()
-		) . ResourceLoader::FILTER_NOMIN;
+		);
 	}
 
 	/**

@@ -51,10 +51,12 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set',
+		// Use FILTER_NOMIN annotation to prevent needless minification and caching (T84960).
+		return ResourceLoader::FILTER_NOMIN . Xml::encodeJsCall(
+			'mw.user.options.set',
 			[ $context->getUserObj()->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS ) ],
 			ResourceLoader::inDebugMode()
-		) . ResourceLoader::FILTER_NOMIN;
+		);
 	}
 
 	/**
