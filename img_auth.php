@@ -131,7 +131,7 @@ function wfImageAuthMain() {
 		if( file_exists( $wgUploadDirectory . $path ) && !$file->exists() ) {
 			// Don't throw anything since the file exists in the images folder
 			// but isn't known in the mw-filestore.
-		} else if ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
+		} elseif ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
 			wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
 			return;
 		}
