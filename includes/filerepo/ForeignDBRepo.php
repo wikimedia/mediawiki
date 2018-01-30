@@ -58,9 +58,9 @@ class ForeignDBRepo extends LocalRepo {
 	protected $dbConn;
 
 	/** @var callable */
-	protected $fileFactory = [ 'ForeignDBFile', 'newFromTitle' ];
+	protected $fileFactory = [ ForeignDBFile::class, 'newFromTitle' ];
 	/** @var callable */
-	protected $fileFromRowFactory = [ 'ForeignDBFile', 'newFromRow' ];
+	protected $fileFromRowFactory = [ ForeignDBFile::class, 'newFromRow' ];
 
 	/**
 	 * @param array|null $info

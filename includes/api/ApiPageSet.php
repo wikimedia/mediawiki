@@ -1528,7 +1528,7 @@ class ApiPageSet extends ApiBase {
 			$prefix = $query->getModulePath() . '+';
 			$mgr = $query->getModuleManager();
 			foreach ( $mgr->getNamesWithClasses() as $name => $class ) {
-				if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
+				if ( is_subclass_of( $class, ApiQueryGeneratorBase::class ) ) {
 					$gens[$name] = $prefix . $name;
 				}
 			}

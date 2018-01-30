@@ -1059,8 +1059,8 @@ class ParserOptions {
 				'printable' => false,
 				'allowUnsafeRawHtml' => true,
 				'wrapclass' => 'mw-parser-output',
-				'currentRevisionCallback' => [ 'Parser', 'statelessFetchRevision' ],
-				'templateCallback' => [ 'Parser', 'statelessFetchTemplate' ],
+				'currentRevisionCallback' => [ Parser::class, 'statelessFetchRevision' ],
+				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
 			];
 

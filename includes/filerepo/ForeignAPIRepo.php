@@ -29,7 +29,7 @@ use MediaWiki\Logger\LoggerFactory;
  * Example config:
  *
  * $wgForeignFileRepos[] = [
- *   'class'                  => 'ForeignAPIRepo',
+ *   'class'                  => ForeignAPIRepo::class,
  *   'name'                   => 'shared',
  *   'apibase'                => 'https://en.wikipedia.org/w/api.php',
  *   'fetchDescription'       => true, // Optional
@@ -53,7 +53,7 @@ class ForeignAPIRepo extends FileRepo {
 		'timestamp',
 	];
 
-	protected $fileFactory = [ 'ForeignAPIFile', 'newFromTitle' ];
+	protected $fileFactory = [ ForeignAPIFile::class, 'newFromTitle' ];
 	/** @var int Check back with Commons after this expiry */
 	protected $apiThumbCacheExpiry = 86400; // 1 day (24*3600)
 

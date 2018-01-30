@@ -823,7 +823,7 @@ class PPDStack {
 	 */
 	public $top;
 	public $out;
-	public $elementClass = 'PPDStackElement';
+	public $elementClass = PPDStackElement::class;
 
 	public static $false = false;
 
@@ -931,7 +931,7 @@ class PPDStackElement {
 	 */
 	public $lineStart;
 
-	public $partClass = 'PPDPart';
+	public $partClass = PPDPart::class;
 
 	public function __construct( $data = [] ) {
 		$class = $this->partClass;

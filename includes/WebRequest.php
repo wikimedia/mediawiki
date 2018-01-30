@@ -956,7 +956,7 @@ class WebRequest {
 	public function response() {
 		/* Lazy initialization of response object for this request */
 		if ( !is_object( $this->response ) ) {
-			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
+			$class = ( $this instanceof FauxRequest ) ? FauxResponse::class : WebResponse::class;
 			$this->response = new $class();
 		}
 		return $this->response;

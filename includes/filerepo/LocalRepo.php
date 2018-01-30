@@ -34,17 +34,17 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class LocalRepo extends FileRepo {
 	/** @var callable */
-	protected $fileFactory = [ 'LocalFile', 'newFromTitle' ];
+	protected $fileFactory = [ LocalFile::class, 'newFromTitle' ];
 	/** @var callable */
-	protected $fileFactoryKey = [ 'LocalFile', 'newFromKey' ];
+	protected $fileFactoryKey = [ LocalFile::class, 'newFromKey' ];
 	/** @var callable */
-	protected $fileFromRowFactory = [ 'LocalFile', 'newFromRow' ];
+	protected $fileFromRowFactory = [ LocalFile::class, 'newFromRow' ];
 	/** @var callable */
-	protected $oldFileFromRowFactory = [ 'OldLocalFile', 'newFromRow' ];
+	protected $oldFileFromRowFactory = [ OldLocalFile::class, 'newFromRow' ];
 	/** @var callable */
-	protected $oldFileFactory = [ 'OldLocalFile', 'newFromTitle' ];
+	protected $oldFileFactory = [ OldLocalFile::class, 'newFromTitle' ];
 	/** @var callable */
-	protected $oldFileFactoryKey = [ 'OldLocalFile', 'newFromKey' ];
+	protected $oldFileFactoryKey = [ OldLocalFile::class, 'newFromKey' ];
 
 	function __construct( array $info = null ) {
 		parent::__construct( $info );

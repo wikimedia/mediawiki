@@ -15,7 +15,7 @@ class MssqlResultWrapper extends ResultWrapper {
 		$res = $this->result;
 
 		if ( $this->mSeekTo !== null ) {
-			$result = sqlsrv_fetch_object( $res, 'stdClass', [],
+			$result = sqlsrv_fetch_object( $res, stdClass::class, [],
 				SQLSRV_SCROLL_ABSOLUTE, $this->mSeekTo );
 			$this->mSeekTo = null;
 		} else {
