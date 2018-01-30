@@ -30,7 +30,7 @@
  */
 class SkinApi extends SkinTemplate {
 	public $skinname = 'apioutput';
-	public $template = 'SkinApiTemplate';
+	public $template = SkinApiTemplate::class;
 
 	public function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );

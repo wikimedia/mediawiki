@@ -78,12 +78,12 @@ class ApiModuleManager extends ContextSource {
 	 * @code
 	 *  $modules['foo'] = 'ApiFoo';
 	 *  $modules['bar'] = [
-	 *      'class' => 'ApiBar',
+	 *      'class' => ApiBar::class,
 	 *      'factory' => function( $main, $name ) { ... }
 	 *  ];
 	 *  $modules['xyzzy'] = [
-	 *      'class' => 'ApiXyzzy',
-	 *      'factory' => [ 'XyzzyFactory', 'newApiModule' ]
+	 *      'class' => ApiXyzzy::class,
+	 *      'factory' => [ XyzzyFactory::class, 'newApiModule' ]
 	 *  ];
 	 * @endcode
 	 *

@@ -792,7 +792,7 @@ class Preprocessor_Hash extends Preprocessor {
 class PPDStack_Hash extends PPDStack {
 
 	public function __construct() {
-		$this->elementClass = 'PPDStackElement_Hash';
+		$this->elementClass = PPDStackElement_Hash::class;
 		parent::__construct();
 		$this->rootAccum = [];
 	}
@@ -805,7 +805,7 @@ class PPDStack_Hash extends PPDStack {
 class PPDStackElement_Hash extends PPDStackElement {
 
 	public function __construct( $data = [] ) {
-		$this->partClass = 'PPDPart_Hash';
+		$this->partClass = PPDPart_Hash::class;
 		parent::__construct( $data );
 	}
 
@@ -1766,12 +1766,12 @@ class PPNode_Hash_Tree implements PPNode {
 
 		$descriptor = $store[$index];
 		if ( is_string( $descriptor ) ) {
-			$class = 'PPNode_Hash_Text';
+			$class = PPNode_Hash_Text::class;
 		} elseif ( is_array( $descriptor ) ) {
 			if ( $descriptor[self::NAME][0] === '@' ) {
-				$class = 'PPNode_Hash_Attr';
+				$class = PPNode_Hash_Attr::class;
 			} else {
-				$class = 'PPNode_Hash_Tree';
+				$class = self::class;
 			}
 		} else {
 			throw new MWException( __METHOD__.': invalid node descriptor' );

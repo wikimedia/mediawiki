@@ -1126,7 +1126,7 @@ class MessageCache {
 			$wgParser->firstCallInit();
 			# Clone it and store it
 			$class = $wgParserConf['class'];
-			if ( $class == 'ParserDiffTest' ) {
+			if ( $class == ParserDiffTest::class ) {
 				# Uncloneable
 				$this->mParser = new $class( $wgParserConf );
 			} else {

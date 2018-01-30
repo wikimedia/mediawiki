@@ -175,7 +175,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 			: new NullLockManager( [] );
 		$this->fileJournal = isset( $config['fileJournal'] )
 			? $config['fileJournal']
-			: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $this->name );
+			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -1597,7 +1597,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	final protected function newStatus() {
 		$args = func_get_args();
 		if ( count( $args ) ) {
-			$sv = call_user_func_array( [ 'StatusValue', 'newFatal' ], $args );
+			$sv = call_user_func_array( [ StatusValue::class, 'newFatal' ], $args );
 		} else {
 			$sv = StatusValue::newGood();
 		}

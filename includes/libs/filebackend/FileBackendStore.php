@@ -1008,13 +1008,13 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final public function getOperationsInternal( array $ops ) {
 		$supportedOps = [
-			'store' => 'StoreFileOp',
-			'copy' => 'CopyFileOp',
-			'move' => 'MoveFileOp',
-			'delete' => 'DeleteFileOp',
-			'create' => 'CreateFileOp',
-			'describe' => 'DescribeFileOp',
-			'null' => 'NullFileOp'
+			'store' => StoreFileOp::class,
+			'copy' => CopyFileOp::class,
+			'move' => MoveFileOp::class,
+			'delete' => DeleteFileOp::class,
+			'create' => CreateFileOp::class,
+			'describe' => DescribeFileOp::class,
+			'null' => NullFileOp::class
 		];
 
 		$performOps = []; // array of FileOp objects

@@ -113,12 +113,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	private static function loadModes() {
 		if ( self::$modeMapping === false ) {
 			self::$modeMapping = [
-				'traditional' => 'TraditionalImageGallery',
-				'nolines' => 'NolinesImageGallery',
-				'packed' => 'PackedImageGallery',
-				'packed-hover' => 'PackedHoverImageGallery',
-				'packed-overlay' => 'PackedOverlayImageGallery',
-				'slideshow' => 'SlideshowImageGallery',
+				'traditional' => TraditionalImageGallery::class,
+				'nolines' => NolinesImageGallery::class,
+				'packed' => PackedImageGallery::class,
+				'packed-hover' => PackedHoverImageGallery::class,
+				'packed-overlay' => PackedOverlayImageGallery::class,
+				'slideshow' => SlideshowImageGallery::class,
 			];
 			// Allow extensions to make a new gallery format.
 			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );

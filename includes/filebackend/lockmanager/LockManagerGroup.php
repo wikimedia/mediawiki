@@ -116,7 +116,7 @@ class LockManagerGroup {
 		if ( !isset( $this->managers[$name]['instance'] ) ) {
 			$class = $this->managers[$name]['class'];
 			$config = $this->managers[$name]['config'];
-			if ( $class === 'DBLockManager' ) {
+			if ( $class === DBLockManager::class ) {
 				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 				$lb = $lbFactory->newMainLB( $config['domain'] );
 				$dbw = $lb->getLazyConnectionRef( DB_MASTER, [], $config['domain'] );

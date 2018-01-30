@@ -103,15 +103,15 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$this->tokenFunctions = [
-			'edit' => [ 'ApiQueryInfo', 'getEditToken' ],
-			'delete' => [ 'ApiQueryInfo', 'getDeleteToken' ],
-			'protect' => [ 'ApiQueryInfo', 'getProtectToken' ],
-			'move' => [ 'ApiQueryInfo', 'getMoveToken' ],
-			'block' => [ 'ApiQueryInfo', 'getBlockToken' ],
-			'unblock' => [ 'ApiQueryInfo', 'getUnblockToken' ],
-			'email' => [ 'ApiQueryInfo', 'getEmailToken' ],
-			'import' => [ 'ApiQueryInfo', 'getImportToken' ],
-			'watch' => [ 'ApiQueryInfo', 'getWatchToken' ],
+			'edit' => [ self::class, 'getEditToken' ],
+			'delete' => [ self::class, 'getDeleteToken' ],
+			'protect' => [ self::class, 'getProtectToken' ],
+			'move' => [ self::class, 'getMoveToken' ],
+			'block' => [ self::class, 'getBlockToken' ],
+			'unblock' => [ self::class, 'getUnblockToken' ],
+			'email' => [ self::class, 'getEmailToken' ],
+			'import' => [ self::class, 'getImportToken' ],
+			'watch' => [ self::class, 'getWatchToken' ],
 		];
 		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ] );
 
@@ -314,7 +314,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
 
-		uasort( $this->everything, [ 'Title', 'compare' ] );
+		uasort( $this->everything, [ Title::class, 'compare' ] );
 		if ( !is_null( $this->params['continue'] ) ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries

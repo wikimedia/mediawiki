@@ -97,7 +97,7 @@ class SpecialProtectedpages extends SpecialPage {
 	) {
 		$formDescriptor = [
 			'namespace' => [
-				'class' => 'HTMLSelectNamespace',
+				'class' => HTMLSelectNamespace::class,
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'cssclass' => 'namespaceselector',
@@ -125,7 +125,7 @@ class SpecialProtectedpages extends SpecialPage {
 				'id' => 'noredirect',
 			],
 			'sizelimit' => [
-				'class' => 'HTMLSizeFilterField',
+				'class' => HTMLSizeFilterField::class,
 				'name' => 'size',
 			]
 		];

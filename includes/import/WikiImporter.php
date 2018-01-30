@@ -65,7 +65,7 @@ class WikiImporter {
 		$this->config = $config;
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
-			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
 		}
 		$id = UploadSourceAdapter::registerSource( $source );
 
