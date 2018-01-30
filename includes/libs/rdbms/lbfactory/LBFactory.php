@@ -84,9 +84,7 @@ abstract class LBFactory implements ILBFactory {
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
 
 	public function __construct( array $conf ) {
-		$this->localDomain = isset( $conf['localDomain'] )
-			? DatabaseDomain::newFromId( $conf['localDomain'] )
-			: DatabaseDomain::newUnspecified();
+		$this->localDomain = $conf['localDomain'];
 
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
@@ -142,6 +140,13 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
+	}
+
+	/**
+	 * @return DatabaseDomain
+	 */
+	public function getLocalDomain() {
+		return $this->localDomain;
 	}
 
 	/**

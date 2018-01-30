@@ -29,6 +29,7 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\DBReplicationWaitError;
 
@@ -2835,11 +2836,18 @@ function wfGlobalCacheKey( /*...*/ ) {
  * @return string
  */
 function wfWikiID() {
-	global $wgDBprefix, $wgDBname;
-	if ( $wgDBprefix ) {
-		return "$wgDBname-$wgDBprefix";
+	$services = MediaWikiServices::getInstance();
+	if ( $services->peekService( 'DBLoadBalancerFactory' ) ) {
+		return $services->getDBLoadBalancerFactory()->getLocalDomain()->getId();
 	} else {
-		return $wgDBname;
+		// This is used during bootstrap, before the DBLoadBalancerFactory has been fully initialized.
+		$mainConfig = $services->getMainConfig();
+		$domain = new DatabaseDomain(
+			$mainConfig->get( 'DBname' ),
+			$mainConfig->get( 'DBmwschema' ),
+			$mainConfig->get( 'DBprefix' )
+		);
+		return $domain->getId();
 	}
 }
 
