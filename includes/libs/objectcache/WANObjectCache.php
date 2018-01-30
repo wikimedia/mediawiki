@@ -419,6 +419,12 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * Setting 'lag' and 'since' help avoids keys getting stuck in stale states.
 	 *
+	 * Be aware that this does not update the process cache for getWithSetCallback()
+	 * callers. Keys accessed via that method are not generally meant to also be set
+	 * using this primitive method.
+	 *
+	 * Do not use this method on versioned keys accessed via getWithSetCallback().
+	 *
 	 * Example usage:
 	 * @code
 	 *     $dbr = wfGetDB( DB_REPLICA );
@@ -534,6 +540,10 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - b) If lag is higher, the DB will have gone into read-only mode already
 	 *
 	 * Note that set() can also be lag-aware and lower the TTL if it's high.
+	 *
+	 * Be aware that this does not clear the process cache. Even if it did, callbacks
+	 * used by getWithSetCallback() might still return stale data in the case of either
+	 * uncommitted or not-yet-replicated changes (callback generally use replica DBs).
 	 *
 	 * When using potentially long-running ACID transactions, a good pattern is
 	 * to use a pre-commit hook to issue the delete. This means that immediately
