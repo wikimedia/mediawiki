@@ -1663,7 +1663,7 @@
 	"lockmanager-fail-closelock": "לא הייתה אפשרות לסגור את קובץ הנעילה עבור \"$1\".",
 	"lockmanager-fail-deletelock": "לא הייתה אפשרות למחוק את קובץ הנעילה עבור \"$1\".",
 	"lockmanager-fail-acquirelock": "לא הייתה אפשרות לקבל נעילה עבור \"$1\".",
-	"lockmanager-fail-openlock": "לא הייתה אפשרות לפתוח את קובץ הנעילה עבור \"$1\".",
+	"lockmanager-fail-openlock": "לא הייתה אפשרות לפתוח את קובץ הנעילה עבור \"$1\". יש לוודא שתיקיית ההעלאות מוגדרת בצורה תקינה ושלשרת האינטרנט יש הרשאות לכתוב לתיקייה זו. [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory למידע נוסף].",
 	"lockmanager-fail-releaselock": "לא הייתה אפשרות לשחרר את הנעילה עבור \"$1\".",
 	"lockmanager-fail-db-bucket": "לא הייתה אפשרות לקבל מספיק מסדי נתונים של נעילות בדלי $1.",
 	"lockmanager-fail-db-release": "לא הייתה אפשרות לשחרר נעילות על מסד הנתונים $1.",

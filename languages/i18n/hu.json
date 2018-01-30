@@ -989,7 +989,7 @@
 	"search-external": "Külső kereső",
 	"searchdisabled": "Elnézésed kérjük, de a teljes szöveges keresés terhelési okok miatt átmenetileg nem használható. Ezidő alatt használhatod a lenti Google keresést, mely viszont lehetséges, hogy nem teljesen friss adatokkal dolgozik.",
 	"search-error": "A keresés közben hiba történt: $1",
-	"search-warning": "$1 keresése közben hiba történt",
+	"search-warning": "Hiba történt a keresés közben: $1",
 	"preferences": "Beállítások",
 	"mypreferences": "Beállítások",
 	"prefs-edits": "Szerkesztéseid száma:",
