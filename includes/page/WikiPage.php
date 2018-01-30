@@ -488,6 +488,27 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Determins whether the the object was loaded from a given source by title
+	 *
+	 * @param object|string|int $from One of the following:
+	 *   - A DB query result object.
+	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *     using SELECT FOR UPDATE.
+	 *
+	 * @return boolean
+	 */
+	public function wasLoadedFrom( $from = 'fromdb' ) {
+		$from = self::convertSelectType( $from );
+		if ( is_int( $from ) ) {
+			return $from <= $this->mDataLoadedFrom;
+		}
+
+		return $from === 'fromdb';
+	}
+
+	/**
 	 * Load the object from a database row
 	 *
 	 * @since 1.20
@@ -2187,103 +2208,15 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $revision = null, User $user = null,
 		$serialFormat = null, $useCache = true
 	) {
-		global $wgContLang, $wgUser, $wgAjaxEditStash;
-
-		if ( is_object( $revision ) ) {
-			$revid = $revision->getId();
-		} else {
-			$revid = $revision;
-			// This code path is deprecated, and nothing is known to
-			// use it, so performance here shouldn't be a worry.
-			if ( $revid !== null ) {
-				wfDeprecated( __METHOD__ . ' with $revision = revision ID', '1.25' );
-				$revision = Revision::newFromId( $revid, Revision::READ_LATEST );
-			} else {
-				$revision = null;
-			}
-		}
-
-		$user = is_null( $user ) ? $wgUser : $user;
-
-		$newContentSlots = new RevisionSlots( [ 'main' => $content ] );
-		$sig = PreparedEdit::makeSignature( $this->getTitle(), $newContentSlots, $user, $revision );
-
-		if ( $this->mPreparedEdit && $this->mPreparedEdit->getSignature() === $sig ) {
-			// Already prepared
-			return $this->mPreparedEdit;
-		}
-
-		// The edit may have already been prepared via api.php?action=stashedit
-		$cachedEdit = $useCache && $wgAjaxEditStash
-			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
-			: false;
-
-		$userPopts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
-		Hooks::run( 'ArticlePrepareTextForEdit', [ $this, $userPopts ] );
-
-		if ( $cachedEdit ) {
-			$pstContent = $cachedEdit->pstContent;
-		} else {
-			$pstContent = $content->preSaveTransform( $this->mTitle, $user, $userPopts );
-		}
-
-		$canonPopts = $this->makeParserOptions( 'canonical' );
-		if ( $cachedEdit ) {
-			$output = $cachedEdit->output;
-		} else {
-			if ( $revision ) {
-				// We get here if vary-revision is set. This means that this page references
-				// itself (such as via self-transclusion). In this case, we need to make sure
-				// that any such self-references refer to the newly-saved revision, and not
-				// to the previous one, which could otherwise happen due to replica DB lag.
-				$oldCallback = $canonPopts->getCurrentRevisionCallback();
-				$canonPopts->setCurrentRevisionCallback(
-					function ( Title $title, $parser = false ) use ( $revision, &$oldCallback ) {
-						if ( $title->equals( $revision->getTitle() ) ) {
-							return $revision;
-						} else {
-							return call_user_func( $oldCallback, $title, $parser );
-						}
-					}
-				);
-			} else {
-				// Try to avoid a second parse if {{REVISIONID}} is used
-				$dbIndex = ( $this->mDataLoadedFrom & self::READ_LATEST ) === self::READ_LATEST
-					? DB_MASTER // use the best possible guess
-					: DB_REPLICA; // T154554
-
-				$canonPopts->setSpeculativeRevIdCallback(
-					function () use ( $dbIndex ) {
-						return 1 + (int)wfGetDB( $dbIndex )->selectField(
-							'revision',
-							'MAX(rev_id)',
-							[ ],
-							__METHOD__
-						);
-					}
-				);
-			}
-			$output = $pstContent
-				? $pstContent->getParserOutput( $this->mTitle, $revid, $canonPopts )
-				: null;
-		}
-
-		if ( $output ) {
-			$output->setCacheTime( wfTimestampNow() );
-		}
-
-		$pstContentSlots = new RevisionSlots( [ 'main' => $pstContent ] );
-
-		// Process cache the result
-		$this->mPreparedEdit = new PreparedEdit(
-			$newContentSlots,
-			$pstContentSlots,
-			$canonPopts,
-			$output,
-			$revision
+		$stash = MediaWikiServices::getInstance()->getPreparedEditStash();
+		$edit = $stash->prepareContentForEdit(
+			$this,
+			[ 'main' => $content ],
+			$revision->getRevisionRecord(),
+			$user, // FIXME: use $wgUser if missing!
+			$useCache
 		);
-
-		return $this->mPreparedEdit;
+		return $edit;
 	}
 
 	/**
