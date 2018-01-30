@@ -745,6 +745,7 @@
 	"postedit-confirmation-created": "The page has been created.",
 	"postedit-confirmation-restored": "The page has been restored.",
 	"postedit-confirmation-saved": "Your edit was saved.",
+	"postedit-confirmation-published": "Your edit was published.",
 	"edit-already-exists": "Could not create a new page.\nIt already exists.",
 	"addsection-preload": "",
 	"addsection-editintro": "",
