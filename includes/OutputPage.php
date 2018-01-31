@@ -465,31 +465,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Register and add a stylesheet from an extension directory.
-	 *
-	 * @deprecated since 1.27 use addModuleStyles() or addStyle() instead
-	 * @param string $url Path to sheet.  Provide either a full url (beginning
-	 *             with 'http', etc) or a relative path from the document root
-	 *             (beginning with '/').  Otherwise it behaves identically to
-	 *             addStyle() and draws from the /skins folder.
-	 */
-	public function addExtensionStyle( $url ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		array_push( $this->mExtStyles, $url );
-	}
-
-	/**
-	 * Get all styles added by extensions
-	 *
-	 * @deprecated since 1.27
-	 * @return array
-	 */
-	function getExtStyle() {
-		wfDeprecated( __METHOD__, '1.27' );
-		return $this->mExtStyles;
-	}
-
-	/**
 	 * Add a JavaScript file out of skins/common, or a given relative path.
 	 * Internal use only. Use OutputPage::addModules() if possible.
 	 *
@@ -712,13 +687,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function addBodyClasses( $classes ) {
 		$this->mAdditionalBodyClasses = array_merge( $this->mAdditionalBodyClasses, (array)$classes );
-	}
-
-	/**
-	 * @deprecated since 1.28 Obsolete - wgUseETag experiment was removed.
-	 * @param string $tag
-	 */
-	public function setETag( $tag ) {
 	}
 
 	/**
@@ -1989,15 +1957,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param int $maxage
-	 * @deprecated since 1.27 Use setCdnMaxage() instead
-	 */
-	public function setSquidMaxage( $maxage ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$this->setCdnMaxage( $maxage );
-	}
-
-	/**
 	 * Set the value of the "s-maxage" part of the "Cache-control" HTTP header
 	 *
 	 * @param int $maxage Maximum cache time on the CDN, in seconds.
@@ -2658,36 +2617,6 @@ class OutputPage extends ContextSource {
 		}
 
 		return $text;
-	}
-
-	/**
-	 * Display a page stating that the Wiki is in read-only mode.
-	 * Should only be called after wfReadOnly() has returned true.
-	 *
-	 * Historically, this function was used to show the source of the page that the user
-	 * was trying to edit and _also_ permissions error messages. The relevant code was
-	 * moved into EditPage in 1.19 (r102024 / d83c2a431c2a) and removed here in 1.25.
-	 *
-	 * @deprecated since 1.25; throw the exception directly
-	 * @throws ReadOnlyError
-	 */
-	public function readOnlyPage() {
-		if ( func_num_args() > 0 ) {
-			throw new MWException( __METHOD__ . ' no longer accepts arguments since 1.25.' );
-		}
-
-		throw new ReadOnlyError;
-	}
-
-	/**
-	 * Turn off regular page output and return an error response
-	 * for when rate limiting has triggered.
-	 *
-	 * @deprecated since 1.25; throw the exception directly
-	 */
-	public function rateLimited() {
-		wfDeprecated( __METHOD__, '1.25' );
-		throw new ThrottledError;
 	}
 
 	/**
