@@ -4,7 +4,7 @@
 ;(function(window, document) {
 /*jshint evil:true */
   /** version */
-  var version = '3.7.3';
+  var version = '3.7.3-pre';
 
   /** Preset options */
   var options = window.html5 || {};
@@ -121,7 +121,7 @@
    * returns a shived element for the given nodeName and document
    * @memberOf html5
    * @param {String} nodeName name of the element
-   * @param {Document|DocumentFragment} ownerDocument The context document.
+   * @param {Document} ownerDocument The context document.
    * @returns {Object} The shived element.
    */
   function createElement(nodeName, ownerDocument, data){
