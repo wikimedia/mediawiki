@@ -199,6 +199,13 @@ changes to languages because of Phabricator reports.
 * ParserOutput objects generated using a non-default value for
   ParserOptions::setWrapOutputClass() can no longer be added to the parser
   cache.
+* The following deprecated methods from the OutputPage class have been removed:
+  * OutputPage::addExtensionStyle(); deprecated in 1.27
+  * OutputPage::getExtStyle(); deprecated in 1.27
+  * OutputPage::setETag(); deprecated in 1.28 (obsolete no-op)
+  * OutputPage::setSquidMaxage(); deprecated in 1.27
+  * OutputPage::readOnlyPage(); deprecated in 1.25
+  * OutputPage::rateLimited(); deprecated in 1.25
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
