@@ -796,6 +796,7 @@
 	"postedit-confirmation-created": "页面已创建。",
 	"postedit-confirmation-restored": "页面已恢复。",
 	"postedit-confirmation-saved": "您的编辑已保存。",
+	"postedit-confirmation-published": "您的编辑已发布。",
 	"edit-already-exists": "不可以建立一个新页面。\n它已经存在。",
 	"defaultmessagetext": "默认消息文本",
 	"content-failed-to-parse": "未能将 $2 内容转换为 $1：$3",

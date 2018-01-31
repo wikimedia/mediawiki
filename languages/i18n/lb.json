@@ -702,6 +702,7 @@
 	"postedit-confirmation-created": "D'Säit gouf ugeluecht.",
 	"postedit-confirmation-restored": "D'Säit gouf restauréiert.",
 	"postedit-confirmation-saved": "Är Ännerung gouf gespäichert.",
+	"postedit-confirmation-published": "Är Ännerung gouf verëffentlecht.",
 	"edit-already-exists": "Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.",
 	"defaultmessagetext": "Standardtext",
 	"content-failed-to-parse": "Den $2-Inhalt fir den $1-Modell konnt net geparst ginn: $3",

@@ -3049,6 +3049,8 @@
 	"tag-filter": "[[Special:Tags|מאַרקירונג]] פֿילטער:",
 	"tag-filter-submit": "פֿילטער",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|טאַג|טאַגן}}]]: $2)",
+	"tag-mw-new-redirect": "נייע ווייטערפֿירונג",
+	"tag-mw-undo": "אַנולירן",
 	"tags-title": "טאַגן",
 	"tags-intro": "דער בלאַט ווײַזט די טאַגן מיט וואס דאס ווייכווארג קען צייכענען אַ רעדאַגירונג, און זייער באַטייַט.",
 	"tags-tag": "טאַג נאָמען",

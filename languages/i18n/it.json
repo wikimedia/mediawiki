@@ -810,6 +810,7 @@
 	"postedit-confirmation-created": "La pagina è stata creata.",
 	"postedit-confirmation-restored": "La pagina è stata ripristinata.",
 	"postedit-confirmation-saved": "La modifica è stata salvata.",
+	"postedit-confirmation-published": "La tua modifica è stata pubblicata.",
 	"edit-already-exists": "Impossibile creare una nuova pagina.\nEsiste già.",
 	"defaultmessagetext": "Testo predefinito",
 	"content-failed-to-parse": "Impossibile analizzare $2 per il modello $1: $3",
