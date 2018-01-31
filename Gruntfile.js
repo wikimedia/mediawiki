@@ -34,6 +34,7 @@ module.exports = function ( grunt ) {
 				'!docs/**',
 				'!node_modules/**',
 				'!resources/lib/**',
+				'!resources/node_modules/**',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs/**',
