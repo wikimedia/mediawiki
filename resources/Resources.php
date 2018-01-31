@@ -133,8 +133,8 @@ return [
 
 	'jquery' => [
 		'scripts' => [
-			'resources/lib/jquery/jquery.js',
-			'resources/lib/jquery/jquery.migrate.js',
+			'resources/node_modules/jquery/dist/jquery.js',
+			'resources/node_modules/jquery-migrate/dist/jquery-migrate.js',
 		],
 		'raw' => true,
 		'targets' => [ 'desktop', 'mobile' ],

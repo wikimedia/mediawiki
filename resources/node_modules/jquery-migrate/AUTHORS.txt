@@ -1,0 +1,18 @@
+Authors ordered by first contribution.
+
+Dave Methvin <dave.methvin@gmail.com>
+Richard Gibson <richard.gibson@gmail.com>
+Corey Frang <gnarf@gnarf.net>
+Igor Kalashnikov <igor.kalashnikov@me.com>
+Max Riveiro <kavu13@gmail.com>
+Jörn Zaefferer <joern.zaefferer@gmail.com>
+Timo Tijhof <krinklemail@gmail.com>
+Scott González <scott.gonzalez@gmail.com>
+Michał Gołębiowski <m.goleb@gmail.com>
+Arthur Verschaeve <contact@arthurverschaeve.be>
+Will Binns-Smith <wbinnssmith@gmail.com>
+Eric Lee Carraway <github@ericcarraway.com>
+Matthew Brundage <github@mattbrundage.com>
+Oleg Gaidarenko <markelog@gmail.com>
+Christian Oliff <christianoliff@yahoo.com>
+Thodoris Greasidis <thgreasi@gmail.com>

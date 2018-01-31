@@ -1,0 +1,8 @@
+{
+	"extends": "jquery",
+	"root": true,
+	"env": {
+		"browser": false,
+		"node": true
+	}
+}

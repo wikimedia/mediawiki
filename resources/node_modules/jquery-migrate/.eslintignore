@@ -1,0 +1,8 @@
+coverage
+external
+node_modules
+*.min.js
+src/intro.js
+src/outro.js
+test/data/jquery-*.js
+test/data/jquery.mobile-*.js
