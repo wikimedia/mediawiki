@@ -177,7 +177,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	public function transactionWritingIn( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
-			$this->logger->info( "Nested transaction for '$name' - out of sync." );
+			$this->logger->warning( "Nested transaction for '$name' - out of sync." );
 		}
 		$this->dbTrxHoldingLocks[$name] = [
 			'start' => microtime( true ),
@@ -206,7 +206,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
-			$this->logger->info(
+			$this->logger->warning(
 				"Query affected $n row(s):\n" . $query . "\n" .
 				( new RuntimeException() )->getTraceAsString() );
 		}
@@ -271,7 +271,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	public function transactionWritingOut( $server, $db, $id, $writeTime = 0.0, $affected = 0 ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( !isset( $this->dbTrxMethodTimes[$name] ) ) {
-			$this->logger->info( "Detected no transaction for '$name' - out of sync." );
+			$this->logger->warning( "Detected no transaction for '$name' - out of sync." );
 			return;
 		}
 
@@ -317,7 +317,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 				list( $query, $sTime, $end ) = $info;
 				$trace .= sprintf( "%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $query );
 			}
-			$this->logger->info( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
+			$this->logger->warning( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
 				'trace' => $trace
 			] );
@@ -336,7 +336,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			return;
 		}
 
-		$this->logger->info(
+		$this->logger->warning(
 			"Expectation ({measure} <= {max}) by {by} not met (actual: {actual}):\n{query}\n" .
 			( new RuntimeException() )->getTraceAsString(),
 			[
