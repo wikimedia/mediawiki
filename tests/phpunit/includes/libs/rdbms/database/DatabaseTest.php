@@ -322,7 +322,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 	 */
 	private function getMockDB( $methods = [] ) {
 		static $abstractMethods = [
-			'affectedRows',
+			'fetchAffectedRowCount',
 			'closeConnection',
 			'dataSeek',
 			'doQuery',

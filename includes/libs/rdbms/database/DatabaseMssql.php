@@ -353,7 +353,7 @@ class DatabaseMssql extends Database {
 	/**
 	 * @return int
 	 */
-	public function affectedRows() {
+	protected function fetchAffectedRowCount() {
 		return $this->mAffectedRows;
 	}
 
