@@ -408,19 +408,24 @@ class ChangeTags {
 		sort( $prevTags );
 		sort( $newTags );
 		if ( $prevTags == $newTags ) {
-			// No change.
 			return false;
 		}
 
 		if ( !$newTags ) {
-			// no tags left, so delete the row altogether
+			// No tags left, so delete the row altogether
 			$dbw->delete( 'tag_summary', $tsConds, __METHOD__ );
 		} else {
-			$dbw->replace( 'tag_summary',
-				[ 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ],
-				array_filter( array_merge( $tsConds, [ 'ts_tags' => implode( ',', $newTags ) ] ) ),
-				__METHOD__
-			);
+			// Specify the non-DEFAULT value columns in the INSERT/REPLACE clause
+			$row = array_filter( [ 'ts_tags' => implode( ',', $newTags ) ] + $tsConds );
+			// Check the unique keys for conflicts, ignoring any NULL *_id values
+			$uniqueKeys = [];
+			foreach ( [ 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ] as $uniqueColumn ) {
+				if ( isset( $row[$uniqueColumn] ) ) {
+					$uniqueKeys[] = [ $uniqueColumn ];
+				}
+			}
+
+			$dbw->replace( 'tag_summary', $uniqueKeys, $row, __METHOD__ );
 		}
 
 		return true;
