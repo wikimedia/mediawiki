@@ -889,8 +889,10 @@ abstract class DatabaseMysqlBase extends Database {
 			return 0; // already reached this point for sure
 		}
 
+		$useGTID = ( $this->useGTIDs && $pos->gtids );
+
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $this->useGTIDs && $pos->gtids ) {
+		if ( $useGTID ) {
 			// Wait on the GTID set (MariaDB only)
 			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
@@ -910,14 +912,17 @@ abstract class DatabaseMysqlBase extends Database {
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			// T126436: jobs programmed to wait on master positions might be referencing binlogs
-			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
-			// to detect this and treat the replica DB as having reached the position; a proper master
-			// switchover already requires that the new master be caught up before the switch.
-			$replicationPos = $this->getReplicaPos();
-			if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
-				$this->lastKnownReplicaPos = $replicationPos;
-				$status = 0;
+			if ( !$useGTID ) {
+				// T126436: jobs programmed to wait on master positions might be referencing
+				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
+				// Try to detect this case and treat the replica DB as having reached the given
+				// position (any master switchover already requires that the new master be caught
+				// up before the switch).
+				$replicationPos = $this->getReplicaPos();
+				if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
+					$this->lastKnownReplicaPos = $replicationPos;
+					$status = 0;
+				}
 			}
 		} elseif ( $status >= 0 ) {
 			// Remember that this position was reached to save queries next time
