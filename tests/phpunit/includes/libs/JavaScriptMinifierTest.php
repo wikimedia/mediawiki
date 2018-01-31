@@ -86,6 +86,10 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			// FIXME: This is invalid, but currently tolerated
 			[ "*/", "*/", false ],
 
+			// Cover failure case of incomplete char class in regexp (T75556)
+			// FIXME: This is invalid, but currently tolerated
+			[ "/a[b/.test", "/a[b/.test", false ],
+
 			// Cover failure case of incomplete string at end of file (T75556)
 			// FIXME: This is invalid, but currently tolerated
 			[ "'a", "'a", false ],
