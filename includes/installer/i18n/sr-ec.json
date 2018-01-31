@@ -83,7 +83,7 @@
 	"config-license-cc-by": "Creative Commons Ауторство (CC BY)",
 	"config-license-cc-by-nc-sa": "Creative Commons Ауторство-Некомерцијално-Делити под истим условима (CC BY-NC-SA)",
 	"config-license-cc-0": "Creative Commons Zero (јавно власништво)",
-	"config-license-gfdl": "ГНУ-ова лиценца за слободну документацију верзија 1.3 или новија верзија",
+	"config-license-gfdl": "ГНУ-ова лиценца за слободну документацију издање 1.3 или новије",
 	"config-license-pd": "Јавно власништво",
 	"config-email-settings": "Подешавања имејла",
 	"config-cc-not-chosen": "Одаберите која Кријејтив комонс лиценца вам одговара и потврдите.",
@@ -103,5 +103,5 @@
 	"config-skins-screenshots": "„$1” (снимци екрана: $2)",
 	"config-screenshot": "снимак екрана",
 	"mainpagetext": "<strong>Медијавики је успешно инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борете против спама на Вашој вики]"
+	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents кориснички водич] за коришћење програма.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Помоћ у вези са подешавањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Често постављена питања]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописни списак о издањима Медијавикија]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борите против спама на Вашој вики]"
 }

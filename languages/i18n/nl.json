@@ -785,6 +785,7 @@
 	"postedit-confirmation-created": "De pagina is aangemaakt.",
 	"postedit-confirmation-restored": "De pagina is hersteld.",
 	"postedit-confirmation-saved": "Uw bewerking is opgeslagen.",
+	"postedit-confirmation-published": "Uw bewerking is opgeslagen.",
 	"edit-already-exists": "De pagina is niet aangemaakt.\nDeze bestaat al.",
 	"defaultmessagetext": "Standaardinhoud",
 	"content-failed-to-parse": "Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.",

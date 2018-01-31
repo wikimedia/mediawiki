@@ -781,6 +781,7 @@
 	"postedit-confirmation-created": "A página foi criada.",
 	"postedit-confirmation-restored": "A página foi restaurada.",
 	"postedit-confirmation-saved": "A sua edição foi gravada.",
+	"postedit-confirmation-published": "A sua edição foi publicada.",
 	"edit-already-exists": "Não foi possível criar uma página nova.\nEla já existia.",
 	"defaultmessagetext": "Texto da mensagem padrão",
 	"content-failed-to-parse": "Falha ao analisar conteúdo $2 para modelo $1:$3",

@@ -36,7 +36,8 @@
 			"Martin Urbanec",
 			"Marek Pavlica",
 			"Asmen",
-			"Meliganai"
+			"Meliganai",
+			"Ilimanaq29"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -733,6 +734,7 @@
 	"postedit-confirmation-created": "Stránka byla založena.",
 	"postedit-confirmation-restored": "Stránka byla obnovena.",
 	"postedit-confirmation-saved": "Vaše změny byly uloženy.",
+	"postedit-confirmation-published": "Vaše editace byla uložena.",
 	"edit-already-exists": "Nepodařilo se vytvořit novou stránku, protože již existuje.",
 	"defaultmessagetext": "Výchozí text hlášení",
 	"content-failed-to-parse": "Nepodařilo se zpracovat data $2 do modelu $1: $3",
@@ -1662,7 +1664,7 @@
 	"lockmanager-fail-closelock": "Soubor se zámkem pro „$1“ nelze zavřít.",
 	"lockmanager-fail-deletelock": "Soubor se zámkem pro „$1“ nelze smazat.",
 	"lockmanager-fail-acquirelock": "Zámek pro „$1“ nelze získat.",
-	"lockmanager-fail-openlock": "Soubor se zámkem pro „$1“ nelze otevřít.",
+	"lockmanager-fail-openlock": "Soubor se zámkem „$1“ nelze otevřít. Ujistěte se, že vámi nahraný adresář je správně nakonfigurován a že váš webový server má povolení k editaci tohoto adresáře. Pro další informace vizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Zámek pro „$1“ nelze uvolnit.",
 	"lockmanager-fail-db-bucket": "Nelze navázat spojení s dostatečným počtem databází zámků v bloku $1.",
 	"lockmanager-fail-db-release": "Uzamčení databáze $1 nelze uvolnit.",

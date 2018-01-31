@@ -712,6 +712,7 @@
 	"postedit-confirmation-created": "Stran je bila ustvarjena.",
 	"postedit-confirmation-restored": "Stran je bila obnovljena.",
 	"postedit-confirmation-saved": "Vaše urejanje smo shranili.",
+	"postedit-confirmation-published": "Vaše urejanje smo objavili.",
 	"edit-already-exists": "Ni bilo mogoče ustvariti nove strani, ker že obstaja.",
 	"defaultmessagetext": "Prednastavljeno besedilo",
 	"content-failed-to-parse": "Nisem mogel razčleniti vsebine $2 za obliko $1: $3",
