@@ -3,7 +3,6 @@
 /**
  * @covers WikiReference
  */
-
 class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
 	use MediaWikiCoversValidator;

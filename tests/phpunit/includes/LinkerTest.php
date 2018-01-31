@@ -5,7 +5,6 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group Database
  */
-
 class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
