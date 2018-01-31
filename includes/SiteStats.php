@@ -33,7 +33,6 @@ class SiteStats {
 
 	/** @var bool */
 	private static $loaded = false;
-
 	/** @var int[] */
 	private static $pageCount = [];
 
@@ -54,14 +53,6 @@ class SiteStats {
 		}
 
 		self::$row = self::loadAndLazyInit();
-
-		# This code is somewhat schema-agnostic, because I'm changing it in a minor release -- TS
-		if ( !isset( self::$row->ss_total_pages ) && self::$row->ss_total_pages == -1 ) {
-			# Update schema
-			$u = new SiteStatsUpdate( 0, 0, 0 );
-			$u->doUpdate();
-			self::$row = self::doLoad( wfGetDB( DB_REPLICA ) );
-		}
 
 		self::$loaded = true;
 	}
@@ -84,20 +75,27 @@ class SiteStats {
 			}
 		}
 
-		if ( !$wgMiserMode && !self::isSane( $row ) ) {
-			// Normally the site_stats table is initialized at install time.
-			// Some manual construction scenarios may leave the table empty or
-			// broken, however, for instance when importing from a dump into a
-			// clean schema with mwdumper.
-			wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
-
-			SiteStatsInit::doAllAndCommit( wfGetDB( DB_REPLICA ) );
+		if ( !self::isSane( $row ) ) {
+			if ( $wgMiserMode ) {
+				// Start off with all zeroes, assuming that this is a new wiki or any
+				// repopulations where done manually via script.
+				SiteStatsInit::doPlaceholderInit();
+			} else {
+				// Normally the site_stats table is initialized at install time.
+				// Some manual construction scenarios may leave the table empty or
+				// broken, however, for instance when importing from a dump into a
+				// clean schema with mwdumper.
+				wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
+				SiteStatsInit::doAllAndCommit( wfGetDB( DB_REPLICA ) );
+			}
 
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
 		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
+
+			$row = (object)array_fill_keys( self::selectFields(), 0 );
 		}
 
 		return $row;
@@ -108,15 +106,7 @@ class SiteStats {
 	 * @return bool|stdClass
 	 */
 	static function doLoad( $db ) {
-		return $db->selectRow( 'site_stats', [
-				'ss_row_id',
-				'ss_total_edits',
-				'ss_good_articles',
-				'ss_total_pages',
-				'ss_users',
-				'ss_active_users',
-				'ss_images',
-			], [], __METHOD__ );
+		return $db->selectRow( 'site_stats', self::selectFields(), [], __METHOD__ );
 	}
 
 	/**
@@ -246,6 +236,21 @@ class SiteStats {
 			);
 		}
 		return self::$pageCount[$ns];
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function selectFields() {
+		return [
+			'ss_row_id',
+			'ss_total_edits',
+			'ss_good_articles',
+			'ss_total_pages',
+			'ss_users',
+			'ss_active_users',
+			'ss_images',
+		];
 	}
 
 	/**
@@ -401,6 +406,21 @@ class SiteStatsInit {
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
 			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
+		}
+	}
+
+	/**
+	 * Insert a dummy row with all zeroes if no row is present
+	 */
+	public static function doPlaceholderInit() {
+		$dbw = wfGetDB( DB_MASTER );
+		if ( $dbw->selectRow( 'site_stats', '1', [], __METHOD__ ) === false ) {
+			$dbw->insert(
+				'site_stats',
+				array_fill_keys( SiteStats::selectFields(), 0 ),
+				__METHOD__,
+				[ 'IGNORE' ]
+			);
 		}
 	}
 
