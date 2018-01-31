@@ -25,9 +25,6 @@
 	$.fn.textSelection = function ( command, options ) {
 		var fn,
 			alternateFn,
-			context,
-			hasWikiEditor,
-			needSave,
 			retval;
 
 		/**
@@ -585,19 +582,7 @@
 				return;
 		}
 
-		context = $( this ).data( 'wikiEditor-context' );
-		hasWikiEditor = ( context !== undefined && context.$iframe !== undefined );
-
-		// IE selection restore voodoo
-		needSave = false;
-		if ( hasWikiEditor && context.savedSelection !== null ) {
-			context.fn.restoreSelection();
-			needSave = true;
-		}
 		retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, options );
-		if ( hasWikiEditor && needSave ) {
-			context.fn.saveSelection();
-		}
 
 		return retval;
 	};
