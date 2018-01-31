@@ -2,65 +2,10 @@
  * These plugins provide extra functionality for interaction with textareas.
  */
 ( function ( $ ) {
-	if ( document.selection && document.selection.createRange ) {
-		// On IE, patch the focus() method to restore the windows' scroll position
-		// (T34241)
-		$.fn.extend( {
-			focus: ( function ( jqFocus ) {
-				return function () {
-					var $w, state, result;
-					if ( arguments.length === 0 ) {
-						$w = $( window );
-						state = { top: $w.scrollTop(), left: $w.scrollLeft() };
-						result = jqFocus.apply( this, arguments );
-						window.scrollTo( state.top, state.left );
-						return result;
-					}
-					return jqFocus.apply( this, arguments );
-				};
-			}( $.fn.focus ) )
-		} );
-	}
-
 	$.fn.textSelection = function ( command, options ) {
 		var fn,
 			alternateFn,
-			context,
-			hasWikiEditor,
-			needSave,
 			retval;
-
-		/**
-		 * Helper function to get an IE TextRange object for an element
-		 *
-		 * @param {HTMLElement} element
-		 * @return {TextRange}
-		 */
-		function rangeForElementIE( element ) {
-			var sel;
-			if ( element.nodeName.toLowerCase() === 'input' ) {
-				return element.createTextRange();
-			} else {
-				sel = document.body.createTextRange();
-				sel.moveToElementText( element );
-				return sel;
-			}
-		}
-
-		/**
-		 * Helper function for IE for activating the textarea. Called only in the
-		 * IE-specific code paths below; makes use of IE-specific non-standard
-		 * function setActive() if possible to avoid screen flicker.
-		 *
-		 * @param {HTMLElement} element
-		 */
-		function activateElementOnIE( element ) {
-			if ( element.setActive ) {
-				element.setActive(); // T34241: doesn't scroll
-			} else {
-				$( element ).focus(); // may scroll (but we patched it above)
-			}
-		}
 
 		fn = {
 			/**
@@ -80,21 +25,16 @@
 				this.val( content );
 			},
 			/**
-			 * Get the currently selected text in this textarea. Will focus the textarea
-			 * in some browsers (IE/Opera)
+			 * Get the currently selected text in this textarea.
 			 *
 			 * @return {string}
 			 */
 			getSelection: function () {
-				var retval, range,
+				var retval,
 					el = this.get( 0 );
 
 				if ( !el || $( el ).is( ':hidden' ) ) {
 					retval = '';
-				} else if ( document.selection && document.selection.createRange ) {
-					activateElementOnIE( el );
-					range = document.selection.createRange();
-					retval = range.text;
 				} else if ( el.selectionStart || el.selectionStart === 0 ) {
 					retval = el.value.substring( el.selectionStart, el.selectionEnd );
 				}
@@ -115,7 +55,7 @@
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
 					var selText, scrollTop, insertText,
-						isSample, range, range2, range3, startPos, endPos,
+						isSample, startPos, endPos,
 						pre = options.pre,
 						post = options.post;
 
@@ -168,55 +108,7 @@
 					isSample = false;
 					// Do nothing if display none
 					if ( this.style.display !== 'none' ) {
-						if ( document.selection && document.selection.createRange ) {
-							// IE
-
-							// Note that IE9 will trigger the next section unless we check this first.
-							// See bug T37201.
-
-							activateElementOnIE( this );
-							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
-							}
-
-							selText = $( this ).textSelection( 'getSelection' );
-							scrollTop = this.scrollTop;
-							range = document.selection.createRange();
-
-							checkSelectedText();
-							insertText = pre + selText + post;
-							if ( options.splitlines ) {
-								insertText = doSplitLines( selText, pre, post );
-							}
-							if ( options.ownline && range.moveStart ) {
-								range2 = document.selection.createRange();
-								range2.collapse();
-								range2.moveStart( 'character', -1 );
-								// FIXME: Which check is correct?
-								if ( range2.text !== '\r' && range2.text !== '\n' && range2.text !== '' ) {
-									insertText = '\n' + insertText;
-									pre += '\n';
-								}
-								range3 = document.selection.createRange();
-								range3.collapse( false );
-								range3.moveEnd( 'character', 1 );
-								if ( range3.text !== '\r' && range3.text !== '\n' && range3.text !== '' ) {
-									insertText += '\n';
-									post += '\n';
-								}
-							}
-
-							range.text = insertText;
-							if ( isSample && options.selectPeri && range.moveStart ) {
-								range.moveStart( 'character', -post.length - selText.length );
-								range.moveEnd( 'character', -post.length );
-							}
-							range.select();
-							// Restore the scroll position
-							this.scrollTop = scrollTop;
-						} else if ( this.selectionStart || this.selectionStart === 0 ) {
-							// Mozilla/Opera
-
+						if ( this.selectionStart || this.selectionStart === 0 ) {
 							$( this ).focus();
 							if ( options.selectionStart !== undefined ) {
 								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
@@ -276,13 +168,9 @@
 			/**
 			 * Ported from Wikia's LinkSuggest extension
 			 * https://svn.wikia-code.com/wikia/trunk/extensions/wikia/LinkSuggest
-			 * Some code copied from
-			 * http://www.dedestruct.com/2008/03/22/howto-cross-browser-cursor-position-in-textareas/
 			 *
 			 * Get the position (in resolution of bytes not necessarily characters)
 			 * in a textarea
-			 *
-			 * Will focus the textarea in some browsers (IE/Opera)
 			 *
 			 * @param {Object} options Options
 			 * FIXME document the options parameters
@@ -291,90 +179,9 @@
 			getCaretPosition: function ( options ) {
 				function getCaret( e ) {
 					var caretPos = 0,
-						endPos = 0,
-						preText, rawPreText, periText,
-						rawPeriText, postText,
-						// IE Support
-						preFinished,
-						periFinished,
-						postFinished,
-						// Range containing text in the selection
-						periRange,
-						// Range containing text before the selection
-						preRange,
-						// Range containing text after the selection
-						postRange;
+						endPos = 0;
 
-					if ( e && document.selection && document.selection.createRange ) {
-						// IE doesn't properly report non-selected caret position through
-						// the selection ranges when textarea isn't focused. This can
-						// lead to saving a bogus empty selection, which then screws up
-						// whatever we do later (T33847).
-						activateElementOnIE( e );
-
-						preFinished = false;
-						periFinished = false;
-						postFinished = false;
-						periRange = document.selection.createRange().duplicate();
-
-						preRange = rangeForElementIE( e );
-						// Move the end where we need it
-						preRange.setEndPoint( 'EndToStart', periRange );
-
-						postRange = rangeForElementIE( e );
-						// Move the start where we need it
-						postRange.setEndPoint( 'StartToEnd', periRange );
-
-						// Load the text values we need to compare
-						preText = rawPreText = preRange.text;
-						periText = rawPeriText = periRange.text;
-						postText = postRange.text;
-
-						/*
-						 * Check each range for trimmed newlines by shrinking the range by 1
-						 * character and seeing if the text property has changed. If it has
-						 * not changed then we know that IE has trimmed a \r\n from the end.
-						 */
-						do {
-							if ( !preFinished ) {
-								if ( preRange.compareEndPoints( 'StartToEnd', preRange ) === 0 ) {
-									preFinished = true;
-								} else {
-									preRange.moveEnd( 'character', -1 );
-									if ( preRange.text === preText ) {
-										rawPreText += '\r\n';
-									} else {
-										preFinished = true;
-									}
-								}
-							}
-							if ( !periFinished ) {
-								if ( periRange.compareEndPoints( 'StartToEnd', periRange ) === 0 ) {
-									periFinished = true;
-								} else {
-									periRange.moveEnd( 'character', -1 );
-									if ( periRange.text === periText ) {
-										rawPeriText += '\r\n';
-									} else {
-										periFinished = true;
-									}
-								}
-							}
-							if ( !postFinished ) {
-								if ( postRange.compareEndPoints( 'StartToEnd', postRange ) === 0 ) {
-									postFinished = true;
-								} else {
-									postRange.moveEnd( 'character', -1 );
-									if ( postRange.text !== postText ) {
-										postFinished = true;
-									}
-								}
-							}
-						} while ( ( !preFinished || !periFinished || !postFinished ) );
-						caretPos = rawPreText.replace( /\r\n/g, '\n' ).length;
-						endPos = caretPos + rawPeriText.replace( /\r\n/g, '\n' ).length;
-					} else if ( e && ( e.selectionStart || e.selectionStart === 0 ) ) {
-						// Firefox support
+					if ( e && ( e.selectionStart || e.selectionStart === 0 ) ) {
 						caretPos = e.selectionStart;
 						endPos = e.selectionEnd;
 					}
@@ -389,7 +196,6 @@
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
-					var selection, length, newLines;
 					// Do nothing if hidden
 					if ( !$( this ).is( ':hidden' ) ) {
 						if ( this.selectionStart || this.selectionStart === 0 ) {
@@ -403,22 +209,6 @@
 								this.selectionStart = options.start;
 								this.selectionEnd = options.end;
 							}
-						} else if ( document.body.createTextRange ) {
-							selection = rangeForElementIE( this );
-							length = this.value.length;
-							// IE doesn't count \n when computing the offset, so we won't either
-							newLines = this.value.match( /\n/g );
-							if ( newLines ) {
-								length = length - newLines.length;
-							}
-							selection.moveStart( 'character', options.start );
-							selection.moveEnd( 'character', -length + options.end );
-
-							// This line can cause an error under certain circumstances (textarea empty, no selection)
-							// Silence that error
-							try {
-								selection.select();
-							} catch ( e ) { }
 						}
 					}
 				} );
@@ -487,41 +277,15 @@
 					return ( $.client.profile().platform === 'mac' ? 13 : ( $.client.profile().platform === 'linux' ? 15 : 16 ) ) * row;
 				}
 				return this.each( function () {
-					var scroll, range, savedRange, pos, oldScrollTop;
+					var scroll;
 					// Do nothing if hidden
 					if ( !$( this ).is( ':hidden' ) ) {
 						if ( this.selectionStart || this.selectionStart === 0 ) {
-							// Mozilla
 							scroll = getCaretScrollPosition( this );
 							if ( options.force || scroll < $( this ).scrollTop() ||
 									scroll > $( this ).scrollTop() + $( this ).height() ) {
 								$( this ).scrollTop( scroll );
 							}
-						} else if ( document.selection && document.selection.createRange ) {
-							// IE / Opera
-							/*
-							 * IE automatically scrolls the selected text to the
-							 * bottom of the textarea at range.select() time, except
-							 * if it was already in view and the cursor position
-							 * wasn't changed, in which case it does nothing. To
-							 * cover that case, we'll force it to act by moving one
-							 * character back and forth.
-							 */
-							range = document.body.createTextRange();
-							savedRange = document.selection.createRange();
-							pos = $( this ).textSelection( 'getCaretPosition' );
-							oldScrollTop = this.scrollTop;
-							range.moveToElementText( this );
-							range.collapse();
-							range.move( 'character', pos + 1 );
-							range.select();
-							if ( this.scrollTop !== oldScrollTop ) {
-								this.scrollTop += range.offsetTop;
-							} else if ( options.force ) {
-								range.move( 'character', -1 );
-								range.select();
-							}
-							savedRange.select();
 						}
 					}
 					$( this ).trigger( 'scrollToPosition' );
@@ -585,19 +349,7 @@
 				return;
 		}
 
-		context = $( this ).data( 'wikiEditor-context' );
-		hasWikiEditor = ( context !== undefined && context.$iframe !== undefined );
-
-		// IE selection restore voodoo
-		needSave = false;
-		if ( hasWikiEditor && context.savedSelection !== null ) {
-			context.fn.restoreSelection();
-			needSave = true;
-		}
 		retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, options );
-		if ( hasWikiEditor && needSave ) {
-			context.fn.saveSelection();
-		}
 
 		return retval;
 	};
