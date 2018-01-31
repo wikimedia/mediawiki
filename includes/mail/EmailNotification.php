@@ -90,7 +90,7 @@ class EmailNotification {
 		LinkTarget $linkTarget,
 		$timestamp
 	) {
-		// wfDeprecated( __METHOD__, '1.27' );
+		wfDeprecated( __METHOD__, '1.27' );
 		$config = RequestContext::getMain()->getConfig();
 		if ( !$config->get( 'EnotifWatchlist' ) && !$config->get( 'ShowUpdatedMarker' ) ) {
 			return [];
