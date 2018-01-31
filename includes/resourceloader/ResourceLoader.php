@@ -1227,7 +1227,11 @@ MESSAGE;
 		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( $scripts instanceof XmlJsCode ) {
-			$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+			if ( self::inDebugMode() ) {
+				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+			} else {
+				$scripts = new XmlJsCode( 'function($,jQuery,require,module){'. $scripts->value . '}' );
+			}
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
