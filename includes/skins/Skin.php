@@ -768,15 +768,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.27, feature removed
-	 * @return bool Always false
-	 */
-	function showIPinHeader() {
-		wfDeprecated( __METHOD__, '1.27' );
-		return false;
-	}
-
-	/**
 	 * @return string
 	 */
 	function getSearchLink() {
