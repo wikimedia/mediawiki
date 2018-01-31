@@ -734,6 +734,7 @@
 	"postedit-confirmation-created": "הדף נוצר.",
 	"postedit-confirmation-restored": "הדף שוחזר.",
 	"postedit-confirmation-saved": "העריכה שלך נשמרה.",
+	"postedit-confirmation-published": "העריכה שלך פורסמה.",
 	"edit-already-exists": "לא ניתן ליצור דף חדש.\nהוא כבר קיים.",
 	"defaultmessagetext": "טקסט ההודעה המקורי",
 	"content-failed-to-parse": "פענוח $2 כתוכן מסוג $1 נכשל: $3",

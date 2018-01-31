@@ -867,6 +867,7 @@
 	"postedit-confirmation-created": "La page a été créée.",
 	"postedit-confirmation-restored": "La page a été restaurée.",
 	"postedit-confirmation-saved": "Votre modification a été enregistrée.",
+	"postedit-confirmation-published": "Votre modification a été publiée.",
 	"edit-already-exists": "La nouvelle page n’a pas pu être créée.\nElle existe déjà.",
 	"defaultmessagetext": "Message par défaut",
 	"content-failed-to-parse": "Échec de l’analyse syntaxique du contenu de $2 pour le modèle $1 : $3",
