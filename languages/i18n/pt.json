@@ -1717,7 +1717,7 @@
 	"lockmanager-fail-closelock": "Não foi possível encerrar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-deletelock": "Não foi possível eliminar a referência de bloqueio para \"$1\".",
 	"lockmanager-fail-acquirelock": "Não foi possível adquirir bloqueio para \"$1\".",
-	"lockmanager-fail-openlock": "Não foi possível abrir o ficheiro de bloqueio de \"$1\".",
+	"lockmanager-fail-openlock": "Não foi possível abrir o ficheiro de bloqueio de \"$1\". Verifique que o seu diretório de carregamento está devidamente configurado e que o seu servidor de Internet tem permissão para escrever nesse diretório. Para mais informações, consulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Não foi possível libertar o bloqueio de \"$1\".",
 	"lockmanager-fail-db-bucket": "Não foi possível contactar bases de dados de bloqueio suficientes no \"bucket\" $1.",
 	"lockmanager-fail-db-release": "Não foi possível libertar bloqueios na base de dados $1.",
