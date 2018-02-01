@@ -100,7 +100,7 @@ abstract class Benchmarker extends Maintenance {
 				'name' => $name,
 				'count' => $stat->getCount(),
 				// Get rate per second from mean (in ms)
-				'rate' => 1.0 / ( $stat->getMean() / 1000.0 ),
+				'rate' => $stat->getMean() == 0 ? INF : ( 1.0 / ( $stat->getMean() / 1000.0 ) ),
 				'total' => $stat->getMean() * $stat->getCount(),
 				'mean' => $stat->getMean(),
 				'max' => $stat->max,
