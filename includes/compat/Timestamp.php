@@ -7,12 +7,12 @@
 // loading context. This file will then register the alias and, as class_alias() does
 // by default, it will trigger a plain autoload for the destination class.
 
-// The below uses string concatenation for the alias to avoid being seen by ClassCollector,
-// which would insist on adding it to autoload.php, after which AutoLoaderTest will
+// The below uses a namespaced class reference, to to avoid being seen by ClassCollector,
+// which would otherwise add it to autoload.php, after which AutoLoaderTest will
 // complain about class_alias() not being in the target class file.
 
 /**
  * @deprecated since 1.29
  * @since 1.20
  */
-class_alias( Wikimedia\Timestamp\TimestampException::class, 'Timestamp' . 'Exception' );
+class_alias( Wikimedia\Timestamp\TimestampException::class, 'TimestampException' );
