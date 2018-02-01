@@ -1,6 +1,6 @@
 /*
  * HTMLForm enhancements:
- * Infuse some OOjs UI HTMLForm fields (those which benefit from always being infused).
+ * Infuse some OOUI HTMLForm fields (those which benefit from always being infused).
  */
 ( function ( mw, $ ) {
 

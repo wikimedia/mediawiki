@@ -3,7 +3,7 @@
 	/**
 	 * DateTimeInputWidgets can be used to input a date, a time, or a date and
 	 * time, in either UTC or the user's local timezone.
-	 * Please see the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+	 * Please see the [OOUI documentation on MediaWiki] [1] for more information and examples.
 	 *
 	 * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
 	 *
@@ -12,7 +12,7 @@
 	 *     var dateTimeInput = new mw.widgets.datetime.DateTimeInputWidget( {} )
 	 *     $( 'body' ).append( dateTimeInput.$element );
 	 *
-	 * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
+	 * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Inputs
 	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
