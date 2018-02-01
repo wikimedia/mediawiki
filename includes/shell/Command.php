@@ -374,6 +374,7 @@ class Command {
 		}
 		$pipes = null;
 		$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
+		fprintf( STDERR, "Command: Executing `%s` %s input string\n", $cmd, $this->inputString === null ? 'without' : 'with' );
 		$proc = proc_open( $cmd, $desc, $pipes );
 		if ( !$proc ) {
 			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
@@ -417,7 +418,13 @@ class Command {
 		$timeout = null;
 		$numReadyPipes = 0;
 
+		fprintf( STDERR, " Command: Beginning read/write loop\n" );
+		$counter = 0;
 		while ( $pipes && ( $running === true || $numReadyPipes !== 0 ) ) {
+			if ( ++$counter > 1e5 ) {
+				fprintf( STDERR, " Command: Aborting, too many loops\n" );
+				exit( 1 );
+			}
 			if ( $running ) {
 				$status = proc_get_status( $proc );
 				// If the process has terminated, switch to nonblocking selects
@@ -450,6 +457,7 @@ class Command {
 			$numReadyPipes = @stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
 			if ( $numReadyPipes === false ) {
 				$error = error_get_last();
+				fprintf( STDERR, "  Command: select error: %s\n", $error['message'] );
 				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
 					continue;
 				} else {
@@ -458,14 +466,19 @@ class Command {
 					break;
 				}
 			}
+			fprintf( STDERR, "  Command: %d FDs ready: %s\n", $numReadyPipes, join( ' ', array_keys( $writePipes + $readPipes ) ) );
 			foreach ( $writePipes + $readPipes as $fd => $pipe ) {
 				// True if a pipe is unblocked for us to write into, false if for reading from
 				$isWrite = array_key_exists( $fd, $readPipes );
 
 				if ( $isWrite ) {
+					fprintf( STDERR, "   Command: Writing to FD %d (65536/%d bytes)\n", $fd, strlen( $buffers[$fd] ) );
 					$res = fwrite( $pipe, $buffers[$fd], 65536 );
+					fprintf( STDERR, "    Command: Write to FD %d returned %s\n", $fd, var_export( $res, 1 ) );
 				} else {
+					fprintf( STDERR, "   Command: Reading from FD %d\n", $fd );
 					$res = fread( $pipe, 65536 );
+					fprintf( STDERR, "    Command: Read from FD %d returned %s\n", $fd, is_string( $res ) ? "string of " . strlen( $res ) . " bytes" : var_export( $res, 1 ) );
 				}
 
 				if ( $res === false ) {
@@ -476,12 +489,14 @@ class Command {
 				if ( $res === '' || $res === 0 ) {
 					// End of file?
 					if ( feof( $pipe ) ) {
+						fprintf( STDERR, "    Command: Reached EOF on FD %d\n", $fd );
 						fclose( $pipes[$fd] );
 						unset( $pipes[$fd] );
 					}
 				} elseif ( $isWrite ) {
 					$buffers[$fd] = substr( $buffers[$fd], $res );
 					if ( $buffers[$fd] === '' ) {
+						fprintf( STDERR, "    Command: Reached end of input on FD %d\n", $fd );
 						fclose( $pipes[$fd] );
 						unset( $pipes[$fd] );
 					}
@@ -498,6 +513,7 @@ class Command {
 				}
 			}
 		}
+		fprintf( STDERR, " Command: Ended read/write loop ($counter loops)\n" );
 
 		foreach ( $pipes as $pipe ) {
 			fclose( $pipe );
@@ -544,6 +560,7 @@ class Command {
 			] );
 		}
 
+		fprintf( STDERR, " Command: Done\n" );
 		return new Result( $retval, $buffers[1], $buffers[2] );
 	}
 }
