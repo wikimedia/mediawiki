@@ -17,3 +17,12 @@
 .mw-editfont-serif {
 	font-size: 13px;
 }
+
+/* Use standard form font size for input widgets with edit-fonts */
+.oo-ui-textInputWidget {
+	&.mw-editfont-monospace,
+	&.mw-editfont-sans-serif,
+	&.mw-editfont-serif {
+		font-size: inherit;
+	}
+}
