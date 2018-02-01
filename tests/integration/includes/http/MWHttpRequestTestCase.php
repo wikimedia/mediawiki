@@ -195,6 +195,11 @@ abstract class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertSame( 401, $request->getStatus() );
 	}
 
+	public function testFactoryDefaults() {
+		$request = MWHttpRequest::factory( 'http://acme.test' );
+		$this->assertInstanceOf( MWHttpRequest::class, $request );
+	}
+
 	// --------------------
 
 	/**
@@ -242,4 +247,5 @@ abstract class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
 		$this->assertArrayNotHasKey( strtolower( $name ),
 			array_change_key_case( $cookieJar->cookie, CASE_LOWER ) );
 	}
+
 }
