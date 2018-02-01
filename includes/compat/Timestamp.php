@@ -15,4 +15,4 @@
  * @deprecated since 1.29
  * @since 1.20
  */
-class_alias( Wikimedia\Timestamp\TimestampException::class, 'Timestamp' . 'Exception' );
+class_alias( Wikimedia\Timestamp\TimestampException::class, 'TimestampException' );
