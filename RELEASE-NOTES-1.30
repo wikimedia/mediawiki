@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET!
 * Add wfWaitForSlaves() to maintenance/migrateComments.php.
 * (T182245) Fix join conditions in ImageListPager.
 * (T178626) Revert #contentSub and #jump-to-nav margin changes.
+* Updated composer/spdx-licenses from 1.1.4 to 1.3.0 (development dependency).
 
 === MySQL version requirement in 1.30 ===
 As of 1.30, MediaWiki now requires MySQL 5.5.8 or higher (see Compatibility
