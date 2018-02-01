@@ -12,7 +12,7 @@ describe( 'Page', function () {
 		name;
 
 	function getTestString() {
-		return Math.random().toString() + '-öäü-♠♣♥♦';
+		return Math.random().toString() + '-Iñtërnâtiônàlizætiøn☃💯';
 	}
 
 	before( function () {
