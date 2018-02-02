@@ -146,6 +146,10 @@ class ConvertExtensionToRegistration extends Maintenance {
 		}
 		$out += $this->json;
 		// Put this at the bottom
+		// Set a mininum version which supports the highest manifest version
+		$out['requires'] = [
+			ExtensionRegistry::MEDIAWIKI_CORE => ExtensionRegistry::MANIFEST_VERSION_MW_VERSION
+		];
 		$out['manifest_version'] = ExtensionRegistry::MANIFEST_VERSION;
 		$type = $this->hasOption( 'skin' ) ? 'skin' : 'extension';
 		$fname = "{$this->dir}/$type.json";
