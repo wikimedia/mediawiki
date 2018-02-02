@@ -34,6 +34,12 @@ class ClassCollectorTest extends PHPUnit_Framework_TestCase {
 				[ 'Bar' ],
 			],
 			[
+				// Namespaced class is not currently supported. Must use namespace declaration
+				// earlier in the file.
+				"class_alias( Example\Foo::class, 'Bar' );",
+				[],
+			],
+			[
 				"namespace Example;\nclass Foo {}\nclass_alias( Foo::class, 'Bar' );",
 				[ 'Example\Foo', 'Bar' ],
 			],
