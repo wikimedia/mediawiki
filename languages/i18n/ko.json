@@ -762,6 +762,7 @@
 	"postedit-confirmation-created": "문서가 만들어졌습니다.",
 	"postedit-confirmation-restored": "문서가 되돌려졌습니다.",
 	"postedit-confirmation-saved": "편집을 저장했습니다.",
+	"postedit-confirmation-published": "편집이 게시되었습니다.",
 	"edit-already-exists": "새 문서를 만들 수 없습니다.\n문서가 이미 존재합니다.",
 	"defaultmessagetext": "기본 메시지 글",
 	"content-failed-to-parse": "$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3",

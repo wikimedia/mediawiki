@@ -1267,7 +1267,7 @@
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-limit-title": "Rezultata za prikaz",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|$1 izmjena|$1 izmjene|$1 izmjena}}, $2",
-	"rcfilters-date-popup-title": "Vremensko razdoblje za pretragu",
+	"rcfilters-date-popup-title": "Razdoblje za pretraživanje",
 	"rcfilters-days-title": "Nedavnih dana",
 	"rcfilters-hours-title": "Nedavnih sati",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|dan|dana}}",
