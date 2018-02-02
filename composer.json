@@ -36,6 +36,7 @@
 		"wikimedia/composer-merge-plugin": "1.4.1",
 		"wikimedia/html-formatter": "1.0.1",
 		"wikimedia/ip-set": "1.2.0",
+		"wikimedia/object-factory": "1.0.0",
 		"wikimedia/php-session-serializer": "1.0.4",
 		"wikimedia/purtle": "1.0.6",
 		"wikimedia/relpath": "2.1.1",

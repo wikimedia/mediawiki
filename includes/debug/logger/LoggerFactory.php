@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Logger;
 
-use ObjectFactory;
+use Wikimedia\ObjectFactory;
 
 /**
  * PSR-3 logger instance factory.
