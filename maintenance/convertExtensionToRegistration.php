@@ -144,6 +144,11 @@ class ConvertExtensionToRegistration extends Maintenance {
 				unset( $this->json[$key] );
 			}
 		}
+		// Set a requirement on the MediaWiki version that the current MANIFEST_VERSION
+		// was introduced in.
+		$out['requires'] = [
+			ExtensionRegistry::MEDIAWIKI_CORE => ExtensionRegistry::MANIFEST_VERSION_MW_VERSION
+		];
 		$out += $this->json;
 		// Put this at the bottom
 		$out['manifest_version'] = ExtensionRegistry::MANIFEST_VERSION;
