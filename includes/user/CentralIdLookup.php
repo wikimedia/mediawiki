@@ -19,6 +19,7 @@
  *
  * @file
  */
+use Wikimedia\ObjectFactory;
 
 /**
  * The CentralIdLookup service allows for connecting local users with

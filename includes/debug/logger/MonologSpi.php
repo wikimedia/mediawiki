@@ -22,7 +22,7 @@ namespace MediaWiki\Logger;
 
 use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Logger;
-use ObjectFactory;
+use Wikimedia\ObjectFactory;
 
 /**
  * LoggerFactory service provider that creates loggers implemented by

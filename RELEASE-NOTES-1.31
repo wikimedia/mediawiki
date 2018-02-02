@@ -60,6 +60,7 @@ production.
 * …
 
 ==== New external libraries ====
+* Added wikimedia/object-factory 1.0.0
 * …
 
 ==== Removed and replaced external libraries ====
@@ -196,6 +197,8 @@ changes to languages because of Phabricator reports.
   used for that. Rather, setRef() existed as memory optimisation for PHP 4.
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
+* \ObjectFactory (no namespace) is deprecated, the namespaced \Wikimedia\ObjectFactory
+  from the wikimedia/object-factory library should be used instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
