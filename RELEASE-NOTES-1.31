@@ -196,6 +196,9 @@ changes to languages because of Phabricator reports.
   used for that. Rather, setRef() existed as memory optimisation for PHP 4.
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
+* ParserOutput objects generated using a non-default value for
+  ParserOptions::setWrapOutputClass() can no longer be added to the parser
+  cache.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
