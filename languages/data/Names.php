@@ -399,6 +399,7 @@ class Names {
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
+		'sty' => 'Себертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
 		'su' => 'Basa Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
