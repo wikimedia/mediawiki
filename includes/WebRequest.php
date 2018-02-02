@@ -1023,6 +1023,19 @@ class WebRequest {
 	}
 
 	/**
+	 * Override a request header
+	 *
+	 * @param string $name Case-insensitive header name
+	 * @param string $value The value for the header
+	 * @return void
+	 */
+	public function setHeader( $name, $flags = 0 ) {
+		$this->initHeaders();
+		$name = strtoupper( $name );
+		$this->headers[$name] = $value;
+	}
+
+	/**
 	 * Get data from the session
 	 *
 	 * @note Prefer $this->getSession() instead if making multiple calls.
