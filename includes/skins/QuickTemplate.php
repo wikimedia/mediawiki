@@ -31,11 +31,6 @@ abstract class QuickTemplate {
 	 */
 	public $data;
 
-	/**
-	 * @var MediaWikiI18N
-	 */
-	public $translator;
-
 	/** @var Config $config */
 	protected $config;
 
@@ -44,7 +39,6 @@ abstract class QuickTemplate {
 	 */
 	function __construct( Config $config = null ) {
 		$this->data = [];
-		$this->translator = new MediaWikiI18N();
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );
 			$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -100,16 +94,6 @@ abstract class QuickTemplate {
 	public function setRef( $name, &$value ) {
 		wfDeprecated( __METHOD__, '1.31' );
 		$this->data[$name] =& $value;
-	}
-
-	/**
-	 * @param MediaWikiI18N &$t
-	 * @deprecate since 1.31 Use BaseTemplate::msg() or Skin::msg() instead for setting
-	 *  message parameters.
-	 */
-	public function setTranslator( &$t ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		$this->translator = &$t;
 	}
 
 	/**
