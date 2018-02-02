@@ -1080,6 +1080,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
+		SiteStatsInit::doPlaceholderInit();
+
 		User::resetIdByNameCache();
 
 		// Make sysop user
