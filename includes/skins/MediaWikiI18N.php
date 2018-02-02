@@ -37,7 +37,11 @@ class MediaWikiI18N {
 		$this->context[$varName] = $value;
 	}
 
+	/**
+	 * @deprecate since 1.31 Use BaseTemplate::msg(), Skin::msg(), or wfMessage() instead.
+	 */
 	function translate( $value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
 
