@@ -1481,7 +1481,10 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
 			'pool' => 'testcache-hash',
-			'relayer' => new EventRelayerNull( [] )
+			'relayer' => new EventRelayerNull( [] ),
+			'mcrouterAware' => true,
+			'region' => 'pmtpa',
+			'cluster' => 'mw-wan'
 		] );
 		$valFunc = function () {
 			return 1;
@@ -1496,6 +1499,60 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$wanCache->getCheckKeyTime( 'zzz' );
 		$wanCache->reap( 'x', time() - 300 );
 		$wanCache->reap( 'zzz', time() - 300 );
+	}
+
+	public function testMcRouterSupportBroadcastDelete() {
+		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
+			->setMethods( [ 'set' ] )->getMock();
+		$wanCache = new WANObjectCache( [
+			'cache' => $localBag,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] ),
+			'mcrouterAware' => true,
+			'region' => 'pmtpa',
+			'cluster' => 'mw-wan'
+		] );
+
+		$localBag->expects( $this->once() )->method( 'set' )
+			->with( "/*/mw-wan/" . $wanCache::VALUE_KEY_PREFIX . "test" );
+
+		$wanCache->delete( 'test' );
+	}
+
+	public function testMcRouterSupportBroadcastTouchCK() {
+		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
+			->setMethods( [ 'set' ] )->getMock();
+		$wanCache = new WANObjectCache( [
+			'cache' => $localBag,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] ),
+			'mcrouterAware' => true,
+			'region' => 'pmtpa',
+			'cluster' => 'mw-wan'
+		] );
+
+		$localBag->expects( $this->once() )->method( 'set' )
+			->with( "/*/mw-wan/" . $wanCache::TIME_KEY_PREFIX . "test" );
+
+		$wanCache->touchCheckKey( 'test' );
+	}
+
+	public function testMcRouterSupportBroadcastResetCK() {
+		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
+			->setMethods( [ 'delete' ] )->getMock();
+		$wanCache = new WANObjectCache( [
+			'cache' => $localBag,
+			'pool' => 'testcache-hash',
+			'relayer' => new EventRelayerNull( [] ),
+			'mcrouterAware' => true,
+			'region' => 'pmtpa',
+			'cluster' => 'mw-wan'
+		] );
+
+		$localBag->expects( $this->once() )->method( 'delete' )
+			->with( "/*/mw-wan/" . $wanCache::TIME_KEY_PREFIX . "test" );
+
+		$wanCache->resetCheckKey( 'test' );
 	}
 
 	/**
