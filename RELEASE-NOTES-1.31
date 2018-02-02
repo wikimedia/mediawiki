@@ -194,6 +194,8 @@ changes to languages because of Phabricator reports.
   Setting template variables by reference allowed violating the principle of data being
   immutable once added to the skin template. In practice, this method was not being
   used for that. Rather, setRef() existed as memory optimisation for PHP 4.
+* QuickTemplate::setTranslator() was deprecated in favour of Skin::msg() parameters.
+* MediaWikiI18N::set() was deprecated in favour of Skin::msg() parameters.
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
 * ParserOutput objects generated using a non-default value for

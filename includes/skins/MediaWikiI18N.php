@@ -28,7 +28,12 @@
 class MediaWikiI18N {
 	private $context = [];
 
+	/**
+	 * @deprecate since 1.31 Use BaseTemplate::msg() or Skin::msg() instead for setting
+	 *  message parameters.
+	 */
 	function set( $varName, $value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->context[$varName] = $value;
 	}
 

@@ -104,8 +104,11 @@ abstract class QuickTemplate {
 
 	/**
 	 * @param MediaWikiI18N &$t
+	 * @deprecate since 1.31 Use BaseTemplate::msg() or Skin::msg() instead for setting
+	 *  message parameters.
 	 */
 	public function setTranslator( &$t ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->translator = &$t;
 	}
 
