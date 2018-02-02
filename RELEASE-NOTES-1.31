@@ -44,6 +44,7 @@ production.
   initial page text for file uploads.
 * (T181651) The info page for File pages now displays the file's base-16 SHA1
   hash value in the table of basic information.
+* (T186287) WebRequest now supports setting the user-agent string through setUserAgent()
 
 === External library changes in 1.31 ===
 

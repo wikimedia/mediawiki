@@ -63,6 +63,12 @@ class WebRequest {
 	private $ip;
 
 	/**
+	 * Cached client user-agent string
+	 * @var string
+	 */
+	private $useragent;
+
+	/**
 	 * The timestamp of the start of the request, with microsecond precision.
 	 * @var float
 	 */
@@ -1258,6 +1264,16 @@ HTML;
 		return $ip;
 	}
 
+	/**
+	 * @param string $ua
+	 * @return void
+	 * @since 1.31
+	 */
+	public function setUserAgent( $ua ) {
+		$this->useragent = $ua;
+	}
+
+	/**
 	/**
 	 * @param string $ip
 	 * @return void
