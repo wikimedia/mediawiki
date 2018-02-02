@@ -886,7 +886,6 @@ return [
 		'scripts' => 'resources/src/mediawiki/api/edit.js',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.Title',
 			'mediawiki.user',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
