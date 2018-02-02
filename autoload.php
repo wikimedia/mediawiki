@@ -843,7 +843,6 @@ $wgAutoloadLocalClasses = [
 	'MediaTransformInvalidParametersException' => __DIR__ . '/includes/media/MediaTransformInvalidParametersException.php',
 	'MediaTransformOutput' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'MediaWiki' => __DIR__ . '/includes/MediaWiki.php',
-	'MediaWikiI18N' => __DIR__ . '/includes/skins/MediaWikiI18N.php',
 	'MediaWikiShell' => __DIR__ . '/maintenance/shell.php',
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',

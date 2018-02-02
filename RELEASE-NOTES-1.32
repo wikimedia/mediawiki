@@ -40,8 +40,11 @@ changes to languages because of Phabricator reports.
 * …
 
 === Breaking changes in 1.32 ===
-* $wgRequestTime (deprecated in 1.25) was removed.
+* $wgRequestTime was removed (deprecated in 1.25).
   Use $_SERVER['REQUEST_TIME_FLOAT'] or WebRequest::getElapsedTime() instead.
+* The MediaWikiI18N class was removed (deprecated in 1.31).
+* QuickTemplate::setTranslator() was removed (deprecated in 1.31).
+  Use Skin::msg() instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
