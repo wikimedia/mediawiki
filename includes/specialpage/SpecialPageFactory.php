@@ -22,6 +22,7 @@
  * @defgroup SpecialPage SpecialPage
  */
 use MediaWiki\Linker\LinkRenderer;
+use Wikimedia\ObjectFactory;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.

@@ -21,6 +21,8 @@
  * @file
  */
 
+use Wikimedia\ObjectFactory;
+
 /**
  * Object handling generic submission, CSRF protection, layout and
  * other logic for UI forms. in a reusable manner.

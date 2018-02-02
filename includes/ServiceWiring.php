@@ -47,6 +47,7 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\ObjectFactory;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
