@@ -404,11 +404,20 @@ class Command {
 		$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
 		$eintrMessage = "stream_select(): unable to select [$eintr]";
 
+		/* The select(2) system call only guarantees a "sufficiently small write"
+		 * can be made without blocking. And on Linux the read might block too
+		 * in certain cases, although I don't know if any of them can occur here.
+		 * Regardless, set all the pipes to non-blocking to avoid T184171.
+		 */
+		foreach ( $pipes as $pipe ) {
+			stream_set_blocking( $pipe, false );
+		}
+
 		$running = true;
 		$timeout = null;
 		$numReadyPipes = 0;
 
-		while ( $running === true || $numReadyPipes !== 0 ) {
+		while ( $pipes && ( $running === true || $numReadyPipes !== 0 ) ) {
 			if ( $running ) {
 				$status = proc_get_status( $proc );
 				// If the process has terminated, switch to nonblocking selects
@@ -465,14 +474,17 @@ class Command {
 				}
 
 				if ( $res === '' || $res === 0 ) {
-					// End of file
-					fclose( $pipes[$fd] );
-					unset( $pipes[$fd] );
-					if ( !$pipes ) {
-						break 2;
+					// End of file?
+					if ( feof( $pipe ) ) {
+						fclose( $pipes[$fd] );
+						unset( $pipes[$fd] );
 					}
 				} elseif ( $isWrite ) {
-					$buffers[$fd] = substr( $buffers[$fd], $res );
+					$buffers[$fd] = (string)substr( $buffers[$fd], $res );
+					if ( $buffers[$fd] === '' ) {
+						fclose( $pipes[$fd] );
+						unset( $pipes[$fd] );
+					}
 				} else {
 					$buffers[$fd] .= $res;
 					if ( $fd === 3 && strpos( $res, "\n" ) !== false ) {
