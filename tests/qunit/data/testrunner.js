@@ -622,4 +622,31 @@
 		} );
 	} );
 
+	QUnit.module( 'testrunner-hooks-outer', function () {
+		var beforeHookWasExecuted = false,
+			afterHookWasExecuted = false;
+		QUnit.module( 'testrunner-hooks', {
+			before: function () {
+				beforeHookWasExecuted = true;
+
+				// This way we can be sure that module `testrunner-hook-after` will always
+				// be executed after module `testrunner-hooks`
+				QUnit.module( 'testrunner-hooks-after' );
+				QUnit.test(
+					'`after` hook for module `testrunner-hooks` was executed',
+					function ( assert ) {
+						assert.ok( afterHookWasExecuted );
+					}
+				);
+			},
+			after: function () {
+				afterHookWasExecuted = true;
+			}
+		} );
+
+		QUnit.test( '`before` hook was executed', function ( assert ) {
+			assert.ok( beforeHookWasExecuted );
+		} );
+	} );
+
 }( jQuery, mediaWiki, QUnit ) );
