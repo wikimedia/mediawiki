@@ -370,7 +370,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['text'] ) ) {
 			$text = $item['text'];
 		} else {
-			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
+			$text = wfMessage( isset( $item['msg'] ) ? $item['msg'] : $key )->text();
 		}
 
 		$html = htmlspecialchars( $text );
@@ -541,8 +541,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$realAttrs = [
 					'type' => 'submit',
 					'name' => $mode,
-					'value' => $this->translator->translate(
-						$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
+					'value' => wfMessage( $mode == 'go' ? 'searcharticle' : 'searchbutton' )->text(),
 				];
 				$realAttrs = array_merge(
 					$realAttrs,
@@ -568,7 +567,7 @@ abstract class BaseTemplate extends QuickTemplate {
 					'src' => $attrs['src'],
 					'alt' => isset( $attrs['alt'] )
 						? $attrs['alt']
-						: $this->translator->translate( 'searchbutton' ),
+						: wfMessage( 'searchbutton' )->text(),
 					'width' => isset( $attrs['width'] ) ? $attrs['width'] : null,
 					'height' => isset( $attrs['height'] ) ? $attrs['height'] : null,
 				];
