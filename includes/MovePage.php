@@ -597,7 +597,12 @@ class MovePage {
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
 
-				ChangeTags::addTags( $changeTags, null, $redirectRevId, null );
+				// make a copy because of log entry below
+				$tags = array_values( $changeTags );
+				if ( in_array( 'mw-new-redirect', ChangeTags::getSoftwareTags() ) ) {
+					$tags[] = 'mw-new-redirect';
+				}
+				ChangeTags::addTags( $tags, null, $redirectRevId, null );
 			}
 		}
 
