@@ -90,6 +90,7 @@ changes to languages because of Phabricator reports.
 
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK namespaces.
 * (T182305) New language support: Nyungar (nys).
+* (T186359) New language support: Siberian Tatar [cебертатар] (sty).
 
 === Other changes in 1.31 ===
 * Introducing multi-content-revision capability into the storage layer. For details,
@@ -196,6 +197,7 @@ changes to languages because of Phabricator reports.
   used for that. Rather, setRef() existed as memory optimisation for PHP 4.
 * QuickTemplate::setTranslator() was deprecated in favour of Skin::msg() parameters.
 * MediaWikiI18N::set() was deprecated in favour of Skin::msg() parameters.
+* MediaWikiI18N::translate() was deprecated in favour of Skin::msg() or wfMessage().
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
 * ParserOutput objects generated using a non-default value for
