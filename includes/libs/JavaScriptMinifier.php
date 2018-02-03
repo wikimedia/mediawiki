@@ -498,6 +498,13 @@ class JavaScriptMinifier {
 					} while ( $end - 2 < $length && $s[$end - 2] === '\\' );
 					// Correction (1): Undo speculative add, keep only one (end of regexp)
 					$end--;
+					if ( $end > $length ) {
+						// Correction (2): Loop wrongly assumed "]" was seen
+						// String ended without ending char class or regexp. Correct $end.
+						// TODO: This is invalid and should throw.
+						$end--;
+						break;
+					}
 				}
 				// Search past the regexp modifiers (gi)
 				while ( $end < $length && ctype_alpha( $s[$end] ) ) {
