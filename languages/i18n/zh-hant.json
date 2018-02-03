@@ -92,7 +92,8 @@
 			"Translatealcd",
 			"蘭斯特",
 			"机智的小鱼君",
-			"Wbxshiori"
+			"Wbxshiori",
+			"Laundry Machine"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -788,6 +789,7 @@
 	"postedit-confirmation-created": "已建立頁面。",
 	"postedit-confirmation-restored": "已還原頁面。",
 	"postedit-confirmation-saved": "您的編輯已儲存。",
+	"postedit-confirmation-published": "您的編輯已經發布。",
 	"edit-already-exists": "無法建立新頁面。\n該頁面已存在。",
 	"defaultmessagetext": "預設訊息文字",
 	"content-failed-to-parse": "解析 $2 格式的 $1 語法內容失敗：$3",
@@ -1716,7 +1718,7 @@
 	"lockmanager-fail-closelock": "無法關閉 \"$1\" 的鎖定檔案。",
 	"lockmanager-fail-deletelock": "無法刪除 \"$1\" 的鎖定檔案。",
 	"lockmanager-fail-acquirelock": "無法取得 \"$1\" 的鎖定狀態。",
-	"lockmanager-fail-openlock": "無法開啟 \"$1\" 的鎖定檔案。",
+	"lockmanager-fail-openlock": "無法開啟 \"$1\" 的鎖定檔案。請確保您的上傳目錄配置正確，且您的網頁伺服器具有寫入該目錄的權限。參見https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory 獲取更多信息。",
 	"lockmanager-fail-releaselock": "無法釋放 \"$1\" 的鎖定狀態。",
 	"lockmanager-fail-db-bucket": "無法聯繫於清單 $1 中足夠要鎖定資料庫。",
 	"lockmanager-fail-db-release": "無法釋放資料庫 $1 的鎖定狀態。",
