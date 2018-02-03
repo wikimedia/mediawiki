@@ -10,9 +10,11 @@
 			"محمد أحمد عبد الفتاح",
 			"ديفيد",
 			"ASHmed",
-			"Yasser Yousssef"
+			"Yasser Yousssef",
+			"Azouz.anis"
 		]
 	},
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> يجب أن تعمل جميع الميزات المعروضة في هذه الصفحة، إلا أن واجهة برمجة التطبيقات لا تزال قيد التطوير النشط، وقد تتغير في أي وقت. الاشتراك في\n<strong>Erroneous requests:</strong>عند إرسال طلبات خاطئة إلى api, فالـHTTP سيتم إرسال رأس مع المفتاح \"MediaWiki-API-Error\" ومن ثم سيتم تعيين قيمة رأس ورمز الخطأ المرسل مرة أخرى إلى نفس القيمة. لمزيد من المعلومات، راجع  [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> لسهولة إختبار طلبات API، انظر [[Special:ApiSandbox]].</p>",
 	"apihelp-main-param-action": "أي فعل للعمل.",
 	"apihelp-main-param-format": "صيغة الخرج.",
 	"apihelp-main-param-assertuser": "التحقق من أن المستخدم الحالي هو المستخدم المسمى.",

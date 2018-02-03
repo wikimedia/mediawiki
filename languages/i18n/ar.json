@@ -72,7 +72,8 @@
 			"Super ninja2",
 			"Mr. Ibrahem",
 			"Aboulouei1",
-			"سامي الرحيلي"
+			"سامي الرحيلي",
+			"Azouz.anis"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -768,6 +769,7 @@
 	"postedit-confirmation-created": "تم انشاء الصفحة.",
 	"postedit-confirmation-restored": "تم استعادة الصفحة.",
 	"postedit-confirmation-saved": "تعديلك حفظ.",
+	"postedit-confirmation-published": "تم نشر تعديلك.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهي موجودة بالفعل.",
 	"defaultmessagetext": "نص الرسالة الافتراضي",
 	"content-failed-to-parse": "فشل في تحليل $2 محتوى لـ $1 نموذج: $3",
@@ -1696,7 +1698,7 @@
 	"lockmanager-fail-closelock": "تعذر إغلاق ملف التأمين \"$1\".",
 	"lockmanager-fail-deletelock": "تعذر حذف ملف التأمين \"$1\".",
 	"lockmanager-fail-acquirelock": "لا يمكن الحصول على تأمين لـ \"$1\".",
-	"lockmanager-fail-openlock": "تعذر إغلاق ملف التأمين \"$1\".",
+	"lockmanager-fail-openlock": "تعذر إغلاق ملف التأمين \"$1\".\nتأكد من تهيئة دليل التحميل بشكل صحيح وأن خادم الويب لديه إذن بالكتابة إلى هذا الدليل. انظر https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory for more information.",
 	"lockmanager-fail-releaselock": "تعذر تحرير التأمين لـ \"$1\"..",
 	"lockmanager-fail-db-bucket": "تعذر الإتصال بعدد كافي من قواعد تأمين البيانات في الحزمة $1.",
 	"lockmanager-fail-db-release": "تعذر تحرير الأقفال في  قاعدة البيانات $1.",

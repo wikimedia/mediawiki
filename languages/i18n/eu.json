@@ -726,6 +726,7 @@
 	"postedit-confirmation-created": "Orrialdea sortu da.",
 	"postedit-confirmation-restored": "Orrialdea leheneratua izan da.",
 	"postedit-confirmation-saved": "Zure aldaketa gorde da.",
+	"postedit-confirmation-published": "Zure aldaketa argitaratua izan da.",
 	"edit-already-exists": "Ezin izan da orri berria sortu.\nJada existitzen da.",
 	"defaultmessagetext": "Testu lehenetsia",
 	"content-failed-to-parse": "Ezin izan da $2(r)en edukia parseatu $1 modeloarentzat: $3",
