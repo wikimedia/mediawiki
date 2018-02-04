@@ -31,6 +31,7 @@ use Status;
 use StatusValue;
 use User;
 use WebRequest;
+use Wikimedia\ObjectFactory;
 
 /**
  * This serves as the entry point to the authentication system.
@@ -2292,7 +2293,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
-			$provider = \ObjectFactory::getObjectFromSpec( $spec );
+			$provider = ObjectFactory::getObjectFromSpec( $spec );
 			if ( !$provider instanceof $class ) {
 				throw new \RuntimeException(
 					"Expected instance of $class, got " . get_class( $provider )
