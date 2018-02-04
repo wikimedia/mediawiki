@@ -87,7 +87,7 @@
 	"config-diff3-bad": "找不到GNU diff3。",
 	"config-git": "发现Git版本控制软件：<code>$1</code>",
 	"config-git-bad": "Git版本控制软件未找到。",
-	"config-imagemagick": "已找到ImageMagick：<code>$1</code>。如果你启用了上传功能，缩略图功能也将被启用。",
+	"config-imagemagick": "已找到ImageMagick：<code>$1</code>。如果您启用了上传功能，缩略图功能也将被启用。",
 	"config-gd": "已找到内建的GD图形库。如果你启用了上传功能，缩略图功能也将被启用。",
 	"config-no-scaling": "找不到GD库或ImageMagick。缩略图功能将不可用。",
 	"config-no-uri": "<strong>错误：</strong>无法确定当前的URI。\n安装已中断。",
