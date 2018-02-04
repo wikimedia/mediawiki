@@ -122,6 +122,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var int Default 'maxLag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
+	/** @var int Default 'waitTimeout' when unspecified */
+	const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
@@ -151,7 +153,9 @@ class LoadBalancer implements ILoadBalancer {
 			: DatabaseDomain::newUnspecified();
 		$this->setLocalDomain( $localDomain );
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
+		$this->mWaitTimeout = isset( $params['waitTimeout'] )
+			? $params['waitTimeout']
+			: self::MAX_WAIT_DEFAULT;
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
