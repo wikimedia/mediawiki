@@ -10,7 +10,8 @@
 			"Giorgos456",
 			"Badseed",
 			"Macofe",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Nikosgranturismogt"
 		]
 	},
 	"config-desc": "Το πρόγραμμα εγκατάστασης για το MediaWiki",
@@ -234,6 +235,8 @@
 	"config-help-tooltip": "κλικ για ανάπτυξη",
 	"config-nofile": "Το αρχείο «$1» δεν μπορεί να βρεθεί. Μήπως έχει διαγραφεί;",
 	"config-extension-link": "Γνωρίζατε ότι το wiki σας υποστηρίζει [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions επεκτάσεις];\n\nΜπορείτε να περιηγηθείτε [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category επεκτάσεις ανά κατηγορία] ή το [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] για να δείτε την πλήρη λίστα των επεκτάσεων.",
-	"mainpagetext": "<strong>To MediaWiki εγκαταστάθηκε με επιτυχία.</strong>",
+	"config-skins-screenshots": "$1 (στιγμιότυπα: $2)",
+	"config-screenshot": "στιγμιότυπο",
+	"mainpagetext": "<strong>To MediaWiki εγκαταστάθηκε.</strong>",
 	"mainpagedocfooter": "Συμβουλευτείτε το [https://meta.wikimedia.org/wiki/Help:Contents Οδηγός Χρήστη] για πληροφορίες σχετικά με το λογισμικό wiki.\n\n== Ξεκινώντας ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings ρυθμίσεις Διαμόρφωσης λίστα]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ το MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce το MediaWiki απελευθέρωση mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Έχουν MediaWiki για τη γλώσσα σας]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Μάθετε πώς να καταπολεμήσετε το spam στο wiki σας]"
 }
