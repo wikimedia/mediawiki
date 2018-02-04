@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use Wikimedia\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
