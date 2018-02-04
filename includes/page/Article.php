@@ -2553,7 +2553,7 @@ class Article implements Page {
 	 * @see WikiPage::updateRedirectOn
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
-		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null );
+		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect );
 	}
 
 	/**
