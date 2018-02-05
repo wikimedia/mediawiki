@@ -29,6 +29,7 @@
 	 * with attributes that do not have the "-msg" suffix and contain a localized message.
 	 *
 	 * Example:
+	 *
 	 *     // Messages: { 'title': 'Awesome', 'desc': 'Cat doing backflip' 'search' contains 'Search' }
 	 *     var html = '\
 	 *         <p>\
@@ -39,6 +40,7 @@
 	 *     $( 'body' ).append( $( html ).localize() );
 	 *
 	 * Appends something like this to the body...
+	 *
 	 *     <p>
 	 *         Awesome
 	 *         <img src="something.jpg" title="Awesome" alt="Cat doing backflip" />
@@ -52,17 +54,20 @@
 	 * of a message in the same selection being localized - they will all recieve the same parameters.
 	 *
 	 * Example:
+	 *
 	 *     // Messages: { 'easy-as': 'Easy as $1 $2 $3.' }
 	 *     var html = '<p><html:msg key="easy-as" /></p>';
 	 *     $( 'body' ).append( $( html ).localize( { 'params': { 'easy-as': ['a', 'b', 'c'] } } ) );
 	 *
 	 * Appends something like this to the body...
+	 *
 	 *     <p>Easy as a, b, c</p>
 	 *
 	 * Raw HTML content can be used, instead of it being escaped as text. To do this, just use the raw
 	 * attribute on a msg element.
 	 *
 	 * Example:
+	 *
 	 *     // Messages: { 'hello': '<b><i>Hello</i> $1!</b>' }
 	 *     var html = '\
 	 *         <p>\
@@ -72,6 +77,7 @@
 	 *     $( 'body' ).append( $( html ).localize( { 'params': { 'hello': ['world'] } } ) );
 	 *
 	 * Appends something like this to the body...
+	 *
 	 *     <p>
 	 *         <!-- escaped: -->&lt;b&gt;&lt;i&gt;Hello&lt;/i&gt; world!&lt;/b&gt;
 	 *         <!-- raw: --><b><i>Hello</i> world!</b>
@@ -81,22 +87,26 @@
 	 * of messages. This is important for improving re-usability of templates.
 	 *
 	 * Example:
+	 *
 	 *     // Messages: { 'good-afternoon': 'Good afternoon' }
 	 *     var html = '<p><html:msg key="greeting" /></p>';
 	 *     $( 'body' ).append( $( html ).localize( { 'keys': { 'greeting': 'good-afternoon' } } ) );
 	 *
 	 * Appends something like this to the body...
+	 *
 	 *     <p>Good afternoon</p>
 	 *
 	 * Message keys can also be prefixed globally, which is handy when writing extensions, where by
 	 * convention all messages are prefixed with the extension's name.
 	 *
 	 * Example:
+	 *
 	 *     // Messages: { 'teleportation-warning': 'You may not get there all in one piece.' }
 	 *     var html = '<p><html:msg key="warning" /></p>';
 	 *     $( 'body' ).append( $( html ).localize( { 'prefix': 'teleportation-' } ) );
 	 *
 	 * Appends something like this to the body...
+	 *
 	 *     <p>You may not get there all in one piece.</p>
 	 *
 	 * @param {Object} options Map of options to be used while localizing
