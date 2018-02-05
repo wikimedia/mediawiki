@@ -79,9 +79,9 @@
 				var retval,
 					el = this.get( 0 );
 
-				if ( !el || $( el ).is( ':hidden' ) ) {
+				if ( !el ) {
 					retval = '';
-				} else if ( el.selectionStart || el.selectionStart === 0 ) {
+				} else {
 					retval = el.value.substring( el.selectionStart, el.selectionEnd );
 				}
 
@@ -167,60 +167,55 @@
 					}
 
 					isSample = false;
-					// Do nothing if display none
-					if ( this.style.display !== 'none' ) {
-						if ( this.selectionStart || this.selectionStart === 0 ) {
-							$( this ).focus();
-							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
-							}
+					$( this ).focus();
+					if ( options.selectionStart !== undefined ) {
+						$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
+					}
 
-							selText = $( this ).textSelection( 'getSelection' );
-							startPos = this.selectionStart;
-							endPos = this.selectionEnd;
-							scrollTop = this.scrollTop;
-							checkSelectedText();
-							if (
-								options.selectionStart !== undefined &&
-								endPos - startPos !== options.selectionEnd - options.selectionStart
-							) {
-								// This means there is a difference in the selection range returned by browser and what we passed.
-								// This happens for Chrome in the case of composite characters. Ref bug #30130
-								// Set the startPos to the correct position.
-								startPos = options.selectionStart;
-							}
+					selText = $( this ).textSelection( 'getSelection' );
+					startPos = this.selectionStart;
+					endPos = this.selectionEnd;
+					scrollTop = this.scrollTop;
+					checkSelectedText();
+					if (
+						options.selectionStart !== undefined &&
+						endPos - startPos !== options.selectionEnd - options.selectionStart
+					) {
+						// This means there is a difference in the selection range returned by browser and what we passed.
+						// This happens for Chrome in the case of composite characters. Ref bug #30130
+						// Set the startPos to the correct position.
+						startPos = options.selectionStart;
+					}
 
-							insertText = pre + selText + post;
-							if ( options.splitlines ) {
-								insertText = doSplitLines( selText, pre, post );
-							}
-							if ( options.ownline ) {
-								if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
-									insertText = '\n' + insertText;
-									pre += '\n';
-								}
-								if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
-									insertText += '\n';
-									post += '\n';
-								}
-							}
-							this.value = this.value.slice( 0, startPos ) + insertText +
-								this.value.slice( endPos );
-							// Setting this.value scrolls the textarea to the top, restore the scroll position
-							this.scrollTop = scrollTop;
-							if ( window.opera ) {
-								pre = pre.replace( /\r?\n/g, '\r\n' );
-								selText = selText.replace( /\r?\n/g, '\r\n' );
-								post = post.replace( /\r?\n/g, '\r\n' );
-							}
-							if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
-								this.selectionStart = startPos + pre.length;
-								this.selectionEnd = startPos + pre.length + selText.length;
-							} else {
-								this.selectionStart = startPos + insertText.length;
-								this.selectionEnd = this.selectionStart;
-							}
+					insertText = pre + selText + post;
+					if ( options.splitlines ) {
+						insertText = doSplitLines( selText, pre, post );
+					}
+					if ( options.ownline ) {
+						if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
+							insertText = '\n' + insertText;
+							pre += '\n';
 						}
+						if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
+							insertText += '\n';
+							post += '\n';
+						}
+					}
+					this.value = this.value.slice( 0, startPos ) + insertText +
+						this.value.slice( endPos );
+					// Setting this.value scrolls the textarea to the top, restore the scroll position
+					this.scrollTop = scrollTop;
+					if ( window.opera ) {
+						pre = pre.replace( /\r?\n/g, '\r\n' );
+						selText = selText.replace( /\r?\n/g, '\r\n' );
+						post = post.replace( /\r?\n/g, '\r\n' );
+					}
+					if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
+						this.selectionStart = startPos + pre.length;
+						this.selectionEnd = startPos + pre.length + selText.length;
+					} else {
+						this.selectionStart = startPos + insertText.length;
+						this.selectionEnd = this.selectionStart;
 					}
 					$( this ).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
 						options.replace, options.splitlines ] );
@@ -241,8 +236,7 @@
 				function getCaret( e ) {
 					var caretPos = 0,
 						endPos = 0;
-
-					if ( e && ( e.selectionStart || e.selectionStart === 0 ) ) {
+					if ( e ) {
 						caretPos = e.selectionStart;
 						endPos = e.selectionEnd;
 					}
@@ -263,20 +257,15 @@
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
-					// Do nothing if hidden
-					if ( !$( this ).is( ':hidden' ) ) {
-						if ( this.selectionStart || this.selectionStart === 0 ) {
-							// Opera 9.0 doesn't allow setting selectionStart past
-							// selectionEnd; any attempts to do that will be ignored
-							// Make sure to set them in the right order
-							if ( options.start > this.selectionEnd ) {
-								this.selectionEnd = options.end;
-								this.selectionStart = options.start;
-							} else {
-								this.selectionStart = options.start;
-								this.selectionEnd = options.end;
-							}
-						}
+					// Opera 9.0 doesn't allow setting selectionStart past
+					// selectionEnd; any attempts to do that will be ignored
+					// Make sure to set them in the right order
+					if ( options.start > this.selectionEnd ) {
+						this.selectionEnd = options.end;
+						this.selectionStart = options.start;
+					} else {
+						this.selectionStart = options.start;
+						this.selectionEnd = options.end;
 					}
 				} );
 			},
@@ -302,31 +291,29 @@
 						origScrollTop = this.scrollTop,
 						calcScrollTop;
 
-					// Do nothing if hidden
-					if ( !$( this ).is( ':hidden' ) ) {
-						// Delete all text after the selection and scroll the textarea to the end.
-						// This ensures the selection is visible (aligned to the bottom of the textarea).
-						// Then restore the text we deleted without changing scroll position.
-						this.value = this.value.slice( 0, this.selectionEnd );
-						this.scrollTop = this.scrollHeight;
-						// Chrome likes to adjust scroll position when changing value, so save and re-set later.
-						// Note that this is not equal to scrollHeight, it's scrollHeight minus innerHeight.
-						calcScrollTop = this.scrollTop;
-						this.value = origValue;
-						this.selectionStart = origSelectionStart;
-						this.selectionEnd = origSelectionEnd;
+					// Delete all text after the selection and scroll the textarea to the end.
+					// This ensures the selection is visible (aligned to the bottom of the textarea).
+					// Then restore the text we deleted without changing scroll position.
+					this.value = this.value.slice( 0, this.selectionEnd );
+					this.scrollTop = this.scrollHeight;
+					// Chrome likes to adjust scroll position when changing value, so save and re-set later.
+					// Note that this is not equal to scrollHeight, it's scrollHeight minus innerHeight.
+					calcScrollTop = this.scrollTop;
+					this.value = origValue;
+					this.selectionStart = origSelectionStart;
+					this.selectionEnd = origSelectionEnd;
 
-						if ( !options.force ) {
-							// Check if all the scrolling was unnecessary and if so, restore previous position.
-							// If the current position is no more than a screenful above the original,
-							// the selection was previously visible on the screen.
-							if ( calcScrollTop < origScrollTop && origScrollTop - calcScrollTop < innerHeight ) {
-								calcScrollTop = origScrollTop;
-							}
+					if ( !options.force ) {
+						// Check if all the scrolling was unnecessary and if so, restore previous position.
+						// If the current position is no more than a screenful above the original,
+						// the selection was previously visible on the screen.
+						if ( calcScrollTop < origScrollTop && origScrollTop - calcScrollTop < innerHeight ) {
+							calcScrollTop = origScrollTop;
 						}
-
-						this.scrollTop = calcScrollTop;
 					}
+
+					this.scrollTop = calcScrollTop;
+
 					$( this ).trigger( 'scrollToPosition' );
 				} );
 			}
