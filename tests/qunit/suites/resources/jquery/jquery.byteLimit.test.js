@@ -1,5 +1,5 @@
 ( function ( $, mw ) {
-	var simpleSample, U_20AC, mbSample;
+	var simpleSample, U_20AC, poop, mbSample;
 
 	QUnit.module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
 
@@ -8,6 +8,9 @@
 
 	// 3 bytes (euro-symbol)
 	U_20AC = '\u20AC';
+
+	// Outside of the BMP (pile of poo emoji)
+	poop = '💩';
 
 	// Multi-byte sample (22 chars, 26 bytes)
 	mbSample = '1234567890' + U_20AC + '1234567890' + U_20AC;
@@ -107,6 +110,14 @@
 			.byteLimit( 14 ),
 		sample: mbSample,
 		expected: '1234567890' + U_20AC + '1'
+	} );
+
+	byteLimitTest( {
+		description: 'Limit using a custom value (multibyte, outside BMP)',
+		$input: $( '<input>' ).attr( 'type', 'text' )
+			.byteLimit( 3 ),
+		sample: poop,
+		expected: ''
 	} );
 
 	byteLimitTest( {

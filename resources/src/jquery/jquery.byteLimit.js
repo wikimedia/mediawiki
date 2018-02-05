@@ -32,7 +32,7 @@
 	 * @return {boolean} return.trimmed
 	 */
 	$.trimByteLength = function ( safeVal, newVal, byteLimit, fn ) {
-		var startMatches, endMatches, matchesLen, inpParts,
+		var startMatches, endMatches, matchesLen, inpParts, chopOff,
 			oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
@@ -89,11 +89,15 @@
 		if ( fn ) {
 			// stop, when there is nothing to slice - T43450
 			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
+				// Do not chop off halves of surrogate pairs
+				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 			}
 		} else {
 			while ( $.byteLength( inpParts.join( '' ) ) > byteLimit ) {
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
+				// Do not chop off halves of surrogate pairs
+				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 			}
 		}
 
