@@ -113,7 +113,7 @@
 			 */
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
-					var selText, scrollTop, insertText,
+					var selText, allText, currSelection, scrollTop, insertText,
 						isSample, startPos, endPos,
 						pre = options.pre,
 						post = options.post;
@@ -173,8 +173,10 @@
 					}
 
 					selText = $( this ).textSelection( 'getSelection' );
-					startPos = this.selectionStart;
-					endPos = this.selectionEnd;
+					allText = $( this ).textSelection( 'getContents' );
+					currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+					startPos = currSelection[ 0 ];
+					endPos = currSelection[ 1 ];
 					scrollTop = this.scrollTop;
 					checkSelectedText();
 					if (
@@ -182,7 +184,7 @@
 						endPos - startPos !== options.selectionEnd - options.selectionStart
 					) {
 						// This means there is a difference in the selection range returned by browser and what we passed.
-						// This happens for Chrome in the case of composite characters. Ref bug #30130
+						// This happens for Chrome in the case of composite characters. Ref T32130
 						// Set the startPos to the correct position.
 						startPos = options.selectionStart;
 					}
@@ -192,25 +194,28 @@
 						insertText = doSplitLines( selText, pre, post );
 					}
 					if ( options.ownline ) {
-						if ( startPos !== 0 && this.value.charAt( startPos - 1 ) !== '\n' && this.value.charAt( startPos - 1 ) !== '\r' ) {
+						if ( startPos !== 0 && allText.charAt( startPos - 1 ) !== '\n' && allText.charAt( startPos - 1 ) !== '\r' ) {
 							insertText = '\n' + insertText;
 							pre += '\n';
 						}
-						if ( this.value.charAt( endPos ) !== '\n' && this.value.charAt( endPos ) !== '\r' ) {
+						if ( allText.charAt( endPos ) !== '\n' && allText.charAt( endPos ) !== '\r' ) {
 							insertText += '\n';
 							post += '\n';
 						}
 					}
-					this.value = this.value.slice( 0, startPos ) + insertText +
-						this.value.slice( endPos );
-					// Setting this.value scrolls the textarea to the top, restore the scroll position
+					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + insertText +
+						allText.slice( endPos ) );
+					// Setting this.value (via setContents) may scroll the textarea, restore the scroll position
 					this.scrollTop = scrollTop;
 					if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
-						this.selectionStart = startPos + pre.length;
-						this.selectionEnd = startPos + pre.length + selText.length;
+						$( this ).textSelection( 'setSelection', {
+							start: startPos + pre.length,
+							end: startPos + pre.length + selText.length
+						} );
 					} else {
-						this.selectionStart = startPos + insertText.length;
-						this.selectionEnd = this.selectionStart;
+						$( this ).textSelection( 'setSelection', {
+							start: startPos + insertText.length
+						} );
 					}
 					$( this ).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
 						options.replace, options.splitlines ] );
