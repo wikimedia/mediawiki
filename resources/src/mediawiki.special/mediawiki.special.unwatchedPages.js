@@ -19,6 +19,9 @@
 			}
 			$link.data( 'mwDisabled', true ).addClass( 'mw-watch-link-disabled' );
 
+			// Preload the notification module for mw.notify
+			mw.loader.load( 'mediawiki.notification' );
+
 			// Use the class to determine whether to watch or unwatch
 			if ( !$subjectLink.hasClass( 'mw-watched-item' ) ) {
 				$link.text( mw.msg( 'watching' ) );
