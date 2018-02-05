@@ -49,7 +49,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $reqHeaders = [];
 	protected $url;
 	protected $parsedUrl;
-	/** @var callable  */
+	/** @var callable */
 	protected $callback;
 	protected $maxRedirects = 5;
 	protected $followRedirects = false;
@@ -79,7 +79,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $profileName;
 
 	/**
-	 * @var LoggerInterface;
+	 * @var LoggerInterface
 	 */
 	protected $logger;
 

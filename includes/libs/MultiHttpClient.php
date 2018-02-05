@@ -48,7 +48,7 @@ use Psr\Log\NullLogger;
 class MultiHttpClient implements LoggerAwareInterface {
 	/** @var resource */
 	protected $multiHandle = null; // curl_multi handle
-	/** @var string|null SSL certificates path  */
+	/** @var string|null SSL certificates path */
 	protected $caBundlePath;
 	/** @var int */
 	protected $connTimeout = 10;

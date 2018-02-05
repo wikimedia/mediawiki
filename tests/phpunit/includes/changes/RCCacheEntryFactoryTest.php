@@ -18,7 +18,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	private $testRecentChangesHelper;
 
 	/**
-	 * @var LinkRenderer;
+	 * @var LinkRenderer
 	 */
 	private $linkRenderer;
 
