@@ -1,2 +1,2 @@
 <?php
-wfLoadExtension('ExtJSBase');
+wfLoadExtension( 'ExtJSBase' );
