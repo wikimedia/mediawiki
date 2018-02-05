@@ -205,11 +205,6 @@
 						this.value.slice( endPos );
 					// Setting this.value scrolls the textarea to the top, restore the scroll position
 					this.scrollTop = scrollTop;
-					if ( window.opera ) {
-						pre = pre.replace( /\r?\n/g, '\r\n' );
-						selText = selText.replace( /\r?\n/g, '\r\n' );
-						post = post.replace( /\r?\n/g, '\r\n' );
-					}
 					if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
 						this.selectionStart = startPos + pre.length;
 						this.selectionEnd = startPos + pre.length + selText.length;
