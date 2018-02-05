@@ -1,5 +1,11 @@
 /**
  * These plugins provide extra functionality for interaction with textareas.
+ *
+ * - encapsulateSelection: Ported from skins/common/edit.js by Trevor Parscal
+ *   © 2009 Wikimedia Foundation (GPLv2) - http://www.wikimedia.org
+ * - getCaretPosition, scrollToCaretPosition: Ported from Wikia's LinkSuggest extension
+ *   https://github.com/Wikia/app/blob/HEAD/extensions/wikia/LinkSuggest/js/jquery.wikia.linksuggest.js
+ *   © 2010 Inez Korczyński (korczynski&gmail.com), Jesús Martínez Novo (martineznovo@gmail.com) (GPLv2)
  */
 ( function ( $ ) {
 	$.fn.textSelection = function ( command, options ) {
@@ -42,9 +48,6 @@
 				return retval;
 			},
 			/**
-			 * Ported from skins/common/edit.js by Trevor Parscal
-			 * (c) 2009 Wikimedia Foundation (GPLv2) - http://www.wikimedia.org
-			 *
 			 * Inserts text at the beginning and end of a text selection, optionally
 			 * inserting text at the caret when selection is empty.
 			 *
@@ -166,9 +169,6 @@
 				} );
 			},
 			/**
-			 * Ported from Wikia's LinkSuggest extension
-			 * https://svn.wikia-code.com/wikia/trunk/extensions/wikia/LinkSuggest
-			 *
 			 * Get the position (in resolution of bytes not necessarily characters)
 			 * in a textarea
 			 *
@@ -214,9 +214,6 @@
 				} );
 			},
 			/**
-			 * Ported from Wikia's LinkSuggest extension
-			 * https://svn.wikia-code.com/wikia/trunk/extensions/wikia/LinkSuggest
-			 *
 			 * Scroll a textarea to the current cursor position. You can set the cursor
 			 * position with setSelection()
 			 *
