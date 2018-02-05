@@ -75,6 +75,8 @@
 		"mediawiki/code-editor": "dev-3e49aff",
 		"mediawiki/two-col-conflict": "dev-005cb60",
 		"mediawiki/pluggable-auth": "dev-4ef8379",
-		"mediawiki/simple-s-a-m-lphp": "dev-b19c659"
+		"mediawiki/simple-s-a-m-lphp": "dev-b19c659",
+		"mediawiki/extjs-base": "dev-master",
+		"mediawiki/template-styles": "dev-7b025c8"
 	}
 }
