@@ -162,7 +162,7 @@
 						}
 					}
 					$( this ).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
-						options.replace, options.spitlines ] );
+						options.replace, options.splitlines ] );
 				} );
 			},
 			/**
