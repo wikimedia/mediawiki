@@ -317,6 +317,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRowWithBadPageId() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		MediaWiki\suppressWarnings();
 		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
 		$this->assertSame( 77777777, $rev->getPage() );
@@ -608,6 +610,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		$title = $this->getMockTitle();
 
 		$conditions = [
