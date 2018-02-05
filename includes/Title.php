@@ -4500,7 +4500,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->isExternal() ) {
-			return true;  // any interwiki link might be viewable, for all we know
+			return true; // any interwiki link might be viewable, for all we know
 		}
 
 		switch ( $this->mNamespace ) {
