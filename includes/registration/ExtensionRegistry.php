@@ -20,8 +20,15 @@ class ExtensionRegistry {
 
 	/**
 	 * Version of the highest supported manifest version
+	 * Note: Update MANIFEST_VERSION_MW_VERSION when changing this
 	 */
 	const MANIFEST_VERSION = 2;
+
+	/**
+	 * MediaWiki version constraint representing what the current
+	 * highest MANIFEST_VERSION is supported in
+	 */
+	const MANIFEST_VERSION_MW_VERSION = '>= 1.29.0';
 
 	/**
 	 * Version of the oldest supported manifest version
