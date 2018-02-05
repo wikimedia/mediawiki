@@ -8,7 +8,8 @@
 			"Meno25",
 			"Mogoeilor",
 			"아라",
-			"Mjbmr"
+			"Mjbmr",
+			"Beyronvan"
 		]
 	},
 	"tog-underline": "لینکهای خط به زیر",
@@ -479,7 +480,7 @@
 	"recentchanges-label-unpatrolled": "ای ويرايشت هنی تيه واداشت نوابيه",
 	"recentchanges-label-plusminus": "أندازإ بألگأ ب شومار اي بایتا آلشد کردإ.",
 	"recentchanges-legend-heading": "<strong>میراث:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچنو سإیل کونين ب[[Special:بألگإیل تازأ|نومگأ بإلگإیل تازأ]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (همچینو ساٛیل [[Special:بلگٱیل تازٱ|نومگٱ بلگٱیل تازاٛ]]) کونین",
 	"rcnotefrom": "ۋازیر {{PLURAL:$5|ۋیرایشد|ۋیرایشدا}}ز ۋیرگار strong>$3, $4</strong> تا ۋیرگار <strong>$1</strong>  دیاری اٛکونن .",
 	"rclistfrom": "نشودادن تغییرات تازه با شروع زه $3 $2",
 	"rcshowhideminor": "اصلاحات کوچیک $1",
@@ -498,7 +499,7 @@
 	"rcshowhidemine": "$1 اصلاحات مو",
 	"rcshowhidemine-show": "نشون دائن",
 	"rcshowhidemine-hide": "قام کئردئن",
-	"rclinks": "نشودادن آخرین $1 تغییر در $2 روز اخیر؛ $3",
+	"rclinks": "دیار کردن آخری $1 آلشتکاری ماٛن $2 چاٛن رۊزٱ؛ $3",
 	"diff": "تفاوت",
 	"hist": "گزارش",
 	"hide": "قایم شدن",
