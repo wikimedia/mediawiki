@@ -14,6 +14,18 @@
 		'blur.byteLimit'
 	].join( ' ' );
 
+	// Like String#chatAt, but return the pair of UTF-16 surrogates for characters outside of BMP.
+	function charAt( string, offset, backwards ) {
+		var maybePair = backwards ?
+			string.slice( offset - 1, offset + 1 ) :
+			string.slice( offset, offset + 2 );
+		if ( /^[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( maybePair ) ) {
+			return maybePair;
+		} else {
+			return string.charAt( offset );
+		}
+	}
+
 	/**
 	 * Utility function to trim down a string, based on byteLimit
 	 * and given a safe start position. It supports insertion anywhere
@@ -32,7 +44,7 @@
 	 * @return {boolean} return.trimmed
 	 */
 	$.trimByteLength = function ( safeVal, newVal, byteLimit, fn ) {
-		var startMatches, endMatches, matchesLen, inpParts,
+		var startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
 			oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
@@ -61,18 +73,22 @@
 
 		// Count same characters from the left, first.
 		// (if "foo" -> "foofoo", assume addition was at the end).
-		while (
-			startMatches < matchesLen &&
-			oldVal.charAt( startMatches ) === newVal.charAt( startMatches )
-		) {
-			startMatches += 1;
+		while ( startMatches < matchesLen ) {
+			oldChar = charAt( oldVal, startMatches, false );
+			newChar = charAt( newVal, startMatches, false );
+			if ( oldChar !== newChar ) {
+				break;
+			}
+			startMatches += oldChar.length;
 		}
 
-		while (
-			endMatches < ( matchesLen - startMatches ) &&
-			oldVal.charAt( oldVal.length - 1 - endMatches ) === newVal.charAt( newVal.length - 1 - endMatches )
-		) {
-			endMatches += 1;
+		while ( endMatches < ( matchesLen - startMatches ) ) {
+			oldChar = charAt( oldVal, oldVal.length - 1 - endMatches, true );
+			newChar = charAt( newVal, newVal.length - 1 - endMatches, true );
+			if ( oldChar !== newChar ) {
+				break;
+			}
+			endMatches += oldChar.length;
 		}
 
 		inpParts = [
@@ -89,11 +105,15 @@
 		if ( fn ) {
 			// stop, when there is nothing to slice - T43450
 			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
+				// Do not chop off halves of surrogate pairs
+				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 			}
 		} else {
 			while ( $.byteLength( inpParts.join( '' ) ) > byteLimit ) {
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -1 );
+				// Do not chop off halves of surrogate pairs
+				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 			}
 		}
 
