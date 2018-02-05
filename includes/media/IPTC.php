@@ -75,7 +75,7 @@ class IPTC {
 					 * Title, person. Not sure if this is best
 					 * approach since we no longer have the two fields
 					 * separate. each byline title entry corresponds to a
-					 * specific byline.                          */
+					 * specific byline. */
 
 					$bylines = self::convIPTC( $val, $c );
 					if ( isset( $parsed['2#085'] ) ) {

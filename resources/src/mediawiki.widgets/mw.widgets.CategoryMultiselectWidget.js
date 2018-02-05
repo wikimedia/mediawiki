@@ -405,7 +405,7 @@
 		/** Search for existing categories with the exact title */
 		Exists: 2,
 
-		/** Search only subcategories  */
+		/** Search only subcategories */
 		SubCategories: 3,
 
 		/** Search only parent categories */
