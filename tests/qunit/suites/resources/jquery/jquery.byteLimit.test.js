@@ -1,5 +1,5 @@
 ( function ( $, mw ) {
-	var simpleSample, U_20AC, mbSample;
+	var simpleSample, U_20AC, poop, mbSample;
 
 	QUnit.module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
 
@@ -8,6 +8,9 @@
 
 	// 3 bytes (euro-symbol)
 	U_20AC = '\u20AC';
+
+	// Outside of the BMP (pile of poo emoji)
+	poop = '\uD83D\uDCA9'; // "💩"
 
 	// Multi-byte sample (22 chars, 26 bytes)
 	mbSample = '1234567890' + U_20AC + '1234567890' + U_20AC;
@@ -107,6 +110,14 @@
 			.byteLimit( 14 ),
 		sample: mbSample,
 		expected: '1234567890' + U_20AC + '1'
+	} );
+
+	byteLimitTest( {
+		description: 'Limit using a custom value (multibyte, outside BMP)',
+		$input: $( '<input>' ).attr( 'type', 'text' )
+			.byteLimit( 3 ),
+		sample: poop,
+		expected: ''
 	} );
 
 	byteLimitTest( {
@@ -245,4 +256,33 @@
 
 		assert.strictEqual( $el.val(), 'abc', 'Trim from the insertion point (at 1), not the end' );
 	} );
+
+	QUnit.test( 'Do not cut up false matching substrings in emoji insertions', function ( assert ) {
+		var $el,
+			oldVal = '\uD83D\uDCA9\uD83D\uDCA9', // "💩💩"
+			newVal = '\uD83D\uDCA9\uD83D\uDCB9\uD83E\uDCA9\uD83D\uDCA9', // "💩💹🢩💩"
+			expected = '\uD83D\uDCA9\uD83D\uDCB9\uD83D\uDCA9'; // "💩💹💩"
+
+		// Possible bad results:
+		// * With no surrogate support:
+		//   '\uD83D\uDCA9\uD83D\uDCB9\uD83E\uDCA9' "💩💹🢩"
+		// * With correct trimming but bad detection of inserted text:
+		//   '\uD83D\uDCA9\uD83D\uDCB9\uDCA9' "💩💹�"
+
+		$el = $( '<input>' ).attr( 'type', 'text' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit( 12 )
+			.val( oldVal ).trigger( 'change' )
+			.val( newVal ).trigger( 'change' );
+
+		assert.strictEqual( $el.val(), expected, 'Pasted emoji correctly trimmed at the end' );
+	} );
+
+	byteLimitTest( {
+		description: 'Unpaired surrogates do not crash',
+		$input: $( '<input>' ).attr( 'type', 'text' ).byteLimit( 4 ),
+		sample: '\uD800\uD800\uDFFF',
+		expected: '\uD800'
+	} );
+
 }( jQuery, mediaWiki ) );
