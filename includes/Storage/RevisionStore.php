@@ -1484,24 +1484,17 @@ class RevisionStore implements IDBAccessObject, RevisionFactory, RevisionLookup 
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
+		$storeWiki = $this->loadBalancer->getLocalDomainID();
 		$dbWiki = $db->getDomainID();
 
 		if ( $dbWiki === $storeWiki ) {
 			return;
 		}
 
-		// XXX: we really want the default database ID...
+		// NOTE: this should not be needed, but it seems some CI jobs fail without this hack;
+		// specifically, mwext-Wikibase-repo-tests-sqlite-hhvm-jessie fails.
 		$storeWiki = $storeWiki ?: wfWikiID();
 		$dbWiki = $dbWiki ?: wfWikiID();
-
-		if ( $dbWiki === $storeWiki ) {
-			return;
-		}
-
-		// HACK: counteract encoding imposed by DatabaseDomain
-		$storeWiki = str_replace( '?h', '-', $storeWiki );
-		$dbWiki = str_replace( '?h', '-', $dbWiki );
 
 		if ( $dbWiki === $storeWiki ) {
 			return;
