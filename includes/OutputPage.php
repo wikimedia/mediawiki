@@ -53,12 +53,6 @@ class OutputPage extends ContextSource {
 	protected $mCanonicalUrl = false;
 
 	/**
-	 * @var array Additional stylesheets. Looks like this is for extensions.
-	 *   Might be replaced by ResourceLoader.
-	 */
-	protected $mExtStyles = [];
-
-	/**
 	 * @var string Should be private - has getter and setter. Contains
 	 *   the HTML title */
 	public $mPagetitle = '';
@@ -3642,12 +3636,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function buildCssLinksArray() {
 		$links = [];
-
-		// Add any extension CSS
-		foreach ( $this->mExtStyles as $url ) {
-			$this->addStyle( $url );
-		}
-		$this->mExtStyles = [];
 
 		foreach ( $this->styles as $file => $options ) {
 			$link = $this->styleLink( $file, $options );
