@@ -211,6 +211,8 @@ changes to languages because of Phabricator reports.
   * OutputPage::setSquidMaxage(); deprecated in 1.27
   * OutputPage::readOnlyPage(); deprecated in 1.25
   * OutputPage::rateLimited(); deprecated in 1.25
+  * Additionally, the protected OutputPage::$mExtStyles array, only accessed through
+    the above and with no known uses, was removed.
 * The no-op method Skin::showIPinHeader(), deprecated in 1.27, was removed.
 * \ObjectFactory (no namespace) is deprecated, the namespaced \Wikimedia\ObjectFactory
   from the wikimedia/object-factory library should be used instead.
