@@ -292,66 +292,39 @@
 			 * @chainable
 			 */
 			scrollToCaretPosition: function ( options ) {
-				function getLineLength( e ) {
-					return Math.floor( e.scrollWidth / ( $.client.profile().platform === 'linux' ? 7 : 8 ) );
-				}
-				function getCaretScrollPosition( e ) {
-					// FIXME: This functions sucks and is off by a few lines most
-					// of the time. It should be replaced by something decent.
-					var i, j,
-						nextSpace,
-						text = e.value.replace( /\r/g, '' ),
-						caret = $( e ).textSelection( 'getCaretPosition' ),
-						lineLength = getLineLength( e ),
-						row = 0,
-						charInLine = 0,
-						lastSpaceInLine = 0;
-
-					for ( i = 0; i < caret; i++ ) {
-						charInLine++;
-						if ( text.charAt( i ) === ' ' ) {
-							lastSpaceInLine = charInLine;
-						} else if ( text.charAt( i ) === '\n' ) {
-							lastSpaceInLine = 0;
-							charInLine = 0;
-							row++;
-						}
-						if ( charInLine > lineLength ) {
-							if ( lastSpaceInLine > 0 ) {
-								charInLine = charInLine - lastSpaceInLine;
-								lastSpaceInLine = 0;
-								row++;
-							}
-						}
-					}
-					nextSpace = 0;
-					for ( j = caret; j < caret + lineLength; j++ ) {
-						if (
-							text.charAt( j ) === ' ' ||
-							text.charAt( j ) === '\n' ||
-							caret === text.length
-						) {
-							nextSpace = j;
-							break;
-						}
-					}
-					if ( nextSpace > lineLength && caret <= lineLength ) {
-						charInLine = caret - lastSpaceInLine;
-						row++;
-					}
-					return ( $.client.profile().platform === 'mac' ? 13 : ( $.client.profile().platform === 'linux' ? 15 : 16 ) ) * row;
-				}
 				return this.each( function () {
-					var scroll;
+					var
+						innerHeight = $( this ).innerHeight(),
+						origValue = this.value,
+						origSelectionStart = this.selectionStart,
+						origSelectionEnd = this.selectionEnd,
+						origScrollTop = this.scrollTop,
+						calcScrollTop;
+
 					// Do nothing if hidden
 					if ( !$( this ).is( ':hidden' ) ) {
-						if ( this.selectionStart || this.selectionStart === 0 ) {
-							scroll = getCaretScrollPosition( this );
-							if ( options.force || scroll < $( this ).scrollTop() ||
-									scroll > $( this ).scrollTop() + $( this ).height() ) {
-								$( this ).scrollTop( scroll );
+						// Delete all text after the selection and scroll the textarea to the end.
+						// This ensures the selection is visible (aligned to the bottom of the textarea).
+						// Then restore the text we deleted without changing scroll position.
+						this.value = this.value.slice( 0, this.selectionEnd );
+						this.scrollTop = this.scrollHeight;
+						// Chrome likes to adjust scroll position when changing value, so save and re-set later.
+						// Note that this is not equal to scrollHeight, it's scrollHeight minus innerHeight.
+						calcScrollTop = this.scrollTop;
+						this.value = origValue;
+						this.selectionStart = origSelectionStart;
+						this.selectionEnd = origSelectionEnd;
+
+						if ( !options.force ) {
+							// Check if all the scrolling was unnecessary and if so, restore previous position.
+							// If the current position is no more than a screenful above the original,
+							// the selection was previously visible on the screen.
+							if ( calcScrollTop < origScrollTop && origScrollTop - calcScrollTop < innerHeight ) {
+								calcScrollTop = origScrollTop;
 							}
 						}
+
+						this.scrollTop = calcScrollTop;
 					}
 					$( this ).trigger( 'scrollToPosition' );
 				} );
