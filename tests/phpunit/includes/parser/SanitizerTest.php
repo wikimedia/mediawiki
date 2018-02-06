@@ -517,6 +517,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @dataProvider provideStripAllTags
 	 *
 	 * @covers Sanitizer::stripAllTags()
+	 * @covers RemexStripTagHandler
 	 *
 	 * @param string $input
 	 * @param string $expected
