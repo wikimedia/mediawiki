@@ -57,7 +57,7 @@ class Digit2Html extends Maintenance {
 
 			$this->output( "OK\n\$digitTransformTable = [\n" );
 			foreach ( $digitTransformTable as $latin => $translation ) {
-				$htmlent = utf8ToHexSequence( $translation );
+				$htmlent = bin2hex( $translation );
 				$this->output( "'$latin' => '$translation', # &#x$htmlent;\n" );
 			}
 			$this->output( "];\n" );

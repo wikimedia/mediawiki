@@ -37,6 +37,7 @@ use UtfNormal\Utils;
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */
 function codepointToUtf8( $codepoint ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	return Utils::codepointToUtf8( $codepoint );
 }
 
@@ -52,6 +53,7 @@ function codepointToUtf8( $codepoint ) {
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */
 function hexSequenceToUtf8( $sequence ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	return Utils::hexSequenceToUtf8( $sequence );
 }
 
@@ -65,6 +67,7 @@ function hexSequenceToUtf8( $sequence ) {
  * @private
  */
 function utf8ToHexSequence( $str ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	$buf = '';
 	foreach ( preg_split( '//u', $str, -1, PREG_SPLIT_NO_EMPTY ) as $cp ) {
 		$buf .= sprintf( '%04x ', UtfNormal\Utils::utf8ToCodepoint( $cp ) );
@@ -83,6 +86,7 @@ function utf8ToHexSequence( $str ) {
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */
 function utf8ToCodepoint( $char ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	return Utils::utf8ToCodepoint( $char );
 }
 
@@ -95,5 +99,6 @@ function utf8ToCodepoint( $char ) {
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */
 function escapeSingleString( $string ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	return Utils::escapeSingleString( $string );
 }
