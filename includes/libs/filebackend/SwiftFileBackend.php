@@ -87,7 +87,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
-	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, etc.
 	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
 	 *   - rgwS3AccessKey     : Rados Gateway S3 "access key" value on the account.

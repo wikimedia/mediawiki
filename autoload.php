@@ -1720,7 +1720,6 @@ $wgAutoloadLocalClasses = [
 	'WordLevelDiff' => __DIR__ . '/includes/diff/WordLevelDiff.php',
 	'WrapOldPasswords' => __DIR__ . '/maintenance/wrapOldPasswords.php',
 	'XCFHandler' => __DIR__ . '/includes/media/XCF.php',
-	'XCacheBagOStuff' => __DIR__ . '/includes/libs/objectcache/XCacheBagOStuff.php',
 	'XMLRCFeedFormatter' => __DIR__ . '/includes/rcfeed/XMLRCFeedFormatter.php',
 	'XMPInfo' => __DIR__ . '/includes/libs/xmp/XMPInfo.php',
 	'XMPReader' => __DIR__ . '/includes/libs/xmp/XMP.php',

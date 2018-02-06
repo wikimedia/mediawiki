@@ -243,7 +243,6 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $objectCaches = [
-		'xcache' => 'xcache_get',
 		'apc' => 'apc_fetch',
 		'apcu' => 'apcu_fetch',
 		'wincache' => 'wincache_ucache_get'
@@ -857,9 +856,6 @@ abstract class Installer {
 		$caches = [];
 		foreach ( $this->objectCaches as $name => $function ) {
 			if ( function_exists( $function ) ) {
-				if ( $name == 'xcache' && !wfIniGetBool( 'xcache.var_size' ) ) {
-					continue;
-				}
 				$caches[$name] = true;
 			}
 		}

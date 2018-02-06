@@ -364,7 +364,7 @@ class UIDGenerator {
 
 		$counter = null; // post-increment persistent counter value
 
-		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
+		// Use APC/etc if requested, available, and not in CLI mode;
 		// Counter values would not survive accross script instances in CLI mode.
 		$cache = null;
 		if ( ( $flags & self::QUICK_VOLATILE ) && !wfIsCLI() ) {

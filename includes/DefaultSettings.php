@@ -2255,7 +2255,7 @@ $wgCacheDirectory = false;
  *   - CACHE_NONE:       Do not cache
  *   - CACHE_DB:         Store cache objects in the DB
  *   - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
- *   - CACHE_ACCEL:      APC, APCU, XCache or WinCache
+ *   - CACHE_ACCEL:      APC, APCU or WinCache
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgObjectCaches.
  *
@@ -2333,7 +2333,6 @@ $wgObjectCaches = [
 
 	'apc' => [ 'class' => APCBagOStuff::class, 'reportDupes' => false ],
 	'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
-	'xcache' => [ 'class' => XCacheBagOStuff::class, 'reportDupes' => false ],
 	'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 	'memcached-pecl' => [ 'class' => MemcachedPeclBagOStuff::class, 'loggroup' => 'memcached' ],

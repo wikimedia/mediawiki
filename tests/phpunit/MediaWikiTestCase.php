@@ -267,7 +267,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				CACHE_MEMCACHED => $hashCache,
 				'apc' => $hashCache,
 				'apcu' => $hashCache,
-				'xcache' => $hashCache,
 				'wincache' => $hashCache,
 			] + $baseConfig->get( 'ObjectCaches' );
 
