@@ -75,13 +75,13 @@ class Orphans extends Maintenance {
 	 */
 	private function checkOrphans( $fix ) {
 		$dbw = $this->getDB( DB_MASTER );
-		$commentStore = new CommentStore( 'rev_comment' );
+		$commentStore = CommentStore::getStore();
 
 		if ( $fix ) {
 			$this->lockTables( $dbw );
 		}
 
-		$commentQuery = $commentStore->getJoin();
+		$commentQuery = $commentStore->getJoin( 'rev_comment' );
 
 		$this->output( "Checking for orphan revision table entries... "
 			. "(this may take a while on a large wiki)\n" );
@@ -104,7 +104,7 @@ class Orphans extends Maintenance {
 			) );
 
 			foreach ( $result as $row ) {
-				$comment = $commentStore->getComment( $row )->text;
+				$comment = $commentStore->getComment( 'rev_comment', $row )->text;
 				if ( $comment !== '' ) {
 					$comment = '(' . $wgContLang->truncate( $comment, 40 ) . ')';
 				}

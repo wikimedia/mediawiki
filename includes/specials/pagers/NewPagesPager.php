@@ -90,7 +90,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds['page_is_redirect'] = 0;
 		}
 
-		$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
 
 		// Allow changes to the New Pages query
 		$tables = [ 'recentchanges', 'page' ] + $commentQuery['tables'];

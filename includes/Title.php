@@ -2735,8 +2735,8 @@ class Title implements LinkTarget {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$commentStore = new CommentStore( 'pt_reason' );
-			$commentQuery = $commentStore->getJoin();
+			$commentStore = CommentStore::getStore();
+			$commentQuery = $commentStore->getJoin( 'pt_reason' );
 			$res = $dbr->select(
 				[ 'protected_titles' ] + $commentQuery['tables'],
 				[
@@ -2757,7 +2757,7 @@ class Title implements LinkTarget {
 					'user' => $row['user'],
 					'expiry' => $dbr->decodeExpiry( $row['expiry'] ),
 					'permission' => $row['permission'],
-					'reason' => $commentStore->getComment( $row )->text,
+					'reason' => $commentStore->getComment( 'pt_reason', $row )->text,
 				];
 			} else {
 				$this->mTitleProtection = false;

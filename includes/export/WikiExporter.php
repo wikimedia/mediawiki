@@ -278,7 +278,7 @@ class WikiExporter {
 			}
 			$result = null; // Assuring $result is not undefined, if exception occurs early
 
-			$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+			$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 
 			try {
 				$result = $this->db->select( [ 'logging', 'user' ] + $commentQuery['tables'],
@@ -399,7 +399,7 @@ class WikiExporter {
 				Hooks::run( 'ModifyExportQuery',
 						[ $this->db, &$tables, &$cond, &$opts, &$join ] );
 
-				$commentQuery = CommentStore::newKey( 'rev_comment' )->getJoin();
+				$commentQuery = CommentStore::getStore()->getJoin( 'rev_comment' );
 
 				# Do the query!
 				$result = $this->db->select(

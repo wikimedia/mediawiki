@@ -224,9 +224,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getQueryInfo
 	 */
 	public function testGetQueryInfo( $contentHandlerUseDb, $options, $expected ) {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( $contentHandlerUseDb );
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals( $expected, $store->getQueryInfo( $options ) );
 	}
 
@@ -254,9 +255,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
 	 */
 	public function testGetArchiveQueryInfo_contentHandlerDb() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( true );
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals(
 			[
 				'tables' => [
@@ -282,9 +284,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
 	 */
 	public function testGetArchiveQueryInfo_noContentHandlerDb() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( false );
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->assertEquals(
 			[
 				'tables' => [
