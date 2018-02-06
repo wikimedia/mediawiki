@@ -234,7 +234,7 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_COMMENT,
 						$this->getUser()
 					) ) {
-						$value = CommentStore::newKey( 'log_comment' )->getComment( $row )->text;
+						$value = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
 						$formatted = Linker::formatComment( $value !== null ? $value : '' );
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
@@ -283,7 +283,7 @@ class ProtectedPagesPager extends TablePager {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		}
 
-		$commentQuery = CommentStore::newKey( 'log_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 
 		return [
 			'tables' => [ 'page', 'page_restrictions', 'log_search', 'logging' ] + $commentQuery['tables'],
