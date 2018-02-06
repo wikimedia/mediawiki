@@ -37,7 +37,7 @@
 	"config-xcache": "[Http://trac.lighttpd.net/xcache/ XCache] je wjinstalowóny",
 	"config-apc": "[Http://www.php.net/apc APC] je wjinstalowóny",
 	"config-apcu": "[http://www.php.net/apcu APCu] je wjinstalowóny",
-	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] je wjinstalowóny",
+	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] je wjinstalowóny",
 	"config-diff3-bad": "Felënk GNU diff3.",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
