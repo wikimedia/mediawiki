@@ -395,8 +395,6 @@ return [
 			$id = 'apc';
 		} elseif ( function_exists( 'apcu_fetch' ) ) {
 			$id = 'apcu';
-		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
-			$id = 'xcache';
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
