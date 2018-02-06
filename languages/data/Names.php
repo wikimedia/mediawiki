@@ -253,6 +253,7 @@ class Names {
 		'ku' => 'Kurdî', # Kurdish (multiple scripts - defaults to Latin)
 		'ku-latn' => "Kurdî (latînî)\xE2\x80\x8E", # Northern Kurdish (Latin script)
 		'ku-arab' => "كوردي (عەرەبی)\xE2\x80\x8F", # Northern Kurdish (Arabic script) (falls back to ckb)
+		'kum' => 'къумукъ', # Kumyk (cyrillic, 'kum-latn' for latin script)
 		'kv' => 'коми', # Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 		'kw' => 'kernowek', # Cornish
 		'ky' => 'Кыргызча', # Kirghiz
