@@ -34,6 +34,7 @@
 		"resources/src/jquery/jquery.spinner.js",
 		"resources/src/jquery/jquery.suggestions.js",
 		"resources/src/jquery/jquery.tabIndex.js",
+		"resources/src/jquery/jquery.textSelection.js",
 		"resources/lib/jquery.client/jquery.client.js",
 		"resources/lib/oojs/oojs.jquery.js",
 		"resources/lib/oojs-ui/oojs-ui-core.js",
