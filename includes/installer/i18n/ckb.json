@@ -32,7 +32,7 @@
 	"config-restart": "بەڵێ، دەستی پێ بکەرەوە",
 	"config-env-php": "PHP $1 دامەزراوە.",
 	"config-apc": "[http://www.php.net/apc APC] دامەزراوە",
-	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] دامەزراوە",
+	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] دامەزراوە",
 	"config-db-type": "جۆری داتابەیس:",
 	"config-db-host": "خانەخوێی داتابەیس:",
 	"config-db-name": "ناوی بنکەدراوە:",

@@ -1846,7 +1846,7 @@
 	"doubleredirects": "Dvojitá přesměrování",
 	"doubleredirectstext": "Na této stránce je seznam přesměrování vedoucích na další přesměrování.\nKaždý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.\n<del>Přeškrtnuté</del> položky již byly vyřešeny.",
 	"double-redirect-fixed-move": "Stránka [[$1]] byla přesunuta.\nByla automaticky aktualizována a nyní přesměrovává na [[$2]].",
-	"double-redirect-fixed-maintenance": "Automatická oprava dvojitého přesměrování z [[$1]] na [[$2]] údržbovým procesem.",
+	"double-redirect-fixed-maintenance": "Automatická oprava dvojitého přesměrování z [[$1]] na [[$2]] údržbovým procesem",
 	"double-redirect-fixer": "Opravář přesměrování",
 	"brokenredirects": "Přerušená přesměrování",
 	"brokenredirectstext": "Tato přesměrování vedou na neexistující stránky:",

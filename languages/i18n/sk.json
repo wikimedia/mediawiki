@@ -3590,5 +3590,7 @@
 	"date-range-to": "Po dátum:",
 	"randomrootpage": "Náhodná koreňová stránka",
 	"changecredentials": "Zmena prihlasovacích údajov",
-	"removecredentials": "Odstránenie prihlasovacích údajov"
+	"removecredentials": "Odstránenie prihlasovacích údajov",
+	"userjsispublic": "Uvedomte si prosím, že podstránky s JavaScriptom by nemali obsahovať tajné údaje, pretože sú viditeľné ostatným používateľom.",
+	"usercssispublic": "Uvedomte si prosím, že podstránky s CSS by nemali obsahovať tajné údaje, pretože sú viditeľné ostatným používateľom."
 }

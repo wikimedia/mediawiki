@@ -14,7 +14,7 @@
 	"config-page-welcome": "Üdvözli a MediaWiki!",
 	"config-help-restart": "Szeretné törölni az eddig megadott összes adatot és újraindítani a telepítési folyamatot?",
 	"config-welcome": "=== Környezet ellenőrzése ===\nAlapvető ellenőrzés, ami megmondja, hogy a környezet alkalmas-e a MediaWiki számára.\nHa probléma merülne fel a telepítés során, meg kell adnia mások számára az alább megjelenő információkat.",
-	"config-unicode-pure-php-warning": "<strong>Figyelmeztetés:</strong> Az [http://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz, helyette a lassú, PHP alapú implementáció lesz használva.\nHa nagy látogatottságú oldalt üzemeltet, itt találhat információkat [http://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations a témáról].",
+	"config-unicode-pure-php-warning": "<strong>Figyelmeztetés:</strong> Az [https://pecl.php.net/intl intl PECL kiterjesztés] nem érhető el Unicode normalizáláshoz, helyette a lassú, PHP alapú implementáció lesz használva.\nHa nagy látogatottságú oldalt üzemeltet, itt találhat információkat [http://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations a témáról].",
 	"config-imagemagick": "Az ImageMagick megtalálható a rendszeren: <code>$1</code>.\nA bélyegképek készítése engedélyezve lesz, ha engedélyezi a feltöltéseket.",
 	"config-db-name-help": "Válassza ki a wikije azonosítására használt nevet.\nNem tartalmazhat szóközt.\n\nHa megosztott webtárhelyet használ, a szolgáltatója vagy egy konkrét adatbázisnevet ad önnek használatra, vagy létrehozhat egyet a vezérlőpulton keresztül.",
 	"config-db-install-help": "Adja meg a felhasználónevet és jelszót, amivel a telepítő csatlakozhat az adatbázishoz.",
