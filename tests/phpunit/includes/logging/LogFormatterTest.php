@@ -91,10 +91,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 		$formatter->setShowUserToolLinks( false );
 		$paramsWithoutTools = $formatter->getMessageParametersForTesting();
-		unset( $formatter->parsedParameters );
 
-		$formatter->setShowUserToolLinks( true );
-		$paramsWithTools = $formatter->getMessageParametersForTesting();
+		$formatter2 = LogFormatter::newFromEntry( $entry );
+		$formatter2->setContext( $this->context );
+		$formatter2->setShowUserToolLinks( true );
+		$paramsWithTools = $formatter2->getMessageParametersForTesting();
 
 		$userLink = Linker::userLink(
 			$this->user->getId(),
