@@ -237,53 +237,55 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideComparePositions() {
+		$now = microtime( true );
+
 		return [
 			// Binlog style
 			[
-				new MySQLMasterPos( 'db1034-bin.000976', '843431247' ),
-				new MySQLMasterPos( 'db1034-bin.000976', '843431248' ),
+				new MySQLMasterPos( 'db1034-bin.000976/843431247', $now ),
+				new MySQLMasterPos( 'db1034-bin.000976/843431248', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
-				new MySQLMasterPos( 'db1034-bin.000976', '1000' ),
+				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
+				new MySQLMasterPos( 'db1034-bin.000976/1000', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1034-bin.000976', '999' ),
-				new MySQLMasterPos( 'db1035-bin.000976', '1000' ),
+				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
+				new MySQLMasterPos( 'db1035-bin.000976/1000', $now ),
 				false
 			],
 			// MySQL GTID style
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:23' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '3E11FA47-71CA-11E1-9E33-C80AA9429562:24' ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:23', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:24', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '3E11FA47-71CA-11E1-9E33-C80AA9429562:100' ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '1E11FA47-71CA-11E1-9E33-C80AA9429562:100' ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
+				new MySQLMasterPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
 				false
 			],
 			// MariaDB GTID style
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-23' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '255-11-24' ),
+				new MySQLMasterPos( '255-11-23', $now ),
+				new MySQLMasterPos( '255-11-24', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-99' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '255-11-100' ),
+				new MySQLMasterPos( '255-11-99', $now ),
+				new MySQLMasterPos( '255-11-100', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1-bin.2', '1', '255-11-999' ),
-				new MySQLMasterPos( 'db1-bin.2', '2', '254-11-1000' ),
+				new MySQLMasterPos( '255-11-999', $now ),
+				new MySQLMasterPos( '254-11-1000', $now ),
 				false
 			],
 		];
@@ -296,28 +298,33 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	public function testChannelsMatch( MySQLMasterPos $pos1, MySQLMasterPos $pos2, $matches ) {
 		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
 		$this->assertEquals( $matches, $pos2->channelsMatch( $pos1 ) );
+
+		$roundtripPos = new MySQLMasterPos( (string)$pos1, 1 );
+		$this->assertEquals( (string)$pos1, (string)$roundtripPos );
 	}
 
 	public static function provideChannelPositions() {
+		$now = microtime( true );
+
 		return [
 			[
-				new MySQLMasterPos( 'db1034-bin.000876', '44' ),
-				new MySQLMasterPos( 'db1034-bin.000976', '74' ),
+				new MySQLMasterPos( 'db1034-bin.000876/44', $now ),
+				new MySQLMasterPos( 'db1034-bin.000976/74', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1052-bin.000976', '999' ),
-				new MySQLMasterPos( 'db1052-bin.000976', '1000' ),
+				new MySQLMasterPos( 'db1052-bin.000976/999', $now ),
+				new MySQLMasterPos( 'db1052-bin.000976/1000', $now ),
 				true
 			],
 			[
-				new MySQLMasterPos( 'db1066-bin.000976', '9999' ),
-				new MySQLMasterPos( 'db1035-bin.000976', '10000' ),
+				new MySQLMasterPos( 'db1066-bin.000976/9999', $now ),
+				new MySQLMasterPos( 'db1035-bin.000976/10000', $now ),
 				false
 			],
 			[
-				new MySQLMasterPos( 'db1066-bin.000976', '9999' ),
-				new MySQLMasterPos( 'trump2016.000976', '10000' ),
+				new MySQLMasterPos( 'db1066-bin.000976/9999', $now ),
+				new MySQLMasterPos( 'trump2016.000976/10000', $now ),
 				false
 			],
 		];
