@@ -19,7 +19,8 @@
 			"Waldir",
 			"Jdforrester",
 			"Liuxinyu970226",
-			"Metalhead64"
+			"Metalhead64",
+			"Tacsipacsi"
 		]
 	},
 	"config-desc": "Short description of the installer.",
@@ -30,7 +31,7 @@
 	"config-localsettings-key": "Label for the upgrade key that confirms a user upgrading through the web UI has access to LocalSettings.php. Details at https://www.mediawiki.org/wiki/Manual:Upgrading#Web_browser.",
 	"config-localsettings-badkey": "Error message when an incorrect upgrade key has been provided while trying to upgrade.",
 	"config-upgrade-key-missing": "Used in info box. Parameters:\n* $1 - the upgrade key, enclosed in <code><nowiki><pre></nowikI></code> tag.",
-	"config-localsettings-incomplete": "{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki><code>.}}\nParameters:\n* $1 - name of variable (any one of required variables or installer-specific global variables)",
+	"config-localsettings-incomplete": "{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki></code>.}}\nParameters:\n* $1 - name of variable (any one of required variables or installer-specific global variables)",
 	"config-localsettings-connection-error": "{{doc-important|Do not translate <code>LocalSettings.php</code>.}}\nUsed as error message. Parameters:\n* $1 - (probably empty string)",
 	"config-session-error": "Parameters:\n* $1 is the error that was encountered with the session.",
 	"config-session-expired": "Parameters:\n* $1 is the configured session lifetime.",
