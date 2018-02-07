@@ -5,6 +5,7 @@
  * @group Parser
  *
  * @covers Parser
+ * @covers BlockLevelPass
  * @covers StripState
  *
  * @covers Preprocessor_DOM
