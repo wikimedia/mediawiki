@@ -99,7 +99,7 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @note: this returns false for multi-source replication GTID sets
 	 * @see https://mariadb.com/kb/en/mariadb/gtid
 	 * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
-	 * @return array Map of (domain => integer position) or false
+	 * @return array Map of (domain => integer position); possibly empty
 	 */
 	protected function getGtidCoordinates() {
 		$gtidInfos = [];
