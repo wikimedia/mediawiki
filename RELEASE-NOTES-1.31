@@ -46,6 +46,8 @@ production.
   initial page text for file uploads.
 * (T181651) The info page for File pages now displays the file's base-16 SHA1
   hash value in the table of basic information.
+* (T76554) User sub-pages named ….json are now protected in the same way that ….js
+  and ….css pages are, so that configuration options can safely be placed there.
 
 === External library changes in 1.31 ===
 
@@ -230,6 +232,12 @@ changes to languages because of Phabricator reports.
   * CommentStore::getCommentLegacy
   * CommentStore::insert
   * CommentStore::insertWithTemplate
+* As part of support for JSON config pages, the following methods in Title have been deprecated:
+  * Title::getSkinFromCssJsSubpage – use ::getSkinFromConfigSubpage
+  * Title::isCssOrJsPage – use ::isSiteConfigPage, which also covers JSON pages
+  * Title::isCssJsSubpage – use ::isUserConfigPage, which also covers JSON pages
+  * Title::isCssSubpage – use ::isUserCssConfigPage
+  * Title::isJsSubpage – use ::isUserJsConfigPage
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
