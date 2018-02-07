@@ -340,8 +340,10 @@ class ForeignAPIFile extends File {
 		$iter = $this->repo->getBackend()->getFileList( [ 'dir' => $dir ] );
 
 		$files = [];
-		foreach ( $iter as $file ) {
-			$files[] = $file;
+		if ( $iter ) {
+			foreach ( $iter as $file ) {
+				$files[] = $file;
+			}
 		}
 
 		return $files;
