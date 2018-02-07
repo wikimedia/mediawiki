@@ -893,9 +893,14 @@ abstract class DatabaseMysqlBase extends Database {
 
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
 		if ( $useGTID ) {
-			// Wait on the GTID set (MariaDB only)
 			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
-			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+			if ( strpos( $gtidArg, ':' ) !== false ) {
+				// MySQL GTIDs, e.g "source_id:transaction_id"
+				$res = $this->doQuery( "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)" );
+			} else {
+				// MariaDB GTIDs, e.g."domain:server:sequence"
+				$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+			}
 		} else {
 			// Wait on the binlog coordinates
 			$encFile = $this->addQuotes( $pos->binlog );
@@ -905,8 +910,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
-			throw new DBExpectedError( $this,
-				"MASTER_POS_WAIT() or MASTER_GTID_WAIT() failed: {$this->lastError()}" );
+			throw new DBExpectedError( $this, "Replication wait failed: {$this->lastError()}" );
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
@@ -941,7 +945,14 @@ abstract class DatabaseMysqlBase extends Database {
 		$now = microtime( true );
 
 		if ( $this->useGTIDs ) {
+			// MariaDB
 			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+			// MySQL
+			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_executed'", __METHOD__ );
 			$gtidRow = $this->fetchObject( $res );
 			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
 				return new MySQLMasterPos( $gtidRow->Value, $now );
@@ -969,7 +980,14 @@ abstract class DatabaseMysqlBase extends Database {
 		$now = microtime( true );
 
 		if ( $this->useGTIDs ) {
+			// MariaDB
 			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_binlog_pos'", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+			// MySQL
+			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_executed'", __METHOD__ );
 			$gtidRow = $this->fetchObject( $res );
 			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
 				return new MySQLMasterPos( $gtidRow->Value, $now );
