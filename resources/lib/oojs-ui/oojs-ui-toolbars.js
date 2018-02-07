@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:15Z
+ * Date: 2018-02-07T00:27:24Z
  */
 ( function ( OO ) {
 
@@ -402,7 +402,7 @@ OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
 OO.ui.Toolbar.prototype.onWindowResize = function () {
 	this.$element.toggleClass(
 		'oo-ui-toolbar-narrow',
-		this.$bar.width() <= this.getNarrowThreshold()
+		this.$bar[ 0 ].clientWidth <= this.getNarrowThreshold()
 	);
 };
 
@@ -415,7 +415,7 @@ OO.ui.Toolbar.prototype.onWindowResize = function () {
  */
 OO.ui.Toolbar.prototype.getNarrowThreshold = function () {
 	if ( this.narrowThreshold === null ) {
-		this.narrowThreshold = this.$group.width() + this.$actions.width();
+		this.narrowThreshold = this.$group[ 0 ].offsetWidth + this.$actions[ 0 ].offsetWidth;
 	}
 	return this.narrowThreshold;
 };
@@ -2220,10 +2220,16 @@ OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 };
 
 OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
-	var i, len;
+	var i, icon, len;
+
+	if ( this.toolbar.position !== 'bottom' ) {
+		icon = this.expanded ? 'collapse' : 'expand';
+	} else {
+		icon = this.expanded ? 'expand' : 'collapse';
+	}
 
 	this.getExpandCollapseTool()
-		.setIcon( this.expanded ? 'collapse' : 'expand' )
+		.setIcon( icon )
 		.setTitle( OO.ui.msg( this.expanded ? 'ooui-toolgroup-collapse' : 'ooui-toolgroup-expand' ) );
 
 	for ( i = 0, len = this.collapsibleTools.length; i < len; i++ ) {

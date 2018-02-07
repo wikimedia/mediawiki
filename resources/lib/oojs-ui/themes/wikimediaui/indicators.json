@@ -9,7 +9,10 @@
 		}
 	},
 	"images": {
-		"alert": { "file": "images/indicators/alert.svg" },
+		"alert": {
+			"file": "images/indicators/alert.svg",
+			"deprecated": "This will be removed in v0.27.0."
+		},
 		"clear": { "file": "images/indicators/clear.svg" },
 		"up": { "file": "images/indicators/arrow-up.svg" },
 		"down": { "file": "images/indicators/arrow-down.svg" },

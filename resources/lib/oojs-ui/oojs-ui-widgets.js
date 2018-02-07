@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:15Z
+ * Date: 2018-02-07T00:27:24Z
  */
 ( function ( OO ) {
 
@@ -154,7 +154,7 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
 	// We must set up a dataTransfer data property or Firefox seems to
 	// ignore the fact the element is draggable.
 	try {
-		dataTransfer.setData( 'application-x/OOjs-UI-draggable', this.getIndex() );
+		dataTransfer.setData( 'application-x/OOUI-draggable', this.getIndex() );
 	} catch ( err ) {
 		// The above is only for Firefox. Move on if it fails.
 	}
@@ -5704,6 +5704,7 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  *
  * @constructor
  * @param {Object} [config] Configuration object
+ * @cfg {boolean} [clearInputOnChoose=true] Clear the text input value when a menu option is chosen
  * @cfg {Object} [menu] Configuration object for the menu widget
  * @cfg {jQuery} [$overlay] An overlay for the menu.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
@@ -5716,7 +5717,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	OO.ui.MenuTagMultiselectWidget.parent.call( this, config );
 
 	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
-
+	this.clearInputOnChoose = config.clearInputOnChoose === undefined || !!config.clearInputOnChoose;
 	this.menu = this.createMenuWidget( $.extend( {
 		widget: this,
 		input: this.hasInput ? this.input : null,
@@ -5792,6 +5793,9 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputChange = function () {
 OO.ui.MenuTagMultiselectWidget.prototype.onMenuChoose = function ( menuItem ) {
 	// Add tag
 	this.addTag( menuItem.getData(), menuItem.getLabel() );
+	if ( this.hasInput && this.clearInputOnChoose ) {
+		this.input.setValue( '' );
+	}
 };
 
 /**
