@@ -13,9 +13,9 @@ use InvalidArgumentException;
  *    that GTID sets are complete (e.g. include all domains on the server).
  */
 class MySQLMasterPos implements DBMasterPos {
-	/** @var string Binlog file */
-	public $file;
-	/** @var int Binglog file position */
+	/** @var string|null Binlog file base name */
+	public $binlog;
+	/** @var int[]|null Binglog file position tuple */
 	public $pos;
 	/** @var string[] GTID list */
 	public $gtids = [];
@@ -23,29 +23,29 @@ class MySQLMasterPos implements DBMasterPos {
 	public $asOfTime = 0.0;
 
 	/**
-	 * @param string $file Binlog file name
-	 * @param int $pos Binlog position
-	 * @param string $gtid Comma separated GTID set [optional]
+	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)
+	 * @param float $asOfTime UNIX timestamp
 	 */
-	function __construct( $file, $pos, $gtid = '' ) {
-		$this->file = $file;
-		$this->pos = $pos;
-		$this->gtids = array_map( 'trim', explode( ',', $gtid ) );
-		$this->asOfTime = microtime( true );
+	public function __construct( $position, $asOfTime ) {
+		$m = [];
+		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', $position, $m ) ) {
+			$this->binlog = $m[1]; // ideally something like host name
+			$this->pos = [ (int)$m[2], (int)$m[3] ];
+		} else {
+			$this->gtids = array_map( 'trim', explode( ',', $position ) );
+			if ( !$this->gtids ) {
+				throw new InvalidArgumentException( "GTID set should not be empty." );
+			}
+		}
+
+		$this->asOfTime = $asOfTime;
 	}
 
-	/**
-	 * @return string <binlog file>/<position>, e.g db1034-bin.000976/843431247
-	 */
-	function __toString() {
-		return "{$this->file}/{$this->pos}";
-	}
-
-	function asOfTime() {
+	public function asOfTime() {
 		return $this->asOfTime;
 	}
 
-	function hasReached( DBMasterPos $pos ) {
+	public function hasReached( DBMasterPos $pos ) {
 		if ( !( $pos instanceof self ) ) {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
@@ -75,7 +75,7 @@ class MySQLMasterPos implements DBMasterPos {
 		return false;
 	}
 
-	function channelsMatch( DBMasterPos $pos ) {
+	public function channelsMatch( DBMasterPos $pos ) {
 		if ( !( $pos instanceof self ) ) {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
@@ -93,6 +93,15 @@ class MySQLMasterPos implements DBMasterPos {
 		$thatBinPos = $pos->getBinlogCoordinates();
 
 		return ( $thisBinPos && $thatBinPos && $thisBinPos['binlog'] === $thatBinPos['binlog'] );
+	}
+
+	/**
+	 * @return string GTID set or <binlog file>/<position> (e.g db1034-bin.000976/843431247)
+	 */
+	public function __toString() {
+		return $this->gtids
+			? implode( ',', $this->gtids )
+			: "{$this->binlog}.{$this->pos[0]}/{$this->pos[1]}";
 	}
 
 	/**
@@ -127,11 +136,8 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @return array|bool (binlog, (integer file number, integer position)) or false
 	 */
 	protected function getBinlogCoordinates() {
-		$m = [];
-		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', (string)$this, $m ) ) {
-			return [ 'binlog' => $m[1], 'pos' => [ (int)$m[2], (int)$m[3] ] ];
-		}
-
-		return false;
+		return ( $this->binlog !== null && $this->pos !== null )
+			? [ 'binlog' => $this->binlog, 'pos' => $this->pos ]
+			: false;
 	}
 }

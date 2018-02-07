@@ -889,17 +889,15 @@ abstract class DatabaseMysqlBase extends Database {
 			return 0; // already reached this point for sure
 		}
 
-		$useGTID = ( $this->useGTIDs && $pos->gtids );
-
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $useGTID ) {
+		if ( $pos->gtids ) {
 			// Wait on the GTID set (MariaDB only)
 			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
 		} else {
 			// Wait on the binlog coordinates
-			$encFile = $this->addQuotes( $pos->file );
-			$encPos = intval( $pos->pos );
+			$encFile = $this->addQuotes( "{$pos->binlog}.{$pos->pos[0]}" );
+			$encPos = intval( $pos->pos[1] );
 			$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
 		}
 
@@ -912,7 +910,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			if ( !$useGTID ) {
+			if ( !$pos->gtids ) {
 				// T126436: jobs programmed to wait on master positions might be referencing
 				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
 				// Try to detect this case and treat the replica DB as having reached the given
@@ -938,24 +936,26 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getReplicaPos() {
+		$now = microtime( true );
+
+		if ( $this->useGTIDs ) {
+			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+		}
+
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			$pos = $row->Exec_Master_Log_Pos;
-			// Also fetch the last-applied GTID set (MariaDB)
-			if ( $this->useGTIDs ) {
-				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
-				$gtidRow = $this->fetchObject( $res );
-				$gtidSet = $gtidRow ? $gtidRow->Value : '';
-			} else {
-				$gtidSet = '';
-			}
-
-			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos, $gtidSet );
-		} else {
-			return false;
+		if ( $row && strlen( $row->Relay_Master_Log_File ) ) {
+			return new MySQLMasterPos(
+				"{$row->Relay_Master_Log_File}/{$row->Exec_Master_Log_Pos}",
+				$now
+			);
 		}
+
+		return false;
 	}
 
 	/**
@@ -964,23 +964,23 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getMasterPos() {
+		$now = microtime( true );
+
+		if ( $this->useGTIDs ) {
+			$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_binlog_pos'", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+		}
+
 		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			// Also fetch the last-written GTID set (MariaDB)
-			if ( $this->useGTIDs ) {
-				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_binlog_pos'", __METHOD__ );
-				$gtidRow = $this->fetchObject( $res );
-				$gtidSet = $gtidRow ? $gtidRow->Value : '';
-			} else {
-				$gtidSet = '';
-			}
-
-			return new MySQLMasterPos( $row->File, $row->Position, $gtidSet );
-		} else {
-			return false;
+		if ( $row && strlen( $row->File ) ) {
+			return new MySQLMasterPos( "{$row->File}/{$row->Position}", $now );
 		}
+
+		return false;
 	}
 
 	public function serverIsReadOnly() {
