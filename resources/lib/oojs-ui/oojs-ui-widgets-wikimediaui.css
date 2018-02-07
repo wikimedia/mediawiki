@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:20Z
+ * Date: 2018-02-07T00:27:29Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -69,14 +69,17 @@
 .oo-ui-bookletLayout > .oo-ui-menuLayout-menu {
   border-right: 1px solid #c8ccd1;
 }
-.oo-ui-indexLayout > .oo-ui-menuLayout-menu {
+.oo-ui-indexLayout {
+  /* Use two classes to ensure increased specificity over menuLayout */
+}
+.oo-ui-indexLayout.oo-ui-menuLayout > .oo-ui-menuLayout-menu {
   height: auto;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded.oo-ui-menuLayout > .oo-ui-menuLayout-menu {
   height: 3em;
   white-space: nowrap;
 }
-.oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
+.oo-ui-indexLayout.oo-ui-menuLayout-expanded.oo-ui-menuLayout > .oo-ui-menuLayout-content {
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
@@ -95,11 +98,11 @@
   bottom: 0;
 }
 .oo-ui-menuLayout-expanded,
-.oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu,
-.oo-ui-menuLayout-expanded .oo-ui-menuLayout-content {
+.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu,
+.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-content {
   position: absolute;
 }
-.oo-ui-menuLayout-expanded .oo-ui-menuLayout-menu {
+.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
   z-index: 1;
 }
 .oo-ui-menuLayout-static.oo-ui-menuLayout-after,
@@ -107,24 +110,24 @@
   display: table;
   width: 100%;
 }
-.oo-ui-menuLayout-static.oo-ui-menuLayout-after .oo-ui-menuLayout-menu,
-.oo-ui-menuLayout-static.oo-ui-menuLayout-before .oo-ui-menuLayout-menu,
-.oo-ui-menuLayout-static.oo-ui-menuLayout-after .oo-ui-menuLayout-content,
-.oo-ui-menuLayout-static.oo-ui-menuLayout-before .oo-ui-menuLayout-content {
+.oo-ui-menuLayout-static.oo-ui-menuLayout-after > .oo-ui-menuLayout-menu,
+.oo-ui-menuLayout-static.oo-ui-menuLayout-before > .oo-ui-menuLayout-menu,
+.oo-ui-menuLayout-static.oo-ui-menuLayout-after > .oo-ui-menuLayout-content,
+.oo-ui-menuLayout-static.oo-ui-menuLayout-before > .oo-ui-menuLayout-content {
   display: table-cell;
   vertical-align: top;
 }
-.oo-ui-menuLayout-menu,
-.oo-ui-menuLayout-content {
+.oo-ui-menuLayout > .oo-ui-menuLayout-menu,
+.oo-ui-menuLayout > .oo-ui-menuLayout-content {
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
   transition: all 200ms ease;
 }
-.oo-ui-menuLayout-menu {
+.oo-ui-menuLayout > .oo-ui-menuLayout-menu {
   height: 18em;
   width: 18em;
 }
-.oo-ui-menuLayout-content {
+.oo-ui-menuLayout > .oo-ui-menuLayout-content {
   top: 18em;
   left: 18em;
   right: 18em;

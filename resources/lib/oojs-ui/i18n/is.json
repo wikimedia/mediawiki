@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Maxí",
-			"Snævar"
+			"Snævar",
+			"Sveinn í Felli"
 		]
 	},
 	"ooui-outline-control-move-down": "Færa atriði niður",
@@ -11,6 +12,7 @@
 	"ooui-toolbar-more": "Fleira",
 	"ooui-toolgroup-expand": "Fleira",
 	"ooui-toolgroup-collapse": "Færra",
+	"ooui-item-remove": "Fjarlægja",
 	"ooui-dialog-message-accept": "Í lagi",
 	"ooui-dialog-message-reject": "Hætta við",
 	"ooui-dialog-process-error": "Eitthvað mistókst",

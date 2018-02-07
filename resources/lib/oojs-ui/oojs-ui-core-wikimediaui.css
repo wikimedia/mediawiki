@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:20Z
+ * Date: 2018-02-07T00:27:29Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -424,6 +424,12 @@
   width: 0.9375em;
   min-height: 12px;
   height: 100%;
+}
+.oo-ui-labelElement .oo-ui-labelElement-label,
+.oo-ui-labelElement.oo-ui-labelElement-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .oo-ui-labelElement .oo-ui-labelElement-label-highlight {
   font-weight: bold;

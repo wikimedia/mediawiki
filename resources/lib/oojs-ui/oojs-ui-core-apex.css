@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:20Z
+ * Date: 2018-02-07T00:27:29Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -302,6 +302,12 @@
   height: 0.9375em;
   opacity: 0.8;
 }
+.oo-ui-labelElement .oo-ui-labelElement-label,
+.oo-ui-labelElement.oo-ui-labelElement-label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .oo-ui-labelElement .oo-ui-labelElement-label-highlight {
   font-weight: bold;
 }
@@ -357,7 +363,7 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help {
   margin-right: 0;
-  margin-left: -1.875em;
+  margin-left: -2.5em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
@@ -924,7 +930,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   padding: 0;
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
   padding: 0.3125em 0;
@@ -983,7 +989,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #f3f3f3;
 }
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body {
   padding: 0.3125em 0;

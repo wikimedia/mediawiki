@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.1
+ * OOUI v0.25.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-01-17T01:47:15Z
+ * Date: 2018-02-07T00:27:24Z
  */
 ( function ( OO ) {
 
@@ -826,16 +826,16 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	// rebuild widget
 	// eslint-disable-next-line new-cap
 	obj = new cls( data );
+	// If anyone is holding a reference to the old DOM element,
+	// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
+	// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
+	$elem[ 0 ].oouiInfused = obj.$element;
 	// now replace old DOM with this new DOM.
 	if ( top ) {
 		// An efficient constructor might be able to reuse the entire DOM tree of the original element,
 		// so only mutate the DOM if we need to.
 		if ( $elem[ 0 ] !== obj.$element[ 0 ] ) {
 			$elem.replaceWith( obj.$element );
-			// This element is now gone from the DOM, but if anyone is holding a reference to it,
-			// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
-			// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
-			$elem[ 0 ].oouiInfused = obj.$element;
 		}
 		top.resolve();
 	}
@@ -2797,7 +2797,7 @@ OO.ui.mixin.IconElement.prototype.getIconTitle = function () {
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$indicator] The indicator element created by the class. If this
  *  configuration is omitted, the indicator element will use a generated `<span>`.
- * @cfg {string} [indicator] Symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
+ * @cfg {string} [indicator] Symbolic name of the indicator (e.g., ‘clear’ or ‘down’).
  *  See the [OOUI documentation on MediaWiki][2] for a list of indicators included
  *  in the library.
  * [2]: https://www.mediawiki.org/wiki/OOUI/Widgets/Icons,_Indicators,_and_Labels#Indicators
@@ -2827,7 +2827,7 @@ OO.initClass( OO.ui.mixin.IndicatorElement );
 /* Static Properties */
 
 /**
- * Symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
+ * Symbolic name of the indicator (e.g., ‘clear’ or  ‘down’).
  * The static property will be overridden if the #indicator configuration is used.
  *
  * @static
@@ -2873,7 +2873,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorElement = function ( $indicat
 };
 
 /**
- * Set the indicator by its symbolic name: ‘alert’, ‘down’, ‘next’, ‘previous’, ‘required’, ‘up’. Use `null` to remove the indicator.
+ * Set the indicator by its symbolic name: ‘clear’, ‘down’, ‘required’, ‘search’, ‘up’. Use `null` to remove the indicator.
  *
  * @param {string|null} indicator Symbolic name of indicator, or `null` for no indicator
  * @chainable
@@ -2928,7 +2928,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorTitle = function ( indicatorT
 };
 
 /**
- * Get the symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
+ * Get the symbolic name of the indicator (e.g., ‘clear’ or  ‘down’).
  *
  * @return {string} Symbolic name of indicator
  */
@@ -3983,19 +3983,19 @@ OO.ui.IconWidget.static.tagName = 'span';
 
 /**
  * IndicatorWidgets create indicators, which are small graphics that are generally used to draw
- * attention to the status of an item or to clarify the function of a control. For a list of
+ * attention to the status of an item or to clarify the function within a control. For a list of
  * indicators included in the library, please see the [OOUI documentation on MediaWiki][1].
  *
  *     @example
  *     // Example of an indicator widget
  *     var indicator1 = new OO.ui.IndicatorWidget( {
- *         indicator: 'alert'
+ *         indicator: 'required'
  *     } );
  *
  *     // Create a fieldset layout to add a label
  *     var fieldset = new OO.ui.FieldsetLayout();
  *     fieldset.addItems( [
- *         new OO.ui.FieldLayout( indicator1, { label: 'An alert indicator:' } )
+ *         new OO.ui.FieldLayout( indicator1, { label: 'A required indicator:' } )
  *     ] );
  *     $( 'body' ).append( fieldset.$element );
  *
@@ -6067,7 +6067,7 @@ OO.ui.OptionWidget.static.scrollIntoViewOnSelect = false;
  * @return {boolean} Item is selectable
  */
 OO.ui.OptionWidget.prototype.isSelectable = function () {
-	return this.constructor.static.selectable && !this.isDisabled() && this.isVisible();
+	return this.constructor.static.selectable && !this.disabled && this.isVisible();
 };
 
 /**
@@ -6078,7 +6078,7 @@ OO.ui.OptionWidget.prototype.isSelectable = function () {
  * @return {boolean} Item is highlightable
  */
 OO.ui.OptionWidget.prototype.isHighlightable = function () {
-	return this.constructor.static.highlightable && !this.isDisabled() && this.isVisible();
+	return this.constructor.static.highlightable && !this.disabled && this.isVisible();
 };
 
 /**
@@ -6088,7 +6088,7 @@ OO.ui.OptionWidget.prototype.isHighlightable = function () {
  * @return {boolean} Item is pressable
  */
 OO.ui.OptionWidget.prototype.isPressable = function () {
-	return this.constructor.static.pressable && !this.isDisabled() && this.isVisible();
+	return this.constructor.static.pressable && !this.disabled && this.isVisible();
 };
 
 /**
@@ -8786,6 +8786,13 @@ OO.ui.InputWidget.prototype.setValue = function ( value ) {
 		this.value = value;
 		this.emit( 'change', this.value );
 	}
+	// The first time that the value is set (probably while constructing the widget),
+	// remember it in defaultValue. This property can be later used to check whether
+	// the value of the input has been changed since it was created.
+	if ( this.defaultValue === undefined ) {
+		this.defaultValue = this.value;
+		this.$input[ 0 ].defaultValue = this.defaultValue;
+	}
 	return this;
 };
 
@@ -9140,6 +9147,13 @@ OO.ui.CheckboxInputWidget.prototype.setSelected = function ( state ) {
 		this.$input.prop( 'checked', this.selected );
 		this.emit( 'change', this.selected );
 	}
+	// The first time that the selection state is set (probably while constructing the widget),
+	// remember it in defaultSelected. This property can be later used to check whether
+	// the selection state of the input has been changed since it was created.
+	if ( this.defaultSelected === undefined ) {
+		this.defaultSelected = this.selected;
+		this.$input[ 0 ].defaultChecked = this.defaultSelected;
+	}
 	return this;
 };
 
@@ -9217,6 +9231,9 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.dropdownWidget = new OO.ui.DropdownWidget( config.dropdown );
+	// Set up the options before parent constructor, which uses them to validate config.value.
+	// Use this instead of setOptions() because this.$input is not set up yet.
+	this.setOptionsData( config.options || [] );
 
 	// Parent constructor
 	OO.ui.DropdownInputWidget.parent.call( this, config );
@@ -9225,10 +9242,6 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	this.dropdownWidget.getMenu().connect( this, { select: 'onMenuSelect' } );
 
 	// Initialization
-	this.setOptions( config.options || [] );
-	// Set the value again, after we did setOptions(). The call from parent doesn't work because the
-	// widget has no valid options when it happens.
-	this.setValue( config.value );
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
 		.append( this.dropdownWidget.$element );
@@ -9271,6 +9284,11 @@ OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
 	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
+	if ( this.optionsDirty ) {
+		// We reached this from the constructor or from #setOptions.
+		// We have to update the <select> element.
+		this.updateOptionsInterface();
+	}
 	return this;
 };
 
@@ -9290,58 +9308,91 @@ OO.ui.DropdownInputWidget.prototype.setDisabled = function ( state ) {
  * @chainable
  */
 OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
+	var value = this.getValue();
+
+	this.setOptionsData( options );
+
+	// Re-set the value to update the visible interface (DropdownWidget and <select>).
+	// In case the previous value is no longer an available option, select the first valid one.
+	this.setValue( value );
+
+	return this;
+};
+
+/**
+ * Set the internal list of options, used e.g. by setValue() to see which options are allowed.
+ *
+ * This method may be called before the parent constructor, so various properties may not be
+ * intialized yet.
+ *
+ * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
+ * @private
+ */
+OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
 	var
-		optionWidgets = [],
-		value = this.getValue(),
-		$optionsContainer = this.$input,
+		optionWidgets,
 		widget = this;
 
-	this.dropdownWidget.getMenu().clearItems();
-	this.$input.empty();
+	this.optionsDirty = true;
 
-	// Rebuild the dropdown menu: our visible one and the hidden `<select>`
-	options.forEach( function ( opt ) {
-		var optValue, $optionNode, optionWidget;
+	optionWidgets = options.map( function ( opt ) {
+		var optValue, optionWidget;
 
 		if ( opt.optgroup === undefined ) {
 			optValue = widget.cleanUpValue( opt.data );
-
-			$optionNode = $( '<option>' )
-				.attr( 'value', optValue )
-				.text( opt.label !== undefined ? opt.label : optValue );
 			optionWidget = new OO.ui.MenuOptionWidget( {
 				data: optValue,
 				label: opt.label !== undefined ? opt.label : optValue
 			} );
-
-			$optionsContainer.append( $optionNode );
-			optionWidgets.push( optionWidget );
 		} else {
-			$optionNode = $( '<optgroup>' )
-				.attr( 'label', opt.optgroup );
 			optionWidget = new OO.ui.MenuSectionOptionWidget( {
 				label: opt.optgroup
 			} );
+		}
 
+		return optionWidget;
+	} );
+
+	this.dropdownWidget.getMenu().clearItems().addItems( optionWidgets );
+};
+
+/**
+ * Update the user-visible interface to match the internal list of options and value.
+ *
+ * This method must only be called after the parent constructor.
+ *
+ * @private
+ */
+OO.ui.DropdownInputWidget.prototype.updateOptionsInterface = function () {
+	var
+		$optionsContainer = this.$input,
+		defaultValue = this.defaultValue,
+		widget = this;
+
+	this.$input.empty();
+
+	this.dropdownWidget.getMenu().getItems().forEach( function ( optionWidget ) {
+		var $optionNode;
+
+		if ( !( optionWidget instanceof OO.ui.MenuSectionOptionWidget ) ) {
+			$optionNode = $( '<option>' )
+				.attr( 'value', optionWidget.getData() )
+				.text( optionWidget.getLabel() );
+
+			// Remember original selection state. This property can be later used to check whether
+			// the selection state of the input has been changed since it was created.
+			$optionNode[ 0 ].defaultSelected = ( optionWidget.getData() === defaultValue );
+
+			$optionsContainer.append( $optionNode );
+		} else {
+			$optionNode = $( '<optgroup>' )
+				.attr( 'label', optionWidget.getLabel() );
 			widget.$input.append( $optionNode );
 			$optionsContainer = $optionNode;
-			optionWidgets.push( optionWidget );
 		}
 	} );
-	this.dropdownWidget.getMenu().addItems( optionWidgets );
 
-	// Restore the previous value, or reset to something sensible
-	if ( this.dropdownWidget.getMenu().findItemFromData( value ) ) {
-		// Previous value is still available, ensure consistency with the dropdown
-		this.setValue( value );
-	} else {
-		// No longer valid, reset
-		if ( options.length ) {
-			this.setValue( options[ 0 ].data );
-		}
-	}
-
-	return this;
+	this.optionsDirty = false;
 };
 
 /**
@@ -9465,6 +9516,13 @@ OO.ui.RadioInputWidget.prototype.onEdit = function () {
 OO.ui.RadioInputWidget.prototype.setSelected = function ( state ) {
 	// RadioInputWidget doesn't track its state.
 	this.$input.prop( 'checked', state );
+	// The first time that the selection state is set (probably while constructing the widget),
+	// remember it in defaultSelected. This property can be later used to check whether
+	// the selection state of the input has been changed since it was created.
+	if ( this.defaultSelected === undefined ) {
+		this.defaultSelected = state;
+		this.$input[ 0 ].defaultChecked = this.defaultSelected;
+	}
 	return this;
 };
 
@@ -9531,6 +9589,9 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.radioSelectWidget = new OO.ui.RadioSelectWidget();
+	// Set up the options before parent constructor, which uses them to validate config.value.
+	// Use this instead of setOptions() because this.$input is not set up yet
+	this.setOptionsData( config.options || [] );
 
 	// Parent constructor
 	OO.ui.RadioSelectInputWidget.parent.call( this, config );
@@ -9539,7 +9600,6 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.radioSelectWidget.connect( this, { select: 'onMenuSelect' } );
 
 	// Initialization
-	this.setOptions( config.options || [] );
 	this.$element
 		.addClass( 'oo-ui-radioSelectInputWidget' )
 		.append( this.radioSelectWidget.$element );
@@ -9578,7 +9638,9 @@ OO.ui.RadioSelectInputWidget.static.reusePreInfuseDOM = function ( node, config 
  * @protected
  */
 OO.ui.RadioSelectInputWidget.prototype.getInputElement = function () {
-	return $( '<input>' ).attr( 'type', 'hidden' );
+	// Use this instead of <input type="hidden">, because hidden inputs do not have separate
+	// 'value' and 'defaultValue' properties, and InputWidget wants to handle 'defaultValue'.
+	return $( '<input>' ).addClass( 'oo-ui-element-hidden' );
 };
 
 /**
@@ -9595,8 +9657,13 @@ OO.ui.RadioSelectInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.RadioSelectInputWidget.prototype.setValue = function ( value ) {
+	var selected;
 	value = this.cleanUpValue( value );
-	this.radioSelectWidget.selectItemByData( value );
+	// Only allow setting values that are actually present in the dropdown
+	selected = this.radioSelectWidget.findItemFromData( value ) ||
+		this.radioSelectWidget.findFirstSelectableItem();
+	this.radioSelectWidget.selectItem( selected );
+	value = selected ? selected.getData() : '';
 	OO.ui.RadioSelectInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
 };
@@ -9617,11 +9684,29 @@ OO.ui.RadioSelectInputWidget.prototype.setDisabled = function ( state ) {
  * @chainable
  */
 OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
-	var
-		value = this.getValue(),
-		widget = this;
+	var value = this.getValue();
 
-	// Rebuild the radioSelect menu
+	this.setOptionsData( options );
+
+	// Re-set the value to update the visible interface (RadioSelectWidget).
+	// In case the previous value is no longer an available option, select the first valid one.
+	this.setValue( value );
+
+	return this;
+};
+
+/**
+ * Set the internal list of options, used e.g. by setValue() to see which options are allowed.
+ *
+ * This method may be called before the parent constructor, so various properties may not be
+ * intialized yet.
+ *
+ * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
+ * @private
+ */
+OO.ui.RadioSelectInputWidget.prototype.setOptionsData = function ( options ) {
+	var widget = this;
+
 	this.radioSelectWidget
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
@@ -9631,19 +9716,6 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 				label: opt.label !== undefined ? opt.label : optValue
 			} );
 		} ) );
-
-	// Restore the previous value, or reset to something sensible
-	if ( this.radioSelectWidget.findItemFromData( value ) ) {
-		// Previous value is still available, ensure consistency with the radioSelect
-		this.setValue( value );
-	} else {
-		// No longer valid, reset
-		if ( options.length ) {
-			this.setValue( options[ 0 ].data );
-		}
-	}
-
-	return this;
 };
 
 /**
@@ -9695,6 +9767,9 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.checkboxMultiselectWidget = new OO.ui.CheckboxMultiselectWidget();
+	// Set up the options before parent constructor, which uses them to validate config.value.
+	// Use this instead of setOptions() because this.$input is not set up yet
+	this.setOptionsData( config.options || [] );
 
 	// Parent constructor
 	OO.ui.CheckboxMultiselectInputWidget.parent.call( this, config );
@@ -9702,20 +9777,15 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 	// Properties
 	this.inputName = config.name;
 
+	// Events
+	this.checkboxMultiselectWidget.connect( this, { select: 'onCheckboxesSelect' } );
+
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-checkboxMultiselectInputWidget' )
 		.append( this.checkboxMultiselectWidget.$element );
 	// We don't use this.$input, but rather the CheckboxInputWidgets inside each option
 	this.$input.detach();
-	this.setOptions( config.options || [] );
-	// Have to repeat this from parent, as we need options to be set up for this to make sense
-	this.setValue( config.value );
-
-	// setValue when checkboxMultiselectWidget changes
-	this.checkboxMultiselectWidget.on( 'change', function () {
-		this.setValue( this.checkboxMultiselectWidget.findSelectedItemsData() );
-	}.bind( this ) );
 };
 
 /* Setup */
@@ -9756,6 +9826,15 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.getInputElement = function () {
 };
 
 /**
+ * Handles CheckboxMultiselectWidget select events.
+ *
+ * @private
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.onCheckboxesSelect = function () {
+	this.setValue( this.checkboxMultiselectWidget.findSelectedItemsData() );
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.getValue = function () {
@@ -9774,6 +9853,11 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setValue = function ( value ) {
 	value = this.cleanUpValue( value );
 	this.checkboxMultiselectWidget.selectItemsByData( value );
 	OO.ui.CheckboxMultiselectInputWidget.parent.prototype.setValue.call( this, value );
+	if ( this.optionsDirty ) {
+		// We reached this from the constructor or from #setOptions.
+		// We have to update the <select> element.
+		this.updateOptionsInterface();
+	}
 	return this;
 };
 
@@ -9817,9 +9901,31 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setDisabled = function ( state ) 
  * @chainable
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options ) {
+	var value = this.getValue();
+
+	this.setOptionsData( options );
+
+	// Re-set the value to update the visible interface (CheckboxMultiselectWidget).
+	// This will also get rid of any stale options that we just removed.
+	this.setValue( value );
+
+	return this;
+};
+
+/**
+ * Set the internal list of options, used e.g. by setValue() to see which options are allowed.
+ *
+ * This method may be called before the parent constructor, so various properties may not be
+ * intialized yet.
+ *
+ * @param {Object[]} options Array of menu options in the format `{ data: …, label: … }`
+ * @private
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( options ) {
 	var widget = this;
 
-	// Rebuild the checkboxMultiselectWidget menu
+	this.optionsDirty = true;
+
 	this.checkboxMultiselectWidget
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
@@ -9837,12 +9943,27 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
 			item.checkbox.setValue( optValue );
 			return item;
 		} ) );
+};
 
-	// Re-set the value, checking the checkboxes as needed.
-	// This will also get rid of any stale options that we just removed.
-	this.setValue( this.getValue() );
+/**
+ * Update the user-visible interface to match the internal list of options and value.
+ *
+ * This method must only be called after the parent constructor.
+ *
+ * @private
+ */
+OO.ui.CheckboxMultiselectInputWidget.prototype.updateOptionsInterface = function () {
+	var defaultValue = this.defaultValue;
 
-	return this;
+	this.checkboxMultiselectWidget.getItems().forEach( function ( item ) {
+		// Remember original selection state. This property can be later used to check whether
+		// the selection state of the input has been changed since it was created.
+		var isDefault = defaultValue.indexOf( item.getData() ) !== -1;
+		item.checkbox.defaultSelected = isDefault;
+		item.checkbox.$input[ 0 ].defaultChecked = isDefault;
+	} );
+
+	this.optionsDirty = false;
 };
 
 /**
@@ -9888,6 +10009,10 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *  instruct the browser to focus this widget.
  * @cfg {boolean} [readOnly=false] Prevent changes to the value of the text input.
  * @cfg {number} [maxLength] Maximum number of characters allowed in the input.
+ *
+ *  For unfortunate historical reasons, this counts the number of UTF-16 code units rather than
+ *  Unicode codepoints, which means that codepoints outside the Basic Multilingual Plane (e.g.
+ *  many emojis) count as 2 characters each.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required with `true`. Implies `indicator: 'required'`.
@@ -9996,16 +10121,6 @@ OO.mixinClass( OO.ui.TextInputWidget, OO.ui.mixin.LabelElement );
 OO.ui.TextInputWidget.static.validationPatterns = {
 	'non-empty': /.+/,
 	integer: /^\d+$/
-};
-
-/* Static Methods */
-
-/**
- * @inheritdoc
- */
-OO.ui.TextInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-	var state = OO.ui.TextInputWidget.parent.static.gatherPreInfuseState( node, config );
-	return state;
 };
 
 /* Events */
@@ -10556,16 +10671,6 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 };
 
 /**
- * @inheritdoc
- */
-OO.ui.TextInputWidget.prototype.restorePreInfuseState = function ( state ) {
-	OO.ui.TextInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
-	if ( state.scrollTop !== undefined ) {
-		this.$input.scrollTop( state.scrollTop );
-	}
-};
-
-/**
  * @class
  * @extends OO.ui.TextInputWidget
  *
@@ -10667,7 +10772,6 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @param {Object} [config] Configuration options
  * @cfg {number} [rows] Number of visible lines in textarea. If used with `autosize`,
  *  specifies minimum number of rows to display.
- * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
  *  Use the #maxRows config to specify a maximum number of displayed rows.
  * @cfg {number} [maxRows] Maximum number of rows to display when #autosize is set to true.
@@ -10754,13 +10858,18 @@ OO.ui.MultilineTextInputWidget.prototype.updatePosition = function () {
 };
 
 /**
- * Override TextInputWidget so it doesn't emit the 'enter' event.
+ * @inheritdoc
  *
- * @private
- * @param {jQuery.Event} e Key press event
+ * Modify to emit 'enter' on Ctrl/Meta+Enter, instead of plain Enter
  */
-OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function () {
-	return;
+OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
+	if (
+		( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) ||
+		// Some platforms emit keycode 10 for ctrl+enter in a textarea
+		e.which === 10
+	) {
+		this.emit( 'enter', e );
+	}
 };
 
 /**
@@ -10862,6 +10971,16 @@ OO.ui.MultilineTextInputWidget.prototype.isMultiline = function () {
  */
 OO.ui.MultilineTextInputWidget.prototype.isAutosizing = function () {
 	return !!this.autosize;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.MultilineTextInputWidget.prototype.restorePreInfuseState = function ( state ) {
+	OO.ui.MultilineTextInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+	if ( state.scrollTop !== undefined ) {
+		this.$input.scrollTop( state.scrollTop );
+	}
 };
 
 /**

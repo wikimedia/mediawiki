@@ -3,11 +3,13 @@
 		"authors": [
 			"Cekli829",
 			"Interfase",
-			"Jduranboger"
+			"Jduranboger",
+			"Wertuose"
 		]
 	},
 	"ooui-outline-control-move-down": "Bəndi aşağı apar",
 	"ooui-outline-control-move-up": "Bəndi yuxarı apar",
 	"ooui-outline-control-remove": "Bəndi sil",
-	"ooui-toolbar-more": "Daha artıq"
+	"ooui-toolbar-more": "Daha artıq",
+	"ooui-toolgroup-collapse": "Daha az"
 }
