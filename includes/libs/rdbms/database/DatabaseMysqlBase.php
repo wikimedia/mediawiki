@@ -68,6 +68,8 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool|null */
 	private $insertSelectIsSafe = null;
 
+	const SERVER_ID_CACHE_TTL = 86400;
+
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
@@ -901,18 +903,23 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 			// Wait on the GTID set (MariaDB only)
 			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
-			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+			if ( strpos( $gtidArg, ':' ) !== false ) {
+				// MySQL GTIDs, e.g "source_id:transaction_id"
+				$res = $this->doQuery( "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)" );
+			} else {
+				// MariaDB GTIDs, e.g."domain:server:sequence"
+				$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
+			}
 		} else {
 			// Wait on the binlog coordinates
 			$encFile = $this->addQuotes( $pos->getLogFile() );
-			$encPos = intval( $pos->pos[1] );
+			$encPos = intval( $pos->getLogPosition()[1] );
 			$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
 		}
 
 		$row = $res ? $this->fetchRow( $res ) : false;
 		if ( !$row ) {
-			throw new DBExpectedError( $this,
-				"MASTER_POS_WAIT() or MASTER_GTID_WAIT() failed: {$this->lastError()}" );
+			throw new DBExpectedError( $this, "Replication wait failed: {$this->lastError()}" );
 		}
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
@@ -944,21 +951,23 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getReplicaPos() {
-		$now = microtime( true );
+		$now = microtime( true ); // as-of-time *before* fetching GTID variables
 
-		if ( $this->useGTIDs ) {
-			$res = $this->query( "SELECT @@global.gtid_slave_pos AS Value", __METHOD__ );
-			$gtidRow = $this->fetchObject( $res );
-			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
-				return new MySQLMasterPos( $gtidRow->Value, $now );
+		if ( $this->useGTIDs() ) {
+			// Try to use GTIDs, fallbacking to binlog positions if not possible
+			$data = $this->getServerGTIDs( __METHOD__ );
+			// Use gtid_current_pos for MariaDB and gtid_executed for MySQL
+			foreach ( [ 'gtid_current_pos', 'gtid_executed' ] as $name ) {
+				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
+					return new MySQLMasterPos( $data[$name], $now );
+				}
 			}
 		}
 
-		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
-		$row = $this->fetchObject( $res );
-		if ( $row && strlen( $row->Relay_Master_Log_File ) ) {
+		$data = $this->getServerRoleStatus( 'SLAVE', __METHOD__ );
+		if ( $data && strlen( $data['Relay_Master_Log_File'] ) ) {
 			return new MySQLMasterPos(
-				"{$row->Relay_Master_Log_File}/{$row->Exec_Master_Log_Pos}",
+				"{$data['Relay_Master_Log_File']}/{$data['Exec_Master_Log_Pos']}",
 				$now
 			);
 		}
@@ -972,23 +981,92 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getMasterPos() {
-		$now = microtime( true );
+		$now = microtime( true ); // as-of-time *before* fetching GTID variables
 
-		if ( $this->useGTIDs ) {
-			$res = $this->query( "SELECT @@global.gtid_binlog_pos AS Value", __METHOD__ );
-			$gtidRow = $this->fetchObject( $res );
-			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
-				return new MySQLMasterPos( $gtidRow->Value, $now );
+		$pos = false;
+		if ( $this->useGTIDs() ) {
+			// Try to use GTIDs, fallbacking to binlog positions if not possible
+			$data = $this->getServerGTIDs( __METHOD__ );
+			// Use gtid_current_pos for MariaDB and gtid_executed for MySQL
+			foreach ( [ 'gtid_current_pos', 'gtid_executed' ] as $name ) {
+				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
+					$pos = new MySQLMasterPos( $data[$name], $now );
+					break;
+				}
+			}
+			// Filter domains that are inactive or not relevant to the session
+			if ( $pos ) {
+				$pos->setActiveOriginServerId( $this->getServerId() );
+				$pos->setActiveOriginServerUUID( $this->getServerUUID() );
+				if ( isset( $data['gtid_domain_id'] ) ) {
+					$pos->setActiveDomain( $data['gtid_domain_id'] );
+				}
 			}
 		}
 
-		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
-		$row = $this->fetchObject( $res );
-		if ( $row && strlen( $row->File ) ) {
-			return new MySQLMasterPos( "{$row->File}/{$row->Position}", $now );
+		if ( !$pos ) {
+			$data = $this->getServerRoleStatus( 'MASTER', __METHOD__ );
+			if ( $data && strlen( $data['File'] ) ) {
+				$pos = new MySQLMasterPos( "{$data['File']}/{$data['Position']}", $now );
+			}
 		}
 
-		return false;
+		return $pos;
+	}
+
+	/**
+	 * @return int
+	 */
+	protected function getServerId() {
+		return $this->srvCache->getWithSetCallback(
+			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServer() ),
+			self::SERVER_ID_CACHE_TTL,
+			function () {
+				$res = $this->query( "SELECT @@server_id AS id", __METHOD__ );
+				// Note that either a row is returned or an exception thrown
+				return intval( $this->fetchObject( $res )->id );
+			}
+		);
+	}
+
+	/**
+	 * @return string|null
+	 */
+	protected function getServerUUID() {
+		return $this->srvCache->getWithSetCallback(
+			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $this->getServer() ),
+			self::SERVER_ID_CACHE_TTL,
+			function () {
+				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'" );
+				$row = $this->fetchObject( $res );
+
+				return $row ? $row->Variable_name : null;
+			}
+		);
+	}
+
+	/**
+	 * @param string $fname
+	 * @return string[]
+	 */
+	protected function getServerGTIDs( $fname = __METHOD__ ) {
+		$map = [];
+		// Use session-specific gtid_domain_id since that is were writes will be logged
+		$res = $this->query( "SHOW SESSION VARIABLES LIKE '%gtid%'", $fname );
+		foreach ( $res as $row ) {
+			$map[$row->Variable_name] = $row->Value;
+		}
+
+		return $map;
+	}
+
+	/**
+	 * @param string $role One of "MASTER"/"SLAVE"
+	 * @param string $fname
+	 * @return string[]
+	 */
+	protected function getServerRoleStatus( $role, $fname = __METHOD__ ) {
+		return $this->query( "SHOW $role STATUS", $fname )->fetchRow() ?: [];
 	}
 
 	public function serverIsReadOnly() {
@@ -1461,6 +1539,13 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function isTransactableQuery( $sql ) {
 		return parent::isTransactableQuery( $sql ) &&
 			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function useGTIDs() {
+		return $this->useGTIDs;
 	}
 }
 

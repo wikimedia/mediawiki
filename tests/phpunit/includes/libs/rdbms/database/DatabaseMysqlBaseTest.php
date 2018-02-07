@@ -219,9 +219,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testBinLogName() {
 		$pos = new MySQLMasterPos( "db1052.2424/4643", 1 );
 
-		$this->assertEquals( "db1052", $pos->binlog );
+		$this->assertEquals( "db1052", $pos->getLogName() );
 		$this->assertEquals( "db1052.2424", $pos->getLogFile() );
-		$this->assertEquals( [ 2424, 4643 ], $pos->pos );
+		$this->assertEquals( [ 2424, 4643 ], $pos->getLogPosition() );
 	}
 
 	/**
@@ -473,6 +473,131 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			[ 400.7 ],
 			[ 600.22 ],
 			[ 1000.77 ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGtidData
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getServerGTIDs
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
+	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
+	 */
+	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( [
+				'useGTIDs',
+				'getServerGTIDs',
+				'getServerRoleStatus',
+				'getServerId',
+				'getServerUUID'
+			] )
+			->getMock();
+
+		$db->method( 'useGTIDs' )->willReturn( true );
+		$db->method( 'getServerGTIDs' )->willReturn( $gtable );
+		$db->method( 'getServerRoleStatus' )->willReturnMap( [
+			[ 'SLAVE', DatabaseMysqlBase::class . '::getReplicaPos', $rBLtable ],
+			[ 'MASTER', DatabaseMysqlBase::class . '::getMasterPos', $mBLtable ]
+		] );
+		$db->method( 'getServerId' )->willReturn( 1 );
+		$db->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
+
+		if ( is_array( $rGTIDs ) ) {
+			$this->assertEquals( $rGTIDs, $db->getReplicaPos()->getGTIDs() );
+		} else {
+			$this->assertEquals( false, $db->getReplicaPos() );
+		}
+		if ( is_array( $mGTIDs ) ) {
+			$this->assertEquals( $mGTIDs, $db->getMasterPos()->getGTIDs() );
+		} else {
+			$this->assertEquals( false, $db->getMasterPos() );
+		}
+	}
+
+	public static function provideGtidData() {
+		return [
+			// MariaDB
+			[
+				[
+					'gtid_domain_id' => 100,
+					'gtid_current_pos' => '100-13-77',
+					'gtid_binlog_pos' => '100-13-77',
+					'gtid_slave_pos' => null // master
+				],
+				[],
+				[
+					'File' => 'host.1600',
+					'Pos' => '77'
+				],
+				[ '100' => '100-13-77' ],
+				[ '100' => '100-13-77' ]
+			],
+			[
+				[
+					'gtid_domain_id' => 100,
+					'gtid_current_pos' => '100-13-77',
+					'gtid_binlog_pos' => '100-13-77',
+					'gtid_slave_pos' => '100-13-77' // replica
+				],
+				[
+					'Relay_Master_Log_File' => 'host.1600',
+					'Exec_Master_Log_Pos' => '77'
+				],
+				[],
+				[ '100' => '100-13-77' ],
+				[ '100' => '100-13-77' ]
+			],
+			[
+				[
+					'gtid_current_pos' => '100-13-77',
+					'gtid_binlog_pos' => '100-13-77',
+					'gtid_slave_pos' => '100-13-77' // replica
+				],
+				[
+					'Relay_Master_Log_File' => 'host.1600',
+					'Exec_Master_Log_Pos' => '77'
+				],
+				[],
+				[ '100' => '100-13-77' ],
+				[ '100' => '100-13-77' ]
+			],
+			// MySQL
+			[
+				[
+					'gtid_executed' => '2E11FA47-71CA-11E1-9E33-C80AA9429562:77'
+				],
+				[
+					'Relay_Master_Log_File' => 'host.1600',
+					'Exec_Master_Log_Pos' => '77'
+				],
+				[], // only a replica
+				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
+					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:77' ],
+				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
+					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:77' ], // replica/master use same var
+			],
+			[
+				[
+					'gtid_executed' => null // not enabled?
+				],
+				[
+					'Relay_Master_Log_File' => 'host.1600',
+					'Exec_Master_Log_Pos' => '77'
+				],
+				[], // only a replica
+				[], // binlog fallback
+				false
+			],
+			[
+				[
+					'gtid_executed' => null // not enabled?
+				],
+				[], // no replication
+				[], // no replication
+				false,
+				false
+			]
 		];
 	}
 
