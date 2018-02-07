@@ -49,7 +49,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $mAllowLagged;
 	/** @var int Seconds to spend waiting on replica DB lag to resolve */
-	private $mWaitTimeout;
+	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
@@ -153,7 +153,7 @@ class LoadBalancer implements ILoadBalancer {
 			: DatabaseDomain::newUnspecified();
 		$this->setLocalDomain( $localDomain );
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] )
+		$this->waitTimeout = isset( $params['waitTimeout'] )
 			? $params['waitTimeout']
 			: self::MAX_WAIT_DEFAULT;
 
@@ -515,7 +515,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
-		$timeout = $timeout ?: $this->mWaitTimeout;
+		$timeout = $timeout ?: $this->waitTimeout;
 
 		$oldPos = $this->mWaitForPos;
 		try {
@@ -575,11 +575,11 @@ class LoadBalancer implements ILoadBalancer {
 	 * Wait for a given replica DB to catch up to the master pos stored in $this
 	 * @param int $index Server index
 	 * @param bool $open Check the server even if a new connection has to be made
-	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
+	 * @param int $timeout Max seconds to wait; default is "waitTimeout" given to __construct()
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
-		$timeout = max( 1, $timeout ?: $this->mWaitTimeout );
+		$timeout = max( 1, $timeout ?: $this->waitTimeout );
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
@@ -1438,7 +1438,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		$age = ( $age === null ) ? $this->mWaitTimeout : $age;
+		$age = ( $age === null ) ? $this->waitTimeout : $age;
 
 		return ( $this->hasMasterChanges()
 			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
@@ -1648,10 +1648,12 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @param IDatabase $conn
 	 * @param DBMasterPos|bool $pos
-	 * @param int $timeout
+	 * @param int|null $timeout
 	 * @return bool
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
+		$timeout = max( 1, $timeout ?: $this->waitTimeout );
+
 		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
 		}
