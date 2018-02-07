@@ -2969,10 +2969,17 @@ class OutputPage extends ContextSource {
 			&& $this->userCanPreview();
 	}
 
+	private function isUserJsPreview() {
+		return $this->getConfig()->get( 'AllowUserJson' )
+			&& $this->getTitle()
+			&& $this->getTitle()->isJsonSubpage()
+			&& $this->userCanPreview();
+	}
+
 	protected function isUserCssPreview() {
 		return $this->getConfig()->get( 'AllowUserCss' )
 			&& $this->getTitle()
-			&& $this->getTitle()->isCssSubpage()
+			&& $this->getTitle()->isUserCssConfigPage()
 			&& $this->userCanPreview();
 	}
 
@@ -3224,7 +3231,11 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		if ( !$title->isJsSubpage() && !$title->isCssSubpage() ) {
+		if (
+			!$title->isUserJsConfigPage()
+			&& !$title->isUserJsonConfigPage()
+			&& !$title->isUserCssConfigPage()
+		) {
 			return false;
 		}
 		if ( !$title->isSubpageOf( $user->getUserPage() ) ) {
