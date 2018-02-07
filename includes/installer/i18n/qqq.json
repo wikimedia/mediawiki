@@ -76,7 +76,6 @@
 	"config-pcre-no-utf8": "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.\n{{Related|Config-fatal}}",
 	"config-memory-raised": "Parameters:\n* $1 is the configured <code>memory_limit</code>.\n* $2 is the value to which <code>memory_limit</code> was raised.",
 	"config-memory-bad": "Parameters:\n* $1 is the configured <code>memory_limit</code>.",
-	"config-xcache": "Message indicates if this program is available",
 	"config-apc": "Message indicates if this program is available",
 	"config-apcu": "Message indicates if this program is available",
 	"config-wincache": "Message indicates if this program is available",
