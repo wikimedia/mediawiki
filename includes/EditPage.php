@@ -239,7 +239,7 @@ class EditPage {
 	public $isConflict = false;
 
 	/**
-	 * @deprecated since 1.30 use Title::isCssJsSubpage()
+	 * @deprecated since 1.30 use Title::isUserConfigPage()
 	 * @var bool
 	 */
 	public $isCssJsSubpage = false;
@@ -663,7 +663,7 @@ class EditPage {
 		// css / js subpages of user pages get a special treatment
 		// The following member variables are deprecated since 1.30,
 		// the functions should be used instead.
-		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
+		$this->isCssJsSubpage = $this->mTitle->isUserConfigPage();
 		$this->isCssSubpage = $this->mTitle->isCssSubpage();
 		$this->isJsSubpage = $this->mTitle->isJsSubpage();
 		$this->isWrongCaseCssJsPage = $this->isWrongCaseCssJsPage();
@@ -878,8 +878,8 @@ class EditPage {
 	 * @return bool
 	 */
 	protected function isWrongCaseCssJsPage() {
-		if ( $this->mTitle->isCssJsSubpage() ) {
-			$name = $this->mTitle->getSkinFromCssJsSubpage();
+		if ( $this->mTitle->isUserConfigPage() ) {
+			$name = $this->mTitle->getSkinFromConfigSubpage();
 			$skins = array_merge(
 				array_keys( Skin::getSkinNames() ),
 				[ 'common' ]
@@ -2879,7 +2879,7 @@ ERROR;
 			$out->addHTML( $editConflictHelper->getEditFormHtmlBeforeContent() );
 		}
 
-		if ( !$this->mTitle->isCssJsSubpage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
+		if ( !$this->mTitle->isUserConfigPage() && $showToolbar && $user->getOption( 'showtoolbar' ) ) {
 			$out->addHTML( self::getEditToolbar( $this->mTitle ) );
 		}
 
@@ -3116,25 +3116,36 @@ ERROR;
 				);
 			}
 		} else {
-			if ( $this->mTitle->isCssJsSubpage() ) {
+			if ( $this->mTitle->isUserConfigPage() ) {
 				# Check the skin exists
 				if ( $this->isWrongCaseCssJsPage() ) {
 					$out->wrapWikiMsg(
-						"<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>",
-						[ 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ]
+						"<div class='error' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
+						[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
 					);
 				}
 				if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
-					$isCssSubpage = $this->mTitle->isCssSubpage();
-					$out->wrapWikiMsg( '<div class="mw-usercssjspublic">$1</div>',
-						$isCssSubpage ? 'usercssispublic' : 'userjsispublic'
-					);
+					$isUserCssConfig = $this->mTitle->isUserCssConfigPage();
+					$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
+
+					$warning = $isUserCssConfig
+						? 'usercssispublic'
+						: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
+
+					$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
+
 					if ( $this->formtype !== 'preview' ) {
 						$config = $this->context->getConfig();
-						if ( $isCssSubpage && $config->get( 'AllowUserCss' ) ) {
+						if ( $isUserCssConfig && $config->get( 'AllowUserCss' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								[ 'usercssyoucanpreview' ]
+							);
+						}
+						if ( $isUserJsonConfig && $config->get( 'AllowUserJson' ) ) {
+							$out->wrapWikiMsg(
+								"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
+								[ 'userjsonyoucanpreview' ]
 							);
 						}
 
@@ -3913,10 +3924,10 @@ ERROR;
 			}
 
 			# don't parse non-wikitext pages, show message about preview
-			if ( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
-				if ( $this->mTitle->isCssJsSubpage() ) {
+			if ( $this->mTitle->isUserConfigPage() || $this->mTitle->isSiteConfigPage() ) {
+				if ( $this->mTitle->isUserConfigPage() ) {
 					$level = 'user';
-				} elseif ( $this->mTitle->isCssOrJsPage() ) {
+				} elseif ( $this->mTitle->isSiteConfigPage() ) {
 					$level = 'site';
 				} else {
 					$level = false;
