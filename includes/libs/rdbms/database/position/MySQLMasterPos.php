@@ -18,9 +18,11 @@ class MySQLMasterPos implements DBMasterPos {
 	/** @var int[]|null Binglog file position tuple */
 	public $pos;
 	/** @var string[] GTID list */
-	public $gtids = [];
+	private $gtids = [];
+	/** @var int|null Active GTID domain ID */
+	private $activeDomainId;
 	/** @var float UNIX timestamp */
-	public $asOfTime = 0.0;
+	private $asOfTime = 0.0;
 
 	/**
 	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)
@@ -34,7 +36,7 @@ class MySQLMasterPos implements DBMasterPos {
 		} else {
 			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
 			foreach ( $gtids as $gtid ) {
-				if ( !$this->parseGTID( $gtid ) ) {
+				if ( !self::parseGTID( $gtid ) ) {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
 				$this->gtids[] = $gtid;
@@ -45,6 +47,13 @@ class MySQLMasterPos implements DBMasterPos {
 		}
 
 		$this->asOfTime = $asOfTime;
+	}
+
+	/**
+	 * @param int|null $id GTID domain ID
+	 */
+	public function setActiveDomainId( $id ) {
+		$this->activeDomainId = $id;
 	}
 
 	public function asOfTime() {
@@ -159,7 +168,10 @@ class MySQLMasterPos implements DBMasterPos {
 		$gtidInfos = [];
 		foreach ( $this->gtids as $gtid ) {
 			list( $domain, $pos ) = self::parseGTID( $gtid );
-			$gtidInfos[$domain] = $pos;
+			// If an active domain is set, then filter out GTIDs from irrelevant domains
+			if ( $this->activeDomainId === null || $domain == $this->activeDomainId ) {
+				$gtidInfos[$domain] = $pos;
+			}
 		}
 
 		return $gtidInfos;
