@@ -942,9 +942,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$row = $this->fetchObject( $res );
 
 		if ( $row ) {
-			$pos = isset( $row->Exec_master_log_pos )
-				? $row->Exec_master_log_pos
-				: $row->Exec_Master_Log_Pos;
+			$pos = $row->Exec_Master_Log_Pos;
 			// Also fetch the last-applied GTID set (MariaDB)
 			if ( $this->useGTIDs ) {
 				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
