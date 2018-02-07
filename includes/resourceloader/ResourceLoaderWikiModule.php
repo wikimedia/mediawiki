@@ -29,8 +29,8 @@ use Wikimedia\Rdbms\IDatabase;
  * Abstraction for ResourceLoader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
- * because of its dependence on the functionality of Title::isCssJsSubpage
- * and Title::isCssOrJsPage().
+ * because of its dependence on the functionality of Title::isUserConfigPage()
+ * and Title::isSiteConfigPage().
  *
  * This module supports being used as a placeholder for a module on a remote wiki.
  * To do so, getDB() must be overloaded to return a foreign database object that
@@ -432,7 +432,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * Clear the preloadTitleInfo() cache for all wiki modules on this wiki on
-	 * page change if it was a JS or CSS page
+	 * page change if it was a JS, JSON, or CSS page
 	 *
 	 * @param Title $title
 	 * @param Revision|null $old Prior page revision
@@ -443,14 +443,14 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	public static function invalidateModuleCache(
 		Title $title, Revision $old = null, Revision $new = null, $wikiId
 	) {
-		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
+		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JSON, CONTENT_FORMAT_JAVASCRIPT ];
 
 		if ( $old && in_array( $old->getContentFormat(), $formats ) ) {
 			$purge = true;
 		} elseif ( $new && in_array( $new->getContentFormat(), $formats ) ) {
 			$purge = true;
 		} else {
-			$purge = ( $title->isCssOrJsPage() || $title->isCssJsSubpage() );
+			$purge = ( $title->isSiteConfigPage() || $title->isUserConfigPage() );
 		}
 
 		if ( $purge ) {
