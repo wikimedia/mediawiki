@@ -24,6 +24,8 @@ production.
 * $wgFragmentMode is now set to [ 'legacy', 'html5' ] by default. This is a first step of
   migration to human-readable section IDs that will later result in 'html5' being the
   default mode.
+* CACHE_ACCEL now only supports APC(u) or WinCache. XCache support was removed
+  as upstream is inactive and has no plans to move to PHP 7.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support

@@ -162,14 +162,14 @@ There are several other pieces of software that MediaWiki can make good use of.
 Distributors might choose to install these automatically with MediaWiki and
 perhaps configure it to use them (see Configuration section of this document):
 
-  * APC (Alternative PHP Cache), XCache, or similar: Will greatly speed up the
+  * APC (Alternative PHP Cache) or similar: Will greatly speed up the
   execution of MediaWiki, and all other PHP applications, at some cost in
   memory usage. Will be used automatically for the most part.
   * clamav: Can be used for virus scanning of uploaded files. Enable with
   "$wgAntivirus = 'clamav';".
   * DjVuLibre: Allows processing of DjVu files. To enable this, set
   "$wgDjvuDump = 'djvudump'; $wgDjvuRenderer = 'ddjvu'; $wgDjvuTxt = 'djvutxt';".
-  * HTML Tidy: Fixes errors in HTML at runtime. Can be enabled with 
+  * HTML Tidy: Fixes errors in HTML at runtime. Can be enabled with
 	"$wgUseTidy = true;".
   * ImageMagick: For resizing images. "$wgUseImageMagick = true;" will enable
   it. PHP's GD can also be used, but ImageMagick is preferable.
