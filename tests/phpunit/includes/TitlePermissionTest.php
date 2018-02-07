@@ -443,47 +443,127 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
 	 */
-	public function testCssAndJavascriptPermissions() {
+	public function testJsConfigEditPermissions() {
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->userName . '/test.js' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ]
 		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testJsonConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->userName . '/test.json' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testCssConfigEditPermissions() {
+		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->userName . '/test.css' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
 			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ]
 		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testOtherJsConfigEditPermissions() {
+		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ]
 		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testOtherJsonConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->altUserName . '/test.json' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testOtherCssConfigEditPermissions() {
+		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ]
 		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 */
+	public function testOtherNonConfigEditPermissions() {
+		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
@@ -492,36 +572,46 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	protected function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
+	protected function runConfigEditPermissions(
+		$resultNone,
+		$resultMyCss,
+		$resultMyJson,
+		$resultMyJs,
+		$resultUserCss,
+		$resultUserJson,
+		$resultUserJs
+	) {
 		$this->setUserPerm( '' );
-		$this->assertEquals( $result0,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultNone, $result );
 
 		$this->setUserPerm( 'editmyusercss' );
-		$this->assertEquals( $result1,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyCss, $result );
+
+		$this->setUserPerm( 'editmyuserjson' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyJson, $result );
 
 		$this->setUserPerm( 'editmyuserjs' );
-		$this->assertEquals( $result2,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyJs, $result );
 
 		$this->setUserPerm( 'editusercss' );
-		$this->assertEquals( $result3,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserCss, $result );
+
+		$this->setUserPerm( 'edituserjson' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserJson, $result );
 
 		$this->setUserPerm( 'edituserjs' );
-		$this->assertEquals( $result4,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserJs, $result );
 
-		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
+		$this->setUserPerm( [ 'edituserjs', 'edituserjson', 'editusercss' ] );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
 	}
 
 	/**
