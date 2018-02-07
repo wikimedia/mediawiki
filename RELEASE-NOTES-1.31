@@ -93,6 +93,7 @@ changes to languages because of Phabricator reports.
 * (T182305) New language support: Nyungar (nys).
 * (T186359) New language support: Siberian Tatar [cебертатар] (sty).
 * (T186635) New language support: Guianan Creole (gcr).
+* (T186647) New language support: Kumyk [къумукъ] (kum).
 
 === Other changes in 1.31 ===
 * Introducing multi-content-revision capability into the storage layer. For details,
