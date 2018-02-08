@@ -161,8 +161,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.byteLimit' => [
-		'scripts' => 'resources/src/jquery/jquery.byteLimit.js',
-		'dependencies' => 'mediawiki.String',
+		'dependencies' => 'jquery.lengthLimit',
+		'deprecated' => 'Use "jquery.lengthLimit" instead.',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.checkboxShiftClick' => [
@@ -266,6 +266,11 @@ return [
 			'sl' => 'resources/lib/jquery.i18n/src/languages/sl.js',
 			'uk' => 'resources/lib/jquery.i18n/src/languages/uk.js',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'jquery.lengthLimit' => [
+		'scripts' => 'resources/src/jquery/jquery.lengthLimit.js',
+		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.localize' => [
@@ -1065,7 +1070,7 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.RegExp',
-			'jquery.byteLimit',
+			'jquery.lengthLimit',
 		],
 		'messages' => [
 			'htmlform-chosen-placeholder',
@@ -1427,7 +1432,7 @@ return [
 			'mediawiki.editfont.styles',
 			'jquery.textSelection',
 			'oojs-ui-core',
-			'mediawiki.widgets.visibleByteLimit',
+			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.api',
 		],
 	],
@@ -2100,7 +2105,7 @@ return [
 	'mediawiki.special.movePage' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
 		'dependencies' => [
-			'mediawiki.widgets.visibleByteLimit',
+			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.widgets',
 		],
 	],
@@ -2314,7 +2319,7 @@ return [
 	],
 	'mediawiki.legacy.protect' => [
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
-		'dependencies' => 'jquery.byteLimit',
+		'dependencies' => 'jquery.lengthLimit',
 		'messages' => [ 'protect-unchain-permissions' ]
 	],
 	// Used in the web installer. Test it after modifying this definition!
@@ -2480,12 +2485,17 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.widgets.visibleByteLimit' => [
+		'dependencies' => 'mediawiki.widgets.visibleLengthLimit',
+		'deprecated' => 'Use "mediawiki.widgets.visibleLengthLimit" instead.',
+		'targets' => [ 'desktop', 'mobile' ]
+	],
+	'mediawiki.widgets.visibleLengthLimit' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets.visibleByteLimit/mediawiki.widgets.visibleByteLimit.js'
+			'resources/src/mediawiki.widgets.visibleLengthLimit/mediawiki.widgets.visibleLengthLimit.js'
 		],
 		'dependencies' => [
 			'oojs-ui-core',
-			'jquery.byteLimit'
+			'jquery.lengthLimit'
 		],
 		'targets' => [ 'desktop', 'mobile' ]
 	],
