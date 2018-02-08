@@ -34,6 +34,7 @@
 	 *  - {@link jQuery.plugin.textSelection#getContents getContents}
 	 *  - {@link jQuery.plugin.textSelection#setContents setContents}
 	 *  - {@link jQuery.plugin.textSelection#getSelection getSelection}
+	 *  - {@link jQuery.plugin.textSelection#replaceSelection replaceSelection}
 	 *  - {@link jQuery.plugin.textSelection#encapsulateSelection encapsulateSelection}
 	 *  - {@link jQuery.plugin.textSelection#getCaretPosition getCaretPosition}
 	 *  - {@link jQuery.plugin.textSelection#setSelection setSelection}
@@ -64,9 +65,16 @@
 			 *
 			 * @private
 			 * @param {string} content
+			 * @return {jQuery}
+			 * @chainable
 			 */
 			setContents: function ( content ) {
-				this.val( content );
+				return this.each( function () {
+					var scrollTop = this.scrollTop;
+					$( this ).val( content );
+					// Setting this.value may scroll the textarea, restore the scroll position
+					this.scrollTop = scrollTop;
+				} );
 			},
 
 			/**
@@ -86,6 +94,32 @@
 				}
 
 				return retval;
+			},
+
+			/**
+			 * Replace the selected text in the textarea with the given text, or insert it at the cursor.
+			 *
+			 * @private
+			 * @param {string} value
+			 * @return {jQuery}
+			 * @chainable
+			 */
+			replaceSelection: function ( value ) {
+				return this.each( function () {
+					var allText, currSelection, startPos, endPos;
+
+					allText = $( this ).textSelection( 'getContents' );
+					currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+					startPos = currSelection[ 0 ];
+					endPos = currSelection[ 1 ];
+
+					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
+						allText.slice( endPos ) );
+					$( this ).textSelection( 'setSelection', {
+						start: startPos,
+						end: startPos + value.length
+					} );
+				} );
 			},
 
 			/**
@@ -113,7 +147,8 @@
 			 */
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
-					var selText, allText, currSelection, scrollTop, insertText,
+					var selText, allText, currSelection, insertText,
+						combiningCharSelectionBug = false,
 						isSample, startPos, endPos,
 						pre = options.pre,
 						post = options.post;
@@ -177,16 +212,18 @@
 					currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
 					startPos = currSelection[ 0 ];
 					endPos = currSelection[ 1 ];
-					scrollTop = this.scrollTop;
 					checkSelectedText();
 					if (
 						options.selectionStart !== undefined &&
 						endPos - startPos !== options.selectionEnd - options.selectionStart
 					) {
 						// This means there is a difference in the selection range returned by browser and what we passed.
-						// This happens for Chrome in the case of composite characters. Ref T32130
+						// This happens for Safari 5.1, Chrome 12 in the case of composite characters. Ref T32130
 						// Set the startPos to the correct position.
 						startPos = options.selectionStart;
+						combiningCharSelectionBug = true;
+						// TODO: The comment above is from 2011. Is this still a problem for browsers we support today?
+						// Minimal test case: https://jsfiddle.net/z4q7a2ko/
 					}
 
 					insertText = pre + selText + post;
@@ -203,10 +240,12 @@
 							post += '\n';
 						}
 					}
-					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + insertText +
-						allText.slice( endPos ) );
-					// Setting this.value (via setContents) may scroll the textarea, restore the scroll position
-					this.scrollTop = scrollTop;
+					if ( combiningCharSelectionBug ) {
+						$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + insertText +
+							allText.slice( endPos ) );
+					} else {
+						$( this ).textSelection( 'replaceSelection', insertText );
+					}
 					if ( isSample && options.selectPeri && ( !options.splitlines || ( options.splitlines && selText.indexOf( '\n' ) === -1 ) ) ) {
 						$( this ).textSelection( 'setSelection', {
 							start: startPos + pre.length,
@@ -345,6 +384,7 @@
 			// case 'getContents': // no params
 			// case 'setContents': // no params with defaults
 			// case 'getSelection': // no params
+			// case 'replaceSelection': // no params with defaults
 			case 'encapsulateSelection':
 				options = $.extend( {
 					pre: '',
