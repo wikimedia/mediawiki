@@ -223,6 +223,16 @@ class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $value, $v, "Value returned" );
 		$this->assertEquals( 0, $wasSet, "Value not regenerated" );
 
+		$wasSet = 0;
+		$v = $cache->getWithSetCallback(
+			$key, 30, $func, [ 'cacheAsideEnabled' => false ] + $extOpts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 1, $wasSet, "Value regenerated due to bypass" );
+		$v = $cache->getWithSetCallback(
+			$key, 30, $func, [ 'cacheAsideEnabled' => false ] + $extOpts );
+		$this->assertEquals( $value, $v, "Value returned" );
+		$this->assertEquals( 2, $wasSet, "Value regenerated due to bypass" );
+
 		$priorTime = microtime( true ); // reference time
 		$cache->setTime( $priorTime );
 

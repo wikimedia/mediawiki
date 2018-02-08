@@ -1046,13 +1046,24 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *      expired for this specified time. This is useful if adaptiveTTL() is used on the old
 	 *      value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
+	 *   - cacheAsideEnabled: Whether this method should perform its normal cache-aside logic.
+	 *      When set to "false" this *immediately* delegates to $callback without performing any
+	 *      cache operations. Use this to avoid code duplication when the cache should be totally
+	 *      ignored a priori in a subset of cases.
+	 *      Default: true.
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
-	 * @note Options added in 1.31: staleTTL, graceTTL
+	 * @note Options added in 1.31: staleTTL, graceTTL, cacheAsideEnabled
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
 	final public function getWithSetCallback( $key, $ttl, $callback, array $opts = [] ) {
 		$pcTTL = isset( $opts['pcTTL'] ) ? $opts['pcTTL'] : self::TTL_UNCACHEABLE;
+
+		if ( isset( $opts['cacheAsideEnabled'] ) && !$opts['cacheAsideEnabled'] ) {
+			$setOpts = [];
+			// Caller wants to bypass everything and return the callback result
+			return $callback( false, $ttl, $setOpts, null );
+		}
 
 		// Try the process cache if enabled and the cache callback is not within a cache callback.
 		// Process cache use in nested callbacks is not lag-safe with regard to HOLDOFF_TTL since

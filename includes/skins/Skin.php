@@ -1256,27 +1256,23 @@ abstract class Skin extends ContextSource {
 	function buildSidebar() {
 		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
-		$callback = function () {
-			$bar = [];
-			$this->addToSidebar( $bar, 'sidebar' );
-			Hooks::run( 'SkinBuildSidebar', [ $this, &$bar ] );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$sidebar = $cache->getWithSetCallback(
+			$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
+			$wgSidebarCacheExpiry,
+			function ( $oldValue, &$ttl ) use ( $cache ) {
+				$bar = [];
+				$this->addToSidebar( $bar, 'sidebar' );
+				Hooks::run( 'SkinBuildSidebar', [ $this, &$bar ] );
 
-			return $bar;
-		};
+				if ( MessageCache::singleton()->isDisabled() ) {
+					$ttl = $cache::TTL_UNCACHEABLE; // bug T133069
+				}
 
-		if ( $wgEnableSidebarCache ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$sidebar = $cache->getWithSetCallback(
-				$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
-				MessageCache::singleton()->isDisabled()
-					? $cache::TTL_UNCACHEABLE // bug T133069
-					: $wgSidebarCacheExpiry,
-				$callback,
-				[ 'lockTSE' => 30 ]
-			);
-		} else {
-			$sidebar = $callback();
-		}
+				return $bar;
+			},
+			[ 'cacheAsideEnabled' => $wgEnableSidebarCache, 'lockTSE' => 30 ]
+		);
 
 		// Apply post-processing to the cached value
 		Hooks::run( 'SidebarBeforeOutput', [ $this, &$sidebar ] );
