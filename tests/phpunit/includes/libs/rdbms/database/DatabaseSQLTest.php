@@ -518,6 +518,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					'srcTable' => [ 'select_table1', 'select_table2' ],
 					'varMap' => [ 'field_insert' => 'field_select', 'field' => 'field2' ],
 					'conds' => [ 'field' => 2 ],
+					'insertOptions' => [ 'NO_AUTO_COLUMNS' ],
 					'selectOptions' => [ 'ORDER BY' => 'field', 'FORCE INDEX' => [ 'select_table1' => 'index1' ] ],
 					'selectJoinConds' => [
 						'select_table2' => [ 'LEFT JOIN', [ 'select_table1.foo = select_table2.bar' ] ],

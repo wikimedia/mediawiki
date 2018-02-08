@@ -1276,7 +1276,9 @@ interface IDatabase {
 	 * @param string $fname The function name of the caller, from __METHOD__
 	 *
 	 * @param array $insertOptions Options for the INSERT part of the query, see
-	 *    IDatabase::insert() for details.
+	 *    IDatabase::insert() for details. Also, one additional option is
+	 *    availible: pass 'NO_AUTO_COLUMNS' to hint that the query does not use
+	 *    an auto-increment or sequence to determine any column values.
 	 * @param array $selectOptions Options for the SELECT part of the query, see
 	 *    IDatabase::select() for details.
 	 * @param array $selectJoinConds Join conditions for the SELECT part of the query, see
