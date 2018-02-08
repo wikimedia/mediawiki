@@ -37,6 +37,20 @@
 			.length;
 	}
 
+	/**
+	 * Calculate the character length of a string (accounting for UTF-16 surrogates).
+	 *
+	 * @static
+	 * @param {string} str
+	 * @return {number}
+	 */
+	function codePointLength( str ) {
+		return str
+			// Low surrogate + high surrogate pairs represent one character (codepoint) each
+			.replace( /[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '*' )
+			.length;
+	}
+
 	// Like String#charAt, but return the pair of UTF-16 surrogates for characters outside of BMP.
 	function codePointAt( string, offset, backwards ) {
 		// We don't need to check for offsets at the beginning or end of string,
@@ -51,30 +65,13 @@
 		}
 	}
 
-	/**
-	 * Utility function to trim down a string, based on byteLimit
-	 * and given a safe start position. It supports insertion anywhere
-	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
-	 * "fobo", not "foba". Basically emulating the native maxlength by
-	 * reconstructing where the insertion occurred.
-	 *
-	 * @static
-	 * @param {string} safeVal Known value that was previously returned by this
-	 * function, if none, pass empty string.
-	 * @param {string} newVal New value that may have to be trimmed down.
-	 * @param {number} byteLimit Number of bytes the value may be in size.
-	 * @param {Function} [fn] Function to call on the string before assessing the length.
-	 * @return {Object}
-	 * @return {string} return.newVal
-	 * @return {boolean} return.trimmed
-	 */
-	function trimByteLength( safeVal, newVal, byteLimit, fn ) {
+	function trimLength( safeVal, newVal, length, lengthFn ) {
 		var startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
 			oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
 		// assessment. The value itself is not to be affected by the hook.
-		if ( byteLength( fn ? fn( newVal ) : newVal ) <= byteLimit ) {
+		if ( lengthFn( newVal ) <= length ) {
 			// Limit was not reached, just remember the new value
 			// and let the user continue.
 			return {
@@ -127,32 +124,86 @@
 
 		// Chop off characters from the end of the "inserted content" string
 		// until the limit is statisfied.
-		if ( fn ) {
-			// stop, when there is nothing to slice - T43450
-			while ( byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
-				// Do not chop off halves of surrogate pairs
-				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
-			}
-		} else {
-			while ( byteLength( inpParts.join( '' ) ) > byteLimit ) {
-				// Do not chop off halves of surrogate pairs
-				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
-			}
+		// Make sure to stop when there is nothing to slice (T43450).
+		while ( lengthFn( inpParts.join( '' ) ) > length && inpParts[ 1 ].length > 0 ) {
+			// Do not chop off halves of surrogate pairs
+			chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+			inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 		}
 
 		return {
 			newVal: inpParts.join( '' ),
-			// For pathological fn() that always returns a value longer than the limit, we might have
+			// For pathological filterFn() that always returns a value longer than the limit, we might have
 			// ended up not trimming - check for this case to avoid infinite loops
 			trimmed: newVal !== inpParts.join( '' )
 		};
 	}
 
+	/**
+	 * Utility function to trim down a string, based on byteLimit
+	 * and given a safe start position. It supports insertion anywhere
+	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
+	 * "fobo", not "foba". Basically emulating the native maxlength by
+	 * reconstructing where the insertion occurred.
+	 *
+	 * @static
+	 * @param {string} safeVal Known value that was previously returned by this
+	 * function, if none, pass empty string.
+	 * @param {string} newVal New value that may have to be trimmed down.
+	 * @param {number} byteLimit Number of bytes the value may be in size.
+	 * @param {Function} [filterFn] Function to call on the string before assessing the length.
+	 * @return {Object}
+	 * @return {string} return.newVal
+	 * @return {boolean} return.trimmed
+	 */
+	function trimByteLength( safeVal, newVal, byteLimit, filterFn ) {
+		var lengthFn;
+		if ( filterFn ) {
+			lengthFn = function ( val ) {
+				return byteLength( filterFn( val ) );
+			};
+		} else {
+			lengthFn = byteLength;
+		}
+
+		return trimLength( safeVal, newVal, byteLimit, lengthFn );
+	}
+
+	/**
+	 * Utility function to trim down a string, based on codePointLimit
+	 * and given a safe start position. It supports insertion anywhere
+	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
+	 * "fobo", not "foba". Basically emulating the native maxlength by
+	 * reconstructing where the insertion occurred.
+	 *
+	 * @static
+	 * @param {string} safeVal Known value that was previously returned by this
+	 * function, if none, pass empty string.
+	 * @param {string} newVal New value that may have to be trimmed down.
+	 * @param {number} codePointLimit Number of characters the value may be in size.
+	 * @param {Function} [filterFn] Function to call on the string before assessing the length.
+	 * @return {Object}
+	 * @return {string} return.newVal
+	 * @return {boolean} return.trimmed
+	 */
+	function trimCodePointLength( safeVal, newVal, codePointLimit, filterFn ) {
+		var lengthFn;
+		if ( filterFn ) {
+			lengthFn = function ( val ) {
+				return codePointLength( filterFn( val ) );
+			};
+		} else {
+			lengthFn = codePointLength;
+		}
+
+		return trimLength( safeVal, newVal, codePointLimit, lengthFn );
+	}
+
 	module.exports = {
 		byteLength: byteLength,
-		trimByteLength: trimByteLength
+		codePointLength: codePointLength,
+		trimByteLength: trimByteLength,
+		trimCodePointLength: trimCodePointLength
 	};
 
 }() );

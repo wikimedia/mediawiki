@@ -3,7 +3,7 @@
  */
 
 /**
- * Calculate the byte length of a string (accounting for UTF-8).
+ * Calculate the byte length of a string, assuming UTF-8 encoding.
  *
  * @method byteLength
  * @deprecated Use `require( 'stringLength' ).byteLength` instead.

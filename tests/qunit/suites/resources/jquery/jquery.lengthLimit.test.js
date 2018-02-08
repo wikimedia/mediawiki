@@ -1,7 +1,7 @@
 ( function ( $, mw ) {
 	var simpleSample, U_20AC, poop, mbSample;
 
-	QUnit.module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.lengthLimit', QUnit.newMwEnvironment() );
 
 	// Simple sample (20 chars, 20 bytes)
 	simpleSample = '12345678901234567890';
