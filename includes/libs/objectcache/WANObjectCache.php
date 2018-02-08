@@ -134,8 +134,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	const LOCK_TTL = 10;
 	/** Default remaining TTL at which to consider pre-emptive regeneration */
 	const LOW_TTL = 30;
-	/** Default time-since-expiry on a miss that makes a key "hot" */
-	const LOCK_TSE = 1;
 
 	/** Never consider performing "popularity" refreshes until a key reaches this age */
 	const AGE_NEW = 60;
@@ -284,7 +282,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * (e.g. the default REPEATABLE-READ in innoDB). Even for mutable data, that
 	 * isolation can largely be maintained by doing the following:
 	 *   - a) Calling delete() on entity change *and* creation, before DB commit
-	 *   - b) Keeping transaction duration shorter than delete() hold-off TTL
+	 *   - b) Keeping transaction duration shorter than the delete() hold-off TTL
+	 *   - c) Disabling interim key caching via useInterimHoldOffCaching() before get() calls
 	 *
 	 * However, pre-snapshot values might still be seen if an update was made
 	 * in a remote datacenter but the purge from delete() didn't relay yet.
