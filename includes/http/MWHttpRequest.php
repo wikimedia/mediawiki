@@ -79,7 +79,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	protected $profileName;
 
 	/**
-	 * @var LoggerInterface;
+	 * @var LoggerInterface
 	 */
 	protected $logger;
 
