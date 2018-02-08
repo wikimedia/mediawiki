@@ -1,6 +1,7 @@
 ( function ( mw ) {
 
-	var byteLength = require( 'mediawiki.String' ).byteLength;
+	var byteLength = require( 'mediawiki.String' ).byteLength,
+		codePointLength = require( 'mediawiki.String' ).codePointLength;
 
 	/**
 	 * @class mw.widgets
@@ -26,6 +27,20 @@
 
 		// Actually enforce limit
 		textInputWidget.$input.byteLimit( limit );
+	};
+
+	mediaWiki.widgets.visibleCodePointLimit = function ( textInputWidget, limit ) {
+		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
+
+		function updateCount() {
+			textInputWidget.setLabel( ( limit - codePointLength( textInputWidget.getValue() ) ).toString() );
+		}
+		textInputWidget.on( 'change', updateCount );
+		// Initialise value
+		updateCount();
+
+		// Actually enforce limit
+		textInputWidget.$input.codePointLimit( limit );
 	};
 
 }( mediaWiki ) );

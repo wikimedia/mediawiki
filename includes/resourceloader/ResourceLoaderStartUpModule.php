@@ -66,6 +66,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		$illegalFileChars = $conf->get( 'IllegalFileChars' );
+		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 
 		// Build list of variables
 		$vars = [
@@ -113,6 +114,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgForeignUploadTargets' => $conf->get( 'ForeignUploadTargets' ),
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
+			'wgCommentByteLimit' => $oldCommentSchema ? 255 : null,
+			'wgCommentCodePointLimit' => $oldCommentSchema ? null : CommentStore::COMMENT_CHARACTER_LIMIT,
 		];
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars ] );
