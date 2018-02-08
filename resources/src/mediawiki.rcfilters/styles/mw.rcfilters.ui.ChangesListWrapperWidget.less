@@ -55,24 +55,10 @@
 		}
 	}
 
-	&-enhancedView {
-		.mw-changeslist-legend {
-			z-index: 1;
-
-			&:not( .mw-collapsed ) {
-				.box-shadow( 0 1px 1px rgba( 0, 0, 0, 0.15 ) );
-			}
-		}
-	}
-
 	.mw-changeslist-legend {
 		background-color: @background-color-base;
+		position: relative; // We want to keep the legend accessible when results are overlaid
 		border: 1px solid @colorGray12;
-
-		&:not( .mw-enhanced ) {
-			// We want to keep the legend accessible when results are overlaid
-			position: relative;
-		}
 	}
 
 	.mw-changeslist-overlay {

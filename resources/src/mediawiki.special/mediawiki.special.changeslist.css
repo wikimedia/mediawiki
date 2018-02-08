@@ -46,17 +46,11 @@
 }
 
 .mw-changeslist-legend.mw-collapsed {
-	margin: 0;
+	margin-bottom: 0;
 }
 
-/* Prevent pushing down of content if legend is initially collapsed */
-.mw-changeslist-legend.mw-collapsed ~ ul:first-of-type > li:first-child {
+/* Prevent pushing down the content if legend is collapsed */
+.mw-changeslist-legend.mw-collapsed ~ ul:first-of-type > li:first-child,
+.mw-changeslist-legend.mw-collapsed + h4 + div > table.mw-changeslist-line:first-child {
 	clear: right;
-}
-
-/* Absolute positioning to avoid table overlap with floating elements */
-.mw-changeslist > .mw-changeslist-legend.mw-enhanced {
-	background-color: #fff;
-	position: absolute;
-	right: 0;
 }
