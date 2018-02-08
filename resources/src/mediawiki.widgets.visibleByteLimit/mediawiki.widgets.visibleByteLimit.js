@@ -1,8 +1,12 @@
 /**
- * Add a visible byte limit label to a TextInputWidget
- *
- * Uses jQuery.byteLimit to enforce the limit.
+ * @class mw.widgets
+ */
 
+/**
+ * Add a visible byte limit label to a TextInputWidget.
+ *
+ * Uses jQuery#byteLimit to enforce the limit.
+ *
  * @param {OO.ui.TextInputWidget} textInputWidget Text input widget
  * @param {number} [limit] Byte limit, defaults to $input's maxlength
  */
