@@ -2496,12 +2496,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return false;
 		}
 
-		$rows = [];
-		foreach ( $res as $row ) {
-			$rows[] = (array)$row;
-		}
+		try {
+			$this->startAtomic( __METHOD__ );
+			$rows = [];
+			foreach ( $res as $row ) {
+				$rows[] = (array)$row;
 
-		return $this->insert( $destTable, $rows, $fname, $insertOptions );
+				// Avoid inserts that are too huge
+				if ( count( $rows ) > 10000 ) { // 10000 is arbitrary
+					$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
+					if ( !$ok ) {
+						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+						return $ok;
+					}
+					$rows = [];
+				}
+			}
+			$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
+			if ( $ok ) {
+				$this->endAtomic( __METHOD__ );
+			} else {
+				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+			}
+			return $ok;
+		} catch ( Exception $e ) {
+			$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+			throw $e;
+		}
 	}
 
 	/**
