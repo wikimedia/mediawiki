@@ -510,7 +510,8 @@ abstract class DatabaseMysqlBase extends Database {
 		$destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
-		if ( $this->insertSelectIsSafe === null ) {
+		$isSafe = in_array( 'NO_AUTO_COLUMNS', $insertOptions, true );
+		if ( !$isSafe && $this->insertSelectIsSafe === null ) {
 			// In MySQL, an INSERT SELECT is only replication safe with row-based
 			// replication or if innodb_autoinc_lock_mode is 0. When those
 			// conditions aren't met, use non-native mode.
@@ -531,7 +532,7 @@ abstract class DatabaseMysqlBase extends Database {
 				(int)$row->innodb_autoinc_lock_mode === 0;
 		}
 
-		if ( !$this->insertSelectIsSafe ) {
+		if ( !$isSafe && !$this->insertSelectIsSafe ) {
 			return $this->nonNativeInsertSelect(
 				$destTable,
 				$srcTable,
