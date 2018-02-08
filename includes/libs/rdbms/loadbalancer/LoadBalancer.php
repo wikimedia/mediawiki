@@ -526,7 +526,7 @@ class LoadBalancer implements ILoadBalancer {
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				if ( $this->mLoads[$i] > 0 ) {
 					$start = microtime( true );
-					$ok = $this->doWait( $i, true, max( 1, (int)$timeout ) ) && $ok;
+					$ok = $this->doWait( $i, true, $timeout ) && $ok;
 					$timeout -= ( microtime( true ) - $start );
 					if ( $timeout <= 0 ) {
 						break; // timeout reached
@@ -579,7 +579,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
-		$close = false; // close the connection afterwards
+		$timeout = max( 1, $timeout ?: $this->mWaitTimeout );
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
@@ -599,6 +599,7 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		// Find a connection to wait on, creating one if needed and allowed
+		$close = false; // close the connection afterwards
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
@@ -630,7 +631,6 @@ class LoadBalancer implements ILoadBalancer {
 			[ 'dbserver' => $server ]
 		);
 
-		$timeout = $timeout ?: $this->mWaitTimeout;
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
 		if ( $result === null ) {
