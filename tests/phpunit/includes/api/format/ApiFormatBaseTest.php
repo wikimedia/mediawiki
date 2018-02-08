@@ -82,7 +82,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$this->assertSame( "$ct; charset=utf-8", strtolower( $response->getHeader( 'Content-Type' ) ) );
 		$this->assertSame( 'DENY', $response->getHeader( 'X-Frame-Options' ) );
 		$this->assertSame( $file, $printer->getFilename() );
-		$this->assertSame( "inline; filename=\"$file\"", $response->getHeader( 'Content-Disposition' ) );
+		$this->assertSame( "inline; filename=$file", $response->getHeader( 'Content-Disposition' ) );
 		$this->assertSame( $status, $response->getStatusCode() );
 
 		return $text;
@@ -141,6 +141,49 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm' ]
 			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideFilenameEncoding
+	 */
+	public function testFilenameEncoding( $filename, $expect ) {
+		$ret = parent::encodeData( [], [], [
+			'name' => 'mock',
+			'class' => ApiFormatBase::class,
+			'factory' => function ( ApiMain $main, $format ) use ( $filename ) {
+				$mock = $this->getMockFormatter( $main, $format, [ 'getFilename' ] );
+				$mock->method( 'getFilename' )->willReturn( $filename );
+				return $mock;
+			},
+			'returnPrinter' => true,
+		] );
+		$response = $ret['printer']->getMain()->getRequest()->response();
+
+		$this->assertSame( "inline; $expect", $response->getHeader( 'Content-Disposition' ) );
+	}
+
+	public static function provideFilenameEncoding() {
+		return [
+			'something simple' => [
+				'foo.xyz', 'filename=foo.xyz'
+			],
+			'more complicated, but still simple' => [
+				'foo.!#$%&\'*+-^_`|~', 'filename=foo.!#$%&\'*+-^_`|~'
+			],
+			'Needs quoting' => [
+				'foo\\bar.xyz', 'filename="foo\\\\bar.xyz"'
+			],
+			'Needs quoting (2)' => [
+				'foo (bar).xyz', 'filename="foo (bar).xyz"'
+			],
+			'Needs quoting (3)' => [
+				"foo\t\"b\x5car\"\0.xyz", "filename=\"foo\x5c\t\x5c\"b\x5c\x5car\x5c\"\x5c\0.xyz\""
+			],
+			'Non-ASCII characters' => [
+				'fóo bár.🙌!',
+				"filename=\"f\xF3o b\xE1r.?!\"; filename*=UTF-8''f%C3%B3o%20b%C3%A1r.%F0%9F%99%8C!"
+			]
 		];
 	}
 
@@ -220,7 +263,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		);
 		$this->assertSame( 'DENY', $response->getHeader( 'X-Frame-Options' ) );
 		$this->assertSame(
-			'inline; filename="api-result.html"', $response->getHeader( 'Content-Disposition' )
+			'inline; filename=api-result.html', $response->getHeader( 'Content-Disposition' )
 		);
 	}
 
