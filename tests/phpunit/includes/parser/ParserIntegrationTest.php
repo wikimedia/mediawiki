@@ -12,7 +12,17 @@ use Wikimedia\ScopedCallback;
  * @group Parser
  * @group ParserTests
  *
- * @todo covers tags
+ * @covers Parser
+ * @covers BlockLevelPass
+ * @covers CoreParserFunctions
+ * @covers CoreTagHooks
+ * @covers Sanitizer
+ * @covers Preprocessor
+ * @covers Preprocessor_DOM
+ * @covers Preprocessor_Hash
+ * @covers DateFormatter
+ * @covers LinkHolderArray
+ * @covers StripState
  */
 class ParserIntegrationTest extends PHPUnit_Framework_TestCase {
 
