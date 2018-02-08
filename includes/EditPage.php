@@ -3138,11 +3138,15 @@ ERROR;
 	 * @return array
 	 */
 	private function getSummaryInputAttributes( array $inputAttrs = null ) {
-		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
+		$conf = $this->context->getConfig();
+		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
 		return ( is_array( $inputAttrs ) ? $inputAttrs : [] ) + [
 			'id' => 'wpSummary',
 			'name' => 'wpSummary',
-			'maxlength' => '200',
+			'maxlength' => $oldCommentSchema ? 200 : CommentStore::COMMENT_CHARACTER_LIMIT,
 			'tabindex' => 1,
 			'size' => 60,
 			'spellcheck' => 'true',
