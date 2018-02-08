@@ -457,7 +457,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
 			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
 		);
-		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, $sqlInsert ] ), $dbWeb );
+		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, 'BEGIN', $sqlInsert, 'COMMIT' ] ), $dbWeb );
 	}
 
 	public static function provideInsertSelect() {
@@ -535,6 +535,30 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 		];
+	}
+
+	public function testInsertSelectBatching() {
+		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
+		$rows = [];
+		for ( $i = 0; $i <= 25000; $i++ ) {
+			$rows[] = [ 'field' => $i ];
+		}
+		$dbWeb->forceNextResult( $rows );
+		$dbWeb->insertSelect(
+			'insert_table',
+			'select_table',
+			[ 'field' => 'field2' ],
+			'*',
+			__METHOD__
+		);
+		$this->assertLastSqlDb( implode( '; ', [
+			'SELECT field2 AS field FROM select_table WHERE *   FOR UPDATE',
+			'BEGIN',
+			"INSERT INTO insert_table (field) VALUES ('" . join( "'),('", range( 0, 9999 ) ) . "')",
+			"INSERT INTO insert_table (field) VALUES ('" . join( "'),('", range( 10000, 19999 ) ) . "')",
+			"INSERT INTO insert_table (field) VALUES ('" . join( "'),('", range( 20000, 25000 ) ) . "')",
+			'COMMIT'
+		] ), $dbWeb );
 	}
 
 	/**

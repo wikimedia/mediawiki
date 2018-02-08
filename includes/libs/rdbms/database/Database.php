@@ -238,6 +238,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
 
+	/** @var int */
+	protected $nonNativeInsertSelectBatchSize = 10000;
+
 	/**
 	 * Constructor and database handle and attempt to connect to the DB server
 	 *
@@ -279,6 +282,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->errorLogger = $params['errorLogger'];
+
+		if ( isset( $params['nonNativeInsertSelectBatchSize'] ) ) {
+			$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'];
+		}
 
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = DatabaseDomain::newUnspecified();
@@ -333,6 +340,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - cliMode: Whether to consider the execution context that of a CLI script.
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
+	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT emulation.
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 * @since 1.18
@@ -2496,12 +2504,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return false;
 		}
 
-		$rows = [];
-		foreach ( $res as $row ) {
-			$rows[] = (array)$row;
-		}
+		try {
+			$this->startAtomic( __METHOD__ );
+			$rows = [];
+			foreach ( $res as $row ) {
+				$rows[] = (array)$row;
 
-		return $this->insert( $destTable, $rows, $fname, $insertOptions );
+				// Avoid inserts that are too huge
+				if ( count( $rows ) >= $this->nonNativeInsertSelectBatchSize ) {
+					$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
+					if ( !$ok ) {
+						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+						return $ok;
+					}
+					$rows = [];
+				}
+			}
+			$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
+			if ( $ok ) {
+				$this->endAtomic( __METHOD__ );
+			} else {
+				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+			}
+			return $ok;
+		} catch ( Exception $e ) {
+			$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+			throw $e;
+		}
 	}
 
 	/**

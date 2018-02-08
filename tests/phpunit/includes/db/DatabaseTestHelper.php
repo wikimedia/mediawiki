@@ -82,7 +82,9 @@ class DatabaseTestHelper extends Database {
 	}
 
 	protected function checkFunctionName( $fname ) {
-		if ( substr( $fname, 0, strlen( $this->testName ) ) !== $this->testName ) {
+		if ( substr( $fname, 0, strlen( $this->testName ) ) !== $this->testName &&
+			$fname !== 'Wikimedia\\Rdbms\\Database::nonNativeInsertSelect' // internal atomic txn
+		) {
 			throw new MWException( 'function name does not start with test class. ' .
 				$fname . ' vs. ' . $this->testName . '. ' .
 				'Please provide __METHOD__ to database methods.' );
