@@ -324,6 +324,9 @@ class ExtensionRegistry {
 				case 'array_merge':
 					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
 					break;
+				case 'array_overwrite':
+					$GLOBALS[$key] = $val;
+					break;
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
 			}

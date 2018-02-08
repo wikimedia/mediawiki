@@ -299,6 +299,28 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 					'NullGlobal' => null
 				],
 			],
+			[
+				'Global already set, array without keys',
+				[
+					'mwtestJsonConfig' => [
+						'a',
+						'b'
+					],
+				],
+				[
+					'mwtestJsonConfig' => [
+						'c',
+						'd',
+						ExtensionRegistry::MERGE_STRATEGY => 'array_overwrite',
+					],
+				],
+				[
+					'mwtestJsonConfig' => [
+						'c',
+						'd'
+					],
+				]
+			],
 		];
 	}
 }
