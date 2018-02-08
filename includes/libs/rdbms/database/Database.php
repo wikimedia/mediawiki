@@ -2481,6 +2481,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
+		$insertOptions = array_diff( (array)$insertOptions, [ 'NO_AUTO_COLUMNS' ] );
+
 		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
 		// on only the master (without needing row-based-replication). It also makes it easy to
 		// know how big the INSERT is going to be.
@@ -2503,7 +2505,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$rows[] = (array)$row;
 
 				// Avoid inserts that are too huge
-				if ( count( $rows ) > 10000 ) { // 10000 is arbitrary
+				if ( count( $rows ) >= 10000 ) { // 10000 is arbitrary
 					$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
 					if ( !$ok ) {
 						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
@@ -2549,6 +2551,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !is_array( $insertOptions ) ) {
 			$insertOptions = [ $insertOptions ];
 		}
+		$insertOptions = array_diff( (array)$insertOptions, [ 'NO_AUTO_COLUMNS' ] );
 
 		$insertOptions = $this->makeInsertOptions( $insertOptions );
 
