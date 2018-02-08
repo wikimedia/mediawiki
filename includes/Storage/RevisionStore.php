@@ -93,6 +93,11 @@ class RevisionStore
 	private $cache;
 
 	/**
+	 * @var CommentStore
+	 */
+	private $commentStore;
+
+	/**
 	 * @var LoggerInterface
 	 */
 	private $logger;
@@ -103,12 +108,14 @@ class RevisionStore
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache
+	 * @param CommentStore $commentStore
 	 * @param bool|string $wikiId
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
+		CommentStore $commentStore,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
@@ -116,6 +123,7 @@ class RevisionStore
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
+		$this->commentStore = $commentStore;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 	}
@@ -393,7 +401,7 @@ class RevisionStore
 		}
 
 		list( $commentFields, $commentCallback ) =
-			CommentStore::getStore()->insertWithTempTable( $dbw, 'rev_comment', $comment );
+			$this->commentStore->insertWithTempTable( $dbw, 'rev_comment', $comment );
 		$row += $commentFields;
 
 		if ( $this->contentHandlerUseDB ) {
@@ -1069,7 +1077,7 @@ class RevisionStore
 
 		$user = $this->getUserIdentityFromRowObject( $row, 'ar_' );
 
-		$comment = CommentStore::getStore()
+		$comment = $this->commentStore
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'ar_comment', $row, true );
 
@@ -1139,7 +1147,7 @@ class RevisionStore
 
 		$user = $this->getUserIdentityFromRowObject( $row );
 
-		$comment = CommentStore::getStore()
+		$comment = $this->commentStore
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $this->getDBConnection( DB_REPLICA ), 'rev_comment', $row, true );
 
@@ -1614,7 +1622,7 @@ class RevisionStore
 			'rev_sha1',
 		] );
 
-		$commentQuery = CommentStore::getStore()->getJoin( 'rev_comment' );
+		$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
 		$ret['tables'] = array_merge( $ret['tables'], $commentQuery['tables'] );
 		$ret['fields'] = array_merge( $ret['fields'], $commentQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $commentQuery['joins'] );
@@ -1671,7 +1679,7 @@ class RevisionStore
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public function getArchiveQueryInfo() {
-		$commentQuery = CommentStore::getStore()->getJoin( 'ar_comment' );
+		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
 		$ret = [
 			'tables' => [ 'archive' ] + $commentQuery['tables'],
 			'fields' => [

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionAccessException;
@@ -489,7 +490,12 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$cache = $this->getWANObjectCache();
 
-		$blobStore = new RevisionStore( $lb, $this->getBlobStore(), $cache );
+		$blobStore = new RevisionStore(
+			$lb,
+			$this->getBlobStore(),
+			$cache,
+			MediaWikiServices::getInstance()->getCommentStore()
+		);
 		return $blobStore;
 	}
 
