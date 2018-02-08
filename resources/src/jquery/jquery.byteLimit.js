@@ -3,15 +3,17 @@
  */
 ( function ( $ ) {
 
+	/* eslint-disable no-use-before-define */
+
 	var eventKeys = [
-		'keyup.byteLimit',
-		'keydown.byteLimit',
-		'change.byteLimit',
-		'mouseup.byteLimit',
-		'cut.byteLimit',
-		'paste.byteLimit',
-		'focus.byteLimit',
-		'blur.byteLimit'
+		'keyup.lengthLimit',
+		'keydown.lengthLimit',
+		'change.lengthLimit',
+		'mouseup.lengthLimit',
+		'cut.lengthLimit',
+		'paste.lengthLimit',
+		'focus.lengthLimit',
+		'blur.lengthLimit'
 	].join( ' ' );
 
 	// Like String#chatAt, but return the pair of UTF-16 surrogates for characters outside of BMP.
@@ -38,18 +40,61 @@
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
-	 * @param {Function} [fn] See jQuery#byteLimit.
+	 * @param {Function} [filterFn] See jQuery#byteLimit.
 	 * @return {Object}
 	 * @return {string} return.newVal
 	 * @return {boolean} return.trimmed
 	 */
-	$.trimByteLength = function ( safeVal, newVal, byteLimit, fn ) {
+	$.trimByteLength = function ( safeVal, newVal, byteLimit, filterFn ) {
+		var lengthFn;
+		if ( filterFn ) {
+			lengthFn = function ( val ) {
+				return $.byteLength( filterFn( val ) );
+			};
+		} else {
+			lengthFn = $.byteLength;
+		}
+
+		return trimLength( safeVal, newVal, byteLimit, lengthFn );
+	};
+
+	/**
+	 * Utility function to trim down a string, based on charLimit
+	 * and given a safe start position. It supports insertion anywhere
+	 * in the string, so "foo" to "fobaro" if limit is 4 will result in
+	 * "fobo", not "foba". Basically emulating the native maxlength by
+	 * reconstructing where the insertion occurred.
+	 *
+	 * @static
+	 * @param {string} safeVal Known value that was previously returned by this
+	 * function, if none, pass empty string.
+	 * @param {string} newVal New value that may have to be trimmed down.
+	 * @param {number} charLimit Number of characters the value may be in size.
+	 * @param {Function} [filterFn] See jQuery#charLimit.
+	 * @return {Object}
+	 * @return {string} return.newVal
+	 * @return {boolean} return.trimmed
+	 */
+	$.trimCharLength = function ( safeVal, newVal, charLimit, filterFn ) {
+		var lengthFn;
+		if ( filterFn ) {
+			lengthFn = function ( val ) {
+				return $.charLength( filterFn( val ) );
+			};
+		} else {
+			lengthFn = $.charLength;
+		}
+
+		return trimLength( safeVal, newVal, charLimit, lengthFn );
+	};
+
+	function trimLength( safeVal, newVal, length, lengthFn ) {
 		var startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
 			oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
 		// assessment. The value itself is not to be affected by the hook.
-		if ( $.byteLength( fn ? fn( newVal ) : newVal ) <= byteLimit ) {
+		if ( lengthFn( newVal ) <= length ) {
 			// Limit was not reached, just remember the new value
 			// and let the user continue.
 			return {
@@ -102,34 +147,26 @@
 
 		// Chop off characters from the end of the "inserted content" string
 		// until the limit is statisfied.
-		if ( fn ) {
-			// stop, when there is nothing to slice - T43450
-			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[ 1 ].length > 0 ) {
-				// Do not chop off halves of surrogate pairs
-				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
-			}
-		} else {
-			while ( $.byteLength( inpParts.join( '' ) ) > byteLimit ) {
-				// Do not chop off halves of surrogate pairs
-				chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
-				inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
-			}
+		// Make sure to stop when there is nothing to slice (T43450).
+		while ( lengthFn( inpParts.join( '' ) ) > length && inpParts[ 1 ].length > 0 ) {
+			// Do not chop off halves of surrogate pairs
+			chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+			inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 		}
 
 		return {
 			newVal: inpParts.join( '' ),
-			// For pathological fn() that always returns a value longer than the limit, we might have
+			// For pathological filterFn() that always returns a value longer than the limit, we might have
 			// ended up not trimming - check for this case to avoid infinite loops
 			trimmed: newVal !== inpParts.join( '' )
 		};
-	};
+	}
 
 	/**
-	 * Enforces a byte limit on an input field, so that UTF-8 entries are counted as well,
+	 * Enforces a byte limit on an input field, assuming UTF-8 encoding, for situations
 	 * when, for example, a database field has a byte limit rather than a character limit.
-	 * Plugin rationale: Browser has native maxlength for number of characters, this plugin
-	 * exists to limit number of bytes instead.
+	 * Plugin rationale: Browser has native maxlength for number of characters (technically,
+	 * UTF-16 code units), this plugin exists to limit number of bytes instead.
 	 *
 	 * Can be called with a custom limit (to use that limit instead of the maxlength attribute
 	 * value), a filter function (in case the limit should apply to something other than the
@@ -137,20 +174,50 @@
 	 *
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
-	 * @param {Function} [fn] Function to call on the string before assessing the length.
+	 * @param {Function} [filterFn] Function to call on the string before assessing the length.
 	 * @return {jQuery}
 	 * @chainable
 	 */
-	$.fn.byteLimit = function ( limit, fn ) {
+	$.fn.byteLimit = function ( limit, filterFn ) {
+		return lengthLimit.call( this, $.trimByteLength, limit, filterFn );
+	};
+
+	/**
+	 * Enforces a character limit on an input field.
+	 *
+	 * For unfortunate historical reasons, browsers' native maxlength counts [the number of UTF-16
+	 * code units rather than Unicode codepoints] [1], which means that codepoints outside the Basic
+	 * Multilingual Plane (e.g. many emojis) count as 2 characters each. This plugin exists to
+	 * correct this.
+	 *
+	 * [1]: https://www.w3.org/TR/html5/sec-forms.html#limiting-user-input-length-the-maxlength-attribute
+	 *
+	 * Can be called with a custom limit (to use that limit instead of the maxlength attribute
+	 * value), a filter function (in case the limit should apply to something other than the
+	 * exact input value), or both. Order of parameters is important!
+	 *
+	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
+	 *  called with fetched value as argument.
+	 * @param {Function} [filterFn] Function to call on the string before assessing the length.
+	 * @return {jQuery}
+	 * @chainable
+	 */
+	$.fn.charLimit = function ( limit, filterFn ) {
+		return lengthLimit.call( this, $.trimCharLength, limit, filterFn );
+	};
+
+	function lengthLimit( trimFn, limit, filterFn ) {
+		var allowNativeMaxlength = trimFn === $.trimByteLength;
+
 		// If the first argument is the function,
-		// set fn to the first argument's value and ignore the second argument.
+		// set filterFn to the first argument's value and ignore the second argument.
 		if ( $.isFunction( limit ) ) {
-			fn = limit;
+			filterFn = limit;
 			limit = undefined;
 		// Either way, verify it is a function so we don't have to call
 		// isFunction again after this.
-		} else if ( !fn || !$.isFunction( fn ) ) {
-			fn = undefined;
+		} else if ( !filterFn || !$.isFunction( filterFn ) ) {
+			filterFn = undefined;
 		}
 
 		// The following is specific to each element in the collection.
@@ -159,7 +226,7 @@
 
 			$el = $( el );
 
-			// If no limit was passed to byteLimit(), use the maxlength value.
+			// If no limit was passed to lengthLimit(), use the maxlength value.
 			// Can't re-use 'limit' variable because it's in the higher scope
 			// that would affect the next each() iteration as well.
 			// Note that we use attribute to read the value instead of property,
@@ -179,19 +246,19 @@
 				return;
 			}
 
-			if ( fn ) {
+			if ( filterFn ) {
 				// Save function for reference
-				$el.data( 'byteLimit.callback', fn );
+				$el.data( 'lengthLimit.callback', filterFn );
 			}
 
 			// Remove old event handlers (if there are any)
-			$el.off( '.byteLimit' );
+			$el.off( '.lengthLimit' );
 
-			if ( fn ) {
+			if ( filterFn || !allowNativeMaxlength ) {
 				// Disable the native maxLength (if there is any), because it interferes
-				// with the (differently calculated) byte limit.
-				// Aside from being differently calculated (average chars with byteLimit
-				// is lower), we also support a callback which can make it to allow longer
+				// with the (differently calculated) character/byte limit.
+				// Aside from being differently calculated,
+				// we also support a callback which can make it to allow longer
 				// values (e.g. count "Foo" from "User:Foo").
 				// maxLength is a strange property. Removing or setting the property to
 				// undefined directly doesn't work. Instead, it can only be unset internally
@@ -200,10 +267,12 @@
 				$el.removeAttr( 'maxlength' );
 
 			} else {
-				// If we don't have a callback the bytelimit can only be lower than the charlimit
+				// For $.byteLimit only, if we don't have a callback,
+				// the byteLimit can only be lower than the native maxLength limit
 				// (that is, there are no characters less than 1 byte in size). So lets (re-)enforce
 				// the native limit for efficiency when possible (it will make the while-loop below
-				// faster by there being less left to interate over).
+				// faster by there being less left to interate over). This does not work for $.charLimit
+				// (code units for surrogates represent half a character each).
 				$el.attr( 'maxlength', elLimit );
 			}
 
@@ -226,11 +295,11 @@
 			// See https://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = $.trimByteLength(
+				var res = trimFn(
 					prevSafeVal,
 					this.value,
 					elLimit,
-					fn
+					filterFn
 				);
 
 				// Only set value property if it was trimmed, because whenever the
@@ -244,12 +313,12 @@
 					$el.trigger( 'change' );
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
-				// trimByteLength to compare the new value to an empty string instead of the
+				// trimFn to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (T42850).
 				prevSafeVal = res.newVal;
 			} );
 		} );
-	};
+	}
 
 	/**
 	 * @class jQuery

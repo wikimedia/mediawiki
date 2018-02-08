@@ -6,7 +6,7 @@
  */
 
 /**
- * Calculate the byte length of a string (accounting for UTF-8).
+ * Calculate the byte length of a string, assuming UTF-8 encoding.
  *
  * @static
  * @inheritable
@@ -31,6 +31,21 @@ jQuery.byteLength = function ( str ) {
 	return str
 		.replace( /[\u0080-\u07FF\uD800-\uDFFF]/g, '**' )
 		.replace( /[\u0800-\uD7FF\uE000-\uFFFF]/g, '***' )
+		.length;
+};
+
+/**
+ * Calculate the character length of a string (accounting for UTF-16 surrogates).
+ *
+ * @static
+ * @inheritable
+ * @param {string} str
+ * @return {number}
+ */
+jQuery.charLength = function ( str ) {
+	return str
+		// Low surrogate + high surrogate pairs represent one character (codepoint) each
+		.replace( /[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '*' )
 		.length;
 };
 
