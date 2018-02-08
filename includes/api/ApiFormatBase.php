@@ -65,8 +65,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @note If $this->getIsWrappedHtml() || $this->getIsHtml(), you'll very
 	 *  likely want to fall back to this class's version.
 	 * @since 1.27
-	 * @return string Generally this should be "api-result.$ext", and must be
-	 *  encoded for inclusion in a Content-Disposition header's filename parameter.
+	 * @return string Generally this should be "api-result.$ext"
 	 */
 	public function getFilename() {
 		if ( $this->getIsWrappedHtml() ) {
@@ -212,10 +211,25 @@ abstract class ApiFormatBase extends ApiBase {
 
 		// Set a Content-Disposition header so something downloading an API
 		// response uses a halfway-sensible filename (T128209).
+		$header = 'Content-Disposition: inline';
 		$filename = $this->getFilename();
-		$this->getMain()->getRequest()->response()->header(
-			"Content-Disposition: inline; filename=\"{$filename}\""
-		);
+		$compatFilename = mb_convert_encoding( $filename, 'ISO-8859-1' );
+		if ( preg_match( '/^[0-9a-zA-Z!#$%&\'*+\-.^_`|~]+$/', $compatFilename ) ) {
+			$header .= '; filename=' . $compatFilename;
+		} else {
+			$header .= '; filename="'
+				. preg_replace( '/([\0-\x1f"\x5c\x7f])/', '\\\\$1', $compatFilename ) . '"';
+		}
+		if ( $compatFilename !== $filename ) {
+			$value = "UTF-8''" . rawurlencode( $filename );
+			// rawurlencode() encodes more characters than RFC 5987 specifies. Unescape the ones it allows.
+			$value = strtr( $value, [
+				'%21' => '!', '%23' => '#', '%24' => '$', '%26' => '&', '%2B' => '+', '%5E' => '^',
+				'%60' => '`', '%7C' => '|',
+			] );
+			$header .= '; filename*=' . $value;
+		}
+		$this->getMain()->getRequest()->response()->header( $header );
 	}
 
 	/**
