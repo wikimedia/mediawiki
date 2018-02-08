@@ -475,7 +475,8 @@ return [
 		$store = new RevisionStore(
 			$services->getDBLoadBalancer(),
 			$blobStore,
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore()
 		);
 
 		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
