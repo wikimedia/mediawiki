@@ -2509,7 +2509,7 @@ class LocalFileDeleteBatch {
 			);
 			$rowsInsert = [];
 			if ( $res->numRows() ) {
-				$reason = $commentStore->createComment( $dbw, 'fa_deleted_reason', $this->reason );
+				$reason = $commentStore->createComment( $dbw, $this->reason );
 				foreach ( $res as $row ) {
 					$comment = $commentStore->getComment( 'oi_description', $row );
 					$rowsInsert[] = [
