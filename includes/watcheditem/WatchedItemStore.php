@@ -13,10 +13,6 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Database interaction & caching
  * TODO caching should be factored out into a CachingWatchedItemStore class
  *
- * Uses database because this uses User::isAnon
- *
- * @group Database
- *
  * @author Addshore
  * @since 1.27
  */
@@ -56,6 +52,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $revisionGetTimestampFromIdCallback;
 
 	/**
+	 * @var int
+	 */
+	private $updateRowsPerQuery;
+
+	/**
 	 * @var StatsdDataFactoryInterface
 	 */
 	private $stats;
@@ -64,18 +65,23 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param LoadBalancer $loadBalancer
 	 * @param HashBagOStuff $cache
 	 * @param ReadOnlyMode $readOnlyMode
+	 * @param int $updateRowsPerQuery
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
 		HashBagOStuff $cache,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		$updateRowsPerQuery
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->stats = new NullStatsdDataFactory();
-		$this->deferredUpdatesAddCallableUpdateCallback = [ DeferredUpdates::class, 'addCallableUpdate' ];
-		$this->revisionGetTimestampFromIdCallback = [ Revision::class, 'getTimestampFromId' ];
+		$this->deferredUpdatesAddCallableUpdateCallback =
+			[ DeferredUpdates::class, 'addCallableUpdate' ];
+		$this->revisionGetTimestampFromIdCallback =
+			[ Revision::class, 'getTimestampFromId' ];
+		$this->updateRowsPerQuery = $updateRowsPerQuery;
 	}
 
 	/**
@@ -213,6 +219,56 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private function getConnectionRef( $dbIndex ) {
 		return $this->loadBalancer->getConnectionRef( $dbIndex, [ 'watchlist' ] );
+	}
+
+	/**
+	 * Deletes ALL watched items for the given user when under
+	 * $updateRowsPerQuery entries exist.
+	 *
+	 * @since 1.30
+	 *
+	 * @param User $user
+	 *
+	 * @return bool true on success, false when too many items are watched
+	 */
+	public function clearUserWatchedItems( User $user ) {
+		if ( $this->countWatchedItems( $user ) > $this->updateRowsPerQuery ) {
+			return false;
+		}
+
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw->delete(
+			'watchlist',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+		$this->uncacheAllItemsForUser( $user );
+
+		return true;
+	}
+
+	private function uncacheAllItemsForUser( User $user ) {
+		$userId = $user->getId();
+		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
+			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
+				if ( array_key_exists( $userId, $userIndex ) ) {
+					$this->cache->delete( $userIndex[$userId] );
+					unset( $this->cacheIndex[$ns][$dbKey][$userId] );
+				}
+			}
+		}
+
+		// Cleanup empty cache keys
+		foreach ( $this->cacheIndex as $ns => $dbKeyIndex ) {
+			foreach ( $dbKeyIndex as $dbKey => $userIndex ) {
+				if ( empty( $this->cacheIndex[$ns][$dbKey] ) ) {
+					unset( $this->cacheIndex[$ns][$dbKey] );
+				}
+			}
+			if ( empty( $this->cacheIndex[$ns] ) ) {
+				unset( $this->cacheIndex[$ns] );
+			}
+		}
 	}
 
 	/**
