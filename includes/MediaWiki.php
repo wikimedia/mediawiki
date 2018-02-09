@@ -549,6 +549,9 @@ class MediaWiki {
 			}
 
 			MWExceptionHandler::handleException( $e );
+		} catch ( Error $e ) {
+			// Type errors and such: at least handle it now and clean up the LBFactory state
+			MWExceptionHandler::handleException( $e );
 		}
 
 		$this->doPostOutputShutdown( 'normal' );
