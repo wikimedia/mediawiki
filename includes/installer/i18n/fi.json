@@ -74,7 +74,6 @@
 	"config-pcre-old": "<strong>Tärkeää:</strong> PCRE $1 tai uudempi versio tarvitaan.\nPHP-binäärisi on linkitetty versiolla PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Lisätietoja].",
 	"config-memory-raised": "PHP:n <code>memory_limit</code> on $1, nostetaan arvoon $2.",
 	"config-memory-bad": "'''Varoitus:''' PHP:n <code>memory_limit</code> on $1.\nTämä on luultavasti liian alhainen.\nAsennus saattaa epäonnistua!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] on asennettu",
 	"config-apc": "[http://www.php.net/apc APC] on asennettu.",
 	"config-apcu": "[http://www.php.net/apcu APCu] on asennettu",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] on asennettu",

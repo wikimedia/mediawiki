@@ -53,7 +53,6 @@
 	"config-pcre-no-utf8": "'''Ćežki zmylk''': Zda so, zo PCRE-modul za PHP ma so bjez PCRE_UTF8-podpěry kompilować.\nMediaWiki trjeba UTF-8-podpěru, zo by korektnje fungował.",
 	"config-memory-raised": "PHP-parameter <code>memory_limit</code> je $1, je so na hódnotu $2 zwyšił.",
 	"config-memory-bad": "'''Warnowanje:''' PHP-parameter <code>memory_limit</code> ma hódnotu $1,\nTo je najskerje přeniske.\nInstalacija móhła so njeporadźić!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] je instalowany",
 	"config-apc": "[http://www.php.net/apc APC] je instalowany",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] je instalowany",
 	"config-diff3-bad": "GNU diff3 njenamakany.",

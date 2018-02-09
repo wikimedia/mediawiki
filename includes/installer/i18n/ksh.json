@@ -60,7 +60,6 @@
 	"config-pcre-no-utf8": "'''Dä:''' Et PHP-Modul <i lang=\"en\">PCRE</i> schingk ohne de <i lang=\"en\">PCRE_UTF8</i>-Aandeile övversaz ze sin.\nMediaWiki bruch dä UTF-8-Krohm ävver, öm ohne Fähler loufe ze künne.",
 	"config-memory-raised": "Der jrühzte zohjelasse Shpeisherbedarf vum PHP, et <code lang=\"en\">memory_limit</code>, shtund op $1 un es op $2 erop jesaz woode.",
 	"config-memory-bad": "'''Opjepaß:''' Dem PHP singe Parameeter <code lang=\"en\">memory_limit</code> es $1.\nDat es wall ze winnisch.\nEt Enreeschte kunnt doh draan kappott jon!",
-	"config-xcache": "Dä <code lang=\"en\">[https://xcache.lighttpd.net/ XCache]</code> es ennjeresht.",
 	"config-apc": "Dä <code lang=\"en\">[http://www.php.net/apc APC]</code> es ennjeresht.",
 	"config-wincache": "Dä <code lang=\"en\">[https://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.",
 	"config-no-cache-apcu": "'''Opjepaß:''' Mer kunnte dä <code lang=\"en\" xml:lang=\"en\" dir=\"rtl\">[http://www.php.net/apcu APCu]</code>, dä <code lang=\"en\" xml:lang=\"en\" dir=\"rtl\">[http://xcache.lighttpd.net/ XCache]</code> udder dä <code lang=\"en\" xml:lang=\"en\" dir=\"rtl\">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.\nEt <i lang=\"en\" xml:lang=\"en\" dir=\"rtl\">object caching</i> es nit müjjelesch un es ußjeschalldt.",

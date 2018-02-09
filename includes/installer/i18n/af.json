@@ -41,7 +41,6 @@
 	"config-no-db": "Kon nie 'n geskikte databasisdrywer vind nie!",
 	"config-memory-raised": "PHP se <code>memory_limit</code> is $1, en is verhoog tot $2.",
 	"config-memory-bad": "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1.\nDit is waarskynlik te laag.\nDie installasie mag moontlik faal!",
-	"config-xcache": "[Http://trac.lighttpd.net/xcache/ XCache] is geïnstalleer",
 	"config-apc": "[Http://www.php.net/apc APC] is geïnstalleer",
 	"config-wincache": "[Http://www.iis.net/download/WinCacheForPhp WinCache] is geïnstalleer",
 	"config-diff3-bad": "GNU diff3 nie gevind nie.",

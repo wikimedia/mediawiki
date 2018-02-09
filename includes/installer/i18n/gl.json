@@ -63,7 +63,6 @@
 	"config-pcre-no-utf8": "<strong>Erro fatal:</strong> Semella que o módulo PCRE do PHP foi compilado sen o soporte PCRE_UTF8.\nMediaWiki necesita soporte UTF-8 para funcionar correctamente.",
 	"config-memory-raised": "O parámetro <code>memory_limit</code> do PHP é $1. Aumentado a $2.",
 	"config-memory-bad": "<strong>Atención:<strong> O parámetro <code>memory_limit</code> do PHP é $1.\nProbablemente é un valor baixo de máis.\nA instalación pode fallar!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] está instalado",
 	"config-apc": "[http://www.php.net/apc APC] está instalado",
 	"config-apcu": "[http://www.php.net/apcu APCu] está instalado",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] está instalado",

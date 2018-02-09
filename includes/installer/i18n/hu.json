@@ -12,7 +12,8 @@
 			"Máté",
 			"Seb35",
 			"Urbalazs",
-			"MeskoBalazs"
+			"MeskoBalazs",
+			"Bencemac"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",
@@ -68,11 +69,10 @@
 	"config-pcre-no-utf8": "<strong>Kritikus hiba:</strong> Úgy tűnik, hogy a PHP PRCE modulja PRCE_UTF8 támogatás nélkül lett fordítva.\nA MediaWikinek UTF-8-támogatásra van szüksége a helyes működéshez.",
 	"config-memory-raised": "A PHP <code>memory_limit</code> beállításának értéke: $1. Meg lett növelve a következő értékre: $2.",
 	"config-memory-bad": "<strong>Figyelmeztetés:</strong> A PHP <code>memory_limit</code> beállításának értéke $1.\nEz az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
-	"config-xcache": "Az [https://xcache.lighttpd.net/ XCache] telepítve van",
 	"config-apc": "Az [http://www.php.net/apc APC] telepítve van",
 	"config-apcu": "Az [http://www.php.net/apcu APCu] telepítve van",
 	"config-wincache": "A [https://www.iis.net/download/WinCacheForPhp WinCache] telepítve van",
-	"config-no-cache-apcu": "<strong>Figyelmeztetés:</strong> nem találhatók a következők: [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] vagy [http://www.iis.net/download/WinCacheForPhp WinCache].\nAz objektum gyorsítótárazása nincs engedélyezve.",
+	"config-no-cache-apcu": "<strong>Figyelmeztetés:</strong> nem találhatók a következők: [http://www.php.net/apcu APCu] vagy [http://www.iis.net/download/WinCacheForPhp WinCache].\nAz objektum gyorsítótárazása nincs engedélyezve.",
 	"config-diff3-bad": "GNU diff3 nem található.",
 	"config-git": "Megtaláltam a Git verziókezelő szoftvert: <code>$1</code>.",
 	"config-git-bad": "A Git verziókezelő rendszer nem található.",
@@ -249,7 +249,7 @@
 	"config-cache-options": "Objektum-gyorsítótárazás beállításai:",
 	"config-cache-help": "Az objektumgyorsítótárazás célja, hogy felgyorsítsa a MediaWiki működését a gyakran használt adatok gyorsítótárazásával.\nKözepes vagy nagyobb oldalak esetén erősen ajánlott a használata, de kisebb oldalak esetén is hasznos lehet.",
 	"config-cache-none": "Nincs gyorsítótárazás (minden funkció működik, de nagyobb wiki esetében lassabb működést eredményezhet)",
-	"config-cache-accel": "PHP-objektumok gyorsítótárazása (APC, APCu, XCache vagy WinCache)",
+	"config-cache-accel": "PHP-objektumok gyorsítótárazása (APC, APCu vagy WinCache)",
 	"config-cache-memcached": "Memcached használata (további telepítés és konfigurálás szükséges)",
 	"config-memcached-servers": "Memcached-szerverek:",
 	"config-memcached-help": "Azon IP-címek listája, melyeket a Memcached használhat.\nVesszővel kell elválasztani őket, és meg kell adni a portot is. Például:\n 127.0.0.1:11211\n 192.168.1.25:11211",

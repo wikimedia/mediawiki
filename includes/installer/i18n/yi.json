@@ -39,7 +39,6 @@
 	"config-env-bad": "מ'האט קאנטראלירט די סביבה.\nאיר קענט נישט אינסטאלירן מעדיעוויקי.",
 	"config-env-php": "PHP $1 איז אינצטאלירט.",
 	"config-env-hhvm": "HHVM $1 איז אינסטאלירט.",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] איז אינסטאלירט",
 	"config-apc": "[http://www.php.net/apc APC] איז אינסטאלירט",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] איז אינסטאלירט",
 	"config-diff3-bad": "GNU diff3 נישט געטראפן.",

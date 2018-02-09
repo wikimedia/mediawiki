@@ -62,7 +62,6 @@
 	"config-pcre-no-utf8": "'''Fatal''': ël mòdul PCRE ëd PHP a smija esse compilà sensa l'apògg PCRE_UTF8.\nMediaWiki a ciama l'apògg d'UTF8 për marcé për da bin.",
 	"config-memory-raised": "<code>memory_limit</code> ëd PHP a l'é $1, aussà a $2.",
 	"config-memory-bad": "'''Avis:''' <code>memory_limit</code> ëd PHP a l'é $1.\nSossì a l'é probabilment tròp bass.\nL'instalassion a peul falì!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] a l'é instalà",
 	"config-apc": "[http://www.php.net/apc APC] a l'é instalà",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache]  a l'é instalà",
 	"config-mod-security": "'''Avis''': Sò servent për l'aragnà a l'ha [https://modsecurity.org/ mod_security] abilità. Se mal configurà, a peul causé dij problema për MediaWiki o d'àutri programa ch'a përmëtto a j'utent dë spedì un contnù qualsëssìa.\nCh'a fasa arferiment a la [https://modsecurity.org/documentation/ mod_security documentassion] o ch'a contata l'echip ëd sò servissi s'a-j rivo dj'eror casuaj.",

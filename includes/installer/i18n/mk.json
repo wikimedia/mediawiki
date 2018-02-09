@@ -60,7 +60,6 @@
 	"config-pcre-no-utf8": "<strong>Кобно</strong>: PCRE-модулот на PHP е срочен без поддршка за PCRE_UTF8.\nМедијаВики бара поддршка за UTF-8 за да може да работи правилно.",
 	"config-memory-raised": "<code>memory_limit</code> за PHP изнесува $1, зголемен на $2.",
 	"config-memory-bad": "<strong>Предупредување:</strong> <code>memory_limit</code> за PHP изнесува $1.\nОва е веројатно премалку.\nВоспоставката може да не успее!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] е воспоставен",
 	"config-apc": "[http://www.php.net/apc APC] е воспоставен",
 	"config-apcu": "[http://www.php.net/apcu APCu] е воспоставен",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] е воспоставен",

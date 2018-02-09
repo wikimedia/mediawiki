@@ -37,7 +37,6 @@
 	"config-env-bad": "La medio estis kontrolita.\nNe eblas instali MediaWiki.",
 	"config-env-php": "PHP $1 estas instalita.",
 	"config-env-hhvm": "HHVM $1 instalatas.",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] estas instalita.",
 	"config-apc": "[http://www.php.net/apc APC] estas instalita",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] estas instalita",
 	"config-diff3-bad": "GNU diff3 ne estis trovita.",

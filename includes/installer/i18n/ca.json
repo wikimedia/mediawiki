@@ -60,7 +60,6 @@
 	"config-unicode-using-intl": "S'utilitza l'[https://pecl.php.net/intl extensió intl PECL] per a la normalització de l'Unicode.",
 	"config-memory-raised": "El <code>memory_limit</code> del PHP és $1 i s'ha aixecat a $2.",
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] està instal·lat",
 	"config-apc": "L’[http://www.php.net/apc APC] està instal·lat",
 	"config-apcu": "[http://www.php.net/apcu APCu] està instal·lat",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] està instal·lat",

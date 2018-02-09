@@ -62,7 +62,6 @@
 	"config-pcre-no-utf8": "<strong>Lỗi chí tử:</strong> Mô đun PCRE của PHP dường như được biên dịch mà không có hỗ trợ PCRE_UTF8.\nMediaWiki yêu cầu phải có hỗ trợ UTF-8 để hoạt động chính xác.",
 	"config-memory-raised": "<code>memory_limit</code> của PHP là $1, tăng lên $2.",
 	"config-memory-bad": "<strong>Cảnh báo:</strong> <code>memory_limit</code> của PHP là $1.\nGiá trị này có lẽ quá thấp.\nCài đặt có thể bị thất bại!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] đã được cài đặt",
 	"config-apc": "[http://www.php.net/apc APC] đã được cài đặt",
 	"config-apcu": "[http://www.php.net/apcu APCu] đã được cài đặt",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] đã được cài đặt",

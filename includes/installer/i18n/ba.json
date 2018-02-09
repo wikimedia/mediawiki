@@ -67,7 +67,6 @@
 	"config-pcre-no-utf8": "'''Фаталь хата'''. PHP өсөн PCRE модуле  PCRE_UTF8 менән яраҡлыштырылмаған.\nMediaWiki дөрөҫ эшләһен өсөн UTF-8 талап ителә.",
 	"config-memory-raised": "Хәтер сикләнгән PHP  (<code>memory_limit</code>)  $1  $2 тиклем арттырылған.",
 	"config-memory-bad": "'''Иғтибар:''' PHP күләме <code>memory_limit</code> $1 тәшкил итә.\nБәлки, был саманан тыш аҙҙыр. \nҠуйылыштың уңышһыҙлыҡҡа осрауы бар!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] урынлаштырылды",
 	"config-apc": "[http://www.php.net/apc APC] урынлаштырылды",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] урынлыштырылды",
 	"config-no-cache-apcu": "'''Иғтибар:'''  [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] табылманы йәки [http://www.iis.net/download/WinCacheForPhp WinCache].\nОбъекттарҙы кэшлау һүндереләсәк..",
