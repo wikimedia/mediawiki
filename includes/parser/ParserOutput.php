@@ -301,10 +301,12 @@ class ParserOutput extends CacheTime {
 			] );
 			$startLen = strlen( $start );
 			$end = Html::closeElement( 'div' );
+			$endPos = strrpos( $text, $end );
 			$endLen = strlen( $end );
 
-			if ( substr( $text, 0, $startLen ) === $start && substr( $text, -$endLen ) === $end ) {
-				$text = substr( $text, $startLen, -$endLen );
+			if ( substr( $text, 0, $startLen ) === $start && $endPos !== false ) {
+				$text = substr( $text, $startLen );
+				$text = substr( $text, 0, $endPos - $startLen ) . substr( $text, $endPos - $startLen + $endLen );
 			}
 		}
 
