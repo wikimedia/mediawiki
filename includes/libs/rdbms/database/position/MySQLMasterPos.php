@@ -54,14 +54,18 @@ class MySQLMasterPos implements DBMasterPos {
 		$thisPosByDomain = $this->getGtidCoordinates();
 		$thatPosByDomain = $pos->getGtidCoordinates();
 		if ( $thisPosByDomain && $thatPosByDomain ) {
-			$reached = true;
-			// Check that this has positions GTE all of those in $pos for all domains in $pos
+			$comparisons = [];
+			// Check that this has positions reaching those in $pos for all domains in common
 			foreach ( $thatPosByDomain as $domain => $thatPos ) {
-				$thisPos = isset( $thisPosByDomain[$domain] ) ? $thisPosByDomain[$domain] : -1;
-				$reached = $reached && ( $thatPos <= $thisPos );
+				if ( isset( $thisPosByDomain[$domain] ) ) {
+					$comparisons[] = ( $thatPos <= $thisPosByDomain[$domain] );
+				}
 			}
-
-			return $reached;
+			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
+			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// be cleaned up. Assume that the domains in both this and $pos cover the relevant
+			// active channels.
+			return ( $comparisons && !in_array( false, $comparisons, true ) );
 		}
 
 		// Fallback to the binlog file comparisons
@@ -84,8 +88,11 @@ class MySQLMasterPos implements DBMasterPos {
 		$thisPosDomains = array_keys( $this->getGtidCoordinates() );
 		$thatPosDomains = array_keys( $pos->getGtidCoordinates() );
 		if ( $thisPosDomains && $thatPosDomains ) {
-			// Check that this has GTIDs for all domains in $pos
-			return !array_diff( $thatPosDomains, $thisPosDomains );
+			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
+			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// easily be cleaned up. Assume that the domains in both this and $pos cover the
+			// relevant active channels.
+			return array_intersect( $thatPosDomains, $thisPosDomains ) ? true : false;
 		}
 
 		// Fallback to the binlog file comparisons

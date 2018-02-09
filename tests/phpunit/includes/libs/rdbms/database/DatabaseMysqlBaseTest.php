@@ -296,6 +296,21 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 				new MySQLMasterPos( '254-11-1000', $now ),
 				false
 			],
+			[
+				new MySQLMasterPos( '255-11-23,256-12-50', $now ),
+				new MySQLMasterPos( '255-11-24', $now ),
+				true
+			],
+			[
+				new MySQLMasterPos( '255-11-99,256-12-50,257-12-50', $now ),
+				new MySQLMasterPos( '255-11-1000', $now ),
+				true
+			],
+			[
+				new MySQLMasterPos( '253-11-999,255-11-999', $now ),
+				new MySQLMasterPos( '254-11-1000', $now ),
+				false
+			],
 		];
 	}
 
