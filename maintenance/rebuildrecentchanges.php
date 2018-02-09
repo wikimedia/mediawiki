@@ -271,18 +271,18 @@ class RebuildRecentchanges extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
 
-		$this->output( "Loading from user, page, and logging tables...\n" );
+		$this->output( "Loading from user and logging tables...\n" );
 
 		$commentQuery = $commentStore->getJoin( 'log_comment' );
 		$res = $dbw->select(
-			[ 'user', 'logging', 'page' ] + $commentQuery['tables'],
+			[ 'user', 'logging' ] + $commentQuery['tables'],
 			[
 				'log_timestamp',
 				'log_user',
 				'user_name',
 				'log_namespace',
 				'log_title',
-				'page_id',
+				'log_page',
 				'log_type',
 				'log_action',
 				'log_id',
@@ -327,8 +327,8 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_type' => RC_LOG,
 					'rc_source' => RecentChange::SRC_LOG,
 					'rc_cur_id' => $field->isNullable()
-						? $row->page_id
-						: (int)$row->page_id, // NULL => 0,
+						? $row->log_page
+						: (int)$row->log_page, // NULL => 0,
 					'rc_log_type' => $row->log_type,
 					'rc_log_action' => $row->log_action,
 					'rc_logid' => $row->log_id,
