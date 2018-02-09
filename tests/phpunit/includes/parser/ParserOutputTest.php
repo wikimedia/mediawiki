@@ -349,6 +349,11 @@ EOF
 			'Unwrap without a mw-parser-output wrapper' => [
 				[ 'unwrap' => true ], [], '<div class="foobar">Content</div>', '<div class="foobar">Content</div>'
 			],
+			'Unwrap with extra comment at end' => [
+				[ 'unwrap' => true ], [], '<div class="mw-parser-output"><p>Test document.</p></div>
+<!-- Saved in parser cache... -->', '<p>Test document.</p>
+<!-- Saved in parser cache... -->'
+			],
 		];
 		// phpcs:enable
 	}
