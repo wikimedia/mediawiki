@@ -1006,7 +1006,17 @@ class LoadBalancer implements ILoadBalancer {
 			throw new DBAccessError();
 		}
 
-		if ( $domainOverride->getDatabase() !== null ) {
+		// Handle $domainOverride being a specified or an unspecified domain
+		if ( $domainOverride->getDatabase() === null ) {
+			// Normally, an RDBMS requires a DB name specified on connection and the $server
+			// configuration array is assumed to already specify an appropriate DB name.
+			if ( $server['type'] === 'mysql' ) {
+				// For MySQL, DATABASE and SCHEMA are synonyms, connections need not specify a DB,
+				// and the DB name in $server might not exist due to legacy reasons (the default
+				// domain used to ignore the local LB domain, even when mismatched).
+				$server['dbname'] = null;
+			}
+		} else {
 			$server['dbname'] = $domainOverride->getDatabase();
 			$server['schema'] = $domainOverride->getSchema();
 		}
