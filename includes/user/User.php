@@ -2509,12 +2509,17 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 );
 		} else {
-			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function () use ( $cache, $key ) {
-					$cache->delete( $key );
-				},
-				__METHOD__
-			);
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			if ( $lb->hasOrMadeRecentMasterChanges() ) {
+				$lb->getConnection( DB_MASTER )->onTransactionPreCommitOrIdle(
+					function () use ( $cache, $key ) {
+						$cache->delete( $key );
+					},
+					__METHOD__
+				);
+			} else {
+				$cache->delete( $key );
+			}
 		}
 	}
 
