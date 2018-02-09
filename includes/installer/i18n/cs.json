@@ -65,7 +65,6 @@
 	"config-pcre-no-utf8": "<strong>Kritická chyba:</strong> PHP modul PCRE byl zřejmě přeložen bez podpory PCRE_UTF8.\nMediaWiki vyžaduje ke správné funkci podporu UTF-8.",
 	"config-memory-raised": "<code>memory_limit</code> v PHP byl nastaven na $1, zvýšen na $2.",
 	"config-memory-bad": "<strong>Upozornění:</strong> <code>memory_limit</code> je v PHP nastaven na $1.\nTo je pravděpodobně příliš málo.\nInstalace může selhat!",
-	"config-xcache": "Je nainstalována [https://xcache.lighttpd.net/ XCache]",
 	"config-apc": "Je nainstalováno [http://www.php.net/apc APC]",
 	"config-apcu": "Je nainstalováno [http://www.php.net/apcu APCu]",
 	"config-wincache": "Je nainstalována [https://www.iis.net/download/WinCacheForPhp WinCache]",

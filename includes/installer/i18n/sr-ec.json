@@ -42,7 +42,6 @@
 	"config-restart": "Да, покрени поново",
 	"config-env-php": "PHP $1 је инсталиран.",
 	"config-env-hhvm": "HHVM $1 је инсталиран.",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] је инсталиран",
 	"config-apc": "[http://www.php.net/apc APC] је инсталиран",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] је инсталиран",
 	"config-db-type": "Тип базе података:",

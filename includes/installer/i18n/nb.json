@@ -65,7 +65,6 @@
 	"config-pcre-no-utf8": "'''Fatal''': PHPs PCRE modul ser ut til å være kompilert uten PCRE_UTF8-støtte.\nMediaWiki krever UTF-8-støtte for å fungere riktig.",
 	"config-memory-raised": "PHPs <code>memory_limit</code> er $1, økt til $2.",
 	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynligvis for lavt.\nInstallasjonen kan mislykkes!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] er installert",
 	"config-apc": "[http://www.php.net/apc APC] er installert",
 	"config-apcu": "[http://www.php.net/apcu APCu] er installert",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] er installert",

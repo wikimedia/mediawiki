@@ -26,7 +26,6 @@
 	"config-page-upgradedoc": "Bilindkirin",
 	"config-page-existingwiki": "Wîkiya heye",
 	"config-restart": "Erê, jinûve bide destpêkirin",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] hate avakirin",
 	"config-apc": "[http://www.php.net/apc APC] hate avakirin",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] hate avakirin",
 	"config-diff3-bad": "GNU diff3 nehate dîtin.",

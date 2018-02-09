@@ -61,7 +61,6 @@
 	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHREko PCRE modulua PCRE_UTF8 ko laguntza gabe bildu da.\nMediaWiki-k UTF-8 euskarria behar du behar bezala funtziona dezan.",
 	"config-memory-raised": "PHP-ko <code>memory_limit</code> $1 da, $2-ra igota.",
 	"config-memory-bad": "<strong>Warning:</strong> PHPko <code>memory_limit</code> $1 da.\nZiurrenik hau oso baxua da.\nInstalazioa huts egin dezake!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] instalatuta dago",
 	"config-apc": "[http://www.php.net/apc APC] instalatuta dago",
 	"config-apcu": "[http://www.php.net/apcu APCu] instalatuta dago",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] instalatuta dago",

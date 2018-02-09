@@ -57,7 +57,6 @@
 	"config-pcre-no-utf8": "'''Fatale''': o modulo PCRE de PHP pâ ch'o segge stæto compilou sença o supporto PCRE_UTF8. A MediaWiki a-o richiede pe fonçionâ corettamente.",
 	"config-memory-raised": "O valô <code>memory_limit</code> de PHP o l'è $1, aomentou a $2.",
 	"config-memory-bad": "''Atençion:''' O valô de <code>memory_limit</code> do PHP o l'è $1.\nFoscia o l'è troppo basso.\nL'installaçion a porriæ fallî!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] o l'è installou",
 	"config-apc": "[http://www.php.net/apc APC] o l'è installou",
 	"config-apcu": "[http://www.php.net/apc APC] o l'è installou",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] o l'è installou",

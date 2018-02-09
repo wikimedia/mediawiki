@@ -62,7 +62,6 @@
 	"config-pcre-no-utf8": "'''Fazi groñs ''': evit doare eo bet kempunet modulenn PCRE PHP hep ar skor PCRE_UTF8.\nEzhomm en deus MediaWiki eus UTF-8 evit mont plaen en-dro.",
 	"config-memory-raised": "<code>memory_limit</code> ar PHP zo $1, kemmet e $2.",
 	"config-memory-bad": "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.\nRe izel eo moarvat.\nMarteze e c'hwito ar staliadenn !",
-	"config-xcache": "Staliet eo [https://xcache.lighttpd.net/ XCache]",
 	"config-apc": "Staliet eo [http://www.php.net/apc APC]",
 	"config-apcu": "Staliet eo [http://www.php.net/apcu APCu]",
 	"config-wincache": "Staliet eo [https://www.iis.net/download/WinCacheForPhp WinCache]",

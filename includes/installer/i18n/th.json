@@ -60,7 +60,6 @@
 	"config-pcre-no-utf8": "<strong>ข้อผิดพลาดร้ายแรง:</strong> โมดูล PCRE ของ PHP ดูเหมือนจะถูกคอมไพล์โดยไม่มีการรองรับ PCRE_UTF8\nMediaWiki ต้องการการรองรับ UTF-8 เพื่อให้ทำงานได้อย่างถูกต้อง",
 	"config-memory-raised": "<code>memory_limit</code> ของ PHP คือ $1 ได้เพิ่มเป็น $2",
 	"config-memory-bad": "<strong>คำเตือน:</strong> <code>memory_limit</code> ของ PHP คือ $1.\nเป็นไปได้ว่ามันอาจต่ำเกินไป\nการติดตั้งอาจล้มเหลวได้!",
-	"config-xcache": "มี [https://xcache.lighttpd.net/ XCache] ติดตั้งอยู่",
 	"config-apc": "มี [http://www.php.net/apc APC] ติดตั้งอยู่",
 	"config-apcu": "มี [http://www.php.net/apcu APCu] ติดตั้งอยู่",
 	"config-wincache": "มี [https://www.iis.net/download/WinCacheForPhp WinCache] ติดตั้งอยู่",

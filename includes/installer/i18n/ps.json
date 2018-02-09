@@ -30,7 +30,6 @@
 	"config-restart": "هو، سر له نوي يې پيل کړه",
 	"config-env-php": "د $1 PHP نصب شو.",
 	"config-env-hhvm": "HHVM $1 نصب شو.",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] نصب شو",
 	"config-apc": "[http://www.php.net/apc APC] نصب شو",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] نصب شو",
 	"config-diff3-bad": "جي ان يو ډيف3 و نه موندل شو.",

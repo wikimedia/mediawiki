@@ -58,7 +58,6 @@
 	"config-env-php": "بي إتش بي $1 مثبت.",
 	"config-env-hhvm": "نصبت HHVM $1.",
 	"config-outdated-sqlite": "<strong>تحذير:</strong> لديك SQLite $1, which وهو أقل من الحد الأدنى المطلوب للنسخة $2. SQLite سوف يكون غير متوفر.",
-	"config-xcache": "تثبيت [https://xcache.lighttpd.net/ XCache]",
 	"config-apc": "تثبيت [http://www.php.net/apc APC]",
 	"config-apcu": "تثبيت [http://www.php.net/apcu APCu]",
 	"config-wincache": "تثبيت [https://www.iis.net/download/WinCacheForPhp WinCache]",

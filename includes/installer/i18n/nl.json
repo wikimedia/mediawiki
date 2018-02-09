@@ -77,7 +77,6 @@
 	"config-pcre-no-utf8": "<strong>Onherstelbare fout:</strong> de module PRCE van PHP lijkt te zijn gecompileerd zonder ondersteuning voor PCRE_UTF8.\nMediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1 en is verhoogd tot $2.",
 	"config-memory-bad": "'''Waarschuwing:''' PHP's <code>memory_limit</code> is $1.\nDit is waarschijnlijk te laag.\nDe installatie kan mislukken!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] is op dit moment geïnstalleerd",
 	"config-apc": "[http://www.php.net/apc APC] is op dit moment geïnstalleerd",
 	"config-apcu": "[http://www.php.net/apcu APCu] is geïnstalleerd",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] is op dit moment geïnstalleerd",

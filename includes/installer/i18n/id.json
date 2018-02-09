@@ -71,7 +71,6 @@
 	"config-pcre-no-utf8": "'''Fatal''': Modul PCRE PHP tampaknya dikompilasi tanpa dukungan PCRE_UTF8.\nMediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
 	"config-memory-raised": "<code>memory_limit</code> PHP adalah $1, dinaikkan ke $2.",
 	"config-memory-bad": "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.\nIni terlalu rendah.\nInstalasi terancam gagal!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] telah diinstal",
 	"config-apc": "[http://www.php.net/apc APC] telah diinstal",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] telah diinstal",
 	"config-no-cache-apcu": "<strong>Peringatan:</strong> Tidak dapat menemukan [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] atau [http://www.iis.net/download/WinCacheForPhp WinCache]. Singgahan obyek tidak diaktifkan.",

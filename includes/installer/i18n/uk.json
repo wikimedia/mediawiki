@@ -69,7 +69,6 @@
 	"config-pcre-no-utf8": "'''Помилка''': PCRE-модуть PHP, вочевидь, було зібрано без підтримки PCRE_UTF8.\nMediaWiki вимагає підтримку UTF-8 для коректної роботи.",
 	"config-memory-raised": "Обмеження пам'яті PHP (<code>memory_limit</code>) $1, піднято до $2.",
 	"config-memory-bad": "'''Увага:''' Розмір пам'яті PHP (<code>memory_limit</code>) становить $1.\nІмовірно, це замало.\nВстановлення може не вдатись!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] встановлено",
 	"config-apc": "[http://www.php.net/apc APC] встановлено",
 	"config-apcu": "[http://www.php.net/apcu APCu] встановлено",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] встановлено",

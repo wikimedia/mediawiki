@@ -78,7 +78,6 @@
 	"config-pcre-no-utf8": "<strong>致命的エラー:</strong> PHP の PCRE が PCRE_UTF8 対応なしでコンパイルされているようです。\nMediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	"config-memory-raised": "PHPの<code>memory_limit</code>は$1で、$2に引き上げられました。",
 	"config-memory-bad": "<strong>警告:</strong> PHPの<code>memory_limit</code>に$1に設定されています。\nこの値はおそらく小さすぎます。\nインストールが失敗するおそれがあります!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] がインストール済み",
 	"config-apc": "[http://www.php.net/apc APC] がインストール済み",
 	"config-apcu": "[http://www.php.net/apc APC] がインストール済みです。",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み",

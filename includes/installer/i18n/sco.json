@@ -61,7 +61,6 @@
 	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHP's PCRE module seems tae be compiled wioot PCRE_UTF8 support.\nMediaWiki requires UTF-8 support tae function correctly.",
 	"config-memory-raised": "PHP's <code>memerie_limit</code> is $1, raised til $2.",
 	"config-memory-bad": "<strong>Warnishment:</strong> PHP's <code>memerie_limit</code> is $1.\nThis is proably ower low.\nThe installation micht fail!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] is installed.",
 	"config-apc": "[http://www.php.net/apc APC] is installed.",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] is instawed.",
 	"config-no-cache-apcu": "<strong>Wairnin:</strong> Could nae find [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].\nObject cachin isna enabled.",

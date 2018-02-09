@@ -71,7 +71,6 @@
 	"config-pcre-no-utf8": "<strong>مخرب:</strong> به‌ نظر می‌رسد پودمان پی‌سی‌آراییِ پی‌اچ‌پی بدون پشتیبانی پی‌سی‌آرایی_یو‌تی‌اف۸ تهیه شده‌است.\nمدیاویکی برای درست عمل کردن نیازمند پشتیبانی یوتی‌اف-۸ است.",
 	"config-memory-raised": "PHP's <code>memory_limit</code>, نسخهٔ $1 است، به نسخهٔ $2 ارتقاء داده شده‌است.",
 	"config-memory-bad": "'''هشدار:''' PHP's <code>memory_limit</code> نسخهٔ $1 است.\nاین ممکن است خیلی پایین باشد.\nممکن است نصب با مشکل رو‌به‌رو شود.",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] نصب شده‌است.",
 	"config-apc": "[http://www.php.net/apc APC] نصب شده‌است.",
 	"config-apcu": "[http://www.php.net/apcu APCu] نصب شده‌است",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] نصب شده‌است.",

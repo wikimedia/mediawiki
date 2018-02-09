@@ -64,7 +64,6 @@
 	"config-pcre-no-utf8": "<strong>Κρίσιμο:</strong> Το PCRE module της PHP  φαίνεται να έχει μεταγλωττιστεί χωρίς υποστήριξη  PCRE_UTF8.\nΓια τη σωστή λειτουργία του MediaWiki απαιτείται υποστήριξη UTF-8.",
 	"config-memory-raised": "Το  <code>memory_limit</code> της PHP είναι  $1 και αυξήθηκε σε  $2.",
 	"config-memory-bad": "<strong>Προειδοποίηση:</strong> το <code>memory_limit</code> της PHP είναι $1.\nΑυτή η τιμή είναι πιθανώς πολύ χαμηλή.\n\nΗ εγκατάσταση ενδέχεται να αποτύχει!",
-	"config-xcache": "[https://xcache.lighttpd.net/ Το XCache] είναι εγκατεστημένο",
 	"config-apc": "Το [http://www.php.net/apc APC] είναι εγκατεστημένο",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp Το WinCache] είναι εγκατεστημένο",
 	"config-diff3-bad": "Το GNU diff3 δεν βρέθηκε.",

@@ -63,7 +63,6 @@
 	"config-pcre-no-utf8": "'''Malubha''': Tila tinipon ang modyul na PCRE ng PHP na wala ang suporta ng PCRE_UTF8.\nNangangailangan ang MediaWiki ng suporta ng UTF-8 upang maging tama ang pag-andar.",
 	"config-memory-raised": "Ang <code>hangganan_ng_alaala</code> ng PHP ay $1, itinaas sa $2.",
 	"config-memory-bad": "'''Babala:''' Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.\nIto ay maaaring napakababa.\nMaaaring mabigo ang pagluluklok!",
-	"config-xcache": "Ininstala na ang [https://xcache.lighttpd.net/ XCache]",
 	"config-apc": "Ininstala na ang [http://www.php.net/apc APC]",
 	"config-wincache": "Ininstala na ang [https://www.iis.net/download/WinCacheForPhp WinCache]",
 	"config-mod-security": "'''Babala''': Ang tagapaghain mo ng sangkasaputan ay pinagana na mayroong [https://modsecurity.org/ mod_security]. Kung mali ang kaayusan, makapagdurulot ito ng mga suliranin para sa MediaWiki o ibang mga sopwer na nagpapahintulot sa mga tagagamit na magpaskil ng hindi makatwirang nilalaman.\nSumangguni sa [https://modsecurity.org/documentation/ mod_security kasulatan] o makipag-ugnayan sa suporta ng iyong tagapagpasinaya kapag nakatagpo ng alin mang mga kamalian.",

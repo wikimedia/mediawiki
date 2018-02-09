@@ -75,7 +75,6 @@
 	"config-pcre-no-utf8": "<strong>Önemli hata:</strong> PHP'nin PCRE modülü PCRE_UTF8 desteği olmadan derlenmiş gözüküyor.\nMediaWiki'nin doğru çalışabilmesi için UTF-8 desteği gereklidir.",
 	"config-memory-raised": "PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1, $2'ye yükseltildi.",
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] kurulu",
 	"config-apc": "[http://www.php.net/apc APC] kurulu",
 	"config-apcu": "[http://www.php.net/apcu APCu] yüklendi",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] kurulu",

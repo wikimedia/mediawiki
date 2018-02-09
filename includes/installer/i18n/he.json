@@ -66,7 +66,6 @@
 	"config-pcre-no-utf8": "<strong>שגיאה סופנית</strong>: נראה שמודול PCRE של PHP מהודר ללא תמיכה ב־PCRE_UTF8.\nמדיה־ויקי דורשת תמיכה ב־UTF-8 לפעילות נכונה.",
 	"config-memory-raised": "ערך האפשרות <code>memory_limit</code> של PHP הוא $1, הועלה ל־$2.",
 	"config-memory-bad": "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.\nזה כנראה נמוך מדי.\nההתקנה עשויה להיכשל!",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] מותקן",
 	"config-apc": "[http://www.php.net/apc APC] מותקן",
 	"config-apcu": "[http://www.php.net/apcu APCu] מותקן",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] מותקן",

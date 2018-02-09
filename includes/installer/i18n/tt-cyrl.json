@@ -27,7 +27,6 @@
 	"config-page-upgradedoc": "Яңарту",
 	"config-page-existingwiki": "Хәзерге вики",
 	"config-restart": "Әйе, яңадан башларга",
-	"config-xcache": "[https://xcache.lighttpd.net/ XCache] куелды",
 	"config-apc": "[http://www.php.net/apc APC] куелды",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] куелды",
 	"config-diff3-bad": "GNU diff3 табылмады.",

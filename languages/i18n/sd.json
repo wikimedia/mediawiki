@@ -691,7 +691,7 @@
 	"search-showingresults": "{{PLURAL:$4|نتيجو <strong>$1</strong> of <strong>$3</strong>|نتيجا <strong>$1 - $2</strong> of <strong>$3</strong>}}",
 	"search-nonefound": "توھان جي ڳولا جي نتيجي ۾ ڪجھہ بہ نہ لڌو.",
 	"powersearch-legend": "اعليٰ ڳولا",
-	"powersearch-ns": "نالن لاءِ ڇڏين وڇوٽين ۾ ڳولھيو (سرچ اِن نيم اسپيسز)",
+	"powersearch-ns": "نانءُپولارن ۾ ڳوليو:",
 	"powersearch-togglelabel": "چڪاسيو:",
 	"powersearch-toggleall": "سڀ",
 	"powersearch-togglenone": "ڪو بہ نہ",
