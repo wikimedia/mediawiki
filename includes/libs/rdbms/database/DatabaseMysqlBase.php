@@ -159,7 +159,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->reportConnectionError( $error );
 		}
 
-		if ( $dbName != '' ) {
+		if ( strlen( $dbName ) ) {
 			MediaWiki\suppressWarnings();
 			$success = $this->selectDB( $dbName );
 			MediaWiki\restoreWarnings();
