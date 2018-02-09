@@ -376,14 +376,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
 		$this->assertEquals(
-			$wgDBname,
+			'',
 			$db->getDomainId(),
-			'Main domain ID handle used; same DB name'
+			'Null domain ID handle used'
 		);
 		$this->assertEquals(
-			$wgDBname,
+			'',
 			$db->getDBname(),
-			'Main domain ID handle used; same DB name'
+			'Null domain ID handle used'
 		);
 		$this->assertEquals(
 			'',
@@ -446,16 +446,16 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
-			[ 'dbFilePath' => $dbPath ]
+			[
+				'dbFilePath' => $dbPath,
+				'dbName' => 'do_not_select_me' // explodes if DB is selected
+			]
 		);
 		$lb = $factory->getMainLB();
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
 
-		$this->assertEquals(
-			$wgDBname,
-			$db->getDomainID()
-		);
+		$this->assertEquals( '', $db->getDomainID(), "Null domain used" );
 
 		$this->assertEquals(
 			$this->quoteTable( $db, 'page' ),
