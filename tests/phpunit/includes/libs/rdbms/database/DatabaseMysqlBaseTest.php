@@ -354,6 +354,38 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @dataProvider provideCommonDomainGTIDs
+	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 */
+	public function testCommonGtidDomains( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
+		$this->assertEquals( $gtids, MySQLMasterPos::getCommonDomainGTIDs( $pos, $ref ) );
+	}
+
+	public static function provideCommonDomainGTIDs() {
+		return [
+			[
+				new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ),
+				new MySQLMasterPos( '255-11-1000', 1 ),
+				[ '255-13-99' ]
+			],
+			[
+				new MySQLMasterPos(
+					'2E11FA47-71CA-11E1-9E33-C80AA9429562:5,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:99,' .
+					'7E11FA47-71CA-11E1-9E33-C80AA9429562:30',
+					1
+				),
+				new MySQLMasterPos(
+					'1E11FA47-71CA-11E1-9E33-C80AA9429562:100,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:66',
+					1
+				),
+				[ '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ]
+			]
+		];
+	}
+
+	/**
 	 * @dataProvider provideLagAmounts
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLag
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
