@@ -23,6 +23,8 @@ use Wikimedia\ScopedCallback;
  * @covers DateFormatter
  * @covers LinkHolderArray
  * @covers StripState
+ * @covers ParserOptions
+ * @covers ParserOutput
  */
 class ParserIntegrationTest extends PHPUnit_Framework_TestCase {
 
