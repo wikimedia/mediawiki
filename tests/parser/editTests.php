@@ -62,10 +62,9 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function setupFileData() {
-		global $wgParserTestFiles;
 		$this->testFiles = [];
 		$this->testCount = 0;
-		foreach ( $wgParserTestFiles as $file ) {
+		foreach ( ParserTestRunner::getParserTestFiles() as $file ) {
 			$fileInfo = TestFileReader::read( $file );
 			$this->testFiles[$file] = $fileInfo;
 			$this->testCount += count( $fileInfo['tests'] );
