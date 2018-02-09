@@ -446,7 +446,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
-			[ 'dbFilePath' => $dbPath ]
+			[
+				'dbFilePath' => $dbPath,
+				'dbName' => 'do_not_select_me' // explodes if DB is selected
+			]
 		);
 		$lb = $factory->getMainLB();
 		/** @var Database $db */
