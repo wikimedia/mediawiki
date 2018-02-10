@@ -62,9 +62,9 @@ class ExecutableFinder {
 	protected static function findExecutable( $path, $name, $versionInfo = false ) {
 		$command = $path . DIRECTORY_SEPARATOR . $name;
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$file_exists = is_executable( $command );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $file_exists ) {
 			if ( !$versionInfo ) {

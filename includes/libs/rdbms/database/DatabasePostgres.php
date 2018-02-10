@@ -24,7 +24,7 @@ namespace Wikimedia\Rdbms;
 
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
-use MediaWiki;
+use Wikimedia;
 use Exception;
 
 /**
@@ -266,9 +266,9 @@ class DatabasePostgres extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = pg_free_result( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
 		}
@@ -278,9 +278,9 @@ class DatabasePostgres extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = pg_fetch_object( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
 		# @todo hashar: not sure if the following test really trigger if the object
@@ -300,9 +300,9 @@ class DatabasePostgres extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = pg_fetch_array( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {
@@ -319,9 +319,9 @@ class DatabasePostgres extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$n = pg_num_rows( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$conn = $this->getBindingHandle();
 		if ( pg_last_error( $conn ) ) {

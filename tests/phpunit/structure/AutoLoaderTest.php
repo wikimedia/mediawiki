@@ -58,9 +58,9 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				continue;
 			}
 
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$contents = file_get_contents( $filePath );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 
 			if ( $contents === false ) {
 				$actual[$class] = "[couldn't read file '$filePath']";

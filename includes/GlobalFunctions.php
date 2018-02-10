@@ -877,9 +877,9 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$bits = parse_url( $url );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
@@ -2009,7 +2009,7 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 /**
  * Reference-counted warning suppression
  *
- * @deprecated since 1.26, use MediaWiki\suppressWarnings() directly
+ * @deprecated since 1.26, use Wikimedia\suppressWarnings() directly
  * @param bool $end
  */
 function wfSuppressWarnings( $end = false ) {
@@ -2017,11 +2017,11 @@ function wfSuppressWarnings( $end = false ) {
 }
 
 /**
- * @deprecated since 1.26, use MediaWiki\restoreWarnings() directly
+ * @deprecated since 1.26, use Wikimedia\restoreWarnings() directly
  * Restore error level to previous value
  */
 function wfRestoreWarnings() {
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 }
 
 /**
@@ -2150,9 +2150,9 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	// Turn off the normal warning, we're doing our own below
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( !$ok ) {
 		// directory may have been created on another request since we last checked
@@ -2412,9 +2412,9 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
@@ -2496,9 +2496,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
@@ -3122,15 +3122,15 @@ function wfMemoryLimit() {
 		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
 		if ( $conflimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			return $conflimit;
 		} elseif ( $conflimit > $memlimit ) {
 			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			return $conflimit;
 		}
 	}
@@ -3283,9 +3283,9 @@ function wfUnpack( $format, $data, $length = false ) {
 		}
 	}
 
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$result = unpack( $format, $data );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( $result === false ) {
 		// If it cannot extract the packed data.

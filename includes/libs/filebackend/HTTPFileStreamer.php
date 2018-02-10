@@ -84,9 +84,9 @@ class HTTPFileStreamer {
 				is_int( $header ) ? HttpStatus::header( $header ) : header( $header );
 			};
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$info = stat( $this->path );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {

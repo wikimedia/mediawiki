@@ -1397,9 +1397,9 @@ class ApiMain extends ApiBase {
 			$this->getRequest()->response()->statusHeader( 304 );
 
 			// Avoid outputting the compressed representation of a zero-length body
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			ini_set( 'zlib.output_compression', 0 );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			wfClearOutputBuffers();
 
 			return false;

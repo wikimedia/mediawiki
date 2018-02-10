@@ -711,9 +711,9 @@ class GlobalTest extends MediaWikiTestCase {
 	public function testWfMkdirParents() {
 		// Should not return true if file exists instead of directory
 		$fname = $this->getNewTempFile();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = wfMkdirParents( $fname );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		$this->assertFalse( $ok );
 	}
 

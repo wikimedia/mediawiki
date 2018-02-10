@@ -265,9 +265,9 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( !isset( $this->params ) ) {
 			$blob = $this->getRawParameters();
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$params = LogEntryBase::extractParams( $blob );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;

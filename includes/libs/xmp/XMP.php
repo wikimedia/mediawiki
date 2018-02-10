@@ -343,9 +343,9 @@ class XMPReader implements LoggerAwareInterface {
 			}
 			if ( $this->charset !== 'UTF-8' ) {
 				// don't convert if already utf-8
-				MediaWiki\suppressWarnings();
+				Wikimedia\suppressWarnings();
 				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
-				MediaWiki\restoreWarnings();
+				Wikimedia\restoreWarnings();
 			}
 
 			// Ensure the XMP block does not have an xml doctype declaration, which
@@ -571,7 +571,7 @@ class XMPReader implements LoggerAwareInterface {
 
 		// Even with LIBXML_NOWARNING set, XMLReader::read gives a warning
 		// when parsing truncated XML, which causes unit tests to fail.
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		while ( $reader->read() ) {
 			if ( $reader->nodeType === XMLReader::ELEMENT ) {
 				// Reached the first element without hitting a doctype declaration
@@ -585,7 +585,7 @@ class XMPReader implements LoggerAwareInterface {
 				break;
 			}
 		}
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( !is_null( $result ) ) {
 			return $result;

@@ -161,9 +161,9 @@ class GIFMetadataExtractor {
 					UtfNormal\Validator::quickIsNFCVerify( $dataCopy );
 
 					if ( $dataCopy !== $data ) {
-						MediaWiki\suppressWarnings();
+						Wikimedia\suppressWarnings();
 						$data = iconv( 'windows-1252', 'UTF-8', $data );
-						MediaWiki\restoreWarnings();
+						Wikimedia\restoreWarnings();
 					}
 
 					$commentCount = count( $comment );

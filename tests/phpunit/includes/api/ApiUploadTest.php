@@ -456,9 +456,9 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$chunkSessionKey = false;
 		$resultOffset = 0;
 		// Open the file:
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$handle = fopen( $filePath, "r" );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $handle === false ) {
 			$this->markTestIncomplete( "could not open file: $filePath" );
@@ -466,9 +466,9 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		while ( !feof( $handle ) ) {
 			// Get the current chunk
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$chunkData = fread( $handle, $chunkSize );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 
 			// Upload the current chunk into the $_FILE object:
 			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );

@@ -528,9 +528,9 @@ $wgJsMimeType = 'text/javascript';
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 }
 
 if ( $wgNewUserLog ) {
@@ -717,9 +717,9 @@ wfMemoryLimit();
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
 if ( is_null( $wgLocaltimezone ) ) {
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$wgLocaltimezone = date_default_timezone_get();
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 }
 
 date_default_timezone_set( $wgLocaltimezone );
