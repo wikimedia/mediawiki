@@ -900,7 +900,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID );
-		\MediaWiki\quietCall( 'session_start' );
+		\Wikimedia\quietCall( 'session_start' );
 		$_SESSION['foo'] = __METHOD__;
 		$backend->resetId();
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
@@ -938,7 +938,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID . 'x' );
-		\MediaWiki\quietCall( 'session_start' );
+		\Wikimedia\quietCall( 'session_start' );
 		$backend->unpersist();
 		$this->assertSame( self::SESSIONID . 'x', session_id() );
 
