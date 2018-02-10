@@ -500,7 +500,7 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$usageEx = new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] );
 		MediaWiki\restoreWarnings();
 

@@ -111,14 +111,14 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			if ( !curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
 				$this->logger->debug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
 					"Probably open_basedir is set.\n" );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		if ( $this->profiler ) {

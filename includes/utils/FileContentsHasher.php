@@ -93,11 +93,11 @@ class FileContentsHasher {
 			$filePaths = (array)$filePaths;
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 
 		if ( count( $filePaths ) === 1 ) {
 			$hash = $instance->getFileContentsHashInternal( $filePaths[0], $algo );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			return $hash;
 		}
 
@@ -106,7 +106,7 @@ class FileContentsHasher {
 			return $instance->getFileContentsHashInternal( $filePath, $algo ) ?: '';
 		}, $filePaths );
 
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$hashes = implode( '', $hashes );
 		return $hashes ? hash( $algo, $hashes ) : false;

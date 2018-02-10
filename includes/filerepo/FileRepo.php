@@ -1318,9 +1318,9 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		return $status;

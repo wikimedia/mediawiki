@@ -25,7 +25,7 @@ class ParserTestResultNormalizer {
 		// guaranteed to give accurate results. For example, it may introduce
 		// differences in the number of line breaks in <pre> tags.
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( !$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
 			$this->invalid = true;
 		}

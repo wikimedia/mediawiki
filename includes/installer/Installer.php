@@ -598,9 +598,9 @@ abstract class Installer {
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( !$_lsExists ) {
 			return false;
@@ -805,14 +805,14 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
 		// with utf8 support, but not unicode property support.
 		// check that \p{Zs} (space separators) matches
 		// U+3000 (Ideographic space)
 		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\xE3\x80\x80-" );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 
@@ -1205,7 +1205,7 @@ abstract class Installer {
 
 		// it would be good to check other popular languages here, but it'll be slow.
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
@@ -1224,14 +1224,14 @@ abstract class Installer {
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
-					MediaWiki\restoreWarnings();
+					Wikimedia\restoreWarnings();
 
 					return $ext;
 				}
 			}
 		}
 
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		return false;
 	}
@@ -1700,8 +1700,8 @@ abstract class Installer {
 	 * Some long-running pages (Install, Upgrade) will want to do this
 	 */
 	protected function disableTimeLimit() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		set_time_limit( 0 );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 	}
 }

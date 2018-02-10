@@ -1156,7 +1156,7 @@ abstract class Maintenance {
 
 		$wgShowSQLErrors = true;
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		set_time_limit( 0 );
 		MediaWiki\restoreWarnings();
 

@@ -37,7 +37,7 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 
 	public function execute() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$content = file_get_contents( $this->getOption( 'file' ) );
 		MediaWiki\restoreWarnings();
 		if ( $content === false ) {

@@ -47,7 +47,7 @@ class JSParseHelper extends Maintenance {
 
 		$parser = new JSParser();
 		foreach ( $files as $filename ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$js = file_get_contents( $filename );
 			MediaWiki\restoreWarnings();
 			if ( $js === false ) {

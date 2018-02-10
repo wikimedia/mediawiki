@@ -52,7 +52,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$row->rc_deleted = 'bar';
 		$row->rc_comment = 'comment';
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$rc = RecentChange::newFromRow( $row );
 		MediaWiki\restoreWarnings();
 

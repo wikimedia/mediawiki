@@ -722,7 +722,7 @@ TEXT
 	}
 
 	private function getTextSpawned( $id ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
@@ -774,7 +774,7 @@ TEXT
 	}
 
 	private function closeSpawn() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}

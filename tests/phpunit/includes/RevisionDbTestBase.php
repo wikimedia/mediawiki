@@ -903,7 +903,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'text_id' => 123456789, // not in the test DB
 		] );
 
-		MediaWiki\suppressWarnings(); // bad text_id will trigger a warning.
+		Wikimedia\suppressWarnings(); // bad text_id will trigger a warning.
 
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );

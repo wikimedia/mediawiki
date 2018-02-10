@@ -86,7 +86,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayWithBadPageId() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$rev = new Revision( [ 'page' => 77777777 ] );
 		$this->assertSame( 77777777, $rev->getPage() );
 		MediaWiki\restoreWarnings();
@@ -320,7 +320,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testConstructFromRowWithBadPageId() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->overrideMwServices();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$rev = new Revision( (object)[ 'rev_page' => 77777777 ] );
 		$this->assertSame( 77777777, $rev->getPage() );
 		MediaWiki\restoreWarnings();
