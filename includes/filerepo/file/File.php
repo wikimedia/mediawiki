@@ -2186,7 +2186,7 @@ abstract class File implements IDBAccessObject {
 			$metadata = $this->getMetadata();
 
 			if ( is_string( $metadata ) ) {
-				$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
+				$metadata = Wikimedia\quietCall( 'unserialize', $metadata );
 			}
 
 			if ( !is_array( $metadata ) ) {
