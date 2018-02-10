@@ -197,8 +197,20 @@ class ExtensionProcessor implements Processor {
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
-		$this->extractServiceWiringFiles( $dir, $info );
-		$this->extractParserTestFiles( $dir, $info );
+		if ( isset( $info['ServiceWiringFiles'] ) ) {
+			$this->extractPathBasedGlobal(
+				'wgServiceWiringFiles',
+				$dir,
+				$info['ServiceWiringFiles']
+			);
+		}
+		if ( isset( $info['ParserTestFiles'] ) ) {
+			$this->extractPathBasedGlobal(
+				'wgParserTestFiles',
+				$dir,
+				$info['ParserTestFiles']
+			);
+		}
 		$name = $this->extractCredits( $path, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[$name] = $info['callback'];
@@ -499,19 +511,9 @@ class ExtensionProcessor implements Processor {
 		$this->globals[$key] = $value;
 	}
 
-	protected function extractServiceWiringFiles( $dir, array $info ) {
-		if ( isset( $info['ServiceWiringFiles'] ) ) {
-			foreach ( $info['ServiceWiringFiles'] as $path ) {
-				$this->globals['wgServiceWiringFiles'][] = "$dir/$path";
-			}
-		}
-	}
-
-	protected function extractParserTestFiles( $dir, array $info ) {
-		if ( isset( $info['ParserTestFiles'] ) ) {
-			foreach ( $info['ParserTestFiles'] as $path ) {
-				$this->globals['wgParserTestFiles'][] = "$dir/$path";
-			}
+	protected function extractPathBasedGlobal( $global, $dir, $paths ) {
+		foreach ( $paths as $path ) {
+			$this->globals[$global][] = "$dir/$path";
 		}
 	}
 
