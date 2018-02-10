@@ -2584,7 +2584,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			]
 		];
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$actual = $be->sanitizeOpHeaders( $input );
 		MediaWiki\restoreWarnings();
 

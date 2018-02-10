@@ -3369,9 +3369,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = false,
 		callable $inputCallback = null
 	) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$fp = fopen( $filename, 'r' );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( false === $fp ) {
 			throw new RuntimeException( "Could not open \"{$filename}\".\n" );
@@ -3810,9 +3810,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->mConn ) {
 			// Avoid connection leaks for sanity. Normally, resources close at script completion.
 			// The connection might already be closed in zend/hhvm by now, so suppress warnings.
-			\MediaWiki\suppressWarnings();
+			\Wikimedia\suppressWarnings();
 			$this->closeConnection();
-			\MediaWiki\restoreWarnings();
+			\Wikimedia\restoreWarnings();
 			$this->mConn = false;
 			$this->mOpened = false;
 		}

@@ -140,7 +140,7 @@ class RebuildFileCache extends Maintenance {
 						}
 					}
 
-					MediaWiki\suppressWarnings(); // header notices
+					Wikimedia\suppressWarnings(); // header notices
 					// Cache ?action=view
 					$wgRequestTime = microtime( true ); # T24852
 					ob_start();

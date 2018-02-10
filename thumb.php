@@ -235,7 +235,7 @@ function wfStreamThumb( array $params ) {
 		// Fix IE brokenness
 		$imsString = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 		// Calculate time
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$imsUnix = strtotime( $imsString );
 		MediaWiki\restoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {

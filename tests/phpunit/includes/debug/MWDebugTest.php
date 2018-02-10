@@ -11,7 +11,7 @@ class MWDebugTest extends MediaWikiTestCase {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 		MWDebug::init();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 	}
 
 	public static function tearDownAfterClass() {

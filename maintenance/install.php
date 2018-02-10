@@ -132,7 +132,7 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the options "dbpass" and "dbpassfile". '
 					. 'The content of "dbpassfile" overrides "dbpass".' );
 			}
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$dbpass = file_get_contents( $dbpassfile ); // returns false on failure
 			MediaWiki\restoreWarnings();
 			if ( $dbpass === false ) {
@@ -149,7 +149,7 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the options "pass" and "passfile". '
 					. 'The content of "passfile" overrides "pass".' );
 			}
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$pass = file_get_contents( $passfile ); // returns false on failure
 			MediaWiki\restoreWarnings();
 			if ( $pass === false ) {

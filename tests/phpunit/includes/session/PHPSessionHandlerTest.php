@@ -130,7 +130,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		);
 		$wrap->setEnableFlags( 'warn' );
 
-		\MediaWiki\suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		ini_set( 'session.serialize_handler', $handler );
 		\MediaWiki\restoreWarnings();
 		if ( ini_get( 'session.serialize_handler' ) !== $handler ) {

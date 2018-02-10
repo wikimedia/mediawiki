@@ -58,7 +58,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				continue;
 			}
 
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$contents = file_get_contents( $filePath );
 			MediaWiki\restoreWarnings();
 

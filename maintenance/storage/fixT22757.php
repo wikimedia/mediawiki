@@ -310,7 +310,7 @@ class FixT22757 extends Maintenance {
 		$text = $secondaryRow->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			list( /* $proto */, $path ) = explode( '://', $url, 2 );
 			MediaWiki\restoreWarnings();
 

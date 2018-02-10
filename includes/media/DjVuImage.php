@@ -117,9 +117,9 @@ class DjVuImage {
 	}
 
 	function getInfo() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read\n" );
 

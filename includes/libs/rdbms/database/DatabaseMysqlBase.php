@@ -160,9 +160,9 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( strlen( $dbName ) ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$success = $this->selectDB( $dbName );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$success ) {
 				$this->queryLogger->error(
 					"Error selecting database {db_name} on server {db_server}",
@@ -257,9 +257,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = $this->mysqlFreeResult( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -282,9 +282,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = $this->mysqlFetchObject( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
@@ -318,9 +318,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = $this->mysqlFetchArray( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
@@ -354,9 +354,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$n = $this->mysqlNumRows( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -467,12 +467,12 @@ abstract class DatabaseMysqlBase extends Database {
 	public function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$error = $this->mysqlError( $this->mConn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}

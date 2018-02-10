@@ -456,7 +456,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$chunkSessionKey = false;
 		$resultOffset = 0;
 		// Open the file:
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$handle = fopen( $filePath, "r" );
 		MediaWiki\restoreWarnings();
 
@@ -466,7 +466,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		while ( !feof( $handle ) ) {
 			// Get the current chunk
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$chunkData = fread( $handle, $chunkSize );
 			MediaWiki\restoreWarnings();
 

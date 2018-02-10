@@ -2140,7 +2140,7 @@ class Language {
 			return $ts;
 		}
 
-		MediaWiki\suppressWarnings(); // E_STRICT system time bitching
+		Wikimedia\suppressWarnings(); // E_STRICT system time bitching
 		# Generate an adjusted date; take advantage of the fact that mktime
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
@@ -2605,7 +2605,7 @@ class Language {
 		# *input* string. We just ignore those too.
 		# REF: https://bugs.php.net/bug.php?id=37166
 		# REF: https://phabricator.wikimedia.org/T18885
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$text = iconv( $in, $out . '//IGNORE', $string );
 		MediaWiki\restoreWarnings();
 		return $text;
