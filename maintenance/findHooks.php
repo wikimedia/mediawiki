@@ -245,7 +245,7 @@ class FindHooks extends Maintenance {
 		$m = [];
 		preg_match_all(
 			// All functions which runs hooks
-			'/(?:wfRunHooks|Hooks\:\:run)\s*\(\s*' .
+			'/(?:wfRunHooks|Hooks\:\:run|Hooks\:\:runWithoutAbort)\s*\(\s*' .
 				// First argument is the hook name as string
 				'([\'"])(.*?)\1' .
 				// Comma for second argument
