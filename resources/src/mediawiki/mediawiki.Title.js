@@ -4,52 +4,9 @@
  * @since 1.18
  */
 
-/* eslint-disable no-use-before-define */
-
 ( function ( mw, $ ) {
-	/**
-	 * Parse titles into an object structure. Note that when using the constructor
-	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
-	 * logic directly and get null for invalid titles which is easier to work with.
-	 *
-	 * Note that in the constructor and #newFromText method, `namespace` is the **default** namespace
-	 * only, and can be overridden by a namespace prefix in `title`. If you do not want this behavior,
-	 * use #makeTitle. Compare:
-	 *
-	 *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
-	 *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
-	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
-	 *
-	 *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
-	 *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
-	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
-	 *
-	 *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
-	 *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
-	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
-	 *
-	 * @class mw.Title
-	 * @constructor
-	 * @param {string} title Title of the page. If no second argument given,
-	 *  this will be searched for a namespace
-	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
-	 * @throws {Error} When the title is invalid
-	 */
-	function Title( title, namespace ) {
-		var parsed = parse( title, namespace );
-		if ( !parsed ) {
-			throw new Error( 'Unable to parse title' );
-		}
-
-		this.namespace = parsed.namespace;
-		this.title = parsed.title;
-		this.ext = parsed.ext;
-		this.fragment = parsed.fragment;
-	}
-
 	/* Private members */
 
-	// eslint-disable-next-line vars-on-top
 	var
 		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
@@ -457,6 +414,46 @@
 			// There is a special byte limit for file names and ... remember the dot
 			return trimToByteLength( name, FILENAME_MAX_BYTES - extension.length - 1 ) + '.' + extension;
 		};
+
+	/**
+	 * Parse titles into an object structure. Note that when using the constructor
+	 * directly, passing invalid titles will result in an exception. Use #newFromText to use the
+	 * logic directly and get null for invalid titles which is easier to work with.
+	 *
+	 * Note that in the constructor and #newFromText method, `namespace` is the **default** namespace
+	 * only, and can be overridden by a namespace prefix in `title`. If you do not want this behavior,
+	 * use #makeTitle. Compare:
+	 *
+	 *     new mw.Title( 'Foo', NS_TEMPLATE ).getPrefixedText();                  // => 'Template:Foo'
+	 *     mw.Title.newFromText( 'Foo', NS_TEMPLATE ).getPrefixedText();          // => 'Template:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Foo' ).getPrefixedText();            // => 'Template:Foo'
+	 *
+	 *     new mw.Title( 'Category:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Category:Foo'
+	 *     mw.Title.newFromText( 'Category:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Category:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Category:Foo' ).getPrefixedText();   // => 'Template:Category:Foo'
+	 *
+	 *     new mw.Title( 'Template:Foo', NS_TEMPLATE ).getPrefixedText();         // => 'Template:Foo'
+	 *     mw.Title.newFromText( 'Template:Foo', NS_TEMPLATE ).getPrefixedText(); // => 'Template:Foo'
+	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
+	 *
+	 * @class mw.Title
+	 * @constructor
+	 * @param {string} title Title of the page. If no second argument given,
+	 *  this will be searched for a namespace
+	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
+	 * @throws {Error} When the title is invalid
+	 */
+	function Title( title, namespace ) {
+		var parsed = parse( title, namespace );
+		if ( !parsed ) {
+			throw new Error( 'Unable to parse title' );
+		}
+
+		this.namespace = parsed.namespace;
+		this.title = parsed.title;
+		this.ext = parsed.ext;
+		this.fragment = parsed.fragment;
+	}
 
 	/* Static members */
 
