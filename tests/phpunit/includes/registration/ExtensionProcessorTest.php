@@ -647,7 +647,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testExtractSimplePathBased() {
+	public function testExtractPathBasedGlobal() {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo(
 			$this->dir,
