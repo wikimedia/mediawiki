@@ -82,7 +82,7 @@ class SpecialLog extends SpecialPage {
 			if ( $offender ) {
 				if ( $offender->getId() > 0 ) {
 					$qc = [ 'ls_field' => 'target_author_id', 'ls_value' => $offender->getId() ];
-				} else {
+				} elseif ( empty( $opts->getValue( 'offender' ) ) === false ) {
 					$qc = [ 'ls_field' => 'target_author_ip', 'ls_value' => $offender->getName() ];
 				}
 			}
