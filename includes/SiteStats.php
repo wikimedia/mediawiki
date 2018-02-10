@@ -414,10 +414,10 @@ class SiteStatsInit {
 	 */
 	public static function doPlaceholderInit() {
 		$dbw = wfGetDB( DB_MASTER );
-		if ( $dbw->selectRow( 'site_stats', '1', [], __METHOD__ ) === false ) {
+		if ( $dbw->selectField( 'site_stats', '1', [],  __METHOD__ ) === false ) {
 			$dbw->insert(
 				'site_stats',
-				array_fill_keys( SiteStats::selectFields(), 0 ),
+				[ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ),
 				__METHOD__,
 				[ 'IGNORE' ]
 			);
