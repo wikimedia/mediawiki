@@ -82,6 +82,7 @@ class ExtensionRegistry {
 	private static $instance;
 
 	/**
+	 * @codeCoverageIgnore
 	 * @return ExtensionRegistry
 	 */
 	public static function getInstance() {
@@ -105,9 +106,11 @@ class ExtensionRegistry {
 			} else {
 				throw new Exception( "$path does not exist!" );
 			}
+			// @codeCoverageIgnoreStart
 			if ( !$mtime ) {
 				$err = error_get_last();
 				throw new Exception( "Couldn't stat $path: {$err['message']}" );
+				// @codeCoverageIgnoreEnd
 			}
 		}
 		$this->queued[$path] = $mtime;
