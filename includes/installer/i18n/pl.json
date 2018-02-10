@@ -22,7 +22,8 @@
 			"The Polish",
 			"Macofe",
 			"Sethakill",
-			"Peter Bowman"
+			"Peter Bowman",
+			"Ankam"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -81,7 +82,7 @@
 	"config-apc": "[Http://www.php.net/apc APC] jest zainstalowany",
 	"config-apcu": "[http://www.php.net/apcu APCu] jest zainstalowany",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany",
-	"config-no-cache-apcu": "<strong>Ostrzeżenie:</strong> Nie można znaleźć [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].\nPamięć podręczna obiektów nie zostanie włączona.",
+	"config-no-cache-apcu": "<strong>Ostrzeżenie:</strong> Nie można było znaleźć [http://www.php.net/apcu APCu] ani [http://www.iis.net/download/WinCacheForPhp WinCache].\nPamięć podręczna obiektów nie została włączona.",
 	"config-mod-security": "''' Ostrzeżenie ''': Serwer sieci web ma włączone [https://modsecurity.org/ mod_security]. Jeśli jest niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.\nSprawdź w [https://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	"config-diff3-bad": "Nie znaleziono GNU diff3.",
 	"config-git": "Znaleziono oprogramowanie kontroli wersji Git: <code>$1</code>.",
@@ -266,7 +267,7 @@
 	"config-cache-options": "Ustawienia buforowania obiektów:",
 	"config-cache-help": "Buforowanie obiektów jest używane do przyspieszenia MediaWiki przez trzymanie w pamięci podręcznej często używanych danych.\nŚrednie oraz duże witryny są wysoce zachęcane by je włączyć, ale małe witryny również dostrzegą korzyści.",
 	"config-cache-none": "Brak buforowania (wszystkie funkcje będą działać, ale mogą wystąpić kłopoty z wydajnością na dużych witrynach wiki)",
-	"config-cache-accel": "Buforowania obiektów PHP (APC, APCu, XCache lub WinCache)",
+	"config-cache-accel": "Buforowania obiektów PHP (APC, APCu lub WinCache)",
 	"config-cache-memcached": "Użyj Memcached (wymaga dodatkowej instalacji i konfiguracji)",
 	"config-memcached-servers": "Serwery Memcached:",
 	"config-memcached-help": "Lista adresów IP do wykorzystania przez Memcached.\nAdresy powinny być umieszczane po jednym w linii i określać również wykorzystywany port. Na przykład:\n 127.0.0.1:11211\n 192.168.1.25:1234",

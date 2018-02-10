@@ -93,7 +93,8 @@
 			"Wojtas",
 			"Kastanoto",
 			"Sebek Adamowicz",
-			"Cholewka"
+			"Cholewka",
+			"Ankam"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2277,7 +2278,7 @@
 	"rollback-success": "Wycofano edycje {{GENDER:$3|użytkownika|użytkowniczki}} $1;\nprzywrócono ostatnią wersję autorstwa {{GENDER:$4|$2}}.",
 	"rollback-success-notify": "Wycofano edycje użytkownika $1;\nprzywrócono ostatnią wersję autorstwa $2. [$3 Pokaż zmiany]",
 	"sessionfailure-title": "Błąd sesji",
-	"sessionfailure": "Wystąpił problem z weryfikacją zalogowania.\nPolecenie zostało anulowane, aby uniknąć przechwycenia sesji.\nNaciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wydaj polecenie.",
+	"sessionfailure": "Wydaje się, że wystąpił błąd z Twoją sesją zalogowania;\nto działanie zostało anulowane, aby uniknąć przechwycenia sesji.\nPrześlij formularz jeszcze raz.",
 	"changecontentmodel": "Edycja modelu zawartości strony",
 	"changecontentmodel-legend": "Zmienić model zawartości",
 	"changecontentmodel-title-label": "Tytuł strony",
