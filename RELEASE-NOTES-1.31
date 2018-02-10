@@ -241,6 +241,11 @@ changes to languages because of Phabricator reports.
   * Title::isCssJsSubpage – use ::isUserConfigPage
   * Title::isCssSubpage – use ::isUserCssConfigPage
   * Title::isJsSubpage – use ::isUserJsConfigPage
+* The following variables and method in EditPage, deprecated in MediaWiki 1.30, were removed:
+  * $isCssJsSubpage — use ::isUserConfigPage()
+  * $isCssSubpage — use ::isUserCssConfigPage()
+  * $isJsSubpage — use ::isUserJsConfigPage()
+  * $isWrongCaseCssJsPage – use ::isWrongCaseCssJsPage()
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
