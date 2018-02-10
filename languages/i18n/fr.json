@@ -2375,7 +2375,7 @@
 	"rollback-success": "Révocation des modifications effectuées par {{GENDER:$3|$1}} ;\nrétablissement de la dernière version par {{GENDER:$4|$2}}.",
 	"rollback-success-notify": "Modifications annulées par $1 ;\nretour à la dernière révision par $2. [$3 Voir les changements]",
 	"sessionfailure-title": "Erreur de session",
-	"sessionfailure": "Votre session de connexion semble avoir des problèmes ;\ncette action a été annulée en prévention d'un piratage de session.\nVeuillez cliquer sur « Précédent », rechargez la page d'où vous venez, puis réessayez.",
+	"sessionfailure": "Votre session de connexion semble avoir des problèmes ;\ncette action a été annulée en prévention d'un piratage de session.\nVeuillez soumettre le formulaire de nouveau.",
 	"changecontentmodel": "Modifier le modèle de contenu d’une page",
 	"changecontentmodel-legend": "Modifier le modèle de contenu",
 	"changecontentmodel-title-label": "Titre de la page",

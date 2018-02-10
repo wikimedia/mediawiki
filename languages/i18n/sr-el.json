@@ -214,7 +214,7 @@
 	"talk": "Razgovor",
 	"views": "Pregledi",
 	"toolbox": "Alatke",
-	"tool-link-userrights": "Promeni {{GENDER:$1|korisnik}} grupe",
+	"tool-link-userrights": "Promeni {{GENDER:$1|korisničke}} grupe",
 	"tool-link-userrights-readonly": "Prikaži {{GENDER:$1|korisnik}} grupe",
 	"tool-link-emailuser": "Pošalji imejl",
 	"imagepage": "Pogledaj stranicu datoteke",
