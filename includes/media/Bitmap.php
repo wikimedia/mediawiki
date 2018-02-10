@@ -203,9 +203,9 @@ class BitmapHandler extends TransformationalImageHandler {
 				'-layers', 'merge',
 				'-background', 'white',
 			];
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$xcfMeta = unserialize( $image->getMetadata() );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $xcfMeta
 				&& isset( $xcfMeta['colorType'] )
 				&& $xcfMeta['colorType'] === 'greyscale-alpha'

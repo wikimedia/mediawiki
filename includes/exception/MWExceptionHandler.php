@@ -664,7 +664,7 @@ TXT;
 		$catcher = self::CAUGHT_BY_HANDLER;
 		// The set_error_handler callback is independent from error_reporting.
 		// Filter out unwanted errors manually (e.g. when
-		// MediaWiki\suppressWarnings is active).
+		// Wikimedia\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
 		if ( !$suppressed ) {
 			$logger = LoggerFactory::getInstance( $channel );

@@ -190,9 +190,9 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 		// JSMin+'s parser will throw an exception if output is not valid JS.
 		// suppression of warnings needed for stupid crap
 		if ( $expectedValid ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$parser = new JSParser();
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			$parser->parse( $minified, 'minify-test.js', 1 );
 		}
 

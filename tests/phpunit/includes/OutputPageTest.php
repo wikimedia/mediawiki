@@ -266,9 +266,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			'UploadPath' => $uploadPath,
 		] );
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$actual = OutputPage::transformResourcePath( $conf, $path );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$this->assertEquals( $expected ?: $path, $actual );
 	}

@@ -681,9 +681,9 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	protected function unserialize( $serial ) {
 		if ( function_exists( 'gzinflate' ) ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$decomp = gzinflate( $serial );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 
 			if ( false !== $decomp ) {
 				$serial = $decomp;

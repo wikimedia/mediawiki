@@ -53,7 +53,7 @@ class UIDGenerator {
 		}
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			if ( wfIsWindows() ) {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
@@ -67,7 +67,7 @@ class UIDGenerator {
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit

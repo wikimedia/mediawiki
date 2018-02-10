@@ -249,10 +249,10 @@ class SvgHandler extends ImageHandler {
 		$ok = symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		} );
 		if ( !$ok ) {
 			wfDebugLog( 'thumbnail',
@@ -418,9 +418,9 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function unpackMetadata( $metadata ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$unser = unserialize( $metadata );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
 			return $unser;
 		} else {

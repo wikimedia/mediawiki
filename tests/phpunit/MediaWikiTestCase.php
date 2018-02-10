@@ -1597,9 +1597,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $function
 	 */
 	public function hideDeprecated( $function ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		wfDeprecated( $function );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 	}
 
 	/**
@@ -1893,9 +1893,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		# This check may also protect against code injection in
 		# case of broken installations.
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( !$haveDiff3 ) {
 			$this->markTestSkipped( "Skip test, since diff3 is not configured" );

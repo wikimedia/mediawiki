@@ -730,10 +730,10 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 		global $IP;
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		$interwikis = [];
 		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-list' );

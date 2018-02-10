@@ -722,13 +722,13 @@ TEXT
 	}
 
 	private function getTextSpawned( $id ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
 		$text = $this->getTextSpawnedOnce( $id );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		return $text;
 	}
@@ -774,7 +774,7 @@ TEXT
 	}
 
 	private function closeSpawn() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}
@@ -791,7 +791,7 @@ TEXT
 			pclose( $this->spawnProc );
 		}
 		$this->spawnProc = false;
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 	}
 
 	private function getTextSpawnedOnce( $id ) {
