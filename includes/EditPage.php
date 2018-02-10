@@ -238,30 +238,6 @@ class EditPage {
 	/** @var bool */
 	public $isConflict = false;
 
-	/**
-	 * @deprecated since 1.30 use Title::isUserConfigPage()
-	 * @var bool
-	 */
-	public $isCssJsSubpage = false;
-
-	/**
-	 * @deprecated since 1.30 use Title::isUserCssConfigPage()
-	 * @var bool
-	 */
-	public $isCssSubpage = false;
-
-	/**
-	 * @deprecated since 1.30 use Title::isUserJsConfigPage()
-	 * @var bool
-	 */
-	public $isJsSubpage = false;
-
-	/**
-	 * @deprecated since 1.30
-	 * @var bool
-	 */
-	public $isWrongCaseCssJsPage = false;
-
 	/** @var bool New page or new section */
 	public $isNew = false;
 
@@ -660,13 +636,6 @@ class EditPage {
 		}
 
 		$this->isConflict = false;
-		// css / js subpages of user pages get a special treatment
-		// The following member variables are deprecated since 1.30,
-		// the functions should be used instead.
-		$this->isCssJsSubpage = $this->mTitle->isUserConfigPage();
-		$this->isCssSubpage = $this->mTitle->isUserCssConfigPage();
-		$this->isJsSubpage = $this->mTitle->isUserJsConfigPage();
-		$this->isWrongCaseCssJsPage = $this->isWrongCaseUserConfigPage();
 
 		# Show applicable editing introductions
 		if ( $this->formtype == 'initial' || $this->firsttime ) {
