@@ -1037,7 +1037,7 @@ class ApiMain extends ApiBase {
 			// None of the rest have any messages for non-error types
 		} elseif ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - generate error response
-			$data = MediaWiki\quietCall( [ $e, 'getMessageArray' ] );
+			$data = Wikimedia\quietCall( [ $e, 'getMessageArray' ] );
 			$code = $data['code'];
 			$info = $data['info'];
 			unset( $data['code'], $data['info'] );
