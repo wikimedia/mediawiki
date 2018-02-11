@@ -29,11 +29,14 @@ if ( PHP_SAPI != 'cli' ) {
 $CREDITS = 'CREDITS';
 $START_CONTRIBUTORS = '<!-- BEGIN CONTRIBUTOR LIST -->';
 $END_CONTRIBUTORS = '<!-- END CONTRIBUTOR LIST -->';
+$START_TRANSLATORS = '<!-- BEGIN TRANSLATOR LIST -->';
+$END_TRANSLATORS = '<!-- END TRANSLATOR LIST -->';
 
-$inHeader = true;
-$inFooter = false;
+$section = 'header';
 $header = [];
 $contributors = [];
+$mid = [];
+$translators = [];
 $footer = [];
 
 if ( !file_exists( $CREDITS ) ) {
@@ -42,21 +45,45 @@ if ( !file_exists( $CREDITS ) ) {
 
 $lines = explode( "\n", file_get_contents( $CREDITS ) );
 foreach ( $lines as $line ) {
-	if ( $inHeader ) {
-		$header[] = $line;
-		$inHeader = $line !== $START_CONTRIBUTORS;
-	} elseif ( $inFooter ) {
-		$footer[] = $line;
-	} elseif ( $line == $END_CONTRIBUTORS ) {
-		$inFooter = true;
-		$footer[] = $line;
-	} else {
-		$name = substr( $line, 2 );
-		$contributors[$name] = true;
+	switch ( $section ) {
+		case 'header':
+			$header[] = $line;
+			if ( $line === $START_CONTRIBUTORS ) {
+				$section = 'contributors';
+			}
+			break;
+		case 'contributors':
+			if ( $line === $END_CONTRIBUTORS ) {
+				$section = 'mid';
+				$mid[] = $line;
+				break;
+			}
+			$name = substr( $line, 2 );
+			$contributors[$name] = true;
+			break;
+		case 'mid':
+			$mid[] = $line;
+			if ( $line === $START_TRANSLATORS ) {
+				$section = 'translators';
+			}
+			break;
+		case 'translators':
+			if ( $line === $END_TRANSLATORS ) {
+				$section = 'footer';
+				$footer[] = $line;
+				break;
+			}
+			$name = substr( $line, 2 );
+			$translators[$name] = true;
+			break;
+		case 'footer':
+			$footer[] = $line;
+			break;
 	}
 }
 unset( $lines );
 
+// Get list of contributors
 $lines = explode( "\n", shell_exec( 'git log --format="%aN"' ) );
 foreach ( $lines as $line ) {
 	if ( empty( $line ) ) {
@@ -68,13 +95,30 @@ foreach ( $lines as $line ) {
 	$contributors[$line] = true;
 }
 
-$contributors = array_keys( $contributors );
-$collator = Collator::create( 'root' );
-$collator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
-$collator->sort( $contributors );
-array_walk( $contributors, function ( &$v, $k ) {
-	$v = "* {$v}";
-} );
+// Get list of translators
+$files = glob( 'languages/i18n/*.json' );
+foreach ( $files as $file ) {
+	$contents = json_decode( file_get_contents( $file ), true );
+	if ( isset( $contents['@metadata']['authors'] ) ) {
+		foreach ( $contents['@metadata']['authors'] as $author ) {
+			$translators[$author] = true;
+		}
+	}
+}
+
+function process( array $list ) {
+	$list = array_keys( $list );
+	$collator = Collator::create( 'root' );
+	$collator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
+	$collator->sort( $list );
+	array_walk( $list, function ( &$v, $k ) {
+		$v = "* {$v}";
+	} );
+	return $list;
+}
+
+$contributors = process( $contributors );
+$translators = process( $translators );
 
 file_put_contents( $CREDITS,
-	implode( "\n", array_merge( $header, $contributors, $footer ) ) );
+	implode( "\n", array_merge( $header, $contributors, $mid, $translators, $footer ) ) );

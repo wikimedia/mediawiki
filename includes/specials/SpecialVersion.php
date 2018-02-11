@@ -84,10 +84,11 @@ class SpecialVersion extends SpecialPage {
 				if ( $extName === 'MediaWiki' ) {
 					$wikiText = file_get_contents( $IP . '/CREDITS' );
 					// Put the contributor list into columns
-					$wikiText = str_replace(
-						[ '<!-- BEGIN CONTRIBUTOR LIST -->', '<!-- END CONTRIBUTOR LIST -->' ],
+					$wikiText = preg_replace(
+						[ '/<!-- BEGIN .*? LIST -->/', '/<!-- END .*? LIST -->/' ],
 						[ '<div class="mw-version-credits">', '</div>' ],
-						$wikiText );
+						$wikiText
+					);
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
@@ -188,13 +189,14 @@ class SpecialVersion extends SpecialPage {
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
 			$othersLink = '[https://www.mediawiki.org/wiki/Special:Version/Credits ' .
 				wfMessage( 'version-poweredby-others' )->text() . ']';
+			$translatorsLink = '[https://www.mediawiki.org/wiki/Special:Version/Credits#Translators ' .
+				wfMessage( 'version-poweredby-translators' )->text() . ']';
 		} else {
 			$othersLink = '[[Special:Version/Credits|' .
 				wfMessage( 'version-poweredby-others' )->text() . ']]';
+			$translatorsLink = '[[Special:Version/Credits#Translators|' .
+				wfMessage( 'version-poweredby-translators' )->text() . ']]';
 		}
-
-		$translatorsLink = '[https://translatewiki.net/wiki/Translating:MediaWiki/Credits ' .
-			wfMessage( 'version-poweredby-translators' )->text() . ']';
 
 		$authorList = [
 			'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
