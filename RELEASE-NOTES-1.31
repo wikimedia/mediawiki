@@ -63,6 +63,7 @@ production.
 * Updated wikimedia/running-stat from 1.1.0 to 1.2.0.
 * Updated wikimedia/wrappedstring from 2.2.0 to 2.3.0.
 * Updated mediawiki/at-ease from 1.1.0 to 1.2.0.
+* Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.5.
 * …
 
 ==== New external libraries ====
