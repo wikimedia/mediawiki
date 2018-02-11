@@ -9,7 +9,8 @@
 			"Paxt",
 			"Matěj Suchánek",
 			"LordMsz",
-			"Seb35"
+			"Seb35",
+			"Ilimanaq29"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",
@@ -68,7 +69,7 @@
 	"config-apc": "Je nainstalováno [http://www.php.net/apc APC]",
 	"config-apcu": "Je nainstalováno [http://www.php.net/apcu APCu]",
 	"config-wincache": "Je nainstalována [https://www.iis.net/download/WinCacheForPhp WinCache]",
-	"config-no-cache-apcu": "<strong>Upozornění:</strong> Nebylo nalezeno [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache], ani [http://www.iis.net/download/WinCacheForPhp WinCache].\nKešování objektů bude vypnuto.",
+	"config-no-cache-apcu": "<strong>Upozornění:</strong> Nebylo nalezeno [http://www.php.net/apcu APCu], \nani [http://www.iis.net/download/WinCacheForPhp WinCache].\nCachování objektů není povoleno.",
 	"config-mod-security": "<strong>Upozornění:</strong> váš webový server má zapnuto [https://modsecurity.org/ mod_security]/mod_security2. Mnoho běžných konfigurací bude způsobovat potíže MediaWiki a dalším programům, které umožňují ukládat libovolný obsah.\nPokud je to možné, mělo by se to vypnout. Jinak se v případě, že narazíte na náhodné chyby, podívejte do [https://modsecurity.org/documentation/ dokumentace mod_security] nebo kontaktujte technickou podporu vašeho poskytovatele.",
 	"config-diff3-bad": "Nebyl nalezen GNU diff3.",
 	"config-git": "Nalezen software pro správu verzí Git: <code>$1</code>.",

@@ -1444,7 +1444,7 @@
 	"recentchangeslinked-feed": "Súvisiace úpravy",
 	"recentchangeslinked-toolbox": "Súvisiace úpravy",
 	"recentchangeslinked-title": "Zmeny týkajúce sa „$1”",
-	"recentchangeslinked-summary": "Táto špeciálna stránka obsahuje zoznam posledných úprav stránok, ''na ktoré odkazuje'' zadaná stránka (alebo ktoré patria do zadanej kategórie).\nStránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovaných]] sú vyznačené '''hrubo'''.",
+	"recentchangeslinked-summary": "Vložte názov článku, aby ste videli zmeny stránok, na ktoré odkazuje alebo ktoré odkazujú na danú stránku (aby ste videli články v kategórii, zadajte Kategória:Názov kategórie).\nStránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovaných]] sú vyznačené <strong>hrubo</strong>.",
 	"recentchangeslinked-page": "Názov stránky:",
 	"recentchangeslinked-to": "Zobraziť zmeny na stránkach, ''ktoré odkazujú na'' zadanú stránku",
 	"recentchanges-page-added-to-category": "[[:$1]] zaradená do kategórie",
