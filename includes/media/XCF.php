@@ -217,9 +217,9 @@ class XCFHandler extends BitmapHandler {
 	 * @return bool
 	 */
 	public function canRender( $file ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$xcfMeta = unserialize( $file->getMetadata() );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( isset( $xcfMeta['colorType'] ) && $xcfMeta['colorType'] === 'index-coloured' ) {
 			return false;
 		}

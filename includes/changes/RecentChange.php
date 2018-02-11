@@ -1110,9 +1110,9 @@ class RecentChange {
 	public function parseParams() {
 		$rcParams = $this->getAttribute( 'rc_params' );
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$unserializedParams = unserialize( $rcParams );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		return $unserializedParams;
 	}

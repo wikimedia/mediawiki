@@ -306,9 +306,9 @@ class GitInfo {
 			$config = "{$this->basedir}/config";
 			$url = false;
 			if ( is_readable( $config ) ) {
-				MediaWiki\suppressWarnings();
+				Wikimedia\suppressWarnings();
 				$configArray = parse_ini_file( $config, true );
-				MediaWiki\restoreWarnings();
+				Wikimedia\restoreWarnings();
 				$remote = false;
 
 				// Use the "origin" remote repo if available or any other repo if not.

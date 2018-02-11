@@ -378,9 +378,9 @@ abstract class FileBackendStore extends FileBackend {
 		unset( $params['latest'] ); // sanity
 
 		// Check that the specified temp file is valid...
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 
@@ -696,9 +696,9 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = [];
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		return $contents;

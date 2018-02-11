@@ -27,7 +27,7 @@
 
 namespace Wikimedia\Rdbms;
 
-use MediaWiki;
+use Wikimedia;
 use Exception;
 use stdClass;
 
@@ -111,9 +111,9 @@ class DatabaseMssql extends Database {
 			$connectionInfo['PWD'] = $password;
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$this->mConn = sqlsrv_connect( $server, $connectionInfo );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $this->mConn === false ) {
 			throw new DBConnectionError( $this, $this->lastError() );

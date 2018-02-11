@@ -445,9 +445,9 @@ class IPTC {
 	 */
 	private static function convIPTCHelper( $data, $charset ) {
 		if ( $charset ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$data = iconv( $charset, "UTF-8//IGNORE", $data );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $data === false ) {
 				$data = "";
 				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );

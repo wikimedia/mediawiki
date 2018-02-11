@@ -179,9 +179,9 @@ abstract class FileCacheBase {
 	 * @return void
 	 */
 	public function clearCache() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		unlink( $this->cachePath() );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		$this->mCached = false;
 	}
 

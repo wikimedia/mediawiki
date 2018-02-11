@@ -86,9 +86,9 @@ class Preprocessor_DOM extends Preprocessor {
 		$xml .= "</list>";
 
 		$dom = new DOMDocument();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -163,9 +163,9 @@ class Preprocessor_DOM extends Preprocessor {
 		}
 
 		$dom = new DOMDocument;
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );

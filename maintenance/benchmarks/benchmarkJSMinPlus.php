@@ -37,9 +37,9 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 
 	public function execute() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$content = file_get_contents( $this->getOption( 'file' ) );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $content === false ) {
 			$this->fatalError( 'Unable to open input file' );
 		}

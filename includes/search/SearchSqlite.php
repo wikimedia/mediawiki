@@ -52,9 +52,9 @@ class SearchSqlite extends SearchDatabase {
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 				$filteredText, $m, PREG_SET_ORDER ) ) {
 			foreach ( $m as $bits ) {
-				MediaWiki\suppressWarnings();
+				Wikimedia\suppressWarnings();
 				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
-				MediaWiki\restoreWarnings();
+				Wikimedia\restoreWarnings();
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

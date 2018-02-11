@@ -777,9 +777,9 @@ class OutputPage extends ContextSource {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $clientHeader );
 
-		MediaWiki\suppressWarnings(); // E_STRICT system time bitching
+		Wikimedia\suppressWarnings(); // E_STRICT system time bitching
 		$clientHeaderTime = strtotime( $clientHeader );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$clientHeaderTime ) {
 			wfDebug( __METHOD__
 				. ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );

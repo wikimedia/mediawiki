@@ -500,9 +500,9 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$usageEx = new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$apiEx1 = new ApiUsageException( null,
 			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );
