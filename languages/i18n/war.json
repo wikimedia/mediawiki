@@ -1285,7 +1285,7 @@
 	"statistics-edits-average": "Average nga mga pagliwat kada pakli",
 	"statistics-users": "Mga [[Special:ListUsers|gumaramit]] nga nakarehistro",
 	"statistics-users-active": "Mga gumaramit nga nanggigios",
-	"statistics-users-active-desc": "Mga gumaramit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}",
+	"statistics-users-active-desc": "Mga gumaramit nga mayda ginbuhat ha naglabay {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}",
 	"pageswithprop-prop": "Ngaran han propyudad:",
 	"pageswithprop-submit": "Kadto-a",
 	"doubleredirects": "Mga doble nga redirekta",

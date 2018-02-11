@@ -719,6 +719,7 @@
 	"postedit-confirmation-created": "Страница је направљена.",
 	"postedit-confirmation-restored": "Страница је враћена.",
 	"postedit-confirmation-saved": "Ваша измена је сачувана.",
+	"postedit-confirmation-published": "Ваша измена је објављена.",
 	"edit-already-exists": "Не могу да направим страницу.\nИзгледа да она већ постоји.",
 	"defaultmessagetext": "Подразумевани текст поруке",
 	"content-failed-to-parse": "Не могу да рашчланим садржај типа $2 за модел $1: $3",
