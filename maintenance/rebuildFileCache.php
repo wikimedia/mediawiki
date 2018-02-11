@@ -140,7 +140,7 @@ class RebuildFileCache extends Maintenance {
 						}
 					}
 
-					MediaWiki\suppressWarnings(); // header notices
+					Wikimedia\suppressWarnings(); // header notices
 					// Cache ?action=view
 					$wgRequestTime = microtime( true ); # T24852
 					ob_start();
@@ -157,7 +157,7 @@ class RebuildFileCache extends Maintenance {
 					$context->getOutput()->clearHTML();
 					$historyHtml = ob_get_clean();
 					$historyCache->saveToFileCache( $historyHtml );
-					MediaWiki\restoreWarnings();
+					Wikimedia\restoreWarnings();
 
 					if ( $rebuilt ) {
 						$this->output( "Re-cached page '$title' (id {$row->page_id})..." );

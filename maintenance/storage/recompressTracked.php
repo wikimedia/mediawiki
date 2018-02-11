@@ -236,9 +236,9 @@ class RecompressTracked {
 				[ 'file', 'php://stdout', 'w' ],
 				[ 'file', 'php://stderr', 'w' ]
 			];
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$proc = proc_open( "$cmd --replica-id $i", $spec, $pipes );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$proc ) {
 				$this->critical( "Error opening replica DB process: $cmd" );
 				exit( 1 );

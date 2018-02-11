@@ -506,9 +506,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$this->assertInstanceOf( \Wikimedia\Rdbms\DBConnectionError::class, $e );
 			$this->assertFalse( $db->isOpen() );
 		} else {
-			\MediaWiki\suppressWarnings();
+			\Wikimedia\suppressWarnings();
 			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
-			\MediaWiki\restoreWarnings();
+			\Wikimedia\restoreWarnings();
 		}
 
 		$lb->reuseConnection( $db ); // don't care

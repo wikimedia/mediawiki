@@ -648,8 +648,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetCommentErrors() {
-		MediaWiki\suppressWarnings();
-		$reset = new ScopedCallback( 'MediaWiki\restoreWarnings' );
+		Wikimedia\suppressWarnings();
+		$reset = new ScopedCallback( 'Wikimedia\restoreWarnings' );
 
 		$store = $this->makeStore( MIGRATION_OLD );
 		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ] );

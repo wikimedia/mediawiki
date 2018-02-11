@@ -365,9 +365,9 @@ class SessionTest extends MediaWikiTestCase {
 		$hmac = hash_hmac( 'sha256', $sealed, $hmacKey, true );
 		$encrypted = base64_encode( $hmac ) . '.' . $sealed;
 		$session->set( 'test', $encrypted );
-		\MediaWiki\suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
-		\MediaWiki\restoreWarnings();
+		\Wikimedia\restoreWarnings();
 	}
 
 }

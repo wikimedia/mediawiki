@@ -66,9 +66,9 @@ class SquidPurgeClientPool {
 			}
 			$exceptSockets = null;
 			$timeout = min( $startTime + $this->timeout - microtime( true ), 1 );
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$numReady = socket_select( $readSockets, $writeSockets, $exceptSockets, $timeout );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $numReady === false ) {
 				wfDebugLog( 'squid', __METHOD__ . ': Error in stream_select: ' .
 					socket_strerror( socket_last_error() ) . "\n" );

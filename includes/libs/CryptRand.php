@@ -94,9 +94,9 @@ class CryptRand {
 		$files[] = dirname( __DIR__ );
 
 		foreach ( $files as $file ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$stat = stat( $file );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $stat ) {
 				// stat() duplicates data into numeric and string keys so kill off all the numeric ones
 				foreach ( $stat as $k => $v ) {
@@ -310,9 +310,9 @@ class CryptRand {
 			}
 			// /dev/urandom is generally considered the best possible commonly
 			// available random source, and is available on most *nix systems.
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$urandom = fopen( "/dev/urandom", "rb" );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 
 			// Attempt to read all our random data from urandom
 			// php's fread always does buffered reads based on the stream's chunk_size
