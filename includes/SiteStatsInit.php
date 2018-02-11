@@ -18,18 +18,24 @@
  * @file
  */
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class designed for counting of stats.
  */
 class SiteStatsInit {
-
-	// Database connection
-	private $db;
-
-	// Various stats
-	private $mEdits = null, $mArticles = null, $mPages = null;
-	private $mUsers = null, $mFiles = null;
+	/* @var IDatabase */
+	private $dbr;
+	/** @var int */
+	private $edits;
+	/** @var int */
+	private $articles;
+	/** @var int */
+	private $pages;
+	/** @var int */
+	private $users;
+	/** @var int */
+	private $files;
 
 	/**
 	 * @param bool|IDatabase $database
@@ -38,11 +44,11 @@ class SiteStatsInit {
 	 */
 	public function __construct( $database = false ) {
 		if ( $database instanceof IDatabase ) {
-			$this->db = $database;
+			$this->dbr = $database;
 		} elseif ( $database ) {
-			$this->db = wfGetDB( DB_MASTER );
+			$this->dbr = self::getDB( DB_MASTER );
 		} else {
-			$this->db = wfGetDB( DB_REPLICA, 'vslow' );
+			$this->dbr = self::getDB( DB_REPLICA, 'vslow' );
 		}
 	}
 
@@ -51,9 +57,10 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function edits() {
-		$this->mEdits = $this->db->selectField( 'revision', 'COUNT(*)', '', __METHOD__ );
-		$this->mEdits += $this->db->selectField( 'archive', 'COUNT(*)', '', __METHOD__ );
-		return $this->mEdits;
+		$this->edits = $this->dbr->selectField( 'revision', 'COUNT(*)', '', __METHOD__ );
+		$this->edits += $this->dbr->selectField( 'archive', 'COUNT(*)', '', __METHOD__ );
+
+		return $this->edits;
 	}
 
 	/**
@@ -61,7 +68,7 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function articles() {
-		global $wgArticleCountMethod;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$tables = [ 'page' ];
 		$conds = [
@@ -69,10 +76,10 @@ class SiteStatsInit {
 			'page_is_redirect' => 0,
 		];
 
-		if ( $wgArticleCountMethod == 'link' ) {
+		if ( $config->get( 'ArticleCountMethod' ) == 'link' ) {
 			$tables[] = 'pagelinks';
 			$conds[] = 'pl_from=page_id';
-		} elseif ( $wgArticleCountMethod == 'comma' ) {
+		} elseif ( $config->get( 'ArticleCountMethod' ) == 'comma' ) {
 			// To make a correct check for this, we would need, for each page,
 			// to load the text, maybe uncompress it, maybe decode it and then
 			// check if there's one comma.
@@ -81,9 +88,14 @@ class SiteStatsInit {
 			$conds[] = 'page_len > 0';
 		}
 
-		$this->mArticles = $this->db->selectField( $tables, 'COUNT(DISTINCT page_id)',
-			$conds, __METHOD__ );
-		return $this->mArticles;
+		$this->articles = $this->dbr->selectField(
+			$tables,
+			'COUNT(DISTINCT page_id)',
+			$conds,
+			__METHOD__
+		);
+
+		return $this->articles;
 	}
 
 	/**
@@ -91,8 +103,9 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function pages() {
-		$this->mPages = $this->db->selectField( 'page', 'COUNT(*)', '', __METHOD__ );
-		return $this->mPages;
+		$this->pages = $this->dbr->selectField( 'page', 'COUNT(*)', '', __METHOD__ );
+
+		return $this->pages;
 	}
 
 	/**
@@ -100,8 +113,9 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function users() {
-		$this->mUsers = $this->db->selectField( 'user', 'COUNT(*)', '', __METHOD__ );
-		return $this->mUsers;
+		$this->users = $this->dbr->selectField( 'user', 'COUNT(*)', '', __METHOD__ );
+
+		return $this->users;
 	}
 
 	/**
@@ -109,8 +123,9 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function files() {
-		$this->mFiles = $this->db->selectField( 'image', 'COUNT(*)', '', __METHOD__ );
-		return $this->mFiles;
+		$this->files = $this->dbr->selectField( 'image', 'COUNT(*)', '', __METHOD__ );
+
+		return $this->files;
 	}
 
 	/**
@@ -127,7 +142,7 @@ class SiteStatsInit {
 		$options += [ 'update' => false, 'activeUsers' => false ];
 
 		// Grab the object and count everything
-		$counter = new SiteStatsInit( $database );
+		$counter = new self( $database );
 
 		$counter->edits();
 		$counter->articles();
@@ -139,7 +154,7 @@ class SiteStatsInit {
 
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
-			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
+			SiteStatsUpdate::cacheUpdate( self::getDB( DB_MASTER ) );
 		}
 	}
 
@@ -147,7 +162,7 @@ class SiteStatsInit {
 	 * Insert a dummy row with all zeroes if no row is present
 	 */
 	public static function doPlaceholderInit() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = self::getDB( DB_MASTER );
 		$exists = $dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
 		if ( $exists === false ) {
 			$dbw->insert(
@@ -165,14 +180,27 @@ class SiteStatsInit {
 	public function refresh() {
 		$values = [
 			'ss_row_id' => 1,
-			'ss_total_edits' => ( $this->mEdits === null ? $this->edits() : $this->mEdits ),
-			'ss_good_articles' => ( $this->mArticles === null ? $this->articles() : $this->mArticles ),
-			'ss_total_pages' => ( $this->mPages === null ? $this->pages() : $this->mPages ),
-			'ss_users' => ( $this->mUsers === null ? $this->users() : $this->mUsers ),
-			'ss_images' => ( $this->mFiles === null ? $this->files() : $this->mFiles ),
+			'ss_total_edits' => $this->edits === null ? $this->edits() : $this->edits,
+			'ss_good_articles' => $this->articles === null ? $this->articles() : $this->articles,
+			'ss_total_pages' => $this->pages === null ? $this->pages() : $this->pages,
+			'ss_users' => $this->users === null ? $this->users() : $this->users,
+			'ss_images' => $this->files === null ? $this->files() : $this->files,
 		];
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->upsert( 'site_stats', $values, [ 'ss_row_id' ], $values, __METHOD__ );
+		self::getDB( DB_MASTER )->upsert(
+			'site_stats',
+			$values,
+			[ 'ss_row_id' ],
+			$values,
+			__METHOD__
+		);
+	}
+
+	/**
+	 * @param int $index
+	 * @return IDatabase
+	 */
+	private static function getDB( $index ) {
+		return MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( $index );
 	}
 }
