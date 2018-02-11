@@ -155,6 +155,19 @@ class ParserOutputTest extends MediaWikiTestCase {
 </p></div>
 EOF;
 
+		$dedupText = <<<EOF
+<p>This is a test document.</p>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
+<style data-mw-deduplicate="duplicate1">.Same-attribute-different-content {}</style>
+<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
+<style>.Duplicate1 {}</style>
+EOF;
+
 		return [
 			'No stateless options, default state' => [
 				[], [], $text, <<<EOF
@@ -353,6 +366,23 @@ EOF
 				[ 'unwrap' => true ], [], '<div class="mw-parser-output"><p>Test document.</p></div>
 <!-- Saved in parser cache... -->', '<p>Test document.</p>
 <!-- Saved in parser cache... -->'
+			],
+			'Style deduplication' => [
+				[], [], $dedupText, <<<EOF
+<p>This is a test document.</p>
+<style data-mw-deduplicate="duplicate1">.Duplicate1 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>
+<style data-mw-deduplicate="duplicate2">.Duplicate2 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate2"/>
+<style data-mw-not-deduplicate="duplicate1">.Duplicate1 {}</style>
+<link rel="mw-deduplicated-inline-style" href="mw-data:duplicate1"/>
+<style data-mw-deduplicate="duplicate3">.Duplicate1 {}</style>
+<style>.Duplicate1 {}</style>
+EOF
+			],
+			'Style deduplication disabled' => [
+				[ 'deduplicateStyles' => false ], [], $dedupText, $dedupText
 			],
 		];
 		// phpcs:enable

@@ -46,6 +46,9 @@ production.
   initial page text for file uploads.
 * (T181651) The info page for File pages now displays the file's base-16 SHA1
   hash value in the table of basic information.
+* Style tags with a 'data-mw-deduplicate' attribute will be deduplicated as a
+  ParserOutput::getText() post-cache transformation. This may be disabled by
+  passing 'deduplicateStyles' => false to that method.
 
 === External library changes in 1.31 ===
 
