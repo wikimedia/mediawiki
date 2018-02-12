@@ -493,7 +493,7 @@ class OutputPage extends ContextSource {
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
 	 * @param array $modules
-	 * @param string|null $position If not null, only return modules with this position
+	 * @param string|null $position Unused
 	 * @param string $type
 	 * @return array
 	 */
@@ -506,7 +506,6 @@ class OutputPage extends ContextSource {
 			$module = $resourceLoader->getModule( $val );
 			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
-				&& ( is_null( $position ) || $module->getPosition() == $position )
 			) {
 				if ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) ) {
 					$this->warnModuleTargetFilter( $module->getName() );
@@ -537,7 +536,7 @@ class OutputPage extends ContextSource {
 	 * Get the list of modules to include on this page
 	 *
 	 * @param bool $filter Whether to filter out insufficiently trustworthy modules
-	 * @param string|null $position If not null, only return modules with this position
+	 * @param string|null $position Unused
 	 * @param string $param
 	 * @param string $type
 	 * @return array Array of module names
@@ -566,7 +565,7 @@ class OutputPage extends ContextSource {
 	 * Get the list of module JS to include on this page
 	 *
 	 * @param bool $filter
-	 * @param string|null $position
+	 * @param string|null $position Unused
 	 * @return array Array of module names
 	 */
 	public function getModuleScripts( $filter = false, $position = null ) {
@@ -590,7 +589,7 @@ class OutputPage extends ContextSource {
 	 * Get the list of module CSS to include on this page
 	 *
 	 * @param bool $filter
-	 * @param string|null $position
+	 * @param string|null $position Unused
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
