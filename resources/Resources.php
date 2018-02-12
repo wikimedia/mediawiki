@@ -2881,9 +2881,11 @@ return [
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-alerts',
-			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icon.alert',
+			'oojs-ui.styles.icon.check',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.info',
+			'oojs-ui.styles.icon.search',
 		],
 		'messages' => [
 			'ooui-field-help'
@@ -2906,11 +2908,15 @@ return [
 		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-editing-advanced',
-			'oojs-ui.styles.icons-movement',
-			'oojs-ui.styles.icons-moderation',
+			'oojs-ui.styles.icon.add',
+			'oojs-ui.styles.icon.attachment',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.collapse',
+			'oojs-ui.styles.icon.expand',
+			'oojs-ui.styles.icon.search',
+			'oojs-ui.styles.icon.subtract',
+			'oojs-ui.styles.icon.trash',
+			'oojs-ui.styles.icon.upload',
 		],
 		'messages' => [
 			'ooui-item-remove',
@@ -2931,7 +2937,8 @@ return [
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icon.collapse',
+			'oojs-ui.styles.icon.expand',
 		],
 		'messages' => [
 			'ooui-toolbar-more',
@@ -2947,7 +2954,7 @@ return [
 		'themeStyles' => 'windows',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icon.previous',
 		],
 		'messages' => [
 			'ooui-dialog-message-accept',
@@ -2968,64 +2975,74 @@ return [
 		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'textures',
 	],
+
+	// The following icon pack modules are all deprecated.
 	'oojs-ui.styles.icons-accessibility' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-accessibility',
 	],
 	'oojs-ui.styles.icons-alerts' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-alerts',
 	],
 	'oojs-ui.styles.icons-content' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-content',
 	],
 	'oojs-ui.styles.icons-editing-advanced' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-editing-advanced',
 	],
 	'oojs-ui.styles.icons-editing-core' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-editing-core',
 	],
 	'oojs-ui.styles.icons-editing-list' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-editing-list',
 	],
 	'oojs-ui.styles.icons-editing-styling' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-editing-styling',
 	],
 	'oojs-ui.styles.icons-interactions' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-interactions',
 	],
 	'oojs-ui.styles.icons-layout' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-layout',
 	],
 	'oojs-ui.styles.icons-location' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-location',
 	],
 	'oojs-ui.styles.icons-media' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-media',
 	],
 	'oojs-ui.styles.icons-moderation' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-moderation',
 	],
 	'oojs-ui.styles.icons-movement' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-movement',
 	],
 	'oojs-ui.styles.icons-user' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-user',
 	],
 	'oojs-ui.styles.icons-wikimedia' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => ResourceLoaderOOUIIconPackModule::class,
 		'themeImages' => 'icons-wikimedia',
+	],
+
+	// Allows loading arbitrary single OOUI icons.
+	'oojs-ui.styles.icon.*' => [
+		'class' => ResourceLoaderOOUISingleIconModule::class,
+		// A few things check for the "icons" prefix on this value, so specify it even though
+		// we don't use it for actually loading the data, like in the other modules.
+		'themeImages' => 'icons',
 	],
 ];
