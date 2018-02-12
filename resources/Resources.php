@@ -2814,9 +2814,10 @@ return [
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-alerts',
-			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icon.alert',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.info',
+			'oojs-ui.styles.icon.search',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2837,11 +2838,15 @@ return [
 		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-editing-advanced',
-			'oojs-ui.styles.icons-movement',
-			'oojs-ui.styles.icons-moderation',
+			'oojs-ui.styles.icon.add',
+			'oojs-ui.styles.icon.attachment',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.collapse',
+			'oojs-ui.styles.icon.expand',
+			'oojs-ui.styles.icon.search',
+			'oojs-ui.styles.icon.subtract',
+			'oojs-ui.styles.icon.trash',
+			'oojs-ui.styles.icon.upload',
 		],
 		'messages' => [
 			'ooui-item-remove',
@@ -2862,7 +2867,8 @@ return [
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icon.collapse',
+			'oojs-ui.styles.icon.expand',
 		],
 		'messages' => [
 			'ooui-toolbar-more',
@@ -2878,7 +2884,7 @@ return [
 		'themeStyles' => 'windows',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui.styles.icon.previous',
 		],
 		'messages' => [
 			'ooui-dialog-message-accept',
@@ -2958,5 +2964,12 @@ return [
 	'oojs-ui.styles.icons-wikimedia' => [
 		'class' => ResourceLoaderOOUIImageModule::class,
 		'themeImages' => 'icons-wikimedia',
+	],
+	// Allows loading arbitrary single OOUI icons.
+	'oojs-ui.styles.icon.*' => [
+		'class' => ResourceLoaderOOUISingleIconModule::class,
+		// A few things check for the "icons" prefix on this value, so specify it even though
+		// we don't use it for actually loading the data, like in the other modules.
+		'themeImages' => 'icons',
 	],
 ];
