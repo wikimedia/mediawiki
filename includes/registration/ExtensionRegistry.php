@@ -407,16 +407,6 @@ class ExtensionRegistry {
 	}
 
 	/**
-	 * Mark a thing as loaded
-	 *
-	 * @param string $name
-	 * @param array $credits
-	 */
-	protected function markLoaded( $name, array $credits ) {
-		$this->loaded[$name] = $credits;
-	}
-
-	/**
 	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
