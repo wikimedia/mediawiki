@@ -3435,6 +3435,7 @@
 	"watchlistedit-clear-titles": "標題：",
 	"watchlistedit-clear-submit": "清空監視清單 (無法還原)",
 	"watchlistedit-clear-done": "已清空您的監視清單。",
+	"watchlistedit-clear-jobqueue": "您的監視列表正在清空。這需要花一些時間！",
 	"watchlistedit-clear-removed": "已移除 $1 個標題：",
 	"watchlistedit-too-many": "太多要在此處顯示的頁面。",
 	"watchlisttools-clear": "清空監視清單",

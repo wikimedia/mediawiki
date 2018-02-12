@@ -734,7 +734,7 @@
 	"postedit-confirmation-created": "Stránka byla založena.",
 	"postedit-confirmation-restored": "Stránka byla obnovena.",
 	"postedit-confirmation-saved": "Vaše změny byly uloženy.",
-	"postedit-confirmation-published": "Vaše editace byla uložena.",
+	"postedit-confirmation-published": "Vaše editace byla zveřejněna.",
 	"edit-already-exists": "Nepodařilo se vytvořit novou stránku, protože již existuje.",
 	"defaultmessagetext": "Výchozí text hlášení",
 	"content-failed-to-parse": "Nepodařilo se zpracovat data $2 do modelu $1: $3",

@@ -509,6 +509,7 @@
 	"apihelp-query+allrevisions-example-ns-main": "Liste die ersten 50 Bearbeitungen im Hauptnamensraum auf.",
 	"apihelp-query+mystashedfiles-param-prop": "Welche Eigenschaften für die Dateien abgerufen werden sollen.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Ruft die Dateigröße und Bildabmessungen ab.",
+	"apihelp-query+mystashedfiles-paramvalue-prop-type": "Ruft den MIME- und Medientyp der Datei ab.",
 	"apihelp-query+mystashedfiles-param-limit": "Wie viele Dateien zurückgegeben werden sollen.",
 	"apihelp-query+alltransclusions-summary": "Liste alle Transklusionen auf (eingebettete Seiten die &#123;&#123;x&#125;&#125; benutzen), einschließlich nicht vorhandener.",
 	"apihelp-query+alltransclusions-param-from": "Der Titel der Transklusion bei dem die Auflistung beginnen soll.",

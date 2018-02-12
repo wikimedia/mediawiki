@@ -3554,6 +3554,7 @@
 	"watchlistedit-clear-titles": "Titres :",
 	"watchlistedit-clear-submit": "Effacer la liste de suivi (ceci est permanent !)",
 	"watchlistedit-clear-done": "Votre liste de suivi a été effacée.",
+	"watchlistedit-clear-jobqueue": "Votre liste de suivi est en cours de supression. Ce qui peut prendre un certain temps.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Un titre a été|$1 titres ont été}} retirés :",
 	"watchlistedit-too-many": "Il y a trop de pages à afficher ici.",
 	"watchlisttools-clear": "Effacer la liste de suivi",
