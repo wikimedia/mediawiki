@@ -42,9 +42,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 	protected static function makeSampleModules() {
 		$modules = [
 			'test' => [],
-			'test.top' => [ 'position' => 'top' ],
-			'test.private.top' => [ 'group' => 'private', 'position' => 'top' ],
-			'test.private.bottom' => [ 'group' => 'private', 'position' => 'bottom' ],
+			'test.private' => [ 'group' => 'private' ],
 			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
 			'test.shouldembed' => [ 'shouldEmbed' => true ],
 
@@ -75,7 +73,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			],
 
 			'test.scripts' => [],
-			'test.scripts.top' => [ 'position' => 'top' ],
 			'test.scripts.user' => [ 'group' => 'user' ],
 			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
 			'test.scripts.raw' => [ 'isRaw' => true ],

@@ -33,7 +33,6 @@ return [
 			'mediawiki.page.startup',
 			'test.sinonjs',
 		],
-		'position' => 'top',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
