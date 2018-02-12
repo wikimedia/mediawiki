@@ -1246,6 +1246,7 @@ $wgAutoloadLocalClasses = [
 	'ResourceLoaderLessVarFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderLessVarFileModule.php',
 	'ResourceLoaderModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderModule.php',
 	'ResourceLoaderOOUIFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIFileModule.php',
+	'ResourceLoaderOOUIIconPackModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIIconPackModule.php',
 	'ResourceLoaderOOUIImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIImageModule.php',
 	'ResourceLoaderOOUIModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIModule.php',
 	'ResourceLoaderSiteModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderSiteModule.php',

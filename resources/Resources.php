@@ -2897,12 +2897,10 @@ return [
 		'dependencies' => [
 			'oojs',
 			'oojs-ui-core.styles',
+			'oojs-ui-core.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.language',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-alerts',
-			'oojs-ui.styles.icons-interactions',
 		],
 		'messages' => [
 			'ooui-field-help',
@@ -2919,6 +2917,11 @@ return [
 		'themeStyles' => 'core',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'oojs-ui-core.icons' => [
+		'class' => ResourceLoaderOOUIIconPackModule::class,
+		'icons' => [ 'add', 'alert', 'notice', 'error', 'check', 'close', 'info', 'search', 'subtract' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	// Additional widgets and layouts module.
 	'oojs-ui-widgets' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
@@ -2926,11 +2929,7 @@ return [
 		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-interactions',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-editing-advanced',
-			'oojs-ui.styles.icons-movement',
-			'oojs-ui.styles.icons-moderation',
+			'oojs-ui-widgets.icons',
 		],
 		'messages' => [
 			'ooui-item-remove',
@@ -2952,6 +2951,12 @@ return [
 		'themeStyles' => 'widgets',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'oojs-ui-widgets.icons' => [
+		'class' => ResourceLoaderOOUIIconPackModule::class,
+		// Do not repeat icons already used in 'oojs-ui-core.icons'
+		'icons' => [ 'attachment', 'collapse', 'expand', 'trash', 'upload' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	// Toolbar and tools module.
 	'oojs-ui-toolbars' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
@@ -2959,13 +2964,19 @@ return [
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui-toolbars.icons',
 		],
 		'messages' => [
 			'ooui-toolbar-more',
 			'ooui-toolgroup-collapse',
 			'ooui-toolgroup-expand',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'oojs-ui-toolbars.icons' => [
+		'class' => ResourceLoaderOOUIIconPackModule::class,
+		// Do not repeat icons already used in 'oojs-ui-core.icons': 'check'
+		'icons' => [ 'collapse', 'expand' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Windows and dialogs module.
@@ -2975,7 +2986,7 @@ return [
 		'themeStyles' => 'windows',
 		'dependencies' => [
 			'oojs-ui-core',
-			'oojs-ui.styles.icons-movement',
+			'oojs-ui-windows.icons',
 		],
 		'messages' => [
 			'ooui-dialog-message-accept',
@@ -2985,6 +2996,12 @@ return [
 			'ooui-dialog-process-error',
 			'ooui-dialog-process-retry',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'oojs-ui-windows.icons' => [
+		'class' => ResourceLoaderOOUIIconPackModule::class,
+		// Do not repeat icons already used in 'oojs-ui-core.icons': 'close'
+		'icons' => [ 'previous' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
