@@ -25,6 +25,7 @@ class ApiQueryContributionsTest extends ApiTestCase {
 			User::createNew( __CLASS__ . ' B' ),
 			User::createNew( __CLASS__ . ' A' ),
 			User::createNew( __CLASS__ . ' C' ),
+			User::newFromName( 'IW>' . __CLASS__, false ),
 		];
 
 		$title = Title::newFromText( __CLASS__ );
@@ -146,4 +147,48 @@ class ApiQueryContributionsTest extends ApiTestCase {
 			}
 		}
 	}
+
+	/**
+	 * @dataProvider provideInterwikiUser
+	 * @param int $stage One of the MIGRATION_* constants for $wgActorTableSchemaMigrationStage
+	 */
+	public function testInterwikiUser( $stage ) {
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', $stage );
+		$this->overrideMwServices();
+
+		$params = [
+			'action' => 'query',
+			'list' => 'usercontribs',
+			'ucuser' => 'IW>' . __CLASS__,
+			'ucprop' => 'ids',
+			'uclimit' => 'max',
+		];
+
+		$apiResult = $this->doApiRequest( $params );
+		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'usercontribs', $apiResult[0]['query'] );
+
+		$count = 0;
+		$ids = [];
+		foreach ( $apiResult[0]['query']['usercontribs'] as $page ) {
+			$count++;
+			$this->assertSame( 'IW>' . __CLASS__, $page['user'], 'Correct user returned' );
+			$ids[] = $page['revid'];
+		}
+		$this->assertSame( 3, $count, 'Expected number of revisions' );
+		$sorted = $ids;
+		rsort( $sorted );
+		$this->assertSame( $sorted, $ids, "IDs are sorted" );
+	}
+
+	public static function provideInterwikiUser() {
+		return [
+			'old' => [ MIGRATION_OLD ],
+			'write both' => [ MIGRATION_WRITE_BOTH ],
+			'write new' => [ MIGRATION_WRITE_NEW ],
+			'new' => [ MIGRATION_NEW ],
+		];
+	}
+
 }
