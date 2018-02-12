@@ -606,6 +606,18 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Possibly pretend that this module does not exist.
+	 *
+	 * This is intended for modules registered under wildcard names if not all values for the wildcard
+	 * are okay.
+	 *
+	 * @return boolean If true, act as if this module was missing
+	 */
+	public function isMissing() {
+		return false;
+	}
+
+	/**
 	 * Get a list of resources that web browsers may preload.
 	 *
 	 * Behaviour of rel=preload link is specified at <https://www.w3.org/TR/preload/>.
