@@ -94,7 +94,6 @@ class SiteStats {
 
 		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
-
 			$row = (object)array_fill_keys( self::selectFields(), 0 );
 		}
 
@@ -106,7 +105,12 @@ class SiteStats {
 	 * @return bool|stdClass
 	 */
 	static function doLoad( $db ) {
-		return $db->selectRow( 'site_stats', self::selectFields(), [], __METHOD__ );
+		return $db->selectRow(
+			'site_stats',
+			self::selectFields(),
+			[ 'ss_row_id' => 1 ],
+			__METHOD__
+		);
 	}
 
 	/**
@@ -243,7 +247,6 @@ class SiteStats {
 	 */
 	public static function selectFields() {
 		return [
-			'ss_row_id',
 			'ss_total_edits',
 			'ss_good_articles',
 			'ss_total_pages',
@@ -259,7 +262,6 @@ class SiteStats {
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
 	 *
 	 * @param bool|object $row
-	 *
 	 * @return bool
 	 */
 	private static function isSane( $row ) {
@@ -414,10 +416,11 @@ class SiteStatsInit {
 	 */
 	public static function doPlaceholderInit() {
 		$dbw = wfGetDB( DB_MASTER );
-		if ( $dbw->selectRow( 'site_stats', '1', [], __METHOD__ ) === false ) {
+		$exists = $dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
+		if ( $exists === false ) {
 			$dbw->insert(
 				'site_stats',
-				array_fill_keys( SiteStats::selectFields(), 0 ),
+				[ 'ss_row_id' => 1 ] + array_fill_keys( SiteStats::selectFields(), 0 ),
 				__METHOD__,
 				[ 'IGNORE' ]
 			);
