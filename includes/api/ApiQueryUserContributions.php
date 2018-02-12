@@ -107,7 +107,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					);
 				}
 
-				if ( User::isIP( $u ) ) {
+				if ( User::isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
 					$anyIPs = true;
 					$this->usernames[] = $u;
 				} else {
