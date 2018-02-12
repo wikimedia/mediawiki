@@ -1289,6 +1289,7 @@
 	"rcfilters-activefilters": "Aktívne filtre",
 	"rcfilters-advancedfilters": "Pokročilé filtre",
 	"rcfilters-limit-title": "Zobraziť zmeny",
+	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Jedna úprava|$1 úpravy|$1 úprav}}, $2",
 	"rcfilters-days-title": "Posledné dni",
 	"rcfilters-hours-title": "Posledné hodiny",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|deň|dni|dní}}",

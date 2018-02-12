@@ -162,6 +162,7 @@
 	"apihelp-options-example-reset": "Vrátit všechna nastavení.",
 	"apihelp-parse-param-summary": "Shrnutí, které se má parsovat.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Přidává název parsovaného wikitextu.",
+	"apihelp-parse-param-disablestylededuplication": "Neodstraňovat duplicitní in-line styly ve výstupu parseru.",
 	"apihelp-parse-param-preview": "Parsovat v režimu náhledu.",
 	"apihelp-parse-example-page": "Parsovat stránku.",
 	"apihelp-parse-example-text": "Parsovat wikitext.",

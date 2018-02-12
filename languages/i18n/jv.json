@@ -3027,6 +3027,7 @@
 	"autosumm-blank": "Ngothongaké kaca",
 	"autosumm-replace": "←Ngganti kaca karo '$1'",
 	"autoredircomment": "Ngeneraké kaca menyang [[$1]]",
+	"autosumm-changed-redirect-target": "Ngowahi jujuganing alihan saka [[$1]] menyang [[$2]]",
 	"autosumm-new": "Gawé kaca sing isi '$1'",
 	"autosumm-newblank": "Nggawé kaca barès",
 	"lag-warn-normal": "Owah-owahan pungkasan sing luwih anyar tinimbang $1 {{PLURAL:$1|detik|detik}} mbokmanawa ora metu ing pratélan iki.",

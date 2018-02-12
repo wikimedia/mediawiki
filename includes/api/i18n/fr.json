@@ -387,6 +387,7 @@
 	"apihelp-parse-param-disablepp": "Utiliser <var>$1disablelimitreport</var> à la place.",
 	"apihelp-parse-param-disableeditsection": "Omettre les liens de modification de section de la sortie de l’analyseur.",
 	"apihelp-parse-param-disabletidy": "Ne pas exécuter de nettoyage du code HTML (par exemple,  réagencer) sur la sortie de l'analyseur.",
+	"apihelp-parse-param-disablestylededuplication": "Ne pas dupliquer les feuilles de style incluses, dans la sortie de l'analyseur.",
 	"apihelp-parse-param-generatexml": "Générer un arbre d’analyse XML (nécessite le modèle de contenu <code>$1</code> ; remplacé par <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Analyser en mode aperçu.",
 	"apihelp-parse-param-sectionpreview": "Analyser en mode aperçu de section (active aussi le mode aperçu).",
