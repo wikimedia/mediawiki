@@ -754,7 +754,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$missing = [];
 		foreach ( $context->getModules() as $name ) {
 			$module = $this->getModule( $name );
-			if ( $module ) {
+			if ( $module && !$module->isMissing() ) {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see T36907.
 				if ( $module->getGroup() === 'private' ) {
