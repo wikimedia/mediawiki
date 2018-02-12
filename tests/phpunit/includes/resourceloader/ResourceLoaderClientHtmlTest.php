@@ -42,9 +42,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 	protected static function makeSampleModules() {
 		$modules = [
 			'test' => [],
-			'test.top' => [ 'position' => 'top' ],
-			'test.private.top' => [ 'group' => 'private', 'position' => 'top' ],
-			'test.private.bottom' => [ 'group' => 'private', 'position' => 'bottom' ],
+			'test.private' => [ 'group' => 'private' ],
 			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
 			'test.shouldembed' => [ 'shouldEmbed' => true ],
 
@@ -75,7 +73,6 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			],
 
 			'test.scripts' => [],
-			'test.scripts.top' => [ 'position' => 'top' ],
 			'test.scripts.user' => [ 'group' => 'user' ],
 			'test.scripts.user.empty' => [ 'group' => 'user', 'isKnownEmpty' => true ],
 			'test.scripts.raw' => [ 'isRaw' => true ],
@@ -115,9 +112,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		$client = new ResourceLoaderClientHtml( $context );
 		$client->setModules( [
 			'test',
-			'test.private.bottom',
-			'test.private.top',
-			'test.top',
+			'test.private',
 			'test.shouldembed.empty',
 			'test.shouldembed',
 			'test.unregistered',
@@ -133,15 +128,13 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		$client->setModuleScripts( [
 			'test.scripts',
 			'test.scripts.user.empty',
-			'test.scripts.top',
 			'test.scripts.shouldembed',
 			'test.unregistered.scripts',
 		] );
 
 		$expected = [
 			'states' => [
-				'test.private.top' => 'loading',
-				'test.private.bottom' => 'loading',
+				'test.private' => 'loading',
 				'test.shouldembed.empty' => 'ready',
 				'test.shouldembed' => 'loading',
 				'test.styles.pure' => 'ready',
@@ -149,27 +142,23 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 				'test.styles.private' => 'ready',
 				'test.styles.shouldembed' => 'ready',
 				'test.scripts' => 'loading',
-				'test.scripts.top' => 'loading',
 				'test.scripts.user.empty' => 'ready',
 				'test.scripts.shouldembed' => 'loading',
 			],
 			'general' => [
 				'test',
-				'test.top',
 			],
 			'styles' => [
 				'test.styles.pure',
 			],
 			'scripts' => [
 				'test.scripts',
-				'test.scripts.top',
 				'test.scripts.shouldembed',
 			],
 			'embed' => [
 				'styles' => [ 'test.styles.private', 'test.styles.shouldembed' ],
 				'general' => [
-					'test.private.bottom',
-					'test.private.top',
+					'test.private',
 					'test.shouldembed',
 				],
 			],
@@ -193,15 +182,15 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		$client = new ResourceLoaderClientHtml( $context );
 		$client->setConfig( [ 'key' => 'value' ] );
 		$client->setModules( [
-			'test.top',
-			'test.private.top',
+			'test',
+			'test.private',
 		] );
 		$client->setModuleStyles( [
 			'test.styles.pure',
 			'test.styles.private',
 		] );
 		$client->setModuleScripts( [
-			'test.scripts.top',
+			'test.scripts',
 		] );
 		$client->setExemptStates( [
 			'test.exempt' => 'ready',
@@ -211,10 +200,10 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
-			. 'mw.loader.state({"test.exempt":"ready","test.private.top":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts.top":"loading"});'
-			. 'mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
-			. 'mw.loader.load(["test.top"]);'
-			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.top\u0026only=scripts\u0026skin=fallback");'
+			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts":"loading"});'
+			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
+			. 'mw.loader.load(["test"]);'
+			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -266,9 +255,9 @@ class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
 			],
 			[
 				'context' => [],
-				'modules' => [ 'test.private.top' ],
+				'modules' => [ 'test.private' ],
 				'only' => ResourceLoaderModule::TYPE_COMBINED,
-				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private.top@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});});</script>',
 			],
 			[
 				'context' => [],
