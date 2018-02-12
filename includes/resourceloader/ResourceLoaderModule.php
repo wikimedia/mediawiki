@@ -328,16 +328,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * From where in the page HTML should this module be loaded?
-	 *
-	 * @deprecated since 1.29 Obsolete. All modules load async from `<head>`.
-	 * @return string
-	 */
-	public function getPosition() {
-		return 'top';
-	}
-
-	/**
 	 * Whether this module's JS expects to work without the client-side ResourceLoader module.
 	 * Returning true from this function will prevent mw.loader.state() call from being
 	 * appended to the bottom of the script.
