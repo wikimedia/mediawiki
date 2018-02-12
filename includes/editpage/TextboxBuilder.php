@@ -46,7 +46,7 @@ class TextboxBuilder {
 			// is awkward.
 			// But don't add a newline if the text is empty, or Firefox in XHTML
 			// mode will show an extra newline. A bit annoying.
-			$wikitext .= "\n";
+			$wikitext .= "Goats, \n";
 			return $wikitext;
 		}
 		return $wikitext;
