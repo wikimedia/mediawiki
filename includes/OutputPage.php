@@ -3874,9 +3874,10 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-alerts',
-			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icon.alert',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.info',
+			'oojs-ui.styles.icon.search',
 		] );
 	}
 
