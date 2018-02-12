@@ -614,6 +614,28 @@ class OutputPage extends ContextSource {
 	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
+
+		foreach ( (array)$modules as $moduleName ) {
+			$isIconPack = strpos( $moduleName, 'oojs-ui.styles.icons-' ) === 0;
+			$isSingleIcon = strpos( $moduleName, 'oojs-ui.styles.icon.' ) === 0;
+
+			if ( $isIconPack || $isSingleIcon ) {
+				$moduleObj = $this->getResourceLoader()->getModule( $moduleName );
+
+				if ( $isIconPack ) {
+					// Handle dependencies for icon packs, even though they are style modules...
+					// (Replace icon pack module with individual icon modules.)
+					$this->addModuleStyles( $moduleObj->getDependencies() );
+				}
+
+				// Maybe add deprecation warning.
+				// (Icon packs are all deprecated, individual icons can also be deprecated.)
+				$deprecation = $moduleObj->getDeprecationInformation();
+				if ( $deprecation ) {
+					$this->addScript( ResourceLoader::makeInlineScript( $deprecation ) );
+				}
+			}
+		}
 	}
 
 	/**
@@ -3919,9 +3941,10 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
-			'oojs-ui.styles.icons-content',
-			'oojs-ui.styles.icons-alerts',
-			'oojs-ui.styles.icons-interactions',
+			'oojs-ui.styles.icon.alert',
+			'oojs-ui.styles.icon.close',
+			'oojs-ui.styles.icon.info',
+			'oojs-ui.styles.icon.search',
 		] );
 	}
 
