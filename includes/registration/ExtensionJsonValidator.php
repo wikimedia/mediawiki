@@ -40,6 +40,7 @@ class ExtensionJsonValidator {
 	}
 
 	/**
+	 * @codeCoverageIgnore
 	 * @return bool
 	 */
 	public function checkDependencies() {
