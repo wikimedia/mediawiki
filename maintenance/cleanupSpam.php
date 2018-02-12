@@ -53,9 +53,14 @@ class CleanupSpam extends Maintenance {
 		$wgUser->addGroup( 'bot' );
 
 		$spec = $this->getArg();
-		$like = LinkFilter::makeLikeArray( $spec );
-		if ( !$like ) {
-			$this->fatalError( "Not a valid hostname specification: $spec" );
+
+		$likes = [];
+		foreach ( [ 'http://', 'https://' ] as $prot ) {
+			$like = LinkFilter::makeLikeArray( $spec, $prot );
+			if ( !$like ) {
+				$this->fatalError( "Not a valid hostname specification: $spec" );
+			}
+			$likes[$prot] = $like;
 		}
 
 		if ( $this->hasOption( 'all' ) ) {
@@ -63,15 +68,24 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
+				/** @var $dbr Database */
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
-				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
-					[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
-				if ( $count ) {
-					$found = true;
-					$cmd = wfShellWikiCmd( "$IP/maintenance/cleanupSpam.php",
-						[ '--wiki', $wikiID, $spec ] );
-					passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+				foreach ( $likes as $like ) {
+					$count = $dbr->selectField(
+						'externallinks',
+						'COUNT(*)',
+						[ 'el_index' . $dbr->buildLike( $like ) ],
+						__METHOD__
+					);
+					if ( $count ) {
+						$found = true;
+						$cmd = wfShellWikiCmd(
+							"$IP/maintenance/cleanupSpam.php",
+							[ '--wiki', $wikiID, $spec ]
+						);
+						passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+					}
 				}
 			}
 			if ( $found ) {
@@ -82,13 +96,21 @@ class CleanupSpam extends Maintenance {
 		} else {
 			// Clean up spam on this wiki
 
+			$count = 0;
+			/** @var $dbr Database */
 			$dbr = $this->getDB( DB_REPLICA );
-			$res = $dbr->select( 'externallinks', [ 'DISTINCT el_from' ],
-				[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
-			$count = $dbr->numRows( $res );
-			$this->output( "Found $count articles containing $spec\n" );
-			foreach ( $res as $row ) {
-				$this->cleanupArticle( $row->el_from, $spec );
+			foreach ( $likes as $prot => $like ) {
+				$res = $dbr->select(
+					'externallinks',
+					[ 'DISTINCT el_from' ],
+					[ 'el_index' . $dbr->buildLike( $like ) ],
+					__METHOD__
+				);
+				$count = $dbr->numRows( $res );
+				$this->output( "Found $count articles containing $spec\n" );
+				foreach ( $res as $row ) {
+					$this->cleanupArticle( $row->el_from, $spec, $prot );
+				}
 			}
 			if ( $count ) {
 				$this->output( "Done\n" );
@@ -96,7 +118,13 @@ class CleanupSpam extends Maintenance {
 		}
 	}
 
-	private function cleanupArticle( $id, $domain ) {
+	/**
+	 * @param int $id
+	 * @param string $domain
+	 * @param string $protocol
+	 * @throws MWException
+	 */
+	private function cleanupArticle( $id, $domain, $protocol ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
@@ -109,7 +137,7 @@ class CleanupSpam extends Maintenance {
 		$currentRevId = $rev->getId();
 
 		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT )
-			|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain ) )
+			|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain, $protocol ) )
 		) {
 			$rev = $rev->getPrevious();
 		}
