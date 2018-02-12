@@ -42,7 +42,7 @@ class CleanupSpam extends Maintenance {
 	}
 
 	public function execute() {
-		global $IP, $wgLocalDatabases, $wgUser;
+		global $IP, $wgLocalDatabases, $wgUser, $wgUrlProtocols;
 
 		$username = wfMessage( 'spambot_username' )->text();
 		$wgUser = User::newSystemUser( $username );
@@ -53,9 +53,14 @@ class CleanupSpam extends Maintenance {
 		$wgUser->addGroup( 'bot' );
 
 		$spec = $this->getArg();
-		$like = LinkFilter::makeLikeArray( $spec );
-		if ( !$like ) {
-			$this->fatalError( "Not a valid hostname specification: $spec" );
+
+		$likes = [];
+		foreach ( $wgUrlProtocols as $prot ) {
+			$like = LinkFilter::makeLikeArray( $spec, $prot );
+			if ( !$like ) {
+				$this->fatalError( "Not a valid hostname specification: $spec" );
+			}
+			$likes[] = $like;
 		}
 
 		if ( $this->hasOption( 'all' ) ) {
@@ -63,15 +68,24 @@ class CleanupSpam extends Maintenance {
 			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
 			foreach ( $wgLocalDatabases as $wikiID ) {
+				/** @var $dbr Database */
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiID );
 
-				$count = $dbr->selectField( 'externallinks', 'COUNT(*)',
-					[ 'el_index' . $dbr->buildLike( $like ) ], __METHOD__ );
-				if ( $count ) {
-					$found = true;
-					$cmd = wfShellWikiCmd( "$IP/maintenance/cleanupSpam.php",
-						[ '--wiki', $wikiID, $spec ] );
-					passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+				foreach ( $likes as $like ) {
+					$count = $dbr->selectField(
+						'externallinks',
+						'COUNT(*)',
+						[ 'el_index' . $dbr->buildLike( $like ) ],
+						__METHOD__
+					);
+					if ( $count ) {
+						$found = true;
+						$cmd = wfShellWikiCmd(
+							"$IP/maintenance/cleanupSpam.php",
+							[ '--wiki', $wikiID, $spec ]
+						);
+						passthru( "$cmd | sed 's/^/$wikiID:  /'" );
+					}
 				}
 			}
 			if ( $found ) {
