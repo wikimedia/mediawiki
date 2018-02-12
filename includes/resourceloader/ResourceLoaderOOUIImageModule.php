@@ -39,36 +39,12 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 		$definition = [];
 		foreach ( $themes as $skin => $theme ) {
-			// Find the path to the JSON file which contains the actual image definitions for this theme
-			if ( $module ) {
-				$dataPath = $this->getThemeImagesPath( $theme, $module );
-			} else {
-				// Backwards-compatibility for things that probably shouldn't have used this class...
-				$dataPath =
-					$this->definition['rootPath'] . '/' .
-					strtolower( $theme ) . '/' .
-					$this->definition['name'] . '.json';
-			}
-			$localDataPath = $this->localBasePath . '/' . $dataPath;
+			$data = $this->loadOOUIDefinition( $theme, $module );
 
-			// If there's no file for this module of this theme, that's okay, it will just use the defaults
-			if ( !file_exists( $localDataPath ) ) {
+			if ( !$data ) {
+				// If there's no file for this module of this theme, that's okay, it will just use the defaults
 				continue;
 			}
-			$data = json_decode( file_get_contents( $localDataPath ), true );
-
-			// Expand the paths to images (since they are relative to the JSON file that defines them, not
-			// our base directory)
-			$fixPath = function ( &$path ) use ( $dataPath ) {
-				$path = dirname( $dataPath ) . '/' . $path;
-			};
-			array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
-				if ( is_string( $value['file'] ) ) {
-					$fixPath( $value['file'] );
-				} elseif ( is_array( $value['file'] ) ) {
-					array_walk_recursive( $value['file'], $fixPath );
-				}
-			} );
 
 			// Convert into a definition compatible with the parent vanilla ResourceLoaderImageModule
 			foreach ( $data as $key => $value ) {
@@ -106,5 +82,97 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 		$this->definition += $definition;
 
 		parent::loadFromDefinition();
+	}
+
+	/**
+	 * Load the module definition from the JSON file(s) for the given theme and module.
+	 *
+	 * @param string $theme
+	 * @param string $module
+	 * @return array
+	 */
+	protected function loadOOUIDefinition( $theme, $module ) {
+		// Find the path to the JSON file which contains the actual image definitions for this theme
+		if ( $module ) {
+			$dataPath = $this->getThemeImagesPath( $theme, $module );
+		} else {
+			// Backwards-compatibility for things that probably shouldn't have used this class...
+			$dataPath =
+				$this->definition['rootPath'] . '/' .
+				strtolower( $theme ) . '/' .
+				$this->definition['name'] . '.json';
+		}
+
+		return $this->readJSONFile( $dataPath );
+	}
+
+	/**
+	 * Read JSON from a file, and transform all paths in it to be relative to the module's base path.
+	 *
+	 * @param string $dataPath Path relative to the module's base bath
+	 * @return array|false
+	 */
+	protected function readJSONFile( $dataPath ) {
+		$localDataPath = $this->localBasePath . '/' . $dataPath;
+
+		if ( !file_exists( $localDataPath ) ) {
+			return false;
+		}
+
+		$data = json_decode( file_get_contents( $localDataPath ), true );
+
+		// Expand the paths to images (since they are relative to the JSON file that defines them, not
+		// our base directory)
+		$fixPath = function ( &$path ) use ( $dataPath ) {
+			$path = dirname( $dataPath ) . '/' . $path;
+		};
+		array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
+			if ( is_string( $value['file'] ) ) {
+				$fixPath( $value['file'] );
+			} elseif ( is_array( $value['file'] ) ) {
+				array_walk_recursive( $value['file'], $fixPath );
+			}
+		} );
+
+		return $data;
+	}
+
+	public function getImages( ResourceLoaderContext $context ) {
+		if ( $this->getDependencies() ) {
+			// Suppress any style output
+			return [];
+		}
+
+		return parent::getImages( $context );
+	}
+
+	public function getScript( ResourceLoaderContext $context = null ) {
+		return $this->getDeprecationInformation();
+	}
+
+	// Override 'protected' to 'public'
+	public function getDeprecationInformation() {
+		$this->loadFromDefinition();
+		$dependencies = $this->getDependencies();
+
+		if ( $dependencies ) {
+			$this->deprecated = "Use individual icon modules like '$dependencies[0]' instead.";
+		}
+
+		return parent::getDeprecationInformation();
+	}
+
+	public function getDependencies( ResourceLoaderContext $context = null ) {
+		$this->loadFromDefinition();
+
+		$module = $this->getName();
+		if ( strpos( $module, 'oojs-ui.styles.icons-' ) === 0 ) {
+			$images = array_keys( $this->images['default'] );
+			return array_map( function ( $image ) {
+				return "oojs-ui.styles.icon.$image";
+			}, $images );
+		}
+
+		return parent::getDependencies();
 	}
 }
