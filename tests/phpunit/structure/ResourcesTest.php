@@ -85,6 +85,20 @@ class ResourcesTest extends MediaWikiTestCase {
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
+				// Handle dependencies on wildcard modules (names ending in '.*')
+				if ( !in_array( $dep, $validDeps ) ) {
+					$wildcardDep = preg_replace( '/\.[^.]+$/', '.*', $dep );
+					if ( in_array( $wildcardDep, $validDeps ) ) {
+						$moduleObj = $data['resourceloader']->getModule( $dep );
+						$this->assertFalse(
+							$moduleObj->isMissing(),
+							"The module '$dep' (wildcard '$wildcardDep') required by '$moduleName' must exist"
+						);
+						continue;
+					}
+				}
+
+				// Handle normal dependencies
 				$this->assertContains(
 					$dep,
 					$validDeps,
