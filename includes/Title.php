@@ -1292,15 +1292,15 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Could this page contain custom CSS or JavaScript for the global UI.
-	 * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
-	 * or CONTENT_MODEL_JAVASCRIPT.
+	 * Could this MediaWiki namespace page contain custom CSS, JSON, or JavaScript for the
+	 * global UI. This is generally true for pages in the MediaWiki namespace having
+	 * CONTENT_MODEL_CSS, CONTENT_MODEL_JSON, or CONTENT_MODEL_JAVASCRIPT.
 	 *
-	 * This method does *not* return true for per-user JS/CSS. Use isCssJsSubpage()
+	 * This method does *not* return true for per-user JS/JSON/CSS. Use isUserConfigPage()
 	 * for that!
 	 *
-	 * Note that this method should not return true for pages that contain and
-	 * show "inactive" CSS or JS.
+	 * Note that this method should not return true for pages that contain and show
+	 * "inactive" CSS, JSON, or JS.
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -1310,6 +1310,7 @@ class Title implements LinkTarget {
 			NS_MEDIAWIKI == $this->mNamespace
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JSON )
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 			)
 		);
@@ -1317,7 +1318,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * @return bool
-	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead
+	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead (which also checks for JSON pages)
 	 */
 	public function isCssOrJsPage() {
 		// wfDeprecated( __METHOD__, '1.31' );
@@ -1327,7 +1328,7 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Is this a "config" (.css or .js) sub-page of a user page?
+	 * Is this a "config" (.css, .json, or .js) sub-page of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -1338,6 +1339,7 @@ class Title implements LinkTarget {
 			&& $this->isSubpage()
 			&& (
 				$this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JSON )
 				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 			)
 		);
@@ -1345,7 +1347,7 @@ class Title implements LinkTarget {
 
 	/**
 	 * @return bool
-	 * @deprecated Since 1.31; use ::isUserConfigPage() instead
+	 * @deprecated Since 1.31; use ::isUserConfigPage() instead (which also checks for JSON pages)
 	 */
 	public function isCssJsSubpage() {
 		// wfDeprecated( __METHOD__, '1.31' );
@@ -1355,9 +1357,9 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Trim down a .css or .js subpage title to get the corresponding skin name
+	 * Trim down a .css, .json, or .js subpage title to get the corresponding skin name
 	 *
-	 * @return string Containing skin name from .css or .js subpage title
+	 * @return string Containing skin name from .css, .json, or .js subpage title
 	 * @since 1.31
 	 */
 	public function getSkinFromConfigSubpage() {
@@ -1365,7 +1367,7 @@ class Title implements LinkTarget {
 		$subpage = $subpage[count( $subpage ) - 1];
 		$lastdot = strrpos( $subpage, '.' );
 		if ( $lastdot === false ) {
-			return $subpage; # Never happens: only called for names ending in '.css' or '.js'
+			return $subpage; # Never happens: only called for names ending in '.css'/'.json'/'.js'
 		}
 		return substr( $subpage, 0, $lastdot );
 	}
@@ -1403,7 +1405,21 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Is this a .js subpage of a user page?
+	 * Is this a JSON "config" sub-page of a user page?
+	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function isUserJsonConfigPage() {
+		return (
+			NS_USER == $this->mNamespace
+			&& $this->isSubpage()
+			&& $this->hasContentModel( CONTENT_MODEL_JSON )
+		);
+	}
+
+	/**
+	 * Is this a JS "config" sub-page of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -2316,7 +2332,7 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Check CSS/JS sub-page permissions
+	 * Check CSS/JSON/JS sub-page permissions
 	 *
 	 * @param string $action The action to check
 	 * @param User $user User to check
@@ -2327,7 +2343,7 @@ class Title implements LinkTarget {
 	 * @return array List of errors
 	 */
 	private function checkUserConfigPermissions( $action, $user, $errors, $rigor, $short ) {
-		# Protect css/js subpages of user pages
+		# Protect css/json/js subpages of user pages
 		# XXX: this might be better using restrictions
 
 		if ( $action != 'patrol' ) {
@@ -2337,6 +2353,11 @@ class Title implements LinkTarget {
 					&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
 				) {
 					$errors[] = [ 'mycustomcssprotected', $action ];
+				} elseif (
+					$this->isUserJsonConfigPage()
+					&& !$user->isAllowedAny( 'editmyuserjson', 'edituserjson' )
+				) {
+					$errors[] = [ 'mycustomjsprotected', $action ];
 				} elseif (
 					$this->isUserJsConfigPage()
 					&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
@@ -2349,6 +2370,11 @@ class Title implements LinkTarget {
 					&& !$user->isAllowed( 'editusercss' )
 				) {
 					$errors[] = [ 'customcssprotected', $action ];
+				} elseif (
+					$this->isUserJsonConfigPage()
+					&& !$user->isAllowed( 'edituserjson' )
+				) {
+					$errors[] = [ 'customjsonprotected', $action ];
 				} elseif (
 					$this->isUserJsConfigPage()
 					&& !$user->isAllowed( 'edituserjs' )
@@ -3824,6 +3850,8 @@ class Title implements LinkTarget {
 		// If we are looking at a css/js user subpage, purge the action=raw.
 		if ( $this->isUserJsConfigPage() ) {
 			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
+		} elseif ( $this->isUserJsonConfigPage() ) {
+			$urls[] = $this->getInternalURL( 'action=raw&ctype=application/json' );
 		} elseif ( $this->isUserCssConfigPage() ) {
 			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/css' );
 		}

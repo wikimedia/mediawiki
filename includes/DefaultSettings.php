@@ -5816,6 +5816,7 @@ $wgGrantPermissions['editprotected']['editprotected'] = true;
 // FIXME: Rename editmycssjs to editmyconfig
 $wgGrantPermissions['editmycssjs'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['editmycssjs']['editmyusercss'] = true;
+$wgGrantPermissions['editmycssjs']['editmyuserjson'] = true;
 $wgGrantPermissions['editmycssjs']['editmyuserjs'] = true;
 
 $wgGrantPermissions['editmyoptions']['editmyoptions'] = true;
@@ -5823,6 +5824,7 @@ $wgGrantPermissions['editmyoptions']['editmyoptions'] = true;
 $wgGrantPermissions['editinterface'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['editinterface']['editinterface'] = true;
 $wgGrantPermissions['editinterface']['editusercss'] = true;
+$wgGrantPermissions['editinterface']['edituserjson'] = true;
 $wgGrantPermissions['editinterface']['edituserjs'] = true;
 
 $wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
