@@ -157,8 +157,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						# now that we have video handlers since they may emit block-
 						# level elements as opposed to simple <img> tags. ref
 						# http://css-discuss.incutio.com/?page=CenteringBlockElement
-						. '<div style="margin:' . $vpad . 'px auto;">'
-						. $thumb->toHtml( $imageParameters ) . '</div></div>';
+						. '<div style="margin:' . $vpad . 'px auto;"><figure-inline typeof="mw:Image">'
+						. $thumb->toHtml( $imageParameters ) . '</figure-inline></div></div>';
 
 					// Call parser transform hook
 					/** @var MediaHandler $handler */

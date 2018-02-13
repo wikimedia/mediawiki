@@ -2849,6 +2849,7 @@ class OutputPage extends ContextSource {
 				ResourceLoaderModule::TYPE_SCRIPTS,
 				[ 'sync' => true ]
 			) .
+			Html::element( 'script', null, 'html5.addElements(\'figure-inline\');' ) .
 			'<![endif]-->';
 
 		$pieces[] = Html::closeElement( 'head' );
