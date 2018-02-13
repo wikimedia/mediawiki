@@ -1441,7 +1441,6 @@ return [
 	'mediawiki.action.edit.preview' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.js',
 		'dependencies' => [
-			'jquery.form',
 			'jquery.spinner',
 			'jquery.textSelection',
 			'mediawiki.api',
