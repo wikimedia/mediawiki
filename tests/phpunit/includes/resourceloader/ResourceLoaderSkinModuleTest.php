@@ -199,7 +199,7 @@ CSS
 		$module->expects( $this->once() )->method( 'getLogoData' )
 			->willReturn( $logo );
 		$module->setConfig( new HashConfig( [
-			'UseNewMediaStructure' => true,
+			'ParserEnableLegacyMediaDOM' => false,
 		] + self::getSettings() ) );
 
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )

@@ -59,6 +59,7 @@ class ParserTestRunner {
 		'pfeqParserTests.txt',
 		'extraParserTests.txt',
 		'legacyMediaParserTests.txt',
+		'mediaParserTests.txt',
 	];
 
 	/**

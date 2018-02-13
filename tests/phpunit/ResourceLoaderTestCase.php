@@ -69,7 +69,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'Logos' => false,
 			'Logo' => '/logo.png',
 			'ResourceBasePath' => '/w',
-			'UseNewMediaStructure' => false,
+			'ParserEnableLegacyMediaDOM' => true,
 
 			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',

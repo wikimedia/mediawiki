@@ -4927,11 +4927,12 @@ $wgAllowImageTag = false;
 $wgTidyConfig = [];
 
 /**
- * Emit using the new media structure described at,
+ * Enable legacy media HTML structure in the output from the Parser.  The one
+ * that replaces it is described at,
  * https://www.mediawiki.org/wiki/Parsing/Media_structure
  * @since 1.36
  */
-$wgUseNewMediaStructure = false;
+$wgParserEnableLegacyMediaDOM = true;
 
 /**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.
