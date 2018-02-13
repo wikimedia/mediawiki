@@ -288,4 +288,22 @@ interface WatchedItemStoreInterface {
 	 */
 	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget );
 
+	/**
+	 * Queues a job that will clear the users watchlist using the Job Queue.
+	 *
+	 * @since 1.31
+	 *
+	 * @param User $user
+	 */
+	public function clearUserWatchedItems( User $user );
+
+	/**
+	 * Queues a job that will clear the users watchlist using the Job Queue.
+	 *
+	 * @since 1.31
+	 *
+	 * @param User $user
+	 */
+	public function clearUserWatchedItemsUsingJobQueue( User $user );
+
 }
