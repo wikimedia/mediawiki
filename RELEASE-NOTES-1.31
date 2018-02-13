@@ -66,6 +66,8 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* (T76554) User sub-pages named ….json are now protected in the same way that ….js
+  and ….css pages are, so that configuration options can safely be placed there.
 
 === External library changes in 1.31 ===
 
