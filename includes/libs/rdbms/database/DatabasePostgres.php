@@ -97,10 +97,10 @@ class DatabasePostgres extends Database {
 			);
 		}
 
-		$this->mServer = $server;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDBname = $dbName;
+		$this->server = $server;
+		$this->user = $user;
+		$this->password = $password;
+		$this->dbName = $dbName;
 
 		$connectVars = [
 			// pg_connect() user $user as the default database. Since a database is *required*,
@@ -116,7 +116,7 @@ class DatabasePostgres extends Database {
 		if ( (int)$this->port > 0 ) {
 			$connectVars['port'] = (int)$this->port;
 		}
-		if ( $this->mFlags & self::DBO_SSL ) {
+		if ( $this->flags & self::DBO_SSL ) {
 			$connectVars['sslmode'] = 1;
 		}
 
@@ -126,7 +126,7 @@ class DatabasePostgres extends Database {
 
 		try {
 			// Use new connections to let LoadBalancer/LBFactory handle reuse
-			$this->mConn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
+			$this->conn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -134,7 +134,7 @@ class DatabasePostgres extends Database {
 
 		$phpError = $this->restoreErrorHandler();
 
-		if ( !$this->mConn ) {
+		if ( !$this->conn ) {
 			$this->queryLogger->debug(
 				"DB connection error\n" .
 				"Server: $server, Database: $dbName, User: $user, Password: " .
@@ -144,7 +144,7 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
 
-		$this->mOpened = true;
+		$this->opened = true;
 
 		# If called from the command-line (e.g. importDump), only show errors
 		if ( $this->cliMode ) {
@@ -159,11 +159,11 @@ class DatabasePostgres extends Database {
 			$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
 		}
 
-		$this->determineCoreSchema( $this->mSchema );
+		$this->determineCoreSchema( $this->schema );
 		// The schema to be used is now in the search path; no need for explicit qualification
-		$this->mSchema = '';
+		$this->schema = '';
 
-		return $this->mConn;
+		return $this->conn;
 	}
 
 	public function databasesAreIndependent() {
@@ -178,8 +178,8 @@ class DatabasePostgres extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function selectDB( $db ) {
-		if ( $this->mDBname !== $db ) {
-			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
+		if ( $this->dbName !== $db ) {
+			return (bool)$this->open( $this->server, $this->user, $this->password, $db );
 		} else {
 			return true;
 		}
@@ -199,7 +199,7 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function closeConnection() {
-		return $this->mConn ? pg_close( $this->mConn ) : true;
+		return $this->conn ? pg_close( $this->conn ) : true;
 	}
 
 	public function doQuery( $sql ) {
@@ -253,7 +253,7 @@ class DatabasePostgres extends Database {
 			}
 		}
 		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->mTrxLevel ) {
+		if ( $this->trxLevel ) {
 			// Throw away the transaction state, then raise the error as normal.
 			// Note that if this connection is managed by LBFactory, it's already expected
 			// that the other transactions LBFactory manages will be rolled back.
@@ -365,7 +365,7 @@ class DatabasePostgres extends Database {
 	}
 
 	public function lastError() {
-		if ( $this->mConn ) {
+		if ( $this->conn ) {
 			if ( $this->mLastResult ) {
 				return pg_result_error( $this->mLastResult );
 			} else {
@@ -1255,11 +1255,11 @@ SQL;
 	}
 
 	public function getDBname() {
-		return $this->mDBname;
+		return $this->dbName;
 	}
 
 	public function getServer() {
-		return $this->mServer;
+		return $this->server;
 	}
 
 	public function buildConcat( $stringList ) {

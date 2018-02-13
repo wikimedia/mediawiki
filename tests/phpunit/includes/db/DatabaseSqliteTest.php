@@ -6,8 +6,6 @@ use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\ResultWrapper;
 
 class DatabaseSqliteMock extends DatabaseSqlite {
-	private $lastQuery;
-
 	public static function newInstance( array $p = [] ) {
 		$p['dbFilePath'] = ':memory:';
 		$p['schema'] = false;
@@ -16,8 +14,6 @@ class DatabaseSqliteMock extends DatabaseSqlite {
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
-		$this->lastQuery = $sql;
-
 		return true;
 	}
 
