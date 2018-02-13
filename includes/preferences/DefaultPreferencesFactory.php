@@ -681,11 +681,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		$allowUserCss = $this->config->get( 'AllowUserCss' );
+		$allowUserJson = $this->config->get( 'AllowUserJson' );
 		$allowUserJs = $this->config->get( 'AllowUserJs' );
 		# Create links to user CSS/JSON/JS pages for all skins
 		# This code is basically copied from generateSkinOptions().  It'd
 		# be nice to somehow merge this back in there to avoid redundancy.
-		if ( $allowUserCss || $allowUserJs ) {
+		if ( $allowUserCss || $allowUserJson || $allowUserJs ) {
 			$linkTools = [];
 			$userName = $user->getName();
 
@@ -693,6 +694,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$cssPage = Title::makeTitleSafe( NS_USER, $userName . '/common.css' );
 				$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
 				$linkTools[] = $this->linkRenderer->makeLink( $cssPage, $cssLinkText );
+			}
+
+			if ( $allowUserJson ) {
+				$jsonPage = Title::makeTitleSafe( NS_USER, $userName . '/common.json' );
+				$jsonLinkText = $context->msg( 'prefs-custom-json' )->text();
+				$linkTools[] = $this->linkRenderer->makeLink( $jsonPage, $jsonLinkText );
 			}
 
 			if ( $allowUserJs ) {
