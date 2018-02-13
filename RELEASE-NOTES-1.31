@@ -51,6 +51,8 @@ production.
 * Style tags with a 'data-mw-deduplicate' attribute will be deduplicated as a
   ParserOutput::getText() post-cache transformation. This may be disabled by
   passing 'deduplicateStyles' => false to that method.
+* (T76554) User sub-pages named ….json are now protected in the same way that ….js
+  and ….css pages are, so that configuration options can safely be placed there.
 
 === External library changes in 1.31 ===
 
