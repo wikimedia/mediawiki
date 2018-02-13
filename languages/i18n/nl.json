@@ -3425,6 +3425,7 @@
 	"watchlistedit-clear-titles": "Pagina's:",
 	"watchlistedit-clear-submit": "Volglijst wissen (dit is definitief!)",
 	"watchlistedit-clear-done": "Uw volglijst is gewist.",
+	"watchlistedit-clear-jobqueue": "Uw volglijst wordt leeggemaakt. Dit kan enige tijd duren!",
 	"watchlistedit-clear-removed": "Er {{PLURAL:$1|is 1 pagina|zijn $1 pagina's}} verwijderd:",
 	"watchlistedit-too-many": "Er zijn te veel pagina's om hier weer te geven.",
 	"watchlisttools-clear": "Volglijst wissen",

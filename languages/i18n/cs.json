@@ -1664,7 +1664,7 @@
 	"lockmanager-fail-closelock": "Soubor se zámkem pro „$1“ nelze zavřít.",
 	"lockmanager-fail-deletelock": "Soubor se zámkem pro „$1“ nelze smazat.",
 	"lockmanager-fail-acquirelock": "Zámek pro „$1“ nelze získat.",
-	"lockmanager-fail-openlock": "Soubor se zámkem „$1“ nelze otevřít. Ujistěte se, že vámi nahraný adresář je správně nakonfigurován a že váš webový server má povolení k editaci tohoto adresáře. Pro další informace vizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
+	"lockmanager-fail-openlock": "Soubor zámku „$1“ nelze otevřít. Ujistěte se, že váš adresář nahraných souborů je správně nakonfigurován a že váš webový server má povolení k zápisu do tohoto adresáře. Pro další informace vizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Zámek pro „$1“ nelze uvolnit.",
 	"lockmanager-fail-db-bucket": "Nelze navázat spojení s dostatečným počtem databází zámků v bloku $1.",
 	"lockmanager-fail-db-release": "Uzamčení databáze $1 nelze uvolnit.",

@@ -3409,6 +3409,7 @@
 	"watchlistedit-clear-titles": "제목:",
 	"watchlistedit-clear-submit": "주시목록 문서 지우기 (이는 영구적입니다!)",
 	"watchlistedit-clear-done": "주시문서 목록을 지웠습니다.",
+	"watchlistedit-clear-jobqueue": "주시 목록을 비우고 있습니다. 시간이 어느 정도 소요될 수 있습니다!",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|문서 1개|문서 $1개}}를 제거했습니다:",
 	"watchlistedit-too-many": "여기에 표시할 문서가 너무 많습니다.",
 	"watchlisttools-clear": "주시문서 목록 비우기",
