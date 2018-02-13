@@ -454,10 +454,34 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ],
 
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testJsonConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->userName . '/test.json' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomjsonprotected', 'bogus' ] ]
 		);
 	}
 
@@ -475,8 +499,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
 
 			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ]
 		);
 	}
@@ -495,9 +521,33 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 
 			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testOtherJsonConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->altUserName . '/test.json' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsonprotected', 'bogus' ] ]
 		);
 	}
 
@@ -515,8 +565,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 
 			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ]
 		);
 	}
@@ -535,7 +587,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
 
+			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ],
 			[ [ 'badaccess-group0' ] ]
 		);
@@ -544,8 +598,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	protected function runConfigEditPermissions(
 		$resultNone,
 		$resultMyCss,
+		$resultMyJson,
 		$resultMyJs,
 		$resultUserCss,
+		$resultUserJson,
 		$resultUserJs
 	) {
 		$this->setUserPerm( '' );
@@ -556,6 +612,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyCss, $result );
 
+		$this->setUserPerm( 'editmyuserjson' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyJson, $result );
+
 		$this->setUserPerm( 'editmyuserjs' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultMyJs, $result );
@@ -564,11 +624,15 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserCss, $result );
 
+		$this->setUserPerm( 'edituserjson' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserJson, $result );
+
 		$this->setUserPerm( 'edituserjs' );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultUserJs, $result );
 
-		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
+		$this->setUserPerm( [ 'edituserjs', 'edituserjson', 'editusercss' ] );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
 	}

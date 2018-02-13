@@ -432,7 +432,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * Clear the preloadTitleInfo() cache for all wiki modules on this wiki on
-	 * page change if it was a JS or CSS page
+	 * page change if it was a JS, JSON, or CSS page
 	 *
 	 * @param Title $title
 	 * @param Revision|null $old Prior page revision
@@ -443,7 +443,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	public static function invalidateModuleCache(
 		Title $title, Revision $old = null, Revision $new = null, $wikiId
 	) {
-		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JAVASCRIPT ];
+		static $formats = [ CONTENT_FORMAT_CSS, CONTENT_FORMAT_JSON, CONTENT_FORMAT_JAVASCRIPT ];
 
 		if ( $old && in_array( $old->getContentFormat(), $formats ) ) {
 			$purge = true;
