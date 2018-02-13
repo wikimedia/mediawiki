@@ -34,7 +34,7 @@ window.mwNow = ( function () {
  * - Firefox 4+
  * - Safari 5+
  * - Opera 15+
- * - Mobile Safari 5.1+ (iOS 5+)
+ * - Mobile Safari 6.0+ (iOS 6+)
  * - Android 4.1+
  *
  * Browsers we support in our no-javascript run-time (Grade C):
