@@ -93,10 +93,10 @@ class DatabaseMssql extends Database {
 		}
 
 		$this->close();
-		$this->mServer = $server;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDBname = $dbName;
+		$this->server = $server;
+		$this->user = $user;
+		$this->password = $password;
+		$this->dbName = $dbName;
 
 		$connectionInfo = [];
 
@@ -112,16 +112,16 @@ class DatabaseMssql extends Database {
 		}
 
 		Wikimedia\suppressWarnings();
-		$this->mConn = sqlsrv_connect( $server, $connectionInfo );
+		$this->conn = sqlsrv_connect( $server, $connectionInfo );
 		Wikimedia\restoreWarnings();
 
-		if ( $this->mConn === false ) {
+		if ( $this->conn === false ) {
 			throw new DBConnectionError( $this, $this->lastError() );
 		}
 
-		$this->mOpened = true;
+		$this->opened = true;
 
-		return $this->mConn;
+		return $this->conn;
 	}
 
 	/**
@@ -130,7 +130,7 @@ class DatabaseMssql extends Database {
 	 * @return bool
 	 */
 	protected function closeConnection() {
-		return sqlsrv_close( $this->mConn );
+		return sqlsrv_close( $this->conn );
 	}
 
 	/**
@@ -186,10 +186,10 @@ class DatabaseMssql extends Database {
 
 		if ( $this->mPrepareStatements ) {
 			// we do prepare + execute so we can get its field metadata for later usage if desired
-			$stmt = sqlsrv_prepare( $this->mConn, $sql, [], $scrollArr );
+			$stmt = sqlsrv_prepare( $this->conn, $sql, [], $scrollArr );
 			$success = sqlsrv_execute( $stmt );
 		} else {
-			$stmt = sqlsrv_query( $this->mConn, $sql, [], $scrollArr );
+			$stmt = sqlsrv_query( $this->conn, $sql, [], $scrollArr );
 			$success = (bool)$stmt;
 		}
 
@@ -953,7 +953,7 @@ class DatabaseMssql extends Database {
 	 * @return string Version information from the database
 	 */
 	public function getServerVersion() {
-		$server_info = sqlsrv_server_info( $this->mConn );
+		$server_info = sqlsrv_server_info( $this->conn );
 		$version = 'Error';
 		if ( isset( $server_info['SQLServerVersion'] ) ) {
 			$version = $server_info['SQLServerVersion'];
@@ -977,7 +977,7 @@ class DatabaseMssql extends Database {
 		}
 
 		if ( $schema === false ) {
-			$schema = $this->mSchema;
+			$schema = $this->schema;
 		}
 
 		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
@@ -1042,8 +1042,8 @@ class DatabaseMssql extends Database {
 	 * @param string $fname
 	 */
 	protected function doBegin( $fname = __METHOD__ ) {
-		sqlsrv_begin_transaction( $this->mConn );
-		$this->mTrxLevel = 1;
+		sqlsrv_begin_transaction( $this->conn );
+		$this->trxLevel = 1;
 	}
 
 	/**
@@ -1051,8 +1051,8 @@ class DatabaseMssql extends Database {
 	 * @param string $fname
 	 */
 	protected function doCommit( $fname = __METHOD__ ) {
-		sqlsrv_commit( $this->mConn );
-		$this->mTrxLevel = 0;
+		sqlsrv_commit( $this->conn );
+		$this->trxLevel = 0;
 	}
 
 	/**
@@ -1061,8 +1061,8 @@ class DatabaseMssql extends Database {
 	 * @param string $fname
 	 */
 	protected function doRollback( $fname = __METHOD__ ) {
-		sqlsrv_rollback( $this->mConn );
-		$this->mTrxLevel = 0;
+		sqlsrv_rollback( $this->conn );
+		$this->trxLevel = 0;
 	}
 
 	/**
@@ -1131,7 +1131,7 @@ class DatabaseMssql extends Database {
 	 */
 	public function selectDB( $db ) {
 		try {
-			$this->mDBname = $db;
+			$this->dbName = $db;
 			$this->query( "USE $db" );
 			return true;
 		} catch ( Exception $e ) {
@@ -1255,8 +1255,8 @@ class DatabaseMssql extends Database {
 	private function populateColumnCaches() {
 		$res = $this->select( 'INFORMATION_SCHEMA.COLUMNS', '*',
 			[
-				'TABLE_CATALOG' => $this->mDBname,
-				'TABLE_SCHEMA' => $this->mSchema,
+				'TABLE_CATALOG' => $this->dbName,
+				'TABLE_SCHEMA' => $this->schema,
 				'DATA_TYPE' => [ 'varbinary', 'binary', 'image', 'bit' ]
 			] );
 
