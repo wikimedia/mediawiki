@@ -63,7 +63,7 @@
 	"config-apcu": "[http://www.php.net/apcu APCu] es installate",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] es installate",
 	"config-no-cache-apcu": "<strong>Attention:</strong> Impossibile trovar [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nLe cache de objectos non es activate.",
-	"config-mod-security": "'''Attention''': [https://modsecurity.org/ mod_security] es active in tu servitor web. Si mal configurate, isto pote causar problemas pro MediaWiki o altere software que permitte al usatores de publicar contento arbitrari.\nConsulta le [https://modsecurity.org/documentation/ documentation de mod_security] o contacta le servicio de adjuta de tu host si tu incontra estranie errores.",
+	"config-mod-security": "<strong>Attention</strong>: [https://modsecurity.org/ mod_security]/mod_security2 es active in tu servitor web. Multe configurationes commun de isto causa problemas pro MediaWiki o altere software que permitte al usatores de publicar contento arbitrari. Si possibile, isto deberea esser disactivate.\nAlteremente, consulta le [https://modsecurity.org/documentation/ documentation de mod_security] o contacta le servicio de adjuta de tu servitor si tu incontra estranie errores.",
 	"config-diff3-bad": "GNU diff3 non trovate.",
 	"config-git": "Systema de controlo de version Git trovate: <code>$1</code>",
 	"config-git-bad": "Systema de controlo de version Git non trovate.",

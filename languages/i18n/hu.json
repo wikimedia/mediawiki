@@ -3375,6 +3375,7 @@
 	"watchlistedit-clear-titles": "Címek:",
 	"watchlistedit-clear-submit": "Figyelőlista kiürítése (Ez végleges!)",
 	"watchlistedit-clear-done": "A figyelőlistád törölve.",
+	"watchlistedit-clear-jobqueue": "A figyelőlistád kiürítése folyamatban van. Ez eltarthat egy ideig.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|$1 oldal}} törölve:",
 	"watchlistedit-too-many": "Túl sok lap a megjelenítéshez.",
 	"watchlisttools-clear": "A figyelőlista kiürítése",

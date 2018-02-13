@@ -380,6 +380,7 @@
 	"apihelp-parse-param-disablepp": "请改用<var>$1disablelimitreport</var>。",
 	"apihelp-parse-param-disableeditsection": "从解析器输出中省略编辑段落链接。",
 	"apihelp-parse-param-disabletidy": "不要在解析器输出中运行HTML清理（例如tidy）。",
+	"apihelp-parse-param-disablestylededuplication": "不要在解析器输出中删除重复的行内样式表。",
 	"apihelp-parse-param-generatexml": "生成XML解析树（需要内容模型<code>$1</code>；被<kbd>$2prop=parsetree</kbd>所取代）。",
 	"apihelp-parse-param-preview": "在预览模式下解析。",
 	"apihelp-parse-param-sectionpreview": "在段落预览模式下解析（同时要启用预览模式）。",

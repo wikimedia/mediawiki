@@ -3500,6 +3500,7 @@
 	"watchlistedit-clear-titles": "Заголовки:",
 	"watchlistedit-clear-submit": "Очистить список наблюдения (это необратимо!)",
 	"watchlistedit-clear-done": "Ваш список наблюдения очищен.",
+	"watchlistedit-clear-jobqueue": "Ваш список наблюдения очищается. Это может занять некоторое время!",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Была удалена|Были удалены|Было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-too-many": "Слишком много страниц для того, чтобы показать их здесь.",
 	"watchlisttools-clear": "Очистить список наблюдения",

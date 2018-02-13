@@ -2555,7 +2555,7 @@
 	"fix-double-redirects": "Päivitä kaikki vanhalle nimelle viittaavat ohjaukset ohjaamaan uudelle nimelle",
 	"move-leave-redirect": "Jätä paikalle ohjaus",
 	"protectedpagemovewarning": "'''Varoitus:''' Tämä sivu on lukittu siten, että vain ylläpitäjät voivat siirtää sen.\nAlla on viimeisin lokitapahtuma:",
-	"semiprotectedpagemovewarning": "Tämä sivu on lukittu siten, että vain rekisteröityneet käyttäjät voivat siirtää sitä.\nAlla on viimeisin lokitapahtuma:",
+	"semiprotectedpagemovewarning": "<strong>Huomaa:</strong> Tämä sivu on lukittu siten, että vain rekisteröityneet käyttäjät voivat siirtää sen.\nAlla on viimeisin lokitapahtuma:",
 	"move-over-sharedrepo": "[[:$1]] on olemassa yhteisessä tietovarastossa. Tiedoston siirtäminen tälle nimelle korvaa yhteisen tiedoston.",
 	"file-exists-sharedrepo": "Valittu tiedostonimi on jo käytössä jaetussa varastossa.\nValitse toinen nimi.",
 	"export": "Vie sivuja",
