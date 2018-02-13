@@ -60,7 +60,7 @@ class RawAction extends FormlessAction {
 		}
 
 		$gen = $request->getVal( 'gen' );
-		if ( $gen == 'css' || $gen == 'js' ) {
+		if ( $gen == 'css' || $gen == 'json' || $gen == 'js' ) {
 			$this->gen = true;
 		}
 
@@ -69,10 +69,14 @@ class RawAction extends FormlessAction {
 		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
-			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
-				// CSS/JS raw content has its own CDN max age configuration.
-				// Note: Title::getCdnUrls() includes action=raw for css/js pages,
-				// so if using the canonical url, this will get HTCP purges.
+			if (
+				$contentType == 'text/css' ||
+				$contentType == 'application/json' ||
+				$contentType == 'text/javascript'
+			) {
+				// CSS/JSON/JS raw content has its own CDN max age configuration.
+				// Note: Title::getCdnUrls() includes action=raw for css/json/js
+				// pages, so if using the canonical url, this will get HTCP purges.
 				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
 			} else {
 				// No CDN cache for anything else
@@ -166,7 +170,7 @@ class RawAction extends FormlessAction {
 					}
 
 					if ( $content === null || $content === false ) {
-						// section not found (or section not supported, e.g. for JS and CSS)
+						// section not found (or section not supported, e.g. for JS, JSON, and CSS)
 						$text = false;
 					} else {
 						$text = $content->getNativeData();
@@ -231,6 +235,8 @@ class RawAction extends FormlessAction {
 			$gen = $this->getRequest()->getVal( 'gen' );
 			if ( $gen == 'js' ) {
 				$ctype = 'text/javascript';
+			} elseif ( $gen == 'json' ) {
+				$ctype = 'application/json';
 			} elseif ( $gen == 'css' ) {
 				$ctype = 'text/css';
 			}
@@ -240,6 +246,7 @@ class RawAction extends FormlessAction {
 			'text/x-wiki',
 			'text/javascript',
 			'text/css',
+			// FIXME: Should we still allow Zope editing? External editing feature was dropped
 			'application/x-zope-edit',
 			'application/json'
 		];
