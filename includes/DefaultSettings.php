@@ -3304,6 +3304,13 @@ $wgSkipSkin = '';
 $wgAllowUserJs = false;
 
 /**
+ * Allow user JSON page?
+ * This enables a lot of neat customizations, but may
+ * increase security risk to users and server load.
+ */
+$wgAllowUserJson = false;
+
+/**
  * Allow user Cascading Style Sheets (CSS)?
  * This enables a lot of neat customizations, but may
  * increase security risk to users and server load.
