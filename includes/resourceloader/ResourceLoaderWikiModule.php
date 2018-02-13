@@ -29,8 +29,8 @@ use Wikimedia\Rdbms\IDatabase;
  * Abstraction for ResourceLoader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
- * because of its dependence on the functionality of Title::isCssJsSubpage
- * and Title::isCssOrJsPage().
+ * because of its dependence on the functionality of Title::isUserConfigPage()
+ * and Title::isSiteConfigPage().
  *
  * This module supports being used as a placeholder for a module on a remote wiki.
  * To do so, getDB() must be overloaded to return a foreign database object that
@@ -450,7 +450,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		} elseif ( $new && in_array( $new->getContentFormat(), $formats ) ) {
 			$purge = true;
 		} else {
-			$purge = ( $title->isCssOrJsPage() || $title->isCssJsSubpage() );
+			$purge = ( $title->isSiteConfigPage() || $title->isUserConfigPage() );
 		}
 
 		if ( $purge ) {
