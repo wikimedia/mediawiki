@@ -2473,9 +2473,11 @@ ERROR;
 		if ( $namespace == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$out->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
-			# If this is a default message (but not css or js),
+			# If this is a default message (but not css, json, or js),
 			# show a hint that it is translatable on translatewiki.net
-			if ( !$this->mTitle->hasContentModel( CONTENT_MODEL_CSS )
+			if (
+				!$this->mTitle->hasContentModel( CONTENT_MODEL_CSS )
+				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JSON )
 				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 			) {
 				$defaultMessageText = $this->mTitle->getDefaultMessageText();
@@ -3095,10 +3097,12 @@ ERROR;
 				}
 				if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
 					$isUserCssConfig = $this->mTitle->isUserCssConfigPage();
+					$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
+					$isUserJsConfig = $this->mTitle->isUserJsConfigPage();
 
 					$warning = $isUserCssConfig
 						? 'usercssispublic'
-						: 'userjsispublic';
+						: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
 
 					$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
 
@@ -3109,9 +3113,12 @@ ERROR;
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								[ 'usercssyoucanpreview' ]
 							);
-						}
-
-						if ( $this->mTitle->isJsSubpage() && $config->get( 'AllowUserJs' ) ) {
+						} elseif ( $isUserJsonConfig /* No comparable 'AllowUserJson' */ ) {
+							$out->wrapWikiMsg(
+								"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
+								[ 'userjsonyoucanpreview' ]
+							);
+						} elseif ( $isUserJsConfig && $config->get( 'AllowUserJs' ) ) {
 							$out->wrapWikiMsg(
 								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 								[ 'userjsyoucanpreview' ]
@@ -3848,6 +3855,11 @@ ERROR;
 					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
 						$format = false;
 					}
+				} elseif ( $content->getModel() == CONTENT_MODEL_JSON ) {
+					$format = 'json';
+					if ( $level === 'user' /* No comparable 'AllowUserJson' */ ) {
+						$format = false;
+					}
 				} elseif ( $content->getModel() == CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
 					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
@@ -3858,7 +3870,8 @@ ERROR;
 				}
 
 				# Used messages to make sure grep find them:
-				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
+				# Messages: usercsspreview, userjsonpreview, userjspreview,
+				#   sitecsspreview, sitejsonpreview, sitejspreview
 				if ( $level && $format ) {
 					$note = "<div id='mw-{$level}{$format}preview'>" .
 						$this->context->msg( "{$level}{$format}preview" )->text() .
