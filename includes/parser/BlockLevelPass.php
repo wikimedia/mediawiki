@@ -296,7 +296,7 @@ class BlockLevelPass {
 				);
 				$closeMatch = preg_match(
 					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'
-						. '<td|<th|<\\/?blockquote|<\\/?div|<\\/?figure|<hr|<\\/pre|<\\/p|<\\/mw:|'
+						. '<td|<th|<\\/?blockquote|<\\/?div|<\\/?figure(?!-)|<hr|<\\/pre|<\\/p|<\\/mw:|'
 						. Parser::MARKER_PREFIX
 						. '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)\\b/iS',
 					$t
