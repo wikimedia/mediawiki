@@ -68,6 +68,7 @@ class RemexCompatMunger implements TreeHandler {
 		"data" => true,
 		"time" => true,
 		"mark" => true,
+		"figure-inline" => true,
 	];
 
 	private static $formattingElements = [

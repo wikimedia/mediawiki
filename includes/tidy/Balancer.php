@@ -296,7 +296,7 @@ class BalanceSets {
 			'var' => true,
 			// Those defined in tidy.conf
 			'video' => true, 'audio' => true, 'bdi' => true, 'data' => true,
-			'time' => true, 'mark' => true,
+			'time' => true, 'mark' => true, 'figure-inline' => true,
 		],
 	];
 }
