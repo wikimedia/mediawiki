@@ -705,7 +705,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'info',
 				'raw' => true,
 				'default' => $context->getLanguage()->pipeList( $linkTools ),
-				'label-message' => 'prefs-common-css-js',
+				'label-message' => 'prefs-common-config',
 				'section' => 'rendering/skin',
 			];
 		}

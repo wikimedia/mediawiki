@@ -96,6 +96,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 * @covers Title::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
 		global $wgContLang;
@@ -386,6 +387,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 * @covers Title::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions() {
 		global $wgNamespaceProtection;
@@ -442,91 +444,139 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 * @covers Title::checkUserConfigPermissions
 	 */
-	public function testCssAndJavascriptPermissions() {
+	public function testJsConfigEditPermissions() {
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_USER, $this->userName . '/test.js' );
-		$this->runCSSandJSPermissions(
+		$this->runConfigEditPermissions(
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
+
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ],
+
 			[ [ 'badaccess-group0' ], [ 'mycustomjsprotected', 'bogus' ] ],
 			[ [ 'badaccess-group0' ] ]
 		);
-
-		$this->setTitle( NS_USER, $this->userName . '/test.css' );
-		$this->runCSSandJSPermissions(
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ]
-		);
-
-		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
-		$this->runCSSandJSPermissions(
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ]
-		);
-
-		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
-		$this->runCSSandJSPermissions(
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ]
-		);
-
-		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
-		$this->runCSSandJSPermissions(
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ],
-			[ [ 'badaccess-group0' ] ]
-		);
-	}
-
-	protected function runCSSandJSPermissions( $result0, $result1, $result2, $result3, $result4 ) {
-		$this->setUserPerm( '' );
-		$this->assertEquals( $result0,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
-		$this->setUserPerm( 'editmyusercss' );
-		$this->assertEquals( $result1,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
-		$this->setUserPerm( 'editmyuserjs' );
-		$this->assertEquals( $result2,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
-		$this->setUserPerm( 'editusercss' );
-		$this->assertEquals( $result3,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
-		$this->setUserPerm( 'edituserjs' );
-		$this->assertEquals( $result4,
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
-
-		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
-		$this->assertEquals( [ [ 'badaccess-group0' ] ],
-			$this->title->getUserPermissionsErrors( 'bogus',
-				$this->user ) );
 	}
 
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testCssConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->userName . '/test.css' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'mycustomcssprotected', 'bogus' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testOtherJsConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'customjsprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testOtherCssConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->altUserName . '/test.css' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ],
+
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ], [ 'customcssprotected', 'bogus' ] ]
+		);
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkUserConfigPermissions
+	 */
+	public function testOtherNonConfigEditPermissions() {
+		$this->setUser( $this->userName );
+
+		$this->setTitle( NS_USER, $this->altUserName . '/tempo' );
+		$this->runConfigEditPermissions(
+			[ [ 'badaccess-group0' ] ],
+
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ],
+
+			[ [ 'badaccess-group0' ] ],
+			[ [ 'badaccess-group0' ] ]
+		);
+	}
+
+	protected function runConfigEditPermissions(
+		$resultNone,
+		$resultMyCss,
+		$resultMyJs,
+		$resultUserCss,
+		$resultUserJs
+	) {
+		$this->setUserPerm( '' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultNone, $result );
+
+		$this->setUserPerm( 'editmyusercss' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyCss, $result );
+
+		$this->setUserPerm( 'editmyuserjs' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultMyJs, $result );
+
+		$this->setUserPerm( 'editusercss' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserCss, $result );
+
+		$this->setUserPerm( 'edituserjs' );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( $resultUserJs, $result );
+
+		$this->setUserPerm( [ 'edituserjs', 'editusercss' ] );
+		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
+		$this->assertEquals( [ [ 'badaccess-group0' ] ], $result );
+	}
+
+	/**
+	 * @todo This test method should be split up into separate test methods and
+	 * data providers
+	 * @covers Title::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
 		global $wgContLang;
@@ -619,6 +669,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 				$this->user ) );
 	}
 
+	/**
+	 * @covers Title::checkCascadingSourcesRestrictions
+	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->setUserPerm( [ "edit", "bogus" ] );
@@ -648,6 +701,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	/**
 	 * @todo This test method should be split up into separate test methods and
 	 * data providers
+	 * @covers Title::checkActionPermissions
 	 */
 	public function testActionPermissions() {
 		$this->setUserPerm( [ "createpage" ] );
@@ -720,6 +774,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->title->userCan( 'move-target', $this->user ) );
 	}
 
+	/**
+	 * @covers Title::checkUserBlock
+	 */
 	public function testUserBlock() {
 		global $wgEmailConfirmToEdit, $wgEmailAuthentication;
 		$wgEmailConfirmToEdit = true;

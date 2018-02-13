@@ -1303,22 +1303,52 @@ class Title implements LinkTarget {
 	 * show "inactive" CSS or JS.
 	 *
 	 * @return bool
-	 * @todo FIXME: Rename to isSiteConfigPage() and remove deprecated hook
+	 * @since 1.31
 	 */
-	public function isCssOrJsPage() {
-		$isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
-			&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
-
-		return $isCssOrJsPage;
+	public function isSiteConfigPage() {
+		return (
+			NS_MEDIAWIKI == $this->mNamespace
+			&& (
+				$this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+			)
+		);
 	}
 
 	/**
-	 * Is this a .css or .js subpage of a user page?
 	 * @return bool
-	 * @todo FIXME: Rename to isUserConfigPage()
+	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead
+	 */
+	public function isCssOrJsPage() {
+		// wfDeprecated( __METHOD__, '1.31' );
+		return ( NS_MEDIAWIKI == $this->mNamespace
+				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
+					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
+	}
+
+	/**
+	 * Is this a "config" (.css or .js) sub-page of a user page?
+	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function isUserConfigPage() {
+		return (
+			NS_USER == $this->mNamespace
+			&& $this->isSubpage()
+			&& (
+				$this->hasContentModel( CONTENT_MODEL_CSS )
+				|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+			)
+		);
+	}
+
+	/**
+	 * @return bool
+	 * @deprecated Since 1.31; use ::isUserConfigPage() instead
 	 */
 	public function isCssJsSubpage() {
+		// wfDeprecated( __METHOD__, '1.31' );
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
 				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
@@ -1329,7 +1359,7 @@ class Title implements LinkTarget {
 	 *
 	 * @return string Containing skin name from .css or .js subpage title
 	 */
-	public function getSkinFromCssJsSubpage() {
+	public function getSkinFromConfigSubpage() {
 		$subpage = explode( '/', $this->mTextform );
 		$subpage = $subpage[count( $subpage ) - 1];
 		$lastdot = strrpos( $subpage, '.' );
@@ -1340,23 +1370,58 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Is this a .css subpage of a user page?
+	 * @deprecated Since 1.31; use ::getSkinFromConfigSubpage() instead
+	 * @return string Containing skin name from .css or .js subpage title
+	 */
+	public function getSkinFromCssJsSubpage() {
+		 wfDeprecated( __METHOD__, '1.31' );
+		return $this->getSkinFromConfigSubpage();
+	}
+
+	/**
+	 * Is this a CSS "config" sub-page of a user page?
 	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function isUserCssConfigPage() {
+		return (
+			NS_USER == $this->mNamespace
+			&& $this->isSubpage()
+			&& $this->hasContentModel( CONTENT_MODEL_CSS )
+		);
+	}
+
+	/**
+	 * @deprecated Since 1.31; use ::isUserCssConfigPage()
 	 * @return bool
 	 */
 	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_CSS ) );
+		// wfDeprecated( __METHOD__, '1.31' );
+		return $this->isUserCssConfigPage();
 	}
 
 	/**
 	 * Is this a .js subpage of a user page?
 	 *
 	 * @return bool
+	 * @since 1.31
+	 */
+	public function isUserJsConfigPage() {
+		return (
+			NS_USER == $this->mNamespace
+			&& $this->isSubpage()
+			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+		);
+	}
+
+	/**
+	 * @deprecated Since 1.31; use ::isUserCssConfigPage()
+	 * @return bool
 	 */
 	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+		// wfDeprecated( __METHOD__, '1.31' );
+		return $this->isUserJsConfigPage();
 	}
 
 	/**
@@ -2260,20 +2325,31 @@ class Title implements LinkTarget {
 	 *
 	 * @return array List of errors
 	 */
-	private function checkCSSandJSPermissions( $action, $user, $errors, $rigor, $short ) {
+	private function checkUserConfigPermissions( $action, $user, $errors, $rigor, $short ) {
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
+
 		if ( $action != 'patrol' ) {
 			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
-				if ( $this->isCssSubpage() && !$user->isAllowedAny( 'editmyusercss', 'editusercss' ) ) {
+				if (
+					$this->isUserCssConfigPage()
+					&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )
+				) {
 					$errors[] = [ 'mycustomcssprotected', $action ];
-				} elseif ( $this->isJsSubpage() && !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' ) ) {
+					$this->isUserJsConfigPage()
+					&& !$user->isAllowedAny( 'editmyuserjs', 'edituserjs' )
+				) {
 					$errors[] = [ 'mycustomjsprotected', $action ];
 				}
 			} else {
-				if ( $this->isCssSubpage() && !$user->isAllowed( 'editusercss' ) ) {
+				if (
+					$this->isUserCssConfigPage()
+					&& !$user->isAllowed( 'editusercss' )
+				) {
 					$errors[] = [ 'customcssprotected', $action ];
-				} elseif ( $this->isJsSubpage() && !$user->isAllowed( 'edituserjs' ) ) {
+					$this->isUserJsConfigPage()
+					&& !$user->isAllowed( 'edituserjs' )
+				) {
 					$errors[] = [ 'customjsprotected', $action ];
 				}
 			}
@@ -2330,7 +2406,7 @@ class Title implements LinkTarget {
 	 * @return array List of errors
 	 */
 	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $rigor, $short ) {
-		if ( $rigor !== 'quick' && !$this->isCssJsSubpage() ) {
+		if ( $rigor !== 'quick' && !$this->isUserConfigPage() ) {
 			# We /could/ use the protection level on the source page, but it's
 			# fairly ugly as we have to establish a precedence hierarchy for pages
 			# included by multiple cascade-protected pages. So just restrict
@@ -2611,7 +2687,7 @@ class Title implements LinkTarget {
 				'checkReadPermissions',
 				'checkUserBlock', // for wgBlockDisablesLogin
 			];
-		# Don't call checkSpecialsAndNSPermissions or checkCSSandJSPermissions
+		# Don't call checkSpecialsAndNSPermissions or checkUserConfigPermissions
 		# here as it will lead to duplicate error messages. This is okay to do
 		# since anywhere that checks for create will also check for edit, and
 		# those checks are called for edit.
@@ -2629,7 +2705,7 @@ class Title implements LinkTarget {
 				'checkQuickPermissions',
 				'checkPermissionHooks',
 				'checkSpecialsAndNSPermissions',
-				'checkCSSandJSPermissions',
+				'checkUserConfigPermissions',
 				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',
 				'checkActionPermissions',
@@ -3743,9 +3819,9 @@ class Title implements LinkTarget {
 		}
 
 		// If we are looking at a css/js user subpage, purge the action=raw.
-		if ( $this->isJsSubpage() ) {
+		if ( $this->isUserJsConfigPage() ) {
 			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
-		} elseif ( $this->isCssSubpage() ) {
+		} elseif ( $this->isUserCssConfigPage() ) {
 			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/css' );
 		}
 

@@ -233,6 +233,12 @@ changes to languages because of Phabricator reports.
   * CommentStore::getCommentLegacy
   * CommentStore::insert
   * CommentStore::insertWithTemplate
+* The following methods in Title have been renamed and the old ones are deprecated:
+  * Title::getSkinFromCssJsSubpage – use ::getSkinFromConfigSubpage
+  * Title::isCssOrJsPage – use ::isSiteConfigPage
+  * Title::isCssJsSubpage – use ::isUserConfigPage
+  * Title::isCssSubpage – use ::isUserCssConfigPage
+  * Title::isJsSubpage – use ::isUserJsConfigPage
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
