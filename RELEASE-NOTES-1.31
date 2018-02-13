@@ -33,6 +33,8 @@ production.
   was configured with 'any'.
 
 === New features in 1.31 ===
+* (T76554) User sub-pages named ….json are now protected in the same way that ….js
+  and ….css pages are, so that configuration options can safely be placed there.
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
   joins with parentheses for grouping.
 * As a first pass in standardizing dialog boxes across the MediaWiki product,
