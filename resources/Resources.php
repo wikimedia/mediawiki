@@ -100,7 +100,7 @@ return [
 	'mediawiki.skinning.content' => [
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
-			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
+			'resources/src/mediawiki.skinning/content.less' => [ 'media' => 'screen' ],
 		],
 	],
 	// Used in the web installer. Test it after modifying this definition!
@@ -108,7 +108,7 @@ return [
 		'class' => ResourceLoaderSkinModule::class,
 		'styles' => [
 			'resources/src/mediawiki.skinning/elements.css' => [ 'media' => 'screen' ],
-			'resources/src/mediawiki.skinning/content.css' => [ 'media' => 'screen' ],
+			'resources/src/mediawiki.skinning/content.less' => [ 'media' => 'screen' ],
 			'resources/src/mediawiki.skinning/interface.css' => [ 'media' => 'screen' ],
 		],
 	],
