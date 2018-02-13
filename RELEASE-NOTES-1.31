@@ -233,6 +233,12 @@ changes to languages because of Phabricator reports.
   * CommentStore::getCommentLegacy
   * CommentStore::insert
   * CommentStore::insertWithTemplate
+* The following methods in Title have been renamed, and the old ones are deprecated:
+  * Title::getSkinFromCssJsSubpage – use ::getSkinFromConfigSubpage
+  * Title::isCssOrJsPage – use ::isSiteConfigPage
+  * Title::isCssJsSubpage – use ::isUserConfigPage
+  * Title::isCssSubpage – use ::isUserCssConfigPage
+  * Title::isJsSubpage – use ::isUserJsConfigPage
 * The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
 
 == Compatibility ==
