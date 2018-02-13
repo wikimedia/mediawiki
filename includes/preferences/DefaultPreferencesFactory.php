@@ -682,7 +682,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$allowUserCss = $this->config->get( 'AllowUserCss' );
 		$allowUserJs = $this->config->get( 'AllowUserJs' );
-		# Create links to user CSS/JS pages for all skins
+		# Create links to user CSS/JSON/JS pages for all skins
 		# This code is basically copied from generateSkinOptions().  It'd
 		# be nice to somehow merge this back in there to avoid redundancy.
 		if ( $allowUserCss || $allowUserJs ) {
