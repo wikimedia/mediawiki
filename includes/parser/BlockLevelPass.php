@@ -299,7 +299,7 @@ class BlockLevelPass {
 				$closeMatch = preg_match(
 					'/(?:<\\/table|<\\/tr|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|<\\/pre|'
 						. '<\\/p|<\\/ul|<\\/ol|<\\/dl|<\\/li|<td|<th|'
-						. '<\\/?center|<\\/?blockquote|<\\/?div|<hr|<\\/mw:)\\b/iS',
+						. '<\\/?center|<\\/?blockquote|<\\/?div|<\\/?figure|<hr|<\\/mw:)\\b/iS',
 					$t
 				);
 
