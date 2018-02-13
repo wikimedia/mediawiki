@@ -2271,7 +2271,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$edits = $options['changed'] ? 1 : 0;
 		$total = $options['created'] ? 1 : 0;
 
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, $edits, $good, $total ) );
+		DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
+			[ 'edits' => $edits, 'articles' => $good, 'total' => $total ]
+		) );
 		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
 
 		// If this is another user's talk page, update newtalk.
@@ -3018,7 +3020,9 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Update site status
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$countable, -1 ) );
+		DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
+			[ 'edits' => 1, 'articles' => -$countable, 'pages' => -1 ]
+		) );
 
 		// Delete pagelinks, update secondary indexes, etc
 		$updates = $this->getDeletionUpdates( $content );

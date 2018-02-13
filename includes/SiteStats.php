@@ -23,60 +23,47 @@
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Static accessor class for site_stats and related things
  */
 class SiteStats {
-	/** @var bool|stdClass */
+	/** @var stdClass */
 	private static $row;
 
-	/** @var bool */
-	private static $loaded = false;
-	/** @var int[] */
-	private static $pageCount = [];
-
-	static function unload() {
-		self::$loaded = false;
-	}
-
-	static function recache() {
-		self::load( true );
-	}
-
 	/**
-	 * @param bool $recache
+	 * Trigger a reload next time a field is accessed
 	 */
-	static function load( $recache = false ) {
-		if ( self::$loaded && !$recache ) {
-			return;
+	public static function unload() {
+		self::$row = null;
+	}
+
+	protected static function load() {
+		if ( self::$row === null ) {
+			self::$row = self::loadAndLazyInit();
 		}
-
-		self::$row = self::loadAndLazyInit();
-
-		self::$loaded = true;
 	}
 
 	/**
-	 * @return bool|stdClass
+	 * @return stdClass
 	 */
-	static function loadAndLazyInit() {
-		global $wgMiserMode;
+	protected static function loadAndLazyInit() {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
+		$lb = self::getLB();
+		$dbr = $lb->getConnection( DB_REPLICA );
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB\n" );
-		$row = self::doLoad( wfGetDB( DB_REPLICA ) );
+		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isSane( $row ) ) {
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			if ( $lb->hasOrMadeRecentMasterChanges() ) {
-				// Might have just been initialized during this request? Underflow?
-				wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB\n" );
-				$row = self::doLoad( wfGetDB( DB_MASTER ) );
-			}
+		if ( !self::isSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
+			// Might have just been initialized during this request? Underflow?
+			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB\n" );
+			$row = self::doLoadFromDB( $lb->getConnection( DB_MASTER ) );
 		}
 
 		if ( !self::isSane( $row ) ) {
-			if ( $wgMiserMode ) {
+			if ( $config->get( 'MiserMode' ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
 				SiteStatsInit::doPlaceholderInit();
@@ -86,14 +73,15 @@ class SiteStats {
 				// broken, however, for instance when importing from a dump into a
 				// clean schema with mwdumper.
 				wfDebug( __METHOD__ . ": initializing damaged or missing site_stats\n" );
-				SiteStatsInit::doAllAndCommit( wfGetDB( DB_REPLICA ) );
+				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoad( wfGetDB( DB_MASTER ) );
+			$row = self::doLoadFromDB( $lb->getConnection( DB_MASTER ) );
 		}
 
 		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
+			// Always return a row-like object
 			$row = (object)array_fill_keys( self::selectFields(), 0 );
 		}
 
@@ -102,9 +90,9 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return bool|stdClass
+	 * @return stdClass|bool
 	 */
-	static function doLoad( $db ) {
+	private static function doLoadFromDB( IDatabase $db ) {
 		return $db->selectRow(
 			'site_stats',
 			self::selectFields(),
@@ -114,63 +102,56 @@ class SiteStats {
 	}
 
 	/**
-	 * Return the total number of page views. Except we don't track those anymore.
-	 * Stop calling this function, it will be removed some time in the future. It's
-	 * kept here simply to prevent fatal errors.
-	 *
-	 * @deprecated since 1.25
 	 * @return int
 	 */
-	static function views() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return 0;
-	}
-
-	/**
-	 * @return int
-	 */
-	static function edits() {
+	public static function edits() {
 		self::load();
+
 		return self::$row->ss_total_edits;
 	}
 
 	/**
 	 * @return int
 	 */
-	static function articles() {
+	public static function articles() {
 		self::load();
+
 		return self::$row->ss_good_articles;
 	}
 
 	/**
 	 * @return int
 	 */
-	static function pages() {
+	public static function pages() {
 		self::load();
+
 		return self::$row->ss_total_pages;
 	}
 
 	/**
 	 * @return int
 	 */
-	static function users() {
+	public static function users() {
 		self::load();
+
 		return self::$row->ss_users;
 	}
 
 	/**
 	 * @return int
 	 */
-	static function activeUsers() {
+	public static function activeUsers() {
 		self::load();
+
 		return self::$row->ss_active_users;
 	}
 
 	/**
 	 * @return int
 	 */
-	static function images() {
+	public static function images() {
 		self::load();
+
 		return self::$row->ss_images;
 	}
 
@@ -179,17 +160,17 @@ class SiteStats {
 	 * @param string $group Name of group
 	 * @return int
 	 */
-	static function numberingroup( $group ) {
+	public static function numberingroup( $group ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'groupcounts', $group ),
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group ) {
-				$dbr = wfGetDB( DB_REPLICA );
-
+				$dbr = self::getLB()->getConnection( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				return $dbr->selectField(
+				return (int)$dbr->selectField(
 					'user_groups',
 					'COUNT(*)',
 					[
@@ -207,8 +188,9 @@ class SiteStats {
 	 * Total number of jobs in the job queue.
 	 * @return int
 	 */
-	static function jobs() {
+	public static function jobs() {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'jobscount' ),
 			$cache::TTL_MINUTE,
@@ -226,20 +208,27 @@ class SiteStats {
 
 	/**
 	 * @param int $ns
-	 *
 	 * @return int
 	 */
-	static function pagesInNs( $ns ) {
-		if ( !isset( self::$pageCount[$ns] ) ) {
-			$dbr = wfGetDB( DB_REPLICA );
-			self::$pageCount[$ns] = (int)$dbr->selectField(
-				'page',
-				'COUNT(*)',
-				[ 'page_namespace' => $ns ],
-				__METHOD__
-			);
-		}
-		return self::$pageCount[$ns];
+	public static function pagesInNs( $ns ) {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
+		return $cache->getWithSetCallback(
+			$cache->makeKey( 'SiteStats', 'page-in-namespace', $ns ),
+			$cache::TTL_HOUR,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $ns ) {
+				$dbr = self::getLB()->getConnection( DB_REPLICA );
+				$setOpts += Database::getCacheSetOptions( $dbr );
+
+				return (int)$dbr->selectField(
+					'page',
+					'COUNT(*)',
+					[ 'page_namespace' => $ns ],
+					__METHOD__
+				);
+			},
+			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
+		);
 	}
 
 	/**
@@ -283,6 +272,14 @@ class SiteStats {
 				return false;
 			}
 		}
+
 		return true;
+	}
+
+	/**
+	 * @return LoadBalancer
+	 */
+	private static function getLB() {
+		return MediaWikiServices::getInstance()->getDBLoadBalancer();
 	}
 }
