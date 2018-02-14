@@ -3834,7 +3834,7 @@ ERROR;
 			__METHOD__,
 			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ],
 			[
-				'user' => [ 'JOIN', 'user_id=log_user' ],
+				'user' => [ 'INNER JOIN', 'user_id=log_user' ],
 			] + $commentQuery['joins']
 		);
 		// Quick paranoid permission checks...
