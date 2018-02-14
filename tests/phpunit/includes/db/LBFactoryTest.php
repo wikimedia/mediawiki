@@ -194,11 +194,11 @@ class LBFactoryTest extends MediaWikiTestCase {
 	 * @covers \Wikimedia\Rdbms\ChronologyProtector
 	 */
 	public function testChronologyProtector() {
-		// (a) First HTTP request
-		$m1Pos = new MySQLMasterPos( 'db1034-bin.000976', '843431247' );
-		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400', '794074907' );
-
 		$now = microtime( true );
+
+		// (a) First HTTP request
+		$m1Pos = new MySQLMasterPos( 'db1034-bin.000976/843431247', $now );
+		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400/794074907', $now );
 
 		// Master DB 1
 		$mockDB1 = $this->getMockBuilder( DatabaseMysqli::class )
