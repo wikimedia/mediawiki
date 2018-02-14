@@ -202,6 +202,11 @@ class DatabasePostgres extends Database {
 		return $this->mConn ? pg_close( $this->mConn ) : true;
 	}
 
+	protected function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
+	}
+
 	public function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
 
@@ -1319,6 +1324,9 @@ SQL;
 	}
 
 	public function lockIsFree( $lockName, $method ) {
+		if ( !parent::lockIsFree( $lockName, $method ) ) {
+			return false; // already held
+		}
 		// http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
