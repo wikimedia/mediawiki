@@ -33,7 +33,8 @@
 			"Kosovastar",
 			"Matma Rex",
 			"Arianit",
-			"Denisa"
+			"Denisa",
+			"Fanjiayi"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -704,7 +705,7 @@
 	"permissionserrorstext": "Nuk keni leje për të bërë këtë veprim për {{PLURAL:$1|këtë arsye|këto arsye}}:",
 	"permissionserrorstext-withaction": "Ju nuk keni leje për $2, për {{PLURAL:$1|këtë arsye|këto arsye}}:",
 	"recreate-moveddeleted-warn": "'''Kujdes: Po rikrijoni një faqe që është grisur më parë.'''\n\nMendohuni nëse dëshironi të vazhdoni me veprimin tuaj në këtë faqe.\nRegjistri i grisjes për këtë faqe jepet më poshtë:",
-	"moveddeleted-notice": "Kjo faqe është grisur. Të dhënat e grisjes për këtë faqe gjenden më poshtë, për referencë.",
+	"moveddeleted-notice": "Kjo faqe është grisur. Të dhënat, protection e grisjes për këtë faqe gjenden më poshtë, për referencë.",
 	"log-fulllog": "Shihe ditaret të plota",
 	"edit-hook-aborted": "Redaktimi u ndërpre nga një goditje.\nNuk dha asnjë shpjegim.",
 	"edit-gone-missing": "Faqja nuk mund t freskohet.\nDuket se është grisur.",
@@ -1373,7 +1374,7 @@
 	"recentchangeslinked-feed": "Ndryshime të ndërvarura",
 	"recentchangeslinked-toolbox": "Ndryshime të ndërvarura",
 	"recentchangeslinked-title": "Ndryshime që kanë lidhje me \"$1\"",
-	"recentchangeslinked-summary": "Kjo është një listë e ndryshimeve së fundmi të faqeve të lidhura nga faqja e dhënë (ose bëjnë pjesë tek kategoria e dhënë).\nFaqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
+	"recentchangeslinked-summary": "Kjo është një listë e ndryshimeve së fundmi të faqeve të lidhura nga faqja e dhënë (ose bëjnë pjesë tek kategoria e dhënë).\nFaqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të <strong>theksuara</strong>.",
 	"recentchangeslinked-page": "Emri i faqes:",
 	"recentchangeslinked-to": "Trego ndryshimet e faqeve që lidhen tek faqja e dhënë",
 	"recentchanges-page-added-to-category": "[[:$1]] shtuar në kategori",
