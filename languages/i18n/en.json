@@ -2518,6 +2518,7 @@
 	"whatlinkshere-hidelinks": "$1 links",
 	"whatlinkshere-hideimages": "$1 file links",
 	"whatlinkshere-filters": "Filters",
+	"whatlinkshere-sectionredir": "section: \"$1\"",
 	"whatlinkshere-submit": "Go",
 	"autoblockid": "Autoblock #$1",
 	"block": "Block user",

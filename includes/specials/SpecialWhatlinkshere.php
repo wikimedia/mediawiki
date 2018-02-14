@@ -164,7 +164,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->selectSQLText(
 				[ $table, 'redirect', 'page' ],
-				[ $fromCol, 'rd_from' ],
+				[ $fromCol, 'rd_from', 'rd_fragment' ],
 				$conds[$table],
 				__CLASS__ . '::showIndirectLinks',
 				// Force JOIN order per T106682 to avoid large filesorts
@@ -176,7 +176,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			);
 			return $dbr->select(
 				[ 'page', 'temp_backlink_range' => "($subQuery)" ],
-				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'page_is_redirect' ],
+				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ],
 				[],
 				__CLASS__ . '::showIndirectLinks',
 				[ 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ],
@@ -341,6 +341,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$props = [];
 		if ( $row->rd_from ) {
 			$props[] = $msgcache['isredirect'];
+		}
+		if ( $row->rd_fragment ) {
+			$props[] = $this->msg( 'whatlinkshere-sectionredir', $row->rd_fragment )->escaped();
 		}
 		if ( $row->is_template ) {
 			$props[] = $msgcache['istemplate'];
