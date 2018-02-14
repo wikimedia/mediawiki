@@ -520,8 +520,8 @@ class MessageCache {
 			__METHOD__ . "($code)-small",
 			[],
 			[
-				'revision' => [ 'JOIN', 'page_latest=rev_id' ],
-				'text' => [ 'JOIN', 'rev_text_id=old_id' ],
+				'revision' => [ 'INNER JOIN', 'page_latest=rev_id' ],
+				'text' => [ 'INNER JOIN', 'rev_text_id=old_id' ],
 			]
 		);
 

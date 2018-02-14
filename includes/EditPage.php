@@ -3756,7 +3756,7 @@ ERROR;
 			__METHOD__,
 			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ],
 			[
-				'user' => [ 'JOIN', 'user_id=' . $actorQuery['fields']['log_user'] ],
+				'user' => [ 'INNER JOIN', 'user_id=' . $actorQuery['fields']['log_user'] ],
 			] + $commentQuery['joins'] + $actorQuery['joins']
 		);
 		// Quick paranoid permission checks...

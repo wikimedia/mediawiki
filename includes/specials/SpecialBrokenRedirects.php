@@ -77,7 +77,7 @@ class BrokenRedirectsPage extends QueryPage {
 				'p2.page_namespace IS NULL',
 			],
 			'join_conds' => [
-				'p1' => [ 'JOIN', [
+				'p1' => [ 'INNER JOIN', [
 					'rd_from=p1.page_id',
 				] ],
 				'p2' => [ 'LEFT JOIN', [

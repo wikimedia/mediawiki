@@ -294,7 +294,7 @@ class WikiExporter {
 					__METHOD__,
 					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ],
 					[
-						'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
+						'user' => [ 'INNER JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
 					] + $commentQuery['joins'] + $actorQuery['joins']
 				);
 				$this->outputLogStream( $result );

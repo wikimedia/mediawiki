@@ -145,7 +145,7 @@ class ActorMigration {
 				$fields[$text] = $text;
 				$fields[$actor] = 'NULL';
 			} else {
-				$join = $this->stage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+				$join = $this->stage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN';
 
 				if ( isset( self::$tempTables[$key] ) ) {
 					$t = self::$tempTables[$key];
@@ -341,7 +341,7 @@ class ActorMigration {
 			$alias = "temp_$key";
 			$tables[$alias] = $t['table'];
 			$joins[$alias] = [
-				$this->stage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				$this->stage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN',
 				"{$alias}.{$t['pk']} = {$t['joinPK']}"
 			];
 			$joinField = "{$alias}.{$t['field']}";

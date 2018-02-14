@@ -1545,7 +1545,7 @@ class LocalFile extends File {
 				$tables[] = 'image_comment_temp';
 				$fields['oi_description_id'] = 'imgcomment_description_id';
 				$joins['image_comment_temp'] = [
-					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
 				];
 			}
@@ -2534,7 +2534,7 @@ class LocalFileDeleteBatch {
 				$tables[] = 'image_comment_temp';
 				$fields['fa_description_id'] = 'imgcomment_description_id';
 				$joins['image_comment_temp'] = [
-					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
 				];
 			}

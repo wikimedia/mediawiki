@@ -1002,7 +1002,7 @@ END;
 			__METHOD__,
 			[],
 			[
-				'n' => [ 'JOIN', 't.typnamespace = n.oid' ],
+				'n' => [ 'INNER JOIN', 't.typnamespace = n.oid' ],
 				'e' => [ 'LEFT JOIN', [ 'e.enumtypid = t.oid', 'e.enumlabel' => $value ] ],
 			]
 		);

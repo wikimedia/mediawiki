@@ -575,7 +575,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] );
 			$this->addTables( 'recentchanges' );
 			$this->addJoinConds( [ 'recentchanges' => [
-				$isFilterset ? 'JOIN' : 'LEFT JOIN',
+				$isFilterset ? 'INNER JOIN' : 'LEFT JOIN',
 				[
 					// This is a crazy hack. recentchanges has no index on rc_this_oldid, so instead of adding
 					// one T19237 did a join using rc_user_text and rc_timestamp instead. Now rc_user_text is

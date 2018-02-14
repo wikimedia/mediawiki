@@ -187,7 +187,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			} else {
 				$tables[] = 'actor';
 				$joins['actor'] = [
-					$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					$wgActorTableSchemaMigrationStage === MIGRATION_NEW
+						? 'INNER JOIN'
+						: 'LEFT JOIN',
 					'rc_actor = actor_id'
 				];
 				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {

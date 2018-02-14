@@ -121,8 +121,9 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 			'options' => [],
 			'join_conds' => [
 				'user' => [ 'LEFT JOIN', 'user_id=actor_log_user.actor_user' ],
-				'comment_log_comment' => [ 'JOIN', 'comment_log_comment.comment_id = log_comment_id' ],
-				'actor_log_user' => [ 'JOIN', 'actor_log_user.actor_id = log_actor' ],
+				'comment_log_comment' =>
+					[ 'INNER JOIN', 'comment_log_comment.comment_id = log_comment_id' ],
+				'actor_log_user' => [ 'INNER JOIN', 'actor_log_user.actor_id = log_actor' ],
 			],
 		];
 		return [

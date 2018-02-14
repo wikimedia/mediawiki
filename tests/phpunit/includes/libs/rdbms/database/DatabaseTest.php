@@ -146,10 +146,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'join with parenthesized group' => [
 				[ 'table1', 'n' => [ 'table2', 'table3' ] ],
 				[
-					'table3' => [ 'JOIN', 't2_id = t3_id' ],
+					'table3' => [ 'INNER JOIN', 't2_id = t3_id' ],
 					'n' => [ 'LEFT JOIN', 't1_id = t2_id' ],
 				],
-				'table1 LEFT JOIN (table2 JOIN table3 ON ((t2_id = t3_id))) ON ((t1_id = t2_id))'
+				'table1 LEFT JOIN (table2 INNER JOIN table3 ON ((t2_id = t3_id))) ON ((t1_id = t2_id))'
 			],
 			'join with degenerate parenthesized group' => [
 				[ 'table1', 'n' => [ 't2' => 'table2' ] ],

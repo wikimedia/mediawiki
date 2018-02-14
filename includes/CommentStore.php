@@ -211,7 +211,7 @@ class CommentStore {
 				$fields["{$key}_data"] = 'NULL';
 				$fields["{$key}_cid"] = 'NULL';
 			} else {
-				$join = $this->stage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN';
+				$join = $this->stage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN';
 
 				if ( isset( self::$tempTables[$key] ) ) {
 					$t = self::$tempTables[$key];
@@ -291,7 +291,7 @@ class CommentStore {
 						[ $t['pk'] => $id ],
 						__METHOD__,
 						[],
-						[ 'comment' => [ 'JOIN', [ "comment_id = {$t['field']}" ] ] ]
+						[ 'comment' => [ 'INNER JOIN', [ "comment_id = {$t['field']}" ] ] ]
 					);
 				} elseif ( $fallback && isset( $row[$key] ) ) {
 					wfLogWarning( "Using deprecated fallback handling for comment $key" );
