@@ -286,7 +286,7 @@ class WikiExporter {
 					$where,
 					__METHOD__,
 					[ 'ORDER BY' => 'log_id', 'USE INDEX' => [ 'logging' => 'PRIMARY' ] ],
-					[ 'user' => [ 'JOIN', 'user_id = log_user' ] ] + $commentQuery['joins']
+					[ 'user' => [ 'INNER JOIN', 'user_id = log_user' ] ] + $commentQuery['joins']
 				);
 				$this->outputLogStream( $result );
 				if ( $this->buffer == self::STREAM ) {
