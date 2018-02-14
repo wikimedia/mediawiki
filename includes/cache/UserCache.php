@@ -111,7 +111,9 @@ class UserCache {
 				$tables[] = 'actor';
 				$fields[] = 'actor_id';
 				$joinConds['actor'] = [
-					$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					$wgActorTableSchemaMigrationStage === MIGRATION_NEW
+						? 'INNER JOIN'
+						: 'LEFT JOIN',
 					[ 'actor_user = user_id' ]
 				];
 			}

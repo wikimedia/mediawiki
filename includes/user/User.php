@@ -5643,7 +5643,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$ret['tables']['user_actor'] = 'actor';
 			$ret['fields'][] = 'user_actor.actor_id';
 			$ret['joins']['user_actor'] = [
-				$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+				$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'INNER JOIN' : 'LEFT JOIN',
 				[ 'user_actor.actor_user = user_id' ]
 			];
 		}

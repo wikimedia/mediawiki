@@ -254,7 +254,7 @@ class RevisionStore
 				[ 'rev_id' => $revId ],
 				__METHOD__,
 				$dbOptions,
-				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
+				[ 'page' => [ 'INNER JOIN', 'page_id=rev_page' ] ]
 			);
 			if ( $row ) {
 				// TODO: better foreign title handling (introduce TitleFactory)

@@ -77,7 +77,6 @@ class LoadBalancer implements ILoadBalancer {
 	protected $queryLogger;
 	/** @var LoggerInterface */
 	protected $perfLogger;
-
 	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
 	/** @var int The generic (not query grouped) replica DB index (of $mServers) */

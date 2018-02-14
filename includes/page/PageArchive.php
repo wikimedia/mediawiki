@@ -348,7 +348,7 @@ class PageArchive {
 				'ar_title' => $this->title->getDBkey() ],
 			__METHOD__,
 			[ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ],
-			[ 'text' => [ 'JOIN', 'old_id = ar_text_id' ] ]
+			[ 'text' => [ 'INNER JOIN', 'old_id = ar_text_id' ] ]
 		);
 
 		if ( $row ) {

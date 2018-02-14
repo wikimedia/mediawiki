@@ -624,7 +624,7 @@ interface IDatabase {
 	 *
 	 * along with `$join_conds` like
 	 *
-	 *    [ 'b2' => [ 'JOIN', 'b_id = b2_id' ], 'nestedB' => [ 'LEFT JOIN', 'b_a = a_id' ] ]
+	 *    [ 'b2' => [ 'INNER JOIN', 'b_id = b2_id' ], 'nestedB' => [ 'LEFT JOIN', 'b_a = a_id' ] ]
 	 *
 	 * will produce SQL something like
 	 *
