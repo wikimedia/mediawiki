@@ -370,9 +370,33 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( (bool)$db->trxLevel(), "Transaction cleared." );
 	}
 
+	/**
+	 * @covers Wikimedia\Rdbms\Database::getScopedLock
+	 * @covers Wikimedia\Rdbms\Database::lock
+	 * @covers Wikimedia\Rdbms\Database::unlock
+	 * @covers Wikimedia\Rdbms\Database::lockIsFree
+	 */
 	public function testGetScopedLock() {
 		$db = $this->getMockDB( [ 'isOpen' ] );
 		$db->method( 'isOpen' )->willReturn( true );
+
+		$this->assertEquals( 0, $db->trxLevel() );
+		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
+		$this->assertEquals( false, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertEquals( 0, $db->trxLevel() );
+
+		$db->setFlag( DBO_TRX );
+		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
+		$this->assertEquals( false, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
+		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$db->clearFlag( DBO_TRX );
+
+		$this->assertEquals( 0, $db->trxLevel() );
 
 		$db->setFlag( DBO_TRX );
 		try {
