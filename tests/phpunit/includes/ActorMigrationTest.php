@@ -86,7 +86,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 						'rc_actor' => 'rc_actor',
 					],
 					'joins' => [
-						'actor_rc_user' => [ 'JOIN', 'actor_rc_user.actor_id = rc_actor' ],
+						'actor_rc_user' => [ 'INNER JOIN', 'actor_rc_user.actor_id = rc_actor' ],
 					],
 				],
 			],
@@ -137,7 +137,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 						'ipb_by_actor' => 'ipb_by_actor',
 					],
 					'joins' => [
-						'actor_ipb_by' => [ 'JOIN', 'actor_ipb_by.actor_id = ipb_by_actor' ],
+						'actor_ipb_by' => [ 'INNER JOIN', 'actor_ipb_by.actor_id = ipb_by_actor' ],
 					],
 				],
 			],
@@ -199,8 +199,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 						'rev_actor' => 'temp_rev_user.revactor_actor',
 					],
 					'joins' => [
-						'temp_rev_user' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
-						'actor_rev_user' => [ 'JOIN', 'actor_rev_user.actor_id = temp_rev_user.revactor_actor' ],
+						'temp_rev_user' => [ 'INNER JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
+						'actor_rev_user' => [ 'INNER JOIN', 'actor_rev_user.actor_id = temp_rev_user.revactor_actor' ],
 					],
 				],
 			],
@@ -360,7 +360,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					],
 					'orconds' => [ 'actor' => "temp_rev_user.revactor_actor = '11'" ],
 					'joins' => [
-						'temp_rev_user' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
+						'temp_rev_user' => [ 'INNER JOIN', 'temp_rev_user.revactor_rev = rev_id' ],
 					],
 				],
 			],

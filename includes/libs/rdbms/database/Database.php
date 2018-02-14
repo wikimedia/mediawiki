@@ -2524,6 +2524,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Is there a JOIN clause for this table?
 			if ( isset( $join_conds[$alias] ) ) {
 				list( $joinType, $conds ) = $join_conds[$alias];
+				if ( $joinType === 'JOIN' ) {
+					$joinType = 'INNER JOIN'; // normalize
+				}
+
 				$tableClause = $joinType;
 				$tableClause .= ' ' . $joinedTable;
 				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?

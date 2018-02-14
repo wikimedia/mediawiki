@@ -253,6 +253,19 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				],
 				"SELECT field FROM table      FOR UPDATE"
 			],
+			[
+				[
+					'tables' => [ 'table1', 'table2' ],
+					'fields' => [ 't1_id', 't1_name', 't2_info' ],
+					'conds' => [ 't1_id' => 12 ],
+					'options' => [ 'LIMIT' => 1 ],
+					'join_conds' => [ 'table2' => [ 'JOIN', 't2_id = t1_id' ] ],
+				],
+				"SELECT t1_id,t1_name,t2_info " .
+				"FROM table1 INNER JOIN table2 ON ((t2_id = t1_id)) " .
+				"WHERE t1_id = '12' " .
+				"LIMIT 1"
+			],
 		];
 	}
 
@@ -1040,15 +1053,15 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'LIMIT' => 100,
 					],
 					'join_conds' => [
-						'table2' => [ 'JOIN', 'table1.foo_id = table2.foo_id' ],
+						'table2' => [ 'INNER JOIN', 'table1.foo_id = table2.foo_id' ],
 					],
 				],
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
-				"(SELECT  field1,field2 AS alias  FROM table1 JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '1' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '2' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '4' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) UNION ALL " .
+				"(SELECT  field1,field2 AS alias  FROM table1 INNER JOIN table2 ON ((table1.foo_id = table2.foo_id))   WHERE field3 = '3' AND duplicates = '5' AND single = '0' AND (table2.bar > 23)  ORDER BY field1,field2 LIMIT 100  ) " .
 				"ORDER BY field1,alias LIMIT 100"
 			],
 			[

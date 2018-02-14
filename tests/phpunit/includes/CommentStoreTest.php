@@ -199,7 +199,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'ipb_reason_cid' => 'comment_ipb_reason.comment_id',
 					],
 					'joins' => [
-						'comment_ipb_reason' => [ 'JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
+						'comment_ipb_reason' => [ 'INNER JOIN', 'comment_ipb_reason.comment_id = ipb_reason_id' ],
 					],
 				],
 			],
@@ -263,8 +263,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'rev_comment_cid' => 'comment_rev_comment.comment_id',
 					],
 					'joins' => [
-						'temp_rev_comment' => [ 'JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
-						'comment_rev_comment' => [ 'JOIN',
+						'temp_rev_comment' => [ 'INNER JOIN', 'temp_rev_comment.revcomment_rev = rev_id' ],
+						'comment_rev_comment' => [ 'INNER JOIN',
 							'comment_rev_comment.comment_id = temp_rev_comment.revcomment_comment_id' ],
 					],
 				],
@@ -329,8 +329,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'img_description_cid' => 'comment_img_description.comment_id',
 					],
 					'joins' => [
-						'temp_img_description' => [ 'JOIN', 'temp_img_description.imgcomment_name = img_name' ],
-						'comment_img_description' => [ 'JOIN',
+						'temp_img_description' => [ 'INNER JOIN', 'temp_img_description.imgcomment_name = img_name' ],
+						'comment_img_description' => [ 'INNER JOIN',
 							'comment_img_description.comment_id = temp_img_description.imgcomment_description_id' ],
 					],
 				],
