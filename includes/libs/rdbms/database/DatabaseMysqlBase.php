@@ -1081,6 +1081,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
+		if ( !parent::lockIsFree( $lockName, $method ) ) {
+			return false; // already held
+		}
+
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 		$result = $this->query( "SELECT IS_FREE_LOCK($encName) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
@@ -1446,6 +1450,11 @@ abstract class DatabaseMysqlBase extends Database {
 		} else {
 			return $index;
 		}
+	}
+
+	protected function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
 	}
 }
 

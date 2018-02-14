@@ -3561,7 +3561,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function lockIsFree( $lockName, $method ) {
-		return true;
+		// RDBMs methods for checking named locks may or may not count this thread itself.
+		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
+		// the behavior choosen by the interface for this method.
+		return !isset( $this->namedLocksHeld[$lockName] );
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
