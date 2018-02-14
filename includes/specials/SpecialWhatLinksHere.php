@@ -175,7 +175,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->buildSelectSubquery(
 				[ $table, 'redirect' ],
-				[ $fromCol, 'rd_from' ],
+				[ $fromCol, 'rd_from', 'rd_fragment' ],
 				$conds[$table],
 				__CLASS__ . '::showIndirectLinks',
 				[ 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit, ],
@@ -185,7 +185,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			);
 			return $dbr->select(
 				[ 'page', 'temp_backlink_range' => $subQuery ],
-				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'page_is_redirect' ],
+				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ],
 				[],
 				__CLASS__ . '::showIndirectLinks',
 				[ 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ],
@@ -196,7 +196,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		if ( $fetchredirs ) {
 			$rdRes = $dbr->select(
 				[ 'redirect', 'page' ],
-				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'page_is_redirect' ],
+				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ],
 				$conds['redirect'],
 				__METHOD__,
 				[ 'ORDER BY' => 'rd_from', 'LIMIT' => $limit + 1 ],
@@ -387,7 +387,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// Display properties (redirect or template)
 		$propsText = '';
 		$props = [];
-		if ( $row->rd_from ) {
+		if ( (string)$row->rd_fragment !== '' ) {
+			$props[] = $this->msg( 'whatlinkshere-sectionredir' )
+				->rawParams( $this->getLinkRenderer()->makeLink(
+					$target->createFragmentTarget( $row->rd_fragment ),
+					$row->rd_fragment
+				) )->escaped();
+		} elseif ( $row->rd_from ) {
 			$props[] = $msgcache['isredirect'];
 		}
 		if ( $row->is_template ) {
