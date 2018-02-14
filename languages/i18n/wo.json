@@ -8,7 +8,8 @@
 			"SF-Language",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fanjiayi"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -1277,6 +1278,7 @@
 	"contributions": "Cëruy bii {{GENDER:$1|jëfandikukat}}",
 	"contributions-title": "Cëru yu jëfandikukat bii di $1",
 	"mycontris": "Cëru",
+	"anoncontribs": "Cëru",
 	"contribsub2": "Ngir $1 ($2)",
 	"nocontribs": "Amul benn coppite bu melokaanoo nii bu ñu gis.",
 	"uctop": "(bi mujj)",
@@ -1519,6 +1521,7 @@
 	"spam_blanking": "Setal nañ wecc sumb yi amoon lëkkalekaay buy jëme $1",
 	"simpleantispam-label": "Caytu lànk-spam.\n<strong>Bu</strong> fi yokk lenn!",
 	"pageinfo-toolboxlink": "Xibaar ci xët wi",
+	"pageinfo-contentpage-yes": "Waaw",
 	"previousdiff": "← Coppite yi gën a yàgg",
 	"nextdiff": "Coppite yi mujj →",
 	"file-info": "Réyaayu file bi : $1, type MIME : $2",

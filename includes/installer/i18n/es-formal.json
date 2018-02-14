@@ -2,8 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Dferg",
-			"Seb35"
+			"Seb35",
+			"MarcoAurelio"
 		]
 	},
-	"mainpagedocfooter": "Consulte usted la [https://meta.wikimedia.org/wiki/Help:Contents/es Guía de usuario] para obtener información sobre el uso del software wiki.\n\n== Empezando ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/es FAQ de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de distribución de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalizar MediaWiki para su idioma]"
+	"config-localsettings-upgrade": "Se ha encontrado un archivo <code>LocalSettings.php</code>.\nPara actualizar esta instalación, escriba el valor de <code>$wgUpgradeKey</code> en el cuadro de abajo.\nLo encontrará en <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Se ha detectado un archivo <code>LocalSettings.php</code>.\nPara actualizar la instalación, en su lugar ejecute <code>update.php</code>",
+	"config-localsettings-connection-error": "Se ha producido un error al conectar con la base de datos a través de la configuración especificada en <code>LocalSettings.php</code>. Corrija estos ajustes e inténtelo de nuevo.\n\n$1",
+	"config-your-language-help": "Seleccione un idioma para usar durante el proceso de instalación.",
+	"config-page-welcome": "Le damos la bienvenida a MediaWiki.",
+	"config-page-readme": "Léame",
+	"config-help-restart": "¿Desea borrar todos los datos guardados que ha escrito y reiniciar el proceso de instalación?",
+	"config-env-good": "El entorno ha sido comprobado.\nPuede instalar MediaWiki.",
+	"config-env-bad": "El entorno ha sido comprobado.\nNo puede instalar MediaWiki.",
+	"mainpagedocfooter": "Consulte la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki a su idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda a combatir el spam en su wiki]"
 }
