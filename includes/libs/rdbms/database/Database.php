@@ -1405,13 +1405,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->tableNamesWithIndexClauseOrJOIN(
 					$table, $useIndexes, $ignoreIndexes, $join_conds );
 		} elseif ( $table != '' ) {
-			if ( $table[0] == ' ' ) {
-				$from = ' FROM ' . $table;
-			} else {
-				$from = ' FROM ' .
-					$this->tableNamesWithIndexClauseOrJOIN(
-						[ $table ], $useIndexes, $ignoreIndexes, [] );
-			}
+			$from = ' FROM ' .
+				$this->tableNamesWithIndexClauseOrJOIN(
+					[ $table ], $useIndexes, $ignoreIndexes, [] );
 		} else {
 			$from = '';
 		}

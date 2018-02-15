@@ -170,14 +170,20 @@ interface ILoadBalancer {
 	public function getAnyOpenConnection( $i );
 
 	/**
-	 * Get a connection by index
+	 * Get a connection handle by server index
 	 *
 	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 *
+	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
+	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
+	 * In all other cases, this is not necessary, though not harmful either.
 	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param int $flags Bitfield of CONN_* class constants
+	 *
+	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
 	 *
 	 * @throws DBError
 	 * @return Database
@@ -254,7 +260,11 @@ interface ILoadBalancer {
 	 *
 	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
 	 *
-	 * @note If disable() was called on this LoadBalancer, this method will throw a DBAccessError.
+	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
+	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
+	 * In all other cases, this is not necessary, though not harmful either.
+	 *
+	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
 	 *
 	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
 	 * @param string|bool $domain Domain ID, or false for the current domain
