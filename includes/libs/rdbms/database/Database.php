@@ -1588,8 +1588,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$table, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
 		$res = $this->select(
 			$table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options, $join_conds
 		);
@@ -1599,21 +1605,76 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$rows = 0;
-		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		// The identifier quotes is primarily for MSSQL.
-		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
-		$tableName = $this->addIdentifierQuotes( "tmp_count" );
-		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
-
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
 		}
 
-		return $rows;
+		$res = $this->select(
+			[
+				'tmp_count' => $this->buildSelectSubquery(
+					$tables,
+					'1',
+					$conds,
+					$fname,
+					$options,
+					$join_conds
+				)
+			],
+			[ 'rowcount' => 'COUNT(*)' ],
+			[],
+			$fname
+		);
+		$row = $res ? $this->fetchRow( $res ) : [];
+
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
+	}
+
+	/**
+	 * @param array|string $conds
+	 * @param string $fname
+	 * @return array
+	 */
+	final protected function normalizeConditions( $conds, $fname ) {
+		if ( $conds === null || $conds === false ) {
+			$this->queryLogger->warning(
+				__METHOD__
+				. ' called from '
+				. $fname
+				. ' with incorrect parameters: $conds must be a string or an array'
+			);
+			$conds = '';
+		}
+
+		if ( !is_array( $conds ) ) {
+			$conds = ( $conds === '' ) ? [] : [ $conds ];
+		}
+
+		return $conds;
+	}
+
+	/**
+	 * @param array|string $var Field parameter in the style of select()
+	 * @return string|null Column name or null; ignores aliases
+	 * @throws DBUnexpectedError Errors out if multiple columns are given
+	 */
+	final protected function extractSingleFieldFromList( $var ) {
+		if ( is_array( $var ) ) {
+			if ( !$var ) {
+				$column = null;
+			} elseif ( count( $var ) == 1 ) {
+				$column = isset( $var[0] ) ? $var[0] : reset( $var );
+			} else {
+				throw new DBUnexpectedError( $this, __METHOD__ . ': got multiple columns.' );
+			}
+		} else {
+			$column = $var;
+		}
+
+		return $column;
 	}
 
 	/**
@@ -1963,6 +2024,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return 'CAST( ' . $field . ' AS INTEGER )';
 	}
 
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return new Subquery(
+			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
+		);
+	}
+
 	public function databasesAreIndependent() {
 		return false;
 	}
@@ -1985,6 +2055,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
+		if ( $name instanceof Subquery ) {
+			throw new DBUnexpectedError(
+				$this,
+				__METHOD__ . ': got Subquery instance when expecting a string.'
+			);
+		}
+
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
 		# use of `database`.table. But won't break things if someone wants
@@ -2001,6 +2078,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		# any remote case where a word like on may be inside of a table name
 		# surrounded by symbols which may be considered word breaks.
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
+			$this->queryLogger->warning(
+				__METHOD__ . ": use of subqueries is not supported this way.",
+				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			);
+
 			return $name;
 		}
 
@@ -2105,17 +2187,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Get an aliased table name
-	 * e.g. tableName AS newTableName
 	 *
-	 * @param string $name Table name, see tableName()
-	 * @param string|bool $alias Alias (optional)
+	 * This returns strings like "tableName AS newTableName" for aliased tables
+	 * and "(SELECT * from tableA) newTablename" for subqueries (e.g. derived tables)
+	 *
+	 * @see Database::tableName()
+	 * @param string|Subquery $table Table name or object with a 'sql' field
+	 * @param string|bool $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
-	protected function tableNameWithAlias( $name, $alias = false ) {
-		if ( !$alias || $alias == $name ) {
-			return $this->tableName( $name );
+	protected function tableNameWithAlias( $table, $alias = false ) {
+		if ( is_string( $table ) ) {
+			$quotedTable = $this->tableName( $table );
+		} elseif ( $table instanceof Subquery ) {
+			$quotedTable = (string)$table;
 		} else {
-			return $this->tableName( $name ) . ' ' . $this->addIdentifierQuotes( $alias );
+			throw new InvalidArgumentException( "Table must be a string or Subquery." );
+		}
+
+		if ( !strlen( $alias ) || $alias === $table ) {
+			if ( $table instanceof Subquery ) {
+				throw new InvalidArgumentException( "Subquery table missing alias." );
+			}
+
+			return $quotedTable;
+		} else {
+			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
 		}
 	}
 

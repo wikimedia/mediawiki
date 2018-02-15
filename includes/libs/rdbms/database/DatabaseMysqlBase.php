@@ -558,18 +558,24 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Takes same arguments as Database::select()
 	 *
 	 * @param string|array $table
-	 * @param string|array $vars
+	 * @param string|array $var
 	 * @param string|array $conds
 	 * @param string $fname
 	 * @param string|array $options
 	 * @param array $join_conds
 	 * @return bool|int
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '',
+	public function estimateRowCount( $table, $var = '*', $conds = '',
 		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
 		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
+		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}
