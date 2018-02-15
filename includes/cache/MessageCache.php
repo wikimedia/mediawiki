@@ -191,13 +191,11 @@ class MessageCache {
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
-				$po->setEditSection( false );
 				$po->setAllowUnsafeRawHtml( false );
 				return $po;
 			}
 
 			$this->mParserOptions = new ParserOptions;
-			$this->mParserOptions->setEditSection( false );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.

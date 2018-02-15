@@ -450,9 +450,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( ( $this->mPreview || !$isText ) && $content ) {
 			// NOTE: non-text content has no source view, so always use rendered preview
 
-			// Hide [edit]s
 			$popts = $out->parserOptions();
-			$popts->setEditSection( false );
 
 			$pout = $content->getParserOutput( $this->mTargetObj, $rev->getId(), $popts, true );
 			$out->addParserOutput( $pout, [
