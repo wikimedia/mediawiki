@@ -1599,21 +1599,43 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$rows = 0;
-		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		// The identifier quotes is primarily for MSSQL.
-		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
-		$tableName = $this->addIdentifierQuotes( "tmp_count" );
-		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
-
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
+		if ( is_array( $var ) ) {
+			if ( !$var ) {
+				$column = null;
+			} elseif ( count( $var ) == 1 ) {
+				$column = isset( $var[0] ) ? $var[0] : reset( $var );
+			} else {
+				throw new DBUnexpectedError( $this, __METHOD__ . ': got multiple columns.' );
+			}
+		} else {
+			$column = $var;
 		}
 
-		return $rows;
+		$conds = in_array( $conds, [ '', false, null ], true ) ? [] : (array)$conds;
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1', '' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
+		$res = $this->select(
+			[
+				'tmp_count' => $this->buildSelectSubquery(
+					$tables,
+					'1',
+					$conds,
+					$fname,
+					$options,
+					$join_conds
+				)
+			],
+			[ 'rowcount' => 'COUNT(*)' ],
+			[],
+			$fname
+		);
+		$row = $res ? $this->fetchRow( $res ) : [];
+
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
 	/**
@@ -1963,6 +1985,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return 'CAST( ' . $field . ' AS INTEGER )';
 	}
 
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return new Subquery(
+			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
+		);
+	}
+
 	public function databasesAreIndependent() {
 		return false;
 	}
@@ -2105,17 +2136,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Get an aliased table name
-	 * e.g. tableName AS newTableName
 	 *
-	 * @param string $name Table name, see tableName()
-	 * @param string|bool $alias Alias (optional)
+	 * This returns strings like  "tableName AS newTableName" for aliased tables
+	 * and "(SELECT * from tableA) newTablename" for calculated tables
+	 *
+	 * @see Database::tableName()
+	 * @param string|Subquery $table Table name or object with a 'sql' field
+	 * @param string|bool $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
-	protected function tableNameWithAlias( $name, $alias = false ) {
-		if ( !$alias || $alias == $name ) {
-			return $this->tableName( $name );
+	protected function tableNameWithAlias( $table, $alias = false ) {
+		if ( is_string( $table ) ) {
+			$quotedTable = $this->tableName( $table );
+		} elseif ( $table instanceof Subquery ) {
+			$quotedTable = (string)$table;
 		} else {
-			return $this->tableName( $name ) . ' ' . $this->addIdentifierQuotes( $alias );
+			throw new InvalidArgumentException( "Table must be a string or CalculatedTable." );
+		}
+
+		if ( !strlen( $alias ) || $alias === $table ) {
+			if ( $table instanceof Subquery ) {
+				// For clarity and compatibility (MySQL needs an alias here)
+				throw new InvalidArgumentException( "Calculated table missing alias." );
+			}
+
+			return $quotedTable;
+		} else {
+			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
 		}
 	}
 
