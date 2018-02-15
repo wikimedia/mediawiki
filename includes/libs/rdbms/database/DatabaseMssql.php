@@ -505,20 +505,26 @@ class DatabaseMssql extends Database {
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
 	 * @param string $table
-	 * @param string $vars
+	 * @param string $var
 	 * @param string $conds
 	 * @param string $fname
 	 * @param array $options
 	 * @param array $join_conds
 	 * @return int
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '',
+	public function estimateRowCount( $table, $var = '*', $conds = '',
 		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
 		// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$options['EXPLAIN'] = true;
 		$options['FOR COUNT'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
+		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
 
 		$rows = -1;
 		if ( $res ) {
