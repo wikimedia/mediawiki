@@ -354,6 +354,13 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildCalculatedTable(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function databasesAreIndependent() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
