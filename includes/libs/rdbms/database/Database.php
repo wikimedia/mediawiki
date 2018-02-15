@@ -1465,33 +1465,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function estimateRowCount(
 		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
 	) {
-		$rows = 0;
 		$res = $this->select( $table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options );
+		$row = $res ? $this->fetchRow( $res ) : [];
 
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
-		}
-
-		return $rows;
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$rows = 0;
-		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		// The identifier quotes is primarily for MSSQL.
-		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
-		$tableName = $this->addIdentifierQuotes( "tmp_count" );
-		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
+		$var = is_array( $var ) ? reset( $var ) : $var; // allow select() style
+		$conds = array_filter( (array)$conds ); // list of non-empty clauses
 
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
+		if ( is_string( $var ) && !in_array( $var, [ '*', '1', '' ] ) ) {
+			$conds[] = "$var IS NOT NULL";
 		}
 
-		return $rows;
+		$res = $this->select(
+			[
+				'tmp_count' => $this->buildCalculatedTable(
+					$tables,
+					'1',
+					$conds,
+					$fname,
+					$options,
+					$join_conds
+				)
+			],
+			[ 'rowcount' => 'COUNT(*)' ],
+			[],
+			$fname
+		);
+		$row = $res ? $this->fetchRow( $res ) : [];
+
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
 	/**
@@ -1803,6 +1810,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $field;
 	}
 
+	public function buildCalculatedTable(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return new CalculatedSQLTable(
+			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
+		);
+	}
+
 	public function databasesAreIndependent() {
 		return false;
 	}
@@ -1945,17 +1961,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Get an aliased table name
-	 * e.g. tableName AS newTableName
 	 *
-	 * @param string $name Table name, see tableName()
-	 * @param string|bool $alias Alias (optional)
+	 * This returns strings like  "tableName AS newTableName" for aliased tables
+	 * and "(SELECT * from tableA) newTablename" for calculated tables
+	 *
+	 * @see Database::tableName()
+	 * @param string|CalculatedSQLTable $table Table name or object with a 'sql' field
+	 * @param string|bool $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
-	protected function tableNameWithAlias( $name, $alias = false ) {
-		if ( !$alias || $alias == $name ) {
-			return $this->tableName( $name );
+	protected function tableNameWithAlias( $table, $alias = false ) {
+		if ( is_string( $table ) ) {
+			$quotedTable = $this->tableName( $table );
+		} elseif ( $table instanceof CalculatedSQLTable ) {
+			$quotedTable = "($table)";
 		} else {
-			return $this->tableName( $name ) . ' ' . $this->addIdentifierQuotes( $alias );
+			throw new InvalidArgumentException( "Table must be a string or CalculatedTable." );
+		}
+
+		if ( !strlen( $alias ) || $alias === $table ) {
+			if ( $table instanceof CalculatedSQLTable ) {
+				// For clarity and compatibility (MySQL needs an alias here)
+				throw new InvalidArgumentException( "Calculated table missing alias." );
+			}
+
+			return $quotedTable;
+		} else {
+			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
 		}
 	}
 
@@ -2039,9 +2071,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( is_array( $table ) ) {
 				// A parenthesized group
 				if ( count( $table ) > 1 ) {
-					$joinedTable = '('
-						. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
-						. ')';
+					$joinedTable = '(' .
+						$this->tableNamesWithIndexClauseOrJOIN(
+							$table, $use_index, $ignore_index, $join_conds ) . ')';
 				} else {
 					// Degenerate case
 					$innerTable = reset( $table );

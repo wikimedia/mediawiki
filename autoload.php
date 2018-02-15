@@ -1660,6 +1660,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/http/HttpAcceptParser.php',
 	'Wikimedia\\Rdbms\\Blob' => __DIR__ . '/includes/libs/rdbms/encasing/Blob.php',
+	'Wikimedia\\Rdbms\\CalculatedSQLTable' => __DIR__ . '/includes/libs/rdbms/encasing/CalculatedSQLTable.php',
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',
 	'Wikimedia\\Rdbms\\ConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/ConnectionManager.php',
 	'Wikimedia\\Rdbms\\DBAccessError' => __DIR__ . '/includes/libs/rdbms/exception/DBAccessError.php',
