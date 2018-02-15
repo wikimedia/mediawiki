@@ -63,7 +63,7 @@
 	"config-apc": "[http://www.php.net/apc APC] ta instaláu",
 	"config-apcu": "[http://www.php.net/apcu APCu] ta instaláu",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] ta instaláu",
-	"config-no-cache-apcu": "<strong>Warning:</strong> Non pudo atopase[http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nEl caxé d'oxetos nun ta activáu.",
+	"config-no-cache-apcu": "<strong>Atención:</strong> Nun pudo alcontrase [http://www.php.net/apcu APCu] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nLa caché d'oxetos nun ta activada.",
 	"config-mod-security": "<strong>Alvertencia:</strong> El to servidor web tien activáu [https://modsecurity.org/mod_security]/mod_security2 .Munches de les sos configuraciones comunes pueden causar problemes a MediaWiki o otru software que dexe a los usuarios publicar conteníu arbitrario. De ser posible, tendríes de desactivalo. Si non, consulta la  [https://modsecurity.org/documentation/ mod_security documentation] o contacta col alministrador del to servidor si atopes erros aleatorios.",
 	"config-diff3-bad": "Nun s'alcontró GNU diff3.",
 	"config-git": "Alcontróse'l software de control de versiones Git: <code>$1</code>.",

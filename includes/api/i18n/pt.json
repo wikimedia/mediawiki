@@ -366,6 +366,7 @@
 	"apihelp-parse-param-disablepp": "Em vez deste, usar <var>$1disablelimitreport</var>.",
 	"apihelp-parse-param-disableeditsection": "Omitir as hiperligações para edição da secção no resultado da análise sintática.",
 	"apihelp-parse-param-disabletidy": "Não fazer a limpeza do HTML (isto é, o ''tidy'') no resultado da análise sintática.",
+	"apihelp-parse-param-disablestylededuplication": "Não desduplica as folhas de estilo incluídas na saída do analisador sintático.",
 	"apihelp-parse-param-generatexml": "Gerar a árvore de análise XML (requer o modelo de conteúdo <code>$1</code>; substituído por <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Executar a análise em modo de antevisão.",
 	"apihelp-parse-param-sectionpreview": "Executar a análise em modo de antevisão (também ativa o modo de antevisão).",

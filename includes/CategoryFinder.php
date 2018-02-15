@@ -42,6 +42,8 @@ use Wikimedia\Rdbms\IDatabase;
  *     $a = $cf->run();
  *     print implode( ',' , $a );
  * @endcode
+ *
+ * @deprecated since 1.31
  */
 class CategoryFinder {
 	/** @var int[] The original article IDs passed to the seed function */

@@ -3004,7 +3004,7 @@
 	"feedback-subject": "Tema:",
 	"feedback-submit": "Unesi",
 	"feedback-thanks": "Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.",
-	"searchsuggest-search": "Traži",
+	"searchsuggest-search": "Traži {{GRAMMAR:akuzativ|{{SITENAME}}}}",
 	"searchsuggest-containing": "sadrži...",
 	"api-error-badtoken": "Unutrašnja greška: token nije ispravan.",
 	"api-error-emptypage": "Stvaranje novih praznih stranica nije dozvoljeno.",
