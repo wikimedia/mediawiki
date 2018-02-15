@@ -1536,7 +1536,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Locally set a key to expire soon if it is stale based on $purgeTimestamp
+	 * Set a key to expire soon in the local cluster if it is stale based on $purgeTimestamp
 	 *
 	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
 	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
