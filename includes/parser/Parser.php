@@ -4032,13 +4032,9 @@ class Parser {
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
-			$maybeShowEditLink = $showEditLink = false;
+			$maybeShowEditLink = false;
 		} else {
-			$maybeShowEditLink = true; /* Actual presence will depend on ParserOptions option */
-			$showEditLink = $this->mOptions->getEditSection();
-		}
-		if ( $showEditLink ) {
-			$this->mOutput->setEditSectionTokens( true );
+			$maybeShowEditLink = true; /* Actual presence will depend on post-cache transforms */
 		}
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
@@ -4390,9 +4386,9 @@ class Parser {
 			 * $this : caller
 			 * $section : the section number
 			 * &$sectionContent : ref to the content of the section
-			 * $showEditLinks : boolean describing whether this section has an edit link
+			 * $maybeShowEditLinks : boolean describing whether this section has an edit link
 			 */
-			Hooks::run( 'ParserSectionCreate', [ $this, $i, &$sections[$i], $showEditLink ] );
+			Hooks::run( 'ParserSectionCreate', [ $this, $i, &$sections[$i], $maybeShowEditLink ] );
 
 			$i++;
 		}
