@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Test the parts of the Database abstract class that deal
@@ -10,7 +11,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
+	/** @var DatabaseTestHelper|Database */
 	private $database;
 
 	protected function setUp() {
@@ -197,6 +198,46 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					'options' => [ 'FOR UPDATE' ],
 				],
 				"SELECT field FROM table      FOR UPDATE"
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideSelectRowCount
+	 * @param $sql
+	 * @param $sqlText
+	 */
+	public function testSelectRowCount( $sql, $sqlText ) {
+		$this->database->selectRowCount(
+			$sql['tables'],
+			$sql['field'],
+			isset( $sql['conds'] ) ? $sql['conds'] : [],
+			__METHOD__,
+			isset( $sql['options'] ) ? $sql['options'] : [],
+			isset( $sql['join_conds'] ) ? $sql['join_conds'] : []
+		);
+		$this->assertLastSql( $sqlText );
+	}
+
+	public static function provideSelectRowCount() {
+		return [
+			[
+				[
+					'tables' => 'table',
+					'field' => [ '*' ],
+					'conds' => [ 'alias' => 'text' ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE alias = 'text'  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'column' ],
+					'conds' => [ 'alias' => 'text' ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE alias = 'text' AND (column IS NOT NULL)  ) tmp_count"
 			],
 		];
 	}

@@ -620,6 +620,11 @@ interface IDatabase {
 	 * This includes the user table in the query, with the alias "a" available
 	 * for use in field names (e.g. a.user_name).
 	 *
+	 * A calculated table, defined by the result of selectSQLText(), requires an alias
+	 * key and a CalculatedTable value which wraps the SQL query, for example:
+	 *
+	 *    [ 'c' => new CalculatedSQLTable( 'SELECT ...' ) ]
+	 *
 	 * Joins using parentheses for grouping (since MediaWiki 1.31) may be
 	 * constructed using nested arrays. For example,
 	 *
@@ -838,7 +843,7 @@ interface IDatabase {
 	 * @since 1.27 Added $join_conds parameter
 	 *
 	 * @param array|string $tables Table names
-	 * @param string $vars Unused
+	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
@@ -847,7 +852,7 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
