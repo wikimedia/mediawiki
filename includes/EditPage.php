@@ -325,7 +325,7 @@ class EditPage {
 	/** @var bool Has a summary been preset using GET parameter &summary= ? */
 	public $hasPresetSummary = false;
 
-	/** @var Revision|bool */
+	/** @var Revision|bool|null */
 	public $mBaseRevision = false;
 
 	/** @var bool */
@@ -2369,7 +2369,7 @@ ERROR;
 	/**
 	 * @note: this method is very poorly named. If the user opened the form with ?oldid=X,
 	 *        one might think of X as the "base revision", which is NOT what this returns.
-	 * @return Revision Current version when the edit was started
+	 * @return Revision|null Current version when the edit was started
 	 */
 	public function getBaseRevision() {
 		if ( !$this->mBaseRevision ) {
