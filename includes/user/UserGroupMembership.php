@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -158,7 +159,7 @@ class UserGroupMembership {
 		}
 
 		// Purge old, expired memberships from the DB
-		self::purgeExpired( $dbw );
+		JobQueueGroup::singleton()->push( new UserGroupExpiryJob() );
 
 		// Check that the values make sense
 		if ( $this->group === null ) {
@@ -236,38 +237,59 @@ class UserGroupMembership {
 
 	/**
 	 * Purge expired memberships from the user_groups table
-	 *
-	 * @param IDatabase|null $dbw
 	 */
-	public static function purgeExpired( IDatabase $dbw = null ) {
-		if ( wfReadOnly() ) {
+	public static function purgeExpired() {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 
-		if ( $dbw === null ) {
-			$dbw = wfGetDB( DB_MASTER );
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+		$dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+
+		$lockKey = $dbw->getDomainID() . ':usergroups-prune'; // specific to this wiki
+		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
+		if ( !$scopedLock ) {
+			return; // already running
 		}
 
-		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
-			$dbw,
-			__METHOD__,
-			function ( IDatabase $dbw, $fname ) {
-				$expiryCond = [ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ];
-				$res = $dbw->select( 'user_groups', self::selectFields(), $expiryCond, $fname );
+		$now = time();
+		do {
+			$dbw->startAtomic( __METHOD__ );
 
-				// save an array of users/groups to insert to user_former_groups
-				$usersAndGroups = [];
+			$res = $dbw->select(
+				'user_groups',
+				self::selectFields(),
+				[ 'ug_expiry < ' . $dbw->addQuotes( $dbw->timestamp( $now ) ) ],
+				__METHOD__,
+				[ 'FOR UPDATE', 'LIMIT' => 100 ]
+			);
+
+			if ( $res->numRows() > 0 ) {
+				$insertData = []; // array of users/groups to insert to user_former_groups
+				$deleteCond = []; // array for deleting the rows that are to be moved around
 				foreach ( $res as $row ) {
-					$usersAndGroups[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
+					$insertData[] = [ 'ufg_user' => $row->ug_user, 'ufg_group' => $row->ug_group ];
+					$deleteCond[] = $dbw->makeList(
+						[ 'ug_user' => $row->ug_user, 'ug_group' => $row->ug_group ],
+						$dbw::LIST_AND
+					);
 				}
-
-				// delete 'em all
-				$dbw->delete( 'user_groups', $expiryCond, $fname );
-
-				// and push the groups to user_former_groups
-				$dbw->insert( 'user_former_groups', $usersAndGroups, __METHOD__, [ 'IGNORE' ] );
+				// Delete the rows we're about to move
+				$dbw->delete(
+					'user_groups',
+					$dbw->makeList( $deleteCond, $dbw::LIST_OR ),
+					__METHOD__
+				);
+				// Push the groups to user_former_groups
+				$dbw->insert( 'user_former_groups', $insertData, __METHOD__, [ 'IGNORE' ] );
 			}
-		) );
+
+			$dbw->endAtomic( __METHOD__ );
+
+			$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+		} while ( $res->numRows() > 0 );
 	}
 
 	/**
