@@ -1465,33 +1465,39 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function estimateRowCount(
 		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
 	) {
-		$rows = 0;
 		$res = $this->select( $table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options );
+		$row = $res ? $this->fetchRow( $res ) : [];
 
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
-		}
-
-		return $rows;
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$rows = 0;
-		$sql = $this->selectSQLText( $tables, '1', $conds, $fname, $options, $join_conds );
-		// The identifier quotes is primarily for MSSQL.
-		$rowCountCol = $this->addIdentifierQuotes( "rowcount" );
-		$tableName = $this->addIdentifierQuotes( "tmp_count" );
-		$res = $this->query( "SELECT COUNT(*) AS $rowCountCol FROM ($sql) $tableName", $fname );
+		$var = is_array( $var ) ? reset( $var ) : $var; // allow select() style
 
-		if ( $res ) {
-			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
+		if ( is_string( $var ) && !in_array( $var, [ '*', '1', '' ] ) ) {
+			$conds[] = "$var IS NOT NULL";
 		}
 
-		return $rows;
+		$tempTableSQL = $this->selectSQLText(
+			$tables,
+			'1',
+			$conds,
+			$fname,
+			$options,
+			$join_conds
+		);
+
+		$res = $this->select(
+			[ 'tmp_count' => "($tempTableSQL)" ],
+			[ 'rowcount' => 'COUNT(*)' ],
+			[],
+			$fname
+		);
+		$row = $res ? $this->fetchRow( $res ) : [];
+
+		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
 	}
 
 	/**
