@@ -76,10 +76,9 @@ class RecentChangesUpdateJob extends Job {
 		$lockKey = wfWikiID() . ':recentchanges-prune';
 
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
-			|| !$dbw->lock( $lockKey, __METHOD__, 1 )
-		) {
-			return; // already in progress
+		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
+			// already in progress
+			return;
 		}
 
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -138,7 +137,7 @@ class RecentChangesUpdateJob extends Job {
 				$dbw->setSessionOptions( [ 'connTimeout' => 900 ] );
 
 				$lockKey = wfWikiID() . '-activeusers';
-				if ( !$dbw->lockIsFree( $lockKey, __METHOD__ ) || !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
+				if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
 					// Exclusive update (avoids duplicate entries)… it's usually fine to just drop out here,
 					// if the Job is already running.
 					return;

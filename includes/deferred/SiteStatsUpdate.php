@@ -101,9 +101,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		$pd = [];
 		if ( $config->get( 'SiteStatsAsyncFactor' ) ) {
 			// Lock the table so we don't have double DB/memcached updates
-			if ( !$dbw->lockIsFree( $lockKey, __METHOD__ )
-				|| !$dbw->lock( $lockKey, __METHOD__, 1 ) // 1 sec timeout
-			) {
+			if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
 				$this->doUpdatePendingDeltas();
 
 				return;
