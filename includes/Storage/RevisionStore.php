@@ -252,7 +252,7 @@ class RevisionStore
 			if ( $title ) {
 				$this->logger->info(
 					__METHOD__ . ' fell back to READ_LATEST and got a Title.',
-					[ 'trace' => wfDebugBacktrace() ]
+					[ 'trace' => wfBacktrace() ]
 				);
 				return $title;
 			}
