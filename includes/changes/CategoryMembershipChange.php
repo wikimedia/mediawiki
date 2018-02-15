@@ -71,7 +71,7 @@ class CategoryMembershipChange {
 			$this->timestamp = $revision->getTimestamp();
 		}
 		$this->revision = $revision;
-		$this->newForCategorizationCallback = [ 'RecentChange', 'newForCategorization' ];
+		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
 	}
 
 	/**

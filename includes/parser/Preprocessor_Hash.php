@@ -39,9 +39,8 @@
  *
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -497,7 +496,16 @@ class Preprocessor_Hash extends Preprocessor {
 						'count' => $count ];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					extract( $stack->getFlags() );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 					$i += $count;
 				}
 			} elseif ( $found == 'line-end' ) {
@@ -554,7 +562,16 @@ class Preprocessor_Hash extends Preprocessor {
 				// Unwind the stack
 				$stack->pop();
 				$accum =& $stack->getAccum();
-				extract( $stack->getFlags() );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				// Append the result to the enclosing accumulator
 				array_splice( $accum, count( $accum ), 0, $element );
@@ -584,7 +601,16 @@ class Preprocessor_Hash extends Preprocessor {
 
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					extract( $stack->getFlags() );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 				} else {
 					# Add literal brace(s)
 					self::addLiteral( $accum, str_repeat( $curChar, $count ) );
@@ -695,7 +721,16 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 				}
 
-				extract( $stack->getFlags() );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				# Add XML element to the enclosing accumulator
 				array_splice( $accum, count( $accum ), 0, $element );
@@ -753,12 +788,11 @@ class Preprocessor_Hash extends Preprocessor {
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStack_Hash extends PPDStack {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct() {
-		$this->elementClass = 'PPDStackElement_Hash';
+		$this->elementClass = PPDStackElement_Hash::class;
 		parent::__construct();
 		$this->rootAccum = [];
 	}
@@ -767,12 +801,11 @@ class PPDStack_Hash extends PPDStack {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDStackElement_Hash extends PPDStackElement {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct( $data = [] ) {
-		$this->partClass = 'PPDPart_Hash';
+		$this->partClass = PPDPart_Hash::class;
 		parent::__construct( $data );
 	}
 
@@ -821,9 +854,8 @@ class PPDStackElement_Hash extends PPDStackElement {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash extends PPDPart {
-	// @codingStandardsIgnoreEnd
 
 	public function __construct( $out = '' ) {
 		if ( $out !== '' ) {
@@ -839,9 +871,8 @@ class PPDPart_Hash extends PPDPart {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_Hash implements PPFrame {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -1439,9 +1470,8 @@ class PPFrame_Hash implements PPFrame {
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_Hash extends PPFrame_Hash {
-	// @codingStandardsIgnoreEnd
 
 	public $numberedArgs, $namedArgs, $parent;
 	public $numberedExpansionCache, $namedExpansionCache;
@@ -1622,9 +1652,8 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_Hash extends PPFrame_Hash {
-	// @codingStandardsIgnoreEnd
 
 	public $args;
 
@@ -1675,9 +1704,8 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Tree implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $name;
 
@@ -1738,12 +1766,12 @@ class PPNode_Hash_Tree implements PPNode {
 
 		$descriptor = $store[$index];
 		if ( is_string( $descriptor ) ) {
-			$class = 'PPNode_Hash_Text';
+			$class = PPNode_Hash_Text::class;
 		} elseif ( is_array( $descriptor ) ) {
 			if ( $descriptor[self::NAME][0] === '@' ) {
-				$class = 'PPNode_Hash_Attr';
+				$class = PPNode_Hash_Attr::class;
 			} else {
-				$class = 'PPNode_Hash_Tree';
+				$class = self::class;
 			}
 		} else {
 			throw new MWException( __METHOD__.': invalid node descriptor' );
@@ -1922,18 +1950,18 @@ class PPNode_Hash_Tree implements PPNode {
 				continue;
 			}
 			switch ( $child[self::NAME] ) {
-			case 'name':
-				$bits['name'] = new self( $children, $i );
-				break;
-			case 'attr':
-				$bits['attr'] = new self( $children, $i );
-				break;
-			case 'inner':
-				$bits['inner'] = new self( $children, $i );
-				break;
-			case 'close':
-				$bits['close'] = new self( $children, $i );
-				break;
+				case 'name':
+					$bits['name'] = new self( $children, $i );
+					break;
+				case 'attr':
+					$bits['attr'] = new self( $children, $i );
+					break;
+				case 'inner':
+					$bits['inner'] = new self( $children, $i );
+					break;
+				case 'close':
+					$bits['close'] = new self( $children, $i );
+					break;
 			}
 		}
 		if ( !isset( $bits['name'] ) ) {
@@ -2001,15 +2029,15 @@ class PPNode_Hash_Tree implements PPNode {
 				continue;
 			}
 			switch ( $child[self::NAME] ) {
-			case 'title':
-				$bits['title'] = new self( $children, $i );
-				break;
-			case 'part':
-				$parts[] = new self( $children, $i );
-				break;
-			case '@lineStart':
-				$bits['lineStart'] = '1';
-				break;
+				case 'title':
+					$bits['title'] = new self( $children, $i );
+					break;
+				case 'part':
+					$parts[] = new self( $children, $i );
+					break;
+				case '@lineStart':
+					$bits['lineStart'] = '1';
+					break;
 			}
 		}
 		if ( !isset( $bits['title'] ) ) {
@@ -2023,9 +2051,8 @@ class PPNode_Hash_Tree implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Text implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $value;
 	private $store, $index;
@@ -2094,9 +2121,8 @@ class PPNode_Hash_Text implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Array implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $value;
 
@@ -2152,9 +2178,8 @@ class PPNode_Hash_Array implements PPNode {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_Hash_Attr implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	public $name, $value;
 	private $store, $index;

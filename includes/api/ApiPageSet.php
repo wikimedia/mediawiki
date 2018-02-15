@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 24, 2006
- *
  * Copyright © 2006, 2013 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -753,7 +749,7 @@ class ApiPageSet extends ApiBase {
 	 * $this->getPageTableFields().
 	 *
 	 * @param IDatabase $db
-	 * @param ResultWrapper $queryResult Query result object
+	 * @param ResultWrapper $queryResult
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
 		$this->initFromQueryResult( $queryResult );
@@ -1532,7 +1528,7 @@ class ApiPageSet extends ApiBase {
 			$prefix = $query->getModulePath() . '+';
 			$mgr = $query->getModuleManager();
 			foreach ( $mgr->getNamesWithClasses() as $name => $class ) {
-				if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
+				if ( is_subclass_of( $class, ApiQueryGeneratorBase::class ) ) {
 					$gens[$name] = $prefix . $name;
 				}
 			}

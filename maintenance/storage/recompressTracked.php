@@ -114,8 +114,8 @@ class RecompressTracked {
 			$GLOBALS['wgDebugLogPrefix'] = "RCT {$this->replicaId}: ";
 		}
 		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
-			'DiffHistoryBlob' : 'ConcatenatedGzipHistoryBlob';
-		$this->orphanBlobClass = 'ConcatenatedGzipHistoryBlob';
+			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
+		$this->orphanBlobClass = ConcatenatedGzipHistoryBlob::class;
 	}
 
 	function debug( $msg ) {
@@ -236,9 +236,9 @@ class RecompressTracked {
 				[ 'file', 'php://stdout', 'w' ],
 				[ 'file', 'php://stderr', 'w' ]
 			];
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$proc = proc_open( "$cmd --replica-id $i", $spec, $pipes );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$proc ) {
 				$this->critical( "Error opening replica DB process: $cmd" );
 				exit( 1 );

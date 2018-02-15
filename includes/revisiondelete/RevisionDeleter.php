@@ -29,11 +29,11 @@
 class RevisionDeleter {
 	/** List of known revdel types, with their corresponding list classes */
 	private static $allowedTypes = [
-		'revision' => 'RevDelRevisionList',
-		'archive' => 'RevDelArchiveList',
-		'oldimage' => 'RevDelFileList',
-		'filearchive' => 'RevDelArchivedFileList',
-		'logging' => 'RevDelLogList',
+		'revision' => RevDelRevisionList::class,
+		'archive' => RevDelArchiveList::class,
+		'oldimage' => RevDelFileList::class,
+		'filearchive' => RevDelArchivedFileList::class,
+		'logging' => RevDelLogList::class,
 	];
 
 	/** Type map to support old log entries */

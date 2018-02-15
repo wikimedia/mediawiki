@@ -8,11 +8,13 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		parent::setUp();
 		// MediaWiki tests defaults $wgMainWANCache to CACHE_NONE.
 		// Use hash instead so that caching is observed
-		$this->wanCache = $this->getMockBuilder( 'WANObjectCache' )
+		$this->wanCache = $this->getMockBuilder( WANObjectCache::class )
 			->setConstructorArgs( [ [
 				'cache' => new HashBagOStuff(),
 				'pool' => 'test',
@@ -30,7 +32,7 @@ class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function makeBlobStore( $methods = null, $rl = null ) {
-		$blobStore = $this->getMockBuilder( 'MessageBlobStore' )
+		$blobStore = $this->getMockBuilder( MessageBlobStore::class )
 			->setConstructorArgs( [ $rl ] )
 			->setMethods( $methods )
 			->getMock();

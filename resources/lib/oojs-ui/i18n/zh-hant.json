@@ -15,7 +15,8 @@
 			"Waihorace",
 			"Cwlin0416",
 			"LNDDYL",
-			"Shangkuanlc"
+			"Shangkuanlc",
+			"A2093064"
 		]
 	},
 	"ooui-outline-control-move-down": "項目下移",
@@ -24,6 +25,7 @@
 	"ooui-toolbar-more": "更多",
 	"ooui-toolgroup-expand": "更多",
 	"ooui-toolgroup-collapse": "更少",
+	"ooui-item-remove": "移除",
 	"ooui-dialog-message-accept": "確定",
 	"ooui-dialog-message-reject": "取消",
 	"ooui-dialog-process-error": "發生不明錯誤",

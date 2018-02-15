@@ -97,6 +97,9 @@
 					} );
 				}
 
+				// Preload the notification module for mw.notify
+				mw.loader.load( 'mediawiki.notification' );
+
 				// Depending on whether we are watching or unwatching, for each entry of the page (and its associated page i.e. Talk),
 				// change the text, tooltip, and non-JS href of the (un)watch button, and update the styling of the watchlist entry.
 				if ( $unwatchLink.hasClass( 'mw-unwatch-link' ) ) {

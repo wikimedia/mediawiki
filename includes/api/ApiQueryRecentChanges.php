@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Oct 19, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -65,7 +61,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$this->tokenFunctions = [
-			'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ]
+			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
 		Hooks::run( 'APIQueryRecentChangesTokens', [ &$this->tokenFunctions ] );
 
@@ -354,8 +350,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->token = $params['token'];
 
 		if ( $this->fld_comment || $this->fld_parsedcomment || $this->token ) {
-			$this->commentStore = new CommentStore( 'rc_comment' );
-			$commentQuery = $this->commentStore->getJoin();
+			$this->commentStore = CommentStore::getStore();
+			$commentQuery = $this->commentStore->getJoin( 'rc_comment' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
@@ -510,7 +506,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$anyHidden = true;
 			}
 			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_COMMENT, $user ) ) {
-				$comment = $this->commentStore->getComment( $row )->text;
+				$comment = $this->commentStore->getComment( 'rc_comment', $row )->text;
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}

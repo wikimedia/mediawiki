@@ -467,7 +467,7 @@ class LegacyLogger extends AbstractLogger {
 			$transport = UDPTransport::newFromString( $file );
 			$transport->emit( $text );
 		} else {
-			\MediaWiki\suppressWarnings();
+			\Wikimedia\suppressWarnings();
 			$exists = file_exists( $file );
 			$size = $exists ? filesize( $file ) : false;
 			if ( !$exists ||
@@ -475,7 +475,7 @@ class LegacyLogger extends AbstractLogger {
 			) {
 				file_put_contents( $file, $text, FILE_APPEND );
 			}
-			\MediaWiki\restoreWarnings();
+			\Wikimedia\restoreWarnings();
 		}
 	}
 

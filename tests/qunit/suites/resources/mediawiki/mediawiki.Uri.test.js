@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function ( mw ) {
 	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.mwUriOrg = mw.Uri;
@@ -10,7 +10,7 @@
 		}
 	} ) );
 
-	$.each( [ true, false ], function ( i, strictMode ) {
+	[ true, false ].forEach( function ( strictMode ) {
 		QUnit.test( 'Basic construction and properties (' + ( strictMode ? '' : 'non-' ) + 'strict mode)', function ( assert ) {
 			var uriString, uri;
 			uriString = 'http://www.ietf.org/rfc/rfc2396.txt';
@@ -206,6 +206,8 @@
 		uri = uriBase.clone();
 		uri.fragment = 'frag';
 		assert.equal( uri.toString(), 'http://en.wiki.local/w/api.php#frag', 'add a fragment' );
+		uri.fragment = 'café';
+		assert.equal( uri.toString(), 'http://en.wiki.local/w/api.php#caf%C3%A9', 'fragment is url-encoded' );
 
 		uri = uriBase.clone();
 		uri.host = 'fr.wiki.local';
@@ -391,7 +393,7 @@
 	QUnit.test( 'Advanced URL', function ( assert ) {
 		var uri, queryString, relativePath;
 
-		uri = new mw.Uri( 'http://auth@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#top' );
+		uri = new mw.Uri( 'http://auth@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#caf%C3%A9' );
 
 		assert.deepEqual(
 			{
@@ -412,7 +414,7 @@
 				port: '81',
 				path: '/dir/dir.2/index.htm',
 				query: { q1: '0', test1: null, test2: 'value (escaped)' },
-				fragment: 'top'
+				fragment: 'café'
 			},
 			'basic object properties'
 		);
@@ -432,7 +434,7 @@
 		relativePath = uri.getRelativePath();
 		assert.ok( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
 		assert.ok( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
-		assert.ok( relativePath.indexOf( uri.fragment ) >= 0, 'fragment in relative path' );
+		assert.ok( relativePath.indexOf( mw.Uri.encode( uri.fragment ) ) >= 0, 'escaped fragment in relative path' );
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', function ( assert ) {
@@ -504,4 +506,4 @@
 		href = uri.toString();
 		assert.equal( href, testProtocol + testServer + ':' + testPort + testPath, 'Root-relative URL gets host, protocol, and port supplied' );
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );

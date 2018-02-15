@@ -4,6 +4,9 @@
  * @group ContentHandler
  */
 class TextContentHandlerTest extends MediaWikiLangTestCase {
+	/**
+	 * @covers TextContentHandler::supportsDirectEditing
+	 */
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
@@ -16,13 +19,13 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 	public function testFieldsForIndex() {
 		$handler = new TextContentHandler();
 
-		$mockEngine = $this->createMock( 'SearchEngine' );
+		$mockEngine = $this->createMock( SearchEngine::class );
 
 		$mockEngine->expects( $this->atLeastOnce() )
 			->method( 'makeSearchFieldMapping' )
 			->willReturnCallback( function ( $name, $type ) {
 				$mockField =
-					$this->getMockBuilder( 'SearchIndexFieldDefinition' )
+					$this->getMockBuilder( SearchIndexFieldDefinition::class )
 						->setConstructorArgs( [ $name, $type ] )
 						->getMock();
 				$mockField->expects( $this->atLeastOnce() )->method( 'getMapping' )->willReturn( [
@@ -39,7 +42,7 @@ class TextContentHandlerTest extends MediaWikiLangTestCase {
 		$fields = $handler->getFieldsForSearchIndex( $mockEngine );
 		$mappedFields = [];
 		foreach ( $fields as $name => $field ) {
-			$this->assertInstanceOf( 'SearchIndexField', $field );
+			$this->assertInstanceOf( SearchIndexField::class, $field );
 			/**
 			 * @var $field SearchIndexField
 			 */

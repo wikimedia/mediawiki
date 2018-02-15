@@ -43,10 +43,11 @@ class CheckImages extends Maintenance {
 		$numGood = 0;
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
+		$fileQuery = LocalFile::getQueryInfo();
 		do {
-			$res = $dbr->select( 'image', LocalFile::selectFields(),
+			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],
 				[ 'img_name > ' . $dbr->addQuotes( $start ) ],
-				__METHOD__, [ 'LIMIT' => $this->mBatchSize ] );
+				__METHOD__, [ 'LIMIT' => $this->getBatchSize() ], $fileQuery['joins'] );
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;
@@ -81,5 +82,5 @@ class CheckImages extends Maintenance {
 	}
 }
 
-$maintClass = "CheckImages";
+$maintClass = CheckImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

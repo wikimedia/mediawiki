@@ -7,6 +7,9 @@ use Wikimedia\Rdbms\LikeMatch;
  * with creating SQL text.
  */
 class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/** @var DatabaseTestHelper */
 	private $database;
 
@@ -557,7 +560,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 				],
 				"DELETE FROM replace_table " .
-					"WHERE ( field='text' ); " .
+					"WHERE (field = 'text'); " .
 					"INSERT INTO replace_table " .
 					"(field,field2) " .
 					"VALUES ('text','text2')"
@@ -573,7 +576,7 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' AND md_skin='skin' ); " .
+					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps')"
@@ -595,12 +598,12 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' AND md_skin='skin' ); " .
+					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps'); " .
 					"DELETE FROM module_deps " .
-					"WHERE ( md_module='module2' AND md_skin='skin2' ); " .
+					"WHERE (md_module = 'module2' AND md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2')"
@@ -622,12 +625,12 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 					],
 				],
 				"DELETE FROM module_deps " .
-					"WHERE ( md_module='module' ) OR ( md_skin='skin' ); " .
+					"WHERE (md_module = 'module') OR (md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps'); " .
 					"DELETE FROM module_deps " .
-					"WHERE ( md_module='module2' ) OR ( md_skin='skin2' ); " .
+					"WHERE (md_module = 'module2') OR (md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2')"
@@ -843,8 +846,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public static function provideUnionConditionPermutations() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
-			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 			[
 				[
 					'table' => [ 'table1', 'table2' ],
@@ -986,8 +989,8 @@ class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
 				],
 				"SELECT  foo_id  FROM foo    WHERE baz IS NULL  ORDER BY foo_id LIMIT 150,25"
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**

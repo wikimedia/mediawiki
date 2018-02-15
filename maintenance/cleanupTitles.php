@@ -137,7 +137,8 @@ class TitleCleanup extends TableCleanup {
 			|| $title->getInterwiki()
 			|| !$title->canExist()
 		) {
-			if ( $title->getInterwiki() || !$title->canExist() ) {
+			$titleImpossible = $title->getInterwiki() || !$title->canExist();
+			if ( $titleImpossible ) {
 				$prior = $title->getPrefixedDBkey();
 			} else {
 				$prior = $title->getDBkey();
@@ -155,7 +156,12 @@ class TitleCleanup extends TableCleanup {
 				$ns = 0;
 			}
 
-			$clean = 'Broken/' . $prior;
+			if ( !$titleImpossible && !$title->exists() ) {
+				// Looks like the current title, after cleaning it up, is valid and available
+				$clean = $prior;
+			} else {
+				$clean = 'Broken/' . $prior;
+			}
 			$verified = Title::makeTitleSafe( $ns, $clean );
 			if ( !$verified || $verified->exists() ) {
 				$blah = "Broken/id:" . $row->page_id;
@@ -165,7 +171,7 @@ class TitleCleanup extends TableCleanup {
 			$title = $verified;
 		}
 		if ( is_null( $title ) ) {
-			$this->error( "Something awry; empty title.", true );
+			$this->fatalError( "Something awry; empty title." );
 		}
 		$ns = $title->getNamespace();
 		$dest = $title->getDBkey();
@@ -189,5 +195,5 @@ class TitleCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = "TitleCleanup";
+$maintClass = TitleCleanup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

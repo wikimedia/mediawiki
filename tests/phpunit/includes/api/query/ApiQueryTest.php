@@ -81,6 +81,19 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
 	}
 
+	public function testTitlesWithWhitespaces() {
+		$data = $this->doApiRequest( [
+			'action' => 'query',
+			'titles' => ' '
+		] );
+
+		$this->assertArrayHasKey( 'query', $data[0] );
+		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
+		$this->assertEquals( 1, count( $data[0]['query']['pages'] ) );
+		$this->assertArrayHasKey( -1, $data[0]['query']['pages'] );
+		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
+	}
+
 	/**
 	 * Test the ApiBase::titlePartToKey function
 	 *

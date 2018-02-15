@@ -495,11 +495,10 @@ class HttpTest extends MediaWikiTestCase {
 	 * where it did not define a cURL constant. T72570
 	 *
 	 * @dataProvider provideCurlConstants
+	 * @coversNothing
 	 */
 	public function testCurlConstants( $value ) {
-		if ( !extension_loaded( 'curl' ) ) {
-			$this->markTestSkipped( "PHP extension 'curl' is not loaded, skipping." );
-		}
+		$this->checkPHPExtension( 'curl' );
 
 		$this->assertTrue( defined( $value ), $value . ' not defined' );
 	}
@@ -511,7 +510,7 @@ class HttpTest extends MediaWikiTestCase {
 class MWHttpRequestTester extends MWHttpRequest {
 	// function derived from the MWHttpRequest factory function but
 	// returns appropriate tester class here
-	public static function factory( $url, $options = null, $caller = __METHOD__ ) {
+	public static function factory( $url, array $options = null, $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {

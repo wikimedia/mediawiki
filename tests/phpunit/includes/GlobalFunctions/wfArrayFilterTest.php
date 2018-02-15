@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @group GlobalFunctions
+ * @covers ::wfArrayFilter
+ * @covers ::wfArrayFilterByKey
+ */
 class WfArrayFilterTest extends \PHPUnit_Framework_TestCase {
 	public function testWfArrayFilter() {
 		$arr = [ 'a' => 1, 'b' => 2, 'c' => 3 ];

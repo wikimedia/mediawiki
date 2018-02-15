@@ -1,7 +1,5 @@
 <?php
 /**
- * Created on Oct 13, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  * Copyright © 2008 Brion Vibber <brion@wikimedia.org>
  * Copyright © 2014 Wikimedia Foundation and contributors
@@ -382,6 +380,9 @@ class ApiOpenSearch extends ApiBase {
 	}
 }
 
+/**
+ * @ingroup API
+ */
 class ApiOpenSearchFormatJson extends ApiFormatJson {
 	private $warningsAsError = false;
 

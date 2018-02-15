@@ -39,6 +39,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected static $savedQueriesPreferenceName;
 
+	/**
+	 * Preference name for 'days'. Subclasses should override this.
+	 * @var string
+	 */
+	protected static $daysPreferenceName;
+
+	/**
+	 * Preference name for 'limit'. Subclasses should override this.
+	 * @var string
+	 */
+	protected static $limitPreferenceName;
+
 	/** @var string */
 	protected $rcSubpage;
 
@@ -541,7 +553,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
-		$this->considerActionsForDefaultSavedQuery();
+		$this->considerActionsForDefaultSavedQuery( $subpage );
 
 		$opts = $this->getOptions();
 		try {
@@ -558,8 +570,15 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			// Used by "live update" and "view newest" to check
 			// if there's new changes with minimal data transfer
 			if ( $this->getRequest()->getBool( 'peek' ) ) {
-			$code = $rows->numRows() > 0 ? 200 : 204;
+				$code = $rows->numRows() > 0 ? 200 : 204;
 				$this->getOutput()->setStatusCode( $code );
+
+				if ( $this->getUser()->isAnon() !==
+					$this->getRequest()->getFuzzyBool( 'isAnon' )
+				) {
+					$this->getOutput()->setStatusCode( 205 );
+				}
+
 				return;
 			}
 
@@ -610,9 +629,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Check whether or not the page should load defaults, and if so, whether
 	 * a default saved query is relevant to be redirected to. If it is relevant,
 	 * redirect properly with all necessary query parameters.
+	 *
+	 * @param string $subpage
 	 */
-	protected function considerActionsForDefaultSavedQuery() {
-		if ( !$this->isStructuredFilterUiEnabled() ) {
+	protected function considerActionsForDefaultSavedQuery( $subpage ) {
+		if ( !$this->isStructuredFilterUiEnabled() || $this->including() ) {
 			return;
 		}
 
@@ -658,7 +679,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					// but are still valid and requested in the URL
 					$query = array_merge( $this->getRequest()->getValues(), $query );
 					unset( $query[ 'title' ] );
-					$this->getOutput()->redirect( $this->getPageTitle()->getCanonicalURL( $query ) );
+					$this->getOutput()->redirect( $this->getPageTitle( $subpage )->getCanonicalURL( $query ) );
 				} else {
 					// There's a default, but the version is not 2, and the server can't
 					// actually recognize the query itself. This happens if it is before
@@ -685,7 +706,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function includeRcFiltersApp() {
 		$out = $this->getOutput();
-		if ( $this->isStructuredFilterUiEnabled() ) {
+		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
 			$jsData = $this->getStructuredFilterJsData();
 
 			$messages = [];
@@ -721,6 +742,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersSavedQueriesPreferenceName',
 				static::$savedQueriesPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersLimitPreferenceName',
+				static::$limitPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersDaysPreferenceName',
+				static::$daysPreferenceName
 			);
 
 			$out->addJsConfigVars(
@@ -1412,8 +1441,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function doMainQuery( $tables, $fields, $conds,
 		$query_options, $join_conds, FormOptions $opts
 	) {
-		$tables[] = 'recentchanges';
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -1594,6 +1625,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		# Collapsible
 		$collapsedState = $this->getRequest()->getCookie( 'changeslist-state' );
 		$collapsedClass = $collapsedState === 'collapsed' ? ' mw-collapsed' : '';
+
 		$legend =
 			'<div class="mw-changeslist-legend mw-collapsible' . $collapsedClass . '">' .
 				$legendHeading .
@@ -1615,7 +1647,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		] );
 		$out->addModules( 'mediawiki.special.changeslist.legend.js' );
 
-		if ( $this->isStructuredFilterUiEnabled() ) {
+		if ( $this->isStructuredFilterUiEnabled() && !$this->including() ) {
 			$out->addModules( 'mediawiki.rcfilters.filters.ui' );
 			$out->addModuleStyles( 'mediawiki.rcfilters.filters.base.styles' );
 		}
@@ -1751,11 +1783,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return true;
 		}
 
-		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$this->getUser()->getOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $this->getUser()->getOption( 'rcenhancedfilters' );
-		}
+		return static::checkStructuredFilterUiEnabled(
+			$this->getConfig(),
+			$this->getUser()
+		);
 	}
 
 	/**
@@ -1772,14 +1803,42 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 	}
 
-	abstract function getDefaultLimit();
+	/**
+	 * Static method to check whether StructuredFilter UI is enabled for the given user
+	 *
+	 * @since 1.31
+	 * @param Config $config
+	 * @param User $user
+	 * @return bool
+	 */
+	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
+		if ( $config->get( 'StructuredChangeFiltersShowPreference' ) ) {
+			return !$user->getOption( 'rcenhancedfilters-disable' );
+		} else {
+			return $user->getOption( 'rcenhancedfilters' );
+		}
+	}
+
+	/**
+	 * Get the default value of the number of changes to display when loading
+	 * the result set.
+	 *
+	 * @since 1.30
+	 * @return int
+	 */
+	public function getDefaultLimit() {
+		return $this->getUser()->getIntOption( static::$limitPreferenceName );
+	}
 
 	/**
 	 * Get the default value of the number of days to display when loading
 	 * the result set.
 	 * Supports fractional values, and should be cast to a float.
 	 *
+	 * @since 1.30
 	 * @return float
 	 */
-	abstract function getDefaultDays();
+	public function getDefaultDays() {
+		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
+	}
 }

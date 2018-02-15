@@ -329,6 +329,13 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
 			[ 'doUnsignedSyncronisation' ],
+
+			// 1.31
+			[ 'addTable', 'slots', 'patch-slots.sql' ],
+			[ 'addTable', 'content', 'patch-content.sql' ],
+			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
+			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
+			[ 'migrateArchiveText' ],
 		];
 	}
 
@@ -425,7 +432,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doOldLinksUpdate() {
-		$cl = $this->maintenance->runChild( 'ConvertLinks' );
+		$cl = $this->maintenance->runChild( ConvertLinks::class );
 		$cl->execute();
 	}
 
@@ -865,7 +872,8 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->applyPatch( 'patch-templatelinks.sql', false, "Creating templatelinks table" );
 
 		$this->output( "Populating...\n" );
-		if ( wfGetLB()->getServerCount() > 1 ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getDBLoadBalancer()->getServerCount() > 1 ) {
 			// Slow, replication-friendly update
 			$res = $this->db->select( 'pagelinks', [ 'pl_from', 'pl_namespace', 'pl_title' ],
 				[ 'pl_namespace' => NS_TEMPLATE ], __METHOD__ );
@@ -873,7 +881,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $res as $row ) {
 				$count = ( $count + 1 ) % 100;
 				if ( $count == 0 ) {
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+					$lbFactory = $services->getDBLoadBalancerFactory();
 					$lbFactory->waitForReplication( [ 'wiki' => wfWikiID() ] );
 				}
 				$this->db->insert( 'templatelinks',
@@ -934,7 +942,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "done.\n" );
 
 		$this->output( "Migrating old restrictions to new table...\n" );
-		$task = $this->maintenance->runChild( 'UpdateRestrictions' );
+		$task = $this->maintenance->runChild( UpdateRestrictions::class );
 		$task->execute();
 	}
 
@@ -957,7 +965,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
 			"populateCategory.php.\n"
 		);
-		$task = $this->maintenance->runChild( 'PopulateCategory' );
+		$task = $this->maintenance->runChild( PopulateCategory::class );
 		$task->execute();
 		$this->output( "Done populating category table.\n" );
 	}
@@ -969,7 +977,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateParentId.php.\n" );
 
-			$task = $this->maintenance->runChild( 'PopulateParentId' );
+			$task = $this->maintenance->runChild( PopulateParentId::class );
 			$task->execute();
 		}
 	}

@@ -10,3 +10,26 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+
+.mw-userrights-disabled {
+	color: #72777d;
+}
+.mw-userrights-groups * td,
+.mw-userrights-groups * th {
+	padding-right: 1.5em;
+}
+
+.mw-userrights-groups * th {
+	text-align: left;
+}
+
+/* Dynamically show/hide the expiry selection underneath each checkbox */
+input.mw-userrights-groupcheckbox:not( :checked ) ~ .mw-userrights-nested {
+	display: none;
+}
+
+/* Initial hide the expiry fields to prevent a FOUC on loading */
+/* The input fields gets unhidden by JavaScript when needed */
+.client-js .mw-userrights-expiryfield {
+	display: none;
+}

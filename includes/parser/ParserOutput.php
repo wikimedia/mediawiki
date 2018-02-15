@@ -21,7 +21,15 @@
  * @file
  * @ingroup Parser
  */
+
 class ParserOutput extends CacheTime {
+	/**
+	 * Feature flags to indicate to extensions that MediaWiki core supports and
+	 * uses getText() stateless transforms.
+	 */
+	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+	const SUPPORTS_UNWRAP_TRANSFORM = 1;
+
 	/**
 	 * @var string $mText The output text
 	 */
@@ -144,9 +152,10 @@ class ParserOutput extends CacheTime {
 	public $mSections = [];
 
 	/**
+	 * @deprecated since 1.31 Use getText() options.
 	 * @var bool $mEditSectionTokens prefix/suffix markers if edit sections were output as tokens.
 	 */
-	public $mEditSectionTokens = false;
+	public $mEditSectionTokens = true;
 
 	/**
 	 * @var array $mProperties Name/value pairs to be cached in the DB.
@@ -164,6 +173,7 @@ class ParserOutput extends CacheTime {
 	public $mTimestamp;
 
 	/**
+	 * @deprecated since 1.31 Use getText() options.
 	 * @var bool $mTOCEnabled Whether TOC should be shown, can't override __NOTOC__.
 	 */
 	public $mTOCEnabled = true;
@@ -250,9 +260,69 @@ class ParserOutput extends CacheTime {
 		return $this->mText;
 	}
 
-	public function getText() {
+	/**
+	 * Get the output HTML
+	 *
+	 * @param array $options (since 1.31) Transformations to apply to the HTML
+	 *  - allowTOC: (bool) Show the TOC, assuming there were enough headings
+	 *     to generate one and `__NOTOC__` wasn't used. Default is true,
+	 *     but might be statefully overridden.
+	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
+	 *     section edit link tokens are present in the HTML. Default is true,
+	 *     but might be statefully overridden.
+	 *  - unwrap: (bool) Remove a wrapping mw-parser-output div. Default is false.
+	 *  - deduplicateStyles: (bool) When true, which is the default, `<style>`
+	 *    tags with the `data-mw-deduplicate` attribute set are deduplicated by
+	 *    value of the attribute: all but the first will be replaced by `<link
+	 *    rel="mw-deduplicated-inline-style" href="mw-data:..."/>` tags, where
+	 *    the scheme-specific-part of the href is the (percent-encoded) value
+	 *    of the `data-mw-deduplicate` attribute.
+	 * @return string HTML
+	 */
+	public function getText( $options = [] ) {
+		if ( !array_key_exists( 'allowTOC', $options ) && empty( $this->mTOCEnabled ) ) {
+			wfDeprecated( 'ParserOutput stateful allowTOC', '1.31' );
+		}
+
+		//  Note that while $this->mEditSectionTokens formerly defaulted to false,
+		//  ParserOptions->getEditSection() defaults to true and Parser copies
+		//  that to us so true makes more sense as the stateless default.
+		if ( !array_key_exists( 'enableSectionEditLinks', $options ) && !$this->mEditSectionTokens ) {
+			wfDeprecated( 'ParserOutput stateful enableSectionEditLinks', '1.31' );
+		}
+
+		$options += [
+			// empty() here because old cached versions might lack the field somehow.
+			// In that situation, the historical behavior (possibly buggy) is to remove the TOC.
+			'allowTOC' => !empty( $this->mTOCEnabled ),
+			'enableSectionEditLinks' => $this->mEditSectionTokens,
+			'unwrap' => false,
+			'deduplicateStyles' => true,
+		];
 		$text = $this->mText;
-		if ( $this->mEditSectionTokens ) {
+
+		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
+
+		if ( $options['unwrap'] !== false ) {
+			$start = Html::openElement( 'div', [
+				'class' => 'mw-parser-output'
+			] );
+			$startLen = strlen( $start );
+			$end = Html::closeElement( 'div' );
+			$endPos = strrpos( $text, $end );
+			$endLen = strlen( $end );
+
+			if ( substr( $text, 0, $startLen ) === $start && $endPos !== false
+				// if the closing div is followed by real content, bail out of unwrapping
+				&& preg_match( '/^(?>\s*<!--.*?-->)*\s*$/s', substr( $text, $endPos + $endLen ) )
+			) {
+				$text = substr( $text, $startLen );
+				$text = substr( $text, 0, $endPos - $startLen )
+					. substr( $text, $endPos - $startLen + $endLen );
+			}
+		}
+
+		if ( $options['enableSectionEditLinks'] ) {
 			$text = preg_replace_callback(
 				self::EDITSECTION_REGEX,
 				function ( $m ) {
@@ -278,8 +348,7 @@ class ParserOutput extends CacheTime {
 			$text = preg_replace( self::EDITSECTION_REGEX, '', $text );
 		}
 
-		// If you have an old cached version of this class - sorry, you can't disable the TOC
-		if ( isset( $this->mTOCEnabled ) && $this->mTOCEnabled ) {
+		if ( $options['allowTOC'] ) {
 			$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
 		} else {
 			$text = preg_replace(
@@ -288,6 +357,36 @@ class ParserOutput extends CacheTime {
 				$text
 			);
 		}
+
+		if ( $options['deduplicateStyles'] ) {
+			$seen = [];
+			$text = preg_replace_callback(
+				'#<style\s+([^>]*data-mw-deduplicate\s*=[^>]*)>.*?</style>#s',
+				function ( $m ) use ( &$seen ) {
+					$attr = Sanitizer::decodeTagAttributes( $m[1] );
+					if ( !isset( $attr['data-mw-deduplicate'] ) ) {
+						return $m[0];
+					}
+
+					$key = $attr['data-mw-deduplicate'];
+					if ( !isset( $seen[$key] ) ) {
+						$seen[$key] = true;
+						return $m[0];
+					}
+
+					// We were going to use an empty <style> here, but there
+					// was concern that would be too much overhead for browsers.
+					// So let's hope a <link> with a non-standard rel and href isn't
+					// going to be misinterpreted or mangled by any subsequent processing.
+					return Html::element( 'link', [
+						'rel' => 'mw-deduplicated-inline-style',
+						'href' => "mw-data:" . wfUrlencode( $key ),
+					] );
+				},
+				$text
+			);
+		}
+
 		return $text;
 	}
 
@@ -339,6 +438,9 @@ class ParserOutput extends CacheTime {
 		return $this->mSections;
 	}
 
+	/**
+	 * @deprecated since 1.31 Use getText() options.
+	 */
 	public function getEditSectionTokens() {
 		return $this->mEditSectionTokens;
 	}
@@ -426,6 +528,9 @@ class ParserOutput extends CacheTime {
 		return $this->mLimitReportJSData;
 	}
 
+	/**
+	 * @deprecated since 1.31 Use getText() options.
+	 */
 	public function getTOCEnabled() {
 		return $this->mTOCEnabled;
 	}
@@ -454,6 +559,9 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mSections, $toc );
 	}
 
+	/**
+	 * @deprecated since 1.31 Use getText() options.
+	 */
 	public function setEditSectionTokens( $t ) {
 		return wfSetVar( $this->mEditSectionTokens, $t );
 	}
@@ -470,6 +578,9 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mTimestamp, $timestamp );
 	}
 
+	/**
+	 * @deprecated since 1.31 Use getText() options.
+	 */
 	public function setTOCEnabled( $flag ) {
 		return wfSetVar( $this->mTOCEnabled, $flag );
 	}
@@ -547,7 +658,7 @@ class ParserOutput extends CacheTime {
 
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
-		$url = parser::normalizeLinkUrl( $url );
+		$url = Parser::normalizeLinkUrl( $url );
 
 		$registerExternalLink = true;
 		if ( !$wgRegisterInternalExternals ) {

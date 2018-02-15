@@ -8,36 +8,85 @@
 		 * @private
 		 */
 		init: function () {
-			var $topLinks,
-				rcTopSection,
-				$watchlistDetails,
-				wlTopSection,
+			var $topSection,
+				mainWrapperWidget,
+				conditionalViews = {},
+				$initialFieldset = $( 'fieldset.cloptions' ),
 				savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
+				daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
+				limitPreferenceName = mw.config.get( 'wgStructuredChangeFiltersLimitPreferenceName' ),
 				filtersModel = new mw.rcfilters.dm.FiltersViewModel(),
-				changesListModel = new mw.rcfilters.dm.ChangesListViewModel(),
+				changesListModel = new mw.rcfilters.dm.ChangesListViewModel( $initialFieldset ),
 				savedQueriesModel = new mw.rcfilters.dm.SavedQueriesModel( filtersModel ),
+				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
 				controller = new mw.rcfilters.Controller(
 					filtersModel, changesListModel, savedQueriesModel,
 					{
-						savedQueriesPreferenceName: savedQueriesPreferenceName
+						savedQueriesPreferenceName: savedQueriesPreferenceName,
+						daysPreferenceName: daysPreferenceName,
+						limitPreferenceName: limitPreferenceName,
+						normalizeTarget: specialPage === 'Recentchangeslinked'
 					}
-				),
-				$overlay = $( '<div>' )
-					.addClass( 'mw-rcfilters-ui-overlay' ),
-				filtersWidget = new mw.rcfilters.ui.FilterWrapperWidget(
-					controller, filtersModel, savedQueriesModel, changesListModel, { $overlay: $overlay } ),
-				savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
-					controller, savedQueriesModel, { $overlay: $overlay }
-				),
-				specialPage = mw.config.get( 'wgCanonicalSpecialPageName' ),
-				$changesListRoot = $( '.mw-changeslist, .mw-changeslist-empty, .mw-changeslist-timeout' );
+				);
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 
-			// eslint-disable-next-line no-new
-			new mw.rcfilters.ui.ChangesListWrapperWidget(
-				filtersModel, changesListModel, controller, $changesListRoot );
+			if ( specialPage === 'Recentchanges' ) {
+				$topSection = $( '.mw-recentchanges-toplinks' ).detach();
+			} else if ( specialPage === 'Watchlist' ) {
+				$( '#contentSub, form#mw-watchlist-resetbutton' ).remove();
+				$topSection = $( '.watchlistDetails' ).detach().contents();
+			} else if ( specialPage === 'Recentchangeslinked' ) {
+				conditionalViews.recentChangesLinked = {
+					groups: [
+						{
+							name: 'page',
+							type: 'any_value',
+							title: '',
+							hidden: true,
+							sticky: true,
+							filters: [
+								{
+									name: 'target',
+									'default': ''
+								}
+							]
+						},
+						{
+							name: 'toOrFrom',
+							type: 'boolean',
+							title: '',
+							hidden: true,
+							sticky: true,
+							filters: [
+								{
+									name: 'showlinkedto',
+									'default': false
+								}
+							]
+						}
+					]
+				};
+			}
+
+			mainWrapperWidget = new mw.rcfilters.ui.MainWrapperWidget(
+				controller,
+				filtersModel,
+				savedQueriesModel,
+				changesListModel,
+				{
+					$topSection: $topSection,
+					$filtersContainer: $( '.rcfilters-container' ),
+					$changesListContainer: $( [
+						'.mw-changeslist',
+						'.mw-changeslist-empty',
+						'.mw-changeslist-timeout',
+						'.mw-changeslist-notargetpage'
+					].join( ', ' ) ),
+					$formContainer: $initialFieldset
+				}
+			);
 
 			// Remove the -loading class that may have been added on the server side.
 			// If we are in fact going to load a default saved query, this .initialize()
@@ -46,18 +95,13 @@
 
 			controller.initialize(
 				mw.config.get( 'wgStructuredChangeFilters' ),
-				mw.config.get( 'wgFormattedNamespaces' ),
-				mw.config.get( 'wgRCFiltersChangeTags' )
+				// All namespaces without Media namespace
+				rcfilters.getNamespaces( [ 'Media' ] ),
+				mw.config.get( 'wgRCFiltersChangeTags' ),
+				conditionalViews
 			);
 
-			// eslint-disable-next-line no-new
-			new mw.rcfilters.ui.FormWrapperWidget(
-				filtersModel, changesListModel, controller, $( 'fieldset.cloptions' ) );
-
-			$( '.rcfilters-container' ).append( filtersWidget.$element );
-			$( 'body' )
-				.append( $overlay )
-				.addClass( 'mw-rcfilters-ui-initialized' );
+			mainWrapperWidget.initFormWidget( specialPage );
 
 			$( 'a.mw-helplink' ).attr(
 				'href',
@@ -66,25 +110,7 @@
 
 			controller.replaceUrl();
 
-			if ( specialPage === 'Recentchanges' ||
-				specialPage === 'Recentchangeslinked' ) {
-				$topLinks = $( '.mw-recentchanges-toplinks' ).detach();
-
-				rcTopSection = new mw.rcfilters.ui.RcTopSectionWidget(
-					savedLinksListWidget, $topLinks
-				);
-				filtersWidget.setTopSection( rcTopSection.$element );
-			} // end Special:RC
-
-			if ( specialPage === 'Watchlist' ) {
-				$( '#contentSub, form#mw-watchlist-resetbutton' ).detach();
-				$watchlistDetails = $( '.watchlistDetails' ).detach().contents();
-
-				wlTopSection = new mw.rcfilters.ui.WatchlistTopSectionWidget(
-					controller, changesListModel, savedLinksListWidget, $watchlistDetails
-				);
-				filtersWidget.setTopSection( wlTopSection.$element );
-			} // end Special:WL
+			mainWrapperWidget.setTopSection( specialPage );
 
 			/**
 			 * Fired when initialization of the filtering interface for changes list is complete.
@@ -93,6 +119,29 @@
 			 * @member mw.hook
 			 */
 			mw.hook( 'structuredChangeFilters.ui.initialized' ).fire();
+		},
+
+		/**
+		 * Get list of namespaces and remove unused ones
+		 *
+		 * @member mw.rcfilters
+		 * @private
+		 *
+		 * @param {Array} unusedNamespaces Names of namespaces to remove
+		 * @return {Array} Filtered array of namespaces
+		 */
+		getNamespaces: function ( unusedNamespaces ) {
+			var i, length, name, id,
+				namespaceIds = mw.config.get( 'wgNamespaceIds' ),
+				namespaces = mw.config.get( 'wgFormattedNamespaces' );
+
+			for ( i = 0, length = unusedNamespaces.length; i < length; i++ ) {
+				name = unusedNamespaces[ i ];
+				id = namespaceIds[ name.toLowerCase() ];
+				delete namespaces[ id ];
+			}
+
+			return namespaces;
 		}
 	};
 

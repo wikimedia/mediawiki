@@ -20,5 +20,6 @@
 	"ooui-dialog-process-continue": "palalid",
 	"ooui-selectfile-button-select": "mipili’ cacay a tangan",
 	"ooui-selectfile-not-supported": "la’cus midama mipili’ay a tangan",
-	"ooui-selectfile-placeholder": "caay henay mipili’ tu tangan"
+	"ooui-selectfile-placeholder": "caay henay mipili’ tu tangan",
+	"ooui-selectfile-dragdrop-placeholder": "mutengteng tangan katukuh itini"
 }

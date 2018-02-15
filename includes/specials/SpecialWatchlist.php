@@ -33,6 +33,8 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
+	protected static $daysPreferenceName = 'watchlistdays';
+	protected static $limitPreferenceName = 'wllimit';
 
 	private $maxDays;
 
@@ -108,16 +110,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 	}
 
-	public function isStructuredFilterUiEnabled() {
-		return $this->getRequest()->getBool( 'rcfilters' ) || (
-			$this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
-			$this->getUser()->getOption( 'rcenhancedfilters' )
+	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
+		return (
+			$config->get( 'StructuredChangeFiltersOnWatchlist' ) &&
+			$user->getOption( 'rcenhancedfilters' )
 		);
-	}
-
-	public function isStructuredFilterUiEnabledByDefault() {
-		return $this->getConfig()->get( 'StructuredChangeFiltersOnWatchlist' ) &&
-			$this->getUser()->getDefaultOption( 'rcenhancedfilters' );
 	}
 
 	/**
@@ -357,8 +354,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$tables = array_merge( [ 'recentchanges', 'watchlist' ], $tables );
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'], [ 'watchlist' ] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
 
 		$join_conds = array_merge(
 			[
@@ -371,6 +369,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					],
 				],
 			],
+			$rcQuery['joins'],
 			$join_conds
 		);
 
@@ -487,7 +486,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$output = $this->getOutput();
 
 		# Show a message about replica DB lag, if applicable
-		$lag = wfGetLB()->safeGetLag( $dbr );
+		$lag = MediaWikiServices::getInstance()->getDBLoadBalancer()->safeGetLag( $dbr );
 		if ( $lag > 0 ) {
 			$output->showLagWarning( $lag );
 		}
@@ -853,11 +852,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return Html::rawElement(
 			'span',
 			$attribs,
-			Xml::checkLabel(
-				$this->msg( $message, '' )->text(),
-				$name,
-				$name,
-				(int)$value
+			// not using Html::checkLabel because that would escape the contents
+			Html::check( $name, (int)$value, [ 'id' => $name ] ) . Html::rawElement(
+				'label',
+				$attribs + [ 'for' => $name ],
+				// <nowiki/> at beginning to avoid messages with "$1 ..." being parsed as pre tags
+				$this->msg( $message, '<nowiki/>' )->parse()
 			)
 		);
 	}
@@ -873,13 +873,5 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$count = $store->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
-	}
-
-	function getDefaultLimit() {
-		return $this->getUser()->getIntOption( 'wllimit' );
-	}
-
-	function getDefaultDays() {
-		return floatval( $this->getUser()->getOption( 'watchlistdays' ) );
 	}
 }

@@ -3,8 +3,6 @@
 /**
  * API for MediaWiki 1.17+
  *
- * Created on October 26, 2010
- *
  * Copyright © 2010 Bryan Tong Minh and Brion Vibber
  *
  * This program is free software; you can redistribute it and/or modify

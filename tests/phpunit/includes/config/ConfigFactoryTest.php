@@ -18,8 +18,17 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testRegisterInvalid() {
 		$factory = new ConfigFactory();
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		$factory->register( 'invalid', 'Invalid callback' );
+	}
+
+	/**
+	 * @covers ConfigFactory::register
+	 */
+	public function testRegisterInvalidInstance() {
+		$factory = new ConfigFactory();
+		$this->setExpectedException( InvalidArgumentException::class );
+		$factory->register( 'invalidInstance', new stdClass );
 	}
 
 	/**
@@ -78,7 +87,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$this->assertNotSame( $bar, $newBar, 'don\'t salvage if callbacks differ' );
 
 		// the new factory doesn't have quux defined, so the quux instance should not be salvaged
-		$this->setExpectedException( 'ConfigException' );
+		$this->setExpectedException( ConfigException::class );
 		$newFactory->makeConfig( 'quux' );
 	}
 
@@ -101,7 +110,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
 
 		$conf = $factory->makeConfig( 'unittest' );
-		$this->assertInstanceOf( 'Config', $conf );
+		$this->assertInstanceOf( Config::class, $conf );
 		$this->assertSame( $conf, $factory->makeConfig( 'unittest' ) );
 	}
 
@@ -122,7 +131,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory = new ConfigFactory();
 		$factory->register( '*', 'GlobalVarConfig::newInstance' );
 		$conf = $factory->makeConfig( 'unittest' );
-		$this->assertInstanceOf( 'Config', $conf );
+		$this->assertInstanceOf( Config::class, $conf );
 	}
 
 	/**
@@ -130,7 +139,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 	 */
 	public function testMakeConfigWithNoBuilders() {
 		$factory = new ConfigFactory();
-		$this->setExpectedException( 'ConfigException' );
+		$this->setExpectedException( ConfigException::class );
 		$factory->makeConfig( 'nobuilderregistered' );
 	}
 
@@ -142,7 +151,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$factory->register( 'unittest', function () {
 			return true; // Not a Config object
 		} );
-		$this->setExpectedException( 'UnexpectedValueException' );
+		$this->setExpectedException( UnexpectedValueException::class );
 		$factory->makeConfig( 'unittest' );
 	}
 
@@ -153,7 +162,7 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		// NOTE: the global config factory returned here has been overwritten
 		// for operation in test mode. It may not reflect LocalSettings.
 		$factory = MediaWikiServices::getInstance()->getConfigFactory();
-		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'main' ) );
+		$this->assertInstanceOf( Config::class, $factory->makeConfig( 'main' ) );
 	}
 
 }

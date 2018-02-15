@@ -44,3 +44,13 @@
 .mw-changeslist-legend.mw-collapsed .mw-collapsible-content {
 	display: none;
 }
+
+.mw-changeslist-legend.mw-collapsed {
+	margin-bottom: 0;
+}
+
+/* Prevent pushing down the content if legend is collapsed */
+.mw-changeslist-legend.mw-collapsed ~ ul:first-of-type > li:first-child,
+.mw-changeslist-legend.mw-collapsed + h4 + div > table.mw-changeslist-line:first-child {
+	clear: right;
+}

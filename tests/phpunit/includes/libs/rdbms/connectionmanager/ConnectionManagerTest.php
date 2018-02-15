@@ -2,7 +2,7 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
-use IDatabase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use PHPUnit_Framework_MockObject_MockObject;
 use Wikimedia\Rdbms\ConnectionManager;
@@ -10,7 +10,6 @@ use Wikimedia\Rdbms\ConnectionManager;
 /**
  * @covers Wikimedia\Rdbms\ConnectionManager
  *
- * @license GPL-2.0+
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends \PHPUnit_Framework_TestCase {

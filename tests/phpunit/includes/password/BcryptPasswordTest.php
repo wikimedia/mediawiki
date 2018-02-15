@@ -10,13 +10,13 @@
 class BcryptPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [ 'bcrypt' => [
-			'class' => 'BcryptPassword',
+			'class' => BcryptPassword::class,
 			'cost' => 9,
 		] ];
 	}
 
 	public static function providePasswordTests() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Tests from glibc bcrypt implementation
 			[ true, ':bcrypt:5$CCCCCCCCCCCCCCCCCCCCC.$E5YPO9kmyuRGyh0XouQYb4YMJKvyOeW', "U*U" ],
@@ -39,6 +39,6 @@ class BcryptPasswordTest extends PasswordTestCase {
 			[ false, ':bcrypt:5$CCCCCCCCCCCCCCCCCCCCC.$E5YPO9kmyuRGyh0XouQYb4YMJKvyOeW', "UXU" ],
 			[ false, ':bcrypt:5$CCCCCCCCCCCCCCCCCCCCC.$E5YPO9kmyuRGyh0XouQYb4YMJKvyOeW', "" ],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 }

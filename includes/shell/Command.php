@@ -36,7 +36,7 @@ class Command {
 	use LoggerAwareTrait;
 
 	/** @var string */
-	private $command = '';
+	protected $command = '';
 
 	/** @var array */
 	private $limits = [
@@ -56,6 +56,9 @@ class Command {
 	/** @var string */
 	private $method;
 
+	/** @var string|null */
+	private $inputString;
+
 	/** @var bool */
 	private $doIncludeStderr = false;
 
@@ -67,6 +70,13 @@ class Command {
 
 	/** @var string|false */
 	private $cgroup = false;
+
+	/**
+	 * bitfield with restrictions
+	 *
+	 * @var int
+	 */
+	protected $restrictions = 0;
 
 	/**
 	 * Constructor. Don't call directly, instead use Shell::command()
@@ -99,6 +109,7 @@ class Command {
 
 	/**
 	 * Adds parameters to the command. All parameters are sanitized via Shell::escape().
+	 * Null values are ignored.
 	 *
 	 * @param string|string[] $args,...
 	 * @return $this
@@ -110,13 +121,14 @@ class Command {
 			// treat it as a list of arguments
 			$args = reset( $args );
 		}
-		$this->command .= ' ' . Shell::escape( $args );
+		$this->command = trim( $this->command . ' ' . Shell::escape( $args ) );
 
 		return $this;
 	}
 
 	/**
 	 * Adds unsafe parameters to the command. These parameters are NOT sanitized in any way.
+	 * Null values are ignored.
 	 *
 	 * @param string|string[] $args,...
 	 * @return $this
@@ -128,7 +140,12 @@ class Command {
 			// treat it as a list of arguments
 			$args = reset( $args );
 		}
-		$this->command .= implode( ' ', $args );
+		$args = array_filter( $args,
+			function ( $value ) {
+				return $value !== null;
+			}
+		);
+		$this->command = trim( $this->command . ' ' . implode( ' ', $args ) );
 
 		return $this;
 	}
@@ -176,6 +193,18 @@ class Command {
 	}
 
 	/**
+	 * Sends the provided input to the command.
+	 * When set to null (default), the command will use the standard input.
+	 * @param string|null $inputString
+	 * @return $this
+	 */
+	public function input( $inputString ) {
+		$this->inputString = is_null( $inputString ) ? null : (string)$inputString;
+
+		return $this;
+	}
+
+	/**
 	 * Controls whether stderr should be included in stdout, including errors from limit.sh.
 	 * Default: don't include.
 	 *
@@ -213,12 +242,52 @@ class Command {
 	}
 
 	/**
+	 * Set additional restrictions for this request
+	 *
+	 * @since 1.31
+	 * @param int $restrictions
+	 * @return $this
+	 */
+	public function restrict( $restrictions ) {
+		$this->restrictions |= $restrictions;
+
+		return $this;
+	}
+
+	/**
+	 * Bitfield helper on whether a specific restriction is enabled
+	 *
+	 * @param int $restriction
+	 *
+	 * @return bool
+	 */
+	protected function hasRestriction( $restriction ) {
+		return ( $this->restrictions & $restriction ) === $restriction;
+	}
+
+	/**
+	 * If called, only the files/directories that are
+	 * whitelisted will be available to the shell command.
+	 *
+	 * limit.sh will always be whitelisted
+	 *
+	 * @param string[] $paths
+	 *
+	 * @return $this
+	 */
+	public function whitelistPaths( array $paths ) {
+		// Default implementation is a no-op
+		return $this;
+	}
+
+	/**
 	 * String together all the options and build the final command
 	 * to execute
 	 *
+	 * @param string $command Already-escaped command to run
 	 * @return array [ command, whether to use log pipe ]
 	 */
-	protected function buildFinalCommand() {
+	protected function buildFinalCommand( $command ) {
 		$envcmd = '';
 		foreach ( $this->env as $k => $v ) {
 			if ( wfIsWindows() ) {
@@ -238,7 +307,7 @@ class Command {
 		}
 
 		$useLogPipe = false;
-		$cmd = $envcmd . trim( $this->command );
+		$cmd = $envcmd . trim( $command );
 
 		if ( is_executable( '/bin/bash' ) ) {
 			$time = intval( $this->limits['time'] );
@@ -282,7 +351,7 @@ class Command {
 
 		$profileMethod = $this->method ?: wfGetCaller();
 
-		list( $cmd, $useLogPipe ) = $this->buildFinalCommand();
+		list( $cmd, $useLogPipe ) = $this->buildFinalCommand( $this->command );
 
 		$this->logger->debug( __METHOD__ . ": $cmd" );
 
@@ -296,7 +365,7 @@ class Command {
 		}
 
 		$desc = [
-			0 => [ 'file', 'php://stdin', 'r' ],
+			0 => $this->inputString === null ? [ 'file', 'php://stdin', 'r' ] : [ 'pipe', 'r' ],
 			1 => [ 'pipe', 'w' ],
 			2 => [ 'pipe', 'w' ],
 		];
@@ -310,8 +379,13 @@ class Command {
 			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
 			throw new ProcOpenError();
 		}
-		$outBuffer = $logBuffer = '';
-		$errBuffer = null;
+
+		$buffers = [
+			0 => $this->inputString, // input
+			1 => '', // stdout
+			2 => null, // stderr
+			3 => '', // log
+		];
 		$emptyArray = [];
 		$status = false;
 		$logMsg = false;
@@ -330,11 +404,20 @@ class Command {
 		$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
 		$eintrMessage = "stream_select(): unable to select [$eintr]";
 
+		/* The select(2) system call only guarantees a "sufficiently small write"
+		 * can be made without blocking. And on Linux the read might block too
+		 * in certain cases, although I don't know if any of them can occur here.
+		 * Regardless, set all the pipes to non-blocking to avoid T184171.
+		 */
+		foreach ( $pipes as $pipe ) {
+			stream_set_blocking( $pipe, false );
+		}
+
 		$running = true;
 		$timeout = null;
 		$numReadyPipes = 0;
 
-		while ( $running === true || $numReadyPipes !== 0 ) {
+		while ( $pipes && ( $running === true || $numReadyPipes !== 0 ) ) {
 			if ( $running ) {
 				$status = proc_get_status( $proc );
 				// If the process has terminated, switch to nonblocking selects
@@ -345,21 +428,26 @@ class Command {
 				}
 			}
 
-			$readyPipes = $pipes;
-
 			// clear get_last_error without actually raising an error
 			// from http://php.net/manual/en/function.error-get-last.php#113518
 			// TODO replace with clear_last_error when requirements are bumped to PHP7
 			set_error_handler( function () {
 			}, 0 );
-			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@trigger_error( '' );
-			// @codingStandardsIgnoreEnd
 			restore_error_handler();
 
-			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
-			$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
-			// @codingStandardsIgnoreEnd
+			$readPipes = wfArrayFilterByKey( $pipes, function ( $fd ) use ( $desc ) {
+				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'r';
+			} );
+			$writePipes = wfArrayFilterByKey( $pipes, function ( $fd ) use ( $desc ) {
+				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'w';
+			} );
+			// stream_select parameter names are from the POV of us being able to do the operation;
+			// proc_open desriptor types are from the POV of the process doing it.
+			// So $writePipes is passed as the $read parameter and $readPipes as $write.
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$numReadyPipes = @stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
 			if ( $numReadyPipes === false ) {
 				$error = error_get_last();
 				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
@@ -370,31 +458,39 @@ class Command {
 					break;
 				}
 			}
-			foreach ( $readyPipes as $fd => $pipe ) {
-				$block = fread( $pipe, 65536 );
-				if ( $block === '' ) {
-					// End of file
-					fclose( $pipes[$fd] );
-					unset( $pipes[$fd] );
-					if ( !$pipes ) {
-						break 2;
-					}
-				} elseif ( $block === false ) {
-					// Read error
-					$logMsg = "Error reading from pipe";
+			foreach ( $writePipes + $readPipes as $fd => $pipe ) {
+				// True if a pipe is unblocked for us to write into, false if for reading from
+				$isWrite = array_key_exists( $fd, $readPipes );
+
+				if ( $isWrite ) {
+					$res = fwrite( $pipe, $buffers[$fd], 65536 );
+				} else {
+					$res = fread( $pipe, 65536 );
+				}
+
+				if ( $res === false ) {
+					$logMsg = 'Error ' . ( $isWrite ? 'writing to' : 'reading from' ) . ' pipe';
 					break 2;
-				} elseif ( $fd == 1 ) {
-					// From stdout
-					$outBuffer .= $block;
-				} elseif ( $fd == 2 ) {
-					// From stderr
-					$errBuffer .= $block;
-				} elseif ( $fd == 3 ) {
-					// From log FD
-					$logBuffer .= $block;
-					if ( strpos( $block, "\n" ) !== false ) {
-						$lines = explode( "\n", $logBuffer );
-						$logBuffer = array_pop( $lines );
+				}
+
+				if ( $res === '' || $res === 0 ) {
+					// End of file?
+					if ( feof( $pipe ) ) {
+						fclose( $pipes[$fd] );
+						unset( $pipes[$fd] );
+					}
+				} elseif ( $isWrite ) {
+					$buffers[$fd] = (string)substr( $buffers[$fd], $res );
+					if ( $buffers[$fd] === '' ) {
+						fclose( $pipes[$fd] );
+						unset( $pipes[$fd] );
+					}
+				} else {
+					$buffers[$fd] .= $res;
+					if ( $fd === 3 && strpos( $res, "\n" ) !== false ) {
+						// For the log FD, every line is a separate log entry.
+						$lines = explode( "\n", $buffers[3] );
+						$buffers[3] = array_pop( $lines );
 						foreach ( $lines as $line ) {
 							$this->logger->info( $line );
 						}
@@ -439,15 +535,15 @@ class Command {
 			$this->logger->warning( "$logMsg: {command}", [ 'command' => $cmd ] );
 		}
 
-		if ( $errBuffer && $this->doLogStderr ) {
+		if ( $buffers[2] && $this->doLogStderr ) {
 			$this->logger->error( "Error running {command}: {error}", [
 				'command' => $cmd,
-				'error' => $errBuffer,
+				'error' => $buffers[2],
 				'exitcode' => $retval,
 				'exception' => new Exception( 'Shell error' ),
 			] );
 		}
 
-		return new Result( $retval, $outBuffer, $errBuffer );
+		return new Result( $retval, $buffers[1], $buffers[2] );
 	}
 }

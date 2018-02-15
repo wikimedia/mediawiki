@@ -3,6 +3,8 @@
  * @defgroup ExternalStorage ExternalStorage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Interface for data storage in external repositories.
  *
@@ -52,16 +54,9 @@ class ExternalStore {
 	 * @return ExternalStoreMedium|bool The store class or false on error
 	 */
 	public static function getStoreObject( $proto, array $params = [] ) {
-		global $wgExternalStores;
-
-		if ( !$wgExternalStores || !in_array( $proto, $wgExternalStores ) ) {
-			return false; // protocol not enabled
-		}
-
-		$class = 'ExternalStore' . ucfirst( $proto );
-
-		// Any custom modules should be added to $wgAutoLoadClasses for on-demand loading
-		return class_exists( $class ) ? new $class( $params ) : false;
+		return MediaWikiServices::getInstance()
+			->getExternalStoreFactory()
+			->getStoreObject( $proto, $params );
 	}
 
 	/**

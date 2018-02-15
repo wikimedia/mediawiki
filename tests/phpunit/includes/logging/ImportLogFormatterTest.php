@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers ImportLogFormatter
+ */
 class ImportLogFormatterTest extends LogFormatterTestCase {
 
 	/**

@@ -332,7 +332,11 @@ class ObjectCache {
 	 * @throws UnexpectedValueException
 	 */
 	public static function newWANCacheFromParams( array $params ) {
-		$erGroup = MediaWikiServices::getInstance()->getEventRelayerGroup();
+		global $wgCommandLineMode;
+
+		$services = MediaWikiServices::getInstance();
+
+		$erGroup = $services->getEventRelayerGroup();
 		foreach ( $params['channels'] as $action => $channel ) {
 			$params['relayers'][$action] = $erGroup->getRelayer( $channel );
 			$params['channels'][$action] = $channel;
@@ -342,6 +346,12 @@ class ObjectCache {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
 			$params['logger'] = LoggerFactory::getInstance( 'objectcache' );
+		}
+		if ( !$wgCommandLineMode ) {
+			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
+			$params['stats'] = $services->getStatsdDataFactory();
+			// Let pre-emptive refreshes happen post-send on HTTP requests
+			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
 		$class = $params['class'];
 

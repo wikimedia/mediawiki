@@ -48,7 +48,7 @@ class ManageJobs extends Maintenance {
 		} elseif ( $action === 'repush-abandoned' ) {
 			$this->repushAbandoned( $queue );
 		} else {
-			$this->error( "Invalid action '$action'.", 1 );
+			$this->fatalError( "Invalid action '$action'." );
 		}
 	}
 
@@ -82,7 +82,7 @@ class ManageJobs extends Maintenance {
 			$queue->push( $job );
 			++$count;
 
-			if ( ( $count % $this->mBatchSize ) == 0 ) {
+			if ( ( $count % $this->getBatchSize() ) == 0 ) {
 				$queue->waitForBackups();
 			}
 		}
@@ -93,5 +93,5 @@ class ManageJobs extends Maintenance {
 	}
 }
 
-$maintClass = "ManageJobs";
+$maintClass = ManageJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

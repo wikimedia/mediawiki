@@ -3,10 +3,11 @@
 /**
  * @covers Action
  *
- * @author Thiemo Mättig
- *
  * @group Action
  * @group Database
+ *
+ * @licence GNU GPL v2+
+ * @author Thiemo Kreuz
  */
 class ActionTest extends MediaWikiTestCase {
 
@@ -19,7 +20,7 @@ class ActionTest extends MediaWikiTestCase {
 			'disabled' => false,
 			'view' => true,
 			'edit' => true,
-			'revisiondelete' => 'SpecialPageAction',
+			'revisiondelete' => SpecialPageAction::class,
 			'dummy' => true,
 			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',

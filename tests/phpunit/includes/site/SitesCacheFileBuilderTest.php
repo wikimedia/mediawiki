@@ -29,6 +29,8 @@
  */
 class SitesCacheFileBuilderTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
 	}
@@ -98,7 +100,7 @@ class SitesCacheFileBuilderTest extends PHPUnit_Framework_TestCase {
 	}
 
 	private function getSiteLookup( SiteList $sites ) {
-		$siteLookup = $this->getMockBuilder( 'SiteLookup' )
+		$siteLookup = $this->getMockBuilder( SiteLookup::class )
 			->disableOriginalConstructor()
 			->getMock();
 

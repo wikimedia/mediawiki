@@ -151,7 +151,7 @@ class UnregisteredLocalFile extends File {
 	 */
 	function getMimeType() {
 		if ( !isset( $this->mime ) ) {
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$this->mime = $magic->guessMimeType( $this->getLocalRefPath() );
 		}
 

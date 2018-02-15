@@ -82,18 +82,18 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	}
 
 	private function getMockTitle() {
-		return $this->getMockBuilder( 'Title' )
+		return $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}
 
 	private function getMockUser() {
-		return $this->getMockBuilder( 'User' )
+		return $this->getMockBuilder( User::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}
 	private function getMockParserOptions() {
-		return $this->getMockBuilder( 'ParserOptions' )
+		return $this->getMockBuilder( ParserOptions::class )
 			->disableOriginalConstructor()
 			->getMock();
 	}
@@ -146,7 +146,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	public function testFillParserOutput( $data, $expected ) {
 		$obj = new JsonContent( FormatJson::encode( $data ) );
 		$parserOutput = $obj->getParserOutput( $this->getMockTitle(), null, null, true );
-		$this->assertInstanceOf( 'ParserOutput', $parserOutput );
+		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
 		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 }

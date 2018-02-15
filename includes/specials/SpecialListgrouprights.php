@@ -29,7 +29,7 @@
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Listgrouprights' );
 	}
 
@@ -81,14 +81,10 @@ class SpecialListGroupRights extends SpecialPage {
 				? 'all'
 				: $group;
 
-			$msg = $this->msg( 'group-' . $groupname );
-			$groupnameLocalized = !$msg->isBlank() ? $msg->text() : $groupname;
+			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
 
-			$msg = $this->msg( 'grouppage-' . $groupname )->inContentLanguage();
-			$grouppageLocalized = !$msg->isBlank() ?
-				$msg->text() :
-				MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
-			$grouppageLocalizedTitle = Title::newFromText( $grouppageLocalized );
+			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
+				?: Title::newFromText( MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname );
 
 			if ( $group == '*' || !$grouppageLocalizedTitle ) {
 				// Do not make a link for the generic * group or group with invalid group page
@@ -141,7 +137,7 @@ class SpecialListGroupRights extends SpecialPage {
 	}
 
 	private function outputNamespaceProtectionInfo() {
-		global $wgParser, $wgContLang;
+		global $wgContLang;
 		$out = $this->getOutput();
 		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
 
@@ -149,11 +145,11 @@ class SpecialListGroupRights extends SpecialPage {
 			return;
 		}
 
-		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->parse();
+		$header = $this->msg( 'listgrouprights-namespaceprotection-header' )->text();
 		$out->addHTML(
 			Html::rawElement( 'h2', [], Html::element( 'span', [
 				'class' => 'mw-headline',
-				'id' => $wgParser->guessSectionNameFromWikiText( $header )
+				'id' => substr( Parser::guessSectionNameFromStrippedText( $header ), 1 )
 			], $header ) ) .
 			Xml::openElement( 'table', [ 'class' => 'wikitable' ] ) .
 			Html::element(
@@ -231,7 +227,7 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @param array $remove Array of groups this group is allowed to remove or true
 	 * @param array $addSelf Array of groups this group is allowed to add to self or true
 	 * @param array $removeSelf Array of group this group is allowed to remove from self or true
-	 * @return string List of all granted permissions, separated by comma separator
+	 * @return string HTML list of all granted permissions
 	 */
 	private function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
 		$r = [];

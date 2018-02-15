@@ -481,7 +481,16 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'protected_titles', 'pt_reason', 'NOT NULL', true ],
 			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
-			[ 'addIndex', 'site_stats', 'PRIMARY', 'patch-site_stats-pk.sql' ],
+			[ 'migrateComments' ],
+			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
+			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
+
+			// 1.31
+			[ 'addTable', 'slots', 'patch-slots-table.sql' ],
+			[ 'addTable', 'content', 'patch-content-table.sql' ],
+			[ 'addTable', 'content_models', 'patch-content_models-table.sql' ],
+			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
+			[ 'migrateArchiveText' ],
 		];
 	}
 
@@ -653,6 +662,13 @@ END;
 			if ( $pkey !== false ) {
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			}
+		}
+	}
+
+	protected function dropSequence( $table, $ns ) {
+		if ( $this->db->sequenceExists( $ns ) ) {
+			$this->output( "Dropping sequence $ns\n" );
+			$this->db->query( "DROP SEQUENCE $ns CASCADE" );
 		}
 	}
 

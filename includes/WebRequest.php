@@ -123,9 +123,9 @@ class WebRequest {
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$a = parse_url( $url );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $a ) {
 				$path = isset( $a['path'] ) ? $a['path'] : '';
 
@@ -407,7 +407,7 @@ class WebRequest {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|null $default Optional default
+	 * @param string|null $default
 	 * @return string|null
 	 */
 	public function getRawVal( $name, $default = null ) {
@@ -956,7 +956,7 @@ class WebRequest {
 	public function response() {
 		/* Lazy initialization of response object for this request */
 		if ( !is_object( $this->response ) ) {
-			$class = ( $this instanceof FauxRequest ) ? 'FauxResponse' : 'WebResponse';
+			$class = ( $this instanceof FauxRequest ) ? FauxResponse::class : WebResponse::class;
 			$this->response = new $class();
 		}
 		return $this->response;

@@ -124,13 +124,20 @@ class FileRepo {
 	protected $isPrivate;
 
 	/** @var array callable Override these in the base class */
-	protected $fileFactory = [ 'UnregisteredLocalFile', 'newFromTitle' ];
+	protected $fileFactory = [ UnregisteredLocalFile::class, 'newFromTitle' ];
 	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactory = false;
 	/** @var array callable|bool Override these in the base class */
 	protected $fileFactoryKey = false;
 	/** @var array callable|bool Override these in the base class */
 	protected $oldFileFactoryKey = false;
+
+	/** @var string URL of where to proxy thumb.php requests to.
+	 *    Example: http://127.0.0.1:8888/wiki/dev/thumb/
+	 */
+	protected $thumbProxyUrl;
+	/** @var string Secret key to pass as an X-Swift-Secret header to the proxied thumb service */
+	protected $thumbProxySecret;
 
 	/**
 	 * @param array|null $info
@@ -159,7 +166,7 @@ class FileRepo {
 		$optionalSettings = [
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension', 'favicon'
+			'scriptExtension', 'favicon', 'thumbProxyUrl', 'thumbProxySecret'
 		];
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -609,6 +616,24 @@ class FileRepo {
 	 */
 	public function getThumbScriptUrl() {
 		return $this->thumbScriptUrl;
+	}
+
+	/**
+	 * Get the URL thumb.php requests are being proxied to
+	 *
+	 * @return string
+	 */
+	public function getThumbProxyUrl() {
+		return $this->thumbProxyUrl;
+	}
+
+	/**
+	 * Get the secret key for the proxied thumb service
+	 *
+	 * @return string
+	 */
+	public function getThumbProxySecret() {
+		return $this->thumbProxySecret;
 	}
 
 	/**
@@ -1293,9 +1318,9 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		return $status;
@@ -1543,7 +1568,7 @@ class FileRepo {
 	 */
 	public function getFileProps( $virtualUrl ) {
 		$fsFile = $this->getLocalReference( $virtualUrl );
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		if ( $fsFile ) {
 			$props = $mwProps->getPropsFromPath( $fsFile->getPath(), true );
 		} else {
@@ -1722,7 +1747,7 @@ class FileRepo {
 	 * @return Status
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
-		$status = call_user_func_array( [ 'Status', 'newFatal' ], func_get_args() );
+		$status = call_user_func_array( [ Status::class, 'newFatal' ], func_get_args() );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;

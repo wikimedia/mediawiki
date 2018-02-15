@@ -39,8 +39,7 @@
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
-			update: 'onModelUpdate',
-			newChangesExist: 'onNewChangesExist'
+			update: 'onModelUpdate'
 		} );
 
 		this.$element
@@ -49,8 +48,6 @@
 			// We keep the timeout class here and remove it later, since at this
 			// stage it is still needed to identify that the timeout occurred.
 			.removeClass( 'mw-changeslist-empty' );
-
-		this.setupNewChangesButtonContainer();
 	};
 
 	/* Initialization */
@@ -119,14 +116,14 @@
 	 *
 	 * @param {jQuery|string} $changesListContent The content of the updated changes list
 	 * @param {jQuery} $fieldset The content of the updated fieldset
-	 * @param {boolean} isDatabaseTimeout Whether this is an error state due to a database query
+	 * @param {string} noResultsDetails Type of no result error
 	 * @param {boolean} isInitialDOM Whether $changesListContent is the existing (already attached) DOM
 	 * @param {boolean} from Timestamp of the new changes
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onModelUpdate = function (
-		$changesListContent, $fieldset, isDatabaseTimeout, isInitialDOM, from
+		$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 	) {
-		var conflictItem, noResultsKey,
+		var conflictItem,
 			$message = $( '<div>' )
 				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 			isEmpty = $changesListContent === 'NO_RESULTS',
@@ -154,18 +151,15 @@
 							.text( mw.message( conflictItem.getCurrentConflictResultMessage() ).text() )
 					);
 			} else {
-				noResultsKey = isDatabaseTimeout ?
-					'recentchanges-timeout' :
-					'recentchanges-noresult';
-
 				$message
 					.append(
 						$( '<div>' )
 							.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results-noresult' )
-							.text( mw.message( noResultsKey ).text() )
+							.text( mw.msg( this.getMsgKeyForNoResults( noResultsDetails ) ) )
 					);
 
 				this.$element.removeClass( 'mw-changeslist-timeout' );
+				this.$element.removeClass( 'mw-changeslist-notargetpage' );
 			}
 
 			this.$element.append( $message );
@@ -186,6 +180,8 @@
 
 		}
 
+		this.$element.prepend( $( '<div>' ).addClass( 'mw-changeslist-overlay' ) );
+
 		loaderPromise.done( function () {
 			if ( !isInitialDOM && !isEmpty ) {
 				// Make sure enhanced RC re-initializes correctly
@@ -194,6 +190,31 @@
 
 			$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
 		} );
+	};
+
+	/** Toggles overlay class on changes list
+	 *
+	 * @param {boolean} isVisible True if overlay should be visible
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.toggleOverlay = function ( isVisible ) {
+		this.$element.toggleClass( 'mw-rcfilters-ui-changesListWrapperWidget--overlaid', isVisible );
+	};
+
+	/**
+	 * Map a reason for having no results to its message key
+	 *
+	 * @param {string} reason One of the NO_RESULTS_* "constant" that represent
+	 * 	a reason for having no results
+	 * @return {string} Key for the message that explains why there is no results in this case
+	 */
+	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
+		var reasonMsgKeyMap = {
+			NO_RESULTS_NORMAL: 'recentchanges-noresult',
+			NO_RESULTS_TIMEOUT: 'recentchanges-timeout',
+			NO_RESULTS_NETWORK_ERROR: 'recentchanges-network',
+			NO_RESULTS_NO_TARGET_PAGE: 'recentchanges-notargetpage'
+		};
+		return reasonMsgKeyMap[ reason ];
 	};
 
 	/**
@@ -235,44 +256,6 @@
 		$newChanges
 			.hide()
 			.fadeIn( 1000 );
-	};
-
-	/**
-	 * Respond to changes list model newChangesExist
-	 *
-	 * @param {boolean} newChangesExist Whether new changes exist
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
-		this.showNewChangesLink.toggle( newChangesExist );
-	};
-
-	/**
-	 * Respond to the user clicking the 'show new changes' button
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onShowNewChangesClick = function () {
-		this.controller.showNewChanges();
-	};
-
-	/**
-	 * Setup the container for the 'new changes' button.
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupNewChangesButtonContainer = function () {
-		this.showNewChangesLink = new OO.ui.ButtonWidget( {
-			framed: false,
-			label: mw.message( 'rcfilters-show-new-changes' ).text(),
-			flags: [ 'progressive' ]
-		} );
-		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
-		this.showNewChangesLink.toggle( false );
-
-		// HACK: Add the -newChanges div inside rcfilters-head, rather than right above us
-		// Visually it's the same place, but by putting it inside rcfilters-head we are
-		// able to use the min-height rule to prevent the page from jumping when this is added.
-		this.$element.parent().find( '.rcfilters-head' ).append(
-			$( '<div>' )
-				.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-newChanges' )
-				.append( this.showNewChangesLink.$element )
-		);
 	};
 
 	/**
@@ -365,6 +348,8 @@
 			// Regular RC
 			$content.find( 'ul.special li' )
 				.prepend( $highlights.clone() );
+
+			$content.removeClass( 'mw-rcfilters-ui-changesListWrapperWidget-enhancedView' );
 		}
 	};
 

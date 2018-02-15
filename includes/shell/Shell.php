@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
  *
  * Use call chaining with this class for expressiveness:
  *  $result = Shell::command( 'some command' )
+ *       ->input( 'foo' )
  *       ->environment( [ 'ENVIRONMENT_VARIABLE' => 'VALUE' ] )
  *       ->limits( [ 'time' => 300 ] )
  *       ->execute();
@@ -40,6 +41,64 @@ use MediaWiki\MediaWikiServices;
  *  ... = $result->getStderr();
  */
 class Shell {
+
+	/**
+	 * Apply a default set of restrictions for improved
+	 * security out of the box.
+	 *
+	 * Equal to NO_ROOT | SECCOMP | PRIVATE_DEV | NO_LOCALSETTINGS
+	 *
+	 * @note This value will change over time to provide increased security
+	 *       by default, and is not guaranteed to be backwards-compatible.
+	 * @since 1.31
+	 */
+	const RESTRICT_DEFAULT = 39;
+
+	/**
+	 * Disallow any root access. Any setuid binaries
+	 * will be run without elevated access.
+	 *
+	 * @since 1.31
+	 */
+	const NO_ROOT = 1;
+
+	/**
+	 * Use seccomp to block dangerous syscalls
+	 * @see <https://en.wikipedia.org/wiki/seccomp>
+	 *
+	 * @since 1.31
+	 */
+	const SECCOMP = 2;
+
+	/**
+	 * Create a private /dev
+	 *
+	 * @since 1.31
+	 */
+	const PRIVATE_DEV = 4;
+
+	/**
+	 * Restrict the request to have no
+	 * network access
+	 *
+	 * @since 1.31
+	 */
+	const NO_NETWORK = 8;
+
+	/**
+	 * Deny execve syscall with seccomp
+	 * @see <https://en.wikipedia.org/wiki/exec_(system_call)>
+	 *
+	 * @since 1.31
+	 */
+	const NO_EXECVE = 16;
+
+	/**
+	 * Deny access to LocalSettings.php (MW_CONFIG_FILE)
+	 *
+	 * @since 1.31
+	 */
+	const NO_LOCALSETTINGS = 32;
 
 	/**
 	 * Returns a new instance of Command class
@@ -91,7 +150,7 @@ class Shell {
 	 * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
 	 *
 	 * @param string $args,... strings to escape and glue together, or a single array of
-	 *     strings parameter
+	 *     strings parameter. Null values are ignored.
 	 * @return string
 	 */
 	public static function escape( /* ... */ ) {
@@ -105,6 +164,9 @@ class Shell {
 		$first = true;
 		$retVal = '';
 		foreach ( $args as $arg ) {
+			if ( $arg === null ) {
+				continue;
+			}
 			if ( !$first ) {
 				$retVal .= ' ';
 			} else {

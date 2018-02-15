@@ -1,10 +1,5 @@
 <?php
 /**
- * @defgroup Database Database
- *
- * This file deals with database interface functions
- * and query specifics/optimisations.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,16 +16,19 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
 use Wikimedia\ScopedCallback;
-use Exception;
 use RuntimeException;
 use UnexpectedValueException;
 use stdClass;
 
+/**
+ * @defgroup Database Database
+ * This group deals with database interface functions
+ * and query specifics/optimisations.
+ */
 /**
  * Basic database interface for live and lazy-loaded relation database handles
  *
@@ -525,9 +523,9 @@ interface IDatabase {
 	 *     comment (you can use __METHOD__ or add some extra info)
 	 * @param bool $tempIgnore Whether to avoid throwing an exception on errors...
 	 *     maybe best to catch the exception instead?
-	 * @throws DBError
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if $tempIgnore set
+	 * @throws DBError
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
 
@@ -569,7 +567,8 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return bool|mixed The value from the field, or false on failure.
+	 * @return mixed The value from the field
+	 * @throws DBError
 	 */
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
@@ -591,7 +590,8 @@ interface IDatabase {
 	 * @param string|array $options The query options. See IDatabase::select() for details.
 	 * @param string|array $join_conds The query join conditions. See IDatabase::select() for details.
 	 *
-	 * @return bool|array The values from the field, or false on failure
+	 * @return array The values from the field
+	 * @throws DBError
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
@@ -755,10 +755,8 @@ interface IDatabase {
 	 *
 	 *    [ 'page' => [ 'LEFT JOIN', 'page_latest=rev_id' ] ]
 	 *
-	 * @return IResultWrapper|bool If the query returned no rows, a IResultWrapper
-	 *   with no rows in it will be returned. If there was a query error, a
-	 *   DBQueryError exception will be thrown, except if the "ignore errors"
-	 *   option was set, in which case false will be returned.
+	 * @return IResultWrapper Resulting rows
+	 * @throws DBError
 	 */
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__,
@@ -799,6 +797,7 @@ interface IDatabase {
 	 * @param array|string $join_conds Join conditions
 	 *
 	 * @return stdClass|bool
+	 * @throws DBError
 	 */
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -823,6 +822,7 @@ interface IDatabase {
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
 	 * @return int Row count
+	 * @throws DBError
 	 */
 	public function estimateRowCount(
 		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
@@ -844,6 +844,7 @@ interface IDatabase {
 	 * @param array $options Options for select
 	 * @param array $join_conds Join conditions (since 1.27)
 	 * @return int Row count
+	 * @throws DBError
 	 */
 	public function selectRowCount(
 		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
@@ -856,6 +857,7 @@ interface IDatabase {
 	 * @param string $field Filed to check on that table
 	 * @param string $fname Calling function name (optional)
 	 * @return bool Whether $table has filed $field
+	 * @throws DBError
 	 */
 	public function fieldExists( $table, $field, $fname = __METHOD__ );
 
@@ -868,6 +870,7 @@ interface IDatabase {
 	 * @param string $index
 	 * @param string $fname
 	 * @return bool|null
+	 * @throws DBError
 	 */
 	public function indexExists( $table, $index, $fname = __METHOD__ );
 
@@ -877,6 +880,7 @@ interface IDatabase {
 	 * @param string $table
 	 * @param string $fname
 	 * @return bool
+	 * @throws DBError
 	 */
 	public function tableExists( $table, $fname = __METHOD__ );
 
@@ -922,6 +926,7 @@ interface IDatabase {
 	 * @param array $options Array of options
 	 *
 	 * @return bool
+	 * @throws DBError
 	 */
 	public function insert( $table, $a, $fname = __METHOD__, $options = [] );
 
@@ -944,6 +949,7 @@ interface IDatabase {
 	 *   - IGNORE: Ignore unique key conflicts
 	 *   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return bool
+	 * @throws DBError
 	 */
 	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] );
 
@@ -1164,6 +1170,7 @@ interface IDatabase {
 	 * @param array $rows Can be either a single row to insert, or multiple rows,
 	 *    in the same format as for IDatabase::insert()
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @throws DBError
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ );
 
@@ -1200,7 +1207,7 @@ interface IDatabase {
 	 *   Values with integer keys form unquoted SET statements, which can be used for
 	 *   things like "field = field + 1" or similar computed values.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @throws Exception
+	 * @throws DBError
 	 * @return bool
 	 */
 	public function upsert(
@@ -1225,7 +1232,7 @@ interface IDatabase {
 	 * @param array $conds Condition array of field names mapped to variables,
 	 *   ANDed together in the WHERE clause
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @throws DBUnexpectedError
+	 * @throws DBError
 	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
 		$fname = __METHOD__
@@ -1240,12 +1247,18 @@ interface IDatabase {
 	 * @param string $fname Name of the calling function
 	 * @throws DBUnexpectedError
 	 * @return bool|IResultWrapper
+	 * @throws DBError
 	 */
 	public function delete( $table, $conds, $fname = __METHOD__ );
 
 	/**
 	 * INSERT SELECT wrapper. Takes data from a SELECT query and inserts it
 	 * into another table.
+	 *
+	 * @warning If the insert will use an auto-increment or sequence to
+	 *  determine the value of a column, this may break replication on
+	 *  databases using statement-based replication if the SELECT is not
+	 *  deterministically ordered.
 	 *
 	 * @param string $destTable The table name to insert into
 	 * @param string|array $srcTable May be either a table name, or an array of table names
@@ -1270,6 +1283,7 @@ interface IDatabase {
 	 *    IDatabase::select() for details.
 	 *
 	 * @return bool
+	 * @throws DBError
 	 */
 	public function insertSelect( $destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__,
@@ -1351,6 +1365,7 @@ interface IDatabase {
 	 * Determines how long the server has been up
 	 *
 	 * @return int
+	 * @throws DBError
 	 */
 	public function getServerUptime();
 
@@ -1391,13 +1406,15 @@ interface IDatabase {
 	 * @return int|null Zero if the replica DB was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if it timed out, and null on error
+	 * @throws DBError
 	 */
 	public function masterPosWait( DBMasterPos $pos, $timeout );
 
 	/**
 	 * Get the replication position of this replica DB
 	 *
-	 * @return DBMasterPos|bool False if this is not a replica DB.
+	 * @return DBMasterPos|bool False if this is not a replica DB
+	 * @throws DBError
 	 */
 	public function getReplicaPos();
 
@@ -1405,6 +1422,7 @@ interface IDatabase {
 	 * Get the position of this master
 	 *
 	 * @return DBMasterPos|bool False if this is not a master
+	 * @throws DBError
 	 */
 	public function getMasterPos();
 
@@ -1593,7 +1611,7 @@ interface IDatabase {
 	 *   Only set the flush flag if you are sure that these warnings are not applicable,
 	 *   and no explicit transactions are open.
 	 *
-	 * @throws DBUnexpectedError
+	 * @throws DBError
 	 */
 	public function commit( $fname = __METHOD__, $flush = '' );
 
@@ -1614,7 +1632,7 @@ interface IDatabase {
 	 *   constant to disable warnings about calling rollback when no transaction is in
 	 *   progress. This will silently break any ongoing explicit transaction. Only set the
 	 *   flush flag if you are sure that it is safe to ignore these warnings in your context.
-	 * @throws DBUnexpectedError
+	 * @throws DBError
 	 * @since 1.23 Added $flush parameter
 	 */
 	public function rollback( $fname = __METHOD__, $flush = '' );
@@ -1628,7 +1646,7 @@ interface IDatabase {
 	 * useful to call on a replica DB after waiting on replication to catch up to the master.
 	 *
 	 * @param string $fname Calling function name
-	 * @throws DBUnexpectedError
+	 * @throws DBError
 	 * @since 1.28
 	 */
 	public function flushSnapshot( $fname = __METHOD__ );
@@ -1687,6 +1705,7 @@ interface IDatabase {
 	 * instead.
 	 *
 	 * @return int|bool Database replication lag in seconds or false on error
+	 * @throws DBError
 	 */
 	public function getLag();
 
@@ -1701,6 +1720,7 @@ interface IDatabase {
 	 * indication of the staleness of subsequent reads.
 	 *
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
+	 * @throws DBError
 	 * @since 1.27
 	 */
 	public function getSessionLagStatus();
@@ -1742,6 +1762,7 @@ interface IDatabase {
 	 *
 	 * @param array $options
 	 * @return void
+	 * @throws DBError
 	 */
 	public function setSessionOptions( array $options );
 
@@ -1760,6 +1781,7 @@ interface IDatabase {
 	 * @param string $lockName Name of lock to poll
 	 * @param string $method Name of method calling us
 	 * @return bool
+	 * @throws DBError
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method );
@@ -1773,6 +1795,7 @@ interface IDatabase {
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds
 	 * @return bool
+	 * @throws DBError
 	 */
 	public function lock( $lockName, $method, $timeout = 5 );
 
@@ -1785,8 +1808,10 @@ interface IDatabase {
 	 * @param string $method Name of the calling method
 	 *
 	 * @return int Returns 1 if the lock was released, 0 if the lock was not established
-	 * by this thread (in which case the lock is not released), and NULL if the named
-	 * lock did not exist
+	 * by this thread (in which case the lock is not released), and NULL if the named lock
+	 * did not exist
+	 *
+	 * @throws DBError
 	 */
 	public function unlock( $lockName, $method );
 
@@ -1808,7 +1833,7 @@ interface IDatabase {
 	 * @param string $fname Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds
 	 * @return ScopedCallback|null
-	 * @throws DBUnexpectedError
+	 * @throws DBError
 	 * @since 1.27
 	 */
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout );

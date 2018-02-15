@@ -1,5 +1,14 @@
 <?php
 
+namespace MediaWiki\Tests\Maintenance;
+
+use MediaWikiLangTestCase;
+use TextContentHandler;
+use TextPassDumper;
+use Title;
+use WikiExporter;
+use WikiPage;
+
 require_once __DIR__ . "/../../../maintenance/dumpTextPass.php";
 
 /**
@@ -34,7 +43,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		$this->tablesUsed[] = 'text';
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
-			"BackupTextPassTestModel" => "BackupTextPassTestModelHandler"
+			"BackupTextPassTestModel" => BackupTextPassTestModelHandler::class,
 		] );
 
 		$ns = $this->getDefaultWikitextNS();
@@ -170,7 +179,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		];
 
 		// The mock itself
-		$prefetchMock = $this->getMockBuilder( 'BaseDump' )
+		$prefetchMock = $this->getMockBuilder( BaseDump::class )
 			->setMethods( [ 'prefetch' ] )
 			->disableOriginalConstructor()
 			->getMock();

@@ -43,11 +43,11 @@ class MigrateFileRepoLayout extends Maintenance {
 	public function execute() {
 		$oldLayout = $this->getOption( 'oldlayout' );
 		if ( !in_array( $oldLayout, [ 'name', 'sha1' ] ) ) {
-			$this->error( "Invalid old layout.", 1 );
+			$this->fatalError( "Invalid old layout." );
 		}
 		$newLayout = $this->getOption( 'newlayout' );
 		if ( !in_array( $newLayout, [ 'name', 'sha1' ] ) ) {
-			$this->error( "Invalid new layout.", 1 );
+			$this->fatalError( "Invalid new layout." );
 		}
 		$since = $this->getOption( 'since' );
 
@@ -69,6 +69,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$conds[] = 'img_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $since ) );
 		}
 
+		$batchSize = $this->getBatchSize();
 		$batch = [];
 		$lastName = '';
 		do {
@@ -76,7 +77,7 @@ class MigrateFileRepoLayout extends Maintenance {
 				[ 'img_name', 'img_sha1' ],
 				array_merge( [ 'img_name > ' . $dbw->addQuotes( $lastName ) ], $conds ),
 				__METHOD__,
-				[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name' ]
+				[ 'LIMIT' => $batchSize, 'ORDER BY' => 'img_name' ]
 			);
 
 			foreach ( $res as $row ) {
@@ -143,7 +144,7 @@ class MigrateFileRepoLayout extends Maintenance {
 						'src' => $spath, 'dst' => $dpath, 'img' => $ofile->getArchiveName() ];
 				}
 
-				if ( count( $batch ) >= $this->mBatchSize ) {
+				if ( count( $batch ) >= $batchSize ) {
 					$this->runBatch( $batch, $be );
 					$batch = [];
 				}
@@ -166,7 +167,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$res = $dbw->select( 'filearchive', [ 'fa_storage_key', 'fa_id', 'fa_name' ],
 				array_merge( [ 'fa_id > ' . $dbw->addQuotes( $lastId ) ], $conds ),
 				__METHOD__,
-				[ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'fa_id' ]
+				[ 'LIMIT' => $batchSize, 'ORDER BY' => 'fa_id' ]
 			);
 
 			foreach ( $res as $row ) {
@@ -201,7 +202,7 @@ class MigrateFileRepoLayout extends Maintenance {
 				$batch[] = [ 'op' => 'copy', 'src' => $spath, 'dst' => $dpath,
 					'overwriteSame' => true, 'img' => "(ID {$row->fa_id}) {$row->fa_name}" ];
 
-				if ( count( $batch ) >= $this->mBatchSize ) {
+				if ( count( $batch ) >= $batchSize ) {
 					$this->runBatch( $batch, $be );
 					$batch = [];
 				}
@@ -234,5 +235,5 @@ class MigrateFileRepoLayout extends Maintenance {
 	}
 }
 
-$maintClass = 'MigrateFileRepoLayout';
+$maintClass = MigrateFileRepoLayout::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

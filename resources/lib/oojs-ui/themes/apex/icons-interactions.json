@@ -38,6 +38,7 @@
 			"ltr": "images/icons/keyboard-ltr.svg",
 			"rtl": "images/icons/keyboard-rtl.svg"
 		} },
+		"lightbulb": { "file": "images/icons/lightbulb.svg" },
 		"logOut": { "file": {
 			"ltr": "images/icons/logOut-ltr.svg",
 			"rtl": "images/icons/logOut-rtl.svg"
@@ -60,12 +61,6 @@
 			}
 		},
 		"settings": { "file": "images/icons/settings.svg" },
-		"subtract": { "file": "images/icons/subtract.svg" },
-		"watchlist": { "file": {
-			"ltr": "images/icons/watchlist-ltr.svg",
-			"rtl": "images/icons/watchlist-rtl.svg"
-			},
-			"deprecated": "This will be removed in v0.24.0."
-		}
+		"subtract": { "file": "images/icons/subtract.svg" }
 	}
 }

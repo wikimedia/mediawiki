@@ -65,26 +65,15 @@
 			&-widget.oo-ui-widget {
 				border: 1px solid @colorGray10;
 				border-left-width: 0;
-				border-top-left-radius: 0;
-				border-top-right-radius: 0;
-				border-bottom-left-radius: 0;
+				border-radius: 0 0 @borderRadius 0;
 
 				display: block;
 				text-align: right;
 				height: 2.5em;
 				.box-sizing( border-box );
 
-				.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
+				.oo-ui-buttonOptionWidget:first-child {
 					margin-left: 0;
-				}
-
-				.oo-ui-labelElement.oo-ui-optionWidget.oo-ui-buttonElement:first-child {
-					margin-left: 0;
-
-					.oo-ui-labelElement-label {
-						color: @colorGray5;
-						font-weight: bold;
-					}
 				}
 			}
 		}

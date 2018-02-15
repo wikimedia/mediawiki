@@ -316,7 +316,9 @@ class Status extends StatusValue {
 		$lang = $this->languageFromParam( $lang );
 		$text = $this->getWikiText( $shortContext, $longContext, $lang );
 		$out = MessageCache::singleton()->parse( $text, null, true, true, $lang );
-		return $out instanceof ParserOutput ? $out->getText() : $out;
+		return $out instanceof ParserOutput
+			? $out->getText( [ 'enableSectionEditLinks' => false ] )
+			: $out;
 	}
 
 	/**

@@ -5,6 +5,8 @@
  */
 class TransactionRoundDefiningUpdateTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	public function testDoUpdate() {
 		$ran = 0;
 		$update = new TransactionRoundDefiningUpdate( function () use ( &$ran ) {

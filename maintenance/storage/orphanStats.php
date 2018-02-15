@@ -45,7 +45,7 @@ class OrphanStats extends Maintenance {
 	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
 		if ( !$dbr->tableExists( 'blob_orphans' ) ) {
-			$this->error( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first", true );
+			$this->fatalError( "blob_orphans doesn't seem to exist, need to run trackBlobs.php first" );
 		}
 		$res = $dbr->select( 'blob_orphans', '*', false, __METHOD__ );
 
@@ -80,5 +80,5 @@ class OrphanStats extends Maintenance {
 	}
 }
 
-$maintClass = "OrphanStats";
+$maintClass = OrphanStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

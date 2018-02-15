@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers RightsLogFormatter
+ */
 class RightsLogFormatterTest extends LogFormatterTestCase {
 
 	/**

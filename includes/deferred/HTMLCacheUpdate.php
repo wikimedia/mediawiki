@@ -26,7 +26,7 @@
  *
  * @ingroup Cache
  */
-class HTMLCacheUpdate implements DeferrableUpdate {
+class HTMLCacheUpdate extends DataUpdate {
 	/** @var Title */
 	public $mTitle;
 
@@ -36,14 +36,24 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	/**
 	 * @param Title $titleTo
 	 * @param string $table
+	 * @param string $causeAction Triggering action
+	 * @param string $causeAgent Triggering user
 	 */
-	function __construct( Title $titleTo, $table ) {
+	function __construct(
+		Title $titleTo, $table, $causeAction = 'unknown', $causeAgent = 'unknown'
+	) {
 		$this->mTitle = $titleTo;
 		$this->mTable = $table;
+		$this->causeAction = $causeAction;
+		$this->causeAgent = $causeAgent;
 	}
 
 	public function doUpdate() {
-		$job = HTMLCacheUpdateJob::newForBacklinks( $this->mTitle, $this->mTable );
+		$job = HTMLCacheUpdateJob::newForBacklinks(
+			$this->mTitle,
+			$this->mTable,
+			[ 'causeAction' => $this->getCauseAction(), 'causeAgent' => $this->getCauseAgent() ]
+		);
 
 		JobQueueGroup::singleton()->lazyPush( $job );
 	}

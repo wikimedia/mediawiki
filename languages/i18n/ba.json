@@ -470,7 +470,7 @@
 	"wrongpasswordempty": "Зинһар, буш булмаған серһүҙ керетегеҙ.",
 	"passwordtooshort": "Серһүҙ кәмендә $1 {{PLURAL:$1|символдан}} торорға тейеш.",
 	"passwordtoolong": "Серһүҙ {{PLURAL:$1|1 символдан}} артмаҫҡа тейеш.",
-	"passwordtoopopular": "Йыш ҡулланыдған серһүҙ ҡабул ителмәй, Башҡа серһүҙ һайлағыҙ.",
+	"passwordtoopopular": "Йыш ҡулланылған серһүҙ ҡабул ителмәй, Башҡа серһүҙ һайлағыҙ.",
 	"password-name-match": "Керетелгән серһүҙ ҡулланыусы исеменән айырылырға тейеш.",
 	"password-login-forbidden": "Был ҡатнашыусы исемен һәм серһүҙҙе ҡулланыу тыйылған",
 	"mailmypassword": "Серһүҙҙе ташлатыу",
@@ -1298,11 +1298,9 @@
 	"rcfilters-legend-heading": "<strong>Ҡыҫҡартыуҙар теҙмәһе:</strong>",
 	"rcfilters-other-review-tools": "Тикшереүҙең башҡа ҡоралдары",
 	"rcfilters-group-results-by-page": "Төркөмдөң төрлө биттәге һөҙөмтәләре",
-	"rcfilters-grouping-title": "Төркөмләштереү",
 	"rcfilters-activefilters": "Әүҙем фильтрҙар",
 	"rcfilters-advancedfilters": "Киңәйтелгән фильтрҙар",
 	"rcfilters-limit-title": "Күрһәтеү өсөн үҙгәртеүҙәр",
-	"rcfilters-limit-shownum": "Һуңғы $1 үҙгәреште күрһәтергә",
 	"rcfilters-days-title": "Аҙаҡҡы көндәр",
 	"rcfilters-hours-title": "Аҙаҡҡы сәғәттәр",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|көн}}",
@@ -1402,7 +1400,6 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<Strong>: </strong> $1 түгел",
 	"rcfilters-exclude-button-off": "Һайланғанды алып ташларға",
 	"rcfilters-exclude-button-on": "Һайланғанды алып ташалу",
-	"rcfilters-view-advanced-filters-label": "Киңәйтелгән фильтрҙар",
 	"rcfilters-view-tags": "Тегтары булған үҙгәртеүҙәр",
 	"rcfilters-view-namespaces-tooltip": "Фильтрҙың исемдәр яланындағы һөҙөмтәһе",
 	"rcfilters-view-tags-tooltip": "Үҙгәртеү билдәләрен ҡулланған фильтрҙың һөҙөмтәһе",
@@ -3782,5 +3779,6 @@
 	"changecredentials-submit": "Иҫәп мәғлүмәттәрен үҙгәртеү",
 	"removecredentials": "Иҫәп мәғлүмәттәрен юйырға",
 	"removecredentials-submit": "Иҫәп мәғлүмәттәрен юйырға",
-	"credentialsform-account": "Иҫәп яҙмаһы исеме:"
+	"credentialsform-account": "Иҫәп яҙмаһы исеме:",
+	"edit-error-short": "Хата: $1"
 }

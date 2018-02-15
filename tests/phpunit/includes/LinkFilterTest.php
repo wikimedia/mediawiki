@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
+ * @covers LinkFilter
  * @group Database
  */
 class LinkFilterTest extends MediaWikiLangTestCase {

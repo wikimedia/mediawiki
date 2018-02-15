@@ -83,7 +83,7 @@ class SqliteMaintenance extends Maintenance {
 	private function vacuum() {
 		$prevSize = filesize( $this->db->getDbFilePath() );
 		if ( $prevSize == 0 ) {
-			$this->error( "Can't vacuum an empty database.\n", true );
+			$this->fatalError( "Can't vacuum an empty database.\n" );
 		}
 
 		$this->output( 'VACUUM: ' );
@@ -117,12 +117,12 @@ class SqliteMaintenance extends Maintenance {
 		$this->db->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
 		$ourFile = $this->db->getDbFilePath();
 		$this->output( "   Copying database file $ourFile to $fileName... " );
-		MediaWiki\suppressWarnings( false );
+		Wikimedia\suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
 			$err = error_get_last();
 			$this->error( "      {$err['message']}" );
 		}
-		MediaWiki\suppressWarnings( true );
+		Wikimedia\restoreWarnings();
 		$this->output( "   Releasing lock...\n" );
 		$this->db->query( 'COMMIT TRANSACTION', __METHOD__ );
 	}
@@ -142,5 +142,5 @@ class SqliteMaintenance extends Maintenance {
 	}
 }
 
-$maintClass = "SqliteMaintenance";
+$maintClass = SqliteMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

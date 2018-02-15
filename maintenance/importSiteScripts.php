@@ -114,5 +114,5 @@ class ImportSiteScripts extends Maintenance {
 	}
 }
 
-$maintClass = 'ImportSiteScripts';
+$maintClass = ImportSiteScripts::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

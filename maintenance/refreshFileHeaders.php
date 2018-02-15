@@ -40,6 +40,12 @@ class RefreshFileHeaders extends Maintenance {
 		$this->addOption( 'media_type', 'Media type to filter for', false, true );
 		$this->addOption( 'major_mime', 'Major mime type to filter for', false, true );
 		$this->addOption( 'minor_mime', 'Minor mime type to filter for', false, true );
+		$this->addOption(
+			'refreshContentType',
+			'Set true to refresh file content type from mime data in db',
+			false,
+			false
+		);
 		$this->setBatchSize( 200 );
 	}
 
@@ -56,6 +62,8 @@ class RefreshFileHeaders extends Maintenance {
 
 		$count = 0;
 		$dbr = $this->getDB( DB_REPLICA );
+
+		$fileQuery = LocalFile::getQueryInfo();
 
 		do {
 			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
@@ -76,8 +84,16 @@ class RefreshFileHeaders extends Maintenance {
 				$conds[] = "img_minor_mime = {$dbr->addQuotes( $minor_mime )}";
 			}
 
-			$res = $dbr->select( 'image', LocalFile::selectFields(), $conds,
-				__METHOD__, [ 'LIMIT' => $this->mBatchSize, 'ORDER BY' => 'img_name ASC' ] );
+			$res = $dbr->select( $fileQuery['tables'],
+				$fileQuery['fields'],
+				$conds,
+				__METHOD__,
+				[
+					'LIMIT' => $this->getBatchSize(),
+					'ORDER BY' => 'img_name ASC'
+				],
+				$fileQuery['joins']
+			);
 
 			if ( $res->numRows() > 0 ) {
 				$row1 = $res->current();
@@ -90,6 +106,9 @@ class RefreshFileHeaders extends Maintenance {
 			foreach ( $res as $row ) {
 				$file = $repo->newFileFromRow( $row );
 				$headers = $file->getContentHeaders();
+				if ( $this->getOption( 'refreshContentType', false ) ) {
+					$headers['Content-Type'] = $row->img_major_mime . '/' . $row->img_minor_mime;
+				}
 
 				if ( count( $headers ) ) {
 					$backendOperations[] = [
@@ -119,7 +138,7 @@ class RefreshFileHeaders extends Maintenance {
 
 			$this->output( "Updating headers for {$backendOperationsCount} file(s).\n" );
 			$this->updateFileHeaders( $repo, $backendOperations );
-		} while ( $res->numRows() === $this->mBatchSize );
+		} while ( $res->numRows() === $this->getBatchSize() );
 
 		$this->output( "Done. Updated headers for $count file(s).\n" );
 	}
@@ -133,5 +152,5 @@ class RefreshFileHeaders extends Maintenance {
 	}
 }
 
-$maintClass = 'RefreshFileHeaders';
+$maintClass = RefreshFileHeaders::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

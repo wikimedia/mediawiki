@@ -2,9 +2,10 @@
 @import 'mediawiki.ui/variables';
 @import 'mw.rcfilters.mixins';
 
-@rcfilters-spinner-width: 70px;
-@rcfilters-head-min-height: 250px;
-@rcfilters-wl-head-min-height: 320px;
+@rcfilters-spinner-size: 12px;
+@rcfilters-head-min-height: 210px;
+@rcfilters-head-margin-bottom: 20px;
+@rcfilters-wl-head-min-height: 300px;
 
 // Corrections for the standard special page
 .client-js {
@@ -15,6 +16,7 @@
 	// Reserve space for the UI while it loads
 	.rcfilters-head {
 		min-height: @rcfilters-head-min-height;
+		margin-bottom: @rcfilters-head-margin-bottom;
 	}
 
 	// On the watchlist, reserve a bit more
@@ -23,14 +25,24 @@
 	}
 
 	.mw-recentchanges-toplinks {
-		margin-bottom: 0.5em;
-		padding: 0 0.5em 0.5em 0.5em;
-		border: 1px solid transparent;
+		padding-left: 0.5em;
 
 		&:not( .mw-recentchanges-toplinks-collapsed ) {
-			// Same as the legend
-			border: 1px solid @colorGray12;
+			margin-bottom: 0.5em;
+			border: 1px solid @colorGray12; // Same as the legend
+			padding: 0 0.5em 0.5em 0.5em;
 		}
+
+		/* stylelint-disable declaration-no-important */
+		.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+			padding-right: 1.2em !important;
+
+			> .oo-ui-indicatorElement-indicator {
+				right: 0 !important;
+				width: 0.9375em !important;
+			}
+		}
+		/* stylelint-enable declaration-no-important */
 	}
 
 	body:not( .mw-rcfilters-ui-initialized ) {
@@ -55,11 +67,6 @@
 		}
 	}
 
-	.rcfilters-container {
-		min-height: 100px;
-		margin: 0;
-	}
-
 	.mw-changeslist {
 		// Reserve space for the highlight circles
 		ul,
@@ -68,10 +75,10 @@
 		}
 	}
 
-	// Temporarily hide any 'empty' or 'timeout' message while we
-	// load rcfilters.
+	// Temporarily hide any specific 'no result' message while we load rcfilters.
 	.mw-changeslist-empty,
-	.mw-changeslist-timeout {
+	.mw-changeslist-timeout,
+	.mw-changeslist-notargetpage {
 		display: none;
 	}
 
@@ -83,9 +90,8 @@
 		display: none;
 		position: absolute;
 		left: 50%;
-		width: @rcfilters-spinner-width;
 		// Make sure the middle of the spinner is centered, rather than its left edge
-		margin-left: -@rcfilters-spinner-width/2;
+		margin-left: -3 * @rcfilters-spinner-size / 2;
 
 		opacity: 0.8;
 		white-space: nowrap;
@@ -95,8 +101,8 @@
 		&:after {
 			content: '';
 			display: inline-block;
-			width: 12px;
-			height: 12px;
+			width: @rcfilters-spinner-size;
+			height: @rcfilters-spinner-size;
 			background-color: @colorGray12;
 			border-radius: 100%;
 			.animation( rcfiltersBouncedelay 1.5s ease-in-out -0.16s infinite both );
@@ -113,7 +119,7 @@
 	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-spinner {
 		display: block;
 		// When initializing, display the spinner on top of the area where the UI will appear
-		margin-top: -@rcfilters-head-min-height/2;
+		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 2;
 	}
 	body.mw-rcfilters-ui-loading .rcfilters-spinner {
 		display: block;
@@ -124,6 +130,11 @@
 	#contentSub,
 	form#mw-watchlist-resetbutton {
 		display: none;
+	}
+
+	#jump-to-nav {
+		margin-top: -0.5em;
+		margin-bottom: 0.5em;
 	}
 
 	// Make the watchlist-details message display while loading, but make it not take up any

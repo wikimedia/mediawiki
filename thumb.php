@@ -235,9 +235,9 @@ function wfStreamThumb( array $params ) {
 		// Fix IE brokenness
 		$imsString = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 		// Calculate time
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$imsUnix = strtotime( $imsString );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 			HttpStatus::header( 304 );
 			return;
@@ -337,7 +337,16 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	$thumbProxyUrl = $img->getRepo()->getThumbProxyUrl();
+
+	if ( strlen( $thumbProxyUrl ) ) {
+		wfProxyThumbnailRequest( $img, $thumbName );
+		// No local fallback when in proxy mode
+		return;
+	} else {
+		// Generate the thumbnail locally
+		list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	}
 
 	/** @var MediaTransformOutput|MediaTransformError|bool $thumb */
 
@@ -375,6 +384,43 @@ function wfStreamThumb( array $params ) {
 				'error' => $status->getWikiText( false, false, 'en' ) ] );
 		}
 	}
+}
+
+/**
+ * Proxies thumbnail request to a service that handles thumbnailing
+ *
+ * @param File $img
+ * @param string $thumbName
+ */
+function wfProxyThumbnailRequest( $img, $thumbName ) {
+	$thumbProxyUrl = $img->getRepo()->getThumbProxyUrl();
+
+	// Instead of generating the thumbnail ourselves, we proxy the request to another service
+	$thumbProxiedUrl = $thumbProxyUrl . $img->getThumbRel( $thumbName );
+
+	$req = MWHttpRequest::factory( $thumbProxiedUrl );
+	$secret = $img->getRepo()->getThumbProxySecret();
+
+	// Pass a secret key shared with the proxied service if any
+	if ( strlen( $secret ) ) {
+		$req->setHeader( 'X-Swift-Secret', $secret );
+	}
+
+	// Send request to proxied service
+	$status = $req->execute();
+
+	// Simply serve the response from the proxied service as-is
+	header( 'HTTP/1.1 ' . $req->getStatus() );
+
+	$headers = $req->getResponseHeaders();
+
+	foreach ( $headers as $key => $values ) {
+		foreach ( $values as $value ) {
+			header( $key . ': ' . $value, false );
+		}
+	}
+
+	echo $req->getContent();
 }
 
 /**
@@ -572,7 +618,7 @@ function wfExtractThumbParams( $file, $params ) {
  * @return void
  */
 function wfThumbErrorText( $status, $msgText ) {
-	wfThumbError( $status, htmlspecialchars( $msgText ) );
+	wfThumbError( $status, htmlspecialchars( $msgText, ENT_NOQUOTES ) );
 }
 
 /**
@@ -602,9 +648,10 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	if ( $wgShowHostnames ) {
 		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );
 		$url = htmlspecialchars(
-			isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : ''
+			isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '',
+			ENT_NOQUOTES
 		);
-		$hostname = htmlspecialchars( wfHostname() );
+		$hostname = htmlspecialchars( wfHostname(), ENT_NOQUOTES );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
 	} else {
 		$debug = '';

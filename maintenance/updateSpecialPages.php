@@ -72,7 +72,7 @@ class UpdateSpecialPages extends Maintenance {
 				$queryPage = $specialObj;
 			} else {
 				$class = get_class( $specialObj );
-				$this->error( "$class is not an instance of QueryPage.\n", 1 );
+				$this->fatalError( "$class is not an instance of QueryPage.\n" );
 				die;
 			}
 
@@ -170,5 +170,5 @@ class UpdateSpecialPages extends Maintenance {
 	}
 }
 
-$maintClass = "UpdateSpecialPages";
+$maintClass = UpdateSpecialPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -75,4 +75,43 @@ class RemexMungerData {
 	public function __set( $name, $value ) {
 		throw new \Exception( "Cannot set property \"$name\"" );
 	}
+
+	/**
+	 * Get a text representation of the current state of the serializer, for
+	 * debugging.
+	 *
+	 * @return string
+	 */
+	public function dump() {
+		if ( $this->childPElement ) {
+			$parts[] = 'childPElement=' . $this->childPElement->getDebugTag();
+		}
+		if ( $this->ancestorPNode ) {
+			$parts[] = "ancestorPNode=<{$this->ancestorPNode->name}>";
+		}
+		if ( $this->wrapBaseNode ) {
+			$parts[] = "wrapBaseNode=<{$this->wrapBaseNode->name}>";
+		}
+		if ( $this->currentCloneElement ) {
+			$parts[] = "currentCloneElement=" . $this->currentCloneElement->getDebugTag();
+		}
+		if ( $this->isPWrapper ) {
+			$parts[] = 'isPWrapper';
+		}
+		if ( $this->isSplittable ) {
+			$parts[] = 'isSplittable';
+		}
+		if ( $this->needsPWrapping ) {
+			$parts[] = 'needsPWrapping';
+		}
+		if ( $this->nonblankNodeCount ) {
+			$parts[] = "nonblankNodeCount={$this->nonblankNodeCount}";
+		}
+		$s = "RemexMungerData {\n";
+		foreach ( $parts as $part ) {
+			$s .= "  $part\n";
+		}
+		$s .= "}\n";
+		return $s;
+	}
 }

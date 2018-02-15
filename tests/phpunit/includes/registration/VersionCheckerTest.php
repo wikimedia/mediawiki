@@ -4,6 +4,9 @@
  * @covers VersionChecker
  */
 class VersionCheckerTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider provideCheck
 	 */
@@ -51,6 +54,7 @@ class VersionCheckerTest extends PHPUnit_Framework_TestCase {
 				'FakeDependency' => [
 					'version' => '1.0.0',
 				],
+				'NoVersionGiven' => [],
 			] );
 		$this->assertEquals( $expected, $checker->checkArray( [
 			'FakeExtension' => $given,
@@ -75,6 +79,39 @@ class VersionCheckerTest extends PHPUnit_Framework_TestCase {
 				],
 				[]
 			],
+			[
+				[
+					'extensions' => [
+						'NoVersionGiven' => '*'
+					]
+				],
+				[],
+			],
+			[
+				[
+					'extensions' => [
+						'NoVersionGiven' => '1.0',
+					]
+				],
+				[ 'NoVersionGiven does not expose its version, but FakeExtension requires: 1.0.' ],
+			],
+			[
+				[
+					'extensions' => [
+						'Missing' => '*',
+					]
+				],
+				[ 'FakeExtension requires Missing to be installed.' ],
+			],
+			[
+				[
+					'extensions' => [
+						'FakeDependency' => '2.0.0',
+					]
+				],
+				// phpcs:ignore Generic.Files.LineLength.TooLong
+				[ 'FakeExtension is not compatible with the current installed version of FakeDependency (1.0.0), it requires: 2.0.0.' ],
+			]
 		];
 	}
 
@@ -108,7 +145,7 @@ class VersionCheckerTest extends PHPUnit_Framework_TestCase {
 				],
 			] );
 
-		$this->setExpectedException( 'UnexpectedValueException' );
+		$this->setExpectedException( UnexpectedValueException::class );
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'FakeDependency' => 'not really valid',

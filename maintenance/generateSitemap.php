@@ -182,7 +182,7 @@ class GenerateSitemap extends Maintenance {
 		# Create directory if needed
 		$fspath = $this->getOption( 'fspath', getcwd() );
 		if ( !wfMkdirParents( $fspath, null, __METHOD__ ) ) {
-			$this->error( "Can not create directory $fspath.", 1 );
+			$this->fatalError( "Can not create directory $fspath." );
 		}
 
 		$this->fspath = realpath( $fspath ) . DIRECTORY_SEPARATOR;
@@ -440,8 +440,8 @@ class GenerateSitemap extends Maintenance {
 	/**
 	 * Get a sitemap filename
 	 *
-	 * @param int $namespace The namespace
-	 * @param int $count The count
+	 * @param int $namespace
+	 * @param int $count
 	 * @return string
 	 */
 	function sitemapFilename( $namespace, $count ) {
@@ -484,8 +484,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function indexEntry( $filename ) {
-		return
-			"\t<sitemap>\n" .
+		return "\t<sitemap>\n" .
 			"\t\t<loc>{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
 			"\t</sitemap>\n";
@@ -518,8 +517,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return string
 	 */
 	function fileEntry( $url, $date, $priority ) {
-		return
-			"\t<url>\n" .
+		return "\t<url>\n" .
 			// T36666: $url may contain bad characters such as ampersands.
 			"\t\t<loc>" . htmlspecialchars( $url ) . "</loc>\n" .
 			"\t\t<lastmod>$date</lastmod>\n" .
@@ -557,5 +555,5 @@ class GenerateSitemap extends Maintenance {
 	}
 }
 
-$maintClass = "GenerateSitemap";
+$maintClass = GenerateSitemap::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

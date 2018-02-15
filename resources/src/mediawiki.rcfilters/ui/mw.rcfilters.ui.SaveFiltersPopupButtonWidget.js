@@ -26,7 +26,6 @@
 		mw.rcfilters.ui.SaveFiltersPopupButtonWidget.parent.call( this, $.extend( {
 			framed: false,
 			icon: 'unClip',
-			$overlay: this.$overlay,
 			title: mw.msg( 'rcfilters-savedqueries-add-new-title' ),
 			popup: {
 				classes: [ 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup' ],

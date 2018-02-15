@@ -1,7 +1,5 @@
 <?php
 /**
- * Created on Jan 29, 2015
- *
  * Copyright © 2015 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify

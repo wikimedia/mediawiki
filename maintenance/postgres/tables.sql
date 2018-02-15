@@ -158,6 +158,17 @@ CREATE TABLE revision_comment_temp (
 );
 CREATE UNIQUE INDEX revcomment_rev ON revision_comment_temp (revcomment_rev);
 
+CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
+
+CREATE TABLE ip_changes (
+  ipc_rev_id        INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('ip_changes_ipc_rev_id_seq'),
+  ipc_rev_timestamp TIMESTAMPTZ NOT NULL,
+  ipc_hex           BYTEA NOT NULL DEFAULT ''
+);
+
+CREATE INDEX ipc_rev_timestamp ON ip_changes (ipc_rev_timestamp);
+CREATE INDEX ipc_hex_time ON ip_changes (ipc_hex,ipc_rev_timestamp);
+
 CREATE SEQUENCE text_old_id_seq;
 CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('text_old_id_seq'),
@@ -224,6 +235,45 @@ CREATE TABLE archive (
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
+
+
+CREATE TABLE slots (
+  slot_revision_id INTEGER   NOT NULL,
+  slot_role_id     SMALLINT  NOT NULL,
+  slot_content_id  INTEGER   NOT NULL,
+  slot_inherited   SMALLINT  NOT NULL  DEFAULT 0,
+  PRIMARY KEY (slot_revision_id, slot_role_id)
+);
+
+CREATE INDEX slot_role_inherited ON slots (slot_revision_id, slot_role_id, slot_inherited);
+
+
+CREATE SEQUENCE content_content_id_seq;
+CREATE TABLE content (
+  content_id      INTEGER   NOT NULL PRIMARY KEY DEFAULT nextval('content_content_id_seq'),
+  content_size    INTEGER   NOT NULL,
+  content_sha1    TEXT      NOT NULL,
+  content_model   SMALLINT  NOT NULL,
+  content_address TEXT      NOT NULL
+);
+
+
+CREATE SEQUENCE slot_roles_role_id_seq;
+CREATE TABLE slot_roles (
+  role_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('slot_roles_role_id_seq'),
+  role_name  TEXT      NOT NULL
+);
+
+CREATE UNIQUE INDEX role_name ON slot_roles (role_name);
+
+
+CREATE SEQUENCE content_models_model_id_seq;
+CREATE TABLE content_models (
+  model_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('content_models_model_id_seq'),
+  model_name  TEXT      NOT NULL
+);
+
+CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
 
 CREATE TABLE redirect (

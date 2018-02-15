@@ -48,7 +48,7 @@ class PurgeModuleDeps extends Maintenance {
 
 		$modDeps = $dbw->tableName( 'module_deps' );
 		$i = 1;
-		foreach ( array_chunk( $rows, $this->mBatchSize ) as $chunk ) {
+		foreach ( array_chunk( $rows, $this->getBatchSize() ) as $chunk ) {
 			// WHERE ( mod=A AND skin=A ) OR ( mod=A AND skin=B) ..
 			$conds = array_map( function ( stdClass $row ) use ( $dbw ) {
 				return $dbw->makeList( (array)$row, IDatabase::LIST_AND );
@@ -68,5 +68,5 @@ class PurgeModuleDeps extends Maintenance {
 	}
 }
 
-$maintClass = 'PurgeModuleDeps';
+$maintClass = PurgeModuleDeps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

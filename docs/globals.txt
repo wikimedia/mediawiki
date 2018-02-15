@@ -9,7 +9,7 @@ in a much more flexible way. Consider the elegance of:
     # Generate the article HTML as if viewed by a web request
     $article = new Article( Title::newFromText( $t ) );
     $article->view();
- 
+
 versus
 
     # Save current globals

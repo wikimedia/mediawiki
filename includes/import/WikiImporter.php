@@ -47,6 +47,8 @@ class WikiImporter {
 	private $countableCache = [];
 	/** @var bool */
 	private $disableStatisticsUpdate = false;
+	/** @var ExternalUserNames */
+	private $externalUserNames;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -63,7 +65,7 @@ class WikiImporter {
 		$this->config = $config;
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
-			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
+			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
 		}
 		$id = UploadSourceAdapter::registerSource( $source );
 
@@ -91,6 +93,7 @@ class WikiImporter {
 		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
 
 		$this->importTitleFactory = new NaiveImportTitleFactory();
+		$this->externalUserNames = new ExternalUserNames( 'imported', false );
 	}
 
 	/**
@@ -122,7 +125,9 @@ class WikiImporter {
 		if ( is_callable( $this->mNoticeCallback ) ) {
 			call_user_func( $this->mNoticeCallback, $msg, $params );
 		} else { # No ImportReporter -> CLI
-			echo wfMessage( $msg, $params )->text() . "\n";
+			// T177997: the command line importers should call setNoticeCallback()
+			// for their own custom callback to echo the notice
+			wfDebug( wfMessage( $msg, $params )->text() . "\n" );
 		}
 	}
 
@@ -309,6 +314,15 @@ class WikiImporter {
 	 */
 	public function setImportUploads( $import ) {
 		$this->mImportUploads = $import;
+	}
+
+	/**
+	 * @since 1.31
+	 * @param string $usernamePrefix Prefix to apply to unknown (and possibly also known) usernames
+	 * @param bool $assignKnownUsers Whether to apply the prefix to usernames that exist locally
+	 */
+	public function setUsernamePrefix( $usernamePrefix, $assignKnownUsers ) {
+		$this->externalUserNames = new ExternalUserNames( $usernamePrefix, $assignKnownUsers );
 	}
 
 	/**
@@ -530,13 +544,13 @@ class WikiImporter {
 		$buffer = "";
 		while ( $this->reader->read() ) {
 			switch ( $this->reader->nodeType ) {
-			case XMLReader::TEXT:
-			case XMLReader::CDATA:
-			case XMLReader::SIGNIFICANT_WHITESPACE:
-				$buffer .= $this->reader->value;
-				break;
-			case XMLReader::END_ELEMENT:
-				return $buffer;
+				case XMLReader::TEXT:
+				case XMLReader::CDATA:
+				case XMLReader::SIGNIFICANT_WHITESPACE:
+					$buffer .= $this->reader->value;
+					break;
+				case XMLReader::END_ELEMENT:
+					return $buffer;
 			}
 		}
 
@@ -546,6 +560,7 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
+	 * @throws Exception
 	 * @throws MWException
 	 * @return bool
 	 */
@@ -716,9 +731,11 @@ class WikiImporter {
 		}
 
 		if ( !isset( $logInfo['contributor']['username'] ) ) {
-			$revision->setUsername( 'Unknown user' );
+			$revision->setUsername( $this->externalUserNames->addPrefix( 'Unknown user' ) );
 		} else {
-			$revision->setUsername( $logInfo['contributor']['username'] );
+			$revision->setUsername(
+				$this->externalUserNames->applyPrefix( $logInfo['contributor']['username'] )
+			);
 		}
 
 		return $this->logItemCallback( $revision );
@@ -847,6 +864,7 @@ class WikiImporter {
 	/**
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
+	 * @throws MWException
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
@@ -911,9 +929,11 @@ class WikiImporter {
 		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
 			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
 		} elseif ( isset( $revisionInfo['contributor']['username'] ) ) {
-			$revision->setUsername( $revisionInfo['contributor']['username'] );
+			$revision->setUsername(
+				$this->externalUserNames->applyPrefix( $revisionInfo['contributor']['username'] )
+			);
 		} else {
-			$revision->setUsername( 'Unknown user' );
+			$revision->setUsername( $this->externalUserNames->addPrefix( 'Unknown user' ) );
 		}
 		if ( isset( $revisionInfo['sha1'] ) ) {
 			$revision->setSha1Base36( $revisionInfo['sha1'] );
@@ -1020,7 +1040,9 @@ class WikiImporter {
 			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
-			$revision->setUsername( $uploadInfo['contributor']['username'] );
+			$revision->setUsername(
+				$this->externalUserNames->applyPrefix( $uploadInfo['contributor']['username'] )
+			);
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 

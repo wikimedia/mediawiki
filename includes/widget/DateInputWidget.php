@@ -1,10 +1,4 @@
 <?php
-/**
- * MediaWiki Widgets – DateInputWidget class.
- *
- * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
 
 namespace MediaWiki\Widget;
 
@@ -14,6 +8,8 @@ use DateTime;
  * Date input widget.
  *
  * @since 1.29
+ * @copyright 2016 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license MIT
  */
 class DateInputWidget extends \OOUI\TextInputWidget {
 
@@ -25,38 +21,32 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	protected $precision = null;
 	protected $mustBeAfter = null;
 	protected $mustBeBefore = null;
-	protected $overlay = null;
 
 	/**
 	 * @param array $config Configuration options
-	 * @param string $config['inputFormat'] Date format string to use for the textual input field.
-	 *   Displayed while the widget is active, and the user can type in a date in this format.
-	 *   Should be short and easy to type. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
-	 *   `precision`)
-	 * @param string $config['displayFormat'] Date format string to use for the clickable label.
-	 *   while the widget is inactive. Should be as unambiguous as possible (for example, prefer
-	 *   to spell out the month, rather than rely on the order), even if that makes it longer.
-	 *   Applicable only if the widget is infused. (default: language-specific)
-	 * @param string $config['longDisplayFormat'] If a custom displayFormat is not specified, use
-	 *   unabbreviated day of the week and month names in the default language-specific
-	 *   displayFormat. (default: false)
-	 * @param string $config['placeholderLabel'] Placeholder text shown when the widget is not
-	 *   selected. Applicable only if the widget is infused. (default: taken from message
-	 *   `mw-widgets-dateinput-no-date`)
-	 * @param string $config['placeholderDateFormat'] User-visible date format string displayed
-	 *   in the textual input field when it's empty. Should be the same as `inputFormat`, but
-	 *   translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
-	 *   `precision`)
-	 * @param string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
-	 * @param string $config['mustBeAfter']	Validates the date to be after this.
-	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
-	 * @param string $config['mustBeBefore'] Validates the date to be before this.
-	 *   In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
-	 * @param string $config['overlay'] The jQuery selector for the overlay layer on which to render
-	 *   the calendar. This configuration is useful in cases where the expanded calendar is larger
-	 *   than its container. The specified overlay layer is usually on top of the container and has
-	 *   a larger area. Applicable only if the widget is infused. By default, the calendar uses
-	 *   relative positioning.
+	 *   - string $config['inputFormat'] Date format string to use for the textual input field.
+	 *     Displayed while the widget is active, and the user can type in a date in this format.
+	 *     Should be short and easy to type. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
+	 *     `precision`)
+	 *   - string $config['displayFormat'] Date format string to use for the clickable label.
+	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer
+	 *     to spell out the month, rather than rely on the order), even if that makes it longer.
+	 *     Applicable only if the widget is infused. (default: language-specific)
+	 *   - string $config['longDisplayFormat'] If a custom displayFormat is not specified, use
+	 *     unabbreviated day of the week and month names in the default language-specific
+	 *     displayFormat. (default: false)
+	 *   - string $config['placeholderLabel'] Placeholder text shown when the widget is not
+	 *     selected. Applicable only if the widget is infused. (default: taken from message
+	 *     `mw-widgets-dateinput-no-date`)
+	 *   - string $config['placeholderDateFormat'] User-visible date format string displayed
+	 *     in the textual input field when it's empty. Should be the same as `inputFormat`, but
+	 *     translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
+	 *     `precision`)
+	 *   - string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
+	 *   - string $config['mustBeAfter']	Validates the date to be after this.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
+	 *   - string $config['mustBeBefore'] Validates the date to be before this.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
 	 */
 	public function __construct( array $config = [] ) {
 		$config = array_merge( [
@@ -90,9 +80,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		if ( isset( $config['placeholderLabel'] ) ) {
 			$this->placeholderLabel = $config['placeholderLabel'];
 		}
-		if ( isset( $config['overlay'] ) ) {
-			$this->overlay = $config['overlay'];
-		}
 
 		// Set up placeholder text visible if the browser doesn't override it (logic taken from JS)
 		if ( $this->placeholderDateFormat !== null ) {
@@ -109,7 +96,6 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 			'placeholder' => $placeholder,
 		], $config );
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Calculate min/max attributes (which are skipped by TextInputWidget) and add to <input>
@@ -160,9 +146,7 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		if ( $this->mustBeBefore !== null ) {
 			$config['mustBeBefore'] = $this->mustBeBefore;
 		}
-		if ( $this->overlay !== null ) {
-			$config['overlay'] = $this->overlay;
-		}
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 

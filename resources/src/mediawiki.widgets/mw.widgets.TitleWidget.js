@@ -5,6 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
+	var hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * Mixin for title widgets
@@ -23,6 +24,7 @@
 	 * @cfg {boolean} [showImages] Show page images
 	 * @cfg {boolean} [showDescriptions] Show page descriptions
 	 * @cfg {boolean} [showMissing=true] Show missing pages
+	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
 	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
 	 *  the widget will marks itself red for invalid inputs, including an empty query).
@@ -46,6 +48,7 @@
 		this.showImages = !!config.showImages;
 		this.showDescriptions = !!config.showDescriptions;
 		this.showMissing = config.showMissing !== false;
+		this.addQueryInput = config.addQueryInput !== false;
 		this.excludeCurrentPage = !!config.excludeCurrentPage;
 		this.validateTitle = config.validateTitle !== undefined ? config.validateTitle : true;
 		this.cache = config.cache;
@@ -252,7 +255,7 @@
 				titles.push( suggestionPage.title );
 			}
 
-			redirects = redirectsTo[ suggestionPage.title ] || [];
+			redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
 			for ( i = 0, len = redirects.length; i < len; i++ ) {
 				pageData[ redirects[ i ] ] = {
 					missing: false,
@@ -276,7 +279,7 @@
 		// mismatch where normalisation would make them matching (T50476)
 
 		pageExistsExact = (
-			Object.prototype.hasOwnProperty.call( pageData, this.getQueryValue() ) &&
+			hasOwn.call( pageData, this.getQueryValue() ) &&
 			(
 				!pageData[ this.getQueryValue() ].missing ||
 				pageData[ this.getQueryValue() ].known
@@ -284,7 +287,7 @@
 		);
 		pageExists = pageExistsExact || (
 			titleObj &&
-			Object.prototype.hasOwnProperty.call( pageData, titleObj.getPrefixedText() ) &&
+			hasOwn.call( pageData, titleObj.getPrefixedText() ) &&
 			(
 				!pageData[ titleObj.getPrefixedText() ].missing ||
 				pageData[ titleObj.getPrefixedText() ].known
@@ -296,12 +299,12 @@
 		}
 
 		// Offer the exact text as a suggestion if the page exists
-		if ( pageExists && !pageExistsExact ) {
+		if ( this.addQueryInput && pageExists && !pageExistsExact ) {
 			titles.unshift( this.getQueryValue() );
 		}
 
 		for ( i = 0, len = titles.length; i < len; i++ ) {
-			page = pageData[ titles[ i ] ] || {};
+			page = hasOwn.call( pageData, titles[ i ] ) ? pageData[ titles[ i ] ] : {};
 			items.push( this.createOptionWidget( this.getOptionWidgetData( titles[ i ], page ) ) );
 		}
 
@@ -353,7 +356,7 @@
 	 * @param {string} [value] Value to get a title for
 	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
-	mw.widgets.TitleWidget.prototype.getTitle = function ( value ) {
+	mw.widgets.TitleWidget.prototype.getMWTitle = function ( value ) {
 		var title = value !== undefined ? value : this.getQueryValue(),
 			// mw.Title doesn't handle null well
 			titleObj = mw.Title.newFromText( title, this.namespace !== null ? this.namespace : undefined );
@@ -367,7 +370,7 @@
 	 * @return {boolean} The query is valid
 	 */
 	mw.widgets.TitleWidget.prototype.isQueryValid = function () {
-		return this.validateTitle ? !!this.getTitle() : true;
+		return this.validateTitle ? !!this.getMWTitle() : true;
 	};
 
 }( jQuery, mediaWiki ) );

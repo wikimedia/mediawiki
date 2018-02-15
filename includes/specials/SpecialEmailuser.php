@@ -224,15 +224,29 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			wfDebug( "Target is invalid user.\n" );
 
 			return 'notarget';
-		} elseif ( !$target->isEmailConfirmed() ) {
+		}
+
+		if ( !$target->isEmailConfirmed() ) {
 			wfDebug( "User has no valid email.\n" );
 
 			return 'noemail';
-		} elseif ( !$target->canReceiveEmail() ) {
+		}
+
+		if ( !$target->canReceiveEmail() ) {
 			wfDebug( "User does not allow user emails.\n" );
 
 			return 'nowikiemail';
-		} elseif ( $sender !== null ) {
+		}
+
+		if ( $sender !== null && !$target->getOption( 'email-allow-new-users' ) &&
+			$sender->isNewbie()
+		) {
+			wfDebug( "User does not allow user emails from new users.\n" );
+
+			return 'nowikiemail';
+		}
+
+		if ( $sender !== null ) {
 			$blacklist = $target->getOption( 'email-blacklist', [] );
 			if ( $blacklist ) {
 				$lookup = CentralIdLookup::factory();

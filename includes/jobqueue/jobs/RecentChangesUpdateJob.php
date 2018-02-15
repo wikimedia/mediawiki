@@ -85,14 +85,17 @@ class RecentChangesUpdateJob extends Job {
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
+		$rcQuery = RecentChange::getQueryInfo();
 		do {
 			$rcIds = [];
 			$rows = [];
-			$res = $dbw->select( 'recentchanges',
-				RecentChange::selectFields(),
+			$res = $dbw->select(
+				$rcQuery['tables'],
+				$rcQuery['fields'],
 				[ 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ],
 				__METHOD__,
-				[ 'LIMIT' => $wgUpdateRowsPerQuery ]
+				[ 'LIMIT' => $wgUpdateRowsPerQuery ],
+				$rcQuery['joins']
 			);
 			foreach ( $res as $row ) {
 				$rcIds[] = $row->rc_id;

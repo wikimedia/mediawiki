@@ -1,0 +1,19 @@
+/* Edit font preference */
+.mw-editfont-monospace {
+	font-family: monospace, monospace;
+}
+
+.mw-editfont-sans-serif {
+	font-family: sans-serif;
+}
+
+.mw-editfont-serif {
+	font-family: serif;
+}
+
+/* Standardize font size for edit areas using edit-fonts T182320 */
+.mw-editfont-monospace,
+.mw-editfont-sans-serif,
+.mw-editfont-serif {
+	font-size: 13px;
+}

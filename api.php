@@ -44,6 +44,17 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
+// Pathinfo can be used for stupid things. We don't support it for api.php at
+// all, so error out if it's present.
+if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
+	$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValues() );
+	$correctUrl = wfExpandUrl( $correctUrl, PROTO_CANONICAL );
+	header( "Location: $correctUrl", true, 301 );
+	echo 'This endpoint does not support "path info", i.e. extra text between "api.php"'
+		. 'and the "?". Remove any such text and try again.';
+	die( 1 );
+}
+
 // Verify that the API has not been disabled
 if ( !$wgEnableAPI ) {
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );

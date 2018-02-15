@@ -56,7 +56,7 @@ mw.loader.register( [
 				'msg' => 'Version falls back gracefully if getVersionHash throws',
 				'modules' => [
 					'test.fail' => (
-						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 							->setMethods( [ 'getVersionHash' ] )->getMock() )
 						&& $mock->method( 'getVersionHash' )->will(
 							$this->throwException( new Exception )
@@ -81,7 +81,7 @@ mw.loader.state( {
 				'msg' => 'Use version from getVersionHash',
 				'modules' => [
 					'test.version' => (
-						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 							->setMethods( [ 'getVersionHash' ] )->getMock() )
 						&& $mock->method( 'getVersionHash' )->willReturn( '1234567' )
 					) ? $mock : $mock
@@ -101,7 +101,7 @@ mw.loader.register( [
 				'msg' => 'Re-hash version from getVersionHash if too long',
 				'modules' => [
 					'test.version' => (
-						( $mock = $this->getMockBuilder( 'ResourceLoaderTestModule' )
+						( $mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
 							->setMethods( [ 'getVersionHash' ] )->getMock() )
 						&& $mock->method( 'getVersionHash' )->willReturn( '12345678' )
 					) ? $mock : $mock

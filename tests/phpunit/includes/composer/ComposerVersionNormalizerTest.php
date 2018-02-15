@@ -9,13 +9,15 @@
  */
 class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider nonStringProvider
 	 */
 	public function testGivenNonString_normalizeThrowsInvalidArgumentException( $nonString ) {
 		$normalizer = new ComposerVersionNormalizer();
 
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		$normalizer->normalizeSuffix( $nonString );
 	}
 

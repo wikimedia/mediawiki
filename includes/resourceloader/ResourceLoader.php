@@ -26,8 +26,8 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use WrappedString\WrappedString;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\WrappedString;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.
@@ -235,8 +235,6 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		return $data;
 	}
-
-	/* Methods */
 
 	/**
 	 * Register core modules and runs registration hooks.
@@ -555,7 +553,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$object->setLogger( $this->logger );
 			} else {
 				if ( !isset( $info['class'] ) ) {
-					$class = 'ResourceLoaderFileModule';
+					$class = ResourceLoaderFileModule::class;
 				} else {
 					$class = $info['class'];
 				}
@@ -588,8 +586,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		if (
 			isset( $info['class'] ) &&
-			$info['class'] !== 'ResourceLoaderFileModule' &&
-			!is_subclass_of( $info['class'], 'ResourceLoaderFileModule' )
+			$info['class'] !== ResourceLoaderFileModule::class &&
+			!is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
 		) {
 			return false;
 		}
@@ -692,7 +690,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @since 1.28
 	 * @param ResourceLoaderContext $context
-	 * @param string[] $modules List of module names
 	 * @return string Hash
 	 */
 	public function makeVersionQuery( ResourceLoaderContext $context ) {
@@ -1210,8 +1207,6 @@ MESSAGE;
 		return $moduleNames;
 	}
 
-	/* Static Methods */
-
 	/**
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
@@ -1232,7 +1227,11 @@ MESSAGE;
 		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( $scripts instanceof XmlJsCode ) {
-			$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+			if ( self::inDebugMode() ) {
+				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
+			} else {
+				$scripts = new XmlJsCode( 'function($,jQuery,require,module){'. $scripts->value . '}' );
+			}
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}

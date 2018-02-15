@@ -263,7 +263,7 @@
 	"undeletedpage": "'''«$1»''' wurde wiederhergestellt.\n\nIm [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelöschten und wiederhergestellten Seiten.",
 	"undelete-cleanup-error": "Fehler beim Löschen der unbenutzten Archiv-Version «$1».",
 	"undelete-show-file-confirm": "Bist du sicher, dass du eine gelöschte Version der Datei «<nowiki>$1</nowiki>» vom $2, $3 Uhr sehen willst?",
-	"blanknamespace": "(Hauptseite)",
+	"blanknamespace": "(Seiten)",
 	"contributions-title": "Benutzerbeiträge von «$1»",
 	"whatlinkshere-title": "Seiten, die auf «$1» verlinken",
 	"linkshere": "Die folgenden Seiten verlinken auf '''«[[:$1]]»''':",

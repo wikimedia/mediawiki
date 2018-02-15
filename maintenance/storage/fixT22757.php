@@ -310,9 +310,9 @@ class FixT22757 extends Maintenance {
 		$text = $secondaryRow->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$url = $text;
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			list( /* $proto */, $path ) = explode( '://', $url, 2 );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 
 			if ( $path == "" ) {
 				return false;
@@ -345,5 +345,5 @@ class FixT22757 extends Maintenance {
 	}
 }
 
-$maintClass = 'FixT22757';
+$maintClass = FixT22757::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

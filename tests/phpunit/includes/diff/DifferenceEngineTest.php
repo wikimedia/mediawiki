@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers DifferenceEngine
  *
@@ -115,6 +117,32 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 
 		$diffEngine = new DifferenceEngine( $this->context, $revs[1], $revs[2], 2, true, false );
 		$this->assertEquals( $revs[2], $diffEngine->getNewid(), 'diff get new id' );
+	}
+
+	public function provideLocaliseTitleTooltipsTestData() {
+		return [
+			'moved paragraph left shoud get new location title' => [
+				'<a class="mw-diff-movedpara-left">⚫</a>',
+				'<a class="mw-diff-movedpara-left" title="(diff-paragraph-moved-tonew)">⚫</a>',
+			],
+			'moved paragraph right shoud get old location title' => [
+				'<a class="mw-diff-movedpara-right">⚫</a>',
+				'<a class="mw-diff-movedpara-right" title="(diff-paragraph-moved-toold)">⚫</a>',
+			],
+			'nothing changed when key not hit' => [
+				'<a class="mw-diff-movedpara-rightis">⚫</a>',
+				'<a class="mw-diff-movedpara-rightis">⚫</a>',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLocaliseTitleTooltipsTestData
+	 */
+	public function testAddLocalisedTitleTooltips( $input, $expected ) {
+		$this->setContentLang( 'qqx' );
+		$diffEngine = TestingAccessWrapper::newFromObject( new DifferenceEngine() );
+		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
 	}
 
 }

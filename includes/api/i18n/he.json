@@ -1491,6 +1491,8 @@
 	"api-help-param-direction": "באיזה כיוון למנות:\n;newer:לרשום את הישנים ביותר בהתחלה. לתשומת לבך: $1start חייב להיות לפני $1end.\n;older:לרשום את החדשים ביותר בהתחלה (בררת מחדל). לתשומת לבך: $1start חייב להיות אחרי $1end.",
 	"api-help-param-continue": "כשיש עוד תוצאות, להשתמש בזה בשביל להמשיך.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(ללא תיאור)</span>",
+	"api-help-param-maxbytes": "לא יכול להיות ארוך {{PLURAL:$1|מבית אחד|מ־$1 בתים}}.",
+	"api-help-param-maxchars": "לא יכול להיות ארוך {{PLURAL:$1|מתו אחד|מ־$1 תווים}}.",
 	"api-help-examples": "{{PLURAL:$1|דוגמה|דוגמאות}}:",
 	"api-help-permissions": "{{PLURAL:$1|הרשאה|הרשאות}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|הוענק ל|הוענקו ל}}: $2",

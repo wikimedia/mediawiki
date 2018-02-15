@@ -10,7 +10,8 @@
 			"Rv77ax",
 			"William Surya Permana",
 			"Rachmat.Wahidi",
-			"Rachmat04"
+			"Rachmat04",
+			"Gombang"
 		]
 	},
 	"ooui-outline-control-move-down": "Pindahkan butir ke bawah",
@@ -19,6 +20,7 @@
 	"ooui-toolbar-more": "Lainnya",
 	"ooui-toolgroup-expand": "Selengkapnya",
 	"ooui-toolgroup-collapse": "Secukupnya",
+	"ooui-item-remove": "Hapus",
 	"ooui-dialog-message-accept": "Oke",
 	"ooui-dialog-message-reject": "Batal",
 	"ooui-dialog-process-error": "Ada yang tidak beres",

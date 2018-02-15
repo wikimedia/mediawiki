@@ -10,12 +10,20 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Additional configuration
 	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
+	 * @cfg {string} daysPreferenceName Preference name for the days filter
+	 * @cfg {string} limitPreferenceName Preference name for the limit filter
+	 * @cfg {boolean} [normalizeTarget] Dictates whether or not to go through the
+	 *  title normalization to separate title subpage/parts into the target= url
+	 *  parameter
 	 */
 	mw.rcfilters.Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 		this.filtersModel = filtersModel;
 		this.changesListModel = changesListModel;
 		this.savedQueriesModel = savedQueriesModel;
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
+		this.daysPreferenceName = config.daysPreferenceName;
+		this.limitPreferenceName = config.limitPreferenceName;
+		this.normalizeTarget = !!config.normalizeTarget;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -39,13 +47,14 @@
 	 * @param {Array} filterStructure Filter definition and structure for the model
 	 * @param {Object} [namespaceStructure] Namespace definition
 	 * @param {Object} [tagList] Tag definition
+	 * @param {Object} [conditionalViews] Conditional view definition
 	 */
-	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList ) {
+	mw.rcfilters.Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
 		var parsedSavedQueries, pieces,
 			displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 			defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 			controller = this,
-			views = {},
+			views = $.extend( true, {}, conditionalViews ),
 			items = [],
 			uri = new mw.Uri();
 
@@ -78,16 +87,19 @@
 					separator: ';',
 					fullCoverage: true,
 					filters: items
-				},
-				{
-					name: 'invertGroup',
-					type: 'boolean',
-					hidden: true,
-					filters: [ {
-						name: 'invert',
-						'default': '0'
-					} ]
 				} ]
+			};
+			views.invert = {
+				groups: [
+					{
+						name: 'invertGroup',
+						type: 'boolean',
+						hidden: true,
+						filters: [ {
+							name: 'invert',
+							'default': '0'
+						} ]
+					} ]
 			};
 		}
 		if ( tagList ) {
@@ -122,13 +134,8 @@
 						max: 1000
 					},
 					sortFunc: function ( a, b ) { return Number( a.name ) - Number( b.name ); },
-					'default': displayConfig.limitDefault,
-					// Temporarily making this not sticky until we resolve the problem
-					// with the misleading preference. Note that if this is to be permanent
-					// we should remove all sticky behavior methods completely
-					// See T172156
-					// isSticky: true,
-					excludedFromSavedQueries: true,
+					'default': mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
+					sticky: true,
 					filters: displayConfig.limitArray.map( function ( num ) {
 						return controller._createFilterDataFromNumber( num, num );
 					} )
@@ -150,10 +157,8 @@
 							( Number( i ) * 24 ).toFixed( 2 ) :
 							Number( i );
 					},
-					'default': displayConfig.daysDefault,
-					// Temporarily making this not sticky while limit is not sticky, see above
-					// isSticky: true,
-					excludedFromSavedQueries: true,
+					'default': mw.user.options.get( this.daysPreferenceName, displayConfig.daysDefault ),
+					sticky: true,
 					filters: [
 						// Hours (1, 2, 6, 12)
 						0.04166, 0.0833, 0.25, 0.5
@@ -177,7 +182,7 @@
 					type: 'boolean',
 					title: '', // Because it's a hidden group, this title actually appears nowhere
 					hidden: true,
-					isSticky: true,
+					sticky: true,
 					filters: [
 						{
 							name: 'enhanced',
@@ -212,7 +217,8 @@
 		this.filtersModel.initializeFilters( filterStructure, views );
 
 		this.uriProcessor = new mw.rcfilters.UriProcessor(
-			this.filtersModel
+			this.filtersModel,
+			{ normalizeTarget: this.normalizeTarget }
 		);
 
 		if ( !mw.user.isAnon() ) {
@@ -262,7 +268,7 @@
 			this.changesListModel.update(
 				pieces.changes,
 				pieces.fieldset,
-				pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
+				pieces.noResultsDetails,
 				true // We're using existing DOM elements
 			);
 		}
@@ -280,6 +286,7 @@
 	 * Extracts information from the changes list DOM
 	 *
 	 * @param {jQuery} $root Root DOM to find children from
+	 * @param {boolean} [statusCode] Server response status code
 	 * @return {Object} Information about changes list
 	 * @return {Object|string} return.changes Changes list, or 'NO_RESULTS' if there are no results
 	 *   (either normally or as an error)
@@ -287,10 +294,21 @@
 	 *   'NO_RESULTS_TIMEOUT' for no results due to a timeout, or omitted for more than 0 results
 	 * @return {jQuery} return.fieldset Fieldset
 	 */
-	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root ) {
-		var info, isTimeout,
+	mw.rcfilters.Controller.prototype._extractChangesListInfo = function ( $root, statusCode ) {
+		var info,
 			$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
-			areResults = !!$changesListContents.length;
+			areResults = !!$changesListContents.length,
+			checkForLogout = !areResults && statusCode === 200;
+
+		// We check if user logged out on different tab/browser or the session has expired.
+		// 205 status code returned from the server, which indicates that we need to reload the page
+		// is not usable on WL page, because we get redirected to login page, which gives 200 OK
+		// status code (if everything else goes well).
+		// Bug: T177717
+		if ( checkForLogout && !!$root.find( '#wpName1' ).length ) {
+			location.reload( false );
+			return;
+		}
 
 		info = {
 			changes: $changesListContents.length ? $changesListContents : 'NO_RESULTS',
@@ -298,8 +316,13 @@
 		};
 
 		if ( !areResults ) {
-			isTimeout = !!$root.find( '.mw-changeslist-timeout' ).length;
-			info.noResultsDetails = isTimeout ? 'NO_RESULTS_TIMEOUT' : 'NO_RESULTS_NORMAL';
+			if ( $root.find( '.mw-changeslist-timeout' ).length ) {
+				info.noResultsDetails = 'NO_RESULTS_TIMEOUT';
+			} else if ( $root.find( '.mw-changeslist-notargetpage' ).length ) {
+				info.noResultsDetails = 'NO_RESULTS_NO_TARGET_PAGE';
+			} else {
+				info.noResultsDetails = 'NO_RESULTS_NORMAL';
+			}
 		}
 
 		return info;
@@ -388,21 +411,16 @@
 	};
 
 	/**
-	 * Switch the view of the filters model
-	 *
-	 * @param {string} view Requested view
-	 */
-	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
-		this.filtersModel.switchView( view );
-	};
-
-	/**
 	 * Reset to default filters
 	 */
 	mw.rcfilters.Controller.prototype.resetToDefaults = function () {
-		this.filtersModel.updateStateFromParams( this._getDefaultParams() );
-
-		this.updateChangesList();
+		var params = this._getDefaultParams();
+		if ( this.applyParamChange( params ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL( params );
+		}
 	};
 
 	/**
@@ -411,20 +429,22 @@
 	 * @return {boolean} Defaults are all false
 	 */
 	mw.rcfilters.Controller.prototype.areDefaultsEmpty = function () {
-		return $.isEmptyObject( this._getDefaultParams( true ) );
+		return $.isEmptyObject( this._getDefaultParams() );
 	};
 
 	/**
 	 * Empty all selected filters
 	 */
 	mw.rcfilters.Controller.prototype.emptyFilters = function () {
-		var highlightedFilterNames = this.filtersModel
-			.getHighlightedItems()
+		var highlightedFilterNames = this.filtersModel.getHighlightedItems()
 			.map( function ( filterItem ) { return { name: filterItem.getName() }; } );
 
-		this.filtersModel.updateStateFromParams( {} );
-
-		this.updateChangesList();
+		if ( this.applyParamChange( {} ) ) {
+			// Only update the changes list if there was a change to actual filters
+			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL();
+		}
 
 		if ( highlightedFilterNames ) {
 			this._trackHighlight( 'clearAll', highlightedFilterNames );
@@ -506,7 +526,6 @@
 	 */
 	mw.rcfilters.Controller.prototype.toggleInvertedNamespaces = function () {
 		this.filtersModel.toggleInvertedNamespaces();
-
 		if (
 			this.filtersModel.getFiltersByView( 'namespaces' ).filter(
 				function ( filterItem ) { return filterItem.isSelected(); }
@@ -514,7 +533,36 @@
 		) {
 			// Only re-fetch results if there are namespace items that are actually selected
 			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL();
 		}
+	};
+
+	/**
+	 * Set the value of the 'showlinkedto' parameter
+	 * @param {boolean} value
+	 */
+	mw.rcfilters.Controller.prototype.setShowLinkedTo = function ( value ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' ),
+			showLinkedToItem = this.filtersModel.getGroup( 'toOrFrom' ).getItemByParamName( 'showlinkedto' );
+
+		this.filtersModel.toggleFilterSelected( showLinkedToItem.getName(), value );
+		this.uriProcessor.updateURL();
+		// reload the results only when target is set
+		if ( targetItem.getValue() ) {
+			this.updateChangesList();
+		}
+	};
+
+	/**
+	 * Set the target page
+	 * @param {string} page
+	 */
+	mw.rcfilters.Controller.prototype.setTargetPage = function ( page ) {
+		var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' );
+		targetItem.setValue( page );
+		this.uriProcessor.updateURL();
+		this.updateChangesList();
 	};
 
 	/**
@@ -571,10 +619,23 @@
 		}
 
 		this._checkForNewChanges()
-			.then( function ( newChanges ) {
+			.then( function ( statusCode ) {
+				// no result is 204 with the 'peek' param
+				// logged out is 205
+				var newChanges = statusCode === 200;
+
 				if ( !this._shouldCheckForNewChanges() ) {
 					// by the time the response is received,
 					// it may not be appropriate anymore
+					return;
+				}
+
+				// 205 is the status code returned from server when user's logged in/out
+				// status is not matching while fetching live update changes.
+				// This works only on Recent Changes page. For WL, look _extractChangesListInfo.
+				// Bug: T177717
+				if ( statusCode === 205 ) {
+					location.reload( false );
 					return;
 				}
 
@@ -613,12 +674,12 @@
 		var params = {
 			limit: 1,
 			peek: 1, // bypasses ChangesList specific UI
-			from: this.changesListModel.getNextFrom()
+			from: this.changesListModel.getNextFrom(),
+			isAnon: mw.user.isAnon()
 		};
 		return this._queryChangesList( 'liveUpdate', params ).then(
 			function ( data ) {
-				// no result is 204 with the 'peek' param
-				return data.status === 200;
+				return data.status;
 			}
 		);
 	};
@@ -708,10 +769,12 @@
 			return;
 		}
 
-		// Apply parameters to model
-		this.filtersModel.updateStateFromParams( params );
-
-		this.updateChangesList();
+		if ( this.applyParamChange( params ) ) {
+			// Update changes list only if there was a difference in filter selection
+			this.updateChangesList();
+		} else {
+			this.uriProcessor.updateURL( params );
+		}
 
 		// Log filter grouping
 		this.trackFilterGroupings( 'savedfilters' );
@@ -782,72 +845,48 @@
 	/**
 	 * Update the limit default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcfilters-rclimit' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcfilters-rclimit', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcfilters-rclimit', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateLimitDefault = function ( newValue ) {
+		this.updateNumericPreference( this.limitPreferenceName, newValue );
 	};
 
 	/**
 	 * Update the days default value
 	 *
-	 * param {number} newValue New value
+	 * @param {number} newValue New value
 	 */
-	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( /* newValue */ ) {
-		// HACK: Temporarily remove this from being sticky
-		// See T172156
-
-		/*
-		if ( !$.isNumeric( newValue ) ) {
-			return;
-		}
-
-		newValue = Number( newValue );
-
-		if ( mw.user.options.get( 'rcdays' ) !== newValue ) {
-			// Save the preference
-			new mw.Api().saveOption( 'rcdays', newValue );
-			// Update the preference for this session
-			mw.user.options.set( 'rcdays', newValue );
-		}
-		*/
-		return;
+	mw.rcfilters.Controller.prototype.updateDaysDefault = function ( newValue ) {
+		this.updateNumericPreference( this.daysPreferenceName, newValue );
 	};
 
 	/**
 	 * Update the group by page default value
 	 *
-	 * @param {number} newValue New value
+	 * @param {boolean} newValue New value
 	 */
 	mw.rcfilters.Controller.prototype.updateGroupByPageDefault = function ( newValue ) {
+		this.updateNumericPreference( 'usenewrc', Number( newValue ) );
+	};
+
+	/**
+	 * Update a numeric preference with a new value
+	 *
+	 * @param {string} prefName Preference name
+	 * @param {number|string} newValue New value
+	 */
+	mw.rcfilters.Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
 		if ( !$.isNumeric( newValue ) ) {
 			return;
 		}
 
 		newValue = Number( newValue );
 
-		if ( mw.user.options.get( 'usenewrc' ) !== newValue ) {
+		if ( mw.user.options.get( prefName ) !== newValue ) {
 			// Save the preference
-			new mw.Api().saveOption( 'usenewrc', newValue );
+			new mw.Api().saveOption( prefName, newValue );
 			// Update the preference for this session
-			mw.user.options.set( 'usenewrc', newValue );
+			mw.user.options.set( prefName, newValue );
 		}
 	};
 
@@ -856,7 +895,7 @@
 	 * without adding an history entry.
 	 */
 	mw.rcfilters.Controller.prototype.replaceUrl = function () {
-		this.uriProcessor.replaceUpdatedUri();
+		this.uriProcessor.updateURL();
 	};
 
 	/**
@@ -869,7 +908,7 @@
 	mw.rcfilters.Controller.prototype.updateStateFromUrl = function ( fetchChangesList ) {
 		fetchChangesList = fetchChangesList === undefined ? true : !!fetchChangesList;
 
-		this.uriProcessor.updateModelBasedOnQuery( new mw.Uri().query );
+		this.uriProcessor.updateModelBasedOnQuery();
 
 		// Update the sticky preferences, in case we received a value
 		// from the URL
@@ -908,7 +947,7 @@
 					this.changesListModel.update(
 						$changesListContent,
 						$fieldset,
-						pieces.noResultsDetails === 'NO_RESULTS_TIMEOUT',
+						pieces.noResultsDetails,
 						false,
 						// separator between old and new changes
 						updateMode === this.SHOW_NEW_CHANGES || updateMode === this.LIVE_UPDATE
@@ -925,14 +964,13 @@
 	 * Get an object representing the default parameter state, whether
 	 * it is from the model defaults or from the saved queries.
 	 *
-	 * @param {boolean} [excludeHiddenParams] Exclude hidden and sticky params
 	 * @return {Object} Default parameters
 	 */
-	mw.rcfilters.Controller.prototype._getDefaultParams = function ( excludeHiddenParams ) {
+	mw.rcfilters.Controller.prototype._getDefaultParams = function () {
 		if ( this.savedQueriesModel.getDefault() ) {
-			return this.savedQueriesModel.getDefaultParams( excludeHiddenParams );
+			return this.savedQueriesModel.getDefaultParams();
 		} else {
-			return this.filtersModel.getDefaultParams( excludeHiddenParams );
+			return this.filtersModel.getDefaultParams();
 		}
 	};
 
@@ -1005,10 +1043,26 @@
 		return this._queryChangesList( 'updateChangesList' )
 			.then(
 				function ( data ) {
-					var $parsed = $( '<div>' ).append( $( $.parseHTML( data.content ) ) );
+					var $parsed;
 
-					return this._extractChangesListInfo( $parsed );
+					// Status code 0 is not HTTP status code,
+					// but is valid value of XMLHttpRequest status.
+					// It is used for variety of network errors, for example
+					// when an AJAX call was cancelled before getting the response
+					if ( data && data.status === 0 ) {
+						return {
+							changes: 'NO_RESULTS',
+							// We need empty result set, to avoid exceptions because of undefined value
+							fieldset: $( [] ),
+							noResultsDetails: 'NO_RESULTS_NETWORK_ERROR'
+						};
+					}
 
+					$parsed = $( '<div>' ).append( $( $.parseHTML(
+						data ? data.content : ''
+					) ) );
+
+					return this._extractChangesListInfo( $parsed, data.status );
 				}.bind( this )
 			);
 	};
@@ -1081,6 +1135,24 @@
 	};
 
 	/**
+	 * Apply a change of parameters to the model state, and check whether
+	 * the new state is different than the old state.
+	 *
+	 * @param  {Object} newParamState New parameter state to apply
+	 * @return {boolean} New applied model state is different than the previous state
+	 */
+	mw.rcfilters.Controller.prototype.applyParamChange = function ( newParamState ) {
+		var after,
+			before = this.filtersModel.getSelectedState();
+
+		this.filtersModel.updateStateFromParams( newParamState );
+
+		after = this.filtersModel.getSelectedState();
+
+		return !OO.compare( before, after );
+	};
+
+	/**
 	 * Mark all changes as seen on Watchlist
 	 */
 	mw.rcfilters.Controller.prototype.markAllChangesAsSeen = function () {
@@ -1092,5 +1164,41 @@
 		} ).then( function () {
 			this.updateChangesList( null, 'markSeen' );
 		}.bind( this ) );
+	};
+
+	/**
+	 * Set the current search for the system.
+	 *
+	 * @param {string} searchQuery Search query, including triggers
+	 */
+	mw.rcfilters.Controller.prototype.setSearch = function ( searchQuery ) {
+		this.filtersModel.setSearch( searchQuery );
+	};
+
+	/**
+	 * Switch the view by changing the search query trigger
+	 * without changing the search term
+	 *
+	 * @param  {string} view View to change to
+	 */
+	mw.rcfilters.Controller.prototype.switchView = function ( view ) {
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view ) +
+			this.filtersModel.removeViewTriggers( this.filtersModel.getSearch() )
+		);
+	};
+
+	/**
+	 * Reset the search for a specific view. This means we null the search query
+	 * and replace it with the relevant trigger for the requested view
+	 *
+	 * @param  {string} [view='default'] View to change to
+	 */
+	mw.rcfilters.Controller.prototype.resetSearchForView = function ( view ) {
+		view = view || 'default';
+
+		this.setSearch(
+			this.filtersModel.getViewTrigger( view )
+		);
 	};
 }( mediaWiki, jQuery ) );

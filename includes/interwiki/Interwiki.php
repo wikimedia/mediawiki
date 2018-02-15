@@ -32,7 +32,7 @@ class Interwiki {
 	/** @var string The URL of the wiki, with "$1" as a placeholder for an article name. */
 	protected $mURL;
 
-	/** @var string The URL of the file api.php  */
+	/** @var string The URL of the file api.php */
 	protected $mAPI;
 
 	/** @var string The name of the database (for a connection to be established

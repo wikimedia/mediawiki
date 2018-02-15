@@ -296,15 +296,14 @@ class RevisionList extends RevisionListBase {
 		if ( $this->ids !== null ) {
 			$conds['rev_id'] = array_map( 'intval', $this->ids );
 		}
+		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
 		return $db->select(
-			[ 'revision', 'page', 'user' ],
-			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			$revQuery['tables'],
+			$revQuery['fields'],
 			$conds,
 			__METHOD__,
 			[ 'ORDER BY' => 'rev_id DESC' ],
-			[
-				'page' => Revision::pageJoinCond(),
-				'user' => Revision::userJoinCond() ]
+			$revQuery['joins']
 		);
 	}
 

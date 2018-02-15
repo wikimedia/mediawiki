@@ -1,0 +1,9 @@
+		<item>
+			<title>{{{title}}}</title>
+			<link>{{{url}}}</link>
+			<guid{{^permalink}} isPermaLink="false"{{/permalink}}>{{{uniqueID}}}</guid>
+			<description>{{{description}}}</description>
+			{{#date}}<pubDate>{{{.}}}</pubDate>{{/date}}
+			{{#author}}<dc:creator>{{{.}}}</dc:creator>{{/author}}
+			{{#comments}}<comments>{{{.}}}</comments>{{/comments}}
+		</item>

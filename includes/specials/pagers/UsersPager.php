@@ -33,7 +33,7 @@
 class UsersPager extends AlphabeticPager {
 
 	/**
-	 * @var array A array with user ids as key and a array of groups as value
+	 * @var array[] A array with user ids as key and a array of groups as value
 	 */
 	protected $userGroupCache;
 
@@ -277,7 +277,7 @@ class UsersPager extends AlphabeticPager {
 
 		$formDescriptor = [
 			'user' => [
-				'class' => 'HTMLUserTextField',
+				'class' => HTMLUserTextField::class,
 				'label' => $this->msg( 'listusersfrom' )->text(),
 				'name' => 'username',
 				'default' => $this->requestedUser,
@@ -286,7 +286,7 @@ class UsersPager extends AlphabeticPager {
 				'label' => $this->msg( 'group' )->text(),
 				'name' => 'group',
 				'default' => $this->requestedGroup,
-				'class' => 'HTMLSelectField',
+				'class' => HTMLSelectField::class,
 				'options' => $groupOptions,
 			],
 			'editsOnly' => [
@@ -311,7 +311,7 @@ class UsersPager extends AlphabeticPager {
 				'default' => $this->mDefaultDirection
 			],
 			'limithiddenfield' => [
-				'class' => 'HTMLHiddenField',
+				'class' => HTMLHiddenField::class,
 				'name' => 'limit',
 				'default' => $this->mLimit
 			]
@@ -322,14 +322,14 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $beforeSubmitButtonHookOut !== '' ) {
 			$formDescriptior[ 'beforeSubmitButtonHookOut' ] = [
-				'class' => 'HTMLInfoField',
+				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeSubmitButtonHookOut
 			];
 		}
 
 		$formDescriptor[ 'submit' ] = [
-			'class' => 'HTMLSubmitField',
+			'class' => HTMLSubmitField::class,
 			'buttonlabel-message' => 'listusers-submit',
 		];
 
@@ -338,7 +338,7 @@ class UsersPager extends AlphabeticPager {
 
 		if ( $beforeClosingFieldsetHookOut !== '' ) {
 			$formDescriptior[ 'beforeClosingFieldsetHookOut' ] = [
-				'class' => 'HTMLInfoField',
+				'class' => HTMLInfoField::class,
 				'raw' => true,
 				'default' => $beforeClosingFieldsetHookOut
 			];
@@ -391,8 +391,8 @@ class UsersPager extends AlphabeticPager {
 	 * and the relevant UserGroupMembership objects
 	 *
 	 * @param int $uid User id
-	 * @param array|null $cache
-	 * @return array (group name => UserGroupMembership object)
+	 * @param array[]|null $cache
+	 * @return UserGroupMembership[] (group name => UserGroupMembership object)
 	 */
 	protected static function getGroupMemberships( $uid, $cache = null ) {
 		if ( $cache === null ) {
@@ -407,7 +407,7 @@ class UsersPager extends AlphabeticPager {
 	 * Format a link to a group description page
 	 *
 	 * @param string|UserGroupMembership $group Group name or UserGroupMembership object
-	 * @param string $username Username
+	 * @param string $username
 	 * @return string
 	 */
 	protected function buildGroupLink( $group, $username ) {

@@ -91,17 +91,24 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * @deprecated since 1.31 This function is a now-redundant optimisation intended
+	 *  for very old versions of PHP. The use of references here makes the code
+	 *  more fragile and is incompatible with plans like T140664. Use set() instead.
 	 * @param string $name
 	 * @param mixed &$value
 	 */
 	public function setRef( $name, &$value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->data[$name] =& $value;
 	}
 
 	/**
 	 * @param MediaWikiI18N &$t
+	 * @deprecate since 1.31 Use BaseTemplate::msg() or Skin::msg() instead for setting
+	 *  message parameters.
 	 */
 	public function setTranslator( &$t ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->translator = &$t;
 	}
 
@@ -129,18 +136,18 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
-	 * @param string $str
+	 * @param string $msgKey
 	 */
-	function msg( $str ) {
-		echo htmlspecialchars( $this->translator->translate( $str ) );
+	function msg( $msgKey ) {
+		echo htmlspecialchars( wfMessage( $msgKey )->text() );
 	}
 
 	/**
 	 * @private
-	 * @param string $str
+	 * @param string $msgKey
 	 */
-	function msgHtml( $str ) {
-		echo $this->translator->translate( $str );
+	function msgHtml( $msgKey ) {
+		echo wfMessage( $msgKey )->text();
 	}
 
 	/**
@@ -148,10 +155,10 @@ abstract class QuickTemplate {
 	 * @private
 	 * @param string $str
 	 */
-	function msgWiki( $str ) {
+	function msgWiki( $msgKey ) {
 		global $wgOut;
 
-		$text = $this->translator->translate( $str );
+		$text = wfMessage( $msgKey )->text();
 		echo $wgOut->parse( $text );
 	}
 
@@ -167,12 +174,12 @@ abstract class QuickTemplate {
 	/**
 	 * @private
 	 *
-	 * @param string $str
+	 * @param string $msgKey
 	 * @return bool
 	 */
-	function haveMsg( $str ) {
-		$msg = $this->translator->translate( $str );
-		return ( $msg != '-' ) && ( $msg != '' ); # ????
+	function haveMsg( $msgKey ) {
+		$msg = wfMessage( $msgKey );
+		return $msg->exists() && !$msg->isDisabled();
 	}
 
 	/**

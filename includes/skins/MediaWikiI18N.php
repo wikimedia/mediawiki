@@ -28,11 +28,20 @@
 class MediaWikiI18N {
 	private $context = [];
 
+	/**
+	 * @deprecate since 1.31 Use BaseTemplate::msg() or Skin::msg() instead for setting
+	 *  message parameters.
+	 */
 	function set( $varName, $value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->context[$varName] = $value;
 	}
 
+	/**
+	 * @deprecate since 1.31 Use BaseTemplate::msg(), Skin::msg(), or wfMessage() instead.
+	 */
 	function translate( $value ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
 
@@ -41,9 +50,9 @@ class MediaWikiI18N {
 		$m = [];
 		while ( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
 			list( $src, $var ) = $m;
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$varValue = $this->context[$var];
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			$value = str_replace( $src, $varValue, $value );
 		}
 		return $value;

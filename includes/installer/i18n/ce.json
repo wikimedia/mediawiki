@@ -27,7 +27,7 @@
 	"config-page-copying": "Лицензи",
 	"config-page-upgradedoc": "Карлаяккхар",
 	"config-page-existingwiki": "Йолуш йолу вики",
-	"config-copyright": "=== Авторан бакъонаш а хьал а ===\n\n$1\nMediaWiki ю маьрша программин латораг, шу йиш ю фондас арахецна йолу GNU General Public License лицензица и яржо я хийца а.\n\nMediaWiki яржош ю и шуна пайдане хир яц те аьлла, амма цхьа юкъарахилар доцуш. Хь. кхин. лицензи мадарра GNU General Public License .\n\nШоьга кхача езаш яра [{{SERVER}}{{SCRIPTPATH}}/COPYING копи GNU General Public License] хӀокху программица, кхаьчна яцахь язъе Free Software Foundation, Inc., адрес тӀе: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA я [//www.gnu.org/licenses/old-licenses/gpl-2.0.html еша и онлайнехь].",
+	"config-copyright": "=== Авторан бакъонаш а хьал а ===\n\n$1\nMediaWiki ю маьрша программин латораг, шу йиш ю фондас арахецна йолу GNU General Public License лицензица и яржо я хийца а.\n\nMediaWiki яржош ю и шуна пайдане хир яц те аьлла, амма цхьа юкъарахилар доцуш. Хь. кхин. лицензи мадарра GNU General Public License .\n\nШоьга кхача езаш яра [{{SERVER}}{{SCRIPTPATH}}/COPYING копи GNU General Public License] хӀокху программица, кхаьчна яцахь язъе Free Software Foundation, Inc., адрес тӀе: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA я [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html еша и онлайнехь].",
 	"config-no-fts3": "'''Тергам бе''': SQLite гулйина хуттург йоцуш [//sqlite.org/fts3.html FTS3] — лахар болхбеш хир дац оцу бухца.",
 	"config-no-cli-uri": "'''ДӀахьедар''': <code>--scriptpath</code> параметр язйина яц, иза Ӏадйитаран кепаца лелош ю: <code>$1</code> .",
 	"config-db-name": "Хаамийн базан цӀе:",

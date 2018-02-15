@@ -104,7 +104,7 @@ class LogPage {
 			'log_page' => $this->target->getArticleID(),
 			'log_params' => $this->params
 		];
-		$data += CommentStore::newKey( 'log_comment' )->insert( $dbw, $this->comment );
+		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $this->comment );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 
@@ -319,7 +319,7 @@ class LogPage {
 	 *
 	 * @param string $action One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move', 'move_redir'
-	 * @param Title $target Title object
+	 * @param Title $target
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMessage function
 	 * @param null|int|User $doer The user doing the action. null for $wgUser

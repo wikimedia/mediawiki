@@ -44,10 +44,6 @@
 
 				return result;
 			}
-		},
-		featureFlags: {
-			liveUpdate: mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' ) &&
-				( mw.user.options.get( 'rcenhancedfilters' ) || new mw.Uri().query.liveupdate )
 		}
 	};
 }( mediaWiki ) );

@@ -84,7 +84,7 @@ class LocalFile extends File {
 	protected $deleted;
 
 	/** @var string */
-	protected $repoClass = 'LocalRepo';
+	protected $repoClass = LocalRepo::class;
 
 	/** @var int Number of line to return by nextHistoryLine() (constructor) */
 	private $historyLine;
@@ -183,7 +183,10 @@ class LocalFile extends File {
 			$conds['img_timestamp'] = $dbr->timestamp( $timestamp );
 		}
 
-		$row = $dbr->selectRow( 'image', self::selectFields(), $conds, __METHOD__ );
+		$fileQuery = self::getQueryInfo();
+		$row = $dbr->selectRow(
+			$fileQuery['tables'], $fileQuery['fields'], $conds, __METHOD__, [], $fileQuery['joins']
+		);
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
@@ -193,11 +196,11 @@ class LocalFile extends File {
 
 	/**
 	 * Fields in the image table
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'img_name',
 			'img_size',
@@ -212,7 +215,52 @@ class LocalFile extends File {
 			'img_user_text',
 			'img_timestamp',
 			'img_sha1',
-		] + CommentStore::newKey( 'img_description' )->getFields();
+		] + CommentStore::getStore()->getFields( 'img_description' );
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new localfile object.
+	 * @since 1.31
+	 * @param string[] $options
+	 *   - omit-lazy: Omit fields that are lazily cached.
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo( array $options = [] ) {
+		$commentQuery = CommentStore::getStore()->getJoin( 'img_description' );
+		$ret = [
+			'tables' => [ 'image' ] + $commentQuery['tables'],
+			'fields' => [
+				'img_name',
+				'img_size',
+				'img_width',
+				'img_height',
+				'img_metadata',
+				'img_bits',
+				'img_media_type',
+				'img_major_mime',
+				'img_minor_mime',
+				'img_user',
+				'img_user_text',
+				'img_timestamp',
+				'img_sha1',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
+
+		if ( in_array( 'omit-nonlazy', $options, true ) ) {
+			// Internal use only for getting only the lazy fields
+			$ret['fields'] = [];
+		}
+		if ( !in_array( 'omit-lazy', $options, true ) ) {
+			// Note: Keep this in sync with self::getLazyCacheFields()
+			$ret['fields'][] = 'img_metadata';
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -341,51 +389,43 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param string $prefix
+	 * Returns the list of object properties that are included as-is in the cache.
+	 * @param string $prefix Must be the empty string
 	 * @return array
+	 * @since 1.31 No longer accepts a non-empty $prefix
 	 */
-	function getCacheFields( $prefix = 'img_' ) {
-		static $fields = [ 'size', 'width', 'height', 'bits', 'media_type',
+	protected function getCacheFields( $prefix = 'img_' ) {
+		if ( $prefix !== '' ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' with a non-empty prefix is no longer supported.'
+			);
+		}
+
+		// See self::getQueryInfo() for the fetching of the data from the DB,
+		// self::loadFromRow() for the loading of the object from the DB row,
+		// and self::loadFromCache() for the caching, and self::setProps() for
+		// populating the object from an array of data.
+		return [ 'size', 'width', 'height', 'bits', 'media_type',
 			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'user',
-			'user_text' ];
-		static $results = [];
-
-		if ( $prefix == '' ) {
-			return array_merge( $fields, [ 'description' ] );
-		}
-		if ( !isset( $results[$prefix] ) ) {
-			$prefixedFields = [];
-			foreach ( $fields as $field ) {
-				$prefixedFields[] = $prefix . $field;
-			}
-			$prefixedFields += CommentStore::newKey( "{$prefix}description" )->getFields();
-			$results[$prefix] = $prefixedFields;
-		}
-
-		return $results[$prefix];
+			'user_text', 'description' ];
 	}
 
 	/**
-	 * @param string $prefix
+	 * Returns the list of object properties that are included as-is in the
+	 * cache, only when they're not too big, and are lazily loaded by self::loadExtraFromDB().
+	 * @param string $prefix Must be the empty string
 	 * @return array
+	 * @since 1.31 No longer accepts a non-empty $prefix
 	 */
-	function getLazyCacheFields( $prefix = 'img_' ) {
-		static $fields = [ 'metadata' ];
-		static $results = [];
-
-		if ( $prefix == '' ) {
-			return $fields;
+	protected function getLazyCacheFields( $prefix = 'img_' ) {
+		if ( $prefix !== '' ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' with a non-empty prefix is no longer supported.'
+			);
 		}
 
-		if ( !isset( $results[$prefix] ) ) {
-			$prefixedFields = [];
-			foreach ( $fields as $field ) {
-				$prefixedFields[] = $prefix . $field;
-			}
-			$results[$prefix] = $prefixedFields;
-		}
-
-		return $results[$prefix];
+		// Keep this in sync with the omit-lazy option in self::getQueryInfo().
+		return [ 'metadata' ];
 	}
 
 	/**
@@ -403,8 +443,15 @@ class LocalFile extends File {
 			? $this->repo->getMasterDB()
 			: $this->repo->getReplicaDB();
 
-		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
-			[ 'img_name' => $this->getName() ], $fname );
+		$fileQuery = static::getQueryInfo();
+		$row = $dbr->selectRow(
+			$fileQuery['tables'],
+			$fileQuery['fields'],
+			[ 'img_name' => $this->getName() ],
+			$fname,
+			[],
+			$fileQuery['joins']
+		);
 
 		if ( $row ) {
 			$this->loadFromRow( $row );
@@ -423,9 +470,9 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getReplicaDB(), $fname );
+		$fieldMap = $this->loadExtraFieldsWithTimestamp( $this->repo->getReplicaDB(), $fname );
 		if ( !$fieldMap ) {
-			$fieldMap = $this->loadFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
+			$fieldMap = $this->loadExtraFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
 		}
 
 		if ( $fieldMap ) {
@@ -442,24 +489,44 @@ class LocalFile extends File {
 	 * @param string $fname
 	 * @return array|bool
 	 */
-	private function loadFieldsWithTimestamp( $dbr, $fname ) {
+	private function loadExtraFieldsWithTimestamp( $dbr, $fname ) {
 		$fieldMap = false;
 
-		$row = $dbr->selectRow( 'image', $this->getLazyCacheFields( 'img_' ), [
+		$fileQuery = self::getQueryInfo( [ 'omit-nonlazy' ] );
+		$row = $dbr->selectRow(
+			$fileQuery['tables'],
+			$fileQuery['fields'],
+			[
 				'img_name' => $this->getName(),
-				'img_timestamp' => $dbr->timestamp( $this->getTimestamp() )
-			], $fname );
+				'img_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
+			],
+			$fname,
+			[],
+			$fileQuery['joins']
+		);
 		if ( $row ) {
 			$fieldMap = $this->unprefixRow( $row, 'img_' );
 		} else {
 			# File may have been uploaded over in the meantime; check the old versions
-			$row = $dbr->selectRow( 'oldimage', $this->getLazyCacheFields( 'oi_' ), [
+			$fileQuery = OldLocalFile::getQueryInfo( [ 'omit-nonlazy' ] );
+			$row = $dbr->selectRow(
+				$fileQuery['tables'],
+				$fileQuery['fields'],
+				[
 					'oi_name' => $this->getName(),
-					'oi_timestamp' => $dbr->timestamp( $this->getTimestamp() )
-				], $fname );
+					'oi_timestamp' => $dbr->timestamp( $this->getTimestamp() ),
+				],
+				$fname,
+				[],
+				$fileQuery['joins']
+			);
 			if ( $row ) {
 				$fieldMap = $this->unprefixRow( $row, 'oi_' );
 			}
+		}
+
+		if ( isset( $fieldMap['metadata'] ) ) {
+			$fieldMap['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $fieldMap['metadata'] );
 		}
 
 		return $fieldMap;
@@ -499,6 +566,9 @@ class LocalFile extends File {
 	function decodeRow( $row, $prefix = 'img_' ) {
 		$decoded = $this->unprefixRow( $row, $prefix );
 
+		$decoded['description'] = CommentStore::getStore()
+			->getComment( 'description', (object)$decoded )->text;
+
 		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
 
 		$decoded['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $decoded['metadata'] );
@@ -535,10 +605,6 @@ class LocalFile extends File {
 	function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
-
-		$this->description = CommentStore::newKey( "{$prefix}description" )
-			// $row is probably using getFields() from self::getCacheFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text;
 
 		$array = $this->decodeRow( $row, $prefix );
 
@@ -1069,9 +1135,12 @@ class LocalFile extends File {
 	 */
 	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		$dbr = $this->repo->getReplicaDB();
-		$tables = [ 'oldimage' ];
-		$fields = OldLocalFile::selectFields();
-		$conds = $opts = $join_conds = [];
+		$oldFileQuery = OldLocalFile::getQueryInfo();
+
+		$tables = $oldFileQuery['tables'];
+		$fields = $oldFileQuery['fields'];
+		$join_conds = $oldFileQuery['joins'];
+		$conds = $opts = [];
 		$eq = $inc ? '=' : '';
 		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBkey() );
 
@@ -1127,13 +1196,16 @@ class LocalFile extends File {
 		$dbr = $this->repo->getReplicaDB();
 
 		if ( $this->historyLine == 0 ) { // called for the first time, return line from cur
-			$this->historyRes = $dbr->select( 'image',
-				self::selectFields() + [
+			$fileQuery = self::getQueryInfo();
+			$this->historyRes = $dbr->select( $fileQuery['tables'],
+				$fileQuery['fields'] + [
 					'oi_archive_name' => $dbr->addQuotes( '' ),
 					'oi_deleted' => 0,
 				],
 				[ 'img_name' => $this->title->getDBkey() ],
-				$fname
+				$fname,
+				[],
+				$fileQuery['joins']
 			);
 
 			if ( 0 == $dbr->numRows( $this->historyRes ) ) {
@@ -1142,12 +1214,14 @@ class LocalFile extends File {
 				return false;
 			}
 		} elseif ( $this->historyLine == 1 ) {
+			$fileQuery = OldLocalFile::getQueryInfo();
 			$this->historyRes = $dbr->select(
-				'oldimage',
-				OldLocalFile::selectFields(),
+				$fileQuery['tables'],
+				$fileQuery['fields'],
 				[ 'oi_name' => $this->title->getDBkey() ],
 				$fname,
-				[ 'ORDER BY' => 'oi_timestamp DESC' ]
+				[ 'ORDER BY' => 'oi_timestamp DESC' ],
+				$fileQuery['joins']
 			);
 		}
 		$this->historyLine++;
@@ -1210,7 +1284,7 @@ class LocalFile extends File {
 			) {
 				$props = $this->repo->getFileProps( $srcPath );
 			} else {
-				$mwProps = new MWFileProps( MimeMagic::singleton() );
+				$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 				$props = $mwProps->getPropsFromPath( $srcPath, true );
 			}
 		}
@@ -1218,7 +1292,7 @@ class LocalFile extends File {
 		$options = [];
 		$handler = MediaHandler::getHandler( $props['mime'] );
 		if ( $handler ) {
-			$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
+			$metadata = Wikimedia\quietCall( 'unserialize', $props['metadata'] );
 
 			if ( !is_array( $metadata ) ) {
 				$metadata = [];
@@ -1350,9 +1424,9 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-		$commentStore = new CommentStore( 'img_description' );
+		$commentStore = CommentStore::getStore();
 		list( $commentFields, $commentCallback ) =
-			$commentStore->insertWithTempTable( $dbw, $comment );
+			$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
 		$dbw->insert( 'image',
 			[
 				'img_name' => $this->getName(),
@@ -1448,7 +1522,9 @@ class LocalFile extends File {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStore->insertWithTempTable( $dbw, $row->img_description );
+					list( , $callback ) = $commentStore->insertWithTempTable(
+						$dbw, 'img_description', $row->img_description
+					);
 					$callback( $row->img_name );
 				}
 			}
@@ -1666,7 +1742,9 @@ class LocalFile extends File {
 		}
 
 		# Invalidate cache for all pages using this file
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this->getTitle(), 'imagelinks' ) );
+		DeferredUpdates::addUpdate(
+			new HTMLCacheUpdate( $this->getTitle(), 'imagelinks', 'file-upload' )
+		);
 
 		return Status::newGood();
 	}
@@ -2327,10 +2405,7 @@ class LocalFileDeleteBatch {
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
-		$commentStoreFaReason = new CommentStore( 'fa_deleted_reason' );
+		$commentStore = CommentStore::getStore();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
@@ -2378,7 +2453,7 @@ class LocalFileDeleteBatch {
 
 			$fields += array_map(
 				[ $dbw, 'addQuotes' ],
-				$commentStoreFaReason->insert( $dbw, $this->reason )
+				$commentStore->insert( $dbw, 'fa_deleted_reason', $this->reason )
 			);
 
 			if ( $wgCommentTableSchemaMigrationStage <= MIGRATION_WRITE_BOTH ) {
@@ -2408,7 +2483,9 @@ class LocalFileDeleteBatch {
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStoreImgDesc->insertWithTempTable( $dbw, $row->img_description );
+					list( , $callback ) = $commentStore->insertWithTempTable(
+						$dbw, 'img_description', $row->img_description
+					);
 					$callback( $row->img_name );
 				}
 			}
@@ -2418,22 +2495,23 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( count( $oldRels ) ) {
+			$fileQuery = OldLocalFile::getQueryInfo();
 			$res = $dbw->select(
-				'oldimage',
-				OldLocalFile::selectFields(),
+				$fileQuery['tables'],
+				$fileQuery['fields'],
 				[
 					'oi_name' => $this->file->getName(),
 					'oi_archive_name' => array_keys( $oldRels )
 				],
 				__METHOD__,
-				[ 'FOR UPDATE' ]
+				[ 'FOR UPDATE' ],
+				$fileQuery['joins']
 			);
 			$rowsInsert = [];
 			if ( $res->numRows() ) {
-				$reason = $commentStoreFaReason->createComment( $dbw, $this->reason );
+				$reason = $commentStore->createComment( $dbw, $this->reason );
 				foreach ( $res as $row ) {
-					// Legacy from OldLocalFile::selectFields() just above
-					$comment = $commentStoreOiDesc->getCommentLegacy( $dbw, $row );
+					$comment = $commentStore->getComment( 'oi_description', $row );
 					$rowsInsert[] = [
 						// Deletion-specific fields
 						'fa_storage_group' => 'deleted',
@@ -2458,8 +2536,8 @@ class LocalFileDeleteBatch {
 						'fa_user_text' => $row->oi_user_text,
 						'fa_timestamp' => $row->oi_timestamp,
 						'fa_sha1' => $row->oi_sha1
-					] + $commentStoreFaReason->insert( $dbw, $reason )
-					+ $commentStoreFaDesc->insert( $dbw, $comment );
+					] + $commentStore->insert( $dbw, 'fa_deleted_reason', $reason )
+					+ $commentStore->insert( $dbw, 'fa_description', $comment );
 				}
 			}
 
@@ -2657,9 +2735,7 @@ class LocalFileRestoreBatch {
 
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStoreImgDesc = new CommentStore( 'img_description' );
-		$commentStoreOiDesc = new CommentStore( 'oi_description' );
-		$commentStoreFaDesc = new CommentStore( 'fa_description' );
+		$commentStore = CommentStore::getStore();
 
 		$status = $this->file->repo->newGood();
 
@@ -2680,12 +2756,14 @@ class LocalFileRestoreBatch {
 			$conditions['fa_id'] = $this->ids;
 		}
 
+		$arFileQuery = ArchivedFile::getQueryInfo();
 		$result = $dbw->select(
-			'filearchive',
-			ArchivedFile::selectFields(),
+			$arFileQuery['tables'],
+			$arFileQuery['fields'],
 			$conditions,
 			__METHOD__,
-			[ 'ORDER BY' => 'fa_timestamp DESC' ]
+			[ 'ORDER BY' => 'fa_timestamp DESC' ],
+			$arFileQuery['joins']
 		);
 
 		$idsPresent = [];
@@ -2745,13 +2823,12 @@ class LocalFileRestoreBatch {
 				];
 			}
 
-			// Legacy from ArchivedFile::selectFields() just above
-			$comment = $commentStoreFaDesc->getCommentLegacy( $dbw, $row );
+			$comment = $commentStore->getComment( 'fa_description', $row );
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
 				list( $commentFields, $commentCallback ) =
-					$commentStoreImgDesc->insertWithTempTable( $dbw, $comment );
+					$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
@@ -2807,7 +2884,7 @@ class LocalFileRestoreBatch {
 					'oi_minor_mime' => $props['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
-				] + $commentStoreOiDesc->insert( $dbw, $comment );
+				] + $commentStore->insert( $dbw, 'oi_description', $comment );
 			}
 
 			$deleteIds[] = $row->fa_id;

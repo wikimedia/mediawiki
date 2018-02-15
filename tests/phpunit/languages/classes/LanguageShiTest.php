@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @covers LanguageShi
+ * @covers ShiConverter
+ */
 class LanguageShiTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants

@@ -126,7 +126,7 @@ class ApiMainTest extends ApiTestCase {
 		$priv = TestingAccessWrapper::newFromObject( $api );
 		$priv->mInternalMode = false;
 
-		$module = $this->getMockBuilder( 'ApiBase' )
+		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
 			->setMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
@@ -223,7 +223,7 @@ class ApiMainTest extends ApiTestCase {
 		$priv = TestingAccessWrapper::newFromObject( $api );
 		$priv->mInternalMode = false;
 
-		$module = $this->getMockBuilder( 'ApiBase' )
+		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
 			->setMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
@@ -491,7 +491,7 @@ class ApiMainTest extends ApiTestCase {
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
 		$dbex = new DBQueryError(
-			$this->createMock( 'IDatabase' ),
+			$this->createMock( \Wikimedia\Rdbms\IDatabase::class ),
 			'error', 1234, 'SELECT 1', __METHOD__ );
 		$dbtrace = wfMessage( 'api-exception-trace',
 			get_class( $dbex ),
@@ -500,9 +500,9 @@ class ApiMainTest extends ApiTestCase {
 			MWExceptionHandler::getRedactedTraceAsString( $dbex )
 		)->inLanguage( 'en' )->useDatabase( false )->text();
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$usageEx = new UsageException( 'Usage exception!', 'ue', 0, [ 'foo' => 'bar' ] );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$apiEx1 = new ApiUsageException( null,
 			StatusValue::newFatal( new ApiRawMessage( 'An error', 'sv-error1' ) ) );

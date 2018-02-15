@@ -24,9 +24,8 @@ class JpegTest extends MediaWikiMediaTestCase {
 	public function testJpegMetadataExtraction() {
 		$file = $this->dataFile( 'test.jpg', 'image/jpeg' );
 		$res = $this->handler->getMetadata( $file, $this->filePath . 'test.jpg' );
-		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+		// phpcs:ignore Generic.Files.LineLength
 		$expected = 'a:7:{s:16:"ImageDescription";s:9:"Test file";s:11:"XResolution";s:4:"72/1";s:11:"YResolution";s:4:"72/1";s:14:"ResolutionUnit";i:2;s:16:"YCbCrPositioning";i:1;s:15:"JPEGFileComment";a:1:{i:0;s:17:"Created with GIMP";}s:22:"MEDIAWIKI_EXIF_VERSION";i:2;}';
-		// @codingStandardsIgnoreEnd
 
 		// Unserialize in case serialization format ever changes.
 		$this->assertEquals( unserialize( $expected ), unserialize( $res ) );

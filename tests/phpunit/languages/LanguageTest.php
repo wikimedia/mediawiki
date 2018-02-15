@@ -1326,7 +1326,7 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	public static function provideCheckTitleEncodingData() {
-		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ "" ],
 			[ "United States of America" ], // 7bit ASCII
@@ -1377,7 +1377,7 @@ class LanguageTest extends LanguageClassesTestCase {
 				)
 			]
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -1630,6 +1630,34 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideFormatNum
+	 * @covers Language::formatNum
+	 */
+	public function testFormatNum(
+		$translateNumerals, $langCode, $number, $nocommafy, $expected
+	) {
+		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
+		$lang = Language::factory( $langCode );
+		$formattedNum = $lang->formatNum( $number, $nocommafy );
+		$this->assertType( 'string', $formattedNum );
+		$this->assertEquals( $expected, $formattedNum );
+	}
+
+	public function provideFormatNum() {
+		return [
+			[ true, 'en', 100, false, '100' ],
+			[ true, 'en', 101, true, '101' ],
+			[ false, 'en', 103, false, '103' ],
+			[ false, 'en', 104, true, '104' ],
+			[ true, 'en', '105', false, '105' ],
+			[ true, 'en', '106', true, '106' ],
+			[ false, 'en', '107', false, '107' ],
+			[ false, 'en', '108', true, '108' ],
+		];
+	}
+
+	/**
+	 * @covers Language::parseFormattedNumber
 	 * @dataProvider parseFormattedNumberProvider
 	 */
 	public function testParseFormattedNumber( $langCode, $number ) {
@@ -1768,6 +1796,9 @@ class LanguageTest extends LanguageClassesTestCase {
 		];
 	}
 
+	/**
+	 * @covers Language::equals
+	 */
 	public function testEquals() {
 		$en1 = new Language();
 		$en1->setCode( 'en' );

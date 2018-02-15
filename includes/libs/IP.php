@@ -21,7 +21,7 @@
  * @author Antoine Musso "<hashar at free dot fr>"
  */
 
-use IPSet\IPSet;
+use Wikimedia\IPSet;
 
 // Some regex definition to "play" with IP address and IP address ranges
 

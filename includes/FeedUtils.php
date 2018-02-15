@@ -89,9 +89,7 @@ class FeedUtils {
 			$timestamp,
 			$row->rc_deleted & Revision::DELETED_COMMENT
 				? wfMessage( 'rev-deleted-comment' )->escaped()
-				: CommentStore::newKey( 'rc_comment' )
-					// Legacy from RecentChange::selectFields() via ChangesListSpecialPage::doMainQuery()
-					->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text,
+				: CommentStore::getStore()->getComment( 'rc_comment', $row )->text,
 			$actiontext
 		);
 	}
@@ -99,7 +97,7 @@ class FeedUtils {
 	/**
 	 * Really format a diff for the newsfeed
 	 *
-	 * @param Title $title Title object
+	 * @param Title $title
 	 * @param int $oldid Old revision's id
 	 * @param int $newid New revision's id
 	 * @param int $timestamp New revision's timestamp

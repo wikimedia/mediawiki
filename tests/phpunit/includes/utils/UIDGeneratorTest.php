@@ -2,6 +2,8 @@
 
 class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function tearDown() {
 		// Bug: 44850
 		UIDGenerator::unitTestTearDown();
@@ -16,7 +18,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 	 * @covers UIDGenerator::newTimestampedUID88
 	 */
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
-		$id = call_user_func( [ 'UIDGenerator', $method ] );
+		$id = call_user_func( [ UIDGenerator::class, $method ] );
 		$this->assertEquals( true, ctype_digit( $id ), "UID made of digit characters" );
 		$this->assertLessThanOrEqual( $digitlen, strlen( $id ),
 			"UID has the right number of digits" );
@@ -25,7 +27,7 @@ class UIDGeneratorTest extends PHPUnit_Framework_TestCase {
 
 		$ids = [];
 		for ( $i = 0; $i < 300; $i++ ) {
-			$ids[] = call_user_func( [ 'UIDGenerator', $method ] );
+			$ids[] = call_user_func( [ UIDGenerator::class, $method ] );
 		}
 
 		$lastId = array_shift( $ids );

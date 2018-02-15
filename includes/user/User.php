@@ -20,13 +20,14 @@
  * @file
  */
 
-use IPSet\IPSet;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\User\UserIdentity;
+use Wikimedia\IPSet;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -48,7 +49,7 @@ define( 'EDIT_TOKEN_SUFFIX', Token::SUFFIX );
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  */
-class User implements IDBAccessObject {
+class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * @const int Number of characters in user_token field.
 	 */
@@ -227,12 +228,7 @@ class User implements IDBAccessObject {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/**
-	 * @var array No longer used since 1.29; use User::getGroups() instead
-	 * @deprecated since 1.29
-	 */
-	private $mGroups;
-	/** @var array Associative array of (group name => UserGroupMembership object) */
+	/** @var UserGroupMembership[] Associative array of (group name => UserGroupMembership object) */
 	protected $mGroupMemberships;
 	/** @var array */
 	protected $mOptionOverrides;
@@ -388,7 +384,8 @@ class User implements IDBAccessObject {
 				break;
 			case 'name':
 				// Make sure this thread sees its own changes
-				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				if ( $lb->hasOrMadeRecentMasterChanges() ) {
 					$flags |= self::READ_LATEST;
 					$this->queryFlagsUsed = $flags;
 				}
@@ -688,20 +685,25 @@ class User implements IDBAccessObject {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
+		$userQuery = self::getQueryInfo();
 		$row = $dbr->selectRow(
-			'user',
-			self::selectFields(),
+			$userQuery['tables'],
+			$userQuery['fields'],
 			[ 'user_name' => $name ],
-			__METHOD__
+			__METHOD__,
+			[],
+			$userQuery['joins']
 		);
 		if ( !$row ) {
 			// Try the master database...
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow(
-				'user',
-				self::selectFields(),
+				$userQuery['tables'],
+				$userQuery['fields'],
 				[ 'user_name' => $name ],
-				__METHOD__
+				__METHOD__,
+				[],
+				$userQuery['joins']
 			);
 		}
 
@@ -1278,12 +1280,14 @@ class User implements IDBAccessObject {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
+		$userQuery = self::getQueryInfo();
 		$s = $db->selectRow(
-			'user',
-			self::selectFields(),
+			$userQuery['tables'],
+			$userQuery['fields'],
 			[ 'user_id' => $this->mId ],
 			__METHOD__,
-			$options
+			$options,
+			$userQuery['joins']
 		);
 
 		$this->queryFlagsUsed = $flags;
@@ -2505,12 +2509,17 @@ class User implements IDBAccessObject {
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 );
 		} else {
-			wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function () use ( $cache, $key ) {
-					$cache->delete( $key );
-				},
-				__METHOD__
-			);
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			if ( $lb->hasOrMadeRecentMasterChanges() ) {
+				$lb->getConnection( DB_MASTER )->onTransactionPreCommitOrIdle(
+					function () use ( $cache, $key ) {
+						$cache->delete( $key );
+					},
+					__METHOD__
+				);
+			} else {
+				$cache->delete( $key );
+			}
 		}
 	}
 
@@ -3080,12 +3089,13 @@ class User implements IDBAccessObject {
 			$options = $this->mOptions;
 		}
 
-		$prefs = Preferences::getPreferences( $this, $context );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$prefs = $preferencesFactory->getFormDescriptor( $this, $context );
 		$mapping = [];
 
 		// Pull out the "special" options, so they don't get converted as
 		// multiselect or checkmatrix.
-		$specialOptions = array_fill_keys( Preferences::getSaveBlacklist(), true );
+		$specialOptions = array_fill_keys( $preferencesFactory->getSaveBlacklist(), true );
 		foreach ( $specialOptions as $name => $value ) {
 			unset( $prefs[$name] );
 		}
@@ -3095,7 +3105,7 @@ class User implements IDBAccessObject {
 		$multiselectOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-					( isset( $info['class'] ) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+					( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class ) ) {
 				$opts = HTMLFormField::flattenOptions( $info['options'] );
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
 
@@ -3109,7 +3119,7 @@ class User implements IDBAccessObject {
 		$checkmatrixOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-					( isset( $info['class'] ) && $info['class'] == 'HTMLCheckMatrix' ) ) {
+					( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class ) ) {
 				$columns = HTMLFormField::flattenOptions( $info['columns'] );
 				$rows = HTMLFormField::flattenOptions( $info['rows'] );
 				$prefix = isset( $info['prefix'] ) ? $info['prefix'] : $name;
@@ -3308,7 +3318,7 @@ class User implements IDBAccessObject {
 	 * Get the list of explicit group memberships this user has, stored as
 	 * UserGroupMembership objects. Implicit groups are not included.
 	 *
-	 * @return array Associative array of (group name as string => UserGroupMembership object)
+	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
@@ -4574,7 +4584,7 @@ class User implements IDBAccessObject {
 	 * (T8957 with Gmail and Internet Explorer).
 	 *
 	 * @param string $page Special page
-	 * @param string $token Token
+	 * @param string $token
 	 * @return string Formatted URL
 	 */
 	protected function getTokenUrl( $page, $token ) {
@@ -5497,9 +5507,11 @@ class User implements IDBAccessObject {
 	/**
 	 * Return the list of user fields that should be selected to create
 	 * a new user object.
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'user_id',
 			'user_name',
@@ -5512,6 +5524,35 @@ class User implements IDBAccessObject {
 			'user_email_token_expires',
 			'user_registration',
 			'user_editcount',
+		];
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new user object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		return [
+			'tables' => [ 'user' ],
+			'fields' => [
+				'user_id',
+				'user_name',
+				'user_real_name',
+				'user_email',
+				'user_touched',
+				'user_token',
+				'user_email_authenticated',
+				'user_email_token',
+				'user_email_token_expires',
+				'user_registration',
+				'user_editcount',
+			],
+			'joins' => [],
 		];
 	}
 

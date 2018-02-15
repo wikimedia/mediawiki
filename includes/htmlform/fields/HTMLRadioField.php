@@ -72,17 +72,13 @@ class HTMLRadioField extends HTMLFormField {
 		) );
 	}
 
-	protected function shouldInfuseOOUI() {
-		return true;
-	}
-
 	public function formatOptions( $options, $value ) {
 		global $wgUseMediaWikiUIEverywhere;
 
 		$html = '';
 
 		$attribs = $this->getAttributes( [ 'disabled', 'tabindex' ] );
-		$elementFunc = [ 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
+		$elementFunc = [ Html::class, $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' ];
 
 		# @todo Should this produce an unordered list perhaps?
 		foreach ( $options as $label => $info ) {

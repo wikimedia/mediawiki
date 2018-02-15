@@ -113,12 +113,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	private static function loadModes() {
 		if ( self::$modeMapping === false ) {
 			self::$modeMapping = [
-				'traditional' => 'TraditionalImageGallery',
-				'nolines' => 'NolinesImageGallery',
-				'packed' => 'PackedImageGallery',
-				'packed-hover' => 'PackedHoverImageGallery',
-				'packed-overlay' => 'PackedOverlayImageGallery',
-				'slideshow' => 'SlideshowImageGallery',
+				'traditional' => TraditionalImageGallery::class,
+				'nolines' => NolinesImageGallery::class,
+				'packed' => PackedImageGallery::class,
+				'packed-hover' => PackedHoverImageGallery::class,
+				'packed-overlay' => PackedOverlayImageGallery::class,
+				'slideshow' => SlideshowImageGallery::class,
 			];
 			// Allow extensions to make a new gallery format.
 			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );
@@ -177,7 +177,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set the caption (as plain text)
 	 *
-	 * @param string $caption Caption
+	 * @param string $caption
 	 */
 	function setCaption( $caption ) {
 		$this->mCaption = htmlspecialchars( $caption );
@@ -186,7 +186,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set the caption (as HTML)
 	 *
-	 * @param string $caption Caption
+	 * @param string $caption
 	 */
 	public function setCaptionHtml( $caption ) {
 		$this->mCaption = $caption;
@@ -207,22 +207,26 @@ abstract class ImageGalleryBase extends ContextSource {
 	/**
 	 * Set how wide each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setWidths( $num ) {
-		if ( $num > 0 ) {
-			$this->mWidths = (int)$num;
+		$parsed = Parser::parseWidthParam( $num, false );
+		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
+			$this->mWidths = $parsed['width'];
 		}
 	}
 
 	/**
 	 * Set how high each image will be, in pixels.
 	 *
-	 * @param int $num Integer > 0; invalid numbers will be ignored
+	 * @param string $num Number. Unit other than 'px is invalid. Invalid numbers
+	 *   and those below 0 are ignored.
 	 */
 	public function setHeights( $num ) {
-		if ( $num > 0 ) {
-			$this->mHeights = (int)$num;
+		$parsed = Parser::parseWidthParam( $num, false );
+		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
+			$this->mHeights = $parsed['width'];
 		}
 	}
 

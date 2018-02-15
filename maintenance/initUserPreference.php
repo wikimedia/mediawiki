@@ -46,7 +46,7 @@ class InitUserPreference extends Maintenance {
 			$dbr,
 			'user_properties',
 			[ 'up_user', 'up_property' ],
-			$this->mBatchSize
+			$this->getBatchSize()
 		);
 		$iterator->setFetchColumns( [ 'up_user', 'up_value' ] );
 		$iterator->addConditions( [
@@ -80,5 +80,5 @@ class InitUserPreference extends Maintenance {
 	}
 }
 
-$maintClass = 'InitUserPreference'; // Tells it to run the class
+$maintClass = InitUserPreference::class; // Tells it to run the class
 require_once RUN_MAINTENANCE_IF_MAIN;

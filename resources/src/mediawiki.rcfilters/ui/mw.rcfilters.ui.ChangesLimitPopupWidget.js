@@ -39,18 +39,13 @@
 			.addClass( 'mw-rcfilters-ui-changesLimitPopupWidget' )
 			.append(
 				this.valuePicker.$element,
-				new OO.ui.FieldsetLayout( {
-					label: mw.msg( 'rcfilters-grouping-title' ),
-					items: [
-						new OO.ui.FieldLayout(
-							this.groupByPageCheckbox,
-							{
-								align: 'inline',
-								label: mw.msg( 'rcfilters-group-results-by-page' )
-							}
-						)
-					]
-				} ).$element
+				new OO.ui.FieldLayout(
+					this.groupByPageCheckbox,
+					{
+						align: 'inline',
+						label: mw.msg( 'rcfilters-group-results-by-page' )
+					}
+				).$element
 			);
 	};
 

@@ -37,11 +37,11 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 
 	public function execute() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$content = file_get_contents( $this->getOption( 'file' ) );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $content === false ) {
-			$this->error( 'Unable to open input file', 1 );
+			$this->fatalError( 'Unable to open input file' );
 		}
 
 		$filename = basename( $this->getOption( 'file' ) );
@@ -58,5 +58,5 @@ class BenchmarkJSMinPlus extends Benchmarker {
 	}
 }
 
-$maintClass = 'BenchmarkJSMinPlus';
+$maintClass = BenchmarkJSMinPlus::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

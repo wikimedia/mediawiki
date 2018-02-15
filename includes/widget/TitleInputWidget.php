@@ -1,14 +1,12 @@
 <?php
-/**
- * MediaWiki Widgets – TitleInputWidget class.
- *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
 /**
  * Title input widget.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license MIT
  */
 class TitleInputWidget extends \OOUI\TextInputWidget {
 
@@ -20,17 +18,16 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 
 	/**
 	 * @param array $config Configuration options
-	 * @param int|null $config['namespace'] Namespace to prepend to queries
-	 * @param bool|null $config['relative'] If a namespace is set,
-	 *  return a title relative to it (default: true)
-	 * @param bool|null $config['suggestions'] Display search suggestions (default: true)
-	 * @param bool|null $config['highlightFirst'] Automatically highlight
-	 *  the first result (default: true)
-	 * @param bool|null $config['validateTitle'] Whether the input must
-	 *  be a valid title (default: true)
+	 *   - int|null $config['namespace'] Namespace to prepend to queries
+	 *   - bool|null $config['relative'] If a namespace is set,
+	 *     return a title relative to it (default: true)
+	 *   - bool|null $config['suggestions'] Display search suggestions (default: true)
+	 *   - bool|null $config['highlightFirst'] Automatically highlight
+	 *     the first result (default: true)
+	 *   - bool|null $config['validateTitle'] Whether the input must
+	 *     be a valid title (default: true)
 	 */
 	public function __construct( array $config = [] ) {
-		// Parent constructor
 		parent::__construct(
 			array_merge( [ 'maxLength' => 255 ], $config )
 		);
@@ -76,6 +73,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		if ( $this->validateTitle !== null ) {
 			$config['validateTitle'] = $this->validateTitle;
 		}
+		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }

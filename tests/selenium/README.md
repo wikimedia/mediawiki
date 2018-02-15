@@ -23,12 +23,16 @@ Set up MediaWiki-Vagrant:
 
 To run only one file (for example page.js), you first need to spawn the chromedriver:
 
-    chromedriver --url-base=/wd/hub --port=4444
+    chromedriver --url-base=wd/hub --port=4444
 
 Then in another terminal:
 
     cd tests/selenium
     ../../node_modules/.bin/wdio --spec specs/page.js
+
+To run only one test (name contains string 'preferences'):
+
+    ../../node_modules/.bin/wdio --spec specs/user.js --mochaOpts.grep preferences
 
 The runner reads the config file `wdio.conf.js` and runs the spec listed in
 `page.js`.

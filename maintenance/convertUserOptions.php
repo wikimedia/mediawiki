@@ -61,7 +61,7 @@ class ConvertUserOptions extends Maintenance {
 				__METHOD__,
 				[
 					'ORDER BY' => 'user_id',
-					'LIMIT' => $this->mBatchSize,
+					'LIMIT' => $this->getBatchSize(),
 				]
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
@@ -120,5 +120,5 @@ class ConvertUserOptions extends Maintenance {
 	}
 }
 
-$maintClass = "ConvertUserOptions";
+$maintClass = ConvertUserOptions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

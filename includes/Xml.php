@@ -160,8 +160,9 @@ class Xml {
 	}
 
 	/**
-	 * @param int $year
-	 * @param int $month
+	 * @param int|string $year Use '' or 0 to start with no year preselected.
+	 * @param int|string $month A month in the 1..12 range. Use '', 0 or -1 to start with no month
+	 *  preselected.
 	 * @return string Formatted HTML
 	 */
 	public static function dateMenu( $year, $month ) {
@@ -532,8 +533,8 @@ class Xml {
 	 *
 	 * @param string $list Correctly formatted text (newline delimited) to be
 	 *   used to generate the options.
-	 * @param array $params Extra parameters
-	 * @param string $params['other'] If set, add an option with this as text and a value of 'other'
+	 * @param array $params Extra parameters:
+	 *   - string $params['other'] If set, add an option with this as text and a value of 'other'
 	 * @return array Array keys are textual labels, values are internal values
 	 */
 	public static function listDropDownOptions( $list, $params = [] ) {

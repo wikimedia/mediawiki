@@ -20,7 +20,8 @@
  * @file
  * @ingroup FileBackend
  */
-use \MediaWiki\Logger\LoggerFactory;
+
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -90,7 +91,7 @@ class FileBackendGroup {
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
-				'class' => 'FSFileBackend',
+				'class' => FSFileBackend::class,
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
@@ -154,7 +155,7 @@ class FileBackendGroup {
 			$config = $this->config( $name );
 
 			$class = $config['class'];
-			if ( $class === 'FileBackendMultiWrite' ) {
+			if ( $class === FileBackendMultiWrite::class ) {
 				foreach ( $config['backends'] as $index => $beConfig ) {
 					if ( isset( $beConfig['template'] ) ) {
 						// Config is just a modified version of a registered backend's.
@@ -189,9 +190,9 @@ class FileBackendGroup {
 			'wikiId' => wfWikiID(), // e.g. "my_wiki-en_"
 			'mimeCallback' => [ $this, 'guessMimeInternal' ],
 			'obResetFunc' => 'wfResetOutputBuffers',
-			'streamMimeFunc' => [ 'StreamFile', 'contentTypeFromPath' ],
+			'streamMimeFunc' => [ StreamFile::class, 'contentTypeFromPath' ],
 			'tmpDirectory' => wfTempDir(),
-			'statusWrapper' => [ 'Status', 'wrap' ],
+			'statusWrapper' => [ Status::class, 'wrap' ],
 			'wanCache' => MediaWikiServices::getInstance()->getMainWANObjectCache(),
 			'srvCache' => ObjectCache::getLocalServerInstance( 'hash' ),
 			'logger' => LoggerFactory::getInstance( 'FileOperation' ),
@@ -201,7 +202,7 @@ class FileBackendGroup {
 			LockManagerGroup::singleton( $config['wikiId'] )->get( $config['lockManager'] );
 		$config['fileJournal'] = isset( $config['fileJournal'] )
 			? FileJournal::factory( $config['fileJournal'], $name )
-			: FileJournal::factory( [ 'class' => 'NullFileJournal' ], $name );
+			: FileJournal::factory( [ 'class' => NullFileJournal::class ], $name );
 
 		return $config;
 	}
@@ -229,7 +230,7 @@ class FileBackendGroup {
 	 * @since 1.27
 	 */
 	public function guessMimeInternal( $storagePath, $content, $fsPath ) {
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 		// Trust the extension of the storage path (caller must validate)
 		$ext = FileBackend::extensionFromPath( $storagePath );
 		$type = $magic->guessTypesForExtension( $ext );

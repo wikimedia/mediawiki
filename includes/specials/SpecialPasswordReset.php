@@ -37,11 +37,6 @@ class SpecialPasswordReset extends FormSpecialPage {
 	private $passwordReset = null;
 
 	/**
-	 * @var string[] Temporary storage for the passwords which have been sent out, keyed by username.
-	 */
-	private $passwords = [];
-
-	/**
 	 * @var Status
 	 */
 	private $result;

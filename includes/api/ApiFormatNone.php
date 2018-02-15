@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Oct 22, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,7 +21,8 @@
  */
 
 /**
- * API Serialized PHP output formatter
+ * Formatter that outputs nothing, for when you don't care about the response
+ * at all
  * @ingroup API
  */
 class ApiFormatNone extends ApiFormatBase {

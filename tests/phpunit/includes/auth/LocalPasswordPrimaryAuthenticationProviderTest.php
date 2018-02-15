@@ -221,8 +221,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$req->password = 'DoesNotExist';
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
 		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
+			AuthenticationResponse::FAIL,
+			$ret->status
+		);
+		$this->assertEquals(
+			'wrongpassword',
+			$ret->message->getKey()
 		);
 
 		// Validation failure

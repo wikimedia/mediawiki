@@ -86,7 +86,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidName() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( 'MWException', "name 'test!invalid' is invalid" );
+		$this->setExpectedException( MWException::class, "name 'test!invalid' is invalid" );
 		$resourceLoader->register( 'test!invalid', new ResourceLoaderTestModule() );
 	}
 
@@ -95,7 +95,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testRegisterInvalidType() {
 		$resourceLoader = new EmptyResourceLoader();
-		$this->setExpectedException( 'MWException', 'ResourceLoader module info type error' );
+		$this->setExpectedException( MWException::class, 'ResourceLoader module info type error' );
 		$resourceLoader->register( 'test', new stdClass() );
 	}
 
@@ -336,7 +336,9 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceDupe() {
 		$rl = new ResourceLoader;
-		$this->setExpectedException( 'MWException', 'ResourceLoader duplicate source addition error' );
+		$this->setExpectedException(
+			MWException::class, 'ResourceLoader duplicate source addition error'
+		);
 		$rl->addSource( 'foo', 'https://example.org/w/load.php' );
 		$rl->addSource( 'foo', 'https://example.com/w/load.php' );
 	}
@@ -346,7 +348,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testAddSourceInvalid() {
 		$rl = new ResourceLoader;
-		$this->setExpectedException( 'MWException', 'with no "loadScript" key' );
+		$this->setExpectedException( MWException::class, 'with no "loadScript" key' );
 		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
 	}
 
@@ -446,7 +448,7 @@ mw.example();
 		ResourceLoader::clearCache();
 		$this->setMwGlobals( 'wgResourceLoaderDebug', true );
 
-		$rl = TestingAccessWrapper::newFromClass( 'ResourceLoader' );
+		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$this->assertEquals(
 			$case['expected'],
 			$rl->makeLoaderImplementScript(
@@ -465,8 +467,8 @@ mw.example();
 	 * @covers ResourceLoader::makeLoaderImplementScript
 	 */
 	public function testMakeLoaderImplementScriptInvalid() {
-		$this->setExpectedException( 'MWException', 'Invalid scripts error' );
-		$rl = TestingAccessWrapper::newFromClass( 'ResourceLoader' );
+		$this->setExpectedException( MWException::class, 'Invalid scripts error' );
+		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$rl->makeLoaderImplementScript(
 			'test', // name
 			123, // scripts
@@ -753,7 +755,7 @@ mw.example();
 			'foo' => self::getSimpleModuleMock( 'foo();' ),
 			'ferry' => self::getFailFerryMock(),
 			'bar' => self::getSimpleModuleMock( 'bar();' ),
-			'startup' => [ 'class' => 'ResourceLoaderStartUpModule' ],
+			'startup' => [ 'class' => ResourceLoaderStartUpModule::class ],
 		] );
 		$context = $this->getResourceLoaderContext(
 			[

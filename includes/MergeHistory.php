@@ -1,10 +1,6 @@
 <?php
 
 /**
- *
- *
- * Created on Dec 29, 2015
- *
  * Copyright © 2015 Geoffrey Mon <geofbot@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,6 +20,7 @@
  *
  * @file
  */
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -334,6 +331,10 @@ class MergeHistory {
 			$this->source->invalidateCache(); // update histories
 		}
 		$this->dest->invalidateCache(); // update histories
+
+		// Duplicate watchers of the old article to the new article on history merge
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );

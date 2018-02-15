@@ -154,7 +154,7 @@ class HistoryAction extends FormlessAction {
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
 				$out,
-				[ 'delete', 'move' ],
+				[ 'delete', 'move', 'protect' ],
 				$this->getTitle(),
 				'',
 				[ 'lim' => 10,
@@ -258,12 +258,18 @@ class HistoryAction extends FormlessAction {
 
 		$page_id = $this->page->getId();
 
-		return $dbr->select( 'revision',
-			Revision::selectFields(),
+		$revQuery = Revision::getQueryInfo();
+		return $dbr->select(
+			$revQuery['tables'],
+			$revQuery['fields'],
 			array_merge( [ 'rev_page' => $page_id ], $offsets ),
 			__METHOD__,
-			[ 'ORDER BY' => "rev_timestamp $dirs",
-				'USE INDEX' => 'page_timestamp', 'LIMIT' => $limit ]
+			[
+				'ORDER BY' => "rev_timestamp $dirs",
+				'USE INDEX' => [ 'revision' => 'page_timestamp' ],
+				'LIMIT' => $limit
+			],
+			$revQuery['joins']
 		);
 	}
 
@@ -329,8 +335,8 @@ class HistoryAction extends FormlessAction {
 	 * @return FeedItem
 	 */
 	function feedItem( $row ) {
-		$rev = new Revision( $row );
-		$rev->setTitle( $this->getTitle() );
+		$rev = new Revision( $row, 0, $this->getTitle() );
+
 		$text = FeedUtils::formatDiffRow(
 			$this->getTitle(),
 			$this->getTitle()->getPreviousRevisionID( $rev->getId() ),
@@ -418,14 +424,15 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		$revQuery = Revision::getQueryInfo( [ 'user' ] );
 		$queryInfo = [
-			'tables' => [ 'revision', 'user' ],
-			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
+			'tables' => $revQuery['tables'],
+			'fields' => $revQuery['fields'],
 			'conds' => array_merge(
 				[ 'rev_page' => $this->getWikiPage()->getId() ],
 				$this->conds ),
 			'options' => [ 'USE INDEX' => [ 'revision' => 'page_timestamp' ] ],
-			'join_conds' => [ 'user' => Revision::userJoinCond() ],
+			'join_conds' => $revQuery['joins'],
 		];
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
@@ -604,7 +611,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * Creates a submit button
 	 *
 	 * @param string $message Text of the submit button, will be escaped
-	 * @param array $attributes Attributes
+	 * @param array $attributes
 	 * @return string HTML output for the submit button
 	 */
 	function submitButton( $message, $attributes = [] ) {
@@ -632,12 +639,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	function historyLine( $row, $next, $notificationtimestamp = false,
 		$latest = false, $firstInList = false ) {
-		$rev = new Revision( $row );
-		$rev->setTitle( $this->getTitle() );
+		$rev = new Revision( $row, 0, $this->getTitle() );
 
 		if ( is_object( $next ) ) {
-			$prevRev = new Revision( $next );
-			$prevRev->setTitle( $this->getTitle() );
+			$prevRev = new Revision( $next, 0, $this->getTitle() );
 		} else {
 			$prevRev = null;
 		}

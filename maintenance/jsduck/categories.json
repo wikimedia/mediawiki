@@ -34,7 +34,8 @@
 					"mw.cookie",
 					"mw.experiments",
 					"mw.viewport",
-					"mw.htmlform.*"
+					"mw.htmlform.*",
+					"mw.visibleTimeout"
 				]
 			},
 			{

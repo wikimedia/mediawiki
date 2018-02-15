@@ -25,6 +25,7 @@
  */
 
 require_once __DIR__ . '/backup.inc';
+require_once __DIR__ . '/7zip.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -142,8 +143,6 @@ TEXT
 	}
 
 	function processOptions() {
-		global $IP;
-
 		parent::processOptions();
 
 		if ( $this->hasOption( 'buffersize' ) ) {
@@ -151,7 +150,6 @@ TEXT
 		}
 
 		if ( $this->hasOption( 'prefetch' ) ) {
-			require_once "$IP/maintenance/backupPrefetch.inc";
 			$url = $this->processFileOpt( $this->getOption( 'prefetch' ) );
 			$this->prefetch = new BaseDump( $url );
 		}
@@ -724,13 +722,13 @@ TEXT
 	}
 
 	private function getTextSpawned( $id ) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
 		$text = $this->getTextSpawnedOnce( $id );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		return $text;
 	}
@@ -776,7 +774,7 @@ TEXT
 	}
 
 	private function closeSpawn() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}
@@ -793,7 +791,7 @@ TEXT
 			pclose( $this->spawnProc );
 		}
 		$this->spawnProc = false;
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 	}
 
 	private function getTextSpawnedOnce( $id ) {
@@ -988,5 +986,5 @@ TEXT
 	}
 }
 
-$maintClass = 'TextPassDumper';
+$maintClass = TextPassDumper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Dec 27, 2012
- *
  * Copyright © 2012 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -82,12 +78,12 @@ class ApiModuleManager extends ContextSource {
 	 * @code
 	 *  $modules['foo'] = 'ApiFoo';
 	 *  $modules['bar'] = [
-	 *      'class' => 'ApiBar',
+	 *      'class' => ApiBar::class,
 	 *      'factory' => function( $main, $name ) { ... }
 	 *  ];
 	 *  $modules['xyzzy'] = [
-	 *      'class' => 'ApiXyzzy',
-	 *      'factory' => [ 'XyzzyFactory', 'newApiModule' ]
+	 *      'class' => ApiXyzzy::class,
+	 *      'factory' => [ XyzzyFactory::class, 'newApiModule' ]
 	 *  ];
 	 * @endcode
 	 *

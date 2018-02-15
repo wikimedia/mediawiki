@@ -1,0 +1,10 @@
+	<entry>
+		<id>{{{uniqueID}}}</id>
+		<title>{{{title}}}</title>
+		<link rel="alternate" type="{{{mimeType}}}" href="{{{url}}}"/>
+		{{#date}}<updated>{{{.}}}Z</updated>{{/date}}
+
+		<summary type="html">{{{description}}}</summary>
+		{{#author}}<author><name>{{{.}}}</name></author>{{/author}}
+		{{! FIXME: Need to add comments }}
+	</entry>

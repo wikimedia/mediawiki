@@ -87,27 +87,4 @@ class PreparedEdit {
 	 */
 	public $oldContent;
 
-	/**
-	 * $newContent in text form
-	 *
-	 * @var string
-	 * @deprecated since 1.21
-	 */
-	public $newText;
-
-	/**
-	 * $oldContent in text from
-	 *
-	 * @var string
-	 * @deprecated since 1.21
-	 */
-	public $oldText;
-
-	/**
-	 * $pstContent in text form
-	 *
-	 * @var string
-	 * @deprecated since 1.21
-	 */
-	public $pst;
 }

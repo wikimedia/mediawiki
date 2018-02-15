@@ -93,4 +93,4 @@ class SevenZipStream {
 	}
 }
 
-stream_wrapper_register( 'mediawiki.compress.7z', 'SevenZipStream' );
+stream_wrapper_register( 'mediawiki.compress.7z', SevenZipStream::class );

@@ -54,7 +54,7 @@ class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Registers a filter in this group
 	 *
-	 * @param ChangesListBooleanFilter $filter ChangesListBooleanFilter
+	 * @param ChangesListBooleanFilter $filter
 	 */
 	public function registerFilter( ChangesListBooleanFilter $filter ) {
 		$this->filters[$filter->getName()] = $filter;

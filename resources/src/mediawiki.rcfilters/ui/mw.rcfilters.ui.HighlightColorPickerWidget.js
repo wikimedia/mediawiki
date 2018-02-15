@@ -84,8 +84,8 @@
 	 * @param {string} color Selected color
 	 */
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.selectColor = function ( color ) {
-		var previousItem = this.buttonSelect.getItemFromData( this.currentSelection ),
-			selectedItem = this.buttonSelect.getItemFromData( color );
+		var previousItem = this.buttonSelect.findItemFromData( this.currentSelection ),
+			selectedItem = this.buttonSelect.findItemFromData( color );
 
 		if ( this.currentSelection !== color ) {
 			this.currentSelection = color;

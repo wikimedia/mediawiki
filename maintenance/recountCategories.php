@@ -75,7 +75,7 @@ TEXT
 	public function execute() {
 		$this->mode = $this->getOption( 'mode' );
 		if ( !in_array( $this->mode, [ 'pages', 'subcats', 'files' ] ) ) {
-			$this->error( 'Please specify a valid mode: one of "pages", "subcats" or "files".', 1 );
+			$this->fatalError( 'Please specify a valid mode: one of "pages", "subcats" or "files".' );
 		}
 
 		$this->minimumId = intval( $this->getOption( 'begin', 0 ) );
@@ -97,8 +97,8 @@ TEXT
 	}
 
 	protected function doWork() {
-		$this->output( "Finding up to {$this->mBatchSize} drifted rows " .
-			"starting at cat_id {$this->minimumId}...\n" );
+		$this->output( "Finding up to {$this->getBatchSize()} drifted rows " .
+			"starting at cat_id {$this->getBatchSize()}...\n" );
 
 		$countingConds = [ 'cl_to = cat_title' ];
 		if ( $this->mode === 'subcats' ) {
@@ -124,7 +124,7 @@ TEXT
 				"cat_{$this->mode} != ($countingSubquery)"
 			],
 			__METHOD__,
-			[ 'LIMIT' => $this->mBatchSize ]
+			[ 'LIMIT' => $this->getBatchSize() ]
 		);
 		if ( !$idsToUpdate ) {
 			return false;
@@ -156,7 +156,7 @@ TEXT
 				[ "cat_{$this->mode}" => $row->count ],
 				[
 					'cat_id' => $row->cat_id,
-					"cat_{$this->mode} != {$row->count}",
+					"cat_{$this->mode} != " . (int)( $row->count ),
 				],
 				__METHOD__ );
 			$affectedRows += $dbw->affectedRows();
@@ -168,5 +168,5 @@ TEXT
 	}
 }
 
-$maintClass = 'RecountCategories';
+$maintClass = RecountCategories::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

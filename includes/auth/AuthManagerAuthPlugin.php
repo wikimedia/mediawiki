@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Auth;
 
+use Psr\Log\LoggerInterface;
 use User;
 
 /**
@@ -31,7 +32,7 @@ class AuthManagerAuthPlugin extends \AuthPlugin {
 	/** @var string|null */
 	protected $domain = null;
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger = null;
 
 	public function __construct() {

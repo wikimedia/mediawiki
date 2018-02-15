@@ -59,7 +59,7 @@ class RunJobs extends Maintenance {
 		if ( $this->hasOption( 'procs' ) ) {
 			$procs = intval( $this->getOption( 'procs' ) );
 			if ( $procs < 1 || $procs > 1000 ) {
-				$this->error( "Invalid argument to --procs", true );
+				$this->fatalError( "Invalid argument to --procs" );
 			} elseif ( $procs != 1 ) {
 				$fc = new ForkController( $procs );
 				if ( $fc->start() != 'child' ) {
@@ -118,5 +118,5 @@ class RunJobs extends Maintenance {
 	}
 }
 
-$maintClass = "RunJobs";
+$maintClass = RunJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

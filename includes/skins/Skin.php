@@ -768,15 +768,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.27, feature removed
-	 * @return bool Always false
-	 */
-	function showIPinHeader() {
-		wfDeprecated( __METHOD__, '1.27' );
-		return false;
-	}
-
-	/**
 	 * @return string
 	 */
 	function getSearchLink() {
@@ -911,7 +902,7 @@ abstract class Skin extends ContextSource {
 			$s = '';
 		}
 
-		if ( wfGetLB()->getLaggedReplicaMode() ) {
+		if ( MediaWikiServices::getInstance()->getDBLoadBalancer()->getLaggedReplicaMode() ) {
 			$s .= ' <strong>' . $this->msg( 'laggedslavemode' )->parse() . '</strong>';
 		}
 
@@ -1265,27 +1256,26 @@ abstract class Skin extends ContextSource {
 	function buildSidebar() {
 		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
-		$callback = function () {
+		$callback = function ( $old = null, &$ttl = null ) {
 			$bar = [];
 			$this->addToSidebar( $bar, 'sidebar' );
 			Hooks::run( 'SkinBuildSidebar', [ $this, &$bar ] );
+			if ( MessageCache::singleton()->isDisabled() ) {
+				$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
+			}
 
 			return $bar;
 		};
 
-		if ( $wgEnableSidebarCache ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			$sidebar = $cache->getWithSetCallback(
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$sidebar = $wgEnableSidebarCache
+			? $cache->getWithSetCallback(
 				$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
-				MessageCache::singleton()->isDisabled()
-					? $cache::TTL_UNCACHEABLE // bug T133069
-					: $wgSidebarCacheExpiry,
+				$wgSidebarCacheExpiry,
 				$callback,
 				[ 'lockTSE' => 30 ]
-			);
-		} else {
-			$sidebar = $callback();
-		}
+			)
+			: $callback();
 
 		// Apply post-processing to the cached value
 		Hooks::run( 'SidebarBeforeOutput', [ $this, &$sidebar ] );

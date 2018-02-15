@@ -149,9 +149,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderModule::expandRelativePaths
 	 */
 	public function testPlaceholderize() {
-		$getRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'getRelativePaths' );
+		$getRelativePaths = new ReflectionMethod( ResourceLoaderModule::class, 'getRelativePaths' );
 		$getRelativePaths->setAccessible( true );
-		$expandRelativePaths = new ReflectionMethod( 'ResourceLoaderModule', 'expandRelativePaths' );
+		$expandRelativePaths = new ReflectionMethod( ResourceLoaderModule::class, 'expandRelativePaths' );
 		$expandRelativePaths->setAccessible( true );
 
 		$this->setMwGlobals( [

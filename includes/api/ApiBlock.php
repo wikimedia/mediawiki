@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 4, 2007
- *
  * Copyright © 2007 Roan Kattouw "<Firstname>.<Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -67,12 +63,12 @@ class ApiBlock extends ApiBase {
 				$params['user'] = $username;
 			}
 		} else {
-			$target = User::newFromName( $params['user'] );
+			list( $target, $type ) = SpecialBlock::getTargetAndType( $params['user'] );
 
 			// T40633 - if the target is a user (not an IP address), but it
 			// doesn't exist or is unusable, error.
-			if ( $target instanceof User &&
-				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $target->getName() ) )
+			if ( $type === Block::TYPE_USER &&
+				( $target->isAnon() /* doesn't exist */ || !User::isUsableName( $params['user'] ) )
 			) {
 				$this->dieWithError( [ 'nosuchusershort', $params['user'] ], 'nosuchuser' );
 			}
@@ -182,14 +178,14 @@ class ApiBlock extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			'action=block&user=192.0.2.5&expiry=3%20days&reason=First%20strike&token=123ABC'
 				=> 'apihelp-block-example-ip-simple',
 			'action=block&user=Vandal&expiry=never&reason=Vandalism&nocreate=&autoblock=&noemail=&token=123ABC'
 				=> 'apihelp-block-example-user-complex',
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	public function getHelpUrls() {

@@ -290,10 +290,10 @@ class ParserTestRunner {
 		// Set up null lock managers
 		$setup['wgLockManagers'] = [ [
 			'name' => 'fsLockManager',
-			'class' => 'NullLockManager',
+			'class' => NullLockManager::class,
 		], [
 			'name' => 'nullLockManager',
-			'class' => 'NullLockManager',
+			'class' => NullLockManager::class,
 		] ];
 		$reset = function () {
 			LockManagerGroup::destroySingletons();
@@ -435,7 +435,7 @@ class ParserTestRunner {
 
 		return new RepoGroup(
 			[
-				'class' => 'MockLocalRepo',
+				'class' => MockLocalRepo::class,
 				'name' => 'local',
 				'url' => 'http://example.com/images',
 				'hashLevels' => 2,
@@ -708,15 +708,15 @@ class ParserTestRunner {
 	public function meetsRequirements( $requirements ) {
 		foreach ( $requirements as $requirement ) {
 			switch ( $requirement['type'] ) {
-			case 'hook':
-				$ok = $this->requireHook( $requirement['name'] );
-				break;
-			case 'functionHook':
-				$ok = $this->requireFunctionHook( $requirement['name'] );
-				break;
-			case 'transparentHook':
-				$ok = $this->requireTransparentHook( $requirement['name'] );
-				break;
+				case 'hook':
+					$ok = $this->requireHook( $requirement['name'] );
+					break;
+				case 'functionHook':
+					$ok = $this->requireFunctionHook( $requirement['name'] );
+					break;
+				case 'transparentHook':
+					$ok = $this->requireTransparentHook( $requirement['name'] );
+					break;
 			}
 			if ( !$ok ) {
 				return false;
@@ -811,10 +811,6 @@ class ParserTestRunner {
 		$options = ParserOptions::newFromContext( $context );
 		$options->setTimestamp( $this->getFakeTimestamp() );
 
-		if ( !isset( $opts['wrap'] ) ) {
-			$options->setWrapOutputClass( false );
-		}
-
 		if ( isset( $opts['tidy'] ) ) {
 			if ( !$this->tidySupport->isEnabled() ) {
 				$this->recorder->skipped( $test, 'tidy extension is not installed' );
@@ -853,8 +849,10 @@ class ParserTestRunner {
 			$out = $parser->getPreloadText( $test['input'], $title, $options );
 		} else {
 			$output = $parser->parse( $test['input'], $title, $options, true, true, 1337 );
-			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
-			$out = $output->getText();
+			$out = $output->getText( [
+				'allowTOC' => !isset( $opts['notoc'] ),
+				'unwrap' => !isset( $opts['wrap'] ),
+			] );
 			if ( isset( $opts['tidy'] ) ) {
 				$out = preg_replace( '/\s+$/', '', $out );
 			}
@@ -1150,6 +1148,8 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	private function listTables() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$tables = [ 'user', 'user_properties', 'user_former_groups', 'page', 'page_restrictions',
 			'protected_titles', 'revision', 'ip_changes', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks', 'iwlinks',
@@ -1158,6 +1158,13 @@ class ParserTestRunner {
 			'querycache', 'objectcache', 'job', 'l10n_cache', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category'
 		];
+
+		if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			// The new tables for comments are in use
+			$tables[] = 'comment';
+			$tables[] = 'revision_comment_temp';
+			$tables[] = 'image_comment_temp';
+		}
 
 		if ( in_array( $this->db->getType(), [ 'mysql', 'sqlite', 'oracle' ] ) ) {
 			array_push( $tables, 'searchindex' );

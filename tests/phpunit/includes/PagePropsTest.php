@@ -1,13 +1,15 @@
 <?php
 
 /**
+ * @covers PageProps
+ *
  * @group Database
  *	^--- tell jenkins this test needs the database
  *
  * @group medium
  *	^--- tell phpunit that these test cases may take longer than 2 seconds.
  */
-class TestPageProps extends MediaWikiLangTestCase {
+class PagePropsTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @var Title $title1

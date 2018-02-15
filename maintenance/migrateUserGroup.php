@@ -42,17 +42,18 @@ class MigrateUserGroup extends Maintenance {
 		$oldGroup = $this->getArg( 0 );
 		$newGroup = $this->getArg( 1 );
 		$dbw = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
 			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
 		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
 			[ 'ug_group' => $oldGroup ], __FUNCTION__ );
 		if ( $start === null ) {
-			$this->error( "Nothing to do - no users in the '$oldGroup' group", true );
+			$this->fatalError( "Nothing to do - no users in the '$oldGroup' group" );
 		}
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		// Migrate users over in batches...
 		while ( $blockEnd <= $end ) {
 			$affected = 0;
@@ -62,7 +63,7 @@ class MigrateUserGroup extends Maintenance {
 			$dbw->update( 'user_groups',
 				[ 'ug_group' => $newGroup ],
 				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN $blockStart AND $blockEnd" ],
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__,
 				[ 'IGNORE' ]
 			);
@@ -73,7 +74,7 @@ class MigrateUserGroup extends Maintenance {
 			// user/group is UNIQUE.
 			$dbw->delete( 'user_groups',
 				[ 'ug_group' => $oldGroup,
-					"ug_user BETWEEN $blockStart AND $blockEnd" ],
+					"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 				__METHOD__
 			);
 			$affected += $dbw->affectedRows();
@@ -85,7 +86,7 @@ class MigrateUserGroup extends Maintenance {
 				// were in the new group and not in the group.
 				$res = $dbw->select( 'user_groups', 'ug_user',
 					[ 'ug_group' => $newGroup,
-						"ug_user BETWEEN $blockStart AND $blockEnd" ],
+						"ug_user BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd ],
 					__METHOD__
 				);
 				if ( $res !== false ) {
@@ -97,13 +98,13 @@ class MigrateUserGroup extends Maintenance {
 			}
 
 			$count += $affected;
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 		$this->output( "Done! $count users in group '$oldGroup' are now in '$newGroup' instead.\n" );
 	}
 }
 
-$maintClass = "MigrateUserGroup";
+$maintClass = MigrateUserGroup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

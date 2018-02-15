@@ -25,6 +25,13 @@
 	page-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
 }
+
+.mw-allpages-chunk,
+.mw-prefixindex-list {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 .allpagesredirect {
 	font-style: italic;
 }
@@ -106,6 +113,11 @@
 	columns: 16em 2;
 }
 
+.mw-specialpages-list ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 /* Special:Statistics */
 .mw-statistics-numbers {
 	text-align: right;
@@ -121,17 +133,4 @@
 .mw-protectedpages-unknown {
 	color: #72777d;
 	font-size: 90%;
-}
-
-/* Special:UserRights */
-.mw-userrights-disabled {
-	color: #72777d;
-}
-.mw-userrights-groups * td,
-.mw-userrights-groups * th {
-	padding-right: 1.5em;
-}
-
-.mw-userrights-groups * th {
-	text-align: left;
 }

@@ -512,7 +512,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		$method = __METHOD__;
 		return $cache->getWithSetCallback(
-			'imagemagick-version',
+			$cache->makeGlobalKey( 'imagemagick-version' ),
 			$cache::TTL_HOUR,
 			function () use ( $method ) {
 				global $wgImageMagickConvertCommand;

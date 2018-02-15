@@ -12,6 +12,7 @@
 	 *  selected, makes inactive.
 	 * @cfg {string[]} [subset] Defining the names of filters that are a subset of this filter
 	 * @cfg {Object} [conflicts] Defines the conflicts for this filter
+	 * @cfg {boolean} [visible=true] The visibility of the group
 	 */
 	mw.rcfilters.dm.FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 		config = config || {};
@@ -29,6 +30,7 @@
 		this.subset = config.subset || [];
 		this.conflicts = config.conflicts || {};
 		this.superset = [];
+		this.visible = config.visible === undefined ? true : !!config.visible;
 
 		// Interaction states
 		this.included = false;
@@ -369,4 +371,28 @@
 			this.emit( 'update' );
 		}
 	};
+
+	/**
+	 * Toggle the visibility of this item
+	 *
+	 * @param {boolean} [isVisible] Item is visible
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.toggleVisible = function ( isVisible ) {
+		isVisible = isVisible === undefined ? !this.visible : !!isVisible;
+
+		if ( this.visible !== isVisible ) {
+			this.visible = isVisible;
+			this.emit( 'update' );
+		}
+	};
+
+	/**
+	 * Check whether the item is visible
+	 *
+	 * @return {boolean} Item is visible
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.isVisible = function () {
+		return this.visible;
+	};
+
 }( mediaWiki ) );

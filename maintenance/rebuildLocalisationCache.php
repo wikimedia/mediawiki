@@ -92,7 +92,7 @@ class RebuildLocalisationCache extends Maintenance {
 				explode( ',', $this->getOption( 'lang' ) ) );
 			# Bailed out if nothing is left
 			if ( count( $codes ) == 0 ) {
-				$this->error( 'None of the languages specified exists.', 1 );
+				$this->fatalError( 'None of the languages specified exists.' );
 			}
 		} else {
 			# By default get all languages
@@ -177,5 +177,5 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 }
 
-$maintClass = "RebuildLocalisationCache";
+$maintClass = RebuildLocalisationCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

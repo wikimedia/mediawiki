@@ -121,7 +121,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'nukeworld', $rights );
 
 		// Add a Session that limits rights
-		$mock = $this->getMockBuilder( stdclass::class )
+		$mock = $this->getMockBuilder( stdClass::class )
 			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
@@ -236,6 +236,8 @@ class UserTest extends MediaWikiTestCase {
 	 * Test, if for all rights a right- message exist,
 	 * which is used on Special:ListGroupRights as help text
 	 * Extensions and core
+	 *
+	 * @coversNothing
 	 */
 	public function testAllRightsWithMessage() {
 		// Getting all user rights, for core: User::$mCoreRights, for extensions: $wgAvailableRights
@@ -600,7 +602,13 @@ class UserTest extends MediaWikiTestCase {
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PerformRetroactiveAutoblock' => []
+		] );
+
 		// 1. Log in a test user, and block them.
+		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
@@ -610,6 +618,7 @@ class UserTest extends MediaWikiTestCase {
 			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -640,7 +649,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
 		$this->assertTrue( $user2->isBlocked() );
-		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
+		// Non-strict type-check.
+		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
 		// Can't directly compare the objects becuase of member type differences.
 		// One day this will work: $this->assertEquals( $block, $user2->getBlock() );
 		$this->assertEquals( $block->getId(), $user2->getBlock()->getId() );
@@ -673,12 +683,19 @@ class UserTest extends MediaWikiTestCase {
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PerformRetroactiveAutoblock' => []
+		] );
+
 		// 1. Log in a test user, and block them.
+		$userBlocker = $this->getTestSysop()->getUser();
 		$testUser = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $testUser );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $testUser );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user = User::newFromSession( $request1 );
@@ -710,12 +727,20 @@ class UserTest extends MediaWikiTestCase {
 			'wgCookiePrefix' => 'wm_infinite_block',
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
+
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PerformRetroactiveAutoblock' => []
+		] );
+
 		// 1. Log in a test user, and block them indefinitely.
+		$userBlocker = $this->getTestSysop()->getUser();
 		$user1Tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1Tmp );
 		$block = new Block( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
 		$block->setTarget( $user1Tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -798,12 +823,19 @@ class UserTest extends MediaWikiTestCase {
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PerformRetroactiveAutoblock' => []
+		] );
+
 		// 1. Log in a blocked test user.
+		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -836,12 +868,19 @@ class UserTest extends MediaWikiTestCase {
 			'wgSecretKey' => null,
 		] );
 
+		// Unregister the hooks for proper unit testing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PerformRetroactiveAutoblock' => []
+		] );
+
 		// 1. Log in a blocked test user.
+		$userBlocker = $this->getTestSysop()->getUser();
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
 		$request1->getSession()->setUser( $user1tmp );
 		$block = new Block( [ 'enableAutoblock' => true ] );
 		$block->setTarget( $user1tmp );
+		$block->setBlocker( $userBlocker );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -866,6 +905,9 @@ class UserTest extends MediaWikiTestCase {
 		$block->delete();
 	}
 
+	/**
+	 * @covers User::isPingLimitable
+	 */
 	public function testIsPingLimitable() {
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
@@ -902,6 +944,7 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::getExperienceLevel
 	 * @dataProvider provideExperienceLevel
 	 */
 	public function testExperienceLevel( $editCount, $memberSince, $expLevel ) {
@@ -931,6 +974,9 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $expLevel, $user->getExperienceLevel() );
 	}
 
+	/**
+	 * @covers User::getExperienceLevel
+	 */
 	public function testExperienceLevelAnon() {
 		$user = User::newFromName( '10.11.12.13', false );
 

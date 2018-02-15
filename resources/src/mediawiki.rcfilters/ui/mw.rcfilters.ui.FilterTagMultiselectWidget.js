@@ -41,6 +41,8 @@
 			allowReordering: false,
 			$overlay: this.$overlay,
 			menu: {
+				// Our filtering is done through the model
+				filterFromInput: false,
 				hideWhenOutOfView: false,
 				hideOnChoose: false,
 				width: 650,
@@ -88,7 +90,10 @@
 		if ( !mw.user.isAnon() ) {
 			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
 				this.controller,
-				this.queriesModel
+				this.queriesModel,
+				{
+					$overlay: this.$overlay
+				}
 			);
 
 			this.saveQueryButton.$element.on( 'mousedown', function ( e ) { e.stopPropagation(); } );
@@ -118,6 +123,7 @@
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			update: 'onModelUpdate',
+			searchChange: 'onModelSearchChange',
 			itemUpdate: 'onModelItemUpdate',
 			highlightChange: 'onModelHighlightChange'
 		} );
@@ -150,21 +156,16 @@
 			items: [
 				new OO.ui.ButtonOptionWidget( {
 					framed: false,
-					data: '',
-					disabled: true,
-					classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget-label' ],
-					label: mw.msg( 'rcfilters-view-advanced-filters-label' )
-				} ),
-				new OO.ui.ButtonOptionWidget( {
-					framed: false,
 					data: 'namespaces',
 					icon: 'article',
+					label: mw.msg( 'namespaces' ),
 					title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
 				} ),
 				new OO.ui.ButtonOptionWidget( {
 					framed: false,
 					data: 'tags',
 					icon: 'tag',
+					label: mw.msg( 'tags-title' ),
 					title: mw.msg( 'rcfilters-view-tags-tooltip' )
 				} )
 			]
@@ -240,19 +241,23 @@
 	};
 
 	/**
+	 * Respond to model search change event
+	 *
+	 * @param {string} value Search value
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onModelSearchChange = function ( value ) {
+		this.input.setValue( value );
+	};
+
+	/**
 	 * Respond to input change event
 	 *
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		var view;
-
-		value = value.trim();
-
-		view = this.model.getViewByTrigger( value.substr( 0, 1 ) );
-
-		this.controller.switchView( view );
+		this.controller.setSearch( value );
 	};
+
 	/**
 	 * Respond to query button click
 	 */
@@ -290,25 +295,24 @@
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onMenuToggle.call( this );
 
 		if ( isVisible ) {
+			this.focus();
+
 			mw.hook( 'RcFilters.popup.open' ).fire();
 
-			if ( !this.getMenu().getSelectedItem() ) {
+			if ( !this.getMenu().findSelectedItem() ) {
 				// If there are no selected items, scroll menu to top
 				// This has to be in a setTimeout so the menu has time
 				// to be positioned and fixed
 				setTimeout( function () { this.getMenu().scrollToTop(); }.bind( this ), 0 );
 			}
 		} else {
+			this.blur();
+
 			// Clear selection
 			this.selectTag( null );
 
-			// Clear input if the only thing in the input is the prefix
-			if (
-				this.input.getValue().trim() === this.model.getViewTrigger( this.model.getCurrentView() )
-			) {
-				// Clear the input
-				this.input.setValue( '' );
-			}
+			// Clear the search
+			this.controller.setSearch( '' );
 
 			// Log filter grouping
 			this.controller.trackFilterGroupings( 'filtermenu' );
@@ -340,6 +344,17 @@
 
 		// Blur the input
 		this.input.$input.blur();
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMouseDown = function ( e ) {
+		if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
+			this.menu.toggle();
+
+			return false;
+		}
 	};
 
 	/**
@@ -407,7 +422,10 @@
 			this.matchingQuery ? this.matchingQuery.getLabel() : ''
 		);
 		this.savedQueryTitle.toggle( !!this.matchingQuery );
-		this.saveQueryButton.toggle( !this.matchingQuery );
+		this.saveQueryButton.setDisabled( !!this.matchingQuery );
+		this.saveQueryButton.setTitle( !this.matchingQuery ?
+			mw.msg( 'rcfilters-savedqueries-add-new-title' ) :
+			mw.msg( 'rcfilters-savedqueries-already-saved' ) );
 
 		if ( this.matchingQuery ) {
 			this.emphasize();
@@ -458,7 +476,7 @@
 		this.controller.toggleFilterSelect( item.model.getName() );
 
 		// Select the tag if it exists, or reset selection otherwise
-		this.selectTag( this.getItemFromData( item.model.getName() ) );
+		this.selectTag( this.findItemFromData( item.model.getName() ) );
 
 		this.focus();
 	};
@@ -492,42 +510,19 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-		var widget = this,
-			menuOption = this.menu.getItemFromModel( tagItem.getModel() ),
-			oldInputValue = this.input.getValue().trim();
+		var menuOption = this.menu.getItemFromModel( tagItem.getModel() );
 
 		this.menu.setUserSelecting( true );
-
-		// Reset input
-		this.input.setValue( '' );
-
-		// Switch view
-		this.controller.switchView( tagItem.getView() );
-
 		// Parent method
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
 
-		this.menu.selectItem( menuOption );
+		// Switch view
+		this.controller.resetSearchForView( tagItem.getView() );
+
 		this.selectTag( tagItem );
+		this.scrollToTop( menuOption.$element );
 
-		// Scroll to the item
-		if ( this.model.removeViewTriggers( oldInputValue ) ) {
-			// We're binding a 'once' to the itemVisibilityChange event
-			// so this happens when the menu is ready after the items
-			// are visible again, in case this is done right after the
-			// user filtered the results
-			this.getMenu().once(
-				'itemVisibilityChange',
-				function () {
-					widget.scrollToTop( menuOption.$element );
-					widget.menu.setUserSelecting( false );
-				}
-			);
-		} else {
-			this.scrollToTop( menuOption.$element );
-			this.menu.setUserSelecting( false );
-		}
-
+		this.menu.setUserSelecting( false );
 	};
 
 	/**
@@ -563,7 +558,7 @@
 	 * Respond to click event on the reset button
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onResetButtonClick = function () {
-		if ( this.model.areCurrentFiltersEmpty() ) {
+		if ( this.model.areVisibleFiltersEmpty() ) {
 			// Reset to default filters
 			this.controller.resetToDefaults();
 		} else {
@@ -577,7 +572,7 @@
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.reevaluateResetRestoreState = function () {
 		var defaultsAreEmpty = this.controller.areDefaultsEmpty(),
-			currFiltersAreEmpty = this.model.areCurrentFiltersEmpty(),
+			currFiltersAreEmpty = this.model.areVisibleFiltersEmpty(),
 			hideResetButton = currFiltersAreEmpty && defaultsAreEmpty;
 
 		this.resetButton.setIcon(
@@ -602,9 +597,7 @@
 		return new mw.rcfilters.ui.MenuSelectWidget(
 			this.controller,
 			this.model,
-			$.extend( {
-				filterFromInput: true
-			}, menuConfig )
+			menuConfig
 		);
 	};
 

@@ -11,8 +11,9 @@
  * ^--- important, causes tests not to fail with timeout
  */
 class PageArchiveTest extends MediaWikiTestCase {
+
 	/**
-	 * @var WikiPage $archivedPage
+	 * @var PageArchive $archivedPage
 	 */
 	private $archivedPage;
 
@@ -78,6 +79,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers PageArchive::undelete
+	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// First make sure old revisions are archived
@@ -106,5 +108,138 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $this->ipRevId ] );
 		$row = $res->fetchObject();
 		$this->assertEquals( IP::toHex( $this->ipEditor ), $row->ipc_hex );
+	}
+
+	/**
+	 * @covers PageArchive::listRevisions
+	 */
+	public function testListRevisions() {
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
+
+		$revisions = $this->archivedPage->listRevisions();
+		$this->assertEquals( 2, $revisions->numRows() );
+
+		// Get the rows as arrays
+		$row1 = (array)$revisions->current();
+		$row2 = (array)$revisions->next();
+		// Unset the timestamps (we assume they will be right...
+		$this->assertInternalType( 'string', $row1['ar_timestamp'] );
+		$this->assertInternalType( 'string', $row2['ar_timestamp'] );
+		unset( $row1['ar_timestamp'] );
+		unset( $row2['ar_timestamp'] );
+
+		$this->assertEquals(
+			[
+				'ar_minor_edit' => '0',
+				'ar_user' => '0',
+				'ar_user_text' => '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7',
+				'ar_len' => '11',
+				'ar_deleted' => '0',
+				'ar_rev_id' => '3',
+				'ar_sha1' => '0qdrpxl537ivfnx4gcpnzz0285yxryy',
+				'ar_page_id' => '2',
+				'ar_comment_text' => 'just a test',
+				'ar_comment_data' => null,
+				'ar_comment_cid' => null,
+				'ar_content_format' => null,
+				'ar_content_model' => null,
+				'ts_tags' => null,
+				'ar_id' => '2',
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'ar_text' => '',
+				'ar_text_id' => '3',
+				'ar_parent_id' => '2',
+			],
+			$row1
+		);
+		$this->assertEquals(
+			[
+				'ar_minor_edit' => '0',
+				'ar_user' => '0',
+				'ar_user_text' => '127.0.0.1',
+				'ar_len' => '7',
+				'ar_deleted' => '0',
+				'ar_rev_id' => '2',
+				'ar_sha1' => 'pr0s8e18148pxhgjfa0gjrvpy8fiyxc',
+				'ar_page_id' => '2',
+				'ar_comment_text' => 'testing',
+				'ar_comment_data' => null,
+				'ar_comment_cid' => null,
+				'ar_content_format' => null,
+				'ar_content_model' => null,
+				'ts_tags' => null,
+				'ar_id' => '1',
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'ar_text' => '',
+				'ar_text_id' => '2',
+				'ar_parent_id' => '0',
+			],
+			$row2
+		);
+	}
+
+	/**
+	 * @covers PageArchive::listPagesBySearch
+	 */
+	public function testListPagesBySearch() {
+		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
+		$this->assertSame( 1, $pages->numRows() );
+
+		$page = (array)$pages->current();
+
+		$this->assertSame(
+			[
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'count' => '2',
+			],
+			$page
+		);
+	}
+
+	/**
+	 * @covers PageArchive::listPagesBySearch
+	 */
+	public function testListPagesByPrefix() {
+		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );
+		$this->assertSame( 1, $pages->numRows() );
+
+		$page = (array)$pages->current();
+
+		$this->assertSame(
+			[
+				'ar_namespace' => '0',
+				'ar_title' => 'PageArchiveTest_thePage',
+				'count' => '2',
+			],
+			$page
+		);
+	}
+
+	/**
+	 * @covers PageArchive::getTextFromRow
+	 */
+	public function testGetTextFromRow() {
+		$row = (object)[ 'ar_text_id' => 2 ];
+		$text = $this->archivedPage->getTextFromRow( $row );
+		$this->assertSame( 'testing', $text );
+	}
+
+	/**
+	 * @covers PageArchive::getLastRevisionText
+	 */
+	public function testGetLastRevisionText() {
+		$text = $this->archivedPage->getLastRevisionText();
+		$this->assertSame( 'Lorem Ipsum', $text );
+	}
+
+	/**
+	 * @covers PageArchive::isDeleted
+	 */
+	public function testIsDeleted() {
+		$this->assertTrue( $this->archivedPage->isDeleted() );
 	}
 }

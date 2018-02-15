@@ -112,11 +112,11 @@ abstract class SearchEngine {
 	 */
 	public function supports( $feature ) {
 		switch ( $feature ) {
-		case 'search-update':
-			return true;
-		case 'title-suffix-filter':
-		default:
-			return false;
+			case 'search-update':
+				return true;
+			case 'title-suffix-filter':
+			default:
+				return false;
 		}
 	}
 
@@ -543,7 +543,7 @@ abstract class SearchEngine {
 				$this->setLimitOffset( $fallbackLimit );
 				$fallbackSearchResult = $this->completionSearch( $fbs );
 				$results->appendAll( $fallbackSearchResult );
-				$fallbackLimit -= count( $fallbackSearchResult );
+				$fallbackLimit -= $fallbackSearchResult->getSize();
 				if ( $fallbackLimit <= 0 ) {
 					break;
 				}

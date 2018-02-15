@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 19, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -30,7 +26,7 @@
  * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
-	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
+	private $mIsHtml, $mFormat;
 	private $mBuffer, $mDisabled = false;
 	private $mIsWrappedHtml = false;
 	private $mHttpStatus = false;
@@ -63,6 +59,26 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @return string
 	 */
 	abstract public function getMimeType();
+
+	/**
+	 * Return a filename for this module's output.
+	 * @note If $this->getIsWrappedHtml() || $this->getIsHtml(), you'll very
+	 *  likely want to fall back to this class's version.
+	 * @since 1.27
+	 * @return string Generally this should be "api-result.$ext"
+	 */
+	public function getFilename() {
+		if ( $this->getIsWrappedHtml() ) {
+			return 'api-result-wrapped.json';
+		} elseif ( $this->getIsHtml() ) {
+			return 'api-result.html';
+		} else {
+			$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
+				->getExtensionsForType( $this->getMimeType() );
+			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
+			return "api-result.$ext";
+		}
+	}
 
 	/**
 	 * Get the internal format name
@@ -192,6 +208,28 @@ abstract class ApiFormatBase extends ApiBase {
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
 		}
+
+		// Set a Content-Disposition header so something downloading an API
+		// response uses a halfway-sensible filename (T128209).
+		$header = 'Content-Disposition: inline';
+		$filename = $this->getFilename();
+		$compatFilename = mb_convert_encoding( $filename, 'ISO-8859-1' );
+		if ( preg_match( '/^[0-9a-zA-Z!#$%&\'*+\-.^_`|~]+$/', $compatFilename ) ) {
+			$header .= '; filename=' . $compatFilename;
+		} else {
+			$header .= '; filename="'
+				. preg_replace( '/([\0-\x1f"\x5c\x7f])/', '\\\\$1', $compatFilename ) . '"';
+		}
+		if ( $compatFilename !== $filename ) {
+			$value = "UTF-8''" . rawurlencode( $filename );
+			// rawurlencode() encodes more characters than RFC 5987 specifies. Unescape the ones it allows.
+			$value = strtr( $value, [
+				'%21' => '!', '%23' => '#', '%24' => '$', '%26' => '&', '%2B' => '+', '%5E' => '^',
+				'%60' => '`', '%7C' => '|',
+			] );
+			$header .= '; filename*=' . $value;
+		}
+		$this->getMain()->getRequest()->response()->header( $header );
 	}
 
 	/**

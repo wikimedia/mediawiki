@@ -48,9 +48,9 @@ class CopyJobQueue extends Maintenance {
 		$dstKey = $this->getOption( 'dst' );
 
 		if ( !isset( $wgJobQueueMigrationConfig[$srcKey] ) ) {
-			$this->error( "\$wgJobQueueMigrationConfig not set for '$srcKey'.", 1 );
+			$this->fatalError( "\$wgJobQueueMigrationConfig not set for '$srcKey'." );
 		} elseif ( !isset( $wgJobQueueMigrationConfig[$dstKey] ) ) {
-			$this->error( "\$wgJobQueueMigrationConfig not set for '$dstKey'.", 1 );
+			$this->fatalError( "\$wgJobQueueMigrationConfig not set for '$dstKey'." );
 		}
 
 		$types = ( $this->getOption( 'type' ) === 'all' )
@@ -77,7 +77,7 @@ class CopyJobQueue extends Maintenance {
 		foreach ( $jobs as $job ) {
 			++$total;
 			$batch[] = $job;
-			if ( count( $batch ) >= $this->mBatchSize ) {
+			if ( count( $batch ) >= $this->getBatchSize() ) {
 				$dst->push( $batch );
 				$totalOK += count( $batch );
 				$batch = [];
@@ -94,5 +94,5 @@ class CopyJobQueue extends Maintenance {
 	}
 }
 
-$maintClass = 'CopyJobQueue';
+$maintClass = CopyJobQueue::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

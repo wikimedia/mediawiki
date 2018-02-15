@@ -118,6 +118,28 @@ CREATE TABLE /*_*/bot_passwords (
 
 
 --
+-- Edits, blocks, and other actions typically have a textual comment describing
+-- the action. They are stored here to reduce the size of the main tables, and
+-- to allow for deduplication.
+--
+-- Deduplication is currently best-effort to avoid locking on inserts that
+-- would be required for strict deduplication. There MAY be multiple rows with
+-- the same comment_text and comment_data.
+--
+CREATE TABLE /*_*/comment (
+  comment_id bigint unsigned NOT NULL PRIMARY KEY IDENTITY(0,1),
+  comment_hash INT NOT NULL,
+  comment_text nvarchar(max) NOT NULL,
+  comment_data nvarchar(max)
+);
+-- Index used for deduplication.
+CREATE INDEX /*i*/comment_hash ON /*_*/comment (comment_hash);
+
+-- dummy row for FKs. Hash is intentionally wrong so CommentStore won't match it.
+INSERT INTO /*_*/comment (comment_hash, comment_text) VALUES (-1, '** dummy **');
+
+
+--
 -- Core of the wiki: each page has an entry here which identifies
 -- it by title and contains some essential metadata.
 --
@@ -153,7 +175,7 @@ CREATE TABLE /*_*/revision (
    rev_id INT NOT NULL UNIQUE IDENTITY(0,1),
    rev_page INT NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
    rev_text_id INT  NOT NULL, -- FK added later
-   rev_comment NVARCHAR(255) NOT NULL,
+   rev_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_rev_comment DEFAULT '',
    rev_user INT REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
    rev_user_text NVARCHAR(255) NOT NULL DEFAULT '',
    rev_timestamp varchar(14) NOT NULL default '',
@@ -176,6 +198,20 @@ CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_ti
 INSERT INTO /*_*/revision (rev_page,rev_text_id,rev_comment,rev_user,rev_len) VALUES (0,0,'',0,0);
 
 ALTER TABLE /*_*/page ADD CONSTRAINT FK_page_latest_page_id FOREIGN KEY (page_latest) REFERENCES /*_*/revision(rev_id);
+
+--
+-- Temporary table to avoid blocking on an alter of revision.
+--
+-- On large wikis like the English Wikipedia, altering the revision table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into revision in the future.
+--
+CREATE TABLE /*_*/revision_comment_temp (
+  revcomment_rev INT NOT NULL CONSTRAINT FK_revcomment_rev FOREIGN KEY REFERENCES /*_*/revision(rev_id) ON DELETE CASCADE,
+  revcomment_comment_id bigint unsigned NOT NULL CONSTRAINT FK_revcomment_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  CONSTRAINT PK_revision_comment_temp PRIMARY KEY (revcomment_rev, revcomment_comment_id)
+);
+CREATE UNIQUE INDEX /*i*/revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
 
 --
 -- Holds TEXT of individual page revisions.
@@ -207,7 +243,8 @@ CREATE TABLE /*_*/archive (
    ar_namespace SMALLINT NOT NULL DEFAULT 0,
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
    ar_text NVARCHAR(MAX) NOT NULL,
-   ar_comment NVARCHAR(255) NOT NULL,
+   ar_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_ar_comment DEFAULT '',
+   ar_comment_id bigint unsigned NOT NULL CONSTRAINT DF_ar_comment_id DEFAULT 0 CONSTRAINT FK_ar_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
    ar_user INT CONSTRAINT ar_user__user_id__fk FOREIGN KEY REFERENCES /*_*/mwuser(user_id),
    ar_user_text NVARCHAR(255) NOT NULL,
    ar_timestamp varchar(14) NOT NULL default '',
@@ -226,6 +263,76 @@ CREATE TABLE /*_*/archive (
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
 CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
+
+
+--
+-- Slots represent an n:m relation between revisions and content objects.
+-- A content object can have a specific "role" in one or more revisions.
+-- Each revision can have multiple content objects, each having a different role.
+--
+CREATE TABLE /*_*/slots (
+
+  -- reference to rev_id
+  slot_revision_id bigint unsigned NOT NULL,
+
+  -- reference to role_id
+  slot_role_id smallint unsigned NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
+
+  -- reference to content_id
+  slot_content_id bigint unsigned NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
+
+  -- whether the content is inherited (1) or new in this revision (0)
+  slot_inherited tinyint unsigned NOT NULL CONSTRAINT DF_slot_inherited DEFAULT 0,
+
+  CONSTRAINT PK_slots PRIMARY KEY (slot_revision_id, slot_role_id)
+);
+
+-- Index for finding revisions that modified a specific slot
+CREATE INDEX /*i*/slot_role_inherited ON /*_*/slots (slot_revision_id, slot_role_id, slot_inherited);
+
+--
+-- The content table represents content objects. It's primary purpose is to provide the necessary
+-- meta-data for loading and interpreting a serialized data blob to create a content object.
+--
+CREATE TABLE /*_*/content (
+
+  -- ID of the content object
+  content_id bigint unsigned NOT NULL CONSTRAINT PK_content PRIMARY KEY IDENTITY,
+
+  -- Nominal size of the content object (not necessarily of the serialized blob)
+  content_size int unsigned NOT NULL,
+
+  -- Nominal hash of the content object (not necessarily of the serialized blob)
+  content_sha1 varchar(32) NOT NULL,
+
+  -- reference to model_id
+  content_model smallint unsigned NOT NULL CONSTRAINT FK_content_content_models FOREIGN KEY REFERENCES /*_*/content_models(model_id),
+
+  -- URL-like address of the content blob
+  content_address nvarchar(255) NOT NULL
+);
+
+--
+-- Normalization table for role names
+--
+CREATE TABLE /*_*/slot_roles (
+  role_id smallint NOT NULL CONSTRAINT PK_slot_roles PRIMARY KEY IDENTITY,
+  role_name nvarchar(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/role_name ON /*_*/slot_roles (role_name);
+
+--
+-- Normalization table for content model names
+--
+CREATE TABLE /*_*/content_models (
+  model_id smallint NOT NULL CONSTRAINT PK_content_models PRIMARY KEY IDENTITY,
+  model_name nvarchar(64) NOT NULL
+);
+
+-- Index for looking of the internal ID of for a name
+CREATE UNIQUE INDEX /*i*/model_name ON /*_*/content_models (model_name);
 
 
 --
@@ -497,7 +604,11 @@ CREATE TABLE /*_*/ipblocks (
   ipb_by_text nvarchar(255) NOT NULL default '',
 
   -- Text comment made by blocker.
-  ipb_reason nvarchar(255) NOT NULL,
+  ipb_reason nvarchar(255) NOT NULL CONSTRAINT DF_ipb_reason DEFAULT '',
+
+  -- Key to comment_id. Text comment made by blocker.
+  -- ("DEFAULT 0" is temporary, signaling that ipb_reason should be used)
+  ipb_reason_id bigint unsigned NOT NULL CONSTRAINT DF_ipb_reason_id DEFAULT 0 CONSTRAINT FK_ipb_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- Creation (or refresh) date in standard YMDHMS form.
   -- IP blocks expire automatically.
@@ -594,7 +705,7 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description nvarchar(255) NOT NULL,
+  img_description nvarchar(255) NOT NULL CONSTRAINT DF_img_description DEFAULT '',
 
   -- user_id and user_name of uploader.
   img_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
@@ -620,6 +731,20 @@ CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1);
 -- Used to get media of one type
 CREATE INDEX /*i*/img_media_mime ON /*_*/image (img_media_type,img_major_mime,img_minor_mime);
 
+--
+-- Temporary table to avoid blocking on an alter of image.
+--
+-- On large wikis like Wikimedia Commons, altering the image table is a
+-- months-long process. This table is being created to avoid such an alter, and
+-- will be merged back into image in the future.
+--
+CREATE TABLE /*_*/image_comment_temp (
+  imgcomment_name nvarchar(255) NOT NULL CONSTRAINT FK_imgcomment_name FOREIGN KEY REFERENCES /*_*/image(imgcomment_name) ON DELETE CASCADE,
+  imgcomment_description_id bigint unsigned NOT NULL CONSTRAINT FK_imgcomment_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+  CONSTRAINT PK_image_comment_temp PRIMARY KEY (imgcomment_name, imgcomment_description_id)
+);
+CREATE UNIQUE INDEX /*i*/imgcomment_name ON /*_*/image_comment_temp (imgcomment_name);
+
 
 --
 -- Previous revisions of uploaded files.
@@ -640,7 +765,8 @@ CREATE TABLE /*_*/oldimage (
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
-  oi_description nvarchar(255) NOT NULL,
+  oi_description nvarchar(255) NOT NULL CONSTRAINT DF_oi_description DEFAULT '',
+  oi_description_id bigint unsigned NOT NULL CONSTRAINT DF_oi_description_id DEFAULT 0 CONSTRAINT FK_oi_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   oi_user int REFERENCES /*_*/mwuser(user_id),
   oi_user_text nvarchar(255) NOT NULL,
   oi_timestamp varchar(14) NOT NULL default '',
@@ -689,7 +815,8 @@ CREATE TABLE /*_*/filearchive (
   -- Deletion information, if this file is deleted.
   fa_deleted_user int,
   fa_deleted_timestamp varchar(14) default '',
-  fa_deleted_reason nvarchar(max),
+  fa_deleted_reason nvarchar(max) CONSTRAINT DF_fa_deleted_reason DEFAULT '',
+  fa_deleted_reason_id bigint unsigned NOT NULL CONSTRAINT DF_fa_deleted_reason_id DEFAULT 0 CONSTRAINT FK_fa_deleted_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- Duped fields from image
   fa_size int default 0,
@@ -700,7 +827,8 @@ CREATE TABLE /*_*/filearchive (
   fa_media_type varchar(16) default null,
   fa_major_mime varchar(16) not null default 'unknown',
   fa_minor_mime nvarchar(100) default 'unknown',
-  fa_description nvarchar(255),
+  fa_description nvarchar(255) CONSTRAINT DF_fa_description DEFAULT '',
+  fa_description_id bigint unsigned NOT NULL CONSTRAINT DF_fa_description DEFAULT 0 CONSTRAINT FK_fa_description FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   fa_user int default 0 REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
   fa_user_text nvarchar(255),
   fa_timestamp varchar(14) default '',
@@ -803,6 +931,7 @@ CREATE TABLE /*_*/recentchanges (
 
   -- as in revision...
   rc_comment nvarchar(255) NOT NULL default '',
+  rc_comment_id bigint unsigned NOT NULL CONSTRAINT DF_rc_comment_id DEFAULT 0 CONSTRAINT FK_rc_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   rc_minor bit NOT NULL default 0,
 
   -- Edits by user accounts with the 'bot' rights key are
@@ -1006,6 +1135,10 @@ CREATE TABLE /*_*/logging (
   -- Freeform text. Interpreted as edit history comments.
   log_comment nvarchar(255) NOT NULL default '',
 
+  -- Key to comment_id. Comment summarizing the change.
+  -- ("DEFAULT 0" is temporary, signaling that log_comment should be used)
+  log_comment_id bigint unsigned NOT NULL CONSTRAINT DF_log_comment_id DEFAULT 0 CONSTRAINT FK_log_comment_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
+
   -- miscellaneous parameters:
   -- LF separated list (old system) or serialized PHP array (new system)
   log_params nvarchar(max) NOT NULL,
@@ -1166,7 +1299,8 @@ CREATE TABLE /*_*/protected_titles (
   pt_namespace int NOT NULL,
   pt_title nvarchar(255) NOT NULL,
   pt_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
-  pt_reason nvarchar(255),
+  pt_reason nvarchar(255) CONSTRAINT DF_pt_reason DEFAULT '',
+  pt_reason_id bigint unsigned NOT NULL CONSTRAINT DF_pt_reason_id DEFAULT 0 CONSTRAINT FK_pt_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   pt_timestamp varchar(14) NOT NULL,
   pt_expiry varchar(14) NOT NULL,
   pt_create_perm nvarchar(60) NOT NULL

@@ -47,9 +47,9 @@ class JSParseHelper extends Maintenance {
 
 		$parser = new JSParser();
 		foreach ( $files as $filename ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$js = file_get_contents( $filename );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $js === false ) {
 				$this->output( "$filename ERROR: could not read file\n" );
 				$this->errs++;
@@ -73,5 +73,5 @@ class JSParseHelper extends Maintenance {
 	}
 }
 
-$maintClass = "JSParseHelper";
+$maintClass = JSParseHelper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

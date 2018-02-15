@@ -60,7 +60,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
-	 *   - srvCache     : BagOStuff cache to APC/XCache or the like.
+	 *   - srvCache     : BagOStuff cache to APC or the like.
 	 *   - wanCache     : WANObjectCache object to use for persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
@@ -378,9 +378,9 @@ abstract class FileBackendStore extends FileBackend {
 		unset( $params['latest'] ); // sanity
 
 		// Check that the specified temp file is valid...
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 
@@ -696,9 +696,9 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = [];
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		return $contents;
@@ -1008,13 +1008,13 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final public function getOperationsInternal( array $ops ) {
 		$supportedOps = [
-			'store' => 'StoreFileOp',
-			'copy' => 'CopyFileOp',
-			'move' => 'MoveFileOp',
-			'delete' => 'DeleteFileOp',
-			'create' => 'CreateFileOp',
-			'describe' => 'DescribeFileOp',
-			'null' => 'NullFileOp'
+			'store' => StoreFileOp::class,
+			'copy' => CopyFileOp::class,
+			'move' => MoveFileOp::class,
+			'delete' => DeleteFileOp::class,
+			'create' => CreateFileOp::class,
+			'describe' => DescribeFileOp::class,
+			'null' => NullFileOp::class
 		];
 
 		$performOps = []; // array of FileOp objects

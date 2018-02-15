@@ -11,6 +11,7 @@
 
 #pagehistory li.selected {
 	background-color: #f8f9fa;
+	color: #252525;
 	border: 1px dashed #a2a9b1;
 }
 

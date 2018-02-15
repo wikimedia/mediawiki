@@ -8,7 +8,10 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 	public function addDBDataOnce() {
 		$titles = [
 			'Page/Another',
+			'Page/Another/ar',
+			'Page/Another/en',
 			'Page/Another/ru',
+			'Page/Another/zh-hans',
 		];
 		foreach ( $titles as $title ) {
 			$page = WikiPage::factory( Title::newFromText( $title ) );
@@ -54,12 +57,22 @@ class SpecialMyLanguageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideFindTitle() {
+		// See addDBDataOnce() for page declarations
 		return [
+			// [ $expected, $subpage, $langCode, $userLang ]
 			[ null, '::Fail', 'en', 'en' ],
 			[ 'Page/Another', 'Page/Another/en', 'en', 'en' ],
 			[ 'Page/Another', 'Page/Another', 'en', 'en' ],
 			[ 'Page/Another/ru', 'Page/Another', 'en', 'ru' ],
 			[ 'Page/Another', 'Page/Another', 'en', 'es' ],
+			[ 'Page/Another/zh-hans', 'Page/Another', 'en', 'zh-hans' ],
+			[ 'Page/Another/zh-hans', 'Page/Another', 'en', 'zh-mo' ],
+			[ 'Page/Another/en', 'Page/Another', 'de', 'es' ],
+			[ 'Page/Another/ar', 'Page/Another', 'en', 'ar' ],
+			[ 'Page/Another/ar', 'Page/Another', 'en', 'arz' ],
+			[ 'Page/Another/ar', 'Page/Another/de', 'en', 'arz' ],
+			[ 'Page/Another/ru', 'Page/Another/ru', 'en', 'arz' ],
+			[ 'Page/Another/ar', 'Page/Another/ru', 'en', 'ar' ],
 		];
 	}
 }

@@ -5,6 +5,8 @@
  */
 class MWMessagePackTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Provides test cases for MWMessagePackTest::testMessagePack
 	 *

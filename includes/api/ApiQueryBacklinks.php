@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Oct 16, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -138,7 +134,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( count( $this->cont ) >= 2 ) {
 			$op = $this->params['dir'] == 'descending' ? '<' : '>';
-			if ( count( $this->params['namespace'] ) > 1 ) {
+			if ( $this->params['namespace'] !== null && count( $this->params['namespace'] ) > 1 ) {
 				$this->addWhere(
 					"{$this->bl_from_ns} $op {$this->cont[0]} OR " .
 					"({$this->bl_from_ns} = {$this->cont[0]} AND " .
@@ -160,7 +156,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
 		$sort = ( $this->params['dir'] == 'descending' ? ' DESC' : '' );
 		$orderBy = [];
-		if ( count( $this->params['namespace'] ) > 1 ) {
+		if ( $this->params['namespace'] !== null && count( $this->params['namespace'] ) > 1 ) {
 			$orderBy[] = $this->bl_from_ns . $sort;
 		}
 		$orderBy[] = $this->bl_from . $sort;
@@ -246,7 +242,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$where = "{$this->bl_from} $op= {$this->cont[5]}";
 			// Don't bother with namespace, title, or from_namespace if it's
 			// otherwise constant in the where clause.
-			if ( count( $this->params['namespace'] ) > 1 ) {
+			if ( $this->params['namespace'] !== null && count( $this->params['namespace'] ) > 1 ) {
 				$where = "{$this->bl_from_ns} $op {$this->cont[4]} OR " .
 					"({$this->bl_from_ns} = {$this->cont[4]} AND ($where))";
 			}
@@ -278,7 +274,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( count( $allRedirDBkey ) > 1 ) {
 			$orderBy[] = $this->bl_title . $sort;
 		}
-		if ( count( $this->params['namespace'] ) > 1 ) {
+		if ( $this->params['namespace'] !== null && count( $this->params['namespace'] ) > 1 ) {
 			$orderBy[] = $this->bl_from_ns . $sort;
 		}
 		$orderBy[] = $this->bl_from . $sort;

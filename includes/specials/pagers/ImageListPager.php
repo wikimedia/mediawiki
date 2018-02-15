@@ -267,7 +267,7 @@ class ImageListPager extends TablePager {
 		$options = $join_conds = [];
 
 		# Description field
-		$commentQuery = CommentStore::newKey( $prefix . '_description' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( $prefix . '_description' );
 		$tables += $commentQuery['tables'];
 		$fields += $commentQuery['fields'];
 		$join_conds += $commentQuery['joins'];
@@ -288,7 +288,7 @@ class ImageListPager extends TablePager {
 
 			$columnlist = preg_grep( '/^img/', array_keys( $this->getFieldNames() ) );
 			$options = [ 'GROUP BY' => array_merge( [ 'img_user' ], $columnlist ) ];
-			$join_conds = [ 'oldimage' => [ 'LEFT JOIN', 'oi_name = img_name' ] ];
+			$join_conds['oldimage'] = [ 'LEFT JOIN', 'oi_name = img_name' ];
 		}
 
 		return [
@@ -380,16 +380,12 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes1; $i++ ) {
-			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes1;
 			$topRes1 = $res1->next();
 		}
 
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $i < $limit && $topRes2; $i++ ) {
-			// @codingStandardsIgnoreEnd
 			$resultArray[] = $topRes2;
 			$topRes2 = $res2->next();
 		}
@@ -502,7 +498,7 @@ class ImageListPager extends TablePager {
 				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
 			case 'img_description':
 				$field = $this->mCurrentRow->description_field;
-				$value = CommentStore::newKey( $field )->getComment( $this->mCurrentRow )->text;
+				$value = CommentStore::getStore()->getComment( $field, $this->mCurrentRow )->text;
 				return Linker::formatComment( $value );
 			case 'count':
 				return $this->getLanguage()->formatNum( intval( $value ) + 1 );

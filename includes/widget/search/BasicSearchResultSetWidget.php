@@ -107,10 +107,9 @@ class BasicSearchResultSetWidget {
 	 * @return string HTML
 	 */
 	protected function header( Message $msg ) {
-		return
-			"<h2>" .
-				"<span class='mw-headline'>" . $msg->escaped() . "</span>" .
-			"</h2>";
+		return "<h2>" .
+			"<span class='mw-headline'>" . $msg->escaped() . "</span>" .
+		"</h2>";
 	}
 
 	/**

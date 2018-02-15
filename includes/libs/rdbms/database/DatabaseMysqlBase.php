@@ -24,7 +24,7 @@ namespace Wikimedia\Rdbms;
 
 use DateTime;
 use DateTimeZone;
-use MediaWiki;
+use Wikimedia;
 use InvalidArgumentException;
 use Exception;
 use stdClass;
@@ -63,6 +63,8 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/** @var string|null */
 	private $serverVersion = null;
+	/** @var bool|null */
+	private $insertSelectIsSafe = null;
 
 	/**
 	 * Additional $params include:
@@ -75,6 +77,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       ID of this server's master will be used. Set the "conds" field to
 	 *       override the query conditions, e.g. ['shard' => 's1'].
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
+	 *   - insertSelectIsSafe : force that native INSERT SELECT is or is not safe [default: null]
 	 *   - sslKeyPath : path to key file [default: null]
 	 *   - sslCertPath : path to certificate file [default: null]
 	 *   - sslCAFile: path to a single certificate authority PEM file [default: null]
@@ -98,6 +101,8 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		$this->sqlMode = isset( $params['sqlMode'] ) ? $params['sqlMode'] : '';
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
+		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
+			? (bool)$params['insertSelectIsSafe'] : null;
 
 		parent::__construct( $params );
 	}
@@ -154,10 +159,10 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->reportConnectionError( $error );
 		}
 
-		if ( $dbName != '' ) {
-			MediaWiki\suppressWarnings();
+		if ( strlen( $dbName ) ) {
+			Wikimedia\suppressWarnings();
 			$success = $this->selectDB( $dbName );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$success ) {
 				$this->queryLogger->error(
 					"Error selecting database {db_name} on server {db_server}",
@@ -252,9 +257,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$ok = $this->mysqlFreeResult( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -277,9 +282,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = $this->mysqlFetchObject( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
@@ -313,9 +318,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$row = $this->mysqlFetchArray( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
@@ -349,9 +354,9 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$n = $this->mysqlNumRows( $res );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -462,12 +467,12 @@ abstract class DatabaseMysqlBase extends Database {
 	public function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$error = $this->mysqlError( $this->mConn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}
@@ -499,6 +504,56 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
 		return $this->nativeReplace( $table, $rows, $fname );
+	}
+
+	protected function nativeInsertSelect(
+		$destTable, $srcTable, $varMap, $conds,
+		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	) {
+		if ( $this->insertSelectIsSafe === null ) {
+			// In MySQL, an INSERT SELECT is only replication safe with row-based
+			// replication or if innodb_autoinc_lock_mode is 0. When those
+			// conditions aren't met, use non-native mode.
+			// While we could try to determine if the insert is safe anyway by
+			// checking if the target table has an auto-increment column that
+			// isn't set in $varMap, that seems unlikely to be worth the extra
+			// complexity.
+			$row = $this->selectRow(
+				false,
+				[
+					'innodb_autoinc_lock_mode' => '@@innodb_autoinc_lock_mode',
+					'binlog_format' => '@@binlog_format',
+				],
+				[],
+				__METHOD__
+			);
+			$this->insertSelectIsSafe = $row->binlog_format === 'ROW' ||
+				(int)$row->innodb_autoinc_lock_mode === 0;
+		}
+
+		if ( !$this->insertSelectIsSafe ) {
+			return $this->nonNativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions,
+				$selectJoinConds
+			);
+		} else {
+			return parent::nativeInsertSelect(
+				$destTable,
+				$srcTable,
+				$varMap,
+				$conds,
+				$fname,
+				$insertOptions,
+				$selectOptions,
+				$selectJoinConds
+			);
+		}
 	}
 
 	/**
@@ -835,14 +890,14 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $this->useGTIDs && $pos->gtids ) {
+		if ( $pos->gtids ) {
 			// Wait on the GTID set (MariaDB only)
 			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
 		} else {
 			// Wait on the binlog coordinates
-			$encFile = $this->addQuotes( $pos->file );
-			$encPos = intval( $pos->pos );
+			$encFile = $this->addQuotes( $pos->getLogFile() );
+			$encPos = intval( $pos->pos[1] );
 			$res = $this->doQuery( "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)" );
 		}
 
@@ -855,14 +910,17 @@ abstract class DatabaseMysqlBase extends Database {
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			// T126436: jobs programmed to wait on master positions might be referencing binlogs
-			// with an old master hostname. Such calls make MASTER_POS_WAIT() return null. Try
-			// to detect this and treat the replica DB as having reached the position; a proper master
-			// switchover already requires that the new master be caught up before the switch.
-			$replicationPos = $this->getReplicaPos();
-			if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
-				$this->lastKnownReplicaPos = $replicationPos;
-				$status = 0;
+			if ( !$pos->gtids ) {
+				// T126436: jobs programmed to wait on master positions might be referencing
+				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
+				// Try to detect this case and treat the replica DB as having reached the given
+				// position (any master switchover already requires that the new master be caught
+				// up before the switch).
+				$replicationPos = $this->getReplicaPos();
+				if ( $replicationPos && !$replicationPos->channelsMatch( $pos ) ) {
+					$this->lastKnownReplicaPos = $replicationPos;
+					$status = 0;
+				}
 			}
 		} elseif ( $status >= 0 ) {
 			// Remember that this position was reached to save queries next time
@@ -878,26 +936,26 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getReplicaPos() {
+		$now = microtime( true );
+
+		if ( $this->useGTIDs ) {
+			$res = $this->query( "SELECT @@global.gtid_slave_pos AS Value", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+		}
+
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			$pos = isset( $row->Exec_master_log_pos )
-				? $row->Exec_master_log_pos
-				: $row->Exec_Master_Log_Pos;
-			// Also fetch the last-applied GTID set (MariaDB)
-			if ( $this->useGTIDs ) {
-				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_slave_pos'", __METHOD__ );
-				$gtidRow = $this->fetchObject( $res );
-				$gtidSet = $gtidRow ? $gtidRow->Value : '';
-			} else {
-				$gtidSet = '';
-			}
-
-			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos, $gtidSet );
-		} else {
-			return false;
+		if ( $row && strlen( $row->Relay_Master_Log_File ) ) {
+			return new MySQLMasterPos(
+				"{$row->Relay_Master_Log_File}/{$row->Exec_Master_Log_Pos}",
+				$now
+			);
 		}
+
+		return false;
 	}
 
 	/**
@@ -906,23 +964,23 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return MySQLMasterPos|bool
 	 */
 	public function getMasterPos() {
+		$now = microtime( true );
+
+		if ( $this->useGTIDs ) {
+			$res = $this->query( "SELECT @@global.gtid_binlog_pos AS Value", __METHOD__ );
+			$gtidRow = $this->fetchObject( $res );
+			if ( $gtidRow && strlen( $gtidRow->Value ) ) {
+				return new MySQLMasterPos( $gtidRow->Value, $now );
+			}
+		}
+
 		$res = $this->query( 'SHOW MASTER STATUS', __METHOD__ );
 		$row = $this->fetchObject( $res );
-
-		if ( $row ) {
-			// Also fetch the last-written GTID set (MariaDB)
-			if ( $this->useGTIDs ) {
-				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_binlog_pos'", __METHOD__ );
-				$gtidRow = $this->fetchObject( $res );
-				$gtidSet = $gtidRow ? $gtidRow->Value : '';
-			} else {
-				$gtidSet = '';
-			}
-
-			return new MySQLMasterPos( $row->File, $row->Position, $gtidSet );
-		} else {
-			return false;
+		if ( $row && strlen( $row->File ) ) {
+			return new MySQLMasterPos( "{$row->File}/{$row->Position}", $now );
 		}
+
+		return false;
 	}
 
 	public function serverIsReadOnly() {
@@ -1044,7 +1102,8 @@ abstract class DatabaseMysqlBase extends Database {
 			return true;
 		}
 
-		$this->queryLogger->warning( __METHOD__ . " failed to acquire lock '$lockName'\n" );
+		$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
+			[ 'lockname' => $lockName ] );
 
 		return false;
 	}

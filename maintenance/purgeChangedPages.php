@@ -79,7 +79,7 @@ class PurgeChangedPages extends Maintenance {
 		$stuckCount = 0; // loop breaker
 		while ( true ) {
 			// Adjust bach size if we are stuck in a second that had many changes
-			$bSize = $this->mBatchSize + ( $stuckCount * $this->mBatchSize );
+			$bSize = ( $stuckCount + 1 ) * $this->getBatchSize();
 
 			$res = $dbr->select(
 				[ 'page', 'revision' ],
@@ -190,5 +190,5 @@ class PurgeChangedPages extends Maintenance {
 	}
 }
 
-$maintClass = "PurgeChangedPages";
+$maintClass = PurgeChangedPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

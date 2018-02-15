@@ -8,7 +8,8 @@
 			"MIKHEIL",
 			"NoiX180",
 			"Pras",
-			"Tokoko"
+			"Tokoko",
+			"Kintrbr"
 		]
 	},
 	"ooui-outline-control-move-down": "ელემენტის ქვემოთ გადატანა",
@@ -17,6 +18,7 @@
 	"ooui-toolbar-more": "მეტი",
 	"ooui-toolgroup-expand": "მეტი",
 	"ooui-toolgroup-collapse": "რამდენიმე",
+	"ooui-item-remove": "წაშლა",
 	"ooui-dialog-message-accept": "დიახ",
 	"ooui-dialog-message-reject": "გაუქმება",
 	"ooui-dialog-process-error": "მოხდა რაღაც შეცდომა",

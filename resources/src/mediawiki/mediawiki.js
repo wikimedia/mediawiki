@@ -879,8 +879,10 @@
 					// Cache
 					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
 					if ( !marker ) {
-						mw.log( 'Create <meta name="ResourceLoaderDynamicStyles"> dynamically' );
-						marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' )[ 0 ];
+						mw.log( 'Created ResourceLoaderDynamicStyles marker dynamically' );
+						marker = document.createElement( 'meta' );
+						marker.name = 'ResourceLoaderDynamicStyles';
+						document.head.appendChild( marker );
 					}
 				}
 				return marker;
@@ -902,7 +904,7 @@
 				if ( nextNode && nextNode.parentNode ) {
 					nextNode.parentNode.insertBefore( s, nextNode );
 				} else {
-					document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+					document.head.appendChild( s );
 				}
 
 				return s;
@@ -2059,7 +2061,7 @@
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
-								$( 'head' ).append( l );
+								document.head.appendChild( l );
 								return;
 							}
 							if ( type === 'text/javascript' || type === undefined ) {
@@ -2753,7 +2755,7 @@
 			// If we have an exception object, log it to the warning channel to trigger
 			// proper stacktraces in browsers that support it.
 			if ( e && console.warn ) {
-				console.warn( String( e ), e );
+				console.warn( e );
 			}
 		}
 		/* eslint-enable no-console */
@@ -2778,9 +2780,9 @@
 		// We only need a callback, not any actual module. First try a single using()
 		// for all loading modules. If one fails, fall back to tracking each module
 		// separately via $.when(), this is expensive.
-		loading = mw.loader.using( modules ).then( null, function () {
+		loading = mw.loader.using( modules ).catch( function () {
 			var all = modules.map( function ( module ) {
-				return mw.loader.using( module ).then( null, function () {
+				return mw.loader.using( module ).catch( function () {
 					return $.Deferred().resolve();
 				} );
 			} );

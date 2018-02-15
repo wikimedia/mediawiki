@@ -23,14 +23,15 @@
  * @since 1.27
  * @author C. Scott Ananian, 2016
  */
+
 namespace MediaWiki\Tidy;
 
+use ExplodeIterator;
+use IteratorAggregate;
+use ReverseArrayIterator;
+use Sanitizer;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
-use \ExplodeIterator;
-use \IteratorAggregate;
-use \ReverseArrayIterator;
-use \Sanitizer;
 
 // A note for future librarization[1] -- this file is a good candidate
 // for splitting into an independent library, except that it is currently
@@ -2052,73 +2053,73 @@ class Balancer {
 			return true;
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'font':
-				if ( isset( $attribs['color'] )
-					|| isset( $attribs['face'] )
-					|| isset( $attribs['size'] )
-				) {
-					break;
-				}
-				// otherwise, fall through
-			case 'b':
-			case 'big':
-			case 'blockquote':
-			case 'body':
-			case 'br':
-			case 'center':
-			case 'code':
-			case 'dd':
-			case 'div':
-			case 'dl':
-			case 'dt':
-			case 'em':
-			case 'embed':
-			case 'h1':
-			case 'h2':
-			case 'h3':
-			case 'h4':
-			case 'h5':
-			case 'h6':
-			case 'head':
-			case 'hr':
-			case 'i':
-			case 'img':
-			case 'li':
-			case 'listing':
-			case 'menu':
-			case 'meta':
-			case 'nobr':
-			case 'ol':
-			case 'p':
-			case 'pre':
-			case 'ruby':
-			case 's':
-			case 'small':
-			case 'span':
-			case 'strong':
-			case 'strike':
-			case 'sub':
-			case 'sup':
-			case 'table':
-			case 'tt':
-			case 'u':
-			case 'ul':
-			case 'var':
-				if ( $this->fragmentContext ) {
-					break;
-				}
-				while ( true ) {
-					$this->stack->pop();
-					$node = $this->stack->currentNode;
-					if (
-						$node->isMathmlTextIntegrationPoint() ||
-						$node->isHtmlIntegrationPoint() ||
-						$node->isHtml()
+				case 'font':
+					if ( isset( $attribs['color'] )
+						|| isset( $attribs['face'] )
+						|| isset( $attribs['size'] )
 					) {
 						break;
 					}
-				}
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
+					// otherwise, fall through
+				case 'b':
+				case 'big':
+				case 'blockquote':
+				case 'body':
+				case 'br':
+				case 'center':
+				case 'code':
+				case 'dd':
+				case 'div':
+				case 'dl':
+				case 'dt':
+				case 'em':
+				case 'embed':
+				case 'h1':
+				case 'h2':
+				case 'h3':
+				case 'h4':
+				case 'h5':
+				case 'h6':
+				case 'head':
+				case 'hr':
+				case 'i':
+				case 'img':
+				case 'li':
+				case 'listing':
+				case 'menu':
+				case 'meta':
+				case 'nobr':
+				case 'ol':
+				case 'p':
+				case 'pre':
+				case 'ruby':
+				case 's':
+				case 'small':
+				case 'span':
+				case 'strong':
+				case 'strike':
+				case 'sub':
+				case 'sup':
+				case 'table':
+				case 'tt':
+				case 'u':
+				case 'ul':
+				case 'var':
+					if ( $this->fragmentContext ) {
+						break;
+					}
+					while ( true ) {
+						$this->stack->pop();
+						$node = $this->stack->currentNode;
+						if (
+							$node->isMathmlTextIntegrationPoint() ||
+							$node->isHtmlIntegrationPoint() ||
+							$node->isHtml()
+						) {
+							break;
+						}
+					}
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
 			}
 			// "Any other start tag"
 			$adjusted = ( $this->fragmentContext && $this->stack->length() === 1 ) ?
@@ -2270,56 +2271,56 @@ class Balancer {
 			}
 			if ( $node->isHtml() ) {
 				switch ( $node->localName ) {
-				case 'select':
-					$stackLength = $this->stack->length();
-					for ( $j = $i + 1; $j < $stackLength - 1; $j++ ) {
-						$ancestor = $this->stack->node( $stackLength - $j - 1 );
-						if ( $ancestor->isHtmlNamed( 'template' ) ) {
-							break;
+					case 'select':
+						$stackLength = $this->stack->length();
+						for ( $j = $i + 1; $j < $stackLength - 1; $j++ ) {
+							$ancestor = $this->stack->node( $stackLength - $j - 1 );
+							if ( $ancestor->isHtmlNamed( 'template' ) ) {
+								break;
+							}
+							if ( $ancestor->isHtmlNamed( 'table' ) ) {
+								$this->switchMode( 'inSelectInTableMode' );
+								return;
+							}
 						}
-						if ( $ancestor->isHtmlNamed( 'table' ) ) {
-							$this->switchMode( 'inSelectInTableMode' );
-							return;
+						$this->switchMode( 'inSelectMode' );
+						return;
+					case 'tr':
+						$this->switchMode( 'inRowMode' );
+						return;
+					case 'tbody':
+					case 'tfoot':
+					case 'thead':
+						$this->switchMode( 'inTableBodyMode' );
+						return;
+					case 'caption':
+						$this->switchMode( 'inCaptionMode' );
+						return;
+					case 'colgroup':
+						$this->switchMode( 'inColumnGroupMode' );
+						return;
+					case 'table':
+						$this->switchMode( 'inTableMode' );
+						return;
+					case 'template':
+						$this->switchMode(
+							array_slice( $this->templateInsertionModes, -1 )[0]
+						);
+						return;
+					case 'body':
+						$this->switchMode( 'inBodyMode' );
+						return;
+					// OMITTED: <frameset>
+					// OMITTED: <html>
+					// OMITTED: <head>
+					default:
+						if ( !$last ) {
+							// OMITTED: <head>
+							if ( $node->isA( BalanceSets::$tableCellSet ) ) {
+								$this->switchMode( 'inCellMode' );
+								return;
+							}
 						}
-					}
-					$this->switchMode( 'inSelectMode' );
-					return;
-				case 'tr':
-					$this->switchMode( 'inRowMode' );
-					return;
-				case 'tbody':
-				case 'tfoot':
-				case 'thead':
-					$this->switchMode( 'inTableBodyMode' );
-					return;
-				case 'caption':
-					$this->switchMode( 'inCaptionMode' );
-					return;
-				case 'colgroup':
-					$this->switchMode( 'inColumnGroupMode' );
-					return;
-				case 'table':
-					$this->switchMode( 'inTableMode' );
-					return;
-				case 'template':
-					$this->switchMode(
-						array_slice( $this->templateInsertionModes, -1 )[0]
-					);
-					return;
-				case 'body':
-					$this->switchMode( 'inBodyMode' );
-					return;
-				// OMITTED: <frameset>
-				// OMITTED: <html>
-				// OMITTED: <head>
-				default:
-					if ( !$last ) {
-						// OMITTED: <head>
-						if ( $node->isA( BalanceSets::$tableCellSet ) ) {
-							$this->switchMode( 'inCellMode' );
-							return;
-						}
-					}
 				}
 			}
 			if ( $last ) {
@@ -2378,52 +2379,52 @@ class Balancer {
 			// Fall through to handle non-whitespace below.
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'meta':
-				// OMITTED: in a full HTML parser, this might change the encoding.
-				// falls through
-			// OMITTED: <html>
-			case 'base':
-			case 'basefont':
-			case 'bgsound':
-			case 'link':
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				return true;
-			// OMITTED: <title>
-			// OMITTED: <noscript>
-			case 'noframes':
-			case 'style':
-				return $this->parseRawText( $value, $attribs );
-			// OMITTED: <script>
-			case 'template':
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->afe->insertMarker();
-				// OMITTED: frameset_ok
-				$this->switchMode( 'inTemplateMode' );
-				$this->templateInsertionModes[] = $this->parseMode;
-				return true;
-			// OMITTED: <head>
+				case 'meta':
+					// OMITTED: in a full HTML parser, this might change the encoding.
+					// falls through
+				// OMITTED: <html>
+				case 'base':
+				case 'basefont':
+				case 'bgsound':
+				case 'link':
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->stack->pop();
+					return true;
+				// OMITTED: <title>
+				// OMITTED: <noscript>
+				case 'noframes':
+				case 'style':
+					return $this->parseRawText( $value, $attribs );
+				// OMITTED: <script>
+				case 'template':
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->afe->insertMarker();
+					// OMITTED: frameset_ok
+					$this->switchMode( 'inTemplateMode' );
+					$this->templateInsertionModes[] = $this->parseMode;
+					return true;
+				// OMITTED: <head>
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			// OMITTED: <head>
-			// OMITTED: <body>
-			// OMITTED: <html>
-			case 'br':
-				break; // handle at the bottom of the function
-			case 'template':
-				if ( $this->stack->indexOf( $value ) < 0 ) {
-					return true; // Ignore the token.
-				}
-				$this->stack->generateImpliedEndTags( null, true /* thorough */ );
-				$this->stack->popTag( $value );
-				$this->afe->clearToMarker();
-				array_pop( $this->templateInsertionModes );
-				$this->resetInsertionMode();
-				return true;
-			default:
-				// ignore any other end tag
-				return true;
+				// OMITTED: <head>
+				// OMITTED: <body>
+				// OMITTED: <html>
+				case 'br':
+					break; // handle at the bottom of the function
+				case 'template':
+					if ( $this->stack->indexOf( $value ) < 0 ) {
+						return true; // Ignore the token.
+					}
+					$this->stack->generateImpliedEndTags( null, true /* thorough */ );
+					$this->stack->popTag( $value );
+					$this->afe->clearToMarker();
+					array_pop( $this->templateInsertionModes );
+					$this->resetInsertionMode();
+					return true;
+				default:
+					// ignore any other end tag
+					return true;
 			}
 		} elseif ( $token === 'comment' ) {
 			$this->stack->insertComment( $value );
@@ -2449,361 +2450,361 @@ class Balancer {
 			return true;
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			// OMITTED: <html>
-			case 'base':
-			case 'basefont':
-			case 'bgsound':
-			case 'link':
-			case 'meta':
-			case 'noframes':
-			// OMITTED: <script>
-			case 'style':
-			case 'template':
-			// OMITTED: <title>
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
-			// OMITTED: <body>
-			// OMITTED: <frameset>
+				// OMITTED: <html>
+				case 'base':
+				case 'basefont':
+				case 'bgsound':
+				case 'link':
+				case 'meta':
+				case 'noframes':
+				// OMITTED: <script>
+				case 'style':
+				case 'template':
+				// OMITTED: <title>
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				// OMITTED: <body>
+				// OMITTED: <frameset>
 
-			case 'address':
-			case 'article':
-			case 'aside':
-			case 'blockquote':
-			case 'center':
-			case 'details':
-			case 'dialog':
-			case 'dir':
-			case 'div':
-			case 'dl':
-			case 'fieldset':
-			case 'figcaption':
-			case 'figure':
-			case 'footer':
-			case 'header':
-			case 'hgroup':
-			case 'main':
-			case 'nav':
-			case 'ol':
-			case 'p':
-			case 'section':
-			case 'summary':
-			case 'ul':
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'menu':
-				if ( $this->stack->inButtonScope( "p" ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
-					$this->stack->pop();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'h1':
-			case 'h2':
-			case 'h3':
-			case 'h4':
-			case 'h5':
-			case 'h6':
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				if ( $this->stack->currentNode->isA( BalanceSets::$headingSet ) ) {
-					$this->stack->pop();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'pre':
-			case 'listing':
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->ignoreLinefeed = true;
-				// OMITTED: frameset_ok
-				return true;
-
-			case 'form':
-				if (
-					$this->formElementPointer &&
-					$this->stack->indexOf( 'template' ) < 0
-				) {
-					return true; // in a form, not in a template.
-				}
-				if ( $this->stack->inButtonScope( "p" ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$elt = $this->stack->insertHTMLElement( $value, $attribs );
-				if ( $this->stack->indexOf( 'template' ) < 0 ) {
-					$this->formElementPointer = $elt;
-				}
-				return true;
-
-			case 'li':
-				// OMITTED: frameset_ok
-				foreach ( $this->stack as $node ) {
-					if ( $node->isHtmlNamed( 'li' ) ) {
-						$this->inBodyMode( 'endtag', 'li' );
-						break;
+				case 'address':
+				case 'article':
+				case 'aside':
+				case 'blockquote':
+				case 'center':
+				case 'details':
+				case 'dialog':
+				case 'dir':
+				case 'div':
+				case 'dl':
+				case 'fieldset':
+				case 'figcaption':
+				case 'figure':
+				case 'footer':
+				case 'header':
+				case 'hgroup':
+				case 'main':
+				case 'nav':
+				case 'ol':
+				case 'p':
+				case 'section':
+				case 'summary':
+				case 'ul':
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
 					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'menu':
+					if ( $this->stack->inButtonScope( "p" ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
+						$this->stack->pop();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'h1':
+				case 'h2':
+				case 'h3':
+				case 'h4':
+				case 'h5':
+				case 'h6':
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					if ( $this->stack->currentNode->isA( BalanceSets::$headingSet ) ) {
+						$this->stack->pop();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'pre':
+				case 'listing':
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->ignoreLinefeed = true;
+					// OMITTED: frameset_ok
+					return true;
+
+				case 'form':
 					if (
-						$node->isA( BalanceSets::$specialSet ) &&
-						!$node->isA( BalanceSets::$addressDivPSet )
+						$this->formElementPointer &&
+						$this->stack->indexOf( 'template' ) < 0
 					) {
-						break;
+						return true; // in a form, not in a template.
 					}
-				}
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'dd':
-			case 'dt':
-				// OMITTED: frameset_ok
-				foreach ( $this->stack as $node ) {
-					if ( $node->isHtmlNamed( 'dd' ) ) {
-						$this->inBodyMode( 'endtag', 'dd' );
-						break;
+					if ( $this->stack->inButtonScope( "p" ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
 					}
-					if ( $node->isHtmlNamed( 'dt' ) ) {
-						$this->inBodyMode( 'endtag', 'dt' );
-						break;
+					$elt = $this->stack->insertHTMLElement( $value, $attribs );
+					if ( $this->stack->indexOf( 'template' ) < 0 ) {
+						$this->formElementPointer = $elt;
 					}
-					if (
-						$node->isA( BalanceSets::$specialSet ) &&
-						!$node->isA( BalanceSets::$addressDivPSet )
-					) {
-						break;
+					return true;
+
+				case 'li':
+					// OMITTED: frameset_ok
+					foreach ( $this->stack as $node ) {
+						if ( $node->isHtmlNamed( 'li' ) ) {
+							$this->inBodyMode( 'endtag', 'li' );
+							break;
+						}
+						if (
+							$node->isA( BalanceSets::$specialSet ) &&
+							!$node->isA( BalanceSets::$addressDivPSet )
+						) {
+							break;
+						}
 					}
-				}
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			// OMITTED: <plaintext>
-
-			case 'button':
-				if ( $this->stack->inScope( 'button' ) ) {
-					$this->inBodyMode( 'endtag', 'button' );
-					return $this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'a':
-				$activeElement = $this->afe->findElementByTag( 'a' );
-				if ( $activeElement ) {
-					$this->inBodyMode( 'endtag', 'a' );
-					if ( $this->afe->isInList( $activeElement ) ) {
-						$this->afe->remove( $activeElement );
-						// Don't flatten here, since when we fall
-						// through below we might foster parent
-						// the new <a> tag inside this one.
-						$this->stack->removeElement( $activeElement, false );
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
 					}
-				}
-				// Falls through
-			case 'b':
-			case 'big':
-			case 'code':
-			case 'em':
-			case 'font':
-			case 'i':
-			case 's':
-			case 'small':
-			case 'strike':
-			case 'strong':
-			case 'tt':
-			case 'u':
-				$this->afe->reconstruct( $this->stack );
-				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
-				return true;
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
 
-			case 'nobr':
-				$this->afe->reconstruct( $this->stack );
-				if ( $this->stack->inScope( 'nobr' ) ) {
-					$this->inBodyMode( 'endtag', 'nobr' );
+				case 'dd':
+				case 'dt':
+					// OMITTED: frameset_ok
+					foreach ( $this->stack as $node ) {
+						if ( $node->isHtmlNamed( 'dd' ) ) {
+							$this->inBodyMode( 'endtag', 'dd' );
+							break;
+						}
+						if ( $node->isHtmlNamed( 'dt' ) ) {
+							$this->inBodyMode( 'endtag', 'dt' );
+							break;
+						}
+						if (
+							$node->isA( BalanceSets::$specialSet ) &&
+							!$node->isA( BalanceSets::$addressDivPSet )
+						) {
+							break;
+						}
+					}
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				// OMITTED: <plaintext>
+
+				case 'button':
+					if ( $this->stack->inScope( 'button' ) ) {
+						$this->inBodyMode( 'endtag', 'button' );
+						return $this->insertToken( $token, $value, $attribs, $selfClose );
+					}
 					$this->afe->reconstruct( $this->stack );
-				}
-				$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
-				return true;
-
-			case 'applet':
-			case 'marquee':
-			case 'object':
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->afe->insertMarker();
-				// OMITTED: frameset_ok
-				return true;
-
-			case 'table':
-				// The document is never in "quirks mode"; see simplifications
-				// above.
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				// OMITTED: frameset_ok
-				$this->switchMode( 'inTableMode' );
-				return true;
-
-			case 'area':
-			case 'br':
-			case 'embed':
-			case 'img':
-			case 'keygen':
-			case 'wbr':
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				// OMITTED: frameset_ok
-				return true;
-
-			case 'input':
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				// OMITTED: frameset_ok
-				// (hence we don't need to examine the tag's "type" attribute)
-				return true;
-
-			case 'param':
-			case 'source':
-			case 'track':
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				return true;
-
-			case 'hr':
-				if ( $this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'endtag', 'p' );
-				}
-				if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
-					$this->stack->pop();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				return true;
-
-			case 'image':
-				// warts!
-				return $this->inBodyMode( $token, 'img', $attribs, $selfClose );
-
-			case 'textarea':
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->ignoreLinefeed = true;
-				$this->inRCDATA = $value; // emulate rcdata tokenizer mode
-				// OMITTED: frameset_ok
-				return true;
-
-			// OMITTED: <xmp>
-			// OMITTED: <iframe>
-			// OMITTED: <noembed>
-			// OMITTED: <noscript>
-
-			case 'select':
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				switch ( $this->parseMode ) {
-				case 'inTableMode':
-				case 'inCaptionMode':
-				case 'inTableBodyMode':
-				case 'inRowMode':
-				case 'inCellMode':
-					$this->switchMode( 'inSelectInTableMode' );
+					$this->stack->insertHTMLElement( $value, $attribs );
 					return true;
-				default:
-					$this->switchMode( 'inSelectMode' );
+
+				case 'a':
+					$activeElement = $this->afe->findElementByTag( 'a' );
+					if ( $activeElement ) {
+						$this->inBodyMode( 'endtag', 'a' );
+						if ( $this->afe->isInList( $activeElement ) ) {
+							$this->afe->remove( $activeElement );
+							// Don't flatten here, since when we fall
+							// through below we might foster parent
+							// the new <a> tag inside this one.
+							$this->stack->removeElement( $activeElement, false );
+						}
+					}
+					// Falls through
+				case 'b':
+				case 'big':
+				case 'code':
+				case 'em':
+				case 'font':
+				case 'i':
+				case 's':
+				case 'small':
+				case 'strike':
+				case 'strong':
+				case 'tt':
+				case 'u':
+					$this->afe->reconstruct( $this->stack );
+					$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
 					return true;
-				}
 
-			case 'optgroup':
-			case 'option':
-				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
-					$this->inBodyMode( 'endtag', 'option' );
-				}
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
+				case 'nobr':
+					$this->afe->reconstruct( $this->stack );
+					if ( $this->stack->inScope( 'nobr' ) ) {
+						$this->inBodyMode( 'endtag', 'nobr' );
+						$this->afe->reconstruct( $this->stack );
+					}
+					$this->afe->push( $this->stack->insertHTMLElement( $value, $attribs ) );
+					return true;
 
-			case 'menuitem':
-				if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
+				case 'applet':
+				case 'marquee':
+				case 'object':
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->afe->insertMarker();
+					// OMITTED: frameset_ok
+					return true;
+
+				case 'table':
+					// The document is never in "quirks mode"; see simplifications
+					// above.
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					// OMITTED: frameset_ok
+					$this->switchMode( 'inTableMode' );
+					return true;
+
+				case 'area':
+				case 'br':
+				case 'embed':
+				case 'img':
+				case 'keygen':
+				case 'wbr':
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
 					$this->stack->pop();
-				}
-				$this->afe->reconstruct( $this->stack );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
+					// OMITTED: frameset_ok
+					return true;
 
-			case 'rb':
-			case 'rtc':
-				if ( $this->stack->inScope( 'ruby' ) ) {
-					$this->stack->generateImpliedEndTags();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'rp':
-			case 'rt':
-				if ( $this->stack->inScope( 'ruby' ) ) {
-					$this->stack->generateImpliedEndTags( 'rtc' );
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-
-			case 'math':
-				$this->afe->reconstruct( $this->stack );
-				// We skip the spec's "adjust MathML attributes" and
-				// "adjust foreign attributes" steps, since the browser will
-				// do this later when it parses the output and it doesn't affect
-				// balancing.
-				$this->stack->insertForeignElement(
-					BalanceSets::MATHML_NAMESPACE, $value, $attribs
-				);
-				if ( $selfClose ) {
-					// emit explicit </math> tag.
+				case 'input':
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
 					$this->stack->pop();
-				}
-				return true;
+					// OMITTED: frameset_ok
+					// (hence we don't need to examine the tag's "type" attribute)
+					return true;
 
-			case 'svg':
-				$this->afe->reconstruct( $this->stack );
-				// We skip the spec's "adjust SVG attributes" and
-				// "adjust foreign attributes" steps, since the browser will
-				// do this later when it parses the output and it doesn't affect
-				// balancing.
-				$this->stack->insertForeignElement(
-					BalanceSets::SVG_NAMESPACE, $value, $attribs
-				);
-				if ( $selfClose ) {
-					// emit explicit </svg> tag.
+				case 'param':
+				case 'source':
+				case 'track':
+					$this->stack->insertHTMLElement( $value, $attribs );
 					$this->stack->pop();
-				}
-				return true;
+					return true;
 
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <frame>
-			case 'head':
-			case 'tbody':
-			case 'td':
-			case 'tfoot':
-			case 'th':
-			case 'thead':
-			case 'tr':
-				// Ignore table tags if we're not inTableMode
-				return true;
+				case 'hr':
+					if ( $this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'endtag', 'p' );
+					}
+					if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
+						$this->stack->pop();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->stack->pop();
+					return true;
+
+				case 'image':
+					// warts!
+					return $this->inBodyMode( $token, 'img', $attribs, $selfClose );
+
+				case 'textarea':
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->ignoreLinefeed = true;
+					$this->inRCDATA = $value; // emulate rcdata tokenizer mode
+					// OMITTED: frameset_ok
+					return true;
+
+				// OMITTED: <xmp>
+				// OMITTED: <iframe>
+				// OMITTED: <noembed>
+				// OMITTED: <noscript>
+
+				case 'select':
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					switch ( $this->parseMode ) {
+						case 'inTableMode':
+						case 'inCaptionMode':
+						case 'inTableBodyMode':
+						case 'inRowMode':
+						case 'inCellMode':
+							$this->switchMode( 'inSelectInTableMode' );
+							return true;
+						default:
+							$this->switchMode( 'inSelectMode' );
+							return true;
+					}
+
+				case 'optgroup':
+				case 'option':
+					if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+						$this->inBodyMode( 'endtag', 'option' );
+					}
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'menuitem':
+					if ( $this->stack->currentNode->isHtmlNamed( 'menuitem' ) ) {
+						$this->stack->pop();
+					}
+					$this->afe->reconstruct( $this->stack );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'rb':
+				case 'rtc':
+					if ( $this->stack->inScope( 'ruby' ) ) {
+						$this->stack->generateImpliedEndTags();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'rp':
+				case 'rt':
+					if ( $this->stack->inScope( 'ruby' ) ) {
+						$this->stack->generateImpliedEndTags( 'rtc' );
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+
+				case 'math':
+					$this->afe->reconstruct( $this->stack );
+					// We skip the spec's "adjust MathML attributes" and
+					// "adjust foreign attributes" steps, since the browser will
+					// do this later when it parses the output and it doesn't affect
+					// balancing.
+					$this->stack->insertForeignElement(
+						BalanceSets::MATHML_NAMESPACE, $value, $attribs
+					);
+					if ( $selfClose ) {
+						// emit explicit </math> tag.
+						$this->stack->pop();
+					}
+					return true;
+
+				case 'svg':
+					$this->afe->reconstruct( $this->stack );
+					// We skip the spec's "adjust SVG attributes" and
+					// "adjust foreign attributes" steps, since the browser will
+					// do this later when it parses the output and it doesn't affect
+					// balancing.
+					$this->stack->insertForeignElement(
+						BalanceSets::SVG_NAMESPACE, $value, $attribs
+					);
+					if ( $selfClose ) {
+						// emit explicit </svg> tag.
+						$this->stack->pop();
+					}
+					return true;
+
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <frame>
+				case 'head':
+				case 'tbody':
+				case 'td':
+				case 'tfoot':
+				case 'th':
+				case 'thead':
+				case 'tr':
+					// Ignore table tags if we're not inTableMode
+					return true;
 			}
 
 			// Handle any other start tag here
@@ -2812,142 +2813,142 @@ class Balancer {
 			return true;
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			// </body>,</html> are unsupported.
+				// </body>,</html> are unsupported.
 
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 
-			case 'address':
-			case 'article':
-			case 'aside':
-			case 'blockquote':
-			case 'button':
-			case 'center':
-			case 'details':
-			case 'dialog':
-			case 'dir':
-			case 'div':
-			case 'dl':
-			case 'fieldset':
-			case 'figcaption':
-			case 'figure':
-			case 'footer':
-			case 'header':
-			case 'hgroup':
-			case 'listing':
-			case 'main':
-			case 'menu':
-			case 'nav':
-			case 'ol':
-			case 'pre':
-			case 'section':
-			case 'summary':
-			case 'ul':
-				// Ignore if there is not a matching open tag
-				if ( !$this->stack->inScope( $value ) ) {
+				case 'address':
+				case 'article':
+				case 'aside':
+				case 'blockquote':
+				case 'button':
+				case 'center':
+				case 'details':
+				case 'dialog':
+				case 'dir':
+				case 'div':
+				case 'dl':
+				case 'fieldset':
+				case 'figcaption':
+				case 'figure':
+				case 'footer':
+				case 'header':
+				case 'hgroup':
+				case 'listing':
+				case 'main':
+				case 'menu':
+				case 'nav':
+				case 'ol':
+				case 'pre':
+				case 'section':
+				case 'summary':
+				case 'ul':
+					// Ignore if there is not a matching open tag
+					if ( !$this->stack->inScope( $value ) ) {
+						return true;
+					}
+					$this->stack->generateImpliedEndTags();
+					$this->stack->popTag( $value );
 					return true;
-				}
-				$this->stack->generateImpliedEndTags();
-				$this->stack->popTag( $value );
-				return true;
 
-			case 'form':
-				if ( $this->stack->indexOf( 'template' ) < 0 ) {
-					$openform = $this->formElementPointer;
-					$this->formElementPointer = null;
-					if ( !$openform || !$this->stack->inScope( $openform ) ) {
-						return true;
+				case 'form':
+					if ( $this->stack->indexOf( 'template' ) < 0 ) {
+						$openform = $this->formElementPointer;
+						$this->formElementPointer = null;
+						if ( !$openform || !$this->stack->inScope( $openform ) ) {
+							return true;
+						}
+						$this->stack->generateImpliedEndTags();
+						// Don't flatten yet if we're removing a <form> element
+						// out-of-order. (eg. `<form><div></form>`)
+						$flatten = ( $this->stack->currentNode === $openform );
+						$this->stack->removeElement( $openform, $flatten );
+					} else {
+						if ( !$this->stack->inScope( 'form' ) ) {
+							return true;
+						}
+						$this->stack->generateImpliedEndTags();
+						$this->stack->popTag( 'form' );
+					}
+					return true;
+
+				case 'p':
+					if ( !$this->stack->inButtonScope( 'p' ) ) {
+						$this->inBodyMode( 'tag', 'p', [] );
+						return $this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					$this->stack->generateImpliedEndTags( $value );
+					$this->stack->popTag( $value );
+					return true;
+
+				case 'li':
+					if ( !$this->stack->inListItemScope( $value ) ) {
+						return true; // ignore
+					}
+					$this->stack->generateImpliedEndTags( $value );
+					$this->stack->popTag( $value );
+					return true;
+
+				case 'dd':
+				case 'dt':
+					if ( !$this->stack->inScope( $value ) ) {
+						return true; // ignore
+					}
+					$this->stack->generateImpliedEndTags( $value );
+					$this->stack->popTag( $value );
+					return true;
+
+				case 'h1':
+				case 'h2':
+				case 'h3':
+				case 'h4':
+				case 'h5':
+				case 'h6':
+					if ( !$this->stack->inScope( BalanceSets::$headingSet ) ) {
+						return true; // ignore
 					}
 					$this->stack->generateImpliedEndTags();
-					// Don't flatten yet if we're removing a <form> element
-					// out-of-order. (eg. `<form><div></form>`)
-					$flatten = ( $this->stack->currentNode === $openform );
-					$this->stack->removeElement( $openform, $flatten );
-				} else {
-					if ( !$this->stack->inScope( 'form' ) ) {
-						return true;
+					$this->stack->popTag( BalanceSets::$headingSet );
+					return true;
+
+				case 'sarcasm':
+					// Take a deep breath, then:
+					break;
+
+				case 'a':
+				case 'b':
+				case 'big':
+				case 'code':
+				case 'em':
+				case 'font':
+				case 'i':
+				case 'nobr':
+				case 's':
+				case 'small':
+				case 'strike':
+				case 'strong':
+				case 'tt':
+				case 'u':
+					if ( $this->stack->adoptionAgency( $value, $this->afe ) ) {
+						return true; // If we did something, we're done.
+					}
+					break; // Go to the "any other end tag" case.
+
+				case 'applet':
+				case 'marquee':
+				case 'object':
+					if ( !$this->stack->inScope( $value ) ) {
+						return true; // ignore
 					}
 					$this->stack->generateImpliedEndTags();
-					$this->stack->popTag( 'form' );
-				}
-				return true;
+					$this->stack->popTag( $value );
+					$this->afe->clearToMarker();
+					return true;
 
-			case 'p':
-				if ( !$this->stack->inButtonScope( 'p' ) ) {
-					$this->inBodyMode( 'tag', 'p', [] );
-					return $this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				$this->stack->generateImpliedEndTags( $value );
-				$this->stack->popTag( $value );
-				return true;
-
-			case 'li':
-				if ( !$this->stack->inListItemScope( $value ) ) {
-					return true; // ignore
-				}
-				$this->stack->generateImpliedEndTags( $value );
-				$this->stack->popTag( $value );
-				return true;
-
-			case 'dd':
-			case 'dt':
-				if ( !$this->stack->inScope( $value ) ) {
-					return true; // ignore
-				}
-				$this->stack->generateImpliedEndTags( $value );
-				$this->stack->popTag( $value );
-				return true;
-
-			case 'h1':
-			case 'h2':
-			case 'h3':
-			case 'h4':
-			case 'h5':
-			case 'h6':
-				if ( !$this->stack->inScope( BalanceSets::$headingSet ) ) {
-					return true; // ignore
-				}
-				$this->stack->generateImpliedEndTags();
-				$this->stack->popTag( BalanceSets::$headingSet );
-				return true;
-
-			case 'sarcasm':
-				// Take a deep breath, then:
-				break;
-
-			case 'a':
-			case 'b':
-			case 'big':
-			case 'code':
-			case 'em':
-			case 'font':
-			case 'i':
-			case 'nobr':
-			case 's':
-			case 'small':
-			case 'strike':
-			case 'strong':
-			case 'tt':
-			case 'u':
-				if ( $this->stack->adoptionAgency( $value, $this->afe ) ) {
-					return true; // If we did something, we're done.
-				}
-				break; // Go to the "any other end tag" case.
-
-			case 'applet':
-			case 'marquee':
-			case 'object':
-				if ( !$this->stack->inScope( $value ) ) {
-					return true; // ignore
-				}
-				$this->stack->generateImpliedEndTags();
-				$this->stack->popTag( $value );
-				$this->afe->clearToMarker();
-				return true;
-
-			case 'br':
-				// Turn </br> into <br>
-				return $this->inBodyMode( 'tag', $value, [] );
+				case 'br':
+					// Turn </br> into <br>
+					return $this->inBodyMode( 'tag', $value, [] );
 			}
 
 			// Any other end tag goes here
@@ -2985,87 +2986,87 @@ class Balancer {
 			return true;
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'caption':
-				$this->afe->insertMarker();
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->switchMode( 'inCaptionMode' );
-				return true;
-			case 'colgroup':
-				$this->stack->clearToContext( BalanceSets::$tableContextSet );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->switchMode( 'inColumnGroupMode' );
-				return true;
-			case 'col':
-				$this->inTableMode( 'tag', 'colgroup', [] );
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-				$this->stack->clearToContext( BalanceSets::$tableContextSet );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->switchMode( 'inTableBodyMode' );
-				return true;
-			case 'td':
-			case 'th':
-			case 'tr':
-				$this->inTableMode( 'tag', 'tbody', [] );
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
-			case 'table':
-				if ( !$this->stack->inTableScope( $value ) ) {
-					return true; // Ignore this tag.
-				}
-				$this->inTableMode( 'endtag', $value );
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
-
-			case 'style':
-			// OMITTED: <script>
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
-
-			case 'input':
-				if ( !isset( $attribs['type'] ) || strcasecmp( $attribs['type'], 'hidden' ) !== 0 ) {
-					break; // Handle this as "everything else"
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				return true;
-
-			case 'form':
-				if (
-					$this->formElementPointer ||
-					$this->stack->indexOf( 'template' ) >= 0
-				) {
-					return true; // ignore this token
-				}
-				$this->formElementPointer =
+				case 'caption':
+					$this->afe->insertMarker();
 					$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->popTag( $this->formElementPointer );
-				return true;
+					$this->switchMode( 'inCaptionMode' );
+					return true;
+				case 'colgroup':
+					$this->stack->clearToContext( BalanceSets::$tableContextSet );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->switchMode( 'inColumnGroupMode' );
+					return true;
+				case 'col':
+					$this->inTableMode( 'tag', 'colgroup', [] );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+					$this->stack->clearToContext( BalanceSets::$tableContextSet );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->switchMode( 'inTableBodyMode' );
+					return true;
+				case 'td':
+				case 'th':
+				case 'tr':
+					$this->inTableMode( 'tag', 'tbody', [] );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
+				case 'table':
+					if ( !$this->stack->inTableScope( $value ) ) {
+						return true; // Ignore this tag.
+					}
+					$this->inTableMode( 'endtag', $value );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
+
+				case 'style':
+				// OMITTED: <script>
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+
+				case 'input':
+					if ( !isset( $attribs['type'] ) || strcasecmp( $attribs['type'], 'hidden' ) !== 0 ) {
+						break; // Handle this as "everything else"
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->stack->pop();
+					return true;
+
+				case 'form':
+					if (
+						$this->formElementPointer ||
+						$this->stack->indexOf( 'template' ) >= 0
+					) {
+						return true; // ignore this token
+					}
+					$this->formElementPointer =
+						$this->stack->insertHTMLElement( $value, $attribs );
+					$this->stack->popTag( $this->formElementPointer );
+					return true;
 			}
 			// Fall through for "anything else" clause.
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'table':
-				if ( !$this->stack->inTableScope( $value ) ) {
-					return true; // Ignore.
-				}
-				$this->stack->popTag( $value );
-				$this->resetInsertionMode();
-				return true;
-			// OMITTED: <body>
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <html>
-			case 'tbody':
-			case 'td':
-			case 'tfoot':
-			case 'th':
-			case 'thead':
-			case 'tr':
-				return true; // Ignore the token.
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'table':
+					if ( !$this->stack->inTableScope( $value ) ) {
+						return true; // Ignore.
+					}
+					$this->stack->popTag( $value );
+					$this->resetInsertionMode();
+					return true;
+				// OMITTED: <body>
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <html>
+				case 'tbody':
+				case 'td':
+				case 'tfoot':
+				case 'th':
+				case 'thead':
+				case 'tr':
+					return true; // Ignore the token.
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else" clause.
 		} elseif ( $token === 'comment' ) {
@@ -3116,43 +3117,43 @@ class Balancer {
 	private function inCaptionMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			case 'tbody':
-			case 'td':
-			case 'tfoot':
-			case 'th':
-			case 'thead':
-			case 'tr':
-				if ( $this->endCaption() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				case 'tbody':
+				case 'td':
+				case 'tfoot':
+				case 'th':
+				case 'thead':
+				case 'tr':
+					if ( $this->endCaption() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 			}
 			// Fall through to "anything else" case.
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'caption':
-				$this->endCaption();
-				return true;
-			case 'table':
-				if ( $this->endCaption() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
-			case 'body':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <html>
-			case 'tbody':
-			case 'td':
-			case 'tfoot':
-			case 'th':
-			case 'thead':
-			case 'tr':
-				// Ignore the token
-				return true;
+				case 'caption':
+					$this->endCaption();
+					return true;
+				case 'table':
+					if ( $this->endCaption() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
+				case 'body':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <html>
+				case 'tbody':
+				case 'td':
+				case 'tfoot':
+				case 'th':
+				case 'thead':
+				case 'tr':
+					// Ignore the token
+					return true;
 			}
 			// Fall through to "anything else" case.
 		}
@@ -3172,28 +3173,28 @@ class Balancer {
 			// Fall through to handle non-whitespace below.
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			// OMITTED: <html>
-			case 'col':
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->stack->pop();
-				return true;
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				// OMITTED: <html>
+				case 'col':
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->stack->pop();
+					return true;
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else".
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'colgroup':
-				if ( !$this->stack->currentNode->isHtmlNamed( 'colgroup' ) ) {
+				case 'colgroup':
+					if ( !$this->stack->currentNode->isHtmlNamed( 'colgroup' ) ) {
+						return true; // Ignore the token.
+					}
+					$this->stack->pop();
+					$this->switchMode( 'inTableMode' );
+					return true;
+				case 'col':
 					return true; // Ignore the token.
-				}
-				$this->stack->pop();
-				$this->switchMode( 'inTableMode' );
-				return true;
-			case 'col':
-				return true; // Ignore the token.
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			// Fall through for "anything else".
 		} elseif ( $token === 'eof' ) {
@@ -3228,50 +3229,50 @@ class Balancer {
 	private function inTableBodyMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'tr':
-				$this->stack->clearToContext( BalanceSets::$tableBodyContextSet );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->switchMode( 'inRowMode' );
-				return true;
-			case 'th':
-			case 'td':
-				$this->inTableBodyMode( 'tag', 'tr', [] );
-				$this->insertToken( $token, $value, $attribs, $selfClose );
-				return true;
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-				if ( $this->endSection() ) {
+				case 'tr':
+					$this->stack->clearToContext( BalanceSets::$tableBodyContextSet );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->switchMode( 'inRowMode' );
+					return true;
+				case 'th':
+				case 'td':
+					$this->inTableBodyMode( 'tag', 'tr', [] );
 					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
+					return true;
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+					if ( $this->endSection() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'table':
-				if ( $this->endSection() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-				if ( $this->stack->inTableScope( $value ) ) {
-					$this->endSection();
-				}
-				return true;
-			// OMITTED: <body>
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <html>
-			case 'td':
-			case 'th':
-			case 'tr':
-				return true; // Ignore the token.
+				case 'table':
+					if ( $this->endSection() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+					if ( $this->stack->inTableScope( $value ) ) {
+						$this->endSection();
+					}
+					return true;
+				// OMITTED: <body>
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <html>
+				case 'td':
+				case 'th':
+				case 'tr':
+					return true; // Ignore the token.
 			}
 		}
 		// Anything else:
@@ -3291,53 +3292,53 @@ class Balancer {
 	private function inRowMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'th':
-			case 'td':
-				$this->stack->clearToContext( BalanceSets::$tableRowContextSet );
-				$this->stack->insertHTMLElement( $value, $attribs );
-				$this->switchMode( 'inCellMode' );
-				$this->afe->insertMarker();
-				return true;
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-			case 'tr':
-				if ( $this->endRow() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
+				case 'th':
+				case 'td':
+					$this->stack->clearToContext( BalanceSets::$tableRowContextSet );
+					$this->stack->insertHTMLElement( $value, $attribs );
+					$this->switchMode( 'inCellMode' );
+					$this->afe->insertMarker();
+					return true;
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+				case 'tr':
+					if ( $this->endRow() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'tr':
-				$this->endRow();
-				return true;
-			case 'table':
-				if ( $this->endRow() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-				if (
-					$this->stack->inTableScope( $value ) &&
-					$this->endRow()
-				) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
-			// OMITTED: <body>
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <html>
-			case 'td':
-			case 'th':
-				return true; // Ignore the token.
+				case 'tr':
+					$this->endRow();
+					return true;
+				case 'table':
+					if ( $this->endRow() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+					if (
+						$this->stack->inTableScope( $value ) &&
+						$this->endRow()
+					) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
+				// OMITTED: <body>
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <html>
+				case 'td':
+				case 'th':
+					return true; // Ignore the token.
 			}
 		}
 		// Anything else:
@@ -3359,51 +3360,51 @@ class Balancer {
 	private function inCellMode( $token, $value, $attribs = null, $selfClose = false ) {
 		if ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			case 'tbody':
-			case 'td':
-			case 'tfoot':
-			case 'th':
-			case 'thead':
-			case 'tr':
-				if ( $this->endCell() ) {
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				case 'tbody':
+				case 'td':
+				case 'tfoot':
+				case 'th':
+				case 'thead':
+				case 'tr':
+					if ( $this->endCell() ) {
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'td':
-			case 'th':
-				if ( $this->stack->inTableScope( $value ) ) {
-					$this->stack->generateImpliedEndTags();
-					$this->stack->popTag( $value );
-					$this->afe->clearToMarker();
-					$this->switchMode( 'inRowMode' );
-				}
-				return true;
-			// OMITTED: <body>
-			case 'caption':
-			case 'col':
-			case 'colgroup':
-			// OMITTED: <html>
-				return true;
+				case 'td':
+				case 'th':
+					if ( $this->stack->inTableScope( $value ) ) {
+						$this->stack->generateImpliedEndTags();
+						$this->stack->popTag( $value );
+						$this->afe->clearToMarker();
+						$this->switchMode( 'inRowMode' );
+					}
+					return true;
+				// OMITTED: <body>
+				case 'caption':
+				case 'col':
+				case 'colgroup':
+				// OMITTED: <html>
+					return true;
 
-			case 'table':
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-			case 'tr':
-				if ( $this->stack->inTableScope( $value ) ) {
-					$this->stack->generateImpliedEndTags();
-					$this->stack->popTag( BalanceSets::$tableCellSet );
-					$this->afe->clearToMarker();
-					$this->switchMode( 'inRowMode' );
-					$this->insertToken( $token, $value, $attribs, $selfClose );
-				}
-				return true;
+				case 'table':
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+				case 'tr':
+					if ( $this->stack->inTableScope( $value ) ) {
+						$this->stack->generateImpliedEndTags();
+						$this->stack->popTag( BalanceSets::$tableCellSet );
+						$this->afe->clearToMarker();
+						$this->switchMode( 'inRowMode' );
+						$this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 			}
 		}
 		// Anything else:
@@ -3418,65 +3419,65 @@ class Balancer {
 			return $this->inBodyMode( $token, $value, $attribs, $selfClose );
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			// OMITTED: <html>
-			case 'option':
-				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
-					$this->stack->pop();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-			case 'optgroup':
-				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
-					$this->stack->pop();
-				}
-				if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
-					$this->stack->pop();
-				}
-				$this->stack->insertHTMLElement( $value, $attribs );
-				return true;
-			case 'select':
-				$this->inSelectMode( 'endtag', $value ); // treat it like endtag
-				return true;
-			case 'input':
-			case 'keygen':
-			case 'textarea':
-				if ( !$this->stack->inSelectScope( 'select' ) ) {
-					return true; // ignore token (fragment case)
-				}
-				$this->inSelectMode( 'endtag', 'select' );
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
-			case 'script':
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				// OMITTED: <html>
+				case 'option':
+					if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+						$this->stack->pop();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+				case 'optgroup':
+					if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+						$this->stack->pop();
+					}
+					if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
+						$this->stack->pop();
+					}
+					$this->stack->insertHTMLElement( $value, $attribs );
+					return true;
+				case 'select':
+					$this->inSelectMode( 'endtag', $value ); // treat it like endtag
+					return true;
+				case 'input':
+				case 'keygen':
+				case 'textarea':
+					if ( !$this->stack->inSelectScope( 'select' ) ) {
+						return true; // ignore token (fragment case)
+					}
+					$this->inSelectMode( 'endtag', 'select' );
+					return $this->insertToken( $token, $value, $attribs, $selfClose );
+				case 'script':
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'optgroup':
-				if (
-					$this->stack->currentNode->isHtmlNamed( 'option' ) &&
-					$this->stack->length() >= 2 &&
-					$this->stack->node( $this->stack->length() - 2 )->isHtmlNamed( 'optgroup' )
-				) {
-					$this->stack->pop();
-				}
-				if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
-					$this->stack->pop();
-				}
-				return true;
-			case 'option':
-				if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
-					$this->stack->pop();
-				}
-				return true;
-			case 'select':
-				if ( !$this->stack->inSelectScope( $value ) ) {
-					return true; // fragment case
-				}
-				$this->stack->popTag( $value );
-				$this->resetInsertionMode();
-				return true;
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'optgroup':
+					if (
+						$this->stack->currentNode->isHtmlNamed( 'option' ) &&
+						$this->stack->length() >= 2 &&
+						$this->stack->node( $this->stack->length() - 2 )->isHtmlNamed( 'optgroup' )
+					) {
+						$this->stack->pop();
+					}
+					if ( $this->stack->currentNode->isHtmlNamed( 'optgroup' ) ) {
+						$this->stack->pop();
+					}
+					return true;
+				case 'option':
+					if ( $this->stack->currentNode->isHtmlNamed( 'option' ) ) {
+						$this->stack->pop();
+					}
+					return true;
+				case 'select':
+					if ( !$this->stack->inSelectScope( $value ) ) {
+						return true; // fragment case
+					}
+					$this->stack->popTag( $value );
+					$this->resetInsertionMode();
+					return true;
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 		} elseif ( $token === 'comment' ) {
 			$this->stack->insertComment( $value );
@@ -3488,24 +3489,24 @@ class Balancer {
 
 	private function inSelectInTableMode( $token, $value, $attribs = null, $selfClose = false ) {
 		switch ( $value ) {
-		case 'caption':
-		case 'table':
-		case 'tbody':
-		case 'tfoot':
-		case 'thead':
-		case 'tr':
-		case 'td':
-		case 'th':
-			if ( $token === 'tag' ) {
-				$this->inSelectInTableMode( 'endtag', 'select' );
-				return $this->insertToken( $token, $value, $attribs, $selfClose );
-			} elseif ( $token === 'endtag' ) {
-				if ( $this->stack->inTableScope( $value ) ) {
+			case 'caption':
+			case 'table':
+			case 'tbody':
+			case 'tfoot':
+			case 'thead':
+			case 'tr':
+			case 'td':
+			case 'th':
+				if ( $token === 'tag' ) {
 					$this->inSelectInTableMode( 'endtag', 'select' );
 					return $this->insertToken( $token, $value, $attribs, $selfClose );
+				} elseif ( $token === 'endtag' ) {
+					if ( $this->stack->inTableScope( $value ) ) {
+						$this->inSelectInTableMode( 'endtag', 'select' );
+						return $this->insertToken( $token, $value, $attribs, $selfClose );
+					}
+					return true;
 				}
-				return true;
-			}
 		}
 		// anything else
 		return $this->inSelectMode( $token, $value, $attribs, $selfClose );
@@ -3527,50 +3528,50 @@ class Balancer {
 			return true;
 		} elseif ( $token === 'tag' ) {
 			switch ( $value ) {
-			case 'base':
-			case 'basefont':
-			case 'bgsound':
-			case 'link':
-			case 'meta':
-			case 'noframes':
-			// OMITTED: <script>
-			case 'style':
-			case 'template':
-			// OMITTED: <title>
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'base':
+				case 'basefont':
+				case 'bgsound':
+				case 'link':
+				case 'meta':
+				case 'noframes':
+				// OMITTED: <script>
+				case 'style':
+				case 'template':
+				// OMITTED: <title>
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 
-			case 'caption':
-			case 'colgroup':
-			case 'tbody':
-			case 'tfoot':
-			case 'thead':
-				return $this->switchModeAndReprocess(
-					'inTableMode', $token, $value, $attribs, $selfClose
-				);
+				case 'caption':
+				case 'colgroup':
+				case 'tbody':
+				case 'tfoot':
+				case 'thead':
+					return $this->switchModeAndReprocess(
+						'inTableMode', $token, $value, $attribs, $selfClose
+					);
 
-			case 'col':
-				return $this->switchModeAndReprocess(
-					'inColumnGroupMode', $token, $value, $attribs, $selfClose
-				);
+				case 'col':
+					return $this->switchModeAndReprocess(
+						'inColumnGroupMode', $token, $value, $attribs, $selfClose
+					);
 
-			case 'tr':
-				return $this->switchModeAndReprocess(
-					'inTableBodyMode', $token, $value, $attribs, $selfClose
-				);
+				case 'tr':
+					return $this->switchModeAndReprocess(
+						'inTableBodyMode', $token, $value, $attribs, $selfClose
+					);
 
-			case 'td':
-			case 'th':
-				return $this->switchModeAndReprocess(
-					'inRowMode', $token, $value, $attribs, $selfClose
-				);
+				case 'td':
+				case 'th':
+					return $this->switchModeAndReprocess(
+						'inRowMode', $token, $value, $attribs, $selfClose
+					);
 			}
 			return $this->switchModeAndReprocess(
 				'inBodyMode', $token, $value, $attribs, $selfClose
 			);
 		} elseif ( $token === 'endtag' ) {
 			switch ( $value ) {
-			case 'template':
-				return $this->inHeadMode( $token, $value, $attribs, $selfClose );
+				case 'template':
+					return $this->inHeadMode( $token, $value, $attribs, $selfClose );
 			}
 			return true;
 		} else {

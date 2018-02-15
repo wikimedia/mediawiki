@@ -276,7 +276,7 @@ class UserGroupMembership {
 	 *
 	 * @param int $userId ID of the user to search for
 	 * @param IDatabase|null $db Optional database connection
-	 * @return array Associative array of (group name => UserGroupMembership object)
+	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 */
 	public static function getMembershipsForUser( $userId, IDatabase $db = null ) {
 		if ( !$db ) {

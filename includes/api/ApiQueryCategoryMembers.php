@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on June 14, 2007
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -97,7 +93,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		$miser_ns = [];
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
-			$miser_ns = $params['namespace'];
+			$miser_ns = $params['namespace'] ?: [];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}

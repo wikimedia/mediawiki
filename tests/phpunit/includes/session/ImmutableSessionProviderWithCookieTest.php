@@ -91,7 +91,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$this->assertFalse( $provider->canChangeUser() );
 
 		$msg = $provider->whyNoSession();
-		$this->assertInstanceOf( 'Message', $msg );
+		$this->assertInstanceOf( \Message::class, $msg );
 		$this->assertSame( 'sessionprovider-nocookies', $msg->getKey() );
 	}
 
@@ -158,7 +158,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 	}
 
 	protected function getSentRequest() {
-		$sentResponse = $this->getMockBuilder( 'FauxResponse' )
+		$sentResponse = $this->getMockBuilder( \FauxResponse::class )
 			->setMethods( [ 'headersSent', 'setCookie', 'header' ] )
 			->getMock();
 		$sentResponse->expects( $this->any() )->method( 'headersSent' )
@@ -166,7 +166,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
-		$sentRequest = $this->getMockBuilder( 'FauxRequest' )
+		$sentRequest = $this->getMockBuilder( \FauxRequest::class )
 			->setMethods( [ 'response' ] )->getMock();
 		$sentRequest->expects( $this->any() )->method( 'response' )
 			->will( $this->returnValue( $sentResponse ) );

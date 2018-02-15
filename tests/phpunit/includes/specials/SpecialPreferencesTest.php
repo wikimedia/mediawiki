@@ -7,6 +7,7 @@
  */
 
 /**
+ * @group Preferences
  * @group Database
  *
  * @covers SpecialPreferences
@@ -24,7 +25,7 @@ class SpecialPreferencesTest extends MediaWikiTestCase {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
 
-		$user = $this->createMock( 'User' );
+		$user = $this->createMock( User::class );
 		$user->expects( $this->any() )
 			->method( 'isAnon' )
 			->will( $this->returnValue( false ) );

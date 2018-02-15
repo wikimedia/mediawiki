@@ -50,13 +50,10 @@ unset( $IP );
 # its purpose.
 define( 'MEDIAWIKI', true );
 
-# Full path to working directory.
-# Makes it possible to for example to have effective exclude path in apc.
-# __DIR__ breaks symlinked includes, but realpath() returns false
-# if we don't have permissions on parent directories.
+# Full path to the installation directory.
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
-	$IP = realpath( '.' ) ?: dirname( __DIR__ );
+	$IP = dirname( __DIR__ );
 }
 
 // If no LocalSettings file exists, try to display an error page

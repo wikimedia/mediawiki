@@ -108,7 +108,12 @@ class Title implements LinkTarget {
 	/** @var array Array of groups allowed to edit this article */
 	public $mRestrictions = [];
 
-	/** @var string|bool */
+	/**
+	 * @var string|bool Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
+	 */
 	protected $mOldRestrictions = false;
 
 	/** @var bool Cascade restrictions on this page to included templates and images? */
@@ -1464,7 +1469,9 @@ class Title implements LinkTarget {
 	public function getFragmentForURL() {
 		if ( !$this->hasFragment() ) {
 			return '';
-		} elseif ( $this->isExternal() && !$this->getTransWikiID() ) {
+		} elseif ( $this->isExternal()
+			&& !self::getInterwikiLookup()->fetch( $this->mInterwiki )->isLocal()
+		) {
 			return '#' . Sanitizer::escapeIdForExternalInterwiki( $this->getFragment() );
 		}
 		return '#' . Sanitizer::escapeIdForLink( $this->getFragment() );
@@ -1762,7 +1769,7 @@ class Title implements LinkTarget {
 	 * @see wfExpandUrl
 	 * @param string|string[] $query
 	 * @param string|string[]|bool $query2
-	 * @param string $proto Protocol type to use in URL
+	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
 	 */
 	public function getFullURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
@@ -1805,10 +1812,10 @@ class Title implements LinkTarget {
 		if ( $this->isExternal() ) {
 			$target = SpecialPage::getTitleFor(
 				'GoToInterwiki',
-				$this->getPrefixedDBKey()
+				$this->getPrefixedDBkey()
 			);
 		}
-		return $target->getFullUrl( $query, false, $proto );
+		return $target->getFullURL( $query, false, $proto );
 	}
 
 	/**
@@ -2728,8 +2735,8 @@ class Title implements LinkTarget {
 
 		if ( $this->mTitleProtection === null ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$commentStore = new CommentStore( 'pt_reason' );
-			$commentQuery = $commentStore->getJoin();
+			$commentStore = CommentStore::getStore();
+			$commentQuery = $commentStore->getJoin( 'pt_reason' );
 			$res = $dbr->select(
 				[ 'protected_titles' ] + $commentQuery['tables'],
 				[
@@ -2750,7 +2757,7 @@ class Title implements LinkTarget {
 					'user' => $row['user'],
 					'expiry' => $dbr->decodeExpiry( $row['expiry'] ),
 					'permission' => $row['permission'],
-					'reason' => $commentStore->getComment( $row )->text,
+					'reason' => $commentStore->getComment( 'pt_reason', $row )->text,
 				];
 			} else {
 				$this->mTitleProtection = false;
@@ -3044,8 +3051,10 @@ class Title implements LinkTarget {
 	 * Public for usage by LiquidThreads.
 	 *
 	 * @param array $rows Array of db result objects
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
-	 *   restrictions from page table (pre 1.10)
+	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -3114,8 +3123,10 @@ class Title implements LinkTarget {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
-	 *   restrictions from page table (pre 1.10)
+	 * @param string $oldFashionedRestrictions Comma-separated set of permission keys
+	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
+	 * Edit and move sections are separated by a colon
+	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		if ( $this->mRestrictionsLoaded ) {
@@ -3628,19 +3639,20 @@ class Title implements LinkTarget {
 		$blNamespace = "{$prefix}_namespace";
 		$blTitle = "{$prefix}_title";
 
+		$pageQuery = WikiPage::getQueryInfo();
 		$res = $db->select(
-			[ $table, 'page' ],
+			[ $table, 'nestpage' => $pageQuery['tables'] ],
 			array_merge(
 				[ $blNamespace, $blTitle ],
-				WikiPage::selectFields()
+				$pageQuery['fields']
 			),
 			[ "{$prefix}_from" => $id ],
 			__METHOD__,
 			$options,
-			[ 'page' => [
+			[ 'nestpage' => [
 				'LEFT JOIN',
 				[ "page_namespace=$blNamespace", "page_title=$blTitle" ]
-			] ]
+			] ] + $pageQuery['joins']
 		);
 
 		$retVal = [];
@@ -4193,13 +4205,15 @@ class Title implements LinkTarget {
 		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_REPLICA );
-			$row = $db->selectRow( 'revision', Revision::selectFields(),
+			$revQuery = Revision::getQueryInfo();
+			$row = $db->selectRow( $revQuery['tables'], $revQuery['fields'],
 				[ 'rev_page' => $pageId ],
 				__METHOD__,
 				[
 					'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
-					'IGNORE INDEX' => 'rev_timestamp', // See T159319
-				]
+					'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
+				],
+				$revQuery['joins']
 			);
 			if ( $row ) {
 				return new Revision( $row );
@@ -4486,7 +4500,7 @@ class Title implements LinkTarget {
 		}
 
 		if ( $this->isExternal() ) {
-			return true;  // any interwiki link might be viewable, for all we know
+			return true; // any interwiki link might be viewable, for all we know
 		}
 
 		switch ( $this->mNamespace ) {
@@ -4619,16 +4633,18 @@ class Title implements LinkTarget {
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {
-		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks' ) );
+		DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'pagelinks', 'page-touch' ) );
 		if ( $this->getNamespace() == NS_CATEGORY ) {
-			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $this, 'categorylinks' ) );
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $this, 'categorylinks', 'category-touch' )
+			);
 		}
 	}
 
 	/**
 	 * Get the last touched timestamp
 	 *
-	 * @param IDatabase $db Optional db
+	 * @param IDatabase|null $db
 	 * @return string|false Last-touched timestamp
 	 */
 	public function getTouched( $db = null ) {

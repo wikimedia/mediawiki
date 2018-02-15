@@ -29,6 +29,8 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  */
 class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @dataProvider normalizePageTitleProvider
 	 */

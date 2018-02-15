@@ -9,6 +9,8 @@ use SpecialSearch;
 
 /**
  * Renders a simple one-line result
+ *
+ * @deprecated since 1.31. Use other result widgets.
  */
 class SimpleSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */
@@ -17,6 +19,7 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 	protected $linkRenderer;
 
 	public function __construct( SpecialSearch $specialSearch, LinkRenderer $linkRenderer ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$this->specialSearch = $specialSearch;
 		$this->linkRenderer = $linkRenderer;
 	}
@@ -51,7 +54,7 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 				"<span class='searchalttitle'>" .
 					$this->specialSearch->msg( 'search-redirect' )->rawParams(
 						$this->linkRenderer->makeLink( $redirectTitle, $redirectText )
-					)->text() .
+					)->parse() .
 				"</span>";
 		}
 

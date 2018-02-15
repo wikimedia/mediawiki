@@ -1,6 +1,9 @@
 <?php
 
+use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Holds tests for LoadBalancer MediaWiki class.
@@ -22,15 +25,18 @@ use Wikimedia\Rdbms\LoadBalancer;
  *
  * @group Database
  * @file
+ *
+ * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LoadBalancerTest extends MediaWikiTestCase {
-	public function testLBSimpleServer() {
+	public function testWithoutReplica() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
 			[
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -42,16 +48,21 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID()
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
+
+		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
+		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
+		$this->assertEquals( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
 
 		$dbw = $lb->getConnection( DB_MASTER );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
+		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
-		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
+		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
 		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTO );
 		$this->assertFalse( $dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTO" );
@@ -69,13 +80,14 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb->closeAll();
 	}
 
-	public function testLBSimpleServers() {
+	public function testWithReplica() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
 			[ // master
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -83,9 +95,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'load'        => 0,
 				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
 			],
-			[ // emulated slave
+			[ // emulated replica
 				'host'        => $wgDBserver,
 				'dbname'      => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
 				'user'        => $wgDBuser,
 				'password'    => $wgDBpassword,
 				'type'        => $wgDBtype,
@@ -97,8 +110,8 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => wfWikiID(),
-			'loadMonitorClass' => 'LoadMonitorNull'
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 
 		$dbw = $lb->getConnection( DB_MASTER );
@@ -108,14 +121,16 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			$dbw->getLBInfo( 'clusterMasterHost' ),
 			'cluster master set' );
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
+		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
+		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'replica shows as replica' );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
 			$dbr->getLBInfo( 'clusterMasterHost' ),
 			'cluster master set' );
-		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
+		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
+		$this->assertWriteForbidden( $dbr );
 
 		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTO );
 		$this->assertFalse( $dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTO" );
@@ -132,4 +147,47 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb->closeAll();
 	}
+
+	private function assertWriteForbidden( Database $db ) {
+		try {
+			$db->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
+			$this->fail( 'Write operation should have failed!' );
+		} catch ( DBError $ex ) {
+			// check that the exception message contains "Write operation"
+			$constraint = new PHPUnit_Framework_Constraint_StringContains( 'Write operation' );
+
+			if ( !$constraint->evaluate( $ex->getMessage(), '', true ) ) {
+				// re-throw original error, to preserve stack trace
+				throw $ex;
+			}
+		} finally {
+			$db->rollback( __METHOD__, 'flush' );
+		}
+	}
+
+	private function assertWriteAllowed( Database $db ) {
+		$table = $db->tableName( 'some_table' );
+		try {
+			$db->dropTable( 'some_table' ); // clear for sanity
+			// Use only basic SQL and trivial types for these queries for compatibility
+			$this->assertNotSame(
+				false,
+				$db->query( "CREATE TABLE $table (id INT, time INT)", __METHOD__ ),
+				"table created"
+			);
+			$this->assertNotSame(
+				false,
+				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
+				"delete query"
+			);
+			$this->assertNotSame(
+				false,
+				$db->query( "DROP TABLE $table", __METHOD__ ),
+				"table dropped"
+			);
+		} finally {
+			$db->rollback( __METHOD__, 'flush' );
+		}
+	}
+
 }

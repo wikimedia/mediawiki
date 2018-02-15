@@ -53,6 +53,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
+		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
 		if ( !$db->tableExists( 'log_search' ) ) {
 			$this->error( "log_search does not exist" );
@@ -68,14 +69,14 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __FUNCTION__ );
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 
 		$delTypes = [ 'delete', 'suppress' ]; // revisiondelete types
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing log_id from $blockStart to $blockEnd\n" );
-			$cond = "log_id BETWEEN $blockStart AND $blockEnd";
+			$cond = "log_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd;
 			$res = $db->select(
 				'logging', [ 'log_id', 'log_type', 'log_action', 'log_params' ], $cond, __FUNCTION__
 			);
@@ -158,8 +159,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$log->addRelations( 'target_author_ip', $userIPs, $row->log_id );
 				}
 			}
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 			wfWaitForSlaves();
 		}
 		$this->output( "Done populating log_search table.\n" );
@@ -168,5 +169,5 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateLogSearch";
+$maintClass = PopulateLogSearch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

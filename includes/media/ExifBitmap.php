@@ -99,9 +99,9 @@ class ExifBitmapHandler extends BitmapHandler {
 		if ( $metadata === self::BROKEN_FILE ) {
 			return self::METADATA_GOOD;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$exif = unserialize( $metadata );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
 			|| $exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version()
 		) {
@@ -223,9 +223,9 @@ class ExifBitmapHandler extends BitmapHandler {
 		if ( !$data ) {
 			return 0;
 		}
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$data = unserialize( $data );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( isset( $data['Orientation'] ) ) {
 			# See http://sylvana.net/jpegcrop/exif_orientation.html
 			switch ( $data['Orientation'] ) {

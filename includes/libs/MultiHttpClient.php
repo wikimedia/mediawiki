@@ -48,7 +48,7 @@ use Psr\Log\NullLogger;
 class MultiHttpClient implements LoggerAwareInterface {
 	/** @var resource */
 	protected $multiHandle = null; // curl_multi handle
-	/** @var string|null SSL certificates path  */
+	/** @var string|null SSL certificates path */
 	protected $caBundlePath;
 	/** @var int */
 	protected $connTimeout = 10;
@@ -421,9 +421,14 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @return resource
+	 * @throws Exception
 	 */
 	protected function getCurlMulti() {
 		if ( !$this->multiHandle ) {
+			if ( !function_exists( 'curl_multi_init' ) ) {
+				throw new Exception( "PHP cURL extension missing. " .
+									 "Check https://www.mediawiki.org/wiki/Manual:CURL" );
+			}
 			$cmh = curl_multi_init();
 			curl_multi_setopt( $cmh, CURLMOPT_PIPELINING, (int)$this->usePipelining );
 			curl_multi_setopt( $cmh, CURLMOPT_MAXCONNECTS, (int)$this->maxConnsPerHost );

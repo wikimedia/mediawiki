@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on May 12, 2007
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -114,7 +110,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			}
 		} elseif ( $params['namespace'] ) {
 			$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
-			$multiNS = count( $params['namespace'] ) !== 1;
+			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
 		if ( !is_null( $params['continue'] ) ) {

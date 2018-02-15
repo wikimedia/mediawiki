@@ -59,7 +59,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				[
-					'class' => 'ResourceLoaderImageModule',
+					'class' => ResourceLoaderImageModule::class,
 					'prefix' => 'oo-ui-icon',
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
@@ -100,7 +100,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'class' => 'ResourceLoaderImageModule',
+					'class' => ResourceLoaderImageModule::class,
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' =>
 						'.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
@@ -207,7 +207,6 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 <<<TEXT
 background-image: url(rasterized.png);
 	background-image: linear-gradient(transparent, transparent), url(original.svg);
-	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
 TEXT
 			],
 			[
@@ -215,7 +214,6 @@ TEXT
 <<<TEXT
 background-image: url(rasterized.png);
 	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml);
-	background-image: -o-linear-gradient(transparent, transparent), url(rasterized.png);
 TEXT
 			],
 
@@ -241,7 +239,7 @@ TEXT
 	}
 
 	private function getImageMock( ResourceLoaderContext $context, $dataUriReturnValue ) {
-		$image = $this->getMockBuilder( 'ResourceLoaderImage' )
+		$image = $this->getMockBuilder( ResourceLoaderImage::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$image->method( 'getDataUri' )

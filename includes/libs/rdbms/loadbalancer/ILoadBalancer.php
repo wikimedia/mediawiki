@@ -96,6 +96,7 @@ interface ILoadBalancer {
 	 *  - loadMonitor : Name of a class used to fetch server lag and load.
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
+	 *  - maxLag: Avoid replica DB servers with more lag than this [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - chronologyProtector: ChronologyProtector object [optional]
@@ -307,25 +308,6 @@ interface ILoadBalancer {
 	 * @since 1.30
 	 */
 	public function getServerType( $i );
-
-	/**
-	 * Return the server info structure for a given index, or false if the index is invalid.
-	 * @param int $i
-	 * @return array|bool
-	 *
-	 * @deprecated Since 1.30, no alternative
-	 */
-	public function getServerInfo( $i );
-
-	/**
-	 * Sets the server info structure for the given index. Entry at index $i
-	 * is created if it doesn't exist
-	 * @param int $i
-	 * @param array $serverInfo
-	 *
-	 * @deprecated Since 1.30, construct new object
-	 */
-	public function setServerInfo( $i, array $serverInfo );
 
 	/**
 	 * Get the current master position for chronology control purposes

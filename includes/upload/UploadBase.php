@@ -420,7 +420,7 @@ abstract class UploadBase {
 			$chunk = fread( $fp, 256 );
 			fclose( $fp );
 
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
 			$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 			foreach ( $ieTypes as $ieType ) {
@@ -446,7 +446,7 @@ abstract class UploadBase {
 			return $status;
 		}
 
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$mime = $this->mFileProps['mime'];
 
@@ -505,7 +505,7 @@ abstract class UploadBase {
 		# getTitle() sets some internal parameters like $this->mFinalExtension
 		$this->getTitle();
 
-		$mwProps = new MWFileProps( MimeMagic::singleton() );
+		$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 		$this->mFileProps = $mwProps->getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
 		# check MIME type, if desired
@@ -674,7 +674,10 @@ abstract class UploadBase {
 			$warnings['was-deleted'] = $filename;
 		}
 
-		$dupes = $this->checkAgainstExistingDupes( $hash );
+		// If a file with the same name exists locally then the local file has already been tested
+		// for duplication of content
+		$ignoreLocalDupes = isset( $warnings[ 'exists '] );
+		$dupes = $this->checkAgainstExistingDupes( $hash, $ignoreLocalDupes );
 		if ( $dupes ) {
 			$warnings['duplicate'] = $dupes;
 		}
@@ -789,15 +792,19 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $hash sha1 hash of the file to check
+	 * @param bool $ignoreLocalDupes True to ignore local duplicates
 	 *
 	 * @return File[] Duplicate files, if found.
 	 */
-	private function checkAgainstExistingDupes( $hash ) {
+	private function checkAgainstExistingDupes( $hash, $ignoreLocalDupes ) {
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
-		// Remove all matches against self
 		foreach ( $dupes as $key => $dupe ) {
-			if ( $title->equals( $dupe->getTitle() ) ) {
+			if (
+				( $dupe instanceof LocalFile ) &&
+				$ignoreLocalDupes &&
+				$title->equals( $dupe->getTitle() )
+			) {
 				unset( $dupes[$key] );
 			}
 		}
@@ -950,7 +957,7 @@ abstract class UploadBase {
 			$this->mFinalExtension = '';
 
 			# No extension, try guessing one
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mime = $magic->guessMimeType( $this->mTempPath );
 			if ( $mime !== 'unknown/unknown' ) {
 				# Get a space separated list of extensions
@@ -1207,7 +1214,7 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public static function verifyExtension( $mime, $extension ) {
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		if ( !$mime || $mime == 'unknown' || $mime == 'unknown/unknown' ) {
 			if ( !$magic->isRecognizableExtension( $extension ) ) {
@@ -1418,9 +1425,9 @@ abstract class UploadBase {
 		// detect the encoding in case is specifies an encoding not whitelisted in self::$safeXmlEncodings
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$str = iconv( $encoding, 'UTF-8', $contents );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches ) ) {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 					&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
@@ -1656,9 +1663,8 @@ abstract class UploadBase {
 			# image/svg, text/xml, application/xml, and text/html, which can contain scripts
 			if ( $stripped == 'href' && strncasecmp( 'data:', $value, 5 ) === 0 ) {
 				// rfc2397 parameters. This is only slightly slower than (;[\w;]+)*.
-				// @codingStandardsIgnoreStart Generic.Files.LineLength
+				// phpcs:ignore Generic.Files.LineLength
 				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
-				// @codingStandardsIgnoreEnd
 
 				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|png)$parameters,!i", $value ) ) {
 					wfDebug( __METHOD__ . ": Found href to unwhitelisted data: uri "

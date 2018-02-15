@@ -62,10 +62,9 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function setupFileData() {
-		global $wgParserTestFiles;
 		$this->testFiles = [];
 		$this->testCount = 0;
-		foreach ( $wgParserTestFiles as $file ) {
+		foreach ( ParserTestRunner::getParserTestFiles() as $file ) {
 			$fileInfo = TestFileReader::read( $file );
 			$this->testFiles[$file] = $fileInfo;
 			$this->testCount += count( $fileInfo['tests'] );
@@ -419,8 +418,7 @@ class ParserEditTests extends Maintenance {
 			print "Wrote updated file\n";
 		} else {
 			print "Cannot write updated file, here is a patch you can paste:\n\n";
-			print
-				"--- {$fileName}\n" .
+			print "--- {$fileName}\n" .
 				"+++ {$fileName}~\n" .
 				$this->unifiedDiff( $text, $result ) .
 				"\n";

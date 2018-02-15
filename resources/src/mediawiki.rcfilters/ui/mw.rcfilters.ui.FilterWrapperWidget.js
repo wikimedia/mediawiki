@@ -28,6 +28,7 @@
 		this.controller = controller;
 		this.model = model;
 		this.queriesModel = savedQueriesModel;
+		this.changesListModel = changesListModel;
 		this.$overlay = config.$overlay || this.$element;
 
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
@@ -39,10 +40,10 @@
 
 		this.liveUpdateButton = new mw.rcfilters.ui.LiveUpdateButtonWidget(
 			this.controller,
-			changesListModel
+			this.changesListModel
 		);
 
-		this.numChangesWidget = new mw.rcfilters.ui.ChangesLimitButtonWidget(
+		this.numChangesAndDateWidget = new mw.rcfilters.ui.ChangesLimitAndDateButtonWidget(
 			this.controller,
 			this.model,
 			{
@@ -50,13 +51,19 @@
 			}
 		);
 
-		this.dateWidget = new mw.rcfilters.ui.DateButtonWidget(
-			this.controller,
-			this.model,
-			{
-				$overlay: this.$overlay
-			}
-		);
+		this.showNewChangesLink = new OO.ui.ButtonWidget( {
+			icon: 'reload',
+			framed: false,
+			label: mw.msg( 'rcfilters-show-new-changes' ),
+			flags: [ 'progressive' ],
+			classes: [ 'mw-rcfilters-ui-filterWrapperWidget-showNewChanges' ]
+		} );
+
+		// Events
+		this.filterTagWidget.menu.connect( this, { toggle: [ 'emit', 'menuToggle' ] } );
+		this.changesListModel.connect( this, { newChangesExist: 'onNewChangesExist' } );
+		this.showNewChangesLink.connect( this, { click: 'onShowNewChangesClick' } );
+		this.showNewChangesLink.toggle( false );
 
 		// Initialize
 		this.$top = $( '<div>' )
@@ -65,12 +72,12 @@
 		$bottom = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
 			.append(
-				this.numChangesWidget.$element,
-				this.dateWidget.$element
+				this.showNewChangesLink.$element,
+				this.numChangesAndDateWidget.$element
 			);
 
-		if ( mw.rcfilters.featureFlags.liveUpdate ) {
-			$bottom.append( this.liveUpdateButton.$element );
+		if ( mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' ) ) {
+			$bottom.prepend( this.liveUpdateButton.$element );
 		}
 
 		this.$element
@@ -96,5 +103,21 @@
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget.prototype.setTopSection = function ( $topSectionElement ) {
 		this.$top.append( $topSectionElement );
+	};
+
+	/**
+	 * Respond to the user clicking the 'show new changes' button
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onShowNewChangesClick = function () {
+		this.controller.showNewChanges();
+	};
+
+	/**
+	 * Respond to changes list model newChangesExist
+	 *
+	 * @param {boolean} newChangesExist Whether new changes exist
+	 */
+	mw.rcfilters.ui.FilterWrapperWidget.prototype.onNewChangesExist = function ( newChangesExist ) {
+		this.showNewChangesLink.toggle( newChangesExist );
 	};
 }( mediaWiki ) );

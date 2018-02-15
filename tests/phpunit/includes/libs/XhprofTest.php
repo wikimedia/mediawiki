@@ -19,6 +19,9 @@
  */
 
 class XhprofTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * Trying to enable Xhprof when it is already enabled causes an exception
 	 * to be thrown.
@@ -28,7 +31,7 @@ class XhprofTest extends PHPUnit_Framework_TestCase {
 	 * @covers Xhprof::enable
 	 */
 	public function testEnable() {
-		$xhprof = new ReflectionClass( 'Xhprof' );
+		$xhprof = new ReflectionClass( Xhprof::class );
 		$enabled = $xhprof->getProperty( 'enabled' );
 		$enabled->setAccessible( true );
 		$enabled->setValue( true );

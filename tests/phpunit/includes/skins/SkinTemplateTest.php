@@ -7,13 +7,12 @@
  *
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
-
 class SkinTemplateTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider makeListItemProvider
 	 */
 	public function testMakeListItem( $expected, $key, $item, $options, $message ) {
-		$template = $this->getMockForAbstractClass( 'BaseTemplate' );
+		$template = $this->getMockForAbstractClass( BaseTemplate::class );
 
 		$this->assertEquals(
 			$expected,

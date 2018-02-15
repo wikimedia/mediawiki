@@ -41,6 +41,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
+		$batchSize = $this->getBatchSize();
 		if ( !$dbw->fieldExists( 'recentchanges', 'rc_source' ) ) {
 			$this->error( 'rc_source field in recentchanges table does not exist.' );
 		}
@@ -52,21 +53,19 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			return true;
 		}
 		$end = $dbw->selectField( 'recentchanges', 'MAX(rc_id)', false, __METHOD__ );
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 
 		$updatedValues = $this->buildUpdateCondition( $dbw );
 
 		while ( $blockEnd <= $end ) {
-			$cond = "rc_id BETWEEN $blockStart AND $blockEnd";
-
 			$dbw->update(
 				'recentchanges',
 				[ $updatedValues ],
 				[
 					"rc_source = ''",
-					"rc_id BETWEEN $blockStart AND $blockEnd"
+					"rc_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd
 				],
 				__METHOD__
 			);
@@ -74,8 +73,8 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			$this->output( "." );
 			wfWaitForSlaves();
 
-			$blockStart += $this->mBatchSize;
-			$blockEnd += $this->mBatchSize;
+			$blockStart += $batchSize;
+			$blockEnd += $batchSize;
 		}
 
 		$this->output( "\nDone.\n" );
@@ -105,5 +104,5 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateRecentChangesSource";
+$maintClass = PopulateRecentChangesSource::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

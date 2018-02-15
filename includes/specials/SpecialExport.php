@@ -238,7 +238,7 @@ class SpecialExport extends SpecialPage {
 
 		$formDescriptor += [
 			'textarea' => [
-				'class' => 'HTMLTextAreaField',
+				'class' => HTMLTextAreaField::class,
 				'name' => 'pages',
 				'label-message' => 'export-manual',
 				'nodata' => true,
@@ -380,9 +380,9 @@ class SpecialExport extends SpecialPage {
 			$buffer = WikiExporter::STREAM;
 
 			// This might take a while... :D
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			set_time_limit( 0 );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 
 		$exporter = new WikiExporter( $db, $history, $buffer );
@@ -533,9 +533,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	private function getPageLinks( $inputPages, $pageSet, $depth ) {
-		// @codingStandardsIgnoreStart Squiz.WhiteSpace.SemicolonSpacing.Incorrect
 		for ( ; $depth > 0; --$depth ) {
-			// @codingStandardsIgnoreEnd
 			$pageSet = $this->getLinks(
 				$inputPages, $pageSet, 'pagelinks',
 				[ 'namespace' => 'pl_namespace', 'title' => 'pl_title' ],

@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 5, 2006
- *
  * Copyright © 2006, 2010 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -155,6 +151,7 @@ abstract class ApiBase extends ContextSource {
 	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
 	 * mapping those values to $msg for ApiBase::makeMessage(). Any value not
 	 * having a mapping will use apihelp-{$path}-paramvalue-{$param}-{$value}.
+	 * Specify an empty array to use the default message key for all values.
 	 * @since 1.25
 	 */
 	const PARAM_HELP_MSG_PER_VALUE = 14;
@@ -216,6 +213,18 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.30
 	 */
 	const PARAM_ISMULTI_LIMIT2 = 22;
+
+	/**
+	 * (integer) Maximum length of a string in bytes (in UTF-8 encoding).
+	 * @since 1.31
+	 */
+	const PARAM_MAX_BYTES = 23;
+
+	/**
+	 * (integer) Maximum length of a string in characters (unicode codepoints).
+	 * @since 1.31
+	 */
+	const PARAM_MAX_CHARS = 24;
 
 	/**@}*/
 
@@ -1017,7 +1026,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $paramName Parameter name
 	 * @param array|mixed $paramSettings Default value or an array of settings
 	 *  using PARAM_* constants.
-	 * @param bool $parseLimit Parse limit?
+	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
 	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
@@ -1069,10 +1078,10 @@ abstract class ApiBase extends ContextSource {
 			} else {
 				$type = 'NULL'; // allow everything
 			}
+		}
 
-			if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
-				$this->getMain()->markParamsSensitive( $encParamName );
-			}
+		if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
+			$this->getMain()->markParamsSensitive( $encParamName );
 		}
 
 		if ( $type == 'boolean' ) {
@@ -1173,9 +1182,9 @@ abstract class ApiBase extends ContextSource {
 			);
 		}
 
-		// More validation only when choices were not given
-		// choices were validated in parseMultiValue()
 		if ( isset( $value ) ) {
+			// More validation only when choices were not given
+			// choices were validated in parseMultiValue()
 			if ( !is_array( $type ) ) {
 				switch ( $type ) {
 					case 'NULL': // nothing to do
@@ -1285,6 +1294,23 @@ abstract class ApiBase extends ContextSource {
 				$value = array_unique( $value );
 			}
 
+			if ( in_array( $type, [ 'NULL', 'string', 'text', 'password' ], true ) ) {
+				foreach ( (array)$value as $val ) {
+					if ( isset( $paramSettings[self::PARAM_MAX_BYTES] )
+						&& strlen( $val ) > $paramSettings[self::PARAM_MAX_BYTES]
+					) {
+						$this->dieWithError( [ 'apierror-maxbytes', $encParamName,
+							$paramSettings[self::PARAM_MAX_BYTES] ] );
+					}
+					if ( isset( $paramSettings[self::PARAM_MAX_CHARS] )
+						&& mb_strlen( $val, 'UTF-8' ) > $paramSettings[self::PARAM_MAX_CHARS]
+					) {
+						$this->dieWithError( [ 'apierror-maxchars', $encParamName,
+							$paramSettings[self::PARAM_MAX_CHARS] ] );
+					}
+				}
+			}
+
 			// Set a warning if a deprecated parameter has been passed
 			if ( $deprecated && $value !== false ) {
 				$feature = $encParamName;
@@ -1378,7 +1404,7 @@ abstract class ApiBase extends ContextSource {
 	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
 		$allSpecifier = null, $limit1 = null, $limit2 = null
 	) {
-		if ( ( trim( $value ) === '' || trim( $value ) === "\x1f" ) && $allowMultiple ) {
+		if ( ( $value === '' || $value === "\x1f" ) && $allowMultiple ) {
 			return [];
 		}
 		$limit1 = $limit1 ?: self::LIMIT_SML1;

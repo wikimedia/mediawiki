@@ -53,7 +53,7 @@
 		];
 
 	Array.prototype.push.apply( IPV6_CASES,
-		$.map( [
+		[
 			'fc:100::',
 			'fc:100:a::',
 			'fc:100:a:d::',
@@ -69,8 +69,8 @@
 			'::fc:100:a:d:1:e',
 			'::fc:100:a:d:1:e:ac',
 			'fc:100:a:d:1:e:ac:0'
-		], function ( el ) {
-			return [ [ true, el, el + ' is a valid IP' ] ];
+		].map( function ( el ) {
+			return [ true, el, el + ' is a valid IP' ];
 		} )
 	);
 
@@ -132,7 +132,7 @@
 			newExperimental = [ 'html5', 'html5-legacy' ];
 
 		// Test cases are kept in sync with SanitizerTest.php
-		$.each( [
+		[
 			// Pure legacy: how MW worked before 2017
 			[ legacy, text, legacyEncoded ],
 			// Transition to a new world: legacy links with HTML5 fallback
@@ -145,7 +145,7 @@
 			[ experimentalLegacy, text, html5Experimental ],
 			// Migration from $wgExperimentalHtmlIds to modern HTML5
 			[ newExperimental, text, html5Encoded ]
-		], function ( index, testCase ) {
+		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
 			assert.equal( util.escapeIdForAttribute( testCase[ 1 ] ), testCase[ 2 ] );
@@ -166,7 +166,7 @@
 			experimentalLegacy = [ 'html5-legacy', 'legacy' ],
 			newExperimental = [ 'html5', 'html5-legacy' ];
 
-		$.each( [
+		[
 			// Pure legacy: how MW worked before 2017
 			[ legacy, text, legacyEncoded ],
 			// Transition to a new world: legacy links with HTML5 fallback
@@ -179,7 +179,7 @@
 			[ experimentalLegacy, text, html5Experimental ],
 			// Migration from wgExperimentalHtmlIds to modern HTML5
 			[ newExperimental, text, html5Encoded ]
-		], function ( index, testCase ) {
+		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
 			assert.equal( util.escapeIdForLink( testCase[ 1 ] ), testCase[ 2 ] );
@@ -246,16 +246,26 @@
 		assert.equal( href, '/wiki/#Fragment', 'empty title with fragment' );
 
 		href = util.getUrl( '#Fragment', { action: 'edit' } );
-		assert.equal( href, '/w/index.php?action=edit#Fragment', 'epmty title with query string and fragment' );
+		assert.equal( href, '/w/index.php?action=edit#Fragment', 'empty title with query string and fragment' );
 
+		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
 		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?title=Foo:Sandbox_%C3%84&action=edit#Fragment_.C3.84', 'title with query string, fragment, and special characters' );
+
+		mw.config.set( 'wgFragmentMode', [ 'html5' ] );
+		href = util.getUrl( 'Foo:Sandbox \xC4#Fragment \xC4', { action: 'edit' } );
+		assert.equal( href, '/w/index.php?title=Foo:Sandbox_%C3%84&action=edit#Fragment_Ä', 'title with query string, fragment, and special characters' );
 
 		href = util.getUrl( 'Foo:%23#Fragment', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?title=Foo:%2523&action=edit#Fragment', 'title containing %23 (#), fragment, and a query string' );
 
+		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
 		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
 		assert.equal( href, '/w/index.php?action=edit#.2B.26.3D:.3B.40.24-_..21.2A.2F.5B.5D.3C.3E.27.C2.A7', 'fragment with various characters' );
+
+		mw.config.set( 'wgFragmentMode', [ 'html5' ] );
+		href = util.getUrl( '#+&=:;@$-_.!*/[]<>\'§', { action: 'edit' } );
+		assert.equal( href, '/w/index.php?action=edit#+&=:;@$-_.!*/[]<>\'§', 'fragment with various characters' );
 	} );
 
 	QUnit.test( 'wikiScript', function ( assert ) {
@@ -432,23 +442,23 @@
 	} );
 
 	QUnit.test( 'isIPv6Address', function ( assert ) {
-		$.each( IPV6_CASES, function ( i, ipCase ) {
+		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
 	QUnit.test( 'isIPv4Address', function ( assert ) {
-		$.each( IPV4_CASES, function ( i, ipCase ) {
+		IPV4_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );
 
 	QUnit.test( 'isIPAddress', function ( assert ) {
-		$.each( IPV4_CASES, function ( i, ipCase ) {
+		IPV4_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv4Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 
-		$.each( IPV6_CASES, function ( i, ipCase ) {
+		IPV6_CASES.forEach( function ( ipCase ) {
 			assert.strictEqual( util.isIPv6Address( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
 		} );
 	} );

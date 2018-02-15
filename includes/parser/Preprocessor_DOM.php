@@ -24,9 +24,8 @@
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_DOM extends Preprocessor {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Parser
@@ -87,9 +86,9 @@ class Preprocessor_DOM extends Preprocessor {
 		$xml .= "</list>";
 
 		$dom = new DOMDocument();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -164,9 +163,9 @@ class Preprocessor_DOM extends Preprocessor {
 		}
 
 		$dom = new DOMDocument;
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -559,8 +558,16 @@ class Preprocessor_DOM extends Preprocessor {
 						'count' => $count ];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					$flags = $stack->getFlags();
-					extract( $flags );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 					$i += $count;
 				}
 			} elseif ( $found == 'line-end' ) {
@@ -610,8 +617,16 @@ class Preprocessor_DOM extends Preprocessor {
 				// Unwind the stack
 				$stack->pop();
 				$accum =& $stack->getAccum();
-				$flags = $stack->getFlags();
-				extract( $flags );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				// Append the result to the enclosing accumulator
 				$accum .= $element;
@@ -640,8 +655,16 @@ class Preprocessor_DOM extends Preprocessor {
 
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
-					$flags = $stack->getFlags();
-					extract( $flags );
+					$stackFlags = $stack->getFlags();
+					if ( isset( $stackFlags['findEquals'] ) ) {
+						$findEquals = $stackFlags['findEquals'];
+					}
+					if ( isset( $stackFlags['findPipe'] ) ) {
+						$findPipe = $stackFlags['findPipe'];
+					}
+					if ( isset( $stackFlags['inHeading'] ) ) {
+						$inHeading = $stackFlags['inHeading'];
+					}
 				} else {
 					# Add literal brace(s)
 					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
@@ -748,8 +771,16 @@ class Preprocessor_DOM extends Preprocessor {
 						$accum .= $s;
 					}
 				}
-				$flags = $stack->getFlags();
-				extract( $flags );
+				$stackFlags = $stack->getFlags();
+				if ( isset( $stackFlags['findEquals'] ) ) {
+					$findEquals = $stackFlags['findEquals'];
+				}
+				if ( isset( $stackFlags['findPipe'] ) ) {
+					$findPipe = $stackFlags['findPipe'];
+				}
+				if ( isset( $stackFlags['inHeading'] ) ) {
+					$inHeading = $stackFlags['inHeading'];
+				}
 
 				# Add XML element to the enclosing accumulator
 				$accum .= $element;
@@ -792,7 +823,7 @@ class PPDStack {
 	 */
 	public $top;
 	public $out;
-	public $elementClass = 'PPDStackElement';
+	public $elementClass = PPDStackElement::class;
 
 	public static $false = false;
 
@@ -900,7 +931,7 @@ class PPDStackElement {
 	 */
 	public $lineStart;
 
-	public $partClass = 'PPDPart';
+	public $partClass = PPDPart::class;
 
 	public function __construct( $data = [] ) {
 		$class = $this->partClass;
@@ -992,9 +1023,8 @@ class PPDPart {
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPFrame_DOM implements PPFrame {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var Preprocessor
@@ -1610,9 +1640,8 @@ class PPFrame_DOM implements PPFrame {
  * Expansion frame with template arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPTemplateFrame_DOM extends PPFrame_DOM {
-	// @codingStandardsIgnoreEnd
 
 	public $numberedArgs, $namedArgs;
 
@@ -1789,9 +1818,8 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
  * Expansion frame with custom arguments
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPCustomFrame_DOM extends PPFrame_DOM {
-	// @codingStandardsIgnoreEnd
 
 	public $args;
 
@@ -1842,9 +1870,8 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 /**
  * @ingroup Parser
  */
-// @codingStandardsIgnoreStart Squiz.Classes.ValidClassName.NotCamelCaps
+// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPNode_DOM implements PPNode {
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * @var DOMElement

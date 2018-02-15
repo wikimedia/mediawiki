@@ -262,14 +262,12 @@ class XMPValidate implements LoggerAwareInterface {
 			return;
 		}
 		$res = [];
-		// @codingStandardsIgnoreStart Long line that cannot be broken
 		if ( !preg_match(
 			/* ahh! scary regex... */
+			// phpcs:ignore Generic.Files.LineLength
 			'/^([0-3]\d{3})(?:-([01]\d)(?:-([0-3]\d)(?:T([0-2]\d):([0-6]\d)(?::([0-6]\d)(?:\.\d+)?)?([-+]\d{2}:\d{2}|Z)?)?)?)?$/D',
 			$val, $res )
 		) {
-			// @codingStandardsIgnoreEnd
-
 			$this->logger->info( __METHOD__ . " Expected date but got $val" );
 			$val = null;
 		} else {

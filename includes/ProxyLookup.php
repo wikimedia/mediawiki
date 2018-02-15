@@ -19,7 +19,7 @@
  * @file
  */
 
-use IPSet\IPSet;
+use Wikimedia\IPSet;
 
 /**
  * @since 1.28

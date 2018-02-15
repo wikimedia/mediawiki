@@ -1,5 +1,5 @@
 <?php
-// @codingStandardsIgnoreFile It's an external lib and it isn't. Let's not bother.
+// phpcs:ignoreFile -- It's an external lib and it isn't. Let's not bother.
 /**
  * Memcached client for PHP.
  *
@@ -363,7 +363,7 @@ class MemcachedClient {
 	/**
 	 * Changes the TTL on a key from the server to $time
 	 *
-	 * @param string $key Key
+	 * @param string $key
 	 * @param int $time TTL in seconds
 	 *
 	 * @return bool True on success, false on failure
@@ -788,13 +788,13 @@ class MemcachedClient {
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
 		for ( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			if ( $this->_persistent == 1 ) {
 				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
 			} else {
 				$sock = fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 		}
 		if ( !$sock ) {
 			$this->_error_log( "Error connecting to $host: $errstr" );

@@ -18,7 +18,8 @@
 			"V6rg",
 			"C.R.",
 			"Smcnarayan",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Maxí"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -1289,7 +1290,6 @@
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Jon badlao ke dekhae ke hai",
-	"rcfilters-limit-shownum": "Pichhlaa $1 badlao ke dekhao",
 	"rcfilters-days-title": "Kuchh pahile ke din",
 	"rcfilters-hours-title": "Kuch pahile ke ghantaa",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|din}}",
@@ -1386,7 +1386,7 @@
 	"rcfilters-view-namespaces-tooltip": "Results ke namespace se filter karo",
 	"rcfilters-view-tags-tooltip": "Results ke, edit tags ke kaam me laae ke, filter karo",
 	"rcfilters-view-return-to-default-tooltip": "Main filter menu pe lauto",
-	"rcfilters-liveupdates-button": "Live updates",
+	"rcfilters-liveupdates-button": "Breytingar í beinni",
 	"rcnotefrom": "Niche {{PLURAL:$5|badlao hae|badlao hae}} <strong>$3, $4</strong> (<strong>$1</strong> talak dekhawa gais) talak.",
 	"rclistfromreset": "Taarik ke selection ke reset karo",
 	"rclistfrom": "$3 $2 se suruu kar ke nawaa badlao dekhao",

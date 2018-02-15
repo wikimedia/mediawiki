@@ -1,7 +1,5 @@
 <?php
 /**
- * Created on Oct 3, 2014
- *
  * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * Heavily based on ApiQueryDeletedrevs,
@@ -60,13 +58,16 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
-		$this->addTables( 'archive' );
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$this->addFields( Revision::selectArchiveFields() );
+			$arQuery = Revision::getArchiveQueryInfo();
+			$this->addTables( $arQuery['tables'] );
+			$this->addFields( $arQuery['fields'] );
+			$this->addJoinConds( $arQuery['joins'] );
 			$this->addFields( [ 'ar_title', 'ar_namespace' ] );
 		} else {
 			$this->limit = $this->getParameter( 'limit' ) ?: 10;
+			$this->addTables( 'archive' );
 			$this->addFields( [ 'ar_title', 'ar_namespace', 'ar_timestamp', 'ar_rev_id', 'ar_id' ] );
 		}
 

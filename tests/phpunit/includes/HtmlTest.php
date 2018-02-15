@@ -1,5 +1,4 @@
 <?php
-/** tests for includes/Html.php */
 
 class HtmlTest extends MediaWikiTestCase {
 
@@ -386,6 +385,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::namespaceSelector
+	 */
 	public function testCanFilterOutNamespaces() {
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
@@ -408,6 +410,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::namespaceSelector
+	 */
 	public function testCanDisableANamespaces() {
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
@@ -444,6 +449,47 @@ class HtmlTest extends MediaWikiTestCase {
 			'<input type="' . $HTML5InputType . '"/>',
 			Html::element( 'input', [ 'type' => $HTML5InputType ] ),
 			'In HTML5, Html::element() should accept type="' . $HTML5InputType . '"'
+		);
+	}
+
+	/**
+	 * @covers Html::warningBox
+	 * @covers Html::messageBox
+	 */
+	public function testWarningBox() {
+		$this->assertEquals(
+			Html::warningBox( 'warn' ),
+			'<div class="warningbox">warn</div>'
+		);
+	}
+
+	/**
+	 * @covers Html::errorBox
+	 * @covers Html::messageBox
+	 */
+	public function testErrorBox() {
+		$this->assertEquals(
+			Html::errorBox( 'err' ),
+			'<div class="errorbox">err</div>'
+		);
+		$this->assertEquals(
+			Html::errorBox( 'err', 'heading' ),
+			'<div class="errorbox"><h2>heading</h2>err</div>'
+		);
+	}
+
+	/**
+	 * @covers Html::successBox
+	 * @covers Html::messageBox
+	 */
+	public function testSuccessBox() {
+		$this->assertEquals(
+			Html::successBox( 'great' ),
+			'<div class="successbox">great</div>'
+		);
+		$this->assertEquals(
+			Html::successBox( '<script>beware no escaping!</script>' ),
+			'<div class="successbox"><script>beware no escaping!</script></div>'
 		);
 	}
 
@@ -637,6 +683,9 @@ class HtmlTest extends MediaWikiTestCase {
 		return $ret;
 	}
 
+	/**
+	 * @covers Html::input
+	 */
 	public function testWrapperInput() {
 		$this->assertEquals(
 			'<input type="radio" value="testval" name="testname"/>',
@@ -650,6 +699,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::check
+	 */
 	public function testWrapperCheck() {
 		$this->assertEquals(
 			'<input type="checkbox" value="1" name="testname"/>',
@@ -668,6 +720,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::radio
+	 */
 	public function testWrapperRadio() {
 		$this->assertEquals(
 			'<input type="radio" value="1" name="testname"/>',
@@ -686,6 +741,9 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Html::label
+	 */
 	public function testWrapperLabel() {
 		$this->assertEquals(
 			'<label for="testid">testlabel</label>',

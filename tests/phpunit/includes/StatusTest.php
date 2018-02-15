@@ -5,11 +5,6 @@
  */
 class StatusTest extends MediaWikiLangTestCase {
 
-	public function testCanConstruct() {
-		new Status();
-		$this->assertTrue( true );
-	}
-
 	/**
 	 * @dataProvider provideValues
 	 * @covers Status::newGood
@@ -35,7 +30,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::newFatal
 	 */
 	public function testNewFatalWithMessage() {
-		$message = $this->getMockBuilder( 'Message' )
+		$message = $this->getMockBuilder( Message::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -229,7 +224,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	protected function getMockMessage( $key = 'key', $params = [] ) {
-		$message = $this->getMockBuilder( 'Message' )
+		$message = $this->getMockBuilder( Message::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$message->expects( $this->atLeastOnce() )
@@ -316,7 +311,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::cleanParams
 	 */
 	public function testCleanParams( $cleanCallback, $params, $expected ) {
-		$method = new ReflectionMethod( 'Status', 'cleanParams' );
+		$method = new ReflectionMethod( Status::class, 'cleanParams' );
 		$method->setAccessible( true );
 		$status = new Status();
 		$status->cleanCallback = $cleanCallback;
@@ -454,23 +449,23 @@ class StatusTest extends MediaWikiLangTestCase {
 		Status $status, $expectedParams = [], $expectedKey, $expectedWrapper
 	) {
 		$message = $status->getMessage( null, null, 'qqx' );
-		$this->assertInstanceOf( 'Message', $message );
+		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $expectedParams, self::sanitizedMessageParams( $message ),
 			'Message::getParams' );
 		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
 
 		$message = $status->getMessage( 'wrapper-short', 'wrapper-long' );
-		$this->assertInstanceOf( 'Message', $message );
+		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $expectedWrapper, $message->getKey(), 'Message::getKey with wrappers' );
 		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
 
 		$message = $status->getMessage( 'wrapper' );
-		$this->assertInstanceOf( 'Message', $message );
+		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( 'wrapper', $message->getKey(), 'Message::getKey with wrappers' );
 		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
 
 		$message = $status->getMessage( false, 'wrapper' );
-		$this->assertInstanceOf( 'Message', $message );
+		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( 'wrapper', $message->getKey(), 'Message::getKey with wrappers' );
 		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
 	}
@@ -565,7 +560,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessage() {
-		$method = new ReflectionMethod( 'Status', 'getErrorMessage' );
+		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
 		$method->setAccessible( true );
 		$status = new Status();
 		$key = 'foo';
@@ -573,7 +568,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		/** @var Message $message */
 		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
-		$this->assertInstanceOf( 'Message', $message );
+		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
 	}
@@ -582,7 +577,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessageArray
 	 */
 	public function testGetErrorMessageArray() {
-		$method = new ReflectionMethod( 'Status', 'getErrorMessageArray' );
+		$method = new ReflectionMethod( Status::class, 'getErrorMessageArray' );
 		$method->setAccessible( true );
 		$status = new Status();
 		$key = 'foo';
@@ -600,7 +595,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertInternalType( 'array', $messageArray );
 		$this->assertCount( 2, $messageArray );
 		foreach ( $messageArray as $message ) {
-			$this->assertInstanceOf( 'Message', $message );
+			$this->assertInstanceOf( Message::class, $message );
 			$this->assertEquals( $key, $message->getKey() );
 			$this->assertEquals( $params, $message->getParams() );
 		}

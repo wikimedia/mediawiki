@@ -78,7 +78,7 @@ class TitleValueTest extends MediaWikiTestCase {
 	 * @dataProvider badConstructorProvider
 	 */
 	public function testConstructionErrors( $ns, $text, $fragment, $interwiki ) {
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		new TitleValue( $ns, $text, $fragment, $interwiki );
 	}
 
@@ -115,5 +115,34 @@ class TitleValueTest extends MediaWikiTestCase {
 		$title = new TitleValue( NS_MAIN, $dbkey );
 
 		$this->assertEquals( $text, $title->getText() );
+	}
+
+	public function provideTestToString() {
+		yield [
+			new TitleValue( 0, 'Foo' ),
+			'0:Foo'
+		];
+		yield [
+			new TitleValue( 1, 'Bar_Baz' ),
+			'1:Bar_Baz'
+		];
+		yield [
+			new TitleValue( 9, 'JoJo', 'Frag' ),
+			'9:JoJo#Frag'
+		];
+		yield [
+			new TitleValue( 200, 'tea', 'Fragment', 'wikicode' ),
+			'wikicode:200:tea#Fragment'
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestToString
+	 */
+	public function testToString( TitleValue $value, $expected ) {
+		$this->assertSame(
+			$expected,
+			$value->__toString()
+		);
 	}
 }

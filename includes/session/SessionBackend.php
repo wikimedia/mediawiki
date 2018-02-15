@@ -97,7 +97,7 @@ final class SessionBackend {
 	private $shutdown = false;
 
 	/**
-	 * @param SessionId $id Session ID object
+	 * @param SessionId $id
 	 * @param SessionInfo $info Session info to populate from
 	 * @param CachedBagOStuff $store Backend data store
 	 * @param LoggerInterface $logger
@@ -243,7 +243,7 @@ final class SessionBackend {
 
 			if ( $restart ) {
 				session_id( (string)$this->id );
-				\MediaWiki\quietCall( 'session_start' );
+				\Wikimedia\quietCall( 'session_start' );
 			}
 
 			$this->autosave();
@@ -764,7 +764,7 @@ final class SessionBackend {
 						'session' => $this->id,
 				] );
 				session_id( (string)$this->id );
-				\MediaWiki\quietCall( 'session_start' );
+				\Wikimedia\quietCall( 'session_start' );
 			}
 		}
 	}

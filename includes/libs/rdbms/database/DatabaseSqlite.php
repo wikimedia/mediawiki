@@ -56,6 +56,9 @@ class DatabaseSqlite extends Database {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
+	/** @var array List of shared database already attached to this connection */
+	private $alreadyAttached = [];
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
@@ -82,16 +85,7 @@ class DatabaseSqlite extends Database {
 			parent::__construct( $p );
 			// Super doesn't open when $user is false, but we can work with $dbName
 			if ( $p['dbname'] && !$this->isOpen() ) {
-				if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
-					$done = [];
-					foreach ( $this->tableAliases as $params ) {
-						if ( isset( $done[$params['dbname']] ) ) {
-							continue;
-						}
-						$this->attachDatabase( $params['dbname'] );
-						$done[$params['dbname']] = 1;
-					}
-				}
+				$this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] );
 			}
 		}
 
@@ -302,6 +296,14 @@ class DatabaseSqlite extends Database {
 		return parent::isWriteQuery( $sql ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
 
+	protected function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) && !in_array(
+			$this->getQueryVerb( $sql ),
+			[ 'ATTACH', 'PRAGMA' ],
+			true
+		);
+	}
+
 	/**
 	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
 	 *
@@ -494,7 +496,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return int
 	 */
-	function affectedRows() {
+	protected function fetchAffectedRowCount() {
 		return $this->mAffectedRows;
 	}
 
@@ -1031,6 +1033,17 @@ class DatabaseSqlite extends Database {
 		$sql = "DROP TABLE " . $this->tableName( $tableName );
 
 		return $this->query( $sql, $fName );
+	}
+
+	public function setTableAliases( array $aliases ) {
+		parent::setTableAliases( $aliases );
+		foreach ( $this->tableAliases as $params ) {
+			if ( isset( $this->alreadyAttached[$params['dbname']] ) ) {
+				continue;
+			}
+			$this->attachDatabase( $params['dbname'] );
+			$this->alreadyAttached[$params['dbname']] = true;
+		}
 	}
 
 	protected function requiresDatabaseUser() {

@@ -69,16 +69,16 @@ a.stub {
 }
 
 /* Expand URLs for printing */
-.mw-body-content a.external.text:after,
-.mw-body-content a.external.autonumber:after {
+.mw-parser-output a.external.text:after,
+.mw-parser-output a.external.autonumber:after {
 	content: ' (' attr( href ) ')';
 	word-break: break-all;
 	word-wrap: break-word;
 }
 
 /* Expand protocol-relative URLs for printing */
-.mw-body-content a.external.text[ href^='//' ]:after,
-.mw-body-content a.external.autonumber[ href^='//' ]:after {
+.mw-parser-output a.external.text[ href^='//' ]:after,
+.mw-parser-output a.external.autonumber[ href^='//' ]:after {
 	content: ' (https:' attr( href ) ')';
 }
 
@@ -126,9 +126,8 @@ pre,
 	border: 1pt dashed #000;
 	padding: 1em 0;
 	font-size: 8pt;
-	white-space: pre;
+	white-space: pre-wrap;
 	word-wrap: break-word;
-	overflow: auto;
 }
 
 /* Prevent citations and subscripts from interfering with the line-height */

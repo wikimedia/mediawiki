@@ -59,14 +59,15 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			return false;
 		}
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
+		$batchSize = $this->getBatchSize();
 
 		# Do remaining chunk
-		$end += $this->mBatchSize - 1;
+		$end += $batchSize - 1;
 		$blockStart = $start;
-		$blockEnd = $start + $this->mBatchSize - 1;
+		$blockEnd = $start + $batchSize - 1;
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
-			$cond = "page_id BETWEEN $blockStart AND $blockEnd";
+			$cond = "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd;
 			$res = $db->select( 'page', [ 'page_id', 'page_namespace' ], $cond, __METHOD__ );
 			foreach ( $res as $row ) {
 				$db->update( 'pagelinks',
@@ -85,13 +86,13 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 			}
-			$blockStart += $this->mBatchSize - 1;
-			$blockEnd += $this->mBatchSize - 1;
+			$blockStart += $batchSize - 1;
+			$blockEnd += $batchSize - 1;
 			wfWaitForSlaves();
 		}
 		return true;
 	}
 }
 
-$maintClass = "PopulateBacklinkNamespace";
+$maintClass = PopulateBacklinkNamespace::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

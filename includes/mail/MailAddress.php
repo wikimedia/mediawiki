@@ -30,7 +30,6 @@
  * header format when requested.
  */
 class MailAddress {
-
 	/**
 	 * @var string
 	 */

@@ -26,7 +26,7 @@ class BlockLevelPass {
 	private $DTopen = false;
 	private $inPre = false;
 	private $lastSection = '';
-	private $linestart;
+	private $lineStart;
 	private $text;
 
 	# State constants for the definition list colon extraction
@@ -417,130 +417,130 @@ class BlockLevelPass {
 			$c = $str[$i];
 
 			switch ( $state ) {
-			case self::COLON_STATE_TEXT:
-				switch ( $c ) {
-				case "<":
-					# Could be either a <start> tag or an </end> tag
-					$state = self::COLON_STATE_TAGSTART;
-					break;
-				case ":":
-					if ( $ltLevel === 0 ) {
-						# We found it!
-						$before = substr( $str, 0, $i );
-						$after = substr( $str, $i + 1 );
-						return $i;
+				case self::COLON_STATE_TEXT:
+					switch ( $c ) {
+						case "<":
+							# Could be either a <start> tag or an </end> tag
+							$state = self::COLON_STATE_TAGSTART;
+							break;
+						case ":":
+							if ( $ltLevel === 0 ) {
+								# We found it!
+								$before = substr( $str, 0, $i );
+								$after = substr( $str, $i + 1 );
+								return $i;
+							}
+							# Embedded in a tag; don't break it.
+							break;
+						default:
+							# Skip ahead looking for something interesting
+							if ( !preg_match( '/:|<|-\{/', $str, $m, PREG_OFFSET_CAPTURE, $i ) ) {
+								# Nothing else interesting
+								return false;
+							}
+							if ( $m[0][0] === '-{' ) {
+								$state = self::COLON_STATE_LC;
+								$lcLevel++;
+								$i = $m[0][1] + 1;
+							} else {
+								# Skip ahead to next interesting character.
+								$i = $m[0][1] - 1;
+							}
+							break;
 					}
-					# Embedded in a tag; don't break it.
 					break;
-				default:
-					# Skip ahead looking for something interesting
-					if ( !preg_match( '/:|<|-\{/', $str, $m, PREG_OFFSET_CAPTURE, $i ) ) {
-						# Nothing else interesting
-						return false;
-					}
-					if ( $m[0][0] === '-{' ) {
-						$state = self::COLON_STATE_LC;
-						$lcLevel++;
+				case self::COLON_STATE_LC:
+					# In language converter markup -{ ... }-
+					if ( !preg_match( '/-\{|\}-/', $str, $m, PREG_OFFSET_CAPTURE, $i ) ) {
+						# Nothing else interesting to find; abort!
+						# We're nested in language converter markup, but there
+						# are no close tags left.  Abort!
+						break 2;
+					} elseif ( $m[0][0] === '-{' ) {
 						$i = $m[0][1] + 1;
-					} else {
-						# Skip ahead to next interesting character.
-						$i = $m[0][1] - 1;
+						$lcLevel++;
+					} elseif ( $m[0][0] === '}-' ) {
+						$i = $m[0][1] + 1;
+						$lcLevel--;
+						if ( $lcLevel === 0 ) {
+							$state = self::COLON_STATE_TEXT;
+						}
 					}
 					break;
-				}
-				break;
-			case self::COLON_STATE_LC:
-				# In language converter markup -{ ... }-
-				if ( !preg_match( '/-\{|\}-/', $str, $m, PREG_OFFSET_CAPTURE, $i ) ) {
-					# Nothing else interesting to find; abort!
-					# We're nested in language converter markup, but there
-					# are no close tags left.  Abort!
-					break 2;
-				} elseif ( $m[0][0] === '-{' ) {
-					$i = $m[0][1] + 1;
-					$lcLevel++;
-				} elseif ( $m[0][0] === '}-' ) {
-					$i = $m[0][1] + 1;
-					$lcLevel--;
-					if ( $lcLevel === 0 ) {
+				case self::COLON_STATE_TAG:
+					# In a <tag>
+					switch ( $c ) {
+						case ">":
+							$ltLevel++;
+							$state = self::COLON_STATE_TEXT;
+							break;
+						case "/":
+							# Slash may be followed by >?
+							$state = self::COLON_STATE_TAGSLASH;
+							break;
+						default:
+							# ignore
+					}
+					break;
+				case self::COLON_STATE_TAGSTART:
+					switch ( $c ) {
+						case "/":
+							$state = self::COLON_STATE_CLOSETAG;
+							break;
+						case "!":
+							$state = self::COLON_STATE_COMMENT;
+							break;
+						case ">":
+							# Illegal early close? This shouldn't happen D:
+							$state = self::COLON_STATE_TEXT;
+							break;
+						default:
+							$state = self::COLON_STATE_TAG;
+					}
+					break;
+				case self::COLON_STATE_CLOSETAG:
+					# In a </tag>
+					if ( $c === ">" ) {
+						if ( $ltLevel > 0 ) {
+							$ltLevel--;
+						} else {
+							# ignore the excess close tag, but keep looking for
+							# colons. (This matches Parsoid behavior.)
+							wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
+						}
 						$state = self::COLON_STATE_TEXT;
 					}
-				}
-				break;
-			case self::COLON_STATE_TAG:
-				# In a <tag>
-				switch ( $c ) {
-				case ">":
-					$ltLevel++;
-					$state = self::COLON_STATE_TEXT;
 					break;
-				case "/":
-					# Slash may be followed by >?
-					$state = self::COLON_STATE_TAGSLASH;
-					break;
-				default:
-					# ignore
-				}
-				break;
-			case self::COLON_STATE_TAGSTART:
-				switch ( $c ) {
-				case "/":
-					$state = self::COLON_STATE_CLOSETAG;
-					break;
-				case "!":
-					$state = self::COLON_STATE_COMMENT;
-					break;
-				case ">":
-					# Illegal early close? This shouldn't happen D:
-					$state = self::COLON_STATE_TEXT;
-					break;
-				default:
-					$state = self::COLON_STATE_TAG;
-				}
-				break;
-			case self::COLON_STATE_CLOSETAG:
-				# In a </tag>
-				if ( $c === ">" ) {
-					if ( $ltLevel > 0 ) {
-						$ltLevel--;
+				case self::COLON_STATE_TAGSLASH:
+					if ( $c === ">" ) {
+						# Yes, a self-closed tag <blah/>
+						$state = self::COLON_STATE_TEXT;
 					} else {
-						# ignore the excess close tag, but keep looking for
-						# colons. (This matches Parsoid behavior.)
-						wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
+						# Probably we're jumping the gun, and this is an attribute
+						$state = self::COLON_STATE_TAG;
 					}
-					$state = self::COLON_STATE_TEXT;
-				}
-				break;
-			case self::COLON_STATE_TAGSLASH:
-				if ( $c === ">" ) {
-					# Yes, a self-closed tag <blah/>
-					$state = self::COLON_STATE_TEXT;
-				} else {
-					# Probably we're jumping the gun, and this is an attribute
-					$state = self::COLON_STATE_TAG;
-				}
-				break;
-			case self::COLON_STATE_COMMENT:
-				if ( $c === "-" ) {
-					$state = self::COLON_STATE_COMMENTDASH;
-				}
-				break;
-			case self::COLON_STATE_COMMENTDASH:
-				if ( $c === "-" ) {
-					$state = self::COLON_STATE_COMMENTDASHDASH;
-				} else {
-					$state = self::COLON_STATE_COMMENT;
-				}
-				break;
-			case self::COLON_STATE_COMMENTDASHDASH:
-				if ( $c === ">" ) {
-					$state = self::COLON_STATE_TEXT;
-				} else {
-					$state = self::COLON_STATE_COMMENT;
-				}
-				break;
-			default:
-				throw new MWException( "State machine error in " . __METHOD__ );
+					break;
+				case self::COLON_STATE_COMMENT:
+					if ( $c === "-" ) {
+						$state = self::COLON_STATE_COMMENTDASH;
+					}
+					break;
+				case self::COLON_STATE_COMMENTDASH:
+					if ( $c === "-" ) {
+						$state = self::COLON_STATE_COMMENTDASHDASH;
+					} else {
+						$state = self::COLON_STATE_COMMENT;
+					}
+					break;
+				case self::COLON_STATE_COMMENTDASHDASH:
+					if ( $c === ">" ) {
+						$state = self::COLON_STATE_TEXT;
+					} else {
+						$state = self::COLON_STATE_COMMENT;
+					}
+					break;
+				default:
+					throw new MWException( "State machine error in " . __METHOD__ );
 			}
 		}
 		if ( $ltLevel > 0 || $lcLevel > 0 ) {

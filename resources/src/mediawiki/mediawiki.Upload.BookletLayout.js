@@ -379,8 +379,8 @@
 					$( '<p>' ).msg( 'filepageexists', 'File:' + warnings[ 'page-exists' ] ),
 					{ recoverable: false }
 				) );
-			} else if ( warnings.duplicate !== undefined ) {
-				$.each( warnings.duplicate, function ( i, filename ) {
+			} else if ( Array.isArray( warnings.duplicate ) ) {
+				warnings.duplicate.forEach( function ( filename ) {
 					var $a = $( '<a>' ).text( filename ),
 						href = mw.Title.makeTitle( mw.config.get( 'wgNamespaceIds' ).file, filename ).getUrl( {} );
 

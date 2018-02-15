@@ -1,10 +1,8 @@
 /*!
  * @author Neil Kandalgaonkar, 2010
- * @author Timo Tijhof, 2011-2013
+ * @author Timo Tijhof
  * @since 1.18
  */
-
-/* eslint-disable no-use-before-define */
 
 ( function ( mw, $ ) {
 	/**
@@ -29,27 +27,10 @@
 	 *     mw.Title.makeTitle( NS_TEMPLATE, 'Template:Foo' ).getPrefixedText();   // => 'Template:Template:Foo'
 	 *
 	 * @class mw.Title
-	 * @constructor
-	 * @param {string} title Title of the page. If no second argument given,
-	 *  this will be searched for a namespace
-	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
-	 * @throws {Error} When the title is invalid
 	 */
-	function Title( title, namespace ) {
-		var parsed = parse( title, namespace );
-		if ( !parsed ) {
-			throw new Error( 'Unable to parse title' );
-		}
-
-		this.namespace = parsed.namespace;
-		this.title = parsed.title;
-		this.ext = parsed.ext;
-		this.fragment = parsed.fragment;
-	}
 
 	/* Private members */
 
-	// eslint-disable-next-line vars-on-top
 	var
 		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
@@ -458,6 +439,25 @@
 			return trimToByteLength( name, FILENAME_MAX_BYTES - extension.length - 1 ) + '.' + extension;
 		};
 
+	/**
+	 * @method constructor
+	 * @param {string} title Title of the page. If no second argument given,
+	 *  this will be searched for a namespace
+	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
+	 * @throws {Error} When the title is invalid
+	 */
+	function Title( title, namespace ) {
+		var parsed = parse( title, namespace );
+		if ( !parsed ) {
+			throw new Error( 'Unable to parse title' );
+		}
+
+		this.namespace = parsed.namespace;
+		this.title = parsed.title;
+		this.ext = parsed.ext;
+		this.fragment = parsed.fragment;
+	}
+
 	/* Static members */
 
 	/**
@@ -537,7 +537,7 @@
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 		// Normalise additional whitespace
-		title = $.trim( title.replace( /\s/g, ' ' ) );
+		title = title.replace( /\s/g, ' ' ).trim();
 
 		// Process initial colon
 		if ( title !== '' && title[ 0 ] === ':' ) {
@@ -579,7 +579,7 @@
 				ext = parts.pop();
 
 				// Remove whitespace of the name part (that W/O extension)
-				title = $.trim( parts.join( '.' ) );
+				title = parts.join( '.' ).trim();
 
 				// Cut, if too long and append file extension
 				title = trimFileNameToByteLength( title, ext );
@@ -587,7 +587,7 @@
 			} else {
 
 				// Missing file extension
-				title = $.trim( parts.join( '.' ) );
+				title = parts.join( '.' ).trim();
 
 				// Name has no file extension and a fallback wasn't provided either
 				return null;

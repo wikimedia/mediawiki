@@ -1,6 +1,8 @@
 <?php
 /**
  * @group BagOStuff
+ *
+ * @covers RESTBagOStuff
  */
 class RESTBagOStuffTest extends MediaWikiTestCase {
 
@@ -16,7 +18,7 @@ class RESTBagOStuffTest extends MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->client =
-			$this->getMockBuilder( 'MultiHttpClient' )
+			$this->getMockBuilder( MultiHttpClient::class )
 				->setConstructorArgs( [ [] ] )
 				->setMethods( [ 'run' ] )
 				->getMock();

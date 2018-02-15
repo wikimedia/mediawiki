@@ -61,7 +61,7 @@ class RebuildRecentchanges extends Maintenance {
 			( $this->hasOption( 'from' ) && !$this->hasOption( 'to' ) ) ||
 			( !$this->hasOption( 'from' ) && $this->hasOption( 'to' ) )
 		) {
-			$this->error( "Both 'from' and 'to' must be given, or neither", 1 );
+			$this->fatalError( "Both 'from' and 'to' must be given, or neither" );
 		}
 
 		$this->rebuildRecentChangesTablePass1();
@@ -80,8 +80,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = $this->getDB( DB_MASTER );
-		$revCommentStore = new CommentStore( 'rev_comment' );
-		$rcCommentStore = new CommentStore( 'rc_comment' );
+		$commentStore = CommentStore::getStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
 			$this->cutoffFrom = wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
@@ -109,14 +108,14 @@ class RebuildRecentchanges extends Maintenance {
 				'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
 			]
 		);
-		foreach ( array_chunk( $rcids, $this->mBatchSize ) as $rcidBatch ) {
+		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
 			wfGetLBFactory()->waitForReplication();
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
 
-		$commentQuery = $revCommentStore->getJoin();
+		$commentQuery = $commentStore->getJoin( 'rev_comment' );
 		$res = $dbw->select(
 			[ 'revision', 'page' ] + $commentQuery['tables'],
 			[
@@ -145,7 +144,7 @@ class RebuildRecentchanges extends Maintenance {
 		$this->output( "Inserting from page and revision tables...\n" );
 		$inserted = 0;
 		foreach ( $res as $row ) {
-			$comment = $revCommentStore->getComment( $row );
+			$comment = $commentStore->getComment( 'rev_comment', $row );
 			$dbw->insert(
 				'recentchanges',
 				[
@@ -163,10 +162,10 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_type' => $row->page_is_new ? RC_NEW : RC_EDIT,
 					'rc_source' => $row->page_is_new ? RecentChange::SRC_NEW : RecentChange::SRC_EDIT,
 					'rc_deleted' => $row->rev_deleted
-				] + $rcCommentStore->insert( $dbw, $comment ),
+				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
 				__METHOD__
 			);
-			if ( ( ++$inserted % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}
@@ -256,7 +255,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastOldId = intval( $obj->rc_this_oldid );
 				$lastSize = $size;
 
-				if ( ( ++$updated % $this->mBatchSize ) == 0 ) {
+				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
 					wfGetLBFactory()->waitForReplication();
 				}
 			}
@@ -270,12 +269,11 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgLogTypes, $wgLogRestrictions;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$logCommentStore = new CommentStore( 'log_comment' );
-		$rcCommentStore = new CommentStore( 'rc_comment' );
+		$commentStore = CommentStore::getStore();
 
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
-		$commentQuery = $logCommentStore->getJoin();
+		$commentQuery = $commentStore->getJoin( 'log_comment' );
 		$res = $dbw->select(
 			[ 'user', 'logging', 'page' ] + $commentQuery['tables'],
 			[
@@ -311,7 +309,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		$inserted = 0;
 		foreach ( $res as $row ) {
-			$comment = $logCommentStore->getComment( $row );
+			$comment = $commentStore->getComment( 'log_comment', $row );
 			$dbw->insert(
 				'recentchanges',
 				[
@@ -336,11 +334,11 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_logid' => $row->log_id,
 					'rc_params' => $row->log_params,
 					'rc_deleted' => $row->log_deleted
-				] + $rcCommentStore->insert( $dbw, $comment ),
+				] + $commentStore->insert( $dbw, 'rc_comment', $comment ),
 				__METHOD__
 			);
 
-			if ( ( ++$inserted % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}
@@ -392,7 +390,7 @@ class RebuildRecentchanges extends Maintenance {
 					__METHOD__
 				);
 
-				foreach ( array_chunk( $rcids, $this->mBatchSize ) as $rcidBatch ) {
+				foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 					$dbw->update(
 						'recentchanges',
 						[ 'rc_bot' => 1 ],
@@ -474,7 +472,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 
-			if ( ( ++$updates % $this->mBatchSize ) == 0 ) {
+			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
 				wfGetLBFactory()->waitForReplication();
 			}
 		}
@@ -495,5 +493,5 @@ class RebuildRecentchanges extends Maintenance {
 	}
 }
 
-$maintClass = "RebuildRecentchanges";
+$maintClass = RebuildRecentchanges::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

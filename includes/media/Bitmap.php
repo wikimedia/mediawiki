@@ -112,14 +112,14 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function imageMagickSubsampling( $pixelFormat ) {
 		switch ( $pixelFormat ) {
-		case 'yuv444':
-			return [ '1x1', '1x1', '1x1' ];
-		case 'yuv422':
-			return [ '2x1', '1x1', '1x1' ];
-		case 'yuv420':
-			return [ '2x2', '1x1', '1x1' ];
-		default:
-			throw new MWException( 'Invalid pixel format for JPEG output' );
+			case 'yuv444':
+				return [ '1x1', '1x1', '1x1' ];
+			case 'yuv422':
+				return [ '2x1', '1x1', '1x1' ];
+			case 'yuv420':
+				return [ '2x2', '1x1', '1x1' ];
+			default:
+				throw new MWException( 'Invalid pixel format for JPEG output' );
 		}
 	}
 
@@ -203,9 +203,9 @@ class BitmapHandler extends TransformationalImageHandler {
 				'-layers', 'merge',
 				'-background', 'white',
 			];
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$xcfMeta = unserialize( $image->getMetadata() );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( $xcfMeta
 				&& isset( $xcfMeta['colorType'] )
 				&& $xcfMeta['colorType'] === 'greyscale-alpha'

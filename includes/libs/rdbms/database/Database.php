@@ -29,7 +29,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use MediaWiki;
+use Wikimedia;
 use BagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
@@ -126,6 +126,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $delimiter = ';';
 	/** @var DatabaseDomain */
 	protected $currentDomain;
+	/** @var integer|null Rows affected by the last query to query() or its CRUD wrappers */
+	protected $affectedRowCount;
 
 	/**
 	 * Either 1 if a transaction is active or 0 otherwise.
@@ -317,8 +319,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - flags : Optional bitfield of DBO_* constants that define connection, protocol,
 	 *      buffering, and transaction behavior. It is STRONGLY adviced to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this this database simply acts as a key/value store.
-	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is the old
-	 *      'mysql' driver and the newer 'mysqli' driver.
+	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
+	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
@@ -336,52 +338,49 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.18
 	 */
 	final public static function factory( $dbType, $p = [] ) {
-		static $canonicalDBTypes = [
-			'mysql' => [ 'mysqli', 'mysql' ],
-			'postgres' => [],
-			'sqlite' => [],
-			'oracle' => [],
-			'mssql' => [],
-		];
-		static $classAliases = [
-			'DatabaseMssql' => DatabaseMssql::class,
-			'DatabaseMysql' => DatabaseMysql::class,
-			'DatabaseMysqli' => DatabaseMysqli::class,
-			'DatabaseSqlite' => DatabaseSqlite::class,
-			'DatabasePostgres' => DatabasePostgres::class
+		// For database types with built-in support, the below maps type to IDatabase
+		// implementations. For types with multipe driver implementations (PHP extensions),
+		// an array can be used, keyed by extension name. In case of an array, the
+		// optional 'driver' parameter can be used to force a specific driver. Otherwise,
+		// we auto-detect the first available driver. For types without built-in support,
+		// an class named "Database<Type>" us used, eg. DatabaseFoo for type 'foo'.
+		static $builtinTypes = [
+			'mssql' => DatabaseMssql::class,
+			'mysql' => [ 'mysqli' => DatabaseMysqli::class ],
+			'sqlite' => DatabaseSqlite::class,
+			'postgres' => DatabasePostgres::class,
 		];
 
-		$driver = false;
 		$dbType = strtolower( $dbType );
-		if ( isset( $canonicalDBTypes[$dbType] ) && $canonicalDBTypes[$dbType] ) {
-			$possibleDrivers = $canonicalDBTypes[$dbType];
-			if ( !empty( $p['driver'] ) ) {
-				if ( in_array( $p['driver'], $possibleDrivers ) ) {
-					$driver = $p['driver'];
-				} else {
-					throw new InvalidArgumentException( __METHOD__ .
-						" type '$dbType' does not support driver '{$p['driver']}'" );
-				}
+		$class = false;
+		if ( isset( $builtinTypes[$dbType] ) ) {
+			$possibleDrivers = $builtinTypes[$dbType];
+			if ( is_string( $possibleDrivers ) ) {
+				$class = $possibleDrivers;
 			} else {
-				foreach ( $possibleDrivers as $posDriver ) {
-					if ( extension_loaded( $posDriver ) ) {
-						$driver = $posDriver;
-						break;
+				if ( !empty( $p['driver'] ) ) {
+					if ( !isset( $possibleDrivers[$p['driver']] ) ) {
+						throw new InvalidArgumentException( __METHOD__ .
+							" type '$dbType' does not support driver '{$p['driver']}'" );
+					} else {
+						$class = $possibleDrivers[$p['driver']];
+					}
+				} else {
+					foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
+						if ( extension_loaded( $posDriver ) ) {
+							$class = $possibleClass;
+							break;
+						}
 					}
 				}
 			}
 		} else {
-			$driver = $dbType;
+			$class = 'Database' . ucfirst( $dbType );
 		}
 
-		if ( $driver === false || $driver === '' ) {
+		if ( $class === false ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				" no viable database extension found for type '$dbType'" );
-		}
-
-		$class = 'Database' . ucfirst( $driver );
-		if ( isset( $classAliases[$class] ) ) {
-			$class = $classAliases[$class];
 		}
 
 		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
@@ -394,7 +393,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] ) ? $p['cliMode'] : ( PHP_SAPI === 'cli' );
+			$p['cliMode'] = isset( $p['cliMode'] )
+				? $p['cliMode']
+				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
 			if ( !isset( $p['connLogger'] ) ) {
 				$p['connLogger'] = new \Psr\Log\NullLogger();
@@ -461,9 +462,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function ignoreErrors( $ignoreErrors = null ) {
 		$res = $this->getFlag( self::DBO_IGNORE );
 		if ( $ignoreErrors !== null ) {
-			$ignoreErrors
-				? $this->setFlag( self::DBO_IGNORE )
-				: $this->clearFlag( self::DBO_IGNORE );
+			// setFlag()/clearFlag() do not allow DBO_IGNORE changes for sanity
+			if ( $ignoreErrors ) {
+				$this->mFlags |= self::DBO_IGNORE;
+			} else {
+				$this->mFlags &= ~self::DBO_IGNORE;
+			}
 		}
 
 		return $res;
@@ -621,6 +625,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		if ( ( $flag & self::DBO_IGNORE ) ) {
+			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+		}
+
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
 		}
@@ -628,6 +636,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		if ( ( $flag & self::DBO_IGNORE ) ) {
+			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+		}
+
 		if ( $remember === self::REMEMBER_PRIOR ) {
 			array_push( $this->priorFlags, $this->mFlags );
 		}
@@ -897,6 +909,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $isWrite ) {
+			if ( $this->getLBInfo( 'replica' ) === true ) {
+				throw new DBError(
+					$this,
+					'Write operations are not allowed on replica database connections.'
+				);
+			}
 			# In theory, non-persistent writes are allowed in read-only mode, but due to things
 			# like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$reason = $this->getReadOnlyReason();
@@ -948,9 +966,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$msg = __METHOD__ . ': lost connection to {dbserver}; reconnected';
 				$params = [ 'dbserver' => $this->getServer() ];
 				$this->connLogger->warning( $msg, $params );
-				$this->queryLogger->warning(
-					"$msg:\n" . ( new RuntimeException() )->getTraceAsString(),
-					$params );
+				$this->queryLogger->warning( $msg, $params +
+					[ 'trace' => ( new RuntimeException() )->getTraceAsString() ] );
 
 				if ( !$recoverable ) {
 					# Callers may catch the exception and continue to use the DB
@@ -987,8 +1004,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Helper method for query() that handles profiling and logging and sends
-	 * the query to doQuery()
+	 * Wrapper for query() that also handles profiling, logging, and affected row count updates
 	 *
 	 * @param string $sql Original SQL query
 	 * @param string $commentedSql SQL query with debugging/trace comment
@@ -1014,7 +1030,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->profiler ) {
 			call_user_func( [ $this->profiler, 'profileIn' ], $queryProf );
 		}
+		$this->affectedRowCount = null;
 		$ret = $this->doQuery( $commentedSql );
+		$this->affectedRowCount = $this->affectedRows();
 		if ( $this->profiler ) {
 			call_user_func( [ $this->profiler, 'profileOut' ], $queryProf );
 		}
@@ -2020,9 +2038,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			if ( is_array( $table ) ) {
 				// A parenthesized group
-				$joinedTable = '('
-					. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
-					. ')';
+				if ( count( $table ) > 1 ) {
+					$joinedTable = '('
+						. $this->tableNamesWithIndexClauseOrJOIN( $table, $use_index, $ignore_index, $join_conds )
+						. ')';
+				} else {
+					// Degenerate case
+					$innerTable = reset( $table );
+					$innerAlias = key( $table );
+					$joinedTable = $this->tableNameWithAlias(
+						$innerTable,
+						is_string( $innerAlias ) ? $innerAlias : $innerTable
+					);
+				}
 			} else {
 				$joinedTable = $this->tableNameWithAlias( $table, $alias );
 			}
@@ -2213,51 +2241,49 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		$quotedTable = $this->tableName( $table );
-
 		if ( count( $rows ) == 0 ) {
 			return;
 		}
 
-		# Single row case
+		// Single row case
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
 
-		// @FXIME: this is not atomic, but a trx would break affectedRows()
+		$affectedRowCount = 0;
 		foreach ( $rows as $row ) {
-			# Delete rows which collide
-			if ( $uniqueIndexes ) {
-				$sql = "DELETE FROM $quotedTable WHERE ";
-				$first = true;
-				foreach ( $uniqueIndexes as $index ) {
-					if ( $first ) {
-						$first = false;
-						$sql .= '( ';
-					} else {
-						$sql .= ' ) OR ( ';
-					}
-					if ( is_array( $index ) ) {
-						$first2 = true;
-						foreach ( $index as $col ) {
-							if ( $first2 ) {
-								$first2 = false;
-							} else {
-								$sql .= ' AND ';
-							}
-							$sql .= $col . '=' . $this->addQuotes( $row[$col] );
-						}
-					} else {
-						$sql .= $index . '=' . $this->addQuotes( $row[$index] );
-					}
+			// Delete rows which collide with this one
+			$indexWhereClauses = [];
+			foreach ( $uniqueIndexes as $index ) {
+				$indexColumns = (array)$index;
+				$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
+				if ( count( $indexRowValues ) != count( $indexColumns ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						'New record does not provide all values for unique key (' .
+							implode( ', ', $indexColumns ) . ')'
+					);
+				} elseif ( in_array( null, $indexRowValues, true ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						'New record has a null value for unique key (' .
+							implode( ', ', $indexColumns ) . ')'
+					);
 				}
-				$sql .= ' )';
-				$this->query( $sql, $fname );
+				$indexWhereClauses[] = $this->makeList( $indexRowValues, LIST_AND );
 			}
 
-			# Now insert the row
+			if ( $indexWhereClauses ) {
+				$this->delete( $table, $this->makeList( $indexWhereClauses, LIST_OR ), $fname );
+				$affectedRowCount += $this->affectedRows();
+			}
+
+			// Now insert the row
 			$this->insert( $table, $row, $fname );
+			$affectedRowCount += $this->affectedRows();
 		}
+
+		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	/**
@@ -2322,6 +2348,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$where = false;
 		}
 
+		$affectedRowCount = 0;
 		$useTrx = !$this->mTrxLevel;
 		if ( $useTrx ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
@@ -2330,11 +2357,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# Update any existing conflicting row(s)
 			if ( $where !== false ) {
 				$ok = $this->update( $table, $set, $where, $fname );
+				$affectedRowCount += $this->affectedRows();
 			} else {
 				$ok = true;
 			}
 			# Now insert any non-conflicting row(s)
 			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
+			$affectedRowCount += $this->affectedRows();
 		} catch ( Exception $e ) {
 			if ( $useTrx ) {
 				$this->rollback( $fname, self::FLUSHING_INTERNAL );
@@ -2344,6 +2373,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $useTrx ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
 		}
+		$this->affectedRowCount = $affectedRowCount;
 
 		return $ok;
 	}
@@ -3162,6 +3192,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	public function affectedRows() {
+		return ( $this->affectedRowCount === null )
+			? $this->fetchAffectedRowCount() // default to driver value
+			: $this->affectedRowCount;
+	}
+
+	/**
+	 * @return int Number of retrieved rows according to the driver
+	 */
+	abstract protected function fetchAffectedRowCount();
+
 	/**
 	 * Take the result from a query, and wrap it in a ResultWrapper if
 	 * necessary. Boolean values are passed through as is, to indicate success
@@ -3274,14 +3315,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
 	 * @param IDatabase $db1
-	 * @param IDatabase $dbs,...
+	 * @param IDatabase $db2 [optional]
 	 * @return array Map of values:
 	 *   - lag: highest lag of any of the DBs or false on error (e.g. replication stopped)
 	 *   - since: oldest UNIX timestamp of any of the DB lag estimates
 	 *   - pending: whether any of the DBs have uncommitted changes
+	 * @throws DBError
 	 * @since 1.27
 	 */
-	public static function getCacheSetOptions( IDatabase $db1 ) {
+	public static function getCacheSetOptions( IDatabase $db1, IDatabase $db2 = null ) {
 		$res = [ 'lag' => 0, 'since' => INF, 'pending' => false ];
 		foreach ( func_get_args() as $db ) {
 			/** @var IDatabase $db */
@@ -3327,9 +3369,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = false,
 		callable $inputCallback = null
 	) {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$fp = fopen( $filename, 'r' );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( false === $fp ) {
 			throw new RuntimeException( "Could not open \"{$filename}\".\n" );
@@ -3363,6 +3405,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		callable $inputCallback = null
 	) {
+		$delimiterReset = new ScopedCallback(
+			function ( $delimiter ) {
+				$this->delimiter = $delimiter;
+			},
+			[ $this->delimiter ]
+		);
 		$cmd = '';
 
 		while ( !feof( $fp ) ) {
@@ -3391,7 +3439,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 
-				if ( !$inputCallback || call_user_func( $inputCallback, $cmd ) ) {
+				if ( $inputCallback ) {
+					$callbackResult = call_user_func( $inputCallback, $cmd );
+
+					if ( is_string( $callbackResult ) || !$callbackResult ) {
+						$cmd = $callbackResult;
+					}
+				}
+
+				if ( $cmd ) {
 					$res = $this->query( $cmd, $fname );
 
 					if ( $resultCallback ) {
@@ -3408,6 +3464,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
+		ScopedCallback::consume( $delimiterReset );
 		return true;
 	}
 
@@ -3753,9 +3810,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->mConn ) {
 			// Avoid connection leaks for sanity. Normally, resources close at script completion.
 			// The connection might already be closed in zend/hhvm by now, so suppress warnings.
-			\MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			$this->closeConnection();
-			\MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			$this->mConn = false;
 			$this->mOpened = false;
 		}

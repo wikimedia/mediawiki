@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 7, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -259,12 +255,10 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Equivalent to addWhere(array($field => $value))
 	 * @param string $field Field name
-	 * @param string|string[] $value Value; ignored if null or empty array;
+	 * @param string|string[] $value Value; ignored if null or empty array
 	 */
 	protected function addWhereFld( $field, $value ) {
-		// Use count() to its full documented capabilities to simultaneously
-		// test for null, empty array or empty countable object
-		if ( count( $value ) ) {
+		if ( $value !== null && !( is_array( $value ) && !$value ) ) {
 			$this->where[$field] = $value;
 		}
 	}
@@ -457,7 +451,7 @@ abstract class ApiQueryBase extends ApiBase {
 				'ipb_expiry',
 				'ipb_timestamp'
 			] );
-			$commentQuery = CommentStore::newKey( 'ipb_reason' )->getJoin();
+			$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );

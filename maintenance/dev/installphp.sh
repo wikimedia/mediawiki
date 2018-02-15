@@ -12,13 +12,14 @@ if [ "x$PHP" != "x" -a -x "$PHP" ]; then
 	exit 0
 fi
 
-TAR=php5.4-latest.tar.gz
-PHPURL="http://snaps.php.net/$TAR"
+VER=5.6.32
+TAR="php-$VER.tar.gz"
+PHPURL="https://secure.php.net/get/$TAR/from/this/mirror"
 
 cd "$DEV"
 
-echo "Preparing to download and install a local copy of PHP 5.4, note that this can take some time to do."
-echo "If you wish to avoid re-doing this for uture dev installations of MediaWiki we suggest installing php in ~/.mediawiki/php"
+echo "Preparing to download and install a local copy of PHP $VER, note that this can take some time to do."
+echo "If you wish to avoid re-doing this for future dev installations of MediaWiki we suggest installing php in ~/.mediawiki/php"
 echo -n "Install PHP in ~/.mediawiki/php [y/N]: "
 read INSTALLINHOME
 
@@ -31,27 +32,27 @@ case "$INSTALLINHOME" in
 		;;
 esac
 
-# Some debain-like systems bundle wget but not curl, some other systems
+# Some debian-like systems bundle wget but not curl, some other systems
 # like os x bundle curl but not wget... use whatever is available
-echo -n "Downloading PHP 5.4"
+echo -n "Downloading PHP $VER"
 if command -v wget &>/dev/null; then
-	echo "- using wget"
-	wget "$PHPURL"
+	echo " - using wget"
+	wget -O "$TAR" "$PHPURL"
 elif command -v curl &>/dev/null; then
-	echo "- using curl"
-	curl -O "$PHPURL"
+	echo " - using curl"
+	curl "$PHPURL" -L -o "$TAR"
 else
-	echo "- aborting"
+	echo " - aborting"
 	echo "Could not find curl or wget." >&2;
 	exit 1;
 fi
 
-echo "Extracting php 5.4"
+echo "Extracting php $VER"
 tar -xzf "$TAR"
 
-cd php5.4-*/
+cd "php-$VER/"
 
-echo "Configuring and installing php 5.4 in $PREFIX"
+echo "Configuring and installing php $VER in $PREFIX"
 ./configure --prefix="$PREFIX"
 make
 make install

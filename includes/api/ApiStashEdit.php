@@ -181,9 +181,14 @@ class ApiStashEdit extends ApiBase {
 		$title = $page->getTitle();
 		$key = self::getStashKey( $title, self::getContentHash( $content ), $user );
 
-		// Use the master DB for fast blocking locks
+		// Use the master DB to allow for fast blocking locks on the "save path" where this
+		// value might actually be used to complete a page edit. If the edit submission request
+		// happens before this edit stash requests finishes, then the submission will block until
+		// the stash request finishes parsing. For the lock acquisition below, there is not much
+		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
+		// blocking at all here.
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lock( $key, __METHOD__, 1 ) ) {
+		if ( !$dbw->lock( $key, __METHOD__, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;
 		}
@@ -209,8 +214,10 @@ class ApiStashEdit extends ApiBase {
 			Hooks::run( 'ParserOutputStashForEdit',
 				[ $page, $content, $editInfo->output, $summary, $user ] );
 
+			$titleStr = (string)$title;
 			if ( $alreadyCached ) {
-				$logger->debug( "Already cached parser output for key '$key' ('$title')." );
+				$logger->debug( "Already cached parser output for key '{cachekey}' ('{title}').",
+					[ 'cachekey' => $key, 'title' => $titleStr ] );
 				return self::ERROR_NONE;
 			}
 
@@ -224,14 +231,17 @@ class ApiStashEdit extends ApiBase {
 			if ( $stashInfo ) {
 				$ok = $cache->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-					$logger->debug( "Cached parser output for key '$key' ('$title')." );
+					$logger->debug( "Cached parser output for key '{cachekey}' ('{title}').",
+						[ 'cachekey' => $key, 'title' => $titleStr ] );
 					return self::ERROR_NONE;
 				} else {
-					$logger->error( "Failed to cache parser output for key '$key' ('$title')." );
+					$logger->error( "Failed to cache parser output for key '{cachekey}' ('{title}').",
+						[ 'cachekey' => $key, 'title' => $titleStr ] );
 					return self::ERROR_CACHE;
 				}
 			} else {
-				$logger->info( "Uncacheable parser output for key '$key' ('$title') [$code]." );
+				$logger->info( "Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
+					[ 'cachekey' => $key, 'title' => $titleStr, 'code' => $code ] );
 				return self::ERROR_UNCACHEABLE;
 			}
 		}

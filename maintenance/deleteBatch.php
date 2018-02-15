@@ -65,7 +65,7 @@ class DeleteBatch extends Maintenance {
 			$user = User::newFromName( $username );
 		}
 		if ( !$user ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 		$wgUser = $user;
 
@@ -77,15 +77,14 @@ class DeleteBatch extends Maintenance {
 
 		# Setup
 		if ( !$file ) {
-			$this->error( "Unable to read file, exiting", true );
+			$this->fatalError( "Unable to read file, exiting" );
 		}
 
 		$dbw = $this->getDB( DB_MASTER );
 
 		# Handle each entry
-		// @codingStandardsIgnoreStart Ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
-			// @codingStandardsIgnoreEnd
 			$line = trim( fgets( $file ) );
 			if ( $line == '' ) {
 				continue;
@@ -124,5 +123,5 @@ class DeleteBatch extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteBatch";
+$maintClass = DeleteBatch::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

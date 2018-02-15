@@ -455,35 +455,37 @@ class SpecialUndelete extends SpecialPage {
 			$popts->setEditSection( false );
 
 			$pout = $content->getParserOutput( $this->mTargetObj, $rev->getId(), $popts, true );
-			$out->addParserOutput( $pout );
+			$out->addParserOutput( $pout, [
+				'enableSectionEditLinks' => false,
+			] );
 		}
+
+		$out->enableOOUI();
+		$buttonFields = [];
 
 		if ( $isText ) {
 			// source view for textual content
-			$sourceView = Xml::element(
-				'textarea',
-				[
-					'readonly' => 'readonly',
-					'cols' => 80,
-					'rows' => 25
-				],
-				$content->getNativeData() . "\n"
-			);
+			$sourceView = Xml::element( 'textarea', [
+				'readonly' => 'readonly',
+				'cols' => 80,
+				'rows' => 25
+			], $content->getNativeData() . "\n" );
 
-			$previewButton = Xml::element( 'input', [
+			$buttonFields[] = new OOUI\ButtonInputWidget( [
 				'type' => 'submit',
 				'name' => 'preview',
-				'value' => $this->msg( 'showpreview' )->text()
+				'label' => $this->msg( 'showpreview' )->text()
 			] );
 		} else {
 			$sourceView = '';
 			$previewButton = '';
 		}
 
-		$diffButton = Xml::element( 'input', [
+		$buttonFields[] = new OOUI\ButtonInputWidget( [
 			'name' => 'diff',
 			'type' => 'submit',
-			'value' => $this->msg( 'showdiff' )->text() ] );
+			'label' => $this->msg( 'showdiff' )->text()
+		] );
 
 		$out->addHTML(
 			$sourceView .
@@ -504,8 +506,13 @@ class SpecialUndelete extends SpecialPage {
 					'type' => 'hidden',
 					'name' => 'wpEditToken',
 					'value' => $user->getEditToken() ] ) .
-				$previewButton .
-				$diffButton .
+				new OOUI\FieldLayout(
+					new OOUI\Widget( [
+						'content' => new OOUI\HorizontalLayout( [
+							'items' => $buttonFields
+						] )
+					] )
+				) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'div' )
 		);
@@ -974,7 +981,7 @@ class SpecialUndelete extends SpecialPage {
 		$userLink = $this->getFileUser( $file );
 		$data = $this->msg( 'widthheight' )->numParams( $row->fa_width, $row->fa_height )->text();
 		$bytes = $this->msg( 'parentheses' )
-			->rawParams( $this->msg( 'nbytes' )->numParams( $row->fa_size )->text() )
+			->plaintextParams( $this->msg( 'nbytes' )->numParams( $row->fa_size )->text() )
 			->plain();
 		$data = htmlspecialchars( $data . ' ' . $bytes );
 		$comment = $this->getFileComment( $file );

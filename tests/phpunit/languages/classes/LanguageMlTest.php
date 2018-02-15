@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/LanguageMl.php */
+/**
+ * @covers LanguageMl
+ */
 class LanguageMlTest extends LanguageClassesTestCase {
 
 	/**

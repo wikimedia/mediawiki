@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
 
 class DatabaseTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	protected function setUp() {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
 	}
@@ -119,6 +121,13 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 					'n' => [ 'LEFT JOIN', 't1_id = t2_id' ],
 				],
 				'table1 LEFT JOIN (table2 JOIN table3 ON ((t2_id = t3_id))) ON ((t1_id = t2_id))'
+			],
+			'join with degenerate parenthesized group' => [
+				[ 'table1', 'n' => [ 't2' => 'table2' ] ],
+				[
+					'n' => [ 'LEFT JOIN', 't1_id = t2_id' ],
+				],
+				'table1 LEFT JOIN table2 t2 ON ((t1_id = t2_id))'
 			],
 		];
 	}
@@ -313,7 +322,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 	 */
 	private function getMockDB( $methods = [] ) {
 		static $abstractMethods = [
-			'affectedRows',
+			'fetchAffectedRowCount',
 			'closeConnection',
 			'dataSeek',
 			'doQuery',

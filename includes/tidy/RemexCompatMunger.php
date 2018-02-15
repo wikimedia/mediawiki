@@ -174,6 +174,10 @@ class RemexCompatMunger implements TreeHandler {
 			$length, $sourceStart, $sourceLength );
 	}
 
+	private function trace( $msg ) {
+		// echo "[RCM] $msg\n";
+	}
+
 	/**
 	 * Insert or reparent an element. Create p-wrappers or split the tag stack
 	 * as necessary.
@@ -242,6 +246,7 @@ class RemexCompatMunger implements TreeHandler {
 		if ( $under && $parentData->isPWrapper && !$inline ) {
 			// [B/b] The element is non-inline and the parent is a p-wrapper,
 			// close the parent and insert into its parent instead
+			$this->trace( 'insert B/b' );
 			$newParent = $this->serializer->getParentNode( $parent );
 			$parent = $newParent;
 			$parentData = $parent->snData;
@@ -255,12 +260,14 @@ class RemexCompatMunger implements TreeHandler {
 			// [CS/b, DS/i] The parent is splittable and the current element is
 			// inline in block context, or if the current element is a block
 			// under a p-wrapper, split the tag stack.
+			$this->trace( $inline ? 'insert DS/i' : 'insert CS/b' );
 			$newRef = $this->splitTagStack( $newRef, $inline, $sourceStart );
 			$parent = $newRef;
 			$parentData = $parent->snData;
 		} elseif ( $under && $parentData->needsPWrapping && $inline ) {
 			// [A/i] If the element is inline and we are in body/blockquote,
 			// we need to create a p-wrapper
+			$this->trace( 'insert A/i' );
 			$newRef = $this->insertPWrapper( $newRef, $sourceStart );
 			$parent = $newRef;
 			$parentData = $parent->snData;
@@ -268,9 +275,12 @@ class RemexCompatMunger implements TreeHandler {
 			// [CU/b] If the element is non-inline and (despite attempting to
 			// split above) there is still an ancestor p-wrap, disable that
 			// p-wrap
+			$this->trace( 'insert CU/b' );
 			$this->disablePWrapper( $parent, $sourceStart );
+		} else {
+			// [A/b, B/i, C/i, D/b, DU/i] insert as normal
+			$this->trace( 'insert normal' );
 		}
-		// else [A/b, B/i, C/i, D/b, DU/i] insert as normal
 
 		// An element with element children is a non-blank element
 		$parentData->nonblankNodeCount++;
@@ -457,6 +467,20 @@ class RemexCompatMunger implements TreeHandler {
 
 	public function reparentChildren( Element $element, Element $newParent, $sourceStart ) {
 		$self = $element->userData;
+		if ( $self->snData->childPElement ) {
+			// Reparent under the p-wrapper instead, so that e.g.
+			//   <blockquote><mw:p-wrap>...</mw:p-wrap></blockquote>
+			// becomes
+			//   <blockquote><mw:p-wrap><i>...</i></mw:p-wrap></blockquote>
+
+			// The formatting element should not be the parent of the p-wrap.
+			// Without this special case, the insertElement() of the <i> below
+			// would be diverted into the p-wrapper, causing infinite recursion
+			// (T178632)
+			$this->reparentChildren( $self->snData->childPElement, $newParent, $sourceStart );
+			return;
+		}
+
 		$children = $self->children;
 		$self->children = [];
 		$this->insertElement( TreeBuilder::UNDER, $element, $newParent, false, $sourceStart, 0 );
@@ -464,6 +488,7 @@ class RemexCompatMunger implements TreeHandler {
 		$newParentId = $newParentNode->id;
 		foreach ( $children as $child ) {
 			if ( is_object( $child ) ) {
+				$this->trace( "reparent <{$child->name}>" );
 				$child->parentId = $newParentId;
 			}
 		}

@@ -19,7 +19,8 @@
 			"Waldir",
 			"Jdforrester",
 			"Liuxinyu970226",
-			"Metalhead64"
+			"Metalhead64",
+			"Tacsipacsi"
 		]
 	},
 	"config-desc": "Short description of the installer.",
@@ -30,7 +31,7 @@
 	"config-localsettings-key": "Label for the upgrade key that confirms a user upgrading through the web UI has access to LocalSettings.php. Details at https://www.mediawiki.org/wiki/Manual:Upgrading#Web_browser.",
 	"config-localsettings-badkey": "Error message when an incorrect upgrade key has been provided while trying to upgrade.",
 	"config-upgrade-key-missing": "Used in info box. Parameters:\n* $1 - the upgrade key, enclosed in <code><nowiki><pre></nowikI></code> tag.",
-	"config-localsettings-incomplete": "{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki><code>.}}\nParameters:\n* $1 - name of variable (any one of required variables or installer-specific global variables)",
+	"config-localsettings-incomplete": "{{doc-important|Do not translate <code>LocalSettings.php</code> and <code><nowiki>{{int:Config-continue}}</nowiki></code>.}}\nParameters:\n* $1 - name of variable (any one of required variables or installer-specific global variables)",
 	"config-localsettings-connection-error": "{{doc-important|Do not translate <code>LocalSettings.php</code>.}}\nUsed as error message. Parameters:\n* $1 - (probably empty string)",
 	"config-session-error": "Parameters:\n* $1 is the error that was encountered with the session.",
 	"config-session-expired": "Parameters:\n* $1 is the configured session lifetime.",
@@ -75,7 +76,6 @@
 	"config-pcre-no-utf8": "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.\n{{Related|Config-fatal}}",
 	"config-memory-raised": "Parameters:\n* $1 is the configured <code>memory_limit</code>.\n* $2 is the value to which <code>memory_limit</code> was raised.",
 	"config-memory-bad": "Parameters:\n* $1 is the configured <code>memory_limit</code>.",
-	"config-xcache": "Message indicates if this program is available",
 	"config-apc": "Message indicates if this program is available",
 	"config-apcu": "Message indicates if this program is available",
 	"config-wincache": "Message indicates if this program is available",
@@ -324,6 +324,7 @@
 	"config-install-mainpage-failed": "Used as error message. Parameters:\n* $1 - detailed error message",
 	"config-install-done": "Parameters:\n* $1 is the URL to LocalSettings download\n* $2 is a link to the wiki.\n* $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.",
 	"config-install-done-path": "Parameters:\n* $1 is the URL to LocalSettings download\n* $2 is a link to the wiki.\n* $3 is a download link with attached download icon. The config-download-localsettings message will be used as the link text.\n* $4 is the filesystem location of where the LocalSettings.php file should be saved to.",
+	"config-install-success": "Gives user information that installation was successful. Parameters:\n* $1 - server name\n* $2 - script path",
 	"config-download-localsettings": "The link text used in the download link in config-install-done.",
 	"config-help": "This is used in help boxes.\n{{Identical|Help}}",
 	"config-help-tooltip": "Tooltip for the 'help' links ({{msg-mw|config-help}}), to make it clear they'll expand in place rather than open a new page",

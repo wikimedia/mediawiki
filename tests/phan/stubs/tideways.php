@@ -2,7 +2,7 @@
 
 /**
  * Minimal set of classes necessary for Xhprof using tideways
- * @codingStandardsIgnoreFile
+ * phpcs:ignoreFile
  */
 
 function tideways_enable(){

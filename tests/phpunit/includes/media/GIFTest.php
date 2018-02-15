@@ -72,18 +72,18 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideIsMetadataValid() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ GIFHandler::BROKEN_FILE, GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
 			[ null, GIFHandler::METADATA_BAD ],
 			[ 'Something invalid!', GIFHandler::METADATA_BAD ],
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
 				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}',
 				GIFHandler::METADATA_GOOD
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**
@@ -99,8 +99,8 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetMetadata() {
+		// phpcs:disable Generic.Files.LineLength
 		return [
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			[
 				'nonanimated.gif',
 				'a:4:{s:10:"frameCount";i:1;s:6:"looped";b:0;s:8:"duration";d:0.1000000000000000055511151231257827021181583404541015625;s:8:"metadata";a:2:{s:14:"GIFFileComment";a:1:{i:0;s:35:"GIF test file ⁕ Created with GIMP";}s:15:"_MW_GIF_VERSION";i:1;}}'
@@ -109,8 +109,8 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 				'animated-xmp.gif',
 				'a:4:{s:10:"frameCount";i:4;s:6:"looped";b:1;s:8:"duration";d:2.399999999999999911182158029987476766109466552734375;s:8:"metadata";a:5:{s:6:"Artist";s:7:"Bawolff";s:16:"ImageDescription";a:2:{s:9:"x-default";s:18:"A file to test GIF";s:5:"_type";s:4:"lang";}s:15:"SublocationDest";s:13:"The interwebs";s:14:"GIFFileComment";a:1:{i:0;s:16:"GIƒ·test·file";}s:15:"_MW_GIF_VERSION";i:1;}}'
 			],
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 
 	/**
@@ -153,6 +153,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	 * @param string $filename
 	 * @param float $expectedLength
 	 * @dataProvider provideGetLength
+	 * @covers GIFHandler::getLength
 	 */
 	public function testGetLength( $filename, $expectedLength ) {
 		$file = $this->dataFile( $filename, 'image/gif' );

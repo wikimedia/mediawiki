@@ -55,7 +55,7 @@ class RebuildSitesCache extends Maintenance {
 			$jsonFile = $this->getConfig()->get( 'SitesCacheFile' );
 
 			if ( $jsonFile === false ) {
-				$this->error( 'Error: No file set in configuration for SitesCacheFile.', 1 );
+				$this->fatalError( 'Error: No file set in configuration for SitesCacheFile.' );
 			}
 		}
 
@@ -64,5 +64,5 @@ class RebuildSitesCache extends Maintenance {
 
 }
 
-$maintClass = "RebuildSitesCache";
+$maintClass = RebuildSitesCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

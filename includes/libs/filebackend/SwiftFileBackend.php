@@ -87,7 +87,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
-	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, etc.
 	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
 	 *   - rgwS3AccessKey     : Rados Gateway S3 "access key" value on the account.
@@ -158,7 +158,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) {
 			return null; // not UTF-8, makes it hard to use CF and the swift HTTP API
-		} elseif ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
+		} elseif ( strlen( rawurlencode( $relStoragePath ) ) > 1024 ) {
 			return null; // too long for Swift
 		}
 
@@ -181,6 +181,29 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param array $params
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
+	protected function sanitizeHdrsStrict( array $params ) {
+		if ( !isset( $params['headers'] ) ) {
+			return [];
+		}
+
+		$headers = $this->getCustomHeaders( $params['headers'] );
+		unset( $headers[ 'content-type' ] );
+
+		return $headers;
+	}
+
+	/**
+	 * Sanitize and filter the custom headers from a $params array.
+	 * Only allows certain "standard" Content- and X-Content- headers.
+	 *
+	 * When POSTing data, libcurl adds Content-Type: application/x-www-form-urlencoded
+	 * if Content-Type is not set, which overwrites the stored Content-Type header
+	 * in Swift - therefore for POSTing data do not strip the Content-Type header (the
+	 * previously-stored header that has been already read back from swift is sent)
+	 *
+	 * @param array $params
+	 * @return array Sanitized value of 'headers' field in $params
+	 */
 	protected function sanitizeHdrs( array $params ) {
 		return isset( $params['headers'] )
 			? $this->getCustomHeaders( $params['headers'] )
@@ -197,7 +220,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Normalize casing, and strip out illegal headers
 		foreach ( $rawHeaders as $name => $value ) {
 			$name = strtolower( $name );
-			if ( preg_match( '/^content-(type|length)$/', $name ) ) {
+			if ( preg_match( '/^content-length$/', $name ) ) {
 				continue; // blacklisted
 			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
 				$headers[$name] = $value; // allowed
@@ -276,7 +299,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'etag' => md5( $params['content'] ),
 				'content-type' => $contentType,
 				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrs( $params ),
+			] + $this->sanitizeHdrsStrict( $params ),
 			'body' => $params['content']
 		] ];
 
@@ -312,9 +335,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$sha1Hash = sha1_file( $params['src'] );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 
@@ -340,7 +363,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'etag' => md5_file( $params['src'] ),
 				'content-type' => $contentType,
 				'x-object-meta-sha1base36' => $sha1Hash
-			] + $this->sanitizeHdrs( $params ),
+			] + $this->sanitizeHdrsStrict( $params ),
 			'body' => $handle // resource
 		] ];
 
@@ -391,7 +414,7 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => [
 				'x-copy-from' => '/' . rawurlencode( $srcCont ) .
 					'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-			] + $this->sanitizeHdrs( $params ), // extra headers merged into object
+			] + $this->sanitizeHdrsStrict( $params ), // extra headers merged into object
 		] ];
 
 		$method = __METHOD__;
@@ -440,7 +463,7 @@ class SwiftFileBackend extends FileBackendStore {
 				'headers' => [
 					'x-copy-from' => '/' . rawurlencode( $srcCont ) .
 						'/' . str_replace( "%2F", "/", rawurlencode( $srcRel ) )
-				] + $this->sanitizeHdrs( $params ) // extra headers merged into object
+				] + $this->sanitizeHdrsStrict( $params ) // extra headers merged into object
 			]
 		];
 		if ( "{$srcCont}/{$srcRel}" !== "{$dstCont}/{$dstRel}" ) {
@@ -755,7 +778,8 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		$this->logger->error( __METHOD__ . ": unable to set SHA-1 metadata for $path" );
+		$this->logger->error( __METHOD__ . ': unable to set SHA-1 metadata for {path}',
+			[ 'path' => $path ] );
 
 		return $objHdrs; // failed
 	}
@@ -1361,7 +1385,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( $rcode != 204 && $rcode !== 202 ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logger->error( __METHOD__ . ': unexpected rcode value (' . $rcode . ')' );
+			$this->logger->error( __METHOD__ . ': unexpected rcode value ({rcode})',
+				[ 'rcode' => $rcode ] );
 		}
 
 		return $status;
@@ -1772,10 +1797,18 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $code == 401 ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->swiftUser ) );
 		}
-		$this->logger->error(
-			"HTTP $code ($desc) in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
-			( $err ? ": $err" : "" )
-		);
+		$msg = "HTTP {code} ({desc}) in '{func}' (given '{params}')";
+		$msgParams = [
+			'code'   => $code,
+			'desc'   => $desc,
+			'func'   => $func,
+			'req_params' => FormatJson::encode( $params ),
+		];
+		if ( $err ) {
+			$msg .= ': {err}';
+			$msgParams['err'] = $err;
+		}
+		$this->logger->error( $msg, $msgParams );
 	}
 }
 

@@ -178,12 +178,14 @@ class ArchivedFile {
 		if ( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_REPLICA );
+			$fileQuery = self::getQueryInfo();
 			$row = $dbr->selectRow(
-				'filearchive',
-				self::selectFields(),
+				$fileQuery['tables'],
+				$fileQuery['fields'],
 				$conds,
 				__METHOD__,
-				[ 'ORDER BY' => 'fa_timestamp DESC' ]
+				[ 'ORDER BY' => 'fa_timestamp DESC' ],
+				$fileQuery['joins']
 			);
 			if ( !$row ) {
 				// this revision does not exist?
@@ -215,11 +217,11 @@ class ArchivedFile {
 
 	/**
 	 * Fields in the filearchive table
-	 * @todo Deprecate this in favor of a method that returns tables and joins
-	 *  as well, and use CommentStore::getJoin().
+	 * @deprecated since 1.31, use self::getQueryInfo() instead.
 	 * @return array
 	 */
 	static function selectFields() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return [
 			'fa_id',
 			'fa_name',
@@ -240,7 +242,45 @@ class ArchivedFile {
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
-		] + CommentStore::newKey( 'fa_description' )->getFields();
+		] + CommentStore::getStore()->getFields( 'fa_description' );
+	}
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new archivedfile object.
+	 * @since 1.31
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public static function getQueryInfo() {
+		$commentQuery = CommentStore::getStore()->getJoin( 'fa_description' );
+		return [
+			'tables' => [ 'filearchive' ] + $commentQuery['tables'],
+			'fields' => [
+				'fa_id',
+				'fa_name',
+				'fa_archive_name',
+				'fa_storage_key',
+				'fa_storage_group',
+				'fa_size',
+				'fa_bits',
+				'fa_width',
+				'fa_height',
+				'fa_metadata',
+				'fa_media_type',
+				'fa_major_mime',
+				'fa_minor_mime',
+				'fa_user',
+				'fa_user_text',
+				'fa_timestamp',
+				'fa_deleted',
+				'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
+				'fa_sha1',
+			] + $commentQuery['fields'],
+			'joins' => $commentQuery['joins'],
+		];
 	}
 
 	/**
@@ -262,9 +302,9 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = CommentStore::newKey( 'fa_description' )
-			// Legacy because $row probably came from self::selectFields()
-			->getCommentLegacy( wfGetDB( DB_REPLICA ), $row )->text;
+		$this->description = CommentStore::getStore()
+			// Legacy because $row may have come from self::selectFields()
+			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
 		$this->user = $row->fa_user;
 		$this->user_text = $row->fa_user_text;
 		$this->timestamp = $row->fa_timestamp;

@@ -148,7 +148,7 @@ abstract class File implements IDBAccessObject {
 	protected $isSafeFile;
 
 	/** @var string Required Repository class type */
-	protected $repoClass = 'FileRepo';
+	protected $repoClass = FileRepo::class;
 
 	/** @var array Cache of tmp filepaths pointing to generated bucket thumbnails, keyed by width */
 	protected $tmpBucketedThumbCache = [];
@@ -250,7 +250,7 @@ abstract class File implements IDBAccessObject {
 		$oldMime = $old->getMimeType();
 		$n = strrpos( $new, '.' );
 		$newExt = self::normalizeExtension( $n ? substr( $new, $n + 1 ) : '' );
-		$mimeMagic = MimeMagic::singleton();
+		$mimeMagic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		return $mimeMagic->isMatchingExtension( $newExt, $oldMime );
 	}
@@ -578,6 +578,25 @@ abstract class File implements IDBAccessObject {
 			return $handler->getAvailableLanguages( $this );
 		} else {
 			return [];
+		}
+	}
+
+	/**
+	 * Get the language code from the available languages for this file that matches the language
+	 * requested by the user
+	 *
+	 * @param string $userPreferredLanguage
+	 * @return string|null
+	 */
+	public function getMatchedLanguage( $userPreferredLanguage ) {
+		$handler = $this->getHandler();
+		if ( $handler && method_exists( $handler, 'getMatchedLanguage' ) ) {
+			return $handler->getMatchedLanguage(
+				$userPreferredLanguage,
+				$handler->getAvailableLanguages( $this )
+			);
+		} else {
+			return null;
 		}
 	}
 
@@ -1445,7 +1464,9 @@ abstract class File implements IDBAccessObject {
 		// Purge cache of all pages using this file
 		$title = $this->getTitle();
 		if ( $title ) {
-			DeferredUpdates::addUpdate( new HTMLCacheUpdate( $title, 'imagelinks' ) );
+			DeferredUpdates::addUpdate(
+				new HTMLCacheUpdate( $title, 'imagelinks', 'file-purge' )
+			);
 		}
 	}
 
@@ -2165,7 +2186,7 @@ abstract class File implements IDBAccessObject {
 			$metadata = $this->getMetadata();
 
 			if ( is_string( $metadata ) ) {
-				$metadata = MediaWiki\quietCall( 'unserialize', $metadata );
+				$metadata = Wikimedia\quietCall( 'unserialize', $metadata );
 			}
 
 			if ( !is_array( $metadata ) ) {

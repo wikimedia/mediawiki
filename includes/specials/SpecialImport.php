@@ -43,6 +43,8 @@ class SpecialImport extends SpecialPage {
 	private $includeTemplates = false;
 	private $pageLinkDepth;
 	private $importSources;
+	private $assignKnownUsers;
+	private $usernamePrefix;
 
 	public function __construct() {
 		parent::__construct( 'Import', 'import' );
@@ -110,6 +112,7 @@ class SpecialImport extends SpecialPage {
 		$isUpload = false;
 		$request = $this->getRequest();
 		$this->sourceName = $request->getVal( "source" );
+		$this->assignKnownUsers = $request->getCheck( 'assignKnownUsers' );
 
 		$this->logcomment = $request->getText( 'log-comment' );
 		$this->pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
@@ -130,6 +133,7 @@ class SpecialImport extends SpecialPage {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $this->sourceName === 'upload' ) {
 			$isUpload = true;
+			$this->usernamePrefix = $this->fullInterwikiPrefix = $request->getVal( 'usernamePrefix' );
 			if ( $user->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
@@ -169,6 +173,10 @@ class SpecialImport extends SpecialPage {
 			$source = Status::newFatal( "importunknownsource" );
 		}
 
+		if ( (string)$this->fullInterwikiPrefix === '' ) {
+			$source->fatal( 'importnoprefix' );
+		}
+
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
 			$out->addWikiText( "<p class=\"error\">\n" .
@@ -192,6 +200,7 @@ class SpecialImport extends SpecialPage {
 					return;
 				}
 			}
+			$importer->setUsernamePrefix( $this->fullInterwikiPrefix, $this->assignKnownUsers );
 
 			$out->addWikiMsg( "importstart" );
 
@@ -334,6 +343,28 @@ class SpecialImport extends SpecialPage {
 					"</td>
 					<td class='mw-input'>" .
 					Html::input( 'xmlimport', '', 'file', [ 'id' => 'xmlimport' ] ) . ' ' .
+					"</td>
+				</tr>
+				<tr>
+					<td class='mw-label'>" .
+					Xml::label( $this->msg( 'import-upload-username-prefix' )->text(),
+						'mw-import-usernamePrefix' ) .
+					"</td>
+					<td class='mw-input'>" .
+					Xml::input( 'usernamePrefix', 50,
+						$this->usernamePrefix,
+						[ 'id' => 'usernamePrefix', 'type' => 'text' ] ) . ' ' .
+					"</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class='mw-input'>" .
+					Xml::checkLabel(
+						$this->msg( 'import-assign-known-users' )->text(),
+						'assignKnownUsers',
+						'assignKnownUsers',
+						$this->assignKnownUsers
+					) .
 					"</td>
 				</tr>
 				<tr>
@@ -486,6 +517,17 @@ class SpecialImport extends SpecialPage {
 						'interwikiTemplates',
 						'interwikiTemplates',
 						$this->includeTemplates
+					) .
+					"</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class='mw-input'>" .
+					Xml::checkLabel(
+						$this->msg( 'import-assign-known-users' )->text(),
+						'assignKnownUsers',
+						'assignKnownUsers',
+						$this->assignKnownUsers
 					) .
 					"</td>
 				</tr>

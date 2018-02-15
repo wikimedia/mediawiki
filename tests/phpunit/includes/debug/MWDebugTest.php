@@ -11,13 +11,13 @@ class MWDebugTest extends MediaWikiTestCase {
 	public static function setUpBeforeClass() {
 		parent::setUpBeforeClass();
 		MWDebug::init();
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 	}
 
 	public static function tearDownAfterClass() {
 		parent::tearDownAfterClass();
 		MWDebug::deinit();
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 	}
 
 	/**
@@ -99,7 +99,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 		MWDebug::appendDebugInfoToApiResult( $context, $result );
 
-		$this->assertInstanceOf( 'ApiResult', $result );
+		$this->assertInstanceOf( ApiResult::class, $result );
 		$data = $result->getResultData();
 
 		$expectedKeys = [ 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',
@@ -110,7 +110,7 @@ class MWDebugTest extends MediaWikiTestCase {
 			$this->assertArrayHasKey( $expectedKey, $data['debuginfo'], "debuginfo has $expectedKey" );
 		}
 
-		$xml = ApiFormatXml::recXmlPrint( 'help', $data );
+		$xml = ApiFormatXml::recXmlPrint( 'help', $data, null );
 
 		// exception not thrown
 		$this->assertInternalType( 'string', $xml );
@@ -123,7 +123,7 @@ class MWDebugTest extends MediaWikiTestCase {
 	 * @return FauxRequest
 	 */
 	private function newApiRequest( array $params, $requestUrl ) {
-		$request = $this->getMockBuilder( 'FauxRequest' )
+		$request = $this->getMockBuilder( FauxRequest::class )
 			->setMethods( [ 'getRequestURL' ] )
 			->setConstructorArgs( [
 				$params

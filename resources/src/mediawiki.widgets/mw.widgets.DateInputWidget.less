@@ -13,15 +13,11 @@
 	user-select: none;
 }
 
-@indicator-size: unit( 12 / 16 / 0.8, em );
+@size-indicator: unit( 12 / 16 / 0.8, em );
 
 .mw-widget-dateInputWidget {
 	&-handle {
 		.oo-ui-unselectable();
-
-		> .oo-ui-labelElement-label {
-			padding: 0;
-		}
 
 		> .oo-ui-indicatorElement-indicator {
 			display: none;
@@ -33,28 +29,25 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		width: @indicator-size;
+		width: @size-indicator;
 		height: 100%;
 		margin: 0 0.775em;
 	}
 
 	> .oo-ui-textInputWidget {
 		z-index: 2;
-
-		& input {
-			padding-left: 1em;
-		}
 	}
 
 	&-calendar {
 		background-color: #fff;
 		position: absolute;
 		margin-top: -2px;
-		box-shadow: 0 0.15em 0 0 rgba( 0, 0, 0, 0.15 );
+		border-radius: 2px;
+		box-shadow: 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
 		z-index: 1;
 
 		&:focus {
-			box-shadow: inset 0 0 0 1px #36c, 0 0.15em 0 0 rgba( 0, 0, 0, 0.15 );
+			box-shadow: inset 0 0 0 1px #36c, 0 2px 2px 0 rgba( 0, 0, 0, 0.25 );
 			z-index: 3;
 		}
 	}
@@ -68,8 +61,8 @@
 
 	&.oo-ui-flaggedElement-invalid {
 		.mw-widget-dateInputWidget-handle {
-			border-color: #f00;
-			box-shadow: inset 0 0 0 0 #f00;
+			border-color: #d33;
+			box-shadow: none;
 		}
 	}
 

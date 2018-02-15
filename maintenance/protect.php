@@ -59,7 +59,7 @@ class Protect extends Maintenance {
 			$user = User::newFromName( $userName );
 		}
 		if ( !$user ) {
-			$this->error( "Invalid username", true );
+			$this->fatalError( "Invalid username" );
 		}
 
 		// @todo FIXME: This is reset 7 lines down.
@@ -67,7 +67,7 @@ class Protect extends Maintenance {
 
 		$t = Title::newFromText( $this->getArg() );
 		if ( !$t ) {
-			$this->error( "Invalid title", true );
+			$this->fatalError( "Invalid title" );
 		}
 
 		$restrictions = [];
@@ -89,5 +89,5 @@ class Protect extends Maintenance {
 	}
 }
 
-$maintClass = "Protect";
+$maintClass = Protect::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -29,7 +29,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		$status = $page->doEditContent(
 			$content, 'Test for ApiComparePagesTest: ' . $text, 0, false, $user
 		);
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 		return $status->value['revision']->getId();
@@ -69,6 +69,9 @@ class ApiComparePagesTest extends ApiTestCase {
 		wfGetDB( DB_MASTER )->update(
 			'page', [ 'page_latest' => 0 ], [ 'page_id' => self::$repl['pageE'] ]
 		);
+
+		self::$repl['revF1'] = $this->addPage( 'F', "== Section 1 ==\nF 1.1\n\n== Section 2 ==\nF 1.2" );
+		self::$repl['pageF'] = Title::newFromText( 'ApiComparePagesTest F' )->getArticleId();
 
 		WikiPage::factory( Title::newFromText( 'ApiComparePagesTest C' ) )
 			->doDeleteArticleReal( 'Test for ApiComparePagesTest' );
@@ -151,8 +154,8 @@ class ApiComparePagesTest extends ApiTestCase {
 	}
 
 	public static function provideDiff() {
+		// phpcs:disable Generic.Files.LineLength.TooLong
 		return [
-			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 			'Basic diff, titles' => [
 				[
 					'fromtitle' => 'ApiComparePagesTest A',
@@ -372,6 +375,26 @@ class ApiComparePagesTest extends ApiTestCase {
 				],
 				false, true
 			],
+			'Basic diff, test with sections' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'fromsection' => 1,
+					'totext' => "== Section 1 ==\nTo text\n\n== Section 2 ==\nTo text?",
+					'tosection' => 2,
+				],
+				[
+					'compare' => [
+						'body' => '<tr><td colspan="2" class="diff-lineno" id="mw-diff-left-l1" >Line 1:</td>' . "\n"
+							. '<td colspan="2" class="diff-lineno">Line 1:</td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div>== Section <del class="diffchange diffchange-inline">1 </del>==</div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div>== Section <ins class="diffchange diffchange-inline">2 </ins>==</div></td></tr>' . "\n"
+							. '<tr><td class=\'diff-marker\'>−</td><td class=\'diff-deletedline\'><div><del class="diffchange diffchange-inline">F 1.1</del></div></td><td class=\'diff-marker\'>+</td><td class=\'diff-addedline\'><div><ins class="diffchange diffchange-inline">To text?</ins></div></td></tr>' . "\n",
+						'fromid' => '{{REPL:pageF}}',
+						'fromrevid' => '{{REPL:revF1}}',
+						'fromns' => '0',
+						'fromtitle' => 'ApiComparePagesTest F',
+					]
+				],
+			],
 			'Diff with all props' => [
 				[
 					'fromrev' => '{{REPL:revB1}}',
@@ -568,6 +591,26 @@ class ApiComparePagesTest extends ApiTestCase {
 				[],
 				'compare-no-title',
 			],
+			'Error, test with invalid from section ID' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'fromsection' => 5,
+					'totext' => "== Section 1 ==\nTo text\n\n== Section 2 ==\nTo text?",
+					'tosection' => 2,
+				],
+				[],
+				'nosuchfromsection',
+			],
+			'Error, test with invalid to section ID' => [
+				[
+					'fromtitle' => 'ApiComparePagesTest F',
+					'fromsection' => 1,
+					'totext' => "== Section 1 ==\nTo text\n\n== Section 2 ==\nTo text?",
+					'tosection' => 5,
+				],
+				[],
+				'nosuchtosection',
+			],
 			'Error, Relative diff, no from revision' => [
 				[
 					'fromtext' => 'Foo',
@@ -604,8 +647,7 @@ class ApiComparePagesTest extends ApiTestCase {
 				[],
 				'missingcontent'
 			],
-
-			// @codingStandardsIgnoreEnd
 		];
+		// phpcs:enable
 	}
 }

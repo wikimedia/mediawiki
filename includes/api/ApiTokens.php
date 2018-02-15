@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Jul 29, 2011
- *
  * Copyright © 2011 John Du Hart john@johnduhart.me
  *
  * This program is free software; you can redistribute it and/or modify
@@ -66,11 +62,11 @@ class ApiTokens extends ApiBase {
 		if ( $types ) {
 			return $types;
 		}
-		$types = [ 'patrol' => [ 'ApiQueryRecentChanges', 'getPatrolToken' ] ];
+		$types = [ 'patrol' => [ ApiQueryRecentChanges::class, 'getPatrolToken' ] ];
 		$names = [ 'edit', 'delete', 'protect', 'move', 'block', 'unblock',
 			'email', 'import', 'watch', 'options' ];
 		foreach ( $names as $name ) {
-			$types[$name] = [ 'ApiQueryInfo', 'get' . ucfirst( $name ) . 'Token' ];
+			$types[$name] = [ ApiQueryInfo::class, 'get' . ucfirst( $name ) . 'Token' ];
 		}
 		Hooks::run( 'ApiTokensGetTokenTypes', [ &$types ] );
 

@@ -1,11 +1,16 @@
 <?php
 
 use MediaWiki\Shell\Command;
+use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers \MediaWiki\Shell\Command
  * @group Shell
  */
 class CommandTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	private function requirePosix() {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
@@ -103,6 +108,16 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$this->assertRegExp( '/^.+no-such-file.*$/m', $result->getStderr() );
 	}
 
+	/**
+	 * Test that null values are skipped by params() and unsafeParams()
+	 */
+	public function testNullsAreSkipped() {
+		$command = TestingAccessWrapper::newFromObject( new Command );
+		$command->params( 'echo', 'a', null, 'b' );
+		$command->unsafeParams( 'c', null, 'd' );
+		$this->assertEquals( "'echo' 'a' 'b' c d", $command->command );
+	}
+
 	public function testT69870() {
 		$commandLine = wfIsWindows()
 			// 333 = 331 + CRLF
@@ -138,5 +153,22 @@ class CommandTest extends PHPUnit_Framework_TestCase {
 		$command->execute();
 		$this->assertSame( 1, count( $logger->getBuffer() ) );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
+	}
+
+	public function testInput() {
+		$this->requirePosix();
+
+		$command = new Command();
+		$command->params( 'cat' );
+		$command->input( 'abc' );
+		$result = $command->execute();
+		$this->assertSame( 'abc', $result->getStdout() );
+
+		// now try it with something that does not fit into a single block
+		$command = new Command();
+		$command->params( 'cat' );
+		$command->input( str_repeat( '!', 1000000 ) );
+		$result = $command->execute();
+		$this->assertSame( 1000000, strlen( $result->getStdout() ) );
 	}
 }

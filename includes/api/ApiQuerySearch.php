@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on July 30, 2007
- *
  * Copyright © 2007 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -272,6 +268,16 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if ( isset( $prop['isfilematch'] ) ) {
 			$vals['isfilematch'] = $result->isFileMatch();
 		}
+
+		if ( isset( $prop['extensiondata'] ) ) {
+			$extra = $result->getExtensionData();
+			// Add augmented data to the result. The data would be organized as a map:
+			// augmentorName => data
+			if ( $extra ) {
+				$vals['extensiondata'] = ApiResult::addMetadataToResultVars( $extra );
+			}
+		}
+
 		return $vals;
 	}
 
@@ -372,6 +378,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'categorysnippet',
 					'score', // deprecated
 					'hasrelated', // deprecated
+					'extensiondata',
 				],
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],

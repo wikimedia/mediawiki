@@ -63,7 +63,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	protected function getAllGlobals() {
-		$processor = new ReflectionClass( 'ExtensionProcessor' );
+		$processor = new ReflectionClass( ExtensionProcessor::class );
 		$settings = $processor->getProperty( 'globalSettings' );
 		$settings->setAccessible( true );
 		return array_merge( $settings->getValue(), $this->formerGlobals );
@@ -82,7 +82,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		unset( $var );
 		$arg = $this->getArg( 0 );
 		if ( !is_file( $arg ) ) {
-			$this->error( "$arg is not a file.", true );
+			$this->fatalError( "$arg is not a file." );
 		}
 		require $arg;
 		unset( $arg );
@@ -144,6 +144,11 @@ class ConvertExtensionToRegistration extends Maintenance {
 				unset( $this->json[$key] );
 			}
 		}
+		// Set a requirement on the MediaWiki version that the current MANIFEST_VERSION
+		// was introduced in.
+		$out['requires'] = [
+			ExtensionRegistry::MEDIAWIKI_CORE => ExtensionRegistry::MANIFEST_VERSION_MW_VERSION
+		];
 		$out += $this->json;
 		// Put this at the bottom
 		$out['manifest_version'] = ExtensionRegistry::MANIFEST_VERSION;
@@ -160,14 +165,14 @@ class ConvertExtensionToRegistration extends Maintenance {
 	protected function handleExtensionFunctions( $realName, $value ) {
 		foreach ( $value as $func ) {
 			if ( $func instanceof Closure ) {
-				$this->error( "Error: Closures cannot be converted to JSON. " .
-					"Please move your extension function somewhere else.", 1
+				$this->fatalError( "Error: Closures cannot be converted to JSON. " .
+					"Please move your extension function somewhere else."
 				);
 			}
 			// check if $func exists in the global scope
 			if ( function_exists( $func ) ) {
-				$this->error( "Error: Global functions cannot be converted to JSON. " .
-					"Please move your extension function ($func) into a class.", 1
+				$this->fatalError( "Error: Global functions cannot be converted to JSON. " .
+					"Please move your extension function ($func) into a class."
 				);
 			}
 		}
@@ -239,14 +244,14 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
-					$this->error( "Error: Closures cannot be converted to JSON. " .
-						"Please move the handler for $hookName somewhere else.", 1
+					$this->fatalError( "Error: Closures cannot be converted to JSON. " .
+						"Please move the handler for $hookName somewhere else."
 					);
 				}
 				// Check if $func exists in the global scope
 				if ( function_exists( $func ) ) {
-					$this->error( "Error: Global functions cannot be converted to JSON. " .
-						"Please move the handler for $hookName inside a class.", 1
+					$this->fatalError( "Error: Global functions cannot be converted to JSON. " .
+						"Please move the handler for $hookName inside a class."
 					);
 				}
 			}
@@ -303,5 +308,5 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 }
 
-$maintClass = 'ConvertExtensionToRegistration';
+$maintClass = ConvertExtensionToRegistration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

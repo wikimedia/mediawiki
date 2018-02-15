@@ -222,9 +222,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$numRevisions = 0;
 		// Live revisions...
 		$list = $this->getList();
-		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $list->reset(); $list->current(); $list->next() ) {
-			// @codingStandardsIgnoreEnd
 			$item = $list->current();
 			$numRevisions++;
 			$out->addHTML( $item->getHTML() );
@@ -310,9 +309,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			// Otherwise, use a multi-select field for adding tags, and a list of
 			// checkboxes for removing them
 
-			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+			// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 			for ( $list->reset(); $list->current(); $list->next() ) {
-				// @codingStandardsIgnoreEnd
 				$currentTags = $list->current()->getTags();
 				if ( $currentTags ) {
 					$tags = array_merge( $tags, explode( ',', $currentTags ) );
@@ -451,9 +449,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 */
 	protected function failure( $status ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( '<div class="errorbox">' .
-			$status->getWikiText( 'tags-edit-failure' ) .
-			'</div>'
+		$this->getOutput()->addWikiText(
+			Html::errorBox( $status->getWikiText( 'tags-edit-failure' ) )
 		);
 		$this->showForm();
 	}

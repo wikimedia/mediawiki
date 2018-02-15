@@ -50,7 +50,7 @@ class RollbackEdits extends Maintenance {
 		$user = $this->getOption( 'user' );
 		$username = User::isIP( $user ) ? $user : User::getCanonicalName( $user );
 		if ( !$username ) {
-			$this->error( 'Invalid username', true );
+			$this->fatalError( 'Invalid username' );
 		}
 
 		$bot = $this->hasOption( 'bot' );
@@ -111,5 +111,5 @@ class RollbackEdits extends Maintenance {
 	}
 }
 
-$maintClass = 'RollbackEdits';
+$maintClass = RollbackEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -1,7 +1,5 @@
 <?php
 /**
- * Created on Jun 25, 2013
- *
  * Copyright © 2013 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
@@ -47,7 +45,7 @@ class ApiRevisionDelete extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( count( $params['tags'] ) ) {
+		if ( $params['tags'] ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
@@ -116,11 +114,10 @@ class ApiRevisionDelete extends ApiBase {
 		}
 
 		$list->reloadFromMaster();
-		// @codingStandardsIgnoreStart Avoid function calls in a FOR loop test part
+		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $item = $list->reset(); $list->current(); $item = $list->next() ) {
 			$data['items'][$item->getId()] += $item->getApiData( $this->getResult() );
 		}
-		// @codingStandardsIgnoreEnd
 
 		$data['items'] = array_values( $data['items'] );
 		ApiResult::setIndexedTagName( $data['items'], 'i' );

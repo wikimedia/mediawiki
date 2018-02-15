@@ -133,11 +133,11 @@ class ImportImages extends Maintenance {
 
 		# Check Protection
 		if ( $this->hasOption( 'protect' ) && $this->hasOption( 'unprotect' ) ) {
-			$this->error( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n", 1 );
+			$this->fatalError( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n" );
 		}
 
 		if ( $this->hasOption( 'protect' ) && trim( $this->getOption( 'protect' ) ) ) {
-			$this->error( "You must specify a protection option.\n", 1 );
+			$this->fatalError( "You must specify a protection option.\n" );
 		}
 
 		# Prepare the list of allowed extensions
@@ -170,7 +170,7 @@ class ImportImages extends Maintenance {
 		if ( $commentFile !== null ) {
 			$comment = file_get_contents( $commentFile );
 			if ( $comment === false || $comment === null ) {
-				$this->error( "failed to read comment file: {$commentFile}\n", 1 );
+				$this->fatalError( "failed to read comment file: {$commentFile}\n" );
 			}
 		} else {
 			$comment = $this->getOption( 'comment', 'Importing file' );
@@ -299,13 +299,13 @@ class ImportImages extends Maintenance {
 						" publishing {$file} by '{$wgUser->getName()}', comment '$commentText'... "
 					);
 				} else {
-					$mwProps = new MWFileProps( MimeMagic::singleton() );
+					$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 					$props = $mwProps->getPropsFromPath( $file, true );
 					$flags = 0;
 					$publishOptions = [];
 					$handler = MediaHandler::getHandler( $props['mime'] );
 					if ( $handler ) {
-						$metadata = MediaWiki\quietCall( 'unserialize', $props['metadata'] );
+						$metadata = Wikimedia\quietCall( 'unserialize', $props['metadata'] );
 
 						$publishOptions['headers'] = $handler->getContentHeaders( $metadata );
 					} else {
@@ -440,7 +440,7 @@ class ImportImages extends Maintenance {
 	/**
 	 * Split a filename into filename and extension
 	 *
-	 * @param string $filename Filename
+	 * @param string $filename
 	 * @return array
 	 */
 	private function splitFilename( $filename ) {
@@ -519,5 +519,5 @@ class ImportImages extends Maintenance {
 
 }
 
-$maintClass = 'ImportImages';
+$maintClass = ImportImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

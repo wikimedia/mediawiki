@@ -48,12 +48,12 @@ class ResetUserEmail extends Maintenance {
 			$user = User::newFromName( $userName );
 		}
 		if ( !$user || !$user->getId() || !$user->loadFromId() ) {
-			$this->error( "Error: user '$userName' does not exist\n", 1 );
+			$this->fatalError( "Error: user '$userName' does not exist\n" );
 		}
 
 		$email = $this->getArg( 1 );
 		if ( !Sanitizer::validateEmail( $email ) ) {
-			$this->error( "Error: email '$email' is not valid\n", 1 );
+			$this->fatalError( "Error: email '$email' is not valid\n" );
 		}
 
 		// Code from https://wikitech.wikimedia.org/wiki/Password_reset
@@ -68,5 +68,5 @@ class ResetUserEmail extends Maintenance {
 	}
 }
 
-$maintClass = 'ResetUserEmail';
+$maintClass = ResetUserEmail::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

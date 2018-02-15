@@ -98,5 +98,5 @@ class DeleteOrphanedRevisions extends Maintenance {
 	}
 }
 
-$maintClass = "DeleteOrphanedRevisions";
+$maintClass = DeleteOrphanedRevisions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

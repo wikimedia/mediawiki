@@ -72,9 +72,9 @@ class LoadBalancerSingle extends LoadBalancer {
 		return new static( [ 'connection' => $db ] + $params );
 	}
 
-	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
 		return $this->db;
 	}
 }
 
-class_alias( 'Wikimedia\Rdbms\LoadBalancerSingle', 'LoadBalancerSingle' );
+class_alias( LoadBalancerSingle::class, 'LoadBalancerSingle' );

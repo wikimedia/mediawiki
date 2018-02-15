@@ -33,10 +33,11 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
+	protected static $daysPreferenceName = 'rcdays'; // Use general RecentChanges preference
+	protected static $limitPreferenceName = 'rcfilters-limit'; // Use RCFilters-specific preference
 
 	private $watchlistFilterGroupDefinition;
 
-	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
 
@@ -132,7 +133,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 		];
 	}
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Main execution point
@@ -288,8 +288,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 
-		$tables[] = 'recentchanges';
-		$fields = array_merge( RecentChange::selectFields(), $fields );
+		$rcQuery = RecentChange::getQueryInfo();
+		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$fields = array_merge( $rcQuery['fields'], $fields );
+		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
 		// JOIN on watchlist for users
 		if ( $user->isLoggedIn() && $user->isAllowed( 'viewmywatchlist' ) ) {
@@ -606,7 +608,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				/*interface*/false,
 				$wgContLang
 			);
-			$content = $parserOutput->getText();
+			$content = $parserOutput->getText( [
+				'enableSectionEditLinks' => false,
+			] );
 			// Add only metadata here (including the language links), text is added below
 			$this->getOutput()->addParserOutputMetadata( $parserOutput );
 
@@ -819,7 +823,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * Makes change an option link which carries all the other options
 	 *
-	 * @param string $title Title
+	 * @param string $title
 	 * @param array $override Options to override
 	 * @param array $options Current options
 	 * @param bool $active Whether to show the link in bold
@@ -939,7 +943,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$links[] = Html::rawElement(
 				'span',
 				$attribs,
-				$this->msg( $msg )->rawParams( $link )->escaped()
+				$this->msg( $msg )->rawParams( $link )->parse()
 			);
 		}
 
@@ -970,11 +974,14 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return 60 * 5;
 	}
 
-	function getDefaultLimit() {
-		return $this->getUser()->getIntOption( 'rclimit' );
-	}
+	public function getDefaultLimit() {
+		$systemPrefValue = $this->getUser()->getIntOption( 'rclimit' );
+		// Prefer the RCFilters-specific preference if RCFilters is enabled
+		if ( $this->isStructuredFilterUiEnabled() ) {
+			return $this->getUser()->getIntOption( static::$limitPreferenceName, $systemPrefValue );
+		}
 
-	function getDefaultDays() {
-		return floatval( $this->getUser()->getOption( 'rcdays' ) );
+		// Otherwise, use the system rclimit preference value
+		return $systemPrefValue;
 	}
 }

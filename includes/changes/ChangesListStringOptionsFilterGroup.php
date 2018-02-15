@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
  * @author Matthew Flaschen
  */
 
@@ -155,7 +154,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Registers a filter in this group
 	 *
-	 * @param ChangesListStringOptionsFilter $filter ChangesListStringOptionsFilter
+	 * @param ChangesListStringOptionsFilter $filter
 	 */
 	public function registerFilter( ChangesListStringOptionsFilter $filter ) {
 		$this->filters[$filter->getName()] = $filter;
@@ -239,7 +238,8 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Check if this filter group is currently active
 	 *
-	 * @param {boolean} $isStructuredUI Is structured filters UI current enabled
+	 * @param bool $isStructuredUI Is structured filters UI current enabled
+	 * @return bool
 	 */
 	private function isActive( $isStructuredUI ) {
 		// STRING_OPTIONS filter groups are exclusively active on Structured UI

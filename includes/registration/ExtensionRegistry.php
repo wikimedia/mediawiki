@@ -20,8 +20,15 @@ class ExtensionRegistry {
 
 	/**
 	 * Version of the highest supported manifest version
+	 * Note: Update MANIFEST_VERSION_MW_VERSION when changing this
 	 */
 	const MANIFEST_VERSION = 2;
+
+	/**
+	 * MediaWiki version constraint representing what the current
+	 * highest MANIFEST_VERSION is supported in
+	 */
+	const MANIFEST_VERSION_MW_VERSION = '>= 1.29.0';
 
 	/**
 	 * Version of the oldest supported manifest version
@@ -75,6 +82,7 @@ class ExtensionRegistry {
 	private static $instance;
 
 	/**
+	 * @codeCoverageIgnore
 	 * @return ExtensionRegistry
 	 */
 	public static function getInstance() {
@@ -98,9 +106,11 @@ class ExtensionRegistry {
 			} else {
 				throw new Exception( "$path does not exist!" );
 			}
+			// @codeCoverageIgnoreStart
 			if ( !$mtime ) {
 				$err = error_get_last();
 				throw new Exception( "Couldn't stat $path: {$err['message']}" );
+				// @codeCoverageIgnoreEnd
 			}
 		}
 		$this->queued[$path] = $mtime;
@@ -196,6 +206,7 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
 		$autoloadClasses = [];
+		$autoloadNamespaces = [];
 		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
 		$versionChecker = new VersionChecker( $wgVersion );
@@ -226,10 +237,15 @@ class ExtensionRegistry {
 				$incompatible[] = "$path: unsupported manifest_version: {$version}";
 			}
 
-			$autoload = $this->processAutoLoader( dirname( $path ), $info );
-			// Set up the autoloader now so custom processors will work
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
-			$autoloadClasses += $autoload;
+			$dir = dirname( $path );
+			if ( isset( $info['AutoloadClasses'] ) ) {
+				$autoload = $this->processAutoLoader( $dir, $info['AutoloadClasses'] );
+				$GLOBALS['wgAutoloadClasses'] += $autoload;
+				$autoloadClasses += $autoload;
+			}
+			if ( isset( $info['AutoloadNamespaces'] ) ) {
+				$autoloadNamespaces += $this->processAutoLoader( $dir, $info['AutoloadNamespaces'] );
+			}
 
 			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info );
@@ -241,7 +257,7 @@ class ExtensionRegistry {
 
 			// Get extra paths for later inclusion
 			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( dirname( $path ), $info ) );
+				$processor->getExtraAutoloaderPaths( $dir, $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
@@ -268,6 +284,7 @@ class ExtensionRegistry {
 		$data['globals']['wgAutoloadClasses'] = [];
 		$data['autoload'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
+		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
 	}
 
@@ -284,7 +301,7 @@ class ExtensionRegistry {
 
 			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
 			// Will be O(1) performance.
-			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
+			if ( !array_key_exists( $key, $GLOBALS ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
 				continue;
 			}
@@ -313,6 +330,10 @@ class ExtensionRegistry {
 				default:
 					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
 			}
+		}
+
+		if ( isset( $info['autoloaderNS'] ) ) {
+			AutoLoader::$psr4Namespaces += $info['autoloaderNS'];
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
@@ -389,30 +410,17 @@ class ExtensionRegistry {
 	}
 
 	/**
-	 * Mark a thing as loaded
-	 *
-	 * @param string $name
-	 * @param array $credits
-	 */
-	protected function markLoaded( $name, array $credits ) {
-		$this->loaded[$name] = $credits;
-	}
-
-	/**
-	 * Register classes with the autoloader
+	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
-	 * @param array $info
+	 * @param array $files
 	 * @return array
 	 */
-	protected function processAutoLoader( $dir, array $info ) {
-		if ( isset( $info['AutoloadClasses'] ) ) {
-			// Make paths absolute, relative to the JSON file
-			return array_map( function ( $file ) use ( $dir ) {
-				return "$dir/$file";
-			}, $info['AutoloadClasses'] );
-		} else {
-			return [];
+	protected function processAutoLoader( $dir, array $files ) {
+		// Make paths absolute, relative to the JSON file
+		foreach ( $files as &$file ) {
+			$file = "$dir/$file";
 		}
+		return $files;
 	}
 }

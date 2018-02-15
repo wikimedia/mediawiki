@@ -72,7 +72,7 @@ class MwSql extends Maintenance {
 				}
 			}
 			if ( $index === null ) {
-				$this->error( "No replica DB server configured with the name '$replicaDB'.", 1 );
+				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {
 			$index = DB_MASTER;
@@ -81,7 +81,7 @@ class MwSql extends Maintenance {
 		/** @var IDatabase $db DB handle for the appropriate cluster/wiki */
 		$db = $lb->getConnection( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
-			$this->error( "The server selected ({$db->getServer()}) is not a replica DB.", 1 );
+			$this->fatalError( "The server selected ({$db->getServer()}) is not a replica DB." );
 		}
 
 		if ( $index === DB_MASTER ) {
@@ -92,12 +92,12 @@ class MwSql extends Maintenance {
 		if ( $this->hasArg( 0 ) ) {
 			$file = fopen( $this->getArg( 0 ), 'r' );
 			if ( !$file ) {
-				$this->error( "Unable to open input file", true );
+				$this->fatalError( "Unable to open input file" );
 			}
 
 			$error = $db->sourceStream( $file, null, [ $this, 'sqlPrintResult' ] );
 			if ( $error !== true ) {
-				$this->error( $error, true );
+				$this->fatalError( $error );
 			} else {
 				exit( 0 );
 			}
@@ -157,13 +157,17 @@ class MwSql extends Maintenance {
 			$res = $db->query( $line );
 			$this->sqlPrintResult( $res, $db );
 		} catch ( DBQueryError $e ) {
-			$this->error( $e, $dieOnError );
+			if ( $dieOnError ) {
+				$this->fatalError( $e );
+			} else {
+				$this->error( $e );
+			}
 		}
 	}
 
 	/**
 	 * Print the results, callback for $db->sourceStream()
-	 * @param ResultWrapper|bool $res The results object
+	 * @param ResultWrapper|bool $res
 	 * @param IDatabase $db
 	 */
 	public function sqlPrintResult( $res, $db ) {
@@ -188,5 +192,5 @@ class MwSql extends Maintenance {
 	}
 }
 
-$maintClass = "MwSql";
+$maintClass = MwSql::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -69,7 +69,7 @@ class DeletedContribsPager extends IndexPager {
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 
-		$commentQuery = CommentStore::newKey( 'ar_comment' )->getJoin();
+		$commentQuery = CommentStore::getStore()->getJoin( 'ar_comment' );
 
 		return [
 			'tables' => [ 'archive' ] + $commentQuery['tables'],
@@ -207,14 +207,14 @@ class DeletedContribsPager extends IndexPager {
 		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		try {
 			$rev = Revision::newFromArchiveRow( $row );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $validRevision ) {
 			$attribs['data-mw-revid'] = $rev->getId();
@@ -256,7 +256,7 @@ class DeletedContribsPager extends IndexPager {
 		$rev = new Revision( [
 			'title' => $page,
 			'id' => $row->ar_rev_id,
-			'comment' => CommentStore::newKey( 'ar_comment' )->getComment( $row )->text,
+			'comment' => CommentStore::getStore()->getComment( 'ar_comment', $row )->text,
 			'user' => $row->ar_user,
 			'user_text' => $row->ar_user_text,
 			'timestamp' => $row->ar_timestamp,

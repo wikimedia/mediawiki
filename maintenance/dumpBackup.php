@@ -87,7 +87,7 @@ TEXT
 		} elseif ( $this->hasOption( 'revrange' ) ) {
 			$this->dump( WikiExporter::RANGE, $textMode );
 		} else {
-			$this->error( 'No valid action specified.', 1 );
+			$this->fatalError( 'No valid action specified.' );
 		}
 	}
 
@@ -133,5 +133,5 @@ TEXT
 	}
 }
 
-$maintClass = 'DumpBackup';
+$maintClass = DumpBackup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

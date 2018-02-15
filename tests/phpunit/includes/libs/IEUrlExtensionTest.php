@@ -6,6 +6,9 @@
  *    ...a dataprovider and test method.
  */
 class IEUrlExtensionTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	/**
 	 * @covers IEUrlExtension::findIE6Extension
 	 */

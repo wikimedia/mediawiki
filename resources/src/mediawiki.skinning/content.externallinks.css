@@ -9,7 +9,7 @@
  * compatibility ( browsers able to understand gradient syntax support also SVG ).
  * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 
-.mw-body-content a.external,
+.mw-parser-output a.external,
 .link-https {
 	background: url( images/external-ltr.png ) center right no-repeat;
 	/* @embed */
@@ -19,7 +19,7 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href^='mailto:' ],
+.mw-parser-output a.external[ href^='mailto:' ],
 .link-mailto {
 	background: url( images/mail.png ) center right no-repeat;
 	/* @embed */
@@ -27,7 +27,7 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href^='ftp://' ],
+.mw-parser-output a.external[ href^='ftp://' ],
 .link-ftp {
 	background: url( images/ftp-ltr.png ) center right no-repeat;
 	/* @embed */
@@ -35,8 +35,8 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href^='irc://' ],
-.mw-body-content a.external[ href^='ircs://' ],
+.mw-parser-output a.external[ href^='irc://' ],
+.mw-parser-output a.external[ href^='ircs://' ],
 .link-irc {
 	background: url( images/chat-ltr.png ) center right no-repeat;
 	/* @embed */
@@ -44,18 +44,18 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href$='.ogg' ],
-.mw-body-content a.external[ href$='.OGG' ],
-.mw-body-content a.external[ href$='.mid' ],
-.mw-body-content a.external[ href$='.MID' ],
-.mw-body-content a.external[ href$='.midi' ],
-.mw-body-content a.external[ href$='.MIDI' ],
-.mw-body-content a.external[ href$='.mp3' ],
-.mw-body-content a.external[ href$='.MP3' ],
-.mw-body-content a.external[ href$='.wav' ],
-.mw-body-content a.external[ href$='.WAV' ],
-.mw-body-content a.external[ href$='.wma' ],
-.mw-body-content a.external[ href$='.WMA' ],
+.mw-parser-output a.external[ href$='.ogg' ],
+.mw-parser-output a.external[ href$='.OGG' ],
+.mw-parser-output a.external[ href$='.mid' ],
+.mw-parser-output a.external[ href$='.MID' ],
+.mw-parser-output a.external[ href$='.midi' ],
+.mw-parser-output a.external[ href$='.MIDI' ],
+.mw-parser-output a.external[ href$='.mp3' ],
+.mw-parser-output a.external[ href$='.MP3' ],
+.mw-parser-output a.external[ href$='.wav' ],
+.mw-parser-output a.external[ href$='.WAV' ],
+.mw-parser-output a.external[ href$='.wma' ],
+.mw-parser-output a.external[ href$='.WMA' ],
 .link-audio {
 	background: url( images/audio-ltr.png ) center right no-repeat;
 	/* @embed */
@@ -63,14 +63,14 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href$='.ogm' ],
-.mw-body-content a.external[ href$='.OGM' ],
-.mw-body-content a.external[ href$='.avi' ],
-.mw-body-content a.external[ href$='.AVI' ],
-.mw-body-content a.external[ href$='.mpeg' ],
-.mw-body-content a.external[ href$='.MPEG' ],
-.mw-body-content a.external[ href$='.mpg' ],
-.mw-body-content a.external[ href$='.MPG' ],
+.mw-parser-output a.external[ href$='.ogm' ],
+.mw-parser-output a.external[ href$='.OGM' ],
+.mw-parser-output a.external[ href$='.avi' ],
+.mw-parser-output a.external[ href$='.AVI' ],
+.mw-parser-output a.external[ href$='.mpeg' ],
+.mw-parser-output a.external[ href$='.MPEG' ],
+.mw-parser-output a.external[ href$='.mpg' ],
+.mw-parser-output a.external[ href$='.MPG' ],
 .link-video {
 	background: url( images/video.png ) center right no-repeat;
 	/* @embed */
@@ -78,12 +78,12 @@
 	padding-right: 15px;
 }
 
-.mw-body-content a.external[ href$='.pdf' ],
-.mw-body-content a.external[ href$='.PDF' ],
-.mw-body-content a.external[ href*='.pdf#' ],
-.mw-body-content a.external[ href*='.PDF#' ],
-.mw-body-content a.external[ href*='.pdf?' ],
-.mw-body-content a.external[ href*='.PDF?' ],
+.mw-parser-output a.external[ href$='.pdf' ],
+.mw-parser-output a.external[ href$='.PDF' ],
+.mw-parser-output a.external[ href*='.pdf#' ],
+.mw-parser-output a.external[ href*='.PDF#' ],
+.mw-parser-output a.external[ href*='.pdf?' ],
+.mw-parser-output a.external[ href*='.PDF?' ],
 .link-document {
 	background: url( images/document-ltr.png ) center right no-repeat;
 	/* @embed */
@@ -92,12 +92,12 @@
 }
 
 /* Interwiki styling */
-.mw-body-content a.extiw,
-.mw-body-content a.extiw:active {
+.mw-parser-output a.extiw,
+.mw-parser-output a.extiw:active {
 	color: #36b;
 }
 
 /* External link color */
-.mw-body-content a.external {
+.mw-parser-output a.external {
 	color: #36b;
 }

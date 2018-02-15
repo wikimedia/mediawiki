@@ -169,6 +169,7 @@ class Names {
 		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional)
 		'gan-hans' => "赣语（简体）\xE2\x80\x8E", # Gan (Simplified Han)
 		'gan-hant' => "贛語（繁體）\xE2\x80\x8E", # Gan (Traditional Han)
+		'gcr' => 'kréyòl gwiyanè', # Guianan Creole
 		'gd' => 'Gàidhlig', # Scots Gaelic
 		'gl' => 'galego', # Galician
 		'glk' => 'گیلکی', # Gilaki
@@ -253,6 +254,7 @@ class Names {
 		'ku' => 'Kurdî', # Kurdish (multiple scripts - defaults to Latin)
 		'ku-latn' => "Kurdî (latînî)\xE2\x80\x8E", # Northern Kurdish (Latin script)
 		'ku-arab' => "كوردي (عەرەبی)\xE2\x80\x8F", # Northern Kurdish (Arabic script) (falls back to ckb)
+		'kum' => 'къумукъ', # Kumyk (Cyrillic, 'kum-latn' for Latin script)
 		'kv' => 'коми', # Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 		'kw' => 'kernowek', # Cornish
 		'ky' => 'Кыргызча', # Kirghiz
@@ -320,6 +322,7 @@ class Names {
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
+		'nys' => 'Nyunga', # Nyungar
 		'oc' => 'occitan', # Occitan
 		'olo' => 'Livvinkarjala', # Livvi-Karelian
 		'om' => 'Oromoo', # Oromo
@@ -398,6 +401,7 @@ class Names {
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
+		'sty' => 'cебертатар', # Siberian Tatar
 		'stq' => 'Seeltersk', # Saterland Frisian
 		'su' => 'Basa Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish

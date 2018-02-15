@@ -6,6 +6,8 @@
  */
 ( function ( $, mw ) {
 
+	var hasOwn = Object.prototype.hasOwnProperty;
+
 	/**
 	 * @class mw.widgets.PageExistenceCache
 	 * @private
@@ -38,10 +40,10 @@
 		queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
 		titles = Object.keys( queue ).filter( function ( title ) {
-			if ( cache.existenceCache.hasOwnProperty( title ) ) {
+			if ( hasOwn.call( cache.existenceCache, title ) ) {
 				queue[ title ].resolve( cache.existenceCache[ title ] );
 			}
-			return !cache.existenceCache.hasOwnProperty( title );
+			return !hasOwn.call( cache.existenceCache, title );
 		} );
 		if ( !titles.length ) {
 			return;
@@ -61,9 +63,9 @@
 			$.each( response.query.pages, function ( index, page ) {
 				pages[ page.title ] = !page.missing;
 			} );
-			$.each( titles, function ( index, title ) {
+			titles.forEach( function ( title ) {
 				var normalizedTitle = title;
-				while ( normalized[ normalizedTitle ] ) {
+				while ( hasOwn.call( normalized, normalizedTitle ) ) {
 					normalizedTitle = normalized[ normalizedTitle ];
 				}
 				cache.existenceCache[ title ] = pages[ normalizedTitle ];
@@ -81,7 +83,7 @@
 	 */
 	PageExistenceCache.prototype.checkPageExistence = function ( title ) {
 		var key = title.getPrefixedText();
-		if ( !this.existenceCheckQueue[ key ] ) {
+		if ( !hasOwn.call( this.existenceCheckQueue, key ) ) {
 			this.existenceCheckQueue[ key ] = $.Deferred();
 		}
 		this.processExistenceCheckQueueDebounced();

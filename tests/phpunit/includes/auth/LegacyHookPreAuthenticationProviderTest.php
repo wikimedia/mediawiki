@@ -15,7 +15,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @return LegacyHookPreAuthenticationProvider
 	 */
 	protected function getProvider() {
-		$request = $this->getMockBuilder( 'FauxRequest' )
+		$request = $this->getMockBuilder( \FauxRequest::class )
 			->setMethods( [ 'getIP' ] )->getMock();
 		$request->expects( $this->any() )->method( 'getIP' )->will( $this->returnValue( '127.0.0.42' ) );
 
@@ -101,7 +101,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 			if ( $msgForLoginUserMigrated !== null ) {
 				$h->will( $this->returnCallback(
 					function ( $user, &$msg ) use ( $username, $msgForLoginUserMigrated ) {
-						$this->assertInstanceOf( 'User', $user );
+						$this->assertInstanceOf( \User::class, $user );
 						$this->assertSame( $username, $user->getName() );
 						$msg = $msgForLoginUserMigrated;
 						return false;
@@ -111,7 +111,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 			} else {
 				$h->will( $this->returnCallback(
 					function ( $user, &$msg ) use ( $username ) {
-						$this->assertInstanceOf( 'User', $user );
+						$this->assertInstanceOf( \User::class, $user );
 						$this->assertSame( $username, $user->getName() );
 						return true;
 					}
@@ -122,7 +122,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 						function ( $user, $pass, &$abort, &$msg )
 							use ( $username, $password, $abortForAbortLogin, $msgForAbortLogin )
 						{
-							$this->assertInstanceOf( 'User', $user );
+							$this->assertInstanceOf( \User::class, $user );
 							$this->assertSame( $username, $user->getName() );
 							if ( $password !== null ) {
 								$this->assertSame( $password, $pass );
@@ -137,7 +137,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 				} else {
 					$h2->will( $this->returnCallback(
 						function ( $user, $pass, &$abort, &$msg ) use ( $username, $password ) {
-							$this->assertInstanceOf( 'User', $user );
+							$this->assertInstanceOf( \User::class, $user );
 							$this->assertSame( $username, $user->getName() );
 							if ( $password !== null ) {
 								$this->assertSame( $password, $pass );
@@ -160,7 +160,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		if ( $failMsg === null ) {
 			$this->assertEquals( \StatusValue::newGood(), $status, 'should succeed' );
 		} else {
-			$this->assertInstanceOf( 'StatusValue', $status, 'should fail (type)' );
+			$this->assertInstanceOf( \StatusValue::class, $status, 'should fail (type)' );
 			$this->assertFalse( $status->isOk(), 'should fail (ok)' );
 			$errors = $status->getErrors();
 			$this->assertEquals( $failMsg, $errors[0]['message'], 'should fail (message)' );
@@ -282,14 +282,14 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 	 * @dataProvider provideTestForAccountCreation
 	 * @param string $msg
 	 * @param Status|null $status
-	 * @param StatusValue $result Result
+	 * @param StatusValue $result
 	 */
 	public function testTestForAccountCreation( $msg, $status, $result ) {
 		$this->hook( 'AbortNewAccount', $this->once() )
 			->will( $this->returnCallback( function ( $user, &$error, &$abortStatus )
 				use ( $msg, $status )
 			{
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertSame( 'User', $user->getName() );
 				$error = $msg;
 				$abortStatus = $status;
@@ -336,7 +336,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		$this->hook( 'AbortNewAccount', $this->never() );
 		$this->hook( 'AbortAutoAccount', $this->once() )
 			->will( $this->returnCallback( function ( $user, &$abortError ) use ( $testUser, $error ) {
-				$this->assertInstanceOf( 'User', $user );
+				$this->assertInstanceOf( \User::class, $user );
 				$this->assertSame( $testUser->getName(), $user->getName() );
 				$abortError = $error;
 				return $error === null;
@@ -349,7 +349,7 @@ class LegacyHookPreAuthenticationProviderTest extends \MediaWikiTestCase {
 		if ( $failMsg === null ) {
 			$this->assertEquals( \StatusValue::newGood(), $status, 'should succeed' );
 		} else {
-			$this->assertInstanceOf( 'StatusValue', $status, 'should fail (type)' );
+			$this->assertInstanceOf( \StatusValue::class, $status, 'should fail (type)' );
 			$this->assertFalse( $status->isOk(), 'should fail (ok)' );
 			$errors = $status->getErrors();
 			$this->assertEquals( $failMsg, $errors[0]['message'], 'should fail (message)' );

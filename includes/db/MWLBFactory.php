@@ -46,7 +46,7 @@ abstract class MWLBFactory {
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
 				$mainConfig->get( 'DBname' ),
-				null,
+				$mainConfig->get( 'DBmwschema' ),
 				$mainConfig->get( 'DBprefix' )
 			),
 			'profiler' => Profiler::instance(),
@@ -64,7 +64,7 @@ abstract class MWLBFactory {
 		// When making changes here, remember to also specify MediaWiki-specific options
 		// for Database classes in the relevant Installer subclass.
 		// Such as MysqlInstaller::openConnection and PostgresInstaller::openConnectionWithParams.
-		if ( $lbConf['class'] === 'LBFactorySimple' ) {
+		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured; leave alone
 			} elseif ( is_array( $mainConfig->get( 'DBservers' ) ) ) {
@@ -132,7 +132,7 @@ abstract class MWLBFactory {
 			if ( !isset( $lbConf['externalClusters'] ) ) {
 				$lbConf['externalClusters'] = $mainConfig->get( 'ExternalServers' );
 			}
-		} elseif ( $lbConf['class'] === 'LBFactoryMulti' ) {
+		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
 					$lbConf['serverTemplate']['schema'] = $mainConfig->get( 'DBmwschema' );
@@ -142,16 +142,18 @@ abstract class MWLBFactory {
 			}
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		$sCache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+		$sCache = $services->getLocalServerObjectCache();
 		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
 			$lbConf['srvCache'] = $sCache;
 		}
-		$cCache = ObjectCache::getLocalClusterInstance();
-		if ( $cCache->getQoS( $cCache::ATTR_EMULATION ) > $cCache::QOS_EMULATION_SQL ) {
-			$lbConf['memStash'] = $cCache;
+		$mStash = $services->getMainObjectStash();
+		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
+			$lbConf['memStash'] = $mStash;
 		}
-		$wCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$wCache = $services->getMainWANObjectCache();
 		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
 			$lbConf['wanCache'] = $wCache;
 		}

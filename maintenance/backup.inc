@@ -25,7 +25,6 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
-require_once __DIR__ . '/../includes/export/DumpFilter.php';
 
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
@@ -83,15 +82,15 @@ class BackupDumper extends Maintenance {
 		$this->stderr = fopen( "php://stderr", "wt" );
 
 		// Built-in output and filter plugins
-		$this->registerOutput( 'file', 'DumpFileOutput' );
-		$this->registerOutput( 'gzip', 'DumpGZipOutput' );
-		$this->registerOutput( 'bzip2', 'DumpBZip2Output' );
-		$this->registerOutput( 'dbzip2', 'DumpDBZip2Output' );
-		$this->registerOutput( '7zip', 'Dump7ZipOutput' );
+		$this->registerOutput( 'file', DumpFileOutput::class );
+		$this->registerOutput( 'gzip', DumpGZipOutput::class );
+		$this->registerOutput( 'bzip2', DumpBZip2Output::class );
+		$this->registerOutput( 'dbzip2', DumpDBZip2Output::class );
+		$this->registerOutput( '7zip', Dump7ZipOutput::class );
 
-		$this->registerFilter( 'latest', 'DumpLatestFilter' );
-		$this->registerFilter( 'notalk', 'DumpNotalkFilter' );
-		$this->registerFilter( 'namespace', 'DumpNamespaceFilter' );
+		$this->registerFilter( 'latest', DumpLatestFilter::class );
+		$this->registerFilter( 'notalk', DumpNotalkFilter::class );
+		$this->registerFilter( 'namespace', DumpNamespaceFilter::class );
 
 		// These three can be specified multiple times
 		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].',
@@ -418,26 +417,5 @@ class BackupDumper extends Maintenance {
 		if ( $this->reporting ) {
 			fwrite( $this->stderr, $string . "\n" );
 		}
-	}
-
-	function fatalError( $msg ) {
-		$this->error( "$msg\n", 1 );
-	}
-}
-
-class ExportProgressFilter extends DumpFilter {
-	function __construct( &$sink, &$progress ) {
-		parent::__construct( $sink );
-		$this->progress = $progress;
-	}
-
-	function writeClosePage( $string ) {
-		parent::writeClosePage( $string );
-		$this->progress->reportPage();
-	}
-
-	function writeRevision( $rev, $string ) {
-		parent::writeRevision( $rev, $string );
-		$this->progress->revCount();
 	}
 }

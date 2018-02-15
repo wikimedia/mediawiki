@@ -211,8 +211,8 @@
 									"description": "Group with which this module should be loaded"
 								},
 								"deprecated": {
-									"type": ["object", "boolean"],
-									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean or an object with key message can be used to customise deprecation message."
+									"type": ["object", "string", "boolean"],
+									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean, or a string or an object with key message can be used to customise deprecation message."
 								},
 								"position": {
 									"type": "string",
@@ -588,6 +588,10 @@
 			"type": "object",
 			"description": "SpecialPages implemented in this extension (mapping of page name to class name)"
 		},
+		"AutoloadNamespaces": {
+			"type": "object",
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading"
+		},
 		"AutoloadClasses": {
 			"type": "object"
 		},
@@ -665,7 +669,7 @@
 		},
 		"SkinOOUIThemes": {
 			"type": "object",
-			"description": "Map of skin names to OOjs UI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
+			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
 		"PasswordPolicy": {
 			"type": "object",

@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
@@ -583,7 +582,7 @@ function wfAppendQuery( $url, $query ) {
  * like "subdir/foo.html", etc.
  *
  * @param string $url Either fully-qualified or a local path + query
- * @param string $defaultProto One of the PROTO_* constants. Determines the
+ * @param string|int|null $defaultProto One of the PROTO_* constants. Determines the
  *    protocol to use if $url or $wgServer is protocol-relative
  * @return string|false Fully-qualified URL, current-path-relative URL or false if
  *    no valid URL can be constructed
@@ -878,9 +877,9 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$bits = parse_url( $url );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
@@ -1011,7 +1010,7 @@ function wfMakeUrlIndexes( $url ) {
 
 /**
  * Check whether a given URL has a domain that occurs in a given set of domains
- * @param string $url URL
+ * @param string $url
  * @param array $domains Array of domains (strings)
  * @return bool True if the host part of $url ends in one of the strings in $domains
  */
@@ -1231,6 +1230,7 @@ function wfErrorLog( $text, $file, array $context = [] ) {
 
 /**
  * @todo document
+ * @todo Move logic to MediaWiki.php
  */
 function wfLogProfilingData() {
 	global $wgDebugLogGroups, $wgDebugRawPage;
@@ -1242,23 +1242,13 @@ function wfLogProfilingData() {
 	$profiler->setContext( $context );
 	$profiler->logData();
 
-	$config = $context->getConfig();
-	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-	if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
-		try {
-			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
-			$statsdHost = $statsdServer[0];
-			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
-			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
-			$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
-			$statsdClient->send( $stats->getData() );
-		} catch ( Exception $ex ) {
-			MWExceptionHandler::logException( $ex );
-		}
-	}
+	// Send out any buffered statsd metrics as needed
+	MediaWiki::emitBufferedStatsdData(
+		MediaWikiServices::getInstance()->getStatsdDataFactory(),
+		$context->getConfig()
+	);
 
-	# Profiling must actually be enabled...
+	// Profiling must actually be enabled...
 	if ( $profiler instanceof ProfilerStub ) {
 		return;
 	}
@@ -2019,19 +2009,19 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 /**
  * Reference-counted warning suppression
  *
- * @deprecated since 1.26, use MediaWiki\suppressWarnings() directly
+ * @deprecated since 1.26, use Wikimedia\suppressWarnings() directly
  * @param bool $end
  */
 function wfSuppressWarnings( $end = false ) {
-	MediaWiki\suppressWarnings( $end );
+	Wikimedia\suppressWarnings( $end );
 }
 
 /**
- * @deprecated since 1.26, use MediaWiki\restoreWarnings() directly
+ * @deprecated since 1.26, use Wikimedia\restoreWarnings() directly
  * Restore error level to previous value
  */
 function wfRestoreWarnings() {
-	MediaWiki\suppressWarnings( true );
+	Wikimedia\restoreWarnings();
 }
 
 /**
@@ -2099,6 +2089,16 @@ function wfIsHHVM() {
 }
 
 /**
+ * Check if we are running from the commandline
+ *
+ * @since 1.31
+ * @return bool
+ */
+function wfIsCLI() {
+	return PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg';
+}
+
+/**
  * Tries to get the system directory for temporary files. First
  * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
  * environment variables are then checked in sequence, then
@@ -2150,9 +2150,9 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	// Turn off the normal warning, we're doing our own below
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$ok = mkdir( $dir, $mode, true ); // PHP5 <3
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( !$ok ) {
 		// directory may have been created on another request since we last checked
@@ -2225,7 +2225,23 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
  * @return bool
  */
 function wfIniGetBool( $setting ) {
-	$val = strtolower( ini_get( $setting ) );
+	return wfStringToBool( ini_get( $setting ) );
+}
+
+/**
+ * Convert string value to boolean, when the following are interpreted as true:
+ * - on
+ * - true
+ * - yes
+ * - Any number, except 0
+ * All other strings are interpreted as false.
+ *
+ * @param string $val
+ * @return bool
+ * @since 1.31
+ */
+function wfStringToBool( $val ) {
+	$val = strtolower( $val );
 	// 'on' and 'true' can't have whitespace around them, but '1' can.
 	return $val == 'on'
 		|| $val == 'true'
@@ -2388,16 +2404,17 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
  * @param string $mine
  * @param string $yours
  * @param string &$result
+ * @param string &$mergeAttemptResult
  * @return bool
  */
-function wfMerge( $old, $mine, $yours, &$result ) {
+function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 	global $wgDiff3;
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( !$haveDiff3 ) {
 		wfDebug( "diff3 not found\n" );
@@ -2426,12 +2443,17 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 		$oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 
-	if ( fgets( $handle, 1024 ) ) {
-		$conflict = true;
-	} else {
-		$conflict = false;
-	}
+	$mergeAttemptResult = '';
+	do {
+		$data = fread( $handle, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$mergeAttemptResult .= $data;
+	} while ( true );
 	pclose( $handle );
+
+	$conflict = $mergeAttemptResult !== '';
 
 	# Merge differences
 	$cmd = Shell::escape( $wgDiff3, '-a', '-e', '--merge', $mytextName,
@@ -2474,9 +2496,9 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	}
 
 	global $wgDiff;
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	# This check may also protect against code injection in
 	# case of broken installations.
@@ -2732,7 +2754,7 @@ function wfSetupSession( $sessionId = false ) {
 	if ( session_id() !== $session->getId() ) {
 		session_id( $session->getId() );
 	}
-	MediaWiki\quietCall( 'session_start' );
+	Wikimedia\quietCall( 'session_start' );
 }
 
 /**
@@ -2898,7 +2920,7 @@ function wfGetLBFactory() {
  * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
  *
- * @param string $title String or Title object
+ * @param string|Title $title String or Title object
  * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */
@@ -3019,7 +3041,7 @@ function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
 	if ( $timeout === null ) {
-		$timeout = ( PHP_SAPI === 'cli' ) ? 86400 : 10;
+		$timeout = wfIsCLI() ? 86400 : 10;
 	}
 
 	if ( $cluster === '*' ) {
@@ -3100,15 +3122,15 @@ function wfMemoryLimit() {
 		$conflimit = wfShorthandToInteger( $wgMemoryLimit );
 		if ( $conflimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit\n" );
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			return $conflimit;
 		} elseif ( $conflimit > $memlimit ) {
 			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $conflimit );
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			return $conflimit;
 		}
 	}
@@ -3261,9 +3283,9 @@ function wfUnpack( $format, $data, $length = false ) {
 		}
 	}
 
-	MediaWiki\suppressWarnings();
+	Wikimedia\suppressWarnings();
 	$result = unpack( $format, $data );
-	MediaWiki\restoreWarnings();
+	Wikimedia\restoreWarnings();
 
 	if ( $result === false ) {
 		// If it cannot extract the packed data.
@@ -3486,4 +3508,38 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
 	$baseArray += $newValues;
 
 	return $baseArray;
+}
+
+/**
+ * Get system resource usage of current request context.
+ * Invokes the getrusage(2) system call, requesting RUSAGE_SELF if on PHP5
+ * or RUSAGE_THREAD if on HHVM. Returns false if getrusage is not available.
+ *
+ * @since 1.24
+ * @return array|bool Resource usage data or false if no data available.
+ */
+function wfGetRusage() {
+	if ( !function_exists( 'getrusage' ) ) {
+		return false;
+	} elseif ( defined( 'HHVM_VERSION' ) && PHP_OS === 'Linux' ) {
+		return getrusage( 2 /* RUSAGE_THREAD */ );
+	} else {
+		return getrusage( 0 /* RUSAGE_SELF */ );
+	}
+}
+
+/**
+ * Begin profiling of a function
+ * @param string $functionname Name of the function we will profile
+ * @deprecated since 1.25
+ */
+function wfProfileIn( $functionname ) {
+}
+
+/**
+ * Stop profiling of a function
+ * @param string $functionname Name of the function we have profiled
+ * @deprecated since 1.25
+ */
+function wfProfileOut( $functionname = 'missing' ) {
 }

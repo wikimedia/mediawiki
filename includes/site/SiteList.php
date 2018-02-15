@@ -63,7 +63,7 @@ class SiteList extends GenericArrayObject {
 	 * @return string
 	 */
 	public function getObjectType() {
-		return 'Site';
+		return Site::class;
 	}
 
 	/**

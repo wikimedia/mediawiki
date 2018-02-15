@@ -5,6 +5,32 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
+// Variables taken from OOUI's WikimediaUI theme
+@oo-ui-font-size-browser: 16; // assumed browser default of `16px`
+@oo-ui-font-size-base: 0.8em; // equals `12.8px` at browser default of `16px`
+
+@background-color-base: #fff;
+
+@color-base--emphasized: #000;
+
+@border-base: 1px solid #a2a9b1;
+@border-color-base--focus: #36c;
+@border-color-input--hover: #72777d;
+@border-radius-base: 2px;
+
+@padding-input-text: @padding-top-base @padding-horizontal-input-text @padding-bottom-base;
+@padding-horizontal-input-text: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base;
+@padding-top-base: 8 / @oo-ui-font-size-browser / @oo-ui-font-size-base; // equals `0.625em`≈`8px`
+@padding-bottom-base: 7 / @oo-ui-font-size-browser / @oo-ui-font-size-base; // equals `0.547em`≈`7px`
+
+@box-shadow-widget: inset 0 0 0 1px transparent;
+@box-shadow-widget--focus: inset 0 0 0 1px #36c;
+
+@line-height-widget-singleline: 1.172em; // Firefox needs a value, Chrome the unit; equals `15px` at base `font-size: 12.8px`
+
+@transition-ease-out-sine-medium: 200ms cubic-bezier( 0.39, 0.575, 0.565, 1 );
+
+// Mixins taken from OOUI
 .oo-ui-box-sizing( @type: border-box ) {
 	-webkit-box-sizing: @type;
 	-moz-box-sizing: @type;
@@ -19,13 +45,21 @@
 	}
 }
 
+.oo-ui-transition( @value1, @value2: X, ... ) {
+	@value: ~`"@{arguments}".replace( /[\[\]]|\,\sX/g, '' )`; // stylelint-disable-line function-comma-space-after, function-whitespace-after, string-quotes, value-keyword-case
+	-webkit-transition: @value;
+	-moz-transition: @value;
+	transition: @value;
+}
+
+// DateInputWidget rules
 .mw-widget-dateInputWidget {
 	&.oo-ui-textInputWidget {
 		display: inline-block;
 		position: relative;
 		width: 21em;
 		margin-top: 0.25em;
-		.oo-ui-inline-spacing( 0.5em );
+		// .oo-ui-inline-spacing( 0.5em ); already inherited from `.oo-ui-inputWidget`
 		margin-bottom: 0.25em;
 		margin-left: 0;
 	}
@@ -33,21 +67,55 @@
 	// Note that this block applies to both the PHP widget and the JS widget
 	&-handle,
 	&.oo-ui-textInputWidget input {
-		background-color: #fff;
 		display: inline-block;
 		position: relative;
-		.oo-ui-box-sizing( border-box );
-		width: 100%;
 		cursor: pointer;
-		padding: 0.5em 1em;
-		border: 1px solid #a2a9b1;
-		border-radius: 2px;
-		outline: 0;
-		line-height: 1.275;
 		/**
 		 * Ensures non-infused and infused widget have the same height.
 		 * Equal to line height + top padding + bottom padding
 		 */
-		height: 2.275em;
+		max-height: 2.458em;
+	}
+
+	// Ensure `.mw-widget-dateInputWidget-handle` similar appearance to OOUI's `.oo-ui-textInputWidget`
+	&-handle {
+		background-color: @background-color-base;
+		color: @color-base--emphasized;
+		.oo-ui-box-sizing( border-box );
+		width: 100%;
+		border: @border-base;
+		border-radius: @border-radius-base;
+		padding: @padding-input-text;
+		line-height: @line-height-widget-singleline;
+	}
+
+	&.oo-ui-widget-enabled {
+		.mw-widget-dateInputWidget-handle {
+			box-shadow: @box-shadow-widget; // necessary for smooth transition
+			.oo-ui-transition(
+				border-color @transition-ease-out-sine-medium,
+				box-shadow @transition-ease-out-sine-medium
+			);
+
+			&:hover {
+				border-color: @border-color-input--hover;
+			}
+
+			&:focus {
+				outline: 0;
+				border-color: @border-color-base--focus;
+				box-shadow: @box-shadow-widget--focus;
+			}
+
+			& > .oo-ui-labelElement-label {
+				cursor: pointer;
+			}
+		}
+	}
+
+	&-active {
+		&.oo-ui-textInputWidget input {
+			cursor: text;
+		}
 	}
 }

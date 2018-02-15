@@ -45,9 +45,9 @@ class PageExists extends Maintenance {
 			$code = 1;
 		}
 		$this->output( $text );
-		$this->error( '', $code );
+		exit( $code );
 	}
 }
 
-$maintClass = "PageExists";
+$maintClass = PageExists::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -65,7 +65,6 @@ class ParserOptions {
 		'stubthreshold' => true,
 		'printable' => true,
 		'userlang' => true,
-		'wrapclass' => true,
 	];
 
 	/**
@@ -780,12 +779,16 @@ class ParserOptions {
 	/**
 	 * CSS class to use to wrap output from Parser::parse()
 	 * @since 1.30
-	 * @param string|bool $className Set false to disable wrapping.
+	 * @param string $className Class name to use for wrapping.
+	 *   Passing false to indicate "no wrapping" was deprecated in MediaWiki 1.31.
 	 * @return string|bool Current value
 	 */
 	public function setWrapOutputClass( $className ) {
 		if ( $className === true ) { // DWIM, they probably want the default class name
 			$className = 'mw-parser-output';
+		}
+		if ( $className === false ) {
+			wfDeprecated( __METHOD__ . '( false )', '1.31' );
 		}
 		return $this->setOption( 'wrapclass', $className );
 	}
@@ -869,6 +872,7 @@ class ParserOptions {
 
 	/**
 	 * Create "edit section" links?
+	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
 	 * @return bool
 	 */
 	public function getEditSection() {
@@ -877,6 +881,7 @@ class ParserOptions {
 
 	/**
 	 * Create "edit section" links?
+	 * @deprecated since 1.31, use ParserOutput::getText() options instead.
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 */
@@ -1057,8 +1062,8 @@ class ParserOptions {
 				'printable' => false,
 				'allowUnsafeRawHtml' => true,
 				'wrapclass' => 'mw-parser-output',
-				'currentRevisionCallback' => [ 'Parser', 'statelessFetchRevision' ],
-				'templateCallback' => [ 'Parser', 'statelessFetchTemplate' ],
+				'currentRevisionCallback' => [ Parser::class, 'statelessFetchRevision' ],
+				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
 			];
 

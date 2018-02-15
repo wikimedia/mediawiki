@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -50,7 +49,7 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $mAllowLagged;
 	/** @var int Seconds to spend waiting on replica DB lag to resolve */
-	private $mWaitTimeout;
+	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
@@ -115,12 +114,16 @@ class LoadBalancer implements ILoadBalancer {
 	private $disabled = false;
 	/** @var bool */
 	private $chronProtInitialized = false;
+	/** @var int */
+	private $maxLag = self::MAX_LAG_DEFAULT;
 
 	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
-	/** @var int Default 'max lag' when unspecified */
+	/** @var int Default 'maxLag' when unspecified */
 	const MAX_LAG_DEFAULT = 10;
+	/** @var int Default 'waitTimeout' when unspecified */
+	const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master server read-only status */
 	const TTL_CACHE_READONLY = 5;
 
@@ -145,19 +148,14 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->localDomain = isset( $params['localDomain'] )
+		$localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
-		// In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
-		// always true, gracefully handle the case when they fail to account for escaping.
-		if ( $this->localDomain->getTablePrefix() != '' ) {
-			$this->localDomainIdAlias =
-				$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
-		} else {
-			$this->localDomainIdAlias = $this->localDomain->getDatabase();
-		}
+		$this->setLocalDomain( $localDomain );
 
-		$this->mWaitTimeout = isset( $params['waitTimeout'] ) ? $params['waitTimeout'] : 10;
+		$this->waitTimeout = isset( $params['waitTimeout'] )
+			? $params['waitTimeout']
+			: self::MAX_WAIT_DEFAULT;
 
 		$this->mReadIndex = -1;
 		$this->mConns = [
@@ -178,11 +176,16 @@ class LoadBalancer implements ILoadBalancer {
 			$this->readOnlyReason = $params['readOnlyReason'];
 		}
 
+		if ( isset( $params['maxLag'] ) ) {
+			$this->maxLag = $params['maxLag'];
+		}
+
 		if ( isset( $params['loadMonitor'] ) ) {
 			$this->loadMonitorConfig = $params['loadMonitor'];
 		} else {
 			$this->loadMonitorConfig = [ 'class' => 'LoadMonitorNull' ];
 		}
+		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
 
 		foreach ( $params['servers'] as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
@@ -226,12 +229,25 @@ class LoadBalancer implements ILoadBalancer {
 		$this->host = isset( $params['hostname'] )
 			? $params['hostname']
 			: ( gethostname() ?: 'unknown' );
-		$this->cliMode = isset( $params['cliMode'] ) ? $params['cliMode'] : PHP_SAPI === 'cli';
+		$this->cliMode = isset( $params['cliMode'] )
+			? $params['cliMode']
+			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 
 		if ( isset( $params['chronologyProtector'] ) ) {
 			$this->chronProt = $params['chronologyProtector'];
 		}
+	}
+
+	/**
+	 * Get the local (and default) database domain ID of connection handles
+	 *
+	 * @see DatabaseDomain
+	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
+	 * @since 1.31
+	 */
+	public function getLocalDomainID() {
+		return $this->localDomain->getId();
 	}
 
 	/**
@@ -275,7 +291,7 @@ class LoadBalancer implements ILoadBalancer {
 				# How much lag this server nominally is allowed to have
 				$maxServerLag = isset( $this->mServers[$i]['max lag'] )
 					? $this->mServers[$i]['max lag']
-					: self::MAX_LAG_DEFAULT; // default
+					: $this->maxLag; // default
 				# Constrain that futher by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
@@ -285,7 +301,7 @@ class LoadBalancer implements ILoadBalancer {
 						"Server {host} is not replicating?", [ 'host' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					$this->replLogger->warning(
+					$this->replLogger->info(
 						"Server {host} has {lag} seconds of lag (>= {maxlag})",
 						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
@@ -499,6 +515,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
+		$timeout = $timeout ?: $this->waitTimeout;
+
 		$oldPos = $this->mWaitForPos;
 		try {
 			$this->mWaitForPos = $pos;
@@ -507,7 +525,12 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = true;
 			for ( $i = 1; $i < $serverCount; $i++ ) {
 				if ( $this->mLoads[$i] > 0 ) {
+					$start = microtime( true );
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
+					$timeout -= ( microtime( true ) - $start );
+					if ( $timeout <= 0 ) {
+						break; // timeout reached
+					}
 				}
 			}
 		} finally {
@@ -552,11 +575,11 @@ class LoadBalancer implements ILoadBalancer {
 	 * Wait for a given replica DB to catch up to the master pos stored in $this
 	 * @param int $index Server index
 	 * @param bool $open Check the server even if a new connection has to be made
-	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
+	 * @param int $timeout Max seconds to wait; default is "waitTimeout" given to __construct()
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
-		$close = false; // close the connection afterwards
+		$timeout = max( 1, $timeout ?: $this->waitTimeout );
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
@@ -567,25 +590,32 @@ class LoadBalancer implements ILoadBalancer {
 			$knownReachedPos instanceof DBMasterPos &&
 			$knownReachedPos->hasReached( $this->mWaitForPos )
 		) {
-			$this->replLogger->debug( __METHOD__ .
+			$this->replLogger->debug(
+				__METHOD__ .
 				': replica DB {dbserver} known to be caught up (pos >= $knownReachedPos).',
-				[ 'dbserver' => $server ] );
+				[ 'dbserver' => $server ]
+			);
 			return true;
 		}
 
 		// Find a connection to wait on, creating one if needed and allowed
+		$close = false; // close the connection afterwards
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( !$conn ) {
 			if ( !$open ) {
-				$this->replLogger->debug( __METHOD__ . ': no connection open for {dbserver}',
-					[ 'dbserver' => $server ] );
+				$this->replLogger->debug(
+					__METHOD__ . ': no connection open for {dbserver}',
+					[ 'dbserver' => $server ]
+				);
 
 				return false;
 			} else {
 				$conn = $this->openConnection( $index, self::DOMAIN_ANY );
 				if ( !$conn ) {
-					$this->replLogger->warning( __METHOD__ . ': failed to connect to {dbserver}',
-						[ 'dbserver' => $server ] );
+					$this->replLogger->warning(
+						__METHOD__ . ': failed to connect to {dbserver}',
+						[ 'dbserver' => $server ]
+					);
 
 					return false;
 				}
@@ -595,16 +625,32 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		$this->replLogger->info( __METHOD__ . ': Waiting for replica DB {dbserver} to catch up...',
-			[ 'dbserver' => $server ] );
-		$timeout = $timeout ?: $this->mWaitTimeout;
+		$this->replLogger->info(
+			__METHOD__ .
+			': Waiting for replica DB {dbserver} to catch up...',
+			[ 'dbserver' => $server ]
+		);
+
 		$result = $conn->masterPosWait( $this->mWaitForPos, $timeout );
 
-		if ( $result == -1 || is_null( $result ) ) {
-			// Timed out waiting for replica DB, use master instead
+		if ( $result === null ) {
 			$this->replLogger->warning(
-				__METHOD__ . ": Timed out waiting on {host} pos {$this->mWaitForPos}",
-				[ 'host' => $server ]
+				__METHOD__ . ': Errored out waiting on {host} pos {pos}',
+				[
+					'host' => $server,
+					'pos' => $this->mWaitForPos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				]
+			);
+			$ok = false;
+		} elseif ( $result == -1 ) {
+			$this->replLogger->warning(
+				__METHOD__ . ': Timed out waiting on {host} pos {pos}',
+				[
+					'host' => $server,
+					'pos' => $this->mWaitForPos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				]
 			);
 			$ok = false;
 		} else {
@@ -802,7 +848,11 @@ class LoadBalancer implements ILoadBalancer {
 				$server = $this->mServers[$i];
 				$server['serverIndex'] = $i;
 				$server['autoCommitOnly'] = $autoCommit;
-				$conn = $this->reallyOpenConnection( $server, false );
+				if ( $this->localDomain->getDatabase() !== null ) {
+					// Use the local domain table prefix if the local domain is specified
+					$server['tablePrefix'] = $this->localDomain->getTablePrefix();
+				}
+				$conn = $this->reallyOpenConnection( $server, $this->localDomain );
 				$host = $this->getServerName( $i );
 				if ( $conn->isOpen() ) {
 					$this->connLogger->debug( "Connected to database $i at '$host'." );
@@ -880,8 +930,6 @@ class LoadBalancer implements ILoadBalancer {
 			// Reuse a free connection from another domain
 			$conn = reset( $this->mConns[$connFreeKey][$i] );
 			$oldDomain = key( $this->mConns[$connFreeKey][$i] );
-			// The empty string as a DB name means "don't care".
-			// DatabaseMysqlBase::open() already handle this on connection.
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
 				$this->mLastError = "Error selecting database '$dbName' on server " .
 					$conn->getServer() . " from client host {$this->host}";
@@ -890,7 +938,8 @@ class LoadBalancer implements ILoadBalancer {
 			} else {
 				$conn->tablePrefix( $prefix );
 				unset( $this->mConns[$connFreeKey][$i][$oldDomain] );
-				$this->mConns[$connInUseKey][$i][$domain] = $conn;
+				// Note that if $domain is an empty string, getDomainID() might not match it
+				$this->mConns[$connInUseKey][$i][$conn->getDomainId()] = $conn;
 				$this->connLogger->debug( __METHOD__ .
 					": reusing free connection from $oldDomain for $domain" );
 			}
@@ -904,14 +953,15 @@ class LoadBalancer implements ILoadBalancer {
 			$server['foreignPoolRefCount'] = 0;
 			$server['foreign'] = true;
 			$server['autoCommitOnly'] = $autoCommit;
-			$conn = $this->reallyOpenConnection( $server, $dbName );
+			$conn = $this->reallyOpenConnection( $server, $domainInstance );
 			if ( !$conn->isOpen() ) {
 				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
 				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
-				$conn->tablePrefix( $prefix );
-				$this->mConns[$connInUseKey][$i][$domain] = $conn;
+				$conn->tablePrefix( $prefix ); // as specified
+				// Note that if $domain is an empty string, getDomainID() might not match it
+				$this->mConns[$connInUseKey][$i][$conn->getDomainID()] = $conn;
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 			}
 		}
@@ -933,7 +983,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return bool
 	 */
 	private function isOpen( $index ) {
-		if ( !is_integer( $index ) ) {
+		if ( !is_int( $index ) ) {
 			return false;
 		}
 
@@ -941,23 +991,34 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * Really opens a connection. Uncached.
+	 * Open a new network connection to a server (uncached)
+	 *
 	 * Returns a Database object whether or not the connection was successful.
-	 * @access private
 	 *
 	 * @param array $server
-	 * @param string|bool $dbNameOverride Use "" to not select any database
+	 * @param DatabaseDomain $domainOverride Use an unspecified domain to not select any database
 	 * @return Database
 	 * @throws DBAccessError
 	 * @throws InvalidArgumentException
 	 */
-	protected function reallyOpenConnection( array $server, $dbNameOverride = false ) {
+	protected function reallyOpenConnection( array $server, DatabaseDomain $domainOverride ) {
 		if ( $this->disabled ) {
 			throw new DBAccessError();
 		}
 
-		if ( $dbNameOverride !== false ) {
-			$server['dbname'] = $dbNameOverride;
+		// Handle $domainOverride being a specified or an unspecified domain
+		if ( $domainOverride->getDatabase() === null ) {
+			// Normally, an RDBMS requires a DB name specified on connection and the $server
+			// configuration array is assumed to already specify an appropriate DB name.
+			if ( $server['type'] === 'mysql' ) {
+				// For MySQL, DATABASE and SCHEMA are synonyms, connections need not specify a DB,
+				// and the DB name in $server might not exist due to legacy reasons (the default
+				// domain used to ignore the local LB domain, even when mismatched).
+				$server['dbname'] = null;
+			}
+		} else {
+			$server['dbname'] = $domainOverride->getDatabase();
+			$server['schema'] = $domainOverride->getSchema();
 		}
 
 		// Let the handle know what the cluster master is (e.g. "db1052")
@@ -1072,26 +1133,6 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function getServerType( $i ) {
 		return isset( $this->mServers[$i]['type'] ) ? $this->mServers[$i]['type'] : 'unknown';
-	}
-
-	/**
-	 * @deprecated Since 1.30, no alternative
-	 */
-	public function getServerInfo( $i ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		if ( isset( $this->mServers[$i] ) ) {
-			return $this->mServers[$i];
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @deprecated Since 1.30, construct new object
-	 */
-	public function setServerInfo( $i, array $serverInfo ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$this->mServers[$i] = $serverInfo;
 	}
 
 	public function getMasterPos() {
@@ -1331,7 +1372,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
 			function ( IDatabase $conn ) use ( $fname, $restore ) {
-				if ( $conn->writesOrCallbacksPending() ) {
+				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
 					$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 				}
 				if ( $restore ) {
@@ -1407,7 +1448,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		$age = ( $age === null ) ? $this->mWaitTimeout : $age;
+		$age = ( $age === null ) ? $this->waitTimeout : $age;
 
 		return ( $this->hasMasterChanges()
 			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
@@ -1617,10 +1658,12 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @param IDatabase $conn
 	 * @param DBMasterPos|bool $pos
-	 * @param int $timeout
+	 * @param int|null $timeout
 	 * @return bool
 	 */
-	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = 10 ) {
+	public function safeWaitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
+		$timeout = max( 1, $timeout ?: $this->waitTimeout );
+
 		if ( $this->getServerCount() <= 1 || !$conn->getLBInfo( 'replica' ) ) {
 			return true; // server is not a replica DB
 		}
@@ -1640,16 +1683,26 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $pos instanceof DBMasterPos ) {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			if ( $result == -1 || is_null( $result ) ) {
-				$msg = __METHOD__ . ": Timed out waiting on {$conn->getServer()} pos {$pos}";
-				$this->replLogger->warning( "$msg" );
+				$msg = __METHOD__ . ': Timed out waiting on {host} pos {pos}';
+				$this->replLogger->warning( $msg, [
+					'host' => $conn->getServer(),
+					'pos' => $pos,
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				] );
 				$ok = false;
 			} else {
-				$this->replLogger->info( __METHOD__ . ": Done" );
+				$this->replLogger->info( __METHOD__ . ': Done' );
 				$ok = true;
 			}
 		} else {
 			$ok = false; // something is misconfigured
-			$this->replLogger->error( "Could not get master pos for {$conn->getServer()}." );
+			$this->replLogger->error(
+				__METHOD__ . ': could not get master pos for {host}',
+				[
+					'host' => $conn->getServer(),
+					'trace' => ( new RuntimeException() )->getTraceAsString()
+				]
+			);
 		}
 
 		return $ok;
@@ -1690,15 +1743,33 @@ class LoadBalancer implements ILoadBalancer {
 				"Foreign domain connections are still in use ($domains)." );
 		}
 
-		$this->localDomain = new DatabaseDomain(
+		$oldDomain = $this->localDomain->getId();
+		$this->setLocalDomain( new DatabaseDomain(
 			$this->localDomain->getDatabase(),
-			null,
+			$this->localDomain->getSchema(),
 			$prefix
-		);
+		) );
 
-		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix ) {
-			$db->tablePrefix( $prefix );
+		$this->forEachOpenConnection( function ( IDatabase $db ) use ( $prefix, $oldDomain ) {
+			if ( !$db->getLBInfo( 'foreign' ) ) {
+				$db->tablePrefix( $prefix );
+			}
 		} );
+	}
+
+	/**
+	 * @param DatabaseDomain $domain
+	 */
+	private function setLocalDomain( DatabaseDomain $domain ) {
+		$this->localDomain = $domain;
+		// In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
+		// always true, gracefully handle the case when they fail to account for escaping.
+		if ( $this->localDomain->getTablePrefix() != '' ) {
+			$this->localDomainIdAlias =
+				$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
+		} else {
+			$this->localDomainIdAlias = $this->localDomain->getDatabase();
+		}
 	}
 
 	/**

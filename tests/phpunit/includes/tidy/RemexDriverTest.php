@@ -200,14 +200,14 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'a<small><i><div>d</div></i>e</small>',
 			'<p>a</p><small><i><div>d</div></i></small><p><small>e</small></p>'
 		],
+		// phpcs:disable Generic.Files.LineLength
 		[
 			'Complex pwrap test 6',
 			'<i>a<div>b</div>c<b>d<div>e</div>f</b>g</i>',
-			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 			// PHP 5 does not allow concatenation in initialisation of a class static variable
 			'<p><i>a</i></p><i><div>b</div></i><p><i>c<b>d</b></i></p><i><b><div>e</div></b></i><p><i><b>f</b>g</i></p>'
-			// @codingStandardsIgnoreEnd
 		],
+		// phpcs:enable
 		/* FIXME the second <b> causes a stack split which clones the <i> even
 		 * though no <p> is actually generated
 		[
@@ -251,6 +251,11 @@ class RemexDriverTest extends MediaWikiTestCase {
 			'AAA with fostering (FIXME: wrap missing)',
 			'<table><b>1<p>2</b>3</p>',
 			'<b>1</b><p><b>2</b>3</p><table></table>'
+		],
+		[
+			'AAA causes reparent of p-wrapped text node (T178632)',
+			'<i><blockquote>x</i></blockquote>',
+			'<i></i><blockquote><p><i>x</i></p></blockquote>',
 		],
 	];
 

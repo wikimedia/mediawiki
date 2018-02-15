@@ -175,13 +175,13 @@ class VersionChecker {
 		if ( !isset( $this->loaded[$dependencyName]['version'] ) ) {
 			// If we depend upon any version, and none is set, that's fine.
 			if ( $constraint === '*' ) {
-				wfDebug( "{$dependencyName} does not expose it's version, but {$checkedExt}
-					mentions it with constraint '*'. Assume it's ok so." );
+				wfDebug( "{$dependencyName} does not expose its version, but {$checkedExt}"
+					. " mentions it with constraint '*'. Assume it's ok so." );
 				return false;
 			} else {
 				// Otherwise, mark it as incompatible.
-				return "{$dependencyName} does not expose it's version, but {$checkedExt}
-					requires: {$constraint}.";
+				return "{$dependencyName} does not expose its version, but {$checkedExt}"
+					. " requires: {$constraint}.";
 			}
 		} else {
 			// Try to get a constraint for the dependency version

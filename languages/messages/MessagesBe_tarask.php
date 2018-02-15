@@ -236,6 +236,7 @@ $separatorTransformTable = [
 	',' => "\xc2\xa0", # nbsp
 	'.' => ','
 ];
+$minimumGroupingDigits = 2;
 
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 

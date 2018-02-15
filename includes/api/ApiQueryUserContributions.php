@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Oct 16, 2006
- *
  * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -45,7 +41,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$this->commentStore = new CommentStore( 'rev_comment' );
+		$this->commentStore = CommentStore::getStore();
 
 		$prop = array_flip( $this->params['prop'] );
 		$this->fld_ids = isset( $prop['ids'] );
@@ -349,7 +345,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			$commentQuery = $this->commentStore->getJoin();
+			$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
@@ -436,7 +432,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			);
 
 			if ( $userCanView ) {
-				$comment = $this->commentStore->getComment( $row )->text;
+				$comment = $this->commentStore->getComment( 'rev_comment', $row )->text;
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}

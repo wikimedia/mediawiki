@@ -81,6 +81,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	/**
 	 * per T28425
+	 * @covers Block::__construct
 	 */
 	public function testBug26425BlockTimestampDefaultsToTime() {
 		$user = $this->getUserForBlocking();
@@ -160,7 +161,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'MetaWikiUser',
+			'byText' => 'm>MetaWikiUser',
 		];
 		$block = new Block( $blockOptions );
 		$block->insert();
@@ -173,7 +174,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertInstanceOf(
-			'Block',
+			Block::class,
 			$userBlock,
 			"'$username' block block object should be existent"
 		);
@@ -214,7 +215,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'MetaWikiUser',
+			'byText' => 'Meta>MetaWikiUser',
 		];
 		$block = new Block( $blockOptions );
 
@@ -230,8 +231,9 @@ class BlockTest extends MediaWikiLangTestCase {
 			'Correct blockee name'
 		);
 		$this->assertEquals( $userId, $block->getTarget()->getId(), 'Correct blockee id' );
-		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
-		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+		$this->assertEquals( 'Meta>MetaWikiUser', $block->getBlocker()->getName(),
+			'Correct blocker name' );
+		$this->assertEquals( 'Meta>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
 
@@ -282,6 +284,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			],
 		];
 
+		$blocker = $this->getTestUser()->getUser();
 		foreach ( $blockList as $insBlock ) {
 			$target = $insBlock['target'];
 
@@ -293,7 +296,7 @@ class BlockTest extends MediaWikiLangTestCase {
 
 			$block = new Block();
 			$block->setTarget( $target );
-			$block->setBlocker( 'testblocker@global' );
+			$block->setBlocker( $blocker );
 			$block->mReason = $insBlock['desc'];
 			$block->mExpiry = 'infinity';
 			$block->prevents( 'createaccount', $insBlock['ACDisable'] );
@@ -364,6 +367,9 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $exResult, $block->mReason, 'Correct block type for XFF header ' . $xff );
 	}
 
+	/**
+	 * @covers Block::__construct
+	 */
 	public function testDeprecatedConstructor() {
 		$this->hideDeprecated( 'Block::__construct with multiple arguments' );
 		$username = 'UnthinkablySecretRandomUsername';
@@ -416,6 +422,11 @@ class BlockTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @covers Block::getSystemBlockType
+	 * @covers Block::insert
+	 * @covers Block::doAutoblock
+	 */
 	public function testSystemBlocks() {
 		$user = $this->getUserForBlocking();
 		$this->addBlockForUser( $user );
@@ -425,7 +436,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			'reason' => 'test system block',
 			'timestamp' => wfTimestampNow(),
 			'expiry' => $this->db->getInfinity(),
-			'byText' => 'MetaWikiUser',
+			'byText' => 'MediaWiki default',
 			'systemBlock' => 'test',
 			'enableAutoblock' => true,
 		];

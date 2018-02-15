@@ -186,7 +186,7 @@ class ReassignEdits extends Maintenance {
 		} else {
 			$user = User::newFromName( $username );
 			if ( !$user ) {
-				$this->error( "Invalid username", true );
+				$this->fatalError( "Invalid username" );
 			}
 		}
 		$user->load();
@@ -195,5 +195,5 @@ class ReassignEdits extends Maintenance {
 	}
 }
 
-$maintClass = "ReassignEdits";
+$maintClass = ReassignEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

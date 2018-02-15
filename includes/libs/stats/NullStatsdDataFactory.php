@@ -105,27 +105,22 @@ class NullStatsdDataFactory implements IBufferingStatsdDataFactory {
 		return $data;
 	}
 
-	/**
-	 * Check whether this data factory has any data.
-	 * @return bool
-	 */
 	public function hasData() {
 		return false;
 	}
 
-	/**
-	 * Return data from the factory.
-	 * @return StatsdData[]
-	 */
 	public function getData() {
 		return [];
 	}
 
-	/**
-	 * Set collection enable status.
-	 * @param bool $enabled Will collection be enabled?
-	 * @return void
-	 */
+	public function clearData() {
+		// Nothing to do, always empty
+	}
+
+	public function getDataCount() {
+		return 0;
+	}
+
 	public function setEnabled( $enabled ) {
 		// Nothing to do, null factory is always disabled.
 	}

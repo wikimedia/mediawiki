@@ -138,7 +138,7 @@ class RepoGroup {
 		$dbkey = $title->getDBkey();
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
-			&& empty( $options['bypassCache'] )
+			&& empty( $options['latest'] )
 		) {
 			$time = isset( $options['time'] ) ? $options['time'] : '';
 			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
@@ -452,7 +452,7 @@ class RepoGroup {
 
 			return $repo->getFileProps( $fileName );
 		} else {
-			$mwProps = new MWFileProps( MimeMagic::singleton() );
+			$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
 
 			return $mwProps->getPropsFromPath( $fileName, true );
 		}

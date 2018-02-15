@@ -156,22 +156,22 @@ class MessageCache {
 	}
 
 	/**
-	 * @param WANObjectCache $wanCache WAN cache instance
-	 * @param BagOStuff $clusterCache Cluster cache instance
-	 * @param BagOStuff $srvCache Server cache instance
+	 * @param WANObjectCache $wanCache
+	 * @param BagOStuff $clusterCache
+	 * @param BagOStuff $serverCache
 	 * @param bool $useDB Whether to look for message overrides (e.g. MediaWiki: pages)
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
 		BagOStuff $clusterCache,
-		BagOStuff $srvCache,
+		BagOStuff $serverCache,
 		$useDB,
 		$expiry
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
-		$this->srvCache = $srvCache;
+		$this->srvCache = $serverCache;
 
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
@@ -193,7 +193,6 @@ class MessageCache {
 				$po = ParserOptions::newFromAnon();
 				$po->setEditSection( false );
 				$po->setAllowUnsafeRawHtml( false );
-				$po->setWrapOutputClass( false );
 				return $po;
 			}
 
@@ -203,11 +202,6 @@ class MessageCache {
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
-			// Wrapping messages in an extra <div> is probably not expected. If
-			// they're outside the content area they probably shouldn't be
-			// targeted by CSS that's targeting the parser output, and if
-			// they're inside they already are from the outer div.
-			$this->mParserOptions->setWrapOutputClass( false );
 		}
 
 		return $this->mParserOptions;
@@ -1048,8 +1042,7 @@ class MessageCache {
 		if ( $titleObj->getLatestRevID() ) {
 			$revision = Revision::newKnownCurrent(
 				$dbr,
-				$titleObj->getArticleID(),
-				$titleObj->getLatestRevID()
+				$titleObj
 			);
 		} else {
 			$revision = false;
@@ -1127,7 +1120,7 @@ class MessageCache {
 			$wgParser->firstCallInit();
 			# Clone it and store it
 			$class = $wgParserConf['class'];
-			if ( $class == 'ParserDiffTest' ) {
+			if ( $class == ParserDiffTest::class ) {
 				# Uncloneable
 				$this->mParser = new $class( $wgParserConf );
 			} else {

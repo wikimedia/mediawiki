@@ -1,15 +1,13 @@
 <?php
-/**
- * MediaWiki Widgets – ComplexNamespaceInputWidget class.
- *
- * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
- */
+
 namespace MediaWiki\Widget;
 
 /**
  * Namespace input widget. Displays a dropdown box with the choice of available namespaces, plus two
  * checkboxes to include associated namespace or to invert selection.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license MIT
  */
 class ComplexNamespaceInputWidget extends \OOUI\Widget {
 
@@ -22,20 +20,20 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 
 	/**
 	 * @param array $config Configuration options
-	 * @param array $config['namespace'] Configuration for the NamespaceInputWidget
-	 *  dropdown with list of namespaces
-	 * @param string $config['namespace']['includeAllValue'] If specified,
-	 *  add an "all namespaces" option to the dropdown, and use this as the input value for it
-	 * @param array|null $config['invert'] Configuration for the "invert selection"
-	 *  CheckboxInputWidget. If null, the checkbox will not be generated.
-	 * @param array|null $config['associated'] Configuration for the "include associated namespace"
-	 *  CheckboxInputWidget. If null, the checkbox will not be generated.
-	 * @param array $config['invertLabel'] Configuration for the FieldLayout with label
-	 *  wrapping the "invert selection" checkbox
-	 * @param string $config['invertLabel']['label'] Label text for the label
-	 * @param array $config['associatedLabel'] Configuration for the FieldLayout with label
-	 *  wrapping the "include associated namespace" checkbox
-	 * @param string $config['associatedLabel']['label'] Label text for the label
+	 *   - array $config['namespace'] Configuration for the NamespaceInputWidget
+	 *     dropdown with list of namespaces
+	 *   - string $config['namespace']['includeAllValue'] If specified,
+	 *     add an "all namespaces" option to the dropdown, and use this as the input value for it
+	 *   - array|null $config['invert'] Configuration for the "invert selection"
+	 *     CheckboxInputWidget. If null, the checkbox will not be generated.
+	 *   - array|null $config['associated'] Configuration for the "include associated namespace"
+	 *     CheckboxInputWidget. If null, the checkbox will not be generated.
+	 *   - array $config['invertLabel'] Configuration for the FieldLayout with label
+	 *     wrapping the "invert selection" checkbox
+	 *   - string $config['invertLabel']['label'] Label text for the label
+	 *   - array $config['associatedLabel'] Configuration for the FieldLayout with label
+	 *     wrapping the "include associated namespace" checkbox
+	 *   - string $config['associatedLabel']['label'] Label text for the label
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization
@@ -51,7 +49,6 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 			$config
 		);
 
-		// Parent constructor
 		parent::__construct( $config );
 
 		// Properties
@@ -114,6 +111,7 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 				)
 			)
 		);
+		$config['namespace']['dropdown']['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 }

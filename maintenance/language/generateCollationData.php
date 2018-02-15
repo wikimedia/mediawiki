@@ -131,16 +131,14 @@ class GenerateCollationData extends Maintenance {
 				$error .= "* $ucdallURL\n";
 			}
 
-			$this->error( $error );
-			exit( 1 );
+			$this->fatalError( $error );
 		}
 
 		$debugOutFileName = $this->getOption( 'debug-output' );
 		if ( $debugOutFileName ) {
 			$this->debugOutFile = fopen( $debugOutFileName, 'w' );
 			if ( !$this->debugOutFile ) {
-				$this->error( "Unable to open debug output file for writing" );
-				exit( 1 );
+				$this->fatalError( "Unable to open debug output file for writing" );
 			}
 		}
 		$this->loadUcd();
@@ -205,14 +203,12 @@ class GenerateCollationData extends Maintenance {
 	function generateFirstChars() {
 		$file = fopen( "{$this->dataDir}/allkeys.txt", 'r' );
 		if ( !$file ) {
-			$this->error( "Unable to open allkeys.txt" );
-			exit( 1 );
+			$this->fatalError( "Unable to open allkeys.txt" );
 		}
 		global $IP;
 		$outFile = fopen( "$IP/serialized/first-letters-root.ser", 'w' );
 		if ( !$outFile ) {
-			$this->error( "Unable to open output file first-letters-root.ser" );
-			exit( 1 );
+			$this->fatalError( "Unable to open output file first-letters-root.ser" );
 		}
 
 		$goodTertiaryChars = [];
@@ -327,11 +323,6 @@ class GenerateCollationData extends Maintenance {
 			$headerChars[] = $char;
 			if ( $primaryCollator->compare( $char, $prevChar ) <= 0 ) {
 				$numOutOfOrder++;
-				/*
-				printf( "Out of order: U+%05X > U+%05X\n",
-					utf8ToCodepoint( $prevChar ),
-					utf8ToCodepoint( $char ) );
-				 */
 			}
 			$prevChar = $char;
 
@@ -468,5 +459,5 @@ class UcdXmlReader {
 	}
 }
 
-$maintClass = 'GenerateCollationData';
+$maintClass = GenerateCollationData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

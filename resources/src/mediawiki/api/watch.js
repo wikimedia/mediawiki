@@ -28,7 +28,7 @@
 				{
 					formatversion: 2,
 					action: 'watch',
-					titles: Array.isArray( pages ) ? pages.join( '|' ) : String( pages )
+					titles: Array.isArray( pages ) ? pages : String( pages )
 				},
 				addParams
 			)

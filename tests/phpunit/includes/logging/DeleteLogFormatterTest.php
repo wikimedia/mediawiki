@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers DeleteLogFormatter
+ */
 class DeleteLogFormatterTest extends LogFormatterTestCase {
 
 	/**

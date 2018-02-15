@@ -6,8 +6,10 @@
  */
 class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 
+	use MediaWikiCoversValidator;
+
 	private function getMockResultWrapper( $row = null, $numRows = 1 ) {
-		$resultWrapper = $this->getMockBuilder( 'ResultWrapper' )
+		$resultWrapper = $this->getMockBuilder( Wikimedia\Rdbms\ResultWrapper::class )
 			->disableOriginalConstructor();
 
 		$resultWrapper = $resultWrapper->getMock();
@@ -59,7 +61,7 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertEquals( $resultWrapper, $object->res );
 		$this->assertSame( 0, $object->key );
-		$this->assertInstanceOf( 'Title', $object->current );
+		$this->assertInstanceOf( Title::class, $object->current );
 		$this->assertEquals( $namespace, $object->current->mNamespace );
 		$this->assertEquals( $title, $object->current->mTextform );
 	}
@@ -92,7 +94,7 @@ class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 		$title = 'foo';
 		$row = $this->getRowWithTitle( $namespace, $title );
 		$object = $this->getTitleArrayFromResult( $this->getMockResultWrapper( $row ) );
-		$this->assertInstanceOf( 'Title', $object->current() );
+		$this->assertInstanceOf( Title::class, $object->current() );
 		$this->assertEquals( $namespace, $object->current->mNamespace );
 		$this->assertEquals( $title, $object->current->mTextform );
 	}

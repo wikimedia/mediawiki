@@ -26,14 +26,14 @@
  * @since 1.22
  */
 class HashRing {
-	/** @var Array (location => weight) */
+	/** @var array (location => weight) */
 	protected $sourceMap = [];
-	/** @var Array (location => (start, end)) */
+	/** @var array (location => (start, end)) */
 	protected $ring = [];
 
 	/** @var HashRing|null */
 	protected $liveRing;
-	/** @var Array (location => UNIX timestamp) */
+	/** @var array (location => UNIX timestamp) */
 	protected $ejectionExpiries = [];
 	/** @var int UNIX timestamp */
 	protected $ejectionNextExpiry = INF;

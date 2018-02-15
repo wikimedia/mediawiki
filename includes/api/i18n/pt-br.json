@@ -13,10 +13,11 @@
 			"Eduardo Addad de Oliveira",
 			"Warley Felipe C.",
 			"TheEduGobi",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Hamilton Abreu"
 		]
 	},
-	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & solicitações]\n</div>\n<strong>Status:</strong> Todos os recursos exibidos nesta página devem estar funcionando, mas a API ainda está em desenvolvimento ativo e pode mudar a qualquer momento. Inscrever-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para aviso de atualizações.\n\n<strong>Requisições incorretas:</strong> Quando requisições erradas são enviadas para a API, um cabeçalho HTTP será enviado com a chave \"MediaWiki-API-Error\" e então o valor do cabeçalho e o código de erro enviados de volta serão definidos para o mesmo valor. Para mais informações, veja [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Erros e avisos]].\n\n<strong>Testando:</strong> Para facilitar o teste das requisições da API, consulte [[Special:ApiSandbox]].",
+	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página devem ter o comportamento documentado, mas a API ainda está em desenvolvimento ativo e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\">\n<strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].\n</p>",
 	"apihelp-main-param-action": "Qual ação executar.",
 	"apihelp-main-param-format": "O formato da saída.",
 	"apihelp-main-param-maxlag": "O atraso máximo pode ser usado quando o MediaWiki está instalado em um cluster replicado no banco de dados. Para salvar as ações que causam mais atraso na replicação do site, esse parâmetro pode fazer o cliente aguardar até que o atraso da replicação seja menor do que o valor especificado. Em caso de atraso excessivo, o código de erro <samp>maxlag</samp> é retornado com uma mensagem como <samp>Waiting for $host: $lag seconds lagged</samp>.<br />Veja [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: Maxlag parameter]] para mais informações.",
@@ -67,6 +68,7 @@
 	"apihelp-compare-param-fromid": "Primeiro ID de página para comparar.",
 	"apihelp-compare-param-fromrev": "Primeira revisão para comparar.",
 	"apihelp-compare-param-fromtext": "Use este texto em vez do conteúdo da revisão especificada por <var>fromtitle</var>, <var>fromid</var> ou <var>fromrev</var>.",
+	"apihelp-compare-param-fromsection": "Utilizar apenas a secção especificada do conteúdo 'from' especificado.",
 	"apihelp-compare-param-frompst": "Faz uma transformação pré-salvar em <var>fromtext</var>.",
 	"apihelp-compare-param-fromcontentmodel": "Modelo de conteúdo de <var>fromtext</var>. Se não for fornecido, será adivinhado com base nos outros parâmetros.",
 	"apihelp-compare-param-fromcontentformat": "Formato de serialização de conteúdo de <var>fromtext</var>.",
@@ -366,6 +368,7 @@
 	"apihelp-parse-param-disablepp": "Use <var>$1disablelimitreport</var> em vez.",
 	"apihelp-parse-param-disableeditsection": "Omita os links da seção de edição da saída do analisador.",
 	"apihelp-parse-param-disabletidy": "Não executa a limpeza HTML (por exemplo, tidy) na saída do analisador.",
+	"apihelp-parse-param-disablestylededuplication": "Não desduplica as folhas de estilo inline na saída do analisador.",
 	"apihelp-parse-param-generatexml": "Gerar XML parse tree (requer modelo de conteúdo <code>$1</code>, substituído por <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Analisar no mode de visualização.",
 	"apihelp-parse-param-sectionpreview": "Analise no modo de visualização de seção (também permite o modo de visualização).",
@@ -1551,6 +1554,8 @@
 	"apierror-chunk-too-small": "O tamanho mínimo do bloco é $1 {{PLURAL:$1|byte|bytes}} para os pedaços não finais.",
 	"apierror-cidrtoobroad": "Os intervalos CIDR $1 maiores que /$2 não são aceitos.",
 	"apierror-compare-no-title": "Não é possível pré-salvar a transformação sem um título. Tente especificar <var>fromtitle</var> ou <var>totitle</var>.",
+	"apierror-compare-nosuchfromsection": "Não há nenhuma secção $1 no conteúdo 'from'.",
+	"apierror-compare-nosuchtosection": "Não há nenhuma seção $1 no conteúdo 'to'.",
 	"apierror-compare-relative-to-nothing": "Nenhuma revisão 'from' para <var>torelative</var> para ser relativa à.",
 	"apierror-contentserializationexception": "Falha na serialização de conteúdo: $1",
 	"apierror-contenttoobig": "O conteúdo fornecido excede o limite de tamanho do artigo de $1 {{PLURAL: $1|kilobyte|kilobytes}}.",

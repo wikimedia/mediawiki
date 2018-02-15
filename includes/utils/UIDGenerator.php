@@ -53,7 +53,7 @@ class UIDGenerator {
 		}
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
-			MediaWiki\suppressWarnings();
+			Wikimedia\suppressWarnings();
 			if ( wfIsWindows() ) {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( wfShellExec( 'getmac /NH /FO CSV' ) );
@@ -67,7 +67,7 @@ class UIDGenerator {
 					wfShellExec( '/sbin/ifconfig -a' ), $m );
 				$nodeId = isset( $m[1] ) ? str_replace( ':', '', $m[1] ) : '';
 			}
-			MediaWiki\restoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 				$nodeId = MWCryptRand::generateHex( 12, true );
 				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
@@ -364,10 +364,10 @@ class UIDGenerator {
 
 		$counter = null; // post-increment persistent counter value
 
-		// Use APC/eAccelerator/xcache if requested, available, and not in CLI mode;
+		// Use APC/etc if requested, available, and not in CLI mode;
 		// Counter values would not survive accross script instances in CLI mode.
 		$cache = null;
-		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
+		if ( ( $flags & self::QUICK_VOLATILE ) && !wfIsCLI() ) {
 			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		}
 		if ( $cache ) {

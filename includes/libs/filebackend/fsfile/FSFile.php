@@ -75,9 +75,9 @@ class FSFile {
 	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	public function getTimestamp() {
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$timestamp = filemtime( $this->path );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 		if ( $timestamp !== false ) {
 			$timestamp = wfTimestamp( TS_MW, $timestamp );
 		}
@@ -168,9 +168,9 @@ class FSFile {
 			return $this->sha1Base36;
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$this->sha1Base36 = sha1_file( $this->path );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $this->sha1Base36 !== false ) {
 			$this->sha1Base36 = Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );

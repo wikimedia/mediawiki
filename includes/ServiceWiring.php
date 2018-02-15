@@ -37,11 +37,17 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\ObjectFactory;
 
 return [
 	'DBLoadBalancerFactory' => function ( MediaWikiServices $services ) {
@@ -158,14 +164,23 @@ return [
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
+
+		if ( $services->getMainConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
+			$store = new NoWriteWatchedItemStore( $store );
+		}
+
 		return $store;
 	},
 
 	'WatchedItemQueryService' => function ( MediaWikiServices $services ) {
-		return new WatchedItemQueryService( $services->getDBLoadBalancer() );
+		return new WatchedItemQueryService(
+			$services->getDBLoadBalancer(),
+			$services->getCommentStore()
+		);
 	},
 
 	'CryptRand' => function ( MediaWikiServices $services ) {
@@ -384,8 +399,6 @@ return [
 			$id = 'apc';
 		} elseif ( function_exists( 'apcu_fetch' ) ) {
 			$id = 'apcu';
-		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
-			$id = 'xcache';
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
@@ -439,13 +452,87 @@ return [
 			'filesize' => $config->get( 'MaxShellFileSize' ),
 		];
 		$cgroup = $config->get( 'ShellCgroup' );
+		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
 
-		$factory = new CommandFactory( $limits, $cgroup );
+		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 		$factory->logStderr();
 
 		return $factory;
 	},
+
+	'ExternalStoreFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+
+		return new ExternalStoreFactory(
+			$config->get( 'ExternalStores' )
+		);
+	},
+
+	'RevisionStore' => function ( MediaWikiServices $services ) {
+		/** @var SqlBlobStore $blobStore */
+		$blobStore = $services->getService( '_SqlBlobStore' );
+
+		$store = new RevisionStore(
+			$services->getDBLoadBalancer(),
+			$blobStore,
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore()
+		);
+
+		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
+
+		$config = $services->getMainConfig();
+		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
+
+		return $store;
+	},
+
+	'RevisionLookup' => function ( MediaWikiServices $services ) {
+		return $services->getRevisionStore();
+	},
+
+	'RevisionFactory' => function ( MediaWikiServices $services ) {
+		return $services->getRevisionStore();
+	},
+
+	'BlobStoreFactory' => function ( MediaWikiServices $services ) {
+		global $wgContLang;
+		return new BlobStoreFactory(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			$services->getMainConfig(),
+			$wgContLang
+		);
+	},
+
+	'BlobStore' => function ( MediaWikiServices $services ) {
+		return $services->getService( '_SqlBlobStore' );
+	},
+
+	'_SqlBlobStore' => function ( MediaWikiServices $services ) {
+		return $services->getBlobStoreFactory()->newSqlBlobStore();
+	},
+
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+		global $wgContLang;
+		$authManager = AuthManager::singleton();
+		$linkRenderer = $services->getLinkRendererFactory()->create();
+		$config = $services->getMainConfig();
+		return new DefaultPreferencesFactory( $config, $wgContLang, $authManager, $linkRenderer );
+	},
+
+	'HttpRequestFactory' => function ( MediaWikiServices $services ) {
+		return new \MediaWiki\Http\HttpRequestFactory();
+	},
+
+	'CommentStore' => function ( MediaWikiServices $services ) {
+		global $wgContLang;
+		return new CommentStore(
+			$wgContLang,
+			$services->getMainConfig()->get( 'CommentTableSchemaMigrationStage' )
+		);
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function

@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Aug 29, 2014
- *
  * Copyright © 2014 Wikimedia Foundation and contributors
  *
  * This program is free software; you can redistribute it and/or modify
@@ -62,6 +58,7 @@ class ApiHelp extends ApiBase {
 		if ( $params['wrap'] ) {
 			$data = [
 				'mime' => 'text/html',
+				'filename' => 'api-help.html',
 				'help' => $html,
 			];
 			ApiResult::setSubelementsList( $data, 'help' );
@@ -70,6 +67,7 @@ class ApiHelp extends ApiBase {
 			$result->reset();
 			$result->addValue( null, 'text', $html, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/html', ApiResult::NO_SIZE_CHECK );
+			$result->addValue( null, 'filename', 'api-help.html', ApiResult::NO_SIZE_CHECK );
 		}
 	}
 
@@ -709,6 +707,15 @@ class ApiHelp extends ApiBase {
 									->parse();
 							}
 						}
+					}
+
+					if ( isset( $settings[self::PARAM_MAX_BYTES] ) ) {
+						$info[] = $context->msg( 'api-help-param-maxbytes' )
+							->numParams( $settings[self::PARAM_MAX_BYTES] );
+					}
+					if ( isset( $settings[self::PARAM_MAX_CHARS] ) ) {
+						$info[] = $context->msg( 'api-help-param-maxchars' )
+							->numParams( $settings[self::PARAM_MAX_CHARS] );
 					}
 
 					// Add default

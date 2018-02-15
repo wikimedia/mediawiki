@@ -18,7 +18,7 @@
  * @file
  */
 
-use WrappedString\WrappedStringList;
+use Wikimedia\WrappedStringList;
 
 /**
  * Bootstrap a ResourceLoader client on an HTML page.

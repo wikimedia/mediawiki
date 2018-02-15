@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers WikiTextStructure
+ */
 class WikitextStructureTest extends MediaWikiLangTestCase {
 
 	private function getMockTitle() {

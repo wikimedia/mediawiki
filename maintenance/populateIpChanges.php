@@ -62,9 +62,14 @@ TEXT
 	}
 
 	public function doDBUpdates() {
+		$dbw = $this->getDB( DB_MASTER );
+
+		if ( !$dbw->tableExists( 'ip_changes' ) ) {
+			$this->fatalError( 'ip_changes table does not exist' );
+		}
+
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-		$dbw = $this->getDB( DB_MASTER );
 		$throttle = intval( $this->getOption( 'throttle', 0 ) );
 		$maxRevId = intval( $this->getOption( 'max-rev-id', 0 ) );
 		$start = $this->getOption( 'rev-id', 0 );
@@ -78,11 +83,11 @@ TEXT
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
 		while ( $blockStart <= $end ) {
-			$blockEnd = min( $blockStart + $this->mBatchSize, $end );
+			$blockEnd = min( $blockStart + $this->getBatchSize(), $end );
 			$rows = $dbr->select(
 				'revision',
 				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
-				[ "rev_id BETWEEN $blockStart AND $blockEnd", 'rev_user' => 0 ],
+				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, 'rev_user' => 0 ],
 				__METHOD__
 			);
 
@@ -132,5 +137,5 @@ TEXT
 	}
 }
 
-$maintClass = "PopulateIpChanges";
+$maintClass = PopulateIpChanges::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

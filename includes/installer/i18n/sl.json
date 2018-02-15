@@ -3,7 +3,8 @@
 		"authors": [
 			"Dbc334",
 			"Eleassar",
-			"Yerpo"
+			"Yerpo",
+			"HairyFotr"
 		]
 	},
 	"config-desc": "Namestitveni program za MediaWiki",
@@ -48,11 +49,10 @@
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",
 	"config-env-hhvm": "HHVM $1 je nameščen.",
-	"config-unicode-using-intl": "Uporaba [http://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.",
+	"config-unicode-using-intl": "Uporaba [https://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.",
 	"config-memory-raised": "PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.",
-	"config-xcache": "[http://xcache.lighttpd.net/ XCache] je nameščen",
 	"config-apc": "[http://www.php.net/apc APC] je nameščen",
-	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] je nameščen",
+	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] je nameščen",
 	"config-diff3-bad": "GNU diff3 ni bilo mogoče najti.",
 	"config-using-server": "Uporabljam ime strežnika \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Uporabljam URL strežnika \"<nowiki>$1$2</nowiki>\".",
@@ -165,7 +165,7 @@
 	"config-cc-again": "Izberi ponovno ...",
 	"config-cc-not-chosen": "Izberite licenco Creative Commons, ki jo želite uporabiti, in kliknite »proceed«.",
 	"config-advanced-settings": "Napredna konfiguracija",
-	"config-cache-accel": "Predpomnjenje predmetov PHP (APC, APCu, XCache ali WinCache)",
+	"config-cache-accel": "Predpomnjenje predmetov PHP (APC, APCu ali WinCache)",
 	"config-cache-memcached": "Uporabi Memcached (zahteva dodatno namestitev in konfiguracijo)",
 	"config-memcached-servers": "Strežniki Memcached:",
 	"config-memcache-badip": "Vnesli ste neveljaven IP-naslov za Memcached: $1",

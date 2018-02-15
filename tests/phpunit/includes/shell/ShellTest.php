@@ -3,9 +3,13 @@
 use MediaWiki\Shell\Shell;
 
 /**
+ * @covers \MediaWiki\Shell\Shell
  * @group Shell
  */
 class ShellTest extends PHPUnit_Framework_TestCase {
+
+	use MediaWikiCoversValidator;
+
 	public function testIsDisabled() {
 		$this->assertInternalType( 'bool', Shell::isDisabled() ); // sanity
 	}
@@ -25,6 +29,7 @@ class ShellTest extends PHPUnit_Framework_TestCase {
 			'simple' => [ [ 'true' ], "'true'" ],
 			'with args' => [ [ 'convert', '-font', 'font name' ], "'convert' '-font' 'font name'" ],
 			'array' => [ [ [ 'convert', '-font', 'font name' ] ], "'convert' '-font' 'font name'" ],
+			'skip nulls' => [ [ 'ls', null ], "'ls'" ],
 		];
 	}
 }

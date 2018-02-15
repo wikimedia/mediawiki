@@ -237,7 +237,8 @@ class MediaStatisticsPage extends QueryPage {
 	 * @return string Comma separated list of allowed extensions (e.g. ".ogg, .oga")
 	 */
 	private function getExtensionList( $mime ) {
-		$exts = MimeMagic::singleton()->getExtensionsForType( $mime );
+		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
+			->getExtensionsForType( $mime );
 		if ( $exts === null ) {
 			return '';
 		}

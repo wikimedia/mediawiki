@@ -179,12 +179,12 @@ abstract class DatabaseUpdater {
 	/**
 	 * @param Database $db
 	 * @param bool $shared
-	 * @param Maintenance $maintenance
+	 * @param Maintenance|null $maintenance
 	 *
 	 * @throws MWException
 	 * @return DatabaseUpdater
 	 */
-	public static function newForDB( Database $db, $shared = false, $maintenance = null ) {
+	public static function newForDB( Database $db, $shared = false, Maintenance $maintenance = null ) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {
 			$class = ucfirst( $type ) . 'Updater';
@@ -340,10 +340,20 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $tableName The table name
 	 * @param string $fieldName The field to be modified
-	 * @param string $sqlPath The path to the SQL change path
+	 * @param string $sqlPath The path to the SQL patch
 	 */
 	public function modifyExtensionField( $tableName, $fieldName, $sqlPath ) {
 		$this->extensionUpdates[] = [ 'modifyField', $tableName, $fieldName, $sqlPath, true ];
+	}
+
+	/**
+	 * @since 1.31
+	 *
+	 * @param string $tableName The table name
+	 * @param string $sqlPath The path to the SQL patch
+	 */
+	public function modifyExtensionTable( $tableName, $sqlPath ) {
+		$this->extensionUpdates[] = [ 'modifyTable', $tableName, $sqlPath, true ];
 	}
 
 	/**
@@ -606,7 +616,7 @@ abstract class DatabaseUpdater {
 	 * 1.13...) with the values being arrays of updates, identical to how
 	 * updaters.inc did it (for now)
 	 *
-	 * @return array
+	 * @return array[]
 	 */
 	abstract protected function getCoreUpdateList();
 
@@ -1062,7 +1072,7 @@ abstract class DatabaseUpdater {
 				"maintenance/populateLogUsertext.php.\n"
 			);
 
-			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
+			$task = $this->maintenance->runChild( PopulateLogUsertext::class );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
@@ -1078,7 +1088,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateLogSearch.php.\n" );
 
-			$task = $this->maintenance->runChild( 'PopulateLogSearch' );
+			$task = $this->maintenance->runChild( PopulateLogSearch::class );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
@@ -1118,7 +1128,7 @@ abstract class DatabaseUpdater {
 			}
 
 			$this->output( "Updating category collations..." );
-			$task = $this->maintenance->runChild( 'UpdateCollation' );
+			$task = $this->maintenance->runChild( UpdateCollation::class );
 			$task->execute();
 			$this->output( "...done.\n" );
 		}
@@ -1129,7 +1139,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doMigrateUserOptions() {
 		if ( $this->db->tableExists( 'user_properties' ) ) {
-			$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
+			$cl = $this->maintenance->runChild( ConvertUserOptions::class, 'convertUserOptions.php' );
 			$cl->execute();
 			$this->output( "done.\n" );
 		}
@@ -1167,7 +1177,9 @@ abstract class DatabaseUpdater {
 		/**
 		 * @var $cl RebuildLocalisationCache
 		 */
-		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
+		$cl = $this->maintenance->runChild(
+			RebuildLocalisationCache::class, 'rebuildLocalisationCache.php'
+		);
 		$this->output( "Rebuilding localisation cache...\n" );
 		$cl->setForce();
 		$cl->execute();
@@ -1214,10 +1226,21 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/migrateComments.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'MigrateComments', 'migrateComments.php' );
+			$task = $this->maintenance->runChild( MigrateComments::class, 'migrateComments.php' );
 			$task->execute();
 			$this->output( "done.\n" );
 		}
+	}
+
+	/**
+	 * Migrate ar_text to modern storage
+	 * @since 1.31
+	 */
+	protected function migrateArchiveText() {
+		$this->output( "Migrating archive ar_text to modern storage.\n" );
+		$task = $this->maintenance->runChild( MigrateArchiveText::class, 'migrateArchiveText.php' );
+		$task->execute();
+		$this->output( "done.\n" );
 	}
 
 }

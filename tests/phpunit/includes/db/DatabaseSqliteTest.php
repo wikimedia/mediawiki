@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\ResultWrapper;
 
 class DatabaseSqliteMock extends DatabaseSqlite {
 	private $lastQuery;
@@ -285,6 +286,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @coversNothing
+	 */
 	public function testEntireSchema() {
 		global $IP;
 
@@ -298,6 +302,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	/**
 	 * Runs upgrades of older databases and compares results with current schema
 	 * @todo Currently only checks list of tables
+	 * @coversNothing
 	 */
 	public function testUpgrades() {
 		global $IP, $wgVersion, $wgProfiler;
@@ -393,7 +398,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( 'ResultWrapper', $databaseCreation, "Database creation" );
+		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Database creation" );
 
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion worked" );
@@ -486,7 +491,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( 'ResultWrapper', $databaseCreation, "Failed to create table a" );
+		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
 		$res = $db->select( 'a', '*' );
 		$this->assertEquals( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
@@ -497,6 +502,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::__toString
+	 */
 	public function testToString() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 

@@ -318,13 +318,16 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetOtherPage( $text, $expected ) {
 		if ( $expected === null ) {
-			$this->setExpectedException( 'MWException' );
+			$this->setExpectedException( MWException::class );
 		}
 
 		$title = Title::newFromText( $text );
 		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
 	}
 
+	/**
+	 * @covers Title::clearCaches
+	 */
 	public function testClearCaches() {
 		$linkCache = LinkCache::singleton();
 

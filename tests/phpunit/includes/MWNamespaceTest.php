@@ -5,12 +5,8 @@
  * @file
  */
 
-/**
- * Test class for MWNamespace.
- * @todo covers tags
- * @todo FIXME: this test file is a mess
- */
 class MWNamespaceTest extends MediaWikiTestCase {
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -27,15 +23,12 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		] );
 	}
 
-# ### START OF TESTS #########################################################
-
 	/**
 	 * @todo Write more texts, handle $wgAllowImageMoving setting
 	 * @covers MWNamespace::isMovable
 	 */
 	public function testIsMovable() {
 		$this->assertFalse( MWNamespace::isMovable( NS_SPECIAL ) );
-		# @todo FIXME: Write more tests!!
 	}
 
 	/**
@@ -155,18 +148,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @todo Implement testExists().
-	 */
-	/*
-	public function testExists() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-		);
-	}
-	*/
-
-	/**
 	 * Test MWNamespace::equals
 	 * Note if we add a namespace registration system with keys like 'MAIN'
 	 * we should add tests here for equivilance on things like 'MAIN' == 0
@@ -215,52 +196,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			"NS_SPECIAL and NS_MEDIA are different subject namespaces"
 		);
 	}
-
-	/**
-	 * @todo Implement testGetCanonicalNamespaces().
-	 */
-	/*
-	public function testGetCanonicalNamespaces() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-		);
-	}
-	*/
-	/**
-	 * @todo Implement testGetCanonicalName().
-	 */
-	/*
-		public function testGetCanonicalName() {
-			// Remove the following lines when you implement this test.
-			$this->markTestIncomplete(
-				'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-			);
-		}
-	*/
-	/**
-	 * @todo Implement testGetCanonicalIndex().
-	 */
-	/*
-	public function testGetCanonicalIndex() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-		);
-	}
-	*/
-
-	/**
-	 * @todo Implement testGetValidNamespaces().
-	 */
-	/*
-	public function testGetValidNamespaces() {
-		// Remove the following lines when you implement this test.
-		$this->markTestIncomplete(
-			'This test has not been implemented yet. Rely on $wgCanonicalNamespaces.'
-		);
-	}
-	*/
 
 	public function provideHasTalkNamespace() {
 		return [

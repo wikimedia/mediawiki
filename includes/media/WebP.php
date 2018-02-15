@@ -63,9 +63,9 @@ class WebPHandler extends BitmapHandler {
 				return self::METADATA_GOOD;
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$data = unserialize( $metadata );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
 				wfDebug( __METHOD__ . " invalid WebP metadata\n" );
@@ -154,7 +154,7 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * Decodes a lossy chunk header
-	 * @param string $header Header string
+	 * @param string $header First few bytes of the header, expected to be at least 18 bytes long
 	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	protected static function decodeLossyChunkHeader( $header ) {
@@ -180,7 +180,7 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * Decodes a lossless chunk header
-	 * @param string $header Header string
+	 * @param string $header First few bytes of the header, expected to be at least 13 bytes long
 	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	public static function decodeLosslessChunkHeader( $header ) {
@@ -205,7 +205,7 @@ class WebPHandler extends BitmapHandler {
 
 	/**
 	 * Decodes an extended chunk header
-	 * @param string $header Header string
+	 * @param string $header First few bytes of the header, expected to be at least 18 bytes long
 	 * @return bool|array See WebPHandler::decodeHeader
 	 */
 	public static function decodeExtendedChunkHeader( $header ) {
@@ -235,9 +235,9 @@ class WebPHandler extends BitmapHandler {
 			$metadata = $file->getMetadata();
 		}
 
-		MediaWiki\suppressWarnings();
+		Wikimedia\suppressWarnings();
 		$metadata = unserialize( $metadata );
-		MediaWiki\restoreWarnings();
+		Wikimedia\restoreWarnings();
 
 		if ( $metadata == false ) {
 			return false;

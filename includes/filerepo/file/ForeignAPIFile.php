@@ -33,7 +33,7 @@ class ForeignAPIFile extends File {
 	/** @var array */
 	private $mInfo = [];
 
-	protected $repoClass = 'ForeignApiRepo';
+	protected $repoClass = ForeignApiRepo::class;
 
 	/**
 	 * @param Title|string|bool $title
@@ -286,7 +286,7 @@ class ForeignAPIFile extends File {
 	 */
 	function getMimeType() {
 		if ( !isset( $this->mInfo['mime'] ) ) {
-			$magic = MimeMagic::singleton();
+			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$this->mInfo['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
 		}
 
@@ -300,7 +300,7 @@ class ForeignAPIFile extends File {
 		if ( isset( $this->mInfo['mediatype'] ) ) {
 			return $this->mInfo['mediatype'];
 		}
-		$magic = MimeMagic::singleton();
+		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}
@@ -340,8 +340,10 @@ class ForeignAPIFile extends File {
 		$iter = $this->repo->getBackend()->getFileList( [ 'dir' => $dir ] );
 
 		$files = [];
-		foreach ( $iter as $file ) {
-			$files[] = $file;
+		if ( $iter ) {
+			foreach ( $iter as $file ) {
+				$files[] = $file;
+			}
 		}
 
 		return $files;

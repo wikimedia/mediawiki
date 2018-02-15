@@ -1,9 +1,5 @@
 <?php
 /**
- *
- *
- * Created on August 16, 2007
- *
  * Copyright © 2007 Iker Labarga "<Firstname><Lastname>@gmail.com"
  *
  * This program is free software; you can redistribute it and/or modify
@@ -334,7 +330,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Apply change tags
-		if ( count( $params['tags'] ) ) {
+		if ( $params['tags'] ) {
 			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( $tagStatus->isOK() ) {
 				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );

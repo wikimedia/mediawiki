@@ -63,15 +63,15 @@ class CreateAndPromote extends Maintenance {
 
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
-			$this->error( "invalid username.", true );
+			$this->fatalError( "invalid username." );
 		}
 
 		$exists = ( 0 !== $user->idForName() );
 
 		if ( $exists && !$force ) {
-			$this->error( "Account exists. Perhaps you want the --force option?", true );
+			$this->fatalError( "Account exists. Perhaps you want the --force option?" );
 		} elseif ( !$exists && !$password ) {
-			$this->error( "Argument <password> required!", false );
+			$this->error( "Argument <password> required!" );
 			$this->maybeHelp( true );
 		} elseif ( $exists ) {
 			$inGroups = $user->getGroups();
@@ -133,7 +133,7 @@ class CreateAndPromote extends Maintenance {
 					$user->saveSettings();
 				}
 			} catch ( PasswordError $pwe ) {
-				$this->error( $pwe->getText(), true );
+				$this->fatalError( $pwe->getText() );
 			}
 		}
 
@@ -150,5 +150,5 @@ class CreateAndPromote extends Maintenance {
 	}
 }
 
-$maintClass = "CreateAndPromote";
+$maintClass = CreateAndPromote::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

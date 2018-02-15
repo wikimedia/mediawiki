@@ -23,7 +23,7 @@
 			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' );
 
 		function updateBlockOptions() {
-			var blocktarget = $.trim( blockTargetWidget.getValue() ),
+			var blocktarget = blockTargetWidget.getValue().trim(),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
@@ -31,8 +31,8 @@
 				expiryValue = expiryWidget.dropdowninput.getValue(),
 				// infinityValues  are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
-				isIndefinite = $.inArray( expiryValue, infinityValues ) !== -1 ||
-					( expiryValue === 'other' && $.inArray( expiryWidget.textinput.getValue(), infinityValues ) !== -1 );
+				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1 ||
+					( expiryValue === 'other' && infinityValues.indexOf( expiryWidget.textinput.getValue() ) !== -1 );
 
 			if ( enableAutoblockField ) {
 				enableAutoblockField.toggle( !( isNonEmptyIp ) );

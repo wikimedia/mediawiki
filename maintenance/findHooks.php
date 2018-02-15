@@ -143,7 +143,7 @@ class FindHooks extends Maintenance {
 		) {
 			$this->output( "Looks good!\n" );
 		} else {
-			$this->error( 'The script finished with errors.', 1 );
+			$this->fatalError( 'The script finished with errors.' );
 		}
 	}
 
@@ -245,7 +245,7 @@ class FindHooks extends Maintenance {
 		$m = [];
 		preg_match_all(
 			// All functions which runs hooks
-			'/(?:wfRunHooks|Hooks\:\:run)\s*\(\s*' .
+			'/(?:wfRunHooks|Hooks\:\:run|Hooks\:\:runWithoutAbort)\s*\(\s*' .
 				// First argument is the hook name as string
 				'([\'"])(.*?)\1' .
 				// Comma for second argument
@@ -349,5 +349,5 @@ class FindHooks extends Maintenance {
 	}
 }
 
-$maintClass = 'FindHooks';
+$maintClass = FindHooks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
