@@ -620,6 +620,11 @@ interface IDatabase {
 	 * This includes the user table in the query, with the alias "a" available
 	 * for use in field names (e.g. a.user_name).
 	 *
+	 * A calculated table, defined by the result of selectSQLText(), requires an alias
+	 * key and a CalculatedTable value which wraps the SQL query, for example:
+	 *
+	 *    [ 'c' => new CalculatedSQLTable( 'SELECT ...' ) ]
+	 *
 	 * Joins using parentheses for grouping (since MediaWiki 1.31) may be
 	 * constructed using nested arrays. For example,
 	 *
@@ -769,15 +774,15 @@ interface IDatabase {
 	 * doing UNION queries, where the SQL text of each query is needed. In general,
 	 * however, callers outside of Database classes should just use select().
 	 *
+	 * @see IDatabase::select()
+	 *
 	 * @param string|array $table Table name
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name
 	 * @param string|array $options Query options
 	 * @param string|array $join_conds Join conditions
-	 *
-	 * @return string SQL query string.
-	 * @see IDatabase::select()
+	 * @return string SQL query string
 	 */
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__,
@@ -838,7 +843,7 @@ interface IDatabase {
 	 * @since 1.27 Added $join_conds parameter
 	 *
 	 * @param array|string $tables Table names
-	 * @param string $vars Unused
+	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
@@ -847,7 +852,7 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -1056,6 +1061,25 @@ interface IDatabase {
 	 * @since 1.28
 	 */
 	public function buildStringCast( $field );
+
+	/**
+	 * Equivalent to IDatabase::selectSQLText() except wraps the result in CalculatedSQLTable
+	 *
+	 * @see IDatabase::selectSQLText()
+	 *
+	 * @param string|array $table Table name
+	 * @param string|array $vars Field names
+	 * @param string|array $conds Conditions
+	 * @param string $fname Caller function name
+	 * @param string|array $options Query options
+	 * @param string|array $join_conds Join conditions
+	 * @return CalculatedSQLTable
+	 * @since 1.31
+	 */
+	public function buildCalculatedTable(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	);
 
 	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
