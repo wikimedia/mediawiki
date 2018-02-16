@@ -78,10 +78,6 @@ class FileRepo {
 	 */
 	protected $scriptDirUrl;
 
-	/** @var string Script extension of the MediaWiki installation, equivalent
-	 *    to the old $wgScriptExtension, e.g. .php5 defaults to .php */
-	protected $scriptExtension;
-
 	/** @var string Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
@@ -166,7 +162,7 @@ class FileRepo {
 		$optionalSettings = [
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'scriptExtension', 'favicon', 'thumbProxyUrl', 'thumbProxySecret'
+			'favicon', 'thumbProxyUrl', 'thumbProxySecret',
 		];
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -744,9 +740,7 @@ class FileRepo {
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
 		if ( isset( $this->scriptDirUrl ) ) {
-			$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
-
-			return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query );
+			return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}.php", $query );
 		}
 
 		return false;
@@ -1928,7 +1922,7 @@ class FileRepo {
 
 		$optionalSettings = [
 			'url', 'thumbUrl', 'initialCapital', 'descBaseUrl', 'scriptDirUrl', 'articleUrl',
-			'fetchDescription', 'descriptionCacheExpiry', 'scriptExtension', 'favicon'
+			'fetchDescription', 'descriptionCacheExpiry', 'favicon'
 		];
 		foreach ( $optionalSettings as $k ) {
 			if ( isset( $this->$k ) ) {
