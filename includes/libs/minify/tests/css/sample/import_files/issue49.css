@@ -1,0 +1,3 @@
+.social-btn a[href*="facebook"] { background-image: url(facebook.png) } /* encode skipped */
+.social-btn a[href*="vimeo"] { background-image: url(vimeo.png) }
+.social-btn a[href*="instagram"] { background-image: url(instagram.png) }

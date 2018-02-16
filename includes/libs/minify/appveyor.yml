@@ -1,0 +1,31 @@
+build: false
+
+shallow_clone: false
+
+platform:
+  - x86
+  - x64
+
+cache:
+  - C:\Program Files\OpenSSL -> appveyor.yml
+  - C:\tools\php -> appveyor.yml
+  - vendor -> composer.json
+
+init:
+  - SET PATH=C:\Program Files\OpenSSL;C:\tools\php;%PATH%
+
+install:
+  # install ssl
+  - IF NOT EXIST "C:\Program Files\OpenSSL" (cinst -y OpenSSL.Light)
+  # install php
+  - ps: Set-Service wuauserv -StartupType Manual # http://help.appveyor.com/discussions/problems/5616-not-able-to-build-due-to-problem-in-chocolateyinstallps1
+  - IF NOT EXIST C:\tools\php (cinst --params '""/InstallDir:C:\tools\php""' -y php)
+  - echo extension_dir=ext > C:\tools\php\php.ini
+  - echo extension=php_openssl.dll >> C:\tools\php\php.ini
+  - echo extension=php_mbstring.dll >> C:\tools\php\php.ini
+  # install composer
+  - IF NOT EXIST vendor (php -r "readfile('https://getcomposer.org/installer');" | php & php composer.phar --prefer-source install)
+  - tests\convert_symlinks_to_windows_style.sh
+
+test_script:
+  - vendor\bin\phpunit

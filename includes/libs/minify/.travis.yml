@@ -1,0 +1,29 @@
+sudo: required
+
+language: php
+
+php:
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
+
+services:
+  - docker
+
+before_install:
+  # need at least version 17.05, for ARG support in FROM
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+install:
+  - make up PHP=$(phpenv version-name)
+
+script:
+  - make test PHP=$(phpenv version-name) UP=0 DOWN=0
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+after_script:
+  - make down PHP=$(phpenv version-name)
