@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module that functions as a shortcut to the wikitext preprocessor. Expands
  * any templates in a provided string, and returns the result of this expansion
@@ -48,7 +50,7 @@ class ApiExpandTemplates extends ApiBase {
 
 		if ( $params['prop'] === null ) {
 			$this->addDeprecation(
-				'apiwarn-deprecation-expandtemplates-prop', 'action=expandtemplates&!prop'
+				[ 'apiwarn-deprecation-missingparam', 'prop' ], 'action=expandtemplates&!prop'
 			);
 			$prop = [];
 		} else {
@@ -63,12 +65,12 @@ class ApiExpandTemplates extends ApiBase {
 		// Get title and revision ID for parser
 		$revid = $params['revid'];
 		if ( $revid !== null ) {
-			$rev = Revision::newFromId( $revid );
+			$rev = MediaWikiServices::getInstance()->getRevisionStore()->getRevisionById( $revid );
 			if ( !$rev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
 			}
 			$pTitleObj = $titleObj;
-			$titleObj = $rev->getTitle();
+			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 			if ( $titleProvided ) {
 				if ( !$titleObj->equals( $pTitleObj ) ) {
 					$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),

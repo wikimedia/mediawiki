@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Query module to enumerate all revisions.
  *
@@ -39,6 +42,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	protected function run( ApiPageSet $resultPageSet = null ) {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -63,7 +67,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$revQuery = Revision::getQueryInfo(
+			$revQuery = $revisionStore->getQueryInfo(
 				$this->fetchContent ? [ 'page', 'text' ] : [ 'page' ]
 			);
 			$this->addTables( $revQuery['tables'] );
@@ -120,9 +124,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			// Paranoia: avoid brute force searches (T19342)
 			if ( !$this->getUser()->isAllowed( 'deletedhistory' ) ) {
-				$bitmask = Revision::DELETED_USER;
+				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$this->getUser()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
 			}
@@ -185,13 +189,13 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->rev_id;
 				}
 			} else {
-				$revision = Revision::newFromRow( $row );
+				$revision = $revisionStore->newRevisionFromRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->rev_page] ) ) {
 					$index = $nextIndex++;
 					$pageMap[$row->rev_page] = $index;
-					$title = $revision->getTitle();
+					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
 					$a = [
 						'pageid' => $title->getArticleID(),
 						'revisions' => [ $rev ],

@@ -100,12 +100,32 @@ production.
 * 'missingparam' errors will now use the prefixed parameter name in the code
   and error text, e.g. "noxxfoo" and "The 'xxfoo' parameter must be set" rather
   than "nofoo" and "The 'foo' parameter must be set".
+* action=query&prop=revisions now takes a 'rvslots' parameter to indicate the
+  multi-content revision slots for which content should be returned. It also
+  has a new rvprop, 'roles', to indicate which roles have slots. A deprecation
+  warning will be issued if rvprop=content or rvprop=contentmodel are used
+  without rvslots.
+* The rvcontentformat parameter to action=query&prop=revisions has been
+  deprecated. Clients should be prepared to deal with the default format for
+  relevant models.
+* Use of the deprecated parameters rvexpandtemplates, rvgeneratexml, rvparse,
+  rvdiffto, rvdifftotext, rvdifftotextpst, rvcontentformat, or the deprecated
+  rvprop=parsetree is forbidden with the new 'rvslots' parameter.
+* action=query&prop=deletedrevisions, action=query&list=allrevisions, and
+  action=query&list=alldeletedrevisions are changed similarly to
+  &prop=revisions (see the three previous items).
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
 * Parameter names may no longer contain '{' or '}', as these are now used for
   templated parameters.
 * (T194950) Added 'ApiMaxLagInfo' hook.
+* Added 'ApiParseMakeOutputPage' hook.
+* The following methods now take a RevisionRecord rather than a Revision. No
+  external callers are known.
+  * ApiFeedContributions::feedItemAuthor()
+  * ApiFeedContributions::feedItemDesc()
+  * ApiQueryRevisionsBase::extractRevisionInfo()
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.

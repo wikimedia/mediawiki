@@ -453,7 +453,7 @@ abstract class RevisionRecord {
 	 *
 	 * @return bool
 	 */
-	protected function audienceCan( $field, $audience, User $user = null ) {
+	public function audienceCan( $field, $audience, User $user = null ) {
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( $field ) ) {
 			return false;
 		} elseif ( $audience == self::FOR_THIS_USER ) {
