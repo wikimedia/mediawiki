@@ -772,6 +772,12 @@ class MovePageForm extends UnlistedSpecialPage {
 		if ( $extraOutput !== [] ) {
 			$out->addHTML( "<ul>\n<li>" . implode( "</li>\n<li>", $extraOutput ) . "</li>\n</ul>" );
 		}
+		// adds link to special:ReplaceText
+		if ( Hooks::run( 'SpecialMovepageAfterMove', [ &$movePage, &$ot, &$nt ] ) ) {
+			if ( class_exists( 'ReplaceTextHooks') ) {
+				$out->addWikiText( "To also modify links to this page in other pages, go to [[ Special:ReplaceText ]].");
+			}
+		}
 
 		# Deal with watches (we don't watch subpages)
 		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $user );
