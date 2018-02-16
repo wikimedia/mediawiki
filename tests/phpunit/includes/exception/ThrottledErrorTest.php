@@ -11,8 +11,10 @@ class ThrottledErrorTest extends MediaWikiTestCase {
 		try {
 			throw new ThrottledError();
 		} catch ( ThrottledError $e ) {
+			ob_start();
 			$e->report();
-			$this->assertTrue( true );
+			$text = ob_get_clean();
+			$this->assertContains( $e->getText(), $text );
 		}
 	}
 

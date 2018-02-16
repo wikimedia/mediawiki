@@ -189,7 +189,7 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			$message = $this->getText();
 			// T17602: STDERR may not be available
-			if ( defined( 'STDERR' ) ) {
+			if ( !defined( 'MW_PHPUNIT_TEST' ) && defined( 'STDERR' ) ) {
 				fwrite( STDERR, $message );
 			} else {
 				echo $message;
