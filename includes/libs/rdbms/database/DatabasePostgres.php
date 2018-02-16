@@ -35,16 +35,16 @@ class DatabasePostgres extends Database {
 	protected $port;
 
 	/** @var resource */
-	protected $mLastResult = null;
+	protected $lastResultHandle = null;
 	/** @var int The number of rows affected as an integer */
-	protected $mAffectedRows = null;
+	protected $lastAffectedRowCount = null;
 
 	/** @var float|string */
 	private $numericVersion = null;
 	/** @var string Connect string to open a PostgreSQL connection */
 	private $connectString;
 	/** @var string */
-	private $mCoreSchema;
+	private $coreSchema;
 	/** @var string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap = [];
 
@@ -218,13 +218,13 @@ class DatabasePostgres extends Database {
 		if ( pg_send_query( $conn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
-		$this->mLastResult = pg_get_result( $conn );
-		$this->mAffectedRows = null;
-		if ( pg_result_error( $this->mLastResult ) ) {
+		$this->lastResultHandle = pg_get_result( $conn );
+		$this->lastAffectedRowCount = null;
+		if ( pg_result_error( $this->lastResultHandle ) ) {
 			return false;
 		}
 
-		return $this->mLastResult;
+		return $this->lastResultHandle;
 	}
 
 	protected function dumpError() {
@@ -244,7 +244,7 @@ class DatabasePostgres extends Database {
 		];
 		foreach ( $diags as $d ) {
 			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s\n",
-				$d, pg_result_error_field( $this->mLastResult, $d ) ) );
+				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
 	}
 
@@ -371,8 +371,8 @@ class DatabasePostgres extends Database {
 
 	public function lastError() {
 		if ( $this->conn ) {
-			if ( $this->mLastResult ) {
-				return pg_result_error( $this->mLastResult );
+			if ( $this->lastResultHandle ) {
+				return pg_result_error( $this->lastResultHandle );
 			} else {
 				return pg_last_error();
 			}
@@ -382,23 +382,23 @@ class DatabasePostgres extends Database {
 	}
 
 	public function lastErrno() {
-		if ( $this->mLastResult ) {
-			return pg_result_error_field( $this->mLastResult, PGSQL_DIAG_SQLSTATE );
+		if ( $this->lastResultHandle ) {
+			return pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
 		} else {
 			return false;
 		}
 	}
 
 	protected function fetchAffectedRowCount() {
-		if ( !is_null( $this->mAffectedRows ) ) {
+		if ( !is_null( $this->lastAffectedRowCount ) ) {
 			// Forced result for simulated queries
-			return $this->mAffectedRows;
+			return $this->lastAffectedRowCount;
 		}
-		if ( empty( $this->mLastResult ) ) {
+		if ( empty( $this->lastResultHandle ) ) {
 			return 0;
 		}
 
-		return pg_affected_rows( $this->mLastResult );
+		return pg_affected_rows( $this->lastResultHandle );
 	}
 
 	/**
@@ -644,7 +644,7 @@ __INDEXATTR__;
 					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
 
 					if ( $savepoint ) {
-						$bar = pg_result_error( $this->mLastResult );
+						$bar = pg_result_error( $this->lastResultHandle );
 						if ( $bar != false ) {
 							$savepoint->rollback();
 						} else {
@@ -669,7 +669,7 @@ __INDEXATTR__;
 			$sql .= '(' . $this->makeList( $args ) . ')';
 			$res = (bool)$this->query( $sql, $fname, $savepoint );
 			if ( $savepoint ) {
-				$bar = pg_result_error( $this->mLastResult );
+				$bar = pg_result_error( $this->lastResultHandle );
 				if ( $bar != false ) {
 					$savepoint->rollback();
 				} else {
@@ -683,7 +683,7 @@ __INDEXATTR__;
 			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
-			$this->mAffectedRows = $numrowsinserted;
+			$this->lastAffectedRowCount = $numrowsinserted;
 
 			// IGNORE always returns true
 			return true;
@@ -968,7 +968,7 @@ __INDEXATTR__;
 		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
-				$this->mCoreSchema = $desiredSchema;
+				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
@@ -981,15 +981,15 @@ __INDEXATTR__;
 				array_unshift( $search_path,
 					$this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
-				$this->mCoreSchema = $desiredSchema;
+				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
-			$this->mCoreSchema = $this->getCurrentSchema();
+			$this->coreSchema = $this->getCurrentSchema();
 			$this->queryLogger->debug(
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
-				$this->mCoreSchema . "\"\n" );
+				$this->coreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
 		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
@@ -1002,7 +1002,7 @@ __INDEXATTR__;
 	 * @return string Core schema name
 	 */
 	public function getCoreSchema() {
-		return $this->mCoreSchema;
+		return $this->coreSchema;
 	}
 
 	public function getServerVersion() {
