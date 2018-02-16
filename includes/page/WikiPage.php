@@ -2269,10 +2269,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$good = 0;
 		}
 		$edits = $options['changed'] ? 1 : 0;
-		$total = $options['created'] ? 1 : 0;
+		$pages = $options['created'] ? 1 : 0;
 
 		DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
-			[ 'edits' => $edits, 'articles' => $good, 'total' => $total ]
+			[ 'edits' => $edits, 'articles' => $good, 'pages' => $pages ]
 		) );
 		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content ) );
 
