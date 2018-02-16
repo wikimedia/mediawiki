@@ -157,19 +157,6 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
-/**
- * The extension to append to script names by default.
- *
- * Some hosting providers used PHP 4 for *.php files, and PHP 5 for *.php5.
- * This variable was provided to support those providers.
- *
- * @since 1.11
- * @deprecated since 1.25; support for '.php5' has been phased out of MediaWiki
- *  proper. Backward-compatibility can be maintained by configuring your web
- *  server to rewrite URLs. See RELEASE-NOTES for details.
- */
-$wgScriptExtension = '.php';
-
 /**@}*/
 
 /************************************************************************//**
@@ -503,9 +490,6 @@ $wgImgAuthUrlPathMap = [];
  *   - descBaseUrl       URL of image description pages, e.g. https://en.wikipedia.org/wiki/File:
  *   - scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
  *                       https://en.wikipedia.org/w
- *   - scriptExtension   Script extension of the MediaWiki installation, equivalent to
- *                       $wgScriptExtension, e.g. ".php5". Defaults to ".php".
- *
  *   - articleUrl        Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1
  *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
  *                       $wgFetchCommonsDescriptions.
@@ -8256,7 +8240,7 @@ $wgMaxShellWallClockTime = 180;
 $wgShellCgroup = false;
 
 /**
- * Executable path of the PHP cli binary (php/php5). Should be set up on install.
+ * Executable path of the PHP cli binary. Should be set up on install.
  */
 $wgPhpCli = '/usr/bin/php';
 
