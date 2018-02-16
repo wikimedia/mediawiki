@@ -23,6 +23,8 @@
  * @since 1.23
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * A query module to show contributors to a page
  *
@@ -82,7 +84,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user = 0' );
-		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page' );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
@@ -111,7 +113,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		] );
 		$this->addWhereFld( 'rev_page', $pages );
 		$this->addWhere( 'rev_user != 0' );
-		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', 'rev_page, rev_user' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
