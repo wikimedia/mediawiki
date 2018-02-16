@@ -40,6 +40,7 @@ class MwSql extends Maintenance {
 			'Takes a file name containing SQL as argument or runs interactively.' );
 		$this->addOption( 'query',
 			'Run a single query instead of running interactively', false, true );
+		$this->addOption( 'json', 'Output the results as JSON instead of PHP objects' );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addOption( 'wikidb',
 			'The database wiki ID to use if not the current one', false, true );
@@ -175,9 +176,15 @@ class MwSql extends Maintenance {
 			// Do nothing
 			return;
 		} elseif ( is_object( $res ) && $res->numRows() ) {
+			$out = '';
 			foreach ( $res as $row ) {
-				$this->output( print_r( $row, true ) );
+				$out .= print_r( $row, true );
+				$rows[] = $row;
 			}
+			if ( $this->hasOption( 'json' ) ) {
+				$out = json_encode( $rows, JSON_PRETTY_PRINT );
+			}
+			$this->output( $out . "\n" );
 		} else {
 			$affected = $db->affectedRows();
 			$this->output( "Query OK, $affected row(s) affected\n" );
