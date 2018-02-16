@@ -21,6 +21,8 @@
  * @since 1.23
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * API interface to RevDel. The API equivalent of Special:RevisionDelete.
  * Requires API write mode to be enabled.
@@ -61,8 +63,8 @@ class ApiRevisionDelete extends ApiBase {
 		}
 		$bits = [
 			'content' => RevisionDeleter::getRevdelConstant( $params['type'] ),
-			'comment' => Revision::DELETED_COMMENT,
-			'user' => Revision::DELETED_USER,
+			'comment' => RevisionRecord::DELETED_COMMENT,
+			'user' => RevisionRecord::DELETED_USER,
 		];
 		$bitfield = [];
 		foreach ( $bits as $key => $bit ) {
@@ -77,11 +79,11 @@ class ApiRevisionDelete extends ApiBase {
 
 		if ( $params['suppress'] === 'yes' ) {
 			$this->checkUserRightsAny( 'suppressrevision' );
-			$bitfield[Revision::DELETED_RESTRICTED] = 1;
+			$bitfield[RevisionRecord::DELETED_RESTRICTED] = 1;
 		} elseif ( $params['suppress'] === 'no' ) {
-			$bitfield[Revision::DELETED_RESTRICTED] = 0;
+			$bitfield[RevisionRecord::DELETED_RESTRICTED] = 0;
 		} else {
-			$bitfield[Revision::DELETED_RESTRICTED] = -1;
+			$bitfield[RevisionRecord::DELETED_RESTRICTED] = -1;
 		}
 
 		$targetObj = null;

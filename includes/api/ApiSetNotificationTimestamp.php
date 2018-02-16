@@ -22,6 +22,7 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -73,10 +74,11 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
 				$this->dieWithError( [ 'apierror-multpages', $this->encodeParamName( 'torevid' ) ] );
 			}
-			$title = reset( $pageSet->getGoodTitles() );
+			$titles = $pageSet->getGoodTitles();
+			$title = reset( $titles );
 			if ( $title ) {
-				$timestamp = Revision::getTimestampFromId(
-					$title, $params['torevid'], Revision::READ_LATEST );
+				$timestamp = MediaWikiServices::getInstance()->getRevisionStore()
+					->getTimestampFromId( $title, $params['torevid'], IDBAccessObject::READ_LATEST );
 				if ( $timestamp ) {
 					$timestamp = $dbw->timestamp( $timestamp );
 				} else {
@@ -87,12 +89,14 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			if ( $params['entirewatchlist'] || $pageSet->getGoodTitleCount() > 1 ) {
 				$this->dieWithError( [ 'apierror-multpages', $this->encodeParamName( 'newerthanrevid' ) ] );
 			}
-			$title = reset( $pageSet->getGoodTitles() );
+			$titles = $pageSet->getGoodTitles();
+			$title = reset( $titles );
 			if ( $title ) {
-				$revid = $title->getNextRevisionID(
-					$params['newerthanrevid'], Title::GAID_FOR_UPDATE );
+				$revid = $title->getNextRevisionID( $params['newerthanrevid'], Title::GAID_FOR_UPDATE );
 				if ( $revid ) {
-					$timestamp = $dbw->timestamp( Revision::getTimestampFromId( $title, $revid ) );
+					$timestamp = $dbw->timestamp(
+						MediaWikiServices::getInstance()->getRevisionStore()->getTimestampFromId( $title, $revid )
+					);
 				} else {
 					$timestamp = null;
 				}
