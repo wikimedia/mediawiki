@@ -23,6 +23,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Query module to enumerate all deleted revisions.
  *
@@ -45,6 +48,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$result = $this->getResult();
 
@@ -103,7 +107,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
-			$arQuery = Revision::getArchiveQueryInfo();
+			$arQuery = $revisionStore->getArchiveQueryInfo();
 			$this->addTables( $arQuery['tables'] );
 			$this->addJoinConds( $arQuery['joins'] );
 			$this->addFields( $arQuery['fields'] );
@@ -239,9 +243,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
 			if ( !$user->isAllowed( 'deletedhistory' ) ) {
-				$bitmask = Revision::DELETED_USER;
+				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-				$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
 			}
@@ -347,13 +351,13 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					$generated[] = $row->ar_rev_id;
 				}
 			} else {
-				$revision = Revision::newFromArchiveRow( $row );
+				$revision = $revisionStore->newRevisionFromArchiveRow( $row );
 				$rev = $this->extractRevisionInfo( $revision, $row );
 
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 					$index = $nextIndex++;
 					$pageMap[$row->ar_namespace][$row->ar_title] = $index;
-					$title = $revision->getTitle();
+					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
 					$a = [
 						'pageid' => $title->getArticleID(),
 						'revisions' => [ $rev ],

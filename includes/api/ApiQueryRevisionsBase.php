@@ -20,6 +20,11 @@
  * @file
  */
 
+use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
+use MediaWiki\MediaWikiServices;
+
 /**
  * A base class for functions common to producing a list of revisions.
  *
@@ -27,13 +32,23 @@
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
+	/**
+	 * @name Constants for internal use. Don't use externally.
+	 * @{
+	 */
+	const IS_DELETED = 1; // Whether the field is revision-deleted
+	const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
+	/**@}*/
+
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
-		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true;
+		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,
+		$slotRoles = null, $needSlots;
 
 	protected $fld_ids = false, $fld_flags = false, $fld_timestamp = false,
 		$fld_size = false, $fld_sha1 = false, $fld_comment = false,
 		$fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_parsetree = false;
+		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_roles = false,
+		$fld_parsetree = false;
 
 	public function execute() {
 		$this->run();
@@ -55,6 +70,53 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param array $params
 	 */
 	protected function parseParameters( $params ) {
+		$prop = array_flip( $params['prop'] );
+
+		$this->fld_ids = isset( $prop['ids'] );
+		$this->fld_flags = isset( $prop['flags'] );
+		$this->fld_timestamp = isset( $prop['timestamp'] );
+		$this->fld_comment = isset( $prop['comment'] );
+		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
+		$this->fld_size = isset( $prop['size'] );
+		$this->fld_sha1 = isset( $prop['sha1'] );
+		$this->fld_content = isset( $prop['content'] );
+		$this->fld_contentmodel = isset( $prop['contentmodel'] );
+		$this->fld_userid = isset( $prop['userid'] );
+		$this->fld_user = isset( $prop['user'] );
+		$this->fld_tags = isset( $prop['tags'] );
+		$this->fld_roles = isset( $prop['roles'] );
+		$this->fld_parsetree = isset( $prop['parsetree'] );
+
+		$this->slotRoles = $params['slots'];
+
+		if ( $this->slotRoles !== null ) {
+			if ( $this->fld_parsetree ) {
+				$this->dieWithError( [
+					'apierror-invalidparammix-cannotusewith',
+					$this->encodeParamName( 'prop=parsetree' ),
+					$this->encodeParamName( 'slots' ),
+				], 'invalidparammix' );
+			}
+			foreach ( [
+				'expandtemplates', 'generatexml', 'parse', 'diffto', 'difftotext', 'difftotextpst',
+				'contentformat'
+			] as $p ) {
+				if ( $params[$p] !== null && $params[$p] !== false ) {
+					$this->dieWithError( [
+						'apierror-invalidparammix-cannotusewith',
+						$this->encodeParamName( $p ),
+						$this->encodeParamName( 'slots' ),
+					], 'invalidparammix' );
+				}
+			}
+		}
+
+		if ( !empty( $params['contentformat'] ) ) {
+			$this->contentFormat = $params['contentformat'];
+		}
+
+		$this->limit = $params['limit'];
+
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
 			$this->difftotextpst = $params['difftotextpst'];
@@ -72,50 +134,19 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			// DifferenceEngine returns a rather ambiguous empty
 			// string if that's not the case
 			if ( $params['diffto'] != 0 ) {
-				$difftoRev = Revision::newFromId( $params['diffto'] );
+				$difftoRev = MediaWikiServices::getInstance()->getRevisionStore()
+					->getRevisionById( $params['diffto'] );
 				if ( !$difftoRev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $params['diffto'] ] );
 				}
-				if ( !$difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+				$revDel = $this->checkRevDel( $difftoRev, RevisionRecord::DELETED_TEXT );
+				if ( $revDel & self::CANNOT_VIEW ) {
 					$this->addWarning( [ 'apiwarn-difftohidden', $difftoRev->getId() ] );
 					$params['diffto'] = null;
 				}
 			}
 			$this->diffto = $params['diffto'];
 		}
-
-		$prop = array_flip( $params['prop'] );
-
-		$this->fld_ids = isset( $prop['ids'] );
-		$this->fld_flags = isset( $prop['flags'] );
-		$this->fld_timestamp = isset( $prop['timestamp'] );
-		$this->fld_comment = isset( $prop['comment'] );
-		$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
-		$this->fld_size = isset( $prop['size'] );
-		$this->fld_sha1 = isset( $prop['sha1'] );
-		$this->fld_content = isset( $prop['content'] );
-		$this->fld_contentmodel = isset( $prop['contentmodel'] );
-		$this->fld_userid = isset( $prop['userid'] );
-		$this->fld_user = isset( $prop['user'] );
-		$this->fld_tags = isset( $prop['tags'] );
-		$this->fld_parsetree = isset( $prop['parsetree'] );
-
-		if ( $this->fld_parsetree ) {
-			$encParam = $this->encodeParamName( 'prop' );
-			$name = $this->getModuleName();
-			$parent = $this->getParent();
-			$parentParam = $parent->encodeParamName( $parent->getModuleManager()->getModuleGroup( $name ) );
-			$this->addDeprecation(
-				[ 'apiwarn-deprecation-parameter', "{$encParam}=parsetree" ],
-				"action=query&{$parentParam}={$name}&{$encParam}=parsetree"
-			);
-		}
-
-		if ( !empty( $params['contentformat'] ) ) {
-			$this->contentFormat = $params['contentformat'];
-		}
-
-		$this->limit = $params['limit'];
 
 		$this->fetchContent = $this->fld_content || !is_null( $this->diffto )
 			|| !is_null( $this->difftotext ) || $this->fld_parsetree;
@@ -152,18 +183,48 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$this->limit = 10;
 		}
 		$this->validateLimit( 'limit', $this->limit, 1, $userMax, $botMax );
+
+		$warnSlots = $this->fetchContent || $this->fld_contentmodel;
+		$this->needSlots = $warnSlots || $this->fld_size || $this->fld_sha1;
+		if ( $warnSlots && $this->slotRoles === null ) {
+			$encParam = $this->encodeParamName( 'slots' );
+			$name = $this->getModuleName();
+			$parent = $this->getParent();
+			$parentParam = $parent->encodeParamName( $parent->getModuleManager()->getModuleGroup( $name ) );
+			$this->addDeprecation(
+				[ 'apiwarn-deprecation-missingparam', $encParam ],
+				"action=query&{$parentParam}={$name}&!{$encParam}"
+			);
+		}
 	}
 
 	/**
-	 * Extract information from the Revision
+	 * Test revision deletion status
+	 * @param RevisionRecord $revision Revision to check
+	 * @param int $field One of the RevisionRecord::DELETED_* constants
+	 * @return int Revision deletion status flags. Bitwise OR of
+	 *  self::IS_DELETED and self::CANNOT_VIEW, as appropriate.
+	 */
+	private function checkRevDel( RevisionRecord $revision, $field ) {
+		$ret = $revision->isDeleted( $field ) ? self::IS_DELETED : 0;
+		if ( $ret ) {
+			$canSee = RevisionRecord::userCanBitfield(
+				$revision->getVisibility(), $field, $this->getUser()
+			);
+			$ret = $ret | ( $canSee ? 0 : self::CANNOT_VIEW );
+		}
+		return $ret;
+	}
+
+	/**
+	 * Extract information from the RevisionRecord
 	 *
-	 * @param Revision $revision
+	 * @since 1.32, takes a RevisionRecord instead of a Revision
+	 * @param RevisionRecord $revision Revision
 	 * @param object $row Should have a field 'ts_tags' if $this->fld_tags is set
 	 * @return array
 	 */
-	protected function extractRevisionInfo( Revision $revision, $row ) {
-		$title = $revision->getTitle();
-		$user = $this->getUser();
+	protected function extractRevisionInfo( RevisionRecord $revision, $row ) {
 		$vals = [];
 		$anyHidden = false;
 
@@ -179,15 +240,17 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_user || $this->fld_userid ) {
-			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
+			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_USER );
+			if ( ( $revDel & self::IS_DELETED ) ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
-			if ( $revision->userCan( Revision::DELETED_USER, $user ) ) {
+			if ( !( $revDel & self::CANNOT_VIEW ) ) {
+				$u = $revision->getUser( RevisionRecord::RAW );
 				if ( $this->fld_user ) {
-					$vals['user'] = $revision->getUserText( Revision::RAW );
+					$vals['user'] = $u->getName();
 				}
-				$userid = $revision->getUser( Revision::RAW );
+				$userid = $u->getId();
 				if ( !$userid ) {
 					$vals['anon'] = true;
 				}
@@ -203,45 +266,105 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_size ) {
-			if ( !is_null( $revision->getSize() ) ) {
+			try {
 				$vals['size'] = intval( $revision->getSize() );
-			} else {
+			} catch ( RevisionAccessException $e ) {
+				// Back compat: If there's no size, return 0.
 				$vals['size'] = 0;
 			}
 		}
 
 		if ( $this->fld_sha1 ) {
-			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
+			if ( ( $revDel & self::IS_DELETED ) ) {
 				$vals['sha1hidden'] = true;
 				$anyHidden = true;
 			}
-			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
-				if ( $revision->getSha1() != '' ) {
+			if ( !( $revDel & self::CANNOT_VIEW ) ) {
+				try {
 					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
-				} else {
+				} catch ( RevisionAccessException $e ) {
+					// Back compat: If there's no sha1, return emtpy string.
 					$vals['sha1'] = '';
 				}
 			}
 		}
 
-		if ( $this->fld_contentmodel ) {
-			$vals['contentmodel'] = $revision->getContentModel();
+		if ( $this->fld_roles ) {
+			$vals['roles'] = $revision->getSlotRoles();
+		}
+
+		if ( $this->needSlots ) {
+			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
+			if ( ( $this->fld_sha1 || $this->fetchContent ) && ( $revDel & self::IS_DELETED ) ) {
+				$anyHidden = true;
+			}
+			if ( $this->slotRoles === null ) {
+				try {
+					$slot = $revision->getSlot( 'main', RevisionRecord::RAW );
+				} catch ( RevisionAccessException $e ) {
+					// Back compat: If there's no slot, there's no content, so set 'textmissing'
+					$vals['textmissing'] = true;
+					$slot = null;
+				}
+
+				if ( $slot ) {
+					$content = null;
+					$vals += $this->extractSlotInfo( $slot, $revDel, $content );
+					if ( !empty( $vals['nosuchsection'] ) ) {
+						$this->dieWithError(
+							[
+								'apierror-nosuchsection-what',
+								wfEscapeWikiText( $this->section ),
+								$this->msg( 'revid', $revision->getId() )
+							],
+							'nosuchsection'
+						);
+					}
+					if ( $content ) {
+						$vals += $this->extractDeprecatedContent( $content, $revision );
+					}
+				}
+			} else {
+				$roles = array_intersect( $this->slotRoles, $revision->getSlotRoles() );
+				$vals['slots'] = [
+					ApiResult::META_KVP_MERGE => true,
+				];
+				foreach ( $roles as $role ) {
+					$slot = $revision->getSlot( $role, RevisionRecord::RAW );
+					$content = null;
+					$vals['slots'][$role] = $this->extractSlotInfo( $slot, $revDel, $content );
+					// @todo Move this into extractSlotInfo() (and remove its $content parameter)
+					// when extractDeprecatedContent() is no more.
+					if ( $content ) {
+						$vals['slots'][$role]['contentmodel'] = $content->getModel();
+						$vals['slots'][$role]['contentformat'] = $content->getDefaultFormat();
+						ApiResult::setContentValue( $vals['slots'][$role], 'content', $content->serialize() );
+					}
+				}
+				ApiResult::setArrayType( $vals['slots'], 'kvp', 'role' );
+				ApiResult::setIndexedTagName( $vals['slots'], 'slot' );
+			}
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
+			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_COMMENT );
+			if ( ( $revDel & self::IS_DELETED ) ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
-			if ( $revision->userCan( Revision::DELETED_COMMENT, $user ) ) {
-				$comment = $revision->getComment( Revision::RAW );
+			if ( !( $revDel & self::CANNOT_VIEW ) ) {
+				$comment = $revision->getComment( RevisionRecord::RAW );
+				$comment = $comment ? $comment->text : '';
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
+					$vals['parsedcomment'] = Linker::formatComment(
+						$comment, Title::newFromLinkTarget( $revision->getPageAsLinkTarget() )
+					);
 				}
 			}
 		}
@@ -256,69 +379,114 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$content = null;
-		global $wgParser;
-		if ( $this->fetchContent ) {
-			$content = $revision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			// Expand templates after getting section content because
-			// template-added sections don't count and Parser::preprocess()
-			// will have less input
-			if ( $content && $this->section !== false ) {
-				$content = $content->getSection( $this->section, false );
-				if ( !$content ) {
-					$this->dieWithError(
-						[
-							'apierror-nosuchsection-what',
-							wfEscapeWikiText( $this->section ),
-							$this->msg( 'revid', $revision->getId() )
-						],
-						'nosuchsection'
-					);
-				}
-			}
-			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
-				$vals['texthidden'] = true;
-				$anyHidden = true;
-			} elseif ( !$content ) {
-				$vals['textmissing'] = true;
-			}
+		if ( $anyHidden && $revision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
+			$vals['suppressed'] = true;
 		}
-		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
-			if ( $content ) {
-				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
-					$t = $content->getNativeData(); # note: don't set $text
 
-					$wgParser->startExternalParse(
-						$title,
-						ParserOptions::newFromContext( $this->getContext() ),
-						Parser::OT_PREPROCESS
-					);
-					$dom = $wgParser->preprocessToDom( $t );
-					if ( is_callable( [ $dom, 'saveXML' ] ) ) {
-						$xml = $dom->saveXML();
-					} else {
-						$xml = $dom->__toString();
-					}
-					$vals['parsetree'] = $xml;
+		return $vals;
+	}
+
+	/**
+	 * Extract information from the SlotRecord
+	 *
+	 * @param SlotRecord $slot
+	 * @param int $revDel Revdel status flags, from self::checkRevDel()
+	 * @param Content|null &$content Set to the slot's content, if available
+	 *  and $this->fetchContent is true
+	 * @return array
+	 */
+	private function extractSlotInfo( SlotRecord $slot, $revDel, &$content = null ) {
+		$vals = [];
+		ApiResult::setArrayType( $vals, 'assoc' );
+
+		if ( $this->fld_size ) {
+			$vals['size'] = intval( $slot->getSize() );
+		}
+
+		if ( $this->fld_sha1 ) {
+			if ( ( $revDel & self::IS_DELETED ) ) {
+				$vals['sha1hidden'] = true;
+			}
+			if ( !( $revDel & self::CANNOT_VIEW ) ) {
+				if ( $slot->getSha1() != '' ) {
+					$vals['sha1'] = Wikimedia\base_convert( $slot->getSha1(), 36, 16, 40 );
 				} else {
-					$vals['badcontentformatforparsetree'] = true;
-					$this->addWarning(
-						[
-							'apierror-parsetree-notwikitext-title',
-							wfEscapeWikiText( $title->getPrefixedText() ),
-							$content->getModel()
-						],
-						'parsetree-notwikitext'
-					);
+					$vals['sha1'] = '';
 				}
 			}
 		}
 
-		if ( $this->fld_content && $content ) {
+		if ( $this->fld_contentmodel ) {
+			$vals['contentmodel'] = $slot->getModel();
+		}
+
+		$content = null;
+		if ( $this->fetchContent ) {
+			if ( ( $revDel & self::IS_DELETED ) ) {
+				$vals['texthidden'] = true;
+			}
+			if ( !( $revDel & self::CANNOT_VIEW ) ) {
+				$content = $slot->getContent();
+				// Expand templates after getting section content because
+				// template-added sections don't count and Parser::preprocess()
+				// will have less input
+				if ( $this->section !== false ) {
+					$content = $content->getSection( $this->section, false );
+					if ( !$content ) {
+						$vals['nosuchsection'] = true;
+					}
+				}
+			}
+		}
+
+		return $vals;
+	}
+
+	/**
+	 * Format a Content using deprecated options
+	 * @param Content $content Content to format
+	 * @param RevisionRecord $revision Revision being processed
+	 * @return array
+	 */
+	private function extractDeprecatedContent( Content $content, RevisionRecord $revision ) {
+		global $wgParser;
+
+		$vals = [];
+		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+
+		if ( $this->fld_parsetree || ( $this->fld_content && $this->generateXML ) ) {
+			if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
+				$t = $content->getNativeData(); # note: don't set $text
+
+				$wgParser->startExternalParse(
+					$title,
+					ParserOptions::newFromContext( $this->getContext() ),
+					Parser::OT_PREPROCESS
+				);
+				$dom = $wgParser->preprocessToDom( $t );
+				if ( is_callable( [ $dom, 'saveXML' ] ) ) {
+					$xml = $dom->saveXML();
+				} else {
+					$xml = $dom->__toString();
+				}
+				$vals['parsetree'] = $xml;
+			} else {
+				$vals['badcontentformatforparsetree'] = true;
+				$this->addWarning(
+					[
+						'apierror-parsetree-notwikitext-title',
+						wfEscapeWikiText( $title->getPrefixedText() ),
+						$content->getModel()
+					],
+					'parsetree-notwikitext'
+				);
+			}
+		}
+
+		if ( $this->fld_content ) {
 			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
-				# XXX: implement template expansion for all content types in ContentHandler?
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getNativeData();
 
@@ -376,7 +544,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
-				$handler = $revision->getContentHandler();
+				$handler = $content->getContentHandler();
 
 				if ( !is_null( $this->difftotext ) ) {
 					$model = $title->getContentModel();
@@ -421,10 +589,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $anyHidden && $revision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
-			$vals['suppressed'] = true;
-		}
-
 		return $vals;
 	}
 
@@ -437,6 +601,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleStore()->getMap();
+		if ( !in_array( 'main', $slotRoles, true ) ) {
+			$slotRoles[] = 'main';
+		}
+		sort( $slotRoles, SORT_STRING );
+
 		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -454,6 +624,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'parsedcomment',
 					'content',
 					'tags',
+					'roles',
 					'parsetree',
 				],
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-prop',
@@ -470,9 +641,19 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'parsedcomment' => 'apihelp-query+revisions+base-paramvalue-prop-parsedcomment',
 					'content' => 'apihelp-query+revisions+base-paramvalue-prop-content',
 					'tags' => 'apihelp-query+revisions+base-paramvalue-prop-tags',
+					'roles' => 'apihelp-query+revisions+base-paramvalue-prop-roles',
 					'parsetree' => [ 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
 						CONTENT_MODEL_WIKITEXT ],
 				],
+				ApiBase::PARAM_DEPRECATED_VALUES => [
+					'parsetree' => true,
+				],
+			],
+			'slots' => [
+				ApiBase::PARAM_TYPE => $slotRoles,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-slots',
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_ALL => true,
 			],
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
@@ -515,6 +696,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			'contentformat' => [
 				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];
 	}

@@ -19,13 +19,21 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionStore;
+
 /**
  * @ingroup API
  * @since 1.25
  */
 class ApiTag extends ApiBase {
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
 	public function execute() {
+		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
 
@@ -84,7 +92,7 @@ class ApiTag extends ApiBase {
 				$valid = RecentChange::newFromId( $id );
 				break;
 			case 'revid':
-				$valid = Revision::newFromId( $id );
+				$valid = $this->revisionStore->getRevisionById( $id );
 				break;
 			case 'logid':
 				$valid = self::validateLogId( $id );
