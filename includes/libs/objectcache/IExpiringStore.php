@@ -30,6 +30,7 @@
  */
 interface IExpiringStore {
 	// Constants for TTL values, in seconds
+	const TTL_SECOND = 1;
 	const TTL_MINUTE = 60;
 	const TTL_HOUR = 3600;
 	const TTL_DAY = 86400; // 24 * 3600

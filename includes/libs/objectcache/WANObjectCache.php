@@ -1581,7 +1581,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
-			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 );
+			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, self::TTL_SECOND );
 			if ( !$ok ) {
 				$this->logger->error( "Could not complete reap of check key '$key'." );
 			}
@@ -1824,7 +1824,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				'cmd' => 'set',
 				'key' => $key,
 				'val' => 'PURGED:$UNIXTIME$:' . (int)$holdoff,
-				'ttl' => max( $ttl, 1 ),
+				'ttl' => max( $ttl, self::TTL_SECOND ),
 				'sbt' => true, // substitute $UNIXTIME$ with actual microtime
 			] );
 
