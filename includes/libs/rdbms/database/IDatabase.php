@@ -1776,7 +1776,7 @@ interface IDatabase {
 	public function setSchemaVars( $vars );
 
 	/**
-	 * Check to see if a named lock is available (non-blocking)
+	 * Check to see if a named lock is not locked by any thread (non-blocking)
 	 *
 	 * @param string $lockName Name of lock to poll
 	 * @param string $method Name of method calling us
