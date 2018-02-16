@@ -266,17 +266,17 @@
 			}
 		}
 
+		if ( this.isSticky() ) {
+			// If this group is sticky, then change the default according to the
+			// current selection.
+			this.defaultParams = this.getParamRepresentation( this.getSelectedState() );
+		}
+
 		if (
 			changed ||
 			this.active !== active ||
 			this.currSelected !== item
 		) {
-			if ( this.isSticky() ) {
-				// If this group is sticky, then change the default according to the
-				// current selection.
-				this.defaultParams = this.getParamRepresentation( this.getSelectedState() );
-			}
-
 			this.active = active;
 			this.currSelected = item;
 
