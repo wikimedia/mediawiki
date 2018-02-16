@@ -1446,8 +1446,6 @@
 	"newpageletter": "न.पा.",
 	"boteditletter": "सां.",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|सदस्याने|सदस्यांनी}} पहारा दिलेला आहे]",
-	"rc_categories": "वर्गांपुरते मर्यादित ठेवा (\"|\"ने वेगळे करा):",
-	"rc_categories_any": "निवडल्यापैकी कोणतेही",
 	"rc-change-size-new": " बदलानंतर $1 {{PLURAL:$1|बाईट|बाईटस्}}",
 	"newsectionsummary": "/* $1 */ नवीन विभाग",
 	"rc-enhanced-expand": "तपशील दाखवा",

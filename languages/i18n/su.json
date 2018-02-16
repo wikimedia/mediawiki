@@ -1397,8 +1397,6 @@
 	"newpageletter": "A",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|ngawaskeun|ngawaskeun}}]",
-	"rc_categories": "Watesan nepi ka kategori (dipisah ku \"|\"):",
-	"rc_categories_any": "Unggal nu kapilih",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bit|bit}} sanggeus robah",
 	"newsectionsummary": "/* $1 */ bagean anyar",
 	"rc-enhanced-expand": "Témbongkeun rincian",

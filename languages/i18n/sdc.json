@@ -653,8 +653,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[abbaidadda da {{PLURAL:$1|un'utenti|$1 utenti}}]",
-	"rc_categories": "Limita a li categuri (siparaddi da \"|\")",
-	"rc_categories_any": "Cassisia",
 	"newsectionsummary": "/* $1 */ noba sezzioni",
 	"rc-enhanced-expand": "Musthrà dettagli (dumanda JavaScript)",
 	"rc-enhanced-hide": "Cua dettàgli",

@@ -1076,8 +1076,6 @@
 	"newpageletter": "Дж",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|кёзюнде тутуучу къошулуучу}}]",
-	"rc_categories": "Къуру бу категорияладан («|» бла айыр):",
-	"rc_categories_any": "Сайланнгандан къайсысы да",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "Тюрлениуден сора ёлчеми: $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ Джангы бёлюм",

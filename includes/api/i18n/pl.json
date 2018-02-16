@@ -149,8 +149,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtruj po znacznikach.",
 	"apihelp-feedrecentchanges-param-target": "Pokaż tylko zmiany na stronach linkowanych z tej strony.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Pokaż zmiany na stronach linkujących do wybranej strony.",
-	"apihelp-feedrecentchanges-param-categories": "Pokaż zmiany tylko na stronach będących we wszystkich tych kategoriach.",
-	"apihelp-feedrecentchanges-param-categories_any": "Pokaż zmiany tylko na stronach będących w jednej z tych kategorii.",
 	"apihelp-feedrecentchanges-example-simple": "Pokaż ostatnie zmiany.",
 	"apihelp-feedrecentchanges-example-30days": "Pokaż ostatnie zmiany z 30 dni.",
 	"apihelp-feedwatchlist-summary": "Zwraca kanał listy obserwowanych.",

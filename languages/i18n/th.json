@@ -1457,8 +1457,6 @@
 	"boteditletter": "บ",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 ผู้ใช้เฝ้าดู]",
-	"rc_categories": "จำกัดเฉพาะหมวดหมู่ (แยกด้วย \"|\"):",
-	"rc_categories_any": "อะไรก็ได้ที่เลือก",
 	"rc-change-size-new": "$1 ไบต์หลังเปลี่ยนแปลง",
 	"newsectionsummary": "/* $1 */ ส่วนใหม่",
 	"rc-enhanced-expand": "แสดงรายละเอียด",

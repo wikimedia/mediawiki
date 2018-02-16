@@ -1154,8 +1154,6 @@
 	"boteditletter": "B",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|keer|keer}} op n volglieste]",
-	"rc_categories": "Beparking tot kategorieën (scheien mit \"|\")",
-	"rc_categories_any": "alles",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} nao de wieziging",
 	"newsectionsummary": "Niej onderwarp: /* $1 */",
 	"rc-enhanced-expand": "Details bekieken",

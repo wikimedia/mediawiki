@@ -848,7 +848,6 @@
 	"newpageletter": "N",
 	"boteditletter": "a",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usor observans|usores observantes}}]",
-	"rc_categories_any": "Ulla",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octetus|octeti}} post recensionem",
 	"newsectionsummary": "/* $1 */ nova pars",
 	"rc-enhanced-expand": "Minima monstrare",

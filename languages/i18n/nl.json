@@ -1530,8 +1530,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|keer|keer}} op een volglijst]",
-	"rc_categories": "Beperken tot categorieën (scheiden met een \"|\"):",
-	"rc_categories_any": "Een van de gekozen",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} na de wijziging",
 	"newsectionsummary": "/* $1 */ nieuwe subkop",
 	"rc-enhanced-expand": "Details weergeven",

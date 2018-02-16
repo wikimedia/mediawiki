@@ -1330,8 +1330,6 @@
 	"boteditletter": "ر",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1  {{PLURAL:$1|کتونکی کارن|کتونکي کارنان}}]",
-	"rc_categories": "د وېشنيزو تر بريده (په \"|\" بېلول)",
-	"rc_categories_any": "له ټاکل شويو هر يو",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بايټ|بايټونه}} د بدلون وروسته",
 	"newsectionsummary": "/* $1 */ نوې برخه",

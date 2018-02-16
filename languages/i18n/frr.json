@@ -1280,8 +1280,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|brüker|brükern}}, diar tuluke]",
-	"rc_categories": "Bluas sidjen ütj jo kategoriin (apdiald mä „|“):",
-	"rc_categories_any": "Arke ütjsoocht",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} efter't feranrin",
 	"newsectionsummary": "Nei kirew /* $1 */",
 	"rc-enhanced-expand": "Enkelthaiden wise",

@@ -1411,8 +1411,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 watchin {{PLURAL:$1|uiser|uisers}}]",
-	"rc_categories": "Leemit tae categories (separate wi \"|\"):",
-	"rc_categories_any": "Ony o the chosen",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} efter chynge",
 	"newsectionsummary": "/* $1 */ new section",
 	"rc-enhanced-expand": "Shaw details",

@@ -913,8 +913,6 @@
 	"newpageletter": "Näi",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 beooboachtjende {{PLURAL:$1|Benutser|Benutsere}}]",
-	"rc_categories": "Bloot Sieden uut do Kategorien (tränd mäd „|“):",
-	"rc_categories_any": "Aal",
 	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"newsectionsummary": "Näie Apsats /* $1 */",
 	"rc-enhanced-expand": "Details anwiese (bruukt JavaScript)",

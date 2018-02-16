@@ -1055,8 +1055,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[osservà da {{PLURAL:$1|un utente|$1 utenti}}]",
-	"rc_categories": "Limita a le categorie (separà da \"|\")",
-	"rc_categories_any": "Qualsiasi",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte}} dopo ła modifega",
 	"newsectionsummary": "/* $1 */ sezion nova",
 	"rc-enhanced-expand": "Mostra detaji",

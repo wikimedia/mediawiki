@@ -668,8 +668,6 @@
 	"newpageletter": "Nav",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 pajgirikunanda {{PLURAL:$1|korbar|korbaron}}]",
-	"rc_categories": "Mahdudijat ba gurūhho (bo alomati \"|\" çudo kuned)",
-	"rc_categories_any": "Har kadom",
 	"newsectionsummary": "/* $1 */ baxşi çadid",
 	"rc-enhanced-expand": "Namoişi çuz'ijot (nijozmand ba Çava Skript)",
 	"rc-enhanced-hide": "Pinhoni çuz'ijot",

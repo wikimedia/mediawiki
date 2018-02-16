@@ -1524,8 +1524,6 @@
 	"boteditletter": "б",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|користувач спостерігає|користувачі спостерігають|користувачів спостерігають}}]",
-	"rc_categories": "Тільки з категорій (розділювач «|»):",
-	"rc_categories_any": "Будь-яка з обраних",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "Розмір після зміни: $1 {{PLURAL:$1|байт|байти|байтів}}",
 	"newsectionsummary": "/* $1 */ нова тема",

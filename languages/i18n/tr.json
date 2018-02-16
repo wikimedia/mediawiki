@@ -1457,8 +1457,6 @@
 	"newpageletter": "Y",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 izlenilen {{PLURAL:$1|kullanıcı|kullanıcı}}]",
-	"rc_categories": "Kategorileri sınırla (\"|\" ile ayır)",
-	"rc_categories_any": "Seçilen herhangi bir",
 	"rc-change-size-new": "Değişiklikten sonraki boyut: $1 {{PLURAL:$1|bayt|bayt}}",
 	"newsectionsummary": "/* $1 */ yeni başlık",
 	"rc-enhanced-expand": "Ayrıntıları göster",

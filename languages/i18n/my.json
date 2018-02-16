@@ -1037,8 +1037,6 @@
 	"newpageletter": "အသစ်",
 	"boteditletter": "ဘော့",
 	"number_of_watching_users_pageview": "[စောင့်ကြည့်နေသော အသုံးပြုသူ $1 {{PLURAL:$1|ဦး|ဦး}}]",
-	"rc_categories": "ကဏ္ဍများအား ကန့်သတ်ရန် (\"|\" ဖြင့် ခွဲခြား):",
-	"rc_categories_any": "ရွေးချယ်ခံရသော မည်သူမဆို",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ပြောင်းလဲပြီးနောက်",
 	"newsectionsummary": "/* $1 */ အပိုင်းသစ်",
 	"rc-enhanced-expand": "အသေးစိတ် ပြရန်",

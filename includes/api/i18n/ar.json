@@ -160,8 +160,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "فلتر بالوسم.",
 	"apihelp-feedrecentchanges-param-target": "أحدث التغييرات في الصفحات الموصولة من هذه الصفحة فقط",
 	"apihelp-feedrecentchanges-param-showlinkedto": "أظهر التغييرات للصفحات الموصولة للصفحة المعطاة عوضا عن ذلك",
-	"apihelp-feedrecentchanges-param-categories": "أظهر التغييرات في الصفحات في كل تصنيف من هذه التصنيفات فقط.",
-	"apihelp-feedrecentchanges-param-categories_any": "أظهر التغييرات في الصفحات في أي تصنيف بدلا من ذلك.",
 	"apihelp-feedrecentchanges-example-simple": " اظهر التغييرات الحديثة",
 	"apihelp-feedrecentchanges-example-30days": "أظهر التغييرات الأخيرة في 30 يوم.",
 	"apihelp-feedwatchlist-summary": "إرجاع تغذية قائمة المراقبة.",

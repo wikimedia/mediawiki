@@ -1364,8 +1364,6 @@
 	"newpageletter": "Н",
 	"boteditletter": "р",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|назіральнік|назіральнікі|назіральнікаў}}]",
-	"rc_categories": "Абмежаваць катэгорыямі (размяжоўваць знакам \"|\"):",
-	"rc_categories_any": "Любая з абраных",
 	"rc-change-size-new": "$1 {{PLURAL:$1|байт|байты|байтаў}} пасля змены",
 	"newsectionsummary": "/* $1 */ новы падраздзел",
 	"rc-enhanced-expand": "Паказаць падрабязнасці",

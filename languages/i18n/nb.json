@@ -1493,8 +1493,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 overvåkende {{PLURAL:$1|bruker|brukere}}]",
-	"rc_categories": "Begrens til kategorier (skilletegn: «|»)",
-	"rc_categories_any": "Alle",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} etter endring",
 	"newsectionsummary": "/* $1 */ ny seksjon",
 	"rc-enhanced-expand": "Vis detaljer",

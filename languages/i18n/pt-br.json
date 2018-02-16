@@ -1558,8 +1558,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|$1 usuário|$1 usuários}} vigiando]",
-	"rc_categories": "Limitar às categorias (separar com \"|\"):",
-	"rc_categories_any": "Qualquer um dos escolhidos",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} após alterações",
 	"newsectionsummary": "/* $1 */ nova seção",
 	"rc-enhanced-expand": "Exibir detalhes",

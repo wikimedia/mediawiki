@@ -1441,8 +1441,6 @@
 	"newpageletter": "Я",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 күҙәткән {{PLURAL:$1|ҡатнашыусы}}]",
-	"rc_categories": "Тик категорияларҙан ғына (бүлеүсе «|»):",
-	"rc_categories_any": "Һайланғандың теләһә ҡайһыһы",
 	"rc-change-size-new": "Үҙгәртештән һуң күләм: $1 {{PLURAL:$1|1=байт|байт}}",
 	"newsectionsummary": "/* $1 */ яңы бүлек",
 	"rc-enhanced-expand": "Ваҡ-төйәгенә тиклем күрһәтергә",

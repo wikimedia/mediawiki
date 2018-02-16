@@ -1276,8 +1276,6 @@
 	"boteditletter": "ब",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 ध्यान राखैवाला {{PLURAL:$1|प्रयोक्ता|प्रयोक्तासभ}}]",
-	"rc_categories": "श्रेणीसभ धरि सीमीत राखी (\"|\" सँ अलग करी)",
-	"rc_categories_any": "कोनो भी चुनिन्दा",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "परिवर्तनक बाद $1 {{PLURAL:$1|बाइट}}",
 	"newsectionsummary": "/* $1 */ नव अनुभाग",

@@ -1367,8 +1367,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|defnyddwyr|defnyddiwr|ddefnyddiwr|defnyddiwr|defnyddiwr|o ddefnyddwyr}} yn gwylio]",
-	"rc_categories": "Cyfyngu i gategorïau (gwahanwch gyda \"|\")",
-	"rc_categories_any": "Unrhyw un",
 	"rc-change-size-new": "$1 {{PLURAL:$1|beit}} wedi'r newid",
 	"newsectionsummary": "/* $1 */ adran newydd",
 	"rc-enhanced-expand": "Dangos y manylion",

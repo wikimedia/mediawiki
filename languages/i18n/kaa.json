@@ -677,8 +677,6 @@
 	"newpageletter": "T",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[Baqlag'an {{PLURAL:$1|1 paydalanıwshı|$1 paydalanıwshı}}]",
-	"rc_categories": "Kategoriyalarg'a sheklew (\"|\" belgisi menen ajıratın')",
-	"rc_categories_any": "Ha'r qanday",
 	"newsectionsummary": "/* $1 */ taza bo'lim",
 	"rc-enhanced-expand": "Tolıq mag'lıwmattı ko'rsetiw (JavaScriptti talap etedi)",
 	"rc-enhanced-hide": "Tolıq mag'lıwmattı jasırıw",

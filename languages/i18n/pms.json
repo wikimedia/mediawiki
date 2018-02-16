@@ -1173,8 +1173,6 @@
 	"newpageletter": "N",
 	"boteditletter": "t",
 	"number_of_watching_users_pageview": "[tnùa sot-euj da {{PLURAL:$1|n'utent|$1 utent}}]",
-	"rc_categories": "Limité a le categorìe (che a jë scriva separand-je antra 'd lor con un \"|\"):",
-	"rc_categories_any": "Un-a qualsëssìa ëd cole selessionà",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} apress ij cambi",
 	"newsectionsummary": "/* $1 */ session neuva",
 	"rc-enhanced-expand": "Mostré ij detaj",

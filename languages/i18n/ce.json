@@ -1286,8 +1286,6 @@
 	"newpageletter": "К",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|тӀехьожу декъашхо|тӀехьожу декъашхой}}]",
-	"rc_categories": "Категори чура бен (къасторг «|»)",
-	"rc_categories_any": "Муьлха а хаьржиначух",
 	"rc-change-size-new": "Хийцам бин чул тӀехьа болу барам: $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ Керла хьедар",
 	"rc-enhanced-expand": "Гайта мадарра",

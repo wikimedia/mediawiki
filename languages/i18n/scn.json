@@ -1169,8 +1169,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[taliata di {{PLURAL:$1|nu utenti|$1 utenti}}]",
-	"rc_categories": "Lìmita a li catigurìi (spartuti cu «|»)",
-	"rc_categories_any": "Qualegghiè tra chiddi scigghiuti",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} appressu dû canciamentu",
 	"newsectionsummary": "/* $1 */ sizzioni nova",
 	"rc-enhanced-expand": "Ammustra li dittagghî",

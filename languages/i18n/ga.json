@@ -790,7 +790,6 @@
 	"newpageletter": "N",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|úsáideoir amháin|$1 úsáideoirí}} ag faire]",
-	"rc_categories_any": "Aon chatagóir",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bheart|beart}} tar éis an athraithe",
 	"newsectionsummary": "/* $1 */ mír nua",
 	"rc-enhanced-expand": "Taispeáin mionsonraithe",

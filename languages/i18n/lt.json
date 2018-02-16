@@ -1457,8 +1457,6 @@
 	"newpageletter": "N",
 	"boteditletter": "a",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|stebintis naudotojas|stebintys naudotojai|stebinčių naudotojų}}]",
-	"rc_categories": "Riboti kategorijoms (atskirkite su „|“)",
-	"rc_categories_any": "Bet kuris iš pasirinktųjų",
 	"rc-change-size-new": "$1 {{PLURAL:$1|baitas|baitai|baitų}} po pakeitimo",
 	"newsectionsummary": "/* $1 */ naujas skyrius",
 	"rc-enhanced-expand": "Rodyti detales",

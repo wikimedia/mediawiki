@@ -1467,8 +1467,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|overvågende bruger|overvågende brugere}}]",
-	"rc_categories": "Grænse for kategorier (adskilt med \"|\"):",
-	"rc_categories_any": "Nogen af de valgte",
 	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} efter ændring",
 	"newsectionsummary": "/* $1 */ nyt afsnit",

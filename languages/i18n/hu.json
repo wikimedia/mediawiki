@@ -1491,8 +1491,6 @@
 	"newpageletter": "Ú",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[Jelenleg {{PLURAL:$1|egy|$1}} felhasználó figyeli]",
-	"rc_categories": "Szűkítés kategóriákra („|” jellel válaszd el őket):",
-	"rc_categories_any": "Választottak közül bármelyik",
 	"rc-change-size-new": "$1 bájt módosítás után",
 	"newsectionsummary": "/* $1 */ (új szakasz)",
 	"rc-enhanced-expand": "Részletek megjelenítése",

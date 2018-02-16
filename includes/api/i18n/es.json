@@ -206,8 +206,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar por etiquetas.",
 	"apihelp-feedrecentchanges-param-target": "Mostrar solo los cambios en las páginas enlazadas en esta.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostrar los cambios en páginas enlazadas con la página seleccionada.",
-	"apihelp-feedrecentchanges-param-categories": "Mostrar sólo cambios en las páginas en todas estas categorías.",
-	"apihelp-feedrecentchanges-param-categories_any": "Mostrar sólo cambios en las páginas en cualquiera de las categorías en lugar.",
 	"apihelp-feedrecentchanges-example-simple": "Mostrar los cambios recientes.",
 	"apihelp-feedrecentchanges-example-30days": "Mostrar los cambios recientes limitados a 30 días.",
 	"apihelp-feedwatchlist-summary": "Devuelve el suministro de una lista de seguimiento.",

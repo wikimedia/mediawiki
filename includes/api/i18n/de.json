@@ -184,8 +184,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Nach Markierung filtern.",
 	"apihelp-feedrecentchanges-param-target": "Nur Änderungen an Seiten anzeigen, die von dieser Seite verlinkt sind.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Zeige Änderungen an Seiten die von der ausgewählten Seite verlinkt sind.",
-	"apihelp-feedrecentchanges-param-categories": "Zeigt nur Änderungen von Seiten in all diesen Kategorien.",
-	"apihelp-feedrecentchanges-param-categories_any": "Zeigt stattdessen nur Änderungen auf Seiten in einer dieser Kategorien.",
 	"apihelp-feedrecentchanges-example-simple": "Letzte Änderungen anzeigen",
 	"apihelp-feedrecentchanges-example-30days": "Letzte Änderungen für 30 Tage anzeigen",
 	"apihelp-feedwatchlist-summary": "Gibt einen Beobachtungslisten-Feed zurück.",

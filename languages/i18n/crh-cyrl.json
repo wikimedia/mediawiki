@@ -788,8 +788,6 @@
 	"newpageletter": "Я",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|1=къулланыджы|къулланыджы}} козете]",
-	"rc_categories": "Тек категориялардан («|» иле айырыла)",
-	"rc_categories_any": "Эр анги",
 	"rc-change-size-new": "Денъиштирильген сонъ $1 {{PLURAL:$1|байт|байт}}",
 	"newsectionsummary": "/* $1 */ янъы болюк",
 	"rc-enhanced-expand": "Тафсилятыны косьтер",

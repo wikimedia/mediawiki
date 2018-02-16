@@ -1094,8 +1094,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 ansar eftir {{PLURAL:$1|brúkara|brúkarum}}]",
-	"rc_categories": "Avmarkað til síður frá bólkunum (skil sundur við \"|\")",
-	"rc_categories_any": "Nakar",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} eftir broyting",
 	"newsectionsummary": "/* $1 */ nýtt innlegg",
 	"rc-enhanced-expand": "Vís smálutir",

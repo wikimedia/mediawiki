@@ -1011,8 +1011,6 @@
 	"newpageletter": "Ն",
 	"boteditletter": "բ",
 	"number_of_watching_users_pageview": "[$1 հսկող {{PLURAL:$1|մասնակից|մասնակիցներին}}]",
-	"rc_categories": "Սահմանափակել կատեգորիաներով (բաժանեք «|» նշանով)",
-	"rc_categories_any": "Բոլոր",
 	"rc-change-size-new": "$1 {{PLURAL:$1|բայթ|բայթ}} փոփոխությունից հետո",
 	"newsectionsummary": "/* $1 */ Նոր բաժին",
 	"rc-enhanced-expand": "Ցուցադրել մանրամասներ (պահանջում է ՋավաՍկրիպտ)",

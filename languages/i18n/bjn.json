@@ -943,8 +943,6 @@
 	"newpageletter": "H",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|pa'itihi|papa'itihi}}]",
-	"rc_categories": "Watasi tutumbung (pisahakan lawan \"|\")",
-	"rc_categories_any": "Napa gin",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bita|bita}} limbah paubahan",
 	"newsectionsummary": "/* $1 */ hagian hanyar",
 	"rc-enhanced-expand": "Tampaiakan rincian (parlu ada JavaScript)",

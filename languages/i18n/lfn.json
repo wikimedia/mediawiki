@@ -1430,8 +1430,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usor|usores}} monitorinte]",
-	"rc_categories": "Limita de categorias (separa con \"|\"):",
-	"rc_categories_any": "Cualce de la elejedas",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bait|baites}} pos cambia",
 	"newsectionsummary": "/* $1 */ parte nova",
 	"rc-enhanced-expand": "Mostra detalias",

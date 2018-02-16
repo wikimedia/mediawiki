@@ -1255,8 +1255,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 ho seyr keno {{PLURAL:$1|karber|karberî}}]",
-	"rc_categories": "Kategoriyan rêz kı ( \"|“ ya ciya yo):",
-	"rc_categories_any": "Weçinayiyan ra her yew",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bayt|bayti}} ra dıma vurnayış",
 	"newsectionsummary": "/* $1 */ qısımo newe",

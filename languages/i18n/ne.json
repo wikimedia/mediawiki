@@ -1236,8 +1236,6 @@
 	"boteditletter": "बो",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 निगरानी गर्दै{{PLURAL:$1|प्रयोगकर्ता|प्रयोगकर्ताहरु}}]",
-	"rc_categories": "श्रेणीहरूमा सीमित (\"|\" ले छुट्याउनुहोस्)",
-	"rc_categories_any": "छानिएका कुनै",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "परिवर्तनपछि $1 {{PLURAL:$1|बाइट|बाइट}}",
 	"newsectionsummary": "/* $1 */ नयाँ खण्ड",

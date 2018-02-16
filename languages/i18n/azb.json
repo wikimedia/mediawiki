@@ -1195,8 +1195,6 @@
 	"newpageletter": "ی",
 	"boteditletter": "ب",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|بیر|$1}} ایزله‌ین ایستیفاده‌چی]",
-	"rc_categories": "بؤلمه‌لره محدودلاشدیر («|» ایله آییر)",
-	"rc_categories_any": "سئچیلمیشلرین هر بیریسی",
 	"rc-change-size-new": "دَییشیکلیک‌دن سوْنرا {{PLURAL:|بیر|$1}} بایت",
 	"newsectionsummary": "/* $1 */ یئنی بؤلمه",
 	"rc-enhanced-expand": "تفصیل‌لری گؤستر",

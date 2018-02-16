@@ -1479,8 +1479,6 @@
 	"newpageletter": "N",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|sledující uživatel|sledující uživatelé|sledujících uživatelů}}]",
-	"rc_categories": "Omezit na kategorie (oddělené „|“):",
-	"rc_categories_any": "Jakákoli z vybraných",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajty|bajtů}} po změně",
 	"newsectionsummary": "Nová sekce /* $1 */",
 	"rc-enhanced-expand": "Zobrazit detaily",

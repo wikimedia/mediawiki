@@ -188,8 +188,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrer etter tagger.",
 	"apihelp-feedrecentchanges-param-target": "Vis bare endringer på sider som lenkes fra denne siden.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Vis endringer på sider som lenker til den valgte siden i stedet.",
-	"apihelp-feedrecentchanges-param-categories": "Vis bare endringer på sider i alle disse kategoriene.",
-	"apihelp-feedrecentchanges-param-categories_any": "Vis bare endringer på sider som er i noen av kategoriene i stedet.",
 	"apihelp-feedrecentchanges-example-simple": "Vis siste endringer.",
 	"apihelp-feedrecentchanges-example-30days": "Vis siste endringer for 30 døgn.",
 	"apihelp-feedwatchlist-summary": "Returnerer en overvåkningslistemating.",

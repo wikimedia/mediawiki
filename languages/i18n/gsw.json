@@ -1217,8 +1217,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|Benutzer, wu beobachtet|Benutzer, wu beobachte}}]",
-	"rc_categories": "Nume Syten us bestimmte Kategorie (mit «|» trenne):",
-	"rc_categories_any": "Beliebigi vo den usgwählte",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Byte}} no dr Änderig",
 	"newsectionsummary": "Neje Abschnitt /* $1 */",
 	"rc-enhanced-expand": "Detail aazeige",

@@ -189,8 +189,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar por etiqueta.",
 	"apihelp-feedrecentchanges-param-target": "Mostrar só os cambios nas páxinas ligadas a esta.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostrar os cambios nas páxinas ligadas coa páxina seleccionada.",
-	"apihelp-feedrecentchanges-param-categories": "Só mostrar cambios en páxinas pertencentes a todas estas categorías.",
-	"apihelp-feedrecentchanges-param-categories_any": "Só mostrar cambios en páxinas pertencentes a calquera das categorías.",
 	"apihelp-feedrecentchanges-example-simple": "Mostrar os cambios recentes",
 	"apihelp-feedrecentchanges-example-30days": "Mostrar os cambios recentes limitados a 30 días",
 	"apihelp-feedwatchlist-summary": "Devolve o fluxo dunha lista de vixiancia.",

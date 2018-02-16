@@ -917,8 +917,6 @@
 	"newpageletter": "Нав",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 пайгирикунанда {{PLURAL:$1|корбар|корбарон}}]",
-	"rc_categories": "Маҳдудият ба гурӯҳҳо (бо аломати \"|\" ҷудо кунед)",
-	"rc_categories_any": "Ҳар кадом",
 	"rc-change-size-new": "$1 {{PLURAL:$1|байт}} пас аз тағйир",
 	"newsectionsummary": "/* $1 */ бахши ҷадид",
 	"rc-enhanced-expand": "Намоиши ҷузъиёт",

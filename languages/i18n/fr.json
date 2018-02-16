@@ -1619,8 +1619,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 utilisateur{{PLURAL:$1||s}} en train de suivre]",
-	"rc_categories": "Limiter aux catégories (séparées par « | ») :",
-	"rc_categories_any": "Une des sélectionnées",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octet|octets}} après changement",
 	"newsectionsummary": "/* $1 */ nouvelle section",

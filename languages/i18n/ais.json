@@ -1331,8 +1331,6 @@
 	"newpageletter": "baluhay",
 	"boteditletter": "kikay a tademaw",
 	"number_of_watching_users_pageview": "[$1 imahini miazihay a {{PLURAL:$1|misaungayay}}]",
-	"rc_categories": "kakuniza kelec (ku \"|\" palaliyas):",
-	"rc_categories_any": "amahicahica tu mipili’ay",
 	"rc-change-size-new": "masumadtu sa u $1 {{PLURAL:$1|wyiyincu}}",
 	"newsectionsummary": "/* $1 */ baluhay a tusil",
 	"rc-enhanced-expand": "paazih pulita kalunasulitan",

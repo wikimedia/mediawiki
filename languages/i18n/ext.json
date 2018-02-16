@@ -743,8 +743,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usuáriu está|usuárius están}} vehilandu]",
-	"rc_categories": "Arrayal a categorias (separás pol \"|\")",
-	"rc_categories_any": "Cualisquiá",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} dempués el chambu",
 	"newsectionsummary": "/* $1 */ seción nueva",
 	"rc-enhanced-expand": "muestral detallis (es mestel JavaScript)",

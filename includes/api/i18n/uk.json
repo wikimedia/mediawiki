@@ -203,8 +203,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Фільтрувати за теґом.",
 	"apihelp-feedrecentchanges-param-target": "Показати лише зміни на сторінках, на які посилається ця сторінка.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Показати натомість лише зміни на сторінках, які посилаються на цю сторінку.",
-	"apihelp-feedrecentchanges-param-categories": "Показати лише зміни сторінок у всіх цих категоріях.",
-	"apihelp-feedrecentchanges-param-categories_any": "Показати натомість лише зміни на сторінках у будь-якій з цих категорій.",
 	"apihelp-feedrecentchanges-example-simple": "Показати нещодавні зміни.",
 	"apihelp-feedrecentchanges-example-30days": "Показати нещодавні зміни за 30 днів.",
 	"apihelp-feedwatchlist-summary": "Видає стрічку списку спостереження.",

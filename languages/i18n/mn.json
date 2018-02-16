@@ -1139,8 +1139,6 @@
 	"newpageletter": "Ш",
 	"boteditletter": "р",
 	"number_of_watching_users_pageview": "[$1 хэрэглэгч харж байна]",
-	"rc_categories": "Ангиллуудад хязгаарлах (\"|\" тэмдгээр тусгаарлана)",
-	"rc_categories_any": "Хамаагүй",
 	"rc-change-size-new": "Өөрчилсний дараа $1 {{PLURAL:$1|байт|байт}}",
 	"newsectionsummary": "/* $1 */ шинэ хэсэг",
 	"rc-enhanced-expand": "Дэлгэрэнгүй мэдээллийг үзүүлэх　（ЖаваСкрипт хэрэглэгдэнэ）",

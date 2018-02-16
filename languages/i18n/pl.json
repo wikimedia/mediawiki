@@ -1535,8 +1535,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|obserwujący użytkownik|obserwujących użytkowników}}]",
-	"rc_categories": "Ogranicz do kategorii (oddzielaj za pomocą „|”)",
-	"rc_categories_any": "Dowolna z wybranych",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajty|bajtów}} po zmianie",
 	"newsectionsummary": "/* $1 */ nowa sekcja",
 	"rc-enhanced-expand": "Pokaż szczegóły",
