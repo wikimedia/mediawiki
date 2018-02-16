@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * This query action allows clients to retrieve a list of recently modified pages
@@ -302,13 +303,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add user data and 'anon' flag, if user is anonymous. */
 		if ( $this->fld_user || $this->fld_userid ) {
-			if ( $recentChangeInfo['rc_deleted'] & Revision::DELETED_USER ) {
+			if ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_USER ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
-			if ( Revision::userCanBitfield(
+			if ( RevisionRecord::userCanBitfield(
 				$recentChangeInfo['rc_deleted'],
-				Revision::DELETED_USER,
+				RevisionRecord::DELETED_USER,
 				$user
 			) ) {
 				if ( $this->fld_userid ) {
@@ -353,13 +354,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add edit summary / log summary. */
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			if ( $recentChangeInfo['rc_deleted'] & Revision::DELETED_COMMENT ) {
+			if ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_COMMENT ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
-			if ( Revision::userCanBitfield(
+			if ( RevisionRecord::userCanBitfield(
 				$recentChangeInfo['rc_deleted'],
-				Revision::DELETED_COMMENT,
+				RevisionRecord::DELETED_COMMENT,
 				$user
 			) ) {
 				$comment = $this->commentStore->getComment( 'rc_comment', $recentChangeInfo )->text;
@@ -407,7 +408,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & Revision::DELETED_RESTRICTED ) ) {
+		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
 
