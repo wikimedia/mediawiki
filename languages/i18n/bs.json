@@ -1448,8 +1448,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|korisnik|korisnika}} koji pregledaju]",
-	"rc_categories": "Ograniči na kategorije (razdvoji sa \"|\"):",
-	"rc_categories_any": "Bilo koju odabranu",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajta|bajtova}} poslije izmjene",
 	"newsectionsummary": "/* $1 */ novi odlomak",
 	"rc-enhanced-expand": "Prikaži detalje",

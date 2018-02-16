@@ -1253,8 +1253,6 @@
 	"newpageletter": "N",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|utilisator qu’est|utilisators que sont}} aprés siuvre]",
-	"rc_categories": "Limitar a les catègories (sèparâyes per « | ») :",
-	"rc_categories_any": "Yona de les chouèsies",
 	"rc-change-size-new": "$1 octèt{{PLURAL:$1||s}} aprés changement",
 	"newsectionsummary": "/* $1 */ novèla sèccion",
 	"rc-enhanced-expand": "Montrar los dètalys",

@@ -1096,8 +1096,6 @@
 	"newpageletter": "M",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[$1 watiqachkaq {{PLURAL:$1|ruraq|ruraqkuna}}]",
-	"rc_categories": "Kay katiguriyakunaman saywachay (\"|\" nisqawan rakisqa)",
-	"rc_categories_any": "Imallapas",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} hukchasqa kaptinña",
 	"newsectionsummary": "Musuq raki: /* $1 */",
 	"rc-enhanced-expand": "Imaymanachakunata rikuchiy",

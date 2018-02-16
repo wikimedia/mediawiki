@@ -1211,8 +1211,6 @@
 	"newpageletter": "ନୂଆ",
 	"boteditletter": "ବଟ",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|ସଭ୍ୟ|ସଭ୍ୟଗଣା}}ଙ୍କୁ ଦେଖୁଅଛି]",
-	"rc_categories": "ଶ୍ରେଣୀସମୂହ ପାଇଁ ସୀମା ( \"|\" ଦେଇ ଅଲଗା କରିବେ)",
-	"rc_categories_any": "ଯେ କୌଣସି",
 	"rc-change-size-new": "ବଦଳ ପରେ $1 {{PLURAL:$1|ବାଇଟ|ବାଇଟସବୁ}}",
 	"newsectionsummary": "/* $1 */ ନୂଆ ଭାଗ",
 	"rc-enhanced-expand": "ସବିଶେଷ ଦେଖାନ୍ତୁ",

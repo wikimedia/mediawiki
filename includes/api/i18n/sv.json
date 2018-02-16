@@ -170,8 +170,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrera efter tagg.",
 	"apihelp-feedrecentchanges-param-target": "Visa endast ändringarna av sidor som den här sidan länkar till.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Visa ändringarna på sidor som är länkade till den valda sidan i stället.",
-	"apihelp-feedrecentchanges-param-categories": "Visa endast ändringar på sidor i alla dessa kategorier.",
-	"apihelp-feedrecentchanges-param-categories_any": "Visa endast ändringar på sidor i någon av kategorierna istället.",
 	"apihelp-feedrecentchanges-example-simple": "Visa senaste ändringar",
 	"apihelp-feedrecentchanges-example-30days": "Visa senaste ändringar för 30 dygn",
 	"apihelp-feedwatchlist-summary": "Returnerar ett flöde från bevakningslistan.",

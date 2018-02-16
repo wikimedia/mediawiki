@@ -1221,8 +1221,6 @@
 	"boteditletter": "bt",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[Tha $1 {{PLURAL:$1|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} a' cumail sùil air]",
-	"rc_categories": "Dìreach sna roinnean-seòrsa (sgaraich le “|”):",
-	"rc_categories_any": "Gin dhe na chaidh a thaghadh",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bhaidht|bhaidht|baidhtichean|baidht}} às dèidh an atharrachaidh",
 	"newsectionsummary": "Earrann ùr /* $1 */",

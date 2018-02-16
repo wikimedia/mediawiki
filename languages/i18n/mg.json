@@ -1347,8 +1347,6 @@
 	"newpageletter": "V",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|mpikambana|mpikambana}} manara-maso]",
-	"rc_categories": "Ferana amin'ireto sokajy ireto (saraho amin'ny \"|\")",
-	"rc_categories_any": "Anisan'ireo nofidiana",
 	"rc-change-size-new": "$1{{PLURAL:}} oktety taorian'ny fanovana",
 	"newsectionsummary": "/* $1 */ fizarana vaovao",
 	"rc-enhanced-expand": "Hijery ny antsipirihany",

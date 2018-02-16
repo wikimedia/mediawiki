@@ -1219,8 +1219,6 @@
 	"newpageletter": "ថ្មី",
 	"boteditletter": "យន្ត",
 	"number_of_watching_users_pageview": "[មាន{{PLURAL:$1|អ្នកប្រើប្រាស់|អ្នកប្រើប្រាស់}}$1នាក់កំពុងមើល]",
-	"rc_categories": "កំហិតត្រឹមចំណាត់ថ្នាក់ក្រុម(ខណ្ឌដោយសញ្ញា \"|\")៖",
-	"rc_categories_any": "មួយណាក៏បាន",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|បៃ|បៃ}} បន្ទាប់ពីបន្លាស់ប្ដូរ",
 	"newsectionsummary": "/* $1 */ ផ្នែកថ្មី",

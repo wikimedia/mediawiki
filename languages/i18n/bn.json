@@ -1473,8 +1473,6 @@
 	"newpageletter": "ন",
 	"boteditletter": "ব",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|জন ব্যবহারকারী|জন ব্যবহারকারী}} এই পাতার উপর নজর রাখছেন]",
-	"rc_categories": "বিষয়শ্রেণীগুলিতে সীমা (\"|\" দিয়ে আলাদা করুন):",
-	"rc_categories_any": "চয়নের জন্য যেকোনো কিছু",
 	"rc-change-size-new": "পরিবর্তনের পর $1 {{PLURAL:$1|বাইট}}",
 	"newsectionsummary": "/* $1 */ নতুন অনুচ্ছেদ",
 	"rc-enhanced-expand": "বিস্তারিত দেখাও",

@@ -727,8 +727,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|beobachtender|beobachtende}} Nutzer]",
-	"rc_categories": "Ock Seyta aus dann Kategorien (getrennt miet „|“):",
-	"rc_categories_any": "Olle",
 	"newsectionsummary": "Neuer Obschnitt /* $1 */",
 	"rc-enhanced-expand": "Details oazeega (beneetigt JavaScript)",
 	"rc-enhanced-hide": "Details verstecka",

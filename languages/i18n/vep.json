@@ -934,8 +934,6 @@
 	"newpageletter": "U",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|kaclii kävutai|kaclijad kävutajad}}]",
-	"rc_categories": "Vaiše kategorijoišpäi (erigoitkat znamaižel \"|\")",
-	"rc_categories_any": "Eraz",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bait|baitad}} jäl'ges toižetamišt",
 	"newsectionsummary": "/* $1 */ uz' jaguz",

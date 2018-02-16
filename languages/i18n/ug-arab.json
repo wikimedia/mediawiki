@@ -1239,8 +1239,6 @@
 	"boteditletter": "ماشىنا ئادەم",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1  {{PLURAL:$1|ئىشلەتكۈچى|ئىشلەتكۈچى}}كۆزىتىۋاتىدۇ]",
-	"rc_categories": "تۈر چېگرىسى (\"|\" بىلەن ئايرىلىدۇ )",
-	"rc_categories_any": "خالىغانچە تاللاش",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "ئۆزگەرتكەندىن كېيىن $1 {{PLURAL:$1|بايت}}",
 	"newsectionsummary": "* $1 * يېڭى ئابزاس",

@@ -1302,8 +1302,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|aɛessas|iɛessasen}}]",
-	"rc_categories": "Ḥedded i taggayin (ferreq s \"|\")",
-	"rc_categories_any": "Yiwet seg tid yettwafernen",
 	"rc-change-size-new": "$1 {{PLURAL:$1|atamḍan|itamḍanen}} seld abeddel",
 	"newsectionsummary": "/* $1 */ tigezmi tamaynut",
 	"rc-enhanced-expand": "Ẓeṛ ttfaṣil",

@@ -804,8 +804,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[shuvou pa $1 {{PLURAL:$1|uzeu|uzeus}}]",
-	"rc_categories": "Limiter åzès categoreyes (separer avou des «|»)",
-	"rc_categories_any": "Totes",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octet|octets}} après l' candjmint",
 	"newsectionsummary": "/* $1 */ novele seccion",
 	"rc-enhanced-expand": "Mostrer les detays",

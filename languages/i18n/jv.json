@@ -1330,8 +1330,6 @@
 	"newpageletter": "A",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|cacahé sing ngawasi|cacahé sing ngawasi}}]",
-	"rc_categories": "Watesi tekan kategori (dipisah nganggo \"|\")",
-	"rc_categories_any": "Apa waé sing dipilih",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bét|bét}} sawisé diowahi",
 	"newsectionsummary": "/* $1 */ pérangan anyar",
 	"rc-enhanced-expand": "Tuduhaké princèn",

@@ -1011,8 +1011,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|utilisader|utilisaders}} observeschan quest artitgel]",
-	"rc_categories": "Be paginas ord las categorias (seperar cun \"|\")",
-	"rc_categories_any": "Tuts",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} suenter la midada",
 	"newsectionsummary": "Nov chapitel /* $1 */",
 	"rc-enhanced-expand": "Mussar detagls",

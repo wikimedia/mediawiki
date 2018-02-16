@@ -1176,8 +1176,6 @@
 	"newpageletter": "(नवीनम्)",
 	"boteditletter": "(बोट्)",
 	"number_of_watching_users_pageview": "[$1 अवलोकयति {{PLURAL:$1|सदस्यः|सदस्याः}}]",
-	"rc_categories": "वर्गान् नियतीकरोतु ।",
-	"rc_categories_any": "कश्चित्",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} परिवर्तनपश्चात् ।",
 	"newsectionsummary": "/* $1 */ नवीनविभागः",
 	"rc-enhanced-expand": "विवरणानि दृश्यन्ताम्",

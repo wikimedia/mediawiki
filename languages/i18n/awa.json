@@ -1134,8 +1134,6 @@
 	"newpageletter": "न",
 	"boteditletter": "बॉ",
 	"number_of_watching_users_pageview": "[$1 ध्यान राखय वाले {{PLURAL:$1|सदस्य}}]",
-	"rc_categories": "श्रेणीन् तक सीमीत रक्खा जाय (\"|\" से अलग करा जाय)",
-	"rc_categories_any": "कवनो भी",
 	"rc-change-size-new": "बदलाव कय बाद $1 {{PLURAL:$1|बाइट}}",
 	"newsectionsummary": "/* $1 */ नँवा अनुभाग",
 	"rc-enhanced-expand": "विस्तृत जानकारी देखावा जाय",

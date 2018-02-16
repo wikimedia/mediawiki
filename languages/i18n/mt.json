@@ -1117,8 +1117,6 @@
 	"newpageletter": "Ġ",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[osservat minn {{PLURAL:$1|$1 utent|$1 utent}}]",
-	"rc_categories": "Illimita għall-kategoriji (issepara b' \"|\")",
-	"rc_categories_any": "Kwalunkwe",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} wara l-modifika",
 	"newsectionsummary": "/* $1 */ sezzjoni ġdida",
 	"rc-enhanced-expand": "Uri d-dettalji",

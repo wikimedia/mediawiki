@@ -147,8 +147,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Филтрирање по ознака.",
 	"apihelp-feedrecentchanges-param-target": "Прикажи само промени на страници што водат од оваа.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Наместо тоа, прикажи ги промените на страниците поврзани со избраната страница.",
-	"apihelp-feedrecentchanges-param-categories": "Прикажи само промени на страниците во сите овие категории.",
-	"apihelp-feedrecentchanges-param-categories_any": "Прикажи само промени на страниците во било која од категориите.",
 	"apihelp-feedrecentchanges-example-simple": "Прикажи скорешни промени",
 	"apihelp-feedrecentchanges-example-30days": "Прикажувај скорешни промени 30 дена",
 	"apihelp-feedwatchlist-summary": "Дава тековник со набљудуваните.",

@@ -574,8 +574,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|beówochtender|beówochtende}} Benutzer]",
-	"rc_categories": "Netter Seiten aus d' Kategorien (trennd mid \"l\"):",
-	"rc_categories_any": "Olle",
 	"newsectionsummary": "Neicher Obschnit /* $1 */",
 	"rc-enhanced-expand": "Details zoagn (braucht JavaScript)",
 	"rc-enhanced-hide": "Details vastecka",

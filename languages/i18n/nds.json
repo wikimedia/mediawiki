@@ -919,8 +919,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|Een Bruker|$1 Brukers}}, de oppasst]",
-	"rc_categories": "Blot Sieden ut de Kategorien (trennt mit „|“):",
-	"rc_categories_any": "All",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} achter Ännern",
 	"newsectionsummary": "/* $1 */ nee Afsnitt",
 	"rc-enhanced-expand": "Details wiesen (bruukt JavaScript)",

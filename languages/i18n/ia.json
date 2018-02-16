@@ -1456,8 +1456,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[observate per $1 {{PLURAL:$1|usator|usatores}}]",
-	"rc_categories": "Limitar al categorias (separar con \"|\"):",
-	"rc_categories_any": "Qualcunque categoria seligite",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} post cambio",
 	"newsectionsummary": "/* $1 */ nove section",
 	"rc-enhanced-expand": "Revelar detalios",

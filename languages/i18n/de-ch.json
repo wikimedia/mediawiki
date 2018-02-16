@@ -165,7 +165,6 @@
 	"right-editmyprivateinfo": "Eigene private Daten bearbeiten (beispielsweise E-Mail-Adresse, richtiger Name)",
 	"right-override-export-depth": "Exportiere Seiten einschliesslich verlinkter Seiten bis zu einer Tiefe von 5",
 	"recentchanges-label-plusminus": "Die Änderung der Seitengrösse in Bytes",
-	"rc_categories": "Nur Seiten aus den Kategorien (getrennt mit «|»):",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} nach der Änderung",
 	"rc-old-title": "ursprünglich erstellt als «$1»",
 	"recentchangeslinked-title": "Änderungen an Seiten, die von «$1» verlinkt sind",

@@ -1363,8 +1363,6 @@
 	"newpageletter": "R",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 duke u mbikqyrur nga {{PLURAL:$1|përdorues|përdorues}}]",
-	"rc_categories": "Kufizimi i kategorive (të ndara me \"|\")",
-	"rc_categories_any": "Ndonjë nga të zgjedhurat",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajtë}} pas ndryshimit",
 	"newsectionsummary": "/* $1 */ seksion i ri",
 	"rc-enhanced-expand": "Trego detajet",

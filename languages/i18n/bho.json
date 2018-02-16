@@ -1219,8 +1219,6 @@
 	"newpageletter": "न",
 	"boteditletter": "बॉ",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|प्रयोगकर्ता|प्रयोगकर्ता लोग}} के धियानसूची में बा]",
-	"rc_categories": "श्रेणिन के सीमा (\"|\" से अलगा करीं):",
-	"rc_categories_any": "बीछल में से कौनों एक ठो",
 	"rc-change-size-new": "बदलाव के बाद $1 {{PLURAL:$1|बाइट|बाइट्स}}",
 	"newsectionsummary": "/* $1 */ नया खंड",
 	"rc-enhanced-expand": "डिटेल देखावल जाय",

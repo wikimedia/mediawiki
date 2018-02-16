@@ -1483,8 +1483,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usuario|usuarios}} vixiando]",
-	"rc_categories": "Limitar ás categorías (separadas por \"|\"):",
-	"rc_categories_any": "Calquera das elixidas",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} despois da modificación",
 	"newsectionsummary": "Nova sección: /* $1 */",

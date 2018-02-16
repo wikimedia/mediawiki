@@ -1345,8 +1345,6 @@
 	"newpageletter": "נ",
 	"boteditletter": "ב",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|איין באַניצער פאַסט|$1 באַניצערס פאַסן}} אויף]",
-	"rc_categories": "גרענעץ פֿאַר קאַטעגאריעס (אָפשיידן מיט \"|\")",
-	"rc_categories_any": "איינער פון די געקליבענע",
 	"rc-change-size-new": "$1 {{PLURAL:$1|בייט|בייטן}} נאך דער ענדערונג",
 	"newsectionsummary": "/* $1 */ נייע אפטיילונג",
 	"rc-enhanced-expand": "צייגן דעטאלן",

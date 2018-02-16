@@ -1308,8 +1308,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[osservata 'a {{PLURAL:$1|n'utente|$1 utente}}]",
-	"rc_categories": "Lemmeta a 'e categurìe (spartute 'a \"|\"):",
-	"rc_categories_any": "Qualunque d' 'e scigliute",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} aropp'ô cagnamiento",
 	"newsectionsummary": "/* $1 */ sezziona nnova",
 	"rc-enhanced-expand": "Fa vede dettaglie",

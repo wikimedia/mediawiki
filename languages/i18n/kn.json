@@ -1002,8 +1002,6 @@
 	"newpageletter": "ಹೊ",
 	"boteditletter": "ಬಾ",
 	"number_of_watching_users_pageview": "[$1 ವೀಕ್ಷಿಸುತ್ತಿರುವ {{PLURAL:$1|ಸದಸ್ಯ|ಸದಸ್ಯರು}}]",
-	"rc_categories": "ವರ್ಗಗಳಿಗೆ ಮಾತ್ರ ಸೀಮಿತವಾಗಿಸು (\"|\" ಇಂದ ಬೇರ್ಪಡಿಸು)",
-	"rc_categories_any": "ಯಾವುದೇ",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ಬದಲಾವಣೆಯ ನಂತರ",
 	"newsectionsummary": "/* $1 */ ಹೊಸ ವಿಭಾಗ",
 	"rc-enhanced-expand": "ವಿವರಗಳನ್ನು ತೋರಿಸು",

@@ -1180,8 +1180,6 @@
 	"newpageletter": "ন",
 	"boteditletter": "ব",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|জন সদস্যই|জন সদস্যই}} এই পৃষ্ঠা নিৰীক্ষণ কৰিছে]",
-	"rc_categories": "শ্ৰেণীসমূহৰ সীমাবদ্ধতা (\"|\" দি পৃথক কৰক):",
-	"rc_categories_any": "বাছনি কৰাৰ মাজত যিকোনো",
 	"rc-change-size-new": "$1 {{PLURAL:$1|বাইট}} যোগ দিয়া হ’ল",
 	"newsectionsummary": "/* $1 */ নতুন অনুচ্ছেদ",
 	"rc-enhanced-expand": "সবিশেষ দেখুৱাওক",

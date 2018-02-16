@@ -900,8 +900,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|geban|gebans}} galädöl $1]",
-	"rc_categories": "Te klads fovik (ditolös me el \"|\")",
-	"rc_categories_any": "Alseimik",
 	"rc-change-size-new": "{{PLURAL:$1|jölät|jöläts}} $1 po votükam",
 	"newsectionsummary": "/* $1 */ diläd nulik",
 	"rc-enhanced-expand": "Jonön patis",

@@ -1205,8 +1205,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|wobkedźbowacy wužiwar|wobkedźbowacaj wužiwarjej|wobkedźbowacy wužiwarjo|wobkedźbowacych wužiwarjow}}]",
-	"rc_categories": "Jenož kategorije (dźělene z \"|\")",
-	"rc_categories_any": "Někajka z wubranych",
 	"rc-change-size": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}} po změnje",
 	"newsectionsummary": "Nowy wotrězk: /* $1 */",

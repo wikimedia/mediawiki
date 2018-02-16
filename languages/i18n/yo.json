@@ -1105,8 +1105,6 @@
 	"newpageletter": "T",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|Oníṣe $1|Àwọn oníṣe $1}} ún ṣe ìmójútó]",
-	"rc_categories": "Òpin sí àwọn ẹ̀ka (pínsọ́tọ̀ pẹ̀lú \"|\")",
-	"rc_categories_any": "Èyíkéyìí",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} lẹ́yìn àtúnṣe",
 	"newsectionsummary": "/* $1 */ abala tuntun",
 	"rc-enhanced-expand": "Ìfihàn ẹ̀kúnrẹ́rẹ́",

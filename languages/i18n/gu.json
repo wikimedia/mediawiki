@@ -1142,8 +1142,6 @@
 	"newpageletter": "નવું",
 	"boteditletter": "બૉટ",
 	"number_of_watching_users_pageview": "[$1 જોઇરહેલ  {{PLURAL:$1|સભ્ય|સભ્યો}}]",
-	"rc_categories": "શ્રેણીઓ સુધી મર્યાદિત (\"|\" થી જુદા પાડો):",
-	"rc_categories_any": "કોઇ પણ પસંદ કરેલ",
 	"rc-change-size-new": "બદલાયા પછી $1 {{PLURAL:$1|બાઈટ|બાઇટ્સ}}",
 	"newsectionsummary": "/* $1 */ નવો વિભાગ",
 	"rc-enhanced-expand": "વિગતો બતાવો",

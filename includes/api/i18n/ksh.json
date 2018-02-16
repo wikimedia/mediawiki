@@ -152,8 +152,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Noh Makkehronge beschängke.",
 	"apihelp-feedrecentchanges-param-target": "Zeijsch Änderonge aan Sigge, op di vun heh dä Sigg ene Lengk jeihd.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Zeijsch Änderonge aan Sigge, op di vun dä ußjesöhk Sigg ene Lengk jeihd.",
-	"apihelp-feedrecentchanges-param-categories": "Donn blohß de Änderonge aan de Zohjehüreshkeit för all heh di Saachjroppe zeije.",
-	"apihelp-feedrecentchanges-param-categories_any": "Donn deföhr blohß de Änderonge aan de Zohjehüreshkeit för öhndseijn fun heh dä Saachjroppe zeije.",
 	"apihelp-feedrecentchanges-example-simple": "Zeijsch de {{LCFIRST:{{int:recentchanges}}}}",
 	"apihelp-feedrecentchanges-example-30days": "Zeijsch de {{LCFIRST:{{int:recentchanges}}}} vun de läzde 30 Dähsch.",
 	"apihelp-feedwatchlist-summary": "Donn ene Kannahl met dä Oppaßleß zerökjävve.",

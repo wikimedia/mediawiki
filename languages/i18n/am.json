@@ -822,7 +822,6 @@
 	"newpageletter": "አ",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 የሚከታተሉ {{PLURAL:$1|ተጠቃሚ|ተጠቃሚዎች}}]",
-	"rc_categories_any": "ማንኛውም",
 	"newsectionsummary": "/* $1 */ አዲስ ክፍል",
 	"rc-enhanced-expand": "ዝርዝሩን አሳይ (JavaScript ያስፈልጋል)",
 	"rc-enhanced-hide": "ዝርዝሩን ደብቅ",

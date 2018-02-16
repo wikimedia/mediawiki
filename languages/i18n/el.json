@@ -1477,8 +1477,6 @@
 	"newpageletter": "Ν",
 	"boteditletter": "ρ",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|χρήστης|χρήστες}} παρακολουθούν]",
-	"rc_categories": "Περιορίστε τις κατηγορίες (διαχωρίστε τις με \"|\"):",
-	"rc_categories_any": "Οποιαδήποτε από τις επιλεγμένες",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} μετά από την αλλαγή",
 	"newsectionsummary": "/* $1 */ νέα ενότητα",
 	"rc-enhanced-expand": "Εμφάνιση λεπτομερειών",

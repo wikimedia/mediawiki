@@ -1245,8 +1245,6 @@
 	"newpageletter": "J",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[šo lapu uzrauga $1 {{PLURAL:$1|dalībnieki|dalībnieks|dalībnieki}}]",
-	"rc_categories": "Ierobežot uz kategorijām (atdalīt ar \"|\"):",
-	"rc_categories_any": "Jebkas no izvēlētā",
 	"rc-change-size-new": "$1 {{PLURAL:$1|baiti|baits|baiti}} pēc izmaiņām",
 	"newsectionsummary": "/* $1 */ jauna sadaļa",
 	"rc-enhanced-expand": "Skatīt detaļas",

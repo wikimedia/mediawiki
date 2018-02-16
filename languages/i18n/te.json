@@ -1395,8 +1395,6 @@
 	"newpageletter": "కొ",
 	"boteditletter": "బా",
 	"number_of_watching_users_pageview": "[వీక్షిస్తున్న సభ్యులు: {{PLURAL:$1|ఒక్కరు|$1}}]",
-	"rc_categories": "ఈ వర్గాలకు పరిమితం చెయ్యి (\"|\" తో వేరు చెయ్యండి):",
-	"rc_categories_any": "ఎంచుకున్నది ఏదయినా",
 	"rc-change-size-new": "మార్పు తర్వాత $1 {{PLURAL:$1|బైటు|బైట్లు}}",
 	"newsectionsummary": "/* $1 */ కొత్త విభాగం",
 	"rc-enhanced-expand": "వివరాలను చూపించు",

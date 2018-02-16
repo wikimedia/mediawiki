@@ -818,8 +818,6 @@
 	"newpageletter": "V",
 	"boteditletter": "rb",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|$1 perräkaejat|üts perräkaeja}}]",
-	"rc_categories": "Õnnõ katõgoorijist (eräldedäs märgiga \"|\")",
-	"rc_categories_any": "Miä taht",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bait|baiti}} peräst muutmist",
 	"rc-enhanced-expand": "Näütäq ütsikasjo",
 	"rc-enhanced-hide": "Käkiq ütsikas'aq ärq",

@@ -1422,8 +1422,6 @@
 	"newpageletter": "N",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|priatentanta uzanto|priatentantaj uzantoj}}]",
-	"rc_categories": "Nur paĝoj el jenaj kategorioj (disigu per \"|\"):",
-	"rc_categories_any": "Iuj el la elektitaj",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bitoko|bitokoj}} post ŝanĝo",
 	"newsectionsummary": "/* $1 */ nova sekcio",
 	"rc-enhanced-expand": "Montri detalojn (per JavaScript)",

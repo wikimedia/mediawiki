@@ -846,8 +846,6 @@
 	"newpageletter": "О",
 	"boteditletter": "р",
 	"number_of_watching_users_pageview": "[$1 ваны {{PLURAL:$1|тии|тиихть}}]",
-	"rc_categories": "Аньцек категориеста (явфтомс \"|\" вельде)",
-	"rc_categories_any": "Эрь кодама",
 	"newsectionsummary": "/* $1 */ од пялькс",
 	"rc-enhanced-expand": "Няфтемс анцяйнятне (эряви JavaScript)",
 	"rc-enhanced-hide": "Кяшемс анцяйнятне",

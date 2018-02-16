@@ -52,8 +52,6 @@
 	"apihelp-feedrecentchanges-param-hideliu": "Ännerunge vu registréierte Benotzer verstoppen.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Ännerunge vum aktuelle Benotzer verstoppen.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Ännerunge vun der Memberschaft a Kategorie verstoppen.",
-	"apihelp-feedrecentchanges-param-categories": "Nëmmen Ännerunge vu Säiten aus all dëse Kategorië weisen.",
-	"apihelp-feedrecentchanges-param-categories_any": "Nëmmen Ännerunge vu Säiten aus enger vun dëse Kategorië weisen.",
 	"apihelp-feedrecentchanges-example-simple": "Rezent Ännerunge weisen",
 	"apihelp-filerevert-param-comment": "Bemierkung eroplueden.",
 	"apihelp-help-example-main": "Hëllef fir den Haaptmodul.",

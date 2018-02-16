@@ -1155,8 +1155,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 binabantayang {{PLURAL:$1|tagagamit|mga tagagamit}}]",
-	"rc_categories": "Itakda lang sa mga kaurian (ihiwalay sa pamamagitan ng \"|\")",
-	"rc_categories_any": "Kahit ano",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte}} pagkaraan ng pagbabago",
 	"newsectionsummary": "/* $1 */ bagong seksyon",

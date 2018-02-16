@@ -958,8 +958,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 folgjende {{PLURAL:$1|meidogger|meidoggers}}]",
-	"rc_categories": "Alline kategoryen (skiede mei in \"|\")",
-	"rc_categories_any": "Elk",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} nei de wiziging",
 	"newsectionsummary": "/* $1 */ nije seksje",

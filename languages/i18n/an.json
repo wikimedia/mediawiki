@@ -958,8 +958,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]",
-	"rc_categories": "Limite ta las categorías (deseparatas por \"|\")",
-	"rc_categories_any": "Todas",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} dimpués d'o cambio",
 	"newsectionsummary": "Nueva sección: /* $1 */",
 	"rc-enhanced-expand": "Amostrar detalles",

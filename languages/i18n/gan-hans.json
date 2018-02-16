@@ -647,8 +647,6 @@
 	"newpageletter": "新",
 	"boteditletter": "机",
 	"number_of_watching_users_pageview": "[$1只监视用户]",
-	"rc_categories": "分类界定（用\"|\"隔开）",
-	"rc_categories_any": "任何",
 	"newsectionsummary": "/* $1 */ 新段落",
 	"rc-enhanced-expand": "显到细节（需要 JavaScript）",
 	"rc-enhanced-hide": "弆到细节",

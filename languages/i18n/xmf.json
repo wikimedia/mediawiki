@@ -1129,8 +1129,6 @@
 	"newpageletter": "ახ.",
 	"boteditletter": "ბ",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|მომხმარებლის|მომხმარებლის}} კონტროლი]",
-	"rc_categories": "ხვალო კატეგორიეფშე (გეგშართით \"|\"-იშ მეჯინათ)",
-	"rc_categories_any": "არძონერი",
 	"rc-change-size-new": "ზჷმა თირუაშ უკული რე: {{PLURAL:$1|ბაიტი|ბაიტი}}",
 	"newsectionsummary": "/* $1 */ ახალი სექცია",
 	"rc-enhanced-expand": "დეტალების  ჩვენება",

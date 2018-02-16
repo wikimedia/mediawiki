@@ -650,8 +650,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|keêr|keêr}} op een volglieste]",
-	"rc_categories": "Beperk'n tot categorieën (scheien mie een \"|\")",
-	"rc_categories_any": "Elk'n",
 	"newsectionsummary": "/* $1 */ nieuwe subkop",
 	"rc-enhanced-expand": "Details weerheven (JavaScript vereist)",
 	"rc-enhanced-hide": "Verbarg details",

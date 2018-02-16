@@ -954,8 +954,6 @@
 	"newpageletter": "ج",
 	"boteditletter": "ب",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1| يوزر مراقب|يوزر مراقب}}]",
-	"rc_categories": "حصر لتصنيفات (مفصولة برمز \"|\")",
-	"rc_categories_any": "أى",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بايت|بايتس}} بعد التغيير",
 	"newsectionsummary": "/* $1 */ قسم جديد",
 	"rc-enhanced-expand": "[اعرض التفاصيل]",

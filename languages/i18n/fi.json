@@ -1478,8 +1478,6 @@
 	"newpageletter": "U",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|tarkkaileva käyttäjä|tarkkailevaa käyttäjää}}]",
-	"rc_categories": "Rajoita luokkiin (erota luokat merkillä ”|”)",
-	"rc_categories_any": "Mikä tahansa valituista",
 	"rc-change-size-new": "$1 {{PLURAL:$1|tavu|tavua}} muutosten jälkeen",
 	"newsectionsummary": "/* $1 */ uusi osio",
 	"rc-enhanced-expand": "Näytä yksityiskohdat",

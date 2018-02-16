@@ -1456,8 +1456,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|usuariu|usuarios}} vixilando]",
-	"rc_categories": "Llendar a les categoríes (dixebrar con \"|\"):",
-	"rc_categories_any": "Cualquiera de les esbillaes",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} dempués del cambiu",
 	"newsectionsummary": "/* $1 */ nueva seición",
 	"rc-enhanced-expand": "Amosar detalles",

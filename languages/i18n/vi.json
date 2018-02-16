@@ -1459,8 +1459,6 @@
 	"newpageletter": "M",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 người đang xem]",
-	"rc_categories": "Hạn chế theo thể loại (phân cách bằng “|”):",
-	"rc_categories_any": "Bất kỳ được chọn",
 	"rc-change-size-new": "$1 byte sau thay đổi",
 	"newsectionsummary": "Đề mục mới: /* $1 */",
 	"rc-enhanced-expand": "Xem chi tiết",

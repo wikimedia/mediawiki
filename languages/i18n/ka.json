@@ -1472,8 +1472,6 @@
 	"boteditletter": "რ",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 მომხმარებლის/ები კონტროლი]",
-	"rc_categories": "მხოლოდ კატეგორიებიდან (გამყოფი „|“)",
-	"rc_categories_any": "არჩეულიდან ნებისმიერი",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "ზომა ცვლილების შემდეგ არის: {{PLURAL:$1|ბაიტი|ბაიტი}}",
 	"newsectionsummary": "/* $1 */ ახალი სექცია",

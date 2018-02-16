@@ -1339,8 +1339,6 @@
 	"newpageletter": "பு",
 	"boteditletter": "தா",
 	"number_of_watching_users_pageview": "[இப்பக்க்த்தை {{PLURAL:$1|ஒரு பயனர் பார்கிறார்|$1 பயனர்கள் பார்கிறார்கள்}}]",
-	"rc_categories": "பகுப்புகளுக்கு மட்டுப்படுத்து (\"|\" குறியீட்டால் பிரிக்கப்பட்டுள்ளது)",
-	"rc_categories_any": "தெரிவு செய்ததில் ஏதாவது",
 	"rc-change-size-new": "$1 {{PLURAL:$1|பைட்டு|பைட்டுகள்}} -மாற்றத்திற்குப் பிறகு",
 	"newsectionsummary": "/* $1 */ புதிய பகுதி",
 	"rc-enhanced-expand": "விவரத்தை காட்டு",

@@ -219,8 +219,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Фильтр по меткам.",
 	"apihelp-feedrecentchanges-param-target": "Показать только правки на страницах, на которые ссылается данная.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Показать правки на страницах, ссылающихся на данную.",
-	"apihelp-feedrecentchanges-param-categories": "Показать только правки на страницах, включённых во все данные категории.",
-	"apihelp-feedrecentchanges-param-categories_any": "Показать только правки на страницах, включённых в хотя бы одну из данных категорий.",
 	"apihelp-feedrecentchanges-example-simple": "Список последних изменений.",
 	"apihelp-feedrecentchanges-example-30days": "Список последних изменений за 30 дней.",
 	"apihelp-feedwatchlist-summary": "Возвращает ленту списка наблюдения.",

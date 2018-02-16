@@ -1507,8 +1507,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|pemantau|pemantau}}]",
-	"rc_categories": "Batasi sampai kategori (dipisah dengan \"|\"):",
-	"rc_categories_any": "Setiap yang terpilih",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bita}} setelah perubahan",
 	"newsectionsummary": "/* $1 */ bagian baru",

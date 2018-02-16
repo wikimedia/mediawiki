@@ -1181,8 +1181,6 @@
 	"boteditletter": "ب",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 دینه {{PLURAL:$1|کاریار|کاریاریا}}]",
-	"rc_categories": "جأرغە یا نە مأدوٙد کو(ڤا \"|\" جئگا بان)",
-	"rc_categories_any": "ھأرکوم کئ گولئ ڤورچیە بیینە",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بایت|بایتیا}} ناٛها آلشتکاری",
 	"newsectionsummary": "/* $1 */ بهرجا تازه",

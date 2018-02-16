@@ -1289,8 +1289,6 @@
 	"boteditletter": "B",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|eine|$1|kein}} Oppasser]",
-	"rc_categories": "Bejränz op de Saachjroppe (schrihv „|“ dozwesche):",
-	"rc_categories_any": "Öhndseijne vun dä aanjejovve Saachjroppe",
 	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes|Bytes}} noh dem Ändere",
 	"newsectionsummary": "Neuje Afschnet /* $1 */",
