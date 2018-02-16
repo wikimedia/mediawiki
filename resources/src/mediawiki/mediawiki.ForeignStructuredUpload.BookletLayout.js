@@ -392,7 +392,8 @@
 		if ( file && file.type === 'image/jpeg' ) {
 			fileReader = new FileReader();
 			fileReader.onload = function () {
-				var fileStr, arr, i, metadata;
+				var fileStr, arr, i, metadata,
+					jpegmeta = mw.loader.require( 'mediawiki.libs.jpegmeta' );
 
 				if ( typeof fileReader.result === 'string' ) {
 					fileStr = fileReader.result;
@@ -406,7 +407,7 @@
 				}
 
 				try {
-					metadata = mw.libs.jpegmeta( fileStr, file.name );
+					metadata = jpegmeta( fileStr, file.name );
 				} catch ( e ) {
 					metadata = null;
 				}
