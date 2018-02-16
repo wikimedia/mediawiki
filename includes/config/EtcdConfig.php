@@ -119,6 +119,11 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		return $this->procCache['config'][$name];
 	}
 
+	public function getModifiedIndex() {
+		$this->load();
+		return $this->procCache['modifiedIndex'];
+	}
+
 	/**
 	 * @throws ConfigException
 	 */
@@ -151,13 +156,16 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 				// refresh the cache from etcd, using a mutex to reduce stampedes...
 				if ( $this->srvCache->lock( $key, 0, $this->baseCacheTTL ) ) {
 					try {
-						list( $config, $error, $retry ) = $this->fetchAllFromEtcd();
+						list( $config, $error, $retry, $lastIndex ) = $this->fetchAllFromEtcd();
 						if ( is_array( $config ) ) {
 							// Avoid having all servers expire cache keys at the same time
 							$expiry = microtime( true ) + $this->baseCacheTTL;
 							$expiry += mt_rand( 0, 1e6 ) / 1e6 * $this->skewCacheTTL;
-
-							$data = [ 'config' => $config, 'expires' => $expiry ];
+							$data = [
+								'config' => $config,
+								'expires' => $expiry,
+								'modifiedIndex' => $lastIndex
+							];
 							$this->srvCache->set( $key, $data, BagOStuff::TTL_INDEFINITE );
 
 							$this->logger->info( "Refreshed stale etcd configuration cache." );
@@ -209,7 +217,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$server = $dsd->pickServer( $servers );
 			$host = IP::combineHostAndPort( $server['target'], $server['port'] );
 			// Try to load the config from this particular server
-			list( $config, $error, $retry ) = $this->fetchAllFromEtcdServer( $host );
+			list( $config, $error, $retry, $lastModifiedIndex ) = $this->fetchAllFromEtcdServer( $host );
 			if ( is_array( $config ) || !$retry ) {
 				break;
 			}
@@ -218,7 +226,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$servers = $dsd->removeServer( $server, $servers );
 		} while ( $servers );
 
-		return [ $config, $error, $retry ];
+		return [ $config, $error, $retry, $lastModifiedIndex ];
 	}
 
 	/**
@@ -238,13 +246,15 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			return [
 				null,
 				strlen( $rerr ) ? $rerr : "HTTP $rcode ($rdesc)",
-				empty( $terminalCodes[$rcode] )
+				empty( $terminalCodes[$rcode] ),
+				0
 			];
 		}
 		try {
-			return [ $this->parseResponse( $rbody ), null, false ];
+			$parsedResponse = $this->parseResponse( $rbody );
+			return [ $parsedResponse['config'], null, false, $parsedResponse['modifiedIndex'] ];
 		} catch ( EtcdConfigParseError $e ) {
-			return [ null, $e->getMessage(), false ];
+			return [ null, $e->getMessage(), false , 0 ];
 		}
 	}
 
@@ -264,8 +274,8 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 				"Unexpected JSON response: Missing or invalid node at top level." );
 		}
 		$config = [];
-		$this->parseDirectory( '', $info['node'], $config );
-		return $config;
+		$lastModifiedIndex = $this->parseDirectory( '', $info['node'], $config );
+		return [ 'modifiedIndex' => $lastModifiedIndex, 'config' => $config ];
 	}
 
 	/**
@@ -275,8 +285,10 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 * @param string $dirName The relative directory name
 	 * @param array $dirNode The decoded directory node
 	 * @param array &$config The output array
+	 * @return int lastModifiedIndex The maximum last modified index across all keys in the directory
 	 */
 	protected function parseDirectory( $dirName, $dirNode, &$config ) {
+		$lastModifiedIndex = 0;
 		if ( !isset( $dirNode['nodes'] ) ) {
 			throw new EtcdConfigParseError(
 				"Unexpected JSON response in dir '$dirName'; missing 'nodes' list." );
@@ -290,16 +302,19 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			$baseName = basename( $node['key'] );
 			$fullName = $dirName === '' ? $baseName : "$dirName/$baseName";
 			if ( !empty( $node['dir'] ) ) {
-				$this->parseDirectory( $fullName, $node, $config );
+				$lastModifiedIndex = max(
+					$this->parseDirectory( $fullName, $node, $config ),
+					$lastModifiedIndex );
 			} else {
 				$value = $this->unserialize( $node['value'] );
 				if ( !is_array( $value ) || !array_key_exists( 'val', $value ) ) {
 					throw new EtcdConfigParseError( "Failed to parse value for '$fullName'." );
 				}
-
+				$lastModifiedIndex = max( $node['modifiedIndex'], $lastModifiedIndex );
 				$config[$fullName] = $value['val'];
 			}
 		}
+		return $lastModifiedIndex;
 	}
 
 	/**
