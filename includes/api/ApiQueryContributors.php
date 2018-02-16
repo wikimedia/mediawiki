@@ -23,6 +23,9 @@
  * @since 1.23
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * A query module to show contributors to a page
  *
@@ -75,7 +78,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		}
 
 		$result = $this->getResult();
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 
 		// For MIGRATION_NEW, target indexes on the revision_actor_temp table.
 		// Otherwise, revision is fine because it'll have to check all revision rows anyway.
@@ -94,7 +97,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		] );
 		$this->addWhereFld( $pageField, $pages );
 		$this->addWhere( ActorMigration::newMigration()->isAnon( $revQuery['fields']['rev_user'] ) );
-		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', $pageField );
 		$res = $this->select( __METHOD__ );
 		foreach ( $res as $row ) {
@@ -126,7 +129,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		] );
 		$this->addWhereFld( $pageField, $pages );
 		$this->addWhere( ActorMigration::newMigration()->isNotAnon( $revQuery['fields']['rev_user'] ) );
-		$this->addWhere( $db->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
+		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', [ $pageField, $idField ] );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
