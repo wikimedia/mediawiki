@@ -39,14 +39,10 @@ Primary scripts:
     maintenance/archives/patch-profiling.sql patch to the database.
 
     To enable the profileinfo.php itself, you'll need to set $wgDBadminuser
-    and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo 
+    and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo
     See also https://www.mediawiki.org/wiki/Manual:Profiling .
 
   thumb.php
     Script used to resize images if it is configured to be done when the web
     browser requests the image and not when generating the page. This script can
     be used as a 404 handler to generate image thumbs when they don't exist.
-
-There is also a file with a .php5 extension for each script. They can be used if
-the web server needs a .php5 to run the file with the PHP 5 engine and runs .php
-scripts with PHP 4. You should not use them anymore.
