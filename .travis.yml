@@ -75,6 +75,8 @@ before_script:
       --dbuser "$dbuser"
       --dbpass ""
       --scriptpath "/w"
+  - echo -en "\n\nrequire_once __DIR__ . '/includes/DevelopmentSettings.php';\n" >> ./LocalSettings.php
+  - php -l ./LocalSettings.php
 
 script:
   - php tests/phpunit/phpunit.php
