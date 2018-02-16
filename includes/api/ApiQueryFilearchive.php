@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * Query module to enumerate all deleted files.
  *
@@ -153,7 +155,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			self::addTitleInfo( $file, $title );
 
 			if ( $fld_description &&
-				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
+				RevisionRecord::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
 			) {
 				$file['description'] = $commentStore->getComment( 'fa_description', $row )->text;
 				if ( isset( $prop['parseddescription'] ) ) {
@@ -162,7 +164,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				}
 			}
 			if ( $fld_user &&
-				Revision::userCanBitfield( $row->fa_deleted, File::DELETED_USER, $user )
+				RevisionRecord::userCanBitfield( $row->fa_deleted, File::DELETED_USER, $user )
 			) {
 				$file['userid'] = (int)$row->fa_user;
 				$file['user'] = $row->fa_user_text;
