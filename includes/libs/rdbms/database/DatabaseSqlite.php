@@ -46,9 +46,9 @@ class DatabaseSqlite extends Database {
 	protected $trxMode;
 
 	/** @var int The number of rows affected as an integer */
-	protected $mAffectedRows;
+	protected $lastAffectedRowCount;
 	/** @var resource */
-	protected $mLastResult;
+	protected $lastResultHandle;
 
 	/** @var PDO */
 	protected $conn;
@@ -317,7 +317,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
-		$this->mAffectedRows = $r->rowCount();
+		$this->lastAffectedRowCount = $r->rowCount();
 		$res = new ResultWrapper( $this, $r->fetchAll() );
 
 		return $res;
@@ -497,7 +497,7 @@ class DatabaseSqlite extends Database {
 	 * @return int
 	 */
 	protected function fetchAffectedRowCount() {
-		return $this->mAffectedRows;
+		return $this->lastAffectedRowCount;
 	}
 
 	/**
