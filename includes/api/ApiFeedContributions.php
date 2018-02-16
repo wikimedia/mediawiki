@@ -20,10 +20,18 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionStore;
+
 /**
  * @ingroup API
  */
 class ApiFeedContributions extends ApiBase {
+
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	/**
 	 * This module uses a custom feed wrapper printer.
@@ -35,6 +43,8 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function execute() {
+		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 		$params = $this->extractRequestParams();
 
 		$config = $this->getConfig();
@@ -130,7 +140,7 @@ class ApiFeedContributions extends ApiBase {
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
-			$revision = Revision::newFromRow( $row );
+			$revision = $this->revisionStore->newRevisionFromRow( $row );
 
 			return new FeedItem(
 				$title->getPrefixedText(),
@@ -146,21 +156,28 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	/**
-	 * @param Revision $revision
+	 * @since 1.32, takes a RevisionRecord instead of a Revision
+	 * @param RevisionRecord $revision
 	 * @return string
 	 */
-	protected function feedItemAuthor( $revision ) {
-		return $revision->getUserText();
+	protected function feedItemAuthor( RevisionRecord $revision ) {
+		$user = $revision->getUser();
+		return $user ? $user->getName() : '';
 	}
 
 	/**
-	 * @param Revision $revision
+	 * @since 1.32, takes a RevisionRecord instead of a Revision
+	 * @param RevisionRecord $revision
 	 * @return string
 	 */
-	protected function feedItemDesc( $revision ) {
+	protected function feedItemDesc( RevisionRecord $revision ) {
 		if ( $revision ) {
 			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
-			$content = $revision->getContent();
+			try {
+				$content = $revision->getContent( 'main' );
+			} catch ( RevisionAccessException $e ) {
+				$content = null;
+			}
 
 			if ( $content instanceof TextContent ) {
 				// only textual content has a "source view".
@@ -173,8 +190,10 @@ class ApiFeedContributions extends ApiBase {
 				$html = '';
 			}
 
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
-				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
+			$comment = $revision->getComment();
+
+			return '<p>' . htmlspecialchars( $this->feedItemAuthor( $revision ) ) . $msg .
+				htmlspecialchars( FeedItem::stripComment( $comment ? $comment->text : '' ) ) .
 				"</p>\n<hr />\n<div>" . $html . '</div>';
 		}
 

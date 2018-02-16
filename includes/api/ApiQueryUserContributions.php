@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
+
 /**
  * This query action adds a list of a specified user's contributions to the output.
  *
@@ -396,7 +399,8 @@ class ApiQueryContributions extends ApiQueryBase {
 						$revIds[] = $data[0]->rev_parent_id;
 					}
 				}
-				$this->parentLens = Revision::getParentLengths( $dbSecondary, $revIds );
+				$this->parentLens = MediaWikiServices::getInstance()->getRevisionStore()
+					->listRevisionSizes( $dbSecondary, $revIds );
 			}
 
 			foreach ( $merged as $data ) {
@@ -435,7 +439,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
-		$revQuery = Revision::getQueryInfo( [ 'page' ] );
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo( [ 'page' ] );
 		$this->addTables( $revQuery['tables'] );
 		$this->addJoinConds( $revQuery['joins'] );
 		$this->addFields( $revQuery['fields'] );
@@ -497,9 +501,9 @@ class ApiQueryContributions extends ApiQueryBase {
 		// see the username.
 		$user = $this->getUser();
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
-			$bitmask = Revision::DELETED_USER;
+			$bitmask = RevisionRecord::DELETED_USER;
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
-			$bitmask = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
 		}
@@ -616,7 +620,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$vals = [];
 		$anyHidden = false;
 
-		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+		if ( $row->rev_deleted & RevisionRecord::DELETED_TEXT ) {
 			$vals['texthidden'] = true;
 			$anyHidden = true;
 		}
@@ -624,7 +628,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// Any rows where we can't view the user were filtered out in the query.
 		$vals['userid'] = (int)$row->rev_user;
 		$vals['user'] = $row->rev_user_text;
-		if ( $row->rev_deleted & Revision::DELETED_USER ) {
+		if ( $row->rev_deleted & RevisionRecord::DELETED_USER ) {
 			$vals['userhidden'] = true;
 			$anyHidden = true;
 		}
@@ -655,14 +659,14 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
+			if ( $row->rev_deleted & RevisionRecord::DELETED_COMMENT ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 
-			$userCanView = Revision::userCanBitfield(
+			$userCanView = RevisionRecord::userCanBitfield(
 				$row->rev_deleted,
-				Revision::DELETED_COMMENT, $this->getUser()
+				RevisionRecord::DELETED_COMMENT, $this->getUser()
 			);
 
 			if ( $userCanView ) {
@@ -706,7 +710,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 		}
 
-		if ( $anyHidden && $row->rev_deleted & Revision::DELETED_RESTRICTED ) {
+		if ( $anyHidden && ( $row->rev_deleted & RevisionRecord::DELETED_RESTRICTED ) ) {
 			$vals['suppressed'] = true;
 		}
 
