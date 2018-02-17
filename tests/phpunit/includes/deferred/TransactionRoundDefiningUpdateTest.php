@@ -3,7 +3,7 @@
 /**
  * @covers TransactionRoundDefiningUpdate
  */
-class TransactionRoundDefiningUpdateTest extends PHPUnit_Framework_TestCase {
+class TransactionRoundDefiningUpdateTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

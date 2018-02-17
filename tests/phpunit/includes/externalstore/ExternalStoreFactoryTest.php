@@ -3,7 +3,7 @@
 /**
  * @covers ExternalStoreFactory
  */
-class ExternalStoreFactoryTest extends PHPUnit_Framework_TestCase {
+class ExternalStoreFactoryTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

@@ -8,7 +8,7 @@
  * @todo Test methods in this call should be split into a method and a
  * dataprovider.
  */
-class IPTest extends PHPUnit_Framework_TestCase {
+class IPTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

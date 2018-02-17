@@ -27,7 +27,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  *
  * @author Marius Hoch
  */
-class MediaWikiPageNameNormalizerTest extends PHPUnit_Framework_TestCase {
+class MediaWikiPageNameNormalizerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

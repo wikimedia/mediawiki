@@ -6,7 +6,7 @@ use Psr\Log\LoggerInterface;
 /**
  * @covers \Wikimedia\Rdbms\TransactionProfiler
  */
-class TransactionProfilerTest extends PHPUnit_Framework_TestCase {
+class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

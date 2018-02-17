@@ -889,7 +889,7 @@ class ParserTestRunner {
 		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
 			$actualFlags = array_keys( TestingAccessWrapper::newFromObject( $output )->mFlags );
 			sort( $actualFlags );
-			$out .= "\nflags=" . join( ', ', $actualFlags );
+			$out .= "\nflags=" . implode( ', ', $actualFlags );
 		}
 
 		ScopedCallback::consume( $teardownGuard );

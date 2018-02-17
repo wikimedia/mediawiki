@@ -7,7 +7,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class ComposerVersionNormalizerTest extends PHPUnit_Framework_TestCase {
+class ComposerVersionNormalizerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

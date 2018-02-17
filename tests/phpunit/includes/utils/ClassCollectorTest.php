@@ -3,7 +3,7 @@
 /**
  * @covers ClassCollector
  */
-class ClassCollectorTest extends PHPUnit_Framework_TestCase {
+class ClassCollectorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

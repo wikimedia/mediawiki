@@ -6,7 +6,7 @@ use MediaWiki\Services\ServiceContainer;
  *
  * @group MediaWiki
  */
-class ServiceContainerTest extends PHPUnit_Framework_TestCase {
+class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

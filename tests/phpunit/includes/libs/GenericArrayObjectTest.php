@@ -26,7 +26,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class GenericArrayObjectTest extends PHPUnit_Framework_TestCase {
+abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
