@@ -94,6 +94,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlRealEscapeString( $s ) {
+		return str_replace( "'", "\\'", $s );
 	}
 
 	function insertId() {
@@ -494,5 +495,55 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db = new FakeDatabaseMysqlBase();
 
 		$db->clearFlag( Database::DBO_IGNORE );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::setIndexAliases
+	 */
+	public function testIndexAliases() {
+		$db = new FakeDatabaseMysqlBase();
+
+		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
+		$sql = $db->selectSQLText(
+			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `zend`  FORCE INDEX (a_c_idx)  WHERE a = 'x'  ",
+			$sql
+		);
+
+		$db->setIndexAliases( [] );
+		$sql = $db->selectSQLText(
+			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `zend`  FORCE INDEX (a_b_idx)  WHERE a = 'x'  ",
+			$sql
+		);
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::setTableAliases
+	 */
+	public function testTableAliases() {
+		$db = new FakeDatabaseMysqlBase();
+
+		$db->setTableAliases( [
+			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => 'cat_' ]
+		] );
+		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `feline`.`cat_meow`    WHERE a = 'x'  ",
+			$sql
+		);
+
+		$db->setTableAliases( [] );
+		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `meow`    WHERE a = 'x'  ",
+			$sql
+		);
 	}
 }
