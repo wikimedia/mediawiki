@@ -517,4 +517,69 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'CAST( fieldName AS SIGNED )', $output );
 	}
 
+	/*
+	 * @covers Wikimedia\Rdbms\Database::setIndexAliases
+	 */
+	public function testIndexAliases() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'mysqlRealEscapeString' ] )
+			->getMock();
+		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
+			function ( $s ) {
+				return str_replace( "'", "\\'", $s );
+			}
+		);
+
+		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
+		$sql = $db->selectSQLText(
+			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `zend`  FORCE INDEX (a_c_idx)  WHERE a = 'x'  ",
+			$sql
+		);
+
+		$db->setIndexAliases( [] );
+		$sql = $db->selectSQLText(
+			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `zend`  FORCE INDEX (a_b_idx)  WHERE a = 'x'  ",
+			$sql
+		);
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::setTableAliases
+	 */
+	public function testTableAliases() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'mysqlRealEscapeString' ] )
+			->getMock();
+		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
+			function ( $s ) {
+				return str_replace( "'", "\\'", $s );
+			}
+		);
+
+		$db->setTableAliases( [
+			'meow' => [ 'dbname' => 'feline', 'schema' => null, 'prefix' => 'cat_' ]
+		] );
+		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `feline`.`cat_meow`    WHERE a = 'x'  ",
+			$sql
+		);
+
+		$db->setTableAliases( [] );
+		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
+
+		$this->assertEquals(
+			"SELECT  field  FROM `meow`    WHERE a = 'x'  ",
+			$sql
+		);
+	}
 }
