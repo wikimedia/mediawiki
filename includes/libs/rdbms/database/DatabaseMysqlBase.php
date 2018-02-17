@@ -892,9 +892,15 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $pos->gtids ) {
+		if ( $pos->getGTIDs() ) {
+			// Ignore GTIDs from domains exclusive to the master DB (presumably inactive)
+			$rpos = $this->getReplicaPos();
+			$gtidsWait = $rpos ? MySQLMasterPos::getCommonDomainGTIDs( $pos, $rpos ) : [];
+			if ( !$gtidsWait ) {
+				return -1; // $pos is from the wrong cluster?
+			}
 			// Wait on the GTID set (MariaDB only)
-			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
+			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
 		} else {
 			// Wait on the binlog coordinates
@@ -912,7 +918,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			if ( !$pos->gtids ) {
+			if ( !$pos->getGTIDs() ) {
 				// T126436: jobs programmed to wait on master positions might be referencing
 				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
 				// Try to detect this case and treat the replica DB as having reached the given
