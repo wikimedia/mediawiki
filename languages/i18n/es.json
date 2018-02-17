@@ -3864,7 +3864,7 @@
 	"feedback-thanks-title": "¡Muchas gracias!",
 	"feedback-useragent": "Agente de usuario:",
 	"searchsuggest-search": "Buscar en {{SITENAME}}",
-	"searchsuggest-containing": "que contiene...",
+	"searchsuggest-containing": "que contenga…",
 	"api-error-badtoken": "Error interno: Símbolo incorrecto.",
 	"api-error-emptypage": "No se pueden crear páginas nuevas que estén vacías.",
 	"api-error-publishfailed": "Error interno: el servidor no pudo publicar el archivo temporal.",
