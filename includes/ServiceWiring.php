@@ -61,7 +61,10 @@ return [
 		);
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
-		return new $class( $lbConf );
+		$instance = new $class( $lbConf );
+		MWLBFactory::setSchemaAliases( $instance );
+
+		return $instance;
 	},
 
 	'DBLoadBalancer' => function ( MediaWikiServices $services ) {
