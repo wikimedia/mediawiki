@@ -72,8 +72,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $password;
 	/** @var string */
 	protected $dbName;
-	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
+	/** @var array[] Map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
+	/** @var string[] Map of (index alias => index) */
+	protected $indexAliases = [];
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
@@ -2111,7 +2113,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		return $index;
+		return isset( $this->indexAliases[$index] )
+			? $this->indexAliases[$index]
+			: $index;
 	}
 
 	public function addQuotes( $s ) {
@@ -3719,6 +3723,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->indexAliases = $aliases;
 	}
 
 	/**

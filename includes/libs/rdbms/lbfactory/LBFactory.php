@@ -75,6 +75,11 @@ abstract class LBFactory implements ILBFactory {
 	/** @var callable[] */
 	protected $replicationWaitCallbacks = [];
 
+	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
+	protected $tableAliases = [];
+	/** @var string[] Map of (index alias => index) */
+	protected $indexAliases = [];
+
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
@@ -512,7 +517,7 @@ abstract class LBFactory implements ILBFactory {
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
-			'chronologyProtector' => $this->getChronologyProtector()
+			'chronologyProtector' => $this->getChronologyProtector(),
 		];
 	}
 
@@ -523,6 +528,17 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->trxRoundId !== false ) {
 			$lb->beginMasterChanges( $this->trxRoundId ); // set DBO_TRX
 		}
+
+		$lb->setTableAliases( $this->tableAliases );
+		$lb->setIndexAliases( $this->indexAliases );
+	}
+
+	public function setTableAliases( array $aliases ) {
+		$this->tableAliases = $aliases;
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->indexAliases = $aliases;
 	}
 
 	public function setDomainPrefix( $prefix ) {
