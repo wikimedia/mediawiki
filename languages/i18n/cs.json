@@ -877,7 +877,7 @@
 	"revdelete-reasonotherlist": "Jiný důvod",
 	"revdelete-edit-reasonlist": "Editovat důvody smazání",
 	"revdelete-offender": "Autor revize:",
-	"suppressionlog": "Záznam utajení",
+	"suppressionlog": "Kniha utajení",
 	"suppressionlogtext": "Toto je seznam mazání a blokování zahrnující skrytí obsahu i před správci.\nVizte též [[Special:BlockList|seznam všech probíhajících bloků]].",
 	"mergehistory": "Slučování historií stránek",
 	"mergehistory-header": "Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.\nUjistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.",
