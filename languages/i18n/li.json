@@ -1333,8 +1333,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|keer|keer}} op 'ne volglies]",
-	"rc_categories": "Bepirk tot categorieë (sjeij mit 'n \"|\")",
-	"rc_categories_any": "Idder vanne gekaozene",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} nao verangering",
 	"newsectionsummary": "/* $1 */ nuje subkop",
 	"rc-enhanced-expand": "Toean details",

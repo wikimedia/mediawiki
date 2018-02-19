@@ -785,8 +785,6 @@
 	"newpageletter": "Y",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|qullanıcı|qullanıcı}} közete]",
-	"rc_categories": "Tek kategoriyalardan (\"|\" ile ayırıla)",
-	"rc_categories_any": "Er angi",
 	"rc-change-size-new": "Deñiştirilgen soñ $1 {{PLURAL:$1|bayt|bayt}}",
 	"newsectionsummary": "/* $1 */ yañı bölük",
 	"rc-enhanced-expand": "Tafsilâtını köster",

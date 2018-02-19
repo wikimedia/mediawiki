@@ -1095,8 +1095,6 @@
 	"newpageletter": "نوک",
 	"boteditletter": "ر",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|کار زوروک}} دیستینوک]",
-	"rc_categories": "ای تهرهانی حد ئا (گۆ «|» ئا جیتا کنیت)",
-	"rc_categories_any": "هر گوجام",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بایٹ}} پد شه تغیرا",
 	"newsectionsummary": "/* $1 */ نوکین بخش",
 	"rc-enhanced-expand": "جزئیات ئی نشان داتین",

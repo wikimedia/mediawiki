@@ -3,7 +3,7 @@
 /**
  * @covers DnsSrvDiscoverer
  */
-class DnsSrvDiscovererTest extends PHPUnit_Framework_TestCase {
+class DnsSrvDiscovererTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

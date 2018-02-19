@@ -3,7 +3,7 @@
 class PhpunitTestRecorder extends TestRecorder {
 	private $testCase;
 
-	public function setTestCase( PHPUnit_Framework_TestCase $testCase ) {
+	public function setTestCase( PHPUnit\Framework\TestCase $testCase ) {
 		$this->testCase = $testCase;
 	}
 

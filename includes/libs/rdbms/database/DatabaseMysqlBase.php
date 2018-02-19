@@ -60,6 +60,8 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $sqlMode;
 	/** @var bool Use experimental UTF-8 transmission encoding */
 	protected $utf8Mode;
+	/** @var bool|null */
+	protected $defaultBigSelects = null;
 
 	/** @var string|null */
 	private $serverVersion = null;
@@ -126,14 +128,14 @@ abstract class DatabaseMysqlBase extends Database {
 		# Close/unset connection handle
 		$this->close();
 
-		$this->mServer = $server;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDBname = $dbName;
+		$this->server = $server;
+		$this->user = $user;
+		$this->password = $password;
+		$this->dbName = $dbName;
 
 		$this->installErrorHandler();
 		try {
-			$this->mConn = $this->mysqlConnect( $this->mServer );
+			$this->conn = $this->mysqlConnect( $this->server );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -141,7 +143,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$error = $this->restoreErrorHandler();
 
 		# Always log connection errors
-		if ( !$this->mConn ) {
+		if ( !$this->conn ) {
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
@@ -171,7 +173,7 @@ abstract class DatabaseMysqlBase extends Database {
 					] )
 				);
 				$this->queryLogger->debug(
-					"Error selecting database $dbName on server {$this->mServer}" );
+					"Error selecting database $dbName on server {$this->server}" );
 
 				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
@@ -190,7 +192,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		// Set any custom settings defined by site config
 		// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
-		foreach ( $this->mSessionVars as $var => $val ) {
+		foreach ( $this->sessionVars as $var => $val ) {
 			// Escape strings but not numbers to avoid MySQL complaining
 			if ( !is_int( $val ) && !is_float( $val ) ) {
 				$val = $this->addQuotes( $val );
@@ -213,7 +215,7 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 		}
 
-		$this->mOpened = true;
+		$this->opened = true;
 
 		return true;
 	}
@@ -465,10 +467,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function lastError() {
-		if ( $this->mConn ) {
+		if ( $this->conn ) {
 			# Even if it's non-zero, it can still be invalid
 			Wikimedia\suppressWarnings();
-			$error = $this->mysqlError( $this->mConn );
+			$error = $this->mysqlError( $this->conn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
@@ -477,7 +479,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$error = $this->mysqlError();
 		}
 		if ( $error ) {
-			$error .= ' (' . $this->mServer . ')';
+			$error .= ' (' . $this->server . ')';
 		}
 
 		return $error;
@@ -594,7 +596,7 @@ abstract class DatabaseMysqlBase extends Database {
 		list( $database, , $prefix, $table ) = $this->qualifiedTableComponents( $table );
 		$tableName = "{$prefix}{$table}";
 
-		if ( isset( $this->mSessionTempTables[$tableName] ) ) {
+		if ( isset( $this->sessionTempTables[$tableName] ) ) {
 			return true; // already known to exist and won't show in SHOW TABLES anyway
 		}
 
@@ -890,9 +892,15 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $pos->gtids ) {
+		if ( $pos->getGTIDs() ) {
+			// Ignore GTIDs from domains exclusive to the master DB (presumably inactive)
+			$rpos = $this->getReplicaPos();
+			$gtidsWait = $rpos ? MySQLMasterPos::getCommonDomainGTIDs( $pos, $rpos ) : [];
+			if ( !$gtidsWait ) {
+				return -1; // $pos is from the wrong cluster?
+			}
 			// Wait on the GTID set (MariaDB only)
-			$gtidArg = $this->addQuotes( implode( ',', $pos->gtids ) );
+			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
 			$res = $this->doQuery( "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)" );
 		} else {
 			// Wait on the binlog coordinates
@@ -910,7 +918,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
-			if ( !$pos->gtids ) {
+			if ( !$pos->getGTIDs() ) {
 				// T126436: jobs programmed to wait on master positions might be referencing
 				// binlogs with an old master hostname; this makes MASTER_POS_WAIT() return null.
 				// Try to detect this case and treat the replica DB as having reached the given
@@ -1079,6 +1087,10 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @since 1.20
 	 */
 	public function lockIsFree( $lockName, $method ) {
+		if ( !parent::lockIsFree( $lockName, $method ) ) {
+			return false; // already held
+		}
+
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 		$result = $this->query( "SELECT IS_FREE_LOCK($encName) AS lockstatus", $method );
 		$row = $this->fetchObject( $result );
@@ -1170,14 +1182,14 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function setBigSelects( $value = true ) {
 		if ( $value === 'default' ) {
-			if ( $this->mDefaultBigSelects === null ) {
+			if ( $this->defaultBigSelects === null ) {
 				# Function hasn't been called before so it must already be set to the default
 				return;
 			} else {
-				$value = $this->mDefaultBigSelects;
+				$value = $this->defaultBigSelects;
 			}
-		} elseif ( $this->mDefaultBigSelects === null ) {
-			$this->mDefaultBigSelects =
+		} elseif ( $this->defaultBigSelects === null ) {
+			$this->defaultBigSelects =
 				(bool)$this->selectField( false, '@@sql_big_selects', '', __METHOD__ );
 		}
 		$encValue = $value ? '1' : '0';
@@ -1376,7 +1388,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		// The name of the column containing the name of the VIEW
-		$propertyName = 'Tables_in_' . $this->mDBname;
+		$propertyName = 'Tables_in_' . $this->dbName;
 
 		// Query for the VIEWS
 		$res = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
@@ -1444,6 +1456,11 @@ abstract class DatabaseMysqlBase extends Database {
 		} else {
 			return $index;
 		}
+	}
+
+	protected function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
 	}
 }
 

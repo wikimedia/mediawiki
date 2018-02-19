@@ -272,7 +272,7 @@ class AuthPluginPrimaryAuthenticationProvider
 			if ( $failed ) {
 				throw new \UnexpectedValueException(
 					"AuthPlugin failed to reset password for $username in the following domains: "
-						. join( ' ', $failed )
+						. implode( ' ', $failed )
 				);
 			}
 		}

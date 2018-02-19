@@ -3,7 +3,7 @@
 /**
  * @covers HTMLRestrictionsField
  */
-class HTMLRestrictionsFieldTest extends PHPUnit_Framework_TestCase {
+class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

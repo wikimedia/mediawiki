@@ -221,20 +221,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Get a FormOptions object containing the default options
-	 *
-	 * @return FormOptions
-	 */
-	public function getDefaultOptions() {
-		$opts = parent::getDefaultOptions();
-
-		$opts->add( 'categories', '' );
-		$opts->add( 'categories_any', false );
-
-		return $opts;
-	}
-
-	/**
 	 * Get all custom filters
 	 *
 	 * @return array Map of filter URL param names to properties (msg/default)
@@ -358,11 +344,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$query_options,
 			$join_conds
 		);
-
-		// Build the final data
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$this->filterByCategories( $rows, $opts );
-		}
 
 		return $rows;
 	}
@@ -667,15 +648,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	function getExtraOptions( $opts ) {
 		$opts->consumeValues( [
-			'namespace', 'invert', 'associated', 'tagfilter', 'categories', 'categories_any'
+			'namespace', 'invert', 'associated', 'tagfilter'
 		] );
 
 		$extraOpts = [];
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
-
-		if ( $this->getConfig()->get( 'AllowCategorizedRecentChanges' ) ) {
-			$extraOpts['category'] = $this->categoryFilterForm( $opts );
-		}
 
 		$tagFilter = ChangeTags::buildTagFilterSelector(
 			$opts['tagfilter'], false, $this->getContext() );
@@ -741,28 +718,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Create an input to filter changes by categories
-	 *
-	 * @param FormOptions $opts
-	 * @return array
-	 */
-	protected function categoryFilterForm( FormOptions $opts ) {
-		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
-			'categories', 'mw-categories', false, $opts['categories'] );
-
-		$input .= ' ' . Xml::checkLabel( $this->msg( 'rc_categories_any' )->text(),
-			'categories_any', 'mw-categories_any', $opts['categories_any'] );
-
-		return [ $label, $input ];
-	}
-
-	/**
 	 * Filter $rows by categories set in $opts
+	 *
+	 * @deprecated since 1.31
 	 *
 	 * @param ResultWrapper &$rows Database rows
 	 * @param FormOptions $opts
 	 */
 	function filterByCategories( &$rows, FormOptions $opts ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
 
 		if ( !count( $categories ) ) {

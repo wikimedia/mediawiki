@@ -1130,8 +1130,6 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 goo ma {{PLURAL:$1|goykaa|goykey}} guna]",
-	"rc_categories": "Kayandi dumey ga (i fay nda \"|\")",
-	"rc_categories_any": "Affoo kul",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "{{PLURAL:$1|cebsi}} $1 barmaa banda ga",
 	"newsectionsummary": "/* $1 */ dunbu taaga",

@@ -1536,7 +1536,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Locally set a key to expire soon if it is stale based on $purgeTimestamp
+	 * Set a key to soon expire in the local cluster if it pre-dates $purgeTimestamp
 	 *
 	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
 	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
@@ -1568,7 +1568,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * Locally set a "check" key to expire soon if it is stale based on $purgeTimestamp
+	 * Set a "check" key to soon expire in the local cluster if it pre-dates $purgeTimestamp
 	 *
 	 * @param string $key Cache key
 	 * @param int $purgeTimestamp UNIX timestamp of purge
@@ -1581,7 +1581,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		if ( $purge && $purge[self::FLD_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
-			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, 1 );
+			$ok = $this->cache->changeTTL( self::TIME_KEY_PREFIX . $key, self::TTL_SECOND );
 			if ( !$ok ) {
 				$this->logger->error( "Could not complete reap of check key '$key'." );
 			}
@@ -1824,7 +1824,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				'cmd' => 'set',
 				'key' => $key,
 				'val' => 'PURGED:$UNIXTIME$:' . (int)$holdoff,
-				'ttl' => max( $ttl, 1 ),
+				'ttl' => max( $ttl, self::TTL_SECOND ),
 				'sbt' => true, // substitute $UNIXTIME$ with actual microtime
 			] );
 

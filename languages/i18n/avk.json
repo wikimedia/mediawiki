@@ -741,8 +741,6 @@
 	"newpageletter": "W",
 	"boteditletter": "s",
 	"number_of_watching_users_pageview": "[$1 nedis {{PLURAL:$1|favesik|favesik}}]",
-	"rc_categories": "Kimara kare loma yo (solparsana kan \"|\")",
-	"rc_categories_any": "Kon",
 	"newsectionsummary": "/* $1 */ warzaf gabot",
 	"rc-enhanced-expand": "Pintanedira (JavaScript tir adraf)",
 	"rc-enhanced-hide": "Pintapalsera",

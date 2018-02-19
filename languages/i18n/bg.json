@@ -1415,8 +1415,6 @@
 	"newpageletter": "Н",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|наблюдаващ потребител|наблюдаващи потребители}}]",
-	"rc_categories": "Само от категории (разделител „|“)",
-	"rc_categories_any": "Която и да е от избраните",
 	"rc-change-size-new": "$1 {{PLURAL:$1|байт|байта}} след редакцията",
 	"newsectionsummary": "Нова тема /* $1 */",
 	"rc-enhanced-expand": "Показване на детайли",

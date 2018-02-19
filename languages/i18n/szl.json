@@ -977,8 +977,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|dowajůncy pozůr užytkowńik|dowajůncych pozůr užytkowńikůw}}]",
-	"rc_categories": "Uůgrańič do katygorii (oddźelej za půmocům \"|\")",
-	"rc_categories_any": "Wšyskie",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajty|bajtůw}} po půmjyńyńu",
 	"newsectionsummary": "/* $1 */ nowo tajla",
 	"rc-enhanced-expand": "Pokoż szczygůły",

@@ -1113,8 +1113,6 @@
 	"newpageletter": "Y",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 izləyən istifadəçi]",
-	"rc_categories": "Kateqoriyalara limit qoy (\"|\" ilə ayır)",
-	"rc_categories_any": "Seçilənlərdən hər hansı biri",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "Dəyişiklikdən sonrakı ölçü: $1 bayt",
 	"newsectionsummary": "/* $1 */ yeni bölmə",

@@ -1275,8 +1275,6 @@
 	"newpageletter": "ن",
 	"boteditletter": "بۆت",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|بەکارھێنەر}}ی چاودێر]",
-	"rc_categories": "بەرتەسککردنەوە بە هاوپۆلەکان (به «|» جیای بکەوە‌)",
-	"rc_categories_any": "هەرکامێک بێت",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بایت}} پاش گۆڕانکاری",
 	"newsectionsummary": "/* $1 */ بەشی نوێ",
 	"rc-enhanced-expand": "وردەکارییەکان نیشان بدە",

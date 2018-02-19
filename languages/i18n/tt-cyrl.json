@@ -1062,8 +1062,6 @@
 	"newpageletter": "Я",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|күзәтүче кулланучы}}]",
-	"rc_categories": "Төркемнәрдән генә («|» бүлүче):",
-	"rc_categories_any": "Сайланганның һәрберсе",
 	"rc-change-size-new": "Кертелгән үзгәрешләр белән бергә зурлык: $1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ яңа бүлек",
 	"rc-enhanced-expand": "Ваклыкларны күрсәтү",

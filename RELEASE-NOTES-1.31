@@ -26,6 +26,8 @@ production.
   default mode.
 * CACHE_ACCEL now only supports APC(u) or WinCache. XCache support was removed
   as upstream is inactive and has no plans to move to PHP 7.
+* The old CategorizedRecentChanges feature, including its related configuration
+  option $wgAllowCategorizedRecentChanges, has been removed.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
@@ -63,6 +65,7 @@ production.
 * Updated wikimedia/running-stat from 1.1.0 to 1.2.0.
 * Updated wikimedia/wrappedstring from 2.2.0 to 2.3.0.
 * Updated mediawiki/at-ease from 1.1.0 to 1.2.0.
+* Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.5.
 * …
 
 ==== New external libraries ====
@@ -234,6 +237,7 @@ changes to languages because of Phabricator reports.
   * CommentStore::insert
   * CommentStore::insertWithTemplate
 * The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
+* The DeferredStringifier class is deprecated, use Message::listParam() instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,

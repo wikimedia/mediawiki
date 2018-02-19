@@ -22,6 +22,7 @@
 
 /**
  * @since 1.25
+ * @deprecated since 1.31, use Message::listParam() instead
  */
 class DeferredStringifier {
 	/** @var callable Callback used for result string generation */

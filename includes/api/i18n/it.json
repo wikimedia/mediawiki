@@ -142,8 +142,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtra per etichetta.",
 	"apihelp-feedrecentchanges-param-target": "Mostra solo le modifiche alle pagine collegate da questa pagina.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostra solo le modifiche alle pagine collegate a quella specificata.",
-	"apihelp-feedrecentchanges-param-categories": "Mostra solo le variazioni sulle pagine di tutte queste categorie.",
-	"apihelp-feedrecentchanges-param-categories_any": "Mostra invece solo le variazioni sulle pagine in una qualunque categoria.",
 	"apihelp-feedrecentchanges-example-simple": "Mostra le ultime modifiche.",
 	"apihelp-feedrecentchanges-example-30days": "Mostra le modifiche degli ultimi 30 giorni.",
 	"apihelp-feedwatchlist-param-feedformat": "Il formato del feed.",

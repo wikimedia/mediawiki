@@ -1108,8 +1108,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|wobglědowaŕ|wobglědowarja|wobglědowarje}}]",
-	"rc_categories": "Jano boki z kategorijow (źělone z pomocu „|“):",
-	"rc_categories_any": "wše",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byta|byty|bytow}} pó změnje",
 	"newsectionsummary": "Nowy wótrězk /* $1 */",
 	"rc-enhanced-expand": "Drobnostki pokazaś",

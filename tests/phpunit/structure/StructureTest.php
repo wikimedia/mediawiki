@@ -25,6 +25,7 @@ class StructureTest extends MediaWikiTestCase {
 			'MediaWikiTestCase',
 			'ResourceLoaderTestCase',
 			'PHPUnit_Framework_TestCase',
+			'\\?PHPUnit\\Framework\\TestCase',
 			'DumpTestCase',
 		] );
 		$testClassRegex = "^class .* extends ($testClassRegex)";

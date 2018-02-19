@@ -349,7 +349,7 @@
 				};
 				reader.readAsArrayBuffer( file );
 			} else if ( 'URL' in window && 'createObjectURL' in window.URL ) {
-				// Supported in Firefox 4.0 and above <https://developer.mozilla.org/en/DOM/window.URL.createObjectURL>
+				// Supported in Firefox 4.0 and above <https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL>
 				// WebKit has it in a namespace for now but that's ok. ;)
 				//
 				// Lifetime of this URL is until document close, which is fine

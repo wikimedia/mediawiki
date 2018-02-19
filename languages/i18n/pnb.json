@@ -997,8 +997,6 @@
 	"newpageletter": "نواں",
 	"boteditletter": "بوٹ",
 	"number_of_watching_users_pageview": "[ $1 ویکھ رہیا اے{{PLURAL:$1|ورتن والا|والے}}]",
-	"rc_categories": "گٹھاں دی حد (وکھرے کرو \"|\")",
-	"rc_categories_any": "کوئی",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بائٹ|بائٹاں}} تبدیلی مگروں",
 	"newsectionsummary": "/* $1 */ نواں پاسہ",
 	"rc-enhanced-expand": "تفضیل وکھاؤ (جاوا سکرپٹ چائیدا اے)",

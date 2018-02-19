@@ -3,7 +3,7 @@
  * @group Media
  * @covers MimeAnalyzer
  */
-class MimeAnalyzerTest extends PHPUnit_Framework_TestCase {
+class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

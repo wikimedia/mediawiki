@@ -1096,8 +1096,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|beobachtender|beobachtende}} Benutzer]",
-	"rc_categories": "Nur Seite aus den Kategorie (getrennt mit „|“):",
-	"rc_categories_any": "Alle",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} noh der Ännrung",
 	"newsectionsummary": "Neier Abschnitt /* $1 */",
 	"rc-enhanced-expand": "Einzelheite oonzeiche",

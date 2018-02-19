@@ -1248,8 +1248,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|gebruiker|gebruikers}} hou die bladsy dop]",
-	"rc_categories": "Beperk tot kategorieë (skei met \"|\"):",
-	"rc_categories_any": "Enige van die gekose",
 	"rc-change-size-new": "$1 {{PLURAL:$1|greep|grepe}} na die wysiging",
 	"newsectionsummary": "/* $1 */ nuwe afdeling",
 	"rc-enhanced-expand": "Wys details",

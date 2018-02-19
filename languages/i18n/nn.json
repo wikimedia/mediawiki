@@ -1265,8 +1265,6 @@
 	"newpageletter": "n",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|Éin brukar|$1 brukarar}} overvakar]",
-	"rc_categories": "Avgrens til kategoriar (skil med «|»):",
-	"rc_categories_any": "Alle",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte}} etter endringa",
 	"newsectionsummary": "/* $1 */ ny bolk",
 	"rc-enhanced-expand": "Vis detaljar",

@@ -157,7 +157,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
 	 * Recursively merge the new result returned from the query to the previous results.
-	 * @param mixed $results
+	 * @param mixed &$results
 	 * @param mixed $newResult
 	 * @param bool $numericIds If true, treat keys as ids to be merged instead of appending
 	 */

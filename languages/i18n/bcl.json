@@ -1093,8 +1093,6 @@
 	"newpageletter": "B",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 naka-antabay sa {{PLURAL:$1|paragamit|mga paragamit}}]",
-	"rc_categories": "Limitado sa mga kategorya (suhayon nin \"|\")",
-	"rc_categories_any": "Dawà arín",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} pagtatapos kan pagbabago",
 	"newsectionsummary": "/* $1 */ bàgong seksyon",
 	"rc-enhanced-expand": "Ipahiling an mga detalye",

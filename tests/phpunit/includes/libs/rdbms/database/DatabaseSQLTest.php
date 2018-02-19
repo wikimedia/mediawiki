@@ -6,7 +6,7 @@ use Wikimedia\Rdbms\LikeMatch;
  * Test the parts of the Database abstract class that deal
  * with creating SQL text.
  */
-class DatabaseSQLTest extends PHPUnit_Framework_TestCase {
+class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

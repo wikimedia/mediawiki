@@ -109,7 +109,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 }
 
-class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
+class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -228,13 +228,20 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideComparePositions
 	 * @covers Wikimedia\Rdbms\MySQLMasterPos
 	 */
-	public function testHasReached( MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match ) {
+	public function testHasReached(
+		MySQLMasterPos $lowerPos, MySQLMasterPos $higherPos, $match, $hetero
+	) {
 		if ( $match ) {
 			$this->assertTrue( $lowerPos->channelsMatch( $higherPos ) );
 
-			$this->assertTrue( $higherPos->hasReached( $lowerPos ) );
-			$this->assertTrue( $higherPos->hasReached( $higherPos ) );
+			if ( $hetero ) {
+				// Each position is has one channel higher than the other
+				$this->assertFalse( $higherPos->hasReached( $lowerPos ) );
+			} else {
+				$this->assertTrue( $higherPos->hasReached( $lowerPos ) );
+			}
 			$this->assertTrue( $lowerPos->hasReached( $lowerPos ) );
+			$this->assertTrue( $higherPos->hasReached( $higherPos ) );
 			$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
 		} else { // channels don't match
 			$this->assertFalse( $lowerPos->channelsMatch( $higherPos ) );
@@ -252,48 +259,93 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 			[
 				new MySQLMasterPos( 'db1034-bin.000976/843431247', $now ),
 				new MySQLMasterPos( 'db1034-bin.000976/843431248', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
 				new MySQLMasterPos( 'db1034-bin.000976/1000', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( 'db1034-bin.000976/999', $now ),
 				new MySQLMasterPos( 'db1035-bin.000976/1000', $now ),
+				false,
 				false
 			],
 			// MySQL GTID style
 			[
 				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:23', $now ),
 				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:24', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
 				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
 				new MySQLMasterPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
+				false,
 				false
 			],
 			// MariaDB GTID style
 			[
 				new MySQLMasterPos( '255-11-23', $now ),
 				new MySQLMasterPos( '255-11-24', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( '255-11-99', $now ),
 				new MySQLMasterPos( '255-11-100', $now ),
-				true
+				true,
+				false
 			],
 			[
 				new MySQLMasterPos( '255-11-999', $now ),
 				new MySQLMasterPos( '254-11-1000', $now ),
+				false,
+				false
+			],
+			[
+				new MySQLMasterPos( '255-11-23,256-12-50', $now ),
+				new MySQLMasterPos( '255-11-24', $now ),
+				true,
+				false
+			],
+			[
+				new MySQLMasterPos( '255-11-99,256-12-50,257-12-50', $now ),
+				new MySQLMasterPos( '255-11-1000', $now ),
+				true,
+				false
+			],
+			[
+				new MySQLMasterPos( '255-11-23,256-12-50', $now ),
+				new MySQLMasterPos( '255-11-24,155-52-63', $now ),
+				true,
+				false
+			],
+			[
+				new MySQLMasterPos( '255-11-99,256-12-50,257-12-50', $now ),
+				new MySQLMasterPos( '255-11-1000,256-12-51', $now ),
+				true,
+				false
+			],
+			[
+				new MySQLMasterPos( '255-11-99,256-12-50', $now ),
+				new MySQLMasterPos( '255-13-1000,256-14-49', $now ),
+				true,
+				true
+			],
+			[
+				new MySQLMasterPos( '253-11-999,255-11-999', $now ),
+				new MySQLMasterPos( '254-11-1000', $now ),
+				false,
 				false
 			],
 		];
@@ -335,6 +387,38 @@ class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
 				new MySQLMasterPos( 'trump2016.000976/10000', $now ),
 				false
 			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCommonDomainGTIDs
+	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 */
+	public function testCommonGtidDomains( MySQLMasterPos $pos, MySQLMasterPos $ref, $gtids ) {
+		$this->assertEquals( $gtids, MySQLMasterPos::getCommonDomainGTIDs( $pos, $ref ) );
+	}
+
+	public static function provideCommonDomainGTIDs() {
+		return [
+			[
+				new MySQLMasterPos( '255-13-99,256-12-50,257-14-50', 1 ),
+				new MySQLMasterPos( '255-11-1000', 1 ),
+				[ '255-13-99' ]
+			],
+			[
+				new MySQLMasterPos(
+					'2E11FA47-71CA-11E1-9E33-C80AA9429562:5,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:99,' .
+					'7E11FA47-71CA-11E1-9E33-C80AA9429562:30',
+					1
+				),
+				new MySQLMasterPos(
+					'1E11FA47-71CA-11E1-9E33-C80AA9429562:100,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:66',
+					1
+				),
+				[ '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ]
+			]
 		];
 	}
 

@@ -1213,8 +1213,6 @@
 	"newpageletter": "නව",
 	"boteditletter": "රොබෝ",
 	"number_of_watching_users_pageview": "[ {{PLURAL:$1| එක් පරිශීලකයෙක් මුර-කරයි|පරිශීලකවරුන් $1 ක් මුර-කරති}} ]",
-	"rc_categories": "ප්‍රවර්ගයන්ට සීමා කරන්න (\"|\" මගින් වෙන් කරන්න):",
-	"rc_categories_any": "තෝරාගත් ඕනෑම එකක්",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "වෙනස් කළ පසු {{PLURAL:$1|බයිට|බයිටයන්}} $1 ක්",
 	"newsectionsummary": "/* $1 */ නව ඡේදය",

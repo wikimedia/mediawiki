@@ -1073,8 +1073,6 @@
 	"newpageletter": "Н",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|слїдуючій хоснователь|слїдуючі хоснователї|слїдуючіх хоснователїв}}]",
-	"rc_categories": "Лем з катеґорій (роздїлёвач «|»)",
-	"rc_categories_any": "Будь-якый",
 	"rc-change-size-new": "$1 {{PLURAL:$1|байтt|байты|байтів}} по змінї",
 	"newsectionsummary": "/* $1 */ нова секція",
 	"rc-enhanced-expand": "Вказати детайлы",

@@ -32,9 +32,15 @@ class MySQLMasterPos implements DBMasterPos {
 			$this->binlog = $m[1]; // ideally something like host name
 			$this->pos = [ (int)$m[2], (int)$m[3] ];
 		} else {
-			$this->gtids = array_map( 'trim', explode( ',', $position ) );
+			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
+			foreach ( $gtids as $gtid ) {
+				if ( !$this->parseGTID( $gtid ) ) {
+					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
+				}
+				$this->gtids[] = $gtid;
+			}
 			if ( !$this->gtids ) {
-				throw new InvalidArgumentException( "GTID set should not be empty." );
+				throw new InvalidArgumentException( "Got empty GTID set." );
 			}
 		}
 
@@ -54,14 +60,18 @@ class MySQLMasterPos implements DBMasterPos {
 		$thisPosByDomain = $this->getGtidCoordinates();
 		$thatPosByDomain = $pos->getGtidCoordinates();
 		if ( $thisPosByDomain && $thatPosByDomain ) {
-			$reached = true;
-			// Check that this has positions GTE all of those in $pos for all domains in $pos
+			$comparisons = [];
+			// Check that this has positions reaching those in $pos for all domains in common
 			foreach ( $thatPosByDomain as $domain => $thatPos ) {
-				$thisPos = isset( $thisPosByDomain[$domain] ) ? $thisPosByDomain[$domain] : -1;
-				$reached = $reached && ( $thatPos <= $thisPos );
+				if ( isset( $thisPosByDomain[$domain] ) ) {
+					$comparisons[] = ( $thatPos <= $thisPosByDomain[$domain] );
+				}
 			}
-
-			return $reached;
+			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
+			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// be cleaned up. Assume that the domains in both this and $pos cover the relevant
+			// active channels.
+			return ( $comparisons && !in_array( false, $comparisons, true ) );
 		}
 
 		// Fallback to the binlog file comparisons
@@ -84,8 +94,11 @@ class MySQLMasterPos implements DBMasterPos {
 		$thisPosDomains = array_keys( $this->getGtidCoordinates() );
 		$thatPosDomains = array_keys( $pos->getGtidCoordinates() );
 		if ( $thisPosDomains && $thatPosDomains ) {
-			// Check that this has GTIDs for all domains in $pos
-			return !array_diff( $thatPosDomains, $thisPosDomains );
+			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
+			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// easily be cleaned up. Assume that the domains in both this and $pos cover the
+			// relevant active channels.
+			return array_intersect( $thatPosDomains, $thisPosDomains ) ? true : false;
 		}
 
 		// Fallback to the binlog file comparisons
@@ -103,6 +116,13 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
+	 * @return string[]
+	 */
+	public function getGTIDs() {
+		return $this->gtids;
+	}
+
+	/**
 	 * @return string GTID set or <binlog file>/<position> (e.g db1034-bin.000976/843431247)
 	 */
 	public function __toString() {
@@ -112,7 +132,25 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @note: this returns false for multi-source replication GTID sets
+	 * @param MySQLMasterPos $pos
+	 * @param MySQLMasterPos $refPos
+	 * @return string[] List of GTIDs from $pos that have domains in $refPos
+	 */
+	public static function getCommonDomainGTIDs( MySQLMasterPos $pos, MySQLMasterPos $refPos ) {
+		$gtidsCommon = [];
+
+		$relevantDomains = $refPos->getGtidCoordinates(); // (domain => unused)
+		foreach ( $pos->gtids as $gtid ) {
+			list( $domain ) = self::parseGTID( $gtid );
+			if ( isset( $relevantDomains[$domain] ) ) {
+				$gtidsCommon[] = $gtid;
+			}
+		}
+
+		return $gtidsCommon;
+	}
+
+	/**
 	 * @see https://mariadb.com/kb/en/mariadb/gtid
 	 * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
 	 * @return array Map of (domain => integer position); possibly empty
@@ -120,21 +158,28 @@ class MySQLMasterPos implements DBMasterPos {
 	protected function getGtidCoordinates() {
 		$gtidInfos = [];
 		foreach ( $this->gtids as $gtid ) {
-			$m = [];
-			// MariaDB style: <domain>-<server id>-<sequence number>
-			if ( preg_match( '!^(\d+)-\d+-(\d+)$!', $gtid, $m ) ) {
-				$gtidInfos[(int)$m[1]] = (int)$m[2];
-				// MySQL style: <UUID domain>:<sequence number>
-			} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(\d+)$!', $gtid, $m ) ) {
-				$gtidInfos[$m[1]] = (int)$m[2];
-			} else {
-				$gtidInfos = [];
-				break; // unrecognized GTID
-			}
-
+			list( $domain, $pos ) = self::parseGTID( $gtid );
+			$gtidInfos[$domain] = $pos;
 		}
 
 		return $gtidInfos;
+	}
+
+	/**
+	 * @param string $gtid
+	 * @return array|null [domain, integer position] or null
+	 */
+	protected static function parseGTID( $gtid ) {
+		$m = [];
+		if ( preg_match( '!^(\d+)-\d+-(\d+)$!', $gtid, $m ) ) {
+			// MariaDB style: <domain>-<server id>-<sequence number>
+			return [ (int)$m[1], (int)$m[2] ];
+		} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(\d+)$!', $gtid, $m ) ) {
+			// MySQL style: <UUID domain>:<sequence number>
+			return [ $m[1], (int)$m[2] ];
+		}
+
+		return null;
 	}
 
 	/**

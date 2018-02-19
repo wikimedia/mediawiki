@@ -1420,8 +1420,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|user|users}} ke dekhta hae]",
-	"rc_categories": "Categories me limit (\"|\" se separate karo)",
-	"rc_categories_any": "Chuna gais me se koi",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} badlao ke baad",
 	"newsectionsummary": "/* $1 */ nawaa vibhag",
 	"rc-enhanced-expand": "Details dekhao",

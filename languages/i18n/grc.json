@@ -859,8 +859,6 @@
 	"newpageletter": "Ν",
 	"boteditletter": "αὐτ",
 	"number_of_watching_users_pageview": "[$1 ἐφορᾶν {{PLURAL:$1|χρώμενον|χρωμένους}}]",
-	"rc_categories": "Ὅριον κατηγοριῶν (σήμανσις διαχωρίσεως: \"|\")",
-	"rc_categories_any": "Οἵα δήποτε",
 	"rc-change-size-new": "$1 {{PLURAL:$1|δυφιολέξις|δυφιολέξεις}} μεθύστερον μεταβολής",
 	"newsectionsummary": "/* $1 */ νέον τμῆμα",
 	"rc-enhanced-expand": "Δεικνύναι λεπτομέρειας (ἀπαιτεῖ JavaScript)",

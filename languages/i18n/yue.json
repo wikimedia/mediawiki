@@ -1403,8 +1403,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1位用戶監視]",
-	"rc_categories": "限定到分類（以\"|\"作分隔）：",
-	"rc_categories_any": "任何揀咗嘅",
 	"rc-change-size-new": "改完後係$1位元組",
 	"newsectionsummary": "/* $1 */ 新小節",
 	"rc-enhanced-expand": "顯示細節",

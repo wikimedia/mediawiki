@@ -858,8 +858,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|jëfandikukat moo koy topp|$1 jëfandikukat ñoo koy topp}}]",
-	"rc_categories": "Digalub wàll yi (xaajale leen ak « \"|\" »)",
-	"rc_categories_any": "Yépp",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ginnaaw coppite gi",
 	"newsectionsummary": "/* $1 */ xaaj bu bees",

@@ -1404,8 +1404,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[osservâ da {{PLURAL:$1|un utente|$1 utenti}}]",
-	"rc_categories": "Limite a-e categorie (separæ da \"|\"):",
-	"rc_categories_any": "Quâ-se-sæ fra quelle indicæ",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} doppo a modiffica",
 	"newsectionsummary": "/* $1 */ neuva seçion",
 	"rc-enhanced-expand": "Fanni vedde i detaggi",

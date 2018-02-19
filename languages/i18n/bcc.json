@@ -1120,8 +1120,6 @@
 	"newpageletter": "ن",
 	"boteditletter": "ب",
 	"number_of_watching_users_pageview": "[$1 چارگنت {{PLURAL:$1|کاربر|کابران}}]",
-	"rc_categories": "محدودیت په دسته جات(دورش گون\"|\")",
-	"rc_categories_any": "هرچی",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بایت}} رند چه تغییر",
 	"newsectionsummary": "/* $1 */ نوکین بخش",
 	"rc-enhanced-expand": "جزئیاتء پیس دارگ",

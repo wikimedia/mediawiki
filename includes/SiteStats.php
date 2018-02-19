@@ -56,13 +56,13 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB\n" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
+		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB\n" );
 			$row = self::doLoadFromDB( $lb->getConnection( DB_MASTER ) );
 		}
 
-		if ( !self::isSane( $row ) ) {
+		if ( !self::isRowSane( $row ) ) {
 			if ( $config->get( 'MiserMode' ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
@@ -79,26 +79,13 @@ class SiteStats {
 			$row = self::doLoadFromDB( $lb->getConnection( DB_MASTER ) );
 		}
 
-		if ( !self::isSane( $row ) ) {
+		if ( !self::isRowSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 			// Always return a row-like object
-			$row = (object)array_fill_keys( self::selectFields(), 0 );
+			$row = self::salvageInsaneRow( $row );
 		}
 
 		return $row;
-	}
-
-	/**
-	 * @param IDatabase $db
-	 * @return stdClass|bool
-	 */
-	private static function doLoadFromDB( IDatabase $db ) {
-		return $db->selectRow(
-			'site_stats',
-			self::selectFields(),
-			[ 'ss_row_id' => 1 ],
-			__METHOD__
-		);
 	}
 
 	/**
@@ -107,7 +94,7 @@ class SiteStats {
 	public static function edits() {
 		self::load();
 
-		return self::$row->ss_total_edits;
+		return (int)self::$row->ss_total_edits;
 	}
 
 	/**
@@ -116,7 +103,7 @@ class SiteStats {
 	public static function articles() {
 		self::load();
 
-		return self::$row->ss_good_articles;
+		return (int)self::$row->ss_good_articles;
 	}
 
 	/**
@@ -125,7 +112,7 @@ class SiteStats {
 	public static function pages() {
 		self::load();
 
-		return self::$row->ss_total_pages;
+		return (int)self::$row->ss_total_pages;
 	}
 
 	/**
@@ -134,7 +121,7 @@ class SiteStats {
 	public static function users() {
 		self::load();
 
-		return self::$row->ss_users;
+		return (int)self::$row->ss_users;
 	}
 
 	/**
@@ -143,7 +130,7 @@ class SiteStats {
 	public static function activeUsers() {
 		self::load();
 
-		return self::$row->ss_active_users;
+		return (int)self::$row->ss_active_users;
 	}
 
 	/**
@@ -152,7 +139,7 @@ class SiteStats {
 	public static function images() {
 		self::load();
 
-		return self::$row->ss_images;
+		return (int)self::$row->ss_images;
 	}
 
 	/**
@@ -246,6 +233,19 @@ class SiteStats {
 	}
 
 	/**
+	 * @param IDatabase $db
+	 * @return stdClass|bool
+	 */
+	private static function doLoadFromDB( IDatabase $db ) {
+		return $db->selectRow(
+			'site_stats',
+			self::selectFields(),
+			[ 'ss_row_id' => 1 ],
+			__METHOD__
+		);
+	}
+
+	/**
 	 * Is the provided row of site stats sane, or should it be regenerated?
 	 *
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
@@ -253,7 +253,7 @@ class SiteStats {
 	 * @param bool|object $row
 	 * @return bool
 	 */
-	private static function isSane( $row ) {
+	private static function isRowSane( $row ) {
 		if ( $row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
@@ -268,12 +268,28 @@ class SiteStats {
 			'ss_users',
 			'ss_images',
 		] as $member ) {
-			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
+			if ( $row->$member < 0 ) {
 				return false;
 			}
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param stdClass|bool $row
+	 * @return stdClass
+	 */
+	private static function salvageInsaneRow( $row ) {
+		$map = $row ? (array)$row : [];
+		// Fill in any missing values with zero
+		$map += array_fill_keys( self::selectFields(), 0 );
+		// Convert negative values to zero
+		foreach ( $map as $field => $value ) {
+			$map[$field] = max( 0, $value );
+		}
+
+		return (object)$row;
 	}
 
 	/**

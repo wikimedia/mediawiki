@@ -35,16 +35,16 @@ class DatabasePostgres extends Database {
 	protected $port;
 
 	/** @var resource */
-	protected $mLastResult = null;
+	protected $lastResultHandle = null;
 	/** @var int The number of rows affected as an integer */
-	protected $mAffectedRows = null;
+	protected $lastAffectedRowCount = null;
 
 	/** @var float|string */
 	private $numericVersion = null;
 	/** @var string Connect string to open a PostgreSQL connection */
 	private $connectString;
 	/** @var string */
-	private $mCoreSchema;
+	private $coreSchema;
 	/** @var string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap = [];
 
@@ -97,10 +97,10 @@ class DatabasePostgres extends Database {
 			);
 		}
 
-		$this->mServer = $server;
-		$this->mUser = $user;
-		$this->mPassword = $password;
-		$this->mDBname = $dbName;
+		$this->server = $server;
+		$this->user = $user;
+		$this->password = $password;
+		$this->dbName = $dbName;
 
 		$connectVars = [
 			// pg_connect() user $user as the default database. Since a database is *required*,
@@ -116,7 +116,7 @@ class DatabasePostgres extends Database {
 		if ( (int)$this->port > 0 ) {
 			$connectVars['port'] = (int)$this->port;
 		}
-		if ( $this->mFlags & self::DBO_SSL ) {
+		if ( $this->flags & self::DBO_SSL ) {
 			$connectVars['sslmode'] = 1;
 		}
 
@@ -126,7 +126,7 @@ class DatabasePostgres extends Database {
 
 		try {
 			// Use new connections to let LoadBalancer/LBFactory handle reuse
-			$this->mConn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
+			$this->conn = pg_connect( $this->connectString, PGSQL_CONNECT_FORCE_NEW );
 		} catch ( Exception $ex ) {
 			$this->restoreErrorHandler();
 			throw $ex;
@@ -134,7 +134,7 @@ class DatabasePostgres extends Database {
 
 		$phpError = $this->restoreErrorHandler();
 
-		if ( !$this->mConn ) {
+		if ( !$this->conn ) {
 			$this->queryLogger->debug(
 				"DB connection error\n" .
 				"Server: $server, Database: $dbName, User: $user, Password: " .
@@ -144,7 +144,7 @@ class DatabasePostgres extends Database {
 			throw new DBConnectionError( $this, str_replace( "\n", ' ', $phpError ) );
 		}
 
-		$this->mOpened = true;
+		$this->opened = true;
 
 		# If called from the command-line (e.g. importDump), only show errors
 		if ( $this->cliMode ) {
@@ -159,11 +159,11 @@ class DatabasePostgres extends Database {
 			$this->query( "SET bytea_output = 'escape'", __METHOD__ ); // PHP bug 53127
 		}
 
-		$this->determineCoreSchema( $this->mSchema );
+		$this->determineCoreSchema( $this->schema );
 		// The schema to be used is now in the search path; no need for explicit qualification
-		$this->mSchema = '';
+		$this->schema = '';
 
-		return $this->mConn;
+		return $this->conn;
 	}
 
 	public function databasesAreIndependent() {
@@ -178,8 +178,8 @@ class DatabasePostgres extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	public function selectDB( $db ) {
-		if ( $this->mDBname !== $db ) {
-			return (bool)$this->open( $this->mServer, $this->mUser, $this->mPassword, $db );
+		if ( $this->dbName !== $db ) {
+			return (bool)$this->open( $this->server, $this->user, $this->password, $db );
 		} else {
 			return true;
 		}
@@ -199,7 +199,12 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function closeConnection() {
-		return $this->mConn ? pg_close( $this->mConn ) : true;
+		return $this->conn ? pg_close( $this->conn ) : true;
+	}
+
+	protected function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
 	}
 
 	public function doQuery( $sql ) {
@@ -213,13 +218,13 @@ class DatabasePostgres extends Database {
 		if ( pg_send_query( $conn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
-		$this->mLastResult = pg_get_result( $conn );
-		$this->mAffectedRows = null;
-		if ( pg_result_error( $this->mLastResult ) ) {
+		$this->lastResultHandle = pg_get_result( $conn );
+		$this->lastAffectedRowCount = null;
+		if ( pg_result_error( $this->lastResultHandle ) ) {
 			return false;
 		}
 
-		return $this->mLastResult;
+		return $this->lastResultHandle;
 	}
 
 	protected function dumpError() {
@@ -239,7 +244,7 @@ class DatabasePostgres extends Database {
 		];
 		foreach ( $diags as $d ) {
 			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s\n",
-				$d, pg_result_error_field( $this->mLastResult, $d ) ) );
+				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
 	}
 
@@ -253,7 +258,7 @@ class DatabasePostgres extends Database {
 			}
 		}
 		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->mTrxLevel ) {
+		if ( $this->trxLevel ) {
 			// Throw away the transaction state, then raise the error as normal.
 			// Note that if this connection is managed by LBFactory, it's already expected
 			// that the other transactions LBFactory manages will be rolled back.
@@ -365,9 +370,9 @@ class DatabasePostgres extends Database {
 	}
 
 	public function lastError() {
-		if ( $this->mConn ) {
-			if ( $this->mLastResult ) {
-				return pg_result_error( $this->mLastResult );
+		if ( $this->conn ) {
+			if ( $this->lastResultHandle ) {
+				return pg_result_error( $this->lastResultHandle );
 			} else {
 				return pg_last_error();
 			}
@@ -377,23 +382,23 @@ class DatabasePostgres extends Database {
 	}
 
 	public function lastErrno() {
-		if ( $this->mLastResult ) {
-			return pg_result_error_field( $this->mLastResult, PGSQL_DIAG_SQLSTATE );
+		if ( $this->lastResultHandle ) {
+			return pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
 		} else {
 			return false;
 		}
 	}
 
 	protected function fetchAffectedRowCount() {
-		if ( !is_null( $this->mAffectedRows ) ) {
+		if ( !is_null( $this->lastAffectedRowCount ) ) {
 			// Forced result for simulated queries
-			return $this->mAffectedRows;
+			return $this->lastAffectedRowCount;
 		}
-		if ( empty( $this->mLastResult ) ) {
+		if ( empty( $this->lastResultHandle ) ) {
 			return 0;
 		}
 
-		return pg_affected_rows( $this->mLastResult );
+		return pg_affected_rows( $this->lastResultHandle );
 	}
 
 	/**
@@ -639,7 +644,7 @@ __INDEXATTR__;
 					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
 
 					if ( $savepoint ) {
-						$bar = pg_result_error( $this->mLastResult );
+						$bar = pg_result_error( $this->lastResultHandle );
 						if ( $bar != false ) {
 							$savepoint->rollback();
 						} else {
@@ -664,7 +669,7 @@ __INDEXATTR__;
 			$sql .= '(' . $this->makeList( $args ) . ')';
 			$res = (bool)$this->query( $sql, $fname, $savepoint );
 			if ( $savepoint ) {
-				$bar = pg_result_error( $this->mLastResult );
+				$bar = pg_result_error( $this->lastResultHandle );
 				if ( $bar != false ) {
 					$savepoint->rollback();
 				} else {
@@ -678,7 +683,7 @@ __INDEXATTR__;
 			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
-			$this->mAffectedRows = $numrowsinserted;
+			$this->lastAffectedRowCount = $numrowsinserted;
 
 			// IGNORE always returns true
 			return true;
@@ -963,7 +968,7 @@ __INDEXATTR__;
 		$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
-				$this->mCoreSchema = $desiredSchema;
+				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
@@ -976,15 +981,15 @@ __INDEXATTR__;
 				array_unshift( $search_path,
 					$this->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
-				$this->mCoreSchema = $desiredSchema;
+				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
-			$this->mCoreSchema = $this->getCurrentSchema();
+			$this->coreSchema = $this->getCurrentSchema();
 			$this->queryLogger->debug(
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
-				$this->mCoreSchema . "\"\n" );
+				$this->coreSchema . "\"\n" );
 		}
 		/* Commit SET otherwise it will be rollbacked on error or IGNORE SELECT */
 		$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
@@ -997,7 +1002,7 @@ __INDEXATTR__;
 	 * @return string Core schema name
 	 */
 	public function getCoreSchema() {
-		return $this->mCoreSchema;
+		return $this->coreSchema;
 	}
 
 	public function getServerVersion() {
@@ -1255,11 +1260,11 @@ SQL;
 	}
 
 	public function getDBname() {
-		return $this->mDBname;
+		return $this->dbName;
 	}
 
 	public function getServer() {
-		return $this->mServer;
+		return $this->server;
 	}
 
 	public function buildConcat( $stringList ) {
@@ -1319,6 +1324,9 @@ SQL;
 	}
 
 	public function lockIsFree( $lockName, $method ) {
+		if ( !parent::lockIsFree( $lockName, $method ) ) {
+			return false; // already held
+		}
 		// http://www.postgresql.org/docs/8.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))

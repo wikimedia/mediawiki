@@ -108,7 +108,7 @@ class ApiPageSetTest extends ApiTestCase {
 		$userName = $user->getName();
 		$userDbkey = str_replace( ' ', '_', $userName );
 		$request = new FauxRequest( [
-			'titles' => join( '|', [
+			'titles' => implode( '|', [
 				'Special:MyContributions',
 				'Special:MyPage',
 				'Special:MyTalk/subpage',

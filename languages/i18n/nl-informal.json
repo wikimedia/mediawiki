@@ -9,7 +9,8 @@
 			"McDutchie",
 			"Romaine",
 			"Mainframe98",
-			"Mar(c)"
+			"Mar(c)",
+			"Robin van der Vliet"
 		]
 	},
 	"view-pool-error": "De servers zijn op het moment helaas overbelast.\nTe veel gebruikers proberen deze pagina te bekijken.\nWacht even voordat je opnieuw toegang probeert te krijgen tot deze pagina.\n\n$1",
@@ -138,6 +139,7 @@
 	"prefs-help-variant": "Jouw voorkeursvariant of -spelling om de inhoudspagina's van deze wiki in weer te geven.",
 	"prefs-help-signature": "Reacties op de overlegpagina's worden meestal ondertekend met \"<nowiki>~~~~</nowiki>\".\nDe tildes worden omgezet in je ondertekening en een datum en tijd van de bewerking.",
 	"badsiglength": "Je ondertekening is te lang.\nDeze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.",
+	"gender-unknown": "De software gebruikt waar mogelijk geslachtsneutrale woorden als het over je gaat",
 	"prefs-help-realname": "Echte naam is optioneel.\nAls je deze opgeeft, kan deze naam gebruikt worden om je erkenning te geven voor je werk.",
 	"prefs-help-email": "E-mailadres is optioneel, maar maakt het mogelijk om jou je wachtwoord te e-mailen als je het bent vergeten.",
 	"prefs-help-email-others": "Je kunt ook anderen in staat stellen per e-mail contact met je op te nemen via een koppeling op uw gebruikers- en overlegpagina zonder dat je je identiteit prijsgeeft.",

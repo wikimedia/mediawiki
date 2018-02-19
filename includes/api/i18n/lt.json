@@ -72,8 +72,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtruoti pagal žymę.",
 	"apihelp-feedrecentchanges-param-target": "Rodyti tik keitimus puslapiuose, pasiekiamuose iš šio puslapio.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Vietoj to, rodyti pakeitimus puslapyje, susietame su pasirinktu puslapiu.",
-	"apihelp-feedrecentchanges-param-categories": "Rodyti pakeitimus tik puslapiuose, esančiuose visuose šiuose kategorijose.",
-	"apihelp-feedrecentchanges-param-categories_any": "Vietoj to, rodyti tik pakeitimus puslapiuse, esančiuose bet kurioje iš kategorijų.",
 	"apihelp-feedrecentchanges-example-simple": "Parodyti naujausius keitimus.",
 	"apihelp-feedrecentchanges-example-30days": "Rodyti naujausius pakeitimus per 30 dienų.",
 	"apihelp-feedwatchlist-summary": "Gražina stebimųjų sąrašo srautą.",

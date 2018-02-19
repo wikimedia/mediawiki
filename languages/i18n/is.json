@@ -1376,8 +1376,6 @@
 	"boteditletter": "v",
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|notandi skoðandi|$1 notendur skoðandi}}]",
-	"rc_categories": "Takmarka við flokka (aðskilja með \"|\"):",
-	"rc_categories_any": "Allt valið",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bæt|bæti}} eftir breytingu",
 	"newsectionsummary": "Nýr hluti: /* $1 */",

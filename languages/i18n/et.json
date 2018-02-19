@@ -1469,8 +1469,6 @@
 	"newpageletter": "U",
 	"boteditletter": "R",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|jälgiv kasutaja|jälgivat kasutajat}}]",
-	"rc_categories": "Ainult neist kategooriatest (eraldajaks \"|\"):",
-	"rc_categories_any": "Mõnes valitutest",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bait|baiti}} pärast muudatust",
 	"newsectionsummary": "/* $1 */ uus alaosa",
 	"rc-enhanced-expand": "Näita üksikasju",

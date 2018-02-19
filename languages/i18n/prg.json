@@ -781,8 +781,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|nadirīnts tērpautajs|nadirīntei tērpautajai}}]",
-	"rc_categories": "Arāikinais prei kategōrijan (izsklaitinnais sen \"|\")",
-	"rc_categories_any": "Wisāi",
 	"newsectionsummary": "/* $1 */ naunā sekciōni",
 	"rc-enhanced-expand": "Waidinnais malkans (izkīnina JavaScript)",
 	"rc-enhanced-hide": "Kliptinais malkans",

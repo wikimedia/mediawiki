@@ -1407,8 +1407,6 @@
 	"newpageletter": "N",
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 Benotzer {{PLURAL:$1|iwwerwaacht|iwwerwaachen}}]",
-	"rc_categories": "Limitéieren op d'Kategorie (getrennt mat \"|\"):",
-	"rc_categories_any": "Aus iergendenger vun den erausgesichten",
 	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} no der Ännerung",
 	"newsectionsummary": "Neien Abschnitt /* $1 */",

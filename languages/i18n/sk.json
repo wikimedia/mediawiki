@@ -1434,8 +1434,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|sledujúci používateľ|sledujúci používatelia|sledujúcich používateľov}}]",
-	"rc_categories": "Obmedziť na kategórie (oddeľte znakom „|“)",
-	"rc_categories_any": "Akékoľvek z vybraných",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bajt|bajty|bajtov}} po zmene",
 	"newsectionsummary": "/* $1 */ nová sekcia",
 	"rc-enhanced-expand": "Zobraziť podrobnosti",

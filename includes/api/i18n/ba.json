@@ -153,8 +153,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Тэг буйынса һөҙгөс",
 	"apihelp-feedrecentchanges-param-target": "Был биттән һылтанған биттәрҙә һуңғы үҙгәртеүҙәрҙе күрһәтергә",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Киреһенсә, был биткә һылтанма яһаған биттәрҙәге үҙгәртеүҙәрҙе күрһәтергә",
-	"apihelp-feedrecentchanges-param-categories": "Бар категория биттәрендәге үҙгәрештәрҙе генә күрһәтергә",
-	"apihelp-feedrecentchanges-param-categories_any": "Был категориянан башҡа теләһә ҡайһы категориялар биттәрендәге үҙгәрештәрҙе генә күрһәтергә",
 	"apihelp-feedrecentchanges-example-simple": "Һуңғы үҙгәртеүҙәрҙе күрһәтергә.",
 	"apihelp-feedrecentchanges-example-30days": "30 көн арауығындағы һуңғы үҙгәртеүҙәрҙе күрһәтергә.",
 	"apihelp-feedwatchlist-summary": "Күҙәтеү каналын ҡайтара",

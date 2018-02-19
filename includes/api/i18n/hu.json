@@ -158,8 +158,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "Szűrés címke szerint.",
 	"apihelp-feedrecentchanges-param-target": "Csak a megadott lapról hivatkozott lapok szerkesztéseinek megjelenítése.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Inkább a megadott lap''ra'' hivatkozó lapok szerkesztéseinek megjelenítése.",
-	"apihelp-feedrecentchanges-param-categories": "Csak a megadott kategóriák mindegyikében szereplő lapok szerkesztéseinek megjelenítése.",
-	"apihelp-feedrecentchanges-param-categories_any": "Inkább a megadott kategóriák bármelyikében szereplő lapok szerkesztéseinek megjelenítése.",
 	"apihelp-feedrecentchanges-example-simple": "Friss változtatások megjelenítése.",
 	"apihelp-feedrecentchanges-example-30days": "Az elmúlt 30 nap friss változtatásainak megjelenítése.",
 	"apihelp-feedwatchlist-summary": "A figyelőlista lekérése hírcsatornaként.",

@@ -1416,8 +1416,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|implijer o heuliañ|implijer}} o heuliañ]",
-	"rc_categories": "Bevenniñ d'ar rummadoù (dispartiet gant \"|\") :",
-	"rc_categories_any": "Unan e-touez ar re zibabet",
 	"rc-change-size-new": "$1 {{PLURAL:$1|okted|okted}} goude kemmañ",
 	"newsectionsummary": "/* $1 */ rann nevez",
 	"rc-enhanced-expand": "Diskouez ar munudoù",

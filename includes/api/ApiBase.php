@@ -897,7 +897,7 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $badParams ) {
 			$this->dieWithError(
-				[ 'apierror-mustpostparams', join( ', ', $badParams ), count( $badParams ) ]
+				[ 'apierror-mustpostparams', implode( ', ', $badParams ), count( $badParams ) ]
 			);
 		}
 	}
@@ -1152,7 +1152,7 @@ abstract class ApiBase extends ContextSource {
 				if ( $multi ) {
 					// This loses the potential $wgContLang->checkTitleEncoding() transformation
 					// done by WebRequest for $_GET. Let's call that a feature.
-					$value = join( "\x1f", $request->normalizeUnicode( explode( "\x1f", $rawValue ) ) );
+					$value = implode( "\x1f", $request->normalizeUnicode( explode( "\x1f", $rawValue ) ) );
 				} else {
 					$this->dieWithError( 'apierror-badvalue-notmultivalue', 'badvalue_notmultivalue' );
 				}
@@ -1829,7 +1829,7 @@ abstract class ApiBase extends ContextSource {
 		$msgs = [ $this->msg( 'api-usage-mailinglist-ref' ) ];
 		Hooks::run( 'ApiDeprecationHelp', [ &$msgs ] );
 		if ( count( $msgs ) > 1 ) {
-			$key = '$' . join( ' $', range( 1, count( $msgs ) ) );
+			$key = '$' . implode( ' $', range( 1, count( $msgs ) ) );
 			$msg = ( new RawMessage( $key ) )->params( $msgs );
 		} else {
 			$msg = reset( $msgs );

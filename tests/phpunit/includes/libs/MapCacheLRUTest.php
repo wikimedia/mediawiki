@@ -2,7 +2,7 @@
 /**
  * @group Cache
  */
-class MapCacheLRUTest extends PHPUnit_Framework_TestCase {
+class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

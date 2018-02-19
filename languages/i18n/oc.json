@@ -1293,8 +1293,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|utilizaire seguent|utilizaires seguents}}]",
-	"rc_categories": "Limitar a las categorias (separadas per « | ») :",
-	"rc_categories_any": "Una de las seleccionadas",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octet|octets}} aprèp cambiament",
 	"newsectionsummary": "/* $1 */ seccion novèla",
 	"rc-enhanced-expand": "Vejatz los detalhs",

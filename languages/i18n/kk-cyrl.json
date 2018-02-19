@@ -1205,8 +1205,6 @@
 	"newpageletter": "Ж",
 	"boteditletter": "б",
 	"number_of_watching_users_pageview": "[бақылаған $1 қатысушы]",
-	"rc_categories": "Санаттарға шектеу («|» белгісімен бөлектеңіз):",
-	"rc_categories_any": "Таңдалғанның кез келгені",
 	"rc-change-size-new": "Өңдеуден кейінгі көлемі: $1 {{PLURAL:$1|байт|байт}}",
 	"newsectionsummary": "/* $1 */ жаңа бөлім",
 	"rc-enhanced-expand": "Толық ақпаратты көрсету",

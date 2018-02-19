@@ -7,7 +7,7 @@ use Wikimedia\Http\HttpAcceptParser;
  *
  * @author Daniel Kinzler
  */
-class HttpAcceptParserTest extends \PHPUnit_Framework_TestCase {
+class HttpAcceptParserTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideParseWeights() {
 		return [

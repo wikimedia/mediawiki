@@ -24,7 +24,7 @@ class ArrayBackedMemoizedCallable extends MemoizedCallable {
  * PHP Unit tests for MemoizedCallable class.
  * @covers MemoizedCallable
  */
-class MemoizedCallableTest extends PHPUnit_Framework_TestCase {
+class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

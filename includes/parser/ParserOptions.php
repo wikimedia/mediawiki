@@ -1254,7 +1254,7 @@ class ParserOptions {
 		} elseif ( $value instanceof Language ) {
 			return $value->getCode();
 		} elseif ( is_array( $value ) ) {
-			return '[' . join( ',', array_map( [ $this, 'optionToString' ], $value ) ) . ']';
+			return '[' . implode( ',', array_map( [ $this, 'optionToString' ], $value ) ) . ']';
 		} else {
 			return (string)$value;
 		}
@@ -1295,7 +1295,7 @@ class ParserOptions {
 			}
 		}
 
-		$confstr = $values ? join( '!', $values ) : 'canonical';
+		$confstr = $values ? implode( '!', $values ) : 'canonical';
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant

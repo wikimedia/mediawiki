@@ -723,8 +723,6 @@
 	"newpageletter": "B",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 lalbe {{PLURAL:$1|talagamit|talagamit}}]",
-	"rc_categories": "Angganan/limitasiun da reng kategoriya (pikawani la king \"|\")",
-	"rc_categories_any": "Andyang sanu",
 	"newsectionsummary": "/* $1 */ bayung seksiyon/dake",
 	"rc-enhanced-expand": "Pakit la reng detalle (mangailangan yang JavaScript)",
 	"rc-enhanced-hide": "Isalikut la reng detalle",

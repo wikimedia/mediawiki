@@ -1455,8 +1455,6 @@
 	"newpageletter": "С",
 	"boteditletter": "р",
 	"number_of_watching_users_pageview": "[$1 кэтиир {{PLURAL:$1|кыттааччы|кыттааччылар}}]",
-	"rc_categories": "Бу эрэ категориялартан (араарар бэлиэ \"|\")",
-	"rc_categories_any": "Талыллыбыттан хайата баҕарар",
 	"rc-change-size-new": "Уларытыы кээмэйэ: $1 баайт",
 	"newsectionsummary": "/* $1 */ саҥа сиэксийэ",
 	"rc-enhanced-expand": "Сиһилии көрдөр",

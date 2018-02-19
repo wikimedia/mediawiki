@@ -1125,8 +1125,6 @@
 	"newpageletter": "P",
 	"boteditletter": "r",
 	"number_of_watching_users_pageview": "[idadi ya {{PLURAL:$1|watumiaji}} wanaoufuatilia ni $1]",
-	"rc_categories": "Chagua jamii zingine (uzitenge na kigawaji hiki \"|\")",
-	"rc_categories_any": "Yoyote",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} baada ya mabadiliko",
 	"newsectionsummary": "/* $1 */ mjadala mpya",
 	"rc-enhanced-expand": "Onyesha maelezo",

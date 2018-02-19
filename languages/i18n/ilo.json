@@ -1404,8 +1404,6 @@
 	"newpageletter": "B",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 nga agbuybuya {{PLURAL:$1|nga agar-aramat|kadagiti agar-aramat}}]",
-	"rc_categories": "Patingga dagiti kategoria (pagsinaen iti \"|\"):",
-	"rc_categories_any": "Ti ania man a napili",
 	"rc-change-size-new": "$1 {{PLURAL:$1|a byte|kadagiti byte}} kalpasan ti panagsukat",
 	"newsectionsummary": "/* $1 */ baro a seksion",
 	"rc-enhanced-expand": "Ipakita dagiti salaysay",

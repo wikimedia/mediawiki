@@ -205,8 +205,6 @@
 	"apihelp-feedrecentchanges-param-tagfilter": "סינון לפי תגית.",
 	"apihelp-feedrecentchanges-param-target": "הצגת שינויים שנעשו בדפים המקושרים לדף זה בלבד.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "להציג את השינויים בדפים שמקושרים לדף שנבחר במקום זה.",
-	"apihelp-feedrecentchanges-param-categories": "להציג רק שינויים בדפים בכל הקטגוריות האלו.",
-	"apihelp-feedrecentchanges-param-categories_any": "להציג רק שינויים בדפים בכל הקטגוריות במקום.",
 	"apihelp-feedrecentchanges-example-simple": "הצגת שינויים אחרונים.",
 	"apihelp-feedrecentchanges-example-30days": "הצגת שינויים אחרונים עבור 30 ימים.",
 	"apihelp-feedwatchlist-summary": "החזרת הזנת רשימת מעקב.",

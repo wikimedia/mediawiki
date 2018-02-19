@@ -1,8 +1,10 @@
 <?php
 /**
+ * Job that purges expired user group memberships.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -16,25 +18,22 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup JobQueue
  */
 
-class XhprofTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class UserGroupExpiryJob extends Job {
+	public function __construct( $params = false ) {
+		parent::__construct( 'userGroupExpiry', Title::newMainPage(), $params );
+		$this->removeDuplicates = true;
+	}
 
 	/**
-	 * Trying to enable Xhprof when it is already enabled causes an exception
-	 * to be thrown.
-	 *
-	 * @expectedException        Exception
-	 * @expectedExceptionMessage already enabled
-	 * @covers Xhprof::enable
+	 * Run the job
+	 * @return bool Success
 	 */
-	public function testEnable() {
-		$xhprof = new ReflectionClass( Xhprof::class );
-		$enabled = $xhprof->getProperty( 'enabled' );
-		$enabled->setAccessible( true );
-		$enabled->setValue( true );
-		$xhprof->getMethod( 'enable' )->invoke( null );
+	public function run() {
+		UserGroupMembership::purgeExpired();
+
+		return true;
 	}
 }
