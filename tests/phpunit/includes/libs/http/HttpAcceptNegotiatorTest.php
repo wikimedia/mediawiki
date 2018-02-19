@@ -7,7 +7,7 @@ use Wikimedia\Http\HttpAcceptNegotiator;
  *
  * @author Daniel Kinzler
  */
-class HttpAcceptNegotiatorTest extends \PHPUnit_Framework_TestCase {
+class HttpAcceptNegotiatorTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideGetFirstSupportedValue() {
 		return [

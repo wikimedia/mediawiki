@@ -153,7 +153,7 @@ abstract class QuickTemplate {
 	/**
 	 * An ugly, ugly hack.
 	 * @private
-	 * @param string $str
+	 * @param string $msgKey
 	 */
 	function msgWiki( $msgKey ) {
 		global $wgOut;

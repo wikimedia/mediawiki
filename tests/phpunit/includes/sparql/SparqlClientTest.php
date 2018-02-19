@@ -4,12 +4,11 @@ namespace MediaWiki\Sparql;
 use Http;
 use MediaWiki\Http\HttpRequestFactory;
 use MWHttpRequest;
-use PHPUnit_Framework_TestCase;
 
 /**
  * @covers \MediaWiki\Sparql\SparqlClient
  */
-class SparqlClientTest extends PHPUnit_Framework_TestCase {
+class SparqlClientTest extends \PHPUnit\Framework\TestCase {
 
 	private function getRequestFactory( $request ) {
 		$requestFactory = $this->getMock( HttpRequestFactory::class );

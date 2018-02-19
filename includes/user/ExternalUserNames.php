@@ -56,7 +56,7 @@ class ExternalUserNames {
 			if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
 				$title = MWNamespace::getCanonicalName( NS_USER ) . ':' . substr( $userName, $pos + 1 );
 				if ( $iw ) {
-					$title = join( ':', $iw ) . ':' . $title;
+					$title = implode( ':', $iw ) . ':' . $title;
 				}
 				return Title::makeTitle( NS_MAIN, $title, '', $firstIw );
 			}

@@ -11,7 +11,7 @@ class MediaWikiPHPUnitTestListener
 	protected function getTestName( PHPUnit_Framework_Test $test ) {
 		$name = get_class( $test );
 
-		if ( $test instanceof PHPUnit_Framework_TestCase ) {
+		if ( $test instanceof PHPUnit\Framework\TestCase ) {
 			$name .= '::' . $test->getName( true );
 		}
 

@@ -57,7 +57,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function ( $s ) {
+				return implode( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -1572,7 +1572,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return join( $sqlConj, array_map( function ( $s ) {
+				return implode( $sqlConj, array_map( function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );

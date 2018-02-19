@@ -1,6 +1,6 @@
 <?php
 
-class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
+class JavaScriptMinifierTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

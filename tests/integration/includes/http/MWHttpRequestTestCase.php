@@ -2,7 +2,7 @@
 
 use Wikimedia\TestingAccessWrapper;
 
-abstract class MWHttpRequestTestCase extends PHPUnit_Framework_TestCase {
+abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	protected static $httpEngine;
 	protected $oldHttpEngine;
 

@@ -5,7 +5,7 @@
  * @todo tests below for findIE6Extension should be split into...
  *    ...a dataprovider and test method.
  */
-class IEUrlExtensionTest extends PHPUnit_Framework_TestCase {
+class IEUrlExtensionTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

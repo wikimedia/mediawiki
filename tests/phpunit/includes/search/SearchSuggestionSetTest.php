@@ -19,7 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-class SearchSuggestionSetTest extends \PHPUnit_Framework_TestCase {
+class SearchSuggestionSetTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * Test that adding a new suggestion at the end
 	 * will keep proper score ordering

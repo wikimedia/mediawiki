@@ -5,7 +5,7 @@ namespace MediaWiki\Auth;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
-class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit_Framework_TestCase {
+class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit\Framework\TestCase {
 	public function testConstructor() {
 		$config = new \HashConfig( [
 			'EnableEmail' => true,

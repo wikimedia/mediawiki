@@ -593,7 +593,7 @@ class ApiMain extends ApiBase {
 		$this->setCacheMode( 'private' );
 
 		$response = $this->getRequest()->response();
-		$headerStr = 'MediaWiki-API-Error: ' . join( ', ', $errCodes );
+		$headerStr = 'MediaWiki-API-Error: ' . implode( ', ', $errCodes );
 		$response->header( $headerStr );
 
 		// Reset and print just the error message

@@ -29,7 +29,7 @@
  *
  * @author Daniel Kinzler
  */
-class SiteImporterTest extends PHPUnit_Framework_TestCase {
+class SiteImporterTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

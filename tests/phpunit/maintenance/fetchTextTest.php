@@ -215,7 +215,7 @@ class FetchTextTest extends MediaWikiTestCase {
 
 	function testExistingSeveral() {
 		$this->assertFilter(
-			join( "\n", [
+			implode( "\n", [
 				self::$textId1,
 				self::$textId5,
 				self::$textId3,

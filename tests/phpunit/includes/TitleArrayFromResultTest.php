@@ -4,7 +4,7 @@
  * @author Addshore
  * @covers TitleArrayFromResult
  */
-class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
+class TitleArrayFromResultTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

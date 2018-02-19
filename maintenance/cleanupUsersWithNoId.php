@@ -110,7 +110,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 				$next = "$field > $value OR $field = $value AND ($next)";
 			}
 		}
-		$display = join( ' ', array_reverse( $display ) );
+		$display = implode( ' ', array_reverse( $display ) );
 		return [ $next, $display ];
 	}
 
