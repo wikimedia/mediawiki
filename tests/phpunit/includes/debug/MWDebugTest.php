@@ -102,6 +102,9 @@ class MWDebugTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( ApiResult::class, $result );
 		$data = $result->getResultData();
 
+		var_dump( $data );
+		exit();
+
 		$expectedKeys = [ 'mwVersion', 'phpEngine', 'phpVersion', 'gitRevision', 'gitBranch',
 			'gitViewUrl', 'time', 'log', 'debugLog', 'queries', 'request', 'memory',
 			'memoryPeak', 'includes', '_element' ];
