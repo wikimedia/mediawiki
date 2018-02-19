@@ -86,8 +86,8 @@ class MWDebugTest extends MediaWikiTestCase {
 	 */
 	public function testAppendDebugInfoToApiResultXmlFormat() {
 		$request = $this->newApiRequest(
-			[ 'action' => 'help', 'format' => 'xml' ],
-			'/api.php?action=help&format=xml'
+			[ 'action' => 'query', 'format' => 'xml' ],
+			'/api.php?action=query&format=xml'
 		);
 
 		$context = new RequestContext();
@@ -110,7 +110,7 @@ class MWDebugTest extends MediaWikiTestCase {
 			$this->assertArrayHasKey( $expectedKey, $data['debuginfo'], "debuginfo has $expectedKey" );
 		}
 
-		$xml = ApiFormatXml::recXmlPrint( 'help', $data, null );
+		$xml = ApiFormatXml::recXmlPrint( 'query', $data, null );
 
 		// exception not thrown
 		$this->assertInternalType( 'string', $xml );
