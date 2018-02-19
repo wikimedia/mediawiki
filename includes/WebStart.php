@@ -32,6 +32,7 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 # T17461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
+header( 'Content-Type-Options: nosniff' );
 header( 'X-Content-Type-Options: nosniff' );
 
 /**
