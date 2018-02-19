@@ -1522,7 +1522,9 @@ class EditPage {
 		}
 
 		$response = $this->context->getRequest()->response();
-		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION );
+		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, [
+			'httpOnly' => true,
+		] );
 	}
 
 	/**
