@@ -10,6 +10,7 @@
 ( function ( mw, $ ) {
 
 	var inspect,
+		byteLength = require( 'mediawiki.String' ).byteLength,
 		hasOwn = Object.prototype.hasOwnProperty;
 
 	function sortByProperty( array, prop, descending ) {
@@ -117,9 +118,9 @@
 			size = 0;
 			for ( i = 0; i < args.length; i++ ) {
 				if ( typeof args[ i ] === 'function' ) {
-					size += $.byteLength( getFunctionBody( args[ i ] ) );
+					size += byteLength( getFunctionBody( args[ i ] ) );
 				} else {
-					size += $.byteLength( JSON.stringify( args[ i ] ) );
+					size += byteLength( JSON.stringify( args[ i ] ) );
 				}
 			}
 
@@ -285,8 +286,8 @@
 					$.extend( stats, mw.loader.store.stats );
 					try {
 						raw = localStorage.getItem( mw.loader.store.getStoreKey() );
-						stats.totalSizeInBytes = $.byteLength( raw );
-						stats.totalSize = humanSize( $.byteLength( raw ) );
+						stats.totalSizeInBytes = byteLength( raw );
+						stats.totalSize = humanSize( byteLength( raw ) );
 					} catch ( e ) {}
 				}
 				return [ stats ];
