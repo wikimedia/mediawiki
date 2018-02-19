@@ -3755,8 +3755,17 @@ class Language {
 	 */
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms[$this->getCode()][$case][$word] ) ) {
-			return $wgGrammarForms[$this->getCode()][$case][$word];
+
+		$form_rule = $wgGrammarForms[$this->getCode()][$case];
+		if ( isset( $form_rule ) ) {
+			if ( is_array( $form_rule ) && isset( $form_rule[$word] ) ) {
+				// Grammatical form stored as a simple array map 'word' => 'form':
+				return $form_rule[$word];
+			}
+			if ( is_callable( $form_rule ) ) {
+				// Grammatical form stored as a function 'word' => 'form':
+				return $form_rule( $word );
+			}
 		}
 
 		$grammarTransformations = $this->getGrammarTransformations();
