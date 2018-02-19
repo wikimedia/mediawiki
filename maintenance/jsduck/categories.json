@@ -23,6 +23,7 @@
 					"mw.Title",
 					"mw.Uri",
 					"mw.RegExp",
+					"mw.String",
 					"mw.messagePoster.*",
 					"mw.notification",
 					"mw.Notification_",

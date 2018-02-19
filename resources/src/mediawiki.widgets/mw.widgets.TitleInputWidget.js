@@ -6,6 +6,8 @@
  */
 ( function ( $, mw ) {
 
+	var trimByteLength = require( 'mediawiki.String' ).trimByteLength;
+
 	/**
 	 * Creates an mw.widgets.TitleInputWidget object.
 	 *
@@ -130,7 +132,7 @@
 		// Parent method
 		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
 
-		return $.trimByteLength( this.value, value, this.maxLength, function ( value ) {
+		return trimByteLength( this.value, value, this.maxLength, function ( value ) {
 			var title = widget.getMWTitle( value );
 			return title ? title.getMain() : value;
 		} ).newVal;

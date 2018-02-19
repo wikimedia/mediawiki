@@ -156,11 +156,13 @@ return [
 	],
 	'jquery.byteLength' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLength.js',
+		'deprecated' => 'Use "mediawiki.String" instead.',
+		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.byteLimit' => [
 		'scripts' => 'resources/src/jquery/jquery.byteLimit.js',
-		'dependencies' => 'jquery.byteLength',
+		'dependencies' => 'mediawiki.String',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.checkboxShiftClick' => [
@@ -1105,7 +1107,7 @@ return [
 	'mediawiki.inspect' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
 		'dependencies' => [
-			'jquery.byteLength',
+			'mediawiki.String',
 			'mediawiki.RegExp',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1169,6 +1171,10 @@ return [
 		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.String' => [
+		'scripts' => 'resources/src/mediawiki/mediawiki.String.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.pager.tablePager' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.less',
 	],
@@ -1201,8 +1207,7 @@ return [
 			'resources/src/mediawiki/mediawiki.Title.phpCharToUpper.js',
 		],
 		'dependencies' => [
-			'jquery.byteLength',
-			'jquery.byteLimit',
+			'mediawiki.String',
 			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1762,7 +1767,7 @@ return [
 			'resources/src/mediawiki.rcfilters/mw.rcfilters.UriProcessor.js',
 		],
 		'dependencies' => [
-			'jquery.byteLength',
+			'mediawiki.String',
 			'oojs',
 			'mediawiki.api',
 			'mediawiki.api.options',
@@ -2421,7 +2426,7 @@ return [
 			// TitleInputWidget
 			'mediawiki.Title',
 			'mediawiki.api',
-			'jquery.byteLimit',
+			'mediawiki.String',
 		],
 		'messages' => [
 			// NamespaceInputWidget
