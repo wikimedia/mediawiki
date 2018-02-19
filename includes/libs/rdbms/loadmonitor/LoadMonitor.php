@@ -81,13 +81,13 @@ class LoadMonitor implements ILoadMonitor {
 		$this->replLogger = $logger;
 	}
 
-	public function scaleLoads( array &$weightByServer, $domain ) {
+	final public function scaleLoads( array &$weightByServer, $domain ) {
 		$serverIndexes = array_keys( $weightByServer );
 		$states = $this->getServerStates( $serverIndexes, $domain );
-		$coefficientsByServer = $states['weightScales'];
+		$newScalesByServer = $states['weightScales'];
 		foreach ( $weightByServer as $i => $weight ) {
-			if ( isset( $coefficientsByServer[$i] ) ) {
-				$weightByServer[$i] = $weight * $coefficientsByServer[$i];
+			if ( isset( $newScalesByServer[$i] ) ) {
+				$weightByServer[$i] = $weight * $newScalesByServer[$i];
 			} else { // server recently added to config?
 				$host = $this->parent->getServerName( $i );
 				$this->replLogger->error( __METHOD__ . ": host $host not in cache" );
@@ -95,10 +95,8 @@ class LoadMonitor implements ILoadMonitor {
 		}
 	}
 
-	public function getLagTimes( array $serverIndexes, $domain ) {
-		$states = $this->getServerStates( $serverIndexes, $domain );
-
-		return $states['lagTimes'];
+	final public function getLagTimes( array $serverIndexes, $domain ) {
+		return $this->getServerStates( $serverIndexes, $domain )['lagTimes'];
 	}
 
 	protected function getServerStates( array $serverIndexes, $domain ) {
