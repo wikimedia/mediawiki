@@ -27,7 +27,7 @@
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class FileBasedSiteLookupTest extends PHPUnit_Framework_TestCase {
+class FileBasedSiteLookupTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

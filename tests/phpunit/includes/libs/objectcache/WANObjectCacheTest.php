@@ -16,7 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::getInterimValue
  * @covers WANObjectCache::setInterimValue
  */
-class WANObjectCacheTest extends PHPUnit_Framework_TestCase {
+class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

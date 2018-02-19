@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderClientHtmlTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

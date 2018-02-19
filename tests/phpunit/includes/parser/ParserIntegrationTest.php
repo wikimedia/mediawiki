@@ -26,7 +26,7 @@ use Wikimedia\ScopedCallback;
  * @covers ParserOptions
  * @covers ParserOutput
  */
-class ParserIntegrationTest extends PHPUnit_Framework_TestCase {
+class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

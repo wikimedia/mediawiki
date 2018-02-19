@@ -109,7 +109,7 @@ class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
 	}
 }
 
-class DatabaseMysqlBaseTest extends PHPUnit_Framework_TestCase {
+class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

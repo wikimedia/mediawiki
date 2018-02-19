@@ -9,7 +9,7 @@ use MediaWiki\Shell\Shell;
  * as long as firejail and sudo has similar config.
  * @group Shell
  */
-class FirejailCommandIntegrationTest extends PHPUnit_Framework_TestCase {
+class FirejailCommandIntegrationTest extends PHPUnit\Framework\TestCase {
 
 	public function setUp() {
 		parent::setUp();

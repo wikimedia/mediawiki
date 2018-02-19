@@ -3,7 +3,7 @@
 /**
  * @covers HtmlArmor
  */
-class HtmlArmorTest extends PHPUnit_Framework_TestCase {
+class HtmlArmorTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

@@ -6,7 +6,7 @@ use Liuggio\StatsdClient\Sender\SenderInterface;
 /**
  * @covers SamplingStatsdClient
  */
-class SamplingStatsdClientTest extends PHPUnit_Framework_TestCase {
+class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

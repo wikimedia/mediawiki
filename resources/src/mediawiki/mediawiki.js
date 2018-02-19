@@ -53,7 +53,7 @@
 	}
 
 	function defineFallbacks() {
-		// <https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Set>
+		// <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
 		StringSet = window.Set || ( function () {
 			/**
 			 * @private

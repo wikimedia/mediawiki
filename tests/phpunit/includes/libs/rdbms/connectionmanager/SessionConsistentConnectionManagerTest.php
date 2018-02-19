@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\SessionConsistentConnectionManager;
  *
  * @author Daniel Kinzler
  */
-class SessionConsistentConnectionManagerTest extends \PHPUnit_Framework_TestCase {
+class SessionConsistentConnectionManagerTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @return IDatabase|PHPUnit_Framework_MockObject_MockObject

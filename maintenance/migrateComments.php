@@ -205,7 +205,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 					$next = "$field > $value OR $field = $value AND ($next)";
 				}
 			}
-			$prompt = join( ' ', array_reverse( $prompt ) );
+			$prompt = implode( ' ', array_reverse( $prompt ) );
 			$this->output( "... $prompt\n" );
 			wfWaitForSlaves();
 		}

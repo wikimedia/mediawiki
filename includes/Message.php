@@ -1105,7 +1105,7 @@ class Message implements MessageSpecifier, Serializable {
 	public static function listParam( array $list, $type = 'text' ) {
 		if ( !isset( self::$listTypeMap[$type] ) ) {
 			throw new InvalidArgumentException(
-				"Invalid type '$type'. Known types are: " . join( ', ', array_keys( self::$listTypeMap ) )
+				"Invalid type '$type'. Known types are: " . implode( ', ', array_keys( self::$listTypeMap ) )
 			);
 		}
 		return [ 'list' => $list, 'type' => $type ];

@@ -6,7 +6,7 @@ use MediaWiki\Shell\Shell;
  * @covers \MediaWiki\Shell\Shell
  * @group Shell
  */
-class ShellTest extends PHPUnit_Framework_TestCase {
+class ShellTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 

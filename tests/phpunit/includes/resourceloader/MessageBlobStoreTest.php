@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Cache
  * @covers MessageBlobStore
  */
-class MessageBlobStoreTest extends PHPUnit_Framework_TestCase {
+class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
