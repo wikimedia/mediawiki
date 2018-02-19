@@ -824,7 +824,7 @@
 	"textmatches": "Sider med treff på førespurnaden",
 	"notextmatches": "Ingen sider hadde treff på førespurnaden",
 	"prevn": "førre {{PLURAL:$1|$1}}",
-	"nextn": "neste {{PLURAL:$1|$1}}",
+	"nextn": "{{PLURAL:$1|neste|neste $1}}",
 	"prev-page": "førre sida",
 	"next-page": "neste side",
 	"prevn-title": "Førre $1 {{PLURAL:$1|resultat|resultat}}",

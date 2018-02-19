@@ -262,6 +262,8 @@
 	"wrongpasswordempty": "No ha introducido una contraseña.\nPor favor inténtelo de nuevo.",
 	"password-name-match": "Su contraseña debe ser diferente de su nombre de usuario.",
 	"passwordsent": "Se ha enviado una nueva contraseña al correo electrónico de «$1».\nPor favor, identifíquese de nuevo tras recibirla.",
+	"emailconfirmlink": "Confirme su dirección de correo electrónico",
+	"invalidemailaddress": "No se puede aceptar la dirección de correo electrónico, pues parece que tiene un formato no válido.\nPor favor, escriba una dirección bien formada o deje el campo en blanco.",
 	"anoneditwarning": "<strong>Advertencia:</strong> no ha iniciado sesión. Su dirección IP se hará pública si hace cualquier edición en estas condiciones. Si <strong>[$1 inicia sesión]</strong> o <strong>[$2 crea una cuenta]</strong>, sus ediciones se atribuirán a su nombre de usuario, además de otros beneficios.",
 	"newarticletext": "Ha seguido usted un enlace a una página que aún no existe.\nPara crear esta página, escriba en el campo a continuación. Para más información, consulte la [$1 página de ayuda].\nSi ha llegado aquí por error, vuelva a la página anterior.",
 	"noarticletext": "En este momento no hay texto en esta página.\nPuede [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados],\no [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear esta página]</span>.",
