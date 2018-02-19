@@ -72,6 +72,12 @@
 				]
 			},
 			{
+				"name": "Libraries",
+				"classes": [
+					"stringLength"
+				]
+			},
+			{
 				"name": "Special",
 				"classes": [
 					"mw.special*"
