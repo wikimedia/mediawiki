@@ -45,7 +45,6 @@ return [
 		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.byteLength.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLimit.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.color.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.colorUtil.test.js',
@@ -99,10 +98,11 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.visibleTimeout.test.js',
+			'tests/qunit/suites/resources/stringLength/stringLength.byteLength.test.js',
+			'tests/qunit/suites/resources/stringLength/stringLength.trimByteLength.test.js',
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
-			'jquery.byteLength',
 			'jquery.byteLimit',
 			'jquery.color',
 			'jquery.colorUtil',
@@ -142,6 +142,7 @@ return [
 			'mediawiki.experiments',
 			'mediawiki.inspect',
 			'mediawiki.visibleTimeout',
+			'stringLength',
 			'test.mediawiki.qunit.testrunner',
 		],
 	]
