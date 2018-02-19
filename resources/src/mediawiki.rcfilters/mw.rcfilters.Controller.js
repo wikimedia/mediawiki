@@ -1,4 +1,7 @@
 ( function ( mw, $ ) {
+
+	var byteLength = require( 'stringLength' ).byteLength;
+
 	/* eslint no-underscore-dangle: "off" */
 	/**
 	 * Controller for the filters in Recent Changes
@@ -804,7 +807,7 @@
 		// Stringify state
 		stringified = JSON.stringify( state );
 
-		if ( $.byteLength( stringified ) > 65535 ) {
+		if ( byteLength( stringified ) > 65535 ) {
 			// Sanity check, since the preference can only hold that.
 			return;
 		}
