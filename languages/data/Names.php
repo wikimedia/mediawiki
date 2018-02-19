@@ -148,6 +148,7 @@ class Names {
 		'en-gb' => 'British English', # British English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
+		'es-formal' => 'español (formal)' # Spanish formal address
 		'et' => 'eesti', # Estonian
 		'eu' => 'euskara', # Basque
 		'ext' => 'estremeñu', # Extremaduran
