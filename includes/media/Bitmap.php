@@ -440,6 +440,14 @@ class BitmapHandler extends TransformationalImageHandler {
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
+		if ( filesize( $params['srcPath'] ) === 0 ) {
+			$err = "Image file size seems to be zero.";
+			wfDebug( "$err\n" );
+			$errMsg = wfMessage( 'thumbnail_image-size-zero', $params['srcPath'] )->text();
+
+			return $this->getMediaTransformError( $params, $errMsg );
+		}
+
 		$src_image = call_user_func( $loader, $params['srcPath'] );
 
 		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] ) ?
