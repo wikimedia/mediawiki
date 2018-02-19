@@ -32,6 +32,8 @@
 	/* Private members */
 
 	var
+		mwString = require( 'mediawiki.String' ),
+
 		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 
 		/**
@@ -320,7 +322,7 @@
 			// Except for special pages, e.g. [[Special:Block/Long name]]
 			// Note: The PHP implementation also asserts that even in NS_SPECIAL, the title should
 			// be less than 512 bytes.
-			if ( namespace !== NS_SPECIAL && $.byteLength( title ) > TITLE_MAX_BYTES ) {
+			if ( namespace !== NS_SPECIAL && mwString.byteLength( title ) > TITLE_MAX_BYTES ) {
 				return false;
 			}
 
@@ -407,7 +409,7 @@
 		 * @return {string}
 		 */
 		trimToByteLength = function ( s, length ) {
-			return $.trimByteLength( '', s, length ).newVal;
+			return mwString.trimByteLength( '', s, length ).newVal;
 		},
 
 		/**
