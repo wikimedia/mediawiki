@@ -43,9 +43,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$out->addModuleStyles( [
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
-			'mediawiki.widgets.DateInputWidget.styles',
 		] );
-		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
 		$out->enableOOUI();
 
@@ -70,6 +68,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( !strlen( $target ) ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->getForm() );
+				$out->addModules( 'mediawiki.special.contributions' );
+				$out->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
 			}
 
 			return;
