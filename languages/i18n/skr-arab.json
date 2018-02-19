@@ -390,6 +390,7 @@
 	"loginreqlink": "لاگ ان",
 	"accmailtitle": "پاس ورڈ بھیج ݙتے",
 	"newarticle": "(نواں)",
+	"noarticletext": "ہݨ ایں ورقے تے کجھ کائنی لکھیا ہویا۔تساں ٻیاں ورقیاں وچ [[Special:Search/{{PAGENAME}}|ایں ورقے دے عنوان کوں ڳولھ سڳدے ہو]]، <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} متعلقہ لاڳ وچ ڳولھ سڳدے ہو]،\nیا [{{fullurl:{{FULLPAGENAME}}|action=edit}} ایں ورقے کوں مُنڈھوں بݨا سڳدے ہو]</span>۔",
 	"userpage-userdoesnotexist-view": "صارف کھاتہ \"$1\" رجسٹرڈ کائنی۔",
 	"updated": "(اپ ڈیٹ تھی ڳیا)",
 	"note": "<strong>نوٹ:</strong>",
