@@ -187,8 +187,6 @@
 				return 'prefix' + text;
 			} ),
 		sample: simpleSample,
-		hasLimit: true,
-		limit: 6, // 'prefix' length
 		expected: ''
 	} );
 
