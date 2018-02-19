@@ -613,7 +613,7 @@ class MessageCache {
 				// load() calls do try to refresh the cache with replica DB data
 				$this->mCache[$code]['LATEST'] = time();
 				// Pre-emptively update the local datacenter cache so things like edit filter and
-				// blacklist changes are reflect immediately, as these often use MediaWiki: pages.
+				// blacklist changes are reflected immediately; these often use MediaWiki: pages.
 				// The datacenter handling replace() calls should be the same one handling edits
 				// as they require HTTP POST.
 				$this->saveToCaches( $this->mCache[$code], 'all', $code );
@@ -985,13 +985,12 @@ class MessageCache {
 		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
-				// The message exists, so make sure a string is returned.
+				// The message exists and is not '!TOO BIG'
 				return (string)substr( $entry, 1 );
 			} elseif ( $entry === '!NONEXISTENT' ) {
 				return false;
-			} elseif ( $entry === '!TOO BIG' ) {
-				// Fall through and try invididual message cache below
 			}
+			// Fall through and try invididual message cache below
 		} else {
 			// XXX: This is not cached in process cache, should it?
 			$message = false;
@@ -1077,11 +1076,11 @@ class MessageCache {
 	/**
 	 * @param string $message
 	 * @param bool $interface
-	 * @param string $language Language code
+	 * @param Language $language
 	 * @param Title $title
 	 * @return string
 	 */
-	function transform( $message, $interface = false, $language = null, $title = null ) {
+	public function transform( $message, $interface = false, $language = null, $title = null ) {
 		// Avoid creating parser if nothing to transform
 		if ( strpos( $message, '{{' ) === false ) {
 			return $message;
@@ -1110,7 +1109,7 @@ class MessageCache {
 	/**
 	 * @return Parser
 	 */
-	function getParser() {
+	public function getParser() {
 		global $wgParser, $wgParserConf;
 
 		if ( !$this->mParser && isset( $wgParser ) ) {
@@ -1174,11 +1173,11 @@ class MessageCache {
 		return $res;
 	}
 
-	function disable() {
+	public function disable() {
 		$this->mDisable = true;
 	}
 
-	function enable() {
+	public function enable() {
 		$this->mDisable = false;
 	}
 
