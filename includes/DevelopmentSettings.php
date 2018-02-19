@@ -38,11 +38,6 @@ $wgShowExceptionDetails = true;
 $wgShowSQLErrors = true;
 $wgDebugRawPage = true; // T49960
 
-// Enable verbose logging
-$wgDebugComments = true;
-$wgDebugDumpSql = true;
-$wgDebugTimestamps = true;
-
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
 if ( $logDir ) {
