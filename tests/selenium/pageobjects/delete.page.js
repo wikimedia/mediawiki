@@ -1,5 +1,5 @@
 'use strict';
-const Page = require( './page' );
+import Page from './page';
 
 class DeletePage extends Page {
 
@@ -49,4 +49,4 @@ class DeletePage extends Page {
 	}
 
 }
-module.exports = new DeletePage();
+export default new DeletePage();

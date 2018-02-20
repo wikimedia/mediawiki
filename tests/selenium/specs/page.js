@@ -1,10 +1,10 @@
 'use strict';
-const assert = require( 'assert' ),
-	DeletePage = require( '../pageobjects/delete.page' ),
-	RestorePage = require( '../pageobjects/restore.page' ),
-	EditPage = require( '../pageobjects/edit.page' ),
-	HistoryPage = require( '../pageobjects/history.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+const assert = require( 'assert' );
+import DeletePage from '../pageobjects/delete.page';
+import RestorePage from '../pageobjects/restore.page';
+import EditPage from '../pageobjects/edit.page';
+import HistoryPage from '../pageobjects/history.page';
+import UserLoginPage from '../pageobjects/userlogin.page';
 
 describe( 'Page', function () {
 
