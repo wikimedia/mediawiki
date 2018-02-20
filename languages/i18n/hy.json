@@ -413,7 +413,7 @@
 	"userlogin-resetpassword-link": "Մոռացե՞լ եք գաղտնաբառը",
 	"userlogin-helplink2": "Մուտք գործելու օգնություն",
 	"userlogin-loggedin": "Դուք արդեն մտել է որպես {{GENDER:$1|$1}}.\nՕգտագործեք ստորև բերված ձևը մուտք գործելու համար այլ հաշից",
-	"userlogin-reauth": "Դուք պետք է կրկին համակարգ մուտք գործեք  հաստատելու որ դուք դուք եք {{GENDER:$1|$1}}.",
+	"userlogin-reauth": "Դուք պետք է կրկին մուտք գործեք համակարգ` հաստատելու, որ դուք դուք եք {{GENDER:$1|$1}}։",
 	"userlogin-createanother": "Ստեղծել այլ հաշիվ",
 	"createacct-emailrequired": "Էլ–փոստի հասցե",
 	"createacct-emailoptional": "Էլ–փոստի հասցե (ոչ պարտադիր)",

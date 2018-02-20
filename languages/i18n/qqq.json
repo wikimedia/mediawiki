@@ -195,7 +195,8 @@
 			"Wladek92",
 			"Gombang",
 			"Trizek (WMF)",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"Avatar6"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2957,8 +2958,8 @@
 	"thumbnail_dest_directory": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Thumbnail-temp-create}}\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail invalid params}}",
 	"thumbnail_image-type": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}",
 	"thumbnail_gd-library": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is a function name of the GD library",
-	"thumbnail_image-missing": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is the path incl. filename of the missing image",
 	"thumbnail_image-size-zero": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is the path incl. filename of the image with zero size",
+	"thumbnail_image-missing": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is the path incl. filename of the missing image",
 	"thumbnail_image-failure-limit": "Used as <code>$1</code> in {{msg-mw|Thumbnail error}}.\n\nParameters:\n* $1 - the maximum allowed number of failed attempts",
 	"import": "The title of the special page [[Special:Import]];",
 	"import-summary": "{{doc-specialpagesummary|import}}",
@@ -3965,7 +3966,7 @@
 	"signature-anon": "{{notranslate}}\nUsed as signature for anonymous user. Parameters:\n* $1 - username (IP address?)\n* $2 - nickname (IP address?)\nSee also:\n* {{msg-mw|Signature}} - signature for registered user",
 	"timezone-utc": "{{optional}}",
 	"timezone-local": "Label to indicate that a time is in the user's local timezone.\n{{Identical|Local}}",
-	"duplicate-defaultsort": "See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:\n* $1 - old default sort key\n* $2 - new default sort key",
+	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
 	"duplicate-displaytitle": "Warning shown when a page has its display title set multiple times. Parameters:\n* $1 - old display title\n* $2 - new display title",
 	"restricted-displaytitle": "Warning shown when a display title is ignored because it is not equivalent to its actual title. Parameters:\n* $1 - the ignored display title",
 	"invalid-indicator-name": "Warning shown when the [https://www.mediawiki.org/wiki/Help:Page_status_indicators &lt;indicator name=\"''unique-identifier''\">''content''&lt;/indicator>] parser tag is used incorrectly.",
