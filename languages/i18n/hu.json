@@ -2644,6 +2644,7 @@
 	"thumbnail_dest_directory": "Nem hozható létre a célkönyvtár",
 	"thumbnail_image-type": "A képformátum nem támogatott",
 	"thumbnail_gd-library": "A GD-könyvtár nincs megfelelően beállítva: a(z) $1 függvény hiányzik",
+	"thumbnail_image-size-zero": "A képfájl mérete nullának tűnik.",
 	"thumbnail_image-missing": "Úgy tűnik, hogy a fájl hiányzik: $1",
 	"thumbnail_image-failure-limit": "Túl sok hibás bélyegkép létrehozás (több mint $1). Próbáld meg később!",
 	"import": "Lapok importálása",

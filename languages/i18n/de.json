@@ -2692,6 +2692,7 @@
 	"thumbnail_dest_directory": "Zielverzeichnis kann nicht erstellt werden.",
 	"thumbnail_image-type": "Bildtyp nicht unterstützt",
 	"thumbnail_gd-library": "Unvollständige Konfiguration der GD-Bibliothek: Fehlende Funktion $1",
+	"thumbnail_image-size-zero": "Die Dateigröße des Bildes scheint null zu sein.",
 	"thumbnail_image-missing": "Datei scheint fehlend zu sein: $1",
 	"thumbnail_image-failure-limit": "Es wurden in letzter Zeit zu viele Versuche ($1 oder mehr) unternommen, dieses Vorschaubild zu rendern. Bitte versuche es später erneut.",
 	"import": "Seiten importieren",

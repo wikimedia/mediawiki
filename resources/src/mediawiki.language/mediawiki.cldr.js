@@ -19,9 +19,9 @@
 		 * @return {number} plural form index
 		 */
 		getPluralForm: function ( number, pluralRules ) {
-			var i;
+			var i, pluralRuleParser = require( 'mediawiki.libs.pluralruleparser' );
 			for ( i = 0; i < pluralRules.length; i++ ) {
-				if ( mw.libs.pluralRuleParser( pluralRules[ i ], number ) ) {
+				if ( pluralRuleParser( pluralRules[ i ], number ) ) {
 					break;
 				}
 			}
