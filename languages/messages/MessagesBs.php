@@ -14,11 +14,11 @@ $namespaceNames = [
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_s_korisnikom',
-	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
+	NS_PROJECT_TALK     => 'Razgovor_o_{{grammar:lokativ|$1}}',
 	NS_FILE             => 'Datoteka',
 	NS_FILE_TALK        => 'Razgovor_o_datoteci',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_razgovor',
+	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MediaWikiju',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
 	NS_HELP             => 'Pomoć',
@@ -34,6 +34,8 @@ $namespaceAliases = [
 	'Razgovor_o_datoteci' => NS_FILE_TALK,
 	'MedijaViki' => NS_MEDIAWIKI,
 	'Razgovor_o_MedijaVikiju' => NS_MEDIAWIKI_TALK,
+	'MediaWiki_razgovor' => NS_MEDIAWIKI_TALK,
+	'Razgovor_{{grammar:instrumental|$1}}' => NS_PROJECT_TALK,
 ];
 
 $specialPageAliases = [
