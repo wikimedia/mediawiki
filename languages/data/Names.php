@@ -198,6 +198,7 @@ class Names {
 		'hsb' => 'hornjoserbsce', # Upper Sorbian
 		'ht' => 'Kreyòl ayisyen', # Haitian Creole French
 		'hu' => 'magyar', # Hungarian
+		'hu-formal' => 'magyar (formal)', # Hungarian formal address
 		'hy' => 'Հայերեն', # Armenian
 		'hz' => 'Otsiherero', # Herero
 		'ia' => 'interlingua', # Interlingua (IALA)
