@@ -1,8 +1,8 @@
 'use strict';
-const assert = require( 'assert' ),
-	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
-	PreferencesPage = require( '../pageobjects/preferences.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+const assert = require( 'assert' );
+import CreateAccountPage from '../pageobjects/createaccount.page';
+import PreferencesPage from '../pageobjects/preferences.page';
+import UserLoginPage from '../pageobjects/userlogin.page';
 
 describe( 'User', function () {
 
