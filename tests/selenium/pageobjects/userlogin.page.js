@@ -1,5 +1,5 @@
 'use strict';
-const Page = require( './page' );
+import Page from './page';
 
 class UserLoginPage extends Page {
 
@@ -24,4 +24,4 @@ class UserLoginPage extends Page {
 	}
 
 }
-module.exports = new UserLoginPage();
+export default new UserLoginPage();

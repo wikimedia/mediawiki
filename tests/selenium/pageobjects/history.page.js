@@ -1,5 +1,5 @@
 'use strict';
-const Page = require( './page' );
+import Page from './page';
 
 class HistoryPage extends Page {
 
@@ -10,4 +10,4 @@ class HistoryPage extends Page {
 	}
 
 }
-module.exports = new HistoryPage();
+export default new HistoryPage();

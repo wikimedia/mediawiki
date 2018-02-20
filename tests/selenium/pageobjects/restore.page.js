@@ -1,5 +1,5 @@
 'use strict';
-const Page = require( './page' );
+import Page from './page';
 
 class RestorePage extends Page {
 
@@ -18,4 +18,4 @@ class RestorePage extends Page {
 	}
 
 }
-module.exports = new RestorePage();
+export default new RestorePage();
