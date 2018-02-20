@@ -2712,6 +2712,7 @@
 	"thumbnail_dest_directory": "Não foi possível criar o diretório de destino",
 	"thumbnail_image-type": "Tipo de imagem não suportado",
 	"thumbnail_gd-library": "Configuração da biblioteca GD incompleta: função $1 não encontrada",
+	"thumbnail_image-size-zero": "O tamanho do arquivo de imagem parece ser zero.",
 	"thumbnail_image-missing": "Arquivo aparentemente inexistente: $1",
 	"thumbnail_image-failure-limit": "Houveram muitas tentativas falhas recentemente ($1 ou mais) de criação desta miniatura. Por favor, tente novamente mais tarde.",
 	"import": "Importar páginas",

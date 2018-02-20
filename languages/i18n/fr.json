@@ -2778,6 +2778,7 @@
 	"thumbnail_dest_directory": "Impossible de créer le répertoire de destination",
 	"thumbnail_image-type": "Type d’image non pris en charge",
 	"thumbnail_gd-library": "Configuration incomplète de la bibliothèque GD : fonction $1 introuvable",
+	"thumbnail_image-size-zero": "La taille du fichier image semble être de zéro.",
 	"thumbnail_image-missing": "Le fichier suivant est introuvable : $1",
 	"thumbnail_image-failure-limit": "Il y a eu récemment trop de tentatives échouées ($1 ou plus) pour restituer cette vignette. Veuillez réessayer ultérieurement.",
 	"import": "Importer des pages",

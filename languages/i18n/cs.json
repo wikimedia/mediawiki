@@ -2624,6 +2624,7 @@
 	"thumbnail_dest_directory": "Nelze vytvořit cílový adresář",
 	"thumbnail_image-type": "Nepodporovaný typ obrázku",
 	"thumbnail_gd-library": "Neúplná konfigurace knihovny GD: chybí funkce $1",
+	"thumbnail_image-size-zero": "Velikost souboru je zřejmě nulová.",
 	"thumbnail_image-missing": "Soubor patrně chybí: $1",
 	"thumbnail_image-failure-limit": "V poslední době došlo k příliš mnoha neúspěšným pokusům (nejméně $1) o vytvoření tohoto náhledu. Zkuste to později.",
 	"import": "Import stránek",
