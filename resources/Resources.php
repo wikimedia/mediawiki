@@ -1202,6 +1202,7 @@ return [
 		],
 		'dependencies' => [
 			'jquery.byteLength',
+			'jquery.byteLimit',
 			'mediawiki.util',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
