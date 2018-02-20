@@ -1982,6 +1982,12 @@
 				 *         OO.compare( [ 1 ], [ 1 ] );
 				 *     } );
 				 *
+				 * Example of inline dependency obtained via `require()`:
+				 *
+				 *     mw.loader.using( [ 'mediawiki.util' ], function ( require ) {
+				 *         var util = require( 'mediawiki.util' );
+				 *     } );
+				 *
 				 * Since MediaWiki 1.23 this also returns a promise.
 				 *
 				 * Since MediaWiki 1.28 the promise is resolved with a `require` function.
@@ -2154,9 +2160,14 @@
 				/**
 				 * Get the exported value of a module.
 				 *
-				 * Modules may provide this via their local `module.exports`.
+				 * This static method is publicly exposed for debugging purposes
+				 * only and must not be used in production code. In production code,
+				 * please use the dynamically provided `require()` function instead.
 				 *
-				 * @protected
+				 * In case of lazy-loaded modules via mw.loader#using(), the returned
+				 * Promise provides the function, see #using() for examples.
+				 *
+				 * @private
 				 * @since 1.27
 				 * @param {string} moduleName Module name
 				 * @return {Mixed} Exported value
