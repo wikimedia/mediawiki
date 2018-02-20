@@ -1,5 +1,5 @@
 'use strict';
-const Page = require( './page' );
+import Page from './page';
 
 class CreateAccountPage extends Page {
 
@@ -74,4 +74,4 @@ class CreateAccountPage extends Page {
 	}
 
 }
-module.exports = new CreateAccountPage();
+export default new CreateAccountPage();
