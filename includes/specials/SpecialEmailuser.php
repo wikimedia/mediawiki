@@ -247,11 +247,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		if ( $sender !== null ) {
-			$blacklist = $target->getOption( 'email-blacklist', [] );
+			$blacklist = $target->getOption( 'email-blacklist', '' );
 			if ( $blacklist ) {
 				$lookup = CentralIdLookup::factory();
+				$blacklistedIds = explode("\n", $blacklist);
 				$senderId = $lookup->centralIdFromLocalUser( $sender );
-				if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {
+				if ( $senderId !== 0 && in_array( $senderId, $blacklistedIds ) ) {
 					wfDebug( "User does not allow user emails from this user.\n" );
 
 					return 'nowikiemail';

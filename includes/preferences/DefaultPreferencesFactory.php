@@ -97,6 +97,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return intval( $value );
 		};
 		return [
+			'email-blacklist' => [ $this, 'filterEmailBlacklistInput' ],
 			'timecorrection' => [ $this, 'filterTimezoneInput' ],
 			'rclimit' => $intvalFilter,
 			'wllimit' => $intvalFilter,
@@ -609,10 +610,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				];
 
 				if ( $this->config->get( 'EnableUserEmailBlacklist' ) ) {
+					// Get the current value.
+					$idsString = $user->getOption( 'email-blacklist', '' );
+					$ids = explode( "\n", $idsString );
 					$lookup = CentralIdLookup::factory();
-					$ids = $user->getOption( 'email-blacklist', [] );
 					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
-
 					$defaultPreferences['email-blacklist'] = [
 						'type' => 'usersmultiselect',
 						'label-message' => 'email-blacklist-label',
@@ -1478,6 +1480,22 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$opt[$region][$timeZoneInfo['name']] = $timeZoneInfo['timecorrection'];
 		}
 		return $opt;
+	}
+
+	/**
+	 * Filter email-blacklist values prior to saving.
+	 * This takes a string of newline-delimted usernames
+	 * and turns it into a string of newline-delimited user IDs.
+	 * Usage of this method is set in $this->getSaveFilters().
+	 * @param string $value The data from the user.
+	 * @param string[] $alldata All form data. (Not used.)
+	 * @return string|bool The user IDs' string, or false if there are none.
+	 */
+	protected function filterEmailBlacklistInput( $value, $alldata ) {
+		$lookup = CentralIdLookup::factory();
+		$names = explode( "\n", $value );
+		$ids = $lookup->centralIdsFromNames( $names );
+		return $ids ? implode( "\n", $ids ) : false;
 	}
 
 	/**
