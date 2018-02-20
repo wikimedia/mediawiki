@@ -6,7 +6,6 @@
  */
 
 /* Table of Contents */
-#toc,
 .toc,
 .mw-warning,
 .toccolours {
@@ -28,7 +27,6 @@
  * inline elements. In practice inline elements surrounding the TOC are uncommon enough that
  * this is an acceptable sacrifice.
  */
-#toc,
 .toc {
 	display: inline-block;
 	display: table;
@@ -41,18 +39,15 @@
 }
 
 /* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
-table#toc,
 table.toc {
 	border-collapse: collapse;
 }
 
 /* Remove additional paddings inside table-cells that are not present in <div>s */
-table#toc td,
 table.toc td {
 	padding: 0;
 }
 
-#toc h2,
 .toc h2 {
 	display: inline;
 	border: 0;
@@ -61,14 +56,10 @@ table.toc td {
 	font-weight: bold;
 }
 
-#toc #toctitle,
-.toc #toctitle,
-#toc .toctitle,
 .toc .toctitle {
 	text-align: center;
 }
 
-#toc ul,
 .toc ul {
 	list-style-type: none;
 	list-style-image: none;
@@ -77,7 +68,6 @@ table.toc td {
 	text-align: left;
 }
 
-#toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
 }
