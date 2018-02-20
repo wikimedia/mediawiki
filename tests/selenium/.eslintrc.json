@@ -8,6 +8,9 @@
 	"globals": {
 		"browser": false
 	},
+	"parserOptions": {
+			"sourceType": "module"
+	},
 	"rules":{
 		"no-console":0
 	}
