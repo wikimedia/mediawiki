@@ -103,6 +103,7 @@ changes to languages because of Phabricator reports.
 * (T186359) New language support: Siberian Tatar [cебертатар] (sty).
 * (T186635) New language support: Guianan Creole (gcr).
 * (T186647) New language support: Kumyk [къумукъ] (kum).
+* (T187750) New language support: Spanish formal address (es-formal).
 
 === Other changes in 1.31 ===
 * Introducing multi-content-revision capability into the storage layer. For details,
