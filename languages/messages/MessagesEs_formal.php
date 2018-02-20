@@ -1,5 +1,5 @@
 <?php
-/** español (formal) (español (formal))
+/** Spanish (formal) (español (formal))
  *
  * To improve a translation please visit https://translatewiki.net
  *
