@@ -300,7 +300,7 @@ class MessageCache {
 		}
 
 		if ( !$success ) {
-			$cacheKey = $this->clusterCache->makeKey( 'messages', $code ); # Key in memc for messages
+			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 			# Try the global cache. If it is empty, try to acquire a lock. If
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
@@ -622,19 +622,7 @@ class MessageCache {
 
 				// Relay the purge. Touching this check key expires cache contents
 				// and local cache (APC) validation hash across all datacenters.
-				$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
-				// Also delete cached sidebar... just in case it is affected
-				// @TODO: shouldn't this be $code === $wgLanguageCode?
-				if ( $code === 'en' ) {
-					// Purge all language sidebars, e.g. on ?action=purge to the sidebar messages
-					$codes = array_keys( Language::fetchLanguageNames() );
-				} else {
-					// Purge only the sidebar for this language
-					$codes = [ $code ];
-				}
-				foreach ( $codes as $code ) {
-					$this->wanCache->delete( $this->wanCache->makeKey( 'sidebar', $code ) );
-				}
+				$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 
 				// Purge the message in the message blob store
 				$resourceloader = RequestContext::getMain()->getOutput()->getResourceLoader();
@@ -701,7 +689,7 @@ class MessageCache {
 		$value = $this->wanCache->get(
 			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			$curTTL,
-			[ $this->wanCache->makeKey( 'messages', $code ) ]
+			[ $this->getCheckKey( $code ) ]
 		);
 
 		if ( $value ) {
@@ -1198,13 +1186,14 @@ class MessageCache {
 	}
 
 	/**
-	 * Clear all stored messages. Mainly used after a mass rebuild.
+	 * Clear all stored messages in global and local cache
+	 *
+	 * Mainly used after a mass rebuild
 	 */
 	function clear() {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
-			# Global and local caches
-			$this->wanCache->touchCheckKey( $this->wanCache->makeKey( 'messages', $code ) );
+			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
 
 		$this->mLoadedLanguages = [];
@@ -1280,6 +1269,14 @@ class MessageCache {
 		if ( $wgContLang->hasVariants() ) {
 			$wgContLang->updateConversionTable( $title );
 		}
+	}
+
+	/**
+	 * @param string $code Language code
+	 * @return string WAN cache key usable as a "check key" against language page edits
+	 */
+	public function getCheckKey( $code ) {
+		return $this->wanCache->makeKey( 'messages', $code );
 	}
 
 	/**

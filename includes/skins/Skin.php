@@ -1253,7 +1253,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @return array
 	 */
-	function buildSidebar() {
+	public function buildSidebar() {
 		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
 		$callback = function ( $old = null, &$ttl = null ) {
@@ -1267,13 +1267,22 @@ abstract class Skin extends ContextSource {
 			return $bar;
 		};
 
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$msgCache = MessageCache::singleton();
+		$wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
 		$sidebar = $wgEnableSidebarCache
-			? $cache->getWithSetCallback(
-				$cache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
+			? $wanCache->getWithSetCallback(
+				$wanCache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
 				$wgSidebarCacheExpiry,
 				$callback,
-				[ 'lockTSE' => 30 ]
+				[
+					'checkKeys' => [
+						// Unless there is both no exact $code override nor an i18n definition
+						// in the the software, the only MediaWiki page to check is for $code.
+						$msgCache->getCheckKey( $this->getLanguage()->getCode() )
+					],
+					'lockTSE' => 30
+				]
 			)
 			: $callback();
 
