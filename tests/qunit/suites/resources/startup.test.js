@@ -23,8 +23,6 @@
 			'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36 OPR/23.0.1522.75',
 			// Internet Explorer 11
 			'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
-			// IE Mobile
-			'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; NOKIA; Lumia 800)',
 			// Edge
 			'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246',
 			// Edge Mobile
@@ -108,6 +106,8 @@
 
 			// Internet Explorer 10
 			'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
+			// IE Mobile 10
+			'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; HTC; Windows Phone 8X by HTC)',
 			// PlayStation
 			'Mozilla/5.0 (PLAYSTATION 3; 1.10)',
 			'Mozilla/5.0 (PLAYSTATION 3; 3.55)',
