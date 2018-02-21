@@ -37,14 +37,14 @@ To run only one test (name contains string 'preferences'):
 The runner reads the config file `wdio.conf.js` and runs the spec listed in
 `page.js`.
 
-The defaults in the configuration files aim are targetting  a MediaWiki-Vagrant
-installation on installation on http://127.0.0.1:8080 with a user Admin and
-password 'vagrant'.  Those settings can be overriden using environment
+The defaults in the configuration files aim are targeting a MediaWiki-Vagrant
+installation on http://127.0.0.1:8080 with a user Admin and
+password 'vagrant'.  Those settings can be overridden using environment
 variables:
 
 `MW_SERVER`: to be set to the value of your $wgServer
-`MW_SCRIPT_PATH`: ditto with  $wgScriptPath
-`MEDIAWIKI_USER`: username of an account that can create users on the wiki.
+`MW_SCRIPT_PATH`: ditto with $wgScriptPath
+`MEDIAWIKI_USER`: username of an account that can create users on the wiki
 `MEDIAWIKI_PASSWORD`: password for above user
 
 Example:
