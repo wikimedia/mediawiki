@@ -30,7 +30,7 @@ window.mwNow = ( function () {
  *
  * Browsers we support in our modern run-time (Grade A):
  * - Chrome 13+
- * - IE 10+
+ * - IE 11+
  * - Firefox 4+
  * - Safari 5+
  * - Opera 15+
@@ -81,6 +81,13 @@ window.isCompatible = function ( str ) {
 
 		// https://caniuse.com/#feat=addeventlistener
 		'addEventListener' in window &&
+
+		// https://caniuse.com/#feat=pointer-events
+		( function () {
+			var element = document.createElement( 'div' );
+			element.style.cssText = 'pointer-events:auto';
+			return element.style.pointerEvents === 'auto';
+		}() ) &&
 
 		// Hardcoded exceptions for browsers that pass the requirement but we don't want to
 		// support in the modern run-time.
