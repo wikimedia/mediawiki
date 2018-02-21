@@ -2244,37 +2244,51 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$rows = [ $rows ];
 		}
 
-		$affectedRowCount = 0;
-		foreach ( $rows as $row ) {
-			// Delete rows which collide with this one
-			$indexWhereClauses = [];
-			foreach ( $uniqueIndexes as $index ) {
-				$indexColumns = (array)$index;
-				$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
-				if ( count( $indexRowValues ) != count( $indexColumns ) ) {
-					throw new DBUnexpectedError(
-						$this,
-						'New record does not provide all values for unique key (' .
+		$useTrx = !$this->trxLevel;
+		if ( $useTrx ) {
+			$this->begin( $fname, self::TRANSACTION_INTERNAL );
+		}
+		try {
+			$affectedRowCount = 0;
+			foreach ( $rows as $row ) {
+				// Delete rows which collide with this one
+				$indexWhereClauses = [];
+				foreach ( $uniqueIndexes as $index ) {
+					$indexColumns = (array)$index;
+					$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
+					if ( count( $indexRowValues ) != count( $indexColumns ) ) {
+						throw new DBUnexpectedError(
+							$this,
+							'New record does not provide all values for unique key (' .
 							implode( ', ', $indexColumns ) . ')'
-					);
-				} elseif ( in_array( null, $indexRowValues, true ) ) {
-					throw new DBUnexpectedError(
-						$this,
-						'New record has a null value for unique key (' .
+						);
+					} elseif ( in_array( null, $indexRowValues, true ) ) {
+						throw new DBUnexpectedError(
+							$this,
+							'New record has a null value for unique key (' .
 							implode( ', ', $indexColumns ) . ')'
-					);
+						);
+					}
+					$indexWhereClauses[] = $this->makeList( $indexRowValues, LIST_AND );
 				}
-				$indexWhereClauses[] = $this->makeList( $indexRowValues, LIST_AND );
-			}
 
-			if ( $indexWhereClauses ) {
-				$this->delete( $table, $this->makeList( $indexWhereClauses, LIST_OR ), $fname );
+				if ( $indexWhereClauses ) {
+					$this->delete( $table, $this->makeList( $indexWhereClauses, LIST_OR ), $fname );
+					$affectedRowCount += $this->affectedRows();
+				}
+
+				// Now insert the row
+				$this->insert( $table, $row, $fname );
 				$affectedRowCount += $this->affectedRows();
 			}
-
-			// Now insert the row
-			$this->insert( $table, $row, $fname );
-			$affectedRowCount += $this->affectedRows();
+		} catch ( Exception $e ) {
+			if ( $useTrx ) {
+				$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			}
+			throw $e;
+		}
+		if ( $useTrx ) {
+			$this->commit( $fname, self::FLUSHING_INTERNAL );
 		}
 
 		$this->affectedRowCount = $affectedRowCount;
