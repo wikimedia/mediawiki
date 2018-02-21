@@ -221,7 +221,7 @@ class RebuildRecentchanges extends Maintenance {
 				} else {
 					# No previous edit
 					$lastOldId = 0;
-					$lastSize = null;
+					$lastSize = 0;
 					$new = 1; // probably true
 				}
 			}
