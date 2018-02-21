@@ -1083,7 +1083,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpName',
 			'cssclass' => 'loginText',
 			'size' => 20,
-			// 'required' => true,
+			'required' => 'true', // Proper validation of form data is important to protect your form from hackers and spammers
 		];
 		$fieldDefinitions['password'] += [
 			'type' => 'password',
@@ -1091,7 +1091,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpPassword',
 			'cssclass' => 'loginPassword',
 			'size' => 20,
-			// 'required' => true,
+			'required' => 'true',
 		];
 
 		if ( $template->get( 'header' ) || $template->get( 'formheader' ) ) {
