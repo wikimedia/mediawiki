@@ -930,24 +930,28 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					// FIXME merge this with HTMLForm's normal status (error) area
 					'type' => 'info',
 					'raw' => true,
+				        //'autocomplete' => 'off',
 					'default' => Html::element( 'div', [ 'id' => 'mw-createacct-status-area' ] ),
 					'weight' => -105,
 				],
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
+					//'autocomplete' => 'off',
 					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
 				],
 				'mailpassword' => [
 					// create account without providing password, a temporary one will be mailed
 					'type' => 'check',
+					//'autocomplete' => 'off',
 					'label-message' => 'createaccountmail',
 					'name' => 'wpCreateaccountMail',
 					'id' => 'wpCreateaccountMail',
 				],
 				'password' => [
 					'id' => 'wpPassword2',
+					//'autocomplete' => 'off',
 					'placeholder-message' => 'createacct-yourpassword-ph',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
 				],
@@ -955,6 +959,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'retype' => [
 					'baseField' => 'password',
 					'type' => 'password',
+					//'autocomplete' => 'off',
 					'label-message' => 'createacct-yourpasswordagain',
 					'id' => 'wpRetype',
 					'cssclass' => 'loginPassword',
@@ -978,6 +983,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'createacct-emailoptional',
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
+					//'autocomplete' => 'off',
 					'size' => '20',
 					// FIXME will break non-standard providers
 					'required' => $wgEmailConfirmToEdit,
@@ -1006,6 +1012,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'prefs-help-realname',
 					'label-message' => 'createacct-realname',
 					'cssclass' => 'loginText',
+					//'autocomplete' => 'off',
 					'size' => 20,
 					'id' => 'wpRealName',
 				],
@@ -1015,6 +1022,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'label-message' => 'createacct-reason',
 					'cssclass' => 'loginText',
 					'id' => 'wpReason',
+					//'autocomplete' => 'off',
 					'size' => '20',
 					'placeholder-message' => 'createacct-reason-ph',
 				],
@@ -1024,6 +1032,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'type' => 'submit',
 					'default' => $this->msg( 'createacct-' . $anotherPart . $continuePart .
 						'submit' )->text(),
+					//'autocomplete' => 'off',
 					'name' => 'wpCreateaccount',
 					'id' => 'wpCreateaccount',
 					'weight' => 100,
@@ -1034,10 +1043,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
 					'id' => 'wpName1',
+					//'autocomplete' => 'off',
 					'placeholder-message' => 'userlogin-yourname-ph',
 				],
 				'password' => [
 					'id' => 'wpPassword1',
+					//'autocomplete' => 'off',
 					'placeholder-message' => 'userlogin-yourpassword-ph',
 				],
 				'domain' => [],
@@ -1049,6 +1060,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'label-message' => $this->msg( 'userlogin-remembermypassword' )
 						->numParams( $expirationDays ),
 					'id' => 'wpRemember',
+					//'autocomplete' => 'off',
 				],
 				'loginattempt' => [
 					// submit button
@@ -1056,6 +1068,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
+					//'autocomplete' => 'off',
 				],
 				'linkcontainer' => [
 					// help link
@@ -1083,7 +1096,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpName',
 			'cssclass' => 'loginText',
 			'size' => 20,
-			// 'required' => true,
+			//'autocomplete' => 'off',
+			//'required' => 'true',
 		];
 		$fieldDefinitions['password'] += [
 			'type' => 'password',
@@ -1091,7 +1105,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpPassword',
 			'cssclass' => 'loginPassword',
 			'size' => 20,
-			// 'required' => true,
+			//'autocomplete' => 'off',
+			//'required' => 'true',
 		];
 
 		if ( $template->get( 'header' ) || $template->get( 'formheader' ) ) {
