@@ -35,6 +35,8 @@ sftp-config.json
 /images/timeline
 ## Extension:Score
 /images/lilypond
+## Extension:TimedMediaHandler
+/images/transcoded
 /images/tmp
 /maintenance/.mweval_history
 /maintenance/.mwsql_history
