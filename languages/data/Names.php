@@ -260,7 +260,7 @@ class Names {
 		'ky' => 'Кыргызча', # Kirghiz
 		'la' => 'Latina', # Latin
 		'lad' => 'Ladino', # Ladino
-		'lb' => 'Lëtzebuergesch', # Luxemburguish
+		'lb' => 'Lëtzebuergesch', # Luxembourgish
 		'lbe' => 'лакку', # Lak
 		'lez' => 'лезги', # Lezgi
 		'lfn' => 'Lingua Franca Nova', # Lingua Franca Nova
