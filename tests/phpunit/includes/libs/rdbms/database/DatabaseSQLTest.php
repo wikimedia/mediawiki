@@ -559,11 +559,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'uniqueIndexes' => [ 'field' ],
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
 				],
-				"DELETE FROM replace_table " .
+				"BEGIN; DELETE FROM replace_table " .
 					"WHERE (field = 'text'); " .
 					"INSERT INTO replace_table " .
 					"(field,field2) " .
-					"VALUES ('text','text2')"
+					"VALUES ('text','text2'); COMMIT"
 			],
 			[
 				[
@@ -575,11 +575,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'md_deps' => 'deps',
 					],
 				],
-				"DELETE FROM module_deps " .
+				"BEGIN; DELETE FROM module_deps " .
 					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps')"
+					"VALUES ('module','skin','deps'); COMMIT"
 			],
 			[
 				[
@@ -597,7 +597,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						],
 					],
 				],
-				"DELETE FROM module_deps " .
+				"BEGIN; DELETE FROM module_deps " .
 					"WHERE (md_module = 'module' AND md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
@@ -606,7 +606,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"WHERE (md_module = 'module2' AND md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module2','skin2','deps2')"
+					"VALUES ('module2','skin2','deps2'); COMMIT"
 			],
 			[
 				[
@@ -624,7 +624,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						],
 					],
 				],
-				"DELETE FROM module_deps " .
+				"BEGIN; DELETE FROM module_deps " .
 					"WHERE (md_module = 'module') OR (md_skin = 'skin'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
@@ -633,7 +633,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"WHERE (md_module = 'module2') OR (md_skin = 'skin2'); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module2','skin2','deps2')"
+					"VALUES ('module2','skin2','deps2'); COMMIT"
 			],
 			[
 				[
@@ -645,9 +645,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'md_deps' => 'deps',
 					],
 				],
-				"INSERT INTO module_deps " .
+				"BEGIN; INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps')"
+					"VALUES ('module','skin','deps'); COMMIT"
 			],
 		];
 	}
