@@ -180,8 +180,9 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
+		var upload = this;
 		return this.descriptions.map( function ( desc ) {
-			return this.config.format.description
+			return upload.config.format.description
 				.replace( '$LANGUAGE', desc.language )
 				.replace( '$TEXT', desc.text );
 		} ).join( '\n' );
