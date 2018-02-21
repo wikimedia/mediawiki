@@ -82,7 +82,7 @@ class JpegMetadataExtractor {
 				// this is just a sanity check
 				throw new MWException( 'Too many jpeg segments. Aborting' );
 			}
-			while ( $buffer !== "\xFF" ) {
+			while ( $buffer !== "\xFF" && !feof( $fh ) ) {
 				// In theory JPEG files are not allowed to contain anything between the sections,
 				// but in practice they sometimes do. It's customary to ignore the garbage data.
 				$buffer = fread( $fh, 1 );
