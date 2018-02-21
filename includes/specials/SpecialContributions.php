@@ -40,14 +40,12 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
+		// Modules required for viewing the list of contributions (also when included on other pages)
 		$out->addModuleStyles( [
 			'mediawiki.special',
 			'mediawiki.special.changeslist',
-			'mediawiki.widgets.DateInputWidget.styles',
 		] );
-		$out->addModules( 'mediawiki.special.contributions' );
 		$this->addHelpLink( 'Help:User contributions' );
-		$out->enableOOUI();
 
 		$this->opts = [];
 		$request = $this->getRequest();
@@ -497,6 +495,14 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['hideMinor'] = false;
 		}
 
+		// Modules required only for the form
+		$this->getOutput()->addModules( [
+			'mediawiki.userSuggest',
+			'mediawiki.special.contributions',
+		] );
+		$this->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
+		$this->getOutput()->enableOOUI();
+
 		$form = Html::openElement(
 			'form',
 			[
@@ -543,8 +549,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		} else {
 			$filterSelection = Html::rawElement( 'div', [], '' );
 		}
-
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		$labelNewbies = Xml::radioLabel(
 			$this->msg( 'sp-contributions-newbies' )->text(),
