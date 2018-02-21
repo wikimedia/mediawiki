@@ -108,4 +108,13 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 		$expected = 'BE';
 		$this->assertEquals( $expected, $res['byteOrder'] );
 	}
+
+	public function testInfiniteRead() {
+		try {
+			$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-xmp-loop.jpg' );
+		} catch ( Exception $e ) {
+			// Should reach this point and die on wfUnpack()
+			$this->assertTrue( true );
+		}
+	}
 }
