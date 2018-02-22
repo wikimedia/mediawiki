@@ -157,7 +157,7 @@ class ExternalStore {
 	 * provided by $wgDefaultExternalStore.
 	 *
 	 * @param string $data
-	 * @param array $params Associative array of ExternalStoreMedium parameters
+	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
@@ -175,7 +175,7 @@ class ExternalStore {
 	 *
 	 * @param array $tryStores Refer to $wgDefaultExternalStore
 	 * @param string $data
-	 * @param array $params Associative array of ExternalStoreMedium parameters
+	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
 	 */
@@ -216,6 +216,24 @@ class ExternalStore {
 		} else {
 			throw new MWException( "Unable to store text to external storage" );
 		}
+	}
+
+	/**
+	 * @return bool Whether all the default insertion stores are marked as read-only
+	 * @since 1.31
+	 */
+	public static function defaultStoresAreReadOnly() {
+		global $wgDefaultExternalStore;
+
+		foreach ( (array)$wgDefaultExternalStore as $storeUrl ) {
+			list( $proto, $path ) = explode( '://', $storeUrl, 2 );
+			$store = self::getStoreObject( $proto, [] );
+			if ( !$store->isReadOnly( $path ) ) {
+				return false; // at least one store is not read-only
+			}
+		}
+
+		return true; // all stores are read-only
 	}
 
 	/**

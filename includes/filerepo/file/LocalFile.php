@@ -24,6 +24,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to represent a local file in the wiki's own database
@@ -1274,6 +1275,10 @@ class LocalFile extends File {
 		$timestamp = false, $user = null, $tags = []
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
+			return $this->readOnlyFatalStatus();
+		} elseif ( MediaWikiServices::getInstance()->getRevisionStore()->isReadOnly() ) {
+			// Check this in advance to avoid writing to FileBackend and the file tables,
+			// only to fail on insert the revision due to the text store being unavailable.
 			return $this->readOnlyFatalStatus();
 		}
 
