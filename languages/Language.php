@@ -797,7 +797,7 @@ class Language {
 	 *		'all' all available languages
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array Language code => language name
+	 * @return array Language code => language name (sorted by key)
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
@@ -823,7 +823,7 @@ class Language {
 	 *		'all' all available languages
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array Language code => language name
+	 * @return array Language code => language name (sorted by key)
 	 */
 	private static function fetchLanguageNamesUncached( $inLanguage = null, $include = 'mw' ) {
 		global $wgExtraLanguageNames, $wgUsePigLatinVariant;
