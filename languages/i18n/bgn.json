@@ -861,7 +861,7 @@
 	"prefs-files": "فایل ئان",
 	"prefs-custom-css": "سی‌اس‌اس شخصی",
 	"prefs-custom-js": "شخصی ئین جاوااسکریپت",
-	"prefs-common-css-js": "سی‌اس‌اس/جاوااسکریپت مشترک په موچین پوسته‌ئان:",
+	"prefs-common-config": "سی‌اس‌اس/جاوااسکریپت مشترک په موچین پوسته‌ئان:",
 	"prefs-emailconfirm-label": "ایمیلئ تائید کورتین:",
 	"youremail": "ایمیل:",
 	"username": "{{GENDER:$1|کار زوروکئ نام}}:",

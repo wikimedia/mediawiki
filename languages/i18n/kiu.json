@@ -384,7 +384,7 @@
 	"noarticletext-nopermission": "Na pele de hona thowa çino.\nTı şikina zerrê pelunê binu de [[Special:Search/{{PAGENAME}}|seba sernamê na pele cıfeteliyê]],\nya ki <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cıkotena aide rê cıfeteliyê].</span>",
 	"userpage-userdoesnotexist": "Hesabê karberi \"<nowiki>$1</nowiki>\" qeyd nêbiyo.\nKerem ke, tı ke wazena na pele vırazê/bıvurnê, qontrol ke.",
 	"userpage-userdoesnotexist-view": "Hesabê karberi \"$1\" qeyd nêbiyo.",
-	"userinvalidcssjstitle": "'''Teme:''' Mewzuyê \"$1\" çino.\nDosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
+	"userinvalidconfigtitle": "'''Teme:''' Mewzuyê \"$1\" çino.\nDosyunê ebe namê .css u .js'y de herfa hurdiye bıgurêne, mesela hurêndia {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 	"updated": "(Bi rozane)",
 	"note": "'''Not:'''",
 	"previewnote": "Teme! ena teyna verqeyda.'''\nVurnayışê tu hama qeyd nıbiyo!",

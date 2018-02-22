@@ -414,7 +414,7 @@
 	"userjspreview": "'''Jukira nti JavaScript gw'otegese omugezesamubugezesa oba omulozakobulozi.'''<br />\n'''Tannakazibwa.'''",
 	"sitecsspreview": "'''Jukira nti CSS ono omulozakobulozi.'''<br />\n'''Tannakazibwa.'''",
 	"sitejspreview": "'''Jukira nti JavaScript ono omulozakobulozi.'''<br />\n'''Tannakazibwa.'''",
-	"userinvalidcssjstitle": "'''Kulabula:''' Tewali endabika eyitibwa \"$1\".<br />\nEmpapula eza .css ne .js bamemba ze b'ekoledde, amannya ga zo ennukuta za mu<br />\nzonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns:user}}:Foo/Vector.css''.",
+	"userinvalidconfigtitle": "'''Kulabula:''' Tewali endabika eyitibwa \"$1\".<br />\nEmpapula eza .css ne .js bamemba ze b'ekoledde, amannya ga zo ennukuta za mu<br />\nzonna ziteekwa okuba ntono, okugeza ''{{ns:user}}:Foo/vector.css'' so ssi ''{{ns:user}}:Foo/Vector.css''.",
 	"updated": "(Ebituukanisidwa)",
 	"note": "'''Okunnyonyola:'''",
 	"previewnote": "'''Kuno kugezaamubugeza; by'okoze tebinnakazibwa!'''",

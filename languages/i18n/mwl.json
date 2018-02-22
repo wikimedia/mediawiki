@@ -565,7 +565,7 @@
 	"prefs-files": "Fexeiros",
 	"prefs-custom-css": "CSS personalizada",
 	"prefs-custom-js": "JS personalizado",
-	"prefs-common-css-js": "CSS/JS partilhado por todas las maçcarilhas:",
+	"prefs-common-config": "CSS/JS partilhado por todas las maçcarilhas:",
 	"prefs-emailconfirm-label": "Cunfirmaçon de l correio eiletrónico:",
 	"youremail": "Morada de correio eiletrónico:",
 	"username": "Nome de {{GENDER:$1|outelizador|outelizadora|outelizador(a)}}:",

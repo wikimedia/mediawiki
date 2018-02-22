@@ -735,7 +735,7 @@
 	"prefs-files": "Failad",
 	"prefs-custom-css": "Ičeze CSS",
 	"prefs-custom-js": "Ičeze JS",
-	"prefs-common-css-js": "Ühthižed CSS/JavaScript kaikiden temiden täht:",
+	"prefs-common-config": "Ühthižed CSS/JavaScript kaikiden temiden täht:",
 	"prefs-reset-intro": "Tö sat kävutada nece lehtpol', miše pördutada teiden järgendused saitan ezijärgendusidennoks.\nNecidä tegendad ei sa toižetada.",
 	"prefs-emailconfirm-label": "E-počtan vahvištand:",
 	"youremail": "E-počt:",

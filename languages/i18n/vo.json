@@ -463,7 +463,7 @@
 	"userjsyoucanpreview": "'''Mob:''' Välolös eli „{{int:showpreview}}“ ad blufön eli JS nulik olik bü dakip.",
 	"usercsspreview": "'''Memolös, das anu te büologol eli CSS olik.'''\n'''No nog pedakipon!'''",
 	"userjspreview": "'''Memolös, das anu te blufol/büologol eli JavaScript olik, no nog pedakipon!'''",
-	"userinvalidcssjstitle": "'''Nuned:''' No dabinon fomät: \"$1\".\nMemolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vector.css, no {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Nuned:''' No dabinon fomät: \"$1\".\nMemolös, das pads: .css e .js mutons labön tiädi minudik: {{ns:user}}:Foo/vector.css, no {{ns:user}}:Foo/Vector.css.",
 	"updated": "(peatimükon)",
 	"note": "'''Penet:'''",
 	"previewnote": "'''Memolös, das is pajonon te büologed.'''\nVotükams olik no nog pedakipons!",

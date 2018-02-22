@@ -830,7 +830,7 @@
 	"prefs-files": "Fayllar",
 	"prefs-custom-css": "Xüsusi CSS",
 	"prefs-custom-js": "Xüsusi JavaScript",
-	"prefs-common-css-js": "Bütün skinlər üçün ümumi CSS/JavaScript:",
+	"prefs-common-config": "Bütün skinlər üçün ümumi CSS/JavaScript:",
 	"prefs-reset-intro": "Bu səhifəni nizamlamalarınızı ilkin vəziyyətə gətirmək üçün istifadə edə bilərsiniz. Bu əməliyyat geri qaytarıla bilməz.",
 	"prefs-emailconfirm-label": "E-poçtun təsdiqlənməsi:",
 	"youremail": "E-məktub:",

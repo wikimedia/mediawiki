@@ -672,7 +672,7 @@
 	"prefs-files": "Fayllar",
 	"prefs-custom-css": "Shaxsiy CSS",
 	"prefs-custom-js": "Shaxsiy JavaScript",
-	"prefs-common-css-js": "Umumiy CSS/JavaScript (barcha tashqi koʻrinishlar uchun):",
+	"prefs-common-config": "Umumiy CSS/JavaScript (barcha tashqi koʻrinishlar uchun):",
 	"prefs-emailconfirm-label": "Elektron pochta manzilini tasdiqlash:",
 	"youremail": "E-mail:",
 	"username": "Foydalanuvchi nomi",

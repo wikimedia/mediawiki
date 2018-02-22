@@ -485,7 +485,7 @@
 	"userjspreview": "'''Sonje ke ou ap voye kout je sou fèy JavaScript ou ekri a, li poko anrejistre !'''",
 	"sitecsspreview": "'''Sonje ke w ap voye yon kout je sou sa w ekri nan fèy CSS sa a.'''\n'''Li poko anrejistre !'''",
 	"sitejspreview": "'''Sonje ke w ap voye yon kout je sou kòd JavaScript sa a.'''\n'''Li poko anrejistre !'''",
-	"userinvalidcssjstitle": "'''Atansyon :''' estil \"$1\" pa egziste. Paj pèsonalize ak ekstansyon .css epi .js yo ap gen tit/sijè an lèt miniskil, pa egzanp {{ns:user}}:Foo/vector.css men pa {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Atansyon :''' estil \"$1\" pa egziste. Paj pèsonalize ak ekstansyon .css epi .js yo ap gen tit/sijè an lèt miniskil, pa egzanp {{ns:user}}:Foo/vector.css men pa {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Li gen dènye vèsyon sou li)",
 	"note": "'''Nòt :'''",
 	"previewnote": "'''Atansyon, tèks sa a se yon kout je, li poko anrejistre !'''",

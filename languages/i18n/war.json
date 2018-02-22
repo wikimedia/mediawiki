@@ -849,7 +849,7 @@
 	"prefs-files": "Mga paypay",
 	"prefs-custom-css": "Custom CSS",
 	"prefs-custom-js": "Custom JavaScript",
-	"prefs-common-css-js": "Saro nga CSS/JavaScript para han ngatanan nga mga panit:",
+	"prefs-common-config": "Saro nga CSS/JavaScript para han ngatanan nga mga panit:",
 	"prefs-reset-intro": "Puydi nimo ini gamiton nga pakli para makareset han imo mga preperensya nga ginbutang nga daan han sityo. Diri ini puydi mapawaray-buhat.",
 	"prefs-emailconfirm-label": "Kompirmasyon han email:",
 	"youremail": "E-mail:",

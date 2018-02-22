@@ -530,7 +530,7 @@
 	"prefs-files": "File",
 	"prefs-custom-css": "Personli CSS",
 	"prefs-custom-js": "Personli JavaScript",
-	"prefs-common-css-js": "Fælls CSS/JS for åll utsienje:",
+	"prefs-common-config": "Fælls CSS/JS for åll utsienje:",
 	"prefs-reset-intro": "Du kan brug siden te å tebagstell åll din instellenge te standardinstellenger.\nDä kan ett djendjörs.",
 	"prefs-emailconfirm-label": "Bekräftels å e-mail:",
 	"youremail": "E-mail:",

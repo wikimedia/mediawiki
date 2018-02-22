@@ -461,7 +461,7 @@
 	"userjsyoucanpreview": "'''Leid:''' Sula sábhálann tú, úsáid an cnaipe \"{{int:showpreview}}\" chun do JavaScript nua a thástáil.",
 	"usercsspreview": "'''Cuimhnigh nach bhfuil seo ach réamhamharc do CSS úsáideora -\nníor sábháladh é go fóill!'''",
 	"userjspreview": "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora\n- níor sábháladh é go fóill!'''",
-	"userinvalidcssjstitle": "'''Rabhadh:''' Níl an craiceann \"$1\" ann.\nCuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gcás íochtar, m.sh. {{ns:user}}:Foo/vector.css i leapa {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Rabhadh:''' Níl an craiceann \"$1\" ann.\nCuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gcás íochtar, m.sh. {{ns:user}}:Foo/vector.css i leapa {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Leasaithe)",
 	"note": "'''Tabhair faoi deara:'''",
 	"previewnote": "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo.'''\nNíl do chuid athruithe sábháilte fós!",

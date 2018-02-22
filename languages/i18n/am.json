@@ -455,7 +455,7 @@
 	"userjspreview": "'''ማስታወሻ፦ JavaScriptዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
 	"sitecsspreview": "'''ማስታወሻ፦ CSSዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
 	"sitejspreview": "'''ማስታወሻ፦ JavaScriptዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
-	"userinvalidcssjstitle": "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/vector.css ልክ ነው እንጂ {{ns:user}}:Foo/Vector.css አይደለም።",
+	"userinvalidconfigtitle": "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/vector.css ልክ ነው እንጂ {{ns:user}}:Foo/Vector.css አይደለም።",
 	"updated": "(የታደሰ)",
 	"note": "'''ማሳሰቢያ፦'''",
 	"previewnote": "ማስታወቂያ፦ '''ይህ ለሙከራ ብቻ ነው የሚታየው፣ ምንም ለውጦች ገና አልተላኩም!'''",

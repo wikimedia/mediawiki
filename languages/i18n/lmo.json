@@ -703,7 +703,7 @@
 	"prefs-files": "Archivi",
 	"prefs-custom-css": "CSS personalizàt",
 	"prefs-custom-js": "JavaScript personalizat",
-	"prefs-common-css-js": "CSS/JavaScript cundivis per töte le skin:",
+	"prefs-common-config": "CSS/JavaScript cundivis per töte le skin:",
 	"prefs-emailconfirm-label": "Cunferma de l'e-mail:",
 	"youremail": "E-mail",
 	"username": "{{GENDER:$1|Nom ütent}}:",

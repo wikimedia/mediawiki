@@ -459,7 +459,7 @@
 	"userjsyoucanpreview": "'''Tevsiye:''' Yañı JavaScript-iñizni teşkermek içün saifeni saqlamazdan evel \"{{int:showpreview}}\" dögmesine basıñız.",
 	"usercsspreview": "'''Unutmañız, bu tek baqıp çıquv - qullanıcı CSS faylıñız alâ daa saqlanmadı!'''",
 	"userjspreview": "'''Unutmañız, siz şimdi tek test etesiñiz ya da baqıp çıquv köresiñiz - qullanıcı JavaScript'i şimdilik saqlanmadı.'''",
-	"userinvalidcssjstitle": "'''İhtar:''' \"$1\" adınen bir tema yoqtır. tema-adı.css ve .js fayllarınıñ adları kiçik afir ile yazmaq kerek, yani {{ns:user}}:Temel/'''V'''ector.css degil, {{ns:user}}:Temel/'''v'''ector.css.",
+	"userinvalidconfigtitle": "'''İhtar:''' \"$1\" adınen bir tema yoqtır. tema-adı.css ve .js fayllarınıñ adları kiçik afir ile yazmaq kerek, yani {{ns:user}}:Temel/'''V'''ector.css degil, {{ns:user}}:Temel/'''v'''ector.css.",
 	"updated": "(Yañardı)",
 	"note": "'''İhtar:'''",
 	"previewnote": "'''Bu tek baqıp çıquv, metin alâ daa saqlanmağan!'''",
