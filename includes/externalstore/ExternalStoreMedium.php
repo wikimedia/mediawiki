@@ -32,7 +32,8 @@ abstract class ExternalStoreMedium {
 	protected $params = [];
 
 	/**
-	 * @param array $params Options
+	 * @param array $params Usage context options:
+	 *   - wiki: the domain ID of the wiki this is being used for [optional]
 	 */
 	public function __construct( array $params = [] ) {
 		$this->params = $params;
