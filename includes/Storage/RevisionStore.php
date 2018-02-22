@@ -740,8 +740,6 @@ class RevisionStore
 
 			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
 				$mainSlotRow->cont_address = 'tt:' . $row->rev_text_id;
-			} elseif ( isset( $row->ar_id ) ) {
-				$mainSlotRow->cont_address = 'ar:' . $row->ar_id;
 			}
 
 			if ( isset( $row->old_text ) ) {
