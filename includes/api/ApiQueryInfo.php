@@ -65,6 +65,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
+		global $wgContLang;
+
 		$pageSet->requestField( 'page_restrictions' );
 		// If the pageset is resolving redirects we won't get page_is_redirect.
 		// But we can't know for sure until the pageset is executed (revids may
