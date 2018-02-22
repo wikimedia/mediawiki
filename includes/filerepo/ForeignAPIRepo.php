@@ -143,7 +143,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		$data = $this->fetchImageQuery( [
-			'titles' => implode( $files, '|' ),
+			'titles' => implode( '|', $files ),
 			'prop' => 'imageinfo' ]
 		);
 
