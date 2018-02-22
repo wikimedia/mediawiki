@@ -4,6 +4,4 @@
 
 .mw-watch-link-disabled {
 	pointer-events: none;
-	/* Fallback for older browsers not supporting pointer-events: none */
-	cursor: default;
 }

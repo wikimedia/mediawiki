@@ -11,13 +11,7 @@
 				title = mw.util.getParamValue( 'title', $link.attr( 'href' ) );
 			// nice format
 			title = mw.Title.newFromText( title ).toText();
-			// Disable link whilst we're busy to avoid double handling
-			if ( $link.data( 'mwDisabled' ) ) {
-				// mw-watch-link-disabled disables pointer-events which prevents the click event
-				// from happening in the first place. In older browsers we kill the event here.
-				return false;
-			}
-			$link.data( 'mwDisabled', true ).addClass( 'mw-watch-link-disabled' );
+			$link.addClass( 'mw-watch-link-disabled' );
 
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
@@ -46,7 +40,7 @@
 			}
 
 			promise.always( function () {
-				$link.data( 'mwDisabled', false ).removeClass( 'mw-watch-link-disabled' );
+				$link.removeClass( 'mw-watch-link-disabled' );
 			} );
 
 			e.preventDefault();
