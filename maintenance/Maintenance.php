@@ -1011,7 +1011,7 @@ abstract class Maintenance {
 
 		// ... append parameters ...
 		if ( $this->mParams ) {
-			$output .= " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]";
+			$output .= " [--" . implode( "|--", array_keys( $this->mParams ) ) . "]";
 		}
 
 		// ... and append arguments.

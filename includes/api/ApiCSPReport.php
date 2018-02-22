@@ -162,7 +162,7 @@ class ApiCSPReport extends ApiBase {
 	private function generateLogLine( $flags, $report ) {
 		$flagText = '';
 		if ( $flags ) {
-			$flagText = '[' . implode( $flags, ', ' ) . ']';
+			$flagText = '[' . implode( ', ', $flags ) . ']';
 		}
 
 		$blockedFile = isset( $report['blocked-uri'] ) ? $report['blocked-uri'] : 'n/a';

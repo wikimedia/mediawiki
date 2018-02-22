@@ -1366,7 +1366,7 @@ class BalanceStack implements IteratorAggregate {
 		foreach ( $this->elements as $elt ) {
 			array_push( $r, $elt->localName );
 		}
-		return implode( $r, ' ' );
+		return implode( ' ', $r );
 	}
 }
 
@@ -1904,7 +1904,7 @@ class Balancer {
 				}
 			);
 			if ( count( $bad ) > 0 ) {
-				$badstr = implode( array_keys( $bad ), ',' );
+				$badstr = implode( ',', array_keys( $bad ) );
 				throw new ParameterAssertionException(
 					'$config',
 					'Balance attempted with sanitization including ' .

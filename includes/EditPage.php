@@ -3702,7 +3702,7 @@ ERROR;
 		$out->addHTML( $this->editFormTextAfterWarn );
 
 		$out->addHTML( "<div class='editButtons'>\n" );
-		$out->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
+		$out->addHTML( implode( "\n", $this->getEditButtons( $tabindex ) ) . "\n" );
 
 		$cancel = $this->getCancelLink();
 
