@@ -214,9 +214,9 @@ class Xml {
 		// a custom language code might not have a defined name...
 		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
+			// Sort the array again
+			ksort( $languages );
 		}
-
-		ksort( $languages );
 
 		/**
 		 * If a bogus value is set, default to the content language.

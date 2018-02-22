@@ -108,7 +108,6 @@ class WebInstallerLanguage extends WebInstallerPage {
 		$unwantedLanguageCodes = $wgExtraLanguageCodes +
 			LanguageCode::getDeprecatedCodeMapping();
 		$languages = Language::fetchLanguageNames();
-		ksort( $languages );
 		foreach ( $languages as $code => $lang ) {
 			if ( isset( $unwantedLanguageCodes[$code] ) ) {
 				continue;
