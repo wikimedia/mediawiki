@@ -133,6 +133,13 @@ class RevisionStore
 	}
 
 	/**
+	 * @return bool Whether the store is read-only
+	 */
+	public function isReadOnly() {
+		return $this->blobStore->isReadOnly();
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function getContentHandlerUseDB() {
