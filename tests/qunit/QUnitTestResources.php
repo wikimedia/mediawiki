@@ -45,7 +45,6 @@ return [
 		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.byteLength.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.byteLimit.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.color.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.colorUtil.test.js',
@@ -65,6 +64,8 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.messagePoster.factory.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.RegExp.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.String.byteLength.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.String.trimByteLength.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.storage.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.mustache.test.js',
@@ -102,7 +103,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.accessKeyLabel',
-			'jquery.byteLength',
 			'jquery.byteLimit',
 			'jquery.color',
 			'jquery.colorUtil',
@@ -125,6 +125,7 @@ return [
 			'mediawiki.jqueryMsg',
 			'mediawiki.messagePoster',
 			'mediawiki.RegExp',
+			'mediawiki.String',
 			'mediawiki.storage',
 			'mediawiki.Title',
 			'mediawiki.toc',
