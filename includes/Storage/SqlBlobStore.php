@@ -299,7 +299,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		list( $schema, $id, ) = self::splitBlobAddress( $blobAddress );
 
 		//TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
-		//TODO: MCR: also support 'ar' schema for content blobs in old style archive rows!
 		if ( $schema === 'tt' ) {
 			$textId = intval( $id );
 		} else {
