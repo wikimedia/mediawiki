@@ -188,7 +188,7 @@ abstract class Profiler {
 	 * Get all usable outputs.
 	 *
 	 * @throws MWException
-	 * @return array Array of ProfilerOutput instances.
+	 * @return ProfilerOutput[]
 	 * @since 1.25
 	 */
 	private function getOutputs() {
