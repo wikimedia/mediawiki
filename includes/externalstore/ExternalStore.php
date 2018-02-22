@@ -190,19 +190,25 @@ class ExternalStore {
 			if ( $store === false ) {
 				throw new MWException( "Invalid external storage protocol - $storeUrl" );
 			}
+
 			try {
-				$url = $store->store( $path, $data ); // Try to save the object
+				if ( $store->isReadOnly( $path ) ) {
+					$msg = 'read only';
+				} else {
+					$url = $store->store( $path, $data );
+					if ( strlen( $url ) ) {
+						return $url; // a store accepted the write; done!
+					}
+					$msg = 'operation failed';
+				}
 			} catch ( Exception $error ) {
-				$url = false;
+				$msg = 'caught exception';
 			}
-			if ( strlen( $url ) ) {
-				return $url; // Done!
-			} else {
-				unset( $tryStores[$index] ); // Don't try this one again!
-				$tryStores = array_values( $tryStores ); // Must have consecutive keys
-				wfDebugLog( 'ExternalStorage',
-					"Unable to store text to external storage $storeUrl" );
-			}
+
+			unset( $tryStores[$index] ); // Don't try this one again!
+			$tryStores = array_values( $tryStores ); // Must have consecutive keys
+			wfDebugLog( 'ExternalStorage',
+				"Unable to store text to external storage $storeUrl ($msg)" );
 		}
 		// All stores failed
 		if ( $error ) {

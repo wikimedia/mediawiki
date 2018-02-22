@@ -103,6 +103,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return "DB://$location/$id";
 	}
 
+	public function isReadOnly( $location ) {
+		return ( $this->getLoadBalancer( $location )->getReadOnlyReason() !== false );
+	}
+
 	/**
 	 * Get a LoadBalancer for the specified cluster
 	 *
