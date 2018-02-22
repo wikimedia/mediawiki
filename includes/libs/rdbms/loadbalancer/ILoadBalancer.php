@@ -199,7 +199,7 @@ interface ILoadBalancer {
 	 * @param IDatabase $conn
 	 * @throws InvalidArgumentException
 	 */
-	public function reuseConnection( $conn );
+	public function reuseConnection( IDatabase $conn );
 
 	/**
 	 * Get a database connection handle reference

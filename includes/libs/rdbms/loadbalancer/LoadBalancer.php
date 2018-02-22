@@ -736,7 +736,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $conn;
 	}
 
-	public function reuseConnection( $conn ) {
+	public function reuseConnection( IDatabase $conn ) {
 		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		$refCount = $conn->getLBInfo( 'foreignPoolRefCount' );
 		if ( $serverIndex === null || $refCount === null ) {
