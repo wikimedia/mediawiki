@@ -517,18 +517,18 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			// Case B: any long-running transaction; ignore this set()
 			} elseif ( $age > self::MAX_READ_LAG ) {
 				$this->logger->info( 'Rejected set() for {cachekey} due to snapshot lag.',
-					[ 'cachekey' => $key ] );
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
 
 				return true; // no-op the write for being unsafe
 			// Case C: high replication lag; lower TTL instead of ignoring all set()s
 			} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
 				$ttl = $ttl ? min( $ttl, self::TTL_LAGGED ) : self::TTL_LAGGED;
 				$this->logger->warning( 'Lowered set() TTL for {cachekey} due to replication lag.',
-					[ 'cachekey' => $key ] );
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
 			// Case D: medium length request with medium replication lag; ignore this set()
 			} else {
 				$this->logger->info( 'Rejected set() for {cachekey} due to high read lag.',
-					[ 'cachekey' => $key ] );
+					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ] );
 
 				return true; // no-op the write for being unsafe
 			}
