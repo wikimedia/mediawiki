@@ -298,11 +298,13 @@ class LoadBalancer implements ILoadBalancer {
 				$host = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
 					$this->replLogger->error(
-						"Server {host} is not replicating?", [ 'host' => $host ] );
+						__METHOD__ .
+						": server {host} is not replicating?", [ 'host' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
 					$this->replLogger->info(
-						"Server {host} has {lag} seconds of lag (>= {maxlag})",
+						__METHOD__ .
+						": server {host} has {lag} seconds of lag (>= {maxlag})",
 						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
@@ -426,7 +428,8 @@ class LoadBalancer implements ILoadBalancer {
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					// All replica DBs lagged. Switch to read-only mode
-					$this->replLogger->error( "All replica DBs lagged. Switch to read-only mode" );
+					$this->replLogger->error(
+						__METHOD__ . ": all replica DBs lagged. Switch to read-only mode" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -464,7 +467,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// If all servers were down, quit now
 		if ( !count( $currentLoads ) ) {
-			$this->connLogger->error( "All servers down" );
+			$this->connLogger->error( __METHOD__ . ": all servers down" );
 		}
 
 		return [ $i, $laggedReplicaMode ];
@@ -627,7 +630,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->replLogger->info(
 			__METHOD__ .
-			': Waiting for replica DB {dbserver} to catch up...',
+			': waiting for replica DB {dbserver} to catch up...',
 			[ 'dbserver' => $server ]
 		);
 
@@ -654,7 +657,7 @@ class LoadBalancer implements ILoadBalancer {
 			);
 			$ok = false;
 		} else {
-			$this->replLogger->info( __METHOD__ . ": Done" );
+			$this->replLogger->debug( __METHOD__ . ": done waiting" );
 			$ok = true;
 			// Remember that the DB reached this point
 			$this->srvCache->set( $key, $this->waitForPos, BagOStuff::TTL_DAY );
@@ -754,7 +757,8 @@ class LoadBalancer implements ILoadBalancer {
 		} elseif ( $conn instanceof DBConnRef ) {
 			// DBConnRef already handles calling reuseConnection() and only passes the live
 			// Database instance to this method. Any caller passing in a DBConnRef is broken.
-			$this->connLogger->error( __METHOD__ . ": got DBConnRef instance.\n" .
+			$this->connLogger->error(
+				__METHOD__ . ": got DBConnRef instance.\n" .
 				( new RuntimeException() )->getTraceAsString() );
 
 			return;
@@ -855,10 +859,12 @@ class LoadBalancer implements ILoadBalancer {
 				$conn = $this->reallyOpenConnection( $server, $this->localDomain );
 				$host = $this->getServerName( $i );
 				if ( $conn->isOpen() ) {
-					$this->connLogger->debug( "Connected to database $i at '$host'." );
+					$this->connLogger->debug(
+						__METHOD__ . ": connected to database $i at '$host'." );
 					$this->conns[$connKey][$i][0] = $conn;
 				} else {
-					$this->connLogger->warning( "Failed to connect to database $i at '$host'." );
+					$this->connLogger->warning(
+						__METHOD__ . ": failed to connect to database $i at '$host'." );
 					$this->errorConnection = $conn;
 					$conn = false;
 				}
@@ -1085,7 +1091,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $conn instanceof IDatabase ) {
 			$context['db_server'] = $conn->getServer();
 			$this->connLogger->warning(
-				"Connection error: {last_error} ({db_server})",
+				__METHOD__ . ": connection error: {last_error} ({db_server})",
 				$context
 			);
 
@@ -1094,7 +1100,8 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			// No last connection, probably due to all servers being too busy
 			$this->connLogger->error(
-				"LB failure with no last connection. Connection error: {last_error}",
+				__METHOD__ .
+				": LB failure with no last connection. Connection error: {last_error}",
 				$context
 			);
 
@@ -1162,7 +1169,8 @@ class LoadBalancer implements ILoadBalancer {
 	public function closeAll() {
 		$this->forEachOpenConnection( function ( IDatabase $conn ) {
 			$host = $conn->getServer();
-			$this->connLogger->debug( "Closing connection to database '$host'." );
+			$this->connLogger->debug(
+				__METHOD__ . ": closing connection to database '$host'." );
 			$conn->close();
 		} );
 
@@ -1187,7 +1195,8 @@ class LoadBalancer implements ILoadBalancer {
 			foreach ( $connsByServer[$serverIndex] as $i => $trackedConn ) {
 				if ( $conn === $trackedConn ) {
 					$host = $this->getServerName( $i );
-					$this->connLogger->debug( "Closing connection to database $i at '$host'." );
+					$this->connLogger->debug(
+						__METHOD__ . ": closing connection to database $i at '$host'." );
 					unset( $this->conns[$type][$serverIndex][$i] );
 					--$this->connsOpened;
 					break 2;
@@ -1683,7 +1692,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $pos instanceof DBMasterPos ) {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			if ( $result == -1 || is_null( $result ) ) {
-				$msg = __METHOD__ . ': Timed out waiting on {host} pos {pos}';
+				$msg = __METHOD__ . ': timed out waiting on {host} pos {pos}';
 				$this->replLogger->warning( $msg, [
 					'host' => $conn->getServer(),
 					'pos' => $pos,
@@ -1691,7 +1700,7 @@ class LoadBalancer implements ILoadBalancer {
 				] );
 				$ok = false;
 			} else {
-				$this->replLogger->info( __METHOD__ . ': Done' );
+				$this->replLogger->debug( __METHOD__ . ': done waiting' );
 				$ok = true;
 			}
 		} else {
