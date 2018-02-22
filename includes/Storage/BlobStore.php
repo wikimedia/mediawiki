@@ -110,4 +110,10 @@ interface BlobStore {
 	 */
 	public function storeBlob( $data, $hints = [] );
 
+	/**
+	 * Check if the blob metadata or backing blob data store is read-only
+	 *
+	 * @return bool
+	 */
+	public function isReadOnly();
 }
