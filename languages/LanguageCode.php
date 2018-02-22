@@ -49,6 +49,25 @@ class LanguageCode {
 	];
 
 	/**
+	 * Mapping of alias language codes.
+	 * The language codes are BCP 47 conform and may be
+	 * - deprecated
+	 * - grandfathered
+	 * - macro languages
+	 * - collections
+	 * - default regions
+	 *
+	 * @var array Mapping from language code to language code
+	 *
+	 * @since 1.31
+	 */
+	private static $aliasLanguageCodes = [
+		'no' => 'nb',
+		'zh-min-nan' => 'nan',
+		'zh-yue' => 'yue',
+	];
+
+	/**
 	 * Returns a mapping of deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
 	 *
@@ -123,5 +142,37 @@ class LanguageCode {
 	 */
 	public static function getLanguageCodesWithTranslations() {
 		return array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+	}
+
+	/**
+	 * Get the list of accepted BCP 47 conform language codes.
+	 * This list is used to select the preferred language from the Accept-Language HTTP header.
+	 * The languages have a translation or are an alias to a language with translation.
+	 * Kown languages without translation are not in the list to allow to select the next
+	 * language from the Accept-Language HTTP header.
+	 * The language codes are in lower case and does not have a special order.
+	 *
+	 * @return string[] Array of language codes
+	 *
+	 * @since 1.31
+	 */
+	public static function getAcceptedLanguageCodes() {
+		return array_merge(
+			self::getLanguageCodesWithTranslations(),
+			array_keys( self::$aliasLanguageCodes )
+		);
+	}
+
+	/**
+	 * Check if the language code is an accepted BCP 47 conform language code.
+	 * This check allows to select the preferred language from the Accept-Language HTTP header.
+	 *
+	 * @param string $code Language code
+	 * @return bool Whether language code is accepted
+	 *
+	 * @since 1.31
+	 */
+	public static function isAcceptedLanguageCode( $code ) {
+		return in_array( $code, self::getAcceptedLanguageCodes() );
 	}
 }

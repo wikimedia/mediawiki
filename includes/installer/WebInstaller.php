@@ -525,11 +525,9 @@ class WebInstaller extends Installer {
 	public function getAcceptLanguage() {
 		global $wgLanguageCode, $wgRequest;
 
-		$mwLanguages = Language::fetchLanguageNames();
 		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
-
 		foreach ( $headerLanguages as $lang ) {
-			if ( isset( $mwLanguages[$lang] ) ) {
+			if ( LanguageCode::isAcceptedLanguageCode( $lang ) ) {
 				return $lang;
 			}
 		}
