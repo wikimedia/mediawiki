@@ -463,6 +463,12 @@ class Command {
 				$isWrite = array_key_exists( $fd, $readPipes );
 
 				if ( $isWrite ) {
+					// Don't bother writing if the buffer is empty
+					if ( $buffers[$fd] === '' ) {
+						fclose( $pipes[$fd] );
+						unset( $pipes[$fd] );
+						continue;
+					}
 					$res = fwrite( $pipe, $buffers[$fd], 65536 );
 				} else {
 					$res = fread( $pipe, 65536 );
