@@ -45,4 +45,8 @@ class ProfilerStub extends Profiler {
 
 	public function logDataPageOutputOnly() {
 	}
+
+	public function restart() {
+		return true;
+	}
 }

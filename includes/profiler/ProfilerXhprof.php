@@ -66,6 +66,11 @@ class ProfilerXhprof extends Profiler {
 	 */
 	protected $sprofiler;
 
+	/** @var array */
+	private $driverFlags = [];
+	/** @var array */
+	private $driverOptions = [];
+
 	/**
 	 * @param array $params
 	 * @see Xhprof::__construct()
@@ -73,10 +78,11 @@ class ProfilerXhprof extends Profiler {
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
-		$flags = isset( $params['flags'] ) ? $params['flags'] : 0;
-		$options = isset( $params['exclude'] )
+		$this->driverFlags = isset( $params['flags'] ) ? $params['flags'] : 0;
+		$this->driverOptions = isset( $params['exclude'] )
 			? [ 'ignored_functions' => $params['exclude'] ] : [];
-		Xhprof::enable( $flags, $options );
+
+		Xhprof::enable( $this->driverFlags, $this->driverOptions );
 		$this->sprofiler = new SectionProfiler();
 	}
 
@@ -235,5 +241,10 @@ class ProfilerXhprof extends Profiler {
 	 */
 	public function getRawData() {
 		return $this->getXhprofData()->getRawData();
+	}
+
+	public function restart() {
+		$this->xhprofData = null;
+		Xhprof::enable( $this->driverFlags, $this->driverOptions );
 	}
 }

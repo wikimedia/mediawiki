@@ -36,7 +36,7 @@ class ProfilerSectionOnly extends Profiler {
 
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
-		$this->sprofiler = new SectionProfiler();
+		$this->restart();
 	}
 
 	public function scopedProfileIn( $section ) {
@@ -99,5 +99,11 @@ class ProfilerSectionOnly extends Profiler {
 			);
 		}
 		return implode( "\n", $out );
+	}
+
+	public function restart() {
+		$this->sprofiler = new SectionProfiler();
+
+		return true;
 	}
 }

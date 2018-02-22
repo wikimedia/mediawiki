@@ -318,4 +318,11 @@ abstract class Profiler {
 	 * @return string
 	 */
 	abstract public function getOutput();
+
+	/**
+	 * Clear any data and restart the profiler
+	 *
+	 * @return bool Success
+	 */
+	abstract public function restart();
 }
