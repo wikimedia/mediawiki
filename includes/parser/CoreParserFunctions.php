@@ -830,7 +830,7 @@ class CoreParserFunctions {
 			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
 			# Title::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
-			return implode( $restrictions, ',' );
+			return implode( ',', $restrictions );
 		}
 		return '';
 	}
@@ -1339,7 +1339,7 @@ class CoreParserFunctions {
 			foreach ( $sources[0] as $sourceTitle ) {
 				$names[] = $sourceTitle->getPrefixedText();
 			}
-			return implode( $names, '|' );
+			return implode( '|', $names );
 		}
 		return '';
 	}
