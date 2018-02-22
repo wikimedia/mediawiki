@@ -396,7 +396,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 						if ( $val === false ) {
 							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {
-							$rev[$t . 'token'] = $val;
+							$revision[$t . 'token'] = $val;
 						}
 					}
 				}
