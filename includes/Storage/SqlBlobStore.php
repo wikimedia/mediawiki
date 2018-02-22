@@ -591,11 +591,4 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		return [ $schema, $id, $parameters ];
 	}
 
-	public function isReadOnly() {
-		if ( $this->useExternalStore && ExternalStore::defaultStoresAreReadOnly() ) {
-			return true;
-		}
-
-		return ( $this->getDBLoadBalancer()->getReadOnlyReason() !== false );
-	}
 }
