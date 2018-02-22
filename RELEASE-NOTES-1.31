@@ -89,6 +89,7 @@ production.
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
   removed. It has never made a difference in the output, the name was always
   returned regardless.
+* (T188007) Added inprop=protectedby|protectionreason.
 
 === Action API internal changes in 1.31 ===
 * …

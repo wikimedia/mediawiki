@@ -29,11 +29,10 @@ use MediaWiki\Linker\LinkTarget;
  */
 class ApiQueryInfo extends ApiQueryBase {
 
-	private $fld_protection = false, $fld_talkid = false,
-		$fld_subjectid = false, $fld_url = false,
-		$fld_readable = false, $fld_watched = false,
-		$fld_watchers = false, $fld_visitingwatchers = false,
-		$fld_notificationtimestamp = false,
+	private $fld_protection = false, $fld_protectedby = false, $fld_protectionreason = false,
+		$fld_talkid = false, $fld_subjectid = false, $fld_url = false,
+		$fld_readable = false, $fld_watched = false, $fld_watchers = false,
+		$fld_visitingwatchers = false, $fld_notificationtimestamp = false,
 		$fld_preload = false, $fld_displaytitle = false;
 
 	private $params;
@@ -296,6 +295,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( !is_null( $this->params['prop'] ) ) {
 			$prop = array_flip( $this->params['prop'] );
 			$this->fld_protection = isset( $prop['protection'] );
+			$this->fld_protectedby = isset( $prop['protectedby'] );
+			$this->fld_protectionreason = isset( $prop['protectionreason'] );
 			$this->fld_watched = isset( $prop['watched'] );
 			$this->fld_watchers = isset( $prop['watchers'] );
 			$this->fld_visitingwatchers = isset( $prop['visitingwatchers'] );
@@ -306,6 +307,19 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_readable = isset( $prop['readable'] );
 			$this->fld_preload = isset( $prop['preload'] );
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
+
+			if ( $this->fld_protectedby && !$this->fld_protection ) {
+				$this->addWarning(
+					[ 'apiwarn-inprop-ignore-protected', $this->getModulePrefix(), 'protectedby' ],
+					'ignored-inprop-protectedby'
+				);
+			}
+			if ( $this->fld_protectionreason && !$this->fld_protection ) {
+				$this->addWarning(
+					[ 'apiwarn-inprop-ignore-protected', $this->getModulePrefix(), 'protectionreason' ],
+					'ignored-inprop-protectionreason'
+				);
+			}
 		}
 
 		$pageSet = $this->getPageSet();
@@ -534,12 +548,34 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->protections = [];
 		$db = $this->getDB();
 
+		if ( $this->fld_protectionreason ) {
+			$commentStore = CommentStore::getStore();
+			$commentQuery = $commentStore->getJoin( 'log_comment' );
+		} else {
+			$commentQuery = [ 'tables' => [], 'fields' => [], 'joins' => [] ];
+		}
+
 		// Get normal protections for existing titles
 		if ( count( $this->titles ) ) {
 			$this->resetQueryParams();
 			$this->addTables( 'page_restrictions' );
-			$this->addFields( [ 'pr_page', 'pr_type', 'pr_level',
-				'pr_expiry', 'pr_cascade' ] );
+			$this->addFields( [ 'pr_page', 'pr_type', 'pr_level', 'pr_expiry', 'pr_cascade' ] );
+
+			if ( $this->fld_protectedby || $this->fld_protectionreason ) {
+				$this->addTables( [
+					'log' => [ 'log_search', 'logging' ] + $commentQuery['tables']
+				] );
+				$this->addFields( [
+					'log_timestamp', 'log_user', 'log_user_text', 'log_deleted',
+				] + $commentQuery['fields'] );
+				$this->addJoinConds( [
+					'log' => [ 'LEFT JOIN', [
+						'ls_field' => 'pr_id', 'ls_value = ' . $db->buildStringCast( 'pr_id' )
+					] ],
+					'logging' => [ 'JOIN', 'ls_log_id = log_id' ]
+				] + $commentQuery['joins'] );
+			}
+
 			$this->addWhereFld( 'pr_page', array_keys( $this->titles ) );
 
 			$res = $this->select( __METHOD__ );
@@ -553,6 +589,28 @@ class ApiQueryInfo extends ApiQueryBase {
 				];
 				if ( $row->pr_cascade ) {
 					$a['cascade'] = true;
+				}
+				if ( $this->fld_protectedby && $row->log_deleted !== null ) {
+					$a['timestamp'] = wfTimestamp( TS_ISO_8601, $row->log_timestamp );
+					if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
+						$a['byuserhidden'] = true;
+					}
+					if ( LogEventsList::userCanBitfield(
+						$row->log_deleted, LogPage::DELETED_USER, $this->getUser()
+					) ) {
+						$a['byuserid'] = (int)$row->log_user;
+						$a['byuser'] = $row->log_user_text;
+					}
+				}
+				if ( $this->fld_protectionreason && $row->log_deleted !== null ) {
+					if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
+						$a['reasonhidden'] = true;
+					}
+					if ( LogEventsList::userCanBitfield(
+						$row->log_deleted, LogPage::DELETED_COMMENT, $this->getUser()
+					) ) {
+						$a['reason'] = $commentStore->getComment( 'log_comment', $row )->text;
+					}
 				}
 				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
 			}
@@ -902,6 +960,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => [
 					'protection',
+					'protectedby', # private due to possible revdel
+					'protectionreason', # private due to possible revdel
 					'talkid',
 					'watched', # private
 					'watchers', # private
