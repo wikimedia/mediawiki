@@ -73,13 +73,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		return $blobs;
 	}
 
-	/**
-	 * @see ExternalStoreMedium::store()
-	 * @param string $backend
-	 * @param string $data
-	 * @return string|bool
-	 * @throws MWException
-	 */
 	public function store( $backend, $data ) {
 		$be = FileBackendGroup::singleton()->get( $backend );
 		if ( $be instanceof FileBackend ) {
@@ -102,5 +95,11 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		}
 
 		return false;
+	}
+
+	public function isReadOnly( $backend ) {
+		$be = FileBackendGroup::singleton()->get( $backend );
+
+		return $be ? $be->isReadOnly() : false;
 	}
 }
