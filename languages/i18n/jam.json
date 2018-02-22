@@ -437,7 +437,7 @@
 	"userjsyoucanpreview": "'''Tip:''' Yuuz di \"{{int:showpreview}}\" botn fi tes yu nyuu JavaScript bifuo yu sieb.",
 	"usercsspreview": "'''Memba se yu onggl a priivyuu yu yuuza CSS.'''\n'''Ino sieb yet!'''",
 	"userjspreview": "'''Memba se yu onggl a tes/priivyuu yu yuuza JavaScript.'''\n'''Ino sieb yet!'''",
-	"userinvalidcssjstitle": "'''Waanin:''' No skin \"$1\" no de.\nMemba se kostom .css ahn .js piej yuuz a luwakies taikl, e.g. {{ns:user}}:Foo/vector.css az opuoz tu {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Waanin:''' No skin \"$1\" no de.\nMemba se kostom .css ahn .js piej yuuz a luwakies taikl, e.g. {{ns:user}}:Foo/vector.css az opuoz tu {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Opdiet)",
 	"note": "'''Nuot:'''",
 	"previewnote": "'''Memb se dis a onggl priivyuu.'''\nYu chienjdem no sieb yet!",

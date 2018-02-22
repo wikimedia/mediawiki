@@ -495,7 +495,7 @@
 	"userjsyoucanpreview": "<strong>Tip:</strong> Brûk de knop \"{{int:showpreview}}\" om jo nije JS te testen foar it fêstlizzen.",
 	"usercsspreview": "<strong>Dit is allinne mar it oerlêzen fan jo persoanlike CSS. Hy is noch net fêstlein!</strong>",
 	"userjspreview": "<strong>Tink derom: jo besjogge no jo persoanlike JavaScript. De side is net fêstlein!</strong>",
-	"userinvalidcssjstitle": "<strong>Warskôging:</strong> der is gjin skin \"$1\".\nTink derom: jo eigen .css- en .js-siden begjinne mei in lytse letter, bygelyks {{ns:user}}:Namme/vector.css ynsté fan {{ns:user}}:Namme/Vector.css.",
+	"userinvalidconfigtitle": "!!FUZZY!!<strong>Warskôging:</strong> der is gjin skin \"$1\".\nTink derom: jo eigen .css- en .js-siden begjinne mei in lytse letter, bygelyks {{ns:user}}:Namme/vector.css ynsté fan {{ns:user}}:Namme/Vector.css.",
 	"updated": "(Bewurke)",
 	"note": "<strong>Opmerking:</strong>",
 	"previewnote": "<strong>Tink der om dat dizze side noch net fêstlein is!</strong>",

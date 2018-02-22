@@ -853,7 +853,7 @@
 	"prefs-files": "ਫ਼ਾਈਲਾਂ",
 	"prefs-custom-css": "ਰਿਵਾਇਤੀ CSS",
 	"prefs-custom-js": "ਰਿਵਾਇਤੀ ਜਾਵਾਸਕਰਿਪਟ",
-	"prefs-common-css-js": "ਸਾਰੀਆਂ ਸਕਿਨਾਂ ਲਈ ਸਾਂਝਾ CSS/ਜਾਵਾਸਕਰਿਪਟ:",
+	"prefs-common-config": "ਸਾਰੀਆਂ ਸਕਿਨਾਂ ਲਈ ਸਾਂਝਾ CSS/ਜਾਵਾਸਕਰਿਪਟ:",
 	"prefs-emailconfirm-label": "ਈ-ਮੇਲ ਪੁਸ਼ਟੀ:",
 	"youremail": "ਈ-ਮੇਲ:",
 	"username": "{{GENDER:$1|ਵਰਤੋਂਕਾਰ ਦਾ ਨਾਂ}}:",

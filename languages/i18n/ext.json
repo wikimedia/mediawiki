@@ -420,7 +420,7 @@
 	"userjsyoucanpreview": "'''Consehu:''' Gasta el botón 'Previsoreal' pa prebal el tu nuevu JS enantis d´emburacal.",
 	"usercsspreview": "'''Alcuerdati que solu estás previsoreandu el tu CSS d'usuáriu.'''\n'''Entovia nu está emburacau!'''",
 	"userjspreview": "<strong>Recuerda que solu estás prebandu/previsoreandu el tu JavaScript d’usuáriu.\nEntovia nu está emburacau!</strong>",
-	"userinvalidcssjstitle": "'''Avisu:''' Nu desisti el skin \"$1\". Alcuerdati que las páhinas presonalizás .css i .js tienin el su entítulu en menúsculas, p.s. {{ns:user}}:Foo/vector.css en lugal de {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Avisu:''' Nu desisti el skin \"$1\". Alcuerdati que las páhinas presonalizás .css i .js tienin el su entítulu en menúsculas, p.s. {{ns:user}}:Foo/vector.css en lugal de {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Atualizau)",
 	"note": "'''Nota:'''",
 	"previewnote": "'''Agora solu estás previsoreandu; entovia nu están emburacaus los chambus!'''",

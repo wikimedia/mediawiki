@@ -491,7 +491,7 @@
 	"userjspreview": "'''Soroho no do mongintong kono tomod diti JawaSikrip momogunonu.'''\n'''Awu po nokogompi iti!'''",
 	"sitecsspreview": "'''Soroho no do mongintong kono tomod diti CSS.'''\n'''Awu po nokogompi iti!'''",
 	"sitejspreview": "'''Soroho no do mongintong kono tomod diti kod JawaSikrip.'''\n'''Awu po nokogompi iti!'''",
-	"userinvalidcssjstitle": "'''Pomisunudan:''' Ingaa kulit do \"$1\".\nBobolikon pinudali .css om .js momoguno do pimato tokoro, miagal pomitanan {{ns:user}}:Foo/vector.css sobaagi do ponuli di {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Pomisunudan:''' Ingaa kulit do \"$1\".\nBobolikon pinudali .css om .js momoguno do pimato tokoro, miagal pomitanan {{ns:user}}:Foo/vector.css sobaagi do ponuli di {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Noinwoguan)",
 	"note": "'''Pasoniba:'''",
 	"previewnote": "'''Soroho no do iti nopo nga kopongintangan toomod.'''\nAwu po moti nokogompi iri nopingalanannu!",

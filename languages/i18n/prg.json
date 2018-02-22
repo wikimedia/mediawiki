@@ -381,7 +381,7 @@
 	"clearyourcache": "'''Nōda: Kitawīdinsnas pa enpeisāsnan stēisan nāunan ensadīnsenin mazzi ni būtwei widāminan. Prawerru skistīntun lasāltas rānkas minīsnan.'''\n*'''Mozilla, Firefox anga Safari - ''' zabāis \"Shift\" gnestan ne gnetteis \"Etnauninnais\" anga gnetteis \"Ctrl-F5\" anga \"Ctrl-R\" (\"Command-R\" en Macu);\n*'''Konqueror:''' gnetteis '''Etwārtai kraūneis\" anga \"F5\";\n'''Opera:''' skistinnais rānkas minīsnan en \"Ēnrankis-Pirminiskwas\";\n'''Internet Explorer:''' zabāis \"Ctrl\" gnetīntei \"Etnauninnais\" anga gnetteis \"Ctrl-F5\".",
 	"usercsspreview": "'''Pamēnais, kāi sta ast tēr twāise CSS pirmādira - nika dabber ni pastāi enpeisātan!'''",
 	"userjspreview": "'''Pamēnais, kāi sta ast tēr twāise JS kōdas pirmādira - nika dabber ni pastāi enpeisātan!'''",
-	"userinvalidcssjstitle": "'''Ēmpirsergīsenis:''' Ni ast prusna \"$1\".\nPamēnais kāi tērpautajas .css be .js pāusai turri pagaūtun si sen līkutan litteran, p. e.g. {{ns:user}}:Foo/vector.css, ni {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Ēmpirsergīsenis:''' Ni ast prusna \"$1\".\nPamēnais kāi tērpautajas .css be .js pāusai turri pagaūtun si sen līkutan litteran, p. e.g. {{ns:user}}:Foo/vector.css, ni {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Ernaunīntan)",
 	"note": "'''Endirīsenis:'''",
 	"previewnote": "'''Sta ast tēr pirmādira.'''\nKitawīdinsnas dabber ni pastāi enpeisātan!\"",

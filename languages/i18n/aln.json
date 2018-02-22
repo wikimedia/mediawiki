@@ -423,7 +423,7 @@
 	"userjsyoucanpreview": "'''Këshillë:''' Përdorni butonin 'Trego parapâmjen' për me testue JS para se me i regjistrue ndryshimet.",
 	"usercsspreview": "'''Vini re, jeni tue pâ veç parapâmjen e CSSit tuej.'''\n'''Ende nuk e keni ruejtë!'''",
 	"userjspreview": "<strong>Vini re, jeni duke testuar/parë vetëm parapamjen e JavaScriptit tuaj.\nEnde nuk e keni ruajtur!</strong>",
-	"userinvalidcssjstitle": "'''Kujdes:''' Nuk ka pâmje me emën \"$1\".\nVini re që faqet .css dhe .js përdorin vetëm titull me germa të vogla, psh. {{ns:user}}:Foo/vector.css për dallim prej {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Kujdes:''' Nuk ka pâmje me emën \"$1\".\nVini re që faqet .css dhe .js përdorin vetëm titull me germa të vogla, psh. {{ns:user}}:Foo/vector.css për dallim prej {{ns:user}}:Foo/Vector.css.",
 	"updated": "(E ndryshueme)",
 	"note": "'''Shenim:'''",
 	"previewnote": "'''Kjo asht vetëm parapamje.'''\nNdryshimet e tua nuk janë ruejtë ende!",

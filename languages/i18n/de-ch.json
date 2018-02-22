@@ -121,7 +121,7 @@
 	"clearyourcache": "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können.\n* '''Firefox/Safari:''' ''Umschalttaste'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Ctrl+F5'' oder ''Ctrl+R'' (''⌘+R'' auf dem Mac) drücken\n* '''Google Chrome:''' ''Umschalttaste+Ctrl+R'' (''⌘+Umschalttaste+R'' auf dem Mac) drücken\n* '''Internet Explorer:''' ''Ctrl+F5'' drücken oder ''Ctrl'' drücken und gleichzeitig ''Aktualisieren'' anklicken\n* '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''",
 	"usercssyoucanpreview": "'''Tipp:''' Benutze den «{{int:showpreview}}»-Button, um dein neues CSS vor dem Speichern zu testen.",
 	"userjsyoucanpreview": "'''Tipp:''' Benutze den «{{int:showpreview}}»-Button, um dein neues JavaScript vor dem Speichern zu testen.",
-	"userinvalidcssjstitle": "'''Achtung:''' Die Benutzeroberfläche «$1» existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
+	"userinvalidconfigtitle": "'''Achtung:''' Die Benutzeroberfläche «$1» existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/vector.css'' an Stelle von ''{{ns:user}}:Mustermann/Vector.css''.",
 	"editing": "Bearbeiten von «$1»",
 	"creating": "Erstellen von «$1»",
 	"editingsection": "Bearbeiten von «$1» (Abschnitt)",

@@ -522,7 +522,7 @@
 	"userjsyoucanpreview": "'''Thì-sṳ:''' Chhai pó-chhùn chhièn chhiáng yung 'hién-sṳ yi-ko' on-néu lòi chhet-chhṳ ngì sîn-ke JS.",
 	"usercsspreview": "'''Chu-yi ngì chak-he chhai yi-liau ngì ke-ngìn CSS, hàn-mò tú-chhùn!'''",
 	"userjspreview": "'''記緊汝單單係在測試/預覽汝嘅用戶JavaScript。'''\n'''還吂保存！'''",
-	"userinvalidcssjstitle": "'''警告:''' 毋存在外皮“$1”。\n注意自定嘅.css撈.js頁愛使用小寫標題，例如，{{ns:user}}:Foo/vector.css撈 {{ns:user}}:Foo/Vector.css毋同。",
+	"userinvalidconfigtitle": "'''警告:''' 毋存在外皮“$1”。\n注意自定嘅.css撈.js頁愛使用小寫標題，例如，{{ns:user}}:Foo/vector.css撈 {{ns:user}}:Foo/Vector.css毋同。",
 	"updated": "(Yí-kîn kiên-sîn)",
 	"note": "<strong>Chu-yi:</strong>",
 	"previewnote": "'''請記到邇單淨係預覽。'''\n汝嘅更改還吂保存！",

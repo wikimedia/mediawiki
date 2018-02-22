@@ -403,7 +403,7 @@
 	"userjsyoucanpreview": "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov JavaScript ante de conservar.",
 	"usercsspreview": "'''Memora que vu es solmen vident un prevision de tui CSS de usator.'''\n'''It ne have esset conservat ancor!'''",
 	"userjspreview": "'''Memora que vu es solmen provant/monstrant tui JavaScript de usator.'''\n'''It ne ha esset conservat ancor!'''",
-	"userinvalidcssjstitle": "'''Advertiment:''' Ne vi pelle \"$1\".\nMemora que hábitu .css e págines .js usa un titul plu bass, e.g. {{ns:user}}:Foo/vector.css quam oposit por {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "'''Advertiment:''' Ne vi pelle \"$1\".\nMemora que hábitu .css e págines .js usa un titul plu bass, e.g. {{ns:user}}:Foo/vector.css quam oposit por {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Modernisat)",
 	"note": "<strong>Note:</strong>",
 	"previewnote": "'''Memora se que ti es solmen un prevision.'''\nTui changes ancor ne ha esset conservat!",
