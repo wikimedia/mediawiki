@@ -526,10 +526,7 @@ class Block {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		# Periodic purge via commit hooks
-		if ( mt_rand( 0, 9 ) == 0 ) {
-			self::purgeExpired();
-		}
+		self::purgeExpired();
 
 		$row = $this->getDatabaseArray( $dbw );
 
