@@ -399,6 +399,13 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 				break;
 			case 'id':
+				// Make sure this thread sees its own changes
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				if ( $lb->hasOrMadeRecentMasterChanges() ) {
+					$flags |= self::READ_LATEST;
+					$this->queryFlagsUsed = $flags;
+				}
+
 				$this->loadFromId( $flags );
 				break;
 			case 'session':
