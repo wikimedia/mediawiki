@@ -1,18 +1,18 @@
 /**
- * @class jQuery.plugin.byteLimit
+ * @class jQuery.plugin.lengthLimit
  */
 ( function ( $, mw ) {
 
 	var
 		eventKeys = [
-			'keyup.byteLimit',
-			'keydown.byteLimit',
-			'change.byteLimit',
-			'mouseup.byteLimit',
-			'cut.byteLimit',
-			'paste.byteLimit',
-			'focus.byteLimit',
-			'blur.byteLimit'
+			'keyup.lengthLimit',
+			'keydown.lengthLimit',
+			'change.lengthLimit',
+			'mouseup.lengthLimit',
+			'cut.lengthLimit',
+			'paste.lengthLimit',
+			'focus.lengthLimit',
+			'blur.lengthLimit'
 		].join( ' ' ),
 		trimByteLength = require( 'mediawiki.String' ).trimByteLength;
 
@@ -166,6 +166,6 @@
 
 	/**
 	 * @class jQuery
-	 * @mixins jQuery.plugin.byteLimit
+	 * @mixins jQuery.plugin.lengthLimit
 	 */
 }( jQuery, mediaWiki ) );
