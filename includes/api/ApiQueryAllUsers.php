@@ -41,6 +41,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgActorTableSchemaMigrationStage;
+
 		$params = $this->extractRequestParams();
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
@@ -178,17 +180,36 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			] ] );
 
 			// Actually count the actions using a subquery (T66505 and T66507)
+			$tables = [ 'recentchanges' ];
+			$joins = [];
+			if ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+				$userCond = 'rc_user_text = user_name';
+			} else {
+				$tables[] = 'actor';
+				$joins['actor'] = [
+					$wgActorTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
+					'rc_actor = actor_id'
+				];
+				if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+					$userCond = 'actor_user = user_id';
+				} else {
+					$userCond = 'actor_user = user_id OR (rc_actor = 0 AND rc_user_text = user_name)';
+				}
+			}
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [
 				'recentactions' => '(' . $db->selectSQLText(
-					'recentchanges',
+					$tables,
 					'COUNT(*)',
 					[
-						'rc_user_text = user_name',
+						$userCond,
 						'rc_type != ' . $db->addQuotes( RC_EXTERNAL ), // no wikidata
 						'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
 						'rc_timestamp >= ' . $db->addQuotes( $timestamp ),
-					]
+					],
+					__METHOD__,
+					[],
+					$joins
 				) . ')'
 			] );
 		}

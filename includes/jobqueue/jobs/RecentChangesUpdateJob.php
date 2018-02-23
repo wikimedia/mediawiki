@@ -158,11 +158,15 @@ class RecentChangesUpdateJob extends Job {
 				$eTimestamp = min( $sTimestamp + $window, $nowUnix );
 
 				// Get all the users active since the last update
+				$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 				$res = $dbw->select(
-					[ 'recentchanges' ],
-					[ 'rc_user_text', 'lastedittime' => 'MAX(rc_timestamp)' ],
+					[ 'recentchanges' ] + $actorQuery['tables'],
 					[
-						'rc_user > 0', // actual accounts
+						'rc_user_text' => $actorQuery['fields']['rc_user_text'],
+						'lastedittime' => 'MAX(rc_timestamp)'
+					],
+					[
+						$actorQuery['fields']['rc_user'] . ' > 0', // actual accounts
 						'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
 						'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
 						'rc_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $sTimestamp ) ),
@@ -172,7 +176,8 @@ class RecentChangesUpdateJob extends Job {
 					[
 						'GROUP BY' => [ 'rc_user_text' ],
 						'ORDER BY' => 'NULL' // avoid filesort
-					]
+					],
+					$actorQuery['joins']
 				);
 				$names = [];
 				foreach ( $res as $row ) {

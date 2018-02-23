@@ -79,14 +79,17 @@ class ActiveUsersPager extends UsersPager {
 	function getQueryInfo() {
 		$dbr = $this->getDatabase();
 
+		$rcQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
 		$timestamp = $dbr->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
-		$tables = [ 'querycachetwo', 'user', 'recentchanges' ];
+		$tables = [ 'querycachetwo', 'user', 'recentchanges' ] + $rcQuery['tables'];
+		$jconds = $rcQuery['joins'];
 		$conds = [
 			'qcc_type' => 'activeusers',
 			'qcc_namespace' => NS_USER,
 			'user_name = qcc_title',
-			'rc_user_text = qcc_title',
+			$rcQuery['fields']['rc_user_text'] . ' = qcc_title',
 			'rc_type != ' . $dbr->addQuotes( RC_EXTERNAL ), // Don't count wikidata.
 			'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE ), // Don't count categorization changes.
 			'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
@@ -127,7 +130,8 @@ class ActiveUsersPager extends UsersPager {
 				'recentedits' => 'COUNT(*)'
 			],
 			'options' => [ 'GROUP BY' => [ 'qcc_title' ] ],
-			'conds' => $conds
+			'conds' => $conds,
+			'join_conds' => $jconds,
 		];
 	}
 

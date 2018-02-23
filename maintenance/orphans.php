@@ -82,16 +82,18 @@ class Orphans extends Maintenance {
 		}
 
 		$commentQuery = $commentStore->getJoin( 'rev_comment' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
 
 		$this->output( "Checking for orphan revision table entries... "
 			. "(this may take a while on a large wiki)\n" );
 		$result = $dbw->select(
-			[ 'revision', 'page' ] + $commentQuery['tables'],
-			[ 'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text' ] + $commentQuery['fields'],
+			[ 'revision', 'page' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			[ 'rev_id', 'rev_page', 'rev_timestamp' ] + $commentQuery['fields'] + $actorQuery['fields'],
 			[ 'page_id' => null ],
 			__METHOD__,
 			[],
 			[ 'page' => [ 'LEFT JOIN', [ 'rev_page=page_id' ] ] ] + $commentQuery['joins']
+				+ $actorQuery['joins']
 		);
 		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {

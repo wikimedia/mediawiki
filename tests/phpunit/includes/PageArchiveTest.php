@@ -50,6 +50,10 @@ class PageArchiveTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->overrideMwServices();
+
 		// First create our dummy page
 		$page = Title::newFromText( 'PageArchiveTest_thePage' );
 		$page = new WikiPage( $page );
@@ -84,28 +88,44 @@ class PageArchiveTest extends MediaWikiTestCase {
 	public function testUndeleteRevisions() {
 		// First make sure old revisions are archived
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->select( 'archive', '*', [ 'ar_rev_id' => $this->ipRevId ] );
+		$arQuery = Revision::getArchiveQueryInfo();
+		$res = $dbr->select(
+			$arQuery['tables'],
+			$arQuery['fields'],
+			[ 'ar_rev_id' => $this->ipRevId ],
+			__METHOD__,
+			[],
+			$arQuery['joins']
+		);
 		$row = $res->fetchObject();
 		$this->assertEquals( $this->ipEditor, $row->ar_user_text );
 
 		// Should not be in revision
-		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $this->ipRevId ] );
+		$res = $dbr->select( 'revision', '1', [ 'rev_id' => $this->ipRevId ] );
 		$this->assertFalse( $res->fetchObject() );
 
 		// Should not be in ip_changes
-		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $this->ipRevId ] );
+		$res = $dbr->select( 'ip_changes', '1', [ 'ipc_rev_id' => $this->ipRevId ] );
 		$this->assertFalse( $res->fetchObject() );
 
 		// Restore the page
 		$this->archivedPage->undelete( [] );
 
 		// Should be back in revision
-		$res = $dbr->select( 'revision', '*', [ 'rev_id' => $this->ipRevId ] );
+		$revQuery = Revision::getQueryInfo();
+		$res = $dbr->select(
+			$revQuery['tables'],
+			$revQuery['fields'],
+			[ 'rev_id' => $this->ipRevId ],
+			__METHOD__,
+			[],
+			$revQuery['joins']
+		);
 		$row = $res->fetchObject();
 		$this->assertEquals( $this->ipEditor, $row->rev_user_text );
 
 		// Should be back in ip_changes
-		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $this->ipRevId ] );
+		$res = $dbr->select( 'ip_changes', [ 'ipc_hex' ], [ 'ipc_rev_id' => $this->ipRevId ] );
 		$row = $res->fetchObject();
 		$this->assertEquals( IP::toHex( $this->ipEditor ), $row->ipc_hex );
 	}
@@ -134,6 +154,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 				'ar_minor_edit' => '0',
 				'ar_user' => '0',
 				'ar_user_text' => '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7',
+				'ar_actor' => null,
 				'ar_len' => '11',
 				'ar_deleted' => '0',
 				'ar_rev_id' => '3',
@@ -159,6 +180,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 				'ar_minor_edit' => '0',
 				'ar_user' => '0',
 				'ar_user_text' => '127.0.0.1',
+				'ar_actor' => null,
 				'ar_len' => '7',
 				'ar_deleted' => '0',
 				'ar_rev_id' => '2',
