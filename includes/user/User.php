@@ -4350,6 +4350,8 @@ class User implements IDBAccessObject, UserIdentity {
 			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
 			if ( $dbw->affectedRows() ) {
 				$newUser = self::newFromId( $dbw->insertId() );
+				// Load the user from master to avoid replica lag
+				$newUser->load( self::READ_LATEST );
 				$newUser->mName = $fields['user_name'];
 				$newUser->setItemLoaded( 'name' );
 				$newUser->updateActorId( $dbw );
