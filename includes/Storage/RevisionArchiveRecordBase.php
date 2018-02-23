@@ -36,7 +36,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.31
  */
-class RevisionArchiveRecord extends RevisionRecord {
+class RevisionArchiveRecordBase extends RevisionRecordBase {
 
 	/**
 	 * @var int

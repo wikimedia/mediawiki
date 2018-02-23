@@ -46,7 +46,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionById( $id, $flags = 0 );
 
@@ -60,7 +60,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @param LinkTarget $linkTarget
 	 * @param int $revId (optional)
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 );
 
@@ -74,7 +74,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @param int $pageId
 	 * @param int $revId (optional)
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionByPageId( $pageId, $revId = 0, $flags = 0 );
 
@@ -83,24 +83,24 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param Title $title if known (optional)
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, Title $title = null );
+	public function getPreviousRevision( RevisionRecordBase $rev, Title $title = null );
 
 	/**
 	 * Get next revision for this title
 	 *
 	 * MCR migration note: this replaces Revision::getNext
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param Title $title if known (optional)
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, Title $title = null );
+	public function getNextRevision( RevisionRecordBase $rev, Title $title = null );
 
 	/**
 	 * Load a revision based on a known page ID and current revision ID from the DB
@@ -113,7 +113,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @param Title $title the associated page title
 	 * @param int $revId current revision of this page
 	 *
-	 * @return RevisionRecord|bool Returns false if missing
+	 * @return RevisionRecordBase|bool Returns false if missing
 	 */
 	public function getKnownCurrentRevision( Title $title, $revId );
 

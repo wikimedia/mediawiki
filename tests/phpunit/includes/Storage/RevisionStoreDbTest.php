@@ -11,8 +11,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\IncompleteRevisionException;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\MutableRevisionRecordBase;
+use MediaWiki\Storage\RevisionRecordBase;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
@@ -151,7 +151,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertEquals( $l1->getInterwiki(), $l2->getInterwiki() );
 	}
 
-	private function assertRevisionRecordsEqual( RevisionRecord $r1, RevisionRecord $r2 ) {
+	private function assertRevisionRecordsEqual( RevisionRecordBase $r1, RevisionRecordBase $r2 ) {
 		$this->assertEquals( $r1->getUser()->getName(), $r2->getUser()->getName() );
 		$this->assertEquals( $r1->getUser()->getId(), $r2->getUser()->getId() );
 		$this->assertEquals( $r1->getComment(), $r2->getComment() );
@@ -170,10 +170,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$this->assertEquals( $r1->getContent( $role ), $r2->getContent( $role ) );
 		}
 		foreach ( [
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::DELETED_COMMENT,
-			RevisionRecord::DELETED_USER,
-			RevisionRecord::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_TEXT,
+			RevisionRecordBase::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_USER,
+			RevisionRecordBase::DELETED_RESTRICTED,
 		] as $field ) {
 			$this->assertEquals( $r1->isDeleted( $field ), $r2->isDeleted( $field ) );
 		}
@@ -182,7 +182,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	/**
 	 * @param mixed[] $details
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 */
 	private function getRevisionRecordFromDetailsArray( $title, $details = [] ) {
 		// Convert some values that can't be provided by dataProviders
@@ -198,7 +198,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		}
 
 		// Create the RevisionRecord with any available data
-		$rev = new MutableRevisionRecord( $title );
+		$rev = new MutableRevisionRecordBase( $title );
 		isset( $details['slot'] ) ? $rev->setSlot( $details['slot'] ) : null;
 		isset( $details['parent'] ) ? $rev->setParentId( $details['parent'] ) : null;
 		isset( $details['page'] ) ? $rev->setPageId( $details['page'] ) : null;
@@ -239,7 +239,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 				'minor' => true,
-				'visibility' => RevisionRecord::DELETED_RESTRICTED,
+				'visibility' => RevisionRecordBase::DELETED_RESTRICTED,
 			],
 		];
 	}
@@ -590,7 +590,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	private function assertRevisionRecordMatchesRevision(
 		Revision $rev,
-		RevisionRecord $record
+		RevisionRecordBase $record
 	) {
 		$this->assertSame( $rev->getId(), $record->getId() );
 		$this->assertSame( $rev->getPage(), $record->getPageId() );

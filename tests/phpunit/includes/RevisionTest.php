@@ -2,9 +2,9 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobStoreFactory;
-use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\MutableRevisionRecordBase;
 use MediaWiki\Storage\RevisionAccessException;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionRecordBase;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
@@ -1370,7 +1370,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetSize() {
 		$title = $this->getMockTitle();
 
-		$rec = new MutableRevisionRecord( $title );
+		$rec = new MutableRevisionRecordBase( $title );
 		$rev = new Revision( $rec, 0, $title );
 
 		$this->assertSame( 0, $rev->getSize(), 'Size of no slots is 0' );
@@ -1385,7 +1385,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetSize_failure() {
 		$title = $this->getMockTitle();
 
-		$rec = $this->getMockBuilder( RevisionRecord::class )
+		$rec = $this->getMockBuilder( RevisionRecordBase::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -1402,7 +1402,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetSha1() {
 		$title = $this->getMockTitle();
 
-		$rec = new MutableRevisionRecord( $title );
+		$rec = new MutableRevisionRecordBase( $title );
 		$rev = new Revision( $rec, 0, $title );
 
 		$emptyHash = SlotRecord::base36Sha1( '' );
@@ -1418,7 +1418,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetSha1_failure() {
 		$title = $this->getMockTitle();
 
-		$rec = $this->getMockBuilder( RevisionRecord::class )
+		$rec = $this->getMockBuilder( RevisionRecordBase::class )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -1435,7 +1435,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetContent() {
 		$title = $this->getMockTitle();
 
-		$rec = new MutableRevisionRecord( $title );
+		$rec = new MutableRevisionRecordBase( $title );
 		$rev = new Revision( $rec, 0, $title );
 
 		$this->assertNull( $rev->getContent(), 'Content of no slots is null' );
@@ -1451,7 +1451,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetContent_failure() {
 		$title = $this->getMockTitle();
 
-		$rec = $this->getMockBuilder( RevisionRecord::class )
+		$rec = $this->getMockBuilder( RevisionRecordBase::class )
 			->disableOriginalConstructor()
 			->getMock();
 

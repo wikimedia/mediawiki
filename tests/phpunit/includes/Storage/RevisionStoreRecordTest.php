@@ -5,9 +5,9 @@ namespace MediaWiki\Tests\Storage;
 use CommentStoreComment;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionRecordBase;
 use MediaWiki\Storage\RevisionSlots;
-use MediaWiki\Storage\RevisionStoreRecord;
+use MediaWiki\Storage\RevisionStoreRecordBase;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SuppressedDataException;
 use MediaWiki\User\UserIdentity;
@@ -17,14 +17,14 @@ use TextContent;
 use Title;
 
 /**
- * @covers \MediaWiki\Storage\RevisionStoreRecord
+ * @covers \MediaWiki\Storage\RevisionStoreRecordBase
  */
 class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @param array $rowOverrides
 	 *
-	 * @return RevisionStoreRecord
+	 * @return RevisionStoreRecordBase
 	 */
 	public function newRevision( array $rowOverrides = [] ) {
 		$title = Title::newFromText( 'Dummy' );
@@ -51,7 +51,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$row = array_merge( $row, $rowOverrides );
 
-		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots );
+		return new RevisionStoreRecordBase( $title, $user, $comment, (object)$row, $slots );
 	}
 
 	public function provideConstructor() {
@@ -89,7 +89,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$row = $protoRow;
 		$row['rev_minor_edit'] = '1';
-		$row['rev_deleted'] = strval( RevisionRecord::DELETED_USER );
+		$row['rev_deleted'] = strval( RevisionRecordBase::DELETED_USER );
 
 		yield 'minor deleted' => [
 			$title,
@@ -161,10 +161,10 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		RevisionSlots $slots,
 		$wikiId = false
 	) {
-		$rec = new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		$rec = new RevisionStoreRecordBase( $title, $user, $comment, $row, $slots, $wikiId );
 
 		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
-		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
+		$this->assertSame( $user, $rec->getUser( RevisionRecordBase::RAW ), 'getUser' );
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 
 		$this->assertSame( $slots->getSlotRoles(), $rec->getSlotRoles(), 'getSlotRoles' );
@@ -295,33 +295,33 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$wikiId = false
 	) {
 		$this->setExpectedException( InvalidArgumentException::class );
-		new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		new RevisionStoreRecordBase( $title, $user, $comment, $row, $slots, $wikiId );
 	}
 
 	private function provideAudienceCheckData( $field ) {
 		yield 'field accessible for oversighter (ALL)' => [
-			RevisionRecord::SUPPRESSED_ALL,
+			RevisionRecordBase::SUPPRESSED_ALL,
 			[ 'oversight' ],
 			true,
 			false
 		];
 
 		yield 'field accessible for oversighter' => [
-			RevisionRecord::DELETED_RESTRICTED | $field,
+			RevisionRecordBase::DELETED_RESTRICTED | $field,
 			[ 'oversight' ],
 			true,
 			false
 		];
 
 		yield 'field not accessible for sysops (ALL)' => [
-			RevisionRecord::SUPPRESSED_ALL,
+			RevisionRecordBase::SUPPRESSED_ALL,
 			[ 'sysop' ],
 			false,
 			false
 		];
 
 		yield 'field not accessible for sysops' => [
-			RevisionRecord::DELETED_RESTRICTED | $field,
+			RevisionRecordBase::DELETED_RESTRICTED | $field,
 			[ 'sysop' ],
 			false,
 			false
@@ -342,9 +342,9 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		];
 
 		yield 'unrelated field suppressed' => [
-			$field === RevisionRecord::DELETED_COMMENT
-				? RevisionRecord::DELETED_USER
-				: RevisionRecord::DELETED_COMMENT,
+			$field === RevisionRecordBase::DELETED_COMMENT
+				? RevisionRecordBase::DELETED_USER
+				: RevisionRecordBase::DELETED_COMMENT,
 			[ 'user' ],
 			true,
 			true
@@ -365,7 +365,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetComment_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_COMMENT );
+		return $this->provideAudienceCheckData( RevisionRecordBase::DELETED_COMMENT );
 	}
 
 	private function forceStandardPermissions() {
@@ -403,22 +403,22 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$user = $this->getTestUser( $groups )->getUser();
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
-		$this->assertNotNull( $rev->getComment( RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getComment( RevisionRecordBase::RAW ), 'raw can' );
 
 		$this->assertSame(
 			$publicCan,
-			$rev->getComment( RevisionRecord::FOR_PUBLIC ) !== null,
+			$rev->getComment( RevisionRecordBase::FOR_PUBLIC ) !== null,
 			'public can'
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getComment( RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getComment( RevisionRecordBase::FOR_THIS_USER, $user ) !== null,
 			'user can'
 		);
 	}
 
 	public function provideGetUser_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_USER );
+		return $this->provideAudienceCheckData( RevisionRecordBase::DELETED_USER );
 	}
 
 	/**
@@ -430,22 +430,22 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$user = $this->getTestUser( $groups )->getUser();
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
-		$this->assertNotNull( $rev->getUser( RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getUser( RevisionRecordBase::RAW ), 'raw can' );
 
 		$this->assertSame(
 			$publicCan,
-			$rev->getUser( RevisionRecord::FOR_PUBLIC ) !== null,
+			$rev->getUser( RevisionRecordBase::FOR_PUBLIC ) !== null,
 			'public can'
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getUser( RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getUser( RevisionRecordBase::FOR_THIS_USER, $user ) !== null,
 			'user can'
 		);
 	}
 
 	public function provideGetSlot_audience() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
+		return $this->provideAudienceCheckData( RevisionRecordBase::DELETED_TEXT );
 	}
 
 	/**
@@ -458,16 +458,16 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
 		// NOTE: slot meta-data is never suppressed, just the content is!
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::RAW ), 'raw can' );
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC ), 'public can' );
+		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecordBase::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecordBase::FOR_PUBLIC ), 'public can' );
 
 		$this->assertNotNull(
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user ),
+			$rev->getSlot( 'main', RevisionRecordBase::FOR_THIS_USER, $user ),
 			'user can'
 		);
 
 		try {
-			$rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC )->getContent();
+			$rev->getSlot( 'main', RevisionRecordBase::FOR_PUBLIC )->getContent();
 			$exception = null;
 		} catch ( SuppressedDataException $ex ) {
 			$exception = $ex;
@@ -480,7 +480,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 
 		try {
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user )->getContent();
+			$rev->getSlot( 'main', RevisionRecordBase::FOR_THIS_USER, $user )->getContent();
 			$exception = null;
 		} catch ( SuppressedDataException $ex ) {
 			$exception = $ex;
@@ -494,7 +494,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetSlot_audience_latest() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
+		return $this->provideAudienceCheckData( RevisionRecordBase::DELETED_TEXT );
 	}
 
 	/**
@@ -516,19 +516,19 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$this->assertTrue( $rev->isCurrent(), 'isCurrent()' );
 
 		// NOTE: slot meta-data is never suppressed, just the content is!
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::RAW ), 'raw can' );
-		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC ), 'public can' );
+		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecordBase::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getSlot( 'main', RevisionRecordBase::FOR_PUBLIC ), 'public can' );
 
 		$this->assertNotNull(
-			$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user ),
+			$rev->getSlot( 'main', RevisionRecordBase::FOR_THIS_USER, $user ),
 			'user can'
 		);
 
 		// NOTE: the content of the current revision is never suppressed!
 		// Check that getContent() doesn't throw SuppressedDataException
-		$rev->getSlot( 'main', RevisionRecord::RAW )->getContent();
-		$rev->getSlot( 'main', RevisionRecord::FOR_PUBLIC )->getContent();
-		$rev->getSlot( 'main', RevisionRecord::FOR_THIS_USER, $user )->getContent();
+		$rev->getSlot( 'main', RevisionRecordBase::RAW )->getContent();
+		$rev->getSlot( 'main', RevisionRecordBase::FOR_PUBLIC )->getContent();
+		$rev->getSlot( 'main', RevisionRecordBase::FOR_THIS_USER, $user )->getContent();
 	}
 
 	/**
@@ -540,16 +540,16 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		$user = $this->getTestUser( $groups )->getUser();
 		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
 
-		$this->assertNotNull( $rev->getContent( 'main', RevisionRecord::RAW ), 'raw can' );
+		$this->assertNotNull( $rev->getContent( 'main', RevisionRecordBase::RAW ), 'raw can' );
 
 		$this->assertSame(
 			$publicCan,
-			$rev->getContent( 'main', RevisionRecord::FOR_PUBLIC ) !== null,
+			$rev->getContent( 'main', RevisionRecordBase::FOR_PUBLIC ) !== null,
 			'public can'
 		);
 		$this->assertSame(
 			$userCan,
-			$rev->getContent( 'main', RevisionRecord::FOR_THIS_USER, $user ) !== null,
+			$rev->getContent( 'main', RevisionRecordBase::FOR_THIS_USER, $user ) !== null,
 			'user can'
 		);
 	}
@@ -574,82 +574,82 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		yield [ 0, 0, [], null, true ];
 		// Bitfields match, user has no permissions
 		yield [
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
 			[],
 			null,
 			false
 		];
 		yield [
-			RevisionRecord::DELETED_COMMENT,
-			RevisionRecord::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_COMMENT,
 			[],
 			null,
 			false,
 		];
 		yield [
-			RevisionRecord::DELETED_USER,
-			RevisionRecord::DELETED_USER,
+			RevisionRecordBase::DELETED_USER,
+			RevisionRecordBase::DELETED_USER,
 			[],
 			null,
 			false
 		];
 		yield [
-			RevisionRecord::DELETED_RESTRICTED,
-			RevisionRecord::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
 			[],
 			null,
 			false,
 		];
 		// Bitfields match, user (admin) does have permissions
 		yield [
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
 			[ 'sysop' ],
 			null,
 			true,
 		];
 		yield [
-			RevisionRecord::DELETED_COMMENT,
-			RevisionRecord::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_COMMENT,
 			[ 'sysop' ],
 			null,
 			true,
 		];
 		yield [
-			RevisionRecord::DELETED_USER,
-			RevisionRecord::DELETED_USER,
+			RevisionRecordBase::DELETED_USER,
+			RevisionRecordBase::DELETED_USER,
 			[ 'sysop' ],
 			null,
 			true,
 		];
 		// Bitfields match, user (admin) does not have permissions
 		yield [
-			RevisionRecord::DELETED_RESTRICTED,
-			RevisionRecord::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
 			[ 'sysop' ],
 			null,
 			false,
 		];
 		// Bitfields match, user (oversight) does have permissions
 		yield [
-			RevisionRecord::DELETED_RESTRICTED,
-			RevisionRecord::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
+			RevisionRecordBase::DELETED_RESTRICTED,
 			[ 'oversight' ],
 			null,
 			true,
 		];
 		// Check permissions using the title
 		yield [
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
 			[ 'sysop' ],
 			Title::newFromText( __METHOD__ ),
 			true,
 		];
 		yield [
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
 			[],
 			Title::newFromText( __METHOD__ ),
 			false,
@@ -658,7 +658,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideUserCanBitfield
-	 * @covers \MediaWiki\Storage\RevisionRecord::userCanBitfield
+	 * @covers \MediaWiki\Storage\RevisionRecordBase::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
 		$this->forceStandardPermissions();
@@ -667,7 +667,7 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 		$this->assertSame(
 			$expected,
-			RevisionRecord::userCanBitfield( $bitField, $field, $user, $title )
+			RevisionRecordBase::userCanBitfield( $bitField, $field, $user, $title )
 		);
 	}
 
@@ -679,14 +679,14 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		/**
 		 * @param SlotRecord[] $slots
 		 * @param int $revId
-		 * @return RevisionStoreRecord
+		 * @return RevisionStoreRecordBase
 		 */
 		$recordCreator = function ( array $slots, $revId ) {
 			$title = Title::newFromText( 'provideHasSameContent' );
 			$title->resetArticleID( 19 );
 			$slots = new RevisionSlots( $slots );
 
-			return new RevisionStoreRecord(
+			return new RevisionStoreRecordBase(
 				$title,
 				new UserIdentityValue( 11, __METHOD__ ),
 				CommentStoreComment::newUnsavedComment( __METHOD__ ),
@@ -744,13 +744,13 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideHasSameContent
-	 * @covers \MediaWiki\Storage\RevisionRecord::hasSameContent
+	 * @covers \MediaWiki\Storage\RevisionRecordBase::hasSameContent
 	 * @group Database
 	 */
 	public function testHasSameContent(
 		$expected,
-		RevisionRecord $record1,
-		RevisionRecord $record2
+		RevisionRecordBase $record1,
+		RevisionRecordBase $record2
 	) {
 		$this->assertSame(
 			$expected,
@@ -762,47 +762,47 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		yield 'no deletion' => [
 			0,
 			[
-				RevisionRecord::DELETED_TEXT => false,
-				RevisionRecord::DELETED_COMMENT => false,
-				RevisionRecord::DELETED_USER => false,
-				RevisionRecord::DELETED_RESTRICTED => false,
+				RevisionRecordBase::DELETED_TEXT => false,
+				RevisionRecordBase::DELETED_COMMENT => false,
+				RevisionRecordBase::DELETED_USER => false,
+				RevisionRecordBase::DELETED_RESTRICTED => false,
 			]
 		];
 		yield 'text deleted' => [
-			RevisionRecord::DELETED_TEXT,
+			RevisionRecordBase::DELETED_TEXT,
 			[
-				RevisionRecord::DELETED_TEXT => true,
-				RevisionRecord::DELETED_COMMENT => false,
-				RevisionRecord::DELETED_USER => false,
-				RevisionRecord::DELETED_RESTRICTED => false,
+				RevisionRecordBase::DELETED_TEXT => true,
+				RevisionRecordBase::DELETED_COMMENT => false,
+				RevisionRecordBase::DELETED_USER => false,
+				RevisionRecordBase::DELETED_RESTRICTED => false,
 			]
 		];
 		yield 'text and comment deleted' => [
-			RevisionRecord::DELETED_TEXT + RevisionRecord::DELETED_COMMENT,
+			RevisionRecordBase::DELETED_TEXT + RevisionRecordBase::DELETED_COMMENT,
 			[
-				RevisionRecord::DELETED_TEXT => true,
-				RevisionRecord::DELETED_COMMENT => true,
-				RevisionRecord::DELETED_USER => false,
-				RevisionRecord::DELETED_RESTRICTED => false,
+				RevisionRecordBase::DELETED_TEXT => true,
+				RevisionRecordBase::DELETED_COMMENT => true,
+				RevisionRecordBase::DELETED_USER => false,
+				RevisionRecordBase::DELETED_RESTRICTED => false,
 			]
 		];
 		yield 'all 4 deleted' => [
-			RevisionRecord::DELETED_TEXT +
-			RevisionRecord::DELETED_COMMENT +
-			RevisionRecord::DELETED_RESTRICTED +
-			RevisionRecord::DELETED_USER,
+			RevisionRecordBase::DELETED_TEXT +
+			RevisionRecordBase::DELETED_COMMENT +
+			RevisionRecordBase::DELETED_RESTRICTED +
+			RevisionRecordBase::DELETED_USER,
 			[
-				RevisionRecord::DELETED_TEXT => true,
-				RevisionRecord::DELETED_COMMENT => true,
-				RevisionRecord::DELETED_USER => true,
-				RevisionRecord::DELETED_RESTRICTED => true,
+				RevisionRecordBase::DELETED_TEXT => true,
+				RevisionRecordBase::DELETED_COMMENT => true,
+				RevisionRecordBase::DELETED_USER => true,
+				RevisionRecordBase::DELETED_RESTRICTED => true,
 			]
 		];
 	}
 
 	/**
 	 * @dataProvider provideIsDeleted
-	 * @covers \MediaWiki\Storage\RevisionRecord::isDeleted
+	 * @covers \MediaWiki\Storage\RevisionRecordBase::isDeleted
 	 */
 	public function testIsDeleted( $revDeleted, $assertionMap ) {
 		$rev = $this->newRevision( [ 'rev_deleted' => $revDeleted ] );

@@ -35,7 +35,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.31
  */
-class RevisionStoreRecord extends RevisionRecord {
+class RevisionStoreRecordBase extends RevisionRecordBase {
 
 	/** @var bool */
 	protected $mCurrent = false;

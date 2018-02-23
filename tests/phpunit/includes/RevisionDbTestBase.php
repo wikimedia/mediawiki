@@ -2,7 +2,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\IncompleteRevisionException;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionRecordBase;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
@@ -224,7 +224,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		// getTextId() must be an int!
 		$this->assertInternalType( 'integer', $rev->getTextId() );
 
-		$mainSlot = $rev->getRevisionRecord()->getSlot( 'main', RevisionRecord::RAW );
+		$mainSlot = $rev->getRevisionRecord()->getSlot( 'main', RevisionRecordBase::RAW );
 
 		// we currently only support storage in the text table
 		$textId = MediaWikiServices::getInstance()

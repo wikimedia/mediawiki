@@ -47,7 +47,7 @@ interface RevisionFactory {
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
 	 * @param Title|null $title
 	 *
-	 * @return MutableRevisionRecord
+	 * @return MutableRevisionRecordBase
 	 * @throws MWException
 	 */
 	public function newMutableRevisionFromArray( array $fields, $queryFlags = 0, Title $title = null );
@@ -63,7 +63,7 @@ interface RevisionFactory {
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
 	 * @param Title|null $title
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 */
 	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null );
 
@@ -82,7 +82,7 @@ interface RevisionFactory {
 	 *        Keys in this array correspond to field names in $row without the "ar_" prefix, so
 	 *        $overrides['user'] will override $row->ar_user, etc.
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 */
 	public function newRevisionFromArchiveRow(
 		$row,

@@ -36,29 +36,29 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.31
  */
-class MutableRevisionRecord extends RevisionRecord {
+class MutableRevisionRecordBase extends RevisionRecordBase {
 
 	/**
 	 * Returns an incomplete MutableRevisionRecord which uses $parent as its
 	 * parent revision, and inherits all slots form it. If saved unchanged,
 	 * the new revision will act as a null-revision.
 	 *
-	 * @param RevisionRecord $parent
+	 * @param RevisionRecordBase $parent
 	 * @param CommentStoreComment $comment
 	 * @param UserIdentity $user
 	 * @param string $timestamp
 	 *
-	 * @return MutableRevisionRecord
+	 * @return MutableRevisionRecordBase
 	 */
 	public static function newFromParentRevision(
-		RevisionRecord $parent,
+		RevisionRecordBase $parent,
 		CommentStoreComment $comment,
 		UserIdentity $user,
 		$timestamp
 	) {
 		// TODO: ideally, we wouldn't need a Title here
 		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$rev = new MutableRevisionRecordBase( $title, $parent->getWikiId() );
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );

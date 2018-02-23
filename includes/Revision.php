@@ -20,13 +20,13 @@
  * @file
  */
 
-use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Storage\MutableRevisionRecordBase;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
-use MediaWiki\Storage\RevisionRecord;
+use MediaWiki\Storage\RevisionRecordBase;
 use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreRecord;
+use MediaWiki\Storage\RevisionStoreRecordBase;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentityValue;
@@ -41,21 +41,21 @@ use Wikimedia\Rdbms\FakeResultWrapper;
  */
 class Revision implements IDBAccessObject {
 
-	/** @var RevisionRecord */
+	/** @var RevisionRecordBase */
 	protected $mRecord;
 
 	// Revision deletion constants
-	const DELETED_TEXT = RevisionRecord::DELETED_TEXT;
-	const DELETED_COMMENT = RevisionRecord::DELETED_COMMENT;
-	const DELETED_USER = RevisionRecord::DELETED_USER;
-	const DELETED_RESTRICTED = RevisionRecord::DELETED_RESTRICTED;
-	const SUPPRESSED_USER = RevisionRecord::SUPPRESSED_USER;
-	const SUPPRESSED_ALL = RevisionRecord::SUPPRESSED_ALL;
+	const DELETED_TEXT = RevisionRecordBase::DELETED_TEXT;
+	const DELETED_COMMENT = RevisionRecordBase::DELETED_COMMENT;
+	const DELETED_USER = RevisionRecordBase::DELETED_USER;
+	const DELETED_RESTRICTED = RevisionRecordBase::DELETED_RESTRICTED;
+	const SUPPRESSED_USER = RevisionRecordBase::SUPPRESSED_USER;
+	const SUPPRESSED_ALL = RevisionRecordBase::SUPPRESSED_ALL;
 
 	// Audience options for accessors
-	const FOR_PUBLIC = RevisionRecord::FOR_PUBLIC;
-	const FOR_THIS_USER = RevisionRecord::FOR_THIS_USER;
-	const RAW = RevisionRecord::RAW;
+	const FOR_PUBLIC = RevisionRecordBase::FOR_PUBLIC;
+	const FOR_THIS_USER = RevisionRecordBase::FOR_THIS_USER;
+	const RAW = RevisionRecordBase::RAW;
 
 	const TEXT_CACHE_GROUP = SqlBlobStore::TEXT_CACHE_GROUP;
 
@@ -490,7 +490,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param object|array|RevisionRecord $row Either a database row or an array
+	 * @param object|array|RevisionRecordBase $row Either a database row or an array
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
@@ -499,7 +499,7 @@ class Revision implements IDBAccessObject {
 	function __construct( $row, $queryFlags = 0, Title $title = null ) {
 		global $wgUser;
 
-		if ( $row instanceof RevisionRecord ) {
+		if ( $row instanceof RevisionRecordBase ) {
 			$this->mRecord = $row;
 		} elseif ( is_array( $row ) ) {
 			// If no user is specified, fall back to using the global user object, to stay
@@ -572,7 +572,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 */
 	public function getRevisionRecord() {
 		return $this->mRecord;
@@ -600,7 +600,7 @@ class Revision implements IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function setId( $id ) {
-		if ( $this->mRecord instanceof MutableRevisionRecord ) {
+		if ( $this->mRecord instanceof MutableRevisionRecordBase ) {
 			$this->mRecord->setId( intval( $id ) );
 		} else {
 			throw new MWException( __METHOD__ . ' is not supported on this instance' );
@@ -622,7 +622,7 @@ class Revision implements IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function setUserIdAndName( $id, $name ) {
-		if ( $this->mRecord instanceof MutableRevisionRecord ) {
+		if ( $this->mRecord instanceof MutableRevisionRecordBase ) {
 			$user = new UserIdentityValue( intval( $id ), $name );
 			$this->mRecord->setUser( $user );
 		} else {
@@ -634,7 +634,7 @@ class Revision implements IDBAccessObject {
 	 * @return SlotRecord
 	 */
 	private function getMainSlotRaw() {
-		return $this->mRecord->getSlot( 'main', RevisionRecord::RAW );
+		return $this->mRecord->getSlot( 'main', RevisionRecordBase::RAW );
 	}
 
 	/**
@@ -987,7 +987,7 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isCurrent() {
-		return ( $this->mRecord instanceof RevisionStoreRecord ) && $this->mRecord->isCurrent();
+		return ( $this->mRecord instanceof RevisionStoreRecordBase ) && $this->mRecord->isCurrent();
 	}
 
 	/**
@@ -1086,8 +1086,8 @@ class Revision implements IDBAccessObject {
 		// Note that $this->mRecord->getId() will typically return null here, but not always,
 		// e.g. not when restoring a revision.
 
-		if ( $this->mRecord->getUser( RevisionRecord::RAW ) === null ) {
-			if ( $this->mRecord instanceof MutableRevisionRecord ) {
+		if ( $this->mRecord->getUser( RevisionRecordBase::RAW ) === null ) {
+			if ( $this->mRecord instanceof MutableRevisionRecordBase ) {
 				$this->mRecord->setUser( $wgUser );
 			} else {
 				throw new MWException( 'Cannot insert revision with no associated user.' );
@@ -1185,7 +1185,7 @@ class Revision implements IDBAccessObject {
 			$user = $wgUser;
 		}
 
-		return RevisionRecord::userCanBitfield( $bitfield, $field, $user, $title );
+		return RevisionRecordBase::userCanBitfield( $bitfield, $field, $user, $title );
 	}
 
 	/**

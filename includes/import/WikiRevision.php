@@ -25,6 +25,7 @@
  */
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 
 /**
  * Represents a revision, log entry or upload during the import process.
@@ -34,7 +35,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup SpecialPage
  */
-class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
+class WikiRevision implements ImportableUploadRevision, RevisionRecord {
 
 	/**
 	 * @since 1.17
@@ -383,6 +384,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
+	 * @deprecated in 1.31 use getPageAsLinkTarget
 	 * @return Title
 	 */
 	public function getTitle() {
@@ -407,18 +409,20 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @return string
+	 * @since 1.31 this has returned a User object with a __toString method
+	 * @return User
 	 */
 	public function getUser() {
-		return $this->user_text;
+		return $this->userObj;
 	}
 
 	/**
 	 * @since 1.27
+	 * @deprecated in 1.31 use getUser
 	 * @return User
 	 */
 	public function getUserObj() {
-		return $this->userObj;
+		return $this->getUser();
 	}
 
 	/**
@@ -456,6 +460,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.21
+	 * @deprecated in 1.31 use getContent()->getModel()
 	 * @return string
 	 */
 	public function getModel() {
@@ -468,6 +473,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.21
+	 * @deprecated in 1.31 use getContent()->getFormat()
 	 * @return string
 	 */
 	public function getFormat() {
@@ -488,6 +494,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.5.7
+	 * @deprecated in 1.31 use isMinor
 	 * @return bool
 	 */
 	public function getMinor() {
@@ -609,13 +616,13 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function importLogItem() {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$user = $this->getUserObj() ?: User::newFromName( $this->getUser() );
+		$user = $this->getUserObj() ?: User::newFromName( (string)$this->getUser() );
 		if ( $user ) {
 			$userId = intval( $user->getId() );
 			$userText = $user->getName();
 		} else {
 			$userId = 0;
-			$userText = $this->getUser();
+			$userText = (string)$this->getUser();
 		}
 
 		# @todo FIXME: This will not record autoblocks
@@ -682,4 +689,19 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		return $importer->downloadSource( $this );
 	}
 
+	/**
+	 * @since 1.31
+	 * @return Title
+	 */
+	public function getPageAsLinkTarget() {
+		return $this->getTitle();
+	}
+
+	/**
+	 * @since 1.31
+	 * @return bool
+	 */
+	public function isMinor() {
+		return $this->getMinor();
+	}
 }

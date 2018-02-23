@@ -310,13 +310,13 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::insertOn
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param IDatabase $dbw (master connection)
 	 *
 	 * @throws InvalidArgumentException
-	 * @return RevisionRecord the new revision record.
+	 * @return RevisionRecordBase the new revision record.
 	 */
-	public function insertRevisionOn( RevisionRecord $rev, IDatabase $dbw ) {
+	public function insertRevisionOn( RevisionRecordBase $rev, IDatabase $dbw ) {
 		// TODO: pass in a DBTransactionContext instead of a database connection.
 		$this->checkDatabaseWikiId( $dbw );
 
@@ -337,7 +337,7 @@ class RevisionStore
 			: $rev->getParentId();
 
 		// Record the text (or external storage URL) to the blob store
-		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
+		$slot = $rev->getSlot( 'main', RevisionRecordBase::RAW );
 
 		$size = $this->failOnNull( $rev->getSize(), 'size field' );
 		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
@@ -384,8 +384,8 @@ class RevisionStore
 		// may be a new value, not anything already contained in $blobAddress.
 		$blobAddress = 'tt:' . $textId;
 
-		$comment = $this->failOnNull( $rev->getComment( RevisionRecord::RAW ), 'comment' );
-		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
+		$comment = $this->failOnNull( $rev->getComment( RevisionRecordBase::RAW ), 'comment' );
+		$user = $this->failOnNull( $rev->getUser( RevisionRecordBase::RAW ), 'user' );
 		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
 
 		# Record the edit in revisions
@@ -444,7 +444,7 @@ class RevisionStore
 
 		$user = new UserIdentityValue( intval( $row['rev_user'] ), $row['rev_user_text'] );
 
-		$rev = new RevisionStoreRecord(
+		$rev = new RevisionStoreRecordBase(
 			$title,
 			$user,
 			$comment,
@@ -453,17 +453,17 @@ class RevisionStore
 			$this->wikiId
 		);
 
-		$newSlot = $rev->getSlot( 'main', RevisionRecord::RAW );
+		$newSlot = $rev->getSlot( 'main', RevisionRecordBase::RAW );
 
 		// sanity checks
 		Assert::postcondition( $rev->getId() > 0, 'revision must have an ID' );
 		Assert::postcondition( $rev->getPageId() > 0, 'revision must have a page ID' );
 		Assert::postcondition(
-			$rev->getComment( RevisionRecord::RAW ) !== null,
+			$rev->getComment( RevisionRecordBase::RAW ) !== null,
 			'revision must have a comment'
 		);
 		Assert::postcondition(
-			$rev->getUser( RevisionRecord::RAW ) !== null,
+			$rev->getUser( RevisionRecordBase::RAW ) !== null,
 			'revision must have a user'
 		);
 
@@ -548,7 +548,7 @@ class RevisionStore
 	 * @param CommentStoreComment $comment RevisionRecord's summary
 	 * @param bool $minor Whether the revision should be considered as minor
 	 * @param User $user The user to attribute the revision to
-	 * @return RevisionRecord|null RevisionRecord or null on error
+	 * @return RevisionRecordBase|null RevisionRecord or null on error
 	 */
 	public function newNullRevision(
 		IDatabase $dbw,
@@ -599,7 +599,7 @@ class RevisionStore
 			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, 0, $title );
-			$revision = new MutableRevisionRecord( $title, $this->wikiId );
+			$revision = new MutableRevisionRecordBase( $title, $this->wikiId );
 			$this->initializeMutableRevisionFromArray( $revision, $fields );
 			$revision->setSlot( $mainSlot );
 		} else {
@@ -614,11 +614,11 @@ class RevisionStore
 	 *
 	 * @todo This is overly specific, so move or kill this method.
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 *
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
-	public function getRcIdIfUnpatrolled( RevisionRecord $rev ) {
+	public function getRcIdIfUnpatrolled( RevisionRecordBase $rev ) {
 		$rc = $this->getRecentChange( $rev );
 		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == 0 ) {
 			return $rc->getAttribute( 'rc_id' );
@@ -634,18 +634,18 @@ class RevisionStore
 	 *
 	 * @todo move this somewhere else?
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param int $flags (optional) $flags include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 *
 	 * @return null|RecentChange
 	 */
-	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
+	public function getRecentChange( RevisionRecordBase $rev, $flags = 0 ) {
 		$dbr = $this->getDBConnection( DB_REPLICA );
 
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 
-		$userIdentity = $rev->getUser( RevisionRecord::RAW );
+		$userIdentity = $rev->getUser( RevisionRecordBase::RAW );
 
 		if ( !$userIdentity ) {
 			// If the revision has no user identity, chances are it never went
@@ -913,7 +913,7 @@ class RevisionStore
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionById( $id, $flags = 0 ) {
 		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags );
@@ -933,7 +933,7 @@ class RevisionStore
 	 * @param LinkTarget $linkTarget
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
 		$conds = [
@@ -978,7 +978,7 @@ class RevisionStore
 	 * @param int $pageId
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionByPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$conds = [ 'page_id' => $pageId ];
@@ -1015,7 +1015,7 @@ class RevisionStore
 	 *
 	 * @param Title $title
 	 * @param string $timestamp
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function getRevisionByTimestamp( $title, $timestamp ) {
 		return $this->newRevisionFromConds(
@@ -1043,7 +1043,7 @@ class RevisionStore
 	 *   names from the archive table without the 'ar_' prefix, i.e. use 'parent_id' to
 	 *   override ar_parent_id.
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 * @throws MWException
 	 */
 	public function newRevisionFromArchiveRow(
@@ -1089,7 +1089,7 @@ class RevisionStore
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
 		$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
 
-		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
+		return new RevisionArchiveRecordBase( $title, $user, $comment, $row, $slots, $this->wikiId );
 	}
 
 	/**
@@ -1129,7 +1129,7 @@ class RevisionStore
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 * @throws MWException
 	 * @throws RevisionAccessException
 	 */
@@ -1159,7 +1159,7 @@ class RevisionStore
 		$mainSlot = $this->emulateMainSlot_1_29( $row, $queryFlags, $title );
 		$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
 
-		return new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
+		return new RevisionStoreRecordBase( $title, $user, $comment, $row, $slots, $this->wikiId );
 	}
 
 	/**
@@ -1171,7 +1171,7 @@ class RevisionStore
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
-	 * @return RevisionRecord
+	 * @return RevisionRecordBase
 	 */
 	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null ) {
 		return $this->newRevisionFromRow_1_29( $row, $queryFlags, $title );
@@ -1187,7 +1187,7 @@ class RevisionStore
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
-	 * @return MutableRevisionRecord
+	 * @return MutableRevisionRecordBase
 	 * @throws MWException
 	 * @throws RevisionAccessException
 	 */
@@ -1272,7 +1272,7 @@ class RevisionStore
 
 		$mainSlot = $this->emulateMainSlot_1_29( $fields, $queryFlags, $title );
 
-		$revision = new MutableRevisionRecord( $title, $this->wikiId );
+		$revision = new MutableRevisionRecordBase( $title, $this->wikiId );
 		$this->initializeMutableRevisionFromArray( $revision, $fields );
 		$revision->setSlot( $mainSlot );
 
@@ -1280,11 +1280,11 @@ class RevisionStore
 	}
 
 	/**
-	 * @param MutableRevisionRecord $record
+	 * @param MutableRevisionRecordBase $record
 	 * @param array $fields
 	 */
 	private function initializeMutableRevisionFromArray(
-		MutableRevisionRecord $record,
+		MutableRevisionRecordBase $record,
 		array $fields
 	) {
 		/** @var UserIdentity $user */
@@ -1362,7 +1362,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param int $id
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function loadRevisionFromId( IDatabase $db, $id ) {
 		return $this->loadRevisionFromConds( $db, [ 'rev_id' => intval( $id ) ] );
@@ -1381,7 +1381,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param int $pageid
 	 * @param int $id
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function loadRevisionFromPageId( IDatabase $db, $pageid, $id = 0 ) {
 		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
@@ -1407,7 +1407,7 @@ class RevisionStore
 	 * @param Title $title
 	 * @param int $id
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function loadRevisionFromTitle( IDatabase $db, $title, $id = 0 ) {
 		if ( $id ) {
@@ -1441,7 +1441,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param Title $title
 	 * @param string $timestamp
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	public function loadRevisionFromTimestamp( IDatabase $db, $title, $timestamp ) {
 		return $this->loadRevisionFromConds( $db,
@@ -1468,7 +1468,7 @@ class RevisionStore
 	 * @param int $flags (optional)
 	 * @param Title $title
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	private function newRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
 		$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
@@ -1504,7 +1504,7 @@ class RevisionStore
 	 * @param int $flags (optional)
 	 * @param Title $title
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
 	private function loadRevisionFromConds(
 		IDatabase $db,
@@ -1767,12 +1767,12 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param Title $title if known (optional)
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+	public function getPreviousRevision( RevisionRecordBase $rev, Title $title = null ) {
 		if ( $title === null ) {
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
@@ -1788,12 +1788,12 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::getNext
 	 *
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 * @param Title $title if known (optional)
 	 *
-	 * @return RevisionRecord|null
+	 * @return RevisionRecordBase|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
+	public function getNextRevision( RevisionRecordBase $rev, Title $title = null ) {
 		if ( $title === null ) {
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
@@ -1811,11 +1811,11 @@ class RevisionStore
 	 * MCR migration note: this corresponds to Revision::getPreviousRevisionId
 	 *
 	 * @param IDatabase $db
-	 * @param RevisionRecord $rev
+	 * @param RevisionRecordBase $rev
 	 *
 	 * @return int
 	 */
-	private function getPreviousRevisionId( IDatabase $db, RevisionRecord $rev ) {
+	private function getPreviousRevisionId( IDatabase $db, RevisionRecordBase $rev ) {
 		$this->checkDatabaseWikiId( $db );
 
 		if ( $rev->getPageId() === null ) {
@@ -1956,7 +1956,7 @@ class RevisionStore
 	 * @param Title $title the associated page title
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
 	 *
-	 * @return RevisionRecord|bool Returns false if missing
+	 * @return RevisionRecordBase|bool Returns false if missing
 	 */
 	public function getKnownCurrentRevision( Title $title, $revId ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
