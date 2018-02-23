@@ -64,11 +64,14 @@
 		//   will abandon `word-wrap` (it has wider support), therefore no duplication.
 		word-wrap: break-word;
 	}
+	& when ( @value = none ) {
+		word-wrap: normal;
+	}
 
 	// CSS3 hyphenation
 	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.3+
 	-moz-hyphens: @value;    // Firefox 6-42
-	-ms-hyphens: @value;     // IE 10-11/Edge 12+
+	-ms-hyphens: @value;     // IE 10-11, Edge 12+
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
 }
 
