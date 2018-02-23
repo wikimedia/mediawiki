@@ -177,5 +177,14 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command->input( '' );
 		$result = $command->execute();
 		$this->assertSame( '', $result->getStdout() );
+
+		// Should not hang beyound timeout if the command expects input but none is provided
+		$time = microtime( true );
+		$command = new Command();
+		$command->limits( [ 'time' => 1 ] );
+		$command->params( 'read' );
+		$result = $command->execute();
+		$this->assertSame( 124, $result->getExitCode() );
+		$this->assertLessThan( 2, microtime( true ) - $time );
 	}
 }
