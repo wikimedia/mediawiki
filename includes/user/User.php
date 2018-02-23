@@ -558,7 +558,7 @@ class User implements IDBAccessObject, UserIdentity {
 		return true;
 	}
 
-	/** @name newFrom*() static factory methods */
+	/** @name User::newFrom*() static factory methods */
 	// @{
 
 	/**
@@ -836,7 +836,9 @@ class User implements IDBAccessObject, UserIdentity {
 			$user->invalidateEmail();
 			$user->mToken = self::INVALID_TOKEN;
 			$user->saveSettings();
-			SessionManager::singleton()->preventSessionsForUser( $user->getName() );
+			/** @var $sessionManager SessionManager */
+			$sessionManager = SessionManager::singleton();
+			$sessionManager->preventSessionsForUser( $user->getName() );
 		}
 
 		return $user;
@@ -1623,11 +1625,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 * protected against race conditions using a compare-and-set (CAS) mechanism
 	 * based on comparing $this->mTouched with the user_touched field.
 	 *
-	 * @param Database $db
+	 * @param IDatabase $db
 	 * @param array $conditions WHERE conditions for use with Database::update
 	 * @return array WHERE conditions for use with Database::update
 	 */
-	protected function makeUpdateConditions( Database $db, array $conditions ) {
+	protected function makeUpdateConditions( IDatabase $db, array $conditions ) {
 		if ( $this->mTouched ) {
 			// CAS check: only update if the row wasn't changed sicne it was loaded.
 			$conditions['user_touched'] = $db->timestamp( $this->mTouched );
@@ -1991,7 +1993,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 
-		if ( !is_array( $wgProxyList ) ) {
+		if ( is_string( $wgProxyList ) ) {
 			// Load values from the specified file
 			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
 		}
@@ -4227,20 +4229,22 @@ class User implements IDBAccessObject, UserIdentity {
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $newTouched ) {
+		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
 			$dbw->update( 'user',
-				[ /* SET */
+				[
 					'user_name' => $this->mName,
 					'user_real_name' => $this->mRealName,
 					'user_email' => $this->mEmail,
-					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+					'user_email_authenticated' =>
+						$dbw->timestampOrNull( $this->mEmailAuthenticated ),
 					'user_touched' => $dbw->timestamp( $newTouched ),
 					'user_token' => strval( $this->mToken ),
 					'user_email_token' => $this->mEmailToken,
-					'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-				], $this->makeUpdateConditions( $dbw, [ /* WHERE */
-					'user_id' => $this->mId,
-				] ), $fname
+					'user_email_token_expires' =>
+						$dbw->timestampOrNull( $this->mEmailTokenExpires ),
+				],
+				$this->makeUpdateConditions( $dbw, [ 'user_id' => $this->mId ] ),
+				$fname
 			);
 
 			if ( !$dbw->affectedRows() ) {
@@ -4346,20 +4350,24 @@ class User implements IDBAccessObject, UserIdentity {
 			$fields["user_$name"] = $value;
 		}
 
-		return $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $fields ) {
-			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
-			if ( $dbw->affectedRows() ) {
-				$newUser = self::newFromId( $dbw->insertId() );
-				// Load the user from master to avoid replica lag
-				$newUser->load( self::READ_LATEST );
-				$newUser->mName = $fields['user_name'];
-				$newUser->setItemLoaded( 'name' );
-				$newUser->updateActorId( $dbw );
-			} else {
-				$newUser = null;
+		return $dbw->doAtomicSection(
+			__METHOD__,
+			function ( IDatabase $dbw, $fname ) use ( $fields ) {
+				$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
+				if ( $dbw->affectedRows() ) {
+					$newUser = self::newFromId( $dbw->insertId() );
+					// Load the user from master to avoid replica lag
+					$newUser->load( self::READ_LATEST );
+					$newUser->mName = $fields['user_name'];
+					$newUser->setItemLoaded( 'name' );
+					$newUser->updateActorId( $dbw );
+				} else {
+					$newUser = null;
+				}
+
+				return $newUser;
 			}
-			return $newUser;
-		} );
+		);
 	}
 
 	/**
@@ -4401,7 +4409,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$status = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) {
+		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->insert( 'user',
 				[
@@ -4409,7 +4417,8 @@ class User implements IDBAccessObject, UserIdentity {
 					'user_password' => $noPass,
 					'user_newpassword' => $noPass,
 					'user_email' => $this->mEmail,
-					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+					'user_email_authenticated' =>
+						$dbw->timestampOrNull( $this->mEmailAuthenticated ),
 					'user_real_name' => $this->mRealName,
 					'user_token' => strval( $this->mToken ),
 					'user_registration' => $dbw->timestamp( $this->mRegistration ),
