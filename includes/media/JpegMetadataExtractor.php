@@ -158,6 +158,8 @@ class JpegMetadataExtractor {
 				if ( $size['int'] < 2 ) {
 					throw new MWException( "invalid marker size in jpeg" );
 				}
+				// Note it's possible to seek beyond end of file if truncated.
+				// fseek doesn't report a failure in this case.
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
 			}
 		}
