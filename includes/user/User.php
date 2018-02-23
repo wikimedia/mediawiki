@@ -399,6 +399,12 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 				break;
 			case 'id':
+				// Make sure this thread sees its own changes
+				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+					$flags |= self::READ_LATEST;
+					$this->queryFlagsUsed = $flags;
+				}
+
 				$this->loadFromId( $flags );
 				break;
 			case 'session':
