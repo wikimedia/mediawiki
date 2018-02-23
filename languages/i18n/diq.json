@@ -722,7 +722,7 @@
 	"undo-summary": "Vırnayışê $1'i [[Special:Contributions/$2|$2i]] ([[User talk:$2|Werênayış]]) peyser gırewt",
 	"undo-summary-username-hidden": "Rewizyona veri $1'i hewada",
 	"cantcreateaccount-text": "Hesabvıraştışê na IP adrese ('''$1''') terefê [[User:$3|$3]] kılit biyo.\n\nSebebo ke terefê $3 ra diyao ''$2''",
-	"viewpagelogs": "Qeydanê na perrer bımotne",
+	"viewpagelogs": "Qeydanê na pele bımocne",
 	"nohistory": "Verorê vurnayışanê na perer çıni yo.",
 	"currentrev": "Çımraviyarnayışo rocane",
 	"currentrev-asof": "$1 ra tepeya çım ra viyarnayışê cı'yo peyên",

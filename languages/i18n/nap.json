@@ -3315,7 +3315,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> nun esiste.",
 	"htmlform-user-not-valid": "<strong>$1</strong> nun è nu nomme buono.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|scancellaje}} 'a paggena $3",
-	"logentry-delete-restore": "$1 {{GENDER:$2|arrepigliaje}} 'a paggena $3",
+	"logentry-delete-restore": "$1 {{GENDER:$2|arrepigliaje}} 'a paggena $3 ($4)",
 	"logentry-delete-event": "$1 {{GENDER:$2|cagnaie}} 'a vesibbiletà 'e {{PLURAL:$5|n'azione d' 'o riggistro|$5 aziune d' 'o riggistro}} ncopp' 'a 'a $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|cagnaie}} 'a vesibbiletà 'e {{PLURAL:$5|na verziona|$5 verziune}} ncopp' 'a 'a $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|cagnaie}} 'a vesibbiletà 'e l'aziune dint' 'o riggistro ncopp' 'a $3: $4",
