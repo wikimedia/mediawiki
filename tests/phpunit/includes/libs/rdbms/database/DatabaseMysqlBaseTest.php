@@ -495,4 +495,19 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->clearFlag( Database::DBO_IGNORE );
 	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\MySQLMasterPos
+	 */
+	public function testSerialize() {
+		$pos = new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', 53636363 );
+		$roundtripPos = unserialize( serialize( $pos ) );
+
+		$this->assertEquals( $pos, $roundtripPos );
+
+		$pos = new MySQLMasterPos( '255-11-23', 53636363 );
+		$roundtripPos = unserialize( serialize( $pos ) );
+
+		$this->assertEquals( $pos, $roundtripPos );
+	}
 }
