@@ -158,8 +158,15 @@
 							.text( mw.msg( this.getMsgKeyForNoResults( noResultsDetails ) ) )
 					);
 
-				this.$element.removeClass( 'mw-changeslist-timeout' );
-				this.$element.removeClass( 'mw-changeslist-notargetpage' );
+				// remove all classes matching mw-changeslist-*
+				this.$element.removeClass( function ( elementIndex, allClasses ) {
+					return allClasses
+						.split( ' ' )
+						.filter( function ( className ) {
+							return className.indexOf( 'mw-changeslist-' ) === 0;
+						} )
+						.join( ' ' );
+				} );
 			}
 
 			this.$element.append( $message );
@@ -212,7 +219,8 @@
 			NO_RESULTS_NORMAL: 'recentchanges-noresult',
 			NO_RESULTS_TIMEOUT: 'recentchanges-timeout',
 			NO_RESULTS_NETWORK_ERROR: 'recentchanges-network',
-			NO_RESULTS_NO_TARGET_PAGE: 'recentchanges-notargetpage'
+			NO_RESULTS_NO_TARGET_PAGE: 'recentchanges-notargetpage',
+			NO_RESULTS_INVALID_TARGET_PAGE: 'allpagesbadtitle'
 		};
 		return reasonMsgKeyMap[ reason ];
 	};

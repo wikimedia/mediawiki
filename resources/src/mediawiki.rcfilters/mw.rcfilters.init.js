@@ -78,12 +78,7 @@
 				{
 					$topSection: $topSection,
 					$filtersContainer: $( '.rcfilters-container' ),
-					$changesListContainer: $( [
-						'.mw-changeslist',
-						'.mw-changeslist-empty',
-						'.mw-changeslist-timeout',
-						'.mw-changeslist-notargetpage'
-					].join( ', ' ) ),
+					$changesListContainer: $( '.mw-changeslist, .mw-changeslist-empty' ),
 					$formContainer: $initialFieldset
 				}
 			);
