@@ -158,7 +158,9 @@ class JpegMetadataExtractor {
 				if ( $size['int'] < 2 ) {
 					throw new MWException( "invalid marker size in jpeg" );
 				}
-				fseek( $fh, $size['int'] - 2, SEEK_CUR );
+				if ( fseek( $fh, $size['int'] - 2, SEEK_CUR ) === -1 ) {
+					throw new MWException( "failed skipping over marker in jpeg" );
+				}
 			}
 		}
 		// shouldn't get here.
