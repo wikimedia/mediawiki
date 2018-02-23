@@ -75,7 +75,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	public function __construct( BagOStuff $store, array $client, $posIndex = null ) {
 		$this->store = $store;
 		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v1' );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
 		$this->waitForPosIndex = $posIndex;
 		$this->logger = new NullLogger();
 	}

@@ -495,4 +495,25 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->clearFlag( Database::DBO_IGNORE );
 	}
+
+	public function testSerialize() {
+		$pos = new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', 53636363 );
+		$roundtripPos = unserialize( serialize( $pos ) );
+
+		$this->assertEquals( $pos, $roundtripPos );
+
+		$pos = new MySQLMasterPos( '255-11-23', 53636363 );
+		$roundtripPos = unserialize( serialize( $pos ) );
+
+		$this->assertEquals( $pos, $roundtripPos );
+
+		$legacyString = 'O:30:"Wikimedia\Rdbms\MySQLMasterPos":4:' .
+			'{s:6:"binlog";s:10:"db1010-bin";s:3:"pos";a:2:{i:0;i:2525;i:1;i:6930295;}' .
+			's:5:"gtids";a:0:{}s:8:"asOfTime";d:1519355146.025706;}';
+		\MediaWiki\suppressWarnings();
+		$pos = unserialize( $legacyString );
+		\MediaWiki\restoreWarnings();
+		// Make sure the operation fails rather than half-working
+		$this->assertEquals( null, $pos );
+	}
 }
