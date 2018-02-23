@@ -2191,6 +2191,38 @@ function wfRecursiveRemoveDir( $dir ) {
 }
 
 /**
+ * Recursively traversing a directory.
+ * Returns the absolute path of all files in this directory.
+ * @param string $dir A path of the directory
+ * @return array|false Returns an array if traverse success, false otherwise
+ * @since 1.31
+ */
+function wfListDir( $dir ) {
+	if ( !is_dir( $dir ) ) {
+		return $dir;
+	}
+	$dirResource = opendir( $dir );
+	if ( !$dirResource ) {
+		return false;
+	}
+	$returnValue = array();
+	while ( false !== ( $filename = readdir( $dirResource ) ) ) {
+		if ( $filename != '.' && $filename != '..' ) {
+			$filePath = realpath( $dir . '/' . $filename );
+			if ( is_file( $filePath ) ) {
+				$returnValue[$filename] = realpath( $filePath );
+			}
+			if ( is_dir( $filePath ) ){
+				$returnValue[$filename] = call_user_func( __FUNCTION__, $filePath );
+			}
+		}
+	}
+	closedir( $dirResource );
+	return $returnValue;
+}
+
+
+/**
  * @param int $nr The number to format
  * @param int $acc The number of digits after the decimal point, default 2
  * @param bool $round Whether or not to round the value, default true
