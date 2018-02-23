@@ -3,6 +3,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 /**
  * DBMasterPos class for MySQL/MariaDB
@@ -34,7 +35,7 @@ class MySQLMasterPos implements DBMasterPos {
 		} else {
 			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
 			foreach ( $gtids as $gtid ) {
-				if ( !$this->parseGTID( $gtid ) ) {
+				if ( !self::parseGTID( $gtid ) ) {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
 				$this->gtids[] = $gtid;
@@ -191,5 +192,21 @@ class MySQLMasterPos implements DBMasterPos {
 		return ( $this->binlog !== null && $this->pos !== null )
 			? [ 'binlog' => $this->binlog, 'pos' => $this->pos ]
 			: false;
+	}
+
+	public function serialize() {
+		return serialize( [ 'position' => $this->__toString(), 'asOfTime' => $this->asOfTime ] );
+	}
+
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		if ( !is_array( $data ) ) {
+			throw new UnexpectedValueException( __METHOD__ . ": cannot unserialize position" );
+		}
+
+		$reference = new self( $data['position'], $data['asOfTime'] );
+		foreach ( get_object_vars( $reference ) as $name => $value ) {
+			$this->$name = $value;
+		}
 	}
 }
