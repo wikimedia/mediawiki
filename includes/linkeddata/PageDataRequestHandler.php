@@ -132,10 +132,10 @@ class PageDataRequestHandler {
 		$contentHandler = ContentHandler::getForTitle( $title );
 		$mimeTypes = $contentHandler->getSupportedFormats();
 
-		$headers = $request->getAllHeaders();
-		if ( isset( $headers['ACCEPT'] ) ) {
+		$acceptHeader = $request->getHeader( 'Accept' );
+		if ( $acceptHeader !== false ) {
 			$parser = new HttpAcceptParser();
-			$accept = $parser->parseWeights( $headers['ACCEPT'] );
+			$accept = $parser->parseWeights( $acceptHeader );
 		} else {
 			// anything goes
 			$accept = [
