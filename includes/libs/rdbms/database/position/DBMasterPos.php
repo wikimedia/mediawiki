@@ -2,12 +2,14 @@
 
 namespace Wikimedia\Rdbms;
 
+use Serializable;
+
 /**
  * An object representing a master or replica DB position in a replicated setup.
  *
  * The implementation details of this opaque type are up to the database subclass.
  */
-interface DBMasterPos {
+interface DBMasterPos extends Serializable {
 	/**
 	 * @return float UNIX timestamp
 	 * @since 1.25
