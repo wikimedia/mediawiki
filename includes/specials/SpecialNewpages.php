@@ -299,6 +299,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			'deleted' => $result->rc_deleted,
 			'user_text' => $result->rc_user_text,
 			'user' => $result->rc_user,
+			'actor' => $result->rc_actor,
 		], 0, $title );
 	}
 

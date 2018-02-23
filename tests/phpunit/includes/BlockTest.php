@@ -35,6 +35,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$blockOptions = [
 			'address' => $user->getName(),
 			'user' => $user->getId(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => 'Parce que',
 			'expiry' => time() + 100500,
 		];
@@ -393,7 +394,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$block = new Block(
 			/* address */ $username,
 			/* user */ 0,
-			/* by */ 0,
+			/* by */ $this->getTestSysop()->getUser()->getId(),
 			/* reason */ $reason,
 			/* timestamp */ 0,
 			/* auto */ false,

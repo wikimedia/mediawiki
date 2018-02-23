@@ -31,13 +31,14 @@ class ApiQueryContributions extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
-	private $params, $prefixMode, $userprefix, $multiUserMode, $idMode, $usernames, $userids,
-		$parentLens, $commentStore;
+	private $params, $multiUserMode, $orderBy, $parentLens;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
 
 	public function execute() {
+		global $wgActorTableSchemaMigrationStage;
+
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
@@ -63,36 +64,173 @@ class ApiQueryContributions extends ApiQueryBase {
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB( 'contributions', DB_REPLICA, 'contributions' );
 
+		$sort = ( $this->params['dir'] == 'newer' ? '' : ' DESC' );
+		$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
+
+		// Create an Iterator that produces the UserIdentity objects we need, depending
+		// on which of the 'userprefix', 'userids', or 'user' params was
+		// specified.
 		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'user' );
-
-		$this->idMode = false;
 		if ( isset( $this->params['userprefix'] ) ) {
-			$this->prefixMode = true;
 			$this->multiUserMode = true;
-			$this->userprefix = $this->params['userprefix'];
-		} elseif ( isset( $this->params['userids'] ) ) {
-			$this->userids = [];
+			$this->orderBy = 'name';
+			$fname = __METHOD__;
 
+			// Because 'userprefix' might produce a huge number of users (e.g.
+			// a wiki with users "Test00000001" to "Test99999999"), use a
+			// generator with batched lookup and continuation.
+			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname ) {
+				global $wgActorTableSchemaMigrationStage;
+
+				$from = $fromName = false;
+				if ( !is_null( $this->params['continue'] ) ) {
+					$continue = explode( '|', $this->params['continue'] );
+					$this->dieContinueUsageIf( count( $continue ) != 4 );
+					$this->dieContinueUsageIf( $continue[0] !== 'name' );
+					$fromName = $continue[1];
+					$from = "$op= " . $dbSecondary->addQuotes( $fromName );
+				}
+				$like = $dbSecondary->buildLike( $this->params['userprefix'], $dbSecondary->anyString() );
+
+				$limit = 501;
+
+				do {
+					// For the new schema, pull from the actor table. For the
+					// old, pull from rev_user. For migration a FULL [OUTER]
+					// JOIN would be what we want, except MySQL doesn't support
+					// that so we have to UNION instead.
+					if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+						$res = $dbSecondary->select(
+							'actor',
+							[ 'actor_id', 'user_id' => 'COALESCE(actor_user,0)', 'user_name' => 'actor_name' ],
+							array_merge( [ "actor_name$like" ], $from ? [ "actor_name $from" ] : [] ),
+							$fname,
+							[ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ]
+						);
+					} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+						$res = $dbSecondary->select(
+							'revision',
+							[ 'actor_id' => 'NULL', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
+							array_merge( [ "rev_user_text$like" ], $from ? [ "rev_user_text $from" ] : [] ),
+							$fname,
+							[ 'DISTINCT', 'ORDER BY' => [ "rev_user_text $sort" ], 'LIMIT' => $limit ]
+						);
+					} else {
+						// There are three queries we have to combine to be sure of getting all results:
+						//  - actor table (any rows that have been migrated will have empty rev_user_text)
+						//  - revision+actor by user id
+						//  - revision+actor by name for anons
+						$options = $dbSecondary->unionSupportsOrderAndLimit()
+							? [ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ] : [];
+						$subsql = [];
+						$subsql[] = $dbSecondary->selectSQLText(
+							'actor',
+							[ 'actor_id', 'user_id' => 'COALESCE(actor_user,0)', 'user_name' => 'actor_name' ],
+							array_merge( [ "actor_name$like" ], $from ? [ "actor_name $from" ] : [] ),
+							$fname,
+							$options
+						);
+						$subsql[] = $dbSecondary->selectSQLText(
+							[ 'revision', 'actor' ],
+							[ 'actor_id', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
+							array_merge(
+								[ "rev_user_text$like", 'rev_user != 0' ],
+								$from ? [ "rev_user_text $from" ] : []
+							),
+							$fname,
+							array_merge( [ 'DISTINCT' ], $options ),
+							[ 'actor' => [ 'LEFT JOIN', 'rev_user = actor_user' ] ]
+						);
+						$subsql[] = $dbSecondary->selectSQLText(
+							[ 'revision', 'actor' ],
+							[ 'actor_id', 'user_id' => 'rev_user', 'user_name' => 'rev_user_text' ],
+							array_merge(
+								[ "rev_user_text$like", 'rev_user = 0' ],
+								$from ? [ "rev_user_text $from" ] : []
+							),
+							$fname,
+							array_merge( [ 'DISTINCT' ], $options ),
+							[ 'actor' => [ 'LEFT JOIN', 'rev_user_text = actor_name' ] ]
+						);
+						$sql = $dbSecondary->unionQueries( $subsql, false ) . " ORDER BY user_name $sort";
+						$sql = $dbSecondary->limitResult( $sql, $limit );
+						$res = $dbSecondary->query( $sql, $fname );
+					}
+
+					$count = 0;
+					$from = null;
+					foreach ( $res as $row ) {
+						if ( ++$count >= $limit ) {
+							$from = $row->user_name;
+							break;
+						}
+						yield User::newFromRow( $row );
+					}
+				} while ( $from !== null );
+			} );
+			// Do the actual sorting client-side, because otherwise
+			// prepareQuery might try to sort by actor and confuse everything.
+			$batchSize = 1;
+		} elseif ( isset( $this->params['userids'] ) ) {
 			if ( !count( $this->params['userids'] ) ) {
 				$encParamName = $this->encodeParamName( 'userids' );
 				$this->dieWithError( [ 'apierror-paramempty', $encParamName ], "paramempty_$encParamName" );
 			}
 
+			$ids = [];
 			foreach ( $this->params['userids'] as $uid ) {
 				if ( $uid <= 0 ) {
 					$this->dieWithError( [ 'apierror-invaliduserid', $uid ], 'invaliduserid' );
 				}
-
-				$this->userids[] = $uid;
+				$ids[] = $uid;
 			}
 
-			$this->prefixMode = false;
-			$this->multiUserMode = ( count( $this->params['userids'] ) > 1 );
-			$this->idMode = true;
+			$this->orderBy = 'id';
+			$this->multiUserMode = count( $ids ) > 1;
+
+			$from = $fromId = false;
+			if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+				$continue = explode( '|', $this->params['continue'] );
+				$this->dieContinueUsageIf( count( $continue ) != 4 );
+				$this->dieContinueUsageIf( $continue[0] !== 'id' && $continue[0] !== 'actor' );
+				$fromId = (int)$continue[1];
+				$this->dieContinueUsageIf( $continue[1] !== (string)$fromId );
+				$from = "$op= $fromId";
+			}
+
+			// For the new schema, just select from the actor table. For the
+			// old and transitional schemas, select from user and left join
+			// actor if it exists.
+			if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+				$res = $dbSecondary->select(
+					'actor',
+					[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
+					array_merge( [ 'actor_user' => $ids ], $from ? [ "actor_id $from" ] : [] ),
+					__METHOD__,
+					[ 'ORDER BY' => "user_id $sort" ]
+				);
+			} elseif ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+				$res = $dbSecondary->select(
+					'user',
+					[ 'actor_id' => 'NULL', 'user_id' => 'user_id', 'user_name' => 'user_name' ],
+					array_merge( [ 'user_id' => $ids ], $from ? [ "user_id $from" ] : [] ),
+					__METHOD__,
+					[ 'ORDER BY' => "user_id $sort" ]
+				);
+			} else {
+				$res = $dbSecondary->select(
+					[ 'user', 'actor' ],
+					[ 'actor_id', 'user_id', 'user_name' ],
+					array_merge( [ 'user_id' => $ids ], $from ? [ "user_id $from" ] : [] ),
+					__METHOD__,
+					[ 'ORDER BY' => "user_id $sort" ],
+					[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
+				);
+			}
+			$userIter = UserArray::newFromResult( $res );
+			$batchSize = count( $ids );
 		} else {
-			$anyIPs = false;
-			$this->userids = [];
-			$this->usernames = [];
+			$names = [];
 			if ( !count( $this->params['user'] ) ) {
 				$encParamName = $this->encodeParamName( 'user' );
 				$this->dieWithError(
@@ -108,8 +246,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				}
 
 				if ( User::isIP( $u ) ) {
-					$anyIPs = true;
-					$this->usernames[] = $u;
+					$names[$u] = null;
 				} else {
 					$name = User::getCanonicalName( $u, 'valid' );
 					if ( $name === false ) {
@@ -118,94 +255,218 @@ class ApiQueryContributions extends ApiQueryBase {
 							[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $u ) ], "baduser_$encParamName"
 						);
 					}
-					$this->usernames[] = $name;
+					$names[$name] = null;
 				}
 			}
-			$this->prefixMode = false;
-			$this->multiUserMode = ( count( $this->params['user'] ) > 1 );
 
-			if ( !$anyIPs ) {
-				$dbr = $this->getDB();
-				$res = $dbr->select( 'user', 'user_id', [ 'user_name' => $this->usernames ], __METHOD__ );
+			$this->orderBy = 'name';
+			$this->multiUserMode = count( $names ) > 1;
+
+			$from = $fromName = false;
+			if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+				$continue = explode( '|', $this->params['continue'] );
+				$this->dieContinueUsageIf( count( $continue ) != 4 );
+				$this->dieContinueUsageIf( $continue[0] !== 'name' && $continue[0] !== 'actor' );
+				$fromName = $continue[1];
+				$from = "$op= " . $dbSecondary->addQuotes( $fromName );
+			}
+
+			// For the new schema, just select from the actor table. For the
+			// old and transitional schemas, select from user and left join
+			// actor if it exists then merge in any unknown users (IPs and imports).
+			if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+				$res = $dbSecondary->select(
+					'actor',
+					[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
+					array_merge( [ 'actor_name' => array_keys( $names ) ], $from ? [ "actor_id $from" ] : [] ),
+					__METHOD__,
+					[ 'ORDER BY' => "actor_name $sort" ]
+				);
+				$userIter = UserArray::newFromResult( $res );
+			} else {
+				if ( $wgActorTableSchemaMigrationStage === MIGRATION_OLD ) {
+					$res = $dbSecondary->select(
+						'user',
+						[ 'actor_id' => 'NULL', 'user_id', 'user_name' ],
+						array_merge( [ 'user_name' => array_keys( $names ) ], $from ? [ "user_name $from" ] : [] ),
+						__METHOD__
+					);
+				} else {
+					$res = $dbSecondary->select(
+						[ 'user', 'actor' ],
+						[ 'actor_id', 'user_id', 'user_name' ],
+						array_merge( [ 'user_name' => array_keys( $names ) ], $from ? [ "user_name $from" ] : [] ),
+						__METHOD__,
+						[],
+						[ 'actor' => [ 'LEFT JOIN', 'actor_user = user_id' ] ]
+					);
+				}
 				foreach ( $res as $row ) {
-					$this->userids[] = $row->user_id;
+					$names[$row->user_name] = $row;
 				}
-				$this->idMode = count( $this->userids ) === count( $this->usernames );
+				call_user_func_array(
+					$this->params['dir'] == 'newer' ? 'ksort' : 'krsort', [ &$names, SORT_STRING ]
+				);
+				$neg = $op === '>' ? -1 : 1;
+				$userIter = call_user_func( function () use ( $names, $fromName, $neg ) {
+					foreach ( $names as $name => $row ) {
+						if ( $fromName === false || $neg * strcmp( $name, $fromName ) <= 0 ) {
+							$user = $row ? User::newFromRow( $row ) : User::newFromName( $name, false );
+							yield $user;
+						}
+					}
+				} );
 			}
+			$batchSize = count( $names );
 		}
 
-		$this->prepareQuery();
-
-		$hookData = [];
-		// Do the actual query.
-		$res = $this->select( __METHOD__, [], $hookData );
-
-		if ( $this->fld_sizediff ) {
-			$revIds = [];
-			foreach ( $res as $row ) {
-				if ( $row->rev_parent_id ) {
-					$revIds[] = $row->rev_parent_id;
-				}
-			}
-			$this->parentLens = Revision::getParentLengths( $dbSecondary, $revIds );
-			$res->rewind(); // reset
+		// During migration, force ordering on the client side because we're
+		// having to combine multiple queries that would otherwise have
+		// different sort orders.
+		if ( $wgActorTableSchemaMigrationStage === MIGRATION_WRITE_BOTH ||
+			$wgActorTableSchemaMigrationStage === MIGRATION_WRITE_NEW
+		) {
+			$batchSize = 1;
 		}
 
-		// Initialise some variables
+		// With the new schema, the DB query will order by actor so update $this->orderBy to match.
+		if ( $batchSize > 1 && $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+			$this->orderBy = 'actor';
+		}
+
 		$count = 0;
 		$limit = $this->params['limit'];
-
-		// Fetch each row
-		foreach ( $res as $row ) {
-			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are
-				// additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				break;
+		$userIter->rewind();
+		while ( $userIter->valid() ) {
+			$users = [];
+			while ( count( $users ) < $batchSize && $userIter->valid() ) {
+				$users[] = $userIter->current();
+				$userIter->next();
 			}
 
-			$vals = $this->extractRowInfo( $row );
-			$fit = $this->processRow( $row, $vals, $hookData ) &&
-				$this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
-			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
-				break;
+			// Ugh. We have to run the query three times, once for each
+			// possible 'orcond' from ActorMigration, and then merge them all
+			// together in the proper order. And preserving the correct
+			// $hookData for each one.
+			// @todo When ActorMigration is removed, this can go back to a
+			//  single prepare and select.
+			$merged = [];
+			foreach ( [ 'actor', 'userid', 'username' ] as $which ) {
+				if ( $this->prepareQuery( $users, $limit - $count, $which ) ) {
+					$hookData = [];
+					$res = $this->select( __METHOD__, [], $hookData );
+					foreach ( $res as $row ) {
+						$merged[] = [ $row, &$hookData ];
+					}
+				}
+			}
+			$neg = $this->params['dir'] == 'newer' ? 1 : -1;
+			usort( $merged, function ( $a, $b ) use ( $neg, $batchSize ) {
+				if ( $batchSize === 1 ) { // One user, can't be different
+					$ret = 0;
+				} elseif ( $this->orderBy === 'id' ) {
+					$ret = $a[0]->rev_user - $b[0]->rev_user;
+				} elseif ( $this->orderBy === 'name' ) {
+					$ret = strcmp( $a[0]->rev_user_text, $b[0]->rev_user_text );
+				} else {
+					$ret = $a[0]->rev_actor - $b[0]->rev_actor;
+				}
+
+				if ( !$ret ) {
+					$ret = strcmp(
+						wfTimestamp( TS_MW, $a[0]->rev_timestamp ),
+						wfTimestamp( TS_MW, $b[0]->rev_timestamp )
+					);
+				}
+
+				if ( !$ret ) {
+					$ret = $a[0]->rev_id - $b[0]->rev_id;
+				}
+
+				return $neg * $ret;
+			} );
+			$merged = array_slice( $merged, 0, $limit - $count + 1 );
+			// (end "Ugh")
+
+			if ( $this->fld_sizediff ) {
+				$revIds = [];
+				foreach ( $merged as $data ) {
+					if ( $data[0]->rev_parent_id ) {
+						$revIds[] = $data[0]->rev_parent_id;
+					}
+				}
+				$this->parentLens = Revision::getParentLengths( $dbSecondary, $revIds );
+			}
+
+			foreach ( $merged as $data ) {
+				$row = $data[0];
+				$hookData = &$data[1];
+				if ( ++$count > $limit ) {
+					// We've reached the one extra which shows that there are
+					// additional pages to be had. Stop here...
+					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
+					break 2;
+				}
+
+				$vals = $this->extractRowInfo( $row );
+				$fit = $this->processRow( $row, $vals, $hookData ) &&
+					$this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
+				if ( !$fit ) {
+					$this->setContinueEnumParameter( 'continue', $this->continueStr( $row ) );
+					break 2;
+				}
 			}
 		}
 
-		$this->getResult()->addIndexedTagName(
-			[ 'query', $this->getModuleName() ],
-			'item'
-		);
+		$this->getResult()->addIndexedTagName( [ 'query', $this->getModuleName() ], 'item' );
 	}
 
 	/**
 	 * Prepares the query and returns the limit of rows requested
+	 * @param User[] $users
+	 * @param int $limit
+	 * @param string $which 'actor', 'userid', or 'username'
+	 * @return bool
 	 */
-	private function prepareQuery() {
-		// We're after the revision table, and the corresponding page
-		// row for anything we retrieve. We may also need the
-		// recentchanges row and/or tag summary row.
-		$user = $this->getUser();
-		$tables = [ 'page', 'revision' ]; // Order may change
-		$this->addWhere( 'page_id=rev_page' );
+	private function prepareQuery( array $users, $limit, $which ) {
+		global $wgActorTableSchemaMigrationStage;
+
+		$this->resetQueryParams();
+		$db = $this->getDB();
+
+		$revQuery = Revision::getQueryInfo( [ 'page' ] );
+		$this->addTables( $revQuery['tables'] );
+		$this->addJoinConds( $revQuery['joins'] );
+		$this->addFields( $revQuery['fields'] );
+
+		$revWhere = ActorMigration::newMigration()->getWhere( $db, 'rev_user', $users );
+		if ( !isset( $revWhere['orconds'][$which] ) ) {
+			return false;
+		}
+		$this->addWhere( $revWhere['orconds'][$which] );
+
+		if ( $wgActorTableSchemaMigrationStage === MIGRATION_NEW ) {
+			$orderUserField = 'rev_actor';
+			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
+		} else {
+			$orderUserField = $this->orderBy === 'id' ? 'rev_user' : 'rev_user_text';
+			$userField = $revQuery['fields'][$orderUserField];
+		}
+		if ( $which === 'actor' ) {
+			$tsField = 'revactor_timestamp';
+			$idField = 'revactor_rev';
+		} else {
+			$tsField = 'rev_timestamp';
+			$idField = 'rev_id';
+		}
 
 		// Handle continue parameter
 		if ( !is_null( $this->params['continue'] ) ) {
 			$continue = explode( '|', $this->params['continue'] );
-			$db = $this->getDB();
 			if ( $this->multiUserMode ) {
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
 				$modeFlag = array_shift( $continue );
-				$this->dieContinueUsageIf( !in_array( $modeFlag, [ 'id', 'name' ] ) );
-				if ( $this->idMode && $modeFlag === 'name' ) {
-					// The users were created since this query started, but we
-					// can't go back and change modes now. So just keep on with
-					// name mode.
-					$this->idMode = false;
-				}
-				$this->dieContinueUsageIf( ( $modeFlag === 'id' ) !== $this->idMode );
-				$userField = $this->idMode ? 'rev_user' : 'rev_user_text';
+				$this->dieContinueUsageIf( $modeFlag !== $this->orderBy );
 				$encUser = $db->addQuotes( array_shift( $continue ) );
 			} else {
 				$this->dieContinueUsageIf( count( $continue ) != 2 );
@@ -218,21 +479,22 @@ class ApiQueryContributions extends ApiQueryBase {
 				$this->addWhere(
 					"$userField $op $encUser OR " .
 					"($userField = $encUser AND " .
-					"(rev_timestamp $op $encTS OR " .
-					"(rev_timestamp = $encTS AND " .
-					"rev_id $op= $encId)))"
+					"($tsField $op $encTS OR " .
+					"($tsField = $encTS AND " .
+					"$idField $op= $encId)))"
 				);
 			} else {
 				$this->addWhere(
-					"rev_timestamp $op $encTS OR " .
-					"(rev_timestamp = $encTS AND " .
-					"rev_id $op= $encId)"
+					"$tsField $op $encTS OR " .
+					"($tsField = $encTS AND " .
+					"$idField $op= $encId)"
 				);
 			}
 		}
 
 		// Don't include any revisions where we're not supposed to be able to
 		// see the username.
+		$user = $this->getUser();
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = Revision::DELETED_USER;
 		} elseif ( !$user->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
@@ -241,29 +503,20 @@ class ApiQueryContributions extends ApiQueryBase {
 			$bitmask = 0;
 		}
 		if ( $bitmask ) {
-			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
+			$this->addWhere( $db->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask" );
 		}
 
-		// We only want pages by the specified users.
-		if ( $this->prefixMode ) {
-			$this->addWhere( 'rev_user_text' .
-				$this->getDB()->buildLike( $this->userprefix, $this->getDB()->anyString() ) );
-		} elseif ( $this->idMode ) {
-			$this->addWhereFld( 'rev_user', $this->userids );
-		} else {
-			$this->addWhereFld( 'rev_user_text', $this->usernames );
+		// Add the user field to ORDER BY if there are multiple users
+		if ( count( $users ) > 1 ) {
+			$this->addWhereRange( $orderUserField, $this->params['dir'], null, null );
 		}
-		// ... and in the specified timeframe.
-		// Ensure the same sort order for rev_user/rev_user_text and rev_timestamp
-		// so our query is indexed
-		if ( $this->multiUserMode ) {
-			$this->addWhereRange( $this->idMode ? 'rev_user' : 'rev_user_text',
-				$this->params['dir'], null, null );
-		}
-		$this->addTimestampWhereRange( 'rev_timestamp',
+
+		// Then timestamp
+		$this->addTimestampWhereRange( $tsField,
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
-		// Include in ORDER BY for uniqueness
-		$this->addWhereRange( 'rev_id', $this->params['dir'], null, null );
+
+		// Then rev_id for a total ordering
+		$this->addWhereRange( $idField, $this->params['dir'], null, null );
 
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
@@ -286,25 +539,12 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
-			$this->addWhereIf( 'rev_id != page_latest', isset( $show['!top'] ) );
-			$this->addWhereIf( 'rev_id = page_latest', isset( $show['top'] ) );
+			$this->addWhereIf( $idField . ' != page_latest', isset( $show['!top'] ) );
+			$this->addWhereIf( $idField . ' = page_latest', isset( $show['top'] ) );
 			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
 			$this->addWhereIf( 'rev_parent_id = 0', isset( $show['new'] ) );
 		}
-		$this->addOption( 'LIMIT', $this->params['limit'] + 1 );
-
-		// Mandatory fields: timestamp allows request continuation
-		// ns+title checks if the user has access rights for this page
-		// user_text is necessary if multiple users were specified
-		$this->addFields( [
-			'rev_id',
-			'rev_timestamp',
-			'page_namespace',
-			'page_title',
-			'rev_user',
-			'rev_user_text',
-			'rev_deleted'
-		] );
+		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
 			$this->fld_patrolled
@@ -313,48 +553,25 @@ class ApiQueryContributions extends ApiQueryBase {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
 
-			// Use a redundant join condition on both
-			// timestamp and ID so we can use the timestamp
-			// index
-			$index['recentchanges'] = 'rc_user_text';
-			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
-				// Put the tables in the right order for
-				// STRAIGHT_JOIN
-				$tables = [ 'revision', 'recentchanges', 'page' ];
-				$this->addOption( 'STRAIGHT_JOIN' );
-				$this->addWhere( 'rc_user_text=rev_user_text' );
-				$this->addWhere( 'rc_timestamp=rev_timestamp' );
-				$this->addWhere( 'rc_this_oldid=rev_id' );
-			} else {
-				$tables[] = 'recentchanges';
-				$this->addJoinConds( [ 'recentchanges' => [
-					'LEFT JOIN', [
-						'rc_user_text=rev_user_text',
-						'rc_timestamp=rev_timestamp',
-						'rc_this_oldid=rev_id' ] ] ] );
-			}
+			$this->addTables( 'recentchanges' );
+			$this->addJoinConds( [ 'recentchanges' => [
+				isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ? 'JOIN' : 'LEFT JOIN',
+				[
+					// This is a crazy hack. recentchanges has no index on rc_this_oldid, so instead of adding
+					// one T19237 did a join using rc_user_text and rc_timestamp instead. Now rc_user_text is
+					// probably unavailable, so just do rc_timestamp.
+					'rc_timestamp = ' . $tsField,
+					'rc_this_oldid = ' . $idField,
+				]
+			] ] );
 		}
 
-		$this->addTables( $tables );
-		$this->addFieldsIf( 'rev_page', $this->fld_ids );
-		$this->addFieldsIf( 'page_latest', $this->fld_flags );
-		// $this->addFieldsIf( 'rev_text_id', $this->fld_ids ); // Should this field be exposed?
-		$this->addFieldsIf( 'rev_len', $this->fld_size || $this->fld_sizediff );
-		$this->addFieldsIf( 'rev_minor_edit', $this->fld_flags );
-		$this->addFieldsIf( 'rev_parent_id', $this->fld_flags || $this->fld_sizediff || $this->fld_ids );
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
-
-		if ( $this->fld_comment || $this->fld_parsedcomment ) {
-			$commentQuery = $this->commentStore->getJoin( 'rev_comment' );
-			$this->addTables( $commentQuery['tables'] );
-			$this->addFields( $commentQuery['fields'] );
-			$this->addJoinConds( $commentQuery['joins'] );
-		}
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds(
-				[ 'tag_summary' => [ 'LEFT JOIN', [ 'rev_id=ts_rev_id' ] ] ]
+				[ 'tag_summary' => [ 'LEFT JOIN', [ $idField . ' = ts_rev_id' ] ] ]
 			);
 			$this->addFields( 'ts_tags' );
 		}
@@ -362,14 +579,12 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( isset( $this->params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
-				[ 'change_tag' => [ 'INNER JOIN', [ 'rev_id=ct_rev_id' ] ] ]
+				[ 'change_tag' => [ 'INNER JOIN', [ $idField . ' = ct_rev_id' ] ] ]
 			);
 			$this->addWhereFld( 'ct_tag', $this->params['tag'] );
 		}
 
-		if ( isset( $index ) ) {
-			$this->addOption( 'USE INDEX', $index );
-		}
+		return true;
 	}
 
 	/**
@@ -480,10 +695,13 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	private function continueStr( $row ) {
 		if ( $this->multiUserMode ) {
-			if ( $this->idMode ) {
-				return "id|$row->rev_user|$row->rev_timestamp|$row->rev_id";
-			} else {
-				return "name|$row->rev_user_text|$row->rev_timestamp|$row->rev_id";
+			switch ( $this->orderBy ) {
+				case 'id':
+					return "id|$row->rev_user|$row->rev_timestamp|$row->rev_id";
+				case 'name':
+					return "name|$row->rev_user_text|$row->rev_timestamp|$row->rev_id";
+				case 'actor':
+					return "actor|$row->rev_actor|$row->rev_timestamp|$row->rev_id";
 			}
 		} else {
 			return "$row->rev_timestamp|$row->rev_id";
