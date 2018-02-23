@@ -468,8 +468,7 @@ class JobQueueGroup {
 	function __destruct() {
 		$n = count( $this->bufferedJobs );
 		if ( $n > 0 ) {
-			$type = implode( ', ', array_unique( array_map( 'get_class', $this->bufferedJobs ),
-				SORT_STRING ) );
+			$type = implode( ', ', array_unique( array_map( 'get_class', $this->bufferedJobs ) ) );
 			trigger_error( __METHOD__ . ": $n buffered job(s) of type(s) $type never inserted." );
 		}
 	}
