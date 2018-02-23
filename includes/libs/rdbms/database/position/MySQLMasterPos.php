@@ -3,6 +3,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 /**
  * DBMasterPos class for MySQL/MariaDB
@@ -27,6 +28,14 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @param float $asOfTime UNIX timestamp
 	 */
 	public function __construct( $position, $asOfTime ) {
+		$this->init( $position, $asOfTime );
+	}
+
+	/**
+	 * @param string $position
+	 * @param float $asOfTime
+	 */
+	protected function init( $position, $asOfTime ) {
 		$m = [];
 		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', $position, $m ) ) {
 			$this->binlog = $m[1]; // ideally something like host name
@@ -34,7 +43,7 @@ class MySQLMasterPos implements DBMasterPos {
 		} else {
 			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
 			foreach ( $gtids as $gtid ) {
-				if ( !$this->parseGTID( $gtid ) ) {
+				if ( !self::parseGTID( $gtid ) ) {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
 				$this->gtids[] = $gtid;
@@ -191,5 +200,18 @@ class MySQLMasterPos implements DBMasterPos {
 		return ( $this->binlog !== null && $this->pos !== null )
 			? [ 'binlog' => $this->binlog, 'pos' => $this->pos ]
 			: false;
+	}
+
+	public function serialize() {
+		return serialize( [ 'position' => $this->__toString(), 'asOfTime' => $this->asOfTime ] );
+	}
+
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		if ( !is_array( $data ) ) {
+			throw new UnexpectedValueException( __METHOD__ . ": cannot unserialize position" );
+		}
+
+		$this->init( $data['position'], $data['asOfTime'] );
 	}
 }
