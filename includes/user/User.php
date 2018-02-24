@@ -406,6 +406,15 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 				break;
 			case 'id':
+				// Make sure this thread sees its own changes, if the ID isn't 0
+				if ( $this->mId != 0 ) {
+					$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+					if ( $lb->hasOrMadeRecentMasterChanges() ) {
+						$flags |= self::READ_LATEST;
+						$this->queryFlagsUsed = $flags;
+					}
+				}
+
 				$this->loadFromId( $flags );
 				break;
 			case 'actor':
