@@ -382,7 +382,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// Language
-		$languages = Language::fetchLanguageNames( null, 'mw' );
+		$languages = Language::fetchLanguageNames( null, 'mwfile' );
 		$languageCode = $this->config->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
