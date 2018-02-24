@@ -54,7 +54,7 @@ class CheckLess extends Maintenance {
 		}
 
 		// TODO: Remove back compat when we don't support PHP 5.5, and therefore PHPUnit 4
-		if ( class_exists( 'PHPUnit\\TextUI\\Command' ) ) {
+		if ( class_exists( PHPUnit\TextUI\Command::class ) ) {
 			$textUICommand = new PHPUnit\TextUI\Command();
 		} else {
 			$textUICommand = new PHPUnit_TextUI_Command();

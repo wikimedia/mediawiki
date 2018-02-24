@@ -38,6 +38,11 @@ return [
 		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Memcached::class ) ? [] : [ 'tests/phan/stubs/memcached.php' ],
+		// Per composer.json, PHPUnit 6 is used for PHP 7.0+, PHPUnit 4 otherwise.
+		// Load the interface for the version of PHPUnit that isn't installed.
+		PHP_VERSION_ID >= 70000
+			? [ 'tests/phan/stubs/phpunit4.php' ]
+			: [ 'tests/phan/stubs/phpunit6.php' ],
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backup.inc',

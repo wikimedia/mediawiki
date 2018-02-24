@@ -89,10 +89,10 @@ class PHPUnitMaintClass extends Maintenance {
 			unset( $_SERVER['argv'][$key] ); // the option
 			unset( $_SERVER['argv'][$key + 1] ); // its value
 			$_SERVER['argv'] = array_values( $_SERVER['argv'] );
-		} elseif ( class_exists( 'PHPUnit\\TextUI\\Command' ) ) {
-			$phpUnitClass = 'PHPUnit\TextUI\Command';
+		} elseif ( class_exists( PHPUnit\TextUI\Command::class ) ) {
+			$phpUnitClass = PHPUnit\TextUI\Command::class;
 		} else {
-			$phpUnitClass = 'PHPUnit_TextUI_Command';
+			$phpUnitClass = PHPUnit_TextUI_Command::class;
 		}
 
 		$key = array_search( '--debug-tests', $_SERVER['argv'] );
