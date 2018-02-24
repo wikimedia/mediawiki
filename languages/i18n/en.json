@@ -2158,7 +2158,7 @@
 	"categories": "Categories",
 	"categories-summary": "",
 	"categories-submit": "Show",
-	"categoriespagetext": "The following {{PLURAL:$1|category contains|categories contain}} pages or media.\n[[Special:UnusedCategories|Unused categories]] are not shown here.\nAlso see [[Special:WantedCategories|wanted categories]].",
+	"categoriespagetext": "The following {{PLURAL:$1|category exists|categories exist}} on the wiki, and may or may not be unused.\nAlso see [[Special:WantedCategories|wanted categories]].",
 	"categoriesfrom": "Display categories starting at:",
 	"deletedcontributions": "Deleted user contributions",
 	"deletedcontributions-summary": "",

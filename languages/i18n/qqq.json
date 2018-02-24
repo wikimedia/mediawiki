@@ -2357,7 +2357,7 @@
 	"categories": "The page name of [[Special:Categories]].\n{{Identical|Category}}",
 	"categories-summary": "{{doc-specialpagesummary|categories}}",
 	"categories-submit": "Submit button on [[Special:Categories]]\n{{Identical|Show}}",
-	"categoriespagetext": "{{doc-important|Do not translate or change links.}}\nText displayed in [[Special:Categories]].\n\nIn order to translate \"Unused categories\" and \"wanted categories\" see {{msg-mw|Unusedcategories}} and {{msg-mw|Wantedcategories}}.\n\nParameters:\n* $1 - number of categories",
+	"categoriespagetext": "{{doc-important|Do not translate or change links.}}\nText displayed in [[Special:Categories]].\n\nIn order to translate \"wanted categories\" see {{msg-mw|Wantedcategories}}.\n\nParameters:\n* $1 - number of categories",
 	"categoriesfrom": "Used as label for the input box in [[Special:Categories]].\n\nThis message follows the fieldset label {{msg-mw|categories}}, and is followed by the input box.",
 	"deletedcontributions": "The message is shown as a link on [[Special:SpecialPages]] to [[Special:DeletedContributions]].\n\n{{Identical|Deleted user contributions}}",
 	"deletedcontributions-summary": "{{doc-specialpagesummary|deletedcontributions}}",
