@@ -875,7 +875,7 @@ class WebRequest {
 	 * @return int[] First element is limit, second is offset
 	 */
 	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
-		global $wgUser;
+		global $wgUser, $wgRequestMaxQueryLimit;
 
 		$limit = $this->getInt( 'limit', 0 );
 		if ( $limit < 0 ) {
@@ -887,8 +887,8 @@ class WebRequest {
 		if ( $limit <= 0 ) {
 			$limit = $deflimit;
 		}
-		if ( $limit > 5000 ) {
-			$limit = 5000; # We have *some* limits...
+		if ( $limit > $wgRequestMaxQueryLimit ) {
+			$limit = $wgRequestMaxQueryLimit; # We have *some* limits...
 		}
 
 		$offset = $this->getInt( 'offset', 0 );

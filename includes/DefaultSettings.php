@@ -8838,6 +8838,15 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 $wgActorTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Maximum limit for queries that use the value from the request.
+ * Beware, setting this too high could lead to performance impacts.
+ *
+ * @since 1.31
+ * @var int default 5000
+ */
+$wgRequestMaxQueryLimit = 5000;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
