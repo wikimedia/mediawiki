@@ -62,8 +62,8 @@ interface IMaintainableDatabase extends IDatabase {
 	 * This is handy when you need to construct SQL for joins
 	 *
 	 * Example:
-	 * extract( $dbr->tableNames( 'user', 'watchlist' ) );
-	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
+	 * list( $user, $watchlist ) = $dbr->tableNames( 'user', 'watchlist' ) );
+	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
 	 * @return array
