@@ -1294,7 +1294,7 @@ abstract class Maintenance {
 	 * This function has the same parameters as wfGetDB()
 	 *
 	 * @param int $db DB index (DB_REPLICA/DB_MASTER)
-	 * @param array $groups default: empty array
+	 * @param string|string[] $groups default: empty array
 	 * @param string|bool $wiki default: current wiki
 	 * @return IMaintainableDatabase
 	 */
