@@ -38,6 +38,9 @@ return [
 		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Memcached::class ) ? [] : [ 'tests/phan/stubs/memcached.php' ],
+		class_exists( PHPUnit\TextUI\Command::class )
+			? [ 'tests/phan/stubs/phpunit4.php' ]
+			: [ 'tests/phan/stubs/phpunit6.php' ],
 		[
 			'maintenance/7zip.inc',
 			'maintenance/backup.inc',
