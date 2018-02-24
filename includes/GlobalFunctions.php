@@ -3527,19 +3527,3 @@ function wfGetRusage() {
 		return getrusage( 0 /* RUSAGE_SELF */ );
 	}
 }
-
-/**
- * Begin profiling of a function
- * @param string $functionname Name of the function we will profile
- * @deprecated since 1.25
- */
-function wfProfileIn( $functionname ) {
-}
-
-/**
- * Stop profiling of a function
- * @param string $functionname Name of the function we have profiled
- * @deprecated since 1.25
- */
-function wfProfileOut( $functionname = 'missing' ) {
-}
