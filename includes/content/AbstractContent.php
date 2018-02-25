@@ -426,7 +426,7 @@ abstract class AbstractContent implements Content {
 	 * @param WikiPage $page
 	 * @param ParserOutput|null $parserOutput
 	 *
-	 * @return LinksDeletionUpdate[]
+	 * @return DeferrableUpdate[]
 	 *
 	 * @see Content::getDeletionUpdates
 	 */
