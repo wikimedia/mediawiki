@@ -158,4 +158,28 @@ class LanguageCodeTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
+	public function testGetLanguageCodesWithTranslations() {
+		$languageCodes = LanguageCode::getLanguageCodesWithTranslations();
+
+		$this->assertInternalType( 'array', $languageCodes );
+		$this->assertContainsOnly( 'string', $languageCodes );
+		$this->assertNotContains( '', $languageCodes );
+
+		// Codes special to MediaWiki should never appear in the list of languages with translations
+		$this->assertNotContains( 'qqq', $languageCodes, 'documentation' );
+		$this->assertNotContains( 'qqx', $languageCodes, 'debug code' );
+		$this->assertNotContains( 'en-rtl', $languageCodes, 'test code for RTL' );
+
+		// Special language codes from https://www.iana.org/assignments/language-subtag-registry
+		$this->assertNotContains( 'mis', $languageCodes, 'Uncoded languages' );
+		$this->assertNotContains( 'mul', $languageCodes, 'Multiple languages' );
+		$this->assertNotContains( 'und', $languageCodes, 'No linguistic content' );
+		$this->assertNotContains( 'zxx', $languageCodes, 'undetermined' );
+
+		// Language codes that should not have own translations
+		$this->assertNotContains( 'no', $languageCodes, 'family of Norwegian languages' );
+		$this->assertNotContains( 'simple', $languageCodes );
+		$this->assertNotContains( 'zh-yue', $languageCodes, 'deprecated language code for Cantonese' );
+	}
+
 }
