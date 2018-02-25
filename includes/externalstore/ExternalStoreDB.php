@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBConnRef;
@@ -114,7 +115,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @return LoadBalancer
 	 */
 	private function getLoadBalancer( $cluster ) {
-		return wfGetLBFactory()->getExternalLB( $cluster );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		return $lbFactory->getExternalLB( $cluster );
 	}
 
 	/**

@@ -2906,17 +2906,6 @@ function wfGetLB( $wiki = false ) {
 }
 
 /**
- * Get the load balancer factory object
- *
- * @deprecated since 1.27, use MediaWikiServices::getDBLoadBalancerFactory() instead.
- *
- * @return \Wikimedia\Rdbms\LBFactory
- */
-function wfGetLBFactory() {
-	return MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-}
-
-/**
  * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
  *
@@ -3052,7 +3041,8 @@ function wfWaitForSlaves(
 	}
 
 	try {
-		wfGetLBFactory()->waitForReplication( [
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->waitForReplication( [
 			'wiki' => $wiki,
 			'cluster' => $cluster,
 			'timeout' => $timeout,

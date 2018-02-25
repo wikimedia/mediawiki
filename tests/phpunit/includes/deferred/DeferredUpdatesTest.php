@@ -207,7 +207,8 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		];
 
 		// clear anything
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $updates ) {
@@ -271,7 +272,8 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$x = false;
 		$y = false;
 		// clear anything
-		wfGetLBFactory()->commitMasterChanges( __METHOD__ );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
 			function () use ( &$x, &$y ) {

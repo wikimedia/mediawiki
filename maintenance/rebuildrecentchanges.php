@@ -24,6 +24,7 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -81,6 +82,7 @@ class RebuildRecentchanges extends Maintenance {
 	private function rebuildRecentChangesTablePass1() {
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
 			$this->cutoffFrom = wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
@@ -110,7 +112,7 @@ class RebuildRecentchanges extends Maintenance {
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
-			wfGetLBFactory()->waitForReplication();
+			$lbFactory->waitForReplication();
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
@@ -166,7 +168,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}
@@ -177,6 +179,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass2() {
 		$dbw = $this->getDB( DB_MASTER );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$this->output( "Updating links and size differences...\n" );
 
@@ -256,7 +259,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastSize = $size;
 
 				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -270,6 +273,7 @@ class RebuildRecentchanges extends Maintenance {
 
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$this->output( "Loading from user, page, and logging tables...\n" );
 
@@ -338,7 +342,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}
@@ -350,6 +354,7 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgUseRCPatrol, $wgMiserMode;
 
 		$dbw = $this->getDB( DB_MASTER );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$userQuery = User::getQueryInfo();
 
@@ -405,7 +410,7 @@ class RebuildRecentchanges extends Maintenance {
 						[ 'rc_id' => $rcidBatch ],
 						__METHOD__
 					);
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -444,7 +449,7 @@ class RebuildRecentchanges extends Maintenance {
 						],
 						__METHOD__
 					);
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -456,6 +461,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass5() {
 		$dbw = wfGetDB( DB_MASTER );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 
@@ -493,7 +499,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}
