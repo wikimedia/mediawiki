@@ -464,7 +464,23 @@ class SpecialBlock extends FormSpecialPage {
 			}
 		}
 
+
+		$text .= self::addJsCIDRForm();
 		return $text;
+	}
+
+	/**
+	 * Make a quick JS form for admins to calculate block ranges
+	 */
+	protected function addJsCIDRForm() {
+		$s = '<fieldset id="mw-cidrform" style="display:none; clear:both;">' .
+			'<legend>' . $this->msg( 'ipb-cidr-label' )->escaped() . '</legend>';
+		$s .= '<textarea id="mw-iplist" dir="ltr" rows="5" cols="50"></textarea><br />';
+		$s .= $this->msg( 'ipb-cidr-result' )->escaped() . '&#160;' .
+			Xml::input( 'mw-cidr-result', 35, '', [ 'id' => 'mw-cidr-result' ] ) .
+			'&#160;<strong id="mw-ipnote"></strong>';
+		$s .= '</fieldset>';
+		return $s;
 	}
 
 	/**
