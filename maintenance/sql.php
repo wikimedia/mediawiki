@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
@@ -54,10 +55,11 @@ class MwSql extends Maintenance {
 		// We wan't to allow "" for the wikidb, meaning don't call select_db()
 		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		if ( $this->hasOption( 'cluster' ) ) {
-			$lb = wfGetLBFactory()->getExternalLB( $this->getOption( 'cluster' ) );
+			$lb = $lbFactory->getExternalLB( $this->getOption( 'cluster' ) );
 		} else {
-			$lb = wfGetLB( $wiki );
+			$lb = $lbFactory->getMainLB( $wiki );
 		}
 		// Figure out which server to use
 		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );

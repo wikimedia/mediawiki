@@ -3052,7 +3052,8 @@ function wfWaitForSlaves(
 	}
 
 	try {
-		wfGetLBFactory()->waitForReplication( [
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->waitForReplication( [
 			'wiki' => $wiki,
 			'cluster' => $cluster,
 			'timeout' => $timeout,

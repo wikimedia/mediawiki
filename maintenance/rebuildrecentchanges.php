@@ -24,7 +24,9 @@
  */
 
 require_once __DIR__ . '/Maintenance.php';
+
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * Maintenance script that rebuilds recent changes from scratch.
@@ -64,11 +66,12 @@ class RebuildRecentchanges extends Maintenance {
 			$this->fatalError( "Both 'from' and 'to' must be given, or neither" );
 		}
 
-		$this->rebuildRecentChangesTablePass1();
-		$this->rebuildRecentChangesTablePass2();
-		$this->rebuildRecentChangesTablePass3();
-		$this->rebuildRecentChangesTablePass4();
-		$this->rebuildRecentChangesTablePass5();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->rebuildRecentChangesTablePass1( $lbFactory );
+		$this->rebuildRecentChangesTablePass2( $lbFactory );
+		$this->rebuildRecentChangesTablePass3( $lbFactory );
+		$this->rebuildRecentChangesTablePass4( $lbFactory );
+		$this->rebuildRecentChangesTablePass5( $lbFactory );
 		if ( !( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) ) {
 			$this->purgeFeeds();
 		}
@@ -78,7 +81,7 @@ class RebuildRecentchanges extends Maintenance {
 	/**
 	 * Rebuild pass 1: Insert `recentchanges` entries for page revisions.
 	 */
-	private function rebuildRecentChangesTablePass1() {
+	private function rebuildRecentChangesTablePass1( ILBFactory $lbFactory ) {
 		$dbw = $this->getDB( DB_MASTER );
 		$commentStore = CommentStore::getStore();
 
@@ -110,7 +113,7 @@ class RebuildRecentchanges extends Maintenance {
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
-			wfGetLBFactory()->waitForReplication();
+			$lbFactory->waitForReplication();
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
@@ -166,7 +169,7 @@ class RebuildRecentchanges extends Maintenance {
 				__METHOD__
 			);
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}
@@ -175,7 +178,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 2: Enhance entries for page revisions with references to the previous revision
 	 * (rc_last_oldid, rc_new etc.) and size differences (rc_old_len, rc_new_len).
 	 */
-	private function rebuildRecentChangesTablePass2() {
+	private function rebuildRecentChangesTablePass2( ILBFactory $lbFactory ) {
 		$dbw = $this->getDB( DB_MASTER );
 
 		$this->output( "Updating links and size differences...\n" );
@@ -256,7 +259,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastSize = $size;
 
 				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -265,7 +268,7 @@ class RebuildRecentchanges extends Maintenance {
 	/**
 	 * Rebuild pass 3: Insert `recentchanges` entries for action logs.
 	 */
-	private function rebuildRecentChangesTablePass3() {
+	private function rebuildRecentChangesTablePass3( ILBFactory $lbFactory ) {
 		global $wgLogTypes, $wgLogRestrictions;
 
 		$dbw = $this->getDB( DB_MASTER );
@@ -338,7 +341,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}
@@ -346,7 +349,7 @@ class RebuildRecentchanges extends Maintenance {
 	/**
 	 * Rebuild pass 4: Mark bot and autopatrolled entries.
 	 */
-	private function rebuildRecentChangesTablePass4() {
+	private function rebuildRecentChangesTablePass4( ILBFactory $lbFactory ) {
 		global $wgUseRCPatrol, $wgMiserMode;
 
 		$dbw = $this->getDB( DB_MASTER );
@@ -405,7 +408,7 @@ class RebuildRecentchanges extends Maintenance {
 						[ 'rc_id' => $rcidBatch ],
 						__METHOD__
 					);
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -444,7 +447,7 @@ class RebuildRecentchanges extends Maintenance {
 						],
 						__METHOD__
 					);
-					wfGetLBFactory()->waitForReplication();
+					$lbFactory->waitForReplication();
 				}
 			}
 		}
@@ -454,7 +457,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * Rebuild pass 5: Delete duplicate entries where we generate both a page revision and a log entry
 	 * for a single action (upload only, at the moment, but potentially also move, protect, ...).
 	 */
-	private function rebuildRecentChangesTablePass5() {
+	private function rebuildRecentChangesTablePass5( ILBFactory $lbFactory ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
@@ -493,7 +496,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
-				wfGetLBFactory()->waitForReplication();
+				$lbFactory->waitForReplication();
 			}
 		}
 	}

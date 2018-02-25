@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -323,7 +324,8 @@ class BackupDumper extends Maintenance {
 			return $this->forcedDb;
 		}
 
-		$this->lb = wfGetLBFactory()->newMainLB();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$this->lb = $lbFactory->newMainLB();
 		$db = $this->lb->getConnection( DB_REPLICA, 'dump' );
 
 		// Discourage the server from disconnecting us if it takes a long time
