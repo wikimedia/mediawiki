@@ -114,7 +114,7 @@ class ApiSetPageLanguage extends ApiBase {
 			'lang' => [
 				ApiBase::PARAM_TYPE => array_merge(
 					[ 'default' ],
-					array_keys( Language::fetchLanguageNames( null, 'mwfile' ) )
+					LanguageCode::getLanguageCodesWithTranslations()
 				),
 				ApiBase::PARAM_REQUIRED => true,
 			],

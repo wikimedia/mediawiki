@@ -112,4 +112,16 @@ class LanguageCode {
 		$langCode = implode( '-', $codeBCP );
 		return $langCode;
 	}
+
+	/**
+	 * Get the list of language codes with translations.
+	 * The language codes are in lower case.
+	 *
+	 * @return string[] Array of language codes
+	 *
+	 * @since 1.31
+	 */
+	public static function getLanguageCodesWithTranslations() {
+		return array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+	}
 }
