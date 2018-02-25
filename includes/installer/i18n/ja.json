@@ -22,7 +22,8 @@
 			"Foresttttttt",
 			"ネイ",
 			"Suchichi02",
-			"Omotecho"
+			"Omotecho",
+			"Yusuke1109"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -81,7 +82,7 @@
 	"config-apc": "[http://www.php.net/apc APC] がインストール済み",
 	"config-apcu": "[http://www.php.net/apc APC] がインストール済みです。",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] がインストール済み",
-	"config-no-cache-apcu": "<strong>警告:</strong> [http://www.php.net/apcu APCu]、 [http://xcache.lighttpd.net/ XCache]、 [http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
+	"config-no-cache-apcu": "<strong>警告:</strong> [http://www.php.net/apcu APCu]、 [http://www.iis.net/download/WinCacheForPhp WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
 	"config-mod-security": "<strong>警告:</strong> あなたのウェブサーバーでは [https://modsecurity.org/ mod_security] が有効になっています。正しく構成されていない場合は、MediaWiki や利用者にコンテンツの投稿を許可するその他のソフトウェアに問題が発生する場合があります。\n[https://modsecurity.org/documentation/ mod_security の説明文書]を確認するか、ランダムなエラーが発生した場合はあなたのホストのサポートにお問い合わせください。",
 	"config-diff3-bad": "GNU diff3 が見つかりません。",
 	"config-git": "バージョン管理ソフトウェア Git が見つかりました: <code>$1</code>",
@@ -97,6 +98,7 @@
 	"config-no-cli-uploads-check": "<strong>警告:</strong> アップロード用のデフォルトディレクトリ (<code>$1</code>) が、CLIでのインストール中に任意のスクリプト実行の脆弱性チェックを受けていません。",
 	"config-brokenlibxml": "このシステムで使われているPHPとlibxml2のバージョンのこの組み合わせにはバグがあります。具体的には、MediaWikiやその他のウェブアプリケーションでhiddenデータが破損する可能性があります。\nlibxml2を2.7.3以降のバージョンにアップグレードしてください([https://bugs.php.net/bug.php?id=45996 PHPでのバグ情報])。\nインストールを終了します。",
 	"config-suhosin-max-value-length": "Suhosin がインストールされており、GET パラメーターの <code>length</code> を $1 バイトに制限しています。\nMediaWiki の ResourceLoader コンポーネントはこの制限を回避しますが、パフォーマンスは低下します。\n可能な限り、<code>php.ini</code> で <code>suhosin.get.max_value_length</code> を 1024 以上に設定し、同じ値を <code>LocalSettings.php</code> 内で <code>$wgResourceLoaderMaxQueryLength</code> に設定してください。",
+	"config-using-32bit": "<strong>警告:</strong>システムが32ビットで動作しているようです。 これは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 非推奨]です。",
 	"config-db-type": "データベースの種類:",
 	"config-db-host": "データベースのホスト:",
 	"config-db-host-help": "異なるサーバー上にデータベースサーバーがある場合、ホスト名またはIPアドレスをここに入力してください。\n\nもし、共有されたウェブホスティングを使用している場合、ホスティングプロバイダーは正確なホスト名を解説しているはずです。\n\nWindowsでMySQLを使用している場合に、「localhost」は、サーバー名としてはうまく働かないでしょう。もしそのような場合は、ローカルIPアドレスとして「127.0.0.1」を試してみてください。\n\nPostgreSQLを使用している場合、UNIXソケットで接続するにはこの欄を空欄のままにしてください。",
@@ -269,7 +271,7 @@
 	"config-cache-options": "オブジェクトのキャッシュの設定:",
 	"config-cache-help": "オブジェクトのキャッシュを使用すると、頻繁に使用するデータをキャッシュするため MediaWiki の動作速度を改善できます。\n中〜大規模サイトではこれを有効にすることを強くお勧めします。小規模サイトでも同様に効果があります。",
 	"config-cache-none": "キャッシングしない(機能は取り払われます、しかもより大きなウィキサイト上でスピードの問題が発生します)",
-	"config-cache-accel": "PHPオブジェクトキャッシュ (APC、APCu、XCache、WinCache のいずれか)",
+	"config-cache-accel": "PHPオブジェクトキャッシュ (APC、APCu、WinCache のいずれか)",
 	"config-cache-memcached": "memcached を使用 (追加の設定が必要)",
 	"config-memcached-servers": "memcached サーバー:",
 	"config-memcached-help": "Memcachedを使用するIPアドレスの一覧。\nカンマ区切りで、利用する特定のポートの指定が必要です。例:\n127.0.0.1:11211\n192.168.1.25:1234",
@@ -325,6 +327,7 @@
 	"config-install-mainpage-failed": "メインページを挿入できませんでした: $1",
 	"config-install-done": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、ウィキをインストールした基準ディレクトリ (index.phpと同じディレクトリ) に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
 	"config-install-done-path": "<strong>おめでとうございます!</strong>\nMediaWikiのインストールに成功しました。\n\n<code>LocalSettings.php</code>ファイルが生成されました。\nこのファイルはすべての設定を含んでいます。\n\nこれをダウンロードして、<code>$4</code> に設置する必要があります。ダウンロードは自動的に開始されるはずです。\n\nダウンロードが開始されていない場合、またはダウンロードをキャンセルした場合は、下記のリンクをクリックしてダウンロードを再開できます:\n\n$3\n\n<strong>注意:</strong> この生成された設定ファイルをダウンロードせずにインストールを終了すると、このファイルは利用できなくなります。\n\n上記の作業が完了すると、<strong>[$2 ウィキに入る]</strong>ことができます。",
+	"config-install-success": "MediaWikiが正常にインストールされました。\n今すぐ<$1$2>にアクセスしてあなたのwikiを表示できます。\nご質問がある場合は、よくある質問リストをご覧ください:\n<https://www.mediawiki.org/wiki/Manual:FAQ>または\nそのページにリンクされているサポートフォーラム",
 	"config-download-localsettings": "<code>LocalSettings.php</code> をダウンロード",
 	"config-help": "ヘルプ",
 	"config-help-tooltip": "クリックで展開",
