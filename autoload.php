@@ -1715,6 +1715,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
 	'WikitextContent' => __DIR__ . '/includes/content/WikitextContent.php',
 	'WikitextContentHandler' => __DIR__ . '/includes/content/WikitextContentHandler.php',
+	'WikitextLogFormatter' => __DIR__ . '/includes/logging/WikitextLogFormatter.php',
 	'WinCacheBagOStuff' => __DIR__ . '/includes/libs/objectcache/WinCacheBagOStuff.php',
 	'WithoutInterwikiPage' => __DIR__ . '/includes/specials/SpecialWithoutinterwiki.php',
 	'WordLevelDiff' => __DIR__ . '/includes/diff/WordLevelDiff.php',
