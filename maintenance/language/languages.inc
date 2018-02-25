@@ -66,7 +66,7 @@ class Languages {
 		Hooks::run( 'LocalisationIgnoredOptionalMessages',
 			[ &$this->mIgnoredMessages, &$this->mOptionalMessages ] );
 
-		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$this->mLanguages = LanguageCode::getLanguageCodesWithTranslations();
 		sort( $this->mLanguages );
 	}
 

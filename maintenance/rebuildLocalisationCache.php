@@ -85,7 +85,7 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 		$lc = new LocalisationCacheBulkLoad( $conf );
 
-		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$allCodes = LanguageCode::getLanguageCodesWithTranslations();
 		if ( $this->hasOption( 'lang' ) ) {
 			# Validate requested languages
 			$codes = array_intersect( $allCodes,
