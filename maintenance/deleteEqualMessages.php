@@ -111,11 +111,11 @@ class DeleteEqualMessages extends Maintenance {
 
 		// Load message information
 		if ( $langCode ) {
-			$langCodes = Language::fetchLanguageNames( null, 'mwfile' );
+			$langCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 			if ( $langCode === '*' ) {
 				// All valid lang-code subpages in NS_MEDIAWIKI that
 				// override the messsages in that language
-				foreach ( $langCodes as $key => $value ) {
+				foreach ( $langCodes as $key ) {
 					$this->fetchMessageInfo( $key, $messageInfo );
 				}
 				// Lastly, the base pages in NS_MEDIAWIKI that override
