@@ -457,7 +457,7 @@
 	"ipboptions": "2 сагьат:2 hours,1 гюн:1 day,3 гюн:3 days,1 жума:1 week,2 жума:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 йыл:1 year,болжалсыз:infinite",
 	"infiniteblock": "болжалсыз",
 	"blocklink": "къамамакъ",
-	"contribslink": "Къошум",
+	"contribslink": "къошум",
 	"blocklogpage": "къамав гюнделиги",
 	"blocklogentry": "къамагъан [[$1]] бу мюгьлетге $2 $3",
 	"reblock-logentry": "къамавну [[$1]]бу болжалгъа $2 $3 алышдыргъан",

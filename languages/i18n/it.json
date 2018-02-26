@@ -3371,7 +3371,7 @@
 	"confirmrecreate": "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''\nPer favore, conferma che vuoi veramente ricreare questa pagina.",
 	"confirmrecreate-noreason": "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) {{GENDER:$1|ha cancellato}} questa pagina dopo che hai iniziato a modificarla. Per favore, conferma che vuoi veramente ricreare questa pagina.",
 	"recreate": "Ricrea",
-	"confirm-purge-title": "Purga questa pagina",
+	"confirm-purge-title": "Aggiorna questa pagina",
 	"confirm_purge_button": "OK",
 	"confirm-purge-top": "Vuoi pulire la cache di questa pagina?",
 	"confirm-purge-bottom": "Ripulire la cache di una pagina consente di mostrare la sua versione più aggiornata.",

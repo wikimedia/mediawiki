@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Zygimantus",
-			"Eitvys200"
+			"Eitvys200",
+			"Hugo.arg"
 		]
 	},
 	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
@@ -78,7 +79,7 @@
 	"apihelp-feedwatchlist-param-feedformat": "Srauto formatas.",
 	"apihelp-feedwatchlist-example-default": "Rodyti stebimųjų sąrašo srautą.",
 	"apihelp-feedwatchlist-example-all6hrs": "Rodyti visus pakeitimus stebimuose puslapiuose per paskutines 6 valandas.",
-	"apihelp-filerevert-param-comment": "Įkėlimo komentaras.",
+	"apihelp-filerevert-param-comment": "Įkėlimo pastabos.",
 	"apihelp-help-summary": "Rodyti pagalbą pasirinktiems moduliams.",
 	"apihelp-help-example-main": "Pagalba pagrindiniam moduliui.",
 	"apihelp-help-example-recursive": "Visa pagalba viename puslapyje.",

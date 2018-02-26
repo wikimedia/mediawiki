@@ -2610,6 +2610,7 @@
 	"thumbnail_dest_directory": "Nun pudo crease'l direutoriu de destín",
 	"thumbnail_image-type": "Triba d'imaxe ensin sofitu",
 	"thumbnail_gd-library": "Configuración incompleta de la biblioteca GD: falta la función $1",
+	"thumbnail_image-size-zero": "El tamañu del ficheru d'imaxe paez que ye cero.",
 	"thumbnail_image-missing": "Paez que falta'l ficheru: $1",
 	"thumbnail_image-failure-limit": "Hebo demasiaos intentos recientes que fallaron ($1 o más) al representar esta miniatura. Vuelva a intentalo más sero.",
 	"import": "Importar páxines",

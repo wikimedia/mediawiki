@@ -73,7 +73,8 @@
 			"Mr. Ibrahem",
 			"Aboulouei1",
 			"سامي الرحيلي",
-			"Azouz.anis"
+			"Azouz.anis",
+			"Elbasyouny"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -583,7 +584,7 @@
 	"botpasswords-label-grants-column": "الممنوح",
 	"botpasswords-bad-appid": "اسم البوت \"$1\" غير صحيح.",
 	"botpasswords-insert-failed": "فشل في إضافة  اسم البوت \"$1\".هل أضيف بالفعل؟",
-	"botpasswords-update-failed": "فشل في تحديث اسم بوت \"$1\". هل تم حذفه؟",
+	"botpasswords-update-failed": "فشل في تحديث كلمة سر البوت \"$1\". هل تم حذفه؟",
 	"botpasswords-created-title": "تم إنشاء كلمة سر بوت",
 	"botpasswords-created-body": "كلمة سر البوت للبوت \"$1\" الخاص {{GENDER:$2|بالمستخدم|بالمستخدمة}} \"$2\" تم إنشاؤها.",
 	"botpasswords-updated-title": "تم تحديث كلمة سر البوت",
