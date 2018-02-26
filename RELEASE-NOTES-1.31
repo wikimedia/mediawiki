@@ -109,7 +109,8 @@ production.
 * …
 
 ==== New external libraries ====
-* Added wikimedia/object-factory 1.0.0
+* Added wikimedia/object-factory 1.0.0.
+* Added wikimedia/password-blacklist 0.1.1.
 * …
 
 ==== Removed and replaced external libraries ====
