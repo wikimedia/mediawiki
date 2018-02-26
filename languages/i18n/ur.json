@@ -712,7 +712,7 @@
 	"templatesusedsection": "اِس قطعہ میں مستعمل {{PLURAL:$1|سانچہ|سانچے}}:",
 	"template-protected": "(محفوظ شدہ)",
 	"template-semiprotected": "(نیم محفوظ)",
-	"hiddencategories": "یہ صفحہ {{PLURAL:$1|1 چُھپے زمرے|$1 چُھپے زمرہ جات}} میں شامل ہے:",
+	"hiddencategories": "اس صفحہ میں {{PLURAL:$1|1 پوشیدہ زمرے|$1 پوشیدہ زمرہ جات}} شامل ہیں:",
 	"nocreatetext": "{{SITENAME}} نے نئے صفحات تخلیق کرنے پر پابندی لگا رکھی ہے۔\nتاہم آپ پہلے سے موجود صفحات میں ترمیم کر سکتے ہیں یا [[Special:UserLogin|اپنے کھاتے ميں داخل ہوں یا کھاتہ بنائیں]]۔",
 	"nocreate-loggedin": "آپ کو نئے صفحات تخلیق کرنے کی اجازت نہیں ہے.",
 	"sectioneditnotsupported-title": "قطعہ کی تدوین حمایت شدہ نہیں ہے",

@@ -1466,7 +1466,7 @@
 	"recentchangeslinked-feed": "İlgili değişiklikler",
 	"recentchangeslinked-toolbox": "İlgili değişiklikler",
 	"recentchangeslinked-title": "\"$1\" ile ilişkili değişiklikler",
-	"recentchangeslinked-summary": "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.\n[[Special:Watchlist|İzleme listenizdeki]] sayfalar <strong>kalın<strong> olarak belirtilmiştir.",
+	"recentchangeslinked-summary": "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.\n[[Special:Watchlist|İzleme listenizdeki]] sayfalar <strong>kalın</strong> olarak belirtilmiştir.",
 	"recentchangeslinked-page": "Sayfa adı:",
 	"recentchangeslinked-to": "Belirtilen sayfadan verilenler yerine, sayfaya verilen bağlantıları göster.",
 	"recentchanges-page-added-to-category": "[[:$1]] kategoriye eklendi",
