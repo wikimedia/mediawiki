@@ -75,7 +75,7 @@ TEXT
 		$start = $this->getOption( 'rev-id', 0 );
 		$end = $maxRevId > 0
 			? $maxRevId
-			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+			: (int)$dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 		$blockStart = $start;
 		$attempted = 0;
 		$inserted = 0;
