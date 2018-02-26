@@ -58,6 +58,26 @@ class CrhConverter extends LanguageConverter {
 	const L_F_UC = 'EİÖÜ'; # Crimean Tatar Latin uppercase front vowels
 	const L_F = 'eiöüEİÖÜ'; # Crimean Tatar Latin front vowels
 
+	/**
+	 * @param Language $langobj
+	 * @param string $maincode
+	 * @param array $variants
+	 * @param array $variantfallbacks
+	 * @param array $flags
+	 */
+	function __construct( $langobj, $maincode,
+								$variants = [],
+								$variantfallbacks = [],
+								$flags = [] ) {
+		parent::__construct( $langobj, $maincode,
+			$variants, $variantfallbacks, $flags );
+
+		// No point delaying this since they're in code.
+		// Waiting until loadDefaultTables() means they never get loaded
+		// when the tables themselves are loaded from cache.
+		$this->loadExceptions();
+	}
+
 	public $mCyrillicToLatin = [
 
 		## these are independent of location in the word, but have
@@ -106,9 +126,8 @@ class CrhConverter extends LanguageConverter {
 
 		// hack, hack, hack
 		'A' => 'А', 'a' => 'а', 'E' => 'Е', 'e' => 'е',
-		'Ö' => 'О', 'ö' => 'о', 'U' => 'У', 'u' => 'у',
-		'Ü' => 'У', 'ü' => 'у', 'Y' => 'Й', 'y' => 'й',
-
+		'Ö' => 'Ё', 'ö' => 'ё', 'U' => 'У', 'u' => 'у',
+		'Ü' => 'Ю', 'ü' => 'ю', 'Y' => 'Й', 'y' => 'й',
 		'C' => 'Дж', 'c' => 'дж', 'Ğ' => 'Гъ', 'ğ' => 'гъ',
 		'Ñ' => 'Нъ', 'ñ' => 'нъ', 'Q' => 'Къ', 'q' => 'къ',
 
@@ -127,10 +146,6 @@ class CrhConverter extends LanguageConverter {
 			'crh-cyrl' => new ReplacementArray( $this->mLatinToCyrillic ),
 			'crh' => new ReplacementArray()
 		];
-	}
-
-	function postLoadTables() {
-		$this->loadExceptions();
 	}
 
 	function loadExceptions() {
