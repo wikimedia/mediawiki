@@ -21,6 +21,7 @@
  */
 
 use Cdb\Reader as CdbReader;
+use Wikimedia\PasswordBlacklist;
 
 /**
  * Functions to check passwords against a policy requirement
@@ -161,6 +162,21 @@ class PasswordPolicyChecks {
 				$status->error( 'passwordtoopopular' );
 			}
 		}
+		return $status;
+	}
+
+	/**
+	 * @param bool $policyVal
+	 * @param User $user
+	 * @param string $password
+	 * @return Status
+	 */
+	public static function checkPasswordNotInSecLists( $policyVal, User $user, $password ) {
+		$status = Status::newGood();
+		if ( $policyVal && PasswordBlacklist\PasswordBlacklist::isBlacklisted( $password ) ) {
+			$status->error( '' );
+		}
+
 		return $status;
 	}
 
