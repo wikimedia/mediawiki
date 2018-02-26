@@ -156,4 +156,23 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$status = PasswordPolicyChecks::checkPopularPasswordBlacklist( PHP_INT_MAX, $user, $password );
 		$this->assertSame( $expected, $status->isGood() );
 	}
+
+	public static function provideLargeBlacklist() {
+		return [
+			[ false, 'testpass' ],
+			[ false, 'password' ],
+			[ false, '12345' ],
+			[ true, 'DKn17egcA4' ],
+		];
+	}
+
+	/**
+	 * @covers PasswordPolicyChecks::checkPasswordNotInLargeBlacklist
+	 * @dataProvider provideLargeBlacklist
+	 */
+	public function testCheckNotInLargeBlacklist( $expected, $password ) {
+		$user = User::newFromName( 'username' );
+		$status = PasswordPolicyChecks::checkPasswordNotInLargeBlacklist( true, $user, $password );
+		$this->assertSame( $expected, $status->isGood() );
+	}
 }
