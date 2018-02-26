@@ -36,6 +36,7 @@ production.
 * Updated QUnit from 2.4.0 to 2.6.0.
 
 ==== New external libraries ====
+* Added wikimedia/password-blacklist 0.1.2.
 * …
 
 ==== Removed and replaced external libraries ====
