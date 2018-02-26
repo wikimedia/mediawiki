@@ -25,7 +25,7 @@ class SpecialPageAliasTest extends MediaWikiTestCase {
 	}
 
 	public function validSpecialPageAliasesProvider() {
-		$codes = array_keys( Language::fetchLanguageNames( 'mwfile' ) );
+		$codes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 
 		$data = [];
 
