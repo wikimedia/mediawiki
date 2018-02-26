@@ -1083,7 +1083,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpName',
 			'cssclass' => 'loginText',
 			'size' => 20,
-			'required' => 'true', // Proper validation of form data is important to protect your form from hackers and spammers
+// Proper validation of form data is important to protect your form from hackers and spam bots
+			'required' => 'true',
+			'autocomplete' => 'off',
 		];
 		$fieldDefinitions['password'] += [
 			'type' => 'password',
@@ -1092,6 +1094,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'cssclass' => 'loginPassword',
 			'size' => 20,
 			'required' => 'true',
+// Autocomplete off can remove the risk of allowing password autocomplete if any XSS flaw on your
+// website would have allowed an attacker to grab the password
+			'autocomplete' => 'off',
 		];
 
 		if ( $template->get( 'header' ) || $template->get( 'formheader' ) ) {
