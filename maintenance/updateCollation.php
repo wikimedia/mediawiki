@@ -232,12 +232,6 @@ TEXT
 			} else {
 				$this->output( "$count done.\n" );
 			}
-
-			if ( !$dryRun && ++$batchCount % self::SYNC_INTERVAL == 0 ) {
-				$this->output( "Waiting for replica DBs ... " );
-				wfWaitForSlaves();
-				$this->output( "done\n" );
-			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
 
 		if ( !$dryRun ) {
