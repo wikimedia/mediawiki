@@ -4520,6 +4520,8 @@ $wgCentralIdLookupProvider = 'local';
  *		commonly chosen. Set to integer n to ban the top n passwords.
  *		If you want to ban all common passwords on file, use the
  *		PHP_INT_MAX constant.
+ *	- PasswordNotInLargeBlacklist - Password not in best practices list of
+ *		100,000 commonly used passwords.
  * @since 1.26
  */
 $wgPasswordPolicy = [
@@ -4529,29 +4531,34 @@ $wgPasswordPolicy = [
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotBePopular' => 25,
+			'PasswordNotInLargeBlacklist' => true,
 		],
 		'sysop' => [
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotBePopular' => 25,
+			'PasswordNotInLargeBlacklist' => true,
 		],
 		'interface-admin' => [
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotBePopular' => 25,
+			'PasswordNotInLargeBlacklist' => true,
 		],
 		'bot' => [
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
 			'PasswordCannotMatchUsername' => true,
+			'PasswordNotInLargeBlacklist' => true,
 		],
 		'default' => [
 			'MinimalPasswordLength' => 1,
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotMatchBlacklist' => true,
 			'MaximalPasswordLength' => 4096,
+			'PasswordNotInLargeBlacklist' => false,
 		],
 	],
 	'checks' => [
@@ -4560,7 +4567,8 @@ $wgPasswordPolicy = [
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist'
+		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist',
+		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInLargeBlacklist',
 	],
 ];
 

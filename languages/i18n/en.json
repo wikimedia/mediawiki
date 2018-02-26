@@ -478,6 +478,7 @@
 	"passwordtooshort": "Passwords must be at least {{PLURAL:$1|1 character|$1 characters}}.",
 	"passwordtoolong": "Passwords cannot be longer than {{PLURAL:$1|1 character|$1 characters}}.",
 	"passwordtoopopular": "Commonly chosen passwords cannot be used. Please choose a password that is more difficult to guess.",
+	"passwordinlargeblacklist": "The password entered is in a list of very commonly used passwords. Please choose a more unique password.",
 	"password-name-match": "Your password must be different from your username.",
 	"password-login-forbidden": "The use of this username and password has been forbidden.",
 	"mailmypassword": "Reset password",
@@ -4538,6 +4539,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Password cannot match specifically blacklisted passwords",
 	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
 	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}",
+	"passwordpolicies-policy-passwordnotinlargeblacklist": "Password cannot be in the list of 100,000 most commonly used passwords.",
 	"easydeflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage"
 }

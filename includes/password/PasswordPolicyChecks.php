@@ -22,6 +22,7 @@
 
 use Cdb\Reader as CdbReader;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\PasswordBlacklist;
 
 /**
  * Functions to check passwords against a policy requirement
@@ -164,6 +165,27 @@ class PasswordPolicyChecks {
 				$status->error( 'passwordtoopopular' );
 			}
 		}
+		return $status;
+	}
+
+	/**
+	 * Ensure the password isn't in the list of passwords blacklisted by the
+	 * wikimedia/password-blacklist library
+	 *
+	 * @param bool $policyVal Whether to apply this policy
+	 * @param User $user
+	 * @param string $password
+	 *
+	 * @since 1.33
+	 *
+	 * @return Status
+	 */
+	public static function checkPasswordNotInLargeBlacklist( $policyVal, User $user, $password ) {
+		$status = Status::newGood();
+		if ( $policyVal && PasswordBlacklist\PasswordBlacklist::isBlacklisted( $password ) ) {
+			$status->error( 'passwordinlargeblacklist' );
+		}
+
 		return $status;
 	}
 

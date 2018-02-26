@@ -42,6 +42,7 @@
 		"wikimedia/html-formatter": "1.0.2",
 		"wikimedia/ip-set": "1.2.0",
 		"wikimedia/object-factory": "1.0.0",
+		"wikimedia/password-blacklist": "0.1.2",
 		"wikimedia/php-session-serializer": "1.0.6",
 		"wikimedia/purtle": "1.0.7",
 		"wikimedia/relpath": "2.1.1",
