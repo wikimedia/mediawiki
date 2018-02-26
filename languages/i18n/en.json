@@ -1897,7 +1897,7 @@
 	"statistics-files": "Uploaded files",
 	"statistics-edits": "Page edits since {{SITENAME}} was set up",
 	"statistics-edits-average": "Average edits per page",
-	"statistics-users": "Registered [[Special:ListUsers|users]]",
+	"statistics-users": "Registered users",
 	"statistics-users-active": "Active users",
 	"statistics-users-active-desc": "Users who have performed an action in the last {{PLURAL:$1|day|$1 days}}",
 	"statistics-footer": "",
