@@ -831,6 +831,19 @@ class ParserTestRunner {
 		$parser = $this->getParser( $preprocessor );
 		$title = Title::newFromText( $titleText );
 
+		if ( isset( $opts['styletag'] ) ) {
+			// For testing the behavior of <style> (including those deduplicated
+			// into <link> tags), add tag hooks to allow them to be generated.
+			$parser->setHook( 'style', function ( $content, $attributes, $parser ) {
+				$marker = Parser::MARKER_PREFIX . '-style-' . md5( $content ) . Parser::MARKER_SUFFIX;
+				$parser->mStripState->addNoWiki( $marker, $content );
+				return Html::inlineStyle( $marker, 'all', $attributes );
+			} );
+			$parser->setHook( 'link', function ( $content, $attributes, $parser ) {
+				return Html::element( 'link', $attributes );
+			} );
+		}
+
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $test['input'], $title, $user, $options );
 			$output = $parser->getOutput();
