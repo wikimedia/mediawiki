@@ -164,4 +164,19 @@ class PasswordPolicyChecks {
 		return $status;
 	}
 
+	/**
+	 * @param bool $policyVal
+	 * @param User $user
+	 * @param string $password
+	 * @return Status
+	 */
+	public static function checkPasswordNotInSecLists( $policyVal, User $user, $password ) {
+		$status = Status::newGood();
+		if ( $policyVal && \Wikimedia\PasswordBlacklist::isBlacklisted( $password ) ) {
+			$status->error( '' );
+		}
+
+		return $status;
+	}
+
 }
