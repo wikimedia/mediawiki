@@ -84,6 +84,8 @@ class SearchFormWidget {
 		$searchWidget = new SearchInputWidget( [
 			'id' => 'searchText',
 			'name' => 'search',
+			'autocomplete' => 'off',
+			'required' => 'off',
 			'autofocus' => trim( $term ) === '',
 			'value' => $term,
 			'dataLocation' => 'content',
