@@ -3,7 +3,11 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var $tagList = $( '#mw-edittags-tag-list' );
+		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
+			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
+			$wpReason = $( '#wpReason' ),
+			$tagList = $( '#mw-edittags-tag-list' );
+
 		if ( $tagList.length ) {
 			$tagList.chosen( {
 				/* eslint-disable camelcase */
@@ -21,5 +25,14 @@
 				$( '#mw-edittags-remove-all' ).prop( 'checked', false );
 			}
 		} );
+
+		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
+		// use maxLength because it's leaving room for log entry text.
+		if ( summaryCodePointLimit ) {
+			$wpReason.codePointLimit();
+		} else if ( summaryByteLimit ) {
+			$wpReason.bytePointLimit();
+		}
 	} );
+
 }( mediaWiki, jQuery ) );

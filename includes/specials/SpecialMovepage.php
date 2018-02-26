@@ -287,8 +287,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "</div>\n" );
 		}
 
-		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
-		// is enforced in the mediawiki.special.movePage module
+		// Length limit for wpReason and wpNewTitleMain is enforced in the
+		// mediawiki.special.movePage module
 
 		$immovableNamespaces = [];
 		foreach ( array_keys( $this->getLanguage()->getNamespaces() ) as $nsId ) {
@@ -326,11 +326,16 @@ class MovePageForm extends UnlistedSpecialPage {
 			]
 		);
 
+		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+		// Unicode codepoints (or 255 UTF-8 bytes for old schema).
+		$conf = $this->getConfig();
+		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 		$fields[] = new OOUI\FieldLayout(
 			new OOUI\TextInputWidget( [
 				'name' => 'wpReason',
 				'id' => 'wpReason',
-				'maxLength' => 200,
+				'maxLength' => $oldCommentSchema ? 200 : CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
 				'value' => $this->reason,
 			] ),
