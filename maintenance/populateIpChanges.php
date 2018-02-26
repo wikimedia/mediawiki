@@ -76,6 +76,12 @@ TEXT
 		$end = $maxRevId > 0
 			? $maxRevId
 			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+
+		if ( empty( $end ) ) {
+			$this->output( "No revisions found, aborting.\n" );
+			return true;
+		}
+
 		$blockStart = $start;
 		$attempted = 0;
 		$inserted = 0;
