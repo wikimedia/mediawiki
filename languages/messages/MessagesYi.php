@@ -20,8 +20,6 @@
 
 $fallback = 'he';
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'מעדיע',
 	NS_SPECIAL          => 'באַזונדער',

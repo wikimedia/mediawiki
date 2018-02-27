@@ -3028,7 +3028,7 @@ class Language {
 	 * @return bool
 	 */
 	function isRTL() {
-		return self::$dataCache->getItem( $this->mCode, 'rtl' );
+		return LanguageHelpers::isRTL( $this->getCode() );
 	}
 
 	/**

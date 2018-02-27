@@ -11,8 +11,6 @@
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
 
-$rtl = true;
-
 /**
  * A list of date format preference keys which can be selected in user
  * preferences. New preference keys can be added, provided they are supported

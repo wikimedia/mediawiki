@@ -10,8 +10,6 @@
 
 $fallback = 'ar';
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'ميديا',
 	NS_SPECIAL          => 'خاص',

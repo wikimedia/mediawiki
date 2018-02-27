@@ -21,8 +21,6 @@ $fallback = 'fa';
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'شا',

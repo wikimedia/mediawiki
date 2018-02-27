@@ -10,8 +10,6 @@
  * @author Kaganer
  */
 
-$rtl = true;
-
 $digitTransformTable = [
 	'0' => '۰', # &#x1776;
 	'1' => '۱', # &#x1777;

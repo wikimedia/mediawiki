@@ -11,8 +11,6 @@
  * @author VibhasKS
  */
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'میڈیا',
 	NS_SPECIAL          => 'خاص',
