@@ -66,6 +66,44 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => 'alias = \'text\'',
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table " .
+				"WHERE alias = 'text'"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => [],
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => '',
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => '0', // T188314
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table " .
+				"WHERE 0"
+			],
+			[
+				[
 					// 'tables' with space prepended indicates pre-escaped table name
 					'tables' => ' table LEFT JOIN table2',
 					'fields' => [ 'field' ],
