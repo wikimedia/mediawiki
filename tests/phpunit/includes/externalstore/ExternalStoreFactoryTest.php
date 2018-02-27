@@ -8,7 +8,7 @@ class ExternalStoreFactoryTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testExternalStoreFactory_noStores() {
-		$factory = new ExternalStoreFactory( [] );
+		$factory = new ExternalStoreFactory( [], [], 'test-id' );
 		$this->assertFalse( $factory->getStoreObject( 'ForTesting' ) );
 		$this->assertFalse( $factory->getStoreObject( 'foo' ) );
 	}
@@ -24,7 +24,7 @@ class ExternalStoreFactoryTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideStoreNames
 	 */
 	public function testExternalStoreFactory_someStore_protoMatch( $proto ) {
-		$factory = new ExternalStoreFactory( [ 'ForTesting' ] );
+		$factory = new ExternalStoreFactory( [ 'ForTesting' ], [], 'test-id' );
 		$store = $factory->getStoreObject( $proto );
 		$this->assertInstanceOf( ExternalStoreForTesting::class, $store );
 	}
@@ -33,7 +33,7 @@ class ExternalStoreFactoryTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideStoreNames
 	 */
 	public function testExternalStoreFactory_someStore_noProtoMatch( $proto ) {
-		$factory = new ExternalStoreFactory( [ 'SomeOtherClassName' ] );
+		$factory = new ExternalStoreFactory( [ 'SomeOtherClassName' ], [], 'test-id' );
 		$store = $factory->getStoreObject( $proto );
 		$this->assertFalse( $store );
 	}

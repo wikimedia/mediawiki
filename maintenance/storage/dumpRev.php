@@ -31,6 +31,7 @@ require_once __DIR__ . '/../Maintenance.php';
  *
  * @ingroup Maintenance ExternalStorage
  */
+
 class DumpRev extends Maintenance {
 	public function __construct() {
 		parent::__construct();

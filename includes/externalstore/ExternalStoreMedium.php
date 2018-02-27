@@ -21,22 +21,48 @@
  * @ingroup ExternalStorage
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use \Psr\Log\NullLogger;
+
 /**
  * Accessable external objects in a particular storage medium
  *
  * @ingroup ExternalStorage
  * @since 1.21
  */
-abstract class ExternalStoreMedium {
-	/** @var array */
+abstract class ExternalStoreMedium implements LoggerAwareInterface {
+	/** @var array Usage context options for this instance */
 	protected $params = [];
+	/** @var string Default database domain to store content under */
+	protected $domainId;
+	/** @var string[] Writable locations */
+	protected $writableLocations = [];
+
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/**
-	 * @param array $params Usage context options:
-	 *   - wiki: the domain ID of the wiki this is being used for [optional]
+	 * @param array $params Usage context options for this instance:
+	 *   - wiki: the domain ID of the wiki the content is for [required]
+	 *   - writableLocations: locations that are writable [required]
+	 *   - logger: LoggerInterface instance [optional]
 	 */
-	public function __construct( array $params = [] ) {
+	public function __construct( array $params ) {
 		$this->params = $params;
+		if ( !isset( $params['wiki'] ) ) {
+			throw new InvalidArgumentException( 'Missing "localDomainId" parameter.' );
+		}
+		$this->domainId = $params['wiki'];
+
+		$this->logger = isset( $params['logger'] ) ? $params['logger'] : new NullLogger();
+		$this->writableLocations = isset( $params['writableLocations'] )
+			? $params['writableLocations' ]
+			: [];
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -52,14 +78,13 @@ abstract class ExternalStoreMedium {
 	 * Fetch data from given external store URLs.
 	 *
 	 * @param array $urls A list of external store URLs
-	 * @return array Map from the url to the text stored. Unfound data is not represented
+	 * @return string[] Map of (url => text) for the URLs where data was actually found
 	 */
 	public function batchFetchFromURLs( array $urls ) {
 		$retval = [];
 		foreach ( $urls as $url ) {
 			$data = $this->fetchFromURL( $url );
-			// Dont return when false to allow for simpler implementations.
-			// errored urls are handled in ExternalStore::batchFetchFromURLs
+			// Dont return when false to allow for simpler implementations
 			if ( $data !== false ) {
 				$retval[$url] = $data;
 			}
@@ -86,6 +111,6 @@ abstract class ExternalStoreMedium {
 	 * @since 1.31
 	 */
 	public function isReadOnly( $location ) {
-		return false;
+		return !in_array( $location, $this->writableLocations, true );
 	}
 }

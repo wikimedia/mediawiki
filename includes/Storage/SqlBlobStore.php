@@ -27,11 +27,11 @@
 namespace MediaWiki\Storage;
 
 use DBAccessObjectUtils;
-use ExternalStore;
 use IDBAccessObject;
 use IExpiringStore;
 use InvalidArgumentException;
 use Language;
+use MediaWiki\MediaWikiServices;
 use MWException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -214,8 +214,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 			# Write to external storage if required
 			if ( $this->useExternalStore ) {
+				// @TODO: inject ExternalStoreFactory
+				$store = MediaWikiServices::getInstance()->getExternalStoreFactory();
 				// Store and get the URL
-				$data = ExternalStore::insertToDefault( $data );
+				$data = $store->insertToDefault( $data );
 				if ( !$data ) {
 					throw new BlobAccessException( "Failed to store text to external storage" );
 				}
@@ -387,6 +389,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				return false;
 			}
 
+			// @TODO: inject ExternalStoreFactory
+			$store = MediaWikiServices::getInstance()->getExternalStoreFactory();
 			if ( $cacheKey && $this->wikiId === false ) {
 				// Make use of the wiki-local revision text cache.
 				// The cached value should be decompressed, so handle that and return here.
@@ -395,16 +399,16 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 					// TODO: change key, since this is not necessarily revision text!
 					$this->cache->makeKey( 'revisiontext', 'textid', $cacheKey ),
 					$this->getCacheTTL(),
-					function () use ( $url, $flags ) {
+					function () use ( $store, $url, $flags ) {
 						// No negative caching per BlobStore::getBlob()
-						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+						$blob = $store->fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
 
 						return $this->decompressData( $blob, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 				);
 			} else {
-				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
+				$blob = $store->fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
 				return $this->decompressData( $blob, $flags );
 			}
 		} else {
@@ -608,7 +612,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	public function isReadOnly() {
-		if ( $this->useExternalStore && ExternalStore::defaultStoresAreReadOnly() ) {
+		$store = MediaWikiServices::getInstance()->getExternalStoreFactory();
+		if ( $this->useExternalStore && $store->defaultStoresAreReadOnly() ) {
 			return true;
 		}
 

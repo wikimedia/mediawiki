@@ -479,9 +479,13 @@ return [
 
 	'ExternalStoreFactory' => function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
+		$writeStores = $config->get( 'DefaultExternalStore' );
 
 		return new ExternalStoreFactory(
-			$config->get( 'ExternalStores' )
+			$config->get( 'ExternalStores' ),
+			( $writeStores !== false ) ? (array)$writeStores : [],
+			$services->getDBLoadBalancer()->getLocalDomainID(),
+			LoggerFactory::getInstance( 'ExternalStore' )
 		);
 	},
 
