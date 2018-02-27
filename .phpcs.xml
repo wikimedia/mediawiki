@@ -88,4 +88,5 @@
 	<exclude-pattern>AdminSettings\.php</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
 	<exclude-pattern>StartProfiler\.php</exclude-pattern>
+	<exclude-pattern>languages/metadata\.php</exclude-pattern>
 </ruleset>
