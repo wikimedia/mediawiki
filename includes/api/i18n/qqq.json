@@ -882,6 +882,7 @@
 	"apihelp-query+langlinks-param-prop": "{{doc-apihelp-param|query+langlinks|prop|paramvalues=1}}",
 	"apihelp-query+langlinks-paramvalue-prop-url": "{{doc-apihelp-paramvalue|query+langlinks|prop|url}}",
 	"apihelp-query+langlinks-paramvalue-prop-langname": "{{doc-apihelp-paramvalue|query+langlinks|prop|langname}}",
+	"apihelp-query+langlinks-paramvalue-prop-dir": "{{doc-apihelp-paramvalue|query+langlinks|prop|dir}}",
 	"apihelp-query+langlinks-paramvalue-prop-autonym": "{{doc-apihelp-paramvalue|query+langlinks|prop|autonym}}",
 	"apihelp-query+langlinks-param-lang": "{{doc-apihelp-param|query+langlinks|lang}}",
 	"apihelp-query+langlinks-param-title": "{{doc-apihelp-param|query+langlinks|title}}",
