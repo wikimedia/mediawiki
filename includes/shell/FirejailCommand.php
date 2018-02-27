@@ -123,22 +123,24 @@ class FirejailCommand extends Command {
 			$cmd[] = '--noroot';
 		}
 
-		$seccomp = [];
-
-		if ( $this->hasRestriction( Shell::SECCOMP ) ) {
-			$seccomp[] = '@default';
-		}
+		$useSeccomp = $this->hasRestriction( Shell::SECCOMP );
+		$extraSeccomp = [];
 
 		if ( $this->hasRestriction( Shell::NO_EXECVE ) ) {
-			$seccomp[] = 'execve';
+			$extraSeccomp[] = 'execve';
 			// Normally firejail will run commands in a bash shell,
 			// but that won't work if we ban the execve syscall, so
 			// run the command without a shell.
 			$cmd[] = '--shell=none';
 		}
 
-		if ( $seccomp ) {
-			$cmd[] = '--seccomp=' . implode( ',', $seccomp );
+		if ( $useSeccomp ) {
+			$seccomp = '--seccomp';
+			if ( $extraSeccomp ) {
+				// The "@default" seccomp group will always be enabled
+				$seccomp .= '=' . implode( ',', $extraSeccomp );
+			}
+			$cmd[] = $seccomp;
 		}
 
 		if ( $this->hasRestriction( Shell::PRIVATE_DEV ) ) {
