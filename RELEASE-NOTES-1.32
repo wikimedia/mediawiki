@@ -40,8 +40,13 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
 
-* Renamed language code for Serbian in Cyrillic script from sr-ec to sr-cyrl.
-* Renamed language code for Serbian in Latin script from sr-el to sr-latn.
+* Renamed language code for Serbian in Cyrillic script with Ekavian
+  pronunciation from sr-ec to sr-cyrl-ekavsk.
+* Renamed language code for Serbian in Latin script with Ekavian pronunciation
+  from sr-el to sr-latn-ekavsk.
+* Added new language code sr-ekavsk with fallback to sr-cyrl-ekavsk.
+* Added new language code sr-cyrl with fallback to sr-cyrl-ekavsk.
+* Added new language code sr-latn with fallback to sr-latn-ekavsk.
 * …
 
 === Breaking changes in 1.32 ===
