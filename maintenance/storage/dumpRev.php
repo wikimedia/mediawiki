@@ -29,6 +29,9 @@ require_once __DIR__ . '/../Maintenance.php';
  *
  * @ingroup Maintenance ExternalStorage
  */
+
+use MediaWiki\MediaWikiServices;
+
 class DumpRev extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -51,7 +54,9 @@ class DumpRev extends Maintenance {
 		if ( in_array( 'external', $flags ) ) {
 			$this->output( "External $text\n" );
 			if ( preg_match( '!^DB://(\w+)/(\w+)/(\w+)$!', $text, $m ) ) {
-				$es = ExternalStore::getStoreObject( 'DB' );
+				$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+				/** @var ExternalStoreDB $es */
+				$es = $esFactory->getStoreObject( 'DB' );
 				$blob = $es->fetchBlob( $m[1], $m[2], $m[3] );
 				if ( strtolower( get_class( $blob ) ) == 'concatenatedgziphistoryblob' ) {
 					$this->output( "Found external CGZ\n" );
