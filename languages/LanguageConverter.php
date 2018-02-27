@@ -179,7 +179,8 @@ class LanguageConverter {
 		// not memoized (i.e. there return value is not cached) since
 		// new information might appear during processing after this
 		// is first called.
-		if ( $this->validateVariant( $req ) ) {
+		$req = $this->validateVariant( $req );
+		if ( $req ) {
 			return $req;
 		}
 		return $this->mMainLanguageCode;
@@ -217,6 +218,11 @@ class LanguageConverter {
 	public function validateVariant( $variant = null ) {
 		// Replace deprecated language codes
 		$variant = LanguageCode::replaceDeprecatedCodes( $variant );
+
+		// FIXME: Move this replacement to a better place.
+		if ( $variant === 'sr-cyrl-ekavsk' ) {
+			return 'sr-cyrl';
+		}
 
 		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
 			return $variant;
@@ -548,7 +554,8 @@ class LanguageConverter {
 		$convTable = $convRule->getConvTable();
 		$action = $convRule->getRulesAction();
 		foreach ( $convTable as $variant => $pair ) {
-			if ( !$this->validateVariant( $variant ) ) {
+			$variant = $this->validateVariant( $variant );
+			if ( !$variant ) {
 				continue;
 			}
 
