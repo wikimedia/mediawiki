@@ -477,6 +477,7 @@
 	"svg-long-desc": "ⴰⴼⴰⵢⵍⵓ SVG, ⵙ $1 × $2 ⵉⴷ ⴱⵉⴽⵙⵍ, ⵜⵉⴷⴷⵉ ⵏ ⵓⴼⴰⵢⵍⵓ: $3",
 	"show-big-image": "ⴰⴼⴰⵢⵍⵓ ⴰⵙⴰⵍⴰⵏ",
 	"show-big-image-preview": "ⵜⴰⵙⵎⴽⵜⴰ ⵏ ⵓⵣⵔⵉⵣⵡⴰⵔ ⴰⴷ: $1.",
+	"show-big-image-other": "{{PLURAL:$2|ⵜⴰⴼⵙⴰⵢⵜ|ⵜⵉⴼⵙⴰⵢⵉⵏ}}: ⵢⴰⴹⵏ $1.",
 	"show-big-image-size": "$1 × $2 ⵉⴷ ⴱⵉⴽⵙⵍ",
 	"metadata": "ⵎⵉⵜⴰⴷⴰⵜⴰ",
 	"metadata-fields": "ⵉⴳⵔⴰⵏ ⵏ ⵎⵉⵜⴰⵉⵙⴼⴽⴰ ⵏ ⵜⵉⵡⵍⴰⴼⵉⵏ ⵏⵏⴰ ⵉⴼⵙⵔⵏ ⴳ ⵜⴱⵔⴰⵜ ⴰⴷ ⵔⴰⴷ ⵉⵍⵉⵏ ⴳ ⵜⴰⵙⵏⴰ ⵏ ⵓⵙⵏⵓⵎⵎⵍ ⵏ ⵜⴰⵡⵍⴰⴼⵜ ⴰⴽⵓⴷ ⵏⵏⴰ ⵉⵎⵓⵏ ⵓⵙⴽⵜⵓⵔ. ⵉⴳⵔⴰⵏ ⵢⴰⴹⵏ ⵔⴰⴷ ⴼⴼⵔⵏ ⵙ ⵓⵎⵕⴰⴹ.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",

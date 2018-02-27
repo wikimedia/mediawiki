@@ -1744,7 +1744,7 @@
 	"uploadstash-bad-path-invalid": "Ścieżka jest nieprawidłowa.",
 	"uploadstash-bad-path-unknown-type": "Nieznany typ „$1”.",
 	"uploadstash-bad-path-unrecognized-thumb-name": "Nierozpoznana nazwa miniaturki.",
-	"uploadstash-bad-path-no-handler": "Nie znaleziono obsługi dla typu mime 1 $ pliku $2.",
+	"uploadstash-bad-path-no-handler": "Nie znaleziono obsługi dla typu mime $1 pliku $2.",
 	"uploadstash-bad-path-bad-format": "Klucz \"$1\" nie jest w odpowiednim formacie.",
 	"uploadstash-file-not-found": "Klucz \"$1\" nie został znaleziony w schowku.",
 	"uploadstash-file-not-found-no-thumb": "Nie można uzyskać miniaturki.",
