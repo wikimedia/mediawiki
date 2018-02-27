@@ -78,8 +78,13 @@ because of Phabricator reports.
 * (T193566) Added language support for Ambonese Malay (abs).
 * (T194047) Added language support for Shawiya, Latin script (shy-latn).
 * (T195940) Added language support for Batak Mandailing (btm).
-* Renamed language code for Serbian in Cyrillic script from sr-ec to sr-cyrl.
-* Renamed language code for Serbian in Latin script from sr-el to sr-latn.
+* Renamed language code for Serbian in Cyrillic script with Ekavian
+  pronunciation from sr-ec to sr-cyrl-ekavsk.
+* Renamed language code for Serbian in Latin script with Ekavian pronunciation
+  from sr-el to sr-latn-ekavsk.
+* Added new language code sr-ekavsk with fallback to sr-cyrl-ekavsk.
+* Added new language code sr-cyrl with fallback to sr-cyrl-ekavsk.
+* Added new language code sr-latn with fallback to sr-latn-ekavsk.
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
