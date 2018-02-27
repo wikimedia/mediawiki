@@ -27,6 +27,7 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use LanguageHelpers;
 
 /**
  * Internationalisation code
@@ -3028,7 +3029,7 @@ class Language {
 	 * @return bool
 	 */
 	function isRTL() {
-		return self::$dataCache->getItem( $this->mCode, 'rtl' );
+		return LanguageHelpers::isRTL();
 	}
 
 	/**

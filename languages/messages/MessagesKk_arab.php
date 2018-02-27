@@ -14,8 +14,6 @@
  */
 
 $fallback = 'kk-cyrl';
-$rtl = true;
-
 $digitTransformTable = [
 	'0' => '۰', # &#x06f0;
 	'1' => '۱', # &#x06f1;

@@ -16,8 +16,6 @@
  * @author بىلگە
  */
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'ۋاسىتە',
 	NS_SPECIAL          => 'ئالاھىدە',

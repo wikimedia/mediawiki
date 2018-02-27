@@ -17,8 +17,6 @@
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'میڈیا',
 	NS_SPECIAL          => 'خاص',

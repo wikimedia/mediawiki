@@ -7,4 +7,3 @@
  * @file
  */
 
-$rtl = true;

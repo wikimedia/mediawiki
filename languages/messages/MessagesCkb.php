@@ -8,7 +8,6 @@
  *
  */
 
-$rtl = true;
 $fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = [

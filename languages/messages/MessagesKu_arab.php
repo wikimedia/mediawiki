@@ -16,8 +16,6 @@
 
 $fallback = 'ckb';
 
-$rtl = true;
-
 $digitTransformTable = [
 	'0' => '٠', # &#x0660;
 	'1' => '١', # &#x0661;
