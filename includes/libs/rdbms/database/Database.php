@@ -27,6 +27,7 @@ namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia;
@@ -299,7 +300,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This also connects to the database immediately upon object construction
 	 *
-	 * @param string $dbType A possible DB type (sqlite, mysql, postgres)
+	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param array $p Parameter map with keys:
 	 *   - host : The hostname of the DB server
 	 *   - user : The name of the database user the client operates under
@@ -336,6 +337,53 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.18
 	 */
 	final public static function factory( $dbType, $p = [] ) {
+		$class = self::getClass( $dbType, isset( $p['driver'] ) ? $p['driver'] : null );
+
+		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
+			// Resolve some defaults for b/c
+			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
+			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
+			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
+			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
+			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
+			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
+			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
+			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
+			$p['cliMode'] = isset( $p['cliMode'] )
+				? $p['cliMode']
+				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
+			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
+			if ( !isset( $p['connLogger'] ) ) {
+				$p['connLogger'] = new NullLogger();
+			}
+			if ( !isset( $p['queryLogger'] ) ) {
+				$p['queryLogger'] = new NullLogger();
+			}
+			$p['profiler'] = isset( $p['profiler'] ) ? $p['profiler'] : null;
+			if ( !isset( $p['trxProfiler'] ) ) {
+				$p['trxProfiler'] = new TransactionProfiler();
+			}
+			if ( !isset( $p['errorLogger'] ) ) {
+				$p['errorLogger'] = function ( Exception $e ) {
+					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+				};
+			}
+
+			$conn = new $class( $p );
+		} else {
+			$conn = null;
+		}
+
+		return $conn;
+	}
+
+	/**
+	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
+	 * @param string|null $driver Optional name of a specific DB client driver
+	 * @return string Database subclass name to use
+	 * @throws InvalidArgumentException
+	 */
+	private static function getClass( $dbType, $driver = null ) {
 		// For database types with built-in support, the below maps type to IDatabase
 		// implementations. For types with multipe driver implementations (PHP extensions),
 		// an array can be used, keyed by extension name. In case of an array, the
@@ -349,19 +397,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			'postgres' => DatabasePostgres::class,
 		];
 
-		$dbType = strtolower( $dbType );
 		$class = false;
+
 		if ( isset( $builtinTypes[$dbType] ) ) {
 			$possibleDrivers = $builtinTypes[$dbType];
 			if ( is_string( $possibleDrivers ) ) {
 				$class = $possibleDrivers;
 			} else {
-				if ( !empty( $p['driver'] ) ) {
-					if ( !isset( $possibleDrivers[$p['driver']] ) ) {
+				if ( strlen( $driver ) ) {
+					if ( !isset( $possibleDrivers[$driver] ) ) {
 						throw new InvalidArgumentException( __METHOD__ .
-							" type '$dbType' does not support driver '{$p['driver']}'" );
+							" type '$dbType' does not support driver '{$driver}'" );
 					} else {
-						$class = $possibleDrivers[$p['driver']];
+						$class = $possibleDrivers[$driver];
 					}
 				} else {
 					foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
@@ -381,42 +429,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				" no viable database extension found for type '$dbType'" );
 		}
 
-		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
-			// Resolve some defaults for b/c
-			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
-			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
-			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
-			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
-			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
-			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : [];
-			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : '';
-			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : '';
-			$p['cliMode'] = isset( $p['cliMode'] )
-				? $p['cliMode']
-				: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-			$p['agent'] = isset( $p['agent'] ) ? $p['agent'] : '';
-			if ( !isset( $p['connLogger'] ) ) {
-				$p['connLogger'] = new \Psr\Log\NullLogger();
-			}
-			if ( !isset( $p['queryLogger'] ) ) {
-				$p['queryLogger'] = new \Psr\Log\NullLogger();
-			}
-			$p['profiler'] = isset( $p['profiler'] ) ? $p['profiler'] : null;
-			if ( !isset( $p['trxProfiler'] ) ) {
-				$p['trxProfiler'] = new TransactionProfiler();
-			}
-			if ( !isset( $p['errorLogger'] ) ) {
-				$p['errorLogger'] = function ( Exception $e ) {
-					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
-				};
-			}
-
-			$conn = new $class( $p );
-		} else {
-			$conn = null;
-		}
-
-		return $conn;
+		return $class;
 	}
 
 	/**
