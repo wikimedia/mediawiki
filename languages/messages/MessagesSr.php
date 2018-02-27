@@ -13,5 +13,5 @@
  * @author Михајло Анђелковић
  */
 
-$fallback = 'sr-cyrl';
+$fallback = 'sr-cyrl-ekavsk, sr-cyrl, sr-ekavsk';
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';
