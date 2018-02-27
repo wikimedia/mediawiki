@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 /**
@@ -36,51 +38,25 @@ class DumpRev extends Maintenance {
 	}
 
 	public function execute() {
-		$dbr = $this->getDB( DB_REPLICA );
-		$row = $dbr->selectRow(
-			[ 'text', 'revision' ],
-			[ 'old_flags', 'old_text' ],
-			[ 'old_id=rev_text_id', 'rev_id' => $this->getArg() ]
-		);
-		if ( !$row ) {
+		$id = (int)$this->getArg();
+
+		$lookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$rev = $lookup->getRevisionById( $id );
+		if ( !$rev ) {
 			$this->fatalError( "Row not found" );
 		}
 
-		$flags = explode( ',', $row->old_flags );
-		$text = $row->old_text;
-		if ( in_array( 'external', $flags ) ) {
-			$this->output( "External $text\n" );
-			if ( preg_match( '!^DB://(\w+)/(\w+)/(\w+)$!', $text, $m ) ) {
-				$es = ExternalStore::getStoreObject( 'DB' );
-				$blob = $es->fetchBlob( $m[1], $m[2], $m[3] );
-				if ( strtolower( get_class( $blob ) ) == 'concatenatedgziphistoryblob' ) {
-					$this->output( "Found external CGZ\n" );
-					$blob->uncompress();
-					$this->output( "Items: (" . implode( ', ', array_keys( $blob->mItems ) ) . ")\n" );
-					$text = $blob->getItem( $m[3] );
-				} else {
-					$this->output( "CGZ expected at $text, got " . gettype( $blob ) . "\n" );
-					$text = $blob;
-				}
-			} else {
-				$this->output( "External plain $text\n" );
-				$text = ExternalStore::fetchFromURL( $text );
-			}
-		}
-		if ( in_array( 'gzip', $flags ) ) {
-			$text = gzinflate( $text );
-		}
-		if ( in_array( 'object', $flags ) ) {
-			$obj = unserialize( $text );
-			$text = $obj->getText();
+		$content = $rev->getContent( 'main' );
+		if ( !$content ) {
+			$this->fatalError( "Text not found" );
 		}
 
-		if ( is_object( $text ) ) {
-			$this->error( "Unexpectedly got object of type: " . get_class( $text ) );
-		} else {
-			$this->output( "Text length: " . strlen( $text ) . "\n" );
-			$this->output( substr( $text, 0, 100 ) . "\n" );
-		}
+		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$slot = $rev->getSlot( 'main' );
+		$text = $blobStore->getBlob( $slot->getAddress() );
+
+		$this->output( "Text length: " . strlen( $text ) . "\n" );
+		$this->output( substr( $text, 0, 100 ) . "\n" );
 	}
 }
 
