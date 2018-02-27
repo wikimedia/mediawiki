@@ -239,6 +239,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->isAllowed ) {
+			$conf = $this->getConfig();
+			$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
+
 			$form = Xml::openElement( 'form', [ 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
 					'id' => 'mw-revdel-form-revisions' ] ) .
@@ -251,12 +254,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 						Xml::label( $this->msg( 'tags-edit-reason' )->text(), 'wpReason' ) .
 					'</td>' .
 					'<td class="mw-input">' .
-						Xml::input(
-							'wpReason',
-							60,
-							$this->reason,
-							[ 'id' => 'wpReason', 'maxlength' => 100 ]
-						) .
+						Xml::input( 'wpReason', 60, $this->reason, [
+							'id' => 'wpReason',
+							// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+							// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+							// Unicode codepoints (or 255 UTF-8 bytes for old schema).
+							// "- 155" is to leave room for the auto-generated part of the log entry.
+							'maxlength' => $oldCommentSchema ? 100 : CommentStore::COMMENT_CHARACTER_LIMIT - 155,
+						] ) .
 					'</td>' .
 				"</tr><tr>\n" .
 					'<td></td>' .
