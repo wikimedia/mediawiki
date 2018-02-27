@@ -818,7 +818,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionText_external_noOldId() {
 		$this->setService(
 			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ] )
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 		$this->assertSame(
 			'AAAABBAAA',
@@ -840,7 +840,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$this->setService(
 			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ] )
+			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 
 		$lb = $this->getMockBuilder( LoadBalancer::class )

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Base class for general text storage via the "object" flag in old_flags, or
  * two-part external storage URLs. Used for represent efficient concatenated
@@ -260,7 +262,9 @@ class HistoryBlobStub {
 				if ( !isset( $parts[1] ) || $parts[1] == '' ) {
 					return false;
 				}
-				$row->old_text = ExternalStore::fetchFromURL( $url );
+				$row->old_text = MediaWikiServices::getInstance()
+					->getExternalStoreFactory()
+					->fetchFromURL( $url );
 
 			}
 
