@@ -120,11 +120,16 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
+			$langCode = Language::fetchLanguageName( $row->ll_lang, $params['inlanguagecode'] );
 			if ( isset( $prop['langname'] ) ) {
-				$entry['langname'] = Language::fetchLanguageName( $row->ll_lang, $params['inlanguagecode'] );
+				$entry['langname'] = $langCode;
 			}
 			if ( isset( $prop['autonym'] ) ) {
 				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
+			}
+			if ( isset( $prop['dir'] ) ) {
+				$lang = new Language( $langCode );
+				$entry['dir'] = $lang->getDir();
 			}
 			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
@@ -147,6 +152,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [
 					'url',
 					'langname',
+					'dir',
 					'autonym',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
