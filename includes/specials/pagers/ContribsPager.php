@@ -185,7 +185,7 @@ class ContribsPager extends RangeChronologicalPager {
 		];
 
 		if ( $this->contribs == 'newbie' ) {
-			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
+			$max = $this->mDb->selectField( 'user', 'max(user_id)', '', __METHOD__ );
 			$queryInfo['conds'][] = $revQuery['fields']['rev_user'] . ' >' . (int)( $max - $max / 100 );
 			# ignore local groups with the bot right
 			# @todo FIXME: Global groups may have 'bot' rights

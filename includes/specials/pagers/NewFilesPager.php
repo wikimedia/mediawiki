@@ -75,7 +75,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		if ( $opts->getValue( 'newbies' ) ) {
 			// newbie = most recent 1% of users
 			$dbr = wfGetDB( DB_REPLICA );
-			$max = $dbr->selectField( 'user', 'max(user_id)', false, __METHOD__ );
+			$max = $dbr->selectField( 'user', 'max(user_id)', '', __METHOD__ );
 			$conds[] = $imgQuery['fields']['img_user'] . ' >' . (int)( $max - $max / 100 );
 
 			// there's no point in looking for new user activity in a far past;
