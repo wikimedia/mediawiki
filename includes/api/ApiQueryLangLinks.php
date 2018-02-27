@@ -107,29 +107,34 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 		$count = 0;
 		foreach ( $res as $row ) {
+			$langCode = $row->ll_lang;
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that
 				// there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
+				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$langCode}" );
 				break;
 			}
 			$entry = [ 'lang' => $row->ll_lang ];
 			if ( isset( $prop['url'] ) ) {
-				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
+				$title = Title::newFromText( "{$langCode}:{$row->ll_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
 			if ( isset( $prop['langname'] ) ) {
-				$entry['langname'] = Language::fetchLanguageName( $row->ll_lang, $params['inlanguagecode'] );
+				$entry['langname'] = Language::fetchLanguageName( $langCode, $params['inlanguagecode'] );
 			}
 			if ( isset( $prop['autonym'] ) ) {
-				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
+				$entry['autonym'] = Language::fetchLanguageName( $langCode );
+			}
+			if ( isset( $prop['dir'] ) ) {
+				$lang = Language::factory( $langCode );
+				$entry['dir'] = $lang->getDir();
 			}
 			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
+				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$langCode}" );
 				break;
 			}
 		}
@@ -147,6 +152,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [
 					'url',
 					'langname',
+					'dir',
 					'autonym',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
