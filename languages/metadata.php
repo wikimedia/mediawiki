@@ -1,0 +1,1 @@
+a:1:{s:5:"isRTL";a:23:{i:0;s:2:"ar";i:1;s:3:"arc";i:2;s:3:"arz";i:3;s:3:"azb";i:4;s:3:"bcc";i:5;s:3:"bgn";i:6;s:3:"bqi";i:7;s:3:"ckb";i:8;s:2:"dv";i:9;s:2:"fa";i:10;s:3:"glk";i:11;s:2:"he";i:12;s:3:"khw";i:13;s:3:"lki";i:14;s:3:"lrc";i:15;s:3:"luz";i:16;s:3:"mzn";i:17;s:3:"pnb";i:18;s:2:"ps";i:19;s:2:"sd";i:20;s:3:"sdh";i:21;s:2:"ur";i:22;s:2:"yi";}}
