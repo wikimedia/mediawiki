@@ -397,8 +397,11 @@ class Names {
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian
 		'sr' => 'српски / srpski', # Serbian (multiple scripts - defaults to Cyrillic)
+		'sr-ekavsk' => "српски / srpski", # Serbian with Ekavian pronunciation (multiple scripts - defaults to Cyrillic)
 		'sr-cyrl' => "српски (ћирилица)\xE2\x80\x8E", # Serbian (Cyrillic script)
 		'sr-latn' => "srpski (latinica)\xE2\x80\x8E", # Serbian (Latin script)
+		'sr-cyrl-ekavsk' => "српски (ћирилица)\xE2\x80\x8E", # Serbian (Cyrillic script, Ekavian pronunciation)
+		'sr-latn-ekavsk' => "srpski (latinica)\xE2\x80\x8E", # Serbian (Latin script, Ekavian pronunciation)
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho

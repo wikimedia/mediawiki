@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Cyrillic script) (српски (ћирилица)‎)
+/** Serbian with Ekavian pronunciation (српски / srpski)
  *
  * To improve a translation please visit https://translatewiki.net
  *

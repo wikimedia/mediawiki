@@ -116,8 +116,12 @@ changes to languages because of Phabricator reports.
 * (T186635) New language support: Guianan Creole (gcr).
 * (T186647) New language support: Kumyk [къумукъ] (kum).
 * (T187750) New language support: Spanish formal address (es-formal).
-* Renamed language code for Serbian in Cyrillic script from sr-ec to sr-cyrl.
-* Renamed language code for Serbian in Latin script from sr-el to sr-latn.
+* Renamed language code for Serbian in Cyrillic script with Ekavian
+  pronunciation from sr-ec to sr-cyrl-ekavsk.
+* Renamed language code for Serbian in Latin script with Ekavian pronunciation
+  from sr-el to sr-latn-ekavsk.
+* Added new language code sr-cyrl with fallback to sr-cyrl-ekavsk.
+* Added new language code sr-latn with fallback to sr-latn-ekavsk.
 
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
