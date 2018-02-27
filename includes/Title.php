@@ -1320,7 +1320,7 @@ class Title implements LinkTarget {
 	 * @deprecated Since 1.31; use ::isSiteConfigPage() instead
 	 */
 	public function isCssOrJsPage() {
-		// wfDeprecated( __METHOD__, '1.31' );
+		wfDeprecated( __METHOD__, '1.31' );
 		return ( NS_MEDIAWIKI == $this->mNamespace
 				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
@@ -1348,7 +1348,7 @@ class Title implements LinkTarget {
 	 * @deprecated Since 1.31; use ::isUserConfigPage() instead
 	 */
 	public function isCssJsSubpage() {
-		// wfDeprecated( __METHOD__, '1.31' );
+		wfDeprecated( __METHOD__, '1.31' );
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
 				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
 					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
@@ -1398,7 +1398,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function isCssSubpage() {
-		// wfDeprecated( __METHOD__, '1.31' );
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->isUserCssConfigPage();
 	}
 
@@ -1417,11 +1417,11 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * @deprecated Since 1.31; use ::isUserCssConfigPage()
+	 * @deprecated Since 1.31; use ::isUserJsConfigPage()
 	 * @return bool
 	 */
 	public function isJsSubpage() {
-		// wfDeprecated( __METHOD__, '1.31' );
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->isUserJsConfigPage();
 	}
 
