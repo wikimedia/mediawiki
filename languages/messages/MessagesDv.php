@@ -8,8 +8,6 @@
  *
  */
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'މީޑިއާ',
 	NS_SPECIAL          => 'ޚާއްސަ',

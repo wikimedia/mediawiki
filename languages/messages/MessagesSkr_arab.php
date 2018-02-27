@@ -10,4 +10,3 @@
 
 $fallback = 'ur, pnb';
 
-$rtl = true;

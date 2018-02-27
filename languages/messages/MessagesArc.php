@@ -8,8 +8,6 @@
  *
  */
 
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'ܡܝܕܝܐ',
 	NS_SPECIAL          => 'ܕܝܠܢܝܐ',

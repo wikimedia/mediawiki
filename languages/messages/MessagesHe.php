@@ -8,8 +8,6 @@
  *
  */
 
-$rtl = true;
-
 $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1255';
 

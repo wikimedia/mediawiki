@@ -703,6 +703,7 @@ $wgAutoloadLocalClasses = [
 	'LCStoreStaticArray' => __DIR__ . '/includes/cache/localisation/LCStoreStaticArray.php',
 	'LangMemUsage' => __DIR__ . '/maintenance/language/langmemusage.php',
 	'Language' => __DIR__ . '/languages/Language.php',
+	'LanguageHelpers' => __DIR__ . '/languages/LanguageHelpers.php',
 	'LanguageAr' => __DIR__ . '/languages/classes/LanguageAr.php',
 	'LanguageAz' => __DIR__ . '/languages/classes/LanguageAz.php',
 	'LanguageBe_tarask' => __DIR__ . '/languages/classes/LanguageBe_tarask.php',

@@ -12,8 +12,6 @@
  */
 
 $fallback = 'fa';
-$rtl = true;
-
 $namespaceNames = [
 	NS_MEDIA            => 'ڤارئسگأر',
 	NS_SPECIAL          => 'ڤیجە',

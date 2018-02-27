@@ -10,4 +10,3 @@
 
 $fallback = 'ar';
 
-$rtl = true;
