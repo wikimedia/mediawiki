@@ -4237,6 +4237,8 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $newTouched ) {
+			global $wgActorTableSchemaMigrationStage;
+
 			$dbw->update( 'user',
 				[ /* SET */
 					'user_name' => $this->mName,
@@ -4263,12 +4265,14 @@ class User implements IDBAccessObject, UserIdentity {
 				);
 			}
 
-			$dbw->update(
-				'actor',
-				[ 'actor_name' => $this->mName ],
-				[ 'actor_user' => $this->mId ],
-				$fname
-			);
+			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$dbw->update(
+					'actor',
+					[ 'actor_name' => $this->mName ],
+					[ 'actor_user' => $this->mId ],
+					$fname
+				);
+			}
 		} );
 
 		$this->mTouched = $newTouched;
