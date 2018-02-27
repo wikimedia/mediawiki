@@ -48,6 +48,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class CheckStorage {
 	const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
 	public $oldIdMap, $errors;
+	/** @var ExternalStoreDB */
 	public $dbStore = null;
 
 	public $errorDescriptions = [
@@ -200,7 +201,8 @@ class CheckStorage {
 			// Check external normal blobs for existence
 			if ( count( $externalNormalBlobs ) ) {
 				if ( is_null( $this->dbStore ) ) {
-					$this->dbStore = new ExternalStoreDB;
+					$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+					$this->dbStore = $esFactory->getStoreObject( 'DB' );
 				}
 				foreach ( $externalConcatBlobs as $cluster => $xBlobIds ) {
 					$blobIds = array_keys( $xBlobIds );
@@ -402,7 +404,8 @@ class CheckStorage {
 		}
 
 		if ( is_null( $this->dbStore ) ) {
-			$this->dbStore = new ExternalStoreDB;
+			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+			$this->dbStore = $esFactory->getStoreObject( 'DB' );
 		}
 
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {
