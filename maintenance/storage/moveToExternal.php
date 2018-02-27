@@ -21,6 +21,8 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\MediaWikiServices;
+
 define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -57,7 +59,10 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 	$blockSize = 1000;
 	$numBlocks = ceil( $count / $blockSize );
 	print "Moving text rows from $minID to $maxID to external storage\n";
-	$ext = new ExternalStoreDB;
+
+	$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+	/** @var ExternalStoreDB $ext */
+	$ext = $esFactory->getStoreObject( 'DB' );
 	$numMoved = 0;
 
 	for ( $block = 0; $block < $numBlocks; $block++ ) {

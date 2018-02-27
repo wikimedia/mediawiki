@@ -489,7 +489,10 @@ return [
 		$config = $services->getMainConfig();
 
 		return new ExternalStoreFactory(
-			$config->get( 'ExternalStores' )
+			$config->get( 'ExternalStores' ),
+			(array)$config->get( 'DefaultExternalStore' ),
+			$services->getDBLoadBalancer()->getLocalDomainID(),
+			LoggerFactory::getInstance( 'ExternalStore' )
 		);
 	},
 
