@@ -67,7 +67,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		$blobs = [];
 		foreach ( $pathsByBackend as $backendName => $paths ) {
 			$be = FileBackendGroup::singleton()->get( $backendName );
-			$blobs = $blobs + $be->getFileContentsMulti( [ 'srcs' => $paths ] );
+			$blobs += $be->getFileContentsMulti( [ 'srcs' => $paths ] );
 		}
 
 		return $blobs;
@@ -81,9 +81,8 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 			// Make sure ID is roughly lexicographically increasing for performance
 			$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 			// Segregate items by wiki ID for the sake of bookkeeping
-			$wiki = isset( $this->params['wiki'] ) ? $this->params['wiki'] : wfWikiID();
-
-			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $wiki );
+			$url = $be->getContainerStoragePath( 'data' ) . '/' . rawurlencode( $this->domainId );
+			// Use directory/container sharding
 			$url .= ( $be instanceof FSFileBackend )
 				? "/{$rand[0]}/{$rand[1]}/{$rand[2]}/{$id}" // keep directories small
 				: "/{$rand[0]}/{$rand[1]}/{$id}"; // container sharding is only 2-levels
@@ -98,6 +97,10 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 	}
 
 	public function isReadOnly( $backend ) {
+		if ( parent::isReadOnly( $backend ) ) {
+			return true;
+		}
+
 		$be = FileBackendGroup::singleton()->get( $backend );
 
 		return $be ? $be->isReadOnly() : false;
