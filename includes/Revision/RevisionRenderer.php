@@ -69,7 +69,6 @@ class RevisionRenderer {
 		$this->loadBalancer = $loadBalancer;
 		$this->roleRegistery = $roleRegistry;
 		$this->dbDomain = $dbDomain;
-
 		$this->saveParseLogger = new NullLogger();
 	}
 

@@ -154,7 +154,6 @@ class RevisionStore
 	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
-	 *
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
