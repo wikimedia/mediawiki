@@ -1413,14 +1413,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ) =
 			$this->makeSelectOptions( $options );
 
-		if ( !empty( $conds ) ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, self::LIST_AND );
-			}
+		if ( is_array( $conds ) ) {
+			$conds = $this->makeList( $conds, self::LIST_AND );
+		}
+
+		if ( $conds === null || $conds === false ) {
+			$this->queryLogger->warning(
+				__METHOD__
+				. ' called from '
+				. $fname
+				. ' with incorrect parameters: $conds must be a string or an array'
+			);
+			$conds = '';
+		}
+
+		if ( $conds === '' ) {
+			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
+		} elseif ( is_string( $conds ) ) {
 			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex " .
 				"WHERE $conds $preLimitTail";
 		} else {
-			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
 		}
 
 		if ( isset( $options['LIMIT'] ) ) {
