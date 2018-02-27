@@ -27,6 +27,7 @@ namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia;
@@ -1413,14 +1414,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ) =
 			$this->makeSelectOptions( $options );
 
-		if ( !empty( $conds ) ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, self::LIST_AND );
-			}
+		if ( is_array( $conds ) ) {
+			$conds = $this->makeList( $conds, self::LIST_AND );
+		}
+
+		if ( $conds === '' ) {
+			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
+		} elseif ( is_string( $conds ) ) {
 			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex " .
 				"WHERE $conds $preLimitTail";
 		} else {
-			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
+			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
 		}
 
 		if ( isset( $options['LIMIT'] ) ) {
