@@ -386,7 +386,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			list( $n, $display ) = $this->makeNextCond( $dbw, [ $primaryKey ], $lastRow );
 			$next = [ $n ];
 			$this->output( "... $display\n" );
-			wfWaitForSlaves();
 		}
 
 		$this->output(
