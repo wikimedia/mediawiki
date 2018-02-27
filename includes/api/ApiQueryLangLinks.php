@@ -126,6 +126,9 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			if ( isset( $prop['autonym'] ) ) {
 				$entry['autonym'] = Language::fetchLanguageName( $row->ll_lang );
 			}
+			if ( isset( $prop['dir'] ) ) {
+				$entry['dir'] = LanguageHelpers::isRTL( $row->ll_lang ) ? 'rtl' : 'ltr';
+			}
 			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );
 			if ( !$fit ) {
@@ -147,6 +150,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [
 					'url',
 					'langname',
+					'dir',
 					'autonym',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
