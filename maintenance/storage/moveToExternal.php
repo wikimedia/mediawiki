@@ -41,7 +41,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	if ( isset( $options['e'] ) ) {
 		$maxID = $options['e'];
 	} else {
-		$maxID = $dbw->selectField( 'text', 'MAX(old_id)', false, $fname );
+		$maxID = $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
 	}
 	$minID = isset( $options['s'] ) ? $options['s'] : 1;
 

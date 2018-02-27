@@ -62,13 +62,13 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 
 			return false;
 		}
-		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __FUNCTION__ );
+		$start = $db->selectField( 'logging', 'MIN(log_id)', '', __FUNCTION__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
 
 			return true;
 		}
-		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __FUNCTION__ );
+		$end = $db->selectField( 'logging', 'MAX(log_id)', '', __FUNCTION__ );
 
 		# Do remaining chunk
 		$end += $batchSize - 1;
