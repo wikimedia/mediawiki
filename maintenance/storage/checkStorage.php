@@ -65,7 +65,7 @@ class CheckStorage {
 		} else {
 			print "Checking...\n";
 		}
-		$maxRevId = $dbr->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+		$maxRevId = $dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 		$chunkSize = 1000;
 		$flagStats = [];
 		$objectStats = [];

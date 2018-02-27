@@ -75,7 +75,7 @@ TEXT
 		$start = $this->getOption( 'rev-id', 0 );
 		$end = $maxRevId > 0
 			? $maxRevId
-			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+			: $dbw->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 
 		if ( empty( $end ) ) {
 			$this->output( "No revisions found, aborting.\n" );

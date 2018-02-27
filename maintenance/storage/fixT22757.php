@@ -55,7 +55,7 @@ class FixT22757 extends Maintenance {
 		$numFixed = 0;
 		$numBad = 0;
 
-		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
+		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 
 		// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
 		$lowerLeft = 'LOWER(CONVERT(LEFT(old_text,22) USING latin1))';
