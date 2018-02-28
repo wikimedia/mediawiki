@@ -2266,11 +2266,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$rows = [ $rows ];
 		}
 
-		$useTrx = !$this->trxLevel;
-		if ( $useTrx ) {
-			$this->begin( $fname, self::TRANSACTION_INTERNAL );
-		}
 		try {
+			$this->startAtomic( $fname );
 			$affectedRowCount = 0;
 			foreach ( $rows as $row ) {
 				// Delete rows which collide with this one
@@ -2303,17 +2300,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->insert( $table, $row, $fname );
 				$affectedRowCount += $this->affectedRows();
 			}
+			$this->endAtomic( $fname );
+			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
-			if ( $useTrx ) {
-				$this->rollback( $fname, self::FLUSHING_INTERNAL );
-			}
+			$this->rollback( $fname, self::FLUSHING_INTERNAL );
 			throw $e;
 		}
-		if ( $useTrx ) {
-			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		}
-
-		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	/**
@@ -2379,11 +2371,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$affectedRowCount = 0;
-		$useTrx = !$this->trxLevel;
-		if ( $useTrx ) {
-			$this->begin( $fname, self::TRANSACTION_INTERNAL );
-		}
 		try {
+			$this->startAtomic( $fname );
 			# Update any existing conflicting row(s)
 			if ( $where !== false ) {
 				$ok = $this->update( $table, $set, $where, $fname );
@@ -2394,16 +2383,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			# Now insert any non-conflicting row(s)
 			$ok = $this->insert( $table, $rows, $fname, [ 'IGNORE' ] ) && $ok;
 			$affectedRowCount += $this->affectedRows();
+			$this->endAtomic( $fname );
+			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
-			if ( $useTrx ) {
-				$this->rollback( $fname, self::FLUSHING_INTERNAL );
-			}
+			$this->rollback( $fname, self::FLUSHING_INTERNAL );
 			throw $e;
 		}
-		if ( $useTrx ) {
-			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		}
-		$this->affectedRowCount = $affectedRowCount;
 
 		return $ok;
 	}
@@ -2557,12 +2542,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->affectedRowCount = $affectedRowCount;
 			} else {
 				$this->rollback( $fname, self::FLUSHING_INTERNAL );
-				$this->affectedRowCount = 0;
 			}
 			return $ok;
 		} catch ( Exception $e ) {
 			$this->rollback( $fname, self::FLUSHING_INTERNAL );
-			$this->affectedRowCount = 0;
 			throw $e;
 		}
 	}
@@ -3194,6 +3177,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} catch ( Exception $e ) {
 			// already logged; let LoadBalancer move on during mass-rollback
 		}
+
+		$this->affectedRowCount = 0; // for the sake of consistency
 	}
 
 	/**
