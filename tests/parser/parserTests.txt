@@ -5090,7 +5090,7 @@ parsoid=wt2html
 !! wikitext
 URL in text: [http://example.com http://example.com]
 !! html/php
-<p>URL in text: <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+<p>URL in text: <a rel="nofollow" class="external text" href="http://example.com">http://example.com</a>
 </p>
 !! html/parsoid
 <p>URL in text: <a rel="mw:ExtLink" href="http://example.com">http://example.com</a></p>
@@ -22824,8 +22824,8 @@ gopher://www.google.com
 !! html/php
 <p><a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
 <a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
-<a rel="nofollow" class="external free" href="http://www.google.com">http://www.google.com</a>
-<a rel="nofollow" class="external free" href="gopher://www.google.com">gopher://www.google.com</a>
+<a rel="nofollow" class="external text" href="http://www.google.com">http://www.google.com</a>
+<a rel="nofollow" class="external text" href="gopher://www.google.com">gopher://www.google.com</a>
 <a rel="nofollow" class="external text" href="https://www.google.com">irc://www.google.com</a>
 <a rel="nofollow" class="external text" href="ftp://www.google.com">www.гоогле.цом/фтп://дир</a>
 <a rel="nofollow" class="external text" href="//www.google.com">www.гоогле.цом</a>
