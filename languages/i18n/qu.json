@@ -629,7 +629,7 @@
 	"expansion-depth-exceeded-category": "Nisyu mast'ariy ukhu kaqniyuq p'anqakuna",
 	"expansion-depth-exceeded-warning": "P'anqaqa nisyu mast'ariy ukhu kaqniyuqmi",
 	"parser-unstrip-loop-warning": "Muyupayaq siqum tarisqa",
-	"parser-unstrip-recursion-limit": "Nisyu kuti muyupayay siqum ($1)",
+	"unstrip-depth-warning": "Nisyu kuti muyupayay siqum ($1)",
 	"converter-manual-rule-error": "Maki rimay t'ikrana kamachinapiqa pantasqam tarisqa",
 	"undo-success": "Rurasqata kutichiyta atinkim. Manaraq kutichispaykiqa, kay qatiq wakichayta qhawariy rikunaykipaq chiqapta munasqaykichu manallachu, chaymantataq waqaychay kutichinapaq.",
 	"undo-failure": "Manam atinichu llamk'apusqata kutichiyta, huk ruraqtaq musuqta llamk'apurquptinñam.",

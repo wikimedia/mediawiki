@@ -639,7 +639,7 @@
 	"expansion-depth-exceeded-category": "Ziejen waor de expansiediepte overschrejen is",
 	"expansion-depth-exceeded-warning": "Op disse zied staon te veule mallen",
 	"parser-unstrip-loop-warning": "Der is n \"unstrip\"-lusse evunnen",
-	"parser-unstrip-recursion-limit": "De rekursielimiet ($1) veur \"unstrip\" is overschrejen",
+	"unstrip-depth-warning": "De rekursielimiet ($1) veur \"unstrip\" is overschrejen",
 	"converter-manual-rule-error": "Der is n fout evunnen in n haandmaotig in-evoegden taalkonversieregel.",
 	"undo-success": "De bewarking kan weerummedreid wörden. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de zied op um de bewarking weerumme te dreien.",
 	"undo-failure": "De wieziging kon niet weerummedreid wörden umdat t ondertussen awweer ewiezigd is.",

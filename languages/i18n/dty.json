@@ -641,7 +641,7 @@
 	"expansion-depth-exceeded-category-desc": "ये पानाले उच्चतम विस्तार सिमा नाघ्या छ ।",
 	"expansion-depth-exceeded-warning": "पानाले सल्दिले सिमालाई नाघ्या छ",
 	"parser-unstrip-loop-warning": "अनस्ट्रिप लुप धेखिन्छ",
-	"parser-unstrip-recursion-limit": "अन्स्ट्रिप पुनरावर्तन सिमा पार गरियो ($1)",
+	"unstrip-depth-warning": "अन्स्ट्रिप पुनरावर्तन सिमा पार गरियो ($1)",
 	"converter-manual-rule-error": "म्यानुअल भाषा अनुवाद सिध्दान्तमी समस्या धेखियो",
 	"viewpagelogs": "यै पानाका लगहरू हेर",
 	"nohistory": "ये पृष्ठका लागी कोइ सम्पादन इतिहास छैन।",

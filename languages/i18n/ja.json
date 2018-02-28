@@ -836,7 +836,7 @@
 	"expansion-depth-exceeded-category-desc": "展開の深さが上限を超えたページ。",
 	"expansion-depth-exceeded-warning": "ページが展開の深さ制限を超えました",
 	"parser-unstrip-loop-warning": "unstrip のループを検出しました",
-	"parser-unstrip-recursion-limit": "unstrip の再帰 ($1) が上限を超えました",
+	"unstrip-depth-warning": "unstrip の再帰 ($1) が上限を超えました",
 	"converter-manual-rule-error": "手動の言語変換規則でエラーを検出しました。",
 	"undo-success": "この編集を取り消せます。\n下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を保存して取り消しを完了してください。",
 	"undo-failure": "中間の版での編集と競合したため、取り消せませんでした。",

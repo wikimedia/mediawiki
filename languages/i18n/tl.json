@@ -694,7 +694,7 @@
 	"expansion-depth-exceeded-category": "Mga pahina kung saan lampas ang lalim ng paglawak",
 	"expansion-depth-exceeded-warning": "Lumampas ang pahina sa lalim ng paglawak",
 	"parser-unstrip-loop-warning": "Napansin ang silo ng hindi pagtalop",
-	"parser-unstrip-recursion-limit": "Nalampasan ang hangganan ng rekursiyon ng hindi pagtalop ($1)",
+	"unstrip-depth-warning": "Nalampasan ang hangganan ng rekursiyon ng hindi pagtalop ($1)",
 	"converter-manual-rule-error": "Napansin ang kamalian sa alituntunin ng kinakamay na pagpapalit ng wika",
 	"undo-success": "Matatanggal ang pagbabago.\nPakitingnan ang paghahambing sa ibaba para masiyasat kung ito ang ibig mong gawin, at pagkatapos sagipin ang mga pagbabago sa ibaba para matapos ang pagtatanggal ng pagbabago.",
 	"undo-failure": "Hindi matanggal ang pagbabago dahil sa magkakasalungat na panggitnang mga pagbabago.",

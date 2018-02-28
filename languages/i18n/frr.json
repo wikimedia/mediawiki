@@ -741,7 +741,7 @@
 	"expansion-depth-exceeded-category-desc": "Detdiar sidj hää tuföl ütjwidjangen.",
 	"expansion-depth-exceeded-warning": "Detdiar sidj hää tuföl ütjwidjangen (expansion)",
 	"parser-unstrip-loop-warning": "Diar as en jinsidjag ferwisang",
-	"parser-unstrip-recursion-limit": "Tuföl jinsidjag ferwisangen bi $1",
+	"unstrip-depth-warning": "Tuföl jinsidjag ferwisangen bi $1",
 	"converter-manual-rule-error": "Bi't manuel reegel för't spriakferanrang lääpt wat skiaf.",
 	"undo-success": "Detdiar feranrang koon turag nimen wurd. \nLuke oner, of dü det uk würelk du wel, an do seekre din feranrangen.",
 	"undo-failure": "Det feranrang küd ei stregen wurd, auer di kirew uuntesken feranert wurden as.",

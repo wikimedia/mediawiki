@@ -643,7 +643,7 @@
 	"expansion-depth-exceeded-category-desc": "ई पन्ना विस्तार गहराई पार करत है।",
 	"expansion-depth-exceeded-warning": "पन्ना में विस्तार गहराई पार कई गा है",
 	"parser-unstrip-loop-warning": "Unstrip लूप मिला",
-	"parser-unstrip-recursion-limit": "Unstrip पुनरावर्तन सीमा पार कई गय ($1)",
+	"unstrip-depth-warning": "Unstrip पुनरावर्तन सीमा पार कई गय ($1)",
 	"converter-manual-rule-error": "मैन्यूअल भाषा परिवर्तन नियम में त्रुटि",
 	"undo-success": "ई संपादन पहिले जैसन रहा वईसय कई सका जात है ।\nअईसन करेक लिये कृपया निचे लिखल पाठ कय ध्यान से दखीकय बदलाव सहेजा जाय।",
 	"undo-failure": "एकरे बीचे अउर बदलाव होएक कारण ई संपादन पहिले जैसन करब संभव नाई है।",

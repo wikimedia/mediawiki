@@ -777,7 +777,7 @@
 	"expansion-depth-exceeded-category-desc": "Trang có độ sâu bung bản mẫu vượt quá giới hạn cho phép.",
 	"expansion-depth-exceeded-warning": "Trang bung bản mẫu sâu quá",
 	"parser-unstrip-loop-warning": "Vòng lặp unstrip",
-	"parser-unstrip-recursion-limit": "Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)",
+	"unstrip-depth-warning": "Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)",
 	"converter-manual-rule-error": "Lỗi được phát hiện trong quy tắc chuyển đổi ngôn ngữ thủ công",
 	"undo-success": "Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.",
 	"undo-failure": "Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.",

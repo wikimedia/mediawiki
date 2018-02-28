@@ -803,7 +803,7 @@
 	"expansion-depth-exceeded-category-desc": "최대 확장 깊이를 초과하는 문서입니다.",
 	"expansion-depth-exceeded-warning": "문서가 확장 깊이를 초과하였습니다",
 	"parser-unstrip-loop-warning": "Unstrip의 반복을 감지했습니다",
-	"parser-unstrip-recursion-limit": "Unstrip의 재귀 한도를 초과했습니다 ($1)",
+	"unstrip-depth-warning": "Unstrip의 재귀 한도를 초과했습니다 ($1)",
 	"converter-manual-rule-error": "언어 변환 규칙을 수동으로 지정하는 도중 오류",
 	"undo-success": "편집을 되돌릴 수 있습니다.\n이 편집을 되돌리려면 아래의 바뀐 내용을 확인한 후 저장해주세요.",
 	"undo-failure": "중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.",

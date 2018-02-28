@@ -854,7 +854,7 @@
 	"expansion-depth-exceeded-category-desc": "A página excede a profundidade de expansão permitida.",
 	"expansion-depth-exceeded-warning": "A página excedeu a profundidade de expansão",
 	"parser-unstrip-loop-warning": "Foi detectado um ciclo infinito unstrip",
-	"parser-unstrip-recursion-limit": "Limite de recursão do unstrip excedido ($1)",
+	"unstrip-depth-warning": "Limite de recursão do unstrip excedido ($1)",
 	"converter-manual-rule-error": "Erro detectado na regra de conversão de língua manual",
 	"undo-success": "A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.",
 	"undo-failure": "A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.",

@@ -611,7 +611,7 @@
 	"expansion-depth-exceeded-category": "Pajine ndove che vien superà ła profondità de espansion",
 	"expansion-depth-exceeded-warning": "Sta pajina ga superà el limite de profondità de espansion",
 	"parser-unstrip-loop-warning": "Xe sta riłevà un ciclo de Unstrip",
-	"parser-unstrip-recursion-limit": "Superadi i limiti de recursion de Unstrip ($1)",
+	"unstrip-depth-warning": "Superadi i limiti de recursion de Unstrip ($1)",
 	"converter-manual-rule-error": "Rilevà eror inte ła regoła manuałe de conversion de ła lèngua",
 	"undo-success": "Sta modifica la pode èssar anulà. Verifica el confronto presentà de seguito par èssar sicuro che el contenuto el sia come te lo voli e quindi salva le modifiche par conpletar la procedura de anulamento.",
 	"undo-failure": "No se pol mìa anular la modifica, par via de un conflito con modifiche intermedie.",

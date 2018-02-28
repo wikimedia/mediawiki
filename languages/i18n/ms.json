@@ -762,7 +762,7 @@
 	"expansion-depth-exceeded-category-desc": "Laman telah melebihi kedalaman peluasan maksimum.",
 	"expansion-depth-exceeded-warning": "Laman terlebih dalam peluasan",
 	"parser-unstrip-loop-warning": "Gelung unstrip dikesan",
-	"parser-unstrip-recursion-limit": "Had rekursi unstrip dilampaui ($1)",
+	"unstrip-depth-warning": "Had rekursi unstrip dilampaui ($1)",
 	"converter-manual-rule-error": "Ralat dikesan dalam aturan penukaran bahasa manual",
 	"undo-success": "Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.",
 	"undo-failure": "Suntingan tersebut tidak boleh dibatalkan kerana terdapat suntingan pertengahan yang bercanggah.",
