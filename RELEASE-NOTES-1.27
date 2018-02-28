@@ -22,6 +22,7 @@ This is a security and maintenance release of the MediaWiki 1.27 branch.
 * (T191608, T187638) Add 'logid' parameter to Special:Log.
 * (T193829) Indicate when a Bot Password needs reset.
 * (T151415) Log email changes.
+* (T118420) Unbreak Oracle installer.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
