@@ -1863,8 +1863,8 @@ class Parser {
 
 			$dtrail = '';
 
-			# Set linktype for CSS - if URL==text, link is essentially free
-			$linktype = ( $text === $url ) ? 'free' : 'text';
+			# Set linktype for CSS
+			$linktype = 'text';
 
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
