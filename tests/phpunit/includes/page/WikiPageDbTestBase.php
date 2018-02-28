@@ -155,6 +155,9 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Undeletion is covered in PageArchiveTest::testUndeleteRevisions()
+	 * TODO: Revision deletion
+	 *
 	 * @covers WikiPage::doDeleteArticle
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
@@ -201,6 +204,169 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$res->free();
 
 		$this->assertEquals( 0, $n, 'pagelinks should contain no more links from the page' );
+	}
+
+	/**
+	 * @covers WikiPage::doDeleteArticleReal
+	 */
+	public function testDoDeleteArticleReal_user0() {
+		$page = $this->createPage(
+			__METHOD__,
+			"[[original text]] foo",
+			CONTENT_MODEL_WIKITEXT
+		);
+		$id = $page->getId();
+
+		$errorStack = '';
+		$status = $page->doDeleteArticleReal(
+			/* reason */ "testing user 0 deletion",
+			/* suppress */ false,
+			/* unused 1 */ null,
+			/* unused 2 */ null,
+			/* errorStack */ $errorStack,
+			null
+		);
+		$logId = $status->getValue();
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$this->assertSelect(
+			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[
+				'log_type',
+				'log_action',
+				'log_comment',
+				'log_user' => $actorQuery['fields']['log_user'],
+				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_namespace',
+				'log_title',
+			],
+			[ 'log_id' => $logId ],
+			[ [
+				'delete',
+				'delete',
+				'testing user 0 deletion',
+				'0',
+				'127.0.0.1',
+				(string)$page->getTitle()->getNamespace(),
+				$page->getTitle()->getDBkey(),
+			] ],
+			[],
+			$actorQuery['joins']
+		);
+	}
+
+	/**
+	 * @covers WikiPage::doDeleteArticleReal
+	 */
+	public function testDoDeleteArticleReal_userSysop() {
+		$page = $this->createPage(
+			__METHOD__,
+			"[[original text]] foo",
+			CONTENT_MODEL_WIKITEXT
+		);
+		$id = $page->getId();
+
+		$user = $this->getTestSysop()->getUser();
+		$errorStack = '';
+		$status = $page->doDeleteArticleReal(
+			/* reason */ "testing sysop deletion",
+			/* suppress */ false,
+			/* unused 1 */ null,
+			/* unused 2 */ null,
+			/* errorStack */ $errorStack,
+			$user
+		);
+		$logId = $status->getValue();
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$this->assertSelect(
+			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[
+				'log_type',
+				'log_action',
+				'log_comment',
+				'log_user' => $actorQuery['fields']['log_user'],
+				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_namespace',
+				'log_title',
+			],
+			[ 'log_id' => $logId ],
+			[ [
+				'delete',
+				'delete',
+				'testing sysop deletion',
+				(string)$user->getId(),
+				$user->getName(),
+				(string)$page->getTitle()->getNamespace(),
+				$page->getTitle()->getDBkey(),
+			] ],
+			[],
+			$actorQuery['joins']
+		);
+	}
+
+	/**
+	 * TODO: Test more stuff about suppression.
+	 *
+	 * @covers WikiPage::doDeleteArticleReal
+	 */
+	public function testDoDeleteArticleReal_suppress() {
+		$page = $this->createPage(
+			__METHOD__,
+			"[[original text]] foo",
+			CONTENT_MODEL_WIKITEXT
+		);
+		$id = $page->getId();
+
+		$user = $this->getTestSysop()->getUser();
+		$errorStack = '';
+		$status = $page->doDeleteArticleReal(
+			/* reason */ "testing deletion",
+			/* suppress */ true,
+			/* unused 1 */ null,
+			/* unused 2 */ null,
+			/* errorStack */ $errorStack,
+			$user
+		);
+		$logId = $status->getValue();
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
+		$this->assertSelect(
+			[ 'logging' ] + $actorQuery['tables'], /* table */
+			[
+				'log_type',
+				'log_action',
+				'log_comment',
+				'log_user' => $actorQuery['fields']['log_user'],
+				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_namespace',
+				'log_title',
+			],
+			[ 'log_id' => $logId ],
+			[ [
+				'suppress',
+				'delete',
+				'testing deletion',
+				(string)$user->getId(),
+				$user->getName(),
+				(string)$page->getTitle()->getNamespace(),
+				$page->getTitle()->getDBkey(),
+			] ],
+			[],
+			$actorQuery['joins']
+		);
+
+		$this->assertNull(
+			$page->getContent( Revision::FOR_PUBLIC ),
+			"WikiPage::getContent should return null after the page was suppressed for general users"
+		);
+
+		$this->assertNull(
+			$page->getContent( Revision::FOR_THIS_USER, null ),
+			"WikiPage::getContent should return null after the page was suppressed for user zero"
+		);
+
+		$this->assertNull(
+			$page->getContent( Revision::FOR_THIS_USER, $user ),
+			"WikiPage::getContent should return null after the page was suppressed even for a sysop"
+		);
 	}
 
 	/**
