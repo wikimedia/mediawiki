@@ -38,7 +38,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	/**
 	 * @param string $sql
-	 * @return resource
+	 * @return mysqli_result
 	 */
 	protected function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
@@ -332,6 +332,13 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			// mConn might be false or something.
 			return (string)$this->conn;
 		}
+	}
+
+	/**
+	 * @return mysqli
+	 */
+	protected function getBindingHandle() {
+		return parent::getBindingHandle();
 	}
 }
 
