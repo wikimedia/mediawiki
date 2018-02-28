@@ -788,7 +788,7 @@
 	"expansion-depth-exceeded-category-desc": "Az oldal meghaladja a maximális expanziós mélységet.",
 	"expansion-depth-exceeded-warning": "A lap meghaladta az engedélyezett kiterjesztési mélységet",
 	"parser-unstrip-loop-warning": "Unstrip hurok észlelve",
-	"parser-unstrip-recursion-limit": "Túl mély unstrip rekurzió: $1",
+	"unstrip-depth-warning": "Túl mély unstrip rekurzió: $1",
 	"converter-manual-rule-error": "Hiba van a kézi nyelvi konverziós szabályban",
 	"undo-success": "A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.",
 	"undo-failure": "A szerkesztést nem lehet automatikusan visszavonni vele ütköző későbbi szerkesztések miatt.",

@@ -761,7 +761,7 @@
 	"expansion-depth-exceeded-category-desc": "Stránka prekročila maximálnu hĺbku expanzie.",
 	"expansion-depth-exceeded-warning": "Stránka prekročila povolenú hĺbku expanzie",
 	"parser-unstrip-loop-warning": "Zistené zacyklenie volania rozširovacej značky",
-	"parser-unstrip-recursion-limit": "Prektočený limit rekurzie volania rozširovacej značky ($1)",
+	"unstrip-depth-warning": "Prektočený limit rekurzie volania rozširovacej značky ($1)",
 	"converter-manual-rule-error": "Bola zistená chyba v pravidle manuálnej konverzie jazyka",
 	"undo-success": "Úpravu je možné vrátiť.\nProsím, skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete. Následne uložte zmeny, čím ukončíte vrátenie.",
 	"undo-failure": "Úpravu nie je možné vrátiť kvôli konfliktným medziľahlým úpravám.",

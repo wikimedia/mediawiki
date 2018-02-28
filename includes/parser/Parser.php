@@ -358,7 +358,7 @@ class Parser {
 		$this->mLangLinkLanguages = [];
 		$this->currentRevisionCache = null;
 
-		$this->mStripState = new StripState;
+		$this->mStripState = new StripState( $this );
 
 		# Clear these on every parse, T6549
 		$this->mTplRedirCache = $this->mTplDomCache = [];
@@ -543,6 +543,11 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'limitreport-expensivefunctioncount',
 			[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
 		);
+
+		foreach ( $this->mStripState->getLimitReport() as list( $key, $value ) ) {
+			$this->mOutput->setLimitReportData( $key, $value );
+		}
+
 		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
 
 		$limitReport = "NewPP limit report\n";

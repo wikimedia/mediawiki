@@ -744,7 +744,7 @@
 	"expansion-depth-exceeded-category-desc": "Sta paggena appassa 'o lemmeto d'espansione.",
 	"expansion-depth-exceeded-warning": "Sta paggena ha appassato 'o lemmeto 'e futo 'e spansione",
 	"parser-unstrip-loop-warning": "Scummigliato aniello Unstrip",
-	"parser-unstrip-recursion-limit": "Appassato 'o lémmeto 'e ricurzione d' Unstrip ($1)",
+	"unstrip-depth-warning": "Appassato 'o lémmeto 'e ricurzione d' Unstrip ($1)",
 	"converter-manual-rule-error": "È stato scummigliato n'errore dint'a regola manuale 'e converziona 'e lengua",
 	"undo-success": "'O cagnamiento se può annullà.\nPe' piacere vedete 'e differenze mmustate nfra 'e verziune pe' te ffà capace ca 'e cuntenute songo bbuone, e astipate 'e cagnamiente ccà abbascio pe' fernì e accussì turnà arreto.",
 	"undo-failure": "Nun se può fà turnà arreto 'o cagnamiento pecché ce sta nu conflitto ch' 'e cagnamiente intermedie.",

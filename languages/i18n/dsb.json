@@ -635,7 +635,7 @@
 	"expansion-depth-exceeded-category": "Boki, źož ekspansiska dłymokosć jo pśekšocona",
 	"expansion-depth-exceeded-warning": "Bok jo ekspansisku dłymokosć pśekšocył",
 	"parser-unstrip-loop-warning": "Njeskóńcna kokula namakana",
-	"parser-unstrip-recursion-limit": "Rekursiska granica pśekšocona ($1)",
+	"unstrip-depth-warning": "Rekursiska granica pśekšocona ($1)",
 	"converter-manual-rule-error": "Zmólka w manuelnem pšawidle rěcnego konwertěrowanja namakana",
 	"undo-success": "Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.",
 	"undo-failure": "Změna njejo se mógała wótpóraś, dokulaž jo něchten pótrjefjony wótrězk mjaztym změnił.",

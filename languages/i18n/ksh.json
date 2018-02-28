@@ -736,7 +736,7 @@
 	"expansion-depth-exceeded-category-desc": "Dat heh es de Saachjropp för Sigge, woh zoh vill automattesch ennjeföhsch weed.",
 	"expansion-depth-exceeded-warning": "En heh di Sigg weed zoh vill automattesch ennjeföhsch.",
 	"parser-unstrip-loop-warning": "Ene Befähl em Täx betrek sesch op sesch sällefs.",
-	"parser-unstrip-recursion-limit": "Ene Befähl em Täx es mieh wi {{PLURAL:$1|eijmohl|$1 Mohl|jaa nit}} met  sesch sellef verschachtelt.",
+	"unstrip-depth-warning": "Ene Befähl em Täx es mieh wi {{PLURAL:$1|eijmohl|$1 Mohl|jaa nit}} met  sesch sellef verschachtelt.",
 	"converter-manual-rule-error": "Doh es ene Fähler en ene händesche Önwandelongsrääjel zwesche de Schprohche.",
 	"undo-success": "De Änderong könnte mer zeröck nämme. Belohr Der de Ungerscheide un dann donn di Sigg avspeijschere, wann De dängks, et es en Ohdenong esu.",
 	"undo-failure": "Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.",

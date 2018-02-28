@@ -906,7 +906,7 @@
 	"expansion-depth-exceeded-category-desc": "Esta página sobrepasa la profundidad de expansión máxima.",
 	"expansion-depth-exceeded-warning": "La página ha sobrepasado el límite de profundidad de expansión",
 	"parser-unstrip-loop-warning": "Se ha detectado un bucle en la función \"unstrip\"",
-	"parser-unstrip-recursion-limit": "Se ha superado el límite de recursividad de la función \"unstrip\" ($1)",
+	"unstrip-depth-warning": "Se ha superado el límite de recursividad de la función \"unstrip\" ($1)",
 	"converter-manual-rule-error": "Se ha detectado un error en una regla manual de conversión de idioma",
 	"undo-success": "Puedes deshacer la edición. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así efectuar la reversión.",
 	"undo-failure": "No se ha podido deshacer la edición ya que otro usuario ha realizado una edición intermedia.",

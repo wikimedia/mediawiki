@@ -830,7 +830,7 @@
 	"expansion-depth-exceeded-category-desc": "超出展開深度限制的頁面。",
 	"expansion-depth-exceeded-warning": "頁面超出展開深度限制",
 	"parser-unstrip-loop-warning": "偵測到 Unstrip 迴圈",
-	"parser-unstrip-recursion-limit": "Unstrip 遞迴超出限制 ($1)",
+	"unstrip-depth-warning": "Unstrip 遞迴超出限制 ($1)",
 	"converter-manual-rule-error": "手動語言轉換規則時偵測到錯誤",
 	"undo-success": "此編輯可以被還原。\n請檢查以下比較表，確認您是否要還原，然後儲存以下變更以完成編輯還原。",
 	"undo-failure": "由於編輯的修訂間有衝突，此編輯不能還原。",

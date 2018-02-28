@@ -758,7 +758,7 @@
 	"expansion-depth-exceeded-category-desc": "Stranica je prešla najveću dubinu proširenja.",
 	"expansion-depth-exceeded-warning": "Stranice koje su prekoračile dubinu proširenja",
 	"parser-unstrip-loop-warning": "Pronađena petlja",
-	"parser-unstrip-recursion-limit": "Prekoračeno ograničenje rekurzije ($1)",
+	"unstrip-depth-warning": "Prekoračeno ograničenje rekurzije ($1)",
 	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
 	"undo-success": "Izmjenu je moguće poništiti.\nMolimo da ispod uporedite razlike u verzijama kako biste bili sigurni da ovo zaista želite uraditi, te sačuvajte stranicu i izmjene će biti poništene.",
 	"undo-failure": "Ova izmjena se ne može poništiti jer se međuverzije sukobe.",

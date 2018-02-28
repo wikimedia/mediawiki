@@ -746,7 +746,7 @@
 	"expansion-depth-exceeded-category-desc": "A paggina a suppera a profonditæ mascima d'espanscion.",
 	"expansion-depth-exceeded-warning": "Sta paggine a l'ha superòu a profonditæ d'espanscion",
 	"parser-unstrip-loop-warning": "Rilevou ciclo de Unstrip",
-	"parser-unstrip-recursion-limit": "Superæ i limmiti de ricorscion de Unstrip ($1)",
+	"unstrip-depth-warning": "Superæ i limmiti de ricorscion de Unstrip ($1)",
 	"converter-manual-rule-error": "Rilevou errô inta reggola manoâ de converscion da lengoa",
 	"undo-success": "Questa modiffica a peu ese anullâ.\nControlla e differençe mostræ chì de sotta fra e doe verscioin pe ese seguo che-o contegnuo o corisponde a quante dexidiou, e quindi sarvâ e modiffiche pe completâ a proçedûa d'anullamento.",
 	"undo-failure": "Imposcibbile anullâ a modiffica a caosa de un conflito con de modiffiche intermeddie.",

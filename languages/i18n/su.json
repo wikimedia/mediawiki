@@ -737,7 +737,7 @@
 	"expansion-depth-exceeded-category-desc": "Kacana ngaleuwihan wates jero ékspansina.",
 	"expansion-depth-exceeded-warning": "Kaca ngaleuwihan jero ékspansi",
 	"parser-unstrip-loop-warning": "Luncatan buni kanyahoan",
-	"parser-unstrip-recursion-limit": "Wates rékursi buni kaleuwihi ($1)",
+	"unstrip-depth-warning": "Wates rékursi buni kaleuwihi ($1)",
 	"converter-manual-rule-error": "Kasalahan kanyahoan dina aturan tarjamahan basa manual",
 	"undo-success": "Éditan ieu bisa dibolaykeun. Mangga pariksa babandingan di handap pikeun mastikeun mémang anjeun miharep éta parobahan. Mun geus yakin, mangga simpen parobahanana pikeun ngabolaykeun éditan.",
 	"undo-failure": "Éditan teu bisa dibolaykeun alatan kaselang ku éditan séjén.",

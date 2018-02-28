@@ -765,7 +765,7 @@
 	"expansion-depth-exceeded-category-desc": "Puslapis viršija didžiausią plėtros gylį.",
 	"expansion-depth-exceeded-warning": "Puslapis, viršijantis didžiausią plėtros gylį",
 	"parser-unstrip-loop-warning": "Rastas neuždarytas ciklas",
-	"parser-unstrip-recursion-limit": "Unstrip rekursijos limitas viršytas ($1)",
+	"unstrip-depth-warning": "Unstrip rekursijos limitas viršytas ($1)",
 	"converter-manual-rule-error": "Rankinėje kalbos pertvarkymo taisyklėje rasta klaida",
 	"undo-success": "Keitimas gali būti atšauktas. Prašome patikrinti palyginimą, esantį žemiau, kad patvirtintumėte, kad jūs tai ir norite padaryti, ir tada išsaugokite pakeitimus, esančius žemiau, kad užbaigtumėte keitimo atšaukimą.",
 	"undo-failure": "Keitimas negali būti atšauktas dėl konfliktuojančių tarpinių keitimų.",

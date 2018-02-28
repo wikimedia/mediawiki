@@ -832,7 +832,7 @@
 	"expansion-depth-exceeded-category-desc": "यह पृष्ठ विस्तार गहराई पार करता है।",
 	"expansion-depth-exceeded-warning": "पृष्ठ में विस्तार गहराई पार की गई है",
 	"parser-unstrip-loop-warning": "Unstrip लूप पाया गया",
-	"parser-unstrip-recursion-limit": "Unstrip पुनरावर्तन सीमा पार की गई ($1)",
+	"unstrip-depth-warning": "Unstrip पुनरावर्तन सीमा पार की गई ($1)",
 	"converter-manual-rule-error": "मैन्यूअल भाषा परिवर्तन नियम में त्रुटि",
 	"undo-success": "यह संपादन पूर्ववत किया जा सकता है।\nऐसा करने के लिये कृपया निम्नलिखित पाठ को ध्यान से देखकर बदलाव संजोयें।",
 	"undo-failure": "इस बीच अन्य बदलाव होने के कारण यह संपादन पूर्ववत करना संभव नहीं है।",

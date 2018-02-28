@@ -815,7 +815,7 @@
 	"expansion-depth-exceeded-category-desc": "Sidan har överstridit det maximala expansionsdjupet.",
 	"expansion-depth-exceeded-warning": "Sidan överskrider expansionsdjupet",
 	"parser-unstrip-loop-warning": "Tagavskalningsloop upptäcktes",
-	"parser-unstrip-recursion-limit": "Tagavskalningsloop överskred rekursionsgränsen ($1)",
+	"unstrip-depth-warning": "Tagavskalningsloop överskred rekursionsgränsen ($1)",
 	"converter-manual-rule-error": "Fel upptäcktes i manuell språkkonverteringsregel",
 	"undo-success": "Redigeringen kan göras ogjord.\nVar god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra, och spara sedan ändringarna nedan för att göra redigeringen ogjord.",
 	"undo-failure": "Redigeringen kunde inte göras ogjord på grund av konflikt med mellanliggande redigeringar.",

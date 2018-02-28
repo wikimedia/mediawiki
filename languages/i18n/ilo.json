@@ -735,7 +735,7 @@
 	"expansion-depth-exceeded-category-desc": "Ti panid ket nasurokanna ti kaaduan ti kauneg ti panagpadakkel.",
 	"expansion-depth-exceeded-warning": "Ti panid ket nasurokanna ti kauneg ti panagpadakkel",
 	"parser-unstrip-loop-warning": "Nakaduktal ti di-naukisan a silo",
-	"parser-unstrip-recursion-limit": "Nalabsan ti patingga ti panagdullit ti di-naukisan ($1)",
+	"unstrip-depth-warning": "Nalabsan ti patingga ti panagdullit ti di-naukisan ($1)",
 	"converter-manual-rule-error": "Adda biddut a naduktalan iti manual nga alagaden ti panagbalbaliw ti pagsasao",
 	"undo-success": "Mabalin a maisubli ti panagurnos.\nPangngaasi a kitaen ti panangiyasping dita baba tapno maammuan no daytoy ti kayatmo nga aramiden, ken kalpasanna idulin dagiti sinukatan dita baba tapno malpas ti panangisubli ti inurnos.",
 	"undo-failure": "Ti inurnos ket saan a maipasubli gapu ta adda dagiti nakisinnungat a patingnga a naurnos.",
