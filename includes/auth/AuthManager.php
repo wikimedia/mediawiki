@@ -1416,7 +1416,7 @@ class AuthManager implements LoggerAwareInterface {
 				$state['userid'] = $user->getId();
 
 				// Update user count
-				\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
+				\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 
 				// Watch user's userpage and talk page
 				$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
@@ -1730,7 +1730,7 @@ class AuthManager implements LoggerAwareInterface {
 		$user->saveSettings();
 
 		// Update user count
-		\DeferredUpdates::addUpdate( new \SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
+		\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page
 		\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 			$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );

@@ -30,7 +30,6 @@ class StripState {
 	protected $data;
 	protected $regex;
 
-	protected $tempType, $tempMergePrefix;
 	protected $circularRefGuard;
 	protected $recursionLevel = 0;
 
@@ -122,44 +121,37 @@ class StripState {
 			return $text;
 		}
 
-		$oldType = $this->tempType;
-		$this->tempType = $type;
-		$text = preg_replace_callback( $this->regex, [ $this, 'unstripCallback' ], $text );
-		$this->tempType = $oldType;
-		return $text;
-	}
+		$callback = function ( $m ) use ( $type ) {
+			$marker = $m[1];
+			if ( isset( $this->data[$type][$marker] ) ) {
+				if ( isset( $this->circularRefGuard[$marker] ) ) {
+					return '<span class="error">'
+						. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
+						. '</span>';
+				}
+				if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
+					return '<span class="error">' .
+						wfMessage( 'parser-unstrip-recursion-limit' )
+							->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
+						'</span>';
+				}
+				$this->circularRefGuard[$marker] = true;
+				$this->recursionLevel++;
+				$value = $this->data[$type][$marker];
+				if ( $value instanceof Closure ) {
+					$value = $value();
+				}
+				$ret = $this->unstripType( $type, $value );
+				$this->recursionLevel--;
+				unset( $this->circularRefGuard[$marker] );
+				return $ret;
+			} else {
+				return $m[0];
+			}
+		};
 
-	/**
-	 * @param array $m
-	 * @return array
-	 */
-	protected function unstripCallback( $m ) {
-		$marker = $m[1];
-		if ( isset( $this->data[$this->tempType][$marker] ) ) {
-			if ( isset( $this->circularRefGuard[$marker] ) ) {
-				return '<span class="error">'
-					. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
-					. '</span>';
-			}
-			if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
-				return '<span class="error">' .
-					wfMessage( 'parser-unstrip-recursion-limit' )
-						->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
-					'</span>';
-			}
-			$this->circularRefGuard[$marker] = true;
-			$this->recursionLevel++;
-			$value = $this->data[$this->tempType][$marker];
-			if ( $value instanceof Closure ) {
-				$value = $value();
-			}
-			$ret = $this->unstripType( $this->tempType, $value );
-			$this->recursionLevel--;
-			unset( $this->circularRefGuard[$marker] );
-			return $ret;
-		} else {
-			return $m[0];
-		}
+		$text = preg_replace_callback( $this->regex, $callback, $text );
+		return $text;
 	}
 
 	/**
@@ -215,19 +207,12 @@ class StripState {
 			}
 		}
 
-		$this->tempMergePrefix = $mergePrefix;
-		$texts = preg_replace_callback( $otherState->regex, [ $this, 'mergeCallback' ], $texts );
-		$this->tempMergePrefix = null;
+		$callback = function ( $m ) use ( $mergePrefix ) {
+			$key = $m[1];
+			return Parser::MARKER_PREFIX . $mergePrefix . '-' . $key . Parser::MARKER_SUFFIX;
+		};
+		$texts = preg_replace_callback( $otherState->regex, $callback, $texts );
 		return $texts;
-	}
-
-	/**
-	 * @param array $m
-	 * @return string
-	 */
-	protected function mergeCallback( $m ) {
-		$key = $m[1];
-		return Parser::MARKER_PREFIX . $this->tempMergePrefix . '-' . $key . Parser::MARKER_SUFFIX;
 	}
 
 	/**
