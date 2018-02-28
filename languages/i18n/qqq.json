@@ -4496,7 +4496,7 @@
 	"log-action-filter-contentmodel": "{{doc-log-action-filter-type|contentmodel}}\n{{related|Log-action-filter}}",
 	"log-action-filter-delete": "{{doc-log-action-filter-type|delete}}\n{{related|Log-action-filter}}",
 	"log-action-filter-import": "{{doc-log-action-filter-type|import}}\n{{Related|Log-action-filter}}",
-	"log-action-filter-managetags": "{{doc-log-action-filter-type|managetags}}\n{{Related|Log-action-filter}}",
+	"log-action-filter-managetags": "{{doc-log-action-filter-type|managetags}}\n{{Related|Log-action-filter}}\n\n\"Managing tags\" means creating or deleting [[:mw:Manual:Tags|revision tags]].",
 	"log-action-filter-move": "{{doc-log-action-filter-type|move}}\n{{Related|Log-action-filter}}",
 	"log-action-filter-newusers": "{{doc-log-action-filter-type|newusers}}\n{{Related|Log-action-filter}}",
 	"log-action-filter-patrol": "{{doc-log-action-filter-type|patrol}}\n{{Related|Log-action-filter}}",
