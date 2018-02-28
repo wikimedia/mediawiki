@@ -32,6 +32,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia;
 use BagOStuff;
 use HashBagOStuff;
+use LogicException;
 use InvalidArgumentException;
 use Exception;
 use RuntimeException;
@@ -58,19 +59,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	const SLOW_WRITE_SEC = 0.500;
 	const SMALL_WRITE_ROWS = 100;
 
+	/** @var int New Database instance will not be connected yet when returned */
+	const NEW_UNCONNECTED = 0;
+	/** @var int New Database instance will already be connected when returned */
+	const NEW_CONNECTED = 1;
+
 	/** @var string SQL query */
 	protected $lastQuery = '';
 	/** @var float|bool UNIX timestamp of last write query */
 	protected $lastWriteTime = false;
 	/** @var string|bool */
 	protected $phpError = false;
-	/** @var string */
+	/** @var string Server that this instance is currently connected to */
 	protected $server;
-	/** @var string */
+	/** @var string User that this instance is currently connected under the name of */
 	protected $user;
-	/** @var string */
+	/** @var string Password used to establish the current connection */
 	protected $password;
-	/** @var string */
+	/** @var string Database that this instance is currently connected to */
 	protected $dbName;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
@@ -78,7 +84,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
-
+	/** @var array Parameters used by initConnection() to establish a connection */
+	protected $connectionParams = [];
 	/** @var BagOStuff APC cache */
 	protected $srvCache;
 	/** @var LoggerInterface */
@@ -237,18 +244,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $trxProfiler;
 
 	/**
-	 * Constructor and database handle and attempt to connect to the DB server
-	 *
-	 * IDatabase classes should not be constructed directly in external
-	 * code. Database::factory() should be used instead.
-	 *
+	 * @note: exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @param array $params Parameters passed from Database::factory()
 	 */
-	function __construct( array $params ) {
-		$server = $params['host'];
-		$user = $params['user'];
-		$password = $params['password'];
-		$dbName = $params['dbname'];
+	protected function __construct( array $params ) {
+		foreach ( [ 'host', 'user', 'password', 'dbname' ] as $name ) {
+			$this->connectionParams[$name] = $params[$name];
+		}
 
 		$this->schema = $params['schema'];
 		$this->tablePrefix = $params['tablePrefix'];
@@ -280,17 +282,46 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Set initial dummy domain until open() sets the final DB/prefix
 		$this->currentDomain = DatabaseDomain::newUnspecified();
+	}
 
-		if ( $user ) {
-			$this->open( $server, $user, $password, $dbName );
-		} elseif ( $this->requiresDatabaseUser() ) {
-			throw new InvalidArgumentException( "No database user provided." );
+	/**
+	 * Initialize the connection to the database over the wire (or to local files)
+	 *
+	 * @throws LogicException
+	 * @throws InvalidArgumentException
+	 * @throws DBConnectionError
+	 * @since 1.31
+	 */
+	final public function initConnection() {
+		if ( $this->isOpen() ) {
+			throw new LogicException( __METHOD__ . ': already connected.' );
 		}
-
+		// Establish the connection
+		$this->doInitConnection();
 		// Set the domain object after open() sets the relevant fields
 		if ( $this->dbName != '' ) {
 			// Domains with server scope but a table prefix are not used by IDatabase classes
 			$this->currentDomain = new DatabaseDomain( $this->dbName, null, $this->tablePrefix );
+		}
+	}
+
+	/**
+	 * Actually connect to the database over the wire (or to local files)
+	 *
+	 * @throws InvalidArgumentException
+	 * @throws DBConnectionError
+	 * @since 1.31
+	 */
+	protected function doInitConnection() {
+		if ( strlen( $this->connectionParams['user'] ) ) {
+			$this->open(
+				$this->connectionParams['host'],
+				$this->connectionParams['user'],
+				$this->connectionParams['password'],
+				$this->connectionParams['dbname']
+			);
+		} else {
+			throw new InvalidArgumentException( "No database user provided." );
 		}
 	}
 
@@ -331,11 +362,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - cliMode: Whether to consider the execution context that of a CLI script.
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
+	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
 	 * @since 1.18
 	 */
-	final public static function factory( $dbType, $p = [] ) {
+	final public static function factory( $dbType, $p = [], $connect = self::NEW_CONNECTED ) {
 		// For database types with built-in support, the below maps type to IDatabase
 		// implementations. For types with multipe driver implementations (PHP extensions),
 		// an array can be used, keyed by extension name. In case of an array, the
@@ -410,8 +442,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				};
 			}
-
+			/** @var Database $conn */
 			$conn = new $class( $p );
+			if ( $connect == self::NEW_CONNECTED ) {
+				$conn->initConnection();
+			}
 		} else {
 			$conn = null;
 		}
@@ -811,11 +846,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * The DBMS-dependent part of query()
+	 * Run a query and return a DBMS-dependent wrapper (that has all IResultWrapper methods)
+	 *
+	 * This might return things, such as mysqli_result, that do not formally implement
+	 * IResultWrapper, but nonetheless implement all of its methods correctly
 	 *
 	 * @param string $sql SQL query.
-	 * @return ResultWrapper|bool Result object to feed to fetchObject,
-	 *   fetchRow, ...; or false on failure
+	 * @return IResultWrapper|bool Iterator to feed to fetchObject/fetchRow; false on failure
 	 */
 	abstract protected function doQuery( $sql );
 
@@ -3736,21 +3773,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return bool Whether a DB user is required to access the DB
-	 * @since 1.28
-	 */
-	protected function requiresDatabaseUser() {
-		return true;
-	}
-
-	/**
 	 * Get the underlying binding connection handle
 	 *
 	 * Makes sure the connection resource is set (disconnects and ping() failure can unset it).
 	 * This catches broken callers than catch and ignore disconnection exceptions.
 	 * Unlike checking isOpen(), this is safe to call inside of open().
 	 *
-	 * @return resource|object
+	 * @return mixed
 	 * @throws DBUnexpectedError
 	 * @since 1.26
 	 */
