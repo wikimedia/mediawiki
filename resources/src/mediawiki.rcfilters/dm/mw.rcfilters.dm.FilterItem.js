@@ -139,7 +139,7 @@
 				// if the item is also not highlighted. See T161273
 				superset = this.getSuperset();
 				// For this message we need to collect the affecting superset
-				affectingItems = this.getGroupModel().getSelectedItems( this )
+				affectingItems = this.getGroupModel().findSelectedItems( this )
 					.filter( function ( item ) {
 						return superset.indexOf( item.getName() ) !== -1;
 					} )
@@ -149,7 +149,7 @@
 
 				messageKey = 'rcfilters-state-message-subset';
 			} else if ( this.isFullyCovered() && !this.isHighlighted() ) {
-				affectingItems = this.getGroupModel().getSelectedItems( this )
+				affectingItems = this.getGroupModel().findSelectedItems( this )
 					.map( function ( item ) {
 						return mw.msg( 'quotation-marks', item.getLabel() );
 					} );

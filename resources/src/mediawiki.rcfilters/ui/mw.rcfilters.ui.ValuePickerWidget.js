@@ -101,7 +101,7 @@
 	 * that is currently selected
 	 */
 	mw.rcfilters.ui.ValuePickerWidget.prototype.selectCurrentModelItem = function () {
-		var selectedItem = this.model.getSelectedItems()[ 0 ];
+		var selectedItem = this.model.findSelectedItems()[ 0 ];
 
 		if ( selectedItem ) {
 			this.selectWidget.selectItemByData( selectedItem.getName() );
