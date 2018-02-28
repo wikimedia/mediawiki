@@ -172,7 +172,9 @@ interface ILoadBalancer {
 	/**
 	 * Get a connection handle by server index
 	 *
-	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * can be used to check such flags beforehand.
 	 *
 	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
 	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
@@ -206,7 +208,9 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * can be used to check such flags beforehand.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
@@ -223,7 +227,9 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * can be used to check such flags beforehand.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
@@ -240,7 +246,9 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
+	 * can be used to check such flags beforehand.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
 	 *
@@ -258,7 +266,9 @@ interface ILoadBalancer {
 	 * The index must be an actual index into the array. If a connection to the server is
 	 * already open and not considered an "in use" foreign connection, this simply returns it.
 	 *
-	 * Avoid using CONN_TRX_AUTO with sqlite (e.g. check getServerType() first)
+	 * Avoid using CONN_TRX_AUTO for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in
+	 * order to avoid deadlocks. ILoadBalancer::getServerAttributes() can be used to check
+	 * such flags beforehand.
 	 *
 	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
 	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
@@ -318,6 +328,13 @@ interface ILoadBalancer {
 	 * @since 1.30
 	 */
 	public function getServerType( $i );
+
+	/**
+	 * @param int $i Server index
+	 * @return array (Database::ATTRIBUTE_* constant => value) for all such constants
+	 * @since 1.31
+	 */
+	public function getServerAttributes( $i );
 
 	/**
 	 * Get the current master position for chronology control purposes
