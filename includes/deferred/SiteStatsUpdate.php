@@ -66,6 +66,12 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	public static function factory( array $deltas ) {
 		$update = new self( 0, 0, 0 );
 
+		foreach ( $deltas as $name => $unused ) {
+			if ( !in_array( $name, self::$counters ) ) { // T187585
+				throw new UnexpectedValueException( __METHOD__ . ": no field called '$name'" );
+			}
+		}
+
 		foreach ( self::$counters as $field ) {
 			if ( isset( $deltas[$field] ) && $deltas[$field] ) {
 				$update->$field = $deltas[$field];
