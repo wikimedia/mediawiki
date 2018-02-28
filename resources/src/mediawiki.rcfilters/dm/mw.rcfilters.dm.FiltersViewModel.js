@@ -149,7 +149,7 @@
 						groupModel.areAllSelectedInConflictWith( filterItem ) &&
 						// Every selected member of the item's own group is also
 						// in conflict with the other group
-						filterItemGroup.getSelectedItems().every( function ( otherGroupItem ) {
+						filterItemGroup.findSelectedItems().every( function ( otherGroupItem ) {
 							return groupModel.areAllSelectedInConflictWith( otherGroupItem );
 						} )
 					);
@@ -910,7 +910,7 @@
 	 */
 	mw.rcfilters.dm.FiltersViewModel.prototype.areNamespacesEffectivelyInverted = function () {
 		return this.getInvertModel().isSelected() &&
-			this.getSelectedItems().some( function ( itemModel ) {
+			this.findSelectedItems().some( function ( itemModel ) {
 				return itemModel.getGroupModel().getName() === 'namespace';
 			} );
 	};
@@ -1086,11 +1086,11 @@
 	 *
 	 * @return {mw.rcfilters.dm.FilterItem[]} Selected items
 	 */
-	mw.rcfilters.dm.FiltersViewModel.prototype.getSelectedItems = function () {
+	mw.rcfilters.dm.FiltersViewModel.prototype.findSelectedItems = function () {
 		var allSelected = [];
 
 		$.each( this.getFilterGroups(), function ( groupName, groupModel ) {
-			allSelected = allSelected.concat( groupModel.getSelectedItems() );
+			allSelected = allSelected.concat( groupModel.findSelectedItems() );
 		} );
 
 		return allSelected;
