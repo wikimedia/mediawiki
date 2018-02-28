@@ -268,16 +268,6 @@ just a test"
 			],
 			[ 'Foo',
 				null,
-				'comma',
-				false
-			],
-			[ 'Foo, bar',
-				null,
-				'comma',
-				true
-			],
-			[ 'Foo',
-				null,
 				'link',
 				false
 			],
@@ -299,11 +289,6 @@ just a test"
 			[ '#REDIRECT [[bar]]',
 				true,
 				'any',
-				false
-			],
-			[ '#REDIRECT [[bar]]',
-				true,
-				'comma',
 				false
 			],
 			[ '#REDIRECT [[bar]]',

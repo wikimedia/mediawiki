@@ -28,6 +28,9 @@ production.
   as upstream is inactive and has no plans to move to PHP 7.
 * The old CategorizedRecentChanges feature, including its related configuration
   option $wgAllowCategorizedRecentChanges, has been removed.
+* (T188472) The 'comma' value for $wgArticleCountMethod is no longer supported for
+  performance reasons, and installations with this setting will now work as if it
+  was configured with 'any'.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
