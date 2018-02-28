@@ -37,6 +37,7 @@ This is a security and maintenance release of the MediaWiki 1.29 branch.
 * (T176097) resourceloader: Disable a flaky MessageBlobStoreTest case
 * (T193829) Indicate when a Bot Password needs reset.
 * (T151415) Log email changes.
+* (T118420) Unbreak Oracle installer.
 
 == MediaWiki 1.29.2 ==
 
