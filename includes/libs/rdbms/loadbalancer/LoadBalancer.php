@@ -680,6 +680,18 @@ class LoadBalancer implements ILoadBalancer {
 			$domain = false; // local connection requested
 		}
 
+		if ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO ) {
+			$attributes = $this->getServerAttributes( $this->getWriterIndex() );
+			if ( $attributes[Database::ATTR_DB_LEVEL_LOCKING] ) {
+				// Callers sometimes want to (a) escape REPEATABLE-READ stateness without locking
+				// rows (e.g. FOR UPDATE) or (b) make small commits during a larger transactions
+				// to reduce lock contention. None of these apply for sqlite and using separate
+				// connections just causes self-deadlocks.
+				$flags &= ~self::CONN_TRX_AUTO;
+				$this->connLogger->info( __METHOD__ . ': ignoring CONN_TRX_AUTO to avoid deadlocks.' );
+			}
+		}
+
 		$groups = ( $groups === false || $groups === [] )
 			? [ false ] // check one "group": the generic pool
 			: (array)$groups;
@@ -979,6 +991,13 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		return $conn;
+	}
+
+	public function getServerAttributes( $i ) {
+		return Database::attributesFromType(
+			$this->getServerType( $i ),
+			isset( $this->servers[$i]['driver'] ) ? $this->servers[$i]['driver'] : null
+		);
 	}
 
 	/**
