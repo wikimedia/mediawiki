@@ -2774,7 +2774,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int $u1 Unused
 	 * @param bool $u2 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User $user The deleting user
+	 * @param User $deleter The deleting user
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @return Status Status object; if successful, $status->value is the log_id of the
@@ -2782,7 +2782,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   found, $status is a non-fatal 'cannotdelete' error
 	 */
 	public function doDeleteArticleReal(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
+		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $deleter = null,
 		$tags = [], $logsubtype = 'delete'
 	) {
 		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage,
@@ -2801,9 +2801,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
 
-		$user = is_null( $user ) ? $wgUser : $user;
+		$deleter = is_null( $deleter ) ? $wgUser : $deleter;
 		if ( !Hooks::run( 'ArticleDelete',
-			[ &$wikiPage, &$user, &$reason, &$error, &$status, $suppress ]
+			[ &$wikiPage, &$deleter, &$reason, &$error, &$status, $suppress ]
 		) ) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
@@ -2947,7 +2947,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$logtype = $suppress ? 'suppress' : 'delete';
 
 		$logEntry = new ManualLogEntry( $logtype, $logsubtype );
-		$logEntry->setPerformer( $user );
+		$logEntry->setPerformer( $deleter );
 		$logEntry->setTarget( $logTitle );
 		$logEntry->setComment( $reason );
 		$logEntry->setTags( $tags );
@@ -2963,11 +2963,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$this->doDeleteUpdates( $id, $content, $revision, $user );
+		$this->doDeleteUpdates( $id, $content, $revision, $deleter );
 
 		Hooks::run( 'ArticleDeleteComplete', [
 			&$wikiPageBeforeDelete,
-			&$user,
+			&$deleter,
 			$reason,
 			$id,
 			$content,
