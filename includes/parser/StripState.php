@@ -26,24 +26,24 @@
  * @ingroup Parser
  */
 class StripState {
-	protected $prefix;
 	protected $data;
 	protected $regex;
 
 	protected $parser;
 
 	protected $circularRefGuard;
-	protected $recursionLevel = 0;
-	protected $highestRecursionLevel = 0;
+	protected $depth = 0;
+	protected $highestDepth = 0;
 	protected $expandSize = 0;
 
-	const UNSTRIP_RECURSION_LIMIT = 20;
-	const UNSTRIP_SIZE_LIMIT = 5000000;
+	protected $depthLimit = 20;
+	protected $sizeLimit = 5000000;
 
 	/**
 	 * @param Parser|null $parser
+	 * @param array $options
 	 */
-	public function __construct( Parser $parser = null ) {
+	public function __construct( Parser $parser = null, $options = [] ) {
 		$this->data = [
 			'nowiki' => [],
 			'general' => []
@@ -51,6 +51,13 @@ class StripState {
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f<>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = [];
 		$this->parser = $parser;
+
+		if ( isset( $options['depthLimit'] ) ) {
+			$this->depthLimit = $options['depthLimit'];
+		}
+		if ( isset( $options['sizeLimit'] ) ) {
+			$this->sizeLimit = $options['sizeLimit'];
+		}
 	}
 
 	/**
@@ -128,12 +135,11 @@ class StripState {
 					return $this->getWarning( 'parser-unstrip-loop-warning' );
 				}
 
-				if ( $this->recursionLevel > $this->highestRecursionLevel ) {
-					$this->highestRecursionLevel = $this->recursionLevel;
+				if ( $this->depth > $this->highestDepth ) {
+					$this->highestDepth = $this->depth;
 				}
-				if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
-					return $this->getLimitationWarning( 'unstrip-depth',
-						self::UNSTRIP_RECURSION_LIMIT );
+				if ( $this->depth >= $this->depthLimit ) {
+					return $this->getLimitationWarning( 'unstrip-depth', $this->depthLimit );
 				}
 
 				$value = $this->data[$type][$marker];
@@ -142,15 +148,14 @@ class StripState {
 				}
 
 				$this->expandSize += strlen( $value );
-				if ( $this->expandSize > self::UNSTRIP_SIZE_LIMIT ) {
-					return $this->getLimitationWarning( 'unstrip-size',
-						self::UNSTRIP_SIZE_LIMIT );
+				if ( $this->expandSize > $this->sizeLimit ) {
+					return $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit );
 				}
 
 				$this->circularRefGuard[$marker] = true;
-				$this->recursionLevel++;
+				$this->depth++;
 				$ret = $this->unstripType( $type, $value );
-				$this->recursionLevel--;
+				$this->depth--;
 				unset( $this->circularRefGuard[$marker] );
 
 				return $ret;
@@ -201,14 +206,14 @@ class StripState {
 		return [
 			[ 'limitreport-unstrip-depth',
 				[
-					$this->highestRecursionLevel,
-					self::UNSTRIP_RECURSION_LIMIT
+					$this->highestDepth,
+					$this->depthLimit
 				],
 			],
 			[ 'limitreport-unstrip-size',
 				[
 					$this->expandSize,
-					self::UNSTRIP_SIZE_LIMIT
+					$this->sizeLimit
 				],
 			]
 		];
@@ -218,11 +223,13 @@ class StripState {
 	 * Get a StripState object which is sufficient to unstrip the given text.
 	 * It will contain the minimum subset of strip items necessary.
 	 *
+	 * @deprecated since 1.31
 	 * @param string $text
-	 *
 	 * @return StripState
 	 */
 	public function getSubState( $text ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$subState = new StripState;
 		$pos = 0;
 		while ( true ) {
@@ -254,11 +261,14 @@ class StripState {
 	 * will not be preserved. The strings in the $texts array will have their
 	 * strip markers rewritten, the resulting array of strings will be returned.
 	 *
+	 * @deprecated since 1.31
 	 * @param StripState $otherState
 	 * @param array $texts
 	 * @return array
 	 */
 	public function merge( $otherState, $texts ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$mergePrefix = wfRandomString( 16 );
 
 		foreach ( $otherState->data as $type => $items ) {
