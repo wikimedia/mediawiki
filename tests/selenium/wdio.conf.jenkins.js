@@ -1,6 +1,6 @@
 'use strict';
 const merge = require( 'deepmerge' ),
-	password = 'testpass',
+	password = 'testwikijenkinspass',
 	username = 'WikiAdmin',
 	wdioConf = require( './wdio.conf.js' );
 
