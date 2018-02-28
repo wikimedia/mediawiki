@@ -50,10 +50,14 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $rgwS3AccessKey;
 	/** @var string S3 authentication key (RADOS Gateway) */
 	protected $rgwS3SecretKey;
-	/** @var array Additional users (account:user) to open read permissions for */
+	/** @var array Additional users (account:user) with read permissions on public containers */
 	protected $readUsers;
-	/** @var array Additional users (account:user) to open write permissions for */
+	/** @var array Additional users (account:user) with write permissions on public containers */
 	protected $writeUsers;
+	/** @var array Additional users (account:user) with read permissions on private containers */
+	protected $secureReadUsers;
+	/** @var array Additional users (account:user) with write permissions on private containers */
+	protected $secureWriteUsers;
 
 	/** @var BagOStuff */
 	protected $srvCache;
@@ -100,8 +104,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                          This is used for generating expiring pre-authenticated URLs.
 	 *                          Only use this when using rgw and to work around
 	 *                          http://tracker.newdream.net/issues/3454.
-	 *   - readUsers           : Swift users that should have read access (account:username)
-	 *   - writeUsers          : Swift users that should have write access (account:username)
+	 *   - readUsers           : Swift users with read access to public containers (account:username)
+	 *   - writeUsers          : Swift users with write access to public containers (account:username)
+	 *   - secureReadUsers     : Swift users with read access to private containers (account:username)
+	 *   - secureWriteUsers    : Swift users with write access to private containers (account:username)
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -147,6 +153,12 @@ class SwiftFileBackend extends FileBackendStore {
 			: [];
 		$this->writeUsers = isset( $config['writeUsers'] )
 			? $config['writeUsers']
+			: [];
+		$this->secureReadUsers = isset( $config['secureReadUsers'] )
+			? $config['secureReadUsers']
+			: [];
+		$this->secureWriteUsers = isset( $config['secureWriteUsers'] )
+			? $config['secureWriteUsers']
 			: [];
 	}
 
@@ -625,8 +637,8 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$stat = $this->getContainerStat( $fullCont );
 		if ( is_array( $stat ) ) {
-			$readUsers = array_merge( $this->readUsers, [ $this->swiftUser ] );
-			$writeUsers = array_merge( $this->writeUsers, [ $this->swiftUser ] );
+			$readUsers = array_merge( $this->secureReadUsers, [ $this->swiftUser ] );
+			$writeUsers = array_merge( $this->secureWriteUsers, [ $this->swiftUser ] );
 			// Make container private to end-users...
 			$status->merge( $this->setContainerAccess(
 				$fullCont,
@@ -1463,12 +1475,14 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// @see SwiftFileBackend::setContainerAccess()
 		if ( empty( $params['noAccess'] ) ) {
-			$readUsers = array_merge( $this->readUsers, [ '.r:*', $this->swiftUser ] ); // public
+			// public
+			$readUsers = array_merge( $this->readUsers, [ '.r:*', $this->swiftUser ] );
+			$writeUsers = array_merge( $this->writeUsers, [ $this->swiftUser ] );
 		} else {
-			$readUsers = array_merge( $this->readUsers, [ $this->swiftUser ] ); // private
+			// private
+			$readUsers = array_merge( $this->secureReadUsers, [ $this->swiftUser ] );
+			$writeUsers = array_merge( $this->secureWriteUsers, [ $this->swiftUser ] );
 		}
-
-		$writeUsers = array_merge( $this->writeUsers, [ $this->swiftUser ] ); // sanity
 
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( [
 			'method' => 'PUT',
