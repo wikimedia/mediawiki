@@ -273,6 +273,7 @@ class ApiMain extends ApiBase {
 				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
 				$errorLang = Language::factory( $errorLangCode );
 			}
+            wfDebug( __METHOD__ . ": errorLang: " . $errorLang->getCode() . "\n" );
 			$this->mErrorFormatter = new ApiErrorFormatter(
 				$this->mResult, $errorLang, $errorFormat, $errorsUseDB
 			);
@@ -466,6 +467,23 @@ class ApiMain extends ApiBase {
 				"'anon-public-user-private' due to uselang=user\n" );
 			$mode = 'anon-public-user-private';
 		}
+        if ( $mode === 'public' && $this->getParameter( 'variant' ) === null ) {
+            // A logged-in user's selected variant will be used when formatting
+            // anything (content, error messages, etc) in an appropriate base
+            // language.
+            global $wgContLang;
+            $variant = $wgContLang->getDefaultVariant();
+            $user = $this->getUser();
+            if (
+                $user->getOption( 'language' ) !== $variant ||
+                $user->getOption( 'variant' ) !== $variant
+            ) {
+                wfDebug( __METHOD__ . ": downgrading cache mode 'public' to " .
+					"'anon-public-user-private' due to variant=null\n" );
+				$mode = 'anon-public-user-private';
+            }
+        }
+        
 
 		wfDebug( __METHOD__ . ": setting cache mode $mode\n" );
 		$this->mCacheMode = $mode;
