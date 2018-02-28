@@ -103,6 +103,10 @@ class DatabaseSqlite extends Database {
 		] );
 	}
 
+	protected static function getAttributes() {
+		return [ self::ATTR_DB_LEVEL_LOCKING => true ];
+	}
+
 	/**
 	 * @param string $filename
 	 * @param array $p Options map; supports:
