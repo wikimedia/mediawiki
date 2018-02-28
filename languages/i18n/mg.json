@@ -723,7 +723,7 @@
 	"expansion-depth-exceeded-category-desc": "Sokajy ho an'ny pejy ahitana halalim-piitarana mihoatra.",
 	"expansion-depth-exceeded-warning": "Pejy manana halalim-panitarana mihoatra",
 	"parser-unstrip-loop-warning": "Nahitana tondro mifolaka tsy azo vahana",
-	"parser-unstrip-recursion-limit": "Tafahoatra ny fetra avo ny fetra recursion ($1)",
+	"unstrip-depth-warning": "Tafahoatra ny fetra avo ny fetra recursion ($1)",
 	"converter-manual-rule-error": "Nahitana hadisoana ao amin'ny fepetra famadihana tanana ny fiteny.",
 	"undo-success": "Ho voafafa io fanovana io. Marino tsara ny fanovana eo ambany, ary tehirizo rehefa vita.",
 	"undo-failure": "Tsy afaka esorina io fanovàna io : mety tsy miraikitra amin'ny fanovàna misy eo ampivoaniny ra esorina",

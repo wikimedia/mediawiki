@@ -663,7 +663,7 @@
 	"expansion-depth-exceeded-category": "Bladsye waar die uitbreidingsdiepte oorskry is",
 	"expansion-depth-exceeded-warning": "Die bladsy bevat te veel sjablone",
 	"parser-unstrip-loop-warning": "'n \"Unstrip\"-lus is bespreur.",
-	"parser-unstrip-recursion-limit": "Die rekursielimiet ($1) vir \"unstrip\" is oorskry",
+	"unstrip-depth-warning": "Die rekursielimiet ($1) vir \"unstrip\" is oorskry",
 	"converter-manual-rule-error": "'n Fout is in 'n handmatig toegevoegde taalomskalelingsreël gevind.",
 	"undo-success": "Die wysiging kan ongedaan gemaak word.\nKontroleer die vergelyking hieronder om seker te maak dis wat u wil doen, en stoor dan om die terugrol te voltooi.",
 	"undo-failure": "Die wysiging kan nie ongedaan gemaak word nie omdat dit met intermediêre wysigings bots.",

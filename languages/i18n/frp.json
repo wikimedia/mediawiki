@@ -709,7 +709,7 @@
 	"expansion-depth-exceeded-category-desc": "La pâge dèpâsse la provondior maximon d’èxpension.",
 	"expansion-depth-exceeded-warning": "Pâge que dèpâsse la provondior d’èxpension",
 	"parser-unstrip-loop-warning": "Boclla pas dèmontâbla dècelâye",
-	"parser-unstrip-recursion-limit": "Limita de rècursion pas dèmontâbla dèpassâye ($1)",
+	"unstrip-depth-warning": "Limita de rècursion pas dèmontâbla dèpassâye ($1)",
 	"converter-manual-rule-error": "Fôta dècelâye dedens la règlla de convèrsion manuâla de lengoua",
 	"undo-success": "Lo changement pôt étre dèfêt.\nSe vos plét, controlâd la comparèson ce-desot por vos assurar qu’o est franc cen que vos voléd fâre, et pués encartâd los changements por chavonar sa dèfêta.",
 	"undo-failure": "Lo changement at pas possu étre dèfêt a côsa d’una disputa avouéc des changements entèrmèdièros.",

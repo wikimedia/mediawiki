@@ -767,7 +767,7 @@
 	"expansion-depth-exceeded-category-desc": "Orriak zabalkunde sakonera maximoa gainditzen du.",
 	"expansion-depth-exceeded-warning": "Espantsio sakonera gainditu duten orrialdeak",
 	"parser-unstrip-loop-warning": "Loop unstrip bat aurkitu da",
-	"parser-unstrip-recursion-limit": "Unstrip errekurtsio limitea gainditu da ($1)",
+	"unstrip-depth-warning": "Unstrip errekurtsio limitea gainditu da ($1)",
 	"converter-manual-rule-error": "Akatsa aurkitu da hizkuntzen eskuszko konbertsio arauan",
 	"undo-success": "Aldaketa desegin daiteke.\nMesedez beheko alderaketa egiaztatu, egin nahi duzuna hori dela frogatzeko, eta ondoren azpiko aldaketak gorde, aldaketa desegiten amaitzeko.",
 	"undo-failure": "Ezin izan da aldaketa desegin tarteko aldaketekin gatazkak direla-eta.",

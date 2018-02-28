@@ -700,7 +700,7 @@
 	"expansion-depth-exceeded-category-desc": "Жіктелім тереңдігі шегінен асқан бет.",
 	"expansion-depth-exceeded-warning": "Жіктелім тереңдігі асып кеткен бет",
 	"parser-unstrip-loop-warning": "Жабылмаған тег анықталды (<pre> осындай)",
-	"parser-unstrip-recursion-limit": "Unstrip рекурсия шегінен асты ($1)",
+	"unstrip-depth-warning": "Unstrip рекурсия шегінен асты ($1)",
 	"converter-manual-rule-error": "Қолмен тілді түрлендіру ережесінде қате кездесті",
 	"undo-success": "Бұл өңдемені жоққа шығарымақшысыз. Алдымен алдын-ала төмендегі салыстыруды тексеріп шығыңыз да бетті сақтаңыз.",
 	"undo-failure": "Бұл өңдеме жоққа шығарылмайды, себебі арада қақтығысты өңдемелер бар.",

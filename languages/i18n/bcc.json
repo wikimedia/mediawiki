@@ -639,7 +639,7 @@
 	"expansion-depth-exceeded-category-desc": "کتگوری په دیمان که آوانی تا پرش بوتینی  جولی  گیشتیر شُته گنت.",
 	"expansion-depth-exceeded-warning": "پیج چه مکسیمم تچک کتنء امک(عمق) گیش شُت",
 	"parser-unstrip-loop-warning": "حلقهء unstrip ودی بوت",
-	"parser-unstrip-recursion-limit": "چه مکسیمم ارجاع مان دستور unstrip گیش شُت ات($1)",
+	"unstrip-depth-warning": "چه مکسیمم ارجاع مان دستور unstrip گیش شُت ات($1)",
 	"converter-manual-rule-error": "ارور مان قوانین مبدل دستی زبان",
 	"undo-success": "اصلاح برگشت نه بیت. لطفا مقایسه جهلگینء کنترل کنیت په تایید شی که شی هما انت که شما لوٹیت، و بعدا تغغیرات جهلی په تمام کتن بر نگردگ اصلاح ذخیره کنیت.",
 	"undo-failure": "اصلاح بر نرگردیت په خاطر تضاد میان اصلاحاتی",

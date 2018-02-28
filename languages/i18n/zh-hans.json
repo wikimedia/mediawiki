@@ -837,7 +837,7 @@
 	"expansion-depth-exceeded-category-desc": "页面超出最大展开深度限制。",
 	"expansion-depth-exceeded-warning": "页面超出展开深度限制",
 	"parser-unstrip-loop-warning": "检测到Unstrip循环",
-	"parser-unstrip-recursion-limit": "已超出Unstrip递归限制（$1）",
+	"unstrip-depth-warning": "已超出Unstrip递归限制（$1）",
 	"converter-manual-rule-error": "在手动语言转换规则中检测到错误",
 	"undo-success": "该编辑可以被撤销。请检查下面的对比以核实您想要撤销的内容，然后保存下面的更改以完成撤销。",
 	"undo-failure": "因存在冲突的中间编辑，本编辑不能撤销。",

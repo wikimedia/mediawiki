@@ -726,7 +726,7 @@
 	"expansion-depth-exceeded-category-desc": "Mae'r dudalen yn rhy fawr!",
 	"expansion-depth-exceeded-warning": "Mae dyfnder ehangu'r dudalen y tu hwnt i'r terfyn",
 	"parser-unstrip-loop-warning": "Wedi darganfod dolen dad-blicio (unstrip loop)",
-	"parser-unstrip-recursion-limit": "Wedi mynd dros ben y terfyn ar ddychweliad dad-blicio (unstrip recursion) ($1)",
+	"unstrip-depth-warning": "Wedi mynd dros ben y terfyn ar ddychweliad dad-blicio (unstrip recursion) ($1)",
 	"converter-manual-rule-error": "Cafwyd hyd i wall yn y rheol trosi iaith â llaw",
 	"undo-success": "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
 	"undo-failure": "Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.",

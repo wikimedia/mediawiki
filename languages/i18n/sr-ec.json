@@ -766,7 +766,7 @@
 	"expansion-depth-exceeded-category-desc": "Страница је прекорачила највећу дубину проширења.",
 	"expansion-depth-exceeded-warning": "Страница у којој је прекорачена дубина проширења",
 	"parser-unstrip-loop-warning": "Утврђена је петља",
-	"parser-unstrip-recursion-limit": "Прекорачено је ограничење рекурзије ($1)",
+	"unstrip-depth-warning": "Прекорачено је ограничење рекурзије ($1)",
 	"converter-manual-rule-error": "Пронађена је грешка у правилу за ручно претварање језика",
 	"undo-success": "Измена се може поништити.\nПроверите разлике испод, па сачувајте измене.",
 	"undo-failure": "Ова измена се не може поништити због сукоба измена.",

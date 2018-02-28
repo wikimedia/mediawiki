@@ -710,7 +710,7 @@
 	"expansion-depth-exceeded-category-desc": "La pagina depassa la prigondor d’espandiment maximala.",
 	"expansion-depth-exceeded-warning": "Pagina depassant la prigondor d'espandiment",
 	"parser-unstrip-loop-warning": "Bocla pas desmontabla detectada",
-	"parser-unstrip-recursion-limit": "Limit de recursion pas desmontable depassat ($1)",
+	"unstrip-depth-warning": "Limit de recursion pas desmontable depassat ($1)",
 	"converter-manual-rule-error": "Error detectada dins la règla manuala de conversion de lenga",
 	"undo-success": "Aquesta modificacion va èsser desfaita. Confirmatz los cambiaments (visibles en bas d'aquesta pagina), puèi salvatz se sètz d’acòrdi. Mercés de motivar l’anullacion dins la bóstia de resumit.",
 	"undo-failure": "Aquesta modificacion a pas pogut èsser desfaita a causa de conflictes amb de modificacions intermediàrias.",

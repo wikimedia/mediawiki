@@ -546,7 +546,7 @@
 	"expansion-depth-exceeded-category": "Mga panid kon diin ang kadalumon sang pagpalapad nagsobra na",
 	"expansion-depth-exceeded-warning": "Ang panid nagsobra na sa kadalumon sang pagpalapad",
 	"parser-unstrip-loop-warning": "May loop nga unstrip nga nakita",
-	"parser-unstrip-recursion-limit": "Naglapaw ka na sa ginapasugtan nga pagliwat-liwat ($1)",
+	"unstrip-depth-warning": "Naglapaw ka na sa ginapasugtan nga pagliwat-liwat ($1)",
 	"converter-manual-rule-error": "May sala nga nakita sa mano-mano nga pagsulunsan sa pagbadbad sang lenggwahe",
 	"undo-success": "Ang pag-ilis indi mahuman.\nPalihog lantaw sang pagbaki-baki sa dalom agod to nga mapamatud-an kon amo gid man sini ang imo luyag buhaton, dayon tipona ang mga pagbag-o sa dalom agod to nga matapos ang pagliwat sang pag-ilis.",
 	"undo-failure": "Ang pag-ilis indi na maliwat pa tungod sang nagakonplikto nga mga pang-tunga nga pag-ilis.",
