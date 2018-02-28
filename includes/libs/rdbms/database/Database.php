@@ -59,6 +59,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	const SLOW_WRITE_SEC = 0.500;
 	const SMALL_WRITE_ROWS = 100;
 
+	/** @var string Whether lock granularity is on the level of the entire database */
+	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
+
 	/** @var string SQL query */
 	protected $lastQuery = '';
 	/** @var float|bool UNIX timestamp of last write query */
@@ -388,6 +391,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param string|null $driver Optional name of a specific DB client driver
+	 * @return array Map of (Database::ATTRIBUTE_* constant => value) for all such constants
+	 * @throws InvalidArgumentException
+	 * @since 1.31
+	 */
+	final public static function attributesFromType( $dbType, $driver = null ) {
+		static $defaults = [ self::ATTR_DB_LEVEL_LOCKING => false ];
+
+		$class = self::getClass( $dbType, $driver );
+
+		return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+	}
+
+	/**
+	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
+	 * @param string|null $driver Optional name of a specific DB client driver
 	 * @return string Database subclass name to use
 	 * @throws InvalidArgumentException
 	 */
@@ -439,6 +457,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $class;
+	}
+
+	/**
+	 * @return array Map of (Database::ATTRIBUTE_* constant => value
+	 * @since 1.31
+	 */
+	protected static function getAttributes() {
+		return [];
 	}
 
 	/**
