@@ -5992,11 +5992,13 @@ class Parser {
 	 * unserializeHalfParsedText(). The text can then be safely incorporated into
 	 * the return value of a parser hook.
 	 *
+	 * @deprecated since 1.31
 	 * @param string $text
 	 *
 	 * @return array
 	 */
 	public function serializeHalfParsedText( $text ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$data = [
 			'text' => $text,
 			'version' => self::HALF_PARSED_VERSION,
@@ -6017,11 +6019,13 @@ class Parser {
 	 * If the $data array has been stored persistently, the caller should first
 	 * check whether it is still valid, by calling isValidHalfParsedText().
 	 *
+	 * @deprecated since 1.31
 	 * @param array $data Serialized data
 	 * @throws MWException
 	 * @return string
 	 */
 	public function unserializeHalfParsedText( $data ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
 			throw new MWException( __METHOD__ . ': invalid version' );
 		}
@@ -6042,11 +6046,13 @@ class Parser {
 	 * serializeHalfParsedText(), is compatible with the current version of the
 	 * parser.
 	 *
+	 * @deprecated since 1.31
 	 * @param array $data
 	 *
 	 * @return bool
 	 */
 	public function isValidHalfParsedText( $data ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return isset( $data['version'] ) && $data['version'] == self::HALF_PARSED_VERSION;
 	}
 
