@@ -38,12 +38,12 @@
 		this.footers = [];
 
 		// Parent
-		mw.rcfilters.ui.MenuSelectWidget.parent.call( this, $.extend( {
+		mw.rcfilters.ui.MenuSelectWidget.parent.call( this, $.extend( config, {
 			$autoCloseIgnore: this.$overlay,
 			width: 650,
 			// Our filtering is done through the model
 			filterFromInput: false
-		}, config ) );
+		} ) );
 		this.setGroupElement(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-menuSelectWidget-group' )
