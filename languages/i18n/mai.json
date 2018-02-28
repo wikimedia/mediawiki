@@ -724,7 +724,7 @@
 	"expansion-depth-exceeded-category-desc": "ई पृष्ठ अधिकतम रुपमे विस्तार गहिराई पार केनए अछि",
 	"expansion-depth-exceeded-warning": "पन्ना विस्तार गहिराई पार केनए अछि",
 	"parser-unstrip-loop-warning": "Unstrip लूप पाओल गेल",
-	"parser-unstrip-recursion-limit": "Unstrip पुनरावर्तन सीमा पार कइर गेल($1)",
+	"unstrip-depth-warning": "Unstrip पुनरावर्तन सीमा पार कइर गेल($1)",
 	"converter-manual-rule-error": "म्यानुअल भाषा परिवर्तन नियममे त्रुटि",
 	"undo-success": "ई सम्पादन पूर्ववत बदलल जा सकैए।\nकृपा क' नीचाँक तुलनाक जाँच करू ई देखैले जे ई वएह भेल अछि जे अहाँ चाहै छलहुँ, आ तखन सम्पादन ख़तम करबा लेल नीचाँक परिवर्तन सुरक्षित करू ।",
 	"undo-failure": "मध्यवर्ती विरोधी सम्पादनक कारण ऐ सम्पादनकेँ खतम नै कएल जा सकैए।",

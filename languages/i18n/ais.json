@@ -715,7 +715,7 @@
 	"expansion-depth-exceeded-category-desc": "mangsiw micuwat kasabelih nu ilabuay a kelec.",
 	"expansion-depth-exceeded-warning": "kasabelih mangsiw micuwat ilabuay a kelec",
 	"parser-unstrip-loop-warning": "masedap tu Unstrip masaliyut.",
-	"parser-unstrip-recursion-limit": "Unstrip musaliyuliyud mangasiw tu kelec ($1)",
+	"unstrip-depth-warning": "Unstrip musaliyuliyud mangasiw tu kelec ($1)",
 	"converter-manual-rule-error": "imahini palima-saungay kamu miliyaw likec masedap tu mungangaw",
 	"undo-success": "tina mikawaway-kalumyiti kapah tu mapatiku.\nkapikinsa tu zikuz sasutili’ay sapat nu sulit, malucekay tu ukakaiyan kaidihan isu patiku, satu suped tu zikuz misumad tu pahezek mikawaway-kalumyiti patiku.",
 	"undo-failure": "nay mikawaway-kalumyiti a sumad izaw sasula’cus，tina mikawaway-kalumyiti caay patiku.",

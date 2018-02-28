@@ -707,7 +707,7 @@
 	"expansion-depth-exceeded-category-desc": "Asebter iɛedda talqayt n temɣer tafellayt.",
 	"expansion-depth-exceeded-warning": "Isebtar yefelen lqay n uderrec",
 	"parser-unstrip-loop-warning": "Tifin n tineddict ur nezmer ara an sentuter",
-	"parser-unstrip-recursion-limit": "Talast n usniles ur nezmer ara an sentuter tefel ($1)",
+	"unstrip-depth-warning": "Talast n usniles ur nezmer ara an sentuter tefel ($1)",
 	"converter-manual-rule-error": "Tifin n unezri deg alugen awfus n uselket n tutlayt",
 	"undo-success": "Tzemreḍ ad tessefsuḍ abeddil. Ssenqed asidmer akken ad tessneḍ ayen tebɣiḍ ad txdmeḍ d ṣṣeḥ, umbeɛd smekti ibeddlen u tkemmleḍ ad tessefsuḍ abeddil.",
 	"undo-failure": "Ur yezmir ara ad issefu abeddel axaṭer yella amennuɣ abusari deg ubeddel.",

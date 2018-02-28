@@ -690,7 +690,7 @@
 	"expansion-depth-exceeded-category": "Kaca sing jeroné èkspansi wis punjul",
 	"expansion-depth-exceeded-warning": "Kaca munculi jeroné èkspansi",
 	"parser-unstrip-loop-warning": "Unstrip loop detected",
-	"parser-unstrip-recursion-limit": "Unstrip recursion limit exceeded ($1)",
+	"unstrip-depth-warning": "Unstrip recursion limit exceeded ($1)",
 	"converter-manual-rule-error": "Masalah kapranggul ing aturan konvèrsi basa manual",
 	"undo-success": "Besutan iki kena diwurungaké.\nTiliki bandhingan ngisor iki saperlu mesthèkaké yèn bener iki sing arep kolakoni, nuli simpen owahan ngisor iki kanggo ngiyai yèn besutané diwurungaké.",
 	"undo-failure": "Besutan iki ora bisa dipulihaké amarga bisa cengkah besutan antara.",

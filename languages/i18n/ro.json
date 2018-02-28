@@ -772,7 +772,7 @@
 	"expansion-depth-exceeded-category-desc": "Pagina depășește profunzimea maximă de expansiune.",
 	"expansion-depth-exceeded-warning": "Pagina depășește profunzimea de expansiune",
 	"parser-unstrip-loop-warning": "Buclă nedetașabilă detectată",
-	"parser-unstrip-recursion-limit": "Limita de recursivitate nedetașabilă depășită ($1)",
+	"unstrip-depth-warning": "Limita de recursivitate nedetașabilă depășită ($1)",
 	"converter-manual-rule-error": "Eroare detectată în regula manuală de conversie a limbii",
 	"undo-success": "Modificarea poate fi anulată. Verificați diferența de dedesubt și apoi salvați pentru a termina anularea modificării.",
 	"undo-failure": "Modificarea nu poate fi reversibilă datorită conflictului de modificări intermediare.",

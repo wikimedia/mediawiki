@@ -670,7 +670,7 @@
 	"expansion-depth-exceeded-category-desc": "La pàgina a l'ha passà la profondità d'espansion.",
 	"expansion-depth-exceeded-warning": "La pàgina a l'ha sorpassà la profondità d'espansion",
 	"parser-unstrip-loop-warning": "Trovà un sicl nen dësmontàbil",
-	"parser-unstrip-recursion-limit": "Sorpassà ël lìmit d'arcorensa nen dësmontàbil: $1",
+	"unstrip-depth-warning": "Sorpassà ël lìmit d'arcorensa nen dësmontàbil: $1",
 	"converter-manual-rule-error": "Eror trovà ant la régola ëd conversion manual ëd la lenga",
 	"undo-success": "Sta modìfica-sì as peul scancelesse. Për piasì, ch'a contròla ambelessì sota për esse sigur che a l'é pro lòn che a veul fé, e peuj ch'as salva lòn ch'a l'ha butà chiel/chila për finì dë scancelé la modìfica ch'a-i era.",
 	"undo-failure": "Sta modìfica a l'é nen podusse scancelé për via che a-i son dle contradission antra version antrames.",

@@ -775,7 +775,7 @@
 	"expansion-depth-exceeded-category-desc": "Stránka překročila maximální hloubku expanze.",
 	"expansion-depth-exceeded-warning": "Stránka překročila hloubku expanze",
 	"parser-unstrip-loop-warning": "Detekováno zacyklení unstrip",
-	"parser-unstrip-recursion-limit": "Překročen limit rekurze unstrip ($1)",
+	"unstrip-depth-warning": "Překročen limit rekurze unstrip ($1)",
 	"converter-manual-rule-error": "Detekována chyba v pravidlech manuální jazykové konverze",
 	"undo-success": "Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.",
 	"undo-failure": "Editace nemohla být zrušena kvůli konfliktu mezilehlých editací.",

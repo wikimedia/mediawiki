@@ -644,7 +644,7 @@
 	"expansion-depth-exceeded-category-desc": "La pàgina la và d'ed là dal fònd mâsim de slarghêda.",
 	"expansion-depth-exceeded-warning": "Cla pàgina ché la pasê al fònd de şlargamèint",
 	"parser-unstrip-loop-warning": "Catê sèria 'd Unistrip",
-	"parser-unstrip-recursion-limit": "A s'é pasê i lémit 'd arciâm 'd Unstrip ($1)",
+	"unstrip-depth-warning": "A s'é pasê i lémit 'd arciâm 'd Unstrip ($1)",
 	"converter-manual-rule-error": "È stê catê un erōr int la règola a mân ed cambiamèint ed la léngua",
 	"undo-success": "Cla mudéfica ché la pō, èser scanşlêda., Cuntròla che sòta al diferèinsi che gh'é tr' al dō versiòun per èser sicûr che còl che gh'é scrét al cumbîna cun còl ch'ét vō, e dòunca salvêr al mudéfici per finîr la scanşladûra.",
 	"undo-failure": "Imposébil scanşlêr la mudéfica a câşva 'd un cuntrâst cun dal mudéfichi fâti dôp.",

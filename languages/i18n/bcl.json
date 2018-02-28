@@ -630,7 +630,7 @@
 	"expansion-depth-exceeded-category": "Mga pahina kun saen an panrarom na kalakbangan nagsobra",
 	"expansion-depth-exceeded-warning": "An pahina nagsobra sa panrarom na kalakbangan",
 	"parser-unstrip-loop-warning": "Panul-ot na kaluktusan namansayan",
-	"parser-unstrip-recursion-limit": "Panul-ot na rekusyong kasagkodan nagsobra ($1)",
+	"unstrip-depth-warning": "Panul-ot na rekusyong kasagkodan nagsobra ($1)",
 	"converter-manual-rule-error": "Kasalaan detektado sa manwal na konbersyon kan pinapasunod sa lengguwahe",
 	"undo-success": "Pwedeng bawion an paghirá. Sosogon tabì an pagkakaiba sa babâ tangarig maberipikár kun ini an boot mong gibohon, dangan itagama an mga pagbabàgo sa babâ tangarig tapuson an pagbawì sa paghirá.",
 	"undo-failure": "Dai napogol an paghirá ta igwa pang ibang paghirá sa tahaw na nagkokomplikto.",

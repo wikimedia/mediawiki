@@ -750,7 +750,7 @@
 	"expansion-depth-exceeded-category-desc": "Panna, maximum expansion depth, se jaada hae.",
 	"expansion-depth-exceeded-warning": "Panna expansion depth ke exceed karis hae",
 	"parser-unstrip-loop-warning": "Unstrip loop ke pawa gai shae",
-	"parser-unstrip-recursion-limit": "Unstrip recursion limit ke exceed karaa gais hae ($1)",
+	"unstrip-depth-warning": "Unstrip recursion limit ke exceed karaa gais hae ($1)",
 	"converter-manual-rule-error": "Bhasa ke anuwaad kare waala niyam me galti hae",
 	"undo-success": "Ii badlao ke pahile jaise karaa jaae sake hai.\nNiche ke comparison ke check kar ke dekho ki aap yahi kare mangta rahaa, aur fir niche ke badlao ke save kar ke aapan badlao ke pahile jaise karo.",
 	"undo-failure": "Ii badalo ke paile jaise nai karaa jaae sake hai kahe ki biich me badlao hai.",

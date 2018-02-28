@@ -714,7 +714,7 @@
 	"expansion-depth-exceeded-category-desc": "D Syte iberschrytet di maximal Expandierigstiefi.",
 	"expansion-depth-exceeded-warning": "Die Syte het d Expansionsdiefi überschritte.",
 	"parser-unstrip-loop-warning": "Zirkelbezug festgstellt",
-	"parser-unstrip-recursion-limit": "Rekursionsgränz bim Ufflöse überschritte ($1)",
+	"unstrip-depth-warning": "Rekursionsgränz bim Ufflöse überschritte ($1)",
 	"converter-manual-rule-error": "Bi dr manuälle Sprochkonvertierigsregle isch e Fähler entdeckt wore.",
 	"undo-success": "Zum die Änderig ruckgängig z mache, kontrollier bitte d Bearbeitig in dr Verglichsaasicht un druck derno uf „Syte spichere“.",
 	"undo-failure": "D Änderig het nid chenne ruckgängig gmacht wäre, wel dää Abschnitt mittlerwyli gänderet woren isch.",
