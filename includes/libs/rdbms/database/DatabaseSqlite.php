@@ -69,24 +69,13 @@ class DatabaseSqlite extends Database {
 	 */
 	function __construct( array $p ) {
 		if ( isset( $p['dbFilePath'] ) ) {
-			parent::__construct( $p );
-			// Standalone .sqlite file mode.
-			// Super doesn't open when $user is false, but we can work with $dbName,
-			// which is derived from the file path in this case.
-			$this->openFile( $p['dbFilePath'] );
-			$lockDomain = md5( $p['dbFilePath'] );
-		} elseif ( !isset( $p['dbDirectory'] ) ) {
-			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
-		} else {
+			$this->dbPath = $p['dbFilePath'];
+			$lockDomain = md5( $this->dbPath );
+		} elseif ( isset( $p['dbDirectory'] ) ) {
 			$this->dbDir = $p['dbDirectory'];
-			$this->dbName = $p['dbname'];
-			$lockDomain = $this->dbName;
-			// Stock wiki mode using standard file names per DB.
-			parent::__construct( $p );
-			// Super doesn't open when $user is false, but we can work with $dbName
-			if ( $p['dbname'] && !$this->isOpen() ) {
-				$this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] );
-			}
+			$lockDomain = $p['dbname'];
+		} else {
+			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
 		}
 
 		$this->trxMode = isset( $p['trxMode'] ) ? strtoupper( $p['trxMode'] ) : null;
@@ -101,6 +90,8 @@ class DatabaseSqlite extends Database {
 			'domain' => $lockDomain,
 			'lockDirectory' => "{$this->dbDir}/locks"
 		] );
+
+		parent::__construct( $p );
 	}
 
 	/**
@@ -120,6 +111,31 @@ class DatabaseSqlite extends Database {
 		$db = Database::factory( 'sqlite', $p );
 
 		return $db;
+	}
+
+	protected function doInitConnection() {
+		if ( $this->dbPath !== null ) {
+			// Standalone .sqlite file mode.
+			// Super doesn't open when $user is false, but we can work with $dbName,
+			// which is derived from the file path in this case.
+			$this->openFile( $this->dbPath );
+		} elseif ( $this->dbDir !== null ) {
+			// Stock wiki mode using standard file names per DB.
+			$this->dbName = $this->connectionParams['dbname'];
+			if ( strlen( $this->dbName ) ) {
+				$this->open(
+					$this->connectionParams['host'],
+					$this->connectionParams['user'],
+					$this->connectionParams['password'],
+					$this->connectionParams['dbname']
+				);
+			} else {
+				// Caller will manually call open() later?
+				$this->connLogger->debug( __METHOD__ . ': no database opened.' );
+			}
+		} else {
+			throw new InvalidArgumentException( "Need 'dbDirectory' or 'dbFilePath' parameter." );
+		}
 	}
 
 	/**
@@ -142,7 +158,7 @@ class DatabaseSqlite extends Database {
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
 	 *
 	 * @param string $server
-	 * @param string $user
+	 * @param string $user Unused
 	 * @param string $pass
 	 * @param string $dbName
 	 *
@@ -188,7 +204,7 @@ class DatabaseSqlite extends Database {
 			throw new DBConnectionError( $this, $err );
 		}
 
-		$this->opened = !!$this->conn;
+		$this->opened = is_object( $this->conn );
 		if ( $this->opened ) {
 			# Set error codes only, don't raise exceptions
 			$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
@@ -311,7 +327,7 @@ class DatabaseSqlite extends Database {
 	 * @return bool|ResultWrapper
 	 */
 	protected function doQuery( $sql ) {
-		$res = $this->conn->query( $sql );
+		$res = $this->getBindingHandle()->query( $sql );
 		if ( $res === false ) {
 			return false;
 		}
@@ -447,7 +463,7 @@ class DatabaseSqlite extends Database {
 	 */
 	function insertId() {
 		// PDO::lastInsertId yields a string :(
-		return intval( $this->conn->lastInsertId() );
+		return intval( $this->getBindingHandle()->lastInsertId() );
 	}
 
 	/**
@@ -720,7 +736,7 @@ class DatabaseSqlite extends Database {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		$ver = $this->conn->getAttribute( PDO::ATTR_SERVER_VERSION );
+		$ver = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
 
 		return $ver;
 	}
@@ -810,7 +826,7 @@ class DatabaseSqlite extends Database {
 			);
 			return "x'" . bin2hex( (string)$s ) . "'";
 		} else {
-			return $this->conn->quote( (string)$s );
+			return $this->getBindingHandle()->quote( (string)$s );
 		}
 	}
 
@@ -1046,15 +1062,20 @@ class DatabaseSqlite extends Database {
 		}
 	}
 
-	protected function requiresDatabaseUser() {
-		return false; // just a file
-	}
-
 	/**
 	 * @return string
 	 */
 	public function __toString() {
-		return 'SQLite ' . (string)$this->conn->getAttribute( PDO::ATTR_SERVER_VERSION );
+		return is_object( $this->conn )
+			? 'SQLite ' . (string)$this->conn->getAttribute( PDO::ATTR_SERVER_VERSION )
+			: '(not connected)';
+	}
+
+	/**
+	 * @return PDO
+	 */
+	protected function getBindingHandle() {
+		return parent::getBindingHandle();
 	}
 }
 
