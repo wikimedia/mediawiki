@@ -1537,24 +1537,6 @@
 			}
 
 			/**
-			 * Make a network request to load modules from the server.
-			 *
-			 * @private
-			 * @param {string} moduleStr Module list for load.php `module` query parameter
-			 * @param {Array} modules List of module names (not packed)
-			 * @param {Object} currReqBase Object with base parameters for this request
-			 * @param {string} sourceLoadScript URL of load.php
-			 */
-			function doRequest( moduleStr, modules, currReqBase, sourceLoadScript ) {
-				// Optimisation: Inherit (Object.create), not copy ($.extend)
-				var query = Object.create( currReqBase );
-				query.modules = moduleStr;
-				query.version = getCombinedVersion( modules );
-				query = sortQuery( query );
-				addScript( sourceLoadScript + '?' + $.param( query ) );
-			}
-
-			/**
 			 * Resolve indexed dependencies.
 			 *
 			 * ResourceLoader uses an optimization to save space which replaces module names in
@@ -1596,6 +1578,20 @@
 					source, group, i, modules, sourceLoadScript,
 					currReqBase, currReqBaseLength, moduleMap, currReqModules, l,
 					lastDotIndex, prefix, suffix, bytesAdded;
+
+				/**
+				 * Start the currently drafted request to the server.
+				 *
+				 * @ignore
+				 */
+				function doRequest() {
+					// Optimisation: Inherit (Object.create), not copy ($.extend)
+					var query = Object.create( currReqBase );
+					query.modules = buildModulesString( moduleMap );
+					query.version = getCombinedVersion( currReqModules );
+					query = sortQuery( query );
+					addScript( sourceLoadScript + '?' + $.param( query ) );
+				}
 
 				if ( !batch.length ) {
 					return;
@@ -1671,7 +1667,7 @@
 							// If the url would become too long, create a new one, but don't create empty requests
 							if ( maxQueryLength > 0 && currReqModules.length && l + bytesAdded > maxQueryLength ) {
 								// Dispatch what we've got...
-								doRequest( buildModulesString( moduleMap ), currReqModules, currReqBase, sourceLoadScript );
+								doRequest();
 								// .. and start again.
 								l = currReqBaseLength;
 								moduleMap = {};
@@ -1688,7 +1684,7 @@
 						}
 						// If there's anything left in moduleMap, request that too
 						if ( currReqModules.length ) {
-							doRequest( buildModulesString( moduleMap ), currReqModules, currReqBase, sourceLoadScript );
+							doRequest();
 						}
 					}
 				}
