@@ -566,10 +566,10 @@
 					// Expected: Wrapped hash just for this one module
 					//   $hash = hash( 'fnv132', 'dump');
 					//   base_convert( $hash, 16, 36 ); // "13e9zzn"
-					// Actual: Wrapped hash for both modules, despite being in separate requests
+					// Previously: Wrapped hash for both modules, despite being in separate requests
 					//   $hash = hash( 'fnv132', 'urldump' );
 					//   base_convert( $hash, 16, 36 ); // "18kz9ca"
-					version: '18kz9ca'
+					version: '13e9zzn'
 				},
 				'Query parameters'
 			);
