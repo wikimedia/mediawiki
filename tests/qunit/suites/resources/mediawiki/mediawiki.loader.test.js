@@ -545,6 +545,43 @@
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
+	// @covers mw.loader#batchRequest
+	// @covers mw.loader#buildModulesString
+	QUnit.test( 'Url composition', function ( assert ) {
+		// T188076
+
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrl', 'url', [], null, 'testloader' ],
+			[ 'testUrl.a', '1', [], null, 'testloader' ],
+			[ 'testUrl.b', '2', [], null, 'testloader' ],
+			[ 'testUrlDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		return mw.loader.using( [ 'testUrlDump', 'testUrl.b', 'testUrl.a', 'testUrl' ] ).then( function ( require ) {
+			assert.ok( true, 'yay!' );
+			assert.propEqual(
+				require( 'testUrlDump' ).query,
+				{
+					modules: 'testUrl,testUrlDump|testUrl.a,b',
+					// Actual: Combined in order of before string packing
+					//   $value = implode( '', [ 'url', '1', '2', 'dump' ]);
+					//   $hash = hash( 'fnv132', $value );
+					//   base_convert( $hash, 16, 36 ); // "11eo3in"
+					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "11eo3in"
+					// version: '11eo3in'
+					// Expected: Combined in order after string packing
+					//   $value = implode( '', [ 'url', ''dump', '1', '2' ]);
+					//   $hash = hash( 'fnv132', $value );
+					//   base_convert( $hash, 16, 36 ); // "1knqzan"
+					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "1knqzan"
+					version: '1knqzan'
+				},
+				'Query parameters'
+			);
+		} );
+	} );
+
 	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
