@@ -371,9 +371,12 @@ class BlockLevelPass {
 				$this->inPre = false;
 			}
 			if ( $pendingPTag === false ) {
-				$output .= $t;
 				if ( $prefixLength === 0 ) {
+					$output .= $t;
 					$output .= "\n";
+				} else {
+					// Trim whitespace in list items
+					$output .= trim($t);
 				}
 			}
 		}
