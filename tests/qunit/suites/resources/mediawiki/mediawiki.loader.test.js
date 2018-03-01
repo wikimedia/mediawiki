@@ -10,6 +10,14 @@
 				window.Set = this.nativeSet;
 				mw.redefineFallbacksForTest();
 			}
+			// Remove any remaining temporary statics
+			// exposed for cross-file mocks.
+			if ( 'testCallback' in mw.loader ) {
+				delete mw.loader.testCallback;
+			}
+			if ( 'testAssert' in mw.loader ) {
+				delete mw.loader.testAssert;
+			}
 		}
 	} ) );
 
@@ -94,8 +102,6 @@
 
 		return mw.loader.using( 'test.callback', function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.callback module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.callback" module' );
 		} );
@@ -113,8 +119,6 @@
 
 		return mw.loader.using( 'hasOwnProperty', function () {
 			assert.strictEqual( isAwesomeDone, true, 'hasOwnProperty module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "hasOwnProperty" module' );
 		} );
@@ -133,7 +137,6 @@
 		return mw.loader.using( 'test.promise' )
 			.done( function () {
 				assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
-				delete mw.loader.testCallback;
 			} )
 			.fail( function () {
 				assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
@@ -643,6 +646,9 @@
 			assert.equal( mw.loader.getState( 'testUsesNestedMissing' ), 'error', 'Module with indirect missing dependency must have state "error"' );
 		}
 
+		// Expose for load.mock.php
+		mw.loader.testAssert = assert;
+
 		mw.loader.using( [ 'testUsesNestedMissing' ],
 			function () {
 				assert.ok( false, 'Error handler should be invoked.' );
@@ -680,6 +686,9 @@
 			assert.equal( mw.loader.getState( 'testUsesSkippable' ), 'ready', 'Module is ready when skippable dependencies are ready' );
 		}
 
+		// Expose for load.mock.php
+		mw.loader.testAssert = assert;
+
 		return mw.loader.using( [ 'testUsesSkippable' ],
 			function () {
 				assert.ok( true, 'Success handler should be invoked.' );
@@ -710,6 +719,7 @@
 		assert.equal( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();
@@ -728,6 +738,7 @@
 		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();
