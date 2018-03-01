@@ -1644,10 +1644,15 @@
 						if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 							currReqBase.user = mw.config.get( 'wgUserName' );
 						}
-						currReqBaseLength = $.param( currReqBase ).length;
 						// We may need to split up the request to honor the query string length limit,
 						// so build it piece by piece.
-						l = currReqBaseLength + 9; // '&modules='.length == 9
+
+						// In addition currReqBase, doRequest() will also add 'modules' and 'version'.
+						// > '&modules='.length === 9
+						// > '&version=1234567'.length === 16
+						// > 9 + 16 = 25
+						currReqBaseLength = $.param( currReqBase ).length + 25;
+						l = currReqBaseLength;
 
 						moduleMap = {}; // { prefix: [ suffixes ] }
 
@@ -1669,7 +1674,7 @@
 								// This url would become too long, create a new one, and start the old one
 								doRequest( buildModulesString( moduleMap ), currReqBase, sourceLoadScript );
 								moduleMap = {};
-								l = currReqBaseLength + 9;
+								l = currReqBaseLength;
 								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
 							}
 							if ( !hasOwn.call( moduleMap, prefix ) ) {

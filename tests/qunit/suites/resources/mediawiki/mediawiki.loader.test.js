@@ -569,13 +569,13 @@
 					//   $hash = hash( 'fnv132', $value );
 					//   base_convert( $hash, 16, 36 ); // "11eo3in"
 					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "11eo3in"
-					// version: '11eo3in'
+					version: '11eo3in'
 					// Expected: Combined in order after string packing
 					//   $value = implode( '', [ 'url', ''dump', '1', '2' ]);
 					//   $hash = hash( 'fnv132', $value );
 					//   base_convert( $hash, 16, 36 ); // "1knqzan"
 					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "1knqzan"
-					version: '1knqzan'
+					// version: '1knqzan'
 				},
 				'Query parameters'
 			);
