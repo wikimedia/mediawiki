@@ -2011,7 +2011,7 @@
 	"allinnamespace": "Kaikki sivut nimiavaruudessa $1",
 	"allpagessubmit": "Hae",
 	"allpagesprefix": "Sivut, jotka alkavat etuliitteellä:",
-	"allpagesbadtitle": "Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.",
+	"allpagesbadtitle": "Annettu sivun nimi oli kelvoton tai siinä oli etuliite, joka tarkoittaa toista wikiprojektia tai toisenkielistä wikiä.\nSivun nimessä on voinut olla yksi tai useampia merkkejä, jotka eivät ole sallittuja sivun nimessä.",
 	"allpages-bad-ns": "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.",
 	"allpages-hide-redirects": "Piilota ohjaukset",
 	"cachedspecial-viewing-cached-ttl": "Tarkastelet arkistoitua versiota tästä sivusta, joka voi olla jopa $1 vanha.",
