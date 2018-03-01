@@ -210,7 +210,7 @@
 		// Verify that single_option group has at least one item selected
 		if (
 			this.getType() === 'single_option' &&
-			this.getSelectedItems().length === 0
+			this.findSelectedItems().length === 0
 		) {
 			defaultParam = groupDefault !== undefined ?
 				groupDefault : this.getItems()[ 0 ].getParamName();
@@ -237,19 +237,19 @@
 		if ( this.getType() === 'single_option' ) {
 			// This group must have one item selected always
 			// and must never have more than one item selected at a time
-			if ( this.getSelectedItems().length === 0 ) {
+			if ( this.findSelectedItems().length === 0 ) {
 				// Nothing is selected anymore
 				// Select the default or the first item
 				this.currSelected = this.getItemByParamName( this.defaultParams[ this.getName() ] ) ||
 					this.getItems()[ 0 ];
 				this.currSelected.toggleSelected( true );
 				changed = true;
-			} else if ( this.getSelectedItems().length > 1 ) {
+			} else if ( this.findSelectedItems().length > 1 ) {
 				// There is more than one item selected
 				// This should only happen if the item given
 				// is the one that is selected, so unselect
 				// all items that is not it
-				this.getSelectedItems().forEach( function ( itemModel ) {
+				this.findSelectedItems().forEach( function ( itemModel ) {
 					// Note that in case the given item is actually
 					// not selected, this loop will end up unselecting
 					// all items, which would trigger the case above
@@ -494,7 +494,7 @@
 	 * @param {mw.rcfilters.dm.FilterItem} [excludeItem] Item to exclude from the list
 	 * @return {mw.rcfilters.dm.FilterItem[]} Selected items
 	 */
-	mw.rcfilters.dm.FilterGroup.prototype.getSelectedItems = function ( excludeItem ) {
+	mw.rcfilters.dm.FilterGroup.prototype.findSelectedItems = function ( excludeItem ) {
 		var excludeName = ( excludeItem && excludeItem.getName() ) || '';
 
 		return this.getItems().filter( function ( item ) {
@@ -509,7 +509,7 @@
 	 * @return {boolean} All selected items are in conflict with this item
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
-		var selectedItems = this.getSelectedItems( filterItem );
+		var selectedItems = this.findSelectedItems( filterItem );
 
 		return selectedItems.length > 0 &&
 			(
@@ -529,7 +529,7 @@
 	 * @return {boolean} Any of the selected items are in conflict with this item
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
-		var selectedItems = this.getSelectedItems( filterItem );
+		var selectedItems = this.findSelectedItems( filterItem );
 
 		return selectedItems.length > 0 && (
 			// The group as a whole is in conflict with this item
