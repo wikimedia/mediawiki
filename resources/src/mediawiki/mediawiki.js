@@ -1523,17 +1523,24 @@
 			 *
 			 * @private
 			 * @param {Object} moduleMap Module map
-			 * @return {string} Module query string
+			 * @return {Object}
+			 * @return {string} return.str Module query string
+			 * @return {Array} return.list List of module names in matching order
 			 */
 			function buildModulesString( moduleMap ) {
 				var p, prefix,
-					arr = [];
+					str = [],
+					list = [];
 
 				for ( prefix in moduleMap ) {
 					p = prefix === '' ? '' : prefix + '.';
-					arr.push( p + moduleMap[ prefix ].join( ',' ) );
+					str.push( p + moduleMap[ prefix ].join( ',' ) );
+					list = list.concat( moduleMap[ prefix ].map( suffix => p + suffix ) );
 				}
-				return arr.join( '|' );
+				return {
+					str: str.join( '|' ),
+					list: list
+				};
 			}
 
 			/**
@@ -1587,8 +1594,14 @@
 				function doRequest() {
 					// Optimisation: Inherit (Object.create), not copy ($.extend)
 					var query = Object.create( currReqBase );
-					query.modules = buildModulesString( moduleMap );
-					query.version = getCombinedVersion( currReqModules );
+					var packed = buildModulesString( moduleMap );
+					query.modules = packed.str;
+					// The packing logic can change the effective order, even if the input was
+					// sorted. As such, the call to getCombinedVersion() must use this
+					// effective order, instead of currReqModules, as otherwise the combined
+					// version will not match the hash expected by the server based on
+					// combining versions from the module query string in-order. (T188076)
+					query.version = getCombinedVersion( packed.list );
 					query = sortQuery( query );
 					addScript( sourceLoadScript + '?' + $.param( query ) );
 				}
