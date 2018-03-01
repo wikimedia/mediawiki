@@ -53,34 +53,34 @@
 	}
 
 	function convertCheckboxesWidgetToCapsules( fieldLayout ) {
-		var checkboxesWidget, checkboxesOptions, capsulesOptions, capsulesWidget;
+		var checkboxesWidget, checkboxesOptions, menuTagOptions, menuTagWidget;
 
 		checkboxesWidget = fieldLayout.fieldWidget;
 		checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
-		capsulesOptions = checkboxesOptions.map( function ( option ) {
+		menuTagOptions = checkboxesOptions.map( function ( option ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: option.getData(),
 				label: option.getLabel()
 			} );
 		} );
-		capsulesWidget = new OO.ui.CapsuleMultiselectWidget( {
+		menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
 			$overlay: true,
 			menu: {
-				items: capsulesOptions
+				items: menuTagOptions
 			}
 		} );
-		capsulesWidget.setItemsFromData( checkboxesWidget.getValue() );
+		menuTagWidget.setData( checkboxesWidget.getValue() );
 
 		// Data from CapsuleMultiselectWidget will not be submitted with the form, so keep the original
 		// CheckboxMultiselectInputWidget up-to-date.
-		capsulesWidget.on( 'change', function () {
-			checkboxesWidget.setValue( capsulesWidget.getItemsData() );
+		menuTagWidget.on( 'change', function () {
+			checkboxesWidget.setValue( menuTagWidget.getData() );
 		} );
 
 		// Hide original widget and add new one in its place. This is a bit hacky, since the FieldLayout
 		// still thinks it's connected to the old widget.
 		checkboxesWidget.toggle( false );
-		checkboxesWidget.$element.after( capsulesWidget.$element );
+		checkboxesWidget.$element.after( menuTagWidget.$element );
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
