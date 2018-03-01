@@ -1206,11 +1206,13 @@ class Parser {
 					if ( preg_match( '/\[\[|-\{/', $cell_data[0] ) === 1 ) {
 						$cell = "{$previous}<{$last_tag}>{$cell}";
 					} elseif ( count( $cell_data ) == 1 ) {
-						$cell = "{$previous}<{$last_tag}>{$cell_data[0]}";
+						// Whitespace in cells is trimmed
+						$cell = "{$previous}<{$last_tag}>".trim($cell_data[0]);
 					} else {
 						$attributes = $this->mStripState->unstripBoth( $cell_data[0] );
 						$attributes = Sanitizer::fixTagAttributes( $attributes, $last_tag );
-						$cell = "{$previous}<{$last_tag}{$attributes}>{$cell_data[1]}";
+						// Whitespace in cells is trimmed
+						$cell = "{$previous}<{$last_tag}{$attributes}>".trim($cell_data[1]);
 					}
 
 					$outLine .= $cell;
@@ -4050,6 +4052,7 @@ class Parser {
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
+		# This regexp also trims whitespace in the heading's content
 		$matches = [];
 		$numMatches = preg_match_all(
 			'/<H(?P<level>[1-6])(?P<attrib>.*?>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
