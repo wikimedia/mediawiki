@@ -1,7 +1,12 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki (mw.loader)', QUnit.newMwEnvironment( {
-		setup: function () {
+		setup: function ( assert ) {
 			mw.loader.store.enabled = false;
+
+			// Expose for load.mock.php
+			mw.loader.testFail = function ( reason ) {
+				assert.ok( false, reason );
+			};
 		},
 		teardown: function () {
 			mw.loader.store.enabled = false;
@@ -9,6 +14,14 @@
 			if ( this.nativeSet ) {
 				window.Set = this.nativeSet;
 				mw.redefineFallbacksForTest();
+			}
+			// Remove any remaining temporary statics
+			// exposed for cross-file mocks.
+			if ( 'testCallback' in mw.loader ) {
+				delete mw.loader.testCallback;
+			}
+			if ( 'testFail' in mw.loader ) {
+				delete mw.loader.testFail;
 			}
 		}
 	} ) );
@@ -94,8 +107,6 @@
 
 		return mw.loader.using( 'test.callback', function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.callback module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.callback" module' );
 		} );
@@ -113,8 +124,6 @@
 
 		return mw.loader.using( 'hasOwnProperty', function () {
 			assert.strictEqual( isAwesomeDone, true, 'hasOwnProperty module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "hasOwnProperty" module' );
 		} );
@@ -133,7 +142,6 @@
 		return mw.loader.using( 'test.promise' )
 			.done( function () {
 				assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
-				delete mw.loader.testCallback;
 			} )
 			.fail( function () {
 				assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
@@ -710,6 +718,7 @@
 		assert.equal( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();
@@ -728,6 +737,7 @@
 		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();
