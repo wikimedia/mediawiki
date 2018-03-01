@@ -68,7 +68,7 @@
 				}
 			);
 
-			selectedItem = this.limitGroupModel.getSelectedItems()[ 0 ];
+			selectedItem = this.limitGroupModel.findSelectedItems()[ 0 ];
 			currentValue = ( selectedItem && selectedItem.getLabel() ) ||
 				mw.language.convertNumber( this.limitGroupModel.getDefaultParamValue() );
 
@@ -149,9 +149,9 @@
 	 */
 	mw.rcfilters.ui.ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
 		var message,
-			limit = this.limitGroupModel.getSelectedItems()[ 0 ],
+			limit = this.limitGroupModel.findSelectedItems()[ 0 ],
 			label = limit && limit.getLabel(),
-			days = this.daysGroupModel.getSelectedItems()[ 0 ],
+			days = this.daysGroupModel.findSelectedItems()[ 0 ],
 			daysParamName = Number( days.getParamName() ) < 1 ?
 				'rcfilters-days-show-hours' :
 				'rcfilters-days-show-days';
