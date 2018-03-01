@@ -602,10 +602,10 @@
 					// Expected: Combined in order after string packing
 					//   $hash = hash( 'fnv132', 'urldump12' );
 					//   base_convert( $hash, 16, 36 ); // "1knqzan"
-					// Actual: Combined in order of before string packing
+					// Previously: Combined in order of before string packing
 					//   $hash = hash( 'fnv132', 'url12dump' );
 					//   base_convert( $hash, 16, 36 ); // "11eo3in"
-					version: '11eo3in'
+					version: '1knqzan'
 				},
 				'Query parameters'
 			);
