@@ -401,8 +401,8 @@ class StatusTest extends MediaWikiLangTestCase {
 			$status,
 			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
 			"(wrap-long: * (fooBar!)\n* (fooBar2!)\n)",
-			"<ul><li> ⧼fooBar!⧽</li>\n<li> ⧼fooBar2!⧽</li></ul>\n",
-			"<p>(wrap-long: * (fooBar!)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
+			"<ul><li>⧼fooBar!⧽</li>\n<li>⧼fooBar2!⧽</li></ul>\n",
+			"<p>(wrap-long: * (fooBar!)\n</p>\n<ul><li>(fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
 		$status = new Status();
@@ -422,8 +422,8 @@ class StatusTest extends MediaWikiLangTestCase {
 			$status,
 			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
 			"(wrap-long: * (fooBar!: foo, bar)\n* (fooBar2!)\n)",
-			"<ul><li> ⧼fooBar!⧽</li>\n<li> ⧼fooBar2!⧽</li></ul>\n",
-			"<p>(wrap-long: * (fooBar!: foo, bar)\n</p>\n<ul><li> (fooBar2!)</li></ul>\n<p>)\n</p>",
+			"<ul><li>⧼fooBar!⧽</li>\n<li>⧼fooBar2!⧽</li></ul>\n",
+			"<p>(wrap-long: * (fooBar!: foo, bar)\n</p>\n<ul><li>(fooBar2!)</li></ul>\n<p>)\n</p>",
 		];
 
 		return $testCases;
