@@ -545,6 +545,75 @@
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
+	// @covers mw.loader#batchRequest
+	// This is a regression test because in the past we called getCombinedVersion()
+	// for all requested modules, before url splitting took place.
+	// Discovered as part of T188076, but not directly related.
+	QUnit.test( 'Url composition (modules considered for version)', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlInc', 'url', [], null, 'testloader' ],
+			[ 'testUrlIncDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		mw.config.set( 'wgResourceLoaderMaxQueryLength', 10 );
+
+		return mw.loader.using( [ 'testUrlIncDump', 'testUrlInc' ] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlIncDump' ).query,
+				{
+					modules: 'testUrlIncDump',
+					// Expected: Wrapped hash just for this one module
+					//   $hash = hash( 'fnv132', 'dump');
+					//   base_convert( $hash, 16, 36 ); // "13e9zzn"
+					// Actual: Wrapped hash for both modules, despite being in separate requests
+					//   $hash = hash( 'fnv132', 'urldump' );
+					//   base_convert( $hash, 16, 36 ); // "18kz9ca"
+					version: '18kz9ca'
+				},
+				'Query parameters'
+			);
+
+			assert.strictEqual( mw.loader.getState( 'testUrlInc' ), 'ready', 'testUrlInc also loaded' );
+		} );
+	} );
+
+	// @covers mw.loader#batchRequest
+	// @covers mw.loader#buildModulesString
+	QUnit.test( 'Url composition (order of modules for version) – T188076', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlOrder', 'url', [], null, 'testloader' ],
+			[ 'testUrlOrder.a', '1', [], null, 'testloader' ],
+			[ 'testUrlOrder.b', '2', [], null, 'testloader' ],
+			[ 'testUrlOrderDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		return mw.loader.using( [
+			'testUrlOrderDump',
+			'testUrlOrder.b',
+			'testUrlOrder.a',
+			'testUrlOrder'
+		] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlOrderDump' ).query,
+				{
+					modules: 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b',
+					// Expected: Combined in order after string packing
+					//   $hash = hash( 'fnv132', 'urldump12' );
+					//   base_convert( $hash, 16, 36 ); // "1knqzan"
+					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "1knqzan"
+					// Actual: Combined in order of before string packing
+					//   $hash = hash( 'fnv132', 'url12dump' );
+					//   base_convert( $hash, 16, 36 ); // "11eo3in"
+					//   \Wikimedia\base_convert( $hash, 16, 36, 7 ); // "11eo3in"
+					version: '11eo3in'
+				},
+				'Query parameters'
+			);
+		} );
+	} );
+
 	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
