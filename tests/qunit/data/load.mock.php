@@ -50,17 +50,44 @@ mw.loader.implement( 'testNotSkipped', function () {}, {}, {});
 	'testUsesSkippable' => "
 mw.loader.implement( 'testUsesSkippable', function () {}, {}, {});
 ",
+
+	'testUrlInc' => "
+mw.loader.implement( 'testUrlInc', function () {} );
+",
+	'testUrlInc.a' => "
+mw.loader.implement( 'testUrlInc.a', function () {} );
+",
+	'testUrlInc.b' => "
+mw.loader.implement( 'testUrlInc.b', function () {} );
+",
 ];
 
 $response = '';
 
-// Only support for non-encoded module names, full module names expected
+// Does not support the full behaviour of ResourceLoaderContext::expandModuleNames(),
+// Only supports dotless module names joined by comma,
+// with the exception of the hardcoded cases for testUrl*.
 if ( isset( $_GET['modules'] ) ) {
-	$modules = explode( ',', $_GET['modules'] );
+	if ( $_GET['modules'] === 'testUrlInc,testUrlIncDump|testUrlInc.a,b' ) {
+		$modules = [ 'testUrlInc', 'testUrlIncDump', 'testUrlInc.a', 'testUrlInc.b' ];
+	} else {
+		$modules = explode( ',', $_GET['modules'] );
+	}
 	foreach ( $modules as $module ) {
 		if ( isset( $moduleImplementations[$module] ) ) {
 			$response .= $moduleImplementations[$module];
+		} elseif ( preg_match( '/^test.*Dump$/', $module ) === 1 ) {
+			$queryModules = $_GET['modules'];
+			$queryVersion = isset( $_GET['version'] ) ? strval( $_GET['version'] ) : null;
+			$response .= 'mw.loader.implement( ' . json_encode( $module )
+				. ', function ( $, jQuery, require, module ) {'
+				. 'module.exports.query = { '
+				. 'modules: ' . json_encode( $queryModules ) . ','
+				. 'version: ' . json_encode( $queryVersion )
+				. ' };'
+				. '} );';
 		} else {
+			// Default
 			$response .= 'mw.loader.state(' . json_encode( $module ) . ', "missing" );' . "\n";
 		}
 	}

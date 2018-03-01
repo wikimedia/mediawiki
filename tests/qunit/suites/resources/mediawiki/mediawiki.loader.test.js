@@ -545,6 +545,39 @@
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
+	// @covers mw.loader#batchRequest
+	// This is a regression test because in the past we called getCombinedVersion()
+	// for all requested modules, before url splitting took place.
+	// Discovered as part of T188076, but not directly related.
+	QUnit.test( 'Url composition (modules considered for version)', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlInc', 'url', [], null, 'testloader' ],
+			[ 'testUrlIncDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		mw.config.set( 'wgResourceLoaderMaxQueryLength', 10 );
+
+		return mw.loader.using( [ 'testUrlIncDump', 'testUrlInc' ] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlIncDump' ).query,
+				{
+					modules: 'testUrlIncDump',
+					// Expected: Wrapped hash just for this one module
+					//   $hash = hash( 'fnv132', 'dump');
+					//   base_convert( $hash, 16, 36 ); // "13e9zzn"
+					// Previously: Wrapped hash for both modules, despite being in separate requests
+					//   $hash = hash( 'fnv132', 'urldump' );
+					//   base_convert( $hash, 16, 36 ); // "18kz9ca"
+					version: '13e9zzn'
+				},
+				'Query parameters'
+			);
+
+			assert.strictEqual( mw.loader.getState( 'testUrlInc' ), 'ready', 'testUrlInc also loaded' );
+		} );
+	} );
+
 	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
