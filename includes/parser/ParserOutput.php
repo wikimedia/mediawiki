@@ -744,14 +744,24 @@ class ParserOutput extends CacheTime {
 		}
 	}
 
+	/**
+	 * @see OutputPage::addModules
+	 */
 	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array)$modules );
 	}
 
+	/**
+	 * @deprecated since 1.31 Use addModules() instead.
+	 * @see OutputPage::addModuleScripts
+	 */
 	public function addModuleScripts( $modules ) {
 		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
 	}
 
+	/**
+	 * @see OutputPage::addModuleStyles
+	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
 	}
