@@ -43,19 +43,13 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = $this->getDB( DB_REPLICA );
-
-		$actorQuery = ActorMigration::newMigration()
-			->getWhere( $dbr, 'rev_user', User::newFromName( 'MediaWiki default' ) );
-		$res = $dbr->select(
-			[ 'page', 'revision' ] + $actorQuery['tables'],
+		$res = $dbr->select( [ 'page', 'revision' ],
 			[ 'page_namespace', 'page_title' ],
 			[
 				'page_namespace' => NS_MEDIAWIKI,
-				$actorQuery['conds'],
-			],
-			__METHOD__,
-			[],
-			[ 'revision' => [ 'JOIN', 'page_latest=rev_id' ] ] + $actorQuery['joins']
+				'page_latest=rev_id',
+				'rev_user_text' => 'MediaWiki default',
+			]
 		);
 
 		if ( $dbr->numRows( $res ) == 0 ) {

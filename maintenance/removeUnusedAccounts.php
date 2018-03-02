@@ -39,27 +39,13 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgActorTableSchemaMigrationStage;
-
 		$this->output( "Remove unused accounts\n\n" );
 
 		# Do an initial scan for inactive accounts and report the result
 		$this->output( "Checking for unused user accounts...\n" );
-		$delUser = [];
-		$delActor = [];
+		$del = [];
 		$dbr = $this->getDB( DB_REPLICA );
-		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
-			$res = $dbr->select(
-				[ 'user', 'actor' ],
-				[ 'user_id', 'user_name', 'user_touched', 'actor_id' ],
-				'',
-				__METHOD__,
-				[],
-				[ 'actor' => [ 'LEFT JOIN', 'user_id = actor_user' ] ]
-			);
-		} else {
-			$res = $dbr->select( 'user', [ 'user_id', 'user_name', 'user_touched' ], '', __METHOD__ );
-		}
+		$res = $dbr->select( 'user', [ 'user_id', 'user_name', 'user_touched' ], '', __METHOD__ );
 		if ( $this->hasOption( 'ignore-groups' ) ) {
 			$excludedGroups = explode( ',', $this->getOption( 'ignore-groups' ) );
 		} else {
@@ -75,49 +61,27 @@ class RemoveUnusedAccounts extends Maintenance {
 			# group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
-				&& $this->isInactiveAccount( $row->user_id, $row->actor_id, true )
+				&& $this->isInactiveAccount( $row->user_id, true )
 				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
 			) {
 				# Inactive; print out the name and flag it
-				$delUser[] = $row->user_id;
-				if ( $row->actor_id ) {
-					$delActor[] = $row->actor_id;
-				}
+				$del[] = $row->user_id;
 				$this->output( $row->user_name . "\n" );
 			}
 		}
-		$count = count( $delUser );
+		$count = count( $del );
 		$this->output( "...found {$count}.\n" );
 
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
 			$dbw = $this->getDB( DB_MASTER );
-			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
-				# Keep actor rows referenced from ipblocks
-				$keep = $dbw->selectFieldValues(
-					'ipblocks', 'ipb_by_actor', [ 'ipb_by_actor' => $delActor ], __METHOD__
-				);
-				$del = array_diff( $delActor, $keep );
-				if ( $del ) {
-					$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
-				}
-				if ( $keep ) {
-					$dbw->update( 'actor', [ 'actor_user' => 0 ], [ 'actor_id' => $keep ], __METHOD__ );
-				}
-			}
-			$dbw->delete( 'user_groups', [ 'ug_user' => $delUser ], __METHOD__ );
-			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $delUser ], __METHOD__ );
-			$dbw->delete( 'user_properties', [ 'up_user' => $delUser ], __METHOD__ );
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
-				$dbw->delete( 'logging', [ 'log_actor' => $delActor ], __METHOD__ );
-				$dbw->delete( 'recentchanges', [ 'rc_actor' => $delActor ], __METHOD__ );
-			}
-			if ( $wgActorTableSchemaMigrationStage < MIGRATION_NEW ) {
-				$dbw->delete( 'logging', [ 'log_user' => $delUser ], __METHOD__ );
-				$dbw->delete( 'recentchanges', [ 'rc_user' => $delUser ], __METHOD__ );
-			}
+			$dbw->delete( 'user', [ 'user_id' => $del ], __METHOD__ );
+			$dbw->delete( 'user_groups', [ 'ug_user' => $del ], __METHOD__ );
+			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $del ], __METHOD__ );
+			$dbw->delete( 'user_properties', [ 'up_user' => $del ], __METHOD__ );
+			$dbw->delete( 'logging', [ 'log_user' => $del ], __METHOD__ );
+			$dbw->delete( 'recentchanges', [ 'rc_user' => $del ], __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', [], __METHOD__ );
@@ -138,11 +102,10 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * (No edits, no deleted edits, no log entries, no current/old uploads)
 	 *
 	 * @param int $id User's ID
-	 * @param int $actor User's actor ID
 	 * @param bool $master Perform checking on the master
 	 * @return bool
 	 */
-	private function isInactiveAccount( $id, $actor, $master = false ) {
+	private function isInactiveAccount( $id, $master = false ) {
 		$dbo = $this->getDB( $master ? DB_MASTER : DB_REPLICA );
 		$checks = [
 			'revision' => 'rev',
@@ -153,37 +116,14 @@ class RemoveUnusedAccounts extends Maintenance {
 		];
 		$count = 0;
 
-		$migration = ActorMigration::newMigration();
-
-		$user = User::newFromAnyId( $id, null, $actor );
-
 		$this->beginTransaction( $dbo, __METHOD__ );
-		foreach ( $checks as $table => $prefix ) {
-			$actorQuery = $migration->getWhere(
-				$dbo, $prefix . '_user', $user, $prefix !== 'oi' && $prefix !== 'fa'
-			);
-			$count += (int)$dbo->selectField(
-				[ $table ] + $actorQuery['tables'],
-				'COUNT(*)',
-				$actorQuery['conds'],
-				__METHOD__,
-				[],
-				$actorQuery['joins']
-			);
+		foreach ( $checks as $table => $fprefix ) {
+			$conds = [ $fprefix . '_user' => $id ];
+			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
 
-		$actorQuery = $migration->getWhere( $dbo, 'log_user', $user, false );
-		$count += (int)$dbo->selectField(
-			[ 'logging' ] + $actorQuery['tables'],
-			'COUNT(*)',
-			[
-				$actorQuery['conds'],
-				'log_type != ' . $dbo->addQuotes( 'newusers' )
-			],
-			__METHOD__,
-			[],
-			$actorQuery['joins']
-		);
+		$conds = [ 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) ];
+		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
 
 		$this->commitTransaction( $dbo, __METHOD__ );
 

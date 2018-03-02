@@ -75,32 +75,20 @@ TEXT
 		$start = $this->getOption( 'rev-id', 0 );
 		$end = $maxRevId > 0
 			? $maxRevId
-			: $dbw->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
-
-		if ( empty( $end ) ) {
-			$this->output( "No revisions found, aborting.\n" );
-			return true;
-		}
-
+			: $dbw->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
 		$blockStart = $start;
 		$attempted = 0;
 		$inserted = 0;
 
 		$this->output( "Copying IP revisions to ip_changes, from rev_id $start to rev_id $end\n" );
 
-		$actorMigration = ActorMigration::newMigration();
-		$actorQuery = $actorMigration->getJoin( 'rev_user' );
-		$revUserIsAnon = $actorMigration->isAnon( $actorQuery['fields']['rev_user'] );
-
 		while ( $blockStart <= $end ) {
 			$blockEnd = min( $blockStart + $this->getBatchSize(), $end );
 			$rows = $dbr->select(
-				[ 'revision' ] + $actorQuery['tables'],
-				[ 'rev_id', 'rev_timestamp', 'rev_user_text' => $actorQuery['fields']['rev_user_text'] ],
-				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, $revUserIsAnon ],
-				__METHOD__,
-				[],
-				$actorQuery['joins']
+				'revision',
+				[ 'rev_id', 'rev_timestamp', 'rev_user_text' ],
+				[ "rev_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd, 'rev_user' => 0 ],
+				__METHOD__
 			);
 
 			$numRows = $rows->numRows();

@@ -791,6 +791,7 @@ class ApiResult implements ApiSerializable {
 	 * @return bool
 	 */
 	public static function isMetadataKey( $key ) {
+
 		return substr( $key, 0, 1 ) === '_';
 	}
 
@@ -1068,6 +1069,10 @@ class ApiResult implements ApiSerializable {
 				? (array)$data[self::META_PRESERVE_KEYS]
 				: [];
 			foreach ( $data as $k => $v ) {
+				if ($k !== "_type" && $k !== "_element" && substr( $k, 0, 1 ) === '_') {
+					print(CargoUtils::formatError( "Error: Field name \"$k\" starts with an
+					 underscore(\"_\"). This is not allowed." ));
+				}
 				if ( self::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
 					$metadata[$k] = $v;
 					unset( $data[$k] );

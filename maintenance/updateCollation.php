@@ -200,11 +200,7 @@ TEXT
 					$this->updateSortKeySizeHistogram( $newSortKey );
 				}
 
-				if ( $dryRun ) {
-					// Add 1 to the count if the sortkey was changed. (Note that this doesn't count changes in
-					// other fields, if any, those usually only happen when upgrading old MediaWikis.)
-					$count += ( $row->cl_sortkey !== $newSortKey );
-				} else {
+				if ( !$dryRun ) {
 					$dbw->update(
 						'categorylinks',
 						[
@@ -217,7 +213,6 @@ TEXT
 						[ 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ],
 						__METHOD__
 					);
-					$count++;
 				}
 				if ( $row ) {
 					$batchConds = [ $this->getBatchCondition( $row, $dbw ) ];
@@ -227,16 +222,17 @@ TEXT
 				$this->commitTransaction( $dbw, __METHOD__ );
 			}
 
-			if ( $dryRun ) {
-				$this->output( "$count rows would be updated so far.\n" );
-			} else {
-				$this->output( "$count done.\n" );
+			$count += $res->numRows();
+			$this->output( "$count done.\n" );
+
+			if ( !$dryRun && ++$batchCount % self::SYNC_INTERVAL == 0 ) {
+				$this->output( "Waiting for replica DBs ... " );
+				wfWaitForSlaves();
+				$this->output( "done\n" );
 			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
 
-		if ( !$dryRun ) {
-			$this->output( "$count rows processed\n" );
-		}
+		$this->output( "$count rows processed\n" );
 
 		if ( $verboseStats ) {
 			$this->output( "\n" );
