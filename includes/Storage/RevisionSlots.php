@@ -111,6 +111,19 @@ class RevisionSlots {
 	}
 
 	/**
+	 * Returns whether the given slot is set.
+	 *
+	 * @param string $role The role name of the desired slot
+	 *
+	 * @return bool
+	 */
+	public function hasSlot( $role ) {
+		$slots = $this->getSlots();
+
+		return isset( $slots[$role] );
+	}
+
+	/**
 	 * Returns the slot names (roles) of all slots present in this revision.
 	 * getContent() will succeed only for the names returned by this method.
 	 *
