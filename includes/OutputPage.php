@@ -550,9 +550,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add one or more modules recognized by ResourceLoader. Modules added
-	 * through this function will be loaded by ResourceLoader when the
-	 * page loads.
+	 * Load one or more ResourceLoader modules on this page.
 	 *
 	 * @param string|array $modules Module name (string) or array of module names
 	 */
@@ -561,7 +559,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the list of module JS to include on this page
+	 * Get the list of script-only modules to load on this page.
 	 *
 	 * @param bool $filter
 	 * @param string|null $position Unused
@@ -574,10 +572,13 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add only JS of one or more modules recognized by ResourceLoader. Module
-	 * scripts added through this function will be loaded by ResourceLoader when
-	 * the page loads.
+	 * Load the scripts of one or more ResourceLoader modules, on this page.
 	 *
+	 * This method exists purely to provide the legacy behaviour of loading
+	 * a module's scripts in the global scope, and without dependency resolution.
+	 * See <https://phabricator.wikimedia.org/T188689>.
+	 *
+	 * @deprecated since 1.31 Use addModules() instead.
 	 * @param string|array $modules Module name (string) or array of module names
 	 */
 	public function addModuleScripts( $modules ) {
@@ -585,7 +586,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the list of module CSS to include on this page
+	 * Get the list of style-only modules to load on this page.
 	 *
 	 * @param bool $filter
 	 * @param string|null $position Unused
@@ -598,11 +599,11 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add only CSS of one or more modules recognized by ResourceLoader.
+	 * Load the styles of one or more ResourceLoader modules on this page.
 	 *
-	 * Module styles added through this function will be added using standard link CSS
-	 * tags, rather than as a combined Javascript and CSS package. Thus, they will
-	 * load when JavaScript is disabled (unless CSS also happens to be disabled).
+	 * Module styles added through this function will be loaded as a stylesheet,
+	 * using a standard `<link rel=stylesheet>` HTML tag, rather than as a combined
+	 * Javascript and CSS package. Thus, they will even load when JavaScript is disabled.
 	 *
 	 * @param string|array $modules Module name (string) or array of module names
 	 */
