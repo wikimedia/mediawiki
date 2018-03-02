@@ -668,7 +668,7 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 		}
 
-		return empty( $result ) ? false : $result;
+		return $result ?: false;
 	}
 
 	/**
