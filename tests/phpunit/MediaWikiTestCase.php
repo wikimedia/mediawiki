@@ -17,6 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	/**
 	 * The service locator created by prepareServices(). This service locator will
@@ -1474,44 +1475,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$this->addCoreDBData();
 			}
 		}
-	}
-
-	/**
-	 * @since 1.18
-	 *
-	 * @param string $func
-	 * @param array $args
-	 *
-	 * @return mixed
-	 * @throws MWException
-	 */
-	public function __call( $func, $args ) {
-		static $compatibility = [
-			'createMock' => 'createMock2',
-		];
-
-		if ( isset( $compatibility[$func] ) ) {
-			return call_user_func_array( [ $this, $compatibility[$func] ], $args );
-		} else {
-			throw new MWException( "Called non-existent $func method on " . static::class );
-		}
-	}
-
-	/**
-	 * Return a test double for the specified class.
-	 *
-	 * @param string $originalClassName
-	 * @return PHPUnit_Framework_MockObject_MockObject
-	 * @throws Exception
-	 */
-	private function createMock2( $originalClassName ) {
-		return $this->getMockBuilder( $originalClassName )
-			->disableOriginalConstructor()
-			->disableOriginalClone()
-			->disableArgumentCloning()
-			// New in phpunit-mock-objects 3.2 (phpunit 5.4.0)
-			// ->disallowMockingUnknownTypes()
-			->getMock();
 	}
 
 	private static function unprefixTable( &$tableName, $ind, $prefix ) {
