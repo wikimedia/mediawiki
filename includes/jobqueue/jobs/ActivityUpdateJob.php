@@ -19,8 +19,16 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Job for updating user activity like "last viewed" timestamps
+ *
+ * Job parameters include:
+ *   - type: one of (updateWatchlistNotification, resetWatchlistAllNotifications) [required]
+ *   - userid: affected user ID [required]
+ *   - notifTime: timestamp to set watchlist entries to [required]
+ *   - curTime: UNIX timestamp of the event that triggered this job [required]
  *
  * @ingroup JobQueue
  * @since 1.26
@@ -29,8 +37,10 @@ class ActivityUpdateJob extends Job {
 	function __construct( Title $title, array $params ) {
 		parent::__construct( 'activityUpdateJob', $title, $params );
 
-		if ( !isset( $params['type'] ) ) {
-			throw new InvalidArgumentException( "Missing 'type' parameter." );
+		static $required = [ 'type', 'userid', 'notifTime', 'curTime' ];
+		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );
+		if ( $missing != '' ) {
+			throw InvalidArgumentException( "Missing paramter (s) $missing" );
 		}
 
 		$this->removeDuplicates = true;
@@ -39,9 +49,10 @@ class ActivityUpdateJob extends Job {
 	public function run() {
 		if ( $this->params['type'] === 'updateWatchlistNotification' ) {
 			$this->updateWatchlistNotification();
+		} elseif ( $this->params['type'] === 'resetWatchlistAllNotifications' ) {
+			$this->resetWatchlistAllNotifications();
 		} else {
-			throw new InvalidArgumentException(
-				"Invalid 'type' parameter '{$this->params['type']}'." );
+			throw new InvalidArgumentException( "Invalid 'type' '{$this->params['type']}'." );
 		}
 
 		return true;
@@ -71,5 +82,38 @@ class ActivityUpdateJob extends Job {
 			],
 			__METHOD__
 		);
+	}
+
+	protected function resetWatchlistAllNotifications() {
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$rowsPerQuery = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
+
+		$asOfTimes = array_unique( $dbw->selectFieldValues(
+			'watchlist',
+			'wl_notificationtimestamp',
+			[ 'wl_user' => $this->params['userid'], 'wl_notificationtimestamp IS NOT NULL' ],
+			__METHOD__,
+			[ 'ORDER BY' => 'wl_notificationtimestamp DESC' ]
+		) );
+
+		foreach ( array_chunk( $asOfTimes, $rowsPerQuery ) as $asOfTimeBatch ) {
+			$dbw->update(
+				'watchlist',
+				[ 'wl_notificationtimestamp' => null ],
+				[
+					'wl_user' => $this->params['userid'],
+					'wl_notificationtimestamp' => $asOfTimeBatch,
+					// New notifications since the reset should not be cleared
+					'wl_notificationtimestamp < ' .
+						$dbw->addQuotes( $dbw->timestamp( $this->params['curTime'] ) )
+				],
+				__METHOD__
+			);
+			$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+		}
 	}
 }
