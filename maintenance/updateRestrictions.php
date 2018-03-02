@@ -46,11 +46,11 @@ class UpdateRestrictions extends Maintenance {
 			$this->fatalError( "page_restrictions table does not exist" );
 		}
 
-		$start = $db->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
+		$start = $db->selectField( 'page', 'MIN(page_id)', '', __METHOD__ );
 		if ( !$start ) {
 			$this->fatalError( "Nothing to do." );
 		}
-		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
+		$end = $db->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
 
 		# Do remaining chunk
 		$end += $batchSize - 1;

@@ -82,10 +82,10 @@ class RebuildFileCache extends Maintenance {
 		$overwrite = $this->hasOption( 'overwrite' );
 		$start = ( $start > 0 )
 			? $start
-			: $dbr->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
+			: $dbr->selectField( 'page', 'MIN(page_id)', '', __METHOD__ );
 		$end = ( $end > 0 )
 			? $end
-			: $dbr->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
+			: $dbr->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
 		if ( !$start ) {
 			$this->fatalError( "Nothing to do." );
 		}
