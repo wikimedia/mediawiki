@@ -48,6 +48,8 @@ class ActivityUpdateJob extends Job {
 	}
 
 	protected function updateWatchlistNotification() {
+		$old = Profiler::instance()->getTransactionProfiler()->setSilenced( true );
+
 		$casTimestamp = ( $this->params['notifTime'] !== null )
 			? $this->params['notifTime']
 			: $this->params['curTime'];
@@ -71,5 +73,7 @@ class ActivityUpdateJob extends Job {
 			],
 			__METHOD__
 		);
+
+		Profiler::instance()->getTransactionProfiler()->setSilenced( $old );
 	}
 }
