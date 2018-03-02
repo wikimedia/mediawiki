@@ -67,6 +67,8 @@ changes to languages because of Phabricator reports.
   configuration in LocalSettings.php.
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
   button is already marked as progressive.
+* OutputPage::addModuleScripts() and ParserOutput::addModuleScripts are deprecated.
+  Use addModules() instead.
 
 === Other changes in 1.32 ===
 * …
