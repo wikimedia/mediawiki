@@ -527,13 +527,16 @@ abstract class DatabaseMysqlBase extends Database {
 		// checking if the target table has an auto-increment column that
 		// isn't set in $varMap, that seems unlikely to be worth the extra
 		// complexity.
-		return ( (int)$row->innodb_autoinc_lock_mode === 0 );
+		return (
+			in_array( 'NO_AUTO_COLUMNS', $insertOptions ) ||
+			(int)$row->innodb_autoinc_lock_mode === 0
+		);
 	}
 
 	/**
 	 * @return stdClass Process cached row
 	 */
-	private function getReplicationSafetyInfo() {
+	protected function getReplicationSafetyInfo() {
 		if ( $this->replicationInfoRow === null ) {
 			$this->replicationInfoRow = $this->selectRow(
 				false,
@@ -668,7 +671,7 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 		}
 
-		return empty( $result ) ? false : $result;
+		return $result ?: false;
 	}
 
 	/**
