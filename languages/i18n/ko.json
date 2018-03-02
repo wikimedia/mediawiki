@@ -68,7 +68,8 @@
 			"Sukjong0406",
 			"Garam",
 			"렌즈",
-			"CYAN"
+			"CYAN",
+			"Nuevo Paso"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -709,7 +710,7 @@
 	"userinvalidconfigtitle": "<strong>경고:</strong> \"$1\" 스킨은 없습니다.\n.css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 	"updated": "(바뀜)",
 	"note": "<strong>참고:</strong>",
-	"previewnote": "'''이 화면은 미리 보기입니다.'''\n편집한 내용은 아직 저장하지 않았습니다!",
+	"previewnote": "'''지금 보고 있는 화면은 미리 보기입니다.''' 편집한 내용은 아직 저장되지 않았습니다!",
 	"continue-editing": "편집 영역으로 가기",
 	"previewconflict": "이 미리 보기는 저장할 때의 모습으로, 위쪽 편집 영역의 텍스트를 반영합니다.",
 	"session_fail_preview": "세션 데이터가 없어져 편집을 저장하지 못했습니다.\n\n로그아웃되었는지도 모릅니다. <strong>아직 로그인 상태인지 확인하고 다시 시도해주세요</strong>.\n다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인하세요. 그리고 브라우저 설정에서 쿠키 사용을 허용하는지 확인하세요.",

@@ -881,6 +881,7 @@
 	"timezoneregion-indian": "Indijas okeāns",
 	"timezoneregion-pacific": "Klusais okeāns",
 	"allowemail": "Atļaut citiem dalībniekiem sūtīt man e-pastus",
+	"email-allow-new-users-label": "Atļaut e-pastus no ļoti jauniem dalībniekiem",
 	"email-blacklist-label": "Aizliegt šiem dalībniekiem man sūtīt e-pastus:",
 	"prefs-searchoptions": "Meklēšana",
 	"prefs-namespaces": "Vārdtelpas",
