@@ -765,12 +765,41 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return $success;
 	}
 
+	public function resetAllNotificationTimestampsForUser( User $user ) {
+		// Only loggedin user can have a watchlist
+		if ( $user->isAnon() ) {
+			return false;
+		}
+
+		// If the page is watched by the user (or may be watched), update the timestamp
+		$job = new ActivityUpdateJob(
+			$user->getUserPage(),
+			[
+				'type'      => 'resetWatchlistAllNotifications',
+				'userid'    => $user->getId(),
+				'notifTime' => null,
+				'curTime'   => time()
+			]
+		);
+
+		// Try to run this post-send
+		// Calls DeferredUpdates::addCallableUpdate in normal operation
+		call_user_func(
+			$this->deferredUpdatesAddCallableUpdateCallback,
+			function () use ( $job ) {
+				$job->run();
+			}
+		);
+
+		return true;
+	}
+
 	/**
 	 * @since 1.27
 	 * @param User $editor
 	 * @param LinkTarget $target
 	 * @param string|int $timestamp
-	 * @return int
+	 * @return int[]
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
