@@ -1227,7 +1227,7 @@ abstract class DatabaseUpdater {
 				"maintenance/migrateComments.php.\n"
 			);
 			$task = $this->maintenance->runChild( MigrateComments::class, 'migrateComments.php' );
-			$task->execute();
+			$ok = $task->execute();
 			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
 		}
 	}
