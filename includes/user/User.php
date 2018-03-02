@@ -3969,51 +3969,9 @@ class User implements IDBAccessObject, UserIdentity {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$asOfTimes = array_unique( $dbw->selectFieldValues(
-			'watchlist',
-			'wl_notificationtimestamp',
-			[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
-			__METHOD__,
-			[ 'ORDER BY' => 'wl_notificationtimestamp DESC', 'LIMIT' => 500 ]
-		) );
-		if ( !$asOfTimes ) {
-			return;
-		}
-		// Immediately update the most recent touched rows, which hopefully covers what
-		// the user sees on the watchlist page before pressing "mark all pages visited"....
-		$dbw->update(
-			'watchlist',
-			[ 'wl_notificationtimestamp' => null ],
-			[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimes ],
-			__METHOD__
-		);
-		// ...and finish the older ones in a post-send update with lag checks...
-		DeferredUpdates::addUpdate( new AutoCommitUpdate(
-			$dbw,
-			__METHOD__,
-			function () use ( $dbw, $id ) {
-				global $wgUpdateRowsPerQuery;
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItemStore->resetAllNotificationTimestampsForUser( $this );
 
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-				$asOfTimes = array_unique( $dbw->selectFieldValues(
-					'watchlist',
-					'wl_notificationtimestamp',
-					[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
-					__METHOD__
-				) );
-				foreach ( array_chunk( $asOfTimes, $wgUpdateRowsPerQuery ) as $asOfTimeBatch ) {
-					$dbw->update(
-						'watchlist',
-						[ 'wl_notificationtimestamp' => null ],
-						[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimeBatch ],
-						__METHOD__
-					);
-					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
-				}
-			}
-		) );
 		// We also need to clear here the "you have new message" notification for the own
 		// user_talk page; it's cleared one page view later in WikiPage::doViewUpdates().
 	}
