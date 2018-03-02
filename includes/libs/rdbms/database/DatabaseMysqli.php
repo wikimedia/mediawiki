@@ -25,6 +25,7 @@ namespace Wikimedia\Rdbms;
 use mysqli;
 use mysqli_result;
 use IP;
+use stdClass;
 
 /**
  * Database abstraction object for PHP extension mysqli.
@@ -34,8 +35,6 @@ use IP;
  * @see Database
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
-	/** @var mysqli $mConn */
-
 	/**
 	 * @param string $sql
 	 * @return resource
@@ -162,7 +161,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function lastErrno() {
-		if ( $this->conn ) {
+		if ( $this->conn instanceof mysqli ) {
 			return $this->conn->errno;
 		} else {
 			return mysqli_connect_errno();
@@ -202,7 +201,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	/**
 	 * @param mysqli_result $res
-	 * @return bool
+	 * @return stdClass|bool
 	 */
 	protected function mysqlFetchObject( $res ) {
 		$object = $res->fetch_object();
@@ -235,7 +234,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @return mixed
 	 */
 	protected function mysqlNumFields( $res ) {
@@ -243,7 +242,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @param int $n
 	 * @return mixed
 	 */
@@ -266,7 +265,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @param int $n
 	 * @return mixed
 	 */
@@ -277,7 +276,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $res
+	 * @param mysqli_result $res
 	 * @param int $n
 	 * @return mixed
 	 */
