@@ -80,6 +80,8 @@ changes to languages because of Phabricator reports.
 * Skin::setupSkinUserCss() is deprecated. Adding of modules to load
   has been centralised to Skin::getDefaultModules(), which is now capable
   of queueing style modules as well.
+* OutputPage::addModuleScripts() and ParserOutput::addModuleScripts are deprecated.
+  Use addModules() instead.
 
 === Other changes in 1.32 ===
 * …
