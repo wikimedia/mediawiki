@@ -2215,8 +2215,14 @@ class Parser {
 				$link = $origLink;
 			}
 
-			$unstrip = $this->mStripState->unstripNoWiki( $link );
-			$nt = is_string( $unstrip ) ? Title::newFromText( $unstrip ) : null;
+			// \x7f isn't a default legal title char, so most likely strip
+			// markers will force us into the "invalid form" path above.  But,
+			// just in case, let's assert that xmlish tags aren't valid in
+			// the title position.
+			$unstrip = $this->mStripState->killMarkers( $link );
+			$noMarkers = ( $unstrip === $link );
+
+			$nt = $noMarkers ? Title::newFromText( $link ) : null;
 			if ( $nt === null ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
