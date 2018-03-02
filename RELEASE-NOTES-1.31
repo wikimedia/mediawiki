@@ -269,6 +269,12 @@ changes to languages because of Phabricator reports.
 * The DeferredStringifier class is deprecated, use Message::listParam() instead.
 * The type string for the parameter $lang of DateFormatter::getInstance is
   deprecated.
+* In User, the cookie-related methods which were wrappers for the functions on the response
+  object, and were deprecated in 1.27, have been removed:
+  * ::setCookie()
+  * ::clearCookie()
+  * ::setExtendedLoginCookie()
+  Note that User::setCookies() remains, and is not deprecated.
 * The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have been removed.
 
 == Compatibility ==
