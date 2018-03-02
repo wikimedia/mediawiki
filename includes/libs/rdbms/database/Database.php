@@ -2446,11 +2446,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname );
 	}
 
-	public function insertSelect(
+	final public function insertSelect(
 		$destTable, $srcTable, $varMap, $conds,
 		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
-		if ( $this->cliMode ) {
+		static $hints = [ 'NO_AUTO_COLUMNS' ];
+
+		$insertOptions = (array)$insertOptions;
+		$selectOptions = (array)$selectOptions;
+
+		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
 			// For massive migrations with downtime, we don't want to select everything
 			// into memory and OOM, so do all this native on the server side if possible.
 			return $this->nativeInsertSelect(
@@ -2459,7 +2464,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$varMap,
 				$conds,
 				$fname,
-				$insertOptions,
+				array_diff( $insertOptions, $hints ),
 				$selectOptions,
 				$selectJoinConds
 			);
@@ -2471,10 +2476,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$varMap,
 			$conds,
 			$fname,
-			$insertOptions,
+			array_diff( $insertOptions, $hints ),
 			$selectOptions,
 			$selectJoinConds
 		);
+	}
+
+	/**
+	 * @param array $insertOptions INSERT options
+	 * @param array $selectOptions SELECT options
+	 * @return bool Whether an INSERT SELECT with these options will be replication safe
+	 * @since 1.31
+	 */
+	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
+		return true;
 	}
 
 	/**
@@ -2496,8 +2511,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
 	) {
-		$insertOptions = array_diff( (array)$insertOptions, [ 'NO_AUTO_COLUMNS' ] );
-
 		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
 		// on only the master (without needing row-based-replication). It also makes it easy to
 		// know how big the INSERT is going to be.
@@ -2574,7 +2587,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !is_array( $insertOptions ) ) {
 			$insertOptions = [ $insertOptions ];
 		}
-		$insertOptions = array_diff( (array)$insertOptions, [ 'NO_AUTO_COLUMNS' ] );
 
 		$insertOptions = $this->makeInsertOptions( $insertOptions );
 
