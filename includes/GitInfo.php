@@ -223,6 +223,12 @@ class GitInfo {
 	public function getHeadCommitDate() {
 		global $wgGitBin;
 
+		if ( ini_get( 'open_basedir' ) !== '' &&
+			strpos( ini_get( 'open_basedir' ), $wgGitBin ) === false
+		) {
+			return false;
+		}
+
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
 			if ( is_file( $wgGitBin ) &&
