@@ -197,16 +197,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 				'any',
 				true
 			],
-			[ 'Foo',
-				null,
-				'comma',
-				false
-			],
-			[ 'Foo, bar',
-				null,
-				'comma',
-				false
-			],
 		];
 	}
 

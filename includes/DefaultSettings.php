@@ -4438,7 +4438,6 @@ $wgEnableMagicLinks = [
  *
  * This variable can have the following values:
  * - 'any': all pages as considered as valid articles
- * - 'comma': the page must contain a comma to be considered valid
  * - 'link': the page must contain a [[wiki link]] to be considered valid
  *
  * See also See https://www.mediawiki.org/wiki/Manual:Article_count
