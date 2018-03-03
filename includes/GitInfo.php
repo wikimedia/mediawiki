@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Shell\Shell;
+use Wikimedia\AtEase\AtEase;
 
 class GitInfo {
 
@@ -225,7 +226,10 @@ class GitInfo {
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
-			if ( is_file( $wgGitBin ) &&
+
+			// Suppress warnings about any open_basedir restrictions affecting $wgGitBin (T74445).
+			$isFile = AtEase::quietCall( 'is_file', $wgGitBin );
+			if ( $isFile &&
 				is_executable( $wgGitBin ) &&
 				!Shell::isDisabled() &&
 				$this->getHead() !== false
