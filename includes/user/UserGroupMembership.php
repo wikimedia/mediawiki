@@ -237,11 +237,14 @@ class UserGroupMembership {
 
 	/**
 	 * Purge expired memberships from the user_groups table
+	 *
+	 * @return int|bool false if purging wasn't attempted (e.g. because of
+	 *  readonly), the number of rows purged (might be 0) otherwise
 	 */
 	public static function purgeExpired() {
 		$services = MediaWikiServices::getInstance();
 		if ( $services->getReadOnlyMode()->isReadOnly() ) {
-			return;
+			return false;
 		}
 
 		$lbFactory = $services->getDBLoadBalancerFactory();
@@ -251,10 +254,11 @@ class UserGroupMembership {
 		$lockKey = $dbw->getDomainID() . ':usergroups-prune'; // specific to this wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );
 		if ( !$scopedLock ) {
-			return; // already running
+			return false; // already running
 		}
 
 		$now = time();
+		$purgedRows = 0;
 		do {
 			$dbw->startAtomic( __METHOD__ );
 
@@ -284,12 +288,15 @@ class UserGroupMembership {
 				);
 				// Push the groups to user_former_groups
 				$dbw->insert( 'user_former_groups', $insertData, __METHOD__, [ 'IGNORE' ] );
+				// Count how many rows were purged
+				$purgedRows += $res->numRows();
 			}
 
 			$dbw->endAtomic( __METHOD__ );
 
 			$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 		} while ( $res->numRows() > 0 );
+		return $purgedRows;
 	}
 
 	/**

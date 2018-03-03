@@ -36,8 +36,12 @@ class PurgeExpiredUserrights extends Maintenance {
 
 	public function execute() {
 		$this->output( "Purging expired user rights...\n" );
-		UserGroupMembership::purgeExpired();
-		$this->output( "Purge requests submitted.\n" );
+		$res = UserGroupMembership::purgeExpired();
+		if ( $res === false ) {
+			$this->output( "Purging failed.\n" );
+		} else {
+			$this->output( "$res rows purged.\n" );
+		}
 	}
 }
 
