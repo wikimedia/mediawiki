@@ -223,6 +223,25 @@ class GitInfo {
 	public function getHeadCommitDate() {
 		global $wgGitBin;
 
+		// Checks if open_basedir include $wgGitBin before is_file()
+		static $gitDirCanAccess; // Caching result at the first check
+		if ( $gitDirCanAccess === false ) {
+			return false;
+		}
+		if ( ini_get( 'open_basedir' ) !== '' && $gitDirCanAccess === null ) {
+			$delimiter = ( PHP_OS === 'WINNT' ) ? ';' : ':';
+			$arr = explode( $delimiter, ini_get( 'open_basedir' ) );
+			$gitDirCanAccess = false;
+			foreach ( $arr as $value ) {
+				if ( strpos( $wgGitBin, $value ) !== false ) {
+					$gitDirCanAccess = true;
+				}
+			}
+			if ( !$gitDirAccess ) {
+				return false;
+			}
+		}
+
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
 			if ( is_file( $wgGitBin ) &&
