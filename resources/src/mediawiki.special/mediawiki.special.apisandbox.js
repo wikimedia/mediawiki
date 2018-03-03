@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
@@ -13,6 +12,71 @@
 		pages = {},
 		moduleInfoCache = {},
 		baseRequestParams;
+
+	/**
+	 * A wrapper for a widget that provides an enable/disable button
+	 *
+	 * @class
+	 * @private
+	 * @constructor
+	 * @param {OO.ui.Widget} widget
+	 * @param {Object} [config] Configuration options
+	 */
+	function OptionalWidget( widget, config ) {
+		var k;
+
+		config = config || {};
+
+		this.widget = widget;
+		this.$cover = config.$cover ||
+			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-cover' );
+		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
+			.on( 'change', this.onCheckboxChange, [], this );
+
+		OptionalWidget[ 'super' ].call( this, config );
+
+		// Forward most methods for convenience
+		for ( k in this.widget ) {
+			if ( $.isFunction( this.widget[ k ] ) && !this[ k ] ) {
+				this[ k ] = this.widget[ k ].bind( this.widget );
+			}
+		}
+
+		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
+
+		this.$element
+			.addClass( 'mw-apisandbox-optionalWidget' )
+			.append(
+				this.$cover,
+				$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-fields' ).append(
+					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-widget' ).append(
+						widget.$element
+					),
+					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-checkbox' ).append(
+						this.checkbox.$element
+					)
+				)
+			);
+
+		this.setDisabled( widget.isDisabled() );
+	}
+	OO.inheritClass( OptionalWidget, OO.ui.Widget );
+	OptionalWidget.prototype.onCheckboxChange = function ( checked ) {
+		this.setDisabled( !checked );
+	};
+	OptionalWidget.prototype.onOverlayClick = function () {
+		this.setDisabled( false );
+		if ( $.isFunction( this.widget.focus ) ) {
+			this.widget.focus();
+		}
+	};
+	OptionalWidget.prototype.setDisabled = function ( disabled ) {
+		OptionalWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
+		this.widget.setDisabled( this.isDisabled() );
+		this.checkbox.setSelected( !this.isDisabled() );
+		this.$cover.toggle( this.isDisabled() );
+		return this;
+	};
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -1827,71 +1891,6 @@
 			}
 		} );
 		return ret;
-	};
-
-	/**
-	 * A wrapper for a widget that provides an enable/disable button
-	 *
-	 * @class
-	 * @private
-	 * @constructor
-	 * @param {OO.ui.Widget} widget
-	 * @param {Object} [config] Configuration options
-	 */
-	function OptionalWidget( widget, config ) {
-		var k;
-
-		config = config || {};
-
-		this.widget = widget;
-		this.$cover = config.$cover ||
-			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-cover' );
-		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
-			.on( 'change', this.onCheckboxChange, [], this );
-
-		OptionalWidget[ 'super' ].call( this, config );
-
-		// Forward most methods for convenience
-		for ( k in this.widget ) {
-			if ( $.isFunction( this.widget[ k ] ) && !this[ k ] ) {
-				this[ k ] = this.widget[ k ].bind( this.widget );
-			}
-		}
-
-		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
-
-		this.$element
-			.addClass( 'mw-apisandbox-optionalWidget' )
-			.append(
-				this.$cover,
-				$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-fields' ).append(
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-widget' ).append(
-						widget.$element
-					),
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-checkbox' ).append(
-						this.checkbox.$element
-					)
-				)
-			);
-
-		this.setDisabled( widget.isDisabled() );
-	}
-	OO.inheritClass( OptionalWidget, OO.ui.Widget );
-	OptionalWidget.prototype.onCheckboxChange = function ( checked ) {
-		this.setDisabled( !checked );
-	};
-	OptionalWidget.prototype.onOverlayClick = function () {
-		this.setDisabled( false );
-		if ( $.isFunction( this.widget.focus ) ) {
-			this.widget.focus();
-		}
-	};
-	OptionalWidget.prototype.setDisabled = function ( disabled ) {
-		OptionalWidget[ 'super' ].prototype.setDisabled.call( this, disabled );
-		this.widget.setDisabled( this.isDisabled() );
-		this.checkbox.setSelected( !this.isDisabled() );
-		this.$cover.toggle( this.isDisabled() );
-		return this;
 	};
 
 	$( ApiSandbox.init );
