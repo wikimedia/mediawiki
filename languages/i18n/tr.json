@@ -1420,6 +1420,8 @@
 	"rcfilters-filter-categorization-description": "Kategorilere eklenen veya kaldırılan sayfaların kayıtları.",
 	"rcfilters-filter-logactions-label": "Günlüğü tutulan işlemler",
 	"rcfilters-filter-logactions-description": "Hizmetli işlemleri, hesap oluşturmalar, sayfa silmeler, yüklemeler...",
+	"rcfilters-filter-lastrevision-label": "Son revizyon",
+	"rcfilters-filter-previousrevision-label": "Son revizyon değil",
 	"rcfilters-liveupdates-button": "Canlı güncelleme",
 	"rcfilters-liveupdates-button-title-on": "Canlı güncellemeyi kapat",
 	"rcfilters-liveupdates-button-title-off": "Yeni değişiklikleri yapıldıkları anda görüntüleyin",

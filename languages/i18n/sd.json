@@ -7,7 +7,8 @@
 			"Sindhu",
 			"Mehtab ahmed",
 			"Macofe",
-			"Indus Asia"
+			"Indus Asia",
+			"BukhariSaeed"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -1804,6 +1805,7 @@
 	"table_pager_limit_submit": "ھلو",
 	"table_pager_empty": "ڪو بہ نتيجو نہ مليو",
 	"autoredircomment": "صفحي کي [[$1]] ڏانھن چوريو",
+	"autosumm-newblank": "خالي صفحو تخليق ڪيو",
 	"watchlistedit-normal-title": "نظر ۾ فھرست کي سنواريو",
 	"watchlistedit-raw-titles": "عنوانَ:",
 	"watchlistedit-clear-titles": "عنوانَ:",
