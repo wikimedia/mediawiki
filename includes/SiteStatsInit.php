@@ -79,13 +79,6 @@ class SiteStatsInit {
 		if ( $config->get( 'ArticleCountMethod' ) == 'link' ) {
 			$tables[] = 'pagelinks';
 			$conds[] = 'pl_from=page_id';
-		} elseif ( $config->get( 'ArticleCountMethod' ) == 'comma' ) {
-			// To make a correct check for this, we would need, for each page,
-			// to load the text, maybe uncompress it, maybe decode it and then
-			// check if there's one comma.
-			// But one thing we are sure is that if the page is empty, it can't
-			// contain a comma :)
-			$conds[] = 'page_len > 0';
 		}
 
 		$this->articles = $this->dbr->selectField(
