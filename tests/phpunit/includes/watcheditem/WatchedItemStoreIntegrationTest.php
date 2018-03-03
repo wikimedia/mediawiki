@@ -167,6 +167,13 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			[ $title->getNamespace() => [ $title->getDBkey() => null ] ],
 			$store->getNotificationTimestampsBatch( $user, [ $title ] )
 		);
+
+		// Run the job queue
+		JobQueueGroup::destroySingletons();
+		$jobs = new RunJobs;
+		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
+		$jobs->execute();
+
 		$this->assertEquals(
 			$initialVisitingWatchers,
 			$store->countVisitingWatchers( $title, '20150202020202' )

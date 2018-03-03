@@ -65,14 +65,19 @@ class WatchedItemQueryService {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
 	public function __construct(
 		LoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		WatchedItemStoreInterface $watchedItemStore
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
+		$this->watchedItemStore = $watchedItemStore;
 	}
 
 	/**
@@ -228,11 +233,14 @@ class WatchedItemQueryService {
 				break;
 			}
 
+			$target = new TitleValue( (int)$row->rc_namespace, $row->rc_title );
 			$items[] = [
 				new WatchedItem(
 					$user,
-					new TitleValue( (int)$row->rc_namespace, $row->rc_title ),
-					$row->wl_notificationtimestamp
+					$target,
+					$this->watchedItemStore->getLatestNotificationTimestamp(
+						$row->wl_notificationtimestamp, $user, $target
+					)
 				),
 				$this->getRecentChangeFieldsFromRow( $row )
 			];
@@ -307,11 +315,14 @@ class WatchedItemQueryService {
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
+			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 			// todo these could all be cached at some point?
 			$watchedItems[] = new WatchedItem(
 				$user,
-				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
-				$row->wl_notificationtimestamp
+				$target,
+				$this->watchedItemStore->getLatestNotificationTimestamp(
+					$row->wl_notificationtimestamp, $user, $target
+				)
 			);
 		}
 
