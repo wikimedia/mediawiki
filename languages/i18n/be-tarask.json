@@ -1159,7 +1159,7 @@
 	"right-editprotected": "Рэдагаваньне старонак, абароненых у рэжыме «{{int:protect-level-sysop}}»",
 	"right-editsemiprotected": "Рэдагаваньне старонак, абароненых у рэжыме «{{int:protect-level-autoconfirmed}}»",
 	"right-editcontentmodel": "рэдагаваньне мадэлі зьместу старонкі",
-	"right-editinterface": "рэдагаваньне інтэрфэйса карыстальніка",
+	"right-editinterface": "Рэдагаваньне інтэрфэйсу карыстальніка",
 	"right-editusercss": "рэдагаваньне CSS файлаў іншых удзельнікаў",
 	"right-edituserjs": "рэдагаваньне JS файлаў іншых удзельнікаў",
 	"right-editmyusercss": "рэдагаваць уласныя карыстальніцкія CSS-файлы",
