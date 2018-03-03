@@ -24,6 +24,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $loadBalancer;
 
 	/**
+	 * @var BagOStuff
+	 */
+	private $stash;
+
+	/**
 	 * @var ReadOnlyMode
 	 */
 	private $readOnlyMode;
@@ -61,19 +66,25 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private $stats;
 
+	const KEY_TIMESTAMPS = 'timestamps';
+	const KEY_LAST_RESET = 'last-reset';
+
 	/**
 	 * @param LoadBalancer $loadBalancer
+	 * @param BagOStuff $stash
 	 * @param HashBagOStuff $cache
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param int $updateRowsPerQuery
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
+		BagOStuff $stash,
 		HashBagOStuff $cache,
 		ReadOnlyMode $readOnlyMode,
 		$updateRowsPerQuery
 	) {
 		$this->loadBalancer = $loadBalancer;
+		$this->stash = $stash;
 		$this->cache = $cache;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->stats = new NullStatsdDataFactory();
@@ -504,7 +515,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param User $user
 	 * @param LinkTarget $target
-	 * @return bool
+	 * @return WatchedItem|bool
 	 */
 	public function loadWatchedItem( User $user, LinkTarget $target ) {
 		// Only loggedin user can have a watchlist
@@ -513,6 +524,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
+
 		$row = $dbr->selectRow(
 			'watchlist',
 			'wl_notificationtimestamp',
@@ -527,7 +539,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$item = new WatchedItem(
 			$user,
 			$target,
-			wfTimestampOrNull( TS_MW, $row->wl_notificationtimestamp )
+			$this->reflectStashedUpdates( $row->wl_notificationtimestamp, $user, $target )
 		);
 		$this->cache( $item );
 
@@ -567,11 +579,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
+			$target = new TitleValue( $row->wl_namesapce, $row->wl_title );
 			// @todo: Should we add these to the process cache?
 			$watchedItems[] = new WatchedItem(
 				$user,
 				new TitleValue( (int)$row->wl_namespace, $row->wl_title ),
-				$row->wl_notificationtimestamp
+				$this->reflectStashedUpdates( $row->wl_notificationtimestamp, $user, $target )
 			);
 		}
 
@@ -633,8 +646,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		);
 
 		foreach ( $res as $row ) {
+			$target = new TitleValue( $row->wl_namespace, $row->wl_title );
 			$timestamps[$row->wl_namespace][$row->wl_title] =
-				wfTimestampOrNull( TS_MW, $row->wl_notificationtimestamp );
+				$this->reflectStashedUpdates( $row->wl_notificationtimestamp, $user, $target );
 		}
 
 		return $timestamps;
@@ -753,16 +767,100 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$timestamp = $dbw->timestamp( $timestamp );
 		}
 
-		$success = $dbw->update(
+		// Mark the item as read immediately in lightweight storage
+		$this->stash->merge(
+			$this->getRecentUpdatesStashKey( $user ),
+			function ( $cache, $key, $current ) use ( $timestamp, $targets ) {
+				$value = $current ?: [
+					self::KEY_TIMESTAMPS => new MapCacheLRU( 1000 ),
+					self::KEY_LAST_RESET => false
+				];
+				$ts = wfTimestampOrNull( TS_MW, $timestamp );
+				foreach ( $targets as $target ) {
+					$value[self::KEY_TIMESTAMPS]->set( $this->getItemKey( $target ), $ts );
+				}
+
+				return $value;
+			},
+			IExpiringStore::TTL_MINUTE * 5
+		);
+		// @TODO: defer to job queue
+		$dbw->update(
 			'watchlist',
 			[ 'wl_notificationtimestamp' => $timestamp ],
 			$conds,
 			__METHOD__
 		);
 
+
 		$this->uncacheUser( $user );
 
-		return $success;
+		return true;
+	}
+
+	/**
+	 * @param LinkTarget $target
+	 * @return string
+	 */
+	private function getItemKey( LinkTarget $target ) {
+		return "{$target->getNamespace()}:{$target->getDBkey()}";
+	}
+
+	/**
+	 * @param User $user
+	 * @return string
+	 */
+	private function getRecentUpdatesStashKey( User $user ) {
+		return $this->stash->makeGlobalKey(
+			'watchlist-recent-updates',
+			$this->getConnectionRef( DB_REPLICA )->getDomainID(),
+			$user->getId()
+		);
+	}
+
+	/**
+	 * Get the highest timestamp among $timestamp and lightweight store info
+	 *
+	 * Use this only on single-user methods (having higher read-after-write expectations)
+	 *
+	 * Usage of this method should be limited to WatchedItem* classes
+	 *
+	 * @param string|null $timestamp
+	 * @param User $user
+	 * @param LinkTarget $target
+	 * @return string TS_MW timestamp or null
+	 */
+	public function reflectStashedUpdates( $timestamp, User $user, LinkTarget $target ) {
+		$timestamp = wfTimestampOrNull( TS_MW, $timestamp );
+
+		$updates = $this->getStashedUpdates( $user );
+		if ( !is_array( $updates ) ) {
+			return $timestamp;
+		}
+
+		if ( $updates[self::KEY_LAST_RESET] >= $timestamp ) {
+			return null; // job has not yet run to set the field to NULL?
+		}
+
+		$ts = $updates[self::KEY_TIMESTAMPS]->get( $this->getItemKey( $target ) );
+		// If a job did not yet run, then the stash value might be higher
+		return ( $ts > $timestamp ) ? $ts : $timestamp;
+	}
+
+	/**
+	 * @param User $user
+	 * @return array|string
+	 */
+	protected function getStashedUpdates( User $user ) {
+		$key = $this->getRecentUpdatesStashKey( $user );
+
+		return $this->cache->getWithSetCallback(
+			$key,
+			IExpiringStore::TTL_PROC_LONG,
+			function () use ( $key ) {
+				return $this->stash->get( $key ) ?: 'none';
+			}
+		);
 	}
 
 	/**
@@ -926,25 +1024,29 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return int|bool
 	 */
 	public function countUnreadNotifications( User $user, $unreadLimit = null ) {
+		$updates = $this->getStashedUpdates( $user );
+
+		$dbr = $this->getConnectionRef( DB_REPLICA );
+
 		$queryOptions = [];
 		if ( $unreadLimit !== null ) {
 			$unreadLimit = (int)$unreadLimit;
 			$queryOptions['LIMIT'] = $unreadLimit;
 		}
 
-		$dbr = $this->getConnectionRef( DB_REPLICA );
-		$rowCount = $dbr->selectRowCount(
-			'watchlist',
-			'1',
-			[
-				'wl_user' => $user->getId(),
-				'wl_notificationtimestamp IS NOT NULL',
-			],
-			__METHOD__,
-			$queryOptions
-		);
+		$conds = [
+			'wl_user' => $user->getId(),
+			'wl_notificationtimestamp IS NOT NULL'
+		];
+		// If the user just cleared their watchlist, the rows will linger until the job runs
+		if ( is_array( $updates ) && $updates[self::KEY_LAST_RESET] !== false ) {
+			$conds[] = 'wl_notificationtimestamp > ' .
+				$dbr->addQuotes( $dbr->timestamp( $updates[self::KEY_LAST_RESET] ) );
+		}
 
-		if ( !isset( $unreadLimit ) ) {
+		$rowCount = $dbr->selectRowCount( 'watchlist', '1', $conds, __METHOD__, $queryOptions );
+
+		if ( $unreadLimit !== null ) {
 			return $rowCount;
 		}
 

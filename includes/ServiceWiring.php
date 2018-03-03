@@ -164,6 +164,7 @@ return [
 	'WatchedItemStore' => function ( MediaWikiServices $services ) {
 		$store = new WatchedItemStore(
 			$services->getDBLoadBalancer(),
+			$services->getMainObjectStash(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
 			$services->getMainConfig()->get( 'UpdateRowsPerQuery' )
@@ -181,7 +182,8 @@ return [
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getWatchedItemStore()
 		);
 	},
 
