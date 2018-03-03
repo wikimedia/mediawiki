@@ -223,6 +223,10 @@ class GitInfo {
 	public function getHeadCommitDate() {
 		global $wgGitBin;
 
+		if ( !self::checkGitDir() ) {
+			return false;
+		}
+
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
 			if ( is_file( $wgGitBin ) &&
@@ -421,5 +425,29 @@ class GitInfo {
 		}
 
 		return self::$viewers;
+	}
+
+	/**
+	 * Checks if open_basedir includes $wgGitBin
+	 * @return bool Returns true if open_basedir includes $wgGitBin, false otherwise
+	 */
+	public static function checkGitDir() {
+		static $gitDirCanAccess; // Caching result at the first check
+		if ( $gitDirCanAccess === false ) {
+			return false;
+		}
+
+		if ( ini_get( 'open_basedir' ) !== '' && $gitDirCanAccess === null ) {
+			$delimiter = ( PHP_OS === 'WINNT' ) ? ';' : ':';
+			$arr = explode( $delimiter, ini_get( 'open_basedir' ) );
+			$gitDirCanAccess = false;
+			foreach ( $arr as $value ) {
+				// When open_basedir includes $wgGitBin...
+				if ( strpos( $wgGitBin, $value ) !== false ) {
+					$gitDirCanAccess = true;
+				}
+			}
+		}
+		return $gitDirCanAccess;
 	}
 }
