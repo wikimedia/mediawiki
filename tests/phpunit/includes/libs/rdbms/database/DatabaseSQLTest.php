@@ -1,5 +1,6 @@
 <?php
 
+use InvalidArgumentException;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -1214,4 +1215,36 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
 		$this->assertFalse( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
 	}
+
+	public function provideBuildSubstring() {
+		yield [ 'someField', 1, 2, 'SUBSTRING(someField FROM 1 FOR 2)' ];
+		yield [ 'someField', 1, null, 'SUBSTRING(someField FROM 1)' ];
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::buildSubstring
+	 * @dataProvider provideBuildSubstring
+	 */
+	public function testBuildSubstring( $input, $start, $length, $expected ) {
+		$output = $this->database->buildSubstring( $input, $start, $length );
+		$this->assertSame( $expected, $output );
+	}
+
+	public function provideBuildSubstring_invalidParams() {
+		yield [ -1, 1 ];
+		yield [ 1, -1 ];
+		yield [ 1, 'foo' ];
+		yield [ 'foo', 1 ];
+		yield [ null, 1 ];
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::buildSubstring
+	 * @dataProvider provideBuildSubstring_invalidParams
+	 */
+	public function testBuildSubstring_invalidParams( $start, $length ) {
+		$this->setExpectedException( InvalidArgumentException::class );
+		$this->database->buildSubstring( 'foo', $start, $length );
+	}
+
 }
