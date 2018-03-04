@@ -837,6 +837,14 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 */
+	public function buildIntegerCast( $field ) {
+		return 'CAST ( ' . $field . ' AS INTEGER )';
+	}
+
+	/**
 	 * No-op version of deadlockLoop
 	 *
 	 * @return mixed

@@ -37,4 +37,13 @@ class DatabaseOracleTest extends PHPUnit\Framework\TestCase {
 		$db->buildSubstring( 'foo', $start, $length );
 	}
 
+	/**
+	 * @covers DatabaseOracle::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$db = new FakeDatabaseOracle( [] );
+		$output = $db->buildIntegerCast( 123 );
+		$this->assertSame( 'CAST ( 123 AS INTEGER )', $output );
+	}
+
 }
