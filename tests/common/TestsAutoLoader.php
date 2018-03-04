@@ -155,6 +155,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/libs/database
 	'FakeDatabaseMssql' => "$testDir/phpunit/includes/libs/rdbms/database/FakeDatabaseMssql.php",
+	'FakeDatabasePostgres' => "$testDir/phpunit/includes/libs/rdbms/database/FakeDatabasePostgres.php",
 	'FakeDatabaseSqlite' => "$testDir/phpunit/includes/libs/rdbms/database/FakeDatabaseSqlite.php",
 
 	# tests/phpunit/maintenance
