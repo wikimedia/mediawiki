@@ -25,4 +25,13 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$db = new FakeDatabaseSqlite( [] );
+		$output = $db->buildIntegerCast( 'fieldName' );
+		$this->assertSame( 'CAST ( fieldName AS INTEGER )', $output );
+	}
+
 }
