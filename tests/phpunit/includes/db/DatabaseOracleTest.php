@@ -19,6 +19,7 @@ class DatabaseOracleTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
+
 	public function provideBuildSubstring_invalidParams() {
 		yield [ -1, 1 ];
 		yield [ 1, -1 ];
@@ -35,6 +36,15 @@ class DatabaseOracleTest extends PHPUnit\Framework\TestCase {
 		$db = new FakeDatabaseOracle( [] );
 		$this->setExpectedException( InvalidArgumentException::class );
 		$db->buildSubstring( 'foo', $start, $length );
+	}
+
+	/**
+	 * @covers DatabaseOracle::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$db = new FakeDatabaseOracle( [] );
+		$output = $db->buildIntegerCast( 123 );
+		$this->assertSame( 'CAST ( 123 AS INTEGER )', $output );
 	}
 
 }

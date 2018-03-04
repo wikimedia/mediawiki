@@ -358,6 +358,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildIntegerCast( $field ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function databasesAreIndependent() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
