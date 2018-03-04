@@ -1214,4 +1214,19 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $this->database->tableExists( "tmp_table_2", __METHOD__ ) );
 		$this->assertFalse( $this->database->tableExists( "tmp_table_3", __METHOD__ ) );
 	}
+
+	public function provideBuildSubstring() {
+		yield [ 'someField', 1, 2, 'SUBSTRING(someField FROM 1 FOR 2)' ];
+		yield [ 'someField', 1, null, 'SUBSTRING(someField FROM 1)' ];
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::buildSubstring
+	 * @dataProvider provideBuildSubstring
+	 */
+	public function testBuildSubstring( $input, $start, $length, $expected ) {
+		$output = $this->database->buildSubstring( $input, $start, $length );
+		$this->assertSame( $expected, $output );
+	}
+
 }
