@@ -102,6 +102,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/db
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
+	'FakeDatabaseOracle' => "$testDir/phpunit/includes/db/FakeDatabaseOracle.php",
 
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
@@ -151,6 +152,10 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/libs
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
+
+	# tests/phpunit/includes/libs/database
+	'FakeDatabaseMssql' => "$testDir/phpunit/includes/libs/rdbms/database/FakeDatabaseMssql.php",
+	'FakeDatabaseSqlite' => "$testDir/phpunit/includes/libs/rdbms/database/FakeDatabaseSqlite.php",
 
 	# tests/phpunit/maintenance
 	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",

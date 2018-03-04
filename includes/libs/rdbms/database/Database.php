@@ -1854,6 +1854,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		$functionBody = "$input FROM $startPosition";
+		if ( $length !== null ) {
+			$functionBody .= " FOR $length";
+		}
+		return 'SUBSTRING(' . $functionBody . ')';
+	}
+
 	public function buildStringCast( $field ) {
 		return $field;
 	}

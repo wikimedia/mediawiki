@@ -1051,6 +1051,17 @@ interface IDatabase {
 	);
 
 	/**
+	 * Build a SUBSTRING function.
+	 *
+	 * @param string $input Field name
+	 * @param int $startPosition
+	 * @param int|null $length length or null for no limit
+	 * @return string SQL text
+	 * @since 1.31
+	 */
+	public function buildSubString( $input, $startPosition, $length = null );
+
+	/**
 	 * @param string $field Field or column to cast
 	 * @return string
 	 * @since 1.28
