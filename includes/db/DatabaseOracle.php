@@ -1376,6 +1376,14 @@ class DatabaseOracle extends Database {
 		return 'CAST ( ' . $field . ' AS VARCHAR2 )';
 	}
 
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 */
+	public function buildIntegerCast( $field ) {
+		return 'CAST ( ' . $field . ' AS INTEGER )';
+	}
+
 	public function getInfinity() {
 		return '31-12-2030 12:00:00.000000';
 	}
