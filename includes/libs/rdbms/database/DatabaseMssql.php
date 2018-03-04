@@ -1225,6 +1225,19 @@ class DatabaseMssql extends Database {
 		return $sql;
 	}
 
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		$this->assertBuildSubstringParams( $startPosition, $length );
+		if ( $length === null ) {
+			/**
+			 * MSSQL doesn't allow an empty length parameter, so when we don't want to limit the
+			 * length returned use the default maximum size of text.
+			 * @see https://docs.microsoft.com/en-us/sql/t-sql/statements/set-textsize-transact-sql
+			 */
+			$length = 2147483647;
+		}
+		return 'SUBSTRING(' . implode( ',', [ $input, $startPosition, $length ] ) . ')';
+	}
+
 	/**
 	 * Returns an associative array for fields that are of type varbinary, binary, or image
 	 * $table can be either a raw table name or passed through tableName() first

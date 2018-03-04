@@ -2,6 +2,7 @@
 
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Helper for testing the methods from the Database class
