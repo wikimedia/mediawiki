@@ -1229,4 +1229,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$output = $this->database->buildIntegerCast( 'fieldName' );
+		$this->assertSame( 'fieldName', $output );
+	}
+
 }

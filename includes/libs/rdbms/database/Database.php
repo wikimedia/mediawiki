@@ -1866,6 +1866,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $field;
 	}
 
+	public function buildIntegerCast( $field ) {
+		return $field;
+	}
+
 	public function databasesAreIndependent() {
 		return false;
 	}
