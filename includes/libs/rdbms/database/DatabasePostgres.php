@@ -1283,6 +1283,10 @@ SQL;
 		return $field . '::text';
 	}
 
+	public function buildIntegerCast( $field ) {
+		return $field . '::int';
+	}
+
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
 		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
