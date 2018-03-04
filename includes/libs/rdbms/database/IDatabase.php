@@ -1073,6 +1073,13 @@ interface IDatabase {
 	public function buildStringCast( $field );
 
 	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.31
+	 */
+	public function buildIntegerCast( $field );
+
+	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
 	 *
 	 * In systems like mysql/mariadb, different databases can easily be referenced on a single
