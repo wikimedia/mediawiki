@@ -1225,6 +1225,14 @@ class DatabaseMssql extends Database {
 		return $sql;
 	}
 
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		$params = [ $input, $startPosition ];
+		if ( $length !== null ) {
+			$params[] = $length;
+		}
+		return 'SUBSTRING(' . implode( ',', $params ) . ')';
+	}
+
 	/**
 	 * Returns an associative array for fields that are of type varbinary, binary, or image
 	 * $table can be either a raw table name or passed through tableName() first
