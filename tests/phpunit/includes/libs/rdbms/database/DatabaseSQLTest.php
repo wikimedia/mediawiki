@@ -1230,6 +1230,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, $output );
 	}
 
+
 	public function provideBuildSubstring_invalidParams() {
 		yield [ -1, 1 ];
 		yield [ 1, -1 ];
@@ -1245,6 +1246,14 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testBuildSubstring_invalidParams( $start, $length ) {
 		$this->setExpectedException( InvalidArgumentException::class );
 		$this->database->buildSubstring( 'foo', $start, $length );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$output = $this->database->buildIntegerCast( 'fieldName' );
+		$this->assertSame( 'fieldName', $output );
 	}
 
 }

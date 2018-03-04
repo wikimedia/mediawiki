@@ -604,4 +604,14 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		];
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$db = new FakeDatabaseMysqlBase();
+		$output = $db->buildIntegerCast( 'fieldName' );
+		$this->assertSame( 'CAST ( fieldName AS SIGNED )', $output );
+	}
+
 }
