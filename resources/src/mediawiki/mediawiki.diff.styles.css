@@ -33,6 +33,12 @@
 	word-wrap: break-word;
 }
 
+.diff-title {
+	vertical-align: top;
+}
+
+.diff-notice,
+.diff-multi,
 .diff-otitle,
 .diff-ntitle {
 	text-align: center;
