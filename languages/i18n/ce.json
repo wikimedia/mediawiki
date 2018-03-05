@@ -2937,7 +2937,7 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> яц.",
 	"htmlform-user-not-valid": "<strong>$1</strong> — декъашхочун магийна йоцу цӀе.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|дӀаяьккхина}} агӀо $3",
-	"logentry-delete-delete_redir": "$1 {{GENDER:$2|дӀаяьккхина}} $3 дӀасахьажорг гӀоьнца",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|дӀаяьккхина}} $3 дӀасахьажорг тӀехула дӀаязйина",
 	"logentry-delete-restore": "$1 {{GENDER:$2|меттахӀоттайина|меттахӀоттайина}} агӀо $3",
 	"logentry-delete-event": "$1 {{GENDER:$2|хийцина}} гуш хилар {{PLURAL:$5|1=$5 дӀаяздаран|$5 дӀаяздаршан}} тептаран → $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|хийцина}} {{PLURAL:$5|1=$5 верси|$5 версеш}} гуш хилар $3: $4 агӀорахь",

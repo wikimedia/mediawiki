@@ -12,7 +12,8 @@
 			"Suchichi02",
 			"Kkairri",
 			"ネイ",
-			"Omotecho"
+			"Omotecho",
+			"Yusuke1109"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> このページに表示されている機能は全て動作するはずですが、この API は未だ活発に開発されており、変更される可能性があります。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -35,7 +36,7 @@
 	"apihelp-block-param-autoblock": "その利用者が最後に使用したIPアドレスと、ブロック後に編集を試みた際のIPアドレスを自動的にブロックします。",
 	"apihelp-block-param-noemail": "Wikiを通して電子メールを送信することを禁止します。(<code>blockemail</code> 権限が必要です)",
 	"apihelp-block-param-hidename": "ブロック記録から利用者名を秘匿します。(<code>hideuser</code> 権限が必要です)",
-	"apihelp-block-param-allowusertalk": "自身のトークページの編集を許可する (<var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> に依存)。",
+	"apihelp-block-param-allowusertalk": "自身のトークページの編集を許可する (<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> に依存)。",
 	"apihelp-block-param-reblock": "その利用者がすでにブロックされている場合、ブロックを上書きします。",
 	"apihelp-block-param-watchuser": "その利用者またはIPアドレスの利用者ページとトークページをウォッチします。",
 	"apihelp-block-example-ip-simple": "IPアドレス <kbd>192.0.2.5</kbd> を <kbd>First strike<kbd> という理由で3日ブロックする",
@@ -262,7 +263,7 @@
 	"apihelp-parse-paramvalue-prop-displaytitle": "構文解析されたウィキテキストのタイトルを追加します。",
 	"apihelp-parse-paramvalue-prop-headitems": "ページの <code>&lt;head&gt;</code> の中に入れてアイテムを提供します。",
 	"apihelp-parse-paramvalue-prop-headhtml": "ページの解析された <code>&lt;head&gt;</code> を与える。",
-	"apihelp-parse-paramvalue-prop-jsconfigvars": "ページに固有のJavaScriptの設定変数を提供します。",
+	"apihelp-parse-paramvalue-prop-jsconfigvars": "ページに固有のJavaScriptの設定変数を提供します。適用するには、<code>mw.config.set()</code>を使用します。",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "JSON文字列としてページに固有のJavaScriptの設定変数を提供します。",
 	"apihelp-parse-paramvalue-prop-indicators": "ページ上で使用されるページのステータスインジケータのHTMLを提供します。",
 	"apihelp-parse-paramvalue-prop-iwlinks": "構文解析されたウィキテキスト内でウィキ間リンクを提供します。",
