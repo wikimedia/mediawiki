@@ -613,7 +613,7 @@ class RevisionStore
 
 			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
-			$mainSlot = $this->emulateMainSlot_1_29( $fields, 0, $title );
+			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
 			$revision = new MutableRevisionRecord( $title, $this->wikiId );
 			$this->initializeMutableRevisionFromArray( $revision, $fields );
 			$revision->setSlot( $mainSlot );
