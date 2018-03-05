@@ -787,7 +787,7 @@
 	"expansion-depth-exceeded-category-desc": "La paĝo superis maksimuman profundecon de ekspando.",
 	"expansion-depth-exceeded-warning": "Paĝo preterpasis la ekpansiprofundon.",
 	"parser-unstrip-loop-warning": "Cirkloreferencon detektis",
-	"parser-unstrip-recursion-limit": "Rikurlimiton de analizopoj ($1) superis",
+	"unstrip-depth-warning": "Rikurlimiton de analizopoj ($1) superis",
 	"converter-manual-rule-error": "Eraron detektis en mana lingvokonverta regulo",
 	"undo-success": "La redakto estas malfarebla.\nBonvolu kontroli la jenan komparaĵon por certiĝi ĉu tio estas tio, kion vi volas, kaj konservi la ŝanĝojn malsupre por fine malfari la redakton.",
 	"undo-failure": "Ne povis nuligi redakton pro konfliktaj intermezaj redaktoj.",

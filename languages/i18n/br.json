@@ -752,7 +752,7 @@
 	"expansion-depth-exceeded-category-desc": "En tu all d'an donder astenn brasañ emañ ar bajenn.",
 	"expansion-depth-exceeded-warning": "Pajenn a ya dreist d'an donder astenn",
 	"parser-unstrip-loop-warning": "Detektet ez eus bet ul lagadenn n'haller ket divontañ",
-	"parser-unstrip-recursion-limit": "Aet dreist d'ar vevenn rekurziñ n'haller ket divontañ : $1",
+	"unstrip-depth-warning": "Aet dreist d'ar vevenn rekurziñ n'haller ket divontañ : $1",
 	"converter-manual-rule-error": "Fazi dinodet  er reolenn cheñch yezh dre zorn",
 	"undo-success": "Gallout a reer dizober ar c'hemmoù-mañ. Gwiriit, mar plij, gant ar geñveriadenn a-is evit bezañ sur eo an dra-se a fell deoc'h ober; goude-se enrollit ar c'hemmoù a-is a-benn echuiñ disteurel ar c'hemmoù.",
 	"undo-failure": "N'eus ket bet tu da zisteuler ar c'hemm-mañ abalamour d'un tabut gant kemmoù degaset e-keit-se.",

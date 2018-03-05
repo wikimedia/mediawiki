@@ -677,7 +677,7 @@
 	"expansion-depth-exceeded-category-desc": "एतत् पृष्ठं विस्तारस्य सीमाम् अत्यक्रमत् ।",
 	"expansion-depth-exceeded-warning": "पृष्ठेऽस्मिन् विस्तारसीमा समाप्ता",
 	"parser-unstrip-loop-warning": "Unstrip परिक्रमः (loop) प्राप्तः",
-	"parser-unstrip-recursion-limit": "Unstrip इत्यस्य प्रत्यावर्तनस्य (recursion) सीमा समाप्ता ($1)",
+	"unstrip-depth-warning": "Unstrip इत्यस्य प्रत्यावर्तनस्य (recursion) सीमा समाप्ता ($1)",
 	"converter-manual-rule-error": "मानवीये भाषापरिवर्तने दोषः दृष्टः ।",
 	"undo-success": "एतत् सम्पादनं पूर्ववत् कर्तुं शक्यते ।\nकृपया अधः दत्तयोः तुलनां कृत्वा यत् आवश्यकं, तत् परिवर्तनं संरक्षतु च । ततः पूर्ववत्-करणप्रक्रिया समाप्यताम् ।",
 	"undo-failure": "सम्पादनं पूर्ववत् कर्तुं न शक्यते । यतः मध्ये परस्परविपरितानि सम्पादनानि अभवन् ।",

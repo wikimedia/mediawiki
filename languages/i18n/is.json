@@ -737,7 +737,7 @@
 	"expansion-depth-exceeded-category": "Þær síður þar sem farið er út fyrir leyfða dýpt útvíkkunar",
 	"expansion-depth-exceeded-warning": "Síðan fer út fyrir leyfða dýpt útvíkkunar",
 	"parser-unstrip-loop-warning": "\"Unstrip\" lykkja fannst",
-	"parser-unstrip-recursion-limit": "Farið út fyrir „unstrip“ endurkvæmnismörk ($1)",
+	"unstrip-depth-warning": "Farið út fyrir „unstrip“ endurkvæmnismörk ($1)",
 	"converter-manual-rule-error": "Villa í reglu handvirks tungumálabreytis",
 	"undo-success": "Það er hægt að afturkalla breytinguna.\nAthugaðu vel samanburðinn hér fyrir neðan til að sannreyna að það sé það sem þú vilt gera, vistaðu svo breytingarnar hér fyrir neðan til að ljúka afturköllun breytinganna.",
 	"undo-failure": "Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.",

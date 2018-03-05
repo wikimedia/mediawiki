@@ -741,7 +741,7 @@
 	"expansion-depth-exceeded-category-desc": "La paje esede la profondia masima de estende.",
 	"expansion-depth-exceeded-warning": "La paje ia esede la profondia de estende",
 	"parser-unstrip-loop-warning": "Sicle de unstrip() detetada",
-	"parser-unstrip-recursion-limit": "Esede de la recorsa masima de unstrip() ($1)",
+	"unstrip-depth-warning": "Esede de la recorsa masima de unstrip() ($1)",
 	"converter-manual-rule-error": "Era detetada en regula nonautomata de converti de lingua",
 	"undo-success": "La edita pote es desfada.\nPer favore, esamina la compara a su per serti ce tu vole fa esta, e alora fisa la cambias a su per fini desfa la edita.",
 	"undo-failure": "La edita no pote es desfada par causa de editas interveninte cual contradise lo.",

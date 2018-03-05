@@ -687,7 +687,7 @@
 	"expansion-depth-exceeded-category": "Sider der utvidingsdjupna er overskriden",
 	"expansion-depth-exceeded-warning": "Sida har overskride utvidingsdjupna",
 	"parser-unstrip-loop-warning": "Det vart oppdaga ei løkke i Unstrip-funksjonen",
-	"parser-unstrip-recursion-limit": "Rekursjonsgrensa for Unstrip-funksjonen er overskriden ($1)",
+	"unstrip-depth-warning": "Rekursjonsgrensa for Unstrip-funksjonen er overskriden ($1)",
 	"converter-manual-rule-error": "Det vart oppdaga ein feil i ein manuell språkkonverteringsregel",
 	"undo-success": "Endringa kan angrast.\nSjå på samanlikninga under for å stadfesta at dette er det du ynskjer å gjera. Deretter kan du lagra desse endringane for å fullføra angringa.",
 	"undo-failure": "Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjorde i mellomtida.",

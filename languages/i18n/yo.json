@@ -627,7 +627,7 @@
 	"expansion-depth-exceeded-category": "Àwọn ojúewé tí ìjìn ìfẹ̀lọ wọn ju bóṣeyẹ lọ",
 	"expansion-depth-exceeded-warning": "Ojúewé ní ìjìn ìfẹ̀lọ tó ju bóṣeyẹ lọ",
 	"parser-unstrip-loop-warning": "Ìyípo unstrip ti jẹ́ fínfín",
-	"parser-unstrip-recursion-limit": "Ó ti kọjá àlà ìlọ́po unstrip ($1)",
+	"unstrip-depth-warning": "Ó ti kọjá àlà ìlọ́po unstrip ($1)",
 	"converter-manual-rule-error": "Àṣìṣe ti jẹ́ fínfín nínú ìlànà ìyípadà èdè àfọwọ́dá",
 	"undo-success": "Àtúnṣe náà ṣe é múkúrò.\nẸ jọ̀wọ́ ẹ wo ìfiwéra ìsàlẹ̀ láti rídájú pé ohun tí ẹ fẹ́ nì yẹn, nígbà náà ẹ mú àwọn àtúnṣe náà pamọ́ láti parí ìmúkúrò àtúnṣe.",
 	"undo-failure": "Àtúnṣe náà kò ṣe é múkúrò nítorí títakora àwọn àtúnṣe inú àrin.",

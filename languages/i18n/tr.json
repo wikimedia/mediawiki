@@ -823,7 +823,7 @@
 	"expansion-depth-exceeded-category-desc": "Sayfa azami genişleme derinliğini aşıyor.",
 	"expansion-depth-exceeded-warning": "Sayfa genişletme derinliği aşıldı",
 	"parser-unstrip-loop-warning": "Yineleme döngüsü algılandı",
-	"parser-unstrip-recursion-limit": "($1) yineleme sınırı aşıldı",
+	"unstrip-depth-warning": "($1) yineleme sınırı aşıldı",
 	"converter-manual-rule-error": "Elle yapılandırma dil dönüşüm kuralı hatası tespit edildi",
 	"undo-success": "Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.",
 	"undo-failure": "Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.",

@@ -752,7 +752,7 @@
 	"expansion-depth-exceeded-category-desc": "La páxina superó la fondura máxima d'espansión.",
 	"expansion-depth-exceeded-warning": "La páxina pasó la fondura d'espansión",
 	"parser-unstrip-loop-warning": "Deteutóse un bucle \"unstrip\"",
-	"parser-unstrip-recursion-limit": "Pasóse la llende de recursividá d'unstrip ($1)",
+	"unstrip-depth-warning": "Pasóse la llende de recursividá d'unstrip ($1)",
 	"converter-manual-rule-error": "Detectóse un error na regla de conversión manual de llingua",
 	"undo-success": "La edición se pue esfacer.\nPor favor comprueba la comparanza d'abaxo pa confirmar que ye eso lo que quies facer, y depués guarda los cambios p'acabar d'esfacer la edición.",
 	"undo-failure": "Nun pudo esfacese la edición por aciu d'ediciones intermedies conflictives.",
