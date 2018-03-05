@@ -174,7 +174,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->addJoinConds( [ 'user_groups' => [
 				$excludeGroups ? 'LEFT OUTER JOIN' : 'INNER JOIN',
 				[
-					'ug_user=' . $actorQuery['fields']['rev_user'],
+					'ug_user=' . $revQuery['fields']['rev_user'],
 					'ug_group' => $limitGroups,
 					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
