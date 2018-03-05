@@ -14,6 +14,8 @@
  * @author Urhixidur
  */
 
+$fallback = 'it';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medja',
 	NS_SPECIAL          => 'Speċjali',
