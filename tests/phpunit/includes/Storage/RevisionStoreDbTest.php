@@ -133,8 +133,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$store = new RevisionStore(
-			$loadBalancer,
+		$store = new RevisionStore( $loadBalancer,
 			$blobStore,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
 			MediaWikiServices::getInstance()->getCommentStore(),
@@ -142,6 +141,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MIGRATION_OLD,
 			MediaWikiServices::getInstance()->getActorMigration(),
+			false,
 			$wikiId
 		);
 

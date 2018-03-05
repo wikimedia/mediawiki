@@ -488,15 +488,15 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$cache = $this->getWANObjectCache();
 
-		$blobStore = new RevisionStore(
-			$lb,
+		$blobStore = new RevisionStore( $lb,
 			$this->getBlobStore(),
 			$cache,
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MIGRATION_OLD,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			false
 		);
 		return $blobStore;
 	}

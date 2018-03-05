@@ -498,15 +498,15 @@ return [
 		/** @var SqlBlobStore $blobStore */
 		$blobStore = $services->getService( '_SqlBlobStore' );
 
-		$store = new RevisionStore(
-			$services->getDBLoadBalancer(),
+		$store = new RevisionStore( $services->getDBLoadBalancer(),
 			$blobStore,
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
 			$services->getMainConfig()->get( 'MultiContentRevisionSchemaMigrationStage' ),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getMainConfig()->get( 'MultiContentModeEnabled' )
 		);
 
 		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );

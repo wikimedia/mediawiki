@@ -394,15 +394,15 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testNewFromArchiveRow( $selectModifier ) {
 		$services = MediaWikiServices::getInstance();
 
-		$store = new RevisionStore(
-			$services->getDBLoadBalancer(),
+		$store = new RevisionStore( $services->getDBLoadBalancer(),
 			$services->getService( '_SqlBlobStore' ),
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
 			MIGRATION_OLD,
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			false
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );
@@ -1365,7 +1365,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev = $this->testPage->getRevision();
 
 		// Clear any previous cache for the revision during creation
-		$key = $cache->makeGlobalKey( 'revision-row-1.29+content_id',
+		$key = $cache->makeGlobalKey( 'revision-row-1.31',
 			$db->getDomainID(),
 			$rev->getPage(),
 			$rev->getId()

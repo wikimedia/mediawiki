@@ -121,6 +121,9 @@ class RevisionStore
 	/** @var int One of the MIGRATION_* constants */
 	private $mcrMigrationStage;
 
+	/** @var bool Is MCR mode enabled? */
+	private $mcrEnabled;
+
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
@@ -132,6 +135,7 @@ class RevisionStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param int $migrationStage
 	 * @param ActorMigration $actorMigration
+	 * @param bool $mcrEnabled
 	 * @param bool|string $wikiId
 	 */
 	public function __construct(
@@ -143,9 +147,17 @@ class RevisionStore
 		NameTableStore $slotRoleStore,
 		$migrationStage,
 		ActorMigration $actorMigration,
+		$mcrEnabled,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		Assert::parameterType( 'boolean', $mcrEnabled, '$mcrEnabled' );
+
+		if ( $mcrEnabled && $migrationStage !== MIGRATION_NEW ) {
+			throw new InvalidArgumentException(
+				'Multi content mode can not be enabled white MCR migration is not complete.'
+			);
+		}
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
@@ -155,6 +167,7 @@ class RevisionStore
 		$this->slotRoleStore = $slotRoleStore;
 		$this->mcrMigrationStage = $migrationStage;
 		$this->actorMigration = $actorMigration;
+		$this->mcrEnabled = $mcrEnabled;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 	}
@@ -362,86 +375,92 @@ class RevisionStore
 		}
 
 		// RevisionStore currently only supports writing a single slot
-		if ( $rev->getSlotRoles() !== [ 'main' ] ) {
-			throw new InvalidArgumentException( 'Only the main slot is supported for now!' );
+		if ( $rev->getSlotRoles() !== [ 'main' ] && !$this->mcrEnabled ) {
+			throw new InvalidArgumentException(
+				'Only the main slot is supported with MCR mode disabled.'
+			);
 		}
 
 		// TODO: we shouldn't need an actual Title here.
 		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
 
-		$parentId = $rev->getParentId() === null
+		$revParentId = $rev->getParentId() === null
 			? $this->getPreviousRevisionId( $dbw, $rev )
 			: $rev->getParentId();
 
-		// Record the text (or external storage URL) to the blob store
-		// TODO allow writing of multiple slots
-		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
-
-		$size = $this->failOnNull( $rev->getSize(), 'size field' );
-		$sha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
+		// Checks.
+		$revSize = $this->failOnNull( $rev->getSize(), 'size field' );
+		$revSha1 = $this->failOnEmpty( $rev->getSha1(), 'sha1 field' );
+		$comment = $this->failOnNull( $rev->getComment( RevisionRecord::RAW ), 'comment' );
+		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
+		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
+		$this->failOnNull( $user->getId(), 'user field' );
+		$this->failOnEmpty( $user->getName(), 'user_text field' );
 
 		$dbw->startAtomic( __METHOD__ );
 
-		if ( !$slot->hasAddress() ) {
-			$content = $slot->getContent();
-			$format = $content->getDefaultFormat();
-			$model = $content->getModel();
+		$roles = $rev->getSlotRoles();
+		$blobAddresses = [];
+		// TODO factor out this loop into own method
+		foreach ( $roles as $role ) {
+			// Record the text (or external storage URL) to the blob store
+			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
 
-			$this->checkContentModel( $content, $title );
+			if ( !$slot->hasAddress() ) {
+				$content = $slot->getContent();
+				$slotFormat = $content->getDefaultFormat();
+				$slotModel = $content->getModel();
 
-			$data = $content->serialize( $format );
+				$this->checkContentModel( $content, $title );
 
-			// Hints allow the blob store to optimize by "leaking" application level information to it.
-			// TODO: with the new MCR storage schema, we rev_id have this before storing the blobs.
-			// When we have it, add rev_id as a hint. Can be used with rev_parent_id for
-			// differential storage or compression of subsequent revisions.
-			$blobHints = [
-				BlobStore::DESIGNATION_HINT => 'page-content', // BlobStore may be used for other things too.
-				BlobStore::PAGE_HINT => $pageId,
-				BlobStore::ROLE_HINT => $slot->getRole(),
-				BlobStore::PARENT_HINT => $parentId,
-				BlobStore::SHA1_HINT => $slot->getSha1(),
-				BlobStore::MODEL_HINT => $model,
-				BlobStore::FORMAT_HINT => $format,
-			];
+				$data = $content->serialize( $slotFormat );
 
-			$blobAddress = $this->blobStore->storeBlob( $data, $blobHints );
-		} else {
-			$blobAddress = $slot->getAddress();
-			$model = $slot->getModel();
-			$format = $slot->getFormat();
+				// Hints allow the blob store to optimize by "leaking" application level information to it.
+				// TODO: with the new MCR storage schema, we rev_id have this before storing the blobs.
+				// When we have it, add rev_id as a hint. Can be used with rev_parent_id for
+				// differential storage or compression of subsequent revisions.
+				$blobHints = [
+					BlobStore::DESIGNATION_HINT => 'page-content', // BlobStore may be used for other things too.
+					BlobStore::PAGE_HINT => $pageId,
+					BlobStore::ROLE_HINT => $slot->getRole(),
+					BlobStore::PARENT_HINT => $revParentId,
+					BlobStore::SHA1_HINT => $slot->getSha1(),
+					BlobStore::MODEL_HINT => $slotModel,
+					BlobStore::FORMAT_HINT => $slotFormat,
+				];
+
+				$blobAddress = $this->blobStore->storeBlob( $data, $blobHints );
+			} else {
+				$blobAddress = $slot->getAddress();
+				$slotModel = $slot->getModel();
+				$slotFormat = $slot->getFormat();
+			}
+
+			$textId = $this->blobStore->getTextIdFromAddress( $blobAddress );
+
+			if ( !$textId ) {
+				// Happens if the blob is not stored in the text table.
+				throw new LogicException(
+					'Blob address not supported in 1.29 database schema: ' . $blobAddress
+				);
+			}
+
+			// getTextIdFromAddress() is free to insert something into the text table, so $textId
+			// may be a new value, not anything already contained in $blobAddress.
+			$blobAddress = 'tt:' . $textId;
+			$blobAddresses[$role] = $blobAddress;
 		}
-
-		$textId = $this->blobStore->getTextIdFromAddress( $blobAddress );
-
-		if ( !$textId ) {
-			throw new LogicException(
-				'Blob address not supported in 1.29 database schema: ' . $blobAddress
-			);
-		}
-
-		// getTextIdFromAddress() is free to insert something into the text table, so $textId
-		// may be a new value, not anything already contained in $blobAddress.
-		$blobAddress = 'tt:' . $textId;
-
-		$comment = $this->failOnNull( $rev->getComment( RevisionRecord::RAW ), 'comment' );
-		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
-		$timestamp = $this->failOnEmpty( $rev->getTimestamp(), 'timestamp field' );
-
-		// Checks.
-		$this->failOnNull( $user->getId(), 'user field' );
-		$this->failOnEmpty( $user->getName(), 'user_text field' );
 
 		// Record the edit in revisions
 		$revisionRow = [
 			'rev_page'       => $pageId,
-			'rev_parent_id'  => $parentId,
+			'rev_parent_id'  => $revParentId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
 			'rev_timestamp'  => $dbw->timestamp( $timestamp ),
 			'rev_deleted'    => $rev->getVisibility(),
-			'rev_len'        => $size,
-			'rev_sha1'       => $sha1,
+			'rev_len'        => $revSize,
+			'rev_sha1'       => $revSha1,
 		];
 
 		if ( $rev->getId() !== null ) {
@@ -465,8 +484,8 @@ class RevisionStore
 				$defaultModel = ContentHandler::getDefaultModelFor( $title );
 				$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
 
-				$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-				$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+				$revisionRow['rev_content_model'] = ( $slotModel === $defaultModel ) ? null : $slotModel;
+				$revisionRow['rev_content_format'] = ( $slotFormat === $defaultFormat ) ? null : $slotFormat;
 			}
 		} else {
 			// rev_text_id has NOT NULL and no DEFAULT, so set to 0 when we are not writing to it.
@@ -498,29 +517,33 @@ class RevisionStore
 		}
 
 		// Write to the new content tables if the MCR schema is available and no address is present
-		// TODO: Loop over multiple slots for insertion.
-		$contentId = null;
-		if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
-			$contentId = $this->insertSlotOn(
-				$slot, $dbw, $revisionId, $blobAddress
-			);
+		$newSlots = [];
+		foreach ( $roles as $role ) {
+			$blobAddress = $blobAddresses[$role];
+			$slot = $rev->getSlot( $role, RevisionRecord::RAW );
+
+			$contentId = null;
+			if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				$contentId = $this->insertSlotOn(
+					$slot,
+					$dbw,
+					$revisionId,
+					$blobAddress
+				);
+			}
+			$newSlots[$role] = SlotRecord::newSaved( $revisionId, $contentId, $blobAddress, $slot );
 		}
 
 		$dbw->endAtomic( __METHOD__ );
-
-		$newSlot = SlotRecord::newSaved( $revisionId, $contentId, $blobAddress, $slot );
-		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
 		$rev = new RevisionStoreRecord(
 			$title,
 			$user,
 			$comment,
 			(object)$revisionRow,
-			$slots,
+			new RevisionSlots( $newSlots ),
 			$this->wikiId
 		);
-
-		$newSlot = $rev->getSlot( 'main', RevisionRecord::RAW );
 
 		// sanity checks
 		Assert::postcondition( $rev->getId() > 0, 'revision must have an ID' );
@@ -534,11 +557,17 @@ class RevisionStore
 			'revision must have a user'
 		);
 
-		Assert::postcondition( $newSlot !== null, 'revision must have a main slot' );
 		Assert::postcondition(
-			$newSlot->getAddress() !== null,
-			'main slot must have an address'
+			$rev->getSlot( 'main', RevisionRecord::RAW ) !== null,
+			'revision must have a main slot'
 		);
+
+		foreach ( $roles as $role ) {
+			Assert::postcondition(
+				$rev->getSlot( $role )->getAddress() !== null,
+				'each slot must have an address'
+			);
+		}
 
 		Hooks::run( 'RevisionRecordInserted', [ $rev ] );
 
@@ -711,6 +740,7 @@ class RevisionStore
 
 			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
+			// TODO MCR null revisions
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, 0, $title );
 			$revision = new MutableRevisionRecord( $title, $this->wikiId );
 			$this->initializeMutableRevisionFromArray( $revision, $fields );
@@ -1686,6 +1716,8 @@ class RevisionStore
 	 * If the format of fields returned changes in any way then the cache key provided by
 	 * self::getRevisionRowCacheKey should be updated.
 	 *
+	 * @todo MCR mode....
+	 *
 	 * @since 1.31
 	 *
 	 * @param array $options Any combination of the following strings
@@ -2208,7 +2240,7 @@ class RevisionStore
 	 */
 	private function getRevisionRowCacheKey( IDatabase $db, $pageId, $revId ) {
 		return $this->cache->makeGlobalKey(
-			'revision-row-1.29+content_id',
+			'revision-row-1.31',
 			$db->getDomainID(),
 			$pageId,
 			$revId

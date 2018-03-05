@@ -8841,6 +8841,16 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 $wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Should multi content mode be enabled?
+ *
+ * @see https://www.mediawiki.org/wiki/Requests_for_comment/Multi-Content_Revisions
+ *
+ * @since 1.31
+ * @var bool
+ */
+$wgMultiContentModeEnabled = false;
+
+/**
  * Actor table schema migration stage.
  * @since 1.31
  * @var int One of the MIGRATION_* constants

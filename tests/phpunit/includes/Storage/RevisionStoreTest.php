@@ -2,14 +2,17 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use ActorMigration;
 use CommentStore;
 use DatabaseTestHelper;
 use HashBagOStuff;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
 use MWException;
@@ -19,6 +22,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadBalancerSingle;
 use Wikimedia\TestingAccessWrapper;
+use WikitextContent;
 
 class RevisionStoreTest extends MediaWikiTestCase {
 
@@ -36,15 +40,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$WANObjectCache = null,
 		$mcrMigrationStage = MIGRATION_OLD
 	) {
-		return new RevisionStore(
-			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
+		return new RevisionStore( $loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			$mcrMigrationStage,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			false
 		);
 	}
 
@@ -80,6 +84,14 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()->getMock();
 	}
 
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|ActorMigration
+	 */
+	private function getMockActorMigration() {
+		return $this->getMockBuilder( ActorMigration::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
 	}
@@ -110,15 +122,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$this->setExpectedException( MWException::class );
 		}
 
-		$store = new RevisionStore(
-			$this->getMockLoadBalancer(),
+		$store = new RevisionStore( $this->getMockLoadBalancer(),
 			$this->getMockSqlBlobStore(),
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			$migrationMode,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			false
 		);
 
 		$store->setContentHandlerUseDB( $contentHandlerDb );
@@ -1019,17 +1031,24 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	public function provideMigrationConstruction() {
 		return [
-			[ MIGRATION_OLD, false ],
-			[ MIGRATION_WRITE_BOTH, false ],
-			[ MIGRATION_WRITE_NEW, false ],
-			[ MIGRATION_NEW, false ],
+			// mcrMode false
+			[ MIGRATION_OLD, false, false ],
+			[ MIGRATION_WRITE_BOTH, false,  false ],
+			[ MIGRATION_WRITE_NEW, false,  false ],
+			[ MIGRATION_NEW, false,  false ],
+			// mcrMode true
+			[ MIGRATION_OLD, true, true ],
+			[ MIGRATION_WRITE_BOTH, true,  true ],
+			[ MIGRATION_WRITE_NEW, true,  true ],
+			[ MIGRATION_NEW, true,  false ],
 		];
 	}
 
 	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::__construct
 	 * @dataProvider provideMigrationConstruction
 	 */
-	public function testMigrationConstruction( $migration, $expectException ) {
+	public function testMigrationConstruction( $migration, $mcrEnabled, $expectException ) {
 		if ( $expectException ) {
 			$this->setExpectedException( InvalidArgumentException::class );
 		}
@@ -1037,17 +1056,18 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$blobStore = $this->getMockSqlBlobStore();
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
+		$actorMigration = $this->getMockActorMigration();
 		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-		$store = new RevisionStore(
-			$loadBalancer,
+		$store = new RevisionStore( $loadBalancer,
 			$blobStore,
 			$cache,
 			$commentStore,
 			$contentModelStore,
 			$slotRoleStore,
 			$migration,
-			MediaWikiServices::getInstance()->getActorMigration()
+			$actorMigration,
+			$mcrEnabled
 		);
 		if ( !$expectException ) {
 			$store = TestingAccessWrapper::newFromObject( $store );
@@ -1055,9 +1075,11 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$this->assertSame( $blobStore, $store->blobStore );
 			$this->assertSame( $cache, $store->cache );
 			$this->assertSame( $commentStore, $store->commentStore );
+			$this->assertSame( $actorMigration, $store->actorMigration );
 			$this->assertSame( $contentModelStore, $store->contentModelStore );
 			$this->assertSame( $slotRoleStore, $store->slotRoleStore );
 			$this->assertSame( $migration, $store->mcrMigrationStage );
+			$this->assertSame( $mcrEnabled, $store->mcrEnabled );
 		}
 	}
 
@@ -1098,6 +1120,45 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 		$this->assertArrayEquals( $expected, $actual, false, true );
 		$this->assertArrayEquals( $expectedIntKeyValues, $actualIntKeyValues, false, true );
+	}
+
+	private function getMockFilledRevisionStore( $mcrMigration, $mcrEnabled ) {
+		$loadBalancer = $this->getMockLoadBalancer();
+		$blobStore = $this->getMockSqlBlobStore();
+		$cache = $this->getHashWANObjectCache();
+		$commentStore = $this->getMockCommentStore();
+		$actorMigration = $this->getMockActorMigration();
+		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$store = new RevisionStore( $loadBalancer,
+			$blobStore,
+			$cache,
+			$commentStore,
+			$contentModelStore,
+			$slotRoleStore,
+			$mcrMigration,
+			$actorMigration,
+			$mcrEnabled
+		);
+		return $store;
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 */
+	public function testInsertRevisionOn_MultipleSlots_NotMcrMode() {
+		$store = $this->getMockFilledRevisionStore( MIGRATION_NEW, false );
+
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$record->setSlot( SlotRecord::newUnsaved( 'one', new WikitextContent( 'c1' ) ) );
+		$record->setSlot( SlotRecord::newUnsaved( 'two', new WikitextContent( 'c2' ) ) );
+
+		$this->setExpectedException(
+			InvalidArgumentException::class,
+			'Only the main slot is supported with MCR mode disabled.'
+		);
+
+		$store->insertRevisionOn( $record, $this->getMockDatabase() );
 	}
 
 }
