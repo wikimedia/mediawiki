@@ -3311,9 +3311,8 @@ $wgAllowUserJs = false;
 $wgAllowUserCss = false;
 
 /**
- * Allow user-preferences implemented in CSS?
- * This allows users to customise the site appearance to a greater
- * degree; disabling it will improve page load times.
+ * Allow style-related user-preferences?
+ * This controls whether the `editfont` and `underline` are availabe to users.
  */
 $wgAllowUserCssPrefs = true;
 
