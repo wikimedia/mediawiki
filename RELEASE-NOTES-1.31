@@ -279,6 +279,12 @@ changes to languages because of Phabricator reports.
   * ::setExtendedLoginCookie()
   Note that User::setCookies() remains, and is not deprecated.
 * The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have been removed.
+* The following methods related to caching of half-parsed HTML were deprecated:
+  * Parser::serializeHalfParsedText()
+  * Parser::unserializeHalfParsedText()
+  * Parser::isValidHalfParsedText()
+  * StripState::getSubState()
+  * StripState::merge()
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
