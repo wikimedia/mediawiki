@@ -27,6 +27,11 @@ class JobQueueSecondTestQueue extends JobQueue {
 	 */
 	private $debugQueue;
 
+	/**
+	 * @var bool
+	 */
+	private $onlyWriteToDebugQueue;
+
 	protected function __construct( array $params ) {
 		if ( !isset( $params['mainqueue'] ) ) {
 			throw new MWException( "mainqueue parameter must be provided to the debug queue" );
@@ -39,6 +44,7 @@ class JobQueueSecondTestQueue extends JobQueue {
 		$conf = [ 'wiki' => $params['wiki'], 'type' => $params['type'] ];
 		$this->mainQueue = JobQueue::factory( $params['mainqueue'] + $conf );
 		$this->debugQueue = JobQueue::factory( $params['debugqueue'] + $conf );
+		$this->onlyWriteToDebugQueue = isset( $params['readonly'] ) ? $params['readonly'] : false;
 
 		// We need to construct parent after creating the main and debug queue
 		// because super constructor calls some methods we delegate to the main queue.
@@ -118,7 +124,9 @@ class JobQueueSecondTestQueue extends JobQueue {
 	 * @param int $flags
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
-		$this->mainQueue->doBatchPush( $jobs, $flags );
+		if ( !$this->onlyWriteToDebugQueue ) {
+			$this->mainQueue->doBatchPush( $jobs, $flags );
+		}
 
 		try {
 			$this->debugQueue->doBatchPush( $jobs, $flags );
