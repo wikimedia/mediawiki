@@ -733,7 +733,7 @@
 	"expansion-depth-exceeded-category-desc": "'A pàgene sbonne 'a massime espanzione de profonnetà.",
 	"expansion-depth-exceeded-warning": "Pàggene ca sbonnane 'a profonnetà de espanzione",
 	"parser-unstrip-loop-warning": "Cicle infinite acchiate",
-	"parser-unstrip-recursion-limit": "Limite de ricorsione infinite sbunnate ($1)",
+	"unstrip-depth-warning": "Limite de ricorsione infinite sbunnate ($1)",
 	"converter-manual-rule-error": "Errore assute jndr'à le regole de conversione d'a lènghe manuale",
 	"undo-success": "'U cangiamende pò essere annullate.\nPe piacere verifichesce 'u combronde sotte pe condrollà ca quiste ca tu vuè ccu face e pò reggistrè le cangiaminde aqquà sotte pe spiccià l'annullamende d'u cangiamende.",
 	"undo-failure": "'U cangiamende non ge pò essere annullete purcè stè 'nu conflitte de cangiaminde indermedije.",

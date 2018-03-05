@@ -26,31 +26,38 @@
  * @ingroup Parser
  */
 class StripState {
-	protected $prefix;
 	protected $data;
 	protected $regex;
 
-	protected $circularRefGuard;
-	protected $recursionLevel = 0;
+	protected $parser;
 
-	const UNSTRIP_RECURSION_LIMIT = 20;
+	protected $circularRefGuard;
+	protected $depth = 0;
+	protected $highestDepth = 0;
+	protected $expandSize = 0;
+
+	protected $depthLimit = 20;
+	protected $sizeLimit = 5000000;
 
 	/**
-	 * @param string|null $prefix
-	 * @since 1.26 The prefix argument should be omitted, as the strip marker
-	 *  prefix string is now a constant.
+	 * @param Parser|null $parser
+	 * @param array $options
 	 */
-	public function __construct( $prefix = null ) {
-		if ( $prefix !== null ) {
-			wfDeprecated( __METHOD__ . ' with called with $prefix argument' .
-				' (call with no arguments instead)', '1.26' );
-		}
+	public function __construct( Parser $parser = null, $options = [] ) {
 		$this->data = [
 			'nowiki' => [],
 			'general' => []
 		];
 		$this->regex = '/' . Parser::MARKER_PREFIX . "([^\x7f<>&'\"]+)" . Parser::MARKER_SUFFIX . '/';
 		$this->circularRefGuard = [];
+		$this->parser = $parser;
+
+		if ( isset( $options['depthLimit'] ) ) {
+			$this->depthLimit = $options['depthLimit'];
+		}
+		if ( isset( $options['sizeLimit'] ) ) {
+			$this->sizeLimit = $options['sizeLimit'];
+		}
 	}
 
 	/**
@@ -125,25 +132,32 @@ class StripState {
 			$marker = $m[1];
 			if ( isset( $this->data[$type][$marker] ) ) {
 				if ( isset( $this->circularRefGuard[$marker] ) ) {
-					return '<span class="error">'
-						. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
-						. '</span>';
+					return $this->getWarning( 'parser-unstrip-loop-warning' );
 				}
-				if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
-					return '<span class="error">' .
-						wfMessage( 'parser-unstrip-recursion-limit' )
-							->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
-						'</span>';
+
+				if ( $this->depth > $this->highestDepth ) {
+					$this->highestDepth = $this->depth;
 				}
-				$this->circularRefGuard[$marker] = true;
-				$this->recursionLevel++;
+				if ( $this->depth >= $this->depthLimit ) {
+					return $this->getLimitationWarning( 'unstrip-depth', $this->depthLimit );
+				}
+
 				$value = $this->data[$type][$marker];
 				if ( $value instanceof Closure ) {
 					$value = $value();
 				}
+
+				$this->expandSize += strlen( $value );
+				if ( $this->expandSize > $this->sizeLimit ) {
+					return $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit );
+				}
+
+				$this->circularRefGuard[$marker] = true;
+				$this->depth++;
 				$ret = $this->unstripType( $type, $value );
-				$this->recursionLevel--;
+				$this->depth--;
 				unset( $this->circularRefGuard[$marker] );
+
 				return $ret;
 			} else {
 				return $m[0];
@@ -155,15 +169,68 @@ class StripState {
 	}
 
 	/**
+	 * Get warning HTML and register a limitation warning with the parser
+	 *
+	 * @param string $type
+	 * @param int $max
+	 * @return string
+	 */
+	private function getLimitationWarning( $type, $max = '' ) {
+		if ( $this->parser ) {
+			$this->parser->limitationWarn( $type, $max );
+		}
+		return $this->getWarning( "$type-warning", $max );
+	}
+
+	/**
+	 * Get warning HTML
+	 *
+	 * @param string $message
+	 * @param int $max
+	 * @return string
+	 */
+	private function getWarning( $message, $max = '' ) {
+		return '<span class="error">' .
+			wfMessage( $message )
+				->numParams( $max )->inContentLanguage()->text() .
+			'</span>';
+	}
+
+	/**
+	 * Get an array of parameters to pass to ParserOutput::setLimitReportData()
+	 *
+	 * @unstable Should only be called by Parser
+	 * @return array
+	 */
+	public function getLimitReport() {
+		return [
+			[ 'limitreport-unstrip-depth',
+				[
+					$this->highestDepth,
+					$this->depthLimit
+				],
+			],
+			[ 'limitreport-unstrip-size',
+				[
+					$this->expandSize,
+					$this->sizeLimit
+				],
+			]
+		];
+	}
+
+	/**
 	 * Get a StripState object which is sufficient to unstrip the given text.
 	 * It will contain the minimum subset of strip items necessary.
 	 *
+	 * @deprecated since 1.31
 	 * @param string $text
-	 *
 	 * @return StripState
 	 */
 	public function getSubState( $text ) {
-		$subState = new StripState();
+		wfDeprecated( __METHOD__, '1.31' );
+
+		$subState = new StripState;
 		$pos = 0;
 		while ( true ) {
 			$startPos = strpos( $text, Parser::MARKER_PREFIX, $pos );
@@ -194,11 +261,14 @@ class StripState {
 	 * will not be preserved. The strings in the $texts array will have their
 	 * strip markers rewritten, the resulting array of strings will be returned.
 	 *
+	 * @deprecated since 1.31
 	 * @param StripState $otherState
 	 * @param array $texts
 	 * @return array
 	 */
 	public function merge( $otherState, $texts ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$mergePrefix = wfRandomString( 16 );
 
 		foreach ( $otherState->data as $type => $items ) {

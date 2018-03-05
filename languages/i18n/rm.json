@@ -576,7 +576,7 @@
 	"expansion-depth-exceeded-category": "Paginas, nua che la porfunditad d'extensiun è surpassada",
 	"expansion-depth-exceeded-warning": "Questa pagina ha surpassà la profunditad d'expansiun",
 	"parser-unstrip-loop-warning": "Chattà circul d'unstrip",
-	"parser-unstrip-recursion-limit": "Limita da recursiun ($1) per unstrip è surpassà",
+	"unstrip-depth-warning": "Limita da recursiun ($1) per unstrip è surpassà",
 	"converter-manual-rule-error": "Ina errur è cumparida en la regla manuala da convertir la lingua",
 	"undo-success": "Questa modificaziun na po betg vegnir revocada.\nControlleschan en la vista per cumparegliar sutvart sche quei è quai che ti vuls far e lura memorisescha las midadas sutvart per terminar la modificaziun.",
 	"undo-failure": "La modificaziun na pudeva betg vegnir revocada causa modificaziuns pli novas che stattan en conflict cun questa acziun.",

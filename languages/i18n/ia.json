@@ -752,7 +752,7 @@
 	"expansion-depth-exceeded-category-desc": "Le pagina excede le profunditate de expansion maxime.",
 	"expansion-depth-exceeded-warning": "Le profunditate de expansion in iste pagina excede le limite",
 	"parser-unstrip-loop-warning": "Bucla de \"unstrip\" detegite",
-	"parser-unstrip-recursion-limit": "Limite de recursion de \"unstrip\" excedite ($1)",
+	"unstrip-depth-warning": "Limite de recursion de \"unstrip\" excedite ($1)",
 	"converter-manual-rule-error": "Error detegite in le regula manual de conversion de lingua",
 	"undo-success": "Le modification pote esser disfacite.\nPer favor controla le comparation infra pro verificar que tu vole facer isto, e postea salveguarda le modificationes infra pro assi disfacer le modification.",
 	"undo-failure": "Le modification non poteva esser annullate a causa de conflicto con modificationes intermedie.",

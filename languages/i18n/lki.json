@@ -736,7 +736,7 @@
 	"expansion-depth-exceeded-category-desc": "رده برای صفحاتی که در آنها از عمق گسترش فراتر رفته است.",
 	"expansion-depth-exceeded-warning": "صفحه حداکثر عمق بسط دادن تجاوز کرد",
 	"parser-unstrip-loop-warning": "حلقه در دستور unstrip پیدا شد",
-	"parser-unstrip-recursion-limit": "از حداکثر ارجاع در دستور unstrip تجاوز شد ($1)",
+	"unstrip-depth-warning": "از حداکثر ارجاع در دستور unstrip تجاوز شد ($1)",
 	"converter-manual-rule-error": "خطا در قوانین مبدل دستی زبان",
 	"undo-success": "این ویرایش را می‌توان خنثی کرد.\nلطفاً تفاوت زیر را بررسی کنید تا تأیید کنید که این چیزی است که می‌خواهید انجام دهید، سپس تغییرات زیر را ذخیره کنید تا خنثی‌سازی ویرایش را به پایان ببرید.",
 	"undo-failure": "به علت تعارض با ویرایش‌های میانی، این ویرایش را نمی‌توان خنثی کرد.",

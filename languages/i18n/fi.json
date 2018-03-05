@@ -788,7 +788,7 @@
 	"expansion-depth-exceeded-category-desc": "Tämä sivu ylittää suurimman sallitun laajentamissyvyyden (expansion depth).",
 	"expansion-depth-exceeded-warning": "Sivu ylitti laajentamissyvyyden.",
 	"parser-unstrip-loop-warning": "Unstrip-silmukka havaittiin",
-	"parser-unstrip-recursion-limit": "Unstrip-rekursion enimmäissyvyys ($1) ylitettiin",
+	"unstrip-depth-warning": "Unstrip-rekursion enimmäissyvyys ($1) ylitettiin",
 	"converter-manual-rule-error": "Kielivarianttisäännössä on virhe",
 	"undo-success": "Kumoaminen voidaan suorittaa.\nVarmista alla olevasta vertailusta, että haluat saada aikaan tämän lopputuloksen, ja sen jälkeen tallenna alla näkyvät muutokset.",
 	"undo-failure": "Muokkausta ei voi kumota välissä olevien ristiriitaisten muutosten vuoksi.",

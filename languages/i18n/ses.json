@@ -642,7 +642,7 @@
 	"expansion-depth-exceeded-category-desc": "Moɲoo ga hayandiri guusuyan kul ibeeroo hoo.",
 	"expansion-depth-exceeded-warning": "Moɲoo ga hayandiri guusuyanoo hoo",
 	"parser-unstrip-loop-warning": "Feferiyan-naŋ zollo maatandi",
-	"parser-unstrip-recursion-limit": "Feferiyan-filla dimmaa hoo ($1)",
+	"unstrip-depth-warning": "Feferiyan-filla dimmaa hoo ($1)",
 	"converter-manual-rule-error": "Firka bangay kanbe šenni bereyan ašariyaa ra",
 	"undo-success": "Fasalyan ga hin ka borrandi.\nGuna ganda deedandiyanoo ka tabatandi kaŋ woo no war ga boona k'a tee, nda waati din wa ganda barmawey gaabu ka fasalyan borroyanoo benandi.",
 	"undo-failure": "Barmaa ši hin ka taafeeri zama game barmay fooyaŋ ga cere hoo.",

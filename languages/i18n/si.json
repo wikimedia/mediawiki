@@ -706,7 +706,7 @@
 	"expansion-depth-exceeded-category-desc": "මෙම පිටුව උපරිම පුළුල් ගැඹුරු ඉක්මවා යයි.",
 	"expansion-depth-exceeded-warning": "පිටුව පුළුල් ගැඹුරු ඉක්මවා",
 	"parser-unstrip-loop-warning": "Unstrip ලූප අනාවරණය",
-	"parser-unstrip-recursion-limit": "Unstrip සහානුයාත සීමාව ($1) ඉක්මවා",
+	"unstrip-depth-warning": "Unstrip සහානුයාත සීමාව ($1) ඉක්මවා",
 	"converter-manual-rule-error": "අත්පොත භාෂා පරිවර්තනය පාලනය අනාවරණය දෝෂ",
 	"undo-success": "මෙම සංස්කරණය අහෝසි කල හැක.\nපහත දක්වා ඇති සැසැඳුම පරික්ෂා කර බලා ඔබගේ අභිලාෂය මෙයමැයි තහවුරු කොට ගෙන, සංස්කරණය අහෝසිකිරීම සඳහා පහත දැක්වෙන වෙනස්වීම් සුරකින්න.",
 	"undo-failure": "පරස්පර විරෝධී අතරමැදි සංස්කරණ හේතුවෙන් මෙම සංස්කරණය අහෝසි කල නොහැක.",

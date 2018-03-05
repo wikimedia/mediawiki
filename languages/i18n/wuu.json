@@ -652,7 +652,7 @@
 	"parser-template-recursion-depth-warning": "模板递归深度超限（$1）",
 	"language-converter-depth-warning": "字词转换器深度超限（$1）",
 	"node-count-exceeded-category": "页面个节点数超出限制",
-	"parser-unstrip-recursion-limit": "递归超过限制 ($1)",
+	"unstrip-depth-warning": "递归超过限制 ($1)",
 	"converter-manual-rule-error": "来手动语言转换规则当中查着错误",
 	"undo-success": "箇只编辑可以撤销。请检查下头个比较，确定侬确实想撤销，再保存下底个更改完成撤销编辑。",
 	"undo-failure": "由于相互冲突个中途编辑，箇只编辑弗好撤销。",

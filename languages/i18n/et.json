@@ -767,7 +767,7 @@
 	"expansion-depth-exceeded-category-desc": "Lehekülg ületab hõrendussügavuse ülemmäära.",
 	"expansion-depth-exceeded-warning": "Lehekülg ületas hõrendussügavuse.",
 	"parser-unstrip-loop-warning": "''Unstrip''-funktsiooni silmus tuvastatud",
-	"parser-unstrip-recursion-limit": "''Unstrip''-funktsioonis rekursiooni piirmäär ületatud ($1)",
+	"unstrip-depth-warning": "''Unstrip''-funktsioonis rekursiooni piirmäär ületatud ($1)",
 	"converter-manual-rule-error": "Tõrge keelevariandi käsivahetusreeglis",
 	"undo-success": "Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.",
 	"undo-failure": "Muudatust ei saa vahapeal tehtud redigeerimiste tõttu tühistada.",

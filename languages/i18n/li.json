@@ -750,7 +750,7 @@
 	"expansion-depth-exceeded-category-desc": "De pagina geit euver de maximaal oetbreijingsdeepdje.",
 	"expansion-depth-exceeded-warning": "De paasj haet te väöl sjablone",
 	"parser-unstrip-loop-warning": "Unstriplus gevónje",
-	"parser-unstrip-recursion-limit": "Unstriprecursielimiet te väöl ($1)",
+	"unstrip-depth-warning": "Unstriprecursielimiet te väöl ($1)",
 	"converter-manual-rule-error": "'n Fout is óntdèk gewaore in 'ne handjmaesig tougeveudje spraokómzèttingsregel",
 	"undo-success": "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
 	"undo-failure": "De verangering kòs neet ongedaon gemaak waere waeges angere striedige verangeringe.",
