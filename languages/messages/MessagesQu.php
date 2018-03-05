@@ -15,7 +15,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'es';
+$fallback = 'qug, es';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Midya',
