@@ -431,17 +431,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Test if displayFormat is 'vform'
-	 * @since 1.22
-	 * @deprecated since 1.25
-	 * @return bool
-	 */
-	public function isVForm() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return false;
-	}
-
-	/**
 	 * Get the HTMLFormField subclass for this descriptor.
 	 *
 	 * The descriptor can be passed either 'class' which is the name of
