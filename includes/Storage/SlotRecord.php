@@ -96,8 +96,8 @@ class SlotRecord {
 	 * @return SlotRecord
 	 */
 	public static function newInherited( SlotRecord $slot ) {
+		// NOTE: slot_origin is copied from $slot!
 		return self::newDerived( $slot, [
-			'slot_inherited' => true,
 			'slot_revision_id' => null,
 		] );
 	}
@@ -119,10 +119,11 @@ class SlotRecord {
 	public static function newUnsaved( $role, Content $content ) {
 		Assert::parameterType( 'string', $role, '$role' );
 
+		// NOTE: no
 		$row = [
 			'slot_id' => null, // not yet known
 			'slot_revision_id' => null, // not yet known
-			'slot_inherited' => 0, // not inherited
+			'slot_origin' => null, // not yet known, will be set in newForSaving()
 			'content_size' => null, // compute later
 			'content_sha1' => null, // compute later
 			'slot_content_id' => null, // not yet known, will be set in newSaved()
@@ -178,15 +179,21 @@ class SlotRecord {
 			);
 		}
 
-		if ( $protoSlot->isInherited() && !$protoSlot->hasAddress() ) {
-			throw new InvalidArgumentException(
-				"An inherited blob should have a content address!"
-			);
+		if ( $protoSlot->isInherited() ) {
+			if ( !$protoSlot->hasAddress() ) {
+				throw new InvalidArgumentException(
+					"An inherited blob should have a content address!"
+				);
+			}
+			$origin = $protoSlot->getOrigin();
+		} else {
+			$origin = $revisionId;
 		}
 
 		return self::newDerived( $protoSlot, [
 			'slot_revision_id' => $revisionId,
 			'slot_content_id' => $contentId,
+			'slot_origin' => $origin,
 			'content_address' => $contentAddress,
 		] );
 	}
@@ -221,11 +228,6 @@ class SlotRecord {
 			'must exist'
 		);
 		Assert::parameter(
-			property_exists( $row, 'slot_inherited' ),
-			'$row->slot_inherited',
-			'must exist'
-		);
-		Assert::parameter(
 			property_exists( $row, 'slot_content_id' ),
 			'$row->slot_content_id',
 			'must exist'
@@ -239,6 +241,21 @@ class SlotRecord {
 			property_exists( $row, 'model_name' ),
 			'$row->model_name',
 			'must exist'
+		);
+		Assert::parameter(
+			property_exists( $row, 'slot_origin' ),
+			'$row->slot_origin',
+			'must exist'
+		);
+		Assert::parameter(
+			!property_exists( $row, 'slot_inherited' ),
+			'$row->slot_inherited',
+			'must not exist'
+		);
+		Assert::parameter(
+			!property_exists( $row, 'slot_revision' ),
+			'$row->slot_revision',
+			'must not exist'
 		);
 
 		$this->row = $row;
@@ -361,12 +378,31 @@ class SlotRecord {
 	}
 
 	/**
+	 * Returns the revision ID of the revision that originated the slot's content.
+	 *
+	 * @return int
+	 */
+	public function getOrigin() {
+		return $this->getIntField( 'slot_origin' );
+	}
+
+	/**
 	 * Whether this slot was inherited from an older revision.
+	 *
+	 * If this SlotRecord is already attached to a revision, this returns true
+	 * if the slot's revision of origin is the same as the revision it belongs to.
+	 *
+	 * If this SlotRecord is not yet attached to a revision, this returns true
+	 * if the slot already has an address.
 	 *
 	 * @return bool
 	 */
 	public function isInherited() {
-		return $this->getIntField( 'slot_inherited' ) !== 0;
+		if ( $this->hasRevision() ) {
+			return $this->getRevision() !== $this->getOrigin();
+		} else {
+			return $this->hasAddress();
+		}
 	}
 
 	/**
