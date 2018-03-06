@@ -25,7 +25,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 			'model_name' => CONTENT_MODEL_WIKITEXT,
 			'format_name' => CONTENT_FORMAT_WIKITEXT,
 			'slot_revision_id' => '2',
-			'slot_inherited' => '1',
+			'slot_origin' => '1',
 			'role_name' => 'myRole',
 		];
 		return (object)$data;
@@ -43,6 +43,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 'someHash', $record->getSha1() );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
 		$this->assertSame( 2, $record->getRevision() );
+		$this->assertSame( 1, $record->getOrigin() );
 		$this->assertSame( 'tt:456', $record->getAddress() );
 		$this->assertSame( CONTENT_FORMAT_WIKITEXT, $record->getFormat() );
 		$this->assertSame( 'myRole', $record->getRole() );
@@ -55,7 +56,8 @@ class SlotRecordTest extends MediaWikiTestCase {
 			'format_name' => function () {
 				return CONTENT_FORMAT_WIKITEXT;
 			},
-			'slot_inherited' => '0'
+			'slot_revision_id' => '2',
+			'slot_origin' => '2',
 		] );
 
 		$content = function () {
@@ -71,6 +73,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotNull( $record->getSha1() );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 'tt:456', $record->getAddress() );
 		$this->assertSame( CONTENT_FORMAT_WIKITEXT, $record->getFormat() );
@@ -113,11 +116,33 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$record->getAddress();
 	}
 
-	public function testGetRevision_fails() {
+	public function provideIncomplete() {
+		$unsaved = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		yield 'unsaved' => [ $unsaved ];
+
+		$parent = new SlotRecord( $this->makeRow(), new WikitextContent( 'A' ) );
+		$inherited = SlotRecord::newInherited( $parent );
+		yield 'inherited' => [ $inherited ];
+	}
+
+	/**
+	 * @dataProvider provideIncomplete
+	 */
+	public function testGetRevision_fails( SlotRecord $record ) {
 		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
 		$this->setExpectedException( IncompleteRevisionException::class );
 
 		$record->getRevision();
+	}
+
+	/**
+	 * @dataProvider provideIncomplete
+	 */
+	public function testGetOrigin_fails( SlotRecord $record ) {
+		$record = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$this->setExpectedException( IncompleteRevisionException::class );
+
+		$record->getOrigin();
 	}
 
 	public function provideHashStability() {
@@ -146,7 +171,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 	}
 
 	public function testNewInherited() {
-		$row = $this->makeRow( [ 'slot_revision_id' => 7, 'slot_inherited' => 0 ] );
+		$row = $this->makeRow( [ 'slot_revision_id' => 7, 'slot_origin' => 7 ] );
 		$parent = new SlotRecord( $row, new WikitextContent( 'A' ) );
 
 		// This would happen while doing an edit, before saving revision meta-data.
@@ -188,6 +213,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
 		$this->assertSame( 10, $saved->getRevision() );
+		$this->assertSame( 10, $saved->getOrigin() );
 
 		// make sure we didn't mess with the internal state of $unsaved
 		$this->assertFalse( $unsaved->hasAddress() );
@@ -197,7 +223,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 	public function provideNewForSaving_LogicException() {
 		$freshRow = $this->makeRow( [
 			'content_address' => 'address:1',
-			'slot_inherited' => 0,
+			'slot_origin' => 1,
 			'slot_revision_id' => 1,
 		] );
 
@@ -207,7 +233,8 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 		$inheritedRow = $this->makeRow( [
 			'content_address' => null,
-			'slot_inherited' => 1
+			'slot_origin' => 0,
+			'slot_revision_id' => 1,
 		] );
 
 		$inheritedSlot = new SlotRecord( $inheritedRow, new WikitextContent( 'A' ) );
