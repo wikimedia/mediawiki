@@ -57,9 +57,25 @@ class Licenses extends HTMLFormField {
 	 * @return string
 	 */
 	protected static function getMessageFromParams( $params ) {
-		return empty( $params['licenses'] )
-			? wfMessage( 'licenses' )->inContentLanguage()->plain()
-			: $params['licenses'];
+		global $wgContLang;
+
+		if ( !empty( $params['licenses'] ) ) {
+			return $params['licenses'];
+		}
+
+		// If the licenses page is in $wgForceUIMsgAsContentMsg (which is the case
+		// on Commons), translations will be in the database, in subpages of this
+		// message (e.g. MediaWiki:Licenses/<lang>)
+		// If there is no such translation, the result will be '-' (the empty default
+		// in the i18n files), so we'll need to force it to look up the actual licenses
+		// in the default site language (= get the translation from MediaWiki:Licenses)
+		// Also see https://phabricator.wikimedia.org/T3495
+		$defaultMsg = wfMessage( 'licenses' )->inContentLanguage();
+		if ( !$defaultMsg->exists() || $defaultMsg->plain() === '-' ) {
+			$defaultMsg = wfMessage( 'licenses' )->inLanguage( $wgContLang );
+		}
+
+		return $defaultMsg->plain();
 	}
 
 	/**
