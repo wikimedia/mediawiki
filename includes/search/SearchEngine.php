@@ -407,17 +407,6 @@ abstract class SearchEngine {
 	}
 
 	/**
-	 * Get OpenSearch suggestion template
-	 *
-	 * @deprecated since 1.25
-	 * @return string
-	 */
-	public static function getOpenSearchTemplate() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return ApiOpenSearch::getOpenSearchTemplate( 'application/x-suggestions+json' );
-	}
-
-	/**
 	 * Get the raw text for updating the index from a content object
 	 * Nicer search backends could possibly do something cooler than
 	 * just returning raw text
