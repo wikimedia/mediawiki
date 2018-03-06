@@ -178,10 +178,8 @@ class LogPager extends ReverseChronologicalPager {
 		$name = $usertitle->getText();
 
 		// Assume no joins required for log_user
-		// Don't query by user ID here, it might be able to use the
-		// log_user_text_time or log_user_text_type_time index.
 		$this->mConds[] = ActorMigration::newMigration()->getWhere(
-			wfGetDB( DB_REPLICA ), 'log_user', User::newFromName( $name, false ), false
+			wfGetDB( DB_REPLICA ), 'log_user', User::newFromName( $name, false )
 		)['conds'];
 
 		$this->enforcePerformerRestrictions();
