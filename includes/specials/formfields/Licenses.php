@@ -57,9 +57,20 @@ class Licenses extends HTMLFormField {
 	 * @return string
 	 */
 	protected static function getMessageFromParams( $params ) {
-		return empty( $params['licenses'] )
-			? wfMessage( 'licenses' )->inContentLanguage()->plain()
-			: $params['licenses'];
+		global $wgLanguageCode;
+
+		if ( !empty( $params['licenses'] ) ) {
+			return $params['licenses'];
+		}
+
+		// The licenses page is in $wgForceUIMsgAsContentMsg (its translations will
+		// be in subpages). If such translation can't be found, fall back to default.
+		$defaultMsg = wfMessage( 'licenses' )->inContentLanguage();
+		if ( !$defaultMsg->exists() || $defaultMsg->plain() === '-' ) {
+			$defaultMsg = wfMessage( 'licenses' )->inLanguage( $wgLanguageCode );
+		}
+
+		return $defaultMsg->plain();
 	}
 
 	/**
