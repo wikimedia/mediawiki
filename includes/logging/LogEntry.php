@@ -213,6 +213,30 @@ class DatabaseLogEntry extends LogEntryBase {
 		}
 	}
 
+	/**
+	 * Loads a LogEntry with the given id from database
+	 *
+	 * @param int $id
+	 * @param IDatabase $db
+	 * @return DatabaseLogEntry|null
+	 */
+	public static function newFromId( $id, IDatabase $db ) {
+		$queryInfo = self::getSelectQueryData();
+		$queryInfo['conds'] += [ 'log_id' => $id ];
+		$row = $db->selectRow(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			__METHOD__,
+			$queryInfo['options'],
+			$queryInfo['join_conds']
+		);
+		if ( !$row ) {
+			return null;
+		}
+		return self::newFromRow( $row );
+	}
+
 	/** @var stdClass Database result row. */
 	protected $row;
 
