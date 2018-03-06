@@ -832,7 +832,7 @@ class RevisionStore
 
 		// With the old schema, the content changes with every revision.
 		// ...except for null-revisions. Would be nice if we could detect them.
-		$mainSlotRow->slot_inherited = 0;
+		$mainSlotRow->slot_origin = $mainSlotRow->slot_revision_id;
 
 		if ( $mainSlotRow->model_name === null ) {
 			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
