@@ -40,7 +40,7 @@
   "engine": {
     "node": ">=0.8.x"
   },
-  "license": "(MIT OR GPL-2.0)",
+  "license": "(MIT OR GPL-2.0-only)",
   "scripts": {
     "test": "grunt test --verbose"
   }
