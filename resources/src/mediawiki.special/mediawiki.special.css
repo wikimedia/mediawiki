@@ -72,6 +72,11 @@
 	vertical-align: middle;
 }
 
+.mw-contributions-list li {
+	/* Limit impact of Zalgo text (multiple combining marks). T188865 */
+	overflow: hidden;
+}
+
 /* Special:EditWatchlist */
 .watchlistredir {
 	font-style: italic;

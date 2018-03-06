@@ -7,6 +7,8 @@
 
 #pagehistory li {
 	border: 1px solid #fff;
+	/* Limit impact of Zalgo text (multiple combining marks). T188865 */
+	overflow: hidden;
 }
 
 #pagehistory li.selected {
