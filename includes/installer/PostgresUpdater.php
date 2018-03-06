@@ -487,6 +487,15 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.31
 			[ 'addTable', 'slots', 'patch-slots-table.sql' ],
+			[ 'dropPgIndex', 'slots', 'slot_role_inherited' ],
+			[ 'dropPgField', 'slots', 'slot_inherited' ],
+			[ 'addPgField', 'slots', 'slot_origin', 'INTEGER NOT NULL' ],
+			[
+				'addPgIndex',
+				'slots',
+				'slot_revision_origin_role',
+				'( slot_revision_id, slot_origin, slot_role_id )',
+			],
 			[ 'addTable', 'content', 'patch-content-table.sql' ],
 			[ 'addTable', 'content_models', 'patch-content_models-table.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
@@ -761,6 +770,18 @@ END;
 		}
 
 		$this->db->query( "ALTER INDEX $old RENAME TO $new" );
+	}
+
+	protected function dropPgField( $table, $field ) {
+		$fi = $this->db->fieldInfo( $table, $field );
+		if ( is_null( $fi ) ) {
+			$this->output( "...$table table does not contain $field field.\n" );
+
+			return;
+		} else {
+			$this->output( "Dropping column '$table.$field'\n" );
+			$this->db->query( "ALTER TABLE $table DROP COLUMN $field" );
+		}
 	}
 
 	protected function addPgField( $table, $field, $type ) {

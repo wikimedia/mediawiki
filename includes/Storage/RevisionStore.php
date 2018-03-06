@@ -594,16 +594,17 @@ class RevisionStore
 
 		if ( $current ) {
 			$fields = [
-				'page'       => $title->getArticleID(),
-				'user_text'  => $user->getName(),
-				'user'       => $user->getId(),
-				'actor'      => $user->getActorId(),
-				'comment'    => $comment,
-				'minor_edit' => $minor,
-				'text_id'    => $current->rev_text_id,
-				'parent_id'  => $current->page_latest,
-				'len'        => $current->rev_len,
-				'sha1'       => $current->rev_sha1
+				'page'        => $title->getArticleID(),
+				'user_text'   => $user->getName(),
+				'user'        => $user->getId(),
+				'actor'       => $user->getActorId(),
+				'comment'     => $comment,
+				'minor_edit'  => $minor,
+				'text_id'     => $current->rev_text_id,
+				'parent_id'   => $current->page_latest,
+				'slot_origin' => $current->page_latest,
+				'len'         => $current->rev_len,
+				'sha1'        => $current->rev_sha1
 			];
 
 			if ( $this->contentHandlerUseDB ) {
@@ -771,6 +772,11 @@ class RevisionStore
 				$mainSlotRow->content_address = 'tt:' . $row->rev_text_id;
 			}
 
+			// This is used by null-revisions
+			$mainSlotRow->slot_origin = isset( $row->slot_origin )
+				? intval( $row->slot_origin )
+				: null;
+
 			if ( isset( $row->old_text ) ) {
 				// this happens when the text-table gets joined directly, in the pre-1.30 schema
 				$blobData = isset( $row->old_text ) ? strval( $row->old_text ) : null;
@@ -797,6 +803,9 @@ class RevisionStore
 
 			$mainSlotRow->slot_content_id = isset( $row['text_id'] )
 				? intval( $row['text_id'] )
+				: null;
+			$mainSlotRow->slot_origin = isset( $row['slot_origin'] )
+				? intval( $row['slot_origin'] )
 				: null;
 			$mainSlotRow->content_address = isset( $row['text_id'] )
 				? 'tt:' . intval( $row['text_id'] )
@@ -835,9 +844,11 @@ class RevisionStore
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 
-		// With the old schema, the content changes with every revision.
-		// ...except for null-revisions. Would be nice if we could detect them.
-		$mainSlotRow->slot_inherited = 0;
+		// With the old schema, the content changes with every revision,
+		// except for null-revisions.
+		if ( !isset( $mainSlotRow->slot_origin ) ) {
+			$mainSlotRow->slot_origin = $mainSlotRow->slot_revision_id;
+		}
 
 		if ( $mainSlotRow->model_name === null ) {
 			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
