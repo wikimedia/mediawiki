@@ -9,7 +9,7 @@
 			"homepage": "https://www.mediawiki.org/wiki/Special:Version/Credits"
 		}
 	],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"issues": "https://bugzilla.wikimedia.org/",
 		"irc": "irc://irc.freenode.net/mediawiki",
