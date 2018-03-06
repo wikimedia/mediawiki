@@ -617,13 +617,7 @@ class SpecialUpload extends SpecialPage {
 			$licenseText = '== ' . $msg['license-header'] . " ==\n{{" . $license . "}}\n";
 		}
 
-		$pageText = $comment . "\n";
-		$headerText = '== ' . $msg['filedesc'] . ' ==';
-		if ( $comment !== '' && strpos( $comment, $headerText ) === false ) {
-			// prepend header to page text unless it's already there (or there is no content)
-			$pageText = $headerText . "\n" . $pageText;
-		}
-
+		$pageText = $comment == '' ? '' : '== ' . $msg['filedesc'] . " ==\n" . $comment . "\n";
 		if ( $config->get( 'UseCopyrightUpload' ) ) {
 			$pageText .= '== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n";
 			$pageText .= $licenseText;

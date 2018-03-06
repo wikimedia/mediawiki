@@ -569,7 +569,7 @@ class DatabaseMssql extends Database {
 			}
 		}
 
-		return $result ?: false;
+		return empty( $result ) ? false : $result;
 	}
 
 	/**

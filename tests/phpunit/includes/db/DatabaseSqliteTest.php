@@ -508,12 +508,4 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 		$this->assertContains( 'SQLite ', $toString );
 	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::getAttributes()
-	 */
-	public function testsAttributes() {
-		$attributes = Database::attributesFromType( 'sqlite' );
-		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
-	}
 }

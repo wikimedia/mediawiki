@@ -394,7 +394,7 @@ class DatabasePostgres extends Database {
 			// Forced result for simulated queries
 			return $this->lastAffectedRowCount;
 		}
-		if ( !$this->lastResultHandle ) {
+		if ( empty( $this->lastResultHandle ) ) {
 			return 0;
 		}
 

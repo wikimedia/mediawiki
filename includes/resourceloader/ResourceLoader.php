@@ -1486,8 +1486,10 @@ MESSAGE;
 	}
 
 	/**
-	 * Wraps JavaScript code to run after startup and base modules.
+	 * Returns JS code which runs given JS code if the client-side framework is
+	 * present.
 	 *
+	 * @deprecated since 1.25; use makeInlineScript instead
 	 * @param string $script JavaScript code
 	 * @return string JavaScript code
 	 */
@@ -1497,10 +1499,10 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns an HTML script tag that runs given JS code after startup and base modules.
+	 * Construct an inline script tag with given JS code.
 	 *
-	 * The code will be wrapped in a closure, and it will be executed by ResourceLoader's
-	 * startup module if the client has adequate support for MediaWiki JavaScript code.
+	 * The code will be wrapped in a closure, and it will be executed by ResourceLoader
+	 * only if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
 	 * @return WrappedString HTML

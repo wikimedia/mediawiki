@@ -28,9 +28,6 @@ production.
   as upstream is inactive and has no plans to move to PHP 7.
 * The old CategorizedRecentChanges feature, including its related configuration
   option $wgAllowCategorizedRecentChanges, has been removed.
-* (T188472) The 'comma' value for $wgArticleCountMethod is no longer supported for
-  performance reasons, and installations with this setting will now work as if it
-  was configured with 'any'.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support
@@ -259,32 +256,16 @@ changes to languages because of Phabricator reports.
   * Title::isCssJsSubpage – use ::isUserConfigPage
   * Title::isCssSubpage – use ::isUserCssConfigPage
   * Title::isJsSubpage – use ::isUserJsConfigPage
-* The following variables and methods in EditPage, deprecated in MediaWiki 1.30, were removed:
+* The following variables and method in EditPage, deprecated in MediaWiki 1.30, were removed:
   * $isCssJsSubpage — use ::isUserConfigPage()
   * $isCssSubpage — use ::isUserCssConfigPage()
   * $isJsSubpage — use ::isUserJsConfigPage()
   * $isWrongCaseCssJsPage – use ::isWrongCaseUserConfigPage()
-  * ::getSummaryInput() – use ::getSummaryInputWidget()
-  * ::getSummaryInputOOUI() – use ::getSummaryInputWidget()
-  * ::getCheckboxes() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
-  * ::getCheckboxesOOUI() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
 * The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
 * The DeferredStringifier class is deprecated, use Message::listParam() instead.
 * The type string for the parameter $lang of DateFormatter::getInstance is
   deprecated.
-* In User, the cookie-related methods which were wrappers for the functions on the response
-  object, and were deprecated in 1.27, have been removed:
-  * ::setCookie()
-  * ::clearCookie()
-  * ::setExtendedLoginCookie()
-  Note that User::setCookies() remains, and is not deprecated.
 * The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have been removed.
-* The following methods related to caching of half-parsed HTML were deprecated:
-  * Parser::serializeHalfParsedText()
-  * Parser::unserializeHalfParsedText()
-  * Parser::isValidHalfParsedText()
-  * StripState::getSubState()
-  * StripState::merge()
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,

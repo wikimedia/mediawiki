@@ -539,7 +539,10 @@ class Block {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		self::purgeExpired();
+		# Periodic purge via commit hooks
+		if ( mt_rand( 0, 9 ) == 0 ) {
+			self::purgeExpired();
+		}
 
 		$row = $this->getDatabaseArray( $dbw );
 
@@ -1138,14 +1141,11 @@ class Block {
 			wfGetDB( DB_MASTER ),
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) {
-				$ids = $dbw->selectFieldValues( 'ipblocks',
-					'ipb_id',
+				$dbw->delete(
+					'ipblocks',
 					[ 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
 					$fname
 				);
-				if ( $ids ) {
-					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
-				}
 			}
 		) );
 	}

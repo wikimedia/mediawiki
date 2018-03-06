@@ -1,5 +1,10 @@
 <?php
 
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Database;
+
 /**
  * Holds tests for LoadBalancer MediaWiki class.
  *
@@ -23,13 +28,6 @@
  *
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
-
-use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\LoadMonitorNull;
-
 class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
@@ -192,52 +190,4 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function testServerAttributes() {
-		$servers = [
-			[ // master
-				'dbname'      => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
-				'type'        => 'sqlite',
-				'dbDirectory' => "some_directory",
-				'load'        => 0
-			]
-		];
-
-		$lb = new LoadBalancer( [
-			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
-		] );
-
-		$this->assertTrue( $lb->getServerAttributes( 0 )[Database::ATTR_DB_LEVEL_LOCKING] );
-
-		$servers = [
-			[ // master
-				'host'        => 'db1001',
-				'user'        => 'wikiuser',
-				'password'    => 'none',
-				'dbname'      => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
-				'type'        => 'mysql',
-				'load'        => 100
-			],
-			[ // emulated replica
-				'host'        => 'db1002',
-				'user'        => 'wikiuser',
-				'password'    => 'none',
-				'dbname'      => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
-				'type'        => 'mysql',
-				'load'        => 100
-			]
-		];
-
-		$lb = new LoadBalancer( [
-			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
-		] );
-
-		$this->assertFalse( $lb->getServerAttributes( 1 )[Database::ATTR_DB_LEVEL_LOCKING] );
-	}
 }

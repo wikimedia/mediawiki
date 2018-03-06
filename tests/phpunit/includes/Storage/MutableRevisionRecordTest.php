@@ -60,8 +60,6 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function testSimpleGetSlotWhenEmpty() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
-		$this->assertFalse( $record->hasSlot( 'main' ) );
-
 		$this->setExpectedException( RevisionAccessException::class );
 		$record->getSlot( 'main' );
 	}
@@ -73,7 +71,6 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 			new WikitextContent( 'x' )
 		);
 		$record->setSlot( $slot );
-		$this->assertTrue( $record->hasSlot( 'main' ) );
 		$this->assertSame( $slot, $record->getSlot( 'main' ) );
 	}
 

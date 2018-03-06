@@ -714,7 +714,7 @@
 	"expansion-depth-exceeded-category": "Perrê ke xoriyiya herabiyayışi tede ravêrdeya.",
 	"expansion-depth-exceeded-warning": "Ravêriya pela xori herayêna",
 	"parser-unstrip-loop-warning": "Unstrip lete vineya",
-	"unstrip-depth-warning": "Sinorê limit dê qayış dê ($1) ravêrya",
+	"parser-unstrip-recursion-limit": "Sinorê limit dê qayış dê ($1) ravêrya",
 	"converter-manual-rule-error": "Rehberê zıwan açarnayışi dı xırabin tesbit biya",
 	"undo-success": "No vurnayiş tepeye geryeno. pêverronayişêyê cêrıni kontrol bıkeri.",
 	"undo-failure": "Poxta pëverameyişa vurnayişan ra  peyd grotışë kari në bı",

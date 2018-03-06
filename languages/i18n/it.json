@@ -852,7 +852,7 @@
 	"expansion-depth-exceeded-category-desc": "La pagina supera la profondità massima di espansione.",
 	"expansion-depth-exceeded-warning": "Questa pagina ha superato la profondità di espansione",
 	"parser-unstrip-loop-warning": "Rilevato ciclo di Unstrip",
-	"unstrip-depth-warning": "Superati i limiti di ricorsione di Unstrip ($1)",
+	"parser-unstrip-recursion-limit": "Superati i limiti di ricorsione di Unstrip ($1)",
 	"converter-manual-rule-error": "Rilevato errore nella regola manuale di conversione della lingua",
 	"undo-success": "Questa modifica può essere annullata.\nControlla le differenze mostrate sotto fra le due versioni per essere certo che il contenuto corrisponda a quanto desiderato, e quindi salvare le modifiche per completare la procedura di annullamento.",
 	"undo-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",

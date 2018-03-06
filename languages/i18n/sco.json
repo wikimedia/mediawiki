@@ -756,7 +756,7 @@
 	"expansion-depth-exceeded-category-desc": "The page exceeds the mucklest expansion depth.",
 	"expansion-depth-exceeded-warning": "Page owershote the expansion depth",
 	"parser-unstrip-loop-warning": "Unstrip luip detected",
-	"unstrip-depth-warning": "Unstrip recursion limit owershote ($1)",
+	"parser-unstrip-recursion-limit": "Unstrip recursion limit owershote ($1)",
 	"converter-manual-rule-error": "mistak detected in manual leid conversion rule",
 	"undo-success": "The eidit can be ondun. Please check the chynges albo tae check that this is whit ye wint tae dae, n than hain the chynges albo tae be duin ondaein the eidit.",
 	"undo-failure": "The eedit coudna be ondun cause o confleectin eedits inatween.",

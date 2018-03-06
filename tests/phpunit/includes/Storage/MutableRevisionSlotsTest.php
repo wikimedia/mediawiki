@@ -5,12 +5,13 @@ namespace MediaWiki\Tests\Storage;
 use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\SlotRecord;
+use MediaWikiTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Storage\MutableRevisionSlots
  */
-class MutableRevisionSlotsTest extends RevisionSlotsTest {
+class MutableRevisionSlotsTest extends MediaWikiTestCase {
 
 	public function testSetMultipleSlots() {
 		$slots = new MutableRevisionSlots();
@@ -19,13 +20,11 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 		$slotA = SlotRecord::newUnsaved( 'some', new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
-		$this->assertTrue( $slots->hasSlot( 'some' ) );
 		$this->assertSame( $slotA, $slots->getSlot( 'some' ) );
 		$this->assertSame( [ 'some' => $slotA ], $slots->getSlots() );
 
 		$slotB = SlotRecord::newUnsaved( 'other', new WikitextContent( 'B' ) );
 		$slots->setSlot( $slotB );
-		$this->assertTrue( $slots->hasSlot( 'other' ) );
 		$this->assertSame( $slotB, $slots->getSlot( 'other' ) );
 		$this->assertSame( [ 'some' => $slotA, 'other' => $slotB ], $slots->getSlots() );
 	}

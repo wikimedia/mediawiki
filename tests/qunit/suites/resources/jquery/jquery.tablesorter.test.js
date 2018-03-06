@@ -130,7 +130,7 @@
 			[ '$ 1.50' ],
 			[ '$ 3.00' ],
 			[ '$3.50' ],
-			// Commas sort after dots
+			// Comma's sort after dots
 			// Not intentional but test to detect changes
 			[ '€ 2,99' ]
 		],

@@ -29,7 +29,6 @@ use Wikimedia\Rdbms\MySQLMasterPos;
 use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * Fake class around abstract class so we can call concrete methods.
@@ -510,98 +509,5 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$roundtripPos = unserialize( serialize( $pos ) );
 
 		$this->assertEquals( $pos, $roundtripPos );
-	}
-
-	/**
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::isInsertSelectSafe
-	 * @dataProvider provideInsertSelectCases
-	 */
-	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'getReplicationSafetyInfo' ] )
-			->getMock();
-		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
-		$dbw = TestingAccessWrapper::newFromObject( $db );
-
-		$this->assertEquals( $safe, $dbw->isInsertSelectSafe( $insertOpts, $selectOpts ) );
-	}
-
-	public function provideInsertSelectCases() {
-		return [
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'ROW',
-				],
-				true
-			],
-			[
-				[],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'ROW',
-				],
-				true
-			],
-			[
-				[],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '0',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '0',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 0,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 2,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 0,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-
-		];
 	}
 }

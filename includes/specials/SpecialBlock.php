@@ -135,9 +135,6 @@ class SpecialBlock extends FormSpecialPage {
 
 		$suggestedDurations = self::getSuggestedDurations();
 
-		$conf = $this->getConfig();
-		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
-
 		$a = [
 			'Target' => [
 				'type' => 'user',
@@ -160,11 +157,7 @@ class SpecialBlock extends FormSpecialPage {
 			],
 			'Reason' => [
 				'type' => 'selectandother',
-				// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-				// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-				// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-				'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
-				'maxlength-unit' => 'codepoints',
+				'maxlength' => 255,
 				'label-message' => 'ipbreason',
 				'options-message' => 'ipbreason-dropdown',
 			],

@@ -55,22 +55,6 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 				],
 				'инструменталь instrumental гургуль gürgül тюшюнмемек tüşünmemek'
 			],
-			[ // recent problem words, part 1
-				[
-					'crh'      => 'künü куню sürgünligi сюргюнлиги özü озю etti этти',
-					'crh-cyrl' => 'куню куню сюргюнлиги сюргюнлиги озю озю этти этти',
-					'crh-latn' => 'künü künü sürgünligi sürgünligi özü özü etti etti',
-				],
-				'künü куню sürgünligi сюргюнлиги özü озю etti этти'
-			],
-			[ // recent problem words, part 2
-				[
-					'crh'      => 'esas эсас dört дёрт keldi кельди',
-					'crh-cyrl' => 'эсас эсас дёрт дёрт кельди кельди',
-					'crh-latn' => 'esas esas dört dört keldi keldi',
-				],
-				'esas эсас dört дёрт keldi кельди'
-			],
 			[ // multi part words
 				[
 					'crh'      => 'эки юз eki yüz',
@@ -79,7 +63,7 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 				],
 				'эки юз eki yüz'
 			],
-			[ // ALL CAPS, made up acronyms (not 100% sure these are correct)
+			[ // ALL CAPS, made up acronyms
 				[
 					'crh'      => 'ÑAB QIC ĞUK COT НЪАБ КЪЫДж ГЪУК ДЖОТ CA ДЖА',
 					'crh-cyrl' => 'НЪАБ КЪЫДж ГЪУК ДЖОТ НЪАБ КЪЫДж ГЪУК ДЖОТ ДЖА ДЖА',

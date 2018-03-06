@@ -47,10 +47,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$textAttribs['class'][] = $this->mClass;
 		}
 
-		if ( isset( $this->mParams['maxlength-unit'] ) ) {
-			$textAttribs['data-mw-maxlength-unit'] = $this->mParams['maxlength-unit'];
-		}
-
 		$allowedParams = [
 			'required',
 			'autofocus',
@@ -58,7 +54,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'disabled',
 			'tabindex',
 			'maxlength', // gets dynamic with javascript, see mediawiki.htmlform.js
-			'maxlength-unit', // 'bytes' or 'codepoints', see mediawiki.htmlform.js
 		];
 
 		$textAttribs += $this->getAttributes( $allowedParams );
@@ -78,6 +73,9 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		# TextInput
 		$textAttribs = [
 			'name' => $this->mName . '-other',
+			'size' => $this->getSize(),
+			'class' => [ 'mw-htmlform-select-and-other-field' ],
+			'data-id-select' => $this->mID . '-select',
 			'value' => $value[2],
 		];
 
@@ -124,11 +122,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownInputAttribs,
 			'or' => false,
-			'classes' => [ 'mw-htmlform-select-and-other-field' ],
-			'data' => [
-				'maxlengthUnit' => isset( $this->mParams['maxlength-unit'] )
-					? $this->mParams['maxlength-unit'] : 'bytes'
-			],
 		] );
 	}
 

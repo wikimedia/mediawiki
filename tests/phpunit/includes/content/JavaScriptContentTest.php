@@ -155,6 +155,16 @@ class JavaScriptContentTest extends TextContentTest {
 			],
 			[ 'Foo',
 				null,
+				'comma',
+				false
+			],
+			[ 'Foo, bar',
+				null,
+				'comma',
+				false
+			],
+			[ 'Foo',
+				null,
 				'link',
 				false
 			],
@@ -177,6 +187,11 @@ class JavaScriptContentTest extends TextContentTest {
 				true,
 				'any',
 				true
+			],
+			[ '#REDIRECT [[bar]]',
+				true,
+				'comma',
+				false
 			],
 			[ '#REDIRECT [[bar]]',
 				true,

@@ -165,30 +165,35 @@ class OracleInstaller extends DatabaseInstaller {
 	}
 
 	public function openConnection() {
-		return $this->doOpenConnection();
+		$status = Status::newGood();
+		try {
+			$db = new DatabaseOracle(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				$this->getVar( '_InstallDBname' ),
+				0,
+				$this->getVar( 'wgDBprefix' )
+			);
+			$status->value = $db;
+		} catch ( DBConnectionError $e ) {
+			$this->connError = $e->db->lastErrno();
+			$status->fatal( 'config-connection-error', $e->getMessage() );
+		}
+
+		return $status;
 	}
 
 	public function openSYSDBAConnection() {
-		return $this->doOpenConnection( DatabaseOracle::DBO_SYSDBA );
-	}
-
-	/**
-	 * @param int $flags
-	 * @return Status Status with DatabaseOracle or null as the value
-	 */
-	private function doOpenConnection( $flags = 0 ) {
 		$status = Status::newGood();
 		try {
-			$db = Database::factory(
-				'oracle',
-				[
-					'host' => $this->getVar( 'wgDBserver' ),
-					'user' => $this->getVar( '_InstallUser' ),
-					'password' => $this->getVar( '_InstallPassword' ),
-					'dbname' => $this->getVar( '_InstallDBname' ),
-					'tablePrefix' => $this->getVar( 'wgDBprefix' ),
-					'flags' => $flags
-				]
+			$db = new DatabaseOracle(
+				$this->getVar( 'wgDBserver' ),
+				$this->getVar( '_InstallUser' ),
+				$this->getVar( '_InstallPassword' ),
+				$this->getVar( '_InstallDBname' ),
+				DBO_SYSDBA,
+				$this->getVar( 'wgDBprefix' )
 			);
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {

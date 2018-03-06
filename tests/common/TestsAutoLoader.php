@@ -143,9 +143,6 @@ $wgAutoloadClasses += [
 	'SpecialPageTestBase' => "$testDir/phpunit/includes/specials/SpecialPageTestBase.php",
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
-	# tests/phpunit/includes/Storage
-	'MediaWiki\Tests\Storage\RevisionSlotsTest' => "$testDir/phpunit/includes/Storage/RevisionSlotsTest.php",
-
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
 

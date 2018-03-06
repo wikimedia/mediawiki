@@ -374,6 +374,20 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				true
 			],
 
+			// comma
+			[ 'WikiPageTest_testIsCountable',
+				CONTENT_MODEL_WIKITEXT,
+				'Foo',
+				'comma',
+				false
+			],
+			[ 'WikiPageTest_testIsCountable',
+				CONTENT_MODEL_WIKITEXT,
+				'Foo, bar',
+				'comma',
+				true
+			],
+
 			// link
 			[ 'WikiPageTest_testIsCountable',
 				CONTENT_MODEL_WIKITEXT,
@@ -398,6 +412,12 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			[ 'WikiPageTest_testIsCountable',
 				CONTENT_MODEL_WIKITEXT,
 				'#REDIRECT [[bar]]',
+				'comma',
+				false
+			],
+			[ 'WikiPageTest_testIsCountable',
+				CONTENT_MODEL_WIKITEXT,
+				'#REDIRECT [[bar]]',
 				'link',
 				false
 			],
@@ -407,6 +427,12 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				CONTENT_MODEL_WIKITEXT,
 				'Foo',
 				'any',
+				false
+			],
+			[ 'Talk:WikiPageTest_testIsCountable',
+				CONTENT_MODEL_WIKITEXT,
+				'Foo, bar',
+				'comma',
 				false
 			],
 			[ 'Talk:WikiPageTest_testIsCountable',
@@ -421,6 +447,12 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				null,
 				'Foo',
 				'any',
+				false
+			],
+			[ 'MediaWiki:WikiPageTest_testIsCountable.js',
+				null,
+				'Foo, bar',
+				'comma',
 				false
 			],
 			[ 'MediaWiki:WikiPageTest_testIsCountable.js',

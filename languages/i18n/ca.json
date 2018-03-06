@@ -803,7 +803,7 @@
 	"expansion-depth-exceeded-category-desc": "La pàgina ha excedit la profunditat màxima d'expansió.",
 	"expansion-depth-exceeded-warning": "La pàgina ha excedit la profunditat d'expansió",
 	"parser-unstrip-loop-warning": "S'ha detectat un bucle no desmuntable",
-	"unstrip-depth-warning": "S'ha excedit el límit ($1) de recursivitat no desmuntable",
+	"parser-unstrip-recursion-limit": "S'ha excedit el límit ($1) de recursivitat no desmuntable",
 	"converter-manual-rule-error": "Error detectat a la norma de conversió de llengua manual",
 	"undo-success": "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
 	"undo-failure": "No pot desfer-se la modificació perquè hi ha edicions intermèdies en conflicte.",
