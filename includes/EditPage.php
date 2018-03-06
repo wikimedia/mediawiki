@@ -1713,12 +1713,12 @@ class EditPage {
 	 */
 	private function formatStatusErrors( Status $status ) {
 		$errmsg = $status->getWikiText(
-			'edit-error-short',
-			'edit-error-long',
+			false,
+			false,
 			$this->context->getLanguage()
 		);
 		return <<<ERROR
-<div class="errorbox">
+<div class="errorbox" style="color:initial;">
 {$errmsg}
 </div>
 <br clear="all" />
