@@ -626,20 +626,6 @@ class Title implements LinkTarget {
 	}
 
 	/**
-	 * Returns a simple regex that will match on characters and sequences invalid in titles.
-	 * Note that this doesn't pick up many things that could be wrong with titles, but that
-	 * replacing this regex with something valid will make many titles valid.
-	 *
-	 * @deprecated since 1.25, use MediaWikiTitleCodec::getTitleInvalidRegex() instead
-	 *
-	 * @return string Regex string
-	 */
-	static function getTitleInvalidRegex() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return MediaWikiTitleCodec::getTitleInvalidRegex();
-	}
-
-	/**
 	 * Utility method for converting a character sequence from bytes to Unicode.
 	 *
 	 * Primary usecase being converting $wgLegalTitleChars to a sequence usable in

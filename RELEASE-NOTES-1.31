@@ -293,6 +293,8 @@ changes to languages because of Phabricator reports.
   use ::getNames() instead.
 * OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
   can use ApiOpenSearch::getOpenSearchTemplate() instead.
+* Title::getTitleInvalidRegex(), deprecated in 1.25, has been removed. You
+  can use MediaWikiTitleCodec::getTitleInvalidRegex() instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
