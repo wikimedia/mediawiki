@@ -172,10 +172,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $user ) ) {
 			// Note the joins in $q are the same as those from ->getJoin() above
 			// so we only need to add 'conds' here.
-			// Don't query by user ID here, it might be able to use the
-			// log_user_text_time or log_user_text_type_time index.
 			$q = $actorMigration->getWhere(
-				$db, 'log_user', User::newFromName( $params['user'], false ), false
+				$db, 'log_user', User::newFromName( $params['user'], false )
 			);
 			$this->addWhere( $q['conds'] );
 		}
