@@ -167,8 +167,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertEquals( $r1->getWikiId(), $r2->getWikiId() );
 		$this->assertEquals( $r1->isMinor(), $r2->isMinor() );
 		foreach ( $r1->getSlotRoles() as $role ) {
-			$this->assertEquals( $r1->getSlot( $role ), $r2->getSlot( $role ) );
-			$this->assertEquals( $r1->getContent( $role ), $r2->getContent( $role ) );
+			$this->assertSlotRecordsEqual( $r1->getSlot( $role ), $r2->getSlot( $role ) );
+			$this->assertTrue( $r1->getContent( $role )->equals( $r2->getContent( $role ) ) );
 		}
 		foreach ( [
 			RevisionRecord::DELETED_TEXT,
@@ -178,6 +178,29 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		] as $field ) {
 			$this->assertEquals( $r1->isDeleted( $field ), $r2->isDeleted( $field ) );
 		}
+	}
+
+	private function assertSlotRecordsEqual( SlotRecord $s1, SlotRecord $s2 ) {
+		$this->assertSame( $s1->getRole(), $s2->getRole() );
+		$this->assertSame( $s1->getModel(), $s2->getModel() );
+		$this->assertSame( $s1->getFormat(), $s2->getFormat() );
+		$this->assertSame( $s1->getSha1(), $s2->getSha1() );
+		$this->assertSame( $s1->getSize(), $s2->getSize() );
+		$this->assertTrue( $s1->getContent()->equals( $s2->getContent() ) );
+
+		$s1->hasRevision() ? $this->assertSame( $s1->getRevision(), $s2->getRevision() ) : null;
+		$s1->hasAddress() ? $this->assertSame( $s1->hasAddress(), $s2->hasAddress() ) : null;
+	}
+
+	private function assertRevisionCompleteness( RevisionRecord $r ) {
+		foreach ( $r->getSlotRoles() as $role ) {
+			$this->assertSlotCompleteness( $r, $r->getSlot( $role ) );
+		}
+	}
+
+	private function assertSlotCompleteness( RevisionRecord $r, SlotRecord $slot ) {
+		$this->assertTrue( $slot->hasAddress() );
+		$this->assertSame( $r->getId(), $slot->getRevision() );
 	}
 
 	/**
@@ -257,6 +280,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$this->assertLinkTargetsEqual( $title, $return->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $rev, $return );
+		$this->assertRevisionCompleteness( $return );
 	}
 
 	/**
