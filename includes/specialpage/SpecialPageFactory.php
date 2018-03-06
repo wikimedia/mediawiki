@@ -215,17 +215,6 @@ class SpecialPageFactory {
 	/**
 	 * Get the special page list as an array
 	 *
-	 * @deprecated since 1.24, use getNames() instead.
-	 * @return array
-	 */
-	public static function getList() {
-		wfDeprecated( __FUNCTION__, '1.24' );
-		return self::getPageList();
-	}
-
-	/**
-	 * Get the special page list as an array
-	 *
 	 * @return array
 	 */
 	private static function getPageList() {

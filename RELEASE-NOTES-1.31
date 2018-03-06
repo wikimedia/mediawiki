@@ -289,6 +289,8 @@ changes to languages because of Phabricator reports.
   * StripState::merge()
 * The "free" class is now only applied to unbracketed URLs in wikitext. Links
   written using square brackets will get the class "text" not "free".
+* SpecialPageFactory::getList(), deprecated in 1.24, has been removed. You can
+  use ::getNames() instead.
 * OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
   can use ApiOpenSearch::getOpenSearchTemplate() instead.
 
