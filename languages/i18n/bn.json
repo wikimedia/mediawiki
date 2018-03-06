@@ -3819,6 +3819,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|বাইট}}",
 	"limitreport-expansiondepth": "সর্বোচ্চ গভীরতা বিস্তার",
 	"limitreport-expensivefunctioncount": "ব্যয়বহুল পার্সার ফাংশন গণনা",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|বাইট}}",
 	"expandtemplates": "টেমপ্লেট সম্প্রসারণ",
 	"expand_templates_intro": "এই বিশেষ পাতাটি কিছু উইকিটেক্সট গ্রহণ করে এবং এর ভেতরের সব টেমপ্লেট বারংবার সম্প্রসারিত করে।\nএছাড়াও এটি\n<code><nowiki>{{</nowiki>#language:...}}</code>-এর মত পার্সার ফাংশন,\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>-এর মত ভ্যারিয়েবল\nমোটকথা দ্বিতীয় বন্ধনীর মধ্যে অবস্থিত সবকিছুকেই সম্প্রসারিত করতে পারে।",
 	"expand_templates_title": "প্রাতিবেশিক শিরোনাম, {{FULLPAGENAME}}, ইত্যাদির জন্য:",
