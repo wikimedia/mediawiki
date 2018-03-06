@@ -34,7 +34,7 @@ class FirejailCommandTest extends PHPUnit\Framework\TestCase {
 		$limit = "/bin/bash '$IP/includes/shell/limit.sh'";
 		$profile = "--profile=$IP/includes/shell/firejail.profile";
 		$blacklist = '--blacklist=' . realpath( MW_CONFIG_FILE );
-		$default = "$blacklist --noroot --seccomp=@default --private-dev";
+		$default = "$blacklist --noroot --seccomp --private-dev";
 		return [
 			[
 				'No restrictions',
@@ -58,12 +58,12 @@ class FirejailCommandTest extends PHPUnit\Framework\TestCase {
 			[
 				'seccomp',
 				'ls', Shell::SECCOMP,
-				"$limit 'firejail --quiet $profile --seccomp=@default -- '\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile --seccomp -- '\''ls'\''' $env"
 			],
 			[
 				'seccomp & no execve',
 				'ls', Shell::SECCOMP | Shell::NO_EXECVE,
-				"$limit 'firejail --quiet $profile --shell=none --seccomp=@default,execve -- '\''ls'\''' $env"
+				"$limit 'firejail --quiet $profile --shell=none --seccomp=execve -- '\''ls'\''' $env"
 			],
 		];
 	}

@@ -621,7 +621,7 @@
 	"expansion-depth-exceeded-category": "Seite, wo die Expansionstiefe überschritt honn",
 	"expansion-depth-exceeded-warning": "Die Seit hot die Expansionstiefe üwerschritt.",
 	"parser-unstrip-loop-warning": "Zirkelbezuch festgestellt",
-	"parser-unstrip-recursion-limit": "Rekursionsgrenz beim Ufflöse üwerschritt ($1)",
+	"unstrip-depth-warning": "Rekursionsgrenz beim Ufflöse üwerschritt ($1)",
 	"converter-manual-rule-error": "Bei der manuelle Sprochkonvertierungsrechel woard en Fehler entdeckt.",
 	"undo-success": "Die Beoorbeitung kann rückgänchig gemacht werre.\nBittschön prüf den Vergleich do unne, um sicherzustelle, dass du das tun möchst, und speichre dann do unne deine Ändrunge, um die Beoorbeitung rückgängig zu mache.",
 	"undo-failure": "Die Ännrung konnt net rückgängich gemacht sin, weil der betroffne Abschnitt zwischenzeitlich verännert woard.",

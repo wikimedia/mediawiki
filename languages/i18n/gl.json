@@ -772,7 +772,7 @@
 	"expansion-depth-exceeded-category-desc": "A páxina supera a profundidade de expansión máxima.",
 	"expansion-depth-exceeded-warning": "A páxina supera a profundidade de expansión",
 	"parser-unstrip-loop-warning": "Detectouse un bucle inamovible",
-	"parser-unstrip-recursion-limit": "Excedeuse o límite de recursión inamovible ($1)",
+	"unstrip-depth-warning": "Excedeuse o límite de recursión inamovible ($1)",
 	"converter-manual-rule-error": "Detectouse un erro na regra manual de conversión da lingua",
 	"undo-success": "A edición pódese desfacer.\nComprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer; despois, garde os cambios para desfacer a edición.",
 	"undo-failure": "Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.",

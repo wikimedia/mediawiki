@@ -55,7 +55,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$this->output( "Creating actor entries for all registered users\n" );
 		$end = 0;
 		$dbw = $this->getDB( DB_MASTER );
-		$max = $dbw->selectField( 'user', 'MAX(user_id)', false, __METHOD__ );
+		$max = $dbw->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 		$count = 0;
 		while ( $end < $max ) {
 			$start = $end + 1;
@@ -386,7 +386,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			list( $n, $display ) = $this->makeNextCond( $dbw, [ $primaryKey ], $lastRow );
 			$next = [ $n ];
 			$this->output( "... $display\n" );
-			wfWaitForSlaves();
 		}
 
 		$this->output(

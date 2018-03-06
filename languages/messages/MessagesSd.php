@@ -16,19 +16,28 @@ $namespaceNames = [
 	NS_MEDIA            => 'ذريعات',
 	NS_SPECIAL          => 'خاص',
 	NS_TALK             => 'بحث',
-	NS_USER             => 'يوزر',
-	NS_USER_TALK        => 'يوزر_بحث',
+	NS_USER             => 'واپرائيندڙ',
+	NS_USER_TALK        => 'واپرائيندڙ_بحث',
 	NS_PROJECT_TALK     => '$1_بحث',
-	NS_FILE             => 'عڪس',
-	NS_FILE_TALK        => 'عڪس_بحث',
+	NS_FILE             => 'فائل',
+	NS_FILE_TALK        => 'فائل_بحث',
 	NS_MEDIAWIKI        => 'ذريعات_وڪي',
 	NS_MEDIAWIKI_TALK   => 'ذريعات_وڪي_بحث',
 	NS_TEMPLATE         => 'سانچو',
-	NS_TEMPLATE_TALK    => 'سنچو_بحث',
+	NS_TEMPLATE_TALK    => 'سانچو_بحث',
 	NS_HELP             => 'مدد',
 	NS_HELP_TALK        => 'مدد_بحث',
 	NS_CATEGORY         => 'زمرو',
 	NS_CATEGORY_TALK    => 'زمرو_بحث',
+];
+
+$namespaceAliases = [
+	'يوزر' => NS_USER,
+	'يوزر_بحث' => NS_USER_TALK,
+	'عڪس' => NS_FILE,
+	'عڪس_بحث' => NS_FILE_TALK,
+	'سنچو' => NS_TEMPLATE,
+	'سنچو_بحث' => NS_TEMPLATE_TALK,
 ];
 
 $specialPageAliases = [

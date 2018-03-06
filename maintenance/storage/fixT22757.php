@@ -55,7 +55,7 @@ class FixT22757 extends Maintenance {
 		$numFixed = 0;
 		$numBad = 0;
 
-		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
+		$totalRevs = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 
 		// In MySQL 4.1+, the binary field old_text has a non-working LOWER() function
 		$lowerLeft = 'LOWER(CONVERT(LEFT(old_text,22) USING latin1))';
@@ -240,7 +240,6 @@ class FixT22757 extends Maintenance {
 						__METHOD__
 					);
 					$this->commitTransaction( $dbw, __METHOD__ );
-					$this->waitForSlaves();
 				}
 
 				print "$primaryId: resolved to $url\n";
@@ -252,15 +251,6 @@ class FixT22757 extends Maintenance {
 		print "Fixed: $numFixed\n";
 		print "Unrecoverable: $numBad\n";
 		print "Good stubs: $numGood\n";
-	}
-
-	function waitForSlaves() {
-		static $iteration = 0;
-		++$iteration;
-		if ( ++$iteration > 50 == 0 ) {
-			wfWaitForSlaves();
-			$iteration = 0;
-		}
 	}
 
 	function findTextIdInPage( $pageId, $textId ) {

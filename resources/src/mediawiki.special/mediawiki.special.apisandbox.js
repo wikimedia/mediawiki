@@ -98,7 +98,7 @@
 
 		dropdownWidget: {
 			getApiValue: function () {
-				var item = this.getMenu().getSelectedItem();
+				var item = this.getMenu().findSelectedItem();
 				return item === null ? undefined : item.getData();
 			},
 			setApiValue: function ( v ) {
@@ -705,7 +705,7 @@
 			var i,
 				menu = formatDropdown.getMenu(),
 				items = menu.getItems(),
-				selectedField = menu.getSelectedItem() ? menu.getSelectedItem().getData() : null;
+				selectedField = menu.findSelectedItem() ? menu.findSelectedItem().getData() : null;
 
 			for ( i = 0; i < items.length; i++ ) {
 				items[ i ].getData().toggle( items[ i ].getData() === selectedField );
@@ -1057,7 +1057,7 @@
 				}
 
 				menu = formatDropdown.getMenu();
-				selectedLabel = menu.getSelectedItem() ? menu.getSelectedItem().getLabel() : '';
+				selectedLabel = menu.findSelectedItem() ? menu.findSelectedItem().getLabel() : '';
 				if ( typeof selectedLabel !== 'string' ) {
 					selectedLabel = selectedLabel.text();
 				}

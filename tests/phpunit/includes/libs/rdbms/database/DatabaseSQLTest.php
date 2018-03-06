@@ -66,6 +66,44 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => 'alias = \'text\'',
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table " .
+				"WHERE alias = 'text'"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => [],
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => '',
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field', 'alias' => 'field2' ],
+					'conds' => '0', // T188314
+				],
+				"SELECT field,field2 AS alias " .
+				"FROM table " .
+				"WHERE 0"
+			],
+			[
+				[
 					// 'tables' with space prepended indicates pre-escaped table name
 					'tables' => ' table LEFT JOIN table2',
 					'fields' => [ 'field' ],
@@ -457,7 +495,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			isset( $sql['selectOptions'] ) ? $sql['selectOptions'] : [],
 			isset( $sql['selectJoinConds'] ) ? $sql['selectJoinConds'] : []
 		);
-		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, $sqlInsert ] ), $dbWeb );
+		$this->assertLastSqlDb( implode( '; ', [ $sqlSelect, 'BEGIN', $sqlInsert, 'COMMIT' ] ), $dbWeb );
 	}
 
 	public static function provideInsertSelect() {
@@ -518,6 +556,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'srcTable' => [ 'select_table1', 'select_table2' ],
 					'varMap' => [ 'field_insert' => 'field_select', 'field' => 'field2' ],
 					'conds' => [ 'field' => 2 ],
+					'insertOptions' => [ 'NO_AUTO_COLUMNS' ],
 					'selectOptions' => [ 'ORDER BY' => 'field', 'FORCE INDEX' => [ 'select_table1' => 'index1' ] ],
 					'selectJoinConds' => [
 						'select_table2' => [ 'LEFT JOIN', [ 'select_table1.foo = select_table2.bar' ] ],
@@ -535,6 +574,30 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				"INSERT INTO insert_table (field_insert,field) VALUES ('0','1')"
 			],
 		];
+	}
+
+	public function testInsertSelectBatching() {
+		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
+		$rows = [];
+		for ( $i = 0; $i <= 25000; $i++ ) {
+			$rows[] = [ 'field' => $i ];
+		}
+		$dbWeb->forceNextResult( $rows );
+		$dbWeb->insertSelect(
+			'insert_table',
+			'select_table',
+			[ 'field' => 'field2' ],
+			'*',
+			__METHOD__
+		);
+		$this->assertLastSqlDb( implode( '; ', [
+			'SELECT field2 AS field FROM select_table WHERE *   FOR UPDATE',
+			'BEGIN',
+			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 0, 9999 ) ) . "')",
+			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 10000, 19999 ) ) . "')",
+			"INSERT INTO insert_table (field) VALUES ('" . implode( "'),('", range( 20000, 25000 ) ) . "')",
+			'COMMIT'
+		] ), $dbWeb );
 	}
 
 	/**

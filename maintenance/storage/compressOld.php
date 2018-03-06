@@ -462,7 +462,6 @@ class CompressOld extends Maintenance {
 				$this->output( "/" );
 				$this->commitTransaction( $dbw, __METHOD__ );
 				$i += $thisChunkSize;
-				wfWaitForSlaves();
 			}
 			$this->output( "\n" );
 		}

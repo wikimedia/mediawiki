@@ -840,8 +840,8 @@
 	mw.rcfilters.Controller.prototype.updateStickyPreferences = function () {
 		// Update default sticky values with selected, whether they came from
 		// the initial defaults or from the URL value that is being normalized
-		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).getSelectedItems()[ 0 ].getParamName() );
-		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).getSelectedItems()[ 0 ].getParamName() );
+		this.updateDaysDefault( this.filtersModel.getGroup( 'days' ).findSelectedItems()[ 0 ].getParamName() );
+		this.updateLimitDefault( this.filtersModel.getGroup( 'limit' ).findSelectedItems()[ 0 ].getParamName() );
 
 		// TODO: Make these automatic by having the model go over sticky
 		// items and update their default values automatically
@@ -1101,7 +1101,7 @@
 			rightNow = new Date().getTime(),
 			randomIdentifier = String( mw.user.sessionId() ) + String( rightNow ) + String( Math.random() ),
 			// Get all current filters
-			filters = this.filtersModel.getSelectedItems().map( function ( item ) {
+			filters = this.filtersModel.findSelectedItems().map( function ( item ) {
 				return item.getName();
 			} );
 

@@ -724,7 +724,7 @@
 	"expansion-depth-exceeded-category-desc": "Tha an leudachadh san duilleag nas doimhne na tha ceadaichte.",
 	"expansion-depth-exceeded-warning": "Bha an leudachadh san duilleag na bu dhoimhne na tha ceadaichte",
 	"parser-unstrip-loop-warning": "Mhothaich sinn do lùb unstrip",
-	"parser-unstrip-recursion-limit": "Chaidheas thairis air crìoch unstrip recursion ($1)",
+	"unstrip-depth-warning": "Chaidheas thairis air crìoch unstrip recursion ($1)",
 	"converter-manual-rule-error": "Mhothaich sinn do mhearachd san riaghailt iompachadh làimhe airson cànan",
 	"undo-success": "Gabhaidh an deasachadh seo a neo-dhèanamh.\nThoir sùil air a' choimeas gu h-ìosal is dearbhaich gur e sin a tha fa-near dhut agus sàbhail na h-atharraichean gu h-ìosal gus neo-dhèanamh an deasachaidh a choileanadh.",
 	"undo-failure": "Cha b' urrainn dhuinn an deasachadh a neo-dhèanamh air sgàth 's gun robh deasachaidhean eile sa mheadhan.",

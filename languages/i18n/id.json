@@ -802,7 +802,7 @@
 	"expansion-depth-exceeded-category-desc": "Halaman yang melebihi kedalaman luas maksimum.",
 	"expansion-depth-exceeded-warning": "Page exceeded the expansion depth",
 	"parser-unstrip-loop-warning": "Unstrip loop detected",
-	"parser-unstrip-recursion-limit": "Unstrip recursion limit exceeded ($1)",
+	"unstrip-depth-warning": "Unstrip recursion limit exceeded ($1)",
 	"converter-manual-rule-error": "Kesalahan terdeteksi di aturan manual konversi bahasa",
 	"undo-success": "Suntingan ini dapat dibalikkan. Silakan periksa perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembalikkan suntingan.",
 	"undo-failure": "Suntingan ini tidak dapat dibalikkan karena konflik penyuntingan antara.",

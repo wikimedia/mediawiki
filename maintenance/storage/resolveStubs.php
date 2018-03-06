@@ -38,7 +38,7 @@ function resolveStubs() {
 	$fname = 'resolveStubs';
 
 	$dbr = wfGetDB( DB_REPLICA );
-	$maxID = $dbr->selectField( 'text', 'MAX(old_id)', false, $fname );
+	$maxID = $dbr->selectField( 'text', 'MAX(old_id)', '', $fname );
 	$blockSize = 10000;
 	$numBlocks = intval( $maxID / $blockSize ) + 1;
 

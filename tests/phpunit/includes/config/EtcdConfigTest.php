@@ -17,14 +17,23 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			->getMock();
 	}
 
-	private function createSimpleConfigMock( array $config ) {
+	private static function createEtcdResponse( array $response ) {
+		$baseResponse = [
+			'config' => null,
+			'error' => null,
+			'retry' => false,
+			'modifiedIndex' => 0,
+		];
+		return array_merge( $baseResponse, $response );
+	}
+
+	private function createSimpleConfigMock( array $config, $index = 0 ) {
 		$mock = $this->createConfigMock();
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [
-				$config,
-				null, // error
-				false // retry?
-			] );
+			->willReturn( self::createEtcdResponse( [
+				'config' => $config,
+				'modifiedIndex' => $index,
+			] ) );
 		return $mock;
 	}
 
@@ -71,6 +80,17 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers EtcdConfig::getModifiedIndex
+	 */
+	public function testGetModifiedIndex() {
+		$config = $this->createSimpleConfigMock(
+			[ 'some' => 'value' ],
+			123
+		);
+		$this->assertSame( 123, $config->getModifiedIndex() );
+	}
+
+	/**
 	 * @covers EtcdConfig::__construct
 	 */
 	public function testConstructCacheObj() {
@@ -81,6 +101,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			->willReturn( [
 				'config' => [ 'known' => 'from-cache' ],
 				'expires' => INF,
+				'modifiedIndex' => 123
 			] );
 		$config = $this->createConfigMock( [ 'cache' => $cache ] );
 
@@ -95,11 +116,8 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			'class' => HashBagOStuff::class
 		] ] );
 		$config->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [
-				[ 'known' => 'from-fetch' ],
-				null, // error
-				false // retry?
-			] );
+			->willReturn( self::createEtcdResponse(
+				[ 'config' => [ 'known' => 'from-fetch' ], ] ) );
 
 		$this->assertSame( 'from-fetch', $config->get( 'known' ) );
 	}
@@ -166,7 +184,8 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [ [ 'known' => 'from-fetch' ], null, false ] );
+			->willReturn(
+				self::createEtcdResponse( [ 'config' => [ 'known' => 'from-fetch' ] ] ) );
 
 		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
 	}
@@ -191,7 +210,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [ null, 'Fake error', false ] );
+			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake error', ] ) );
 
 		$this->setExpectedException( ConfigException::class );
 		$mock->get( 'key' );
@@ -213,6 +232,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 				[
 					'config' => [ 'known' => 'from-cache' ],
 					'expires' => INF,
+					'modifiedIndex' => 123
 				]
 			) );
 		// .. misses lock
@@ -241,6 +261,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			->willReturn( [
 				'config' => [ 'known' => 'from-cache' ],
 				'expires' => INF,
+				'modifiedIndex' => 0,
 			] );
 		$cache->expects( $this->never() )->method( 'lock' );
 
@@ -266,6 +287,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			->willReturn( [
 				'config' => [ 'known' => 'from-cache' ],
 				'expires' => INF,
+				'modifiedIndex' => 0,
 			] );
 		$cache->expects( $this->never() )->method( 'lock' );
 
@@ -292,6 +314,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			[
 				'config' => [ 'known' => 'from-cache-expired' ],
 				'expires' => -INF,
+				'modifiedIndex' => 0,
 			]
 		);
 		// .. gets lock
@@ -303,7 +326,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [ [ 'known' => 'from-fetch' ], null, false ] );
+			->willReturn( self::createEtcdResponse( [ 'config' => [ 'known' => 'from-fetch' ] ] ) );
 
 		$this->assertSame( 'from-fetch', $mock->get( 'known' ) );
 	}
@@ -321,6 +344,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			[
 				'config' => [ 'known' => 'from-cache-expired' ],
 				'expires' => -INF,
+				'modifiedIndex' => 0,
 			]
 		);
 		// .. gets lock
@@ -332,7 +356,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			'cache' => $cache,
 		] );
 		$mock->expects( $this->once() )->method( 'fetchAllFromEtcd' )
-			->willReturn( [ null, 'Fake failure', true ] );
+			->willReturn( self::createEtcdResponse( [ 'error' => 'Fake failure', 'retry' => true ] ) );
 
 		$this->assertSame( 'from-cache-expired', $mock->get( 'known' ) );
 	}
@@ -350,6 +374,7 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 			->willReturn( [
 				'config' => [ 'known' => 'from-cache-expired' ],
 				'expires' => -INF,
+				'modifiedIndex' => 0,
 			] );
 		// .. misses lock
 		$cache->expects( $this->once() )->method( 'lock' )
@@ -374,16 +399,16 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => json_encode( [ 'node' => [ 'nodes' => [
 						[
 							'key' => '/example/foo',
-							'value' => json_encode( [ 'val' => true ] )
+							'value' => json_encode( [ 'val' => true ] ),
+							'modifiedIndex' => 123
 						],
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					[ 'foo' => true ], // data
-					null,
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'config' => [ 'foo' => true ], // data
+					'modifiedIndex' => 123
+				] ),
 			],
 			'200 OK - Empty dir' => [
 				'http' => [
@@ -393,25 +418,27 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => json_encode( [ 'node' => [ 'nodes' => [
 						[
 							'key' => '/example/foo',
-							'value' => json_encode( [ 'val' => true ] )
+							'value' => json_encode( [ 'val' => true ] ),
+							'modifiedIndex' => 123
 						],
 						[
 							'key' => '/example/sub',
 							'dir' => true,
+							'modifiedIndex' => 234,
 							'nodes' => [],
 						],
 						[
 							'key' => '/example/bar',
-							'value' => json_encode( [ 'val' => false ] )
+							'value' => json_encode( [ 'val' => false ] ),
+							'modifiedIndex' => 125
 						],
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					[ 'foo' => true, 'bar' => false ], // data
-					null,
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'config' => [ 'foo' => true, 'bar' => false ], // data
+					'modifiedIndex' => 125 // largest modified index
+				] ),
 			],
 			'200 OK - Recursive' => [
 				'http' => [
@@ -422,25 +449,28 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 						[
 							'key' => '/example/a',
 							'dir' => true,
+							'modifiedIndex' => 124,
 							'nodes' => [
 								[
 									'key' => 'b',
 									'value' => json_encode( [ 'val' => true ] ),
+									'modifiedIndex' => 123,
+
 								],
 								[
 									'key' => 'c',
 									'value' => json_encode( [ 'val' => false ] ),
+									'modifiedIndex' => 123,
 								],
 							],
 						],
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					[ 'a/b' => true, 'a/c' => false ], // data
-					null,
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'config' => [ 'a/b' => true, 'a/c' => false ], // data
+					'modifiedIndex' => 123 // largest modified index
+				] ),
 			],
 			'200 OK - Missing nodes at second level' => [
 				'http' => [
@@ -451,15 +481,14 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 						[
 							'key' => '/example/a',
 							'dir' => true,
+							'modifiedIndex' => 0,
 						],
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					null,
-					"Unexpected JSON response in dir 'a'; missing 'nodes' list.",
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => "Unexpected JSON response in dir 'a'; missing 'nodes' list.",
+				] ),
 			],
 			'200 OK - Directory with non-array "nodes" key' => [
 				'http' => [
@@ -475,11 +504,9 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					null,
-					"Unexpected JSON response in dir 'a'; 'nodes' is not an array.",
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => "Unexpected JSON response in dir 'a'; 'nodes' is not an array.",
+				] ),
 			],
 			'200 OK - Correctly encoded garbage response' => [
 				'http' => [
@@ -489,11 +516,9 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => json_encode( [ 'foo' => 'bar' ] ),
 					'error' => '',
 				],
-				'expect' => [
-					null,
-					"Unexpected JSON response: Missing or invalid node at top level.",
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => "Unexpected JSON response: Missing or invalid node at top level.",
+				] ),
 			],
 			'200 OK - Bad value' => [
 				'http' => [
@@ -503,30 +528,27 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => json_encode( [ 'node' => [ 'nodes' => [
 						[
 							'key' => '/example/foo',
-							'value' => ';"broken{value'
+							'value' => ';"broken{value',
+							'modifiedIndex' => 123,
 						]
 					] ] ] ),
 					'error' => '',
 				],
-				'expect' => [
-					null, // data
-					"Failed to parse value for 'foo'.",
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => "Failed to parse value for 'foo'.",
+				] ),
 			],
 			'200 OK - Empty node list' => [
 				'http' => [
 					'code' => 200,
 					'reason' => 'OK',
 					'headers' => [],
-					'body' => '{"node":{"nodes":[]}}',
+					'body' => '{"node":{"nodes":[], "modifiedIndex": 12 }}',
 					'error' => '',
 				],
-				'expect' => [
-					[], // data
-					null,
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'config' => [], // data
+				] ),
 			],
 			'200 OK - Invalid JSON' => [
 				'http' => [
@@ -536,11 +558,9 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => '',
 					'error' => '(curl error: no status set)',
 				],
-				'expect' => [
-					null, // data
-					"Error unserializing JSON response.",
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => "Error unserializing JSON response.",
+				] ),
 			],
 			'404 Not Found' => [
 				'http' => [
@@ -550,11 +570,9 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => '',
 					'error' => '',
 				],
-				'expect' => [
-					null, // data
-					'HTTP 404 (Not Found)',
-					false // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => 'HTTP 404 (Not Found)',
+				] ),
 			],
 			'400 Bad Request - custom error' => [
 				'http' => [
@@ -564,11 +582,10 @@ class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 					'body' => '',
 					'error' => 'No good reason',
 				],
-				'expect' => [
-					null, // data
-					'No good reason',
-					true // retry
-				],
+				'expect' => self::createEtcdResponse( [
+					'error' => 'No good reason',
+					'retry' => true, // retry
+				] ),
 			],
 		];
 	}

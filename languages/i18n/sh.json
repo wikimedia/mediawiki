@@ -674,7 +674,7 @@
 	"expansion-depth-exceeded-category-desc": "Stranica je prešla najveću dubinu proširenja.",
 	"expansion-depth-exceeded-warning": "Na ovoj stranici dubina proširenja je prevelika",
 	"parser-unstrip-loop-warning": "Utvrđena je petlja",
-	"parser-unstrip-recursion-limit": "Dosegnuto je ograničenje rekurzije ($1)",
+	"unstrip-depth-warning": "Dosegnuto je ograničenje rekurzije ($1)",
 	"converter-manual-rule-error": "Pronađena je greška u pravilu za ručno pretvaranje jezika",
 	"undo-success": "Izmjena se može vratiti.\nMolimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a zatim spremite promjene da bi ste završili vraćanje izmjene.",
 	"undo-failure": "Izmjene se ne mogu vratiti zbog konflikta sa izmjenama u međuvremenu.",

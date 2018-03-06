@@ -50,13 +50,13 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
-		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __METHOD__ );
+		$start = $db->selectField( 'logging', 'MIN(log_id)', '', __METHOD__ );
 		if ( !$start ) {
 			$this->output( "Nothing to do.\n" );
 
 			return true;
 		}
-		$end = $db->selectField( 'logging', 'MAX(log_id)', false, __METHOD__ );
+		$end = $db->selectField( 'logging', 'MAX(log_id)', '', __METHOD__ );
 
 		// If this is being run during an upgrade from 1.16 or earlier, this
 		// will be run before the actor table change and should continue. But
@@ -85,7 +85,6 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 			$this->commitTransaction( $db, __METHOD__ );
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
 		}
 		$this->output( "Done populating log_user_text field.\n" );
 

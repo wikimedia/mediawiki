@@ -670,7 +670,7 @@
 	"expansion-depth-exceeded-category-desc": "La pàggina passa lu funnu d'espanzioni màssimu.",
 	"expansion-depth-exceeded-warning": "Sta pàggina passau lu funnu d'espanzioni màssimu",
 	"parser-unstrip-loop-warning": "Rilivatu un cìrculu di Unstrip",
-	"parser-unstrip-recursion-limit": "Passatu lu lìmiti di ricursioni di Unstrip ($1)",
+	"unstrip-depth-warning": "Passatu lu lìmiti di ricursioni di Unstrip ($1)",
 	"converter-manual-rule-error": "Rilivatu n'erruri nta na règula manuali di cunvirsioni di lingua",
 	"undo-success": "Lu canciamentu pò essiri annullatu.\nVirificati lu paraguni ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
 	"undo-failure": "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntirmedi.",

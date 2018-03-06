@@ -676,7 +676,7 @@
 	"expansion-depth-exceeded-category-desc": "Strona překroša maksimalnu ekspansisku hłubokosć.",
 	"expansion-depth-exceeded-warning": "Strona je ekspansisku hłubokosć překročił",
 	"parser-unstrip-loop-warning": "Njeskónčna sekla namakana",
-	"parser-unstrip-recursion-limit": "Rekursiska hranica překročena ($1)",
+	"unstrip-depth-warning": "Rekursiska hranica překročena ($1)",
 	"converter-manual-rule-error": "Zmylk w manuelnym prawidle rěčneho konwertowanja namakany",
 	"undo-success": "Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.",
 	"undo-failure": "Wobdźěłanje njehodźeše so wotstronić, dokelž wotpowědny wotrězk bu mjeztym změnjeny.",

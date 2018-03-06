@@ -329,6 +329,14 @@ class BlockLevelPass {
 							$this->lastSection = 'pre';
 						}
 						$t = substr( $t, 1 );
+					} elseif ( preg_match( '/^(?:<style\\b[^>]*>.*?<\\/style>\s*|<link\\b[^>]*>\s*)+$/iS', $t ) ) {
+						# T186965: <style> or <link> by itself on a line shouldn't open or close paragraphs.
+						# But it should clear $pendingPTag.
+						if ( $pendingPTag ) {
+							$output .= $this->closeParagraph();
+							$pendingPTag = false;
+							$this->lastSection = '';
+						}
 					} else {
 						# paragraph
 						if ( trim( $t ) === '' ) {

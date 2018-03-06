@@ -583,7 +583,7 @@
 	"expansion-depth-exceeded-category": "Laman dima kadalaman ekspansi lah talampau",
 	"expansion-depth-exceeded-warning": "Laman kadalaman ekspansi lah talampau",
 	"parser-unstrip-loop-warning": "Unstrip loop detected",
-	"parser-unstrip-recursion-limit": "Unstrip recursion limit exceeded ($1)",
+	"unstrip-depth-warning": "Unstrip recursion limit exceeded ($1)",
 	"converter-manual-rule-error": "Kasalahan tadeteksi di aturan manual konversi bahaso",
 	"undo-success": "Suntiangan ko dapek dibatalan. \nTolong cek pabedoan di bawah untuak mayakinkan bahwa bana nan tu Sanak nio buek, lalu simpan parubahan tasabuik untuak manyalasaikan pambatalan suntiangan.",
 	"undo-failure": "Suntiangan ko indak dapek dibatalan dek konflik panyuntiangan antaro.",

@@ -78,8 +78,8 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	protected function doSha1Updates( $table, $idCol, $queryInfo, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
 		$batchSize = $this->getBatchSize();
-		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
-		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
+		$start = $db->selectField( $table, "MIN($idCol)", '', __METHOD__ );
+		$end = $db->selectField( $table, "MAX($idCol)", '', __METHOD__ );
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
 
@@ -109,7 +109,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
 		}
 
 		return $count;
@@ -135,7 +134,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				$updateSize = 0;
 				$this->commitTransaction( $db, __METHOD__ );
 				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
-				wfWaitForSlaves();
 				$this->beginTransaction( $db, __METHOD__ );
 			}
 		}

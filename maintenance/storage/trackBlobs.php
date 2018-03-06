@@ -153,7 +153,7 @@ class TrackBlobs {
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
-		$endId = $dbr->selectField( 'revision', 'MAX(rev_id)', false, __METHOD__ );
+		$endId = $dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 		$batchesDone = 0;
 		$rowsInserted = 0;
 
@@ -229,7 +229,7 @@ class TrackBlobs {
 
 		$textClause = $this->getTextClause( $this->clusters );
 		$startId = 0;
-		$endId = $dbr->selectField( 'text', 'MAX(old_id)', false, __METHOD__ );
+		$endId = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 		$rowsInserted = 0;
 		$batchesDone = 0;
 
@@ -339,7 +339,7 @@ class TrackBlobs {
 			$startId = 0;
 			$batchesDone = 0;
 			$actualBlobs = gmp_init( 0 );
-			$endId = $extDB->selectField( $table, 'MAX(blob_id)', false, __METHOD__ );
+			$endId = $extDB->selectField( $table, 'MAX(blob_id)', '', __METHOD__ );
 
 			// Build a bitmap of actual blob rows
 			while ( true ) {
