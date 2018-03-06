@@ -455,7 +455,7 @@ class RevisionStore
 			$dbw->insert( 'ip_changes', $ipcRow, __METHOD__ );
 		}
 
-		$newSlot = SlotRecord::newSaved( $row['rev_id'], $blobAddress, $slot );
+		$newSlot = SlotRecord::newForSaving( $row['rev_id'], $blobAddress, $slot );
 		$slots = new RevisionSlots( [ 'main' => $newSlot ] );
 
 		$rev = new RevisionStoreRecord(
@@ -763,7 +763,7 @@ class RevisionStore
 			}
 
 			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
-				$mainSlotRow->cont_address = 'tt:' . $row->rev_text_id;
+				$mainSlotRow->content_address = 'tt:' . $row->rev_text_id;
 			}
 
 			if ( isset( $row->old_text ) ) {
@@ -776,10 +776,10 @@ class RevisionStore
 				$blobFlags = ( $row->old_flags === null ) ? '' : $row->old_flags;
 			}
 
-			$mainSlotRow->slot_revision = intval( $row->rev_id );
+			$mainSlotRow->slot_revision_id = intval( $row->rev_id );
 
-			$mainSlotRow->cont_size = isset( $row->rev_len ) ? intval( $row->rev_len ) : null;
-			$mainSlotRow->cont_sha1 = isset( $row->rev_sha1 ) ? strval( $row->rev_sha1 ) : null;
+			$mainSlotRow->content_size = isset( $row->rev_len ) ? intval( $row->rev_len ) : null;
+			$mainSlotRow->content_sha1 = isset( $row->rev_sha1 ) ? strval( $row->rev_sha1 ) : null;
 			$mainSlotRow->model_name = isset( $row->rev_content_model )
 				? strval( $row->rev_content_model )
 				: null;
@@ -788,13 +788,13 @@ class RevisionStore
 				? strval( $row->rev_content_format )
 				: null;
 		} elseif ( is_array( $row ) ) {
-			$mainSlotRow->slot_revision = isset( $row['id'] ) ? intval( $row['id'] ) : null;
+			$mainSlotRow->slot_revision_id = isset( $row['id'] ) ? intval( $row['id'] ) : null;
 
-			$mainSlotRow->cont_address = isset( $row['text_id'] )
+			$mainSlotRow->content_address = isset( $row['text_id'] )
 				? 'tt:' . intval( $row['text_id'] )
 				: null;
-			$mainSlotRow->cont_size = isset( $row['len'] ) ? intval( $row['len'] ) : null;
-			$mainSlotRow->cont_sha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
+			$mainSlotRow->content_size = isset( $row['len'] ) ? intval( $row['len'] ) : null;
+			$mainSlotRow->content_sha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
 
 			$mainSlotRow->model_name = isset( $row['content_model'] )
 				? strval( $row['content_model'] ) : null;  // XXX: must be a string!
@@ -853,6 +853,7 @@ class RevisionStore
 			};
 		}
 
+		$mainSlotRow->slot_id = null;
 		return new SlotRecord( $mainSlotRow, $content );
 	}
 
