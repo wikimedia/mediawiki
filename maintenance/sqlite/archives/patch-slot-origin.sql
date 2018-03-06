@@ -1,8 +1,15 @@
 --
--- Slots represent an n:m relation between revisions and content objects.
--- A content object can have a specific "role" in one or more revisions.
--- Each revision can have multiple content objects, each having a different role.
+-- Replace slot_inherited with slot_origin.
 --
+-- NOTE: There is no release that has slot_inherited. This is only needed to transition between
+-- snapshot versions of 1.30.
+--
+-- NOTE: No code that writes to the slots table was merge yet, the table is assumed to be empty.
+--
+BEGIN TRANSACTION;
+
+DROP TABLE /*_*/slots;
+
 CREATE TABLE /*_*/slots (
 
   -- reference to rev_id
@@ -23,3 +30,5 @@ CREATE TABLE /*_*/slots (
 
 -- Index for finding revisions that modified a specific slot
 CREATE INDEX /*i*/slot_revision_origin_role ON /*_*/slots (slot_revision_id, slot_origin, slot_role_id);
+
+COMMIT TRANSACTION;
