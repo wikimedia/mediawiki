@@ -1249,4 +1249,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->buildSubstring( 'foo', $start, $length );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::buildIntegerCast
+	 */
+	public function testBuildIntegerCast() {
+		$output = $this->database->buildIntegerCast( 'fieldName' );
+		$this->assertSame( 'CAST( fieldName AS INTEGER )', $output );
+	}
+
 }
