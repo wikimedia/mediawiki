@@ -1282,13 +1282,22 @@ abstract class DatabaseUpdater {
 	 */
 	protected function migrateImageCommentTemp() {
 		global $wgCommentTableSchemaMigrationStage;
-		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-			$this->output( "Merging image_comment_temp into the image table\n" );
-			$task = $this->maintenance->runChild(
-				MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
-			);
-			$ok = $task->execute();
-			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
+
+		if ( $this->tableExists( 'image_comment_temp' ) ) {
+			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				$this->output( "Merging image_comment_temp into the image table\n" );
+				$task = $this->maintenance->runChild(
+					MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
+				);
+				$task->setForce();
+				$ok = $task->execute();
+				$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
+			} else {
+				$ok = true;
+			}
+			if ( $ok ) {
+				$this->dropTable( 'image_comment_temp' );
+			}
 		}
 	}
 

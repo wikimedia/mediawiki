@@ -566,15 +566,6 @@ CREATE INDEX &mw_prefix.image_i03 ON &mw_prefix.image (img_timestamp);
 CREATE INDEX &mw_prefix.image_i04 ON &mw_prefix.image (img_sha1);
 CREATE INDEX &mw_prefix.img_actor_timestamp ON &mw_prefix.image (img_actor, img_timestamp);
 
-CREATE TABLE &mw_prefix.image_comment_temp (
-  imgcomment_name VARCHAR2(255) NOT NULL,
-  imgcomment_description_id NUMBER NOT NULL
-);
-ALTER TABLE &mw_prefix.image_comment_temp ADD CONSTRAINT &mw_prefix.image_comment_temp_pk PRIMARY KEY (imgcomment_name, imgcomment_description_id);
-ALTER TABLE &mw_prefix.image_comment_temp ADD CONSTRAINT &mw_prefix.image_comment_temp_fk1 FOREIGN KEY (imgcomment_name) REFERENCES &mw_prefix.image(img_name) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE &mw_prefix.image_comment_temp ADD CONSTRAINT &mw_prefix.image_comment_temp_fk2 FOREIGN KEY (imgcomment_description_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX &mw_prefix.imgcomment_name ON &mw_prefix.image_comment_temp (imgcomment_name);
-
 
 CREATE TABLE &mw_prefix.oldimage (
   oi_name          VARCHAR2(255)         DEFAULT 0 NOT NULL,

@@ -70,11 +70,7 @@ class CommentStore {
 			'deprecatedIn' => null,
 		],
 		'img_description' => [
-			'table' => 'image_comment_temp',
-			'pk' => 'imgcomment_name',
-			'field' => 'imgcomment_description_id',
-			'joinPK' => 'img_name',
-			'stage' => MIGRATION_WRITE_NEW,
+			'stage' => MIGRATION_NEW,
 			'deprecatedIn' => '1.32',
 		],
 	];
@@ -226,8 +222,14 @@ class CommentStore {
 					if ( $tempTableStage === MIGRATION_OLD ) {
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
+						// Nothing hits this code path for now, but will in the future when we set
+						// $this->tempTables['rev_comment']['stage'] to MIGRATION_WRITE_NEW while
+						// merging revision_comment_temp into revision.
+						// @codeCoverageIgnoreStart
 						$joins[$alias][0] = 'LEFT JOIN';
 						$joinField = "(CASE WHEN {$key}_id != 0 THEN {$key}_id ELSE {$alias}.{$t['field']} END)";
+						throw new LogicException( 'Nothing should reach this code path at this time' );
+						// @codeCoverageIgnoreEnd
 					}
 				} else {
 					$joinField = "{$key}_id";
