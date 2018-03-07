@@ -517,6 +517,7 @@ CREATE TABLE &mw_prefix.image (
   img_major_mime   VARCHAR2(32) DEFAULT 'unknown',
   img_minor_mime   VARCHAR2(100) DEFAULT 'unknown',
   img_description  VARCHAR2(255),
+  img_description_id  NUMBER DEFAULT 0 NOT NULL,
   img_user         NUMBER       DEFAULT 0 NOT NULL,
   img_user_text    VARCHAR2(255)      NULL,
   img_actor        NUMBER       DEFAULT 0 NOT NULL,
@@ -525,6 +526,7 @@ CREATE TABLE &mw_prefix.image (
 );
 ALTER TABLE &mw_prefix.image ADD CONSTRAINT &mw_prefix.image_pk PRIMARY KEY (img_name);
 ALTER TABLE &mw_prefix.image ADD CONSTRAINT &mw_prefix.image_fk1 FOREIGN KEY (img_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE &mw_prefix.image ADD CONSTRAINT &mw_prefix.image_fk2 FOREIGN KEY (img_description_id) REFERENCES &mw_prefix."COMMENT"(comment_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.image_i01 ON &mw_prefix.image (img_user_text,img_timestamp);
 CREATE INDEX &mw_prefix.image_i02 ON &mw_prefix.image (img_size);
 CREATE INDEX &mw_prefix.image_i03 ON &mw_prefix.image (img_timestamp);

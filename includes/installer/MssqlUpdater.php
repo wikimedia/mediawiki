@@ -108,6 +108,9 @@ class MssqlUpdater extends DatabaseUpdater {
 
 			// Should have been in 1.30
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
+			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
+			// Should have been in 1.30
 			[ 'migrateComments' ],
 
 			// 1.31
