@@ -1534,13 +1534,7 @@ class LocalFile extends File {
 				$fields['oi_description'] = 'img_description';
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
-				$tables[] = 'image_comment_temp';
-				$fields['oi_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
-				$joins['image_comment_temp'] = [
-					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
-					[ 'imgcomment_name = img_name' ]
-				];
+				$fields['oi_description_id'] = 'img_description_id';
 			}
 
 			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
@@ -1550,16 +1544,13 @@ class LocalFile extends File {
 				// might be missed if a deletion happens while the migration script
 				// is running.
 				$res = $dbw->select(
-					[ 'image', 'image_comment_temp' ],
+					[ 'image' ],
 					[ 'img_name', 'img_description' ],
 					[
 						'img_name' => $this->getName(),
-						'imgcomment_name' => null,
 						'img_description_id' => 0,
 					],
-					__METHOD__,
-					[],
-					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
+					__METHOD__
 				);
 				foreach ( $res as $row ) {
 					$commentStore->insert( $dbw, 'img_description', $row->img_description );
@@ -1623,10 +1614,6 @@ class LocalFile extends File {
 				[ 'img_name' => $this->getName() ],
 				__METHOD__
 			);
-			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-				// Clear deprecated table row
-				$dbw->delete( 'image_comment_temp', [ 'imgcomment_name' => $this->getName() ], __METHOD__ );
-			}
 		}
 
 		$descTitle = $this->getTitle();
@@ -2524,13 +2511,7 @@ class LocalFileDeleteBatch {
 				$fields['fa_description'] = 'img_description';
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
-				$tables[] = 'image_comment_temp';
-				$fields['fa_description_id'] =
-					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
-				$joins['image_comment_temp'] = [
-					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
-					[ 'imgcomment_name = img_name' ]
-				];
+				$fields['fa_description_id'] = 'img_description_id';
 			}
 
 			if ( $wgCommentTableSchemaMigrationStage !== MIGRATION_OLD &&
@@ -2540,16 +2521,13 @@ class LocalFileDeleteBatch {
 				// might be missed if a deletion happens while the migration script
 				// is running.
 				$res = $dbw->select(
-					[ 'image', 'image_comment_temp' ],
+					[ 'image' ],
 					[ 'img_name', 'img_description' ],
 					[
 						'img_name' => $this->file->getName(),
-						'imgcomment_name' => null,
 						'img_description_id' => 0,
 					],
-					__METHOD__,
-					[],
-					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
+					__METHOD__
 				);
 				foreach ( $res as $row ) {
 					$commentStore->insert( $dbw, 'img_description', $row->img_description );
@@ -2643,8 +2621,6 @@ class LocalFileDeleteBatch {
 	}
 
 	function doDBDeletes() {
-		global $wgCommentTableSchemaMigrationStage;
-
 		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
@@ -2658,12 +2634,6 @@ class LocalFileDeleteBatch {
 
 		if ( $deleteCurrent ) {
 			$dbw->delete( 'image', [ 'img_name' => $this->file->getName() ], __METHOD__ );
-			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-				// Clear deprecated table row
-				$dbw->delete(
-					'image_comment_temp', [ 'imgcomment_name' => $this->file->getName() ], __METHOD__
-				);
-			}
 		}
 	}
 

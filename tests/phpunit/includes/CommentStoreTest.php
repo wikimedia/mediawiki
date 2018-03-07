@@ -116,7 +116,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				MIGRATION_WRITE_BOTH, 'img_description',
 				[
 					'img_description_old' => 'img_description',
-					'img_description_pk' => 'img_name',
 					'img_description_id' => 'img_description_id'
 				],
 			],
@@ -124,14 +123,12 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				MIGRATION_WRITE_NEW, 'img_description',
 				[
 					'img_description_old' => 'img_description',
-					'img_description_pk' => 'img_name',
 					'img_description_id' => 'img_description_id'
 				],
 			],
 			'Image, new' => [
 				MIGRATION_NEW, 'img_description',
 				[
-					'img_description_pk' => 'img_name',
 					'img_description_id' => 'img_description_id'
 				],
 			],
@@ -295,7 +292,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'Image, write-both' => [
 				MIGRATION_WRITE_BOTH, 'img_description', [
 					'tables' => [
-						'temp_img_description' => 'image_comment_temp',
 						'comment_img_description' => 'comment',
 					],
 					'fields' => [
@@ -304,10 +300,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'img_description_cid' => 'comment_img_description.comment_id',
 					],
 					'joins' => [
-						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'LEFT JOIN',
-							// phpcs:ignore Generic.Files.LineLength
-							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+							'comment_img_description.comment_id = img_description_id',
 						],
 					],
 				],
@@ -315,7 +309,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'Image, write-new' => [
 				MIGRATION_WRITE_NEW, 'img_description', [
 					'tables' => [
-						'temp_img_description' => 'image_comment_temp',
 						'comment_img_description' => 'comment',
 					],
 					'fields' => [
@@ -324,10 +317,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'img_description_cid' => 'comment_img_description.comment_id',
 					],
 					'joins' => [
-						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'LEFT JOIN',
-							// phpcs:ignore Generic.Files.LineLength
-							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+							'comment_img_description.comment_id = img_description_id',
 						],
 					],
 				],
@@ -335,7 +326,6 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			'Image, new' => [
 				MIGRATION_NEW, 'img_description', [
 					'tables' => [
-						'temp_img_description' => 'image_comment_temp',
 						'comment_img_description' => 'comment',
 					],
 					'fields' => [
@@ -344,10 +334,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 						'img_description_cid' => 'comment_img_description.comment_id',
 					],
 					'joins' => [
-						'temp_img_description' => [ 'LEFT JOIN', 'temp_img_description.imgcomment_name = img_name' ],
 						'comment_img_description' => [ 'JOIN',
-							// phpcs:ignore Generic.Files.LineLength
-							'comment_img_description.comment_id = (CASE WHEN img_description_id != 0 THEN img_description_id ELSE temp_img_description.imgcomment_description_id END)',
+							'comment_img_description.comment_id = img_description_id',
 						],
 					],
 				],
