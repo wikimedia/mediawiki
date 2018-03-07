@@ -1147,7 +1147,7 @@
 	"recentchangesdays": "Días que mostrar en los cambios recientes:",
 	"recentchangesdays-max": "Máximo {{PLURAL:$1|un día|$1 días}}",
 	"recentchangescount": "N.º de ediciones que mostrar de manera predeterminada:",
-	"prefs-help-recentchangescount": "Esto incluye cambios recientes, historiales de páginas y registros.",
+	"prefs-help-recentchangescount": "Número máximo: 1000",
 	"prefs-help-watchlist-token2": "Esta es la clave secreta del suministro web de tu lista de seguimiento.\nCualquiera que la conozca podrá consultar la lista, así que no la compartas.\n[[Special:ResetTokens|Puedes restablecerla si lo necesitas]].",
 	"savedprefs": "Se han guardado tus preferencias.",
 	"savedrights": "Se han guardado los grupos de {{GENDER:$1|usuario|usuaria}} de $1.",
