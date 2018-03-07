@@ -1463,8 +1463,7 @@ class LocalFile extends File {
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
 		$commentStore = CommentStore::getStore();
-		list( $commentFields, $commentCallback ) =
-			$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
+		$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
 		$actorMigration = ActorMigration::newMigration();
 		$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
 		$dbw->insert( 'image',
@@ -1536,7 +1535,8 @@ class LocalFile extends File {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['oi_description_id'] = 'imgcomment_description_id';
+				$fields['oi_description_id'] =
+					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
@@ -1552,16 +1552,17 @@ class LocalFile extends File {
 				$res = $dbw->select(
 					[ 'image', 'image_comment_temp' ],
 					[ 'img_name', 'img_description' ],
-					[ 'img_name' => $this->getName(), 'imgcomment_name' => null ],
+					[
+						'img_name' => $this->getName(),
+						'imgcomment_name' => null,
+						'img_description_id' => 0,
+					],
 					__METHOD__,
 					[],
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStore->insertWithTempTable(
-						$dbw, 'img_description', $row->img_description
-					);
-					$callback( $row->img_name );
+					$commentStore->insert( $dbw, 'img_description', $row->img_description );
 				}
 			}
 
@@ -1623,11 +1624,10 @@ class LocalFile extends File {
 				__METHOD__
 			);
 			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
-				// So $commentCallback can insert the new row
+				// Clear deprecated table row
 				$dbw->delete( 'image_comment_temp', [ 'imgcomment_name' => $this->getName() ], __METHOD__ );
 			}
 		}
-		$commentCallback( $this->getName() );
 
 		$descTitle = $this->getTitle();
 		$descId = $descTitle->getArticleID();
@@ -2525,7 +2525,8 @@ class LocalFileDeleteBatch {
 			}
 			if ( $wgCommentTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
 				$tables[] = 'image_comment_temp';
-				$fields['fa_description_id'] = 'imgcomment_description_id';
+				$fields['fa_description_id'] =
+					'CASE WHEN img_description_id = 0 THEN imgcomment_description_id ELSE img_description_id END';
 				$joins['image_comment_temp'] = [
 					$wgCommentTableSchemaMigrationStage === MIGRATION_NEW ? 'JOIN' : 'LEFT JOIN',
 					[ 'imgcomment_name = img_name' ]
@@ -2541,16 +2542,17 @@ class LocalFileDeleteBatch {
 				$res = $dbw->select(
 					[ 'image', 'image_comment_temp' ],
 					[ 'img_name', 'img_description' ],
-					[ 'img_name' => $this->file->getName(), 'imgcomment_name' => null ],
+					[
+						'img_name' => $this->file->getName(),
+						'imgcomment_name' => null,
+						'img_description_id' => 0,
+					],
 					__METHOD__,
 					[],
 					[ 'image_comment_temp' => [ 'LEFT JOIN', [ 'imgcomment_name = img_name' ] ] ]
 				);
 				foreach ( $res as $row ) {
-					list( , $callback ) = $commentStore->insertWithTempTable(
-						$dbw, 'img_description', $row->img_description
-					);
-					$callback( $row->img_name );
+					$commentStore->insert( $dbw, 'img_description', $row->img_description );
 				}
 			}
 
@@ -2657,6 +2659,7 @@ class LocalFileDeleteBatch {
 		if ( $deleteCurrent ) {
 			$dbw->delete( 'image', [ 'img_name' => $this->file->getName() ], __METHOD__ );
 			if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+				// Clear deprecated table row
 				$dbw->delete(
 					'image_comment_temp', [ 'imgcomment_name' => $this->file->getName() ], __METHOD__
 				);
@@ -2924,8 +2927,7 @@ class LocalFileRestoreBatch {
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
-				list( $commentFields, $commentCallback ) =
-					$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
+				$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
 				$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
@@ -3037,7 +3039,6 @@ class LocalFileRestoreBatch {
 		// This is not ideal, which is why it's important to lock the image row.
 		if ( $insertCurrent ) {
 			$dbw->insert( 'image', $insertCurrent, __METHOD__ );
-			$commentCallback( $insertCurrent['img_name'] );
 		}
 
 		if ( $insertBatch ) {
