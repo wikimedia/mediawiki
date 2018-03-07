@@ -308,21 +308,6 @@ a.new {
 	color: #ba0000;
 }
 
-/* self links */
-a.mw-selflink {
-	color: inherit;
-	font-weight: bold;
-	text-decoration: inherit;
-}
-a.mw-selflink:hover {
-	cursor: inherit;
-	text-decoration: inherit;
-}
-a.mw-selflink:active,
-a.mw-selflink:visited {
-	color: inherit;
-}
-
 /* Plainlinks - this can be used to switch
  * off special external link styling */
 .plainlinks a.external {
