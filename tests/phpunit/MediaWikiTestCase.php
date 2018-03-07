@@ -2020,4 +2020,35 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 		self::assertEquals( file_get_contents( $fileName ), $actualData, $msg );
 	}
+
+	/**
+	 * Call private method of the class
+	 * Passes extra parameters to the method.
+	 * @param object $object Object that owns the method
+	 * @param string $method Method name
+	 * @return mixed Whatever the method returns
+	 * @since 1.31
+	 */
+	protected function callPrivateMethod( $object, $method ) {
+		$refMethod = new \ReflectionMethod( $object, $method );
+		$refMethod->setAccessible( true );
+		$args = array_slice( func_get_args(), 2 );
+		return $refMethod->invokeArgs( $object, $args );
+	}
+
+	/**
+	 * Call private method of the class
+	 * Accepts arguments as array to allow for by-ref arguments.
+	 * @param object $object Object that owns the method
+	 * @param string $method Method name
+	 * @param array $args Extra arguments
+	 * @return mixed Whatever the method returns
+	 * @since 1.31
+	 */
+	protected function callPrivateMethodArgs( $object, $method, array $args ) {
+		$refMethod = new \ReflectionMethod( $object, $method );
+		$refMethod->setAccessible( true );
+		return $refMethod->invokeArgs( $object, $args );
+	}
+
 }
