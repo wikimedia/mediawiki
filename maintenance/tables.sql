@@ -1835,7 +1835,7 @@ CREATE TABLE /*_*/change_tag (
   ct_rev_id int unsigned NULL,
   -- Tag applied
   ct_tag varchar(255) NOT NULL,
-  -- Parameters for the tag, presently unused
+  -- Parameters for the tag; used by some extensions
   ct_params blob NULL
 ) /*$wgDBTableOptions*/;
 
