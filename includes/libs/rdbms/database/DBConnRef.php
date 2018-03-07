@@ -350,6 +350,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function buildStringCast( $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

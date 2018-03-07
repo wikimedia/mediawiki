@@ -1854,6 +1854,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		$this->assertBuildSubstringParams( $startPosition, $length );
+		$functionBody = "$input FROM $startPosition";
+		if ( $length !== null ) {
+			$functionBody .= " FOR $length";
+		}
+		return 'SUBSTRING(' . $functionBody . ')';
+	}
+
+	/**
+	 * Check type and bounds for parameters to self::buildSubstring()
+	 *
+	 * All supported databases have substring functions that behave the same for
+	 * positive $startPosition and non-negative $length, but behaviors differ when
+	 * given 0 or negative $startPosition or negative $length. The simplest
+	 * solution to that is to just forbid those values.
+	 *
+	 * @param int $startPosition
+	 * @param int|null $length
+	 * @since 1.31
+	 */
+	protected function assertBuildSubstringParams( $startPosition, $length ) {
+		if ( !is_int( $startPosition ) || $startPosition <= 0 ) {
+			throw new InvalidArgumentException(
+				'$startPosition must be a positive integer'
+			);
+		}
+		if ( !( is_int( $length ) && $length >= 0 || $length === null ) ) {
+			throw new InvalidArgumentException(
+				'$length must be null or an integer greater than or equal to 0'
+			);
+		}
+	}
+
 	public function buildStringCast( $field ) {
 		return $field;
 	}

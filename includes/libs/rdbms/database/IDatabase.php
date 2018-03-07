@@ -19,6 +19,7 @@
  */
 namespace Wikimedia\Rdbms;
 
+use InvalidArgumentException;
 use Wikimedia\ScopedCallback;
 use RuntimeException;
 use UnexpectedValueException;
@@ -1049,6 +1050,20 @@ interface IDatabase {
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	);
+
+	/**
+	 * Build a SUBSTRING function.
+	 *
+	 * Behavior for non-ASCII values is undefined.
+	 *
+	 * @param string $input Field name
+	 * @param int $startPosition Positive integer
+	 * @param int|null $length Non-negative integer length or null for no limit
+	 * @throws InvalidArgumentException
+	 * @return string SQL text
+	 * @since 1.31
+	 */
+	public function buildSubString( $input, $startPosition, $length = null );
 
 	/**
 	 * @param string $field Field or column to cast
