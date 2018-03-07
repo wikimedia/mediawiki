@@ -1249,7 +1249,7 @@ class Article implements Page {
 			}
 
 			$dir = $this->getContext()->getLanguage()->getDir();
-			$lang = $this->getContext()->getLanguage()->getCode();
+			$lang = $this->getContext()->getLanguage()->getHtmlCode();
 			$outputPage->addWikiText( Xml::openElement( 'div', [
 				'class' => "noarticletext mw-content-$dir",
 				'dir' => $dir,
