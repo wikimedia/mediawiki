@@ -421,6 +421,7 @@ CREATE TABLE image (
   img_major_mime   TEXT                DEFAULT 'unknown',
   img_minor_mime   TEXT                DEFAULT 'unknown',
   img_description  TEXT      NOT NULL  DEFAULT '',
+  img_description_id INTEGER NOT NULL  DEFAULT 0,
   img_user         INTEGER   NOT NULL  DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   img_user_text    TEXT      NOT NULL  DEFAULT '',
   img_actor        INTEGER   NOT NULL  DEFAULT 0,
