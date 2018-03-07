@@ -245,7 +245,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					);
 				}
 
-				if ( User::isIP( $u ) ) {
+				if ( User::isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
 					$names[$u] = null;
 				} else {
 					$name = User::getCanonicalName( $u, 'valid' );

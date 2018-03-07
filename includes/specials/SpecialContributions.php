@@ -81,21 +81,39 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts['newOnly'] = $request->getBool( 'newOnly' );
 		$this->opts['hideMinor'] = $request->getBool( 'hideMinor' );
 
-		$nt = Title::makeTitleSafe( NS_USER, $target );
-		if ( !$nt ) {
-			$out->addHTML( $this->getForm() );
+		$id = 0;
+		if ( $this->opts['contribs'] === 'newbie' ) {
+			$userObj = User::newFromName( $target ); // hysterical raisins
+			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
+			$out->setHTMLTitle( $this->msg(
+				'pagetitle',
+				$this->msg( 'sp-contributions-newbies-title' )->plain()
+			)->inContentLanguage() );
+		} elseif ( ExternalUserNames::isExternal( $target ) ) {
+			$userObj = User::newFromName( $target, false );
+			if ( !$userObj ) {
+				$out->addHTML( $this->getForm() );
+				return;
+			}
 
-			return;
-		}
-		$userObj = User::newFromName( $nt->getText(), false );
-		if ( !$userObj ) {
-			$out->addHTML( $this->getForm() );
+			$out->addSubtitle( $this->contributionsSub( $userObj ) );
+			$out->setHTMLTitle( $this->msg(
+				'pagetitle',
+				$this->msg( 'contributions-title', $target )->plain()
+			)->inContentLanguage() );
+		} else {
+			$nt = Title::makeTitleSafe( NS_USER, $target );
+			if ( !$nt ) {
+				$out->addHTML( $this->getForm() );
+				return;
+			}
+			$userObj = User::newFromName( $nt->getText(), false );
+			if ( !$userObj ) {
+				$out->addHTML( $this->getForm() );
+				return;
+			}
+			$id = $userObj->getId();
 
-			return;
-		}
-		$id = $userObj->getId();
-
-		if ( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
 			$out->addSubtitle( $this->contributionsSub( $userObj ) );
 			$out->setHTMLTitle( $this->msg(
@@ -108,12 +126,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !IP::isValidRange( $target ) ) {
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
-		} else {
-			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
-			$out->setHTMLTitle( $this->msg(
-				'pagetitle',
-				$this->msg( 'sp-contributions-newbies-title' )->plain()
-			)->inContentLanguage() );
 		}
 
 		$ns = $request->getVal( 'namespace', null );

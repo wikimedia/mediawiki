@@ -1615,6 +1615,10 @@ abstract class ApiBase extends ContextSource {
 	 * @return string Validated and normalized parameter
 	 */
 	private function validateUser( $value, $encParamName ) {
+		if ( ExternalUserNames::isExternal( $value ) && User::newFromName( $value, false ) ) {
+			return $value;
+		}
+
 		$title = Title::makeTitleSafe( NS_USER, $value );
 		if ( $title === null || $title->hasFragment() ) {
 			$this->dieWithError(
