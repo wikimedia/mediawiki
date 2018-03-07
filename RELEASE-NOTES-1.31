@@ -289,7 +289,7 @@ changes to languages because of Phabricator reports.
 * The "free" class is now only applied to unbracketed URLs in wikitext. Links
   written using square brackets will get the class "text" not "free".
 * The image_comment_temp database table is merged into the image table and
-  deprecated. Since access should be mediated by the CommentStore class, this
+  removed. Since access should be mediated by the CommentStore class, this
   change shouldn't affect external code.
 * Use of CommentStore::insertWithTempTable() with 'img_description' is
   deprecated. Use CommentStore::insert() instead.
