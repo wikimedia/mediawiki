@@ -1176,7 +1176,6 @@ class ParserTestRunner {
 			// The new tables for comments are in use
 			$tables[] = 'comment';
 			$tables[] = 'revision_comment_temp';
-			$tables[] = 'image_comment_temp';
 		}
 
 		if ( $wgActorTableSchemaMigrationStage >= MIGRATION_WRITE_BOTH ) {
