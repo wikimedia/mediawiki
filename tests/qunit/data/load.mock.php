@@ -60,6 +60,15 @@ mw.loader.implement( 'testUrlInc.a', function () {} );
 	'testUrlInc.b' => "
 mw.loader.implement( 'testUrlInc.b', function () {} );
 ",
+	'testUrlOrder' => "
+mw.loader.implement( 'testUrlOrder', function () {} );
+",
+	'testUrlOrder.a' => "
+mw.loader.implement( 'testUrlOrder.a', function () {} );
+",
+	'testUrlOrder.b' => "
+mw.loader.implement( 'testUrlOrder.b', function () {} );
+",
 ];
 
 $response = '';
@@ -70,6 +79,8 @@ $response = '';
 if ( isset( $_GET['modules'] ) ) {
 	if ( $_GET['modules'] === 'testUrlInc,testUrlIncDump|testUrlInc.a,b' ) {
 		$modules = [ 'testUrlInc', 'testUrlIncDump', 'testUrlInc.a', 'testUrlInc.b' ];
+	} elseif ( $_GET['modules'] === 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b' ) {
+		$modules = [ 'testUrlOrder', 'testUrlOrderDump', 'testUrlOrder.a', 'testUrlOrder.b' ];
 	} else {
 		$modules = explode( ',', $_GET['modules'] );
 	}
