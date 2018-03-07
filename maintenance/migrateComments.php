@@ -61,9 +61,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 		);
 		$this->migrate( 'archive', 'ar_id', 'ar_comment' );
 		$this->migrate( 'ipblocks', 'ipb_id', 'ipb_reason' );
-		$this->migrateToTemp(
-			'image', 'img_name', 'img_description', 'imgcomment_name', 'imgcomment_description_id'
-		);
+		$this->migrate( 'image', 'img_name', 'img_description' );
 		$this->migrate( 'oldimage', [ 'oi_name', 'oi_timestamp' ], 'oi_description' );
 		$this->migrate( 'filearchive', 'fa_id', 'fa_deleted_reason' );
 		$this->migrate( 'filearchive', 'fa_id', 'fa_description' );
