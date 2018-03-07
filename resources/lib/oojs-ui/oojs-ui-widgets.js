@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.2
+ * OOUI v0.25.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-02-07T00:27:24Z
+ * Date: 2018-03-07T06:52:35Z
  */
 ( function ( OO ) {
 
@@ -4938,7 +4938,11 @@ OO.ui.TagMultiselectWidget.static.allowedInputPositions = [ 'inline', 'outline',
  * @return {boolean} False to prevent defaults
  */
 OO.ui.TagMultiselectWidget.prototype.onMouseDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === OO.ui.MouseButtons.LEFT ) {
+	if (
+		!this.isDisabled() &&
+		( !this.hasInput || e.target !== this.input.$input[ 0 ] ) &&
+		e.which === OO.ui.MouseButtons.LEFT
+	) {
 		this.focus();
 		return false;
 	}
@@ -5783,6 +5787,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputFocus = function () {
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onInputChange = function () {
 	this.menu.toggle( true );
+	this.initializeMenuSelection();
 };
 
 /**
@@ -5807,6 +5812,8 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 	if ( !isVisible ) {
 		this.menu.selectItem( null );
 		this.menu.highlightItem( null );
+	} else {
+		this.initializeMenuSelection();
 	}
 };
 
@@ -5829,6 +5836,18 @@ OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 	this.menu.selectItem( menuItem );
 
 	this.focus();
+};
+
+/**
+ * Highlight the first selectable item in the menu, if configured.
+ *
+ * @private
+ * @chainable
+ */
+OO.ui.MenuTagMultiselectWidget.prototype.initializeMenuSelection = function () {
+	if ( !this.menu.findSelectedItem() ) {
+		this.menu.highlightItem( this.menu.findFirstSelectableItem() );
+	}
 };
 
 /**
