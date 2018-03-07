@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.2
+ * OOUI v0.25.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-02-07T00:27:29Z
+ * Date: 2018-03-07T06:52:40Z
  */
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
@@ -82,7 +82,7 @@
   display: none;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement.oo-ui-tool-with-label > .oo-ui-tool-link .oo-ui-tool-title {
-  display: inline;
+  display: inline-block;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool {
   margin: -1px 0 -1px -1px;
@@ -158,6 +158,9 @@
 .oo-ui-popupToolGroup-handle {
   display: block;
   cursor: pointer;
+}
+.oo-ui-popupToolGroup-handle .oo-ui-labelElement-label:not( :empty ) {
+  display: inline-block;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-disabled .oo-ui-popupToolGroup-handle {
   outline: 0;
@@ -451,7 +454,9 @@
 .oo-ui-toolbar-actions {
   float: right;
 }
-.oo-ui-toolbar-actions .oo-ui-toolbar {
+.oo-ui-toolbar-actions .oo-ui-toolbar,
+.oo-ui-toolbar-actions .oo-ui-buttonElement.oo-ui-labelElement > input.oo-ui-buttonElement-button,
+.oo-ui-toolbar-actions .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   display: inline-block;
 }
 .oo-ui-toolbar-actions .oo-ui-popupWidget {
