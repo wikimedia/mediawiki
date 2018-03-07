@@ -23,92 +23,10 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\MySQLMasterPos;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
-
-/**
- * Fake class around abstract class so we can call concrete methods.
- */
-class FakeDatabaseMysqlBase extends DatabaseMysqlBase {
-	// From Database
-	function __construct() {
-		$this->profiler = new ProfilerStub( [] );
-		$this->trxProfiler = new TransactionProfiler();
-		$this->cliMode = true;
-		$this->connLogger = new \Psr\Log\NullLogger();
-		$this->queryLogger = new \Psr\Log\NullLogger();
-		$this->errorLogger = function ( Exception $e ) {
-			wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
-		};
-		$this->currentDomain = DatabaseDomain::newUnspecified();
-	}
-
-	protected function closeConnection() {
-	}
-
-	protected function doQuery( $sql ) {
-	}
-
-	protected function fetchAffectedRowCount() {
-	}
-
-	// From DatabaseMysqli
-	protected function mysqlConnect( $realServer ) {
-	}
-
-	protected function mysqlSetCharset( $charset ) {
-	}
-
-	protected function mysqlFreeResult( $res ) {
-	}
-
-	protected function mysqlFetchObject( $res ) {
-	}
-
-	protected function mysqlFetchArray( $res ) {
-	}
-
-	protected function mysqlNumRows( $res ) {
-	}
-
-	protected function mysqlNumFields( $res ) {
-	}
-
-	protected function mysqlFieldName( $res, $n ) {
-	}
-
-	protected function mysqlFieldType( $res, $n ) {
-	}
-
-	protected function mysqlDataSeek( $res, $row ) {
-	}
-
-	protected function mysqlError( $conn = null ) {
-	}
-
-	protected function mysqlFetchField( $res, $n ) {
-	}
-
-	protected function mysqlRealEscapeString( $s ) {
-	}
-
-	function insertId() {
-	}
-
-	function lastErrno() {
-	}
-
-	function affectedRows() {
-	}
-
-	function getServerVersion() {
-	}
-}
 
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
@@ -119,7 +37,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
-		$db = new FakeDatabaseMysqlBase();
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
+
 		$quoted = $db->addIdentifierQuotes( $in );
 		$this->assertEquals( $expected, $quoted );
 	}
@@ -482,9 +404,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::setFlag
 	 */
 	public function testDBOIgnoreSet() {
-		$db = new FakeDatabaseMysqlBase();
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
 
-		$db->setFlag( Database::DBO_IGNORE );
+		$db->clearFlag( Database::DBO_IGNORE );
 	}
 
 	/**
@@ -492,7 +417,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::clearFlag
 	 */
 	public function testDBOIgnoreClear() {
-		$db = new FakeDatabaseMysqlBase();
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
 
 		$db->clearFlag( Database::DBO_IGNORE );
 	}
@@ -609,7 +537,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::buildIntegerCast
 	 */
 	public function testBuildIntegerCast() {
-		$db = new FakeDatabaseMysqlBase();
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
 		$output = $db->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS SIGNED )', $output );
 	}
