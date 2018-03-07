@@ -3852,6 +3852,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|बाइट}}",
 	"limitreport-expansiondepth": "उच्चतम विस्तार गहराई",
 	"limitreport-expensivefunctioncount": "महंगे पार्सर फंक्शनों की संख्या",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|बाइट|बाइट्स}}",
 	"expandtemplates": "साँचा विस्तार",
 	"expand_templates_intro": "यह विशेष पृष्ठ विकिपाठ्य इनपुट लेता है और उसके भीतर के सभी साँचों को विस्तृत करता है।\nयह <code><nowiki>{{</nowiki>#language:…}}</code> जैसे पार्सर फ़ंक्शन्स और\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code> जैसे परिवर्तनशील मानों का भी विस्त्रण करता है।\nयह दोहरे कोष्ठकों में प्रेषित लगभग सब कुछ विस्तृत करता है।",
 	"expand_templates_title": "कन्टेक्स्ट शीर्षक, जैसे {{FULLPAGENAME}} आदि के लिए:",

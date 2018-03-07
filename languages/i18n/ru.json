@@ -121,7 +121,8 @@
 			"Edible Melon",
 			"Adam-Yourist",
 			"MaksimPinigin",
-			"Smigles"
+			"Smigles",
+			"OlegCinema"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2795,7 +2796,7 @@
 	"tooltip-pt-mycontris": "Список {{GENDER:|ваших}} правок",
 	"tooltip-pt-anoncontribs": "Список правок, сделанных с этого IP-адреса",
 	"tooltip-pt-login": "Здесь можно зарегистрироваться в системе, но это необязательно.",
-	"tooltip-pt-login-private": "Вам нужно войти, чтоб использовать эту вики",
+	"tooltip-pt-login-private": "Вам нужно войти, чтобы использовать эту вики",
 	"tooltip-pt-logout": "Завершить сеанс работы",
 	"tooltip-pt-createaccount": "Мы предлагаем вам создать учётную запись и войти в систему, хотя это и не обязательно.",
 	"tooltip-ca-talk": "Обсуждение основной страницы",
@@ -3500,7 +3501,7 @@
 	"watchlistedit-clear-titles": "Заголовки:",
 	"watchlistedit-clear-submit": "Очистить список наблюдения (это необратимо!)",
 	"watchlistedit-clear-done": "Ваш список наблюдения очищен.",
-	"watchlistedit-clear-jobqueue": "Ваш список наблюдения очищается. Это может занять некоторое время!",
+	"watchlistedit-clear-jobqueue": "Ваш список наблюдения очищается. Это может занять некоторое время.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Была удалена|Были удалены|Было удалено}} $1 {{PLURAL:$1|запись|записи|записей}}:",
 	"watchlistedit-too-many": "Слишком много страниц для того, чтобы показать их здесь.",
 	"watchlisttools-clear": "Очистить список наблюдения",
@@ -3665,7 +3666,7 @@
 	"tag-mw-changed-redirect-target": "изменение цели перенаправления",
 	"tag-mw-changed-redirect-target-description": "Правки, которые изменяют цель перенаправления",
 	"tag-mw-blank": "очистка",
-	"tag-mw-blank-description": "Правки, которые очищают страницу",
+	"tag-mw-blank-description": "Правки, очищающие эту страницу",
 	"tag-mw-replace": "заменено",
 	"tag-mw-replace-description": "Правки, которые удаляют более 90 % содержимого страницы",
 	"tag-mw-rollback": "откат",

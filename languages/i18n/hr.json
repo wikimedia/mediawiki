@@ -426,7 +426,7 @@
 	"userlogout": "Odjavi se",
 	"notloggedin": "Niste prijavljeni",
 	"userlogin-noaccount": "Nemate suradnički račun?",
-	"userlogin-joinproject": "Pridružite se {{SITENAME}}",
+	"userlogin-joinproject": "Pridružite se projektu {{SITENAME}}",
 	"createaccount": "Stvori račun",
 	"userlogin-resetpassword-link": "Zaboravili ste zaporku?",
 	"userlogin-helplink2": "Pomoć pri prijavi",

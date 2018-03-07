@@ -4389,7 +4389,7 @@
 	"limitreport-unstrip-depth": "Label for the \"unstrip depth\" row in the limit report table. \"Unstrip\" is a MediaWiki function name and as such does not need to be translated.",
 	"limitreport-unstrip-depth-value": "{{optional}}\nFormat for the \"unstrip depth\" row in the limit report table.\n\nParameters:\n* $1 - the usage\n* $2 - the maximum",
 	"limitreport-unstrip-size": "Label for the \"unstrip size\" row in the limit report table. \"Unstrip\" is a MediaWiki function name and as such does not need to be translated.",
-	"limitreport-unstrip-size-value": "{{optional}}\nFormat for the \"unstrip size\" row in the limit report table.\n\nParameters:\n* $1 - the usage\n* $2 - the maximum",
+	"limitreport-unstrip-size-value": "Format for the \"unstrip size\" row in the limit report table.\n\nParameters:\n* $1 - the usage\n* $2 - the maximum\n{{Identical|Byte}}",
 	"expandtemplates": "{{doc-special|ExpandTemplates}}\nThe name of the [[mw:Extension:ExpandTemplates|Expand Templates extension]].",
 	"expand_templates_intro": "This is the explanation given in the heading of the [[Special:ExpandTemplates]] page; it describes its functionality to the users.\nFor more information, see [[mw:Extension:ExpandTemplates]]",
 	"expand_templates_title": "The label of the input box for the context title on the form displayed at [[Special:ExpandTemplates]] page.",

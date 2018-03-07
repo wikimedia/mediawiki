@@ -3816,6 +3816,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|byte}}",
 	"limitreport-expansiondepth": "Massima profondità di espansione",
 	"limitreport-expensivefunctioncount": "Numero funzioni parser dispendiose",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|byte}}",
 	"expandtemplates": "Espandi i template",
 	"expand_templates_intro": "Questa pagina speciale elabora un wikitesto espandendo tutti i template presenti.\nCalcola inoltre il risultato delle funzioni supportate dal parser come\n<code><nowiki>{{</nowiki>#language:…}}</code> e delle variabili di sistema quali\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>,\nvale a dire praticamente tutto ciò che si trova tra doppie parentesi graffe.",
 	"expand_templates_title": "Contesto (per {{FULLPAGENAME}} ecc.):",

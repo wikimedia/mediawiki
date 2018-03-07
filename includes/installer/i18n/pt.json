@@ -202,7 +202,7 @@
 	"config-ns-invalid": "O espaço nominal especificado \"<nowiki>$1</nowiki>\" é inválido.\nIntroduza um espaço nominal de projeto diferente.",
 	"config-ns-conflict": "O espaço nominal que especificou, \"<nowiki>$1</nowiki>\", cria um conflito com um dos espaços nominais padrão do MediaWiki.\nEspecifique um espaço nominal do projeto diferente.",
 	"config-admin-box": "Conta de administrador",
-	"config-admin-name": "Seu nome de utilizador:",
+	"config-admin-name": "O seu nome de utilizador:",
 	"config-admin-password": "Palavra-passe:",
 	"config-admin-password-confirm": "Repita a palavra-passe:",
 	"config-admin-help": "Introduza aqui o seu nome de utilizador preferido, por exemplo, \"João Beltrão\".\nEste é o nome que irá utilizar para entrar na wiki.",
