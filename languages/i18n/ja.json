@@ -1948,6 +1948,7 @@
 	"uncategorizedcategories": "カテゴリ分類されていないカテゴリ",
 	"uncategorizedimages": "カテゴリ分類されていないファイル",
 	"uncategorizedtemplates": "カテゴリ分類されていないテンプレート",
+	"uncategorized-categories-exceptionlist": "#Special:UncategorizedCategoriesには記載すべきではないカテゴリのリストが含まれています。\"*\"で始まる1行に1つ。別の文字（空白を含む）で始まる行は無視されます。コメントには \"＃\"を使用します。",
 	"unusedcategories": "使われていないカテゴリ",
 	"unusedimages": "使われていないファイル",
 	"wantedcategories": "カテゴリページが存在しないカテゴリ",
