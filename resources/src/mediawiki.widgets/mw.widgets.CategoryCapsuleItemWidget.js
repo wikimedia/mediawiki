@@ -147,6 +147,7 @@
 		this.setMissing( false );
 		this.$label.replaceWith( this.$link );
 		this.setLabelElement( this.$link );
+		console.log( 'imma set label');
 
 		if ( !this.constructor.static.pageExistenceCaches[ this.apiUrl ] ) {
 			this.constructor.static.pageExistenceCaches[ this.apiUrl ] =
@@ -161,7 +162,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.CapsuleItemWidget );
+	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.TagItemWidget );
 
 	/* Static Properties */
 
