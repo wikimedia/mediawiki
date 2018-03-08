@@ -810,21 +810,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function close() {
 		if ( $this->conn ) {
+			// Check if it is possible to properly commit and trigger callbacks
+			if ( $this->trxEndCallbacksSuppressed ) {
+				throw new RuntimeException( __METHOD__ . ': callbacks are still suppressed.' );
+			}
+			// If this is called before ending the transaction, treat it as an
+			// implicit commit, running any transaction callback as needed.
 			if ( $this->trxLevel() ) {
 				$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 			}
-
 			$closed = $this->closeConnection();
 			$this->conn = false;
-		} elseif (
-			$this->trxIdleCallbacks ||
-			$this->trxPreCommitCallbacks ||
-			$this->trxEndCallbacks
-		) { // sanity
-			throw new RuntimeException( "Transaction callbacks still pending." );
 		} else {
 			$closed = true;
 		}
+
 		$this->opened = false;
 
 		return $closed;
