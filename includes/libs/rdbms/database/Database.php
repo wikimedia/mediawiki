@@ -607,7 +607,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function writesOrCallbacksPending() {
 		return $this->trxLevel && (
-			$this->trxDoneWrites || $this->trxIdleCallbacks || $this->trxPreCommitCallbacks
+			$this->trxDoneWrites ||
+			$this->trxIdleCallbacks ||
+			$this->trxPreCommitCallbacks ||
+			$this->trxEndCallbacks
 		);
 	}
 
@@ -810,21 +813,38 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function close() {
 		if ( $this->conn ) {
+			// Resolve any dangling transaction first
 			if ( $this->trxLevel() ) {
+				// Meaningful transactions should ideally have been resolved by now
+				if ( $this->writesOrCallbacksPending() ) {
+					$this->queryLogger->warning(
+						__METHOD__ . ": writes or callbacks still pending.",
+						[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+					);
+				}
+				// Check if it is possible to properly commit and trigger callbacks
+				if ( $this->trxEndCallbacksSuppressed ) {
+					throw new DBUnexpectedError(
+						$this,
+						__METHOD__ . ': callbacks are suppressed; cannot properly commit.'
+					);
+				}
+				// Commit the changes and run any callbacks as needed
 				$this->commit( __METHOD__, self::FLUSHING_INTERNAL );
 			}
-
+			// Close the actual connection in the binding handle
 			$closed = $this->closeConnection();
 			$this->conn = false;
-		} elseif (
-			$this->trxIdleCallbacks ||
-			$this->trxPreCommitCallbacks ||
-			$this->trxEndCallbacks
-		) { // sanity
-			throw new RuntimeException( "Transaction callbacks still pending." );
+			// Sanity check that no callbacks are dangling
+			if (
+				$this->trxIdleCallbacks || $this->trxPreCommitCallbacks || $this->trxEndCallbacks
+			) {
+				throw new RuntimeException( "Transaction callbacks still pending." );
+			}
 		} else {
-			$closed = true;
+			$closed = true; // already closed; nothing to do
 		}
+
 		$this->opened = false;
 
 		return $closed;
