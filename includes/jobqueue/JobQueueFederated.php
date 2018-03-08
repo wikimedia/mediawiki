@@ -103,7 +103,7 @@ class JobQueueFederated extends JobQueue {
 				$baseConfig + $params['configByPartition'][$partition] );
 		}
 		// Ring of all partitions
-		$this->partitionRing = new HashRing( $partitionMap );
+		$this->partitionRing = HashRing::newConsistent( $partitionMap );
 	}
 
 	protected function supportedOrders() {
