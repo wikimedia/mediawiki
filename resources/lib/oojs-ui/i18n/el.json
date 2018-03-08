@@ -9,7 +9,8 @@
 			"Glavkos",
 			"Nikosguard",
 			"Tifa93",
-			"Stam.nikos"
+			"Stam.nikos",
+			"Nikosgranturismogt"
 		]
 	},
 	"ooui-outline-control-move-down": "Μετακίνηση στοιχείου προς τα κάτω",
@@ -18,6 +19,7 @@
 	"ooui-toolbar-more": "Περισσότερα",
 	"ooui-toolgroup-expand": "Περισσότερα",
 	"ooui-toolgroup-collapse": "Λιγότερα",
+	"ooui-item-remove": "Αφαίρεση",
 	"ooui-dialog-message-accept": "ΟΚ",
 	"ooui-dialog-message-reject": "Ακύρωση",
 	"ooui-dialog-process-error": "Κάτι πήγε στραβά",

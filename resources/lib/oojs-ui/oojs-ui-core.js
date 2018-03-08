@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.2
+ * OOUI v0.25.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-02-07T00:27:24Z
+ * Date: 2018-03-07T06:52:35Z
  */
 ( function ( OO ) {
 
@@ -9336,24 +9336,49 @@ OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
 	this.optionsDirty = true;
 
 	optionWidgets = options.map( function ( opt ) {
-		var optValue, optionWidget;
+		var optValue;
 
-		if ( opt.optgroup === undefined ) {
-			optValue = widget.cleanUpValue( opt.data );
-			optionWidget = new OO.ui.MenuOptionWidget( {
-				data: optValue,
-				label: opt.label !== undefined ? opt.label : optValue
-			} );
-		} else {
-			optionWidget = new OO.ui.MenuSectionOptionWidget( {
-				label: opt.optgroup
-			} );
+		if ( opt.optgroup !== undefined ) {
+			return widget.createMenuSectionOptionWidget( opt.optgroup );
 		}
 
-		return optionWidget;
+		optValue = widget.cleanUpValue( opt.data );
+		return widget.createMenuOptionWidget(
+			optValue,
+			opt.label !== undefined ? opt.label : optValue
+		);
+
 	} );
 
 	this.dropdownWidget.getMenu().clearItems().addItems( optionWidgets );
+};
+
+/**
+ * Create a menu option widget.
+ *
+ * @protected
+ * @param {string} data Item data
+ * @param {string} label Item label
+ * @return {OO.ui.MenuOptionWidget} Option widget
+ */
+OO.ui.DropdownInputWidget.prototype.createMenuOptionWidget = function ( data, label ) {
+	return new OO.ui.MenuOptionWidget( {
+		data: data,
+		label: label
+	} );
+};
+
+/**
+ * Create a menu section option widget.
+ *
+ * @protected
+ * @param {string} label Section item label
+ * @return {OO.ui.MenuSectionOptionWidget} Menu section option widget
+ */
+OO.ui.DropdownInputWidget.prototype.createMenuSectionOptionWidget = function ( label ) {
+	return new OO.ui.MenuSectionOptionWidget( {
+		label: label
+	} );
 };
 
 /**
@@ -9767,15 +9792,14 @@ OO.ui.CheckboxMultiselectInputWidget = function OoUiCheckboxMultiselectInputWidg
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
 	this.checkboxMultiselectWidget = new OO.ui.CheckboxMultiselectWidget();
+	// Must be set before the #setOptionsData call below
+	this.inputName = config.name;
 	// Set up the options before parent constructor, which uses them to validate config.value.
 	// Use this instead of setOptions() because this.$input is not set up yet
 	this.setOptionsData( config.options || [] );
 
 	// Parent constructor
 	OO.ui.CheckboxMultiselectInputWidget.parent.call( this, config );
-
-	// Properties
-	this.inputName = config.name;
 
 	// Events
 	this.checkboxMultiselectWidget.connect( this, { select: 'onCheckboxesSelect' } );
