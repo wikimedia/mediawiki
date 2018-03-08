@@ -2607,7 +2607,7 @@ return [
 	],
 	'mediawiki.widgets.CategoryMultiselectWidget' => [
 		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.CategoryCapsuleItemWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CategoryTagItemWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.CategoryMultiselectWidget.js',
 		],
 		'dependencies' => [

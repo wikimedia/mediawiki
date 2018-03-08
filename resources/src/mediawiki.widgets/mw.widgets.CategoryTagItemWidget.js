@@ -1,5 +1,5 @@
 /*!
- * MediaWiki Widgets - CategoryCapsuleItemWidget class.
+ * MediaWiki Widgets - CategoryTagItemWidget class.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
@@ -115,19 +115,19 @@
 	 * Category selector capsule item widget. Extends OO.ui.CapsuleItemWidget with the ability to link
 	 * to the given page, and to show its existence status (i.e., whether it is a redlink).
 	 *
-	 * @class mw.widgets.CategoryCapsuleItemWidget
+	 * @class mw.widgets.CategoryTagItemWidget
 	 * @uses mw.Api
-	 * @extends OO.ui.CapsuleItemWidget
+	 * @extends OO.ui.TagItemWidget
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
 	 * @cfg {mw.Title} title Page title to use (required)
 	 * @cfg {string} [apiUrl] API URL, if not the current wiki's API
 	 */
-	mw.widgets.CategoryCapsuleItemWidget = function MWWCategoryCapsuleItemWidget( config ) {
+	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
 		var widget = this;
 		// Parent constructor
-		mw.widgets.CategoryCapsuleItemWidget.parent.call( this, $.extend( {
+		mw.widgets.CategoryTagItemWidget.parent.call( this, $.extend( {
 			data: config.title.getMainText(),
 			label: config.title.getMainText()
 		}, config ) );
@@ -139,7 +139,7 @@
 			.text( this.label )
 			.attr( 'target', '_blank' )
 			.on( 'click', function ( e ) {
-				// CapsuleMultiselectWidget really wants to prevent you from clicking the link, don't let it
+				// TagMultiselectWidget really wants to prevent you from clicking the link, don't let it
 				e.stopPropagation();
 			} );
 
@@ -161,7 +161,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.CapsuleItemWidget );
+	OO.inheritClass( mw.widgets.CategoryTagItemWidget, OO.ui.TagItemWidget );
 
 	/* Static Properties */
 
@@ -172,7 +172,7 @@
 	 * @inheritable
 	 * @property {Object}
 	 */
-	mw.widgets.CategoryCapsuleItemWidget.static.pageExistenceCaches = {
+	mw.widgets.CategoryTagItemWidget.static.pageExistenceCaches = {
 		'': new PageExistenceCache()
 	};
 
@@ -184,7 +184,7 @@
 	 * @private
 	 * @param {boolean} missing Whether the page is missing (does not exist)
 	 */
-	mw.widgets.CategoryCapsuleItemWidget.prototype.setMissing = function ( missing ) {
+	mw.widgets.CategoryTagItemWidget.prototype.setMissing = function ( missing ) {
 		var
 			title = new ForeignTitle( this.title.getPrefixedText() ), // HACK
 			prefix = this.apiUrl.replace( '/w/api.php', '' ); // HACK
@@ -204,4 +204,6 @@
 		}
 	};
 
+	// For backwards compatibility. See T183299.
+	mw.widgets.CategoryCapsuleItemWidget = mw.widgets.CategoryTagItemWidget;
 }( jQuery, mediaWiki ) );
