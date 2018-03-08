@@ -6,7 +6,8 @@
 			"පසිඳු කාවින්ද",
 			"Mitzev",
 			"Aquilax",
-			"Vodnokon4e"
+			"Vodnokon4e",
+			"StanProg"
 		]
 	},
 	"ooui-outline-control-move-down": "Преместване на елемента надолу",
@@ -18,7 +19,7 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Отказ",
 	"ooui-dialog-process-error": "Нещо се обърка",
-	"ooui-dialog-process-dismiss": "Затвори",
+	"ooui-dialog-process-dismiss": "Затваряне",
 	"ooui-dialog-process-retry": "Опитайте отново",
 	"ooui-dialog-process-continue": "Продължаване",
 	"ooui-selectfile-button-select": "Избиране на файл",

@@ -4,7 +4,8 @@
 			"Audriusa",
 			"Eitvys200",
 			"Mantak111",
-			"Albertas"
+			"Albertas",
+			"Manvydasz"
 		]
 	},
 	"ooui-outline-control-move-down": "Perkelti elementą žemyn",
@@ -13,6 +14,7 @@
 	"ooui-toolbar-more": "Daugiau",
 	"ooui-toolgroup-expand": "Daugiau",
 	"ooui-toolgroup-collapse": "Mažiau",
+	"ooui-item-remove": "Pašalinti",
 	"ooui-dialog-message-accept": "Gerai",
 	"ooui-dialog-message-reject": "Atšaukti",
 	"ooui-dialog-process-error": "Kažkas nutiko ne taip",
