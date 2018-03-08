@@ -1,6 +1,8 @@
 <?php
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
@@ -467,6 +469,32 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->restoreFlags();
 		$this->assertEquals( $origSsl, $db->getFlag( DBO_SSL ) );
 		$this->assertEquals( $origTrx, $db->getFlag( DBO_TRX ) );
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @covers Wikimedia\Rdbms\Database::setFlag
+	 */
+	public function testDBOIgnoreSet() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
+
+		$db->setFlag( Database::DBO_IGNORE );
+	}
+
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 */
+	public function testDBOIgnoreClear() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->setMethods( null )
+			->getMock();
+
+		$db->clearFlag( Database::DBO_IGNORE );
 	}
 
 	/**

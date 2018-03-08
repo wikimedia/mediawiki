@@ -24,8 +24,6 @@
  */
 
 use Wikimedia\Rdbms\MySQLMasterPos;
-use Wikimedia\Rdbms\DatabaseMysqli;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
 
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
@@ -397,32 +395,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			[ 600.22 ],
 			[ 1000.77 ],
 		];
-	}
-
-	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::setFlag
-	 */
-	public function testDBOIgnoreSet() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( null )
-			->getMock();
-
-		$db->clearFlag( Database::DBO_IGNORE );
-	}
-
-	/**
-	 * @expectedException UnexpectedValueException
-	 * @covers Wikimedia\Rdbms\Database::clearFlag
-	 */
-	public function testDBOIgnoreClear() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( null )
-			->getMock();
-
-		$db->clearFlag( Database::DBO_IGNORE );
 	}
 
 	/**
