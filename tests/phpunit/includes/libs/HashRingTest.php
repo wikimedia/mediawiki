@@ -2,42 +2,100 @@
 
 /**
  * @group HashRing
+ * @covers HashRing
  */
 class HashRingTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @covers HashRing
-	 */
-	public function testHashRing() {
-		$ring = new HashRing( [ 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ] );
+	public function testHashRingSimple1() {
+		$map = [ 's1' => 3, 's2' => 10, 's3' => 2, 's4' => 10, 's5' => 2, 's6' => 3 ];
+		$ring = new HashRing( $map, 'md5' );
+		$serialized = serialize( $ring );
+		$ringRemade = unserialize( $serialized );
+
+		$expectedLocations = [
+			"hello0" => "s4",
+			"hello1" => "s4",
+			"hello2" => "s2",
+			"hello3" => "s6",
+			"hello4" => "s4",
+			"hello5" => "s5"
+		];
+
+		foreach ( [ $ring, $ringRemade ] as $testRing ) {
+			$locations = [];
+			for ( $i = 0; $i < 6; $i++ ) {
+				$locations["hello$i"] = $testRing->getLocation( "hello$i" );
+			}
+			$this->assertEquals(
+				$expectedLocations, $locations, 'Items placed at proper locations' );
+		}
+	}
+
+	public function testHashRingSimple2() {
+		$map = [ 's1' => 3, 's2' => 10, 's3' => 2, 's4' => 10, 's5' => 2, 's6' => 3 ];
+		$ring = HashRing::newConsistent( $map, 'sha1' );
 
 		$locations = [];
-		for ( $i = 0; $i < 20; $i++ ) {
+		for ( $i = 0; $i <= 5; $i++ ) {
+			$locations[ "hello$i"] = $ring->getLocations( "hello$i", 2 );
+		}
+
+		$expectedLocations = [
+			"hello0" => [ "s2", "s4" ],
+			"hello1" => [ "s4", "s5" ],
+			"hello2" => [ "s2", "s5" ],
+			"hello3" => [ "s1", "s4" ],
+			"hello4" => [ "s4", "s5" ],
+			"hello5" => [ "s3", "s2" ],
+		];
+		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
+
+		$this->assertEquals( $map, $ring->getLocationWeights(), 'Normalized location weights' );
+
+		$ring = HashRing::newConsistent( [ 'x' => 200, 'y' => 0 ] );
+		$this->assertEquals(
+			[ 'x' => 100 ], $ring->getLocationWeights(), 'Normalized location weights' );
+	}
+
+	public function testHashRingLong() {
+		// SHA-1 based and weighted
+		$ring = new HashRing(
+			[ 's1' => 1, 's2' => 1, 's3' => 2, 's4' => 2, 's5' => 2, 's6' => 3 ],
+			'sha1'
+		);
+
+		$locations = [];
+		for ( $i = 0; $i < 25; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocation( "hello$i" );
 		}
 		$expectedLocations = [
-			"hello0" => "s5",
-			"hello1" => "s6",
-			"hello2" => "s2",
-			"hello3" => "s5",
-			"hello4" => "s6",
-			"hello5" => "s4",
-			"hello6" => "s5",
-			"hello7" => "s4",
-			"hello8" => "s5",
-			"hello9" => "s5",
+			"hello0" => "s2",
+			"hello1" => "s4",
+			"hello2" => "s6",
+			"hello3" => "s2",
+			"hello4" => "s4",
+			"hello5" => "s3",
+			"hello6" => "s2",
+			"hello7" => "s3",
+			"hello8" => "s2",
+			"hello9" => "s2",
 			"hello10" => "s3",
-			"hello11" => "s6",
-			"hello12" => "s1",
-			"hello13" => "s3",
-			"hello14" => "s3",
-			"hello15" => "s5",
-			"hello16" => "s4",
-			"hello17" => "s6",
-			"hello18" => "s6",
-			"hello19" => "s3"
+			"hello11" => "s4",
+			"hello12" => "s6",
+			"hello13" => "s6",
+			"hello14" => "s6",
+			"hello15" => "s2",
+			"hello16" => "s3",
+			"hello17" => "s2",
+			"hello18" => "s4",
+			"hello19" => "s6",
+			"hello20" => "s2",
+			"hello21" => "s1",
+			"hello22" => "s6",
+			"hello23" => "s6",
+			"hello24" => "s3"
 		];
 
 		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
@@ -48,12 +106,104 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 		}
 
 		$expectedLocations = [
-			"hello0" => [ "s5", "s6" ],
-			"hello1" => [ "s6", "s4" ],
-			"hello2" => [ "s2", "s1" ],
-			"hello3" => [ "s5", "s6" ],
-			"hello4" => [ "s6", "s4" ],
+			"hello0" => [ "s2", "s3" ],
+			"hello1" => [ "s4", "s5" ],
+			"hello2" => [ "s6", "s5" ],
+			"hello3" => [ "s2", "s3" ],
+			"hello4" => [ "s4", "s5" ],
 		];
 		$this->assertEquals( $expectedLocations, $locations, 'Items placed at proper locations' );
 	}
+
+	/**
+	 * @dataProvider providor_getHashLocationWeights
+	 */
+	public function testHashRingRatios( $locations, $expected ) {
+		$ring = new HashRing( $locations, 'whirlpool' );
+
+		$locationStats = array_fill_keys( array_keys( $locations ), 0 );
+		for ( $i = 0; $i < 2000; ++$i ) {
+			++$locationStats[$ring->getLocation( "key-$i" )];
+		}
+		$this->assertEquals( $expected, $locationStats );
+	}
+
+	public static function providor_getHashLocationWeights() {
+		return [
+			[
+				[ 'big' => 10, 'medium' => 5, 'small' => 1 ],
+				[ 'big' => 887, 'medium' => 879, 'small' => 234 ]
+			],
+			[
+				[ 'big' => 10, 'small1' => 1, 'small2' => 1 ],
+				[ 'big' => 850, 'small1' => 646, 'small2' => 504 ]
+			],
+			[
+				[ 'big1' => 10, 'small' => 1, 'big2' => 10 ],
+				[ 'big1' => 672, 'small' => 64, 'big2' => 1264 ]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider providor_getHashLocationWeights2
+	 */
+	public function testHashRingRatios2( $locations, $expected ) {
+		$ring = new HashRing( $locations, 'sha1' );
+		$locationStats = array_fill_keys( array_keys( $locations ), 0 );
+		for ( $i = 0; $i < 1000; ++$i ) {
+			foreach ( $ring->getLocations( "key-$i", 3 ) as $location ) {
+				++$locationStats[$location];
+			}
+		}
+		$this->assertEquals( $expected, $locationStats );
+	}
+
+	public static function providor_getHashLocationWeights2() {
+		return [
+			[
+				[ 'big1' => 10, 'big2' => 10, 'big3' => 10, 'small1' => 1, 'small2' => 1 ],
+				[ 'big1' => 938, 'big2' => 824, 'big3' => 998, 'small1' => 180, 'small2' => 60 ]
+			],
+			[
+				[ 'big1' => 10, 'big2' => 10, 'small1' => 1, 'small2' => 1 ],
+				[ 'big1' => 1000, 'big2' => 830, 'small1' => 250, 'small2' => 920 ]
+			]
+		];
+	}
+
+	public function testHashRingEjection() {
+		$map = [ 's1' => 5, 's2' => 5, 's3' => 10, 's4' => 10, 's5' => 5, 's6' => 5 ];
+		$ring = new HashRing( $map, 'md5' );
+
+		$ring->ejectFromLiveRing( 's3', 30 );
+		$ring->ejectFromLiveRing( 's6', 15 );
+
+		$this->assertEquals(
+			[ 's1' => 5, 's2' => 5, 's4' => 10, 's5' => 5 ],
+			$ring->getLiveLocationWeights(),
+			'Live location weights'
+		);
+
+		for ( $i = 0; $i < 100; ++$i ) {
+			$key = "key-$i";
+
+			$this->assertNotEquals( 's3', $ring->getLiveLocation( $key ), 'ejected' );
+			$this->assertNotEquals( 's6', $ring->getLiveLocation( $key ), 'ejected' );
+
+			if ( !in_array( $ring->getLocation( $key ), [ 's3', 's6' ] ) ) {
+				$this->assertEquals(
+					$ring->getLocation( $key ),
+					$ring->getLiveLocation( $key ),
+					'Live ring otherwise matches.'
+				);
+				$this->assertEquals(
+					$ring->getLocations( $key, 1 ),
+					$ring->getLiveLocations( $key, 1 ),
+					'Live ring otherwise matches.'
+				);
+			}
+		}
+	}
+
 }
