@@ -161,7 +161,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.CapsuleItemWidget );
+	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.TagItemWidget );
 
 	/* Static Properties */
 
