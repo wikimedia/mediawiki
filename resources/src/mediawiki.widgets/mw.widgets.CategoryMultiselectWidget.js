@@ -27,7 +27,7 @@
 	 *
 	 * @class mw.widgets.CategoryMultiselectWidget
 	 * @uses mw.Api
-	 * @extends OO.ui.CapsuleMultiselectWidget
+	 * @extends OO.ui.MenuTagMultiselectWidget
 	 * @mixins OO.ui.mixin.PendingElement
 	 *
 	 * @constructor
@@ -62,7 +62,7 @@
 		OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$handle } ) );
 
 		// Event handler to call the autocomplete methods
-		this.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
+		this.input.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
 
 		// Initialize
 		this.api = config.api || new mw.Api();
@@ -71,7 +71,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategoryMultiselectWidget, OO.ui.CapsuleMultiselectWidget );
+	OO.inheritClass( mw.widgets.CategoryMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 	OO.mixinClass( mw.widgets.CategoryMultiselectWidget, OO.ui.mixin.PendingElement );
 
 	/* Methods */
@@ -86,12 +86,12 @@
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.updateMenuItems = function () {
 		this.getMenu().clearItems();
-		this.getNewMenuItems( this.$input.val() ).then( function ( items ) {
+		this.getNewMenuItems( this.input.$input.val() ).then( function ( items ) {
 			var existingItems, filteredItems,
 				menu = this.getMenu();
 
 			// Never show the menu if the input lost focus in the meantime
-			if ( !this.$input.is( ':focus' ) ) {
+			if ( !this.input.$input.is( ':focus' ) ) {
 				return;
 			}
 
@@ -188,8 +188,11 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.CategoryMultiselectWidget.prototype.createItemWidget = function ( data ) {
+	mw.widgets.CategoryMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
 		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+
+		// TODO: Remove this check, this should never happen
+		// after https://gerrit.wikimedia.org/r/#/c/417638/
 		if ( !title ) {
 			return null;
 		}
