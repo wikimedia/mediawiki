@@ -117,7 +117,7 @@
 	 *
 	 * @class mw.widgets.CategoryCapsuleItemWidget
 	 * @uses mw.Api
-	 * @extends OO.ui.CapsuleItemWidget
+	 * @extends OO.ui.TagItemWidget
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
@@ -161,7 +161,7 @@
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.CapsuleItemWidget );
+	OO.inheritClass( mw.widgets.CategoryCapsuleItemWidget, OO.ui.TagItemWidget );
 
 	/* Static Properties */
 
