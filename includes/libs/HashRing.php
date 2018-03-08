@@ -28,8 +28,10 @@
 class HashRing {
 	/** @var array (location => weight) */
 	protected $sourceMap = [];
-	/** @var array (location => (start, end)) */
+	/** @var array (sector => (start, end, location)) */
 	protected $ring = [];
+	/** @var int */
+	protected $type;
 
 	/** @var HashRing|null */
 	protected $liveRing;
@@ -38,12 +40,19 @@ class HashRing {
 	/** @var int UNIX timestamp */
 	protected $ejectionNextExpiry = INF;
 
+	/** @var int Allow arbitrary weights; removal of locations causes heavy re-mapping */
+	const TYPE_LEGACY = 0;
+	/** @var int Weights are on a 0-10 scale; removal of locations has minimal re-mapping */
+	const TYPE_CONSISTENT = 1;
+
 	const RING_SIZE = 268435456; // 2^28
+	const MAX_WEIGHT = 10;
 
 	/**
 	 * @param array $map (location => weight)
+	 * @param int $type TYPE_* class constant
 	 */
-	public function __construct( array $map ) {
+	public function __construct( array $map, $type = self::TYPE_LEGACY ) {
 		$map = array_filter( $map, function ( $w ) {
 			return $w > 0;
 		} );
@@ -51,6 +60,69 @@ class HashRing {
 			throw new UnexpectedValueException( "Ring is empty or all weights are zero." );
 		}
 		$this->sourceMap = $map;
+		if ( $type === self::TYPE_CONSISTENT ) {
+			$this->ring = $this->makeConsistentRing( $map );
+		} else {
+			$this->ring = $this->makeLegacyRing( $map );
+		}
+	}
+
+	/**
+	 * Make a consistent hash ring given a set of locations and their weight values
+	 *
+	 * If there is a small set (e.g. < 16) of locations, it is better to use weights
+	 * like ~10 instead of ~1 because that lowers the odds of "unlucky" skewed mapping
+	 *
+	 * @param int[] $map Map of (location => weight)
+	 * @return HashRing
+	 */
+	public static function newConsistent( array $map ) {
+		return new self( $map, self::TYPE_CONSISTENT );
+	}
+
+	/**
+	 * @param int[] $map
+	 * @return int[]
+	 */
+	private function makeConsistentRing( $map ) {
+		$locationSectors = [];
+		// Map the number sectors pointing to a location based on weight
+		foreach ( $map as $location => $weight ) {
+			// Weight is fitted to a 1-10 scale
+			$weight = max( 1, min( self::MAX_WEIGHT, $weight ) );
+			for ( $i = 1; $i <= $weight; ++$i ) {
+				$sector = "$i@$location";
+				$spot = hexdec( substr( sha1( $sector ), 0, 7 ) ); // first 28 bits
+				$locationSectors[] = [ $spot, $sector, $location ];
+			}
+		}
+		// Sort the locations based on the hash ring position
+		usort( $locationSectors, function ( $a, $b ) {
+			if ( $a[0] === $b[0] ) {
+				return 0;
+			}
+
+			return ( $a[0] < $b[0] ? -1 : 1 );
+		} );
+		// Build a ring of RING_SIZE spots, with each location at a spot in location hash order
+		$ring = [];
+		foreach ( $locationSectors as $i => $info ) {
+			list( $spot, $sector, $location ) = $info;
+			// Location covers half-closed interval [$index,$index + $weight)
+			$nextSpot = isset( $locationSectors[$i + 1] )
+				? $locationSectors[$i + 1][0]
+				: self::RING_SIZE + $locationSectors[0][0];
+			$ring[$sector] = [ $spot, $nextSpot, $location ];
+		}
+
+		return $ring;
+	}
+
+	/**
+	 * @param int[] $map
+	 * @return int[]
+	 */
+	private function makeLegacyRing( $map ) {
 		// Sort the locations based on the hash of their names
 		$hashes = [];
 		foreach ( $map as $location => $weight ) {
@@ -66,15 +138,18 @@ class HashRing {
 			$standardMap[$location] = (int)floor( $weight / $sum * self::RING_SIZE );
 		}
 		// Build a ring of RING_SIZE spots, with each location at a spot in location hash order
+		$ring = [];
 		$index = 0;
 		foreach ( $standardMap as $location => $weight ) {
 			// Location covers half-closed interval [$index,$index + $weight)
-			$this->ring[$location] = [ $index, $index + $weight ];
+			$ring[$location] = [ $index, $index + $weight, $location ];
 			$index += $weight;
 		}
 		// Make sure the last location covers what is left
-		end( $this->ring );
-		$this->ring[key( $this->ring )][1] = self::RING_SIZE;
+		end( $ring );
+		$ring[key( $ring )][1] = self::RING_SIZE;
+
+		return $ring;
 	}
 
 	/**
@@ -97,31 +172,44 @@ class HashRing {
 	 * @return array List of locations
 	 */
 	public function getLocations( $item, $limit ) {
-		$locations = [];
-		$primaryLocation = null;
 		$spot = hexdec( substr( sha1( $item ), 0, 7 ) ); // first 28 bits
-		foreach ( $this->ring as $location => $range ) {
+
+		$locations = [];
+		$startingSector = null;
+
+		// Search for sector the item belongs to in sector order
+		foreach ( $this->ring as $sector => $info ) {
 			if ( count( $locations ) >= $limit ) {
 				break;
 			}
-			// The $primaryLocation is the location the item spot is in.
-			// After that is reached, keep appending the next locations.
-			if ( ( $range[0] <= $spot && $spot < $range[1] ) || $primaryLocation !== null ) {
-				if ( $primaryLocation === null ) {
-					$primaryLocation = $location;
-				}
+			list( $start, $end, $location ) = $info;
+			// The $startingSector is the location the item spot is in.
+			if ( $startingSector === null && ( $start <= $spot && $spot < $end ) ) {
+				$startingSector = $sector;
+				$locations[] = $location;
+				// After that is reached, keep appending the next locations.
+				// Skip sectors that map to the same location since these are for fail-over.
+			} elseif ( $startingSector !== null && !in_array( $location, $locations ) ) {
 				$locations[] = $location;
 			}
 		}
+		// If the item was not found above, it must be where the last sector wraps-around
+		if ( $startingSector === null ) {
+			$info = end( $this->ring );
+			list( , , $location ) = $info;
+			$startingSector = key( $this->ring );
+			$locations[] = $location;
+		}
 		// If more locations are requested, wrap-around and keep adding them
-		reset( $this->ring );
-		while ( count( $locations ) < $limit ) {
-			$location = key( $this->ring );
-			if ( $location === $primaryLocation ) {
+		foreach ( $this->ring as $sector => $info ) {
+			if ( count( $locations ) >= $limit ) {
+				break;
+			}
+			list( , , $location ) = $info;
+			if ( $sector === $startingSector ) {
 				break; // don't go in circles
 			}
 			$locations[] = $location;
-			next( $this->ring );
 		}
 
 		return $locations;
@@ -146,7 +234,7 @@ class HashRing {
 		$map = $this->sourceMap;
 		unset( $map[$location] );
 
-		return count( $map ) ? new self( $map ) : false;
+		return count( $map ) ? new self( $map, $this->type ) : false;
 	}
 
 	/**
@@ -185,7 +273,7 @@ class HashRing {
 			);
 			if ( count( $this->ejectionExpiries ) ) {
 				$map = array_diff_key( $this->sourceMap, $this->ejectionExpiries );
-				$this->liveRing = count( $map ) ? new self( $map ) : false;
+				$this->liveRing = count( $map ) ? new self( $map, $this->type ) : false;
 
 				$this->ejectionNextExpiry = min( $this->ejectionExpiries );
 			} else { // common case; avoid recalculating ring
