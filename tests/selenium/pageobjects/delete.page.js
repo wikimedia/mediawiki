@@ -19,31 +19,21 @@ class DeletePage extends Page {
 	}
 
 	apiDelete( name, reason ) {
-		const url = require( 'url' ), // https://nodejs.org/docs/latest/api/url.html
-			baseUrl = url.parse( browser.options.baseUrl ), // http://webdriver.io/guide/testrunner/browserobject.html
-			Bot = require( 'nodemw' ), // https://github.com/macbre/nodemw
-			client = new Bot( {
-				protocol: baseUrl.protocol,
-				server: baseUrl.hostname,
-				port: baseUrl.port,
-				path: baseUrl.path,
-				username: browser.options.username,
-				password: browser.options.password,
-				debug: false
-			} );
-
+		const MWBot = require( 'mwbot' ); // https://github.com/Fannon/mwbot
+		let bot = new MWBot();
 		return new Promise( ( resolve, reject ) => {
-			client.logIn( function ( err ) {
-				if ( err ) {
-					console.log( err );
-					return reject( err );
-				}
-				client.delete( name, reason, function ( err ) {
-					if ( err ) {
-						return reject( err );
-					}
-					resolve();
-				} );
+			bot.loginGetEditToken( {
+				apiUrl: `${browser.options.baseUrl}/api.php`,
+				username: browser.options.username,
+				password: browser.options.password
+			} ).then( () => {
+				return bot.delete( name, reason );
+			} ).then( ( response ) => {
+			// Success
+				resolve( response );
+			} ).catch( ( err ) => {
+			// Error
+				return reject( err );
 			} );
 		} );
 	}
