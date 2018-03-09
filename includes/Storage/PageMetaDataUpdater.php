@@ -721,6 +721,7 @@ ion() was called.
 	 *
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
+		// FIXME: take parser output (and parser options?...) as optional params.
 		if ( !$revision->getId() ) {
 			throw new InvalidArgumentException(
 				'Revision must have an ID set for it to be used with prepareUpdate()!'
@@ -859,7 +860,7 @@ ion() was called.
 		$this->canonicalParserOptions = null;
 
 		// TODO: optionally get ParserOutput from the ParserCache here.
-		// Move the logic used by LinksUpdate here!
+		// Move the logic used by RefreshLinksJob here!
 	}
 
 	/**

@@ -59,18 +59,20 @@ class ApiPurge extends ApiBase {
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
 				if ( !$user->pingLimiter( 'linkpurge' ) ) {
-					$popts = $page->makeParserOptions( 'canonical' );
 
-					# Parse content; note that HTML generation is only needed if we want to cache the result.
-					$content = $page->getContent( Revision::RAW );
-					if ( $content ) {
+					// Parse content; note that HTML generation is only needed if we want to cache the result.
+					$revision = $page->getRevisionRecord();
+					$pupdater = $page->getMetaDataUpdater( $user, $revision );
+
+					if ( $revision ) {
 						$enableParserCache = $this->getConfig()->get( 'EnableParserCache' );
-						$p_result = $content->getParserOutput(
-							$title,
-							$page->getLatest(),
-							$popts,
-							$enableParserCache
+
+						$pupdater->prepareUpdate(
+							$revision,
+							[ 'generate-html' => $enableParserCache ]
 						);
+
+						$p_result = $pupdater->getCanonicalParserOutput();
 
 						# Logging to better see expensive usage patterns
 						if ( $forceRecursiveLinkUpdate ) {
@@ -84,8 +86,9 @@ class ApiPurge extends ApiBase {
 						}
 
 						# Update the links tables
-						$updates = $content->getSecondaryDataUpdates(
-							$title, null, $forceRecursiveLinkUpdate, $p_result );
+						$updates = $pupdater->getSecondaryDataUpdates(
+							$forceRecursiveLinkUpdate
+						);
 						foreach ( $updates as $update ) {
 							$update->setCause( 'api-purge', $this->getUser()->getName() );
 							DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
@@ -95,7 +98,7 @@ class ApiPurge extends ApiBase {
 
 						if ( $enableParserCache ) {
 							$pcache = MediaWikiServices::getInstance()->getParserCache();
-							$pcache->save( $p_result, $page, $popts );
+							$pcache->save( $p_result, $page, $pupdater->getCanonicalParserOptions() );
 						}
 					}
 				} else {

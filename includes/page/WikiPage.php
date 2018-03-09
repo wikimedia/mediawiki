@@ -755,8 +755,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getRevision() {
 		$this->loadLastEdit();
+		return $this->mLastRevision;
+	}
+
+	/**
+	 * Get the latest revision
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision;
+			return $this->mLastRevision->getRevisionRecord();
 		}
 		return null;
 	}
@@ -1605,7 +1614,12 @@ class WikiPage implements Page, IDBAccessObject {
 		return $metaDataUpdater;
 	}
 
-	/**
+	public function getUpdater() {
+		// FIXME: remove this dummy!
+	}
+
+
+		/**
 	 * Returns a PageMetaDataUpdater for use with the given target revision or new content.
 	 * Provide $forRevision or $forContent to allow re-use.
 	 *
