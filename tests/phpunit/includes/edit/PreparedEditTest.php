@@ -161,4 +161,7 @@ class PreparedEditTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	// FIXME: test getTitle()
+	// FIXME: test getSlotParserOutput()
+
 }
