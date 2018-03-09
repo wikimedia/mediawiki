@@ -21,6 +21,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\SplitHtml\SplitHtml;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -37,6 +38,16 @@ class Linker {
 	 */
 	const TOOL_LINKS_NOBLOCK = 1;
 	const TOOL_LINKS_EMAIL = 2;
+
+	/**
+	 * Length for "short" comment display
+	 */
+	const COMMENT_SHORT = 150;
+
+	/**
+	 * Length for "long" comment display
+	 */
+	const COMMENT_LONG = 2000;
 
 	/**
 	 * Return the CSS colour of a known link
@@ -1103,11 +1114,13 @@ class Linker {
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
+	 * @param string|int $length The truncation length in characters, or "short"
+	 *   for a short length, or "long" for a long length
 	 *
 	 * @return mixed|string
 	 */
 	public static function formatComment(
-		$comment, $title = null, $local = false, $wikiId = null
+		$comment, $title = null, $local = false, $wikiId = null, $length = 'short'
 	) {
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
@@ -1117,6 +1130,9 @@ class Linker {
 		# Render autocomments and make links:
 		$comment = self::formatAutocomments( $comment, $title, $local, $wikiId );
 		$comment = self::formatLinksInComment( $comment, $title, $local, $wikiId );
+
+		# Truncate if necessary
+		$comment = self::truncateComment( $comment, $length );
 
 		return $comment;
 	}
@@ -1360,6 +1376,27 @@ class Linker {
 		return $link;
 	}
 
+	private static function truncateComment( $text, $maxLength = 'short' ) {
+		if ( $maxLength === 'short' ) {
+			$maxLength = self::COMMENT_SHORT;
+		} elseif ( $maxLength === 'long' ) {
+			$maxLength = self::COMMENT_LONG;
+		}
+
+		$parts = SplitHtml::splitAtCharOffset( $text, $maxLength );
+		if ( $parts[1] === '' ) {
+			return $text;
+		} else {
+			return $parts[0] .
+				'<button type="button" class="mw-dyntrunc-ellipsis">' .
+				wfMessage( 'ellipsis' )->escaped() .
+				'</button>' .
+				'<span class="mw-dyntrunc-truncated">' .
+				$parts[1] .
+				'</span>';
+		}
+	}
+
 	/**
 	 * @param Title $contextTitle
 	 * @param string $target
@@ -1449,11 +1486,13 @@ class Linker {
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to.
 	 *  For use with external changes.
+	 * @param string|int $length The truncation length in characters, or "short"
+	 *   for a short length, or "long" for a long length
 	 *
 	 * @return string
 	 */
 	public static function commentBlock(
-		$comment, $title = null, $local = false, $wikiId = null
+		$comment, $title = null, $local = false, $wikiId = null,  $length = 'short'
 	) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
@@ -1461,7 +1500,7 @@ class Linker {
 		if ( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
-			$formatted = self::formatComment( $comment, $title, $local, $wikiId );
+			$formatted = self::formatComment( $comment, $title, $local, $wikiId,  $length );
 			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
 			return " <span class=\"comment\">$formatted</span>";
 		}
@@ -1475,9 +1514,11 @@ class Linker {
 	 * @param Revision $rev
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
+	 * @param string|int $length The truncation length in characters, or "short"
+	 *   for a short length, or "long" for a long length
 	 * @return string HTML fragment
 	 */
-	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
+	public static function revComment( Revision $rev, $local = false, $isPublic = false, $length = 'short' ) {
 		if ( $rev->getComment( Revision::RAW ) == "" ) {
 			return "";
 		}
@@ -1485,7 +1526,7 @@ class Linker {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
-				$rev->getTitle(), $local );
+				$rev->getTitle(), $local, $length );
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}

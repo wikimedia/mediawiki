@@ -975,6 +975,14 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.dynamicTruncate' => [
+		'scripts' => [
+			'resources/src/mediawiki/mediawiki.dynamicTruncate.js',
+		],
+		'styles' => [
+			'resources/src/mediawiki/mediawiki.dynamicTruncate.css',
+		],
+	],
 	'mediawiki.feedback' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.feedback.css',

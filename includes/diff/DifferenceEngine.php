@@ -359,7 +359,7 @@ class DifferenceEngine extends ContextSource {
 				'<div id="mw-diff-otitle2">' .
 				Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
 				'<div id="mw-diff-otitle3">' . $oldminor .
-				Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
+				Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide, 'long' ) . $ldel . '</div>' .
 				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 

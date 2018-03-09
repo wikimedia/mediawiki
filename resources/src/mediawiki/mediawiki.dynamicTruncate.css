@@ -1,0 +1,6 @@
+.client-js .mw-dyntrunc-truncated {
+	display: none;
+}
+.client-nojs .mw-dyntrunc-ellipsis {
+	display: none;
+}
