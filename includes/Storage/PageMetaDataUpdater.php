@@ -828,7 +828,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: Revision object for the pre-update revision (default null)
 	 * - parseroutput: The canonical ParserOutput of $revision (default null)
-	 * - triggeringuser: The user triggering the updated (object, default null)
+	 * - triggeringUser: The user triggering the updated (UserIdentity, default null)
 	 * - oldredirect: bool, null, or string 'no-change' (default null):
 	 *    - bool: whether the page was counted as a redirect before that
 	 *      revision, only used in changed is true and created is false
@@ -856,9 +856,9 @@ class PageMetaDataUpdater implements IDBAccessObject {
 			'must be a ParserOutput'
 		);
 		Assert::parameter(
-			!isset( $options['triggeringuser'] )
-			|| $options['triggeringuser'] instanceof UserIdentity,
-			'$options["triggeringuser"]',
+			!isset( $options['triggeringUser'] )
+			|| $options['triggeringUser'] instanceof UserIdentity,
+			'$options["triggeringUser"]',
 			'must be a UserIdentity'
 		);
 
@@ -1238,39 +1238,24 @@ class PageMetaDataUpdater implements IDBAccessObject {
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
-		$output = $this->getCanonicalParserOutput();
-
 		// Save it to the parser cache.
-		// Make sure the cache time matches page_touched to avoid double parsing.
-		$this->parserCache->save(
-			$output, $wikiPage, $this->getCanonicalParserOptions(),
-			$this->revision->getTimestamp(),  $this->revision->getId()
-		);
+		// NOTE: cache time should match page_touched to avoid double parsing.
+		$this->updateParserCache( $this->revision->getTimestamp() );
 
 		$legacyUser = User::newFromIdentity( $this->user );
 		$legacyRevision = new Revision( $this->revision );
 
 		// Update the links tables and other secondary data
 		$recursive = $this->options['changed']; // T52785
-		$updates = $this->getSecondaryDataUpdates( $recursive );
-
-		foreach ( $updates as $update ) {
-			// TODO: make an $option field for the cause
-			$update->setCause( 'edit-page', $this->user->getName() );
-			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $legacyRevision );
-
-				if ( !empty( $this->options['triggeringuser'] ) ) {
-					$triggeringUser = $this->options['triggeringuser'];
-					if ( !$triggeringUser instanceof User ) {
-						$triggeringUser = User::newFromIdentity( $triggeringUser );
-					}
-
-					$update->setTriggeringUser( $triggeringUser );
-				}
-			}
-			DeferredUpdates::addUpdate( $update );
-		}
+		$this->runSecondaryDataUpdates( [
+			'recursive' => $recursive,
+			'causeAction' => isset( $this->options['causeAction'] )
+				? $this->options['causeAction'] : 'edit-page',
+			'causeActor' => $this->user->getName(),
+			'triggeringUser' => isset( $this->options['triggeringUser'] )
+				? $this->options['triggeringUser'] : null,
+			'stage' => DeferredUpdates::POSTSEND,
+		] );
 
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
@@ -1389,6 +1374,88 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$title, $oldLegacyRevision, $legacyRevision, $this->getWikiId()
 		);
+	}
+
+	/**
+	 * @param array $options Array of options, following indexes are used:
+	 * - triggeringUser: The user triggering the updated (UserIdentity, default null)
+	 * - recursive: Whether data updates should be performed recursively (bool, default false)
+	 * - stage: Whether to execute the deferred updates pre-send or post-send.
+	 *   Use the DeferredUpdates::POSTSEND and DeferredUpdates::PRESEND constants.
+	 *   If omitted, the updates are executed immediately.
+	 * - causeAction: first parameter to be passed to DeferredUpdate::setCause().
+	 *   If omitted, DeferredUpdate::setCause() is not used.
+	 * - causeActor: second parameter to be passed to DeferredUpdate::setCause().
+	 *   If omitted, DeferredUpdate::setCause() is not used.
+	 * - transactionTicket: transaction ticket to use wile executing the updates,
+	 *   as returned by LBFactory::getEmptyTransactionTicket(). Should not be used
+	 *   when a stage is set.
+	 */
+	public function runSecondaryDataUpdates( $options = [] ) {
+		if ( !$this->revision ) {
+			throw new LogicException( 'Must call prepareUpdate() before calling ' . __METHOD__ );
+		}
+
+		$recursive = isset( $options['triggeringUser'] ) ? $options['triggeringUser'] : false;
+		$triggeringUser = null;
+
+		$updates = $this->getSecondaryDataUpdates( $recursive );
+
+		if ( isset( $options['triggeringUser'] ) && !empty( isset( $options['triggeringUser'] ) ) ) {
+			$triggeringUser = $options['triggeringUser'];
+			if ( !$triggeringUser instanceof User ) {
+				$triggeringUser = User::newFromIdentity( $triggeringUser );
+			}
+		}
+
+		foreach ( $updates as $update ) {
+			if ( isset( $options['causeAction'] ) && isset( $options['causeAgent'] ) ) {
+				$update->setCause( $options['causeAction'], $options['causeAgent'] );
+			}
+
+			if ( $update instanceof LinksUpdate ) {
+				$legacyRevision = new Revision( $this->revision );
+				$update->setRevision( $legacyRevision );
+
+				if ( $triggeringUser ) {
+					$update->setTriggeringUser( $triggeringUser );
+				}
+			}
+
+			if ( isset( $options['transactionTicket'] ) ) {
+				$update->setTransactionTicket( $options['transactionTicket'] );
+			}
+
+			if ( isset( $options['stage'] ) ) {
+				DeferredUpdates::addUpdate( $update, $options['stage'] );
+			} else {
+				$update->doUpdate();
+			}
+		}
+	}
+
+	/**
+	 * Updates the ParserCache with the new ParserOutput
+	 */
+	public function updateParserCache( $cacheTime = null ) {
+		if ( !$this->revision ) {
+			throw new LogicException( 'Must call prepareUpdate() before calling ' . __METHOD__ );
+		}
+
+		$output = $this->getCanonicalParserOutput();
+
+		if ( !$output->isCacheable() ) {
+			return;
+		}
+
+		$options = $this->getCanonicalParserOptions();
+
+		$cacheTime = $cacheTime ?: $output->getCacheTime();
+		$revId = $this->revision->getId();
+
+		$page = $this->getWikiPage(); // TODO: ParserCache should not need a WikiPage
+
+		$this->parserCache->save( $output, $page, $options, $cacheTime, $revId );
 	}
 
 }
