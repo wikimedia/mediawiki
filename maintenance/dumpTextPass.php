@@ -28,6 +28,7 @@ require_once __DIR__ . '/backup.inc';
 require_once __DIR__ . '/7zip.inc';
 require_once __DIR__ . '/../includes/export/WikiExporter.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -218,7 +219,8 @@ TEXT
 		// individually retrying at different layers of code.
 
 		try {
-			$this->lb = wfGetLBFactory()->newMainLB();
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$this->lb = $lbFactory->newMainLB();
 		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__
 				. " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );

@@ -22,6 +22,7 @@
  * @see wfWaitForSlaves()
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnectionError;
 
 require __DIR__ . '/../commandLine.inc';
@@ -317,7 +318,8 @@ class TrackBlobs {
 
 		foreach ( $this->clusters as $cluster ) {
 			echo "Searching for orphan blobs in $cluster...\n";
-			$lb = wfGetLBFactory()->getExternalLB( $cluster );
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lb = $lbFactory->getExternalLB( $cluster );
 			try {
 				$extDB = $lb->getConnection( DB_REPLICA );
 			} catch ( DBConnectionError $e ) {
