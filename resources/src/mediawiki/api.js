@@ -382,7 +382,7 @@
 				d = apiPromise
 					.then( function ( res ) {
 						// If token type is unknown, it is omitted from the response
-						if ( !res.query.tokens[ type + 'token' ] ) {
+						if ( !res.query || !res.query.tokens[ type + 'token' ] ) {
 							return $.Deferred().reject( 'token-missing', res );
 						}
 
