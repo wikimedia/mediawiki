@@ -122,7 +122,8 @@
 			"Adam-Yourist",
 			"MaksimPinigin",
 			"Smigles",
-			"OlegCinema"
+			"OlegCinema",
+			"Movses"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3666,7 +3667,7 @@
 	"tag-mw-changed-redirect-target": "изменение цели перенаправления",
 	"tag-mw-changed-redirect-target-description": "Правки, которые изменяют цель перенаправления",
 	"tag-mw-blank": "очистка",
-	"tag-mw-blank-description": "Правки, очищающие эту страницу",
+	"tag-mw-blank-description": "Правки, очищающие страницу",
 	"tag-mw-replace": "заменено",
 	"tag-mw-replace-description": "Правки, которые удаляют более 90 % содержимого страницы",
 	"tag-mw-rollback": "откат",
@@ -3945,6 +3946,7 @@
 	"limitreport-expansiondepth-value": "$1/$2",
 	"limitreport-expensivefunctioncount": "Количество «дорогих» функций анализатора",
 	"limitreport-expensivefunctioncount-value": "$1/$2",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|байт|байта|байт}}",
 	"expandtemplates": "Развёртка шаблонов",
 	"expand_templates_intro": "Эта служебная страница преобразует текст, рекурсивно разворачивая все шаблоны в нём.\nТакже развёртке подвергаются функции парсера\n<code><nowiki>{{#language:…}}</nowiki></code> и переменные вида\n<code><nowiki>{{CURRENTDAY}}</nowiki></code> — в общем, всё внутри двойных фигурных скобок.",
 	"expand_templates_title": "Заголовок страницы для {{FULLPAGENAME}} и т. п.:",
