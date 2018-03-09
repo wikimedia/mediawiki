@@ -363,7 +363,7 @@
 		 * @return {jQuery.Promise} Received token.
 		 */
 		getToken: function ( type, assert ) {
-			var apiPromise, promiseGroup, d;
+			var apiPromise, promiseGroup, d, reject;
 			type = mapLegacyToken( type );
 			promiseGroup = promises[ this.defaults.ajax.url ];
 			d = promiseGroup && promiseGroup[ type + 'Token' ];
@@ -379,21 +379,24 @@
 					type: type,
 					assert: assert
 				} );
+				reject = function () {
+					// Clear promise. Do not cache errors.
+					delete promiseGroup[ type + 'Token' ];
+
+					// Let caller handle the error code
+					return $.Deferred().rejectWith( this, arguments );
+				};
 				d = apiPromise
 					.then( function ( res ) {
+						if ( !res.query ) {
+							return reject( 'query-missing', res );
+						}
 						// If token type is unknown, it is omitted from the response
 						if ( !res.query.tokens[ type + 'token' ] ) {
 							return $.Deferred().reject( 'token-missing', res );
 						}
-
 						return res.query.tokens[ type + 'token' ];
-					}, function () {
-						// Clear promise. Do not cache errors.
-						delete promiseGroup[ type + 'Token' ];
-
-						// Let caller handle the error code
-						return $.Deferred().rejectWith( this, arguments );
-					} )
+					}, reject )
 					// Attach abort handler
 					.promise( { abort: apiPromise.abort } );
 
