@@ -12445,6 +12445,87 @@ parsoid=wt2html
 !! end
 
 ###
+### Heredoc tests
+###
+
+!! test
+Heredoc
+!! wikitext
+{{echo|<<<
+hi |ho="off to work we go"
+>>>}}
+!! html/php
+<p>hi |ho="off to work we go"
+</p>
+!! end
+
+!! test
+Heredoc 2
+!! wikitext
+{{echo|1=hiiii=<<<
+hi |ho="off to work we go"
+>>>}}
+!! html/php
+<p>hiiii=&lt;&lt;&lt;
+hi
+</p>
+!! end
+
+!! test
+Heredoc 3
+!! wikitext
+{{echo|====<<<
+hi |ho="off to work we go"
+>>>}}
+!! html/php
+<p>{{{1}}}
+</p>
+!! end
+
+!! test
+Heredoc in template name position
+!! wikitext
+{{e<<<cho>>>|hi}}
+!! html/php
+<p>{{e&lt;&lt;&lt;cho&gt;&gt;&gt;|hi}}
+</p>
+!! end
+
+!! article
+Template:Heredoc_table
+!! text
+{| class="{{{class}}}"
+{{{1}}}
+|}
+!! endarticle
+
+!! test
+Heredoc table
+!! wikitext
+{{heredoc table|class=shiny|<<<
+| Hello || wiki = world
+>>>}}
+!! html/php
+<table class="shiny">
+
+<tr>
+<td> Hello </td>
+<td> wiki = world
+</td></tr></table>
+
+!! end
+
+!! test
+Heredoc pst
+!! options
+pst
+!! wikitext
+{{echo|<<<hiho>>>}}
+!! html/php
+{{echo|<<<hiho>>>}}
+!! end
+
+###
 ### Token Stream Patcher tests
 ###
 ### These tests won't always pass wt2wt and other modes because

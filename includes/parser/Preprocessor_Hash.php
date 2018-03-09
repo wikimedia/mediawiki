@@ -97,6 +97,20 @@ class Preprocessor_Hash extends Preprocessor {
 		return $node;
 	}
 
+	function heredoc( $text, $flags, &$i, &$accum ) {
+		$matches = false;
+		if ( preg_match( "/(\s*)<<<(.*?)>>>/sA", $text, $matches, 0, $i ) ) {
+			$spaces = $matches[1];
+			$heredoc = $matches[2];
+			$obj = $this->preprocessToObj( $heredoc, $flags );
+			if ( strlen( $spaces ) ) {
+				self::addLiteral( $accum, $spaces );
+			}
+			$accum[] = [ 'heredoc', $obj->getRawChildren() ];
+			$i += strlen( $matches[0] );
+		}
+	}
+
 	/**
 	 * Preprocess some wikitext and return the document tree.
 	 *
@@ -739,11 +753,13 @@ class Preprocessor_Hash extends Preprocessor {
 				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
 				$accum[] = [ 'equals', [ '=' ] ];
 				$stack->getCurrentPart()->eqpos = count( $accum ) - 1;
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'dash' ) {
 				self::addLiteral( $accum, '-' );
 				++$i;
@@ -1192,6 +1208,12 @@ class PPFrame_Hash implements PPFrame {
 					# Expand in virtual stack
 					$newIterator = $contextChildren;
 				}
+			} elseif ( $contextName === 'heredoc' ) {
+				$s = $this->expand( $contextChildren, $flags );
+				if ( $this->parser->ot['wiki'] ) {
+					$s = '<<<' . $s . '>>>';
+				}
+				$out .= $s;
 			} else {
 				# Generic recursive expansion
 				$newIterator = $contextChildren;

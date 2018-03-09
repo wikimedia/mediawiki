@@ -185,6 +185,21 @@ class Preprocessor_DOM extends Preprocessor {
 		return $obj;
 	}
 
+	function heredoc( $text, $flags, &$i, &$accum ) {
+		$matches = false;
+		if ( preg_match( "/(\s*)<<<(.*?)>>>/sA", $text, $matches, 0, $i ) ) {
+			$spaces = $matches[1];
+			$heredoc = $matches[2];
+			$xml = $this->cacheGetTree( $heredoc, $flags );
+			if ( $xml === false ) {
+				$xml = $this->preprocessToXml( $heredoc, $flags );
+				$this->cacheSetTree( $heredoc, $flags, $xml );
+			}
+			$accum .= $spaces . '<heredoc>' . $xml . '</heredoc>';
+			$i += strlen( $matches[0] );
+		}
+	}
+
 	/**
 	 * @param string $text
 	 * @param int $flags
@@ -789,11 +804,13 @@ class Preprocessor_DOM extends Preprocessor {
 				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
 				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'dash' ) {
 				$accum .= '-';
 				++$i;
@@ -1359,6 +1376,16 @@ class PPFrame_DOM implements PPFrame {
 						$count = $contextNode->getAttribute( 'level' );
 						$s = substr( $s, 0, $count ) . $marker . substr( $s, $count );
 						$this->parser->mStripState->addGeneral( $marker, '' );
+					}
+					$out .= $s;
+				} elseif ( $contextNode->nodeName == 'heredoc' ) {
+					$s = $this->expand( $contextNode->childNodes, $flags );
+					$parent = $contextNode->parentNode->parentNode->parentNode->nodeName;
+					// FIXME: subst / lc
+					if ( $this->parser->ot['wiki'] ||
+						 ( $flags & PPFrame::NO_TEMPLATES && $parent == 'template' ) ||
+						 ( $flags & PPFrame::NO_ARGS && $parent == 'tplarg' ) ) {
+						$s = '<<<' . $s . '>>>';
 					}
 					$out .= $s;
 				} else {
