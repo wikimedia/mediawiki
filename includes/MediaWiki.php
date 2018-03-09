@@ -861,7 +861,7 @@ class MediaWiki {
 		$this->performRequest();
 
 		// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
-		// ChronologyProtector synchronizes DB positions or slaves accross all datacenters.
+		// ChronologyProtector synchronizes DB positions or replicas accross all datacenters.
 		$buffer = null;
 		$outputWork = function () use ( $output, &$buffer ) {
 			if ( $buffer === null ) {
