@@ -3185,16 +3185,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$msg = "$fname: Explicit transaction already active (from {$this->trxFname}).";
 				throw new DBUnexpectedError( $this, $msg );
 			} else {
-				// @TODO: make this an exception at some point
 				$msg = "$fname: Implicit transaction already active (from {$this->trxFname}).";
-				$this->queryLogger->error( $msg );
-				return; // join the main transaction set
+				throw new DBUnexpectedError( $this, $msg );
 			}
 		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
-			// @TODO: make this an exception at some point
 			$msg = "$fname: Implicit transaction expected (DBO_TRX set).";
-			$this->queryLogger->error( $msg );
-			return; // let any writes be in the main transaction
+			throw new DBUnexpectedError( $this, $msg );
 		}
 
 		// Avoid fatals if close() was called
@@ -3260,10 +3256,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					"$fname: No transaction to commit, something got out of sync." );
 				return; // nothing to do
 			} elseif ( $this->trxAutomatic ) {
-				// @TODO: make this an exception at some point
-				$msg = "$fname: Explicit commit of implicit transaction.";
-				$this->queryLogger->error( $msg );
-				return; // wait for the main transaction set commit round
+				throw new DBUnexpectedError(
+					$this,
+					"$fname: Expected mass commit of all peer transactions (DBO_TRX set)."
+				);
 			}
 		}
 
@@ -3314,7 +3310,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} elseif ( $this->getFlag( self::DBO_TRX ) ) {
 				throw new DBUnexpectedError(
 					$this,
-					"$fname: Expected mass rollback of all peer databases (DBO_TRX set)."
+					"$fname: Expected mass rollback of all peer transactions (DBO_TRX set)."
 				);
 			}
 		}
