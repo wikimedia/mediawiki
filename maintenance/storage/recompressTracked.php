@@ -643,7 +643,8 @@ class RecompressTracked {
 	 * @return Database
 	 */
 	function getExtDB( $cluster ) {
-		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lb = $lbFactory->getExternalLB( $cluster );
 
 		return $lb->getConnection( DB_MASTER );
 	}

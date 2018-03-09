@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/../Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that shows some statistics on the blob_orphans table,
  * created with trackBlobs.php.
@@ -37,7 +39,8 @@ class OrphanStats extends Maintenance {
 	}
 
 	protected function &getDB( $cluster, $groups = [], $wiki = false ) {
-		$lb = wfGetLBFactory()->getExternalLB( $cluster );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lb = $lbFactory->getExternalLB( $cluster );
 
 		return $lb->getConnection( DB_REPLICA );
 	}
