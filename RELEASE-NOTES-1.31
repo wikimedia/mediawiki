@@ -121,6 +121,7 @@ production.
 
 === Action API internal changes in 1.31 ===
 * ApiBase::getProfileDBTime was removed (deprecated since 1.25)
+* ApiBase::getModuleProfileName was removed (deprecated since 1.25)
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
