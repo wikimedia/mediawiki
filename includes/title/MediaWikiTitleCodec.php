@@ -465,7 +465,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * Returns a simple regex that will match on characters and sequences invalid in titles.
 	 * Note that this doesn't pick up many things that could be wrong with titles, but that
 	 * replacing this regex with something valid will make many titles valid.
-	 * Previously Title::getTitleInvalidRegex()
 	 *
 	 * @return string Regex string
 	 * @since 1.25
