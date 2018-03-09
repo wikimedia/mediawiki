@@ -220,6 +220,8 @@ abstract class RevisionRecord {
 	/**
 	 * Returns the slots defined for this revision.
 	 *
+	 * @note This bypasses audience checks!
+	 *
 	 * @return RevisionSlots
 	 */
 	public function getSlots() {
