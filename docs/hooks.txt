@@ -2875,7 +2875,9 @@ result augmentors.
 Note that lists should be in the format name => object and the names in both lists should
 be distinct.
 
-'SecondaryDataUpdates': Allows modification of the list of DataUpdates to
+'SecondaryDataUpdates': DEPRECATED! Override ContentHandler::getSecondaryDataUpdates
+instead.
+Allows modification of the list of DataUpdates to
 perform when page content is modified. Currently called by
 AbstractContent::getSecondaryDataUpdates.
 $title: Title of the page that is being edited.

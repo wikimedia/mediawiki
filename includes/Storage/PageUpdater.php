@@ -964,7 +964,6 @@ class PageUpdater {
 	 * @param User $user
 	 * @param int $flags
 	 * @param array $meta
-	 *
 	 * @throws DBUnexpectedError
 	 * @throws MWException
 	 * @return Status
