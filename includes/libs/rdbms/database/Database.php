@@ -1015,12 +1015,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->queryLogger->warning( $msg, $params +
 					[ 'trace' => ( new RuntimeException() )->getTraceAsString() ] );
 
-				if ( !$recoverable ) {
-					# Callers may catch the exception and continue to use the DB
-					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname );
-				} else {
+				if ( $recoverable ) {
 					# Should be safe to silently retry the query
 					$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
+				} else {
+					# Callers may catch the exception and continue to use the DB
+					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname );
 				}
 			} else {
 				$msg = __METHOD__ . ': lost connection to {dbserver} permanently';
@@ -1181,19 +1181,29 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function handleSessionLoss() {
 		$this->trxLevel = 0;
-		$this->trxIdleCallbacks = []; // T67263
-		$this->trxPreCommitCallbacks = []; // T67263
+		$this->trxIdleCallbacks = []; // T67263; transaction already lost
+		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
 		$this->sessionTempTables = [];
 		$this->namedLocksHeld = [];
+
+		// Note: if callback suppression is set then some *Callbacks arrays are not cleared here
+		$e = null;
 		try {
 			// Handle callbacks in trxEndCallbacks
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-			return null;
-		} catch ( Exception $e ) {
+		} catch ( Exception $ex ) {
 			// Already logged; move on...
-			return $e;
+			$e = $e ?: $ex;
 		}
+		try {
+			// Handle callbacks in trxRecurringCallbacks
+			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+		} catch ( Exception $ex ) {
+			// Already logged; move on...
+			$e = $e ?: $ex;
+		}
+
+		return $e;
 	}
 
 	/**
