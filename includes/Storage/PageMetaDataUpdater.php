@@ -1098,20 +1098,50 @@ class PageMetaDataUpdater implements IDBAccessObject, SlotRenderingProvider {
 	 * @return DataUpdate[]
 	 */
 	public function getSecondaryDataUpdates( $recursive = false ) {
-		// TODO: MCR: getSecondaryDataUpdates() needs a complete overhaul to avoid DataUpdates
-		// from different slots overwriting each other in the database. Plan:
-		// * replace direct calls to Content::getSecondaryLinksUpdates() with calls to this method
-		// * Construct LinksUpdate here, on the combined ParserOutput, instead of in AbstractContent
-		//   for each slot.
-		// * Pass $slot into getSecondaryLinksUpdates() - probably be introducing a new duplicate
-		//   version of this function in ContentHandler.
-		// * The new method gets the PreparedEdit, but no $recursive flag (that's for LinksUpdate)
-		// * Hack: call both the old and the new getSecondaryLinksUpdates method here; Pass
-		//   the per-slot ParserOutput to the old method, for B/C.
-		// * Hack: If there is moore than one slot, filter LinksUpdate from the DataUpdates
-		//   returned by getSecondaryLinksUpdates, and use a LinksUpdated for the combined output
-		//   instead.
-		// * Call the SecondaryDataUpdates hook here (or kill it - its signature doesn't make sense)
+		// FIXME: we need something similar to replace Content::getDeletionUpdates!
+		// FIXME: we need to use ContentHandler::getDeletionUpdates when individual slots are removed!
+
+		if ( !$this->isContentPublic() ) {
+			// This shouldn't happen, since the current content is always public,
+			// and DataUpates are only needed for current content.
+			return [];
+		}
+
+		$output = $this->getCanonicalParserOutput();
+
+		// Construct a LinksUpdate for the combined canonical output.
+		$linksUpdate = new LinksUpdate(
+			$this->getTitle(),
+			$output,
+			$recursive
+		);
+
+		$allUpdates = [ $linksUpdate ];
+
+		foreach ( $this->getSlots()->getSlots() as $role => $slot ) {
+			$content = $slot->getContent();
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getSecondaryDataUpdates( $content, $role, $this );
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			// XXX: in theory, we should pass $this->getSlotRendering( $role ) instead
+			// of $output. In practice, the ParserOutput is only used for LinksUpdate.
+			$legacyUpdates = $content->getSecondaryDataUpdates(
+				$this->getTitle(),
+				null,
+				$recursive,
+				$output
+			);
+
+			// HACK: filter out redundant and incomplete LinksUpdates
+			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+				return !( $update instanceof LinksUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
+		}
 
 		$content = $this->getSlots()->getContent( 'main' );
 
