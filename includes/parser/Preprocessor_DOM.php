@@ -794,9 +794,6 @@ class Preprocessor_DOM extends Preprocessor {
 				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
 				++$i;
-			} elseif ( $found == 'dash' ) {
-				$accum .= '-';
-				++$i;
 			}
 		}
 
