@@ -1336,7 +1336,8 @@ class PageUpdater implements IDBAccessObject {
 		if ( !$output ) {
 			// TODO: for each slot!
 			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
-			$output = $mainContent->getParserOutput( $title,
+			$output = $mainContent->getParserOutput(
+				$title,
 				$revid,
 				$canonPopts,
 				$options['generate-html']
@@ -1445,45 +1446,7 @@ class PageUpdater implements IDBAccessObject {
 			$output = $stashedEdit->output;
 			$timestamp = $stashedEdit->timestamp;
 		} else {
-			if ( $revision ) {
-				// We get here if vary-revision is set. This means that this page references
-				// itself (such as via self-transclusion). In this case, we need to make sure
-				// that any such self-references refer to the newly-saved revision, and not
-				// to the previous one, which could otherwise happen due to replica DB lag.
-				$oldCallback = $canonPopts->getCurrentRevisionCallback();
-				$canonPopts->setCurrentRevisionCallback(
-					function ( Title $parserTitle, $parser = false )
-						use ( $title, $revision, &$oldCallback )
-					{
-						if ( $parserTitle->equals( $title ) ) {
-							$legacyRevision = new Revision( $revision );
-							return $legacyRevision;
-						} else {
-							return call_user_func( $oldCallback, $parserTitle, $parser );
-						}
-					}
-				);
-			} else {
-				// Try to avoid a second parse if {{REVISIONID}} is used
-				// NOTE: we only get here without READ_LATEST if called directly by application logic
-				// XXX: if we calculate the reculative revid from a replica, can we still re-used
-				//      the prepared edit for the actual edit?!
-				// XXX: can we switch on hasPageState() instead?
-				$dbIndex = $wikiPage->wasLoadedFrom( self::READ_LATEST )
-					? DB_MASTER // use the best possible guess
-					: DB_REPLICA; // T154554
-
-				$canonPopts->setSpeculativeRevIdCallback(
-					function () use ( $dbIndex ) {
-						return 1 + (int)wfGetDB( $dbIndex )->selectField(
-							'revision',
-							'MAX(rev_id)',
-							[ ],
-							__METHOD__
-						);
-					}
-				);
-			}
+			$this->setSpeculativeRevIdCallback( $canonPopts, $revision );
 
 			// TODO: for each slot!
 			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
@@ -1543,7 +1506,42 @@ class PageUpdater implements IDBAccessObject {
 			$editInfo = $this->prepareUpdate();
 		}
 
-		$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
+		$output = $editInfo->getParserOutput();
+
+		$linksUpdate = new LinksUpdate(
+			$this->getTitle(),
+			$output,
+			$recursive
+		);
+
+		$allUpdates = [ $linksUpdate ];
+
+		// FIXME: missing audience check?!
+		$slots = $editInfo->getTransformedContentSlots();
+		foreach ( $slots->getSlotRoles() as $role ) {
+			$content = $slots->getContent( $role );
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getSecondaryDataUpdates( $content, $role, $editInfo );
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			// XXX: in theory, we should pass $editInfo->getSlotParserOutput( $role ) instead
+			// of $output. In practice, the ParserOutput is only used for LinksUpdate.
+			$updates = $content->getSecondaryDataUpdates(
+				$this->getTitle(),
+				null,
+				$recursive,
+				$output
+			);
+
+			// HACK: filter out redundant and incomplete LinksUpdates
+			$updates = array_filter( $updates, function ( $update ) {
+				return !( $update instanceof LinksUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $updates );
+		}
 
 		// NOTE: $output is the combined output, to be shown in the default view.
 		$output = $editInfo->getParserOutput();
