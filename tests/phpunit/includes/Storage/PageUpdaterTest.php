@@ -16,7 +16,7 @@ use WikiPage;
  */
 class PageUpdaterTest extends MediaWikiTestCase {
 
-	// FIXME: test prepareContentForEdit
+	// FIXME: test prepareEdit
 	// FIXME: test doEditUpdates
 
 	private function getDummyTitle( $method ) {

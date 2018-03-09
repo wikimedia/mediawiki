@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionStore;
 use Wikimedia\Rdbms\DBReplicationWaitError;
 
 /**
@@ -137,6 +138,7 @@ class RefreshLinksJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$stats = $services->getStatsdDataFactory();
 		$lbFactory = $services->getDBLoadBalancerFactory();
+		$revStore = $services->getRevisionStore();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		$page = WikiPage::factory( $title );
@@ -154,20 +156,20 @@ class RefreshLinksJob extends Job {
 		if ( !empty( $this->params['triggeringRevisionId'] ) ) {
 			// Fetch the specified revision; lockAndGetLatest() below detects if the page
 			// was edited since and aborts in order to avoid corrupting the link tables
-			$revision = Revision::newFromId(
+			$revision = $revStore->getRevisionById(
 				$this->params['triggeringRevisionId'],
-				Revision::READ_LATEST
+				RevisionStore::READ_LATEST
 			);
 		} else {
 			// Fetch current revision; READ_LATEST reduces lockAndGetLatest() check failures
-			$revision = Revision::newFromTitle( $title, false, Revision::READ_LATEST );
+			$revision = $revStore->getRevisionByTitle( $title, 0, RevisionStore::READ_LATEST );
 		}
 
 		if ( !$revision ) {
 			$stats->increment( 'refreshlinks.rev_not_found' );
 			$this->setLastError( "Revision not found for {$title->getPrefixedDBkey()}" );
 			return false; // just deleted?
-		} elseif ( $revision->getId() != $latest || $revision->getPage() !== $page->getId() ) {
+		} elseif ( $revision->getId() != $latest || $revision->getPageId() !== $page->getId() ) {
 			// Do not clobber over newer updates with older ones. If all jobs where FIFO and
 			// serialized, it would be OK to update links based on older revisions since it
 			// would eventually get to the latest. Since that is not the case (by design),
@@ -177,14 +179,9 @@ class RefreshLinksJob extends Job {
 			return false;
 		}
 
-		$content = $revision->getContent( Revision::RAW );
-		if ( !$content ) {
-			// If there is no content, pretend the content is empty
-			$content = $revision->getContentHandler()->makeEmptyContent();
-		}
+		$pupdater = $page->getMetaDataUpdater( null, $revision );
 
 		$parserOutput = false;
-		$parserOptions = $page->makeParserOptions( 'canonical' );
 		// If page_touched changed after this root job, then it is likely that
 		// any views of the pages already resulted in re-parses which are now in
 		// cache. The cache can be reused to avoid expensive parsing in some cases.
@@ -211,7 +208,8 @@ class RefreshLinksJob extends Job {
 			if ( $page->getTouched() >= $this->params['rootJobTimestamp'] || $opportunistic ) {
 				// Cache is suspected to be up-to-date. As long as the cache rev ID matches
 				// and it reflects the job's triggering change, then it is usable.
-				$parserOutput = $services->getParserCache()->getDirty( $page, $parserOptions );
+				$pcParserOptions = $page->makeParserOptions( 'canonical' );
+				$parserOutput = $services->getParserCache()->getDirty( $page, $pcParserOptions );
 				if ( !$parserOutput
 					|| $parserOutput->getCacheRevisionId() != $revision->getId()
 					|| $parserOutput->getCacheTime() < $skewedTimestamp
@@ -224,11 +222,15 @@ class RefreshLinksJob extends Job {
 		// Fetch the current revision and parse it if necessary...
 		if ( $parserOutput ) {
 			$stats->increment( 'refreshlinks.parser_cached' );
+
+			// TODO: move the above logic for getting the PO from ParserCache into PageUpdater
+			$pupdater->prepareUpdate( $revision, [ 'parseroutput' => $parserOutput ] );
 		} else {
 			$start = microtime( true );
 			// Revision ID must be passed to the parser output to get revision variables correct
-			$parserOutput = $content->getParserOutput(
-				$title, $revision->getId(), $parserOptions, false );
+			$pupdater->prepareUpdate( $revision );
+			$parserOutput = $pupdater->getCanonicalParserOutput();
+			$parserOptions = $pupdater->getCanonicalParserOptions();
 			$elapsed = microtime( true ) - $start;
 			// If it took a long time to render, then save this back to the cache to avoid
 			// wasted CPU by other apaches or job runners. We don't want to always save to
@@ -238,50 +240,34 @@ class RefreshLinksJob extends Job {
 				&& $parserOutput->isCacheable()
 			) {
 				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
-				$services->getParserCache()->save(
-					$parserOutput, $page, $parserOptions, $ctime, $revision->getId()
-				);
+				$pupdater->updateParserCache( $ctime );
 			}
 			$stats->increment( 'refreshlinks.parser_uncached' );
 		}
 
-		$updates = $content->getSecondaryDataUpdates(
-			$title,
-			null,
-			!empty( $this->params['useRecursiveLinksUpdate'] ),
-			$parserOutput
-		);
+		$triggeringUser = null;
+		if ( !empty( $this->params['triggeringUser'] ) ) {
+			$userInfo = $this->params['triggeringUser'];
+			if ( $userInfo['userId'] ) {
+				$triggeringUser = User::newFromId( $userInfo['userId'] );
+			} else {
+				// Anonymous, use the username
+				$triggeringUser = User::newFromName( $userInfo['userName'], false );
+			}
+		}
 
 		// For legacy hook handlers doing updates via LinksUpdateConstructed, make sure
 		// any pending writes they made get flushed before the doUpdate() calls below.
 		// This avoids snapshot-clearing errors in LinksUpdate::acquirePageLock().
 		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 
-		foreach ( $updates as $update ) {
-			// Carry over cause in case so the update can do extra logging
-			$update->setCause( $this->params['causeAction'], $this->params['causeAgent'] );
-			// FIXME: This code probably shouldn't be here?
-			// Needed by things like Echo notifications which need
-			// to know which user caused the links update
-			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $revision );
-				if ( !empty( $this->params['triggeringUser'] ) ) {
-					$userInfo = $this->params['triggeringUser'];
-					if ( $userInfo['userId'] ) {
-						$user = User::newFromId( $userInfo['userId'] );
-					} else {
-						// Anonymous, use the username
-						$user = User::newFromName( $userInfo['userName'], false );
-					}
-					$update->setTriggeringUser( $user );
-				}
-			}
-		}
-
-		foreach ( $updates as $update ) {
-			$update->setTransactionTicket( $ticket );
-			$update->doUpdate();
-		}
+		$pupdater->runSecondaryDataUpdates( [
+			'recursive' => !empty( $this->params['useRecursiveLinksUpdate'] ),
+			'causeAction' => $this->params['causeAction'],
+			'causeAgent' => $this->params['causeAgent'],
+			'triggeringUser' => $triggeringUser,
+			'transactionTicket' => $ticket,
+		] );
 
 		InfoAction::invalidateCache( $title );
 
