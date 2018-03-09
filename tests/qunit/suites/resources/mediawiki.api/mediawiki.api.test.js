@@ -213,6 +213,29 @@
 			} );
 	} );
 
+	QUnit.test( 'getToken() - no query', function ( assert ) {
+		var api = new mw.Api(),
+			// Same-origin warning and missing query in response.
+			serverRsp = {
+				warnings: {
+					tokens: {
+						'*': 'Tokens may not be obtained when the same-origin policy is not applied.'
+					}
+				}
+			};
+
+		this.server.respondWith( /type=testnoquery/, [ 200, { 'Content-Type': 'application/json' },
+			JSON.stringify( serverRsp )
+		] );
+
+		return api.getToken( 'testnoquery' )
+			.then( function () { assert.fail( 'Expected response missing a query to be rejected' ); } )
+			.catch( function ( err, rsp ) {
+				assert.equal( err, 'query-missing', 'Expected no query error code' );
+				assert.deepEqual( rsp, serverRsp );
+			} );
+	} );
+
 	QUnit.test( 'getToken() - deprecated', function ( assert ) {
 		// Cache API endpoint from default to avoid cachehit in mw.user.tokens
 		var api = new mw.Api( { ajax: { url: '/postWithToken/api.php' } } ),
