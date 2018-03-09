@@ -22,14 +22,17 @@ namespace MediaWiki\Edit;
 
 use Content;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use ParserOutput;
+use Title;
 use Wikimedia\Assert\Assert;
 
 /**
- * Represents information returned by PageUpdater::prepareEdit()
+ * Represents information relevant for processing a page update, particularly
+ * as returned by PageUpdater::prepareEdit() and PageUpdater::prepareUpdate().
  *
  * @since 1.30
  */
@@ -110,6 +113,12 @@ class PreparedEdit {
 	 */
 	public $oldContent;
 
+	/**
+	 * @var Title
+	 * @todo should be some kind of PageIdentity
+	 */
+	private $title;
+
 	/** @var RevisionSlots */
 	private $transformedContentSlots;
 
@@ -119,42 +128,51 @@ class PreparedEdit {
 	private $signature;
 
 	/**
+	 * @var object[] Per-slot cache, values are anonymous objects with two fields:
+	 *      - output: the ParserOutput
+	 *      - hasHtml: whether the ParserOutput contains HTML.
+	 */
+	private $slotParserOutput = [];
+
+	/**
 	 * @note This constructor should not be called directly by application logic.
 	 * Instances of PreparedEdit should only be constructed by PageUpdater::prepareEdit.
 	 * The parameter list is subject to change without notice.
 	 * @internal
 	 *
-	 * @param LinkTarget $title
+	 * @param Title $title
 	 * @param RevisionSlots $newContentSlots Content of the new revision, including inherited slots.
 	 *        The new slots are typically given before PST. This allows getSignature() to be
 	 *        compared against the result of makeSignature() with a set of pre-PST slots later.
 	 * @param RevisionSlots $transformedContentSlots Content of the new revision, after pre-safe
 	 *        transform, including inherited slots.
-	 * @param UserIdentity $user The user identity used for PST. May be null if no PST was applied.
+	 * @param UserIdentity $pstUser The user identity used for PST. May be null if no PST was applied.
 	 * @param ParserOptions $popts
 	 * @param ParserOutput $output The combined output to be placed in the ParserCache, for
 	 *        use in standard page views.
-	 * @param array $modifiers Any additional modifiers to be put into the signature. E.g.
-	 *        the revision ID, of the output depends on that.
+	 * @param int $revId The revision ID, or 0 if the revision has not yet been saved.
 	 */
 	public function __construct(
-		LinkTarget $title,
+		Title $title,
 		RevisionSlots $newContentSlots,
 		RevisionSlots $transformedContentSlots,
-		UserIdentity $user = null,
+		UserIdentity $pstUser = null,
 		ParserOptions $popts,
 		ParserOutput $output,
-		array $modifiers = []
+		$revId
 	) {
+		// TODO: $title should really be some kind of PageIdentity
+
 		Assert::parameter(
 			$transformedContentSlots->hasSlot( 'main' ),
 			'$transformedContentSlots',
 			'must contain main slot.'
 		);
 
+		$this->title = $title;
 		$this->transformedContentSlots = $transformedContentSlots;
 
-		$this->revid = isset( $modifiers['revid'] ) ? $modifiers['revid'] : 0;
+		$this->revid = $revId;
 		$this->popts = $popts;
 		$this->output = $output;
 
@@ -169,8 +187,8 @@ class PreparedEdit {
 		$this->signature = self::makeSignature(
 			$title,
 			$newContentSlots,
-			$user,
-			$modifiers
+			$pstUser,
+			$revId
 		);
 	}
 
@@ -195,18 +213,18 @@ class PreparedEdit {
 	 * @param RevisionSlots $newContentSlots Content of the new revision, including inherited slots.
 	 *        The new slots are typically given before PST. This allows the signature returned
 	 *        to be compared to the vlaue of getSignature() of an existing PreparedEdit.
-	 * @param UserIdentity $user The user identity used for PST. May be null if no PST was applied.
-	 * @param array $modifiers Any additional modifiers to be put into the signature
+	 * @param UserIdentity $pstUser The user identity used for PST. May be null if no PST was applied.
+	 * @param int $revId The revision ID, or 0 if the revision has not yet been saved.
 	 *
 	 * @return string
 	 */
 	public static function makeSignature(
 		LinkTarget $title,
 		RevisionSlots $newContentSlots,
-		UserIdentity $user = null,
-		array $modifiers = []
+		UserIdentity $pstUser = null,
+		$revId = 0
 	) {
-		// TODO: $title should really be some kind of PageIdentity
+		Assert::parameterType( 'integer', $revId, '$revId' );
 
 		$sig = '';
 		$sig .= $newContentSlots->computeSha1(); // NOTE: should consider content model, see T185793
@@ -215,24 +233,37 @@ class PreparedEdit {
 		$sig .= '|';
 		$sig .= $title->getDBkey();
 
-		if ( $user ) {
+		if ( $pstUser ) {
 			$sig .= '|u:';
-			$sig .= $user->getName();
+			$sig .= $pstUser->getName();
 		}
 
-		ksort( $modifiers );
-		foreach ( $modifiers as $key => $value ) {
-			$sig .= "|$key:$value";
+		if ( $revId ) {
+			$sig .= '|r';
+			$sig .= $revId;
 		}
 
 		return $sig;
 	}
 
 	/**
+	 * Returns the slots of the new revisions (with PST applied).
+	 * When saving a new revision, the Content of he touched slots returned by this method
+	 * will be saved to the database.
+	 *
 	 * @return RevisionSlots
 	 */
-	public function getTransformedContentSlots() {
+	public function getSlots() {
 		return $this->transformedContentSlots;
+	}
+
+	/**
+	 * Returns the content of the given slot (with PST applied).
+	 *
+	 * @return Content
+	 */
+	public function getContent( $role ) {
+		return $this->transformedContentSlots->getContent( $role );
 	}
 
 	/**
@@ -278,6 +309,43 @@ class PreparedEdit {
 		return $this->revid;
 	}
 
-	public function getCombinedParserOutput() {}
+	/**
+	 * The page this PreparedEdit was created for.
+	 *
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * @param string $role
+	 *
+	 * @throws RevisionAccessException if $role is not known slot role, see getSlotRoles().
+	 * @return ParserOutput
+	 */
+	public function getSlotParserOutput( $role, $generateHtml ) {
+		if ( isset( $this->slotParserOutput[$role] ) ) {
+			$entry = $this->slotParserOutput[$role];
+			if ( $entry->hasHtml || !$generateHtml ) {
+				return $entry->output;
+			}
+		}
+
+		$content = $this->getContent( $role );
+
+		$output = $content->getParserOutput( $this->getTitle(),
+			$this->getRevisionId(),
+			$this->getParserOptions(),
+			$generateHtml
+		);
+
+		$this->slotParserOutput[$role] = (object)[
+			'output' => $output,
+			'hasHtml' => $generateHtml
+		];
+
+		return $output;
+	}
 
 }

@@ -209,7 +209,7 @@ class ApiStashEdit extends ApiBase {
 			$alreadyCached = false;
 			if ( $editInfo ) {
 				$stashedInfo = (object)[
-					'pstContent' => $editInfo->getTransformedContentSlots()->getContent( 'main' ),
+					'pstContent' => $editInfo->getContent( 'main' ),
 					'output'     => $editInfo->getParserOutput(), // TODO: add proper MCR support
 					'timestamp'  => wfTimestampNow(),
 				];
