@@ -267,13 +267,8 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$content = $page->getContent( Revision::RAW );
-		if ( $content === null ) {
-			return;
-		}
-
-		$updates = $content->getSecondaryDataUpdates(
-			$page->getTitle(), /* $old = */ null, /* $recursive = */ false );
+		$updater = $page->getUpdater();
+		$updates = $updater->getSecondaryDataUpdates();
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
 			DeferredUpdates::doUpdates();
