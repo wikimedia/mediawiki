@@ -1,6 +1,5 @@
 <?php
 
-use InvalidArgumentException;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
