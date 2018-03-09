@@ -753,8 +753,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getRevision() {
 		$this->loadLastEdit();
+		return $this->mLastRevision;
+	}
+
+	/**
+	 * Get the latest revision
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision;
+			return $this->mLastRevision->getRevisionRecord();
 		}
 		return null;
 	}

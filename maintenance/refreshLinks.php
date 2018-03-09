@@ -267,17 +267,14 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$content = $page->getContent( Revision::RAW );
-		if ( $content === null ) {
+		$revision = $page->getRevisionRecord();
+
+		if ( !$revision ) {
 			return;
 		}
 
-		$updates = $content->getSecondaryDataUpdates(
-			$page->getTitle(), /* $old = */ null, /* $recursive = */ false );
-		foreach ( $updates as $update ) {
-			DeferredUpdates::addUpdate( $update );
-			DeferredUpdates::doUpdates();
-		}
+		$updater = $page->getMetaDataUpdater( null, $revision );
+		$updater->runSecondaryDataUpdates();
 	}
 
 	/**
