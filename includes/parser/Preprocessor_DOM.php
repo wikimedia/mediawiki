@@ -185,6 +185,20 @@ class Preprocessor_DOM extends Preprocessor {
 		return $obj;
 	}
 
+	function heredoc( $text, $flags, &$i, &$accum ) {
+		$matches = false;
+		if ( preg_match( "/\s*<<<(.*)>>>/sA", $text, $matches, 0, $i ) ) {
+			$heredoc = $matches[1];
+			$xml = $this->cacheGetTree( $heredoc, $flags );
+			if ( $xml === false ) {
+				$xml = $this->preprocessToXml( $heredoc, $flags );
+				$this->cacheSetTree( $heredoc, $flags, $xml );
+			}
+			$accum .= $xml;
+			$i += strlen( $matches[0] );
+		}
+	}
+
 	/**
 	 * @param string $text
 	 * @param int $flags
@@ -789,11 +803,13 @@ class Preprocessor_DOM extends Preprocessor {
 				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
 				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
 				++$i;
+				$this->heredoc( $text, $flags, $i, $accum );
 			} elseif ( $found == 'dash' ) {
 				$accum .= '-';
 				++$i;
