@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -728,8 +729,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getRevision() {
 		$this->loadLastEdit();
+		return $this->mLastRevision;
+	}
+
+	/**
+	 * Get the latest revision
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision;
+			return $this->mLastRevision->getRevisionRecord();
 		}
 		return null;
 	}
@@ -1727,7 +1737,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Prior to 1.30, this returned a stdClass. Note that public members of PreparedEdit were
 	 * removed or deprecated  in 1.31.
 	 *
-	 * @deprecated since 1.31, use PageUpdater::prepareContentForEdit.
+	 * @deprecated since 1.31, use PageUpdater::prepareEdit.
 	 *
 	 * @param Content $content
 	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
@@ -1769,7 +1779,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$updater = $this->getUpdater();
 
-		return $updater->prepareContentForEdit(
+		return $updater->prepareEdit(
 			$newContentSlots,
 			$revision ? $revision->getRevisionRecord() : null,
 			$user,

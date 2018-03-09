@@ -45,6 +45,7 @@ use MessageCache;
 use MWException;
 use ParserCache;
 use ParserOptions;
+use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChange;
@@ -938,7 +939,7 @@ class PageUpdater implements IDBAccessObject {
 		);
 		$newRevisionRecord->setMinorEdit( $meta['minor'] );
 
-		$editInfo = $this->prepareContentForEdit(
+		$editInfo = $this->prepareEdit(
 			$this->newContentSlots,
 			null,
 			$user,
@@ -1108,7 +1109,7 @@ class PageUpdater implements IDBAccessObject {
 		$newRevisionRecord->setUser( $user );
 		$newRevisionRecord->setTimestamp( $now );
 
-		$editInfo = $this->prepareContentForEdit(
+		$editInfo = $this->prepareEdit(
 			$this->newContentSlots,
 			null,
 			$user,
@@ -1238,6 +1239,129 @@ class PageUpdater implements IDBAccessObject {
 		return $status;
 	}
 
+	private function setSpeculativeRevIdCallback( ParserOptions $popts, Revision $revision = null ) {
+		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
+		$title = $this->getTitle();
+
+		if ( $revision ) {
+			// We get here if vary-revision is set. This means that this page references
+			// itself (such as via self-transclusion). In this case, we need to make sure
+			// that any such self-references refer to the newly-saved revision, and not
+			// to the previous one, which could otherwise happen due to replica DB lag.
+			$oldCallback = $popts->getCurrentRevisionCallback();
+			$popts->setCurrentRevisionCallback(
+				function ( Title $parserTitle, $parser = false )
+				use ( $title, $revision, &$oldCallback )
+				{
+					if ( $parserTitle->equals( $title ) ) {
+						$legacyRevision = new Revision( $revision );
+						return $legacyRevision;
+					} else {
+						return call_user_func( $oldCallback, $parserTitle, $parser );
+					}
+				}
+			);
+		} else {
+			// Try to avoid a second parse if {{REVISIONID}} is used
+			// NOTE: we only get here without READ_LATEST if called directly by application logic
+			// XXX: if we calculate the reculative revid from a replica, can we still re-used
+			//      the prepared edit for the actual edit?!
+			// XXX: can we switch on hasPageState() instead?
+			$dbIndex = $wikiPage->wasLoadedFrom( self::READ_LATEST )
+				? DB_MASTER // use the best possible guess
+				: DB_REPLICA; // T154554
+
+			$popts->setSpeculativeRevIdCallback(
+				function () use ( $dbIndex ) {
+					return 1 + (int)wfGetDB( $dbIndex )->selectField(
+							'revision',
+							'MAX(rev_id)',
+							[ ],
+							__METHOD__
+						);
+				}
+			);
+		}
+	}
+
+	/**
+	 * Prepare for the use of getSecondaryDataUpdates() based on the current revision.
+	 * This can be used when getSecondaryDataUpdates() is deferred after an edit,
+	 * or when purging the page, after importing revisions, or when re-building secondary data
+	 * for some other reason.
+	 *
+	 * @param ParserOutput|null If the caller already has the ParserOutput for the standard view
+	 *        cached, it can be supplied here to avoid re-generating it.
+	 * @param array $options Array of options, following indexes are used:
+	 * - generate-html: bool, generate HTML (see Content::getParserOutput) (default: true).
+	 *
+	 * @return PreparedEdit|null A PreparedEdit for use with getSecondaryDataUpdates,
+	 *         or null if the page does not exist.
+	 */
+	public function prepareUpdate(
+		ParserOutput $output = null,
+		$options = []
+	) {
+		$options += [
+			'generate-html' => true,
+		];
+
+		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
+		$title = $this->getTitle();
+
+		// XXX: grabParentRevision() forces a master connection. Is that needed?
+		$revision = $this->grabParentRevision();
+
+		if ( !$revision ) {
+			return null;
+		}
+
+		$revid = $revision->getId();
+
+		// FIXME: may throw if Content is suppressed!
+		$mainContent = $revision->getContent( 'main' );
+
+		if ( count( $revision->getSlotRoles() ) > 1 ) {
+			// TODO: MCR!
+			throw new RuntimeException( 'No slots besides the main slot are supported yet!' );
+		}
+
+		// TODO: Add option to get ParserOutput from ParserCache here like RefreshLinksJob does!
+
+		// TODO: share code for making ParserOptions and ParserOutput with prepareEdit
+		// TODO: MCR: combine parser options for all slots?! Include inherited (or use cached output)
+		$canonPopts = $wikiPage->makeParserOptions( 'canonical' );
+		$this->setSpeculativeRevIdCallback( $canonPopts, $revision );
+
+		if ( !$output ) {
+			// TODO: for each slot!
+			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
+			$output = $mainContent->getParserOutput( $title,
+				$revid,
+				$canonPopts,
+				$options['generate-html']
+			);
+
+			$timestamp = $this->getTimestampNow();
+			$output->setCacheTime( $timestamp );
+		}
+
+		// TODO: MCR: set all slots, inherit slots from base revision!
+		$slots = new MutableRevisionSlots();
+		$slots->setContent( 'main', $mainContent );
+
+		// TODO: allow on-demand creation of per-slot ParserOutput objects
+		return new PreparedEdit(
+			$title,
+			$slots,
+			$slots,
+			null,
+			$canonPopts,
+			$output,
+			[]
+		);
+	}
+
 	/**
 	 * Prepare content which is about to be saved.
 	 *
@@ -1256,13 +1380,12 @@ class PageUpdater implements IDBAccessObject {
 	 * @return PreparedEdit
 	 * @throws MWException
 	 */
-	public function prepareContentForEdit(
+	public function prepareEdit(
 		RevisionSlots $newContentSlots,
 		RevisionRecord $revision = null,
 		User $user,
 		$options = []
 	) {
-		// XXX: much of this could be taken from the state of the local object.
 		$options += [
 			'use-stashed' => true,
 			'do-transform' => true,
@@ -1391,12 +1514,14 @@ class PageUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * @param PreparedEdit $editInfo
+	 * FIXME document
+	 *
+	 * @param PreparedEdit|null $editInfo
 	 * @param bool $recursive
 	 *
 	 * @return DataUpdate[]
 	 */
-	public function getSecondaryDataUpdates( PreparedEdit $editInfo, $recursive = false ) {
+	public function getSecondaryDataUpdates( PreparedEdit $editInfo = null, $recursive = false ) {
 		// TODO: MCR: getSecondaryDataUpdates() needs a complete overhaul to avoid DataUpdates
 		// from different slots overwriting each other in the database. Plan:
 		// * replace direct calls to Content::getSecondaryLinksUpdates() with calls to this method
@@ -1405,12 +1530,18 @@ class PageUpdater implements IDBAccessObject {
 		// * Pass $slot into getSecondaryLinksUpdates() - probably be introducing a new duplicate
 		//   version of this function in ContentHandler.
 		// * The new method gets the PreparedEdit, but no $recursive flag (that's for LinksUpdate)
+		// * The new method also doesn't get $old. DataUpdates diff against the database, not the
+		//   old content. That's more robust. And in the old WikiPage code, $old was always null.
 		// * Hack: call both the old and the new getSecondaryLinksUpdates method here; Pass
 		//   the per-slot ParserOutput to the old method, for B/C.
 		// * Hack: If there is moore than one slot, filter LinksUpdate from the DataUpdates
 		//   returned by getSecondaryLinksUpdates, and use a LinksUpdated for the combined output
 		//   instead.
 		// * Call the SecondaryDataUpdates hook here (or kill it - its signature doesn't make sense)
+
+		if ( !$editInfo ) {
+			$editInfo = $this->prepareUpdate();
+		}
 
 		$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
 
@@ -1523,7 +1654,7 @@ class PageUpdater implements IDBAccessObject {
 			// the revision ID, or when being called directly, without saving an edit.
 
 			// Parse the text again if needed. Avoid using the edit stash. Avoid double transform.
-			$editInfo = $this->prepareContentForEdit(
+			$editInfo = $this->prepareEdit(
 				$touchedSlots,
 				$revision,
 				$user,

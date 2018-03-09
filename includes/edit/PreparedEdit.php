@@ -29,7 +29,7 @@ use ParserOutput;
 use Wikimedia\Assert\Assert;
 
 /**
- * Represents information returned by WikiPage::prepareContentForEdit()
+ * Represents information returned by PageUpdater::prepareEdit()
  *
  * @since 1.30
  */
@@ -120,7 +120,7 @@ class PreparedEdit {
 
 	/**
 	 * @note This constructor should not be called directly by application logic.
-	 * Instances of PreparedEdit should only be constructed by PageUpdater::prepareContentForEdit.
+	 * Instances of PreparedEdit should only be constructed by PageUpdater::prepareEdit.
 	 * The parameter list is subject to change without notice.
 	 * @internal
 	 *
@@ -130,7 +130,7 @@ class PreparedEdit {
 	 *        compared against the result of makeSignature() with a set of pre-PST slots later.
 	 * @param RevisionSlots $transformedContentSlots Content of the new revision, after pre-safe
 	 *        transform, including inherited slots.
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The user identity used for PST. May be null if no PST was applied.
 	 * @param ParserOptions $popts
 	 * @param ParserOutput $output The combined output to be placed in the ParserCache, for
 	 *        use in standard page views.
@@ -141,7 +141,7 @@ class PreparedEdit {
 		LinkTarget $title,
 		RevisionSlots $newContentSlots,
 		RevisionSlots $transformedContentSlots,
-		UserIdentity $user,
+		UserIdentity $user = null,
 		ParserOptions $popts,
 		ParserOutput $output,
 		array $modifiers = []
@@ -195,7 +195,7 @@ class PreparedEdit {
 	 * @param RevisionSlots $newContentSlots Content of the new revision, including inherited slots.
 	 *        The new slots are typically given before PST. This allows the signature returned
 	 *        to be compared to the vlaue of getSignature() of an existing PreparedEdit.
-	 * @param UserIdentity $user
+	 * @param UserIdentity $user The user identity used for PST. May be null if no PST was applied.
 	 * @param array $modifiers Any additional modifiers to be put into the signature
 	 *
 	 * @return string
@@ -203,19 +203,22 @@ class PreparedEdit {
 	public static function makeSignature(
 		LinkTarget $title,
 		RevisionSlots $newContentSlots,
-		UserIdentity $user,
+		UserIdentity $user = null,
 		array $modifiers = []
 	) {
 		// TODO: $title should really be some kind of PageIdentity
 
 		$sig = '';
 		$sig .= $newContentSlots->computeSha1(); // NOTE: should consider content model, see T185793
-		$sig .= '|';
-		$sig .= $user->getName();
 		$sig .= '|ns';
 		$sig .= $title->getNamespace();
 		$sig .= '|';
 		$sig .= $title->getDBkey();
+
+		if ( $user ) {
+			$sig .= '|u:';
+			$sig .= $user->getName();
+		}
 
 		ksort( $modifiers );
 		foreach ( $modifiers as $key => $value ) {
