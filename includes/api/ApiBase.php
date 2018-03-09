@@ -2590,16 +2590,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.25, always returns empty string
-	 * @param IDatabase|bool $db
-	 * @return string
-	 */
-	public function getModuleProfileName( $db = false ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return '';
-	}
-
-	/**
 	 * @deprecated since 1.25
 	 */
 	public function profileIn() {
