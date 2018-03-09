@@ -1312,7 +1312,7 @@
 	"recentchanges-label-unpatrolled": "Непатролирана измена",
 	"recentchanges-label-plusminus": "Промена величине странице у бајтовима",
 	"recentchanges-legend-heading": "<strong>Легенда:</strong>",
-	"recentchanges-legend-newpage": "Овом изменом је направљена нова страница ([[Special:NewPages|списак нових страница]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|списак нових страница]])",
 	"recentchanges-submit": "Прикажи",
 	"rcfilters-tag-remove": "Обриши $1",
 	"rcfilters-legend-heading": "<strong>Списак скраћеница:</strong>",

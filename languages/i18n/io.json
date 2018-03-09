@@ -1228,6 +1228,7 @@
 	"sp-contributions-username": "IP-adreso od uzantonomo:",
 	"sp-contributions-toponly": "Montrar nur la maxim recenta revizi",
 	"sp-contributions-newonly": "Montrar nur redakti qui esas kreado di pagini",
+	"sp-contributions-hideminor": "Celar kurta redaktaji",
 	"sp-contributions-submit": "Serchez",
 	"whatlinkshere": "Quo ligesas adhike",
 	"whatlinkshere-title": "Pagini qui ligas ad \"$1\"",
@@ -1577,6 +1578,8 @@
 	"special-characters-group-cyrillic": "Kirila",
 	"special-characters-group-arabic": "Arabiana",
 	"special-characters-group-persian": "Persiana",
+	"mw-widgets-dateinput-no-date": "Nula dato selektita",
+	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
 	"sessionprovider-nocookies": "''Bisquiti'' forsan esas desacendita. Certigez ke vu acendar ''bisquiti'' e riprobez.",
 	"randomrootpage": "Hazarda radikopagino",
 	"log-action-filter-delete": "Tipo di efacado:"
