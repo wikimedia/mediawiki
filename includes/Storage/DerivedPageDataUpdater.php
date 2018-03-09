@@ -27,12 +27,14 @@ use CategoryMembershipChangeJob;
 use Content;
 use ContentHandler;
 use DataUpdate;
+use DeferrableUpdate;
 use DeferredUpdates;
 use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
+use LinksDeletionUpdate;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Edit\PreparedEdit;
@@ -165,8 +167,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 *
 	 * Contains the following fields:
 	 * - oldRevision (RevisionRecord|null): the revision that was current before the change
-	 *   associated with this update. Might not be set, use getOldRevision() instead of direct
-	 *   access.
+	 *   associated with this update. Might not be set, use getParentRevision().
 	 * - oldId (int|null): the id of the above revision. 0 if there is no such revision (the change
 	 *   was about creating a new page); null if not known (that should not happen).
 	 * - oldIsRedirect (bool|null): whether the page was a redirect before the change. Lazy-loaded,
@@ -182,6 +183,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @var RevisionSlotsUpdate|null
 	 */
 	private $slotsUpdate = null;
+
+	/**
+	 * @var RevisionRecord|null
+	 */
+	private $parentRevision = null;
 
 	/**
 	 * @var RevisionRecord|null
@@ -456,29 +462,34 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns the revision that was current before the edit. This would be null if the edit
-	 * created the page, or the revision's parent for a regular edit, or the revision itself
-	 * for a null-edit.
-	 * Only defined after calling grabCurrentRevision() or prepareContent() or prepareUpdate()!
+	 * Returns the parent revision of the new revision wrapped by this update.
+	 * If the update is a null-edit, this will return the parent of the current (and new) revision.
+	 * This will return null if the revision wrapped by this update created the page.
+	 * Only defined after calling prepareContent() or prepareUpdate()!
 	 *
-	 * @return RevisionRecord|null the revision that was current before the edit, or null if
-	 *         the edit created the page.
+	 * @return RevisionRecord|null the parent revision of the new revision, or null if
+	 *         the update created the page.
 	 */
-	private function getOldRevision() {
-		$this->assertHasPageState( __METHOD__ );
+	private function getParentRevision() {
+		$this->assertPrepared( __METHOD__ );
 
-		// If 'oldRevision' is not set, load it!
-		// Useful if $this->oldPageState is initialized by prepareUpdate.
-		if ( !array_key_exists( 'oldRevision', $this->pageState ) ) {
-			/** @var int $oldId */
-			$oldId = $this->pageState['oldId'];
-			$flags = $this->useMaster() ? RevisionStore::READ_LATEST : 0;
-			$this->pageState['oldRevision'] = $oldId
-				? $this->revisionStore->getRevisionById( $oldId, $flags )
-				: null;
+		if ( $this->parentRevision ) {
+			return $this->parentRevision;
 		}
 
-		return $this->pageState['oldRevision'];
+		if ( !$this->pageState['oldId'] ) {
+			// If there was no current revision, there is no parent revision,
+			// since the page didn't exist.
+			return null;
+		}
+
+		$oldId = $this->revision->getParentId();
+		$flags = $this->useMaster() ? RevisionStore::READ_LATEST : 0;
+		$this->parentRevision = $oldId
+			? $this->revisionStore->getRevisionById( $oldId, $flags )
+			: null;
+
+		return $this->parentRevision;
 	}
 
 	/**
@@ -495,8 +506,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @note After prepareUpdate() was called, grabCurrentRevision() will throw an exception
 	 * to avoid confusion, since the page's current revision is then the new revision after
 	 * the edit, which was presumably passed to prepareUpdate() as the $revision parameter.
-	 * Use getOldRevision() instead to access the revision that used to be current before the
-	 * edit.
+	 * Use getParentRevision() instead to access the revision that is the parent of the
+	 * new revision.
 	 *
 	 * @return RevisionRecord|null the page's current revision, or null if the page does not
 	 * yet exist.
@@ -834,6 +845,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 			// prepareUpdate() is redundant for null-edits
 			$this->doTransition( 'has-revision' );
+		} else {
+			$this->parentRevision = $parentRevision;
 		}
 	}
 
@@ -969,7 +982,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->assertPrepared( __METHOD__ );
 
 		if ( !$this->slotsUpdate ) {
-			$old = $this->getOldRevision();
+			$old = $this->getParentRevision();
 			$this->slotsUpdate = RevisionSlotsUpdate::newFromRevisionSlots(
 				$this->revision->getSlots(),
 				$old ? $old->getSlots() : null
@@ -1252,34 +1265,103 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	/**
 	 * @param bool $recursive
 	 *
-	 * @return DataUpdate[]
+	 * @return DeferrableUpdate[]
 	 */
 	public function getSecondaryDataUpdates( $recursive = false ) {
-		// TODO: MCR: getSecondaryDataUpdates() needs a complete overhaul to avoid DataUpdates
-		// from different slots overwriting each other in the database. Plan:
-		// * replace direct calls to Content::getSecondaryDataUpdates() with calls to this method
-		// * Construct LinksUpdate here, on the combined ParserOutput, instead of in AbstractContent
-		//   for each slot.
-		// * Pass $slot into getSecondaryDataUpdates() - probably be introducing a new duplicate
-		//   version of this function in ContentHandler.
-		// * The new method gets the PreparedEdit, but no $recursive flag (that's for LinksUpdate)
-		// * Hack: call both the old and the new getSecondaryDataUpdates method here; Pass
-		//   the per-slot ParserOutput to the old method, for B/C.
-		// * Hack: If there is more than one slot, filter LinksUpdate from the DataUpdates
-		//   returned by getSecondaryDataUpdates, and use a LinksUpdated for the combined output
-		//   instead.
-		// * Call the SecondaryDataUpdates hook here (or kill it - its signature doesn't make sense)
+		if ( $this->isContentDeleted() ) {
+			// This shouldn't happen, since the current content is always public,
+			// and DataUpates are only needed for current content.
+			return [];
+		}
 
-		$content = $this->getSlots()->getContent( 'main' );
-
-		// NOTE: $output is the combined output, to be shown in the default view.
 		$output = $this->getCanonicalParserOutput();
 
-		$updates = $content->getSecondaryDataUpdates(
-			$this->getTitle(), null, $recursive, $output
+		// Construct a LinksUpdate for the combined canonical output.
+		$linksUpdate = new LinksUpdate(
+			$this->getTitle(),
+			$output,
+			$recursive
 		);
 
-		return $updates;
+		$allUpdates = [ $linksUpdate ];
+
+		// NOTE: Run updates for all slots, not just the modified slots! Otherwise,
+		// info for an inherited slot may end up being removed. This is also needed
+		// to ensure that purges are effective.
+		$renderedRevision = $this->getRenderedRevision();
+		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
+			$slot = $this->getRawSlot( $role );
+			$content = $slot->getContent();
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getSecondaryDataUpdates(
+				$this->getTitle(),
+				$content,
+				$role,
+				$renderedRevision
+			);
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			// NOTE: we assume that the combined output contains all relevant meta-data for
+			// all slots!
+			$legacyUpdates = $content->getSecondaryDataUpdates(
+				$this->getTitle(),
+				null,
+				$recursive,
+				$output
+			);
+
+			// HACK: filter out redundant and incomplete LinksUpdates
+			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+				return !( $update instanceof LinksUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
+		}
+
+		// XXX: if a slot was removed by an earlier edit, but deletion updates failed to run at
+		// that time, we don't know for which slots to run deletion updates when purging a page.
+		// We'd have to examine the entire history of the page to determine that. Perhaps there
+		// could be a "try extra hard" mode for that case that would run a DB query to find all
+		// roles/models ever used on the page. On the other hand, removing slots should be quite
+		// rare, so perhaps this isn't worth the trouble.
+
+		// TODO: consolidate with similar logic in WikiPage::getDeletionUpdates()
+		$wikiPage = $this->getWikiPage();
+		$parentRevision = $this->getParentRevision();
+		foreach ( $this->getRemovedSlotRoles() as $role ) {
+			// HACK: we should get the content model of the removed slot from a SlotRoleHandler!
+			// For now, find the slot in the parent revision - if the slot was removed, it should
+			// always exist in the parent revision.
+			$parentSlot = $parentRevision->getSlot( $role, RevisionRecord::RAW );
+			$content = $parentSlot->getContent();
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getDeletionUpdates(
+				$this->getTitle(),
+				$role
+			);
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			$legacyUpdates = $content->getDeletionUpdates( $wikiPage );
+
+			// HACK: filter out redundant and incomplete LinksDeletionUpdate
+			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+				return !( $update instanceof LinksDeletionUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
+		}
+
+		// TODO: hard deprecate SecondaryDataUpdates in favor of RevisionDataUpdates in 1.33!
+		Hooks::run(
+			'RevisionDataUpdates',
+			[ $this->getTitle(), $renderedRevision, &$allUpdates ]
+		);
+
+		return $allUpdates;
 	}
 
 	/**
@@ -1425,7 +1507,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			WikiPage::onArticleEdit( $title, $legacyRevision, $this->getTouchedSlotRoles() );
 		}
 
-		$oldRevision = $this->getOldRevision();
+		$oldRevision = $this->getParentRevision();
 		$oldLegacyRevision = $oldRevision ? new Revision( $oldRevision ) : null;
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
@@ -1484,7 +1566,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		}
 
 		foreach ( $updates as $update ) {
-			$update->setCause( $causeAction, $causeAgent );
+			if ( $update instanceof DataUpdate ) {
+				$update->setCause( $causeAction, $causeAgent );
+			}
 			if ( $update instanceof LinksUpdate ) {
 				$update->setRevision( $legacyRevision );
 				$update->setTriggeringUser( $triggeringUser );

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use CommentStoreComment;
 use Content;
+use ContentHandler;
 use LinksUpdate;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\DerivedPageDataUpdater;
@@ -13,6 +14,10 @@ use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
+use MWCallableUpdate;
+use PHPUnit\Framework\MockObject\MockObject;
+use TextContent;
+use TextContentHandler;
 use Title;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -500,13 +505,115 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$dataUpdates = $updater->getSecondaryDataUpdates();
 
-		// TODO: MCR: assert updates from all slots!
 		$this->assertNotEmpty( $dataUpdates );
 
 		$linksUpdates = array_filter( $dataUpdates, function ( $du ) {
 			return $du instanceof LinksUpdate;
 		} );
 		$this->assertCount( 1, $linksUpdates );
+	}
+
+	/**
+	 * @param string $name
+	 *
+	 * @return ContentHandler
+	 */
+	private function defineMockContentModelForUpdateTesting( $name ) {
+		/** @var ContentHandler|MockObject $handler */
+		$handler = $this->getMockBuilder( TextContentHandler::class )
+			->setConstructorArgs( [ $name ] )
+			->setMethods(
+				[ 'getSecondaryDataUpdates', 'getDeletionUpdates', 'unserializeContent' ]
+			)
+			->getMock();
+
+		$dataUpdate = new MWCallableUpdate( 'time' );
+		$dataUpdate->_name = "$name data update";
+
+		$deletionUpdate = new MWCallableUpdate( 'time' );
+		$deletionUpdate->_name = "$name deletion update";
+
+		$handler->method( 'getSecondaryDataUpdates' )->willReturn( [ $dataUpdate ] );
+		$handler->method( 'getDeletionUpdates' )->willReturn( [ $deletionUpdate ] );
+		$handler->method( 'unserializeContent' )->willReturnCallback(
+			function ( $text ) use ( $handler ) {
+				return $this->createMockContent( $handler, $text );
+			}
+		);
+
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers', [
+				$name => function () use ( $handler ){
+					return $handler;
+				}
+			]
+		);
+
+		return $handler;
+	}
+
+	/**
+	 * @param ContentHandler $handler
+	 * @param string $text
+	 *
+	 * @return Content
+	 */
+	private function createMockContent( ContentHandler $handler, $text ) {
+		/** @var Content|MockObject $content */
+		$content = $this->getMockBuilder( TextContent::class )
+			->setConstructorArgs( [ $text ] )
+			->setMethods( [ 'getModel', 'getContentHandler' ] )
+			->getMock();
+
+		$content->method( 'getModel' )->willReturn( $handler->getModelID() );
+		$content->method( 'getContentHandler' )->willReturn( $handler );
+
+		return $content;
+	}
+
+	public function testGetSecondaryDataUpdatesWithSlotRemoval() {
+		global $wgMultiContentRevisionSchemaMigrationStage;
+
+		if ( ! ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) ) {
+			$this->markTestSkipped( 'Slot removal cannot happen with MCR being enabled' );
+		}
+
+		$m1 = $this->defineMockContentModelForUpdateTesting( 'M1' );
+		$a1 = $this->defineMockContentModelForUpdateTesting( 'A1' );
+		$m2 = $this->defineMockContentModelForUpdateTesting( 'M2' );
+
+		$mainContent1 = $this->createMockContent( $m1, 'main 1' );
+		$auxContent1 = $this->createMockContent( $a1, 'aux 1' );
+		$mainContent2 = $this->createMockContent( $m2, 'main 2' );
+
+		$user = $this->getTestUser()->getUser();
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision(
+			$page,
+			__METHOD__,
+			[ 'main' => $mainContent1, 'aux' => $auxContent1 ]
+		);
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( 'main', $mainContent2 );
+		$update->removeSlot( 'aux' );
+
+		$page = $this->getPage( __METHOD__ );
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+
+		$dataUpdates = $updater->getSecondaryDataUpdates();
+
+		$this->assertNotEmpty( $dataUpdates );
+
+		$updateNames = array_map( function ( $du ) {
+			return isset( $du->_name ) ? $du->_name : get_class( $du );
+		}, $dataUpdates );
+
+		$this->assertContains( LinksUpdate::class, $updateNames );
+		$this->assertContains( 'A1 deletion update', $updateNames );
+		$this->assertContains( 'M2 data update', $updateNames );
+		$this->assertNotContains( 'M1 data update', $updateNames );
 	}
 
 	/**

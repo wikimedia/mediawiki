@@ -28,6 +28,7 @@
 use Wikimedia\Assert\Assert;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
 /**
@@ -1402,6 +1403,77 @@ abstract class ContentHandler {
 			}
 		}
 		return $parserOutput;
+	}
+
+	/**
+	 * Returns a list of DeferrableUpdate objects for recording information about the
+	 * given Content in some secondary data store.
+	 *
+	 * Application logic should not call this method directly. Instead, it should call
+	 * DerivedPageDataUpdater::getSecondaryDataUpdates().
+	 *
+	 * @note Implementations must not return a LinksUpdate instance. Instead, a LinksUpdate
+	 * is created by the calling code in DerivedPageDataUpdater, on the combined ParserOutput
+	 * of all slots, not for each slot individually. This is in contrast to the old
+	 * getSecondaryDataUpdates method defined by AbstractContent, which returned a LinksUpdate.
+	 *
+	 * @note Implementations should not call $content->getParserOutput, they should call
+	 * $slotOutput->getSlotRendering( $role, false ) instead if they need to access a ParserOutput
+	 * of $content. This allows existing ParserOutput objects to be re-used, while avoiding
+	 * creating a ParserOutput when none is needed.
+	 *
+	 * @param Title $title The title of the page to supply the updates for
+	 * @param Content $content The content to generate data updates for.
+	 * @param string $role The role (slot) in which the content is being used. Which updates
+	 *        are performed should generally not depend on the role the content has, but the
+	 *        DeferrableUpdates themselves may need to know the role, to track to which slot the
+	 *        data refers, and to avoid overwriting data of the same kind from another slot.
+	 * @param SlotRenderingProvider $slotOutput A provider that can be used to gain access to
+	 *        a ParserOutput of $content by calling $slotOutput->getSlotParserOutput( $role, false ).
+	 * @return DeferrableUpdate[] A list of DeferrableUpdate objects for putting information
+	 *        about this content object somewhere. The default implementation returns an empty
+	 *        array.
+	 * @since 1.32
+	 */
+	public function getSecondaryDataUpdates(
+		Title $title,
+		Content $content,
+		$role,
+		SlotRenderingProvider $slotOutput
+	) {
+		return [];
+	}
+
+	/**
+	 * Returns a list of DeferrableUpdate objects for removing information about content
+	 * in some secondary data store. This is used when a page is deleted, and also when
+	 * a slot is removed from a page.
+	 *
+	 * Application logic should not call this method directly. Instead, it should call
+	 * WikiPage::getSecondaryDataUpdates().
+	 *
+	 * @note Implementations must not return a LinksDeletionUpdate instance. Instead, a
+	 * LinksDeletionUpdate is created by the calling code in WikiPage.
+	 * This is in contrast to the old getDeletionUpdates method defined by AbstractContent,
+	 * which returned a LinksUpdate.
+	 *
+	 * @note Implementations should not rely on the page's current content, but rather the current
+	 * state of the secondary data store.
+	 *
+	 * @param Title $title The title of the page to supply the updates for
+	 * @param string $role The role (slot) in which the content is being used. Which updates
+	 *        are performed should generally not depend on the role the content has, but the
+	 *        DeferrableUpdates themselves may need to know the role, to track to which slot the
+	 *        data refers, and to avoid overwriting data of the same kind from another slot.
+	 *
+	 * @return DeferrableUpdate[] A list of DeferrableUpdate objects for putting information
+	 *        about this content object somewhere. The default implementation returns an empty
+	 *        array.
+	 *
+	 * @since 1.32
+	 */
+	public function getDeletionUpdates( Title $title, $role ) {
+		return [];
 	}
 
 }

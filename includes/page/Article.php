@@ -2123,8 +2123,13 @@ class Article implements Page {
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteUpdates
 	 */
-	public function doDeleteUpdates( $id, Content $content = null ) {
-		return $this->mPage->doDeleteUpdates( $id, $content );
+	public function doDeleteUpdates(
+		$id,
+		Content $content = null,
+		$revision = null,
+		User $user = null
+	) {
+		$this->mPage->doDeleteUpdates( $id, $content, $revision, $user );
 	}
 
 	/**
