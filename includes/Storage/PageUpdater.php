@@ -1198,7 +1198,8 @@ class PageUpdater {
 		if ( !$output ) {
 			// TODO: for each slot!
 			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
-			$output = $mainContent->getParserOutput( $title,
+			$output = $mainContent->getParserOutput(
+				$title,
 				$revid,
 				$canonPopts,
 				$options['generate-html']
@@ -1213,6 +1214,7 @@ class PageUpdater {
 		$slots->setContent( 'main', $mainContent );
 
 		// TODO: allow on-demand creation of per-slot ParserOutput objects
+		// FIXME: make sure the right slots are marked as touched
 		return new PreparedEdit(
 			$title,
 			$slots,
@@ -1220,7 +1222,7 @@ class PageUpdater {
 			null,
 			$canonPopts,
 			$output,
-			[]
+			$revid
 		);
 	}
 

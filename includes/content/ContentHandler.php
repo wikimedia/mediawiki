@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
 /**
@@ -1328,5 +1329,35 @@ abstract class ContentHandler {
 		}
 		return $parserOutput;
 	}
+
+	/**
+	 * Returns a list of DataUpdate objects for recording information about the
+	 * given Content in some secondary data store.
+	 *
+	 * Note that in contrast to the old getSecondaryDataUpdates method defined by AbstractContent,
+	 * this does not return a LinksUpdate per default. Instead, the LinksUpdate is expected to
+	 * be created by the calling code, on the combined output of all slots.
+	 *
+	 * @param Content $content
+	 * @param string $role The role (slot) in which the content is being used. Which DataUpdates
+	 *        are performed should generally not depend on the role the content has, but the
+	 *        DataUpdates themselves may need to know the role, to avoid overwriting information
+	 *        from content of the same kind being used in another slot.
+	 * @param PreparedEdit $editInfo may be used to gain access to other slots of the same revision,
+	 *        as well as to the combined ParserOutput, or ParserOutput of individual slots.
+	 *
+	 * @return DataUpdate[] A list of DataUpdate objects for putting information
+	 *    about this content object somewhere.
+	 *
+	 * @since 1.21
+	 */
+	public function getSecondaryDataUpdates(
+		Content $content,
+		$role,
+		PreparedEdit $editInfo
+	) {
+		return [];
+	}
+
 
 }
