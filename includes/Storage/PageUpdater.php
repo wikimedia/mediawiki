@@ -870,7 +870,7 @@ class PageUpdater implements IDBAccessObject {
 	/**
 	 * Adds all slots from $editInfo to $rec. Called
 	 *
-	 * @param PreparedEdit $editInfo
+	 * @param SlotRecord[] $touchedSlots
 	 * @param MutableRevisionRecord $rec
 	 * @param Status $status
 	 * @param int $flags
@@ -878,7 +878,7 @@ class PageUpdater implements IDBAccessObject {
 	 * @param User $user
 	 */
 	private function addAllContentForEdit(
-		PreparedEdit $editInfo,
+		array $touchedSlots,
 		MutableRevisionRecord $rec,
 		Status $status,
 		$flags,
@@ -887,9 +887,8 @@ class PageUpdater implements IDBAccessObject {
 	) {
 		$wikiPage = $this->getWikiPage();
 
-		$transformedSlots = $editInfo->getTransformedContentSlots();
-
-		foreach ( $transformedSlots->getTouchedSlots() as $slot ) {
+		// XXX: inheriting slots may undo their hidden status
+		foreach ( $touchedSlots as $slot ) {
 			$content = $slot->getContent();
 
 			// TODO: change the signature of PrepareSave to not take a WikiPage!
@@ -947,7 +946,7 @@ class PageUpdater implements IDBAccessObject {
 		);
 
 		$this->addAllContentForEdit(
-			$editInfo,
+			$editInfo->getSlots()->getTouchedSlots(),
 			$newRevisionRecord,
 			$status,
 			$flags,
@@ -1117,7 +1116,7 @@ class PageUpdater implements IDBAccessObject {
 		);
 
 		$this->addAllContentForEdit(
-			$editInfo,
+			$editInfo->getSlots()->getTouchedSlots(),
 			$newRevisionRecord,
 			$status,
 			$flags,
@@ -1336,7 +1335,8 @@ class PageUpdater implements IDBAccessObject {
 		if ( !$output ) {
 			// TODO: for each slot!
 			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
-			$output = $mainContent->getParserOutput( $title,
+			$output = $mainContent->getParserOutput(
+				$title,
 				$revid,
 				$canonPopts,
 				$options['generate-html']
@@ -1351,6 +1351,7 @@ class PageUpdater implements IDBAccessObject {
 		$slots->setContent( 'main', $mainContent );
 
 		// TODO: allow on-demand creation of per-slot ParserOutput objects
+		// FIXME: make sure the right slots are marked as touched
 		return new PreparedEdit(
 			$title,
 			$slots,
@@ -1358,7 +1359,7 @@ class PageUpdater implements IDBAccessObject {
 			null,
 			$canonPopts,
 			$output,
-			[]
+			$revid
 		);
 	}
 
@@ -1395,19 +1396,12 @@ class PageUpdater implements IDBAccessObject {
 		$title = $this->getTitle();
 
 		$revid = $revision ? $revision->getId() : 0;
-		$sigMod = [ 'revid' => $revid ];
-
-		if ( !$options['do-transform'] ) {
-			// Make sure the signature is different depending on whether PST
-			// is applied to new slots content.
-			$sigMod['transform'] = 'no';
-		}
 
 		// TODO: MCR: add inherited slots from base revision to $newContentSlots!
 		$sig = PreparedEdit::makeSignature( $this->getTitle(),
 			$newContentSlots,
 			$user,
-			$sigMod
+			$revid
 		);
 
 		if ( $this->preparedEdit && $this->preparedEdit->getSignature() === $sig ) {
@@ -1445,45 +1439,7 @@ class PageUpdater implements IDBAccessObject {
 			$output = $stashedEdit->output;
 			$timestamp = $stashedEdit->timestamp;
 		} else {
-			if ( $revision ) {
-				// We get here if vary-revision is set. This means that this page references
-				// itself (such as via self-transclusion). In this case, we need to make sure
-				// that any such self-references refer to the newly-saved revision, and not
-				// to the previous one, which could otherwise happen due to replica DB lag.
-				$oldCallback = $canonPopts->getCurrentRevisionCallback();
-				$canonPopts->setCurrentRevisionCallback(
-					function ( Title $parserTitle, $parser = false )
-						use ( $title, $revision, &$oldCallback )
-					{
-						if ( $parserTitle->equals( $title ) ) {
-							$legacyRevision = new Revision( $revision );
-							return $legacyRevision;
-						} else {
-							return call_user_func( $oldCallback, $parserTitle, $parser );
-						}
-					}
-				);
-			} else {
-				// Try to avoid a second parse if {{REVISIONID}} is used
-				// NOTE: we only get here without READ_LATEST if called directly by application logic
-				// XXX: if we calculate the reculative revid from a replica, can we still re-used
-				//      the prepared edit for the actual edit?!
-				// XXX: can we switch on hasPageState() instead?
-				$dbIndex = $wikiPage->wasLoadedFrom( self::READ_LATEST )
-					? DB_MASTER // use the best possible guess
-					: DB_REPLICA; // T154554
-
-				$canonPopts->setSpeculativeRevIdCallback(
-					function () use ( $dbIndex ) {
-						return 1 + (int)wfGetDB( $dbIndex )->selectField(
-							'revision',
-							'MAX(rev_id)',
-							[ ],
-							__METHOD__
-						);
-					}
-				);
-			}
+			$this->setSpeculativeRevIdCallback( $canonPopts, $revision );
 
 			// TODO: for each slot!
 			// TODO: pass RevisionRecord to getParserOutput, for cross-slot access.
@@ -1500,6 +1456,7 @@ class PageUpdater implements IDBAccessObject {
 		$pstContentSlots->setContent( 'main', $pstContent );
 
 		// TODO: allow on-demand creation of per-slot ParserOutput objects
+		// FIXME: make sure the right slots are marked as touched
 		$this->preparedEdit = new PreparedEdit(
 			$title,
 			$newContentSlots,
@@ -1507,7 +1464,7 @@ class PageUpdater implements IDBAccessObject {
 			$user,
 			$canonPopts,
 			$output,
-			$sigMod
+			$revid
 		);
 
 		return $this->preparedEdit;
@@ -1543,7 +1500,41 @@ class PageUpdater implements IDBAccessObject {
 			$editInfo = $this->prepareUpdate();
 		}
 
-		$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
+		$output = $editInfo->getParserOutput();
+
+		$linksUpdate = new LinksUpdate(
+			$this->getTitle(),
+			$output,
+			$recursive
+		);
+
+		$allUpdates = [ $linksUpdate ];
+
+		foreach ( $editInfo->getSlotRoles() as $role ) {
+			// FIXME: missing audience check?!
+			$content = $editInfo->getContent( $role );
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getSecondaryDataUpdates( $content, $role, $editInfo );
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			// XXX: in theory, we should pass $editInfo->getSlotParserOutput( $role ) instead
+			// of $output. In practice, the ParserOutput is only used for LinksUpdate.
+			$updates = $content->getSecondaryDataUpdates(
+				$this->getTitle(),
+				null,
+				$recursive,
+				$output
+			);
+
+			// HACK: filter out redundant and incomplete LinksUpdates
+			$updates = array_filter( $updates, function ( $update ) {
+				return !( $update instanceof LinksUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $updates );
+		}
 
 		// NOTE: $output is the combined output, to be shown in the default view.
 		$output = $editInfo->getParserOutput();
@@ -1562,7 +1553,7 @@ class PageUpdater implements IDBAccessObject {
 	 */
 	private function isCountable( PreparedEdit $editInfo ) {
 		// TODO: MCR: how this is decided depends on the page type
-		$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
+		$content = $editInfo->getContent( 'main' );
 
 		if ( $content->isRedirect() ) {
 			return false;
@@ -1746,7 +1737,7 @@ class PageUpdater implements IDBAccessObject {
 		) );
 
 		// TODO: make search infrastructure aware of slots to avoid redundant updates!
-		foreach ( $editInfo->getTransformedContentSlots()->getSlots() as $slot ) {
+		foreach ( $editInfo->getSlots()->getSlots() as $slot ) {
 			if ( !$slot->isInherited() ) {
 				DeferredUpdates::addUpdate( new SearchUpdate( $id, $dbKey, $slot->getContent() ) );
 			}

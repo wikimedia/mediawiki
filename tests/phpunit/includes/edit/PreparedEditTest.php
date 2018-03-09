@@ -2,23 +2,26 @@
 
 namespace MediaWiki\Tests\EditPage;
 
+use JsonContent;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Storage\MutableRevisionSlots;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
+use Title;
 use TitleValue;
 use User;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Edit\PreparedEdit
+ * @group Database
  */
 class PreparedEditTest extends PHPUnit_Framework_TestCase {
 
 	public function testConstruction() {
-		$title = new TitleValue( NS_MAIN, __METHOD__ );
+		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
 		$newContent = new WikitextContent( 'Content' );
 		$pstContent = new WikitextContent( 'Transformed Content' );
@@ -46,13 +49,26 @@ class PreparedEditTest extends PHPUnit_Framework_TestCase {
 			$transformedContentSlots,
 			$user,
 			$popts,
-			$output
+			$output,
+			17
+		);
+
+		$this->assertSame(
+			$title,
+			$edit->getTitle(),
+			'getTitle()'
 		);
 
 		$this->assertSame(
 			$transformedContentSlots,
-			$edit->getTransformedContentSlots(),
-			'getTransformedContentSlots()'
+			$edit->getSlots(),
+			'getSlots()'
+		);
+
+		$this->assertSame(
+			$pstContent,
+			$edit->getContent( 'main' ),
+			'getContent()'
 		);
 
 		$this->assertSame(
@@ -74,7 +90,7 @@ class PreparedEditTest extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertSame(
-			0,
+			17,
 			$edit->getRevisionId(),
 			'getRevisionId()'
 		);
@@ -86,26 +102,11 @@ class PreparedEditTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $pstContent->equals( $edit->pstContent ), "pstContent field" );
 		$this->assertSame( $output, $edit->output, "output field" );
 		$this->assertSame( $popts, $edit->popts, "popts field" );
-		$this->assertSame( 0, $edit->revid, "revid field" );
-
-		// $variations impacts signature
-		$edit2 = new PreparedEdit(
-			$title,
-			$newContentSlots,
-			$transformedContentSlots,
-			$user,
-			$popts,
-			$output,
-			[ 'revid' => 23 ]
-		);
-
-		$this->assertNotEquals( $edit->getSignature(), $edit2->getSignature(), 'getSignature()' );
-
-		$this->assertSame( 23, $edit2->getRevisionId(), 'getRevisionId()' );
-		$this->assertSame( 23, $edit2->revid, "revid field" );
+		$this->assertSame( 17, $edit->revid, "revid field" );
 	}
 
 	public function testMakeSignature() {
+		$revId = 17;
 		$title = new TitleValue( NS_MAIN, __METHOD__ );
 		$title2 = new TitleValue( NS_MAIN, __METHOD__ . '_other' );
 
@@ -134,30 +135,101 @@ class PreparedEditTest extends PHPUnit_Framework_TestCase {
 		$user2->method( 'getName' )
 			->willReturn( 'Frank' );
 
-		$sig = PreparedEdit::makeSignature( $title, $slots, $user );
+		$sig = PreparedEdit::makeSignature( $title, $slots, $user, $revId );
 
 		$this->assertNotEquals(
 			$sig,
-			PreparedEdit::makeSignature( $title2, $slots, $user ),
+			PreparedEdit::makeSignature( $title2, $slots, $user, $revId ),
 			'$title'
 		);
 
 		$this->assertNotEquals(
 			$sig,
-			PreparedEdit::makeSignature( $title, $slots2, $user ),
+			PreparedEdit::makeSignature( $title, $slots2, $user, $revId ),
 			'$newContentSlots'
 		);
 
 		$this->assertNotEquals(
 			$sig,
-			PreparedEdit::makeSignature( $title, $slots, $user2 ),
+			PreparedEdit::makeSignature( $title, $slots, $user2, $revId ),
 			'$user'
 		);
 
 		$this->assertNotEquals(
 			$sig,
-			PreparedEdit::makeSignature( $title, $slots, $user, [ 'revid' => 7 ] ),
-			'$modifiers'
+			PreparedEdit::makeSignature( $title, $slots, $user, 7 ),
+			'$revId'
+		);
+	}
+
+	public function testGetSlotParserOutput() {
+		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
+
+		$newContent = new JsonContent( '[ "Content" ]' );
+		$pstContent = new JsonContent( '[ "Transformed Content" ]' );
+
+		$newContentSlots = new MutableRevisionSlots();
+		$newContentSlots->setContent( 'main', $newContent );
+
+		$transformedContentSlots = new MutableRevisionSlots();
+		$transformedContentSlots->setContent( 'main', $pstContent );
+
+		/** @var User|PHPUnit_Framework_MockObject_MockObject $user */
+		$user = $this->getMockBuilder( User::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$user->method( 'getName' )
+			->willReturn( 'Frank' );
+
+		$popts = new ParserOptions();
+		$output = new ParserOutput( 'Hello World' );
+
+		$edit = new PreparedEdit(
+			$title,
+			$newContentSlots,
+			$transformedContentSlots,
+			$user,
+			$popts,
+			$output,
+			17
+		);
+
+		$output = $edit->getSlotParserOutput( 'main', false );
+		$this->assertInstanceOf(
+			ParserOutput::class,
+			$output
+		);
+
+		$this->assertSame(
+			$output,
+			$edit->getSlotParserOutput( 'main', false ),
+			're-use output'
+		);
+
+		$this->assertSame(
+			'',
+			$output->getText(),
+			'no html'
+		);
+
+		$outputWithHtml = $edit->getSlotParserOutput( 'main', true );
+		$this->assertNotSame(
+			$output,
+			$outputWithHtml,
+			'don\'t use output withpout HTML when output with HTML is requested'
+		);
+
+		$this->assertContains(
+			'Transformed Content',
+			$outputWithHtml->getText(),
+			'with html'
+		);
+
+		$this->assertSame(
+			$outputWithHtml,
+			$edit->getSlotParserOutput( 'main', false ),
+			'keep output with HTML when requested without HTML'
 		);
 	}
 

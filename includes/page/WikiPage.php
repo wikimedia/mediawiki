@@ -891,7 +891,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $editInfo ) {
 			// NOTE: only the main slot can make a page a redirect
-			$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
+			$content = $editInfo->getContent( 'main' );
 		} else {
 			$content = $this->getContent();
 		}

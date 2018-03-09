@@ -113,7 +113,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		);
 
 		$edit = $page->prepareContentForEdit( $content, null, $user, null, false );
-		$pstContent = $edit->getTransformedContentSlots()->getContent( 'main' );
+		$pstContent = $edit->getContent( 'main' );
 
 		$this->assertTrue( $content->equals( $pstContent ), "getTransformedContentSlots()" );
 		$this->assertInstanceOf(
@@ -154,7 +154,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$otherEdit = $page->prepareContentForEdit( $content2, null, $user, null, false );
 		$this->assertNotEquals( $edit->getSignature(), $otherEdit->getSignature() );
 
-		$pstContent = $otherEdit->getTransformedContentSlots()->getContent( 'main' );
+		$pstContent = $otherEdit->getContent( 'main' );
 		$this->assertContains( '[[gubergren]]', $pstContent->serialize() );
 		$this->assertNotContains( '~~~~', $pstContent->serialize() );
 	}
