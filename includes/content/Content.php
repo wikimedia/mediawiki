@@ -292,6 +292,9 @@ interface Content {
 	 * Subclasses may implement this to determine the necessary updates more
 	 * efficiently, or make use of information about the old content.
 	 *
+	 * @deprecated since 1.31, call and override
+	 *   ContentHandler::getSecondaryDataUpdates instead.
+	 *
 	 * @note Implementations should call the SecondaryDataUpdates hook, like
 	 *   AbstractContent does.
 	 *
