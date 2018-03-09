@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Render\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 
 /**
@@ -1328,5 +1329,46 @@ abstract class ContentHandler {
 		}
 		return $parserOutput;
 	}
+
+	/**
+	 * Returns a list of DataUpdate objects for recording information about the
+	 * given Content in some secondary data store.
+	 *
+	 * Application logic should not call this method directly. Instead, it should call
+	 * PageMetaDataUpdater::getSecondaryDataUpdates().
+	 *
+	 * @note Implementations must not return a LinksUpdate instance. Instead, a LinksUpdate
+	 * is created by the calling code in PageMetaDataUpdater, on the combined Rendering
+	 * of all slots, not for each slot individually. This is in contrast to the old
+	 * getSecondaryDataUpdates method defined by AbstractContent, which returned a LinksUpdate.
+	 *
+	 * @note Implementations should not call $content->getParserOutput, they should call
+	 * $slotOutput->getSlotRendering( $role, false ) instead if they need to access a Rendering
+	 * of $content. This allows existing Renderings to be re-used, while avoiding creating a
+	 * Rendering when none is needed.
+	 *
+	 * @param Content $content The content to generate DataUpdates for.
+	 * @param string $role The role (slot) in which the content is being used. Which DataUpdates
+	 *        are performed should generally not depend on the role the content has, but the
+	 *        DataUpdates themselves may need to know the role, to track to which slot the
+	 *        data refers, and to avoid overwriting data of the same kind from another slot.
+	 * @param SlotRenderingProvider $slotOutput A provider that can be used to gain access to
+	 *        a Rendering of $content by calling $slotOutput->getSlotParserOutput( $role, false ).
+	 *
+	 * @return DataUpdate[] A list of DataUpdate objects for putting information
+	 *        about this content object somewhere. The default implementation returns an empty
+	 *        array.
+	 *
+	 * @since 1.31
+	 */
+	public function getSecondaryDataUpdates(
+		Content $content,
+		$role,
+		SlotRenderingProvider $slotOutput
+	) {
+		// FIXME: we need the same to replace Content::getDeletionUpdates!
+		return [];
+	}
+
 
 }

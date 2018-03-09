@@ -19,6 +19,9 @@ class PageUpdaterTest extends MediaWikiTestCase {
 	// FIXME: test prepareEdit
 	// FIXME: test doEditUpdates
 
+	// FIXME: test prepareUpdate
+	// FIXME: test getSecondaryDataUpdates
+
 	private function getDummyTitle( $method ) {
 		return Title::newFromText( $method, $this->getDefaultWikitextNS() );
 	}

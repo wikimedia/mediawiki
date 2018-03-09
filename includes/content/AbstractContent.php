@@ -230,6 +230,8 @@ abstract class AbstractContent implements Content {
 	public function getSecondaryDataUpdates( Title $title, Content $old = null,
 		$recursive = true, ParserOutput $parserOutput = null
 	) {
+		// FIXME: trigger deprecation warning!
+
 		if ( $parserOutput === null ) {
 			$parserOutput = $this->getParserOutput( $title, null, null, false );
 		}
