@@ -1543,7 +1543,42 @@ class PageUpdater implements IDBAccessObject {
 			$editInfo = $this->prepareUpdate();
 		}
 
-		$content = $editInfo->getTransformedContentSlots()->getContent( 'main' );
+		$output = $editInfo->getParserOutput();
+
+		$linksUpdate = new LinksUpdate(
+			$this->getTitle(),
+			$output,
+			$recursive
+		);
+
+		$allUpdates = [ $linksUpdate ];
+
+		// FIXME: missing audience check?!
+		$slots = $editInfo->getTransformedContentSlots();
+		foreach ( $slots->getSlotRoles() as $role ) {
+			$content = $slots->getContent( $role );
+			$handler = $content->getContentHandler();
+
+			$updates = $handler->getSecondaryDataUpdates( $content, $role, $editInfo );
+			$allUpdates = array_merge( $allUpdates, $updates );
+
+			// TODO: remove B/C hack in 1.32!
+			// XXX: in theory, we should pass $editInfo->getSlotParserOutput( $role ) instead
+			// of $output. In practice, the ParserOutput is only used for LinksUpdate.
+			$updates = $content->getSecondaryDataUpdates(
+				$this->getTitle(),
+				null,
+				$recursive,
+				$output
+			);
+
+			// HACK: filter out redundant and incomplete LinksUpdates
+			$updates = array_filter( $updates, function ( $update ) {
+				return !( $update instanceof LinksUpdate );
+			} );
+
+			$allUpdates = array_merge( $allUpdates, $updates );
+		}
 
 		// NOTE: $output is the combined output, to be shown in the default view.
 		$output = $editInfo->getParserOutput();

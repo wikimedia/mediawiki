@@ -26,6 +26,7 @@ use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use ParserOutput;
+use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -110,6 +111,11 @@ class PreparedEdit {
 	 */
 	public $oldContent;
 
+	/**
+	 * @var Title
+	 */
+	private $title;
+
 	/** @var RevisionSlots */
 	private $transformedContentSlots;
 
@@ -138,7 +144,7 @@ class PreparedEdit {
 	 *        the revision ID, of the output depends on that.
 	 */
 	public function __construct(
-		LinkTarget $title,
+		Title $title,
 		RevisionSlots $newContentSlots,
 		RevisionSlots $transformedContentSlots,
 		UserIdentity $user = null,
@@ -146,12 +152,15 @@ class PreparedEdit {
 		ParserOutput $output,
 		array $modifiers = []
 	) {
+		// TODO: $title should really be some kind of PageIdentity
+
 		Assert::parameter(
 			$transformedContentSlots->hasSlot( 'main' ),
 			'$transformedContentSlots',
 			'must contain main slot.'
 		);
 
+		$this->title = $title;
 		$this->transformedContentSlots = $transformedContentSlots;
 
 		$this->revid = isset( $modifiers['revid'] ) ? $modifiers['revid'] : 0;
@@ -206,8 +215,6 @@ class PreparedEdit {
 		UserIdentity $user = null,
 		array $modifiers = []
 	) {
-		// TODO: $title should really be some kind of PageIdentity
-
 		$sig = '';
 		$sig .= $newContentSlots->computeSha1(); // NOTE: should consider content model, see T185793
 		$sig .= '|ns';
@@ -278,6 +285,15 @@ class PreparedEdit {
 		return $this->revid;
 	}
 
-	public function getCombinedParserOutput() {}
+	/**
+	 * The page this PreparedEdit was created for.
+	 *
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	// FIXME: add getSlotParserOutput(), with callback logic
 
 }
