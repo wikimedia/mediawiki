@@ -2646,15 +2646,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.25, always returns 0
-	 * @return float
-	 */
-	public function getProfileDBTime() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return 0;
-	}
-
-	/**
 	 * Call wfTransactionalTimeLimit() if this request was POSTed
 	 * @since 1.26
 	 */
