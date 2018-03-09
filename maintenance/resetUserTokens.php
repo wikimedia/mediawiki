@@ -68,7 +68,6 @@ class ResetUserTokens extends Maintenance {
 		}
 
 		// We list user by user_id from one of the replica DBs
-		// We list user by user_id from one of the slave database
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$where = [];

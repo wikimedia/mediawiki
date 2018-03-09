@@ -693,7 +693,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 		// Update process cache to ensure skin doesn't claim that the current
 		// page is unwatched in the response of action=watch itself (T28292).
-		// This would otherwise be re-queried from a slave by isWatched().
+		// This would otherwise be re-queried from a replica by isWatched().
 		foreach ( $items as $item ) {
 			$this->cache( $item );
 		}
