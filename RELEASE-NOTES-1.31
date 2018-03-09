@@ -291,6 +291,8 @@ changes to languages because of Phabricator reports.
   written using square brackets will get the class "text" not "free".
 * OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
   can use ApiOpenSearch::getOpenSearchTemplate() instead.
+* The global function wfBaseConvert, deprecated in 1.27, has been removed. Use
+  Wikimedia\base_convert() directly.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
