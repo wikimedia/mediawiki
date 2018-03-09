@@ -24,8 +24,6 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @group Site
- *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class TestSites {

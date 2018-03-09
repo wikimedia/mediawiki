@@ -1,5 +1,11 @@
 <?php
 
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\LoadMonitorNull;
+
 /**
  * Holds tests for LoadBalancer MediaWiki class.
  *
@@ -23,13 +29,6 @@
  *
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
-
-use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\LoadMonitorNull;
-
 class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;

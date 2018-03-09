@@ -1,13 +1,13 @@
 <?php
 
+use MediaWiki\Interwiki\InterwikiLookupAdapter;
+
 /**
  * @covers MediaWiki\Interwiki\InterwikiLookupAdapter
  *
  * @group MediaWiki
  * @group Interwiki
  */
-use MediaWiki\Interwiki\InterwikiLookupAdapter;
-
 class InterwikiLookupAdapterTest extends MediaWikiTestCase {
 
 	/**

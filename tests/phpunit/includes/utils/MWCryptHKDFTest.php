@@ -1,10 +1,6 @@
 <?php
 /**
- *
  * @group HKDF
- */
-
-/**
  * @covers CryptHKDF
  * @covers MWCryptHKDF
  */
