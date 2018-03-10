@@ -143,7 +143,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 			}
 
 			$this->output( "... $last\n" );
-			// $this->commitTransaction() already waited for slaves, no need to re-wait here.
+			// $this->commitTransaction() already waited for replication; no need to re-wait here
 		}
 
 		$this->output( "Completed ar_text migration, $count rows updated, $errors missing data.\n" );
