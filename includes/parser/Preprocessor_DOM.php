@@ -274,13 +274,6 @@ class Preprocessor_DOM extends Preprocessor {
 				$search = $searchBase;
 				if ( $stack->top === false ) {
 					$currentClosing = '';
-				} elseif (
-					$stack->top->close === '}-' &&
-					$stack->top->count > 2
-				) {
-					# adjust closing for -{{{...{{
-					$currentClosing = '}';
-					$search .= $currentClosing;
 				} else {
 					$currentClosing = $stack->top->close;
 					$search .= $currentClosing;
@@ -643,6 +636,15 @@ class Preprocessor_DOM extends Preprocessor {
 					strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1 :
 					strspn( $text, $curChar, $i );
 
+				if ( $curChar == "-{" && $count > $curLen ) {
+					// -{ => {{ transition because rightmost wins
+					$accum .= '-';
+					$i++;
+					$curChar = '{';
+					$count--;
+					$rule = $this->rules[$curChar];
+				}
+
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
 					# Add it to the stack
@@ -684,10 +686,6 @@ class Preprocessor_DOM extends Preprocessor {
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
 				$rule = $this->rules[$piece->open];
-				if ( $piece->close === '}-' && $piece->count > 2 ) {
-					# tweak for -{..{{ }}..}-
-					$rule = $this->rules['{'];
-				}
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
