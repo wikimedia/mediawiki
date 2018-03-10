@@ -12444,6 +12444,32 @@ parsoid=wt2html
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi {{}}"}},"i":0}}]}'>hi {{}}</p>
 !! end
 
+!! test
+Preprocessor precedence 18: another rightmost wins scenario
+!! options
+parsoid=wt2html
+!! wikitext
+{{ -{{{{1|tplarg}}} }} }-
+!! html/php
+<p>{{ -{tplarg }} }-
+</p>
+!! html/parsoid
+<p>{{ -{<span about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"1"},"params":{"1":{"wt":"tplarg"}},"i":0}}]}'>tplarg</span> }} }-</p>
+!! end
+
+!! test
+Preprocessor precedence 19: break syntax
+!! options
+parsoid=wt2html
+!! wikitext
+-{{
+!! html/php
+<p>-{{
+</p>
+!! html/parsoid
+<p>-{{</p>
+!! end
+
 ###
 ### Token Stream Patcher tests
 ###
