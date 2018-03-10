@@ -1296,29 +1296,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * @see listSoftwareActivatedTags
-	 * @deprecated since 1.28 call listSoftwareActivatedTags directly
-	 * @return array
-	 */
-	public static function listExtensionActivatedTags() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return self::listSoftwareActivatedTags();
-	}
-
-	/**
-	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
-	 *
-	 * @return string[] Array of strings: tags
-	 */
-	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listSoftwareDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
-	}
-
-	/**
 	 * Lists tags explicitly defined in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
 	 * included.
