@@ -3843,6 +3843,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bajt|bajty|bajtów}}",
 	"limitreport-expansiondepth": "Największa głębokość ekspansji",
 	"limitreport-expensivefunctioncount": "Liczba wywołań kosztownych funkcji parsera",
+	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|bajt|bajty|bajtów}}",
 	"expandtemplates": "Rozwijanie szablonów",
 	"expand_templates_intro": "We wprowadzonym na tej stronie tekście źródłowym zostaną rozwinięte rekurencyjnie wszystkie szablony.\nRozwinięte także zostaną funkcje parsera takie jak\n<code><nowiki>{{</nowiki>#language:…}}</code> i zmienne jak\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.\nW zasadzie rozwijane jest prawie wszystko w podwójnych nawiasach klamrowych.",
 	"expand_templates_title": "Pozorny tytuł strony dla zmiennych takich jak {{FULLPAGENAME}}:",
