@@ -37,11 +37,6 @@ class VFormHTMLForm extends HTMLForm {
 	 */
 	protected $displayFormat = 'vform';
 
-	public function isVForm() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return true;
-	}
-
 	public static function loadInputFromParameters( $fieldname, $descriptor,
 		HTMLForm $parent = null
 	) {
