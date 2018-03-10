@@ -1296,19 +1296,8 @@ class ChangeTags {
 	}
 
 	/**
-	 * @see listSoftwareActivatedTags
-	 * @deprecated since 1.28 call listSoftwareActivatedTags directly
-	 * @return array
-	 */
-	public static function listExtensionActivatedTags() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return self::listSoftwareActivatedTags();
-	}
-
-	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
+	 * It returns a union of the results of listExplicitlyDefinedTags()
 	 *
 	 * @return string[] Array of strings: tags
 	 */
@@ -1383,18 +1372,6 @@ class ChangeTags {
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
-	}
-
-	/**
-	 * Call listSoftwareDefinedTags directly
-	 *
-	 * @see listSoftwareDefinedTags
-	 * @deprecated since 1.28
-	 * @return array
-	 */
-	public static function listExtensionDefinedTags() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return self::listSoftwareDefinedTags();
 	}
 
 	/**
