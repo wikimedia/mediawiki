@@ -178,7 +178,7 @@ CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE &mw_prefix.revision (
   rev_id          NUMBER      NOT NULL,
   rev_page        NUMBER      NOT NULL,
-  rev_text_id     NUMBER          NULL,
+  rev_text_id     NUMBER      DEFAULT 0 NULL,
   rev_comment     VARCHAR2(255),
   rev_user        NUMBER      DEFAULT 0 NOT NULL,
   rev_user_text   VARCHAR2(255)         NOT NULL,
@@ -242,6 +242,10 @@ BEGIN
 	&mw_prefix.lastval_pkg.setLastval(text_old_id_seq.nextval, :new.old_id);
 END;
 /*$mw$*/
+
+-- Create a dummy text / pagecontent to satisfy fk contraints
+INSERT INTO &mw_prefix.pagecontent
+  VALUES (0, '', '');
 
 CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE &mw_prefix.archive (
