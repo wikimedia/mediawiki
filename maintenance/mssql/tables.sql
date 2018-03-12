@@ -191,7 +191,7 @@ INSERT INTO /*_*/page (page_namespace, page_title, page_restrictions, page_lates
 CREATE TABLE /*_*/revision (
    rev_id INT NOT NULL UNIQUE IDENTITY(0,1),
    rev_page INT NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
-   rev_text_id INT  NOT NULL, -- FK added later
+   rev_text_id INT NOT NULL CONSTRAINT DF_rev_text_id DEFAULT 0, -- FK added later
    rev_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_rev_comment DEFAULT '',
    rev_user INT REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
    rev_user_text NVARCHAR(255) NOT NULL DEFAULT '',

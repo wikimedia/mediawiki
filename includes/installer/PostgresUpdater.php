@@ -524,6 +524,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'logging', 'logging_actor_type_time', '( log_actor, log_type, log_timestamp )' ],
 			[ 'addPgIndex', 'logging', 'logging_actor_time', '( log_actor, log_timestamp )' ],
 			[ 'migrateActors' ],
+			[ 'setDefault', 'revision', 'rev_text_id', 0 ],
+			'INSERT INTO pagecontent VALUES (0, \'\', \'\')'
 		];
 	}
 
