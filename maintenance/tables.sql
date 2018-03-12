@@ -365,7 +365,7 @@ CREATE TABLE /*_*/revision (
   -- It's possible for multiple revisions to use the same text,
   -- for instance revisions where only metadata is altered
   -- or a rollback to a previous version.
-  rev_text_id int unsigned NOT NULL,
+  rev_text_id int unsigned NOT NULL default 0,
 
   -- Text comment summarizing the change. Deprecated in favor of
   -- revision_comment_temp.revcomment_comment_id.
