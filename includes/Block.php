@@ -1134,7 +1134,7 @@ class Block {
 			return;
 		}
 
-		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			wfGetDB( DB_MASTER ),
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) {
