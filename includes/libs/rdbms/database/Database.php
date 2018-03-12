@@ -1528,10 +1528,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$rows = 0;
-		$res = $this->select( $table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options );
+		$res = $this->select(
+			$table, [ 'rowcount' => 'COUNT(*)' ], $conds, $fname, $options, $join_conds
+		);
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
