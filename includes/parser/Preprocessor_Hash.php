@@ -744,9 +744,6 @@ class Preprocessor_Hash extends Preprocessor {
 				$accum[] = [ 'equals', [ '=' ] ];
 				$stack->getCurrentPart()->eqpos = count( $accum ) - 1;
 				++$i;
-			} elseif ( $found == 'dash' ) {
-				self::addLiteral( $accum, '-' );
-				++$i;
 			}
 		}
 
