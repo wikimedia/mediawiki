@@ -18,10 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @group Database
  * @file
- *
- * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 
 use Wikimedia\Rdbms\DBError;
@@ -30,6 +27,10 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
 
+/**
+ * @group Database
+ * @covers \Wikimedia\Rdbms\LoadBalancer
+ */
 class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;

@@ -5,10 +5,10 @@
  * Copyright © 2011, Antoine Musso
  *
  * @author Antoine Musso
- * @group Database
  */
 
 /**
+ * @group Database
  * @covers QueryPage<extended>
  */
 class QueryAllSpecialPagesTest extends MediaWikiTestCase {

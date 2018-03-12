@@ -4,12 +4,12 @@
  *
  * Ported from /t/inc/IP.t by avar.
  *
- * @group IP
  * @todo Test methods in this call should be split into a method and a
  * dataprovider.
  */
 
 /**
+ * @group IP
  * @covers AvroValidator
  */
 class AvroValidatorTest extends PHPUnit\Framework\TestCase {
