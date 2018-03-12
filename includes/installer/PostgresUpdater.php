@@ -491,6 +491,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'content_models', 'patch-content_models-table.sql' ],
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
 			[ 'migrateArchiveText' ],
+			[ 'setDefault', 'revision', 'rev_text_id', 0 ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'setDefault', 'revision', 'rev_user', 0 ],
 			[ 'setDefault', 'revision', 'rev_user_text', '' ],
