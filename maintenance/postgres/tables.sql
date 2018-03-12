@@ -142,7 +142,7 @@ CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
   rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_text_id        INTEGER          NULL, -- FK
+  rev_text_id        INTEGER          NULL DEFAULT NULL, -- FK
   rev_comment        TEXT         NOT NULL DEFAULT '',
   rev_user           INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
   rev_user_text      TEXT         NOT NULL DEFAULT '',

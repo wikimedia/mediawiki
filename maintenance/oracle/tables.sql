@@ -178,7 +178,7 @@ CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE &mw_prefix.revision (
   rev_id          NUMBER      NOT NULL,
   rev_page        NUMBER      NOT NULL,
-  rev_text_id     NUMBER          NULL,
+  rev_text_id     NUMBER      DEFAULT NULL NULL,
   rev_comment     VARCHAR2(255),
   rev_user        NUMBER      DEFAULT 0 NOT NULL,
   rev_user_text   VARCHAR2(255)         NOT NULL,
