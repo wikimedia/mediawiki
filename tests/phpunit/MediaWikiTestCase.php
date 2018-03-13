@@ -1809,6 +1809,22 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Asserts that $exception is false(ish).
+	 *
+	 * Use this instead of assertFalse( $exception ), to avoid the exception object getting
+	 * dumped in the failure case, which would include a potentially ginormous stack trace.
+	 *
+	 * @since 1.31
+	 *
+	 * @param Exception|false|null $exception
+	 */
+	protected function assertNoException( $exception ) {
+		if ( $exception ) {
+			$this->fail( get_class( $exception ) . ' ' . $exception->getMessage() );
+		};
+	}
+
+	/**
 	 * Returns true if the given namespace defaults to Wikitext
 	 * according to $wgNamespaceContentModels
 	 *

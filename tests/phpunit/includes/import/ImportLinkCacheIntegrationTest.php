@@ -99,7 +99,7 @@ class ImportLinkCacheIntegrationTest extends MediaWikiTestCase {
 
 		$result = $reporter->close();
 
-		$this->assertFalse(
+		$this->assertNoException(
 			$exception
 		);
 
