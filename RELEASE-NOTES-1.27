@@ -7,6 +7,8 @@ THIS IS NOT A RELEASE YET!
 * (T160298) Fixed Special:ActiveUsers due to bad backport.
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
 * Updated list of SPDX licenses for extensions.
+* (T189567) the CLI installer (maintenance/install.php) learned to detect and
+  include extensions. Pass --with-extensions to enable that feature.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
