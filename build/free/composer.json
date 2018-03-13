@@ -77,6 +77,7 @@
 		"mediawiki/pluggable-auth": "dev-4ef8379",
 		"mediawiki/simple-s-a-m-lphp": "dev-b19c659",
 		"mediawiki/extjs-base": "dev-master",
-		"mediawiki/template-styles": "dev-7b025c8"
+		"mediawiki/template-styles": "dev-7b025c8",
+		"mediawiki/blue-spice-config-manager": "dev-master"
 	}
 }
