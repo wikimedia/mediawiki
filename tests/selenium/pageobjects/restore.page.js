@@ -8,7 +8,7 @@ class RestorePage extends Page {
 	get displayedContent() { return browser.element( '#mw-content-text' ); }
 
 	open( name ) {
-		browser.url( '/index.php?title=Special:Undelete/' + name );
+		super.open( 'Special:Undelete/' + name );
 	}
 
 	restore( name, reason ) {

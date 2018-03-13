@@ -2,7 +2,7 @@
 'use strict';
 class Page {
 	open( path ) {
-		browser.url( '/index.php?title=' + path );
+		browser.url( 'w/index.php?title=' + path );
 	}
 }
 module.exports = Page;
