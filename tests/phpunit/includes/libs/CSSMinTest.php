@@ -515,7 +515,7 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo { background: url(//localhost/styles.css?quoted=single) }',
 			],
 			[
-				'Background URL (containing parentheses; T60473)',
+				'Background URL (double quoted, containing parentheses; T60473)',
 				'foo { background: url("//localhost/styles.css?query=(parens)") }',
 				'foo { background: url("//localhost/styles.css?query=(parens)") }',
 			],
@@ -528,6 +528,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Background URL (single quoted, containing double quotes; T60473)',
 				'foo { background: url(\'//localhost/styles.css?quote="\') }',
 				'foo { background: url("//localhost/styles.css?quote=\"") }',
+			],
+			[
+				'Background URL (double quoted with outer spacing)',
+				'foo { background: url( "http://localhost/styles.css?quoted=double" ) }',
+				'foo { background: url(http://localhost/styles.css?quoted=double) }',
 			],
 			[
 				'Simple case with comments before url',
