@@ -1963,10 +1963,6 @@ class User implements IDBAccessObject {
 			if ( isset( $limits['user'] ) ) {
 				$userLimit = $limits['user'];
 			}
-			// limits for newbie logged-in users
-			if ( $isNewbie && isset( $limits['newbie'] ) ) {
-				$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $limits['newbie'];
-			}
 		}
 
 		// limits for anons and for newbie logged-in users
@@ -1996,6 +1992,11 @@ class User implements IDBAccessObject {
 					$userLimit = $limits[$group];
 				}
 			}
+		}
+
+		// limits for newbie logged-in users (override all the normal user limits)
+		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
+			$userLimit = $limits['newbie'];
 		}
 
 		// Set the user limit key
