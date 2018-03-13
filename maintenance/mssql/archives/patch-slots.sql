@@ -6,17 +6,17 @@
 CREATE TABLE /*_*/slots (
 
   -- reference to rev_id
-  slot_revision_id bigint unsigned NOT NULL,
+  slot_revision_id bigint NOT NULL,
 
   -- reference to role_id
-  slot_role_id smallint unsigned NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
+  slot_role_id smallint NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
 
   -- reference to content_id
-  slot_content_id bigint unsigned NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
+  slot_content_id bigint NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
 
   -- The revision ID of the revision that originated the slot's content.
   -- To find revisions that changed slots, look for slot_origin = slot_revision_id.
-  slot_origin bigint unsigned NOT NULL,
+  slot_origin bigint NOT NULL,
 
   CONSTRAINT PK_slots PRIMARY KEY (slot_revision_id, slot_role_id)
 );
