@@ -6,16 +6,16 @@
 CREATE TABLE /*_*/slots (
 
   -- reference to rev_id
-  slot_revision_id bigint unsigned NOT NULL,
+  slot_revision_id bigint NOT NULL,
 
   -- reference to role_id
-  slot_role_id smallint unsigned NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
+  slot_role_id smallint NOT NULL CONSTRAINT FK_slots_slot_role FOREIGN KEY REFERENCES slot_roles(role_id),
 
   -- reference to content_id
-  slot_content_id bigint unsigned NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
+  slot_content_id bigint NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
 
   -- whether the content is inherited (1) or new in this revision (0)
-  slot_inherited tinyint unsigned NOT NULL CONSTRAINT DF_slot_inherited DEFAULT 0,
+  slot_inherited tinyint NOT NULL CONSTRAINT DF_slot_inherited DEFAULT 0,
 
   CONSTRAINT PK_slots PRIMARY KEY (slot_revision_id, slot_role_id)
 );
