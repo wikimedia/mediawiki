@@ -2,7 +2,10 @@
 'use strict';
 class Page {
 	open( path ) {
-		browser.url( '/index.php?title=' + path );
+		let mwScriptPath = process.env.MW_SCRIPT_PATH === undefined ?
+			'/w' :
+			process.env.MW_SCRIPT_PATH;
+		browser.url( mwScriptPath + '/index.php?title=' + path );
 	}
 }
 module.exports = Page;
