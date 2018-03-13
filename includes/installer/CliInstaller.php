@@ -107,6 +107,11 @@ class CliInstaller extends Installer {
 			$this->setVar( '_AdminPassword', $option['pass'] );
 		}
 
+		// Detect and inject any extension found
+		if ( isset( $option['with-extensions'] ) ) {
+			$this->setVar( '_Extensions', array_keys( $this->findExtensions() ) );
+		}
+
 		// Set up the default skins
 		$skins = array_keys( $this->findExtensions( 'skins' ) );
 		$this->setVar( '_Skins', $skins );
