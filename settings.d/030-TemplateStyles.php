@@ -1,2 +1,2 @@
 <?php
-wfLoadExtension( 'TemplateStyles' );
+#wfLoadExtension( 'TemplateStyles' );
