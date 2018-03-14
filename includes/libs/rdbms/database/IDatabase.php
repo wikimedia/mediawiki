@@ -357,7 +357,7 @@ interface IDatabase {
 	public function getType();
 
 	/**
-	 * Open a connection to the database. Usually aborts on failure
+	 * Open a new connection to the database (closing any existing one)
 	 *
 	 * @param string $server Database server host
 	 * @param string $user Database user name
@@ -492,8 +492,11 @@ interface IDatabase {
 	public function getServerVersion();
 
 	/**
-	 * Closes a database connection.
-	 * if it is open : commits any open transactions
+	 * Close the database connection
+	 *
+	 * This should only be called after any transactions have been resolved,
+	 * aside from read-only transactions (assuming no callbacks are registered).
+	 * If a transaction is still open anyway, it will be committed if possible.
 	 *
 	 * @throws DBError
 	 * @return bool Operation success. true if already closed.
