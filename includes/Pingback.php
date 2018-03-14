@@ -68,14 +68,25 @@ class Pingback {
 	}
 
 	/**
-	 * Has a pingback already been sent for this MediaWiki version?
+	 * Has a pingback been sent in the last month for this MediaWiki version?
 	 * @return bool
 	 */
 	private function checkIfSent() {
 		$dbr = wfGetDB( DB_REPLICA );
-		$sent = $dbr->selectField(
-			'updatelog', '1', [ 'ul_key' => $this->key ], __METHOD__ );
-		return $sent !== false;
+		$timestamp = $dbr->selectField(
+			'updatelog',
+			'ul_value',
+			[ 'ul_key' => $this->key ],
+			__METHOD__
+		);
+		if ( $timestamp === false ) {
+			return false;
+		}
+		// send heartbeat ping if last ping was over a month ago
+		if ( time() - (int)$timestamp > 60 * 60 * 24 * 30 ) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -84,8 +95,14 @@ class Pingback {
 	 */
 	private function markSent() {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->insert(
-			'updatelog', [ 'ul_key' => $this->key ], __METHOD__, 'IGNORE' );
+		$timestamp = time();
+		return $dbw->upsert(
+			'updatelog',
+			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
+			[ 'ul_key' => $this->key ],
+			[ 'ul_value' => $timestamp ],
+			__METHOD__
+		);
 	}
 
 	/**
