@@ -27,21 +27,19 @@ header( 'Content-Type: text/javascript; charset=utf-8' );
 $moduleImplementations = [
 	'testUsesMissing' => "
 mw.loader.implement( 'testUsesMissing', function () {
-	QUnit.ok( false, 'Module usesMissing script should not run.' );
-	QUnit.start();
+	mw.loader.testFail( 'Module usesMissing script should not run.' );
 }, {}, {});
 ",
 
 	'testUsesNestedMissing' => "
 mw.loader.implement( 'testUsesNestedMissing', function () {
-	QUnit.ok( false, 'Module testUsesNestedMissing script should not run.' );
-	QUnit.start();
+	mw.loader.testFail('Module testUsesNestedMissing script should not run.' );
 }, {}, {});
 ",
 
 	'testSkipped' => "
 mw.loader.implement( 'testSkipped', function () {
-	QUnit.ok( false, 'Module testSkipped was supposed to be skipped.' );
+	mw.loader.testFail( false, 'Module testSkipped was supposed to be skipped.' );
 }, {}, {});
 ",
 

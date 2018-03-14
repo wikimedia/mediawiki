@@ -1520,7 +1520,7 @@
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
 	"rcfilters-exclude-button-off": "Исключить выбранное",
 	"rcfilters-exclude-button-on": "Исключение выбранного",
-	"rcfilters-view-tags": "Тегированные правки",
+	"rcfilters-view-tags": "Правки с метками",
 	"rcfilters-view-namespaces-tooltip": "Результаты фильтра по пространствам имён",
 	"rcfilters-view-tags-tooltip": "Фильтровать результаты, используя метки правок",
 	"rcfilters-view-return-to-default-tooltip": "Вернуться в главное меню фильтров",
