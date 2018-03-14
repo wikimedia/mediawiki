@@ -562,13 +562,14 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string|array $conds
 	 * @param string $fname
 	 * @param string|array $options
+	 * @param array $join_conds
 	 * @return bool|int
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = []
+		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}

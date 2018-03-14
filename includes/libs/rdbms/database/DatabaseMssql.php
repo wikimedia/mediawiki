@@ -509,15 +509,16 @@ class DatabaseMssql extends Database {
 	 * @param string $conds
 	 * @param string $fname
 	 * @param array $options
+	 * @param array $join_conds
 	 * @return int
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = []
+		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		// http://msdn2.microsoft.com/en-us/library/aa259203.aspx
 		$options['EXPLAIN'] = true;
 		$options['FOR COUNT'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		$rows = -1;
 		if ( $res ) {
