@@ -66,6 +66,7 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* (T189785) Added a monthly heartbeat ping to the pingback feature.
 
 === External library changes in 1.31 ===
 
