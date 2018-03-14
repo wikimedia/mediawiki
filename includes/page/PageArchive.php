@@ -397,7 +397,7 @@ class PageArchive {
 	 *   restored, log message) on success, false on failure.
 	 */
 	public function undelete( $timestamps, $comment = '', $fileVersions = [],
-		$unsuppress = false, User $user = null, $tags = null
+		$unsuppress = false, $reset = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -419,7 +419,7 @@ class PageArchive {
 		}
 
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
+			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $reset, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return false;
 			}
@@ -473,7 +473,7 @@ class PageArchive {
 	 * @throws ReadOnlyError
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+	private function undeleteRevisions( $timestamps, $unsuppress = false, $reset = false, $comment = '' ) {
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -674,7 +674,8 @@ class PageArchive {
 					[
 						'page' => $pageId,
 						'title' => $this->title,
-						'deleted' => $unsuppress ? 0 : $row->ar_deleted
+						'deleted' => $unsuppress ? 0 : $row->ar_deleted,
+						'parent_id' => $reset ? NULL : $row->ar_parent_id
 					] );
 
 				// This will also copy the revision to ip_changes if it was an IP edit.
