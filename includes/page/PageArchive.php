@@ -397,7 +397,7 @@ class PageArchive {
 	 *   restored, log message) on success, false on failure.
 	 */
 	public function undelete( $timestamps, $comment = '', $fileVersions = [],
-		$unsuppress = false, User $user = null, $tags = null
+		$unsuppress = false, $reset = false, User $user = null, $tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -419,7 +419,7 @@ class PageArchive {
 		}
 
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
+			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $reset, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return false;
 			}
@@ -473,7 +473,7 @@ class PageArchive {
 	 * @throws ReadOnlyError
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
+	private function undeleteRevisions( $timestamps, $unsuppress = false, $reset = false, $comment = '' ) {
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -670,12 +670,17 @@ class PageArchive {
 				}
 				// Insert one revision at a time...maintaining deletion status
 				// unless we are specifically removing all restrictions...
-				$revision = Revision::newFromArchiveRow( $row,
-					[
-						'page' => $pageId,
-						'title' => $this->title,
-						'deleted' => $unsuppress ? 0 : $row->ar_deleted
-					] );
+				$overrides = [ 'page'=> $pageId, 'title' => $this->title ];
+
+				if ( $unsuppress ) {
+					$overrides['deleted'] = 0
+				}
+
+				if ( $reset ) {
+					$overrides['parent_id'] = NULL
+				}
+
+				$revision = Revision::newFromArchiveRow( $row, $overrides );
 
 				// This will also copy the revision to ip_changes if it was an IP edit.
 				$revision->insertOn( $dbw );
