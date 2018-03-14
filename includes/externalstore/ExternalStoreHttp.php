@@ -21,7 +21,7 @@
  */
 
 /**
- * Example class for HTTP accessable external objects.
+ * Example class for HTTP accessible external objects.
  * Only supports reading, not storing.
  *
  * @ingroup ExternalStorage
