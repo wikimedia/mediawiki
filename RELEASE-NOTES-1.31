@@ -66,8 +66,6 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
-* The CLI installer (maintenance/install.php) learned to detect and include
-  extensions. Pass --with-extensions to enable that feature.
 
 === External library changes in 1.31 ===
 
