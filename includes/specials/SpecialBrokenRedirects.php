@@ -64,7 +64,6 @@ class SpecialBrokenRedirects extends QueryPage {
 			'fields' => [
 				'namespace' => 'p1.page_namespace',
 				'title' => 'p1.page_title',
-				'value' => 'p1.page_title',
 				'rd_namespace',
 				'rd_title',
 				'rd_fragment',

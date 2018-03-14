@@ -89,7 +89,6 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
 			],
 			'conds' => [
 				'll_title IS NULL',
