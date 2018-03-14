@@ -46,13 +46,16 @@ class UnusedtemplatesPage extends QueryPage {
 		return false;
 	}
 
+	function getOrderFields() {
+		return [ 'title' ];
+	}
+
 	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'templatelinks' ],
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
 			],
 			'conds' => [
 				'page_namespace' => NS_TEMPLATE,
