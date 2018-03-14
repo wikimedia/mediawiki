@@ -88,8 +88,6 @@ class CommandLineInstaller extends Maintenance {
 			false, true );
 		*/
 		$this->addOption( 'env-checks', "Run environment checks only, don't change anything" );
-
-		$this->addOption( 'with-extensions', "Detect and include extensions" );
 	}
 
 	public function getDbType() {
