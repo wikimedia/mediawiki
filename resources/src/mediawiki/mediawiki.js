@@ -1511,8 +1511,15 @@
 			}
 
 			/**
-			 * Converts a module map of the form { foo: [ 'bar', 'baz' ], bar: [ 'baz, 'quux' ] }
-			 * to a query string of the form foo.bar,baz|bar.baz,quux
+			 * Converts a module map of the form `{ foo: [ 'bar', 'baz' ], bar: [ 'baz, 'quux' ] }`
+			 * to a query string of the form `foo.bar,baz|bar.baz,quux`.
+			 *
+			 * See `ResourceLoader::makePackedModulesString()` in PHP, of which this is a port.
+			 * On the server, unpacking is done by `ResourceLoaderContext::expandModuleNames()`.
+			 *
+			 * Note: This is only half of the logic, the other half has to be in #batchRequest(),
+			 * because its implementation needs to keep track of potential string size in order
+			 * to decide when to split the requests due to url size.
 			 *
 			 * @private
 			 * @param {Object} moduleMap Module map
@@ -1533,14 +1540,14 @@
 			 * Make a network request to load modules from the server.
 			 *
 			 * @private
-			 * @param {Object} moduleMap Module map, see #buildModulesString
+			 * @param {string} moduleStr Module list for load.php `module` query parameter
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
+			function doRequest( moduleStr, currReqBase, sourceLoadScript ) {
 				// Optimisation: Inherit (Object.create), not copy ($.extend)
 				var query = Object.create( currReqBase );
-				query.modules = buildModulesString( moduleMap );
+				query.modules = moduleStr;
 				query = sortQuery( query );
 				addScript( sourceLoadScript + '?' + $.param( query ) );
 			}
@@ -1660,7 +1667,7 @@
 							// but don't create empty requests
 							if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
 								// This url would become too long, create a new one, and start the old one
-								doRequest( moduleMap, currReqBase, sourceLoadScript );
+								doRequest( buildModulesString( moduleMap ), currReqBase, sourceLoadScript );
 								moduleMap = {};
 								l = currReqBaseLength + 9;
 								mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
@@ -1673,7 +1680,7 @@
 						}
 						// If there's anything left in moduleMap, request that too
 						if ( !$.isEmptyObject( moduleMap ) ) {
-							doRequest( moduleMap, currReqBase, sourceLoadScript );
+							doRequest( buildModulesString( moduleMap ), currReqBase, sourceLoadScript );
 						}
 					}
 				}
