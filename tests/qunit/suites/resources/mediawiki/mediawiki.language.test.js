@@ -303,6 +303,18 @@
 				description: 'Grammar test for prepositional case, привилегия -> привилегии'
 			},
 			{
+				word: 'университет',
+				grammarForm: 'prepositional',
+				expected: 'университете',
+				description: 'Grammar test for prepositional case, университет -> университете'
+			},
+			{
+				word: 'университет',
+				grammarForm: 'genitive',
+				expected: 'университета',
+				description: 'Grammar test for prepositional case, университет -> университете'
+			},
+			{
 				word: 'установка',
 				grammarForm: 'prepositional',
 				expected: 'установке',
