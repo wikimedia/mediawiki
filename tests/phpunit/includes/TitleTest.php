@@ -965,4 +965,39 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],
 		];
 	}
+
+	public function provideGetWrappedPrefixedText() {
+		return [
+			// ns = 0
+			[
+				Title::makeTitle( NS_MAIN, 'Foo bar' ),
+				'<bdo class="mw-title" dir="ltr" lang="en">Foo bar</bdo>'
+			],
+			// ns = 2
+			[
+				Title::makeTitle( NS_USER, 'Foo bar' ),
+				'<bdo class="mw-title" dir="ltr" lang="en">User:Foo bar</bdo>'
+			],
+			// Fixme: The titles in the MediaWiki namespace should always have dir="ltr" lang="en"
+			// ns = 8
+			[
+				Title::makeTitle( NS_MEDIAWIKI, 'Edit/de' ),
+				'<bdo class="mw-title" dir="ltr" lang="de">MediaWiki:Edit/de</bdo>'
+			],
+			// ns = 8
+			[
+				Title::makeTitle( NS_MEDIAWIKI, 'Edit/ar' ),
+				'<bdo class="mw-title" dir="rtl" lang="ar">MediaWiki:Edit/ar</bdo>'
+			],
+		];
+	}
+
+	/**
+	 * @covers Title::getWrappedPrefixedText
+	 * @dataProvider provideGetWrappedPrefixedText
+	 */
+	public function testGetWrappedPrefixedText( Title $title, $expected ) {
+		$this->assertEquals( $expected, $title->getWrappedPrefixedText() );
+	}
+
 }
