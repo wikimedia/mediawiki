@@ -3765,7 +3765,7 @@
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|tavu|tavua}}",
 	"limitreport-templateargumentsize": "Mallineen argumenttien koko<br />(template argument size)",
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|tavu|tavua}}",
-	"limitreport-expansiondepth": "Highest expansion depth",
+	"limitreport-expansiondepth": " Highest expansion depth",
 	"limitreport-expensivefunctioncount": "Vaativien jäsenninfunktioiden lukumäärä",
 	"expandtemplates": "Laajenna mallineet",
 	"expand_templates_intro": "Tämä toimintosivu ottaa syötteeksi wikitekstiä ja laajentaa kaikki siinä olevat mallineet rekursiivisesti.\nSe myös laajentaa tuetut parserifunktiot kuten\n<code><nowiki>{{</nowiki>#language:...}}</code> ja -muuttujat kuten\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code>.\nKäytännössä se laajentaa melkein kaiken, joka on kaksoisaaltosulkeiden sisällä.",
