@@ -24,9 +24,6 @@
  */
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
-require_once __DIR__ . '/../../../includes/json/FormatJson.php';
-require_once __DIR__ . '/../../../includes/Xml.php';
-
 $moduleImplementations = [
 	'testUsesMissing' => "
 mw.loader.implement( 'testUsesMissing', function () {
@@ -66,7 +63,7 @@ if ( isset( $_GET['modules'] ) ) {
 		if ( isset( $moduleImplementations[$module] ) ) {
 			$response .= $moduleImplementations[$module];
 		} else {
-			$response .= Xml::encodeJsCall( 'mw.loader.state', [ $module, 'missing' ], true );
+			$response .= 'mw.loader.state(' . json_encode( $module ) . ', "missing" );' . "\n";
 		}
 	}
 }
