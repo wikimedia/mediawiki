@@ -73,9 +73,16 @@ class Pingback {
 	 */
 	private function checkIfSent() {
 		$dbr = wfGetDB( DB_REPLICA );
-		$sent = $dbr->selectField(
-			'updatelog', '1', [ 'ul_key' => $this->key ], __METHOD__ );
-		return $sent !== false;
+		$timestamp = $dbr->selectField(
+			'updatelog', 'ul_value', [ 'ul_key' => $this->key ], __METHOD__ );
+		if ( $timestamp === false ) {
+			return false;
+		}
+		// send heartbeat ping if last ping was over a month ago
+		if ( wfTimestamp() - (int)$timestamp > 60*60*24*30 ) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -84,8 +91,15 @@ class Pingback {
 	 */
 	private function markSent() {
 		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->insert(
-			'updatelog', [ 'ul_key' => $this->key ], __METHOD__, 'IGNORE' );
+		$timestamp = wfTimestamp();
+		return $dbw->upsert(
+			'updatelog',
+			[ 'ul_key' => $this->key, 'ul_value' => $timestamp ],
+			[ 'ul_key' => $this->key ],
+			[ 'ul_value' => $timestamp ],
+			__METHOD__,
+			'IGNORE'
+		);
 	}
 
 	/**
