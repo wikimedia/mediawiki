@@ -54,6 +54,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $loadMonitorConfig;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
+	/** @var string[] Map of (index alias => index) */
+	private $indexAliases = [];
 
 	/** @var ILoadMonitor */
 	private $loadMonitor;
@@ -1088,6 +1090,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->getLazyConnectionRef( self::DB_MASTER, [], $db->getDomainID() )
 		);
 		$db->setTableAliases( $this->tableAliases );
+		$db->setIndexAliases( $this->indexAliases );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
@@ -1755,6 +1758,10 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->indexAliases = $aliases;
 	}
 
 	public function setDomainPrefix( $prefix ) {
