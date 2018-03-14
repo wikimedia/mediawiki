@@ -289,7 +289,8 @@ class DifferenceEngine extends ContextSource {
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRev === false ) {
-			$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
+			$out->setPageTitle( $this->msg( 'difference-title',
+				$this->mNewPage->getWrappedPrefixedText() ) );
 			$samePage = true;
 			$oldHeader = '';
 			// Allow extensions to change the $oldHeader variable
@@ -298,11 +299,12 @@ class DifferenceEngine extends ContextSource {
 			Hooks::run( 'DiffViewHeader', [ $this, $this->mOldRev, $this->mNewRev ] );
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
-				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
+				$out->setPageTitle( $this->msg( 'difference-title',
+					$this->mNewPage->getWrappedPrefixedText() ) );
 				$samePage = true;
 			} else {
 				$out->setPageTitle( $this->msg( 'difference-title-multipage',
-					$this->mOldPage->getPrefixedText(), $this->mNewPage->getPrefixedText() ) );
+					$this->mOldPage->getWrappedPrefixedText(), $this->mNewPage->getWrappedPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference-multipage' ) );
 				$samePage = false;
 			}

@@ -467,7 +467,7 @@ class Article implements Page {
 		}
 
 		# Set page title (may be overridden by DISPLAYTITLE)
-		$outputPage->setPageTitle( $this->getTitle()->getPrefixedText() );
+		$outputPage->setPageTitle( $this->getTitle()->getWrappedPrefixedText() );
 
 		$outputPage->setArticleFlag( true );
 		# Allow frames by default
@@ -692,6 +692,7 @@ class Article implements Page {
 		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
 		$titleText = $pOutput->getTitleText();
 		if ( strval( $titleText ) !== '' ) {
+			$titleText = Title::wrapTitle( $titleText, $this->getTitle()->getPageViewLanguage() );
 			$this->getContext()->getOutput()->setPageTitle( $titleText );
 		}
 	}
@@ -1580,7 +1581,8 @@ class Article implements Page {
 		if ( !$this->mPage->exists() ) {
 			$deleteLogPage = new LogPage( 'delete' );
 			$outputPage = $context->getOutput();
-			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title', $title->getPrefixedText() ) );
+			$outputPage->setPageTitle( $context->msg( 'cannotdelete-title',
+				$title->getWrappedPrefixedText() ) );
 			$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					[ 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) ]
 				);
@@ -1688,7 +1690,7 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$ctx = $this->getContext();
 		$outputPage = $ctx->getOutput();
-		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getPrefixedText() ) );
+		$outputPage->setPageTitle( wfMessage( 'delete-confirm', $title->getWrappedPrefixedText() ) );
 		$outputPage->addBacklinkSubtitle( $title );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->addModules( 'mediawiki.action.delete' );
@@ -1874,7 +1876,7 @@ class Article implements Page {
 		} else {
 			$outputPage->setPageTitle(
 				wfMessage( 'cannotdelete-title',
-					$this->getTitle()->getPrefixedText() )
+					$this->getTitle()->getWrappedPrefixedText() )
 			);
 
 			if ( $error == '' ) {

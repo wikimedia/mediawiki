@@ -364,7 +364,7 @@ abstract class Action implements MessageLocalizer {
 	 * @return string
 	 */
 	protected function getPageTitle() {
-		return $this->getTitle()->getPrefixedText();
+		return $this->getTitle()->getWrappedPrefixedText();
 	}
 
 	/**

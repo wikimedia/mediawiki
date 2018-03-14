@@ -965,4 +965,48 @@ class TitleTest extends MediaWikiTestCase {
 			[ 'zz:Foo#тест', '#.D1.82.D0.B5.D1.81.D1.82' ],
 		];
 	}
+
+	public function provideGetWrappedPrefixedText() {
+		return [
+			// ns = 0
+			[
+				Title::makeTitle( NS_MAIN, 'Foo bar' ),
+				'<bdi class="mw-title" dir="ltr" lang="en">Foo bar</bdi>'
+			],
+			// FIXME: In the Talk namespace the title should have an isolation for the namespace
+			// because the language of the namespace may differ from the page title language.
+			// ns = 1
+			[
+				Title::makeTitle( NS_TALK, 'Foo bar' ),
+				'<bdi class="mw-title" dir="ltr" lang="en">Talk:Foo bar</bdi>'
+			],
+			// FIXME: In the User namespace the title should have an isolation for the user name.
+			// ns = 2
+			[
+				Title::makeTitle( NS_USER, 'Foo bar' ),
+				'<bdi class="mw-title" dir="ltr" lang="en">User:Foo bar</bdi>'
+			],
+			// FIXME: In the MediaWiki namespace the title should always have dir="ltr" and
+			// lang="en" or lang="zxx".
+			// ns = 8
+			[
+				Title::makeTitle( NS_MEDIAWIKI, 'Edit/de' ),
+				'<bdi class="mw-title" dir="ltr" lang="de">MediaWiki:Edit/de</bdi>'
+			],
+			// ns = 8
+			[
+				Title::makeTitle( NS_MEDIAWIKI, 'Edit/ar' ),
+				'<bdi class="mw-title" dir="rtl" lang="ar">MediaWiki:Edit/ar</bdi>'
+			],
+		];
+	}
+
+	/**
+	 * @covers Title::getWrappedPrefixedText
+	 * @dataProvider provideGetWrappedPrefixedText
+	 */
+	public function testGetWrappedPrefixedText( Title $title, $expected ) {
+		$this->assertEquals( $expected, $title->getWrappedPrefixedText() );
+	}
+
 }

@@ -397,8 +397,9 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
-			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
-				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
+			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false ?
+				Title::wrapTitle( $p_result->getDisplayTitle(), $titleObj->getPageViewLanguage() ) :
+				$titleObj->getWrappedPrefixedText();
 		}
 
 		if ( isset( $prop['headitems'] ) ) {
