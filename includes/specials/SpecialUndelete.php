@@ -41,6 +41,7 @@ class SpecialUndelete extends SpecialPage {
 	private	$mAllowed;
 	private	$mCanView;
 	private	$mComment;
+	private	$mReset;
 	private	$mToken;
 
 	/** @var Title */
@@ -90,6 +91,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mDiffOnly = $request->getBool( 'diffonly', $this->getUser()->getOption( 'diffonly' ) );
 		$this->mComment = $request->getText( 'wpComment' );
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $user->isAllowed( 'suppressrevision' );
+		$this->mReset = $request->getVal( 'wpReset' );
 		$this->mToken = $request->getVal( 'token' );
 
 		if ( $this->isAllowed( 'undelete' ) && !$user->isBlocked() ) {
@@ -797,6 +799,18 @@ class SpecialUndelete extends SpecialPage {
 				);
 			}
 
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpReset',
+					'inputId' => 'mw-undelete-reset',
+					'value' => '1',
+				] ),
+				[
+					'label' => $this->msg( 'undelete-reset-parent-ids' )->text(),
+					'align' => 'inline',
+				]
+			);
+
 			$fieldset = new OOUI\FieldsetLayout( [
 				'label' => $this->msg( 'undelete-fieldset-title' )->text(),
 				'id' => 'mw-undelete-table',
@@ -1143,6 +1157,7 @@ class SpecialUndelete extends SpecialPage {
 			$this->mComment,
 			$this->mFileVersions,
 			$this->mUnsuppress,
+			$this->mReset,
 			$this->getUser()
 		);
 
