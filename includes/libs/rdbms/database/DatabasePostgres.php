@@ -413,13 +413,14 @@ class DatabasePostgres extends Database {
 	 * @param string $conds
 	 * @param string $fname
 	 * @param array $options
+	 * @param array $join_conds
 	 * @return int
 	 */
 	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = []
+		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );

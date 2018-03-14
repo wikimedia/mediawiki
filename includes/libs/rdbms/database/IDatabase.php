@@ -825,11 +825,12 @@ interface IDatabase {
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param array|string $join_conds Join conditions
 	 * @return int Row count
 	 * @throws DBError
 	 */
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
+		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
