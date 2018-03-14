@@ -2438,7 +2438,9 @@ ERROR;
 		#       setPageTitle() treats the input as wikitext, which should be safe in either case.
 		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
 		if ( $displayTitle === false ) {
-			$displayTitle = $contextTitle->getPrefixedText();
+			$displayTitle = $contextTitle->getWrappedPrefixedText();
+		} else {
+			$displayTitle = Title::wrapTitle( $displayTitle, $contextTitle->getPageViewLanguage() );
 		}
 		$out->setPageTitle( $this->context->msg( $msg, $displayTitle ) );
 
