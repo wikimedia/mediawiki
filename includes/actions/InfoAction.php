@@ -224,7 +224,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-basic'] = [];
 
 		// Display title
-		$displayTitle = $title->getPrefixedText();
+		$displayTitle = $title->getWrappedPrefixedText();
 		if ( isset( $pageProperties['displaytitle'] ) ) {
 			$displayTitle = $pageProperties['displaytitle'];
 		}
@@ -876,7 +876,7 @@ class InfoAction extends FormlessAction {
 	 * @return string
 	 */
 	protected function getPageTitle() {
-		return $this->msg( 'pageinfo-title', $this->getTitle()->getPrefixedText() )->text();
+		return $this->msg( 'pageinfo-title', $this->getTitle()->getWrappedPrefixedText() )->text();
 	}
 
 	/**

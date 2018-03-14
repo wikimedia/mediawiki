@@ -5098,6 +5098,39 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Wrap a title with an HTML element with the attributes class, lang and dir based on a
+	 * given Language.
+	 *
+	 * @since 1.31
+	 * @param string $title Title to wrap.
+	 * @param Language $language Language for the attributes
+	 * @return string HTML with wrapped title
+	 */
+	public static function wrapTitle( $title, Language $language ) {
+		return Html::rawElement(
+			'span',
+			[
+				'class' => 'mw-title',
+				'dir' => $language->getDir(),
+				'lang' => $language->getHtmlCode(),
+			],
+			$title
+		);
+	}
+
+	/**
+	 * Wrap the title with an HTML element with the attributes class, lang and dir based on the
+	 * PageViewLanguage.
+	 *
+	 * @since 1.31
+	 * @return string HTML with wrapped title
+	 */
+	public function getWrappedPrefixedText() {
+		// Todo: Use a special title language instead of the page view language.
+		return self::wrapTitle( $this->getPrefixedText(), $this->getPageViewLanguage() );
+	}
+
+	/**
 	 * @return array
 	 */
 	public function __sleep() {
