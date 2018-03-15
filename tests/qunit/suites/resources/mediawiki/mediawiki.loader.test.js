@@ -583,6 +583,40 @@
 		} );
 	} );
 
+	// @covers mw.loader#batchRequest
+	// @covers mw.loader#buildModulesString
+	QUnit.test( 'Url composition (order of modules for version) – T188076', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlOrder', 'url', [], null, 'testloader' ],
+			[ 'testUrlOrder.a', '1', [], null, 'testloader' ],
+			[ 'testUrlOrder.b', '2', [], null, 'testloader' ],
+			[ 'testUrlOrderDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		return mw.loader.using( [
+			'testUrlOrderDump',
+			'testUrlOrder.b',
+			'testUrlOrder.a',
+			'testUrlOrder'
+		] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlOrderDump' ).query,
+				{
+					modules: 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b',
+					// Expected: Combined in order after string packing
+					//   $hash = hash( 'fnv132', 'urldump12' );
+					//   base_convert( $hash, 16, 36 ); // "1knqzan"
+					// Previously: Combined in order of before string packing
+					//   $hash = hash( 'fnv132', 'url12dump' );
+					//   base_convert( $hash, 16, 36 ); // "11eo3in"
+					version: '1knqzan'
+				},
+				'Query parameters'
+			);
+		} );
+	} );
+
 	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
