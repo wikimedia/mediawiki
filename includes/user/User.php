@@ -885,7 +885,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return null;
 		}
 
-		if ( !( $flags & self::READ_LATEST ) && isset( self::$idCacheByName[$name] ) ) {
+		if ( !( $flags & self::READ_LATEST ) && array_key_exists( $name, self::$idCacheByName ) ) {
 			return self::$idCacheByName[$name];
 		}
 
