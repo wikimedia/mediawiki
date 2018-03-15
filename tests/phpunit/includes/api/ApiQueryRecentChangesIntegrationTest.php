@@ -860,6 +860,52 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		);
 	}
 
+	public function testTitleParams() {
+		$page1 = new TitleValue( 0, 'ApiQueryRecentChangesTestPage' );
+		$page2 = new TitleValue( 1, 'ApiQueryRecentChangesTestPage2' );
+		$page3 = new TitleValue( 0, 'ApiQueryRecentChangesTestPage3' );
+		$this->doPageEdits(
+			$this->getLoggedInTestUser(),
+			[
+				[
+					'target' => $page1,
+					'summary' => 'Create the page',
+				],
+				[
+					'target' => $page2,
+					'summary' => 'Create the page',
+				],
+				[
+					'target' => $page3,
+					'summary' => 'Create the page',
+				],
+			]
+		);
+
+		$result = $this->doListRecentChangesRequest(
+			[
+				'rctitle' => 'ApiQueryRecentChangesTestPage|ApiQueryRecentChangesTestPage2',
+				'rcprop' => 'title'
+			]
+		);
+
+		$this->assertEquals(
+			[
+				[
+					'type' => 'new',
+					'ns' => $page2->getNamespace(),
+					'title' => $this->getPrefixedText( $page2 )
+				],
+				[
+					'type' => 'new',
+					'ns' => $page1->getNamespace(),
+					'title' => $this->getPrefixedText( $page1 )
+				],
+			],
+			$this->getItemsFromApiResponse( $result )
+		);
+	}
+
 	public function testStartEndParams() {
 		$target = new TitleValue( 0, 'ApiQueryRecentChangesIntegrationTestPage' );
 		$this->doPageEdit( $this->getLoggedInTestUser(), $target, 'Create the page' );
