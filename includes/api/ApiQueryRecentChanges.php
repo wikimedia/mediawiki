@@ -181,6 +181,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( !is_null( $params['title'] ) ) {
+			$this->addWhereFld( 'rc_title', $params['title'] );
+		}
+
 		if ( !is_null( $params['show'] ) ) {
 			$show = array_flip( $params['show'] );
 
@@ -710,6 +714,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
 			],
 			'toponly' => false,
+			'title' => [
+				ApiBase::PARAM_ISMULTI => true,
+			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
