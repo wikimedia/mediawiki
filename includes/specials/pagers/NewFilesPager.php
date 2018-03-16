@@ -118,7 +118,7 @@ class NewFilesPager extends RangeChronologicalPager {
 			} else {
 				$rcQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 				$tables += $rcQuery['tables'];
-				$joins += $rcQuery['joins'];
+				$jconds += $rcQuery['joins'];
 				$jcond = $rcQuery['fields']['rc_user'] . ' = ' . $imgQuery['fields']['img_user'];
 			}
 			$jconds['recentchanges'] = [
