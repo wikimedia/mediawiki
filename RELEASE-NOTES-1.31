@@ -136,6 +136,7 @@ changes to languages because of Phabricator reports.
 * (T186647) New language support: Kumyk [къумукъ] (kum).
 * (T187750) New language support: Spanish formal address (es-formal).
 * (T187824) New language support: Hungarian formal address (hu-formal).
+* (T189127) New language support: Gorontalo (gor).
 
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
