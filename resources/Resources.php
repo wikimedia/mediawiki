@@ -945,6 +945,13 @@ return [
 			'mediawiki.api',
 		],
 	],
+	'mediawiki.api.stashededit' => [
+		'scripts' => 'resources/src/mediawiki/api/stashededit.js',
+		'dependencies' => [
+			'mediawiki.api',
+		],
+		'targets' => [ 'desktop', 'mobile' ]
+	],
 	'mediawiki.content.json' => [
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.less',
 	],
@@ -1455,6 +1462,7 @@ return [
 			'oojs-ui-core',
 			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.api',
+			'mediawiki.api.stashededit',
 		],
 	],
 	'mediawiki.action.edit.styles' => [

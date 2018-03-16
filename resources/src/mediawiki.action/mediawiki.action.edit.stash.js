@@ -11,103 +11,27 @@
 		var idleTimeout = 3000,
 			api = new mw.Api(),
 			timer,
-			stashReq,
-			lastText,
-			lastSummary,
-			lastTextHash,
 			$form = $( '#editform' ),
 			$text = $form.find( '#wpTextbox1' ),
 			$summary = $form.find( '#wpSummary' ),
-			section = $form.find( '[name=wpSection]' ).val(),
-			model = $form.find( '[name=model]' ).val(),
-			format = $form.find( '[name=format]' ).val(),
-			revId = $form.find( '[name=parentRevId]' ).val(),
-			lastPriority = 0,
-			PRIORITY_LOW = 1,
-			PRIORITY_HIGH = 2;
+			params = {
+				section: $form.find( '[name=wpSection]' ).val(),
+				sectiontitle: '',
+				contentmodel: $form.find( '[name=model]' ).val(),
+				contentformat: $form.find( '[name=format]' ).val(),
+				baserevid: $form.find( '[name=parentRevId]' ).val()
+			};
 
-		// We don't attempt to stash new section edits because in such cases the parser output
-		// varies on the edit summary (since it determines the new section's name).
-		if ( !$form.length || section === 'new' ) {
+		if ( !$form.length ) {
 			return;
 		}
 
-		// Send a request to stash the edit to the API.
-		// If a request is in progress, abort it since its payload is stale and the API
-		// may limit concurrent stash parses.
 		function stashEdit() {
-			var req, params,
-				textChanged = isTextChanged(),
-				priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
-
-			if ( stashReq ) {
-				if ( lastPriority > priority ) {
-					// Stash request for summary change should wait on pending text change stash
-					stashReq.then( checkStash );
-					return;
-				}
-				stashReq.abort();
-			}
-
-			// Update the "last" tracking variables
-			lastSummary = $summary.textSelection( 'getContents' );
-			lastPriority = priority;
-			if ( textChanged ) {
-				lastText = $text.textSelection( 'getContents' );
-				// Reset hash
-				lastTextHash = null;
-			}
-
-			params = {
-				formatversion: 2,
-				action: 'stashedit',
-				title: mw.config.get( 'wgPageName' ),
-				section: section,
-				sectiontitle: '',
-				summary: lastSummary,
-				contentmodel: model,
-				contentformat: format,
-				baserevid: revId
-			};
-			if ( lastTextHash ) {
-				params.stashedtexthash = lastTextHash;
-			} else {
-				params.text = lastText;
-			}
-
-			req = api.postWithToken( 'csrf', params );
-			stashReq = req;
-			req.then( function ( data ) {
-				if ( req === stashReq ) {
-					stashReq = null;
-				}
-				if ( data.stashedit && data.stashedit.texthash ) {
-					lastTextHash = data.stashedit.texthash;
-				} else {
-					// Request failed or text hash expired;
-					// include the text in a future stash request.
-					lastTextHash = null;
-				}
-			} );
-		}
-
-		// Whether the body text content changed since the last stashEdit()
-		function isTextChanged() {
-			return lastText !== $text.textSelection( 'getContents' );
-		}
-
-		// Whether the edit summary has changed since the last stashEdit()
-		function isSummaryChanged() {
-			return lastSummary !== $summary.textSelection( 'getContents' );
-		}
-
-		// Check whether text or summary have changed and call stashEdit()
-		function checkStash() {
-			if ( !isTextChanged() && !isSummaryChanged() ) {
-				return;
-			}
-
-			stashEdit();
+			api.stashEdit(
+				$text.textSelection( 'getContents' ),
+				$summary.textSelection( 'getContents' ),
+				params
+			);
 		}
 
 		function onKeyUp( e ) {
@@ -122,7 +46,7 @@
 			}
 
 			clearTimeout( timer );
-			timer = setTimeout( checkStash, idleTimeout );
+			timer = setTimeout( stashEdit, idleTimeout );
 		}
 
 		function onSummaryFocus() {
@@ -131,7 +55,7 @@
 			idleTimeout = 1000;
 			// Stash now since the text is likely the final version. The re-stashes based on the
 			// summary are targeted at caching edit checks that need the final summary.
-			checkStash();
+			stashEdit();
 		}
 
 		function onTextFocus() {
@@ -142,12 +66,12 @@
 		$text.on( {
 			keyup: onKeyUp,
 			focus: onTextFocus,
-			change: checkStash
+			change: stashEdit
 		} );
 		$summary.on( {
 			keyup: onKeyUp,
 			focus: onSummaryFocus,
-			focusout: checkStash
+			focusout: stashEdit
 		} );
 
 		if (
@@ -158,7 +82,7 @@
 			// probably save the page soon
 			[ 'preview', 'diff' ].indexOf( $form.find( '#mw-edit-mode' ).val() ) > -1
 		) {
-			checkStash();
+			stashEdit();
 		}
 	} );
 }( mediaWiki, jQuery ) );
