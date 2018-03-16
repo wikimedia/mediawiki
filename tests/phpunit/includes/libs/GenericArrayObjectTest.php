@@ -173,8 +173,6 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 	 * @since 1.20
 	 *
 	 * @param callable $function
-	 *
-	 * @covers GenericArrayObject::getObjectType
 	 */
 	protected function checkTypeChecks( $function ) {
 		$excption = null;
@@ -206,7 +204,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 	 * @since 1.20
 	 *
 	 * @param array $elements
-	 *
+	 * @covers GenericArrayObject::getObjectType
 	 * @covers GenericArrayObject::offsetSet
 	 */
 	public function testOffsetSet( array $elements ) {
