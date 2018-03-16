@@ -636,7 +636,6 @@ class ParserTestRunner {
 
 	/**
 	 * Remove last character if it is a newline
-	 * @group utility
 	 * @param string $s
 	 * @return string
 	 */
