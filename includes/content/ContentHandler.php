@@ -333,6 +333,13 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Clean up handlers cache.
+	 */
+	public static function cleanupHandlersCache() {
+		self::$handlers = [];
+	}
+
+	/**
 	 * Returns the localized name for a given content model.
 	 *
 	 * Model names are localized using system messages. Message keys
