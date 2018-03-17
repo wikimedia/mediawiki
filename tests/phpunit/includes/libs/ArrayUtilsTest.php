@@ -8,8 +8,6 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	private $search;
-
 	/**
 	 * @covers ArrayUtils::findLowerBound
 	 * @dataProvider provideFindLowerBound

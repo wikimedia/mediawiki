@@ -18,8 +18,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	protected function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
 			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
-			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection,
-			$parserMemc;
+			$wgParserCacheType, $wgNamespaceAliases, $wgNamespaceProtection;
 
 		$tmpDir = $this->getNewTempDirectory();
 		$tmpGlobals = [];
@@ -87,54 +86,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		FileBackendGroup::destroySingleton();
 
 		parent::tearDown();
-	}
-
-	/**
-	 * Delete the specified files, if they exist.
-	 *
-	 * @param array $files Full paths to files to delete.
-	 */
-	private static function deleteFiles( $files ) {
-		foreach ( $files as $file ) {
-			if ( file_exists( $file ) ) {
-				unlink( $file );
-			}
-		}
-	}
-
-	/**
-	 * Delete the specified directories, if they exist. Must be empty.
-	 *
-	 * @param array $dirs Full paths to directories to delete.
-	 */
-	private static function deleteDirs( $dirs ) {
-		foreach ( $dirs as $dir ) {
-			if ( is_dir( $dir ) ) {
-				rmdir( $dir );
-			}
-		}
-	}
-
-	/**
-	 * Create a dummy uploads directory which will contain a couple
-	 * of files in order to pass existence tests.
-	 *
-	 * @return string The directory
-	 */
-	private function setupUploadDir() {
-		global $IP;
-
-		$dir = $this->getNewTempDirectory();
-
-		wfDebug( "Creating upload directory $dir\n" );
-
-		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/upload/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-
-		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
-		copy( "$IP/tests/phpunit/data/upload/headbg.jpg", "$dir/0/09/Bad.jpg" );
-
-		return $dir;
 	}
 
 	public static function suite() {
