@@ -363,6 +363,7 @@ $wgAutoloadLocalClasses = [
 	'DeferredStringifier' => __DIR__ . '/includes/libs/DeferredStringifier.php',
 	'DeferredUpdates' => __DIR__ . '/includes/deferred/DeferredUpdates.php',
 	'DeleteAction' => __DIR__ . '/includes/actions/DeleteAction.php',
+	'DeleteAutoPatrolLogs' => __DIR__ . '/maintenance/deleteAutoPatrolLogs.php',
 	'DeleteArchivedFiles' => __DIR__ . '/maintenance/deleteArchivedFiles.php',
 	'DeleteArchivedRevisions' => __DIR__ . '/maintenance/deleteArchivedRevisions.php',
 	'DeleteBatch' => __DIR__ . '/maintenance/deleteBatch.php',
