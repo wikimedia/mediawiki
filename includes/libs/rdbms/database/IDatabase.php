@@ -49,6 +49,11 @@ interface IDatabase {
 	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
 	const TRANSACTION_INTERNAL = 'implicit';
 
+	/** @var string Atomic section is not cancelable */
+	const ATOMIC_NOT_CANCELABLE = '';
+	/** @var string Atomic section is cancelable */
+	const ATOMIC_CANCELABLE = 'cancelable';
+
 	/** @var string Transaction operation comes from service managing all DBs */
 	const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Transaction operation comes from the database class internally */
@@ -1553,9 +1558,11 @@ interface IDatabase {
 	 *
 	 * @since 1.23
 	 * @param string $fname
+	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to enable
+	 *  self::cancelAtomic() for this section.
 	 * @throws DBError
 	 */
-	public function startAtomic( $fname = __METHOD__ );
+	public function startAtomic( $fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE );
 
 	/**
 	 * Ends an atomic section of SQL statements
@@ -1569,6 +1576,27 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function endAtomic( $fname = __METHOD__ );
+
+	/**
+	 * Cancel an atomic section of SQL statements
+	 *
+	 * This will roll back only the statements executed since the start of the
+	 * most recent atomic section, and close that section. If a transaction was
+	 * open before the corresponding startAtomic() call, any transactions
+	 * before that call are *not* rolled back. If startAtomic() had implicitly
+	 * started a transaction, that transaction is rolled back.
+	 *
+	 * Note that a call to IDatabase::rollback() will also roll back any open
+	 * atomic sections.
+	 *
+	 * @note As a micro-optimization to save a few DB calls, this method may only
+	 *  be called when startAtomic() was called with the ATOMIC_CANCELABLE flag.
+	 * @since 1.31
+	 * @see IDatabase::startAtomic
+	 * @param string $fname
+	 * @throws DBError
+	 */
+	public function cancelAtomic( $fname = __METHOD__ );
 
 	/**
 	 * Run a callback to do an atomic set of updates for this database

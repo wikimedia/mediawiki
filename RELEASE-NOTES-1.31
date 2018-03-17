@@ -66,6 +66,11 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* Added Wikimedia\Rdbms\IDatabase::cancelAtomic(), to roll back an atomic
+  section without having to roll back the whole transaction.
+* Wikimedia\Rdbms\IDatabase::doAtomicSection(), non-native ::insertSelect(),
+  and non-MySQL ::replace() and ::upsert() no longer roll back the whole
+  transaction on failure.
 
 === External library changes in 1.31 ===
 
