@@ -22,7 +22,7 @@
 
 /**
  * Example virtual rest service for OpenStack Swift
- * @TODO: caching support (APC/memcached)
+ * @todo caching support (APC/memcached)
  * @since 1.23
  */
 class SwiftVirtualRESTService extends VirtualRESTService {

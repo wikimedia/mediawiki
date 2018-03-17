@@ -199,7 +199,7 @@ class StripState {
 	/**
 	 * Get an array of parameters to pass to ParserOutput::setLimitReportData()
 	 *
-	 * @unstable Should only be called by Parser
+	 * @internal Should only be called by Parser
 	 * @return array
 	 */
 	public function getLimitReport() {
