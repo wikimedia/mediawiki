@@ -1537,19 +1537,19 @@ interface IDatabase {
 	/**
 	 * Begin an atomic section of statements
 	 *
-	 * If a transaction has been started already, just keep track of the given
-	 * section name to make sure the transaction is not committed pre-maturely.
-	 * This function can be used in layers (with sub-sections), so use a stack
-	 * to keep track of the different atomic sections. If there is no transaction,
-	 * start one implicitly.
+	 * If a transaction has been started already, sets a savepoint and tracks
+	 * the given section name to make sure the transaction is not committed
+	 * pre-maturely. This function can be used in layers (with sub-sections),
+	 * so use a stack to keep track of the different atomic sections. If there
+	 * is no transaction, one is started implicitly.
 	 *
 	 * The goal of this function is to create an atomic section of SQL queries
 	 * without having to start a new transaction if it already exists.
 	 *
-	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic(),
-	 * and any database transactions cannot be began or committed until all atomic
-	 * levels are closed. There is no such thing as implicitly opening or closing
-	 * an atomic section.
+	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic()
+	 * or IDatabase::cancelAtomic(), and any database transactions cannot be
+	 * began or committed until all atomic levels are closed. There is no such
+	 * thing as implicitly opening or closing an atomic section.
 	 *
 	 * @since 1.23
 	 * @param string $fname
@@ -1571,23 +1571,44 @@ interface IDatabase {
 	public function endAtomic( $fname = __METHOD__ );
 
 	/**
+	 * Cancel an atomic section of SQL statements
+	 *
+	 * This will roll back only the statements executed since the start of the
+	 * most recent atomic section, and close that section. If a transaction was
+	 * open before the corresponding startAtomic() call, any statements before
+	 * that call are *not* rolled back and the transaction remains open. If the
+	 * corresponding startAtomic() implicitly started a transaction, that
+	 * transaction is rolled back.
+	 *
+	 * Note that a call to IDatabase::rollback() will also roll back any open
+	 * atomic sections.
+	 *
+	 * @since 1.31
+	 * @see IDatabase::startAtomic
+	 * @param string $fname
+	 * @throws DBError
+	 */
+	public function cancelAtomic( $fname = __METHOD__ );
+
+	/**
 	 * Run a callback to do an atomic set of updates for this database
 	 *
 	 * The $callback takes the following arguments:
 	 *   - This database object
 	 *   - The value of $fname
 	 *
-	 * If any exception occurs in the callback, then rollback() will be called and the error will
-	 * be re-thrown. It may also be that the rollback itself fails with an exception before then.
-	 * In any case, such errors are expected to terminate the request, without any outside caller
-	 * attempting to catch errors and commit anyway. Note that any rollback undoes all prior
-	 * atomic section and uncommitted updates, which trashes the current request, requiring an
-	 * error to be displayed.
+	 * If any exception occurs in the callback, then cancelAtomic() will be
+	 * called to back out any statements executed by the callback and the error
+	 * will be re-thrown. It may also be that the cancel itself fails with an
+	 * exception before then. In any case, such errors are expected to
+	 * terminate the request, without any outside caller attempting to catch
+	 * errors and commit anyway.
 	 *
-	 * This can be an alternative to explicit startAtomic()/endAtomic() calls.
+	 * This can be an alternative to explicit startAtomic()/endAtomic()/cancelAtomic() calls.
 	 *
 	 * @see Database::startAtomic
 	 * @see Database::endAtomic
+	 * @see Database::cancelAtomic
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates
@@ -1595,7 +1616,9 @@ interface IDatabase {
 	 * @throws DBError
 	 * @throws RuntimeException
 	 * @throws UnexpectedValueException
-	 * @since 1.27
+	 * @since 1.27; prior to 1.31 this did a rollback() instead of
+	 *  cancelAtomic(), and assumed no callers up the stack would ever try to
+	 *  catch the exception.
 	 */
 	public function doAtomicSection( $fname, callable $callback );
 
