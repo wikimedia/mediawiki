@@ -19,8 +19,8 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
-	private $pageId1, $pageId2, $pageId3, $pageId4, $pageId5;
-	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4, $pageTitle5;
+	private $pageId1, $pageId2, $pageId3, $pageId4;
+	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4;
 	private $revId1_1, $textId1_1;
 	private $revId2_1, $textId2_1, $revId2_2, $textId2_2;
 	private $revId2_3, $textId2_3, $revId2_4, $textId2_4;
