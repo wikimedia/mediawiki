@@ -1571,6 +1571,25 @@ interface IDatabase {
 	public function endAtomic( $fname = __METHOD__ );
 
 	/**
+	 * Cancel an atomic section of SQL statements
+	 *
+	 * This will roll back only the statements executed since the start of the
+	 * most recent atomic section, and close that section. If a transaction was
+	 * open before the corresponding startAtomic() call, any transactions
+	 * before that call are *not* rolled back. If startAtomic() had implicitly
+	 * started a transaction, that transaction is rolled back.
+	 *
+	 * Note that a call to IDatabase::rollback() will also roll back any open
+	 * atomic sections.
+	 *
+	 * @since 1.31
+	 * @see IDatabase::startAtomic
+	 * @param string $fname
+	 * @throws DBError
+	 */
+	public function cancelAtomic( $fname = __METHOD__ );
+
+	/**
 	 * Run a callback to do an atomic set of updates for this database
 	 *
 	 * The $callback takes the following arguments:

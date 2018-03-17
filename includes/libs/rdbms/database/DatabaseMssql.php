@@ -1047,6 +1047,19 @@ class DatabaseMssql extends Database {
 		return false;
 	}
 
+	protected function doSavepoint( $identifier, $fname ) {
+		$this->query( 'SAVE TRANSACTION ' . $this->addIdentifierQuotes( $identifier ), $fname );
+	}
+
+	protected function doReleaseSavepoint( $identifier, $fname ) {
+		// Not supported. Also not really needed, a new doSavepoint() for the
+		// same identifier will overwrite the old.
+	}
+
+	protected function doRollbackToSavepoint( $identifier, $fname ) {
+		$this->query( 'ROLLBACK TRANSACTION ' . $this->addIdentifierQuotes( $identifier ), $fname );
+	}
+
 	/**
 	 * Begin a transaction, committing any previously open transaction
 	 * @param string $fname
