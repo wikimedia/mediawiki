@@ -1256,4 +1256,105 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'CAST( fieldName AS INTEGER )', $output );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::doSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doReleaseSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doRollbackToSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::startAtomic
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
+	 */
+	public function testAtomicSections() {
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT mwatomic1; RELEASE SAVEPOINT mwatomic1; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT mwatomic2; ROLLBACK TO SAVEPOINT mwatomic2; COMMIT' );
+
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT mwatomic3; ROLLBACK TO SAVEPOINT mwatomic3; COMMIT' );
+
+		$this->database->doAtomicSection( __METHOD__, function () {
+		} );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->doAtomicSection( __METHOD__, function () {
+		} );
+		$this->database->rollback( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT mwatomic4; RELEASE SAVEPOINT mwatomic4; ROLLBACK' );
+
+		$this->database->begin( __METHOD__ );
+		try {
+			$this->database->doAtomicSection( __METHOD__, function () {
+				throw new RuntimeException( 'Test exception' );
+			} );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( RuntimeException $ex ) {
+			$this->assertSame( 'Test exception', $ex->getMessage() );
+		}
+		$this->database->commit( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; SAVEPOINT mwatomic5; ROLLBACK TO SAVEPOINT mwatomic5; COMMIT' );
+	}
+
+	public static function provideAtomicSectionMethodsForErrors() {
+		return [
+			[ 'endAtomic' ],
+			[ 'cancelAtomic' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAtomicSectionMethodsForErrors
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testNoAtomicSection( $method ) {
+		try {
+			$this->database->$method( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'No atomic transaction is open (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
+	}
+
+	/**
+	 * @dataProvider provideAtomicSectionMethodsForErrors
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testInvalidAtomicSectionEnded( $method ) {
+		$this->database->startAtomic( __METHOD__ . 'X' );
+		try {
+			$this->database->$method( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Invalid atomic section ended (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
+	}
+
 }

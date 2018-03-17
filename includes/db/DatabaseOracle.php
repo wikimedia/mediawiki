@@ -934,6 +934,11 @@ class DatabaseOracle extends Database {
 		return $this->fieldInfoMulti( $table, $field );
 	}
 
+	protected function doReleaseSavepoint( $identifier, $fname ) {
+		// Not supported. Also not really needed, a new doSavepoint() for the
+		// same identifier will overwrite the old.
+	}
+
 	protected function doBegin( $fname = __METHOD__ ) {
 		$this->trxLevel = 1;
 		$this->doQuery( 'SET CONSTRAINTS ALL DEFERRED' );

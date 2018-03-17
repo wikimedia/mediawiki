@@ -188,6 +188,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private $trxAutomatic = false;
 	/**
+	 * Counter for atomic savepoint identifiers
+	 *
+	 * @var int
+	 */
+	private $trxAtomicCounter = 0;
+	/**
 	 * Array of levels of atomicity within transactions
 	 *
 	 * @var array
@@ -2450,7 +2456,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->endAtomic( $fname );
 			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
-			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			$this->cancelAtomic( $fname );
 			throw $e;
 		}
 	}
@@ -2533,7 +2539,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->endAtomic( $fname );
 			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
-			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			$this->cancelAtomic( $fname );
 			throw $e;
 		}
 
@@ -2701,11 +2707,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->endAtomic( $fname );
 				$this->affectedRowCount = $affectedRowCount;
 			} else {
-				$this->rollback( $fname, self::FLUSHING_INTERNAL );
+				$this->cancelAtomic( $fname );
 			}
 			return $ok;
 		} catch ( Exception $e ) {
-			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			$this->cancelAtomic( $fname );
 			throw $e;
 		}
 	}
@@ -2988,7 +2994,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				call_user_func( $callback );
 				$this->endAtomic( __METHOD__ );
 			} catch ( Exception $e ) {
-				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+				$this->cancelAtomic( __METHOD__ );
 				throw $e;
 			}
 		}
@@ -3125,6 +3131,48 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
+	/**
+	 * Create a savepoint
+	 *
+	 * This is used internally to implement atomic sections. It should not be
+	 * used otherwise.
+	 *
+	 * @since 1.31
+	 * @param string $identifier Identifier for the savepoint
+	 * @param string $fname Calling function name
+	 */
+	protected function doSavepoint( $identifier, $fname ) {
+		$this->query( 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+	}
+
+	/**
+	 * Release a savepoint
+	 *
+	 * This is used internally to implement atomic sections. It should not be
+	 * used otherwise.
+	 *
+	 * @since 1.31
+	 * @param string $identifier Identifier for the savepoint
+	 * @param string $fname Calling function name
+	 */
+	protected function doReleaseSavepoint( $identifier, $fname ) {
+		$this->query( 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+	}
+
+	/**
+	 * Rollback to a savepoint
+	 *
+	 * This is used internally to implement atomic sections. It should not be
+	 * used otherwise.
+	 *
+	 * @since 1.31
+	 * @param string $identifier Identifier for the savepoint
+	 * @param string $fname Calling function name
+	 */
+	protected function doRollbackToSavepoint( $identifier, $fname ) {
+		$this->query( 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+	}
+
 	final public function startAtomic( $fname = __METHOD__ ) {
 		if ( !$this->trxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
@@ -3133,24 +3181,51 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( !$this->getFlag( self::DBO_TRX ) ) {
 				$this->trxAutomaticAtomic = true;
 			}
+			$savepointId = null;
+		} else {
+			$savepointId = 'mwatomic' . ++$this->trxAtomicCounter;
+			$this->doSavepoint( $savepointId, $fname );
 		}
 
-		$this->trxAtomicLevels[] = $fname;
+		$this->trxAtomicLevels[] = [ $fname, $savepointId ];
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
 		if ( !$this->trxLevel ) {
 			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
 		}
-		if ( !$this->trxAtomicLevels ||
-			array_pop( $this->trxAtomicLevels ) !== $fname
-		) {
+
+		list( $savedFname, $savepointId ) = $this->trxAtomicLevels
+			? array_pop( $this->trxAtomicLevels ) : [ null, null ];
+		if ( $savedFname !== $fname ) {
 			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
 		}
 
-		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
+		if ( !$savepointId ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
+		} else {
+			$this->doReleaseSavepoint( $savepointId, $fname );
 		}
+	}
+
+	final public function cancelAtomic( $fname = __METHOD__ ) {
+		if ( !$this->trxLevel ) {
+			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
+		}
+
+		list( $savedFname, $savepointId ) = $this->trxAtomicLevels
+			? array_pop( $this->trxAtomicLevels ) : [ null, null ];
+		if ( $savedFname !== $fname ) {
+			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
+		}
+
+		if ( !$savepointId ) {
+			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+		} else {
+			$this->doRollbackToSavepoint( $savepointId, $fname );
+		}
+
+		$this->affectedRowCount = 0; // for the sake of consistency
 	}
 
 	final public function doAtomicSection( $fname, callable $callback ) {
@@ -3158,7 +3233,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
-			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+			$this->cancelAtomic( $fname );
 			throw $e;
 		}
 		$this->endAtomic( $fname );
@@ -3170,7 +3245,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel ) {
 			if ( $this->trxAtomicLevels ) {
-				$levels = implode( ', ', $this->trxAtomicLevels );
+				$levels = array_reduce( $this->trxAtomicLevels, function ( $accum, $v ) {
+					return $accum === null ? $v[0] : "$accum, " . $v[0];
+				} );
 				$msg = "$fname: Got explicit BEGIN while atomic section(s) $levels are open.";
 				throw new DBUnexpectedError( $this, $msg );
 			} elseif ( !$this->trxAutomatic ) {
@@ -3230,7 +3307,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function commit( $fname = __METHOD__, $flush = '' ) {
 		if ( $this->trxLevel && $this->trxAtomicLevels ) {
 			// There are still atomic sections open. This cannot be ignored
-			$levels = implode( ', ', $this->trxAtomicLevels );
+			$levels = array_reduce( $this->trxAtomicLevels, function ( $accum, $v ) {
+				return $accum === null ? $v[0] : "$accum, " . $v[0];
+			} );
 			throw new DBUnexpectedError(
 				$this,
 				"$fname: Got COMMIT while atomic sections $levels are still open."
