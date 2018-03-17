@@ -365,6 +365,7 @@ $wgAutoloadLocalClasses = [
 	'DeleteAction' => __DIR__ . '/includes/actions/DeleteAction.php',
 	'DeleteArchivedFiles' => __DIR__ . '/maintenance/deleteArchivedFiles.php',
 	'DeleteArchivedRevisions' => __DIR__ . '/maintenance/deleteArchivedRevisions.php',
+	'DeleteAutoPatrolLogs' => __DIR__ . '/maintenance/deleteAutoPatrolLogs.php',
 	'DeleteBatch' => __DIR__ . '/maintenance/deleteBatch.php',
 	'DeleteDefaultMessages' => __DIR__ . '/maintenance/deleteDefaultMessages.php',
 	'DeleteEqualMessages' => __DIR__ . '/maintenance/deleteEqualMessages.php',
