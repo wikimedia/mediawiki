@@ -687,7 +687,6 @@ CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 CREATE INDEX job_timestamp_idx ON job (job_timestamp);
 
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
--- Version 8.3 or higher only. Previous versions would need another parmeter for to_tsvector.
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 
 ALTER TABLE page ADD titlevector tsvector;
@@ -722,9 +721,6 @@ $mw$;
 
 CREATE TRIGGER ts2_page_text BEFORE INSERT OR UPDATE ON pagecontent
   FOR EACH ROW EXECUTE PROCEDURE ts2_page_text();
-
--- These are added by the setup script due to version compatibility issues
--- If using 8.1, we switch from "gin" to "gist"
 
 CREATE INDEX ts2_page_title ON page USING gin(titlevector);
 CREATE INDEX ts2_page_text ON pagecontent USING gin(textvector);
