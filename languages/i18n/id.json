@@ -58,7 +58,8 @@
 			"Uchup19",
 			"Archd",
 			"Empu",
-			"Dodolzk"
+			"Dodolzk",
+			"Zoranzoki21"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -2467,7 +2468,7 @@
 	"blocklist-userblocks": "Sembunyikan pemblokiran akun",
 	"blocklist-tempblocks": "Sembunyikan pemblokiran sementara",
 	"blocklist-addressblocks": "Sembunyikan pemblokiran IP tunggal",
-	"blocklist-rangeblocks": "Menyembunyikan jangkauan blokir (http://www.mediawiki.org/wiki/Help:Range_blocks)",
+	"blocklist-rangeblocks": "Menyembunyikan jangkauan blokir (https://www.mediawiki.org/wiki/Help:Range_blocks)",
 	"blocklist-timestamp": "Stempel waktu",
 	"blocklist-target": "Target",
 	"blocklist-expiry": "Kedaluwarsa",

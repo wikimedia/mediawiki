@@ -13,7 +13,8 @@
 			"Максим Підліснюк",
 			"AS",
 			"Umherirrender",
-			"Choomaq"
+			"Choomaq",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].",
@@ -733,7 +734,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Простори назв для переліку.",
 	"apihelp-query+exturlusage-param-limit": "Скільки сторінок виводити.",
 	"apihelp-query+exturlusage-param-expandurl": "Розгорнути протокол-залежні URL за канонічним протоколом.",
-	"apihelp-query+exturlusage-example-simple": "Показати сторінки, які посилаються на <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Показати сторінки, які посилаються на <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Перерахувати всі вилучені файли послідовно.",
 	"apihelp-query+filearchive-param-from": "Назва зображення, з якої почати перелічувати.",
 	"apihelp-query+filearchive-param-to": "Назва зображення, якою закінчити перелічувати.",

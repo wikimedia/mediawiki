@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Leeheonjin",
-			"Macofe"
+			"Macofe",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-delete-example-simple": "Buran ya ing <kbd>Main Page</kbd>.",
@@ -20,7 +21,7 @@
 	"apihelp-query+deletedrevs-example-mode3-talk": "Ilista mu la reng minunang 50 meburang bulung king {{ns:talk}} lagyu-espasyu (mode 3)",
 	"apihelp-query+duplicatefiles-example-generated": "Mayintun para kareng duplika da reng egana-ganang simpan (file).",
 	"apihelp-query+extlinks-example-simple": "Kumuwa ning lista da reng suglung paluwal king <kbd>Main Page</kbd>.",
-	"apihelp-query+exturlusage-example-simple": "Pakit la reng bulung a makasuglung king <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Pakit la reng bulung a makasuglung king <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+imageusage-example-simple": "Ipakit la reng bulung a gagamit ning [[:Simpan:Albert Einstein Head.jpg]].",
 	"apihelp-query+langbacklinks-example-simple": "Kunan deng bulung a maka-suglung king [[:fr:Test]].",
 	"apihelp-query+protectedtitles-example-generator": "Pantunan deng suglung king maka-protektang titulu king pun lagyu-espasyu.",
