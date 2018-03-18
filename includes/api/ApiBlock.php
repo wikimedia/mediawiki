@@ -124,8 +124,8 @@ class ApiBlock extends ApiBase {
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
-			$res['expiry'] = '';
-			$res['id'] = '';
+			$res['expiry'] = ''; // @codeCoverageIgnore
+			$res['id'] = ''; // @codeCoverageIgnore
 		}
 
 		$res['reason'] = $params['reason'];
