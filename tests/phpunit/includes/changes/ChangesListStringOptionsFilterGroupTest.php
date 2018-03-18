@@ -179,8 +179,6 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
 	/**
 	 * @param array $groupDefinition Group definition
 	 * @param string $input Value in URL
-	 *
-	 * @dataProvider provideModifyQuery
 	 */
 	protected function modifyQueryHelper( $groupDefinition, $input ) {
 		$ctx = $this->createMock( IContextSource::class );
