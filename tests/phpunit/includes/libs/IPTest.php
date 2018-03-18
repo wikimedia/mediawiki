@@ -16,7 +16,7 @@ class IPTest extends PHPUnit\Framework\TestCase {
 	 * @covers IP::isIPAddress
 	 * @dataProvider provideInvalidIPs
 	 */
-	public function isNotIPAddress( $val, $desc ) {
+	public function testIsNotIPAddress( $val, $desc ) {
 		$this->assertFalse( IP::isIPAddress( $val ), $desc );
 	}
 
