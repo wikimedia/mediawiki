@@ -94,9 +94,7 @@ class Timing implements LoggerAwareInterface {
 				'requestStart' => [
 					'name'      => 'requestStart',
 					'entryType' => 'mark',
-					'startTime' => isset( $_SERVER['REQUEST_TIME_FLOAT'] )
-						? $_SERVER['REQUEST_TIME_FLOAT']
-						: $_SERVER['REQUEST_TIME'],
+					'startTime' => $_SERVER['REQUEST_TIME_FLOAT'],
 					'duration'  => 0,
 				],
 			];

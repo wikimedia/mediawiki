@@ -1050,7 +1050,7 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
-	global $wgDebugTimestamps, $wgRequestTime;
+	global $wgDebugTimestamps;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -1061,7 +1061,7 @@ function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	if ( $wgDebugTimestamps ) {
 		$context['seconds_elapsed'] = sprintf(
 			'%6.4f',
-			microtime( true ) - $wgRequestTime
+			microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT']
 		);
 		$context['memory_used'] = sprintf(
 			'%5.1fM',
@@ -1514,9 +1514,11 @@ function wfHostname() {
  * @return string
  */
 function wfReportTime() {
-	global $wgRequestTime, $wgShowHostnames;
+	global $wgShowHostnames;
 
-	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+	$elapsed = ( microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'] );
+	// seconds to milliseconds
+	$responseTime = round( $elapsed * 1000 );
 	$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
