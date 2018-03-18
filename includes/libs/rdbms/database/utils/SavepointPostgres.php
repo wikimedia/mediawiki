@@ -27,6 +27,7 @@ use Psr\Log\LoggerInterface;
  * Manage savepoints within a transaction
  * @ingroup Database
  * @since 1.19
+ * @deprecated since 1.31, use IDatabase::startAtomic() and such instead.
  */
 class SavepointPostgres {
 	/** @var DatabasePostgres Establish a savepoint within a transaction */
