@@ -890,6 +890,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Interwiki\\ClassicInterwikiLookup' => __DIR__ . '/includes/interwiki/ClassicInterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookupAdapter' => __DIR__ . '/includes/interwiki/InterwikiLookupAdapter.php',
+	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/OutputHandler.php',
 	'MediaWiki\\Languages\\Data\\CrhExceptions' => __DIR__ . '/languages/data/CrhExceptions.php',
 	'MediaWiki\\Languages\\Data\\Names' => __DIR__ . '/languages/data/Names.php',
 	'MediaWiki\\Languages\\Data\\ZhConversion' => __DIR__ . '/languages/data/ZhConversion.php',
