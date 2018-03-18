@@ -137,19 +137,6 @@ class HashRing {
 	}
 
 	/**
-	 * Get a new hash ring with a location removed from the ring
-	 *
-	 * @param string $location
-	 * @return HashRing|bool Returns false if no non-zero weighted spots are left
-	 */
-	public function newWithoutLocation( $location ) {
-		$map = $this->sourceMap;
-		unset( $map[$location] );
-
-		return count( $map ) ? new self( $map ) : false;
-	}
-
-	/**
 	 * Remove a location from the "live" hash ring
 	 *
 	 * @param string $location
