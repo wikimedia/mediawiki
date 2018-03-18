@@ -911,6 +911,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
+	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/OutputHandler.php',
 	'MediaWiki\\Preferences\\DefaultPreferencesFactory' => __DIR__ . '/includes/preferences/DefaultPreferencesFactory.php',
 	'MediaWiki\\Preferences\\PreferencesFactory' => __DIR__ . '/includes/preferences/PreferencesFactory.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',

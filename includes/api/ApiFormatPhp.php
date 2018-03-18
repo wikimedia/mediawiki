@@ -56,12 +56,12 @@ class ApiFormatPhp extends ApiFormatBase {
 		}
 		$text = serialize( $this->getResult()->getResultData( null, $transforms ) );
 
-		// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
 		// Flash, but what it does isn't friendly for the API. There's nothing
 		// we can do here that isn't actively broken in some manner, so let's
 		// just be broken in a useful manner.
 		if ( $this->getConfig()->get( 'MangleFlashPolicy' ) &&
-			in_array( 'wfOutputHandler', ob_list_handlers(), true ) &&
+			in_array( 'MediaWiki\\OutputHandler::handle', ob_list_handlers(), true ) &&
 			preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $text )
 		) {
 			$this->dieWithError( 'apierror-formatphp', 'internalerror' );
