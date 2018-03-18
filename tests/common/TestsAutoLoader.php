@@ -77,6 +77,7 @@ $wgAutoloadClasses += [
 	'ApiTestCase' => "$testDir/phpunit/includes/api/ApiTestCase.php",
 	'ApiTestCaseUpload' => "$testDir/phpunit/includes/api/ApiTestCaseUpload.php",
 	'ApiTestContext' => "$testDir/phpunit/includes/api/ApiTestContext.php",
+	'ApiUploadTestCase' => "$testDir/phpunit/includes/api/ApiUploadTestCase.php",
 	'MockApi' => "$testDir/phpunit/includes/api/MockApi.php",
 	'MockApiQueryBase' => "$testDir/phpunit/includes/api/MockApiQueryBase.php",
 	'UserWrapper' => "$testDir/phpunit/includes/api/UserWrapper.php",

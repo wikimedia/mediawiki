@@ -22,7 +22,7 @@
  *
  * @covers ApiUpload
  */
-class ApiUploadTest extends ApiTestCaseUpload {
+class ApiUploadTest extends ApiUploadTestCase {
 	/**
 	 * Testing login
 	 * XXX this is a funny way of getting session context
