@@ -43,6 +43,8 @@ class DatabasePostgres extends Database {
 	private $connectString;
 	/** @var string */
 	private $coreSchema;
+	/** @var string */
+	private $tempSchema;
 	/** @var string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap = [];
 
@@ -73,15 +75,17 @@ class DatabasePostgres extends Database {
 	}
 
 	public function hasConstraint( $name ) {
-		$conn = $this->getBindingHandle();
-
-		$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
-			"WHERE c.connamespace = n.oid AND conname = '" .
-			pg_escape_string( $conn, $name ) . "' AND n.nspname = '" .
-			pg_escape_string( $conn, $this->getCoreSchema() ) . "'";
-		$res = $this->doQuery( $sql );
-
-		return $this->numRows( $res );
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
+				"WHERE c.connamespace = n.oid AND conname = " .
+				$this->addQuotes( $name ) . " AND n.nspname = " .
+				$this->addQuotes( $schema );
+			$res = $this->doQuery( $sql );
+			if ( $res && $this->numRows( $res ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function open( $server, $user, $password, $dbName ) {
@@ -445,59 +449,65 @@ class DatabasePostgres extends Database {
 
 	public function indexAttributes( $index, $schema = false ) {
 		if ( $schema === false ) {
-			$schema = $this->getCoreSchema();
-		}
-		/*
-		 * A subquery would be not needed if we didn't care about the order
-		 * of attributes, but we do
-		 */
-		$sql = <<<__INDEXATTR__
-
-			SELECT opcname,
-				attname,
-				i.indoption[s.g] as option,
-				pg_am.amname
-			FROM
-				(SELECT generate_series(array_lower(isub.indkey,1), array_upper(isub.indkey,1)) AS g
-					FROM
-						pg_index isub
-					JOIN pg_class cis
-						ON cis.oid=isub.indexrelid
-					JOIN pg_namespace ns
-						ON cis.relnamespace = ns.oid
-					WHERE cis.relname='$index' AND ns.nspname='$schema') AS s,
-				pg_attribute,
-				pg_opclass opcls,
-				pg_am,
-				pg_class ci
-				JOIN pg_index i
-					ON ci.oid=i.indexrelid
-				JOIN pg_class ct
-					ON ct.oid = i.indrelid
-				JOIN pg_namespace n
-					ON ci.relnamespace = n.oid
-				WHERE
-					ci.relname='$index' AND n.nspname='$schema'
-					AND	attrelid = ct.oid
-					AND	i.indkey[s.g] = attnum
-					AND	i.indclass[s.g] = opcls.oid
-					AND	pg_am.oid = opcls.opcmethod
-__INDEXATTR__;
-		$res = $this->query( $sql, __METHOD__ );
-		$a = [];
-		if ( $res ) {
-			foreach ( $res as $row ) {
-				$a[] = [
-					$row->attname,
-					$row->opcname,
-					$row->amname,
-					$row->option ];
-			}
+			$schemas = $this->getCoreSchemas();
 		} else {
-			return null;
+			$schemas = [ $schema ];
 		}
 
-		return $a;
+		$eindex = $this->addQuotes( $index );
+
+		foreach ( $schemas as $schema ) {
+			$eschema = $this->addQuotes( $schema );
+			/*
+			 * A subquery would be not needed if we didn't care about the order
+			 * of attributes, but we do
+			 */
+			$sql = <<<__INDEXATTR__
+
+				SELECT opcname,
+					attname,
+					i.indoption[s.g] as option,
+					pg_am.amname
+				FROM
+					(SELECT generate_series(array_lower(isub.indkey,1), array_upper(isub.indkey,1)) AS g
+						FROM
+							pg_index isub
+						JOIN pg_class cis
+							ON cis.oid=isub.indexrelid
+						JOIN pg_namespace ns
+							ON cis.relnamespace = ns.oid
+						WHERE cis.relname=$eindex AND ns.nspname=$eschema) AS s,
+					pg_attribute,
+					pg_opclass opcls,
+					pg_am,
+					pg_class ci
+					JOIN pg_index i
+						ON ci.oid=i.indexrelid
+					JOIN pg_class ct
+						ON ct.oid = i.indrelid
+					JOIN pg_namespace n
+						ON ci.relnamespace = n.oid
+					WHERE
+						ci.relname=$eindex AND n.nspname=$eschema
+						AND	attrelid = ct.oid
+						AND	i.indkey[s.g] = attnum
+						AND	i.indclass[s.g] = opcls.oid
+						AND	pg_am.oid = opcls.opcmethod
+__INDEXATTR__;
+			$res = $this->query( $sql, __METHOD__ );
+			$a = [];
+			if ( $res ) {
+				foreach ( $res as $row ) {
+					$a[] = [
+						$row->attname,
+						$row->opcname,
+						$row->amname,
+						$row->option ];
+				}
+				return $a;
+			}
+		}
+		return null;
 	}
 
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
@@ -786,9 +796,9 @@ __INDEXATTR__;
 	}
 
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$eschema = $this->addQuotes( $this->getCoreSchema() );
+		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
 		$result = $this->query(
-			"SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
+			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)", $fname );
 		$endArray = [];
 
 		foreach ( $result as $table ) {
@@ -979,6 +989,29 @@ __INDEXATTR__;
 		return $this->coreSchema;
 	}
 
+	/**
+	 * Return schema names for temporary tables and core application tables
+	 *
+	 * @since 1.31
+	 * @return string[] schema names
+	 */
+	public function getCoreSchemas() {
+		if ( $this->tempSchema ) {
+			return [ $this->tempSchema, $this->getCoreSchema() ];
+		}
+
+		$res = $this->query(
+			"SELECT nspname FROM pg_catalog.pg_namespace n WHERE n.oid = pg_my_temp_schema()", __METHOD__
+		);
+		$row = $this->fetchObject( $res );
+		if ( $row ) {
+			$this->tempSchema = $row->nspname;
+			return [ $this->tempSchema, $this->getCoreSchema() ];
+		}
+
+		return [ $this->getCoreSchema() ];
+	}
+
 	public function getServerVersion() {
 		if ( !isset( $this->numericVersion ) ) {
 			$conn = $this->getBindingHandle();
@@ -1011,18 +1044,24 @@ __INDEXATTR__;
 			$types = [ $types ];
 		}
 		if ( $schema === false ) {
-			$schema = $this->getCoreSchema();
+			$schemas = $this->getCoreSchemas();
+		} else {
+			$schemas = [ $schema ];
 		}
 		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
-		$eschema = $this->addQuotes( $schema );
-		$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
-			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
-			. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-		$res = $this->query( $sql );
-		$count = $res ? $res->numRows() : 0;
+		foreach ( $schemas as $schema ) {
+			$eschema = $this->addQuotes( $schema );
+			$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
+				. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
+				. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
+			$res = $this->query( $sql );
+			if ( $res && $res->numRows() ) {
+				return true;
+			}
+		}
 
-		return (bool)$count;
+		return false;
 	}
 
 	/**
@@ -1047,20 +1086,21 @@ __INDEXATTR__;
 			AND tgrelid=pg_class.oid
 			AND nspname=%s AND relname=%s AND tgname=%s
 SQL;
-		$res = $this->query(
-			sprintf(
-				$q,
-				$this->addQuotes( $this->getCoreSchema() ),
-				$this->addQuotes( $table ),
-				$this->addQuotes( $trigger )
-			)
-		);
-		if ( !$res ) {
-			return null;
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$res = $this->query(
+				sprintf(
+					$q,
+					$this->addQuotes( $schema ),
+					$this->addQuotes( $table ),
+					$this->addQuotes( $trigger )
+				)
+			);
+			if ( $res && $res->numRows() ) {
+				return true;
+			}
 		}
-		$rows = $res->numRows();
 
-		return $rows;
+		return false;
 	}
 
 	public function ruleExists( $table, $rule ) {
@@ -1068,7 +1108,7 @@ SQL;
 			[
 				'rulename' => $rule,
 				'tablename' => $table,
-				'schemaname' => $this->getCoreSchema()
+				'schemaname' => $this->getCoreSchemas()
 			]
 		);
 
@@ -1076,19 +1116,19 @@ SQL;
 	}
 
 	public function constraintExists( $table, $constraint ) {
-		$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
-			"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
-			$this->addQuotes( $this->getCoreSchema() ),
-			$this->addQuotes( $table ),
-			$this->addQuotes( $constraint )
-		);
-		$res = $this->query( $sql );
-		if ( !$res ) {
-			return null;
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$sql = sprintf( "SELECT 1 FROM information_schema.table_constraints " .
+				"WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
+				$this->addQuotes( $schema ),
+				$this->addQuotes( $table ),
+				$this->addQuotes( $constraint )
+			);
+			$res = $this->query( $sql );
+			if ( $res && $res->numRows() ) {
+				return true;
+			}
 		}
-		$rows = $res->numRows();
-
-		return $rows;
+		return false;
 	}
 
 	/**
