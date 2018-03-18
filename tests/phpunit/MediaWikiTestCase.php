@@ -1462,6 +1462,11 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 					$db->delete( $tbl, '*', __METHOD__ );
 				}
 
+				if ( $db->getType() === 'postgres' ) {
+					// Reset the table's sequence too.
+					$db->resetSequenceForTable( $tbl, __METHOD__ );
+				}
+
 				if ( $tbl === 'page' ) {
 					// Forget about the pages since they don't
 					// exist in the DB.

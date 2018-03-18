@@ -776,12 +776,77 @@ __INDEXATTR__;
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
-		$newName = $this->addIdentifierQuotes( $newName );
-		$oldName = $this->addIdentifierQuotes( $oldName );
+		$newNameE = $this->addIdentifierQuotes( $newName );
+		$oldNameE = $this->addIdentifierQuotes( $oldName );
 
-		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName " .
-			"(LIKE $oldName INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
+		$ret = $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newNameE " .
+			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
+		if ( !$ret ) {
+			return $ret;
+		}
+
+		$res = $this->query( 'SELECT attname FROM pg_class c'
+			. ' JOIN pg_namespace n ON (n.oid = c.relnamespace)'
+			. ' JOIN pg_attribute a ON (a.attrelid = c.oid)'
+			. ' JOIN pg_attrdef d ON (c.oid=d.adrelid and a.attnum=d.adnum)'
+			. ' WHERE relkind = \'r\''
+			. ' AND nspname = ' . $this->addQuotes( $this->getCoreSchema() )
+			. ' AND relname = ' . $this->addQuotes( $oldName )
+			. ' AND adsrc LIKE \'nextval(%\'',
+			$fname
+		);
+		$row = $this->fetchObject( $res );
+		if ( $row ) {
+			$field = $row->attname;
+			$newSeq = "{$newName}_{$field}_seq";
+			$fieldE = $this->addIdentifierQuotes( $field );
+			$newSeqE = $this->addIdentifierQuotes( $newSeq );
+			$newSeqQ = $this->addQuotes( $newSeq );
+			$this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " SEQUENCE $newSeqE", $fname );
+			$this->query(
+				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
+				$fname
+			);
+		}
+
+		return $ret;
 	}
+
+	public function resetSequenceForTable( $table, $fname = __METHOD__ ) {
+		$table = $this->tableName( $table, 'raw' );
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$res = $this->query(
+				'SELECT c.oid FROM pg_class c JOIN pg_namespace n ON (n.oid = c.relnamespace)'
+				. ' WHERE relkind = \'r\''
+				. ' AND nspname = ' . $this->addQuotes( $schema )
+				. ' AND relname = ' . $this->addQuotes( $table ),
+				$fname
+			);
+			if ( !$res || !$this->numRows( $res ) ) {
+				continue;
+			}
+
+			$oid = $this->fetchObject( $res )->oid;
+			$res = $this->query( 'SELECT adsrc FROM pg_attribute a'
+				. ' JOIN pg_attrdef d ON (a.attrelid=d.adrelid and a.attnum=d.adnum)'
+				. " WHERE a.attrelid = $oid"
+				. ' AND adsrc LIKE \'nextval(%\'',
+				$fname
+			);
+			$row = $this->fetchObject( $res );
+			if ( $row ) {
+				$this->query(
+					'SELECT ' . preg_replace( '/^nextval\((.+)\)$/', 'setval($1,1,false)', $row->adsrc ),
+					$fname
+				);
+				return true;
+			}
+			return false;
+		}
+
+		return false;
+	}
+
 
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
