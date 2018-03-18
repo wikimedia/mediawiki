@@ -1390,7 +1390,7 @@ more stuff
 	 * @covers WikiPage::newFromID
 	 */
 	public function testNewFromId_returnsNullOnNonExistingId() {
-		$this->assertNull( WikiPage::newFromID( 73574757437437743743 ) );
+		$this->assertNull( WikiPage::newFromID( 2147483647 ) );
 	}
 
 	public function provideTestInsertProtectNullRevision() {
