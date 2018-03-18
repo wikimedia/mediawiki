@@ -116,7 +116,8 @@ class ApiDelete extends ApiBase {
 			$hasHistory = false;
 			$reason = $page->getAutoDeleteReason( $hasHistory );
 			if ( $reason === false ) {
-				return Status::newFatal( 'cannotdelete', $title->getPrefixedText() );
+				// Should be reachable only if the page has no revisions
+				return Status::newFatal( 'cannotdelete', $title->getPrefixedText() ); // @codeCoverageIgnore
 			}
 		}
 
