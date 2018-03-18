@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Anomie",
-			"Siebrand"
+			"Siebrand",
+			"Zoranzoki21"
 		]
 	},
 
@@ -789,7 +790,7 @@
 	"apihelp-query+exturlusage-param-namespace": "The page namespaces to enumerate.",
 	"apihelp-query+exturlusage-param-limit": "How many pages to return.",
 	"apihelp-query+exturlusage-param-expandurl": "Expand protocol-relative URLs with the canonical protocol.",
-	"apihelp-query+exturlusage-example-simple": "Show pages linking to <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Show pages linking to <kbd>https://www.mediawiki.org</kbd>.",
 
 	"apihelp-query+filearchive-summary": "Enumerate all deleted files sequentially.",
 	"apihelp-query+filearchive-param-from": "The image title to start enumerating from.",
