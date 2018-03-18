@@ -2465,7 +2465,7 @@ abstract class ApiBase extends ContextSource {
 				realpath( __DIR__ ) ?: __DIR__ => [
 					'path' => $IP,
 					'name' => 'MediaWiki',
-					'license-name' => 'GPL-2.0+',
+					'license-name' => 'GPL-2.0-or-later',
 				],
 				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
 				realpath( $extDir ) ?: $extDir => null,
