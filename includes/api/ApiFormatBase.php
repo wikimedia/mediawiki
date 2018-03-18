@@ -315,7 +315,7 @@ abstract class ApiFormatBase extends ApiBase {
 					false, FormatJson::ALL_OK
 				);
 
-				// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+				// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
 				// Flash, but what it does isn't friendly for the API, so we need to
 				// work around it.
 				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
