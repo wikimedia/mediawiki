@@ -83,7 +83,7 @@ class HashRing {
 	 * @param string $item
 	 * @return string Location
 	 */
-	public function getLocation( $item ) {
+	final public function getLocation( $item ) {
 		$locations = $this->getLocations( $item, 1 );
 
 		return $locations[0];
@@ -174,7 +174,7 @@ class HashRing {
 	 * @return HashRing
 	 * @throws UnexpectedValueException
 	 */
-	public function getLiveRing() {
+	protected function getLiveRing() {
 		$now = time();
 		if ( $this->liveRing === null || $this->ejectionNextExpiry <= $now ) {
 			$this->ejectionExpiries = array_filter(
