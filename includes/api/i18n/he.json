@@ -15,7 +15,8 @@
 			"Esh77",
 			"שמזן",
 			"Or",
-			"Umherirrender"
+			"Umherirrender",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:Special:MyLanguage/API:Errors_and_warnings|API: שגיאות ואזהרות]].\n\n<strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות ר' [[Special:ApiSandbox]].",
@@ -735,7 +736,7 @@
 	"apihelp-query+exturlusage-param-namespace": "איזה מרחב שם למנות.",
 	"apihelp-query+exturlusage-param-limit": "כמה דפים להחזיר.",
 	"apihelp-query+exturlusage-param-expandurl": "הרחבת URL־ים בעלי פרוטוקול יחסי בפרוטוקול קנוני.",
-	"apihelp-query+exturlusage-example-simple": "הצגת דפים שמקשרים ל־<kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "הצגת דפים שמקשרים ל־<kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "למנות את כל הקבצים המחוקים לפי הסדר.",
 	"apihelp-query+filearchive-param-from": "מאיזו כותרת תמונה להתחיל למנות.",
 	"apihelp-query+filearchive-param-to": "באיזו כותרת תמונה להפסיק למנות.",

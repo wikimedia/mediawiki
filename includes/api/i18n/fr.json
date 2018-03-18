@@ -30,7 +30,8 @@
 			"Umherirrender",
 			"Thibaut120094",
 			"KATRINE1992",
-			"Kenjiraw"
+			"Kenjiraw",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong>L’API MédiaWiki est une interface stable et mature qui est supportée et améliorée de façon active. Bien que nous essayions de l’éviter, nous pouvons avoir parfois besoin de faire des modifications impactantes ; inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un entête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet entête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>Test :</strong> Pour faciliter le test des requêtes de l’API, voyez [[Special:ApiSandbox]].</p>",
@@ -755,7 +756,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Les espaces de nom à énumérer.",
 	"apihelp-query+exturlusage-param-limit": "Combien de pages renvoyer.",
 	"apihelp-query+exturlusage-param-expandurl": "Étendre les URLs relatives au protocole avec le protocole canonique.",
-	"apihelp-query+exturlusage-example-simple": "Afficher les pages avec un lien vers <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Afficher les pages avec un lien vers <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Énumérer séquentiellement tous les fichiers supprimés.",
 	"apihelp-query+filearchive-param-from": "Le titre de l’image auquel démarrer l’énumération.",
 	"apihelp-query+filearchive-param-to": "Le titre de l’image auquel arrêter l’énumération.",

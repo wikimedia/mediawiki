@@ -217,7 +217,7 @@ class FindHooks extends Maintenance {
 		$retval = [];
 		while ( true ) {
 			$json = Http::get(
-				wfAppendQuery( 'http://www.mediawiki.org/w/api.php', $params ),
+				wfAppendQuery( 'https://www.mediawiki.org/w/api.php', $params ),
 				[],
 				__METHOD__
 			);
