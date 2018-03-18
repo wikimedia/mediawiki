@@ -30,7 +30,8 @@
 			"Fortega",
 			"Luzcaru",
 			"Javiersanp",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> Todas las funciones mostradas en esta página deberían estar funcionando, pero la API aún está en desarrollo activo, y puede cambiar en cualquier momento. Suscribase a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] para aviso de actualizaciones.\n\n<strong>Erroneous requests:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para más información ver [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> Para facilitar la comprobación de las solicitudes de API, consulte [[Special:ApiSandbox]].",
@@ -736,7 +737,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Los espacios de nombres que enumerar.",
 	"apihelp-query+exturlusage-param-limit": "Cuántas páginas se devolverán.",
 	"apihelp-query+exturlusage-param-expandurl": "Expandir las URL relativas a un protocolo con el protocolo canónico.",
-	"apihelp-query+exturlusage-example-simple": "Mostrar páginas que enlacen con <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Mostrar páginas que enlacen con <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Enumerar todos los archivos borrados de forma secuencial.",
 	"apihelp-query+filearchive-param-from": "El título de imagen para comenzar la enumeración",
 	"apihelp-query+filearchive-param-to": "El título de imagen para detener la enumeración.",

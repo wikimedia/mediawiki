@@ -7,7 +7,8 @@
 			"ViDam",
 			"Macofe",
 			"Wolf Rex",
-			"Dj"
+			"Dj",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentáció]]\n* [[mw:Special:MyLanguage/API:FAQ|GYIK]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Levelezőlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-bejelentések]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Hibabejelentések és kérések]\n</div>\n<strong>Státusz:</strong> Minden ezen a lapon látható funkciónak működnie kell, de az API jelenleg is aktív fejlesztés alatt áll, és bármikor változhat. Iratkozz fel a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce levelezőlistára] a frissítések követéséhez.\n\n<strong>Hibás kérések:</strong> Ha az API hibás kérést kap, egy HTTP-fejlécet küld vissza „MediaWiki-API-Error” kulccsal, és a fejléc értéke és a visszaküldött hibakód ugyanarra az értékre lesz állítva. További információért lásd: [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Hibák és figyelmeztetések]].\n\n<p class=\"mw-apisandbox-link\"><strong>Tesztelés:</strong> Az API-kérések könnyebb teszteléséhez használható az [[Special:ApiSandbox|API-homokozó]].</p>",
@@ -636,7 +637,7 @@
 	"apihelp-query+exturlusage-param-protocol": "Az URL protokollja. Ha üres és az <var>$1query</var> paraméter meg van adva, a protokoll <kbd>http</kbd>. Hagyd ezt és az <var>$1query</var> paramétert is üresen az összes külső link listázásához.",
 	"apihelp-query+exturlusage-param-namespace": "A listázandó névtér.",
 	"apihelp-query+exturlusage-param-limit": "A visszaadandó lapok száma.",
-	"apihelp-query+exturlusage-example-simple": "A <kbd>http://www.mediawiki.org</kbd> URL-re hivatkozó lapok megjelenítése.",
+	"apihelp-query+exturlusage-example-simple": "A <kbd>https://www.mediawiki.org</kbd> URL-re hivatkozó lapok megjelenítése.",
 	"apihelp-query+filearchive-summary": "Az összes törölt fájl visszaadása.",
 	"apihelp-query+filearchive-param-from": "A fájlok listázása ettől a címtől.",
 	"apihelp-query+filearchive-param-to": "A fájlok listázása eddig a címig.",

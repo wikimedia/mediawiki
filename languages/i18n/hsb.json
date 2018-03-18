@@ -14,7 +14,8 @@
 			"아라",
 			"Mikławš",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Zoranzoki21"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -1685,7 +1686,7 @@
 	"index-category-desc": "Strona je <code><nowiki>__INDEX__</nowiki></code> na sebi (a je w mjenowym rumje, hdźež ta chorhojčak je dowolena), a tohodla so přez boćiki indeksuje, hdźež so to normalnje njestawa.",
 	"post-expand-template-inclusion-category-desc": "Po ekspansiji wšěch předłohow je strona wjetša hač <code>$wgMaxArticleSize</code>, tohodla njejsu so někotre předłohi ekspandowali.",
 	"post-expand-template-argument-category-desc": "Po ekspandowanju předłohoweho argumenta (něšto w trójnych zhibowanych spinkach kaž <code>{{{přikład}}}</code>), strona je wjetša hač <code>$wgMaxArticleSize</code>.",
-	"expensive-parserfunction-category-desc": "Strona wužiwa přewjele naročnych parserowych funkcijow (kaž <code>#ifexist</code>). Hlej [http://www.mediawiki.org/wiki/Special:MyLanguageManual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
+	"expensive-parserfunction-category-desc": "Strona wužiwa přewjele naročnych parserowych funkcijow (kaž <code>#ifexist</code>). Hlej [https://www.mediawiki.org/wiki/Special:MyLanguageManual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit].",
 	"broken-file-category-desc": "Strona wobsahuje njepłaćiwy datajowy wotkaz (wotkaz za zasadźenje dataje, jeli dataja njeeksistuje).",
 	"hidden-category-category-desc": "Kategorija wobsahuje <code><nowiki>__HIDDENCAT__</nowiki></code> w swojim wobsahu strony, kotrež standardnje jeje zwobraznjenju w kašćiku kategorijowych wotkazow na stronje zadźěwa.",
 	"trackingcategories-nodesc": "Žane wopisanje k dispoziciji",

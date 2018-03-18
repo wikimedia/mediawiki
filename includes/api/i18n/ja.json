@@ -13,7 +13,8 @@
 			"Kkairri",
 			"ネイ",
 			"Omotecho",
-			"Yusuke1109"
+			"Yusuke1109",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> このページに表示されている機能は全て動作するはずですが、この API は未だ活発に開発されており、変更される可能性があります。アップデートの通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -562,7 +563,7 @@
 	"apihelp-query+exturlusage-param-query": "プロトコルを除いた検索文字列。[[Special:LinkSearch]] も参照してください。すべての外部リンクを一覧表示するには空欄にしてください。",
 	"apihelp-query+exturlusage-param-namespace": "列挙するページ名前空間。",
 	"apihelp-query+exturlusage-param-limit": "返すページの数。",
-	"apihelp-query+exturlusage-example-simple": "<kbd>http://www.mediawiki.org</kbd> にリンクしているページを一覧表示する。",
+	"apihelp-query+exturlusage-example-simple": "<kbd>https://www.mediawiki.org</kbd> にリンクしているページを一覧表示する。",
 	"apihelp-query+filearchive-summary": "削除されたファイルをすべて順に列挙します。",
 	"apihelp-query+filearchive-param-from": "列挙の始点となる画像のページ名。",
 	"apihelp-query+filearchive-param-to": "列挙の終点となる画像のページ名。",

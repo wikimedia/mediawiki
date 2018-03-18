@@ -10,7 +10,8 @@
 			"아라",
 			"TTO",
 			"Macofe",
-			"Nemo bis"
+			"Nemo bis",
+			"Zoranzoki21"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1141,7 +1142,7 @@
 	"right-editmyoptions": "De eije Enschtällonge änndere",
 	"right-rollback": "All de letzte Ännderonge vum läzde Metmaacher aan ene Sigg retuhr maache",
 	"right-markbotedits": "Retuhr jenumme Ännderonge als Ännderonge vun Bots makkehre",
-	"right-noratelimit": "Kein Beschränkonge dorsch Jränze (<i lang=\"en\">[http://www.mediawiki.org/wiki/Manual:%24wgRateLimits $wgRateLimits]</i>)",
+	"right-noratelimit": "Kein Beschränkonge dorsch Jränze (<i lang=\"en\">[https://www.mediawiki.org/wiki/Manual:%24wgRateLimits $wgRateLimits]</i>)",
 	"right-import": "Sigge uß ander Wikis empochteere",
 	"right-importupload": "Sigge övver et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Extensible Markup Language\">XML</i>-Dattei-Huhlahde empotteere",
 	"right-patrol": "Anderlücks Änderonge aan Sigge als „nohjelohrt“ makkehre",

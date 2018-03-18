@@ -13,7 +13,8 @@
 			"Hamilton Abreu",
 			"Umherirrender",
 			"Fitoschido",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discusión]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitudes]\n</div>\n<strong>Estado:</strong> Tódalas funcionalidades mostradas nesta páxina deberían estar funcionando, pero a API aínda está desenrolo, e pode ser modificada en calquera momento. Apúntese na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discusión mediawiki-api-announce] para estar informado acerca das actualizacións.\n\n<strong>Solicitudes incorrectas:</strong> Cando se envían solicitudes incorrectas á API, envíase unha cabeceira HTTP coa chave \"MediaWiki-API-Error\" e, a seguir, tanto o valor da cabeceira como o código de erro retornado serán definidos co mesmo valor. Para máis información, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Erros e avisos]].\n\n<strong>Test:</strong> Para facilitar as probas das peticións da API, consulte [[Special:ApiSandbox]].",
@@ -718,7 +719,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Espazo de nomes a enumerar.",
 	"apihelp-query+exturlusage-param-limit": "Cantas páxinas devolver.",
 	"apihelp-query+exturlusage-param-expandurl": "Expandir as URLs relativas a un protocolo co protocolo canónico.",
-	"apihelp-query+exturlusage-example-simple": "Mostrar páxinas ligando a <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Mostrar páxinas ligando a <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Enumerar secuencialmente todos os ficheiros borrados.",
 	"apihelp-query+filearchive-param-from": "Título da imaxe coa que comezar a enumeración.",
 	"apihelp-query+filearchive-param-to": "Título da imaxe coa que rematar a enumeración.",

@@ -5,8 +5,8 @@
 	scripts.
 -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-		xmlns:mwsl="http://www.mediawiki.org/xml/sitelist-1.0/"
-		targetNamespace="http://www.mediawiki.org/xml/sitelist-1.0/"
+		xmlns:mwsl="https://www.mediawiki.org/xml/sitelist-1.0/"
+		targetNamespace="https://www.mediawiki.org/xml/sitelist-1.0/"
 		elementFormDefault="qualified">
 
 	<annotation>
