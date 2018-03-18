@@ -41,7 +41,7 @@ class XmlDumpWriter {
 		global $wgContLang;
 		$ver = WikiExporter::schemaVersion();
 		return Xml::element( 'mediawiki', [
-			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
+			'xmlns'              => "https://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			/*
 			 * When a new version of the schema is created, it needs staging on mediawiki.org.
@@ -53,8 +53,8 @@ class XmlDumpWriter {
 			 * After it is reviewed, merged and deployed (sync-docroot), the index.html needs purging.
 			 * echo "https://www.mediawiki.org/xml/index.html" | mwscript purgeList.php --wiki=aawiki
 			 */
-			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
-				"http://www.mediawiki.org/xml/export-$ver.xsd",
+			'xsi:schemaLocation' => "https://www.mediawiki.org/xml/export-$ver/ " .
+				"https://www.mediawiki.org/xml/export-$ver.xsd",
 			'version'            => $ver,
 			'xml:lang'           => $wgContLang->getHtmlCode() ],
 			null ) .
