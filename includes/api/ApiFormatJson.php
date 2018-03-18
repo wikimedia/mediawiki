@@ -87,7 +87,7 @@ class ApiFormatJson extends ApiFormatBase {
 		$data = $this->getResult()->getResultData( null, $transform );
 		$json = FormatJson::encode( $data, $this->getIsHtml(), $opt );
 
-		// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
 		// Flash, but what it does isn't friendly for the API, so we need to
 		// work around it.
 		if ( preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $json ) ) {
