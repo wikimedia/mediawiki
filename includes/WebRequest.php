@@ -88,8 +88,7 @@ class WebRequest {
 	 * @codeCoverageIgnore
 	 */
 	public function __construct() {
-		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
-			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
+		$this->requestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...

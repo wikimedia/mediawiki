@@ -26,7 +26,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	public function testDetectServer( $expected, $input, $description ) {
 		$this->setMwGlobals( 'wgAssumeProxiesUseDefaultProtocolPorts', true );
 
-		$_SERVER = $input;
+		$this->setServerVars( $input );
 		$result = WebRequest::detectServer();
 		$this->assertEquals( $expected, $result, $description );
 	}
@@ -363,7 +363,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getIP
 	 */
 	public function testGetIP( $expected, $input, $squid, $xffList, $private, $description ) {
-		$_SERVER = $input;
+		$this->setServerVars( $input );
 		$this->setMwGlobals( [
 			'wgUsePrivateIPs' => $private,
 			'wgHooks' => [
@@ -608,8 +608,19 @@ class WebRequestTest extends MediaWikiTestCase {
 	 * @covers WebRequest::getAcceptLang
 	 */
 	public function testAcceptLang( $acceptLanguageHeader, $expectedLanguages, $description ) {
-		$_SERVER = [ 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader ];
+		$this->setServerVars( [ 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader ] );
 		$request = new WebRequest();
 		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description );
+	}
+
+	protected function setServerVars( $vars ) {
+		// Don't remove vars which should be available in all SAPI.
+		if ( !isset( $vars['REQUEST_TIME_FLOAT'] ) ) {
+			$vars['REQUEST_TIME_FLOAT'] = $_SERVER['REQUEST_TIME_FLOAT'];
+		}
+		if ( !isset( $vars['REQUEST_TIME'] ) ) {
+			$vars['REQUEST_TIME'] = $_SERVER['REQUEST_TIME'];
+		}
+		$_SERVER = $vars;
 	}
 }
