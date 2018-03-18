@@ -211,6 +211,15 @@ class DatabasePostgres extends Database {
 		$conn = $this->getBindingHandle();
 
 		$sql = mb_convert_encoding( $sql, 'UTF-8' );
+
+		// PostgreSQL, unlike other DBs we support, puts the transaction into
+		// an error state if any statement during the transaction fails. We can
+		// recover from this (to emulate other DBs behavior) using savepoints.
+		$compatSavepoint = $this->trxLevel && !preg_match( '/^(?:COMMIT|ROLLBACK|SAVEPOINT)/', $sql );
+		if ( $compatSavepoint ) {
+			$this->doQuery( 'SAVEPOINT wikimedia_rdbms_pgstatement' );
+		}
+
 		// Clear previously left over PQresult
 		while ( $res = pg_get_result( $conn ) ) {
 			pg_free_result( $res );
@@ -221,6 +230,12 @@ class DatabasePostgres extends Database {
 		$this->lastResultHandle = pg_get_result( $conn );
 		$this->lastAffectedRowCount = null;
 		if ( pg_result_error( $this->lastResultHandle ) ) {
+			if ( $compatSavepoint ) {
+				$resultHandle = $this->lastResultHandle;
+				$this->doQuery( 'ROLLBACK TO SAVEPOINT wikimedia_rdbms_pgstatement' );
+				$this->lastAffectedRowCount = 0;
+				$this->lastResultHandle = $resultHandle;
+			}
 			return false;
 		}
 
@@ -246,25 +261,6 @@ class DatabasePostgres extends Database {
 			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s\n",
 				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
-	}
-
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		if ( $tempIgnore ) {
-			/* Check for constraint violation */
-			if ( $errno === '23505' ) {
-				parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
-
-				return;
-			}
-		}
-		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->trxLevel ) {
-			// Throw away the transaction state, then raise the error as normal.
-			// Note that if this connection is managed by LBFactory, it's already expected
-			// that the other transactions LBFactory manages will be rolled back.
-			$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
-		}
-		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
 	public function freeResult( $res ) {
