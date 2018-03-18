@@ -1,4 +1,4 @@
-<sites version="1.0" xmlns="http://www.mediawiki.org/xml/sitelist-1.0/">
+<sites version="1.0" xmlns="https://www.mediawiki.org/xml/sitelist-1.0/">
 	<site><globalid>Foo</globalid></site>
 	<site>
 		<globalid>acme.com</globalid>
