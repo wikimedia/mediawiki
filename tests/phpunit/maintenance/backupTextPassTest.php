@@ -482,10 +482,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		if ( $fname === null ) {
 			$fname = $this->getNewTempFile();
 		}
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" '
+		$header = '<mediawiki xmlns="https://www.mediawiki.org/xml/export-0.10/" '
 			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ '
-			. 'http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+			. 'xsi:schemaLocation="https://www.mediawiki.org/xml/export-0.10/ '
+			. 'https://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>

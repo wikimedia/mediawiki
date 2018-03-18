@@ -27,7 +27,7 @@
 class ApiFormatXml extends ApiFormatBase {
 
 	private $mRootElemName = 'api';
-	public static $namespace = 'http://www.mediawiki.org/xml/api/';
+	public static $namespace = 'https://www.mediawiki.org/xml/api/';
 	private $mIncludeNamespace = false;
 	private $mXslt = null;
 
