@@ -38,30 +38,34 @@ AND attname=%s;
 SQL;
 
 		$table = $db->remappedTableName( $table );
-		$res = $db->query(
-			sprintf( $q,
-				$db->addQuotes( $db->getCoreSchema() ),
-				$db->addQuotes( $table ),
-				$db->addQuotes( $field )
-			)
-		);
-		$row = $db->fetchObject( $res );
-		if ( !$row ) {
-			return null;
-		}
-		$n = new PostgresField;
-		$n->type = $row->typname;
-		$n->nullable = ( $row->attnotnull == 'f' );
-		$n->name = $field;
-		$n->tablename = $table;
-		$n->max_length = $row->attlen;
-		$n->deferrable = ( $row->deferrable == 't' );
-		$n->deferred = ( $row->deferred == 't' );
-		$n->conname = $row->conname;
-		$n->has_default = ( $row->atthasdef === 't' );
-		$n->default = $row->adsrc;
+		foreach ( $db->getCoreSchemas() as $schema ) {
+			$res = $db->query(
+				sprintf( $q,
+					$db->addQuotes( $schema ),
+					$db->addQuotes( $table ),
+					$db->addQuotes( $field )
+				)
+			);
+			$row = $db->fetchObject( $res );
+			if ( !$row ) {
+				continue;
+			}
+			$n = new PostgresField;
+			$n->type = $row->typname;
+			$n->nullable = ( $row->attnotnull == 'f' );
+			$n->name = $field;
+			$n->tablename = $table;
+			$n->max_length = $row->attlen;
+			$n->deferrable = ( $row->deferrable == 't' );
+			$n->deferred = ( $row->deferred == 't' );
+			$n->conname = $row->conname;
+			$n->has_default = ( $row->atthasdef === 't' );
+			$n->default = $row->adsrc;
 
-		return $n;
+			return $n;
+		}
+
+		return null;
 	}
 
 	function name() {
