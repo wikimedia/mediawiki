@@ -36,8 +36,6 @@ class DatabasePostgres extends Database {
 
 	/** @var resource */
 	protected $lastResultHandle = null;
-	/** @var int The number of rows affected as an integer */
-	protected $lastAffectedRowCount = null;
 
 	/** @var float|string */
 	private $numericVersion = null;
@@ -228,12 +226,11 @@ class DatabasePostgres extends Database {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
 		$this->lastResultHandle = pg_get_result( $conn );
-		$this->lastAffectedRowCount = null;
 		if ( pg_result_error( $this->lastResultHandle ) ) {
 			if ( $compatSavepoint ) {
 				$resultHandle = $this->lastResultHandle;
 				$this->doQuery( 'ROLLBACK TO SAVEPOINT wikimedia_rdbms_pgstatement' );
-				$this->lastAffectedRowCount = 0;
+				$this->affectedRowCount = 0;
 				$this->lastResultHandle = $resultHandle;
 			}
 			return false;
@@ -386,10 +383,6 @@ class DatabasePostgres extends Database {
 	}
 
 	protected function fetchAffectedRowCount() {
-		if ( !is_null( $this->lastAffectedRowCount ) ) {
-			// Forced result for simulated queries
-			return $this->lastAffectedRowCount;
-		}
 		if ( !$this->lastResultHandle ) {
 			return 0;
 		}
@@ -601,95 +594,67 @@ __INDEXATTR__;
 		}
 
 		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
-			$multi = true;
+			$rows = $args;
 			$keys = array_keys( $args[0] );
 		} else {
-			$multi = false;
+			$rows = [ $args ];
 			$keys = array_keys( $args );
 		}
 
-		// If IGNORE is set, we use savepoints to emulate mysql's behavior
-		// @todo If PostgreSQL 9.5+, we could use ON CONFLICT DO NOTHING instead
-		$savepoint = $olde = null;
-		$numrowsinserted = 0;
-		if ( in_array( 'IGNORE', $options ) ) {
-			$savepoint = new SavepointPostgres( $this, 'mw', $this->queryLogger );
-			$olde = error_reporting( 0 );
-			// For future use, we may want to track the number of actual inserts
-			// Right now, insert (all writes) simply return true/false
-		}
+		$ignore = in_array( 'IGNORE', $options );
 
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
-		if ( $multi ) {
-			if ( $this->numericVersion >= 8.2 && !$savepoint ) {
-				$first = true;
-				foreach ( $args as $row ) {
-					if ( $first ) {
-						$first = false;
-					} else {
-						$sql .= ',';
-					}
-					$sql .= '(' . $this->makeList( $row ) . ')';
+		if ( $this->numericVersion >= 9.5 || !$ignore ) {
+			$first = true;
+			foreach ( $rows as $row ) {
+				if ( $first ) {
+					$first = false;
+				} else {
+					$sql .= ',';
 				}
-				$res = (bool)$this->query( $sql, $fname, $savepoint );
-			} else {
-				$res = true;
-				$origsql = $sql;
-				foreach ( $args as $row ) {
-					$tempsql = $origsql;
+				$sql .= '(' . $this->makeList( $row ) . ')';
+			}
+			if ( $ignore ) {
+				$sql .= ' ON CONFLICT DO NOTHING';
+			}
+			$res = (bool)$this->query( $sql, $fname );
+		} else {
+			$res = true;
+			$numrowsinserted = 0;
+
+			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
+			$oldIgnoreErrors = $this->ignoreErrors( false );
+			try {
+				foreach ( $rows as $row ) {
+					$tempsql = $sql;
 					$tempsql .= '(' . $this->makeList( $row ) . ')';
 
-					if ( $savepoint ) {
-						$savepoint->savepoint();
-					}
-
-					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
-
-					if ( $savepoint ) {
-						$bar = pg_result_error( $this->lastResultHandle );
-						if ( $bar != false ) {
-							$savepoint->rollback();
-						} else {
-							$savepoint->release();
-							$numrowsinserted++;
+					try {
+						$this->query( $tempsql, $fname );
+						$numrowsinserted++;
+					} catch ( DBQueryError $e ) {
+						// Our IGNORE is supposed to ignore duplicate key errors, but not others.
+						// (even though MySQL's version apparently ignores all errors)
+						if ( !$ignore || $e->errno !== '23505' ) {
+							throw $e;
 						}
 					}
-
-					// If any of them fail, we fail overall for this function call
-					// Note that this will be ignored if IGNORE is set
-					if ( !$tempres ) {
-						$res = false;
-					}
 				}
-			}
-		} else {
-			// Not multi, just a lone insert
-			if ( $savepoint ) {
-				$savepoint->savepoint();
-			}
-
-			$sql .= '(' . $this->makeList( $args ) . ')';
-			$res = (bool)$this->query( $sql, $fname, $savepoint );
-			if ( $savepoint ) {
-				$bar = pg_result_error( $this->lastResultHandle );
-				if ( $bar != false ) {
-					$savepoint->rollback();
+			} catch ( Exception $e ) {
+				$this->cancelAtomic( $fname );
+				if ( $oldIgnoreErrors ) {
+					$res = false;
+					$numrowsinserted = 0;
 				} else {
-					$savepoint->release();
-					$numrowsinserted++;
+					throw $e;
 				}
+			} finally {
+				$this->ignoreErrors( $oldIgnoreErrors );
 			}
-		}
-		if ( $savepoint ) {
-			error_reporting( $olde );
-			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
-			$this->lastAffectedRowCount = $numrowsinserted;
-
-			// IGNORE always returns true
-			return true;
+			$this->affectedRowCount = $numrowsinserted;
 		}
 
 		return $res;
@@ -1215,28 +1180,6 @@ SQL;
 		}
 
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
-	}
-
-	/**
-	 * Postgres specific version of replaceVars.
-	 * Calls the parent version in Database.php
-	 *
-	 * @param string $ins SQL string, read from a stream (usually tables.sql)
-	 * @return string SQL string
-	 */
-	protected function replaceVars( $ins ) {
-		$ins = parent::replaceVars( $ins );
-
-		if ( $this->numericVersion >= 8.3 ) {
-			// Thanks for not providing backwards-compatibility, 8.3
-			$ins = preg_replace( "/to_tsvector\s*\(\s*'default'\s*,/", 'to_tsvector(', $ins );
-		}
-
-		if ( $this->numericVersion <= 8.1 ) { // Our minimum version
-			$ins = str_replace( 'USING gin', 'USING gist', $ins );
-		}
-
-		return $ins;
 	}
 
 	public function makeSelectOptions( $options ) {
