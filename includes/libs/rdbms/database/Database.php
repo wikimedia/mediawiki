@@ -1131,15 +1131,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					# In the first case, the only options going forward are (a) ROLLBACK, or
 					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
 					# option is ROLLBACK, since the snapshots would have been released.
-					if ( is_object( $tempIgnore ) ) {
-						// Ugly hack to know that savepoints are in use for postgres
-						// FIXME: remove this and make DatabasePostgres use ATOMIC_CANCELABLE
-					} else {
-						$this->trxStatus = self::STATUS_TRX_ERROR;
-						$this->trxStatusCause =
-							$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
-						$tempIgnore = false; // cannot recover
-					}
+					$this->trxStatus = self::STATUS_TRX_ERROR;
+					$this->trxStatusCause =
+						$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
+					$tempIgnore = false; // cannot recover
 				} else {
 					# Nothing prior was there to lose from the transaction
 					$this->trxStatus = self::STATUS_TRX_OK;
@@ -1304,7 +1299,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function handleSessionLoss() {
 		// Clean up tracking of session-level things...
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
-		// https://www.postgresql.org/docs/9.1/static/sql-createtable.html (ignoring ON COMMIT)
+		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
