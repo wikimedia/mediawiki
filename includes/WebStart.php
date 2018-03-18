@@ -78,14 +78,10 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 // Custom setup for WebStart entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 	function wfWebStartSetup() {
-		# Initialise output buffering
-		# Check that there is no previous output or previously set up buffers, because
-		# that would cause us to potentially mix gzip and non-gzip output, creating a
-		# big mess.
-		global $IP;
+		// Initialise output buffering
+		// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
 		if ( ob_get_level() == 0 ) {
-			require_once "$IP/includes/OutputHandler.php";
-			ob_start( 'wfOutputHandler' );
+			ob_start( 'MediaWiki\\OutputHandler::handle' );
 		}
 	}
 	define( 'MW_SETUP_CALLBACK', 'wfWebStartSetup' );
