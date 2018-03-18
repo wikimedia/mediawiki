@@ -1044,9 +1044,10 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp( $title, $timestamp ) {
+		$db = $this->getDBConnection( DB_REPLICA );
 		return $this->newRevisionFromConds(
 			[
-				'rev_timestamp' => $timestamp,
+				'rev_timestamp' => $db->timestamp( $timestamp ),
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey()
 			],
