@@ -187,7 +187,7 @@ class JobQueueFederated extends JobQueue {
 		// phpcs:ignore Generic.CodeAnalysis.ForLoopWithTestFunctionCall
 		for ( $i = $this->maxPartitionsTry; $i > 0 && count( $jobsLeft ); --$i ) {
 			try {
-				$partitionRing->getLiveRing();
+				$partitionRing->getLiveLocationWeights();
 			} catch ( UnexpectedValueException $e ) {
 				break; // all servers down; nothing to insert to
 			}
