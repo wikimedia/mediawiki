@@ -37,12 +37,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Pre-config setup: Before loading LocalSettings.php
  */
 
-// Get profiler configuraton
-$wgProfiler = [];
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require "$IP/StartProfiler.php";
-}
-
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
@@ -84,6 +78,11 @@ MediaWiki\HeaderCallback::register();
 /**
  * Load LocalSettings.php
  */
+
+if ( is_readable( "$IP/StartProfiler.php" ) ) {
+	// @deprecated since 1.31: Use LocalSettings.php instead.
+	require "$IP/StartProfiler.php";
+}
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK );
