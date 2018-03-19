@@ -1401,7 +1401,6 @@ class LoadBalancer implements ILoadBalancer {
 
 		return $e;
 	}
-
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
@@ -1437,6 +1436,8 @@ class LoadBalancer implements ILoadBalancer {
 			// setting DBO_DEFAULT, then respect that. Forcing no transactions is useful
 			// for things like blob stores (ExternalStore) which want auto-commit mode.
 		}
+
+		$conn->setLBInfo( 'trxRoundId', $this->trxRoundId );
 	}
 
 	/**
@@ -1446,6 +1447,8 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $conn->getLBInfo( 'autoCommitOnly' ) ) {
 			return; // transaction rounds do not apply to these connections
 		}
+
+		$conn->setLBInfo( 'trxRoundId', false );
 
 		if ( $conn->getFlag( $conn::DBO_DEFAULT ) ) {
 			$conn->restoreFlags( $conn::RESTORE_PRIOR );
