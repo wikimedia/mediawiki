@@ -263,11 +263,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 
 		$called = false;
-		$db->onTransactionPreCommitOrIdle(
-			function () use ( &$called ) {
-				$called = true;
-			}
-		);
+		$callback = function () use ( &$called ) {
+			$called = true;
+		};
+		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when idle if DBO_TRX is set' );
 
 		$lbFactory->beginMasterChanges( __METHOD__ );
@@ -275,6 +274,17 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
+
+		$called = false;
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
+
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is rolled back' );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called in next round commit' );
 	}
 
 	/**
