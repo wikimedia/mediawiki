@@ -1407,9 +1407,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
 			function ( IDatabase $conn ) use ( $fname, $restore ) {
-				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
-					$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
-				}
+				$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 				if ( $restore ) {
 					$this->undoTransactionRoundFlags( $conn );
 				}
