@@ -650,12 +650,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function writesOrCallbacksPending() {
-		return $this->trxLevel && (
+		return $this->isTransactionOrRoundActive() && (
 			$this->trxDoneWrites ||
 			$this->trxIdleCallbacks ||
 			$this->trxPreCommitCallbacks ||
 			$this->trxEndCallbacks
 		);
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function isTransactionOrRoundActive() {
+		return ( $this->trxLevel || $this->getTransactionRoundId() );
+	}
+
+	/**
+	 * @return string|null
+	 */
+	protected function getTransactionRoundId() {
+		$id = $this->getLBInfo( 'trxRoundId' );
+
+		return is_string( $id ) ? $id : null;
 	}
 
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
@@ -3082,16 +3098,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
 		$this->trxIdleCallbacks[] = [ $callback, $fname ];
-		if ( !$this->trxLevel ) {
+		if ( !$this->isTransactionOrRoundActive() ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( $this->trxLevel || $this->getFlag( self::DBO_TRX ) ) {
-			// As long as DBO_TRX is set, writes will accumulate until the load balancer issues
-			// an implicit commit of all peer databases. This is true even if a transaction has
-			// not yet been triggered by writes; make sure $callback runs *after* any such writes.
+		if ( $this->isTransactionOrRoundActive() ) {
 			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
