@@ -459,7 +459,7 @@
 		 * Note: borrows from IP::isIPv4
 		 *
 		 * @param {string} address
-		 * @param {boolean} allowBlock
+		 * @param {boolean} [allowBlock=false]
 		 * @return {boolean}
 		 */
 		isIPv4Address: function ( address, allowBlock ) {
@@ -480,7 +480,7 @@
 		 * Note: borrows from IP::isIPv6
 		 *
 		 * @param {string} address
-		 * @param {boolean} allowBlock
+		 * @param {boolean} [allowBlock=false]
 		 * @return {boolean}
 		 */
 		isIPv6Address: function ( address, allowBlock ) {
@@ -531,7 +531,7 @@
 		 *
 		 * @since 1.25
 		 * @param {string} address String to check
-		 * @param {boolean} allowBlock True if a block of IPs should be allowed
+		 * @param {boolean} [allowBlock=false] If a block of IPs should be allowed
 		 * @return {boolean}
 		 */
 		isIPAddress: function ( address, allowBlock ) {
