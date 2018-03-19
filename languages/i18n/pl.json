@@ -96,7 +96,9 @@
 			"Cholewka",
 			"Ankam",
 			"Anwar2",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"DeRudySoulStorm",
+			"Railfail536"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1075,8 +1077,8 @@
 	"stub-threshold-disabled": "Wyłączone",
 	"recentchangesdays": "Liczba dni prezentowanych w ostatnich zmianach:",
 	"recentchangesdays-max": "(maksymalnie $1 {{PLURAL:$1|dzień|dni}})",
-	"recentchangescount": "Domyślna liczba wyświetlanych edycji:",
-	"prefs-help-recentchangescount": "Uwzględnia ostatnie zmiany, historię stron i rejestry.",
+	"recentchangescount": "Domyślna liczba wyświetlanych edycji w ostatnich zmianach, historii i rejestrach:",
+	"prefs-help-recentchangescount": "Maksymalna liczba: 1000",
 	"prefs-help-watchlist-token2": "To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez ciebie stronach.\nKażdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.\n[[Special:ResetTokens|Kliknij tu, jeśli chcesz go zresetować]].",
 	"savedprefs": "Twoje preferencje zostały zapisane.",
 	"savedrights": "Zapisano grupy {{GENDER:$1|użytkownika $1|użytkowniczki $1}}.",
@@ -3859,7 +3861,7 @@
 	"expand_templates_preview": "Podgląd",
 	"expand_templates_preview_fail_html": "<em>Ponieważ {{SITENAME}} ma włączony surowy kod HTML i zaistniała strata danych z sesji, podgląd jest ukryty jako zabezpieczenie przed atakiem JavaScript.</em>\n\n<strong>Jeśli to jest próba słusznego podglądu, proszę spróbować ponownie.</strong>\nJeśli to nie pomoże – spróbuj [[Special:UserLogout|wylogować się]] i zalogować ponownie, a także upewnij się, że twoja przeglądarka akceptuje ciasteczka z tej witryny.",
 	"expand_templates_preview_fail_html_anon": "<em>Ponieważ {{SITENAME}} ma włączoną możliwość korzystania z surowego HTML a jesteś niezalogowany, podgląd został ukryty - jest to środek zapobiegawczy przeciwko atakom JavaScript.</em>\n\n<strong>Jeżeli jest to spodziewana próba podglądu, [[Special:UserLogin|zaloguj się]] i spróbuj ponownie.</strong>",
-	"expand_templates_input_missing": "Trzeba wpisać jakiś tekst.",
+	"expand_templates_input_missing": "Musisz podać jakiś wikitekst.",
 	"pagelanguage": "Zmiana języka strony",
 	"pagelang-name": "Strona",
 	"pagelang-language": "Język",
