@@ -3254,7 +3254,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$target->getId(),
 			$guser,
 			null,
-			$tags
+			$tags,
+			$current->getId()
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
