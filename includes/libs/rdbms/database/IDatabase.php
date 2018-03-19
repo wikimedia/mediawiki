@@ -90,7 +90,7 @@ interface IDatabase {
 	const DBO_NOBUFFER = 2;
 	/** @var int Ignore query errors (internal use only!) */
 	const DBO_IGNORE = 4;
-	/** @var int Autoatically start transaction on first query (work with ILoadBalancer rounds) */
+	/** @var int Automatically start a transaction before running a query if none is active */
 	const DBO_TRX = 8;
 	/** @var int Use DBO_TRX in non-CLI mode */
 	const DBO_DEFAULT = 16;
@@ -253,7 +253,7 @@ interface IDatabase {
 	public function writesPending();
 
 	/**
-	 * Returns true if there is a transaction open with possible write
+	 * Returns true if there is a transaction/round open with possible write
 	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
 	 * This does *not* count recurring callbacks, e.g. from setTransactionListener().
 	 *
@@ -1490,13 +1490,19 @@ interface IDatabase {
 	/**
 	 * Run a callback as soon as there is no transaction pending.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
+	 *
+	 * When transaction round mode (DBO_TRX) is set, the callback will run at the end
+	 * of the round, just after all peer transactions COMMIT. If the transaction round
+	 * is rolled back, then the callback is cancelled.
+	 *
 	 * Queries in the function will run in AUTO-COMMIT mode unless there are begin() calls.
 	 * Callbacks must commit any transactions that they begin.
 	 *
 	 * This is useful for updates to different systems or when separate transactions are needed.
 	 * For example, one might want to enqueue jobs into a system outside the database, but only
 	 * after the database is updated so that the jobs will see the data when they actually run.
-	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
+	 * It can also be used for updates that easily suffer from lock timeouts and deadlocks,
+	 * but where atomicity is not essential.
 	 *
 	 * Updates will execute in the order they were enqueued.
 	 *
@@ -1512,10 +1518,15 @@ interface IDatabase {
 	/**
 	 * Run a callback before the current transaction commits or now if there is none.
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
+	 *
+	 * When transaction round mode (DBO_TRX) is set, the callback will run at the end
+	 * of the round, just before all peer transactions COMMIT. If the transaction round
+	 * is rolled back, then the callback is cancelled.
+	 *
 	 * Callbacks must not start nor commit any transactions. If no transaction is active,
 	 * then a transaction will wrap the callback.
 	 *
-	 * This is useful for updates that easily cause deadlocks if locks are held too long
+	 * This is useful for updates that easily suffer from lock timeouts and deadlocks,
 	 * but where atomicity is strongly desired for these updates and some related updates.
 	 *
 	 * Updates will execute in the order they were enqueued.
