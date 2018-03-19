@@ -37,12 +37,6 @@ $maintenance->setup();
 // We used to call this variable $self, but it was moved
 // to $maintenance->mSelf. Keep that here for b/c
 $self = $maintenance->getName();
-global $IP;
-# Get profiler configuraton
-$wgProfiler = [];
-if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require "$IP/StartProfiler.php";
-}
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
