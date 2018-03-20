@@ -31,6 +31,11 @@ production.
 * (T188472) The 'comma' value for $wgArticleCountMethod is no longer supported for
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
+* The right to edit sitewide Javascript (e.g. MediaWiki:Common.js) was separated from
+  'editinterface' and is available under 'editsitejs'. Having 'editinterface' is still
+  necessary to edit sitewide JS.
+* A new user group, 'jseditor', is added for controlling access to sitewide JS. No other
+  group has 'editsitejs' or 'edituserjs' (edit another user's Javascript) by default.
 
 === New features in 1.31 ===
 * Wikimedia\Rdbms\IDatabase->select() and similar methods now support

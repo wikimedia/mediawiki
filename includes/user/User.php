@@ -153,6 +153,7 @@ class User implements IDBAccessObject, UserIdentity {
 		'editmyuserjs',
 		'editmywatchlist',
 		'editsemiprotected',
+		'editsitejs',
 		'editusercss',
 		'edituserjs',
 		'hideuser',
