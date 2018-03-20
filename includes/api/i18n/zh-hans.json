@@ -1627,7 +1627,6 @@
 	"apierror-missingtitle-byname": "页面$1不存在。",
 	"apierror-moduledisabled": "<kbd>$1</kbd>模块已被禁用。",
 	"apierror-multival-only-one-of": "参数<var>$1</var>只允许$2{{PLURAL:$3||之一}}。",
-	"apierror-multival-only-one": "参数<var>$1</var>只允许一个值。",
 	"apierror-multpages": "<var>$1</var>只可以在单一页面使用。",
 	"apierror-mustbeloggedin-changeauth": "您必须登录以更改身份验证数据。",
 	"apierror-mustbeloggedin-generic": "您必须登录。",

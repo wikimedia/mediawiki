@@ -1608,7 +1608,6 @@
 	"apierror-missingtitle-byname": "הדף $1 אינו קיים.",
 	"apierror-moduledisabled": "המודול <kbd>$1</kbd> כובה.",
 	"apierror-multival-only-one-of": "{{PLURAL:$3|רק הערך|רק אחד מתוך הערכים}} $2 מותר עבור הפרמטר <var>$1</var>.",
-	"apierror-multival-only-one": "רק ערך אחד מותר עבור הפרמטר <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> יכול לשמש רק בדף בודד.",
 	"apierror-mustbeloggedin-changeauth": "יש להיכנס לחשבון כדי לשנות נתוני אימות.",
 	"apierror-mustbeloggedin-generic": "חובה להיכנס.",

@@ -1604,7 +1604,6 @@
 	"apierror-missingtitle-byname": "Сторінка $1 не існує.",
 	"apierror-moduledisabled": "Модуль <kbd>$1</kbd> було вимкнено.",
 	"apierror-multival-only-one-of": "{{PLURAL:$3|Лише значення|Лише одне значення з}} $2 дозволене для параметра <var>$1</var>.",
-	"apierror-multival-only-one": "Лише одне значення дозволене для параметра <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> може використовуватись тільки з однією сторінкою.",
 	"apierror-mustbeloggedin-changeauth": "Вам треба увійти в систему, щоб змінити автентифікаційні дані.",
 	"apierror-mustbeloggedin-generic": "Ви повинні перебувати в системі.",
