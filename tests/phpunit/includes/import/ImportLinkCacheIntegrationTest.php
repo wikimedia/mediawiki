@@ -5,8 +5,10 @@ use MediaWiki\MediaWikiServices;
  * Integration test that checks import success and
  * LinkCache integration.
  *
- * @group medium
+ * @large
  * @group Database
+ * @covers ImportStreamSource
+ * @covers ImportReporter
  *
  * @author mwjames
  */
