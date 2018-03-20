@@ -500,7 +500,9 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function startAtomic( $fname = __METHOD__ ) {
+	public function startAtomic(
+		$fname = __METHOD__, $cancelable = IDatabase::ATOMIC_NOT_CANCELABLE
+	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
