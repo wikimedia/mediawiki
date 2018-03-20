@@ -236,7 +236,8 @@ class BlockLevelPass {
 					$term = $t2 = '';
 					if ( $this->findColonNoLinks( $t, $term, $t2 ) !== false ) {
 						$t = $t2;
-						$output .= $term . $this->nextItem( ':' );
+						// Trim whitespace in list items
+						$output .= trim( $term ) . $this->nextItem( ':' );
 					}
 				}
 			} elseif ( $prefixLength || $lastPrefixLength ) {
@@ -274,7 +275,8 @@ class BlockLevelPass {
 						# @todo FIXME: This is dupe of code above
 						if ( $this->findColonNoLinks( $t, $term, $t2 ) !== false ) {
 							$t = $t2;
-							$output .= $term . $this->nextItem( ':' );
+							// Trim whitespace in list items
+							$output .= trim( $term ) . $this->nextItem( ':' );
 						}
 					}
 					++$commonPrefixLength;
@@ -371,9 +373,12 @@ class BlockLevelPass {
 				$this->inPre = false;
 			}
 			if ( $pendingPTag === false ) {
-				$output .= $t;
 				if ( $prefixLength === 0 ) {
+					$output .= $t;
 					$output .= "\n";
+				} else {
+					// Trim whitespace in list items
+					$output .= trim( $t );
 				}
 			}
 		}
