@@ -267,6 +267,7 @@ $wgAutoloadLocalClasses = [
 	'CleanupInvalidDbKeys' => __DIR__ . '/maintenance/cleanupInvalidDbKeys.php',
 	'CleanupPreferences' => __DIR__ . '/maintenance/cleanupPreferences.php',
 	'CleanupRemovedModules' => __DIR__ . '/maintenance/cleanupRemovedModules.php',
+	'CleanupSingleIpBlocks' => __DIR__ . '/maintenance/cleanupSingleIpBlocks.php',
 	'CleanupSpam' => __DIR__ . '/maintenance/cleanupSpam.php',
 	'CleanupUsersWithNoId' => __DIR__ . '/maintenance/cleanupUsersWithNoId.php',
 	'ClearInterwikiCache' => __DIR__ . '/maintenance/clearInterwikiCache.php',

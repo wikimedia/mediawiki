@@ -951,9 +951,8 @@ class Block {
 	public function getRangeStart() {
 		switch ( $this->type ) {
 			case self::TYPE_USER:
-				return '';
 			case self::TYPE_IP:
-				return IP::toHex( $this->target );
+				return '';
 			case self::TYPE_RANGE:
 				list( $start, /*...*/ ) = IP::parseRange( $this->target );
 				return $start;
@@ -970,9 +969,8 @@ class Block {
 	public function getRangeEnd() {
 		switch ( $this->type ) {
 			case self::TYPE_USER:
-				return '';
 			case self::TYPE_IP:
-				return IP::toHex( $this->target );
+				return '';
 			case self::TYPE_RANGE:
 				list( /*...*/, $end ) = IP::parseRange( $this->target );
 				return $end;
