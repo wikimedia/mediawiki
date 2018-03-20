@@ -799,7 +799,13 @@ __INDEXATTR__;
 	}
 
 	public function wasDeadlock() {
-		return $this->lastErrno() == '40P01';
+		// https://www.postgresql.org/docs/8.2/static/errcodes-appendix.html
+		return $this->lastErrno() === '40P01';
+	}
+
+	public function wasLockTimeout() {
+		// https://www.postgresql.org/docs/8.2/static/errcodes-appendix.html
+		return $this->lastErrno() === '55P03';
 	}
 
 	public function duplicateTableStructure(
