@@ -85,6 +85,7 @@ abstract class DatabaseUpdater {
 		AddRFCAndPMIDInterwiki::class,
 		PopulatePPSortKey::class,
 		PopulateIpChanges::class,
+		CleanupSingleIpBlocks::class,
 	];
 
 	/**
@@ -1262,5 +1263,4 @@ abstract class DatabaseUpdater {
 		$task->execute();
 		$this->output( "done.\n" );
 	}
-
 }
