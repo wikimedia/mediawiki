@@ -180,6 +180,9 @@ class ApiStructureTest extends MediaWikiTestCase {
 
 		foreach ( [ $paramsPlain, $paramsForHelp ] as $params ) {
 			foreach ( $params as $param => $config ) {
+				if ( !is_array( $config ) ) {
+					$config = [ ApiBase::PARAM_DFLT => $config ];
+				}
 				if ( isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] )
 					|| isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] )
 				) {
@@ -195,6 +198,48 @@ class ApiStructureTest extends MediaWikiTestCase {
 					$this->assertGreaterThanOrEqual( $config[ApiBase::PARAM_ISMULTI_LIMIT1],
 						$config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
 						. 'PARAM_ISMULTI limit cannot be smaller for users with apihighlimits rights' );
+				}
+				if ( isset( $config[ApiBase::PARAM_MIN] ) || isset( $config[ApiBase::PARAM_MAX] )
+				) {
+					$this->assertTrue( isset( $config[ApiBase::PARAM_TYPE] ) &&
+						( $config[ApiBase::PARAM_TYPE] === 'integer' ||
+						$config[ApiBase::PARAM_TYPE] === 'limit' ),
+						"$param: PARAM_MIN/MAX only allowed for integer and limit types" );
+				}
+				if ( isset( $config[ApiBase::PARAM_MAX2] ) ) {
+					$this->assertSame( 'limit', $config[ApiBase::PARAM_TYPE],
+						"$param: PARAM_MAX2 only allowed for limit type" );
+				}
+				if ( isset( $config[ApiBase::PARAM_RANGE_ENFORCE] ) ) {
+					$this->assertSame( 'integer', $config[ApiBase::PARAM_TYPE],
+						"$param: PARAM_RANGE_ENFORCE only allowed for integer type" );
+				}
+				if ( isset( $config[ApiBase::PARAM_MIN] ) ) {
+					$this->assertType( 'int', $config[ApiBase::PARAM_MIN],
+						"$param: PARAM_MIN must be an integer" );
+				}
+				if ( isset( $config[ApiBase::PARAM_MAX] ) ) {
+					$this->assertType( 'int', $config[ApiBase::PARAM_MAX],
+						"$param: PARAM_MAX must be an integer" );
+				}
+				if ( isset( $config[ApiBase::PARAM_MIN] ) && isset( $config[ApiBase::PARAM_MAX] )
+				) {
+					$this->assertGreaterThanOrEqual( $config[ApiBase::PARAM_MIN],
+						$config[ApiBase::PARAM_MAX],
+						"$param: PARAM_MIN cannot be greater than PARAM_MAX" );
+				}
+				if (
+					isset( $config[ApiBase::PARAM_TYPE] ) &&
+					$config[ApiBase::PARAM_TYPE] === 'limit'
+				) {
+					$this->assertTrue( isset( $config[ApiBase::PARAM_MAX] ) &&
+						isset( $config[ApiBase::PARAM_MAX2] ),
+						"$param: PARAM_MAX and PARAM_MAX2 are required for limits" );
+					$this->assertType( 'int', $config[ApiBase::PARAM_MAX2],
+						"$param: PARAM_MAX2 must be an integer" );
+					$this->assertGreaterThanOrEqual( $config[ApiBase::PARAM_MAX],
+						$config[ApiBase::PARAM_MAX2],
+						"$param: PARAM_MAX cannot be greater than PARAM_MAX2" );
 				}
 				if ( isset( $config[ApiBase::PARAM_MAX_BYTES] )
 					|| isset( $config[ApiBase::PARAM_MAX_CHARS] )

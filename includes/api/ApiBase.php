@@ -1129,8 +1129,8 @@ abstract class ApiBase extends ContextSource {
 				) {
 					$type = array_merge( $type, $paramSettings[self::PARAM_EXTRA_NAMESPACES] );
 				}
-				// By default, namespace parameters allow ALL_DEFAULT_STRING to be used to specify
-				// all namespaces.
+				// Namespace parameters allow ALL_DEFAULT_STRING to be used to
+				// specify all namespaces irrespective of PARAM_ALL.
 				$allowAll = true;
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
@@ -1447,6 +1447,7 @@ abstract class ApiBase extends ContextSource {
 					count( $values ),
 				], "multival_$valueName" );
 			} else {
+				// @todo Unreachable?
 				$this->dieWithError( [
 					'apierror-multival-only-one',
 					$valueName,
@@ -1537,7 +1538,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'timestamp'
+	 * Validate and normalize parameters of type 'timestamp'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
@@ -1559,15 +1560,15 @@ abstract class ApiBase extends ContextSource {
 			return wfTimestamp( TS_MW );
 		}
 
-		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
-		if ( $unixTimestamp === false ) {
+		$timestamp = wfTimestamp( TS_MW, $value );
+		if ( $timestamp === false ) {
 			$this->dieWithError(
 				[ 'apierror-badtimestamp', $encParamName, wfEscapeWikiText( $value ) ],
 				"badtimestamp_{$encParamName}"
 			);
 		}
 
-		return wfTimestamp( TS_MW, $unixTimestamp );
+		return $timestamp;
 	}
 
 	/**
@@ -1609,7 +1610,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'user'
+	 * Validate and normalize parameters of type 'user'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
