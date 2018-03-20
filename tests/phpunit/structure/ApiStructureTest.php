@@ -27,6 +27,81 @@ class ApiStructureTest extends MediaWikiTestCase {
 	];
 
 	/**
+	 * Values are an array, where each array value is a permitted type.  A type
+	 * can be a string, which is the name of an internal type or a
+	 * class/interface.  Or it can be an array, in which case the value must be
+	 * an array whose elements are the types given in the array (e.g., [
+	 * 'string', integer' ] means an array whose entries are strings and/or
+	 * integers).
+	 */
+	private static $paramTypes = [
+		// ApiBase::PARAM_DFLT => as appropriate for PARAM_TYPE
+		ApiBase::PARAM_ISMULTI => [ 'boolean' ],
+		ApiBase::PARAM_TYPE => [ 'string', [ 'string' ] ],
+		ApiBase::PARAM_MAX => [ 'integer' ],
+		ApiBase::PARAM_MAX2 => [ 'integer' ],
+		ApiBase::PARAM_MIN => [ 'integer' ],
+		ApiBase::PARAM_ALLOW_DUPLICATES => [ 'boolean' ],
+		ApiBase::PARAM_DEPRECATED => [ 'boolean' ],
+		ApiBase::PARAM_REQUIRED => [ 'boolean' ],
+		ApiBase::PARAM_RANGE_ENFORCE => [ 'boolean' ],
+		ApiBase::PARAM_HELP_MSG => [ 'string', 'array', Message::class ],
+		ApiBase::PARAM_HELP_MSG_APPEND => [ [ 'string', 'array', Message::class ] ],
+		ApiBase::PARAM_HELP_MSG_INFO => [ [ 'array' ] ],
+		ApiBase::PARAM_VALUE_LINKS => [ [ 'string' ] ],
+		ApiBase::PARAM_HELP_MSG_PER_VALUE => [ [ 'string', 'array', Message::class ] ],
+		ApiBase::PARAM_SUBMODULE_MAP => [ [ 'string' ] ],
+		ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => [ 'string' ],
+		ApiBase::PARAM_ALL => [ 'boolean', 'string' ],
+		ApiBase::PARAM_EXTRA_NAMESPACES => [ [ 'integer' ] ],
+		ApiBase::PARAM_SENSITIVE => [ 'boolean' ],
+		ApiBase::PARAM_DEPRECATED_VALUES => [ 'array' ],
+		ApiBase::PARAM_ISMULTI_LIMIT1 => [ 'integer' ],
+		ApiBase::PARAM_ISMULTI_LIMIT2 => [ 'integer' ],
+		ApiBase::PARAM_MAX_BYTES => [ 'integer' ],
+		ApiBase::PARAM_MAX_CHARS => [ 'integer' ],
+	];
+
+	// param => [ other param that must be present => required value or null ]
+	private static $paramRequirements = [
+		ApiBase::PARAM_ALLOW_DUPLICATES => [ ApiBase::PARAM_ISMULTI => true ],
+		ApiBase::PARAM_ALL => [ ApiBase::PARAM_ISMULTI => true ],
+		ApiBase::PARAM_ISMULTI_LIMIT1 => [
+			ApiBase::PARAM_ISMULTI => true,
+			ApiBase::PARAM_ISMULTI_LIMIT2 => null,
+		],
+		ApiBase::PARAM_ISMULTI_LIMIT2 => [
+			ApiBase::PARAM_ISMULTI => true,
+			ApiBase::PARAM_ISMULTI_LIMIT1 => null,
+		],
+	];
+
+	// param => type(s) allowed for this param ('array' is any array)
+	private static $paramAllowedTypes = [
+		ApiBase::PARAM_MAX => [ 'integer', 'limit' ],
+		ApiBase::PARAM_MAX2 => 'limit',
+		ApiBase::PARAM_MIN => [ 'integer', 'limit' ],
+		ApiBase::PARAM_RANGE_ENFORCE => 'integer',
+		ApiBase::PARAM_VALUE_LINKS => 'array',
+		ApiBase::PARAM_HELP_MSG_PER_VALUE => 'array',
+		ApiBase::PARAM_SUBMODULE_MAP => 'submodule',
+		ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'submodule',
+		ApiBase::PARAM_ALL => 'array',
+		ApiBase::PARAM_EXTRA_NAMESPACES => 'namespace',
+		ApiBase::PARAM_DEPRECATED_VALUES => 'array',
+		ApiBase::PARAM_MAX_BYTES => [ 'NULL', 'string', 'text', 'password' ],
+		ApiBase::PARAM_MAX_CHARS => [ 'NULL', 'string', 'text', 'password' ],
+	];
+
+	private static $paramProhibitedTypes = [
+		ApiBase::PARAM_ISMULTI => [ 'boolean', 'limit', 'upload' ],
+		ApiBase::PARAM_ALL => 'namespace',
+		ApiBase::PARAM_SENSITIVE => 'password',
+	];
+
+	private static $constantNames = null;
+
+	/**
 	 * Initialize/fetch the ApiMain instance for testing
 	 * @return ApiMain
 	 */
@@ -178,34 +253,327 @@ class ApiStructureTest extends MediaWikiTestCase {
 		// avoid warnings about empty tests when no parameter needs to be checked
 		$this->assertTrue( true );
 
-		foreach ( [ $paramsPlain, $paramsForHelp ] as $params ) {
-			foreach ( $params as $param => $config ) {
-				if ( isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] )
-					|| isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] )
-				) {
-					$this->assertTrue( !empty( $config[ApiBase::PARAM_ISMULTI] ), $param
-						. ': PARAM_ISMULTI_LIMIT* only makes sense when PARAM_ISMULTI is true' );
-					$this->assertTrue( isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] )
-						&& isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] ), $param
-						. ': PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2 must be used together' );
-					$this->assertType( 'int', $config[ApiBase::PARAM_ISMULTI_LIMIT1], $param
-						. 'PARAM_ISMULTI_LIMIT1 must be an integer' );
-					$this->assertType( 'int', $config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
-						. 'PARAM_ISMULTI_LIMIT2 must be an integer' );
-					$this->assertGreaterThanOrEqual( $config[ApiBase::PARAM_ISMULTI_LIMIT1],
-						$config[ApiBase::PARAM_ISMULTI_LIMIT2], $param
-						. 'PARAM_ISMULTI limit cannot be smaller for users with apihighlimits rights' );
-				}
-				if ( isset( $config[ApiBase::PARAM_MAX_BYTES] )
-					|| isset( $config[ApiBase::PARAM_MAX_CHARS] )
-				) {
-					$default = isset( $config[ApiBase::PARAM_DFLT] ) ? $config[ApiBase::PARAM_DFLT] : null;
-					$type = isset( $config[ApiBase::PARAM_TYPE] ) ? $config[ApiBase::PARAM_TYPE]
-						: gettype( $default );
-					$this->assertContains( $type, [ 'NULL', 'string', 'text', 'password' ],
-						'PARAM_MAX_BYTES/CHARS is only supported for string-like types' );
+		if ( self::$constantNames === null ) {
+			self::$constantNames = [];
+
+			foreach ( ( new ReflectionClass( 'ApiBase' ) )->getConstants() as $key => $val ) {
+				if ( substr( $key, 0, 6 ) === 'PARAM_' ) {
+					self::$constantNames[$val] = $key;
 				}
 			}
+		}
+
+		foreach ( [ $paramsPlain, $paramsForHelp ] as $params ) {
+			foreach ( $params as $param => $config ) {
+				if ( !is_array( $config ) ) {
+					$config = [ ApiBase::PARAM_DFLT => $config ];
+				}
+				if ( !isset( $config[ApiBase::PARAM_TYPE] ) ) {
+					$config[ApiBase::PARAM_TYPE] = isset( $config[ApiBase::PARAM_DFLT] )
+						? gettype( $config[ApiBase::PARAM_DFLT] )
+						: 'NULL';
+				}
+
+				foreach ( self::$paramTypes as $key => $types ) {
+					if ( !isset( $config[$key] ) ) {
+						continue;
+					}
+					$keyName = self::$constantNames[$key];
+					$this->validateType( $types, $config[$key], $param, $keyName );
+				}
+
+				foreach ( self::$paramRequirements as $key => $required ) {
+					if ( !isset( $config[$key] ) ) {
+						continue;
+					}
+					foreach ( $required as $requireKey => $requireVal ) {
+						$this->assertArrayHasKey( $requireKey, $config,
+							"$param: When " . self::$constantNames[$key] . " is set, " .
+							self::$constantNames[$requireKey] . " must also be set" );
+						if ( $requireVal !== null ) {
+							$this->assertSame( $requireVal, $config[$requireKey],
+								"$param: When " . self::$constantNames[$key] . " is set, " .
+								self::$constantNames[$requireKey] . " must equal " .
+								var_export( $requireVal, true ) );
+						}
+					}
+				}
+
+				foreach ( self::$paramAllowedTypes as $key => $allowedTypes ) {
+					if ( !isset( $config[$key] ) ) {
+						continue;
+					}
+
+					$actualType = is_array( $config[ApiBase::PARAM_TYPE] )
+						? 'array' : $config[ApiBase::PARAM_TYPE];
+
+					$this->assertContains(
+						$actualType,
+						(array)$allowedTypes,
+						"$param: " . self::$constantNames[$key] .
+							" can only be used with PARAM_TYPE " .
+							implode( ', ', (array)$allowedTypes )
+					);
+				}
+
+				foreach ( self::$paramProhibitedTypes as $key => $prohibitedTypes ) {
+					if ( !isset( $config[$key] ) ) {
+						continue;
+					}
+
+					$actualType = is_array( $config[ApiBase::PARAM_TYPE] )
+						? 'array' : $config[ApiBase::PARAM_TYPE];
+
+					$this->assertNotContains(
+						$actualType,
+						(array)$prohibitedTypes,
+						"$param: " . self::$constantNames[$key] .
+							" cannot be used with PARAM_TYPE " .
+							implode( ', ', (array)$prohibitedTypes )
+					);
+				}
+
+				if ( isset( $config[ApiBase::PARAM_DFLT] ) ) {
+					$this->assertFalse(
+						isset( $config[ApiBase::PARAM_REQUIRED] ) &&
+							$config[ApiBase::PARAM_REQUIRED],
+						"$param: A required parameter cannot have a default" );
+
+					$this->validateDefault( $param, $config );
+				}
+
+				if ( $config[ApiBase::PARAM_TYPE] === 'limit' ) {
+					$this->assertTrue(
+						isset( $config[ApiBase::PARAM_MAX] ) &&
+							isset( $config[ApiBase::PARAM_MAX2] ),
+						"$param: PARAM_MAX and PARAM_MAX2 are required for limits"
+					);
+					$this->assertGreaterThanOrEqual(
+						$config[ApiBase::PARAM_MAX],
+						$config[ApiBase::PARAM_MAX2],
+						"$param: PARAM_MAX cannot be greater than PARAM_MAX2"
+					);
+				}
+
+				if (
+					isset( $config[ApiBase::PARAM_MIN] ) &&
+					isset( $config[ApiBase::PARAM_MAX] )
+				) {
+					$this->assertGreaterThanOrEqual(
+						$config[ApiBase::PARAM_MIN],
+						$config[ApiBase::PARAM_MAX],
+						"$param: PARAM_MIN cannot be greater than PARAM_MAX"
+					);
+				}
+
+				if ( isset( $config[ApiBase::PARAM_RANGE_ENFORCE] ) ) {
+					$this->assertTrue(
+						isset( $config[ApiBase::PARAM_MIN] ) ||
+							isset( $config[ApiBase::PARAM_MAX] ),
+						"$param: PARAM_RANGE_ENFORCE can only be set together with " .
+							"PARAM_MIN or PARAM_MAX"
+					);
+				}
+
+				if ( isset( $config[ApiBase::PARAM_DEPRECATED_VALUES] ) ) {
+					foreach ( $config[ApiBase::PARAM_DEPRECATED_VALUES] as $key => $unused ) {
+						$this->assertContains( $key, $config[ApiBase::PARAM_TYPE],
+							"$param: Deprecated value \"$key\" is not allowed, " .
+							"how can it be deprecated?" );
+					}
+				}
+
+				if (
+					isset( $config[ApiBase::PARAM_ISMULTI_LIMIT1] ) ||
+					isset( $config[ApiBase::PARAM_ISMULTI_LIMIT2] )
+				) {
+					$this->assertGreaterThanOrEqual( 0, $config[ApiBase::PARAM_ISMULTI_LIMIT1],
+						"$param: PARAM_ISMULTI_LIMIT1 cannot be negative" );
+					// Zero for both doesn't make sense, but you could have
+					// zero for non-bots
+					$this->assertGreaterThanOrEqual( 1, $config[ApiBase::PARAM_ISMULTI_LIMIT2],
+						"$param: PARAM_ISMULTI_LIMIT2 cannot be negative or zero" );
+					$this->assertGreaterThanOrEqual(
+						$config[ApiBase::PARAM_ISMULTI_LIMIT1],
+						$config[ApiBase::PARAM_ISMULTI_LIMIT2],
+						"$param: PARAM_ISMULTI limit cannot be smaller for users with " .
+							"apihighlimits rights" );
+				}
+
+				if ( isset( $config[ApiBase::PARAM_MAX_BYTES] ) ) {
+					$this->assertGreaterThanOrEqual( 1, $config[ApiBase::PARAM_MAX_BYTES],
+						"$param: PARAM_MAX_BYTES cannot be negative or zero" );
+				}
+
+				if ( isset( $config[ApiBase::PARAM_MAX_CHARS] ) ) {
+					$this->assertGreaterThanOrEqual( 1, $config[ApiBase::PARAM_MAX_CHARS],
+						"$param: PARAM_MAX_CHARS cannot be negative or zero" );
+				}
+
+				if (
+					isset( $config[ApiBase::PARAM_MAX_BYTES] ) &&
+					isset( $config[ApiBase::PARAM_MAX_CHARS] )
+				) {
+					// Length of a string in chars is always <= length in bytes,
+					// so PARAM_MAX_CHARS is pointless if > PARAM_MAX_BYTES
+					$this->assertGreaterThanOrEqual(
+						$config[ApiBase::PARAM_MAX_CHARS],
+						$config[ApiBase::PARAM_MAX_BYTES],
+						"$param: PARAM_MAX_BYTES cannot be less than PARAM_MAX_CHARS"
+					);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Throws if $value does not match one of the types specified in $types.
+	 *
+	 * @param array $types From self::$paramTypes array
+	 * @param mixed $value Value to check
+	 * @param string $param Name of param we're checking, for error messages
+	 * @param string $desc Description for error messages
+	 */
+	private function validateType( $types, $value, $param, $desc ) {
+		if ( count( $types ) === 1 ) {
+			// Only one type allowed
+			if ( is_string( $types[0] ) ) {
+				$this->assertType( $types[0], $value, "$param: $desc type" );
+			} else {
+				// Array whose values have specified types, recurse
+				$this->assertInternalType( 'array', $value, "$param: $desc type" );
+				foreach ( $value as $subvalue ) {
+					$this->validateType( $types[0], $subvalue, $param, "$desc value" );
+				}
+			}
+		} else {
+			// Multiple options
+			foreach ( $types as $type ) {
+				if ( is_string( $type ) ) {
+					if ( class_exists( $type ) || interface_exists( $type ) ) {
+						if ( $value instanceof $type ) {
+							return;
+						}
+					} else {
+						if ( gettype( $value ) === $type ) {
+							return;
+						}
+					}
+				} else {
+					// Array whose values have specified types, recurse
+					try {
+						$this->validateType( [ $type ], $value, $param, "$desc type" );
+						// Didn't throw, so we're good
+						return;
+					} catch ( Exception $unused ) {
+					}
+				}
+			}
+			// Doesn't match any of them
+			$this->fail( "$param: $desc has incorrect type" );
+		}
+	}
+
+	/**
+	 * Asserts that $default is a valid default for $type.
+	 *
+	 * @param string $param Name of param, for error messages
+	 * @param array $config Array of configuration options for this parameter
+	 */
+	private function validateDefault( $param, $config ) {
+		$type = $config[ApiBase::PARAM_TYPE];
+		$default = $config[ApiBase::PARAM_DFLT];
+
+		if ( !empty( $config[ApiBase::PARAM_ISMULTI] ) ) {
+			if ( $default === '' ) {
+				// The empty array is fine
+				return;
+			}
+			$defaults = explode( '|', $default );
+			$config[ApiBase::PARAM_ISMULTI] = false;
+			foreach ( $defaults as $defaultValue ) {
+				// Only allow integers in their simplest form with no leading
+				// or trailing characters etc.
+				if ( $type === 'integer' && $defaultValue === (string)(int)$defaultValue ) {
+					$defaultValue = (int)$defaultValue;
+				}
+				$config[ApiBase::PARAM_DFLT] = $defaultValue;
+				$this->validateDefault( $param, $config );
+			}
+			return;
+		}
+		switch ( $type ) {
+			case 'boolean':
+				$this->assertFalse( $default,
+					"$param: Boolean params may only default to false" );
+				break;
+
+			case 'integer':
+				$this->assertInternalType( 'integer', $default,
+					"$param: Default $default is not an integer" );
+				break;
+
+			case 'limit':
+				if ( $default === 'max' ) {
+					break;
+				}
+				$this->assertInternalType( 'integer', $default,
+					"$param: Default $default is neither an integer nor \"max\"" );
+				break;
+
+			case 'namespace':
+				$validValues = MWNamespace::getValidNamespaces();
+				if (
+					isset( $config[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
+					is_array( $config[ApiBase::PARAM_EXTRA_NAMESPACES] )
+				) {
+					$validValues = array_merge(
+						$validValues,
+						$config[ApiBase::PARAM_EXTRA_NAMESPACES]
+					);
+				}
+				$this->assertContains( $default, $validValues,
+					"$param: Default $default is not a valid namespace" );
+				break;
+
+			case 'NULL':
+			case 'password':
+			case 'string':
+			case 'submodule':
+			case 'tags':
+			case 'text':
+				$this->assertInternalType( 'string', $default,
+					"$param: Default $default is not a string" );
+				break;
+
+			case 'timestamp':
+				if ( $default === 'now' ) {
+					return;
+				}
+				$this->assertNotFalse( wfTimestamp( TS_MW, $default ),
+					"$param: Default $default is not a valid timestamp" );
+				break;
+
+			case 'user':
+				// @todo Should we make user validation a public static method
+				// in ApiBase() or something so we don't have to resort to
+				// this?  Or in User for that matter.
+				$wrapper = TestingAccessWrapper::newFromObject( new ApiMain() );
+				try {
+					$wrapper->validateUser( $default, '' );
+				} catch ( ApiUsageException $e ) {
+					$this->fail( "$param: Default $default is not a valid username/IP address" );
+				}
+				break;
+
+			default:
+				if ( is_array( $type ) ) {
+					$this->assertContains( $default, $type,
+						"$param: Default $default is not any of " .
+						implode( ', ', $type ) );
+				} else {
+					$this->fail( "Unrecognized type $type" );
+				}
 		}
 	}
 
