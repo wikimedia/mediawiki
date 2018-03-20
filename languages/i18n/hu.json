@@ -87,7 +87,7 @@
 	"tog-watchlisthideminor": "Apró változtatások elrejtése",
 	"tog-watchlisthideliu": "Bejelentkezett szerkesztők módosításainak elrejtése a figyelőlistáról",
 	"tog-watchlistreloadautomatically": "A figyelőlista automatikus újratöltése bármelyik szűrő megváltoztatása esetén (JavaScript szükséges)",
-	"tog-watchlistunwatchlinks": "Közvetlen olvasottnak/olvasatlannak jelölő link hozzáadása a figyelőlista elemeihez (JavaScript szükséges)",
+	"tog-watchlistunwatchlinks": "Figyelőlista elemeinek eltávolítására szolgáló közvetlen link hozzáadása (JavaScript szükséges)",
 	"tog-watchlisthideanons": "Névtelen szerkesztések elrejtése",
 	"tog-watchlisthidepatrolled": "Az ellenőrzött szerkesztések elrejtése",
 	"tog-watchlisthidecategorization": "Lapok kategorizálásának elrejtése",
