@@ -2331,7 +2331,19 @@ class Title implements LinkTarget {
 		# XXX: this might be better using restrictions
 
 		if ( $action != 'patrol' ) {
-			if ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
+			if ( $this->getNamespace() === NS_MEDIAWIKI ) {
+				if (
+					(
+						$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+						// paranoia - a .js page with a non-JS content model is probably by mistake
+						// and might get handled incorrectly (see e.g. T112937)
+						|| substr( $this->getDBkey(), -3 ) === '.js'
+					)
+					&& !$user->isAllowed( 'editsitejs' )
+				) {
+					$errors[] = [ 'sitejsprotected', $action ];
+				}
+			} elseif ( preg_match( '/^' . preg_quote( $user->getName(), '/' ) . '\//', $this->mTextform ) ) {
 				if (
 					$this->isUserCssConfigPage()
 					&& !$user->isAllowedAny( 'editmyusercss', 'editusercss' )

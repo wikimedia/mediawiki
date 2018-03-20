@@ -155,6 +155,7 @@ class User implements IDBAccessObject, UserIdentity {
 		'editsemiprotected',
 		'editusercss',
 		'edituserjs',
+		'editsitejs',
 		'hideuser',
 		'import',
 		'importupload',
