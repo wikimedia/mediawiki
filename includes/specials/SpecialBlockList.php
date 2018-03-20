@@ -140,7 +140,9 @@ class SpecialBlockList extends SpecialPage {
 					list( $start, $end ) = IP::parseRange( $target );
 					$conds[] = wfGetDB( DB_REPLICA )->makeList(
 						[
-							'ipb_address' => $target,
+							# T51504: When querying for a single IP range block,
+							# make sure to find any non-range IP blocks
+							'ipb_address' => ( $start === $end ? $start : $target ),
 							Block::getRangeCond( $start, $end )
 						],
 						LIST_OR
@@ -166,7 +168,8 @@ class SpecialBlockList extends SpecialPage {
 			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
 		}
 		if ( in_array( 'rangeblocks', $this->options ) ) {
-			$conds[] = "ipb_range_end = ipb_range_start";
+			// TODO: Remove the second half of this condition after T51504 migration
+			$conds[] = "ipb_range_start = '' OR (ipb_range_end = ipb_range_start)";
 		}
 
 		return new BlockListPager( $this, $conds );
