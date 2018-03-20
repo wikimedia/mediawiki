@@ -113,11 +113,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if ( IP::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
 				$cidrLimit = $blockCIDRLimit['IPv4'];
-				$prefixLen = 0;
 			} elseif ( IP::isIPv6( $params['ip'] ) ) {
 				$type = 'IPv6';
 				$cidrLimit = $blockCIDRLimit['IPv6'];
-				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
 				$this->dieWithError( 'apierror-badip', 'param_ip' );
 			}
@@ -131,19 +129,16 @@ class ApiQueryBlocks extends ApiQueryBase {
 			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
 			list( $lower, $upper ) = IP::parseRange( $params['ip'] );
 
-			# Extract the common prefix to any rangeblock affecting this IP/CIDR
-			$prefix = substr( $lower, 0, $prefixLen + floor( $cidrLimit / 4 ) );
-
-			# Fairly hard to make a malicious SQL statement out of hex characters,
-			# but it is good practice to add quotes
-			$lower = $db->addQuotes( $lower );
-			$upper = $db->addQuotes( $upper );
+			# T51504: Search for an exact match on ipblocks.ipb_address field for single IP blocks
+			# And query for matching range blocks
+			$matchQuery = array_merge(
+				[ 'ipb_address' => $lower ],
+				Block::getRangeCond( $lower, $upper )
+			);
 
 			$this->addWhere( [
-				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
-				'ipb_range_start <= ' . $lower,
-				'ipb_range_end >= ' . $upper,
-				'ipb_auto' => 0
+				$db->makeList( $matchQuery, LIST_OR ),
+				'ipb_auto' => 0,
 			] );
 		}
 
