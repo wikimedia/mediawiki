@@ -1263,4 +1263,16 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	/**
+	 * T51504: Ensure ipblocks.ipb_range_start and ipblocks.ipb_range_end are empty for IP blocks
+	 * @since 1.31
+	 */
+	protected function cleanupSingleIpBlocks() {
+		$this->output( "Cleaning up data for single IP blocks.\n" );
+
+		$task = $this->maintenance->runChild( CleanupSingleIpBlocks::class, 'cleanupSingleIpBlocks.php' );
+		$task->execute();
+
+		$this->output( "done.\n" );
+	}
 }

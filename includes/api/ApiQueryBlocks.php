@@ -113,11 +113,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if ( IP::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
 				$cidrLimit = $blockCIDRLimit['IPv4'];
-				$prefixLen = 0;
 			} elseif ( IP::isIPv6( $params['ip'] ) ) {
 				$type = 'IPv6';
 				$cidrLimit = $blockCIDRLimit['IPv6'];
-				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
 				$this->dieWithError( 'apierror-badip', 'param_ip' );
 			}
@@ -131,20 +129,23 @@ class ApiQueryBlocks extends ApiQueryBase {
 			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
 			list( $lower, $upper ) = IP::parseRange( $params['ip'] );
 
-			# Extract the common prefix to any rangeblock affecting this IP/CIDR
-			$prefix = substr( $lower, 0, $prefixLen + floor( $cidrLimit / 4 ) );
+			# T51504: Search for an exact match on the ipb_address field for single IP blocks...
+			if ( $range === false ) {
+				$this->addWhereFld( 'ipb_address', $params['ip'] );
+			} elseif ( $lower === $upper ) {
+				# ...but if a single IP range was given, we must find also single IP range blocks
+				$cond = [
+					'ipb_address' => $params['ip'],
+					Block::getRangeCond( $lower, $upper )
+				];
 
-			# Fairly hard to make a malicious SQL statement out of hex characters,
-			# but it is good practice to add quotes
-			$lower = $db->addQuotes( $lower );
-			$upper = $db->addQuotes( $upper );
+				$this->addWhere( $db->makeList( $cond, LIST_OR ) );
+			} else {
+				# ...and use a range condition when the client has specified a range.
+				$this->addWhere( Block::getRangeCond( $lower, $upper ) );
+			}
 
-			$this->addWhere( [
-				'ipb_range_start' . $db->buildLike( $prefix, $db->anyString() ),
-				'ipb_range_start <= ' . $lower,
-				'ipb_range_end >= ' . $upper,
-				'ipb_auto' => 0
-			] );
+			$this->addWhereFld( 'ipb_auto', 0 );
 		}
 
 		if ( !is_null( $params['show'] ) ) {
