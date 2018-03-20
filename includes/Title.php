@@ -2317,6 +2317,38 @@ class Title implements LinkTarget {
 	}
 
 	/**
+	 * Check sitewide JSON/JS permissions
+	 *
+	 * @param string $action The action to check
+	 * @param User $user User to check
+	 * @param array $errors List of current errors
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
+	 * @param bool $short Short circuit on first error
+	 *
+	 * @return array List of errors
+	 */
+	private function checkSiteConfigPermissions( $action, $user, $errors, $rigor, $short ) {
+		if ( $action != 'patrol' ) {
+			// Sitewide CSS changes, along with all other NS_MEDIAWIKI changes, require the
+			// editinterface right. That's implemented as a restriction so no permission check needed.
+			if (
+				$this->getNamespace() === NS_MEDIAWIKI
+				&& (
+					$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+					// paranoia - a .js page with a non-JS content model is probably by mistake
+					// and might get handled incorrectly (see e.g. T112937)
+					|| substr( $this->getDBkey(), -3 ) === '.js'
+				)
+				&& !$user->isAllowed( 'editsitejs' )
+			) {
+					$errors[] = [ 'sitejsprotected', $action ];
+			}
+		}
+
+		return $errors;
+	}
+
+	/**
 	 * Check CSS/JSON/JS sub-page permissions
 	 *
 	 * @param string $action The action to check
@@ -2701,10 +2733,10 @@ class Title implements LinkTarget {
 				'checkReadPermissions',
 				'checkUserBlock', // for wgBlockDisablesLogin
 			];
-		# Don't call checkSpecialsAndNSPermissions or checkUserConfigPermissions
-		# here as it will lead to duplicate error messages. This is okay to do
-		# since anywhere that checks for create will also check for edit, and
-		# those checks are called for edit.
+		# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
+		# or checkUserConfigPermissions here as it will lead to duplicate
+		# error messages. This is okay to do since anywhere that checks for
+		# create will also check for edit, and those checks are called for edit.
 		} elseif ( $action == 'create' ) {
 			$checks = [
 				'checkQuickPermissions',
@@ -2719,6 +2751,7 @@ class Title implements LinkTarget {
 				'checkQuickPermissions',
 				'checkPermissionHooks',
 				'checkSpecialsAndNSPermissions',
+				'checkSiteConfigPermissions',
 				'checkUserConfigPermissions',
 				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',

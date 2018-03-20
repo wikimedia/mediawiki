@@ -4500,6 +4500,12 @@ $wgPasswordPolicy = [
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotBePopular' => 25,
 		],
+		'jseditor' => [
+			'MinimalPasswordLength' => 8,
+			'MinimumPasswordLengthToLogin' => 1,
+			'PasswordCannotMatchUsername' => true,
+			'PasswordCannotBePopular' => 25,
+		],
 		'bot' => [
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
@@ -5169,8 +5175,6 @@ $wgGroupPermissions['sysop']['deletedtext'] = true;
 $wgGroupPermissions['sysop']['undelete'] = true;
 $wgGroupPermissions['sysop']['editinterface'] = true;
 $wgGroupPermissions['sysop']['editusercss'] = true;
-$wgGroupPermissions['sysop']['edituserjson'] = true;
-$wgGroupPermissions['sysop']['edituserjs'] = true;
 $wgGroupPermissions['sysop']['import'] = true;
 $wgGroupPermissions['sysop']['importupload'] = true;
 $wgGroupPermissions['sysop']['move'] = true;
@@ -5202,6 +5206,11 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 $wgGroupPermissions['sysop']['mergehistory'] = true;
 $wgGroupPermissions['sysop']['managechangetags'] = true;
 $wgGroupPermissions['sysop']['deletechangetags'] = true;
+
+$wgGroupPermissions['jseditor']['editinterface'] = true;
+$wgGroupPermissions['jseditor']['editsitejs'] = true;
+$wgGroupPermissions['jseditor']['editusercss'] = true;
+$wgGroupPermissions['jseditor']['edituserjs'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -5811,6 +5820,7 @@ $wgGrantPermissions['editinterface']['editinterface'] = true;
 $wgGrantPermissions['editinterface']['editusercss'] = true;
 $wgGrantPermissions['editinterface']['edituserjson'] = true;
 $wgGrantPermissions['editinterface']['edituserjs'] = true;
+$wgGrantPermissions['editinterface']['editsitejs'] = true;
 
 $wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['createeditmovepage']['createpage'] = true;
