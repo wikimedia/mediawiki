@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Database;
 
@@ -1366,7 +1367,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 
-		$this->database->startAtomic( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
@@ -1374,18 +1375,24 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
-		$this->database->startAtomic( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
-		$this->database->startAtomic( __METHOD__ );
-		$this->database->startAtomic( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
@@ -1453,6 +1460,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		} catch ( DBUnexpectedError $ex ) {
 			$this->assertSame(
 				'Invalid atomic section ended (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testUncancellableAtomicSection() {
+		$this->database->startAtomic( __METHOD__ );
+		try {
+			$this->database->cancelAtomic( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Uncancelable atomic section canceled (got ' . __METHOD__ . ').',
 				$ex->getMessage()
 			);
 		}
