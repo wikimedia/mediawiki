@@ -102,9 +102,7 @@ class ApiEditPage extends ApiBase {
 			$contentFormat = $params['contentformat'];
 		}
 
-		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$this->dieWithError( [ 'apierror-badformat', $contentFormat, $model, $name ] );
-		}
+		// No need to check if the format is supported, ApiBase already did
 
 		if ( $params['createonly'] && $titleObj->exists() ) {
 			$this->dieWithError( 'apierror-articleexists' );
@@ -133,7 +131,7 @@ class ApiEditPage extends ApiBase {
 					}
 
 					try {
-						$content = ContentHandler::makeContent( $text, $this->getTitle() );
+						$content = ContentHandler::makeContent( $text, $titleObj );
 					} catch ( MWContentSerializationException $ex ) {
 						$this->dieWithException( $ex, [
 							'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
@@ -402,11 +400,14 @@ class ApiEditPage extends ApiBase {
 					return;
 				}
 				if ( !$status->getErrors() ) {
+					// @todo Is there any way to hit this case?
 					$status->fatal( 'hookaborted' );
 				}
 				$this->dieStatus( $status );
 
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
+				// @todo Dead code?  This should have been checked already by
+				// checkTitleUserPermissions above.
 				$this->dieWithError(
 					'apierror-blocked',
 					'blocked',
@@ -414,6 +415,8 @@ class ApiEditPage extends ApiBase {
 				);
 
 			case EditPage::AS_READ_ONLY_PAGE:
+				// @todo Dead code?  Should be handled by
+				// ApiMain::checkReadOnly.
 				$this->dieReadOnly();
 
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
@@ -496,7 +499,6 @@ class ApiEditPage extends ApiBase {
 					}
 				}
 				$this->dieStatus( $status );
-				break;
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}
@@ -566,10 +568,15 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_TYPE => 'text',
 			],
 			'undo' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_MIN => 0,
+				ApiBase::PARAM_RANGE_ENFORCE => true,
 			],
 			'undoafter' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_MIN => 0,
+				ApiBase::PARAM_RANGE_ENFORCE => true,
 			],
 			'redirect' => [
 				ApiBase::PARAM_TYPE => 'boolean',
