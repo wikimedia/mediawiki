@@ -412,6 +412,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	public function testNewNullRevision( Title $title, $comment, $minor ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
+
+		$parent = $store->getRevisionByTitle( $title );
 		$record = $store->newNullRevision(
 			wfGetDB( DB_MASTER ),
 			$title,
@@ -425,6 +427,14 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertEquals( $comment, $record->getComment() );
 		$this->assertEquals( $minor, $record->isMinor() );
 		$this->assertEquals( $user->getName(), $record->getUser()->getName() );
+		$this->assertEquals( $parent->getId(), $record->getParentId() );
+
+		$parentSlot = $parent->getSlot( 'main' );
+		$slot = $record->getSlot( 'main' );
+
+		$this->assertTrue( $slot->isInherited(), 'isInherited' );
+		$this->assertSame( $parentSlot->getOrigin(), $slot->getOrigin(), 'getOrigin' );
+		$this->assertSame( $parentSlot->getAddress(), $slot->getAddress(), 'getAddress' );
 	}
 
 	/**
