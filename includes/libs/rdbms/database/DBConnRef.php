@@ -460,11 +460,15 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function wasErrorReissuable() {
+	public function wasConnectionLoss() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function wasReadOnlyError() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function wasErrorReissuable() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

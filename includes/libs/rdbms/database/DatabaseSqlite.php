@@ -719,15 +719,12 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return bool
 	 */
-	function wasErrorReissuable() {
-		return $this->lastErrno() == 17; // SQLITE_SCHEMA;
-	}
-
-	/**
-	 * @return bool
-	 */
 	function wasReadOnlyError() {
 		return $this->lastErrno() == 8; // SQLITE_READONLY;
+	}
+
+	public function wasConnectionError( $errno ) {
+		return $errno == 17; // SQLITE_SCHEMA;
 	}
 
 	/**
