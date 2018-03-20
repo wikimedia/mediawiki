@@ -2629,7 +2629,7 @@
 	"pageinfo-header-edits": "ประวัติการแก้ไข",
 	"pageinfo-header-restrictions": "การล็อกหน้า",
 	"pageinfo-header-properties": "คุณสมบัติหน้า",
-	"pageinfo-display-title": "หัวเรื่องของหน้าเมื่อแสดงผล",
+	"pageinfo-display-title": "แสดงผลชื่อเรื่อง",
 	"pageinfo-default-sort": "ค่าปริยายของคำหลักในการเรียงลำดับ",
 	"pageinfo-length": "ความยาวหน้า (ไบต์)",
 	"pageinfo-article-id": "เลขหน้า",

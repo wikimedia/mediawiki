@@ -556,7 +556,7 @@
 	"wrongpasswordempty": "Non è stata inserita alcuna password. Riprovare.",
 	"passwordtooshort": "Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoolong": "La password non può contenere più di {{PLURAL:$1|1 carattere|$1 caratteri}}.",
-	"passwordtoopopular": "Password comuni non possono essere usate. Scegli una password più originale.",
+	"passwordtoopopular": "Password comuni non possono essere usate. Scegli una password più difficile da indovinare.",
 	"password-name-match": "La password deve essere diversa dal nome utente.",
 	"password-login-forbidden": "L'uso di questo nome utente e password è stato proibito.",
 	"mailmypassword": "Reimposta password",
