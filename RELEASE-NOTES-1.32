@@ -21,6 +21,12 @@ production.
   adds a defense-in-depth feature to stop an attacker who has found a bug in
   the parser allowing them to insert malicious attributes. Disabled by default,
   you can configure this via $wgCSPHeader and $wgCSPReportOnlyHeader.
+* The right to edit sitewide Javascript (e.g. MediaWiki:Common.js), CSS or JSON was separated from
+  'editinterface' and is available under 'editsitejs'/'editsitecss'/'editsitejson'. Having
+  'editinterface' is still necessary to edit such pages.
+* A new user group, 'techadmin', is added for controlling access to sitewide CSS/JS
+  (and editing other users' CSS/JS). No other group has 'editsitecss', 'editusercss',
+  'editsitejs' or 'edituserjs' by default.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
