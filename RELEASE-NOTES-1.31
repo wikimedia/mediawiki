@@ -297,6 +297,11 @@ changes to languages because of Phabricator reports.
   wikitext table captions, wikitext table headings, wikitext table cells. HTML
   headings, HTML list items, HTML table captions, HTML table headings, HTML table cells
   will not have this trimming behavior.
+* Calling Database::begin() explicitly during an implicit transaction or when DBO_TRX
+  is set results in an exception. Calling Database::commit() explicitly for an implicit
+  transaction also results in an exception. Previously these were logged as errors.
+  The startAtomic() and endAtomic() methods, or AtomicSectionUpdate should be used
+  instead.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
