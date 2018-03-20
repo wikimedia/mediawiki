@@ -1633,7 +1633,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Create the first user account, grant it sysop and bureaucrat rights
+	 * Create the first user account, grant it sysop, bureaucrat and techadmin rights
 	 *
 	 * @return Status
 	 */
@@ -1657,6 +1657,7 @@ abstract class Installer {
 
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
+			$user->addGroup( 'techadmin' );
 			if ( $this->getVar( '_AdminEmail' ) ) {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}
