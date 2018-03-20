@@ -223,7 +223,7 @@ class WebInstallerName extends WebInstallerPage {
 			$status = $upp->checkUserPasswordForGroups(
 				$user,
 				$pwd,
-				[ 'bureaucrat', 'sysop' ]  // per Installer::createSysop()
+				[ 'bureaucrat', 'sysop', 'jseditor' ]  // per Installer::createSysop()
 			);
 			$valid = $status->isGood() ? true : $status->getMessage();
 		} else {
