@@ -4548,6 +4548,12 @@ $wgPasswordPolicy = [
 			'PasswordCannotMatchUsername' => true,
 			'PasswordCannotBePopular' => 25,
 		],
+		'interface-admin' => [
+			'MinimalPasswordLength' => 8,
+			'MinimumPasswordLengthToLogin' => 1,
+			'PasswordCannotMatchUsername' => true,
+			'PasswordCannotBePopular' => 25,
+		],
 		'bot' => [
 			'MinimalPasswordLength' => 8,
 			'MinimumPasswordLengthToLogin' => 1,
@@ -5217,9 +5223,8 @@ $wgGroupPermissions['sysop']['deletedhistory'] = true;
 $wgGroupPermissions['sysop']['deletedtext'] = true;
 $wgGroupPermissions['sysop']['undelete'] = true;
 $wgGroupPermissions['sysop']['editinterface'] = true;
-$wgGroupPermissions['sysop']['editusercss'] = true;
+$wgGroupPermissions['sysop']['editsitejson'] = true;
 $wgGroupPermissions['sysop']['edituserjson'] = true;
-$wgGroupPermissions['sysop']['edituserjs'] = true;
 $wgGroupPermissions['sysop']['import'] = true;
 $wgGroupPermissions['sysop']['importupload'] = true;
 $wgGroupPermissions['sysop']['move'] = true;
@@ -5251,6 +5256,14 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 $wgGroupPermissions['sysop']['mergehistory'] = true;
 $wgGroupPermissions['sysop']['managechangetags'] = true;
 $wgGroupPermissions['sysop']['deletechangetags'] = true;
+
+$wgGroupPermissions['interface-admin']['editinterface'] = true;
+$wgGroupPermissions['interface-admin']['editsitecss'] = true;
+$wgGroupPermissions['interface-admin']['editsitejson'] = true;
+$wgGroupPermissions['interface-admin']['editsitejs'] = true;
+$wgGroupPermissions['interface-admin']['editusercss'] = true;
+$wgGroupPermissions['interface-admin']['edituserjson'] = true;
+$wgGroupPermissions['interface-admin']['edituserjs'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -5858,9 +5871,14 @@ $wgGrantPermissions['editmyoptions']['editmyoptions'] = true;
 
 $wgGrantPermissions['editinterface'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['editinterface']['editinterface'] = true;
-$wgGrantPermissions['editinterface']['editusercss'] = true;
 $wgGrantPermissions['editinterface']['edituserjson'] = true;
-$wgGrantPermissions['editinterface']['edituserjs'] = true;
+$wgGrantPermissions['editinterface']['editsitejson'] = true;
+
+$wgGrantPermissions['editsiteconfig'] = $wgGrantPermissions['editinterface'];
+$wgGrantPermissions['editsiteconfig']['editusercss'] = true;
+$wgGrantPermissions['editsiteconfig']['edituserjs'] = true;
+$wgGrantPermissions['editsiteconfig']['editsitecss'] = true;
+$wgGrantPermissions['editsiteconfig']['editsitejs'] = true;
 
 $wgGrantPermissions['createeditmovepage'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['createeditmovepage']['createpage'] = true;
@@ -5939,6 +5957,7 @@ $wgGrantPermissionGroups = [
 	'editmyoptions'       => 'customization',
 
 	'editinterface'       => 'administration',
+	'editsiteconfig'      => 'administration',
 	'rollback'            => 'administration',
 	'blockusers'          => 'administration',
 	'delete'              => 'administration',
