@@ -1061,7 +1061,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
 
 		# Try reconnecting if the connection was lost
-		if ( false === $ret && $this->wasErrorReissuable() ) {
+		if ( false === $ret && $this->wasConnectionLoss() ) {
 			$recoverable = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
 			# Stash the last error values before anything might clear them
 			$lastError = $this->lastError();
@@ -2888,7 +2888,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	public function wasErrorReissuable() {
+	public function wasConnectionLoss() {
 		return false;
 	}
 

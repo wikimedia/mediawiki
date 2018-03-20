@@ -1417,7 +1417,7 @@ interface IDatabase {
 	 *
 	 * @return bool
 	 */
-	public function wasErrorReissuable();
+	public function wasConnectionLoss();
 
 	/**
 	 * Determines if the last failure was due to the database being read-only.

@@ -1282,7 +1282,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return $this->lastErrno() == 1205;
 	}
 
-	public function wasErrorReissuable() {
+	public function wasConnectionLoss() {
 		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
 	}
 

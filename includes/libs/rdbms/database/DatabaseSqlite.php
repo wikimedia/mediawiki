@@ -719,7 +719,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return bool
 	 */
-	function wasErrorReissuable() {
+	function wasConnectionLoss() {
 		return $this->lastErrno() == 17; // SQLITE_SCHEMA;
 	}
 
