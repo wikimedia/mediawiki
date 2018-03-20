@@ -432,7 +432,7 @@ class WebRequest {
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
 	 * @param string $name
-	 * @param string $default Optional default (or null)
+	 * @param string|null $default Optional default (or null)
 	 * @return string|null
 	 */
 	public function getVal( $name, $default = null ) {
