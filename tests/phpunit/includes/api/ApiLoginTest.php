@@ -282,4 +282,20 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertEquals( 'Success', $a );
 	}
 
+	public function testLoginWithNoSameOriginSecurity() {
+		$this->setTemporaryHook( 'RequestHasSameOriginSecurity',
+			function () {
+				return false;
+			}
+		);
+
+		$result = $this->doApiRequest( [
+			'action' => 'login',
+		] )[0]['login'];
+
+		$this->assertSame( [
+			'result' => 'Aborted',
+			'reason' => 'Cannot log in when the same-origin policy is not applied.',
+		], $result );
+	}
 }
