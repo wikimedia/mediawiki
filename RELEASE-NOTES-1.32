@@ -17,6 +17,12 @@ production.
   'html5-legacy' value for $wgFragmentMode is no longer accepted.
 * The experimental Html5Internal and Html5Depurate tidy drivers were removed.
   RemexHtml, which is the default, should be used instead.
+* The right to edit sitewide Javascript (e.g. MediaWiki:Common.js), CSS or JSON was separated from
+  'editinterface' and is available under 'editsitejs'/'editsitecss'/'editsitejson'. Having
+  'editinterface' is still necessary to edit such pages.
+* A new user group, 'techadmin', is added for controlling access to sitewide CSS/JS
+  (and editing other users' CSS/JS). No other group has 'editsitecss', 'editusercss',
+  'editsitejs' or 'edituserjs' by default.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
