@@ -1067,38 +1067,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		# Avoid fatals if close() was called
 		$this->assertOpen();
 
-		# Send the query to the server
+		# Send the query to the server and fetch any corresponding errors
 		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
+		$lastError = $this->lastError();
+		$lastErrno = $this->lastErrno();
 
 		# Try reconnecting if the connection was lost
-		if ( false === $ret && $this->wasConnectionLoss() ) {
+		if ( $ret === false && $this->wasConnectionLoss() ) {
+			# Check if any meaningful session state was lost
 			$recoverable = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
-			# Stash the last error values before anything might clear them
-			$lastError = $this->lastError();
-			$lastErrno = $this->lastErrno();
-			# Update state tracking to reflect transaction loss due to disconnection
-			$this->handleSessionLoss();
-			if ( $this->reconnect() ) {
-				$msg = __METHOD__ . ': lost connection to {dbserver}; reconnected';
-				$params = [ 'dbserver' => $this->getServer() ];
-				$this->connLogger->warning( $msg, $params );
-				$this->queryLogger->warning( $msg, $params +
-					[ 'trace' => ( new RuntimeException() )->getTraceAsString() ] );
+			# Update session state and try to restore the connection
+			$reconnected = $this->replaceLostConnection( __METHOD__ );
+			# Silently resend the query to the server if it is safe and possible
+			if ( $reconnected && $recoverable ) {
+				$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
+				$lastError = $this->lastError();
+				$lastErrno = $this->lastErrno();
 
-				if ( $recoverable ) {
-					# Should be safe to silently retry the query
-					$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
-				} else {
-					# Callers may catch the exception and continue to use the DB
-					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname );
+				if ( $ret === false && $this->wasConnectionLoss() ) {
+					# Query probably causes disconnects; reconnect and do not re-run it
+					$this->replaceLostConnection( __METHOD__ );
+					$this->handleSessionLoss();
 				}
-			} else {
-				$msg = __METHOD__ . ': lost connection to {dbserver} permanently';
-				$this->connLogger->error( $msg, [ 'dbserver' => $this->getServer() ] );
 			}
 		}
 
-		if ( false === $ret ) {
+		if ( $ret === false ) {
 			# Deadlocks cause the entire transaction to abort, not just the statement.
 			# https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
 			# https://www.postgresql.org/docs/9.1/static/explicit-locking.html
@@ -1106,17 +1100,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				if ( $this->explicitTrxActive() || $priorWritesPending ) {
 					$tempIgnore = false; // not recoverable
 				}
+				# Usually the transaction is rolled back to BEGIN, leaving an empty transaction.
+				# Destroy any such transaction so the rollback callbacks run in AUTO-COMMIT mode
+				# as normal. Also, if DBO_TRX is set and an explicit transaction rolled back here,
+				# further queries should be back in AUTO-COMMIT mode, not stuck in a transaction.
+				$this->doRollback( __METHOD__ );
 				# Update state tracking to reflect transaction loss
-				$this->handleSessionLoss();
+				$this->handleTransactionLoss();
 			}
 
-			$this->reportQueryError(
-				$this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
+			$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
 		}
 
-		$res = $this->resultObject( $ret );
-
-		return $res;
+		return $this->resultObject( $ret );
 	}
 
 	/**
@@ -1231,6 +1227,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		# didn't matter anyway (aside from DBO_TRX snapshot loss).
 		if ( $this->namedLocksHeld ) {
 			return false; // possible critical section violation
+		} elseif ( $this->sessionTempTables ) {
+			return false; // tables might be queried latter
 		} elseif ( $sql === 'COMMIT' ) {
 			return !$priorWritesPending; // nothing written anyway? (T127428)
 		} elseif ( $sql === 'ROLLBACK' ) {
@@ -1245,36 +1243,41 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Clean things up after transaction loss due to disconnection
-	 *
-	 * @return null|Exception
+	 * Clean things up after session (and thus transaction) loss
 	 */
 	private function handleSessionLoss() {
+		// Clean up tracking of session-level things...
+		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
+		// https://www.postgresql.org/docs/9.1/static/sql-createtable.html (ignoring ON COMMIT)
+		$this->sessionTempTables = [];
+		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
+		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+		$this->namedLocksHeld = [];
+		// Session loss implies transaction loss
+		$this->handleTransactionLoss();
+	}
+
+	/**
+	 * Clean things up after transaction loss
+	 */
+	private function handleTransactionLoss() {
 		$this->trxLevel = 0;
 		$this->trxAtomicCounter = 0;
 		$this->trxIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
-		$this->sessionTempTables = [];
-		$this->namedLocksHeld = [];
-
-		// Note: if callback suppression is set then some *Callbacks arrays are not cleared here
-		$e = null;
 		try {
-			// Handle callbacks in trxEndCallbacks
+			// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
+			// If callback suppression is set then the array will remain unhandled.
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 		} catch ( Exception $ex ) {
 			// Already logged; move on...
-			$e = $e ?: $ex;
 		}
 		try {
-			// Handle callbacks in trxRecurringCallbacks
+			// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
 			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 		} catch ( Exception $ex ) {
 			// Already logged; move on...
-			$e = $e ?: $ex;
 		}
-
-		return $e;
 	}
 
 	/**
@@ -3671,11 +3674,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Close existing database connection and open a new connection
+	 * Close any existing (dead) database connection and open a new connection
 	 *
+	 * @param string $fname
 	 * @return bool True if new connection is opened successfully, false if error
 	 */
-	protected function reconnect() {
+	protected function replaceLostConnection( $fname ) {
 		$this->closeConnection();
 		$this->opened = false;
 		$this->conn = false;
@@ -3683,9 +3687,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->open( $this->server, $this->user, $this->password, $this->dbName );
 			$this->lastPing = microtime( true );
 			$ok = true;
+
+			$msg = $fname . ': lost connection to {dbserver}; reconnected';
+			$params = [ 'dbserver' => $this->getServer() ];
+			$this->connLogger->warning( $msg, $params );
+			$this->queryLogger->warning( $msg, $params +
+				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ] );
 		} catch ( DBConnectionError $e ) {
 			$ok = false;
+
+			$this->connLogger->error(
+				$fname . ': lost connection to {dbserver} permanently',
+				[ 'dbserver' => $this->getServer() ]
+			);
 		}
+
+		$this->handleSessionLoss();
 
 		return $ok;
 	}
