@@ -513,6 +513,10 @@ interface IDatabase {
 	 * Run an SQL query and return the result. Normally throws a DBQueryError
 	 * on failure. If errors are ignored, returns false instead.
 	 *
+	 * If a connection loss is detected, then an attempt to reconnect will be made.
+	 * For queries that involve no larger transactions or locks, they will be re-issued
+	 * for convenience, provided the connection was re-established.
+	 *
 	 * In new code, the query wrappers select(), insert(), update(), delete(),
 	 * etc. should be used where possible, since they give much better DBMS
 	 * independence and automatically quote or validate user input in a variety
@@ -1400,6 +1404,8 @@ interface IDatabase {
 	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
+	 * Note that during a deadlock, the prior transaction will have been lost
+	 *
 	 * @return bool
 	 */
 	public function wasDeadlock();
@@ -1407,17 +1413,21 @@ interface IDatabase {
 	/**
 	 * Determines if the last failure was due to a lock timeout
 	 *
+	 * Note that during a lock wait timeout, the prior transaction will have been lost
+	 *
 	 * @return bool
 	 */
 	public function wasLockTimeout();
 
 	/**
-	 * Determines if the last query error was due to a dropped connection and should
-	 * be dealt with by pinging the connection and reissuing the query.
+	 * Determines if the last query error was due to a dropped connection
+	 *
+	 * Note that during a connection loss, the prior transaction will have been lost
 	 *
 	 * @return bool
+	 * @since 1.31
 	 */
-	public function wasErrorReissuable();
+	public function wasConnectionLoss();
 
 	/**
 	 * Determines if the last failure was due to the database being read-only.
@@ -1425,6 +1435,15 @@ interface IDatabase {
 	 * @return bool
 	 */
 	public function wasReadOnlyError();
+
+	/**
+	 * Determines if the last query error was due to something outside of the query itself
+	 *
+	 * Note that the transaction may have been lost, discarding prior writes and results
+	 *
+	 * @return bool
+	 */
+	public function wasErrorReissuable();
 
 	/**
 	 * Wait for the replica DB to catch up to a given master position

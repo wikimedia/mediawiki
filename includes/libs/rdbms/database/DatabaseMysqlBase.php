@@ -1282,10 +1282,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $this->lastErrno() == 1205;
 	}
 
-	public function wasErrorReissuable() {
-		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
-	}
-
 	/**
 	 * Determines if the last failure was due to the database being read-only.
 	 *
