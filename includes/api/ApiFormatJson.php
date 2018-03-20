@@ -124,8 +124,8 @@ class ApiFormatJson extends ApiFormatBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-ascii',
 			],
 			'formatversion' => [
-				ApiBase::PARAM_TYPE => [ 1, 2, 'latest' ],
-				ApiBase::PARAM_DFLT => 1,
+				ApiBase::PARAM_TYPE => [ '1', '2', 'latest' ],
+				ApiBase::PARAM_DFLT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-formatversion',
 			],
 		];
