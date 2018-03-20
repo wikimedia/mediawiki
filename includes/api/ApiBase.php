@@ -1129,8 +1129,8 @@ abstract class ApiBase extends ContextSource {
 				) {
 					$type = array_merge( $type, $paramSettings[self::PARAM_EXTRA_NAMESPACES] );
 				}
-				// By default, namespace parameters allow ALL_DEFAULT_STRING to be used to specify
-				// all namespaces.
+				// Namespace parameters allow ALL_DEFAULT_STRING to be used to
+				// specify all namespaces irrespective of PARAM_ALL.
 				$allowAll = true;
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
@@ -1537,7 +1537,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'timestamp'
+	 * Validate and normalize parameters of type 'timestamp'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
@@ -1565,6 +1565,11 @@ abstract class ApiBase extends ContextSource {
 				[ 'apierror-badtimestamp', $encParamName, wfEscapeWikiText( $value ) ],
 				"badtimestamp_{$encParamName}"
 			);
+		}
+
+		if ( $unixTimestamp === '0' ) {
+			// Don't pass this to wfTimestamp, it will interpret it as 'now'
+			return wfTimestamp( TS_MW, '19700101000000' );
 		}
 
 		return wfTimestamp( TS_MW, $unixTimestamp );
@@ -1609,7 +1614,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'user'
+	 * Validate and normalize parameters of type 'user'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
