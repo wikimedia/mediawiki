@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.3
+ * OOUI v0.26.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-07T06:52:35Z
+ * Date: 2018-03-21T00:00:53Z
  */
 ( function ( OO ) {
 
@@ -3272,11 +3272,6 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
  */
 OO.ui.OutlineOptionWidget.prototype.setPressed = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setPressed.call( this, state );
-	if ( this.pressed ) {
-		this.setFlags( { progressive: true } );
-	} else if ( !this.selected ) {
-		this.setFlags( { progressive: false } );
-	}
 	return this;
 };
 
@@ -3313,11 +3308,6 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
  */
 OO.ui.OutlineOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.OutlineOptionWidget.parent.prototype.setSelected.call( this, state );
-	if ( this.selected ) {
-		this.setFlags( { progressive: true } );
-	} else {
-		this.setFlags( { progressive: false } );
-	}
 	return this;
 };
 
@@ -4606,10 +4596,18 @@ OO.mixinClass( OO.ui.TagItemWidget, OO.ui.mixin.DraggableElement );
  * Item validity has changed
  */
 
+/**
+ * @event disabled
+ * @param {boolean} isDisabled Item is disabled
+ *
+ * Item disabled state has changed
+ */
+
 /* Methods */
 
 /**
  * @inheritdoc
+ * @fires disabled
  */
 OO.ui.TagItemWidget.prototype.setDisabled = function ( state ) {
 	// Parent method
@@ -4618,6 +4616,8 @@ OO.ui.TagItemWidget.prototype.setDisabled = function ( state ) {
 	if ( this.closeButton ) {
 		this.closeButton.setDisabled( state );
 	}
+
+	this.emit( 'disabled', this.isDisabled() );
 	return this;
 };
 
@@ -4648,7 +4648,7 @@ OO.ui.TagItemWidget.prototype.remove = function () {
 OO.ui.TagItemWidget.prototype.onKeyDown = function ( e ) {
 	var movement;
 
-	if ( e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
+	if ( !this.isDisabled() && e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
 		this.remove();
 		return false;
 	} else if ( e.keyCode === OO.ui.Keys.ENTER ) {
@@ -4823,11 +4823,13 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	this.aggregate( {
 		remove: 'itemRemove',
 		navigate: 'itemNavigate',
-		select: 'itemSelect'
+		select: 'itemSelect',
+		disabled: 'itemDisabled'
 	} );
 	this.connect( this, {
 		itemRemove: 'onTagRemove',
 		itemSelect: 'onTagSelect',
+		itemDisabled: 'onTagDisabled',
 		itemNavigate: 'onTagNavigate',
 		change: 'onChangeTags'
 	} );
@@ -5056,11 +5058,14 @@ OO.ui.TagMultiselectWidget.prototype.doInputBackspace = function ( e, withMetaKe
 		// Delete the last item
 		items = this.getItems();
 		item = items[ items.length - 1 ];
-		this.removeItems( [ item ] );
-		// If Ctrl/Cmd was pressed, delete item entirely.
-		// Otherwise put it into the text field for editing.
-		if ( !withMetaKey ) {
-			this.input.setValue( item.getData() );
+
+		if ( !item.isDisabled() ) {
+			this.removeItems( [ item ] );
+			// If Ctrl/Cmd was pressed, delete item entirely.
+			// Otherwise put it into the text field for editing.
+			if ( !withMetaKey ) {
+				this.input.setValue( item.getData() );
+			}
 		}
 
 		return false;
@@ -5120,6 +5125,18 @@ OO.ui.TagMultiselectWidget.prototype.onTagSelect = function ( item ) {
 	}
 };
 
+/**
+ * Respond to item disabled state change
+ *
+ * @param {OO.ui.TagItemWidget} item Selected item
+ * @param {boolean} isDisabled Item is disabled
+ */
+OO.ui.TagMultiselectWidget.prototype.onTagDisabled = function ( item, isDisabled ) {
+	if ( isDisabled ) {
+	// Move item to start if it is disabled
+		this.addItems( item, 0 );
+	}
+};
 /**
  * Respond to change event, where items were added, removed, or cleared.
  */
@@ -5858,6 +5875,10 @@ OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
 		validated = false,
 		highlightedItem = this.menu.findHighlightedItem(),
 		item = this.menu.findItemFromData( inputValue );
+
+	if ( !inputValue ) {
+		return;
+	}
 
 	// Override the parent method so we add from the menu
 	// rather than directly from the input
