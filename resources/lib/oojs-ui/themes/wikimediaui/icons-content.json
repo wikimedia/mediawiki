@@ -19,42 +19,43 @@
 		}
 	},
 	"images": {
-		"article": { "file": {
-			"ltr": "images/icons/article-ltr.svg",
-			"rtl": "images/icons/article-rtl.svg"
-		} },
-		"articles": { "file": {
-			"ltr": "images/icons/articles-ltr.svg",
-			"rtl": "images/icons/articles-rtl.svg"
-		} },
-		"articleCheck": { "file": {
-			"ltr": "images/icons/articleCheck-ltr.svg",
-			"rtl": "images/icons/articleCheck-rtl.svg"
-		} },
-		"articleSearch": { "file": {
-			"ltr": "images/icons/articleSearch-ltr.svg",
-			"rtl": "images/icons/articleSearch-rtl.svg"
-		} },
-		"articleRedirect": { "file": {
-			"ltr": "images/icons/articleRedirect-ltr.svg",
-			"rtl": "images/icons/articleRedirect-rtl.svg"
-		} },
-		"book": { "file": {
-			"ltr": "images/icons/book-ltr.svg",
-			"rtl": "images/icons/book-rtl.svg"
-		} },
-		"citeArticle": { "file": {
-			"ltr": "images/icons/citeArticle-ltr.svg",
-			"rtl": "images/icons/citeArticle-rtl.svg"
-		} },
-		"die": { "file": {
-			"ltr": "images/icons/die-ltr.svg",
-			"rtl": "images/icons/die-rtl.svg"
-		} },
-		"download": { "file": {
-			"ltr": "images/icons/download-ltr.svg",
-			"rtl": "images/icons/download-rtl.svg"
-		} },
+		"article": {
+			"file": {
+				"ltr": "images/icons/article-ltr.svg",
+				"rtl": "images/icons/article-ltr.svg"
+			}
+		},
+		"articles": {
+			"file": {
+				"ltr": "images/icons/articles-ltr.svg",
+				"rtl": "images/icons/articles-rtl.svg"
+			}
+		},
+		"articleCheck": {
+			"file": "images/icons/articleCheck.svg"
+		},
+		"articleSearch": {
+			"file": "images/icons/articleSearch.svg"
+		},
+		"articleRedirect": {
+			"file": {
+				"ltr": "images/icons/articleRedirect-ltr.svg",
+				"rtl": "images/icons/articleRedirect-rtl.svg"
+			}
+		},
+		"book": {
+			"file": {
+				"ltr": "images/icons/book-ltr.svg",
+				"rtl": "images/icons/book-rtl.svg"
+			}
+		},
+		"citeArticle": {
+			"file": "images/icons/citeArticle.svg"
+		},
+		"die": { "file": "images/icons/die.svg" },
+		"download": {
+			"file": "images/icons/download.svg"
+		},
 		"folderPlaceholder": { "file": {
 			"ltr": "images/icons/folderPlaceholder-ltr.svg",
 			"rtl": "images/icons/folderPlaceholder-rtl.svg"
@@ -69,11 +70,11 @@
 			"ltr": "images/icons/newspaper-ltr.svg",
 			"rtl": "images/icons/newspaper-rtl.svg"
 		} },
-		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning" ] },
-		"upload": { "file": {
-			"ltr": "images/icons/upload-ltr.svg",
-			"rtl": "images/icons/upload-rtl.svg"
-		} },
+		"tag": { "file": {
+			"ltr": "images/icons/tag-ltr.svg",
+			"rtl": "images/icons/tag-rtl.svg"
+		}, "variants": [ "destructive", "warning" ] },
+		"upload": { "file": "images/icons/upload.svg" },
 		"window": { "file": "images/icons/window.svg" }
 	}
 }
