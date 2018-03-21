@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.3
+ * OOUI v0.26.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-07T06:52:40Z
+ * Date: 2018-03-21T00:00:57Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -192,8 +192,8 @@
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07), 0 0 2px 2px #ace;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  margin-left: -0.5em;
-  margin-right: -0.5em;
+  margin-left: -0.34375em;
+  margin-right: -0.34375em;
   display: inline-block;
   vertical-align: middle;
 }
@@ -280,7 +280,11 @@
 .oo-ui-iconElement.oo-ui-iconElement-icon {
   position: static;
   top: auto;
-  height: 1.875em;
+  width: 1.5625em;
+  height: 1.5625em;
+  min-width: auto;
+  min-height: auto;
+  margin: 0.15625em;
   opacity: 0.8;
 }
 .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
@@ -662,7 +666,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   display: inline-block;
   position: static;
   top: auto;
-  height: 1.875em;
+  height: 1.5625em;
+  margin: 0.15625em;
 }
 .oo-ui-iconWidget.oo-ui-widget-disabled {
   opacity: 0.2;
@@ -1150,6 +1155,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   top: 0;
   height: 100%;
+  margin: 0 0.15625em;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
@@ -1157,7 +1163,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon {
   max-height: 2.5em;
-  margin-left: 0.3em;
+  margin-left: 0.45625em;
 }
 .oo-ui-textInputWidget.oo-ui-indicatorElement input,
 .oo-ui-textInputWidget.oo-ui-indicatorElement textarea {

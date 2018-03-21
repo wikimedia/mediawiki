@@ -19,34 +19,41 @@
 		}
 	},
 	"images": {
-		"edit": { "file": {
-			"ltr": "images/icons/edit-ltr.svg",
-			"rtl": "images/icons/edit-rtl.svg"
-		} },
-		"editLock": { "file": {
-			"ltr": "images/icons/editLock-ltr.svg",
-			"rtl": "images/icons/editLock-rtl.svg"
-		} },
-		"editUndo": { "file": {
-			"ltr": "images/icons/editUndo-ltr.svg",
-			"rtl": "images/icons/editUndo-rtl.svg"
-		} },
-		"link": { "file": {
-			"ltr": "images/icons/link-ltr.svg",
-			"rtl": "images/icons/link-rtl.svg"
-		} },
-		"linkExternal": { "file": {
-			"ltr": "images/icons/external-link-ltr.svg",
-			"rtl":  "images/icons/external-link-rtl.svg"
-		} },
-		"linkSecure": { "file": "images/icons/secure-link.svg" },
-		"redo": { "file": {
-			"ltr": "images/icons/arched-arrow-ltr.svg",
-			"rtl": "images/icons/arched-arrow-rtl.svg"
-		} },
-		"undo": { "file": {
-			"ltr": "images/icons/arched-arrow-rtl.svg",
-			"rtl": "images/icons/arched-arrow-ltr.svg"
-		} }
+		"edit": {
+			"file": "images/icons/edit.svg"
+		},
+		"editLock": {
+			"file": "images/icons/editLock.svg"
+		},
+		"editUndo": {
+			"file": {
+				"ltr": "images/icons/editUndo-ltr.svg",
+				"rtl": "images/icons/editUndo-rtl.svg"
+			}
+		},
+		"link": {
+			"file": "images/icons/link.svg"
+		},
+		"linkExternal": {
+			"file": {
+				"ltr": "images/icons/linkExternal-ltr.svg",
+				"rtl":  "images/icons/linkExternal-rtl.svg"
+			}
+		},
+		"linkSecure": {
+			"file": "images/icons/linkSecure.svg"
+		},
+		"redo": {
+			"file": {
+				"ltr": "images/icons/redo-ltr.svg",
+				"rtl": "images/icons/redo-rtl.svg"
+			}
+		},
+		"undo": {
+			"file": {
+				"ltr": "images/icons/undo-ltr.svg",
+				"rtl": "images/icons/undo-rtl.svg"
+			}
+		}
 	}
 }
