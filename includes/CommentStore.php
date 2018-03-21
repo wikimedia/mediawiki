@@ -34,7 +34,7 @@ class CommentStore {
 	 * Maximum length of a comment in UTF-8 characters. Longer comments will be truncated.
 	 * @note This must be at least 255 and not greater than floor( MAX_COMMENT_LENGTH / 4 ).
 	 */
-	const COMMENT_CHARACTER_LIMIT = 1000;
+	const COMMENT_CHARACTER_LIMIT = 500;
 
 	/**
 	 * Maximum length of a comment in bytes. Longer comments will be truncated.
