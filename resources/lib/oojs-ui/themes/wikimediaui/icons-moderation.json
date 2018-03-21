@@ -20,10 +20,9 @@
 	},
 	"images": {
 		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
-		"unBlock": { "file": {
-			"ltr": "images/icons/unBlock-ltr.svg",
-			"rtl": "images/icons/unBlock-rtl.svg"
-		} },
+		"unBlock": {
+			"file": "images/icons/unBlock.svg"
+		},
 		"clip": { "file": "images/icons/clip.svg" },
 		"unClip": { "file": "images/icons/unClip.svg" },
 		"flag": { "file": {
@@ -34,14 +33,12 @@
 			"ltr": "images/icons/unFlag-ltr.svg",
 			"rtl": "images/icons/unFlag-rtl.svg"
 		} },
-		"lock": { "file": {
-			"ltr": "images/icons/lock-ltr.svg",
-			"rtl": "images/icons/lock-rtl.svg"
-		}, "variants": [ "destructive" ] },
-		"unLock": { "file": {
-			"ltr": "images/icons/unLock-ltr.svg",
-			"rtl": "images/icons/unLock-rtl.svg"
-		}, "variants": [ "destructive" ] },
+		"lock": {
+			"file": "images/icons/lock.svg", "variants": [ "destructive" ]
+		},
+		"unLock": {
+			"file": "images/icons/unLock.svg", "variants": [ "destructive" ]
+		},
 		"star": { "file": "images/icons/star.svg" },
 		"halfStar": { "file": {
 			"ltr": "images/icons/halfStar-ltr.svg",
@@ -49,10 +46,9 @@
 		} },
 		"unStar": { "file": "images/icons/unStar.svg" },
 		"trash": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
-		"unTrash": { "file": {
-			"ltr": "images/icons/unTrash-ltr.svg",
-			"rtl": "images/icons/unTrash-rtl.svg"
-		} },
+		"unTrash": {
+			"file": "images/icons/unTrash.svg"
+		},
 		"pushPin": { "file": "images/icons/pushPin.svg" },
 		"ongoingConversation": { "file": {
 			"ltr": "images/icons/ongoingConversation-ltr.svg",

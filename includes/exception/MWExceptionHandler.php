@@ -276,12 +276,21 @@ class MWExceptionHandler {
 			return false;
 		}
 
-		$msg = "[{exception_id}] PHP Fatal Error: {$message}";
+		$url = WebRequest::getGlobalRequestURL();
+		$msgParts = [
+			'[{exception_id}] {exception_url}   PHP Fatal Error',
+			( $line || $file ) ? ' from' : '',
+			$line ? " line $line" : '',
+			( $line && $file ) ? ' of' : '',
+			$file ? " $file" : '',
+			": $message",
+		];
+		$msg = implode( '', $msgParts );
 
 		// Look at message to see if this is a class not found failure
 		// HHVM: Class undefined: foo
 		// PHP5: Class 'foo' not found
-		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $msg ) ) {
+		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $message ) ) {
 			// phpcs:disable Generic.Files.LineLength
 			$msg = <<<TXT
 {$msg}
@@ -308,9 +317,10 @@ TXT;
 				'code' => $level,
 				'file' => $file,
 				'line' => $line,
-				'trace' => static::redactTrace( $trace ),
+				'trace' => self::prettyPrintTrace( self::redactTrace( $trace ) ),
 			],
-			'exception_id' => wfRandomString( 8 ),
+			'exception_id' => WebRequest::getRequestId(),
+			'exception_url' => $url,
 			'caught_by' => self::CAUGHT_BY_HANDLER
 		] );
 
