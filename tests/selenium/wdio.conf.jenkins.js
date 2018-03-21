@@ -14,7 +14,9 @@ exports.config = merge( wdioConf.config, {
 		process.env.MEDIAWIKI_PASSWORD,
 	screenshotPath: '../log/',
 	baseUrl: process.env.MW_SERVER + process.env.MW_SCRIPT_PATH,
-
+	exclude: [
+		'./extensions/CirrusSearch/tests/selenium/specs/**/*.js'
+	],
 	reporters: [ 'spec', 'junit' ],
 	reporterOptions: {
 		junit: {
