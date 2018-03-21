@@ -6,12 +6,6 @@
 			"ltr": "images/icons/arrow-ltr.svg",
 			"rtl": "images/icons/arrow-rtl.svg"
 		} },
-		"arrowLast": { "file": {
-			"ltr": "images/icons/arrow-rtl.svg",
-			"rtl": "images/icons/arrow-ltr.svg"
-		},
-			"deprecated": "Renamed since v0.25.0, use 'arrowPrevious' instead."
-		},
 		"arrowPrevious": { "file": {
 			"ltr": "images/icons/arrow-rtl.svg",
 			"rtl": "images/icons/arrow-ltr.svg"

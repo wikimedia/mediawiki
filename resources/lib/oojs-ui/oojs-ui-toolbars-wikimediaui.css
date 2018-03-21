@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.3
+ * OOUI v0.26.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-07T06:52:40Z
+ * Date: 2018-03-21T00:00:57Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -22,18 +22,18 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding-top: 3.125em;
-  padding-left: 3.125em;
+  padding-top: 3em;
+  padding-left: 3em;
 }
 .oo-ui-tool-with-label .oo-ui-tool-link {
-  padding: 1.015625em 0.9375em 0.9375em 2.96875em;
+  padding: 1em 0.85714286em 0.92857143em 2.64285714em;
 }
 .oo-ui-tool.oo-ui-iconElement .oo-ui-iconElement-icon {
   display: block;
-  left: 0.625em;
+  left: 0.78571429em;
 }
 .oo-ui-tool .oo-ui-tool-title {
-  line-height: 1.172em;
+  line-height: 1.07142857em;
 }
 .oo-ui-tool.oo-ui-widget-enabled {
   -webkit-transition: background-color 100ms;
@@ -50,6 +50,8 @@
   -webkit-transition: opacity 100ms;
   -moz-transition: opacity 100ms;
   transition: opacity 100ms;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-title {
   -webkit-transition: color 100ms;
@@ -144,7 +146,7 @@
 }
 .oo-ui-popupToolGroup {
   position: relative;
-  min-width: 3.125em;
+  min-width: 3em;
 }
 .oo-ui-popupToolGroup-handle {
   display: block;
@@ -186,7 +188,7 @@
   text-align: right;
 }
 .oo-ui-popupToolGroup.oo-ui-indicatorElement:not( .oo-ui-labelElement ):not( .oo-ui-iconElement ) {
-  min-width: 2.1875em;
+  min-width: 1.85714286em;
 }
 .oo-ui-popupToolGroup-handle {
   -webkit-box-sizing: border-box;
@@ -194,51 +196,51 @@
   box-sizing: border-box;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
-  left: 0.625em;
+  left: 0.78571429em;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   background-position: center 52%;
-  right: 0.625em;
+  right: 0.57142857em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
-  right: 0.3125em;
+  right: 0.28571429em;
 }
 .oo-ui-popupToolGroup.oo-ui-iconElement .oo-ui-popupToolGroup-handle,
 .oo-ui-popupToolGroup.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-top: 3.125em;
+  padding-top: 3em;
 }
 .oo-ui-popupToolGroup.oo-ui-iconElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-left: 3.125em;
+  padding-left: 3em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle {
-  padding: 1.015625em 0.9375em 0.9375em;
+  padding: 1em 0.85714286em 0.92857143em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
-  line-height: 1.172em;
+  line-height: 1.07142857em;
 }
 .oo-ui-popupToolGroup.oo-ui-iconElement.oo-ui-labelElement .oo-ui-popupToolGroup-handle {
-  padding-left: 2.96875em;
+  padding-left: 2.64285714em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-right: 2.1875em;
+  padding-right: 1.85714286em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-right: 1.5625em;
+  padding-right: 1.28571429em;
 }
 .oo-ui-popupToolGroup.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-right: 1.25em;
+  padding-right: 1.14285714em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle {
-  padding-right: 0.9375em;
+  padding-right: 0.85714286em;
 }
 .oo-ui-popupToolGroup:not( .oo-ui-labelElement ):not( .oo-ui-iconElement ) .oo-ui-indicatorElement-indicator {
   opacity: 1;
 }
 .oo-ui-popupToolGroup-header {
   color: #72777d;
-  padding: 0 0.9375em;
+  padding: 0 0.85714286em;
   font-weight: bold;
-  line-height: 2.5em;
+  line-height: 2.28571429em;
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
   margin: 0 -1px;
@@ -248,24 +250,23 @@
   min-width: 16em;
 }
 .oo-ui-toolbar-position-top .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  top: 3.125em;
+  top: 3em;
 }
 .oo-ui-toolbar-position-bottom .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  bottom: 3.125em;
+  bottom: 3em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
-  display: block;
-  padding: 1.015625em 0.9375em 0.9375em 2.96875em;
+  padding: 1em 0.85714286em 0.92857143em 2.64285714em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   color: #222;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
   color: #72777d;
-  line-height: 1.172em;
+  line-height: 1.07142857em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
-  padding-left: 1.40625em;
+  padding-left: 1.28571429em;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
   -webkit-transition: background-color 100ms, box-shadow 100ms;
@@ -284,6 +285,8 @@
   -webkit-transition: opacity 100ms;
   -moz-transition: opacity 100ms;
   transition: opacity 100ms;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover .oo-ui-iconElement-icon,
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:active .oo-ui-iconElement-icon,
@@ -347,7 +350,7 @@
   min-width: 8.125em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-  left: 0.625em;
+  left: 0.78571429em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
   background-image: url('themes/wikimediaui/images/icons/check-progressive.png');
@@ -423,7 +426,7 @@
   content: '';
   display: block;
   position: absolute;
-  top: 3.125em;
+  top: 3em;
   left: 0;
   width: 100%;
   height: 0;
@@ -440,23 +443,49 @@
 .oo-ui-toolbar-actions > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   border: 0;
   border-radius: 0;
-  padding-top: 3.125em;
-  padding-left: 1.25em;
-  padding-right: 1.25em;
+  padding-top: 3em;
+  padding-left: 1.14285714em;
+  padding-right: 1.14285714em;
 }
 .oo-ui-toolbar-narrow .oo-ui-toolbar-actions > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
-  padding-left: 0.9375em;
-  padding-right: 0.9375em;
+  padding-left: 0.85714286em;
+  padding-right: 0.85714286em;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
   box-shadow: inset 0 0 0 2px #36c, inset 0 0 0 3px #fff;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
-  padding-top: 1.015625em;
-  padding-bottom: 0.9375em;
+  padding-top: 1em;
+  padding-bottom: 0.92857143em;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   border-radius: 0;
+  border-width: 0 0 0 1px;
+  padding-top: 1em;
+  padding-bottom: 0.92857143em;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle {
+  color: #fff;
+  background-color: #36c;
+  border-color: #36c;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:hover {
+  background-color: #447ff5;
+  border-color: #447ff5;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:active,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:active:focus,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-popupToolGroup-handle,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-popupToolGroup-handle,
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle {
+  color: #fff;
+  background-color: #2a4b8d;
+  border-color: #2a4b8d;
+  box-shadow: none;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:focus {
+  border-color: #36c;
+  box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
 }
 .oo-ui-toolbar-actions > .oo-ui-toolbar:not( :last-child ) {
   border-right: 1px solid #c8ccd1;

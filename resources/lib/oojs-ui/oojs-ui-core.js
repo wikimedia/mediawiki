@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.3
+ * OOUI v0.26.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-07T06:52:35Z
+ * Date: 2018-03-21T00:00:53Z
  */
 ( function ( OO ) {
 
@@ -533,7 +533,7 @@ OO.ui.isSafeUrl = function ( url ) {
  * It is left up to implementors to decide how to compute this
  * so the default implementation always returns false.
  *
- * @return {boolean} Use is on a mobile device
+ * @return {boolean} User is on a mobile device
  */
 OO.ui.isMobile = function () {
 	return false;
@@ -11462,7 +11462,7 @@ OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
 		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
 		$listItem.attr( 'role', 'alert' );
 	} else if ( kind === 'notice' ) {
-		$icon = new OO.ui.IconWidget( { icon: 'info' } ).$element;
+		$icon = new OO.ui.IconWidget( { icon: 'notice' } ).$element;
 	} else {
 		$icon = '';
 	}
