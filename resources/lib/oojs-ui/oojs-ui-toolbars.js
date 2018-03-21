@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.25.3
+ * OOUI v0.26.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-07T06:52:35Z
+ * Date: 2018-03-21T00:00:53Z
  */
 ( function ( OO ) {
 
@@ -790,13 +790,8 @@ OO.ui.Tool.prototype.isActive = function () {
  */
 OO.ui.Tool.prototype.setActive = function ( state ) {
 	this.active = !!state;
-	if ( this.active ) {
-		this.$element.addClass( 'oo-ui-tool-active' );
-		this.setFlags( { progressive: true } );
-	} else {
-		this.$element.removeClass( 'oo-ui-tool-active' );
-		this.setFlags( { progressive: false } );
-	}
+	this.$element.toggleClass( 'oo-ui-tool-active', this.active );
+	this.updateThemeClasses();
 };
 
 /**
@@ -1957,6 +1952,15 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
 };
 
 /**
+ * Check if the tool group is active.
+ *
+ * @return {boolean} Tool group is active
+ */
+OO.ui.PopupToolGroup.prototype.isActive = function () {
+	return this.active;
+};
+
+/**
  * Switch into 'active' mode.
  *
  * When active, the popup is visible. A mouseup event anywhere in the document will trigger
@@ -1976,7 +1980,6 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.$clippable.css( 'left', '' );
 			// Try anchoring the popup to the left first
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
-			this.setFlags( { progressive: true } );
 			this.toggleClipping( true );
 			if ( this.isClippedHorizontally() ) {
 				// Anchoring to the left caused the popup to clip, so anchor it to the right instead
@@ -2005,11 +2008,11 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
 			this.getElementDocument().removeEventListener( 'keyup', this.onBlurHandler, true );
 			this.$element.removeClass(
-				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
+				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left oo-ui-popupToolGroup-right'
 			);
-			this.setFlags( { progressive: false } );
 			this.toggleClipping( false );
 		}
+		this.updateThemeClasses();
 	}
 };
 
