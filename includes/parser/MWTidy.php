@@ -69,7 +69,7 @@ class MWTidy {
 		if ( $driver->supportsValidate() ) {
 			return $driver->validate( $text, $errorStr );
 		} else {
-			throw new MWException( __METHOD__ . ": error text return from HHVM tidy is not supported" );
+			throw new MWException( __METHOD__ . ": tidy driver does not support validate()" );
 		}
 	}
 
