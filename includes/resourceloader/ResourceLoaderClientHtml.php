@@ -131,9 +131,7 @@ class ResourceLoaderClientHtml {
 				// moduleName => state
 			],
 			'general' => [],
-			'styles' => [
-				// moduleName
-			],
+			'styles' => [],
 			'scripts' => [],
 			// Embedding for private modules
 			'embed' => [
@@ -182,20 +180,17 @@ class ResourceLoaderClientHtml {
 			}
 
 			// Stylesheet doesn't trigger mw.loader callback.
-			// Set "ready" state to allow dependencies and avoid duplicate requests. (T87871)
+			// Set "ready" state to allow script modules to depend on this module  (T87871).
+			// And to avoid duplicate requests at run-time from mw.loader.
 			$data['states'][$name] = 'ready';
 
 			$group = $module->getGroup();
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
-			if ( $module->isKnownEmpty( $context ) ) {
-				// Avoid needless request for empty module
-				$data['states'][$name] = 'ready';
-			} else {
+			// Avoid needless request for empty module
+			if ( !$module->isKnownEmpty( $context ) ) {
 				if ( $module->shouldEmbedModule( $this->context ) ) {
 					// Embed via style element
 					$data['embed']['styles'][] = $name;
-					// Avoid duplicate request from mw.loader
-					$data['states'][$name] = 'ready';
 				} else {
 					// Load from load.php?only=styles via <link rel=stylesheet>
 					$data['styles'][] = $name;
