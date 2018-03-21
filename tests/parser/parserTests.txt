@@ -16941,7 +16941,8 @@ __NOEDITSECTION__
 <h1><span class="mw-headline" id="Header_1">Header 1</span></h1>
 <h2><span class="mw-headline" id="Header_1.1">Header 1.1</span></h2>
 <h2><span class="mw-headline" id="Header_1.2">Header 1.2</span></h2>
-<h1><span class="mw-headline" id="Header_2">Header 2</span></h1>
+<h1><span class="mw-headline" id="Header_2">Header 2
+</span></h1>
 <h2><span class="mw-headline" id="Header_2.1">Header 2.1</span></h2>
 <h2><span class="mw-headline" id="Header_2.2">Header 2.2</span></h2>
 
@@ -30537,20 +30538,19 @@ __NOTOC__
 Do not trim whitespace in HTML headings, list items, table captions, headings, and cells
 !! wikitext
 __NOTOC__
-<h2>    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  <h2>
+<h2>    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  </h2>
 <ul><li>     <!--c1-->   <!--c2-->  List item <!--c3--> <!--c4-->  </li></ul>
 <table>
 <tr><th> <!--c1--> <!--c2--> Table Heading <!--c3--> <!--c4--> <th></tr>
 <tr><td> <!--c1--> <!--c2--> Table Cell <!--c3--> <!--c4--> <th></tr>
 </table>
 !! html/php+tidy
-<h2>        Heading       </h2><h2>
+<h2><span class="mw-headline" id="Heading">        Heading       </span></h2>
 <ul><li>          List item    </li></ul>
 <table>
 <tbody><tr><th>   Table Heading   </th><th></th></tr>
 <tr><td>   Table Cell   </td><th></th></tr>
 </tbody></table>
-</h2>
 !! end
 
 !! test
