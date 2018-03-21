@@ -232,45 +232,51 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
-		global $wgPageLanguageUseDB, $wgContentHandlerUseDB;
-
-		if ( !is_array( self::$list ) ) {
-			self::$list = self::$coreList;
+		global $wgPageLanguageUseDB, $wgContentHandlerUseDB, $wgFullyInitialised;
+		$list = self::$list;
+		if ( !is_array( $list ) ) {
+			$list = self::$coreList;
 
 			if ( !$wgDisableInternalSearch ) {
-				self::$list['Search'] = SpecialSearch::class;
+				$list['Search'] = SpecialSearch::class;
 			}
 
 			if ( $wgEmailAuthentication ) {
-				self::$list['Confirmemail'] = EmailConfirmation::class;
-				self::$list['Invalidateemail'] = EmailInvalidation::class;
+				$list['Confirmemail'] = EmailConfirmation::class;
+				$list['Invalidateemail'] = EmailInvalidation::class;
 			}
 
 			if ( $wgEnableEmail ) {
-				self::$list['ChangeEmail'] = SpecialChangeEmail::class;
+				$list['ChangeEmail'] = SpecialChangeEmail::class;
 			}
 
 			if ( $wgEnableJavaScriptTest ) {
-				self::$list['JavaScriptTest'] = SpecialJavaScriptTest::class;
+				$list['JavaScriptTest'] = SpecialJavaScriptTest::class;
 			}
 
 			if ( $wgPageLanguageUseDB ) {
-				self::$list['PageLanguage'] = SpecialPageLanguage::class;
+				$list['PageLanguage'] = SpecialPageLanguage::class;
 			}
 			if ( $wgContentHandlerUseDB ) {
-				self::$list['ChangeContentModel'] = SpecialChangeContentModel::class;
+				$list['ChangeContentModel'] = SpecialChangeContentModel::class;
 			}
 
 			// Add extension special pages
-			self::$list = array_merge( self::$list, $wgSpecialPages );
+			$list = array_merge( $list, $wgSpecialPages );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
-			Hooks::run( 'SpecialPage_initList', [ &self::$list ] );
+			Hooks::run( 'SpecialPage_initList', [ &$list ] );
 
+			if ( $wgFullyInitialised ) {
+				// Some extensions (e.g. SMW) register special pages late
+				// during extension functions, but some other extensions also
+				// load the special page list before that. To prevent missing
+				// later registrations, only memoize if we are fully initialized.
+				self::$list = $list;
+			}
 		}
-
-		return self::$list;
+		return $list;
 	}
 
 	/**
