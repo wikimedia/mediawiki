@@ -8,7 +8,8 @@
 			"global": true
 		},
 		"progressive": {
-			"color": "#36c"
+			"color": "#36c",
+			"global": true
 		},
 		"destructive": {
 			"color": "#d33"
@@ -30,7 +31,7 @@
 		"stripeToC": { "file": {
 			"ltr": "images/icons/stripeToC-ltr.svg",
 			"rtl": "images/icons/stripeToC-rtl.svg"
-		}, "variants": [ "progressive" ] },
+		} },
 		"viewCompact": { "file": "images/icons/viewCompact.svg" },
 		"viewDetails": { "file": {
 			"ltr": "images/icons/viewDetails-ltr.svg",
