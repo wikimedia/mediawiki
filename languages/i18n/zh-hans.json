@@ -541,7 +541,7 @@
 	"wrongpasswordempty": "密码输入为空。请重试。",
 	"passwordtooshort": "您的密码至少需要$1个字符。",
 	"passwordtoolong": "密码不能超过{{PLURAL:$1|$1个字符}}。",
-	"passwordtoopopular": "不能使用普遍选择的密码。请选择一个更独一无二的密码。",
+	"passwordtoopopular": "不能使用普遍选择的密码。请选择更难猜出的密码。",
 	"password-name-match": "您的密码必须和您的用户名不相同。",
 	"password-login-forbidden": "这个用户名称及密码的使用是被禁止的。",
 	"mailmypassword": "重置密码",

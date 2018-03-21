@@ -1320,7 +1320,7 @@
 	"recentchanges-legend-newpage": "[[w:sr:Посебно:НовеСтране|<u>Н</u>ова страница]]",
 	"recentchanges-submit": "Прикажи",
 	"rcfilters-tag-remove": "Уклоните филтер „$1”",
-	"rcfilters-legend-heading": "\n<strong>Списак скраћеница ([[w:sr:Помоћ:Надгледање страница|помоћ]]):</strong>",
+	"rcfilters-legend-heading": "<strong>Списак скраћеница:</strong>",
 	"rcfilters-other-review-tools": "Остале алатке за преглед",
 	"rcfilters-group-results-by-page": "Групиши резултате по страницама",
 	"rcfilters-activefilters": "Активни филтери",
