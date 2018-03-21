@@ -1845,7 +1845,7 @@ function wfHttpError( $code, $label, $desc ) {
 function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 	if ( $resetGzipEncoding ) {
 		// Suppress Content-Encoding and Content-Length
-		// headers from 1.10+s wfOutputHandler
+		// headers from OutputHandler::handle.
 		global $wgDisableOutputCompression;
 		$wgDisableOutputCompression = true;
 	}

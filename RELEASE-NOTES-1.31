@@ -287,7 +287,7 @@ changes to languages because of Phabricator reports.
   * Parser::isValidHalfParsedText()
   * StripState::getSubState()
   * StripState::merge()
-* The "free" class is now only applied to unbracketed URLs in wikitext. Links
+* The "free" CSS class is now only applied to unbracketed URLs in wikitext. Links
   written using square brackets will get the class "text" not "free".
 * OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
   can use ApiOpenSearch::getOpenSearchTemplate() instead.
@@ -302,6 +302,9 @@ changes to languages because of Phabricator reports.
   transaction also results in an exception. Previously these were logged as errors.
   The startAtomic() and endAtomic() methods, or AtomicSectionUpdate should be used
   instead.
+* The global function wfOutputHandler() was removed, use the its replacement
+  MediaWiki\OutputHandler::handle() instead. The global function was only sometimes defined.
+  Its replacement is always available via the autoloader.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
