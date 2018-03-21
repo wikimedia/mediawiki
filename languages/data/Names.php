@@ -149,7 +149,7 @@ class Names {
 		'en-gb' => 'British English', # British English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
-		'es-formal' => 'español (formal)', # Spanish formal address
+		'es-formal' => "español (formal)\xE2\x80\x8E", # Spanish formal address
 		'et' => 'eesti', # Estonian
 		'eu' => 'euskara', # Basque
 		'ext' => 'estremeñu', # Extremaduran
@@ -199,7 +199,7 @@ class Names {
 		'hsb' => 'hornjoserbsce', # Upper Sorbian
 		'ht' => 'Kreyòl ayisyen', # Haitian Creole French
 		'hu' => 'magyar', # Hungarian
-		'hu-formal' => 'magyar (formal)', # Hungarian formal address
+		'hu-formal' => "magyar (formal)\xE2\x80\x8E", # Hungarian formal address
 		'hy' => 'Հայերեն', # Armenian
 		'hz' => 'Otsiherero', # Herero
 		'ia' => 'interlingua', # Interlingua (IALA)
