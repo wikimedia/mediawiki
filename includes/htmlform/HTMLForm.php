@@ -159,6 +159,7 @@ class HTMLForm extends ContextSource {
 		'date' => HTMLDateTimeField::class,
 		'time' => HTMLDateTimeField::class,
 		'datetime' => HTMLDateTimeField::class,
+		'expiry' => HTMLExpiryField::class,
 		// HTMLTextField will output the correct type="" attribute automagically.
 		// There are about four zillion other HTML5 input types, like range, but
 		// we don't use those at the moment, so no point in adding all of them.
