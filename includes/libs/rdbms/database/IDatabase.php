@@ -49,6 +49,11 @@ interface IDatabase {
 	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
 	const TRANSACTION_INTERNAL = 'implicit';
 
+	/** @var string Atomic section is not cancelable */
+	const ATOMIC_NOT_CANCELABLE = '';
+	/** @var string Atomic section is cancelable */
+	const ATOMIC_CANCELABLE = 'cancelable';
+
 	/** @var string Transaction operation comes from service managing all DBs */
 	const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Transaction operation comes from the database class internally */
@@ -1580,11 +1585,11 @@ interface IDatabase {
 	/**
 	 * Begin an atomic section of statements
 	 *
-	 * If a transaction has been started already, sets a savepoint and tracks
-	 * the given section name to make sure the transaction is not committed
-	 * pre-maturely. This function can be used in layers (with sub-sections),
-	 * so use a stack to keep track of the different atomic sections. If there
-	 * is no transaction, one is started implicitly.
+	 * If a transaction has been started already, (optionally) sets a savepoint
+	 * and tracks the given section name to make sure the transaction is not
+	 * committed pre-maturely. This function can be used in layers (with
+	 * sub-sections), so use a stack to keep track of the different atomic
+	 * sections. If there is no transaction, one is started implicitly.
 	 *
 	 * The goal of this function is to create an atomic section of SQL queries
 	 * without having to start a new transaction if it already exists.
@@ -1596,9 +1601,11 @@ interface IDatabase {
 	 *
 	 * @since 1.23
 	 * @param string $fname
+	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
+	 *  savepoint and enable self::cancelAtomic() for this section.
 	 * @throws DBError
 	 */
-	public function startAtomic( $fname = __METHOD__ );
+	public function startAtomic( $fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE );
 
 	/**
 	 * Ends an atomic section of SQL statements
@@ -1626,6 +1633,8 @@ interface IDatabase {
 	 * Note that a call to IDatabase::rollback() will also roll back any open
 	 * atomic sections.
 	 *
+	 * @note As a micro-optimization to save a few DB calls, this method may only
+	 *  be called when startAtomic() was called with the ATOMIC_CANCELABLE flag.
 	 * @since 1.31
 	 * @see IDatabase::startAtomic
 	 * @param string $fname

@@ -2518,7 +2518,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		try {
-			$this->startAtomic( $fname );
+			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 			$affectedRowCount = 0;
 			foreach ( $rows as $row ) {
 				// Delete rows which collide with this one
@@ -2623,7 +2623,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$affectedRowCount = 0;
 		try {
-			$this->startAtomic( $fname );
+			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 			# Update any existing conflicting row(s)
 			if ( $where !== false ) {
 				$ok = $this->update( $table, $set, $where, $fname );
@@ -2779,7 +2779,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		try {
 			$affectedRowCount = 0;
-			$this->startAtomic( $fname );
+			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 			$rows = [];
 			$ok = true;
 			foreach ( $res as $row ) {
@@ -3095,7 +3095,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
-			$this->startAtomic( __METHOD__ );
+			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
 			try {
 				call_user_func( $callback );
 				$this->endAtomic( __METHOD__ );
@@ -3279,7 +3279,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
 	}
 
-	final public function startAtomic( $fname = __METHOD__ ) {
+	final public function startAtomic(
+		$fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE
+	) {
+		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? 'n/a' : null;
 		if ( !$this->trxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
@@ -3287,8 +3290,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( !$this->getFlag( self::DBO_TRX ) ) {
 				$this->trxAutomaticAtomic = true;
 			}
-			$savepointId = null;
-		} else {
+		} elseif ( $cancelable === self::ATOMIC_CANCELABLE ) {
 			$savepointId = 'wikimedia_rdbms_atomic' . ++$this->trxAtomicCounter;
 			if ( strlen( $savepointId ) > 30 ) { // 30 == Oracle's identifier length limit (pre 12c)
 				$this->queryLogger->warning(
@@ -3316,9 +3318,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
 		}
 
-		if ( !$savepointId ) {
+		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		} else {
+		} elseif ( $savepointId && $savepointId !== 'n/a' ) {
 			$this->doReleaseSavepoint( $savepointId, $fname );
 		}
 	}
@@ -3333,10 +3335,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $savedFname !== $fname ) {
 			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
 		}
-
 		if ( !$savepointId ) {
+			throw new DBUnexpectedError( $this, "Uncancelable atomic section canceled (got $fname)." );
+		}
+
+		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->rollback( $fname, self::FLUSHING_INTERNAL );
-		} else {
+		} elseif ( $savepointId !== 'n/a' ) {
 			$this->doRollbackToSavepoint( $savepointId, $fname );
 		}
 
@@ -3344,7 +3349,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function doAtomicSection( $fname, callable $callback ) {
-		$this->startAtomic( $fname );
+		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
