@@ -97,6 +97,14 @@
 		assert.notEqual( result, result2, 'different when called multiple times' );
 	} );
 
+	QUnit.test( 'stickyRandomId', function ( assert ) {
+		var result = mw.user.stickyRandomId(),
+			result2 = mw.user.stickyRandomId();
+		assert.equal( typeof result, 'string', 'type' );
+		assert.strictEqual( /^[a-f0-9]{16}$/.test( result ), true, '16 HEX symbols string' );
+		assert.equal( result2, result, 'sticky' );
+	} );
+
 	QUnit.test( 'sessionId', function ( assert ) {
 		var result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
