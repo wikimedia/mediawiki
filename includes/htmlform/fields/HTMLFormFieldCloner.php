@@ -11,7 +11,7 @@
  *     of fields.
  *   required - If specified, at least one group of fields must be submitted.
  *   format - HTMLForm display format to use when displaying the subfields:
- *     'table', 'div', or 'raw'.
+ *     'table', 'div', or 'raw'. This is ignored when using OOUI.
  *   row-legend - If non-empty, each group of subfields will be enclosed in a
  *     fieldset. The value is the name of a message key to use as the legend.
  *   create-button-message - Message to use as the text of the button to
@@ -391,6 +391,126 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'default' => $this->getMessage( $label )->text(),
 		], $this->mParent );
 		$html .= $field->getInputHTML( $field->getDefault() );
+
+		return $html;
+	}
+
+	/**
+	 * Get the input OOUI HTML for the specified key.
+	 *
+	 * @param string $key Array key under which the fields should be named
+	 * @param array $values
+	 * @return string
+	 */
+	public function getInputOOUIForKey( $key, array $values ) {
+		$html = '';
+		$hidden = '';
+		$hasLabel = false;
+
+		$fields = $this->createFieldsForKey( $key );
+		foreach ( $fields as $fieldname => $field ) {
+			$v = array_key_exists( $fieldname, $values )
+				? $values[$fieldname]
+				: $field->getDefault();
+
+			if ( $field instanceof HTMLHiddenField ) {
+				// HTMLHiddenField doesn't generate its own HTML
+				list( $name, $value, $params ) = $field->getHiddenFieldData( $v );
+				$hidden .= Html::hidden( $name, $value, $params ) . "\n";
+			} else {
+				$html .= $field->getOOUI( $v );
+
+				$labelValue = trim( $field->getLabel() );
+				if ( $labelValue !== '&#160;' && $labelValue !== '' ) {
+					$hasLabel = true;
+				}
+			}
+		}
+
+		if ( !isset( $fields['delete'] ) ) {
+			$name = "{$this->mName}[$key][delete]";
+			$label = isset( $this->mParams['delete-button-message'] )
+				? $this->mParams['delete-button-message']
+				: 'htmlform-cloner-delete';
+			$field = HTMLForm::loadInputFromParameters( $name, [
+				'type' => 'submit',
+				'formnovalidate' => true,
+				'name' => $name,
+				'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--delete" ),
+				'cssclass' => 'mw-htmlform-cloner-delete-button',
+				'default' => $this->getMessage( $label )->text(),
+			], $this->mParent );
+			$v = $field->getDefault();
+
+			$fieldHtml = $field->getInputOOUI( $v );
+			if ( !$fieldHtml ) {
+				$fieldHtml = $field->getInputHTML( $v );
+			}
+
+			$html .= $fieldHtml;
+		}
+
+		$classes = [
+			'mw-htmlform-cloner-row',
+		];
+
+		if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
+			$classes[] = 'mw-htmlform-nolabel';
+		}
+
+		$attribs = [
+			'class' => implode( ' ', $classes ),
+		];
+
+		$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
+
+		$html .= $hidden;
+
+		if ( !empty( $this->mParams['row-legend'] ) ) {
+			$legend = $this->msg( $this->mParams['row-legend'] )->text();
+			$html = Xml::fieldset( $legend, $html );
+		}
+
+		return $html;
+	}
+
+	public function getInputOOUI( $values ) {
+		$html = '';
+
+		foreach ( (array)$values as $key => $value ) {
+			if ( $key === 'nonjs' ) {
+				continue;
+			}
+			$html .= Html::rawElement( 'li', [ 'class' => 'mw-htmlform-cloner-li' ],
+				$this->getInputOOUIForKey( $key, $value )
+			);
+		}
+
+		$template = $this->getInputOOUIForKey( $this->uniqueId, [] );
+		$html = Html::rawElement( 'ul', [
+			'id' => "mw-htmlform-cloner-list-{$this->mID}",
+			'class' => 'mw-htmlform-cloner-ul',
+			'data-template' => $template,
+			'data-unique-id' => $this->uniqueId,
+		], $html );
+
+		$name = "{$this->mName}[create]";
+		$label = isset( $this->mParams['create-button-message'] )
+			? $this->mParams['create-button-message']
+			: 'htmlform-cloner-create';
+		$field = HTMLForm::loadInputFromParameters( $name, [
+			'type' => 'submit',
+			'formnovalidate' => true,
+			'name' => $name,
+			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--create" ),
+			'cssclass' => 'mw-htmlform-cloner-create-button',
+			'default' => $this->getMessage( $label )->text(),
+		], $this->mParent );
+		$fieldHtml = $field->getInputOOUI( $field->getDefault() );
+		if ( !$fieldHtml ) {
+			$fieldHtml = $field->getInputHTML( $field->getDefault() );
+		}
+		$html .= $fieldHtml;
 
 		return $html;
 	}
