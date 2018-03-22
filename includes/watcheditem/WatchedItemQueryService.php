@@ -25,6 +25,7 @@ class WatchedItemQueryService {
 	const INCLUDE_USER_ID = 'userid';
 	const INCLUDE_COMMENT = 'comment';
 	const INCLUDE_PATROL_INFO = 'patrol';
+	const INCLUDE_AUTOPATROL_INFO = 'autopatrol';
 	const INCLUDE_SIZES = 'sizes';
 	const INCLUDE_LOG_INFO = 'loginfo';
 	const INCLUDE_TAGS = 'tags';
@@ -40,6 +41,8 @@ class WatchedItemQueryService {
 	const FILTER_NOT_ANON = '!anon';
 	const FILTER_PATROLLED = 'patrolled';
 	const FILTER_NOT_PATROLLED = '!patrolled';
+	const FILTER_AUTOPATROLLED = 'autopatrolled';
+	const FILTER_NOT_AUTOPATROLLED = '!autopatrolled';
 	const FILTER_UNREAD = 'unread';
 	const FILTER_NOT_UNREAD = '!unread';
 	const FILTER_CHANGED = 'changed';
@@ -498,6 +501,12 @@ class WatchedItemQueryService {
 				$conds[] = 'rc_patrolled != 0';
 			} elseif ( in_array( self::FILTER_NOT_PATROLLED, $options['filters'] ) ) {
 				$conds[] = 'rc_patrolled = 0';
+			}
+
+			if ( in_array( self::FILTER_AUTOPATROLLED, $options['filters'] ) ) {
+				$conds[] = 'rc_patrolled = 2';
+			} elseif ( in_array( self::FILTER_NOT_AUTOPATROLLED, $options['filters'] ) ) {
+				$conds[] = 'rc_patrolled != 2';
 			}
 		}
 
