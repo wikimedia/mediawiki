@@ -2417,10 +2417,6 @@ class OutputPage extends ContextSource {
 		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
 		$response->header( 'Content-language: ' . $wgContLang->getHtmlCode() );
 
-		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
-		// jQuery etc. can work correctly.
-		$response->header( 'X-UA-Compatible: IE=Edge' );
-
 		if ( !$this->mArticleBodyOnly ) {
 			$sk = $this->getSkin();
 
