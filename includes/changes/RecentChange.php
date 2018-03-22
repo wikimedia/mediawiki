@@ -74,6 +74,10 @@ class RecentChange {
 	const SRC_EXTERNAL = 'mw.external'; // obsolete
 	const SRC_CATEGORIZE = 'mw.categorize';
 
+	const PRC_UNPATROLLED = 0;
+	const PRC_PATROLLED = 1;
+	const PRC_AUTOPATROLLED = 2;
+
 	public $mAttribs = [];
 	public $mExtra = [];
 
