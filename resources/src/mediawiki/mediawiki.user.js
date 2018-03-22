@@ -4,7 +4,7 @@
  */
 /* global Uint32Array */
 ( function ( mw, $ ) {
-	var userInfoPromise;
+	var userInfoPromise, stickyRandomSessionId;
 
 	/**
 	 * Get the current user's groups or rights
@@ -69,6 +69,20 @@
 			// Concatenation of two random integers with entropy n and m
 			// returns a string with entropy n+m if those strings are independent
 			return hexRnds.join( '' );
+		},
+
+		/**
+		 * A sticky generateRandomSessionId for the current JS execution context,
+		 * cached within this class.
+		 *
+		 * @return {string} 64 bit integer in hex format, padded
+		 */
+		getStickyRandomSessionId: function () {
+			if ( stickyRandomSessionId === undefined ) {
+				stickyRandomSessionId = mw.user.generateRandomSessionId();
+			}
+
+			return stickyRandomSessionId;
 		},
 
 		/**
