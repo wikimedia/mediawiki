@@ -145,6 +145,8 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'migrateActors' ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 			[ 'populateArchiveRevId' ],
+			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
+				'patch-recentchanges-nttindex.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
