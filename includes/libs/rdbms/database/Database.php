@@ -3395,16 +3395,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function rollback( $fname = __METHOD__, $flush = '' ) {
-		if ( $flush === self::FLUSHING_INTERNAL || $flush === self::FLUSHING_ALL_PEERS ) {
-			if ( !$this->trxLevel ) {
-				return; // nothing to do
-			}
-		} else {
-			if ( !$this->trxLevel ) {
-				$this->queryLogger->error(
-					"$fname: No transaction to rollback, something got out of sync." );
-				return; // nothing to do
-			} elseif ( $this->getFlag( self::DBO_TRX ) ) {
+		$trxActive = $this->trxLevel;
+
+		if ( $flush !== self::FLUSHING_INTERNAL && $flush !== self::FLUSHING_ALL_PEERS ) {
+			if ( $this->getFlag( self::DBO_TRX ) ) {
 				throw new DBUnexpectedError(
 					$this,
 					"$fname: Expected mass rollback of all peer transactions (DBO_TRX set)."
@@ -3412,33 +3406,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		// Avoid fatals if close() was called
-		$this->assertOpen();
+		if ( $trxActive ) {
+			// Avoid fatals if close() was called
+			$this->assertOpen();
 
-		$this->doRollback( $fname );
-		$this->trxAtomicLevels = [];
-		if ( $this->trxDoneWrites ) {
-			$this->trxProfiler->transactionWritingOut(
-				$this->server,
-				$this->dbName,
-				$this->trxShortId
-			);
+			$this->doRollback( $fname );
+			$this->trxAtomicLevels = [];
+			if ( $this->trxDoneWrites ) {
+				$this->trxProfiler->transactionWritingOut(
+					$this->server,
+					$this->dbName,
+					$this->trxShortId
+				);
+			}
 		}
 
-		$this->trxIdleCallbacks = []; // clear
-		$this->trxPreCommitCallbacks = []; // clear
-		try {
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Exception $e ) {
-			// already logged; finish and let LoadBalancer move on during mass-rollback
-		}
-		try {
-			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Exception $e ) {
-			// already logged; let LoadBalancer move on during mass-rollback
-		}
+		// Clear any commit-dependant callbacks. They might even be present
+		// only due to transaction rounds, with no SQL transaction being active
+		$this->trxIdleCallbacks = [];
+		$this->trxPreCommitCallbacks = [];
 
-		$this->affectedRowCount = 0; // for the sake of consistency
+		if ( $trxActive ) {
+			try {
+				$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
+			} catch ( Exception $e ) {
+				// already logged; finish and let LoadBalancer move on during mass-rollback
+			}
+			try {
+				$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+			} catch ( Exception $e ) {
+				// already logged; let LoadBalancer move on during mass-rollback
+			}
+
+			$this->affectedRowCount = 0; // for the sake of consistency
+		}
 	}
 
 	/**
