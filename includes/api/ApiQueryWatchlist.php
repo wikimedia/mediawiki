@@ -46,7 +46,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_patrol = false,
-		$fld_flags = false, $fld_timestamp = false, $fld_user = false,
+		$fld_autopatrol = false, $fld_flags = false, $fld_timestamp = false, $fld_user = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_sizes = false,
 		$fld_notificationtimestamp = false, $fld_userid = false,
 		$fld_loginfo = false, $fld_tags;
@@ -76,6 +76,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_timestamp = isset( $prop['timestamp'] );
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
+			$this->fld_autopatrol = isset( $prop['autopatrol'] );
 			$this->fld_notificationtimestamp = isset( $prop['notificationtimestamp'] );
 			$this->fld_loginfo = isset( $prop['loginfo'] );
 			$this->fld_tags = isset( $prop['tags'] );
@@ -234,6 +235,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_patrol ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_PATROL_INFO;
 		}
+		if ( $this->fld_autopatrol ) {
+			$includeFields[] = WatchedItemQueryService::INCLUDE_AUTOPATROL_INFO;
+		}
 		if ( $this->fld_sizes ) {
 			$includeFields[] = WatchedItemQueryService::INCLUDE_SIZES;
 		}
@@ -254,6 +258,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		|| ( isset( $show[WatchedItemQueryService::FILTER_ANON] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_ANON] ) )
 		|| ( isset( $show[WatchedItemQueryService::FILTER_PATROLLED] )
+			&& isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] ) )
+		|| ( isset( $show[WatchedItemQueryService::FILTER_AUTOPATROLLED] )
+			&& isset( $show[WatchedItemQueryService::FILTER_NOT_AUTOPATROLLED] ) )
+		|| ( isset( $show[WatchedItemQueryService::FILTER_AUTOPATROLLED] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_PATROLLED] ) )
 		|| ( isset( $show[WatchedItemQueryService::FILTER_UNREAD] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_UNREAD] ) );
@@ -370,8 +378,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add the patrolled flag */
 		if ( $this->fld_patrol ) {
-			$vals['patrolled'] = $recentChangeInfo['rc_patrolled'] == 1;
+			$vals['patrolled'] = $recentChangeInfo['rc_patrolled'] != 0;
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( (object)$recentChangeInfo, $user );
+		}
+
+		if ( $this->fld_autopatrol ) {
+			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] = 2;
+			$vals['notautopatrolled'] = $recentChangeInfo['rc_patrolled'] != 2;
 		}
 
 		if ( $this->fld_loginfo && $recentChangeInfo['rc_type'] == RC_LOG ) {
@@ -460,6 +473,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'parsedcomment',
 					'timestamp',
 					'patrol',
+					'autopatrol',
 					'sizes',
 					'notificationtimestamp',
 					'loginfo',
@@ -477,6 +491,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					WatchedItemQueryService::FILTER_NOT_ANON,
 					WatchedItemQueryService::FILTER_PATROLLED,
 					WatchedItemQueryService::FILTER_NOT_PATROLLED,
+					WatchedItemQueryService::FILTER_AUTOPATROLLED,
+					WatchedItemQueryService::FILTER_NOT_AUTOPATROLLED,
 					WatchedItemQueryService::FILTER_UNREAD,
 					WatchedItemQueryService::FILTER_NOT_UNREAD,
 				]
