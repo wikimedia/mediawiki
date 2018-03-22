@@ -912,6 +912,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	abstract protected function closeConnection();
 
+	/**
+	 * @param string $error Fallback error message, used if none is given by DB
+	 * @throws DBConnectionError
+	 */
 	public function reportConnectionError( $error = 'Unknown error' ) {
 		$myError = $this->lastError();
 		if ( $myError ) {
@@ -1287,6 +1291,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
+	/**
+	 * Report a query error. Log the error, and if neither the object ignore
+	 * flag nor the $tempIgnore flag is set, throw a DBQueryError.
+	 *
+	 * @param string $error
+	 * @param int $errno
+	 * @param string $sql
+	 * @param string $fname
+	 * @param bool $tempIgnore
+	 * @throws DBQueryError
+	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		if ( $this->ignoreErrors() || $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );

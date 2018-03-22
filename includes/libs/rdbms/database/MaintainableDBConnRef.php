@@ -80,6 +80,18 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 	public function unlockTables( $method ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
+
+	public function indexUnique( $table, $index ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function fieldInfo( $table, $field ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
 }
 
 class_alias( MaintainableDBConnRef::class, 'MaintainableDBConnRef' );
