@@ -171,8 +171,6 @@ abstract class Skin extends ContextSource {
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
-		global $wgUseAjax;
-
 		$out = $this->getOutput();
 		$config = $this->getConfig();
 		$user = $out->getUser();
@@ -217,16 +215,14 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Add various resources if required
-		if ( $wgUseAjax ) {
-			if ( $user->isLoggedIn()
-				&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
-				&& $this->getRelevantTitle()->canExist()
-			) {
-				$modules['watch'][] = 'mediawiki.page.watch.ajax';
-			}
-
-			$modules['search'][] = 'mediawiki.searchSuggest';
+		if ( $user->isLoggedIn()
+			&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+			&& $this->getRelevantTitle()->canExist()
+		) {
+			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
+
+		$modules['search'][] = 'mediawiki.searchSuggest';
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
 			$modules['user'][] = 'mediawiki.action.view.rightClickEdit';
