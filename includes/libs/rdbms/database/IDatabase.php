@@ -228,6 +228,7 @@ interface IDatabase {
 	 * Should return true if unsure.
 	 *
 	 * @return bool
+	 * @deprecated Since 1.31; use lastDoneWrites()
 	 */
 	public function doneWrites();
 
@@ -455,17 +456,6 @@ interface IDatabase {
 	public function lastError();
 
 	/**
-	 * mysql_fetch_field() wrapper
-	 * Returns false if the field doesn't exist
-	 *
-	 * @param string $table Table name
-	 * @param string $field Field name
-	 *
-	 * @return Field
-	 */
-	public function fieldInfo( $table, $field );
-
-	/**
 	 * Get the number of rows affected by the last write query
 	 * @see https://secure.php.net/mysql_affected_rows
 	 *
@@ -504,12 +494,6 @@ interface IDatabase {
 	public function close();
 
 	/**
-	 * @param string $error Fallback error message, used if none is given by DB
-	 * @throws DBConnectionError
-	 */
-	public function reportConnectionError( $error = 'Unknown error' );
-
-	/**
 	 * Run an SQL query and return the result. Normally throws a DBQueryError
 	 * on failure. If errors are ignored, returns false instead.
 	 *
@@ -536,19 +520,6 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
-
-	/**
-	 * Report a query error. Log the error, and if neither the object ignore
-	 * flag nor the $tempIgnore flag is set, throw a DBQueryError.
-	 *
-	 * @param string $error
-	 * @param int $errno
-	 * @param string $sql
-	 * @param string $fname
-	 * @param bool $tempIgnore
-	 * @throws DBQueryError
-	 */
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false );
 
 	/**
 	 * Free a result object returned by query() or select(). It's usually not
@@ -897,16 +868,6 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function tableExists( $table, $fname = __METHOD__ );
-
-	/**
-	 * Determines if a given index is unique
-	 *
-	 * @param string $table
-	 * @param string $index
-	 *
-	 * @return bool
-	 */
-	public function indexUnique( $table, $index );
 
 	/**
 	 * INSERT wrapper, inserts an array into a table.
@@ -1744,16 +1705,6 @@ interface IDatabase {
 	 * @since 1.28
 	 */
 	public function flushSnapshot( $fname = __METHOD__ );
-
-	/**
-	 * List all tables on the database
-	 *
-	 * @param string $prefix Only show tables with this prefix, e.g. mw_
-	 * @param string $fname Calling function name
-	 * @throws DBError
-	 * @return array
-	 */
-	public function listTables( $prefix = null, $fname = __METHOD__ );
 
 	/**
 	 * Convert a timestamp in one of the formats accepted by wfTimestamp()

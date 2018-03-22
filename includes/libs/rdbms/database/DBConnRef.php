@@ -211,10 +211,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function fieldInfo( $table, $field ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function affectedRows() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -231,15 +227,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function reportConnectionError( $error = 'Unknown error' ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -301,10 +289,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function indexUnique( $table, $index ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -540,10 +524,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function flushSnapshot( $fname = __METHOD__ ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function listTables( $prefix = null, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

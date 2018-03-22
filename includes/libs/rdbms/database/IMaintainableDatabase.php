@@ -275,6 +275,37 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @since 1.29
 	 */
 	public function unlockTables( $method );
+
+	/**
+	 * List all tables on the database
+	 *
+	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string $fname Calling function name
+	 * @throws DBError
+	 * @return array
+	 */
+	public function listTables( $prefix = null, $fname = __METHOD__ );
+
+	/**
+	 * Determines if a given index is unique
+	 *
+	 * @param string $table
+	 * @param string $index
+	 *
+	 * @return bool
+	 */
+	public function indexUnique( $table, $index );
+
+	/**
+	 * mysql_fetch_field() wrapper
+	 * Returns false if the field doesn't exist
+	 *
+	 * @param string $table Table name
+	 * @param string $field Field name
+	 *
+	 * @return Field
+	 */
+	public function fieldInfo( $table, $field );
 }
 
 class_alias( IMaintainableDatabase::class, 'IMaintainableDatabase' );
