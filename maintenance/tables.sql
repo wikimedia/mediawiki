@@ -1436,7 +1436,7 @@ CREATE TABLE /*_*/recentchanges (
 CREATE INDEX /*i*/rc_timestamp ON /*_*/recentchanges (rc_timestamp);
 
 -- Special:Watchlist
-CREATE INDEX /*i*/rc_namespace_title ON /*_*/recentchanges (rc_namespace, rc_title);
+CREATE INDEX /*i*/rc_namespace_title_timestamp ON /*_*/recentchanges (rc_namespace, rc_title, rc_timestamp);
 
 -- Special:Recentchangeslinked when finding changes in pages linked from a page
 CREATE INDEX /*i*/rc_cur_id ON /*_*/recentchanges (rc_cur_id);

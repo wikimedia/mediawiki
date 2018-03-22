@@ -534,6 +534,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'logging', 'logging_actor_time', '( log_actor, log_timestamp )' ],
 			[ 'migrateActors' ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
+			[ 'dropIndex', 'recentchanges', 'rc_namespace_title' ],
+			[
+				'addPgIndex',
+				'recentchanges',
+				'rc_namespace_title_timestamp', '( rc_namespace, rc_title, rc_timestamp )'
+			],
 		];
 	}
 
