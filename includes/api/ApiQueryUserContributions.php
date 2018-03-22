@@ -34,7 +34,8 @@ class ApiQueryContributions extends ApiQueryBase {
 	private $params, $multiUserMode, $orderBy, $parentLens;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
-		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
+		$fld_patrolled = false, $fld_autopatrolled = false, $fld_tags = false, $fld_size = false,
+		$fld_sizediff = false;
 
 	public function execute() {
 		global $wgActorTableSchemaMigrationStage;
@@ -54,6 +55,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_flags = isset( $prop['flags'] );
 		$this->fld_timestamp = isset( $prop['timestamp'] );
 		$this->fld_patrolled = isset( $prop['patrolled'] );
+		$this->fld_autopatrolled = isset( $prop['autopatrolled'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
@@ -539,6 +541,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
 			$this->addWhereIf( $idField . ' != page_latest', isset( $show['!top'] ) );
 			$this->addWhereIf( $idField . ' = page_latest', isset( $show['top'] ) );
 			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
@@ -547,15 +551,22 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
-			$this->fld_patrolled
+		     $this->fld_patrolled
 		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
+		}
 
+		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
+			$this->fld_patrolled || isset( $show['autopatrolled'] ) ||
+			isset( $show['!autopatrolled'] ) || $this->fld_autopatrolled
+		) {
+			$isFilterset = isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
+			        isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] );
 			$this->addTables( 'recentchanges' );
 			$this->addJoinConds( [ 'recentchanges' => [
-				isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ? 'JOIN' : 'LEFT JOIN',
+				( $isFilterset ) ? 'JOIN' : 'LEFT JOIN',
 				[
 					// This is a crazy hack. recentchanges has no index on rc_this_oldid, so instead of adding
 					// one T19237 did a join using rc_user_text and rc_timestamp instead. Now rc_user_text is
@@ -567,6 +578,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
+		$this->addFieldsIf( 'rc_patrolled', $this->fld_autopatrolled );
 
 		if ( $this->fld_tags ) {
 			$this->addTables( 'tag_summary' );
@@ -659,7 +671,11 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_patrolled ) {
-			$vals['patrolled'] = (bool)$row->rc_patrolled;
+			$vals['patrolled'] = $row->rc_patrolled != RecentChange::PRC_UNPATROLLED;
+		}
+
+		if ( $this->fld_autopatrolled ) {
+			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( $this->fld_size && !is_null( $row->rev_len ) ) {
@@ -766,6 +782,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'sizediff',
 					'flags',
 					'patrolled',
+					'autopatrolled',
 					'tags'
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
@@ -777,6 +794,8 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!minor',
 					'patrolled',
 					'!patrolled',
+					'autopatrolled',
+					'!autopatrolled',
 					'top',
 					'!top',
 					'new',

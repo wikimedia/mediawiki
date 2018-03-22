@@ -1005,7 +1005,7 @@ CREATE TABLE /*_*/recentchanges (
   -- users may mark edits as having been reviewed to
   -- remove a warning flag on the RC list.
   -- A value of 1 indicates the page has been reviewed.
-  rc_patrolled bit NOT NULL default 0,
+  rc_patrolled tinyint NOT NULL default 0,
 
   -- Recorded IP address the edit was made from, if the
   -- $wgPutIPinRC option is enabled.

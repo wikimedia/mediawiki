@@ -36,8 +36,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
-		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-		$fld_tags = false, $fld_sha1 = false, $token = [];
+		$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_autopatrol = false,
+		$fld_loginfo = false, $fld_tags = false, $fld_sha1 = false, $token = [];
 
 	private $tokenFunctions;
 
@@ -120,6 +120,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->fld_sizes = isset( $prop['sizes'] );
 		$this->fld_redirect = isset( $prop['redirect'] );
 		$this->fld_patrolled = isset( $prop['patrolled'] );
+		$this->fld_autopatrolled = isset( $prop['autopatrolled'] );
 		$this->fld_loginfo = isset( $prop['loginfo'] );
 		$this->fld_tags = isset( $prop['tags'] );
 		$this->fld_sha1 = isset( $prop['sha1'] );
@@ -192,6 +193,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
 				|| ( isset( $show['!patrolled'] ) && isset( $show['unpatrolled'] ) )
+			    || ( isset( $show['autopatrolled'] ) && isset( $show['!autopatrolled'] ) )
+			    || ( isset( $show['autopatrolled'] ) && isset( $show['notautopatrolled'] ) )
+			    || ( isset( $show['!autopatrolled'] ) && isset( $show['notautopatrolled'] ) )
+			    || ( isset( $show['autopatrolled'] ) && isset( $show['unpatrolled'] ) )
+			    || ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) )
 			) {
 				$this->dieWithError( 'apierror-show' );
 			}
@@ -233,6 +239,18 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					$this->addWhere( 'rc_patrolled = 0' );
 				} elseif ( $user->useNPPatrol() ) {
 					$this->addWhere( 'rc_patrolled = 0' );
+					$this->addWhereFld( 'rc_type', RC_NEW );
+				}
+			}
+
+			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
+
+			if ( isset( $show['notautopatrolled'] ) ) {
+				if ( $user->useRCPatrol() ) {
+					$this->addWhere( 'rc_patrolled != 2' );
+				} elseif ( $user->useNPPatrol() ) {
+					$this->addWhere( 'rc_patrolled != 2' );
 					$this->addWhereFld( 'rc_type', RC_NEW );
 				}
 			}
@@ -548,6 +566,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
 		}
 
+		if ( $this->fld_autopatrol ) {
+			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] = 2;
+			$vals['notautopatrolled'] = $recentChangeInfo['rc_patrolled'] != 2;
+		}
+
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
 			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 				$vals['actionhidden'] = true;
@@ -670,6 +693,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'sizes',
 					'redirect',
 					'patrolled',
+					'autopatrolled',
 					'loginfo',
 					'tags',
 					'sha1',
@@ -694,7 +718,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'!redirect',
 					'patrolled',
 					'!patrolled',
-					'unpatrolled'
+					'unpatrolled',
+					'autopatrolled',
+					'!autopatrolled',
+					'notautopatrolled'
 				]
 			],
 			'limit' => [
