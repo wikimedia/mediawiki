@@ -50,6 +50,9 @@
 
 		// Events
 		this.dropdowninput.on( 'change', this.onChange.bind( this ) );
+		this.textinput.on( 'change', function () {
+			this.emit( 'change', this.getValue() );
+		}.bind( this ) );
 
 		// Parent constructor
 		mw.widgets.SelectWithInputWidget.parent.call( this, config );
@@ -126,6 +129,48 @@
 	};
 
 	/**
+	 * Set the value from outside.
+	 *
+	 * @param {string|undefined} value
+	 */
+	mw.widgets.SelectWithInputWidget.prototype.setValue = function ( value ) {
+		var selectable = false;
+
+		if ( this.or ) {
+			if ( value !== 'other' ) {
+				selectable = !!this.dropdowninput.dropdownWidget.getMenu().findItemFromData( value );
+			}
+
+			if ( selectable ) {
+				this.dropdowninput.setValue( value );
+				this.textinput.setValue( undefined );
+			} else {
+				this.dropdowninput.setValue( 'other' );
+				this.textinput.setValue( value );
+			}
+
+			this.emit( 'change', value );
+		}
+	};
+
+	/**
+	 * Get the value from outside.
+	 *
+	 * @return {string}
+	 */
+	mw.widgets.SelectWithInputWidget.prototype.getValue = function () {
+		if ( this.or ) {
+			if ( this.dropdowninput.getValue() !== 'other' ) {
+				return this.dropdowninput.getValue();
+			}
+
+			return this.textinput.getValue();
+		} else {
+			return '';
+		}
+	};
+
+	/**
 	 * Handle change events on the DropdownInput
 	 *
 	 * @param {string|undefined} value
@@ -140,6 +185,8 @@
 			// submitted with the form. So we should also disable fields when hiding them.
 			this.textinput.setDisabled( value !== 'other' || this.isDisabled() );
 		}
+
+		this.emit( 'change', this.getValue() );
 	};
 
 }( jQuery, mediaWiki ) );
