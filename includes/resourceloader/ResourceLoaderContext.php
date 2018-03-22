@@ -63,12 +63,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
 
-		// Future developers: Avoid use of getVal() in this class, which performs
-		// expensive UTF normalisation by default. Use getRawVal() instead.
-		// Values here are either one of a finite number of internal IDs,
-		// or previously-stored user input (e.g. titles, user names) that were passed
-		// to this endpoint by ResourceLoader itself from the canonical value.
-		// Values do not come directly from user input and need not match.
+		// Future developers: Use WebRequest::getRawVal() instead getVal().
+		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 
 		// List of modules
 		$modules = $request->getRawVal( 'modules' );

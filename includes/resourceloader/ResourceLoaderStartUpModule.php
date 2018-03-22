@@ -206,7 +206,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public function getModuleRegistrations( ResourceLoaderContext $context ) {
 		$resourceLoader = $context->getResourceLoader();
-		$target = $context->getRequest()->getVal( 'target', 'desktop' );
+		// Future developers: Use WebRequest::getRawVal() instead getVal().
+		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
+		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
 		// Bypass target filter if this request is Special:JavaScriptTest.
 		// To prevent misuse in production, this is only allowed if testing is enabled server-side.
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
