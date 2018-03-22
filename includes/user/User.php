@@ -4145,6 +4145,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @todo Only rarely do all these fields need to be set!
 	 */
 	public function saveSettings() {
+		global $wgActorTableSchemaMigrationStage;
+
 		if ( wfReadOnly() ) {
 			// @TODO: caller should deal with this instead!
 			// This should really just be an exception.
@@ -4166,44 +4168,45 @@ class User implements IDBAccessObject, UserIdentity {
 		$newTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $newTouched ) {
-			global $wgActorTableSchemaMigrationStage;
+		$dbw->startAtomic( __METHOD__ );
 
-			$dbw->update( 'user',
-				[ /* SET */
-					'user_name' => $this->mName,
-					'user_real_name' => $this->mRealName,
-					'user_email' => $this->mEmail,
-					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-					'user_touched' => $dbw->timestamp( $newTouched ),
-					'user_token' => strval( $this->mToken ),
-					'user_email_token' => $this->mEmailToken,
-					'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-				], $this->makeUpdateConditions( $dbw, [ /* WHERE */
-					'user_id' => $this->mId,
-				] ), $fname
+		$dbw->update(
+			'user',
+			[
+				'user_name' => $this->mName,
+				'user_real_name' => $this->mRealName,
+				'user_email' => $this->mEmail,
+				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+				'user_touched' => $dbw->timestamp( $newTouched ),
+				'user_token' => strval( $this->mToken ),
+				'user_email_token' => $this->mEmailToken,
+				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
+			],
+			$this->makeUpdateConditions( $dbw, [ 'user_id' => $this->mId ] ),
+			__METHOD__
+		);
+
+		if ( !$dbw->affectedRows() ) {
+			// Maybe the problem was a missed cache update; clear it to be safe
+			$this->clearSharedCache( 'refresh' );
+			// User was changed in the meantime or loaded with stale data
+			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
+			throw new MWException(
+				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
+				" the version of the user to be saved is older than the current version."
 			);
+		}
 
-			if ( !$dbw->affectedRows() ) {
-				// Maybe the problem was a missed cache update; clear it to be safe
-				$this->clearSharedCache( 'refresh' );
-				// User was changed in the meantime or loaded with stale data
-				$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'replica';
-				throw new MWException(
-					"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
-					" the version of the user to be saved is older than the current version."
-				);
-			}
+		if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->update(
+				'actor',
+				[ 'actor_name' => $this->mName ],
+				[ 'actor_user' => $this->mId ],
+				__METHOD__
+			);
+		}
 
-			if ( $wgActorTableSchemaMigrationStage > MIGRATION_OLD ) {
-				$dbw->update(
-					'actor',
-					[ 'actor_name' => $this->mName ],
-					[ 'actor_user' => $this->mId ],
-					$fname
-				);
-			}
-		} );
+		$dbw->endAtomic( __METHOD__ );
 
 		$this->mTouched = $newTouched;
 		$this->saveOptions();
@@ -4289,18 +4292,19 @@ class User implements IDBAccessObject, UserIdentity {
 			$fields["user_$name"] = $value;
 		}
 
-		return $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $fields ) {
-			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
-			if ( $dbw->affectedRows() ) {
-				$newUser = self::newFromId( $dbw->insertId() );
-				// Load the user from master to avoid replica lag
-				$newUser->load( self::READ_LATEST );
-				$newUser->updateActorId( $dbw );
-			} else {
-				$newUser = null;
-			}
-			return $newUser;
-		} );
+		$dbw->startAtomic( __METHOD__ );
+		$dbw->insert( 'user', $fields, __METHOD__, [ 'IGNORE' ] );
+		if ( $dbw->affectedRows() ) {
+			$newUser = self::newFromId( $dbw->insertId() );
+			// Load the user from master to avoid replica lag
+			$newUser->load( self::READ_LATEST );
+			$newUser->updateActorId( $dbw );
+		} else {
+			$newUser = null;
+		}
+		$dbw->endAtomic( __METHOD__ );
+
+		return $newUser;
 	}
 
 	/**
@@ -4341,60 +4345,67 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$this->mTouched = $this->newTouchedTimestamp();
 
+		$status = Status::newGood();
+		$noPass = PasswordFactory::newInvalidPassword()->toString();
+
 		$dbw = wfGetDB( DB_MASTER );
-		$status = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) {
-			$noPass = PasswordFactory::newInvalidPassword()->toString();
-			$dbw->insert( 'user',
-				[
-					'user_name' => $this->mName,
-					'user_password' => $noPass,
-					'user_newpassword' => $noPass,
-					'user_email' => $this->mEmail,
-					'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-					'user_real_name' => $this->mRealName,
-					'user_token' => strval( $this->mToken ),
-					'user_registration' => $dbw->timestamp( $this->mRegistration ),
-					'user_editcount' => 0,
-					'user_touched' => $dbw->timestamp( $this->mTouched ),
-				], $fname,
-				[ 'IGNORE' ]
+		$dbw->startAtomic( __METHOD__ );
+		$dbw->insert(
+			'user',
+			[
+				'user_name' => $this->mName,
+				'user_password' => $noPass,
+				'user_newpassword' => $noPass,
+				'user_email' => $this->mEmail,
+				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
+				'user_real_name' => $this->mRealName,
+				'user_token' => strval( $this->mToken ),
+				'user_registration' => $dbw->timestamp( $this->mRegistration ),
+				'user_editcount' => 0,
+				'user_touched' => $dbw->timestamp( $this->mTouched ),
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+		if ( !$dbw->affectedRows() ) {
+			// Use locking reads to bypass any REPEATABLE-READ snapshot.
+			$this->mId = $dbw->selectField(
+				'user',
+				'user_id',
+				[ 'user_name' => $this->mName ],
+				__METHOD__,
+				[ 'LOCK IN SHARE MODE' ]
 			);
-			if ( !$dbw->affectedRows() ) {
-				// Use locking reads to bypass any REPEATABLE-READ snapshot.
-				$this->mId = $dbw->selectField(
-					'user',
-					'user_id',
-					[ 'user_name' => $this->mName ],
-					__METHOD__,
-					[ 'LOCK IN SHARE MODE' ]
-				);
-				$loaded = false;
-				if ( $this->mId ) {
-					if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
-						$loaded = true;
-					}
+			$loaded = false;
+			if ( $this->mId ) {
+				if ( $this->loadFromDatabase( self::READ_LOCKING ) ) {
+					$loaded = true;
 				}
-				if ( !$loaded ) {
-					throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
-						"to insert user '{$this->mName}' row, but it was not present in select!" );
-				}
-				return Status::newFatal( 'userexists' );
 			}
+			if ( !$loaded ) {
+				throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
+					"to insert user '{$this->mName}' row, but it was not present in select!" );
+			}
+
+			 $status->fatal( 'userexists' );
+		}
+
+		if ( $status->isGood() ) {
 			$this->mId = $dbw->insertId();
 			self::$idCacheByName[$this->mName] = $this->mId;
 			$this->updateActorId( $dbw );
-
-			return Status::newGood();
-		} );
-		if ( !$status->isGood() ) {
-			return $status;
 		}
 
-		// Clear instance cache other than user table data and actor, which is already accurate
-		$this->clearInstanceCache();
+		$dbw->endAtomic( __METHOD__ );
 
-		$this->saveOptions();
-		return Status::newGood();
+		if ( $status->isGood() ) {
+			// Clear instance cache other than user table data and actor, which is already accurate
+			$this->clearInstanceCache();
+
+			$this->saveOptions();
+		}
+
+		return $status;
 	}
 
 	/**
