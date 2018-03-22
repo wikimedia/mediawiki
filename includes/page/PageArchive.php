@@ -714,15 +714,16 @@ class PageArchive {
 			$wasnew = $article->updateIfNewerOn( $dbw, $revision );
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
-				$article->doEditUpdates(
-					$revision,
-					User::newFromName( $revision->getUserText( Revision::RAW ), false ),
+				$updater = $article->getMetaDataUpdater( null, $revision->getRevisionRecord() );
+				$updater->prepareUpdate(
+					$revision->getRevisionRecord(),
 					[
 						'created' => $created,
 						'oldcountable' => $oldcountable,
 						'restored' => true
 					]
 				);
+				$updater->doUpdates();
 			}
 
 			Hooks::run( 'ArticleUndelete',
