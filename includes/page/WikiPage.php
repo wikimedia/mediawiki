@@ -2837,15 +2837,22 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Actually store the edit
-		$status = $this->doEditContent(
-			$targetContent,
-			$summary,
-			$flags,
-			$target->getId(),
-			$guser,
-			null,
-			$tags,
-			$current->getId()
+		$updater = $this->getPageUpdater( $guser );
+
+		// TODO: MCR: all slots!
+		// TODO: allow inherited slots from non-parent in PageMetaDataUpdater!
+		$updater->setContent( 'main', $targetContent );
+		$updater->setBaseRevisionId( $target->getId() );
+		$updater->setUndidRevisionId( $current->getId() );
+
+		foreach ( $tags as $tag ) {
+			// TODO: add conveniene function to PageUpdater
+			$updater->addTag( $tag );
+		}
+
+		$rev = $updater->doEdit(
+			CommentStoreComment::newUnsavedComment( '' ),
+			$flags
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
@@ -2873,15 +2880,12 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		if ( !$status->isOK() ) {
-			return $status->getErrorsArray();
+		if ( !$updater->wasSuccessful() ) {
+			return $updater->getStatus()->getErrorsArray();
 		}
 
 		// raise error, when the edit is an edit without a new version
-		$statusRev = isset( $status->value['revision'] )
-			? $status->value['revision']
-			: null;
-		if ( !( $statusRev instanceof Revision ) ) {
+		if ( !$rev ) {
 			$resultDetails = [ 'current' => $current ];
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
@@ -2906,7 +2910,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$log->publish( $logId );
 		}
 
-		$revId = $statusRev->getId();
+		$revId = $rev->getId();
 
 		Hooks::run( 'ArticleRollbackComplete', [ $this, $guser, $target, $current ] );
 
@@ -2918,7 +2922,7 @@ class WikiPage implements Page, IDBAccessObject {
 			'tags' => $tags
 		];
 
-		return [];
+		return []; // FIXME: Really?! [dk, 2018-03]
 	}
 
 	/**
