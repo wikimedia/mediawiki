@@ -151,11 +151,10 @@ class SpecialBlock extends FormSpecialPage {
 				'validation-callback' => [ __CLASS__, 'validateTargetField' ],
 			],
 			'Expiry' => [
-				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
+				'type' => 'expiry',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
 				'options' => $suggestedDurations,
-				'other' => $this->msg( 'ipbother' )->text(),
 				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
 			],
 			'Reason' => [
@@ -308,7 +307,7 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $block->mExpiry == 'infinity' ) {
 				$fields['Expiry']['default'] = 'infinite';
 			} else {
-				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->mExpiry );
+				$fields['Expiry']['default'] = wfTimestamp( TS_ISO_8601, $block->mExpiry );
 			}
 
 			$this->alreadyBlocked = true;
@@ -672,22 +671,20 @@ class SpecialBlock extends FormSpecialPage {
 			return [ 'badipaddress' ];
 		}
 
-		$expiryTime = self::parseExpiryInput( $data['Expiry'] );
-
 		if (
+			// check, if the time could be parsed
+			!$data['Expiry'] ||
 			// an expiry time is needed
 			( strlen( $data['Expiry'] ) == 0 ) ||
 			// can't be a larger string as 50 (it should be a time format in any way)
-			( strlen( $data['Expiry'] ) > 50 ) ||
-			// check, if the time could be parsed
-			!$expiryTime
+			( strlen( $data['Expiry'] ) > 50 )
 		) {
 			return [ 'ipb_expiry_invalid' ];
 		}
 
 		// an expiry time should be in the future, not in the
 		// past (wouldn't make any sense) - bug T123069
-		if ( $expiryTime < wfTimestampNow() ) {
+		if ( $data['Expiry'] < wfTimestampNow() ) {
 			return [ 'ipb_expiry_old' ];
 		}
 
@@ -733,7 +730,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
 		$block->mReason = $data['Reason'][0];
-		$block->mExpiry = $expiryTime;
+		$block->mExpiry = $data['Expiry'];
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
 		$block->prevents( 'sendemail', $data['DisableEmail'] );
@@ -876,29 +873,13 @@ class SpecialBlock extends FormSpecialPage {
 			$a[$show] = $value;
 		}
 
-		return $a;
-	}
-
-	/**
-	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
-	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
-	 * @param string $expiry Whatever was typed into the form
-	 * @return string Timestamp or 'infinity'
-	 */
-	public static function parseExpiryInput( $expiry ) {
-		if ( wfIsInfinity( $expiry ) ) {
-			$expiry = 'infinity';
-		} else {
-			$expiry = strtotime( $expiry );
-
-			if ( $expiry < 0 || $expiry === false ) {
-				return false;
-			}
-
-			$expiry = wfTimestamp( TS_MW, $expiry );
+		if ( $a ) {
+			// if options exist, add other to the end instead of the begining (which
+			// is what happens by default).
+			$a[ wfMessage( 'ipbother' )->text() ] = 'other';
 		}
 
-		return $expiry;
+		return $a;
 	}
 
 	/**
