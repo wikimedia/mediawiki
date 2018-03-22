@@ -28805,7 +28805,7 @@ foo {{echo|<span>bar</span> [[Category:baz]]}} bar
 # of the categories in wikitext
 # Do not remove these characters in edits.
 #
-# As part of the serialization, these bidi characters will get stripped.
+# As part of the serialization, these Unicode directional formatting characters will get stripped.
 !! test
 RTL (\u200f) and LTR (\u200e) markers around category tags should be stripped
 !! options
