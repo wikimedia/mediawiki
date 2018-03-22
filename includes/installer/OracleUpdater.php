@@ -140,6 +140,7 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'migrateActors' ],
+			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp', 'patch-recentchanges-nttindex.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
