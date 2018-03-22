@@ -1373,11 +1373,12 @@ class LoadBalancer implements ILoadBalancer {
 		$e = null; // first exception
 		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $type, &$e ) {
 			$conn->setTrxEndCallbackSuppression( false );
-			if ( $conn->writesOrCallbacksPending() ) {
-				// This happens if onTransactionIdle() callbacks leave callbacks on *another* DB
-				// (which finished its callbacks already). Warn and recover in this case. Let the
-				// callbacks run in the final commitMasterChanges() in LBFactory::shutdown().
-				$this->queryLogger->info( __METHOD__ . ": found writes/callbacks pending." );
+			// Callbacks run in AUTO-COMMIT mode, so make sure no transactions are pending...
+			if ( $conn->writesPending() ) {
+				// This happens if onTransactionIdle() callbacks write to *other* handles
+				// (which already finished their callbacks). Let any callbacks run in the final
+				// commitMasterChanges() in LBFactory::shutdown(), when the transaction is gone.
+				$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
 				return;
 			} elseif ( $conn->trxLevel() ) {
 				// This happens for single-DB setups where DB_REPLICA uses the master DB,
@@ -1407,9 +1408,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
 			function ( IDatabase $conn ) use ( $fname, $restore ) {
-				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
-					$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
-				}
+				$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 				if ( $restore ) {
 					$this->undoTransactionRoundFlags( $conn );
 				}
