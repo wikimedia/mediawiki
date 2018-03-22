@@ -125,6 +125,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'revision', 'rev_text_id', 'patch-rev_text_id-default.sql' ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 			[ 'populateArchiveRevId' ],
+			[ 'modifyField', 'recentchanges', 'rc_patrolled', 'patch-rc_patrolled_type.sql' ],
 		];
 	}
 

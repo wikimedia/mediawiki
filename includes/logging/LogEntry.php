@@ -785,7 +785,7 @@ class ManualLogEntry extends LogEntryBase {
 
 					// Log the autopatrol if the log entry is patrollable
 					if ( $this->getIsPatrollable() &&
-						$rc->getAttribute( 'rc_patrolled' ) === 1
+						$rc->getAttribute( 'rc_patrolled' ) === 2
 					) {
 						PatrolLog::record( $rc, true, $this->getPerformer() );
 					}
