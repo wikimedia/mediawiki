@@ -1871,7 +1871,9 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = $block->mHideName;
 			$this->mAllowUsertalk = !$block->prevents( 'editownusertalk' );
 		} else {
+			$this->mBlock = null;
 			$this->mBlockedby = '';
+			$this->mBlockreason = '';
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
