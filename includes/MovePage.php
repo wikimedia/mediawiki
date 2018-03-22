@@ -527,6 +527,7 @@ class MovePage {
 
 		$newpage = WikiPage::factory( $nt );
 
+		// TODO: change this to use RevisionStore and RevisionRecord
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
 		if ( !is_object( $nullRevision ) ) {
@@ -560,8 +561,12 @@ class MovePage {
 		Hooks::run( 'NewRevisionFromEditComplete',
 			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user ] );
 
-		$newpage->doEditUpdates( $nullRevision, $user,
-			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
+		$updater = $newpage->getMetaDataUpdater( $user, $nullRevision->getRevisionRecord() );
+		$updater->prepareUpdate(
+			$nullRevision->getRevisionRecord(),
+			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ]
+		);
+		$updater->doUpdates();
 
 		// If the default content model changes, we need to populate rev_content_model
 		if ( $defaultContentModelChanging ) {
@@ -595,7 +600,15 @@ class MovePage {
 				Hooks::run( 'NewRevisionFromEditComplete',
 					[ $redirectArticle, $redirectRevision, false, $user ] );
 
-				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
+				$redirectUpdater = $newpage->getMetaDataUpdater(
+					$user,
+					$redirectRevision->getRevisionRecord()
+				);
+				$redirectUpdater->prepareUpdate(
+					$nullRevision->getRevisionRecord(),
+					[ 'created' => true ]
+				);
+				$redirectUpdater->doUpdates();
 
 				// make a copy because of log entry below
 				$redirectTags = $changeTags;
