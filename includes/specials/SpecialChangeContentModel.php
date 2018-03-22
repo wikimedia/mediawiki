@@ -255,13 +255,15 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			return $status;
 		}
 
-		$status = $page->doEditContent(
-			$newContent,
-			$reason,
-			$flags,
-			$this->oldRevision ? $this->oldRevision->getId() : false,
-			$user
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', $newContent );
+		$updater->setBaseRevisionId( $this->oldRevision ? $this->oldRevision->getId() : false );
+		$updater->createRevision(
+			CommentStoreComment::newUnsavedComment( $reason ),
+			$flags
 		);
+
+		$status = $updater->getStatus();
 		if ( !$status->isOK() ) {
 			return $status;
 		}

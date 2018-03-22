@@ -1720,11 +1720,12 @@ abstract class Installer {
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$status = $page->doEditContent( $content,
-				'',
-				EDIT_NEW,
-				false,
-				User::newFromName( 'MediaWiki default' )
+			// XXX: Shouldn't this be User::newSystemUser?
+			$updater = $page->newPageUpdater( User::newFromName( 'MediaWiki default' ) );
+			$updater->setContent( 'main', $content );
+			$updater->createRevision(
+				CommentStoreComment::newUnsavedComment( '' ),
+				EDIT_NEW
 			);
 		} catch ( Exception $e ) {
 			// using raw, because $wgShowExceptionDetails can not be set yet
