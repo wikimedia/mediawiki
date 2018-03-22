@@ -24,6 +24,7 @@ use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\RevisionRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1970,8 +1971,14 @@ ERROR;
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->page->loadPageData( 'fromdbmaster' );
-		$new = !$this->page->exists();
+		$updater = $this->page->newPageUpdater( $user );
+		$latest = $updater->grabParentRevision();
+		$new = ( $latest === null );
+
+		if ( $this->editRevId ) {
+			// For conflict detection
+			$updater->setBaseRevisionId( $this->editRevId );
+		}
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
@@ -2023,20 +2030,18 @@ ERROR;
 
 			# Article exists. Check for edit conflict.
 
-			$this->page->clear(); # Force reload of dates, etc.
-			$timestamp = $this->page->getTimestamp();
-			$latest = $this->page->getLatest();
+			$timestamp = $latest->getTimestamp();
 
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
 			// Check editRevId if set, which handles same-second timestamp collisions
-			if ( $timestamp != $this->edittime
-				|| ( $this->editRevId !== null && $this->editRevId != $latest )
+			if ( $timestamp != $this->edittime // XXX: is this still neded? [dk, 2018-03]
+				|| $updater->hasEditConflict()
 			) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
-					if ( $this->page->getUserText() == $user->getName() &&
-						$this->page->getComment() == $this->newSectionSummary()
+					if ( $latest->getUser( RevisionRecord::RAW )->getName() == $user->getName() &&
+						$latest->getComment()->text == $this->newSectionSummary()
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -2049,7 +2054,7 @@ ERROR;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
 				} elseif ( $this->section == ''
-					&& Revision::userWasLastToEdit(
+					&& Revision::userWasLastToEdit( // XXX: move into PageUpdater? [dk, 2018-03]
 						DB_MASTER, $this->mTitle->getArticleID(),
 						$user->getId(), $this->edittime
 					)
@@ -2207,16 +2212,20 @@ ERROR;
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->page->doEditContent(
-			$content,
-			$this->summary,
-			$flags,
-			false,
-			$user,
-			$content->getDefaultFormat(),
-			$this->changeTags,
-			$this->undidRev
+		// TODO: add a convenience function for this to PageUpdaters [dk, 2018-03]
+		foreach ( $this->changeTags as $tag ) {
+			$updater->addTag( $tag );
+		}
+
+		$updater->setContent( 'main', $content );
+		$updater->setUndidRevisionId( $this->undidRev );
+
+		$updater->createRevision(
+			CommentStoreComment::newUnsavedComment( $this->summary ),
+			$flags
 		);
+
+		$doEditStatus = $updater->getStatus();
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
@@ -3438,6 +3447,7 @@ ERROR;
 		}
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
+		// XXX: move logic for adding/replacing sections into PageUpdater? [dk, 2018-03]
 		if ( $this->editRevId !== null ) {
 			$newContent = $this->page->replaceSectionAtRev(
 				$this->section, $textboxContent, $this->summary, $this->editRevId

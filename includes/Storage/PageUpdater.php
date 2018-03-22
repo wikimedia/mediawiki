@@ -891,7 +891,7 @@ class PageUpdater {
 				throw new PageUpdateException( "Failed to update page row to use new revision." );
 			}
 
-			// TODO: replace legacy hook!
+			// TODO: replace legacy hook! (clarify semantics of baseRevId!)
 			$tags = $meta['tags'];
 			Hooks::run(
 				'NewRevisionFromEditComplete',
@@ -968,7 +968,7 @@ class PageUpdater {
 					$this->derivedDataUpdater->doUpdates();
 
 					// Trigger post-save hook
-					// TODO: replace legacy hook!
+					// TODO: replace legacy hook! (clarify semantics of baseRevId!)
 					$params = [ &$wikiPage, &$user, $mainContent, $summary->text, $flags & EDIT_MINOR,
 						null, null, &$flags, $newLegacyRevision, &$status, $this->baseRevId,
 						$this->undidRevId ];
@@ -1116,7 +1116,7 @@ class PageUpdater {
 						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision ];
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
-					// TODO: replace legacy hook!
+					// TODO: replace legacy hook! (clarify semantics of baseRevId!)
 					$params = array_merge( $params, [ &$status, $this->baseRevId, 0 ] );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}

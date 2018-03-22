@@ -471,7 +471,7 @@ interface Content {
 	 *   successfully prepared for saving. If the returned status indicates
 	 *   an error, a rollback will be performed and the transaction aborted.
 	 *
-	 * @see WikiPage::doEditContent()
+	 * @see PageUpdater::doEdit()
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user );
 
