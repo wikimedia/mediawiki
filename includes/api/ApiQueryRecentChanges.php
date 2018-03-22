@@ -192,6 +192,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['unpatrolled'] ) )
 				|| ( isset( $show['!patrolled'] ) && isset( $show['unpatrolled'] ) )
+				|| ( isset( $show['autopatrolled'] ) && isset( $show['!autopatrolled'] ) )
+				|| ( isset( $show['autopatrolled'] ) && isset( $show['unpatrolled'] ) )
+				|| ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) )
 			) {
 				$this->dieWithError( 'apierror-show' );
 			}
@@ -200,6 +203,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( isset( $show['patrolled'] )
 				|| isset( $show['!patrolled'] )
 				|| isset( $show['unpatrolled'] )
+				|| isset( $show['autopatrolled'] )
+				|| isset( $show['!autopatrolled'] )
 			) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
@@ -236,6 +241,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					$this->addWhereFld( 'rc_type', RC_NEW );
 				}
 			}
+
+			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
 
 			// Don't throw log entries out the window here
 			$this->addWhereIf(
@@ -544,8 +552,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the patrolled flag */
 		if ( $this->fld_patrolled ) {
-			$vals['patrolled'] = $row->rc_patrolled == 1;
+			$vals['patrolled'] = $row->rc_patrolled != 0;
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
+			$vals['autopatrolled'] = $row->rc_patrolled == 2;
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
@@ -694,7 +703,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'!redirect',
 					'patrolled',
 					'!patrolled',
-					'unpatrolled'
+					'unpatrolled',
+					'autopatrolled',
+					'!autopatrolled',
 				]
 			],
 			'limit' => [
