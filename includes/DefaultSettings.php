@@ -8839,6 +8839,15 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 $wgActorTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
+ * Temporary option to disable the date picker from the Expiry Widget.
+ *
+ * @since 1.32
+ * @deprecated 1.32
+ * @var bool
+ */
+$wgExpiryWidgetNoDatePicker = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
