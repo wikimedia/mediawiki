@@ -336,6 +336,8 @@ changes to languages because of Phabricator reports.
 * Wikimedia\Rdbms\SavepointPostgres is deprecated.
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
   characters can accidentally end up in copy-and-pasted titles.
+* Strip Unicode 6.3.0 bidi characters (U+061C, U+2066, U+2067, U+2068, U+2069)
+  from the title.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,

@@ -149,7 +149,7 @@
 		rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
 
 		// From MediaWikiTitleCodec::splitTitleString() in PHP
-		rStripCharacters = /[\u00AD\u200E\u200F\u202A-\u202E]/g,
+		rStripCharacters = /[\u00AD\u061c\u200E\u200F\u202A-\u202E\u2066-\u2069]/g,
 
 		/**
 		 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
