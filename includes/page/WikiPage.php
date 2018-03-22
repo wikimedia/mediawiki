@@ -1780,7 +1780,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				// Mark as patrolled if the user can do so
-				$patrolled = $wgUseRCPatrol && !count(
+				$autopatrolled = $wgUseRCPatrol && !count(
 						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
@@ -1796,7 +1796,8 @@ class WikiPage implements Page, IDBAccessObject {
 					$oldContent ? $oldContent->getSize() : 0,
 					$newsize,
 					$revisionId,
-					$patrolled,
+					$autopatrolled ? RecentChange::PRC_AUTOPATROLLED :
+						RecentChange::PRC_UNPATROLLED,
 					$tags
 				);
 			}
