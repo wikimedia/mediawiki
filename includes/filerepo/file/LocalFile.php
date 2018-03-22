@@ -1708,27 +1708,18 @@ class LocalFile extends File {
 					if ( $newPageContent ) {
 						# New file page; create the description page.
 						# There's already a log entry, so don't make a second RC entry
-						# CDN and file cache for the description page are purged by doEditContent.
-						$status = $wikiPage->doEditContent(
-							$newPageContent,
-							$comment,
-							EDIT_NEW | EDIT_SUPPRESS_RC,
-							false,
-							$user
+						# CDN and file cache for the description page are purged by doEdit.
+						$updater = $wikiPage->newPageUpdater( $user );
+						$updater->setContent( 'main', $newPageContent );
+						$rev = $updater->createRevision(
+							CommentStoreComment::newUnsavedComment( $comment ),
+							EDIT_NEW | EDIT_SUPPRESS_RC
 						);
 
-						if ( isset( $status->value['revision'] ) ) {
-							/** @var Revision $rev */
-							$rev = $status->value['revision'];
+						if ( $rev ) {
 							// Associate new page revision id
 							$logEntry->setAssociatedRevId( $rev->getId() );
-						}
-						// This relies on the resetArticleID() call in WikiPage::insertOn(),
-						// which is triggered on $descTitle by doEditContent() above.
-						if ( isset( $status->value['revision'] ) ) {
-							/** @var Revision $rev */
-							$rev = $status->value['revision'];
-							$updateLogPage = $rev->getPage();
+							$updateLogPage = $rev->getPageId();
 						}
 					} else {
 						# Existing file page: invalidate description page cache

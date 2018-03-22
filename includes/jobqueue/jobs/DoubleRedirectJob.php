@@ -160,15 +160,22 @@ class DoubleRedirectJob extends Job {
 		// Save it
 		global $wgUser;
 		$oldUser = $wgUser;
-		$wgUser = $user;
-		$article = WikiPage::factory( $this->title );
+		$wgUser = $user; // FIXME: WHY?? [dk, 2018-03]
+		$wikiPage = WikiPage::factory( $this->title );
 
 		// Messages: double-redirect-fixed-move, double-redirect-fixed-maintenance
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
 		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
-		$article->doEditContent( $newContent, $reason, $flags, false, $user );
+
+		$updater = $wikiPage->newPageUpdater( $user );
+		$updater->setContent( 'main', $newContent );
+		$updater->createRevision(
+			CommentStoreComment::newUnsavedComment( $reason ),
+			$flags
+		);
+
 		$wgUser = $oldUser;
 
 		return true;
