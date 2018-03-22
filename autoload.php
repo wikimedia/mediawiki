@@ -372,6 +372,7 @@ $wgAutoloadLocalClasses = [
 	'DeleteEqualMessages' => __DIR__ . '/maintenance/deleteEqualMessages.php',
 	'DeleteFileOp' => __DIR__ . '/includes/libs/filebackend/fileop/DeleteFileOp.php',
 	'DeleteLinksJob' => __DIR__ . '/includes/jobqueue/jobs/DeleteLinksJob.php',
+	'DeleteLocalPasswords' => __DIR__ . '/maintenance/deleteLocalPasswords.inc',
 	'DeleteLogFormatter' => __DIR__ . '/includes/logging/DeleteLogFormatter.php',
 	'DeleteOldRevisions' => __DIR__ . '/maintenance/deleteOldRevisions.php',
 	'DeleteOrphanedRevisions' => __DIR__ . '/maintenance/deleteOrphanedRevisions.php',
