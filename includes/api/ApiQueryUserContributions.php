@@ -82,19 +82,20 @@ class ApiQueryContributions extends ApiQueryBase {
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname ) {
 				global $wgActorTableSchemaMigrationStage;
 
-				$from = $fromName = false;
+				$fromName = false;
 				if ( !is_null( $this->params['continue'] ) ) {
 					$continue = explode( '|', $this->params['continue'] );
 					$this->dieContinueUsageIf( count( $continue ) != 4 );
 					$this->dieContinueUsageIf( $continue[0] !== 'name' );
 					$fromName = $continue[1];
-					$from = "$op= " . $dbSecondary->addQuotes( $fromName );
 				}
 				$like = $dbSecondary->buildLike( $this->params['userprefix'], $dbSecondary->anyString() );
 
 				$limit = 501;
 
 				do {
+					$from = $fromName ? "$op= " . $dbSecondary->addQuotes( $fromName ) : false;
+
 					// For the new schema, pull from the actor table. For the
 					// old, pull from rev_user. For migration a FULL [OUTER]
 					// JOIN would be what we want, except MySQL doesn't support
@@ -158,15 +159,15 @@ class ApiQueryContributions extends ApiQueryBase {
 					}
 
 					$count = 0;
-					$from = null;
+					$fromName = false;
 					foreach ( $res as $row ) {
 						if ( ++$count >= $limit ) {
-							$from = $row->user_name;
+							$fromName = $row->user_name;
 							break;
 						}
 						yield User::newFromRow( $row );
 					}
-				} while ( $from !== null );
+				} while ( $fromName !== false );
 			} );
 			// Do the actual sorting client-side, because otherwise
 			// prepareQuery might try to sort by actor and confuse everything.
