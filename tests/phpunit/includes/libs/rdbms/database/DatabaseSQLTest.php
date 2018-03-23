@@ -3,6 +3,8 @@
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Test the parts of the Database abstract class that deal
@@ -1481,4 +1483,77 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	/**
+	 * @expectedException \Wikimedia\Rdbms\DBTransactionStateError
+	 */
+	public function testTransactionErrorState1() {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
+
+		$this->database->begin( __METHOD__ );
+		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+		$this->database->commit( __METHOD__ );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::query
+	 */
+	public function testTransactionErrorState2() {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
+
+		$this->database->startAtomic( __METHOD__ );
+		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
+		$this->database->rollback( __METHOD__ );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+
+		$this->assertLastSql( 'BEGIN; ROLLBACK; BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT' );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::close
+	 */
+	public function testPrematureClose1() {
+		$fname = __METHOD__;
+		$this->database->begin( __METHOD__ );
+		$this->database->onTransactionIdle( function () use ( $fname ) {
+			$this->database->query( 'SELECT 1', $fname );
+		} );
+		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+		$this->database->close();
+
+		$this->assertFalse( $this->database->isOpen() );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT; SELECT 1' );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::close
+	 */
+	public function testPrematureClose2() {
+		try {
+			$fname = __METHOD__;
+			$this->database->startAtomic( __METHOD__ );
+			$this->database->onTransactionIdle( function () use ( $fname ) {
+				$this->database->query( 'SELECT 1', $fname );
+			} );
+			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+			$this->database->close();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Wikimedia\Rdbms\Database::close: atomic sections ' .
+				'DatabaseSQLTest::testPrematureClose2 are still open.',
+				$ex->getMessage()
+			);
+		}
+
+		$this->assertFalse( $this->database->isOpen() );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
 }
