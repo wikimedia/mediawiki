@@ -819,6 +819,10 @@ __INDEXATTR__;
 		return $errno === '08006';
 	}
 
+	protected function wasKnownStatementRollbackError() {
+		return false; // transaction has to be rolled-back from error state
+	}
+
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
