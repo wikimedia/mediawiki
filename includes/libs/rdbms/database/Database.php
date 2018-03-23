@@ -537,32 +537,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $res;
 	}
 
-	/**
-	 * Turns on (false) or off (true) the automatic generation and sending
-	 * of a "we're sorry, but there has been a database error" page on
-	 * database errors. Default is on (false). When turned off, the
-	 * code should use lastErrno() and lastError() to handle the
-	 * situation as appropriate.
-	 *
-	 * Do not use this function outside of the Database classes.
-	 *
-	 * @param null|bool $ignoreErrors
-	 * @return bool The previous value of the flag.
-	 */
-	protected function ignoreErrors( $ignoreErrors = null ) {
-		$res = $this->getFlag( self::DBO_IGNORE );
-		if ( $ignoreErrors !== null ) {
-			// setFlag()/clearFlag() do not allow DBO_IGNORE changes for sanity
-			if ( $ignoreErrors ) {
-				$this->flags |= self::DBO_IGNORE;
-			} else {
-				$this->flags &= ~self::DBO_IGNORE;
-			}
-		}
-
-		return $res;
-	}
-
 	public function trxLevel() {
 		return $this->trxLevel;
 	}
@@ -1303,7 +1277,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		if ( $this->ignoreErrors() || $tempIgnore ) {
+		if ( $this->getFlag( self::DBO_IGNORE ) || $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
