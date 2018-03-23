@@ -350,6 +350,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'rclimit', 200 );
+		$user->setOption( 'wpwatchlistdays', '0' );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -361,6 +362,11 @@ class UserTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
+
+		// Check that an option saved as a string '0' is returned as an integer.
+		$user = User::newFromName( $user->getName() );
+		$user->load( User::READ_LATEST );
+		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 	}
 
 	/**
