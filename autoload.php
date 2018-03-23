@@ -1688,6 +1688,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DBReplicationWaitError' => __DIR__ . '/includes/libs/rdbms/exception/DBReplicationWaitError.php',
 	'Wikimedia\\Rdbms\\DBTransactionError' => __DIR__ . '/includes/libs/rdbms/exception/DBTransactionError.php',
 	'Wikimedia\\Rdbms\\DBTransactionSizeError' => __DIR__ . '/includes/libs/rdbms/exception/DBTransactionSizeError.php',
+	'Wikimedia\\Rdbms\\DBTransactionStateError' => __DIR__ . '/includes/libs/rdbms/exception/DBTransactionStateError.php',
 	'Wikimedia\\Rdbms\\DBUnexpectedError' => __DIR__ . '/includes/libs/rdbms/exception/DBUnexpectedError.php',
 	'Wikimedia\\Rdbms\\Database' => __DIR__ . '/includes/libs/rdbms/database/Database.php',
 	'Wikimedia\\Rdbms\\DatabaseDomain' => __DIR__ . '/includes/libs/rdbms/database/DatabaseDomain.php',

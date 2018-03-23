@@ -571,9 +571,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getReplicationSafetyInfo' ] )
+			->setMethods( [ 'getServerVariableSettings' ] )
 			->getMock();
-		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
+		$db->method( 'getServerVariableSettings' )->willReturn( (object)$row );
 		$dbw = TestingAccessWrapper::newFromObject( $db );
 
 		$this->assertEquals( $safe, $dbw->isInsertSelectSafe( $insertOpts, $selectOpts ) );
