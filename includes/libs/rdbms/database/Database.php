@@ -141,6 +141,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $affectedRowCount;
 
 	/**
+	 * @var int Current transaction health status (one of the class STATE_* constants)
+	 */
+	protected $trxState = self::STATE_TRX_OK;
+	/**
 	 * Either 1 if a transaction is active or 0 otherwise.
 	 * The other Trx fields may not be meaningfull if this is 0.
 	 *
@@ -257,6 +261,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int */
 	protected $nonNativeInsertSelectBatchSize = 10000;
+
+	const STATE_TRX_OK = 0;
+	const STATE_TRX_CRITICAL = 1;
+	const STATE_TRX_RECOVERED = 2;
 
 	/**
 	 * @note: exceptions for missing libraries/drivers should be thrown in initConnection()
@@ -1093,20 +1101,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $ret === false ) {
-			# Deadlocks cause the entire transaction to abort, not just the statement.
-			# https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
-			# https://www.postgresql.org/docs/9.1/static/explicit-locking.html
-			if ( $this->wasDeadlock() ) {
+			if ( $this->trxLevel && !$this->isKnownStatementRollbackError( $lastErrno ) ) {
+				# Either the query was aborted or all queries after BEGIN where aborted.
 				if ( $this->explicitTrxActive() || $priorWritesPending ) {
-					$tempIgnore = false; // not recoverable
+					# In the first case, the only options going forward are (a) ROLLBACK, or
+					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
+					# option is ROLLBACK, since the snapshots would have been released.
+					$this->trxState = self::STATE_TRX_CRITICAL;
+					# FIXME: treat object $tempIgnore as implying savepoint use (postgres)
+					$tempIgnore = is_object( $tempIgnore ) ? $tempIgnore : false;
+				} else {
+					# Nothing prior was there to lose from the transaction
+					$this->trxState = self::STATE_TRX_RECOVERED;
 				}
-				# Usually the transaction is rolled back to BEGIN, leaving an empty transaction.
-				# Destroy any such transaction so the rollback callbacks run in AUTO-COMMIT mode
-				# as normal. Also, if DBO_TRX is set and an explicit transaction rolled back here,
-				# further queries should be back in AUTO-COMMIT mode, not stuck in a transaction.
-				$this->doRollback( __METHOD__ );
-				# Update state tracking to reflect transaction loss
-				$this->handleTransactionLoss();
 			}
 
 			$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
@@ -1234,7 +1241,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( $sql === 'ROLLBACK' ) {
 			return true; // transaction lost...which is also what was requested :)
 		} elseif ( $this->explicitTrxActive() ) {
-			return false; // don't drop atomocity
+			return false; // don't drop atomocity and explicit snapshots
 		} elseif ( $priorWritesPending ) {
 			return false; // prior writes lost from implicit transaction
 		}
@@ -3036,6 +3043,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
+	/**
+	 * @param int|string $errno
+	 * @return bool Whether it is safe to assume the given error only caused statement-rollback
+	 * @note Only the mysql class should override this method (backwards compatibility)
+	 * @since 1.31
+	 */
+	protected function isKnownStatementRollbackError( $errno ) {
+		return false; // don't know; it could have caused a transaction rollback
+	}
+
 	public function deadlockLoop() {
 		$args = func_get_args();
 		$function = array_shift( $args );
@@ -3404,6 +3421,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertOpen();
 
 		$this->doBegin( $fname );
+		$this->trxState = self::STATE_TRX_OK;
 		$this->trxAtomicCounter = 0;
 		$this->trxTimestamp = microtime( true );
 		$this->trxFname = $fname;
