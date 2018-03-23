@@ -174,6 +174,11 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			foreach ( $attr['options'] as &$option ) {
 				$option['disabled'] = in_array( $option['data'], $this->mParams['disabled-options'], true );
 			}
+			foreach ( $attr['options'] as &$option ) {
+				if ( array_key_exists( $option['data'], $this->mParams['tooltips'] ) ) {
+					$option['help'] = $this->mParams['tooltips'][$option['data']];
+				}
+			}
 			if ( $this->mOptionsLabelsNotFromMessage ) {
 				foreach ( $attr['options'] as &$option ) {
 					$option['label'] = new OOUI\HtmlSnippet( $option['label'] );
