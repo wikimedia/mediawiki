@@ -1331,6 +1331,26 @@ abstract class DatabaseMysqlBase extends Database {
 		return $errno == 2013 || $errno == 2006;
 	}
 
+	protected function wasKnownStatementRollbackError() {
+		$errno = $this->lastErrno();
+
+		if ( $errno === 1205 ) { // lock wait timeout
+			// Note that this is uncached to avoid stale values of SET is used
+			$row = $this->selectRow(
+				false,
+				[ 'innodb_rollback_on_timeout' => '@@innodb_rollback_on_timeout' ],
+				[],
+				__METHOD__
+			);
+			// https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
+			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
+			return $row->innodb_rollback_on_timeout ? false : true;
+		}
+
+		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
+		return in_array( $errno, [ 1022, 1216, 1217, 1137 ], true );
+	}
+
 	/**
 	 * @param string $oldName
 	 * @param string $newName

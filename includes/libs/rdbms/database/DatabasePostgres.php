@@ -248,25 +248,6 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		if ( $tempIgnore ) {
-			/* Check for constraint violation */
-			if ( $errno === '23505' ) {
-				parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
-
-				return;
-			}
-		}
-		/* Transaction stays in the ERROR state until rolled back */
-		if ( $this->trxLevel ) {
-			// Throw away the transaction state, then raise the error as normal.
-			// Note that if this connection is managed by LBFactory, it's already expected
-			// that the other transactions LBFactory manages will be rolled back.
-			$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
-		}
-		parent::reportQueryError( $error, $errno, $sql, $fname, false );
-	}
-
 	public function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -819,6 +800,10 @@ __INDEXATTR__;
 		static $codes = [ '08000', '08003', '08006', '08001', '08004', '57P01', '57P03', '53300' ];
 
 		return in_array( $errno, $codes, true );
+	}
+
+	protected function wasKnownStatementRollbackError() {
+		return false; // transaction has to be rolled-back from error state
 	}
 
 	public function duplicateTableStructure(
