@@ -122,6 +122,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
 	}
 
+	public function resetAllNotificationTimestampsForUser( User $user ) {
+		throw new DBReadOnlyError( null, 'The watchlist is currently readonly.' );
+	}
+
 	public function resetNotificationTimestamp(
 		User $user,
 		Title $title,
