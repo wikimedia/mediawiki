@@ -68,6 +68,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param bool $appendModule
 	 * @param User|null $user
 	 *
+	 * @throws ApiUsageException
 	 * @return array
 	 */
 	protected function doApiRequest( array $params, array $session = null,
