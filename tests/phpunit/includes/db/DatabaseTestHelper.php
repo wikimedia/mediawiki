@@ -49,6 +49,7 @@ class DatabaseTestHelper extends Database {
 			wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
 		};
 		$this->currentDomain = DatabaseDomain::newUnspecified();
+		$this->open( 'localhost', 'testuser', 'password', 'testdb' );
 	}
 
 	/**
@@ -83,6 +84,10 @@ class DatabaseTestHelper extends Database {
 	}
 
 	protected function checkFunctionName( $fname ) {
+		if ( $fname === 'Wikimedia\\Rdbms\\Database::close' ) {
+			return; // no $fname parameter
+		}
+
 		if ( substr( $fname, 0, strlen( $this->testName ) ) !== $this->testName ) {
 			throw new MWException( 'function name does not start with test class. ' .
 				$fname . ' vs. ' . $this->testName . '. ' .
@@ -128,7 +133,9 @@ class DatabaseTestHelper extends Database {
 	}
 
 	function open( $server, $user, $password, $dbName ) {
-		return false;
+		$this->conn = (object)[ 'test' ];
+
+		return true;
 	}
 
 	function fetchObject( $res ) {
@@ -192,7 +199,7 @@ class DatabaseTestHelper extends Database {
 	}
 
 	function isOpen() {
-		return true;
+		return $this->conn ? true : false;
 	}
 
 	function ping( &$rtt = null ) {
@@ -201,7 +208,7 @@ class DatabaseTestHelper extends Database {
 	}
 
 	protected function closeConnection() {
-		return false;
+		return true;
 	}
 
 	protected function doQuery( $sql ) {
