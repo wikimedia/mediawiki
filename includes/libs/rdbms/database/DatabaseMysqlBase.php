@@ -68,7 +68,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool|null */
 	private $insertSelectIsSafe = null;
 	/** @var stdClass|null */
-	private $replicationInfoRow = null;
+	private $serverSettingsRow = null;
 
 	// Cache getServerId() for 24 hours
 	const SERVER_ID_CACHE_TTL = 86400;
@@ -514,7 +514,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
-		$row = $this->getReplicationSafetyInfo();
+		$row = $this->getServerVariableSettings();
 		// For row-based-replication, the resulting changes will be relayed, not the query
 		if ( $row->binlog_format === 'ROW' ) {
 			return true;
@@ -539,20 +539,21 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @return stdClass Process cached row
 	 */
-	protected function getReplicationSafetyInfo() {
-		if ( $this->replicationInfoRow === null ) {
-			$this->replicationInfoRow = $this->selectRow(
+	protected function getServerVariableSettings() {
+		if ( $this->serverSettingsRow === null ) {
+			$this->serverSettingsRow = $this->selectRow(
 				false,
 				[
-					'innodb_autoinc_lock_mode' => '@@innodb_autoinc_lock_mode',
 					'binlog_format' => '@@binlog_format',
+					'innodb_autoinc_lock_mode' => '@@innodb_autoinc_lock_mode',
+					'innodb_rollback_on_timeout' => '@@innodb_rollback_on_timeout'
 				],
 				[],
 				__METHOD__
 			);
 		}
 
-		return $this->replicationInfoRow;
+		return $this->serverSettingsRow;
 	}
 
 	/**
@@ -1384,6 +1385,18 @@ abstract class DatabaseMysqlBase extends Database {
 
 	public function wasConnectionError( $errno ) {
 		return $errno == 2013 || $errno == 2006;
+	}
+
+	protected function isKnownStatementRollbackError( $errno ) {
+		if ( $errno === 1205 ) { // lock wait timeout
+			$row = $this->getServerVariableSettings();
+			// https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
+			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
+			return $row->innodb_rollback_on_timeout ? false : true;
+		}
+
+		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
+		return in_array( $errno, [ 1022, 23000 ], true );
 	}
 
 	/**
