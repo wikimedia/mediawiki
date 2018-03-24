@@ -35,6 +35,7 @@ use BagOStuff;
 use HashBagOStuff;
 use LogicException;
 use InvalidArgumentException;
+use UnexpectedValueException;
 use Exception;
 use RuntimeException;
 
@@ -713,7 +714,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
@@ -724,7 +725,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
