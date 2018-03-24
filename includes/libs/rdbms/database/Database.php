@@ -106,11 +106,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var bool */
 	protected $opened = false;
 
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxIdleCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxPreCommitCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxEndCallbacks = [];
 	/** @var callable[] Map of (name => callable) */
 	protected $trxRecurringCallbacks = [];
@@ -257,6 +257,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int */
 	protected $nonNativeInsertSelectBatchSize = 10000;
+
+	const NOT_APPLICABLE = 'n/a';
 
 	/**
 	 * @note: exceptions for missing libraries/drivers should be thrown in initConnection()
@@ -3066,11 +3068,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->trxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
-		$this->trxEndCallbacks[] = [ $callback, $fname ];
+		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 	}
 
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		$this->trxIdleCallbacks[] = [ $callback, $fname ];
+		$this->trxIdleCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 		if ( !$this->trxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
@@ -3081,7 +3083,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// As long as DBO_TRX is set, writes will accumulate until the load balancer issues
 			// an implicit commit of all peer databases. This is true even if a transaction has
 			// not yet been triggered by writes; make sure $callback runs *after* any such writes.
-			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
+			$this->trxPreCommitCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
@@ -3091,6 +3093,60 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} catch ( Exception $e ) {
 				$this->cancelAtomic( __METHOD__ );
 				throw $e;
+			}
+		}
+	}
+
+	/**
+	 * @return string|null Savepoint ID of the top atomic section level
+	 */
+	private function currentSavepointId() {
+		return ( $this->trxLevel && $this->trxAtomicLevels )
+			? $this->trxAtomicLevels[count( $this->trxAtomicLevels ) - 1][1]
+			: null;
+	}
+
+	/**
+	 * @param string|null $savepointId
+	 * @return int|null
+	 */
+	private function counterFromSavepointId( $savepointId ) {
+		if ( preg_match( '/\d+$/', $savepointId, $m ) ) {
+			return (int)$m[0];
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param string|null $savepointId
+	 */
+	private function discardCallbacksForSavepoint( $savepointId ) {
+		$counter = $this->counterFromSavepointId( $savepointId );
+		if ( $counter === null ) {
+			return;
+		}
+		// Cancel the "on commit" callbacks owned by this savepoint
+		$this->trxIdleCallbacks = array_filter(
+			$this->trxIdleCallbacks,
+			function ( $entry ) use ( $counter ) {
+				return ( $this->counterFromSavepointId( $entry[2] ) < $counter );
+			}
+		);
+		$this->trxPreCommitCallbacks = array_filter(
+			$this->trxPreCommitCallbacks,
+			function ( $entry ) use ( $counter ) {
+				return ( $this->counterFromSavepointId( $entry[2] ) < $counter );
+			}
+		);
+		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
+		foreach ( $this->trxEndCallbacks as $key => $entry ) {
+			if ( $this->counterFromSavepointId( $entry[2] ) >= $counter ) {
+				$callback = $entry[0];
+
+				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
+					return $callback( self::TRIGGER_ROLLBACK );
+				};
 			}
 		}
 	}
@@ -3271,7 +3327,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	final public function startAtomic(
 		$fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE
 	) {
-		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? 'n/a' : null;
+		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::NOT_APPLICABLE : null;
 		if ( !$this->trxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
@@ -3309,7 +3365,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId && $savepointId !== 'n/a' ) {
+		} elseif ( $savepointId && $savepointId !== self::NOT_APPLICABLE ) {
 			$this->doReleaseSavepoint( $savepointId, $fname );
 		}
 	}
@@ -3330,8 +3386,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->rollback( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId !== 'n/a' ) {
+		} elseif ( $savepointId !== self::NOT_APPLICABLE ) {
 			$this->doRollbackToSavepoint( $savepointId, $fname );
+			$this->discardCallbacksForSavepoint( $savepointId );
 		}
 
 		$this->affectedRowCount = 0; // for the sake of consistency
