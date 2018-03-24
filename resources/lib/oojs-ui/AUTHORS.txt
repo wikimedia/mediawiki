@@ -1,0 +1,65 @@
+Principal Authors (major contributors, alphabetically)
+
+Bartosz Dziewoński <matma.rex@gmail.com>
+Ed Sanders <esanders@wikimedia.org>
+James D. Forrester <jforrester@wikimedia.org>
+Kirsten Menger-Anderson <kmenger@wikimedia.org>
+Kunal Mehta <legoktm@gmail.com>
+Moriel Schottlender <moriel@gmail.com>
+Prateek Saxena <prtksxna@gmail.com>
+Roan Kattouw <roan@wikimedia.org>
+Rob Moen <rmoen@wikimedia.org>
+Timo Tijhof <krinklemail@gmail.com>
+Trevor Parscal <trevor@wikimedia.org>
+Volker E. <volker.e@wikimedia.org>
+
+Patch Contributors (minor contributors, alphabetically)
+
+Alangi Derick <alangiderick@gmail.com>
+Alex Monk <krenair@wikimedia.org>
+Amir E. Aharoni <aaharoni@wikimedia.org>
+Amir Sarabadani <Ladsgroup@gmail.com>
+Andrew Garrett <agarrett@wikimedia.org>
+Andrew Green <andrew.green.df@gmail.com>
+Antoine Musso <hashar@free.fr>
+Brad Jorsch <bjorsch@wikimedia.org>
+Brion Vibber <brion@users.mediawiki.org>
+C. Scott Ananian <cscott@cscott.net>
+Chad Horohoe <chadh@wikimedia.org>
+codynguyen1116 <samanthanguyen1116@gmail.com>
+David Lynch <dlynch@wikimedia.org>
+Derk-Jan Hartman <hartman.wiki@gmail.com>
+eranroz <eranroz89@gmail.com>
+Erick Guan <fantasticfears@gmail.com>
+Erik Moeller <erik@wikimedia.org>
+Florian <florian.schmidt.stargatewissen@gmail.com>
+Geoffrey Mon <geofbot@gmail.com>
+Gilles Dubuc <gdubuc@wikimedia.org>
+Huji Lee <huji.huji@gmail.com>
+Inez Korczyński <inez@wikia-inc.com>
+IvanFon <ivanfonseca55@gmail.com>
+Jon Robson <jrobson@wikimedia.org>
+Juliusz Gonera <jgonera@wikimedia.org>
+Kartik Mistry <kartik.mistry@gmail.com>
+Kyle Florence <kflorence@wikia-inc.com>
+Leszek Manicki <leszek.manicki@wikimedia.de>
+Marc A. Pelletier <marc@uberbox.org>
+Mark Holmquist <mtraceur@member.fsf.org>
+Matthew Flaschen <mflaschen@wikimedia.org>
+May Tee-Galloway <mgalloway@wikimedia.org>
+Mr. Stradivarius <misterstrad@gmail.com>
+Niklas Laxström <nlaxstrom@wikimedia.org>
+Nirzar Pangarkar <nirzardp@gmail.com>
+Ori Livneh <ori@wikimedia.org>
+Paladox <thomasmulhall410@yahoo.com>
+Pau Giner <pau.giner@gmail.com>
+Ricordisamoa <ricordisamoa@openmailbox.org>
+rillke <rillke@wikipedia.de>
+Ryan Kaldari <rkaldari@wikimedia.org>
+Sam Reed <reedy@wikimedia.org>
+Stephane Bisson <sbisson@wikimedia.org>
+Sucheta Ghoshal <sghoshal@wikimedia.org>
+Thalia Chan <thalia.e.chan@googlemail.com>
+Victor Barbu <victorbarbu08@gmail.com>
+Wei-Ko Kao <othree@gmail.com>
+Željko Filipin <zeljko.filipin@gmail.com>
