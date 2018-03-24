@@ -1680,6 +1680,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',
 	'Wikimedia\\Rdbms\\ConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/ConnectionManager.php',
 	'Wikimedia\\Rdbms\\DBAccessError' => __DIR__ . '/includes/libs/rdbms/exception/DBAccessError.php',
+	'Wikimedia\\Rdbms\\DBAtomicSectionCancelError' => __DIR__ . '/includes/libs/rdbms/exception/DBAtomicSectionCancelError.php',
 	'Wikimedia\\Rdbms\\DBConnRef' => __DIR__ . '/includes/libs/rdbms/database/DBConnRef.php',
 	'Wikimedia\\Rdbms\\DBConnectionError' => __DIR__ . '/includes/libs/rdbms/exception/DBConnectionError.php',
 	'Wikimedia\\Rdbms\\DBError' => __DIR__ . '/includes/libs/rdbms/exception/DBError.php',
