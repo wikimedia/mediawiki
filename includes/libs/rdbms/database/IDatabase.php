@@ -1544,7 +1544,7 @@ interface IDatabase {
 	public function setTransactionListener( $name, callable $callback = null );
 
 	/**
-	 * Begin an atomic section of statements
+	 * Begin an atomic section of SQL statements
 	 *
 	 * If a transaction has been started already, (optionally) sets a savepoint
 	 * and tracks the given section name to make sure the transaction is not
@@ -1553,7 +1553,59 @@ interface IDatabase {
 	 * sections. If there is no transaction, one is started implicitly.
 	 *
 	 * The goal of this function is to create an atomic section of SQL queries
-	 * without having to start a new transaction if it already exists.
+	 * without having to start a new transaction if one already exists.
+	 *
+	 * ATOMIC_CANCELABLE is useful when the caller needs to handle specific failure cases
+	 * by discarding the section's writes. This should not be used for failures when:
+	 *   - upsert() could easily be used instead
+	 *   - insert() with IGNORE could easily be used instead
+	 *   - select() with FOR UPDATE could be checked before issuing writes instead
+	 *   - The failure is from code that runs after the first write but doesn't need to
+	 *   - The failures are from contention solvable via onTransactionPreCommitOrIdle()
+	 *   - The failures are deadlocks; the RDBMs usually discard the whole transaction
+	 *
+	 * Example usage:
+	 * @code
+	 *     // Start a transaction if there isn't one already
+	 *     $dbw->startAtomic( __METHOD__ );
+	 *     // Serialize these thread table updates
+	 *     $dbw->select( 'thread', '1', [ 'td_id' => $tid ], __METHOD__, 'FOR UPDATE' );
+	 *     // Add a new comment for the thread
+	 *     $dbw->insert( 'comment', $row, __METHOD__ );
+	 *     $cid = $db->insertId();
+	 *     // Update thread reference to last comment
+	 *     $dbw->update( 'thread', [ 'td_latest' => $cid ], [ 'td_id' => $tid ], __METHOD__ );
+	 *     // Demark the end of this conceptual unit of updates
+	 *     $dbw->endAtomic( __METHOD__ );
+	 * @endcode
+	 *
+	 * Example usage (atomic changes that might have to be discarded):
+	 * @code
+	 *     // Start a transaction if there isn't one already
+	 *     $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
+	 *     // Create new record metadata row
+	 *     $dbw->insert( 'records', $row, __METHOD__ );
+	 *     // Figure out where to store the data based on the new row's ID
+	 *     $path = $recordDirectory . '/' . $dbw->insertId();
+	 *     // Write the record data to the storage system
+	 *     $status = $fileBackend->create( [ 'dst' => $path, 'content' => $data ] );
+	 *     if ( $status->isOK() ) {
+	 *         // Try to cleanup files orphaned by transaction rollback
+	 *         $dbw->onTransactionResolution(
+	 *             function ( $type ) use ( $fileBackend, $path ) {
+	 *                 if ( $type === IDatabase::TRIGGER_ROLLBACK ) {
+	 *                     $fileBackend->delete( [ 'src' => $path ] );
+	 *                 }
+	 *             },
+	 *             __METHOD__
+	 *         );
+	 *         // Demark the end of this conceptual unit of updates
+	 *         $dbw->endAtomic( __METHOD__ );
+	 *     } else {
+	 *         // Discard these writes from the transaction (preserving prior writes)
+	 *         $dbw->cancelAtomic( __METHOD__ );
+	 *     }
+	 * @endcode
 	 *
 	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic()
 	 * or IDatabase::cancelAtomic(), and any database transactions cannot be
@@ -1604,20 +1656,58 @@ interface IDatabase {
 	public function cancelAtomic( $fname = __METHOD__ );
 
 	/**
-	 * Run a callback to do an atomic set of updates for this database
+	 * Perform an atomic section of reversable SQL statements from a callback
 	 *
 	 * The $callback takes the following arguments:
 	 *   - This database object
 	 *   - The value of $fname
 	 *
-	 * If any exception occurs in the callback, then cancelAtomic() will be
-	 * called to back out any statements executed by the callback and the error
-	 * will be re-thrown. It may also be that the cancel itself fails with an
-	 * exception before then. In any case, such errors are expected to
-	 * terminate the request, without any outside caller attempting to catch
-	 * errors and commit anyway.
+	 * If any exception occurs in the callback, then cancelAtomic() will be called to
+	 * back out any statements executed by the callback (but statements issued prior).
+	 * If that succeeds, then the original error will be re-thrown; if it fails then
+	 * DBAtomicSectionCancelError will be thrown, in which case further query attempts
+	 * will fail with DBTransactionStateError until the transaction is rolled back.
 	 *
-	 * This can be an alternative to explicit startAtomic()/endAtomic()/cancelAtomic() calls.
+	 * This method is convenient for letting calls to the caller of this method be wrapped
+	 * in a try/catch blocks for exception types that imply that the caller failed but was
+	 * able to properly discard the changes it made in the transaction. This method can be
+	 * an alternative to explicit calls to startAtomic()/endAtomic()/cancelAtomic().
+	 *
+	 * Example usage, "RecordStore::save" method:
+	 * @code
+	 *     $dbw->doAtomicSection( __METHOD__, function ( $dbw ) use ( $record ) {
+	 *         // Create new record metadata row
+	 *         $dbw->insert( 'records', $record->toArray(), __METHOD__ );
+	 *         // Figure out where to store the data based on the new row's ID
+	 *         $path = $this->recordDirectory . '/' . $dbw->insertId();
+	 *         // Write the record data to the storage system;
+	 *         // blob store throughs StoreFailureException on failure
+	 *         $this->blobStore->create( $path, $record->getJSON() );
+	 *         // Try to cleanup files orphaned by transaction rollback
+	 *         $dbw->onTransactionResolution(
+	 *             function ( $type ) use ( $path ) {
+	 *                 if ( $type === IDatabase::TRIGGER_ROLLBACK ) {
+	 *                     $this->blobStore->delete( $path );
+	 *                 }
+	 *             },
+	 *         },
+	 *         __METHOD__
+	 *     );
+	 * @endcode
+	 *
+	 * Example usage, caller of the "RecordStore::save" method:
+	 * @code
+	 *     $dbw->startAtomic( __METHOD__ );
+	 *     // ...various SQL writes happen...
+	 *     try {
+	 *         $recordStore->save( $record );
+	 *     } catch ( StoreFailureException $e ) {
+	 *         $dbw->cancelAtomic( __METHOD__ );
+	 *         // ...various SQL writes happen...
+	 *     }
+	 *     // ...various SQL writes happen...
+	 *     $dbw->endAtomic( __METHOD__ );
+	 * @endcode
 	 *
 	 * @see Database::startAtomic
 	 * @see Database::endAtomic
@@ -1626,6 +1716,7 @@ interface IDatabase {
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates
 	 * @return mixed $res Result of the callback (since 1.28)
+	 * @throws DBAtomicSectionCancelError Any case when cancelAtomic() was called and failed
 	 * @throws DBError
 	 * @throws RuntimeException
 	 * @throws UnexpectedValueException

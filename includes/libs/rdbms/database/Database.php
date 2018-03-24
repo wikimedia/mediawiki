@@ -3421,8 +3421,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
-			$this->cancelAtomic( $fname );
-			throw $e;
+			try {
+				$this->cancelAtomic( $fname );
+				// Recovered; outer atomic sections should be unaffected
+				throw $e;
+			} catch ( Exception $cancelError ) {
+				// Failed to recover; writes before this section may been lost
+				throw new DBAtomicSectionCancelError( $this, $e, $cancelError, $fname );
+			}
 		}
 		$this->endAtomic( $fname );
 
