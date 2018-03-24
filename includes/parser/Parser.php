@@ -138,6 +138,9 @@ class Parser {
 	const TOC_START = '<mw:toc>';
 	const TOC_END = '</mw:toc>';
 
+	/** @var int Assume that no output will later be saved this many seconds after parsing */
+	const MAX_TTS = 900;
+
 	# Persistent:
 	public $mTagHooks = [];
 	public $mTransparentTagHooks = [];
@@ -2650,39 +2653,19 @@ class Parser {
 				}
 				break;
 			case 'revisionday':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONDAY}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 6, 2 ) );
+				$value = (int)$this->getRevisionTimestampSubstring( 6, 2, self::MAX_TTS, $index );
 				break;
 			case 'revisionday2':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONDAY2}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 6, 2 );
+				$value = $this->getRevisionTimestampSubstring( 6, 2, self::MAX_TTS, $index );
 				break;
 			case 'revisionmonth':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONMONTH}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 4, 2 );
+				$value = $this->getRevisionTimestampSubstring( 4, 2, self::MAX_TTS, $index );
 				break;
 			case 'revisionmonth1':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONMONTH1}} used, setting vary-revision...\n" );
-				$value = intval( substr( $this->getRevisionTimestamp(), 4, 2 ) );
+				$value = (int)$this->getRevisionTimestampSubstring( 4, 2, self::MAX_TTS, $index );
 				break;
 			case 'revisionyear':
-				# Let the edit saving system know we should parse the page
-				# *after* a revision ID has been assigned. This is for null edits.
-				$this->mOutput->setFlag( 'vary-revision' );
-				wfDebug( __METHOD__ . ": {{REVISIONYEAR}} used, setting vary-revision...\n" );
-				$value = substr( $this->getRevisionTimestamp(), 0, 4 );
+				$value = $this->getRevisionTimestampSubstring( 0, 4, self::MAX_TTS, $index );
 				break;
 			case 'revisiontimestamp':
 				# Let the edit saving system know we should parse the page
@@ -2838,6 +2821,38 @@ class Parser {
 		}
 
 		return $value;
+	}
+
+	/**
+	 * @param int $start
+	 * @param int $len
+	 * @param int $mtts Max time-till-save; sets vary-revision if result might change by then
+	 * @param string $variable Parser variable name
+	 * @return string
+	 */
+	private function getRevisionTimestampSubstring( $start, $len, $mtts, $variable ) {
+		global $wgContLang;
+
+		# Get the timezone-adjusted timestamp to be used for this revision
+		$resNow = substr( $this->getRevisionTimestamp(), $start, $len );
+		# Possibly set vary-revision if there is not yet an associated revision
+		if ( !$this->getRevisionObject() ) {
+			# Get the timezone-adjusted timestamp $mtts seconds in the future
+			$resThen = substr(
+				$wgContLang->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
+				$start,
+				$len
+			);
+
+			if ( $resNow !== $resThen ) {
+				# Let the edit saving system know we should parse the page
+				# *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": $variable used, setting vary-revision...\n" );
+			}
+		}
+
+		return $resNow;
 	}
 
 	/**
