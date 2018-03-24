@@ -1409,6 +1409,94 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
 
+		$fname = __METHOD__;
+		$callback1 = function () use ( $fname ) {
+			$this->database->query( "SELECT 1", $fname );
+		};
+		$callback2 = function () use ( $fname ) {
+			$this->database->query( "SELECT 2", $fname );
+		};
+		$callback3 = function () use ( $fname ) {
+			$this->database->query( "SELECT 3", $fname );
+		};
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionPreCommitOrIdle( $callback1, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK' );
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK' );
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionResolution( $callback1, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK; SELECT 1' );
+
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->onTransactionPreCommitOrIdle( $callback1, __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->onTransactionPreCommitOrIdle( $callback3, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 1; SELECT 3; COMMIT' );
+
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionIdle( $callback2, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->onTransactionIdle( $callback3, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT 1; SELECT 3' );
+
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->onTransactionResolution( $callback1, __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionResolution( $callback2, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->onTransactionResolution( $callback3, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT 1; SELECT 2; SELECT 3' );
+
+		$runCount = 0;
+		$otrCallback = function ( $trigger ) use ( $fname, &$runCount ) {
+			++$runCount;
+			if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
+				$this->database->query( "SELECT 'reverted'", $fname );
+			}
+		};
+
+		$this->database->startAtomic( __METHOD__ . '_outer' );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionResolution( $otrCallback, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_outer' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT \'reverted\'' );
+
+		$runCount = 0;
+		$this->database->startAtomic( __METHOD__ . '_level1', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionResolution( $otrCallback, __METHOD__ );
+		$this->database->startAtomic( __METHOD__ . '_level2' );
+		$this->database->startAtomic( __METHOD__ . '_level3', IDatabase::ATOMIC_CANCELABLE );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->onTransactionResolution( $otrCallback, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->onTransactionResolution( $otrCallback, __METHOD__ );
+		$this->database->cancelAtomic( __METHOD__ . '_level3' );
+		$this->database->endAtomic( __METHOD__ . '_level2' );
+		$this->database->onTransactionResolution( $otrCallback, __METHOD__ );
+		$this->database->endAtomic( __METHOD__ . '_level1' );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT; SELECT \'reverted\'' );
+		$this->assertEquals( 4, $runCount );
 		$this->database->begin( __METHOD__ );
 		try {
 			$this->database->doAtomicSection( __METHOD__, function () {
@@ -1421,6 +1509,25 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::doSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doReleaseSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doRollbackToSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::startAtomic
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
+	 */
+	public function testAtomicSectionsTrxRound() {
+		$this->database->setFlag( IDatabase::DBO_TRX );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->query( 'SELECT 1', __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SELECT 1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 	}
 
 	public static function provideAtomicSectionMethodsForErrors() {
