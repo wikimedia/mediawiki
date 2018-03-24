@@ -109,11 +109,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var bool */
 	protected $opened = false;
 
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxIdleCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxPreCommitCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxEndCallbacks = [];
 	/** @var callable[] Map of (name => callable) */
 	protected $trxRecurringCallbacks = [];
@@ -273,6 +273,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int */
 	protected $nonNativeInsertSelectBatchSize = 10000;
+
+	/** @var string Idiom used when a cancelable atomic section started the transaction */
+	const NOT_APPLICABLE = 'n/a';
+	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
+	const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
 	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
 	const STATUS_TRX_ERROR = 1;
@@ -3231,7 +3236,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->trxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
-		$this->trxEndCallbacks[] = [ $callback, $fname ];
+		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
@@ -3241,7 +3246,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxAutomatic = true;
 		}
 
-		$this->trxIdleCallbacks[] = [ $callback, $fname ];
+		$this->trxIdleCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 		if ( !$this->trxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
@@ -3255,7 +3260,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $this->trxLevel ) {
-			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
+			$this->trxPreCommitCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
@@ -3265,6 +3270,48 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} catch ( Exception $e ) {
 				$this->cancelAtomic( __METHOD__ );
 				throw $e;
+			}
+		}
+	}
+
+	/**
+	 * @return AtomicSectionIdentifier|null ID of the topmost atomic section level
+	 */
+	private function currentAtomicSectionId() {
+		if ( $this->trxLevel && $this->trxAtomicLevels ) {
+			$levelInfo = end( $this->trxAtomicLevels );
+
+			return $levelInfo[1];
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param AtomicSectionIdentifier[] $sectionIds ID of an actual savepoint
+	 * @throws UnexpectedValueException
+	 */
+	private function discardCallbacksForSections( array $sectionIds ) {
+		// Cancel the "on commit" callbacks owned by this savepoint
+		$this->trxIdleCallbacks = array_filter(
+			$this->trxIdleCallbacks,
+			function ( $entry ) use ( $sectionIds ) {
+				return !in_array( $entry[2], $sectionIds, true );
+			}
+		);
+		$this->trxPreCommitCallbacks = array_filter(
+			$this->trxPreCommitCallbacks,
+			function ( $entry ) use ( $sectionIds ) {
+				return !in_array( $entry[2], $sectionIds, true );
+			}
+		);
+		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
+		foreach ( $this->trxEndCallbacks as $key => $entry ) {
+			if ( in_array( $entry[2], $sectionIds, true ) ) {
+				$callback = $entry[0];
+				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
+					return $callback( self::TRIGGER_ROLLBACK );
+				};
 			}
 		}
 	}
@@ -3442,28 +3489,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
 	}
 
+	/**
+	 * @param string $fname
+	 * @return string
+	 */
+	private function nextSavepointId( $fname ) {
+		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
+		if ( strlen( $savepointId ) > 30 ) {
+			// 30 == Oracle's identifier length limit (pre 12c)
+			// With a 22 character prefix, that puts the highest number at 99999999.
+			// Avoid reuse within a transaction so as not to confuse isWithinSavepointId().
+			throw new DBUnexpectedError(
+				$this,
+				'There have been an excessively large number of atomic sections in a transaction'
+				. " started by $this->trxFname (at $fname)"
+			);
+		}
+
+		return $savepointId;
+	}
+
 	final public function startAtomic(
 		$fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE
 	) {
-		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? 'n/a' : null;
+		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::NOT_APPLICABLE : null;
 		if ( !$this->trxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
-			if ( !$this->getFlag( self::DBO_TRX ) ) {
+			if ( $this->getFlag( self::DBO_TRX ) ) {
+				// Since writes could happen in between the topmost atomic sections as part
+				// of the transaction, those sections will need savepoints.
+				$savepointId = $this->nextSavepointId( $fname );
+				$this->doSavepoint( $savepointId, $fname );
+			} else {
 				$this->trxAutomaticAtomic = true;
 			}
 		} elseif ( $cancelable === self::ATOMIC_CANCELABLE ) {
-			$savepointId = 'wikimedia_rdbms_atomic' . ++$this->trxAtomicCounter;
-			if ( strlen( $savepointId ) > 30 ) { // 30 == Oracle's identifier length limit (pre 12c)
-				$this->queryLogger->warning(
-					'There have been an excessively large number of atomic sections in a transaction'
-					. " started by $this->trxFname, reusing IDs (at $fname)",
-					[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
-				);
-				$this->trxAtomicCounter = 0;
-				$savepointId = 'wikimedia_rdbms_atomic' . ++$this->trxAtomicCounter;
-			}
+			$savepointId = $this->nextSavepointId( $fname );
 			$this->doSavepoint( $savepointId, $fname );
 		}
 
@@ -3494,7 +3557,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId !== null && $savepointId !== 'n/a' ) {
+		} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
 			$this->doReleaseSavepoint( $savepointId, $fname );
 		}
 	}
@@ -3533,14 +3596,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Remove the last section and re-index the array
+		$excisedIds = array_map(
+			function ( array $v ) {
+				return $v[1];
+			},
+			array_slice( $this->trxAtomicLevels, $pos )
+		);
 		$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos );
 
 		if ( $savepointId !== null ) {
 			// Rollback the transaction to the state just before this atomic section
-			if ( $savepointId === 'n/a' ) {
+			if ( $savepointId === self::NOT_APPLICABLE ) {
 				$this->rollback( $fname, self::FLUSHING_INTERNAL );
 			} else {
 				$this->doRollbackToSavepoint( $savepointId, $fname );
+				$this->discardCallbacksForSections( $excisedIds );
 				$this->trxStatus = self::STATUS_TRX_OK; // no exception; recovered
 				$this->trxStatusIgnoredCause = null;
 			}
