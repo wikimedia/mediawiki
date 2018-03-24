@@ -37,7 +37,7 @@
 	"tog-watchlisthideminor": "Hide minor edits from the watchlist",
 	"tog-watchlisthideliu": "Hide edits by logged in users from the watchlist",
 	"tog-watchlistreloadautomatically": "Reload the watchlist automatically whenever a filter is changed (JavaScript required)",
-	"tog-watchlistunwatchlinks": "Add direct unwatch/watch links to watchlist entries (JavaScript required for toggle functionality)",
+	"tog-watchlistunwatchlinks": "Add direct unwatch/watch markers (×/+) to watched pages with changes (JavaScript required for toggle functionality)",
 	"tog-watchlisthideanons": "Hide edits by anonymous users from the watchlist",
 	"tog-watchlisthidepatrolled": "Hide patrolled edits from the watchlist",
 	"tog-watchlisthidecategorization": "Hide categorization of pages",
