@@ -493,7 +493,7 @@
 	"wrongpasswordempty": "Nem adtál meg jelszót. Próbáld meg újra.",
 	"passwordtooshort": "A jelszónak legalább $1 karakterből kell állnia.",
 	"passwordtoolong": "A jelszó nem lehet hosszabb $1 karakternél.",
-	"passwordtoopopular": "A gyakori jelszavak nem használhatók. Válassz egy egyedibb jelszót.",
+	"passwordtoopopular": "A gyakran használt jelszavak nem használhatók. Válassz olyan jelszót, amit nehezebb kitalálni.",
 	"password-name-match": "A jelszavadnak különböznie kell a szerkesztőnevedtől.",
 	"password-login-forbidden": "Ezen felhasználónév és jelszó használata tiltott.",
 	"mailmypassword": "Jelszó alaphelyzetbe állítása",
