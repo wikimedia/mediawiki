@@ -310,14 +310,18 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$lb = $lbFactory->getMainLB();
 		$conn = $lb->openConnection( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
-		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 
+		$this->assertFalse( $lb->hasMasterChanges() );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 		$called = false;
 		$callback = function () use ( &$called ) {
 			$called = true;
 		};
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertTrue( $called, 'Called when idle if DBO_TRX is set' );
+		$called = false;
+		$lbFactory->commitMasterChanges();
+		$this->assertFalse( $called );
 
 		$called = false;
 		$lbFactory->beginMasterChanges( __METHOD__ );
