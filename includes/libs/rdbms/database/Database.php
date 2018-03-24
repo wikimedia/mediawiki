@@ -277,6 +277,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->flags |= self::DBO_TRX;
 			}
 		}
+		// Disregard deprecated DBO_IGNORE flag (T189999)
+		$this->flags &= ~self::DBO_IGNORE;
 
 		$this->sessionVars = $params['variables'];
 
