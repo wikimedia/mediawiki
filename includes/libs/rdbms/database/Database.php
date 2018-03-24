@@ -107,11 +107,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var bool */
 	protected $opened = false;
 
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxIdleCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxPreCommitCallbacks = [];
-	/** @var array[] List of (callable, method name) */
+	/** @var array[] List of (callable, method name, atomic section id) */
 	protected $trxEndCallbacks = [];
 	/** @var callable[] Map of (name => callable) */
 	protected $trxRecurringCallbacks = [];
@@ -258,6 +258,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int */
 	protected $nonNativeInsertSelectBatchSize = 10000;
+	/** @var string Idiom used when a cancelable atomic section started the transaction */
+	const NOT_APPLICABLE = 'n/a';
+	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
+	const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
 	/**
 	 * @note: exceptions for missing libraries/drivers should be thrown in initConnection()
@@ -3069,11 +3073,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->trxLevel ) {
 			throw new DBUnexpectedError( $this, "No transaction is active." );
 		}
-		$this->trxEndCallbacks[] = [ $callback, $fname ];
+		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 	}
 
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		$this->trxIdleCallbacks[] = [ $callback, $fname ];
+		$this->trxIdleCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 		if ( !$this->trxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
@@ -3084,7 +3088,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// As long as DBO_TRX is set, writes will accumulate until the load balancer issues
 			// an implicit commit of all peer databases. This is true even if a transaction has
 			// not yet been triggered by writes; make sure $callback runs *after* any such writes.
-			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
+			$this->trxPreCommitCallbacks[] = [ $callback, $fname, $this->currentSavepointId() ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
@@ -3094,6 +3098,85 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			} catch ( Exception $e ) {
 				$this->cancelAtomic( __METHOD__ );
 				throw $e;
+			}
+		}
+	}
+
+	/**
+	 * @return string|null Savepoint ID of the topmost atomic section level
+	 */
+	private function currentSavepointId() {
+		if ( $this->trxLevel && $this->trxAtomicLevels ) {
+			// Get the savepoint ID of the current or otherwise nearest ancestor section
+			// that actually made a savepoint.
+			$levelInfo = end( $this->trxAtomicLevels );
+			do {
+				$savepointId = $levelInfo[1];
+				if ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
+					return $savepointId;
+				}
+				$levelInfo = prev( $this->trxAtomicLevels );
+			} while ( $levelInfo !== false );
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param string $savepointId
+	 * @return int
+	 * @throws UnexpectedValueException
+	 */
+	private function counterFromSavepointId( $savepointId ) {
+		if ( preg_match( '/\d+$/', $savepointId, $m ) ) {
+			return (int)$m[0];
+		} else {
+			throw new UnexpectedValueException( "Invalid savepoint ID $savepointId" );
+		}
+	}
+
+	/**
+	 * @param string|null $savepointId Cadidate savepoint ID from the current transaction
+	 * @param string $parentId Parent savepoint ID from the current transaction
+	 * @return bool
+	 * @throws UnexpectedValueException
+	 */
+	private function isWithinSavepointId( $savepointId, $parentId ) {
+		if ( $savepointId === null ) {
+			return false; // outside of any savepoints
+		}
+
+		return $this->counterFromSavepointId( $savepointId )
+			<= $this->counterFromSavepointId( $parentId );
+
+	}
+
+	/**
+	 * @param string $savepointId ID of an actual savepoint
+	 * @throws UnexpectedValueException
+	 */
+	private function discardCallbacksForSavepoint( $savepointId ) {
+		// Cancel the "on commit" callbacks owned by this savepoint
+		$this->trxIdleCallbacks = array_filter(
+			$this->trxIdleCallbacks,
+			function ( $entry ) use ( $savepointId ) {
+				return !$this->isWithinSavepointId( $entry[2], $savepointId );
+			}
+		);
+		$this->trxPreCommitCallbacks = array_filter(
+			$this->trxPreCommitCallbacks,
+			function ( $entry ) use ( $savepointId ) {
+				return !$this->isWithinSavepointId( $entry[2], $savepointId );
+			}
+		);
+		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
+		foreach ( $this->trxEndCallbacks as $key => $entry ) {
+			if ( $this->isWithinSavepointId( $entry[2], $savepointId ) ) {
+				$callback = $entry[0];
+
+				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
+					return $callback( self::TRIGGER_ROLLBACK );
+				};
 			}
 		}
 	}
@@ -3271,28 +3354,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
 	}
 
+	/**
+	 * @param string $fname
+	 * @return string
+	 */
+	private function nextSavepointId( $fname ) {
+		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
+		if ( strlen( $savepointId ) > 30 ) {
+			// 30 == Oracle's identifier length limit (pre 12c)
+			// With a 22 character prefix, that puts the highest number at 99999999.
+			// Avoid reuse within a transaction so as not to confuse isWithinSavepointId().
+			throw new DBUnexpectedError(
+				$this,
+				'There have been an excessively large number of atomic sections in a transaction'
+				. " started by $this->trxFname, reusing IDs (at $fname)"
+			);
+		}
+
+		return $savepointId;
+	}
+
 	final public function startAtomic(
 		$fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE
 	) {
-		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? 'n/a' : null;
+		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::NOT_APPLICABLE : null;
 		if ( !$this->trxLevel ) {
 			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
-			if ( !$this->getFlag( self::DBO_TRX ) ) {
+			if ( $this->getFlag( self::DBO_TRX ) ) {
+				// Since writes could happen in between the topmost atomic section as part
+				// of the same transaction, those section will need to use savepoints.
+				$savepointId = $this->nextSavepointId( $fname );
+				$this->doSavepoint( $savepointId, $fname );
+			} else {
 				$this->trxAutomaticAtomic = true;
 			}
 		} elseif ( $cancelable === self::ATOMIC_CANCELABLE ) {
-			$savepointId = 'wikimedia_rdbms_atomic' . ++$this->trxAtomicCounter;
-			if ( strlen( $savepointId ) > 30 ) { // 30 == Oracle's identifier length limit (pre 12c)
-				$this->queryLogger->warning(
-					'There have been an excessively large number of atomic sections in a transaction'
-					. " started by $this->trxFname, reusing IDs (at $fname)",
-					[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
-				);
-				$this->trxAtomicCounter = 0;
-				$savepointId = 'wikimedia_rdbms_atomic' . ++$this->trxAtomicCounter;
-			}
+			$savepointId = $this->nextSavepointId( $fname );
 			$this->doSavepoint( $savepointId, $fname );
 		}
 
@@ -3312,7 +3411,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId && $savepointId !== 'n/a' ) {
+		} elseif ( $savepointId && $savepointId !== self::NOT_APPLICABLE ) {
 			$this->doReleaseSavepoint( $savepointId, $fname );
 		}
 	}
@@ -3333,8 +3432,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->rollback( $fname, self::FLUSHING_INTERNAL );
-		} elseif ( $savepointId !== 'n/a' ) {
+		} elseif ( $savepointId !== self::NOT_APPLICABLE ) {
 			$this->doRollbackToSavepoint( $savepointId, $fname );
+			$this->discardCallbacksForSavepoint( $savepointId );
 		}
 
 		$this->affectedRowCount = 0; // for the sake of consistency
