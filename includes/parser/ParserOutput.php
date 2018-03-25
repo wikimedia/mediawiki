@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Render\Rendering;
+
 /**
  * Output of the PHP parser.
  *
@@ -22,7 +24,8 @@
  * @ingroup Parser
  */
 
-class ParserOutput extends CacheTime {
+class ParserOutput extends CacheTime implements Rendering {
+
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.

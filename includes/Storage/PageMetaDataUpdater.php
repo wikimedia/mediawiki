@@ -38,6 +38,7 @@ use Language;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\Render\SlotOutputProvider;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
 use ParserCache;
@@ -76,7 +77,7 @@ use WikiPage;
  * @since 1.31
  * @ingroup Page
  */
-class PageMetaDataUpdater implements IDBAccessObject {
+class PageMetaDataUpdater implements IDBAccessObject, SlotOutputProvider {
 
 	/**
 	 * @var UserIdentity|null
