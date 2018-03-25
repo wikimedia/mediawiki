@@ -43,6 +43,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Render\RevisionRenderer;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
@@ -513,6 +514,17 @@ return [
 
 		$config = $services->getMainConfig();
 		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
+
+		return $store;
+	},
+
+	'RevisionRenderer' => function ( MediaWikiServices $services ) {
+		global $wgContLang; // TODO: manage as or in service!
+
+		$store = new RevisionRenderer(
+			'main',
+			$wgContLang
+		);
 
 		return $store;
 	},

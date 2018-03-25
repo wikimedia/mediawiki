@@ -38,6 +38,8 @@ use Language;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\Render\RevisionRenderer;
+use MediaWiki\Render\SlotRenderingProvider;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
 use ParserCache;
@@ -76,7 +78,7 @@ use WikiPage;
  * @since 1.31
  * @ingroup Page
  */
-class PageMetaDataUpdater implements IDBAccessObject {
+class PageMetaDataUpdater implements IDBAccessObject, SlotRenderingProvider {
 
 	/**
 	 * @var UserIdentity|null
@@ -97,11 +99,6 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	 * @var RevisionStore
 	 */
 	private $revisionStore;
-
-	/**
-	 * @var Language
-	 */
-	private $contentLanguage;
 
 	/**
 	 * @var LoggerInterface
@@ -183,8 +180,14 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	private $revision = null;
 
 	/**
+	 * @var RevisionRenderer
+	 */
+	private $revisionRenderer;
+
+	/**
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
+	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParserCache $parserCache
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
@@ -194,10 +197,10 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	public function __construct(
 		WikiPage $wikiPage,
 		RevisionStore $revisionStore,
+		RevisionRenderer $revisionRenderer,
 		ParserCache $parserCache,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
-		Language $contentLanguage,
 		LoggerInterface $saveParseLogger = null
 	) {
 		$this->wikiPage = $wikiPage;
@@ -206,10 +209,10 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		$this->revisionStore = $revisionStore;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
-		$this->contentLanguage = $contentLanguage;
 
 		// XXX: replace all wfDebug calls with a Logger. Do we nede more than one logger here?
 		$this->saveParseLogger = $saveParseLogger ?: new NullLogger();
+		$this->revisionRenderer = $revisionRenderer;
 	}
 
 	/**
@@ -621,9 +624,6 @@ class PageMetaDataUpdater implements IDBAccessObject {
 			];
 		}
 
-		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contentLanguage );
-		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
-
 		$this->user = $user;
 		$this->newContentSlots = $newContentSlots;
 		$this->stopSlots = $stopSlots;
@@ -645,6 +645,13 @@ class PageMetaDataUpdater implements IDBAccessObject {
 
 			$this->pstContentSlots->removeSlot( $role );
 		}
+
+		$userPopts = $this->revisionRenderer->makeUserParserOptions(
+			$this->getTitle(),
+			$this->pstContentSlots,
+			$user
+		);
+		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
 
 		foreach ( $newContentSlots->getSlots() as $role => $slot ) {
 			// TODO: MCR: allow output for all slots to be stashed.
@@ -976,8 +983,8 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	/**
 	 * @return ParserOutput
 	 */
-	public function getSlotParserOutput( $role, $generateHtml = true ) {
-		// TODO: factor this out into a RevisionHtmlProvider that can also be used for viewing.
+	public function getSlotRendering( $role, $generateHtml = true ) {
+		// TODO: factor this out into a LazySlotRenderingProvider
 
 		$this->assertPrepared( __METHOD__ );
 
@@ -1021,9 +1028,13 @@ class PageMetaDataUpdater implements IDBAccessObject {
 			return $this->canonicalParserOutput;
 		}
 
-		// TODO: MCR: logic for combining the output of multiple slot goes here!
-		// TODO: factor this out into a RevisionHtmlProvider that can also be used for viewing.
-		$this->canonicalParserOutput = $this->getSlotParserOutput( 'main' );
+		$this->canonicalParserOutput = $this->revisionRenderer->renderRevisionSlots(
+			$this->getTitle(),
+			$this->getSlots(),
+			$this->getCanonicalParserOptions(),
+			$this,
+			$this->revision ? $this->revision->getId() : null
+		);
 
 		return $this->canonicalParserOutput;
 	}
@@ -1038,7 +1049,11 @@ class PageMetaDataUpdater implements IDBAccessObject {
 
 		// TODO: MCR: combine parser options for all slots?! Include inherited (or use cached output)
 		// XXX: Even though this *says* canonical, it may *still* depend on the user language!
-		$this->canonicalParserOptions = $this->wikiPage->makeParserOptions( 'canonical' );
+		$this->canonicalParserOptions = $this->revisionRenderer->makeParserOptions(
+			$this->getTitle(),
+			$this->getSlots(),
+			'canonical'
+		);
 
 		if ( $this->revision ) {
 			// Make sure we use the appropriate revision ID when generating output
