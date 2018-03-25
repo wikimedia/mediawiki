@@ -2113,11 +2113,12 @@ class LocalFile extends File {
 		if ( !$revision ) {
 			return false;
 		}
-		$content = $revision->getContent();
-		if ( !$content ) {
-			return false;
-		}
-		$pout = $content->getParserOutput( $this->title, null, new ParserOptions( null, $lang ) );
+
+		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+		$options = new ParserOptions( null, $lang );
+		$pout = $renderer->renderRevisionForPublic( $revision->getRevisionRecord(), $options );
+
+		// FIXME: return false on failure!
 
 		return $pout->getText();
 	}

@@ -5,6 +5,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Render\RevisionRenderer;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
@@ -342,6 +343,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
+			'RevisionRenderer' => [ 'RevisionRenderer', RevisionRenderer::class ],
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 			'CommentStore' => [ 'CommentStore', CommentStore::class ],
