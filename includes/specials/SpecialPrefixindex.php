@@ -97,58 +97,54 @@ class SpecialPrefixindex extends SpecialAllPages {
 	 * @param string $from DbKey we are starting listing at.
 	 * @return string
 	 */
-	protected function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
-		$out = Xml::openElement( 'div', [ 'class' => 'namespaceoptions' ] );
-		$out .= Xml::openElement(
-			'form',
-			[ 'method' => 'get', 'action' => $this->getConfig()->get( 'Script' ) ]
-		);
-		$out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
-		$out .= Xml::openElement( 'table', [ 'id' => 'nsselect', 'class' => 'allpages' ] );
-		$out .= "<tr>
+    protected function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
+        $name1 = $this->msg( 'allpages-hide-redirects' )->text();
+        $name2 = $this->msg( 'prefixindex-strip' )->text();
+        $out = Html::openElement( 'div', [ 'class' => 'namespaceoptions' ] );
+        $out .= Html::openElement(
+            'form',
+            [ 'method' => 'get', 'action' => $this->getConfig()->get( 'Script' ) ]
+        );
+        $out .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
+        $out .= Html::openElement( 'fieldset' );
+        $out .= Html::element( 'legend', null, $this->msg( 'allpages' )->text() );
+        $out .= Html::openElement( 'table', [ 'id' => 'nsselect', 'class' => 'allpages' ] );
+        $out .= "<tr>
 				<td class='mw-label'>" .
-			Xml::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
-			"</td>
+            Html::label( $this->msg( 'allpagesprefix' )->text(), 'nsfrom' ) .
+            "</td>
 				<td class='mw-input'>" .
-			Xml::input( 'prefix', 30, str_replace( '_', ' ', $from ), [ 'id' => 'nsfrom' ] ) .
-			"</td>
+            Html::input( 'prefix', str_replace( '_', ' ', $from ), [ 'id' => 'nsfrom' ] ) .
+            "</td>
 			</tr>
 			<tr>
 			<td class='mw-label'>" .
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-			"</td>
+            Html::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+            "</td>
 				<td class='mw-input'>" .
-			Html::namespaceSelector( [
-				'selected' => $namespace,
-			], [
-				'name' => 'namespace',
-				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			] ) .
-			Xml::checkLabel(
-				$this->msg( 'allpages-hide-redirects' )->text(),
-				'hideredirects',
-				'hideredirects',
-				$this->hideRedirects
-			) . ' ' .
-			Xml::checkLabel(
-				$this->msg( 'prefixindex-strip' )->text(),
-				'stripprefix',
-				'stripprefix',
-				$this->stripPrefix
-			) . ' ' .
-			Xml::submitButton( $this->msg( 'prefixindex-submit' )->text() ) .
-			"</td>
+            Html::namespaceSelector( [
+                'selected' => $namespace,
+            ], [
+                'name' => 'namespace',
+                'id' => 'namespace',
+                'class' => 'namespaceselector',
+            ] ) .
+            Html::check( 'hideredirects',false, [ 'id' => 'hideredirects', 'value' => 1 ] ) . $name1 . ' ' .
+            Html::check( 'prefixindex-strip', false, [ 'id' => 'prefixindex-strip', 'value' => 1 ] ) . $name2.
+            ' ' .
+            Html::submitButton(
+                $this->msg( 'prefixindex-submit' )->text(),
+                [ 'class' => 'mw-submit' ], [ 'mw-ui-progressive' ]
+            ).
+            "</td>
 			</tr>";
-		$out .= Xml::closeElement( 'table' );
-		$out .= Xml::closeElement( 'fieldset' );
-		$out .= Xml::closeElement( 'form' );
-		$out .= Xml::closeElement( 'div' );
+        $out .= Html::closeElement( 'table' );
+        $out .= Html::closeElement( 'fieldset' );
+        $out .= Html::closeElement( 'form' );
+        $out .= Html::closeElement( 'div' );
 
-		return $out;
-	}
+        return $out;
+    }
 
 	/**
 	 * @param int $namespace Default NS_MAIN
