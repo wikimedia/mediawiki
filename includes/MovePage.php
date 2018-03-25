@@ -543,6 +543,13 @@ class MovePage {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		$logEntry->setAssociatedRevId( $nullRevId );
 
+		/**
+		 * T163966
+		 * Increment user_editcount during page moves
+		 * Moved from SpecialMovepage.php per T195550
+		 */
+		$user->incEditCount();
+
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
