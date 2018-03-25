@@ -155,6 +155,10 @@ class WebInstaller extends Installer {
 
 		if ( isset( $session['settings'] ) ) {
 			$this->settings = $session['settings'] + $this->settings;
+			// T187586 MediaWikiServices works with globals
+			foreach ( $this->settings as $key => $val ) {
+				$GLOBALS[$key] = $val;
+			}
 		}
 
 		$this->setupLanguage();

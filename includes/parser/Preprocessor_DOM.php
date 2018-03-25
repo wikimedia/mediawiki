@@ -274,13 +274,6 @@ class Preprocessor_DOM extends Preprocessor {
 				$search = $searchBase;
 				if ( $stack->top === false ) {
 					$currentClosing = '';
-				} elseif (
-					$stack->top->close === '}-' &&
-					$stack->top->count > 2
-				) {
-					# adjust closing for -{{{...{{
-					$currentClosing = '}';
-					$search .= $currentClosing;
 				} else {
 					$currentClosing = $stack->top->close;
 					$search .= $currentClosing;
@@ -643,14 +636,27 @@ class Preprocessor_DOM extends Preprocessor {
 					strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1 :
 					strspn( $text, $curChar, $i );
 
+				$savedPrefix = '';
+				$lineStart = ( $i > 0 && $text[$i - 1] == "\n" );
+
+				if ( $curChar === "-{" && $count > $curLen ) {
+					// -{ => {{ transition because rightmost wins
+					$savedPrefix = '-';
+					$i++;
+					$curChar = '{';
+					$count--;
+					$rule = $this->rules[$curChar];
+				}
+
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
 					# Add it to the stack
 					$piece = [
 						'open' => $curChar,
 						'close' => $rule['end'],
+						'savedPrefix' => $savedPrefix,
 						'count' => $count,
-						'lineStart' => ( $i > 0 && $text[$i - 1] == "\n" ),
+						'lineStart' => $lineStart,
 					];
 
 					$stack->push( $piece );
@@ -667,7 +673,7 @@ class Preprocessor_DOM extends Preprocessor {
 					}
 				} else {
 					# Add literal brace(s)
-					$accum .= htmlspecialchars( str_repeat( $curChar, $count ) );
+					$accum .= htmlspecialchars( $savedPrefix . str_repeat( $curChar, $count ) );
 				}
 				$i += $count;
 			} elseif ( $found == 'close' ) {
@@ -684,10 +690,6 @@ class Preprocessor_DOM extends Preprocessor {
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
 				$rule = $this->rules[$piece->open];
-				if ( $piece->close === '}-' && $piece->count > 2 ) {
-					# tweak for -{..{{ }}..}-
-					$rule = $this->rules['{'];
-				}
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
@@ -724,7 +726,9 @@ class Preprocessor_DOM extends Preprocessor {
 
 					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
-					if ( $maxCount == $matchingCount && !empty( $piece->lineStart ) ) {
+					if ( $maxCount == $matchingCount &&
+							!empty( $piece->lineStart ) &&
+							strlen( $piece->savedPrefix ) == 0 ) {
 						$attr = ' lineStart="1"';
 					} else {
 						$attr = '';
@@ -762,15 +766,25 @@ class Preprocessor_DOM extends Preprocessor {
 					if ( $piece->count >= $min ) {
 						$stack->push( $piece );
 						$accum =& $stack->getAccum();
+					} elseif ( $piece->count == 1 && $piece->open === '{' && $piece->savedPrefix === '-' ) {
+						$piece->savedPrefix = '';
+						$piece->open = '-{';
+						$piece->count = 2;
+						$piece->close = $this->rules[$piece->open]['end'];
+						$stack->push( $piece );
+						$accum =& $stack->getAccum();
 					} else {
 						$s = substr( $piece->open, 0, -1 );
 						$s .= str_repeat(
 							substr( $piece->open, -1 ),
 							$piece->count - strlen( $s )
 						);
-						$accum .= $s;
+						$accum .= $piece->savedPrefix . $s;
 					}
+				} elseif ( $piece->savedPrefix !== '' ) {
+					$accum .= $piece->savedPrefix;
 				}
+
 				$stackFlags = $stack->getFlags();
 				if ( isset( $stackFlags['findEquals'] ) ) {
 					$findEquals = $stackFlags['findEquals'];
@@ -793,9 +807,6 @@ class Preprocessor_DOM extends Preprocessor {
 				$findEquals = false; // shortcut for getFlags()
 				$stack->getCurrentPart()->eqpos = strlen( $accum );
 				$accum .= '=';
-				++$i;
-			} elseif ( $found == 'dash' ) {
-				$accum .= '-';
 				++$i;
 			}
 		}
@@ -916,6 +927,12 @@ class PPDStackElement {
 	public $close;
 
 	/**
+	 * @var string Saved prefix that may affect later processing,
+	 *  e.g. to differentiate `-{{{{` and `{{{{` after later seeing `}}}`.
+	 */
+	public $savedPrefix = '';
+
+	/**
 	 * @var int Number of opening characters found (number of "=" for heading)
 	 */
 	public $count;
@@ -976,7 +993,7 @@ class PPDStackElement {
 	 */
 	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
-			$s = $this->parts[0]->out;
+			$s = $this->savedPrefix . $this->parts[0]->out;
 		} else {
 			if ( $openingCount === false ) {
 				$openingCount = $this->count;
@@ -986,6 +1003,7 @@ class PPDStackElement {
 				substr( $this->open, -1 ),
 				$openingCount - strlen( $s )
 			);
+			$s = $this->savedPrefix . $s;
 			$first = true;
 			foreach ( $this->parts as $part ) {
 				if ( $first ) {

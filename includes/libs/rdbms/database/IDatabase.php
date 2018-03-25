@@ -49,6 +49,11 @@ interface IDatabase {
 	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
 	const TRANSACTION_INTERNAL = 'implicit';
 
+	/** @var string Atomic section is not cancelable */
+	const ATOMIC_NOT_CANCELABLE = '';
+	/** @var string Atomic section is cancelable */
+	const ATOMIC_CANCELABLE = 'cancelable';
+
 	/** @var string Transaction operation comes from service managing all DBs */
 	const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Transaction operation comes from the database class internally */
@@ -228,6 +233,7 @@ interface IDatabase {
 	 * Should return true if unsure.
 	 *
 	 * @return bool
+	 * @deprecated Since 1.31; use lastDoneWrites()
 	 */
 	public function doneWrites();
 
@@ -357,7 +363,7 @@ interface IDatabase {
 	public function getType();
 
 	/**
-	 * Open a connection to the database. Usually aborts on failure
+	 * Open a new connection to the database (closing any existing one)
 	 *
 	 * @param string $server Database server host
 	 * @param string $user Database user name
@@ -455,17 +461,6 @@ interface IDatabase {
 	public function lastError();
 
 	/**
-	 * mysql_fetch_field() wrapper
-	 * Returns false if the field doesn't exist
-	 *
-	 * @param string $table Table name
-	 * @param string $field Field name
-	 *
-	 * @return Field
-	 */
-	public function fieldInfo( $table, $field );
-
-	/**
 	 * Get the number of rows affected by the last write query
 	 * @see https://secure.php.net/mysql_affected_rows
 	 *
@@ -492,8 +487,11 @@ interface IDatabase {
 	public function getServerVersion();
 
 	/**
-	 * Closes a database connection.
-	 * if it is open : commits any open transactions
+	 * Close the database connection
+	 *
+	 * This should only be called after any transactions have been resolved,
+	 * aside from read-only transactions (assuming no callbacks are registered).
+	 * If a transaction is still open anyway, it will be committed if possible.
 	 *
 	 * @throws DBError
 	 * @return bool Operation success. true if already closed.
@@ -501,14 +499,12 @@ interface IDatabase {
 	public function close();
 
 	/**
-	 * @param string $error Fallback error message, used if none is given by DB
-	 * @throws DBConnectionError
-	 */
-	public function reportConnectionError( $error = 'Unknown error' );
-
-	/**
 	 * Run an SQL query and return the result. Normally throws a DBQueryError
 	 * on failure. If errors are ignored, returns false instead.
+	 *
+	 * If a connection loss is detected, then an attempt to reconnect will be made.
+	 * For queries that involve no larger transactions or locks, they will be re-issued
+	 * for convenience, provided the connection was re-established.
 	 *
 	 * In new code, the query wrappers select(), insert(), update(), delete(),
 	 * etc. should be used where possible, since they give much better DBMS
@@ -529,19 +525,6 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false );
-
-	/**
-	 * Report a query error. Log the error, and if neither the object ignore
-	 * flag nor the $tempIgnore flag is set, throw a DBQueryError.
-	 *
-	 * @param string $error
-	 * @param int $errno
-	 * @param string $sql
-	 * @param string $fname
-	 * @param bool $tempIgnore
-	 * @throws DBQueryError
-	 */
-	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false );
 
 	/**
 	 * Free a result object returned by query() or select(). It's usually not
@@ -620,6 +603,11 @@ interface IDatabase {
 	 *
 	 * This includes the user table in the query, with the alias "a" available
 	 * for use in field names (e.g. a.user_name).
+	 *
+	 * A derived table, defined by the result of selectSQLText(), requires an alias
+	 * key and a Subquery instance value which wraps the SQL query, for example:
+	 *
+	 *    [ 'c' => new Subquery( 'SELECT ...' ) ]
 	 *
 	 * Joins using parentheses for grouping (since MediaWiki 1.31) may be
 	 * constructed using nested arrays. For example,
@@ -770,15 +758,15 @@ interface IDatabase {
 	 * doing UNION queries, where the SQL text of each query is needed. In general,
 	 * however, callers outside of Database classes should just use select().
 	 *
+	 * @see IDatabase::select()
+	 *
 	 * @param string|array $table Table name
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name
 	 * @param string|array $options Query options
 	 * @param string|array $join_conds Join conditions
-	 *
-	 * @return string SQL query string.
-	 * @see IDatabase::select()
+	 * @return string SQL query string
 	 */
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__,
@@ -818,15 +806,16 @@ interface IDatabase {
 	 * Takes the same arguments as IDatabase::select().
 	 *
 	 * @param string $table Table name
-	 * @param string $vars Unused
+	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
+	 * @param array|string $join_conds Join conditions
 	 * @return int Row count
 	 * @throws DBError
 	 */
 	public function estimateRowCount(
-		$table, $vars = '*', $conds = '', $fname = __METHOD__, $options = []
+		$table, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -839,7 +828,7 @@ interface IDatabase {
 	 * @since 1.27 Added $join_conds parameter
 	 *
 	 * @param array|string $tables Table names
-	 * @param string $vars Unused
+	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
@@ -848,7 +837,7 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function selectRowCount(
-		$tables, $vars = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -884,16 +873,6 @@ interface IDatabase {
 	 * @throws DBError
 	 */
 	public function tableExists( $table, $fname = __METHOD__ );
-
-	/**
-	 * Determines if a given index is unique
-	 *
-	 * @param string $table
-	 * @param string $index
-	 *
-	 * @return bool
-	 */
-	public function indexUnique( $table, $index );
 
 	/**
 	 * INSERT wrapper, inserts an array into a table.
@@ -1078,6 +1057,25 @@ interface IDatabase {
 	 * @since 1.31
 	 */
 	public function buildIntegerCast( $field );
+
+	/**
+	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subqyery
+	 *
+	 * @see IDatabase::selectSQLText()
+	 *
+	 * @param string|array $table Table name
+	 * @param string|array $vars Field names
+	 * @param string|array $conds Conditions
+	 * @param string $fname Caller function name
+	 * @param string|array $options Query options
+	 * @param string|array $join_conds Join conditions
+	 * @return Subquery
+	 * @since 1.31
+	 */
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	);
 
 	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
@@ -1396,6 +1394,8 @@ interface IDatabase {
 	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
+	 * Note that during a deadlock, the prior transaction will have been lost
+	 *
 	 * @return bool
 	 */
 	public function wasDeadlock();
@@ -1403,17 +1403,21 @@ interface IDatabase {
 	/**
 	 * Determines if the last failure was due to a lock timeout
 	 *
+	 * Note that during a lock wait timeout, the prior transaction will have been lost
+	 *
 	 * @return bool
 	 */
 	public function wasLockTimeout();
 
 	/**
-	 * Determines if the last query error was due to a dropped connection and should
-	 * be dealt with by pinging the connection and reissuing the query.
+	 * Determines if the last query error was due to a dropped connection
+	 *
+	 * Note that during a connection loss, the prior transaction will have been lost
 	 *
 	 * @return bool
+	 * @since 1.31
 	 */
-	public function wasErrorReissuable();
+	public function wasConnectionLoss();
 
 	/**
 	 * Determines if the last failure was due to the database being read-only.
@@ -1421,6 +1425,15 @@ interface IDatabase {
 	 * @return bool
 	 */
 	public function wasReadOnlyError();
+
+	/**
+	 * Determines if the last query error was due to something outside of the query itself
+	 *
+	 * Note that the transaction may have been lost, discarding prior writes and results
+	 *
+	 * @return bool
+	 */
+	public function wasErrorReissuable();
 
 	/**
 	 * Wait for the replica DB to catch up to a given master position
@@ -1533,25 +1546,27 @@ interface IDatabase {
 	/**
 	 * Begin an atomic section of statements
 	 *
-	 * If a transaction has been started already, just keep track of the given
-	 * section name to make sure the transaction is not committed pre-maturely.
-	 * This function can be used in layers (with sub-sections), so use a stack
-	 * to keep track of the different atomic sections. If there is no transaction,
-	 * start one implicitly.
+	 * If a transaction has been started already, (optionally) sets a savepoint
+	 * and tracks the given section name to make sure the transaction is not
+	 * committed pre-maturely. This function can be used in layers (with
+	 * sub-sections), so use a stack to keep track of the different atomic
+	 * sections. If there is no transaction, one is started implicitly.
 	 *
 	 * The goal of this function is to create an atomic section of SQL queries
 	 * without having to start a new transaction if it already exists.
 	 *
-	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic(),
-	 * and any database transactions cannot be began or committed until all atomic
-	 * levels are closed. There is no such thing as implicitly opening or closing
-	 * an atomic section.
+	 * All atomic levels *must* be explicitly closed using IDatabase::endAtomic()
+	 * or IDatabase::cancelAtomic(), and any database transactions cannot be
+	 * began or committed until all atomic levels are closed. There is no such
+	 * thing as implicitly opening or closing an atomic section.
 	 *
 	 * @since 1.23
 	 * @param string $fname
+	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
+	 *  savepoint and enable self::cancelAtomic() for this section.
 	 * @throws DBError
 	 */
-	public function startAtomic( $fname = __METHOD__ );
+	public function startAtomic( $fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE );
 
 	/**
 	 * Ends an atomic section of SQL statements
@@ -1567,23 +1582,46 @@ interface IDatabase {
 	public function endAtomic( $fname = __METHOD__ );
 
 	/**
+	 * Cancel an atomic section of SQL statements
+	 *
+	 * This will roll back only the statements executed since the start of the
+	 * most recent atomic section, and close that section. If a transaction was
+	 * open before the corresponding startAtomic() call, any statements before
+	 * that call are *not* rolled back and the transaction remains open. If the
+	 * corresponding startAtomic() implicitly started a transaction, that
+	 * transaction is rolled back.
+	 *
+	 * Note that a call to IDatabase::rollback() will also roll back any open
+	 * atomic sections.
+	 *
+	 * @note As a micro-optimization to save a few DB calls, this method may only
+	 *  be called when startAtomic() was called with the ATOMIC_CANCELABLE flag.
+	 * @since 1.31
+	 * @see IDatabase::startAtomic
+	 * @param string $fname
+	 * @throws DBError
+	 */
+	public function cancelAtomic( $fname = __METHOD__ );
+
+	/**
 	 * Run a callback to do an atomic set of updates for this database
 	 *
 	 * The $callback takes the following arguments:
 	 *   - This database object
 	 *   - The value of $fname
 	 *
-	 * If any exception occurs in the callback, then rollback() will be called and the error will
-	 * be re-thrown. It may also be that the rollback itself fails with an exception before then.
-	 * In any case, such errors are expected to terminate the request, without any outside caller
-	 * attempting to catch errors and commit anyway. Note that any rollback undoes all prior
-	 * atomic section and uncommitted updates, which trashes the current request, requiring an
-	 * error to be displayed.
+	 * If any exception occurs in the callback, then cancelAtomic() will be
+	 * called to back out any statements executed by the callback and the error
+	 * will be re-thrown. It may also be that the cancel itself fails with an
+	 * exception before then. In any case, such errors are expected to
+	 * terminate the request, without any outside caller attempting to catch
+	 * errors and commit anyway.
 	 *
-	 * This can be an alternative to explicit startAtomic()/endAtomic() calls.
+	 * This can be an alternative to explicit startAtomic()/endAtomic()/cancelAtomic() calls.
 	 *
 	 * @see Database::startAtomic
 	 * @see Database::endAtomic
+	 * @see Database::cancelAtomic
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates
@@ -1591,7 +1629,9 @@ interface IDatabase {
 	 * @throws DBError
 	 * @throws RuntimeException
 	 * @throws UnexpectedValueException
-	 * @since 1.27
+	 * @since 1.27; prior to 1.31 this did a rollback() instead of
+	 *  cancelAtomic(), and assumed no callers up the stack would ever try to
+	 *  catch the exception.
 	 */
 	public function doAtomicSection( $fname, callable $callback );
 
@@ -1674,16 +1714,6 @@ interface IDatabase {
 	 * @since 1.28
 	 */
 	public function flushSnapshot( $fname = __METHOD__ );
-
-	/**
-	 * List all tables on the database
-	 *
-	 * @param string $prefix Only show tables with this prefix, e.g. mw_
-	 * @param string $fname Calling function name
-	 * @throws DBError
-	 * @return array
-	 */
-	public function listTables( $prefix = null, $fname = __METHOD__ );
 
 	/**
 	 * Convert a timestamp in one of the formats accepted by wfTimestamp()
@@ -1927,6 +1957,21 @@ interface IDatabase {
 	 * @since 1.28
 	 */
 	public function setTableAliases( array $aliases );
+
+	/**
+	 * Convert certain index names to alternative names before querying the DB
+	 *
+	 * Note that this applies to indexes regardless of the table they belong to.
+	 *
+	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
+	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
+	 * the aliases can be removed, and then the old X-named indexes dropped.
+	 *
+	 * @param string[] $aliases
+	 * @return mixed
+	 * @since 1.31
+	 */
+	public function setIndexAliases( array $aliases );
 }
 
 class_alias( IDatabase::class, 'IDatabase' );

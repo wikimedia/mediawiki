@@ -63,6 +63,6 @@
 	"config-cc-again": "Dîsa hilbijêre...",
 	"config-install-step-done": "çêbû",
 	"config-help": "alîkarî",
-	"mainpagetext": "'''MediaWiki serketî hate çêkirin.'''",
+	"mainpagetext": "<strong>MediaWiki hate sazkirin.<strong>",
 	"mainpagedocfooter": "Alîkarî ji bo bikaranîn û guherandin yê datayê Wîkî tu di bin [https://meta.wikimedia.org/wiki/Help:Contents pirtûka alîkarîyê ji bikarhêneran] da dikarê bibînê.\n\n== Alîkarî ji bo destpêkê ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]"
 }

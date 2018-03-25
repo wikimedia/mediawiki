@@ -84,7 +84,7 @@
 	/**
 	 * @private
 	 * @property {Array}
-	 * Contains button objects (and for backwards compatibilty, it can
+	 * Contains button objects (and for backwards compatibility, it can
 	 * also contains an arguments array for insertButton).
 	 */
 	queue = [];

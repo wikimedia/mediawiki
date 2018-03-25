@@ -234,6 +234,6 @@
 	"config-download-localsettings": "ดาวน์โหลด <code>LocalSettings.php</code>",
 	"config-help-tooltip": "คลิกเพื่อขยาย",
 	"config-nofile": "ไม่พบไฟล์ \"$1\" มันอาจถูกลบไปแล้วหรือไม่?",
-	"mainpagetext": "<strong>ติดตั้งมีเดียวิกิสำเร็จ</strong>",
+	"mainpagetext": "<strong>ติดตั้งมีเดียวิกิแล้ว</strong>",
 	"mainpagedocfooter": "ศึกษา[https://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ\n\n== เริ่มต้น ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ คำถามที่ถามบ่อยในมีเดียวิกิ] (ภาษาอังกฤษ)\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]"
 }

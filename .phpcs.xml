@@ -22,8 +22,6 @@
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
 		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
-		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage.NS_IMAGE" />
-		<exclude name="MediaWiki.Usage.DeprecatedConstantUsage.NS_IMAGE_TALK" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocStar" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocTag" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />

@@ -14,7 +14,8 @@
 			"Macofe",
 			"V6rg",
 			"Nemo bis",
-			"S4b1nuz E.656"
+			"S4b1nuz E.656",
+			"Ruthven"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -695,7 +696,7 @@
 	"permissionserrorstext-withaction": "Nun haje premmesse abbastante pe' $2, {{PLURAL:$1|'o mutivo è chesto|'e mutive so' chiste}}:",
 	"contentmodelediterror": "Vuje nun putite cagnà sta verziona pecché 'o mudell' 'e cuntenute è <code>$1</code>, ca cagnasse nu poco nfacc' 'o mudell' 'e mò d' 'a paggena è <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Attenziò: staje a crià na paggena scancellata già.'''\n\nVire si è bbuono 'e cuntinuà a cagnà sta paggena. L'elenco ch' 'e relative scancellamiente e spustamente s'è scritto ccà abbascio pe' ffà comodo:",
-	"moveddeleted-notice": "Sta paggena è stata scancellata.\nL'elenco d' 'e relative scancellamiente e spustamente s'è scritto ccà abbascio pe' n'avé nfurmazione.",
+	"moveddeleted-notice": "Sta paggena è stata scancellata.\n'A lista d' 'e relative scancellamiente e spustamente sta cca 'bbascio pe' n'avé 'nfurmazione.",
 	"moveddeleted-notice-recent": "Scusate, sta mmasciata è stata scancellata mo mo (dint'a sti 24 ore).\n\nL'aziune 'e scancellazione e spustamento pe' sta paggena so dispunibbele ccà p' 'a cumpretezza.",
 	"log-fulllog": "Vide log sano",
 	"edit-hook-aborted": "'O cagnamiento è stato annullato 'a 'o «hook».\nNun dette spiegazione nisciuna.",
@@ -1299,7 +1300,7 @@
 	"rcshowhidecategorization": "$1 categorizzaziona d' 'a paggena",
 	"rcshowhidecategorization-show": "Faje vedé",
 	"rcshowhidecategorization-hide": "Annascunne",
-	"rclinks": "Faje vedé ll'urdeme $1 cagnamiente dint' ll'urdeme $2 juorne",
+	"rclinks": "Faje vedé ll'urdeme $1 cagnamienti dint' ll'urdeme $2 juorne",
 	"diff": "diff",
 	"hist": "cron",
 	"hide": "annascunne",
@@ -1931,7 +1932,7 @@
 	"unwatchthispage": "Nun cuntrullà cchiù sta paggena",
 	"notanarticle": "Chesta paggena nun è na voce",
 	"notvisiblerev": "'A verzione è stata scancellata",
-	"watchlist-details": "L'elenco 'e paggene cuntrullate cuntene {{PLURAL:$1|na paggena (e pure 'a paggena 'e chiacchiera)|$1 paggene (e pure 'e paggene 'e chiacchiera}}.",
+	"watchlist-details": "L'elenco 'e paggene cuntrullate tene {{PLURAL:$1|na paggena (e pure 'a paggena 'e chiacchiera)|$1 paggene (e pure 'e ppaggene 'e chiacchiera}}.",
 	"wlheader-enotif": "'A funzione 'e notifiche e-mail è appicciata.",
 	"wlheader-showupdated": "* 'E paggene cca so' state cagnate a l'urdema visita avevano so' nzignate ccà 'n '''grassetto'''.",
 	"wlnote": "Ccà abbascio {{PLURAL:$1|è elencato 'o cagnamiento cchiù ricente|songo elencate 'e <strong>$1</strong> cagnamiente cchiù recente}} {{PLURAL:$2|int'a ll'urdema ora|int' 'e ll'urdeme <strong>$2</strong> ore}}; 'e date songo agghiurnate 'o $3, $4.",

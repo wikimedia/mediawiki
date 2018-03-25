@@ -41,9 +41,26 @@ class HTMLSizeFilterField extends HTMLIntField {
 		return $html;
 	}
 
-	// No OOUI yet
-	public function getInputOOUI( $value ) {
-		return false;
+	protected function getInputWidget( $params ) {
+		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.SizeFilterWidget.styles' );
+
+		// negative numbers represent "max", positive numbers represent "min"
+		$value = $params['value'];
+
+		$params['value'] = $value ? abs( $value ) : '';
+
+		return new MediaWiki\Widget\SizeFilterWidget( [
+			'selectMin' => $value >= 0,
+			'textinput' => $params,
+			'radioselectinput' => [
+				'name' => $this->mName . '-mode',
+				'disabled' => !empty( $this->mParams['disabled'] ),
+			],
+		] );
+	}
+
+	protected function getOOUIModules() {
+		return [ 'mediawiki.widgets.SizeFilterWidget' ];
 	}
 
 	/**

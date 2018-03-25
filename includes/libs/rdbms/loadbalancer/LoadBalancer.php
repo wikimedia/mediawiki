@@ -54,6 +54,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $loadMonitorConfig;
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
+	/** @var string[] Map of (index alias => index) */
+	private $indexAliases = [];
 
 	/** @var ILoadMonitor */
 	private $loadMonitor;
@@ -1088,6 +1090,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->getLazyConnectionRef( self::DB_MASTER, [], $db->getDomainID() )
 		);
 		$db->setTableAliases( $this->tableAliases );
+		$db->setIndexAliases( $this->indexAliases );
 
 		if ( $server['serverIndex'] === $this->getWriterIndex() ) {
 			if ( $this->trxRoundId !== false ) {
@@ -1370,11 +1373,12 @@ class LoadBalancer implements ILoadBalancer {
 		$e = null; // first exception
 		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $type, &$e ) {
 			$conn->setTrxEndCallbackSuppression( false );
-			if ( $conn->writesOrCallbacksPending() ) {
-				// This happens if onTransactionIdle() callbacks leave callbacks on *another* DB
-				// (which finished its callbacks already). Warn and recover in this case. Let the
-				// callbacks run in the final commitMasterChanges() in LBFactory::shutdown().
-				$this->queryLogger->info( __METHOD__ . ": found writes/callbacks pending." );
+			// Callbacks run in AUTO-COMMIT mode, so make sure no transactions are pending...
+			if ( $conn->writesPending() ) {
+				// This happens if onTransactionIdle() callbacks write to *other* handles
+				// (which already finished their callbacks). Let any callbacks run in the final
+				// commitMasterChanges() in LBFactory::shutdown(), when the transaction is gone.
+				$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
 				return;
 			} elseif ( $conn->trxLevel() ) {
 				// This happens for single-DB setups where DB_REPLICA uses the master DB,
@@ -1404,9 +1408,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundId = false;
 		$this->forEachOpenMasterConnection(
 			function ( IDatabase $conn ) use ( $fname, $restore ) {
-				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
-					$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
-				}
+				$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
 				if ( $restore ) {
 					$this->undoTransactionRoundFlags( $conn );
 				}
@@ -1755,6 +1757,10 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function setTableAliases( array $aliases ) {
 		$this->tableAliases = $aliases;
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->indexAliases = $aliases;
 	}
 
 	public function setDomainPrefix( $prefix ) {

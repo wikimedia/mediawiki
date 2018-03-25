@@ -14,11 +14,12 @@ CREATE TABLE /*_*/slots (
   -- reference to content_id
   slot_content_id bigint unsigned NOT NULL,
 
-  -- whether the content is inherited (1) or new in this revision (0)
-  slot_inherited tinyint unsigned NOT NULL DEFAULT 0,
+  -- The revision ID of the revision that originated the slot's content.
+  -- To find revisions that changed slots, look for slot_origin = slot_revision_id.
+  slot_origin bigint unsigned NOT NULL,
 
   PRIMARY KEY ( slot_revision_id, slot_role_id )
 ) /*$wgDBTableOptions*/;
 
 -- Index for finding revisions that modified a specific slot
-CREATE INDEX /*i*/slot_role_inherited ON /*_*/slots (slot_revision_id, slot_role_id, slot_inherited);
+CREATE INDEX /*i*/slot_revision_origin_role ON /*_*/slots (slot_revision_id, slot_origin, slot_role_id);

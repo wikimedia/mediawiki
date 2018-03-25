@@ -1,7 +1,12 @@
 ( function ( mw, $ ) {
 	QUnit.module( 'mediawiki (mw.loader)', QUnit.newMwEnvironment( {
-		setup: function () {
+		setup: function ( assert ) {
 			mw.loader.store.enabled = false;
+
+			// Expose for load.mock.php
+			mw.loader.testFail = function ( reason ) {
+				assert.ok( false, reason );
+			};
 		},
 		teardown: function () {
 			mw.loader.store.enabled = false;
@@ -9,6 +14,14 @@
 			if ( this.nativeSet ) {
 				window.Set = this.nativeSet;
 				mw.redefineFallbacksForTest();
+			}
+			// Remove any remaining temporary statics
+			// exposed for cross-file mocks.
+			if ( 'testCallback' in mw.loader ) {
+				delete mw.loader.testCallback;
+			}
+			if ( 'testFail' in mw.loader ) {
+				delete mw.loader.testFail;
 			}
 		}
 	} ) );
@@ -94,8 +107,6 @@
 
 		return mw.loader.using( 'test.callback', function () {
 			assert.strictEqual( isAwesomeDone, true, 'test.callback module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "test.callback" module' );
 		} );
@@ -113,8 +124,6 @@
 
 		return mw.loader.using( 'hasOwnProperty', function () {
 			assert.strictEqual( isAwesomeDone, true, 'hasOwnProperty module should\'ve caused isAwesomeDone to be true' );
-			delete mw.loader.testCallback;
-
 		}, function () {
 			assert.ok( false, 'Error callback fired while loader.using "hasOwnProperty" module' );
 		} );
@@ -133,7 +142,6 @@
 		return mw.loader.using( 'test.promise' )
 			.done( function () {
 				assert.strictEqual( isAwesomeDone, true, 'test.promise module should\'ve caused isAwesomeDone to be true' );
-				delete mw.loader.testCallback;
 			} )
 			.fail( function () {
 				assert.ok( false, 'Error callback fired while loader.using "test.promise" module' );
@@ -542,6 +550,73 @@
 		assert.strictEqual( mw.loader.getState( 'test.empty' ), 'ready' );
 	} );
 
+	// @covers mw.loader#batchRequest
+	// This is a regression test because in the past we called getCombinedVersion()
+	// for all requested modules, before url splitting took place.
+	// Discovered as part of T188076, but not directly related.
+	QUnit.test( 'Url composition (modules considered for version)', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlInc', 'url', [], null, 'testloader' ],
+			[ 'testUrlIncDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		mw.config.set( 'wgResourceLoaderMaxQueryLength', 10 );
+
+		return mw.loader.using( [ 'testUrlIncDump', 'testUrlInc' ] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlIncDump' ).query,
+				{
+					modules: 'testUrlIncDump',
+					// Expected: Wrapped hash just for this one module
+					//   $hash = hash( 'fnv132', 'dump');
+					//   base_convert( $hash, 16, 36 ); // "13e9zzn"
+					// Previously: Wrapped hash for both modules, despite being in separate requests
+					//   $hash = hash( 'fnv132', 'urldump' );
+					//   base_convert( $hash, 16, 36 ); // "18kz9ca"
+					version: '13e9zzn'
+				},
+				'Query parameters'
+			);
+
+			assert.strictEqual( mw.loader.getState( 'testUrlInc' ), 'ready', 'testUrlInc also loaded' );
+		} );
+	} );
+
+	// @covers mw.loader#batchRequest
+	// @covers mw.loader#buildModulesString
+	QUnit.test( 'Url composition (order of modules for version) – T188076', function ( assert ) {
+		mw.loader.register( [
+			// [module, version, dependencies, group, source]
+			[ 'testUrlOrder', 'url', [], null, 'testloader' ],
+			[ 'testUrlOrder.a', '1', [], null, 'testloader' ],
+			[ 'testUrlOrder.b', '2', [], null, 'testloader' ],
+			[ 'testUrlOrderDump', 'dump', [], null, 'testloader' ]
+		] );
+
+		return mw.loader.using( [
+			'testUrlOrderDump',
+			'testUrlOrder.b',
+			'testUrlOrder.a',
+			'testUrlOrder'
+		] ).then( function ( require ) {
+			assert.propEqual(
+				require( 'testUrlOrderDump' ).query,
+				{
+					modules: 'testUrlOrder,testUrlOrderDump|testUrlOrder.a,b',
+					// Expected: Combined in order after string packing
+					//   $hash = hash( 'fnv132', 'urldump12' );
+					//   base_convert( $hash, 16, 36 ); // "1knqzan"
+					// Previously: Combined in order of before string packing
+					//   $hash = hash( 'fnv132', 'url12dump' );
+					//   base_convert( $hash, 16, 36 ); // "11eo3in"
+					version: '1knqzan'
+				},
+				'Query parameters'
+			);
+		} );
+	} );
+
 	QUnit.test( 'Broken indirect dependency', function ( assert ) {
 		// don't emit an error event
 		this.sandbox.stub( mw, 'track' );
@@ -710,6 +785,7 @@
 		assert.equal( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();
@@ -728,6 +804,7 @@
 		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
 		mw.loader.testCallback = function () {
+			// Ensure once, delete now
 			delete mw.loader.testCallback;
 			assert.ok( true, 'callback' );
 			done();

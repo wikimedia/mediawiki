@@ -3374,6 +3374,8 @@ class LocalFileMoveBatch {
 	 * many rows where updated.
 	 */
 	protected function doDBUpdates() {
+		global $wgCommentTableSchemaMigrationStage;
+
 		$dbw = $this->db;
 
 		// Update current image
@@ -3383,6 +3385,15 @@ class LocalFileMoveBatch {
 			[ 'img_name' => $this->oldName ],
 			__METHOD__
 		);
+		if ( $wgCommentTableSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->update(
+				'image_comment_temp',
+				[ 'imgcomment_name' => $this->newName ],
+				[ 'imgcomment_name' => $this->oldName ],
+				__METHOD__
+			);
+		}
+
 		// Update old images
 		$dbw->update(
 			'oldimage',

@@ -1706,7 +1706,7 @@ class EditPage {
 	}
 
 	/**
-	 * Wrap status errors in an errorbox for increased visiblity
+	 * Wrap status errors in an errorbox for increased visibility
 	 *
 	 * @param Status $status
 	 * @return string Wikitext

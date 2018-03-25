@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Macofe"
+			"Macofe",
+			"Les Meloures"
 		]
 	},
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
@@ -231,7 +232,7 @@
 	"apierror-pagelang-disabled": "D'Ännere vun der Sprooch vun enger Säit ass op dëser Wiki net erlaabt.",
 	"apierror-permissiondenied-generic": "Autorisatioun refuséiert.",
 	"apierror-permissiondenied-unblock": "Dir hutt net d'Recht fir d'Spär vu Benotzer opzehiewen.",
-	"apierror-readonly": "D'Wiki kann elo just geliest ginn.",
+	"apierror-readonly": "D'Wiki ka fir den Ament nëmme gelies ginn.",
 	"apierror-revisions-badid": "Fir de Parameter <var>$1</var> gouf keng Versioun fonnt.",
 	"apierror-revwrongpage": "r$1 ass keng Versioun vu(n) $2.",
 	"apierror-stashwrongowner": "Falsche Besëtzer: $1",

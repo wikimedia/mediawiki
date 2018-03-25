@@ -7,7 +7,10 @@ use MediaWiki\Shell\Shell;
  * Integration tests to ensure that firejail actually prevents execution.
  * Meant to run on vagrant, although will probably work on other setups
  * as long as firejail and sudo has similar config.
+ *
+ * @large
  * @group Shell
+ * @covers FirejailCommand
  */
 class FirejailCommandIntegrationTest extends PHPUnit\Framework\TestCase {
 

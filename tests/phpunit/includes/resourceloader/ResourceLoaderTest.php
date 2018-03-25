@@ -261,7 +261,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				'jquery.foo,bar|jquery.ui.baz,quux',
 			],
 			[
-				'Regression fixed in r88706 with dotless names',
+				'Regression fixed in r87497 (7fee86c38e) with dotless names',
 				[ 'foo', 'bar', 'baz' ],
 				'foo,bar,baz',
 			],

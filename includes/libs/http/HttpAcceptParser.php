@@ -4,7 +4,7 @@
  * Utility for parsing a HTTP Accept header value into a weight map. May also be used with
  * other, similar headers like Accept-Language, Accept-Encoding, etc.
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 

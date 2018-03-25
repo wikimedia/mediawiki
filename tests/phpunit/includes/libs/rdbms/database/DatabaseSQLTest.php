@@ -1,7 +1,8 @@
 <?php
 
-use InvalidArgumentException;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Rdbms\Database;
 
 /**
  * Test the parts of the Database abstract class that deal
@@ -11,7 +12,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	/** @var DatabaseTestHelper */
+	/** @var DatabaseTestHelper|Database */
 	private $database;
 
 	protected function setUp() {
@@ -236,6 +237,101 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'options' => [ 'FOR UPDATE' ],
 				],
 				"SELECT field FROM table      FOR UPDATE"
+			],
+		];
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Subquery
+	 * @dataProvider provideSelectRowCount
+	 * @param $sql
+	 * @param $sqlText
+	 */
+	public function testSelectRowCount( $sql, $sqlText ) {
+		$this->database->selectRowCount(
+			$sql['tables'],
+			$sql['field'],
+			isset( $sql['conds'] ) ? $sql['conds'] : [],
+			__METHOD__,
+			isset( $sql['options'] ) ? $sql['options'] : [],
+			isset( $sql['join_conds'] ) ? $sql['join_conds'] : []
+		);
+		$this->assertLastSql( $sqlText );
+	}
+
+	public static function provideSelectRowCount() {
+		return [
+			[
+				[
+					'tables' => 'table',
+					'field' => [ '*' ],
+					'conds' => [ 'field' => 'text' ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE field = 'text'  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'column' ],
+					'conds' => [ 'field' => 'text' ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE field = 'text' AND (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => [ 'field' => 'text' ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE field = 'text' AND (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => '',
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => false,
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => null,
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => '1',
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE (1) AND (column IS NOT NULL)  ) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'column' ],
+					'conds' => '0',
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE (0) AND (column IS NOT NULL)  ) tmp_count"
 			],
 		];
 	}
@@ -1255,6 +1351,134 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testBuildIntegerCast() {
 		$output = $this->database->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS INTEGER )', $output );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::doSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doReleaseSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::doRollbackToSavepoint
+	 * @covers \Wikimedia\Rdbms\Database::startAtomic
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
+	 */
+	public function testAtomicSections() {
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->endAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->endAtomic( __METHOD__ );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+
+		$this->database->doAtomicSection( __METHOD__, function () {
+		} );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		$this->database->doAtomicSection( __METHOD__, function () {
+		} );
+		$this->database->rollback( __METHOD__ );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
+
+		$this->database->begin( __METHOD__ );
+		try {
+			$this->database->doAtomicSection( __METHOD__, function () {
+				throw new RuntimeException( 'Test exception' );
+			} );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( RuntimeException $ex ) {
+			$this->assertSame( 'Test exception', $ex->getMessage() );
+		}
+		$this->database->commit( __METHOD__ );
+		// phpcs:ignore Generic.Files.LineLength
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+	}
+
+	public static function provideAtomicSectionMethodsForErrors() {
+		return [
+			[ 'endAtomic' ],
+			[ 'cancelAtomic' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAtomicSectionMethodsForErrors
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testNoAtomicSection( $method ) {
+		try {
+			$this->database->$method( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'No atomic transaction is open (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
+	}
+
+	/**
+	 * @dataProvider provideAtomicSectionMethodsForErrors
+	 * @covers \Wikimedia\Rdbms\Database::endAtomic
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testInvalidAtomicSectionEnded( $method ) {
+		$this->database->startAtomic( __METHOD__ . 'X' );
+		try {
+			$this->database->$method( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Invalid atomic section ended (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
+	 */
+	public function testUncancellableAtomicSection() {
+		$this->database->startAtomic( __METHOD__ );
+		try {
+			$this->database->cancelAtomic( __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Uncancelable atomic section canceled (got ' . __METHOD__ . ').',
+				$ex->getMessage()
+			);
+		}
 	}
 
 }

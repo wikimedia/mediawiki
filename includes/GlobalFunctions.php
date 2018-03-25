@@ -1050,7 +1050,7 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
-	global $wgDebugTimestamps, $wgRequestTime;
+	global $wgDebugTimestamps;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -1061,7 +1061,7 @@ function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	if ( $wgDebugTimestamps ) {
 		$context['seconds_elapsed'] = sprintf(
 			'%6.4f',
-			microtime( true ) - $wgRequestTime
+			microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT']
 		);
 		$context['memory_used'] = sprintf(
 			'%5.1fM',
@@ -1514,9 +1514,11 @@ function wfHostname() {
  * @return string
  */
 function wfReportTime() {
-	global $wgRequestTime, $wgShowHostnames;
+	global $wgShowHostnames;
 
-	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+	$elapsed = ( microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT'] );
+	// seconds to milliseconds
+	$responseTime = round( $elapsed * 1000 );
 	$reportVars = [ 'wgBackendResponseTime' => $responseTime ];
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
@@ -1843,7 +1845,7 @@ function wfHttpError( $code, $label, $desc ) {
 function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 	if ( $resetGzipEncoding ) {
 		// Suppress Content-Encoding and Content-Length
-		// headers from 1.10+s wfOutputHandler
+		// headers from OutputHandler::handle.
 		global $wgDisableOutputCompression;
 		$wgDisableOutputCompression = true;
 	}
@@ -2684,30 +2686,6 @@ function wfRelativePath( $path, $from ) {
 	array_push( $pieces, wfBaseName( $path ) );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * Convert an arbitrarily-long digit string from one numeric base
- * to another, optionally zero-padding to a minimum column width.
- *
- * Supports base 2 through 36; digit values 10-36 are represented
- * as lowercase letters a-z. Input is case-insensitive.
- *
- * @deprecated since 1.27 Use Wikimedia\base_convert() directly
- *
- * @param string $input Input number
- * @param int $sourceBase Base of the input number
- * @param int $destBase Desired base of the output
- * @param int $pad Minimum number of digits in the output (pad with zeroes)
- * @param bool $lowercase Whether to output in lowercase or uppercase
- * @param string $engine Either "gmp", "bcmath", or "php"
- * @return string|bool The output number as a string, or false on error
- */
-function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
-	$lowercase = true, $engine = 'auto'
-) {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	return Wikimedia\base_convert( $input, $sourceBase, $destBase, $pad, $lowercase, $engine );
 }
 
 /**

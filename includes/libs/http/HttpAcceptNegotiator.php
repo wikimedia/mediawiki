@@ -10,7 +10,7 @@ namespace Wikimedia\Http;
  * To use this with a request header, first parse the header value into an array of weights
  * using HttpAcceptParser, then call getBestSupportedKey.
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */

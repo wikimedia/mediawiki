@@ -356,7 +356,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				"rc_patrolled = 1",
+				"rc_patrolled != 0",
 			],
 			[
 				'hideunpatrolled' => 1,

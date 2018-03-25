@@ -20,7 +20,7 @@ class ComposerInstalledTest extends MediaWikiTestCase {
 		'leafo/lessphp' => [
 			'version' => '0.5.0',
 			'type' => 'library',
-			'licenses' => [ 'MIT', 'GPL-3.0' ],
+			'licenses' => [ 'MIT', 'GPL-3.0-only' ],
 			'authors' => [
 				[
 					'name' => 'Leaf Corcoran',

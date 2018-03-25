@@ -21,7 +21,7 @@
  */
 
 /**
- * File backend accessable external objects.
+ * File backend accessible external objects.
  *
  * In this system, each store "location" maps to the name of a file backend.
  * The file backends must be defined in $wgFileBackends and must be global

@@ -538,7 +538,7 @@
 	"wrongpasswordempty": "パスワードを空欄にはできません。\nもう一度やり直してください。",
 	"passwordtooshort": "パスワードは {{PLURAL:$1|$1 文字}}以上にしてください。",
 	"passwordtoolong": "パスワードは {{PLURAL:$1|$1 文字}}以下にしてください。",
-	"passwordtoopopular": "選択したパスワードはありきたりであるため使用することはできません。誰も思いつかないようなパスワードを選択してください。",
+	"passwordtoopopular": "選択したパスワードはありきたりであるため使用することはできません。簡単に思いつかないようなパスワードを選択してください。",
 	"password-name-match": "パスワードは利用者名とは異なる必要があります。",
 	"password-login-forbidden": "この利用者名とパスワードの使用は禁止されています。",
 	"mailmypassword": "パスワードを再設定",

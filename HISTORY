@@ -14990,7 +14990,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 2384) Fix typo in regex for IP address checking
 * (bug 650) Prominently link MySQL 4.1 help page in installer if a possible
   version conflict is detected
-* (bug 2394) Undo incompatible breakage to {{msg:}} compatiblity includes
+* (bug 2394) Undo incompatible breakage to {{msg:}} compatibility includes
 * (bug 1322) Use a shorter cl_sortkey field to avoid breaking on MySQL 4.1
   when the default charset is set to utf8
 * (bug 2400) don't send confirmation mail on account creation if

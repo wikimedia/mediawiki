@@ -209,7 +209,7 @@ interface WatchedItemStoreInterface {
 	/**
 	 * @since 1.31
 	 *
-	 * @param User $user The user to set the timestamp for
+	 * @param User $user The user to set the timestamps for
 	 * @param string|null $timestamp Set the update timestamp to this value
 	 * @param LinkTarget[] $targets List of targets to update. Default to all targets
 	 *
@@ -220,6 +220,15 @@ interface WatchedItemStoreInterface {
 		$timestamp,
 		array $targets = []
 	);
+
+	/**
+	 * Reset all watchlist notificaton timestamps for a user using the job queue
+	 *
+	 * @since 1.31
+	 *
+	 * @param User $user The user to reset the timestamps for
+	 */
+	public function resetAllNotificationTimestampsForUser( User $user );
 
 	/**
 	 * @since 1.31
@@ -246,7 +255,7 @@ interface WatchedItemStoreInterface {
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is
 	 *     assumed.
 	 *
-	 * @return bool success
+	 * @return bool success Whether a job was enqueued
 	 */
 	public function resetNotificationTimestamp( User $user, Title $title, $force = '', $oldid = 0 );
 
