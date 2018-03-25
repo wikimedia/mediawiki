@@ -943,9 +943,7 @@ class PageUpdater {
 					// Update links tables, site stats, etc.
 					$this->metaDataUpdater->prepareUpdate(
 						$newRevisionRecord,
-						[
-							'changed' => $changed,
-						]
+						[ 'changed' => $changed, ]
 					);
 					$this->metaDataUpdater->doUpdates();
 
@@ -1085,9 +1083,7 @@ class PageUpdater {
 					// Update links, etc.
 					$this->metaDataUpdater->prepareUpdate(
 						$newRevisionRecord,
-						[
-							'created' => true,
-						]
+						[ 'created' => true, ]
 					);
 					$this->metaDataUpdater->doUpdates();
 

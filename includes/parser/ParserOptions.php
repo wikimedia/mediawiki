@@ -1363,7 +1363,7 @@ class ParserOptions {
 						'user' => $user->getId(),
 						'parent_id' => $title->getLatestRevID(),
 						'title' => $title,
-						'content' => $content
+						'content' => $content // FIXME: support 'slots' kes in newMutableRevisionFromArray
 					] );
 				} else {
 					return call_user_func( $oldCallback, $titleToCheck, $parser );
