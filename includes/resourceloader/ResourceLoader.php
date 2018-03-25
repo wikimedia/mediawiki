@@ -1532,27 +1532,31 @@ MESSAGE;
 	/**
 	 * Convert an array of module names to a packed query string.
 	 *
-	 * For example, [ 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ]
-	 * becomes 'foo.bar,baz|bar.baz,quux'
+	 * For example, `[ 'foo.bar', 'foo.baz', 'bar.baz', 'bar.quux' ]`
+	 * becomes `'foo.bar,baz|bar.baz,quux'`.
+	 *
+	 * This process is reversed by ResourceLoaderContext::expandModuleNames().
+	 * See also mw.loader#buildModulesString() which is a port of this, used
+	 * on the client-side.
+	 *
 	 * @param array $modules List of module names (strings)
 	 * @return string Packed query string
 	 */
 	public static function makePackedModulesString( $modules ) {
-		$groups = []; // [ prefix => [ suffixes ] ]
+		$moduleMap = []; // [ prefix => [ suffixes ] ]
 		foreach ( $modules as $module ) {
 			$pos = strrpos( $module, '.' );
 			$prefix = $pos === false ? '' : substr( $module, 0, $pos );
 			$suffix = $pos === false ? $module : substr( $module, $pos + 1 );
-			$groups[$prefix][] = $suffix;
+			$moduleMap[$prefix][] = $suffix;
 		}
 
 		$arr = [];
-		foreach ( $groups as $prefix => $suffixes ) {
+		foreach ( $moduleMap as $prefix => $suffixes ) {
 			$p = $prefix === '' ? '' : $prefix . '.';
 			$arr[] = $p . implode( ',', $suffixes );
 		}
-		$str = implode( '|', $arr );
-		return $str;
+		return implode( '|', $arr );
 	}
 
 	/**

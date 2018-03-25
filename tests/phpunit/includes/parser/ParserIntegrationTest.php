@@ -8,6 +8,7 @@ use Wikimedia\ScopedCallback;
  * Note: the following groups are not used by PHPUnit.
  * The list in ParserTestFileSuite::__construct() is used instead.
  *
+ * @large
  * @group Database
  * @group Parser
  * @group ParserTests

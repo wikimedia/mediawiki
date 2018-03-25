@@ -885,7 +885,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return null;
 		}
 
-		if ( !( $flags & self::READ_LATEST ) && isset( self::$idCacheByName[$name] ) ) {
+		if ( !( $flags & self::READ_LATEST ) && array_key_exists( $name, self::$idCacheByName ) ) {
 			return self::$idCacheByName[$name];
 		}
 
@@ -1871,7 +1871,9 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = $block->mHideName;
 			$this->mAllowUsertalk = !$block->prevents( 'editownusertalk' );
 		} else {
+			$this->mBlock = null;
 			$this->mBlockedby = '';
+			$this->mBlockreason = '';
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
@@ -3082,7 +3084,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $oname The option to check
 	 * @param string $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
-	 * @return string|null User's current value for the option
+	 * @return string|array|int|null User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
 	 */
@@ -3967,51 +3969,9 @@ class User implements IDBAccessObject, UserIdentity {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$asOfTimes = array_unique( $dbw->selectFieldValues(
-			'watchlist',
-			'wl_notificationtimestamp',
-			[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
-			__METHOD__,
-			[ 'ORDER BY' => 'wl_notificationtimestamp DESC', 'LIMIT' => 500 ]
-		) );
-		if ( !$asOfTimes ) {
-			return;
-		}
-		// Immediately update the most recent touched rows, which hopefully covers what
-		// the user sees on the watchlist page before pressing "mark all pages visited"....
-		$dbw->update(
-			'watchlist',
-			[ 'wl_notificationtimestamp' => null ],
-			[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimes ],
-			__METHOD__
-		);
-		// ...and finish the older ones in a post-send update with lag checks...
-		DeferredUpdates::addUpdate( new AutoCommitUpdate(
-			$dbw,
-			__METHOD__,
-			function () use ( $dbw, $id ) {
-				global $wgUpdateRowsPerQuery;
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItemStore->resetAllNotificationTimestampsForUser( $this );
 
-				$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
-				$asOfTimes = array_unique( $dbw->selectFieldValues(
-					'watchlist',
-					'wl_notificationtimestamp',
-					[ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ],
-					__METHOD__
-				) );
-				foreach ( array_chunk( $asOfTimes, $wgUpdateRowsPerQuery ) as $asOfTimeBatch ) {
-					$dbw->update(
-						'watchlist',
-						[ 'wl_notificationtimestamp' => null ],
-						[ 'wl_user' => $id, 'wl_notificationtimestamp' => $asOfTimeBatch ],
-						__METHOD__
-					);
-					$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
-				}
-			}
-		) );
 		// We also need to clear here the "you have new message" notification for the own
 		// user_talk page; it's cleared one page view later in WikiPage::doViewUpdates().
 	}

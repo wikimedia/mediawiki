@@ -620,7 +620,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *             'https://example.org/image.png' => [ 'as' => 'image' ],
 	 *         ];
 	 *     }
-	 * @encode
+	 * @endcode
 	 *
 	 * @par Example using HiDPI image variants
 	 * @code
@@ -636,7 +636,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *             ],
 	 *         ];
 	 *     }
-	 * @encode
+	 * @endcode
 	 *
 	 * @see ResourceLoaderModule::getHeaders
 	 * @since 1.30

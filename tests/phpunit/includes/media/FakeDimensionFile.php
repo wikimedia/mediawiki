@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @group Media
- */
 class FakeDimensionFile extends File {
 	public $mustRender = false;
 	public $mime;

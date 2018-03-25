@@ -6,23 +6,34 @@
 		"invert": {
 			"color": "#fff",
 			"global": true
+		},
+		"progressive": {
+			"color": "#36c",
+			"global": true
+		},
+		"destructive": {
+			"color": "#d33"
+		},
+		"warning": {
+			"color": "#ff5d00"
 		}
 	},
 	"images": {
 		"bright": { "file": "images/icons/bright.svg" },
-		"halfBright": { "file": "images/icons/halfBright.svg" },
+		"halfBright": { "file": {
+			"ltr": "images/icons/halfBright-ltr.svg",
+			"rtl": "images/icons/halfBright-rtl.svg"
+		} },
 		"notBright": { "file": "images/icons/notBright.svg" },
 		"eye": { "file": "images/icons/eye.svg" },
 		"eyeClosed": { "file": "images/icons/eyeClosed.svg" },
 		"moon": { "file": "images/icons/moon.svg" },
-		"largerText": { "file": {
-			"ltr": "images/icons/largerText-ltr.svg",
-			"rtl": "images/icons/largerText-rtl.svg"
-		} },
-		"smallerText": { "file": {
-			"ltr": "images/icons/smallerText-ltr.svg",
-			"rtl": "images/icons/smallerText-rtl.svg"
-		} },
+		"largerText": {
+			"file": "images/icons/largerText.svg"
+		},
+		"smallerText": {
+			"file": "images/icons/smallerText.svg"
+		},
 		"visionSimulator": { "file": "images/icons/visionSimulator.svg" }
 	}
 }

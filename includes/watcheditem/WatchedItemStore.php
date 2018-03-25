@@ -504,7 +504,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param User $user
 	 * @param LinkTarget $target
-	 * @return bool
+	 * @return WatchedItem|bool
 	 */
 	public function loadWatchedItem( User $user, LinkTarget $target ) {
 		// Only loggedin user can have a watchlist
@@ -693,7 +693,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 		// Update process cache to ensure skin doesn't claim that the current
 		// page is unwatched in the response of action=watch itself (T28292).
-		// This would otherwise be re-queried from a slave by isWatched().
+		// This would otherwise be re-queried from a replica by isWatched().
 		foreach ( $items as $item ) {
 			$this->cache( $item );
 		}
@@ -765,12 +765,34 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return $success;
 	}
 
+	public function resetAllNotificationTimestampsForUser( User $user ) {
+		// Only loggedin user can have a watchlist
+		if ( $user->isAnon() ) {
+			return;
+		}
+
+		// If the page is watched by the user (or may be watched), update the timestamp
+		$job = new ClearWatchlistNotificationsJob(
+			$user->getUserPage(),
+			[ 'userId'  => $user->getId(), 'casTime' => time() ]
+		);
+
+		// Try to run this post-send
+		// Calls DeferredUpdates::addCallableUpdate in normal operation
+		call_user_func(
+			$this->deferredUpdatesAddCallableUpdateCallback,
+			function () use ( $job ) {
+				$job->run();
+			}
+		);
+	}
+
 	/**
 	 * @since 1.27
 	 * @param User $editor
 	 * @param LinkTarget $target
 	 * @param string|int $timestamp
-	 * @return int
+	 * @return int[]
 	 */
 	public function updateNotificationTimestamp( User $editor, LinkTarget $target, $timestamp ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );

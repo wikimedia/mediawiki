@@ -19,10 +19,9 @@
 		}
 	},
 	"images": {
-		"userActive": { "file": {
-			"ltr": "images/icons/userActive-ltr.svg",
-			"rtl": "images/icons/userActive-rtl.svg"
-		} },
+		"userActive": {
+			"file": "images/icons/userActive.svg"
+		},
 		"userAvatar": { "file": "images/icons/userAvatar.svg" },
 		"userInactive": { "file": {
 			"ltr": "images/icons/userInactive-ltr.svg",

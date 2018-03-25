@@ -84,6 +84,12 @@ cp ./node_modules/oojs-ui/src/themes/apex/*.json "$REPO_DIR/$TARGET_DIR/themes/a
 # WikimediaUI LESS variables for sharing
 cp ./node_modules/oojs-ui/dist/wikimedia-ui-base.less "$REPO_DIR/$TARGET_DIR"
 
+# Misc stuff
+cp ./node_modules/oojs-ui/dist/AUTHORS.txt "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/History.md "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/LICENSE-MIT "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/README.md "$REPO_DIR/$TARGET_DIR"
+
 # Clean up temporary area
 rm -rf "$NPM_DIR"
 

@@ -83,7 +83,7 @@ class HashRing {
 	 * @param string $item
 	 * @return string Location
 	 */
-	public function getLocation( $item ) {
+	final public function getLocation( $item ) {
 		$locations = $this->getLocations( $item, 1 );
 
 		return $locations[0];
@@ -137,19 +137,6 @@ class HashRing {
 	}
 
 	/**
-	 * Get a new hash ring with a location removed from the ring
-	 *
-	 * @param string $location
-	 * @return HashRing|bool Returns false if no non-zero weighted spots are left
-	 */
-	public function newWithoutLocation( $location ) {
-		$map = $this->sourceMap;
-		unset( $map[$location] );
-
-		return count( $map ) ? new self( $map ) : false;
-	}
-
-	/**
 	 * Remove a location from the "live" hash ring
 	 *
 	 * @param string $location
@@ -174,7 +161,7 @@ class HashRing {
 	 * @return HashRing
 	 * @throws UnexpectedValueException
 	 */
-	public function getLiveRing() {
+	protected function getLiveRing() {
 		$now = time();
 		if ( $this->liveRing === null || $this->ejectionNextExpiry <= $now ) {
 			$this->ejectionExpiries = array_filter(

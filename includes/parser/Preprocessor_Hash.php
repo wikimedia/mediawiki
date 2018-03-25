@@ -206,13 +206,6 @@ class Preprocessor_Hash extends Preprocessor {
 				$search = $searchBase;
 				if ( $stack->top === false ) {
 					$currentClosing = '';
-				} elseif (
-					$stack->top->close === '}-' &&
-					$stack->top->count > 2
-				) {
-					# adjust closing for -{{{...{{
-					$currentClosing = '}';
-					$search .= $currentClosing;
 				} else {
 					$currentClosing = $stack->top->close;
 					$search .= $currentClosing;
@@ -589,14 +582,27 @@ class Preprocessor_Hash extends Preprocessor {
 					strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1 :
 					strspn( $text, $curChar, $i );
 
+				$savedPrefix = '';
+				$lineStart = ( $i > 0 && $text[$i - 1] == "\n" );
+
+				if ( $curChar === "-{" && $count > $curLen ) {
+					// -{ => {{ transition because rightmost wins
+					$savedPrefix = '-';
+					$i++;
+					$curChar = '{';
+					$count--;
+					$rule = $this->rules[$curChar];
+				}
+
 				# we need to add to stack only if opening brace count is enough for one of the rules
 				if ( $count >= $rule['min'] ) {
 					# Add it to the stack
 					$piece = [
 						'open' => $curChar,
 						'close' => $rule['end'],
+						'savedPrefix' => $savedPrefix,
 						'count' => $count,
-						'lineStart' => ( $i > 0 && $text[$i - 1] == "\n" ),
+						'lineStart' => $lineStart,
 					];
 
 					$stack->push( $piece );
@@ -613,7 +619,7 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 				} else {
 					# Add literal brace(s)
-					self::addLiteral( $accum, str_repeat( $curChar, $count ) );
+					self::addLiteral( $accum, $savedPrefix . str_repeat( $curChar, $count ) );
 				}
 				$i += $count;
 			} elseif ( $found == 'close' ) {
@@ -630,10 +636,6 @@ class Preprocessor_Hash extends Preprocessor {
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
 				$rule = $this->rules[$piece->open];
-				if ( $piece->close === '}-' && $piece->count > 2 ) {
-					# tweak for -{..{{ }}..}-
-					$rule = $this->rules['{'];
-				}
 				if ( $count > $rule['max'] ) {
 					# The specified maximum exists in the callback array, unless the caller
 					# has made an error
@@ -672,7 +674,9 @@ class Preprocessor_Hash extends Preprocessor {
 
 					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
-					if ( $maxCount == $matchingCount && !empty( $piece->lineStart ) ) {
+					if ( $maxCount == $matchingCount &&
+							!empty( $piece->lineStart ) &&
+							strlen( $piece->savedPrefix ) == 0 ) {
 						$children[] = [ '@lineStart', [ 1 ] ];
 					}
 					$titleNode = [ 'title', $titleAccum ];
@@ -711,14 +715,23 @@ class Preprocessor_Hash extends Preprocessor {
 					if ( $piece->count >= $min ) {
 						$stack->push( $piece );
 						$accum =& $stack->getAccum();
+					} elseif ( $piece->count == 1 && $piece->open === '{' && $piece->savedPrefix === '-' ) {
+						$piece->savedPrefix = '';
+						$piece->open = '-{';
+						$piece->count = 2;
+						$piece->close = $this->rules[$piece->open]['end'];
+						$stack->push( $piece );
+						$accum =& $stack->getAccum();
 					} else {
 						$s = substr( $piece->open, 0, -1 );
 						$s .= str_repeat(
 							substr( $piece->open, -1 ),
 							$piece->count - strlen( $s )
 						);
-						self::addLiteral( $accum, $s );
+						self::addLiteral( $accum, $piece->savedPrefix . $s );
 					}
+				} elseif ( $piece->savedPrefix !== '' ) {
+					self::addLiteral( $accum, $piece->savedPrefix );
 				}
 
 				$stackFlags = $stack->getFlags();
@@ -743,9 +756,6 @@ class Preprocessor_Hash extends Preprocessor {
 				$findEquals = false; // shortcut for getFlags()
 				$accum[] = [ 'equals', [ '=' ] ];
 				$stack->getCurrentPart()->eqpos = count( $accum ) - 1;
-				++$i;
-			} elseif ( $found == 'dash' ) {
-				self::addLiteral( $accum, '-' );
 				++$i;
 			}
 		}
@@ -817,7 +827,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 	 */
 	public function breakSyntax( $openingCount = false ) {
 		if ( $this->open == "\n" ) {
-			$accum = $this->parts[0]->out;
+			$accum = array_merge( [ $this->savedPrefix ], $this->parts[0]->out );
 		} else {
 			if ( $openingCount === false ) {
 				$openingCount = $this->count;
@@ -827,7 +837,7 @@ class PPDStackElement_Hash extends PPDStackElement {
 				substr( $this->open, -1 ),
 				$openingCount - strlen( $s )
 			);
-			$accum = [ $s ];
+			$accum = [ $this->savedPrefix . $s ];
 			$lastIndex = 0;
 			$first = true;
 			foreach ( $this->parts as $part ) {

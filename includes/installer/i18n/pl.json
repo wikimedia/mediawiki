@@ -23,7 +23,8 @@
 			"Macofe",
 			"Sethakill",
 			"Peter Bowman",
-			"Ankam"
+			"Ankam",
+			"Railfail536"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -98,6 +99,7 @@
 	"config-no-cli-uploads-check": "'''Ostrzeżenie:''' Katalog domyślny przesyłanych plików ( <code>$1</code> ) nie jest sprawdzona względem luki\n wykonania dowolnego skryptu podczas instalacji CLI w zabezpieczeniach.",
 	"config-brokenlibxml": "Twój system jest kombinacją wersji PHP i libxml2, która zawiera błędy mogące powodować ukryte uszkodzenia danych w MediaWiki i innych aplikacjach sieci web.\nWykonaj aktualizację libxml2 do wersji 2.7.3 lub późniejszej ([https://bugs.php.net/bug.php?id=45996 bug filed with PHP]).\nInstalacja została przerwana.",
 	"config-suhosin-max-value-length": "Jest zainstalowany Suhosin i ogranicza długość parametru GET <code>length</code> do $1 bajtów. Komponent ResourceLoader w MediaWiki wykona obejście tego ograniczenia, ale kosztem wydajności.\nJeśli to możliwe, należy ustawić <code>suhosin.get.max_value_length</code> na 1024 lub więcej w <code>php.ini</code> oraz ustawić <code>$wgResourceLoaderMaxQueryLength</code> w <code>LocalSettings.php</code> na tę samą wartość.",
+	"config-using-32bit": "<strong>Uwaga:</strong> twój system wydaje się działać na 32 bitowej architekturze. Jest to [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit niezalecane].",
 	"config-db-type": "Typ bazy danych:",
 	"config-db-host": "Adres serwera bazy danych:",
 	"config-db-host-help": "Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.\n\nJeśli korzystasz ze współdzielonego hostingu, operator serwera powinien podać Ci prawidłową nazwę serwera w swojej dokumentacji.\n\nJeśli instalujesz oprogramowanie na serwerze Windows i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem, użyj „127.0.0.1” jako lokalnego adresu IP.\n\nJeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się poprzez gniazdo Unixa.",

@@ -66,6 +66,11 @@ production.
     the SQL query. The ActorMigration class may also be used to get feature-flagged
     information needed to access actor-related fields during the migration
     period.
+* Added Wikimedia\Rdbms\IDatabase::cancelAtomic(), to roll back an atomic
+  section without having to roll back the whole transaction.
+* Wikimedia\Rdbms\IDatabase::doAtomicSection(), non-native ::insertSelect(),
+  and non-MySQL ::replace() and ::upsert() no longer roll back the whole
+  transaction on failure.
 
 === External library changes in 1.31 ===
 
@@ -287,10 +292,24 @@ changes to languages because of Phabricator reports.
   * Parser::isValidHalfParsedText()
   * StripState::getSubState()
   * StripState::merge()
-* The "free" class is now only applied to unbracketed URLs in wikitext. Links
+* The "free" CSS class is now only applied to unbracketed URLs in wikitext. Links
   written using square brackets will get the class "text" not "free".
 * OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
   can use ApiOpenSearch::getOpenSearchTemplate() instead.
+* The global function wfBaseConvert, deprecated in 1.27, has been removed. Use
+  Wikimedia\base_convert() directly.
+* RFC 157418: Whitespace is trimmed from wikitext headings, wikitext list items,
+  wikitext table captions, wikitext table headings, wikitext table cells. HTML
+  headings, HTML list items, HTML table captions, HTML table headings, HTML table cells
+  will not have this trimming behavior.
+* Calling Database::begin() explicitly during an implicit transaction or when DBO_TRX
+  is set results in an exception. Calling Database::commit() explicitly for an implicit
+  transaction also results in an exception. Previously these were logged as errors.
+  The startAtomic() and endAtomic() methods, or AtomicSectionUpdate should be used
+  instead.
+* The global function wfOutputHandler() was removed, use the its replacement
+  MediaWiki\OutputHandler::handle() instead. The global function was only sometimes defined.
+  Its replacement is always available via the autoloader.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,

@@ -50,8 +50,8 @@ class DumpNamespaceFilter extends DumpFilter {
 			"NS_PROJECT_TALK"   => NS_PROJECT_TALK,
 			"NS_FILE"           => NS_FILE,
 			"NS_FILE_TALK"      => NS_FILE_TALK,
-			"NS_IMAGE"          => NS_IMAGE, // NS_IMAGE is an alias for NS_FILE
-			"NS_IMAGE_TALK"     => NS_IMAGE_TALK,
+			"NS_IMAGE"          => NS_FILE, // NS_IMAGE is an alias for NS_FILE
+			"NS_IMAGE_TALK"     => NS_FILE_TALK,
 			"NS_MEDIAWIKI"      => NS_MEDIAWIKI,
 			"NS_MEDIAWIKI_TALK" => NS_MEDIAWIKI_TALK,
 			"NS_TEMPLATE"       => NS_TEMPLATE,

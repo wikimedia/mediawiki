@@ -191,7 +191,7 @@ INSERT INTO /*_*/page (page_namespace, page_title, page_restrictions, page_lates
 CREATE TABLE /*_*/revision (
    rev_id INT NOT NULL UNIQUE IDENTITY(0,1),
    rev_page INT NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
-   rev_text_id INT  NOT NULL, -- FK added later
+   rev_text_id INT NOT NULL CONSTRAINT DF_rev_text_id DEFAULT 0, -- FK added later
    rev_comment NVARCHAR(255) NOT NULL CONSTRAINT DF_rev_comment DEFAULT '',
    rev_user INT REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,
    rev_user_text NVARCHAR(255) NOT NULL DEFAULT '',
@@ -311,14 +311,15 @@ CREATE TABLE /*_*/slots (
   -- reference to content_id
   slot_content_id bigint unsigned NOT NULL CONSTRAINT FK_slots_content_id FOREIGN KEY REFERENCES content(content_id),
 
-  -- whether the content is inherited (1) or new in this revision (0)
-  slot_inherited tinyint unsigned NOT NULL CONSTRAINT DF_slot_inherited DEFAULT 0,
+  -- The revision ID of the revision that originated the slot's content.
+  -- To find revisions that changed slots, look for slot_origin = slot_revision_id.
+  slot_origin bigint NOT NULL,
 
   CONSTRAINT PK_slots PRIMARY KEY (slot_revision_id, slot_role_id)
 );
 
 -- Index for finding revisions that modified a specific slot
-CREATE INDEX /*i*/slot_role_inherited ON /*_*/slots (slot_revision_id, slot_role_id, slot_inherited);
+CREATE INDEX /*i*/slot_revision_origin_role ON /*_*/slots (slot_revision_id, slot_origin, slot_role_id);
 
 --
 -- The content table represents content objects. It's primary purpose is to provide the necessary

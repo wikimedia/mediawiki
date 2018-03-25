@@ -1,11 +1,14 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DatabasePostgres;
+use Wikimedia\Rdbms\DatabaseMssql;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
 
@@ -13,6 +16,29 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	protected function setUp() {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
+	}
+
+	/**
+	 * @dataProvider provideAddQuotes
+	 * @covers Wikimedia\Rdbms\Database::factory
+	 */
+	public function testFactory() {
+		$m = Database::NEW_UNCONNECTED; // no-connect mode
+		$p = [ 'host' => 'localhost', 'user' => 'me', 'password' => 'myself', 'dbname' => 'i' ];
+
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'mysqli', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySqli', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySQLi', $p, $m ) );
+		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'postgres', $p, $m ) );
+		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
+
+		$x = $p + [ 'port' => 10000, 'UseWindowsAuth' => false ];
+		$this->assertInstanceOf( DatabaseMssql::class, Database::factory( 'mssql', $x, $m ) );
+
+		$x = $p + [ 'dbFilePath' => 'some/file.sqlite' ];
+		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
+		$x = $p + [ 'dbDirectory' => 'some/file' ];
+		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
 	}
 
 	public static function provideAddQuotes() {
@@ -237,11 +263,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 
 		$called = false;
-		$db->onTransactionPreCommitOrIdle(
-			function () use ( &$called ) {
-				$called = true;
-			}
-		);
+		$callback = function () use ( &$called ) {
+			$called = true;
+		};
+		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when idle if DBO_TRX is set' );
 
 		$lbFactory->beginMasterChanges( __METHOD__ );
@@ -249,6 +274,17 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
+
+		$called = false;
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
+
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is rolled back' );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called in next round commit' );
 	}
 
 	/**

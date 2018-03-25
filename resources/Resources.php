@@ -2825,7 +2825,6 @@ return [
 		'class' => ResourceLoaderOOUIFileModule::class,
 		'styles' => [
 			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
-			'resources/src/oojs-ui-local.css', // HACK, see inside the file
 		],
 		'themeStyles' => 'core',
 		'targets' => [ 'desktop', 'mobile' ],

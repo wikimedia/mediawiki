@@ -29,6 +29,8 @@ class WikiTextStructure {
 	private $excludedElementSelectors = [
 		// "it looks like you don't have javascript enabled..." – do not need to index
 		'audio', 'video',
+		// CSS stylesheets aren't content
+		'style',
 		// The [1] for references
 		'sup.reference',
 		// The ↑ next to references in the references section

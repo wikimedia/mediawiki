@@ -1,7 +1,5 @@
 <?php
 /**
- * Module for ResourceLoader initialization.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,6 +20,19 @@
  * @author Roan Kattouw
  */
 
+/**
+ * Module for ResourceLoader initialization.
+ *
+ * See also <https://www.mediawiki.org/wiki/ResourceLoader/Features#Startup_Module>
+ *
+ * The startup module, as being called only from ResourceLoaderClientHtml, has
+ * the ability to vary based extra query parameters, in addition to those
+ * from ResourceLoaderContext:
+ *
+ * - target: Only register modules in the client allowed within this target.
+ *   Default: "desktop".
+ *   See also: OutputPage::setTarget(), ResourceLoaderModule::getTargets().
+ */
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	// Cache for getConfigSettings() as it's called by multiple methods

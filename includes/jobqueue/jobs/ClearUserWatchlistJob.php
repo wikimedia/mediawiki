@@ -53,7 +53,7 @@ class ClearUserWatchlistJob extends Job {
 
 		// Wait before lock to try to reduce time waiting in the lock.
 		if ( !$loadBalancer->safeWaitForMasterPos( $dbr ) ) {
-			$this->setLastError( 'Timed out while waiting for slave to catch up before lock' );
+			$this->setLastError( 'Timed out waiting for replica to catch up before lock' );
 			return false;
 		}
 
@@ -66,7 +66,7 @@ class ClearUserWatchlistJob extends Job {
 		}
 
 		if ( !$loadBalancer->safeWaitForMasterPos( $dbr ) ) {
-			$this->setLastError( 'Timed out while waiting for slave to catch up within lock' );
+			$this->setLastError( 'Timed out waiting for replica to catch up within lock' );
 			return false;
 		}
 

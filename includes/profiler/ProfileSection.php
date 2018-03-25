@@ -35,7 +35,7 @@ class ProfileSection {
 	 * the same moment that the function to be profiled terminates.
 	 *
 	 * This is typically called like:
-	 * @code$section = new ProfileSection( __METHOD__ );@endcode
+	 * @code $section = new ProfileSection( __METHOD__ ); @endcode
 	 *
 	 * @param string $name Name of the function to profile
 	 */

@@ -20,7 +20,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 			'wikimedia/cdb' => [
 				'version' => '1.0.1',
 				'type' => 'library',
-				'licenses' => [ 'GPL-2.0' ],
+				'licenses' => [ 'GPL-2.0-only' ],
 				'authors' => [
 					[
 						'name' => 'Tim Starling',
@@ -44,7 +44,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 			'leafo/lessphp' => [
 				'version' => '0.5.0',
 				'type' => 'library',
-				'licenses' => [ 'MIT', 'GPL-3.0' ],
+				'licenses' => [ 'MIT', 'GPL-3.0-only' ],
 				'authors' => [
 					[
 						'name' => 'Leaf Corcoran',
@@ -89,7 +89,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 			'mediawiki/translate' => [
 				'version' => '2014.12',
 				'type' => 'mediawiki-extension',
-				'licenses' => [ 'GPL-2.0+' ],
+				'licenses' => [ 'GPL-2.0-or-later' ],
 				'authors' => [
 					[
 						'name' => 'Niklas Laxström',
@@ -109,7 +109,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 			'mediawiki/universal-language-selector' => [
 				'version' => '2014.12',
 				'type' => 'mediawiki-extension',
-				'licenses' => [ 'GPL-2.0+', 'MIT' ],
+				'licenses' => [ 'GPL-2.0-or-later', 'MIT' ],
 				'authors' => [],
 				'description' => 'The primary aim is to allow users to select a language ' .
 					'and configure its support in an easy way. ' .

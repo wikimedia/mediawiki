@@ -19,14 +19,8 @@
 		}
 	},
 	"images": {
-		"bigger": { "file": {
-			"ltr": "images/icons/bigger-ltr.svg",
-			"rtl": "images/icons/bigger-rtl.svg"
-		} },
-		"smaller": { "file": {
-			"ltr": "images/icons/smaller-ltr.svg",
-			"rtl": "images/icons/smaller-rtl.svg"
-		} },
+		"bigger": { "file": "images/icons/bigger.svg" },
+		"smaller": { "file": "images/icons/smaller.svg" },
 		"subscript": { "file": {
 			"ltr": "images/icons/subscript-ltr.svg",
 			"rtl": "images/icons/subscript-rtl.svg"
@@ -53,10 +47,7 @@
 				"os": "images/icons/bold-cyrl-be.svg"
 			}
 		} },
-		"highlight": { "file": {
-			"ltr": "images/icons/highlight-ltr.svg",
-			"rtl": "images/icons/highlight-rtl.svg"
-		} },
+		"highlight": { "file": "images/icons/highlight.svg" },
 		"italic": { "file": {
 			"default": "images/icons/italic-a.svg",
 			"lang": {
@@ -85,12 +76,17 @@
 				"en,en-ca,en-gb": "images/icons/underline-u.svg"
 			}
 		} },
-		"textLanguage": { "file": {
-			"ltr": "images/icons/language-ltr.svg",
-			"rtl": "images/icons/language-rtl.svg"
-		} },
-		"textDirLTR": { "file": "images/icons/text-dir-lefttoright.svg" },
-		"textDirRTL": { "file": "images/icons/text-dir-righttoleft.svg" },
-		"textStyle": { "file": "images/icons/text-style.svg" }
+		"textLanguage": {
+			"file": "images/icons/language.svg"
+		},
+		"textDirLTR": {
+			"file": "images/icons/textDirLTR.svg"
+		},
+		"textDirRTL": {
+			"file": "images/icons/textDirRTL.svg"
+		},
+		"textStyle": {
+			"file": "images/icons/textStyle.svg"
+		}
 	}
 }
