@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A base class for functions common to producing a list of revisions.
  *
@@ -338,9 +340,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 			}
 			if ( $this->parseContent ) {
-				$po = $content->getParserOutput(
-					$title,
-					$revision->getId(),
+				// TODO: distinguish between per-slot and per-revision output!
+				$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+				// FIXME: correctly handle audience access error!
+				$po = $renderer->renderRevisionForUser(
+					$revision->getRevisionRecord(),
+					$user,
 					ParserOptions::newFromContext( $this->getContext() )
 				);
 				$text = $po->getText();
