@@ -409,17 +409,24 @@ class DatabasePostgres extends Database {
 	 * Takes same arguments as Database::select()
 	 *
 	 * @param string $table
-	 * @param string $vars
+	 * @param string $var
 	 * @param string $conds
 	 * @param string $fname
 	 * @param array $options
+	 * @param array $join_conds
 	 * @return int
 	 */
-	public function estimateRowCount( $table, $vars = '*', $conds = '',
-		$fname = __METHOD__, $options = []
+	public function estimateRowCount( $table, $var = '*', $conds = '',
+		$fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
 		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
 		$rows = -1;
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
@@ -798,7 +805,13 @@ __INDEXATTR__;
 	}
 
 	public function wasDeadlock() {
-		return $this->lastErrno() == '40P01';
+		// https://www.postgresql.org/docs/8.2/static/errcodes-appendix.html
+		return $this->lastErrno() === '40P01';
+	}
+
+	public function wasLockTimeout() {
+		// https://www.postgresql.org/docs/8.2/static/errcodes-appendix.html
+		return $this->lastErrno() === '55P03';
 	}
 
 	public function duplicateTableStructure(

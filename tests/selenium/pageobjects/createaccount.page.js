@@ -22,54 +22,26 @@ class CreateAccountPage extends Page {
 	}
 
 	apiCreateAccount( username, password ) {
-		const url = require( 'url' ), // https://nodejs.org/docs/latest/api/url.html
-			baseUrl = url.parse( browser.options.baseUrl ), // http://webdriver.io/guide/testrunner/browserobject.html
-			Bot = require( 'nodemw' ), // https://github.com/macbre/nodemw
-			client = new Bot( {
-				protocol: baseUrl.protocol,
-				server: baseUrl.hostname,
-				port: baseUrl.port,
-				path: baseUrl.path,
-				debug: false
+
+		const MWBot = require( 'mwbot' ), // https://github.com/Fannon/mwbot
+			Promise = require( 'bluebird' );
+		let bot = new MWBot();
+
+		return Promise.coroutine( function* () {
+			yield bot.loginGetCreateaccountToken( {
+				apiUrl: `${browser.options.baseUrl}/api.php`,
+				username: browser.options.username,
+				password: browser.options.password
 			} );
-
-		return new Promise( ( resolve, reject ) => {
-			client.api.call(
-				{
-					action: 'query',
-					meta: 'tokens',
-					type: 'createaccount'
-				},
-				/**
-				 * @param {Error|null} err
-				 * @param {Object} info Processed query result
-				 * @param {Object} next More results?
-				 * @param {Object} data Raw data
-				 */
-				function ( err, info, next, data ) {
-					if ( err ) {
-						reject( err );
-						return;
-					}
-					client.api.call( {
-						action: 'createaccount',
-						createreturnurl: browser.options.baseUrl,
-						createtoken: data.query.tokens.createaccounttoken,
-						username: username,
-						password: password,
-						retype: password
-					}, function ( err ) {
-						if ( err ) {
-							reject( err );
-							return;
-						}
-						resolve();
-					}, 'POST' );
-				},
-				'POST'
-			);
-
-		} );
+			yield bot.request( {
+				action: 'createaccount',
+				createreturnurl: browser.options.baseUrl,
+				createtoken: bot.createaccountToken,
+				username: username,
+				password: password,
+				retype: password
+			} );
+		} ).call( this );
 
 	}
 

@@ -350,6 +350,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'rclimit', 200 );
+		$user->setOption( 'wpwatchlistdays', '0' );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -361,6 +362,11 @@ class UserTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
+
+		// Check that an option saved as a string '0' is returned as an integer.
+		$user = User::newFromName( $user->getName() );
+		$user->load( User::READ_LATEST );
+		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 	}
 
 	/**
@@ -1142,4 +1148,55 @@ class UserTest extends MediaWikiTestCase {
 		} catch ( InvalidArgumentException $ex ) {
 		}
 	}
+
+	/**
+	 * @covers User::getBlockedStatus
+	 * @covers User::getBlock
+	 * @covers User::blockedBy
+	 * @covers User::blockedFor
+	 * @covers User::isHidden
+	 * @covers User::isBlockedFrom
+	 */
+	public function testBlockInstanceCache() {
+		// First, check the user isn't blocked
+		$user = $this->getMutableTestUser()->getUser();
+		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
+		$this->assertNull( $user->getBlock( false ), 'sanity check' );
+		$this->assertSame( '', $user->blockedBy(), 'sanity check' );
+		$this->assertSame( '', $user->blockedFor(), 'sanity check' );
+		$this->assertFalse( (bool)$user->isHidden(), 'sanity check' );
+		$this->assertFalse( $user->isBlockedFrom( $ut ), 'sanity check' );
+
+		// Block the user
+		$blocker = $this->getTestSysop()->getUser();
+		$block = new Block( [
+			'hideName' => true,
+			'allowUsertalk' => false,
+			'reason' => 'Because',
+		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $blocker );
+		$res = $block->insert();
+		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
+
+		// Clear cache and confirm it loaded the block properly
+		$user->clearInstanceCache();
+		$this->assertInstanceOf( Block::class, $user->getBlock( false ) );
+		$this->assertSame( $blocker->getName(), $user->blockedBy() );
+		$this->assertSame( 'Because', $user->blockedFor() );
+		$this->assertTrue( (bool)$user->isHidden() );
+		$this->assertTrue( $user->isBlockedFrom( $ut ) );
+
+		// Unblock
+		$block->delete();
+
+		// Clear cache and confirm it loaded the not-blocked properly
+		$user->clearInstanceCache();
+		$this->assertNull( $user->getBlock( false ) );
+		$this->assertSame( '', $user->blockedBy() );
+		$this->assertSame( '', $user->blockedFor() );
+		$this->assertFalse( (bool)$user->isHidden() );
+		$this->assertFalse( $user->isBlockedFrom( $ut ) );
+	}
+
 }

@@ -108,4 +108,24 @@ class ExternalUserNamesTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideGetLocal() {
+		return [
+			[ 'User1', 'User1' ],
+			[ '>User2', 'User2' ],
+			[ 'prefix>User3', 'User3' ],
+			[ 'prefix:>User4', 'User4' ],
+		];
+	}
+
+	/**
+	 * @covers ExternalUserNames::getLocal
+	 * @dataProvider provideGetLocal
+	 */
+	public function testGetLocal( $username, $expected ) {
+		$this->assertSame(
+			$expected,
+			ExternalUserNames::getLocal( $username )
+		);
+	}
+
 }

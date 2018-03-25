@@ -88,8 +88,7 @@ class WebRequest {
 	 * @codeCoverageIgnore
 	 */
 	public function __construct() {
-		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
-			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
+		$this->requestTime = $_SERVER['REQUEST_TIME_FLOAT'];
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
@@ -270,6 +269,8 @@ class WebRequest {
 	 * @since 1.27
 	 */
 	public static function getRequestId() {
+		// This method is called from various error handlers and should be kept simple.
+
 		if ( !self::$reqId ) {
 			self::$reqId = isset( $_SERVER['UNIQUE_ID'] )
 				? $_SERVER['UNIQUE_ID'] : wfRandomString( 24 );
@@ -781,6 +782,8 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function getGlobalRequestURL() {
+		// This method is called on fatal errors; it should not depend on anything complex.
+
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strlen( $_SERVER['REQUEST_URI'] ) ) {
 			$base = $_SERVER['REQUEST_URI'];
 		} elseif ( isset( $_SERVER['HTTP_X_ORIGINAL_URL'] )

@@ -838,7 +838,7 @@ class XMPReader implements LoggerAwareInterface {
 			return;
 		}
 
-		if ( count( $this->mode[0] ) === 0 ) {
+		if ( count( $this->mode ) === 0 ) {
 			// This should never ever happen and means
 			// there is a pretty major bug in this class.
 			throw new RuntimeException( 'Encountered end element with no mode' );

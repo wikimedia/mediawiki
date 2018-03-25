@@ -68,8 +68,8 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 	public function testSimpleSetGetSlot() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
-		$slot = new SlotRecord(
-			(object)[ 'role_name' => 'main' ],
+		$slot = SlotRecord::newUnsaved(
+			'main',
 			new WikitextContent( 'x' )
 		);
 		$record->setSlot( $slot );

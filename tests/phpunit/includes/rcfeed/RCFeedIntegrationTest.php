@@ -1,7 +1,13 @@
 <?php
 
 /**
+ * @medium
  * @group Database
+ * @covers FormattedRCFeed
+ * @covers RecentChange
+ * @covers JSONRCFeedFormatter
+ * @covers MachineReadableRCFeedFormatter
+ * @covers RCFeed
  */
 class RCFeedIntegrationTest extends MediaWikiTestCase {
 	protected function setUp() {
@@ -17,15 +23,6 @@ class RCFeedIntegrationTest extends MediaWikiTestCase {
 		] );
 	}
 
-	/**
-	 * @covers RecentChange::notifyRCFeeds
-	 * @covers RecentChange::getEngine
-	 * @covers RCFeed::factory
-	 * @covers FormattedRCFeed::__construct
-	 * @covers FormattedRCFeed::notify
-	 * @covers JSONRCFeedFormatter::formatArray
-	 * @covers MachineReadableRCFeedFormatter::getLine
-	 */
 	public function testNotify() {
 		$feed = $this->getMockBuilder( RCFeedEngine::class )
 			->setConstructorArgs( [ [ 'formatter' => JSONRCFeedFormatter::class ] ] )

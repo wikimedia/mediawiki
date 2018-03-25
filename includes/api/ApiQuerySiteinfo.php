@@ -465,7 +465,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'host' => $showHostnames
 						? $lb->getServerName( $index )
 						: '',
-				'lag' => intval( $lag )
+				'lag' => $lag
 			];
 		}
 

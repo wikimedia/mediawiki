@@ -4,9 +4,9 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
+ * @medium
  * @group API
  * @group Database
- * @group medium
  *
  * @covers ApiQueryWatchlist
  */

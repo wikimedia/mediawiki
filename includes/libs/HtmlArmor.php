@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Kunal Mehta <legoktm@member.fsf.org>
  */
 

@@ -533,7 +533,7 @@
 	"wrongpasswordempty": "Es wurde kein Passwort eingegeben. Bitte versuche es erneut.",
 	"passwordtooshort": "Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.",
 	"passwordtoolong": "Passwörter können nicht länger als {{PLURAL:$1|ein|$1}} Zeichen sein.",
-	"passwordtoopopular": "Häufig ausgewählte Passwörter können nicht verwendet werden. Bitte wähle ein einzigartigeres Passwort aus.",
+	"passwordtoopopular": "Häufig ausgewählte Passwörter können nicht verwendet werden. Bitte wähle ein Passwort aus, das schwieriger zu erraten ist.",
 	"password-name-match": "Dein Passwort muss sich von deinem Benutzernamen unterscheiden.",
 	"password-login-forbidden": "Die Verwendung dieses Benutzernamens und Passwortes ist nicht erlaubt.",
 	"mailmypassword": "Passwort zurücksetzen",

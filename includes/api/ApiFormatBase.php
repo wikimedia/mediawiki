@@ -298,7 +298,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 			if ( $this->getIsWrappedHtml() ) {
 				// This is a special output mode mainly intended for ApiSandbox use
-				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
+				$time = $this->getMain()->getRequest()->getElapsedTime();
 				$json = FormatJson::encode(
 					[
 						'status' => (int)( $this->mHttpStatus ?: 200 ),
@@ -315,7 +315,7 @@ abstract class ApiFormatBase extends ApiBase {
 					false, FormatJson::ALL_OK
 				);
 
-				// T68776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+				// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
 				// Flash, but what it does isn't friendly for the API, so we need to
 				// work around it.
 				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {

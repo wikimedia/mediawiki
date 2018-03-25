@@ -116,4 +116,18 @@ class ExternalUserNames {
 		return strpos( $username, '>' ) !== false;
 	}
 
+	/**
+	 * Get local part of the user name
+	 *
+	 * @param string $username Username to get
+	 * @return string
+	 */
+	public static function getLocal( $username ) {
+		if ( !self::isExternal( $username ) ) {
+			return $username;
+		}
+
+		return substr( $username, strpos( $username, '>' ) + 1 );
+	}
+
 }

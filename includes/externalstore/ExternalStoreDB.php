@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
 
 /**
- * DB accessable external objects.
+ * DB accessible external objects.
  *
  * In this system, each store "location" maps to a database "cluster".
  * The clusters must be defined in the normal LBFactory configuration.

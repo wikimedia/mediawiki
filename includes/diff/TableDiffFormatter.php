@@ -38,7 +38,6 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
-	 * @static
 	 * @param string $msg
 	 *
 	 * @return mixed

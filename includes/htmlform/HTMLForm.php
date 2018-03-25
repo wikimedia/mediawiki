@@ -504,7 +504,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Prepare form for submission.
 	 *
-	 * @attention When doing method chaining, that should be the very last
+	 * @warning When doing method chaining, that should be the very last
 	 * method call before displayForm().
 	 *
 	 * @throws MWException
@@ -1006,7 +1006,7 @@ class HTMLForm extends ContextSource {
 	 * Display the form (sending to the context's OutputPage object), with an
 	 * appropriate error message or stack of messages, and any validation errors, etc.
 	 *
-	 * @attention You should call prepareForm() before calling this function.
+	 * @warning You should call prepareForm() before calling this function.
 	 * Moreover, when doing method chaining this should be the very last method
 	 * call just after prepareForm().
 	 *

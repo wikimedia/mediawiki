@@ -2,6 +2,7 @@
 
 /**
  * @group Http
+ * @group small
  */
 class HttpTest extends MediaWikiTestCase {
 	/**
