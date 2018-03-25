@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Render\Rendering;
+
 /**
  * Output of the PHP parser.
  *
@@ -22,7 +24,8 @@
  * @ingroup Parser
  */
 
-class ParserOutput extends CacheTime {
+class ParserOutput extends CacheTime implements Rendering {
+
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
@@ -31,7 +34,7 @@ class ParserOutput extends CacheTime {
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
-	 * @var string $mText The output text
+	 * @var string|null $mText The output text
 	 */
 	public $mText;
 
@@ -227,13 +230,35 @@ class ParserOutput extends CacheTime {
 	const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
 	const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
 
-	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
+	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
+	}
+
+	/**
+	 * Whether this ParserOutput has HTML.
+	 * This may return false if setText() was never called on this instance,
+	 * e.g. for ParserOutput created by Content::getParserOutput with $generateHtml = false.
+	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function hasHtml() {
+		// FIXME: test me!
+		return $this->mText !== null;
+	}
+
+	/**
+	 * @deprecated since 1.31, use getHtml instead.
+	 *
+	 * @return string
+	 */
+	public function getText( $options = [] ) {
+		return $this->getHtml( $options );
 	}
 
 	/**
@@ -245,7 +270,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.27
 	 */
 	public function getRawText() {
-		return $this->mText;
+		return $this->mText === null ? '' : $this->mText;
 	}
 
 	/**
@@ -267,14 +292,14 @@ class ParserOutput extends CacheTime {
 	 *    of the `data-mw-deduplicate` attribute.
 	 * @return string HTML
 	 */
-	public function getText( $options = [] ) {
+	public function getHtml( $options = [] ) {
 		$options += [
 			'allowTOC' => true,
 			'enableSectionEditLinks' => true,
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 		];
-		$text = $this->mText;
+		$text = $this->getRawText();
 
 		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
 
@@ -972,9 +997,6 @@ class ParserOutput extends CacheTime {
 	 * @return array
 	 */
 	public function getUsedOptions() {
-		if ( !isset( $this->mAccessedOptions ) ) {
-			return [];
-		}
 		return array_keys( $this->mAccessedOptions );
 	}
 
@@ -1216,4 +1238,121 @@ class ParserOutput extends CacheTime {
 			[ 'mParseStartTime' ]
 		);
 	}
+
+	/**
+	 * Adds all resources (modules, scripts, style sheets, etc) needed by $rendering
+	 * to this ParserOutput. When integrating the HTML from $rendering with this
+	 * ParserOutput, this should be used to ensure that all out resources needed by
+	 * the HTML are pulled along.
+	 *
+	 * @note A full copy of a ParserOutput can be achieved by calling setText(),
+	 * setTOCHTML(), addResourcesFrom(), mergeSkinControlFrom(), mergeCachingMetaDataFrom(),
+	 * and addTrackingMetaDataFrom().
+	 *
+	 * @param Rendering $rendering
+	 */
+	public function addResourcesFrom( Rendering $rendering ) {
+		// FIXME
+		/*
+		$this->mNoGallery = and;
+		$this->mHeadItems = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mModules = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mModuleScripts = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mModuleStyles = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mJsConfigVars = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mEnableOOUI = or;
+		$this->mIndexPolicy = or noindex;
+		$this->mLimitReportData = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mLimitReportJSData = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mPreventClickjacking = or;
+		*/
+	}
+
+	/**
+	 * Adds control data that influences the how the output is handled by the skin
+	 * to this ParserOutput. When integrating the HTML from $rendering with this
+	 * ParserOutput, this can be used to provide consistent skin control.
+	 *
+	 * @note A full copy of a ParserOutput can be achieved by calling setText(),
+	 * setTOCHTML(), addResourcesFrom(), mergeSkinControlFrom(), mergeCachingMetaDataFrom(),
+	 * and addTrackingMetaDataFrom().
+	 *
+	 * @param Rendering $rendering
+	 */
+	public function mergeSkinControlFrom( Rendering $rendering ) {
+		// FIXME
+		/*
+		$this->mIndicators = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mTitleText = (last write wins);
+		$this->mOutputHooks = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mWarnings = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mSections = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mNewSection = or;
+		$this->mHideNewSection = or;
+
+		// Also in addTrackingMetaDataFrom
+		$this->mLanguageLinks = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mCategories = array_merge( $this->mCategories, $rendering->getCategories() );
+		*/
+	}
+
+	/**
+	 * Merges caching related meta data, such as the expiry time or vary flags.
+	 * When integrating the HTML from $rendering with this ParserOutput, this should be used
+	 * to ensure that the resulting caching behavior is consistent with the one required
+	 * by $rendering.
+	 *
+	 * @note A full copy of a ParserOutput can be achieved by calling setText(),
+	 * setTOCHTML(), addResourcesFrom(), mergeSkinControlFrom(), mergeCachingMetaDataFrom(),
+	 * and addTrackingMetaDataFrom().
+	 *
+	 * @param Rendering $rendering
+	 */
+	public function mergeCachingMetaDataFrom( Rendering $rendering ) {
+		// FIXME
+		/*
+		$this->mTimestamp = (last write wins);
+		$this->mVersion = (last write wins);
+		$this->mCacheTime = self::getMin( [ $this->mXXX, $rendering->getXXX() ] );
+		$this->mCacheExpiry = self::getMin( [ $this->mXXX, $rendering->getXXX() ] );
+		$this->mSpeculativeRevId = self::getMax( [ $this->mSpeculativeRevId, $rendering->getSpeculativeRevIdUsed() ] );
+		$this->mParseStartTime = self::pairwiseMin( $this->mParseStartTime, $rendering->getParseStartTimes() );
+		$this->mFlags = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mMaxAdaptiveExpiry = self::getMin( [ $this->mXXX, $rendering->getXXX() ] );
+		*/
+	}
+
+	/**
+	 * Merge caching related meta data, such as the exipry time.
+	 * When integrating the HTML from $rendering with this ParserOutput, this should be used
+	 * to ensure that the resulting caching behavior is consistent with the one required
+	 * by $rendering.
+	 *
+	 * @note A full copy of a ParserOutput can be achieved by calling setText(),
+	 * setTOCHTML(), addResourcesFrom(), mergeSkinControlFrom(), mergeCachingMetaDataFrom(),
+	 * and addTrackingMetaDataFrom().
+	 *
+	 * @param Rendering $rendering
+	 */
+	public function addTrackingMetaDataFrom( Rendering $rendering ) {
+		// FIXME
+		/*
+		$this->mLinks = array_merge( $this->mLinks, $rendering->getLinks() );
+		$this->mCategories = array_merge( $this->mCategories, $rendering->getCategories() );
+		$this->mLanguageLinks = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mTemplates = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mTemplateIds = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mImages = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mFileSearchOptions = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mExternalLinks = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mInterwikiLinks = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mExtensionData = array_merge( $this->mXXX, $rendering->getXXX() );
+		$this->mProperties = array_merge( $this->mXXX, $rendering->getXXX() );
+
+		foreach ( $rendering->getUsedOptions() as $option ) {
+			$this->mAccessedOptions[$option] = true;
+		}
+		*/
+	}
+
 }

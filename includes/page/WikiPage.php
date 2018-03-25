@@ -23,6 +23,7 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Render\RevisionRenderer;
 use MediaWiki\Storage\PageMetaDataUpdater;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionRecord;
@@ -215,6 +216,13 @@ class WikiPage implements Page, IDBAccessObject {
 				// It may already be an integer or whatever else
 				return $type;
 		}
+	}
+
+	/**
+	 * @return RevisionRenderer
+	 */
+	private function getRevisionRenderer() {
+		return MediaWikiServices::getInstance()->getRevisionRenderer();
 	}
 
 	/**
@@ -1595,15 +1603,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return PageMetaDataUpdater
 	 */
 	private function newMetaDataUpdater() {
-		global $wgContLang, $wgRCWatchCategoryMembership, $wgArticleCountMethod;
+		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
 
 		$metaDataUpdater = new PageMetaDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
+			$this->getRevisionRenderer(),
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
-			$wgContLang,
 			LoggerFactory::getInstance( 'SaveParse' )
 		);
 
@@ -1825,15 +1833,24 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		$options = $this->getContentHandler()->makeParserOptions( $context );
+		$renderer = $this->getRevisionRenderer();
 
-		if ( $this->getTitle()->isConversionTable() ) {
-			// @todo ConversionTable should become a separate content model, so
-			// we don't need special cases like this one.
-			$options->disableContentConversion();
+		if ( $context === 'canonical' ) { // canonical settings
+			return $renderer->makeCanonicalParserOptions( $this->getTitle() );
+		} elseif ( $context instanceof IContextSource ) {
+			return $renderer->makeUserParserOptions(
+				$this->getTitle(),
+				$context->getUser(),
+				$context->getLanguage()
+			);
+		} elseif ( $context instanceof User ) { // settings per user (even anons)
+			return $renderer->makeUserParserOptions(
+				$this->getTitle(),
+				$context
+			);
+		} else {
+			throw new InvalidArgumentException( "Bad context for parser options: $context" );
 		}
-
-		return $options;
 	}
 
 	/**

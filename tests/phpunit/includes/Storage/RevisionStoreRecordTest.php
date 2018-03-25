@@ -495,6 +495,27 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function provideIsContentAccessible() {
+		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
+	}
+
+	/**
+	 * @dataProvider provideGetSlot_audience
+	 */
+	public function testIsContentAccessible( $visibility, $groups, $userCan, $publicCan ) {
+		$this->forceStandardPermissions();
+
+		$user = $this->getTestUser( $groups )->getUser();
+		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
+
+		$this->assertSame( $publicCan, $rev->isContentAccessible() );
+		$this->assertSame( $userCan, $rev->isContentAccessible( RevisionRecord::FOR_PUBLIC ) );
+		$this->assertSame(
+			$userCan,
+			$rev->isContentAccessible( RevisionRecord::FOR_THIS_USER, $user )
+		);
+	}
+
 	public function provideGetSlot_audience_latest() {
 		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
 	}
