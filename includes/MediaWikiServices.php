@@ -14,6 +14,7 @@ use Hooks;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Render\RevisionRenderer;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -754,6 +755,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionStore() {
 		return $this->getService( 'RevisionStore' );
+	}
+
+	/**
+	 * @since 1.31
+	 * @return RevisionRenderer
+	 */
+	public function getRevisionRenderer() {
+		return $this->getService( 'RevisionRenderer' );
 	}
 
 	/**
