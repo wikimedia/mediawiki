@@ -232,12 +232,17 @@ class CategoryMembershipChangeJob extends Job {
 	 * @return string[] category names
 	 */
 	private function getCategoriesAtRev( Title $title, Revision $rev, $parseTimestamp ) {
-		$content = $rev->getContent();
-		$options = $content->getContentHandler()->makeParserOptions( 'canonical' );
+		// TODO: somewhere on the stack, there is a PageMetaDataUpdater that could be used as
+		// a SlotRenderingProvider here, so we could re-use any ParserOutput that already exists!
+		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+
+		$revision = $rev->getRevisionRecord();
+		$slots = $revision->getSlots(); // FIXME: audience check!
+		$options = $renderer->makeParserOptions( $title, $slots );
 		$options->setTimestamp( $parseTimestamp );
-		// This could possibly use the parser cache if it checked the revision ID,
-		// but that's more complicated than it's worth.
-		$output = $content->getParserOutput( $title, $rev->getId(), $options );
+
+		// XXX: do we need to force the Title as context for the parse?
+		$output = $renderer->processRevisionForUpdate( $revision );
 
 		// array keys will cast numeric category names to ints
 		// so we need to cast them back to strings to avoid breaking things!

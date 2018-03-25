@@ -24,6 +24,9 @@ use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Render\RevisionRenderer;
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\SlotRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -437,6 +440,11 @@ class EditPage {
 	private $editConflictHelper;
 
 	/**
+	 * @var RevisionRenderer
+	 */
+	private $revisionRenderer;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -450,6 +458,8 @@ class EditPage {
 		$handler = ContentHandler::getForModelID( $this->contentModel );
 		$this->contentFormat = $handler->getDefaultFormat();
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
+
+		$this->revisionRenderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 	}
 
 	/**
@@ -3922,14 +3932,20 @@ ERROR;
 
 	/**
 	 * Get parser options for a preview
+	 *
+	 * @param RevisionSlots|null $slots
+	 *
+	 * @deprecated since 1.31, use RevisionRenderer::makePreviewParserOptions
+	 *
 	 * @return ParserOptions
 	 */
-	protected function getPreviewParserOptions() {
-		$parserOptions = $this->page->makeParserOptions( $this->context );
-		$parserOptions->setIsPreview( true );
-		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
-		$parserOptions->enableLimitReport();
-		return $parserOptions;
+	protected function getPreviewParserOptions( RevisionSlots $slots = null ) {
+		return $this->revisionRenderer->makePreviewParserOptions(
+			$this->getTitle(),
+			null, // FIXME: construct preview slots
+			$this->context->getUser(),
+			$this->section
+		);
 	}
 
 	/**
@@ -3943,12 +3959,19 @@ ERROR;
 	 */
 	protected function doPreviewParse( Content $content ) {
 		$user = $this->context->getUser();
-		$parserOptions = $this->getPreviewParserOptions();
-		$pstContent = $content->preSaveTransform( $this->mTitle, $user, $parserOptions );
-		$scopedCallback = $parserOptions->setupFakeRevision(
-			$this->mTitle, $pstContent, $user );
-		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
-		ScopedCallback::consume( $scopedCallback );
+
+		// TODO: MCR: Multi-slot preview!
+		$slots = new RevisionSlots(
+			[ 'main' => SlotRecord::newUnsaved( 'main', $content ) ]
+		);
+
+		$parserOutput = $this->revisionRenderer->renderPreviewForUser(
+			$this->mTitle,
+			$slots,
+			$user,
+			$this->section
+		);
+
 		return [
 			'parserOutput' => $parserOutput,
 			'html' => $parserOutput->getText( [

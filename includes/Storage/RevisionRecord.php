@@ -197,6 +197,18 @@ abstract class RevisionRecord {
 	}
 
 	/**
+	 * Returns whether the content of this revision is accessible to the given audience.
+	 *
+	 * @param int $audience
+	 * @param User|null $user
+	 *
+	 * @return bool
+	 */
+	public function isContentAccessible( $audience = self::FOR_PUBLIC, User $user = null ) {
+		return $this->audienceCan( self::DELETED_TEXT, $audience, $user );
+	}
+
+	/**
 	 * Returns whether the given slot is defined in this revision.
 	 *
 	 * @param string $role The role name of the desired slot
@@ -220,7 +232,7 @@ abstract class RevisionRecord {
 	/**
 	 * Returns the slots defined for this revision.
 	 *
-	 * @note This bypasses audience checks!
+	 * @note This bypasses audience checks! Use isContentAccessible().
 	 *
 	 * @return RevisionSlots
 	 */

@@ -916,6 +916,12 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Preferences\\DefaultPreferencesFactory' => __DIR__ . '/includes/preferences/DefaultPreferencesFactory.php',
 	'MediaWiki\\Preferences\\PreferencesFactory' => __DIR__ . '/includes/preferences/PreferencesFactory.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
+	'MediaWiki\\Render\\DummySlotRenderingProvider' => __DIR__
+		. '/includes/Render/DummySlotRenderingProvider.php',
+	'MediaWiki\\Render\\LazySlotRenderingProvider' => __DIR__ . '/includes/Render/LazySlotRenderingProvider.php',
+	'MediaWiki\\Render\\Rendering' => __DIR__ . '/includes/Render/Rendering.php',
+	'MediaWiki\\Render\\RevisionRenderer' => __DIR__ . '/includes/Render/RevisionRenderer.php',
+	'MediaWiki\\Render\\SlotRenderingProvider' => __DIR__ . '/includes/Render/SlotRenderingProvider.php',
 	'MediaWiki\\Search\\ParserOutputSearchDataExtractor' => __DIR__ . '/includes/search/ParserOutputSearchDataExtractor.php',
 	'MediaWiki\\Services\\CannotReplaceActiveServiceException' => __DIR__ . '/includes/services/CannotReplaceActiveServiceException.php',
 	'MediaWiki\\Services\\ContainerDisabledException' => __DIR__ . '/includes/services/ContainerDisabledException.php',

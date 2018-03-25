@@ -1114,6 +1114,9 @@ abstract class ContentHandler {
 	/**
 	 * Get parser options suitable for rendering and caching the article
 	 *
+	 * @deprecated since 1.31, use RevisionRendere::makeCanonicalParserOptions
+	 * or RevisionRendere::makeUserParserOptions.
+	 *
 	 * @param IContextSource|User|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
 	 *                                            context
