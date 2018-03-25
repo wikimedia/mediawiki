@@ -536,6 +536,12 @@ class MovePage {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		$logEntry->setAssociatedRevId( $nullRevId );
 
+		/**
+		 * T163966
+		 * Increment user_editcount during page moves
+		 */
+		$user->incEditCount();
+
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ [
