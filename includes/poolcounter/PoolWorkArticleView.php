@@ -18,6 +18,9 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Render\RevisionRenderer;
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\SlotRecord;
 
 class PoolWorkArticleView extends PoolCounterWork {
 	/** @var WikiPage */
@@ -48,6 +51,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $error = false;
 
 	/**
+	 * @var RevisionRenderer
+	 */
+	private $revisionRenderer;
+
+	/**
 	 * @param WikiPage $page
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param int $revid ID of the revision being parsed.
@@ -70,6 +78,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
 		$this->content = $content;
+		$this->revisionRenderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 		$this->parserCache = MediaWikiServices::getInstance()->getParserCache();
 		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
 		$keyPrefix = $this->cacheKey ?: wfMemcKey( 'articleview', 'missingcachekey' );
@@ -114,34 +123,51 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
-		if ( $this->content !== null ) {
-			$content = $this->content;
-		} elseif ( $isCurrent ) {
+		if ( $isCurrent ) {
 			// XXX: why use RAW audience here, and PUBLIC (default) below?
-			$content = $this->page->getContent( Revision::RAW );
+			$rev = $this->page->getRevisionRecord();
 		} else {
+			// FIXME:
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
+		}
 
-			if ( $rev === null ) {
-				$content = null;
-			} else {
-				// XXX: why use PUBLIC audience here (default), and RAW above?
-				$content = $rev->getContent();
-			}
+		if ( $this->content === null && $rev ) {
+			// XXX: why use PUBLIC audience here (default), and RAW above?
+			$content = $rev->getContent();
+		} else {
+			$content = $this->content;
 		}
 
 		if ( $content === null ) {
 			return false;
 		}
 
+		if ( $rev ) {
+			// FIXME: audience check!
+			$slots = $rev->getSlots();
+		} else {
+			// NOTE: this happens e.g. when viewing a non-existent page.
+			// In that case, $content contains the error message!
+			// TODO: change that, there is no good reason to show an error that way!
+			// TODO: MCR: allow RevisionSlots or RevisionRecord to be provided to the constructor!
+			$slots = new RevisionSlots( [
+				'main' => SlotRecord::newUnsaved( 'main', $content )
+			] );
+		}
+
 		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
+		// NOTE: the PageMetaDataUpdater acts as a local cache for the per-slot ParserOutput.
+		$metaDataUpdater = $this->page->getMetaDataUpdater( null, $rev, $slots );
+
 		$time = - microtime( true );
-		$this->parserOutput = $content->getParserOutput(
+		$this->parserOutput = $this->revisionRenderer->renderRevisionSlots(
 			$this->page->getTitle(),
-			$this->revid,
-			$this->parserOptions
+			$slots,
+			$this->parserOptions,
+			$metaDataUpdater,
+			$this->revid
 		);
 		$time += microtime( true );
 

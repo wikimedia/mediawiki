@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Render\Rendering;
+
 /**
  * Output of the PHP parser.
  *
@@ -22,7 +24,8 @@
  * @ingroup Parser
  */
 
-class ParserOutput extends CacheTime {
+class ParserOutput extends CacheTime implements Rendering {
+
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
 	 * uses getText() stateless transforms.
@@ -31,7 +34,7 @@ class ParserOutput extends CacheTime {
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
-	 * @var string $mText The output text
+	 * @var string|null $mText The output text
 	 */
 	public $mText;
 
@@ -227,13 +230,26 @@ class ParserOutput extends CacheTime {
 	const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
 	const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
 
-	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
+	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
+	}
+
+	/**
+	 * Whether this ParserOutput has text.
+	 * This may return false if setText() was never called on this instance,
+	 * e.g. for ParserOutput created by Content::getParserOutput with $generateHtml = false.
+	 *
+	 * @return bool
+	 * @since 1.31
+	 */
+	public function hasText() {
+		// FIXME: test me!
+		return $this->mText !== null;
 	}
 
 	/**
@@ -245,7 +261,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.27
 	 */
 	public function getRawText() {
-		return $this->mText;
+		return $this->mText === null ? '' : $this->mText;
 	}
 
 	/**
@@ -274,7 +290,7 @@ class ParserOutput extends CacheTime {
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 		];
-		$text = $this->mText;
+		$text = $this->getRawText();
 
 		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
 
