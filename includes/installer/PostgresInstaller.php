@@ -46,7 +46,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		'_InstallUser' => 'postgres',
 	];
 
-	public static $minimumVersion = '8.3';
+	public static $minimumVersion = '9.2';
 	protected static $notMiniumumVerisonMessage = 'config-postgres-old';
 	public $maxRoleSearchDepth = 5;
 
