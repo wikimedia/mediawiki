@@ -903,6 +903,36 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Alters $wgGroupPermissions for the duration of the test.  Can be called
+	 * with an array, like
+	 *   [ '*' => [ 'read' => false ], 'user' => [ 'read' => false ] ]
+	 * or three values to set a single permission, like
+	 *   $this->setGroupPermissions( '*', 'read', false );
+	 *
+	 * @since 1.31
+	 * @param array|string $newPerms Either an array of permissions to change,
+	 *   in which case the next two parameters are ignored; or a single string
+	 *   identifying a group, to use with the next two parameters.
+	 * @param string|null $newKey
+	 * @param mixed $newValue
+	 */
+	public function setGroupPermissions( $newPerms, $newKey = null, $newValue = null ) {
+		global $wgGroupPermissions;
+
+		$this->stashMwGlobals( 'wgGroupPermissions' );
+
+		if ( is_string( $newPerms ) ) {
+			$newPerms = [ $newPerms => [ $newKey => $newValue ] ];
+		}
+
+		foreach ( $newPerms as $group => $permissions ) {
+			foreach ( $permissions as $key => $value ) {
+				$wgGroupPermissions[$group][$key] = $value;
+			}
+		}
+	}
+
+	/**
 	 * Sets the logger for a specified channel, for the duration of the test.
 	 * @since 1.27
 	 * @param string $channel
