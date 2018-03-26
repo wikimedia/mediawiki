@@ -679,10 +679,6 @@ class RevisionStoreRecordTest extends MediaWikiTestCase {
 		);
 	}
 
-	private function getSlotRecord( $role, $contentString ) {
-		return SlotRecord::newUnsaved( $role, new TextContent( $contentString ) );
-	}
-
 	public function provideHasSameContent() {
 		/**
 		 * @param SlotRecord[] $slots
