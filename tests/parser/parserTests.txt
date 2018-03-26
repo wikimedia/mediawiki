@@ -16967,7 +16967,8 @@ __NOEDITSECTION__
 <h1><span class="mw-headline" id="Header_1">Header 1</span></h1>
 <h2><span class="mw-headline" id="Header_1.1">Header 1.1</span></h2>
 <h2><span class="mw-headline" id="Header_1.2">Header 1.2</span></h2>
-<h1><span class="mw-headline" id="Header_2">Header 2</span></h1>
+<h1><span class="mw-headline" id="Header_2">Header 2
+</span></h1>
 <h2><span class="mw-headline" id="Header_2.1">Header 2.1</span></h2>
 <h2><span class="mw-headline" id="Header_2.2">Header 2.2</span></h2>
 
@@ -30511,7 +30512,8 @@ headings, and cells. HTML versions of the same should preserve whitespace.
 Trim whitespace in wikitext headings, list items, table captions, headings, and cells
 !! wikitext
 __NOTOC__
-==    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  ==
+==    <!--c1-->  <!--c2--> Spaces   <!--c3--> <!--c4-->  ==
+==		<!--c2-->	<!--c2--> Tabs		<!--c3--><!--c4-->	==
 *     <!--c1-->   <!--c2-->  List item <!--c3--> <!--c4-->
 ; <!--term to define--> term : <!--term's definition--> definition
 {|
@@ -30529,7 +30531,8 @@ __NOTOC__
   |  <!--c1--> <!--c2--> Table Cell 1 <!--c3--> <!--c4--> ||   Table Cell 2 <!--c5-->
   |} foo   <!--c1-->
 !! html/php+tidy
-<h2><span class="mw-headline" id="Heading">Heading</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Heading">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Spaces">Spaces</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Spaces">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Tabs">Tabs</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Tabs">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <ul><li>List item</li></ul>
 <dl><dt>term&#160;</dt>
 <dd>definition</dd></dl>
@@ -30563,20 +30566,19 @@ __NOTOC__
 Do not trim whitespace in HTML headings, list items, table captions, headings, and cells
 !! wikitext
 __NOTOC__
-<h2>    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  <h2>
+<h2>    <!--c1-->   <!--c2--> Heading    <!--c3--> <!--c4-->  </h2>
 <ul><li>     <!--c1-->   <!--c2-->  List item <!--c3--> <!--c4-->  </li></ul>
 <table>
 <tr><th> <!--c1--> <!--c2--> Table Heading <!--c3--> <!--c4--> <th></tr>
 <tr><td> <!--c1--> <!--c2--> Table Cell <!--c3--> <!--c4--> <th></tr>
 </table>
 !! html/php+tidy
-<h2>        Heading       </h2><h2>
+<h2><span class="mw-headline" id="Heading">        Heading       </span></h2>
 <ul><li>          List item    </li></ul>
 <table>
 <tbody><tr><th>   Table Heading   </th><th></th></tr>
 <tr><td>   Table Cell   </td><th></th></tr>
 </tbody></table>
-</h2>
 !! end
 
 !! test

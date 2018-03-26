@@ -1623,7 +1623,9 @@ class Parser {
 	public function doHeadings( $text ) {
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
-			$text = preg_replace( "/^$h(.+)$h\\s*$/m", "<h$i>\\1</h$i>", $text );
+			// Trim non-newline whitespace from headings
+			// Using \s* will break for: "==\n===\n" and parse as <h2>=</h2>
+			$text = preg_replace( "/^(?:$h)[ \\t]*(.+?)[ \\t]*(?:$h)\\s*$/m", "<h$i>\\1</h$i>", $text );
 		}
 		return $text;
 	}
@@ -4056,10 +4058,11 @@ class Parser {
 
 		# Get all headlines for numbering them and adding funky stuff like [edit]
 		# links - this is for later, but we need the number of headlines right now
-		# This regexp also trims whitespace in the heading's content
+		# NOTE: white space in headings have been trimmed in doHeadings. They shouldn't
+		# be trimmed here since whitespace in HTML headings is significant.
 		$matches = [];
 		$numMatches = preg_match_all(
-			'/<H(?P<level>[1-6])(?P<attrib>.*?>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
+			'/<H(?P<level>[1-6])(?P<attrib>.*?>)(?P<header>[\s\S]*?)<\/H[1-6] *>/i',
 			$text,
 			$matches
 		);
