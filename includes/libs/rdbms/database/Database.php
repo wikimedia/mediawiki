@@ -35,6 +35,7 @@ use BagOStuff;
 use HashBagOStuff;
 use LogicException;
 use InvalidArgumentException;
+use UnexpectedValueException;
 use Exception;
 use RuntimeException;
 
@@ -282,6 +283,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->flags |= self::DBO_TRX;
 			}
 		}
+		// Disregard deprecated DBO_IGNORE flag (T189999)
+		$this->flags &= ~self::DBO_IGNORE;
 
 		$this->sessionVars = $params['variables'];
 
@@ -693,7 +696,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
@@ -704,7 +707,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
 		if ( ( $flag & self::DBO_IGNORE ) ) {
-			throw new \UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
+			throw new UnexpectedValueException( "Modifying DBO_IGNORE is not allowed." );
 		}
 
 		if ( $remember === self::REMEMBER_PRIOR ) {
@@ -1277,7 +1280,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		if ( $this->getFlag( self::DBO_IGNORE ) || $tempIgnore ) {
+		if ( $tempIgnore ) {
 			$this->queryLogger->debug( "SQL ERROR (ignored): $error\n" );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
