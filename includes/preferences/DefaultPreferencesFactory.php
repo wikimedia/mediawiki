@@ -1117,11 +1117,18 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		];
-		$defaultPreferences['watchlistreloadautomatically'] = [
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlistreloadautomatically',
-		];
+
+		if ( !\SpecialWatchlist::checkStructuredFilterUiEnabled(
+			$this->config,
+			$user
+		) ) {
+			$defaultPreferences['watchlistreloadautomatically'] = [
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlistreloadautomatically',
+			];
+		}
+
 		$defaultPreferences['watchlistunwatchlinks'] = [
 			'type' => 'toggle',
 			'section' => 'watchlist/advancedwatchlist',
