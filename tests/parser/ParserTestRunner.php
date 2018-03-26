@@ -1108,6 +1108,7 @@ class ParserTestRunner {
 
 		// Set content language. This invalidates the magic word cache and title services
 		$lang = Language::factory( $langCode );
+		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
 		$reset = function () {
 			MagicWord::clearCache();
