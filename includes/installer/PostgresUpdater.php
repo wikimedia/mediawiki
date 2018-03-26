@@ -294,7 +294,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				[ 'log_timestamp', 'timestamptz_ops', 'btree', 0 ],
 			],
 			'CREATE INDEX "logging_times" ON "logging" USING "btree" ("log_timestamp")' ],
-			[ 'dropIndex', 'oldimage', 'oi_name' ],
+			[ 'dropPgIndex', 'oldimage', 'oi_name' ],
 			[ 'checkIndex', 'oi_name_archive_name', [
 				[ 'oi_name', 'text_ops', 'btree', 0 ],
 				[ 'oi_archive_name', 'text_ops', 'btree', 0 ],
@@ -353,7 +353,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'checkOiNameConstraint' ],
 			[ 'checkPageDeletedTrigger' ],
 			[ 'checkRevUserFkey' ],
-			[ 'dropIndex', 'ipblocks', 'ipb_address' ],
+			[ 'dropPgIndex', 'ipblocks', 'ipb_address' ],
 			[ 'checkIndex', 'ipb_address_unique', [
 				[ 'ipb_address', 'text_ops', 'btree', 0 ],
 				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
@@ -1060,7 +1060,7 @@ END;
 		}
 	}
 
-	protected function dropIndex( $table, $index, $patch = '', $fullpath = false ) {
+	protected function dropPgIndex( $table, $index ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
 			$this->db->query( "DROP INDEX \"" . $index . "\"" );
