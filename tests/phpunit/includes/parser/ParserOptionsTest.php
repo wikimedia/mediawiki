@@ -137,6 +137,48 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		];
 	}
 
+	public function testUsedLazyOptionsInHash() {
+		global $wgHooks;
+
+		// $wgHooks is already saved in self::setUp(), so we can modify it freely here
+		$wgHooks['ParserOptionsRegister'] = [ function ( &$defaults, &$inCacheKey, &$lazyOptions ) {
+			$failFunc = function ( $popt, $name ) {
+				$this->fail( $name . ' should not have been resolved' );
+			};
+			$done = false;
+
+			$defaults += [
+				'opt1' => null,
+				'opt2' => null,
+				'opt3' => null,
+			];
+			$inCacheKey += [
+				'opt1' => true,
+				'opt2' => true,
+			];
+			$lazyOptions += [
+				'opt1' => function ( $popt, $name ) use ( &$done ) {
+					$this->assertFalse( $done, $name . ' should only be resolved once' );
+					$done = true;
+					return 'value';
+				},
+				'opt2' => $failFunc,
+				'opt3' => $failFunc,
+			];
+		} ];
+
+		self::clearCache();
+
+		$popt = ParserOptions::newCanonical();
+		$popt->registerWatcher( function () {
+			$this->fail( 'Watcher should not have been called' );
+		} );
+		$this->assertSame( 'opt1=value', $popt->optionsHash( [ 'opt1', 'opt3' ] ) );
+
+		// Second call to see that opt1 isn't resolved a second time
+		$this->assertSame( 'opt1=value', $popt->optionsHash( [ 'opt1', 'opt3' ] ) );
+	}
+
 	public static function onPageRenderingHash( &$confstr ) {
 		$confstr .= '!onPageRenderingHash';
 	}
