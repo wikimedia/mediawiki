@@ -207,7 +207,7 @@ class ApiBlockTest extends ApiTestCase {
 		);
 
 		// Allow flakiness up to one second
-		$this->assertLessThan( 1,
+		$this->assertLessThanOrEqual( 1,
 			abs( wfTimestamp( TS_UNIX, $expiry ) - ( time() + 86400 ) ) );
 	}
 
