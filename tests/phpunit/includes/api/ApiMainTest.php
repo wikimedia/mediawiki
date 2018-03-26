@@ -24,6 +24,180 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'query', $data );
 	}
 
+	public function testApiNoParam() {
+		$api = new ApiMain();
+		$api->execute();
+		$data = $api->getResult()->getResultData();
+		$this->assertInternalType( 'array', $data );
+	}
+
+	/**
+	 * When not in internal mode, we do some request logging.
+	 *
+	 * @todo How to get this to work without printing to console?
+	 */
+	/*
+	public function testApiNonInternal() {
+		// Don't use a FauxRequest, we need to trick ApiMain
+		$req = $this->getMockBuilder( WebRequest::class )
+			->setMethods( [ 'response', 'getIP' ] )
+			->getMock();
+		$response = new FauxResponse();
+		$req->method( 'response' )->willReturn( $response );
+		$req->method( 'getRawIP' )->willReturn( '127.0.0.1' );
+		TestingAccessWrapper::newFromObject( $req )
+			->data = [ 'action' => 'query', 'meta' => 'siteinfo' ];
+
+		$api = new ApiMain( $req );
+
+		$api->execute();
+		$data = $api->getResult()->getResultData();
+		$this->assertInternalType( 'array', $data );
+		$this->assertArrayHasKey( 'query', $data );
+	}
+	*/
+
+	public function testSetContinuationManager() {
+		$api = new ApiMain();
+		$manager = $this->createMock( ApiContinuationManager::class );
+		$api->setContinuationManager( $manager );
+		$this->assertTrue( true, 'No exception' );
+		return [ $api, $manager ];
+	}
+
+	/**
+	 * @depends testSetContinuationManager
+	 */
+	public function testSetContinuationManagerTwice( $args ) {
+		$this->setExpectedException( UnexpectedValueException::class,
+			'ApiMain::setContinuationManager: tried to set manager from  ' .
+			'when a manager is already set from ' );
+
+		list( $api, $manager ) = $args;
+		$api->setContinuationManager( $manager );
+	}
+
+	public function testSetCacheModeUnrecognized() {
+		$api = new ApiMain();
+		$api->setCacheMode( 'unrecognized' );
+		$this->assertSame(
+			'private',
+			TestingAccessWrapper::newFromObject( $api )->mCacheMode,
+			'Unrecognized params must be silently ignored'
+		);
+	}
+
+	public function testSetCacheModePrivateWiki() {
+		$this->setGroupPermissions( '*', 'read', false );
+
+		$wrappedApi = TestingAccessWrapper::newFromObject( new ApiMain() );
+		$wrappedApi->setCacheMode( 'public' );
+		$this->assertSame( 'private', $wrappedApi->mCacheMode );
+		$wrappedApi->setCacheMode( 'anon-public-user-private' );
+		$this->assertSame( 'private', $wrappedApi->mCacheMode );
+	}
+
+	public function testAddRequestedFieldsRequestId() {
+		$req = new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'requestid' => '123456',
+		] );
+		$api = new ApiMain( $req );
+		$api->execute();
+		$this->assertSame( '123456', $api->getResult()->getResultData()['requestid'] );
+	}
+
+	public function testAddRequestedFieldsCurTimestamp() {
+		$req = new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'curtimestamp' => '',
+		] );
+		$api = new ApiMain( $req );
+		$api->execute();
+		$timestamp = $api->getResult()->getResultData()['curtimestamp'];
+		$this->assertLessThanOrEqual( 1, abs( strtotime( $timestamp ) - time() ) );
+	}
+
+	public function testAddRequestedFieldsResponseLangInfo() {
+		$req = new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			// errorlang is ignored if errorformat is not specified
+			'errorformat' => 'plaintext',
+			'uselang' => 'FR',
+			'errorlang' => 'ja',
+			'responselanginfo' => '',
+		] );
+		$api = new ApiMain( $req );
+		$api->execute();
+		$data = $api->getResult()->getResultData();
+		$this->assertSame( 'fr', $data['uselang'] );
+		$this->assertSame( 'ja', $data['errorlang'] );
+	}
+
+	public function testSetupModuleUnknown() {
+		$this->setExpectedException( ApiUsageException::class,
+			'Unrecognized value for parameter "action": unknownaction.' );
+
+		$req = new FauxRequest( [ 'action' => 'unknownaction' ] );
+		$api = new ApiMain( $req );
+		$api->execute();
+	}
+
+	// @todo How to test $module->needsToken() === true and similar?
+
+	public function testSetupModuleNoTokenProvided() {
+		$this->setExpectedException( ApiUsageException::class,
+			'The "token" parameter must be set.' );
+
+		$req = new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'New page',
+			'text' => 'Some text',
+		] );
+		$api = new ApiMain( $req );
+		$api->execute();
+	}
+
+	public function testSetupModuleInvalidTokenProvided() {
+		$this->setExpectedException( ApiUsageException::class, 'Invalid CSRF token.' );
+
+		$req = new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'New page',
+			'text' => 'Some text',
+			'token' => "This isn't a real token!",
+		] );
+		$api = new ApiMain( $req );
+		$api->execute();
+	}
+
+	// @todo This doesn't work because I don't know what arguments to pass to
+	// the LoadBalancer constructor.  Is there some other way to inject a
+	// made-up maxlag?
+	/*
+	public function testCheckMaxLagAcceptable() {
+		$req = new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'maxlag' => 7,
+		] );
+
+		$mock = $this->getMockBuilder( LoadBalancer::class )
+			->setMethods( [ 'getMaxLag' ] )
+			->getMock();
+		$mock->method( 'getMaxLag' )->willReturn( [ 'somehost', 5 ] );
+		$this->setService( 'DBLoadBalancer', $mock );
+
+		$api = new ApiMain( $req );
+		$api->execute();
+
+		$data = $api->getResult()->getResultData();
+	}
+	*/
+
 	public static function provideAssert() {
 		return [
 			[ false, [], 'user', 'assertuserfailed' ],
@@ -37,7 +211,6 @@ class ApiMainTest extends ApiTestCase {
 	/**
 	 * Tests the assert={user|bot} functionality
 	 *
-	 * @covers ApiMain::checkAsserts
 	 * @dataProvider provideAssert
 	 * @param bool $registered
 	 * @param array $rights
@@ -66,8 +239,6 @@ class ApiMainTest extends ApiTestCase {
 
 	/**
 	 * Tests the assertuser= functionality
-	 *
-	 * @covers ApiMain::checkAsserts
 	 */
 	public function testAssertUser() {
 		$user = $this->getTestUser()->getUser();
@@ -107,17 +278,21 @@ class ApiMainTest extends ApiTestCase {
 	/**
 	 * Test HTTP precondition headers
 	 *
-	 * @covers ApiMain::checkConditionalRequestHeaders
 	 * @dataProvider provideCheckConditionalRequestHeaders
 	 * @param array $headers HTTP headers
 	 * @param array $conditions Return data for ApiBase::getConditionalRequestData
 	 * @param int $status Expected response status
-	 * @param bool $post Request is a POST
+	 * @param array $options Array of options:
+	 *   post => true Request is a POST
+	 *   squid => true Squid is enabled
 	 */
 	public function testCheckConditionalRequestHeaders(
-		$headers, $conditions, $status, $post = false
+		$headers, $conditions, $status, $options = []
 	) {
-		$request = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ], $post );
+		$request = new FauxRequest(
+			[ 'action' => 'query', 'meta' => 'siteinfo' ],
+			!empty( $options['post'] )
+		);
 		$request->setHeaders( $headers );
 		$request->response()->statusHeader( 200 ); // Why doesn't it default?
 
@@ -125,6 +300,10 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( $context );
 		$priv = TestingAccessWrapper::newFromObject( $api );
 		$priv->mInternalMode = false;
+
+		if ( !empty( $options['squid'] ) ) {
+			$this->setMwGlobals( 'wgUseSquid', true );
+		}
 
 		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
@@ -143,65 +322,99 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public static function provideCheckConditionalRequestHeaders() {
+		global $wgSquidMaxage;
 		$now = time();
 
 		return [
 			// Non-existing from module is ignored
-			[ [ 'If-None-Match' => '"foo", "bar"' ], [], 200 ],
-			[ [ 'If-Modified-Since' => 'Tue, 18 Aug 2015 00:00:00 GMT' ], [], 200 ],
+			'If-None-Match' => [ [ 'If-None-Match' => '"foo", "bar"' ], [], 200 ],
+			'If-Modified-Since' =>
+				[ [ 'If-Modified-Since' => 'Tue, 18 Aug 2015 00:00:00 GMT' ], [], 200 ],
 
 			// No headers
-			[
-				[],
-				[
-					'etag' => '""',
-					'last-modified' => '20150815000000',
-				],
-				200
-			],
+			'No headers' => [ [], [ 'etag' => '""', 'last-modified' => '20150815000000', ], 200 ],
 
 			// Basic If-None-Match
-			[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"bar"' ], 304 ],
-			[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"baz"' ], 200 ],
-			[ [ 'If-None-Match' => '"foo"' ], [ 'etag' => 'W/"foo"' ], 304 ],
-			[ [ 'If-None-Match' => 'W/"foo"' ], [ 'etag' => '"foo"' ], 304 ],
-			[ [ 'If-None-Match' => 'W/"foo"' ], [ 'etag' => 'W/"foo"' ], 304 ],
+			'If-None-Match with matching etag' =>
+				[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"bar"' ], 304 ],
+			'If-None-Match with non-matching etag' =>
+				[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"baz"' ], 200 ],
+			'Strong If-None-Match with weak matching etag' =>
+				[ [ 'If-None-Match' => '"foo"' ], [ 'etag' => 'W/"foo"' ], 304 ],
+			'Weak If-None-Match with strong matching etag' =>
+				[ [ 'If-None-Match' => 'W/"foo"' ], [ 'etag' => '"foo"' ], 304 ],
+			'Weak If-None-Match with weak matching etag' =>
+				[ [ 'If-None-Match' => 'W/"foo"' ], [ 'etag' => 'W/"foo"' ], 304 ],
 
-			// Pointless, but supported
-			[ [ 'If-None-Match' => '*' ], [], 304 ],
+			// Pointless for GET, but supported
+			'If-None-Match: *' => [ [ 'If-None-Match' => '*' ], [], 304 ],
 
 			// Basic If-Modified-Since
-			[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
-			[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now ) ], 304 ],
-			[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now + 1 ) ], 200 ],
+			'If-Modified-Since, modified one second earlier' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+			'If-Modified-Since, modified now' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now ) ], 304 ],
+			'If-Modified-Since, modified one second later' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now + 1 ) ], 200 ],
 
 			// If-Modified-Since ignored when If-None-Match is given too
-			[ [ 'If-None-Match' => '""', 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'etag' => '"x"', 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
-			[ [ 'If-None-Match' => '""', 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+			'Non-matching If-None-Match and matching If-Modified-Since' =>
+				[ [ 'If-None-Match' => '""',
+					'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
+					[ 'etag' => '"x"', 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+			'Non-matching If-None-Match and matching If-Modified-Since with no ETag' =>
+				[
+					[
+						'If-None-Match' => '""',
+						'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now )
+					],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ],
+					304
+				],
 
 			// Ignored for POST
-			[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"bar"' ], 200, true ],
-			[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200, true ],
+			'Matching If-None-Match with POST' =>
+				[ [ 'If-None-Match' => '"foo", "bar"' ], [ 'etag' => '"bar"' ], 200,
+					[ 'post' => true ] ],
+			'Matching If-Modified-Since with POST' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200,
+					[ 'post' => true ] ],
 
 			// Other date formats allowed by the RFC
-			[ [ 'If-Modified-Since' => gmdate( 'l, d-M-y H:i:s', $now ) . ' GMT' ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
-			[ [ 'If-Modified-Since' => gmdate( 'D M j H:i:s Y', $now ) ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+			'If-Modified-Since with alternate date format 1' =>
+				[ [ 'If-Modified-Since' => gmdate( 'l, d-M-y H:i:s', $now ) . ' GMT' ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+			'If-Modified-Since with alternate date format 2' =>
+				[ [ 'If-Modified-Since' => gmdate( 'D M j H:i:s Y', $now ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
 
 			// Old browser extension to HTTP/1.0
-			[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) . '; length=123' ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
+			'If-Modified-Since with length' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now ) . '; length=123' ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 304 ],
 
 			// Invalid date formats should be ignored
-			[ [ 'If-Modified-Since' => gmdate( 'Y-m-d H:i:s', $now ) . ' GMT' ],
-				[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+			'If-Modified-Since with invalid date format' =>
+				[ [ 'If-Modified-Since' => gmdate( 'Y-m-d H:i:s', $now ) . ' GMT' ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+			'If-Modified-Since with entirely unparseable date' =>
+				[ [ 'If-Modified-Since' => 'a potato' ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - 1 ) ], 200 ],
+
+			// Anything before $wgSquidMaxage seconds ago should be considered
+			// expired.
+			'If-Modified-Since with Squid post-expiry' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage * 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+					200, [ 'squid' => true ] ],
+			'If-Modified-Since with Squid pre-expiry' =>
+				[ [ 'If-Modified-Since' => wfTimestamp( TS_RFC2822, $now - $wgSquidMaxage / 2 ) ],
+					[ 'last-modified' => wfTimestamp( TS_MW, $now - $wgSquidMaxage * 3 ) ],
+					304, [ 'squid' => true ] ],
 		];
 	}
 
@@ -277,9 +490,115 @@ class ApiMainTest extends ApiTestCase {
 		];
 	}
 
-	/**
-	 * @covers ApiMain::lacksSameOriginSecurity
-	 */
+	public function testCheckExecutePermissionsReadProhibited() {
+		$this->setExpectedException( ApiUsageException::class,
+			'You need read permission to use this module.' );
+
+		$this->setGroupPermissions( '*', 'read', false );
+
+		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
+		$main->execute();
+	}
+
+	public function testCheckExecutePermissionWriteDisabled() {
+		$this->setExpectedException( ApiUsageException::class,
+			'Editing of this wiki through the API is disabled. Make sure the ' .
+			'"$wgEnableWriteAPI=true;" statement is included in the wiki\'s ' .
+			'"LocalSettings.php" file.' );
+		$main = new ApiMain( new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'Some page',
+			'text' => 'Some text',
+			'token' => '+\\',
+		] ) );
+		$main->execute();
+	}
+
+	public function testCheckExecutePermissionWriteApiProhibited() {
+		$this->setExpectedException( ApiUsageException::class,
+			"You're not allowed to edit this wiki through the API." );
+		$this->setGroupPermissions( '*', 'writeapi', false );
+
+		$main = new ApiMain( new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'Some page',
+			'text' => 'Some text',
+			'token' => '+\\',
+		] ), /* enableWrite = */ true );
+		$main->execute();
+	}
+
+	public function testCheckExecutePermissionPromiseNonWrite() {
+		$this->setExpectedException( ApiUsageException::class,
+			'The "Promise-Non-Write-API-Action" HTTP header cannot be sent ' .
+			'to write-mode API modules.' );
+
+		$req = new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'Some page',
+			'text' => 'Some text',
+			'token' => '+\\',
+		] );
+		$req->setHeaders( [ 'Promise-Non-Write-API-Action' => '1' ] );
+		$main = new ApiMain( $req, /* enableWrite = */ true );
+		$main->execute();
+	}
+
+	public function testCheckExecutePermissionHookAbort() {
+		$this->setExpectedException( ApiUsageException::class, 'Main Page' );
+
+		$this->setTemporaryHook( 'ApiCheckCanExecute', function ( $unused1, $unused2, &$message ) {
+			$message = 'mainpage';
+			return false;
+		} );
+
+		$main = new ApiMain( new FauxRequest( [
+			'action' => 'edit',
+			'title' => 'Some page',
+			'text' => 'Some text',
+			'token' => '+\\',
+		] ), /* enableWrite = */ true );
+		$main->execute();
+	}
+
+	// @todo How to get this to work without printing to console?
+	/*
+	public function testSetRequestExpectations() {
+		$req = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
+		$req->setRequestURL( 'http://localhost/wiki/' );
+
+		$api = new ApiMain( $req );
+		$wrapper = TestingAccessWrapper::newFromObject( $api );
+		$wrapper->mInternalMode = false;
+
+		$wrapper->execute();
+	}
+	*/
+
+	public function testGetValUnsupportedArray() {
+		$main = new ApiMain( new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'siprop' => [ 'general', 'namespaces' ],
+		] ) );
+		$this->assertSame( 'myDefault', $main->getVal( 'foo', 'myDefault' ) );
+		$main->execute();
+		$this->assertSame( 'Parameter "siprop" uses unsupported PHP array syntax.',
+			$main->getResult()->getResultData()['warnings']['main']['warnings'] );
+	}
+
+	public function testReportUnusedParams() {
+		$main = new ApiMain( new FauxRequest( [
+			'action' => 'query',
+			'meta' => 'siteinfo',
+			'unusedparam' => 'unusedval',
+			'anotherunusedparam' => 'anotherval',
+		] ) );
+		$main->execute();
+		$this->assertSame( 'Unrecognized parameters: unusedparam, anotherunusedparam.',
+			$main->getResult()->getResultData()['warnings']['main']['warnings'] );
+	}
+
 	public function testLacksSameOriginSecurity() {
 		// Basic test
 		$main = new ApiMain( new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] ) );
@@ -309,7 +628,7 @@ class ApiMainTest extends ApiTestCase {
 
 	/**
 	 * Test proper creation of the ApiErrorFormatter
-	 * @covers ApiMain::__construct
+	 *
 	 * @dataProvider provideApiErrorFormatterCreation
 	 * @param array $request Request parameters
 	 * @param array $expect Expected data
@@ -443,8 +762,6 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers ApiMain::errorMessagesFromException
-	 * @covers ApiMain::substituteResultWithError
 	 * @dataProvider provideExceptionErrors
 	 * @param Exception $exception
 	 * @param array $expectReturn
