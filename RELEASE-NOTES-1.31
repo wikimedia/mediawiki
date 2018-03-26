@@ -332,7 +332,7 @@ Oracle and Microsoft SQL Server.
 The supported versions are:
 
 * MySQL 5.0.3 or later
-* PostgreSQL 8.3 or later
+* PostgreSQL 9.2 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
 * Microsoft SQL Server 2005 (9.00.1399)
