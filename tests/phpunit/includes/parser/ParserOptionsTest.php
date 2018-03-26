@@ -25,17 +25,16 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
-		global $wgHooks;
-
 		parent::setUp();
 		self::clearCache();
 
 		$this->setMwGlobals( [
 			'wgRenderHashAppend' => '',
-			'wgHooks' => [
-				'PageRenderingHash' => [],
-			] + $wgHooks,
 		] );
+
+		// This is crazy, but registering false, null, or other falsey values
+		// as a hook callback "works".
+		$this->setTemporaryHook( 'PageRenderingHash', null );
 	}
 
 	protected function tearDown() {
@@ -84,17 +83,13 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	 * @param string $expect Expected value
 	 * @param array $options Options to set
 	 * @param array $globals Globals to set
+	 * @param callable|null $hookFunc PageRenderingHash hook function
 	 */
-	public function testOptionsHash( $usedOptions, $expect, $options, $globals = [] ) {
-		global $wgHooks;
-
-		$globals += [
-			'wgHooks' => [],
-		];
-		$globals['wgHooks'] += [
-			'PageRenderingHash' => [],
-		] + $wgHooks;
+	public function testOptionsHash(
+		$usedOptions, $expect, $options, $globals = [], $hookFunc = null
+	) {
 		$this->setMwGlobals( $globals );
+		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc );
 
 		$popt = ParserOptions::newCanonical();
 		foreach ( $options as $name => $value ) {
@@ -129,12 +124,48 @@ class ParserOptionsTest extends MediaWikiTestCase {
 				[],
 				'canonical!wgRenderHashAppend!onPageRenderingHash',
 				[],
-				[
-					'wgRenderHashAppend' => '!wgRenderHashAppend',
-					'wgHooks' => [ 'PageRenderingHash' => [ [ __CLASS__ . '::onPageRenderingHash' ] ] ],
-				]
+				[ 'wgRenderHashAppend' => '!wgRenderHashAppend' ],
+				[ __CLASS__ . '::onPageRenderingHash' ],
 			],
 		];
+	}
+
+	public function testUsedLazyOptionsInHash() {
+		$this->setTemporaryHook( 'ParserOptionsRegister',
+			function ( &$defaults, &$inCacheKey, &$lazyOptions ) {
+				$lazyFuncs = $this->getMockBuilder( stdClass::class )
+					->setMethods( [ 'neverCalled', 'calledOnce' ] )
+					->getMock();
+				$lazyFuncs->expects( $this->never() )->method( 'neverCalled' );
+				$lazyFuncs->expects( $this->once() )->method( 'calledOnce' )->willReturn( 'value' );
+
+				$defaults += [
+					'opt1' => null,
+					'opt2' => null,
+					'opt3' => null,
+				];
+				$inCacheKey += [
+					'opt1' => true,
+					'opt2' => true,
+				];
+				$lazyOptions += [
+					'opt1' => [ $lazyFuncs, 'calledOnce' ],
+					'opt2' => [ $lazyFuncs, 'neverCalled' ],
+					'opt3' => [ $lazyFuncs, 'neverCalled' ],
+				];
+			}
+		);
+
+		self::clearCache();
+
+		$popt = ParserOptions::newCanonical();
+		$popt->registerWatcher( function () {
+			$this->fail( 'Watcher should not have been called' );
+		} );
+		$this->assertSame( 'opt1=value', $popt->optionsHash( [ 'opt1', 'opt3' ] ) );
+
+		// Second call to see that opt1 isn't resolved a second time
+		$this->assertSame( 'opt1=value', $popt->optionsHash( [ 'opt1', 'opt3' ] ) );
 	}
 
 	public static function onPageRenderingHash( &$confstr ) {
@@ -192,10 +223,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public function testAllCacheVaryingOptions() {
-		global $wgHooks;
-
-		// $wgHooks is already saved in self::setUp(), so we can modify it freely here
-		$wgHooks['ParserOptionsRegister'] = [];
+		$this->setTemporaryHook( 'ParserOptionsRegister', null );
 		$this->assertSame( [
 			'dateformat', 'numberheadings', 'printable', 'stubthreshold',
 			'thumbsize', 'userlang'
@@ -203,7 +231,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 		self::clearCache();
 
-		$wgHooks['ParserOptionsRegister'][] = function ( &$defaults, &$inCacheKey ) {
+		$this->setTemporaryHook( 'ParserOptionsRegister', function ( &$defaults, &$inCacheKey ) {
 			$defaults += [
 				'foo' => 'foo',
 				'bar' => 'bar',
@@ -213,7 +241,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 				'foo' => true,
 				'bar' => false,
 			];
-		};
+		} );
 		$this->assertSame( [
 			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
 			'thumbsize', 'userlang'
