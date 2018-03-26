@@ -1275,9 +1275,17 @@ class ParserOptions {
 	public function optionsHash( $forOptions, $title = null ) {
 		global $wgRenderHashAppend;
 
+		$inCacheKey = self::allCacheVaryingOptions();
+
+		// Resolve any lazy options
+		foreach ( array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) ) as $k ) {
+			if ( $this->options[$k] === null ) {
+				$this->options[$k] = call_user_func( self::$lazyOptions[$k], $this, $k );
+			}
+		}
+
 		$options = $this->options;
 		$defaults = self::getCanonicalOverrides() + self::getDefaults();
-		$inCacheKey = self::$inCacheKey;
 
 		// We only include used options with non-canonical values in the key
 		// so adding a new option doesn't invalidate the entire parser cache.
@@ -1285,13 +1293,11 @@ class ParserOptions {
 		// requires manual invalidation of existing cache entries, as mentioned
 		// in the docs on the relevant methods and hooks.
 		$values = [];
-		foreach ( $inCacheKey as $option => $include ) {
-			if ( $include && in_array( $option, $forOptions, true ) ) {
-				$v = $this->optionToString( $options[$option] );
-				$d = $this->optionToString( $defaults[$option] );
-				if ( $v !== $d ) {
-					$values[] = "$option=$v";
-				}
+		foreach ( array_intersect( $inCacheKey, $forOptions ) as $option ) {
+			$v = $this->optionToString( $options[$option] );
+			$d = $this->optionToString( $defaults[$option] );
+			if ( $v !== $d ) {
+				$values[] = "$option=$v";
 			}
 		}
 
