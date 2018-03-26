@@ -26,7 +26,6 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
@@ -1147,14 +1146,16 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		Hooks::run( 'PageViewUpdates', [ $this, $user ] );
-		// Update newtalk / watchlist notification status
-		try {
-			$user->clearNotification( $this->mTitle, $oldid );
-		} catch ( DBError $e ) {
-			// Avoid outage if the master is not reachable
-			MWExceptionHandler::logException( $e );
-		}
+		// Update newtalk / watchlist notification status;
+		// Avoid outage if the master is not reachable by using a deferred updated
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $user, $oldid ) {
+				Hooks::run( 'PageViewUpdates', [ $this, $user ] );
+
+				$user->clearNotification( $this->mTitle, $oldid );
+			},
+			DeferredUpdates::PRESEND
+		);
 	}
 
 	/**
