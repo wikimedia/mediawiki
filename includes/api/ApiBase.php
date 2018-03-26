@@ -692,7 +692,7 @@ abstract class ApiBase extends ContextSource {
 	 * Set the continuation manager
 	 * @param ApiContinuationManager|null $manager
 	 */
-	public function setContinuationManager( $manager ) {
+	public function setContinuationManager( ApiContinuationManager $manager = null ) {
 		// Main module has setContinuationManager() method overridden
 		// Safety - avoid infinite loop:
 		if ( $this->isMain() ) {
