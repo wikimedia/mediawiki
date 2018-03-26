@@ -368,19 +368,12 @@ class ApiMain extends ApiBase {
 	 * Set the continuation manager
 	 * @param ApiContinuationManager|null $manager
 	 */
-	public function setContinuationManager( $manager ) {
-		if ( $manager !== null ) {
-			if ( !$manager instanceof ApiContinuationManager ) {
-				throw new InvalidArgumentException( __METHOD__ . ': Was passed ' .
-					is_object( $manager ) ? get_class( $manager ) : gettype( $manager )
-				);
-			}
-			if ( $this->mContinuationManager !== null ) {
-				throw new UnexpectedValueException(
-					__METHOD__ . ': tried to set manager from ' . $manager->getSource() .
-					' when a manager is already set from ' . $this->mContinuationManager->getSource()
-				);
-			}
+	public function setContinuationManager( ApiContinuationManager $manager = null ) {
+		if ( $manager !== null && $this->mContinuationManager !== null ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ': tried to set manager from ' . $manager->getSource() .
+				' when a manager is already set from ' . $this->mContinuationManager->getSource()
+			);
 		}
 		$this->mContinuationManager = $manager;
 	}
@@ -1199,9 +1192,12 @@ class ApiMain extends ApiBase {
 		// Instantiate the module requested by the user
 		$module = $this->mModuleMgr->getModule( $this->mAction, 'action' );
 		if ( $module === null ) {
+			// Probably can't happen
+			// @codeCoverageIgnoreStart
 			$this->dieWithError(
 				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ], 'unknown_action'
 			);
+			// @codeCoverageIgnoreEnd
 		}
 		$moduleParams = $module->extractRequestParams();
 
@@ -1220,7 +1216,10 @@ class ApiMain extends ApiBase {
 			}
 
 			if ( !isset( $moduleParams['token'] ) ) {
+				// Probably can't happen
+				// @codeCoverageIgnoreStart
 				$module->dieWithError( [ 'apierror-missingparam', 'token' ] );
+				// @codeCoverageIgnoreEnd
 			}
 
 			$module->requirePostedParameters( [ 'token' ] );
@@ -1433,7 +1432,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
-		$message = false;
+		$message = 'hookaborted';
 		if ( !Hooks::run( 'ApiCheckCanExecute', [ $module, $user, &$message ] ) ) {
 			$this->dieWithError( $message );
 		}
