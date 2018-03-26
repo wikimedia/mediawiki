@@ -48,46 +48,59 @@ class ProfilerOutputDb extends ProfilerOutput {
 	}
 
 	public function log( array $stats ) {
-		$pfhost = $this->perHost ? wfHostname() : '';
-
 		try {
 			$dbw = wfGetDB( DB_MASTER );
-			$useTrx = ( $dbw->getType() === 'sqlite' ); // much faster
-			if ( $useTrx ) {
-				$dbw->startAtomic( __METHOD__ );
-			}
-			foreach ( $stats as $data ) {
-				$name = $data['name'];
-				$eventCount = $data['calls'];
-				$timeSum = (float)$data['real'];
-				$memorySum = (float)$data['memory'];
-				$name = substr( $name, 0, 255 );
-
-				// Kludge
-				$timeSum = $timeSum >= 0 ? $timeSum : 0;
-				$memorySum = $memorySum >= 0 ? $memorySum : 0;
-
-				$dbw->upsert( 'profiling',
-					[
-						'pf_name' => $name,
-						'pf_count' => $eventCount,
-						'pf_time' => $timeSum,
-						'pf_memory' => $memorySum,
-						'pf_server' => $pfhost
-					],
-					[ [ 'pf_name', 'pf_server' ] ],
-					[
-						"pf_count=pf_count+{$eventCount}",
-						"pf_time=pf_time+{$timeSum}",
-						"pf_memory=pf_memory+{$memorySum}",
-					],
-					__METHOD__
-				);
-			}
-			if ( $useTrx ) {
-				$dbw->endAtomic( __METHOD__ );
-			}
 		} catch ( DBError $e ) {
+			return; // ignore
 		}
+
+		$fname = __METHOD__;
+		$dbw->onTransactionIdle( function () use ( $stats, $dbw, $fname ) {
+			$pfhost = $this->perHost ? wfHostname() : '';
+			// Sqlite: avoid excess b-tree rebuilds (mostly for non-WAL mode)
+			// non-Sqlite: lower contention with small transactions
+			$useTrx = ( $dbw->getType() === 'sqlite' );
+
+			try {
+				$useTrx ? $dbw->startAtomic( $fname ) : null;
+
+				foreach ( $stats as $data ) {
+					$name = $data['name'];
+					$eventCount = $data['calls'];
+					$timeSum = (float)$data['real'];
+					$memorySum = (float)$data['memory'];
+					$name = substr( $name, 0, 255 );
+
+					// Kludge
+					$timeSum = $timeSum >= 0 ? $timeSum : 0;
+					$memorySum = $memorySum >= 0 ? $memorySum : 0;
+
+					$dbw->upsert( 'profiling',
+						[
+							'pf_name' => $name,
+							'pf_count' => $eventCount,
+							'pf_time' => $timeSum,
+							'pf_memory' => $memorySum,
+							'pf_server' => $pfhost
+						],
+						[ [ 'pf_name', 'pf_server' ] ],
+						[
+							"pf_count=pf_count+{$eventCount}",
+							"pf_time=pf_time+{$timeSum}",
+							"pf_memory=pf_memory+{$memorySum}",
+						],
+						$fname
+					);
+				}
+			} catch ( DBError $e ) {
+				// ignore
+			}
+
+			try {
+				$useTrx ? $dbw->endAtomic( $fname ) : null;
+			} catch ( DBError $e ) {
+				// ignore
+			}
+		} );
 	}
 }
