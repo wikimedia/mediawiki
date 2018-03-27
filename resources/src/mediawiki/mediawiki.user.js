@@ -4,7 +4,7 @@
  */
 /* global Uint32Array */
 ( function ( mw, $ ) {
-	var userInfoPromise;
+	var userInfoPromise, stickyRandomSessionId;
 
 	/**
 	 * Get the current user's groups or rights
@@ -48,7 +48,7 @@
 				// Support: IE 11
 				crypto = window.crypto || window.msCrypto;
 
-			if ( crypto && crypto.getRandomValues ) {
+			if ( crypto && crypto.getRandomValues && typeof Uint32Array === 'function' ) {
 				// Fill an array with 2 random values, each of which is 32 bits.
 				// Note that Uint32Array is array-like but does not implement Array.
 				rnds = new Uint32Array( 2 );
@@ -69,6 +69,20 @@
 			// Concatenation of two random integers with entropy n and m
 			// returns a string with entropy n+m if those strings are independent
 			return hexRnds.join( '' );
+		},
+
+		/**
+		 * A sticky generateRandomSessionId for the current JS execution context,
+		 * cached within this class.
+		 *
+		 * @return {string} 64 bit integer in hex format, padded
+		 */
+		stickyRandomId: function () {
+			if ( !stickyRandomSessionId ) {
+				stickyRandomSessionId = mw.user.generateRandomSessionId();
+			}
+
+			return stickyRandomSessionId;
 		},
 
 		/**
