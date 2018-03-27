@@ -24,7 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that migrates archive.ar_text and ar_flags to modern storage
+ * Maintenance script that migrates archive.ar_text and ar_flags to text storage
  *
  * @ingroup Maintenance
  * @since 1.31
@@ -33,7 +33,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
-			'Migrates comments from pre-1.5 ar_text and ar_flags columns to modern storage'
+			'Migrates content from pre-1.5 ar_text and ar_flags columns to text storage'
 		);
 		$this->addOption(
 			'replace-missing',
