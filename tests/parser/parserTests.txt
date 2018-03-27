@@ -1257,6 +1257,7 @@ Ruby markup (W3C-style)
 :<ruby>東<rb>京</rb><rp>(</rp><rt>とう</rt><rt>きょう</rt><rp>)</rp></ruby>
 ;Double-sided ruby
 :<ruby><rb>旧</rb><rb>金</rb><rb>山</rb><rt>jiù</rt><rt>jīn</rt><rt>shān</rt><rtc>San Francisco</rtc></ruby>
+
 <ruby>
 <rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang="fr"><rt>Cœur</rt></rtc>
 <rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang="fr"><rt>Trèfle</rt></rtc>
@@ -3869,6 +3870,7 @@ Definition and unordered list using wiki syntax nested in unordered list using h
 Definition list with empty definition and following paragraph
 !! wikitext
 ;term:
+
 Paragraph text
 !! html
 <dl><dt>term</dt>
@@ -3955,6 +3957,29 @@ should be left alone
 <p>this text
 should be left alone
 </p>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables (with content following table)
+!! wikitext
+:{|
+|foo
+|bar
+|} <!--c1--> this text should be part of the dl
+!! html/php+tidy
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></tbody></table>  this text should be part of the dl</dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></tbody></table> <!--c1--> this text should be part of the dl</dd></dl>
 !! end
 
 !! test
@@ -4050,9 +4075,11 @@ Table / list interaction: indented table with lists in table contents
 :{|
 |-
 |a
+
 *b
 |-
 |c
+
 *d
 |}
 !! html
@@ -5543,6 +5570,7 @@ IPv6 urls, autolink format (T23261)
 http://[2404:130:0:1000::187:2]/index.php
 
 Examples from RFC 2373, section 2.2:
+
 *http://[1080::8:800:200C:417A]/unicast
 *http://[FF01::101]/multicast
 *http://[::1]/loopback
@@ -5551,6 +5579,7 @@ Examples from RFC 2373, section 2.2:
 *http://[::FFFF:129.144.52.38]/ipv4compat
 
 Examples from RFC 2732, section 2:
+
 *http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html
 *http://[1080:0:0:0:8:800:200C:417A]/index.html
 *http://[3ffe:2a00:100:7031::1]
@@ -5558,7 +5587,6 @@ Examples from RFC 2732, section 2:
 *http://[::192.9.5.5]/ipng
 *http://[::FFFF:129.144.52.38]:80/index.html
 *http://[2010:836B:4179::836B:4179]
-
 !! html/php
 <p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a>
 </p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
@@ -5606,6 +5634,7 @@ IPv6 urls, bracketed format (T23261)
 [http://[2404:130:0:1000::187:2]/index.php test]
 
 Examples from RFC 2373, section 2.2:
+
 *[http://[1080::8:800:200C:417A] unicast]
 *[http://[FF01::101] multicast]
 *[http://[::1]/ loopback]
@@ -5614,6 +5643,7 @@ Examples from RFC 2373, section 2.2:
 *[http://[::FFFF:129.144.52.38] ipv4compat]
 
 Examples from RFC 2732, section 2:
+
 *[http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html 1]
 *[http://[1080:0:0:0:8:800:200C:417A]/index.html 2]
 *[http://[3ffe:2a00:100:7031::1] 3]
@@ -5621,7 +5651,6 @@ Examples from RFC 2732, section 2:
 *[http://[::192.9.5.5]/ipng 5]
 *[http://[::FFFF:129.144.52.38]:80/index.html 6]
 *[http://[2010:836B:4179::836B:4179] 7]
-
 !! html/php
 <p><a rel="nofollow" class="external text" href="http://[2404:130:0:1000::187:2]/index.php">test</a>
 </p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
@@ -9229,6 +9258,7 @@ language=is
 Redirect syntax under text isn't considered a redirect
 !! wikitext
 some text
+
 #redirect [[Main Page]]
 !! html/parsoid
 <p>some text</p>
@@ -9502,6 +9532,7 @@ Numbered list
 
 !! end
 
+# the switch from level 3 to ordered should not introduce a newline between
 !! test
 Mixed list
 !! wikitext
@@ -9864,8 +9895,10 @@ parsoid
 !! wikitext
 #foo
 ##bar
+
 *foo
 **bar
+
 :foo
 ::bar
 !! html
@@ -16482,10 +16515,10 @@ parsoid=wt2html
 <h4 id="Level_4_Heading" data-parsoid='{}'>Level 4 Heading</h4>
 <h5 id="Level_5_Heading" data-parsoid='{}'>Level 5 Heading</h5>
 <h6 id="Level_6_Heading" data-parsoid='{}'>Level 6 Heading</h6>
-<h6 id="=Level_7_Heading=" data-parsoid='{}'><span id=".3D_Level_7_Heading.3D" typeof="mw:FallbackId"></span>=Level 7 Heading=</h6>
-<h6 id="==Level_8_Heading==" data-parsoid='{}'><span id=".3D.3D_Level_8_Heading.3D.3D" typeof="mw:FallbackId"></span>==Level 8 Heading==</h6>
-<h6 id="===Level_9_Heading===" data-parsoid='{}'><span id=".3D.3D.3D_Level_9_Heading.3D.3D.3D" typeof="mw:FallbackId"></span>===Level 9 Heading===</h6>
-<h6 id="====Level_10_Heading====" data-parsoid='{}'><span id=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D" typeof="mw:FallbackId"></span>====Level 10 Heading====</h6>
+<h6 id="=Level_7_Heading=" data-parsoid='{}'><span id=".3DLevel_7_Heading.3D" typeof="mw:FallbackId"></span>=Level 7 Heading=</h6>
+<h6 id="==Level_8_Heading==" data-parsoid='{}'><span id=".3D.3DLevel_8_Heading.3D.3D" typeof="mw:FallbackId"></span>==Level 8 Heading==</h6>
+<h6 id="===Level_9_Heading===" data-parsoid='{}'><span id=".3D.3D.3DLevel_9_Heading.3D.3D.3D" typeof="mw:FallbackId"></span>===Level 9 Heading===</h6>
+<h6 id="====Level_10_Heading====" data-parsoid='{}'><span id=".3D.3D.3D.3DLevel_10_Heading.3D.3D.3D.3D" typeof="mw:FallbackId"></span>====Level 10 Heading====</h6>
 !! end
 
 !! test
@@ -24755,6 +24788,7 @@ Empty LI and TR nodes should not be stripped from top-level content
 * a
 *
 * b
+
 {|
 |-
 |-
@@ -29424,6 +29458,64 @@ y
 }}
 !! end
 
+!! test
+New list is serialized on newlines
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>The quick brown fox jumps over the lazy dog.</p><ul>
+<li>Yesterday</li>
+<li>Today</li>
+<li>Tomorrow</li>
+</ul><p>The quick onyx goblin jumps over the lazy dwarf.</p>
+!! wikitext
+The quick brown fox jumps over the lazy dog.
+
+* Yesterday
+* Today
+* Tomorrow
+
+The quick onyx goblin jumps over the lazy dwarf.
+!! end
+
+!! test
+New lists in formatting elements serialized w/o newlines
+!! options
+parsoid=html2wt
+!! html/parsoid
+<small>
+
+<ul>
+<li>123</li>
+</ul>
+
+</small>
+
+<small><ul><li>hi</li></ul></small>
+!! wikitext
+<small>
+* 123
+</small>
+
+<small>
+* hi
+</small>
+!! end
+
+!! test
+New list in table doesn't need newlines
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tr><td><ul><li>test</li><li>123</li></td></tr></table>
+!! wikitext
+{|
+|
+* test
+* 123
+|}
+!! end
+
 # ---------------------------------------------------
 # End of tests spec'ing wikitext serialization norms |
 # ---------------------------------------------------
@@ -30590,4 +30682,111 @@ foo ''  <!--c1--> italic <!--c2-->   '' and '''  <!--c3-->  bold  <!--c4-->  '''
 <p>foo <i>   italic    </i> and <b>    bold    </b>
 <a href="/wiki/Foo" title="Foo">  some text  </a>
 </p>
+!! end
+
+!! test
+Remove p tags surrounding a single element in a figcaption
+!! options
+parsoid=html2wt
+!! wikitext
+[[File:Foobar.jpg|right|200x200px|Caption]]
+!! html/parsoid
+<figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption><p>Caption</p></figcaption></figure>
+!! end
+
+!! test
+Selser preserves lack of newline before list and allows newline after the list
+!! options
+parsoid={
+  "modes": ["selser"],
+  "scrubWikitext": true,
+  "changes": [
+    [ "ul", "after", "<p>footer</p>" ]
+  ]
+}
+!! wikitext
+header
+*foo
+*bar
+!! wikitext/edited
+header
+*foo
+*bar
+
+footer
+!! end
+
+
+!! test
+Selser does not introduce newlines between unedited paragraph preceding the list
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    [ "table tbody tr td p:last-child", "empty" ]
+  ]
+}
+!! wikitext
+{|
+|
+header
+*foo
+*bar
+footer
+|}
+!! wikitext/edited
+{|
+|
+header
+*foo
+*bar
+
+|}
+!! end
+
+!! test
+Selser does not introduce newlines between unedited paragraph following the list
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+    [ "table tbody tr td p:first-child", "empty" ]
+  ]
+}
+!! wikitext
+{|
+|
+header
+*foo
+*bar
+footer
+|}
+!! wikitext/edited
+{|
+|
+
+*foo
+*bar
+footer
+|}
+!! end
+
+!! test
+Remove a list item but do not insert newline above list
+!! options
+parsoid={
+  "modes": ["selser"],
+  "changes": [
+     [ "ul li:last-child", "remove" ]
+  ]
+}
+!! wikitext
+header
+*foo
+*bar
+footer
+!! wikitext/edited
+header
+*foo
+footer
 !! end
