@@ -243,12 +243,6 @@ class ApiParse extends ApiBase {
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
 				$result_array = [];
-				if ( $this->contentIsDeleted ) {
-					$result_array['textdeleted'] = true;
-				}
-				if ( $this->contentIsSuppressed ) {
-					$result_array['textsuppressed'] = true;
-				}
 				$result_array['text'] = $this->pstContent->serialize( $format );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 				if ( isset( $prop['wikitext'] ) ) {
@@ -400,8 +394,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
-			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?:
-				$titleObj->getPrefixedText();
+			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
+				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
 		}
 
 		if ( isset( $prop['headitems'] ) ) {
@@ -490,12 +484,7 @@ class ApiParse extends ApiBase {
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $this->content->getNativeData() );
-			if ( is_callable( [ $dom, 'saveXML' ] ) ) {
-				$xml = $dom->saveXML();
-			} else {
-				$xml = $dom->__toString();
-			}
+			$xml = $wgParser->preprocessToDom( $this->content->getNativeData() )->__toString();
 			$result_array['parsetree'] = $xml;
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
@@ -578,7 +567,7 @@ class ApiParse extends ApiBase {
 			} else {
 				$this->content = $page->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 				if ( !$this->content ) {
-					$this->dieWithError( [ 'apierror-missingcontent-pageid', $pageId ] );
+					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ] );
 				}
 			}
 			$this->contentIsDeleted = $isDeleted;
@@ -602,7 +591,7 @@ class ApiParse extends ApiBase {
 			$pout = $page->getParserOutput( $popts, $revId, $suppressCache );
 		}
 		if ( !$pout ) {
-			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] );
+			$this->dieWithError( [ 'apierror-nosuchrevid', $revId ?: $page->getLatest() ] ); // @codeCoverageIgnore
 		}
 
 		return $pout;
