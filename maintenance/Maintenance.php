@@ -1208,15 +1208,18 @@ abstract class Maintenance {
 			}
 			define( 'MW_DB', $bits[0] );
 			define( 'MW_PREFIX', $bits[1] );
+		} elseif ( isset( $this->mOptions['server'] ) ) {
+			// Provide the option for site admins to detect and configure
+			// multiple wikis based on server names. This offers --server
+			// as alternative to --wiki.
+			// See https://www.mediawiki.org/wiki/Manual:Wiki_family
+			$_SERVER['SERVER_NAME'] = $this->mOptions['server'];
 		}
 
 		if ( !is_readable( $settingsFile ) ) {
 			$this->fatalError( "A copy of your installation's LocalSettings.php\n" .
 				"must exist and be readable in the source directory.\n" .
 				"Use --conf to specify it." );
-		}
-		if ( isset( $this->mOptions['server'] ) ) {
-			$_SERVER['SERVER_NAME'] = $this->mOptions['server'];
 		}
 		$wgCommandLineMode = true;
 
