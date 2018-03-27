@@ -591,26 +591,22 @@ CREATE TABLE /*_*/site_stats (
   ss_row_id int NOT NULL CONSTRAINT /*i*/ss_row_id PRIMARY KEY,
 
   -- Total number of edits performed.
-  ss_total_edits bigint default 0,
+  ss_total_edits bigint default NULL,
 
-  -- An approximate count of pages matching the following criteria:
-  -- * in namespace 0
-  -- * not a redirect
-  -- * contains the text '[['
-  -- See Article::isCountable() in includes/Article.php
-  ss_good_articles bigint default 0,
+  -- See SiteStatsInit::articles().
+  ss_good_articles bigint default NULL,
 
-  -- Total pages, theoretically equal to SELECT COUNT(*) FROM page; except faster
-  ss_total_pages bigint default '-1',
+  -- Total pages, theoretically equal to SELECT COUNT(*) FROM page.
+  ss_total_pages bigint default NULL,
 
-  -- Number of users, theoretically equal to SELECT COUNT(*) FROM user;
-  ss_users bigint default '-1',
+  -- Number of users, theoretically equal to SELECT COUNT(*) FROM user.
+  ss_users bigint default NULL,
 
-  -- Number of users that still edit
-  ss_active_users bigint default '-1',
+  -- Number of users that still edit.
+  ss_active_users bigint default NULL,
 
-  -- Number of images, equivalent to SELECT COUNT(*) FROM image
-  ss_images int default 0
+  -- Number of images, equivalent to SELECT COUNT(*) FROM image.
+  ss_images bigint default NULL
 );
 
 
