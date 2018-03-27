@@ -98,14 +98,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		if ( isset( $this->data['nav_urls']['permalink'] ) && $this->data['nav_urls']['permalink'] ) {
 			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];
-			if ( $toolbox['permalink']['href'] === '' ) {
-				unset( $toolbox['permalink']['href'] );
-				$toolbox['ispermalink']['tooltiponly'] = true;
-				$toolbox['ispermalink']['id'] = 't-ispermalink';
-				$toolbox['ispermalink']['msg'] = 'permalink';
-			} else {
-				$toolbox['permalink']['id'] = 't-permalink';
-			}
+			$toolbox['permalink']['id'] = 't-permalink';
 		}
 		if ( isset( $this->data['nav_urls']['info'] ) && $this->data['nav_urls']['info'] ) {
 			$toolbox['info'] = $this->data['nav_urls']['info'];
