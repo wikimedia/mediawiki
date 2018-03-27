@@ -243,6 +243,9 @@ class ApiParse extends ApiBase {
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
 				$result_array = [];
+				// @todo These two conditions seem to be unreachable, because
+				// these flags are only set by getParsedContent, which was not
+				// called.
 				if ( $this->contentIsDeleted ) {
 					$result_array['textdeleted'] = true;
 				}
@@ -400,8 +403,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
-			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?:
-				$titleObj->getPrefixedText();
+			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
+				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
 		}
 
 		if ( isset( $prop['headitems'] ) ) {
