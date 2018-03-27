@@ -572,23 +572,24 @@ CREATE INDEX /*i*/comment_hash ON /*_*/comment (comment_hash);
 
 
 --
--- Holding area for deleted articles, which may be viewed
--- or restored by admins through the Special:Undelete interface.
--- The fields generally correspond to the page, revision, and text
--- fields, with several caveats.
+-- Archive area for deleted pages and their revisions.
+-- These may be viewed (and restored) by admins through the Special:Undelete interface.
 --
 CREATE TABLE /*_*/archive (
   -- Primary key
   ar_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Like page_namespace
   ar_namespace int NOT NULL default 0,
+  -- Like page_title
   ar_title varchar(255) binary NOT NULL default '',
 
-  -- Newly deleted pages will not store text in this table,
-  -- but will reference the separately existing text rows.
-  -- This field is retained for backwards compatibility,
-  -- so old archived pages will remain accessible after
-  -- upgrading from 1.4 to 1.5.
-  -- Text may be gzipped or otherwise funky.
+  -- Like text.old_text for pages deleted before MediaWiki 1.5.
+  -- This row may contain the raw revision text, possibly compressed.
+  -- Newer MediaWiki versions use ar_text_id instead.
+  -- This field is retained for backwards compatibility, so that
+  -- old archived pages will remain accessible.
+  -- See migrateArchiveText.php for migrating values to text storage.
   ar_text mediumblob NOT NULL,
 
   -- Basic revision stuff...
@@ -600,52 +601,61 @@ CREATE TABLE /*_*/archive (
   ar_timestamp binary(14) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default 0,
 
-  -- See ar_text note.
+  -- Like text.old_flags for pages deleted before MediaWiki 1.5.
+  -- Otherwise empty string.
   ar_flags tinyblob NOT NULL,
 
-  -- When revisions are deleted, their unique rev_id is stored
-  -- here so it can be retained after undeletion. This is necessary
-  -- to retain permalinks to given revisions after accidental delete
+  -- Like rev_id.
+  -- Retained after undeletion to revision. This is necessary to
+  -- support permalinks to given revisions after accidental delete
   -- cycles or messy operations like history merges.
   --
-  -- Old entries from 1.4 will be NULL here, and a new rev_id will
-  -- be created on undeletion for those revisions.
+  -- @since 1.5 Entries from 1.4 will be NULL here. When restoring
+  -- archive rows from before 1.5, a new rev_id is created.
   ar_rev_id int unsigned,
 
-  -- For newly deleted revisions, this is the text.old_id key to the
-  -- actual stored text. To avoid breaking the block-compression scheme
-  -- and otherwise making storage changes harder, the actual text is
-  -- *not* deleted from the text table, merely hidden by removal of the
-  -- page and revision entries.
+  -- Like rev_text_id and text.old_id.
+  -- To avoid breaking the block-compression scheme and otherwise making
+  -- storage changes harder, the actual text is *not* deleted from the
+  -- text storage. Instead, it is merely hidden from public view, by removal
+  -- of the page and revision entries.
   --
-  -- Old entries deleted under 1.2-1.4 will have NULL here, and their
-  -- ar_text and ar_flags fields will be used to create a new text
-  -- row upon undeletion.
+  -- @since 1.5 Entries from 1.2-1.4 will have NULL here. When restoring
+  -- archive rows without this, ar_text and ar_flags are used instead.
   ar_text_id int unsigned,
 
-  -- rev_deleted for archives
+  -- Like rev_deleted. Although this can be independently mutated to
+  -- further suppress content (which is also hidden from admins by default).
+  -- @since 1.10
   ar_deleted tinyint unsigned NOT NULL default 0,
 
-  -- Length of this revision in bytes
+  -- Like rev_len, length of this revision in bytes.
+  -- @since 1.10
   ar_len int unsigned,
 
-  -- Reference to page_id. Useful for sysadmin fixing of large pages
-  -- merged together in the archives, or for cleanly restoring a page
-  -- at its original ID number if possible.
+  -- Like page_id.
+  -- Can be used for manually undeletion by developers if multiple pages
+  -- by the same name were deleted. Restoration will attempt to use this
+  -- as page ID if no current page with the same name exists.
+  -- Otherwise, the revisions will be restored under the current page.
   --
-  -- Will be NULL for pages deleted prior to 1.11.
+  -- @since 1.11 Older entries will have NULL.
   ar_page_id int unsigned,
 
-  -- Original previous revision
+  -- Like rev_parent_id, the original previous revision.
+  -- @since 1.13
   ar_parent_id int unsigned default NULL,
 
-  -- SHA-1 text content hash in base-36
+  -- Like rev_sha1, SHA-1 text content hash in base-36
+  -- @since 1.19
   ar_sha1 varbinary(32) NOT NULL default '',
 
-  -- content model, see CONTENT_MODEL_XXX constants
+  -- Like rev_content_model, see CONTENT_MODEL_XXX constants
+  -- @since 1.21
   ar_content_model varbinary(32) DEFAULT NULL,
 
-  -- content format, see CONTENT_FORMAT_XXX constants
+  -- Like rev_content_format, see CONTENT_FORMAT_XXX constants
+  -- @since 1.21
   ar_content_format varbinary(64) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
