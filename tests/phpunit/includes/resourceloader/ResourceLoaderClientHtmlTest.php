@@ -225,7 +225,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 	public function testGetHeadHtmlWithTarget() {
 		$client = new ResourceLoaderClientHtml(
 			self::makeContext(),
-			'example'
+			[ 'target' => 'example' ]
 		);
 
 		// phpcs:disable Generic.Files.LineLength
@@ -244,7 +244,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 	public function testGetHeadHtmlWithNullTarget() {
 		$client = new ResourceLoaderClientHtml(
 			self::makeContext(),
-			null
+			[ 'target' => null ]
 		);
 
 		// phpcs:disable Generic.Files.LineLength
