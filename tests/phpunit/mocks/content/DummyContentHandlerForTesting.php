@@ -2,8 +2,8 @@
 
 class DummyContentHandlerForTesting extends ContentHandler {
 
-	public function __construct( $dataModel ) {
-		parent::__construct( $dataModel, [ DummyContentForTesting::MODEL_ID ] );
+	public function __construct( $dataModel, $formats = [ DummyContentForTesting::MODEL_ID ] ) {
+		parent::__construct( $dataModel, $formats );
 	}
 
 	/**
