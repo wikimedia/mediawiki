@@ -2788,7 +2788,9 @@ class OutputPage extends ContextSource {
 				$this->rlUserModuleState = $exemptStates['user'] = $userState;
 			}
 
-			$rlClient = new ResourceLoaderClientHtml( $context, $this->getTarget() );
+			$rlClient = new ResourceLoaderClientHtml( $context, [
+				'target' => $this->getTarget(),
+			] );
 			$rlClient->setConfig( $this->getJSVars() );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
 			$rlClient->setModuleStyles( $moduleStyles );

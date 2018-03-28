@@ -218,6 +218,44 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Confirm that 'target' is passed down to the startup module's load url.
+	 *
+	 * @covers ResourceLoaderClientHtml::getHeadHtml
+	 */
+	public function testGetHeadHtmlWithTarget() {
+		$client = new ResourceLoaderClientHtml(
+			self::makeContext(),
+			[ 'target' => 'example' ]
+		);
+
+		// phpcs:disable Generic.Files.LineLength
+		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
+		// phpcs:enable
+
+		$this->assertEquals( $expected, $client->getHeadHtml() );
+	}
+
+	/**
+	 * Confirm that a null 'target' is the same as no target.
+	 *
+	 * @covers ResourceLoaderClientHtml::getHeadHtml
+	 */
+	public function testGetHeadHtmlWithNullTarget() {
+		$client = new ResourceLoaderClientHtml(
+			self::makeContext(),
+			[ 'target' => null ]
+		);
+
+		// phpcs:disable Generic.Files.LineLength
+		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
+		// phpcs:enable
+
+		$this->assertEquals( $expected, $client->getHeadHtml() );
+	}
+
+	/**
 	 * @covers ResourceLoaderClientHtml::getBodyHtml
 	 * @covers ResourceLoaderClientHtml::getLoad
 	 */
