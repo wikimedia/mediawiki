@@ -26,7 +26,6 @@ class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 		$this->assertTrue( self::$hasRun );
 	}
 
-
 	public function testTableWasCreated() {
 		// Make sure MediaWikiTestCaseTestTable was created.
 		$this->assertTrue( $this->db->tableExists( 'MediaWikiTestCaseTestTable' ) );

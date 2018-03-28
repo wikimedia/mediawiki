@@ -32,18 +32,34 @@ use WikitextContent;
 /**
  * @group Database
  */
-class RevisionStoreDbTest extends MediaWikiTestCase {
+abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
+
+	public function needsDB() {
+		return true;
+	}
+
+	abstract protected function getMcrMigrationStage();
+
+	protected function hasMcrTables() {
+		return $this->db->tableExists( 'slots', __METHOD__ );
+	}
+
+	protected function hasPreMcrFields() {
+		return $this->db->fieldExists( 'revision', 'rev_content_model', __METHOD__ );
+	}
 
 	public function setUp() {
 		parent::setUp();
 		$this->tablesUsed[] = 'archive';
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
-		$this->tablesUsed[] = 'content';
-		$this->tablesUsed[] = 'content_models';
-		$this->tablesUsed[] = 'slots';
-		$this->tablesUsed[] = 'slot_roles';
 		$this->tablesUsed[] = 'comment';
+
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			$this->getMcrMigrationStage()
+		);
+		$this->overrideMwServices();
 	}
 
 	/**
@@ -140,7 +156,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getCommentStore(),
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
-			MIGRATION_OLD,
+			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			$wikiId
 		);
@@ -245,11 +261,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	private function getRandomCommentStoreComment() {
-		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
-	}
-
-	public function provideInsertRevisionOn_successes_internal() {
+	public function provideInsertRevisionOn_successes() {
 		yield 'Bare minimum revision insertion' => [
 			Title::newFromText( 'UTPage' ),
 			[
@@ -275,21 +287,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		];
 	}
 
-	public function provideMigrationStates() {
-		return [
-				'MIGRATION_OLD' => [ MIGRATION_OLD ],
-				'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ],
-				'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ],
-				'MIGRATION_NEW' => [ MIGRATION_NEW ],
-			];
-	}
-
-	public function provideInsertRevisionOn_successes() {
-		foreach ( $this->provideMigrationStates() as $stateName => $stateValue ) {
-			foreach ( $this->provideInsertRevisionOn_successes_internal() as $desc => $test ) {
-				yield $desc . ' ' . $stateName => array_merge( $test, $stateValue );
-			}
-		}
+	private function getRandomCommentStoreComment() {
+		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
 	}
 
 	/**
@@ -299,12 +298,11 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 */
 	public function testInsertRevisionOn_successes(
 		Title $title,
-		array $revDetails = [],
-		$migrationStage
+		array $revDetails = []
 	) {
+		$migrationStage = $this->getMcrMigrationStage();
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migrationStage );
 		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
@@ -314,7 +312,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertRevisionCompleteness( $return );
 
 		// If we are writing to the new schema, make sure some expected stuff exists there.
-		if ( $migrationStage >= MIGRATION_WRITE_BOTH ) {
+		if ( $migrationStage >= MIGRATION_WRITE_BOTH ) { // FIXME: push to subclass
 			$this->assertSelect(
 				'slots', [ 'count(*)' ], [ 'slot_revision_id' => $return->getId() ], [ [ '1' ] ]
 			);
@@ -327,11 +325,18 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		}
 	}
 
+	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		$this->assertSelect(
+			'revision', [ 'count(*)' ], [ 'rev_id' => $rev->getId() ], [ [ '1' ] ]
+		);
+	}
+
 	/**
-	 * @dataProvider provideMigrationStates
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
-	public function testInsertRevisionOn_blobAddressExists( $migrationStage ) {
+	public function testInsertRevisionOn_blobAddressExists() {
+		$migrationStage = $this->getMcrMigrationStage();
+
 		$title = Title::newFromText( 'UTPage' );
 		$revDetails = [
 			'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
@@ -341,7 +346,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			'user' => true,
 		];
 
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migrationStage );
 		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -364,15 +368,11 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$secondReturn->getSlot( 'main' )->getAddress()
 		);
 
-		// getContentId will throw a IncompleteRevisionException pre migration as it will have a
-		// value of null. Is this a bug in SlotRecord::getField ?
-		if ( $migrationStage !== MIGRATION_OLD ) {
-			// Assert that the same content ID has been used
-			$this->assertSame(
-				$firstReturn->getSlot( 'main' )->getContentId(),
-				$secondReturn->getSlot( 'main' )->getContentId()
-			);
-		}
+		// Assert that the same content ID has been used
+		$this->assertSame(
+			$firstReturn->getSlot( 'main' )->getContentId(),
+			$secondReturn->getSlot( 'main' )->getContentId()
+		);
 
 		// And that different revisions have been created.
 		$this->assertNotSame(
@@ -381,7 +381,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function provideInsertRevisionOn_failures_internal() {
+	public function provideInsertRevisionOn_failures() {
 		yield 'no slot' => [
 			Title::newFromText( 'UTPage' ),
 			[
@@ -430,14 +430,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		];
 	}
 
-	public function provideInsertRevisionOn_failures() {
-		foreach ( $this->provideMigrationStates() as $stateName => $stateValue ) {
-			foreach ( $this->provideInsertRevisionOn_failures_internal() as $desc => $test ) {
-				yield $desc . ' ' . $stateName => array_merge( $test, $stateValue );
-			}
-		}
-	}
-
 	/**
 	 * @dataProvider provideInsertRevisionOn_failures
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
@@ -445,13 +437,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	public function testInsertRevisionOn_failures(
 		Title $title,
 		array $revDetails = [],
-		Exception $exception,
-		$migrationStage
+		Exception $exception
 	) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migrationStage );
-		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$this->setExpectedException(
@@ -462,7 +451,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 	}
 
-	public function provideNewNullRevision_internal() {
+	public function provideNewNullRevision() {
 		yield [
 			Title::newFromText( 'UTPage_notAutoCreated' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment1' ),
@@ -475,20 +464,11 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		];
 	}
 
-	public function provideNewNullRevision() {
-		foreach ( $this->provideMigrationStates() as $stateName => $stateValue ) {
-			foreach ( $this->provideNewNullRevision_internal() as $desc => $test ) {
-				yield $desc . ' ' . $stateName => array_merge( $test, $stateValue );
-			}
-		}
-	}
-
 	/**
 	 * @dataProvider provideNewNullRevision
 	 * @covers \MediaWiki\Storage\RevisionStore::newNullRevision
 	 */
-	public function testNewNullRevision( Title $title, $comment, $minor, $migrationStage ) {
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migrationStage );
+	public function testNewNullRevision( Title $title, $comment, $minor ) {
 		$this->overrideMwServices();
 
 		$page = WikiPage::factory( $title );
@@ -526,6 +506,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertTrue( $slot->isInherited(), 'isInherited' );
 		$this->assertSame( $parentSlot->getOrigin(), $slot->getOrigin(), 'getOrigin' );
 		$this->assertSame( $parentSlot->getAddress(), $slot->getAddress(), 'getAddress' );
+		$this->assertSame( $parentSlot->getContentId(), $slot->getContentId(), 'getContentId' );
 	}
 
 	/**
@@ -747,9 +728,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->overrideMwServices();
-
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
@@ -798,9 +776,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->overrideMwServices();
-
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$text = __METHOD__ . 'b-ä';
 		/** @var Revision $rev */
