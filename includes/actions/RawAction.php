@@ -59,11 +59,6 @@ class RawAction extends FormlessAction {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
-		$gen = $request->getVal( 'gen' );
-		if ( $gen == 'css' || $gen == 'js' ) {
-			$this->gen = true;
-		}
-
 		$contentType = $this->getContentType();
 
 		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
@@ -175,7 +170,7 @@ class RawAction extends FormlessAction {
 			}
 		}
 
-		if ( $text !== false && $text !== '' && $request->getVal( 'templates' ) === 'expand' ) {
+		if ( $text !== false && $text !== '' && $request->getRawVal( 'templates' ) === 'expand' ) {
 			$text = $wgParser->preprocess(
 				$text,
 				$title,
@@ -225,10 +220,14 @@ class RawAction extends FormlessAction {
 	 * @return string
 	 */
 	public function getContentType() {
-		$ctype = $this->getRequest()->getVal( 'ctype' );
+		// Use getRawVal instead of getVal because we only
+		// need to match against known strings, there is no
+		// storing of localised content or other user input.
+		$ctype = $this->getRequest()->getRawVal( 'ctype' );
 
 		if ( $ctype == '' ) {
-			$gen = $this->getRequest()->getVal( 'gen' );
+			// Legacy compatibilty
+			$gen = $this->getRequest()->getRawVal( 'gen' );
 			if ( $gen == 'js' ) {
 				$ctype = 'text/javascript';
 			} elseif ( $gen == 'css' ) {
