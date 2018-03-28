@@ -33,8 +33,8 @@ class ResourceLoaderClientHtml {
 	/** @var ResourceLoader */
 	private $resourceLoader;
 
-	/** @var string|null */
-	private $target;
+	/** @var array */
+	private $options;
 
 	/** @var array */
 	private $config = [];
@@ -56,12 +56,13 @@ class ResourceLoaderClientHtml {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @param string|null $target [optional] Custom 'target' parameter for the startup module
+	 * @param array $options [optional] Array of options
+	 *  - 'target': Custom parameter passed to StartupModule.
 	 */
-	public function __construct( ResourceLoaderContext $context, $target = null ) {
+	public function __construct( ResourceLoaderContext $context, array $options = [] ) {
 		$this->context = $context;
 		$this->resourceLoader = $context->getResourceLoader();
-		$this->target = $target;
+		$this->options = $options;
 	}
 
 	/**
@@ -309,8 +310,10 @@ class ResourceLoaderClientHtml {
 		}
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
-		// Pass-through a custom target from OutputPage (T143066).
-		$startupQuery = $this->target ? [ 'target' => $this->target ] : [];
+		// Pass-through a custom 'target' from OutputPage (T143066).
+		$startupQuery = isset( $this->options['target'] )
+			? [ 'target' => (string)$this->options['target'] ]
+			: [];
 		$chunks[] = $this->getLoad(
 			'startup',
 			ResourceLoaderModule::TYPE_SCRIPTS,
