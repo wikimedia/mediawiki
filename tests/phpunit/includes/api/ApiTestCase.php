@@ -167,42 +167,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
 	}
 
-	protected function doLogin( $testUser = 'sysop' ) {
-		if ( $testUser === null ) {
-			$testUser = static::getTestSysop();
-		} elseif ( is_string( $testUser ) && array_key_exists( $testUser, self::$users ) ) {
-			$testUser = self::$users[ $testUser ];
-		} elseif ( !$testUser instanceof TestUser ) {
-			throw new MWException( "Can not log in to undefined user $testUser" );
-		}
-
-		$data = $this->doApiRequest( [
-			'action' => 'login',
-			'lgname' => $testUser->getUser()->getName(),
-			'lgpassword' => $testUser->getPassword() ] );
-
-		$token = $data[0]['login']['token'];
-
-		$data = $this->doApiRequest(
-			[
-				'action' => 'login',
-				'lgtoken' => $token,
-				'lgname' => $testUser->getUser()->getName(),
-				'lgpassword' => $testUser->getPassword(),
-			],
-			$data[2]
-		);
-
-		if ( $data[0]['login']['result'] === 'Success' ) {
-			// DWIM
-			global $wgUser;
-			$wgUser = $testUser->getUser();
-			RequestContext::getMain()->setUser( $wgUser );
-		}
-
-		return $data;
-	}
-
 	protected function getTokenList( TestUser $user, $session = null ) {
 		$data = $this->doApiRequest( [
 			'action' => 'tokens',
