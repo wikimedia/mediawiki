@@ -521,7 +521,7 @@ class RevisionStore
 				$this->insertSlotOn( $slot, $dbw, $revisionId, $contentId );
 			}
 		} else {
-			$contentId = null;
+			$contentId = $textId;
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -713,6 +713,10 @@ class RevisionStore
 				$fields['content_format'] = $current->rev_content_format;
 			}
 
+			if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				$fields['content_id'] = $current->content_id;
+			}
+
 			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
@@ -875,10 +879,11 @@ class RevisionStore
 
 			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
 				$mainSlotRow->content_address = 'tt:' . $row->rev_text_id;
+				$mainSlotRow->slot_content_id = intval( $row->rev_text_id );
 			}
 
 			if ( isset( $row->content_id ) && $row->content_id > 0 ) {
-				$mainSlotRow->slot_content_id = $row->content_id;
+				$mainSlotRow->slot_content_id = intval( $row->content_id );
 			}
 
 			// This is used by null-revisions
@@ -912,7 +917,7 @@ class RevisionStore
 
 			$mainSlotRow->slot_content_id = isset( $row['content_id'] )
 				? intval( $row['content_id'] )
-				: null;
+				: ( isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null );
 			$mainSlotRow->slot_origin = isset( $row['slot_origin'] )
 				? intval( $row['slot_origin'] )
 				: null;
@@ -1720,8 +1725,8 @@ class RevisionStore
 			);
 		} catch ( NameTableAccessException $e ) {
 			// This can only happen when just starting schema migration!
-			// If the main slot is not known, this means there would be no chance of multiple slots anyway, so
-			// don't include the slot in the join condition.
+			// If the main slot is not known, this means there would be no chance of multiple
+			// slots anyway, so don't include the slot in the join condition.
 		}
 		return $revIdJoinField . ' = a_slots.slot_revision_id';
 	}
