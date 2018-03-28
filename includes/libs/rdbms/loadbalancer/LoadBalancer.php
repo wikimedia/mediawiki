@@ -1261,13 +1261,20 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function finalizeMasterChanges() {
-		$this->forEachOpenMasterConnection( function ( Database $conn ) {
-			// Any error should cause all DB transactions to be rolled back together
-			$conn->setTrxEndCallbackSuppression( false );
-			$conn->runOnTransactionPreCommitCallbacks();
-			// Defer post-commit callbacks until COMMIT finishes for all DBs
-			$conn->setTrxEndCallbackSuppression( true );
-		} );
+		// Loop until callbacks stop adding callbacks on other connections
+		do {
+			$count = 0; // callbacks execution attempts
+			$this->forEachOpenMasterConnection( function ( Database $conn ) use ( &$count ) {
+				try {
+					// Any error should cause all DB transactions to be rolled back together
+					$conn->setTrxEndCallbackSuppression( false );
+					$count += $conn->runOnTransactionPreCommitCallbacks();
+				} finally {
+					// Defer post-commit callbacks until COMMIT finishes for all DBs
+					$conn->setTrxEndCallbackSuppression( true );
+				}
+			} );
+		} while ( $count > 0 );
 	}
 
 	public function approveMasterChanges( array $options ) {
@@ -1311,18 +1318,22 @@ class LoadBalancer implements ILoadBalancer {
 			);
 		}
 		$this->trxRoundId = $fname;
-
+		// Commit any open transactions and trigger their callbacks
 		$failures = [];
 		$this->forEachOpenMasterConnection(
-			function ( Database $conn ) use ( $fname, &$failures ) {
-				$conn->setTrxEndCallbackSuppression( true );
+			function ( IDatabase $conn ) use ( $fname, &$failures ) {
 				try {
 					$conn->flushSnapshot( $fname );
 				} catch ( DBError $e ) {
 					call_user_func( $this->errorLogger, $e );
 					$failures[] = "{$conn->getServer()}: {$e->getMessage()}";
 				}
-				$conn->setTrxEndCallbackSuppression( false );
+			}
+		);
+		// Mark all handles as participating in this transaction round
+		$this->forEachOpenMasterConnection(
+			function ( Database $conn ) use ( $fname, &$failures ) {
+				$conn->setTrxEndCallbackSuppression( true ); // wait till end of round
 				$this->applyTransactionRoundFlags( $conn );
 			}
 		);
@@ -1371,34 +1382,53 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function runMasterPostTrxCallbacks( $type ) {
 		$e = null; // first exception
-		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $type, &$e ) {
-			$conn->setTrxEndCallbackSuppression( false );
-			// Callbacks run in AUTO-COMMIT mode, so make sure no transactions are pending...
-			if ( $conn->writesPending() ) {
-				// This happens if onTransactionIdle() callbacks write to *other* handles
-				// (which already finished their callbacks). Let any callbacks run in the final
-				// commitMasterChanges() in LBFactory::shutdown(), when the transaction is gone.
-				$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
-				return;
-			} elseif ( $conn->trxLevel() ) {
-				// This happens for single-DB setups where DB_REPLICA uses the master DB,
-				// thus leaving an implicit read-only transaction open at this point. It
-				// also happens if onTransactionIdle() callbacks leave implicit transactions
-				// open on *other* DBs (which is slightly improper). Let these COMMIT on the
-				// next call to commitMasterChanges(), possibly in LBFactory::shutdown().
-				return;
+		// Loop until callbacks stop adding callbacks on other connections
+		do {
+			$count = 0; // callback execution attempts
+			$this->forEachOpenMasterConnection(
+				function ( Database $conn ) use ( $type, &$e, &$count ) {
+					$conn->setTrxEndCallbackSuppression( false );
+					if ( $conn->trxLevel() ) {
+						return; // callbacks must run in autocommit mode
+					}
+					try {
+						$count += $conn->runOnTransactionIdleCallbacks( $type );
+					} catch ( Exception $ex ) {
+						$e = $e ?: $ex;
+					}
+				}
+			);
+			$this->forEachOpenMasterConnection(
+				function ( IDatabase $conn ) use ( &$e ) {
+					if ( $conn->writesPending() ) {
+						// Some callbacks from other handles wrote to this one and DBO_TRX is set.
+						$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
+					} elseif ( $conn->trxLevel() ) {
+						// Some callbacks from other handles read from this one and DBO_TRX is set.
+						// This easily happens in single DB server setups since DB_REPLICA queries
+						// end up going to the same master handle.
+						$this->queryLogger->debug( __METHOD__ . ": found empty transaction." );
+					}
+
+					try {
+						// Clear out any transaction and run callbacks as needed
+						$conn->commit( __METHOD__, $conn::FLUSHING_ALL_PEERS );
+					} catch ( Exception $ex ) {
+						$e = $e ?: $ex;
+					}
+				}
+			);
+		} while ( $count > 0 );
+
+		$this->forEachOpenMasterConnection(
+			function ( Database $conn ) use ( $type, &$e ) {
+				try {
+					$conn->runTransactionListenerCallbacks( $type );
+				} catch ( Exception $ex ) {
+					$e = $e ?: $ex;
+				}
 			}
-			try {
-				$conn->runOnTransactionIdleCallbacks( $type );
-			} catch ( Exception $ex ) {
-				$e = $e ?: $ex;
-			}
-			try {
-				$conn->runTransactionListenerCallbacks( $type );
-			} catch ( Exception $ex ) {
-				$e = $e ?: $ex;
-			}
-		} );
+		);
 
 		return $e;
 	}
