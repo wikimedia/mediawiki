@@ -67,20 +67,25 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
-		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertFalse(
-			$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
-		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on master" );
-		$this->assertNotEquals( $dbw, $dbwAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
+		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+			$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertFalse(
+				$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
+		} else {
+			$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on master" );
+			$this->assertNotEquals( $dbw, $dbwAuto,
+				"CONN_TRX_AUTOCOMMIT uses separate connection" );
 
-		$dbrAuto = $lb->getConnection( DB_REPLICA, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertFalse(
-			$dbrAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
-		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on replica" );
-		$this->assertNotEquals( $dbr, $dbrAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
+			$dbrAuto = $lb->getConnection( DB_REPLICA, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertFalse(
+				$dbrAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
+			$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on replica" );
+			$this->assertNotEquals( $dbr, $dbrAuto,
+				"CONN_TRX_AUTOCOMMIT uses separate connection" );
 
-		$dbwAuto2 = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
+			$dbwAuto2 = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
+		}
 
 		$lb->closeAll();
 	}
@@ -137,20 +142,23 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertWriteForbidden( $dbr );
 
-		$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertFalse(
-			$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
-		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on master" );
-		$this->assertNotEquals( $dbw, $dbwAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
+		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+			$dbwAuto = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertFalse(
+				$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
+		} else {
+			$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on master" );
+			$this->assertNotEquals( $dbw, $dbwAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
 
-		$dbrAuto = $lb->getConnection( DB_REPLICA, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertFalse(
-			$dbrAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
-		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on replica" );
-		$this->assertNotEquals( $dbr, $dbrAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
+			$dbrAuto = $lb->getConnection( DB_REPLICA, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertFalse(
+				$dbrAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
+			$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX still set on replica" );
+			$this->assertNotEquals( $dbr, $dbrAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
 
-		$dbwAuto2 = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
+			$dbwAuto2 = $lb->getConnection( DB_MASTER, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
+		}
 
 		$lb->closeAll();
 	}
@@ -223,7 +231,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'password'    => 'none',
 				'dbname'      => 'my_unittest_wiki',
 				'tablePrefix' => 'unittest_',
-				'type'        => 'mysql',
+				'type'        => 'mysqli',
 				'load'        => 100
 			],
 			[ // emulated replica
@@ -232,7 +240,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				'password'    => 'none',
 				'dbname'      => 'my_unittest_wiki',
 				'tablePrefix' => 'unittest_',
-				'type'        => 'mysql',
+				'type'        => 'mysqli',
 				'load'        => 100
 			]
 		];
@@ -244,5 +252,92 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		] );
 
 		$this->assertFalse( $lb->getServerAttributes( 1 )[Database::ATTR_DB_LEVEL_LOCKING] );
+	}
+
+	public function testTransactionCallbackChains() {
+		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+
+		$servers = [
+			[
+				'host' => $wgDBserver,
+				'dbname' => $wgDBname,
+				'tablePrefix' => $this->dbPrefix(),
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
+				'dbDirectory' => $wgSQLiteDataDir,
+				'load' => 0,
+				'flags' => DBO_TRX // REPEATABLE-READ for consistency
+			],
+		];
+
+		$lb = new LoadBalancer( [
+			'servers' => $servers,
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+		] );
+
+		$conn1 = $lb->openConnection( $lb->getWriterIndex(), false );
+		$conn2 = $lb->openConnection( $lb->getWriterIndex(), '' );
+
+		$count = 0;
+		$lb->forEachOpenMasterConnection( function () use ( &$count ) {
+			++$count;
+		} );
+		$this->assertEquals( 2, $count, 'Connection handle count' );
+
+		$tlCalls = 0;
+		$lb->setTransactionListener( 'test-listener', function () use ( &$tlCalls ) {
+			++$tlCalls;
+		} );
+
+		$lb->beginMasterChanges( __METHOD__ );
+		$bc = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
+		$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+			$bc['a'] = 1;
+			$conn2->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+				$bc['b'] = 1;
+				$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+					$bc['c'] = 1;
+					$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+						$bc['d'] = 1;
+					} );
+				} );
+			} );
+		} );
+		$lb->finalizeMasterChanges();
+		$lb->approveMasterChanges( [] );
+		$lb->commitMasterChanges( __METHOD__ );
+		$lb->runMasterTransactionIdleCallbacks();
+		$lb->runMasterTransactionListenerCallbacks();
+
+		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $bc );
+		$this->assertEquals( 2, $tlCalls );
+
+		$tlCalls = 0;
+		$lb->beginMasterChanges( __METHOD__ );
+		$ac = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
+		$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+			$ac['a'] = 1;
+			$conn2->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+				$ac['b'] = 1;
+				$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+					$ac['c'] = 1;
+					$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+						$ac['d'] = 1;
+					} );
+				} );
+			} );
+		} );
+		$lb->finalizeMasterChanges();
+		$lb->approveMasterChanges( [] );
+		$lb->commitMasterChanges( __METHOD__ );
+		$lb->runMasterTransactionIdleCallbacks();
+		$lb->runMasterTransactionListenerCallbacks();
+
+		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
+		$this->assertEquals( 2, $tlCalls );
+
+		$conn1->close();
+		$conn2->close();
 	}
 }
