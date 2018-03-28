@@ -147,40 +147,29 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
 	}
 
-	protected function doLogin( $testUser = 'sysop' ) {
+	/**
+	 * Previously this would do API requests to log in, as well as setting $wgUser and the request
+	 * context's user.  The API requests are unnecessary, and the global-setting is unwanted, so
+	 * this method should not be called.  Instead, pass appropriate User values directly to
+	 * functions that need them.  For functions that still rely on $wgUser, set that directly.  If
+	 * you just want to log in the test sysop user, don't do anything -- that's the default.
+	 *
+	 * @param TestUser|string $testUser Object, or key to self::$users such as 'sysop' or 'uploader'
+	 * @deprecated since 1.31
+	 */
+	protected function doLogin( $testUser = null ) {
+		global $wgUser;
+
 		if ( $testUser === null ) {
 			$testUser = static::getTestSysop();
 		} elseif ( is_string( $testUser ) && array_key_exists( $testUser, self::$users ) ) {
-			$testUser = self::$users[ $testUser ];
+			$testUser = self::$users[$testUser];
 		} elseif ( !$testUser instanceof TestUser ) {
-			throw new MWException( "Can not log in to undefined user $testUser" );
+			throw new MWException( "Can't log in to undefined user $testUser" );
 		}
 
-		$data = $this->doApiRequest( [
-			'action' => 'login',
-			'lgname' => $testUser->getUser()->getName(),
-			'lgpassword' => $testUser->getPassword() ] );
-
-		$token = $data[0]['login']['token'];
-
-		$data = $this->doApiRequest(
-			[
-				'action' => 'login',
-				'lgtoken' => $token,
-				'lgname' => $testUser->getUser()->getName(),
-				'lgpassword' => $testUser->getPassword(),
-			],
-			$data[2]
-		);
-
-		if ( $data[0]['login']['result'] === 'Success' ) {
-			// DWIM
-			global $wgUser;
-			$wgUser = $testUser->getUser();
-			RequestContext::getMain()->setUser( $wgUser );
-		}
-
-		return $data;
+		$wgUser = $testUser->getUser();
+		RequestContext::getMain()->setUser( $wgUser );
 	}
 
 	protected function getTokenList( TestUser $user, $session = null ) {

@@ -23,7 +23,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		parent::setUp();
 		self::$users['ApiQueryWatchlistIntegrationTestUser'] = $this->getMutableTestUser();
 		self::$users['ApiQueryWatchlistIntegrationTestUser2'] = $this->getMutableTestUser();
-		$this->doLogin( 'ApiQueryWatchlistIntegrationTestUser' );
 	}
 
 	private function getLoggedInTestUser() {
@@ -163,6 +162,9 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doListWatchlistRequest( array $params = [], $user = null ) {
+		if ( $user === null ) {
+			$user = $this->getLoggedInTestUser();
+		}
 		return $this->doApiRequest(
 			array_merge(
 				[ 'action' => 'query', 'list' => 'watchlist' ],
@@ -176,7 +178,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			array_merge(
 				[ 'action' => 'query', 'generator' => 'watchlist' ],
 				$params
-			)
+			), null, false, $this->getLoggedInTestUser()
 		);
 	}
 
