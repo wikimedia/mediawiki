@@ -23,37 +23,27 @@ class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 		$this->assertTrue( self::$hasRun );
 	}
 
-	public function testSchemaExtension() {
-		// make sure we can use the MediaWikiTestCaseTestTable table
 
-		$input = [ 'id' => '5', 'name' => 'Test' ];
-
-		$this->db->insert(
-			'MediaWikiTestCaseTestTable',
-			$input
-		);
-
-		$output = $this->db->selectRow( 'MediaWikiTestCaseTestTable', array_keys( $input ), [] );
-		$this->assertEquals( (object)$input, $output );
+	public function testTableWasCreated() {
+		// Make sure MediaWikiTestCaseTestTable was created.
+		$this->assertTrue( $this->db->tableExists( 'MediaWikiTestCaseTestTable' ) );
 	}
 
-	public function testSchemaOverride() {
-		// make sure we can use the il_frobniz field
+	public function testTableWasDropped() {
+		// Make sure oldimage was dropped
+		$this->assertFalse( $this->db->tableExists( 'oldimage' ) );
+	}
 
-		$input = [
-			'il_from' => '7',
-			'il_from_namespace' => '0',
-			'il_to' => 'Foo.jpg',
-			'il_frobniz' => 'Xyzzy',
-		];
+	public function testTableWasOverriden() {
+		// Make sure imagelinks was overwritten
+		$this->assertTrue( $this->db->tableExists( 'imagelinks' ) );
+		$this->assertTrue( $this->db->fieldExists( 'imagelinks', 'il_frobniz' ) );
+	}
 
-		$this->db->insert(
-			'imagelinks',
-			$input
-		);
-
-		$output = $this->db->selectRow( 'imagelinks', array_keys( $input ), [] );
-		$this->assertEquals( (object)$input, $output );
+	public function testTableWasAltered() {
+		// Make sure pagelinks was altered
+		$this->assertTrue( $this->db->tableExists( 'pagelinks' ) );
+		$this->assertTrue( $this->db->fieldExists( 'pagelinks', 'pl_frobniz' ) );
 	}
 
 }
