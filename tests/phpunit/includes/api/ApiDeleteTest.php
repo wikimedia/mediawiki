@@ -12,13 +12,6 @@
  * @covers ApiDelete
  */
 class ApiDeleteTest extends ApiTestCase {
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->doLogin();
-	}
-
 	public function testDelete() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
