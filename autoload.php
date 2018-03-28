@@ -1729,6 +1729,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\MySQLField' => __DIR__ . '/includes/libs/rdbms/field/MySQLField.php',
 	'Wikimedia\\Rdbms\\MySQLMasterPos' => __DIR__ . '/includes/libs/rdbms/database/position/MySQLMasterPos.php',
 	'Wikimedia\\Rdbms\\NextSequenceValue' => __DIR__ . '/includes/libs/rdbms/database/utils/NextSequenceValue.php',
+	'Wikimedia\\Rdbms\\PatchFileLocation' => __DIR__ . '/includes/libs/rdbms/PatchFileLocation.php',
 	'Wikimedia\\Rdbms\\PostgresBlob' => __DIR__ . '/includes/libs/rdbms/encasing/PostgresBlob.php',
 	'Wikimedia\\Rdbms\\PostgresField' => __DIR__ . '/includes/libs/rdbms/field/PostgresField.php',
 	'Wikimedia\\Rdbms\\ResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/ResultWrapper.php',
