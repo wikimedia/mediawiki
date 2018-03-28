@@ -57,7 +57,7 @@ interface IDatabase {
 	/** @var string Transaction operation comes from service managing all DBs */
 	const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Transaction operation comes from the database class internally */
-	const FLUSHING_INTERNAL = 'flush';
+	const FLUSHING_INTERNAL = 'flush-internal';
 
 	/** @var string Do not remember the prior flags */
 	const REMEMBER_NOTHING = '';
@@ -1504,6 +1504,9 @@ interface IDatabase {
 	 * It can also be used for updates that easily suffer from lock timeouts and deadlocks,
 	 * but where atomicity is not essential.
 	 *
+	 * Avoid using IDatabase instances aside from this one in the callback, unless such instances
+	 * never have IDatabase::DBO_TRX set. This keeps callbacks from interfering with one another.
+	 *
 	 * Updates will execute in the order they were enqueued.
 	 *
 	 * The callback takes one argument:
@@ -1545,7 +1548,10 @@ interface IDatabase {
 	 *   - This IDatabase object
 	 * Callbacks must commit any transactions that they begin.
 	 *
-	 * Registering a callback here will not affect writesOrCallbacks() pending
+	 * Registering a callback here will not affect writesOrCallbacks() pending.
+	 *
+	 * Since callbacks from this method or onTransactionIdle() can start and end transactions,
+	 * a single call to IDatabase::commit might trigger multiple runs of the listener callbacks.
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a listener

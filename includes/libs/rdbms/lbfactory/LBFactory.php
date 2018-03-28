@@ -238,15 +238,19 @@ abstract class LBFactory implements ILBFactory {
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
-		// Run all post-commit callbacks
-		/** @var Exception $e */
+		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
+		do {
+			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
+				$ex = $lb->runMasterTransactionIdleCallbacks();
+				$e = $e ?: $ex;
+			} );
+		} while ( $this->hasMasterChanges() );
+		// Run all listener callbacks once
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
-			$ex = $lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_COMMIT );
+			$ex = $lb->runMasterTransactionListenerCallbacks();
 			$e = $e ?: $ex;
 		} );
-		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
-		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
 			throw $e;
@@ -255,12 +259,9 @@ abstract class LBFactory implements ILBFactory {
 
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$this->trxRoundId = false;
-		$this->forEachLBCallMethod( 'suppressTransactionEndCallbacks' );
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
-		// Run all post-rollback callbacks
-		$this->forEachLB( function ( ILoadBalancer $lb ) {
-			$lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_ROLLBACK );
-		} );
+		$this->forEachLBCallMethod( 'runMasterTransactionIdleCallbacks' );
+		$this->forEachLBCallMethod( 'runMasterTransactionListenerCallbacks' );
 	}
 
 	public function hasTransactionRound() {
