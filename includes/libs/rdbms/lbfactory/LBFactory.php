@@ -239,14 +239,11 @@ abstract class LBFactory implements ILBFactory {
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Run all post-commit callbacks
-		/** @var Exception $e */
 		$e = null; // first callback exception
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
 			$ex = $lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_COMMIT );
 			$e = $e ?: $ex;
 		} );
-		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
-		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
 			throw $e;
@@ -255,7 +252,6 @@ abstract class LBFactory implements ILBFactory {
 
 	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$this->trxRoundId = false;
-		$this->forEachLBCallMethod( 'suppressTransactionEndCallbacks' );
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
 		// Run all post-rollback callbacks
 		$this->forEachLB( function ( ILoadBalancer $lb ) {
