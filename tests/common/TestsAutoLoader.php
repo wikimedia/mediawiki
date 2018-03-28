@@ -149,7 +149,12 @@ $wgAutoloadClasses += [
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
 	# tests/phpunit/includes/Storage
+	'MediaWiki\Tests\Storage\McrSchemaDetection' => "$testDir/phpunit/includes/Storage/McrSchemaDetection.php",
+	'MediaWiki\Tests\Storage\McrSchemaOverride' => "$testDir/phpunit/includes/Storage/McrSchemaOverride.php",
+	'MediaWiki\Tests\Storage\McrWriteBothSchemaOverride' => "$testDir/phpunit/includes/Storage/McrWriteBothSchemaOverride.php",
 	'MediaWiki\Tests\Storage\RevisionSlotsTest' => "$testDir/phpunit/includes/Storage/RevisionSlotsTest.php",
+	'MediaWiki\Tests\Storage\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Storage/RevisionStoreDbTestBase.php",
+	'MediaWiki\Tests\Storage\PreMcrSchemaOverride' => "$testDir/phpunit/includes/Storage/PreMcrSchemaOverride.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",

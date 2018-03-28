@@ -2878,7 +2878,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$tablesFlat = [];
 		array_walk_recursive(
 			$revQuery['tables'],
-			function( $a ) use ( &$tablesFlat ) {
+			function ( $a ) use ( &$tablesFlat ) {
 				$tablesFlat[] = $a;
 			}
 		);

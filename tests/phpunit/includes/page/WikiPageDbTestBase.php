@@ -30,11 +30,29 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				'iwlinks' ] );
 	}
 
+	/**
+	 * @return int
+	 */
+	abstract protected function getMcrMigrationStage();
+
+	/**
+	 * @return string[]
+	 */
+	abstract protected function getMcrTablesToReset();
+
 	protected function setUp() {
 		parent::setUp();
+
+		$this->tablesUsed += $this->getMcrTablesToReset();
+
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			$this->getMcrMigrationStage()
+		);
 		$this->pagesToDelete = [];
+
+		$this->overrideMwServices();
 	}
 
 	protected function tearDown() {
@@ -155,15 +173,11 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
 
-	abstract public function provideMigrations();
-
 	/**
-	 * @dataProvider provideMigrations
 	 * @covers WikiPage::doDeleteArticle
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
-	public function testDoDeleteArticle( $migration ) {
-		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', $migration );
+	public function testDoDeleteArticle() {
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
