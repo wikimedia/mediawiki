@@ -363,7 +363,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
-		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$db->rollback( __METHOD__ );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 		$this->assertTrue( $called, 'Callback reached' );
 	}
@@ -494,7 +494,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
 		}
 		$db->clearFlag( DBO_TRX );
-		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$db->rollback( __METHOD__ );
 		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
 
 		try {
@@ -502,7 +502,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		} catch ( RunTimeException $e ) {
 			$this->assertTrue( $db->trxLevel() > 0, "Transaction not committed." );
 		}
-		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$db->rollback( __METHOD__ );
 		$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ) );
 	}
 
