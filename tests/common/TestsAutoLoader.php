@@ -149,6 +149,7 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes/Storage
 	'MediaWiki\Tests\Storage\RevisionSlotsTest' => "$testDir/phpunit/includes/Storage/RevisionSlotsTest.php",
+	'MediaWiki\Tests\Storage\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Storage/RevisionStoreDbTestBase.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
