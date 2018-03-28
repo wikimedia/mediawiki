@@ -429,15 +429,6 @@ interface ILoadBalancer {
 	public function rollbackMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Suppress all pending post-COMMIT/ROLLBACK callbacks
-	 *
-	 * Use this only for mutli-database commits
-	 *
-	 * @return Exception|null The first exception or null if there were none
-	 */
-	public function suppressTransactionEndCallbacks();
-
-	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
 	 *
 	 * @param string $fname Caller name
