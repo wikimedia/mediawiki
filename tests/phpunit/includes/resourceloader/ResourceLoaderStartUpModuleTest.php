@@ -165,6 +165,75 @@ mw.loader.register( [
 ] );'
 			] ],
 			[ [
+				'msg' => 'Safemode disabled (default; register all modules)',
+				'modules' => [
+					// Default origin: ORIGIN_CORE_SITEWIDE
+					'test.blank' => new ResourceLoaderTestModule(),
+					'test.core-generated' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
+					] ),
+					'test.sitewide' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_USER_SITEWIDE
+					] ),
+					'test.user' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL
+					] ),
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.blank",
+        "{blankVer}"
+    ],
+    [
+        "test.core-generated",
+        "{blankVer}"
+    ],
+    [
+        "test.sitewide",
+        "{blankVer}"
+    ],
+    [
+        "test.user",
+        "{blankVer}"
+    ]
+] );'
+			] ],
+			[ [
+				'msg' => 'Safemode enabled (filter modules with user/site origin)',
+				'extraQuery' => [ 'safemode' => '1' ],
+				'modules' => [
+					// Default origin: ORIGIN_CORE_SITEWIDE
+					'test.blank' => new ResourceLoaderTestModule(),
+					'test.core-generated' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
+					] ),
+					'test.sitewide' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_USER_SITEWIDE
+					] ),
+					'test.user' => new ResourceLoaderTestModule( [
+						'origin' => ResourceLoaderModule::ORIGIN_USER_INDIVIDUAL
+					] ),
+				],
+				'out' => '
+mw.loader.addSource( {
+    "local": "/w/load.php"
+} );
+mw.loader.register( [
+    [
+        "test.blank",
+        "{blankVer}"
+    ],
+    [
+        "test.core-generated",
+        "{blankVer}"
+    ]
+] );'
+			] ],
+			[ [
 				'msg' => 'Foreign source',
 				'sources' => [
 					'example' => [
@@ -394,7 +463,8 @@ mw.loader.register( [
 			$this->setMwGlobals( 'wgResourceLoaderSources', $case['sources'] );
 		}
 
-		$context = $this->getResourceLoaderContext();
+		$extraQuery = isset( $case['extraQuery'] ) ? $case['extraQuery'] : [];
+		$context = $this->getResourceLoaderContext( $extraQuery );
 		$rl = $context->getResourceLoader();
 		$rl->register( $case['modules'] );
 		$module = new ResourceLoaderStartUpModule();

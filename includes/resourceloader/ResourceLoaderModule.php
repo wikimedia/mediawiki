@@ -318,9 +318,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the origin of this module. Should only be overridden for foreign modules.
+	 * Get the source of this module. Should only be overridden for foreign modules.
 	 *
-	 * @return string Origin name, 'local' for local modules
+	 * @return string Source name, 'local' for local modules
 	 */
 	public function getSource() {
 		// Stub, override expected
