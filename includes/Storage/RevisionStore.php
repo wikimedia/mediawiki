@@ -491,7 +491,7 @@ class RevisionStore
 		$contentId = false;
 
 		if ( isset( $revisionRow['rev_id'] ) ) {
-			// restoring a revision, slots should already exist,
+			// Restoring a revision, slots should already exist,
 			// unless the archive row wasn't migrated yet.
 			if ( $this->mcrMigrationStage === MIGRATION_NEW ) {
 				$hasSlots = true;
@@ -1711,7 +1711,7 @@ class RevisionStore
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
 		$this->checkDatabaseWikiId( $db );
 
-		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $this->getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
@@ -2116,7 +2116,7 @@ class RevisionStore
 			return false;
 		}
 
-		$revQuery = self::getQueryInfo();
+		$revQuery = $this->getQueryInfo();
 		$res = $db->select(
 			$revQuery['tables'],
 			[
@@ -2199,9 +2199,9 @@ class RevisionStore
 	}
 
 	/**
-	 * Get a cache key for use with a row as selected with self::getQueryInfo( [ 'page', 'user' ] )
+	 * Get a cache key for use with a row as selected with getQueryInfo( [ 'page', 'user' ] )
 	 * Caching rows without 'page' or 'user' could lead to issues.
-	 * If the format of the rows returned by the query provided by self::getQueryInfo changes the
+	 * If the format of the rows returned by the query provided by getQueryInfo changes the
 	 * cache key should be updated to avoid conflicts.
 	 *
 	 * @param IDatabase $db
