@@ -1,11 +1,20 @@
 <?php
+use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
 
 /**
+ * Tests WikiPage against the pre-MCR DB schema.
+ *
+ * @covers WikiPage
+ *
+ * @group WikiPage
+ * @group Storage
  * @group ContentHandler
  * @group Database
  * @group medium
  */
-class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
+class WikiPagePreMcrDbTest extends WikiPageDbTestBase {
+
+	use PreMcrSchemaOverride;
 
 	protected function getContentHandlerUseDB() {
 		return true;
@@ -37,13 +46,6 @@ class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
 
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertEquals( JavaScriptContentHandler::class, get_class( $page->getContentHandler() ) );
-	}
-
-	public function provideMigrations() {
-		yield 'MIGRATION_OLD' => [ MIGRATION_OLD ];
-		yield 'MIGRATION_WRITE_BOTH' => [ MIGRATION_WRITE_BOTH ];
-		yield 'MIGRATION_WRITE_NEW' => [ MIGRATION_WRITE_NEW ];
-		yield 'MIGRATION_NEW' => [ MIGRATION_NEW ];
 	}
 
 }
