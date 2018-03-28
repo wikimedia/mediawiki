@@ -508,7 +508,9 @@ abstract class Maintenance {
 		$this->addOption(
 			'memory-limit',
 			'Set a specific memory limit for the script, '
-				. '"max" for no limit or "default" to avoid changing it'
+				. '"max" for no limit or "default" to avoid changing it',
+			false,
+			true
 		);
 		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
 			"http://en.wikipedia.org. This is sometimes necessary because " .
