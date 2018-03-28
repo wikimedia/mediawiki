@@ -17,7 +17,6 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			= $this->getMutableTestUser();
 		self::$users['ApiQueryWatchlistRawIntegrationTestUser2']
 			= $this->getMutableTestUser();
-		$this->doLogin( 'ApiQueryWatchlistRawIntegrationTestUser' );
 	}
 
 	private function getLoggedInTestUser() {
@@ -36,14 +35,14 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		return $this->doApiRequest( array_merge(
 			[ 'action' => 'query', 'list' => 'watchlistraw' ],
 			$params
-		) );
+		), null, false, $this->getLoggedInTestUser() );
 	}
 
 	private function doGeneratorWatchlistRawRequest( array $params = [] ) {
 		return $this->doApiRequest( array_merge(
 			[ 'action' => 'query', 'generator' => 'watchlistraw' ],
 			$params
-		) );
+		), null, false, $this->getLoggedInTestUser() );
 	}
 
 	private function getItemsFromApiResponse( array $response ) {

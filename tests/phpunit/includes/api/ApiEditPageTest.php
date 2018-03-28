@@ -40,8 +40,6 @@ class ApiEditPageTest extends ApiTestCase {
 
 		MWNamespace::clearCaches();
 		$wgContLang->resetNamespaces(); # reset namespace cache
-
-		$this->doLogin();
 	}
 
 	protected function tearDown() {
