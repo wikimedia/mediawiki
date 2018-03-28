@@ -290,7 +290,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'basetimestamp' => $baseTime,
 			'section' => 'new',
 			'redirect' => true,
-		], null, self::$users['sysop']->getUser() );
+		] );
 
 		$this->assertSame( 'Success', $re['edit']['result'],
 			"no problems expected when following redirect" );
@@ -336,7 +336,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'text' => 'nix bar!',
 				'basetimestamp' => $baseTime,
 				'redirect' => true,
-			], null, self::$users['sysop']->getUser() );
+			] );
 
 			$this->fail( 'redirect-appendonly error expected' );
 		} catch ( ApiUsageException $ex ) {
@@ -372,7 +372,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => 'nix bar!',
 				'basetimestamp' => $baseTime,
-			], null, self::$users['sysop']->getUser() );
+			] );
 
 			$this->fail( 'edit conflict expected' );
 		} catch ( ApiUsageException $ex ) {
@@ -411,7 +411,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'nix bar!',
 			'basetimestamp' => $baseTime,
 			'section' => 'new',
-		], null, self::$users['sysop']->getUser() );
+		] );
 
 		$this->assertSame( 'Success', $re['edit']['result'],
 			"no edit conflict expected here" );
@@ -458,7 +458,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'nix bar!',
 			'section' => 'new',
 			'redirect' => true,
-		], null, self::$users['sysop']->getUser() );
+		] );
 
 		$this->assertSame( 'Success', $re['edit']['result'],
 			"no edit conflict expected here" );
@@ -529,6 +529,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . __FUNCTION__;
 		$uploader = self::$users['uploader']->getUser();
 		$sysop = self::$users['sysop']->getUser();
+
 		$apiResult = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
@@ -1528,21 +1529,14 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testCreateImageRedirectAnon() {
 		$name = 'File:' . ucfirst( __FUNCTION__ );
 
-		// @todo When ApiTestCase supports anonymous users, this exception
-		// should no longer be thrown, and the test can then be updated to test
-		// for the actual expected behavior.
 		$this->setExpectedException( ApiUsageException::class,
-			'Invalid CSRF token.' );
-
-		$this->doApiRequestWithToken( [
-			'action' => 'logout',
-		] );
+			"Anonymous users can't create image redirects." );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'text' => '#REDIRECT [[File:Other file.png]]',
-		] );
+		], null, new User() );
 	}
 
 	public function testCreateImageRedirectLoggedIn() {
@@ -1581,21 +1575,16 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testProhibitedAnonymousEdit() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		// @todo See comment in testCreateImageRedirectAnon
 		$this->setExpectedException( ApiUsageException::class,
-			'Invalid CSRF token.' );
-		$this->setMwGlobals( 'wgRevokePermissions',
-			[ '*' => [ 'edit' => true ] ] );
+			'The action you have requested is limited to users in the group: ' );
 
-		$this->doApiRequestWithToken( [
-			'action' => 'logout',
-		] );
+		$this->setMwGlobals( 'wgRevokePermissions', [ '*' => [ 'edit' => true ] ] );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'text' => 'Some text',
-		] );
+		], null, new User() );
 	}
 
 	public function testProhibitedChangeContentModel() {
