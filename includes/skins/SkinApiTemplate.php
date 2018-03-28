@@ -34,7 +34,7 @@ class SkinApiTemplate extends BaseTemplate {
 		$this->html( 'headelement' ) ?>
 
 		<div class="mw-body" role="main">
-			<h1 class="firstHeading"><?php $this->html( 'title' ) ?></h1>
+			<h1 id="firstHeading" class="firstHeading"><?php $this->html( 'title' ) ?></h1>
 			<div class="mw-body-content">
 				<?php $this->html( 'bodytext' ) ?>
 			</div>
