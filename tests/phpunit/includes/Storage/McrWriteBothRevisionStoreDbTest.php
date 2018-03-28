@@ -70,41 +70,35 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	protected function revisionToRow( Revision $rev ) {
 		$page = WikiPage::factory( $rev->getTitle() );
 		$rec = $rev->getRevisionRecord();
-		$main = $rec->getSlot( 'main' );
 
 		return (object)[
-			'rev_id' => (string)$rev->getId(),
-			'rev_page' => (string)$rev->getPage(),
-			'rev_text_id' => (string)$rev->getTextId(),
-			'rev_timestamp' => (string)$rev->getTimestamp(),
-			'rev_user_text' => (string)$rev->getUserText(),
-			'rev_user' => (string)$rev->getUser(),
-			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
-			'rev_deleted' => (string)$rev->getVisibility(),
-			'rev_len' => (string)$rev->getSize(),
-			'rev_parent_id' => (string)$rev->getParentId(),
-			'rev_sha1' => (string)$rev->getSha1(),
-			'rev_comment_text' => $rev->getComment(),
+			'rev_id' => (string)$rec->getId(),
+			'rev_page' => (string)$rec->getPageId(),
+			'rev_timestamp' => (string)$rec->getTimestamp(),
+			'rev_user_text' => (string)$rec->getUser()->getName(),
+			'rev_user' => (string)$rec->getUser()->getId(),
+			'rev_minor_edit' => $rec->isMinor() ? '1' : '0',
+			'rev_deleted' => (string)$rec->getVisibility(),
+			'rev_len' => (string)$rec->getSize(),
+			'rev_parent_id' => (string)$rec->getParentId(),
+			'rev_sha1' => (string)$rec->getSha1(),
+			'rev_comment_text' => $rec->getComment()->text,
 			'rev_comment_data' => null,
 			'rev_comment_cid' => null,
-			'rev_content_format' => $rev->getContentFormat(),
-			'rev_content_model' => $rev->getContentModel(),
 			'page_namespace' => (string)$page->getTitle()->getNamespace(),
 			'page_title' => $page->getTitle()->getDBkey(),
 			'page_id' => (string)$page->getId(),
 			'page_latest' => (string)$page->getLatest(),
 			'page_is_redirect' => $page->isRedirect() ? '1' : '0',
 			'page_len' => (string)$page->getContent()->getSize(),
-			'user_name' => (string)$rev->getUserText(),
-			'content_id' => $main->getContentId(),
-			'content_address' => $main->getAddress(),
-			'content_size' => $main->getSize(),
-			'content_sha1' => $main->getSha1(),
-			'slot_revision_id' => $main->getRevision(),
-			'slot_origin' => $main->getOrigin(),
-			'slot_content_id' => $main->getContentId(),
-			'model_name' => $main->getModel(),
-			'role_name' => $main->getRole(),
+			'user_name' => (string)$rec->getUser()->getName(),
 		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 */
+	public function testInsertRevisionOn_multi() {
+		$this->markTestIncomplete( 'Writing multiple slots, inheriting some' );
 	}
 }
