@@ -377,8 +377,7 @@ interface ILoadBalancer {
 	public function commitAll( $fname = __METHOD__ );
 
 	/**
-	 * Perform all pre-commit callbacks that remain part of the atomic transactions
-	 * and disable any post-commit callbacks until runMasterPostTrxCallbacks()
+	 * Run pre-commit callbacks and defer execution of post-commit callbacks
 	 *
 	 * Use this only for mutli-database commits
 	 */
@@ -417,14 +416,18 @@ interface ILoadBalancer {
 	public function commitMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Issue all pending post-COMMIT/ROLLBACK callbacks
+	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks
 	 *
-	 * Use this only for mutli-database commits
-	 *
-	 * @param int $type IDatabase::TRIGGER_* constant
 	 * @return Exception|null The first exception or null if there were none
 	 */
-	public function runMasterPostTrxCallbacks( $type );
+	public function runMasterTransactionIdleCallbacks();
+
+	/**
+	 * Run all recurring post-COMMIT/ROLLBACK listener callbacks
+	 *
+	 * @return Exception|null The first exception or null if there were none
+	 */
+	public function runMasterTransactionListenerCallbacks();
 
 	/**
 	 * Issue ROLLBACK only on master, only if queries were done on connection
@@ -432,15 +435,6 @@ interface ILoadBalancer {
 	 * @throws DBExpectedError
 	 */
 	public function rollbackMasterChanges( $fname = __METHOD__ );
-
-	/**
-	 * Suppress all pending post-COMMIT/ROLLBACK callbacks
-	 *
-	 * Use this only for mutli-database commits
-	 *
-	 * @return Exception|null The first exception or null if there were none
-	 */
-	public function suppressTransactionEndCallbacks();
 
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
