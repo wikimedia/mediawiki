@@ -491,12 +491,13 @@ class RevisionStore
 		$contentId = false;
 
 		if ( isset( $revisionRow['rev_id'] ) ) {
-			// restoring a revision, slots should already exist,
+			// Restoring a revision, slots should already exist,
 			// unless the archive row wasn't migrated yet.
 			if ( $this->mcrMigrationStage === MIGRATION_NEW ) {
 				$hasSlots = true;
-			} elseif ( $this->mcrMigrationStage < MIGRATION_NEW ) {
-				$hasSlots = $this->findSlotContentId( $dbw, $revisionRow['rev_id'], 'main' );
+			} else {
+				$contentId = $this->findSlotContentId( $dbw, $revisionRow['rev_id'], 'main' );
+				$hasSlots = (bool)$contentId;
 			}
 		} else {
 			// not restoring a revision, use auto-increment value
@@ -524,13 +525,16 @@ class RevisionStore
 		}
 
 		if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
-			// Only insert content rows for new content (not inherited content)
-			if ( !$contentId ) {
-				$contentId = $this->insertContentRowOn( $mainSlot, $dbw, $blobAddress );
-			}
-
-			// Only insert slot rows for new revisions (not restored revisions)
+			// Only insert slot rows for new revisions (not restored revisions).
+			// Also, never insert content rows if not inserting slot rows.
 			if ( !$hasSlots ) {
+
+				// Only insert content rows for new content (not inherited content)
+				if ( !$contentId ) {
+					Assert::invariant( !$hasSlots, 'Re-using slots, but not content ID is known' );
+					$contentId = $this->insertContentRowOn( $mainSlot, $dbw, $blobAddress );
+				}
+
 				$this->insertSlotOn( $mainSlot, $dbw, $revisionId, $contentId );
 			}
 		} else {
@@ -692,18 +696,28 @@ class RevisionStore
 	) {
 		$this->checkDatabaseWikiId( $dbw );
 
-		$queryInfo = $this->getQueryInfo( [ 'page' ] );
+		$fields = [ 'page_latest', 'page_namespace', 'page_title',
+			'rev_id', 'rev_text_id', 'rev_len', 'rev_sha1' ];
+
+		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+			$fields[] = 'rev_text_id';
+
+			if ( $this->contentHandlerUseDB ) {
+				$fields[] = 'rev_content_model';
+				$fields[] = 'rev_content_format';
+			}
+		}
 
 		$current = $dbw->selectRow(
-			$queryInfo['tables'],
-			$queryInfo['fields'],
+			[ 'page', 'revision' ],
+			$fields,
 			[
 				'page_id' => $title->getArticleID(),
 				'page_latest=rev_id',
 			],
 			__METHOD__,
 			[ 'FOR UPDATE' ], // T51581
-			$queryInfo['joins'] // FIXME T191892
+			[] // Avoid join, see T191892
 		);
 
 		if ( $current ) {
@@ -729,7 +743,7 @@ class RevisionStore
 				}
 			}
 
-			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
+			$fields['title'] = $title;
 
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
 			$revision = new MutableRevisionRecord( $title, $this->wikiId );
@@ -1698,7 +1712,7 @@ class RevisionStore
 	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
 		$this->checkDatabaseWikiId( $db );
 
-		$revQuery = self::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $this->getQueryInfo( [ 'page', 'user' ] );
 		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
@@ -2103,7 +2117,7 @@ class RevisionStore
 			return false;
 		}
 
-		$revQuery = self::getQueryInfo();
+		$revQuery = $this->getQueryInfo();
 		$res = $db->select(
 			$revQuery['tables'],
 			[
@@ -2186,9 +2200,9 @@ class RevisionStore
 	}
 
 	/**
-	 * Get a cache key for use with a row as selected with self::getQueryInfo( [ 'page', 'user' ] )
+	 * Get a cache key for use with a row as selected with getQueryInfo( [ 'page', 'user' ] )
 	 * Caching rows without 'page' or 'user' could lead to issues.
-	 * If the format of the rows returned by the query provided by self::getQueryInfo changes the
+	 * If the format of the rows returned by the query provided by getQueryInfo changes the
 	 * cache key should be updated to avoid conflicts.
 	 *
 	 * @param IDatabase $db
