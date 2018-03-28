@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionManager;
+
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
 
@@ -67,11 +70,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param array|null $session
 	 * @param bool $appendModule
 	 * @param User|null $user
+	 * @param string|null Set to a string like 'csrf' to send an appropriate
+	 *   token
 	 *
 	 * @return array
 	 */
 	protected function doApiRequest( array $params, array $session = null,
-		$appendModule = false, User $user = null
+		$appendModule = false, User $user = null, $tokenType = null
 	) {
 		global $wgRequest, $wgUser;
 
@@ -80,12 +85,26 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$session = $wgRequest->getSessionArray();
 		}
 
+		$sessionObj = SessionManager::singleton()->getEmptySession();
+
+		if ( $session !== null ) {
+			foreach ( $session as $key => $value ) {
+				$sessionObj->set( $key, $value );
+			}
+		}
+
 		// set up global environment
 		if ( $user ) {
 			$wgUser = $user;
 		}
 
-		$wgRequest = new FauxRequest( $params, true, $session );
+		if ( $tokenType !== null ) {
+			$params['token'] = ApiQueryTokens::getToken(
+				$wgUser, $sessionObj, ApiQueryTokens::getTokenTypeSalts()[$tokenType]
+			)->toString();
+		}
+
+		$wgRequest = new FauxRequest( $params, true, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
 		RequestContext::getMain()->setUser( $wgUser );
 		MediaWiki\Auth\AuthManager::resetCache();
@@ -113,40 +132,19 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Add an edit token to the API request
-	 * This is cheating a bit -- we grab a token in the correct format and then
-	 * add it to the pseudo-session and to the request, without actually
-	 * requesting a "real" edit token.
+	 * Convenience function to access the token parameter of doApiRequest()
+	 * more succinctly.
 	 *
 	 * @param array $params Key-value API params
 	 * @param array|null $session Session array
 	 * @param User|null $user A User object for the context
+	 * @param string $tokenType Which token type to pass
 	 * @return array Result of the API call
-	 * @throws Exception In case wsToken is not set in the session
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
-		User $user = null
+		User $user = null, $tokenType = 'csrf'
 	) {
-		global $wgRequest;
-
-		if ( $session === null ) {
-			$session = $wgRequest->getSessionArray();
-		}
-
-		if ( isset( $session['wsToken'] ) && $session['wsToken'] ) {
-			// @todo Why does this directly mess with the session? Fix that.
-			// add edit token to fake session
-			$session['wsTokenSecrets']['default'] = $session['wsToken'];
-			// add token to request parameters
-			$timestamp = wfTimestamp();
-			$params['token'] = hash_hmac( 'md5', $timestamp, $session['wsToken'] ) .
-				dechex( $timestamp ) .
-				MediaWiki\Session\Token::SUFFIX;
-
-			return $this->doApiRequest( $params, $session, false, $user );
-		} else {
-			throw new Exception( "Session token not available" );
-		}
+		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
 	}
 
 	protected function doLogin( $testUser = 'sysop' ) {
