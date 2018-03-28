@@ -162,7 +162,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			];
 			$on['rd_namespace'] = $target->getNamespace();
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
-			$subQuery = $dbr->selectSQLText(
+			$subQuery = $dbr->buildSelectSubquery(
 				[ $table, 'redirect', 'page' ],
 				[ $fromCol, 'rd_from' ],
 				$conds[$table],
@@ -175,7 +175,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				]
 			);
 			return $dbr->select(
-				[ 'page', 'temp_backlink_range' => "($subQuery)" ],
+				[ 'page', 'temp_backlink_range' => $subQuery ],
 				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'page_is_redirect' ],
 				[],
 				__CLASS__ . '::showIndirectLinks',
