@@ -8,7 +8,9 @@
 
 namespace MediaWiki\Tests\Storage;
 
-class RevisionStoreDbTest extends RevisionStoreDbTestBase {
+use MediaWiki\Storage\RevisionRecord;
+
+class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 	public function __construct( $name = '', $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
