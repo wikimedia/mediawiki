@@ -313,7 +313,7 @@ abstract class LBFactory implements ILBFactory {
 		$opts += [
 			'domain' => false,
 			'cluster' => false,
-			'timeout' => 60,
+			'timeout' => $this->cliMode ? 60 : 10,
 			'ifWritesSince' => null
 		];
 
