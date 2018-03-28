@@ -12,7 +12,6 @@ class ApiBlockTest extends ApiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->doLogin();
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
 	}
