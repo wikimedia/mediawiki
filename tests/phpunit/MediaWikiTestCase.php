@@ -1347,13 +1347,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		$previouslyAlteredTables = isset( $db->_alteredMockTables ) ? $db->_alteredMockTables : [];
+		$originalTables = $this->listOriginalTables( $db );
 
 		if ( !$tablesToAlter && !$previouslyAlteredTables ) {
 			return; // nothing to do
 		}
 
-		$tablesToDrop = array_merge( $previouslyAlteredTables, $tablesToAlter );
-		$tablesToRestore = array_diff( $previouslyAlteredTables, $tablesToAlter );
+		$tablesToDrop = array_diff( $previouslyAlteredTables, $tablesToAlter, $originalTables );
+		$tablesToRestore = $previouslyAlteredTables;
 
 		if ( $tablesToDrop ) {
 			$this->dropMockTables( $db, $tablesToDrop );
@@ -1406,6 +1407,21 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Lists all tables in the live database schema.
+	 *
+	 * @param IMaintainableDatabase $db
+	 * @return array
+	 */
+	private function listOriginalTables( IMaintainableDatabase $db ) {
+		if ( !isset( $db->_originalTablePrefix ) ) {
+			throw new LogicException( 'No original table prefix know, cannot list tables!' );
+		}
+
+		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		return $originalTables;
+	}
+
+	/**
 	 * Re-clones the given mock tables to restore them based on the live database schema.
 	 *
 	 * @param IMaintainableDatabase $db
@@ -1418,7 +1434,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
@@ -1438,8 +1454,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
 			$pageTables = [
 				'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment',
-				'revision_actor_temp', 'slots', 'content_models', 'slot_roles',
-				];
+				'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+			];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
 			// If any of the user or page tables were marked as used, we should clear all of them.
@@ -1455,6 +1471,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			foreach ( $tablesUsed as $tbl ) {
 				// TODO: reset interwiki table to its original content.
 				if ( $tbl == 'interwiki' ) {
+					continue;
+				}
+
+				if ( !$db->tableExists( $tbl ) ) {
 					continue;
 				}
 
