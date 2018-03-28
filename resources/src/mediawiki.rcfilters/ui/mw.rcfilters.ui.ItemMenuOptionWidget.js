@@ -42,13 +42,13 @@
 		$label.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label-title' )
-				.append( this.$label )
+				.append( $( '<bdi>' ).append( this.$label ) )
 		);
 		if ( this.itemModel.getDescription() ) {
 			$label.append(
 				$( '<div>' )
 					.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label-desc' )
-					.text( this.itemModel.getDescription() )
+					.append( $( '<bdi>' ).text( this.itemModel.getDescription() ) )
 			);
 		}
 
