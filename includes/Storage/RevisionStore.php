@@ -713,6 +713,10 @@ class RevisionStore
 				$fields['content_format'] = $current->rev_content_format;
 			}
 
+			if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+				$fields['content_id'] = $current->content_id;
+			}
+
 			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
@@ -878,7 +882,7 @@ class RevisionStore
 			}
 
 			if ( isset( $row->content_id ) && $row->content_id > 0 ) {
-				$mainSlotRow->slot_content_id = $row->content_id;
+				$mainSlotRow->slot_content_id = intval( $row->content_id );
 			}
 
 			// This is used by null-revisions
