@@ -3019,7 +3019,7 @@ function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
 	if ( $timeout === null ) {
-		$timeout = wfIsCLI() ? 86400 : 10;
+		$timeout = wfIsCLI() ? 60 : 10;
 	}
 
 	if ( $cluster === '*' ) {
