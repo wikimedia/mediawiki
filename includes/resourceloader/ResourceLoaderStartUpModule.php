@@ -32,6 +32,14 @@
  * - target: Only register modules in the client allowed within this target.
  *   Default: "desktop".
  *   See also: OutputPage::setTarget(), ResourceLoaderModule::getTargets().
+ *
+ * - safemode: Only register modules that have ORIGIN_CORE as their origin.
+ *   This effectively disables ORIGIN_USER and ORIGIN_SITE modules.
+ *   Note that if $wgAllowSiteCSSOnRestrictedPages is enabled, a style module
+ *   with ORIGIN_SITE may still be loaded through addModules(). However, that
+ *   does not involve the startup module.
+ *   See also: T185303
+ *   See also: OutputPage::disallowUserJs()
  */
 class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
@@ -208,6 +216,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Future developers: Use WebRequest::getRawVal() instead getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
+		$safemode = $context->getRequest()->getRawVal( 'safemode' ) === '1';
 		// Bypass target filter if this request is Special:JavaScriptTest.
 		// To prevent misuse in production, this is only allowed if testing is enabled server-side.
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
@@ -220,7 +229,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
-			if ( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) ) {
+			if (
+				( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) )
+				|| ( $safemode && $module->getOrigin() > ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL )
+			) {
 				continue;
 			}
 
