@@ -57,7 +57,8 @@ class ResourceLoaderClientHtml {
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @param array $options [optional] Array of options
-	 *  - 'target': Custom parameter passed to StartupModule.
+	 *  - 'target': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
+	 *  - 'safemode': Parameter for modules=startup request, see ResourceLoaderStartUpModule.
 	 */
 	public function __construct( ResourceLoaderContext $context, array $options = [] ) {
 		$this->context = $context;
@@ -318,9 +319,12 @@ class ResourceLoaderClientHtml {
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
 		// Pass-through a custom 'target' from OutputPage (T143066).
-		$startupQuery = isset( $this->options['target'] )
-			? [ 'target' => (string)$this->options['target'] ]
-			: [];
+		$startupQuery = [];
+		foreach ( [ 'target', 'safemode' ] as $param ) {
+			if ( isset( $this->options[$param] ) ) {
+				$startupQuery[$param] = (string)$this->options[$param];
+			}
+		}
 		$chunks[] = $this->getLoad(
 			'startup',
 			ResourceLoaderModule::TYPE_SCRIPTS,
