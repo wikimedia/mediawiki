@@ -1498,6 +1498,9 @@ interface IDatabase {
 	 * after the database is updated so that the jobs will see the data when they actually run.
 	 * It can also be used for updates that easily cause deadlocks if locks are held too long.
 	 *
+	 * Avoid using IDatabase instances aside from this one in the callback, unless such instances
+	 * never have IDatabase::DBO_TRX set. This keeps callbacks from interfering with one another.
+	 *
 	 * Updates will execute in the order they were enqueued.
 	 *
 	 * The callback takes one argument:
@@ -1534,7 +1537,10 @@ interface IDatabase {
 	 *   - This IDatabase object
 	 * Callbacks must commit any transactions that they begin.
 	 *
-	 * Registering a callback here will not affect writesOrCallbacks() pending
+	 * Registering a callback here will not affect writesOrCallbacks() pending.
+	 *
+	 * Since callbacks from this method or onTransactionIdle() can start and end transactions,
+	 * a single call to IDatabase::commit might trigger multiple runs of the listener callbacks.
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a listener
