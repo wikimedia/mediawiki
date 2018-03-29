@@ -177,6 +177,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Session\\DummySessionBackend'
 		=> "$testDir/phpunit/mocks/session/DummySessionBackend.php",
 	'DummySessionProvider' => "$testDir/phpunit/mocks/session/DummySessionProvider.php",
+	'MockMessageLocalizer' => "$testDir/phpunit/mocks/MockMessageLocalizer.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
