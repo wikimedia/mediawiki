@@ -1398,22 +1398,31 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
-		$this->database->doAtomicSection( __METHOD__, function () {
-		} );
+		$noOpCallack = function () {
+		};
+
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
-		$this->database->doAtomicSection( __METHOD__, function () {
-		} );
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->rollback( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
 
 		$this->database->begin( __METHOD__ );
 		try {
-			$this->database->doAtomicSection( __METHOD__, function () {
-				throw new RuntimeException( 'Test exception' );
-			} );
+			$this->database->doAtomicSection(
+				__METHOD__,
+				function () {
+					$this->database->startAtomic( 'inner_func' );
+					throw new RuntimeException( 'Test exception' );
+				},
+				IDatabase::ATOMIC_CANCELABLE
+			);
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'Test exception', $ex->getMessage() );
