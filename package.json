@@ -5,7 +5,7 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
+    "selenium": "killall -0 chromedriver ffmpeg Xvfb 2>/dev/null || Xvfb \"$DISPLAY\" -screen 0 1280x1024x24 & ffmpeg -f x11grab  -video_size 1280x1024 -i \"$DISPLAY\" -loglevel error -nostdin -pix_fmt yuv420p ../log/selenium.mp4 & chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver ffmpeg; sleep 1; killall Xvfb"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
