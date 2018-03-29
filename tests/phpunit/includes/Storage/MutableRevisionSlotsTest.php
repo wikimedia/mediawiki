@@ -44,6 +44,10 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$slots->setSlot( $slotB );
 		$this->assertSame( $slotB, $slots->getSlot( 'main' ) );
 		$this->assertSame( [ 'main' => $slotB ], $slots->getSlots() );
+
+		// setting the same slot again should not make a difference
+		$slots->setSlot( $slotB );
+		$this->assertSame( [ 'main' => $slotB ], $slots->getSlots() );
 	}
 
 	public function testSetContentOfExistingSlotOverwritesContent() {
@@ -71,6 +75,17 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$this->assertSame( [], $slots->getSlots() );
 		$this->setExpectedException( RevisionAccessException::class );
 		$slots->getSlot( 'main' );
+
+		// removing the same slot again should not trigger an error
+		$slots->removeSlot( 'main' );
 	}
+
+	// FIXME: test newFromParentRevisionSlots
+	// FIXME: test newAsUpdate
+	// FIXME: test inheritSlot
+	// FIXME: test applyUpdate
+	// FIXME: test hasSameUpdates
+	// FIXME: test getModifiedRoles
+	// FIXME: test getRemovedRoles
 
 }
