@@ -505,11 +505,13 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function cancelAtomic( $fname = __METHOD__ ) {
+	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function doAtomicSection( $fname, callable $callback ) {
+	public function doAtomicSection(
+		$fname, callable $callback, $cancelable = self::ATOMIC_NOT_CANCELABLE
+	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
