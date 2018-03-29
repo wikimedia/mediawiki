@@ -87,8 +87,10 @@
 		// Update label if needed
 		var labelMsg = this.itemModel.getLabelMessageKey( this.invertModel.isSelected() );
 		if ( labelMsg ) {
-			this.setLabel( $( '<div>' ).html(
-				mw.message( labelMsg, mw.html.escape( this.itemModel.getLabel() ) ).parse()
+			this.setLabel( $( '<div>' ).append(
+				$( '<bdi>' ).html(
+					mw.message( labelMsg, mw.html.escape( this.itemModel.getLabel() ) ).parse()
+				)
 			).contents() );
 		} else {
 			this.setLabel( this.itemModel.getLabel() );
