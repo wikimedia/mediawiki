@@ -157,7 +157,9 @@ class LoadMonitor implements ILoadMonitor {
 			}
 
 			$conn = $this->parent->getAnyOpenConnection( $i );
-			if ( $conn ) {
+			if ( $conn && !$conn->trxLevel() ) {
+				# Handles with open transactions are avoided since they might be subject
+				# to REPEATABLE-READ snapshots, which could affect the lag estimate query.
 				$close = false; // already open
 			} else {
 				$conn = $this->parent->openConnection( $i, '' );

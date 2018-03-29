@@ -762,6 +762,17 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromPtHeartbeat() {
 		$options = $this->lagDetectionOptions;
 
+		if ( $this->trxLevel ) {
+			// Avoid returning higher and higher lag value due to snapshot age
+			// given that the isolation level will typically be REPEATABLE-READ
+			$this->queryLogger->warning(
+				"Using cached lag value for {db_server} due to active transaction",
+				$this->getLogContext( [ 'method' => __METHOD__ ] )
+			);
+
+			return $this->getTransactionLagStatus()['lag'];
+		}
+
 		if ( isset( $options['conds'] ) ) {
 			// Best method for multi-DC setups: use logical channel names
 			$data = $this->getHeartbeatData( $options['conds'] );
