@@ -1751,6 +1751,8 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( $parserOutput ) {
+		global $wgResourceLoaderLESSImportPaths;
+
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->setIndicators( $parserOutput->getIndicators() );
@@ -1794,6 +1796,7 @@ class OutputPage extends ContextSource {
 		// Enable OOUI if requested via ParserOutput
 		if ( $parserOutput->getEnableOOUI() ) {
 			$this->enableOOUI();
+			$wgResourceLoaderLESSImportPaths[] = "resources/lib/oojs-ui/wikimedia-ui-base.less";
 		}
 
 		// Include parser limit report
