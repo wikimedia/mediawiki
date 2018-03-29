@@ -23,12 +23,12 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\PageMetaDataUpdater;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionRecord;
-use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\SlotRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -1623,7 +1623,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User|null $forUser The user that will be used for, or was used for, PST.
 	 * @param RevisionRecord|null $forRevision The revision created by the edit for which
 	 *        to perform updates, if the edit was already saved.
-	 * @param RevisionSlots|null $forContent The new content to be saved by the edit (pre PST),
+	 * @param RevisionSlotsUpdate|null $forUpdate The new content to be saved by the edit (pre PST),
 	 *        if the edit was not yet saved.
 	 *
 	 * @return PageMetaDataUpdater
@@ -1631,9 +1631,9 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getMetaDataUpdater(
 		User $forUser = null,
 		RevisionRecord $forRevision = null,
-		RevisionSlots $forContent = null
+		RevisionSlotsUpdate $forUpdate = null
 	) {
-		if ( !$forRevision && !$forContent ) {
+		if ( !$forRevision && !$forUpdate ) {
 			// NOTE: can't re-use an existing metaDataUpdater if we don't know what the caller is
 			// going to use it with.
 			$this->metaDataUpdater = null;
@@ -1654,7 +1654,7 @@ class WikiPage implements Page, IDBAccessObject {
 			&& !$this->metaDataUpdater->canUseFor(
 				$forUser,
 				$forRevision,
-				$forContent
+				$forUpdate
 			)
 		) {
 			$this->metaDataUpdater = null;
@@ -1876,10 +1876,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$revision = $revision->getRevisionRecord();
 		}
 
-		$slots = new RevisionSlots( [
-			'main' => SlotRecord::newUnsaved( 'main', $content )
-		] );
-
+		$slots = MutableRevisionSlots::newAsUpdate( [ 'main' => $content ] );
 		$updater = $this->getMetaDataUpdater( $user, $revision, $slots );
 
 		if ( !$updater->isUpdatePrepared() ) {

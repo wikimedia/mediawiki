@@ -20,8 +20,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\RevisionSlots;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Storage\MutableRevisionSlots;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -212,7 +211,7 @@ class ApiStashEdit extends ApiBase {
 			$alreadyCached = true;
 		} else {
 			// TODO: MCR: stash all slots!
-			$slots = new RevisionSlots( [ 'main' => SlotRecord::newUnsaved( 'main', $content ) ] );
+			$slots = MutableRevisionSlots::newAsUpdate( [ 'main' => $content ] );
 			$pageMetaData = $page->getMetaDataUpdater( $user, null, $slots );
 			$pageMetaData->prepareEdit( $user, $slots, [], false );
 			$output = $pageMetaData->getCanonicalParserOutput();

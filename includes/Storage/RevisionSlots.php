@@ -37,16 +37,16 @@ class RevisionSlots {
 	protected $slots;
 
 	/**
-	 * @param SlotRecord[]|callable $slots SlotRecords,
+	 * @param SlotRecord[]|callable $inheritedSlots SlotRecords,
 	 *        or a callback that returns such a structure.
 	 */
-	public function __construct( $slots ) {
-		Assert::parameterType( 'array|callable', $slots, '$slots' );
+	public function __construct( $inheritedSlots ) {
+		Assert::parameterType( 'array|callable', $inheritedSlots, '$slots' );
 
-		if ( is_callable( $slots ) ) {
-			$this->slots = $slots;
+		if ( is_callable( $inheritedSlots ) ) {
+			$this->slots = $inheritedSlots;
 		} else {
-			$this->setSlotsInternal( $slots );
+			$this->setSlotsInternal( $inheritedSlots );
 		}
 	}
 

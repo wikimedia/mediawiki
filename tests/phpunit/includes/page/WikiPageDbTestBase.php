@@ -2105,7 +2105,11 @@ more stuff
 
 		// Re-use updater with same revision or content
 		$this->assertSame( $updater1, $page->getMetaDataUpdater( $user, $revision ) );
-		$this->assertSame( $updater1, $page->getMetaDataUpdater( $user, null, $revision->getSlots() ) );
+
+		$revisionSlots = MutableRevisionSlots::newAsUpdate(
+			[ 'main' => $revision->getContent( 'main' ) ]
+		);
+		$this->assertSame( $updater1, $page->getMetaDataUpdater( $user, null, $revisionSlots ) );
 
 		// Don't re-use with different user
 		$updater2 = $page->getMetaDataUpdater( $admin, $revision );

@@ -151,9 +151,9 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	private $pageState = null;
 
 	/**
-	 * @var MutableRevisionSlots|null
+	 * @var RevisionSlotsUpdate|null
 	 */
-	private $newContentSlots = null;
+	private $slotsUpdate = null;
 
 	/**
 	 * @var MutableRevisionSlots|null
@@ -221,24 +221,12 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * @param string[] $a
-	 * @param string[] $b
-	 *
-	 * @return bool
-	 */
-	private static function sameRoles( array $a, array $b ) {
-		sort( $a );
-		sort( $b );
-		return $a == $b;
-	}
-
-	/**
 	 * Checks whether this PageMetaDataUpdater can be re-used for running updates targeting
 	 * the the given revision.
 	 *
 	 * @param UserIdentity|null $user The user creating the revision in question
 	 * @param RevisionRecord|null $revision New revision (after save, if already saved)
-	 * @param RevisionSlots|null $newSlots New content (before PST)
+	 * @param RevisionSlotsUpdate|null $slotsUpdate New content (before PST)
 	 * @param null|int $parentId Parent revision of the edit (use 0 for page creation)
 	 *
 	 * @return bool
@@ -246,7 +234,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	public function canUseFor(
 		UserIdentity $user = null,
 		RevisionRecord $revision = null,
-		RevisionSlots $newSlots = null,
+		RevisionSlotsUpdate $slotsUpdate = null,
 		$parentId = null
 	) {
 		if ( $user && $this->user && $user->getName() !== $this->user->getName() ) {
@@ -287,9 +275,9 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		}
 
 		// NOTE: this check is the primary reason for having the $this->newContentSlots field!
-		if ( $this->newContentSlots
-			&& $newSlots
-			&& !$this->newContentSlots->hasSameContent( $newSlots )
+		if ( $this->slotsUpdate
+			&& $slotsUpdate
+			&& !$this->slotsUpdate->hasSameUpdates( $slotsUpdate )
 		) {
 			return false;
 		}
@@ -363,6 +351,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		// If 'oldRevision' is not set, load it!
 		// Useful if $this->oldPageState is initialized by prepareUpdate.
 		if ( !array_key_exists( 'oldRevision', $this->pageState ) ) {
+			/** @var int $oldId */
 			$oldId = $this->pageState['oldId'];
 			$flags = $this->useMaster() ? RevisionStore::READ_LATEST : 0;
 			$this->pageState['oldRevision'] = $oldId
@@ -588,16 +577,16 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	 *
 	 * @param User $user The user to act as context for pre-save transformation (PST).
 	 *        Type hint should be reduced to UserIdentity at some point.
-	 * @param RevisionSlots $newContentSlots The new content of the slots to be updated
+	 * @param RevisionSlotsUpdate $slotsUpdate The new content of the slots to be updated
 	 *        by this edit, before PST.
 	 * @param bool $useStash Whether to use stashed ParserOutput
 	 */
 	public function prepareEdit(
 		User $user,
-		RevisionSlots $newContentSlots,
+		RevisionSlotsUpdate $slotsUpdate,
 		$useStash = true
 	) {
-		if ( $this->newContentSlots ) {
+		if ( $this->slotsUpdate ) {
 			if ( !$this->user ) {
 				throw new LogicException(
 					'Unexpected state: $this->newContentSlots was initialized, '
@@ -611,7 +600,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 				);
 			}
 
-			if ( !$this->newContentSlots->hasSameContent( $newContentSlots ) ) {
+			if ( !$this->slotsUpdate->hasSameUpdates( $slotsUpdate ) ) {
 				throw new LogicException(
 					'Can\'t call prepareEdit() again with different slot content!'
 				);
@@ -637,8 +626,8 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		$stashedEdit = false;
 
 		// TODO: MCR: allow output for all slots to be stashed.
-		if ( $useStash && $newContentSlots->hasSlot( 'main' ) ) {
-			$mainContent = $newContentSlots->getContent( 'main' );
+		if ( $useStash && $slotsUpdate->hasSlot( 'main' ) ) {
+			$mainContent = $slotsUpdate->getSlot( 'main' )->getContent();
 			$legacyUser = User::newFromIdentity( $user );
 			$stashedEdit = ApiStashEdit::checkCache( $title, $mainContent, $legacyUser );
 		}
@@ -658,7 +647,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
 
 		$this->user = $user;
-		$this->newContentSlots = $newContentSlots;
+		$this->slotsUpdate = $slotsUpdate;
 
 		if ( $parentRevision ) {
 			$this->pstContentSlots = MutableRevisionSlots::newFromParentRevisionSlots(
@@ -668,7 +657,8 @@ class PageMetaDataUpdater implements IDBAccessObject {
 			$this->pstContentSlots = new MutableRevisionSlots();
 		}
 
-		foreach ( $newContentSlots->getSlots() as $role => $slot ) {
+		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
+			$slot = $slotsUpdate->getSlot( $role );
 			// TODO: MCR: allow PST content for all slots to be stashed.
 			if ( $role === 'main' && $stashedEdit ) {
 				$pstContent = $stashedEdit->pstContent;
@@ -859,8 +849,9 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		if ( isset( $this->pageState['oldId'] ) ) {
 			$oldId = $this->pageState['oldId'];
 		} elseif ( isset( $this->options['oldrevision'] ) ) {
-			// may be a Revision or RevisionRecord
-			$oldId = $this->options['oldrevision']->getId();
+			/** @var Revision|RevisionRecord $oldRev */
+			$oldRev = $this->options['oldrevision'];
+			$oldId = $oldRev->getId();
 		} else {
 			$oldId = null;
 		}
@@ -893,7 +884,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		// $this->newContentSlots being set), and this is not a null-edit, then the given
 		// revision must have the acting user as the revision author. Otherwise, user
 		// signatures generated by PST would mismatch the use in the revision record.
-		if ( $this->user !== null && $this->options['changed'] && $this->newContentSlots ) {
+		if ( $this->user !== null && $this->options['changed'] && $this->slotsUpdate ) {
 			$user = $revision->getUser();
 			// XXX: can't use User::equals, since $user may not be a User!
 			if ( $this->user->getName() !== $user->getName() ) {
@@ -1028,8 +1019,8 @@ class PageMetaDataUpdater implements IDBAccessObject {
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
 		$preparedEdit->output = $this->getCanonicalParserOutput();
 		$preparedEdit->pstContent = $this->pstContentSlots->getContent( 'main' );
-		$preparedEdit->newContent = $this->newContentSlots
-			? $this->newContentSlots->getContent( 'main' )
+		$preparedEdit->newContent = ( $this->slotsUpdate && $this->slotsUpdate->hasSlot( 'main' ) )
+			? $this->slotsUpdate->getSlot( 'main' )->getContent()
 			: null;
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : 0;
@@ -1048,6 +1039,8 @@ class PageMetaDataUpdater implements IDBAccessObject {
 	}
 
 	/**
+	 * @param string $role
+	 * @param bool $generateHtml
 	 * @return ParserOutput
 	 */
 	public function getSlotParserOutput( $role, $generateHtml = true ) {
@@ -1227,6 +1220,7 @@ class PageMetaDataUpdater implements IDBAccessObject {
 				$update->setRevision( $legacyRevision );
 
 				if ( !empty( $this->options['triggeringuser'] ) ) {
+					/** @var UserIdentity|User $triggeringUser */
 					$triggeringUser = $this->options['triggeringuser'];
 					if ( !$triggeringUser instanceof User ) {
 						$triggeringUser = User::newFromIdentity( $triggeringUser );
