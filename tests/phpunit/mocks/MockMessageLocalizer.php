@@ -1,9 +1,5 @@
 <?php
 
-use Message;
-use MessageLocalizer;
-use MessageSpecifier;
-
 /**
  * A simple {@link MessageLocalizer} implementation for use in tests.
  * By default, it sets the message language to 'qqx',
