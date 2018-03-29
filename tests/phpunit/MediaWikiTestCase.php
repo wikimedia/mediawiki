@@ -1313,47 +1313,51 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	private static $schemaOverrideDefaults = [
+		'scripts' => [],
+		'create' => [],
+		'drop' => [],
+		'alter' => [],
+	];
+
 	/**
 	 * Stub. If a test suite needs to test against a specific database schema, it should
 	 * override this method and return the appropriate information from it.
 	 *
-	 * @return [ $tables, $scripts ] A tuple of two lists, with $tables being a list of tables
-	 *         that will be re-created by the scripts, and $scripts being a list of SQL script
-	 *         files for creating the tables listed.
+	 * @param IMaintainableDatabase $db The DB connection to use for the mock schema.
+	 *        May be used to check the current state of the schema, to determine what
+	 *        overrides are needed.
+	 *
+	 * @return array An associative array with the following fields:
+	 *  - 'scripts': any SQL scripts to run. If empty or not present, schema overrides are skipped.
+	 * - 'create': A list of tables created (may or may not exist in the original schema).
+	 * - 'drop': A list of tables dropped (expected to be present in the original schema).
+	 * - 'alter': A list of tables altered (expected to be present in the original schema).
 	 */
-	protected function getSchemaOverrides() {
-		return [ [], [] ];
+	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
+		return [];
 	}
 
 	/**
-	 * Applies any schema changes requested by calling setDbSchema().
+	 * Undoes the dpecified schema overrides..
 	 * Called once per test class, just before addDataOnce().
+	 *
+	 * @param IMaintainableDatabase $db
+	 * @param array $oldOverrides
 	 */
-	private function setUpSchema( IMaintainableDatabase $db ) {
-		list( $tablesToAlter, $scriptsToRun ) = $this->getSchemaOverrides();
-
-		if ( $tablesToAlter && !$scriptsToRun ) {
-			throw new InvalidArgumentException(
-				'No scripts supplied for applying the database schema.'
-			);
-		}
-
-		if ( !$tablesToAlter && $scriptsToRun ) {
-			throw new InvalidArgumentException(
-				'No tables declared to be altered by schema scripts.'
-			);
-		}
-
+	private function undoSchemaOverrides( IMaintainableDatabase $db, $oldOverrides ) {
 		$this->ensureMockDatabaseConnection( $db );
 
-		$previouslyAlteredTables = isset( $db->_alteredMockTables ) ? $db->_alteredMockTables : [];
+		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
+		$originalTables = $this->listOriginalTables( $db );
 
-		if ( !$tablesToAlter && !$previouslyAlteredTables ) {
-			return; // nothing to do
-		}
+		// Drop tables that need to be restored or removed.
+		$tablesToDrop = array_merge( $oldOverrides['create'], $oldOverrides['alter'] );
 
-		$tablesToDrop = array_merge( $previouslyAlteredTables, $tablesToAlter );
-		$tablesToRestore = array_diff( $previouslyAlteredTables, $tablesToAlter );
+		// Restore tables that have been dropped or created or altered,
+		// if they exist in the original schema.
+		$tablesToRestore = array_merge( $tablesToDrop, $oldOverrides['drop'] );
+		$tablesToRestore = array_intersect( $originalTables, $tablesToRestore );
 
 		if ( $tablesToDrop ) {
 			$this->dropMockTables( $db, $tablesToDrop );
@@ -1362,8 +1366,60 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( $tablesToRestore ) {
 			$this->recloneMockTables( $db, $tablesToRestore );
 		}
+	}
 
-		foreach ( $scriptsToRun as $script ) {
+	/**
+	 * Applies the schema overrides returned by getSchemaOverrides(),
+	 * after undoing any previously applied schema overrides.
+	 * Called once per test class, just before addDataOnce().
+	 */
+	private function setUpSchema( IMaintainableDatabase $db ) {
+		// Undo any active overrides.
+		$oldOverrides = isset( $db->_schemaOverrides ) ? $db->_schemaOverrides
+			: self::$schemaOverrideDefaults;
+
+		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
+			$this->undoSchemaOverrides( $db, $oldOverrides );
+		}
+
+		// Determine new overrides.
+		$overrides = $this->getSchemaOverrides( $db ) + self::$schemaOverrideDefaults;
+
+		$extraKeys = array_diff(
+			array_keys( $overrides ),
+			array_keys( self::$schemaOverrideDefaults )
+		);
+
+		if ( $extraKeys ) {
+			throw new InvalidArgumentException(
+				'Schema override contains extra keys: ' . var_export( $extraKeys, true )
+			);
+		}
+
+		if ( !$overrides['scripts'] ) {
+			// no scripts to run
+			return;
+		}
+
+		if ( !$overrides['create'] && !$overrides['drop'] && !$overrides['alter'] ) {
+			throw new InvalidArgumentException(
+				'Schema override scripts given, but no tables are declared to be '
+				. 'created, dropped or altered.'
+			);
+		}
+
+		$this->ensureMockDatabaseConnection( $db );
+
+		// Drop the tables that will be created by the schema scripts.
+		$originalTables = $this->listOriginalTables( $db );
+		$tablesToDrop = array_intersect( $originalTables, $overrides['create'] );
+
+		if ( $tablesToDrop ) {
+			$this->dropMockTables( $db, $tablesToDrop );
+		}
+
+		// Run schema override scripts.
+		foreach ( $overrides['scripts'] as $script ) {
 			$db->sourceFile(
 				$script,
 				null,
@@ -1375,7 +1431,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			);
 		}
 
-		$db->_alteredMockTables = $tablesToAlter;
+		$db->_schemaOverrides = $overrides;
 	}
 
 	private function mungeSchemaUpdateQuery( $cmd ) {
@@ -1406,7 +1462,24 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Lists all tables in the live database schema.
+	 *
+	 * @param IMaintainableDatabase $db
+	 * @return array
+	 */
+	private function listOriginalTables( IMaintainableDatabase $db ) {
+		if ( !isset( $db->_originalTablePrefix ) ) {
+			throw new LogicException( 'No original table prefix know, cannot list tables!' );
+		}
+
+		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		return $originalTables;
+	}
+
+	/**
 	 * Re-clones the given mock tables to restore them based on the live database schema.
+	 * The tables listed in $tables are expected to currently not exist, so dropMockTables()
+	 * should be called first.
 	 *
 	 * @param IMaintainableDatabase $db
 	 * @param array $tables
@@ -1418,7 +1491,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
@@ -1453,6 +1526,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			foreach ( $tablesUsed as $tbl ) {
 				// TODO: reset interwiki table to its original content.
 				if ( $tbl == 'interwiki' ) {
+					continue;
+				}
+
+				if ( !$db->tableExists( $tbl ) ) {
 					continue;
 				}
 
