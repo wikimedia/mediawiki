@@ -157,7 +157,7 @@ class LoadMonitor implements ILoadMonitor {
 			}
 
 			$conn = $this->parent->getAnyOpenConnection( $i );
-			if ( $conn ) {
+			if ( $conn && !$conn->trxLevel() ) {
 				$close = false; // already open
 			} else {
 				$conn = $this->parent->openConnection( $i, '' );
