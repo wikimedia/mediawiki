@@ -34,7 +34,7 @@
 		this.placeholderItem = new OO.ui.DecoratedOptionWidget( {
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-placeholder' ],
 			label: $labelNoEntries,
-			icon: 'unClip'
+			icon: 'bookmark'
 		} );
 
 		this.menu = new mw.rcfilters.ui.GroupWidget( {
@@ -50,7 +50,7 @@
 		this.button = new OO.ui.PopupButtonWidget( {
 			classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
 			label: mw.msg( 'rcfilters-quickfilters' ),
-			icon: 'unClip',
+			icon: 'bookmark',
 			indicator: 'down',
 			$overlay: this.$overlay,
 			popup: {
