@@ -536,6 +536,7 @@ class LoadBalancer implements ILoadBalancer {
 					if ( $timeout <= 0 ) {
 						break; // timeout reached
 					}
+					$timeout = max( (int)$timeout, 1 );
 				}
 			}
 		} finally {
