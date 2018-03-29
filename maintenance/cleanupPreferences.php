@@ -93,6 +93,7 @@ class CleanupPreferences extends Maintenance {
 				[
 					'up_property NOT' . $dbw->buildLike( 'gadget-', $dbw->anyString() ),
 					'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
+					'up_property NOT' . $dbw->buildLike( $dbw->anyString(), '-local-exception' ),
 					'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
 				]
 			);
