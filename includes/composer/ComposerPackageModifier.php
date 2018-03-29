@@ -5,7 +5,7 @@ use Composer\Package\Package;
 use Composer\Semver\Constraint\Constraint;
 
 /**
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class ComposerPackageModifier {

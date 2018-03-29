@@ -9,7 +9,7 @@ require_once $basePath . '/maintenance/Maintenance.php';
  *
  * @since 1.25
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Daniel Kinzler
  */
 class ExportSites extends Maintenance {

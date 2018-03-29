@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @medium
+ * @group medium
  * @group Database
  * @covers FormattedRCFeed
  * @covers RecentChange
