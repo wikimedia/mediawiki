@@ -31,6 +31,7 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use Hooks;
+use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MWException;
 use RecentChange;
@@ -335,10 +336,20 @@ class PageUpdater {
 	 * @param Content $content
 	 */
 	public function setContent( $role, Content $content ) {
-		// TODO: add a way to remove a role (see PageMetaDataUpdater::$stopSlots).
 		$this->newContentSlots->setContent( $role, $content );
+	}
 
-		$this->preparedEdit = null;
+	/**
+	 * Set the new content for the given slot role
+	 *
+	 * @param string $role A slot role name (but not "main")
+	 */
+	public function removeRole( $role ) {
+		if ( $role === 'main' ) {
+			throw new InvalidArgumentException( 'Cannot remove the main slot!' );
+		}
+
+		$this->newContentSlots->removeSlot( $role );
 	}
 
 	/**
