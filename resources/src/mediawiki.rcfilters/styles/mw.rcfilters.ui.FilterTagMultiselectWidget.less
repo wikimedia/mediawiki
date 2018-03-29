@@ -62,18 +62,19 @@
 		&-select {
 			width: 1em;
 
-			&-widget.oo-ui-widget {
-				border: 1px solid @colorGray10;
-				border-left-width: 0;
-				border-radius: 0 0 @borderRadius 0;
+			&-widget .oo-ui-buttonOptionWidget {
+				.oo-ui-buttonElement-button {
+					height: 2.5em;
+					.box-sizing( border-box );
+				}
 
-				display: block;
-				text-align: right;
-				height: 2.5em;
-				.box-sizing( border-box );
+				&:first-child .oo-ui-buttonElement-button {
+					border-left-width: 0;
+					border-radius: 0;
+				}
 
-				.oo-ui-buttonOptionWidget:first-child {
-					margin-left: 0;
+				&:last-child .oo-ui-buttonElement-button {
+					border-top-right-radius: 0;
 				}
 			}
 		}

@@ -155,14 +155,12 @@
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget' ],
 			items: [
 				new OO.ui.ButtonOptionWidget( {
-					framed: false,
 					data: 'namespaces',
 					icon: 'article',
 					label: mw.msg( 'namespaces' ),
 					title: mw.msg( 'rcfilters-view-namespaces-tooltip' )
 				} ),
 				new OO.ui.ButtonOptionWidget( {
-					framed: false,
 					data: 'tags',
 					icon: 'tag',
 					label: mw.msg( 'tags-title' ),
