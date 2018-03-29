@@ -197,7 +197,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Array of levels of atomicity within transactions
 	 *
-	 * @var array
+	 * @var array List of (name, unique ID, savepoint ID)
 	 */
 	private $trxAtomicLevels = [];
 	/**
@@ -1229,6 +1229,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function handleSessionLoss() {
 		$this->trxLevel = 0;
 		$this->trxAtomicCounter = 0;
+		$this->trxLastUniqueId = 0.0;
 		$this->trxIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitCallbacks = []; // T67263; transaction already lost
 		$this->sessionTempTables = [];
@@ -3296,19 +3297,30 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->doSavepoint( $savepointId, $fname );
 		}
 
-		$this->trxAtomicLevels[] = [ $fname, $savepointId ];
+		$uniqueId = new AtomicSectionIdentifier;
+		$this->trxAtomicLevels[] = [ $fname, $uniqueId, $savepointId ];
+
+		return $uniqueId;
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		if ( !$this->trxLevel ) {
-			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
+		if ( !$this->trxLevel || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 
-		list( $savedFname, $savepointId ) = $this->trxAtomicLevels
-			? array_pop( $this->trxAtomicLevels ) : [ null, null ];
+		// Check if the current section matches $fname
+		$pos = count( $this->trxAtomicLevels ) - 1;
+		list( $savedFname, , $savepointId ) = $this->trxAtomicLevels[$pos];
+
 		if ( $savedFname !== $fname ) {
-			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
+			throw new DBUnexpectedError(
+				$this,
+				"Invalid atomic section ended (got $fname but expected $savedFname)."
+			);
 		}
+
+		// Remove the last section and re-index the array
+		$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos );
 
 		if ( !$this->trxAtomicLevels && $this->trxAutomaticAtomic ) {
 			$this->commit( $fname, self::FLUSHING_INTERNAL );
@@ -3317,16 +3329,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	final public function cancelAtomic( $fname = __METHOD__ ) {
-		if ( !$this->trxLevel ) {
-			throw new DBUnexpectedError( $this, "No atomic transaction is open (got $fname)." );
+	final public function cancelAtomic( $fname = __METHOD__, $sectionId = null ) {
+		if ( !$this->trxLevel || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
 		}
 
-		list( $savedFname, $savepointId ) = $this->trxAtomicLevels
-			? array_pop( $this->trxAtomicLevels ) : [ null, null ];
-		if ( $savedFname !== $fname ) {
-			throw new DBUnexpectedError( $this, "Invalid atomic section ended (got $fname)." );
+		if ( $sectionId !== null ) {
+			// Find the (last) section with the given $sectionId
+			$pos = -1;
+			foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
+				if ( $asId === $sectionId ) {
+					$pos = $i;
+				}
+			}
+			if ( $pos < 0 ) {
+				throw new DBUnexpectedError( "Atomic section #$sectionId not found (for $fname)" );
+			}
+			// Remove all descendant sections and re-index the array
+			$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos + 1 );
 		}
+
+		if ( !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $this, "No atomic section is open (got $fname)." );
+		}
+
+		// Check if the current section matches $fname
+		$pos = count( $this->trxAtomicLevels ) - 1;
+		list( $savedFname, , $savepointId ) = $this->trxAtomicLevels[$pos];
+
+		if ( $savedFname !== $fname ) {
+			throw new DBUnexpectedError(
+				$this,
+				"Invalid atomic section ended (got $fname but expected $savedFname)."
+			);
+		}
+
+		// Remove the last section and re-index the array
+		$this->trxAtomicLevels = array_slice( $this->trxAtomicLevels, 0, $pos );
+
 		if ( !$savepointId ) {
 			throw new DBUnexpectedError( $this, "Uncancelable atomic section canceled (got $fname)." );
 		}
@@ -3340,12 +3380,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->affectedRowCount = 0; // for the sake of consistency
 	}
 
-	final public function doAtomicSection( $fname, callable $callback ) {
-		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
+	final public function doAtomicSection(
+		$fname, callable $callback, $cancelable = self::ATOMIC_NOT_CANCELABLE
+	) {
+		$sectionId = $this->startAtomic( $fname, $cancelable );
 		try {
 			$res = call_user_func_array( $callback, [ $this, $fname ] );
 		} catch ( Exception $e ) {
-			$this->cancelAtomic( $fname );
+			// Attempt to rollback to the pre-section savepoint unless there wasn't one,
+			// in which case cancelAtomic() would error out without doing anything useful
+			if ( $cancelable === self::ATOMIC_CANCELABLE ) {
+				$this->cancelAtomic( $fname, $sectionId );
+			}
+
 			throw $e;
 		}
 		$this->endAtomic( $fname );
@@ -3379,6 +3426,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->doBegin( $fname );
 		$this->trxAtomicCounter = 0;
+		$this->trxLastUniqueId = 0.0;
 		$this->trxTimestamp = microtime( true );
 		$this->trxFname = $fname;
 		$this->trxDoneWrites = false;
