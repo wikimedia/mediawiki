@@ -206,23 +206,29 @@ class DeferredUpdates {
 			foreach ( $updatesByType as $updatesForType ) {
 				foreach ( $updatesForType as $update ) {
 					self::$executeContext = [ 'stage' => $stage, 'subqueue' => [] ];
-					/** @var DeferrableUpdate $update */
-					$guiError = self::runUpdate( $update, $lbFactory, $mode, $stage );
-					$reportableError = $reportableError ?: $guiError;
-					// Do the subqueue updates for $update until there are none
-					while ( self::$executeContext['subqueue'] ) {
-						$subUpdate = reset( self::$executeContext['subqueue'] );
-						$firstKey = key( self::$executeContext['subqueue'] );
-						unset( self::$executeContext['subqueue'][$firstKey] );
-
-						if ( $subUpdate instanceof DataUpdate ) {
-							$subUpdate->setTransactionTicket( $ticket );
-						}
-
-						$guiError = self::runUpdate( $subUpdate, $lbFactory, $mode, $stage );
+					try {
+						/** @var DeferrableUpdate $update */
+						$guiError = self::runUpdate( $update, $lbFactory, $mode, $stage );
 						$reportableError = $reportableError ?: $guiError;
+						// Do the subqueue updates for $update until there are none
+						while ( self::$executeContext['subqueue'] ) {
+							$subUpdate = reset( self::$executeContext['subqueue'] );
+							$firstKey = key( self::$executeContext['subqueue'] );
+							unset( self::$executeContext['subqueue'][$firstKey] );
+
+							if ( $subUpdate instanceof DataUpdate ) {
+								$subUpdate->setTransactionTicket( $ticket );
+							}
+
+							$guiError = self::runUpdate( $subUpdate, $lbFactory, $mode, $stage );
+							$reportableError = $reportableError ?: $guiError;
+						}
+					} finally {
+						// Make sure we always clean up the context.
+						// Losing updates while rewinding the stack is acceptable,
+						// losing updates that are added later is not.
+						self::$executeContext = null;
 					}
-					self::$executeContext = null;
 				}
 			}
 
@@ -265,6 +271,12 @@ class DeferredUpdates {
 				$guiError = $e;
 			}
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+
+			// VW-style hack to work around T190178, so we can make sure
+			// PageMetaDataUpdater doesn't throw exceptions.
+			if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+				throw $e;
+			}
 		}
 
 		return $guiError;
