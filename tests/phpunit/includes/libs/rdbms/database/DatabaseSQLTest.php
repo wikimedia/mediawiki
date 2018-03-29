@@ -3,6 +3,7 @@
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * Test the parts of the Database abstract class that deal
@@ -1398,22 +1399,33 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
-		$this->database->doAtomicSection( __METHOD__, function () {
-		} );
+		$noOpCallack = function () {
+		};
+
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
+		$this->assertLastSql( 'BEGIN; COMMIT' );
+
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
-		$this->database->doAtomicSection( __METHOD__, function () {
-		} );
+		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->rollback( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
 
 		$this->database->begin( __METHOD__ );
 		try {
-			$this->database->doAtomicSection( __METHOD__, function () {
-				throw new RuntimeException( 'Test exception' );
-			} );
+			$this->database->doAtomicSection(
+				__METHOD__,
+				function () {
+					$this->database->startAtomic( 'inner_func1' );
+					$this->database->startAtomic( 'inner_func2' );
+
+					throw new RuntimeException( 'Test exception' );
+				},
+				IDatabase::ATOMIC_CANCELABLE
+			);
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( RuntimeException $ex ) {
 			$this->assertSame( 'Test exception', $ex->getMessage() );
@@ -1421,6 +1433,26 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->commit( __METHOD__ );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
+
+		$this->database->begin( __METHOD__ );
+		try {
+			$this->database->doAtomicSection(
+				__METHOD__,
+				function () {
+					$this->database->startAtomic( 'inner_func1' );
+					$this->database->startAtomic( 'inner_func2' );
+
+					throw new RuntimeException( 'Test exception' );
+				}
+			);
+			$this->fail( 'Test exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			// phpcs:ignore Generic.Files.LineLength
+			$this->assertSame( 'Uncancelable atomic section canceled (got DatabaseSQLTest::testAtomicSections).', $ex->getMessage() );
+		}
+		$this->database->rollback( __METHOD__ );
+		$this->assertLastSql( 'BEGIN; ROLLBACK' );
+
 	}
 
 	public static function provideAtomicSectionMethodsForErrors() {
