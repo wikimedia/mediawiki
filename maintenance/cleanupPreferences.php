@@ -84,15 +84,24 @@ class CleanupPreferences extends Maintenance {
 			}
 		}
 
-		// Remove unknown preferences. Special-case gadget- and userjs- as we can't
-		// control those names.
+		// Remove unknown preferences. Ignore 'userjs-*' (core), 'gadget-*' (Gadgets),
+		// and '*-local-exception' (GlobalPreferences) as we can't control those names.
 		if ( $unknown ) {
+			$globalPrefsClause = 'true';
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'GlobalPreferences' ) ) {
+				$like = $dbw->buildLike(
+					$dbw->anyString(),
+					\GlobalPreferences\GlobalPreferencesFactory::LOCAL_EXCEPTION_SUFFIX
+				);
+				$globalPrefsClause = "up_property NOT $like";
+			}
 			$this->deleteByWhere(
 				$dbw,
 				'Dropping unknown preferences',
 				[
 					'up_property NOT' . $dbw->buildLike( 'gadget-', $dbw->anyString() ),
 					'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
+					$globalPrefsClause,
 					'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
 				]
 			);
