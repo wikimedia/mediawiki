@@ -3392,10 +3392,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxWriteAdjQueryCount = 0;
 		$this->trxWriteCallers = [];
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
-		// Get an estimate of the replica DB lag before then, treating estimate staleness
-		// as lag itself just to be safe
-		$status = $this->getApproximateLagStatus();
-		$this->trxReplicaLag = $status['lag'] + ( microtime( true ) - $status['since'] );
+		// Get an estimate of the replication lag before any such queries.
+		$this->trxReplicaLag = $this->getApproximateLagStatus()['lag'];
 		// T147697: make explicitTrxActive() return true until begin() finishes. This way, no
 		// caller will think its OK to muck around with the transaction just because startAtomic()
 		// has not yet completed (e.g. setting trxAtomicLevels).
