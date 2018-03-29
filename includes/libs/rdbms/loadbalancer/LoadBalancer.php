@@ -543,6 +543,7 @@ class LoadBalancer implements ILoadBalancer {
 					if ( $timeout <= 0 ) {
 						break; // timeout reached
 					}
+					$timeout = max( (int)$timeout, 1 );
 				}
 			}
 		} finally {
@@ -591,7 +592,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {
-		$timeout = max( 1, $timeout ?: $this->waitTimeout );
+		$timeout = max( 1, intval( $timeout ?: $this->waitTimeout ) );
 
 		// Check if we already know that the DB has reached this point
 		$server = $this->getServerName( $index );
