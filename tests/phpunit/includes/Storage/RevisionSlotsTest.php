@@ -6,6 +6,7 @@ use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
+use TextContent;
 use WikitextContent;
 
 class RevisionSlotsTest extends MediaWikiTestCase {
@@ -94,6 +95,40 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 'main' => $mainSlot, 'aux' => $auxSlot ], $slots->getSlots() );
 	}
 
+	/**
+	 * @covers \MediaWiki\Storage\RevisionSlots::getInheritedSlots
+	 */
+	public function testGetInheritedSlots() {
+		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$auxSlot = SlotRecord::newInherited(
+			SlotRecord::newSaved(
+				7, 7, 'foo',
+				SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) )
+			)
+		);
+		$slotsArray = [ $mainSlot, $auxSlot ];
+		$slots = $this->newRevisionSlots( $slotsArray );
+
+		$this->assertEquals( [ 'aux' => $auxSlot ], $slots->getInheritedSlots() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionSlots::getTouchedSlots
+	 */
+	public function testGetTouchedSlots() {
+		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$auxSlot = SlotRecord::newInherited(
+			SlotRecord::newSaved(
+				7, 7, 'foo',
+				SlotRecord::newUnsaved( 'aux', new WikitextContent( 'B' ) )
+			)
+		);
+		$slotsArray = [ $mainSlot, $auxSlot ];
+		$slots = $this->newRevisionSlots( $slotsArray );
+
+		$this->assertEquals( [ 'main' => $mainSlot ], $slots->getTouchedSlots() );
+	}
+
 	public function provideComputeSize() {
 		yield [ 1, [ 'A' ] ];
 		yield [ 2, [ 'AA' ] ];
@@ -134,6 +169,34 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 		$slots = $this->newRevisionSlots( $slotsArray );
 
 		$this->assertSame( $expected, $slots->computeSha1() );
+	}
+
+	public function provideHasSameContent() {
+		$fooX = SlotRecord::newUnsaved( 'x', new TextContent( 'Foo' ) );
+		$barZ = SlotRecord::newUnsaved( 'z', new TextContent( 'Bar' ) );
+		$fooY = SlotRecord::newUnsaved( 'y', new TextContent( 'Foo' ) );
+		$barZS = SlotRecord::newSaved( 7, 7, 'xyz', $barZ );
+
+		$a = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
+		$a2 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
+		$a3 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZS ] );
+		$b = $this->newRevisionSlots( [ 'y' => $fooY, 'z' => $barZ ] );
+		$c = $this->newRevisionSlots( [ 'x' => $fooX ] );
+
+		yield 'same instance' => [ $a, $a, true ];
+		yield 'same slots' => [ $a, $a2, true ];
+		yield 'same content' => [ $a, $a3, true ];
+
+		yield 'different roles' => [ $a, $b, false ];
+		yield 'different content' => [ $a, $c, false ];
+	}
+
+	/**
+	 * @dataProvider provideHasSameContent
+	 */
+	public function testHasSameContent( RevisionSlots $a, RevisionSlots $b, $same ) {
+		$this->assertSame( $same, $a->hasSameContent( $b ) );
+		$this->assertSame( $same, $b->hasSameContent( $a ) );
 	}
 
 }
