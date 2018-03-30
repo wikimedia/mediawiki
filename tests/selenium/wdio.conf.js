@@ -41,10 +41,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/user.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -221,14 +218,29 @@ exports.config = {
 	* Hook that gets executed before the suite starts
 	* @param {Object} suite suite details
 	*/
-	// beforeSuite: function (suite) {
+	// beforeSuite: function ( suite ) {
 	// },
 	/**
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		var filename, filePath;
+		// get current test title and clean it, to use it as file name
+		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
+		// build file path
+		filePath = this.screenshotPath + test.parent + '-' + filename + '.mp4';
+		// start video recordign
+		const { exec } = require( 'child_process' );
+		exec( `ffmpeg -f x11grab  -video_size 1280x1024 -i "$DISPLAY" -loglevel error -nostdin -pix_fmt yuv420p ${filePath}`, ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -255,18 +267,28 @@ exports.config = {
 		// get current test title and clean it, to use it as file name
 		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
 		// build file path
-		filePath = this.screenshotPath + filename + '.png';
+		filePath = this.screenshotPath + test.parent + '-' + filename + '.png';
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
+		// stop video recording
+		const { exec } = require( 'child_process' );
+		exec( 'killall ffmpeg', ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
 	}
 	//
 	/**
 	* Hook that gets executed after the suite has ended
 	* @param {Object} suite suite details
 	*/
-	// afterSuite: function (suite) {
-	// },
+	// afterSuite: function ( suite ) {
+	// }
 	/**
 	* Runs after a WebdriverIO command gets executed
 	* @param {String} commandName hook command name
