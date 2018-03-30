@@ -4,6 +4,8 @@ const password = 'vagrant',
 	path = require( 'path' ),
 	username = 'Admin';
 
+let ffmpeg;
+
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
 }
@@ -41,10 +43,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/user.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -228,8 +227,35 @@ exports.config = {
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		var filename, filePath;
+		// get current test title and clean it, to use it as file name
+		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
+		// build file path
+		filePath = `${this.screenshotPath}${test.parent}-${filename}.mp4`;
+		const { spawn } = require( 'child_process' );
+		ffmpeg = spawn( 'ffmpeg', [
+			'-f', 'x11grab',
+			'-video_size', '1280x1024',
+			'-i', process.env.DISPLAY,
+			'-loglevel', 'error',
+			'-nostdin',
+			'-pix_fmt', 'yuv420p',
+			filePath
+		] );
+
+		ffmpeg.stdout.on( 'data', ( data ) => {
+			console.log( `stdout: ${data}` );
+		} );
+
+		ffmpeg.stderr.on( 'data', ( data ) => {
+			console.log( `stderr: ${data}` );
+		} );
+
+		ffmpeg.on( 'close', ( code ) => {
+			console.log( `child process exited with code ${code}` );
+		} );
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -249,6 +275,10 @@ exports.config = {
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
 		var filename, filePath;
+
+		// stop video recording
+		ffmpeg.kill( 'SIGINT' );
+
 		// if test passed, ignore, else take and save screenshot
 		if ( test.passed ) {
 			return;
@@ -267,7 +297,7 @@ exports.config = {
 	* @param {Object} suite suite details
 	*/
 	// afterSuite: function (suite) {
-	// },
+	// }
 	/**
 	* Runs after a WebdriverIO command gets executed
 	* @param {String} commandName hook command name
