@@ -2,11 +2,14 @@
 
 const password = 'vagrant',
 	path = require( 'path' ),
-	username = 'Admin';
+	username = 'Admin',
+	relPath = ( foo ) => path.resolve( __dirname, '../..', foo ),
+	// get current test title and clean it, to use it as file name
+	fileName = ( title ) => encodeURIComponent( title.replace( /\s+/g, '-' ) ),
+	// build file path
+	filePath = ( test, screenshotPath ) => `${screenshotPath}${fileName( test.parent )}-${fileName( test.title )}.mp4`;
 
-function relPath( foo ) {
-	return path.resolve( __dirname, '../..', foo );
-}
+let ffmpeg;
 
 exports.config = {
 	// ======
@@ -228,8 +231,30 @@ exports.config = {
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		const { spawn } = require( 'child_process' );
+		ffmpeg = spawn( 'ffmpeg', [
+			'-f', 'x11grab', //  grab the X11 display
+			'-video_size', '1280x1024', // video size
+			'-i', process.env.DISPLAY, // input file url
+			'-loglevel', 'error', // log only errors
+			'-y', // overwrite output files without asking
+			'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
+			filePath( test, this.screenshotPath ) // output file
+		] );
+
+		ffmpeg.stdout.on( 'data', ( data ) => {
+			console.log( `stdout: ${data}` );
+		} );
+
+		ffmpeg.stderr.on( 'data', ( data ) => {
+			console.log( `stderr: ${data}` );
+		} );
+
+		ffmpeg.on( 'close', ( code ) => {
+			console.log( `child process exited with code ${code}` );
+		} );
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -249,6 +274,10 @@ exports.config = {
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
 		var filename, filePath;
+
+		// stop video recording
+		ffmpeg.kill( 'SIGINT' );
+
 		// if test passed, ignore, else take and save screenshot
 		if ( test.passed ) {
 			return;
