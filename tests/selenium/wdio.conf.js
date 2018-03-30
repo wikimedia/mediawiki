@@ -41,10 +41,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/*.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -191,8 +188,17 @@ exports.config = {
 	* @param {Object} config wdio configuration object
 	* @param {Array.<Object>} capabilities list of capabilities details
 	*/
-	// onPrepare: function (config, capabilities) {
-	// },
+	onPrepare: function ( config ) {
+		const { exec } = require( 'child_process' );
+		exec( `ffmpeg -f x11grab  -video_size 1280x1024 -i "$DISPLAY" -loglevel error -nostdin -pix_fmt yuv420p ${config.screenshotPath}selenium.mp4`, ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	/**
 	* Gets executed just before initialising the webdriver session and test framework. It allows you
 	* to manipulate configurations depending on the capability or spec.
@@ -259,7 +265,7 @@ exports.config = {
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
-	}
+	},
 	//
 	/**
 	* Hook that gets executed after the suite has ended
@@ -299,6 +305,15 @@ exports.config = {
 	* @param {Object} config wdio configuration object
 	* @param {Array.<Object>} capabilities list of capabilities details
 	*/
-	// onComplete: function(exitCode, config, capabilities) {
-	// }
+	onComplete: function () {
+		const { exec } = require( 'child_process' );
+		exec( 'killall ffmpeg', ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	}
 };
