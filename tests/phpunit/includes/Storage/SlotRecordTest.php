@@ -295,4 +295,104 @@ class SlotRecordTest extends MediaWikiTestCase {
 		SlotRecord::newSaved( $revisionId, $contentId, $contentAddress, $protoSlot );
 	}
 
+	public function provideHasSameContent() {
+		$fail = function () {
+			self::fail( 'There should be no need to actually load the content.' );
+		};
+
+		$a100a1 = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 100,
+					'content_sha1' => 'hash-a',
+					'content_address' => 'xxx:a1',
+				]
+			),
+			$fail
+		);
+		$a100a1b = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 100,
+					'content_sha1' => 'hash-a',
+					'content_address' => 'xxx:a1',
+				]
+			),
+			$fail
+		);
+		$a100null = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 100,
+					'content_sha1' => 'hash-a',
+					'content_address' => null,
+				]
+			),
+			$fail
+		);
+		$a100a2 = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 100,
+					'content_sha1' => 'hash-a',
+					'content_address' => 'xxx:a2',
+				]
+			),
+			$fail
+		);
+		$b100a1 = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'B',
+					'content_size' => 100,
+					'content_sha1' => 'hash-a',
+					'content_address' => 'xxx:a1',
+				]
+			),
+			$fail
+		);
+		$a200a1 = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 200,
+					'content_sha1' => 'hash-a',
+					'content_address' => 'xxx:a2',
+				]
+			),
+			$fail
+		);
+		$a100x1 = new SlotRecord(
+			$this->makeRow(
+				[
+					'model_name' => 'A',
+					'content_size' => 100,
+					'content_sha1' => 'hash-x',
+					'content_address' => 'xxx:x1',
+				]
+			),
+			$fail
+		);
+
+		yield 'same instance' => [ $a100a1, $a100a1, true ];
+		yield 'no address' => [ $a100a1, $a100null, true ];
+		yield 'same address' => [ $a100a1, $a100a1b, true ];
+		yield 'different address' => [ $a100a1, $a100a2, true ];
+		yield 'different model' => [ $a100a1, $b100a1, false ];
+		yield 'different size' => [ $a100a1, $a200a1, false ];
+		yield 'different hash' => [ $a100a1, $a100x1, false ];
+	}
+
+	/**
+	 * @dataProvider provideHasSameContent
+	 */
+	public function testHasSameContent( SlotRecord $a, SlotRecord $b, $sameContent ) {
+		$this->assertSame( $sameContent, $a->hasSameContent( $b ) );
+		$this->assertSame( $sameContent, $b->hasSameContent( $a ) );
+	}
+
 }
