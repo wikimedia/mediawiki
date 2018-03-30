@@ -130,13 +130,27 @@ class ResourceLoaderImage {
 		$desc = $this->descriptor;
 		if ( is_string( $desc ) ) {
 			return $this->basePath . '/' . $desc;
-		} elseif ( isset( $desc['lang'][$context->getLanguage()] ) ) {
-			return $this->basePath . '/' . $desc['lang'][$context->getLanguage()];
-		} elseif ( isset( $desc[$context->getDirection()] ) ) {
-			return $this->basePath . '/' . $desc[$context->getDirection()];
-		} else {
-			return $this->basePath . '/' . $desc['default'];
 		}
+		if ( isset( $desc['lang'] ) ) {
+			$contextLang = $context->getLanguage();
+			if ( isset( $desc['lang'][$contextLang] ) ) {
+				return $this->basePath . '/' . $desc['lang'][$contextLang];
+			}
+			$fallbacks = Language::getFallbacksFor( $contextLang );
+			foreach ( $fallbacks as $lang ) {
+				// Images will fallback to 'default' instead of 'en', except for 'en-*' variants
+				if (
+					( $lang !== 'en' || substr( $contextLang, 0, 3 ) === 'en-' ) &&
+					isset( $desc['lang'][$lang] )
+				) {
+					return $this->basePath . '/' . $desc['lang'][$lang];
+				}
+			}
+		}
+		if ( isset( $desc[$context->getDirection()] ) ) {
+			return $this->basePath . '/' . $desc[$context->getDirection()];
+		}
+		return $this->basePath . '/' . $desc['default'];
 	}
 
 	/**
