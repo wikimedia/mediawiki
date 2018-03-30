@@ -965,6 +965,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Storage\\RevisionLookup' => __DIR__ . '/includes/Storage/RevisionLookup.php',
 	'MediaWiki\\Storage\\RevisionRecord' => __DIR__ . '/includes/Storage/RevisionRecord.php',
 	'MediaWiki\\Storage\\RevisionSlots' => __DIR__ . '/includes/Storage/RevisionSlots.php',
+	'MediaWiki\\Storage\\RevisionSlotsUpdate' => __DIR__ . '/includes/Storage/RevisionSlotsUpdate.php',
 	'MediaWiki\\Storage\\RevisionStore' => __DIR__ . '/includes/Storage/RevisionStore.php',
 	'MediaWiki\\Storage\\RevisionStoreRecord' => __DIR__ . '/includes/Storage/RevisionStoreRecord.php',
 	'MediaWiki\\Storage\\SlotRecord' => __DIR__ . '/includes/Storage/SlotRecord.php',
