@@ -2386,7 +2386,7 @@
 	"protectedarticle-comment": "{{GENDER:$2|Protegió}} «[[$1]]»",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Cambió el nivel de protección}} de «[[$1]]»",
 	"unprotectedarticle-comment": "{{GENDER:$2|Eliminó la protección}} de «[[$1]]»",
-	"protect-title": "Cambiando el nivel de protección de «$1»",
+	"protect-title": "Cambio del nivel de protección de «$1»",
 	"protect-title-notallowed": "Ver el nivel de protección de «$1»",
 	"prot_1movedto2": "[[$1]] se trasladó a [[$2]]",
 	"protect-badnamespace-title": "Espacio de nombres no protegible",

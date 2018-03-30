@@ -1690,7 +1690,7 @@
 	"nopagetext": "Tražena stranica ne postoji.",
 	"pager-newer-n": "{{PLURAL:$1|noviji 1|novija $1|novijih $1}}",
 	"pager-older-n": "{{PLURAL:$1|stariji 1|starijih $1}}",
-	"suppress": "Revizija",
+	"suppress": "Potisni",
 	"querypage-disabled": "Ova posebna stranica je onemogućena radi poboljšanja performansi.",
 	"apihelp": "API pomoć",
 	"apihelp-no-such-module": "Modul „$1“ nije pronađen.",

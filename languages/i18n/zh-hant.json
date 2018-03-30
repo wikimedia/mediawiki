@@ -93,7 +93,8 @@
 			"蘭斯特",
 			"机智的小鱼君",
 			"Wbxshiori",
-			"Laundry Machine"
+			"Laundry Machine",
+			"和平至上"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3787,7 +3788,7 @@
 	"feedback-terms": "我了解我的使用者代理資訊包含完整的瀏覽器與作業系統版本資訊，且該資訊將會與意見回饋一同公開共享。",
 	"feedback-termsofuse": "我同意依照使用條款提供意見回饋。",
 	"feedback-thanks": "感謝！您的意見回饋已發佈到頁面 \"[$2 $1]\"。",
-	"feedback-thanks-title": "感謝您!",
+	"feedback-thanks-title": "感謝您！",
 	"feedback-useragent": "使用者代理：",
 	"searchsuggest-search": "搜尋 {{SITENAME}}",
 	"searchsuggest-containing": "包含...",
