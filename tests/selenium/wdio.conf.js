@@ -2,11 +2,14 @@
 
 const password = 'vagrant',
 	path = require( 'path' ),
-	username = 'Admin';
+	username = 'Admin',
+	relPath = ( foo ) => path.resolve( __dirname, '../..', foo ),
+	// get current test title and clean it, to use it as file name
+	fileName = ( title ) => encodeURIComponent( title.replace( /\s+/g, '-' ) ),
+	// build file path
+	filePath = ( test, screenshotPath, extension ) => `${screenshotPath}${fileName( test.parent )}-${fileName( test.title )}.${extension}`;
 
-function relPath( foo ) {
-	return path.resolve( __dirname, '../..', foo );
-}
+let ffmpeg;
 
 exports.config = {
 	// ======
@@ -228,8 +231,34 @@ exports.config = {
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		if ( process.env.DISPLAY ) {
+			let videoPath = filePath( test, this.screenshotPath, 'mp4' );
+			const { spawn } = require( 'child_process' );
+			ffmpeg = spawn( 'ffmpeg', [
+				'-f', 'x11grab', //  grab the X11 display
+				'-video_size', '1280x1024', // video size
+				'-i', process.env.DISPLAY, // input file url
+				'-loglevel', 'error', // log only errors
+				'-y', // overwrite output files without asking
+				'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
+				videoPath // output file
+			] );
+
+			ffmpeg.stdout.on( 'data', ( data ) => {
+				console.log( `stdout: ${data}` );
+			} );
+
+			ffmpeg.stderr.on( 'data', ( data ) => {
+				console.log( `stderr: ${data}` );
+			} );
+
+			ffmpeg.on( 'close', ( code ) => {
+				console.log( '\n\tVideo location:', videoPath, '\n' );
+				console.log( `child process exited with code ${code}` );
+			} );
+		}
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -248,18 +277,19 @@ exports.config = {
 	*/
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
-		var filename, filePath;
+		if ( process.env.DISPLAY ) {
+			// stop video recording
+			ffmpeg.kill( 'SIGINT' );
+		}
+
 		// if test passed, ignore, else take and save screenshot
 		if ( test.passed ) {
 			return;
 		}
-		// get current test title and clean it, to use it as file name
-		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
-		// build file path
-		filePath = this.screenshotPath + filename + '.png';
 		// save screenshot
-		browser.saveScreenshot( filePath );
-		console.log( '\n\tScreenshot location:', filePath, '\n' );
+		let screenshotPath = filePath( test, this.screenshotPath, 'png' );
+		browser.saveScreenshot( screenshotPath );
+		console.log( '\n\tScreenshot location:', screenshotPath, '\n' );
 	}
 	//
 	/**
