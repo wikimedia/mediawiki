@@ -115,7 +115,7 @@ class LegacyLogger extends AbstractLogger {
 		if ( self::shouldEmit( $effectiveChannel, $message, $level, $context ) ) {
 			$text = self::format( $effectiveChannel, $message, $context );
 			$destination = self::destination( $effectiveChannel, $message, $context );
-			self::emit( $text, $destination );
+			$this->emitMessageTo( $text, $destination );
 		}
 		if ( !isset( $context['private'] ) || !$context['private'] ) {
 			// Add to debug toolbar if not marked as "private"
@@ -451,6 +451,17 @@ class LegacyLogger extends AbstractLogger {
 		}
 
 		return $destination;
+	}
+
+	/**
+	 * Non-static stub for emit(), allowing calls to emit() to be intercepted for while testing.
+	 * @see emit()
+	 *
+	 * @param string $text
+	 * @param string $file Filename
+	 */
+	protected function emitMessageTo( $text, $file ) {
+		self::emit( $text, $file );
 	}
 
 	/**

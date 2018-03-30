@@ -20,7 +20,9 @@
 
 namespace MediaWiki\Logger;
 
+use Exception;
 use MediaWikiTestCase;
+use MWExceptionHandler;
 use Psr\Log\LogLevel;
 
 class LegacyLoggerTest extends MediaWikiTestCase {
@@ -170,6 +172,49 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 		}
 
 		return $tests;
+	}
+
+	/**
+	 * @param string $channel
+	 * @param string $expectedText
+	 * @param string $expectedFile
+	 *
+	 * @return \PHPUnit_Framework_MockObject_MockObject|LegacyLogger
+	 */
+	private function newLegacyLoggerExpectingEmit( $channel, $expectedText, $expectedFile ) {
+		$logger = $this->getMockBuilder( LegacyLogger::class )
+			->setConstructorArgs( [ $channel ] )
+			->setMethods( [ 'emitMessageTo' ] )
+			->getMock();
+
+		$logger->expects( $this->once() )
+			->method( 'emitMessageTo' )
+			->with( $expectedText, $expectedFile );
+
+		return $logger;
+	}
+
+	public function testWarningIsLogged() {
+		$logger = $this->newLegacyLoggerExpectingEmit( 'wfLogWarning', 'txt', 'fle' );
+
+		$logger->warning( 'Strange thing happened' );
+	}
+
+	public function testErrorIsLogged() {
+		$logger = $this->newLegacyLoggerExpectingEmit( 'wfLogDBError', 'txt', 'fle' );
+
+		$logger->error( 'Bad thing happened' );
+	}
+
+	public function testExceptionIsLogged() {
+		$logger = $this->newLegacyLoggerExpectingEmit( 'exception', 'txt', 'fle' );
+
+		$e = new Exception( 'Dummy' );
+		$logger->error(
+			MWExceptionHandler::getLogNormalMessage( $e ),
+			MWExceptionHandler::getLogContext( $e, __METHOD__ )
+		);
+
 	}
 
 }
