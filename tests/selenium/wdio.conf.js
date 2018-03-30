@@ -41,10 +41,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/user.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -221,8 +218,17 @@ exports.config = {
 	* Hook that gets executed before the suite starts
 	* @param {Object} suite suite details
 	*/
-	// beforeSuite: function (suite) {
-	// },
+	beforeSuite: function ( suite ) {
+		const { exec } = require( 'child_process' );
+		exec( `ffmpeg -f x11grab  -video_size 1280x1024 -i "$DISPLAY" -loglevel error -nostdin -pix_fmt yuv420p ${this.screenshotPath}${suite.title}.mp4`, ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	/**
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
@@ -259,14 +265,24 @@ exports.config = {
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
-	}
+	},
 	//
 	/**
 	* Hook that gets executed after the suite has ended
 	* @param {Object} suite suite details
 	*/
-	// afterSuite: function (suite) {
-	// },
+	// afterSuite: function ( suite ) {
+	afterSuite: function () {
+		const { exec } = require( 'child_process' );
+		exec( 'killall ffmpeg', ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	}
 	/**
 	* Runs after a WebdriverIO command gets executed
 	* @param {String} commandName hook command name
