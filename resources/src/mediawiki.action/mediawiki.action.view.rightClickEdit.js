@@ -3,11 +3,12 @@
  * When the user right-clicks in a heading, it will open the
  * edit screen.
  */
-jQuery( function ( $ ) {
-	// Select all h1-h6 elements that contain editsection links
-	// Don't use the ":has:(.mw-editsection a)" selector because it performs very bad.
-	// http://jsperf.com/jq-1-7-2-vs-jq-1-8-1-performance-of-mw-has/2
+( function ( $ ) {
+	// Trigger this when a contextmenu click on the page targets an h1-h6 element.
+	// This uses a delegate handler which 1) starts immediately instead of blocking
+	// response on dom-ready, and 2) selects and binds once instead of N times.
 	$( document ).on( 'contextmenu', 'h1, h2, h3, h4, h5, h6', function ( e ) {
+		// Don't use ":has:(.mw-editsection a)" in the selector because it's slow.
 		var $edit = $( this ).find( '.mw-editsection a' );
 		if ( !$edit.length ) {
 			return;
@@ -23,4 +24,4 @@ jQuery( function ( $ ) {
 			$edit.get( 0 ).click();
 		}
 	} );
-} );
+}( jQuery ) );
