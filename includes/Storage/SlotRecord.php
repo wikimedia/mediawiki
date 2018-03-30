@@ -565,4 +565,50 @@ class SlotRecord {
 		return \Wikimedia\base_convert( sha1( $blob ), 16, 36, 31 );
 	}
 
+	/**
+	 * Returns true if $other has the same content as this slot.
+	 * The check is performed based on the model, address size, and hash.
+	 * Two slots can have the same content if they use different content addresses,
+	 * but if they have the same address and the same model, they have the same content.
+	 * Two slots can have the same content if they belong to different
+	 * revisions or pages.
+	 *
+	 * Note that hasSameContent() may return false even if Content::equals returns true for
+	 * the content of two slots. This may happen if the two slots have different serializations
+	 * representing equivalent Content. Such false negatives are considered acceptable. Code
+	 * that has to be absolutely sure the Content is really not the same if hasSameContent()
+	 * returns false should call getContent() and compare the Content objects directly.
+	 *
+	 * @since 1.32
+	 *
+	 * @param SlotRecord $other
+	 * @return bool
+	 */
+	public function hasSameContent( SlotRecord $other ) {
+		if ( $other === $this ) {
+			return true;
+		}
+
+		if ( $this->getModel() !== $other->getModel() ) {
+			return false;
+		}
+
+		if ( $this->hasAddress()
+			&& $other->hasAddress()
+			&& $this->getAddress() == $other->getAddress()
+		) {
+			return true;
+		}
+
+		if ( $this->getSize() !== $other->getSize() ) {
+			return false;
+		}
+
+		if ( $this->getSha1() !== $other->getSha1() ) {
+			return false;
+		}
+
+		return true;
+	}
+
 }
