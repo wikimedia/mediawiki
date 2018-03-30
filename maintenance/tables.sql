@@ -365,6 +365,9 @@ CREATE TABLE /*_*/revision (
   -- It's possible for multiple revisions to use the same text,
   -- for instance revisions where only metadata is altered
   -- or a rollback to a previous version.
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
+  -- exist, this field should be ignored (and may be 0) in favor of the
+  -- corresponding data from the slots and content tables
   rev_text_id int unsigned NOT NULL default 0,
 
   -- Text comment summarizing the change. Deprecated in favor of
@@ -401,9 +404,14 @@ CREATE TABLE /*_*/revision (
   rev_sha1 varbinary(32) NOT NULL default '',
 
   -- content model, see CONTENT_MODEL_XXX constants
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
+  -- exist, this field should be ignored (and may be NULL) in favor of the
+  -- corresponding data from the slots and content tables
   rev_content_model varbinary(32) DEFAULT NULL,
 
   -- content format, see CONTENT_FORMAT_XXX constants
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
+  -- exist, this field should be ignored (and may be NULL).
   rev_content_format varbinary(64) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
@@ -620,6 +628,9 @@ CREATE TABLE /*_*/archive (
   --
   -- @since 1.5 Entries from 1.2-1.4 will have NULL here. When restoring
   -- archive rows without this, ar_text and ar_flags are used instead.
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
+  -- exist, this field should be ignored (and may be NULL or 0) in favor of the
+  -- corresponding data from the slots and content tables
   ar_text_id int unsigned,
 
   -- Copied from rev_deleted. Although this may be raised during deletion.
@@ -650,10 +661,15 @@ CREATE TABLE /*_*/archive (
 
   -- Copied from rev_content_model, see CONTENT_MODEL_XXX constants
   -- @since 1.21
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
+  -- exist, this field should be ignored (and may be NULL) in favor of the
+  -- corresponding data from the slots and content tables
   ar_content_model varbinary(32) DEFAULT NULL,
 
   -- Copied from rev_content_format, see CONTENT_FORMAT_XXX constants
   -- @since 1.21
+  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
+  -- exist, this field should be ignored (and may be NULL).
   ar_content_format varbinary(64) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
@@ -675,7 +691,7 @@ CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
 --
 CREATE TABLE /*_*/slots (
 
-  -- reference to rev_id
+  -- reference to rev_id or ar_rev_id
   slot_revision_id bigint unsigned NOT NULL,
 
   -- reference to role_id
@@ -709,7 +725,9 @@ CREATE TABLE /*_*/content (
   -- Nominal hash of the content object (not necessarily of the serialized blob)
   content_sha1 varbinary(32) NOT NULL,
 
-  -- reference to model_id
+  -- reference to model_id. Note the content format isn't specified; it should
+  -- be assumed to be in the default format for the model unless auto-detected
+  -- otherwise.
   content_model smallint unsigned NOT NULL,
 
   -- URL-like address of the content blob
