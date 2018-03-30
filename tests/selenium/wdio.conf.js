@@ -3,6 +3,7 @@
 const password = 'vagrant',
 	path = require( 'path' ),
 	username = 'Admin';
+var videoFilePath;
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -227,8 +228,22 @@ exports.config = {
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		// get current test title and clean it, to use it as file name
+		let filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
+		// build file path
+		videoFilePath = this.screenshotPath + test.parent + '-' + filename + '.mp4';
+		// start video recordign
+		const { exec } = require( 'child_process' );
+		exec( `ffmpeg -f x11grab  -video_size 1280x1024 -i "$DISPLAY" -loglevel error -nostdin -pix_fmt yuv420p ${videoFilePath}`, ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -248,14 +263,32 @@ exports.config = {
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
 		var filename, filePath;
-		// if test passed, ignore, else take and save screenshot
+
+		// stop video recording
+		const { exec } = require( 'child_process' );
+		exec( 'killall ffmpeg', ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+
+		// if test passed, delete video, else take and save screenshot
 		if ( test.passed ) {
+			const fs = require( 'fs' );
+			fs.unlink( videoFilePath, ( err ) => {
+				if ( err ) { throw err; }
+				console.log( videoFilePath + ' was deleted' );
+			} );
 			return;
 		}
+
 		// get current test title and clean it, to use it as file name
 		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
 		// build file path
-		filePath = this.screenshotPath + filename + '.png';
+		filePath = this.screenshotPath + test.parent + '-' + filename + '.png';
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
