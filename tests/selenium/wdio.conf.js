@@ -41,10 +41,7 @@ exports.config = {
 	// directory is where your package.json resides, so `wdio` will be called from there.
 	//
 	specs: [
-		relPath( './tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/*/tests/selenium/specs/**/*.js' ),
-		relPath( './extensions/VisualEditor/modules/ve-mw/tests/selenium/specs/**/*.js' ),
-		relPath( './skins/*/tests/selenium/specs/**/*.js' )
+		relPath( './tests/selenium/specs/*.js' )
 	],
 	// Patterns to exclude.
 	exclude: [
@@ -227,8 +224,22 @@ exports.config = {
 	* Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
 	* @param {Object} test test details
 	*/
-	// beforeTest: function (test) {
-	// },
+	beforeTest: function ( test ) {
+		var filename, filePath;
+		// get current test title and clean it, to use it as file name
+		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
+		// build file path
+		filePath = `${this.screenshotPath}${test.parent}-${filename}.mp4`;
+		const { exec } = require( 'child_process' );
+		exec( `ffmpeg -f x11grab  -video_size 1280x1024 -i "$DISPLAY" -loglevel error -nostdin -pix_fmt yuv420p ${filePath}`, ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+	},
 	/**
 	* Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
 	* beforeEach in Mocha)
@@ -248,6 +259,18 @@ exports.config = {
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
 		var filename, filePath;
+
+		// stop video recording
+		const { exec } = require( 'child_process' );
+		exec( 'killall ffmpeg', ( error, stdout, stderr ) => {
+			if ( error ) {
+				console.error( `exec error: ${error}` );
+				return;
+			}
+			console.log( `stdout: ${stdout}` );
+			console.log( `stderr: ${stderr}` );
+		} );
+
 		// if test passed, ignore, else take and save screenshot
 		if ( test.passed ) {
 			return;
@@ -266,7 +289,7 @@ exports.config = {
 	* @param {Object} suite suite details
 	*/
 	// afterSuite: function (suite) {
-	// },
+	// }
 	/**
 	* Runs after a WebdriverIO command gets executed
 	* @param {String} commandName hook command name
