@@ -1091,7 +1091,7 @@
 	"tmp-write-error": "ယာယီဖိုင်ရေးသားရာတွင် အမှားဖြစ်ပေါ်နေသည်။",
 	"largefileserver": "ဤဖိုင်သည် ဆာဗာတွင် ခွင့်ပြုရန်သတ်မှတ်ထားသော ဖိုင်အရွယ်အစားထက် ကြီးနေသည်။",
 	"file-exists-duplicate": "ဤဖိုင်သည် အောက်ပါ {{PLURAL:$1|ဖိုင်|ဖိုင်များ}}၏ ထပ်တူပုံပွား ဖြစ်သည် -",
-	"uploadwarning": "Upload တင်ရာတွင် သတ်ပေးချက်",
+	"uploadwarning": "Upload တင်ရာတွင် သတိပေးချက်",
 	"savefile": "ဖိုင်သိမ်းရန်",
 	"uploaddisabled": "Upload တင်ခြင်း ပိတ်ထားသည်။",
 	"copyuploaddisabled": "URL လင့်မှ Upload တင်ခြင်း ပိတ်ထားသည်။",

@@ -1148,6 +1148,8 @@
 	"recentchanges-legend-heading": "<strong>ব্যাখ্যা:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (লগতে [[Special:NewPages|নতুন পৃষ্ঠাসমূহৰ তালিকা]] চাওক)",
 	"recentchanges-legend-plusminus": "(''±১২৩'')",
+	"rcfilters-legend-heading": "<strong>সংক্ষিপ্ত ৰূপৰ তালিকা:</strong>",
+	"rcfilters-other-review-tools": "আন পুনৰীক্ষণ সঁজুলি",
 	"rcnotefrom": "<strong>$2</strong>ৰ পৰা হোৱা পৰিৱৰ্তনসমূহ (সৰ্বোচ্চ <strong>$1টা</strong> দেখুৱা হৈছে)।",
 	"rclistfrom": "$3 $2ৰ পৰা নতুন সালসলনি দেখুৱাওক",
 	"rcshowhideminor": "$1 -সংখ্যক নগণ্য সম্পাদনা",

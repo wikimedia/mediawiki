@@ -279,7 +279,7 @@
 	"config-cc-again": "Elegir otra vez...",
 	"config-cc-not-chosen": "Elige la licencia Creative Commons que desees y haz clic en \"proceed\".",
 	"config-advanced-settings": "Configuración avanzada",
-	"config-cache-options": "Configuración de la caché de objetos:",
+	"config-cache-options": "Configuración de la antememoria de objetos:",
 	"config-cache-help": "El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente.\nA los sitios medianos y grandes se les recomienda que permitirlo. También es beneficioso para los sitios pequeños.",
 	"config-cache-none": "Sin almacenamiento en caché (no se pierde ninguna funcionalidad, pero la velocidad puede resentirse en sitios grandes)",
 	"config-cache-accel": "Almacenamiento en caché de objetos PHP (APC, APCu, XCache o WinCache)",
