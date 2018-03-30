@@ -34,13 +34,6 @@ use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * String Some punctuation to prevent editing from broken text-mangling proxies.
- * @deprecated since 1.27, use \MediaWiki\Session\Token::SUFFIX
- * @ingroup Constants
- */
-define( 'EDIT_TOKEN_SUFFIX', Token::SUFFIX );
-
-/**
  * The User object encapsulates all of the user-specific settings (user_id,
  * name, rights, email address, options, last login time). Client
  * classes use the getXXX() functions to access these fields. These functions
@@ -66,7 +59,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * magic can be used.
 	 * @deprecated since 1.27, use \MediaWiki\Session\Token::SUFFIX
 	 */
-	const EDIT_TOKEN_SUFFIX = EDIT_TOKEN_SUFFIX;
+	const EDIT_TOKEN_SUFFIX = Token::SUFFIX;
 
 	/**
 	 * @const int Serialized record version.
