@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use InvalidArgumentException;
 use MediaWiki\Storage\MutableRevisionSlots;
 use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\RevisionSlots;
 use MediaWiki\Storage\SlotRecord;
 use WikitextContent;
 
@@ -11,6 +13,33 @@ use WikitextContent;
  * @covers \MediaWiki\Storage\MutableRevisionSlots
  */
 class MutableRevisionSlotsTest extends RevisionSlotsTest {
+
+	/**
+	 * @param SlotRecord[] $slots
+	 * @return RevisionSlots
+	 */
+	protected function newRevisionSlots( $slots = [] ) {
+		return new MutableRevisionSlots( $slots );
+	}
+
+	public function provideConstructorFailue() {
+		yield 'array or the wrong thing' => [
+			[ 1, 2, 3 ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideConstructorFailue
+	 * @param $slots
+	 *
+	 * @covers \MediaWiki\Storage\RevisionSlots::__construct
+	 * @covers \MediaWiki\Storage\RevisionSlots::setSlotsInternal
+	 */
+	public function testConstructorFailue( $slots ) {
+		$this->setExpectedException( InvalidArgumentException::class );
+
+		new MutableRevisionSlots( $slots );
+	}
 
 	public function testSetMultipleSlots() {
 		$slots = new MutableRevisionSlots();
