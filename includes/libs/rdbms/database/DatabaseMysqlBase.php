@@ -901,6 +901,13 @@ abstract class DatabaseMysqlBase extends Database {
 			$rpos = $this->getReplicaPos();
 			$gtidsWait = $rpos ? MySQLMasterPos::getCommonDomainGTIDs( $pos, $rpos ) : [];
 			if ( !$gtidsWait ) {
+				$this->queryLogger->error(
+					"No GTIDs with the same domain between master ($pos) and replica ($rpos)",
+					$this->getLogContext( [
+						'method' => __METHOD__,
+					] )
+				);
+
 				return -1; // $pos is from the wrong cluster?
 			}
 			// Wait on the GTID set (MariaDB only)
