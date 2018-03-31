@@ -30,7 +30,8 @@
 			"Vriullop",
 			"Osoitz",
 			"Mikel Ibaiba",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Iñaki LL"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -40,7 +41,7 @@
 	"tog-hidecategorization": "Ezkutatu orrien kategorizazioa",
 	"tog-extendwatchlist": "Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko, ez bakarrik azken aldaketak",
 	"tog-usenewrc": "Azken aldaketetan eta jarraipen-zerrendan aldaketak orrialdearen arabera taldekatu",
-	"tog-numberheadings": "Zenbakitu automatikoki goiburuak",
+	"tog-numberheadings": "Zenbakitu automatikoki atalburuak",
 	"tog-showtoolbar": "Aldaketen tresna-barra erakutsi",
 	"tog-editondblclick": "Klik bikoitzaren bitartez orrialdeak aldatu",
 	"tog-editsectiononrightclick": "Atalen izenburuetan eskuin klik eginez aldatzea gaitu",
@@ -1548,7 +1549,7 @@
 	"fileexists-duplicate-version": "Igoera oraingo bertsio honen bikoizketa zehatza da {{PLURAL:$2|bertsio zaharrago bat|bertsio zaharragoak}} of <strong>[[:$1]]</strong>.",
 	"file-exists-duplicate": "Fitxategi hau beste fitxategi {{PLURAL:$1|honen|hauen}} kopia bat da:",
 	"file-deleted-duplicate": "Fitxategi honen ([[:$1]]) fitxategi berbera aldez aurretik ezabatua izan da. Fitxategi horren ezabaketa-erregistroa begiratu beharko zenuke berriz igo baino lehen.",
-	"file-deleted-duplicate-notitle": "Fitxategi honetarako fitxategi berdin bat aurretik ezabatu da eta titulua kendu egin da. Ordezkatutako fitxategiaren datuak ikusi ahal izateko ezabatutakoa ikusteko ahalmena duen norbaiti galdetu beharko zenioke berriro kargatu baino lehen.",
+	"file-deleted-duplicate-notitle": "Fitxategi honetarako fitxategi berdin bat aurretik ezabatu da eta izenburua kendu egin da. Ordezkatutako fitxategiaren datuak ikusi ahal izateko ezabatutakoa ikusteko ahalmena duen norbaiti galdetu beharko zenioke berriro kargatu baino lehen.",
 	"uploadwarning": "Igotzeko oharra",
 	"uploadwarning-text": "Aldatu beheko fitxategiaren deskribapena, mesedez, eta saiatu berriz.",
 	"uploadwarning-text-nostash": "Fitxategia berriz kargatu, aldatu beheko azalpena eta saiatu berriro.",
