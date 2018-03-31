@@ -1752,11 +1752,9 @@ interface IDatabase {
 	public function ping( &$rtt = null );
 
 	/**
-	 * Get replica DB lag. Currently supported only by MySQL.
+	 * Get the amount of replication lag for this database server
 	 *
-	 * Note that this function will generate a fatal error on many
-	 * installations. Most callers should use LoadBalancer::safeGetLag()
-	 * instead.
+	 * Callers should avoid using this method while a transaction is active
 	 *
 	 * @return int|bool Database replication lag in seconds or false on error
 	 * @throws DBError
