@@ -749,6 +749,7 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromSlaveStatus() {
 		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__ );
 		$row = $res ? $res->fetchObject() : false;
+		// If the server is not replicating, there will be no row
 		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
 			return intval( $row->Seconds_Behind_Master );
 		}
@@ -856,7 +857,8 @@ abstract class DatabaseMysqlBase extends Database {
 			// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
 			// percision field is not supported in MySQL <= 5.5.
 			$res = $this->query(
-				"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1"
+				"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1",
+				__METHOD__
 			);
 			$row = $res ? $res->fetchObject() : false;
 		} finally {
@@ -901,6 +903,13 @@ abstract class DatabaseMysqlBase extends Database {
 			$rpos = $this->getReplicaPos();
 			$gtidsWait = $rpos ? MySQLMasterPos::getCommonDomainGTIDs( $pos, $rpos ) : [];
 			if ( !$gtidsWait ) {
+				$this->queryLogger->error(
+					"No GTIDs with the same domain between master ($pos) and replica ($rpos)",
+					$this->getLogContext( [
+						'method' => __METHOD__,
+					] )
+				);
+
 				return -1; // $pos is from the wrong cluster?
 			}
 			// Wait on the GTID set (MariaDB only)
