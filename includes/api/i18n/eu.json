@@ -5,7 +5,8 @@
 			"Sator",
 			"An13sa",
 			"Gorkaazk",
-			"Mikel Ibaiba"
+			"Mikel Ibaiba",
+			"Iñaki LL"
 		]
 	},
 	"apihelp-main-param-action": "Zein ekintza burutuko da.",
@@ -59,7 +60,7 @@
 	"apihelp-edit-summary": "Orrialdeak sortu eta aldatu.",
 	"apihelp-edit-param-title": "Orri izenburua aldatzeke. Hurrengoarekin batera ezin da erabili: <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "Ezabatzeko orri edo ID orria. Hurrengoarekin batera ezin da erabili: <var>$1title</var>.",
-	"apihelp-edit-param-sectiontitle": "Atal berri baten titulua.",
+	"apihelp-edit-param-sectiontitle": "Atal berri baten izenburua.",
 	"apihelp-edit-param-text": "Orrialdearen edukia.",
 	"apihelp-edit-param-tags": "Aldatu etiketak berrikusketa eskatzeko.",
 	"apihelp-edit-param-minor": "Aldaketa txikia.",
