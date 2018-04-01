@@ -46,6 +46,7 @@ $specialPageAliases = [
 	'AllMyUploads'              => [ 'כל_ההעלאות_שלי' ],
 	'Allpages'                  => [ 'כל_הדפים' ],
 	'ApiHelp'                   => [ 'עזרת_API' ],
+	'ApiSandbox'                => [ 'ארגז_חול_של_API' ],
 	'Ancientpages'              => [ 'דפים_מוזנחים' ],
 	'Badtitle'                  => [ 'כותרת_שגויה' ],
 	'Blankpage'                 => [ 'דף_ריק' ],
