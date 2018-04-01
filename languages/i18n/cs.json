@@ -37,7 +37,8 @@
 			"Marek Pavlica",
 			"Asmen",
 			"Meliganai",
-			"Ilimanaq29"
+			"Ilimanaq29",
+			"Patriccck"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -635,6 +636,8 @@
 	"savechanges": "Uložit změny",
 	"publishpage": "Zveřejnit stránku",
 	"publishchanges": "Zveřejnit změny",
+	"savearticle-start": "Uložit stránku",
+	"publishpage-start": "Zveřejnit stránku",
 	"preview": "Náhled",
 	"showpreview": "Ukázat náhled",
 	"showdiff": "Ukázat změny",

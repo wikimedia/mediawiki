@@ -824,7 +824,7 @@
 	"history-feed-empty": "La petita paĝo ne ekzistas.\nĜi verŝajne estis forigita de la vikio, aŭ alinomita.\nProvu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.",
 	"history-edit-tags": "Redakti etikedojn de elektitaj revizioj",
 	"rev-deleted-comment": "(komento forigita)",
-	"rev-deleted-user": "(uzanto-nomo forigita)",
+	"rev-deleted-user": "(uzantonomo forigita)",
 	"rev-deleted-event": "(protokolaj detaloj forigitaj)",
 	"rev-deleted-user-contribs": "[salutnomo aŭ IP-adreso estis forigita - redakto estas kaŝita en kontribuoj]",
 	"rev-deleted-text-permission": "Ĉi tiu revizio de la paĝo estis '''forigita'''.\nEble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
