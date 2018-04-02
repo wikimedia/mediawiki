@@ -1478,7 +1478,7 @@
 	"move-watch": "Vê rûpelê bişopîne",
 	"movepagebtn": "Vê rûpelê bigerîne",
 	"pagemovedsub": "Gerandin serkeftî",
-	"movepage-moved": "'''Navê \"$1\" weke \"$2\" hate guhertin'''",
+	"movepage-moved": "<strong>Navê \"$1\" weke \"$2\" hate guhertin</strong>",
 	"movepage-moved-redirect": "Beralîkirinek hate çêkirin.",
 	"movepage-moved-noredirect": "Beralîkirin nehate çêkirin.",
 	"articleexists": "Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.",
