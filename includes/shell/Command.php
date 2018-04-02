@@ -326,10 +326,11 @@ class Command {
 
 			$readyPipes = $pipes;
 
-			// Clear last error
-			// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
-			@trigger_error( '' );
-			$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
+			\MediaWiki\suppressWarnings();
+			trigger_error( '' );
+			$numReadyPipes = stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
+			\MediaWiki\restoreWarnings();
+
 			if ( $numReadyPipes === false ) {
 				// @codingStandardsIgnoreEnd
 				$error = error_get_last();
