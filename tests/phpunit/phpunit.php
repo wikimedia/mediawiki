@@ -63,6 +63,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		var_dump( "error_reporting is " . intval( ini_get( 'error_reporting' ) ) );
 
 		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
 		// stays in tact.
