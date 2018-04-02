@@ -219,7 +219,8 @@ class CrhConverter extends LanguageConverter {
 		}
 
 		// check for roman numbers like VII, XIX...
-		$roman = '/^M{0,3}(C[DM]|D{0,1}C{0,3})(X[LC]|L{0,1}X{0,3})(I[VX]|V{0,1}I{0,3})$/u';
+		// Lookahead assertion ensures $roman doesn't match the empty string
+		$roman = '/^(?=[MDCLXVI])M{0,4}(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})$/u';
 
 		# match any sub-string of the relevant letters and convert it
 		$matches = preg_split( '/(\b|^)[^' . $letters . ']+(\b|$)/u',
