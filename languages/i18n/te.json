@@ -1362,6 +1362,7 @@
 	"rcfilters-liveupdates-button-title-off": "కొత్త మార్పులు, జరుగుతూండగానే చూపించు",
 	"rcfilters-watchlist-markseen-button": "మార్పులన్నీ చూసినట్లుగా గుర్తించు",
 	"rcfilters-watchlist-edit-watchlist-button": "మీ వీక్షణ జాబితాను సవరించండి",
+	"rcfilters-watchlist-showupdated": "మీ గత సందర్శన తరువాత మారిన పేజీలు '''బొద్దుగా''' మరియు నింపిన గుండ్రని గుర్తుల ద్వారా చూపించబడ్డాయి.",
 	"rcnotefrom": "<strong>$3, $4</strong> తరువాత జరిగిన {{PLURAL:$5|మార్పు|మార్పులు}} కింద ఇచ్చాం (<strong>$1</strong> దాకా చూపించాం).",
 	"rclistfromreset": "తేదీ ఎంపికను రీసెట్ చెయ్యి",
 	"rclistfrom": "$3, $2 తో మొదలుపెట్టి ఆ తరువాత జరిగిన మార్పులను చూపించు",
