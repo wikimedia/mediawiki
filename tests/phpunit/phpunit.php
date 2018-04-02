@@ -63,6 +63,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		var_dump( "error_reporting is " . intval( ini_get( 'error_reporting' ) ) );
 
 		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
 		// stays in tact.
@@ -128,8 +129,10 @@ class PHPUnitMaintClass extends Maintenance {
 			'Using PHP ' . PHP_VERSION . "\n";
 
 		// Prepare global services for unit tests.
+		MWDebug::debug( __METHOD__ . '() error reporting 1: ' . error_reporting() );
 		MediaWikiTestCase::prepareServices( new GlobalVarConfig() );
 
+		MWDebug::debug( __METHOD__ . '() error reporting 2: ' . error_reporting() );
 		$phpUnitClass::main();
 	}
 

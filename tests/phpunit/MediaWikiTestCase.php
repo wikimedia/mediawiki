@@ -378,6 +378,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
+		MWDebug::debug( __METHOD__ . '() error reporting 1: ' . error_reporting() );
 		// Reset all caches between tests.
 		$this->doLightweightServiceReset();
 
@@ -413,7 +414,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$needsResetDB = true;
 		}
 
+		MWDebug::debug( __METHOD__ . '() error reporting 2: ' . error_reporting() );
 		parent::run( $result );
+		MWDebug::debug( __METHOD__ . '() error reporting 3: ' . error_reporting() );
 
 		if ( $needsResetDB ) {
 			$this->resetDB( $this->db, $this->tablesUsed );
@@ -488,6 +491,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		parent::setUp();
 		$this->called['setUp'] = true;
 
+		MWDebug::debug( __METHOD__ . '() error reporting 1: ' . error_reporting() );
 		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
 
 		// Cleaning up temporary files
@@ -518,6 +522,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		Maintenance::setLBFactoryTriggers( $lbFactory );
 
+		MWDebug::debug( __METHOD__ . '() error reporting 2: ' . error_reporting() );
 		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
 
@@ -528,6 +533,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function tearDown() {
 		global $wgRequest, $wgSQLMode;
 
+		MWDebug::debug( __METHOD__ . '() error reporting 1: ' . error_reporting() );
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
 			$status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier'
@@ -593,7 +599,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->fail( $message );
 		}
 
+		MWDebug::debug( __METHOD__ . '() error reporting 2: ' . error_reporting() );
 		parent::tearDown();
+		MWDebug::debug( __METHOD__ . '() error reporting 3: ' . error_reporting() );
 	}
 
 	/**
