@@ -448,6 +448,9 @@ class CSSMin {
 			} elseif ( isset( $match['file2'] ) && $match['file2'][1] !== -1 ) {
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
+			} else {
+				$match['file'] = '';
+				$match['query'] = '';
 			}
 		} else {
 			if ( isset( $match['file0'] ) && $match['file0'] !== '' ) {
@@ -459,6 +462,9 @@ class CSSMin {
 			} elseif ( isset( $match['file2'] ) && $match['file2'] !== '' ) {
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
+			} else {
+				$match['file'] = '';
+				$match['query'] = '';
 			}
 		}
 	}
