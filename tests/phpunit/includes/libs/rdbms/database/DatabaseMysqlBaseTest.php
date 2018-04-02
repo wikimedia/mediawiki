@@ -137,15 +137,12 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			$db->listViews( '' ) );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
-	 */
 	public function testBinLogName() {
 		$pos = new MySQLMasterPos( "db1052.2424/4643", 1 );
 
-		$this->assertEquals( "db1052", $pos->getLogName() );
+		$this->assertEquals( "db1052", $pos->binlog );
 		$this->assertEquals( "db1052.2424", $pos->getLogFile() );
-		$this->assertEquals( [ 2424, 4643 ], $pos->getLogPosition() );
+		$this->assertEquals( [ 2424, 4643 ], $pos->pos );
 	}
 
 	/**
@@ -200,20 +197,20 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			],
 			// MySQL GTID style
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-23', $now ),
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-24', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:23', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:24', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:5-99', $now ),
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
 				true,
 				false
 			],
 			[
-				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:1-99', $now ),
-				new MySQLMasterPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:1-100', $now ),
+				new MySQLMasterPos( '3E11FA47-71CA-11E1-9E33-C80AA9429562:99', $now ),
+				new MySQLMasterPos( '1E11FA47-71CA-11E1-9E33-C80AA9429562:100', $now ),
 				false,
 				false
 			],
@@ -331,17 +328,17 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			],
 			[
 				new MySQLMasterPos(
-					'2E11FA47-71CA-11E1-9E33-C80AA9429562:1-5,' .
-					'3E11FA47-71CA-11E1-9E33-C80AA9429562:20-99,' .
-					'7E11FA47-71CA-11E1-9E33-C80AA9429562:1-30',
+					'2E11FA47-71CA-11E1-9E33-C80AA9429562:5,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:99,' .
+					'7E11FA47-71CA-11E1-9E33-C80AA9429562:30',
 					1
 				),
 				new MySQLMasterPos(
-					'1E11FA47-71CA-11E1-9E33-C80AA9429562:30-100,' .
-					'3E11FA47-71CA-11E1-9E33-C80AA9429562:30-66',
+					'1E11FA47-71CA-11E1-9E33-C80AA9429562:100,' .
+					'3E11FA47-71CA-11E1-9E33-C80AA9429562:66',
 					1
 				),
-				[ '3E11FA47-71CA-11E1-9E33-C80AA9429562:20-99' ]
+				[ '3E11FA47-71CA-11E1-9E33-C80AA9429562:99' ]
 			]
 		];
 	}
@@ -397,155 +394,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			[ 400.7 ],
 			[ 600.22 ],
 			[ 1000.77 ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideGtidData
-	 * @covers Wikimedia\Rdbms\MySQLMasterPos
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
-	 * @covers Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
-	 */
-	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->setMethods( [
-				'useGTIDs',
-				'getServerGTIDs',
-				'getServerRoleStatus',
-				'getServerId',
-				'getServerUUID'
-			] )
-			->getMock();
-
-		$db->method( 'useGTIDs' )->willReturn( true );
-		$db->method( 'getServerGTIDs' )->willReturn( $gtable );
-		$db->method( 'getServerRoleStatus' )->willReturnCallback(
-			function ( $role ) use ( $rBLtable, $mBLtable ) {
-				if ( $role === 'SLAVE' ) {
-					return $rBLtable;
-				} elseif ( $role === 'MASTER' ) {
-					return $mBLtable;
-				}
-
-				return null;
-			}
-		);
-		$db->method( 'getServerId' )->willReturn( 1 );
-		$db->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
-
-		if ( is_array( $rGTIDs ) ) {
-			$this->assertEquals( $rGTIDs, $db->getReplicaPos()->getGTIDs() );
-		} else {
-			$this->assertEquals( false, $db->getReplicaPos() );
-		}
-		if ( is_array( $mGTIDs ) ) {
-			$this->assertEquals( $mGTIDs, $db->getMasterPos()->getGTIDs() );
-		} else {
-			$this->assertEquals( false, $db->getMasterPos() );
-		}
-	}
-
-	public static function provideGtidData() {
-		return [
-			// MariaDB
-			[
-				[
-					'gtid_domain_id' => 100,
-					'gtid_current_pos' => '100-13-77',
-					'gtid_binlog_pos' => '100-13-77',
-					'gtid_slave_pos' => null // master
-				],
-				[],
-				[
-					'File' => 'host.1600',
-					'Pos' => '77'
-				],
-				[ '100' => '100-13-77' ],
-				[ '100' => '100-13-77' ]
-			],
-			[
-				[
-					'gtid_domain_id' => 100,
-					'gtid_current_pos' => '100-13-77',
-					'gtid_binlog_pos' => '100-13-77',
-					'gtid_slave_pos' => '100-13-77' // replica
-				],
-				[
-					'Relay_Master_Log_File' => 'host.1600',
-					'Exec_Master_Log_Pos' => '77'
-				],
-				[],
-				[ '100' => '100-13-77' ],
-				[ '100' => '100-13-77' ]
-			],
-			[
-				[
-					'gtid_current_pos' => '100-13-77',
-					'gtid_binlog_pos' => '100-13-77',
-					'gtid_slave_pos' => '100-13-77' // replica
-				],
-				[
-					'Relay_Master_Log_File' => 'host.1600',
-					'Exec_Master_Log_Pos' => '77'
-				],
-				[],
-				[ '100' => '100-13-77' ],
-				[ '100' => '100-13-77' ]
-			],
-			// MySQL
-			[
-				[
-					'gtid_executed' => '2E11FA47-71CA-11E1-9E33-C80AA9429562:1-77'
-				],
-				[
-					'Relay_Master_Log_File' => 'host.1600',
-					'Exec_Master_Log_Pos' => '77'
-				],
-				[], // only a replica
-				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
-					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:1-77' ],
-				// replica/master use same var
-				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
-					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:1-77' ],
-			],
-			[
-				[
-					'gtid_executed' => '2E11FA47-71CA-11E1-9E33-C80AA9429562:1-49,' .
-						'2E11FA47-71CA-11E1-9E33-C80AA9429562:51-77'
-				],
-				[
-					'Relay_Master_Log_File' => 'host.1600',
-					'Exec_Master_Log_Pos' => '77'
-				],
-				[], // only a replica
-				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
-					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:51-77' ],
-				// replica/master use same var
-				[ '2E11FA47-71CA-11E1-9E33-C80AA9429562'
-					=> '2E11FA47-71CA-11E1-9E33-C80AA9429562:51-77' ],
-			],
-			[
-				[
-					'gtid_executed' => null // not enabled?
-				],
-				[
-					'Relay_Master_Log_File' => 'host.1600',
-					'Exec_Master_Log_Pos' => '77'
-				],
-				[], // only a replica
-				[], // binlog fallback
-				false
-			],
-			[
-				[
-					'gtid_executed' => null // not enabled?
-				],
-				[], // no replication
-				[], // no replication
-				false,
-				false
-			]
 		];
 	}
 
