@@ -5,7 +5,7 @@
  *
  * @since 1.30
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  */
 class SpecialShortpagesTest extends MediaWikiTestCase {
 

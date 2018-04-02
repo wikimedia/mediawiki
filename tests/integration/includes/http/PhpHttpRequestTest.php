@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @large
+ * @group large
  * @covers PhpHttpRequest
  */
 class PhpHttpRequestTest extends MWHttpRequestTestCase {

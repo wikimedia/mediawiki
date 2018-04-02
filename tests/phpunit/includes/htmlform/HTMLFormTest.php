@@ -3,7 +3,7 @@
 /**
  * @covers HTMLForm
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Gergő Tisza
  * @author Thiemo Mättig
  */

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @large
+ * @group large
  * @covers CurlHttpRequest
  */
 class CurlHttpRequestTest extends MWHttpRequestTestCase {

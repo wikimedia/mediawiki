@@ -8,7 +8,7 @@ use MediaWiki\Shell\Shell;
  * Meant to run on vagrant, although will probably work on other setups
  * as long as firejail and sudo has similar config.
  *
- * @large
+ * @group large
  * @group Shell
  * @covers FirejailCommand
  */
