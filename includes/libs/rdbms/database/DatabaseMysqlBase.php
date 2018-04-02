@@ -73,6 +73,9 @@ abstract class DatabaseMysqlBase extends Database {
 	// Cache getServerId() for 24 hours
 	const SERVER_ID_CACHE_TTL = 86400;
 
+	/** @var float Warn if lag estimates are made for transactions older than this many seconds */
+	const LAG_STALE_WARN_THRESHOLD = 0.100;
+
 	/**
 	 * Additional $params include:
 	 *   - lagDetectionMethod : set to one of (Seconds_Behind_Master,pt-heartbeat).
@@ -762,7 +765,10 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromPtHeartbeat() {
 		$options = $this->lagDetectionOptions;
 
-		if ( $this->trxLevel ) {
+		$staleness = $this->trxLevel
+			? microtime( true ) - $this->trxTimestamp()
+			: 0;
+		if ( $staleness > self::LAG_STALE_WARN_THRESHOLD ) {
 			// Avoid returning higher and higher lag value due to snapshot age
 			// given that the isolation level will typically be REPEATABLE-READ
 			$this->queryLogger->warning(
