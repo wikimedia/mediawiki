@@ -32,7 +32,7 @@ $namespaceNames = [
 $namespaceAliases = [
 	'Иалахә'             => NS_USER,
 
-	// Backward compat. Fallbacks from 'ru'.
+	// Backward compat. Falls back from 'ru'.
 	'Медиа'                => NS_MEDIA,
 	'Служебная'            => NS_SPECIAL,
 	'Обсуждение'           => NS_TALK,
@@ -73,3 +73,6 @@ $magicWords = [
 	'special'                   => [ '0', 'цастәи', 'служебная', 'special' ],
 	'index'                     => [ '1', '__АИНДЕКС__', '__ИНДЕКС__', '__INDEX__' ],
 ];
+
+$linkTrail = '/^([a-zабвгҕдежзӡикқҟлмнопҧрстҭуфхҳцҵчҷҽҿшыҩџьә]+)(.*)$/sDu';
+
