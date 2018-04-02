@@ -320,7 +320,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlFetchObject( $res );
 
 	/**
-	 * @param ResultWrapper|resource $res
+	 * @param IResultWrapper|resource $res
 	 * @return array|bool
 	 * @throws DBUnexpectedError
 	 */
