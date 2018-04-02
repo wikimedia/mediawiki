@@ -4,7 +4,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
 /**
- * @medium
+ * @group medium
  * @group API
  * @group Database
  *
