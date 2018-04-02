@@ -67,6 +67,10 @@ class MWDebug {
 	 */
 	protected static $deprecationWarnings = [];
 
+	public static function debug( $msg ) {
+		wfDebugLog( 'MWDebug', $msg );
+	}
+
 	/**
 	 * Enabled the debugger and load resource module.
 	 * This is called by Setup.php when $wgDebugToolbar is true.
@@ -74,6 +78,7 @@ class MWDebug {
 	 * @since 1.19
 	 */
 	public static function init() {
+		self::debug( 'init()' );
 		self::$enabled = true;
 	}
 
@@ -83,6 +88,7 @@ class MWDebug {
 	 * @since 1.28
 	 */
 	public static function deinit() {
+		self::debug( 'deinit()' );
 		self::$enabled = false;
 	}
 
@@ -193,6 +199,11 @@ class MWDebug {
 	public static function deprecated( $function, $version = false,
 		$component = false, $callerOffset = 2
 	) {
+		global $wgDevelopmentWarnings;
+		self::debug(
+			"deprecated( \$function = $function, \$version = $version )"
+			. " \$wgDevelopmentWarnings = $wgDevelopmentWarnings"
+		);
 		$callerDescription = self::getCallerDescription( $callerOffset );
 		$callerFunc = $callerDescription['func'];
 
@@ -200,11 +211,14 @@ class MWDebug {
 
 		// Check to see if there already was a warning about this function
 		if ( isset( self::$deprecationWarnings[$function][$callerFunc] ) ) {
+			self::debug( 'deprecated already seen' );
 			return;
 		} elseif ( isset( self::$deprecationWarnings[$function] ) ) {
 			if ( self::$enabled ) {
+				self::debug( 'will not send to log' );
 				$sendToLog = false;
 			} else {
+				self::debug( 'deprecated already seen (2)' );
 				return;
 			}
 		}
@@ -222,6 +236,7 @@ class MWDebug {
 				# If the comparableVersion is larger than our release limit then
 				# skip the warning message for the deprecation
 				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+					self::debug( "Will not send to log $wgDeprecationReleaseLimit < $comparableVersion" );
 					$sendToLog = false;
 				}
 			}
@@ -234,12 +249,20 @@ class MWDebug {
 
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
+			self::debug(
+				'sending message, level: '
+				. ($wgDevelopmentWarnings ? E_USER_DEPRECATED : false)
+				. ' error_reporting() = ' . error_reporting()
+			);
 			self::sendMessage(
 				$msg,
 				$callerDescription,
 				'deprecated',
 				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
 			);
+		} else {
+			self::debug( 'Not sending to log' );
+
 		}
 
 		if ( self::$enabled ) {
@@ -253,6 +276,8 @@ class MWDebug {
 				'type' => 'deprecated',
 				'caller' => $callerFunc,
 			];
+		} else {
+			self::debug( __METHOD__ . '() MWebug is disabled' );
 		}
 	}
 
@@ -306,7 +331,10 @@ class MWDebug {
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
 		if ( $level !== false ) {
+			self::debug( 'triggering error since level is set' );
 			trigger_error( $msg, $level );
+		} else {
+			self::debug( 'no level passed' );
 		}
 
 		wfDebugLog( $group, $msg, 'private' );
