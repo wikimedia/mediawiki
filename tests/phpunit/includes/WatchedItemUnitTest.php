@@ -8,6 +8,17 @@ use MediaWiki\Linker\LinkTarget;
  */
 class WatchedItemUnitTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+
+		$this->hideDeprecated( 'WatchedItem::fromUserTitle' );
+		$this->hideDeprecated( 'WatchedItem::addWatch' );
+		$this->hideDeprecated( 'WatchedItem::removeWatch' );
+		$this->hideDeprecated( 'WatchedItem::isWatched' );
+		$this->hideDeprecated( 'WatchedItem::duplicateEntries' );
+		$this->hideDeprecated( 'WatchedItem::batchAddWatch' );
+	}
+
 	/**
 	 * @param int $id
 	 *
