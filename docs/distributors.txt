@@ -87,10 +87,15 @@ which the user can edit by hand thereafter. It's just a plain old PHP file,
 and can contain any PHP statements. It usually sets global variables that are
 used for configuration, and includes files used by any extensions.
 
-Distributors can easily change the installer behavior, including LocalSettings
-generated, by placing their overrides into mw-config/overrides directory. Doing
-that is highly preferred to modifying MediaWiki code directly. See
-mw-config/overrides/README for more details and examples.
+Distributors can easily change the default settings by creating
+includes/PlatformSettings.php with overrides/additions to the default settings.
+The installer will automatically include the platform defaults when generating
+the user's LocalSettings.php file.
+
+Furthermore, distributors can change the installer behavior, by placing their
+overrides into mw-config/overrides directory. Doing that is highly preferred
+to modifying MediaWiki code directly. See mw-config/overrides/README for more
+details and examples.
 
 There's a new maintenance/install.php script which could be used for performing
 an install through the command line.
