@@ -65,6 +65,9 @@ class PHPUnitMaintClass extends Maintenance {
 	public function execute() {
 		global $IP;
 
+		wfDeprecated( 'It is deprecated' );
+		exit(1);
+
 		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
 		// stays in tact.
 		// Has to in execute() instead of finalSetup(), because finalSetup() runs before
