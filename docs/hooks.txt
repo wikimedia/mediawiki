@@ -1189,6 +1189,14 @@ $user: User performing the edit
 'DatabaseOraclePostInit': Called after initialising an Oracle database
 $db: the DatabaseOracle object
 
+'DeleteUnknownPreferences': Called by the cleanupPreferences.php maintenance script to build a WHERE clause with which
+to delete preferences that are not known about. This hook is used by extensions that have dynamically-named preferences
+that should not be deleted in the usual cleanup process. For example, the Gadgets extension creates preferences prefixed
+with 'gadget-', and so anything with that prefix is excluded from the deletion.
+&where: An array that will be passed as the $cond parameter to IDatabase::select() to determine what will be deleted
+  from the user_properties table.
+$db: The IDatabase object, useful for accessing $db->buildLike() etc.
+
 'DeletedContribsPager::reallyDoQuery': Called before really executing the query
 for Special:DeletedContributions
 Similar to ContribsPager::reallyDoQuery
