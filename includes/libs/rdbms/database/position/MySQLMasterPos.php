@@ -12,16 +12,36 @@ use UnexpectedValueException;
  *  - Binlog-based usage assumes single-source replication and non-hierarchical replication.
  *  - GTID-based usage allows getting/syncing with multi-source replication. It is assumed
  *    that GTID sets are complete (e.g. include all domains on the server).
+ *
+ * @see https://mariadb.com/kb/en/library/gtid/
+ * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
  */
 class MySQLMasterPos implements DBMasterPos {
-	/** @var string|null Binlog file base name */
-	public $binlog;
-	/** @var int[]|null Binglog file position tuple */
-	public $pos;
-	/** @var string[] GTID list */
-	public $gtids = [];
+	/** @var int One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
+	private $style;
+	/** @var string|null Base name of all Binary Log files */
+	private $binLog;
+	/** @var int[]|null Binary Log position tuple (index number, event number) */
+	private $logPos;
+	/** @var string[] Map of (server_uuid/gtid_domain_id => GTID) */
+	private $gtids = [];
+	/** @var int|null Active GTID domain ID */
+	private $activeDomain;
+	/** @var int|null ID of the server were DB writes originate */
+	private $activeServerId;
+	/** @var string|null UUID of the server were DB writes originate */
+	private $activeServerUUID;
 	/** @var float UNIX timestamp */
-	public $asOfTime = 0.0;
+	private $asOfTime = 0.0;
+
+	const BINARY_LOG = 'binary-log';
+	const GTID_MARIA = 'gtid-maria';
+	const GTID_MYSQL = 'gtid-mysql';
+
+	/** @var int Key name of the binary log index number of a position tuple */
+	const CORD_INDEX = 0;
+	/** @var int Key name of the binary log event number of a position tuple */
+	const CORD_EVENT = 1;
 
 	/**
 	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)
@@ -38,18 +58,38 @@ class MySQLMasterPos implements DBMasterPos {
 	protected function init( $position, $asOfTime ) {
 		$m = [];
 		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', $position, $m ) ) {
-			$this->binlog = $m[1]; // ideally something like host name
-			$this->pos = [ (int)$m[2], (int)$m[3] ];
+			$this->binLog = $m[1]; // ideally something like host name
+			$this->logPos = [ self::CORD_INDEX => (int)$m[2], self::CORD_EVENT => (int)$m[3] ];
+			$this->style = self::BINARY_LOG;
 		} else {
 			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
 			foreach ( $gtids as $gtid ) {
-				if ( !self::parseGTID( $gtid ) ) {
+				$components = self::parseGTID( $gtid );
+				if ( !$components ) {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
-				$this->gtids[] = $gtid;
+
+				list( $domain, $pos ) = $components;
+				if ( isset( $this->gtids[$domain] ) ) {
+					// For MySQL, handle the case where some past issue caused a gap in the
+					// executed GTID set, e.g. [last_purged+1,N-1] and [N+1,N+2+K]. Ignore the
+					// gap by using the GTID with the highest ending sequence number.
+					list( , $otherPos ) = self::parseGTID( $this->gtids[$domain] );
+					if ( $pos > $otherPos ) {
+						$this->gtids[$domain] = $gtid;
+					}
+				} else {
+					$this->gtids[$domain] = $gtid;
+				}
+
+				if ( is_int( $domain ) ) {
+					$this->style = self::GTID_MARIA; // gtid_domain_id
+				} else {
+					$this->style = self::GTID_MYSQL; // server_uuid
+				}
 			}
 			if ( !$this->gtids ) {
-				throw new InvalidArgumentException( "Got empty GTID set." );
+				throw new InvalidArgumentException( "GTID set cannot be empty." );
 			}
 		}
 
@@ -66,8 +106,8 @@ class MySQLMasterPos implements DBMasterPos {
 		}
 
 		// Prefer GTID comparisons, which work with multi-tier replication
-		$thisPosByDomain = $this->getGtidCoordinates();
-		$thatPosByDomain = $pos->getGtidCoordinates();
+		$thisPosByDomain = $this->getActiveGtidCoordinates();
+		$thatPosByDomain = $pos->getActiveGtidCoordinates();
 		if ( $thisPosByDomain && $thatPosByDomain ) {
 			$comparisons = [];
 			// Check that this has positions reaching those in $pos for all domains in common
@@ -100,8 +140,8 @@ class MySQLMasterPos implements DBMasterPos {
 		}
 
 		// Prefer GTID comparisons, which work with multi-tier replication
-		$thisPosDomains = array_keys( $this->getGtidCoordinates() );
-		$thatPosDomains = array_keys( $pos->getGtidCoordinates() );
+		$thisPosDomains = array_keys( $this->getActiveGtidCoordinates() );
+		$thatPosDomains = array_keys( $pos->getActiveGtidCoordinates() );
 		if ( $thisPosDomains && $thatPosDomains ) {
 			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
 			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
@@ -118,74 +158,119 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @return string|null
+	 * @return string|null Base name of binary log files
+	 * @since 1.31
 	 */
-	public function getLogFile() {
-		return $this->gtids ? null : "{$this->binlog}.{$this->pos[0]}";
+	public function getLogName() {
+		return $this->gtids ? null : $this->binLog;
 	}
 
 	/**
-	 * @return string[]
+	 * @return int[]|null Tuple of (binary log file number, event number)
+	 * @since 1.31
+	 */
+	public function getLogPosition() {
+		return $this->gtids ? null : $this->logPos;
+	}
+
+	/**
+	 * @return string|null Name of the binary log file for this position
+	 * @since 1.31
+	 */
+	public function getLogFile() {
+		return $this->gtids ? null : "{$this->binLog}.{$this->logPos[self::CORD_INDEX]}";
+	}
+
+	/**
+	 * @return string[] Map of (server_uuid/gtid_domain_id => GTID)
+	 * @since 1.31
 	 */
 	public function getGTIDs() {
 		return $this->gtids;
 	}
 
 	/**
-	 * @return string GTID set or <binlog file>/<position> (e.g db1034-bin.000976/843431247)
+	 * @param int|null $id @@gtid_domain_id of the active replication stream
+	 * @since 1.31
 	 */
-	public function __toString() {
-		return $this->gtids
-			? implode( ',', $this->gtids )
-			: $this->getLogFile() . "/{$this->pos[1]}";
+	public function setActiveDomain( $id ) {
+		$this->activeDomain = (int)$id;
+	}
+
+	/**
+	 * @param int|null $id @@server_id of the server were writes originate
+	 * @since 1.31
+	 */
+	public function setActiveOriginServerId( $id ) {
+		$this->activeServerId = (int)$id;
+	}
+
+	/**
+	 * @param string|null $id @@server_uuid of the server were writes originate
+	 * @since 1.31
+	 */
+	public function setActiveOriginServerUUID( $id ) {
+		$this->activeServerUUID = $id;
 	}
 
 	/**
 	 * @param MySQLMasterPos $pos
 	 * @param MySQLMasterPos $refPos
 	 * @return string[] List of GTIDs from $pos that have domains in $refPos
+	 * @since 1.31
 	 */
 	public static function getCommonDomainGTIDs( MySQLMasterPos $pos, MySQLMasterPos $refPos ) {
-		$gtidsCommon = [];
-
-		$relevantDomains = $refPos->getGtidCoordinates(); // (domain => unused)
-		foreach ( $pos->gtids as $gtid ) {
-			list( $domain ) = self::parseGTID( $gtid );
-			if ( isset( $relevantDomains[$domain] ) ) {
-				$gtidsCommon[] = $gtid;
-			}
-		}
-
-		return $gtidsCommon;
+		return array_values(
+			array_intersect_key( $pos->gtids, $refPos->getActiveGtidCoordinates() )
+		);
 	}
 
 	/**
 	 * @see https://mariadb.com/kb/en/mariadb/gtid
 	 * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
-	 * @return array Map of (domain => integer position); possibly empty
+	 * @return array Map of (server_uuid/gtid_domain_id => integer position); possibly empty
 	 */
-	protected function getGtidCoordinates() {
+	protected function getActiveGtidCoordinates() {
 		$gtidInfos = [];
-		foreach ( $this->gtids as $gtid ) {
-			list( $domain, $pos ) = self::parseGTID( $gtid );
-			$gtidInfos[$domain] = $pos;
+
+		foreach ( $this->gtids as $domain => $gtid ) {
+			list( $domain, $pos, $server ) = self::parseGTID( $gtid );
+
+			$ignore = false;
+			// Filter out GTIDs from non-active replication domains
+			if ( $this->style === self::GTID_MARIA && $this->activeDomain !== null ) {
+				$ignore |= ( $domain !== $this->activeDomain );
+			}
+			// Likewise for GTIDs from non-active replication origin servers
+			if ( $this->style === self::GTID_MARIA && $this->activeServerId !== null ) {
+				$ignore |= ( $server !== $this->activeServerId );
+			} elseif ( $this->style === self::GTID_MYSQL && $this->activeServerUUID !== null ) {
+				$ignore |= ( $server !== $this->activeServerUUID );
+			}
+
+			if ( !$ignore ) {
+				$gtidInfos[$domain] = $pos;
+			}
 		}
 
 		return $gtidInfos;
 	}
 
 	/**
-	 * @param string $gtid
-	 * @return array|null [domain, integer position] or null
+	 * @param string $id GTID
+	 * @return array|null [domain ID or server UUID, sequence number, server ID/UUID] or null
 	 */
-	protected static function parseGTID( $gtid ) {
+	protected static function parseGTID( $id ) {
 		$m = [];
-		if ( preg_match( '!^(\d+)-\d+-(\d+)$!', $gtid, $m ) ) {
+		if ( preg_match( '!^(\d+)-(\d+)-(\d+)$!', $id, $m ) ) {
 			// MariaDB style: <domain>-<server id>-<sequence number>
-			return [ (int)$m[1], (int)$m[2] ];
-		} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(\d+)$!', $gtid, $m ) ) {
-			// MySQL style: <UUID domain>:<sequence number>
-			return [ $m[1], (int)$m[2] ];
+			return [ (int)$m[1], (int)$m[3], (int)$m[2] ];
+		} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(?:\d+-|)(\d+)$!', $id, $m ) ) {
+			// MySQL style: <server UUID>:<sequence number>-<sequence number>
+			// Normally, the first number should reflect the point (gtid_purged) where older
+			// binary logs where purged to save space. When doing comparisons, it may as well
+			// be 1 in that case. Assume that this is generally the situation.
+			return [ $m[1], (int)$m[2], $m[1] ];
 		}
 
 		return null;
@@ -194,16 +279,22 @@ class MySQLMasterPos implements DBMasterPos {
 	/**
 	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-master-status.html
 	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html
-	 * @return array|bool (binlog, (integer file number, integer position)) or false
+	 * @return array|bool Map of (binlog:<string>, pos:(<integer>, <integer>)) or false
 	 */
 	protected function getBinlogCoordinates() {
-		return ( $this->binlog !== null && $this->pos !== null )
-			? [ 'binlog' => $this->binlog, 'pos' => $this->pos ]
+		return ( $this->binLog !== null && $this->logPos !== null )
+			? [ 'binlog' => $this->binLog, 'pos' => $this->logPos ]
 			: false;
 	}
 
 	public function serialize() {
-		return serialize( [ 'position' => $this->__toString(), 'asOfTime' => $this->asOfTime ] );
+		return serialize( [
+			'position' => $this->__toString(),
+			'activeDomain' => $this->activeDomain,
+			'activeServerId' => $this->activeServerId,
+			'activeServerUUID' => $this->activeServerUUID,
+			'asOfTime' => $this->asOfTime
+		] );
 	}
 
 	public function unserialize( $serialized ) {
@@ -213,5 +304,23 @@ class MySQLMasterPos implements DBMasterPos {
 		}
 
 		$this->init( $data['position'], $data['asOfTime'] );
+		if ( isset( $data['activeDomain'] ) ) {
+			$this->setActiveDomain( $data['activeDomain'] );
+		}
+		if ( isset( $data['activeServerId'] ) ) {
+			$this->setActiveOriginServerId( $data['activeServerId'] );
+		}
+		if ( isset( $data['activeServerUUID'] ) ) {
+			$this->setActiveOriginServerUUID( $data['activeServerUUID'] );
+		}
+	}
+
+	/**
+	 * @return string GTID set or <binary log file>/<position> (e.g db1034-bin.000976/843431247)
+	 */
+	public function __toString() {
+		return $this->gtids
+			? implode( ',', $this->gtids )
+			: $this->getLogFile() . "/{$this->logPos[self::CORD_EVENT]}";
 	}
 }
