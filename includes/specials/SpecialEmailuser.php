@@ -149,7 +149,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
 				$out->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
 			}
-			$out->addHTML( $this->userForm( $this->mTarget ) );
+			$this->userForm( $this->mTarget );
 
 			return;
 		}
@@ -321,35 +321,30 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return string Form asking for user name.
 	 */
 	protected function userForm( $name ) {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-		$string = Html::openElement(
-				'form',
-				[ 'method' => 'get', 'action' => wfScript(), 'id' => 'askusername' ]
-			) .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Html::openElement( 'fieldset' ) .
-			Html::rawElement( 'legend', null, $this->msg( 'emailtarget' )->parse() ) .
-			Html::label(
-				$this->msg( 'emailusername' )->text(),
-				'emailusertarget'
-			) . '&#160;' .
-			Html::input(
-				'target',
-				$name,
-				'text',
-				[
-					'id' => 'emailusertarget',
-					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-					'autofocus' => true,
-					'size' => 30,
-				]
-			) .
-			' ' .
-			Html::submitButton( $this->msg( 'emailusernamesubmit' )->text(), [] ) .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n";
+		$formDescriptor = [
+			'user' => [
+				'type' => 'user',
+				'name' => 'target',
+				'label-message' => 'emailusername',
+				'size' => 30,
+				'id' => 'emailusertarget',
+				'autofocus' => true,
+				'value' => $name
+			]
+		];
 
-		return $string;
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+
+		$htmlForm->setMethod( 'get' )
+				->setAction( wfScript() )
+				->setSubmitID ('askusername')
+				->setWrapperLegendMsg( 'emailtarget' )
+				->setSubmitTextMsg( 'emailusernamesubmit' )
+				->addHiddenField( 'title', $this->getPageTitle()->getPrefixedText())
+				->prepareForm()
+				->displayForm( false );
+
+		return true;
 	}
 
 	/**
