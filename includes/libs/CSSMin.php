@@ -446,6 +446,9 @@ class CSSMin {
 				$match['file'] = $match['file1'];
 				$match['query'] = $match['query1'];
 			} else {
+				if ( !isset( $match['file2'] ) ) {
+					throw new Exception( "Invalid URL match" );
+				}
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
 			}
@@ -457,6 +460,9 @@ class CSSMin {
 				$match['file'] = $match['file1'];
 				$match['query'] = $match['query1'];
 			} else {
+				if ( !isset( $match['file2'] ) ) {
+					throw new Exception( "Invalid URL match" );
+				}
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
 			}
