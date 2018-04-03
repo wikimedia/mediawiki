@@ -56,6 +56,15 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => 20061223210426
 		];
 
+		// Very old/ invalid patrol
+		$logs[] = [
+			'log_type' => 'patrol',
+			'log_action' => 'patrol',
+			'log_user' => 7253,
+			'log_params' => 'nanana',
+			'log_timestamp' => 20061223210426
+		];
+
 		// Autopatrol #2
 		$logs[] = [
 			'log_type' => 'patrol',
@@ -86,58 +95,8 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 		wfGetDB( DB_MASTER )->insert( 'logging', $logs );
 	}
 
-	public function testBasicRun() {
-		$this->maintenance->loadWithArgv( [ '--sleep', '0', '-q' ] );
-
-		$this->maintenance->execute();
-
-		$remainingLogs = wfGetDB( DB_REPLICA )->select(
-			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_user' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id' ]
-		);
-
-		$expected = [
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7251',
-			],
-			(object)[
-				'log_type' => 'block',
-				'log_action' => 'block',
-				'log_user' => '7253',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7255',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7256',
-			],
-		];
-		$this->assertEquals( $expected, iterator_to_array( $remainingLogs, false ) );
-	}
-
-	public function testDryRun() {
-		$this->maintenance->loadWithArgv( [ '--sleep', '0', '--dry-run', '-q' ] );
-
-		$this->maintenance->execute();
-
-		$remainingLogs = wfGetDB( DB_REPLICA )->select(
-			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_user' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id' ]
-		);
-
-		$expected = [
+	public function runProvider() {
+		$allRows = [
 			(object)[
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
@@ -155,45 +114,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			],
 			(object)[
 				'log_type' => 'patrol',
-				'log_action' => 'autopatrol',
-				'log_user' => '7254',
-			],
-			(object)[
-				'log_type' => 'patrol',
 				'log_action' => 'patrol',
-				'log_user' => '7255',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7256',
-			],
-		];
-		$this->assertEquals( $expected, iterator_to_array( $remainingLogs, false ) );
-	}
-
-	public function testRunWithTimestamp() {
-		$this->maintenance->loadWithArgv( [ '--sleep', '0', '--before', '20060123210426', '-q' ] );
-
-		$this->maintenance->execute();
-
-		$remainingLogs = wfGetDB( DB_REPLICA )->select(
-			[ 'logging' ],
-			[ 'log_type', 'log_action', 'log_user' ],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id' ]
-		);
-
-		$expected = [
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7251',
-			],
-			(object)[
-				'log_type' => 'block',
-				'log_action' => 'block',
 				'log_user' => '7253',
 			],
 			(object)[
@@ -210,13 +131,69 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 				'log_type' => 'patrol',
 				'log_action' => 'patrol',
 				'log_user' => '7256',
-			]
+			],
 		];
-		$this->assertEquals( $expected, iterator_to_array( $remainingLogs, false ) );
+
+		$cases = [
+			'dry run' => [
+				$allRows,
+				[ '--sleep', '0', '--dry-run', '-q' ]
+			],
+			'basic run' => [
+				[
+					$allRows[0],
+					$allRows[2],
+					$allRows[3],
+					$allRows[5],
+					$allRows[6],
+				],
+				[ '--sleep', '0', '-q' ]
+			],
+			'run with before' => [
+				[
+					$allRows[0],
+					$allRows[2],
+					$allRows[3],
+					$allRows[4],
+					$allRows[5],
+					$allRows[6],
+				],
+				[ '--sleep', '0', '--before', '20060123210426', '-q' ]
+			],
+			'run with check-old' => [
+				[
+					$allRows[0],
+					$allRows[1],
+					$allRows[2],
+					$allRows[3],
+					$allRows[4],
+					$allRows[6],
+				],
+				[ '--sleep', '0', '--check-old', '-q' ]
+			],
+		];
+
+		foreach ( $cases as $key => $case ) {
+			yield $key . '-batch-size-1' => [
+				$case[0],
+				array_merge( $case[1], [ '--batch-size', '1' ] )
+			];
+			yield $key . '-batch-size-5' => [
+				$case[0],
+				array_merge( $case[1], [ '--batch-size', '5' ] )
+			];
+			yield $key . '-batch-size-1000' => [
+				$case[0],
+				array_merge( $case[1], [ '--batch-size', '1000' ] )
+			];
+		}
 	}
 
-	public function testRunWithCheckOld() {
-		$this->maintenance->loadWithArgv( [ '--sleep', '0', '--check-old', '-q' ] );
+	/**
+	 * @dataProvider runProvider
+	 */
+	public function testRun( $expected, $args ) {
+		$this->maintenance->loadWithArgv( $args );
 
 		$this->maintenance->execute();
 
@@ -228,34 +205,48 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			[ 'ORDER BY' => 'log_id' ]
 		);
 
-		$expected = [
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7251',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'autopatrol',
-				'log_user' => '7252',
-			],
-			(object)[
-				'log_type' => 'block',
-				'log_action' => 'block',
-				'log_user' => '7253',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'autopatrol',
-				'log_user' => '7254',
-			],
-			(object)[
-				'log_type' => 'patrol',
-				'log_action' => 'patrol',
-				'log_user' => '7256',
-			]
-		];
 		$this->assertEquals( $expected, iterator_to_array( $remainingLogs, false ) );
+	}
+
+	public function testFromId() {
+		$fromId = wfGetDB( DB_REPLICA )->selectField(
+			'logging',
+			'log_id',
+			[ 'log_params' => 'nanana' ]
+		);
+
+		$this->maintenance->loadWithArgv( [ '--sleep', '0', '--from-id', strval( $fromId ), '-q' ] );
+
+		$this->maintenance->execute();
+
+		$remainingLogs = wfGetDB( DB_REPLICA )->select(
+			[ 'logging' ],
+			[ 'log_type', 'log_action', 'log_user' ],
+			[],
+			__METHOD__,
+			[ 'ORDER BY' => 'log_id' ]
+		);
+
+		$deleted = [
+			'log_type' => 'patrol',
+			'log_action' => 'autopatrol',
+			'log_user' => '7254',
+		];
+		$notDeleted = [
+			'log_type' => 'patrol',
+			'log_action' => 'autopatrol',
+			'log_user' => '7252',
+		];
+
+		$remainingLogs = array_map(
+			function ( $val ) {
+				return (array) $val;
+			},
+			iterator_to_array( $remainingLogs, false )
+		);
+
+		$this->assertNotContains( $deleted, $remainingLogs );
+		$this->assertContains( $notDeleted, $remainingLogs );
 	}
 
 }
