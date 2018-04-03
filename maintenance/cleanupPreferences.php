@@ -87,15 +87,14 @@ class CleanupPreferences extends Maintenance {
 		// Remove unknown preferences. Special-case gadget- and userjs- as we can't
 		// control those names.
 		if ( $unknown ) {
-			$this->deleteByWhere(
-				$dbw,
-				'Dropping unknown preferences',
-				[
-					'up_property NOT' . $dbw->buildLike( 'gadget-', $dbw->anyString() ),
-					'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
-					'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
-				]
-			);
+			$where = [
+				'up_property NOT' . $dbw->buildLike( 'gadget-', $dbw->anyString() ),
+				'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
+				'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
+			];
+			// Allow extensions to add to the where clause to prevent deletion of their own prefs.
+			Hooks::run( 'DeleteUnknownPreferences', [ &$where, $dbw ] );
+			$this->deleteByWhere( $dbw, 'Dropping unknown preferences', $where );
 		}
 
 		// Something something phase 3
