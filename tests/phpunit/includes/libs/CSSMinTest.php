@@ -254,6 +254,27 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * This tests exceptional cases for CSSMin::remap.
+   *
+	 * @dataProvider provideRemapExceptionCases
+	 * @covers CSSMin
+	 */
+	public function testRemapException( $message, $params, $expectedOutput ) {
+		$this->setExpectedException( Exception::class );
+		$this->testRemap( $message, $params, $expectedOutput );
+	}
+
+	public static function provideRemapExceptionCases() {
+		return [
+			[
+				'Failing case',
+				[ ".background-image-svg( 'images/headbg-gradient.svg', '' );", false, '', false ],
+				"background-image: url('');",
+			],
+		];
+	}
+
+	/**
 	 * This tests the basic functionality of CSSMin::remap.
 	 *
 	 * @see testRemap for testing of funky parameters
