@@ -87,9 +87,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 	// Same format as filterGroupDefinitions, but for a single group (reviewStatus)
 	// that is registered conditionally.
+	private $legacyReviewStatusFilterGroupDefinition;
+
+	// Single filter group registered conditionally
 	private $reviewStatusFilterGroupDefinition;
 
-	// Single filter registered conditionally
+	// Single filter group registered conditionally
 	private $hideCategorizationFilterDefinition;
 
 	/**
@@ -301,7 +304,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				]
 			],
 
-			// reviewStatus (conditional)
+			// significance (conditional)
 
 			[
 				'name' => 'significance',
@@ -457,17 +460,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		];
 
-		$this->reviewStatusFilterGroupDefinition = [
+		$this->legacyReviewStatusFilterGroupDefinition = [
 			[
-				'name' => 'reviewStatus',
+				'name' => 'legacyReviewStatus',
 				'title' => 'rcfilters-filtergroup-reviewstatus',
 				'class' => ChangesListBooleanFilterGroup::class,
-				'priority' => -5,
 				'filters' => [
 					[
 						'name' => 'hidepatrolled',
-						'label' => 'rcfilters-filter-patrolled-label',
-						'description' => 'rcfilters-filter-patrolled-description',
 						// rcshowhidepatr-show, rcshowhidepatr-hide
 						// wlshowhidepatr
 						'showHideSuffix' => 'showhidepatr',
@@ -477,27 +477,75 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						) {
 							$conds[] = 'rc_patrolled = 0';
 						},
-						'cssClassSuffix' => 'patrolled',
-						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return $rc->getAttribute( 'rc_patrolled' );
-						},
+						'isReplacedInStructuredUi' => true,
 					],
 					[
 						'name' => 'hideunpatrolled',
-						'label' => 'rcfilters-filter-unpatrolled-label',
-						'description' => 'rcfilters-filter-unpatrolled-description',
 						'default' => false,
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
 							$conds[] = 'rc_patrolled != 0';
 						},
-						'cssClassSuffix' => 'unpatrolled',
+						'isReplacedInStructuredUi' => true,
+					],
+				],
+			]
+		];
+
+		$this->reviewStatusFilterGroupDefinition = [
+			[
+				'name' => 'reviewStatus',
+				'title' => 'rcfilters-filtergroup-reviewstatus',
+				'class' => ChangesListStringOptionsFilterGroup::class,
+				'isFullCoverage' => true,
+				'priority' => -5,
+				'filters' => [
+					[
+						'name' => 'manual',
+						'label' => 'rcfilters-filter-reviewstatus-manual-label',
+						'description' => 'rcfilters-filter-reviewstatus-manual-description',
+						'cssClassSuffix' => 'reviewstatus-manual',
 						'isRowApplicableCallable' => function ( $ctx, $rc ) {
-							return !$rc->getAttribute( 'rc_patrolled' );
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_PATROLLED;
+						},
+					],
+					[
+						'name' => 'auto',
+						'label' => 'rcfilters-filter-reviewstatus-auto-label',
+						'description' => 'rcfilters-filter-reviewstatus-auto-description',
+						'cssClassSuffix' => 'reviewstatus-auto',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_AUTOPATROLLED;
+						},
+					],
+					[
+						'name' => 'unpatrolled',
+						'label' => 'rcfilters-filter-reviewstatus-unpatrolled-label',
+						'description' => 'rcfilters-filter-reviewstatus-unpatrolled-description',
+						'cssClassSuffix' => 'reviewstatus-unpatrolled',
+						'isRowApplicableCallable' => function ( $ctx, $rc ) {
+							return $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_UNPATROLLED;
 						},
 					],
 				],
+				'default' => ChangesListStringOptionsFilterGroup::NONE,
+				'queryCallable' => function ( $specialPageClassName, $ctx, $dbr,
+					&$tables, &$fields, &$conds, &$query_options, &$join_conds, $selected
+				) {
+					if ( $selected === [] ) {
+						return;
+					}
+					$rcPatrolledValues = [
+						'unpatrolled' => RecentChange::PRC_UNPATROLLED,
+						'manual' => RecentChange::PRC_PATROLLED,
+						'auto' => RecentChange::PRC_AUTOPATROLLED,
+					];
+					// e.g. rc_patrolled IN (0, 2)
+					$conds['rc_patrolled'] = array_map( function ( $s ) use ( $rcPatrolledValues ) {
+						return $rcPatrolledValues[ $s ];
+					}, $selected );
+				}
 			]
 		];
 
@@ -910,6 +958,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// information to all users just because the user that saves the edit can
 		// patrol or is logged in)
 		if ( !$this->including() && $this->getUser()->useRCPatrol() ) {
+			$this->registerFiltersFromDefinitions( $this->legacyReviewStatusFilterGroupDefinition );
 			$this->registerFiltersFromDefinitions( $this->reviewStatusFilterGroupDefinition );
 		}
 
@@ -1339,7 +1388,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Replace old options 'hideanons' or 'hideliu' with structured UI equivalent
+	 * Replace old options with their structured UI equivalents
 	 *
 	 * @param FormOptions $opts
 	 * @return bool True if the change was made
@@ -1349,21 +1398,40 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return false;
 		}
 
+		$changed = false;
+
 		// At this point 'hideanons' and 'hideliu' cannot be both true,
 		// because fixBackwardsCompatibilityOptions resets (at least) 'hideanons' in such case
 		if ( $opts[ 'hideanons' ] ) {
 			$opts->reset( 'hideanons' );
 			$opts[ 'userExpLevel' ] = 'registered';
-			return true;
+			$changed = true;
 		}
 
 		if ( $opts[ 'hideliu' ] ) {
 			$opts->reset( 'hideliu' );
 			$opts[ 'userExpLevel' ] = 'unregistered';
-			return true;
+			$changed = true;
 		}
 
-		return false;
+		if ( $this->getFilterGroup( 'legacyReviewStatus' ) ) {
+			if ( $opts[ 'hidepatrolled' ] ) {
+				$opts->reset( 'hidepatrolled' );
+				$opts[ 'reviewStatus' ] = 'unpatrolled';
+				$changed = true;
+			}
+
+			if ( $opts[ 'hideunpatrolled' ] ) {
+				$opts->reset( 'hideunpatrolled' );
+				$opts[ 'reviewStatus' ] = implode(
+					ChangesListStringOptionsFilterGroup::SEPARATOR,
+					[ 'manual', 'auto' ]
+				);
+				$changed = true;
+			}
+		}
+
+		return $changed;
 	}
 
 	/**
