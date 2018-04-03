@@ -1,18 +1,17 @@
 /*!
- * OOjs v2.1.0 optimised for jQuery
+ * OOjs v2.2.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2017 OOjs Team and other contributors.
+ * Copyright 2011-2018 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2017-05-30T22:56:52Z
+ * Date: 2018-04-03T19:45:13Z
  */
 ( function ( global ) {
 
 'use strict';
 
-/* exported toString */
 var
 	/**
 	 * Namespace for all classes, static methods and static properties.
@@ -22,6 +21,8 @@ var
 	oo = {},
 	// Optimisation: Local reference to Object.prototype.hasOwnProperty
 	hasOwn = oo.hasOwnProperty,
+	// Marking this as "exported" doesn't work when parserOptions.sourceType is module
+	// eslint-disable-next-line no-unused-vars
 	toString = oo.toString;
 
 /* Class Methods */
@@ -87,12 +88,9 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	targetConstructor = targetFn.prototype.constructor;
 
-	// Using ['super'] instead of .super because 'super' is not supported
-	// by IE 8 and below (bug 63303).
-	// Provide .parent as alias for code supporting older browsers which
+	// [DEPRECATED] Provide .parent as alias for code supporting older browsers which
 	// allows people to comply with their style guide.
-	// eslint-disable-next-line dot-notation
-	targetFn[ 'super' ] = targetFn.parent = originFn;
+	targetFn.super = targetFn.parent = originFn;
 
 	targetFn.prototype = Object.create( originFn.prototype, {
 		// Restore constructor property of targetFn
@@ -263,7 +261,7 @@ oo.deleteProp = function ( obj ) {
 	}
 	delete prop[ arguments[ i ] ];
 	// Walk back through props removing any plain empty objects
-	while ( ( prop = props.pop() ) && oo.isPlainObject( prop ) && !Object.keys( prop ).length ) {
+	while ( props.length > 1 && ( prop = props.pop() ) && oo.isPlainObject( prop ) && !Object.keys( prop ).length ) {
 		delete props[ props.length - 1 ][ arguments[ props.length ] ];
 	}
 };
@@ -394,9 +392,7 @@ oo.compare = function ( a, b, asymmetrical ) {
 
 	for ( k in a ) {
 		if ( !hasOwn.call( a, k ) || a[ k ] === undefined || a[ k ] === b[ k ] ) {
-			// Support es3-shim: Without the hasOwn filter, comparing [] to {} will be false in ES3
-			// because the shimmed "forEach" is enumerable and shows up in Array but not Object.
-			// Also ignore undefined values, because there is no conceptual difference between
+			// Ignore undefined values, because there is no conceptual difference between
 			// a key that is absent and a key that is present but whose value is undefined.
 			continue;
 		}
@@ -685,17 +681,17 @@ oo.isPlainObject = $.isPlainObject;
 
 	/**
 	 * @private
-	 * @param {OO.EventEmitter} ee
-	 * @param {Function|string} method Function or method name
+	 * @param {OO.EventEmitter} eventEmitter Event emitter
+	 * @param {string} event Event name
 	 * @param {Object} binding
 	 */
-	function addBinding( ee, event, binding ) {
+	function addBinding( eventEmitter, event, binding ) {
 		var bindings;
 		// Auto-initialize bindings list
-		if ( hasOwn.call( ee.bindings, event ) ) {
-			bindings = ee.bindings[ event ];
+		if ( hasOwn.call( eventEmitter.bindings, event ) ) {
+			bindings = eventEmitter.bindings[ event ];
 		} else {
-			bindings = ee.bindings[ event ] = [];
+			bindings = eventEmitter.bindings[ event ] = [];
 		}
 		// Add binding
 		bindings.push( binding );
@@ -713,8 +709,8 @@ oo.isPlainObject = $.isPlainObject;
 	 * @param {Function|string} method Function or method name to call when event occurs
 	 * @param {Array} [args] Arguments to pass to listener, will be prepended to emitted arguments
 	 * @param {Object} [context=null] Context object for function or method call
-	 * @throws {Error} Listener argument is not a function or a valid method name
 	 * @chainable
+	 * @throws {Error} Listener argument is not a function or a valid method name
 	 */
 	oo.EventEmitter.prototype.on = function ( event, method, args, context ) {
 		validateMethod( method, context );
@@ -1332,9 +1328,9 @@ oo.SortedEmitterList.prototype.setSortingCallback = function ( sortingCallback )
 /**
  * Add items to the sorted list.
  *
- * @chainable
  * @param {OO.EventEmitter|OO.EventEmitter[]} items Item to add or
  *  an array of items to add
+ * @chainable
  */
 oo.SortedEmitterList.prototype.addItems = function ( items ) {
 	var index, i, insertionIndex;
@@ -1400,6 +1396,12 @@ oo.SortedEmitterList.prototype.findInsertionIndex = function ( item ) {
 /* global hasOwn */
 
 /**
+ * A map interface for associating arbitrary data with a symbolic name. Used in
+ * place of a plain object to provide additional {@link #method-register registration}
+ * or {@link #method-lookup lookup} functionality.
+ *
+ * See <https://www.mediawiki.org/wiki/OOjs/Registries_and_factories>.
+ *
  * @class OO.Registry
  * @mixins OO.EventEmitter
  *
