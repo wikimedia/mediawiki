@@ -140,13 +140,9 @@ class ResourceLoaderImage {
 			if ( isset( $desc['lang'][$contextLang] ) ) {
 				return $this->basePath . '/' . $desc['lang'][$contextLang];
 			}
-			$fallbacks = Language::getFallbacksFor( $contextLang );
+			$fallbacks = Language::getFallbacksFor( $contextLang, Language::STRICT_FALLBACKS );
 			foreach ( $fallbacks as $lang ) {
-				// Images will fallback to 'default' instead of 'en', except for 'en-*' variants
-				if (
-					( $lang !== 'en' || substr( $contextLang, 0, 3 ) === 'en-' ) &&
-					isset( $desc['lang'][$lang] )
-				) {
+				if ( isset( $desc['lang'][$lang] ) ) {
 					return $this->basePath . '/' . $desc['lang'][$lang];
 				}
 			}
