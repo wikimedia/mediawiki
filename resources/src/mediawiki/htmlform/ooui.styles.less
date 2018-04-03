@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 // OOUIHTMLForm styles
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
 @ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
@@ -25,9 +27,7 @@
 
 		td {
 			padding: 0.35em 0.7em;
-			-webkit-transition: background-color 250ms;
-			-moz-transition: background-color 250ms;
-			transition: background-color 250ms;
+			.transition( background-color 250ms );
 		}
 
 		tbody tr:nth-child( even ) td {
