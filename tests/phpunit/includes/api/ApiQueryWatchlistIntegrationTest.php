@@ -629,6 +629,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'type' => 'new',
 					'patrolled' => true,
 					'unpatrolled' => false,
+					'autopatrolled' => false,
 				]
 			],
 			$this->getItemsFromApiResponse( $result )
@@ -973,6 +974,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'type' => 'new',
 					'patrolled' => true,
 					'unpatrolled' => false,
+					'autopatrolled' => false,
 				]
 			],
 			$this->getItemsFromApiResponse( $resultPatrolled )

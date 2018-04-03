@@ -530,6 +530,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+				|| ( isset( $show['autopatrolled'] ) && isset( $show['!autopatrolled'] ) )
+				|| ( isset( $show['autopatrolled'] ) && isset( $show['!patrolled'] ) )
 				|| ( isset( $show['top'] ) && isset( $show['!top'] ) )
 				|| ( isset( $show['new'] ) && isset( $show['!new'] ) )
 			) {
@@ -540,6 +542,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
+			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
 			$this->addWhereIf( $idField . ' != page_latest', isset( $show['!top'] ) );
 			$this->addWhereIf( $idField . ' = page_latest', isset( $show['top'] ) );
 			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
@@ -548,15 +552,17 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
-			$this->fld_patrolled
+			isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] ) || $this->fld_patrolled
 		) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
 
+			$isFilterset = isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
+				isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] );
 			$this->addTables( 'recentchanges' );
 			$this->addJoinConds( [ 'recentchanges' => [
-				isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ? 'JOIN' : 'LEFT JOIN',
+				$isFilterset ? 'JOIN' : 'LEFT JOIN',
 				[
 					// This is a crazy hack. recentchanges has no index on rc_this_oldid, so instead of adding
 					// one T19237 did a join using rc_user_text and rc_timestamp instead. Now rc_user_text is
@@ -660,7 +666,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_patrolled ) {
-			$vals['patrolled'] = (bool)$row->rc_patrolled;
+			$vals['patrolled'] = $row->rc_patrolled != RecentChange::PRC_UNPATROLLED;
+			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( $this->fld_size && !is_null( $row->rev_len ) ) {
@@ -778,6 +785,8 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!minor',
 					'patrolled',
 					'!patrolled',
+					'autopatrolled',
+					'!autopatrolled',
 					'top',
 					'!top',
 					'new',
