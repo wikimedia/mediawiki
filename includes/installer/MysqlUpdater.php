@@ -325,6 +325,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
 				'patch-user_properties-fix-pk.sql' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
+
+			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
+			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
+
 			[ 'migrateComments' ],
 			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
 				'patch-l10n_cache-primary-key.sql' ],
