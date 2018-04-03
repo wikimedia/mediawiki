@@ -56,6 +56,8 @@ class DeleteAutoPatrolLogs extends Maintenance {
 	}
 
 	public function execute() {
+		$this->setBatchSize( $this->getOption( 'batch-size', $this->getBatchSize() ) );
+
 		$sleep = (int)$this->getOption( 'sleep', 10 );
 		$fromId = $this->getOption( 'from-id', null );
 		$this->countDown( 5 );
@@ -159,7 +161,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			Wikimedia\restoreWarnings();
 
 			// Skipping really old rows, before 2011
-			if ( is_array( $params ) && !array_key_exists( '6::auto', $params ) ) {
+			if ( !is_array( $params ) || !array_key_exists( '6::auto', $params ) ) {
 				continue;
 			}
 
