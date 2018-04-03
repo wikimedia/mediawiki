@@ -253,6 +253,28 @@ class CSSMinTest extends MediaWikiTestCase {
 		];
 	}
 
+	public function testRemapException( $message, $params, $expectedOutput ) {
+		$caught = false;
+		try {
+			$this->testRemap( $message, $params, $expectedOutput );
+		} catch (Exception $e) {
+			$caught = true;
+		}
+		$this->assertTrue(true, $caught,
+		 "CSSMin::remap should have thrown an exception from: $message");
+	}
+
+	public static function provideRemapExceptionCases() {
+		// Parameter signature:
+		// CSSMin::remap( $code, $local, $remote, $embedData = true )
+		return [
+			[
+				'Simple case',
+				[ 'foo { prop: url(bar.png); }', false, 'http://example.org', false ],
+				'foo { prop: url(); }',
+			],
+		];
+	}
 	/**
 	 * This tests the basic functionality of CSSMin::remap.
 	 *
