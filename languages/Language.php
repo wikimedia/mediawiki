@@ -4516,15 +4516,20 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
-	 * @return array Non-empty array, ending in "en"
+	 * @param bool $forMessages Fallback list is for messages and will always end in 'en'
+	 * @return array List of language codes
 	 */
-	public static function getFallbacksFor( $code ) {
+	public static function getFallbacksFor( $code, $forMessages = true ) {
 		if ( $code === 'en' || !self::isValidBuiltInCode( $code ) ) {
 			return [];
 		}
-		// For unknown languages, fallbackSequence returns an empty array,
-		// hardcode fallback to 'en' in that case.
-		return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: [ 'en' ];
+		if ( $forMessages ) {
+			// For unknown languages, fallbackSequence returns an empty array,
+			// hardcode fallback to 'en' in that case.
+			return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: [ 'en' ];
+		} else {
+			return self::getLocalisationCache()->getItem( $code, 'originalFallbackSequence' );
+		}
 	}
 
 	/**
