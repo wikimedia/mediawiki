@@ -347,7 +347,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled = 0',
+				'rc_patrolled' => 0,
 			],
 			[
 				'hidepatrolled' => 1,
@@ -361,12 +361,36 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
 			[ # expected
-				'rc_patrolled != 0',
+				'rc_patrolled' => [ 1, 2 ],
 			],
 			[
 				'hideunpatrolled' => 1,
 			],
 			"rc conditions: hideunpatrolled=1",
+			$user
+		);
+	}
+
+	public function testRcReviewStatusFilter() {
+		$user = $this->getTestSysop()->getUser();
+		$this->assertConditions(
+			[ #expected
+				'rc_patrolled' => 1,
+			],
+			[
+				'reviewStatus' => 'manual'
+			],
+			"rc conditions: reviewStatus=manual",
+			$user
+		);
+		$this->assertConditions(
+			[ #expected
+				'rc_patrolled' => [ 0, 2 ],
+			],
+			[
+				'reviewStatus' => 'unpatrolled;auto'
+			],
+			"rc conditions: reviewStatus=unpatrolled;auto",
 			$user
 		);
 	}
