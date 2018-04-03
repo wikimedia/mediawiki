@@ -38,7 +38,8 @@
 			"Asmen",
 			"Meliganai",
 			"Ilimanaq29",
-			"Patriccck"
+			"Patriccck",
+			"Ed g2s"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -636,8 +637,10 @@
 	"savechanges": "Uložit změny",
 	"publishpage": "Zveřejnit stránku",
 	"publishchanges": "Zveřejnit změny",
-	"savearticle-start": "Uložit stránku",
-	"publishpage-start": "Zveřejnit stránku",
+	"savearticle-start": "Uložit změny…",
+	"savechanges-start": "Uložit změny…",
+	"publishpage-start": "Zveřejnit stránku…",
+	"publishchanges-start": "Zveřejnit změny…",
 	"preview": "Náhled",
 	"showpreview": "Ukázat náhled",
 	"showdiff": "Ukázat změny",

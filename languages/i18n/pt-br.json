@@ -113,7 +113,8 @@
 			"BarbaraAckles",
 			"Trigonometria87",
 			"RadiX",
-			"Fitoschido"
+			"Fitoschido",
+			"Ed g2s"
 		]
 	},
 	"tog-underline": "Ligação sublinhada:",
@@ -716,10 +717,10 @@
 	"savechanges": "Salvar alterações",
 	"publishpage": "Publicar página",
 	"publishchanges": "Publicar alterações",
-	"savearticle-start": "Salvar página ...",
+	"savearticle-start": "Salvar página…",
 	"savechanges-start": "Salvar alterações…",
-	"publishpage-start": "Publicar página ...",
-	"publishchanges-start": "Publicar alterações...",
+	"publishpage-start": "Publicar página…",
+	"publishchanges-start": "Publicar alterações…",
 	"preview": "Pré-visualização",
 	"showpreview": "Mostrar previsão",
 	"showdiff": "Mostrar alterações",
