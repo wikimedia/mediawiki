@@ -814,6 +814,13 @@ __INDEXATTR__;
 		return $this->lastErrno() === '55P03';
 	}
 
+	public function wasConnectionError( $errno ) {
+		// https://www.postgresql.org/docs/8.2/static/errcodes-appendix.html
+		static $codes = [ '08000', '08003', '08006', '08001', '08004', '57P01', '57P03', '53300' ];
+
+		return in_array( $errno, $codes, true );
+	}
+
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
