@@ -54,7 +54,7 @@ class SiteExporter {
 	public function exportSites( $sites ) {
 		$attributes = [
 			'version' => '1.0',
-			'xmlns' => 'http://www.mediawiki.org/xml/sitelist-1.0/',
+			'xmlns' => 'https://www.mediawiki.org/xml/sitelist-1.0/',
 		];
 
 		fwrite( $this->sink, Xml::openElement( 'sites', $attributes ) . "\n" );
