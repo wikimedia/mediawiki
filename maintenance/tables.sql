@@ -618,7 +618,7 @@ CREATE TABLE /*_*/archive (
   --
   -- @since 1.5 Entries from 1.4 will be NULL here. When restoring
   -- archive rows from before 1.5, a new rev_id is created.
-  ar_rev_id int unsigned,
+  ar_rev_id int unsigned NOT NULL,
 
   -- Copied from rev_text_id, references text.old_id.
   -- To avoid breaking the block-compression scheme and otherwise making
