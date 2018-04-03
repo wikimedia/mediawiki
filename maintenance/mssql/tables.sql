@@ -736,6 +736,7 @@ CREATE TABLE /*_*/image (
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
   img_description nvarchar(255) NOT NULL CONSTRAINT DF_img_description DEFAULT '',
+  img_description_id bigint NOT NULL CONSTRAINT DF_img_description_id DEFAULT 0 CONSTRAINT FK_img_description_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
 
   -- user_id and user_name of uploader.
   img_user int REFERENCES /*_*/mwuser(user_id) ON DELETE SET NULL,

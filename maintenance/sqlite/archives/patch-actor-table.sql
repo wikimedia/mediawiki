@@ -134,6 +134,7 @@ CREATE TABLE /*_*/image_tmp (
   img_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") NOT NULL default "unknown",
   img_minor_mime varbinary(100) NOT NULL default "unknown",
   img_description varbinary(767) NOT NULL default '',
+  img_description_id bigint unsigned NOT NULL DEFAULT 0,
   img_user int unsigned NOT NULL default 0,
   img_user_text varchar(255) binary NOT NULL DEFAULT '',
   img_actor bigint unsigned NOT NULL DEFAULT 0,
@@ -143,12 +144,12 @@ CREATE TABLE /*_*/image_tmp (
 
 INSERT OR IGNORE INTO /*_*/image_tmp (
 	img_name, img_size, img_width, img_height, img_metadata, img_bits,
-	img_media_type, img_major_mime, img_minor_mime, img_description, img_user,
-	img_user_text, img_timestamp, img_sha1)
+	img_media_type, img_major_mime, img_minor_mime, img_description,
+	img_description_id, img_user, img_user_text, img_timestamp, img_sha1)
   SELECT
 	img_name, img_size, img_width, img_height, img_metadata, img_bits,
-	img_media_type, img_major_mime, img_minor_mime, img_description, img_user,
-	img_user_text, img_timestamp, img_sha1
+	img_media_type, img_major_mime, img_minor_mime, img_description,
+	img_description_id, img_user, img_user_text, img_timestamp, img_sha1
   FROM /*_*/image;
 
 DROP TABLE /*_*/image;

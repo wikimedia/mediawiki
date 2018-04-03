@@ -1167,8 +1167,10 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  -- Deprecated in favor of image_comment_temp.imgcomment_description_id.
+  -- Deprecated in favor of img_description_id.
   img_description varbinary(767) NOT NULL default '',
+
+  img_description_id bigint unsigned NOT NULL DEFAULT 0, -- ("DEFAULT 0" is temporary, signaling that img_description should be used)
 
   -- user_id and user_name of uploader.
   -- Deprecated in favor of img_actor.
