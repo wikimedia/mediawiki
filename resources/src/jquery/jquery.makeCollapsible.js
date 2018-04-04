@@ -1,5 +1,8 @@
 /**
  * jQuery makeCollapsible
+ * Note: To avoid performance issues such as reflows, several styles are
+ * shipped in mediawiki.jquery.styles to reserve space for the toggle control. Please
+ * familiarise yourself with that CSS before making any changes to this code.
  *
  * Dual licensed:
  * - CC BY 3.0 <http://creativecommons.org/licenses/by/3.0>
@@ -242,7 +245,11 @@
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
 				return;
 			} else {
-				$collapsible.data( 'mw-made-collapsible', true );
+				// Let CSS know that it no longer needs to worry about flash of unstyled content.
+				// This will allow mediawiki.jquery.styles to disable temporary pseudo elements, that
+				// are needed to avoid a flash of unstyled content.
+				$collapsible.addClass( 'mw-made-collapsible' )
+					.data( 'mw-made-collapsible', true );
 			}
 
 			// Use custom text or default?
