@@ -305,16 +305,25 @@ class ApiParamInfo extends ApiBase {
 		}
 
 		$ret['parameters'] = [];
+		$ret['templatedparameters'] = [];
 		$params = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		$paramDesc = $module->getFinalParamDescription();
+		$index = 0;
 		foreach ( $params as $name => $settings ) {
 			if ( !is_array( $settings ) ) {
 				$settings = [ ApiBase::PARAM_DFLT => $settings ];
 			}
 
 			$item = [
-				'name' => $name
+				'index' => ++$index,
+				'name' => $name,
 			];
+
+			if ( !empty( $settings[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
+				$item['templatevars'] = $settings[ApiBase::PARAM_TEMPLATE_VARS];
+				ApiResult::setIndexedTagName( $item['templatevars'], 'var' );
+			}
+
 			if ( isset( $paramDesc[$name] ) ) {
 				$this->formatHelpMessages( $item, 'description', $paramDesc[$name], true );
 			}
@@ -507,9 +516,11 @@ class ApiParamInfo extends ApiBase {
 				ApiResult::setIndexedTagName( $item['info'], 'i' );
 			}
 
-			$ret['parameters'][] = $item;
+			$key = empty( $settings[ApiBase::PARAM_TEMPLATE_VARS] ) ? 'parameters' : 'templatedparameters';
+			$ret[$key][] = $item;
 		}
 		ApiResult::setIndexedTagName( $ret['parameters'], 'param' );
+		ApiResult::setIndexedTagName( $ret['templatedparameters'], 'param' );
 
 		$dynamicParams = $module->dynamicParameterDocumentation();
 		if ( $dynamicParams !== null ) {

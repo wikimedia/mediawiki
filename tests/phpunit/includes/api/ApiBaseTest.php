@@ -1272,4 +1272,99 @@ class ApiBaseTest extends ApiTestCase {
 		}
 	}
 
+	/**
+	 * @covers ApiBase::extractRequestParams
+	 */
+	public function testExtractRequestParams() {
+		$request = new FauxRequest( [
+			'xxexists' => 'exists!',
+			'xxmulti' => 'a|b|c|d|{bad}',
+			'xxempty' => '',
+			'xxtemplate-a' => 'A!',
+			'xxtemplate-b' => 'B1|B2|B3',
+			'xxtemplate-c' => '',
+			'xxrecursivetemplate-b-B1' => 'X',
+			'xxrecursivetemplate-b-B3' => 'Y',
+			'xxrecursivetemplate-b-B4' => '?',
+			'xxemptytemplate-' => 'nope',
+			'foo' => 'a|b|c',
+			'xxfoo' => 'a|b|c',
+			'errorformat' => 'raw',
+		] );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
+		$main = new ApiMain( $context );
+
+		$mock = $this->getMockBuilder( ApiBase::class )
+			->setConstructorArgs( [ $main, 'test', 'xx' ] )
+			->setMethods( [ 'getAllowedParams' ] )
+			->getMockForAbstractClass();
+		$mock->method( 'getAllowedParams' )->willReturn( [
+			'notexists' => null,
+			'exists' => null,
+			'multi' => [
+				ApiBase::PARAM_ISMULTI => true,
+			],
+			'empty' => [
+				ApiBase::PARAM_ISMULTI => true,
+			],
+			'template-{m}' => [
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'm' => 'multi' ],
+			],
+			'recursivetemplate-{m}-{t}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 't' => 'template-{m}', 'm' => 'multi' ],
+			],
+			'emptytemplate-{m}' => [
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'm' => 'empty' ],
+			],
+			'badtemplate-{e}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'e' => 'exists' ],
+			],
+			'badtemplate2-{e}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'e' => 'badtemplate2-{e}' ],
+			],
+			'badtemplate3-{x}' => [
+				ApiBase::PARAM_TEMPLATE_VARS => [ 'x' => 'foo' ],
+			],
+		] );
+
+		$this->assertEquals( [
+			'notexists' => null,
+			'exists' => 'exists!',
+			'multi' => [ 'a', 'b', 'c', 'd', '{bad}' ],
+			'empty' => [],
+			'template-a' => [ 'A!' ],
+			'template-b' => [ 'B1', 'B2', 'B3' ],
+			'template-c' => [],
+			'template-d' => null,
+			'recursivetemplate-a-A!' => null,
+			'recursivetemplate-b-B1' => 'X',
+			'recursivetemplate-b-B2' => null,
+			'recursivetemplate-b-B3' => 'Y',
+		], $mock->extractRequestParams() );
+
+		$used = TestingAccessWrapper::newFromObject( $main )->getParamsUsed();
+		sort( $used );
+		$this->assertEquals( [
+			'xxempty',
+			'xxexists',
+			'xxmulti',
+			'xxnotexists',
+			'xxrecursivetemplate-a-A!',
+			'xxrecursivetemplate-b-B1',
+			'xxrecursivetemplate-b-B2',
+			'xxrecursivetemplate-b-B3',
+			'xxtemplate-a',
+			'xxtemplate-b',
+			'xxtemplate-c',
+			'xxtemplate-d',
+		], $used );
+
+		$warnings = $mock->getResult()->getResultData( 'warnings', [ 'Strip' => 'all' ] );
+		$this->assertCount( 1, $warnings );
+		$this->assertSame( 'ignoring-invalid-templated-value', $warnings[0]['code'] );
+	}
+
 }

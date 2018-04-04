@@ -42,6 +42,10 @@
 			}
 		}
 
+		widget.connect( this, {
+			change: [ this.emit, 'change' ]
+		} );
+
 		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
 
 		this.$element
@@ -75,6 +79,7 @@
 		this.widget.setDisabled( this.isDisabled() );
 		this.checkbox.setSelected( !this.isDisabled() );
 		this.$cover.toggle( this.isDisabled() );
+		this.emit( 'change' );
 		return this;
 	};
 
@@ -186,6 +191,21 @@
 		},
 
 		tagWidget: {
+			parseApiValue: function ( v ) {
+				if ( v === undefined || v === '' || v === '\x1f' ) {
+					return [];
+				} else {
+					v = String( v );
+					if ( v.indexOf( '\x1f' ) !== 0 ) {
+						return v.split( '|' );
+					} else {
+						return v.substr( 1 ).split( '\x1f' );
+					}
+				}
+			},
+			getApiValueForTemplates: function () {
+				return this.isDisabled() ? this.parseApiValue( this.paramInfo[ 'default' ] ) : this.getValue();
+			},
 			getApiValue: function () {
 				var items = this.getValue();
 				if ( items.join( '' ).indexOf( '|' ) === -1 ) {
@@ -195,16 +215,10 @@
 				}
 			},
 			setApiValue: function ( v ) {
-				if ( v === undefined || v === '' || v === '\x1f' ) {
-					this.setValue( [] );
-				} else {
-					v = String( v );
-					if ( v.indexOf( '\x1f' ) !== 0 ) {
-						this.setValue( v.split( '|' ) );
-					} else {
-						this.setValue( v.substr( 1 ).split( '\x1f' ) );
-					}
+				if ( v === undefined ) {
+					v = this.paramInfo[ 'default' ];
 				}
+				this.setValue( this.parseApiValue( v ) );
 			},
 			apiCheckValid: function () {
 				var ok = true,
@@ -648,6 +662,9 @@
 				if ( widget.getSubmodules ) {
 					finalWidget.getSubmodules = widget.getSubmodules.bind( widget );
 					finalWidget.on( 'disable', function () { setTimeout( ApiSandbox.updateUI ); } );
+				}
+				if ( widget.getApiValueForTemplates ) {
+					finalWidget.getApiValueForTemplates = widget.getApiValueForTemplates.bind( widget );
 				}
 				finalWidget.setDisabled( true );
 			}
@@ -1330,6 +1347,9 @@
 		this.apiIsValid = true;
 		this.loadFromQueryParams = null;
 		this.widgets = {};
+		this.itemsFieldset = null;
+		this.deprecatedItemsFieldset = null;
+		this.templatedItemsCache = {};
 		this.tokenWidget = null;
 		this.indentLevel = config.indentLevel ? config.indentLevel : 0;
 		ApiSandbox.PageLayout[ 'super' ].call( this, config.key, config );
@@ -1343,6 +1363,351 @@
 		this.outlineItem.setIconTitle(
 			this.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 		);
+	};
+
+	function widgetLabelOnClick() {
+		var f = this.getField();
+		if ( $.isFunction( f.setDisabled ) ) {
+			f.setDisabled( false );
+		}
+		if ( $.isFunction( f.focus ) ) {
+			f.focus();
+		}
+	}
+
+	/**
+	 * Create a widget and the FieldLayouts it needs
+	 * @private
+	 * @param {Object} ppi API paraminfo data for the parameter
+	 * @param {string} name API parameter name
+	 * @return {Object}
+	 * @return {OO.ui.Widget} return.widget
+	 * @return {OO.ui.FieldLayout} return.widgetField
+	 * @return {OO.ui.FieldLayout} return.helpField
+	 */
+	ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
+		var j, l, widget, descriptionContainer, tmp, flag, count, button, widgetField, helpField, layoutConfig;
+
+		widget = Util.createWidgetForParameter( ppi );
+		if ( ppi.tokentype ) {
+			this.tokenWidget = widget;
+		}
+		if ( this.paramInfo.templatedparameters.length ) {
+			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
+		}
+
+		descriptionContainer = $( '<div>' );
+
+		tmp = Util.parseHTML( ppi.description );
+		tmp.filter( 'dl' ).makeCollapsible( {
+			collapsed: true
+		} ).children( '.mw-collapsible-toggle' ).each( function () {
+			var $this = $( this );
+			$this.parent().prev( 'p' ).append( $this );
+		} );
+		descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( tmp ) );
+
+		if ( ppi.info && ppi.info.length ) {
+			for ( j = 0; j < ppi.info.length; j++ ) {
+				descriptionContainer.append( $( '<div>' )
+					.addClass( 'info' )
+					.append( Util.parseHTML( ppi.info[ j ] ) )
+				);
+			}
+		}
+		flag = true;
+		count = 1e100;
+		switch ( ppi.type ) {
+			case 'namespace':
+				flag = false;
+				count = mw.config.get( 'wgFormattedNamespaces' ).length;
+				break;
+
+			case 'limit':
+				if ( ppi.highmax !== undefined ) {
+					descriptionContainer.append( $( '<div>' )
+						.addClass( 'info' )
+						.append(
+							Util.parseMsg(
+								'api-help-param-limit2', ppi.max, ppi.highmax
+							),
+							' ',
+							Util.parseMsg( 'apisandbox-param-limit' )
+						)
+					);
+				} else {
+					descriptionContainer.append( $( '<div>' )
+						.addClass( 'info' )
+						.append(
+							Util.parseMsg( 'api-help-param-limit', ppi.max ),
+							' ',
+							Util.parseMsg( 'apisandbox-param-limit' )
+						)
+					);
+				}
+				break;
+
+			case 'integer':
+				tmp = '';
+				if ( ppi.min !== undefined ) {
+					tmp += 'min';
+				}
+				if ( ppi.max !== undefined ) {
+					tmp += 'max';
+				}
+				if ( tmp !== '' ) {
+					descriptionContainer.append( $( '<div>' )
+						.addClass( 'info' )
+						.append( Util.parseMsg(
+							'api-help-param-integer-' + tmp,
+							Util.apiBool( ppi.multi ) ? 2 : 1,
+							ppi.min, ppi.max
+						) )
+					);
+				}
+				break;
+
+			default:
+				if ( Array.isArray( ppi.type ) ) {
+					flag = false;
+					count = ppi.type.length;
+				}
+				break;
+		}
+		if ( Util.apiBool( ppi.multi ) ) {
+			tmp = [];
+			if ( flag && !( widget instanceof OO.ui.TagMultiselectWidget ) &&
+				!(
+					widget instanceof OptionalWidget &&
+					widget.widget instanceof OO.ui.TagMultiselectWidget
+				)
+			) {
+				tmp.push( mw.message( 'api-help-param-multi-separate' ).parse() );
+			}
+			if ( count > ppi.lowlimit ) {
+				tmp.push(
+					mw.message( 'api-help-param-multi-max', ppi.lowlimit, ppi.highlimit ).parse()
+				);
+			}
+			if ( tmp.length ) {
+				descriptionContainer.append( $( '<div>' )
+					.addClass( 'info' )
+					.append( Util.parseHTML( tmp.join( ' ' ) ) )
+				);
+			}
+		}
+		if ( 'maxbytes' in ppi ) {
+			descriptionContainer.append( $( '<div>' )
+				.addClass( 'info' )
+				.append( Util.parseMsg( 'api-help-param-maxbytes', ppi.maxbytes ) )
+			);
+		}
+		if ( 'maxchars' in ppi ) {
+			descriptionContainer.append( $( '<div>' )
+				.addClass( 'info' )
+				.append( Util.parseMsg( 'api-help-param-maxchars', ppi.maxchars ) )
+			);
+		}
+		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {
+			tmp = $();
+			for ( j = 0, l = ppi.usedTemplateVars.length; j < l; j++ ) {
+				tmp = tmp.add( $( '<var>' ).text( ppi.usedTemplateVars[ j ] ) );
+				if ( j === l - 2 ) {
+					tmp = tmp.add( mw.message( 'and' ).parseDom() );
+					tmp = tmp.add( mw.message( 'word-separator' ).parseDom() );
+				} else if ( j !== l - 1 ) {
+					tmp = tmp.add( mw.message( 'comma-separator' ).parseDom() );
+				}
+			}
+			descriptionContainer.append( $( '<div>' )
+				.addClass( 'info' )
+				.append( Util.parseMsg(
+					'apisandbox-templated-parameter-reason',
+					ppi.usedTemplateVars.length,
+					tmp
+				) )
+			);
+		}
+
+		helpField = new OO.ui.FieldLayout(
+			new OO.ui.Widget( {
+				$content: '\xa0',
+				classes: [ 'mw-apisandbox-spacer' ]
+			} ), {
+				align: 'inline',
+				classes: [ 'mw-apisandbox-help-field' ],
+				label: descriptionContainer
+			}
+		);
+
+		layoutConfig = {
+			align: 'left',
+			classes: [ 'mw-apisandbox-widget-field' ],
+			label: name
+		};
+
+		if ( ppi.tokentype ) {
+			button = new OO.ui.ButtonWidget( {
+				label: mw.message( 'apisandbox-fetch-token' ).text()
+			} );
+			button.on( 'click', widget.fetchToken, [], widget );
+
+			widgetField = new OO.ui.ActionFieldLayout( widget, button, layoutConfig );
+		} else {
+			widgetField = new OO.ui.FieldLayout( widget, layoutConfig );
+		}
+
+		// We need our own click handler on the widget label to
+		// turn off the disablement.
+		widgetField.$label.on( 'click', widgetLabelOnClick.bind( widgetField ) );
+
+		// Don't grey out the label when the field is disabled,
+		// it makes it too hard to read and our "disabled"
+		// isn't really disabled.
+		widgetField.onFieldDisable( false );
+		widgetField.onFieldDisable = $.noop;
+
+		widgetField.apiParamIndex = ppi.index;
+
+		return {
+			widget: widget,
+			widgetField: widgetField,
+			helpField: helpField
+		};
+	};
+
+	/**
+	 * Update templated parameters in the page
+	 * @private
+	 * @param {Object} [params] Query parameters for initializing the widgets
+	 */
+	ApiSandbox.PageLayout.prototype.updateTemplatedParameters = function ( params ) {
+		var p, toProcess, doProcess, tmp, toRemove,
+			that = this,
+			pi = this.paramInfo,
+			prefix = that.prefix + pi.prefix;
+
+		if ( !pi || !pi.templatedparameters.length ) {
+			return;
+		}
+
+		if ( !$.isPlainObject( params ) ) {
+			params = null;
+		}
+
+		toRemove = {};
+		$.each( this.templatedItemsCache, function ( k, el ) {
+			if ( el.widget.isElementAttached() ) {
+				toRemove[ k ] = el;
+			}
+		} );
+
+		// This bit duplicates the PHP logic in ApiBase::extractRequestParams().
+		// If you update this, see if that needs updating too.
+		toProcess = pi.templatedparameters.map( function ( p ) {
+			return {
+				name: prefix + p.name,
+				info: p,
+				vars: $.extend( {}, p.templatevars ),
+				usedVars: []
+			};
+		} );
+		doProcess = function ( key, target ) {
+			var values, container, index, usedVars, done;
+
+			target = prefix + target;
+
+			if ( !that.widgets[ target ] ) {
+				// The target wasn't processed yet, try the next one.
+				// If all hit this case, the parameter has no expansions.
+				return true;
+			}
+
+			if ( !that.widgets[ target ].getApiValueForTemplates ) {
+				// Not a multi-valued widget, so it can't have expansions.
+				return false;
+			}
+
+			values = that.widgets[ target ].getApiValueForTemplates();
+			if ( !Array.isArray( values ) || !values.length ) {
+				// The target was processed but has no (valid) values.
+				// That means it has no expansions.
+				return false;
+			}
+
+			// Expand this target in the name and all other targets,
+			// then requeue if there are more targets left or create the widget
+			// and add it to the form if all are done.
+			delete p.vars[ key ];
+			usedVars = p.usedVars.concat( [ target ] );
+			key = '{' + key + '}';
+			done = $.isEmptyObject( p.vars );
+			if ( done ) {
+				container = Util.apiBool( p.info.deprecated ) ? that.deprecatedItemsFieldset : that.itemsFieldset;
+				index = container.getItems().findIndex( function ( el ) {
+					return el.apiParamIndex !== undefined && el.apiParamIndex > p.info.index;
+				} );
+				if ( index < 0 ) {
+					index = undefined;
+				}
+			}
+			values.forEach( function ( value ) {
+				var name, newVars;
+
+				if ( !/^[^{}]*$/.exec( value ) ) {
+					// Skip values that make invalid parameter names
+					return;
+				}
+
+				name = p.name.replace( key, value );
+				if ( done ) {
+					if ( that.templatedItemsCache[ name ] ) {
+						tmp = that.templatedItemsCache[ name ];
+					} else {
+						tmp = that.makeWidgetFieldLayouts(
+							$.extend( {}, p.info, { usedTemplateVars: usedVars } ), name
+						);
+						that.templatedItemsCache[ name ] = tmp;
+					}
+					delete toRemove[ name ];
+					if ( !tmp.widget.isElementAttached() ) {
+						that.widgets[ name ] = tmp.widget;
+						container.addItems( [ tmp.widgetField, tmp.helpField ], index );
+						if ( index !== undefined ) {
+							index += 2;
+						}
+					}
+					if ( params ) {
+						tmp.widget.setApiValue( params.hasOwnProperty( name ) ? params[ name ] : undefined );
+					}
+				} else {
+					newVars = {};
+					$.each( p.vars, function ( k, target ) {
+						newVars[ k ] = target.replace( key, value );
+					} );
+					toProcess.push( {
+						name: name,
+						info: p.info,
+						vars: newVars,
+						usedVars: usedVars
+					} );
+				}
+			} );
+			return false;
+		};
+		while ( toProcess.length ) {
+			p = toProcess.shift();
+			$.each( p.vars, doProcess );
+		}
+
+		toRemove = $.map( toRemove, function ( el, name ) {
+			delete that.widgets[ name ];
+			return [ el.widgetField, el.helpField ];
+		} );
+		if ( toRemove.length ) {
+			this.itemsFieldset.removeItems( toRemove );
+			this.deprecatedItemsFieldset.removeItems( toRemove );
+		}
 	};
 
 	/**
@@ -1414,22 +1779,13 @@
 
 		Util.fetchModuleInfo( this.apiModule )
 			.done( function ( pi ) {
-				var prefix, i, j, descriptionContainer, widget, layoutConfig, button, widgetField, helpField, tmp, flag, count,
+				var prefix, i, j, tmp,
 					items = [],
 					deprecatedItems = [],
 					buttons = [],
 					filterFmModules = function ( v ) {
 						return v.substr( -2 ) !== 'fm' ||
 							!availableFormats.hasOwnProperty( v.substr( 0, v.length - 2 ) );
-					},
-					widgetLabelOnClick = function () {
-						var f = this.getField();
-						if ( $.isFunction( f.setDisabled ) ) {
-							f.setDisabled( false );
-						}
-						if ( $.isFunction( f.focus ) ) {
-							f.focus();
-						}
 					};
 
 				// This is something of a hack. We always want the 'format' and
@@ -1518,168 +1874,12 @@
 				if ( pi.parameters.length ) {
 					prefix = that.prefix + pi.prefix;
 					for ( i = 0; i < pi.parameters.length; i++ ) {
-						widget = Util.createWidgetForParameter( pi.parameters[ i ] );
-						that.widgets[ prefix + pi.parameters[ i ].name ] = widget;
-						if ( pi.parameters[ i ].tokentype ) {
-							that.tokenWidget = widget;
-						}
-
-						descriptionContainer = $( '<div>' );
-
-						tmp = Util.parseHTML( pi.parameters[ i ].description );
-						tmp.filter( 'dl' ).makeCollapsible( {
-							collapsed: true
-						} ).children( '.mw-collapsible-toggle' ).each( function () {
-							var $this = $( this );
-							$this.parent().prev( 'p' ).append( $this );
-						} );
-						descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( tmp ) );
-
-						if ( pi.parameters[ i ].info && pi.parameters[ i ].info.length ) {
-							for ( j = 0; j < pi.parameters[ i ].info.length; j++ ) {
-								descriptionContainer.append( $( '<div>' )
-									.addClass( 'info' )
-									.append( Util.parseHTML( pi.parameters[ i ].info[ j ] ) )
-								);
-							}
-						}
-						flag = true;
-						count = 1e100;
-						switch ( pi.parameters[ i ].type ) {
-							case 'namespace':
-								flag = false;
-								count = mw.config.get( 'wgFormattedNamespaces' ).length;
-								break;
-
-							case 'limit':
-								if ( pi.parameters[ i ].highmax !== undefined ) {
-									descriptionContainer.append( $( '<div>' )
-										.addClass( 'info' )
-										.append(
-											Util.parseMsg(
-												'api-help-param-limit2', pi.parameters[ i ].max, pi.parameters[ i ].highmax
-											),
-											' ',
-											Util.parseMsg( 'apisandbox-param-limit' )
-										)
-									);
-								} else {
-									descriptionContainer.append( $( '<div>' )
-										.addClass( 'info' )
-										.append(
-											Util.parseMsg( 'api-help-param-limit', pi.parameters[ i ].max ),
-											' ',
-											Util.parseMsg( 'apisandbox-param-limit' )
-										)
-									);
-								}
-								break;
-
-							case 'integer':
-								tmp = '';
-								if ( pi.parameters[ i ].min !== undefined ) {
-									tmp += 'min';
-								}
-								if ( pi.parameters[ i ].max !== undefined ) {
-									tmp += 'max';
-								}
-								if ( tmp !== '' ) {
-									descriptionContainer.append( $( '<div>' )
-										.addClass( 'info' )
-										.append( Util.parseMsg(
-											'api-help-param-integer-' + tmp,
-											Util.apiBool( pi.parameters[ i ].multi ) ? 2 : 1,
-											pi.parameters[ i ].min, pi.parameters[ i ].max
-										) )
-									);
-								}
-								break;
-
-							default:
-								if ( Array.isArray( pi.parameters[ i ].type ) ) {
-									flag = false;
-									count = pi.parameters[ i ].type.length;
-								}
-								break;
-						}
-						if ( Util.apiBool( pi.parameters[ i ].multi ) ) {
-							tmp = [];
-							if ( flag && !( widget instanceof OO.ui.TagMultiselectWidget ) &&
-								!(
-									widget instanceof OptionalWidget &&
-									widget.widget instanceof OO.ui.TagMultiselectWidget
-								)
-							) {
-								tmp.push( mw.message( 'api-help-param-multi-separate' ).parse() );
-							}
-							if ( count > pi.parameters[ i ].lowlimit ) {
-								tmp.push(
-									mw.message( 'api-help-param-multi-max',
-										pi.parameters[ i ].lowlimit, pi.parameters[ i ].highlimit
-									).parse()
-								);
-							}
-							if ( tmp.length ) {
-								descriptionContainer.append( $( '<div>' )
-									.addClass( 'info' )
-									.append( Util.parseHTML( tmp.join( ' ' ) ) )
-								);
-							}
-						}
-						if ( 'maxbytes' in pi.parameters[ i ] ) {
-							descriptionContainer.append( $( '<div>' )
-								.addClass( 'info' )
-								.append( Util.parseMsg( 'api-help-param-maxbytes', pi.parameters[ i ].maxbytes ) )
-							);
-						}
-						if ( 'maxchars' in pi.parameters[ i ] ) {
-							descriptionContainer.append( $( '<div>' )
-								.addClass( 'info' )
-								.append( Util.parseMsg( 'api-help-param-maxchars', pi.parameters[ i ].maxchars ) )
-							);
-						}
-						helpField = new OO.ui.FieldLayout(
-							new OO.ui.Widget( {
-								$content: '\xa0',
-								classes: [ 'mw-apisandbox-spacer' ]
-							} ), {
-								align: 'inline',
-								classes: [ 'mw-apisandbox-help-field' ],
-								label: descriptionContainer
-							}
-						);
-
-						layoutConfig = {
-							align: 'left',
-							classes: [ 'mw-apisandbox-widget-field' ],
-							label: prefix + pi.parameters[ i ].name
-						};
-
-						if ( pi.parameters[ i ].tokentype ) {
-							button = new OO.ui.ButtonWidget( {
-								label: mw.message( 'apisandbox-fetch-token' ).text()
-							} );
-							button.on( 'click', widget.fetchToken, [], widget );
-
-							widgetField = new OO.ui.ActionFieldLayout( widget, button, layoutConfig );
-						} else {
-							widgetField = new OO.ui.FieldLayout( widget, layoutConfig );
-						}
-
-						// We need our own click handler on the widget label to
-						// turn off the disablement.
-						widgetField.$label.on( 'click', widgetLabelOnClick.bind( widgetField ) );
-
-						// Don't grey out the label when the field is disabled,
-						// it makes it too hard to read and our "disabled"
-						// isn't really disabled.
-						widgetField.onFieldDisable( false );
-						widgetField.onFieldDisable = $.noop;
-
+						tmp = that.makeWidgetFieldLayouts( pi.parameters[ i ], prefix + pi.parameters[ i ].name );
+						that.widgets[ prefix + pi.parameters[ i ].name ] = tmp.widget;
 						if ( Util.apiBool( pi.parameters[ i ].deprecated ) ) {
-							deprecatedItems.push( widgetField, helpField );
+							deprecatedItems.push( tmp.widgetField, tmp.helpField );
 						} else {
-							items.push( widgetField, helpField );
+							items.push( tmp.widgetField, tmp.helpField );
 						}
 					}
 				}
@@ -1695,10 +1895,11 @@
 
 				that.$element.empty();
 
-				new OO.ui.FieldsetLayout( {
+				that.itemsFieldset = new OO.ui.FieldsetLayout( {
 					label: that.displayText
-				} ).addItems( items )
-					.$element.appendTo( that.$element );
+				} );
+				that.itemsFieldset.addItems( items );
+				that.itemsFieldset.$element.appendTo( that.$element );
 
 				if ( Util.apiBool( pi.dynamicparameters ) ) {
 					dynamicFieldset = new OO.ui.FieldsetLayout();
@@ -1732,19 +1933,24 @@
 						.appendTo( that.$element );
 				}
 
-				if ( deprecatedItems.length ) {
-					tmp = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
-					$( '<fieldset>' )
-						.append(
-							$( '<legend>' ).append(
-								new OO.ui.ToggleButtonWidget( {
-									label: mw.message( 'apisandbox-deprecated-parameters' ).text()
-								} ).on( 'change', tmp.toggle, [], tmp ).$element
-							),
-							tmp.$element
-						)
-						.appendTo( that.$element );
-				}
+				that.deprecatedItemsFieldset = new OO.ui.FieldsetLayout().addItems( deprecatedItems ).toggle( false );
+				tmp = $( '<fieldset>' )
+					.toggle( !that.deprecatedItemsFieldset.isEmpty() )
+					.append(
+						$( '<legend>' ).append(
+							new OO.ui.ToggleButtonWidget( {
+								label: mw.message( 'apisandbox-deprecated-parameters' ).text()
+							} ).on( 'change', that.deprecatedItemsFieldset.toggle, [], that.deprecatedItemsFieldset ).$element
+						),
+						that.deprecatedItemsFieldset.$element
+					)
+					.appendTo( that.$element );
+				that.deprecatedItemsFieldset.on( 'add', function () {
+					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
+				}, [], tmp );
+				that.deprecatedItemsFieldset.on( 'remove', function () {
+					this.toggle( !that.deprecatedItemsFieldset.isEmpty() );
+				}, [], tmp );
 
 				// Load stored params, if any, then update the booklet if we
 				// have subpages (or else just update our valid-indicator).
@@ -1752,6 +1958,8 @@
 				that.loadFromQueryParams = null;
 				if ( $.isPlainObject( tmp ) ) {
 					that.loadQueryParams( tmp );
+				} else {
+					that.updateTemplatedParameters();
 				}
 				if ( that.getSubpages().length > 0 ) {
 					ApiSandbox.updateUI( tmp );
@@ -1812,6 +2020,7 @@
 				var v = params.hasOwnProperty( name ) ? params[ name ] : undefined;
 				widget.setApiValue( v );
 			} );
+			this.updateTemplatedParameters( params );
 		}
 	};
 
