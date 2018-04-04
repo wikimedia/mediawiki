@@ -46,8 +46,3 @@ li .mw-collapsible-toggle,
 .mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle {
 	float: none;
 }
-
-/* the added list item should have no list-style */
-.mw-collapsible-toggle-li {
-	list-style: none;
-}
