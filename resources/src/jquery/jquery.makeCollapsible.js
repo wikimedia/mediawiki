@@ -8,7 +8,6 @@
  * @class jQuery.plugin.makeCollapsible
  */
 ( function ( $, mw ) {
-
 	/**
 	 * Handler for a click on a collapsible toggler.
 	 *
@@ -270,8 +269,6 @@
 						role: 'button',
 						tabindex: 0
 					} )
-					.prepend( '<span>[</span>' )
-					.append( '<span>]</span>' )
 					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
 			};
 
