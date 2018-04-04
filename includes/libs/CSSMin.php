@@ -424,11 +424,11 @@ class CSSMin {
 			//   is only supported in PHP 5.6. Use a getter method for now.
 			$urlRegex = '(' .
 				// Unquoted url
-				'url\(\s*(?P<file0>[^\'"][^\?\)]*?)(?P<query0>\?[^\)]*?|)\s*\)' .
+				'url\(\s*(?P<file0>[^\'"][^\?\)]+?)(?P<query0>\?[^\)]*?|)\s*\)' .
 				// Single quoted url
-				'|url\(\s*\'(?P<file1>[^\?\']*?)(?P<query1>\?[^\']*?|)\'\s*\)' .
+				'|url\(\s*\'(?P<file1>[^\?\']+?)(?P<query1>\?[^\']*?|)\'\s*\)' .
 				// Double quoted url
-				'|url\(\s*"(?P<file2>[^\?"]*?)(?P<query2>\?[^"]*?|)"\s*\)' .
+				'|url\(\s*"(?P<file2>[^\?"]+?)(?P<query2>\?[^"]*?|)"\s*\)' .
 				')';
 		}
 		return $urlRegex;
@@ -446,6 +446,9 @@ class CSSMin {
 				$match['file'] = $match['file1'];
 				$match['query'] = $match['query1'];
 			} else {
+				if ( !isset( $match['file2'] ) || $match['file2'][1] === -1 ) {
+					throw new Exception( 'URL must be non-empty' );
+				}
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
 			}
@@ -457,6 +460,9 @@ class CSSMin {
 				$match['file'] = $match['file1'];
 				$match['query'] = $match['query1'];
 			} else {
+				if ( !isset( $match['file2'] ) || $match['file2'] === '' ) {
+					throw new Exception( 'URL must be non-empty' );
+				}
 				$match['file'] = $match['file2'];
 				$match['query'] = $match['query2'];
 			}
