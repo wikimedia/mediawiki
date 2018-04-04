@@ -4560,17 +4560,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get the embedded timestamp from a token.
-	 * @deprecated since 1.27, use \MediaWiki\Session\Token::getTimestamp instead.
-	 * @param string $val Input token
-	 * @return int|null
-	 */
-	public static function getEditTokenTimestamp( $val ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return MediaWiki\Session\Token::getTimestamp( $val );
-	}
-
-	/**
 	 * Check given value against the token value stored in the session.
 	 * A match should confirm that the form was submitted from the
 	 * user's own login session, not a form submission from a third-party
@@ -5568,78 +5557,6 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 		// Insert the new preference rows
 		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, [ 'IGNORE' ] );
-	}
-
-	/**
-	 * Lazily instantiate and return a factory object for making passwords
-	 *
-	 * @deprecated since 1.27, create a PasswordFactory directly instead
-	 * @return PasswordFactory
-	 */
-	public static function getPasswordFactory() {
-		wfDeprecated( __METHOD__, '1.27' );
-		$ret = new PasswordFactory();
-		$ret->init( RequestContext::getMain()->getConfig() );
-		return $ret;
-	}
-
-	/**
-	 * Provide an array of HTML5 attributes to put on an input element
-	 * intended for the user to enter a new password.  This may include
-	 * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
-	 *
-	 * Do *not* use this when asking the user to enter his current password!
-	 * Regardless of configuration, users may have invalid passwords for whatever
-	 * reason (e.g., they were set before requirements were tightened up).
-	 * Only use it when asking for a new password, like on account creation or
-	 * ResetPass.
-	 *
-	 * Obviously, you still need to do server-side checking.
-	 *
-	 * NOTE: A combination of bugs in various browsers means that this function
-	 * actually just returns array() unconditionally at the moment.  May as
-	 * well keep it around for when the browser bugs get fixed, though.
-	 *
-	 * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
-	 *
-	 * @deprecated since 1.27
-	 * @return array Array of HTML attributes suitable for feeding to
-	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
-	 *   That will get confused by the boolean attribute syntax used.)
-	 */
-	public static function passwordChangeInputAttribs() {
-		global $wgMinimalPasswordLength;
-
-		if ( $wgMinimalPasswordLength == 0 ) {
-			return [];
-		}
-
-		# Note that the pattern requirement will always be satisfied if the
-		# input is empty, so we need required in all cases.
-
-		# @todo FIXME: T25769: This needs to not claim the password is required
-		# if e-mail confirmation is being used.  Since HTML5 input validation
-		# is b0rked anyway in some browsers, just return nothing.  When it's
-		# re-enabled, fix this code to not output required for e-mail
-		# registration.
-		# $ret = array( 'required' );
-		$ret = [];
-
-		# We can't actually do this right now, because Opera 9.6 will print out
-		# the entered password visibly in its error message!  When other
-		# browsers add support for this attribute, or Opera fixes its support,
-		# we can add support with a version check to avoid doing this on Opera
-		# versions where it will be a problem.  Reported to Opera as
-		# DSK-262266, but they don't have a public bug tracker for us to follow.
-		/*
-		if ( $wgMinimalPasswordLength > 1 ) {
-			$ret['pattern'] = '.{' . intval( $wgMinimalPasswordLength ) . ',}';
-			$ret['title'] = wfMessage( 'passwordtooshort' )
-				->numParams( $wgMinimalPasswordLength )->text();
-		}
-		*/
-
-		return $ret;
 	}
 
 	/**
