@@ -181,7 +181,7 @@ class SqlBagOStuff extends BagOStuff {
 				$index = $this->replicaOnly ? DB_REPLICA : DB_MASTER;
 				if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
 					// Keep a separate connection to avoid contention and deadlocks
-					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTO );
+					$db = $lb->getConnection( $index, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 					// @TODO: Use a blank trx profiler to ignore expections as this is a cache
 				} else {
 					// However, SQLite has the opposite behavior due to DB-level locking.

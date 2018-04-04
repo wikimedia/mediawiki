@@ -138,7 +138,7 @@ class NameTableStore {
 				// RACE: $name was already in the db, probably just inserted, so load from master
 				// Use DBO_TRX to avoid missing inserts due to other threads or REPEATABLE-READs
 				$table = $this->loadTable(
-					$this->getDBConnection( DB_MASTER, LoadBalancer::CONN_TRX_AUTO )
+					$this->getDBConnection( DB_MASTER, LoadBalancer::CONN_TRX_AUTOCOMMIT )
 				);
 				$searchResult = array_search( $name, $table, true );
 				if ( $searchResult === false ) {
