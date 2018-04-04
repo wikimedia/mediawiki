@@ -466,6 +466,20 @@ class ApiHelp extends ApiBase {
 						}
 					}
 
+					// Templated?
+					if ( !empty( $settings[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
+						$vars = [];
+						$msg = 'api-help-param-templated-var-first';
+						foreach ( $settings[ApiBase::PARAM_TEMPLATE_VARS] as $k => $v ) {
+							$vars[] = $context->msg( $msg, $k, $module->encodeParamName( $v ) );
+							$msg = 'api-help-param-templated-var';
+						}
+						$info[] = $context->msg( 'api-help-param-templated' )
+							->numParams( count( $vars ) )
+							->params( Message::listParam( $vars ) )
+							->parse();
+					}
+
 					// Type documentation
 					if ( !isset( $settings[ApiBase::PARAM_TYPE] ) ) {
 						$dflt = isset( $settings[ApiBase::PARAM_DFLT] )
