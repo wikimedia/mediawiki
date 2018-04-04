@@ -202,14 +202,25 @@ abstract class Skin extends ContextSource {
 			$modules['core'][] = 'mediawiki.hidpi';
 		}
 
+		$jQueryStyles = false;
+
 		// Preload jquery.tablesorter for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
 			$modules['content'][] = 'jquery.tablesorter';
+			$jQueryStyles = true;
 		}
 
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
+			$jQueryStyles = true;
+		}
+
+		// If jQuery modules with FOUC properties are likely to be loaded
+		// load associated styles
+		// Not perfect but should limit a lot of unnecessary loads
+		if ( $jQueryStyles ) {
+			$modules['styles'][] = 'mediawiki.jquery.styles';
 		}
 
 		if ( $out->isTOCEnabled() ) {
