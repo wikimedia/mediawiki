@@ -17,7 +17,9 @@
 		"find": { "file": {
 			"ltr": "images/icons/find-ltr.svg",
 			"rtl": "images/icons/find-rtl.svg"
-		} },
+		},
+			"deprecated": "Will be removed in v0.28.0, use 'articleSearch' of 'content' pack instead."
+		},
 		"language": { "file": {
 			"ltr": "images/icons/language-ltr.svg",
 			"rtl": "images/icons/language-rtl.svg"

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.1
+ * OOUI v0.26.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-23T23:42:32Z
+ * Date: 2018-04-04T17:22:44Z
  */
 ( function ( OO ) {
 
@@ -4675,6 +4675,7 @@ OO.ui.TagItemWidget.prototype.onKeyDown = function ( e ) {
 			e.keyCode === OO.ui.Keys.LEFT ?
 				movement.left : movement.right
 		);
+		return false;
 	}
 };
 
@@ -4981,7 +4982,22 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyPress = function ( e ) {
  */
 OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
 	var movement, direction,
-		withMetaKey = e.metaKey || e.ctrlKey;
+		widget = this,
+		withMetaKey = e.metaKey || e.ctrlKey,
+		isMovementInsideInput = function ( direction ) {
+			var inputRange = widget.input.getRange(),
+				inputValue = widget.hasInput && widget.input.getValue();
+
+			if ( direction === 'forwards' && inputRange.to > inputValue.length - 1 ) {
+				return false;
+			}
+
+			if ( direction === 'backwards' && inputRange.from <= 0 ) {
+				return false;
+			}
+
+			return true;
+		};
 
 	if ( !this.isDisabled() ) {
 		// 'keypress' event is not triggered for Backspace
@@ -5007,7 +5023,9 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
 			direction = e.keyCode === OO.ui.Keys.LEFT ?
 				movement.left : movement.right;
 
-			return this.doInputArrow( e, direction, withMetaKey );
+			if ( !this.hasInput || !isMovementInsideInput( direction ) ) {
+				return this.doInputArrow( e, direction, withMetaKey );
+			}
 		}
 	}
 };
@@ -5083,8 +5101,8 @@ OO.ui.TagMultiselectWidget.prototype.doInputEscape = function () {
 
 /**
  * Perform an action after the arrow key on the input, select the previous
- * or next item from the input.
- * See #getPreviousItem and #getNextItem
+ * item from the input.
+ * See #getPreviousItem
  *
  * @param {jQuery.Event} e Event data
  * @param {string} direction Direction of the movement; forwards or backwards
@@ -5094,15 +5112,11 @@ OO.ui.TagMultiselectWidget.prototype.doInputEscape = function () {
 OO.ui.TagMultiselectWidget.prototype.doInputArrow = function ( e, direction ) {
 	if (
 		this.inputPosition === 'inline' &&
-		!this.isEmpty()
+		!this.isEmpty() &&
+		direction === 'backwards'
 	) {
-		if ( direction === 'backwards' ) {
-			// Get previous item
-			this.getPreviousItem().focus();
-		} else {
-			// Get next item
-			this.getNextItem().focus();
-		}
+		// Get previous item
+		this.getPreviousItem().focus();
 	}
 };
 
@@ -5181,9 +5195,13 @@ OO.ui.TagMultiselectWidget.prototype.onTagRemove = function ( item ) {
  * @param {string} direction Direction of movement; 'forwards' or 'backwards'
  */
 OO.ui.TagMultiselectWidget.prototype.onTagNavigate = function ( item, direction ) {
+	var firstItem = this.getItems()[ 0 ];
+
 	if ( direction === 'forwards' ) {
 		this.getNextItem( item ).focus();
-	} else {
+	} else if ( !this.inputPosition === 'inline' || item !== firstItem ) {
+		// If the widget has an inline input, we want to stop at the starting edge
+		// of the tags
 		this.getPreviousItem( item ).focus();
 	}
 };

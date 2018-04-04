@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.26.2 / 2018-04-04
+### Deprecations
+* [DEPRECATING CHANGE] icons: Add 'userAnonymous', and deprecate 'userActive'/'userInactive' (Volker E.)
+* [DEPRECATING CHANGE] icons: Deprecate 'find' of 'editing-advanced' pack (Volker E.)
+
+### Styles
+* Blank theme: Use sizes of default theme WikimediaUI (Volker E.)
+* WikimediaUI theme: Fix FieldSetLayout & FieldLayout's help icon position (Volker E.)
+* WikimediaUI theme: Fix FieldLayout with help and align left/right (Bartosz Dziewoński)
+* WikimediaUI theme: Fix miscalculated frameless button's icon position (Volker E.)
+* WikimediaUI theme: Fix tool icons in popup toolgroups (Bartosz Dziewoński)
+* WikimediaUI theme: Replace fixed spacing values with vars (Volker E.)
+* WikimediaUI theme: Simplify SelectFileWidget's CSS (Volker E.)
+
+### Code
+* MultilineTextInputWidget: Allow `resize` except for on autosize (Prateek Saxena)
+* TagMultiselectWidget: Fix arrow movement in inline input (Moriel Schottlender)
+* Update OOjs to v2.2.0 (James D. Forrester)
+* build: Updating mediawiki/mediawiki-codesniffer to 17.0.0 (libraryupgrader)
+* build: colorize-svg.js – reorder functions to avoid forward references (Fomafix)
+* demos: Add theme body classes in PHP demo (Volker E.)
+* demos: Fix icon wrapping (Ed Sanders)
+* icons: Fix size and position of most language variant styling icons (Ed Sanders)
+* icons: Provide RTL 'help' icon for Arabic scripts (Volker E.)
+* icons: Use correct glyphs for bold-a, italic-a, and strikethrough-a (Ed Sanders)
+* icons: Use 'underline-u' in German (Ed Sanders)
+* themes: Remove dash from variable prefix `@ooui` (Volker E.)
+
+
 ## v0.26.1 / 2018-03-23
 ### Deprecations
 * [DEPRECATING CHANGE] icons: Flag 'comment' as to be removed (James D. Forrester)

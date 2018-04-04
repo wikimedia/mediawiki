@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.1
+ * OOUI v0.26.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-23T23:42:37Z
+ * Date: 2018-04-04T17:22:48Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -287,8 +287,8 @@
   padding: 1em 0.85714286em 0.92857143em 2.64285714em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup .oo-ui-tool-link {
-  padding-left: 0.71428571em;
-  padding-right: 2.5em;
+  padding-left: 2.5em;
+  padding-right: 0.71428571em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
   color: #222;

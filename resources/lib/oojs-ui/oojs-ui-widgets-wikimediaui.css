@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.1
+ * OOUI v0.26.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-03-23T23:42:37Z
+ * Date: 2018-04-04T17:22:48Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -61,7 +61,7 @@
   height: 2.5em;
 }
 .oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout {
-  padding: 1.5em;
+  padding: 1.42857143em;
 }
 .oo-ui-bookletLayout-outlinePanel > .oo-ui-outlineControlsWidget {
   border-top: 1px solid #c8ccd1;
@@ -83,7 +83,7 @@
   top: 3em;
 }
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
-  padding: 1.5em;
+  padding: 1.42857143em;
 }
 .oo-ui-indexLayout.oo-ui-menuLayout-expanded > .oo-ui-menuLayout-menu {
   height: 2.75em;
@@ -579,9 +579,7 @@
 }
 .oo-ui-selectFileWidget-clearButton {
   top: -1px;
-  right: 0.57142857em;
-  min-width: 20px;
-  width: 1.42857143em;
+  right: 0;
   margin-right: 0;
 }
 .oo-ui-selectFileWidget-clearButton .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
@@ -1251,7 +1249,7 @@
 }
 .oo-ui-searchWidget-query {
   height: 4em;
-  padding: 0 1.14285714em;
+  padding: 0 1.42857143em;
   border-bottom: 1px solid #c8ccd1;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
