@@ -24,6 +24,7 @@
  * @ingroup Deployment
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 
 /**
  * This documentation group collects source code files with deployment functionality.
@@ -990,17 +991,17 @@ abstract class Installer {
 		}
 
 		# Get a list of available locales.
-		$ret = false;
-		$lines = wfShellExec( '/usr/bin/locale -a', $ret );
+		$result = Shell::command( '/usr/bin/locale', '-a' )
+			->execute();
 
-		if ( $ret ) {
+		if ( $result->getExitCode() != 0 ) {
 			return true;
 		}
 
+		$lines = $result->getStdout();
 		$lines = array_map( 'trim', explode( "\n", $lines ) );
 		$candidatesByLocale = [];
 		$candidatesByLang = [];
-
 		foreach ( $lines as $line ) {
 			if ( $line === '' ) {
 				continue;
