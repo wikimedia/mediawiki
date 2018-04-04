@@ -226,6 +226,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_MAX_CHARS = 24;
 
+	/**
+	 * (array) Indicate that this is a templated parameter, and specify
+	 * replacements. Keys are the replacements in the parameter name and values
+	 * are the corresponding parameter with values. For example, a parameter
+	 * "foo-{bar}-{baz}" would have
+	 * PARAM_TEMPLATE_VARS => [ 'bar' => 'bars', 'baz' => 'bazzes' ]. Then a query for
+	 * bars=a|b&bazzes=c|d would support parameters foo-a-c, foo-a-d, foo-b-c, and foo-b-d.
+	 * @since 1.32
+	 */
+	const PARAM_TEMPLATE_VARS = 25;
+
 	/**@}*/
 
 	const ALL_DEFAULT_STRING = '*';
@@ -749,15 +760,77 @@ abstract class ApiBase extends ContextSource {
 	public function extractRequestParams( $parseLimit = true ) {
 		// Cache parameters, for performance and to avoid T26564.
 		if ( !isset( $this->mParamCache[$parseLimit] ) ) {
-			$params = $this->getFinalParams();
+			$params = $this->getFinalParams() ?: [];
 			$results = [];
+			$warned = [];
 
-			if ( $params ) { // getFinalParams() can return false
-				foreach ( $params as $paramName => $paramSettings ) {
+			// Process all non-templates and save templates for secondary
+			// processing.
+			$toProcess = [];
+			foreach ( $params as $paramName => $paramSettings ) {
+				if ( isset( $paramSettings[self::PARAM_TEMPLATE_VARS] ) ) {
+					$toProcess[] = [ $paramName, $paramSettings[self::PARAM_TEMPLATE_VARS], $paramSettings ];
+				} else {
 					$results[$paramName] = $this->getParameterFromSettings(
-						$paramName, $paramSettings, $parseLimit );
+						$paramName, $paramSettings, $parseLimit
+					);
 				}
 			}
+
+			// Now process all the templates by successively replacing the
+			// placeholders with all client-supplied values.
+			// This bit duplicates logic in ApiSandbox.PageLayout.prototype.updateTemplatedParams().
+			// If you update this, see if that needs updating too.
+			while ( $toProcess ) {
+				list( $name, $targets, $settings ) = array_shift( $toProcess );
+
+				foreach ( $targets as $key => $target ) {
+					if ( !array_key_exists( $target, $results ) ) {
+						// The target wasn't processed yet, try the next one.
+						// If all hit this case, the parameter has no expansions.
+						continue;
+					}
+					if ( !is_array( $results[$target] ) || !$results[$target] ) {
+						// The target was processed but has no (valid) values.
+						// That means it has no expansions.
+						break;
+					}
+
+					// Expand this target in the name and all other targets,
+					// then requeue if there are more targets left or put in
+					// $results if all are done.
+					unset( $targets[$key] );
+					$key = '{' . $key . '}';
+					foreach ( $results[$target] as $value ) {
+						if ( !preg_match( '/^[^{}]*$/', $value ) ) {
+							// Skip values that make invalid parameter names
+							$encTargetName = $this->encodeParamName( $target );
+							if ( !isset( $warned[$encTargetName][$value] ) ) {
+								$warned[$encTargetName][$value] = true;
+								$this->addWarning( [
+									'apiwarn-ignoring-invalid-templated-value',
+									wfEscapeWikiText( $encTargetName ),
+									wfEscapeWikiText( $value ),
+								] );
+							}
+							continue;
+						}
+
+						$newName = str_replace( $key, $value, $name );
+						if ( !$targets ) {
+							$results[$newName] = $this->getParameterFromSettings( $newName, $settings, $parseLimit );
+						} else {
+							$newTargets = [];
+							foreach ( $targets as $k => $v ) {
+								$newTargets[$k] = str_replace( $key, $value, $v );
+							}
+							$toProcess[] = [ $newName, $newTargets, $settings ];
+						}
+					}
+					break;
+				}
+			}
+
 			$this->mParamCache[$parseLimit] = $results;
 		}
 
@@ -771,9 +844,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return mixed Parameter value
 	 */
 	protected function getParameter( $paramName, $parseLimit = true ) {
-		$paramSettings = $this->getFinalParams()[$paramName];
-
-		return $this->getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+		return $this->extractRequestParams( $parseLimit )[$paramName];
 	}
 
 	/**
