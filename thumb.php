@@ -634,7 +634,10 @@ function wfThumbErrorText( $status, $msgText ) {
 function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	global $wgShowHostnames;
 
-	header( 'Cache-Control: no-cache' );
+	if ( $status != 404 ) {
+		header( 'Cache-Control: no-cache' );
+	}
+
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 400 || $status == 404 || $status == 429 ) {
 		HttpStatus::header( $status );
