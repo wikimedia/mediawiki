@@ -1,0 +1,125 @@
+/**
+ * These rules prevent re-flows relating to collapsible on-wiki elements (T42812).
+ * This is done by temporarily creating a pseudo element in the place that JavaScript will insert
+ * a toggle control. The same CSS rules that control the positioning of the toggle control will apply
+ * to the pseudo element. When the JavaScript has executed
+ * (See corresponding non-render blocking CSS in jquery.makeCollapsible)
+ * all pseudo elements will be removed.
+ *
+ * Currently we support all the examples on [[mw:Manual:Collapsible_elements/Demo/Simple]]
+ * All examples on [[mw:Manual:Collapsible_elements/Demo/Advanced]] are supported with the following
+ * exceptions
+ * - Custom collapsible 4 (table-row)
+ * -- CSS selector would be too complicated
+ * - Collapsible div nested in collapsed div
+ * -- Given it's not easy to identify the collapsed content via CSS, text will be shown until
+ *    JavaScript has loaded
+ * - "Combination example"
+ * -- At a later time, we may want to support the use of of `attr`, but given the code
+ *    complexity we will not for the time being (see https://davidwalsh.name/css-content-attr)
+ */
+
+// This selector is used frequently in the code to indicate that the JavaScript has successfully completed
+// it's execution and pseudo elements can be disabled. For readability and maintainability it is separated
+// as a LESS variable.
+@exclude: ~'.mw-made-collapsible';
+
+.client-js {
+
+	ol.mw-collapsible:before,
+	ul.mw-collapsible:before,
+	.mw-collapsible-toggle-li {
+		/*
+		Rather than inherit any margins from the the general li selector - make sure this is explicit
+		to avoid reflows
+		*/
+		display: list-item;
+		list-style: none;
+		margin-bottom: 0.1em;
+	}
+
+	// Reset when mw-collapsible-toggle-li is rendered
+	ol.mw-made-collapsible:before,
+	ul.mw-made-collapsible:before {
+		display: none;
+	}
+
+	ol.mw-collapsible:not( @{exclude} ):before,
+	ul.mw-collapsible:not( @{exclude} ):before,
+	// Where the tbody or thead is the first child of the collapsible table
+	table.mw-collapsible:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+		content: '[@{msg-collapsible-collapse}]';
+	}
+
+	td.mw-collapsed:not( @{exclude} ):before,
+	table.mw-collapsed:not( @{exclude} ) :first-child tr:first-child th:last-child:before,
+	table.mw-collapsed:not( @{exclude} ) > caption:first-child:after,
+	div.mw-collapsed:not( @{exclude} ):before {
+		content: '[@{msg-collapsible-expand}]';
+	}
+
+	// Any element with id beginning `mw-customcollapsible` will have special treatment
+	.mw-collapsible[ id^='mw-customcollapsible' ] th:before,
+	.mw-collapsible[ id^='mw-customcollapsible' ]:before {
+		content: none !important; // stylelint-disable-line declaration-no-important
+	}
+
+	// Special case for table where first child is caption element
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+		float: none;
+		display: block;
+	}
+
+	// Use the exclude selector to ensure animations do not break
+	.mw-collapsed:not( @{exclude} ) {
+		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
+		> p,
+		> table,
+		// Manual:Collapsible_elements/Demo/Simple#Collapsed_by_default
+		> thead + tbody,
+		tr:not( :first-child ),
+		.mw-collapsible-content {
+			display: none;
+		}
+	}
+}
+
+/* Align the toggle based on the direction of the content language */
+/* @noflip */
+.mw-content-ltr,
+.mw-content-rtl .mw-content-ltr {
+	.mw-collapsible:not( @{exclude} ) th:before,
+	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle {
+		float: right;
+	}
+}
+
+/* @noflip */
+.mw-content-rtl,
+.mw-content-ltr .mw-content-rtl {
+	.mw-collapsible:not( @{exclude} ) th:before,
+	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle {
+		float: left;
+	}
+}
+
+/* list-items go as wide as their parent element, don't float them inside list items */
+li,
+.mw-content-ltr li,
+.mw-content-rtl li,
+.mw-content-ltr .mw-content-rtl li,
+.mw-content-rtl .mw-content-ltr li {
+	.mw-collapsible-toggle {
+		float: none;
+	}
+}
+
+// special treatment for list items to match above
+// !important necessary to override overly-specific float left and right above.
+ol.mw-collapsible:not( @{exclude} ):before,
+ul.mw-collapsible:not( @{exclude} ):before {
+	float: none !important; // stylelint-disable-line declaration-no-important
+}
