@@ -179,7 +179,9 @@ abstract class Skin extends ContextSource {
 			// Styles key sets render blocking styles
 			// Unlike other keys in this definition it is an associative array
 			// where each key is the group name and points to a list of modules
-			'styles' => [],
+			'styles' => [
+				'content' => [],
+			],
 			// modules not specific to any specific skin or page
 			'core' => [
 				// Enforce various default modules for all pages and all skins
@@ -205,14 +207,25 @@ abstract class Skin extends ContextSource {
 			$modules['core'][] = 'mediawiki.hidpi';
 		}
 
+		$jQueryStyles = false;
+
 		// Preload jquery.tablesorter for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
 			$modules['content'][] = 'jquery.tablesorter';
+			$jQueryStyles = true;
 		}
 
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
+			$jQueryStyles = true;
+		}
+
+		// If jQuery modules with FOUC properties are likely to be loaded
+		// load associated styles
+		// Not perfect but should limit a lot of unnecessary loads
+		if ( $jQueryStyles ) {
+			$modules['styles']['content'][] = 'mediawiki.jquery.styles';
 		}
 
 		if ( $out->isTOCEnabled() ) {
