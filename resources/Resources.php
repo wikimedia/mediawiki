@@ -113,6 +113,14 @@ return [
 		],
 	],
 
+	'mediawiki.jquery.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'styles' => [
+			'resources/src/jquery/mediawiki.jquery.styles.less',
+		],
+	],
+
 	'mediawiki.skinning.content.parsoid' => [
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
 		// with the interface.css styles; skinStyles should be used if your
@@ -277,6 +285,7 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.localize.js',
 	],
 	'jquery.makeCollapsible' => [
+		'dependencies' => [ 'mediawiki.jquery.styles' ],
 		'scripts' => 'resources/src/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/src/jquery/jquery.makeCollapsible.css',
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
@@ -317,6 +326,7 @@ return [
 		'styles' => 'resources/src/jquery/jquery.tablesorter.less',
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
 		'dependencies' => [
+			'mediawiki.jquery.styles',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		],
