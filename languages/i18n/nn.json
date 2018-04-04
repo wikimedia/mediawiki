@@ -1242,6 +1242,7 @@
 	"rcfilters-view-tags": "Endringar med merke",
 	"rcfilters-view-namespaces-tooltip": "Filtrer resultat etter namnerom",
 	"rcfilters-view-tags-tooltip": "Filtrer resultat etter endringsmerke",
+	"rcfilters-view-tags-help-icon-tooltip": "Lær meir om merkte endringar",
 	"rcfilters-liveupdates-button": "Oppdateringar i sanntid",
 	"rcfilters-liveupdates-button-title-on": "Slå av oppdateringar i sanntid",
 	"rcfilters-liveupdates-button-title-off": "Vis nye endringar etter kvart som dei vert gjorde",
