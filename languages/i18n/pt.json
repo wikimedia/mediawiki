@@ -1195,7 +1195,7 @@
 	"group-user-member": "{{GENDER:$1|utilizador|utilizadora}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|utilizador autoconfirmado|utilizadora autoconfirmada|utilizador(a) autoconfirmado(a)}}",
 	"group-bot-member": "{{GENDER:$1|robô}}",
-	"group-sysop-member": "{{GENDER:$1|administrador|administradora|administrador(a)}}",
+	"group-sysop-member": "{{GENDER:$1|administrador|administradora}}",
 	"group-bureaucrat-member": "{{GENDER:$1|burocrata}}",
 	"group-suppress-member": "{{GENDER:$1|supressor|supressora|supressor(a)}}",
 	"grouppage-user": "{{ns:project}}:Utilizadores",

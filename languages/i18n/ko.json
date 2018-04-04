@@ -710,6 +710,7 @@
 	"usercssyoucanpreview": "'''안내''': CSS 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",
 	"userjsyoucanpreview": "'''안내''': 자바스크립트 문서를 저장하기 전에 \"{{int:showpreview}}\" 기능을 통해 작동을 확인해주세요.",
 	"usercsspreview": "'''사용자 CSS의 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
+	"userjsonpreview": "<strong>사용자 JSON 구성을 테스트/미리 보기만 하고 있습니다.\n아직 저장하지 않았습니다!</strong>",
 	"userjspreview": "'''사용자 자바스크립트 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
 	"sitecsspreview": "'''이 CSS의 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
 	"sitejspreview": "'''이 자바스크립트 코드의 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
