@@ -41,9 +41,13 @@
 			"rtl": "images/icons/funnel-rtl.svg"
 		} },
 		"heart": { "file": "images/icons/heart.svg" },
-		"help": {
-			"file": "images/icons/help.svg"
-		},
+		"help": { "file": {
+			"ltr": "images/icons/help-ltr.svg",
+			"rtl": "images/icons/help-rtl.svg",
+			"lang": {
+				"he,yi": "images/icons/help-ltr.svg"
+			}
+		} },
 		"key": {
 			"file": "images/icons/key.svg"
 		},

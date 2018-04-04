@@ -2,6 +2,11 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"userAvatar": { "file": "images/icons/userAvatar.svg" }
+		"userAnonymous": {
+			"file": "images/icons/userAnonymous.svg"
+		},
+		"userAvatar": {
+			"file": "images/icons/userAvatar.svg"
+		}
 	}
 }

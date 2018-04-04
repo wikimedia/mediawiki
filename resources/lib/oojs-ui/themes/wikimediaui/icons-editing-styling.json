@@ -73,7 +73,7 @@
 		"underline": { "file": {
 			"default": "images/icons/underline-a.svg",
 			"lang": {
-				"en,en-ca,en-gb": "images/icons/underline-u.svg"
+				"en,en-ca,en-gb,de": "images/icons/underline-u.svg"
 			}
 		} },
 		"textLanguage": {
