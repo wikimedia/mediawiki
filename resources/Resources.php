@@ -113,6 +113,14 @@ return [
 		],
 	],
 
+	'mediawiki.skinning.scriptPreload' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'styles' => [
+			'resources/src/jquery/jquery.renderBlocking.less',
+		],
+	],
+
 	'mediawiki.skinning.content.parsoid' => [
 		// Style Parsoid HTML+RDFa output consistent with wikitext from PHP parser
 		// with the interface.css styles; skinStyles should be used if your
