@@ -242,6 +242,8 @@
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
 				return;
 			} else {
+				// handshake with CSS that it no longer needs to worry about flash of unstyled content
+				$collapsible.addClass( 'mw-made-collapsible' );
 				$collapsible.data( 'mw-made-collapsible', true );
 			}
 
