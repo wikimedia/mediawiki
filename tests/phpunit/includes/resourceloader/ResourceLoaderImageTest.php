@@ -39,7 +39,9 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 			[ 'mno', 'ar', 'mno-rtl.svg' ],
 			[ 'mno', 'he', 'mno-ltr.svg' ],
 			[ 'pqr', 'en', 'pqr-b.svg' ],
+			[ 'pqr', 'en-gb', 'pqr-b.svg' ],
 			[ 'pqr', 'de', 'pqr-f.svg' ],
+			[ 'pqr', 'de-formal', 'pqr-f.svg' ],
 			[ 'pqr', 'ar', 'pqr-f.svg' ],
 			[ 'pqr', 'fr', 'pqr-a.svg' ],
 			[ 'pqr', 'he', 'pqr-a.svg' ],
@@ -53,7 +55,9 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 	public function testGetPath( $imageName, $languageCode, $path ) {
 		static $dirMap = [
 			'en' => 'ltr',
+			'en-gb' => 'ltr',
 			'de' => 'ltr',
+			'de-formal' => 'ltr',
 			'fr' => 'ltr',
 			'he' => 'rtl',
 			'ar' => 'rtl',
