@@ -36,10 +36,17 @@ production.
 * …
 
 === Action API changes in 1.32 ===
-* …
+* Added templated parameters.
+  * A module can define a templated parameter like "{fruit}-quantity", where the actual parameters
+    recognized correspond to the values of a multi-valued parameter. Then clients can make requests
+    like "fruits=apples|bananas&apples-quantity=1&bananas-quantity=5".
+  * action=paraminfo will return templated parameter definitions separately from normal parameters.
+    All parameter definitions now include an "index" key to allow clients to maintain parameter
+    ordering when merging normal and templated parameters.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
+* Parameter names may no longer contain '{' or '}', as these are now used for templated parameters.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated

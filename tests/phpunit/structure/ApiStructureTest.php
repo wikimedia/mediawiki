@@ -60,6 +60,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 		ApiBase::PARAM_ISMULTI_LIMIT2 => [ 'integer' ],
 		ApiBase::PARAM_MAX_BYTES => [ 'integer' ],
 		ApiBase::PARAM_MAX_CHARS => [ 'integer' ],
+		ApiBase::PARAM_TEMPLATE_VARS => [ 'array' ],
 	];
 
 	// param => [ other param that must be present => required value or null ]
@@ -421,6 +422,45 @@ class ApiStructureTest extends MediaWikiTestCase {
 						$config[ApiBase::PARAM_MAX_BYTES],
 						"$param: PARAM_MAX_BYTES cannot be less than PARAM_MAX_CHARS"
 					);
+				}
+
+				if ( isset( $config[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
+					$this->assertNotSame( [], $config[ApiBase::PARAM_TEMPLATE_VARS],
+						"$param: PARAM_TEMPLATE_VARS cannot be empty" );
+					foreach ( $config[ApiBase::PARAM_TEMPLATE_VARS] as $key => $target ) {
+						$this->assertRegExp( '/^[^{}]+$/', $key,
+							"$param: PARAM_TEMPLATE_VARS key may not contain '{' or '}'" );
+
+						$this->assertContains( '{' . $key . '}', $param,
+							"$param: Name must contain PARAM_TEMPLATE_VARS key {" . $key . "}" );
+						$this->assertArrayHasKey( $target, $params,
+							"$param: PARAM_TEMPLATE_VARS target parameter '$target' does not exist" );
+						$config2 = $params[$target];
+						$this->assertTrue( !empty( $config2[ApiBase::PARAM_ISMULTI] ),
+							"$param: PARAM_TEMPLATE_VARS target parameter '$target' must have PARAM_ISMULTI = true" );
+
+						if ( isset( $config2[ApiBase::PARAM_TEMPLATE_VARS] ) ) {
+							$this->assertNotSame( $param, $target,
+								"$param: PARAM_TEMPLATE_VARS cannot target itself" );
+
+							$this->assertArraySubset(
+								$config2[ApiBase::PARAM_TEMPLATE_VARS],
+								$config[ApiBase::PARAM_TEMPLATE_VARS],
+								true,
+								"$param: PARAM_TEMPLATE_VARS target parameter '$target': "
+								. "the target's PARAM_TEMPLATE_VARS must be a subset of the original."
+							);
+						}
+					}
+
+					$keys = implode( '|',
+						array_map( 'preg_quote', array_keys( $config[ApiBase::PARAM_TEMPLATE_VARS] ) )
+					);
+					$this->assertRegExp( '/^(?>[^{}]+|\{(?:' . $keys . ')\})+$/', $param,
+						"$param: Name may not contain '{' or '}' other than as defined by PARAM_TEMPLATE_VARS" );
+				} else {
+					$this->assertRegExp( '/^[^{}]+$/', $param,
+						"$param: Name may not contain '{' or '}' without PARAM_TEMPLATE_VARS" );
 				}
 			}
 		}
