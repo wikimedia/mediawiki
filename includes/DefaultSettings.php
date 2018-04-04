@@ -4264,8 +4264,9 @@ $wgAllowImageTag = false;
 
 /**
  * Configuration for HTML postprocessing tool. Set this to a configuration
- * array to enable an external tool. Dave Raggett's "HTML Tidy" is typically
- * used. See https://www.w3.org/People/Raggett/tidy/
+ * array to enable an external tool. By default, we now use the RemexHtml
+ * library; historically, Dave Raggett's "HTML Tidy" was typically used.
+ * See https://www.w3.org/People/Raggett/tidy/
  *
  * If this is null and $wgUseTidy is true, the deprecated configuration
  * parameters will be used instead.
@@ -4286,7 +4287,7 @@ $wgAllowImageTag = false;
  *  - tidyBin: For RaggettExternal, the path to the tidy binary.
  *  - tidyCommandLine: For RaggettExternal, additional command line options.
  */
-$wgTidyConfig = null;
+$wgTidyConfig = [ 'driver' => 'RemexHtml' ];
 
 /**
  * Set this to true to use the deprecated tidy configuration parameters.
