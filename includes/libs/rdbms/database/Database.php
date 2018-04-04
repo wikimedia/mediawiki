@@ -635,6 +635,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
+	/**
+	 * @return string|null
+	 */
+	final protected function getTransactionRoundId() {
+		// If transaction round participation is enabled, see if one is active
+		if ( $this->getFlag( self::DBO_TRX ) ) {
+			$id = $this->getLBInfo( 'trxRoundId' );
+
+			return is_string( $id ) ? $id : null;
+		}
+
+		return null;
+	}
+
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
 		if ( !$this->trxLevel ) {
 			return false;
@@ -3075,6 +3089,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
+		if ( !$this->trxLevel && $this->getTransactionRoundId() ) {
+			// Start an implicit transaction similar to how query() does
+			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+			$this->trxAutomatic = true;
+		}
+
 		$this->trxIdleCallbacks[] = [ $callback, $fname ];
 		if ( !$this->trxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
@@ -3082,10 +3102,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
-		if ( $this->trxLevel || $this->getFlag( self::DBO_TRX ) ) {
-			// As long as DBO_TRX is set, writes will accumulate until the load balancer issues
-			// an implicit commit of all peer databases. This is true even if a transaction has
-			// not yet been triggered by writes; make sure $callback runs *after* any such writes.
+		if ( !$this->trxLevel && $this->getTransactionRoundId() ) {
+			// Start an implicit transaction similar to how query() does
+			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
+			$this->trxAutomatic = true;
+		}
+
+		if ( $this->trxLevel ) {
 			$this->trxPreCommitCallbacks[] = [ $callback, $fname ];
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
