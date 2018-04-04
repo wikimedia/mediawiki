@@ -18313,6 +18313,27 @@ this is a '''test'''
 <p>this is a <b>test</b></p>
 !! end
 
+!! test
+Parser hook: horizontal rule inside extension tag that outputs <pre>
+!! wikitext
+<tag>
+Hello
+<hr/>
+Goodbye
+</tag>
+!! html/php
+<pre>
+'
+Hello
+<hr/>
+Goodbye
+'
+array (
+)
+</pre>
+
+!! end
+
 ###
 ### (see tests/parser/parserTestsParserHook.php for the <statictag> extension)
 ###

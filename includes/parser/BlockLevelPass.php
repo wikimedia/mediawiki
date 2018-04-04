@@ -306,8 +306,12 @@ class BlockLevelPass {
 
 				if ( $openMatch || $closeMatch ) {
 					$pendingPTag = false;
-					# @todo T7718: paragraph closed
-					$output .= $this->closeParagraph();
+					// Only close the paragraph if we're not inside a <pre> tag, or if
+					// that <pre> tag has just been opened
+					if ( !$this->inPre || $preOpenMatch ) {
+						// @todo T7718: paragraph closed
+						$output .= $this->closeParagraph();
+					}
 					if ( $preOpenMatch && !$preCloseMatch ) {
 						$this->inPre = true;
 					}
