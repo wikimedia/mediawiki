@@ -6,6 +6,12 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+.mw-collapsible-toggle:before {
+	content: '[';
+}
+.mw-collapsible-toggle:after {
+	content: ']';
+}
 /* Align the toggle based on the direction of the content language */
 /* @noflip */
 .mw-content-ltr .mw-collapsible-toggle,
