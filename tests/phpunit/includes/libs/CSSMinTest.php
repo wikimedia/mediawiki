@@ -254,6 +254,36 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Cases with empty url() for CSSMin::remap.
+	 *
+	 * Regression test for T191237.
+   *
+	 * @dataProvider provideRemapEmptyUrl
+	 * @covers CSSMin
+	 */
+	public function testRemapEmptyUrl( $params, $expected ) {
+		$remapped = call_user_func_array( 'CSSMin::remap', $params );
+		$this->assertEquals( $expected, $remapped, 'Ignore empty url' );
+	}
+
+	public static function provideRemapEmptyUrl() {
+		return [
+			'Empty' => [
+				[ "background-image: url();", false, '/example', false ],
+				"background-image: url();",
+			],
+			'Single quote' => [
+				[ "background-image: url('');", false, '/example', false ],
+				"background-image: url('');",
+			],
+			'Double quote' => [
+				[ 'background-image: url("");', false, '/example', false ],
+				'background-image: url("");',
+			],
+		];
+	}
+
+	/**
 	 * This tests the basic functionality of CSSMin::remap.
 	 *
 	 * @see testRemap for testing of funky parameters
