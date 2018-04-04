@@ -780,7 +780,7 @@ class JobQueueDB extends JobQueue {
 		return ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' )
 			// Keep a separate connection to avoid contention and deadlocks;
 			// However, SQLite has the opposite behavior due to DB-level locking.
-			? $lb->getConnectionRef( $index, [], $this->wiki, $lb::CONN_TRX_AUTO )
+			? $lb->getConnectionRef( $index, [], $this->wiki, $lb::CONN_TRX_AUTOCOMMIT )
 			// Jobs insertion will be defered until the PRESEND stage to reduce contention.
 			: $lb->getConnectionRef( $index, [], $this->wiki );
 	}

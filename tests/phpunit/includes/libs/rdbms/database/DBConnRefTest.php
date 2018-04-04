@@ -67,7 +67,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
-			->with( DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTO )
+			->with( DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT )
 			->willReturnCallback(
 				function () {
 					return $this->getDatabaseMock();
@@ -76,7 +76,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$ref = new DBConnRef(
 			$lb,
-			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTO ]
+			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ]
 		);
 
 		$this->assertInstanceOf( ResultWrapper::class, $ref->select( 'whatever', '*' ) );

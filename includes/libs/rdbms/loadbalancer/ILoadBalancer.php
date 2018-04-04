@@ -85,6 +85,8 @@ interface ILoadBalancer {
 	const DOMAIN_ANY = '';
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
+	const CONN_TRX_AUTOCOMMIT = 1;
+	/** @var int Alias for CONN_TRX_AUTOCOMMIT for b/c; deprecated since 1.31 */
 	const CONN_TRX_AUTO = 1;
 
 	/**
@@ -172,11 +174,11 @@ interface ILoadBalancer {
 	/**
 	 * Get a connection handle by server index
 	 *
-	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
 	 * can be used to check such flags beforehand.
 	 *
-	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
+	 * If the caller uses $domain or sets CONN_TRX_AUTOCOMMIT in $flags, then it must also
 	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
 	 * In all other cases, this is not necessary, though not harmful either.
 	 *
@@ -208,7 +210,7 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
 	 * can be used to check such flags beforehand.
 	 *
@@ -217,7 +219,7 @@ interface ILoadBalancer {
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
@@ -227,7 +229,7 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
 	 * can be used to check such flags beforehand.
 	 *
@@ -236,7 +238,7 @@ interface ILoadBalancer {
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 );
@@ -246,7 +248,7 @@ interface ILoadBalancer {
 	 *
 	 * The handle's methods simply wrap those of a Database handle
 	 *
-	 * The CONN_TRX_AUTO flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
+	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. ILoadBalancer::getServerAttributes()
 	 * can be used to check such flags beforehand.
 	 *
@@ -255,7 +257,7 @@ interface ILoadBalancer {
 	 * @param int $db Server index or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return MaintainableDBConnRef
 	 */
 	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 );
@@ -266,11 +268,11 @@ interface ILoadBalancer {
 	 * The index must be an actual index into the array. If a connection to the server is
 	 * already open and not considered an "in use" foreign connection, this simply returns it.
 	 *
-	 * Avoid using CONN_TRX_AUTO for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in
+	 * Avoid using CONN_TRX_AUTOCOMMIT for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in
 	 * order to avoid deadlocks. ILoadBalancer::getServerAttributes() can be used to check
 	 * such flags beforehand.
 	 *
-	 * If the caller uses $domain or sets CONN_TRX_AUTO in $flags, then it must also
+	 * If the caller uses $domain or sets CONN_TRX_AUTOCOMMIT in $flags, then it must also
 	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
 	 * In all other cases, this is not necessary, though not harmful either.
 	 *
@@ -278,7 +280,7 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Server index (does not support DB_MASTER/DB_REPLICA)
 	 * @param string|bool $domain Domain ID, or false for the current domain
-	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTO)
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return Database|bool Returns false on errors
 	 * @throws DBAccessError
 	 */
