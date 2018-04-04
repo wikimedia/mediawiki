@@ -3418,6 +3418,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxWriteCallers = [];
 		// First SELECT after BEGIN will establish the snapshot in REPEATABLE-READ.
 		// Get an estimate of the replication lag before any such queries.
+		$this->trxReplicaLag = null; // clear cached value first
 		$this->trxReplicaLag = $this->getApproximateLagStatus()['lag'];
 		// T147697: make explicitTrxActive() return true until begin() finishes. This way, no
 		// caller will think its OK to muck around with the transaction just because startAtomic()
@@ -3707,7 +3708,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getSessionLagStatus() {
-		return $this->getTransactionLagStatus() ?: $this->getApproximateLagStatus();
+		return $this->getRecordedTransactionLagStatus() ?: $this->getApproximateLagStatus();
 	}
 
 	/**
@@ -3718,11 +3719,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * is this lag plus transaction duration. If they don't, it is still
 	 * safe to be pessimistic. This returns null if there is no transaction.
 	 *
+	 * This returns null if the lag status for this transaction was not yet recorded.
+	 *
 	 * @return array|null ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
 	 * @since 1.27
 	 */
-	final protected function getTransactionLagStatus() {
-		return $this->trxLevel
+	final protected function getRecordedTransactionLagStatus() {
+		return ( $this->trxLevel && $this->trxReplicaLag !== null )
 			? [ 'lag' => $this->trxReplicaLag, 'since' => $this->trxTimestamp() ]
 			: null;
 	}

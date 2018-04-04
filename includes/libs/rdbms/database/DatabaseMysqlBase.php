@@ -766,18 +766,20 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getLagFromPtHeartbeat() {
 		$options = $this->lagDetectionOptions;
 
-		$staleness = $this->trxLevel
-			? microtime( true ) - $this->trxTimestamp()
-			: 0;
-		if ( $staleness > self::LAG_STALE_WARN_THRESHOLD ) {
-			// Avoid returning higher and higher lag value due to snapshot age
-			// given that the isolation level will typically be REPEATABLE-READ
-			$this->queryLogger->warning(
-				"Using cached lag value for {db_server} due to active transaction",
-				$this->getLogContext( [ 'method' => __METHOD__ ] )
-			);
+		$currentTrxInfo = $this->getRecordedTransactionLagStatus();
+		if ( $currentTrxInfo ) {
+			// There is an active transaction and the initial lag was already queried
+			$staleness = microtime( true ) - $currentTrxInfo['since'];
+			if ( $staleness > self::LAG_STALE_WARN_THRESHOLD ) {
+				// Avoid returning higher and higher lag value due to snapshot age
+				// given that the isolation level will typically be REPEATABLE-READ
+				$this->queryLogger->warning(
+					"Using cached lag value for {db_server} due to active transaction",
+					$this->getLogContext( [ 'method' => __METHOD__, 'age' => $staleness ] )
+				);
+			}
 
-			return $this->getTransactionLagStatus()['lag'];
+			return $currentTrxInfo['lag'];
 		}
 
 		if ( isset( $options['conds'] ) ) {
