@@ -575,39 +575,29 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$formDescriptor = [
+			'user' => [
+				'type' => 'user',
+				'name' => 'user',
+				'label-message' => 'userrights-user-editname',
+				'size' => 30,
+				'id' => 'username',
+				'autofocus' => true,
+				'value' => str_replace( '_', ' ', $this->mTarget )
+			]
+		];
 
-		$this->getOutput()->addHTML(
-			Html::openElement(
-				'form',
-				[
-					'method' => 'get',
-					'action' => wfScript(),
-					'name' => 'uluser',
-					'id' => 'mw-userrights-form1'
-				]
-			) .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel(
-				$this->msg( 'userrights-user-editname' )->text(),
-				'user',
-				'username',
-				30,
-				str_replace( '_', ' ', $this->mTarget ),
-				[
-					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-				] + (
-					// Set autofocus on blank input and error input
-					$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
-				)
-			) . ' ' .
-			Xml::submitButton(
-				$this->msg( 'editusergroup' )->text()
-			) .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n"
-		);
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->addHiddenField( 'title', $this->getPageTitle()->getPrefixedText() )
+			->setAction( wfScript() )
+			->setId( 'mw-userrights-form1' )
+			->setMethod( 'get' )
+			->setName( 'uluser' )
+			->setSubmitTextMsg( 'editusergroup' )
+			->setWrapperLegendMsg( 'userrights-lookup-user' )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	/**
