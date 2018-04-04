@@ -4,7 +4,10 @@
 	"images": {
 		"alert": { "file": "images/icons/alert.svg" },
 		"bell": { "file": "images/icons/bell.svg" },
-		"comment": { "file": "images/icons/comment.svg" },
+		"comment": {
+			"file": "images/icons/comment.svg",
+			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
+		},
 		"message": { "file": {
 			"ltr": "images/icons/message-ltr.svg",
 			"rtl": "images/icons/message-rtl.svg"

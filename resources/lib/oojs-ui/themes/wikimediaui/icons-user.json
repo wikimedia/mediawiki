@@ -20,13 +20,19 @@
 	},
 	"images": {
 		"userActive": {
-			"file": "images/icons/userActive.svg"
+			"file": "images/icons/userActive.svg",
+			"deprecated": "Renamed since v0.26.2, use 'userAvatar' instead."
 		},
-		"userAvatar": { "file": "images/icons/userAvatar.svg" },
-		"userInactive": { "file": {
-			"ltr": "images/icons/userInactive-ltr.svg",
-			"rtl": "images/icons/userInactive-rtl.svg"
-		} },
+		"userAnonymous": {
+			"file": "images/icons/userAnonymous.svg"
+		},
+		"userAvatar": {
+			"file": "images/icons/userAvatar.svg"
+		},
+		"userInactive": {
+			"file": "images/icons/userAnonymous.svg",
+			"deprecated": "Renamed since v0.26.2, use 'userAnonymous' instead."
+		},
 		"userTalk": { "file": {
 			"ltr": "images/icons/userTalk-ltr.svg",
 			"rtl": "images/icons/userTalk-rtl.svg"

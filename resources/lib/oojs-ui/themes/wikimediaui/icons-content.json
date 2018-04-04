@@ -22,7 +22,7 @@
 		"article": {
 			"file": {
 				"ltr": "images/icons/article-ltr.svg",
-				"rtl": "images/icons/article-ltr.svg"
+				"rtl": "images/icons/article-rtl.svg"
 			}
 		},
 		"articles": {
