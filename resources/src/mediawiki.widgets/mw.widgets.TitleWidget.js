@@ -192,8 +192,7 @@
 			params.pilimit = this.limit;
 		}
 		if ( this.showDescriptions ) {
-			params.prop.push( 'pageterms' );
-			params.wbptterms = 'description';
+			params.prop.push( 'description' );
 		}
 		return params;
 	};
@@ -243,7 +242,7 @@
 				redirect: suggestionPage.redirect !== undefined,
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
-				description: OO.getProp( suggestionPage, 'terms', 'description' ),
+				description: suggestionPage.description,
 				// Sort index
 				index: suggestionPage.index,
 				originalData: suggestionPage
