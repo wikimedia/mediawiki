@@ -2078,6 +2078,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Add parameter:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Parameter name",
 	"apisandbox-dynamic-error-exists": "A parameter named \"$1\" already exists.",
+	"apisandbox-templated-parameter-reason": "This [[Special:ApiHelp/main#main/templatedparams|templated parameter]] is offered based on the {{PLURAL:$1|value|values}} of $2.",
 	"apisandbox-deprecated-parameters": "Deprecated parameters",
 	"apisandbox-fetch-token": "Auto-fill the token",
 	"apisandbox-add-multi": "Add",
