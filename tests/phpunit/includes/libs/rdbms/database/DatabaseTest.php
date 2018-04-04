@@ -177,28 +177,27 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testTransactionIdle() {
 		$db = $this->db;
 
-		$db->setFlag( DBO_TRX );
+		$db->clearFlag( DBO_TRX );
 		$called = false;
 		$flagSet = null;
-		$db->onTransactionIdle(
-			function () use ( $db, &$flagSet, &$called ) {
-				$called = true;
-				$flagSet = $db->getFlag( DBO_TRX );
-			},
-			__METHOD__
-		);
-		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
-		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
-		$this->assertTrue( $called, 'Callback reached' );
+		$callback = function () use ( $db, &$flagSet, &$called ) {
+			$called = true;
+			$flagSet = $db->getFlag( DBO_TRX );
+		};
 
-		$db->clearFlag( DBO_TRX );
+		$db->onTransactionIdle( $callback, __METHOD__ );
+		$this->assertTrue( $called, 'Callback reached' );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX still default' );
+
 		$flagSet = null;
-		$db->onTransactionIdle(
-			function () use ( $db, &$flagSet ) {
-				$flagSet = $db->getFlag( DBO_TRX );
-			},
-			__METHOD__
-		);
+		$called = false;
+		$db->startAtomic( __METHOD__ );
+		$db->onTransactionIdle( $callback, __METHOD__ );
+		$this->assertFalse( $called, 'Callback not reached during TRX' );
+		$db->endAtomic( __METHOD__ );
+
+		$this->assertTrue( $called, 'Callback reached after COMMIT' );
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 
@@ -210,6 +209,56 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			__METHOD__
 		);
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
+	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::onTransactionIdle
+	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
+	 */
+	public function testTransactionIdle_TRX() {
+		$db = $this->getMockDB( [ 'isOpen', 'ping' ] );
+		$db->method( 'isOpen' )->willReturn( true );
+		$db->method( 'ping' )->willReturn( true );
+		$db->setFlag( DBO_TRX );
+
+		$lbFactory = LBFactorySingle::newFromConnection( $db );
+		// Ask for the connection so that LB sets internal state
+		// about this connection being the master connection
+		$lb = $lbFactory->getMainLB();
+		$conn = $lb->openConnection( $lb->getWriterIndex() );
+		$this->assertSame( $db, $conn, 'Same DB instance' );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
+
+		$called = false;
+		$flagSet = null;
+		$callback = function () use ( $db, &$flagSet, &$called ) {
+			$called = true;
+			$flagSet = $db->getFlag( DBO_TRX );
+		};
+
+		$db->onTransactionIdle( $callback, __METHOD__ );
+		$this->assertTrue( $called, 'Called when idle if DBO_TRX is set' );
+		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
+		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX still default' );
+
+		$called = false;
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$db->onTransactionIdle( $callback, __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
+
+		$called = false;
+		$lbFactory->beginMasterChanges( __METHOD__ );
+		$db->onTransactionIdle( $callback, __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
+
+		$lbFactory->rollbackMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called when lb-transaction is rolled back' );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+		$this->assertFalse( $called, 'Not called in next round commit' );
 	}
 
 	/**
@@ -250,12 +299,13 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::runOnTransactionPreCommitCallbacks
 	 */
 	public function testTransactionPreCommitOrIdle_TRX() {
-		$db = $this->getMockDB( [ 'isOpen' ] );
+		$db = $this->getMockDB( [ 'isOpen', 'ping' ] );
 		$db->method( 'isOpen' )->willReturn( true );
+		$db->method( 'ping' )->willReturn( true );
 		$db->setFlag( DBO_TRX );
 
 		$lbFactory = LBFactorySingle::newFromConnection( $db );
-		// Ask for the connectin so that LB sets internal state
+		// Ask for the connection so that LB sets internal state
 		// about this connection being the master connection
 		$lb = $lbFactory->getMainLB();
 		$conn = $lb->openConnection( $lb->getWriterIndex() );
@@ -267,11 +317,12 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$called = true;
 		};
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
-		$this->assertFalse( $called, 'Not called when idle if DBO_TRX is set' );
+		$this->assertTrue( $called, 'Called when idle if DBO_TRX is set' );
 
+		$called = false;
 		$lbFactory->beginMasterChanges( __METHOD__ );
+		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
-
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 
