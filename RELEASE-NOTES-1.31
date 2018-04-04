@@ -31,6 +31,10 @@ production.
 * (T188472) The 'comma' value for $wgArticleCountMethod is no longer supported for
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
+* (T185753) MediaWiki now defaults to using RemexHtml to tidy up user input, rather than
+  being off by default. If you wish to disable HTML tidying entirely, set $wgTidyConfig
+  to null; if you wish to use the old, deprecated Tidy external binary, both
+  set $wgTidyConfig to null and also set $wgUseTidy to true.
 * $wgLogAutopatrol now defaults to false instead of true.
 * $wgValidateAllHtml was removed and will be ignored.
 

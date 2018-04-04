@@ -55,8 +55,8 @@ MathML;
 				'<editsection> should survive tidy'
 			],
 			[ '<mw:toc>foo</mw:toc>', '<mw:toc>foo</mw:toc>', '<mw:toc> should survive tidy' ],
-			[ "<link foo=\"bar\" />\nfoo", '<link foo="bar"/>foo', '<link> should survive tidy' ],
-			[ "<meta foo=\"bar\" />\nfoo", '<meta foo="bar"/>foo', '<meta> should survive tidy' ],
+			[ "<link foo=\"bar\" />foo", '<link foo="bar"/>foo', '<link> should survive tidy' ],
+			[ "<meta foo=\"bar\" />foo", '<meta foo="bar"/>foo', '<meta> should survive tidy' ],
 			[ $testMathML, $testMathML, '<math> should survive tidy' ],
 		];
 	}
