@@ -1,0 +1,118 @@
+@exclude: ~'.mw-made-collapsible';
+
+/** 
+ * These rules prevent re-flows relating to collapsible on-wiki elements (T42812).
+ * Currently we support all the examples on [[mw:Manual:Collapsible_elements/Demo/Simple]]
+ * All examples on [[mw:Manual:Collapsible_elements/Demo/Advanced]] are supported with the following
+ * exceptions
+ * - Collapsible div nested in collapsed div
+ * -- Given it's not easy to identify the collapsed content via CSS, text will be shown until
+ *    JavaScript has loaded
+ * - "Combination example"
+ * -- At a later time, we may want to support the use of of `attr`, but given the code
+ *    complexity we will not for the time being (see https://davidwalsh.name/css-content-attr)
+ * See corresponding non-render blocking css in jquery.makeCollapsible
+ */
+.client-js {
+
+	ol.mw-collapsible:before,
+	ul.mw-collapsible:before,
+	.mw-collapsible-toggle-li {
+		/*
+		Rather than inherit any margins from the the general li selector - make sure this is explicit
+		to avoid reflows
+		*/
+		display: list-item;
+		// the added list item should have no list-style
+		list-style: none;
+		margin-bottom: 0.1em;
+	}
+
+	// And reset when mw-collapsible-toggle-li is rendered
+	ol.mw-made-collapsible:before,
+	ul.mw-made-collapsible:before {
+		margin-bottom: 0;
+		display: none;
+	}
+
+	ol.mw-collapsible:not( @{exclude} ):before,
+	ul.mw-collapsible:not( @{exclude} ):before,
+	table.mw-collapsible:not( @{exclude} ) thead:first-child tr:first-child th:last-child:before,
+	table.mw-collapsible:not( @{exclude} ) tbody:first-child tr:first-child th:last-child:before,
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+		content: '[@{msg-collapsible-collapse}]';
+	}
+
+	td.mw-collapsed:not( @{exclude} ):before,
+	table.mw-collapsed:not( @{exclude} ) thead:first-child tr:first-child th:last-child:before,
+	table.mw-collapsed:not( @{exclude} ) tbody:first-child tr:first-child th:last-child:before,
+	div.mw-collapsed:not( @{exclude} ):before {
+		content: '[@{msg-collapsible-expand}]';
+	}
+
+	// Any element with id beginning `mw-customcollapsible` will have special treatment
+	.mw-collapsible[id^="mw-customcollapsible"]:before {
+		content: none !important; // stylelint-disable-line declaration-no-important
+	}
+
+	// Special case for table where first child is caption element
+	table.mw-collapsible:not( @{exclude} ) > caption:first-child:after {
+		float: none;
+		display: block;
+	}
+
+	// Reserve space for table sortable controls
+	table.sortable th {
+		padding-right: 21px;
+	}
+
+	// Use the exclude selector to ensure animations do not break
+	.mw-collapsed:not( @{exclude} ) {
+		// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
+		> p,
+		> table,
+		tr:not( :first-child ),
+		.mw-collapsible-content {
+			display: none;
+		}
+	}
+}
+
+/* Align the toggle based on the direction of the content language */
+/* @noflip */
+.mw-content-ltr,
+.mw-content-rtl .mw-content-ltr {
+	.mw-collapsible:not( @{exclude} ) th:before,
+	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle {
+		float: right;
+	}
+}
+/* @noflip */
+.mw-content-rtl,
+.mw-content-ltr .mw-content-rtl {
+	.mw-collapsible:not( @{exclude} ) th:before,
+	.mw-collapsible:not( @{exclude} ):before,
+	.mw-collapsible-toggle {
+		float: left;
+	}
+}
+
+/* list-items go as wide as their parent element, don't float them inside list items */
+li,
+.mw-content-ltr li,
+.mw-content-rtl li,
+.mw-content-ltr .mw-content-rtl li,
+.mw-content-rtl .mw-content-ltr li {
+	.mw-collapsible-toggle {
+		float: none;
+	}
+}
+
+// special treatment for list items to match above
+// !important necessary to override overly-specific float left and right above.
+ol.mw-collapsible:not( @{exclude} ):before,
+ul.mw-collapsible:not( @{exclude} ):before {
+	float: none !important; // stylelint-disable-line declaration-no-important
+}
+
