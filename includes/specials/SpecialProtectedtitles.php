@@ -113,39 +113,25 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @private
 	 */
 	function showOptions( $namespace, $type = 'edit', $level ) {
-		$action = htmlspecialchars( wfScript() );
-		$title = $this->getPageTitle();
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-
-		return "<form action=\"$action\" method=\"get\">\n" .
-			'<fieldset>' .
-			Xml::element( 'legend', [], $this->msg( 'protectedtitles' )->text() ) .
-			Html::hidden( 'title', $special ) . "&#160;\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( $this->msg( 'protectedtitles-submit' )->text() ) . "\n" .
-			"</fieldset></form>";
-	}
-
-	/**
-	 * Prepare the namespace filter drop-down; standard namespace
-	 * selector, sans the MediaWiki namespace
-	 *
-	 * @param string|null $namespace Pre-select namespace
-	 * @return string
-	 */
-	function getNamespaceMenu( $namespace = null ) {
-		return Html::namespaceSelector(
-			[
-				'selected' => $namespace,
-				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
-			], [
+		$formDescriptor = [
+			'namespace' => [
+				'class' => 'HTMLSelectNamespace',
 				'name' => 'namespace',
 				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			]
-		);
+				'cssclass' => 'namespaceselector',
+				'all' => '',
+				'label' => $this->msg( 'namespace' )->text()
+			],
+			'levelmenu' => $this->getLevelMenu( $level )
+		];
+
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'get' )
+			->setWrapperLegendMsg( 'protectedtitles' )
+			->setSubmitText( $this->msg( 'protectedtitles-submit' )->text() );
+
+		return $htmlForm->prepareForm()->getHTML( false );
 	}
 
 	/**
@@ -173,14 +159,16 @@ class SpecialProtectedtitles extends SpecialPage {
 		}
 		// Third pass generates sorted XHTML content
 		foreach ( $m as $text => $type ) {
-			$selected = ( $type == $pr_level );
-			$options[] = Xml::option( $text, $type, $selected );
+			$options[ $text ] = $type;
 		}
 
-		return Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
-			Xml::tags( 'select',
-				[ 'id' => $this->IdLevel, 'name' => $this->IdLevel ],
-				implode( "\n", $options ) );
+		return [
+			'type' => 'select',
+			'options' => $options,
+			'label' => $this->msg( 'restriction-level' )->text(),
+			'name' => $this->IdLevel,
+			'id' => $this->IdLevel
+		];
 	}
 
 	protected function getGroupName() {
