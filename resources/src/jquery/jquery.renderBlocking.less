@@ -1,0 +1,21 @@
+// Temporarily render the collapse link while it loads (T42812)
+// see corresponding non-render blocking css in jquery.makeCollapsible
+.client-js {
+	table.mw-collapsed tr:first-child th:before,
+	div.mw-collapsed:before {
+		content: '[@{msg-collapsible-expand}]';
+		float: right;
+	}
+
+	// When the JavaScript has initialised this disable the rule above. (T42812)
+	table.mw-made-collapsible tr:first-child th:before,
+	div.mw-made-collapsible:before {
+		content: '';
+	}
+
+	// Avoid FOUC/reflows on collapsed elements by making sure they are opened by default (T42812)
+	table.mw-collapsed tr:not(:first-child),
+	div.mw-collapsed .mw-collapsible-content {
+		display: none;
+	}
+}
