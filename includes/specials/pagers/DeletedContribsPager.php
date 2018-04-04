@@ -23,7 +23,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 class DeletedContribsPager extends IndexPager {
@@ -96,7 +96,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
 		$data = [ parent::reallyDoQuery( $offset, $limit, $descending ) ];

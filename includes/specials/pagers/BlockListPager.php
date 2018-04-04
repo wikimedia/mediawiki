@@ -23,7 +23,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class BlockListPager extends TablePager {
 
@@ -289,7 +289,7 @@ class BlockListPager extends TablePager {
 
 	/**
 	 * Do a LinkBatch query to minimise database load when generating all these links
-	 * @param ResultWrapper $result
+	 * @param IResultWrapper $result
 	 */
 	function preprocessResults( $result ) {
 		# Do a link batch query
