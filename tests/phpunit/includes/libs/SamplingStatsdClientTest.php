@@ -22,7 +22,11 @@ class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
 		} else {
 			$sender->expects( $this->never() )->method( 'write' );
 		}
-		mt_srand( $seed );
+		if ( defined( 'MT_RAND_PHP' ) ) {
+			mt_srand( $seed, MT_RAND_PHP );
+		} else {
+			mt_srand( $seed );
+		}
 		$client = new SamplingStatsdClient( $sender );
 		$client->send( $data, $sampleRate );
 	}
