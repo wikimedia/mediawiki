@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiSetNotificationTimestamp extends ApiBase {
 
-	private $mPageSet;
+	private $mPageSet = null;
 
 	public function execute() {
 		$user = $this->getUser();
@@ -187,7 +187,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	 * @return ApiPageSet
 	 */
 	private function getPageSet() {
-		if ( !isset( $this->mPageSet ) ) {
+		if ( $this->mPageSet === null ) {
 			$this->mPageSet = new ApiPageSet( $this );
 		}
 

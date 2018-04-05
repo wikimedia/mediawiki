@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiPurge extends ApiBase {
-	private $mPageSet;
+	private $mPageSet = null;
 
 	/**
 	 * Purges the cache of a page
@@ -132,7 +132,7 @@ class ApiPurge extends ApiBase {
 	 * @return ApiPageSet
 	 */
 	private function getPageSet() {
-		if ( !isset( $this->mPageSet ) ) {
+		if ( $this->mPageSet === null ) {
 			$this->mPageSet = new ApiPageSet( $this );
 		}
 
