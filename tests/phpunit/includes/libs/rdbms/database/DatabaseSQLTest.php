@@ -4,6 +4,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
@@ -1538,6 +1539,44 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( Database::STATUS_TRX_NONE, $wrapper->trxStatus() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; COMMIT' );
 		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::query
+	 */
+	public function testImplicitTransactionRollback() {
+		$doError = function ( $wasKnown = true ) {
+			$this->database->forceNextQueryError( 666, 'Evilness' );
+			try {
+				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
+				$this->fail( 'Expected exception not thrown' );
+			} catch ( DBError $e ) {
+				$this->assertSame( 666, $e->errno );
+			}
+		};
+
+		$this->database->setFlag( Database::DBO_TRX );
+
+		// Implicit transaction gets silently rolled back
+		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
+		call_user_func( $doError, false );
+		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+		$this->database->commit( __METHOD__, Database::FLUSHING_INTERNAL );
+		// phpcs:ignore
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK; BEGIN; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+
+		// ... unless there were prior writes
+		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
+		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+		call_user_func( $doError, false );
+		try {
+			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBTransactionStateError $e ) {
+		}
+		$this->database->rollback( __METHOD__, Database::FLUSHING_INTERNAL );
+		// phpcs:ignore
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; DELETE FROM error WHERE 1; ROLLBACK' );
 	}
 
 	/**
