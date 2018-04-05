@@ -115,7 +115,8 @@
 			"include": [
 				"composer.local.json"
 			],
-			"merge-dev": false
+			"merge-dev": false,
+			"merge-scripts": true
 		}
 	}
 }
