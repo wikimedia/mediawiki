@@ -1545,7 +1545,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Database::query
 	 */
 	public function testImplicitTransactionRollback() {
-		$doError = function ( $wasKnown = true ) {
+		$doError = function () {
 			$this->database->forceNextQueryError( 666, 'Evilness' );
 			try {
 				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
@@ -1559,7 +1559,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		// Implicit transaction gets silently rolled back
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
-		call_user_func( $doError, false );
+		call_user_func( $doError );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->database->commit( __METHOD__, Database::FLUSHING_INTERNAL );
 		// phpcs:ignore
@@ -1568,7 +1568,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// ... unless there were prior writes
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
-		call_user_func( $doError, false );
+		call_user_func( $doError );
 		try {
 			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
@@ -1577,6 +1577,71 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->rollback( __METHOD__, Database::FLUSHING_INTERNAL );
 		// phpcs:ignore
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'1\'; DELETE FROM error WHERE 1; ROLLBACK' );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::query
+	 */
+	public function testTransactionStatementRollbackIgnoring() {
+		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
+		$warning = [];
+		$wrapper->deprecationLogger = function ( $msg ) use ( &$warning ) {
+			$warning[] = $msg;
+		};
+
+		$doError = function () {
+			$this->database->forceNextQueryError( 666, 'Evilness', [
+				'wasKnownStatementRollbackError' => true,
+			] );
+			try {
+				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
+				$this->fail( 'Expected exception not thrown' );
+			} catch ( DBError $e ) {
+				$this->assertSame( 666, $e->errno );
+			}
+		};
+		$expectWarning = 'Caller from ' . __METHOD__ .
+			' ignored an error originally raised from ' . __CLASS__ . '::SomeCaller: [666] Evilness';
+
+		// Rollback doesn't raise a warning
+		$warning = [];
+		$this->database->startAtomic( __METHOD__ );
+		call_user_func( $doError );
+		$this->database->rollback( __METHOD__ );
+		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+		$this->assertSame( [], $warning );
+		// phpcs:ignore
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK; DELETE FROM x WHERE field = \'1\'' );
+
+		// cancelAtomic() doesn't raise a warning
+		$warning = [];
+		$this->database->begin( __METHOD__ );
+		$this->database->startAtomic( __METHOD__, Database::ATOMIC_CANCELABLE );
+		call_user_func( $doError );
+		$this->database->cancelAtomic( __METHOD__ );
+		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		$this->assertSame( [], $warning );
+		// phpcs:ignore
+		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM error WHERE 1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+
+		// Commit does raise a warning
+		$warning = [];
+		$this->database->begin( __METHOD__ );
+		call_user_func( $doError );
+		$this->database->commit( __METHOD__ );
+		$this->assertSame( [ $expectWarning ], $warning );
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; COMMIT' );
+
+		// Deprecation only gets raised once
+		$warning = [];
+		$this->database->begin( __METHOD__ );
+		call_user_func( $doError );
+		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+		$this->database->commit( __METHOD__ );
+		$this->assertSame( [ $expectWarning ], $warning );
+		// phpcs:ignore
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; DELETE FROM x WHERE field = \'1\'; COMMIT' );
 	}
 
 	/**
