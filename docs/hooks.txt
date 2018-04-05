@@ -1209,6 +1209,14 @@ $row: the DB row for this line
   Currently only data attributes reserved to MediaWiki are allowed
   (see Sanitizer::isReservedDataAttribute).
 
+'DeleteUnknownPreferences': Called by the cleanupPreferences.php maintenance script to build a WHERE clause with which
+to delete preferences that are not known about. This hook is used by extensions that have dynamically-named preferences
+that should not be deleted in the usual cleanup process. For example, the Gadgets extension creates preferences prefixed
+with 'gadget-', and so anything with that prefix is excluded from the deletion.
+&where: An array that will be passed as the $cond parameter to IDatabase::select() to determine what will be deleted
+  from the user_properties table.
+$db: The IDatabase object, useful for accessing $db->buildLike() etc.
+
 'DifferenceEngineAfterLoadNewText': called in DifferenceEngine::loadNewText()
 after the new revision's content has been loaded into the class member variable
 $differenceEngine->mNewContent but before returning true from this function.
