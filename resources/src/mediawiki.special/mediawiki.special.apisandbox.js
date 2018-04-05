@@ -384,8 +384,10 @@
 		 * @return {OO.ui.Widget}
 		 */
 		createWidgetForParameter: function ( pi, opts ) {
-			var widget, innerWidget, finalWidget, items, $button, $content, func,
-				multiMode = 'none';
+			var widget, innerWidget, finalWidget, items, $content, func,
+				multiModeButton = null,
+				multiModeInput = null,
+				multiModeAllowed = false;
 
 			opts = opts || {};
 
@@ -442,7 +444,8 @@
 					$.extend( widget, WidgetMethods.textInputWidget );
 					$.extend( widget, WidgetMethods.passwordWidget );
 					widget.setValidation( Validators.generic );
-					multiMode = 'enter';
+					multiModeAllowed = true;
+					multiModeInput = widget;
 					break;
 
 				case 'integer':
@@ -458,7 +461,8 @@
 					if ( Util.apiBool( pi.enforcerange ) ) {
 						widget.setRange( pi.min || -Infinity, pi.max || Infinity );
 					}
-					multiMode = 'enter';
+					multiModeAllowed = true;
+					multiModeInput = widget;
 					break;
 
 				case 'limit':
@@ -481,7 +485,8 @@
 					pi.apiSandboxMax = mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max;
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					multiMode = 'enter';
+					multiModeAllowed = true;
+					multiModeInput = widget;
 					break;
 
 				case 'timestamp':
@@ -495,7 +500,7 @@
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
 					$.extend( widget, WidgetMethods.dateTimeInputWidget );
-					multiMode = 'indicator';
+					multiModeAllowed = true;
 					break;
 
 				case 'upload':
@@ -595,25 +600,13 @@
 					break;
 			}
 
-			if ( Util.apiBool( pi.multi ) && multiMode !== 'none' ) {
+			if ( Util.apiBool( pi.multi ) && multiModeAllowed ) {
 				innerWidget = widget;
-				switch ( multiMode ) {
-					case 'enter':
-						$content = innerWidget.$element;
-						break;
 
-					case 'indicator':
-						$button = innerWidget.$indicator;
-						$button.css( 'cursor', 'pointer' );
-						$button.attr( 'tabindex', 0 );
-						$button.parent().append( $button );
-						innerWidget.setIndicator( 'next' );
-						$content = innerWidget.$element;
-						break;
-
-					default:
-						throw new Error( 'Unknown multiMode "' + multiMode + '"' );
-				}
+				multiModeButton = new OO.ui.ButtonWidget( {
+					label: mw.message( 'apisandbox-add-multi' ).text()
+				} );
+				$content = innerWidget.$element.add( multiModeButton.$element );
 
 				widget = new OO.ui.PopupTagMultiselectWidget( {
 					allowArbitrary: true,
@@ -638,22 +631,11 @@
 						return false;
 					}
 				};
-				switch ( multiMode ) {
-					case 'enter':
-						innerWidget.connect( null, { enter: func } );
-						break;
 
-					case 'indicator':
-						$button.on( {
-							click: func,
-							keypress: function ( e ) {
-								if ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) {
-									func();
-								}
-							}
-						} );
-						break;
+				if ( multiModeInput ) {
+					multiModeInput.on( 'enter', func );
 				}
+				multiModeButton.on( 'click', func );
 			}
 
 			if ( Util.apiBool( pi.required ) || opts.nooptional ) {
