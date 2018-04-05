@@ -753,7 +753,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Пространства имён для перечисления.",
 	"apihelp-query+exturlusage-param-limit": "Сколько страниц вернуть.",
 	"apihelp-query+exturlusage-param-expandurl": "Раскрыть зависимые от протокола ссылки с какноничным протоколом.",
-	"apihelp-query+exturlusage-example-simple": "Показать страницы, ссылающиеся на <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Показать страницы, ссылающиеся на <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Перечисление всех удалённых файлов.",
 	"apihelp-query+filearchive-param-from": "Название изображения, с которого начать перечисление.",
 	"apihelp-query+filearchive-param-to": "Название изображения, на котором закончить перечисление.",

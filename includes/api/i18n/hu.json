@@ -636,7 +636,7 @@
 	"apihelp-query+exturlusage-param-protocol": "Az URL protokollja. Ha üres és az <var>$1query</var> paraméter meg van adva, a protokoll <kbd>http</kbd>. Hagyd ezt és az <var>$1query</var> paramétert is üresen az összes külső link listázásához.",
 	"apihelp-query+exturlusage-param-namespace": "A listázandó névtér.",
 	"apihelp-query+exturlusage-param-limit": "A visszaadandó lapok száma.",
-	"apihelp-query+exturlusage-example-simple": "A <kbd>http://www.mediawiki.org</kbd> URL-re hivatkozó lapok megjelenítése.",
+	"apihelp-query+exturlusage-example-simple": "A <kbd>https://www.mediawiki.org</kbd> URL-re hivatkozó lapok megjelenítése.",
 	"apihelp-query+filearchive-summary": "Az összes törölt fájl visszaadása.",
 	"apihelp-query+filearchive-param-from": "A fájlok listázása ettől a címtől.",
 	"apihelp-query+filearchive-param-to": "A fájlok listázása eddig a címig.",

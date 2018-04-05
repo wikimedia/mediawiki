@@ -755,7 +755,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Les espaces de nom à énumérer.",
 	"apihelp-query+exturlusage-param-limit": "Combien de pages renvoyer.",
 	"apihelp-query+exturlusage-param-expandurl": "Étendre les URLs relatives au protocole avec le protocole canonique.",
-	"apihelp-query+exturlusage-example-simple": "Afficher les pages avec un lien vers <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Afficher les pages avec un lien vers <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Énumérer séquentiellement tous les fichiers supprimés.",
 	"apihelp-query+filearchive-param-from": "Le titre de l’image auquel démarrer l’énumération.",
 	"apihelp-query+filearchive-param-to": "Le titre de l’image auquel arrêter l’énumération.",

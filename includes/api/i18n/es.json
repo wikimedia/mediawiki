@@ -736,7 +736,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Los espacios de nombres que enumerar.",
 	"apihelp-query+exturlusage-param-limit": "Cuántas páginas se devolverán.",
 	"apihelp-query+exturlusage-param-expandurl": "Expandir las URL relativas a un protocolo con el protocolo canónico.",
-	"apihelp-query+exturlusage-example-simple": "Mostrar páginas que enlacen con <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Mostrar páginas que enlacen con <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Enumerar todos los archivos borrados de forma secuencial.",
 	"apihelp-query+filearchive-param-from": "El título de imagen para comenzar la enumeración",
 	"apihelp-query+filearchive-param-to": "El título de imagen para detener la enumeración.",

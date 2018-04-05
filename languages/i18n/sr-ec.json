@@ -3783,7 +3783,7 @@
 	"feedback-thanks": "Хвала! Ваша повратна информација је постављена на страницу „[$2 $1]“.",
 	"feedback-thanks-title": "Хвала вам!",
 	"feedback-useragent": "Кориснички агент:",
-	"searchsuggest-search": "Претражи пројекат {{SITENAME}}",
+	"searchsuggest-search": "Претрага",
 	"searchsuggest-containing": "садржи...",
 	"api-error-badtoken": "Унутрашња грешка: неисправан жетон.",
 	"api-error-emptypage": "Стварање нових празних страница није дозвољено.",
