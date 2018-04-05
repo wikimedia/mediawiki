@@ -20,11 +20,11 @@
  * @file
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 abstract class UserArray implements Iterator {
 	/**
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return UserArrayFromResult
 	 */
 	static function newFromResult( $res ) {
@@ -86,7 +86,7 @@ abstract class UserArray implements Iterator {
 	}
 
 	/**
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 * @return UserArrayFromResult
 	 */
 	protected static function newFromResult_internal( $res ) {
