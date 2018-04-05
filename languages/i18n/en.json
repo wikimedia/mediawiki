@@ -2009,6 +2009,7 @@
 	"deadendpages-summary": "",
 	"deadendpagestext": "The following pages do not link to other pages in {{SITENAME}}.",
 	"protectedpages": "Protected pages",
+	"protectedpages-filters": "Filters:",
 	"protectedpages-indef": "Indefinite protections only",
 	"protectedpages-summary": "This page lists existing pages that are currently protected. For a list of titles that are protected from creation, see [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Cascading protections only",
