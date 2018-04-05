@@ -359,6 +359,28 @@ class DatabaseMssql extends Database {
 		}
 	}
 
+	protected function wasKnownStatementRollbackError() {
+		$errors = sqlsrv_errors( SQLSRV_ERR_ALL );
+		if ( !$errors ) {
+			return false;
+		}
+		// The transaction vs statement rollback behavior depends on XACT_ABORT, so make sure
+		// that the "statement has been terminated" error (3621) is specifically present.
+		// https://docs.microsoft.com/en-us/sql/t-sql/statements/set-xact-abort-transact-sql
+		$statementOnly = false;
+		$codeWhitelist = [ '2601', '2627', '547' ];
+		foreach ( $errors as $error ) {
+			if ( $error['code'] == '3621' ) {
+				$statementOnly = true;
+			} elseif ( !in_array( $error['code'], $codeWhitelist ) ) {
+				$statementOnly = false;
+				break;
+			}
+		}
+
+		return $statementOnly;
+	}
+
 	/**
 	 * @return int
 	 */
