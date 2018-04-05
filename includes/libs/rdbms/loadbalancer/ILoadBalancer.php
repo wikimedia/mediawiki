@@ -109,6 +109,7 @@ interface ILoadBalancer {
 	 *  - queryLogger: PSR-3 logger instance. [optional]
 	 *  - perfLogger: PSR-3 logger instance. [optional]
 	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
+	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );

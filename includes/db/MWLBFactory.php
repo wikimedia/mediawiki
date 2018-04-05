@@ -31,6 +31,10 @@ use Wikimedia\Rdbms\DatabaseDomain;
  * @ingroup Database
  */
 abstract class MWLBFactory {
+
+	/** @var array Cache of already-logged deprecation messages */
+	private static $loggedDeprecations = [];
+
 	/**
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param Config $mainConfig Main config object from MediaWikiServices
@@ -57,6 +61,7 @@ abstract class MWLBFactory {
 			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
+			'deprecationLogger' => [ static::class, 'logDeprecation' ],
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
@@ -227,5 +232,23 @@ abstract class MWLBFactory {
 				'un_user_ip' => 'user_ip',
 			] );
 		}
+	}
+
+	/**
+	 * Log a database deprecation warning
+	 * @param string $msg Deprecation message
+	 */
+	public static function logDeprecation( $msg ) {
+		global $wgDevelopmentWarnings;
+
+		if ( isset( self::$loggedDeprecations[$msg] ) ) {
+			return;
+		}
+		self::$loggedDeprecations[$msg] = true;
+
+		if ( $wgDevelopmentWarnings ) {
+			trigger_error( $msg, E_USER_DEPRECATED );
+		}
+		wfDebugLog( 'deprecated', $msg, 'private' );
 	}
 }
