@@ -166,10 +166,13 @@ interface ILoadBalancer {
 	/**
 	 * Get any open connection to a given server index, local or foreign
 	 *
+	 * Use CONN_TRX_AUTOCOMMIT to only look for connections opened with that flag
+	 *
 	 * @param int $i Server index or DB_MASTER/DB_REPLICA
+	 * @param int $flags Bitfield of CONN_* class constants
 	 * @return Database|bool False if no such connection is open
 	 */
-	public function getAnyOpenConnection( $i );
+	public function getAnyOpenConnection( $i, $flags = 0 );
 
 	/**
 	 * Get a connection handle by server index

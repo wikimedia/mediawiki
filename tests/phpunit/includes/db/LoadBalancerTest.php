@@ -32,25 +32,27 @@ use Wikimedia\Rdbms\LoadMonitorNull;
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
 class LoadBalancerTest extends MediaWikiTestCase {
-	public function testWithoutReplica() {
+	private function makeServerConfig() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
-		$servers = [
-			[
-				'host'        => $wgDBserver,
-				'dbname'      => $wgDBname,
-				'tablePrefix' => $this->dbPrefix(),
-				'user'        => $wgDBuser,
-				'password'    => $wgDBpassword,
-				'type'        => $wgDBtype,
-				'dbDirectory' => $wgSQLiteDataDir,
-				'load'        => 0,
-				'flags'       => DBO_TRX // REPEATABLE-READ for consistency
-			],
+		return [
+			'host' => $wgDBserver,
+			'dbname' => $wgDBname,
+			'tablePrefix' => $this->dbPrefix(),
+			'user' => $wgDBuser,
+			'password' => $wgDBpassword,
+			'type' => $wgDBtype,
+			'dbDirectory' => $wgSQLiteDataDir,
+			'load' => 0,
+			'flags' => DBO_TRX // REPEATABLE-READ for consistency
 		];
+	}
+
+	public function testWithoutReplica() {
+		global $wgDBname;
 
 		$lb = new LoadBalancer( [
-			'servers' => $servers,
+			'servers' => [ $this->makeServerConfig() ],
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
 
@@ -240,5 +242,40 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		] );
 
 		$this->assertFalse( $lb->getServerAttributes( 1 )[Database::ATTR_DB_LEVEL_LOCKING] );
+	}
+
+	/**
+	 * @covers LoadBalancer::openConnection()
+	 * @covers LoadBalancer::getAnyOpenConnection()
+	 */
+	function testOpenConnection() {
+		global $wgDBname;
+
+		$lb = new LoadBalancer( [
+			'servers' => [ $this->makeServerConfig() ],
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+		] );
+
+		$i = $lb->getWriterIndex();
+		$this->assertEquals( null, $lb->getAnyOpenConnection( $i ) );
+		$conn1 = $lb->openConnection( $i );
+		$this->assertNotEquals( null, $conn1 );
+		$this->assertEquals( $conn1, $lb->getAnyOpenConnection( $i ) );
+		$conn2 = $lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+		$this->assertNotEquals( null, $conn2 );
+		if ( $lb->getServerAttributes( $i )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+			$this->assertEquals( null,
+				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
+			$this->assertEquals( $conn1,
+				$lb->getConnection(
+					$i, [], false, $lb::CONN_TRX_AUTOCOMMIT ), $lb::CONN_TRX_AUTOCOMMIT );
+		} else {
+			$this->assertEquals( $conn2,
+				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
+			$this->assertEquals( $conn2,
+				$lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT ) );
+		}
+
+		$lb->closeAll();
 	}
 }
