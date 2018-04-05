@@ -53,6 +53,9 @@ class DatabaseTestHelper extends Database {
 		$this->errorLogger = function ( Exception $e ) {
 			wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
 		};
+		$this->deprecationLogger = function ( $msg ) {
+			wfWarn( $msg );
+		};
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 		$this->open( 'localhost', 'testuser', 'password', 'testdb' );
 	}

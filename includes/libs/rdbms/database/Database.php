@@ -152,6 +152,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected $trxStatusCause;
 	/**
+	 * @var array|null If wasKnownStatementRollbackError() prevented trxStatus from being set,
+	 *  the relevant details are stored here.
+	 */
+	protected $trxStatusIgnoredCause;
+	/**
 	 * Either 1 if a transaction is active or 0 otherwise.
 	 * The other Trx fields may not be meaningfull if this is 0.
 	 *
@@ -1148,21 +1153,29 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $ret === false ) {
-			if ( $this->trxLevel && !$this->wasKnownStatementRollbackError() ) {
-				# Either the query was aborted or all queries after BEGIN where aborted.
-				if ( $this->explicitTrxActive() || $priorWritesPending ) {
-					# In the first case, the only options going forward are (a) ROLLBACK, or
-					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
-					# option is ROLLBACK, since the snapshots would have been released.
-					$this->trxStatus = self::STATUS_TRX_ERROR;
-					$this->trxStatusCause =
-						$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
-					$tempIgnore = false; // cannot recover
+			if ( $this->trxLevel ) {
+				if ( !$this->wasKnownStatementRollbackError() ) {
+					# Either the query was aborted or all queries after BEGIN where aborted.
+					if ( $this->explicitTrxActive() || $priorWritesPending ) {
+						# In the first case, the only options going forward are (a) ROLLBACK, or
+						# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
+						# option is ROLLBACK, since the snapshots would have been released.
+						$this->trxStatus = self::STATUS_TRX_ERROR;
+						$this->trxStatusCause =
+							$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
+						$tempIgnore = false; // cannot recover
+					} else {
+						# Nothing prior was there to lose from the transaction,
+						# so just roll it back.
+						$this->doRollback( __METHOD__ . " ($fname)" );
+						$this->trxStatus = self::STATUS_TRX_OK;
+					}
+					$this->trxStatusIgnoredCause = null;
 				} else {
-					# Nothing prior was there to lose from the transaction,
-					# so just roll it back.
-					$this->doRollback( __METHOD__ . " ($fname)" );
-					$this->trxStatus = self::STATUS_TRX_OK;
+					# We're ignoring an error that caused just the current query to be aborted.
+					# But log the cause so we can log a deprecation notice if a
+					# caller actually does ignore it.
+					$this->trxStatusIgnoredCause = [ $lastError, $lastErrno, $fname ];
 				}
 			}
 
@@ -1273,16 +1286,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBTransactionStateError
 	 */
 	private function assertTransactionStatus( $sql, $fname ) {
-		if (
-			$this->trxStatus < self::STATUS_TRX_OK &&
-			$this->getQueryVerb( $sql ) !== 'ROLLBACK' // transaction/savepoint
-		) {
+		if ( $this->getQueryVerb( $sql ) === 'ROLLBACK' ) { // transaction/savepoint
+			return;
+		}
+
+		if ( $this->trxStatus < self::STATUS_TRX_OK ) {
 			throw new DBTransactionStateError(
 				$this,
 				"Cannot execute query from $fname while transaction status is ERROR. ",
 				[],
 				$this->trxStatusCause
 			);
+		} elseif ( $this->trxStatus === self::STATUS_TRX_OK && $this->trxStatusIgnoredCause ) {
+			list( $iLastError, $iLastErrno, $iFname ) = $this->trxStatusIgnoredCause;
+			call_user_func( $this->deprecationLogger,
+				"Caller from $fname ignored an error originally raised from $iFname: " .
+				"[$iLastErrno] $iLastError"
+			);
+			$this->trxStatusIgnoredCause = null;
 		}
 	}
 
@@ -3472,6 +3493,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} elseif ( $savepointId !== 'n/a' ) {
 			$this->doRollbackToSavepoint( $savepointId, $fname );
 			$this->trxStatus = self::STATUS_TRX_OK; // no exception; recovered
+			$this->trxStatusIgnoredCause = null;
 		}
 
 		$this->affectedRowCount = 0; // for the sake of consistency
@@ -3514,6 +3536,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->doBegin( $fname );
 		$this->trxStatus = self::STATUS_TRX_OK;
+		$this->trxStatusIgnoredCause = null;
 		$this->trxAtomicCounter = 0;
 		$this->trxTimestamp = microtime( true );
 		$this->trxFname = $fname;
