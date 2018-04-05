@@ -664,7 +664,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Die aufzulistenden Seiten-Namensräume.",
 	"apihelp-query+exturlusage-param-limit": "Wie viele Seiten zurückgegeben werden sollen.",
 	"apihelp-query+exturlusage-param-expandurl": "Expandiert protokollrelative URLs mit dem kanonischen Protokoll.",
-	"apihelp-query+exturlusage-example-simple": "Zeigt Seiten, die auf <kbd>http://www.mediawiki.org</kbd> verlinken.",
+	"apihelp-query+exturlusage-example-simple": "Zeigt Seiten, die auf <kbd>https://www.mediawiki.org</kbd> verlinken.",
 	"apihelp-query+filearchive-summary": "Alle gelöschten Dateien der Reihe nach auflisten.",
 	"apihelp-query+filearchive-param-from": "Der Bildertitel, bei dem die Auflistung beginnen soll.",
 	"apihelp-query+filearchive-param-to": "Der Bildertitel, bei dem die Auflistung enden soll.",

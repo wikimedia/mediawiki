@@ -566,7 +566,7 @@
 	"apihelp-query+exturlusage-param-query": "プロトコルを除いた検索文字列。[[Special:LinkSearch]] も参照してください。すべての外部リンクを一覧表示するには空欄にしてください。",
 	"apihelp-query+exturlusage-param-namespace": "列挙するページ名前空間。",
 	"apihelp-query+exturlusage-param-limit": "返すページの数。",
-	"apihelp-query+exturlusage-example-simple": "<kbd>http://www.mediawiki.org</kbd> にリンクしているページを一覧表示する。",
+	"apihelp-query+exturlusage-example-simple": "<kbd>https://www.mediawiki.org</kbd> にリンクしているページを一覧表示する。",
 	"apihelp-query+filearchive-summary": "削除されたファイルをすべて順に列挙します。",
 	"apihelp-query+filearchive-param-from": "列挙の始点となる画像のページ名。",
 	"apihelp-query+filearchive-param-to": "列挙の終点となる画像のページ名。",

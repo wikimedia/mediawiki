@@ -199,7 +199,7 @@
 	"apihelp-query+exturlusage-paramvalue-prop-ids": "Prideda puslapio ID.",
 	"apihelp-query+exturlusage-paramvalue-prop-url": "Prideda URL, panaudota puslapyje.",
 	"apihelp-query+exturlusage-param-limit": "Kiek puslapių gražinti.",
-	"apihelp-query+exturlusage-example-simple": "Rodyti puslapius, nurodančius į <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Rodyti puslapius, nurodančius į <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-param-prop": "Kokią paveikslėlio informaciją gauti:",
 	"apihelp-query+filearchive-paramvalue-prop-timestamp": "Prideda laiko žymę įkeltai versijai.",
 	"apihelp-query+filearchive-paramvalue-prop-user": "Prideda vartotoją, kuris įkėlė paveikslėlio versiją.",

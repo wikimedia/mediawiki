@@ -733,7 +733,7 @@
 	"apihelp-query+exturlusage-param-namespace": "Простори назв для переліку.",
 	"apihelp-query+exturlusage-param-limit": "Скільки сторінок виводити.",
 	"apihelp-query+exturlusage-param-expandurl": "Розгорнути протокол-залежні URL за канонічним протоколом.",
-	"apihelp-query+exturlusage-example-simple": "Показати сторінки, які посилаються на <kbd>http://www.mediawiki.org</kbd>.",
+	"apihelp-query+exturlusage-example-simple": "Показати сторінки, які посилаються на <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Перерахувати всі вилучені файли послідовно.",
 	"apihelp-query+filearchive-param-from": "Назва зображення, з якої почати перелічувати.",
 	"apihelp-query+filearchive-param-to": "Назва зображення, якою закінчити перелічувати.",
