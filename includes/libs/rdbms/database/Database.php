@@ -101,6 +101,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $queryLogger;
 	/** @var callback Error logging callback */
 	protected $errorLogger;
+	/** @var callback Deprecation logging callback */
+	protected $deprecationLogger;
 
 	/** @var resource|null Database connection */
 	protected $conn = null;
@@ -312,6 +314,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->errorLogger = $params['errorLogger'];
+		$this->deprecationLogger = $params['deprecationLogger'];
 
 		if ( isset( $params['nonNativeInsertSelectBatchSize'] ) ) {
 			$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'];
@@ -396,6 +399,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      includes the agent as a SQL comment.
 	 *   - trxProfiler: Optional TransactionProfiler instance.
 	 *   - errorLogger: Optional callback that takes an Exception and logs it.
+	 *   - deprecationLogger: Optional callback that takes a string and logs it.
 	 *   - cliMode: Whether to consider the execution context that of a CLI script.
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
@@ -435,6 +439,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( !isset( $p['errorLogger'] ) ) {
 				$p['errorLogger'] = function ( Exception $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+				};
+			}
+			if ( !isset( $p['deprecationLogger'] ) ) {
+				$p['deprecationLogger'] = function ( $msg ) {
+					trigger_error( $msg, E_USER_DEPRECATED );
 				};
 			}
 

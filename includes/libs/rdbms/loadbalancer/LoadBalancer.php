@@ -111,6 +111,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var callable Exception logger */
 	private $errorLogger;
+	/** @var callable Deprecation logger */
+	private $deprecationLogger;
 
 	/** @var bool */
 	private $disabled = false;
@@ -222,6 +224,11 @@ class LoadBalancer implements ILoadBalancer {
 			? $params['errorLogger']
 			: function ( Exception $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+			};
+		$this->deprecationLogger = isset( $params['deprecationLogger'] )
+			? $params['deprecationLogger']
+			: function ( $msg ) {
+				trigger_error( $msg, E_USER_DEPRECATED );
 			};
 
 		foreach ( [ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ] as $key ) {
@@ -1067,6 +1074,7 @@ class LoadBalancer implements ILoadBalancer {
 		$server['connLogger'] = $this->connLogger;
 		$server['queryLogger'] = $this->queryLogger;
 		$server['errorLogger'] = $this->errorLogger;
+		$server['deprecationLogger'] = $this->deprecationLogger;
 		$server['profiler'] = $this->profiler;
 		$server['trxProfiler'] = $this->trxProfiler;
 		// Use the same agent and PHP mode for all DB handles

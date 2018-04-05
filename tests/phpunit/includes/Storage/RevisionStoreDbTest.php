@@ -117,7 +117,10 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new \Psr\Log\NullLogger(),
 				'queryLogger' => new \Psr\Log\NullLogger(),
-				'errorLogger' => new \Psr\Log\NullLogger(),
+				'errorLogger' => function () {
+				},
+				'deprecationLogger' => function () {
+				},
 				'type' => 'test',
 				'dbname' => $dbName,
 				'tablePrefix' => $dbPrefix,
