@@ -12,7 +12,7 @@
 	}
 
 	&-view-namespaces {
-		border-top: 5px solid @colorGray12;
+		border-top: 4px solid @colorGray12;
 
 		&:first-child,
 		&.mw-rcfilters-ui-itemMenuOptionWidget-identifier-subject + &.mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk {
@@ -25,7 +25,8 @@
 	}
 
 	.mw-rcfilters-ui-table {
-		padding-top: 0.5em;
+		padding-top: 6 / @font-size-system-ui / @font-size-vector;
+		padding-bottom: 6 / @font-size-system-ui / @font-size-vector;
 	}
 
 	&.oo-ui-optionWidget-selected {
@@ -45,6 +46,10 @@
 	}
 
 	&-itemCheckbox {
+		.oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+			padding-left: 12 / @font-size-system-ui / @font-size-vector;
+		}
+
 		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
 			// Override margin-top and -bottom rules from FieldLayout
 			margin: 0 !important; /* stylelint-disable-line declaration-no-important */

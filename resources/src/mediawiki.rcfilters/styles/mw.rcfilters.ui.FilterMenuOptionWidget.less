@@ -1,7 +1,12 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-filterMenuOptionWidget {
+	.mw-rcfilters-ui-filterMenuSectionOptionWidget ~ & {
+		padding-left: 12 / @font-size-system-ui / @font-size-vector;
+	}
+
 	&.oo-ui-flaggedElement-muted {
 		&:not( .oo-ui-optionWidget-selected ) {
 			// Namespaces are muted 'the other way around' when they
@@ -23,5 +28,4 @@
 			color: @colorGray1;
 		}
 	}
-
 }
