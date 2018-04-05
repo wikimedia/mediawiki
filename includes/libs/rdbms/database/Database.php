@@ -1155,7 +1155,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 						$tempIgnore = false; // cannot recover
 					}
 				} else {
-					# Nothing prior was there to lose from the transaction
+					# Nothing prior was there to lose from the transaction,
+					# so just roll it back.
+					$this->doRollback( __METHOD__ . " ($fname)" );
 					$this->trxStatus = self::STATUS_TRX_OK;
 				}
 			}
