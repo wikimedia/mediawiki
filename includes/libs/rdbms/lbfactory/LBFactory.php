@@ -52,6 +52,8 @@ abstract class LBFactory implements ILBFactory {
 	protected $perfLogger;
 	/** @var callable Error logger */
 	protected $errorLogger;
+	/** @var callable Deprecation logger */
+	protected $deprecationLogger;
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var BagOStuff */
@@ -109,7 +111,12 @@ abstract class LBFactory implements ILBFactory {
 		$this->errorLogger = isset( $conf['errorLogger'] )
 			? $conf['errorLogger']
 			: function ( Exception $e ) {
-				trigger_error( E_USER_WARNING, get_class( $e ) . ': ' . $e->getMessage() );
+				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+			};
+		$this->deprecationLogger = isset( $conf['deprecationLogger'] )
+			? $conf['deprecationLogger']
+			: function ( $msg ) {
+				trigger_error( $msg, E_USER_DEPRECATED );
 			};
 
 		$this->profiler = isset( $conf['profiler'] ) ? $conf['profiler'] : null;
@@ -514,6 +521,7 @@ abstract class LBFactory implements ILBFactory {
 			'connLogger' => $this->connLogger,
 			'replLogger' => $this->replLogger,
 			'errorLogger' => $this->errorLogger,
+			'deprecationLogger' => $this->deprecationLogger,
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
