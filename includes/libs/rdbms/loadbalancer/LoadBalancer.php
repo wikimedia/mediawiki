@@ -566,16 +566,17 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	/**
-	 * @param int $i
-	 * @return IDatabase|bool
-	 */
-	public function getAnyOpenConnection( $i ) {
+	public function getAnyOpenConnection( $i, $flags = 0 ) {
+		$autocommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
 		foreach ( $this->conns as $connsByServer ) {
-			if ( !empty( $connsByServer[$i] ) ) {
-				/** @var IDatabase[] $serverConns */
-				$serverConns = $connsByServer[$i];
-				return reset( $serverConns );
+			if ( !isset( $connsByServer[$i] ) ) {
+				continue;
+			}
+
+			foreach ( $connsByServer[$i] as $conn ) {
+				if ( !$autocommit || $conn->getLBInfo( 'autoCommitOnly' ) ) {
+					return $conn;
+				}
 			}
 		}
 
