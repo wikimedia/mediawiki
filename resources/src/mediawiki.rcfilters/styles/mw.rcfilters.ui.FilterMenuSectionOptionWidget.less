@@ -1,27 +1,25 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-filterMenuSectionOptionWidget {
-	background: @colorGray14;
-	padding-bottom: 0.7em;
+	background-color: @colorGray14;
+	padding-bottom: 8 / @font-size-system-ui / @font-size-vector;
+	padding-left: 12 / @font-size-system-ui / @font-size-vector;
+	padding-right: 12 / @font-size-system-ui / @font-size-vector;
 
-	&-header {
-		padding: 0 0.75em;
-		// Use a high specificity to override OOUI
-		.oo-ui-optionWidget.oo-ui-labelElement &-title.oo-ui-labelElement-label {
-			color: @colorGray5;
-			.box-sizing( border-box );
-			display: inline-block;
-		}
+	&-header-title.oo-ui-labelElement-label {
+		color: @colorGray5;
+		display: inline-block;
 	}
 
 	&-whatsThisButton {
 		margin-left: 1.5em;
 
 		&.oo-ui-buttonElement > .oo-ui-buttonElement-button {
-			font-weight: normal;
 			border: 0; // Override OOUI `border` needed for frameless keyboard focus
 			padding: 0;
+			font-weight: normal;
 
 			&:focus {
 				.box-shadow( none );
@@ -33,8 +31,8 @@
 			padding: 1em;
 
 			&-header {
-				font-weight: bold;
 				margin-bottom: 1em;
+				font-weight: bold;
 			}
 
 			&-link {
@@ -47,9 +45,7 @@
 		}
 	}
 
-	&-active {
-		.mw-rcfilters-ui-filterMenuSectionOptionWidget-header-title {
-			font-weight: bold;
-		}
+	&-active .mw-rcfilters-ui-filterMenuSectionOptionWidget-header-title {
+		font-weight: bold;
 	}
 }

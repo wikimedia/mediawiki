@@ -1,5 +1,6 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-menuSelectWidget {
 	z-index: auto;
@@ -10,8 +11,8 @@
 	}
 
 	&-noresults {
-		padding: 0.5em;
 		color: @colorGray5;
+		padding: 12 / @font-size-system-ui / @font-size-vector;
 	}
 
 	&-body {
@@ -19,9 +20,9 @@
 	}
 
 	&-footer {
-		padding: 0.5em;
 		background-color: @colorGray15;
 		border-top: 1px solid @colorGray12;
+		padding: 12 / @font-size-system-ui / @font-size-vector;
 
 		& + & {
 			border-top: 0;
