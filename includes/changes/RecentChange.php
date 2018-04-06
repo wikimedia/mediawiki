@@ -78,6 +78,16 @@ class RecentChange {
 	const PRC_PATROLLED = 1;
 	const PRC_AUTOPATROLLED = 2;
 
+	/**
+	 * @var bool Save to the database only.
+	 */
+	const SAVE_SEND_NONE = true;
+
+	/**
+	 * @var bool Emit the change to RCFeeds (usually public).
+	 */
+	const SAVE_SEND_FEED = false;
+
 	public $mAttribs = [];
 	public $mExtra = [];
 
@@ -347,10 +357,17 @@ class RecentChange {
 
 	/**
 	 * Writes the data in this object to the database
-	 * @param bool $noudp
+	 * @param bool $save SAVE_SEND_FEED or SAVE_SEND_NONE
 	 */
-	public function save( $noudp = false ) {
+	public function save( $send = self::SAVE_SEND_FEED ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker;
+
+		if ( is_string( $send ) ) {
+			// Callers used to pass undocumented strings like 'noudp'
+			// or 'pleasedontudp' instead of true.
+			// @deprecated since 1.31 Use SAVE_SEND_NONE instead.
+			$send = self::SAVE_SEND_NONE;
+		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		if ( !is_array( $this->mExtra ) ) {
@@ -425,8 +442,8 @@ class RecentChange {
 				$this->mAttribs['rc_this_oldid'], $this->mAttribs['rc_logid'], null, $this );
 		}
 
-		# Notify external application via UDP
-		if ( !$noudp ) {
+		if ( $send === self::SAVE_SEND_FEED ) {
+			// Emit the change to external applications via RCFeeds.
 			$this->notifyRCFeeds();
 		}
 
