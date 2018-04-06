@@ -2037,6 +2037,7 @@
 	"apisandbox-dynamic-error-exists": "Er bestaat al een parameter met de naam \"$1\".",
 	"apisandbox-deprecated-parameters": "Verouderde parameters",
 	"apisandbox-fetch-token": "Het token automatisch invullen",
+	"apisandbox-add-multi": "Toevoegen",
 	"apisandbox-submit-invalid-fields-title": "Sommige velden zijn ongeldig",
 	"apisandbox-submit-invalid-fields-message": "Corrigeer de gemarkeerde velden en probeer het opnieuw.",
 	"apisandbox-results": "Resultaten",

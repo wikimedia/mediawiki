@@ -2130,6 +2130,7 @@
 	"apisandbox-dynamic-error-exists": "Un paramètre nommé \"$1\" existe déjà.",
 	"apisandbox-deprecated-parameters": "Paramètres désuets",
 	"apisandbox-fetch-token": "Auto-remplissage du jeton",
+	"apisandbox-add-multi": "Ajouter",
 	"apisandbox-submit-invalid-fields-title": "Certains champs ne sont pas valides",
 	"apisandbox-submit-invalid-fields-message": "Veuillez corriger les champs marqués et essayez de nouveau.",
 	"apisandbox-results": "Résultats",

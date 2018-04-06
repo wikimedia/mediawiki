@@ -2051,6 +2051,7 @@
 	"apisandbox-dynamic-error-exists": "已存在名为“$1”的参数。",
 	"apisandbox-deprecated-parameters": "弃用参数",
 	"apisandbox-fetch-token": "自动填充令牌",
+	"apisandbox-add-multi": "添加",
 	"apisandbox-submit-invalid-fields-title": "一些字段无效",
 	"apisandbox-submit-invalid-fields-message": "请改正标记的字段并重试。",
 	"apisandbox-results": "结果",

@@ -705,7 +705,7 @@
 	"userjspreview": "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",
 	"sitecsspreview": "'''Adoneu-vos que esteu veient una vista prèvia d'aquest full d'estil CSS.'''\n'''Encara no s'ha desat!'''",
 	"sitejspreview": "'''Tingueu present que esteu previsualitzant aquest codi Javascript.'''\n'''Encara no s'ha desat!'''",
-	"userinvalidconfigtitle": "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/vector.css no és el mateix que {{ns:user}}:NOM/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Atenció:</strong> no existeix l’aparença «$1».\nLes subpàgines personals amb extensions .css, .json i .js utilitzen el títol en minúscules; per exemple, {{ns:user}}:NOM/vector.css no és el mateix que {{ns:user}}:NOM/Vector.css.",
 	"updated": "(Actualitzat)",
 	"note": "'''Nota:'''",
 	"previewnote": "<strong>Recordeu que això és només una previsualització.</strong>\nEls vostres canvis encara no s’han desat!",
