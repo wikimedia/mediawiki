@@ -8,6 +8,7 @@ use MediaWikiLangTestCase;
 use Page;
 use User;
 use XMLReader;
+use MWException;
 
 /**
  * Base TestCase for dumps
