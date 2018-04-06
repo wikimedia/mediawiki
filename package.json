@@ -5,10 +5,13 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
+    "mocha": "wdio tests/selenium/wdio.conf.js",
+    "cucumber": "npm run mocha -- --framework cucumber",
+    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & npm run mocha & npm run cucumber; killall chromedriver"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
+    "chai": "4.1.2",
     "deepmerge": "1.3.2",
     "eslint": "4.9.0",
     "eslint-config-wikimedia": "0.5.0",
@@ -31,10 +34,11 @@
     "qunitjs": "2.4.1",
     "stylelint": "9.2.0",
     "stylelint-config-wikimedia": "0.4.3",
-    "wdio-junit-reporter": "0.2.0",
-    "wdio-mocha-framework": "0.5.8",
-    "wdio-sauce-service": "0.3.1",
-    "wdio-spec-reporter": "0.0.5",
+    "wdio-cucumber-framework": "1.1.1",
+    "wdio-junit-reporter": "0.4.2",
+    "wdio-mocha-framework": "0.5.13",
+    "wdio-sauce-service": "0.4.8",
+    "wdio-spec-reporter": "0.1.4",
     "webdriverio": "4.12.0"
   }
 }
