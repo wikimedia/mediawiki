@@ -5,10 +5,11 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
+    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & wdio tests/selenium/wdio.conf.js; killall chromedriver"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
+    "chai": "^4.1.2",
     "deepmerge": "1.3.2",
     "eslint": "4.9.0",
     "eslint-config-wikimedia": "0.5.0",
@@ -26,15 +27,16 @@
     "karma-firefox-launcher": "1.0.1",
     "karma-mocha-reporter": "2.2.5",
     "karma-qunit": "1.2.1",
-    "mwbot": "1.0.10",
+    "mwbot": "^1.0.10",
     "postcss-less": "1.1.5",
     "qunitjs": "2.4.1",
     "stylelint": "9.2.0",
     "stylelint-config-wikimedia": "0.4.3",
+    "wdio-cucumber-framework": "^1.1.1",
     "wdio-junit-reporter": "0.2.0",
     "wdio-mocha-framework": "0.5.8",
     "wdio-sauce-service": "0.3.1",
-    "wdio-spec-reporter": "0.0.5",
-    "webdriverio": "4.12.0"
+    "wdio-spec-reporter": "^0.1.4",
+    "webdriverio": "^4.12.0"
   }
 }
