@@ -192,7 +192,7 @@ exports.config = {
 	reporters: [ 'spec', 'junit' ],
 	reporterOptions: {
 		junit: {
-			outputDir: logPath
+			outputDir: `${logPath}mocha`
 		}
 	},
 	//

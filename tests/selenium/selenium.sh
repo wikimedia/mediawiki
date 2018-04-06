@@ -7,3 +7,4 @@ function kill_chromedriver() {
 }
 trap kill_chromedriver EXIT
 npm run selenium-test
+./node_modules/.bin/wdio tests/selenium/wdio.cucumber.js
