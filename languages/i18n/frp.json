@@ -8,7 +8,8 @@
 			"아라",
 			"Soul Train",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -621,7 +622,7 @@
 	"userjspreview": "<strong>Rapelâd-vos que vos éte ren qu’aprés èprovar prèvêre voutron code JavaScript.\nIl est p’oncor étâ encartâ !</strong>",
 	"sitecsspreview": "<strong>Rapelâd-vos que vos éte ren qu’aprés prèvêre cela fôlye CSS.\nEl est p’oncor étâye encartâye !</strong>",
 	"sitejspreview": "<strong>Rapelâd-vos que vos éte ren qu’aprés prèvêre cél code JavaScript.\nIl est p’oncor étâ encartâ !</strong>",
-	"userinvalidconfigtitle": "<strong>Atencion :</strong> ègziste gins d’habelyâjo « $1 ».\nRapelâd-vos que les pâges a sè avouéc èxtensions .css et .js emplèyont de titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/vector.css et pas {{ns:user}}:Foo/Vector.css.",
+	"userinvalidconfigtitle": "<strong>Atencion :</strong> ègziste gins d’habelyâjo « $1 ».\nRapelâd-vos que les pâges a sè avouéc èxtensions .css, .json et .js emplèyont de titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/vector.css et pas {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Betâ a jorn)",
 	"note": "<strong>Nota :</strong>",
 	"previewnote": "<strong>Rapelâd-vos qu’o est ren qu’un apèrçu.</strong>\nVoutros changements sont p’oncor étâs encartâs !",
