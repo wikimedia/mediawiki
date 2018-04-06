@@ -153,7 +153,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		);
 
 		$last = null;
-		$autopatrolls = [];
+		$autopatrols = [];
 		foreach ( $result as $row ) {
 			$last = $row->log_id;
 			Wikimedia\suppressWarnings();
@@ -167,7 +167,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 
 			$auto = $params['6::auto'];
 			if ( $auto ) {
-				$autopatrolls[] = $row->log_id;
+				$autopatrols[] = $row->log_id;
 			}
 		}
 
@@ -175,7 +175,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			return null;
 		}
 
-		return [ 'rows' => $autopatrolls, 'lastId' => $last ];
+		return [ 'rows' => $autopatrols, 'lastId' => $last ];
 	}
 
 	private function deleteRows( array $rows ) {
