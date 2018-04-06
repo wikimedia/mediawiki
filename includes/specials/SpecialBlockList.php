@@ -108,7 +108,6 @@ class SpecialBlockList extends SpecialPage {
 			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'ipblocklist-legend' )
 			->setSubmitTextMsg( 'ipblocklist-submit' )
-			->setSubmitProgressive()
 			->prepareForm()
 			->displayForm( false );
 
