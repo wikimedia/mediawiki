@@ -6,4 +6,5 @@ function kill_chromedriver() {
 }
 trap kill_chromedriver EXIT
 
-./node_modules/.bin/grunt webdriver:test
+./node_modules/.bin/wdio tests/selenium/wdio.conf.js
+./node_modules/.bin/wdio tests/selenium/wdio.conf.js --framework cucumber
