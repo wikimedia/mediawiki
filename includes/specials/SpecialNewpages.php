@@ -251,13 +251,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'default' => $tagFilterVal,
 			],
 			'username' => [
-				'type' => 'text',
+				'type' => 'user',
 				'name' => 'username',
 				'label-message' => 'newpages-username',
 				'default' => $userText,
 				'id' => 'mw-np-username',
 				'size' => 30,
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			],
 			'size' => [
 				'type' => 'sizefilter',
@@ -269,7 +268,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$htmlForm = new HTMLForm( $form, $this->getContext() );
 
 		$htmlForm->setSubmitText( $this->msg( 'newpages-submit' )->text() );
-		$htmlForm->setSubmitProgressive();
 		// The form should be visible on each request (inclusive requests with submitted forms), so
 		// return always false here.
 		$htmlForm->setSubmitCallback(
