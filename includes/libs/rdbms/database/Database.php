@@ -1070,6 +1070,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function query( $sql, $fname = __METHOD__, $tempIgnore = false ) {
 		$this->assertTransactionStatus( $sql, $fname );
 
+		# Avoid fatals if close() was called
+		$this->assertOpen();
+
 		$priorWritesPending = $this->writesOrCallbacksPending();
 		$this->lastQuery = $sql;
 
@@ -1119,9 +1122,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->getFlag( self::DBO_DEBUG ) ) {
 			$this->queryLogger->debug( "{$this->dbName} {$commentedSql}" );
 		}
-
-		# Avoid fatals if close() was called
-		$this->assertOpen();
 
 		# Send the query to the server and fetch any corresponding errors
 		$ret = $this->doProfiledQuery( $sql, $commentedSql, $isNonTempWrite, $fname );
