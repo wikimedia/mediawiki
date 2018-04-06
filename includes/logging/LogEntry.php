@@ -776,7 +776,7 @@ class ManualLogEntry extends LogEntryBase {
 							$tags = [];
 						}
 						$rc->addTags( $tags );
-						$rc->save( 'pleasedontudp' );
+						$rc->save( $rc::SEND_NONE );
 					}
 
 					if ( $to === 'udp' || $to === 'rcandudp' ) {
