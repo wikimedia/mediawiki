@@ -4822,7 +4822,7 @@ class Language {
 	 * @param string $details HTML safe text between brackets
 	 * @param bool $oppositedm Add the direction mark opposite to your
 	 *   language, to display text properly
-	 * @return HTML escaped string
+	 * @return string HTML escaped
 	 */
 	function specialList( $page, $details, $oppositedm = true ) {
 		if ( !$details ) {
