@@ -11,10 +11,11 @@ THIS IS NOT A RELEASE YET!
 * (T190503) Let built-in web server (maintenance/dev) handle .php requests.
 * The karma qunit tests would fail on some configuration due to headers already
   sent. Check headers_sent() before sending cpPosTime headers
-* (T167507) WebdriverIO should be able to run Chrome headlessly.
-* WebdriverIO: pass -no-sandbox to Chrome under Docker
+* (T167507) selenium: Run Chrome headlessly.
+* selenium: Pass -no-sandbox to Chrome under Docker
 * (T161041) Unit test ChangesListSpecialPageTest::testFilterUserExpLevel fails under
   SQLite.
+* (T179190) selenium: Move logic for running tests from package.json to selenium.sh.
 
 == MediaWiki 1.29.2 ==
 
