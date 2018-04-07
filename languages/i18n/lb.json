@@ -693,7 +693,7 @@
 	"sectioneditnotsupported-text": "D'Ännere vun Abschnitte gëtt op dëser Ännerungssäit net ënnerstëtzt.",
 	"permissionserrors": "Net genuch Rechter",
 	"permissionserrorstext": "Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:",
-	"permissionserrorstext-withaction": "Dir sidd, aus {{PLURAL:$1|dësem Grond|dëse Grënn}}, net berechtegt $2 :",
+	"permissionserrorstext-withaction": "Dir sidd, aus {{PLURAL:$1|folgendem Grond|folgende Grënn}}, net berechtegt $2 :",
 	"contentmodelediterror": "Dir kënnt dës Versioun net ännere well hiren Inhaltsmodell <code>$1</code> ass dee verschidde vum aktuellen Inhaltsmodell vun der Säit <code>$2</code> ass.",
 	"recreate-moveddeleted-warn": "'''Opgepasst: Dir sidd am Gaang eng Säit unzeleeën déi schonn eng Kéier geläscht gouf.'''\n\nFrot Iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.\nFir Iech z'informéieren fannt Dir hei d'Logbuch vum Läsche mam Grond:",
 	"moveddeleted-notice": "Dës Säit gouf geläscht.\nDen Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit fannt Dir hei drënner als Referenz.",

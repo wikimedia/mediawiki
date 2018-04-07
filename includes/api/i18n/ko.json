@@ -376,6 +376,7 @@
 	"apihelp-query+exturlusage-paramvalue-prop-url": "문서에 사용된 URL을 추가합니다.",
 	"apihelp-query+exturlusage-param-namespace": "열거할 문서 이름공간.",
 	"apihelp-query+exturlusage-param-limit": "반환할 문서 수.",
+	"apihelp-query+exturlusage-example-simple": "<kbd>https://www.mediawiki.org</kbd>를 가리키는 문서를 표시합니다.",
 	"apihelp-query+filearchive-summary": "삭제된 모든 파일을 순서대로 열거합니다.",
 	"apihelp-query+filearchive-paramvalue-prop-sha1": "그림에 대한 SHA-1 해시를 추가합니다.",
 	"apihelp-query+filearchive-paramvalue-prop-user": "그림 판을 올린 사용자를 추가합니다.",

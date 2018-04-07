@@ -2014,6 +2014,7 @@
 	"apisandbox-dynamic-error-exists": "\"$1\"이라는 변수 이름은 이미 존재합니다.",
 	"apisandbox-deprecated-parameters": "앞으로 제거될 변수",
 	"apisandbox-fetch-token": "토큰 자동 채우기",
+	"apisandbox-add-multi": "추가",
 	"apisandbox-submit-invalid-fields-title": "부적절한 필드가 있음",
 	"apisandbox-submit-invalid-fields-message": "강조된 필드를 수정한 다음 다시 시도해 주십시오.",
 	"apisandbox-results": "결과",

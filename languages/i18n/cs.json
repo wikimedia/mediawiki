@@ -489,7 +489,7 @@
 	"password-login-forbidden": "Použití tohoto uživatelského jména a hesla bylo zakázáno.",
 	"mailmypassword": "Poslat nové heslo",
 	"passwordremindertitle": "Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}",
-	"passwordremindertext": "Někdo (patrně vy, z IP adresy $1) požádal o nové heslo\npro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo\nproto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se\nnyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla\nvyprší za {{PLURAL:$5|jeden den|$5 dny|$5 dní}}.\n\nPokud jste o změnu hesla nežádal(a) nebo jste si na původní heslo již\nvzpomněl(a) a už ho změnit nechcete, můžete tuto zprávu ignorovat\na používat staré heslo.",
+	"passwordremindertext": "Někdo (z IP adresy $1) požádal o nové heslo\npro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo\nproto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se\nnyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla\nvyprší za {{PLURAL:$5|jeden den|$5 dny|$5 dní}}.\n\nPokud jste o změnu hesla nežádal(a) nebo jste si na původní heslo již\nvzpomněl(a) a už ho změnit nechcete, můžete tuto zprávu ignorovat\na používat staré heslo.",
 	"noemail": "{{GENDER:$1|Uživatel|Uživatelka}} „$1“ nemá zaregistrovanou e-mailovou adresu.",
 	"noemailcreate": "Musíte uvést platnou e-mailovou adresu",
 	"passwordsent": "Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlaste se, prosím, znovu, jakmile ho obdržíte.",
