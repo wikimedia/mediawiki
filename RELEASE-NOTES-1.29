@@ -13,6 +13,7 @@ THIS IS NOT A RELEASE YET!
   sent. Check headers_sent() before sending cpPosTime headers
 * (T167507) WebdriverIO should be able to run Chrome headlessly.
 * WebdriverIO: pass -no-sandbox to Chrome under Docker
+* (T179190) Selenium: move logic for running tests from package.json to selenium.sh
 
 == MediaWiki 1.29.2 ==
 
