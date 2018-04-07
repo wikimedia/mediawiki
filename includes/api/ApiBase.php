@@ -2590,16 +2590,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.25, always returns empty string
-	 * @param IDatabase|bool $db
-	 * @return string
-	 */
-	public function getModuleProfileName( $db = false ) {
-		wfDeprecated( __METHOD__, '1.25' );
-		return '';
-	}
-
-	/**
 	 * @deprecated since 1.25
 	 */
 	public function profileIn() {
@@ -2623,15 +2613,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.25, always returns 0
-	 * @return float
-	 */
-	public function getProfileTime() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return 0;
-	}
-
-	/**
 	 * @deprecated since 1.25
 	 */
 	public function profileDBIn() {
@@ -2643,15 +2624,6 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function profileDBOut() {
 		wfDeprecated( __METHOD__, '1.25' );
-	}
-
-	/**
-	 * @deprecated since 1.25, always returns 0
-	 * @return float
-	 */
-	public function getProfileDBTime() {
-		wfDeprecated( __METHOD__, '1.25' );
-		return 0;
 	}
 
 	/**
