@@ -79,7 +79,7 @@
 			var $textbox = $( document.getElementById( $( this ).attr( 'rel' ) ) );
 			// FIXME: Ugh, this is ugly
 			if ( $( this ).val() === 'other' ) {
-				$textbox.removeProp( 'readonly' ).closest( '.config-block' ).slideDown( 'fast' );
+				$textbox.prop( 'readonly', false ).closest( '.config-block' ).slideDown( 'fast' );
 			} else {
 				$textbox.prop( 'readonly', true ).closest( '.config-block' ).slideUp( 'fast' );
 			}
