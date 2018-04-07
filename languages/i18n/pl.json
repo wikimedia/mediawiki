@@ -2048,6 +2048,7 @@
 	"apisandbox-dynamic-error-exists": "Parametr o nazwie „$1” już istnieje.",
 	"apisandbox-deprecated-parameters": "Przestarzałe parametry",
 	"apisandbox-fetch-token": "Automatycznie uzupełnij token",
+	"apisandbox-add-multi": "Dodaj",
 	"apisandbox-submit-invalid-fields-title": "Niektóre pola są nieprawidłowe",
 	"apisandbox-submit-invalid-fields-message": "Popraw zaznaczone pola i spróbuj ponownie.",
 	"apisandbox-results": "Wyniki",
