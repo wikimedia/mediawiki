@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -477,7 +477,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * Build and output the actual changes list.
 	 *
-	 * @param ResultWrapper $rows Database rows
+	 * @param IResultWrapper $rows Database rows
 	 * @param FormOptions $opts
 	 */
 	public function outputChangesList( $rows, $opts ) {

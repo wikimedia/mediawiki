@@ -22,7 +22,7 @@
  */
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -866,7 +866,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Get the database result for this special page instance. Used by ApiFeedRecentChanges.
 	 *
-	 * @return bool|ResultWrapper Result or false
+	 * @return bool|IResultWrapper Result or false
 	 */
 	public function getRows() {
 		$opts = $this->getOptions();
@@ -1455,7 +1455,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param array $query_options Array of query options; see IDatabase::select $options
 	 * @param array $join_conds Array of join conditions; see IDatabase::select $join_conds
 	 * @param FormOptions $opts
-	 * @return bool|ResultWrapper Result or false
+	 * @return bool|IResultWrapper Result or false
 	 */
 	protected function doMainQuery( $tables, $fields, $conds,
 		$query_options, $join_conds, FormOptions $opts
@@ -1526,7 +1526,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Send output to the OutputPage object, only called if not used feeds
 	 *
-	 * @param ResultWrapper $rows Database rows
+	 * @param IResultWrapper $rows Database rows
 	 * @param FormOptions $opts
 	 */
 	public function webOutput( $rows, $opts ) {
@@ -1545,7 +1545,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	/**
 	 * Build and output the actual changes list.
 	 *
-	 * @param ResultWrapper $rows Database rows
+	 * @param IResultWrapper $rows Database rows
 	 * @param FormOptions $opts
 	 */
 	abstract public function outputChangesList( $rows, $opts );

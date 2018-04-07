@@ -21,7 +21,7 @@
  * @ingroup Pager
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -124,7 +124,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
-	 * @var ResultWrapper
+	 * @var IResultWrapper
 	 */
 	public $mResult;
 
@@ -232,7 +232,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
-	 * @return ResultWrapper The result wrapper.
+	 * @return IResultWrapper The result wrapper.
 	 */
 	function getResult() {
 		return $this->mResult;
@@ -292,9 +292,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param bool $isFirst False if there are rows before those fetched (i.e.
 	 *     if a "previous" link would make sense)
 	 * @param int $limit Exact query limit
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 */
-	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
+	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		$numRows = $res->numRows();
 		if ( $numRows ) {
 			# Remove any table prefix from index field
@@ -359,7 +359,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $descending ) {
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
@@ -406,7 +406,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Pre-process results; useful for performing batch existence checks, etc.
 	 *
-	 * @param ResultWrapper $result
+	 * @param IResultWrapper $result
 	 */
 	protected function preprocessResults( $result ) {
 	}

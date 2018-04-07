@@ -24,7 +24,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -113,7 +113,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
-	 * @return ResultWrapper
+	 * @return IResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo(
