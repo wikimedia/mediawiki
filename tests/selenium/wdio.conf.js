@@ -1,8 +1,20 @@
 'use strict';
 
-const password = 'vagrant',
-	path = require( 'path' ),
+const path = require( 'path' );
+
+let password, logPath, username;
+
+// username and password will be used only if
+// MEDIAWIKI_USER or MEDIAWIKI_PASSWORD environment variables are not set
+if ( process.env.JENKINS_HOME ) {
+	password = 'testpass';
+	username = 'WikiAdmin';
+	logPath = '../log/';
+} else {
+	password = 'vagrant';
 	username = 'Admin';
+	logPath = './log/';
+}
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -48,7 +60,7 @@ exports.config = {
 	],
 	// Patterns to exclude.
 	exclude: [
-	// 'path/to/excluded/files'
+		'./extensions/CirrusSearch/tests/selenium/specs/**/*.js'
 	],
 	//
 	// ============
@@ -111,7 +123,7 @@ exports.config = {
 	bail: 0,
 	//
 	// Saves a screenshot to a given path if a command fails.
-	screenshotPath: './log/',
+	screenshotPath: logPath,
 	//
 	// Set a base URL in order to shorten url command calls. If your `url` parameter starts
 	// with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -171,7 +183,12 @@ exports.config = {
 	// Test reporter for stdout.
 	// The only one supported by default is 'dot'
 	// see also: http://webdriver.io/guide/testrunner/reporters.html
-	reporters: [ 'spec' ],
+	reporters: [ 'spec', 'junit' ],
+	reporterOptions: {
+		junit: {
+			outputDir: logPath
+		}
+	},
 	//
 	// Options to be passed to Mocha.
 	// See the full list at http://mochajs.org/
