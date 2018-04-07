@@ -17,7 +17,9 @@ class CrhExceptions {
 		$this->loadRegs();
 	}
 
-	public $exceptionMap = [];
+	public $Cyrl2LatnExceptions = [];
+	public $Latn2CyrlExceptions = [];
+
 	public $Cyrl2LatnPatterns = [];
 	public $Latn2CyrlPatterns = [];
 
@@ -88,28 +90,28 @@ class CrhExceptions {
 		$this->initLcUc( $lcChars, $ucChars );
 		# load C2L and L2C whole-word exceptions into the same array, since it's just a look up
 		# no regex prefix/suffix needed
-		$this->addMappings( $this->wordMappings, $this->exceptionMap, $this->exceptionMap );
-		$this->addMappings( $this->exactCaseMappings, $this->exceptionMap, $this->exceptionMap, true );
+		$this->addMappings( $this->multiCaseMappings,
+			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions );
+		$this->addMappings( $this->exactCaseMappings,
+			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, true );
 
-		# load C2L and L2C bidirectional prefix mappings
+		# load C2L and L2C bidirectional affix mappings
 		$this->addMappings( $this->prefixMapping,
-			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/^', '/u' );
+			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/\b', '/u' );
 		$this->addMappings( $this->suffixMapping,
-			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', '$/u' );
+			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', '\b/u' );
 
 		# tack on one-way mappings to the ends of the prefix and suffix patterns
 		$this->Cyrl2LatnPatterns += $this->Cyrl2LatnRegexes;
 		$this->Latn2CyrlPatterns += $this->Latn2CyrlRegexes;
 
-		return [ $this->exceptionMap, $this->Cyrl2LatnPatterns,
+		return [ $this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, $this->Cyrl2LatnPatterns,
 			$this->Latn2CyrlPatterns, $this->CyrlCleanUpRegexes ];
 	}
 
-	# map Cyrillic to Latin and back, whole word match only
+	# map Cyrillic to Latin and back, simple string match only (no regex)
 	# variants: all lowercase, all uppercase, first letter capitalized
-	# items with capture group refs (e.g., $1) are only mapped from the
-	# regex to the reference
-	private $wordMappings = [
+	private $multiCaseMappings = [
 
 		#### originally Cyrillic to Latin
 		'аджыумер' => 'acıümer', 'аджыусеин' => 'acıüsein', 'алейкум' => 'aleyküm',
@@ -163,11 +165,6 @@ class CrhExceptions {
 		'uçebn', 'шовини' => 'şovini', 'шоссе' => 'şosse', 'шубин' => 'şubin', 'шунен' => 'şunen',
 		'шуннен' => 'şunnen', 'щёлкино' => 'şçolkino', 'эмирусеин' => 'emirüsein',
 		'юзбашы' => 'yüzbaşı', 'юзйыл' => 'yüzyıl', 'юртер' => 'yurter', 'ющенко' => 'yuşçenko',
-
-		'кою' => 'köyü', 'кок' => 'kök', 'ком-кок' => 'köm-kök', 'коп' => 'köp', 'ог' => 'ög',
-		'юрип' => 'yürip', 'юз' => 'yüz', 'юк' => 'yük', 'буюп' => 'büyüp', 'буюк' => 'büyük',
-		'джонк' => 'cönk', 'джонкю' => 'cönkü', 'устке' => 'üstke', 'устте' => 'üstte',
-		'усттен' => 'üstten',
 
 		# шофёр needs to come after шофер to override it in the Latin-to-Cyrillic direction
 		'шофер' => 'şoför',
@@ -233,7 +230,7 @@ class CrhExceptions {
 		# слова с твёрдым знаком
 		# Words with a solid sign
 		'бидъат' => 'bidat', 'бузъюрек' => 'buzyürek', 'атешъюрек' => 'ateşyürek',
-		'алъянакъ' => 'alyanaq', 'демиръёл' => 'demiryol', 'деръал' => 'deral', 'инъекц' => 'inyekts',
+		'алъянакъ' => 'alyanaq', 'демиръёл' => 'demiryol', 'инъекц' => 'inyekts',
 		'мефъум' => 'mefum', 'мешъум' => 'meşum', 'объект' => 'obyekt', 'разъезд' => 'razyezd',
 		'субъект' => 'subyekt', 'хавъяр' => 'havyar', 'ямъям' => 'yamyam',
 
@@ -264,7 +261,7 @@ class CrhExceptions {
 		# разные исключения
 		# different exceptions
 		'бейуде' => 'beyude', 'бугунь' => 'bugün', 'бюджет' => 'bücet', 'бюллет' => 'büllet',
-		'бюро' => 'büro', 'бюст' => 'büst', 'джонк' => 'cönk', 'диалог' => 'dialog',
+		'бюро' => 'büro', 'бюст' => 'büst', 'диалог' => 'dialog',
 		'гонъюль' => 'göñül', 'ханымэфенди' => 'hanımefendi', 'каньон' => 'kanyon', 'кирил' => 'kiril',
 		'кирил' => 'kirill', 'кёрджа' => 'körca', 'кой' => 'köy', 'кулеръюзь' => 'küleryüz',
 		'маалле' => 'маальle', 'майор' => 'mayor', 'маниал' => 'manиаль', 'мефкуре' => 'mefküre',
@@ -288,10 +285,6 @@ class CrhExceptions {
 		'тсвана' => 'tsvana', 'учьэвли' => 'üçevli', 'йохан' => 'yohan', 'йорк' => 'york',
 		'ющенко' => 'yuşçenko', 'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy',
 		'льская' => 'lskaya', 'льский' => 'lskiy', 'льское' => 'lskoye', 'ополь' => 'opol',
-
-		# originally Latin to Cyrillic, deduped from above
-		'ань' => 'an', 'аньге' => 'ange', 'аньде' => 'ande', 'аньки' => 'anki', 'кёр' => 'kör',
-		'мэр' => 'mer', 'этсин' => 'etsin',
 
 		# exceptions added after speaker review
 		# see https://www.mediawiki.org/wiki/User:TJones_(WMF)/T23582
@@ -403,7 +396,7 @@ class CrhExceptions {
 		'пальтосынынъ' => 'paltosınıñ', 'пекинюв' => 'pekinüv', 'пекитювнинъ' => 'pekitüvniñ',
 		'пиширюв' => 'pişirüv', 'повидло' => 'povidlo', 'полис' => 'polis', 'полициясы' => 'politsiyası',
 		'помещик' => 'pomeşçik', 'потюк' => 'potük', 'потюклеринен' => 'potüklerinen',
-		'пулемёт' => 'pülemöt', 'пулемётларны' => 'pülemötlarnı', 'режиссёр' => 'rejissör',
+		'режиссёр' => 'rejissör',
 		'ролюнде' => 'rolünde', 'севастопольнинъ' => 'sevastopolniñ', 'сёгди' => 'sögdi', 'сёз' => 'söz',
 		'сёзлер' => 'sözler', 'сёзлери' => 'sözleri', 'сёзлерим' => 'sözlerim',
 		'сёзлеримден' => 'sözlerimden', 'сёзлериме' => 'sözlerime', 'сёзлеримни' => 'sözlerimni',
@@ -470,13 +463,8 @@ class CrhExceptions {
 		'укюметке' => 'ükümetke', 'укюметкеми' => 'ükümetkemi', 'укюметми' => 'ükümetmi',
 		'укюметнинъ' => 'ükümetniñ', 'укюметтен' => 'ükümetten', 'укюмран' => 'ükümran',
 		'улькюн' => 'ülkün', 'умюдим' => 'ümüdim', 'умют' => 'ümüt', 'умютлери' => 'ümütleri',
-		'умютсизден' => 'ümütsizden', 'усть' => 'üst', 'устьке' => 'üstke', 'устьлеринде' => 'üstlerinde',
-		'устьлериндеки' => 'üstlerindeki', 'устьлерине' => 'üstlerine', 'устьлерини' => 'üstlerini',
-		'устюрткъа' => 'üsturtqa', 'усьнюхаткъа' => 'üsnühatqa', 'усьнюхаты' => 'üsnühatı',
-		'усьтю' => 'üstü', 'усьтюмде' => 'üstümde', 'усьтюмдеки' => 'üstümdeki', 'усьтюме' => 'üstüme',
-		'усьтюнде' => 'üstünde', 'усьтюндеки' => 'üstündeki', 'усьтюндемиз' => 'üstündemiz',
-		'усьтюне' => 'üstüne', 'усьтюни' => 'üstüni', 'усьтюнлик' => 'üstünlik',
-		'усьтюнъизге' => 'üstüñizge', 'утёкунь' => 'ütökün', 'уфюрди' => 'üfürdi', 'учю' => 'üçü',
+		'умютсизден' => 'ümütsizden', 'усьтюмде' => 'üstümde', 'усьтюмдеки' => 'üstümdeki',
+		'усьтюме' => 'üstüme', 'утёкунь' => 'ütökün', 'уфюрди' => 'üfürdi', 'учю' => 'üçü',
 		'учюмиз' => 'üçümiz', 'учюн' => 'üçün', 'учюнджи' => 'üçünci', 'учюнджисининъ' => 'üçüncisiniñ',
 		'ушюй' => 'üşüy', 'ушюмез' => 'üşümez', 'ушюмезсинъ' => 'üşümezsiñ',
 		'факультетинде' => 'fakultetinde', 'факультетине' => 'fakultetine',
@@ -497,15 +485,13 @@ class CrhExceptions {
 		'юрюшнен' => 'yürüşnen', 'юрюшни' => 'yürüşni',
 	];
 
-	# map Cyrillic to Latin and back, whole word match only
+	# map Cyrillic to Latin and back, simple string match only (no regex)
 	# no variants: map exactly as is
-	# items with capture group refs (e.g., $1) are only mapped from the
-	# regex to the reference
 	private $exactCaseMappings = [
 		# аббревиатуры
 		# abbreviations
 		'ОБСЕ' => 'OBSE', 'КъМДж' => 'QMC', 'КъАЭ' => 'QAE', 'ГъСМК' => 'ĞSMK', 'ШСДжБ' => 'ŞSCB',
-		'КъМШСДж' => 'QMŞSC', 'КъДМПУ' => 'QDMPU', 'КъМПУ' => 'QMPU', 'КъЮШ' => 'QYŞ', 'ЮШ' => 'YŞ',
+		'КъМШСДж' => 'QMŞSC', 'КъДМПУ' => 'QDMPU', 'КъМПУ' => 'QMPU',
 	];
 
 	# map Cyrillic to Latin and back, match end of word
@@ -533,7 +519,7 @@ class CrhExceptions {
 		'буюк([^ъ])' => 'büyük$1', 'бую([гдйлмнпрстчшc])(и)' => 'büyü$1$2',
 		'буют([^ыа])' => 'büyüt$1', 'джонк([^ъ])' => 'cönk$1', 'коюм' => 'köyüm', 'коюнъ' => 'köyüñ',
 		'коюн([ди])' => 'köyün$1', 'куе' => 'küye', 'куркке' => 'kürkke', 'куркни' => 'kürkni',
-		'куркте' => 'kürkte', 'куркчи' => 'kürkçi', 'куркчю' => 'kürkçü',
+		'куркте' => 'kürkte', 'куркчи' => 'kürkçi', 'куркчю' => 'kürkçü', 'кою' => 'köyü',
 
 		# арабизмы на муи- муэ- / Arabic муи- муэ-
 		'му([иэИЭ])' => 'mü$1',
@@ -541,7 +527,7 @@ class CrhExceptions {
 		# originally L2C, here swapped
 		'итъаль' => 'ital',
 		'роль$1' => 'rol([^ü])',
-		'усть$1' => 'üst([knt])',
+		'усть$1' => 'üst([^ü])',
 
 	];
 
@@ -555,6 +541,65 @@ class CrhExceptions {
 			# относятся ко всему слову #
 			# whole words              #
 			############################
+
+			// TODO: refactor upper/lower/first capital whole words without
+			// regexes into simpler list
+
+			'/\bКъЮШ\b/u' => 'QYŞ',
+			'/\bЮШ\b/u' => 'YŞ',
+
+			'/\bкок\b/u' => 'kök',
+			'/\bКок\b/u' => 'Kök',
+			'/\bКОК\b/u' => 'KÖK',
+			'/\bком-кок\b/u' => 'köm-kök',
+			'/\bКом-кок\b/u' => 'Köm-kök',
+			'/\bКОМ-КОК\b/u' => 'KÖM-KÖK',
+
+			'/\bкоп\b/u' => 'köp',
+			'/\bКоп\b/u' => 'Köp',
+			'/\bКОП\b/u' => 'KÖP',
+
+			'/\bог\b/u' => 'ög',
+			'/\bОг\b/u' => 'Ög',
+			'/\bОГ\b/u' => 'ÖG',
+
+			'/\bюрип\b/u' => 'yürip',
+			'/\bЮрип\b/u' => 'Yürip',
+			'/\bЮРИП\b/u' => 'YÜRİP',
+
+			'/\bюз\b/u' => 'yüz',
+			'/\bЮз\b/u' => 'Yüz',
+			'/\bЮЗ\b/u' => 'YÜZ',
+
+			'/\bюк\b/u' => 'yük',
+			'/\bЮк\b/u' => 'Yük',
+			'/\bЮК\b/u' => 'YÜK',
+
+			'/\bбуюп\b/u' => 'büyüp',
+			'/\bБуюп\b/u' => 'Büyüp',
+			'/\bБУЮП\b/u' => 'BÜYÜP',
+
+			'/\bбуюк\b/u' => 'büyük',
+			'/\bБуюк\b/u' => 'Büyük',
+			'/\bБУЮК\b/u' => 'BÜYÜK',
+
+			'/\bджонк\b/u' => 'cönk',
+			'/\bДжонк\b/u' => 'Cönk',
+			'/\bДЖОНК\b/u' => 'CÖNK',
+			'/\bджонкю\b/u' => 'cönkü',
+			'/\bДжонкю\b/u' => 'Cönkü',
+			'/\bДЖОНКЮ\b/u' => 'CÖNKÜ',
+
+			'/\bустке\b/u' => 'üstke',
+			'/\bУстке\b/u' => 'Üstke',
+			'/\bУСТКЕ\b/u' => 'ÜSTKE',
+			'/\bустте\b/u' => 'üstte',
+			'/\bУстте\b/u' => 'Üstte',
+			'/\bУСТТЕ\b/u' => 'ÜSTTE',
+			'/\bусттен\b/u' => 'üstten',
+			'/\bУсттен\b/u' => 'Üstten',
+			'/\bУСТТЕН\b/u' => 'ÜSTTEN',
+
 			'/\b([34])(\-)юнджи\b/u' => '$1$2ünci',
 			'/\b([34])(\-)ЮНДЖИ\b/u' => '$1$2ÜNCİ',
 
@@ -662,63 +707,93 @@ class CrhExceptions {
 		];
 
 		$this->Latn2CyrlRegexes = [
+
+			// TODO: refactor upper/lower/first capital whole words without
+			// regexes into simpler list
+
+			'/\ban\b/u' => 'ань',
+			'/\bAn\b/u' => 'Ань',
+			'/\bAN\b/u' => 'АНЬ',
+			'/\bange\b/u' => 'аньге',
+			'/\bAnge\b/u' => 'Аньге',
+			'/\bANGE\b/u' => 'АНЬГЕ',
+			'/\bande\b/u' => 'аньде',
+			'/\bAnde\b/u' => 'Аньде',
+			'/\bANDE\b/u' => 'АНЬДЕ',
+			'/\banki\b/u' => 'аньки',
+			'/\bAnki\b/u' => 'Аньки',
+			'/\bANKİ\b/u' => 'АНЬКИ',
+			'/\bderal\b/u' => 'деръал',
+			'/\bDeral\b/u' => 'Деръал',
+			'/\bDERAL\b/u' => 'ДЕРЪАЛ',
+			'/\bkör\b/u' => 'кёр',
+			'/\bKör\b/u' => 'Кёр',
+			'/\bKÖR\b/u' => 'КЁР',
+			'/\bmer\b/u' => 'мэр',
+			'/\bMer\b/u' => 'Мэр',
+			'/\bMER\b/u' => 'МЭР',
+
 			# буква Ё - первый заход
 			# расставляем Ь после согласных
-			'/^([yY])ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1ö$2ь$3',
-			'/^([yY])Ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^AQŞ(['.Crh::WORD_ENDS.'ngd])/u' => 'АКъШ$1',
+			'/\b([yY])ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1ö$2ь$3',
+			'/\b([yY])Ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\bAQŞ([^AEI]|\b)/u' => 'АКъШ$1',
 
 			# буква Ю - первый заход
 			# расставляем Ь после согласных
-			'/^([yY])ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1ü$2ь$3',
-			'/^([yY])Ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
+			'/\b([yY])ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1ü$2ь$3',
+			'/\b([yY])Ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
 
-			'/^([bcgkpşBCGKPŞ])ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1ö$2ь$3',
-			'/^([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1ü$2ь$3',
-			'/^([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1ö$2ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1ü$2ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
 
 			 # ö и ü в начале слова
 			 # случаи, когда нужен Ь
-			'/^ö(['.Crh::L_N_CONS.'pP])(['.Crh::L_CONS.']|$)/u' => 'ö$1ь$2',
-			'/^Ö(['.Crh::L_N_CONS_LC.'p])(['.Crh::L_CONS.']|$)/u' => 'Ö$1ь$2',
-			'/^Ö(['.Crh::L_N_CONS_UC.'P])(['.Crh::L_CONS.']|$)/u' => 'Ö$1Ь$2',
-			'/^ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => 'ü$1ь$2',
-			'/^Ü(['.Crh::L_N_CONS_LC.'])(['.Crh::L_CONS.']|$)/u' => 'Ü$1ь$2',
-			'/^Ü(['.Crh::L_N_CONS_UC.'])(['.Crh::L_CONS.']|$)/u' => 'Ü$1Ь$2',
+			'/\bö(['.Crh::L_N_CONS.'pP])(['.Crh::L_CONS.']|\b)/u' => 'ö$1ь$2',
+			'/\bÖ(['.Crh::L_N_CONS_LC.'p])(['.Crh::L_CONS.']|\b)/u' => 'Ö$1ь$2',
+			'/\bÖ(['.Crh::L_N_CONS_UC.'P])(['.Crh::L_CONS.']|\b)/u' => 'Ö$1Ь$2',
+			'/\bü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => 'ü$1ь$2',
+			'/\bÜ(['.Crh::L_N_CONS_LC.'])(['.Crh::L_CONS.']|\b)/u' => 'Ü$1ь$2',
+			'/\bÜ(['.Crh::L_N_CONS_UC.'])(['.Crh::L_CONS.']|\b)/u' => 'Ü$1Ь$2',
 
-			'/ts$/u' => 'ц',
-			'/şç$/u' => 'щ',
-			'/Ş[çÇ]$/u' => 'Щ',
-			'/T[sS]$/u' => 'Ц',
+			'/ts\b/u' => 'ц',
+			'/şç\b/u' => 'щ',
+			'/Ş[çÇ]\b/u' => 'Щ',
+			'/T[sS]\b/u' => 'Ц',
 
 			# Ь после Л
 			# add Ь after Л
-			'/(['.Crh::L_F.'])l(['.Crh::L_CONS_LC.']|$)/u' => '$1ль$2',
-			'/(['.Crh::L_F_UC.'])L(['.Crh::L_CONS.']|$)/u' => '$1ЛЬ$2',
+			'/(['.Crh::L_F.'])l(['.Crh::L_CONS_LC.']|\b)/u' => '$1ль$2',
+			'/(['.Crh::L_F_UC.'])L(['.Crh::L_CONS.']|\b)/u' => '$1ЛЬ$2',
+
+			'/etsin\b/u' => 'етсин',
+			'/Etsin\b/u' => 'Етсин',
+			'/ETSİN\b/u' => 'ЕТСИН',
 
 			# относятся к началу слова
-			'/^ts/u' => 'ц',
-			'/^T[sS]/u' => 'Ц',
+			'/\bts/u' => 'ц',
+			'/\bT[sS]/u' => 'Ц',
 
-			'/^şç/u' => 'щ',
-			'/^Ş[çÇ]/u' => 'Щ',
+			'/\bşç/u' => 'щ',
+			'/\bŞ[çÇ]/u' => 'Щ',
 
 			# Э
-			'/(^|['.Crh::L_VOW.'аеэяАЕЭЯ])e/u' => '$1э',
-			'/(^|['.Crh::L_VOW_UC.'АЕЭЯ])E/u' => '$1Э',
+			'/(\b|['.Crh::L_VOW.'аеэяАЕЭЯ])e/u' => '$1э',
+			'/(\b|['.Crh::L_VOW_UC.'АЕЭЯ])E/u' => '$1Э',
 
-			'/^(['.Crh::L_M_CONS.'])ö/u' => '$1о',
-			'/^(['.Crh::L_M_CONS.'])Ö/u' => '$1О',
-			'/^(['.Crh::L_M_CONS.'])ü/u' => '$1у',
-			'/^(['.Crh::L_M_CONS.'])Ü/u' => '$1У',
+			'/\b(['.Crh::L_M_CONS.'])ö/u' => '$1о',
+			'/\b(['.Crh::L_M_CONS.'])Ö/u' => '$1О',
+			'/\b(['.Crh::L_M_CONS.'])ü/u' => '$1у',
+			'/\b(['.Crh::L_M_CONS.'])Ü/u' => '$1У',
 
-			'/^ö/u' => 'о',
-			'/^Ö/u' => 'О',
-			'/^ü/u' => 'у',
-			'/^Ü/u' => 'У',
+			'/\bö/u' => 'о',
+			'/\bÖ/u' => 'О',
+			'/\bü/u' => 'у',
+			'/\bÜ/u' => 'У',
 
 			# некоторые исключения
 			# some exceptions

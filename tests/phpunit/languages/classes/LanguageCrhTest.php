@@ -57,19 +57,35 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 			],
 			[ // recent problem words, part 1
 				[
-					'crh'      => 'künü куню sürgünligi сюргюнлиги özü озю etti этти',
-					'crh-cyrl' => 'куню куню сюргюнлиги сюргюнлиги озю озю этти этти',
-					'crh-latn' => 'künü künü sürgünligi sürgünligi özü özü etti etti',
+					'crh'      => 'künü куню sürgünligi сюргюнлиги özü озю etti этти esas эсас dört дёрт',
+					'crh-cyrl' => 'куню куню сюргюнлиги сюргюнлиги озю озю этти этти эсас эсас дёрт дёрт',
+					'crh-latn' => 'künü künü sürgünligi sürgünligi özü özü etti etti esas esas dört dört',
 				],
-				'künü куню sürgünligi сюргюнлиги özü озю etti этти'
+				'künü куню sürgünligi сюргюнлиги özü озю etti этти esas эсас dört дёрт'
 			],
 			[ // recent problem words, part 2
 				[
-					'crh'      => 'esas эсас dört дёрт keldi кельди',
-					'crh-cyrl' => 'эсас эсас дёрт дёрт кельди кельди',
-					'crh-latn' => 'esas esas dört dört keldi keldi',
+					'crh'      => 'keldi кельди km² км² yüz юзь AQŞ АКъШ ŞSCBnen ШСДжБнен iyül июль',
+					'crh-cyrl' => 'кельди кельди км² км² юзь юзь АКъШ АКъШ ШСДжБнен ШСДжБнен июль июль',
+					'crh-latn' => 'keldi keldi km² km² yüz yüz AQŞ AQŞ ŞSCBnen ŞSCBnen iyül iyül',
 				],
-				'esas эсас dört дёрт keldi кельди'
+				'keldi кельди km² км² yüz юзь AQŞ АКъШ ŞSCBnen ШСДжБнен iyül июль'
+			],
+			[ // recent problem words, part 3
+				[
+					'crh'      => 'işğal ишгъаль işğalcilerine ишгъальджилерине rayon район üst усть',
+					'crh-cyrl' => 'ишгъаль ишгъаль ишгъальджилерине ишгъальджилерине район район усть усть',
+					'crh-latn' => 'işğal işğal işğalcilerine işğalcilerine rayon rayon üst üst',
+				],
+				'işğal ишгъаль işğalcilerine ишгъальджилерине rayon район üst усть'
+			],
+			[ // recent problem words, part 4
+				[
+					'crh'      => 'rayonınıñ районынынъ Noğay Ногъай Yürtü Юрьтю vatandan ватандан',
+					'crh-cyrl' => 'районынынъ районынынъ Ногъай Ногъай Юрьтю Юрьтю ватандан ватандан',
+					'crh-latn' => 'rayonınıñ rayonınıñ Noğay Noğay Yürtü Yürtü vatandan vatandan',
+				],
+				'rayonınıñ районынынъ Noğay Ногъай Yürtü Юрьтю vatandan ватандан'
 			],
 			[ // multi part words
 				[
@@ -78,6 +94,14 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 					'crh-latn' => 'eki yüz eki yüz',
 				],
 				'эки юз eki yüz'
+			],
+			[ // Roman numerals and quotes
+				[
+					'crh'      => 'VI,VII IX “dört” «дёрт» XI XII',
+					'crh-cyrl' => 'VI,VII IX «дёрт» «дёрт» XI XII',
+					'crh-latn' => 'VI,VII IX “dört” "dört" XI XII',
+				],
+				'VI,VII IX “dört” «дёрт» XI XII'
 			],
 			[ // ALL CAPS, made up acronyms (not 100% sure these are correct)
 				[
