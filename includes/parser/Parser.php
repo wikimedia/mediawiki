@@ -1471,7 +1471,7 @@ class Parser {
 	/**
 	 * @throws MWException
 	 * @param array $m
-	 * @return HTML|string
+	 * @return string HTML
 	 */
 	public function magicLinkCallback( $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
