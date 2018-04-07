@@ -5,7 +5,7 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "killall -0 chromedriver 2>/dev/null || chromedriver --url-base=/wd/hub --port=4444 & grunt webdriver:test; killall chromedriver"
+    "selenium": "./tests/selenium/selenium.sh"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
