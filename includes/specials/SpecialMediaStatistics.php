@@ -22,7 +22,7 @@
  * @author Brian Wolff
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -114,7 +114,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * @param OutputPage $out
 	 * @param Skin $skin (deprecated presumably)
 	 * @param IDatabase $dbr
-	 * @param ResultWrapper $res Results from query
+	 * @param IResultWrapper $res Results from query
 	 * @param int $num Number of results
 	 * @param int $offset Paging offset (Should always be 0 in our case)
 	 */
@@ -356,7 +356,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * Initialize total values so we can figure out percentages later.
 	 *
 	 * @param IDatabase $dbr
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $dbr, $res ) {
 		$this->executeLBFromResultWrapper( $res );

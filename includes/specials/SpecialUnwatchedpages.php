@@ -24,7 +24,7 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -50,7 +50,7 @@ class UnwatchedpagesPage extends QueryPage {
 	 * Pre-cache page existence to speed up link generation
 	 *
 	 * @param IDatabase $db
-	 * @param ResultWrapper $res
+	 * @param IResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
