@@ -30,17 +30,15 @@
  */
 class CrhConverter extends LanguageConverter {
 	// Defines working character ranges
-	const WORD_BEGINS = '\r\s\"\'\(\)\-<>\[\]\/.,:;!?';
-	const WORD_ENDS = '\r\s\"\'\(\)\-<>\[\]\/.,:;!?';
 
 	// Cyrillic
 	const C_UC = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'; # Crimean Tatar Cyrillic uppercase
 	const C_LC = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'; # Crimean Tatar Cyrillic lowercase
 	const C_CONS_UC = 'БВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ'; # Crimean Tatar Cyrillic + CÑ uppercase consonants
 	const C_CONS_LC = 'бвгджзйклмнпрстфхцчшщcñ'; # Crimean Tatar Cyrillic + CÑ lowercase consonants
-	const C_M_CONS = 'бгкмпшcБГКМПШC'; # Crimean Tatar Cyrillic M-type consonants
+	const C_M_CONS = 'бгкмшcБГКМШC'; # Crimean Tatar Cyrillic M-type consonants
 
-	# Crimean Tatar Cyrillic + CÑ consonants
+	// Crimean Tatar Cyrillic + CÑ consonants
 	const C_CONS = 'бвгджзйклмнпрстфхцчшщcñБВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ';
 
 	// Latin
@@ -50,9 +48,9 @@ class CrhConverter extends LanguageConverter {
 	const L_N_CONS_LC = 'çnrstz'; # Crimean Tatar Latin N-type lower case consonants
 	const L_N_CONS = 'çnrstzÇNRSTZ'; # Crimean Tatar Latin N-type consonants
 	const L_M_CONS = 'bcgkmpşBCGKMPŞ'; # Crimean Tatar Latin M-type consonants
-	const L_CONS_UC = 'BCÇDFGHJKLMNÑPRSŞTVZ'; # Crimean Tatar Latin uppercase consonants
-	const L_CONS_LC = 'bcçdfghjklmnñprsştvz'; # Crimean Tatar Latin lowercase consonants
-	const L_CONS = 'bcçdfghjklmnñprsştvzBCÇDFGHJKLMNÑPRSŞTVZ'; # Crimean Tatar Latin consonants
+	const L_CONS_UC = 'BCÇDFGĞHJKLMNÑPQRSŞTVZ'; # Crimean Tatar Latin uppercase consonants
+	const L_CONS_LC = 'bcçdfgğhjklmnñpqrsştvz'; # Crimean Tatar Latin lowercase consonants
+	const L_CONS = 'bcçdfgğhjklmnñpqrsştvzBCÇDFGĞHJKLMNÑPQRSŞTVZ'; # Crimean Tatar Latin consonants
 	const L_VOW_UC = 'AÂEIİOÖUÜ'; # Crimean Tatar Latin uppercase vowels
 	const L_VOW = 'aâeıioöuüAÂEIİOÖUÜ'; # Crimean Tatar Latin vowels
 	const L_F_UC = 'EİÖÜ'; # Crimean Tatar Latin uppercase front vowels
@@ -133,9 +131,12 @@ class CrhConverter extends LanguageConverter {
 
 		];
 
-	public $mExceptions = [];
+	public $mCyrl2LatnExceptions = [];
+	public $mLatn2CyrlExceptions = [];
+
 	public $mCyrl2LatnPatterns = [];
 	public $mLatn2CyrlPatterns = [];
+
 	public $mCyrlCleanUpRegexes = [];
 
 	public $mExceptionsLoaded = false;
@@ -155,9 +156,9 @@ class CrhConverter extends LanguageConverter {
 
 		$this->mExceptionsLoaded = true;
 		$crhExceptions = new MediaWiki\Languages\Data\CrhExceptions();
-		list( $this->mExceptions, $this->mCyrl2LatnPatterns, $this->mLatn2CyrlPatterns,
-			$this->mCyrlCleanUpRegexes ) = $crhExceptions->loadExceptions( self::L_LC . self::C_LC,
-			self::L_UC . self::C_UC );
+		list( $this->mCyrl2LatnExceptions, $this->mLatn2CyrlExceptions,
+			$this->mCyrl2LatnPatterns, $this->mLatn2CyrlPatterns, $this->mCyrlCleanUpRegexes ) =
+			$crhExceptions->loadExceptions( self::L_LC . self::C_LC, self::L_UC . self::C_UC );
 	}
 
 	/**
@@ -220,43 +221,27 @@ class CrhConverter extends LanguageConverter {
 
 		// check for roman numbers like VII, XIX...
 		// Lookahead assertion ensures $roman doesn't match the empty string
-		$roman = '/^(?=[MDCLXVI])M{0,4}(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})$/u';
+		$roman = '(?=[MDCLXVI])M{0,4}(C[DM]|D?C{0,3})(X[LC]|L?X{0,3})(I[VX]|V?I{0,3})';
 
-		# match any sub-string of the relevant letters and convert it
-		$matches = preg_split( '/(\b|^)[^' . $letters . ']+(\b|$)/u',
-			$text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+		$breaks = '([^\w\x80-\xff])';
+
+		// allow for multiple Roman numerals in a row; rare but it happens
+		$romanRegex = '/^' . $roman . '$|^(' . $roman . $breaks . ')+|(' . $breaks . $roman . ')+$|' .
+			$breaks . '(' . $roman . $breaks . ')+/';
+
+		$matches = preg_split( $romanRegex, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 		$mstart = 0;
 		$ret = '';
 		foreach ( $matches as $m ) {
-			# copy over the non-matching bit
+			// copy over Roman numerals
 			$ret .= substr( $text, $mstart, $m[1] - $mstart );
-			# skip certain classes of strings
 
-			if ( array_key_exists( $m[0], $this->mExceptions ) ) {
-				# if it's an exception, just copy down the right answer
-				$ret .= $this->mExceptions[$m[0]];
-			} elseif ( ! $m[0] || # empty strings
-					 preg_match( $roman, $m[0] ) ||	# roman numerals
-					 preg_match( '/[^' . $letters . ']/', $m[0] ) # mixed orthography
-					) {
-				$ret .= $m[0];
-			} else {
-				# convert according to the rules
-				$token = $this->regsConverter( $m[0], $toVariant );
-				$ret .= parent::translate( $token, $toVariant );
+			// process everything else
+			if ( $m[0] !== '' ) {
+				$ret .= $this->regsConverter( $m[0], $toVariant );
 			}
-			$mstart = $m[1] + strlen( $m[0] );
-		}
 
-		# pick up stray quote marks
-		switch ( $toVariant ) {
-			case 'crh-cyrl':
-				$ret = strtr( $ret, [ '“' => '«', '”' => '»', ] );
-				$ret = $this->regsConverter( $ret, 'cyrl-cleanup' );
-				break;
-			case 'crh-latn':
-				$ret = strtr( $ret, [ '«' => '"', '»' => '"', ] );
-				break;
+			$mstart = $m[1] + strlen( $m[0] );
 		}
 
 		return $ret;
@@ -269,16 +254,20 @@ class CrhConverter extends LanguageConverter {
 		$rep = [];
 		switch ( $toVariant ) {
 			case 'crh-latn':
+				$text = strtr( $text, $this->mCyrl2LatnExceptions );
 				foreach ( $this->mCyrl2LatnPatterns as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
+				$text = parent::translate( $text, $toVariant );
+				$text = strtr( $text, [ '«' => '"', '»' => '"', ] );
 				return $text;
 			case 'crh-cyrl':
+				$text = strtr( $text, $this->mLatn2CyrlExceptions );
 				foreach ( $this->mLatn2CyrlPatterns as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
-				return $text;
-			case 'cyrl-cleanup':
+				$text = parent::translate( $text, $toVariant );
+				$text = strtr( $text, [ '“' => '«', '”' => '»', ] );
 				foreach ( $this->mCyrlCleanUpRegexes as $pat => $rep ) {
 					$text = preg_replace( $pat, $rep, $text );
 				}
