@@ -99,7 +99,6 @@ class ApiMove extends ApiBase {
 		// a redirect to the new title. This is not safe, but what we did before was
 		// even worse: we just determined whether a redirect should have been created,
 		// and reported that it was created if it should have, without any checks.
-		// Also note that isRedirect() is unreliable because of T39209.
 		$r['redirectcreated'] = $fromTitle->exists();
 
 		$r['moveoverredirect'] = $toTitleExists;
@@ -149,6 +148,13 @@ class ApiMove extends ApiBase {
 			}
 		}
 
+		// @todo $params['watchlist'] will always be set, because it has a
+		// default.  This means the watch/unwatch params were being ignored
+		// since c3de8dfd in April 2010.  Should we start respecting the
+		// parameters again (matching other modules), or finally remove them,
+		// or officially document them as ignored and remove the logic here (so
+		// that if anyone is still using them it won't throw)?  They've been
+		// deprecated since 88df448d in March 2010.
 		$watch = 'preferences';
 		if ( isset( $params['watchlist'] ) ) {
 			$watch = $params['watchlist'];
