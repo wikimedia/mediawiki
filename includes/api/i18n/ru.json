@@ -28,7 +28,8 @@
 			"Alexey zakharenkov",
 			"Facenapalm",
 			"Jack who built the house",
-			"Mouse21"
+			"Mouse21",
+			"Happy13241"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -1013,6 +1014,7 @@
 	"apihelp-query+recentchanges-paramvalue-prop-sizes": "Добавляет старую и новую длину страницы в байтах.",
 	"apihelp-query+recentchanges-paramvalue-prop-redirect": "Отмечает правку, если страница является перенаправлением.",
 	"apihelp-query+recentchanges-paramvalue-prop-patrolled": "Отмечает патрулируемые правки как отпатрулированные или неотпатрулированные.",
+	"apihelp-query+recentchanges-paramvalue-prop-autopatrolled": "Теги patrollable редактирования как автоматические или нет.",
 	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "Добавляет информацию о записи журнала (идентификатор записи, её тип, и так далее).",
 	"apihelp-query+recentchanges-paramvalue-prop-tags": "Перечисляет метки записи.",
 	"apihelp-query+recentchanges-paramvalue-prop-sha1": "Добавляет значение контрольных сумм для записей, связанных с версией.",
@@ -1191,6 +1193,7 @@
 	"apihelp-query+usercontribs-paramvalue-prop-sizediff": "Добавляет разницу между размерами страницы до и после правки.",
 	"apihelp-query+usercontribs-paramvalue-prop-flags": "Добавляет флаги правки.",
 	"apihelp-query+usercontribs-paramvalue-prop-patrolled": "Отмечает отпатрулированные правки.",
+	"apihelp-query+usercontribs-paramvalue-prop-autopatrolled": "Теги автоматически редактируются.",
 	"apihelp-query+usercontribs-paramvalue-prop-tags": "Перечисляет метки правки.",
 	"apihelp-query+usercontribs-param-show": "Показать только элементы, удовлетворяющие данным критериям, например, только не малые правки: <kbd>$2show=!minor</kbd>.\n\nЕсли установлено <kbd>$2show=patrolled</kbd> или <kbd>$2show=!patrolled</kbd>, правки старее <var>[[mw:Special:MyLanguage/Manual:$wgRCMaxAge|$wgRCMaxAge]]</var> ($1 {{PLURAL:$1|секунды|секунд}}) не будут показаны.",
 	"apihelp-query+usercontribs-param-tag": "Только правки с заданной меткой.",
@@ -1255,6 +1258,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-parsedcomment": "Добавляет распарсенное описание правки.",
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Добавляет временную метку правки.",
 	"apihelp-query+watchlist-paramvalue-prop-patrol": "Определяет, была ли правка отпатрулирована.",
+	"apihelp-query+watchlist-paramvalue-prop-autopatrol": "Исправлены теги, которые автоматически обрабатываются.",
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Добавляет старую и новую длину страницы.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Добавляет метку времени, когда участник был уведомлён о правке.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Добавляет информацию о журнале, где уместно.",
