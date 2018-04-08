@@ -1,3 +1,4 @@
+/* global extDependencyMap */
 ( function ( $ ) {
 	$( function () {
 		var $label, labelText;
@@ -99,6 +100,51 @@
 			} else {
 				$memc.hide( 'slow' );
 			}
+		} );
+
+		function areReqsSatisfied( name ) {
+			var i, ext, skin;
+			if ( !extDependencyMap[ name ] ) {
+				return true;
+			}
+
+			if ( extDependencyMap[ name ].extensions ) {
+				for ( i in extDependencyMap[ name ].extensions ) {
+					ext = extDependencyMap[ name ].extensions[ i ];
+					if ( !document.getElementById( 'config_ext-' + ext ).checked ) {
+						return false;
+					}
+				}
+			}
+			if ( extDependencyMap[ name ].skins ) {
+				for ( i in extDependencyMap[ name ].skins ) {
+					skin = extDependencyMap[ name ].skins[ i ];
+					if ( !document.getElementById( 'config_skin-' + skin ).checked ) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
+
+		// Disable checkboxes if the extension has dependencies
+		$( '.mw-ext-with-dependencies input' ).prop( 'disabled', true );
+		$( 'input[data-name]' ).change( function () {
+			$( '.mw-ext-with-dependencies input' ).each( function () {
+				var $this = $( this ),
+					name = $this.data( 'name' );
+				if ( areReqsSatisfied( name ) ) {
+					// Un-disable it!
+					$( this ).prop( 'disabled', false );
+				} else {
+					// Disable the checkbox, and uncheck it if it is checked
+					$( this ).prop( 'disabled', true );
+					if ( $( this ).prop( 'checked' ) ) {
+						$( this ).prop( 'checked', false );
+					}
+				}
+			} );
 		} );
 	} );
 }( jQuery ) );
