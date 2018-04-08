@@ -1,5 +1,6 @@
 @import 'mediawiki.ui/variables';
 @import 'mw.rcfilters.mixins';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-highlightColorPickerWidget {
 	&-label {
@@ -9,24 +10,26 @@
 	}
 
 	&-buttonSelect {
+		.mw-rcfilters-circle( 20px, @size-circle, @margin-circle );
+
 		&-color {
 			// Override OOUI definition from padded popup; the definition
-			// forces the first-child to be margin-top:0; which overrides
-			// our definitions below where margin is 0.5em.
-			// We set up the margin-top as 0.5em for all circles so we get
+			// forces the first-child to be margin-top: 0 which overrides
+			// our definitions below where margin is ≈0.357em≈5px.
+			// We set margin-top as 0.5em for all circles so we get
 			// a consistent result
 			&.oo-ui-widget-enabled.oo-ui-optionWidget.oo-ui-buttonElement.oo-ui-buttonElement-frameless.oo-ui-buttonOptionWidget {
-				margin-top: 0.5em;
+				margin-top: @margin-circle;
 			}
 
 			// Make the rule much more specific to override OOUI
 			.oo-ui-iconElement-icon.oo-ui-icon-check {
 				// Override OOUI icon dimensions
-				// The parent is 2em with 0.5em margin
-				// (see mw-rcfilters-mixin-circle below)
-				// so here we want 2em - 0.5em = 1.5em
-				width: 1.5em;
-				height: 1.5em;
+				// The parent is ≈1.429em≈20px with ≈0.357em≈5px margin
+				// (see mw-rcfilters-circle below)
+				// so here we want 20px - 5px ≈ 1.071em≈15px
+				width: @size-circle - @margin-circle;
+				height: @size-circle - @margin-circle;
 				// By eye, this is centered horizontally for the color circle
 				margin-left: -0.1em;
 			}
@@ -37,7 +40,7 @@
 					margin-left: -0.2em;
 				}
 
-				.mw-rcfilters-mixin-circle( @highlight-none, 2em, 0.5em, true );
+				.mw-rcfilters-circle-color( @highlight-none, true );
 				// Override border to dashed
 				border: 1px dashed @colorGray5;
 
@@ -48,7 +51,7 @@
 				}
 			}
 			&-c1 {
-				.mw-rcfilters-mixin-circle( @highlight-c1 );
+				.mw-rcfilters-circle-color( @highlight-c1, true );
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
@@ -57,7 +60,7 @@
 				}
 			}
 			&-c2 {
-				.mw-rcfilters-mixin-circle( @highlight-c2 );
+				.mw-rcfilters-circle-color( @highlight-c2, true );
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
@@ -66,7 +69,7 @@
 				}
 			}
 			&-c3 {
-				.mw-rcfilters-mixin-circle( @highlight-c3 );
+				.mw-rcfilters-circle-color( @highlight-c3, true );
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
@@ -75,7 +78,7 @@
 				}
 			}
 			&-c4 {
-				.mw-rcfilters-mixin-circle( @highlight-c4 );
+				.mw-rcfilters-circle-color( @highlight-c4, true );
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
@@ -84,7 +87,7 @@
 				}
 			}
 			&-c5 {
-				.mw-rcfilters-mixin-circle( @highlight-c5 );
+				.mw-rcfilters-circle-color( @highlight-c5, true );
 
 				&.oo-ui-buttonOptionWidget.oo-ui-buttonElement-active,
 				&.oo-ui-buttonOptionWidget.oo-ui-optionWidget-pressed,
