@@ -2,6 +2,9 @@
 @import 'mw.rcfilters.mixins';
 @import 'mw.rcfilters.variables';
 
+@size-circle: 20 / @font-size-system-ui / @font-size-vector;
+@margin-circle: 5 / @font-size-system-ui / @font-size-vector;
+
 .mw-rcfilters-ui-tagItemWidget {
 	// Background and color of the capsule widget need a bit
 	// more specificity to override OOUI internals
@@ -44,8 +47,8 @@
 
 	&-highlight {
 		display: none;
-		margin-right: 0.5em;
 		width: 10px;
+		margin-right: @margin-circle;
 
 		&-highlighted {
 			display: inline-block;
@@ -53,29 +56,30 @@
 
 		&:before {
 			content: '';
-			position: absolute;
 			display: block;
+			position: absolute;
 			top: 50%;
+			.mw-rcfilters-circle( 10px, 10px, ~'-5px 0.5em 0 0' );
 		}
 
 		&[ data-color='c1' ]:before {
-			.mw-rcfilters-mixin-circle( @highlight-c1, 10px, ~'-5px 0.5em 0 0' );
+			.mw-rcfilters-circle-color( @highlight-c1 );
 		}
 
 		&[ data-color='c2' ]:before {
-			.mw-rcfilters-mixin-circle( @highlight-c2, 10px, ~'-5px 0.5em 0 0' );
+			.mw-rcfilters-circle-color( @highlight-c2 );
 		}
 
 		&[ data-color='c3' ]:before {
-			.mw-rcfilters-mixin-circle( @highlight-c3, 10px, ~'-5px 0.5em 0 0' );
+			.mw-rcfilters-circle-color( @highlight-c3 );
 		}
 
 		&[ data-color='c4' ]:before {
-			.mw-rcfilters-mixin-circle( @highlight-c4, 10px, ~'-5px 0.5em 0 0' );
+			.mw-rcfilters-circle-color( @highlight-c4 );
 		}
 
 		&[ data-color='c5' ]:before {
-			.mw-rcfilters-mixin-circle( @highlight-c5, 10px, ~'-5px 0.5em 0 0' );
+			.mw-rcfilters-circle-color( @highlight-c5 );
 		}
 	}
 }

@@ -24,11 +24,19 @@
 // Muted state
 @muted-opacity: 0.5;
 
+// Circles
+@min-size-circle: 20px;
+@size-circle: 20 / @font-size-system-ui / @font-size-vector;
+@margin-circle: 5 / @font-size-system-ui / @font-size-vector;
+
 // Result list circle indicators
 // Defined and used in mw.rcfilters.ui.ChangesListWrapperWidget.less
-@result-circle-margin: 3px;
-@result-circle-general-margin: 0.5em;
+@margin-circle-result: 3px;
 // In these small sizes, 'em' appears
 // squished and inconsistent.
 // Pixels are better for this use case:
-@result-circle-diameter: 6px;
+@size-circle-result: 6px;
+
+// Color picker circles
+@min-size-circle-colorpicker: 30px;
+@size-circle-colorpicker: 30 / @font-size-system-ui / @font-size-vector;
