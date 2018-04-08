@@ -110,13 +110,18 @@ class VersionChecker {
 					case ExtensionRegistry::MEDIAWIKI_CORE:
 						$mwError = $this->handleMediaWikiDependency( $values, $extension );
 						if ( $mwError !== false ) {
-							$errors[] = $mwError;
+							$errors[] = [
+								'msg' => $mwError,
+								'type' => 'incompatible-core',
+							];
 						}
 						break;
 					case 'extensions':
 					case 'skin':
 						foreach ( $values as $dependency => $constraint ) {
-							$extError = $this->handleExtensionDependency( $dependency, $constraint, $extension );
+							$extError = $this->handleExtensionDependency(
+								$dependency, $constraint, $extension, $dependencyType
+							);
 							if ( $extError !== false ) {
 								$errors[] = $extError;
 							}
@@ -164,12 +169,19 @@ class VersionChecker {
 	 * @param string $dependencyName The name of the dependency
 	 * @param string $constraint The required version constraint for this dependency
 	 * @param string $checkedExt The Extension, which depends on this dependency
-	 * @return bool|string false for no errors, or a string message
+	 * @param string $type Either 'extension' or 'skin'
+	 * @return bool|array false for no errors, or an array of info
 	 */
-	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt ) {
+	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt,
+		$type
+	) {
 		// Check if the dependency is even installed
 		if ( !isset( $this->loaded[$dependencyName] ) ) {
-			return "{$checkedExt} requires {$dependencyName} to be installed.";
+			return [
+				'msg' => "{$checkedExt} requires {$dependencyName} to be installed.",
+				'type' => "missing-$type",
+				'missing' => $dependencyName,
+			];
 		}
 		// Check if the dependency has specified a version
 		if ( !isset( $this->loaded[$dependencyName]['version'] ) ) {
@@ -180,8 +192,13 @@ class VersionChecker {
 				return false;
 			} else {
 				// Otherwise, mark it as incompatible.
-				return "{$dependencyName} does not expose its version, but {$checkedExt}"
+				$msg = "{$dependencyName} does not expose its version, but {$checkedExt}"
 					. " requires: {$constraint}.";
+				return [
+					'msg' => $msg,
+					'type' => "incompatible-$type",
+					'incompatible' => $checkedExt,
+				];
 			}
 		} else {
 			// Try to get a constraint for the dependency version
@@ -193,16 +210,24 @@ class VersionChecker {
 			} catch ( UnexpectedValueException $e ) {
 				// Non-parsable version, output an error message that the version
 				// string is invalid
-				return "$dependencyName does not have a valid version string.";
+				return [
+					'msg' => "$dependencyName does not have a valid version string.",
+					'type' => 'invalid-version',
+				];
 			}
 			// Check if the constraint actually matches...
 			if (
 				!$this->versionParser->parseConstraints( $constraint )->matches( $installedVersion )
 			) {
-				return "{$checkedExt} is not compatible with the current "
+				$msg = "{$checkedExt} is not compatible with the current "
 					. "installed version of {$dependencyName} "
 					. "({$this->loaded[$dependencyName]['version']}), "
 					. "it requires: " . $constraint . '.';
+				return [
+					'msg' => $msg,
+					'type' => "incompatible-$type",
+					'incompatible' => $checkedExt,
+				];
 			}
 		}
 
