@@ -391,7 +391,7 @@ class Site implements Serializable {
 	 *
 	 * @param string $pageName
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function normalizePageName( $pageName ) {
 		return $pageName;
