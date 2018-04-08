@@ -456,6 +456,7 @@ $wgAutoloadLocalClasses = [
 	'ExplodeIterator' => __DIR__ . '/includes/libs/ExplodeIterator.php',
 	'ExportProgressFilter' => __DIR__ . '/includes/export/ExportProgressFilter.php',
 	'ExportSites' => __DIR__ . '/maintenance/exportSites.php',
+	'ExtensionDependencyError' => __DIR__ . '/includes/registration/ExtensionDependencyError.php',
 	'ExtensionJsonValidationError' => __DIR__ . '/includes/registration/ExtensionJsonValidationError.php',
 	'ExtensionJsonValidator' => __DIR__ . '/includes/registration/ExtensionJsonValidator.php',
 	'ExtensionLanguages' => __DIR__ . '/maintenance/language/languages.inc',

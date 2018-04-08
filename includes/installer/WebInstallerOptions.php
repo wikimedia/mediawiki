@@ -150,9 +150,21 @@ class WebInstallerOptions extends WebInstallerPage {
 			$extHtml = $this->getFieldsetStart( 'config-extensions' );
 
 			foreach ( $extensions as $ext => $info ) {
+				$urlText = '';
+				if ( isset( $info['url'] ) ) {
+					$urlText = ' ' . Html::element( 'a', [ 'href' => $info['url'] ], '(more information)' );
+				}
+				$attribs = [];
+				if ( isset( $info['requires']['extensions'])) {
+					$attribs['data-requires-extensions'] = implode( ',', $info['requires']['extensions'] );
+				}
+				if ( isset( $info['requires']['skins'])) {
+					$attribs['data-requires-skins'] = implode( ',', $info['requires']['skins'] );
+				}
 				$extHtml .= $this->parent->getCheckBox( [
 					'var' => "ext-$ext",
-					'rawtext' => $ext,
+					'rawtext' => $ext . $urlText,
+					'attribs' => $attribs,
 				] );
 			}
 
