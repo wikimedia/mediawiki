@@ -54,7 +54,7 @@ class RevisionTest extends MediaWikiTestCase {
 			->method( 'getArticleID' )
 			->will( $this->returnValue( 23 ) );
 		$mock->expects( $this->any() )
-			->method( 'getModel' )
+			->method( 'getContentModel' )
 			->will( $this->returnValue( $model ) );
 
 		return $mock;
