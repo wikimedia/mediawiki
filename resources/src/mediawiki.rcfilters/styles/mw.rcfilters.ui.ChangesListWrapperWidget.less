@@ -79,51 +79,53 @@
 			width: 100%;
 		}
 	}
-}
 
-.mw-rcfilters-ui-highlights {
-	display: none;
-	padding: 0 @result-circle-general-margin 0 0;
-	// The width is 5 circles times their diameter + individual margin
-	// and then plus the general margin
-	width: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * 5 )';
-	// And we want to shift the entire block to the left of the li
-	position: relative;
-	// Negative left margin of width + padding
-	margin-left: ~'calc( ( @{result-circle-diameter} + @{result-circle-margin} ) * -5 - @{result-circle-general-margin} )';
+	&-highlights {
+		display: none;
+		padding: 0 @margin-circle 0 0;
+		text-align: right;
+		// The width is 5 circles times their diameter + individual margin
+		// and then plus the general margin
+		width: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * 5 )';
+		// And we want to shift the entire block to the left of the li
+		position: relative;
+		// Negative left margin of width + padding
+		margin-left: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * -5 - @{margin-circle} )';
 
-	.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
-		display: inline-block;
-	}
-
-	> div {
-		.box-sizing( border-box );
-		margin-right: @result-circle-margin;
-		vertical-align: middle;
-		// This is to make the dots appear at the center of the
-		// text itself; it's a horrendous hack and blame JamesF for it.
-		margin-top: -2px;
-		float: right;
-	}
-
-	&-color {
-		&-none {
-			.mw-rcfilters-mixin-circle( @highlight-none, @result-circle-diameter, 0, true );
+		.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
 			display: inline-block;
-
-			.mw-rcfilters-highlight-color-c1 &,
-			.mw-rcfilters-highlight-color-c2 &,
-			.mw-rcfilters-highlight-color-c3 &,
-			.mw-rcfilters-highlight-color-c4 &,
-			.mw-rcfilters-highlight-color-c5 & {
-				display: none;
-			}
 		}
-		.result-circle( c1 );
-		.result-circle( c2 );
-		.result-circle( c3 );
-		.result-circle( c4 );
-		.result-circle( c5 );
+
+		// This needs to be very specific, since these are
+		// position rules that should apply to all overrides
+		.mw-rcfilters-ui-changesListWrapperWidget .mw-rcfilters-ui-changesListWrapperWidget-highlights > div&-circle {
+			vertical-align: middle;
+			.mw-rcfilters-circle( @size-circle-result, @size-circle-result, 0 );
+			// This is to make the dots appear at the center of the
+			// text itself; it's a horrendous hack and blame JamesF for it.
+			margin-top: -2px;
+			margin-right: @margin-circle-result;
+		}
+
+		&-color {
+			&-none {
+				.mw-rcfilters-circle-color( @highlight-none, true );
+				display: inline-block;
+
+				.mw-rcfilters-highlight-color-c1 &,
+				.mw-rcfilters-highlight-color-c2 &,
+				.mw-rcfilters-highlight-color-c3 &,
+				.mw-rcfilters-highlight-color-c4 &,
+				.mw-rcfilters-highlight-color-c5 & {
+					display: none;
+				}
+			}
+			.result-circle( c1 );
+			.result-circle( c2 );
+			.result-circle( c3 );
+			.result-circle( c4 );
+			.result-circle( c5 );
+		}
 	}
 }
 
@@ -184,7 +186,7 @@
 .highlight-color-mix( c1, c3, c4, c5 );
 .highlight-color-mix( c2, c3, c4, c5 );
 
-// Five colors:
+// Five colors
 .mw-rcfilters-highlight-color-c1.mw-rcfilters-highlight-color-c2.mw-rcfilters-highlight-color-c3.mw-rcfilters-highlight-color-c4.mw-rcfilters-highlight-color-c5 {
 	.highlight-results( tint( mix( @highlight-c1, mix( @highlight-c2, mix( @highlight-c3, average( @highlight-c4, @highlight-c5 ), 20% ), 20% ), 20% ), 15% ) );
 }
