@@ -332,6 +332,7 @@
 	"config-extension-link": "Shown on last page of installation to inform about possible extensions.\n{{Identical|Did you know}}",
 	"config-skins-screenshots": "Radio button text, $1 is the skin name, and $2 is a list of links to screenshots of that skin",
 	"config-skins-screenshot": "Radio button text, $1 is the skin name, and $2 is a link to a screenshot of that skin, where the link text is {{msg-mw|config-screenshot}}.",
+	"config-extensions-requires": "Radio button text, $1 is the extension name, and $2 are links to other extensions that this one requires.",
 	"config-screenshot": "Link text for the link in {{msg-mw|config-skins-screenshot}}\n{{Identical|Screenshot}}",
 	"mainpagetext": "Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.",
 	"mainpagedocfooter": "Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.\nThis might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example."
