@@ -202,7 +202,8 @@ spl_autoload_register( function ( $class ) {
 
 	// Classes that don't map 100%
 	$map = [
-		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite'
+		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite',
+		'PHPUnit_Framework_Error' => 'PHPUnit\Framework\Error\Error',
 	];
 
 	if ( isset( $map[$class] ) ) {
