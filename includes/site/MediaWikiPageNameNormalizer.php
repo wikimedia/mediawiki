@@ -53,7 +53,7 @@ class MediaWikiPageNameNormalizer {
 	/**
 	 * Returns the normalized form of the given page title, using the
 	 * normalization rules of the given site. If the given title is a redirect,
-	 * the redirect weill be resolved and the redirect target is returned.
+	 * the redirect will be resolved and the redirect target is returned.
 	 *
 	 * @note This actually makes an API request to the remote site, so beware
 	 *   that this function is slow and depends on an external service.
@@ -65,7 +65,7 @@ class MediaWikiPageNameNormalizer {
 	 * @param string $pageName
 	 * @param string $apiUrl
 	 *
-	 * @return string
+	 * @return string|false
 	 * @throws \MWException
 	 */
 	public function normalizePageName( $pageName, $apiUrl ) {
