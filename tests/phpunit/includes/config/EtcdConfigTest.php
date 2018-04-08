@@ -5,6 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 class EtcdConfigTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	private function createConfigMock( array $options = [] ) {
 		return $this->getMockBuilder( EtcdConfig::class )

@@ -12,6 +12,8 @@ use Wikimedia\Rdbms\ResultWrapper;
  */
 class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
+	use PHPUnit4And6Compat;
+
 	/**
 	 * @return ILoadBalancer
 	 */

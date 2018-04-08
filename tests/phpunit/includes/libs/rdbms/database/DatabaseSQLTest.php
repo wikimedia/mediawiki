@@ -9,6 +9,7 @@ use Wikimedia\Rdbms\LikeMatch;
 class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	/** @var DatabaseTestHelper */
 	private $database;
