@@ -5,6 +5,7 @@ use Wikimedia\Rdbms\DatabaseMssql;
 class DatabaseMssqlTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	/**
 	 * @return PHPUnit_Framework_MockObject_MockObject|DatabaseMssql
