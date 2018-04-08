@@ -1238,7 +1238,7 @@
 	"apihelp-query+watchlist-param-allrev": "将同一页面的多个修订包含于指定的时间表内。",
 	"apihelp-query+watchlist-param-start": "枚举的起始时间戳。",
 	"apihelp-query+watchlist-param-end": "枚举的结束时间戳。",
-	"apihelp-query+watchlist-param-namespace": "过滤更改为仅限指定的名字空间。",
+	"apihelp-query+watchlist-param-namespace": "过滤更改为仅限指定名字空间。",
 	"apihelp-query+watchlist-param-user": "只列出此用户的更改。",
 	"apihelp-query+watchlist-param-excludeuser": "不要列出此用户的更改。",
 	"apihelp-query+watchlist-param-limit": "根据结果返回的结果总数。",

@@ -60,7 +60,7 @@
 	 * Wrapper around jQuery append that converts all non-objects to TextNode so append will not
 	 * convert what it detects as an htmlString to an element.
 	 *
-	 * If our own htmlEmitter jQuery object is given, its children will be unwrapped and appended to
+	 * If our own HtmlEmitter jQuery object is given, its children will be unwrapped and appended to
 	 * new parent.
 	 *
 	 * Object elements of children (jQuery, HTMLElement, TextNode, etc.) will be left as is.
@@ -135,8 +135,7 @@
 	function getFailableParserFn( options ) {
 		return function ( args ) {
 			var fallback,
-				// eslint-disable-next-line new-cap
-				parser = new mw.jqueryMsg.parser( options ),
+				parser = new mw.jqueryMsg.Parser( options ),
 				key = args[ 0 ],
 				argsArray = Array.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 			try {
@@ -160,7 +159,7 @@
 	 *
 	 * ResourceLoaderJqueryMsgModule calls this to provide default values from
 	 * Sanitizer.php for allowed HTML elements. To override this data for individual
-	 * parsers, pass the relevant options to mw.jqueryMsg.parser.
+	 * parsers, pass the relevant options to mw.jqueryMsg.Parser.
 	 *
 	 * @private
 	 * @param {Object} data New data to extend parser defaults with
@@ -274,16 +273,18 @@
 	 * @private
 	 * @param {Object} options
 	 */
-	mw.jqueryMsg.parser = function ( options ) {
+	mw.jqueryMsg.Parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
 		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
 		this.astCache = {};
 
-		// eslint-disable-next-line new-cap
-		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
+		this.emitter = new mw.jqueryMsg.HtmlEmitter( this.settings.language, this.settings.magic );
 	};
+	// Backwards-compatible alias
+	// @deprecated since 1.31
+	mw.jqueryMsg.parser = mw.jqueryMsg.Parser;
 
-	mw.jqueryMsg.parser.prototype = {
+	mw.jqueryMsg.Parser.prototype = {
 		/**
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
@@ -943,12 +944,14 @@
 	};
 
 	/**
-	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
+	 * Class that primarily exists to emit HTML from parser ASTs.
 	 *
+	 * @private
+	 * @class
 	 * @param {Object} language
 	 * @param {Object} magic
 	 */
-	mw.jqueryMsg.htmlEmitter = function ( language, magic ) {
+	mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 		var jmsg = this;
 		this.language = language;
 		$.each( magic, function ( key, val ) {
@@ -1005,7 +1008,7 @@
 	//
 	// An emitter method takes the parent node, the array of subnodes and the array of replacements (the values that $1, $2... should translate to).
 	// Note: all such functions must be pure, with the exception of referring to other pure functions via this.language (convertPlural and so on)
-	mw.jqueryMsg.htmlEmitter.prototype = {
+	mw.jqueryMsg.HtmlEmitter.prototype = {
 		/**
 		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
 		 * Must return a single node to parents -- a jQuery with synthetic span
@@ -1125,7 +1128,7 @@
 		 * The "href" can be:
 		 * - a jQuery object, treat it as "enclosing" the link text.
 		 * - a function, treat it as the click handler.
-		 * - a string, or our htmlEmitter jQuery object, treat it as a URI after stringifying.
+		 * - a string, or our HtmlEmitter jQuery object, treat it as a URI after stringifying.
 		 *
 		 * TODO: throw an error if nodes.length > 2 ?
 		 *

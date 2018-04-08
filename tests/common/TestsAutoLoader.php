@@ -202,7 +202,8 @@ spl_autoload_register( function ( $class ) {
 
 	// Classes that don't map 100%
 	$map = [
-		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite'
+		'PHPUnit_Framework_TestSuite_DataProvider' => 'PHPUnit\Framework\DataProviderTestSuite',
+		'PHPUnit_Framework_Error' => 'PHPUnit\Framework\Error\Error',
 	];
 
 	if ( isset( $map[$class] ) ) {
@@ -211,7 +212,7 @@ spl_autoload_register( function ( $class ) {
 		$newForm = str_replace( '_', '\\', $class );
 	}
 
-	if ( class_exists( $newForm ) ) {
+	if ( class_exists( $newForm ) || interface_exists( $newForm ) ) {
 		// If the new class name exists, alias
 		// the old name to it.
 		class_alias( $newForm, $class );

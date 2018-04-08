@@ -374,8 +374,7 @@
 					.then( function ( langClass ) {
 						var parser;
 						mw.config.set( 'wgUserLanguage', test.lang );
-						// eslint-disable-next-line new-cap
-						parser = new mw.jqueryMsg.parser( { language: langClass } );
+						parser = new mw.jqueryMsg.Parser( { language: langClass } );
 						assert.equal(
 							parser.parse( test.key, test.args ).html(),
 							test.result,
@@ -905,8 +904,7 @@
 					.then( function ( langClass ) {
 						var parser;
 						mw.config.set( 'wgUserLanguage', test.lang );
-						// eslint-disable-next-line new-cap
-						parser = new mw.jqueryMsg.parser( { language: langClass } );
+						parser = new mw.jqueryMsg.Parser( { language: langClass } );
 						assert.equal(
 							parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
 								[ test.number ] ).html(),
