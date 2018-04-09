@@ -98,6 +98,17 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		if ( $tokenType !== null ) {
+			if ( $tokenType === 'auto' ) {
+				// More things should probably be added here
+				switch ( $params['action'] ) {
+					case 'userrights':
+						$tokenType = 'userrights';
+						break;
+
+					default:
+						$tokenType = 'csrf';
+				}
+			}
 			$params['token'] = ApiQueryTokens::getToken(
 				$wgUser, $sessionObj, ApiQueryTokens::getTokenTypeSalts()[$tokenType]
 			)->toString();
@@ -141,7 +152,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @return array Result of the API call
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
-		User $user = null, $tokenType = 'csrf'
+		User $user = null, $tokenType = 'auto'
 	) {
 		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
 	}

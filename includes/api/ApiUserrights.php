@@ -58,12 +58,7 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Figure out expiry times from the input
-		// $params['expiry'] may not be set in subclasses
-		if ( isset( $params['expiry'] ) ) {
-			$expiry = (array)$params['expiry'];
-		} else {
-			$expiry = [ 'infinity' ];
-		}
+		$expiry = (array)$params['expiry'];
 		$add = (array)$params['add'];
 		if ( count( $expiry ) !== count( $add ) ) {
 			if ( count( $expiry ) === 1 ) {
@@ -126,7 +121,7 @@ class ApiUserrights extends ApiBase {
 	 */
 	private function getUrUser( array $params ) {
 		if ( $this->mUser !== null ) {
-			return $this->mUser;
+			return $this->mUser; // @codeCoverageIgnore
 		}
 
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
@@ -187,7 +182,7 @@ class ApiUserrights extends ApiBase {
 			],
 		];
 		if ( !$this->getUserRightsPage()->canProcessExpiries() ) {
-			unset( $a['expiry'] );
+			unset( $a['expiry'] ); // @codeCoverageIgnore
 		}
 		return $a;
 	}
