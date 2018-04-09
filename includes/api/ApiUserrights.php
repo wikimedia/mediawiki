@@ -58,7 +58,7 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Figure out expiry times from the input
-		// $params['expiry'] may not be set in subclasses
+		// $params['expiry'] is not set in the ApiGlobalUserRights subclass
 		if ( isset( $params['expiry'] ) ) {
 			$expiry = (array)$params['expiry'];
 		} else {
@@ -186,8 +186,9 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 		];
+		// The ApiGlobalUserRights subclass can't handle expiries
 		if ( !$this->getUserRightsPage()->canProcessExpiries() ) {
-			unset( $a['expiry'] );
+			unset( $a['expiry'] ); // @codeCoverageIgnore
 		}
 		return $a;
 	}
