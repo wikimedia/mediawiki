@@ -1,5 +1,5 @@
 <?php
-// phpcs:ignoreFile Generic.Arrays.DisallowLongArraySyntax
+// phpcs:disable Generic.Arrays.DisallowLongArraySyntax
 /**
  * New version of MediaWiki web-based config/installation
  *
@@ -79,5 +79,4 @@ function wfInstallerMain() {
 	$session = $installer->execute( $session );
 
 	$_SESSION['installData'][$fingerprint] = $session;
-
 }
