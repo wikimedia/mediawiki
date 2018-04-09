@@ -411,7 +411,4 @@
 		/** Search only parent categories */
 		ParentCategories: 4
 	};
-
-	// For backwards compatibility. See T161285.
-	mw.widgets.CategorySelector = mw.widgets.CategoryMultiselectWidget;
 }( jQuery, mediaWiki ) );
