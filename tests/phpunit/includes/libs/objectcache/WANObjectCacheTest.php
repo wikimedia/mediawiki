@@ -19,6 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	/** @var TimeAdjustableWANObjectCache */
 	private $cache;
