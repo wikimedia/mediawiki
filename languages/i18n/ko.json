@@ -714,7 +714,7 @@
 	"userjspreview": "'''사용자 자바스크립트 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
 	"sitecsspreview": "'''이 CSS의 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
 	"sitejspreview": "'''이 자바스크립트 코드의 미리 보기입니다.'''\n'''아직 저장하지 않았습니다!'''",
-	"userinvalidconfigtitle": "<strong>경고:</strong> \"$1\" 스킨은 없습니다.\n.css와 .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
+	"userinvalidconfigtitle": "<strong>경고:</strong> \"$1\" 스킨은 없습니다.\n.css, .json, .js 문서의 제목은 {{ns:user}}:Foo/vector.css 처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Vector.css 와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 	"updated": "(바뀜)",
 	"note": "<strong>참고:</strong>",
 	"previewnote": "'''지금 보는 이 화면은 미리 보기입니다.''' 편집한 내용을 아직 저장하지 않았습니다!",

@@ -913,7 +913,7 @@
 	"unicode-support-fail": "Error message shown to users if their browser doesn't support Unicode",
 	"yourdiff": "Used as h2 header for the diff of the current version of a page with the user's version in case there is an edit conflict or a spam filter hit.",
 	"copyrightwarning": "Copyright warning displayed under the edit box in editor. Parameters:\n* $1 - link\n* $2 - license name",
-	"copyrightwarning2": "Copyright warning displayed under the edit box in editor\n*$1 - license name",
+	"copyrightwarning2": "Copyright warning displayed under the edit box in editor\n* $1 - link",
 	"editpage-head-copy-warn": "{{ignored}}Custom copyright warning in the header of an edit page.",
 	"editpage-tos-summary": "{{notranslate}}",
 	"editpage-cannot-use-custom-model": "Error message shown if the database does not support changing the content model of a page.",

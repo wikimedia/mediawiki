@@ -2062,6 +2062,7 @@
 	"delete-warning-toobig": "Старонка мае вялікую гісторыю правак, больш за $1 {{PLURAL:$1|версію|версій}}. Сціранне такіх старонак можа перашкодзіць працы базы даных {{SITENAME}}; будзьце асцярожнымі.",
 	"deleteprotected": "Вы не можаце сцерці гэтую старонку, таму што яна ахоўваецца.",
 	"deleting-backlinks-warning": "<strong>Увага:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Іншыя старонкі]] спасылаюцца на ці ўключаюць старонку, якую вы збіраецеся сцерці.",
+	"deleting-subpages-warning": "<strong>Увага:</strong> Старонка, якую Вы хочаце выдаліць, мае [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 падстаронка|$1 падстаронкі|$1 падстаронак|51=болей за 50 падстаронак}}]].",
 	"rollback": "Адкаціць праўкі",
 	"rollbacklink": "адкат",
 	"rollbacklinkcount": "адкаціць $1 {{PLURAL:$1|праўку|праўкі|правак}}",
