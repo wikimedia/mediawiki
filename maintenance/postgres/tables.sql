@@ -53,6 +53,7 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_editcount            INTEGER,
   user_password_expires     TIMESTAMPTZ NULL
 );
+ALTER SEQUENCE user_user_id_seq OWNED BY mwuser.user_id;
 CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
@@ -65,6 +66,7 @@ CREATE TABLE actor (
   actor_user INTEGER,
   actor_name    TEXT     NOT NULL
 );
+ALTER SEQUENCE actor_actor_id_seq OWNED BY actor.actor_id;
 CREATE UNIQUE INDEX actor_user ON actor (actor_user);
 CREATE UNIQUE INDEX actor_name ON actor (actor_name);
 
@@ -117,6 +119,7 @@ CREATE TABLE page (
   page_content_model TEXT,
   page_lang          TEXT                     DEFAULT NULL
 );
+ALTER SEQUENCE page_page_id_seq OWNED BY page.page_id;
 CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
 CREATE INDEX page_main_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 0;
 CREATE INDEX page_talk_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 1;
@@ -155,6 +158,7 @@ CREATE TABLE revision (
   rev_content_model  TEXT,
   rev_content_format TEXT
 );
+ALTER SEQUENCE revision_rev_id_seq OWNED BY revision.rev_id;
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
 CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
@@ -180,13 +184,12 @@ CREATE INDEX rev_actor_timestamp ON revision_actor_temp (revactor_actor,revactor
 CREATE INDEX rev_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
 
 CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
-
 CREATE TABLE ip_changes (
   ipc_rev_id        INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('ip_changes_ipc_rev_id_seq'),
   ipc_rev_timestamp TIMESTAMPTZ NOT NULL,
   ipc_hex           BYTEA NOT NULL DEFAULT ''
 );
-
+ALTER SEQUENCE ip_changes_ipc_rev_id_seq OWNED BY ip_changes.ipc_rev_id;
 CREATE INDEX ipc_rev_timestamp ON ip_changes (ipc_rev_timestamp);
 CREATE INDEX ipc_hex_time ON ip_changes (ipc_hex,ipc_rev_timestamp);
 
@@ -196,6 +199,7 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_text   TEXT,
   old_flags  TEXT
 );
+ALTER SEQUENCE text_old_id_seq OWNED BY pagecontent.old_id;
 
 
 CREATE SEQUENCE comment_comment_id_seq;
@@ -205,6 +209,7 @@ CREATE TABLE comment (
   comment_text TEXT    NOT NULL,
   comment_data TEXT
 );
+ALTER SEQUENCE comment_comment_id_seq OWNED BY comment.comment_id;
 CREATE INDEX comment_hash ON comment (comment_hash);
 
 
@@ -218,6 +223,7 @@ CREATE TABLE page_restrictions (
   pr_user    INTEGER          NULL,
   pr_expiry  TIMESTAMPTZ      NULL
 );
+ALTER SEQUENCE page_restrictions_pr_id_seq OWNED BY page_restrictions.pr_id;
 ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
 CREATE TABLE page_props (
@@ -255,6 +261,7 @@ CREATE TABLE archive (
   ar_content_model  TEXT,
   ar_content_format TEXT
 );
+ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
 CREATE INDEX archive_actor                ON archive (ar_actor);
@@ -279,6 +286,7 @@ CREATE TABLE content (
   content_model   SMALLINT  NOT NULL,
   content_address TEXT      NOT NULL
 );
+ALTER SEQUENCE content_content_id_seq OWNED BY content.content_id;
 
 
 CREATE SEQUENCE slot_roles_role_id_seq;
@@ -286,6 +294,7 @@ CREATE TABLE slot_roles (
   role_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('slot_roles_role_id_seq'),
   role_name  TEXT      NOT NULL
 );
+ALTER SEQUENCE slot_roles_role_id_seq OWNED BY slot_roles.role_id;
 
 CREATE UNIQUE INDEX role_name ON slot_roles (role_name);
 
@@ -295,6 +304,7 @@ CREATE TABLE content_models (
   model_id    SMALLINT  NOT NULL PRIMARY KEY DEFAULT nextval('content_models_model_id_seq'),
   model_name  TEXT      NOT NULL
 );
+ALTER SEQUENCE content_models_model_id_seq OWNED BY content_models.model_id;
 
 CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
@@ -354,6 +364,7 @@ CREATE TABLE externallinks (
   el_index    TEXT        NOT NULL,
   el_index_60 BYTEA       NOT NULL  DEFAULT ''
 );
+ALTER SEQUENCE externallinks_el_id_seq OWNED BY externallinks.el_id;
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
 CREATE INDEX el_index_60           ON externallinks (el_index_60, el_id);
@@ -402,8 +413,8 @@ CREATE TABLE ipblocks (
   ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0,
   ipb_allow_usertalk    SMALLINT     NOT NULL  DEFAULT 0,
   ipb_parent_block_id             INTEGER          NULL  REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED
-
 );
+ALTER SEQUENCE ipblocks_ipb_id_seq OWNED BY ipblocks.ipb_id;
 CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
@@ -493,6 +504,7 @@ CREATE TABLE filearchive (
   fa_deleted            SMALLINT     NOT NULL DEFAULT 0,
   fa_sha1               TEXT         NOT NULL DEFAULT ''
 );
+ALTER SEQUENCE filearchive_fa_id_seq OWNED BY filearchive.fa_id;
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX fa_notime    ON filearchive (fa_deleted_timestamp);
@@ -501,7 +513,6 @@ CREATE INDEX fa_sha1      ON filearchive (fa_sha1);
 
 CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE','3D');
-
 CREATE TABLE uploadstash (
   us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('uploadstash_us_id_seq'),
   us_user         INTEGER,
@@ -521,6 +532,7 @@ CREATE TABLE uploadstash (
   us_image_height INTEGER,
   us_image_bits   SMALLINT
 );
+ALTER SEQUENCE uploadstash_us_id_seq OWNED BY uploadstash.us_id;
 
 CREATE INDEX us_user_idx ON uploadstash (us_user);
 CREATE UNIQUE INDEX us_key_idx ON uploadstash (us_key);
@@ -557,6 +569,7 @@ CREATE TABLE recentchanges (
   rc_log_action      TEXT,
   rc_params          TEXT
 );
+ALTER SEQUENCE recentchanges_rc_id_seq OWNED BY recentchanges.rc_id;
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
 CREATE INDEX rc_timestamp_bot   ON recentchanges (rc_timestamp) WHERE rc_bot = 0;
 CREATE INDEX rc_namespace_title_timestamp ON recentchanges (rc_namespace, rc_title, rc_timestamp);
@@ -574,6 +587,7 @@ CREATE TABLE watchlist (
   wl_title                  TEXT        NOT NULL,
   wl_notificationtimestamp  TIMESTAMPTZ
 );
+ALTER SEQUENCE watchlist_wl_id_seq OWNED BY watchlist.wl_id;
 CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
 CREATE INDEX wl_user ON watchlist (wl_user);
 CREATE INDEX wl_user_notificationtimestamp ON watchlist (wl_user, wl_notificationtimestamp);
@@ -645,6 +659,7 @@ CREATE TABLE logging (
   log_user_text   TEXT         NOT NULL DEFAULT '',
   log_page        INTEGER
 );
+ALTER SEQUENCE logging_log_id_seq OWNED BY logging.log_id;
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
 CREATE INDEX logging_actor_time_backwards ON logging (log_timestamp, log_actor);
@@ -680,6 +695,7 @@ CREATE TABLE job (
   job_token_timestamp TIMESTAMPTZ,
   job_sha1            TEXT NOT NULL DEFAULT ''
 );
+ALTER SEQUENCE job_job_id_seq OWNED BY job.job_id;
 CREATE INDEX job_sha1 ON job (job_sha1);
 CREATE INDEX job_cmd_token ON job (job_cmd, job_token, job_random);
 CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
@@ -769,6 +785,7 @@ CREATE TABLE category (
   cat_files    INTEGER  NOT NULL  DEFAULT 0,
   cat_hidden   SMALLINT NOT NULL  DEFAULT 0
 );
+ALTER SEQUENCE category_cat_id_seq OWNED BY category.cat_id;
 CREATE UNIQUE INDEX category_title ON category(cat_title);
 CREATE INDEX category_pages ON category(cat_pages);
 
@@ -781,6 +798,7 @@ CREATE TABLE change_tag (
   ct_tag     TEXT     NOT NULL,
   ct_params  TEXT         NULL
 );
+ALTER SEQUENCE change_tag_ct_id_seq OWNED BY change_tag.ct_id;
 CREATE UNIQUE INDEX change_tag_rc_tag ON change_tag(ct_rc_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_log_tag ON change_tag(ct_log_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_rev_tag ON change_tag(ct_rev_id,ct_tag);
@@ -794,6 +812,7 @@ CREATE TABLE tag_summary (
   ts_rev_id  INTEGER      NULL,
   ts_tags    TEXT     NOT NULL
 );
+ALTER SEQUENCE tag_summary_ts_id_seq OWNED BY tag_summary.ts_id;
 CREATE UNIQUE INDEX tag_summary_rc_id ON tag_summary(ts_rc_id);
 CREATE UNIQUE INDEX tag_summary_log_id ON tag_summary(ts_log_id);
 CREATE UNIQUE INDEX tag_summary_rev_id ON tag_summary(ts_rev_id);
@@ -847,6 +866,7 @@ CREATE TABLE sites (
   site_forward      SMALLINT    NOT NULL,
   site_config       TEXT        NOT NULL
 );
+ALTER SEQUENCE sites_site_id_seq OWNED BY sites.site_id;
 CREATE UNIQUE INDEX site_global_key ON sites (site_global_key);
 CREATE INDEX site_type ON sites (site_type);
 CREATE INDEX site_group ON sites (site_group);

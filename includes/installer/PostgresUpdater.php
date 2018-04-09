@@ -545,6 +545,30 @@ class PostgresUpdater extends DatabaseUpdater {
 				'recentchanges',
 				'rc_namespace_title_timestamp', '( rc_namespace, rc_title, rc_timestamp )'
 			],
+			[ 'setSequenceOwner', 'mwuser', 'user_id', 'user_user_id_seq' ],
+			[ 'setSequenceOwner', 'actor', 'actor_id', 'actor_actor_id_seq' ],
+			[ 'setSequenceOwner', 'page', 'page_id', 'page_page_id_seq' ],
+			[ 'setSequenceOwner', 'revision', 'rev_id', 'revision_rev_id_seq' ],
+			[ 'setSequenceOwner', 'ip_changes', 'ipc_rev_id', 'ip_changes_ipc_rev_id_seq' ],
+			[ 'setSequenceOwner', 'pagecontent', 'old_id', 'text_old_id_seq' ],
+			[ 'setSequenceOwner', 'comment', 'comment_id', 'comment_comment_id_seq' ],
+			[ 'setSequenceOwner', 'page_restrictions', 'pr_id', 'page_restrictions_pr_id_seq' ],
+			[ 'setSequenceOwner', 'archive', 'ar_id', 'archive_ar_id_seq' ],
+			[ 'setSequenceOwner', 'content', 'content_id', 'content_content_id_seq' ],
+			[ 'setSequenceOwner', 'slot_roles', 'role_id', 'slot_roles_role_id_seq' ],
+			[ 'setSequenceOwner', 'content_models', 'model_id', 'content_models_model_id_seq' ],
+			[ 'setSequenceOwner', 'externallinks', 'el_id', 'externallinks_el_id_seq' ],
+			[ 'setSequenceOwner', 'ipblocks', 'ipb_id', 'ipblocks_ipb_id_seq' ],
+			[ 'setSequenceOwner', 'filearchive', 'fa_id', 'filearchive_fa_id_seq' ],
+			[ 'setSequenceOwner', 'uploadstash', 'us_id', 'uploadstash_us_id_seq' ],
+			[ 'setSequenceOwner', 'recentchanges', 'rc_id', 'recentchanges_rc_id_seq' ],
+			[ 'setSequenceOwner', 'watchlist', 'wl_id', 'watchlist_wl_id_seq' ],
+			[ 'setSequenceOwner', 'logging', 'log_id', 'logging_log_id_seq' ],
+			[ 'setSequenceOwner', 'job', 'job_id', 'job_job_id_seq' ],
+			[ 'setSequenceOwner', 'category', 'cat_id', 'category_cat_id_seq' ],
+			[ 'setSequenceOwner', 'change_tag', 'ct_id', 'change_tag_ct_id_seq' ],
+			[ 'setSequenceOwner', 'tag_summary', 'ts_id', 'tag_summary_ts_id_seq' ],
+			[ 'setSequenceOwner', 'sites', 'site_id', 'sites_site_id_seq' ],
 		];
 	}
 
@@ -712,9 +736,11 @@ END;
 	protected function addSequence( $table, $pkey, $ns ) {
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
-			$this->db->query( "CREATE SEQUENCE $ns" );
 			if ( $pkey !== false ) {
+				$this->db->query( "CREATE SEQUENCE $ns OWNED BY $table.$pkey" );
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
+			} else {
+				$this->db->query( "CREATE SEQUENCE $ns" );
 			}
 		}
 	}
@@ -735,6 +761,13 @@ END;
 		if ( $this->db->sequenceExists( $old ) ) {
 			$this->output( "Renaming sequence $old to $new\n" );
 			$this->db->query( "ALTER SEQUENCE $old RENAME TO $new" );
+		}
+	}
+
+	protected function setSequenceOwner( $table, $pkey, $seq ) {
+		if ( $this->db->sequenceExists( $seq ) ) {
+			$this->output( "Setting sequence $seq owner to $table.$pkey\n" );
+			$this->db->query( "ALTER SEQUENCE $seq OWNED BY $table.$pkey" );
 		}
 	}
 
