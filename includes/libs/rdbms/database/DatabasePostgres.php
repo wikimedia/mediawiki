@@ -789,7 +789,9 @@ __INDEXATTR__;
 		$newNameE = $this->addIdentifierQuotes( $newName );
 		$oldNameE = $this->addIdentifierQuotes( $oldName );
 
-		$ret = $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newNameE " .
+		$temporary = $temporary ? 'TEMPORARY' : '';
+
+		$ret = $this->query( "CREATE $temporary TABLE $newNameE " .
 			"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)", $fname );
 		if ( !$ret ) {
 			return $ret;
@@ -812,7 +814,7 @@ __INDEXATTR__;
 			$fieldE = $this->addIdentifierQuotes( $field );
 			$newSeqE = $this->addIdentifierQuotes( $newSeq );
 			$newSeqQ = $this->addQuotes( $newSeq );
-			$this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " SEQUENCE $newSeqE", $fname );
+			$this->query( "CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE", $fname );
 			$this->query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
 				$fname
