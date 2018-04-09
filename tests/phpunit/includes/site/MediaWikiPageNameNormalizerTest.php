@@ -76,10 +76,11 @@ class MediaWikiPageNameNormalizerTest extends PHPUnit\Framework\TestCase {
 				. '"pagelanguagedir":"ltr","touched":"2015-11-22T09:16:18Z",'
 				. '"lastrevid":2373618,"length":3501}}}}'
 			],
-			'there is no Q0' => [
-				false,
+			'there is no q0 but we can still convert it to Q0' => [
 				'Q0',
-				'{"batchcomplete":"","query":{"pages":{"-1":{"ns":0,"title":"Q0",'
+				'q0',
+				'{"batchcomplete":"","query":{"normalized":[{"from":"q0","to":"Q0"}],'
+				. '"pages":{"-1":{"ns":0,"title":"Q0",'
 				. '"missing":"","contentmodel":"wikibase-item","pagelanguage":"en",'
 				. '"pagelanguagehtmlcode":"en","pagelanguagedir":"ltr"}}}}'
 			],
