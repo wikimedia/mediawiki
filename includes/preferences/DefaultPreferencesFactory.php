@@ -45,6 +45,7 @@ use MWTimestamp;
 use Parser;
 use ParserOptions;
 use PreferencesForm;
+use Psr\Log\LoggerAwareTrait;
 use Skin;
 use SpecialPage;
 use Status;
@@ -57,6 +58,7 @@ use Xml;
  * This is the default implementation of PreferencesFactory.
  */
 class DefaultPreferencesFactory implements PreferencesFactory {
+	use LoggerAwareTrait;
 
 	/** @var Config */
 	protected $config;
@@ -137,6 +139,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		Hooks::run( 'GetPreferences', [ $user, &$preferences ] );
 
 		$this->loadPreferenceValues( $user, $context, $preferences );
+		$this->logger->debug( "Created form descriptor for user '{$user->getName()}'" );
 		return $preferences;
 	}
 
