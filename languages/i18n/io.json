@@ -752,7 +752,7 @@
 	"showingresults": "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 	"showingresultsinrange": "Infre montresas {{PLURAL:$1|<strong>1</strong> rezulto|<strong>$1</strong> rezulti}}, en l'intervalo #<strong>$2</strong> til #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezulto <strong>$1</strong> de <strong>$3</strong>|rezulti <strong>$1 – $2</strong> de <strong>$3</strong>}}",
-	"search-nonefound": "Nula rezulto trovesis por lua serchado.",
+	"search-nonefound": "Nula rezulto trovesis por vua serchado.",
 	"powersearch-legend": "Avancita sercho",
 	"powersearch-ns": "Serchez en nomari:",
 	"powersearch-toggleall": "Omna",
