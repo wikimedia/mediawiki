@@ -8,6 +8,7 @@ use Wikimedia\Rdbms\DatabaseDomain;
 class DatabaseDomainTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use PHPUnit4And6Compat;
 
 	public static function provideConstruct() {
 		return [
