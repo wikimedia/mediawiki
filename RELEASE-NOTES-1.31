@@ -32,6 +32,7 @@ production.
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
 * $wgLogAutopatrol now defaults to false instead of true.
+* $wgValidateAllHtml was removed and will be ignored.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
@@ -239,6 +240,11 @@ changes to languages because of Phabricator reports.
 * The ResourceLoaderGetLessVars hook, deprecated in 1.30, has been removed.
   Use ResourceLoaderModule::getLessVars() to expose local variables instead
   of global ones.
+* As part of work to modernise user-generated content clean-up, a config option and some
+  methods related to HTML validity were removed without deprecation. The public methods
+  MWTidy::checkErrors() and its callee TidyDriverBase::validate() are removed, as are
+  MediaWikiTestCase::assertValidHtmlSnippet() and ::assertValidHtmlDocument(). The
+  $wgValidateAllHtml configuration option is removed and will be ignored.
 
 === Deprecations in 1.31 ===
 * The Revision class was deprecated in favor of RevisionStore, BlobStore, and
