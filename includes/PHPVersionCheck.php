@@ -54,7 +54,6 @@ class PHPVersionCheck {
 	 *   - api.php
 	 *   - mw-config/index.php
 	 *   - cli
-	 * @return $this
 	 */
 	function setEntryPoint( $entryPoint ) {
 		$this->entryPoint = $entryPoint;
@@ -102,8 +101,6 @@ class PHPVersionCheck {
 
 	/**
 	 * Displays an error, if the installed php version does not meet the minimum requirement.
-	 *
-	 * @return $this
 	 */
 	function checkRequiredPHPVersion() {
 		$phpInfo = $this->getPHPInfo();
@@ -151,8 +148,6 @@ HTML;
 
 	/**
 	 * Displays an error, if the vendor/autoload.php file could not be found.
-	 *
-	 * @return $this
 	 */
 	function checkVendorExistence() {
 		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
@@ -179,8 +174,6 @@ HTML;
 
 	/**
 	 * Displays an error, if a PHP extension does not exist.
-	 *
-	 * @return $this
 	 */
 	function checkExtensionExistence() {
 		$missingExtensions = array();
