@@ -29,12 +29,6 @@ abstract class RaggettBase extends TidyDriverBase {
 		return $correctedtext;
 	}
 
-	public function validate( $text, &$errorStr ) {
-		$retval = 0;
-		$errorStr = $this->cleanWrapped( $text, true, $retval );
-		return ( $retval < 0 && $errorStr == '' ) || $retval == 0;
-	}
-
 	/**
 	 * Perform a clean/repair operation
 	 * @param string $text HTML to check

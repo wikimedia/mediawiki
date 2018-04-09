@@ -53,27 +53,6 @@ class MWTidy {
 	}
 
 	/**
-	 * Check HTML for errors, used if $wgValidateAllHtml = true.
-	 *
-	 * @param string $text
-	 * @param string &$errorStr Return the error string
-	 * @return bool Whether the HTML is valid
-	 * @throws MWException
-	 */
-	public static function checkErrors( $text, &$errorStr = null ) {
-		$driver = self::singleton();
-		if ( !$driver ) {
-			throw new MWException( __METHOD__ .
-				': tidy is disabled, caller should have checked MWTidy::isEnabled()' );
-		}
-		if ( $driver->supportsValidate() ) {
-			return $driver->validate( $text, $errorStr );
-		} else {
-			throw new MWException( __METHOD__ . ": tidy driver does not support validate()" );
-		}
-	}
-
-	/**
 	 * @return bool
 	 */
 	public static function isEnabled() {

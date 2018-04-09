@@ -32,6 +32,7 @@ production.
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
 * $wgLogAutopatrol now defaults to false instead of true.
+* $wgValidateAllHtml was removed and will be ignored.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
@@ -334,6 +335,11 @@ changes to languages because of Phabricator reports.
 * HTMLForm & VFormHTMLForm::isVForm(), deprecated in 1.25, have been removed.
 * The ProfileSection class, deprecated in 1.25 and unused, has been removed.
 * Wikimedia\Rdbms\SavepointPostgres is deprecated.
+* As part of work to modernise user-generated content clean-up, a config option and some
+  methods related to HTML validity were removed without deprecation. The public methods
+  MWTidy::checkErrors() and its callee TidyDriverBase::validate() are removed, as are
+  MediaWikiTestCase::assertValidHtmlSnippet() and ::assertValidHtmlDocument(). The
+  $wgValidateAllHtml configuration option is removed and will be ignored.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
