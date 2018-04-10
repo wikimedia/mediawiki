@@ -88,9 +88,7 @@ class MailAddress {
 				global $wgEnotifUseRealName;
 				$name = ( $wgEnotifUseRealName && $this->realName !== '' ) ? $this->realName : $this->name;
 				$quoted = UserMailer::quotedPrintable( $name );
-				if ( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
-					$quoted = '"' . $quoted . '"';
-				}
+				$quoted = '"' . str_replace( '"', '\"', $quoted ) . '"';
 				return "$quoted <{$this->address}>";
 			} else {
 				return $this->address;
