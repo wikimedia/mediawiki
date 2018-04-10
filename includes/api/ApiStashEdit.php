@@ -67,11 +67,11 @@ class ApiStashEdit extends ApiBase {
 			);
 		}
 
-		$this->requireAtLeastOneParameter( $params, 'stashedtexthash', 'text' );
+		$this->requireOnlyOneParameter( $params, 'stashedtexthash', 'text' );
 
 		$text = null;
 		$textHash = null;
-		if ( strlen( $params['stashedtexthash'] ) ) {
+		if ( $params['stashedtexthash'] !== null ) {
 			// Load from cache since the client indicates the text is the same as last stash
 			$textHash = $params['stashedtexthash'];
 			if ( !preg_match( '/^[0-9a-f]{40}$/', $textHash ) ) {
@@ -82,16 +82,11 @@ class ApiStashEdit extends ApiBase {
 			if ( !is_string( $text ) ) {
 				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
 			}
-		} elseif ( $params['text'] !== null ) {
-			// Trim and fix newlines so the key SHA1's match (see WebRequest::getText())
+		} else {
+			// 'text' was passed.  Trim and fix newlines so the key SHA1's
+			// match (see WebRequest::getText())
 			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 			$textHash = sha1( $text );
-		} else {
-			$this->dieWithError( [
-				'apierror-missingparam-at-least-one-of',
-				Message::listParam( [ '<var>stashedtexthash</var>', '<var>text</var>' ] ),
-				2,
-			], 'missingparam' );
 		}
 
 		$textContent = ContentHandler::makeContent(
@@ -156,14 +151,12 @@ class ApiStashEdit extends ApiBase {
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$stats->increment( "editstash.cache_stores.$status" );
 
-		$this->getResult()->addValue(
-			null,
-			$this->getModuleName(),
-			[
-				'status' => $status,
-				'texthash' => $textHash
-			]
-		);
+		$ret = [ 'status' => $status ];
+		if ( $status !== 'ratelimited' ) {
+			$ret['texthash'] = $textHash;
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
 	/**
@@ -235,11 +228,15 @@ class ApiStashEdit extends ApiBase {
 						[ 'cachekey' => $key, 'title' => $titleStr ] );
 					return self::ERROR_NONE;
 				} else {
+					// Our test cache can't fail, so we can't test this
+					// @codeCoverageIgnoreStart
 					$logger->error( "Failed to cache parser output for key '{cachekey}' ('{title}').",
 						[ 'cachekey' => $key, 'title' => $titleStr ] );
 					return self::ERROR_CACHE;
+					// @codeCoverageIgnoreEnd
 				}
 			} else {
+				// @todo Doesn't seem reachable, see @todo in buildStashValue
 				$logger->info( "Uncacheable parser output for key '{cachekey}' ('{title}') [{code}].",
 					[ 'cachekey' => $key, 'title' => $titleStr, 'code' => $code ] );
 				return self::ERROR_UNCACHEABLE;
@@ -326,10 +323,10 @@ class ApiStashEdit extends ApiBase {
 		} elseif ( $editInfo->output->getFlag( 'vary-revision' ) ) {
 			// This can be used for the initial parse, e.g. for filters or doEditContent(),
 			// but a second parse will be triggered in doEditUpdates(). This is not optimal.
-			$logger->info( "Cache for key '$key' ('$title') has vary_revision." );
+			$logger->info( "Cache for key '$key' ('$title') has vary_revision." ); // @codeCoverageIgnore
 		} elseif ( $editInfo->output->getFlag( 'vary-revision-id' ) ) {
 			// Similar to the above if we didn't guess the ID correctly.
-			$logger->info( "Cache for key '$key' ('$title') has vary_revision_id." );
+			$logger->info( "Cache for key '$key' ('$title') has vary_revision_id." ); // @codeCoverageIgnore
 		}
 
 		return $editInfo;
@@ -407,7 +404,7 @@ class ApiStashEdit extends ApiBase {
 	) {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions.
 		// Put an upper limit on the TTL for sanity to avoid extreme template/file staleness.
-		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
+		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getCacheTime() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, self::MAX_CACHE_TTL );
 
 		// Avoid extremely stale user signature timestamps (T84843)
@@ -416,6 +413,9 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		if ( $ttl <= 0 ) {
+			// @todo It doesn't seem like this can occur, because it would mean an entry older than
+			// getCacheExpiry() seconds, which is much longer than PRESUME_FRESH_TTL_SEC, and
+			// anything older than PRESUME_FRESH_TTL_SEC will have been thrown out already.
 			return [ null, 0, 'no_ttl' ];
 		}
 
