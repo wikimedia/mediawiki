@@ -137,20 +137,11 @@ changes to languages because of Phabricator reports.
 * (T187750) New language support: Spanish formal address (es-formal).
 * (T187824) New language support: Hungarian formal address (hu-formal).
 
-=== Other changes in 1.31 ===
-* Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
-* Introducing multi-content-revision capability into the storage layer. For details,
-  see <https://www.mediawiki.org/wiki/Requests_for_comment/Multi-Content_Revisions>.
-* The Revision class was deprecated in favor of RevisionStore, BlobStore, and
-  RevisionRecord and its subclasses.
+=== Breaking changes in 1.31 ===
 * MessageBlobStore::insertMessageBlob() (deprecated in 1.27) was removed.
-* The global function wfBCP47 was renamed to LanguageCode::bcp47.
-* The global function wfBCP47 is now deprecated.
-* The global function wfCountDown() is now deprecated in favor of
-  Maintenance::countDown()
 * The OutputPage class constructor now requires a context parameter,
   (instantiating without context was deprecated in 1.18)
-* mw.page (deprecated in 1.30) was removed.
+* The mw.page JavaScript singleton (deprecated in 1.30) was removed.
 * Article::getLastPurgeTimestamp(), WikiPage::getLastPurgeTimestamp(), and the
   related WikiPage::PURGE_* constants, deprecated in 1.29, were removed.
 * The Article::selectFields(), Article::onArticleCreate(),
@@ -158,6 +149,102 @@ changes to languages because of Phabricator reports.
   in 1.24, were removed.
 * Installer::locateExecutable() and Installer::locateExecutableInDefaultPaths()
   were removed, use ExecutableFinder::findInDefaultPaths() instead.
+* The deprecated MW_DIFF_VERSION constant was removed.
+  DifferenceEngine::MW_DIFF_VERSION should be used instead.
+* Due to significant refactoring, method ContribsPager::getUserCond() that had
+  no access restriction has been removed.
+* The Block class will no longer accept usable-but-missing usernames for
+  'byText' or ->setBlocker(). Callers should either ensure the blocker exists
+  locally or use a new interwiki-format username like "iw>Example".
+* The following methods and constants from the WatchedItem class, which were deprecated in
+  1.27, have been removed.
+  * WatchedItem::getTitle()
+  * WatchedItem::fromUserTitle()
+  * WatchedItem::addWatch()
+  * WatchedItem::removeWatch()
+  * WatchedItem::isWatched()
+  * WatchedItem::duplicateEntries()
+  * WatchedItem::IGNORE_USER_RIGHTS
+  * WatchedItem::CHECK_USER_RIGHTS
+  * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
+* The $statementsOnOwnLine parameter of JavaScriptMinifier::minify was removed.
+  The corresponding configuration variable ($wgResourceLoaderMinifierStatementsOnOwnLine)
+  has been deprecated since 1.27 and was removed as well.
+* The $maxLineLength parameter of JavaScriptMinifier::minify was removed.
+  The corresponding configuration variable ($wgResourceLoaderMinifierMaxLineLength)
+  has been deprecated since 1.27 and was removed as well.
+* The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
+  HtmlFormatter\HtmlFormatter class should be used instead.
+* The driver 'mysql' for MySQL, deprecated in MediaWiki 1.30, has been removed.
+  The driver has been deprecated since PHP 5.5 and was removed in PHP 7.0. The
+  default driver for MySQL has been 'mysqli' since MediaWiki 1.22.
+* The following properties of PreparedEdit were deprecated in 1.21 and have been removed:
+  * PreparedEdit->newText
+  * PreparedEdit->oldText
+  * PreparedEdit->pst
+* ParserOutput objects generated using a non-default value for
+  ParserOptions::setWrapOutputClass() can no longer be added to the parser cache.
+* The following deprecated methods from the OutputPage class have been removed:
+  * OutputPage::addExtensionStyle(); deprecated in 1.27
+  * OutputPage::getExtStyle(); deprecated in 1.27
+  * OutputPage::setETag(); deprecated in 1.28 (obsolete no-op)
+  * OutputPage::setSquidMaxage(); deprecated in 1.27
+  * OutputPage::readOnlyPage(); deprecated in 1.25
+  * OutputPage::rateLimited(); deprecated in 1.25
+  * Additionally, the protected OutputPage::$mExtStyles array, only accessed through
+    the above and with no known uses, was removed.
+* The no-op method Skin::showIPinHeader(), deprecated in 1.27, was removed.
+* The following variables and methods in EditPage, deprecated in MediaWiki 1.30, were removed:
+  * $isCssJsSubpage — use ::isUserConfigPage()
+  * $isCssSubpage — use ::isUserCssConfigPage()
+  * $isJsSubpage — use ::isUserJsConfigPage()
+  * $isWrongCaseCssJsPage – use ::isWrongCaseUserConfigPage()
+  * ::getSummaryInput() – use ::getSummaryInputWidget()
+  * ::getSummaryInputOOUI() – use ::getSummaryInputWidget()
+  * ::getCheckboxes() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
+  * ::getCheckboxesOOUI() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
+* The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
+* In User, the cookie-related methods which were wrappers for the functions on the response
+  object, and were deprecated in 1.27, have been removed:
+  * ::setCookie()
+  * ::clearCookie()
+  * ::setExtendedLoginCookie()
+  Note that User::setCookies() remains, and is not deprecated.
+* Also in User, some auth-related methods which were deprecated in 1.27, have been removed:
+  * ::getEditTokenTimestamp() – use MediaWiki\Session\Token::getTimestamp()
+  * ::getPasswordFactory() – create a PasswordFactory directly
+  * ::passwordChangeInputAttribs()
+* The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have been removed.
+* SpecialPageFactory::getList(), deprecated in 1.24, has been removed. You can
+  use ::getNames() instead.
+* OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
+  can use ApiOpenSearch::getOpenSearchTemplate() instead.
+* The global function wfBaseConvert, deprecated in 1.27, has been removed. Use
+  Wikimedia\base_convert() directly.
+* Calling Database::begin() explicitly during an implicit transaction or when DBO_TRX
+  is set results in an exception. Calling Database::commit() explicitly for an implicit
+  transaction also results in an exception. Previously these were logged as errors.
+  The startAtomic() and endAtomic() methods, or AtomicSectionUpdate should be used
+  instead.
+* The global function wfOutputHandler() was removed, use the its replacement
+  MediaWiki\OutputHandler::handle() instead. The global function was only sometimes defined.
+  Its replacement is always available via the autoloader.
+* ChangeTags::listExtensionActivatedTags and ::listExtensionDefinedTags, deprecated
+  in 1.28, have been removed.  Use ::listSoftwareActivatedTags() and
+  ::listSoftwareDefinedTags() instead.
+* Title::getTitleInvalidRegex(), deprecated in 1.25, has been removed. You
+  can use MediaWikiTitleCodec::getTitleInvalidRegex() instead.
+* HTMLForm & VFormHTMLForm::isVForm(), deprecated in 1.25, have been removed.
+* The ProfileSection class, deprecated in 1.25 and unused, has been removed.
+* The ResourceLoaderGetLessVars hook, deprecated in 1.30, has been removed.
+  Use ResourceLoaderModule::getLessVars() to expose local variables instead
+  of global ones.
+
+=== Deprecations in 1.31 ===
+* The Revision class was deprecated in favor of RevisionStore, BlobStore, and
+  RevisionRecord and its subclasses.
+* The global function wfBCP47 is deprecated in favour of LanguageCode::bcp47.
+* The global function wfCountDown is now deprecated in favor of Maintenance::countDown.
 * Several methods for returning lists of fields to select from the database
   have been deprecated in favor of similar methods that also return the tables
   to select from and the join conditions for those tables.
@@ -178,23 +265,14 @@ changes to languages because of Phabricator reports.
   * Revision::selectArchiveFields() → Revision::getArchiveQueryInfo()
   * User::selectFields() → User::getQueryInfo()
   * WikiPage::selectFields() → WikiPage::getQueryInfo()
-* Due to significant refactoring, method ContribsPager::getUserCond() that had
-  no access restriction has been removed.
 * Revision::setUserIdAndName() was deprecated.
 * Access to TitleValue class properties was deprecated, the relevant getters
   should be used instead.
 * DifferenceEngine::getDiffBodyCacheKey() is deprecated. Subclasses should
   override DifferenceEngine::getDiffBodyCacheKeyParams() instead.
-* The deprecated MW_DIFF_VERSION constant was removed.
-  DifferenceEngine::MW_DIFF_VERSION should be used instead.
 * Use of Maintenance::error( $err, $die ) to exit script was deprecated. Use
   Maintenance::fatalError() instead.
 * Passing a ParserOptions object to OutputPage::parserOptions() is deprecated.
-* Browser support for Opera 12 and older was removed.
-  Opera 15+ continues at Grade A support.
-* The Block class will no longer accept usable-but-missing usernames for
-  'byText' or ->setBlocker(). Callers should either ensure the blocker exists
-  locally or use a new interwiki-format username like "iw>Example".
 * The RevisionInsertComplete hook is now deprecated, use RevisionRecordInserted instead.
   RevisionInsertComplete is still called, but the second and third parameter will always be null.
   Hard deprecation is scheduled for 1.32.
@@ -210,33 +288,7 @@ changes to languages because of Phabricator reports.
   * OutputPage::enableSectionEditLinks()
   * OutputPage::sectionEditLinksEnabled()
   * The public ParserOutput state fields $mTOCEnabled and $mEditSectionTokens are also deprecated.
-* The following methods and constants from the WatchedItem class, which were deprecated in
-  1.27, have been removed.
-  * WatchedItem::getTitle()
-  * WatchedItem::fromUserTitle()
-  * WatchedItem::addWatch()
-  * WatchedItem::removeWatch()
-  * WatchedItem::isWatched()
-  * WatchedItem::duplicateEntries()
-  * WatchedItem::IGNORE_USER_RIGHTS
-  * WatchedItem::CHECK_USER_RIGHTS
-  * WatchedItem::DEPRECATED_USAGE_TIMESTAMP
-* The $statementsOnOwnLine parameter of JavaScriptMinifier::minify was removed.
-  The corresponding configuration variable ($wgResourceLoaderMinifierStatementsOnOwnLine)
-  has been deprecated since 1.27 and was removed as well.
-* The $maxLineLength parameter of JavaScriptMinifier::minify was removed.
-  The corresponding configuration variable ($wgResourceLoaderMinifierMaxLineLength)
-  has been deprecated since 1.27 and was removed as well.
-* The HtmlFormatter class was removed (deprecated in 1.27). The namespaced
-  HtmlFormatter\HtmlFormatter class should be used instead.
 * License::getLicenses has been deprecated; use License::getLines instead.
-* The driver 'mysql' for MySQL, deprecated in MediaWiki 1.30, has been removed.
-  The driver has been deprecated since PHP 5.5 and was removed in PHP 7.0. The
-  default driver for MySQL has been 'mysqli' since MediaWiki 1.22.
-* The following properties of PreparedEdit were deprecated in 1.21 and have been removed:
-  * PreparedEdit->newText
-  * PreparedEdit->oldText
-  * PreparedEdit->pst
 * QuickTemplate::setRef() was deprecated in favour of QuickTemplate::set().
   Setting template variables by reference allowed violating the principle of data being
   immutable once added to the skin template. In practice, this method was not being
@@ -246,19 +298,6 @@ changes to languages because of Phabricator reports.
 * MediaWikiI18N::translate() was deprecated in favour of Skin::msg() or wfMessage().
 * Passing false to ParserOptions::setWrapOutputClass() is deprecated. Use the
   'unwrap' transform to ParserOutput::getText() instead.
-* ParserOutput objects generated using a non-default value for
-  ParserOptions::setWrapOutputClass() can no longer be added to the parser
-  cache.
-* The following deprecated methods from the OutputPage class have been removed:
-  * OutputPage::addExtensionStyle(); deprecated in 1.27
-  * OutputPage::getExtStyle(); deprecated in 1.27
-  * OutputPage::setETag(); deprecated in 1.28 (obsolete no-op)
-  * OutputPage::setSquidMaxage(); deprecated in 1.27
-  * OutputPage::readOnlyPage(); deprecated in 1.25
-  * OutputPage::rateLimited(); deprecated in 1.25
-  * Additionally, the protected OutputPage::$mExtStyles array, only accessed through
-    the above and with no known uses, was removed.
-* The no-op method Skin::showIPinHeader(), deprecated in 1.27, was removed.
 * \ObjectFactory (no namespace) is deprecated, the namespaced \Wikimedia\ObjectFactory
   from the wikimedia/object-factory library should be used instead.
 * CommentStore::newKey is deprecated. Get an instance from MediaWikiServices instead.
@@ -276,67 +315,28 @@ changes to languages because of Phabricator reports.
   * Title::isCssJsSubpage – use ::isUserConfigPage
   * Title::isCssSubpage – use ::isUserCssConfigPage
   * Title::isJsSubpage – use ::isUserJsConfigPage
-* The following variables and methods in EditPage, deprecated in MediaWiki 1.30, were removed:
-  * $isCssJsSubpage — use ::isUserConfigPage()
-  * $isCssSubpage — use ::isUserCssConfigPage()
-  * $isJsSubpage — use ::isUserJsConfigPage()
-  * $isWrongCaseCssJsPage – use ::isWrongCaseUserConfigPage()
-  * ::getSummaryInput() – use ::getSummaryInputWidget()
-  * ::getSummaryInputOOUI() – use ::getSummaryInputWidget()
-  * ::getCheckboxes() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
-  * ::getCheckboxesOOUI() – use ::getCheckboxesWidget() or ::getCheckboxesDefinition()
-* The method ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
-* The DeferredStringifier class is deprecated, use Message::listParam() instead.
-* The type string for the parameter $lang of DateFormatter::getInstance is
-  deprecated.
-* In User, the cookie-related methods which were wrappers for the functions on the response
-  object, and were deprecated in 1.27, have been removed:
-  * ::setCookie()
-  * ::clearCookie()
-  * ::setExtendedLoginCookie()
-  Note that User::setCookies() remains, and is not deprecated.
-* Also in User, some auth-related methods which were deprecated in 1.27, have been removed:
-  * ::getEditTokenTimestamp() – use MediaWiki\Session\Token::getTimestamp()
-  * ::getPasswordFactory() – create a PasswordFactory directly
-  * ::passwordChangeInputAttribs()
-* The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have been removed.
 * The following methods related to caching of half-parsed HTML were deprecated:
   * Parser::serializeHalfParsedText()
   * Parser::unserializeHalfParsedText()
   * Parser::isValidHalfParsedText()
   * StripState::getSubState()
   * StripState::merge()
+* The DeferredStringifier class is deprecated, use Message::listParam() instead.
+* The type string for the parameter $lang of DateFormatter::getInstance is
+  deprecated.
+* Wikimedia\Rdbms\SavepointPostgres is deprecated.
+
+=== Other changes in 1.31 ===
+* Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
+* Browser support for Opera 12 and older was removed. Opera 15+ continues at Grade A.
+* Introducing multi-content-revision capability into the storage layer. For details,
+  see <https://www.mediawiki.org/wiki/Requests_for_comment/Multi-Content_Revisions>.
 * The "free" CSS class is now only applied to unbracketed URLs in wikitext. Links
   written using square brackets will get the class "text" not "free".
-* SpecialPageFactory::getList(), deprecated in 1.24, has been removed. You can
-  use ::getNames() instead.
-* OpenSearch::getOpenSearchTemplate(), deprecated in 1.25, has been removed. You
-  can use ApiOpenSearch::getOpenSearchTemplate() instead.
-* The global function wfBaseConvert, deprecated in 1.27, has been removed. Use
-  Wikimedia\base_convert() directly.
 * RFC 157418: Whitespace is trimmed from wikitext headings, wikitext list items,
   wikitext table captions, wikitext table headings, wikitext table cells. HTML
   headings, HTML list items, HTML table captions, HTML table headings, HTML table cells
   will not have this trimming behavior.
-* Calling Database::begin() explicitly during an implicit transaction or when DBO_TRX
-  is set results in an exception. Calling Database::commit() explicitly for an implicit
-  transaction also results in an exception. Previously these were logged as errors.
-  The startAtomic() and endAtomic() methods, or AtomicSectionUpdate should be used
-  instead.
-* The global function wfOutputHandler() was removed, use the its replacement
-  MediaWiki\OutputHandler::handle() instead. The global function was only sometimes defined.
-  Its replacement is always available via the autoloader.
-* ChangeTags::listExtensionActivatedTags and ::listExtensionDefinedTags, deprecated
-  in 1.28, have been removed.  Use ::listSoftwareActivatedTags() and
-  ::listSoftwareDefinedTags() instead.
-* Title::getTitleInvalidRegex(), deprecated in 1.25, has been removed. You
-  can use MediaWikiTitleCodec::getTitleInvalidRegex() instead.
-* HTMLForm & VFormHTMLForm::isVForm(), deprecated in 1.25, have been removed.
-* The ProfileSection class, deprecated in 1.25 and unused, has been removed.
-* Wikimedia\Rdbms\SavepointPostgres is deprecated.
-* The ResourceLoaderGetLessVars hook, deprecated in 1.30, has been removed.
-  Use ResourceLoaderModule::getLessVars() to expose local variables instead
-  of global ones.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
