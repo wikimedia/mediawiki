@@ -113,6 +113,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $messages = [];
 
+	/**
+	 * @var array List of message keys used as Less variables
+	 * @par Usage:
+	 * @code
+	 * [ [message-key], [message-key], ... ]
+	 * @endcode
+	 * @since 1.32
+	 */
+	protected $lessmessages = [];
+
 	/** @var string Name of group to load this module in */
 	protected $group;
 
@@ -196,6 +206,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         ],
 	 *         // Messages to always load
 	 *         'messages' => [array of message key strings],
+	 *         // Messages to always load as Less variables
+	 *         'lessmessages' => [array of message key strings],
 	 *         // Group which this module should be loaded together with
 	 *         'group' => [group name string],
 	 *         // Function that, if it returns true, makes the loader skip this module.
@@ -256,6 +268,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
+				case 'lessmessages':
 				case 'targets':
 					// Normalise
 					$option = array_values( array_unique( (array)$option ) );
@@ -428,6 +441,21 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @since 1.32
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$vars = parent::getLessVars( $context );
+		foreach ( $this->lessmessages as $key ) {
+			$vars[$key] = CSSMin::serializeStringValue( $context->msg( $key )->text() );
+		}
+		return $vars;
+	}
+
+	/**
 	 * Gets the name of the group this module should be loaded in.
 	 *
 	 * @return string Group name
@@ -564,6 +592,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'skinScripts',
 			'skinStyles',
 			'messages',
+			'lessmessages',
 			'templates',
 			'skipFunction',
 			'debugRaw',
@@ -926,7 +955,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getType() {
 		$canBeStylesOnly = !(
-			// All options except 'styles', 'skinStyles' and 'debugRaw'
+			// All options except 'styles', 'skinStyles', 'lessmessages' and 'debugRaw'
 			$this->scripts
 			|| $this->debugScripts
 			|| $this->templates
