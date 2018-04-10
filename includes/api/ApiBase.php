@@ -1129,8 +1129,8 @@ abstract class ApiBase extends ContextSource {
 				) {
 					$type = array_merge( $type, $paramSettings[self::PARAM_EXTRA_NAMESPACES] );
 				}
-				// By default, namespace parameters allow ALL_DEFAULT_STRING to be used to specify
-				// all namespaces.
+				// Namespace parameters allow ALL_DEFAULT_STRING to be used to
+				// specify all namespaces irrespective of PARAM_ALL.
 				$allowAll = true;
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
@@ -1436,22 +1436,15 @@ abstract class ApiBase extends ContextSource {
 				return $value;
 			}
 
-			if ( is_array( $allowedValues ) ) {
-				$values = array_map( function ( $v ) {
-					return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
-				}, $allowedValues );
-				$this->dieWithError( [
-					'apierror-multival-only-one-of',
-					$valueName,
-					Message::listParam( $values ),
-					count( $values ),
-				], "multival_$valueName" );
-			} else {
-				$this->dieWithError( [
-					'apierror-multival-only-one',
-					$valueName,
-				], "multival_$valueName" );
-			}
+			$values = array_map( function ( $v ) {
+				return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
+			}, $allowedValues );
+			$this->dieWithError( [
+				'apierror-multival-only-one-of',
+				$valueName,
+				Message::listParam( $values ),
+				count( $values ),
+			], "multival_$valueName" );
 		}
 
 		if ( is_array( $allowedValues ) ) {
@@ -1537,7 +1530,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'timestamp'
+	 * Validate and normalize parameters of type 'timestamp'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
@@ -1559,15 +1552,15 @@ abstract class ApiBase extends ContextSource {
 			return wfTimestamp( TS_MW );
 		}
 
-		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
-		if ( $unixTimestamp === false ) {
+		$timestamp = wfTimestamp( TS_MW, $value );
+		if ( $timestamp === false ) {
 			$this->dieWithError(
 				[ 'apierror-badtimestamp', $encParamName, wfEscapeWikiText( $value ) ],
 				"badtimestamp_{$encParamName}"
 			);
 		}
 
-		return wfTimestamp( TS_MW, $unixTimestamp );
+		return $timestamp;
 	}
 
 	/**
@@ -1609,7 +1602,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Validate and normalize of parameters of type 'user'
+	 * Validate and normalize parameters of type 'user'
 	 * @param string $value Parameter value
 	 * @param string $encParamName Parameter name
 	 * @return string Validated and normalized parameter
@@ -1619,15 +1612,32 @@ abstract class ApiBase extends ContextSource {
 			return $value;
 		}
 
-		$title = Title::makeTitleSafe( NS_USER, $value );
-		if ( $title === null || $title->hasFragment() ) {
+		$titleObj = Title::makeTitleSafe( NS_USER, $value );
+
+		if ( $titleObj ) {
+			$value = $titleObj->getText();
+		}
+
+		if (
+			!User::isValidUserName( $value ) &&
+			// We allow ranges as well, for blocks.
+			!IP::isIPAddress( $value ) &&
+			// See comment for User::isIP.  We don't just call that function
+			// here because it also returns true for things like
+			// 300.300.300.300 that are neither valid usernames nor valid IP
+			// addresses.
+			!preg_match(
+				'/^' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.xxx$/',
+				$value
+			)
+		) {
 			$this->dieWithError(
 				[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $value ) ],
 				"baduser_{$encParamName}"
 			);
 		}
 
-		return $title->getText();
+		return $value;
 	}
 
 	/**@}*/
