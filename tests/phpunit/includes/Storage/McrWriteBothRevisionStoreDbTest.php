@@ -9,7 +9,9 @@
 namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\Storage\RevisionRecord;
+use Revision;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use WikiPage;
 
 class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
@@ -63,5 +65,46 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->tablesUsed[] = 'content_models';
 		$this->tablesUsed[] = 'slots';
 		$this->tablesUsed[] = 'slot_roles';
+	}
+
+	protected function revisionToRow( Revision $rev ) {
+		$page = WikiPage::factory( $rev->getTitle() );
+		$rec = $rev->getRevisionRecord();
+		$main = $rec->getSlot( 'main' );
+
+		return (object)[
+			'rev_id' => (string)$rev->getId(),
+			'rev_page' => (string)$rev->getPage(),
+			'rev_text_id' => (string)$rev->getTextId(),
+			'rev_timestamp' => (string)$rev->getTimestamp(),
+			'rev_user_text' => (string)$rev->getUserText(),
+			'rev_user' => (string)$rev->getUser(),
+			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
+			'rev_deleted' => (string)$rev->getVisibility(),
+			'rev_len' => (string)$rev->getSize(),
+			'rev_parent_id' => (string)$rev->getParentId(),
+			'rev_sha1' => (string)$rev->getSha1(),
+			'rev_comment_text' => $rev->getComment(),
+			'rev_comment_data' => null,
+			'rev_comment_cid' => null,
+			'rev_content_format' => $rev->getContentFormat(),
+			'rev_content_model' => $rev->getContentModel(),
+			'page_namespace' => (string)$page->getTitle()->getNamespace(),
+			'page_title' => $page->getTitle()->getDBkey(),
+			'page_id' => (string)$page->getId(),
+			'page_latest' => (string)$page->getLatest(),
+			'page_is_redirect' => $page->isRedirect() ? '1' : '0',
+			'page_len' => (string)$page->getContent()->getSize(),
+			'user_name' => (string)$rev->getUserText(),
+			'content_id' => $main->getContentId(),
+			'content_address' => $main->getAddress(),
+			'content_size' => $main->getSize(),
+			'content_sha1' => $main->getSha1(),
+			'slot_revision_id' => $main->getRevision(),
+			'slot_origin' => $main->getOrigin(),
+			'slot_content_id' => $main->getContentId(),
+			'model_name' => $main->getModel(),
+			'role_name' => $main->getRole(),
+		];
 	}
 }
