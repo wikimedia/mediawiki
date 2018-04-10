@@ -583,7 +583,10 @@ return [
 		$authManager = AuthManager::singleton();
 		$linkRenderer = $services->getLinkRendererFactory()->create();
 		$config = $services->getMainConfig();
-		return new DefaultPreferencesFactory( $config, $wgContLang, $authManager, $linkRenderer );
+		$factory = new DefaultPreferencesFactory( $config, $wgContLang, $authManager, $linkRenderer );
+		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
+
+		return $factory;
 	},
 
 	'HttpRequestFactory' => function ( MediaWikiServices $services ) {
