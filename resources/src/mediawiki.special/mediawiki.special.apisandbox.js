@@ -614,6 +614,7 @@
 					$overlay: true,
 					popup: {
 						classes: [ 'mw-apisandbox-popup' ],
+						padded: true,
 						$content: $content
 					}
 				} );
