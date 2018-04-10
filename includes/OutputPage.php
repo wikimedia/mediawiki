@@ -2295,6 +2295,23 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Transfer styles and JavaScript modules from skin.
+	 *
+	 * @param Skin $sk to load modules for
+	 */
+	public function loadSkinModules( $sk ) {
+		foreach ( $sk->getDefaultModules() as $group => $modules ) {
+			if ( $group === 'styles' ) {
+				foreach ( $modules as $key => $moduleMembers ) {
+					$this->addModuleStyles( $moduleMembers );
+				}
+			} else {
+				$this->addModules( $modules );
+			}
+		}
+	}
+
+	/**
 	 * Finally, all the text has been munged and accumulated into
 	 * the object, let's actually output it:
 	 *
@@ -2387,9 +2404,7 @@ class OutputPage extends ContextSource {
 			}
 
 			$sk = $this->getSkin();
-			foreach ( $sk->getDefaultModules() as $group ) {
-				$this->addModules( $group );
-			}
+			$this->loadSkinModules( $sk );
 
 			MWDebug::addModules( $this );
 
