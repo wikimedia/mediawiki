@@ -379,6 +379,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		$wgRequest = new FauxRequest();
 		MediaWiki\Session\SessionManager::resetCache();
+
+		Language::clearCaches();
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {

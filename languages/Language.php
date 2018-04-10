@@ -246,6 +246,18 @@ class Language {
 	}
 
 	/**
+	 * Intended for tests that may change configuration in a way that invalidates caches.
+	 */
+	public static function clearCaches() {
+		self::$dataCache = null;
+		self::getLocalisationCache();
+		self::$mLangObjCache = [];
+		self::$fallbackLanguageCache = [];
+		self::$grammarTransformations = null;
+		self::$languageNameCache = null;
+	}
+
+	/**
 	 * Checks whether any localisation is available for that language tag
 	 * in MediaWiki (MessagesXx.php exists).
 	 *
