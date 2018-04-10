@@ -598,6 +598,149 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * IP Block cookie should NOT be set when autoblock for ip blocks is disabled
+	 */
+	public function testIpBlockCookieNotSet() {
+		$this->setMwGlobals( [
+			'wgEnableAutoblockForIpBlocks' => false,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 5 * 60 * 60 ) ),
+		] );
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+
+		// get user
+		$user = User::newFromSession( $request );
+		$user->load();
+
+		// test cookie was not set
+		$cookies = $request->response()->getCookies();
+		$this->assertArrayNotHasKey( 'wikiBlockID', $cookies );
+
+		// clean up
+		$block->delete();
+	}
+
+	/**
+	 * When an ip user is blocked and then they log in, cookie block
+	 * should be invalid and the cookie removed. No autoblocking should
+	 * happen either
+	 */
+	public function testIpBlockCookieIgnoredWhenUserLoggedIn() {
+		$this->setMwGlobals( [
+			'wgAutoblockExpiry' => 8000,
+			'wgEnableAutoblockForIpBlocks' => true,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+		] );
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->getSession()->setUser( $this->getTestUser()->getUser() );
+		$request->setCookie( 'BlockID', $block->getCookieValue() );
+
+		// setup user
+		$user = User::newFromSession( $request );
+
+		// logged in users should be inmune to to cookie block of type ip/range
+		$this->assertFalse( $user->isBlocked() );
+
+		// cookie is being cleared
+		$cookies = $request->response()->getCookies();
+		$this->assertEquals( '', $cookies['wikiBlockID']['value'] );
+
+		// clean up
+		$block->delete();
+	}
+
+	/**
+	 * When an ip user tries to edit and there is a
+	 * cookie with a block id, if the block is for an ip/ip-range
+	 * then the current IP should be autoblocked
+	 *
+	 * @covers User::spreadAnyEditBlock
+	 */
+	public function testSpreadAnyEditBlockForIpUsers() {
+		$this->setMwGlobals( [
+			'wgAutoblockExpiry' => 8000,
+			'wgEnableAutoblockForIpBlocks' => true,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$origBlock = new Block( [
+			// 40 hours
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+		] );
+		$origBlock->setTarget( '1.2.3.4' );
+		$origBlock->setBlocker( $this->getTestSysop()->getUser() );
+		$origBlock->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.2.4' );
+
+		// set block cookie (matching a different IP)
+		$request->setCookie( 'BlockID', $origBlock->getCookieValue() );
+
+		// get user
+		$user = User::newFromSession( $request );
+
+		// check user is blocked
+		$this->assertTrue( $user->isBlocked() );
+
+		// spread the block to the new ip
+		$user->spreadAnyEditBlock();
+
+		// Make a second request without cookie and check we are still blocked
+		$request = new FauxRequest();
+		$request->setIP( '1.2.2.4' );
+
+		// get user
+		$user = User::newFromSession( $request );
+		// check user is blocked
+		$this->assertTrue( $user->isBlocked() );
+
+		// check user is still blocked but now with a block
+		// targeting the request IP
+		$newBlock = $user->getBlock();
+		$this->assertTrue( $newBlock->getId() !== $origBlock->getId() );
+
+		// Should not block more than autoblock Expiry time
+		global $wgAutoblockExpiry;
+		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + $wgAutoblockExpiry );
+		$this->assertLessThanOrEqual( $maxExpiryTime, $newBlock->getExpiry() );
+
+		// since there was a cookie on the request, we don't reset it
+		$cookies = $request->response()->getCookies();
+		$this->assertArrayNotHasKey( 'wikiBlockID', $cookies );
+
+		// clean up
+		$origBlock->delete();
+		$newBlock->delete();
+	}
+
+	/**
 	 * When a user is autoblocked a cookie is set with which to track them
 	 * in case they log out and change IP addresses.
 	 * @link https://phabricator.wikimedia.org/T5233
