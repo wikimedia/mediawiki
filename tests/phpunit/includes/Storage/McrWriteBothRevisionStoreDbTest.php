@@ -3,6 +3,8 @@ namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
+use Revision;
+use WikiPage;
 
 /**
  * Tests RevisionStore against the intermediate MCR DB schema for use during schema migration.
