@@ -1643,7 +1643,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function submitForm( array $formData, PreferencesForm $form ) {
 		$res = $this->saveFormData( $formData, $form );
 
-		if ( $res ) {
+		if ( $res === true ) {
 			$urlOptions = [];
 
 			if ( $res === 'eauth' ) {
@@ -1661,7 +1661,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$context->getOutput()->redirect( $url );
 		}
 
-		return Status::newGood();
+		return ( $res === true ? Status::newGood() : $res );
 	}
 
 	/**
