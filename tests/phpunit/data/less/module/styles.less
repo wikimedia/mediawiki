@@ -3,4 +3,7 @@
 /* @noflip */
 .unit-tests {
 	.test-mixin(@unitTestColor);
+	&:after {
+		content: "[@{editsection}]";
+	}
 }
