@@ -258,6 +258,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'styles.less' ],
+			'lessMessages' => [ 'editsection' ],
 		] );
 		$module->setName( 'test.less' );
 		$styles = $module->getStyles( $context );
