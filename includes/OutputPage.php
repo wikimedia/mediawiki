@@ -2307,7 +2307,7 @@ class OutputPage extends ContextSource {
 			$code = $this->mRedirectCode;
 
 			if ( Hooks::run( "BeforePageRedirect", [ $this, &$redirect, &$code ] ) ) {
-				if ( $code == '301' || $code == '303' ) {
+				if ( $code == '301' || $code == '303' || $code == '307' || $code == '308' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
 						$response->statusHeader( $code );
 					}
