@@ -1723,10 +1723,8 @@ MESSAGE;
 	 * @return array Map of variable names to string CSS values.
 	 */
 	public function getLessVars() {
-		if ( !$this->lessVars ) {
-			$lessVars = $this->config->get( 'ResourceLoaderLESSVars' );
-			Hooks::run( 'ResourceLoaderGetLessVars', [ &$lessVars ] );
-			$this->lessVars = $lessVars;
+		if ( $this->lessVars === null ) {
+			$this->lessVars = $this->config->get( 'ResourceLoaderLESSVars' );
 		}
 		return $this->lessVars;
 	}
