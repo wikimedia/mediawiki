@@ -21,6 +21,11 @@ Set up MediaWiki-Vagrant:
 
     npm run selenium
 
+By default, Chrome will run in headless mode. If you want to see Chrome, set DISPLAY
+environment variable to any value:
+
+    DISPLAY=:1 npm run selenium
+
 To run only one file (for example page.js), you first need to spawn the chromedriver:
 
     chromedriver --url-base=wd/hub --port=4444
