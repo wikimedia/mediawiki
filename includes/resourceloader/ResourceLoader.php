@@ -1704,12 +1704,13 @@ MESSAGE;
 	 * Returns LESS compiler set up for use with MediaWiki
 	 *
 	 * @since 1.27
-	 * @param array $extraVars Associative array of extra (i.e., other than the
-	 *   globally-configured ones) that should be used for compilation.
+	 * @param array $vars Associative array of variables that should be used
+	 *  for compilation. Since 1.32, this method no longer automatically includes
+	 *  global less fars from ResourceLoader::getLessVars (T191937).
 	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public function getLessCompiler( $extraVars = [] ) {
+	public function getLessCompiler( $vars = [] ) {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -1718,7 +1719,7 @@ MESSAGE;
 		}
 
 		$parser = new Less_Parser;
-		$parser->ModifyVars( array_merge( $this->getLessVars(), $extraVars ) );
+		$parser->ModifyVars( $vars );
 		$parser->SetImportDirs(
 			array_fill_keys( $this->config->get( 'ResourceLoaderLESSImportPaths' ), '' )
 		);

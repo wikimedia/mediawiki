@@ -959,9 +959,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 		}
 
-		// Construct a cache key from the LESS file name and a hash digest
+		$vars = array_merge(
+			$context->getResourceLoader()->getLessVars(),
+			$this->getLessVars( $context )
+		);
+		// Construct a cache key from the LESS file name, and a hash digest
 		// of the LESS variables used for compilation.
-		$vars = $this->getLessVars( $context );
 		ksort( $vars );
 		$varsHash = hash( 'md4', serialize( $vars ) );
 		$cacheKey = $cache->makeGlobalKey( 'LESS', $fileName, $varsHash );
