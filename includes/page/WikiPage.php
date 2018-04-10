@@ -2030,7 +2030,7 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $revision = null, User $user = null,
 		$serialFormat = null, $useCache = true
 	) {
-		global $wgContLang, $wgUser, $wgAjaxEditStash;
+		global $wgContLang, $wgUser, $wgAjaxEditStash, $wgParser;
 
 		if ( is_object( $revision ) ) {
 			$revid = $revision->getId();
@@ -2082,12 +2082,14 @@ class WikiPage implements Page, IDBAccessObject {
 		// @note: $cachedEdit is safely not used if the rev ID was referenced in the text
 		$edit->revid = $revid;
 
+		// Is there a signature in the wikitext, which requires us to discard
+		// stashed copies earlier?
+		$hasSignature = false;
 		if ( $cachedEdit ) {
 			$edit->pstContent = $cachedEdit->pstContent;
-		} else {
-			$edit->pstContent = $content
-				? $content->preSaveTransform( $this->mTitle, $user, $popts )
-				: null;
+		} elseif ( $content ) {
+			$edit->pstContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+			$hasSignature = $wgParser->getOutput()->getFlag( 'user-signature' );
 		}
 
 		$edit->format = $serialFormat;
@@ -2128,6 +2130,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$edit->output = $edit->pstContent
 				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
 				: null;
+			if ( $hasSignature ) {
+				// This flag got lost in the second parse
+				$edit->output->setFlag( 'user-signature' );
+			}
 		}
 
 		$edit->newContent = $content;

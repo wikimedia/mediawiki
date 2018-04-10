@@ -119,4 +119,8 @@ class HashBagOStuff extends BagOStuff {
 	protected function getCurrentTime() {
 		return time();
 	}
+
+	public function getExpiry( $key ) {
+		return $this->bag[$key][self::KEY_EXP];
+	}
 }
