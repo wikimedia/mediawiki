@@ -803,14 +803,15 @@ class Block {
 	}
 
 	/**
-	 * Autoblocks the given IP, referring to this Block.
+	 * Determine if an autoblock can be created depending
+	 * on the current block
 	 *
 	 * @param string $autoblockIP The IP to autoblock.
-	 * @return int|bool Block ID if an autoblock was inserted, false if not.
+	 * @return bool
+	 * @throws MWException
 	 */
-	public function doAutoblock( $autoblockIP ) {
-		# If autoblocks are disabled, go away.
-		if ( !$this->isAutoblocking() ) {
+	private function canDoAutoblock( $autoblockIP ) {
+		if ( $this->getType() == self::TYPE_USER && !$this->isAutoblocking ) {
 			return false;
 		}
 
@@ -826,9 +827,24 @@ class Block {
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$block = $this;
+
 		# Allow hooks to cancel the autoblock.
 		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$block ] ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Try to Autoblock the given IP, based on current block options.
+	 *
+	 * @param string $autoblockIP The IP to autoblock.
+	 * @return int|bool Block ID if an autoblock was inserted, false if not.
+	 */
+	public function doAutoblock( $autoblockIP ) {
+		if ( !$this->canDoAutoblock( $autoblockIP ) ) {
 			return false;
 		}
 
