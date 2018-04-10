@@ -334,6 +334,9 @@ changes to languages because of Phabricator reports.
 * HTMLForm & VFormHTMLForm::isVForm(), deprecated in 1.25, have been removed.
 * The ProfileSection class, deprecated in 1.25 and unused, has been removed.
 * Wikimedia\Rdbms\SavepointPostgres is deprecated.
+* The ResourceLoaderGetLessVars hook, deprecated in 1.30, has been removed.
+  Use ResourceLoaderModule::getLessVars() to expose local variables instead
+  of global ones.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
