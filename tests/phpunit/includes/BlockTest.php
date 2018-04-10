@@ -460,4 +460,61 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @covers Block::doAutoblock
+	 */
+	public function testDoAutoblock() {
+		$user = $this->getUserForBlocking();
+
+		$blockOptions = [
+			'address' => $user->getName(),
+			'user' => $user->getId(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'reason' => 'Parce que',
+			'expiry' => time() + 100500,
+			'enableAutoblock' => true,
+		];
+		$block = new Block( $blockOptions );
+		$block->insert();
+
+		$this->assertType( 'int', $block->doAutoblock( '1.2.3.4' ) );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::doAutoblock
+	 */
+	public function testDoAutoblockFromIpBlock() {
+		$blockOptions = [
+			'address' => '1.2.3.4',
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'reason' => 'Parce que',
+			'expiry' => time() + 100500,
+		];
+		$block = new Block( $blockOptions );
+		$block->insert();
+
+		$this->assertType( 'int', $block->doAutoblock( '4.3.2.1' ) );
+		$block->delete();
+	}
+
+	/**
+	 * @covers Block::doAutoblock
+	 */
+	public function testDoAutoblockWithAutoblockingFalse() {
+		$user = $this->getUserForBlocking();
+
+		$blockOptions = [
+			'address' => $user->getName(),
+			'user' => $user->getId(),
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'reason' => 'Parce que',
+			'expiry' => time() + 100500,
+		];
+		$block = new Block( $blockOptions );
+		$block->insert();
+
+		$this->assertFalse( $block->doAutoblock( '1.2.3.4' ) );
+		$block->delete();
+	}
 }

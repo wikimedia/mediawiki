@@ -6043,6 +6043,15 @@ $wgSessionName = false;
  */
 $wgCookieSetOnAutoblock = false;
 
+/**
+ * Whether to enable or disable autoblocks for IP/IP-Range blocks. Doing so means that a blocked ip
+ * user will receive a cookie and moving to a new IP will result in a temporary autoblock for said
+ * IP. This cookie will contain an authentication code if $wgSecretKey is set, or otherwise will
+ * just be the block ID (in which case there is a possibility of an attacker discovering the
+ * names of revdeleted users, so it is best to use this in conjunction with $wgSecretKey being set).
+ */
+$wgEnableAutoblockForIpBlocks = false;
+
 /** @} */ # end of cookie settings }
 
 /************************************************************************//**

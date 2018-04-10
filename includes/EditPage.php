@@ -587,6 +587,9 @@ class EditPage {
 		$permErrors = $this->getEditPermissionErrors( $this->save ? 'secure' : 'full' );
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
+
+			$this->context->getUser()->trackBlockWithCookie();
+
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
 				DeferredUpdates::addCallableUpdate( function () {

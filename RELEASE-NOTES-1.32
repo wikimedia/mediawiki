@@ -17,8 +17,14 @@ production.
   'html5-legacy' value for $wgFragmentMode is no longer accepted.
 * The experimental Html5Internal and Html5Depurate tidy drivers were removed.
   RemexHtml, which is the default, should be used instead.
+* Added $wgEnableAutoblockForIpBlocks default to false. If true, a cookie will
+  be set when IP users try to edit and their IP address has been blocked. If a user
+  tries to edit anonymously and a block is found through this cookie, their current
+  IP address will be autoblocked.
 
 === New features in 1.32 ===
+* (T152462) IP users can now be autoblocked by enabling $wgEnableAutoblockForIpBlocks.
+  This is disabled by default.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.

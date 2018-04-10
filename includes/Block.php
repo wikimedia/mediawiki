@@ -803,14 +803,16 @@ class Block {
 	}
 
 	/**
-	 * Autoblocks the given IP, referring to this Block.
+	 * Determine if an autoblock can be created depending
+	 * on the current block
 	 *
 	 * @param string $autoblockIP The IP to autoblock.
-	 * @return int|bool Block ID if an autoblock was inserted, false if not.
+	 * @return bool
+	 * @throws MWException
 	 */
-	public function doAutoblock( $autoblockIP ) {
-		# If autoblocks are disabled, go away.
-		if ( !$this->isAutoblocking() ) {
+	private function canDoAutoblock( $autoblockIP ) {
+		// Respect autoblocking disabled for blocks TYPE_USER, otherwise allow it.
+		if ( $this->getType() == self::TYPE_USER && !$this->isAutoblocking ) {
 			return false;
 		}
 
@@ -826,9 +828,24 @@ class Block {
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$block = $this;
+
 		# Allow hooks to cancel the autoblock.
 		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$block ] ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Try to Autoblock the given IP, based on current block options.
+	 *
+	 * @param string $autoblockIP The IP to autoblock.
+	 * @return int|bool Block ID if an autoblock was inserted, false if not.
+	 */
+	public function doAutoblock( $autoblockIP ) {
+		if ( !$this->canDoAutoblock( $autoblockIP ) ) {
 			return false;
 		}
 
@@ -860,10 +877,15 @@ class Block {
 		$autoblock->mTimestamp = $timestamp;
 		$autoblock->mAuto = 1;
 		$autoblock->prevents( 'createaccount', $this->prevents( 'createaccount' ) );
-		# Continue suppressing the name if needed
-		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 		$autoblock->mParentBlockId = $this->mId;
+		$autoblock->isHardblock( $this->isHardblock() );
+
+		// If parent block type is IP/Range always suppress name, otherwise use parent block value
+		$autoblock->mHideName = $this->mHideName;
+		if ( in_array( $this->getType(), [ self::TYPE_IP, self::TYPE_RANGE ] ) ) {
+			$autoblock->mHideName = true;
+		}
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now

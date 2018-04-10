@@ -63,6 +63,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		$user = $this->getUser();
 		$status = AuthManager::singleton()->checkAccountCreatePermissions( $user );
 		if ( !$status->isGood() ) {
+			if ( $user->isBlockedFromCreateAccount() ) {
+				$user->trackBlockWithCookie();
+			}
 			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
 		}
 	}
