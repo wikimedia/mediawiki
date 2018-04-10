@@ -829,6 +829,11 @@ class RevisionStore
 			// keep with ar prefix:
 			'ar_id'        => 'ar_id',
 
+			// keep slot and content fields:
+			'content_id'        => 'content_id',
+			'content_address'   => 'content_address',
+			'slot_origin'       => 'slot_origin',
+
 			// not the same suffix:
 			'ar_page_id'        => 'rev_page',
 			'ar_rev_id'         => 'rev_id',
