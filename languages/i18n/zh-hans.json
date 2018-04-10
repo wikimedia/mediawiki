@@ -135,7 +135,7 @@
 	"tog-watchlisthideminor": "隐藏监视列表中的小编辑",
 	"tog-watchlisthideliu": "隐藏监视列表中的登录用户的编辑",
 	"tog-watchlistreloadautomatically": "当一条过滤器规则被更改时，自动重新加载监视列表（需要JavaScript）",
-	"tog-watchlistunwatchlinks": "添加监视列表条目的直接（取消）监视链接（需要JavaScript才能打开功能）",
+	"tog-watchlistunwatchlinks": "为有更改的监视页面添加直接（取消）监视标记（{{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}，需要JavaScript才能打开功能）",
 	"tog-watchlisthideanons": "隐藏监视列表中的匿名用户的编辑",
 	"tog-watchlisthidepatrolled": "隐藏监视列表中的已巡查编辑",
 	"tog-watchlisthidecategorization": "隐藏对页面的分类",

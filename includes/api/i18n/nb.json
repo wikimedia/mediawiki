@@ -657,7 +657,6 @@
 	"apierror-missingtitle-byname": "Siden $1 fins ikke.",
 	"apierror-moduledisabled": "Modulen <kbd>$1</kbd> har blitt slått av.",
 	"apierror-multival-only-one-of": "{{PLURAL:$3|Kun|Kun én av} $2 tillates for parameteren <var>$3</var>.",
-	"apierror-multival-only-one": "Bare én verdi er tillatt for parameteret <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> kan kun brukes med én enkel side.",
 	"apierror-mustbeloggedin-changeauth": "Du må være logget inn for å endre autentiseringsdata.",
 	"apierror-mustbeloggedin-generic": "Du må være logget inn.",

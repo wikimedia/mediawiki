@@ -1582,7 +1582,6 @@
 	"apierror-missingtitle-byname": "A páxina $1 non existe.",
 	"apierror-moduledisabled": "O módulo <kbd>$1</kbd> foi deshabilitado.",
 	"apierror-multival-only-one-of": "Só {{PLURAL:$3|se permite o valor|se permiten os valores}} $2 para o parámetro <var>$1</var>.",
-	"apierror-multival-only-one": "Só se permite un valor para o parámetro <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> non se pode utilizar máis que con unha soa páxina.",
 	"apierror-mustbeloggedin-changeauth": "Debe estar conectado para poder cambiar os datos de autentificación.",
 	"apierror-mustbeloggedin-generic": "Debe estar conectado.",
