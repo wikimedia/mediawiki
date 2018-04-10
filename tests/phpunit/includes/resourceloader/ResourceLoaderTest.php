@@ -242,6 +242,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( [
 			'localBasePath' => $basePath,
 			'styles' => [ 'styles.less' ],
+			'lessmessages' => [ 'planet' ], // FIXME: Mock message "planet" with text "world".
 		] );
 		$module->setName( 'test.less' );
 		$styles = $module->getStyles( $context );
