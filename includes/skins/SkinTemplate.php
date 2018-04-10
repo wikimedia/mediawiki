@@ -66,7 +66,6 @@ class SkinTemplate extends Skin {
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 			'mediawiki.sectionAnchor',
-			'mediawiki.jquery.styles',
 		];
 		if ( $out->isSyndicated() ) {
 			$moduleStyles[] = 'mediawiki.feedlink';

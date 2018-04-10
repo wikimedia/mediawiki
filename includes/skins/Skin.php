@@ -166,7 +166,8 @@ abstract class Skin extends ContextSource {
 	 * It is recommended that skins wishing to override call parent::getDefaultModules()
 	 * and substitute out any modules they wish to change by using a key to look them up
 	 *
-	 * For style modules, use setupSkinUserCss() instead.
+	 * Any modules defined with the 'styles' key will be added as render blocking CSS via
+	 * Output::addModuleStyles
 	 *
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
@@ -177,6 +178,7 @@ abstract class Skin extends ContextSource {
 		$config = $this->getConfig();
 		$user = $out->getUser();
 		$modules = [
+			'styles' => [],
 			// modules not specific to any specific skin or page
 			'core' => [
 				// Enforce various default modules for all pages and all skins
@@ -202,14 +204,25 @@ abstract class Skin extends ContextSource {
 			$modules['core'][] = 'mediawiki.hidpi';
 		}
 
+		$jQueryStyles = false;
+
 		// Preload jquery.tablesorter for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
 			$modules['content'][] = 'jquery.tablesorter';
+			$jQueryStyles = true;
 		}
 
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
+			$jQueryStyles = true;
+		}
+
+		// If jQuery modules with FOUC properties are likely to be loaded
+		// load associated styles
+		// Not perfect but should limit a lot of unnecessary loads
+		if ( $jQueryStyles ) {
+			$modules['styles'][] = 'mediawiki.jquery.styles';
 		}
 
 		if ( $out->isTOCEnabled() ) {
