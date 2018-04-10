@@ -4149,6 +4149,18 @@ class Language {
 	}
 
 	/**
+	 * convert text to a variant
+	 *
+	 * @param string $text text to convert
+	 * @param string|bool $variant variant to convert to, or false to use the user's preferred
+	 *      variant (if logged in), or the project default variant
+	 * @return string the converted string
+	 */
+	public function autoConvert( $text, $variant = false ) {
+		return $this->mConverter->autoConvert( $text, $variant );
+	}
+
+	/**
 	 * convert text to all supported variants
 	 *
 	 * @param string $text
@@ -4181,11 +4193,13 @@ class Language {
 	/**
 	 * Convert a namespace index to a string in the preferred variant
 	 *
-	 * @param int $ns
-	 * @return string
+	 * @param int $ns namespace index (https://www.mediawiki.org/wiki/Manual:Namespace)
+	 * @param string|null $variant variant to convert to, or null to use the user's preferred
+	 *      variant (if logged in), or the project default variant
+	 * @return string a string representation of the namespace
 	 */
-	public function convertNamespace( $ns ) {
-		return $this->mConverter->convertNamespace( $ns );
+	public function convertNamespace( $ns, $variant = null ) {
+		return $this->mConverter->convertNamespace( $ns, $variant );
 	}
 
 	/**
