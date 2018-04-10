@@ -22,7 +22,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	protected function doApiRequest( array $params, array $unused = null,
-		$appendModule = false, User $user = null
+		$appendModule = false, User $user = null, $tokenType = null
 	) {
 		global $wgRequest;
 
