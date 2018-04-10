@@ -129,7 +129,7 @@
 	"tog-watchlisthideminor": "Kleine Bearbeitungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthideliu": "Bearbeitungen angemeldeter Benutzer in der Beobachtungsliste ausblenden",
 	"tog-watchlistreloadautomatically": "Sofern ein Filter geändert wurde, die Beobachtungsliste automatisch neu laden (erfordert JavaScript)",
-	"tog-watchlistunwatchlinks": "Direkte Links zum Beobachten/Nicht beobachten bei den Einträgen in der Beobachtungsliste hinzufügen (erfordert JavaScript)",
+	"tog-watchlistunwatchlinks": "Direkte Entbeobachtungs-/Beobachtungsmarkierungen ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) zu beobachteten Seiten mit Änderungen hinzufügen (hierfür ist JavaScript erforderlich)",
 	"tog-watchlisthideanons": "Bearbeitungen anonymer Benutzer (IP-Adressen) in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidepatrolled": "Kontrollierte Änderungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidecategorization": "Kategorisierungen von Seiten in der Beobachtungsliste ausblenden",

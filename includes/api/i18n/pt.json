@@ -1616,7 +1616,6 @@
 	"apierror-missingtitle-byname": "A página $1 não existe.",
 	"apierror-moduledisabled": "O módulo <kbd>$1</kbd> foi desativado.",
 	"apierror-multival-only-one-of": "Só é permitido {{PLURAL:$3|o valor|um dos valores}} $2 para o parâmetro <var>$1</var>.",
-	"apierror-multival-only-one": "Só é permitido um valor para o parâmetro <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> só pode ser usado com uma única página.",
 	"apierror-mustbeloggedin-changeauth": "Tem de estar autenticado para alterar dados de autenticação.",
 	"apierror-mustbeloggedin-generic": "Tem de estar autenticado.",

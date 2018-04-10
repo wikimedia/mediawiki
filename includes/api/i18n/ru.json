@@ -1636,7 +1636,6 @@
 	"apierror-missingtitle-byname": "Страница $1 не существует.",
 	"apierror-moduledisabled": "Модуль <kbd>$1</kbd> был отключён.",
 	"apierror-multival-only-one-of": "Параметру <var>$1</var> может быть присвоено только {{PLURAL:$3|значение|одно из значений}} $2.",
-	"apierror-multival-only-one": "Параметру <var>$1</var> может быть присвоено только одно значение.",
 	"apierror-multpages": "Параметр <var>$1</var> может быть применён только к одной странице.",
 	"apierror-mustbeloggedin-changeauth": "Вы должны быть авторизованы для смены аутентификационных данных.",
 	"apierror-mustbeloggedin-generic": "Вы должны быть авторизованы.",
