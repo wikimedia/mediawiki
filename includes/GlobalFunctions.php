@@ -2525,8 +2525,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 		$readyPipes = $pipes;
 
 		// Clear last error
-		// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged
+		\MediaWiki\suppressWarnings();
 		@trigger_error( '' );
+		\MediaWiki\restoreWarnings();
+
 		$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
 		if ( $numReadyPipes === false ) {
 			// @codingStandardsIgnoreEnd
