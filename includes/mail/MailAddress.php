@@ -88,9 +88,14 @@ class MailAddress {
 				global $wgEnotifUseRealName;
 				$name = ( $wgEnotifUseRealName && $this->realName !== '' ) ? $this->realName : $this->name;
 				$quoted = UserMailer::quotedPrintable( $name );
-				if ( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
-					$quoted = '"' . $quoted . '"';
-				}
+				// If it was converted, it will start with =,
+				// and strings containing = are always converted.
+				// To prevents bugs with intermediary software unable to deal with
+				// spaces in strings that don't need conversion, always quote
+				// unconverted strings (T191931)
+				if ( strpos( $quoted, '=' ) !== 0 ) {
+					$quoted = '"' . addslashes( $quoted ) . '"';
+                }
 				return "$quoted <{$this->address}>";
 			} else {
 				return $this->address;
