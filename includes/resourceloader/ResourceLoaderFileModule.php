@@ -961,7 +961,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		// Construct a cache key from the LESS file name and a hash digest
 		// of the LESS variables used for compilation.
-		$vars = $this->getLessVars( $context );
+		$vars = $context->getResourceLoader()->getLessVars();
 		ksort( $vars );
 		$varsHash = hash( 'md4', serialize( $vars ) );
 		$cacheKey = $cache->makeGlobalKey( 'LESS', $fileName, $varsHash );
@@ -978,7 +978,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 
-		$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
+		$compiler = $context->getResourceLoader()->getLessCompiler();
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
