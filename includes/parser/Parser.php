@@ -4498,15 +4498,18 @@ class Parser {
 		# which may corrupt this parser instance via its wfMessage()->text() call-
 
 		# Signatures
-		if ( strpos( $text, '~~~' ) !== false ) {
+		if ( ( $pos = strpos( $text, '~~~' ) ) !== false ) {
+			# ~~~~ and ~~~~~ are time-sensitive, so set a flag for ApiStashEdit
+			if ( strpos( $text, '~~~~', $pos ) !== false ) {
+				$this->mOutput->setFlag( 'user-signature' );
+			}
+
 			$sigText = $this->getUserSig( $user );
 			$text = strtr( $text, [
 				'~~~~~' => $d,
 				'~~~~' => "$sigText $d",
 				'~~~' => $sigText
 			] );
-			# The main two signature forms used above are time-sensitive
-			$this->mOutput->setFlag( 'user-signature' );
 		}
 
 		# Context links ("pipe tricks"): [[|name]] and [[name (context)|]]

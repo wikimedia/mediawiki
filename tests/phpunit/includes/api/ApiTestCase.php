@@ -212,4 +212,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
 		);
 	}
+
+	protected function setExpectedApiException(
+		$msg, $code = null, array $data = null, $httpCode = 0
+	) {
+		$expected = ApiUsageException::newWithMessage( null, $msg, $code, $data, $httpCode );
+		$this->setExpectedException( ApiUsageException::class, $expected->getMessage() );
+	}
 }
