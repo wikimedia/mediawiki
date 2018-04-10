@@ -1629,7 +1629,6 @@
 	"apierror-missingtitle-byname": "{{doc-apierror}}",
 	"apierror-moduledisabled": "{{doc-apierror}}\n\nParameters:\n* $1 - Name of the module.",
 	"apierror-multival-only-one-of": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n* $2 - Possible values for the parameter.\n* $3 - Number of values.",
-	"apierror-multival-only-one": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apierror-multpages": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name",
 	"apierror-mustbeloggedin-changeauth": "{{doc-apierror}}",
 	"apierror-mustbeloggedin-generic": "{{doc-apierror}}",

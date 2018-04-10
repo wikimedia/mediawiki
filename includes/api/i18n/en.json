@@ -1741,7 +1741,6 @@
 	"apierror-missingtitle-byname": "The page $1 doesn't exist.",
 	"apierror-moduledisabled": "The <kbd>$1</kbd> module has been disabled.",
 	"apierror-multival-only-one-of": "{{PLURAL:$3|Only|Only one of}} $2 is allowed for parameter <var>$1</var>.",
-	"apierror-multival-only-one": "Only one value is allowed for parameter <var>$1</var>.",
 	"apierror-multpages": "<var>$1</var> may only be used with a single page.",
 	"apierror-mustbeloggedin-changeauth": "You must be logged in to change authentication data.",
 	"apierror-mustbeloggedin-generic": "You must be logged in.",

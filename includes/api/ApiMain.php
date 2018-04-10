@@ -1719,8 +1719,8 @@ class ApiMain extends ApiBase {
 	/**
 	 * Get a request value, and register the fact that it was used, for logging.
 	 * @param string $name
-	 * @param mixed $default
-	 * @return mixed
+	 * @param string|null $default
+	 * @return string|null
 	 */
 	public function getVal( $name, $default = null ) {
 		$this->mParamsUsed[$name] = true;
