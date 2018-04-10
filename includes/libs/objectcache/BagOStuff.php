@@ -390,6 +390,15 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
+	 * @param string $key
+	 * @return int|bool Expiry as Unix timestamp, or false if it doesn't exist
+	 * @since 1.31
+	 */
+	public function getExpiry( $key ) {
+		throw new Exception( __METHOD__ . ' not implemented.' );
+	}
+
+	/**
 	 * Acquire an advisory lock on a key string
 	 *
 	 * Note that if reentry is enabled, duplicate calls ignore $expiry
