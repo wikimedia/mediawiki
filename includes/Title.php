@@ -1027,12 +1027,11 @@ class Title implements LinkTarget {
 	 */
 	public function getNsText() {
 		if ( $this->isExternal() ) {
-			// This probably shouldn't even happen,
-			// but for interwiki transclusion it sometimes does.
-			// Use the canonical namespaces if possible to try to
-			// resolve a foreign namespace.
-			if ( MWNamespace::exists( $this->mNamespace ) ) {
-				return MWNamespace::getCanonicalName( $this->mNamespace );
+			// This probably shouldn't even happen, except for interwiki transclusion.
+			// If possible, use the canonical name for the foreign namespace.
+			$nsText = MWNamespace::getCanonicalName( $this->mNamespace );
+			if ( $nsText !== false ) {
+				return $nsText;
 			}
 		}
 
@@ -4795,14 +4794,12 @@ class Title implements LinkTarget {
 	 */
 	public function getNamespaceKey( $prepend = 'nstab-' ) {
 		global $wgContLang;
-		// Gets the subject namespace if this title
-		$namespace = MWNamespace::getSubject( $this->getNamespace() );
-		// Checks if canonical namespace name exists for namespace
-		if ( MWNamespace::exists( $this->getNamespace() ) ) {
-			// Uses canonical namespace name
-			$namespaceKey = MWNamespace::getCanonicalName( $namespace );
-		} else {
-			// Uses text of namespace
+		// Gets the subject namespace of this title
+		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
+		// Prefer canonical namespace name for HTML IDs
+		$namespaceKey = MWNamespace::getCanonicalName( $subjectNS );
+		if ( $namespaceKey === false ) {
+			// Fallback to localised text
 			$namespaceKey = $this->getSubjectNsText();
 		}
 		// Makes namespace key lowercase
