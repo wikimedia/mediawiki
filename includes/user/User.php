@@ -1347,31 +1347,42 @@ class User implements IDBAccessObject, UserIdentity {
 		// returned here, so just use it if applicable.
 		$session = $this->getRequest()->getSession();
 		$user = $session->getUser();
-		if ( $user->isLoggedIn() ) {
-			$this->loadFromUserObject( $user );
 
-			// If this user is autoblocked, set a cookie to track the Block. This has to be done on
-			// every session load, because an autoblocked editor might not edit again from the same
-			// IP address after being blocked.
+		$this->loadFromUserObject( $user );
+
+		$block = $this->getBlock();
+		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null ) {
 			$config = RequestContext::getMain()->getConfig();
-			if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
-				$block = $this->getBlock();
-				$shouldSetCookie = $this->getRequest()->getCookie( 'BlockID' ) === null
-					&& $block
-					&& $block->getType() === Block::TYPE_USER
-					&& $block->isAutoblocking();
-				if ( $shouldSetCookie ) {
-					wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
-					$block->setCookie( $this->getRequest()->response() );
-				}
+			$shouldSetCookie = false;
+
+			if ( $user->isAnon() && $config->get( 'EnableAutoblockForAnonUsers' ) ) {
+				// If user is anon, set a cookie to track the Block
+				$shouldSetCookie = in_array( $block->getType(), [
+					Block::TYPE_IP, Block::TYPE_RANGE
+				] );
+			} elseif ( $user->isLoggedIn() && $config->get( 'CookieSetOnAutoblock' ) ) {
+				// If this user is autoblocked, set a cookie to track the Block. This has to be done on
+				// every session load, because an autoblocked editor might not edit again from the same
+				// IP address after being blocked.
+				$shouldSetCookie = $block->getType() === Block::TYPE_USER
+				   && $block->isAutoblocking();
 			}
 
+			if ( $shouldSetCookie ) {
+				wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
+				$block->setCookie( $this->getRequest()->response() );
+			}
+		}
+
+		if ( $user->isLoggedIn() ) {
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -1898,12 +1909,24 @@ class User implements IDBAccessObject, UserIdentity {
 			// An ID was found in the cookie.
 			$tmpBlock = Block::newFromID( $blockCookieId );
 			if ( $tmpBlock instanceof Block ) {
-				// Check the validity of the block.
-				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
-					&& !$tmpBlock->isExpired()
-					&& $tmpBlock->isAutoblocking();
 				$config = RequestContext::getMain()->getConfig();
-				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+
+				switch ( $tmpBlock->getType() ) {
+					case Block::TYPE_USER:
+						$blockIsValid = !$tmpBlock->isExpired() && $tmpBlock->isAutoblocking();
+						$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+						break;
+					case Block::TYPE_IP:
+					case Block::TYPE_RANGE:
+						// If block is type IP or IP range, load only if user is not logged in (T152462)
+						$blockIsValid = !$tmpBlock->isExpired();
+						$useBlockCookie = ( $config->get( 'EnableAutoblockForAnonUsers' ) === true );
+						break;
+					default:
+						$blockIsValid = false;
+						$useBlockCookie = false;
+				}
+
 				if ( $blockIsValid && $useBlockCookie ) {
 					// Use the block.
 					return $tmpBlock;
@@ -4415,36 +4438,19 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * If this user is logged-in and blocked,
-	 * block any IP address they've successfully logged in from.
+	 * Spread current block to the request IP if user is logged-in and
+	 * block is autoblocking or if user is anon and current IP is not
+	 * already blocked
+	 *
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
-		if ( $this->isLoggedIn() && $this->isBlocked() ) {
-			return $this->spreadBlock();
+		if ( $this->isBlocked() ) {
+			$block = $this->getBlock();
+			return (bool)$block->doAutoblock( $this->getRequest()->getIP() );
 		}
 
 		return false;
-	}
-
-	/**
-	 * If this (non-anonymous) user is blocked,
-	 * block the IP address they've successfully logged in from.
-	 * @return bool A block was spread
-	 */
-	protected function spreadBlock() {
-		wfDebug( __METHOD__ . "()\n" );
-		$this->load();
-		if ( $this->mId == 0 ) {
-			return false;
-		}
-
-		$userblock = Block::newFromTarget( $this->getName() );
-		if ( !$userblock ) {
-			return false;
-		}
-
-		return (bool)$userblock->doAutoblock( $this->getRequest()->getIP() );
 	}
 
 	/**
