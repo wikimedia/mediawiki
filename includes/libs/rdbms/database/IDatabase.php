@@ -54,9 +54,11 @@ interface IDatabase {
 	/** @var string Atomic section is cancelable */
 	const ATOMIC_CANCELABLE = 'cancelable';
 
-	/** @var string Transaction operation comes from service managing all DBs */
+	/** @var string Commit/rollback is from outside the IDatabase handle and connection manager */
+	const FLUSHING_ONE = '';
+	/** @var string Commit/rollback is from the connection manager for the IDatabase handle */
 	const FLUSHING_ALL_PEERS = 'flush';
-	/** @var string Transaction operation comes from the database class internally */
+	/** @var string Commit/rollback is from the IDatabase handle internally */
 	const FLUSHING_INTERNAL = 'flush';
 
 	/** @var string Do not remember the prior flags */
