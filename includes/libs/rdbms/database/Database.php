@@ -898,34 +898,48 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->conn ) {
 			// Resolve any dangling transaction first
 			if ( $this->trxLevel ) {
-				// Meaningful transactions should ideally have been resolved by now
-				if ( $this->writesOrCallbacksPending() ) {
+				if ( $this->trxAtomicLevels ) {
+					// Cannot let incomplete atomic sections be committed
+					$levels = $this->flatAtomicSectionList();
+					$exception = new DBUnexpectedError(
+						$this,
+						__METHOD__ . ": atomic sections $levels are still open."
+					);
+				} elseif ( $this->trxAutomatic ) {
+					// Only the connection manager can commit non-empty DBO_TRX transactions
+					if ( $this->writesOrCallbacksPending() ) {
+						$exception = new DBUnexpectedError(
+							$this,
+							__METHOD__ .
+							": mass commit/rollback of peer transaction required (DBO_TRX set)."
+						);
+					}
+				} elseif ( $this->trxLevel ) {
+					// Commit explicit transactions as if this was commit()
 					$this->queryLogger->warning(
 						__METHOD__ . ": writes or callbacks still pending.",
 						[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
 					);
-					// Cannot let incomplete atomic sections be committed
-					if ( $this->trxAtomicLevels ) {
-						$levels = $this->flatAtomicSectionList();
-						$exception = new DBUnexpectedError(
-							$this,
-							__METHOD__ . ": atomic sections $levels are still open."
-						);
-					// Check if it is possible to properly commit and trigger callbacks
-					} elseif ( $this->trxEndCallbacksSuppressed ) {
-						$exception = new DBUnexpectedError(
-							$this,
-							__METHOD__ . ': callbacks are suppressed; cannot properly commit.'
-						);
-					}
 				}
+
+				if ( $this->trxEndCallbacksSuppressed ) {
+					$exception = $exception ?: new DBUnexpectedError(
+						$this,
+						__METHOD__ . ': callbacks are suppressed; cannot properly commit.'
+					);
+				}
+
 				// Commit or rollback the changes and run any callbacks as needed
 				if ( $this->trxStatus === self::STATUS_TRX_OK && !$exception ) {
-					$this->commit( __METHOD__, self::TRANSACTION_INTERNAL );
+					$this->commit(
+						__METHOD__,
+						$this->trxAutomatic ? self::FLUSHING_INTERNAL : self::FLUSHING_ONE
+					);
 				} else {
-					$this->rollback( __METHOD__, self::TRANSACTION_INTERNAL );
+					$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 				}
 			}
+
 			// Close the actual connection in the binding handle
 			$closed = $this->closeConnection();
 			$this->conn = false;
@@ -3513,6 +3527,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function begin( $fname = __METHOD__, $mode = self::TRANSACTION_EXPLICIT ) {
+		static $modes = [ self::TRANSACTION_EXPLICIT, self::TRANSACTION_INTERNAL ];
+		if ( !in_array( $mode, $modes, true ) ) {
+			throw new DBUnexpectedError( $this, "$fname: invalid mode parameter '$mode'." );
+		}
+
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel ) {
 			if ( $this->trxAtomicLevels ) {
@@ -3571,9 +3590,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxLevel = 1;
 	}
 
-	final public function commit( $fname = __METHOD__, $flush = '' ) {
+	final public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
+		static $modes = [ self::FLUSHING_ONE, self::FLUSHING_ALL_PEERS, self::FLUSHING_INTERNAL ];
+		if ( !in_array( $flush, $modes, true ) ) {
+			throw new DBUnexpectedError( $this, "$fname: invalid flush parameter '$flush'." );
+		}
+
 		if ( $this->trxLevel && $this->trxAtomicLevels ) {
-			// There are still atomic sections open. This cannot be ignored
+			// There are still atomic sections open; this cannot be ignored
 			$levels = $this->flatAtomicSectionList();
 			throw new DBUnexpectedError(
 				$this,
