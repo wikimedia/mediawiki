@@ -1284,7 +1284,7 @@ class Linker {
 					if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
 						$match[1] = substr( $match[1], 1 );
 					}
-					if ( $match[1] !== false && $match[1] !== '' ) {
+					if ( $match[1] !== false && $match[1] !== '' && !empty( $wgContLang->linkTrail() ) ) {
 						if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
 							$trail = $submatch[1];
 						} else {
