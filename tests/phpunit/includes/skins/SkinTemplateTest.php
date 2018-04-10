@@ -60,7 +60,6 @@ class SkinTemplateTest extends MediaWikiTestCase {
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 			'mediawiki.sectionAnchor',
-			'mediawiki.jquery.styles',
 		];
 		$buttonStyle = 'mediawiki.ui.button';
 		$feedStyle = 'mediawiki.feedlink';

@@ -66,7 +66,6 @@ class SkinTemplate extends Skin {
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 			'mediawiki.sectionAnchor',
-			'mediawiki.jquery.styles',
 		];
 		if ( $out->isSyndicated() ) {
 			$moduleStyles[] = 'mediawiki.feedlink';
@@ -74,8 +73,19 @@ class SkinTemplate extends Skin {
 
 		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
 		// on every page is deprecated. Express a dependency instead.
-		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+		$html = $out->getHTML();
+		if ( strpos( $html, 'mw-ui-button' ) !== false ) {
 			$moduleStyles[] = 'mediawiki.ui.button';
+		}
+
+		// If jQuery modules with FOUC properties are likely to be loaded
+		// load associated styles
+		// Not perfect but should limit a lot of unnecessary loads
+		if (
+			strpos( $html, 'mw-collapsible' ) !== false ||
+			strpos( $html, 'sortable' ) !== false
+		) {
+			$moduleStyles[] = 'mediawiki.jquery.styles';
 		}
 
 		$out->addModuleStyles( $moduleStyles );
