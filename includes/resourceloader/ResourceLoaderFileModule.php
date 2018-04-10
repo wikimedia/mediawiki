@@ -113,6 +113,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $messages = [];
 
+	/**
+	 * @var array List of message keys used as Less variables
+	 * @par Usage:
+	 * @code
+	 * [ [message-key], [message-key], ... ]
+	 * @endcode
+	 * @since 1.32
+	 */
+	protected $lessmessages = [];
+
 	/** @var string Name of group to load this module in */
 	protected $group;
 
@@ -196,6 +206,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *         ],
 	 *         // Messages to always load
 	 *         'messages' => [array of message key strings],
+	 *         // Messages to always load as Less variables
+	 *         'lessmessages' => [array of message key strings],
 	 *         // Group which this module should be loaded together with
 	 *         'group' => [group name string],
 	 *         // Function that, if it returns true, makes the loader skip this module.
@@ -256,6 +268,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
+				case 'lessmessages':
 				case 'targets':
 					// Normalise
 					$option = array_values( array_unique( (array)$option ) );
@@ -424,7 +437,64 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array List of message keys
 	 */
 	public function getMessages() {
-		return $this->messages;
+		// Overload so MessageBlobStore can detect updates to messages and purge as needed.
+		return array_merge( $this->messages, $this->lessmessages );
+	}
+
+	/**
+	 * Exclude a set of messages from a JSON string representation
+	 *
+	 * @param string $blob
+	 * @param array $exclusions
+	 * @return array $blob
+	 */
+	protected function excludeMessagesFromBlob( $blob, $exclusions ) {
+		$data = json_decode( $blob, true );
+		// unset the LESS variables so that they are not forwarded to JavaScript
+		foreach ( $exclusions as $key ) {
+			unset( $data[$key] );
+		}
+		return $data;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getMessageBlob( ResourceLoaderContext $context ) {
+		$blob = parent::getMessageBlob( $context );
+		return json_encode( $this->excludeMessagesFromBlob( $blob, $this->lessmessages ) );
+	}
+
+	/**
+	 * Takes a message and wraps it in quotes for compatibility with LESS parser
+	 * (ModifyVars) method so that the variable can be loaded and made available to stylesheets.
+	 * Note this does not take care of CSS escaping. That will be taken care of as part
+	 * of CSS Janus.
+	 *
+	 * @param string $msg
+	 * @return string wrapped LESS variable definition
+	 */
+	private static function wrapAndEscapeMessage( $msg ) {
+		return str_replace( "'", "\'", CSSMin::serializeStringValue( $msg ) );
+	}
+
+	/**
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array LESS variables
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$blob = parent::getMessageBlob( $context );
+		$lessMessages = $this->excludeMessagesFromBlob( $blob, $this->messages );
+
+		$vars = parent::getLessVars( $context );
+		if ( $lessMessages ) {
+			foreach ( $lessMessages as $msgKey => $value ) {
+				$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $value );
+			}
+		}
+		return $vars;
 	}
 
 	/**
@@ -564,6 +634,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'skinScripts',
 			'skinStyles',
 			'messages',
+			'lessmessages',
 			'templates',
 			'skipFunction',
 			'debugRaw',
@@ -926,7 +997,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getType() {
 		$canBeStylesOnly = !(
-			// All options except 'styles', 'skinStyles' and 'debugRaw'
+			// All options except 'styles', 'skinStyles', 'lessmessages' and 'debugRaw'
 			$this->scripts
 			|| $this->debugScripts
 			|| $this->templates

@@ -350,4 +350,40 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'Using less variables is significant'
 		);
 	}
+
+	public static function providerWrapAndEscapeMessage() {
+		return [
+			[
+				"Foo", '"Foo"',
+			],
+			[
+				"Foo bananas", '"Foo bananas"',
+			],
+			[
+				"Who's that test? Who's that test? It's Jess!",
+				'"Who\\\'s that test? Who\\\'s that test? It\\\'s Jess!"',
+			],
+			[
+				'Hello "he" said',
+				'"Hello \"he\" said"',
+			],
+			[
+				'boo";-o-link:javascript:alert(1);color:red;content:"',
+				'"boo\";-o-link:javascript:alert(1);color:red;content:\""',
+			],
+			[
+				'"jon\'s"',
+				'"\"jon\\\'s\""'
+			]
+		];
+	}
+	/**
+	 * @dataProvider providerWrapAndEscapeMessage
+	 * @covers ResourceLoaderFileModule::wrapAndEscapeMessage
+	 */
+	public function testEscapeMessage( $msg, $expected ) {
+		$method = new ReflectionMethod( ResourceLoaderFileModule::class, 'wrapAndEscapeMessage' );
+		$method->setAccessible( true );
+		$this->assertEquals( $expected, $method->invoke( ResourceLoaderFileModule::class, $msg ) );
+	}
 }
