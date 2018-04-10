@@ -114,7 +114,10 @@ return [
 	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'class' => ResourceLoaderLessVarFileModule::class,
+		'lessMessages' => [
+			'collapsible-collapse',
+			'collapsible-expand',
+		],
 		'styles' => [
 			'resources/src/jquery/jquery.makeCollapsible.styles.less',
 		],
