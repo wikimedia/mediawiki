@@ -2,78 +2,74 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"bigger": { "file": {
-			"ltr": "images/icons/bigger-ltr.svg",
-			"rtl": "images/icons/bigger-rtl.svg"
-		} },
-		"smaller": { "file": {
-			"ltr": "images/icons/smaller-ltr.svg",
-			"rtl": "images/icons/smaller-rtl.svg"
-		} },
+		"bigger": { "file": "../wikimediaui/images/icons/bigger.svg" },
+		"smaller": { "file": "../wikimediaui/images/icons/smaller.svg" },
 		"subscript": { "file": {
-			"ltr": "images/icons/subscript-ltr.svg",
-			"rtl": "images/icons/subscript-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/subscript-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/subscript-rtl.svg"
 		} },
 		"superscript": { "file": {
-			"ltr": "images/icons/superscript-ltr.svg",
-			"rtl": "images/icons/superscript-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/superscript-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/superscript-rtl.svg"
 		} },
 		"bold": { "file": {
-			"default": "images/icons/bold-a.svg",
+			"default": "../wikimediaui/images/icons/bold-a.svg",
 			"lang": {
-				"ar": "images/icons/bold-arab-ain.svg",
-				"be": "images/icons/bold-cyrl-te.svg",
-				"cs,en,en-ca,en-gb,he,ml,pl,sco": "images/icons/bold-b.svg",
-				"da,de,hu,ksh,nn,no,sv": "images/icons/bold-f.svg",
-				"es,gl,pt": "images/icons/bold-n.svg",
-				"eu,fi": "images/icons/bold-l.svg",
-				"fa": "images/icons/bold-arab-dad.svg",
-				"fr,it": "images/icons/bold-g.svg",
-				"hy": "images/icons/bold-armn-to.svg",
-				"ka": "images/icons/bold-geor-man.svg",
-				"ky,ru,uk": "images/icons/bold-cyrl-zhe.svg",
-				"nl": "images/icons/bold-v.svg",
-				"os": "images/icons/bold-cyrl-be.svg"
+				"ar": "../wikimediaui/images/icons/bold-arab-ain.svg",
+				"be": "../wikimediaui/images/icons/bold-cyrl-te.svg",
+				"cs,en,he,ml,pl,sco": "../wikimediaui/images/icons/bold-b.svg",
+				"da,de,hu,ksh,nn,no,sv": "../wikimediaui/images/icons/bold-f.svg",
+				"es,gl,pt": "../wikimediaui/images/icons/bold-n.svg",
+				"eu,fi": "../wikimediaui/images/icons/bold-l.svg",
+				"fa": "../wikimediaui/images/icons/bold-arab-dad.svg",
+				"fr,it": "../wikimediaui/images/icons/bold-g.svg",
+				"hy": "../wikimediaui/images/icons/bold-armn-to.svg",
+				"ka": "../wikimediaui/images/icons/bold-geor-man.svg",
+				"ky,ru,uk": "../wikimediaui/images/icons/bold-cyrl-zhe.svg",
+				"nl": "../wikimediaui/images/icons/bold-v.svg",
+				"os": "../wikimediaui/images/icons/bold-cyrl-be.svg"
 			}
 		} },
-		"highlight": { "file": {
-			"ltr": "images/icons/highlight-ltr.svg",
-			"rtl": "images/icons/highlight-rtl.svg"
-		} },
+		"highlight": { "file": "../wikimediaui/images/icons/highlight.svg" },
 		"italic": { "file": {
-			"default": "images/icons/italic-a.svg",
+			"default": "../wikimediaui/images/icons/italic-a.svg",
 			"lang": {
-					"ar": "images/icons/italic-arab-meem.svg",
-					"cs,en,en-ca,en-gb,fr,he,ml,pl,pt,sco": "images/icons/italic-i.svg",
-					"be,da,de,fi,ky,nn,no,os,sv,ru,uk": "images/icons/italic-k.svg",
-					"es,gl,it,nl": "images/icons/italic-c.svg",
-					"eu": "images/icons/italic-e.svg",
-					"fa": "images/icons/italic-arab-keheh-jeem.svg",
-					"hu": "images/icons/italic-d.svg",
-					"hy": "images/icons/italic-armn-sha.svg",
-					"ksh": "images/icons/italic-s.svg",
-					"ka": "images/icons/italic-geor-kan.svg"
+					"ar": "../wikimediaui/images/icons/italic-arab-meem.svg",
+					"cs,en,fr,he,ml,pl,pt,sco": "../wikimediaui/images/icons/italic-i.svg",
+					"be,da,de,fi,ky,nn,no,os,sv,ru,uk": "../wikimediaui/images/icons/italic-k.svg",
+					"es,gl,it,nl": "../wikimediaui/images/icons/italic-c.svg",
+					"eu": "../wikimediaui/images/icons/italic-e.svg",
+					"fa": "../wikimediaui/images/icons/italic-arab-keheh-jeem.svg",
+					"hu": "../wikimediaui/images/icons/italic-d.svg",
+					"hy": "../wikimediaui/images/icons/italic-armn-sha.svg",
+					"ksh": "../wikimediaui/images/icons/italic-s.svg",
+					"ka": "../wikimediaui/images/icons/italic-geor-kan.svg"
 				}
 		} },
 		"strikethrough": { "file": {
-			"default": "images/icons/strikethrough-a.svg",
+			"default": "../wikimediaui/images/icons/strikethrough-a.svg",
 			"lang": {
-				"en,en-ca,en-gb": "images/icons/strikethrough-s.svg",
-				"fi": "images/icons/strikethrough-y.svg"
+				"en": "../wikimediaui/images/icons/strikethrough-s.svg",
+				"fi": "../wikimediaui/images/icons/strikethrough-y.svg"
 			}
 		} },
 		"underline": { "file": {
-			"default": "images/icons/underline-a.svg",
+			"default": "../wikimediaui/images/icons/underline-a.svg",
 			"lang": {
-				"en,en-ca,en-gb,de": "images/icons/underline-u.svg"
+				"en,de": "../wikimediaui/images/icons/underline-u.svg"
 			}
 		} },
-		"textLanguage": { "file": {
-			"ltr": "images/icons/language-ltr.svg",
-			"rtl": "images/icons/language-rtl.svg"
-		} },
-		"textDirLTR": { "file": "images/icons/text-dir-lefttoright.svg" },
-		"textDirRTL": { "file": "images/icons/text-dir-righttoleft.svg" },
-		"textStyle": { "file": "images/icons/text-style.svg" }
+		"textLanguage": {
+			"file": "../wikimediaui/images/icons/language.svg"
+		},
+		"textDirLTR": {
+			"file": "../wikimediaui/images/icons/textDirLTR.svg"
+		},
+		"textDirRTL": {
+			"file": "../wikimediaui/images/icons/textDirRTL.svg"
+		},
+		"textStyle": {
+			"file": "../wikimediaui/images/icons/textStyle.svg"
+		}
 	}
 }

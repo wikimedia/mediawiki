@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:48Z
+ * Date: 2018-04-10T22:15:43Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -913,8 +913,8 @@
   padding: 0;
 }
 .oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
-  min-width: 20px;
-  width: 1.5625em;
+  min-width: 14px;
+  width: 1.09375em;
   margin-right: -0.3em;
 }
 .oo-ui-tagItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-labelElement-label,
@@ -1096,8 +1096,8 @@
   padding: 0;
 }
 .oo-ui-capsuleItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
-  min-width: 20px;
-  width: 1.5625em;
+  min-width: 14px;
+  width: 1.09375em;
   margin-right: -0.3em;
 }
 .oo-ui-capsuleItemWidget > .oo-ui-buttonElement > .oo-ui-buttonElement-button .oo-ui-labelElement-label,

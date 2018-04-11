@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:44Z
+ * Date: 2018-04-10T22:15:39Z
  */
 ( function ( OO ) {
 
@@ -605,6 +605,10 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$accel = $( '<span>' );
 	this.$link = $( '<a>' );
 	this.title = null;
+	this.checkIcon = new OO.ui.IconWidget( {
+		icon: 'check',
+		classes: [ 'oo-ui-tool-checkIcon' ]
+	} );
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -626,7 +630,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		} );
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
-		.append( this.$icon, this.$title, this.$accel )
+		.append( this.checkIcon.$element, this.$icon, this.$title, this.$accel )
 		.attr( 'role', 'button' );
 	this.$element
 		.data( 'oo-ui-tool', this )

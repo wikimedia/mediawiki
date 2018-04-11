@@ -77,6 +77,18 @@
 		"tableAddRowBefore": { "file": "images/icons/tableAddRowBefore.svg" },
 		"tableCaption": { "file": "images/icons/tableCaption.svg" },
 		"tableMergeCells": { "file": "images/icons/tableMergeCells.svg" },
+		"tableMoveColumnAfter": {
+			"file": "images/icons/tableMoveColumnAfter.svg"
+		},
+		"tableMoveColumnBefore": {
+			"file": "images/icons/tableMoveColumnBefore.svg"
+		},
+		"tableMoveRowAfter": {
+			"file": "images/icons/tableMoveRowAfter.svg"
+		},
+		"tableMoveRowBefore": {
+			"file": "images/icons/tableMoveRowBefore.svg"
+		},
 		"templateAdd": { "file": {
 			"ltr": "images/icons/templateAdd-ltr.svg",
 			"rtl": "images/icons/templateAdd-rtl.svg"

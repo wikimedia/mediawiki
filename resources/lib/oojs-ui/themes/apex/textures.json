@@ -2,7 +2,7 @@
 	"prefix": "oo-ui-texture",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"pending": { "file": "images/textures/pending.gif" },
-		"transparency": { "file": "images/textures/transparency.svg" }
+		"pending": { "file": "../wikimediaui/images/textures/pending.gif" },
+		"transparency": { "file": "../wikimediaui/images/textures/transparency.svg" }
 	}
 }

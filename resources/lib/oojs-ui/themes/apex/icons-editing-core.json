@@ -2,31 +2,41 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"edit": { "file": {
-			"ltr": "images/icons/edit-ltr.svg",
-			"rtl": "images/icons/edit-rtl.svg"
-		} },
-		"editLock": { "file": {
-			"ltr": "images/icons/editLock-ltr.svg",
-			"rtl": "images/icons/editLock-rtl.svg"
-		} },
-		"editUndo": { "file": {
-			"ltr": "images/icons/editUndo-ltr.svg",
-			"rtl": "images/icons/editUndo-rtl.svg"
-		} },
-		"link": { "file": "images/icons/link.svg" },
-		"linkExternal": { "file": {
-			"ltr": "images/icons/external-link-ltr.svg",
-			"rtl": "images/icons/external-link-rtl.svg"
-		} },
-		"linkSecure": { "file": "images/icons/secure-link.svg" },
-		"redo": { "file": {
-			"ltr": "images/icons/arched-arrow-ltr.svg",
-			"rtl": "images/icons/arched-arrow-rtl.svg"
-		} },
-		"undo": { "file": {
-			"ltr": "images/icons/arched-arrow-rtl.svg",
-			"rtl": "images/icons/arched-arrow-ltr.svg"
-		} }
+		"edit": {
+			"file": "../wikimediaui/images/icons/edit.svg"
+		},
+		"editLock": {
+			"file": "../wikimediaui/images/icons/editLock.svg"
+		},
+		"editUndo": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/editUndo-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/editUndo-rtl.svg"
+			}
+		},
+		"link": {
+			"file": "../wikimediaui/images/icons/link.svg"
+		},
+		"linkExternal": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/linkExternal-ltr.svg",
+				"rtl":  "../wikimediaui/images/icons/linkExternal-rtl.svg"
+			}
+		},
+		"linkSecure": {
+			"file": "../wikimediaui/images/icons/linkSecure.svg"
+		},
+		"redo": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/redo-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/redo-rtl.svg"
+			}
+		},
+		"undo": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/undo-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/undo-rtl.svg"
+			}
+		}
 	}
 }
