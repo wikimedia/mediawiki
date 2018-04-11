@@ -454,7 +454,7 @@ class Linker {
 		if ( $frameParams['align'] != '' ) {
 			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
 		}
-		return str_replace( "\n", ' ', $prefix . $s . $postfix );
+		return $prefix . $s . $postfix;
 	}
 
 	/**
@@ -641,7 +641,7 @@ class Linker {
 			}
 		}
 		$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . "</div></div></div>";
-		return str_replace( "\n", ' ', $s );
+		return $s;
 	}
 
 	/**
