@@ -9,11 +9,6 @@
  * @covers ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
-	protected function setUp() {
-		parent::setUp();
-		$this->doLogin();
-	}
-
 	function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
 	}

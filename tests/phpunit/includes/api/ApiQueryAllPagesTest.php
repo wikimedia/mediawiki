@@ -8,16 +8,10 @@
  * @covers ApiQueryAllPages
  */
 class ApiQueryAllPagesTest extends ApiTestCase {
-
-	protected function setUp() {
-		parent::setUp();
-		$this->doLogin();
-	}
-
 	/**
-	 *Test T27702
-	 *Prefixes of API search requests are not handled with case sensitivity and may result
-	 *in wrong search results
+	 * Test T27702
+	 * Prefixes of API search requests are not handled with case sensitivity and may result
+	 * in wrong search results
 	 */
 	public function testPrefixNormalizationSearchBug() {
 		$title = Title::newFromText( 'Category:Template:xyz' );
