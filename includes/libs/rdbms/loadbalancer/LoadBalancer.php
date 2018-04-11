@@ -539,7 +539,7 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $this->loads[$i] > 0 ) {
 					$start = microtime( true );
 					$ok = $this->doWait( $i, true, $timeout ) && $ok;
-					$timeout -= ( microtime( true ) - $start );
+					$timeout -= intval( microtime( true ) - $start );
 					if ( $timeout <= 0 ) {
 						break; // timeout reached
 					}
