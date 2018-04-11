@@ -1675,6 +1675,7 @@ $wgAutoloadLocalClasses = [
 	'WikiTextStructure' => __DIR__ . '/includes/content/WikiTextStructure.php',
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/http/HttpAcceptParser.php',
+	'Wikimedia\\Rdbms\\AtomicSectionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/AtomicSectionIdentifier.php',
 	'Wikimedia\\Rdbms\\Blob' => __DIR__ . '/includes/libs/rdbms/encasing/Blob.php',
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',
 	'Wikimedia\\Rdbms\\ConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/ConnectionManager.php',

@@ -1577,6 +1577,7 @@ interface IDatabase {
 	 * @param string $fname
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
+	 * @return AtomicSectionIdentifier section ID token
 	 * @throws DBError
 	 */
 	public function startAtomic( $fname = __METHOD__, $cancelable = self::ATOMIC_NOT_CANCELABLE );
@@ -1612,9 +1613,11 @@ interface IDatabase {
 	 * @since 1.31
 	 * @see IDatabase::startAtomic
 	 * @param string $fname
+	 * @param AtomicSectionIdentifier $sectionId Section ID from startAtomic();
+	 *   passing this enables cancellation of unclosed nested sections [optional]
 	 * @throws DBError
 	 */
-	public function cancelAtomic( $fname = __METHOD__ );
+	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null );
 
 	/**
 	 * Run a callback to do an atomic set of updates for this database
@@ -1638,6 +1641,8 @@ interface IDatabase {
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
 	 * @param callable $callback Callback that issues DB updates
+	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
+	 *  savepoint and enable self::cancelAtomic() for this section.
 	 * @return mixed $res Result of the callback (since 1.28)
 	 * @throws DBError
 	 * @throws RuntimeException
@@ -1646,7 +1651,9 @@ interface IDatabase {
 	 *  cancelAtomic(), and assumed no callers up the stack would ever try to
 	 *  catch the exception.
 	 */
-	public function doAtomicSection( $fname, callable $callback );
+	public function doAtomicSection(
+		$fname, callable $callback, $cancelable = self::ATOMIC_NOT_CANCELABLE
+	);
 
 	/**
 	 * Begin a transaction. If a transaction is already in progress,
