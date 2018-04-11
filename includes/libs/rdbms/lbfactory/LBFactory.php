@@ -131,7 +131,9 @@ abstract class LBFactory implements ILBFactory {
 			'ChronologyPositionIndex' => isset( $_GET['cpPosIndex'] ) ? $_GET['cpPosIndex'] : null
 		];
 
-		$this->cliMode = isset( $conf['cliMode'] ) ? $conf['cliMode'] : PHP_SAPI === 'cli';
+		$this->cliMode = isset( $conf['cliMode'] )
+			? $conf['cliMode']
+			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->hostname = isset( $conf['hostname'] ) ? $conf['hostname'] : gethostname();
 		$this->agent = isset( $conf['agent'] ) ? $conf['agent'] : '';
 
