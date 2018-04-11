@@ -92,44 +92,16 @@
 		assert.equal( util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
-	QUnit.test( 'escapeId', function ( assert ) {
-		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
-		$.each( {
-			'+': '.2B',
-			'&': '.26',
-			'=': '.3D',
-			':': ':',
-			';': '.3B',
-			'@': '.40',
-			$: '.24',
-			'-_.': '-_.',
-			'!': '.21',
-			'*': '.2A',
-			'/': '.2F',
-			'[]': '.5B.5D',
-			'<>': '.3C.3E',
-			'\'': '.27',
-			'§': '.C2.A7',
-			'Test:A & B/Here': 'Test:A_.26_B.2FHere',
-			'A&B&amp;C&amp;amp;D&amp;amp;amp;E': 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE'
-		}, function ( input, output ) {
-			assert.equal( util.escapeId( input ), output );
-		} );
-	} );
-
 	QUnit.test( 'escapeIdForAttribute', function ( assert ) {
 		// Test cases are kept in sync with SanitizerTest.php
 		var text = 'foo тест_#%!\'()[]:<>',
 			legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E',
 			html5Encoded = 'foo_тест_#%!\'()[]:<>',
-			html5Experimental = 'foo_тест_!_()[]:<>',
 			// Settings: this is $wgFragmentMode
 			legacy = [ 'legacy' ],
 			legacyNew = [ 'legacy', 'html5' ],
 			newLegacy = [ 'html5', 'legacy' ],
-			allNew = [ 'html5' ],
-			experimentalLegacy = [ 'html5-legacy', 'legacy' ],
-			newExperimental = [ 'html5', 'html5-legacy' ];
+			allNew = [ 'html5' ];
 
 		// Test cases are kept in sync with SanitizerTest.php
 		[
@@ -140,11 +112,7 @@
 			// New world: HTML5 links, legacy fallbacks
 			[ newLegacy, text, html5Encoded ],
 			// Distant future: no legacy fallbacks
-			[ allNew, text, html5Encoded ],
-			// Someone flipped $wgExperimentalHtmlIds on
-			[ experimentalLegacy, text, html5Experimental ],
-			// Migration from $wgExperimentalHtmlIds to modern HTML5
-			[ newExperimental, text, html5Encoded ]
+			[ allNew, text, html5Encoded ]
 		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
@@ -157,14 +125,11 @@
 		var text = 'foo тест_#%!\'()[]:<>',
 			legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E',
 			html5Encoded = 'foo_тест_#%!\'()[]:<>',
-			html5Experimental = 'foo_тест_!_()[]:<>',
 			// Settings: this is wgFragmentMode
 			legacy = [ 'legacy' ],
 			legacyNew = [ 'legacy', 'html5' ],
 			newLegacy = [ 'html5', 'legacy' ],
-			allNew = [ 'html5' ],
-			experimentalLegacy = [ 'html5-legacy', 'legacy' ],
-			newExperimental = [ 'html5', 'html5-legacy' ];
+			allNew = [ 'html5' ];
 
 		[
 			// Pure legacy: how MW worked before 2017
@@ -174,11 +139,7 @@
 			// New world: HTML5 links, legacy fallbacks
 			[ newLegacy, text, html5Encoded ],
 			// Distant future: no legacy fallbacks
-			[ allNew, text, html5Encoded ],
-			// Someone flipped wgExperimentalHtmlIds on
-			[ experimentalLegacy, text, html5Experimental ],
-			// Migration from wgExperimentalHtmlIds to modern HTML5
-			[ newExperimental, text, html5Encoded ]
+			[ allNew, text, html5Encoded ]
 		].forEach( function ( testCase ) {
 			mw.config.set( 'wgFragmentMode', testCase[ 0 ] );
 
