@@ -32,13 +32,6 @@
 		switch ( mode ) {
 			case 'html5':
 				return str.replace( / /g, '_' );
-			case 'html5-legacy':
-				str = str.replace( /[ \t\n\r\f_'"&#%]+/g, '_' )
-					.replace( /^_+|_+$/, '' );
-				if ( str === '' ) {
-					str = '_';
-				}
-				return str;
 			case 'legacy':
 				return rawurlencode( str.replace( / /g, '_' ) )
 					.replace( /%3A/g, ':' )
@@ -587,18 +580,6 @@
 		mw.notify( message, { autoHide: true, tag: 'legacy' } );
 		return true;
 	}, 'Use mw.notify instead.', 'mw.util.jsMessage' );
-
-	/**
-	 * Encode the string like Sanitizer::escapeId() in PHP
-	 *
-	 * @method escapeId
-	 * @deprecated since 1.30 use escapeIdForAttribute() or escapeIdForLink()
-	 * @param {string} str String to be encoded.
-	 * @return {string} Encoded string
-	 */
-	mw.log.deprecate( util, 'escapeId', function ( str ) {
-		return escapeIdInternal( str, 'legacy' );
-	}, 'Use mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.', 'mw.util.escapeId' );
 
 	/**
 	 * Initialisation of mw.util.$content
