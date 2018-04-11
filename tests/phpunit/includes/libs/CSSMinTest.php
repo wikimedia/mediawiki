@@ -23,6 +23,32 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider serializeStringValueProvider
+	 * @covers CSSMin::serializeStringValue
+	 */
+	public function testSerializeStringValue( $input, $expected ) {
+		$output = CSSMin::serializeStringValue( $input );
+		$this->assertEquals(
+			$expected,
+			$outpt,
+			'Serialized output must be in the expected form.'
+		);
+	}
+
+	public function serializeStringValueProvider() {
+		return [
+			[ 'Hello', '"Hello"' ],
+			[ "Null\0Null", "\"Null\xEF\xBF\xBDNull\"" ],
+			[ '"', '"\\""' ],
+			[ "'", '"\'"' ],
+			[ "\\", '"\\\\"' ],
+			[ "New\nline", '"New\\a line"' ],
+			[ '!"#$%&\'()*+,-./0123456789:;<=>?', '"!\\"#$%&\'()*+,-./0123456789:;<=>?"' ],
+			[ 'Ä€', '"Ä€"' ],
+		];
+	}
+
+	/**
 	 * @dataProvider mimeTypeProvider
 	 * @covers CSSMin::getMimeType
 	 */
