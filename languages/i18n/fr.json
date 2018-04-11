@@ -199,7 +199,7 @@
 	"tog-watchlisthideminor": "Masquer les modifications mineures dans la liste de suivi",
 	"tog-watchlisthideliu": "Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi",
 	"tog-watchlistreloadautomatically": "Recharger automatiquement la liste de suivi lorsque les options de filtrage sont modifiées (JavaScript requis)",
-	"tog-watchlistunwatchlinks": "Ajouter des liens directs pour suivre ou arrêter de suivre les entrées de la liste de suivi (JavaScript est nécessaire pour utiliser la fonctionnalité)",
+	"tog-watchlistunwatchlinks": "Ajouter des marqueurs directs ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) pour les pages suivies avec des changements (JavaScript est nécessaire pour utiliser la fonctionnalité)",
 	"tog-watchlisthideanons": "Masquer les modifications d’utilisateurs anonymes dans la liste de suivi",
 	"tog-watchlisthidepatrolled": "Masquer les modifications relues dans la liste de suivi",
 	"tog-watchlisthidecategorization": "Masquer la catégorisation des pages",

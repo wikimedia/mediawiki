@@ -3287,7 +3287,7 @@
 	"tag-filter-submit": "Фільтр",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Тэг|Тэгі}}]]: $2)",
 	"tag-mw-contentmodelchange": "змена мадэлі змесціва",
-	"tag-mw-new-redirect": "Новае перенаправление",
+	"tag-mw-new-redirect": "Новая перасылка",
 	"tag-mw-removed-redirect": "Выдаленае перанакіраванне",
 	"tag-mw-changed-redirect-target": "Змяненне мэты перенаправления",
 	"tag-mw-blank": "ачыстка",

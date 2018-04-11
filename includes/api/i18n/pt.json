@@ -835,6 +835,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "Indica se o utilizador pode ler esta página.",
 	"apihelp-query+info-paramvalue-prop-preload": "Fornece o texto devolvido por EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece a forma como o título da página é apresentado.",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "Fornece o título de apresentação em todas as variantes da língua de conteúdo da wiki.",
 	"apihelp-query+info-param-testactions": "Testar se o utilizador pode realizar certas operações na página.",
 	"apihelp-query+info-param-token": "Em substituição, usar [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
 	"apihelp-query+info-example-simple": "Obter informações sobre a página <kbd>Main Page</kbd>.",
