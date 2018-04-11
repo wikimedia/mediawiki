@@ -1346,6 +1346,10 @@ abstract class Installer {
 		$exts = $this->getVar( '_Extensions' );
 		$IP = $this->getVar( 'IP' );
 
+		// Marker for DatabaseUpdater::loadExtensions so we don't
+		// double load extensions
+		define( 'MW_EXTENSIONS_LOADED', true );
+
 		/**
 		 * We need to include DefaultSettings before including extensions to avoid
 		 * warnings about unset variables. However, the only thing we really
