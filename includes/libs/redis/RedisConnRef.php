@@ -46,21 +46,21 @@ class RedisConnRef implements LoggerAwareInterface {
 	/**
 	 * No authentication errors.
 	 *
-	 * @var		constant
+	 * @var constant
 	 */
 	const AUTH_NO_ERROR = 200;
 
 	/**
 	 * Temporary authentication error; recovered by reauthenticating.
 	 *
-	 * @var		constant
+	 * @var constant
 	 */
 	const AUTH_ERROR_TEMPORARY = 201;
 
 	/**
 	 * Authentication error was permanent and could not be recovered.
 	 *
-	 * @var		constant
+	 * @var constant
 	 */
 	const AUTH_ERROR_PERMANENT = 202;
 
@@ -102,9 +102,9 @@ class RedisConnRef implements LoggerAwareInterface {
 	/**
 	 * Magic __call handler for most Redis functions.
 	 *
-	 * @param string Function Name
-	 * @param array Function Arguments
-	 * @return mixed Results
+	 * @param string $name
+	 * @param array $arguments
+	 * @return mixed $res
 	 * @throws RedisException
 	 */
 	public function __call( $name, $arguments ) {
