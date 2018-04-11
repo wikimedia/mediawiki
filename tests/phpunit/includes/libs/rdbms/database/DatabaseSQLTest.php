@@ -1687,4 +1687,42 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
 		$this->assertEquals( 0, $this->database->trxLevel() );
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::close
+	 */
+	public function testPrematureClose3() {
+		try {
+			$this->database->setFlag( IDatabase::DBO_TRX );
+			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+			$this->assertEquals( 1, $this->database->trxLevel() );
+			$this->database->close();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBUnexpectedError $ex ) {
+			$this->assertSame(
+				'Wikimedia\Rdbms\Database::close: ' .
+				'mass commit/rollback of peer transaction required (DBO_TRX set).',
+				$ex->getMessage()
+			);
+		}
+
+		$this->assertFalse( $this->database->isOpen() );
+		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = \'3\'; ROLLBACK' );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::close
+	 */
+	public function testPrematureClose4() {
+		$this->database->setFlag( IDatabase::DBO_TRX );
+		$this->database->query( 'SELECT 1', __METHOD__ );
+		$this->assertEquals( 1, $this->database->trxLevel() );
+		$this->database->close();
+		$this->database->clearFlag( IDatabase::DBO_TRX );
+
+		$this->assertFalse( $this->database->isOpen() );
+		$this->assertLastSql( 'BEGIN; SELECT 1; COMMIT' );
+		$this->assertEquals( 0, $this->database->trxLevel() );
+	}
 }
