@@ -23,7 +23,6 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		parent::setUp();
 
 		self::$users['ApiQueryRecentChangesIntegrationTestUser'] = $this->getMutableTestUser();
-		$this->doLogin( 'ApiQueryRecentChangesIntegrationTestUser' );
 		wfGetDB( DB_MASTER )->delete( 'recentchanges', '*', __METHOD__ );
 	}
 
@@ -129,7 +128,8 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				$params
 			),
 			null,
-			false
+			false,
+			$this->getLoggedInTestUser()
 		);
 	}
 
@@ -138,7 +138,10 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			array_merge(
 				[ 'action' => 'query', 'generator' => 'recentchanges' ],
 				$params
-			)
+			),
+			null,
+			false,
+			$this->getLoggedInTestUser()
 		);
 	}
 
