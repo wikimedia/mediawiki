@@ -8,7 +8,8 @@ production.
 === Configuration changes in 1.32 ===
 * (T115414) The $wgEnableAPI and $wgEnableWriteAPI settings, deprecated in 1.31, have been removed.
 * The $wgUseAjax setting is now formally deprecated, and MediaWiki will act as if it is always set.
-* …
+* $wgExperimentalHtmlIds, deprecated since 1.30, has been removed. The 'html5-legacy'
+  value for $wgFragmentMode is no longer accepted.
 
 === New features in 1.32 ===
 * …
@@ -42,7 +43,13 @@ changes to languages because of Phabricator reports.
 * …
 
 === Breaking changes in 1.32 ===
-* …
+* The migration methods and options for modern HTML IDs, deprecated in 1.30, have been
+  removed:
+  * Title::escapeFragmentForURL()
+  * Sanitizer::escapeId() and the corresponding JavaScript method in mediawiki.util.
+  Use Sanitizer::escapeIdForAttribute(), ::escapeIdForExternalInterwiki(), or
+  ::escapeIdForLink() as needed. The related config options $wgExperimentalHtmlIds and
+  the 'html5-legacy' value for $wgFragmentMode are dropped.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
