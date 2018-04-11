@@ -11,7 +11,7 @@ fi
 
 REPO_DIR=$(cd "$(dirname $0)/../.."; pwd) # Root dir of the git repo working tree
 TARGET_DIR="resources/lib/oojs-ui" # Destination relative to the root of the repo
-NPM_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'update-oojs-ui') # e.g. /tmp/update-oojs-ui.rI0I5Vir
+NPM_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'update-ooui') # e.g. /tmp/update-ooui.rI0I5Vir
 
 # Prepare working tree
 cd "$REPO_DIR"
@@ -72,13 +72,6 @@ cp ./node_modules/oojs-ui/dist/themes/wikimediaui/images/textures/*.{gif,svg} "$
 cp ./node_modules/oojs-ui/src/themes/wikimediaui/*.json "$REPO_DIR/$TARGET_DIR/themes/wikimediaui"
 
 # Apex theme icons, indicators, and textures
-mkdir -p "$REPO_DIR/$TARGET_DIR/themes/apex/images/icons"
-cp ./node_modules/oojs-ui/dist/themes/apex/images/icons/*.{svg,png} "$REPO_DIR/$TARGET_DIR/themes/apex/images/icons"
-mkdir -p "$REPO_DIR/$TARGET_DIR/themes/apex/images/indicators"
-cp ./node_modules/oojs-ui/dist/themes/apex/images/indicators/*.{svg,png} "$REPO_DIR/$TARGET_DIR/themes/apex/images/indicators"
-mkdir -p "$REPO_DIR/$TARGET_DIR/themes/apex/images/textures"
-cp ./node_modules/oojs-ui/dist/themes/apex/images/textures/*.{gif,svg} "$REPO_DIR/$TARGET_DIR/themes/apex/images/textures"
-
 cp ./node_modules/oojs-ui/src/themes/apex/*.json "$REPO_DIR/$TARGET_DIR/themes/apex"
 
 # WikimediaUI LESS variables for sharing
