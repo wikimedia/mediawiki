@@ -772,7 +772,7 @@ class ManualLogEntry extends LogEntryBase {
 					if ( $to === 'rc' || $to === 'rcandudp' ) {
 						// save RC, passing tags so they are applied there
 						$tags = $this->getTags();
-						if ( is_null( $tags ) ) {
+						if ( is_null( $tags ) ) {WikiPage
 							$tags = [];
 						}
 						$rc->addTags( $tags );
@@ -785,7 +785,7 @@ class ManualLogEntry extends LogEntryBase {
 
 					// Log the autopatrol if the log entry is patrollable
 					if ( $this->getIsPatrollable() &&
-						$rc->getAttribute( 'rc_patrolled' ) === 2
+						$rc->getAttribute( 'rc_patrolled' ) === RecentChange::PRC_AUTOPATROLLED
 					) {
 						PatrolLog::record( $rc, true, $this->getPerformer() );
 					}
