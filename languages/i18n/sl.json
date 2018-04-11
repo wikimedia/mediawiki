@@ -52,7 +52,7 @@
 	"tog-watchlisthideminor": "Na spisku nadzorov skrij manjša urejanja",
 	"tog-watchlisthideliu": "Na spisku nadzorov skrij urejanja prijavljenih uporabnikov",
 	"tog-watchlistreloadautomatically": "Samodejno ponovno naloži spisek nadzorov ob spremembi filtra (zahteva JavaScript)",
-	"tog-watchlistunwatchlinks": "Dodaj neposredne povezave za dodajanje/odstranjevanje strani s spiska nadzorov (za funkcionalnost preklopa je zahtevan JavaScript)",
+	"tog-watchlistunwatchlinks": "Dodaj oznake za dodajanje/odstranjevanje ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) spremenjenih strani s spiska nadzorov (za funkcionalnost preklopa je zahtevan JavaScript)",
 	"tog-watchlisthideanons": "Na spisku nadzorov skrij urejanja anonimnih uporabnikov",
 	"tog-watchlisthidepatrolled": "Na spisku nadzorov skrij pregledana urejanja",
 	"tog-watchlisthidecategorization": "Skrij kategorizacijo strani",

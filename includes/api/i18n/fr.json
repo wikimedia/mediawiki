@@ -856,6 +856,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "Si l’utilisateur peut lire cette page.",
 	"apihelp-query+info-paramvalue-prop-preload": "Fournit le texte renvoyé par EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Fournit la manière dont le titre de la page est réellement affiché.",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "Donne le titre affiché dans toutes les variantes de la langue de contenu du site.",
 	"apihelp-query+info-param-testactions": "Tester si l’utilisateur actuel peut effectuer certaines actions sur la page.",
 	"apihelp-query+info-param-token": "Utiliser plutôt [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
 	"apihelp-query+info-example-simple": "Obtenir des informations sur la page <kbd>Main Page</kbd>.",

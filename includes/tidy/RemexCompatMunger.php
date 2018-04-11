@@ -61,6 +61,13 @@ class RemexCompatMunger implements TreeHandler {
 		"tt" => true,
 		"u" => true,
 		"var" => true,
+		// Those defined in tidy.conf
+		"video" => true,
+		"audio" => true,
+		"bdi" => true,
+		"data" => true,
+		"time" => true,
+		"mark" => true,
 	];
 
 	private static $formattingElements = [

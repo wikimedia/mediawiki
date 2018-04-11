@@ -294,6 +294,9 @@ class BalanceSets {
 			'span' => true, 'strike' => true, 'strong' => true, 'sub' => true,
 			'sup' => true, 'textarea' => true, 'tt' => true, 'u' => true,
 			'var' => true,
+			// Those defined in tidy.conf
+			'video' => true, 'audio' => true, 'bdi' => true, 'data' => true,
+			'time' => true, 'mark' => true,
 		],
 	];
 }

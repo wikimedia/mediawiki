@@ -1119,7 +1119,7 @@
 	"saveusergroups": "Gem {{GENDER:$1|brugergrupper}}",
 	"userrights-groupsmember": "Medlem af:",
 	"userrights-groupsmember-auto": "Implicit medlem af:",
-	"userrights-groups-help": "Du kan ændre denne brugers gruppemedlemsskaber:\n* Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe.\n* Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.\n* En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.\n* En # betyder at du kun kan forkorte udløbsperioden for dette gruppemedlemskab; du kan ikke forlænge den.",
+	"userrights-groups-help": "Du kan ændre denne brugers gruppemedlemsskaber:\n* Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe.\n* Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.\n* En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.\n* En # betyder at du kun kan forlænge udløbsperioden for dette gruppemedlemskab; du kan ikke forkorte den.",
 	"userrights-reason": "Årsag:",
 	"userrights-no-interwiki": "Du har ikke tilladelse til at redigere brugerrettigheder på andre wikier.",
 	"userrights-nodatabase": "Databasen $1 eksisterer ikke lokalt.",
