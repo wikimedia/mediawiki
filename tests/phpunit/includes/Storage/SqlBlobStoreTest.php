@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\SqlBlobStore;
@@ -236,6 +237,42 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 		$store = $this->getBlobStore( 'windows-1252', true );
 		$address = $store->storeBlob( $blob );
 		$this->assertSame( $blob, $store->getBlob( $address ) );
+	}
+
+	public function provideGetTextIdFromAddress() {
+		yield [ 'tt:17', 17 ];
+		yield [ 'xy:17', null ];
+		yield [ 'xy:xyzzy', null ];
+	}
+
+	/**
+	 * @dataProvider provideGetTextIdFromAddress
+	 */
+	public function testGetTextIdFromAddress( $address, $textId ) {
+		$store = $this->getBlobStore();
+		$this->assertSame( $textId, $store->getTextIdFromAddress( $address ) );
+	}
+
+	public function provideGetTextIdFromAddressInvalidArgumentException() {
+		yield [ 'tt:-17' ];
+		yield [ 'tt:xy' ];
+		yield [ 'tt:0' ];
+		yield [ 'tt:' ];
+		yield [ 'xy' ];
+		yield [ '' ];
+	}
+
+	/**
+	 * @dataProvider provideGetTextIdFromAddressInvalidArgumentException
+	 */
+	public function testGetTextIdFromAddressInvalidArgumentException( $address ) {
+		$this->setExpectedException( InvalidArgumentException::class );
+		$store = $this->getBlobStore();
+		$store->getTextIdFromAddress( $address );
+	}
+
+	public function testMakeAddressFromTextId() {
+		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );
 	}
 
 }

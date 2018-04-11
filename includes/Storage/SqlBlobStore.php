@@ -244,7 +244,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 			$textId = $dbw->insertId();
 
-			return 'tt:' . $textId;
+			return self::makeAddressFromTextId( $textId );
 		} catch ( MWException $e ) {
 			throw new BlobAccessException( $e->getMessage(), 0, $e );
 		}
@@ -542,11 +542,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * Currently, $address must start with 'tt:' followed by a decimal integer representing
 	 * the old_id; if $address does not start with 'tt:', null is returned. However,
 	 * the implementation may change to insert rows into the text table on the fly.
+	 * This implies that this method cannot be static.
 	 *
 	 * @note This method exists for use with the text table based storage schema.
 	 * It should not be assumed that is will function with all future kinds of content addresses.
 	 *
-	 * @deprecated since 1.31, so not assume that all blob addresses refer to a row in the text
+	 * @deprecated since 1.31, so don't assume that all blob addresses refer to a row in the text
 	 * table. This method should become private once the relevant refactoring in WikiPage is
 	 * complete.
 	 *
@@ -568,6 +569,22 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		}
 
 		return $textId;
+	}
+
+	/**
+	 * Returns an address referring to content stored in the text table row with the given ID.
+	 * The address schema for blobs stored in the text table is "tt:" followed by an integer
+	 * that corresponds to a value of the old_id field.
+	 *
+	 * @deprecated since 1.31. This method should become private once the relevant refactoring
+	 * in WikiPage is complete.
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
+	public static function makeAddressFromTextId( $id ) {
+		return 'tt:' . $id;
 	}
 
 	/**
