@@ -235,15 +235,21 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( isset( $show['unpatrolled'] ) ) {
 				// See ChangesList::isUnpatrolled
 				if ( $user->useRCPatrol() ) {
-					$this->addWhere( 'rc_patrolled = 0' );
+					$this->addWhere( 'rc_patrolled = ' . RecentChange::PRC_UNPATROLLED );
 				} elseif ( $user->useNPPatrol() ) {
-					$this->addWhere( 'rc_patrolled = 0' );
+					$this->addWhere( 'rc_patrolled = ' . RecentChange::PRC_UNPATROLLED );
 					$this->addWhereFld( 'rc_type', RC_NEW );
 				}
 			}
 
-			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
-			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
+			$this->addWhereIf(
+				'rc_patrolled != ' . RecentChange::PRC_AUTOPATROLLED,
+				isset( $show['!autopatrolled'] )
+			);
+			$this->addWhereIf(
+				'rc_patrolled = ' . RecentChange::PRC_AUTOPATROLLED,
+				isset( $show['autopatrolled'] )
+			);
 
 			// Don't throw log entries out the window here
 			$this->addWhereIf(
@@ -552,9 +558,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		/* Add the patrolled flag */
 		if ( $this->fld_patrolled ) {
-			$vals['patrolled'] = $row->rc_patrolled != 0;
+			$vals['patrolled'] = $row->rc_patrolled != RecentChange::PRC_UNPATROLLED;
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
-			$vals['autopatrolled'] = $row->rc_patrolled == 2;
+			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
