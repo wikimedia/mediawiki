@@ -3373,22 +3373,11 @@ $wgApiFrameOptions = 'DENY';
 $wgDisableOutputCompression = false;
 
 /**
- * Abandoned experiment with HTML5-style ID escaping. Normalized IDs a bit
- * too aggressively, breaking preexisting content (particularly Cite).
- * See T29733, T29694, T29474.
- *
- * @deprecated since 1.30, use $wgFragmentMode
- */
-$wgExperimentalHtmlIds = false;
-
-/**
  * How should section IDs be encoded?
  * This array can contain 1 or 2 elements, each of them can be one of:
  * - 'html5'  is modern HTML5 style encoding with minimal escaping. Displays Unicode
  *            characters in most browsers' address bars.
  * - 'legacy' is old MediaWiki-style encoding, e.g. 啤酒 turns into .E5.95.A4.E9.85.92
- * - 'html5-legacy' corresponds to DEPRECATED $wgExperimentalHtmlIds mode. DO NOT use
- *            it for anything but migration off that mode (see below).
  *
  * The first element of this array specifies the primary mode of escaping IDs. This
  * is what users will see when they e.g. follow an [[#internal link]] to a section of

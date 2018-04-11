@@ -32,6 +32,8 @@ production.
   performance reasons, and installations with this setting will now work as if it
   was configured with 'any'.
 * $wgLogAutopatrol now defaults to false instead of true.
+* $wgExperimentalHtmlIds, deprecated since 1.30, has been removed. The 'html5-legacy'
+  value for $wgFragmentMode is no longer accepted.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
@@ -239,6 +241,13 @@ changes to languages because of Phabricator reports.
 * The ResourceLoaderGetLessVars hook, deprecated in 1.30, has been removed.
   Use ResourceLoaderModule::getLessVars() to expose local variables instead
   of global ones.
+* The migration methods and options for modern HTML IDs, deprecated in 1.30, have been
+  removed:
+  * Title::escapeFragmentForURL()
+  * Sanitizer::escapeId() and the corresponding JavaScript method in mediawiki.util.
+  Use Sanitizer::escapeIdForAttribute(), ::escapeIdForExternalInterwiki(), or
+  ::escapeIdForLink() as needed. The related config options $wgExperimentalHtmlIds and
+  the 'html5-legacy' value for $wgFragmentMode are dropped.
 
 === Deprecations in 1.31 ===
 * The Revision class was deprecated in favor of RevisionStore, BlobStore, and
