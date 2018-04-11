@@ -391,7 +391,7 @@ class RevisionStore
 
 		// getTextIdFromAddress() is free to insert something into the text table, so $textId
 		// may be a new value, not anything already contained in $blobAddress.
-		$blobAddress = 'tt:' . $textId;
+		$blobAddress = SqlBlobStore::makeAddressFromTextId( $textId );
 
 		$comment = $this->failOnNull( $rev->getComment( RevisionRecord::RAW ), 'comment' );
 		$user = $this->failOnNull( $rev->getUser( RevisionRecord::RAW ), 'user' );
@@ -769,7 +769,9 @@ class RevisionStore
 
 			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
 				$mainSlotRow->slot_content_id = $row->rev_text_id;
-				$mainSlotRow->content_address = 'tt:' . $row->rev_text_id;
+				$mainSlotRow->content_address = SqlBlobStore::makeAddressFromTextId(
+					$row->rev_text_id
+				);
 			}
 
 			// This is used by null-revisions
@@ -808,7 +810,7 @@ class RevisionStore
 				? intval( $row['slot_origin'] )
 				: null;
 			$mainSlotRow->content_address = isset( $row['text_id'] )
-				? 'tt:' . intval( $row['text_id'] )
+				? SqlBlobStore::makeAddressFromTextId( intval( $row['text_id'] ) )
 				: null;
 			$mainSlotRow->content_size = isset( $row['len'] ) ? intval( $row['len'] ) : null;
 			$mainSlotRow->content_sha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
