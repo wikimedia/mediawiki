@@ -1642,8 +1642,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
-	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = [] ) {
+	public function select(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		if (
+			$this->selectOptionsIncludeLocking( $options ) &&
+			$this->selectFieldsOrOptionsAggregate( $vars, $options )
+		) {
+			// Some DB types (postgres/oracle) disallow FOR UPDATE with aggregate
+			// functions. Discourage use of such queries to encourage compatibility.
+			call_user_func(
+				$this->deprecationLogger,
+				__METHOD__ . ": aggregation used with a locking SELECT ($fname)."
+			);
+		}
+
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		return $this->query( $sql, $fname );
@@ -1782,6 +1795,46 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$row = $res ? $this->fetchRow( $res ) : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return bool
+	 */
+	private function selectOptionsIncludeLocking( $options ) {
+		$options = (array)$options;
+		foreach ( [ 'FOR UPDATE', 'LOCK IN SHARE MODE' ] as $lock ) {
+			if ( in_array( $lock, $options, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param array|string $fields
+	 * @param array|string $options
+	 * @return bool
+	 */
+	private function selectFieldsOrOptionsAggregate( $fields, $options ) {
+		$fields = (array)$fields;
+		$options = (array)$options;
+
+		if ( isset( $options['GROUP BY'] ) || isset( $options['HAVING'] ) ) {
+			return true;
+		}
+
+		foreach ( $fields as $field ) {
+			if (
+				is_string( $field ) &&
+				preg_match( '/^(?:COUNT|MIN|MAX|SUM|DISTINCT)\\((?:\w+|\\*)\\)$/', $field )
+			) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
