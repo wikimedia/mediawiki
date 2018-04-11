@@ -23,6 +23,43 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider serializeStringValueProvider
+	 * @covers CSSMin::serializeStringValue
+	 */
+	public function testSerializeStringValue( $input, $expected ) {
+		$output = CSSMin::serializeStringValue( $input );
+		$this->assertEquals(
+			$expected,
+			$output,
+			'Serialized output must be in the expected form.'
+		);
+	}
+
+	public function serializeStringValueProvider() {
+		return [
+			[ 'Hello World!', '"Hello World!"' ],
+			[ "Null\0Null", "\"Null\xEF\xBF\xBDNull\"" ],
+			[ '"', '"\\""' ],
+			[ "'", '"\'"' ],
+			[ "\\", '"\\\\"' ],
+			[ "Tab\tTab", '"Tab\\9 Tab"' ],
+			[ "Space  tab \t space", '"Space  tab \\9  space"' ],
+			[ "Line\nfeed", '"Line\\a feed"' ],
+			[ "Return\rreturn", '"Return\\d return"' ],
+			[ "Next\xc2\x85line", '"Next\\85 line"' ],
+			[ "Del\x7fDel", '"Del\\7f Del"' ],
+			[ "nb\xc2\xa0sp", "\"nb\xc2\xa0sp\"" ],
+			[ "AMP&amp;AMP", "\"AMP&amp;AMP\"" ],
+			[ '!"#$%&\'()*+,-./0123456789:;<=>?', '"!\\"#$%&\'()*+,-./0123456789:;<=>?"' ],
+			[ '@[\\]^_`{|}~', '"@[\\\\]^_`{|}~"' ],
+			[ 'ä', '"ä"' ],
+			[ 'Ä', '"Ä"' ],
+			[ '€', '"€"' ],
+			[ '𝒞', '"𝒞"' ], // U+1D49E 'MATHEMATICAL SCRIPT CAPITAL C'
+		];
+	}
+
+	/**
 	 * @dataProvider mimeTypeProvider
 	 * @covers CSSMin::getMimeType
 	 */
