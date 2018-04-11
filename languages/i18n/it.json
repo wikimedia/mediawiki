@@ -152,7 +152,7 @@
 	"tog-watchlisthideminor": "Nascondi le modifiche minori negli osservati speciali",
 	"tog-watchlisthideliu": "Nascondi le modifiche degli utenti registrati negli osservati speciali",
 	"tog-watchlistreloadautomatically": "Ricarica automaticamente l'elenco degli osservati speciali ogni volta che si modifica un filtro (richiede JavaScript)",
-	"tog-watchlistunwatchlinks": "Aggiungi collegamenti diretti per seguire/non seguire gli elementi negli osservati speciali (richiede JavaScript per utilizzare questa funzionalità)",
+	"tog-watchlistunwatchlinks": "Aggiungi marcatori diretti ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) per seguire/non seguire le modifiche alle pagine (richiede JavaScript per utilizzare questa funzionalità)",
 	"tog-watchlisthideanons": "Nascondi le modifiche degli utenti anonimi negli osservati speciali",
 	"tog-watchlisthidepatrolled": "Nascondi le modifiche verificate negli osservati speciali",
 	"tog-watchlisthidecategorization": "Nascondi la categorizzazione delle pagine",

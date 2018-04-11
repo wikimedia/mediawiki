@@ -849,6 +849,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "用户是否可以阅读此页面。",
 	"apihelp-query+info-paramvalue-prop-preload": "提供由EditFormPreloadText返回的文本。",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "在页面标题实际显示的地方提供方式。",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "提供网站内容语言所有变体的显示标题。",
 	"apihelp-query+info-param-testactions": "测试当前用户是否可以在页面上执行某种操作。",
 	"apihelp-query+info-param-token": "请改用[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]。",
 	"apihelp-query+info-example-simple": "获取有关页面<kbd>Main Page</kbd>的信息。",

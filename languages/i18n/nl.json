@@ -126,7 +126,7 @@
 	"tog-watchlisthideminor": "Kleine bewerkingen op mijn volglijst verbergen",
 	"tog-watchlisthideliu": "Bewerkingen van aangemelde gebruikers op mijn volglijst verbergen",
 	"tog-watchlistreloadautomatically": "De volglijst automatisch herladen wanneer er een filter wordt veranderd (JavaScript vereist)",
-	"tog-watchlistunwatchlinks": "Volgen/niet volgen-links toevoegen aan regels in mijn volglijst (JavaScript vereist voor schakelfunctionaliteit)",
+	"tog-watchlistunwatchlinks": "Volgen/niet volgen-markers ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) toevoegen aan pagina's met wijzigingen in mijn volglijst (JavaScript vereist voor schakelfunctionaliteit)",
 	"tog-watchlisthideanons": "Bewerkingen van anonieme gebruikers op mijn volglijst verbergen",
 	"tog-watchlisthidepatrolled": "Gemarkeerde wijzigingen op mijn volglijst verbergen",
 	"tog-watchlisthidecategorization": "Categorisatie van pagina's op mijn volglijst verbergen",
