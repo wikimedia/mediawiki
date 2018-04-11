@@ -46,6 +46,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::makeSelectOptions
 	 * @covers Wikimedia\Rdbms\Database::makeOrderBy
 	 * @covers Wikimedia\Rdbms\Database::makeGroupByWithHaving
+	 * @covers Wikimedia\Rdbms\Database::selectFieldsOrOptionsAggregate
+	 * @covers Wikimedia\Rdbms\Database::selectOptionsIncludeLocking
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -223,9 +225,17 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[
 					'tables' => 'table',
 					'fields' => [ 'field' ],
-					'options' => [ 'DISTINCT', 'LOCK IN SHARE MODE' ],
+					'options' => [ 'DISTINCT' ],
 				],
-				"SELECT DISTINCT field FROM table      LOCK IN SHARE MODE"
+				"SELECT DISTINCT field FROM table"
+			],
+			[
+				[
+					'tables' => 'table',
+					'fields' => [ 'field' ],
+					'options' => [ 'LOCK IN SHARE MODE' ],
+				],
+				"SELECT field FROM table      LOCK IN SHARE MODE"
 			],
 			[
 				[
