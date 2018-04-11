@@ -1470,6 +1470,28 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$options = [ $options ];
 		}
 
+		if ( $this->selectOptionsIncludeLocking( $options ) ) {
+			// Some DB types (postgres/oracle) disallow FOR UPDATE with aggregate functions.
+			// Rewrite the query into a subquery for some common cases so that it is allowed.
+			list( $alias, $column ) = $this->extractAliasAndColumnIfSingle( $var );
+			if ( preg_match( '/^COUNT\((\w+|\\*)\)$/', $column, $m ) ) {
+				$table = [
+					'tmp_count' => $this->buildDummyRowSubquery(
+						$table,
+						$m[1],
+						$cond,
+						$fname,
+						$options,
+						$join_conds
+					)
+				];
+				$var = is_string( $alias ) ? [ $alias => 'COUNT(*)' ] : 'COUNT(*)';
+				$cond = [];
+				$options = [];
+				$join_conds = [];
+			}
+		}
+
 		$options['LIMIT'] = 1;
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
@@ -1642,8 +1664,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
-	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = [] ) {
+	public function select(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		if (
+			$this->selectOptionsIncludeLocking( $options ) &&
+			$this->selectOptionsIncludeAggregation( $options )
+		) {
+			// Some DB types (postgres/oracle) disallow FOR UPDATE with aggregate
+			// functions. Discourage use of such queries to encourage compatibility.
+			$this->queryLogger->warning( __METHOD__ . ': aggregation used with locking SELECT.' );
+		}
+
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		return $this->query( $sql, $fname );
@@ -1758,17 +1790,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function selectRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$conds = $this->normalizeConditions( $conds, $fname );
-		$column = $this->extractSingleFieldFromList( $var );
-		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
-			$conds[] = "$column IS NOT NULL";
-		}
-
 		$res = $this->select(
 			[
-				'tmp_count' => $this->buildSelectSubquery(
+				'tmp_count' => $this->buildDummyRowSubquery(
 					$tables,
-					'1',
+					$var,
 					$conds,
 					$fname,
 					$options,
@@ -1782,6 +1808,71 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$row = $res ? $this->fetchRow( $res ) : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
+	}
+
+	/**
+	 * @param string[] $tables
+	 * @param string $var
+	 * @param string $conds
+	 * @param string $fname
+	 * @param array $options
+	 * @param array $join_conds
+	 * @return Subquery
+	 */
+	private function buildDummyRowSubquery(
+		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		$conds = $this->normalizeConditions( $conds, $fname );
+		$column = $this->extractSingleFieldFromList( $var );
+		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
+			$conds[] = "$column IS NOT NULL";
+		}
+
+		return $this->buildSelectSubquery(
+			$tables,
+			'1',
+			$conds,
+			$fname,
+			$options,
+			$join_conds
+		);
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return bool
+	 */
+	private function selectOptionsIncludeLocking( $options ) {
+		$options = (array)$options;
+		foreach ( [ 'FOR UPDATE', 'LOCK IN SHARE MODE' ] as $lock ) {
+			if ( in_array( $lock, $options, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return bool
+	 */
+	private function selectOptionsIncludeAggregation( $options ) {
+		$options = (array)$options;
+		if ( isset( $options['GROUP BY'] ) ) {
+			return true;
+		}
+
+		foreach ( $options as $option ) {
+			if (
+				is_string( $option ) &&
+				preg_match( '/^(?:COUNT|MIN|MAX|SUM)\\((?:\w+|\\*)\\)$/', $option )
+			) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -1805,6 +1896,25 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $conds;
+	}
+
+	/**
+	 * @param array|string $vars Fields parameter in the style of select()
+	 * @return array (alias or null, column) or (null, null) if there is not exactly one field
+	 */
+	final protected function extractAliasAndColumnIfSingle( $vars ) {
+		if ( is_array( $vars ) ) {
+			if ( count( $vars ) == 1 ) {
+				$column = reset( $vars );
+				$alias = key( $vars );
+
+				return [ is_string( $alias ) ? $alias : null, $column ];
+			} else {
+				return [ null, null ];
+			}
+		} else {
+			return [ null, $vars ];
+		}
 	}
 
 	/**

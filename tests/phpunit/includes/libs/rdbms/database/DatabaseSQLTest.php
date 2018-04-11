@@ -342,6 +342,123 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers Wikimedia\Rdbms\Subquery
+	 * @dataProvider provideLockingSelectRowCount
+	 * @param $sql
+	 * @param $sqlText
+	 */
+	public function testSelectCountLocking( $sql, $sqlText ) {
+		$this->database->selectField(
+			$sql['tables'],
+			$sql['field'],
+			isset( $sql['conds'] ) ? $sql['conds'] : [],
+			__METHOD__,
+			$sql['options'],
+			isset( $sql['join_conds'] ) ? $sql['join_conds'] : []
+		);
+		$this->assertLastSql( $sqlText );
+	}
+
+	public static function provideLockingSelectRowCount() {
+		return [
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'COUNT(*)' ],
+					'conds' => [ 'field' => 'text' ],
+					'options' => 'FOR UPDATE'
+				],
+				"SELECT COUNT(*) FROM " .
+				"(SELECT 1 FROM table WHERE field = 'text'   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'COUNT(*)' ],
+					'conds' => [ 'field' => 'text' ],
+					'options' => 'LOCK IN SHARE MODE'
+				],
+				"SELECT COUNT(*) FROM " .
+				"(SELECT 1 FROM table WHERE field = 'text'   LOCK IN SHARE MODE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'COUNT(column)' ],
+					'conds' => [ 'field' => 'text' ],
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) FROM " .
+				// phpcs:disable Generic.Files.LineLength
+				"(SELECT 1 FROM table WHERE field = 'text' AND (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => [ 'field' => 'text' ],
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				// phpcs:disable Generic.Files.LineLength
+				"(SELECT 1 FROM table WHERE field = 'text' AND (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => '',
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => false,
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => null,
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				"(SELECT 1 FROM table WHERE (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => '1',
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				// phpcs:disable Generic.Files.LineLength
+				"(SELECT 1 FROM table WHERE (1) AND (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+			[
+				[
+					'tables' => 'table',
+					'field' => [ 'alias' => 'COUNT(column)' ],
+					'conds' => '0',
+					'options' => [ 'FOR UPDATE' ]
+				],
+				"SELECT COUNT(*) AS alias FROM " .
+				// phpcs:disable Generic.Files.LineLength
+				"(SELECT 1 FROM table WHERE (0) AND (column IS NOT NULL)   FOR UPDATE) tmp_count LIMIT 1"
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideUpdate
 	 * @covers Wikimedia\Rdbms\Database::update
 	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
