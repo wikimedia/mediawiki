@@ -60,7 +60,11 @@ if ( $IP === false ) {
 // (use a callback because it depends on TemplateParser)
 if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
-		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+		if ( apache_getenv( 'MW_CONFIG_FILE' ) === false ) {
+			define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+		} else {
+			define( 'MW_CONFIG_FILE', apache_getenv( 'MW_CONFIG_FILE' ) );
+		}
 	}
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
 		function wfWebStartNoLocalSettings() {
