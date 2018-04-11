@@ -8872,7 +8872,7 @@ $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
  * @since 1.32
  * @var int One of the MIGRATION_* constants
  */
-$wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
+$wgMultiContentRevisionSchemaMigrationStage = MIGRATION_WRITE_BOTH;
 
 /**
  * Actor table schema migration stage.
