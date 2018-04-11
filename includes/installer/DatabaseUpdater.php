@@ -150,7 +150,7 @@ abstract class DatabaseUpdater {
 	 * LoadExtensionSchemaUpdates hook.
 	 */
 	private function loadExtensions() {
-		if ( !defined( 'MEDIAWIKI_INSTALL' ) ) {
+		if ( !defined( 'MEDIAWIKI_INSTALL' ) || defined( 'MW_EXTENSIONS_LOADED' ) ) {
 			return; // already loaded
 		}
 		$vars = Installer::getExistingLocalSettings();
@@ -162,7 +162,7 @@ abstract class DatabaseUpdater {
 
 		// This will automatically add "AutoloadClasses" to $wgAutoloadClasses
 		$data = $registry->readFromQueue( $queue );
-		$hooks = [ 'wgHooks' => [ 'LoadExtensionSchemaUpdates' => [] ] ];
+		$hooks = [];
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'];
 		}
