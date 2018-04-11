@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:48Z
+ * Date: 2018-04-10T22:15:43Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -16,6 +16,9 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconWidget.oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+  display: none;
 }
 .oo-ui-tool .oo-ui-tool-link {
   position: relative;
@@ -390,15 +393,10 @@
 .oo-ui-toolbar-narrow .oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
   left: 0.71428571em;
 }
-.oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
-  background-image: url('themes/wikimediaui/images/icons/check-progressive.png');
-  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/check-progressive.svg');
-  background-size: contain;
-}
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
   background-color: rgba(41, 98, 204, 0.1);
 }
-.oo-ui-menuToolGroup .oo-ui-tool-name-menuTool.oo-ui-tool-active {
+.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-tool-active {
   background-color: #eaf3ff;
 }
 .oo-ui-menuToolGroup.oo-ui-widget-disabled,

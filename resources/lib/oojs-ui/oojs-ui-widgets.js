@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:44Z
+ * Date: 2018-04-10T22:15:39Z
  */
 ( function ( OO ) {
 
@@ -5616,6 +5616,7 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 
 		defaultConfig.popupInput = defaultInput;
 		defaultConfig.popup.$content = defaultInput.$element;
+		defaultConfig.popup.padded = true;
 
 		this.$element.addClass( 'oo-ui-popupTagMultiselectWidget-defaultPopup' );
 	}

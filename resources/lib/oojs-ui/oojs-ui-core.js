@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:44Z
+ * Date: 2018-04-10T22:15:39Z
  */
 ( function ( OO ) {
 
@@ -7171,8 +7171,16 @@ OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( config ) {
 	// Parent constructor
 	OO.ui.MenuOptionWidget.parent.call( this, config );
 
+	// Properties
+	this.checkIcon = new OO.ui.IconWidget( {
+		icon: 'check',
+		classes: [ 'oo-ui-menuOptionWidget-checkIcon' ]
+	} );
+
 	// Initialization
-	this.$element.addClass( 'oo-ui-menuOptionWidget' );
+	this.$element
+		.prepend( this.checkIcon.$element )
+		.addClass( 'oo-ui-menuOptionWidget' );
 };
 
 /* Setup */
@@ -9080,11 +9088,17 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	// Parent constructor
 	OO.ui.CheckboxInputWidget.parent.call( this, config );
 
+	// Properties
+	this.checkIcon = new OO.ui.IconWidget( {
+		icon: 'check',
+		classes: [ 'oo-ui-checkboxInputWidget-checkIcon' ]
+	} );
+
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-checkboxInputWidget' )
 		// Required for pretty styling in WikimediaUI theme
-		.append( $( '<span>' ) );
+		.append( this.checkIcon.$element );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
 
@@ -9245,7 +9259,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-dropdownInputWidget' )
 		.append( this.dropdownWidget.$element );
-	this.setTabIndexedElement( null );
+	this.setTabIndexedElement( this.dropdownWidget.$tabIndexed );
 };
 
 /* Setup */
@@ -9628,7 +9642,7 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-radioSelectInputWidget' )
 		.append( this.radioSelectWidget.$element );
-	this.setTabIndexedElement( null );
+	this.setTabIndexedElement( this.radioSelectWidget.$tabIndexed );
 };
 
 /* Setup */

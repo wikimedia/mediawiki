@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:48Z
+ * Date: 2018-04-10T22:15:43Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -1106,24 +1106,21 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget [type='checkbox'] + span {
   background-color: #fff;
-  background-origin: border-box;
-  background-position: center center;
-  background-repeat: no-repeat;
   background-size: 0 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  position: absolute;
   left: 0;
   width: 1.42857143em;
   height: 1.42857143em;
   border: 1px solid #72777d;
   border-radius: 2px;
 }
+.oo-ui-checkboxInputWidget [type='checkbox'] + span.oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
+  position: absolute;
+}
 .oo-ui-checkboxInputWidget [type='checkbox']:checked + span {
-  background-image: url('themes/wikimediaui/images/icons/check-invert.png');
-  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/check-invert.svg');
-  background-size: 1em;
+  background-size: 1em 1em;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
   background-color: #c8ccd1;
@@ -1584,6 +1581,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
+}
+.oo-ui-menuOptionWidget.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
+  display: none;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
   background-color: #eaecf0;

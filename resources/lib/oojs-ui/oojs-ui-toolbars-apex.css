@@ -1,13 +1,16 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:48Z
+ * Date: 2018-04-10T22:15:43Z
  */
+.oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconWidget.oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+  display: none;
+}
 .oo-ui-popupTool .oo-ui-popupWidget-popup,
 .oo-ui-popupTool .oo-ui-popupWidget-anchor {
   z-index: 4;
@@ -291,27 +294,27 @@
 .oo-ui-toolbar-position-bottom .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
   bottom: 2.5em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link {
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link {
   padding: 0.3125em 0 0.3125em 0.3125em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-  display: table-cell !important;
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-iconElement-icon {
+  display: table-cell;
   min-width: 1.5625em;
   width: 1.5625em;
   height: 1.5625em;
   vertical-align: middle;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-title {
   padding-left: 0.5em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel,
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel,
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-title {
   line-height: 2em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel {
   color: #767676;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
+.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 3em;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
@@ -393,24 +396,24 @@
 .oo-ui-menuToolGroup .oo-ui-tool {
   padding: 0 1.25em 0 0.3125em;
 }
-.oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-  background-image: none;
+.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon {
+  opacity: 0;
 }
-.oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
-  background-image: url('themes/apex/images/icons/check.png');
-  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
+.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+  display: none;
+}
+.oo-ui-menuToolGroup .oo-ui-tool-active.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon {
+  display: none;
+}
+.oo-ui-menuToolGroup .oo-ui-tool-active.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+  display: table-cell;
+  opacity: 1;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
   background-color: #e1f3ff;
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-tool-title {
   color: #ccc;
-}
-.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-link .oo-ui-iconElement-icon {
-  opacity: 0.2;
 }
 .oo-ui-menuToolGroup.oo-ui-widget-disabled {
   color: #ccc;

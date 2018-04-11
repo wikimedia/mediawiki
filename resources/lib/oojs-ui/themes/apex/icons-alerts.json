@@ -2,29 +2,29 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"alert": { "file": "images/icons/alert.svg" },
-		"bell": { "file": "images/icons/bell.svg" },
+		"alert": { "file": "../wikimediaui/images/icons/alert.svg" },
+		"bell": { "file": "../wikimediaui/images/icons/bell.svg" },
 		"comment": {
-			"file": "images/icons/comment.svg",
+			"file": {
+				"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
+			},
 			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
 		},
-		"message": { "file": {
-			"ltr": "images/icons/message-ltr.svg",
-			"rtl": "images/icons/message-rtl.svg"
-		} },
-		"notice": { "file": "images/icons/notice.svg" },
+		"message": { "file": "../wikimediaui/images/icons/message.svg" },
+		"notice": { "file": "../wikimediaui/images/icons/notice.svg" },
 		"speechBubble": { "file": {
-			"ltr": "images/icons/speechBubble-ltr.svg",
-			"rtl": "images/icons/speechBubble-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
 		} },
 		"speechBubbleAdd": { "file": {
-			"ltr": "images/icons/speechBubbleAdd-ltr.svg",
-			"rtl": "images/icons/speechBubbleAdd-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/speechBubbleAdd-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/speechBubbleAdd-rtl.svg"
 		} },
 		"speechBubbles": { "file": {
-			"ltr": "images/icons/speechBubbles-ltr.svg",
-			"rtl": "images/icons/speechBubbles-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/speechBubbles-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/speechBubbles-rtl.svg"
 		} },
-		"tray": { "file": "images/icons/tray.svg" }
+		"tray": { "file": "../wikimediaui/images/icons/tray.svg" }
 	}
 }

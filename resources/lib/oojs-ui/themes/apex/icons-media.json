@@ -2,16 +2,40 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"fullScreen": { "file": "images/icons/fullScreen.svg" },
-		"image": { "file": "images/icons/image.svg" },
-		"imageGallery": { "file": {
-			"ltr": "images/icons/imageGallery-ltr.svg",
-			"rtl": "images/icons/imageGallery-rtl.svg"
-		} },
-		"play": { "file": {
-			"ltr": "images/icons/play-ltr.svg",
-			"rtl": "images/icons/play-rtl.svg"
-		} },
-		"stop": { "file": "images/icons/stop.svg" }
+		"exitFullscreen": {
+			"file": "../wikimediaui/images/icons/exitFullscreen.svg"
+		},
+		"fullScreen": { "file": "../wikimediaui/images/icons/fullScreen.svg" },
+		"image": {
+			"file": "../wikimediaui/images/icons/image.svg"
+		},
+		"imageAdd": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/imageAdd-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/imageAdd-rtl.svg"
+			}
+		},
+		"imageBroken": {
+			"file": "../wikimediaui/images/icons/imageBroken.svg"
+		},
+		"imageLock": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/imageLock-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/imageLock-rtl.svg"
+			}
+		},
+		"imageGallery": {
+			"file": "../wikimediaui/images/icons/imageGallery.svg"
+		},
+		"camera": {
+			"file": "../wikimediaui/images/icons/camera.svg"
+		},
+		"pause": {
+			"file": "../wikimediaui/images/icons/pause.svg"
+		},
+		"play": {
+			"file": "../wikimediaui/images/icons/play.svg"
+		},
+		"stop": { "file": "../wikimediaui/images/icons/stop.svg" }
 	}
 }

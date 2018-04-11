@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:48Z
+ * Date: 2018-04-10T22:15:43Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -271,9 +271,9 @@
   background-repeat: no-repeat;
   position: absolute;
   top: 0;
-  min-width: 24px;
+  min-width: 20px;
   width: 1.875em;
-  min-height: 24px;
+  min-height: 20px;
   height: 100%;
 }
 .oo-ui-iconElement .oo-ui-iconElement-icon,
@@ -934,6 +934,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border: 0;
   padding: 0;
 }
+.oo-ui-checkboxInputWidget .oo-ui-checkboxInputWidget-checkIcon.oo-ui-iconElement-icon {
+  display: none;
+}
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-top: 0;
 }
@@ -1205,25 +1208,26 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSelectWidget-invisible {
   display: none;
 }
+.oo-ui-menuOptionWidget.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
+  display: none;
+}
 .oo-ui-menuOptionWidget.oo-ui-optionWidget > .oo-ui-indicatorElement-indicator {
   display: none;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected > .oo-ui-iconElement-icon {
-  background-image: url('themes/apex/images/icons/check.png');
-  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/apex/images/icons/check.svg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected.oo-ui-optionWidget .oo-ui-iconElement-icon {
+  display: none;
+}
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
   display: block;
   position: absolute;
   left: 0.5em;
   top: 0;
-  min-width: 24px;
-  width: 1.875em;
-  min-height: 24px;
+  min-width: 20px;
+  width: 1.5625em;
+  min-height: 20px;
   height: 100%;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted,

@@ -2,79 +2,79 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"alignCenter": { "file": "images/icons/align-center.svg" },
-		"alignLeft": { "file": "images/icons/align-float-left.svg" },
-		"alignRight": { "file": "images/icons/align-float-right.svg" },
-		"attachment": { "file": {
-			"ltr": "images/icons/attachment-ltr.svg",
-			"rtl": "images/icons/attachment-rtl.svg"
-		} },
-		"calendar": { "file": {
-			"ltr": "images/icons/calendar-ltr.svg",
-			"rtl": "images/icons/calendar-rtl.svg"
-		} },
-		"code": { "file": "images/icons/code.svg" },
-		"find": { "file": {
-			"ltr": "images/icons/find-ltr.svg",
-			"rtl": "images/icons/find-rtl.svg"
-		},
+		"alignCenter": { "file": "../wikimediaui/images/icons/alignCenter.svg" },
+		"alignLeft": { "file": "../wikimediaui/images/icons/alignLeft.svg" },
+		"alignRight": { "file": "../wikimediaui/images/icons/alignRight.svg" },
+		"attachment": { "file": "../wikimediaui/images/icons/attachment.svg" },
+		"calendar": { "file": "../wikimediaui/images/icons/calendar.svg" },
+		"code": { "file": "../wikimediaui/images/icons/code.svg" },
+		"find": {
+			"file": "../wikimediaui/images/icons/articleSearch.svg",
 			"deprecated": "Will be removed in v0.28.0, use 'articleSearch' of 'content' pack instead."
 		},
-		"language": { "file": {
-			"ltr": "images/icons/language-ltr.svg",
-			"rtl": "images/icons/language-rtl.svg"
-		} },
+		"language": { "file": "../wikimediaui/images/icons/language.svg" },
 		"layout": { "file": {
-			"ltr": "images/icons/layout-ltr.svg",
-			"rtl": "images/icons/layout-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/layout-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/layout-rtl.svg"
 		} },
-		"markup": { "file": "images/icons/markup.svg" },
+		"markup": { "file": "../wikimediaui/images/icons/markup.svg" },
 		"newline": { "file": {
-			"ltr": "images/icons/newline-ltr.svg",
-			"rtl": "images/icons/newline-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/newline-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/newline-rtl.svg"
 		} },
-		"noWikiText": { "file": {
-			"ltr": "images/icons/noWikiText-ltr.svg",
-			"rtl": "images/icons/noWikiText-rtl.svg"
-		} },
+		"noWikiText": { "file": "../wikimediaui/images/icons/noWikiText.svg" },
 		"outline": { "file": {
-			"ltr": "images/icons/outline-ltr.svg",
-			"rtl": "images/icons/outline-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/outline-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/outline-rtl.svg"
 		} },
-		"puzzle": { "file": "images/icons/puzzle.svg" },
+		"puzzle": { "file": {
+			"ltr": "../wikimediaui/images/icons/puzzle-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/puzzle-rtl.svg"
+		} },
 		"quotes": { "file": {
-			"ltr": "images/icons/quotes-ltr.svg",
-			"rtl": "images/icons/quotes-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/quotes-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/quotes-rtl.svg"
 		} },
-		"searchCaseSensitive": { "file": "images/icons/case-sensitive.svg" },
-		"searchDiacritics": { "file": "images/icons/diacritic.svg" },
-		"searchRegularExpression": { "file": "images/icons/regular-expression.svg" },
+		"searchCaseSensitive": {
+			"file": "../wikimediaui/images/icons/searchCaseSensitive.svg"
+		},
+		"searchDiacritics": {
+			"file": "../wikimediaui/images/icons/searchDiacritics.svg"
+		},
+		"searchRegularExpression": {
+			"file": "../wikimediaui/images/icons/searchRegularExpression.svg"
+		},
 		"signature": { "file": {
-			"ltr": "images/icons/signature-ltr.svg",
-			"rtl": "images/icons/signature-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/signature-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/signature-rtl.svg"
 		} },
-		"specialCharacter": { "file": "images/icons/specialCharacter.svg" },
-		"table": { "file": "images/icons/table.svg" },
-		"tableAddColumnAfter": { "file": {
-			"ltr": "images/icons/table-insert-column-rtl.svg",
-			"rtl": "images/icons/table-insert-column-ltr.svg"
-		} },
-		"tableAddColumnBefore": { "file": {
-			"ltr": "images/icons/table-insert-column-ltr.svg",
-			"rtl": "images/icons/table-insert-column-rtl.svg"
-		} },
-		"tableAddRowAfter": { "file": "images/icons/table-insert-row-after.svg" },
-		"tableAddRowBefore": { "file": "images/icons/table-insert-row-before.svg" },
-		"tableCaption": { "file": "images/icons/table-caption.svg" },
-		"tableMergeCells": { "file": "images/icons/table-merge-cells.svg" },
+		"specialCharacter": { "file": "../wikimediaui/images/icons/specialCharacter.svg" },
+		"table": { "file": "../wikimediaui/images/icons/table.svg" },
+		"tableAddColumnAfter": { "file": "../wikimediaui/images/icons/tableAddColumnAfter.svg" },
+		"tableAddColumnBefore": { "file": "../wikimediaui/images/icons/tableAddColumnBefore.svg" },
+		"tableAddRowAfter": { "file": "../wikimediaui/images/icons/tableAddRowAfter.svg" },
+		"tableAddRowBefore": { "file": "../wikimediaui/images/icons/tableAddRowBefore.svg" },
+		"tableCaption": { "file": "../wikimediaui/images/icons/tableCaption.svg" },
+		"tableMergeCells": { "file": "../wikimediaui/images/icons/tableMergeCells.svg" },
+		"tableMoveColumnAfter": {
+			"file": "../wikimediaui/images/icons/tableMoveColumnAfter.svg"
+		},
+		"tableMoveColumnBefore": {
+			"file": "../wikimediaui/images/icons/tableMoveColumnBefore.svg"
+		},
+		"tableMoveRowAfter": {
+			"file": "../wikimediaui/images/icons/tableMoveRowAfter.svg"
+		},
+		"tableMoveRowBefore": {
+			"file": "../wikimediaui/images/icons/tableMoveRowBefore.svg"
+		},
 		"templateAdd": { "file": {
-			"ltr": "images/icons/templateAdd-ltr.svg",
-			"rtl": "images/icons/templateAdd-rtl.svg"
+			"ltr": "../wikimediaui/images/icons/templateAdd-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/templateAdd-rtl.svg"
 		} },
-		"translation": { "file": {
-			"ltr": "images/icons/language-ltr.svg",
-			"rtl": "images/icons/language-rtl.svg"
-		} },
-		"wikiText": { "file": "images/icons/wikiText.svg" }
+		"translation": {
+			"file": "../wikimediaui/images/icons/language.svg"
+		},
+		"wikiText": { "file": "../wikimediaui/images/icons/wikiText.svg" }
 	}
 }

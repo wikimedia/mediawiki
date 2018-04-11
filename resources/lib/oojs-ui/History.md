@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.26.3 / 2018-04-10
+### Styles
+* WikimediaUI theme: Restore background-size transition when checking a checkbox (Bartosz Dziewoński)
+* icons: Add 'tableMoveColumn*' & 'tableMoveRow*' icons (Volker E.)
+
+### Code
+* CheckboxInputWidget: Don't specify icon in CSS (Bartosz Dziewoński)
+* DropdownInput-/RadioSelectInputWidget: Fix support for 'tabIndex' (Bartosz Dziewoński)
+* MenuOptionWidget: Don't specify icon in CSS (Bartosz Dziewoński)
+* MenuToolGroup: Don't specify icon in CSS (Bartosz Dziewoński)
+* PopupTagMultiselectWidget: Use `padding` in popup by default (Ed Sanders)
+* Remove icon overrides for 'en-ca', 'en-gb' when 'en' suffices (Bartosz Dziewoński)
+* Apex icons: Replace entire set with WikimediaUI theme's (Ed Sanders)
+* WikimediaUI theme: Don't override selected MenuToolGroup tools' icon (Bartosz Dziewoński)
+* build: Bump devDependencies to latest (James D. Forrester)
+* demos: Update word processor toolbar styling from VisualEditor (Bartosz Dziewoński)
+
+
 ## v0.26.2 / 2018-04-04
 ### Deprecations
 * [DEPRECATING CHANGE] icons: Add 'userAnonymous', and deprecate 'userActive'/'userInactive' (Volker E.)

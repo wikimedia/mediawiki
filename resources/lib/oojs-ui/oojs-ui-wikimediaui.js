@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.2
+ * OOUI v0.26.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-04T17:22:44Z
+ * Date: 2018-04-10T22:15:39Z
  */
 ( function ( OO ) {
 
@@ -44,7 +44,13 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 		// Parent method
 		classes = OO.ui.WikimediaUITheme.parent.prototype.getElementClasses.call( this, element );
 
-	if ( element.supports( [ 'hasFlag' ] ) ) {
+	if (
+		element instanceof OO.ui.IconWidget &&
+		element.$element.hasClass( 'oo-ui-checkboxInputWidget-checkIcon' )
+	) {
+		// Icon on CheckboxInputWidget
+		variants.invert = true;
+	} else if ( element.supports( [ 'hasFlag' ] ) ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
 		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
 		isToolOrGroup =

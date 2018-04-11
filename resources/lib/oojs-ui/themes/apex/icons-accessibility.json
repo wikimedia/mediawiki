@@ -1,28 +1,22 @@
 {
-	"selectorWithoutVariant": ".oo-ui-icon-{name}",
-	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-icon-{name}",
+	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
-	"variants": {
-		"invert": {
-			"color": "#fff",
-			"global": true
-		}
-	},
 	"images": {
-		"bright": { "file": "images/icons/bright.svg" },
-		"halfBright": { "file": "images/icons/halfBright.svg" },
-		"notBright": { "file": "images/icons/notBright.svg" },
-		"eye": { "file": "images/icons/eye.svg" },
-		"eyeClosed": { "file": "images/icons/eyeClosed.svg" },
-		"moon": { "file": "images/icons/moon.svg" },
-		"largerText": { "file": {
-			"ltr": "images/icons/largerText-ltr.svg",
-			"rtl": "images/icons/largerText-rtl.svg"
+		"bright": { "file": "../wikimediaui/images/icons/bright.svg" },
+		"halfBright": { "file": {
+			"ltr": "../wikimediaui/images/icons/halfBright-ltr.svg",
+			"rtl": "../wikimediaui/images/icons/halfBright-rtl.svg"
 		} },
-		"smallerText": { "file": {
-			"ltr": "images/icons/smallerText-ltr.svg",
-			"rtl": "images/icons/smallerText-rtl.svg"
-		} },
-		"visionSimulator": { "file": "images/icons/visionSimulator.svg" }
+		"notBright": { "file": "../wikimediaui/images/icons/notBright.svg" },
+		"eye": { "file": "../wikimediaui/images/icons/eye.svg" },
+		"eyeClosed": { "file": "../wikimediaui/images/icons/eyeClosed.svg" },
+		"moon": { "file": "../wikimediaui/images/icons/moon.svg" },
+		"largerText": {
+			"file": "../wikimediaui/images/icons/largerText.svg"
+		},
+		"smallerText": {
+			"file": "../wikimediaui/images/icons/smallerText.svg"
+		},
+		"visionSimulator": { "file": "../wikimediaui/images/icons/visionSimulator.svg" }
 	}
 }
