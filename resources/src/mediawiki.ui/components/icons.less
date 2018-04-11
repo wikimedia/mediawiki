@@ -30,6 +30,11 @@
 	min-height: @iconSize;
 	min-width: @iconSize;
 
+	// If an inline element has been marked as a mw-ui-icon element it must be inline-block
+	span& {
+		display: inline-block;
+	}
+
 	// Standalone icons
 	//
 	// Markup:
