@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\Storage\PageIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Linker\LinkTarget;
@@ -36,7 +37,7 @@ use MediaWiki\MediaWikiServices;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget {
+class Title implements PageIdentity {
 	/** @var HashBagOStuff */
 	static private $titleCache = null;
 
@@ -246,6 +247,20 @@ class Title implements LinkTarget {
 			// Special case if it's already a Title object
 			return $linkTarget;
 		}
+
+		if ( $linkTarget instanceof PageIdentity ) {
+			if ( $linkTarget->getDomainID() ) {
+				// XXX: if we have an interwiki prefix, we could still make it an external Title
+				throw new InvalidArgumentException(
+					'Title cannot represent PageIdentities from another wiki'
+				);
+			}
+
+			if ( $linkTarget->getPageID() ) {
+				return self::newFromID( $linkTarget->getPageID() );
+			}
+		}
+
 		return self::makeTitle(
 			$linkTarget->getNamespace(),
 			$linkTarget->getText(),
@@ -1094,7 +1109,7 @@ class Title implements LinkTarget {
 	 * @return bool
 	 */
 	public function canExist() {
-		return $this->mNamespace >= NS_MAIN;
+		return $this->mNamespace >= NS_MAIN && !$this->isExternal();
 	}
 
 	/**
@@ -5130,6 +5145,42 @@ class Title implements LinkTarget {
 		$this->mArticleID = ( $this->mNamespace >= 0 ) ? -1 : 0;
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
+	}
+
+	/**
+	 * Get the domain ID of the wiki database this PageIdentity belongs to.
+	 *
+	 * For interwiki links that are not bound to a database domain, this wil return UNKNOWN_DOMAIN.
+	 * For the local database, it may return false, for historical reasons.
+	 *
+	 * @see IDatabase::getDomainID()
+	 *
+	 * @return string|false the wiki's domain ID, or false if it belongs to the local wiki's
+	 * database.
+	 */
+	public function getDomainID() {
+		// TODO: allow Titles to represent pages in other wikis, with access to the database!
+		if ( $this->isExternal() ) {
+			return self::UNKNOWN_DOMAIN;
+		} else {
+			// TODO: use the actual database domain ID!
+			return false;
+		}
+	}
+
+	/**
+	 * Get the page ID, if it exist.
+	 *
+	 * @return int|false the page's ID in the page table, or 0 if the page does not (but could)
+	 *         exist in the database indicated by getDomainID(), or false if this page cannot be
+	 *         created in the database indicated by getDomainID().
+	 */
+	public function getPageID() {
+		if ( !$this->canExist() ) {
+			return false;
+		} else {
+			return $this->getArticleID();
+		}
 	}
 
 }

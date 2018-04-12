@@ -79,8 +79,12 @@ abstract class RevisionRecord {
 	/** @var CommentStoreComment|null */
 	protected $mComment;
 
-	/**  @var Title */
-	protected $mTitle; // TODO: we only need the title for permission checks!
+	/**
+	 * @var Title
+	 * @todo This should become a PageIdentity. A Title is needed only for permission checks,
+	 *       which should be implemented via callbacks.
+	 */
+	protected $mTitle;
 
 	/** @var RevisionSlots */
 	protected $mSlots;
@@ -91,19 +95,12 @@ abstract class RevisionRecord {
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
-	 *
-	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $wikiId = false ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-
+	function __construct( Title $title, RevisionSlots $slots ) {
+		// FIXME: $title should be a PageIdentity here!
 		$this->mTitle = $title;
 		$this->mSlots = $slots;
-		$this->mWiki = $wikiId;
-
-		// XXX: this is a sensible default, but we may not have a Title object here in the future.
+		$this->mWiki = $title->getDomainID();
 		$this->mPageId = $title->getArticleID();
 	}
 
@@ -194,6 +191,18 @@ abstract class RevisionRecord {
 		}
 
 		return $slot;
+	}
+
+	/**
+	 * Returns whether the content of this revision is accessible to the given audience.
+	 *
+	 * @param int $audience
+	 * @param User|null $user
+	 *
+	 * @return bool
+	 */
+	public function isContentAccessible( $audience = self::FOR_PUBLIC, User $user = null ) {
+		return $this->audienceCan( self::DELETED_TEXT, $audience, $user );
 	}
 
 	/**
@@ -296,9 +305,9 @@ abstract class RevisionRecord {
 	 *
 	 * MCR migration note: this replaces Revision::getTitle
 	 *
-	 * @return LinkTarget
+	 * @return PageIdentity
 	 */
-	public function getPageAsLinkTarget() {
+	public function getPage() {
 		return $this->mTitle;
 	}
 

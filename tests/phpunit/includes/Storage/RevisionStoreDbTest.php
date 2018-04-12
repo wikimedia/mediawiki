@@ -156,7 +156,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertEquals( $r1->getUser()->getName(), $r2->getUser()->getName() );
 		$this->assertEquals( $r1->getUser()->getId(), $r2->getUser()->getId() );
 		$this->assertEquals( $r1->getComment(), $r2->getComment() );
-		$this->assertEquals( $r1->getPageAsLinkTarget(), $r2->getPageAsLinkTarget() );
+		$this->assertEquals( $r1->getPage(), $r2->getPage() );
 		$this->assertEquals( $r1->getTimestamp(), $r2->getTimestamp() );
 		$this->assertEquals( $r1->getVisibility(), $r2->getVisibility() );
 		$this->assertEquals( $r1->getSha1(), $r2->getSha1() );
@@ -278,7 +278,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 
-		$this->assertLinkTargetsEqual( $title, $return->getPageAsLinkTarget() );
+		$this->assertLinkTargetsEqual( $title, $return->getPage() );
 		$this->assertRevisionRecordsEqual( $rev, $return );
 		$this->assertRevisionCompleteness( $return );
 	}
@@ -301,14 +301,14 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		// Insert the first revision
 		$revOne = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 		$firstReturn = $store->insertRevisionOn( $revOne, wfGetDB( DB_MASTER ) );
-		$this->assertLinkTargetsEqual( $title, $firstReturn->getPageAsLinkTarget() );
+		$this->assertLinkTargetsEqual( $title, $firstReturn->getPage() );
 		$this->assertRevisionRecordsEqual( $revOne, $firstReturn );
 
 		// Insert a second revision inheriting the same blob address
 		$revDetails['slot'] = SlotRecord::newInherited( $firstReturn->getSlot( 'main' ) );
 		$revTwo = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 		$secondReturn = $store->insertRevisionOn( $revTwo, wfGetDB( DB_MASTER ) );
-		$this->assertLinkTargetsEqual( $title, $secondReturn->getPageAsLinkTarget() );
+		$this->assertLinkTargetsEqual( $title, $secondReturn->getPage() );
 		$this->assertRevisionRecordsEqual( $revTwo, $secondReturn );
 
 		// Assert that the same blob address has been used.
@@ -422,8 +422,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			$user
 		);
 
-		$this->assertEquals( $title->getNamespace(), $record->getPageAsLinkTarget()->getNamespace() );
-		$this->assertEquals( $title->getDBkey(), $record->getPageAsLinkTarget()->getDBkey() );
+		$this->assertEquals( $title->getNamespace(), $record->getPage()->getNamespace() );
+		$this->assertEquals( $title->getDBkey(), $record->getPage()->getDBkey() );
 		$this->assertEquals( $comment, $record->getComment() );
 		$this->assertEquals( $minor, $record->isMinor() );
 		$this->assertEquals( $user->getName(), $record->getUser()->getName() );
@@ -648,7 +648,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertSame( $rev->getComment(), $record->getComment()->text );
 		$this->assertSame( $rev->getContentFormat(), $record->getContent( 'main' )->getDefaultFormat() );
 		$this->assertSame( $rev->getContentModel(), $record->getContent( 'main' )->getModel() );
-		$this->assertLinkTargetsEqual( $rev->getTitle(), $record->getPageAsLinkTarget() );
+		$this->assertLinkTargetsEqual( $rev->getTitle(), $record->getPage() );
 	}
 
 	/**

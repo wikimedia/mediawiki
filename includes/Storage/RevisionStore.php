@@ -212,6 +212,8 @@ class RevisionStore
 	 * @throws RevisionAccessException
 	 */
 	public function getTitle( $pageId, $revId, $queryFlags = self::READ_NORMAL ) {
+		// TODO: don't use Title here, use a PageIdentity
+
 		if ( !$pageId && !$revId ) {
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
@@ -338,7 +340,7 @@ class RevisionStore
 		}
 
 		// TODO: we shouldn't need an actual Title here.
-		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
+		$title = Title::newFromLinkTarget( $rev->getPage() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
 
 		$parentId = $rev->getParentId() === null
@@ -612,10 +614,12 @@ class RevisionStore
 				$fields['content_format'] = $current->rev_content_format;
 			}
 
-			$fields['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
 
+			$fields['title'] = $title;
 			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
-			$revision = new MutableRevisionRecord( $title, $this->wikiId );
+
+			// FIXME: $title should be a PageIdentity here!
+			$revision = new MutableRevisionRecord( $title );
 			$this->initializeMutableRevisionFromArray( $revision, $fields );
 			$revision->setSlot( $mainSlot );
 		} else {
@@ -744,12 +748,12 @@ class RevisionStore
 	 *
 	 * @param object|array $row Either a database row or an array
 	 * @param int $queryFlags for callbacks
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 *
 	 * @return SlotRecord The main slot, extracted from the MW 1.29 style row.
 	 * @throws MWException
 	 */
-	private function emulateMainSlot_1_29( $row, $queryFlags, Title $title ) {
+	private function emulateMainSlot_1_29( $row, $queryFlags, PageIdentity $title ) {
 		$mainSlotRow = new stdClass();
 		$mainSlotRow->role_name = 'main';
 		$mainSlotRow->model_name = null;
@@ -854,6 +858,7 @@ class RevisionStore
 			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
 				// TODO: MCR: consider slot role in getDefaultModelFor()! Use LinkTarget!
 				// TODO: MCR: deprecate $title->getModel().
+				$title = Title::newFromLinkTarget( $title );
 				return ContentHandler::getDefaultModelFor( $title );
 			};
 		}
@@ -973,10 +978,25 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
-		$conds = [
-			'page_namespace' => $linkTarget->getNamespace(),
-			'page_title' => $linkTarget->getDBkey()
-		];
+		if ( $linkTarget instanceof  PageIdentity && $linkTarget->getPageID() ) {
+			// XXX: can we avoid joining the page table?!
+			$this->checkDomainId( $linkTarget->getDomainID() );
+			$conds = [
+				'rev_page' => $linkTarget->getPageID(),
+			];
+		} else {
+			Assert::parameter(
+				!$linkTarget->isExternal(),
+				'$linkTarget',
+				'Must not be an external link'
+			);
+			$conds = [
+				'page_namespace' => $linkTarget->getNamespace(),
+				'page_title' => $linkTarget->getDBkey()
+			];
+		}
+			Assert::parameter( !$linkTarget->isExternal(), '$linkTarget', 'Must not be an external link' );
+
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
@@ -1050,11 +1070,11 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionByTimestamp( $title, $timestamp ) {
+	public function getRevisionByTimestamp( PageIdentity $title, $timestamp ) {
 		$db = $this->getDBConnection( DB_REPLICA );
 		return $this->newRevisionFromConds(
 			[
@@ -1075,7 +1095,7 @@ class RevisionStore
 	 *
 	 * @param object $row
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $title
 	 * @param array $overrides associative array with fields of $row to override. This may be
 	 *   used e.g. to force the parent revision ID or page ID. Keys in the array are fields
 	 *   names from the archive table without the 'ar_' prefix, i.e. use 'parent_id' to
@@ -1087,7 +1107,7 @@ class RevisionStore
 	public function newRevisionFromArchiveRow(
 		$row,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $title = null,
 		array $overrides = []
 	) {
 		Assert::parameterType( 'object', $row, '$row' );
@@ -1096,8 +1116,8 @@ class RevisionStore
 		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
 
 		if ( !$title && isset( $overrides['title'] ) ) {
-			if ( !( $overrides['title'] instanceof Title ) ) {
-				throw new MWException( 'title field override must contain a Title object.' );
+			if ( !( $overrides['title'] instanceof PageIdentity ) ) {
+				throw new MWException( 'title field override must contain a PageIdentity object.' );
 			}
 
 			$title = $overrides['title'];
@@ -1108,7 +1128,7 @@ class RevisionStore
 				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 			} else {
 				throw new InvalidArgumentException(
-					'A Title or ar_namespace and ar_title must be given'
+					'A PageIdentity or ar_namespace and ar_title must be given'
 				);
 			}
 		}
@@ -1146,13 +1166,13 @@ class RevisionStore
 	 *
 	 * @param object $row
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $title
 	 *
 	 * @return RevisionRecord
 	 * @throws MWException
 	 * @throws RevisionAccessException
 	 */
-	private function newRevisionFromRow_1_29( $row, $queryFlags = 0, Title $title = null ) {
+	private function newRevisionFromRow_1_29( $row, $queryFlags = 0, PageIdentity $title = null ) {
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
@@ -1197,11 +1217,11 @@ class RevisionStore
 	 *
 	 * @param object $row
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $title
 	 *
 	 * @return RevisionRecord
 	 */
-	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null ) {
+	public function newRevisionFromRow( $row, $queryFlags = 0, PageIdentity $title = null ) {
 		return $this->newRevisionFromRow_1_29( $row, $queryFlags, $title );
 	}
 
@@ -1213,7 +1233,7 @@ class RevisionStore
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $title
 	 *
 	 * @return MutableRevisionRecord
 	 * @throws MWException
@@ -1222,11 +1242,11 @@ class RevisionStore
 	public function newMutableRevisionFromArray(
 		array $fields,
 		$queryFlags = 0,
-		Title $title = null
+		PageIdentity $title = null
 	) {
 		if ( !$title && isset( $fields['title'] ) ) {
-			if ( !( $fields['title'] instanceof Title ) ) {
-				throw new MWException( 'title field must contain a Title object.' );
+			if ( !( $fields['title'] instanceof PageIdentity ) ) {
+				throw new MWException( 'title field must contain a PageIdentity object.' );
 			}
 
 			$title = $fields['title'];
@@ -1410,12 +1430,12 @@ class RevisionStore
 	 * @todo remove when unused!
 	 *
 	 * @param IDatabase $db
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 * @param int $id
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function loadRevisionFromTitle( IDatabase $db, $title, $id = 0 ) {
+	public function loadRevisionFromTitle( IDatabase $db, PageIdentity $title, $id = 0 ) {
 		if ( $id ) {
 			$matchId = intval( $id );
 		} else {
@@ -1445,7 +1465,7 @@ class RevisionStore
 	 * @todo remove when unused!
 	 *
 	 * @param IDatabase $db
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 * @param string $timestamp
 	 * @return RevisionRecord|null
 	 */
@@ -1472,11 +1492,11 @@ class RevisionStore
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function newRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
+	private function newRevisionFromConds( $conditions, $flags = 0, PageIdentity $title = null ) {
 		$db = $this->getDBConnection( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_REPLICA );
 		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
 		$this->releaseDBConnection( $db );
@@ -1508,7 +1528,7 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -1516,7 +1536,7 @@ class RevisionStore
 		IDatabase $db,
 		$conditions,
 		$flags = 0,
-		Title $title = null
+		PageIdentity $title = null
 	) {
 		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags );
 		if ( $row ) {
@@ -1536,31 +1556,41 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	private function checkDatabaseWikiId( IDatabase $db ) {
-		$storeWiki = $this->wikiId;
-		$dbWiki = $db->getDomainID();
+		$this->checkDomainId( $db->getDomainID() );
+	}
 
-		if ( $dbWiki === $storeWiki ) {
+	/**
+	 * Throws an exception if the given domain ID does not refer to the wiki this
+	 * RevisionStore is bound to.
+	 *
+	 * @param IDatabase $db
+	 * @throws MWException
+	 */
+	private function checkDomainId( $domainId ) {
+		$storeDomain = $this->wikiId;
+
+		if ( $domainId === $storeDomain ) {
 			return;
 		}
 
 		// XXX: we really want the default database ID...
-		$storeWiki = $storeWiki ?: wfWikiID();
-		$dbWiki = $dbWiki ?: wfWikiID();
+		$storeDomain = $storeDomain ?: wfWikiID();
+		$domainId = $domainId ?: wfWikiID();
 
-		if ( $dbWiki === $storeWiki ) {
+		if ( $domainId === $storeDomain ) {
 			return;
 		}
 
 		// HACK: counteract encoding imposed by DatabaseDomain
-		$storeWiki = str_replace( '?h', '-', $storeWiki );
-		$dbWiki = str_replace( '?h', '-', $dbWiki );
+		$storeDomain = str_replace( '?h', '-', $storeDomain );
+		$domainId = str_replace( '?h', '-', $domainId );
 
-		if ( $dbWiki === $storeWiki ) {
+		if ( $domainId === $storeDomain ) {
 			return;
 		}
 
-		throw new MWException( "RevisionStore for $storeWiki "
-			. "cannot be used with a DB connection for $dbWiki" );
+		throw new MWException( "RevisionStore for domain $storeDomain "
+			. "cannot be used to access domain $domainId" );
 	}
 
 	/**
@@ -1777,11 +1807,11 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param PageIdentity $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getPreviousRevision( RevisionRecord $rev, Title $title = null ) {
+	public function getPreviousRevision( RevisionRecord $rev, PageIdentity $title = null ) {
 		if ( $title === null ) {
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
@@ -1798,11 +1828,11 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param PageIdentity $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getNextRevision( RevisionRecord $rev, Title $title = null ) {
+	public function getNextRevision( RevisionRecord $rev, PageIdentity $title = null ) {
 		if ( $title === null ) {
 			$title = $this->getTitle( $rev->getPageId(), $rev->getId() );
 		}
@@ -1853,7 +1883,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::getTimestampFromId
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 * @param int $id
 	 * @param int $flags
 	 * @return string|bool False if not found
@@ -1900,7 +1930,7 @@ class RevisionStore
 	 * MCR migration note: this replaces Revision::countByTitle
 	 *
 	 * @param IDatabase $db
-	 * @param Title $title
+	 * @param PageIdentity $title
 	 * @return int
 	 */
 	public function countRevisionsByTitle( IDatabase $db, $title ) {
@@ -1966,12 +1996,12 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newKnownCurrent
 	 *
-	 * @param Title $title the associated page title
+	 * @param PageIdentity $title the associated page title
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId ) {
+	public function getKnownCurrentRevision( PageIdentity $title, $revId ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
 
 		$pageId = $title->getArticleID();
