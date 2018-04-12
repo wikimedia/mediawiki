@@ -615,9 +615,13 @@ class ParserTestRunner {
 			return false;
 		} );// hooks::register
 
+		// Reset the service in case any other tests already cached some prefixes.
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+
 		return function () {
 			// Tear down
 			Hooks::clear( 'InterwikiLoadPrefix' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
 		};
 	}
 

@@ -57,6 +57,28 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Revision-deletes a revision.
+	 *
+	 * @param Revision|int $rev Revision to delete
+	 * @param array $value Keys are Revision::DELETED_* flags.  Values are 1 to set the bit, 0 to
+	 *   clear, -1 to leave alone.  (All other values also clear the bit.)
+	 * @param string $comment Deletion comment
+	 */
+	protected function revisionDelete(
+		$rev, array $value = [ Revision::DELETED_TEXT => 1 ], $comment = ''
+	) {
+		if ( is_int( $rev ) ) {
+			$rev = Revision::newFromId( $rev );
+		}
+		RevisionDeleter::createList(
+			'revision', RequestContext::getMain(), $rev->getTitle(), [ $rev->getId() ]
+		)->setVisibility( [
+			'value' => $value,
+			'comment' => $comment,
+		] );
+	}
+
+	/**
 	 * Does the API request and returns the result.
 	 *
 	 * The returned value is an array containing
