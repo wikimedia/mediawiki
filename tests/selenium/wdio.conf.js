@@ -3,7 +3,8 @@
 /* eslint-disable no-console, comma-dangle */
 'use strict';
 
-const path = require( 'path' );
+const fs = require( 'fs' ),
+	path = require( 'path' );
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -88,7 +89,12 @@ exports.config = {
 		chromeOptions: {
 			// Run headless when there is no DISPLAY
 			// --headless: since Chrome 59 https://chromium.googlesource.com/chromium/src/+/59.0.3030.0/headless/README.md
-			args: process.env.DISPLAY ? [] : [ '--headless' ]
+			args: (
+				process.env.DISPLAY ? [] : [ '--headless' ]
+			).concat(
+				// Disable Chrome sandbox when running in Docker
+				fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox' ] : []
+			)
 		}
 	} ],
 	//

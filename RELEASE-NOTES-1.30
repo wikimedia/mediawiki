@@ -9,6 +9,7 @@ THIS IS NOT A RELEASE YET!
   include extensions. Pass --with-extensions to enable that feature.
 * (T190503) Let built-in web server (maintenance/dev) handle .php requests.
 * (T167507) WebdriverIO should be able to run Chrome headlessly.
+* WebdriverIO: pass -no-sandbox to Chrome under Docker
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
