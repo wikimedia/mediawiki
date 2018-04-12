@@ -178,6 +178,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 		$newServices->destroy();
+
+        $this->assertTrue( true, 'HACK: Avoid PHPUnit warning that this method has no asserts.');
 	}
 
 	public function testResetChildProcessServices() {
