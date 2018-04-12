@@ -46,7 +46,7 @@ class ApiMainTest extends ApiTestCase {
 	 */
 	private function getNonInternalApiMain( array $requestData, array $headers = [] ) {
 		$req = $this->getMockBuilder( WebRequest::class )
-			->setMethods( [ 'response', 'getIP' ] )
+			->setMethods( [ 'response', 'getRawIP' ] )
 			->getMock();
 		$response = new FauxResponse();
 		$req->method( 'response' )->willReturn( $response );
