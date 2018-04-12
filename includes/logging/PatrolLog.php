@@ -27,6 +27,7 @@
  * logs of patrol events
  */
 class PatrolLog {
+
 	/**
 	 * Record a log event for a change being patrolled
 	 *
@@ -39,10 +40,7 @@ class PatrolLog {
 	 * @return bool
 	 */
 	public static function record( $rc, $auto = false, User $user = null, $tags = null ) {
-		global $wgLogAutopatrol;
-
-		// do not log autopatrolled edits if setting disables it
-		if ( $auto && !$wgLogAutopatrol ) {
+		if ( $auto ) {
 			return false;
 		}
 

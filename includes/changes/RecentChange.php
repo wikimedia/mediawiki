@@ -704,9 +704,6 @@ class RecentChange {
 			function () use ( $rc, $tags ) {
 				$rc->addTags( $tags );
 				$rc->save();
-				if ( $rc->mAttribs['rc_patrolled'] ) {
-					PatrolLog::record( $rc, true, $rc->getPerformer() );
-				}
 			},
 			DeferredUpdates::POSTSEND,
 			wfGetDB( DB_MASTER )
@@ -780,9 +777,6 @@ class RecentChange {
 			function () use ( $rc, $tags ) {
 				$rc->addTags( $tags );
 				$rc->save();
-				if ( $rc->mAttribs['rc_patrolled'] ) {
-					PatrolLog::record( $rc, true, $rc->getPerformer() );
-				}
 			},
 			DeferredUpdates::POSTSEND,
 			wfGetDB( DB_MASTER )
