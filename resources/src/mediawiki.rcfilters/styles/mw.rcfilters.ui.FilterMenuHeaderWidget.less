@@ -1,5 +1,6 @@
 @import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
+@import 'mw.rcfilters.variables';
 
 .mw-rcfilters-ui-filterMenuHeaderWidget {
 	&-title {
@@ -21,18 +22,22 @@
 
 		&-invert,
 		&-highlight {
-			width: 1em;
+			min-width: 1em;
 			vertical-align: middle;
 			// Using the same padding that the filter item
 			// uses, so the button is aligned with the highlight
 			// buttons for the filters
-			padding-right: 0.5em;
+			padding-right: 12 / @font-size-system-ui / @font-size-vector;
 		}
 
 		&-back {
 			width: 1em;
 			vertical-align: middle;
-			padding-left: 0.5em;
+
+			.mw-rcfilters-ui-filterMenuHeaderWidget-backButton:first-child {
+				// Overwrite `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
+				margin-left: 0;
+			}
 		}
 
 		&-title {
