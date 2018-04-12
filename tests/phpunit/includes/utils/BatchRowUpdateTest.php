@@ -12,7 +12,7 @@
 class BatchRowUpdateTest extends MediaWikiTestCase {
 
 	public function testWriterBasicFunctionality() {
-		$db = $this->mockDb();
+		$db = $this->mockDb( [ 'update' ] );
 		$writer = new BatchRowWriter( $db, 'echo_event' );
 
 		$updates = [
@@ -36,17 +36,13 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	public function testReaderBasicIterate() {
-		$db = $this->mockDb();
 		$batchSize = 2;
-		$reader = new BatchRowIterator( $db, 'some_table', 'id_field', $batchSize );
-
 		$response = $this->genSelectResult( $batchSize, /*numRows*/ 5, function () {
 			static $i = 0;
 			return [ 'id_field' => ++$i ];
 		} );
-		$db->expects( $this->exactly( count( $response ) ) )
-			->method( 'select' )
-			->will( $this->consecutivelyReturnFromSelect( $response ) );
+		$db = $this->mockDbConsecutiveSelect( $response );
+		$reader = new BatchRowIterator( $db, 'some_table', 'id_field', $batchSize );
 
 		$pos = 0;
 		foreach ( $reader as $rows ) {
@@ -130,7 +126,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	public function testReaderSetFetchColumns(
 		$message, array $columns, array $primaryKeys, array $fetchColumns
 	) {
-		$db = $this->mockDb();
+		$db = $this->mockDb( [ 'select' ] );
 		$db->expects( $this->once() )
 			->method( 'select' )
 			// only testing second parameter of Database::select
@@ -202,7 +198,7 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 	}
 
 	protected function mockDbConsecutiveSelect( array $retvals ) {
-		$db = $this->mockDb();
+		$db = $this->mockDb( [ 'select', 'addQuotes' ] );
 		$db->expects( $this->any() )
 			->method( 'select' )
 			->will( $this->consecutivelyReturnFromSelect( $retvals ) );
@@ -238,11 +234,12 @@ class BatchRowUpdateTest extends MediaWikiTestCase {
 		return $res;
 	}
 
-	protected function mockDb() {
+	protected function mockDb( $methods = [] ) {
 		// @TODO: mock from Database
 		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache
 		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMysqli::class )
 			->disableOriginalConstructor()
+			->setMethods( array_merge( [ 'isOpen', 'getApproximateLagStatus' ], $methods ) )
 			->getMock();
 		$databaseMysql->expects( $this->any() )
 			->method( 'isOpen' )
