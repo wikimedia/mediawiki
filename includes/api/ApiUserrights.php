@@ -58,14 +58,16 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// Figure out expiry times from the input
-		// $params['expiry'] may not be set in subclasses
+		// $params['expiry'] is not set in CentralAuth's ApiGlobalUserRights subclass
 		if ( isset( $params['expiry'] ) ) {
 			$expiry = (array)$params['expiry'];
 		} else {
 			$expiry = [ 'infinity' ];
 		}
 		$add = (array)$params['add'];
-		if ( count( $expiry ) !== count( $add ) ) {
+		if ( !$add ) {
+			$expiry = [];
+		} elseif ( count( $expiry ) !== count( $add ) ) {
 			if ( count( $expiry ) === 1 ) {
 				$expiry = array_fill( 0, count( $add ), $expiry[0] );
 			} else {
@@ -186,6 +188,7 @@ class ApiUserrights extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 		];
+		// CentralAuth's ApiGlobalUserRights subclass can't handle expiries
 		if ( !$this->getUserRightsPage()->canProcessExpiries() ) {
 			unset( $a['expiry'] );
 		}
