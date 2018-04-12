@@ -47,6 +47,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	private function getMockCache() {
 		$mock = $this->getMockBuilder( HashBagOStuff::class )
 			->disableOriginalConstructor()
+			->setMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'makeKey' )
@@ -2074,12 +2075,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'selectRow' );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
@@ -2168,12 +2168,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'selectRow' );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeTitle:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
@@ -2235,12 +2234,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			) );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )
+			->method( 'set' )
+			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
@@ -2311,12 +2311,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->will( $this->returnValue( false ) );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
@@ -2378,12 +2377,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			) );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )
+			->method( 'set' )
+			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
@@ -2456,12 +2456,13 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			) );
 
 		$mockCache = $this->getMockCache();
-		$mockDb->expects( $this->never() )
-			->method( 'get' );
-		$mockDb->expects( $this->never() )
-			->method( 'set' );
-		$mockDb->expects( $this->never() )
-			->method( 'delete' );
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->once() )
+			->method( 'set' )
+			->with( '0:SomeDbKey:1', $this->isType( 'object' ) );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( '0:SomeDbKey:1' );
 
 		$store = $this->newWatchedItemStore(
 			$this->getMockLoadBalancer( $mockDb ),
