@@ -181,7 +181,7 @@ interface ILoadBalancer {
 	 * call ILoadBalancer::reuseConnection() on the handle when finished using it.
 	 * In all other cases, this is not necessary, though not harmful either.
 	 *
-	 * @param int $i Server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Server index (overrides $groups) or DB_MASTER/DB_REPLICA
 	 * @param array|string|bool $groups Query group(s), or false for the generic reader
 	 * @param string|bool $domain Domain ID, or false for the current domain
 	 * @param int $flags Bitfield of CONN_* class constants
