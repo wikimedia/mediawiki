@@ -375,9 +375,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		/* Add the patrolled flag */
 		if ( $this->fld_patrol ) {
-			$vals['patrolled'] = $recentChangeInfo['rc_patrolled'] != 0;
+			$vals['patrolled'] = $recentChangeInfo['rc_patrolled'] != RecentChange::PRC_UNPATROLLED;
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( (object)$recentChangeInfo, $user );
-			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] == 2;
+			$vals['autopatrolled'] = $recentChangeInfo['rc_patrolled'] == RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( $this->fld_loginfo && $recentChangeInfo['rc_type'] == RC_LOG ) {

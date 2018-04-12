@@ -542,7 +542,7 @@ class DifferenceEngine extends ContextSource {
 				[
 					'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 					'rc_this_oldid' => $this->mNewid,
-					'rc_patrolled' => 0
+					'rc_patrolled' => RecentChange::PRC_UNPATROLLED
 				],
 				__METHOD__
 			);

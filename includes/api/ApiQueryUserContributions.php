@@ -540,10 +540,22 @@ class ApiQueryContributions extends ApiQueryBase {
 
 			$this->addWhereIf( 'rev_minor_edit = 0', isset( $show['!minor'] ) );
 			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
-			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
-			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
-			$this->addWhereIf( 'rc_patrolled != 2', isset( $show['!autopatrolled'] ) );
-			$this->addWhereIf( 'rc_patrolled = 2', isset( $show['autopatrolled'] ) );
+			$this->addWhereIf(
+				'rc_patrolled = ' . RecentChange::PRC_UNPATROLLED,
+				isset( $show['!patrolled'] )
+			);
+			$this->addWhereIf(
+				'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED,
+				isset( $show['patrolled'] )
+			);
+			$this->addWhereIf(
+				'rc_patrolled != ' . RecentChange::PRC_AUTOPATROLLED,
+				isset( $show['!autopatrolled'] )
+			);
+			$this->addWhereIf(
+				'rc_patrolled = ' . RecentChange::PRC_AUTOPATROLLED,
+				isset( $show['autopatrolled'] )
+			);
 			$this->addWhereIf( $idField . ' != page_latest', isset( $show['!top'] ) );
 			$this->addWhereIf( $idField . ' = page_latest', isset( $show['top'] ) );
 			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
