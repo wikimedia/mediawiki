@@ -51,6 +51,9 @@
 		// Parent constructor
 		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
+		// Remove check icon
+		this.checkIcon.$element.remove();
+
 		// Initialization
 		this.$label.attr( 'href', config.url );
 		this.$element.addClass( 'mw-widget-titleOptionWidget' );
