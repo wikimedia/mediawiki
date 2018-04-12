@@ -165,8 +165,8 @@ abstract class ApiBase extends ContextSource {
 	const PARAM_SUBMODULE_MAP = 15;
 
 	/**
-	 * (string) When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix
-	 * added by ApiQueryGeneratorBase (and similar if anything else ever does that).
+	 * (string) Used to indicate the 'g' prefix added by ApiQueryGeneratorBase
+	 * (and similar if anything else ever does that).
 	 * @since 1.26
 	 */
 	const PARAM_SUBMODULE_PARAM_PREFIX = 16;

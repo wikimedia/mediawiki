@@ -85,7 +85,6 @@ class ApiStructureTest extends MediaWikiTestCase {
 		ApiBase::PARAM_VALUE_LINKS => 'array',
 		ApiBase::PARAM_HELP_MSG_PER_VALUE => 'array',
 		ApiBase::PARAM_SUBMODULE_MAP => 'submodule',
-		ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'submodule',
 		ApiBase::PARAM_ALL => 'array',
 		ApiBase::PARAM_EXTRA_NAMESPACES => 'namespace',
 		ApiBase::PARAM_DEPRECATED_VALUES => 'array',
