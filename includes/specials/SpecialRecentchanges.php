@@ -208,8 +208,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
-			$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
-			$hidePatrolled->setDefault( $user->getBoolOption( 'hidepatrolled' ) );
+			if ( $user->getBoolOption( 'hidepatrolled' ) ) {
+				$reviewStatus->setDefault( 'unpatrolled' );
+				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
+				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
+				$legacyHidePatrolled->setDefault( true );
+			}
 		}
 
 		$changeType = $this->getFilterGroup( 'changeType' );

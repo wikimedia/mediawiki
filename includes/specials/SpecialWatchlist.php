@@ -264,8 +264,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$reviewStatus = $this->getFilterGroup( 'reviewStatus' );
 		if ( $reviewStatus !== null ) {
 			// Conditional on feature being available and rights
-			$hidePatrolled = $reviewStatus->getFilter( 'hidepatrolled' );
-			$hidePatrolled->setDefault( $user->getBoolOption( 'watchlisthidepatrolled' ) );
+			if ( $user->getBoolOption( 'watchlisthidepatrolled' ) ) {
+				$reviewStatus->setDefault( 'unpatrolled' );
+				$legacyReviewStatus = $this->getFilterGroup( 'legacyReviewStatus' );
+				$legacyHidePatrolled = $legacyReviewStatus->getFilter( 'hidepatrolled' );
+				$legacyHidePatrolled->setDefault( true );
+			}
 		}
 
 		$authorship = $this->getFilterGroup( 'authorship' );
