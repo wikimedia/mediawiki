@@ -575,7 +575,6 @@ class LoadBalancer implements ILoadBalancer {
 			if ( !empty( $connsByServer[$i] ) ) {
 				/** @var IDatabase[] $serverConns */
 				$serverConns = $connsByServer[$i];
-
 				return reset( $serverConns );
 			}
 		}
@@ -689,7 +688,7 @@ class LoadBalancer implements ILoadBalancer {
 			$domain = false; // local connection requested
 		}
 
-		if ( ( $flags & self::CONN_TRX_AUTO ) === self::CONN_TRX_AUTO ) {
+		if ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) === self::CONN_TRX_AUTOCOMMIT ) {
 			// Assuming all servers are of the same type (or similar), which is overwhelmingly
 			// the case, use the master server information to get the attributes. The information
 			// for $i cannot be used since it might be DB_REPLICA, which might require connection
@@ -700,8 +699,9 @@ class LoadBalancer implements ILoadBalancer {
 				// rows (e.g. FOR UPDATE) or (b) make small commits during a larger transactions
 				// to reduce lock contention. None of these apply for sqlite and using separate
 				// connections just causes self-deadlocks.
-				$flags &= ~self::CONN_TRX_AUTO;
-				$this->connLogger->info( __METHOD__ . ': ignoring CONN_TRX_AUTO to avoid deadlocks.' );
+				$flags &= ~self::CONN_TRX_AUTOCOMMIT;
+				$this->connLogger->info( __METHOD__ .
+					': ignoring CONN_TRX_AUTOCOMMIT to avoid deadlocks.' );
 			}
 		}
 
@@ -859,7 +859,7 @@ class LoadBalancer implements ILoadBalancer {
 		// main set of DB connections but rather its own pool since:
 		// a) those are usually set to implicitly use transaction rounds via DBO_TRX
 		// b) those must support the use of explicit transaction rounds via beginMasterChanges()
-		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
 
 		if ( $domain !== false ) {
 			// Connection is to a foreign domain
@@ -937,7 +937,7 @@ class LoadBalancer implements ILoadBalancer {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
 		$dbName = $domainInstance->getDatabase();
 		$prefix = $domainInstance->getTablePrefix();
-		$autoCommit = ( ( $flags & self::CONN_TRX_AUTO ) == self::CONN_TRX_AUTO );
+		$autoCommit = ( ( $flags & self::CONN_TRX_AUTOCOMMIT ) == self::CONN_TRX_AUTOCOMMIT );
 
 		if ( $autoCommit ) {
 			$connFreeKey = self::KEY_FOREIGN_FREE_NOROUND;
@@ -1220,7 +1220,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function closeConnection( IDatabase $conn ) {
-		$serverIndex = $conn->getLBInfo( 'serverIndex' ); // second index level of mConns
+		$serverIndex = $conn->getLBInfo( 'serverIndex' );
 		foreach ( $this->conns as $type => $connsByServer ) {
 			if ( !isset( $connsByServer[$serverIndex] ) ) {
 				continue;
