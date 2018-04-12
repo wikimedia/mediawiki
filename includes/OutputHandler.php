@@ -22,9 +22,6 @@
 
 namespace MediaWiki;
 
-use MWTidy;
-use Html;
-
 /**
  * @since 1.31
  */
@@ -36,30 +33,9 @@ class OutputHandler {
 	 * @return string
 	 */
 	public static function handle( $s ) {
-		global $wgDisableOutputCompression, $wgValidateAllHtml, $wgMangleFlashPolicy;
+		global $wgDisableOutputCompression, $wgMangleFlashPolicy;
 		if ( $wgMangleFlashPolicy ) {
 			$s = self::mangleFlashPolicy( $s );
-		}
-		if ( $wgValidateAllHtml ) {
-			$headers = headers_list();
-			$isHTML = false;
-			foreach ( $headers as $header ) {
-				$parts = explode( ':', $header, 2 );
-				if ( count( $parts ) !== 2 ) {
-					continue;
-				}
-				$name = strtolower( trim( $parts[0] ) );
-				$value = trim( $parts[1] );
-				if ( $name == 'content-type' && ( strpos( $value, 'text/html' ) === 0
-					|| strpos( $value, 'application/xhtml+xml' ) === 0 )
-				) {
-					$isHTML = true;
-					break;
-				}
-			}
-			if ( $isHTML ) {
-				$s = self::validateAllHtml( $s );
-			}
 		}
 		if ( !$wgDisableOutputCompression && !ini_get( 'zlib.output_compression' ) ) {
 			if ( !defined( 'MW_NO_OUTPUT_COMPRESSION' ) ) {
@@ -182,66 +158,5 @@ class OutputHandler {
 		) {
 			header( "Content-Length: $length" );
 		}
-	}
-
-	/**
-	 * Replace the output with an error if the HTML is not valid.
-	 *
-	 * @param string $s
-	 * @return string
-	 */
-	private static function validateAllHtml( $s ) {
-		$errors = '';
-		if ( MWTidy::checkErrors( $s, $errors ) ) {
-			return $s;
-		}
-
-		header( 'Cache-Control: no-cache' );
-
-		$out = Html::element( 'h1', null, 'HTML validation error' );
-		$out .= Html::openElement( 'ul' );
-
-		$error = strtok( $errors, "\n" );
-		$badLines = [];
-		while ( $error !== false ) {
-			if ( preg_match( '/^line (\d+)/', $error, $m ) ) {
-				$lineNum = intval( $m[1] );
-				$badLines[$lineNum] = true;
-				$out .= Html::rawElement( 'li', null,
-					Html::element( 'a', [ 'href' => "#line-{$lineNum}" ], $error ) ) . "\n";
-			}
-			$error = strtok( "\n" );
-		}
-
-		$out .= Html::closeElement( 'ul' );
-		$out .= Html::element( 'pre', null, $errors );
-		$out .= Html::openElement( 'ol' ) . "\n";
-		$line = strtok( $s, "\n" );
-		$i = 1;
-		while ( $line !== false ) {
-			$attrs = [];
-			if ( isset( $badLines[$i] ) ) {
-				$attrs['class'] = 'highlight';
-				$attrs['id'] = "line-$i";
-			}
-			$out .= Html::element( 'li', $attrs, $line ) . "\n";
-			$line = strtok( "\n" );
-			$i++;
-		}
-		$out .= Html::closeElement( 'ol' );
-
-		$style = <<<CSS
-	.highlight { background-color: #ffc }
-	li { white-space: pre }
-CSS;
-
-		$out = Html::htmlHeader( [ 'lang' => 'en', 'dir' => 'ltr' ] ) .
-			Html::rawElement( 'head', null,
-				Html::element( 'title', null, 'HTML validation error' ) .
-				Html::inlineStyle( $style ) ) .
-			Html::rawElement( 'body', null, $out ) .
-			Html::closeElement( 'html' );
-
-		return $out;
 	}
 }

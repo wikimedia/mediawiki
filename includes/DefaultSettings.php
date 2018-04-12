@@ -3266,12 +3266,6 @@ $wgSiteNotice = '';
 $wgSiteSupportPage = '';
 
 /**
- * Validate the overall output using tidy and refuse
- * to display the page if it's not valid.
- */
-$wgValidateAllHtml = false;
-
-/**
  * Default skin, for new users and anonymous visitors. Registered users may
  * change this to any one of the other available skins in their preferences.
  */
