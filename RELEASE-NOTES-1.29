@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET!
 * The karma qunit tests would fail on some configuration due to headers already
   sent. Check headers_sent() before sending cpPosTime headers
 * (T167507) WebdriverIO should be able to run Chrome headlessly.
+* WebdriverIO: pass -no-sandbox to Chrome under Docker
 
 == MediaWiki 1.29.2 ==
 
