@@ -782,13 +782,6 @@ class ManualLogEntry extends LogEntryBase {
 					if ( $to === 'udp' || $to === 'rcandudp' ) {
 						$rc->notifyRCFeeds();
 					}
-
-					// Log the autopatrol if the log entry is patrollable
-					if ( $this->getIsPatrollable() &&
-						$rc->getAttribute( 'rc_patrolled' ) === RecentChange::PRC_AUTOPATROLLED
-					) {
-						PatrolLog::record( $rc, true, $this->getPerformer() );
-					}
 				}
 			},
 			DeferredUpdates::POSTSEND,
