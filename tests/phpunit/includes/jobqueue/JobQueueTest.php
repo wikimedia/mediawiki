@@ -387,7 +387,7 @@ class JobQueueTest extends MediaWikiTestCase {
 class JobQueueDBSingle extends JobQueueDB {
 	protected function getDB( $index ) {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		// Override to not use CONN_TRX_AUTO so that we see the same temporary `job` table
+		// Override to not use CONN_TRX_AUTOCOMMIT so that we see the same temporary `job` table
 		return $lb->getConnection( $index, [], $this->wiki );
 	}
 }
