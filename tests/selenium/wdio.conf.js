@@ -1,6 +1,7 @@
 'use strict';
 
 const password = 'vagrant',
+	fs = require( 'fs' ),
 	path = require( 'path' ),
 	username = 'Admin';
 
@@ -83,7 +84,12 @@ exports.config = {
 		chromeOptions: {
 			// Run headless when there is no DISPLAY
 			// --headless: since Chrome 59 https://chromium.googlesource.com/chromium/src/+/59.0.3030.0/headless/README.md
-			args: process.env.DISPLAY ? [] : [ '--headless' ]
+			args: (
+				process.env.DISPLAY ? [] : [ '--headless' ]
+			).concat(
+				// Disable Chrome sandbox when running in Docker
+				fs.existsSync( '/.dockerenv' ) ?  [ '--no-sandbox' ] : []
+			)
 		}
 	} ],
 	//
