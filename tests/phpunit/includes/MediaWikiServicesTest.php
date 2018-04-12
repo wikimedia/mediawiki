@@ -178,6 +178,9 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 		$newServices->destroy();
+
+		// No exception was thrown, avoid being risky
+		$this->assertTrue( true );
 	}
 
 	public function testResetChildProcessServices() {
