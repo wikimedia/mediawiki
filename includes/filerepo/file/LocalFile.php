@@ -3344,9 +3344,9 @@ class LocalFileMoveBatch {
 			__METHOD__,
 			[ 'FOR UPDATE' ]
 		);
-		$oldRowCount = $dbw->selectField(
+		$oldRowCount = $dbw->selectRowCount(
 			'oldimage',
-			'COUNT(*)',
+			'*',
 			[ 'oi_name' => $this->oldName ],
 			__METHOD__,
 			[ 'FOR UPDATE' ]
