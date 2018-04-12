@@ -27,12 +27,13 @@
 .mw-ui-icon {
 	position: relative;
 	line-height: @iconSize;
-	min-height: @iconSize;
-	min-width: @iconSize;
+	min-height: @min-size-icon;
+	min-width: @min-size-icon;
 
-	// If an inline element has been marked as a mw-ui-icon element it must be inline-block
+	// If an inline element has been marked as a `.mw-ui-icon` element it must be `inline-block`
 	span& {
 		display: inline-block;
+		vertical-align: bottom;
 	}
 
 	// Standalone icons
@@ -81,7 +82,7 @@
 		background-size: 100% auto;
 		float: left;
 		display: block;
-		min-height: @iconSize;
+		min-height: @min-size-icon;
 		content: '';
 	}
 
