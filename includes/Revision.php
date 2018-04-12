@@ -733,7 +733,7 @@ class Revision implements IDBAccessObject {
 	 * @return Title
 	 */
 	public function getTitle() {
-		$linkTarget = $this->mRecord->getPageAsLinkTarget();
+		$linkTarget = $this->mRecord->getPage();
 		return Title::newFromLinkTarget( $linkTarget );
 	}
 
@@ -749,7 +749,7 @@ class Revision implements IDBAccessObject {
 			throw new InvalidArgumentException(
 				$title->getPrefixedText()
 					. ' is not the same as '
-					. $this->mRecord->getPageAsLinkTarget()->__toString()
+					. $this->mRecord->getPage()->__toString()
 			);
 		}
 	}

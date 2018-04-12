@@ -57,8 +57,8 @@ class MutableRevisionRecord extends RevisionRecord {
 		$timestamp
 	) {
 		// TODO: ideally, we wouldn't need a Title here
-		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$title = Title::newFromLinkTarget( $parent->getPage() );
+		$rev = new MutableRevisionRecord( $title );
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );
@@ -80,15 +80,11 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * in RevisionStore instead.
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
-	 *
-	 * @throws MWException
 	 */
-	function __construct( Title $title, $wikiId = false ) {
+	function __construct( Title $title ) {
 		$slots = new MutableRevisionSlots();
 
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots );
 
 		$this->mSlots = $slots; // redundant, but nice for static analysis
 	}

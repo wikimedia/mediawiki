@@ -50,18 +50,15 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @param object $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
-	 * @param bool|string $wikiId the wiki ID of the site this Revision belongs to,
-	 *        or false for the local site.
 	 */
 	function __construct(
 		Title $title,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
-		RevisionSlots $slots,
-		$wikiId = false
+		RevisionSlots $slots
 	) {
-		parent::__construct( $title, $slots, $wikiId );
+		parent::__construct( $title, $slots );
 		Assert::parameterType( 'object', $row, '$row' );
 
 		$this->mId = intval( $row->rev_id );
