@@ -35,6 +35,10 @@ use Wikimedia\Rdbms\DBReplicationWaitError;
 
 // Define this so scripts can easily find doMaintenance.php
 define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
+
+/**
+ * @deprecated since 1.31
+ */
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;

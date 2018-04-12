@@ -331,6 +331,8 @@ changes to languages because of Phabricator reports.
 * The type string for the parameter $lang of DateFormatter::getInstance is
   deprecated.
 * Wikimedia\Rdbms\SavepointPostgres is deprecated.
+* The DO_MAINTENANCE constant is deprecated. RUN_MAINTENANCE_IF_MAIN should be
+  used instead.
 
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.

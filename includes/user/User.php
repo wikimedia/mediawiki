@@ -3084,7 +3084,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user's current setting for a given option.
 	 *
 	 * @param string $oname The option to check
-	 * @param string $defaultOverride A default value returned if the option does not exist
+	 * @param string|array $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
 	 * @return string|array|int|null User's current value for the option
 	 * @see getBoolOption()
