@@ -115,7 +115,8 @@ class PHPVersionCheck {
 				. "{$otherInfo['minSupported']}, you are using {$phpInfo['implementation']} "
 				. "{$phpInfo['version']}.";
 
-			$longText = "Error: You might be using an older {$phpInfo['implementation']} version. \n"
+			$longText = "Error: You might be using an older {$phpInfo['implementation']} version "
+				. "({$phpInfo['implementation']} {$phpInfo['version']}). \n"
 				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
 				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
 				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
