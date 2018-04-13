@@ -254,11 +254,17 @@ exports.config = {
 	*/
 	// from https://github.com/webdriverio/webdriverio/issues/269#issuecomment-306342170
 	afterTest: function ( test ) {
-		var filename, filePath;
+		var filename, filePath, browserlog;
 		// if test passed, ignore, else take and save screenshot
 		if ( test.passed ) {
 			return;
 		}
+
+		browserlog = browser.log('browser').value;
+		browserlog.forEach(function (entry) {
+			console.log(entry.level, entry.message);
+		});
+
 		// get current test title and clean it, to use it as file name
 		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
 		// build file path
