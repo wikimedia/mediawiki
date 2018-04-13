@@ -316,7 +316,7 @@
   font-weight: bold;
 }
 .oo-ui-pendingElement-pending {
-  background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
+  background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
 }
 .oo-ui-fieldLayout {
   display: block;
