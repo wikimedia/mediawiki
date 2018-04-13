@@ -374,6 +374,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
+		if ( $db->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+		}
 
 		$this->assertEquals(
 			'',
@@ -411,6 +414,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$db = $lb->getConnection( DB_MASTER ); // local domain connection
 		$factory->setDomainPrefix( 'my_' );
 
+		$this->assertEquals( $wgDBname, $db->getDBname() );
 		$this->assertEquals(
 			"$wgDBname-my_",
 			$db->getDomainID()
@@ -454,6 +458,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb = $factory->getMainLB();
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
+		if ( $db->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+		}
 
 		$this->assertEquals( '', $db->getDomainID(), "Null domain used" );
 

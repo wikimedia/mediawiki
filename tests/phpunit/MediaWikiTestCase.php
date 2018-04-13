@@ -1570,7 +1570,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 					$db->delete( $tbl, '*', __METHOD__ );
 				}
 
-				if ( $db->getType() === 'postgres' ) {
+				if ( in_array( $db->getType(), [ 'postgres', 'sqlite' ], true ) ) {
 					// Reset the table's sequence too.
 					$db->resetSequenceForTable( $tbl, __METHOD__ );
 				}
