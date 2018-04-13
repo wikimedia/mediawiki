@@ -321,7 +321,8 @@ class NameTableStore {
 				'name' => $this->nameField
 			],
 			[],
-			__METHOD__
+			__METHOD__,
+			[ 'ORDER BY' => 'id' ]
 		);
 
 		$assocArray = [];
