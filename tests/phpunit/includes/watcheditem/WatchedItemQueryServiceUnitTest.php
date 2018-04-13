@@ -776,7 +776,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 				null,
 				[],
 				[],
-				[ 'rc_patrolled = 0' ],
+				[ 'rc_patrolled' => 0 ],
 				[],
 				[],
 			],
