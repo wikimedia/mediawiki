@@ -64,6 +64,7 @@ $wgAutoloadClasses += [
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 	'MediaWikiCoversValidator' => "$testDir/phpunit/MediaWikiCoversValidator.php",
 	'PHPUnit4And6Compat' => "$testDir/phpunit/PHPUnit4And6Compat.php",
+	'HamcrestPHPUnitIntegration' => "$testDir/phpunit/HamcrestPHPUnitIntegration.php",
 
 	# tests/phpunit/includes
 	'RevisionDbTestBase' => "$testDir/phpunit/includes/RevisionDbTestBase.php",
