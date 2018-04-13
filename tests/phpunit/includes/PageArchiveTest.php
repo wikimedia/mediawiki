@@ -13,6 +13,11 @@
 class PageArchiveTest extends MediaWikiTestCase {
 
 	/**
+	 * @var int
+	 */
+	private $pageId;
+
+	/**
 	 * @var PageArchive $archivedPage
 	 */
 	private $archivedPage;
@@ -28,6 +33,12 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @var int $ipRevId
 	 */
 	private $ipRevId;
+
+	/**
+	 * Timestamp of the IP edit
+	 * @var string $ipTimestamp
+	 */
+	private $ipTimestamp;
 
 	function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -64,6 +75,8 @@ class PageArchiveTest extends MediaWikiTestCase {
 		);
 		$page->doEditContent( $content, 'testing', EDIT_NEW );
 
+		$this->pageId = $page->getId();
+
 		// Insert IP revision
 		$this->ipEditor = '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7';
 		$rev = new Revision( [
@@ -74,6 +87,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 		] );
 		$dbw = wfGetDB( DB_MASTER );
 		$this->ipRevId = $rev->insertOn( $dbw );
+		$this->ipTimestamp = $rev->getTimestamp();
 
 		// Delete the page
 		$page->doDeleteArticleReal( 'Just a test deletion' );
@@ -262,4 +276,30 @@ class PageArchiveTest extends MediaWikiTestCase {
 	public function testIsDeleted() {
 		$this->assertTrue( $this->archivedPage->isDeleted() );
 	}
+
+	/**
+	 * @covers PageArchive::getRevision
+	 */
+	public function testGetRevision() {
+		$rev = $this->archivedPage->getRevision( $this->ipTimestamp );
+		$this->assertNotNull( $rev );
+		$this->assertSame( $this->pageId, $rev->getPage() );
+
+		$rev = $this->archivedPage->getRevision( '22991212555555' );
+		$this->assertNull( $rev );
+	}
+
+	/**
+	 * @covers PageArchive::getRevision
+	 */
+	public function testGetArchivedRevision() {
+		$rev = $this->archivedPage->getArchivedRevision( $this->ipRevId );
+		$this->assertNotNull( $rev );
+		$this->assertSame( $this->ipTimestamp, $rev->getTimestamp() );
+		$this->assertSame( $this->pageId, $rev->getPage() );
+
+		$rev = $this->archivedPage->getArchivedRevision( 632546 );
+		$this->assertNull( $rev );
+	}
+
 }
