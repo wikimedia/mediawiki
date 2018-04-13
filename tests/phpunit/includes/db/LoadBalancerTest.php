@@ -51,6 +51,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
+			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
 
@@ -120,6 +121,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
 			'loadMonitorClass' => LoadMonitorNull::class
 		] );
 
@@ -175,8 +177,6 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				// re-throw original error, to preserve stack trace
 				throw $ex;
 			}
-		} finally {
-			$db->rollback( __METHOD__, 'flush' );
 		}
 	}
 
@@ -184,6 +184,14 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$table = $db->tableName( 'some_table' );
 		try {
 			$db->dropTable( 'some_table' ); // clear for sanity
+
+			// Trigger DBO_TRX to create a transaction so the flush below will
+			// roll everything here back in sqlite. But don't actually do the
+			// code below inside an atomic section becaue MySQL and Oracle
+			// auto-commit transactions for DDL statements like CREATE TABLE.
+			$db->startAtomic( __METHOD__ );
+			$db->endAtomic( __METHOD__ );
+
 			// Use only basic SQL and trivial types for these queries for compatibility
 			$this->assertNotSame(
 				false,
@@ -195,12 +203,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
 				"delete query"
 			);
-			$this->assertNotSame(
-				false,
-				$db->query( "DROP TABLE $table", __METHOD__ ),
-				"table dropped"
-			);
 		} finally {
+			// Drop the table to clean up, ignoring any error.
+			$db->query( "DROP TABLE $table", __METHOD__, true );
+			// Rollback the DBO_TRX transaction for sqlite's benefit.
 			$db->rollback( __METHOD__, 'flush' );
 		}
 	}
