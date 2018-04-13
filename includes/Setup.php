@@ -61,9 +61,6 @@ if ( is_readable( "$IP/vendor/autoload.php" ) ) {
 }
 
 // Assert that composer dependencies were successfully loaded
-// Purposely no leading \ due to it breaking HHVM RepoAuthorative mode
-// PHP works fine with both versions
-// See https://github.com/facebook/hhvm/issues/5833
 if ( !interface_exists( 'Psr\Log\LoggerInterface' ) ) {
 	$message = (
 		'MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging ' .

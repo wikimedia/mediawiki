@@ -4275,7 +4275,6 @@ $wgAllowImageTag = false;
  *
  * Keys are:
  *  - driver: May be:
- *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
  *    - RaggettInternalPHP: Use the PECL extension
  *    - RaggettExternal: Shell out to an external binary (tidyBin)
  *    - Html5Depurate: Use external Depurate service
@@ -8409,7 +8408,7 @@ $wgUpdateRowsPerQuery = 100;
 /**
  * Name of the external diff engine to use. Supported values:
  * * string: path to an external diff executable
- * * false: wikidiff2 PHP/HHVM module if installed, otherwise the default PHP implementation
+ * * false: wikidiff2 PHP module if installed, otherwise the default PHP implementation
  * * 'wikidiff', 'wikidiff2', and 'wikidiff3' are treated as false for backwards compatibility
  */
 $wgExternalDiffEngine = false;
@@ -8421,7 +8420,7 @@ $wgExternalDiffEngine = false;
  * * 0: detection of moved paragraphs is disabled
  * * int > 0: maximum number of paragraphs to compare
  * Note: number of paragraph comparisons is in O(n^2).
- * This setting is only effective if the wikidiff2 PHP/HHVM module is used as diffengine.
+ * This setting is only effective if the wikidiff2 PHP module is used as diffengine.
  * See $wgExternalDiffEngine.
  *
  * @since 1.30

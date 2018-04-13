@@ -77,11 +77,7 @@ class MWTidy {
 					'tidyBin' => $wgTidyBin,
 					'tidyCommandLine' => $wgTidyOpts ];
 				if ( $wgTidyInternal ) {
-					if ( wfIsHHVM() ) {
-						$config['driver'] = 'RaggettInternalHHVM';
-					} else {
-						$config['driver'] = 'RaggettInternalPHP';
-					}
+					$config['driver'] = 'RaggettInternalPHP';
 				} else {
 					$config['driver'] = 'RaggettExternal';
 				}
@@ -102,9 +98,6 @@ class MWTidy {
 	 */
 	public static function factory( array $config ) {
 		switch ( $config['driver'] ) {
-			case 'RaggettInternalHHVM':
-				$instance = new MediaWiki\Tidy\RaggettInternalHHVM( $config );
-				break;
 			case 'RaggettInternalPHP':
 				$instance = new MediaWiki\Tidy\RaggettInternalPHP( $config );
 				break;

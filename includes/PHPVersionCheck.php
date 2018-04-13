@@ -60,11 +60,8 @@ class PHPVersionCheck {
 	}
 
 	/**
-	 * Returns the version of the installed php implementation.
+	 * Returns the PHP support information
 	 *
-	 * @param string $impl By default, the function returns the info of the currently installed PHP
-	 *  implementation. Using this parameter the caller can decide, what version info will be
-	 *  returned. Valid values: HHVM, PHP
 	 * @return array An array of information about the php implementation, containing:
 	 *  - 'version': The version of the php implementation (specific to the implementation, not
 	 *  the version of the implemented php version)
@@ -75,20 +72,7 @@ class PHPVersionCheck {
 	 *  - 'upgradeURL': The URL to the website of the implementation that contains
 	 *  upgrade/installation instructions.
 	 */
-	function getPHPInfo( $impl = false ) {
-		if (
-			( defined( 'HHVM_VERSION' ) && $impl !== 'PHP' ) ||
-			$impl === 'HHVM'
-		) {
-			return array(
-				'implementation' => 'HHVM',
-				'version' => defined( 'HHVM_VERSION' ) ? HHVM_VERSION : 'undefined',
-				'vendor' => 'Facebook',
-				'upstreamSupported' => '3.18.5',
-				'minSupported' => '3.18.5',
-				'upgradeURL' => 'https://docs.hhvm.com/hhvm/installation/introduction',
-			);
-		}
+	function getPHPInfo() {
 		return array(
 			'implementation' => 'PHP',
 			'version' => PHP_VERSION,
@@ -103,39 +87,39 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed php version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
+		if ( defined( 'HHVM_VERSION' ) ) {
+			// We don't care
+			return;
+		}
 		$phpInfo = $this->getPHPInfo();
 		$minimumVersion = $phpInfo['minSupported'];
-		$otherInfo = $this->getPHPInfo( $phpInfo['implementation'] === 'HHVM' ? 'PHP' : 'HHVM' );
 		if (
 			!function_exists( 'version_compare' )
 			|| version_compare( $phpInfo['version'], $minimumVersion ) < 0
 		) {
-			$shortText = "MediaWiki $this->mwVersion requires at least {$phpInfo['implementation']}"
-				. " version $minimumVersion or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}, you are using {$phpInfo['implementation']} "
-				. "{$phpInfo['version']}.";
+			$shortText = "MediaWiki {$this->mwVersion} requires at least PHP"
+				. " version $minimumVersion, you are using PHP {$phpInfo['version']}.";
 
-			$longText = "Error: You might be using an older {$phpInfo['implementation']} version "
-				. "({$phpInfo['implementation']} {$phpInfo['version']}). \n"
-				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
-				. " $minimumVersion or higher or {$otherInfo['implementation']} version "
-				. "{$otherInfo['minSupported']}.\n\nCheck if you have a"
+			$longText = "Error: You might be using an older PHP version "
+				. "(PHP {$phpInfo['version']}). \n"
+				. "MediaWiki {$this->mwVersion} needs {$phpInfo['implementation']}"
+				. " $minimumVersion or higher.\n\nCheck if you have a"
 				. " newer php executable with a different name, such as php5.\n\n";
 
 			// phpcs:disable Generic.Files.LineLength
 			$longHtml = <<<HTML
 			Please consider <a href="{$phpInfo['upgradeURL']}">upgrading your copy of
-			{$phpInfo['implementation']}</a>.
-			{$phpInfo['implementation']} versions less than {$phpInfo['upstreamSupported']} are no
+			PHP</a>.
+			PHP versions less than {$phpInfo['upstreamSupported']} are no
 			longer supported by {$phpInfo['vendor']} and will not receive
 			security or bugfix updates.
 		</p>
 		<p>
-			If for some reason you are unable to upgrade your {$phpInfo['implementation']} version,
+			If for some reason you are unable to upgrade your PHP version,
 			you will need to <a href="https://www.mediawiki.org/wiki/Download">download</a> an
 			older version of MediaWiki from our website.
 			See our<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
-			for details of which versions are compatible with prior versions of {$phpInfo['implementation']}.
+			for details of which versions are compatible with prior versions of PHP.
 HTML;
 			// phpcs:enable Generic.Files.LineLength
 			$this->triggerError(

@@ -118,7 +118,7 @@ abstract class UploadBase {
 		}
 
 		# Check php's file_uploads setting
-		return wfIsHHVM() || wfIniGetBool( 'file_uploads' );
+		return wfIniGetBool( 'file_uploads' );
 	}
 
 	/**
