@@ -1205,8 +1205,6 @@
 	"rcfilters-filter-bots-description": "Endringar gjorde med automatiske verktøy.",
 	"rcfilters-filter-humans-label": "Menneske (ikkje robot)",
 	"rcfilters-filter-humans-description": "Endringar gjorde av menneske.",
-	"rcfilters-filter-patrolled-description": "Endringar merkte som patruljerte.",
-	"rcfilters-filter-unpatrolled-description": "Endringar ikkje merkte som patruljerte.",
 	"rcfilters-filtergroup-significance": "Vekt",
 	"rcfilters-filter-minor-label": "Småplukk",
 	"rcfilters-filter-minor-description": "Endringar merkte som småplukk av forfattaren.",
