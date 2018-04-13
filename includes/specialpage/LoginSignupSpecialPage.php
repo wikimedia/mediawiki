@@ -515,7 +515,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @private
 	 */
 	protected function mainLoginForm( array $requests, $msg = '', $msgtype = 'error' ) {
-		$titleObj = $this->getPageTitle();
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
