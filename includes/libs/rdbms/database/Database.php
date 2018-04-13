@@ -1181,8 +1181,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					} else {
 						# Nothing prior was there to lose from the transaction,
 						# so just roll it back.
-						$this->doRollback( __METHOD__ . " ($fname)" );
-						$this->trxStatus = self::STATUS_TRX_OK;
+						$this->rollback( __METHOD__ . " ($fname)", self::FLUSHING_INTERNAL );
 					}
 					$this->trxStatusIgnoredCause = null;
 				} else {
