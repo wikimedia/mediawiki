@@ -59,6 +59,15 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $mCaption = false;
 
 	/**
+	 * Length to truncate filename to in caption when using "showfilename".
+	 * A value of 'true' will truncate the filename to one line using CSS
+	 * and will be the behaviour after deprecation.
+	 *
+	 * @var bool|int
+	 */
+	protected $mCaptionLength = true;
+
+	/**
 	 * @var bool Hide blacklisted images?
 	 */
 	protected $mHideBadImages;
