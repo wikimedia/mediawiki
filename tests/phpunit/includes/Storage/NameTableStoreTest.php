@@ -257,7 +257,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		$store->getMap();
 		$table = $store->getMap();
 
-		$expected = [ 2 => 'bar', 1 => 'foo' ];
+		$expected = [ 1 => 'foo', 2 => 'bar' ];
 		$this->assertSame( $expected, $table );
 		// Make sure the table returned is the same as the cached table
 		$this->assertSame( $expected, TestingAccessWrapper::newFromObject( $store )->tableCache );
