@@ -347,6 +347,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 	public function testNiceDomains() {
 		global $wgDBname, $wgDBtype;
 
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+		}
+
 		if ( $wgDBtype === 'sqlite' ) {
 			$tmpDir = $this->getNewTempDirectory();
 			$dbPath = "$tmpDir/unit_test_db.sqlite";
@@ -411,6 +415,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$db = $lb->getConnection( DB_MASTER ); // local domain connection
 		$factory->setDomainPrefix( 'my_' );
 
+		$this->assertEquals( $wgDBname, $db->getDBname() );
 		$this->assertEquals(
 			"$wgDBname-my_",
 			$db->getDomainID()
@@ -432,6 +437,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 	public function testTrickyDomain() {
 		global $wgDBtype, $wgDBname;
+
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			$this->markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+		}
 
 		if ( $wgDBtype === 'sqlite' ) {
 			$tmpDir = $this->getNewTempDirectory();
