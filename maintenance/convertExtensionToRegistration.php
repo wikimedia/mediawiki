@@ -13,7 +13,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'ResourceModuleSkinStyles' => 'handleResourceModules',
 		'Hooks' => 'handleHooks',
 		'ExtensionFunctions' => 'handleExtensionFunctions',
-		'ParserTestFiles' => 'removeAbsolutePath',
+		'ParserTestFiles' => 'removeAutodiscoveredParserTestFiles',
 	];
 
 	/**
@@ -220,6 +220,22 @@ class ConvertExtensionToRegistration extends Maintenance {
 			$out[$key] = $this->stripPath( $val, $this->dir );
 		}
 		$this->json[$realName] = $out;
+	}
+
+	protected function removeAutodiscoveredParserTestFiles( $realName, $value ) {
+		$out = [];
+		foreach ( $value as $key => $val ) {
+			$path = $this->stripPath( $val, $this->dir );
+			// When path starts with tests/parser/ the file would be autodiscovered with
+			// extension registry, so no need to add it to extension.json
+			if ( substr( $path, 0, 13 ) !== 'tests/parser/' || substr( $path, -4 ) !== '.txt' ) {
+				$out[$key] = $path;
+			}
+		}
+		// in the best case all entries are filtered out
+		if ( $out ) {
+			$this->json[$realName] = $out;
+		}
 	}
 
 	protected function handleCredits( $realName, $value ) {
