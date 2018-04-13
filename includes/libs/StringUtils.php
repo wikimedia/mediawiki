@@ -39,19 +39,7 @@ class StringUtils {
 	 * @return bool Whether the given $value is a valid UTF-8 encoded string
 	 */
 	static function isUtf8( $value ) {
-		$value = (string)$value;
-
-		// HHVM 3.4 and older come with an outdated version of libmbfl that
-		// incorrectly allows values above U+10FFFF, so we have to check
-		// for them separately. (This issue also exists in PHP 5.3 and
-		// older, which are no longer supported.)
-		static $newPHP;
-		if ( $newPHP === null ) {
-			$newPHP = !mb_check_encoding( "\xf4\x90\x80\x80", 'UTF-8' );
-		}
-
-		return mb_check_encoding( $value, 'UTF-8' ) &&
-			( $newPHP || preg_match( "/\xf4[\x90-\xbf]|[\xf5-\xff]/S", $value ) === 0 );
+		return mb_check_encoding( (string)$value, 'UTF-8' );
 	}
 
 	/**
