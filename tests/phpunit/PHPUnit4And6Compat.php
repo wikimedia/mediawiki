@@ -20,6 +20,7 @@
 
 /**
  * @since 1.31
+ * @deprecated since 1.35; we don't support PHPUnit 4 any more
  */
 trait PHPUnit4And6Compat {
 	/**

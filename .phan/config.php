@@ -26,10 +26,6 @@ $cfg['file_list'] = array_merge(
 	function_exists( 'wikidiff2_do_diff' ) ? [] : [ '.phan/stubs/wikidiff.php' ],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	defined( 'PASSWORD_ARGON2I' ) ? [] : [ '.phan/stubs/password.php' ],
-	// Per composer.json, PHPUnit 6 is used for PHP 7.0+, PHPUnit 4 otherwise.
-	// Load the interface for the version of PHPUnit that isn't installed.
-	// Phan only supports PHP 7.0+ (and not HHVM), so we only need to stub PHPUnit 4.
-	class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ '.phan/stubs/phpunit4.php' ],
 	class_exists( ProfilerExcimer::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
