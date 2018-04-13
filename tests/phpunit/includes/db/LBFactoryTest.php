@@ -345,32 +345,25 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testNiceDomains() {
-		global $wgDBname, $wgDBtype;
+		global $wgDBname;
 
-		if ( $wgDBtype === 'sqlite' ) {
-			$tmpDir = $this->getNewTempDirectory();
-			$dbPath = "$tmpDir/unit_test_db.sqlite";
-			file_put_contents( $dbPath, '' );
-			$tempFsFile = new TempFSFile( $dbPath );
-			$tempFsFile->autocollect();
-		} else {
-			$dbPath = null;
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+			return;
 		}
 
 		$factory = $this->newLBFactoryMulti(
 			[],
-			[ 'dbFilePath' => $dbPath ]
+			[]
 		);
 		$lb = $factory->getMainLB();
 
-		if ( $wgDBtype !== 'sqlite' ) {
-			$db = $lb->getConnectionRef( DB_MASTER );
-			$this->assertEquals(
-				wfWikiID(),
-				$db->getDomainID()
-			);
-			unset( $db );
-		}
+		$db = $lb->getConnectionRef( DB_MASTER );
+		$this->assertEquals(
+			wfWikiID(),
+			$db->getDomainID()
+		);
+		unset( $db );
 
 		/** @var Database $db */
 		$db = $lb->getConnection( DB_MASTER, [], '' );
@@ -411,6 +404,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$db = $lb->getConnection( DB_MASTER ); // local domain connection
 		$factory->setDomainPrefix( 'my_' );
 
+		$this->assertEquals( $wgDBname, $db->getDBname() );
 		$this->assertEquals(
 			"$wgDBname-my_",
 			$db->getDomainID()
@@ -431,23 +425,17 @@ class LBFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testTrickyDomain() {
-		global $wgDBtype, $wgDBname;
+		global $wgDBname;
 
-		if ( $wgDBtype === 'sqlite' ) {
-			$tmpDir = $this->getNewTempDirectory();
-			$dbPath = "$tmpDir/unit_test_db.sqlite";
-			file_put_contents( $dbPath, '' );
-			$tempFsFile = new TempFSFile( $dbPath );
-			$tempFsFile->autocollect();
-		} else {
-			$dbPath = null;
+		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
+			return;
 		}
 
 		$dbname = 'unittest-domain'; // explodes if DB is selected
 		$factory = $this->newLBFactoryMulti(
 			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
 			[
-				'dbFilePath' => $dbPath,
 				'dbName' => 'do_not_select_me' // explodes if DB is selected
 			]
 		);
@@ -496,7 +484,27 @@ class LBFactoryTest extends MediaWikiTestCase {
 			"Correct full table name"
 		);
 
-		if ( $db->databasesAreIndependent() ) {
+		$lb->reuseConnection( $db ); // don't care
+
+		$factory->closeAll();
+		$factory->destroy();
+	}
+
+	public function testInvalidSelectDB() {
+		$dbname = 'unittest-domain'; // explodes if DB is selected
+		$factory = $this->newLBFactoryMulti(
+			[ 'localDomain' => ( new DatabaseDomain( $dbname, null, '' ) )->getId() ],
+			[
+				'dbName' => 'do_not_select_me' // explodes if DB is selected
+			]
+		);
+		$lb = $factory->getMainLB();
+		/** @var Database $db */
+		$db = $lb->getConnection( DB_MASTER, [], '' );
+
+		if ( $db->getType() === 'sqlite' ) {
+			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
+		} elseif ( $db->databasesAreIndependent() ) {
 			try {
 				$e = null;
 				$db->selectDB( 'garbage-db' );
@@ -510,11 +518,6 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$this->assertFalse( $db->selectDB( 'garbage-db' ) );
 			\Wikimedia\restoreWarnings();
 		}
-
-		$lb->reuseConnection( $db ); // don't care
-
-		$factory->closeAll();
-		$factory->destroy();
 	}
 
 	private function quoteTable( Database $db, $table ) {
