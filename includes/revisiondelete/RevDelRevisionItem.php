@@ -83,7 +83,7 @@ class RevDelRevisionItem extends RevDelItem {
 		$dbw->update( 'recentchanges',
 			[
 				'rc_deleted' => $bits,
-				'rc_patrolled' => 1
+				'rc_patrolled' => RecentChange::PRC_PATROLLED
 			],
 			[
 				'rc_this_oldid' => $this->revision->getId(), // condition
