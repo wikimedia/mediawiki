@@ -120,7 +120,7 @@ class DatabaseSqlite extends Database {
 	protected function doInitConnection() {
 		if ( $this->dbPath !== null ) {
 			// Standalone .sqlite file mode.
-			$this->openFile( $this->dbPath );
+			$this->openFile( $this->dbPath, $this->connectionParams['dbname'] );
 		} elseif ( $this->dbDir !== null ) {
 			// Stock wiki mode using standard file names per DB
 			if ( strlen( $this->connectionParams['dbname'] ) ) {
@@ -173,11 +173,7 @@ class DatabaseSqlite extends Database {
 			$this->conn = false;
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		}
-		$this->openFile( $fileName );
-
-		if ( $this->conn ) {
-			$this->dbName = $dbName;
-		}
+		$this->openFile( $fileName, $dbName );
 
 		return (bool)$this->conn;
 	}
@@ -186,10 +182,11 @@ class DatabaseSqlite extends Database {
 	 * Opens a database file
 	 *
 	 * @param string $fileName
+	 * @param string $dbName
 	 * @throws DBConnectionError
 	 * @return PDO|bool SQL connection or false if failed
 	 */
-	protected function openFile( $fileName ) {
+	protected function openFile( $fileName, $dbName ) {
 		$err = false;
 
 		$this->dbPath = $fileName;
@@ -211,6 +208,7 @@ class DatabaseSqlite extends Database {
 
 		$this->opened = is_object( $this->conn );
 		if ( $this->opened ) {
+			$this->dbName = $dbName;
 			# Set error codes only, don't raise exceptions
 			$this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 			# Enforce LIKE to be case sensitive, just like MySQL
@@ -1079,6 +1077,16 @@ class DatabaseSqlite extends Database {
 			$this->attachDatabase( $params['dbname'] );
 			$this->alreadyAttached[$params['dbname']] = true;
 		}
+	}
+
+	public function resetSequenceForTable( $table, $fname = __METHOD__ ) {
+		$encTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
+		$encName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+		$this->query( "DELETE FROM $encTable WHERE name = $encName", $fname );
+	}
+
+	public function databasesAreIndependent() {
+		return true;
 	}
 
 	/**
