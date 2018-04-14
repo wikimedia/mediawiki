@@ -283,7 +283,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 				}
 
 				foreach ( self::$paramRequirements as $key => $required ) {
-					if ( !isset( $config[$key] ) ) {
+					if ( !isset( $config[$key] ) || $config[$key] === false ) {
 						continue;
 					}
 					foreach ( $required as $requireKey => $requireVal ) {
@@ -317,7 +317,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 				}
 
 				foreach ( self::$paramProhibitedTypes as $key => $prohibitedTypes ) {
-					if ( !isset( $config[$key] ) ) {
+					if ( !isset( $config[$key] ) || $config[$key] === false ) {
 						continue;
 					}
 
