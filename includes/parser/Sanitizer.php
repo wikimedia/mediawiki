@@ -1662,7 +1662,7 @@ class Sanitizer {
 			self::CHAR_REFS_REGEX,
 			[ self::class, 'decodeCharReferencesCallback' ],
 			$text,
-			-1, //limit
+			-1, // limit
 			$count
 		);
 

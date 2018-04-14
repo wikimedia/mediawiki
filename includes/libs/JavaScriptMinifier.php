@@ -184,8 +184,8 @@ class JavaScriptMinifier {
 		];
 
 		// $goto : This is the main table for our state machine. For every state/token pair
-		//         the following state is defined. When no rule exists for a given pair,
-		//         the state is left unchanged.
+		// the following state is defined. When no rule exists for a given pair,
+		// the state is left unchanged.
 		$goto = [
 			self::STATEMENT => [
 				self::TYPE_UN_OP      => self::EXPRESSION,
@@ -283,8 +283,8 @@ class JavaScriptMinifier {
 		];
 
 		// $push : This table contains the rules for when to push a state onto the stack.
-		//         The pushed state is the state to return to when the corresponding
-		//         closing token is found
+		// The pushed state is the state to return to when the corresponding
+		// closing token is found
 		$push = [
 			self::STATEMENT => [
 				self::TYPE_BRACE_OPEN => self::STATEMENT,

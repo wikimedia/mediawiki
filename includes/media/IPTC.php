@@ -491,7 +491,7 @@ class IPTC {
 
 		// This is just going through the charsets mentioned in appendix C of the iim standard.
 
-		//  \x1b = ESC.
+		// \x1b = ESC.
 		switch ( $tag ) {
 			case "\x1b%G": // utf-8
 			// Also call things that are compatible with utf-8, utf-8 (e.g. ascii)

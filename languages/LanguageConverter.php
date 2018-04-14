@@ -967,11 +967,11 @@ class LanguageConverter {
 	 * Parse the conversion table stored in the cache.
 	 *
 	 * The tables should be in blocks of the following form:
-	 *		-{
-	 *			word => word ;
-	 *			word => word ;
-	 *			...
-	 *		}-
+	 * 		-{
+	 * 			word => word ;
+	 * 			word => word ;
+	 * 			...
+	 * 		}-
 	 *
 	 * To make the tables more manageable, subpages are allowed
 	 * and will be parsed recursively if $recursive == true.
@@ -1139,14 +1139,14 @@ class LanguageConverter {
 			// varsep_pattern for preg_split:
 			// text should be splited by ";" only if a valid variant
 			// name exist after the markup, for example:
-			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
-			//  <span style="font-size:120%;">yyy</span>;}-
+			// -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
+			// <span style="font-size:120%;">yyy</span>;}-
 			// we should split it as:
-			//  [
-			//    [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
-			//    [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
-			//    [2] => ''
-			//  ]
+			// [
+			// [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
+			// [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
+			// [2] => ''
+			// ]
 			$pat = '/;\s*(?=';
 			foreach ( $this->mVariants as $variant ) {
 				// zh-hans:xxx;zh-hant:yyy

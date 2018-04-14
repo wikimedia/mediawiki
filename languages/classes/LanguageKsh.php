@@ -52,28 +52,28 @@ class LanguageKsh extends Language {
 	 * Word order is irrelevant.
 	 *
 	 * Possible values specifying the grammatical case are:
-	 *	1, Nominative
-	 *	2, Genitive
-	 *	3, Dative
-	 *	4, Accusative, -omitted-
+	 * 	1, Nominative
+	 * 	2, Genitive
+	 * 	3, Dative
+	 * 	4, Accusative, -omitted-
 	 *
 	 * Possible values specifying the article type are:
-	 *	Betoont               focussed or stressed article
-	 *	-omitted-             unstressed or unfocussed article
+	 * 	Betoont               focussed or stressed article
+	 * 	-omitted-             unstressed or unfocussed article
 	 *
 	 * Possible values for the type of genitive are:
-	 *	Sing, Iehr            prepositioned genitive = possessive dative
-	 *	Vun, Fon, -omitted-   postpositioned genitive = preposition "vun" with dative
+	 * 	Sing, Iehr            prepositioned genitive = possessive dative
+	 * 	Vun, Fon, -omitted-   postpositioned genitive = preposition "vun" with dative
 	 *
 	 * Values of case overrides & prepositions, in the order of preceedence:
-	 *	Sing, Iehr            possessive dative = prepositioned genitive
-	 *	Vun, Fon              preposition "vun" with dative = postpositioned genitive
-	 *	En, em                preposition "en" with dative
+	 * 	Sing, Iehr            possessive dative = prepositioned genitive
+	 * 	Vun, Fon              preposition "vun" with dative = postpositioned genitive
+	 * 	En, em                preposition "en" with dative
 	 *
 	 * Values for object gender specifiers of the possessive dative, or
 	 * prepositioned genitive, evaluated with "Sing, Iehr" of above only:
-	 *	Male                  a singular male object follows
-	 *	-omitted-             a non-male or plural object follows
+	 * 	Male                  a singular male object follows
+	 * 	-omitted-             a non-male or plural object follows
 	 *
 	 * We currently handle definite articles of the singular only.
 	 * There is a full set of test cases at:

@@ -5449,7 +5449,7 @@ class User implements IDBAccessObject, UserIdentity {
 					// Convert '0' to 0. PHP's boolean conversion considers them both
 					// false, but e.g. JavaScript considers the former as true.
 					// @todo: T54542 Somehow determine the desired type (string/int/bool)
-					//  and convert all values here.
+					// and convert all values here.
 					if ( $row->up_value === '0' ) {
 						$row->up_value = 0;
 					}

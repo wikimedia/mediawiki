@@ -333,7 +333,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// iteration of stub content). $i is only increased after having treated page 4.
 		for ( $i = 0; $i < $iterations; ) {
 			// 1. Assuring a file is opened and ready. Skipping across header if
-			//    necessary.
+			// necessary.
 			if ( !$fileOpened ) {
 				$this->assertNotEmpty( $files, "No more existing dump files, "
 					. "but not yet all pages found" );

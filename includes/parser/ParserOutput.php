@@ -899,7 +899,7 @@ class ParserOutput extends CacheTime {
 	 *     by storing a property.
 	 *
 	 *   * Overriding the displayed article title.
-	 *   @see ParserOutput::setDisplayTitle()
+	 * @see ParserOutput::setDisplayTitle()
 	 *
 	 *   * To implement image tagging, for example displaying an icon on an
 	 *     image thumbnail to indicate that it is listed for deletion on

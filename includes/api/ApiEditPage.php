@@ -404,7 +404,7 @@ class ApiEditPage extends ApiBase {
 				if ( !$status->getErrors() ) {
 					// This appears to be unreachable right now, because all
 					// code paths will set an error.  Could change, though.
-					$status->fatal( 'hookaborted' ); //@codeCoverageIgnore
+					$status->fatal( 'hookaborted' ); // @codeCoverageIgnore
 				}
 				$this->dieStatus( $status );
 

@@ -22,7 +22,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  *
  * @file
  * @ingroup Site
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author John Erling Blad < jeblad@gmail.com >
  * @author Daniel Kinzler
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

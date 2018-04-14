@@ -135,7 +135,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		// So we ...
 
 		// 1. ... add a dummy output checking to make PHPUnit not complain
-		//    about unchecked test output
+		// about unchecked test output
 		$this->expectOutputRegex( '//' );
 
 		// 2. Do the real output checking on our own.

@@ -16,7 +16,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 
 	public function testDatabaseStorage() {
 		// NOTE: database setup is expensive, so we only do
-		//  it once and run all the tests in one go.
+		// it once and run all the tests in one go.
 		$dewiki = [
 			'iw_prefix' => 'de',
 			'iw_url' => 'http://de.wikipedia.org/wiki/',
@@ -131,7 +131,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 
 	public function testCDBStorage() {
 		// NOTE: CDB setup is expensive, so we only do
-		//  it once and run all the tests in one go.
+		// it once and run all the tests in one go.
 
 		$zzwiki = [
 			'iw_prefix' => 'zz',

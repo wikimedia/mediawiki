@@ -2974,7 +2974,7 @@ class OutputPage extends ContextSource {
 		// Exempt 'user' module
 		// - May need excludepages for live preview. (T28283)
 		// - Must use TYPE_COMBINED so its response is handled by mw.loader.implement() which
-		//   ensures execution is scheduled after the "site" module.
+		// ensures execution is scheduled after the "site" module.
 		// - Don't load if module state is already resolved as "ready".
 		if ( $this->rlUserModuleState === 'loading' ) {
 			if ( $this->isUserJsPreview() ) {

@@ -46,7 +46,7 @@
  * @file
  * @ingroup Maintenance
  * @author Antoine Musso <hashar at free dot fr>
- * @license GNU General Public License 2.0 or later
+ * @license GPL-2.0-or-later
  */
 
 require_once __DIR__ . '/Maintenance.php';

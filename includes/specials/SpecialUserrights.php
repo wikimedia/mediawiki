@@ -260,7 +260,7 @@ class UserrightsPage extends SpecialPage {
 		$existingUGMs = $user->getGroupMemberships();
 
 		// This could possibly create a highly unlikely race condition if permissions are changed between
-		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
+		// when the form is loaded and when the form is saved. Ignoring it for the moment.
 		foreach ( $allgroups as $group ) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
 			// Later on, this gets filtered for what can actually be removed

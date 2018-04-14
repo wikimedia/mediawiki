@@ -189,9 +189,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 		if ( $enumRevMode ) {
 			// Indexes targeted:
-			//  page_timestamp if we don't have rvuser
-			//  page_user_timestamp if we have a logged-in rvuser
-			//  page_timestamp or usertext_timestamp if we have an IP rvuser
+			// page_timestamp if we don't have rvuser
+			// page_user_timestamp if we have a logged-in rvuser
+			// page_timestamp or usertext_timestamp if we have an IP rvuser
 
 			// This is mostly to prevent parameter errors (and optimize SQL?)
 			$this->requireMaxOneParameter( $params, 'startid', 'start' );

@@ -451,15 +451,15 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		try {
 			// Related bugs and performance considerations:
 			// 1. Don't needlessly change the database value with the same list in a
-			//    different order or with duplicates.
+			// different order or with duplicates.
 			// 2. Use relative paths to avoid ghost entries when $IP changes. (T111481)
 			// 3. Don't needlessly replace the database with the same value
-			//    just because $IP changed (e.g. when upgrading a wiki).
+			// just because $IP changed (e.g. when upgrading a wiki).
 			// 4. Don't create an endless replace loop on every request for this
-			//    module when '../' is used anywhere. Even though both are expanded
-			//    (one expanded by getFileDependencies from the DB, the other is
-			//    still raw as originally read by RL), the latter has not
-			//    been normalized yet.
+			// module when '../' is used anywhere. Even though both are expanded
+			// (one expanded by getFileDependencies from the DB, the other is
+			// still raw as originally read by RL), the latter has not
+			// been normalized yet.
 
 			// Normalise
 			$localFileRefs = array_values( array_unique( $localFileRefs ) );

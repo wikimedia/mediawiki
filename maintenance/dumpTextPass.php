@@ -581,7 +581,7 @@ TEXT
 
 			try {
 				// Step 1: Get some text (or reuse from previous iteratuon if checking
-				//         for plausibility failed)
+				// for plausibility failed)
 
 				// Trying to get prefetch, if it has not been tried before
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
@@ -633,7 +633,7 @@ TEXT
 				// We received a good candidate for the text of $id via some method
 
 				// Step 2: Checking for plausibility and return the text if it is
-				//         plausible
+				// plausible
 				$revID = intval( $this->thisRev );
 				if ( !isset( $this->db ) ) {
 					throw new MWException( "No database available" );
