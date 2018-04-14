@@ -498,15 +498,15 @@ class WatchedItemQueryService {
 			// TODO: not sure if this should simply ignore patrolled filters if user does not have the patrol
 			// right, or maybe rather fail loud at this point, same as e.g. ApiQueryWatchlist does?
 			if ( in_array( self::FILTER_PATROLLED, $options['filters'] ) ) {
-				$conds[] = 'rc_patrolled != 0';
+				$conds[] = 'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED;
 			} elseif ( in_array( self::FILTER_NOT_PATROLLED, $options['filters'] ) ) {
-				$conds[] = 'rc_patrolled = 0';
+				$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 			}
 
 			if ( in_array( self::FILTER_AUTOPATROLLED, $options['filters'] ) ) {
-				$conds[] = 'rc_patrolled = 2';
+				$conds['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
 			} elseif ( in_array( self::FILTER_NOT_AUTOPATROLLED, $options['filters'] ) ) {
-				$conds[] = 'rc_patrolled != 2';
+				$conds[] = 'rc_patrolled != ' . RecentChange::PRC_AUTOPATROLLED;
 			}
 		}
 

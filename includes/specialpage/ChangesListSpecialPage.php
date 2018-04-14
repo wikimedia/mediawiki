@@ -475,7 +475,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_patrolled = 0';
+							$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 						},
 						'isReplacedInStructuredUi' => true,
 					],
@@ -485,7 +485,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_patrolled != 0';
+							$conds[] = 'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED;
 						},
 						'isReplacedInStructuredUi' => true,
 					],
