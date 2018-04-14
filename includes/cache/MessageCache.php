@@ -1289,8 +1289,8 @@ class MessageCache {
 			// Message page exists...
 			// XXX: Is this the right way to turn a Content object into a message?
 			// NOTE: $content is typically either WikitextContent, JavaScriptContent or
-			//       CssContent. MessageContent is *not* used for storing messages, it's
-			//       only used for wrapping them when needed.
+			// CssContent. MessageContent is *not* used for storing messages, it's
+			// only used for wrapping them when needed.
 			$msgText = $content->getWikitextForTransclusion();
 			if ( $msgText === false || $msgText === null ) {
 				// This might be due to some kind of misconfiguration...

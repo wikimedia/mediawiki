@@ -11,7 +11,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @file
  * @ingroup Watchlist
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  */
 interface WatchedItemQueryServiceExtension {
 

@@ -943,7 +943,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function setLogger( $channel, LoggerInterface $logger ) {
 		// TODO: Once loggers are managed by MediaWikiServices, use
-		//       overrideMwServices() to set loggers.
+		// overrideMwServices() to set loggers.
 
 		$provider = LoggerFactory::getProvider();
 		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
@@ -1958,7 +1958,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 		// give up
 		// @todo Inside a test, we could skip the test as incomplete.
-		//        But frequently, this is used in fixture setup.
+		// But frequently, this is used in fixture setup.
 		throw new MWException( "No namespace defaults to wikitext!" );
 	}
 

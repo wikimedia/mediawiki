@@ -207,8 +207,8 @@ class Title implements LinkTarget {
 	 * Create a new Title from a prefixed DB key
 	 *
 	 * @param string $key The database key, which has underscores
-	 *	instead of spaces, possibly including namespace and
-	 *	interwiki prefixes
+	 *   instead of spaces, possibly including namespace and
+	 *   interwiki prefixes
 	 * @return Title|null Title, or null on an error
 	 */
 	public static function newFromDBkey( $key ) {
@@ -3619,10 +3619,10 @@ class Title implements LinkTarget {
 		$dbkey = $this->mDbkeyform;
 
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
-		//        the parsing code with Title, while avoiding massive refactoring.
+		// the parsing code with Title, while avoiding massive refactoring.
 		// @todo: get rid of secureAndSplit, refactor parsing code.
 		// @note: getTitleParser() returns a TitleParser implementation which does not have a
-		//        splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
+		// splitTitleString method, but the only implementation (MediaWikiTitleCodec) does
 		$titleCodec = MediaWikiServices::getInstance()->getTitleParser();
 		// MalformedTitleException can be thrown here
 		$parts = $titleCodec->splitTitleString( $dbkey, $this->getDefaultNamespace() );
@@ -5024,7 +5024,7 @@ class Title implements LinkTarget {
 
 		// @note Can't be cached persistently, depends on user settings.
 		// @note ContentHandler::getPageViewLanguage() may need to load the
-		//   content to determine the page language!
+		// content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
 		return $pageLang;

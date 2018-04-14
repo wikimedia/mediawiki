@@ -552,7 +552,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( [
 			// The following properties are omitted because they don't affect the module reponse:
 			// - localBasePath (Per T104950; Changes when absolute directory name changes. If
-			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
+			// this affects 'scripts' and other file paths, getFileHashes accounts for that.)
 			// - remoteBasePath (Per T104950)
 			// - dependencies (provided via startup module)
 			// - targets

@@ -476,9 +476,9 @@ class RemexCompatMunger implements TreeHandler {
 		$self = $element->userData;
 		if ( $self->snData->childPElement ) {
 			// Reparent under the p-wrapper instead, so that e.g.
-			//   <blockquote><mw:p-wrap>...</mw:p-wrap></blockquote>
+			// <blockquote><mw:p-wrap>...</mw:p-wrap></blockquote>
 			// becomes
-			//   <blockquote><mw:p-wrap><i>...</i></mw:p-wrap></blockquote>
+			// <blockquote><mw:p-wrap><i>...</i></mw:p-wrap></blockquote>
 
 			// The formatting element should not be the parent of the p-wrap.
 			// Without this special case, the insertElement() of the <i> below

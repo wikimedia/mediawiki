@@ -110,7 +110,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		global $wgUseFileCache;
 
 		// @todo several of the methods called on $this->page are not declared in Page, but present
-		//        in WikiPage and delegated by Article.
+		// in WikiPage and delegated by Article.
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 

@@ -285,7 +285,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 
 		// A new store should be able to get both of these new Ids
 		// Note: before there was a race condition here where acquireId( 'bar' ) would update the
-		//       cache with data missing the 'foo' key that it was not aware of
+		// cache with data missing the 'foo' key that it was not aware of
 		$store4 = $this->getNameTableSqlStore( $wanHashBag, 0, 1 );
 		$this->assertSame( $fooId, $store4->getId( 'foo' ) );
 		$this->assertSame( $barId, $store4->getId( 'bar' ) );

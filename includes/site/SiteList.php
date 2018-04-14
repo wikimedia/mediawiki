@@ -23,7 +23,7 @@
  * @file
  * @ingroup Site
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class SiteList extends GenericArrayObject {
@@ -320,7 +320,7 @@ class SiteList extends GenericArrayObject {
 	 */
 	protected function getSerializationData() {
 		// NOTE: When changing the structure, either implement unserialize() to handle the
-		//      old structure too, or update SERIAL_VERSION_ID to kill any caches.
+		// old structure too, or update SERIAL_VERSION_ID to kill any caches.
 		return array_merge(
 			parent::getSerializationData(),
 			[

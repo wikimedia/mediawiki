@@ -771,10 +771,10 @@ class WikiImporter {
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				// An XML snippet:
 				// <page>
-				//     <id>123</id>
-				//     <title>Page</title>
-				//     <redirect title="NewTitle"/>
-				//     ...
+				// <id>123</id>
+				// <title>Page</title>
+				// <redirect title="NewTitle"/>
+				// ...
 				// Because the redirect tag is built differently, we need special handling for that case.
 				if ( $tag == 'redirect' ) {
 					$pageInfo[$tag] = $this->nodeAttribute( 'title' );
@@ -810,10 +810,10 @@ class WikiImporter {
 		}
 
 		// @note $pageInfo is only set if a valid $title is processed above with
-		//       no error. If we have a valid $title, then pageCallback is called
-		//       above, $pageInfo['title'] is set and we do pageOutCallback here.
-		//       If $pageInfo['_title'] is not set, then $foreignTitle is also not
-		//       set since they both come from $title above.
+		// no error. If we have a valid $title, then pageCallback is called
+		// above, $pageInfo['title'] is set and we do pageOutCallback here.
+		// If $pageInfo['_title'] is not set, then $foreignTitle is also not
+		// set since they both come from $title above.
 		if ( array_key_exists( '_title', $pageInfo ) ) {
 			$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
 					$pageInfo['revisionCount'],

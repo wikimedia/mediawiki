@@ -584,13 +584,13 @@ $wgUploadDialog = [
 	'format' => [
 		// Wrapper for the whole page. Available replacements:
 		// * $DESCRIPTION - file description, as input by the user (only if the 'description' field is
-		//   enabled), wrapped as defined below in the 'description' key
+		// enabled), wrapped as defined below in the 'description' key
 		// * $DATE - file creation date, as input by the user (only if the 'date' field is enabled)
 		// * $SOURCE - as defined below in the 'ownwork' key, may be extended in the future
 		// * $AUTHOR - linked user name, may be extended in the future
 		// * $LICENSE - as defined below in the 'license' key, may be extended in the future
 		// * $CATEGORIES - file categories wikitext, as input by the user (only if the 'categories'
-		//   field is enabled), or if no input, as defined below in the 'uncategorized' key
+		// field is enabled), or if no input, as defined below in the 'uncategorized' key
 		'filepage' => '$DESCRIPTION',
 		// Wrapped for file description. Available replacements:
 		// * $LANGUAGE - source wiki's content language
@@ -4615,8 +4615,8 @@ $wgAuthManagerAutoConfig = [
 		],
 		// Linking during login is experimental, enable at your own risk - T134952
 		// MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class => [
-		//   'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
-		//   'sort' => 100,
+		// 'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
+		// 'sort' => 100,
 		// ],
 		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,

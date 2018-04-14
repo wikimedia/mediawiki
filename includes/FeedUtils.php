@@ -118,8 +118,8 @@ class FeedUtils {
 					Linker::formatComment( $comment ) ] ) ) . "</p>\n";
 
 		// NOTE: Check permissions for anonymous users, not current user.
-		//       No "privileged" version should end up in the cache.
-		//       Most feed readers will not log in anyway.
+		// No "privileged" version should end up in the cache.
+		// Most feed readers will not log in anyway.
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
@@ -182,8 +182,8 @@ class FeedUtils {
 				}
 			} else {
 				// XXX: we could get an HTML representation of the content via getParserOutput, but that may
-				//     contain JS magic and generally may not be suitable for inclusion in a feed.
-				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+				// contain JS magic and generally may not be suitable for inclusion in a feed.
+				// Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
 				// Compare also ApiFeedContributions::feedItemDesc
 				$html = null;
 			}

@@ -57,9 +57,9 @@ class APCBagOStuff extends BagOStuff {
 		} elseif ( extension_loaded( 'apcu' ) && ini_get( 'apc.serializer' ) === 'default' ) {
 			// APCu has a memory corruption bug when the serializer is set to 'default'.
 			// See T120267, and upstream bug reports:
-			//  - https://github.com/krakjoe/apcu/issues/38
-			//  - https://github.com/krakjoe/apcu/issues/35
-			//  - https://github.com/krakjoe/apcu/issues/111
+			// - https://github.com/krakjoe/apcu/issues/38
+			// - https://github.com/krakjoe/apcu/issues/35
+			// - https://github.com/krakjoe/apcu/issues/111
 			$this->logger->warning(
 				'The APCu extension is loaded and the apc.serializer INI setting ' .
 				'is set to "default". This can cause memory corruption! ' .

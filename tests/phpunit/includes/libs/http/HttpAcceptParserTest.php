@@ -36,10 +36,10 @@ class HttpAcceptParserTest extends \PHPUnit\Framework\TestCase {
 				[ 'text/*' => 1, '*' => 0.2, '*/*' => 0.1 ]
 			],
 			// TODO: nicely ignore additional type paramerters
-			//[ // #6
-			//	'Foo; q=0.2, Xoo; level=3, Bar; charset=xyz; q=0.4',
-			//	[ 'xoo' => 1, 'bar' => 0.4, 'foo' => 0.1 ]
-			//],
+			// [ // #6
+			// 'Foo; q=0.2, Xoo; level=3, Bar; charset=xyz; q=0.4',
+			// [ 'xoo' => 1, 'bar' => 0.4, 'foo' => 0.1 ]
+			// ],
 		];
 	}
 

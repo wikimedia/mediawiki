@@ -49,7 +49,7 @@ class RebuildFileCache extends Maintenance {
 		// Debug toolbar makes content uncacheable so we disable it.
 		// Has to be done before Setup.php initialize MWDebug
 		$wgDebugToolbar = false;
-		//  Avoid DB writes (like enotif/counters)
+		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
 

@@ -131,7 +131,7 @@ class CrhConverter extends LanguageConverter {
 		'C' => 'Дж', 'c' => 'дж', 'Ğ' => 'Гъ', 'ğ' => 'гъ',
 		'Ñ' => 'Нъ', 'ñ' => 'нъ', 'Q' => 'Къ', 'q' => 'къ',
 
-		];
+	];
 
 	public $mExceptions = [];
 	public $mCyrl2LatnPatterns = [];
@@ -187,8 +187,8 @@ class CrhConverter extends LanguageConverter {
 	}
 
 	/**
-	 *  It translates text into variant, specials:
-	 *    - ommiting roman numbers
+	 * It translates text into variant, specials:
+	 * - ommiting roman numbers
 	 *
 	 * @param string $text
 	 * @param bool $toVariant
@@ -263,7 +263,9 @@ class CrhConverter extends LanguageConverter {
 	}
 
 	private function regsConverter( $text, $toVariant ) {
-		if ( $text == '' ) return $text;
+		if ( $text == '' ) {
+			return $text;
+		}
 
 		$pat = [];
 		$rep = [];
