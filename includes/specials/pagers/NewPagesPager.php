@@ -82,7 +82,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
 		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
-			$conds['rc_patrolled'] = 0;
+			$conds['rc_patrolled'] = RecentChange::PRC_UNPATROLLED;
 		}
 
 		if ( $this->opts->getValue( 'hidebots' ) ) {

@@ -636,7 +636,7 @@ class RevisionStore
 	 */
 	public function getRcIdIfUnpatrolled( RevisionRecord $rev ) {
 		$rc = $this->getRecentChange( $rev );
-		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == 0 ) {
+		if ( $rc && $rc->getAttribute( 'rc_patrolled' ) == RecentChange::PRC_UNPATROLLED ) {
 			return $rc->getAttribute( 'rc_id' );
 		} else {
 			return 0;
