@@ -31,6 +31,7 @@ class PHPVersionCheck {
 	var $functionsExtensionsMapping = array(
 		'mb_substr'   => 'mbstring',
 		'utf8_encode' => 'xml',
+		'xml_parser_create' => 'xml',
 		'ctype_digit' => 'ctype',
 		'json_decode' => 'json',
 		'iconv'       => 'iconv',
@@ -190,7 +191,7 @@ HTML;
 			$missingExtText = '';
 			$missingExtHtml = '';
 			$baseUrl = 'https://secure.php.net';
-			foreach ( $missingExtensions as $ext ) {
+			foreach ( array_unique( $missingExtensions ) as $ext ) {
 				$missingExtText .= " * $ext <$baseUrl/$ext>\n";
 				$missingExtHtml .= "<li><b>$ext</b> "
 					. "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
