@@ -1991,6 +1991,7 @@
 	"apisandbox-dynamic-error-exists": "A(z) „$1” nevű paraméter már létezik.",
 	"apisandbox-deprecated-parameters": "Elavult paraméterek",
 	"apisandbox-fetch-token": "A token automatikus kitöltése",
+	"apisandbox-add-multi": "Hozzáadás",
 	"apisandbox-submit-invalid-fields-title": "Egyes mezők érvénytelenek",
 	"apisandbox-submit-invalid-fields-message": "Javítsd ki a jelzett mezőket, és próbáld újra.",
 	"apisandbox-results": "Eredmények",

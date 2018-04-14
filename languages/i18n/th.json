@@ -1359,7 +1359,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-description": "ผู้ใช้ลงทะเบียนที่แก้ไขน้อยกว่า 10 ครั้งหรืออายุน้อยกว่า 4 วัน",
 	"rcfilters-filter-user-experience-level-learner-label": "ผู้เรียนรู้",
 	"rcfilters-filter-user-experience-level-learner-description": "ผู้ใช้ลงทะเบียนที่มีประสบการณ์อยู่ระหว่าง \"ผู้มาใหม่\" กับ \"ผู้ใช้มีประสบการณ์\"",
-	"rcfilters-filter-user-experience-level-experienced-label": "ผู้ใช้ที่มีความเชี่ยวชาญ",
+	"rcfilters-filter-user-experience-level-experienced-label": "ผู้ใช้มีประสบการณ์",
 	"rcfilters-filter-user-experience-level-experienced-description": "ผู้ใช้ลงทะเบียนที่มีการแก้ไขมากกว่า 500 ครั้งและอายุมากกว่า 30 วัน",
 	"rcfilters-filtergroup-automated": "การเข้ามีส่วนร่วมอัตโนมัติ",
 	"rcfilters-filter-bots-label": "บอต",
