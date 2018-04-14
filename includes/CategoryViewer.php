@@ -123,8 +123,8 @@ class CategoryViewer extends ContextSource {
 			// If there is no category content to display, only
 			// show the top part of the navigation links.
 			// @todo FIXME: Cannot be completely suppressed because it
-			//        is unknown if 'until' or 'from' makes this
-			//        give 0 results.
+			// is unknown if 'until' or 'from' makes this
+			// give 0 results.
 			$r = $r . $this->getCategoryTop();
 		} else {
 			$r = $this->getCategoryTop() .
@@ -702,14 +702,14 @@ class CategoryViewer extends ContextSource {
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
 		// There are three cases:
-		//   1) The category table figure seems sane.  It might be wrong, but
-		//      we can't do anything about it if we don't recalculate it on ev-
-		//      ery category view.
-		//   2) The category table figure isn't sane, like it's smaller than the
-		//      number of actual results, *but* the number of results is less
-		//      than $this->limit and there's no offset.  In this case we still
-		//      know the right figure.
-		//   3) We have no idea.
+		// 1) The category table figure seems sane.  It might be wrong, but
+		// we can't do anything about it if we don't recalculate it on ev-
+		// ery category view.
+		// 2) The category table figure isn't sane, like it's smaller than the
+		// number of actual results, *but* the number of results is less
+		// than $this->limit and there's no offset.  In this case we still
+		// know the right figure.
+		// 3) We have no idea.
 
 		// Check if there's a "from" or "until" for anything
 

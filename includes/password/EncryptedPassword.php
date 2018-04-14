@@ -42,7 +42,8 @@ class EncryptedPassword extends ParameterizedPassword {
 		$secret = $this->config['secrets'][$this->params['secret']];
 
 		// Clear error string
-		while ( openssl_error_string() !== false );
+		while ( openssl_error_string() !== false ) {
+  }
 
 		if ( $this->hash ) {
 			$decrypted = openssl_decrypt(
@@ -84,7 +85,8 @@ class EncryptedPassword extends ParameterizedPassword {
 		}
 
 		// Clear error string
-		while ( openssl_error_string() !== false );
+		while ( openssl_error_string() !== false ) {
+  }
 
 		// Decrypt the underlying hash
 		$underlyingHash = openssl_decrypt(

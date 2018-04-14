@@ -712,7 +712,7 @@ class XMPInfo {
 				'map_group' => 'general',
 				// Note, not mapped with other date properties, as this type of date is
 				// non-specific: "A point or period of time associated with an event in
-				//  the lifecycle of the resource"
+				// the lifecycle of the resource"
 				'map_name' => 'dc-date',
 				'mode' => XMPReader::MODE_SEQ,
 				'validate' => 'validateDate',

@@ -263,7 +263,8 @@ class CrhConverter extends LanguageConverter {
 	}
 
 	private function regsConverter( $text, $toVariant ) {
-		if ( $text == '' ) return $text;
+		if ( $text == '' ) { return $text;
+		}
 
 		$pat = [];
 		$rep = [];

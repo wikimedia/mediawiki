@@ -253,11 +253,11 @@ class BatchRowIterator implements RecursiveIterator {
 		$pkConditions = [];
 		// For example: If we have 3 primary keys
 		// first run through will generate
-		//   col1 = 4 AND col2 = 7 AND col3 > 1
+		// col1 = 4 AND col2 = 7 AND col3 > 1
 		// second run through will generate
-		//   col1 = 4 AND col2 > 7
+		// col1 = 4 AND col2 > 7
 		// and the final run through will generate
-		//   col1 > 4
+		// col1 > 4
 		while ( $maximumValues ) {
 			$pkConditions[] = $this->buildGreaterThanCondition( $maximumValues );
 			array_pop( $maximumValues );

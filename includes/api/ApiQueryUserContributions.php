@@ -118,9 +118,9 @@ class ApiQueryContributions extends ApiQueryBase {
 						);
 					} else {
 						// There are three queries we have to combine to be sure of getting all results:
-						//  - actor table (any rows that have been migrated will have empty rev_user_text)
-						//  - revision+actor by user id
-						//  - revision+actor by name for anons
+						// - actor table (any rows that have been migrated will have empty rev_user_text)
+						// - revision+actor by user id
+						// - revision+actor by name for anons
 						$options = $dbSecondary->unionSupportsOrderAndLimit()
 							? [ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ] : [];
 						$subsql = [];
@@ -350,7 +350,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			// together in the proper order. And preserving the correct
 			// $hookData for each one.
 			// @todo When ActorMigration is removed, this can go back to a
-			//  single prepare and select.
+			// single prepare and select.
 			$merged = [];
 			foreach ( [ 'actor', 'userid', 'username' ] as $which ) {
 				if ( $this->prepareQuery( $users, $limit - $count, $which ) ) {

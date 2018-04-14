@@ -78,7 +78,7 @@ class HTMLFileCache extends FileCacheBase {
 	 */
 	protected function typeSubdirectory() {
 		if ( $this->mType === 'view' ) {
-			return ''; //  b/c to not skip existing cache
+			return ''; // b/c to not skip existing cache
 		} else {
 			return $this->mType . '/';
 		}

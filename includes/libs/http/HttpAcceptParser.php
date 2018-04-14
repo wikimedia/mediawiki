@@ -33,8 +33,8 @@ class HttpAcceptParser {
 	 * @return array
 	 */
 	public function parseWeights( $rawHeader ) {
-		//FIXME: The code below was copied and adapted from WebRequest::getAcceptLang.
-		//       Move this utility class into core for reuse!
+		// FIXME: The code below was copied and adapted from WebRequest::getAcceptLang.
+		// Move this utility class into core for reuse!
 
 		// first, strip header name
 		$rawHeader = preg_replace( '/^[-\w]+:\s*/', '', $rawHeader );

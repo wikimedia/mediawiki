@@ -177,7 +177,7 @@ abstract class ContentHandler {
 	 */
 	public static function getDefaultModelFor( Title $title ) {
 		// NOTE: this method must not rely on $title->getContentModel() directly or indirectly,
-		//       because it is used to initialize the mContentModel member.
+		// because it is used to initialize the mContentModel member.
 
 		$ns = $title->getNamespace();
 

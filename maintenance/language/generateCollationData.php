@@ -356,7 +356,8 @@ class UcdXmlReader {
 		$xml = $this->open();
 		$this->callback = $callback;
 
-		while ( $xml->name !== 'repertoire' && $xml->next() );
+		while ( $xml->name !== 'repertoire' && $xml->next() ) {
+  }
 
 		while ( $xml->read() ) {
 			if ( $xml->nodeType == XMLReader::ELEMENT ) {
@@ -380,7 +381,8 @@ class UcdXmlReader {
 		if ( !$this->xml ) {
 			throw new MWException( __METHOD__ . ": unable to open {$this->fileName}" );
 		}
-		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
+		while ( $this->xml->name !== 'ucd' && $this->xml->read() ) {
+  }
 		$this->xml->read();
 
 		return $this->xml;
@@ -441,7 +443,8 @@ class UcdXmlReader {
 		}
 
 		$xml = $this->open();
-		while ( $xml->name !== 'blocks' && $xml->read() );
+		while ( $xml->name !== 'blocks' && $xml->read() ) {
+  }
 
 		while ( $xml->read() ) {
 			if ( $xml->nodeType == XMLReader::ELEMENT ) {

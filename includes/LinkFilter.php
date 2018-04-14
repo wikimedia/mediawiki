@@ -43,8 +43,8 @@ class LinkFilter {
 	static function matchEntry( Content $content, $filterEntry ) {
 		if ( !( $content instanceof TextContent ) ) {
 			// TODO: handle other types of content too.
-			//      Maybe create ContentHandler::matchFilter( LinkFilter ).
-			//      Think about a common base class for LinkFilter and MagicWord.
+			// Maybe create ContentHandler::matchFilter( LinkFilter ).
+			// Think about a common base class for LinkFilter and MagicWord.
 			return 0;
 		}
 

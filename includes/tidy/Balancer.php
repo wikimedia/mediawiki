@@ -1261,7 +1261,8 @@ class BalanceStack implements IteratorAggregate {
 
 				// If node is the formatting element, then go
 				// to the next step in the overall algorithm.
-				if ( $node === $fmtElt ) break;
+				if ( $node === $fmtElt ) { break;
+				}
 
 				// If the inner loop counter is greater than three and node
 				// is in the list of active formatting elements, then remove

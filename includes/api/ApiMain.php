@@ -895,9 +895,9 @@ class ApiMain extends ApiBase {
 
 		// The logic should be:
 		// $this->mCacheControl['max-age'] is set?
-		//    Use it, the module knows better than our guess.
+		// Use it, the module knows better than our guess.
 		// !$this->mModule || $this->mModule->isWriteMode(), and mCacheMode is private?
-		//    Use 0 because we can guess caching is probably the wrong thing to do.
+		// Use 0 because we can guess caching is probably the wrong thing to do.
 		// Use $this->getParameter( 'maxage' ), which already defaults to 0.
 		$maxage = 0;
 		if ( isset( $this->mCacheControl['max-age'] ) ) {
@@ -1348,7 +1348,7 @@ class ApiMain extends ApiBase {
 			$value = trim( $this->getRequest()->getHeader( 'If-Modified-Since' ) );
 
 			// Some old browsers sends sizes after the date, like this:
-			//  Wed, 20 Aug 2003 06:51:19 GMT; length=5202
+			// Wed, 20 Aug 2003 06:51:19 GMT; length=5202
 			// Ignore that.
 			$i = strpos( $value, ';' );
 			if ( $i !== false ) {

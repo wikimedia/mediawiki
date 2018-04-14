@@ -211,8 +211,8 @@ class CSSMin {
 	 */
 	public static function buildUrlValue( $url ) {
 		// The list below has been crafted to match URLs such as:
-		//   scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s
-		//   data:image/png;base64,R0lGODlh/+==
+		// scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s
+		// data:image/png;base64,R0lGODlh/+==
 		if ( preg_match( '!^[\w\d:@/~.%+;,?&=-]+$!', $url ) ) {
 			return "url($url)";
 		} else {
@@ -234,12 +234,12 @@ class CSSMin {
 	public static function remap( $source, $local, $remote, $embedData = true ) {
 		// High-level overview:
 		// * For each CSS rule in $source that includes at least one url() value:
-		//   * Check for an @embed comment at the start indicating that all URIs should be embedded
-		//   * For each url() value:
-		//     * Check for an @embed comment directly preceding the value
-		//     * If either @embed comment exists:
-		//       * Embedding the URL as data: URI, if it's possible / allowed
-		//       * Otherwise remap the URL to work in generated stylesheets
+		// * Check for an @embed comment at the start indicating that all URIs should be embedded
+		// * For each url() value:
+		// * Check for an @embed comment directly preceding the value
+		// * If either @embed comment exists:
+		// * Embedding the URL as data: URI, if it's possible / allowed
+		// * Otherwise remap the URL to work in generated stylesheets
 
 		// Guard against trailing slashes, because "some/remote/../foo.png"
 		// resolves to "some/remote/foo.png" on (some?) clients (T29052).
@@ -404,20 +404,20 @@ class CSSMin {
 			// single quoted url contains a double quote, etc.
 			// Note: PCRE doesn't support multiple capture groups with the same name by default.
 			// - PCRE 6.7 introduced the "J" modifier (PCRE_INFO_JCHANGED for PCRE_DUPNAMES).
-			//   https://secure.php.net/manual/en/reference.pcre.pattern.modifiers.php
-			//   However this isn't useful since it just ignores all but the first one.
-			//   Also, while the modifier was introduced in PCRE 6.7 (PHP 5.2+) it was
-			//   not exposed to public preg_* functions until PHP 5.6.0.
+			// https://secure.php.net/manual/en/reference.pcre.pattern.modifiers.php
+			// However this isn't useful since it just ignores all but the first one.
+			// Also, while the modifier was introduced in PCRE 6.7 (PHP 5.2+) it was
+			// not exposed to public preg_* functions until PHP 5.6.0.
 			// - PCRE 8.36 fixed this to work as expected (e.g. merge conceptually to
-			//   only return the one matched in the part that actually matched).
-			//   However MediaWiki supports 5.5.9, which has PCRE 8.32
-			//   Per https://secure.php.net/manual/en/pcre.installation.php:
-			//   - PCRE 8.32 (PHP 5.5.0)
-			//   - PCRE 8.34 (PHP 5.5.10, PHP 5.6.0)
-			//   - PCRE 8.37 (PHP 5.5.26, PHP 5.6.9, PHP 7.0.0)
-			//   Workaround by using different groups and merge via processUrlMatch().
+			// only return the one matched in the part that actually matched).
+			// However MediaWiki supports 5.5.9, which has PCRE 8.32
+			// Per https://secure.php.net/manual/en/pcre.installation.php:
+			// - PCRE 8.32 (PHP 5.5.0)
+			// - PCRE 8.34 (PHP 5.5.10, PHP 5.6.0)
+			// - PCRE 8.37 (PHP 5.5.26, PHP 5.6.9, PHP 7.0.0)
+			// Workaround by using different groups and merge via processUrlMatch().
 			// - Using string concatenation for class constant or member assignments
-			//   is only supported in PHP 5.6. Use a getter method for now.
+			// is only supported in PHP 5.6. Use a getter method for now.
 			$urlRegex = '(' .
 				// Unquoted url
 				'url\(\s*(?P<file0>[^\'"][^\?\)]+?)(?P<query0>\?[^\)]*?|)\s*\)' .

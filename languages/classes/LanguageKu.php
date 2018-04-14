@@ -34,7 +34,7 @@ class KuConverter extends LanguageConverter {
 		'ت' => 't', 'ڤ' => 'v', 'خ' => 'x', 'غ' => 'x', 'ز' => 'z',
 
 // ک و => ku -- ist richtig
-//  و ك=> ku -- ist auch richtig
+// و ك=> ku -- ist auch richtig
 
 		/* Doppel- und Halbvokale */
 		'ڵ' => 'll', # ll

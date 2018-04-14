@@ -1028,9 +1028,9 @@ class PPDPart {
 	public $out;
 
 	// Optional member variables:
-	//   eqpos        Position of equals sign in output accumulator
-	//   commentEnd   Past-the-end input pointer for the last comment encountered
-	//   visualEnd    Past-the-end input pointer for the end of the accumulator minus comments
+	// eqpos        Position of equals sign in output accumulator
+	// commentEnd   Past-the-end input pointer for the last comment encountered
+	// visualEnd    Past-the-end input pointer for the end of the accumulator minus comments
 
 	public function __construct( $out = '' ) {
 		$this->out = $out;

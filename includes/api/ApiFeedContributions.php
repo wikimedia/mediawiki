@@ -167,8 +167,8 @@ class ApiFeedContributions extends ApiBase {
 				$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
 			} else {
 				// XXX: we could get an HTML representation of the content via getParserOutput, but that may
-				//     contain JS magic and generally may not be suitable for inclusion in a feed.
-				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+				// contain JS magic and generally may not be suitable for inclusion in a feed.
+				// Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
 				// Compare also FeedUtils::formatDiffRow.
 				$html = '';
 			}

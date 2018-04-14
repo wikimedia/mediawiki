@@ -1294,7 +1294,7 @@ class Message implements MessageSpecifier, Serializable {
 			}
 
 			// NOTE: The constructor makes sure keysToTry isn't empty,
-			//       so we know that $key and $message are initialized.
+			// so we know that $key and $message are initialized.
 			$this->key = $key;
 			$this->message = $message;
 		}

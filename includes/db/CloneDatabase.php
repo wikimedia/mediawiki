@@ -89,7 +89,7 @@ class CloneDatabase {
 			$newTableName = $this->db->tableName( $tbl, 'raw' );
 
 			// Postgres: Temp tables are automatically deleted upon end of session
-			//           Same Temp table name hides existing table for current session
+			// Same Temp table name hides existing table for current session
 			if ( $this->dropCurrentTables
 				&& !in_array( $this->db->getType(), [ 'oracle' ] )
 			) {

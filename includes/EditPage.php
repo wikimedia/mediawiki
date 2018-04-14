@@ -2719,7 +2719,7 @@ ERROR;
 		}
 
 		// @todo add EditForm plugin interface and use it here!
-		//       search for textarea1 and textarea2, and allow EditForm to override all uses.
+		// search for textarea1 and textarea2, and allow EditForm to override all uses.
 		$out->addHTML( Html::openElement(
 			'form',
 			[

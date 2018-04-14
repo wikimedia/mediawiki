@@ -60,7 +60,7 @@ class BalancerTest extends MediaWikiTestCase {
 					continue;
 				}
 				// We used to do this:
-				//   $html = substr( $html, strlen( $start ), -strlen( $end ) );
+				// $html = substr( $html, strlen( $start ), -strlen( $end ) );
 				// But now we use a different field in the test case,
 				// which reports how domino would parse this case in a
 				// no-quirks <body> context.  (The original test case may

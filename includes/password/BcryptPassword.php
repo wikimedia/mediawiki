@@ -59,7 +59,7 @@ class BcryptPassword extends ParameterizedPassword {
 		// Either use existing hash or make a new salt
 		// Bcrypt expects 22 characters of base64-encoded salt
 		// Note: bcrypt does not use MIME base64. It uses its own base64 without any '=' padding.
-		//       It expects a 128 bit salt, so it will ignore anything after the first 128 bits
+		// It expects a 128 bit salt, so it will ignore anything after the first 128 bits
 		if ( !isset( $this->args[0] ) ) {
 			$this->args[] = substr(
 				// Replace + with ., because bcrypt uses a non-MIME base64 format

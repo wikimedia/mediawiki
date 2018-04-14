@@ -454,9 +454,9 @@ class EmailNotification {
 	function sendPersonalised( $watchingUser, $source ) {
 		global $wgContLang, $wgEnotifUseRealName;
 		// From the PHP manual:
-		//   Note: The to parameter cannot be an address in the form of
-		//   "Something <someone@example.com>". The mail command will not parse
-		//   this properly while talking with the MTA.
+		// Note: The to parameter cannot be an address in the form of
+		// "Something <someone@example.com>". The mail command will not parse
+		// this properly while talking with the MTA.
 		$to = MailAddress::newFromUser( $watchingUser );
 
 		# $PAGEEDITDATE is the time and date of the page change

@@ -91,7 +91,7 @@ class ApiUpload extends ApiBase {
 
 		// Check if the user has the rights to modify or overwrite the requested title
 		// (This check is irrelevant if stashing is already requested, since the errors
-		//  can always be fixed by changing the title)
+		// can always be fixed by changing the title)
 		if ( !$this->mParams['stash'] ) {
 			$permErrors = $this->mUpload->verifyTitlePermissions( $user );
 			if ( $permErrors !== true ) {

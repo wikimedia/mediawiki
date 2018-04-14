@@ -241,7 +241,7 @@ class SearchOracle extends SearchDatabase {
 		// Sync the index
 		// We need to specify the DB name (i.e. user/schema) here so that
 		// it can work from the installer, where
-		//     ALTER SESSION SET CURRENT_SCHEMA = ...
+		// ALTER SESSION SET CURRENT_SCHEMA = ...
 		// was used.
 		$dbw->query( "CALL ctx_ddl.sync_index(" .
 			$dbw->addQuotes( $dbw->getDBname() . '.' . $dbw->tableName( 'si_text_idx', 'raw' ) ) . ")" );

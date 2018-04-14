@@ -33,7 +33,7 @@ class Http {
 	 * @param string $method HTTP method. Usually GET/POST
 	 * @param string $url Full URL to act on. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options Options to pass to MWHttpRequest object.
-	 *	Possible keys for the array:
+	 * 	Possible keys for the array:
 	 *    - timeout             Timeout length in seconds
 	 *    - connectTimeout      Timeout for connection, in seconds (curl only)
 	 *    - postData            An array of key-value pairs or a url-encoded form data

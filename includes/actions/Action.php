@@ -268,7 +268,7 @@ abstract class Action implements MessageLocalizer {
 		if ( $context === null ) {
 			wfWarn( __METHOD__ . ' called without providing a Context object.' );
 			// NOTE: We could try to initialize $context using $page->getContext(),
-			//      if $page is an Article. That however seems to not work seamlessly.
+			// if $page is an Article. That however seems to not work seamlessly.
 		}
 
 		$this->page = $page;
