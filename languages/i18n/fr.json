@@ -2915,7 +2915,7 @@
 	"tooltip-publish": "Publier vos modifications",
 	"tooltip-preview": "Merci de prévisualiser vos modifications avant de les publier",
 	"tooltip-diff": "Afficher les modifications que vous avez apportées au texte",
-	"tooltip-compareselectedversions": "Afficher les différences entre les deux versions selectionnées de cette page",
+	"tooltip-compareselectedversions": "Afficher les différences entre les deux versions sélectionnées de cette page",
 	"tooltip-watch": "Ajouter cette page à votre liste de suivi",
 	"tooltip-watchlistedit-normal-submit": "Enlever les titres",
 	"tooltip-watchlistedit-raw-submit": "Mise à jour de la liste de suivi",

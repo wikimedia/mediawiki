@@ -426,6 +426,7 @@
 	"apihelp-query+extlinks-param-limit": "Hur många länkar som ska returneras.",
 	"apihelp-query+extlinks-example-simple": "Hämta en lista över externa länkar på <kbd>Main Page</kbd>.",
 	"apihelp-query+exturlusage-param-limit": "Hur många sidor att returnera.",
+	"apihelp-query+exturlusage-example-simple": "Visa sidor som länkar till <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-param-limit": "Hur många bilder att returnera totalt.",
 	"apihelp-query+filearchive-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+filearchive-paramvalue-prop-timestamp": "Lägger till tidsstämpel för den uppladdade versionen.",
