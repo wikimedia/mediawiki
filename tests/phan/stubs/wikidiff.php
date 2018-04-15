@@ -27,3 +27,13 @@
  */
 function wikidiff2_do_diff( $text1, $text2, $numContextLines, $movedParagraphDetectionCutoff = 0 ) {
 }
+
+/**
+ * @param string $text1
+ * @param string $text2
+ * @param int $numContextLines
+ * @param int $maxMovedLines
+ * @return string
+ */
+function wikidiff2_inline_diff( $text1, $text2, $numContextLines, $maxMovedLines = 25 ) {
+}
