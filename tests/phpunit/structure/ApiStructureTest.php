@@ -37,7 +37,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 	private static $paramTypes = [
 		// ApiBase::PARAM_DFLT => as appropriate for PARAM_TYPE
 		ApiBase::PARAM_ISMULTI => [ 'boolean' ],
-		ApiBase::PARAM_TYPE => [ 'string', [ 'string' ] ],
+		ApiBase::PARAM_TYPE => [ 'string', [ 'string' ], [ 'integer' ] ],
 		ApiBase::PARAM_MAX => [ 'integer' ],
 		ApiBase::PARAM_MAX2 => [ 'integer' ],
 		ApiBase::PARAM_MIN => [ 'integer' ],
