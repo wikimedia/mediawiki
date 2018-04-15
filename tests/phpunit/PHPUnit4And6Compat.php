@@ -30,7 +30,9 @@ trait PHPUnit4And6Compat {
 	 */
 	public function setExpectedException( $name, $message = '', $code = null ) {
 		if ( is_callable( [ $this, 'expectException' ] ) ) {
-			$this->expectException( $name );
+			if ( $name !== null ) {
+				$this->expectException( $name );
+			}
 			if ( $message !== '' ) {
 				$this->expectExceptionMessage( $message );
 			}
