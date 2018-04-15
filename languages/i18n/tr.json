@@ -3442,6 +3442,7 @@
 	"logentry-delete-delete": "$1 $3 sayfasını {{GENDER:$2|sildi}}",
 	"logentry-delete-delete_redir": "$1, $3 yönlendirmesini üzerine yazılması için {{GENDER:$2|sildi}}",
 	"logentry-delete-restore": "$1 $3 ($4) sayfasını {{GENDER:$2|geri getirdi}}",
+	"restore-count-revisions": "{{PLURAL:$1|1 revizyon|$1 revizyon}}",
 	"logentry-delete-event": "$1, $3 sayfasında {{PLURAL:$5|bir günlük girdisinin |$5 günlük girdisinin}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4",
 	"logentry-delete-revision": "$1, $3 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü {{GENDER:$2|değiştirdi}}: $4",
 	"logentry-delete-event-legacy": "$1, $3 sayfasında günlük girdilerinin görünürlüğünü  {{GENDER:$2|değiştirdi}}",
