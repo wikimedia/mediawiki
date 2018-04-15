@@ -84,6 +84,8 @@ production.
   extensions. Pass --with-extensions to enable that feature.
 * (T184791) rc_patrolled now has three states: "0" for unpatrolled,
   "1" for manually patrolled and "2" for autopatrolled actions.
+* Extensions can now set their type to "editor" if they provide an editor
+  or enhance the editing experience.
 
 === External library changes in 1.31 ===
 
