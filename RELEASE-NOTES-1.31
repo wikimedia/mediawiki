@@ -86,6 +86,10 @@ production.
   "1" for manually patrolled and "2" for autopatrolled actions.
 * Extensions can now set their type to "editor" if they provide an editor
   or enhance the editing experience.
+* Extensions can use a PSR-4 autoloader by setting an "AutoloadNamespaces" property
+  in extension.json. See
+  <https://www.mediawiki.org/wiki/Manual:Extension.json/Schema#AutoloadNamespaces>
+  for more details and an example.
 
 === External library changes in 1.31 ===
 
