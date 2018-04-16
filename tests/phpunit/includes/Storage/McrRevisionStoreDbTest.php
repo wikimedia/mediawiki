@@ -21,13 +21,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 	use McrSchemaOverride;
 
-	public function setUp() {
-		parent::setUp();
-
-		// FIXME! Remove this before merging!
-		$this->markTestSkipped( 'MIGRATION_NEW mode is work in progress!' );
-	}
-
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		parent::assertRevisionExistsInDatabase( $rev );
 
