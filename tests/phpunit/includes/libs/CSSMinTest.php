@@ -1,9 +1,6 @@
 <?php
-/**
- * This file test the CSSMin library shipped with Mediawiki.
- *
- * @author Timo Tijhof
- */
+
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ResourceLoader
@@ -14,8 +11,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$server = 'http://doc.example.org';
-
+		// For wfExpandUrl
+		$server = 'https://expand.example';
 		$this->setMwGlobals( [
 			'wgServer' => $server,
 			'wgCanonicalServer' => $server,
@@ -23,7 +20,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider serializeStringValueProvider
+	 * @dataProvider provideSerializeStringValue
 	 * @covers CSSMin::serializeStringValue
 	 */
 	public function testSerializeStringValue( $input, $expected ) {
@@ -35,7 +32,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function serializeStringValueProvider() {
+	public static function provideSerializeStringValue() {
 		return [
 			[ 'Hello World!', '"Hello World!"' ],
 			[ "Null\0Null", "\"Null\\fffd Null\"" ],
@@ -60,7 +57,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider mimeTypeProvider
+	 * @dataProvider provideMimeType
 	 * @covers CSSMin::getMimeType
 	 */
 	public function testGetMimeType( $fileContents, $fileExtension, $expected ) {
@@ -71,7 +68,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, CSSMin::getMimeType( $fileName ) );
 	}
 
-	public function mimeTypeProvider() {
+	public static function provideMimeType() {
 		return [
 			'JPEG with short extension' => [
 				"\xFF\xD8\xFF",
@@ -214,7 +211,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::isRemoteUrl
 	 */
 	public function testIsRemoteUrl( $expect, $url ) {
-		$this->assertEquals( CSSMinTestable::isRemoteUrl( $url ), $expect );
+		$class = TestingAccessWrapper::newFromClass( CSSMin::class );
+		$this->assertEquals( $class->isRemoteUrl( $url ), $expect );
 	}
 
 	public static function provideIsLocalUrls() {
@@ -231,7 +229,8 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::isLocalUrl
 	 */
 	public function testIsLocalUrl( $expect, $url ) {
-		$this->assertEquals( CSSMinTestable::isLocalUrl( $url ), $expect );
+		$class = TestingAccessWrapper::newFromClass( CSSMin::class );
+		$this->assertEquals( $class->isLocalUrl( $url ), $expect );
 	}
 
 	/**
@@ -280,7 +279,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Expand absolute paths',
 				[ 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ],
-				'foo { prop: url(http://doc.example.org/w/skin/images/bar.png); }',
+				'foo { prop: url(https://expand.example/w/skin/images/bar.png); }',
 			],
 			[
 				"Don't barf at behavior: url(#default#behaviorName) - T162973",
@@ -384,12 +383,12 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'Domain-relative URL',
 				'foo { background: url(/static/foo.png); }',
-				'foo { background: url(http://doc.example.org/static/foo.png); }',
+				'foo { background: url(https://expand.example/static/foo.png); }',
 			],
 			[
 				'Domain-relative URL with query',
 				'foo { background: url(/static/foo.png?query=yes); }',
-				'foo { background: url(http://doc.example.org/static/foo.png?query=yes); }',
+				'foo { background: url(https://expand.example/static/foo.png?query=yes); }',
 			],
 			[
 				'Remote URL (unnecessary quotes not preserved)',
@@ -493,12 +492,12 @@ class CSSMinTest extends MediaWikiTestCase {
 			[
 				'@import rule to local file (should we remap this?)',
 				'@import url(/styles.css)',
-				'@import url(http://doc.example.org/styles.css)',
+				'@import url(https://expand.example/styles.css)',
 			],
 			[
 				'@import rule to local file (should we remap this?)',
 				'@import url(/styles.css)',
-				'@import url(http://doc.example.org/styles.css)',
+				'@import url(https://expand.example/styles.css)',
 			],
 			[
 				'@import rule to URL',
@@ -632,15 +631,5 @@ class CSSMinTest extends MediaWikiTestCase {
 				'foo::after{content:"{;}";position:absolute}'
 			],
 		];
-	}
-}
-
-class CSSMinTestable extends CSSMin {
-	// Make some protected methods public
-	public static function isRemoteUrl( $maybeUrl ) {
-		return parent::isRemoteUrl( $maybeUrl );
-	}
-	public static function isLocalUrl( $maybeUrl ) {
-		return parent::isLocalUrl( $maybeUrl );
 	}
 }
