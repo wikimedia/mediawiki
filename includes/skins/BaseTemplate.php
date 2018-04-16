@@ -649,7 +649,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Renderer for getFooterIcons and getFooterLinks
+	 * Renderer for getFooterIcons and getFooterLinks from Timeless
 	 *
 	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
 	 * @param string $linkStyle $option for getFooterLinks: "flat"
@@ -658,45 +658,119 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @since 1.29
 	 */
 	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat' ) {
-		$validFooterIcons = $this->getFooterIcons( $iconStyle );
-		$validFooterLinks = $this->getFooterLinks( $linkStyle );
+		return $this->getFooterBlock( [
+			'icon-style' => $iconStyle,
+			'link-style' => $linkStyle,
+			'id' => 'footer-bottom',
+			'link-prefix' => 'f'
+		] );
+	}
+
+	/**
+	 * Less crappy renderer for getFooterIcons and getFooterLinks
+	 *
+	 * @param array $setOptions Miscellaneous other options
+	 * * 'id' for footer id
+	 * * 'order' to determine whether icons or links appear first: 'iconsfirst' or links, though in
+	 *   practice we currently only check if it is or isn't 'iconsfirst'
+	 * * 'link-prefix' to set the prefix for all link and block ids; most skins use 'f' or 'footer',
+	 *   as in id='f-whatever' vs id='footer-whatever'
+	 * * 'icon-style' to pass to getFooterIcons: "icononly", "nocopyright"
+	 * * 'link-style' to pass to getFooterLinks: "flat" to disable categorisation of links in a
+	 *   nested array
+	 *
+	 * @return string html
+	 * @since 1.31
+	 */
+	protected function getFooterBlock( $setOptions = [] ) {
+		// Default options
+		$options = [
+			'id' => 'footer',
+			'order' => 'iconsfirst',
+			'link-prefix' => 'footer',
+			'icon-style' => 'icononly',
+			'link-style' => null
+		];
+		// set options based on input
+		foreach ( $setOptions as $key => $value ) {
+			$options[$key] = $value;
+		}
+
+		$validFooterIcons = $this->getFooterIcons( $options['icon-style'] );
+		$validFooterLinks = $this->getFooterLinks( $options['link-style'] );
 
 		$html = '';
 
-		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
-			$html .= Html::openElement( 'div', [
-				'id' => 'footer-bottom',
-				'role' => 'contentinfo',
-				'lang' => $this->get( 'userlang' ),
-				'dir' => $this->get( 'dir' )
-			] );
-			$footerEnd = Html::closeElement( 'div' );
-		} else {
-			$footerEnd = '';
-		}
-		foreach ( $validFooterIcons as $blockName => $footerIcons ) {
-			$html .= Html::openElement( 'div', [
-				'id' => Sanitizer::escapeIdForAttribute( "f-{$blockName}ico" ),
-				'class' => 'footer-icons'
-			] );
-			foreach ( $footerIcons as $icon ) {
-				$html .= $this->getSkin()->makeFooterIcon( $icon );
+		$html .= Html::openElement( 'div', [
+			'id' => $options['id'],
+			'role' => 'contentinfo',
+			'lang' => $this->get( 'userlang' ),
+			'dir' => $this->get( 'dir' )
+		] );
+
+		$iconsHTML = '';
+		if ( count( $validFooterIcons ) > 0 ) {
+			$iconsHTML .= Html::openElement( 'div', [ 'id' => "{$options['link-prefix']}-icons" ] );
+			foreach ( $validFooterIcons as $blockName => $footerIcons ) {
+				$iconsHTML .= Html::openElement( 'div', [
+					'id' => Sanitizer::escapeIdForAttribute(
+						"{$options['link-prefix']}-{$blockName}ico"
+					),
+					'class' => 'footer-icons'
+				] );
+				foreach ( $footerIcons as $icon ) {
+					$iconsHTML .= $this->getSkin()->makeFooterIcon( $icon );
+				}
+				$iconsHTML .= Html::closeElement( 'div' );
 			}
-			$html .= Html::closeElement( 'div' );
-		}
-		if ( count( $validFooterLinks ) > 0 ) {
-			$html .= Html::openElement( 'ul', [ 'id' => 'f-list', 'class' => 'footer-places' ] );
-			foreach ( $validFooterLinks as $aLink ) {
-				$html .= Html::rawElement(
-					'li',
-					[ 'id' => Sanitizer::escapeIdForAttribute( $aLink ) ],
-					$this->get( $aLink )
-				);
-			}
-			$html .= Html::closeElement( 'ul' );
+			$iconsHTML .= Html::closeElement( 'div' );
 		}
 
-		$html .= $this->getClear() . $footerEnd;
+		$linksHTML = '';
+		if ( count( $validFooterLinks ) > 0 ) {
+			if ( $options['link-style'] == 'flat' ) {
+				$linksHTML .= Html::openElement( 'ul', [
+					'id' => "{$options['link-prefix']}-list",
+					'class' => 'footer-places'
+				] );
+				foreach ( $validFooterLinks as $link ) {
+					$linksHTML .= Html::rawElement(
+						'li',
+						[ 'id' => Sanitizer::escapeIdForAttribute( $link ) ],
+						$this->get( $link )
+					);
+				}
+				$linksHTML .= Html::closeElement( 'ul' );
+			} else {
+				$linksHTML .= Html::openElement( 'div', [ 'id' => "{$options['link-prefix']}-list" ] );
+				foreach ( $validFooterLinks as $category => $links ) {
+					$linksHTML .= Html::openElement( 'ul',
+						[ 'id' => Sanitizer::escapeIdForAttribute(
+							"{$options['link-prefix']}-{$category}"
+						) ]
+					);
+					foreach ( $links as $link ) {
+						$linksHTML .= Html::rawElement(
+							'li',
+							[ 'id' => Sanitizer::escapeIdForAttribute(
+								"{$options['link-prefix']}-{$category}-{$link}"
+							) ],
+							$this->get( $link )
+						);
+					}
+					$linksHTML .= Html::closeElement( 'ul' );
+				}
+				$linksHTML .= Html::closeElement( 'div' );
+			}
+		}
+
+		if ( $options['order'] == 'iconsfirst' ) {
+			$html .= $iconsHTML . $linksHTML;
+		} else {
+			$html .= $linksHTML . $iconsHTML;
+		}
+
+		$html .= $this->getClear() . Html::closeElement( 'div' );
 
 		return $html;
 	}
