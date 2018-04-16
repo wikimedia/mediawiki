@@ -1377,6 +1377,7 @@
 	"rcfilters-filter-humans-label": "Чалавек (ня робат)",
 	"rcfilters-filter-humans-description": "Праўкі, зробленыя людзьмі.",
 	"rcfilters-filtergroup-reviewstatus": "Статус праверкі",
+	"rcfilters-filter-reviewstatus-unpatrolled-description": "Рэдагаваньні, якія не былі пазначаныя як патруляваныя, уручную ці аўтаматычна.",
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Неправераныя",
 	"rcfilters-filtergroup-significance": "Значэньне",
 	"rcfilters-filter-minor-label": "Дробныя праўкі",
