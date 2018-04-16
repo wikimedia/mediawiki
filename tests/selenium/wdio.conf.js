@@ -262,7 +262,8 @@ exports.config = {
 				'-f', 'x11grab', //  grab the X11 display
 				'-video_size', '1280x1024', // video size
 				'-i', process.env.DISPLAY, // input file url
-				'-loglevel', 'error', // log only errors
+				'-loglevel', 'info', // log only errors
+				'-nostats', // disable progress report
 				'-y', // overwrite output files without asking
 				'-pix_fmt', 'yuv420p', // QuickTime Player support, "Use -pix_fmt yuv420p for compatibility with outdated media players"
 				videoPath // output file
