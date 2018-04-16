@@ -8140,7 +8140,8 @@ $wgAPIUselessQueryPages = [
 ];
 
 /**
- * Enable AJAX framework
+ * Enable deprecated/legacy AJAX framework
+ * @deprecated (officially) since 1.31
  */
 $wgUseAjax = true;
 
