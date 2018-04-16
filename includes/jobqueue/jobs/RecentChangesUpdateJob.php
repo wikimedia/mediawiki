@@ -35,6 +35,7 @@ class RecentChangesUpdateJob extends Job {
 			throw new Exception( "Missing 'type' parameter." );
 		}
 
+		$this->executionFlags |= self::JOB_NO_EXPLICIT_TRX_ROUND;
 		$this->removeDuplicates = true;
 	}
 
@@ -127,124 +128,118 @@ class RecentChangesUpdateJob extends Job {
 		$window = $wgActiveUserDays * 86400;
 
 		$dbw = wfGetDB( DB_MASTER );
-		// JobRunner uses DBO_TRX, but doesn't call begin/commit itself;
-		// onTransactionIdle() will run immediately since there is no trx.
-		$dbw->onTransactionIdle(
-			function () use ( $dbw, $days, $window ) {
-				$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-				$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
-				// Avoid disconnect/ping() cycle that makes locks fall off
-				$dbw->setSessionOptions( [ 'connTimeout' => 900 ] );
+		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 
-				$lockKey = wfWikiID() . '-activeusers';
-				if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
-					// Exclusive update (avoids duplicate entries)… it's usually fine to just drop out here,
-					// if the Job is already running.
-					return;
-				}
+		$lockKey = wfWikiID() . '-activeusers';
+		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
+			// Exclusive update (avoids duplicate entries)… it's usually fine to just
+			// drop out here, if the Job is already running.
+			return;
+		}
 
-				$nowUnix = time();
-				// Get the last-updated timestamp for the cache
-				$cTime = $dbw->selectField( 'querycache_info',
-					'qci_timestamp',
-					[ 'qci_type' => 'activeusers' ]
-				);
-				$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
+		// Long-running queries expected
+		$dbw->setSessionOptions( [ 'connTimeout' => 900 ] );
 
-				// Pick the date range to fetch from. This is normally from the last
-				// update to till the present time, but has a limited window for sanity.
-				// If the window is limited, multiple runs are need to fully populate it.
-				$sTimestamp = max( $cTimeUnix, $nowUnix - $days * 86400 );
-				$eTimestamp = min( $sTimestamp + $window, $nowUnix );
+		$nowUnix = time();
+		// Get the last-updated timestamp for the cache
+		$cTime = $dbw->selectField( 'querycache_info',
+			'qci_timestamp',
+			[ 'qci_type' => 'activeusers' ]
+		);
+		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
 
-				// Get all the users active since the last update
-				$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
-				$res = $dbw->select(
-					[ 'recentchanges' ] + $actorQuery['tables'],
-					[
-						'rc_user_text' => $actorQuery['fields']['rc_user_text'],
-						'lastedittime' => 'MAX(rc_timestamp)'
-					],
-					[
-						$actorQuery['fields']['rc_user'] . ' > 0', // actual accounts
-						'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
-						'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
-						'rc_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $sTimestamp ) ),
-						'rc_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $eTimestamp ) )
-					],
-					__METHOD__,
-					[
-						'GROUP BY' => [ 'rc_user_text' ],
-						'ORDER BY' => 'NULL' // avoid filesort
-					],
-					$actorQuery['joins']
-				);
-				$names = [];
-				foreach ( $res as $row ) {
-					$names[$row->rc_user_text] = $row->lastedittime;
-				}
+		// Pick the date range to fetch from. This is normally from the last
+		// update to till the present time, but has a limited window for sanity.
+		// If the window is limited, multiple runs are need to fully populate it.
+		$sTimestamp = max( $cTimeUnix, $nowUnix - $days * 86400 );
+		$eTimestamp = min( $sTimestamp + $window, $nowUnix );
 
-				// Find which of the recently active users are already accounted for
-				if ( count( $names ) ) {
-					$res = $dbw->select( 'querycachetwo',
-						[ 'user_name' => 'qcc_title' ],
-						[
-							'qcc_type' => 'activeusers',
-							'qcc_namespace' => NS_USER,
-							'qcc_title' => array_keys( $names ),
-							'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
-						 ],
-						__METHOD__
-					);
-					// Note: In order for this to be actually consistent, we would need
-					// to update these rows with the new lastedittime.
-					foreach ( $res as $row ) {
-						unset( $names[$row->user_name] );
-					}
-				}
+		// Get all the users active since the last update
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
+		$res = $dbw->select(
+			[ 'recentchanges' ] + $actorQuery['tables'],
+			[
+				'rc_user_text' => $actorQuery['fields']['rc_user_text'],
+				'lastedittime' => 'MAX(rc_timestamp)'
+			],
+			[
+				$actorQuery['fields']['rc_user'] . ' > 0', // actual accounts
+				'rc_type != ' . $dbw->addQuotes( RC_EXTERNAL ), // no wikidata
+				'rc_log_type IS NULL OR rc_log_type != ' . $dbw->addQuotes( 'newusers' ),
+				'rc_timestamp >= ' . $dbw->addQuotes( $dbw->timestamp( $sTimestamp ) ),
+				'rc_timestamp <= ' . $dbw->addQuotes( $dbw->timestamp( $eTimestamp ) )
+			],
+			__METHOD__,
+			[
+				'GROUP BY' => [ 'rc_user_text' ],
+				'ORDER BY' => 'NULL' // avoid filesort
+			],
+			$actorQuery['joins']
+		);
+		$names = [];
+		foreach ( $res as $row ) {
+			$names[$row->rc_user_text] = $row->lastedittime;
+		}
 
-				// Insert the users that need to be added to the list
-				if ( count( $names ) ) {
-					$newRows = [];
-					foreach ( $names as $name => $lastEditTime ) {
-						$newRows[] = [
-							'qcc_type' => 'activeusers',
-							'qcc_namespace' => NS_USER,
-							'qcc_title' => $name,
-							'qcc_value' => wfTimestamp( TS_UNIX, $lastEditTime ),
-							'qcc_namespacetwo' => 0, // unused
-							'qcc_titletwo' => '' // unused
-						];
-					}
-					foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
-						$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
-						$factory->commitAndWaitForReplication( __METHOD__, $ticket );
-					}
-				}
+		// Find which of the recently active users are already accounted for
+		if ( count( $names ) ) {
+			$res = $dbw->select( 'querycachetwo',
+				[ 'user_name' => 'qcc_title' ],
+				[
+					'qcc_type' => 'activeusers',
+					'qcc_namespace' => NS_USER,
+					'qcc_title' => array_keys( $names ),
+					'qcc_value >= ' . $dbw->addQuotes( $nowUnix - $days * 86400 ), // TS_UNIX
+				 ],
+				__METHOD__
+			);
+			// Note: In order for this to be actually consistent, we would need
+			// to update these rows with the new lastedittime.
+			foreach ( $res as $row ) {
+				unset( $names[$row->user_name] );
+			}
+		}
 
-				// If a transaction was already started, it might have an old
-				// snapshot, so kludge the timestamp range back as needed.
-				$asOfTimestamp = min( $eTimestamp, (int)$dbw->trxTimestamp() );
+		// Insert the users that need to be added to the list
+		if ( count( $names ) ) {
+			$newRows = [];
+			foreach ( $names as $name => $lastEditTime ) {
+				$newRows[] = [
+					'qcc_type' => 'activeusers',
+					'qcc_namespace' => NS_USER,
+					'qcc_title' => $name,
+					'qcc_value' => wfTimestamp( TS_UNIX, $lastEditTime ),
+					'qcc_namespacetwo' => 0, // unused
+					'qcc_titletwo' => '' // unused
+				];
+			}
+			foreach ( array_chunk( $newRows, 500 ) as $rowBatch ) {
+				$dbw->insert( 'querycachetwo', $rowBatch, __METHOD__ );
+				$factory->commitAndWaitForReplication( __METHOD__, $ticket );
+			}
+		}
 
-				// Touch the data freshness timestamp
-				$dbw->replace( 'querycache_info',
-					[ 'qci_type' ],
-					[ 'qci_type' => 'activeusers',
-						'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) ], // not always $now
-					__METHOD__
-				);
+		// If a transaction was already started, it might have an old
+		// snapshot, so kludge the timestamp range back as needed.
+		$asOfTimestamp = min( $eTimestamp, (int)$dbw->trxTimestamp() );
 
-				$dbw->unlock( $lockKey, __METHOD__ );
+		// Touch the data freshness timestamp
+		$dbw->replace( 'querycache_info',
+			[ 'qci_type' ],
+			[ 'qci_type' => 'activeusers',
+				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) ], // not always $now
+			__METHOD__
+		);
 
-				// Rotate out users that have not edited in too long (according to old data set)
-				$dbw->delete( 'querycachetwo',
-					[
-						'qcc_type' => 'activeusers',
-						'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
-					],
-					__METHOD__
-				);
-			},
+		$dbw->unlock( $lockKey, __METHOD__ );
+
+		// Rotate out users that have not edited in too long (according to old data set)
+		$dbw->delete( 'querycachetwo',
+			[
+				'qcc_type' => 'activeusers',
+				'qcc_value < ' . $dbw->addQuotes( $nowUnix - $days * 86400 ) // TS_UNIX
+			],
 			__METHOD__
 		);
 	}
