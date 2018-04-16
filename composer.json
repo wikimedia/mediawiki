@@ -63,7 +63,7 @@
 		"psy/psysh": "0.8.11",
 		"wikimedia/avro": "1.8.0",
 		"wikimedia/testing-access-wrapper": "~1.0",
-		"wmde/hamcrest-html-matchers": "^0.1.0"
+		"wmde/hamcrest-html-matchers": "dev-denormalization"
 	},
 	"suggest": {
 		"ext-apc": "Local data and opcode cache",
