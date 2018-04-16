@@ -308,6 +308,173 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Generates a block of navigation links with a header
+	 *
+	 * @param string $name
+	 * @param array|string $content array of links for use with makeListItem, or a block of text
+	 * @param null|string|array|bool $msg
+	 * @param array $setOptions random crap to rename/do/whatever
+	 *
+	 * @return string html
+	 */
+	protected function getPortlet( $name, $content, $msg = null, $setOptions = [] ) {
+		// random stuff to override with any provided options
+		$options = $setOptions + [
+			// handle role=search a little differently
+			'role' => 'navigation',
+			'search-input-id' => 'searchInput',
+			// extra classes/ids
+			'id' => 'p-' . $name,
+			'class' => 'mw-portlet',
+			'extra-classes' => '',
+			// what to wrap the body list in, if anything
+			'body-wrapper' => 'div',
+			'body-id' => null,
+			'body-class' => 'mw-portlet-body',
+			'body-extra-classes' => '',
+			// makeListItem options
+			'list-item' => [ 'text-wrapper' => [ 'tag' => 'span' ] ],
+			// old toolbox hook support (use: [ 'SkinTemplateToolboxEnd' => [ &$skin, true ] ])
+			'hooks' => '',
+			// option to stick arbitrary stuff at the beginning of the ul
+			'list-prepend' => ''
+		];
+
+		// Handle the different $msg possibilities
+		if ( $msg === null ) {
+			$msg = $name;
+		} elseif ( is_array( $msg ) ) {
+			$msgString = array_shift( $msg );
+			$msgParams = $msg;
+			$msg = $msgString;
+		}
+		$msgObj = wfMessage( $msg );
+		if ( $msgObj->exists() ) {
+			if ( isset( $msgParams ) && !empty( $msgParams ) ) {
+				$msgString = $this->getMsg( $msg, $msgParams )->parse();
+			} else {
+				$msgString = $msgObj->parse();
+			}
+		} else {
+			$msgString = htmlspecialchars( $msg );
+		}
+
+		$labelId = Sanitizer::escapeId( "p-$name-label" );
+
+		if ( is_array( $content ) ) {
+			$contentText = Html::openElement( 'ul',
+				[ 'lang' => $this->get( 'userlang' ), 'dir' => $this->get( 'dir' ) ]
+			);
+			$contentText .= $options['list-prepend'];
+			foreach ( $content as $key => $item ) {
+				$contentText .= $this->makeListItem( $key, $item, $options['list-item'] );
+			}
+			// Compatibility with extensions still using SkinTemplateToolboxEnd or similar
+			if ( is_array( $options['hooks'] ) ) {
+				foreach ( $options['hooks'] as $hook ) {
+					if ( is_string( $hook ) ) {
+						$hookOptions = [];
+					} else {
+						// it should only be an array otherwise
+						$hookOptions = array_values( $hook )[0];
+						$hook = array_keys( $hook )[0];
+					}
+					$contentText .= $this->deprecatedHookHack( $hook, $hookOptions );
+				}
+			}
+
+			$contentText .= Html::closeElement( 'ul' );
+		} else {
+			$contentText = $content;
+		}
+
+		// Special handling for role=search
+		$divOptions = [
+			'role' => $options['role'],
+			'class' => $this->mergeClasses( $options['class'], $options['extra-classes'] ),
+			'id' => Sanitizer::escapeId( $options['id'] ),
+			'title' => Linker::titleAttrib( $options['id'] )
+		];
+		if ( $options['role'] !== 'search' ) {
+			$divOptions['aria-labelledby'] = $labelId;
+		}
+		$labelOptions = [
+			'id' => $labelId,
+			'lang' => $this->get( 'userlang' ),
+			'dir' => $this->get( 'dir' )
+		];
+		if ( $options['role'] == 'search' ) {
+			$msgString = Html::element( 'label', [ 'for' => $options['search-input-id'] ], $msgString );
+		}
+
+		if ( $options['body-wrapper'] !== 'none' ) {
+			$bodyDivOptions = [
+				'class' => $this->mergeClasses( $options['body-class'], $options['body-extra-classes'] )
+			];
+			if ( is_string( $options['body-id'] ) ) {
+				$bodyDivOptions['id'] = $options['body-id'];
+			}
+			$body = Html::rawElement( $options['body-wrapper'], $bodyDivOptions,
+				$contentText .
+				$this->getAfterPortlet( $name )
+			);
+		} else {
+			$body = $contentText . $this->getAfterPortlet( $name );
+		}
+
+		$html = Html::rawElement( 'div', $divOptions,
+			Html::rawElement( 'h3', $labelOptions, $msgString ) .
+			$body
+		);
+
+		return $html;
+	}
+
+	/**
+	 * Helper function for getPortlet
+	 *
+	 * Merge all provided css classes into a single array
+	 * Account for possible different input methods matching what Html::element stuff takes
+	 *
+	 * @param string|array $class base portlet/body class
+	 * @param string|array $extraClasses any extra classes to also include
+	 *
+	 * @return array all classes to apply
+	 */
+	protected function mergeClasses( $class, $extraClasses ) {
+		if ( !is_array( $class ) ) {
+			$class = [ $class ];
+		}
+		if ( !is_array( $extraClasses ) ) {
+			$extraClasses = [ $extraClasses ];
+		}
+
+		return array_merge( $class, $extraClasses );
+	}
+
+	/**
+	 * Wrapper to catch output of old hooks expecting to write directly to page
+	 * We no longer do things that way.
+	 *
+	 * @param string $hook event
+	 * @param array $hookOptions args
+	 *
+	 * @return string html
+	 */
+	protected function deprecatedHookHack( $hook, $hookOptions = [] ) {
+		$hookContents = '';
+		ob_start();
+		Hooks::run( $hook, $hookOptions );
+		$hookContents = ob_get_contents();
+		ob_end_clean();
+		if ( !trim( $hookContents ) ) {
+			$hookContents = '';
+		}
+
+		return $hookContents;
+	}
+
+	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
 	 *
