@@ -3536,7 +3536,7 @@
 	"tag-filter-submit": "篩選器",
 	"tag-list-wrapper": "([[Special:Tags|$1 個標籤]]：$2)",
 	"tag-mw-contentmodelchange": "內容模型變更",
-	"tag-mw-contentmodelchange-description": "編輯 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 更改頁面的內容模型]。",
+	"tag-mw-contentmodelchange-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 更改頁面的內容模型]的編輯。",
 	"tag-mw-new-redirect": "新重新導向",
 	"tag-mw-new-redirect-description": "建立新重新導向或更改頁面為重新導向的編輯",
 	"tag-mw-removed-redirect": "移除重新導向",
