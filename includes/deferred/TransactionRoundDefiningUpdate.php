@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Deferrable update for closure/callback updates that need LBFactory and Database
- * to be outside any active transaction round.
+ * Deferrable update that must run outside of any explicit LBFactory transaction round
  *
  * @since 1.31
  */
