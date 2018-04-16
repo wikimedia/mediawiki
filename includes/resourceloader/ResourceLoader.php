@@ -885,6 +885,10 @@ class ResourceLoader implements LoggerAwareInterface {
 		// See RFC 2616 § 14.19 ETag
 		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19
 		header( 'ETag: ' . $etag );
+		header( 'X-MediaWiki-PHP: ' . PHP_VERSION );
+		if ( defined( 'HHVM_VERSION' ) ) {
+			header( 'X-MediaWiki-HHVM: ' . HHVM_VERSION );
+		}
 		if ( $context->getDebug() ) {
 			// Do not cache debug responses
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
