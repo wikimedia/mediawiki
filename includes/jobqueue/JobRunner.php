@@ -289,11 +289,15 @@ class JobRunner implements LoggerAwareInterface {
 		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
-			$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
-			$lbFactory->beginMasterChanges( $fnameTrxOwner );
-			$status = $job->run();
+			if ( $job->hasExecutionFlag( $job::JOB_NO_EXPLICIT_TRX_ROUND ) ) {
+				$status = $job->run();
+			} else {
+				$fnameTrxOwner = get_class( $job ) . '::run'; // give run() outer scope
+				$lbFactory->beginMasterChanges( $fnameTrxOwner );
+				$status = $job->run();
+				$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
+			}
 			$error = $job->getLastError();
-			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
 			// Important: this must be the last deferred update added (T100085, T154425)
 			DeferredUpdates::addCallableUpdate( [ JobQueueGroup::class, 'pushLazyJobs' ] );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
