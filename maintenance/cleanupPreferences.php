@@ -39,7 +39,7 @@ class CleanupPreferences extends Maintenance {
 		$this->addOption( 'dry-run', 'Print debug info instead of actually deleting' );
 		$this->addOption( 'hidden', 'Drop hidden preferences ($wgHiddenPrefs)' );
 		$this->addOption( 'unknown',
-			'Drop unknown preferences (not in $wgDefaultUserOptions or a gadget or userjs)' );
+			'Drop unknown preferences (not in $wgDefaultUserOptions or prefixed with "userjs-")' );
 		// TODO: actually implement this
 		// $this->addOption( 'bogus', 'Drop preferences that have invalid/unaccepted values' );
 	}
@@ -84,11 +84,9 @@ class CleanupPreferences extends Maintenance {
 			}
 		}
 
-		// Remove unknown preferences. Special-case gadget- and userjs- as we can't
-		// control those names.
+		// Remove unknown preferences. Special-case 'userjs-' as we can't control those names.
 		if ( $unknown ) {
 			$where = [
-				'up_property NOT' . $dbw->buildLike( 'gadget-', $dbw->anyString() ),
 				'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
 				'up_property NOT IN (' . $dbw->makeList( array_keys( $wgDefaultUserOptions ) ) . ')',
 			];
