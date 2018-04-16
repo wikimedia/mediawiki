@@ -5,14 +5,13 @@
 
 	var
 		eventKeys = [
-			'keyup.lengthLimit',
 			'keydown.lengthLimit',
-			'change.lengthLimit',
 			'mouseup.lengthLimit',
 			'cut.lengthLimit',
 			'paste.lengthLimit',
-			'focus.lengthLimit',
-			'blur.lengthLimit'
+			'change.lengthLimit',
+			'input.lengthLimit',
+			'select.lengthLimit'
 		].join( ' ' ),
 		trimByteLength = require( 'mediawiki.String' ).trimByteLength,
 		trimCodePointLength = require( 'mediawiki.String' ).trimCodePointLength;
@@ -127,7 +126,8 @@
 			// we can trim the previous one).
 			// See https://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
-			$el.on( eventKeys, function () {
+
+			function enforceLimit() {
 				var res = trimFn(
 					prevSafeVal,
 					this.value,
@@ -149,6 +149,13 @@
 				// trimFn to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (T42850).
 				prevSafeVal = res.newVal;
+			}
+
+			$el.on( eventKeys, function () {
+				enforceLimit.call( this );
+				// For some of the events we handle (e.g. 'paste') the input value is only updated after
+				// the event handlers resolve. Re-check afterwards.
+				setTimeout( enforceLimit.bind( this ) );
 			} );
 		} );
 	}
