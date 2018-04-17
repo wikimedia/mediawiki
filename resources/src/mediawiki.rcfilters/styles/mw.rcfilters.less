@@ -28,6 +28,8 @@
 		padding-left: 0.5em;
 
 		&:not( .mw-recentchanges-toplinks-collapsed ) {
+			margin-top: -1px; // Make up for `border` to prevent link movement
+			margin-left: -1px;
 			margin-bottom: 0.5em;
 			border: 1px solid @colorGray12; // Same as the legend
 			padding: 0 0.5em 0.5em 0.5em;
