@@ -454,9 +454,12 @@ class JobRunner implements LoggerAwareInterface {
 		$noblock = ( $mode === 'nowait' ) ? LOCK_NB : 0;
 		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
 		$handle = fopen( $file, 'wb+' );
-		if ( !flock( $handle, LOCK_EX | $noblock ) ) {
-			fclose( $handle );
-			return $backoffs; // don't wait on lock
+		if ( !$handle || !flock( $handle, LOCK_EX | $noblock ) ) {
+			if ( $handle ) {
+				// don't wait on lock
+				fclose( $handle );
+			}
+			return $backoffs;
 		}
 		$ctime = microtime( true );
 		$content = stream_get_contents( $handle );
