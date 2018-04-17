@@ -80,7 +80,7 @@ MediaWiki\HeaderCallback::register();
  */
 
 if ( is_readable( "$IP/StartProfiler.php" ) ) {
-	// @deprecated since 1.31: Use LocalSettings.php instead.
+	// @deprecated since 1.32: Use LocalSettings.php instead.
 	require "$IP/StartProfiler.php";
 }
 
