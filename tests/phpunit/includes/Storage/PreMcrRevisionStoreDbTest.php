@@ -1,6 +1,12 @@
 <?php
 namespace MediaWiki\Tests\Storage;
 
+use InvalidArgumentException;
+use MediaWiki\Storage\SlotRecord;
+use Revision;
+use Title;
+use WikitextContent;
+
 /**
  * Tests RevisionStore against the pre-MCR DB schema.
  *
@@ -14,6 +20,16 @@ namespace MediaWiki\Tests\Storage;
 class PreMcrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 	use PreMcrSchemaOverride;
+
+	protected function revisionToRow( Revision $rev, $options = [ 'page', 'user', 'comment' ] ) {
+		$row = parent::revisionToRow( $rev, $options );
+
+		$row->rev_text_id = (string)$rev->getTextId();
+		$row->rev_content_format = (string)$rev->getContentFormat();
+		$row->rev_content_model = (string)$rev->getContentModel();
+
+		return $row;
+	}
 
 	public function provideGetArchiveQueryInfo() {
 		yield [
@@ -77,6 +93,92 @@ class PreMcrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					'user' => [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
 				],
+			]
+		];
+	}
+
+	public function provideGetSlotsQueryInfo() {
+		yield [
+			[],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+					]
+				),
+				'joins' => [],
+			]
+		];
+		yield [
+			[ 'content' ],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
+						'content_address' => 'CONCAT( "tt:", rev_text_id )',
+						'model_name' => 'rev_content_model',
+					]
+				),
+				'joins' => [],
+			]
+		];
+	}
+
+	public function provideInsertRevisionOn_failures() {
+		foreach ( parent::provideInsertRevisionOn_failures() as $case ) {
+			yield $case;
+		}
+
+
+		yield 'slot that is not main slot' => [
+			[
+				'content' => [
+					'main' => new WikitextContent( 'Chicken' ),
+					'lalala' => new WikitextContent( 'Duck' ),
+				],
+				'comment' => $this->getRandomCommentStoreComment(),
+				'timestamp' => '20171117010101',
+				'user' => true,
+			],
+			new InvalidArgumentException( 'Only the main slot is supported for now!' )
+		];
+	}
+
+	public function provideNewMutableRevisionFromArray() {
+		foreach ( parent::provideNewMutableRevisionFromArray() as $case ) {
+			yield $case;
+		}
+
+		yield 'Basic array, with page & id' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'text_id' => 2,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'content_format' => 'text/x-wiki',
+				'content_model' => 'wikitext',
 			]
 		];
 	}
