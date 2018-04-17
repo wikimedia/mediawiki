@@ -30,13 +30,6 @@
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-/**
- * @var float Request start time as fractional seconds since epoch
- * @deprecated since 1.25; use $_SERVER['REQUEST_TIME_FLOAT'] or
- *   WebRequest::getElapsedTime() instead.
- */
-$wgRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
-
 # Valid web server entry point, enable includes.
 # Please don't move this line to includes/Defines.php. This line essentially
 # defines a valid entry point. If you put it in includes/Defines.php, then
