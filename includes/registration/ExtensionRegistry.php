@@ -202,6 +202,7 @@ class ExtensionRegistry {
 	 * @param array $queue keys are filenames, values are ignored
 	 * @return array extracted info
 	 * @throws Exception
+	 * @throws ExtensionDependencyError
 	 */
 	public function readFromQueue( array $queue ) {
 		global $wgVersion;
@@ -273,11 +274,7 @@ class ExtensionRegistry {
 		);
 
 		if ( $incompatible ) {
-			if ( count( $incompatible ) === 1 ) {
-				throw new Exception( $incompatible[0] );
-			} else {
-				throw new Exception( implode( "\n", $incompatible ) );
-			}
+			throw new ExtensionDependencyError( $incompatible );
 		}
 
 		// Need to set this so we can += to it later

@@ -1301,7 +1301,15 @@ abstract class Installer {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) ) {
+			$fullJsonFile = "$extDir/$file/$jsonFile";
+			$isJson = file_exists( $fullJsonFile );
+			$isPhp = false;
+			if ( !$isJson ) {
+				// Only fallback to PHP file if JSON doesn't exist
+				$fullPhpFile = "$extDir/$file/$file.php";
+				$isPhp = file_exists( $fullPhpFile );
+			}
+			if ( $isJson || $isPhp ) {
 				// Extension exists. Now see if there are screenshots
 				$exts[$file] = [];
 				if ( is_dir( "$extDir/$file/screenshots" ) ) {
@@ -1312,11 +1320,94 @@ abstract class Installer {
 
 				}
 			}
+			if ( $isJson ) {
+				$info = $this->readExtension( $fullJsonFile );
+				if ( $info === false ) {
+					continue;
+				}
+				$exts[$file] += $info;
+			}
 		}
 		closedir( $dh );
 		uksort( $exts, 'strnatcasecmp' );
 
 		return $exts;
+	}
+
+	/**
+	 * @param string $fullJsonFile
+	 * @param array $extDeps
+	 * @param array $skinDeps
+	 *
+	 * @return array|bool False if this extension can't be loaded
+	 */
+	private function readExtension( $fullJsonFile, $extDeps = [], $skinDeps = [] ) {
+		$load = [
+			$fullJsonFile => 1
+		];
+		if ( $extDeps ) {
+			$extDir = $this->getVar( 'IP' ) . '/extensions';
+			foreach ( $extDeps as $dep ) {
+				$fname = "$extDir/$dep/extension.json";
+				if ( !file_exists( $fname ) ) {
+					return false;
+				}
+				$load[$fname] = 1;
+			}
+		}
+		if ( $skinDeps ) {
+			$skinDir = $this->getVar( 'IP' ) . '/skins';
+			foreach ( $skinDeps as $dep ) {
+				$fname = "$skinDir/$dep/skin.json";
+				if ( !file_exists( $fname ) ) {
+					return false;
+				}
+				$load[$fname] = 1;
+			}
+		}
+		$registry = new ExtensionRegistry();
+		try {
+			$info = $registry->readFromQueue( $load );
+		} catch ( ExtensionDependencyError $e ) {
+			if ( $e->incompatibleCore || $e->incompatibleSkins
+				|| $e->incompatibleExtensions
+			) {
+				// If something is incompatible with a dependency, we have no real
+				// option besides skipping it
+				return false;
+			} elseif ( $e->missingExtensions || $e->missingSkins ) {
+				// There's an extension missing in the dependency tree,
+				// so add those to the dependency list and try again
+				return $this->readExtension(
+					$fullJsonFile,
+					array_merge( $extDeps, $e->missingExtensions ),
+					array_merge( $skinDeps, $e->missingSkins )
+				);
+			}
+			// Some other kind of dependency error?
+			return false;
+		}
+		$ret = [];
+		// The order of credits will be the order of $load,
+		// so the first extension is the one we want to load,
+		// everything else is a dependency
+		$i = 0;
+		foreach ( $info['credits'] as $name => $credit ) {
+			$i++;
+			if ( $i == 1 ) {
+				// Extension we want to load
+				continue;
+			}
+			$type = basename( $credit['path'] ) === 'skin.json' ? 'skins' : 'extensions';
+			$ret['requires'][$type][] = $credit['name'];
+		}
+		$credits = array_values( $info['credits'] )[0];
+		if ( isset( $credits['url'] ) ) {
+			$ret['url'] = $credits['url'];
+		}
+		$ret['type'] = $credits['type'];
+
+		return $ret;
 	}
 
 	/**
