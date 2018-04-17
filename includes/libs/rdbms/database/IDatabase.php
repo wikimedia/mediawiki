@@ -1480,8 +1480,9 @@ interface IDatabase {
 	 *
 	 * @note: do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
 	 *
-	 * The callback takes one argument:
+	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
+	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
@@ -1511,8 +1512,9 @@ interface IDatabase {
 	 *
 	 * @note: do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
 	 *
-	 * The callback takes one argument:
+	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
+	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
@@ -1535,6 +1537,9 @@ interface IDatabase {
 	 * but where atomicity is strongly desired for these updates and some related updates.
 	 *
 	 * Updates will execute in the order they were enqueued.
+	 *
+	 * The callback takes the one argument:
+	 *   - This IDatabase instance (since 1.32)
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
