@@ -212,7 +212,7 @@ class FileDeleteForm {
 						$logEntry->setTags( $tags );
 						$logid = $logEntry->insert();
 						$dbw->onTransactionPreCommitOrIdle(
-							function () use ( $dbw, $logEntry, $logid ) {
+							function () use ( $logEntry, $logid ) {
 								$logEntry->publish( $logid );
 							},
 							__METHOD__
