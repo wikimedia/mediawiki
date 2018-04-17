@@ -23,6 +23,7 @@
 namespace MediaWiki\Storage;
 
 use CommentStoreComment;
+use InvalidArgumentException;
 use MediaWiki\User\UserIdentity;
 use Title;
 use User;
@@ -67,6 +68,9 @@ class RevisionArchiveRecord extends RevisionRecord {
 		parent::__construct( $title, $slots, $wikiId );
 		Assert::parameterType( 'object', $row, '$row' );
 
+		$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
+		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );
+
 		$this->mArchiveId = intval( $row->ar_id );
 
 		// NOTE: ar_page_id may be different from $this->mTitle->getArticleID() in some cases,
@@ -81,11 +85,22 @@ class RevisionArchiveRecord extends RevisionRecord {
 		$this->mId = isset( $row->ar_rev_id ) ? intval( $row->ar_rev_id ) : null;
 		$this->mComment = $comment;
 		$this->mUser = $user;
-		$this->mTimestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
+		$this->mTimestamp = $timestamp;
 		$this->mMinorEdit = boolval( $row->ar_minor_edit );
 		$this->mDeleted = intval( $row->ar_deleted );
-		$this->mSize = intval( $row->ar_len );
-		$this->mSha1 = isset( $row->ar_sha1 ) ? $row->ar_sha1 : null;
+		$this->mSize = isset( $row->ar_len ) ? intval( $row->ar_len ) : null;
+		$this->mSha1 = !empty( $row->ar_sha1 ) ? $row->ar_sha1 : null;
+
+		// sanity check
+		if (
+			$this->mPageId && $this->mTitle->exists()
+			&& $this->mPageId !== $this->mTitle->getArticleID()
+		) {
+			throw new InvalidArgumentException(
+				'The given Title does not belong to page ID ' . $this->mPageId .
+				' but actually belongs to ' . $this->mTitle->getArticleID()
+			);
+		}
 	}
 
 	/**
@@ -94,7 +109,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @return int
 	 */
 	public function getArchiveId() {
-		return $this->mId;
+		return $this->mArchiveId;
 	}
 
 	/**
