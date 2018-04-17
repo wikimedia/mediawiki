@@ -3316,6 +3316,8 @@
 	"tag-mw-new-redirect": "Yeni yönlendirme",
 	"tag-mw-removed-redirect": "Yönlendirme kaldırıldı",
 	"tag-mw-changed-redirect-target": "Yönlendirme hedefi değiştirildi",
+	"tag-mw-blank": "Boşaltma",
+	"tag-mw-replace": "Değiştirme",
 	"tag-mw-rollback": "Geri döndürme",
 	"tag-mw-undo": "Geri alma",
 	"tags-title": "Etiketler",

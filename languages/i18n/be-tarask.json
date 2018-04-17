@@ -1379,6 +1379,7 @@
 	"rcfilters-filtergroup-reviewstatus": "Статус праверкі",
 	"rcfilters-filter-reviewstatus-unpatrolled-description": "Рэдагаваньні, якія не былі пазначаныя як патруляваныя, уручную ці аўтаматычна.",
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Неправераныя",
+	"rcfilters-filter-reviewstatus-manual-description": "Рэдагаваньні, уручную пазначаныя як патруляваныя.",
 	"rcfilters-filtergroup-significance": "Значэньне",
 	"rcfilters-filter-minor-label": "Дробныя праўкі",
 	"rcfilters-filter-minor-description": "Праўкі, якія аўтар пазначыў як дробныя.",

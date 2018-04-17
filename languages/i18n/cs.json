@@ -1705,7 +1705,7 @@
 	"uploadstash-bad-path": "Cesta neexistuje.",
 	"uploadstash-bad-path-invalid": "Cesta není platná.",
 	"uploadstash-bad-path-unknown-type": "Neznámý typ „$1“.",
-	"uploadstash-bad-path-bad-format": "Klíč \"$1\" není správně naformátovaný.",
+	"uploadstash-bad-path-bad-format": "Klíč „$1‟ nemá správný formát.",
 	"uploadstash-file-not-found-no-thumb": "Nepodařilo se získat náhled.",
 	"uploadstash-file-not-found-no-object": "Nepodařilo se vytvořit objekt lokálního souboru pro náhled.",
 	"uploadstash-file-not-found-no-remote-thumb": "Načtení náhledu se nepodařilo: $1\nURL = $2",

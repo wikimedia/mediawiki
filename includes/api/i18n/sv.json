@@ -452,6 +452,7 @@
 	"apihelp-query+imageusage-example-simple": "Visa sidor med hjälp av [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+imageusage-example-generator": "Hämta information om sidor med hjälp av [[:File:Albert Einstein Head.jpg]].",
 	"apihelp-query+info-summary": "Få grundläggande sidinformation.",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "Ger visningstiteln i alla variationer på webbplatsens innehållsspråk.",
 	"apihelp-query+iwbacklinks-param-limit": "Hur många sidor att returnera totalt.",
 	"apihelp-query+iwbacklinks-param-dir": "Riktningen att lista mot.",
 	"apihelp-query+iwlinks-param-dir": "Riktningen att lista mot.",

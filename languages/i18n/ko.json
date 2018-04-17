@@ -3542,7 +3542,7 @@
 	"tag-mw-blank": "비우기",
 	"tag-mw-blank-description": "문서를 비운 편집",
 	"tag-mw-replace": "대체됨",
-	"tag-mw-replace-description": "문서 내용 중 90% 보다 많은 내용을 제거한 편집",
+	"tag-mw-replace-description": "문서 내용의 90% 이상을 제거한 편집",
 	"tag-mw-rollback": "되돌리기",
 	"tag-mw-rollback-description": "되돌리기 링크를 사용하여 이전 편집으로 전부 되돌린 편집",
 	"tag-mw-undo": "편집 취소",

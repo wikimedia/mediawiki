@@ -1580,6 +1580,7 @@
 	"apierror-promised-nonwrite-api": "La cabecera HTTP <code>Promise-Non-Write-API-Action</code> no se puede enviar a módulos de la API en modo escritura.",
 	"apierror-protect-invalidaction": "Tipo de protección «$1» no válido.",
 	"apierror-protect-invalidlevel": "Nivel de protección «$1» no válido.",
+	"apierror-ratelimited": "Has excedido tu límite de frecuencia. Aguarda unos minutos y vuelve a intentarlo.",
 	"apierror-readapidenied": "Necesitas permiso de lectura para utilizar este módulo.",
 	"apierror-readonly": "El wiki está actualmente en modo de solo lectura.",
 	"apierror-reauthenticate": "No te has autentificado recientemente en esta sesión. Por favor, vuelve a autentificarte.",
