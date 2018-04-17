@@ -1339,7 +1339,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @throws LogicException if the given database connection is not a set up to use
 	 * mock tables.
 	 */
-	private function ensureMockDatabaseConnection( IDatabase $db ) {
+	protected function ensureMockDatabaseConnection( IDatabase $db ) {
 		if ( $db->tablePrefix() !== $this->dbPrefix() ) {
 			throw new LogicException(
 				'Trying to delete mock tables, but table prefix does not indicate a mock database.'
