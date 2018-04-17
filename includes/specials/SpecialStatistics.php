@@ -168,7 +168,11 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', [ 'colspan' => '2' ],
 				$this->msg( 'statistics-header-users' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
-			$this->formatRow( $this->msg( 'statistics-users' )->parse(),
+			$this->formatRow( $this->msg( 'statistics-users' )->parse() . ' ' .
+				$this->getLinkRenderer()->makeKnownLink(
+					SpecialPage::getTitleFor( 'ListUsers' ),
+					$this->msg( 'listgrouprights-members' )->text()
+				),
 				$this->getLanguage()->formatNum( $this->users ),
 				[ 'class' => 'mw-statistics-users' ]
 			) .

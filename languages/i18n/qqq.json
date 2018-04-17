@@ -2111,7 +2111,7 @@
 	"statistics-files": "Used in [[Special:Statistics]].\n{{Identical|Uploaded file}}",
 	"statistics-edits": "Used in [[Special:Statistics]]",
 	"statistics-edits-average": "Used in [[Special:Statistics]]",
-	"statistics-users": "{{doc-important|Do not translate \"Special:ListUsers\"}}\nUsed in [[Special:Statistics]].",
+	"statistics-users": "Used in [[Special:Statistics]].",
 	"statistics-users-active": "Used in [[Special:Statistics]]",
 	"statistics-users-active-desc": "Description shown beneath ''Active users'' in [[Special:Statistics]]. Parameters:\n* $1 - Value of <code>$wgRCMaxAge</code> in days",
 	"statistics-footer": "{{notranslate}}",
