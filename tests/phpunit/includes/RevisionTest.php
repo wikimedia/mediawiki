@@ -159,16 +159,15 @@ class RevisionTest extends MediaWikiTestCase {
 				'content' => new WikitextContent( 'GOAT' ),
 				'text_id' => 'someid',
 			],
-			new MWException( "Text already stored in external store (id someid), " .
-				"can't serialize content object" )
+			new MWException( 'Text already stored in external store (id someid),' )
 		];
 		yield 'with bad content object (class)' => [
 			[ 'content' => new stdClass() ],
-			new MWException( 'content field must contain a Content object.' )
+			new MWException( 'content field must contain a Content object' )
 		];
 		yield 'with bad content object (string)' => [
 			[ 'content' => 'ImAGoat' ],
-			new MWException( 'content field must contain a Content object.' )
+			new MWException( 'content field must contain a Content object' )
 		];
 		yield 'bad row format' => [
 			'imastring, not a row',
