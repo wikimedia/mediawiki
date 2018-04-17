@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use CommentStore;
 use HashBagOStuff;
 use Language;
 use MediaWiki\MediaWikiServices;
@@ -9,10 +10,12 @@ use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use MWException;
 use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreTest extends MediaWikiTestCase {
 
@@ -397,7 +400,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @dataProvider provideNewRevisionFromRow_legacyEncoding_applied
 	 *
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_applied( $encoding, $locale, $row, $text ) {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
@@ -419,7 +421,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_ignored() {
 		$row = [
