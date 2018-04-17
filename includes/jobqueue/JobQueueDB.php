@@ -196,7 +196,7 @@ class JobQueueDB extends JobQueue {
 		// errors that bubble up will rollback the main commit round.
 		$fname = __METHOD__;
 		$dbw->onTransactionPreCommitOrIdle(
-			function () use ( $dbw, $jobs, $flags, $fname ) {
+			function ( IDatabase $dbw ) use ( $jobs, $flags, $fname ) {
 				$this->doBatchPushInternal( $dbw, $jobs, $flags, $fname );
 			},
 			$fname
@@ -508,7 +508,7 @@ class JobQueueDB extends JobQueue {
 		$dbw = $this->getMasterDB();
 		$cache = $this->dupCache;
 		$dbw->onTransactionIdle(
-			function () use ( $cache, $params, $key, $dbw ) {
+			function () use ( $cache, $params, $key ) {
 				$timestamp = $cache->get( $key ); // current last timestamp of this job
 				if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
 					return true; // a newer version of this root job was enqueued

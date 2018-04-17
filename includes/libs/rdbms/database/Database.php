@@ -3259,7 +3259,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
 			try {
-				call_user_func( $callback );
+				call_user_func( $callback, $this );
 				$this->endAtomic( __METHOD__ );
 			} catch ( Exception $e ) {
 				$this->cancelAtomic( __METHOD__ );
@@ -3316,7 +3316,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				try {
 					list( $phpCallback ) = $callback;
 					$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
-					call_user_func_array( $phpCallback, [ $trigger ] );
+					call_user_func( $phpCallback, $trigger, $this );
 					if ( $autoTrx ) {
 						$this->setFlag( self::DBO_TRX ); // restore automatic begin()
 					} else {
@@ -3355,7 +3355,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			foreach ( $callbacks as $callback ) {
 				try {
 					list( $phpCallback ) = $callback;
-					call_user_func( $phpCallback );
+					call_user_func( $phpCallback, $this );
 				} catch ( Exception $ex ) {
 					call_user_func( $this->errorLogger, $ex );
 					$e = $e ?: $ex;
