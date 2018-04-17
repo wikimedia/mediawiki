@@ -26,7 +26,8 @@
 							return true;
 						}
 					}
-				} else if ( $input.is( 'input' ) ) { // <input> has defaultValue or defaultChecked
+				} else if ( $input.is( 'input' ) || $input.is( 'textarea' ) ) {
+					// <input> has defaultValue or defaultChecked
 					inputType = input.type;
 					if ( inputType === 'radio' || inputType === 'checkbox' ) {
 						if ( input.checked !== input.defaultChecked ) {
