@@ -81,7 +81,7 @@ class RevisionStoreRecord extends RevisionRecord {
 		// allows rev_parent_id to be NULL.
 		$this->mParentId = isset( $row->rev_parent_id ) ? intval( $row->rev_parent_id ) : null;
 		$this->mSize = isset( $row->rev_len ) ? intval( $row->rev_len ) : null;
-		$this->mSha1 = isset( $row->rev_sha1 ) ? $row->rev_sha1 : null;
+		$this->mSha1 = !empty( $row->rev_sha1 ) ? $row->rev_sha1 : null;
 
 		// NOTE: we must not call $this->mTitle->getLatestRevID() here, since the state of
 		// page_latest may be in limbo during revision creation. In that case, calling
