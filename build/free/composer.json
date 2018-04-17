@@ -21,7 +21,7 @@
     "mediawiki/hit-counters": "dev-REL1_27",
     "mediawiki/image-map-edit": "dev-REL1_27",
     "mediawiki/ldap-authentication": "dev-REL1_27",
-    "mediawiki/lockdown": "dev-0d8aa13",
+    "mediawiki/lockdown": "dev-REL1_27",
     "mediawiki/mobile-frontend": "dev-717861c",
     "mediawiki/quiz": "dev-0e5775b",
     "mediawiki/rss": "dev-d945221",

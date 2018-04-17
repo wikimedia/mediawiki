@@ -4,7 +4,7 @@ require_once "$IP/extensions/CategoryTree/CategoryTree.php";
 require_once "$IP/extensions/DynamicPageList/DynamicPageList.php";
 require_once "$IP/extensions/HitCounters/HitCounters.php";
 require_once "$IP/extensions/ImageMapEdit/ImageMapEdit.php";
-require_once "$IP/extensions/Lockdown/Lockdown.php";
+wfLoadExtension( 'Lockdown' );
 require_once "$IP/extensions/Quiz/Quiz.php";
 require_once "$IP/extensions/Rss/RSS.php";
 require_once "$IP/extensions/Echo/Echo.php";
