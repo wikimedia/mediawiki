@@ -2219,6 +2219,7 @@ return [
 	],
 	'mediawiki.special.undelete' => [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.undelete.less',
 		'dependencies' => [
 			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.widgets',
