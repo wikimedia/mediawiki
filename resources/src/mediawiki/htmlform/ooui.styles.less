@@ -47,6 +47,14 @@
 			width: 39%;
 		}
 	}
+
+	.mw-editfont-monospace,
+	.mw-editfont-sans-serif,
+	.mw-editfont-serif {
+		&.oo-ui-textInputWidget {
+			max-width: 53.846em; // equals ≈`700px / 13`; `700px` is quivalent to `50em` & `13px` is textarea's `font-size`
+		}
+	}
 }
 
 // Flatlist styling for PHP widgets...
