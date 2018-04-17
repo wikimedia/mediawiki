@@ -4,6 +4,8 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoaderModule::getVersionHash
+	 * @covers ResourceLoaderModule::getModifiedTime
+	 * @covers ResourceLoaderModule::getModifiedHash
 	 */
 	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext();
