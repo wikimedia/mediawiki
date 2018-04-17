@@ -257,6 +257,8 @@ changes to languages because of Phabricator reports.
   $wgValidateAllHtml configuration option is removed and will be ignored.
 * Execution of external programs using MediaWiki\Shell\Command now applies RESTRICT_DEFAULT
   Firejail restriction by default.
+* The ResourceLoaderModule::getHashMtime() and ::getDefinitionMtime() methods,
+  deprecated in 1.26, were removed.
 
 === Deprecations in 1.31 ===
 * The Revision class was deprecated in favor of RevisionStore, BlobStore, and
