@@ -21,13 +21,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 	use McrSchemaOverride;
 
-	public function setUp() {
-		parent::setUp();
-
-		// FIXME! Remove this before merging!
-		$this->markTestSkipped( 'MIGRATION_NEW mode is work in progress!' );
-	}
-
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		parent::assertRevisionExistsInDatabase( $rev );
 
@@ -150,5 +143,58 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			]
 		];
 	}
+
+	public function provideGetSlotsQueryInfo() {
+		yield [
+			[],
+			[
+				'tables' => [
+					'slots',
+					'slot_roles',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id',
+						'slot_content_id',
+						'slot_origin',
+						'role_name',
+					]
+				),
+				'joins' => [
+					'slot_roles' => [ 'INNER JOIN', [ 'slot_role_id = role_id' ] ],
+				],
+			]
+		];
+		yield [
+			[ 'content' ],
+			[
+				'tables' => [
+					'slots',
+					'slot_roles',
+					'content',
+					'content_models',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id',
+						'slot_content_id',
+						'slot_origin',
+						'role_name',
+						'content_size',
+						'content_sha1',
+						'content_address',
+						'model_name',
+					]
+				),
+				'joins' => [
+					'slot_roles' => [ 'INNER JOIN', [ 'slot_role_id = role_id' ] ],
+					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
+					'content_models' => [ 'INNER JOIN', [ 'content_model = model_id' ] ],
+				],
+			]
+		];
+	}
+
+	// FIXME: test multi-slot insert & retrieval
 
 }

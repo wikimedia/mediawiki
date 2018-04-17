@@ -1995,10 +1995,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          so use an IContextSource object if possible.
 	 *        - 'canonical': Canonical options (anonymous user with default
 	 *          preferences and content language).
+	 * @param Content|null $content The content to be rendered using these options, if available.
+	 *
 	 * @return ParserOptions
 	 */
-	public function makeParserOptions( $context ) {
-		$options = $this->getContentHandler()->makeParserOptions( $context );
+	public function makeParserOptions( $context, Content $content = null ) {
+		$handler = $content ? $content->getContentHandler() : $this->getContentHandler();
+		$options = $handler->makeParserOptions( $context );
 
 		if ( $this->getTitle()->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so
@@ -2091,7 +2094,8 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$edit->format = $serialFormat;
-		$edit->popts = $this->makeParserOptions( 'canonical' );
+		// NOTE: pass in the $content, so the ContentHandler for the new content's model is used.
+		$edit->popts = $this->makeParserOptions( 'canonical', $content );
 		if ( $cachedEdit ) {
 			$edit->output = $cachedEdit->output;
 		} else {
@@ -2933,7 +2937,6 @@ class WikiPage implements Page, IDBAccessObject {
 					 * Task: https://phabricator.wikimedia.org/T190148
 					 * Copying the value from the revision table should not lead to any issues for now.
 					 */
-				'ar_text_id'    => $row->rev_text_id,
 				'ar_text'       => '',
 				'ar_flags'      => '',
 				'ar_len'        => $row->rev_len,
@@ -2942,6 +2945,13 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
+
+			if (
+				$wgMultiContentRevisionSchemaMigrationStage < MIGRATION_NEW
+			) {
+				$rowInsert['ar_text_id'] = $row->ar_text_id;
+			}
+
 			if (
 				$wgContentHandlerUseDB &&
 				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH

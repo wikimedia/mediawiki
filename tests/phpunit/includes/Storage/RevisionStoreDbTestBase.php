@@ -745,7 +745,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -768,7 +767,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
@@ -793,7 +791,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -1457,6 +1454,33 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$archiveQueryInfo = $store->getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$archiveQueryInfo['tables']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$archiveQueryInfo['fields']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$archiveQueryInfo['joins']
+		);
+	}
+
+	abstract public function provideGetSlotsQueryInfo();
+
+	/**
+	 * @dataProvider provideGetSlotsQueryInfo
+	 * @covers \MediaWiki\Storage\RevisionStore::getSlotsQueryInfo
+	 */
+	public function testGetSlotsQueryInfo( $options, $expected ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$archiveQueryInfo = $store->getSlotsQueryInfo( $options );
 
 		$this->assertArrayEqualsIgnoringIntKeyOrder(
 			$expected['tables'],
