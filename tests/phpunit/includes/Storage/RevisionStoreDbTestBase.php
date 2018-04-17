@@ -17,6 +17,7 @@ use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use MWException;
 use PHPUnit_Framework_MockObject_MockObject;
 use Revision;
 use TestUserRegistry;
@@ -321,7 +322,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		Title $title,
 		array $revDetails = []
 	) {
-		$migrationStage = $this->getMcrMigrationStage();
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
 		$this->overrideMwServices();
@@ -335,8 +335,29 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		$row = $this->revisionToRow( new Revision( $rev ) );
+
+		// unset nulled fields
+		unset( $row->rev_content_model );
+		unset( $row->rev_content_format );
+
+		// unset fake fields
+		unset( $row->rev_comment_text );
+		unset( $row->rev_comment_data );
+		unset( $row->rev_comment_cid );
+		unset( $row->rev_comment_id );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$queryInfo = $store->getQueryInfo( [ 'page', 'user' ] );
+
+		$row = get_object_vars( $row );
 		$this->assertSelect(
-			'revision', [ 'count(*)' ], [ 'rev_id' => $rev->getId() ], [ [ '1' ] ]
+			$queryInfo['tables'],
+			array_keys( $row ),
+			[ 'rev_id' => $rev->getId() ],
+			[ array_values( $row ) ],
+			[],
+			$queryInfo['joins']
 		);
 	}
 
@@ -734,7 +755,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -757,7 +777,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
@@ -782,7 +801,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
@@ -1445,6 +1463,33 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$archiveQueryInfo = $store->getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$archiveQueryInfo['tables']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$archiveQueryInfo['fields']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$archiveQueryInfo['joins']
+		);
+	}
+
+	abstract public function provideGetSlotsQueryInfo();
+
+	/**
+	 * @dataProvider provideGetSlotsQueryInfo
+	 * @covers \MediaWiki\Storage\RevisionStore::getSlotsQueryInfo
+	 */
+	public function testGetSlotsQueryInfo( $options, $expected ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$archiveQueryInfo = $store->getSlotsQueryInfo( $options );
 
 		$this->assertArrayEqualsIgnoringIntKeyOrder(
 			$expected['tables'],

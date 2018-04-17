@@ -19,17 +19,18 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	use McrWriteBothSchemaOverride;
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
-		parent::assertRevisionExistsInDatabase( $rev );
-
 		$this->assertSelect(
 			'slots', [ 'count(*)' ], [ 'slot_revision_id' => $rev->getId() ], [ [ '1' ] ]
 		);
+
 		$this->assertSelect(
 			'content',
 			[ 'count(*)' ],
 			[ 'content_address' => $rev->getSlot( 'main' )->getAddress() ],
 			[ [ '1' ] ]
 		);
+
+		parent::assertRevisionExistsInDatabase( $rev );
 	}
 
 	/**
@@ -107,6 +108,47 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					'user' => [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
 					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
 				],
+			]
+		];
+	}
+
+	public function provideGetSlotsQueryInfo() {
+		yield [
+			[],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+					]
+				),
+				'joins' => [],
+			]
+		];
+		yield [
+			[ 'content' ],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
+						'content_address' => 'CONCAT( "tt:", rev_text_id )',
+						'model_name' => 'rev_content_model',
+					]
+				),
+				'joins' => [],
 			]
 		];
 	}

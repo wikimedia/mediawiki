@@ -81,4 +81,45 @@ class PreMcrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		];
 	}
 
+	public function provideGetSlotsQueryInfo() {
+		yield [
+			[],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+					]
+				),
+				'joins' => [],
+			]
+		];
+		yield [
+			[ 'content' ],
+			[
+				'tables' => [
+					'slots' => 'revision',
+				],
+				'fields' => array_merge(
+					[
+						'slot_revision_id' => 'revision_id',
+						'slot_content_id' => 'NULL',
+						'slot_origin' => 'revision_id',
+						'role_name' => '"main"',
+						'content_size' => 'rev_len',
+						'content_sha1' => 'rev_sha1',
+						'content_address' => 'CONCAT( "tt:", rev_text_id )',
+						'model_name' => 'rev_content_model',
+					]
+				),
+				'joins' => [],
+			]
+		];
+	}
+
 }
