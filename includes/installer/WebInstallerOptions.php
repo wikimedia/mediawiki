@@ -25,6 +25,8 @@ class WebInstallerOptions extends WebInstallerPage {
 	 * @return string|null
 	 */
 	public function execute() {
+		global $wgLang;
+
 		if ( $this->getVar( '_SkipOptional' ) == 'skip' ) {
 			$this->submitSkins();
 			return 'skip';
@@ -145,20 +147,90 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->addHTML( $skinHtml );
 
 		$extensions = $this->parent->findExtensions();
+		$dependencyMap = [];
 
 		if ( $extensions ) {
 			$extHtml = $this->getFieldsetStart( 'config-extensions' );
 
+			$extByType = [];
+			$types = SpecialVersion::getExtensionTypes();
+			// Sort by type first
 			foreach ( $extensions as $ext => $info ) {
-				$extHtml .= $this->parent->getCheckBox( [
-					'var' => "ext-$ext",
-					'rawtext' => $ext,
-				] );
+				if ( !isset( $info['type'] ) || !isset( $types[$info['type']] ) ) {
+					// We let extensions normally define custom types, but
+					// since we aren't loading extensions, we'll have to
+					// categorize them under other
+					$info['type'] = 'other';
+				}
+				$extByType[$info['type']][$ext] = $info;
+			}
+
+			foreach ( $types as $type => $message ) {
+				if ( !isset( $extByType[$type] ) ) {
+					continue;
+				}
+				$extHtml .= Html::element( 'h2', [], $message );
+				foreach ( $extByType[$type] as $ext => $info ) {
+					$urlText = '';
+					if ( isset( $info['url'] ) ) {
+						$urlText = ' ' . Html::element( 'a', [ 'href' => $info['url'] ], '(more information)' );
+					}
+					$attribs = [ 'data-name' => $ext ];
+					$labelAttribs = [];
+					$fullDepList = [];
+					if ( isset( $info['requires']['extensions'] ) ) {
+						$dependencyMap[$ext]['extensions'] = $info['requires']['extensions'];
+						$labelAttribs['class'] = 'mw-ext-with-dependencies';
+					}
+					if ( isset( $info['requires']['skins'] ) ) {
+						$dependencyMap[$ext]['skins'] = $info['requires']['skins'];
+						$labelAttribs['class'] = 'mw-ext-with-dependencies';
+					}
+					if ( isset( $dependencyMap[$ext] ) ) {
+						$links = [];
+						// For each dependency, link to the checkbox for each
+						// extension/skin that is required
+						if ( isset( $dependencyMap[$ext]['extensions'] ) ) {
+							foreach ( $dependencyMap[$ext]['extensions'] as $name ) {
+								$links[] = Html::element(
+									'a',
+									[ 'href' => "#config_ext-$name" ],
+									$name
+								);
+							}
+						}
+						if ( isset( $dependencyMap[$ext]['skins'] ) ) {
+							foreach ( $dependencyMap[$ext]['skins'] as $name ) {
+								$links[] = Html::element(
+									'a',
+									[ 'href' => "#config_skin-$name" ],
+									$name
+								);
+							}
+						}
+
+						$text = wfMessage( 'config-extensions-requires' )
+							->rawParams( $ext, $wgLang->commaList( $links ) )
+							->escaped();
+					} else {
+						$text = $ext;
+					}
+					$extHtml .= $this->parent->getCheckBox( [
+						'var' => "ext-$ext",
+						'rawtext' => $text,
+						'attribs' => $attribs,
+						'labelAttribs' => $labelAttribs,
+					] );
+				}
 			}
 
 			$extHtml .= $this->parent->getHelpBox( 'config-extensions-help' ) .
 				$this->getFieldsetEnd();
 			$this->addHTML( $extHtml );
+			// Push the dependency map to the client side
+			$this->addHTML( Html::inlineScript(
+				'var extDependencyMap = ' . Xml::encodeJsVar( $dependencyMap )
+			) );
 		}
 
 		// Having / in paths in Windows looks funny :)
