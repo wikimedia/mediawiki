@@ -938,41 +938,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Back-compat dummy for old subclass implementations of getModifiedTime().
-	 *
-	 * This method used to use ObjectCache to track when a hash was first seen. That principle
-	 * stems from a time that ResourceLoader could only identify module versions by timestamp.
-	 * That is no longer the case. Use getDefinitionSummary() directly.
-	 *
-	 * @deprecated since 1.26 Superseded by getVersionHash()
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
-	 */
-	public function getHashMtime( ResourceLoaderContext $context ) {
-		if ( !is_string( $this->getModifiedHash( $context ) ) ) {
-			return 1;
-		}
-		// Dummy that is > 1
-		return 2;
-	}
-
-	/**
-	 * Back-compat dummy for old subclass implementations of getModifiedTime().
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.26 Superseded by getVersionHash()
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
-	 */
-	public function getDefinitionMtime( ResourceLoaderContext $context ) {
-		if ( $this->getDefinitionSummary( $context ) === null ) {
-			return 1;
-		}
-		// Dummy that is > 1
-		return 2;
-	}
-
-	/**
 	 * Check whether this module is known to be empty. If a child class
 	 * has an easy and cheap way to determine that this module is
 	 * definitely going to be empty, it should override this method to
