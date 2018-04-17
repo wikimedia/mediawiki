@@ -6061,7 +6061,7 @@ $wgUseTeX = false;
 /************************************************************************//**
  * @name   Profiling, testing and debugging
  *
- * To enable profiling, edit StartProfiler.php
+ * See $wgProfiler for how to enable profiling.
  *
  * @{
  */
@@ -6305,6 +6305,66 @@ $wgDevelopmentWarnings = false;
  * after the limit.
  */
 $wgDeprecationReleaseLimit = false;
+
+/**
+ * Profiler configuration.
+ *
+ * To use a profiler, set $wgProfiler in LocalSetings.php.
+ * For backwards-compatibility, it is also allowed to set the variable from
+ * a separate file called StartProfiler.php, which MediaWiki will include.
+ *
+ * Example:
+ *
+ * @code
+ *  $wgProfiler['class'] = ProfilerXhprof::class;
+ * @endcode
+ *
+ * For output, set the 'output' key to an array of class names, one for each
+ * output type you want the profiler to generate. For example:
+ *
+ * @code
+ *  $wgProfiler['output'] = [ ProfilerOutputText::class ];
+ * @endcode
+ *
+ * The output classes available to you by default are ProfilerOutputDb,
+ * ProfilerOutputDump, ProfilerOutputStats, ProfilerOutputText, and
+ * ProfilerOutputUdp.
+ *
+ * ProfilerOutputStats outputs profiling data as StatsD metrics. It expects
+ * that you have set the $wgStatsdServer configuration variable to the host (or
+ * host:port) of your statsd server.
+ *
+ * ProfilerOutputText will output profiling data in the page body as a comment.
+ * You can make the profiling data in HTML render as part of the page content
+ * by setting the 'visible' configuration flag:
+ *
+ * @code
+ *  $wgProfiler['visible'] = true;
+ * @endcode
+ *
+ * 'ProfilerOutputDb' expects a database table that can be created by applying
+ * maintenance/archives/patch-profiling.sql to your database.
+ *
+ * 'ProfilerOutputDump' expects a $wgProfiler['outputDir'] telling it where to
+ * write dump files. The files produced are compatible with the XHProf gui.
+ * For a rudimentary sampling profiler:
+ *
+ * @code
+ *   $wgProfiler['class'] = 'ProfilerXhprof';
+ *   $wgProfiler['output'] = array( 'ProfilerOutputDb' );
+ *   $wgProfiler['sampling'] = 50; // one every 50 requests
+ * @endcode
+ *
+ * When using the built-in `sampling` option, the `class` will changed to
+ * ProfilerStub for non-sampled cases.
+ *
+ * For performance, the profiler is always disabled for CLI scripts as they
+ * could be long running and the data would accumulate. Use the '--profiler'
+ * parameter of maintenance scripts to override this.
+ *
+ * @since 1.17.0
+ */
+$wgProfiler = [];
 
 /**
  * Only record profiling info for pages that took longer than this
