@@ -233,11 +233,6 @@ class SlotRecord {
 		Assert::parameterType( 'Content|callable', $content, '$content' );
 
 		Assert::parameter(
-			property_exists( $row, 'slot_id' ),
-			'$row->slot_id',
-			'must exist'
-		);
-		Assert::parameter(
 			property_exists( $row, 'slot_revision_id' ),
 			'$row->slot_revision_id',
 			'must exist'
