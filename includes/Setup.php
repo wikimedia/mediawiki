@@ -37,6 +37,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Pre-config setup: Before loading LocalSettings.php
  */
 
+// Sanity check (T5782, T122807)
+if ( ini_get( 'mbstring.func_overload' ) ) {
+	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
+}
+
 // Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
 
