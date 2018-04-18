@@ -331,7 +331,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			foreach ( $screenshots as $shot ) {
 				$links[] = Html::element(
 					'a',
-					[ 'href' => $shot ],
+					[ 'href' => $shot, 'target' => '_blank' ],
 					$wgLang->formatNum( $counter++ )
 				);
 			}
@@ -341,7 +341,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		} else {
 			$link = Html::element(
 				'a',
-				[ 'href' => $screenshots[0] ],
+				[ 'href' => $screenshots[0], 'target' => '_blank' ],
 				wfMessage( 'config-screenshot' )->text()
 			);
 			return wfMessage( 'config-skins-screenshot', $name )->rawParams( $link )->escaped();
