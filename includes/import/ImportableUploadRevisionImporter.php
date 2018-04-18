@@ -50,7 +50,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 			$file->load( File::READ_LATEST );
 			$this->logger->debug( __METHOD__ . 'Importing new file as ' . $file->getName() . "\n" );
 			if ( $file->exists() && $file->getTimestamp() > $importableRevision->getTimestamp() ) {
-				$archiveName = $file->getTimestamp() . '!' . $file->getName();
+				$archiveName = $importableRevision->getTimestamp() . '!' . $file->getName();
 				$file = OldLocalFile::newFromArchiveName( $importableRevision->getTitle(),
 					RepoGroup::singleton()->getLocalRepo(), $archiveName );
 				$this->logger->debug( __METHOD__ . "File already exists; importing as $archiveName\n" );
