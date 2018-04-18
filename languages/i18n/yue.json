@@ -1228,7 +1228,7 @@
 	"action-suppressionlog": "睇呢個私有日誌",
 	"action-block": "封鎖呢位用戶嘅編輯",
 	"action-protect": "改呢版嘅保護等級",
-	"action-rollback": "速還原某版最後修改人之修改",
+	"action-rollback": "快速反轉某版最後修改人嘅編輯",
 	"action-import": "由其它wiki度倒入版",
 	"action-importupload": "由檔案上載度倒入版",
 	"action-patrol": "標示其它嘅編輯做已巡查嘅",

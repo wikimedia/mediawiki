@@ -318,6 +318,7 @@
 	"config-nofile": "הקובץ \"$1\" לא נמצא. האם הוא נמחק?",
 	"config-extension-link": "הידעת שמדיה־ויקי תומכת ב־[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions הרחבות]?\n\nבאפשרותך לעיין ב־[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category הרחבות לפי קטגוריה].",
 	"config-skins-screenshots": "$1 (צילומי מסך: $2)",
+	"config-extensions-requires": "$1 (נדרשת ההרחבה $2)",
 	"config-screenshot": "צילום מסך",
 	"mainpagetext": "<strong>תוכנת מדיה־ויקי הותקנה בהצלחה.</strong>",
 	"mainpagedocfooter": "היעזרו ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"

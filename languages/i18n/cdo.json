@@ -13,7 +13,8 @@
 			"Ztl8702",
 			"Macofe",
 			"GnuDoyng",
-			"Davidzdh"
+			"Davidzdh",
+			"Suzukaze-c"
 		]
 	},
 	"tog-underline": "Â-hĕk-siáng lièng-giék",
@@ -644,6 +645,7 @@
 	"recentchanges-label-newpage": "Cī siŏh bĭk siŭ-gāi cháung-gióng lāu sĭng hiĕk",
 	"recentchanges-label-minor": "Cuòi sê siŏh bĭk guó-éu siŭ-gāi",
 	"recentchanges-label-bot": "Cuòi sê gĭ-ké-nè̤ng siŭ-gāi gì",
+	"rcfilters-filter-humans-label": "Ìng-lôi (n̂g-sê gĭ-ké-nè̤ng)",
 	"rclistfrom": "Hiēng-sê téng $3 $2 gáu dāng gì sĭng gāi-biéng",
 	"rcshowhideminor": "$1 guó-éu siŭ-gāi",
 	"rcshowhidebots": "$1 gĭ-ké-nè̤ng",

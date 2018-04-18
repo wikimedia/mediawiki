@@ -1997,7 +1997,7 @@
 	"statistics-files": "Fichiers importés",
 	"statistics-edits": "Modifications de pages depuis l'installation de {{SITENAME}}",
 	"statistics-edits-average": "Nombre moyen de modifications par page",
-	"statistics-users": "[[Special:ListUsers|Utilisateurs]] enregistrés",
+	"statistics-users": "Utilisateurs inscrits",
 	"statistics-users-active": "Utilisateurs actifs",
 	"statistics-users-active-desc": "Utilisateurs ayant fait au moins une action {{PLURAL:$1|il y a un jour|pendant les $1 derniers jours}}",
 	"pageswithprop": "Pages avec une propriété de page",

@@ -69,7 +69,8 @@
 			"Garam",
 			"렌즈",
 			"CYAN",
-			"Nuevo Paso"
+			"Nuevo Paso",
+			"Doyoon1995"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -1953,6 +1954,7 @@
 	"deadendpages": "막다른 문서 목록",
 	"deadendpagestext": "{{SITENAME}} 내의 다른 문서로 나가는 링크가 없는 문서의 목록입니다.",
 	"protectedpages": "보호된 문서 목록",
+	"protectedpages-filters": "필터",
 	"protectedpages-indef": "오른쪽 조건에 맞는 보호만 보기",
 	"protectedpages-summary": "이 페이지는 현재 보호된 기존 문서를 나열합니다. 만들기 보호된 문서 제목 목록을 보려면 [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]]를 보세요.",
 	"protectedpages-cascade": "연쇄적 보호만 보기",
