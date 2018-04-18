@@ -82,3 +82,7 @@
 	path = extensions/PdfHandler
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PdfHandler
 	branch = REL1_31
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
+	branch = REL1_31
