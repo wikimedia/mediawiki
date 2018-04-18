@@ -7,6 +7,7 @@ production.
 
 === Configuration changes in 1.32 ===
 * (T115414) The $wgEnableAPI and $wgEnableWriteAPI settings, deprecated in 1.31, have been removed.
+* The $wgUseAjax setting is now formally deprecated, and MediaWiki will act as if it is always set.
 * …
 
 === New features in 1.32 ===

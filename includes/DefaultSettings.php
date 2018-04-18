@@ -8182,6 +8182,8 @@ $wgAPIUselessQueryPages = [
 
 /**
  * Enable AJAX framework
+ *
+ * @deprecated since MediaWiki 1.32 and ignored
  */
 $wgUseAjax = true;
 
