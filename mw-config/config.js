@@ -87,7 +87,7 @@
 		} );
 
 		// Synchronize radio button label for sitename with textbox
-		$label = $( 'label[for=config__NamespaceType_site-name]' );
+		$label = $( 'label[for="config__NamespaceType_site-name"]' );
 		labelText = $label.text();
 		$label.text( labelText.replace( '$1', '' ) );
 		$( '#config_wgSitename' ).on( 'keyup change', syncText ).each( syncText );
@@ -132,19 +132,16 @@
 
 		// Disable checkboxes if the extension has dependencies
 		$( '.mw-ext-with-dependencies input' ).prop( 'disabled', true );
-		$( 'input[data-name]' ).change( function () {
+		$( '.config-ext-input[data-name]' ).on( 'change', function () {
 			$( '.mw-ext-with-dependencies input' ).each( function () {
-				var $this = $( this ),
-					name = $this.data( 'name' );
+				var name = this.getAttribute( 'data-name' );
 				if ( areReqsSatisfied( name ) ) {
-					// Un-disable it!
-					$this.prop( 'disabled', false );
+					// Re-enable it!
+					this.disabled = false;
 				} else {
-					// Disable the checkbox, and uncheck it if it is checked
-					$this.prop( 'disabled', true );
-					if ( $this.prop( 'checked' ) ) {
-						$this.prop( 'checked', false );
-					}
+					// Uncheck and disable the checkbox
+					this.checked = false;
+					this.disabled = true;
 				}
 			} );
 		} );
