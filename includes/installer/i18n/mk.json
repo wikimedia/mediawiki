@@ -315,6 +315,7 @@
 	"config-nofile": "Податотеката „$1“ не е пронајдена. Да не е избришана?",
 	"config-extension-link": "Дали сте знаеле дека вашето вики поддржува [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions додатоци]?\n\nМожете да ги прелистате [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category по категории]",
 	"config-skins-screenshots": "$1 (екр. снимки: $2)",
+	"config-extensions-requires": "$1 (бара $2)",
 	"config-screenshot": "екранска снимка",
 	"mainpagetext": "<strong>МедијаВики е успешно воспоставен.</strong>",
 	"mainpagedocfooter": "Погледнете го [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Упатството за корисници] за подетални информации како се користи вики-програмот.\n\n==Од каде да почнете==\n* [https://meta.wikimedia.org/wiki/Manual:Configuration_settings Список на нагодувања]\n* [https://meta.wikimedia.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Поштенски список на МедијаВики за нови верзии]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализирајте го МедијаВики на вашиот јазик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дознајте како да се борите против спам на вашето вики]"

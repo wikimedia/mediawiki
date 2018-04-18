@@ -1,9 +1,49 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seb35"
+			"Seb35",
+			"Ooswesthoesbes"
 		]
 	},
-	"mainpagetext": "'''MediaWiki software succesvol geïnsjtalleerd.'''",
-	"mainpagedocfooter": "Raodpleeg de [https://meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.\n\n== Mieë hölp ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lies mit instellinge]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki VGV (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"config-desc": "'t Installeringsprogram veur MediaWiki",
+	"config-title": "MediaWiki-installering $1",
+	"config-information": "Gegaeves",
+	"config-localsettings-key": "Opwardeersleutel:",
+	"config-localsettings-badkey": "De opwardeersleutel dae se höbs opgegaove is ónjuus.",
+	"config-upgrade-key-missing": "'n Bestäönde installaasje van MediaWiki is aangetroffe.\nPlaats de volgende regel óngeraan dien <code>LocalSettings.php</code> veur dees installaasje bie te wirke:\n\n$1",
+	"config-localsettings-incomplete": "De bestäönde inhawd van <code>LocalSettings.php</code> liekent incompleet.\nDe variabele $1 is neet ingestèld.\nVeranger <code>LocalSettings.php</code> zodet dees variabele is ingestèld en klik op \"{{int:Config-continue}}\".",
+	"config-localsettings-connection-error": "'n Fout is opgetraoje tiejes 't verbinje mitte databank mit de instèllinge oet <code>LocalSettings.php</code>. Los 't perbleem op mit de instèllinge en perbeer 't daonao oppernuuj.\n\n$1",
+	"config-session-error": "Fout bie begin vanne sessie: $1",
+	"config-your-language": "Dien spraok:",
+	"config-your-language-help": "Sillekteer de spraok die se wils broeke tiejes 't installaasjepercès.",
+	"config-wiki-language": "Wikispraok:",
+	"config-wiki-language-help": "Sillekteer de spraok wo de wiki veurnamelik in weurt gesjreve.",
+	"config-back": "← Trök",
+	"config-continue": "Gank door →",
+	"config-page-language": "Spraok",
+	"config-page-welcome": "Wilkóm bie MediaWiki!",
+	"config-page-dbconnect": "Maak verbinjing mit database",
+	"config-page-upgrade": "Wirk bestäönde installaasje bie",
+	"config-page-dbsettings": "Databankinstèllinge",
+	"config-page-name": "Naam",
+	"config-page-options": "Opties",
+	"config-page-install": "Installeer",
+	"config-page-complete": "Vaerdig!",
+	"config-page-restart": "Begin installering oppernuuj",
+	"config-page-readme": "Laes mich",
+	"config-page-releasenotes": "Gaef ópmèrkinge vrie",
+	"config-page-copying": "Kopieer",
+	"config-page-upgradedoc": "Wirk bie",
+	"config-page-existingwiki": "Bestäönde wiki",
+	"config-restart": "Jao, begin oppernuuj",
+	"config-env-php": "PHP $1 is geïnstalleerd.",
+	"config-env-hhvm": "HHVM $1 is geïnstalleerd.",
+	"config-diff3-bad": "GNU diff3 neet gevónje.",
+	"config-db-type": "Databanksaort:",
+	"config-db-host": "Databankgashieër:",
+	"config-db-host-oracle": "Databank-TNS:",
+	"config-db-wiki-settings": "Identificeer deze wiki",
+	"config-db-name": "Databanknaam:",
+	"mainpagetext": "<strong>MediaWiki software geïnsjtalleerd.</strong>",
+	"mainpagedocfooter": "Raodpleeg de [https://meta.wikimedia.org/wiki/Help:Contents Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.\n\n== Mieë hölp ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lies mit instellinge]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki VGV (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki besjikbaar in dien spraok]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lieër wie se spam kans verkómme op diene wiki]"
 }

@@ -74,20 +74,21 @@ class ImportStreamSource implements ImportSource {
 		}
 		if ( !empty( $upload['error'] ) ) {
 			switch ( $upload['error'] ) {
-				case 1:
-					# The uploaded file exceeds the upload_max_filesize directive in php.ini.
+				case UPLOAD_ERR_INI_SIZE:
+					// The uploaded file exceeds the upload_max_filesize directive in php.ini.
 					return Status::newFatal( 'importuploaderrorsize' );
-				case 2:
-					# The uploaded file exceeds the MAX_FILE_SIZE directive that
-					# was specified in the HTML form.
+				case UPLOAD_ERR_FORM_SIZE:
+					// The uploaded file exceeds the MAX_FILE_SIZE directive that
+					// was specified in the HTML form.
+					// FIXME This is probably never used since that directive was removed in 8e91c520?
 					return Status::newFatal( 'importuploaderrorsize' );
-				case 3:
-					# The uploaded file was only partially uploaded
+				case UPLOAD_ERR_PARTIAL:
+					// The uploaded file was only partially uploaded
 					return Status::newFatal( 'importuploaderrorpartial' );
-				case 6:
-					# Missing a temporary folder.
+				case UPLOAD_ERR_NO_TMP_DIR:
+					// Missing a temporary folder.
 					return Status::newFatal( 'importuploaderrortemp' );
-				# case else: # Currently impossible
+				// Other error codes get the generic 'importnofile' error message below
 			}
 
 		}

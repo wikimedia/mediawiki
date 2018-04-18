@@ -2208,7 +2208,7 @@
 	"deadendpages-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Deadendpages]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
 	"deadendpagestext": "Introductory text for [[Special:DeadendPages]]",
 	"protectedpages": "{{doc-special|ProtectedPages}}",
-	"protectedpages-filters": "Title in [[Special:ProtectedPages]]",
+	"protectedpages-filters": "Title in [[Special:ProtectedPages]]\n{{Identical|Filter}}",
 	"protectedpages-indef": "Option in [[Special:ProtectedPages]]",
 	"protectedpages-summary": "Summary of [[Special:ProtectedPages]].\n\nSee also:\n* {{msg-mw|Protectedtitles-summary}}",
 	"protectedpages-cascade": "Option in [[Special:ProtectedPages]]",
