@@ -577,7 +577,16 @@ class Article implements Page {
 					# Preload timestamp to avoid a DB hit
 					$outputPage->setRevisionTimestamp( $this->mPage->getTimestamp() );
 
-					if ( !Hooks::run( 'ArticleContentViewCustom',
+					# Pages containing custom CSS or JavaScript get special treatment
+					if ( $this->getTitle()->isSiteConfigPage() || $this->getTitle()->isUserConfigPage() ) {
+						$dir = $this->getContext()->getLanguage()->getDir();
+						$lang = $this->getContext()->getLanguage()->getHtmlCode();
+
+						$outputPage->wrapWikiMsg(
+							"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+							'clearyourcache'
+						);
+					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
 						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ] )
 					) {
 						# Allow extensions do their own custom view for certain pages
