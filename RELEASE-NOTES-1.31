@@ -121,6 +121,7 @@ production.
   'mediawiki.viewport' module instead.
 * The deprecated 'mediawiki.widgets.CategorySelector' module alias was removed.
   Use the 'mediawiki.widgets.CategoryMultiselectWidget' module directly instead.
+* mediawiki/at-ease was replaced with wikimedia/at-ease.
 
 === Bug fixes in 1.31 ===
 * (T90902) Non-breaking space in header ID breaks anchor
