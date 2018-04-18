@@ -173,9 +173,9 @@ class SparqlClient {
 			throw new SparqlException( "HTTP error: {$status->getWikiText()}" );
 		}
 		$result = $request->getContent();
-		\MediaWiki\suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		$data = json_decode( $result, true );
-		\MediaWiki\restoreWarnings();
+		\Wikimedia\restoreWarnings();
 		if ( $data === null || $data === false ) {
 			throw new SparqlException( "HTTP request failed, response:\n" .
 				substr( $result, 1024 ) );
