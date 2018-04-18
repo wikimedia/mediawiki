@@ -335,17 +335,27 @@ class Category {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		$cond1 = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
-		$cond2 = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
-		$result = $dbw->selectRow(
+		// Lock all the `categorylinks` records and gaps for this category;
+		// this is a separate query due to postgres/oracle limitations
+		$dbw->selectRowCount(
 			[ 'categorylinks', 'page' ],
-			[ 'pages' => 'COUNT(*)',
-				'subcats' => "COUNT($cond1)",
-				'files' => "COUNT($cond2)"
-			],
+			'*',
 			[ 'cl_to' => $this->mName, 'page_id = cl_from' ],
 			__METHOD__,
 			[ 'LOCK IN SHARE MODE' ]
+		);
+		// Get the aggregate `categorylinks` row counts for this category
+		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], 1, 'NULL' );
+		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], 1, 'NULL' );
+		$result = $dbw->selectRow(
+			[ 'categorylinks', 'page' ],
+			[
+				'pages' => 'COUNT(*)',
+				'subcats' => "COUNT($catCond)",
+				'files' => "COUNT($fileCond)"
+			],
+			[ 'cl_to' => $this->mName, 'page_id = cl_from' ],
+			__METHOD__
 		);
 
 		$shouldExist = $result->pages > 0 || $this->getTitle()->exists();
