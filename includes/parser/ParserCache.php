@@ -291,8 +291,8 @@ class ParserCache {
 	 * @param ParserOutput $parserOutput
 	 * @param WikiPage $page
 	 * @param ParserOptions $popts
-	 * @param string $cacheTime Time when the cache was generated
-	 * @param int $revId Revision ID that was parsed
+	 * @param string|null $cacheTime TS_MW timestamp when the cache was generated
+	 * @param int|null $revId Revision ID that was parsed
 	 */
 	public function save( $parserOutput, $page, $popts, $cacheTime = null, $revId = null ) {
 		$expire = $parserOutput->getCacheExpiry();

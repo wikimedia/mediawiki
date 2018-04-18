@@ -177,7 +177,7 @@ class ParserOutput extends CacheTime {
 	private $mIndexPolicy = '';
 
 	/**
-	 * @var array $mAccessedOptions List of ParserOptions (stored in the keys).
+	 * @var true[] $mAccessedOptions List of ParserOptions (stored in the keys).
 	 */
 	private $mAccessedOptions = [];
 
@@ -685,9 +685,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Register a file dependency for this output
 	 * @param string $name Title dbKey
-	 * @param string $timestamp MW timestamp of file creation (or false if non-existing)
-	 * @param string $sha1 Base 36 SHA-1 of file (or false if non-existing)
-	 * @return void
+	 * @param string|false|null $timestamp MW timestamp of file creation (or false if non-existing)
+	 * @param string|false|null $sha1 Base 36 SHA-1 of file (or false if non-existing)
 	 */
 	public function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
@@ -701,7 +700,6 @@ class ParserOutput extends CacheTime {
 	 * @param Title $title
 	 * @param int $page_id
 	 * @param int $rev_id
-	 * @return void
 	 */
 	public function addTemplate( $title, $page_id, $rev_id ) {
 		$ns = $title->getNamespace();
@@ -968,8 +966,8 @@ class ParserOutput extends CacheTime {
 
 	/**
 	 * Returns the options from its ParserOptions which have been taken
-	 * into account to produce this output or false if not available.
-	 * @return array
+	 * into account to produce this output.
+	 * @return string[]
 	 */
 	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
