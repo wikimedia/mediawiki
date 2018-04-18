@@ -965,7 +965,7 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol;
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
@@ -1100,7 +1100,7 @@ class Article implements Page {
 		}
 
 		$outputPage->preventClickjacking();
-		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
+		if ( $user->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
