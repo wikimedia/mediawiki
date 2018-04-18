@@ -72,6 +72,7 @@ cp ./node_modules/oojs-ui/dist/themes/wikimediaui/images/textures/*.{gif,svg} "$
 cp ./node_modules/oojs-ui/src/themes/wikimediaui/*.json "$REPO_DIR/$TARGET_DIR/themes/wikimediaui"
 
 # Apex theme icons, indicators, and textures
+mkdir -p "$REPO_DIR/$TARGET_DIR/themes/apex"
 cp ./node_modules/oojs-ui/src/themes/apex/*.json "$REPO_DIR/$TARGET_DIR/themes/apex"
 
 # WikimediaUI LESS variables for sharing

@@ -6,6 +6,7 @@ MediaWiki 1.32 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.32 ===
+* (T115414) The $wgEnableAPI and $wgEnableWriteAPI settings, deprecated in 1.31, have been removed.
 * …
 
 === New features in 1.32 ===
