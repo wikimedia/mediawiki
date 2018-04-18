@@ -136,7 +136,7 @@ abstract class DatabaseUpdater {
 			$wgExtPGAlteredFields, $wgExtNewIndexes, $wgExtModifiedFields;
 
 		# For extensions only, should be populated via hooks
-		# $wgDBtype should be checked to specifiy the proper file
+		# $wgDBtype should be checked to specify the proper file
 		$wgExtNewTables = []; // table, dir
 		$wgExtNewFields = []; // table, column, dir
 		$wgExtPGNewFields = []; // table, column, column attributes; for PostgreSQL
