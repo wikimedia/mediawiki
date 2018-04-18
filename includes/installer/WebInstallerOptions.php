@@ -175,7 +175,10 @@ class WebInstallerOptions extends WebInstallerPage {
 					if ( isset( $info['url'] ) ) {
 						$urlText = ' ' . Html::element( 'a', [ 'href' => $info['url'] ], '(more information)' );
 					}
-					$attribs = [ 'data-name' => $ext ];
+					$attribs = [
+						'data-name' => $ext,
+						'class' => 'config-ext-input'
+					];
 					$labelAttribs = [];
 					$fullDepList = [];
 					if ( isset( $info['requires']['extensions'] ) ) {
