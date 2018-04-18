@@ -1159,7 +1159,6 @@ class ApiBaseTest extends ApiTestCase {
 		$integerTests = [
 			[ '+1', 1 ],
 			[ '-1', -1 ],
-			[ '1e3', 1 ],
 			[ '1.5', 1 ],
 			[ '-1.5', -1 ],
 			[ '1abc', 1 ],
