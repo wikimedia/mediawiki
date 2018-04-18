@@ -60,6 +60,12 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	height: 15px;
 }
 
+/* T192140 */
+.mw-enhancedchanges-arrow-space:after,
+.mw-enhancedchanges-arrow-space:before {
+	content: '' !important;
+}
+
 .mw-enhanced-watched .mw-enhanced-rc-time {
 	font-weight: bold;
 }
