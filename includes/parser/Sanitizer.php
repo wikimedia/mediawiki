@@ -1180,13 +1180,12 @@ class Sanitizer {
 
 	/**
 	 * Given a value, escape it so that it can be used in an id attribute and
-	 * return it.  This will use HTML5 validation if $wgExperimentalHtmlIds is
-	 * true, allowing anything but ASCII whitespace.  Otherwise it will use
-	 * HTML 4 rules, which means a narrow subset of ASCII, with bad characters
-	 * escaped with lots of dots.
+	 * return it.  This will use HTML5 validation, allowing anything but ASCII
+	 * whitespace.
 	 *
-	 * To ensure we don't have to bother escaping anything, we also strip ', ",
-	 * & even if $wgExperimentalIds is true.  TODO: Is this the best tactic?
+	 * To ensure we don't have to bother escaping anything, we also strip ', ".
+	 * TODO: Is this the best tactic?
+	 *
 	 * We also strip # because it upsets IE, and % because it could be
 	 * ambiguous if it's part of something that looks like a percent escape
 	 * (which don't work reliably in fragments cross-browser).
@@ -1204,27 +1203,11 @@ class Sanitizer {
 	 * @param string|array $options String or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
-	 *       beginning of an id.  Only matters if $wgExperimentalHtmlIds is
-	 *       false.
-	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked even
-	 *       if $wgExperimentalHtmlIds is used, so we can generate extra
-	 *       anchors and links won't break.
+	 *       beginning of an id.
 	 * @return string
 	 */
 	static function escapeId( $id, $options = [] ) {
-		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
-
-		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
-			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
-			$id = trim( $id, '_' );
-			if ( $id === '' ) {
-				// Must have been all whitespace to start with.
-				return '_';
-			} else {
-				return $id;
-			}
-		}
 
 		// HTML4-style escaping
 		static $replace = [
@@ -1336,14 +1319,6 @@ class Sanitizer {
 
 				$id = urlencode( str_replace( ' ', '_', $id ) );
 				$id = strtr( $id, $replace );
-				break;
-			case 'html5-legacy':
-				$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
-				$id = trim( $id, '_' );
-				if ( $id === '' ) {
-					// Must have been all whitespace to start with.
-					$id = '_';
-				}
 				break;
 			default:
 				throw new InvalidArgumentException( "Invalid mode '$mode' passed to '" . __METHOD__ );

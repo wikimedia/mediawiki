@@ -271,7 +271,6 @@ class ParserTestRunner {
 		$setup['wgNoFollowLinks'] = true;
 		$setup['wgNoFollowDomainExceptions'] = [ 'no-nofollow.org' ];
 		$setup['wgExternalLinkTarget'] = false;
-		$setup['wgExperimentalHtmlIds'] = false;
 		$setup['wgLocaltimezone'] = 'UTC';
 		$setup['wgHtml5'] = true;
 		$setup['wgDisableLangConversion'] = false;
