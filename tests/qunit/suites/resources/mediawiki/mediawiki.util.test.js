@@ -92,31 +92,6 @@
 		assert.equal( util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
-	QUnit.test( 'escapeId', function ( assert ) {
-		mw.config.set( 'wgFragmentMode', [ 'legacy' ] );
-		$.each( {
-			'+': '.2B',
-			'&': '.26',
-			'=': '.3D',
-			':': ':',
-			';': '.3B',
-			'@': '.40',
-			$: '.24',
-			'-_.': '-_.',
-			'!': '.21',
-			'*': '.2A',
-			'/': '.2F',
-			'[]': '.5B.5D',
-			'<>': '.3C.3E',
-			'\'': '.27',
-			'§': '.C2.A7',
-			'Test:A & B/Here': 'Test:A_.26_B.2FHere',
-			'A&B&amp;C&amp;amp;D&amp;amp;amp;E': 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE'
-		}, function ( input, output ) {
-			assert.equal( util.escapeId( input ), output );
-		} );
-	} );
-
 	QUnit.test( 'escapeIdForAttribute', function ( assert ) {
 		// Test cases are kept in sync with SanitizerTest.php
 		var text = 'foo тест_#%!\'()[]:<>',

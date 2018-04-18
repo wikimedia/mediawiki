@@ -1179,68 +1179,11 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given a value, escape it so that it can be used in an id attribute and
-	 * return it.  This will use HTML5 validation, allowing anything but ASCII
-	 * whitespace.
-	 *
-	 * To ensure we don't have to bother escaping anything, we also strip ', ",
-	 * & even if $wgExperimentalIds is true.  TODO: Is this the best tactic?
-	 * We also strip # because it upsets IE, and % because it could be
-	 * ambiguous if it's part of something that looks like a percent escape
-	 * (which don't work reliably in fragments cross-browser).
-	 *
-	 * @deprecated since 1.30, use one of this class' escapeIdFor*() functions
-	 *
-	 * @see https://www.w3.org/TR/html401/types.html#type-name Valid characters
-	 *   in the id and name attributes
-	 * @see https://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with
-	 *   the id attribute
-	 * @see https://www.w3.org/TR/html5/dom.html#the-id-attribute
-	 *   HTML5 definition of id attribute
-	 *
-	 * @param string $id Id to escape
-	 * @param string|array $options String or array of strings (default is array()):
-	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
-	 *       so don't pay attention if the first character isn't valid at the
-	 *       beginning of an id.
-	 * @return string
-	 */
-	static function escapeId( $id, $options = [] ) {
-		$options = (array)$options;
-
-		if ( !in_array( 'legacy', $options ) ) {
-			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
-			$id = trim( $id, '_' );
-			if ( $id === '' ) {
-				// Must have been all whitespace to start with.
-				return '_';
-			} else {
-				return $id;
-			}
-		}
-
-		// HTML4-style escaping
-		static $replace = [
-			'%3A' => ':',
-			'%' => '.'
-		];
-
-		$id = urlencode( strtr( $id, ' ', '_' ) );
-		$id = strtr( $id, $replace );
-
-		if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
-			// Initial character must be a letter!
-			$id = "x$id";
-		}
-		return $id;
-	}
-
-	/**
 	 * Given a section name or other user-generated or otherwise unsafe string, escapes it to be
 	 * a valid HTML id attribute.
 	 *
-	 * WARNING: unlike escapeId(), the output of this function is not guaranteed to be HTML safe,
-	 * be sure to use proper escaping.
+	 * WARNING: The output of this function is not guaranteed to be HTML safe, be sure to use
+	 * proper escaping.
 	 *
 	 * @param string $id String to escape
 	 * @param int $mode One of ID_* constants, specifying whether the primary or fallback encoding
@@ -1269,8 +1212,8 @@ class Sanitizer {
 	 * Given a section name or other user-generated or otherwise unsafe string, escapes it to be
 	 * a valid URL fragment.
 	 *
-	 * WARNING: unlike escapeId(), the output of this function is not guaranteed to be HTML safe,
-	 * be sure to use proper escaping.
+	 * WARNING: The output of this function is not guaranteed to be HTML safe, be sure to use
+	 * proper escaping.
 	 *
 	 * @param string $id String to escape
 	 * @return string Escaped ID
@@ -1321,7 +1264,7 @@ class Sanitizer {
 				$id = str_replace( ' ', '_', $id );
 				break;
 			case 'legacy':
-				// This corresponds to 'noninitial' mode of the old escapeId()
+				// This corresponds to 'noninitial' mode of the former escapeId()
 				static $replace = [
 					'%3A' => ':',
 					'%' => '.'
@@ -1339,7 +1282,7 @@ class Sanitizer {
 
 	/**
 	 * Given a string containing a space delimited list of ids, escape each id
-	 * to match ids escaped by the escapeId() function.
+	 * to match ids escaped by the former escapeId() function.
 	 *
 	 * @todo remove $options completely in 1.32
 	 *
