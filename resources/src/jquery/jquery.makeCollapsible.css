@@ -6,10 +6,10 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-.mw-collapsible-toggle:before {
+.mw-collapsible-toggle-default:before {
 	content: '[';
 }
-.mw-collapsible-toggle:after {
+.mw-collapsible-toggle-default:after {
 	content: ']';
 }
 /* Align the toggle based on the direction of the content language */
