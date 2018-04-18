@@ -104,7 +104,7 @@ production.
 * Updated wikimedia/running-stat from 1.1.0 to 1.2.0.
 * Updated wikimedia/wrappedstring from 2.2.0 to 2.3.0.
 * Updated mediawiki/at-ease from 1.1.0 to 1.2.0.
-* Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.5.
+* Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.6.
 * Updated wikimedia/remex-html from 1.0.2 to 1.0.3.
 * …
 
@@ -121,6 +121,7 @@ production.
   'mediawiki.viewport' module instead.
 * The deprecated 'mediawiki.widgets.CategorySelector' module alias was removed.
   Use the 'mediawiki.widgets.CategoryMultiselectWidget' module directly instead.
+* mediawiki/at-ease was replaced with wikimedia/at-ease.
 
 === Bug fixes in 1.31 ===
 * (T90902) Non-breaking space in header ID breaks anchor
