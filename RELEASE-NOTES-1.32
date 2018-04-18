@@ -8,6 +8,8 @@ production.
 === Configuration changes in 1.32 ===
 * (T115414) The $wgEnableAPI and $wgEnableWriteAPI settings, deprecated in 1.31, have been removed.
 * The $wgUseAjax setting is now formally deprecated, and MediaWiki will act as if it is always set.
+* $wgExperimentalHtmlIds, deprecated since 1.30, has been removed. The 'html5-legacy' value for
+  $wgFragmentMode is no longer accepted.
 * …
 
 === New features in 1.32 ===

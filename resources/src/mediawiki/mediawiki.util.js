@@ -32,13 +32,6 @@
 		switch ( mode ) {
 			case 'html5':
 				return str.replace( / /g, '_' );
-			case 'html5-legacy':
-				str = str.replace( /[ \t\n\r\f_'"&#%]+/g, '_' )
-					.replace( /^_+|_+$/, '' );
-				if ( str === '' ) {
-					str = '_';
-				}
-				return str;
 			case 'legacy':
 				return rawurlencode( str.replace( / /g, '_' ) )
 					.replace( /%3A/g, ':' )
