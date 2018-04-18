@@ -19,7 +19,9 @@
 		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
 
 		function updateCount() {
-			textInputWidget.setLabel( ( limit - byteLength( textInputWidget.getValue() ) ).toString() );
+			var remaining = limit - byteLength( textInputWidget.getValue() );
+			remaining = mw.language.convertNumber( remaining );
+			textInputWidget.setLabel( remaining );
 		}
 		textInputWidget.on( 'change', updateCount );
 		// Initialise value
@@ -41,7 +43,9 @@
 		limit = limit || +textInputWidget.$input.attr( 'maxlength' );
 
 		function updateCount() {
-			textInputWidget.setLabel( ( limit - codePointLength( textInputWidget.getValue() ) ).toString() );
+			var remaining = limit - codePointLength( textInputWidget.getValue() );
+			remaining = mw.language.convertNumber( remaining );
+			textInputWidget.setLabel( remaining );
 		}
 		textInputWidget.on( 'change', updateCount );
 		// Initialise value

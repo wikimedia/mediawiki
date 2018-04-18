@@ -2536,6 +2536,7 @@ return [
 		'dependencies' => [
 			'oojs-ui-core',
 			'jquery.lengthLimit',
+			'mediawiki.language',
 			'mediawiki.String',
 		],
 		'targets' => [ 'desktop', 'mobile' ]
