@@ -130,6 +130,9 @@ production.
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
   removed. It has never made a difference in the output, the name was always
   returned regardless.
+* The 'watch' and 'unwatch' parameters for action=move have been removed.  They
+  were deprecated and also accidentally nonfunctional since 1.17 in 2010.  Use
+  'watchlist' instead.
 
 === Action API internal changes in 1.31 ===
 * ApiBase::getProfileDBTime was removed (deprecated since 1.25)
