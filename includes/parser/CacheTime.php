@@ -27,21 +27,31 @@
  * @ingroup Parser
  */
 class CacheTime {
-	/** @var array|bool ParserOptions which have been taken into account to
-	 * produce output or false if not available.
+	/**
+	 * @var string[] ParserOptions which have been taken into account to produce output.
 	 */
 	public $mUsedOptions;
 
-	# Compatibility check
+	/**
+	 * @var string|null Compatibility check
+	 */
 	public $mVersion = Parser::VERSION;
 
-	# Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+	/**
+	 * @var string|int TS_MW timestamp when this object was generated, or -1 for uncacheable. Used
+	 * in ParserCache.
+	 */
 	public $mCacheTime = '';
 
-	# Seconds after which the object should expire, use 0 for uncacheable. Used in ParserCache.
+	/**
+	 * @var int|null Seconds after which the object should expire, use 0 for uncacheable. Used in
+	 * ParserCache.
+	 */
 	public $mCacheExpiry = null;
 
-	# Revision ID that was parsed
+	/**
+	 * @var int|null Revision ID that was parsed
+	 */
 	public $mCacheRevisionId = null;
 
 	/**
@@ -71,7 +81,7 @@ class CacheTime {
 
 	/**
 	 * @since 1.23
-	 * @param int $id Revision id
+	 * @param int|null $id Revision ID
 	 */
 	public function setCacheRevisionId( $id ) {
 		$this->mCacheRevisionId = $id;
@@ -105,7 +115,7 @@ class CacheTime {
 	 * The value returned by getCacheExpiry is smaller or equal to the smallest number
 	 * that was provided to a call of updateCacheExpiry(), and smaller or equal to the
 	 * value of $wgParserCacheExpireTime.
-	 * @return int|mixed|null
+	 * @return int
 	 */
 	public function getCacheExpiry() {
 		global $wgParserCacheExpireTime;

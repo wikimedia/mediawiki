@@ -1211,7 +1211,7 @@ class ParserOptions {
 	 * in 1.16.
 	 * Used to get the old parser cache entries when available.
 	 * @deprecated since 1.30. You probably want self::allCacheVaryingOptions() instead.
-	 * @return array
+	 * @return string[]
 	 */
 	public static function legacyOptions() {
 		wfDeprecated( __METHOD__, '1.30' );
@@ -1268,7 +1268,7 @@ class ParserOptions {
 	 * the same cached data safely.
 	 *
 	 * @since 1.17
-	 * @param array $forOptions
+	 * @param string[] $forOptions
 	 * @param Title $title Used to get the content language of the page (since r97636)
 	 * @return string Page rendering hash
 	 */
