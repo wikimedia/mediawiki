@@ -6831,6 +6831,18 @@ OO.ui.NumberInputWidget.prototype.setStep = function ( step, pageStep ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
+	if ( value === '' ) {
+		// Some browsers allow a value in the input even if there isn't one reported by $input.val()
+		// so here we make sure an 'empty' value is actually displayed as such.
+		this.$input.val( '' );
+	}
+	return OO.ui.NumberInputWidget.parent.prototype.setValue.call( this, value );
+};
+
+/**
  * Get the current stepping values
  *
  * @return {number[]} Step and page step
