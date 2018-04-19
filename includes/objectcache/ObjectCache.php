@@ -337,9 +337,11 @@ class ObjectCache {
 		$services = MediaWikiServices::getInstance();
 
 		$erGroup = $services->getEventRelayerGroup();
-		foreach ( $params['channels'] as $action => $channel ) {
-			$params['relayers'][$action] = $erGroup->getRelayer( $channel );
-			$params['channels'][$action] = $channel;
+		if ( isset( $params['channels'] ) ) {
+			foreach ( $params['channels'] as $action => $channel ) {
+				$params['relayers'][$action] = $erGroup->getRelayer( $channel );
+				$params['channels'][$action] = $channel;
+			}
 		}
 		$params['cache'] = self::newFromParams( $params['store'] );
 		if ( isset( $params['loggroup'] ) ) {
