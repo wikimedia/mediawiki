@@ -5856,22 +5856,38 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 /**
  * @inheritdoc
  */
+ 
 OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-	var menuItem = this.menu.findItemFromData( tagItem.getData() );
-	// Override the base behavior from TagMultiselectWidget; the base behavior
-	// in TagMultiselectWidget is to remove the tag to edit it in the input,
-	// but in our case, we want to utilize the menu selection behavior, and
-	// definitely not remove the item.
+	if( !this.allowArbitrary ) {
+		// Override the base behavior from TagMultiselectWidget; the base behavior
+		// in TagMultiselectWidget is to remove the tag to edit it in the input,
+		// but in our case, we want to utilize the menu selection behavior, and
+		// definitely not remove the item.
+		var menuItem = this.menu.findItemFromData( tagItem.getData() );
 
-	// If there is an input that is used for filtering, erase the value so we don't filter
-	if ( this.hasInput && this.menu.filterFromInput ) {
-		this.input.setValue( '' );
+		// If there is an input that is used for filtering, erase the value so we don't filter
+		if ( this.hasInput && this.menu.filterFromInput ) {
+			this.input.setValue( '' );
+		}
+
+		// Select the menu item
+		this.menu.selectItem( menuItem );
+
+		this.focus();
+	} else {
+		// Use the default
+		if ( this.hasInput && this.allowEditTags ) {
+			if ( this.input.getValue() ) {
+				this.addTagFromInput();
+			}
+			// 1. Get the label of the tag into the input
+			this.input.setValue( tagItem.getData() );
+			// 2. Remove the tag
+			this.removeItems( [ tagItem ] );
+			// 3. Focus the input
+			this.focus();
+		}
 	}
-
-	// Select the menu item
-	this.menu.selectItem( menuItem );
-
-	this.focus();
 };
 
 /**
