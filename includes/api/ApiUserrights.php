@@ -97,15 +97,15 @@ class ApiUserrights extends ApiBase {
 
 		$user = $this->getUrUser( $params );
 
-		$tags = $params['tags'];
-
 		// Check if user can add tags
-		if ( !is_null( $tags ) ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $pUser );
+		if ( $params['tags'] !== null ) {
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $pUser );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}
 		}
+
+		$tags = ( $params['tags'] === null ? [] : $params['tags'] );
 
 		$form = $this->getUserRightsPage();
 		$form->setContext( $this->getContext() );
