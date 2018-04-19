@@ -2363,18 +2363,6 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
 }
 
 /**
- * Formerly set the locale for locale-sensitive operations
- *
- * This is now done in Setup.php.
- *
- * @deprecated since 1.30, no longer needed
- * @see $wgShellLocale
- */
-function wfInitShellLocale() {
-	wfDeprecated( __FUNCTION__, '1.30' );
-}
-
-/**
  * Generate a shell-escaped command line string to run a MediaWiki cli script.
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
