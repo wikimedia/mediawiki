@@ -111,11 +111,10 @@ class Command {
 	 * Adds parameters to the command. All parameters are sanitized via Shell::escape().
 	 * Null values are ignored.
 	 *
-	 * @param string|string[] $args,...
+	 * @param string ...$args
 	 * @return $this
 	 */
-	public function params( /* ... */ ) {
-		$args = func_get_args();
+	public function params( ...$args ) {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
@@ -130,11 +129,10 @@ class Command {
 	 * Adds unsafe parameters to the command. These parameters are NOT sanitized in any way.
 	 * Null values are ignored.
 	 *
-	 * @param string|string[] $args,...
+	 * @param string ...$args
 	 * @return $this
 	 */
-	public function unsafeParams( /* ... */ ) {
-		$args = func_get_args();
+	public function unsafeParams( ...$args ) {
 		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
 			// If only one argument has been passed, and that argument is an array,
 			// treat it as a list of arguments
