@@ -134,7 +134,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgJpegPixelFormat;
+			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgJpegPixelFormat,
+			$wgJpegQuality;
 
 		$quality = [];
 		$sharpen = [];
@@ -146,7 +147,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( $params['mimeType'] == 'image/jpeg' ) {
 			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
-			$quality = [ '-quality', $qualityVal ?: '80' ]; // 80%
+			$quality = [ '-quality', $qualityVal ?: (string)$wgJpegQuality ]; // 80% by default
 			if ( $params['interlace'] ) {
 				$animation_post = [ '-interlace', 'JPEG' ];
 			}
@@ -276,7 +277,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgJpegPixelFormat;
+			$wgJpegPixelFormat, $wgJpegQuality;
 
 		try {
 			$im = new Imagick();
@@ -293,7 +294,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					$im->sharpenImage( $radius, $sigma );
 				}
 				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
-				$im->setCompressionQuality( $qualityVal ?: 80 );
+				$im->setCompressionQuality( $qualityVal ?: $wgJpegQuality );
 				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_JPEG );
 				}
@@ -498,9 +499,19 @@ class BitmapHandler extends TransformationalImageHandler {
 
 	/**
 	 * Callback for transformGd when transforming jpeg images.
+	 *
+	 * @param resource $dst_image Image resource of the original image
+	 * @param string $thumbPath File path to write the thumbnail image to
+	 * @param int|null $quality Quality of the thumbnail from 1-100,
+	 *    or null to use default quality.
 	 */
-	// FIXME: transformImageMagick() & transformImageMagickExt() uses JPEG quality 80, here it's 95?
-	static function imageJpegWrapper( $dst_image, $thumbPath, $quality = 95 ) {
+	static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
+		global $wgJpegQuality;
+
+		if ( $quality === null ) {
+			$quality = $wgJpegQuality;
+		}
+
 		imageinterlace( $dst_image );
 		imagejpeg( $dst_image, $thumbPath, $quality );
 	}
