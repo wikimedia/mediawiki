@@ -152,9 +152,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		# Always log connection errors
 		if ( !$this->conn ) {
-			if ( !$error ) {
-				$error = $this->lastError();
-			}
+			$error = $error ?: $this->lastError();
 			$this->connLogger->error(
 				"Error connecting to {db_server}: {error}",
 				$this->getLogContext( [
@@ -166,7 +164,7 @@ abstract class DatabaseMysqlBase extends Database {
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
-			$this->reportConnectionError( $error );
+			throw new DBConnectionError( $this, $error );
 		}
 
 		if ( strlen( $dbName ) ) {
@@ -174,22 +172,29 @@ abstract class DatabaseMysqlBase extends Database {
 			$success = $this->selectDB( $dbName );
 			Wikimedia\restoreWarnings();
 			if ( !$success ) {
+				$error = $this->lastError();
 				$this->queryLogger->error(
-					"Error selecting database {db_name} on server {db_server}",
+					"Error selecting database {db_name} on server {db_server}: {error}",
 					$this->getLogContext( [
 						'method' => __METHOD__,
+						'error' => $error,
 					] )
 				);
-				$this->queryLogger->debug(
-					"Error selecting database $dbName on server {$this->server}" );
-
-				$this->reportConnectionError( "Error selecting database $dbName" );
+				throw new DBConnectionError( $this, "Error selecting database $dbName: $error" );
 			}
 		}
 
 		// Tell the server what we're communicating with
 		if ( !$this->connectInitCharset() ) {
-			$this->reportConnectionError( "Error setting character set" );
+			$error = $this->lastError();
+			$this->queryLogger->error(
+				"Error setting character set: {error}",
+				$this->getLogContext( [
+					'method' => __METHOD__,
+					'error' => $this->lastError(),
+				] )
+			);
+			throw new DBConnectionError( $this, "Error setting character set: $error" );
 		}
 
 		// Abstract over any insane MySQL defaults
@@ -212,14 +217,15 @@ abstract class DatabaseMysqlBase extends Database {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
 			$success = $this->doQuery( 'SET ' . implode( ', ', $set ) );
 			if ( !$success ) {
+				$error = $this->lastError();
 				$this->queryLogger->error(
-					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
+					'Error setting MySQL variables on server {db_server}: {error}',
 					$this->getLogContext( [
 						'method' => __METHOD__,
+						'error' => $error,
 					] )
 				);
-				$this->reportConnectionError(
-					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)' );
+				throw new DBConnectionError( $this, "Error setting MySQL variables: $error" );
 			}
 		}
 
