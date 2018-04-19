@@ -100,7 +100,7 @@ class ApiUserrights extends ApiBase {
 		$tags = $params['tags'];
 
 		// Check if user can add tags
-		if ( !is_null( $tags ) ) {
+		if ( $tags !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $pUser );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
@@ -112,8 +112,9 @@ class ApiUserrights extends ApiBase {
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
 		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
+			// Don't pass null to doSaveUserGroups() for array params, cast to empty array
 			$user, (array)$add, (array)$params['remove'],
-			$params['reason'], $tags, $groupExpiries
+			$params['reason'], (array)$tags, $groupExpiries
 		);
 
 		$result = $this->getResult();
