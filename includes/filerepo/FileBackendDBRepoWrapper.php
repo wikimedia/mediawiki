@@ -92,9 +92,9 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 * E.g. mwstore://local-backend/local-public/a/ab/<name>.jpg
 	 * => mwstore://local-backend/local-original/x/y/z/<sha1>.jpg
 	 *
-	 * @param array $paths
+	 * @param string[] $paths
 	 * @param bool $latest
-	 * @return array Translated paths in same order
+	 * @return string[] Translated paths in same order
 	 */
 	public function getBackendPaths( array $paths, $latest = true ) {
 		$db = $this->getDB( $latest ? DB_MASTER : DB_REPLICA );
@@ -341,8 +341,8 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 *
 	 * This leaves destination paths alone since we don't want those to mutate
 	 *
-	 * @param array $ops
-	 * @return array
+	 * @param array[] $ops
+	 * @return array[]
 	 */
 	protected function mungeOpPaths( array $ops ) {
 		// Ops that use 'src' and do not mutate core file data there

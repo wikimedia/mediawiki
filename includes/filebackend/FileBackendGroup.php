@@ -112,7 +112,7 @@ class FileBackendGroup {
 	/**
 	 * Register an array of file backend configurations
 	 *
-	 * @param array $configs
+	 * @param array[] $configs
 	 * @param string|null $readOnlyReason
 	 * @throws InvalidArgumentException
 	 */
