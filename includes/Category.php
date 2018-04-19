@@ -328,7 +328,7 @@ class Category {
 		$dbw = wfGetDB( DB_MASTER );
 		# Avoid excess contention on the same category (T162121)
 		$name = __METHOD__ . ':' . md5( $this->mName );
-		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 1 );
+		$scopedLock = $dbw->getScopedLockAndFlush( $name, __METHOD__, 0 );
 		if ( !$scopedLock ) {
 			return false;
 		}
