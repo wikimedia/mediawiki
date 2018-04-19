@@ -28,10 +28,10 @@
 		{{^localSettingsExists}}
 			<p>LocalSettings.php not found.</p>
 			{{#installerStarted}}
-				<p>Please <a href="{{path}}mw-config/index.{{ext}}">complete the installation</a> and download LocalSettings.php.</p>
+				<p>Please <a href="{{path}}mw-config/index.php">complete the installation</a> and download LocalSettings.php.</p>
 			{{/installerStarted}}
 			{{^installerStarted}}
-				<p>Please <a href="{{path}}mw-config/index.{{ext}}">set up the wiki</a> first.</p>
+				<p>Please <a href="{{path}}mw-config/index.php">set up the wiki</a> first.</p>
 			{{/installerStarted}}
 		{{/localSettingsExists}}
 		</div>

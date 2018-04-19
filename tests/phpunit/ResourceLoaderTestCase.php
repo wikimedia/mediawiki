@@ -61,7 +61,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 
 			// For wfScript()
 			'ScriptPath' => '/w',
-			'ScriptExtension' => '.php',
 			'Script' => '/w/index.php',
 			'LoadScript' => '/w/load.php',
 		];

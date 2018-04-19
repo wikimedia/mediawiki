@@ -141,7 +141,7 @@ class WebRequest {
 				$router->add( "$wgScript/$1" );
 
 				if ( isset( $_SERVER['SCRIPT_NAME'] )
-					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] )
+					&& preg_match( '/\.php/', $_SERVER['SCRIPT_NAME'] )
 				) {
 					# Check for SCRIPT_NAME, we handle index.php explicitly
 					# But we do have some other .php files such as img_auth.php
