@@ -1130,8 +1130,7 @@ class LoadBalancer implements ILoadBalancer {
 				$context
 			);
 
-			// throws DBConnectionError
-			$conn->reportConnectionError( "{$this->lastError} ({$context['db_server']})" );
+			throw new DBConnectionError( $conn, "{$this->lastError} ({$context['db_server']})" );
 		} else {
 			// No last connection, probably due to all servers being too busy
 			$this->connLogger->error(
