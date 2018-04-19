@@ -578,8 +578,8 @@ class FileRepo {
 	 * Get an array of arrays or iterators of file objects for files that
 	 * have the given SHA-1 content hashes.
 	 *
-	 * @param array $hashes An array of hashes
-	 * @return array An Array of arrays or iterators of file objects and the hash as key
+	 * @param string[] $hashes An array of hashes
+	 * @return array[] An Array of arrays or iterators of file objects and the hash as key
 	 */
 	public function findBySha1s( array $hashes ) {
 		$result = [];
@@ -599,7 +599,7 @@ class FileRepo {
 	 * STUB
 	 * @param string $prefix The prefix to search for
 	 * @param int $limit The maximum amount of files to return
-	 * @return array
+	 * @return LocalFile[]
 	 */
 	public function findFilesByPrefix( $prefix, $limit ) {
 		return [];
@@ -789,7 +789,7 @@ class FileRepo {
 	 * should use File::getDescriptionText().
 	 *
 	 * @param string $name Name of image to fetch
-	 * @param string $lang Language to fetch it in, if any.
+	 * @param string|null $lang Language to fetch it in, if any.
 	 * @return string|false
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
@@ -928,7 +928,7 @@ class FileRepo {
 	 * Each file can be a (zone, rel) pair, virtual url, storage path.
 	 * It will try to delete each file, but ignores any errors that may occur.
 	 *
-	 * @param array $files List of files to delete
+	 * @param string[] $files List of files to delete
 	 * @param int $flags Bitwise combination of the following flags:
 	 *   self::SKIP_LOCKING      Skip any file locking when doing the deletions
 	 * @return Status
@@ -1378,7 +1378,7 @@ class FileRepo {
 	/**
 	 * Checks existence of an array of files.
 	 *
-	 * @param array $files Virtual URLs (or storage paths) of files to check
+	 * @param string[] $files Virtual URLs (or storage paths) of files to check
 	 * @return array Map of files and existence flags, or false
 	 */
 	public function fileExistsBatch( array $files ) {
@@ -1484,7 +1484,7 @@ class FileRepo {
 	 * Delete files in the deleted directory if they are not referenced in the filearchive table
 	 *
 	 * STUB
-	 * @param array $storageKeys
+	 * @param string[] $storageKeys
 	 */
 	public function cleanupDeletedBatch( array $storageKeys ) {
 		$this->assertWritableRepo();
@@ -1700,7 +1700,7 @@ class FileRepo {
 	/**
 	 * Get a callback function to use for cleaning error message parameters
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	function getErrorCleanupFunction() {
 		switch ( $this->pathDisclosureProtection ) {
@@ -1889,7 +1889,7 @@ class FileRepo {
 	/**
 	 * Get an UploadStash associated with this repo.
 	 *
-	 * @param User $user
+	 * @param User|null $user
 	 * @return UploadStash
 	 */
 	public function getUploadStash( User $user = null ) {
