@@ -37,6 +37,8 @@ production.
   set $wgTidyConfig to null and also set $wgUseTidy to true.
 * $wgLogAutopatrol now defaults to false instead of true.
 * $wgValidateAllHtml was removed and will be ignored.
+* $wgScriptExtension was removed (deprecated and ignored since 1.25).
+  See 1.25 release notes for more information.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
