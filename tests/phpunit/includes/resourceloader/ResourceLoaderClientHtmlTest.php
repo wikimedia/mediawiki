@@ -45,6 +45,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'test.private' => [ 'group' => 'private' ],
 			'test.shouldembed.empty' => [ 'shouldEmbed' => true, 'isKnownEmpty' => true ],
 			'test.shouldembed' => [ 'shouldEmbed' => true ],
+			'test.user' => [ 'group' => 'user' ],
 
 			'test.styles.pure' => [ 'type' => ResourceLoaderModule::LOAD_STYLES ],
 			'test.styles.mixed' => [],
@@ -115,6 +116,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'test.private',
 			'test.shouldembed.empty',
 			'test.shouldembed',
+			'test.user',
 			'test.unregistered',
 		] );
 		$client->setModuleStyles( [
@@ -138,6 +140,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'test.private' => 'loading',
 				'test.shouldembed.empty' => 'ready',
 				'test.shouldembed' => 'loading',
+				'test.user' => 'loading',
 				'test.styles.pure' => 'ready',
 				'test.styles.user.empty' => 'ready',
 				'test.styles.private' => 'ready',
@@ -163,6 +166,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'general' => [
 					'test.private',
 					'test.shouldembed',
+					'test.user',
 				],
 			],
 		];
@@ -318,6 +322,12 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'modules' => [ 'test.scripts.user' ],
 				'only' => ResourceLoaderModule::TYPE_SCRIPTS,
 				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts.user\u0026only=scripts\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
+			],
+			[
+				'context' => [],
+				'modules' => [ 'test.user' ],
+				'only' => ResourceLoaderModule::TYPE_COMBINED,
+				'output' => '<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.user\u0026skin=fallback\u0026user=Example\u0026version=0a56zyi");});</script>',
 			],
 			[
 				'context' => [ 'debug' => true ],
