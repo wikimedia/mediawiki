@@ -1046,8 +1046,7 @@ class Article implements Page {
 						'rc_namespace' => NS_FILE,
 						'rc_cur_id' => $title->getArticleID()
 					],
-					__METHOD__,
-					[ 'USE INDEX' => 'rc_timestamp' ]
+					__METHOD__
 				);
 				if ( $rc ) {
 					// Use patrol message specific to files
