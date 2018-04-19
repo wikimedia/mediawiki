@@ -991,18 +991,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function closeConnection();
 
 	/**
-	 * @param string $error Fallback error message, used if none is given by DB
+	 * @deprecated since 1.31
+	 * @param string $error Fallback message, if none is given by DB
 	 * @throws DBConnectionError
 	 */
 	public function reportConnectionError( $error = 'Unknown error' ) {
-		$myError = $this->lastError();
-		if ( $myError ) {
-			$error = $myError;
-		}
-
-		# New method
-		throw new DBConnectionError( $this, $error );
+		throw new DBConnectionError( $this, $this->lastError() ?: $error );
 	}
+
 
 	/**
 	 * Run a query and return a DBMS-dependent wrapper (that has all IResultWrapper methods)
