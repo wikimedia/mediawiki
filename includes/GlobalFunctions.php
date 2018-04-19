@@ -2559,6 +2559,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
  * @throws MWException
  */
 function wfUsePHP( $req_ver ) {
+	wfDeprecated( __FUNCTION__, '1.30' );
 	$php_ver = PHP_VERSION;
 
 	if ( version_compare( $php_ver, (string)$req_ver, '<' ) ) {
