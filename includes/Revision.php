@@ -1069,7 +1069,9 @@ class Revision implements IDBAccessObject {
 			return false;
 		}
 
-		$cacheKey = isset( $row->old_id ) ? ( 'tt:' . $row->old_id ) : null;
+		$cacheKey = isset( $row->old_id )
+			? SqlBlobStore::makeAddressFromTextId( $row->old_id )
+			: null;
 
 		return self::getBlobStore( $wiki )->expandBlob( $text, $flags, $cacheKey );
 	}
