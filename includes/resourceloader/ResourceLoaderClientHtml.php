@@ -148,15 +148,22 @@ class ResourceLoaderClientHtml {
 				continue;
 			}
 
-			$context = $this->getContext( $module->getGroup(), ResourceLoaderModule::TYPE_COMBINED );
+			$group = $module->getGroup();
+			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_COMBINED );
 			if ( $module->isKnownEmpty( $context ) ) {
 				// Avoid needless request or embed for empty module
 				$data['states'][$name] = 'ready';
 				continue;
 			}
 
-			if ( $module->shouldEmbedModule( $this->context ) ) {
-				// Embed via mw.loader.implement per T36907.
+			if ( $group === 'user' || $module->shouldEmbedModule( $this->context ) ) {
+				// Call makeLoad() to decide how to load these, instead of
+				// loading via mw.loader.load().
+				// - For group=user: We need to provide a pre-generated load.php
+				//   url to the client that has the 'user' and 'version' parameters
+				//   filled in. Without this, the client would wrongly use the static
+				//   version hash, per T64602.
+				// - For shouldEmbed=true:  Embed via mw.loader.implement, per T36907.
 				$data['embed']['general'][] = $name;
 				// Avoid duplicate request from mw.loader
 				$data['states'][$name] = 'loading';
