@@ -1086,6 +1086,15 @@ $wgJpegTran = '/usr/bin/jpegtran';
 $wgJpegPixelFormat = 'yuv420';
 
 /**
+ * When scaling a JPEG thumbnail, this is the quality we request
+ * from the backend. It should be an int between 1 and 100,
+ * with 100 indicating 100% quality.
+ *
+ * @since 1.32
+ */
+$wgJpegQuality = 80;
+
+/**
  * Some tests and extensions use exiv2 to manipulate the Exif metadata in some
  * image formats.
  */
