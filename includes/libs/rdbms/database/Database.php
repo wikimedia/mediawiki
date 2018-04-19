@@ -1000,7 +1000,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$error = $myError;
 		}
 
-		# New method
 		throw new DBConnectionError( $this, $error );
 	}
 

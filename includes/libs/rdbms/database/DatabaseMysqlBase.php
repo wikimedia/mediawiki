@@ -166,7 +166,7 @@ abstract class DatabaseMysqlBase extends Database {
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
-			$this->reportConnectionError( $error );
+			throw new DBConnectionError( $this, $error );
 		}
 
 		if ( strlen( $dbName ) ) {
