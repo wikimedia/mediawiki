@@ -13,6 +13,8 @@ THIS IS NOT A RELEASE YET!
   sent. Check headers_sent() before sending cpPosTime headers
 * (T167507) WebdriverIO should be able to run Chrome headlessly.
 * WebdriverIO: pass -no-sandbox to Chrome under Docker
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+
 
 == MediaWiki 1.29.2 ==
 
