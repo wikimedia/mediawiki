@@ -11,6 +11,7 @@ THIS IS NOT A RELEASE YET!
 * (T167507) selenium: Run Chrome headlessly.
 * selenium: Pass -no-sandbox to Chrome under Docker.
 * (T179190) selenium: Move logic for running tests from package.json to selenium.sh
+* (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
