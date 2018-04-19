@@ -40,7 +40,7 @@ class CSSMin {
 	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
 	const COMMENT_REGEX = '\/\*.*?\*\/';
 
-	/** @var array List of common image files extensions and MIME-types */
+	/** @var string[] List of common image files extensions and MIME-types */
 	protected static $mimeTypes = [
 		'gif' => 'image/gif',
 		'jpe' => 'image/jpeg',
@@ -58,7 +58,7 @@ class CSSMin {
 	 *
 	 * @param string $source CSS stylesheet source to process
 	 * @param string $path File path where the source was read from
-	 * @return array List of local file references
+	 * @return string[] List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path ) {
 		$stripped = preg_replace( '/' . self::COMMENT_REGEX . '/s', '', $source );
@@ -100,7 +100,7 @@ class CSSMin {
 	 * @param bool $ie8Compat By default, a data URI will only be produced if it can be made short
 	 *     enough to fit in Internet Explorer 8 (and earlier) URI length limit (32,768 bytes). Pass
 	 *     `false` to remove this limitation.
-	 * @return string|bool Image contents encoded as a data URI or false.
+	 * @return string|false Image contents encoded as a data URI or false.
 	 */
 	public static function encodeImageAsDataURI( $file, $type = null, $ie8Compat = true ) {
 		// Fast-fail for files that definitely exceed the maximum data URI length
@@ -128,7 +128,7 @@ class CSSMin {
 	 * @param string $contents File contents to encode.
 	 * @param string $type File's MIME type.
 	 * @param bool $ie8Compat See encodeImageAsDataURI().
-	 * @return string|bool Image contents encoded as a data URI or false.
+	 * @return string|false Image contents encoded as a data URI or false.
 	 */
 	public static function encodeStringAsDataURI( $contents, $type, $ie8Compat = true ) {
 		// Try #1: Non-encoded data URI
@@ -387,10 +387,7 @@ class CSSMin {
 	 * @return bool
 	 */
 	protected static function isLocalUrl( $maybeUrl ) {
-		if ( $maybeUrl !== '' && $maybeUrl[0] === '/' && !self::isRemoteUrl( $maybeUrl ) ) {
-			return true;
-		}
-		return false;
+		return strlen( $maybeUrl ) > 1 && $maybeUrl[0] === '/' && $maybeUrl[1] !== '/';
 	}
 
 	/**
@@ -511,7 +508,7 @@ class CSSMin {
 						return $data;
 					}
 				}
-				if ( method_exists( 'OutputPage', 'transformFilePath' ) ) {
+				if ( class_exists( OutputPage::class ) ) {
 					$url = OutputPage::transformFilePath( $remote, $local, $file );
 				} else {
 					// Add version parameter as the first five hex digits
