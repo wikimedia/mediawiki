@@ -39,6 +39,10 @@ production.
 * $wgValidateAllHtml was removed and will be ignored.
 * $wgScriptExtension was removed (deprecated and ignored since 1.25).
   See 1.25 release notes for more information.
+* $wgUseAjax is now marked as deprecated, just like the deprecated AJAX
+  framework that it enables. Some extensions mistakenly used this to check
+  whether any AJAX functionality at all should be enabled, further making this
+  problematic to retain.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that ….js
