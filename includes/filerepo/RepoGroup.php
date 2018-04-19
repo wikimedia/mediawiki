@@ -423,7 +423,7 @@ class RepoGroup {
 	 * Split a virtual URL into repo, zone and rel parts
 	 * @param string $url
 	 * @throws MWException
-	 * @return array Containing repo, zone and rel
+	 * @return string[] Containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {

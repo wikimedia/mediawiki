@@ -120,7 +120,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 
 	/**
-	 * @param array $files
+	 * @param string[] $files
 	 * @return array
 	 */
 	function fileExistsBatch( array $files ) {
@@ -176,7 +176,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @param string $virtualUrl
-	 * @return bool
+	 * @return false
 	 */
 	function getFileProps( $virtualUrl ) {
 		return false;
@@ -231,7 +231,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @param string $hash
-	 * @return array
+	 * @return ForeignAPIFile[]
 	 */
 	function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( [
@@ -257,10 +257,10 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param string $name
 	 * @param int $width
 	 * @param int $height
-	 * @param array &$result
+	 * @param array|null &$result Output-only parameter, guaranteed to become an array
 	 * @param string $otherParams
 	 *
-	 * @return bool
+	 * @return string|false
 	 */
 	function getThumbUrl( $name, $width = -1, $height = -1, &$result = null, $otherParams = '' ) {
 		$data = $this->fetchImageQuery( [
@@ -287,7 +287,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param int $width
 	 * @param int $height
 	 * @param string $otherParams
-	 * @param string $lang Language code for language of error
+	 * @param string|null $lang Language code for language of error
 	 * @return bool|MediaTransformError
 	 * @since 1.22
 	 */

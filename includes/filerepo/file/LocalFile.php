@@ -141,7 +141,7 @@ class LocalFile extends File {
 	 * @param FileRepo $repo
 	 * @param null $unused
 	 *
-	 * @return LocalFile
+	 * @return self
 	 */
 	static function newFromTitle( $title, $repo, $unused = null ) {
 		return new self( $title, $repo );
@@ -154,7 +154,7 @@ class LocalFile extends File {
 	 * @param stdClass $row
 	 * @param FileRepo $repo
 	 *
-	 * @return LocalFile
+	 * @return self
 	 */
 	static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->img_name );
@@ -195,7 +195,7 @@ class LocalFile extends File {
 	/**
 	 * Fields in the image table
 	 * @deprecated since 1.31, use self::getQueryInfo() instead.
-	 * @return array
+	 * @return string[]
 	 */
 	static function selectFields() {
 		global $wgActorTableSchemaMigrationStage;
@@ -235,7 +235,7 @@ class LocalFile extends File {
 	 * @since 1.31
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
-	 * @return array With three keys:
+	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
@@ -405,7 +405,7 @@ class LocalFile extends File {
 	/**
 	 * Returns the list of object properties that are included as-is in the cache.
 	 * @param string $prefix Must be the empty string
-	 * @return array
+	 * @return string[]
 	 * @since 1.31 No longer accepts a non-empty $prefix
 	 */
 	protected function getCacheFields( $prefix = 'img_' ) {
@@ -427,7 +427,7 @@ class LocalFile extends File {
 	 * Returns the list of object properties that are included as-is in the
 	 * cache, only when they're not too big, and are lazily loaded by self::loadExtraFromDB().
 	 * @param string $prefix Must be the empty string
-	 * @return array
+	 * @return string[]
 	 * @since 1.31 No longer accepts a non-empty $prefix
 	 */
 	protected function getLazyCacheFields( $prefix = 'img_' ) {
@@ -500,7 +500,7 @@ class LocalFile extends File {
 	/**
 	 * @param IDatabase $dbr
 	 * @param string $fname
-	 * @return array|bool
+	 * @return string[]|bool
 	 */
 	private function loadExtraFieldsWithTimestamp( $dbr, $fname ) {
 		$fieldMap = false;
@@ -1160,9 +1160,9 @@ class LocalFile extends File {
 	/** purgeEverything inherited */
 
 	/**
-	 * @param int $limit Optional: Limit to number of results
-	 * @param int $start Optional: Timestamp, start from
-	 * @param int $end Optional: Timestamp, end at
+	 * @param int|null $limit Optional: Limit to number of results
+	 * @param string|int|null $start Optional: Timestamp, start from
+	 * @param string|int|null $end Optional: Timestamp, end at
 	 * @param bool $inc
 	 * @return OldLocalFile[]
 	 */
@@ -2105,8 +2105,8 @@ class LocalFile extends File {
 	 * This is not used by ImagePage for local files, since (among other things)
 	 * it skips the parser cache.
 	 *
-	 * @param Language $lang What language to get description in (Optional)
-	 * @return bool|mixed
+	 * @param Language|null $lang What language to get description in (Optional)
+	 * @return string|false
 	 */
 	function getDescriptionText( $lang = null ) {
 		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
@@ -2124,7 +2124,7 @@ class LocalFile extends File {
 
 	/**
 	 * @param int $audience
-	 * @param User $user
+	 * @param User|null $user
 	 * @return string
 	 */
 	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -2369,7 +2369,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Add the old versions of the image to the batch
-	 * @return array List of archive names from old versions
+	 * @return string[] List of archive names from old versions
 	 */
 	public function addOlds() {
 		$archiveNames = [];
@@ -2762,10 +2762,10 @@ class LocalFileRestoreBatch {
 	/** @var LocalFile */
 	private $file;
 
-	/** @var array List of file IDs to restore */
+	/** @var string[] List of file IDs to restore */
 	private $cleanupBatch;
 
-	/** @var array List of file IDs to restore */
+	/** @var string[] List of file IDs to restore */
 	private $ids;
 
 	/** @var bool Add all revisions of the file */
@@ -2780,7 +2780,7 @@ class LocalFileRestoreBatch {
 	 */
 	function __construct( File $file, $unsuppress = false ) {
 		$this->file = $file;
-		$this->cleanupBatch = $this->ids = [];
+		$this->cleanupBatch = [];
 		$this->ids = [];
 		$this->unsuppress = $unsuppress;
 	}
@@ -3097,8 +3097,8 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a cleanup batch.
-	 * @param array $batch
-	 * @return array
+	 * @param string[] $batch
+	 * @return string[]
 	 */
 	protected function removeNonexistentFromCleanup( $batch ) {
 		$files = $newBatch = [];
@@ -3142,7 +3142,7 @@ class LocalFileRestoreBatch {
 	 * rollback by removing all items that were succesfully copied.
 	 *
 	 * @param Status $storeStatus
-	 * @param array $storeBatch
+	 * @param array[] $storeBatch
 	 */
 	protected function cleanupFailedBatch( $storeStatus, $storeBatch ) {
 		$cleanupBatch = [];
@@ -3208,7 +3208,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Add the old versions of the image to the batch
-	 * @return array List of archive names from old versions
+	 * @return string[] List of archive names from old versions
 	 */
 	public function addOlds() {
 		$archiveBase = 'archive';
@@ -3409,7 +3409,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Generate triplets for FileRepo::storeBatch().
-	 * @return array
+	 * @return array[]
 	 */
 	protected function getMoveTriplets() {
 		$moves = array_merge( [ $this->cur ], $this->olds );
@@ -3461,7 +3461,7 @@ class LocalFileMoveBatch {
 	/**
 	 * Cleanup a partially moved array of triplets by deleting the target
 	 * files. Called if something went wrong half way.
-	 * @param array $triplets
+	 * @param array[] $triplets
 	 */
 	protected function cleanupTarget( $triplets ) {
 		// Create dest pairs from the triplets
@@ -3477,7 +3477,7 @@ class LocalFileMoveBatch {
 	/**
 	 * Cleanup a fully moved array of triplets by deleting the source files.
 	 * Called at the end of the move process if everything else went ok.
-	 * @param array $triplets
+	 * @param array[] $triplets
 	 */
 	protected function cleanupSource( $triplets ) {
 		// Create source file names from the triplets
