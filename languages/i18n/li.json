@@ -3492,6 +3492,7 @@
 	"tags-delete-submit": "Haol dit label eweg zónger det 't kan waere trögkgedrejd",
 	"tags-delete-not-allowed": "Labeles die waere bepaoldj door 'n oetbreijing kónne neet waeren eweggehaold, behauve wen de oetbreijing dit specefiek tousteit.",
 	"tags-delete-not-found": "'t Label \"$1\" besteit neet.",
+	"tags-delete-too-many-uses": "'t Label \"$1\" is toegepas op mier es $2 {{PLURAL:$2|versies}}. Daodoor kan 't neet waere eweggehaold.",
 	"tags-delete-no-permission": "Doe höbs gein rechte veur verangeringslabels eweg te haole.",
 	"tags-activate-title": "Aktiveer label",
 	"tags-activate-question": "Doe geis zo 't label \"$1\" aktivere.",
