@@ -49,6 +49,7 @@ changes to languages because of Phabricator reports.
 * QuickTemplate::setTranslator() was removed (deprecated in 1.31).
   Use Skin::msg() instead.
 * wfInitShellLocale() was removed (deprecated in 1.30).
+* wfShellExecDisabled() was removed (deprecated in 1.30).
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
