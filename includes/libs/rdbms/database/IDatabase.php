@@ -1601,7 +1601,7 @@ interface IDatabase {
 	 * Example usage (atomic changes that might have to be discarded):
 	 * @code
 	 *     // Start a transaction if there isn't one already
-	 *     $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
+	 *     $sectionId = $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 	 *     // Create new record metadata row
 	 *     $dbw->insert( 'records', $row, __METHOD__ );
 	 *     // Figure out where to store the data based on the new row's ID
@@ -1622,7 +1622,7 @@ interface IDatabase {
 	 *         $dbw->endAtomic( __METHOD__ );
 	 *     } else {
 	 *         // Discard these writes from the transaction (preserving prior writes)
-	 *         $dbw->cancelAtomic( __METHOD__ );
+	 *         $dbw->cancelAtomic( __METHOD__, $sectionId );
 	 *     }
 	 * @endcode
 	 *
@@ -1714,9 +1714,9 @@ interface IDatabase {
 	 *                     $this->blobStore->delete( $path );
 	 *                 }
 	 *             },
-	 *         },
-	 *         __METHOD__
-	 *     );
+	 *             __METHOD__
+	 *          );
+	 *     }, $dbw::ATOMIC_CANCELABLE );
 	 * @endcode
 	 *
 	 * Example usage, caller of the "RecordStore::save" method:
@@ -1726,7 +1726,6 @@ interface IDatabase {
 	 *     try {
 	 *         $recordStore->save( $record );
 	 *     } catch ( StoreFailureException $e ) {
-	 *         $dbw->cancelAtomic( __METHOD__ );
 	 *         // ...various SQL writes happen...
 	 *     }
 	 *     // ...various SQL writes happen...
