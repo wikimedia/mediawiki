@@ -3616,14 +3616,12 @@ class WikiPage implements Page, IDBAccessObject {
 			Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
 		}
 
-		// Refresh counts on categories that should be empty now, to
-		// trigger possible deletion. Check master for the most
-		// up-to-date cat_pages.
+		// Refresh counts on categories that should be empty now
 		if ( count( $deleted ) ) {
 			$rows = $dbw->select(
 				'category',
 				[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-				[ 'cat_title' => $deleted, 'cat_pages <= 0' ],
+				[ 'cat_title' => $deleted, 'cat_pages <= 100' ],
 				__METHOD__
 			);
 			foreach ( $rows as $row ) {
