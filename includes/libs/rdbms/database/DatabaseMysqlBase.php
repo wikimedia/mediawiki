@@ -166,7 +166,7 @@ abstract class DatabaseMysqlBase extends Database {
 				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
 
-			$this->reportConnectionError( $error );
+			throw new DBConnectionError( $this, $error );
 		}
 
 		if ( strlen( $dbName ) ) {
@@ -181,15 +181,15 @@ abstract class DatabaseMysqlBase extends Database {
 					] )
 				);
 				$this->queryLogger->debug(
-					"Error selecting database $dbName on server {$this->server}" );
-
-				$this->reportConnectionError( "Error selecting database $dbName" );
+					"Error selecting database $dbName on server {$this->server}"
+				);
+				throw new DBConnectionError( $this, "Error selecting database $dbName" );
 			}
 		}
 
 		// Tell the server what we're communicating with
 		if ( !$this->connectInitCharset() ) {
-			$this->reportConnectionError( "Error setting character set" );
+			throw new DBConnectionError( $this, "Error setting character set" );
 		}
 
 		// Abstract over any insane MySQL defaults
@@ -218,8 +218,9 @@ abstract class DatabaseMysqlBase extends Database {
 						'method' => __METHOD__,
 					] )
 				);
-				$this->reportConnectionError(
-					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)' );
+				throw new DBConnectionError( $this,
+					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)'
+				);
 			}
 		}
 

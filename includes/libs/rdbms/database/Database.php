@@ -999,8 +999,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $myError ) {
 			$error = $myError;
 		}
-
-		# New method
 		throw new DBConnectionError( $this, $error );
 	}
 
