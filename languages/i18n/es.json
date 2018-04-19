@@ -2043,6 +2043,7 @@
 	"deadendpages": "Páginas sin salida",
 	"deadendpagestext": "Las siguientes páginas no enlazan a otras páginas de {{SITENAME}}.",
 	"protectedpages": "Páginas protegidas",
+	"protectedpages-filters": "Filtros:",
 	"protectedpages-indef": "Solo protecciones indefinidas",
 	"protectedpages-summary": "Esta página enumera las páginas existentes que actualmente están protegidas. Para obtener una lista de títulos que están protegidos desde su creación, véase [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Solo protecciones en cascada",

@@ -331,6 +331,7 @@
 	"config-nofile": "Não foi possível encontrar o ficheiro \"$1\". Terá sido apagado?",
 	"config-extension-link": "Sabia que a sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nPode consultar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria] ou a [https://www.mediawiki.org/wiki/Extension_Matrix Matriz de Extensões] para ver a lista completa de extensões.",
 	"config-skins-screenshots": "$1 (capturas de ecrã: $2)",
+	"config-extensions-requires": "$1 (requer $2)",
 	"config-screenshot": "captura de ecrã",
 	"mainpagetext": "<strong>O MediaWiki foi instalado.</strong>",
 	"mainpagedocfooter": "Consulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Ajuda do MediaWiki] para informações sobre o uso do software wiki.\n\n== Onde começar ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de opções de configuração]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Perguntas e respostas frequentes sobre o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Subscreva a lista de divulgação de novas versões do MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Regionalize o MediaWiki para a sua língua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda a combater <i>spam</i> na sua wiki]"

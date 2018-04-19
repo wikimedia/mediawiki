@@ -1891,7 +1891,7 @@
 	"statistics-files": "الملفات المرفوعة",
 	"statistics-edits": "تعديلات الصفحات منذ تنصيب {{SITENAME}}",
 	"statistics-edits-average": "متوسط التعديلات لكل صفحة",
-	"statistics-users": "[[Special:ListUsers|مستخدمون]] مسجلون",
+	"statistics-users": "مستخدمون مسجلون",
 	"statistics-users-active": "مستخدمون نشطون",
 	"statistics-users-active-desc": "المستخدمون الذين قاموا بفعل في آخر {{PLURAL:$1||يوم|يومين|$1 أيام|$1 يوماً|$1 يوم}}",
 	"pageswithprop": "صفحات مع خاصية الصفحة",
