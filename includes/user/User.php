@@ -4559,7 +4559,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * site.
 	 *
 	 * @param string $val Input value to compare
-	 * @param string $salt Optional function-specific data for hashing
+	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
 	 * @param int $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
@@ -4573,7 +4573,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * ignoring the suffix.
 	 *
 	 * @param string $val Input value to compare
-	 * @param string $salt Optional function-specific data for hashing
+	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
 	 * @param int $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
