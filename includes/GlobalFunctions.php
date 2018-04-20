@@ -3035,6 +3035,7 @@ function wfWaitForSlaves(
  * @param int $seconds
  */
 function wfCountDown( $seconds ) {
+	wfDeprecated( __FUNCTION__, '1.31' );
 	for ( $i = $seconds; $i >= 0; $i-- ) {
 		if ( $i != $seconds ) {
 			echo str_repeat( "\x08", strlen( $i + 1 ) );
