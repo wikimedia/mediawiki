@@ -420,7 +420,7 @@ class CSSMin {
 			//   is only supported in PHP 5.6. Use a getter method for now.
 			$urlRegex = '(' .
 				// Unquoted url
-				'url\(\s*(?P<file0>[^\'"][^\?\)]+?)(?P<query0>\?[^\)]*?|)\s*\)' .
+				'url\(\s*(?P<file0>[^\s\'"][^\?\)]+?)(?P<query0>\?[^\)]*?|)\s*\)' .
 				// Single quoted url
 				'|url\(\s*\'(?P<file1>[^\?\']+?)(?P<query1>\?[^\']*?|)\'\s*\)' .
 				// Double quoted url
