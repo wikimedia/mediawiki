@@ -30,6 +30,7 @@ use EmptyBagOStuff;
 use WANObjectCache;
 use Exception;
 use RuntimeException;
+use LogicException;
 
 /**
  * An interface for generating database load balancers
@@ -527,7 +528,11 @@ abstract class LBFactory implements ILBFactory {
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
-			'chronologyProtector' => $this->getChronologyProtector()
+			'chronologyCallback' => function ( ILoadBalancer $lb ) {
+				// Defer ChronologyProtector construction in case setRequestInfo() ends up
+				// being called later (but before the first connection attempt) (T192611)
+				$this->getChronologyProtector()->initLB( $lb );
+			}
 		];
 	}
 
@@ -585,6 +590,10 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function setRequestInfo( array $info ) {
+		if ( $this->chronProt ) {
+			throw new LogicException( 'ChronologyProtector already initialized.' );
+		}
+
 		$this->requestInfo = $info + $this->requestInfo;
 	}
 
