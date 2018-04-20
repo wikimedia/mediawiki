@@ -122,7 +122,7 @@ class SpecialProtectedpages extends SpecialPage {
 				'name' => 'size',
 			]
 		];
-		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedpages' )
