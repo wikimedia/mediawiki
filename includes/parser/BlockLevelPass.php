@@ -291,18 +291,33 @@ class BlockLevelPass {
 			if ( 0 == $prefixLength ) {
 				# No prefix (not in list)--go to paragraph mode
 				# @todo consider using a stack for nestable elements like span, table and div
+
+				// P-wrapping and indent-pre are suppressed inside, not outside
+				$blockElems = 'table|h1|h2|h3|h4|h5|h6|pre|p|ul|ol|dl|li';
+				// P-wrapping and indent-pre are suppressed outside, not inside
+				$antiBlockElems = 'td|th';
+
 				$openMatch = preg_match(
-					'/(?:<table|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|'
-						. '<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)\\b/iS',
+					'/<('
+						. "({$blockElems})|\\/({$antiBlockElems})|"
+						// Always suppresses
+						. '\\/?(tr)'
+						. ')\\b/iS',
 					$t
 				);
 				$closeMatch = preg_match(
-					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'
-						. '<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|'
-						. Parser::MARKER_PREFIX
-						. '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)\\b/iS',
+					'/<('
+						. "\\/({$blockElems})|({$antiBlockElems})|"
+						// Never suppresses
+						. '\\/?(center|blockquote|div|hr|mw:)'
+						. ')\\b/iS',
 					$t
 				);
+
+				// Any match closes the paragraph, but only when `!$closeMatch`
+				// do we enter block mode.  The oddities with table rows and
+				// cells are to avoid paragraph wrapping in interstitial spaces
+				// leading to fostered content.
 
 				if ( $openMatch || $closeMatch ) {
 					$pendingPTag = false;
