@@ -752,8 +752,10 @@ class OutputPage extends ContextSource {
 			'epoch' => $config->get( 'CacheEpoch' )
 		];
 		if ( $config->get( 'UseSquid' ) ) {
-			// T46570: the core page itself may not change, but resources might
-			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, time() - $config->get( 'SquidMaxage' ) );
+			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $this->getCdnCacheEpoch(
+				time(),
+				$config->get( 'SquidMaxage' )
+			) );
 		}
 		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
 
@@ -813,6 +815,19 @@ class OutputPage extends ContextSource {
 		wfClearOutputBuffers();
 
 		return true;
+	}
+
+	/**
+	 * @param int $reqTime Time of request (eg. now)
+	 * @param int $maxAge Cache TTL in seconds
+	 * @return int Timestamp
+	 */
+	private function getCdnCacheEpoch( $reqTime, $maxAge ) {
+		// Ensure Last-Modified is never more than (wgSquidMaxage) in the past,
+		// because even if the wiki page content hasn't changed since, static
+		// resources may have changed (skin HTML, interface messages, urls, etc.)
+		// and must roll-over in a timely manner (T46570)
+		return $reqTime - $maxAge;
 	}
 
 	/**
