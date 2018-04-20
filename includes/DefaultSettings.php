@@ -1573,16 +1573,17 @@ $wgDjvuOutputExtension = 'jpg';
 /**
  * Site admin email address.
  *
- * Defaults to "wikiadmin@$wgServerName".
+ * Defaults to "wikiadmin@$wgServerName" (in Setup.php).
  */
 $wgEmergencyContact = false;
 
 /**
  * Sender email address for e-mail notifications.
  *
- * The address we use as sender when a user requests a password reminder.
+ * The address we use as sender when a user requests a password reminder,
+ * as well as other e-mail notifications.
  *
- * Defaults to "apache@$wgServerName".
+ * Defaults to "apache@$wgServerName" (in Setup.php).
  */
 $wgPasswordSender = false;
 
@@ -1596,7 +1597,7 @@ $wgPasswordSenderName = 'MediaWiki Mail';
 /**
  * Reply-To address for e-mail notifications.
  *
- * Defaults to $wgPasswordSender.
+ * Defaults to $wgPasswordSender (in Setup.php).
  */
 $wgNoReplyAddress = false;
 
@@ -1690,8 +1691,15 @@ $wgAdditionalMailParams = null;
 $wgAllowHTMLEmail = false;
 
 /**
- * True: from page editor if s/he opted-in. False: Enotif mails appear to come
- * from $wgEmergencyContact
+ * Allow sending of e-mail notifications with the editor's address as sender.
+ *
+ * This setting depends on $wgEnotifRevealEditorAddress also being enabled.
+ * If both are enabled, notifications for actions from users that have opted-in,
+ * will be sent to other users with their address as "From" instead of "Reply-To".
+ *
+ * If disabled, or not opted-in, notifications come from $wgPasswordSender.
+ *
+ * @var bool
  */
 $wgEnotifFromEditor = false;
 
@@ -1723,8 +1731,18 @@ $wgEnotifWatchlist = false;
 $wgEnotifUserTalk = false;
 
 /**
- * Set the Reply-to address in notifications to the editor's address, if user
- * allowed this in the preferences.
+ * Allow sending of e-mail notifications with the editor's address in "Reply-To".
+ *
+ * Note, enabling this only actually uses it in notification e-mails if the user
+ * opted-in to this feature. This feature flag also controls visibility of the
+ * 'enotifrevealaddr' preference, which, if users opt into, will make e-mail
+ * notifications about their actions use their address as "Reply-To".
+ *
+ * To set the address as "From" instead of "Reply-To", also enable $wgEnotifFromEditor.
+ *
+ * If disabled, or not opted-in, notifications come from $wgPasswordSender.
+ *
+ * @var bool
  */
 $wgEnotifRevealEditorAddress = false;
 
