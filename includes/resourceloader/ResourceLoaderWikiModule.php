@@ -22,6 +22,7 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -50,7 +51,19 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-process cache for title info
+	// In-process cache for title info, structured as an array
+	// [
+	//  <batchKey> // Pipe-separated list of sorted keys from getPages
+	//   => [
+	//     <titleKey> => [ // Normalised title key
+	//       'page_len' => ..,
+	//       'page_latest' => ..,
+	//       'page_touched' => ..,
+	//     ]
+	//   ]
+	// ]
+	// @see self::fetchTitleInfo()
+	// @see self::makeTitleKey()
 	protected $titleInfo = [];
 
 	// List of page names that contain CSS
@@ -295,8 +308,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		return count( $revisions ) === 0;
 	}
 
-	private function setTitleInfo( $key, array $titleInfo ) {
-		$this->titleInfo[$key] = $titleInfo;
+	private function setTitleInfo( $batchKey, array $titleInfo ) {
+		$this->titleInfo[$batchKey] = $titleInfo;
+	}
+
+	private static function makeTitleKey( LinkTarget $title ) {
+		// Used for keys in titleInfo.
+		return "{$title->getNamespace()}:{$title->getDBkey()}";
 	}
 
 	/**
@@ -313,11 +331,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		$pageNames = array_keys( $this->getPages( $context ) );
 		sort( $pageNames );
-		$key = implode( '|', $pageNames );
-		if ( !isset( $this->titleInfo[$key] ) ) {
-			$this->titleInfo[$key] = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
+		$batchKey = implode( '|', $pageNames );
+		if ( !isset( $this->titleInfo[$batchKey] ) ) {
+			$this->titleInfo[$batchKey] = static::fetchTitleInfo( $dbr, $pageNames, __METHOD__ );
 		}
-		return $this->titleInfo[$key];
+		return $this->titleInfo[$batchKey];
 	}
 
 	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = __METHOD__ ) {
@@ -340,8 +358,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			foreach ( $res as $row ) {
 				// Avoid including ids or timestamps of revision/page tables so
 				// that versions are not wasted
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$titleInfo[$title->getPrefixedText()] = [
+				$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
+				$titleInfo[ self::makeTitleKey( $title ) ] = [
 					'page_len' => $row->page_len,
 					'page_latest' => $row->page_latest,
 					'page_touched' => $row->page_touched,
@@ -410,23 +428,23 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			$pages = $wikiModule->getPages( $context );
 			// Before we intersect, map the names to canonical form (T145673).
 			$intersect = [];
-			foreach ( $pages as $page => $unused ) {
-				$title = Title::newFromText( $page );
+			foreach ( $pages as $pageName => $unused ) {
+				$title = Title::newFromText( $pageName );
 				if ( $title ) {
-					$intersect[ $title->getPrefixedText() ] = 1;
+					$intersect[ self::makeTitleKey( $title ) ] = 1;
 				} else {
 					// Page name may be invalid if user-provided (e.g. gadgets)
 					$rl->getLogger()->info(
 						'Invalid wiki page title "{title}" in ' . __METHOD__,
-						[ 'title' => $page ]
+						[ 'title' => $pageName ]
 					);
 				}
 			}
 			$info = array_intersect_key( $allInfo, $intersect );
 			$pageNames = array_keys( $pages );
 			sort( $pageNames );
-			$key = implode( '|', $pageNames );
-			$wikiModule->setTitleInfo( $key, $info );
+			$batchKey = implode( '|', $pageNames );
+			$wikiModule->setTitleInfo( $batchKey, $info );
 		}
 	}
 
