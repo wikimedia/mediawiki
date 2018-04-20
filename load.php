@@ -36,11 +36,9 @@ if ( !$wgRequest->checkUrlExtension() ) {
 	return;
 }
 
-// Don't initialise ChronologyProtector from object cache, and
-// don't wait for unrelated MediaWiki writes when querying ResourceLoader.
-MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
-	'ChronologyProtection' => 'false',
-] );
+// Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
+// writes when getting database connections for ResourceLoader. (T192611)
+MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->disableChronologyProtection();
 
 // Set up ResourceLoader
 $resourceLoader = new ResourceLoader(
