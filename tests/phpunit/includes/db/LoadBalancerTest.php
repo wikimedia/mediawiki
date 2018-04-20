@@ -51,17 +51,23 @@ class LoadBalancerTest extends MediaWikiTestCase {
 	public function testWithoutReplica() {
 		global $wgDBname;
 
+		$called = false;
 		$lb = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'chronologyCallback' => function () use ( &$called ) {
+				$called = true;
+			}
 		] );
 
 		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
 		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
 		$this->assertEquals( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
 
+		$this->assertFalse( $called );
 		$dbw = $lb->getConnection( DB_MASTER );
+		$this->assertTrue( $called );
 		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );

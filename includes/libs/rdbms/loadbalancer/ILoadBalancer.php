@@ -101,7 +101,7 @@ interface ILoadBalancer {
 	 *  - maxLag: Avoid replica DB servers with more lag than this [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
-	 *  - chronologyProtector: ChronologyProtector object [optional]
+	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - profiler : Class name or instance with profileIn()/profileOut() methods. [optional]

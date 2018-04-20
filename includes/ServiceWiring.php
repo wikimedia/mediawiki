@@ -62,7 +62,7 @@ return [
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
 
 		$instance = new $class( $lbConf );
-		MWLBFactory::setSchemaAliases( $instance );
+		MWLBFactory::setSchemaAliases( $instance, $mainConfig );
 
 		return $instance;
 	},

@@ -208,10 +208,8 @@ abstract class MWLBFactory {
 		return $class;
 	}
 
-	public static function setSchemaAliases( LBFactory $lbFactory ) {
-		$mainLB = $lbFactory->getMainLB();
-		$masterType = $mainLB->getServerType( $mainLB->getWriterIndex() );
-		if ( $masterType === 'mysql' ) {
+	public static function setSchemaAliases( LBFactory $lbFactory, Config $config ) {
+		if ( $config->get( 'DBtype' ) === 'mysql' ) {
 			/**
 			 * When SQLite indexes were introduced in r45764, it was noted that
 			 * SQLite requires index names to be unique within the whole database,

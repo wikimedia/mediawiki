@@ -59,8 +59,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var ILoadMonitor */
 	private $loadMonitor;
-	/** @var ChronologyProtector|null */
-	private $chronProt;
+	/** @var callable|null Callback to run before the first connection attempt */
+	private $chronologyCallback;
 	/** @var BagOStuff */
 	private $srvCache;
 	/** @var WANObjectCache */
@@ -116,8 +116,8 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** @var bool */
 	private $disabled = false;
-	/** @var bool */
-	private $chronProtInitialized = false;
+	/** @var bool Whether any connection has been attempted yet */
+	private $connectionAttempted = false;
 	/** @var int */
 	private $maxLag = self::MAX_LAG_DEFAULT;
 
@@ -243,8 +243,8 @@ class LoadBalancer implements ILoadBalancer {
 			: ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = isset( $params['agent'] ) ? $params['agent'] : '';
 
-		if ( isset( $params['chronologyProtector'] ) ) {
-			$this->chronProt = $params['chronologyProtector'];
+		if ( isset( $params['chronologyCallback'] ) ) {
+			$this->chronologyCallback = $params['chronologyCallback'];
 		}
 	}
 
@@ -424,7 +424,7 @@ class LoadBalancer implements ILoadBalancer {
 			} else {
 				$i = false;
 				if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
-					// ChronologyProtecter sets "waitForPos" for session consistency.
+					// "chronologyCallback" sets "waitForPos" for session consistency.
 					// This triggers doWait() after connect, so it's especially good to
 					// avoid lagged servers so as to avoid excessive delay in that method.
 					$ago = microtime( true ) - $this->waitForPos->asOfTime();
@@ -849,11 +849,11 @@ class LoadBalancer implements ILoadBalancer {
 			$domain = false; // local connection requested
 		}
 
-		if ( !$this->chronProtInitialized && $this->chronProt ) {
+		if ( !$this->connectionAttempted && $this->chronologyCallback ) {
 			$this->connLogger->debug( __METHOD__ . ': calling initLB() before first connection.' );
-			// Load CP positions before connecting so that doWait() triggers later if needed
-			$this->chronProtInitialized = true;
-			$this->chronProt->initLB( $this );
+			// Load any "waitFor" positions before connecting so that doWait() is triggered
+			$this->connectionAttempted = true;
+			call_user_func( $this->chronologyCallback, $this );
 		}
 
 		// Check if an auto-commit connection is being requested. If so, it will not reuse the
