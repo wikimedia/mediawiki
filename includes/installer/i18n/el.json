@@ -281,6 +281,7 @@
 	"config-nofile": "Το αρχείο «$1» δεν μπορεί να βρεθεί. Μήπως έχει διαγραφεί;",
 	"config-extension-link": "Γνωρίζατε ότι το wiki σας υποστηρίζει [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions επεκτάσεις];\n\nΜπορείτε να περιηγηθείτε στις [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category επεκτάσεις ανά κατηγορία] ή στον [https://www.mediawiki.org/wiki/Extension_Matrix πίνακα επεκτάσεων] για να δείτε την πλήρη λίστα των επεκτάσεων.",
 	"config-skins-screenshots": "$1 (στιγμιότυπα: $2)",
+	"config-extensions-requires": "$1 (απαιτεί το $2)",
 	"config-screenshot": "στιγμιότυπο",
 	"mainpagetext": "<strong>To MediaWiki εγκαταστάθηκε.</strong>",
 	"mainpagedocfooter": "Συμβουλευτείτε τον [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents οδηγό χρήστη] για πληροφορίες σχετικά με το λογισμικό wiki.\n\n== Ξεκινώντας ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Λίστα ρυθμίσεων διαμόρφωσης]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ\n Συχνές ερωτήσεις για το MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Λίστα αλληλογραφίας νέων κυκλοφοριών του MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Μεταφράστε το MediaWiki στη γλώσσα σας]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Μάθετε πώς να καταπολεμήσετε το ανεπιθύμητο περιεχόμενο στο wiki σας]"

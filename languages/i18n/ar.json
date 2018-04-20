@@ -1954,7 +1954,7 @@
 	"mostinterwikis": "الصفحات التي تحتوي على أغلب وصلات الإنترويكي",
 	"mostrevisions": "أكثر الصفحات تعديلا",
 	"prefixindex": "كل الصفحات بالبادئة",
-	"prefixindex-namespace": "كل الصفحات مع بادئة ($1 مساحة الأسم)",
+	"prefixindex-namespace": "كل الصفحات مع بادئة (نطاق $1)",
 	"prefixindex-submit": "اعرض",
 	"prefixindex-strip": "أخف البادئة من القائمة",
 	"shortpages": "صفحات قصيرة",
