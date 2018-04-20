@@ -15,6 +15,15 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$this->assertInstanceOf( ResourceLoaderWikiModule::class, $module );
 	}
 
+	private function prepareTitleInfo( array $mockInfo ) {
+		$module = TestingAccessWrapper::newFromClass( ResourceLoaderWikiModule::class );
+		$info = [];
+		foreach ( $mockInfo as $key => $val ) {
+			$info[ $module->makeTitleKey( Title::newFromText( $key ) ) ] = $val;
+		}
+		return $info;
+	}
+
 	public static function provideConstructor() {
 		return [
 			// Nothing
@@ -102,7 +111,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			->getMock();
 		$module->expects( $this->any() )
 			->method( 'getTitleInfo' )
-			->will( $this->returnValue( $titleInfo ) );
+			->will( $this->returnValue( $this->prepareTitleInfo( $titleInfo ) ) );
 		$module->expects( $this->any() )
 			->method( 'getGroup' )
 			->will( $this->returnValue( $group ) );
@@ -151,10 +160,10 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			'MediaWiki:Common.css' => [ 'type' => 'styles' ],
 			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
 		];
-		$titleInfo = [
+		$titleInfo = $this->prepareTitleInfo( [
 			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
 			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
-		];
+		] );
 		$expected = $titleInfo;
 
 		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
@@ -186,10 +195,10 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			// doing an intersect on the canonical result, producing an empty array.
 			'mediawiki: fallback.css' => [ 'type' => 'styles' ],
 		];
-		$titleInfo = [
+		$titleInfo = $this->prepareTitleInfo( [
 			'MediaWiki:Common.css' => [ 'page_len' => 1234 ],
 			'MediaWiki:Fallback.css' => [ 'page_len' => 0 ],
-		];
+		] );
 		$expected = $titleInfo;
 
 		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
