@@ -2828,8 +2828,9 @@
 			return $.when.apply( $, all );
 		} );
 		loading.then( function () {
-			/* global mwPerformance */
-			mwPerformance.mark( 'mwLoadEnd' );
+			if ( window.performance && performance.mark ) {
+				performance.mark( 'mwLoadEnd' );
+			}
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );
 	} );
