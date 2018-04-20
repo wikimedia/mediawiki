@@ -27,6 +27,7 @@
  */
 use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tidy\TidyDriverBase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -802,7 +803,7 @@ class ParserTestRunner {
 	 *  - options: Array of test options
 	 *  - config: Overrides for global variables, one per line
 	 *
-	 * @return ParserTestResult or false if skipped
+	 * @return ParserTestResult|false false if skipped
 	 */
 	public function runTest( $test ) {
 		wfDebug( __METHOD__.": running {$test['desc']}" );
