@@ -291,16 +291,13 @@ class BlockLevelPass {
 			if ( 0 == $prefixLength ) {
 				# No prefix (not in list)--go to paragraph mode
 				# @todo consider using a stack for nestable elements like span, table and div
-				$openMatch = preg_match(
-					'/(?:<table|<h1|<h2|<h3|<h4|<h5|<h6|<pre|<tr|'
-						. '<p|<ul|<ol|<dl|<li|<\\/tr|<\\/td|<\\/th)\\b/iS',
-					$t
-				);
+				$blockElems = 'table|tr|h1|h2|h3|h4|h5|h6|pre|p|ul|ol|dl|li';
+				$openMatch = preg_match("/<(?:{$blockElems})\\b/iS", $t);
 				$closeMatch = preg_match(
-					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'
-						. '<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|'
-						. Parser::MARKER_PREFIX
-						. '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)\\b/iS',
+					'/<(?:'
+						. "(?:\\/(?:{$blockElems}))|"
+						. '(?:\\/?(?:td|th|center|blockquote|div|hr|mw:))'
+						. ')\\b/iS',
 					$t
 				);
 
