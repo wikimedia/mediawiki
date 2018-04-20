@@ -26714,7 +26714,6 @@ Empty table rows go away
 </td>
 <td>there
 </td></tr>
-
 </table>
 
 !! end
