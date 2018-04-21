@@ -124,7 +124,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'label-message' => 'prefixindex-strip',
 			],
 		];
-		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
