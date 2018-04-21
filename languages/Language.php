@@ -1322,6 +1322,13 @@ class Language {
 						$thai = self::tsToYear( $ts, 'thai' );
 					}
 					$num = $thai[0];
+					$year = (int) substr( $ts, 0, 4 );
+					if ( $year <= 1940 ) {
+						$month = (int) substr( $ts, 4, 2 );
+						if ( $month <= 3 ) {
+							$num--;
+						}
+					}
 					break;
 				case 'xoY':
 					$usedYear = true;
