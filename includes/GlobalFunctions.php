@@ -712,6 +712,8 @@ function wfAssembleUrl( $urlParts ) {
  *
  * @todo Need to integrate this into wfExpandUrl (see T34168)
  *
+ * @since 1.19
+ *
  * @param string $urlPath URL path, potentially containing dot-segments
  * @return string URL path with all dot-segments removed
  */
