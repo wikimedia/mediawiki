@@ -1029,6 +1029,13 @@ class LanguageTest extends LanguageClassesTestCase {
 				'2555',
 				'Thai year'
 			],
+						[
+				'xkY',
+				'19410101090705',
+				'2555',
+				'2555',
+				'Thai year'
+			],
 			[
 				'xoY',
 				'20120102090705',

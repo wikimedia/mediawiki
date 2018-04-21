@@ -1884,6 +1884,14 @@ class Language {
 			# Add 543 years to the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy + 543;
+			# fix for dates before 1941
+			$year = (int)substr( $ts, 0, 4 );
+			if ( $year <= 1940 ) {
+				$month = (int)substr( $ts, 4, 2 );
+				if ( $month <= 3 ) {
+					$gy_offset--;
+				}
+			}
 		} elseif ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
 			# Minguo dates
 			# Deduct 1911 years from the Gregorian calendar
