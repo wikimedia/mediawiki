@@ -1884,6 +1884,14 @@ class Language {
 			# Add 543 years to the Gregorian calendar
 			# Months and days are identical
 			$gy_offset = $gy + 543;
+			# fix for dates between 1912 and 1941
+			# https://en.wikipedia.org/w/index.php?title=Thai_solar_calendar&oldid=836596673#New_year
+			if ( $gy >= 1912 && $gy <= 1940 ) {
+				if ( $gm <= 3 ) {
+					$gy_offset--;
+				}
+				$gm = ( $gm - 3 ) % 12;
+			}
 		} elseif ( ( !strcmp( $cName, 'minguo' ) ) || !strcmp( $cName, 'juche' ) ) {
 			# Minguo dates
 			# Deduct 1911 years from the Gregorian calendar
