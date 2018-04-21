@@ -87,12 +87,11 @@ class SpecialUnblock extends SpecialPage {
 	protected function getFields() {
 		$fields = [
 			'Target' => [
-				'type' => 'text',
+				'type' => 'user',
 				'label-message' => 'ipaddressorusername',
 				'autofocus' => true,
 				'size' => '45',
 				'required' => true,
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			],
 			'Name' => [
 				'type' => 'info',
