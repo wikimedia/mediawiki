@@ -6,7 +6,7 @@
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
     "selenium": "./tests/selenium/selenium.sh",
-    "selenium-test": "grunt webdriver:test"
+    "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
@@ -21,7 +21,6 @@
     "grunt-jsonlint": "1.1.0",
     "grunt-karma": "2.0.0",
     "grunt-stylelint": "0.10.0",
-    "grunt-webdriver": "2.0.3",
     "karma": "1.7.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-firefox-launcher": "1.0.1",
