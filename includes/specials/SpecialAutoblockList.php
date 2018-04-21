@@ -74,7 +74,6 @@ class SpecialAutoblockList extends SpecialPage {
 			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'autoblocklist-legend' )
 			->setSubmitTextMsg( 'autoblocklist-submit' )
-			->setSubmitProgressive()
 			->prepareForm()
 			->displayForm( false );
 
