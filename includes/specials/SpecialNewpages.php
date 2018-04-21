@@ -251,13 +251,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'default' => $tagFilterVal,
 			],
 			'username' => [
-				'type' => 'text',
+				'type' => 'user',
 				'name' => 'username',
 				'label-message' => 'newpages-username',
 				'default' => $userText,
 				'id' => 'mw-np-username',
 				'size' => 30,
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			],
 			'size' => [
 				'type' => 'sizefilter',
