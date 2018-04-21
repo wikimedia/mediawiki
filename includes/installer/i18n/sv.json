@@ -317,6 +317,7 @@
 	"config-nofile": "Filen \"$1\" kunde inte hittas. Har den raderats?",
 	"config-extension-link": "Visste du att din wiki stödjer [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions tillägg]?\n\nDu kan bläddra [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category tillägg efter kategori].",
 	"config-skins-screenshots": "$1 (skärmbilder: $2)",
+	"config-extensions-requires": "$1 (kräver $2)",
 	"config-screenshot": "skärmbild",
 	"mainpagetext": "<strong>MediaWiki har installerats utan problem.</strong>",
 	"mainpagedocfooter": "Information om hur wiki-programvaran används finns i [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents användarguiden].\n\n== Att komma igång ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista över konfigurationsinställningar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postlista för nya versioner av MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalisera MediaWiki för ditt språk]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Läs om hur du bekämpar spam på din wiki]"

@@ -29,7 +29,8 @@
 			"Macofe",
 			"Adeliine",
 			"Metsavend",
-			"Cumbril"
+			"Cumbril",
+			"Ilmarine"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -38,7 +39,7 @@
 	"tog-newpageshidepatrolled": "Peida uute lehtede loendis kontrollitud leheküljed",
 	"tog-hidecategorization": "Peida lehekülgede kategoriseerimine",
 	"tog-extendwatchlist": "Laienda jälgimisloendit, et näha kõiki muudatusi, mitte vaid kõige värskemaid",
-	"tog-usenewrc": "Rühmita viimased muudatused ja muudatused jälgimisloendis lehekülje järgi",
+	"tog-usenewrc": "Rühmita viimased muudatused ja muudatuste jälgimisloend lehekülje järgi",
 	"tog-numberheadings": "Pealkirjade automaatnummerdus",
 	"tog-showtoolbar": "Näita redigeerimise tööriistariba",
 	"tog-editondblclick": "Redigeeri lehekülgi topeltklõpsu peale",

@@ -1410,7 +1410,7 @@
 	"recentchangeslinked-feed": "Mainaig a sinukatan",
 	"recentchangeslinked-toolbox": "Mainaig a sinuksukatan",
 	"recentchangeslinked-title": "Sinukatan a mainaig iti \"$1\"",
-	"recentchangeslinked-summary": "Daytoy ket listaan dagiti kaudian a sinukatan kadagiti pampanid a nakasilpo manipud iti naisangayan a panid (wenno kadagiti kameng ti maysa a nainaganan a kategoria).\nDagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket dagiti <strong>napuskol</strong>.",
+	"recentchangeslinked-summary": "Mangikabil iti maysa a nagan ti panid tapno makita dagiti panagbaliw kadagiti naisilpo a panid wenno iti dayta a panid. (Tapno makita dagiti kameng iti maysa a kategoria, ikabil ti Kategoria:Nagan ti kategoria). Dagiti panagbaliw kadagiti panid iti [[Special:Watchlist|Listaan ti bambantayam]] ket addada iti <strong>napuskol</strong>.",
 	"recentchangeslinked-page": "Nagan ti panid:",
 	"recentchangeslinked-to": "Ipakita dagiti sinukatan kadagiti panid nga imbes a naisilpo iti naited a panid",
 	"recentchanges-page-added-to-category": "nainayon ti [[:$1]] iti kategoria",
