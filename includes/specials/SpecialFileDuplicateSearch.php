@@ -131,7 +131,6 @@ class FileDuplicateSearchPage extends QueryPage {
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setAction( wfScript() );
 		$htmlForm->setMethod( 'get' );
-		$htmlForm->setSubmitProgressive();
 		$htmlForm->setSubmitTextMsg( $this->msg( 'fileduplicatesearch-submit' ) );
 
 		// The form should be visible always, even if it was submitted (e.g. to perform another action).
