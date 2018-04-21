@@ -883,7 +883,7 @@
 	"invert": "انتخاب معکوس",
 	"namespace_association": "رلدے ناں دی تھاں",
 	"blanknamespace": "(مکھ)",
-	"contributions": " $1 ورتن آلے دا حصہ",
+	"contributions": "\n{{GENDER:$1|ورتݨ آلے}} دیاں حصے داریاں",
 	"contributions-title": "صارف $1 دی شراکتاں",
 	"mycontris": "شراکتاں",
 	"anoncontribs": "شراکتاں",

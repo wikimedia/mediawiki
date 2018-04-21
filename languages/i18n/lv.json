@@ -448,6 +448,7 @@
 	"wrongpassword": "Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.",
 	"wrongpasswordempty": "Parole bija tukša. Lūdzu mēģini vēlreiz.",
 	"passwordtooshort": "Tava parole ir pārāk īsa.\nTajā jābūt vismaz {{PLURAL:$1|$1 zīmēm|1 zīmei|$1 zīmēm}}.",
+	"passwordtoolong": "Paroles nevar būt garākas par {{PLURAL:$1|$1 simboliem|$1 simbolu|$1 simboliem}}.",
 	"password-name-match": "Tava parole nedrīkst būt tāda pati kā tavs lietotājvārds.",
 	"password-login-forbidden": "Šī lietotājvārda un paroles izmantošana ir aizliegta.",
 	"mailmypassword": "Atiestatīt paroli",
