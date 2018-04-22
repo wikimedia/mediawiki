@@ -1220,7 +1220,7 @@
 	"right-reupload-shared": "覆蓋共用媒體檔案庫於本地的檔案",
 	"right-upload_by_url": "使用 URL 上傳檔案",
 	"right-purge": "不須確認即清除網站的頁面快取",
-	"right-autoconfirmed": "不受 IP-based 的註冊頻率限制",
+	"right-autoconfirmed": "不受基於IP的使用頻率限制",
 	"right-bot": "將其視為自動程序",
 	"right-nominornewtalk": "不顯示討論頁面中次要編輯的新訊息提示",
 	"right-apihighlimits": "使用 API 查詢的最高上限值",

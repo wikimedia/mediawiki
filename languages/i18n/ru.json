@@ -125,7 +125,8 @@
 			"OlegCinema",
 			"Movses",
 			"Patrick Star",
-			"Happy13241"
+			"Happy13241",
+			"Vcohen"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3568,7 +3569,7 @@
 	"autosumm-blank": "Полностью удалено содержимое страницы",
 	"autosumm-replace": "Содержимое страницы заменено на «$1»",
 	"autoredircomment": "Перенаправление на [[$1]]",
-	"autosumm-removed-redirect": "Удалённое перенаправление на [[$1]]",
+	"autosumm-removed-redirect": "Удалено перенаправление на [[$1]]",
 	"autosumm-changed-redirect-target": "Перенаправление изменено с [[$1]] на [[$2]]",
 	"autosumm-new": "Новая страница: «$1»",
 	"autosumm-newblank": "Создана пустая страница",
@@ -3780,7 +3781,7 @@
 	"tag-mw-contentmodelchange-description": "Правки, которые [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel изменяют модель содержимого] страницы",
 	"tag-mw-new-redirect": "новое перенаправление",
 	"tag-mw-new-redirect-description": "Правки, которые создают новое перенаправление или изменяют страницу на перенаправление",
-	"tag-mw-removed-redirect": "удалённое перенаправление",
+	"tag-mw-removed-redirect": "удалено перенаправление",
 	"tag-mw-removed-redirect-description": "Правки, которые изменяют существующее перенаправление на не-перенаправление",
 	"tag-mw-changed-redirect-target": "изменение цели перенаправления",
 	"tag-mw-changed-redirect-target-description": "Правки, которые изменяют цель перенаправления",
