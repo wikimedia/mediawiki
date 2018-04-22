@@ -757,6 +757,10 @@
 			usLongDate: [
 				new RegExp( /^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/ )
 			],
+			asianDate: [
+				new RegExp( /\d[\u5E74\uB144\u6708\uC6D4\u65E5\uC77C\u53F7]/ ),
+				new RegExp( /[^\u524D\uC804\d]*([\u524D\uC804])?\s*(\d{1,4}[\u5E74\uB144])?\s*(\d{1,2}[\u6708\uC6D4])?\s*(\d{1,2}[\u65E5\uC77C\u53F7])?/ )
+			],
 			time: [
 				new RegExp( /^(([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(am|pm)))$/ )
 			]
@@ -1200,6 +1204,28 @@
 		},
 		format: function ( s ) {
 			return $.tablesorter.formatFloat( new Date( s ).getTime() );
+		},
+		type: 'numeric'
+	} );
+
+	ts.addParser( {
+		id: 'asianDate',
+		is: function ( s ) {
+			s = s.replace( ts.dateSeparatorRegex, ' ' ).toLowerCase();
+			return ts.rgx.asianDate[ 0 ].test( s );
+		},
+		format: function ( s ) {
+			var match, y, m, d;
+			s = s.replace( ts.dateSeparatorRegex, ' ' ).toLowerCase();
+			match = s.match( ts.rgx.asianDate[ 1 ] );
+			y = parseInt( match[ 2 ] || '0', 10 );
+			m = parseInt( match[ 3 ] || '0', 10 );
+			d = parseInt( match[ 4 ] || '0', 10 );
+			// Support for AD/BC
+			if ( match[ 1 ] ) {
+				y = -y;
+			}
+			return y * 1e4 + m * 1e2 + d;
 		},
 		type: 'numeric'
 	} );
