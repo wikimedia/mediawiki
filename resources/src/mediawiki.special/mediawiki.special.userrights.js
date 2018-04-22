@@ -19,7 +19,7 @@
 	if ( summaryCodePointLimit ) {
 		$wpReason.codePointLimit( summaryCodePointLimit );
 	} else if ( summaryByteLimit ) {
-		$wpReason.bytePointLimit( summaryByteLimit );
+		$wpReason.byteLimit( summaryByteLimit );
 	}
 
 }( mediaWiki, jQuery ) );

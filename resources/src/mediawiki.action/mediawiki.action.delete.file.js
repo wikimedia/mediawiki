@@ -24,7 +24,7 @@
 		if ( summaryCodePointLimit ) {
 			$wpReason.codePointLimit( summaryCodePointLimit, filterFn );
 		} else if ( summaryByteLimit ) {
-			$wpReason.bytePointLimit( summaryByteLimit, filterFn );
+			$wpReason.byteLimit( summaryByteLimit, filterFn );
 		}
 	} );
 
