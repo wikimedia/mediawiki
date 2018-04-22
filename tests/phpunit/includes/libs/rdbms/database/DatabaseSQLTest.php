@@ -1896,10 +1896,27 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// Implicit transaction gets silently rolled back
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
 		call_user_func( $doError );
-		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
-		$this->database->commit( __METHOD__, Database::FLUSHING_INTERNAL );
+		try {
+			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBTransactionError $e ) {
+			$this->assertEquals(
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				$e->getMessage()
+			);
+		}
+		try {
+			$this->database->commit( __METHOD__, Database::FLUSHING_INTERNAL );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( DBTransactionError $e ) {
+			$this->assertEquals(
+				'Cannot execute query from ' . __METHOD__ . ' while transaction status is ERROR.',
+				$e->getMessage()
+			);
+		}
+		$this->database->rollback( __METHOD__, Database::FLUSHING_INTERNAL );
 		// phpcs:ignore
-		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK; BEGIN; DELETE FROM x WHERE field = \'1\'; COMMIT' );
+		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; ROLLBACK' );
 
 		// ... unless there were prior writes
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
