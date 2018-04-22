@@ -1160,7 +1160,7 @@
 	"rcfilters-group-results-by-page": "ដាក់លទ្ធផលជាក្រុមតាមទំព័រ",
 	"rcfilters-activefilters": "តម្រងកំពុងប្រើ",
 	"rcfilters-advancedfilters": "តម្រងពិសេស",
-	"rcfilters-limit-title": "លទ្ធផលត្រូវបង្ហាញ",
+	"rcfilters-limit-title": "ចំនួនលទ្ធផលត្រូវបង្ហាញ",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|បន្លាស់ប្ដូរ|បន្លាស់ប្ដូរ}}ចំនួន$1 ក្នុងរយៈពេល $2 នេះ",
 	"rcfilters-date-popup-title": "រយៈពេលដែលត្រូវស្វែងរក",
 	"rcfilters-days-title": "ចំនួនថ្ងៃមុននេះ",

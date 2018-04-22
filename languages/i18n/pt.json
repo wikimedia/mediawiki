@@ -266,7 +266,7 @@
 	"toolbox": "Ferramentas",
 	"tool-link-userrights": "Alterar grupos {{GENDER:$1|do utilizador|da utilizadora}}",
 	"tool-link-userrights-readonly": "Ver grupos {{GENDER:$1|do utilizador|da utilizadora}}",
-	"tool-link-emailuser": "Enviar correio eletrónico a {{GENDER:$1|este utilizador|esta utilizadora|este(a) utilizador(a)}}",
+	"tool-link-emailuser": "Enviar correio {{GENDER:$1|ao utilizador|à utilizadora}}",
 	"imagepage": "Ver página de ficheiro",
 	"mediawikipage": "Ver página de mensagem",
 	"templatepage": "Ver página de predefinição",
