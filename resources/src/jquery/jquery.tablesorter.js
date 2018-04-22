@@ -9,7 +9,7 @@
  * http://www.gnu.org/licenses/gpl.html
  *
  * Depends on mw.config (wgDigitTransformTable, wgDefaultDateFormat, wgPageContentLanguage)
- * and mw.language.months.
+ * mw.language.months and mw.language (yearBC).
  *
  * Uses 'tableSorterCollation' in mw.config (if available)
  *
@@ -119,8 +119,8 @@
 						// Confirmed the parser for multiple cells, let's return it
 						return parsers[ i ];
 					}
-				} else if ( parsers[ i ].id.match( /isoDate/ ) && /^\D*(\d{1,4}) ?(\[.+\])?$/.test( nodeValue ) ) {
-					// For 1-4 digits and maybe reference(s) parser "isoDate" or "number" is possible, check next row
+				} else if ( parsers[ i ].id.match( /isoDate|date/ ) && /^\D*(\d{1,4}) ?(\[.+\])?$/.test( nodeValue ) ) {
+					// For 1-4 digits and maybe reference(s) parser "isoDate", "date" or "number" is possible, check next row
 					empty++;
 					nextRow = true;
 				} else {
@@ -531,46 +531,76 @@
 	}
 
 	function buildDateTable() {
-		var i, name,
-			regex = [];
+		var i, name, yearBC, bc,
+			months = [];
 
 		ts.monthNames = {};
 
 		for ( i = 0; i < 12; i++ ) {
 			name = mw.language.months.names[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			months.push( mw.RegExp.escape( name ) );
 			name = mw.language.months.genitive[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			months.push( mw.RegExp.escape( name ) );
 			name = mw.language.months.abbrev[ i ].toLowerCase().replace( '.', '' );
 			ts.monthNames[ name ] = i + 1;
-			regex.push( mw.RegExp.escape( name ) );
+			months.push( mw.RegExp.escape( name ) );
+		}
+		// Build piped string
+		months = months.join( '|' );
+
+		/**
+		 * Data yearBC - String to detect years before year 0 in parser 'date'.
+		 * Case insensitive, a dot stay for zero or more characters of [.- &nbsp;],
+		 * after this can follow more characters.
+		 *
+		 * Example: "ab.C." or "AB.C" is the same and matches
+		 *          to abc, ABC, abcD, ab C, ab.-C., ab. Chr.
+		 *          but not to: bc (missing a), a b c (a and b not connected).
+		 *
+		 * This String is not used for asian dates with [前전] before year.
+		 * A minus before plain year is detected without this String.
+		 *
+		 * @return {string}
+		 */
+		yearBC = mw.language.getData( mw.config.get( 'wgPageContentLanguage' ), 'yearBC' );
+		if ( yearBC ) {
+			bc = '';
+			yearBC = yearBC.split( /[.\- \xa0]/ ); // remove . -   &nbsp;
+			for ( i = 0; i < yearBC.length; i++ ) {
+				if ( yearBC[ i ] ) {
+					bc += '\\s*' + yearBC[ i ].toLowerCase(); 
+				}
+			}
+			ts.dateBcRegex = new RegExp( '\\d' + bc + '|' + bc + '\\D*\\d' );
 		}
 
-		// Build piped string
-		regex = regex.join( '|' );
-
 		// Build RegEx
-		// Any date formated with . , ' - or /
-		ts.dateRegex[ 0 ] = new RegExp( /^\s*(\d{1,2})[,.\-/'\s]{1,2}(\d{1,2})[,.\-/'\s]{1,2}(\d{2,4})\s*?/i );
+		ts.dateSeparatorRegex = new RegExp( /[,.\-/]/g ); // replaced to space before test
 
-		// Written Month name, dmy
+		// Three parts of digits: mdy dmy ymd, separated with , . - / WhiteSpace or LineTerminator
+		ts.dateRegex[ 0 ] = new RegExp(
+			'^\\D*(\\d{1,4})\\s+(\\d{1,2})\\s+(\\d{1,4})' );
+
+		// Named month: dm dmy ym ymd
 		ts.dateRegex[ 1 ] = new RegExp(
-			'^\\s*(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(' +
-				regex +
-			')' +
-			'[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$',
-			'i'
-		);
+			'^\\D*(\\d{1,4})\\s+(' + months + ')(\\s+\\d{1,4})?' );
 
-		// Written Month name, mdy
+		// Named month: m md my mdy
 		ts.dateRegex[ 2 ] = new RegExp(
-			'^\\s*(' + regex + ')' +
-			'[\\,\\.\\-\\/\'\\s]+(\\d{1,2})[\\,\\.\\-\\/\'\\s]+(\\d{2,4})\\s*$',
-			'i'
-		);
+			// To detect a word boundary for non latin months add the parser a leading space.
+		//	' (' + months + ') (\\s*\\d{1,4})?([\\s\']+\\d{1,4})?' ); for '10 -> 2010
+			' (' + months + ') (\\s*\\d{1,4})?(\\s+\\d{1,4})?' );
 
+		// Next 2 RegEx have no use for parser detection, because this match also to isoDate and number
+		// Digit month and year: my ym
+		ts.dateRegex[ 3 ] = new RegExp(
+			'^\\D*(\\d{1,4})\\s+(\\d{1,4})' );
+
+		// Only year: y
+		ts.dateRegex[ 4 ] = new RegExp(
+			'([-\u2212]?\\d+)' );
 	}
 
 	/**
@@ -1201,34 +1231,98 @@
 	} );
 
 	ts.addParser( {
+		id: 'asianDate',
+		is: function ( s ) {
+			s = s.replace( ts.dateSeparatorRegex, ' ' ).toLowerCase();
+			return ts.rgx.asianDate[ 0 ].test( s );
+		},
+		format: function ( s ) {
+			var match, y, m, d;
+			s = s.replace( ts.dateSeparatorRegex, ' ' ).toLowerCase();
+			match = s.match( ts.rgx.asianDate[ 1 ] );
+			y = parseInt( match[ 2 ] || '0', 10 );
+			m = parseInt( match[ 3 ] || '0', 10 );
+			d = parseInt( match[ 4 ] || '0', 10 );
+			// Support for AD/BC
+			if ( match[ 1 ] ) {
+				y = -y;
+			}
+			return y * 1e4 + m * 1e2 + d;
+		},
+		type: 'numeric'
+	} );
+
+	ts.addParser( {
 		id: 'date',
 		is: function ( s ) {
+			s = ' ' + s.replace( ts.dateSeparatorRegex, ' ' ).toLowerCase() + ' ';
 			return ( ts.dateRegex[ 0 ].test( s ) || ts.dateRegex[ 1 ].test( s ) || ts.dateRegex[ 2 ].test( s ) );
 		},
 		format: function ( s ) {
-			var match, y;
-			s = s.toLowerCase().trim();
-
+			var match, ma2, y,
+				bc = false,
+				guesstimateCenturys = false,
+				sl = s.toLowerCase();
+			s = ' ' + sl.replace( ts.dateSeparatorRegex, ' ' ) + ' ';
+			if ( ts.dateBcRegex ) {
+				bc = ts.dateBcRegex.test( s );
+			}
+			// Three parts of digits
 			if ( ( match = s.match( ts.dateRegex[ 0 ] ) ) !== null ) {
+				guesstimateCenturys = true;
 				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgPageContentLanguage' ) === 'en' ) {
 					s = [ match[ 3 ], match[ 1 ], match[ 2 ] ];
 				} else if ( mw.config.get( 'wgDefaultDateFormat' ) === 'dmy' ) {
 					s = [ match[ 3 ], match[ 2 ], match[ 1 ] ];
+				} else if ( mw.config.get( 'wgDefaultDateFormat' ) === 'ymd' ) {
+					s = [ match[ 1 ], match[ 2 ], match[ 3 ] ];
 				} else {
 					// If we get here, we don't know which order the dd-dd-dddd
 					// date is in. So return something not entirely invalid.
 					return '99999999';
 				}
+			// Named month at second
 			} else if ( ( match = s.match( ts.dateRegex[ 1 ] ) ) !== null ) {
-				s = [ match[ 3 ], String( ts.monthNames[ match[ 2 ] ] ), match[ 1 ] ];
+				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'ymd' ) { // ym ymd
+					s = [ match[ 1 ], String( ts.monthNames[ match[ 2 ] ] ), $.trim( match[ 3 ] ) || '0' ];
+				} else { // dm dmy
+					s = [ match[ 3 ] || '0', String( ts.monthNames[ match[ 2 ] ] ), match[ 1 ] ];
+					if ( match[ 3 ] ) {
+						guesstimateCenturys = true;
+					}
+				}
+			// Named month at first
 			} else if ( ( match = s.match( ts.dateRegex[ 2 ] ) ) !== null ) {
-				s = [ match[ 3 ], String( ts.monthNames[ match[ 1 ] ] ), match[ 2 ] ];
+				ma2 = $.trim( match[ 2 ] ) || '0';
+				if ( match[ 3 ] || ( parseInt( ma2, 10 ) < 32 && !bc ) ) {
+					// ma2 is a day: m md mdy
+					s = [ $.trim( match[ 3 ] ) || '0', String( ts.monthNames[ match[ 1 ] ] ), ma2 ];
+					if ( match[ 3 ] ) {
+						guesstimateCenturys = true;
+					}
+				} else {
+					// ma2 is a year: my
+					s = [ ma2, String( ts.monthNames[ match[ 1 ] ] ), '0' ];
+				}
+				// s[ 0 ] = s[ 0 ].replace( /'/g, "" ); for '10 -> 2010
+			// Digit month and year: my ym
+			} else if ( ( match = s.match( ts.dateRegex[ 3 ] ) ) !== null ) {
+				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'ymd' ) {
+					s = [ match[ 1 ], match[ 2 ], '0' ];
+				} else {
+					s = [ match[ 2 ], match[ 1 ], '0' ];
+				}
+			// Only year: y
+			} else if ( ( match = sl.match( ts.dateRegex[ 4 ] ) ) !== null ) { // sl contain dateSeparators
+				y = match[ 1 ].replace( '\u2212', '-' ); // year possibly with sign
+				s = [ y, '0', '0' ];
+				// guesstimateCenturys = false; // use years < 100 direct
 			} else {
 				// Should never get here
 				return '99999999';
 			}
 
-			// Pad Month and Day
+			// Pad month and day
 			if ( s[ 1 ].length === 1 ) {
 				s[ 1 ] = '0' + s[ 1 ];
 			}
@@ -1236,18 +1330,19 @@
 				s[ 2 ] = '0' + s[ 2 ];
 			}
 
-			if ( ( y = parseInt( s[ 0 ], 10 ) ) < 100 ) {
-				// Guestimate years without centuries
+			y = parseInt( s[ 0 ], 10 );
+			if ( bc ) {
+				// Support for BC/AD
+				y = -y;
+			} else if ( y < 100 && guesstimateCenturys ) {
+				// Guesstimate years without centuries
 				if ( y < 30 ) {
-					s[ 0 ] = 2000 + y;
+					y = 2000 + y;
 				} else {
-					s[ 0 ] = 1900 + y;
+					y = 1900 + y;
 				}
 			}
-			while ( s[ 0 ].length < 4 ) {
-				s[ 0 ] = '0' + s[ 0 ];
-			}
-			return parseInt( s.join( '' ), 10 );
+			return y * 1e4 + parseInt( s[ 1 ] + s[ 2 ], 10 );
 		},
 		type: 'numeric'
 	} );

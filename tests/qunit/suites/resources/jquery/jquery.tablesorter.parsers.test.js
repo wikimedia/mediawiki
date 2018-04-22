@@ -5,7 +5,8 @@
 	 */
 
 	var text, ipv4,
-		simpleMDYDatesInMDY, simpleMDYDatesInDMY, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
+		simpleMDYDatesInMDY, DMYDates, YMDDates, BCDates,
+		complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
 		currencyData, transformedCurrencyData;
 
 	QUnit.module( 'jquery.tablesorter.parsers', QUnit.newMwEnvironment( {
@@ -22,7 +23,7 @@
 				},
 				names: [ 'January', 'February', 'March', 'April', 'May', 'June',
 					'July', 'August', 'September', 'October', 'November', 'December' ],
-				genitive: [ 'January', 'February', 'March', 'April', 'May', 'June',
+				genitive: [ 'January', 'February', 'March', 'd\'abril', 'במאי', 'June',
 					'July', 'August', 'September', 'October', 'November', 'December' ],
 				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
@@ -34,7 +35,7 @@
 		config: {
 			wgPageContentLanguage: 'en',
 			/* default date format of the content language */
-			wgDefaultDateFormat: 'dmy',
+			wgDefaultDateFormat: 'mdy',
 			/* These two are important for numeric interpretations */
 			wgSeparatorTransformTable: [ '', '' ],
 			wgDigitTransformTable: [ '', '' ]
@@ -94,84 +95,190 @@
 	];
 	parserTest( 'IPv4', 'IPAddress', ipv4 );
 
+	/* eslint-disable no-multi-spaces */
 	simpleMDYDatesInMDY = [
-		[ 'January 17, 2010',	true, 20100117, 'Long middle endian date' ],
-		[ 'Jan 17, 2010',	true, 20100117, 'Short middle endian date' ],
-		[ '1/17/2010',		true, 20100117, 'Numeric middle endian date' ],
-		[ '01/17/2010',		true, 20100117, 'Numeric middle endian date with padding on month' ],
+		[ 'January 7, 2010',	true, 20100107, 'Long middle endian date' ],
+		[ 'Jan. 7, 2010',	true, 20100107, 'Short middle endian date with .' ],
+		[ '1/7/10',		true, 20100107, 'Numeric middle endian date' ],
+		[ '01/7/2010',		true, 20100107, 'Numeric middle endian date with padding on month' ],
 		[ '01/07/2010',		true, 20100107, 'Numeric middle endian date with padding on day' ],
 		[ '01/07/0010',		true, 20100107, 'Numeric middle endian date with padding on year' ],
-		[ '5.12.1990',		true, 19900512, 'Numeric middle endian date with . separator' ]
+		[ '1.7.2010',		true, 20100107, 'Numeric middle endian date with . separator' ]
 	];
 	parserTest( 'MDY Dates using mdy content language', 'date', simpleMDYDatesInMDY );
 
-	simpleMDYDatesInDMY = [
-		[ 'January 17, 2010',	true, 20100117, 'Long middle endian date' ],
-		[ 'Jan 17, 2010',	true, 20100117, 'Short middle endian date' ],
-		[ '1/17/2010',		true, 20101701, 'Numeric middle endian date' ],
-		[ '01/17/2010',		true, 20101701, 'Numeric middle endian date with padding on month' ],
+	DMYDates = [
+		[ 'January 7, 2010',	true, 20100107, 'Long middle endian date' ],
+		[ 'Jan. 7, 2010',	true, 20100107, 'Short middle endian date with .' ],
+		// DMY
+		[ '1/7/10',		true, 20100701, 'Numeric middle endian date' ],
+		[ '01/7/2010',		true, 20100701, 'Numeric middle endian date with padding on month' ],
 		[ '01/07/2010',		true, 20100701, 'Numeric middle endian date with padding on day' ],
 		[ '01/07/0010',		true, 20100701, 'Numeric middle endian date with padding on year' ],
-		[ '5.12.1990',		true, 19901205, 'Numeric middle endian date with . separator' ]
+		[ '1.7.2010',		true, 20100701, 'Numeric middle endian date with . separator' ],
+		[ 'pre1/7/10pos',	true, 20100701, 'Numeric dmy: Pre- and postfix' ],
+		[ '01. Jul. 2010',	true, 20100701, 'Named dmy' ],
+		[ '01 במאי 2010',	true, 20100501, 'Month with non latin characters (he)' ],
+		[ '~1 Jul 10pos',	true, 20100701, 'Named dmy: Pre- and postfix' ],
+		[ '1. July',		true,      701, 'Named dm' ],
+		[ 'pre1. July pos',	true,      701, 'Named dm: Pre- and postfix' ],
+		[ '12 2010',		false, 20101200, 'Numeric month year' ]
 	];
-	parserTest( 'MDY Dates using dmy content language', 'date', simpleMDYDatesInDMY, function () {
+	parserTest( 'DMY Dates and MDY Dates using dmy content language', 'date', DMYDates, function () {
 		mw.config.set( {
 			wgDefaultDateFormat: 'dmy',
 			wgPageContentLanguage: 'de'
 		} );
 	} );
 
-	oldMDYDates = [
-		[ 'January 19, 1400 BC',		false, '99999999', 'BC' ],
-		[ 'January 19, 1400BC',		false, '99999999', 'Connected BC' ],
-		[ 'January, 19 1400 B.C.',	false, '99999999', 'B.C.' ],
-		[ 'January 19, 1400 AD',		false, '99999999', 'AD' ],
-		[ 'January, 19 10',			true, 20100119, 'AD' ],
-		[ 'January, 19 1',			false, '99999999', 'AD' ]
+	YMDDates = [
+		[ '2010. Jan. 7',	true,  20100107, 'Named ymd date' ],
+		[ '~2010 Jan. 7pos',	true,  20100107, 'Named ymd: Pre- and postfix' ],
+		[ '2010.1.7',		true,  20100107, 'Numeric ymd date' ],
+		[ 'pre2010.1.7pos',	true,  20100107, 'Numeric ymd: Pre- and postfix' ],
+		[ '2010 Dec',		true,  20101200, 'Year named month' ],
+		[ '~2010 Dec pos',	true,  20101200, 'Named ym: Pre- and postfix' ],
+		[ '2010 12',		false, 20101200, 'Numeric ym date' ],
+		[ 'pre2010 12pos',	false, 20101200, 'Numeric ym: Pre- and postfix' ]
 	];
-	parserTest( 'Very old MDY dates', 'date', oldMDYDates );
+	parserTest( 'YMD Dates', 'date', YMDDates, function () {
+		mw.config.set( {
+			wgDefaultDateFormat: 'ymd',
+			wgPageContentLanguage: 'hu'
+		} );
+	} );
 
 	complexMDYDates = [
 		[ 'January, 19 2010',	true, 20100119, 'Comma after month' ],
 		[ 'January 19, 2010',	true, 20100119, 'Comma after day' ],
-		[ 'January/19/2010',		true, 20100119, 'Forward slash separator' ],
-		[ '04 22 1991',			true, 19910422, 'Month with 0 padding' ],
-		[ 'April 21 1991',		true, 19910421, 'Space separation' ],
-		[ '04 22 1991',			true, 19910422, 'Month with 0 padding' ],
-		[ 'December 12 \'10',	true, 20101212, '' ],
-		[ 'Dec 12 \'10',			true, 20101212, '' ],
-		[ 'Dec. 12 \'10',		true, 20101212, '' ]
+		[ 'January/19/2010',	true, 20100119, 'Forward slash separator' ],
+		[ '04 22 1991',		true, 19910422, 'Month with 0 padding' ],
+		[ 'April 22 1991',	true, 19910422, 'Space separation mdy' ],
+		[ 'd\'abril 22 1991',	true, 19910422, 'Month name with \' (language br, ca)' ],
+		[ 'במאי 22 1991',	true, 19910522, 'Month name with non latin characters (he)' ],
+		[ '22 April 1991',	true, 19910422, 'Space separation dmy' ],
+		[ 'Dec-6-10',		true, 20101206, 'Separator: -' ],
+		[ 'Dec.\xa06\n10',	true, 20101206, 'Separator: &nbsp; and <br>' ],
+		[ 'pre Jan 7, 2010pos',	true, 20100107, 'Named mdy: Pre- and postfix' ],
+		[ 'pre1/7/2010pos',	true, 20100107, 'Numeric mdy: Pre- and postfix' ],
+		[ '12 6 29',		true, 20291206, 'Year < 30' ],
+		[ '12 6 30',		true, 19301206, 'Year ≥ 30' ],
+		[ 'Dec 31',		true,     1231, 'Month day' ],
+		[ 'pre Dec 31pos',	true,     1231, 'md: Pre- and postfix' ]
 	];
 	parserTest( 'MDY Dates', 'date', complexMDYDates );
 
 	clobberedDates = [
-		[ 'January, 19 2010 - January, 20 2010',	false, '99999999', 'Date range with hyphen' ],
-		[ 'January, 19 2010 — January, 20 2010',	false, '99999999', 'Date range with mdash' ],
-		[ 'prefixJanuary, 19 2010',	false, '99999999', 'Connected prefix' ],
-		[ 'prefix January, 19 2010',	false, '99999999', 'Prefix' ],
-		[ 'December 12 2010postfix',	false, '99999999', 'ConnectedPostfix' ],
-		[ 'December 12 2010 postfix',	false, '99999999', 'Postfix' ],
+		[ 'January, 19 2010 - January, 20 2010',	true, 20100119, 'Date range with hyphen' ],
+		[ 'January, 19 2010 — January, 20 2010',	true, 20100119, 'Date range with mdash' ],
+		[ 'pre January, 19 2010',	true, 20100119, 'Prefix' ],
+		[ 'January 19 20100',		true, 20100119, 'Year > 4 digits' ],
+		[ 'January 19 2010pos',		true, 20100119, 'ConnectedPostfix' ],
+		[ 'January 19 2010 pos',	true, 20100119, 'Postfix' ],
+		[ 'pre19 Jan 2010pos',		true, 20100119, 'dmy: Pre- and postfix ' ],
+		[ 'pre1 19 2010pos',		true, 20100119, 'Only digits: Pre- and postfix' ],
+		[ 'January',				true,      100, 'Only month' ],
+		// false written dates
 		[ 'A simple text',		false, '99999999', 'Plain text in date sort' ],
-		[ '04l22l1991',			false, '99999999', 'l char as separator' ],
-		[ 'January\\19\\2010',	false, '99999999', 'backslash as date separator' ]
+		[ '04l22l1991',			false,    40000, 'l char as separator' ],
+		[ 'January\\19\\2010',	false,   190000, 'Backslash as date separator' ],
+		[ 'December 6 \'10',	true,      1206, 'Separator: \'' ],
+		[ 'Ajan, 19 2010',		false, 20101900, 'Month in words 1' ],
+		[ 'Jana, 19 2010',		false, 20101900, 'Month in words 2' ],
+		[ 'May19 2010',			false, 20101900, 'Missing space' ]
 	];
 	parserTest( 'Clobbered Dates', 'date', clobberedDates );
 
 	MYDates = [
-		[ 'December 2010',	false, '99999999', 'Plain month year' ],
-		[ 'Dec 2010',		false, '99999999', 'Abreviated month year' ],
-		[ '12 2010',			false, '99999999', 'Numeric month year' ]
+		[ 'December 2010',	true, 20101200, 'Named month year' ],
+		[ 'Dec 2010',		true, 20101200, 'Abreviated month year' ],
+		[ 'December 32',	true,   321200, 'Named month year > 31' ],
+		[ 'December 31',	true,     1231, 'Plain month year ≤ 31 is month day' ],
+		[ '~ Dec 2010pos',	true, 20101200, 'Named my: Pre- and postfix' ],
+		[ '12 2010',		false, 20101200, 'Numeric month year' ],
+		[ 'pre12 2010pos',	false, 20101200, 'Numeric my: Pre- and postfix' ]
 	];
 	parserTest( 'MY Dates', 'date', MYDates );
 
 	YDates = [
-		[ '2010',	false, '99999999', 'Plain 4-digit year' ],
-		[ '876',		false, '99999999', '3-digit year' ],
-		[ '76',		false, '99999999', '2-digit year' ],
-		[ '\'76',	false, '99999999', '2-digit millenium bug year' ],
-		[ '2010 BC',	false, '99999999', '4-digit year BC' ]
+		[ '20100',		false, 201000000, 'Year > 4 digits' ],
+		[ '2010',		false,  20100000, '4-digit year' ],
+		[ '876',		false,   8760000, '3-digit year' ],
+		[ '76',			false,    760000, '2-digit year' ],
+		[ '\'76',		false,    760000, '2-digit millenium bug year' ],
+		[ 'pre10post',	false,    100000, 'Pre- and postfix' ]
 	];
 	parserTest( 'Y Dates', 'date', YDates );
+
+	BCDates = [
+		[ 'January 19, 1 BC',		true,      -9881, 'BC' ],
+		[ 'January 19, 1400BC',		true,  -13999881, 'Connected BC' ],
+		[ 'January 19, 1400 BCEra',	true,  -13999881, 'Extended BC' ],
+		[ 'January, 19 1400 B.C.',	true,  -13999881, 'mdy B.C.' ],
+		[ 'January, 19 1400 B.-C.',	true,  -13999881, 'mdy B.-C.' ],
+		[ '19. January 1400 b. c.',	true,  -13999881, 'dmy b. c.' ],
+		[ 'Jan., 19 1400 B.\xa0C.',	true,  -13999881, 'mdy B.&nbsp;C.' ],
+		[ 'January 14 BC',			true,    -139900, 'Named month year' ],
+		[ '01/19/1400 BC',			true,  -13999881, 'Only digits BC' ],
+		[ '01/19/14 BC',			true,    -139881, 'Only digits BC, 2 digit year' ],
+		[ '20100 BC',				false, -201000000, 'Only year, > 4 digits' ],
+		[ '1400 BC - 1300 BC',		false, -14000000, 'Date range BC' ],
+		[ '1400—1300 BC',			false, -14000000, 'Date range BC abbreviated' ],
+		[ '1400 to 1300 BC',		false, -14000000, 'Date range BC abbreviated with words' ],
+		[ '1400 BC',				false, -14000000, 'Only year, 4 digit' ],
+		[ '14BC',					false,   -140000, 'Only year, 2 digit, connected BC' ],
+		[ '1 BC',					false,    -10000, 'Only year, 1 digit' ],
+		[ 'BC January 14',			true,    -139900, 'BC before named month year' ],
+		[ 'BC 01/19/1400',			true,  -13999881, 'BC before only digits' ],
+		[ 'BC 1400 — 1300',			false, -14000000, 'BC before date range' ],
+		[ 'BC 1400',				false, -14000000, 'BC before year, 4 digit' ],
+		[ 'BC14',					false,   -140000, 'Connected BC before year, 2 digit' ],
+		[ 'B.c.öň 1',				false,    -10000, 'Extended BC before year, 1 digit (tk)' ],
+		[ 'B. C. 1',				false,    -10000, 'B. C. before year, 1 digit (hu)' ],
+		[ 'B.C.ա. 1',				false,    -10000, 'B.C.ա. before year, 1 digit (hy)' ],
+		[ '-1400',					false, -14000000, 'Negative year, 4 digit (eo, oc, gl)' ],
+		[ '-1',						false,    -10000, 'Negative year, 1 digit' ],
+		[ '\u22121',				false,    -10000, 'Negative year, 1 digit (minus sign \u2212)' ],
+		[ '1',						false,     10000, 'Year, 1 digit' ],
+		[ '1400',					false,  14000000, 'Year, 4 digit' ],
+		[ '1400 AD',				false,	14000000, 'AD or other postfix' ],
+		[ 'January 32 AD',			true,	  320100, 'AD written month year 32' ],
+		[ 'January 19 100 AD',		true,	 1000119, 'AD with day, year ≥ 100, correct' ],
+		// false parsed date
+		[ 'January 14 AD',			true,	     114, 'AD written month (year 14), is day 14' ],
+		[ 'January 19 1 AD',		true,	20010119, 'AD with day, year < 30, 1 is 2001' ],
+		[ '19 January 30 AD',		true,	19300119, 'AD with day, year ≥ 30, 30 is 1930' ]
+	];
+	parserTest( 'BC dates with 2 chars (B.C.)', 'date', BCDates, function () {
+		mw.language.setData( mw.config.get( 'wgPageContentLanguage' ), 'yearBC', 'B.C.' );
+	} );
+
+	BCDates = [
+		[ 'January 19, 1400 avJC',		true, -13999881, 'avJC (et, fi)' ],
+		[ 'January 19, 1400avJC',		true, -13999881, 'Connected avJC' ],
+		[ 'January 19, 1400 av J Chr',	true, -13999881, 'Extended avJC' ],
+		[ 'January, 19 1400 av.J.C.',	true, -13999881, 'mdy av.J.C.' ],
+		[ 'January, 19 1400 av. J.-C.',	true, -13999881, 'mdy av. J.-C. (fr, bg, lt)' ],
+		[ '19. January 1400 av. J. C.',	true, -13999881, 'dmy av. J. C. (bs)' ]
+	];
+	parserTest( 'BC dates with 4 chars (av.J.C.)', 'date', BCDates, function () {
+		mw.language.setData( mw.config.get( 'wgPageContentLanguage' ), 'yearBC', 'av.J.C.' );
+	} );
+
+	BCDates = [
+		[ 'January 19, 1400 до н. э.',	true, -13999881, 'до н. э. (ru)' ]
+	];
+	parserTest( 'BC dates with non latin chars (до н. э.)', 'date', BCDates, function () {
+		mw.language.setData( mw.config.get( 'wgPageContentLanguage' ), 'yearBC', 'до н. э.' );
+	} );
+
+	BCDates = [
+		[ 'January 19, 1400 ईसा पूर्व',	true, -13999881, 'ईसा पूर्व (hi)' ]
+	];
+	parserTest( 'BC dates with non latin chars (ईसा पूर्व)', 'date', BCDates, function () {
+		mw.language.setData( mw.config.get( 'wgPageContentLanguage' ), 'yearBC', 'ईसा पूर्व' );
+	} );
+	/* eslint-enable no-multi-spaces */
 
 	ISODates = [
 		[ '',		false,	-Infinity, 'Not a date' ],
