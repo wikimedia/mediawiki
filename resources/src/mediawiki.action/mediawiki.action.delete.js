@@ -24,7 +24,7 @@
 		if ( summaryCodePointLimit ) {
 			reason.$input.codePointLimit( summaryCodePointLimit, filterFn );
 		} else if ( summaryByteLimit ) {
-			reason.$input.bytePointLimit( summaryByteLimit, filterFn );
+			reason.$input.byteLimit( summaryByteLimit, filterFn );
 		}
 	} );
 }( mediaWiki, jQuery ) );

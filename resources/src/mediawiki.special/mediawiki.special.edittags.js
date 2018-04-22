@@ -31,7 +31,7 @@
 		if ( summaryCodePointLimit ) {
 			$wpReason.codePointLimit();
 		} else if ( summaryByteLimit ) {
-			$wpReason.bytePointLimit();
+			$wpReason.byteLimit();
 		}
 	} );
 
