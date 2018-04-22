@@ -1098,6 +1098,31 @@
 	} );
 
 	tableTest(
+		'Asian date sorting',
+		[ 'Header' ],
+		[
+			// China, Hong Kong, Japan, Singapore, Taiwan style dates
+			[ '2010\u5e74 12\u6708 06\u65E5' ],
+			[ '2010年2月7日' ],
+			[ '2010年2月10日' ],
+			[ '30年12月06日' ],
+			[ '\u7D00\u5143\u524D90年12月06日' ]
+		],
+		[
+			// Sorted by ascending date
+			[ '紀元前90年12月06日' ], // 90BC
+			[ '30年12月06日' ],
+			[ '2010年2月7日' ],
+			[ '2010年2月10日' ],
+			[ '2010年 12月 06日' ]
+		],
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort:eq(0)' ).click();
+		}
+	);
+
+	tableTest(
 		'Correct date sorting I',
 		[ 'date' ],
 		correctDateSorting1,

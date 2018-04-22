@@ -5,7 +5,7 @@
 	 */
 
 	var text, ipv4,
-		simpleMDYDatesInMDY, simpleMDYDatesInDMY, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
+		simpleMDYDatesInMDY, simpleMDYDatesInDMY, asianDates, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
 		currencyData, transformedCurrencyData;
 
 	QUnit.module( 'jquery.tablesorter.parsers', QUnit.newMwEnvironment( {
@@ -34,7 +34,7 @@
 		config: {
 			wgPageContentLanguage: 'en',
 			/* default date format of the content language */
-			wgDefaultDateFormat: 'dmy',
+			wgDefaultDateFormat: 'mdy',
 			/* These two are important for numeric interpretations */
 			wgSeparatorTransformTable: [ '', '' ],
 			wgDigitTransformTable: [ '', '' ]
@@ -93,6 +93,27 @@
 		[ '45.238.27.109 postfix', false, 45238027109, 'An IP address with a seperated postfix' ]
 	];
 	parserTest( 'IPv4', 'IPAddress', ipv4 );
+
+	/* eslint-disable no-multi-spaces */
+	asianDates = [
+		[ '2010\u5e74 01\u6708 02\u65E5', true, 20100102, 'Y年 M月 D日 (hex)' ],
+		[ '2010年1月2日',		true, 20100102, 'Y年M月D日 connected (char)' ],
+		[ '2010\u5e74 01\u6708 02\u53F7', true, 20100102, 'Y年 M月 D号 (hex)' ],
+		[ '2010年1月2号',		true, 20100102, 'Y年M月D号 connected (char)' ],
+		[ '2010\uB144 01\uC6D4 02\uC77C', true, 20100102, 'Y년 M월 D일 (hex)' ],
+		[ '2010년1월2일',		true,  20100102, 'Y년M월D일 connected (char)' ],
+		[ '2010年1月',		true,  20100100, 'Y年M月' ],
+		[ '1月2号',		true,       102, 'M月D号' ],
+		[ '2010年',		true,  20100000, 'Y年 only year' ],
+		[ '1年',			true,     10000, 'Y年 old year' ],
+		[ '\u524D 1400年',	true, -14000000, '前 before year, 4 digit (hex)' ],
+		[ '前1年',		true,    -10000, 'Connected 前 before year, 1 digit (char)' ],
+		[ '\uC804 1400年',	true, -14000000, '전 before year, 4 digit (hex)' ],
+		[ '전1年',		true,    -10000, 'Connected 전 before year, 1 digit (char)' ],
+		[ '1400年\xa01月\n6日',	true,  14000106, 'Separator: &nbsp; and <br>' ],
+		[ '紀元前1400年1月2日pos',	true, -13999898, 'Pre- and postfix' ]
+	];
+	parserTest( 'Asian Dates', 'asianDate', asianDates );
 
 	simpleMDYDatesInMDY = [
 		[ 'January 17, 2010',	true, 20100117, 'Long middle endian date' ],
@@ -172,6 +193,8 @@
 		[ '2010 BC',	false, '99999999', '4-digit year BC' ]
 	];
 	parserTest( 'Y Dates', 'date', YDates );
+
+	/* eslint-enable no-multi-spaces */
 
 	ISODates = [
 		[ '',		false,	-Infinity, 'Not a date' ],
