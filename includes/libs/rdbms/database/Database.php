@@ -1169,27 +1169,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $ret === false ) {
 			if ( $this->trxLevel ) {
-				if ( !$this->wasKnownStatementRollbackError() ) {
-					# Either the query was aborted or all queries after BEGIN where aborted.
-					if ( $this->explicitTrxActive() || $priorWritesPending ) {
-						# In the first case, the only options going forward are (a) ROLLBACK, or
-						# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
-						# option is ROLLBACK, since the snapshots would have been released.
-						$this->trxStatus = self::STATUS_TRX_ERROR;
-						$this->trxStatusCause =
-							$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
-						$tempIgnore = false; // cannot recover
-					} else {
-						# Nothing prior was there to lose from the transaction,
-						# so just roll it back.
-						$this->rollback( __METHOD__ . " ($fname)", self::FLUSHING_INTERNAL );
-					}
-					$this->trxStatusIgnoredCause = null;
-				} else {
+				if ( $this->wasKnownStatementRollbackError() ) {
 					# We're ignoring an error that caused just the current query to be aborted.
-					# But log the cause so we can log a deprecation notice if a
-					# caller actually does ignore it.
+					# But log the cause so we can log a deprecation notice if a caller actually
+					# does ignore it.
 					$this->trxStatusIgnoredCause = [ $lastError, $lastErrno, $fname ];
+				} else {
+					# Either the query was aborted or all queries after BEGIN where aborted.
+					# In the first case, the only options going forward are (a) ROLLBACK, or
+					# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
+					# option is ROLLBACK, since the snapshots would have been released.
+					$this->trxStatus = self::STATUS_TRX_ERROR;
+					$this->trxStatusCause =
+						$this->makeQueryException( $lastError, $lastErrno, $sql, $fname );
+					$tempIgnore = false; // cannot recover
+					$this->trxStatusIgnoredCause = null;
 				}
 			}
 
