@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -97,7 +99,13 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 				[
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
-					"{$prefix}_len IS NULL"
+					$dbr->makeList( [
+						"{$prefix}_len IS NULL",
+						$dbr->makeList( [
+							"{$prefix}_len = 0",
+							"{$prefix}_sha1 != \"phoiac9h4m842xq45sp7s6u21eteeq1\"", // sha1( "" )
+						], IDatabase::LIST_AND )
+					], IDatabase::LIST_OR )
 				],
 				__METHOD__,
 				[],
