@@ -1733,7 +1733,7 @@
 	"statistics-files": "Eropgeluede Fichieren",
 	"statistics-edits": "Säitenännerungen zanter datt et {{SITENAME}} gëtt",
 	"statistics-edits-average": "Duerchschnëttlech Zuel vun Ännerunge pro Säit",
-	"statistics-users": "Registréiert [[Special:ListUsers|Benotzer]]",
+	"statistics-users": "Registréiert Benotzer",
 	"statistics-users-active": "Aktiv Benotzer",
 	"statistics-users-active-desc": "Benotzer déi während {{PLURAL:$1|dem leschten Dag|de leschten $1 Deeg}} eppes gemaach hunn",
 	"pageswithprop": "Säite mat enger Säiteneegeschaft",
