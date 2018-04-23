@@ -56,6 +56,7 @@
 		} );
 		wrapper.$element.append( tabs.$element );
 		$preferences.prepend( wrapper.$element );
+		$( '.mw-prefs-faketabs' ).remove();
 
 		function updateHash( panel ) {
 			var scrollTop, active;
