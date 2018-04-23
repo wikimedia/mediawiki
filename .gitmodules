@@ -1,3 +1,7 @@
+[submodule "extensions/CategoryTree"]
+        path = extensions/CategoryTree
+        url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CategoryTree
+        branch = REL1_31
 [submodule "extensions/Cite"]
 	path = extensions/Cite
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite
