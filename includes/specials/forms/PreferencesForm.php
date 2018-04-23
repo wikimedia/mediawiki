@@ -114,12 +114,108 @@ class PreferencesForm extends OOUIHTMLForm {
 		return $data;
 	}
 
+	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
+		// to get a user visible effect, wrap the fieldset into a framed panel layout
+		if ( $isRoot ) {
+			// Mimic TabPanelLayout
+			$wrapper = new OOUI\PanelLayout( [
+				'expanded' => false,
+				'scrollable' => true,
+				// Framed and padded for no-JS, frame hidden with CSS
+				'framed' => true,
+				'infusable' => false,
+				'classes' => [ 'oo-ui-stackLayout oo-ui-indexLayout-stackLayout' ]
+			] );
+			$layout = new OOUI\PanelLayout( [
+				'expanded' => false,
+				'scrollable' => true,
+				'infusable' => false,
+				'classes' => [ 'oo-ui-tabPanelLayout' ]
+			] );
+			$wrapper->appendContent( $layout );
+		} else {
+			$wrapper = $layout = new OOUI\PanelLayout( [
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'infusable' => false,
+			] );
+		}
+
+		$layout->appendContent(
+			new OOUI\FieldsetLayout( [
+				'label' => $legend,
+				'infusable' => false,
+				'items' => [
+					new OOUI\Widget( [
+						'content' => new OOUI\HtmlSnippet( $section )
+					] ),
+				],
+			] + $attributes )
+		);
+		return $wrapper;
+	}
+
 	/**
 	 * Get the whole body of the form.
 	 * @return string
 	 */
 	function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
+		// Construct fake tabs to avoid FOUC. The structure mimics OOUI's tabPanelLayout.
+		// TODO: Consider creating an infusable TabPanelLayout in OOUI-PHP.
+		$fakeTabs = [];
+		foreach ( $this->getPreferenceSections() as $i => $key ) {
+			$fakeTabs[] =
+				Html::rawElement(
+					'div',
+					[
+						'class' =>
+							'oo-ui-widget oo-ui-widget-enabled oo-ui-optionWidget '.
+							'oo-ui-tabOptionWidget oo-ui-labelElement' .
+							( $i === 0 ? ' oo-ui-optionWidget-selected' : '' )
+					],
+					Html::element(
+						'a',
+						[
+							'class' => 'oo-ui-labelElement-label',
+							// Make this a usable link instead of a span so the tabs
+							// can be used before JS runs
+							'href' => '#mw-prefsection-' . $key
+						],
+						$this->getLegend( $key )
+					)
+				);
+		}
+		$fakeTabsHtml = Html::rawElement(
+			'div',
+			[ 'class' => 'oo-ui-layout oo-ui-panelLayout oo-ui-indexLayout-tabPanel' ],
+			Html::rawElement(
+				'div',
+				[ 'class' => 'oo-ui-widget oo-ui-widget-enabled oo-ui-selectWidget '.
+					'oo-ui-selectWidget-depressed oo-ui-tabSelectWidget' ],
+				implode( $fakeTabs )
+			)
+		);
+
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'oo-ui-layout oo-ui-panelLayout oo-ui-panelLayout-framed mw-prefs-faketabs' ],
+			Html::rawElement(
+				'div',
+				[ 'class' => 'oo-ui-layout oo-ui-menuLayout oo-ui-menuLayout-static ' .
+					'oo-ui-menuLayout-top oo-ui-menuLayout-showMenu oo-ui-indexLayout' ],
+				Html::rawElement(
+					'div',
+					[ 'class' => 'oo-ui-menuLayout-menu' ],
+					$fakeTabsHtml
+				) .
+				Html::rawElement(
+					'div',
+					[ 'class' => 'oo-ui-menuLayout-content' ],
+					$this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' )
+				)
+			)
+		);
 	}
 
 	/**
