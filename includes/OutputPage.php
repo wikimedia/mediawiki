@@ -2374,7 +2374,9 @@ class OutputPage extends ContextSource {
 			$sk = $this->getSkin();
 			foreach ( $sk->getDefaultModules() as $group => $modules ) {
 				if ( $group === 'styles' ) {
-					$this->addModuleStyles( $modules );
+					foreach ( $modules as $key => $moduleMembers ) {
+						$this->addModuleStyles( $moduleMembers );
+					}
 				} else {
 					$this->addModules( $modules );
 				}
