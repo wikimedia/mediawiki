@@ -145,7 +145,7 @@ class OOUIHTMLForm extends HTMLForm {
 			[ 'class' => 'mw-htmlform-submit-buttons' ], "\n$buttons" ) . "\n";
 	}
 
-	protected function wrapFieldSetSection( $legend, $section, $attributes ) {
+	protected function wrapFieldSetSection( $legend, $section, $attributes, $isRoot ) {
 		// to get a user visible effect, wrap the fieldset into a framed panel layout
 		$layout = new OOUI\PanelLayout( [
 			'expanded' => false,

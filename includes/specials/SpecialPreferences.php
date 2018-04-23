@@ -54,6 +54,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$out->addModules( 'mediawiki.special.preferences.ooui' );
 		$out->addModuleStyles( 'mediawiki.special.preferences.styles.ooui' );
+		$out->addModuleStyles( 'oojs-ui-widgets.styles' );
 
 		$session = $this->getRequest()->getSession();
 		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {
@@ -93,9 +94,6 @@ class SpecialPreferences extends SpecialPage {
 			];
 		}
 		$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
-
-		// TODO: Render fake tabs here to avoid FOUC.
-		// $out->addHTML( $fakeTabs );
 
 		$htmlForm->show();
 	}

@@ -2860,6 +2860,14 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'oojs-ui-widgets.styles' => [
+		'class' => ResourceLoaderOOUIFileModule::class,
+		'styles' => [
+			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
+		],
+		'themeStyles' => 'widgets',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	// Toolbar and tools module.
 	'oojs-ui-toolbars' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
