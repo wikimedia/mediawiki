@@ -5,7 +5,8 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "./tests/selenium/selenium.sh"
+    "selenium": "./tests/selenium/selenium.sh",
+    "selenium-test": "grunt webdriver:test"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
@@ -25,10 +26,10 @@
     "karma-chrome-launcher": "2.2.0",
     "karma-firefox-launcher": "1.0.1",
     "karma-mocha-reporter": "2.2.5",
-    "karma-qunit": "1.2.1",
+    "karma-qunit": "2.0.1",
     "mwbot": "1.0.10",
     "postcss-less": "1.1.5",
-    "qunitjs": "2.4.1",
+    "qunit": "2.5.0",
     "stylelint": "9.2.0",
     "stylelint-config-wikimedia": "0.4.3",
     "wdio-junit-reporter": "0.2.0",
