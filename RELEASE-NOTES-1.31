@@ -130,7 +130,8 @@ production.
 * mediawiki/at-ease was replaced with wikimedia/at-ease.
 
 === Bug fixes in 1.31 ===
-* (T90902) Non-breaking space in header ID breaks anchor
+* (T90902) Non-breaking space in header ID breaks anchor.
+* (T189375) CSSMin now allows unquoted urls in `url()` syntax to start with a space.
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
