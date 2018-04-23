@@ -192,8 +192,8 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param array $metadata
-	 * @return array
+	 * @param mixed $metadata
+	 * @return mixed
 	 */
 	public static function parseMetadata( $metadata ) {
 		if ( !is_array( $metadata ) ) {
@@ -254,7 +254,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @param int $audience
-	 * @param User $user
+	 * @param User|null $user
 	 * @return null|string
 	 */
 	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -333,7 +333,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	function getThumbnails() {
 		$dir = $this->getThumbPath( $this->getName() );

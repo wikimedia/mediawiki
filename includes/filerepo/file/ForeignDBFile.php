@@ -74,7 +74,7 @@ class ForeignDBFile extends LocalFile {
 	 * @param string $source
 	 * @param bool $watch
 	 * @param bool|string $timestamp
-	 * @param User $user User object or null to use $wgUser
+	 * @param User|null $user User object or null to use $wgUser
 	 * @return bool
 	 * @throws MWException
 	 */
