@@ -2888,9 +2888,9 @@ return [
 	'oojs-ui-widgets' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
-		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui-widgets.styles',
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-editing-advanced',
@@ -2907,6 +2907,14 @@ return [
 			'ooui-selectfile-not-supported',
 			'ooui-selectfile-placeholder',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'oojs-ui-widgets.styles' => [
+		'class' => ResourceLoaderOOUIFileModule::class,
+		'styles' => [
+			'resources/lib/oojs-ui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
+		],
+		'themeStyles' => 'widgets',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Toolbar and tools module.
