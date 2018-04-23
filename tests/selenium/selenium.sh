@@ -6,4 +6,4 @@ function kill_chromedriver() {
     killall chromedriver > /dev/null
 }
 trap kill_chromedriver EXIT
-./node_modules/.bin/grunt webdriver:test
+npm run selenium-test
