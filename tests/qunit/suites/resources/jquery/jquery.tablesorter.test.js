@@ -1494,5 +1494,33 @@
 			'detectParserForColumn() detect parser.id "number" for second column'
 		);
 	} );
+	QUnit.test( 'T29745 - References ignored in sortkey', function ( assert ) {
+		var $table, parsers;
+		$table = $(
+			'<table class="sortable">' +
+				'<tr><th>A</th></tr>' +
+				'<tr><td>10</td></tr>' +
+				'<tr><td>2<sup class="reference"><a href="#cite_note-1">[1]</a></sup></td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+
+		assert.deepEqual(
+			tableExtract( $table ),
+			[
+				[ '2[1]' ],
+				[ '10' ]
+			],
+			'References ignored in sortkey'
+		);
+
+		parsers = $table.data( 'tablesorter' ).config.parsers;
+		assert.equal(
+			parsers[ 0 ].id,
+			'number',
+			'detectParserForColumn() detect parser.id "number"'
+		);
+	} );
 
 }( jQuery, mediaWiki ) );
