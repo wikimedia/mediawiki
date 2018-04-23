@@ -25,6 +25,7 @@ This is a security and maintenance release of the MediaWiki 1.29 branch.
 * (T180403) Validate $length in padleft/padright parser functions.
 * (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
 * Special:BotPasswords now requires reauthentication.
+* (T191608, T187638) Add 'logid' parameter to Special:Log.
 
 == MediaWiki 1.29.2 ==
 
