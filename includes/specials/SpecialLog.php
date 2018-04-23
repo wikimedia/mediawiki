@@ -51,6 +51,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
 		$opts->add( 'subtype', '' );
+		$opts->add( 'logid', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
@@ -169,6 +170,16 @@ class SpecialLog extends SpecialPage {
 		return $subpages;
 	}
 
+	/**
+	 * Set options based on the subpage title parts:
+	 * - One part that is a valid log type: Special:Log/logtype
+	 * - Two parts: Special:Log/logtype/username
+	 * - Otherwise, assume the whole subpage is either a Log ID (if numeric) or a username (if not).
+	 *
+	 * @param FormOptions $opts
+	 * @param $par
+	 * @throws ConfigException
+	 */
 	private function parseParams( FormOptions $opts, $par ) {
 		# Get parameters
 		$par = $par !== null ? $par : '';
@@ -182,7 +193,13 @@ class SpecialLog extends SpecialPage {
 			$opts->setValue( 'type', $parms[0] );
 			$opts->setValue( 'user', $parms[1] );
 		} elseif ( $par != '' ) {
-			$opts->setValue( 'user', $par );
+			// If there is a subpage, treat it as a Log ID if it's numeric,
+			// or a username otherwise.
+			if ( is_numeric( $par ) && intval( $par ) > 0 ) {
+				$opts->setValue( 'logid', $par );
+			} else {
+				$opts->setValue( 'user', $par );
+			}
 		}
 	}
 
@@ -204,7 +221,8 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
 			$opts->getValue( 'tagfilter' ),
-			$opts->getValue( 'subtype' )
+			$opts->getValue( 'subtype' ),
+			$opts->getValue( 'logid' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
