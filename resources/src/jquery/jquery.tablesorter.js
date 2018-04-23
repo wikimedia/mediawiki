@@ -79,7 +79,11 @@
 		}
 		return $.makeArray( node.childNodes ).map( function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
-				return getElementSortKey( elem );
+				if ( $( elem ).hasClass( 'reference' ) ) {
+					return null;
+				} else {
+					return getElementSortKey( elem );
+				}
 			}
 			return $.text( elem );
 		} ).join( '' );
