@@ -1646,8 +1646,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
-	public function select( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = [] ) {
+	public function select(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		return $this->query( $sql, $fname );
@@ -1657,7 +1658,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options = [], $join_conds = []
 	) {
 		if ( is_array( $vars ) ) {
-			$vars = implode( ',', $this->fieldNamesWithAlias( $vars ) );
+			$fields = implode( ',', $this->fieldNamesWithAlias( $vars ) );
+		} else {
+			$fields = $vars;
 		}
 
 		$options = (array)$options;
@@ -1670,6 +1673,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		)
 			? $options['IGNORE INDEX']
 			: [];
+
+		if (
+			$this->selectOptionsIncludeLocking( $options ) &&
+			$this->selectFieldsOrOptionsAggregate( $vars, $options )
+		) {
+			// Some DB types (postgres/oracle) disallow FOR UPDATE with aggregate
+			// functions. Discourage use of such queries to encourage compatibility.
+			call_user_func(
+				$this->deprecationLogger,
+				__METHOD__ . ": aggregation used with a locking SELECT ($fname)."
+			);
+		}
 
 		if ( is_array( $table ) ) {
 			$from = ' FROM ' .
@@ -1701,9 +1716,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $conds === '' ) {
-			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex $preLimitTail";
+			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex $preLimitTail";
 		} elseif ( is_string( $conds ) ) {
-			$sql = "SELECT $startOpts $vars $from $useIndex $ignoreIndex " .
+			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex " .
 				"WHERE $conds $preLimitTail";
 		} else {
 			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
@@ -1786,6 +1801,49 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$row = $res ? $this->fetchRow( $res ) : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return bool
+	 */
+	private function selectOptionsIncludeLocking( $options ) {
+		$options = (array)$options;
+		foreach ( [ 'FOR UPDATE', 'LOCK IN SHARE MODE' ] as $lock ) {
+			if ( in_array( $lock, $options, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param array|string $fields
+	 * @param array|string $options
+	 * @return bool
+	 */
+	private function selectFieldsOrOptionsAggregate( $fields, $options ) {
+		foreach ( (array)$options as $key => $value ) {
+			if ( is_string( $key ) ) {
+				if ( preg_match( '/^(?:GROUP BY|HAVING)$/i', $key ) ) {
+					return true;
+				}
+			} elseif ( is_string( $value ) ) {
+				if ( preg_match( '/^(?:DISTINCT|DISTINCTROW)$/i', $value ) ) {
+					return true;
+				}
+			}
+		}
+
+		$regex = '/^(?:COUNT|MIN|MAX|SUM|GROUP_CONCAT|LISTAGG|ARRAY_AGG)\s*\\(/i';
+		foreach ( (array)$fields as $field ) {
+			if ( is_string( $field ) && preg_match( $regex, $field ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
