@@ -2117,7 +2117,12 @@ class WikiPage implements Page, IDBAccessObject {
 					: DB_REPLICA; // T154554
 
 				$edit->popts->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {
-					return 1 + (int)wfGetDB( $dbIndex )->selectField(
+					$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+					// Use a fresh connection in order to see the latest data, by avoiding
+					// stale data from REPEATABLE-READ snapshots.
+					$db = $lb->getConnectionRef( $dbIndex, [], false, $lb::CONN_TRX_AUTO );
+
+					return 1 + (int)$db->selectField(
 						'revision',
 						'MAX(rev_id)',
 						[],
