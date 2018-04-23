@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -97,7 +99,13 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 				[
 					"$idCol >= $blockStart",
 					"$idCol <= $blockEnd",
-					"{$prefix}_len IS NULL"
+					$dbr->makeList( [
+						"{$prefix}_len IS NULL",
+						$dbr->makeList( [
+							"{$prefix}_len = 0",
+							"{$prefix}_sha1 != \"phoiac9h4m842xq45sp7s6u21eteeq1\"", // sha1( "" )
+						], IDatabase::LIST_AND )
+					], IDatabase::LIST_OR )
 				],
 				__METHOD__,
 				[],
@@ -136,7 +144,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			? Revision::newFromArchiveRow( $row )
 			: new Revision( $row );
 
-		$content = $rev->getContent();
+		$content = $rev->getContent( Revision::RAW );
 		if ( !$content ) {
 			# This should not happen, but sometimes does (T22757)
 			$id = $row->$idCol;

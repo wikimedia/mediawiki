@@ -88,16 +88,11 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $this->fetchContent ) {
-			// Modern MediaWiki has the content for deleted revs in the 'text'
-			// table using fields old_text and old_flags. But revisions deleted
-			// pre-1.5 store the content in the 'archive' table directly using
-			// fields ar_text and ar_flags, and no corresponding 'text' row. So
-			// we have to LEFT JOIN and fetch all four fields.
 			$this->addTables( 'text' );
 			$this->addJoinConds(
 				[ 'text' => [ 'LEFT JOIN', [ 'ar_text_id=old_id' ] ] ]
 			);
-			$this->addFields( [ 'ar_text', 'ar_flags', 'old_text', 'old_flags' ] );
+			$this->addFields( [ 'old_text', 'old_flags' ] );
 
 			// This also means stricter restrictions
 			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );

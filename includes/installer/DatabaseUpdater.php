@@ -1257,10 +1257,15 @@ abstract class DatabaseUpdater {
 	 * @since 1.31
 	 */
 	protected function migrateArchiveText() {
-		$this->output( "Migrating archive ar_text to modern storage.\n" );
-		$task = $this->maintenance->runChild( MigrateArchiveText::class, 'migrateArchiveText.php' );
-		$task->execute();
-		$this->output( "done.\n" );
+		if ( $this->db->fieldExists( 'archive', 'ar_text', __METHOD__ ) ) {
+			$this->output( "Migrating archive ar_text to modern storage.\n" );
+			$task = $this->maintenance->runChild( MigrateArchiveText::class, 'migrateArchiveText.php' );
+			$task->setForce();
+			if ( $task->execute() ) {
+				$this->applyPatch( 'patch-drop-ar_text.sql', false,
+					'Dropping ar_text and ar_flags columns' );
+			}
+		}
 	}
 
 	/**
