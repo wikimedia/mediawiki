@@ -325,8 +325,8 @@ class UserrightsPage extends SpecialPage {
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
 	 */
-	function doSaveUserGroups( $user, $add, $remove, $reason = '', $tags = [],
-		$groupExpiries = []
+	function doSaveUserGroups( $user, array $add, array $remove, $reason = '',
+		array $tags = [], array $groupExpiries = []
 	) {
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
@@ -427,13 +427,13 @@ class UserrightsPage extends SpecialPage {
 	 * @param User|UserRightsProxy $user
 	 * @param array $oldGroups
 	 * @param array $newGroups
-	 * @param array $reason
+	 * @param string $reason
 	 * @param array $tags Change tags for the log entry
 	 * @param array $oldUGMs Associative array of (group name => UserGroupMembership)
 	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
 	 */
-	protected function addLogEntry( $user, $oldGroups, $newGroups, $reason, $tags,
-		$oldUGMs, $newUGMs
+	protected function addLogEntry( $user, array $oldGroups, array $newGroups, $reason,
+		array $tags, array $oldUGMs, array $newUGMs
 	) {
 		// make sure $oldUGMs and $newUGMs are in the same order, and serialise
 		// each UGM object to a simplified array
