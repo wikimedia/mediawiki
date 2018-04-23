@@ -360,15 +360,20 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetGlobalServices()
 	 */
 	private function doLightweightServiceReset() {
-		global $wgRequest;
+		global $wgRequest, $wgJobClasses;
 
+		foreach ( $wgJobClasses as $type => $class ) {
+			JobQueueGroup::singleton()->get( $type )->delete();
+		}
 		JobQueueGroup::destroySingletons();
+
 		ObjectCache::clear();
 		$services = MediaWikiServices::getInstance();
 		$services->resetServiceForTesting( 'MainObjectStash' );
 		$services->resetServiceForTesting( 'LocalServerObjectCache' );
 		$services->getMainWANObjectCache()->clearProcessCache();
 		FileBackendGroup::destroySingleton();
+		DeferredUpdates::clearPendingUpdates();
 
 		// TODO: move global state into MediaWikiServices
 		RequestContext::resetMain();
@@ -382,9 +387,6 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
-		// Reset all caches between tests.
-		$this->doLightweightServiceReset();
-
 		$needsResetDB = false;
 
 		if ( !self::$dbSetup || $this->needsDB() ) {
@@ -515,8 +517,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		DeferredUpdates::clearPendingUpdates();
-		ObjectCache::getMainWANInstance()->clearProcessCache();
+		// Reset all caches between tests.
+		$this->doLightweightServiceReset();
 
 		// XXX: reset maintenance triggers
 		// Hook into period lag checks which often happen in long-running scripts
@@ -1146,6 +1148,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Restores MediaWiki to using the table set (table prefix) it was using before
 	 * setupTestDB() was called. Useful if we need to perform database operations
 	 * after the test run has finished (such as saving logs or profiling info).
+	 *
+	 * This is called by phpunit/bootstrap.php after the last test.
 	 *
 	 * @since 1.21
 	 */
