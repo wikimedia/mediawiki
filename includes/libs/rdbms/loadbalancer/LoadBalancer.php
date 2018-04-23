@@ -1534,15 +1534,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->laggedReplicaMode;
 	}
 
-	/**
-	 * @param bool $domain
-	 * @return bool
-	 * @deprecated 1.28; use getLaggedReplicaMode()
-	 */
-	public function getLaggedSlaveMode( $domain = false ) {
-		return $this->getLaggedReplicaMode( $domain );
-	}
-
 	public function laggedReplicaUsed() {
 		return $this->laggedReplicaMode;
 	}
