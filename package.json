@@ -5,7 +5,8 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "./tests/selenium/selenium.sh"
+    "selenium": "./tests/selenium/selenium.sh",
+    "selenium-test": "grunt webdriver:test"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
