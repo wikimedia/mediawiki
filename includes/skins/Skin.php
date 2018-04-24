@@ -178,9 +178,8 @@ abstract class Skin extends ContextSource {
 		$modules = [
 			'styles' => [],
 			// modules not specific to any specific skin or page
+			// Keep this list as small as possible
 			'core' => [
-				// Enforce various default modules for all pages and all skins
-				// Keep this list as small as possible
 				'site',
 				'mediawiki.page.startup',
 				'mediawiki.user',
@@ -188,6 +187,11 @@ abstract class Skin extends ContextSource {
 			// modules that enhance the page content in some way
 			'content' => [
 				'mediawiki.page.ready',
+				'styles' => [
+					'mediawiki.legacy.shared',
+					'mediawiki.legacy.commonPrint',
+					'mediawiki.sectionAnchor',
+				]
 			],
 			// modules relating to search functionality
 			'search' => [],
@@ -195,6 +199,8 @@ abstract class Skin extends ContextSource {
 			'watch' => [],
 			// modules which relate to the current users preferences
 			'user' => [],
+			// modules relating to RSS/Atom Feeds
+			'syndicate' => [],
 		];
 
 		// Support for high-density display images if enabled
@@ -210,6 +216,12 @@ abstract class Skin extends ContextSource {
 		// Preload jquery.makeCollapsible for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'mw-collapsible' ) !== false ) {
 			$modules['content'][] = 'jquery.makeCollapsible';
+		}
+
+		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
+		// on every page is deprecated. Express a dependency instead.
+		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
+			$modules['content']['styles'][] = 'mediawiki.ui.button';
 		}
 
 		if ( $out->isTOCEnabled() ) {
@@ -234,6 +246,11 @@ abstract class Skin extends ContextSource {
 		if ( $out->isArticle() && $user->getOption( 'editondblclick' ) ) {
 			$modules['user'][] = 'mediawiki.action.view.dblClickEdit';
 		}
+
+		if ( $out->isSyndicated() ) {
+			$modules['syndicate']['styles'][] = 'mediawiki.feedlink';
+		}
+
 		return $modules;
 	}
 
@@ -405,14 +422,14 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Add skin specific stylesheets
-	 * Calling this method with an $out of anything but the same OutputPage
-	 * inside ->getOutput() is deprecated. The $out arg is kept
-	 * for compatibility purposes with skins.
-	 * @param OutputPage $out
-	 * @todo delete
+	 * Hook point for adding style modules to OutputPage.
+	 *
+	 * @deprecated since 1.32 Use getDefaultModules() instead.
+	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
 	 */
-	abstract function setupSkinUserCss( OutputPage $out );
+	public function setupSkinUserCss( OutputPage $out ) {
+		// Stub.
+	}
 
 	/**
 	 * TODO: document
