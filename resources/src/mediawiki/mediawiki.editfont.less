@@ -1,0 +1,30 @@
+/* Edit font preference */
+.mw-editfont-monospace {
+	font-family: monospace, monospace;
+}
+
+.mw-editfont-sans-serif {
+	font-family: sans-serif;
+}
+
+.mw-editfont-serif {
+	font-family: serif;
+}
+
+/* Standardize font size for edit areas using edit-fonts T182320 */
+.mw-editfont-monospace,
+.mw-editfont-sans-serif,
+.mw-editfont-serif {
+	font-size: 13px;
+
+	/* For OOUI TextInputWidget, the parent <div> element uses normal font size, and only
+	   the <textarea>/<input> inside of it has the adjusted font size. This allows the width
+	   of the widget and size of icons etc. (which are expressed in ems) to stay the same. */
+	&.oo-ui-textInputWidget {
+		font-size: inherit;
+	}
+
+	> .oo-ui-inputWidget-input {
+		font-size: 13px;
+	}
+}
