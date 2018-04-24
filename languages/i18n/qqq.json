@@ -1317,6 +1317,7 @@
 	"prefs-dateformat": "Used in [[Special:Preferences#mw-prefsection-datetime|Special:Preferences]], tab \"Appearance\".\n{{Identical|Date format}}",
 	"prefs-timeoffset": "Used in [[Special:Preferences]], tab \"Date and time\".",
 	"prefs-advancedediting": "Used in [[Special:Preferences]], tab \"Editing\".\nThis used to say \"Advanced options\", the key name is a left over from that.",
+	"prefs-developertools": "Used in [[Special:Preferences]], tab \"Editing\".",
 	"prefs-editor": "Used in [[Special:Preferences]], tab \"Editing\" ({{int:prefs-editing}}).\n\n{{Identical|Editor}}",
 	"prefs-preview": "Used in [[Special:Preferences]], tab \"Editing\".\n{{Identical|Preview}}",
 	"prefs-advancedrc": "Used in [[Special:Preferences]], tab \"Recent changes\".\n{{Identical|Advanced options}}",
