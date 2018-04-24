@@ -291,6 +291,10 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		$revisions = $this->getTitleInfo( $context );
 
+		// If a module has dependencies it cannot be empty. An empty array will be cast to false
+		if ( $this->getDependencies() ) {
+			return false;
+		}
 		// For user modules, don't needlessly load if there are no non-empty pages
 		if ( $this->getGroup() === 'user' ) {
 			foreach ( $revisions as $revision ) {
