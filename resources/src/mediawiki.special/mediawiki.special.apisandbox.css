@@ -1,10 +1,13 @@
-.mw-apisandbox-fullscreen {
-	overflow: hidden;
-}
-
 .mw-apisandbox-toolbar {
+	background: #fff;
+	-webkit-position: sticky;
+	position: sticky;
+	top: 0;
+	margin-bottom: -1px;
+	padding: 0.5em 0;
+	border-bottom: 1px solid #a2a9b1;
 	text-align: right;
-	padding: 0.5em;
+	z-index: 1;
 }
 
 #mw-apisandbox-ui .mw-apisandbox-link {
@@ -33,20 +36,6 @@
 .mw-apisandbox-popup > .oo-ui-popupWidget-popup > .oo-ui-popupWidget-body > .oo-ui-buttonWidget {
 	padding-left: 0.5em;
 	width: 1%;
-}
-
-.mw-apisandbox-fullscreen #mw-apisandbox-ui {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background: #fff;
-}
-
-.mw-apisandbox-fullscreen .mw-apisandbox-container {
-	border-width: 1px 0 0 0;
-	border-radius: 0;
 }
 
 .mw-apisandbox-spacer {
