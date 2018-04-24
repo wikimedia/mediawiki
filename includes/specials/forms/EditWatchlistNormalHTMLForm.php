@@ -19,9 +19,9 @@
  */
 
 /**
- * Extend HTMLForm purely so we can have a more sane way of getting the section headers
+ * Extend OOUIHTMLForm purely so we can have a more sane way of getting the section headers
  */
-class EditWatchlistNormalHTMLForm extends HTMLForm {
+class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 	public function getLegend( $namespace ) {
 		$namespace = substr( $namespace, 2 );
 
