@@ -10,7 +10,8 @@
 			"Võrok",
 			"아라",
 			"Macofe",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Lingiq ala tõmmadaq",
@@ -953,7 +954,7 @@
 	"statistics-files": "Üleslaadituid teedüstüid",
 	"statistics-edits": "Toimõnduisi {{SITENAME}} luumisõst pääle",
 	"statistics-edits-average": "Keskmädselt toimõnduisi leheküle kotsilõ",
-	"statistics-users": "Kirjäpandnuid [[Special:ListUsers|pruukjit]]",
+	"statistics-users": "Kirjäpandnuid pruukjit",
 	"statistics-users-active": "Tegüsit pruukjit",
 	"statistics-users-active-desc": "Pruukjaq, kiä ommaq tan midägi toimõndanuq {{PLURAL:$1|viimädse päävä|viimädse $1 päävä}} seen.",
 	"doubleredirects": "Katõkõrdsõq ümbresaatmisõq",

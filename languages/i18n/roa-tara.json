@@ -8,7 +8,8 @@
 			"아라",
 			"C.R.",
 			"Macofe",
-			"Purodha"
+			"Purodha",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Collegaminde sottolinèate:",
@@ -1691,7 +1692,7 @@
 	"statistics-files": "File carechete",
 	"statistics-edits": "Cangiaminde de le pàggene da quanne sta {{SITENAME}} ha state ccrejete",
 	"statistics-edits-average": "Cangiaminde medie pe pàgene",
-	"statistics-users": "[[Special:ListUsers|Utinde reggistrete]]",
+	"statistics-users": "Utinde reggistrete",
 	"statistics-users-active": "Utinde attive",
 	"statistics-users-active-desc": "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
 	"pageswithprop": "Pàggene cu 'na probbietà d'a pàgene",

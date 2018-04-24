@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -1627,7 +1628,7 @@
 	"statistics-files": "Barkas unggahan",
 	"statistics-edits": "Gunggung suntingan wiwit {{SITENAME}} diwiwiti",
 	"statistics-edits-average": "Besutan rata-rata saben kaca",
-	"statistics-users": "[[Special:ListUsers|Panganggo]] kadhaftar",
+	"statistics-users": "Panganggo kadhaftar",
 	"statistics-users-active": "Para panganggo aktif",
 	"statistics-users-active-desc": "Panganggo sing ngayahi aktivitas jroning {{PLURAL:$1|dia|$1 dina}} pungkasan",
 	"pageswithprop": "Kaca mawa properti kaca",

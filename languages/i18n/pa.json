@@ -25,7 +25,8 @@
 			"ਪ੍ਰਚਾਰਕ",
 			"Tow",
 			"Sony dandiwal",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -1268,7 +1269,7 @@
 	"statistics-pages-desc": "ਇਸ ਵਿਕੀ ਦੇ ਸਾਰੇ ਸਫ਼ੇ, ਗੱਲ-ਬਾਤ ਸਫ਼ਿਆਂ, ਰੀਡਾਇਰੈਕਟਾਂ ਇਤਿਆਦਿ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ",
 	"statistics-files": "ਅਪਲੋਡ ਕੀਤੀਆਂ ਗਈਆਂ ਫਾਈਲਾਂ",
 	"statistics-edits-average": "ਪ੍ਰਤੀ ਸਫ਼ਾ ਔਸਤ ਸੋਧਾਂ",
-	"statistics-users": "ਰਜਿਸਟਰਡ [[Special:ListUsers|ਵਰਤੋਂਕਾਰ]]",
+	"statistics-users": "ਰਜਿਸਟਰਡ ਵਰਤੋਂਕਾਰ",
 	"statistics-users-active": "ਸਰਗਰਮ ਵਰਤੋਂਕਾਰ",
 	"statistics-users-active-desc": "ਮੈਂਬਰ, ਜਿੰਨ੍ਹਾ ਨੇ ਆਖ਼ਰੀ {{PLURAL:$1|ਦਿਨ|$1 ਦਿਨਾਂ}} ਵਿਚ ਕੋਈ ਕੰਮ ਕੀਤਾ ਹੈ।",
 	"pageswithprop-prop": "ਗੁਣ ਦਾ ਨਾਂ:",

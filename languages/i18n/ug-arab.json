@@ -14,7 +14,8 @@
 			"Matma Rex",
 			"Amire80",
 			"Uzdil",
-			"چۈشكۈن"
+			"چۈشكۈن",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -1514,7 +1515,7 @@
 	"statistics-files": "يۈكلەنگەن ھۆججەتلەر",
 	"statistics-edits": " {{SITENAME}} تەڭشىگەن بەتنىڭ تەھرىر سانى",
 	"statistics-edits-average": "ھەر بىر بەتنىڭ ئوتتۇرىچە تەھرىر سانى",
-	"statistics-users": "خەتلەتكەن [[Special:ListUsers|ئىشلەتكۈچى]]",
+	"statistics-users": "خەتلەتكەن ئىشلەتكۈچى",
 	"statistics-users-active": "ئاكتىپ ئىشلەتكۈچى",
 	"statistics-users-active-desc": "ئالدىنقى {{PLURAL:$1|كۈن|$1 كۈن}} دىكى مەشغۇلات قىلغان ئىشلەتكۈچىلەر",
 	"doubleredirects": "قوش قايتا نىشانلانغان بەت",

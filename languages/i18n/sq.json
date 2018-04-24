@@ -34,7 +34,8 @@
 			"Matma Rex",
 			"Arianit",
 			"Denisa",
-			"Fanjiayi"
+			"Fanjiayi",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1691,7 +1692,7 @@
 	"statistics-files": "Skedat e ngarkuara",
 	"statistics-edits": "Redaktimet e faqes që kur {{SITENAME}} u regjistrua",
 	"statistics-edits-average": "Ndryshime mesatare për faqe",
-	"statistics-users": "[[Special:ListUsers|Përdoruesit]] e regjistruar",
+	"statistics-users": "Përdoruesit e regjistruar",
 	"statistics-users-active": "Përdoruesit aktiv",
 	"statistics-users-active-desc": "Përdoruesit që kanë së paku një veprim në {{PLURAL:$1|ditën|$1 ditët}} e fundit",
 	"pageswithprop": "Faqe me një tipar faqeje",

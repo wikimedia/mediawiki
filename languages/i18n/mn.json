@@ -15,7 +15,8 @@
 			"Sembuk",
 			"Munkhzaya.E",
 			"Macofe",
-			"Irus"
+			"Irus",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Линкүүдийн доогуур зураас зур:",
@@ -1404,7 +1405,7 @@
 	"statistics-files": "Оруулсан файл",
 	"statistics-edits": "{{SITENAME}} ашиглаланд орсоноос хойших хуудасны засварын тоо",
 	"statistics-edits-average": "Хуудас тутмын дундаж засварын тоо",
-	"statistics-users": "Бүртгэгдсэн [[Special:ListUsers|хэрэглэгч]]",
+	"statistics-users": "Бүртгэгдсэн хэрэглэгч",
 	"statistics-users-active": "Байнгын оролцоотой хэрэглэгч",
 	"statistics-users-active-desc": "Сүүлийн {{PLURAL:$1|өдөрт|$1 өдөрт}} үйлдэл хийсэн хэрэглэгчид",
 	"doubleredirects": "Давхар чиглүүлэгчүүд",

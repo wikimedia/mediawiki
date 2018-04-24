@@ -10,7 +10,8 @@
 			"Lakzon",
 			"Nemo bis",
 			"Amire80",
-			"Beyronvan"
+			"Beyronvan",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "هوم پئیڤأند زیرخأط دار:",
@@ -1487,7 +1488,7 @@
 	"statistics-files": "جانیا یا سوار بیه",
 	"statistics-edits": "ویرایشت بلگه یا د گاتی که  {{SITENAME}} دروس بیه",
 	"statistics-edits-average": "میانگین ویرایشت یا سی هر بلگه",
-	"statistics-users": "ثوت نام بیه [[ویجه:نوم گه کاریاریا|کاریاریا]]",
+	"statistics-users": "ثوت نام بیه کاریاریا",
 	"statistics-users-active": "کاروریا کارکو",
 	"statistics-users-active-desc": "کاریاریایی که د {{PLURAL:$1|رو|$1 رو}} دماتر کنشتگر بینه",
 	"pageswithprop": "بلگه یایی که خاصیت صفحه ها دشو",

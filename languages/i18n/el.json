@@ -1841,7 +1841,7 @@
 	"statistics-files": "Αρχεία που έχουν επιφορτωθεί",
 	"statistics-edits": "Επεξεργασίες σελίδων από τη δημιουργία του εγχειρήματος {{SITENAME}}",
 	"statistics-edits-average": "Μέσος όρος επεξεργασιών ανά σελίδα",
-	"statistics-users": "Εγγεγραμμένοι [[Special:ListUsers|χρήστες]]",
+	"statistics-users": "Εγγεγραμμένοι χρήστες",
 	"statistics-users-active": "Ενεργοί χρήστες",
 	"statistics-users-active-desc": "Χρήστες που έχουν κάνει κάποια επεξεργασία μέσα σε {{PLURAL:$1|ημέρα|$1 ημέρες}}",
 	"pageswithprop": "Σελίδες με ιδιότητα σελίδας",

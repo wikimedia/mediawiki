@@ -1339,7 +1339,7 @@
 	"statistics-files": "Fílur lagdar upp",
 	"statistics-edits": "Síðurættingar síðan {{SITENAME}} varð stovnað",
 	"statistics-edits-average": "Miðal rættingar pr. síðu",
-	"statistics-users": "Skrásettir [[Special:ListUsers|brúkarir]]",
+	"statistics-users": "Skrásettir brúkarir",
 	"statistics-users-active": "Virknir brúkarir",
 	"statistics-users-active-desc": "Brúkarar ið hava framt eina handling seinasta/u {{PLURAL:$1|døgnið|$1 dagarnar}}",
 	"pageswithprop": "Síður við síðueginleika",

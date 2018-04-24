@@ -5,7 +5,8 @@
 			"Nertiks",
 			"Peteris",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā",
@@ -952,7 +953,7 @@
 	"statistics-files": "Enkraūtai zūrbrukei",
 	"statistics-edits": "Pāusas redigīsnas ezze tikseņu stesse {{SITENAME}}",
 	"statistics-edits-average": "Sirzds gīrbis stēisan redigīsenin per pāusan",
-	"statistics-users": "Registrītai [[Special:ListUsers|tērpautajai]]",
+	"statistics-users": "Registrītai tērpautajai",
 	"statistics-users-active": "Aktīwai tērpautajai",
 	"statistics-users-active-desc": "Tērpautajai sēntei aktīwai en {{PLURAL:$1|panzdauman dēinan|panzdaumans dēinans}}",
 	"doubleredirects": "Dwigubbai prawessenei",

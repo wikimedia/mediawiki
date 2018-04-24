@@ -1825,7 +1825,7 @@
 	"statistics-files": "Igotako fitxategiak",
 	"statistics-edits": "{{SITENAME}} sortu zenetik eginiko aldaketa kopurua",
 	"statistics-edits-average": "Bataz-besteko aldaketak orrialdeko",
-	"statistics-users": "Izen-emandako [[Special:ListUsers|lankideak]]",
+	"statistics-users": "Izen-emandako lankideak",
 	"statistics-users-active": "Lankide aktiboak",
 	"statistics-users-active-desc": "Aurreko {{PLURAL:$1|egunean|egunetan}} jardueraren bat gauzatu duten erabiltzaileak",
 	"pageswithprop": "Orrialde propietatea duten orrialdeak",

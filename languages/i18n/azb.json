@@ -21,7 +21,8 @@
 			"Matma Rex",
 			"Ilğım",
 			"ییلماز",
-			"Saraiki"
+			"Saraiki",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "باغلانتی‌لارین آلتینی خطله:",
@@ -1505,7 +1506,7 @@
 	"statistics-files": "یوکلنمیش فایل‌لار",
 	"statistics-edits": "{{SITENAME}} یوْلا دۆشندن بۇ یانا صفحه دَییشیکلیکلری",
 	"statistics-edits-average": "هر صفحه‌ده اوْرتا دَییشیکلیک سایی",
-	"statistics-users": "یازیلمیش [[Special:ListUsers|ایشلدنلر]]",
+	"statistics-users": "یازیلمیش ایشلدنلر",
 	"statistics-users-active": "چالیشقان ایشلدنلر",
 	"statistics-users-active-desc": "سوْن {{PLURAL:$1|بیر|$1}} گۆن‌ده بیر ایش گؤرن ایشلدنلر",
 	"pageswithprop": "صفحه خصوصیتی اولان صفحه‌لر",

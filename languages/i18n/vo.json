@@ -11,7 +11,8 @@
 			"아라",
 			"Rachmat.Wahidi",
 			"Macofe",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -1072,7 +1073,7 @@
 	"statistics-files": "Ragivs pelöpüköl",
 	"statistics-edits": "Padiredakams sisä {{SITENAME}} päjafon",
 	"statistics-edits-average": "Num zänedik redakamas a pad",
-	"statistics-users": "[[Special:ListUsers|Gebans]] peregistaröl",
+	"statistics-users": "Gebans peregistaröl",
 	"statistics-users-active": "Gebans jäfedik",
 	"statistics-users-active-desc": "Gebans, kels edunons bosi ün {{PLURAL:$1|del lätik|dels lätik $1}}",
 	"pageswithprop-submit": "Golön",

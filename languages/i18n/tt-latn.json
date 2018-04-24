@@ -10,7 +10,8 @@
 			"아라",
 			"Amire80",
 			"Frhdkazan",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -935,7 +936,7 @@
 	"statistics-files": "Yöklänelgän fayllar",
 	"statistics-edits": "{{grammar:genitive|{{SITENAME}}}} proyektı açılğannan birle bulğan barlıq üzgärtülär isäbe",
 	"statistics-edits-average": "Ber bitkä urtaça üzgärtülär isäbe",
-	"statistics-users": "Terkälgän [[Special:ListUsers|qullanuçılar]]",
+	"statistics-users": "Terkälgän qullanuçılar",
 	"statistics-users-active": "Aktiv qullanuçılar",
 	"statistics-users-active-desc": "{{PLURAL:$1|$1 kön }} öçendä nindi dä bulsa üzgärtülär kertkän qullanuçılar",
 	"doubleredirects": "İkelätä yünältülär",

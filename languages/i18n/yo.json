@@ -8,7 +8,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"Wikicology"
+			"Wikicology",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -1387,7 +1388,7 @@
 	"statistics-files": "Àwọn fáìlì ajẹ́rírùsókè",
 	"statistics-edits": "Àwọn iye àtúnṣe ojúewé láti ìgbà tí {{SITENAME}} ti bẹ̀rẹ̀",
 	"statistics-edits-average": "Iye àtúnṣe apínlàrin fún ojúewé kọ̀ọ̀kan",
-	"statistics-users": "[[Special:ListUsers|Àwọn oníṣe]] ajẹ́fífilórúkọsílẹ̀",
+	"statistics-users": "Àwọn oníṣe ajẹ́fífilórúkọsílẹ̀",
 	"statistics-users-active": "Àwọn oníṣe agbéṣe",
 	"statistics-users-active-desc": "Àwọn oníṣe tí wọ́n ti ṣe ìgbéṣe kan ní {{PLURAL:$1|ọjọ́ kan|ọjọ́ $1}} sẹ́yìn",
 	"pageswithprop": "Àwọn ojúewé tó ní ohun-ìní ojúewé",

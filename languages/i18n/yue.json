@@ -32,7 +32,8 @@
 			"Suzukaze-c",
 			"Asdfugil",
 			"Deryck Chan",
-			"Hello903hello"
+			"Hello903hello",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -1703,7 +1704,7 @@
 	"statistics-files": "已經上載咗嘅檔案",
 	"statistics-edits": "自從{{SITENAME}}設定後嘅頁編輯數",
 	"statistics-edits-average": "每一版平均編輯數",
-	"statistics-users": "註冊咗嘅[[Special:ListUsers|用戶]]",
+	"statistics-users": "註冊咗嘅用戶",
 	"statistics-users-active": "活躍用戶",
 	"statistics-users-active-desc": "響$1日前做過動作嘅用戶",
 	"pageswithprop": "有屬性嘅頁",

@@ -1972,7 +1972,7 @@
 	"statistics-files": "Archivos subidos",
 	"statistics-edits": "Ediciones en páginas desde que {{SITENAME}} fue instalado",
 	"statistics-edits-average": "Promedio de ediciones por página",
-	"statistics-users": "[[Special:ListUsers|Usuarios]] registrados",
+	"statistics-users": "Usuarios registrados",
 	"statistics-users-active": "Usuarios activos",
 	"statistics-users-active-desc": "Usuarios que han ejecutado una acción en {{PLURAL:$1|el último día|los últimos $1 días}}",
 	"pageswithprop": "Páginas con una propiedad de página",

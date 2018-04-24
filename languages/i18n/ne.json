@@ -26,7 +26,8 @@
 			"Irus",
 			"रमेश सिंह बोहरा",
 			"Nirajan pant",
-			"Drjpoudel"
+			"Drjpoudel",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -1569,7 +1570,7 @@
 	"statistics-files": "उर्ध्वभरण गरिएका फाइलहरू",
 	"statistics-edits": "{{SITENAME}} स्थापना भए देखिको पृष्ठ सम्पादन",
 	"statistics-edits-average": "प्रतिपृष्ठ औसत सम्पादन",
-	"statistics-users": "दर्तागरिएका [[Special:ListUsers|प्रयोगकर्ताहरू]]",
+	"statistics-users": "दर्तागरिएका प्रयोगकर्ताहरू",
 	"statistics-users-active": "सकृय प्रयोगकर्ताहरू",
 	"statistics-users-active-desc": "प्रयोगकर्ताहरू जो{{PLURAL:$1|बितेको एक दिन|बितेका $1 दिनहरू}}देखि सक्रिय छन्",
 	"pageswithprop": "पृष्ठ विवरण सहितको पृष्ठहरू",

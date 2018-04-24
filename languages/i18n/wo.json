@@ -9,7 +9,8 @@
 			"Urhixidur",
 			"아라",
 			"Macofe",
-			"Fanjiayi"
+			"Fanjiayi",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -1002,7 +1003,7 @@
 	"statistics-pages-desc": "Xët yépp yi ci wiki bi, xëti waxtaanuwaay yi, jubluwaat yi, añs.",
 	"statistics-files": "Xët yees yeb fii",
 	"statistics-edits": "Coppitey xët yi dalee ca campug  {{SITENAME}}",
-	"statistics-users": "[[Special:ListUsers|Jëfandikukat]] yi bindu",
+	"statistics-users": "Jëfandikukat yi bindu",
 	"statistics-users-active": "Jëfandikukat yu yëngu",
 	"statistics-users-active-desc": "Jëfandikukat yi amal ag yëngu-yëngu ci {{PLURAL:$1|bés bu mujj bi|$1 bés yu mujj yi}}",
 	"doubleredirects": "Jubluwaat ñaari yoon",

@@ -10,7 +10,8 @@
 			"아라",
 			"Macofe",
 			"Ernác",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Джибериулени черт:",
@@ -1319,7 +1320,7 @@
 	"statistics-files": "Джюкленнген файлла",
 	"statistics-edits": "{{SITENAME}} къуралгъанындан бери этилген тюрлендириуле.",
 	"statistics-edits-average": "Хар бетдеги тюрлендириулени орта саны",
-	"statistics-users": "Регистрация этилген [[Special:ListUsers|къошулуучула]]",
+	"statistics-users": "Регистрация этилген къошулуучула",
 	"statistics-users-active": "Актив къошулуучула",
 	"statistics-users-active-desc": "Ахыр {{PLURAL:$1|кюнде|$1 кюнде}} ишлеме этген къошулуучула",
 	"pageswithprop-prop": "Амалны аты:",

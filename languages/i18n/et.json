@@ -30,7 +30,8 @@
 			"Adeliine",
 			"Metsavend",
 			"Cumbril",
-			"Ilmarine"
+			"Ilmarine",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -1841,7 +1842,7 @@
 	"statistics-files": "Üleslaaditud faile",
 	"statistics-edits": "Redigeerimisi alates {{GRAMMAR:genitive|{{SITENAME}}}} loomisest",
 	"statistics-edits-average": "Keskmiselt redigeerimisi lehekülje kohta",
-	"statistics-users": "Registreeritud [[Special:ListUsers|kasutajad]]",
+	"statistics-users": "Registreeritud kasutajad",
 	"statistics-users-active": "Aktiivsed kasutajad",
 	"statistics-users-active-desc": "Kasutajad, kes on viimase {{PLURAL:$1|päeva|$1 päeva}} jooksul tegutsenud",
 	"pageswithprop": "Leheatribuudiga leheküljed",

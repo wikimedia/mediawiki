@@ -19,7 +19,8 @@
 			"Mhenni",
 			"Slimane AMIRI",
 			"SlimaneAmiri",
-			"Sayem AtVkm"
+			"Sayem AtVkm",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Aderrer n iseɣwan:",
@@ -1596,7 +1597,7 @@
 	"statistics-files": "Ifuyla yettwaznen",
 	"statistics-edits": "Ibeddilen n isebtar seg aserkeb n {{SITENAME}}",
 	"statistics-edits-average": "Amḍan allal n ibeddilen sɣur asebter",
-	"statistics-users": "[[Special:ListUsers|Iseqdacen]] i siggezen",
+	"statistics-users": "Iseqdacen i siggezen",
 	"statistics-users-active": "Iseqdacen urmiden",
 	"statistics-users-active-desc": "Iseqdacen yesɛan xersum yiwet tigawt seg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}",
 	"pageswithprop": "Isebtar s ayla n usebtar",

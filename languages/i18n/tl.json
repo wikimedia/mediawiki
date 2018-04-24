@@ -22,7 +22,8 @@
 			"Asmen",
 			"MJPCubelo",
 			"Blakegripling ph",
-			"LR Guanzon"
+			"LR Guanzon",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng kawing:",
@@ -1429,7 +1430,7 @@
 	"statistics-files": "Ikinargang mga talaksan",
 	"statistics-edits": "Naihanda na ang mga pagbabago ng pahina mula sa {{SITENAME}}",
 	"statistics-edits-average": "Karaniwang pagbabago sa bawat pahina",
-	"statistics-users": "Mga nakatalang [[Special:ListUsers|tagagamit]]",
+	"statistics-users": "Mga nakatalang tagagamit",
 	"statistics-users-active": "Mga masusugid na tagagamit <small>(mga nakatalang mang-aambag sa buwang ito)</small>",
 	"statistics-users-active-desc": "Mga tagagamit na nagsagawa ng isang galaw/gawain sa huling {{PLURAL:$1|araw|$1 mga araw}}",
 	"doubleredirects": "Mga dobleng karga",

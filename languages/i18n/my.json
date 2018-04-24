@@ -23,7 +23,8 @@
 			"Ninjastrikers",
 			"Penguinlay",
 			"Nemo bis",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "လင့်ကို မျဉ်းသားသည့် ပုံစံ -",
@@ -1192,7 +1193,7 @@
 	"statistics-files": "တင်ထားသောဖိုင်များ",
 	"statistics-edits": "{{SITENAME}} စတည်ထောင်ပြီးကတည်းက စာမျက်နှာတည်းဖြတ်မှုပေါင်း",
 	"statistics-edits-average": "စာတစ်မျက်နှာလျှင် ပျမ်းမျှတည်းဖြတ်မှုနှုန်း",
-	"statistics-users": "မှတ်ပုံတင်ထားသော [[Special:ListUsers|အသုံးပြုသူများ]]",
+	"statistics-users": "မှတ်ပုံတင်ထားသော အသုံးပြုသူများ",
 	"statistics-users-active": "လက်ရှိလုပ်ကိုင်နေသော အသုံးပြုသူများ",
 	"statistics-users-active-desc": "နောက်ဆုံး {{PLURAL:$1|ရက်|$1 ရက်}}အတွင်း ဆောင်ရွက်ချက်ရှိသည့် အသုံးပြုသူများ",
 	"doubleredirects": "နှစ်ဆင့်ပြန် ပြန်ညွှန်းများ",

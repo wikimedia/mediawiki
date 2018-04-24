@@ -16,7 +16,8 @@
 			"Satdeep gill",
 			"Abbas dhothar",
 			"Saraiki",
-			"BukhariSaeed"
+			"BukhariSaeed",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "جوڑ تھلے لین:",
@@ -1255,7 +1256,7 @@
 	"statistics-files": "اتے چڑھائیاں گئیاں فائلاں",
 	"statistics-edits": "صفہ تبدیلیاں {{سائٹناں}} تون بنائی گئی۔",
 	"statistics-edits-average": "اوسط تبدیلی اک صفے تے۔",
-	"statistics-users": "رجسٹر [[Special:ListUsers|ورتنوالا]]",
+	"statistics-users": "رجسٹر ورتنوالا",
 	"statistics-users-active": "اجکل دے کامے",
 	"statistics-users-active-desc": "ورتنوالے جناں نیں پچھلے {{PLURAL:$1|دن|$1 دناں}}  چ کم کیتا اے۔",
 	"doubleredirects": "دوہری ریڈیرکٹس",

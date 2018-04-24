@@ -22,7 +22,8 @@
 			"아라",
 			"Macofe",
 			"Xð",
-			"Terfili"
+			"Terfili",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -1540,7 +1541,7 @@
 	"statistics-files": "Uffegladeni Dateie",
 	"statistics-edits": "Sytebearbeitige",
 	"statistics-edits-average": "Bearbeitige pro Syte im Durchschnitt",
-	"statistics-users": "Regischtrierti [[Special:ListUsers|Benutzer]]",
+	"statistics-users": "Regischtrierti Benutzer",
 	"statistics-users-active": "Aktivi Benutzer",
 	"statistics-users-active-desc": "Benutzer mit Bearbeitige {{PLURAL:$1|in dr letschte 24 Stund|in dr letschte $1 Täg}}",
 	"pageswithprop": "Syte mit ere Syteneigeschaft",

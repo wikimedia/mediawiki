@@ -13,7 +13,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Liŋkkaid vuolláisárgun",
@@ -611,7 +612,7 @@
 	"statistics-files": "Fiillat",
 	"statistics-edits": "Rievdadusat maŋŋel dan go {{SITENAME}} vuođđuduvvui",
 	"statistics-edits-average": "Gaskamearálaš rievdadusaid mearri/siidu",
-	"statistics-users": "Registrerejuvvon [[Special:ListUsers|geavaheaddjit]]",
+	"statistics-users": "Registrerejuvvon geavaheaddjit",
 	"statistics-users-active": "Aktiivvalaš geavaheaddjit",
 	"statistics-users-active-desc": "Geavaheaddjit, geat leat bargan juoidá maŋimus {{PLURAL:$1|beaivvi|$1 beaivvi}} áigge.",
 	"doubleredirects": "Guovttegeardán ođđasitstivremat",

@@ -67,7 +67,8 @@
 			"Joedalton",
 			"EeveeSylveon",
 			"Kenn.jensen",
-			"Saederup92"
+			"Saederup92",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -1788,7 +1789,7 @@
 	"statistics-files": "Oplagte filer",
 	"statistics-edits": "Redigeringer siden {{SITENAME}} blev oprettet",
 	"statistics-edits-average": "Gennemsnitligt antal redigeringer per side",
-	"statistics-users": "Registrerede [[Special:ListUsers|brugere]]",
+	"statistics-users": "Registrerede brugere",
 	"statistics-users-active": "Aktive brugere",
 	"statistics-users-active-desc": "Brugere som har udført handlinger i {{PLURAL:$1|det sidste døgn|de sidste $1 dage}}",
 	"pageswithprop": "Sider med en sideegenskab",

@@ -23,7 +23,8 @@
 			"Bijay chaurasia",
 			"Tulsi Bhagat",
 			"Macofe",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "लिङ्कके रेखाङ्कित करी:",
@@ -1572,7 +1573,7 @@
 	"statistics-files": "उपारोपित सञ्चिका",
 	"statistics-edits": "{{SITENAME}} अएबासँ लऽ कऽ भेल पन्ना सम्पादन",
 	"statistics-edits-average": "प्रति पन्ना औसत सम्पादन",
-	"statistics-users": "पञ्जीकृत [[Special:ListUsers|प्रयोक्ता]]",
+	"statistics-users": "पञ्जीकृत प्रयोक्ता",
 	"statistics-users-active": "सक्रिय प्रयोक्ता",
 	"statistics-users-active-desc": "प्रयोक्ता जे अन्तिम {{PLURAL:$1|दिन|$1 दिन}} मे कोनो काज केने छथि",
 	"pageswithprop": "पृष्ठ जाहिमे पृष्ठ गुण अछि",

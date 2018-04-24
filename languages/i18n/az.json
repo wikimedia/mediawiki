@@ -30,7 +30,8 @@
 			"Serkanland",
 			"Macofe",
 			"Archaeodontosaurus",
-			"Neriman2003"
+			"Neriman2003",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1315,7 +1316,7 @@
 	"statistics-files": "Yüklənmiş fayllar",
 	"statistics-edits": "{{SITENAME}} yaranandan bəri edilən səhifə dəyişiklikləri",
 	"statistics-edits-average": "Hər səhifədəki orta hesabla dəyişiklik",
-	"statistics-users": "Qeydiyyatdan keçmiş [[Special:ListUsers|istifadəçilər]]",
+	"statistics-users": "Qeydiyyatdan keçmiş istifadəçilər",
 	"statistics-users-active": "Aktiv istifadəçilər",
 	"statistics-users-active-desc": "Son {{PLURAL:$1|gün|$1 gündə}} iş görən istifadəçilər",
 	"pageswithprop-submit": "Get",

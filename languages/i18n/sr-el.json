@@ -29,7 +29,8 @@
 			"Zoranzoki21",
 			"Prevodim",
 			"Bugoslav",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -1584,7 +1585,7 @@
 	"statistics-files": "Broj poslatih datoteka",
 	"statistics-edits": "Broj izmena stranica otkad postoji {{SITENAME}}",
 	"statistics-edits-average": "Prosečan broj izmena po stranici",
-	"statistics-users": "Registrovani [[Special:ListUsers|korisnici]]",
+	"statistics-users": "Registrovani korisnici",
 	"statistics-users-active": "Aktivni korisnici",
 	"statistics-users-active-desc": "Korisnici koji su izvršili bar jednu radnju {{PLURAL:$1|1=prethodni dan|u poslednja $1 dana|u poslednjih $1 dana}}",
 	"pageswithprop": "Strane s osobinom strane",

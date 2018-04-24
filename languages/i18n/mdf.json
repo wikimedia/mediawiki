@@ -7,7 +7,8 @@
 			"Kranch",
 			"Numulunj pilgae",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Сюлмафкснень алга китькстамс:",
@@ -1004,7 +1005,7 @@
 	"statistics-files": "Тонкф файлхне",
 	"statistics-edits": "Лопань петнемасна {{SITENAME}}ть ушедомста",
 	"statistics-edits-average": "Петнемат фкя лопас ётксталувксста",
-	"statistics-users": "Сёрматфтф [[Special:ListUsers|тиихне]]",
+	"statistics-users": "Сёрматфтф тиихне",
 	"statistics-users-active": "Покай тиихне",
 	"statistics-users-active-desc": "Тиихне конатне тисть мезеге ётай {{PLURAL:$1|шиня|$1 шиста}}",
 	"doubleredirects": "Кафонзаф умборондафтфксне",

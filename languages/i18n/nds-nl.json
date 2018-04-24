@@ -17,7 +17,8 @@
 			"아라",
 			"Kolega2357",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Verwiezingen onderstrepen",
@@ -1466,7 +1467,7 @@
 	"statistics-files": "Bestaanden",
 	"statistics-edits": "Ziedbewarkingen vanaof t begin van {{SITENAME}}",
 	"statistics-edits-average": "Gemiddeld antal bewarkingen per zied",
-	"statistics-users": "In-eschreven [[Special:ListUsers|gebrukers]]",
+	"statistics-users": "In-eschreven gebrukers",
 	"statistics-users-active": "Aktieve gebrukers",
 	"statistics-users-active-desc": "Gebrukers die de veurbieje {{PLURAL:$1|dag|$1 dagen}} n haandeling uutevoerd hebben",
 	"pageswithprop": "Ziejen mit n ziedeigenschap",

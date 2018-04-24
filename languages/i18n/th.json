@@ -27,7 +27,8 @@
 			"Matma Rex",
 			"B20180",
 			"Pon44695",
-			"Aefgh39622"
+			"Aefgh39622",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -1318,7 +1319,7 @@
 	"rcfilters-quickfilters-placeholder-title": "ยังไม่มีตัวกรองที่บันทึกแล้ว",
 	"rcfilters-quickfilters-placeholder-description": "ในการบันทึกการตั้งค่าตัวกรองของคุณแล้วนำกลับมาใช้ภายหลัง คลิกสัญรูปที่คั่นหนังสือในบริเวณตัวกรองที่เปิดใช้งานอยู่ด้านล่าง",
 	"rcfilters-savedqueries-defaultlabel": "ตัวกรองที่บันทึกไว้",
-	"rcfilters-savedqueries-rename": "ย้าย",
+	"rcfilters-savedqueries-rename": "เปลี่ยนชื่อ",
 	"rcfilters-savedqueries-setdefault": "ตั้งเป็นค่าปริยาย",
 	"rcfilters-savedqueries-unsetdefault": "ลบค่าปริยาย",
 	"rcfilters-savedqueries-remove": "ลบออก",
@@ -1746,7 +1747,7 @@
 	"statistics-files": "ไฟล์ที่อัปโหลด",
 	"statistics-edits": "การแก้ไขหน้านับแต่ก่อตั้ง {{SITENAME}}",
 	"statistics-edits-average": "การแก้ไขต่อหน้าเฉลี่ย",
-	"statistics-users": "[[Special:ListUsers|ผู้ใช้]]ลงทะเบียน",
+	"statistics-users": "ผู้ใช้ลงทะเบียน",
 	"statistics-users-active": "ผู้ใช้ที่ยังมีความเคลื่อนไหว",
 	"statistics-users-active-desc": "ผู้ใช้ที่ดำเนินปฏิบัติการในช่วง $1 วันหลังสุด",
 	"pageswithprop": "หน้าพร้อมคุณสมบัติหน้า",

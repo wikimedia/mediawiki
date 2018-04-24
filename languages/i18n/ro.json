@@ -1839,7 +1839,7 @@
 	"statistics-files": "Fișiere încărcate",
 	"statistics-edits": "Modificări de la instalarea proiectului {{SITENAME}}",
 	"statistics-edits-average": "Media editărilor pe pagină",
-	"statistics-users": "[[Special:ListUsers|Utilizatori]] înregistrați",
+	"statistics-users": "Utilizatori înregistrați",
 	"statistics-users-active": "Utilizatori activi",
 	"statistics-users-active-desc": "Utilizatori care au efectuat o acțiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}",
 	"pageswithprop": "Pagini cu o proprietate de pagină",

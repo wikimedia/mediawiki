@@ -26,7 +26,8 @@
 			"Matma Rex",
 			"Сербијана",
 			"Asmen",
-			"Obsuser"
+			"Obsuser",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -1797,7 +1798,7 @@
 	"statistics-files": "Broj postavljenih datoteka",
 	"statistics-edits": "Broj izmjena od kako je instalirana {{SITENAME}}",
 	"statistics-edits-average": "Prosječno izmjena po stranici",
-	"statistics-users": "Registrirani [[Special:ListUsers|korisnici]]",
+	"statistics-users": "Registrirani korisnici",
 	"statistics-users-active": "Aktivni korisnici",
 	"statistics-users-active-desc": "Korisnici koji su izvršili akciju u toku {{PLURAL:$1|posljednjeg dana|posljednja $1 dana|posljednjih $1 dana}}",
 	"pageswithprop": "Stranice sa svojstvom stranice",

@@ -1962,6 +1962,7 @@
 	"deadendpages": "صفحات نهاية مسدودة",
 	"deadendpagestext": "الصفحات التالية لا تصل إلى صفحات أخرى في {{SITENAME}}.",
 	"protectedpages": "صفحات محمية",
+	"protectedpages-filters": "مرشحات:",
 	"protectedpages-indef": "عمليات الحماية غير المحددة فقط",
 	"protectedpages-summary": "تحتوي هذه الصفحة على أسماء العناوين المحمية حالياً. لمطالعة قائمة الصفحات التي تم فرض حماية على إنشائها انظر [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "الحماية المضمنة فقط",

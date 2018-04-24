@@ -25,7 +25,8 @@
 			"Macofe",
 			"Matma Rex",
 			"WP MANIKHANTA",
-			"SrihariThalla"
+			"SrihariThalla",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "లంకె క్రీగీత:",
@@ -1708,7 +1709,7 @@
 	"statistics-files": "ఎక్కించిన దస్త్రాలు",
 	"statistics-edits": "{{SITENAME}} మొదలుపెట్టినప్పటినుండి జరిగిన మార్పులు",
 	"statistics-edits-average": "పేజీకి సగటు మార్పులు",
-	"statistics-users": "నమోదైన [[Special:ListUsers|వాడుకరులు]]",
+	"statistics-users": "నమోదైన వాడుకరులు",
 	"statistics-users-active": "క్రియాశీల వాడుకరులు",
 	"statistics-users-active-desc": "గత {{PLURAL:$1|రోజు|$1 రోజుల}}లో పని చేసిన వాడుకరులు",
 	"pageswithprop": "ఒక పేజీ లక్షణం కలిగిన పేజీలు",

@@ -28,7 +28,8 @@
 			"Вильданова Гюзель",
 			"Ilmira",
 			"Irus",
-			"Khanmarat"
+			"Khanmarat",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -1774,7 +1775,7 @@
 	"statistics-files": "Рәсем йәки тауыш эстәлекле күсереп яҙылған файлдар",
 	"statistics-edits": "{{SITENAME}} проекты булдырылған ваҡыттан башлап үҙгәртеүҙәр һаны",
 	"statistics-edits-average": "Уртаса бер биткә тура килгән төҙәтеүҙәр һаны",
-	"statistics-users": "Теркәлгән [[Special:ListUsers|ҡатнашыусылар]]",
+	"statistics-users": "Теркәлгән ҡатнашыусылар",
 	"statistics-users-active": "Әүҙем ҡатнашыусылар",
 	"statistics-users-active-desc": "Һуңғы {{PLURAL:$1|1=көндә|$1 көндә}} ниндәйҙер эшмәкәрлек башҡарған ҡатнашыусылар",
 	"pageswithprop": "Үҙенсәлектәре ҡайтанан билдәләнгән биттәр",

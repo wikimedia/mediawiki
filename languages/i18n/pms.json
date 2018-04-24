@@ -17,7 +17,8 @@
 			"Kolega2357",
 			"Purodha",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1469,7 +1470,7 @@
 	"statistics-files": "Archivi carià",
 	"statistics-edits": "Pàgine modificà da quand ël {{SITENAME}} a l'é stàit tirà su",
 	"statistics-edits-average": "Media dle modìfiche për pàgina",
-	"statistics-users": "[[Special:ListUsers|Utent]] argistrà",
+	"statistics-users": "Utent argistrà",
 	"statistics-users-active": "Utent ativ",
 	"statistics-users-active-desc": "Utent che a l'han fàit n'assion ant {{PLURAL:$1|l'ùltim di|j'ùltim $1 di}}",
 	"pageswithprop": "Pàgine con na propietà ëd pàgina",

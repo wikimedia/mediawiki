@@ -98,7 +98,8 @@
 			"Bulgu",
 			"Botansahin",
 			"Catrope",
-			"Hedda"
+			"Hedda",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -1772,7 +1773,7 @@
 	"statistics-files": "Yüklenmiş dosyalar",
 	"statistics-edits": "{{SITENAME}} kurulduğundan beri yapılan sayfa değişiklikleri",
 	"statistics-edits-average": "Her sayfadaki ortalama değişiklik",
-	"statistics-users": "Kayıtlı [[Special:ListUsers|kullanıcılar]]",
+	"statistics-users": "Kayıtlı kullanıcılar",
 	"statistics-users-active": "Aktif kullanıcılar",
 	"statistics-users-active-desc": "Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar",
 	"pageswithprop": "Bir sayfa özelliğine sahip sayfalar",

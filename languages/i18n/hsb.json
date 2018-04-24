@@ -14,7 +14,8 @@
 			"아라",
 			"Mikławš",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -1546,7 +1547,7 @@
 	"statistics-files": "Nahrate dataje",
 	"statistics-edits": "Změny stronow wot załoženja {{SITENAME}}",
 	"statistics-edits-average": "Změny na stronu w přerězku",
-	"statistics-users": "Zregistrowani [[Special:ListUsers|wužiwarjo]]",
+	"statistics-users": "Zregistrowani wužiwarjo",
 	"statistics-users-active": "Aktiwni wužiwarjo",
 	"statistics-users-active-desc": "Wužiwarjo, kotřiž su {{PLURAL:$1|wčera|w zańdźenymaj $1 dnjomaj|w zańdźenych $1 dnjach|w zańdźenych $1 dnjach}} aktiwni byli",
 	"pageswithprop": "Strony z kajkosću strony",

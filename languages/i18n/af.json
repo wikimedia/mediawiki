@@ -25,7 +25,8 @@
 			"Oesjaar",
 			"Matma Rex",
 			"Biggs ZA",
-			"Slashme"
+			"Slashme",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -1545,7 +1546,7 @@
 	"statistics-files": "Opgelaaide lêers",
 	"statistics-edits": "Wysigings sedert {{SITENAME}} begin is",
 	"statistics-edits-average": "Gemiddelde wysigings per bladsy",
-	"statistics-users": "Geregistreerde [[Special:ListUsers|gebruikers]]",
+	"statistics-users": "Geregistreerde gebruikers",
 	"statistics-users-active": "Aktiewe gebruikers",
 	"statistics-users-active-desc": "Gebruikers wat in die afgelope {{PLURAL:$1|dag|$1 dae}} 'n handeling uitgevoer het",
 	"pageswithprop": "Blaaie met 'n bladsy-eienskap",

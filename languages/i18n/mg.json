@@ -8,7 +8,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Hanipika ny rohy:",
@@ -1639,7 +1640,7 @@
 	"statistics-files": "Rakitra voaray",
 	"statistics-edits": "Isan’ny fanovana hatry ny fisian’i {{SITENAME}}",
 	"statistics-edits-average": "Isan'ny fanovana isaky ny pejy",
-	"statistics-users": "[[Special:ListUsers|Mpikambana]] nisoratra anarana",
+	"statistics-users": "Mpikambana nisoratra anarana",
 	"statistics-users-active": "Mpikambana mavitrika",
 	"statistics-users-active-desc": "Mpikambana nanao zavatra teto tanatin'ny $1 andro{{PLURAL:}}.",
 	"pageswithprop": "Pejy misy toe-pejy",

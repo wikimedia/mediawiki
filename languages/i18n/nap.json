@@ -15,7 +15,8 @@
 			"V6rg",
 			"Nemo bis",
 			"S4b1nuz E.656",
-			"Ruthven"
+			"Ruthven",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -1643,7 +1644,7 @@
 	"statistics-files": "File carrecate",
 	"statistics-edits": "Cagnamiente d' 'e paggene 'a che {{SITENAME}} s'è accumminciata",
 	"statistics-edits-average": "Cagnamiente medie pe' paggena",
-	"statistics-users": "[[Special:ListUsers|Utente riggistrate]]",
+	"statistics-users": "Utente riggistrate",
 	"statistics-users-active": "Utente attive",
 	"statistics-users-active-desc": "Utente c'hanno fatto coccosa dint' 'a {{PLURAL:$1|l'urdemo juorno|l'urdeme $1 juorne}}",
 	"pageswithprop": "Paggene cu na prupietà 'e paggena",

@@ -6,7 +6,8 @@
 			"Obaid Raza",
 			"Macofe",
 			"Saraiki",
-			"BukhariSaeed"
+			"BukhariSaeed",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -751,7 +752,7 @@
 	"statistics-files": "فائل انځاوے",
 	"statistics-edits": "ویکی اقتباساتہ آغازاری گنی کل صفحاتی ترمیم",
 	"statistics-edits-average": "فی صفحہ اوسط ترامیم",
-	"statistics-users": "مندرج [[خاص:فہرست صارفین، صارف فہرست|صارفین]]",
+	"statistics-users": "مندرج صارفین",
 	"statistics-users-active": "متحرک صارفین",
 	"pageswithprop-submit": "Go/بوغے",
 	"brokenredirects-edit": "ترمیم",

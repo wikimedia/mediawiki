@@ -11,7 +11,8 @@
 			"Санюн Вадик",
 			"아라",
 			"Sergey Ivanov",
-			"Irus"
+			"Irus",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Кузе кылвер-влакым ӱлычын удыралаш?",
@@ -532,7 +533,7 @@
 	"statistics-files": "Пуртымо файл-влак",
 	"statistics-edits": "{{SITENAME}} лаштыкым чылажге мыняр гана тӧрлатыме",
 	"statistics-edits-average": "Ик лаштыкым покшел тӧрлымӧ чот",
-	"statistics-users": "Регистрацийым эртыше [[Special:ListUsers|пайдаланыше-влак]]",
+	"statistics-users": "Регистрацийым эртыше пайдаланыше-влак",
 	"statistics-users-active": "Чӱчкыдын пайдаланыше-влак",
 	"statistics-users-active-desc": "Пытартыш {{PLURAL:$1|1=кечыште|$1 кечыште}} иктаж-мом ыштыше пайдаланыше-влак",
 	"brokenredirects": "Пудыртымо вес вере колтымаш-влак",

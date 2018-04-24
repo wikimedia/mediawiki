@@ -9,7 +9,8 @@
 			"아라",
 			"Macofe",
 			"Mbrt",
-			"Empu"
+			"Empu",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -1058,7 +1059,7 @@
 	"statistics-files": "Berkas sing diunggahna",
 	"statistics-edits": "Jumlah suntingan sapet {{SITENAME}} dimolai",
 	"statistics-edits-average": "Rata-rata suntingan saben kaca",
-	"statistics-users": "Jumlah [[Special:ListUsers|panganggo sing kedaftar]]",
+	"statistics-users": "Jumlah panganggo sing kedaftar",
 	"statistics-users-active": "Jumlah panganggo aktif",
 	"statistics-users-active-desc": "Panganggo sing nglakokna aktivitas nang {{PLURAL:$1|dina|$1 dina}} pungkasan",
 	"doubleredirects": "Pangalihan dobel",

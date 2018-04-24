@@ -36,7 +36,8 @@
 			"BukhariSaeed",
 			"Zainab Meher",
 			"Sayam Asjad",
-			"Abdulq"
+			"Abdulq",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -1808,7 +1809,7 @@
 	"statistics-files": "اپلوڈ کردہ فائلیں",
 	"statistics-edits": "{{SITENAME}} کے آغاز سے کل صفحاتی ترامیم",
 	"statistics-edits-average": "فی صفحہ اوسط ترامیم",
-	"statistics-users": "مندرج [[خاص:فہرست صارفین، صارف فہرست|صارفین]]",
+	"statistics-users": "مندرج صارفین",
 	"statistics-users-active": "متحرک صارفین",
 	"statistics-users-active-desc": "گزشتہ {{PLURAL:$1|day|$1 دنوں}} میں متحرک رہنے والے صارفین",
 	"pageswithprop": "صفحات مع خاصیت صفحہ",

@@ -9,7 +9,8 @@
 			"SpartacksCompatriot",
 			"VoteITP",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garih bawahi tautan:",
@@ -1053,7 +1054,7 @@
 	"statistics-files": "Berkas nan lah dimuek",
 	"statistics-edits": "Jumlah suntiangan sangkek {{SITENAME}} ko dimulai",
 	"statistics-edits-average": "Rato-rato suntiangan per-laman",
-	"statistics-users": "Jumlah [[Special:ListUsers|pangguno tadaftar]]",
+	"statistics-users": "Jumlah pangguno tadaftar",
 	"statistics-users-active": "Pangguno aktip",
 	"statistics-users-active-desc": "Pangguno nan aktip dalam {{PLURAL:$1|$1 ari}} tarakhia.",
 	"pageswithprop": "Laman jo laman properti",
