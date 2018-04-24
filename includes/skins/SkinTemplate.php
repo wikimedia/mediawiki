@@ -57,29 +57,6 @@ class SkinTemplate extends Skin {
 	public $userpageUrlDetails;
 
 	/**
-	 * Add specific styles for this skin
-	 *
-	 * @param OutputPage $out
-	 */
-	public function setupSkinUserCss( OutputPage $out ) {
-		$moduleStyles = [
-			'mediawiki.legacy.shared',
-			'mediawiki.legacy.commonPrint',
-		];
-		if ( $out->isSyndicated() ) {
-			$moduleStyles[] = 'mediawiki.feedlink';
-		}
-
-		// Deprecated since 1.26: Unconditional loading of mediawiki.ui.button
-		// on every page is deprecated. Express a dependency instead.
-		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
-			$moduleStyles[] = 'mediawiki.ui.button';
-		}
-
-		$out->addModuleStyles( $moduleStyles );
-	}
-
-	/**
 	 * Create the template engine object; we feed it a bunch of data
 	 * and eventually it spits out some HTML. Should have interface
 	 * roughly equivalent to PHPTAL 0.7.
