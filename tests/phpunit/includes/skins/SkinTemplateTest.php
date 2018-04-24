@@ -49,13 +49,13 @@ class SkinTemplateTest extends MediaWikiTestCase {
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
 			->will( $this->returnValue( $isSyndicated ) );
-		$mock->expects( $this->once() )
+		$mock->expects( $this->any() )
 			->method( 'getHTML' )
 			->will( $this->returnValue( $html ) );
 		return $mock;
 	}
 
-	public function provideSetupSkinUserCss() {
+	public function provideGetDefaultModules() {
 		$defaultStyles = [
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
@@ -64,37 +64,46 @@ class SkinTemplateTest extends MediaWikiTestCase {
 		$feedStyle = 'mediawiki.feedlink';
 		return [
 			[
-				$this->getMockOutputPage( false, '' ),
+				false,
+				'',
 				$defaultStyles
 			],
 			[
-				$this->getMockOutputPage( true, '' ),
+				true,
+				'',
 				array_merge( $defaultStyles, [ $feedStyle ] )
 			],
 			[
-				$this->getMockOutputPage( false, 'FOO mw-ui-button BAR' ),
+				false,
+				'FOO mw-ui-button BAR',
 				array_merge( $defaultStyles, [ $buttonStyle ] )
 			],
 			[
-				$this->getMockOutputPage( true, 'FOO mw-ui-button BAR' ),
-				array_merge( $defaultStyles, [ $feedStyle, $buttonStyle ] )
+				true,
+				'FOO mw-ui-button BAR',
+				array_merge( $defaultStyles, [ $buttonStyle, $feedStyle ] )
 			],
 		];
 	}
 
 	/**
-	 * @param PHPUnit_Framework_MockObject_MockObject|OutputPage $outputPageMock
-	 * @param string[] $expectedModuleStyles
-	 *
-	 * @covers SkinTemplate::setupSkinUserCss
-	 * @dataProvider provideSetupSkinUserCss
+	 * @covers Skin::getDefaultModules
+	 * @dataProvider provideGetDefaultModules
 	 */
-	public function testSetupSkinUserCss( $outputPageMock, $expectedModuleStyles ) {
-		$outputPageMock->expects( $this->once() )
-			->method( 'addModuleStyles' )
-			->with( $expectedModuleStyles );
+	public function testgetDefaultModules( $isSyndicated, $html, $expectedModuleStyles ) {
+		$skin = new SkinTemplate();
 
-		$skinTemplate = new SkinTemplate();
-		$skinTemplate->setupSkinUserCss( $outputPageMock );
+		$context = new DerivativeContext( $skin->getContext() );
+		$context->setOutput( $this->getMockOutputPage( $isSyndicated, $html ) );
+		$skin->setContext( $context );
+
+		$modules = $skin->getDefaultModules();
+
+		$actualStylesModule = call_user_func_array( 'array_merge', $modules['styles'] );
+		$this->assertArraySubset(
+			$expectedModuleStyles,
+			$actualStylesModule,
+			'style modules'
+		);
 	}
 }
