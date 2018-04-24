@@ -127,7 +127,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
-			->setWrapperLegendMsg( 'allpages' )
+			->setWrapperLegendMsg( 'prefixindex' )
 			->setSubmitTextMsg( 'prefixindex-submit' );
 
 		return $htmlForm->prepareForm()->getHTML( false );
