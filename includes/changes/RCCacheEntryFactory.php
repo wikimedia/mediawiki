@@ -279,7 +279,8 @@ class RCCacheEntryFactory {
 		} else {
 			$userLink = Linker::userLink(
 				$cacheEntry->mAttribs['rc_user'],
-				$cacheEntry->mAttribs['rc_user_text']
+				$cacheEntry->mAttribs['rc_user_text'],
+				ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )
 			);
 		}
 
