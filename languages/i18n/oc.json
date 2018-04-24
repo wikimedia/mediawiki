@@ -1633,7 +1633,7 @@
 	"statistics-files": "Fichièrs importats",
 	"statistics-edits": "Modificacions de paginas dempuèi que {{SITENAME}} foguèt installat",
 	"statistics-edits-average": "Modificacions mejanas per pagina",
-	"statistics-users": "[[Special:ListUsers|Utilizaires]] enregistrats",
+	"statistics-users": "Utilizaires enregistrats",
 	"statistics-users-active": "Utilizaires actius",
 	"statistics-users-active-desc": "Utilizaires qu'an fait al mens una accion pendent {{PLURAL:$1|lo darrièr jorn|los $1 darrièrs jorns}}",
 	"pageswithprop": "Paginas amb una proprietat de pagina",

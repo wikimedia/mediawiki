@@ -51,7 +51,8 @@
 			"JAaron95",
 			"Info-farmer",
 			"Rakeshonwiki",
-			"Kaartic"
+			"Kaartic",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "அடிக்கோடிட்டத்தை இணை:",
@@ -1643,7 +1644,7 @@
 	"statistics-files": "பதிவேற்றப்பட்டக் கோப்புகள்",
 	"statistics-edits": "{{SITENAME}} அமைக்கப்பட்டதிலிருந்து பக்க திருத்தங்கள்",
 	"statistics-edits-average": "ஒரு பக்கத்திற்கான சராசரி தொகுப்புக்கள்",
-	"statistics-users": "பதிவு செய்யப்பட்ட [[Special:ListUsers|பயனர்கள்]]",
+	"statistics-users": "பதிவு செய்யப்பட்ட பயனர்கள்",
 	"statistics-users-active": "தொடர் பங்களிப்பாளர்கள் (பயனர்கள்)",
 	"statistics-users-active-desc": "கடந்த {{PLURAL:$1|நாள்|$1 நாட்களில்}} ஒன்று அல்லது அதற்கு மேற்பட்ட செயலைச் செய்த பயனர்கள்",
 	"pageswithprop": "பக்கப் பண்புடைய பக்கங்கள்",

@@ -27,7 +27,8 @@
 			"Macofe",
 			"Xð",
 			"Laurentianus",
-			"Guillermo2149"
+			"Guillermo2149",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -982,7 +983,7 @@
 	"statistics-files": "Fasciculi impositi",
 	"statistics-edits": "Recensiones paginarum factae ab initio {{grammar:genitive|{{SITENAME}}}}",
 	"statistics-edits-average": "Recensiones per paginam",
-	"statistics-users": "[[Special:ListUsers|Usores]] relati",
+	"statistics-users": "Usores relati",
 	"statistics-users-active": "Usores activi",
 	"statistics-users-active-desc": "Usores qui {{PLURAL:$1|proxima die|proximis $1 diebus}} actionem perfecerunt",
 	"pageswithprop-submit": "Pergere",

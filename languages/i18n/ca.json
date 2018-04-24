@@ -1834,7 +1834,7 @@
 	"statistics-files": "Fitxers carregats",
 	"statistics-edits": "Edicions en pàgines des que el projecte {{SITENAME}} fou instal·lat",
 	"statistics-edits-average": "Edicions per pàgina de mitjana",
-	"statistics-users": "[[Special:ListUsers|Usuaris]] registrats",
+	"statistics-users": "Usuaris registrats",
 	"statistics-users-active": "Usuaris actius",
 	"statistics-users-active-desc": "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 	"pageswithprop": "Pàgines amb una propietat de pàgina",

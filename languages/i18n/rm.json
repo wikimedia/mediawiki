@@ -14,7 +14,8 @@
 			"Matma Rex",
 			"Translaziuns",
 			"Terfili",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Suttastritgar colliaziuns:",
@@ -1280,7 +1281,7 @@
 	"statistics-files": "Datotecas chargiadas si",
 	"statistics-edits": "Modificaziuns da paginas dapi l'installaziun da {{SITENAME}}",
 	"statistics-edits-average": "Media da modificaziuns per pagina",
-	"statistics-users": "[[Special:ListUsers|Utilisaders]] registrads",
+	"statistics-users": "Utilisaders registrads",
 	"statistics-users-active": "Utilisaders activs",
 	"statistics-users-active-desc": "Utilisaders che han fatg almain ina acziun {{PLURAL:$1|l'ultim di|ils ultims $1 dis}}",
 	"doubleredirects": "Renviaments dubels",

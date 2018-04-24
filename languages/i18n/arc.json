@@ -9,7 +9,8 @@
 			"Michaelovic",
 			"The Thadman",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܪܐ:",
@@ -730,7 +731,7 @@
 	"statistics-pages": "ܦܐܬܬ̈ܐ",
 	"statistics-edits": "ܫܘܚܠܦ̈ܐ ܕܦܐܬܬ̈ܐ ܡܢ ܫܘܪܝܐ ܕ {{SITENAME}}",
 	"statistics-edits-average": "ܡܨܥܐ ܕܫܘܚܠܦ̈ܐ ܠܟܠ ܦܐܬܐ",
-	"statistics-users": "[[Special:ListUsers|ܡܦܠܚܢ̈ܐ]] ܡܣܓܠ̈ܐ",
+	"statistics-users": "ܡܦܠܚܢ̈ܐ ܡܣܓܠ̈ܐ",
 	"statistics-users-active": "ܡܦܠܚܢ̈ܐ ܙܪ̄ܝܙܐ",
 	"pageswithprop": "ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ",
 	"pageswithprop-legend": "ܦܐܬܬ̈ܐ ܥܡ ܕܝܠܝܬܐ ܕܦܐܬܐ",

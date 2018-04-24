@@ -13,7 +13,8 @@
 			"Macofe",
 			"Matma Rex",
 			"MTSap",
-			"Nemo bis"
+			"Nemo bis",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -1378,7 +1379,7 @@
 	"statistics-files": "Fajls imtellgħa",
 	"statistics-edits": "Total ta' modifiki minn mindu {{SITENAME}} bdiet fil-funzjon",
 	"statistics-edits-average": "Medja ta' modifiki għal kull paġna",
-	"statistics-users": "[[Special:ListUsers|Utenti]] reġistrati",
+	"statistics-users": "Utenti reġistrati",
 	"statistics-users-active": "Utenti attivi",
 	"statistics-users-active-desc": "Utenti li wettqu azzjoni fl-aħħar {{PLURAL:$1|ġurnata|$1 ġurnata}}",
 	"pageswithprop": "Paġni bi proprjetà ta' paġna",

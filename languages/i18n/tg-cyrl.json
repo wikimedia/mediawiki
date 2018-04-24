@@ -14,7 +14,8 @@
 			"Macofe",
 			"AryanSogd",
 			"ToJack",
-			"Vashgird"
+			"Vashgird",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -1100,7 +1101,7 @@
 	"statistics-pages-desc": "Тамоми саҳифаҳо дар ин вики-сомона (саҳифаҳои равонакунӣ, баҳсҳо ва ғ.)",
 	"statistics-files": "Парвандаҳои боршуда",
 	"statistics-edits": "Шумораи вироишҳо аз замони эҷоди ин {{SITENAME}}",
-	"statistics-users": "[[Special:ListUsers|Корбарони]] сабтиномшуда",
+	"statistics-users": "Корбарони сабтиномшуда",
 	"statistics-users-active": "Корбарони фаъол",
 	"pageswithprop-submit": "Бирав",
 	"doubleredirects": "Тағйири масирҳои дутоӣ",

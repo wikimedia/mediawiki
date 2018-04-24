@@ -19,7 +19,8 @@
 			"PiefPafPier",
 			"Catrope",
 			"Sjoerddebruin",
-			"Ieneach fan 'e Esk"
+			"Ieneach fan 'e Esk",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -1134,7 +1135,7 @@
 	"statistics-files": "Triemmen",
 	"statistics-edits": "Sidebewurkings sûnt it begjin fan {{SITENAME}}",
 	"statistics-edits-average": "Trochstrings tal bewurkings per side",
-	"statistics-users": "Registrearre [[Special:ListUsers|brûkers]]",
+	"statistics-users": "Registrearre brûkers",
 	"statistics-users-active": "Aktive brûkers",
 	"statistics-users-active-desc": "Brûkers dy't yn 'e ôfrûne {{PLURAL:$1|dei|$1 dagen}} in hanneling útfierd hawwe",
 	"pageswithprop-prop": "Eigenskipnamme:",

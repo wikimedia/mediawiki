@@ -19,7 +19,8 @@
 			"아라",
 			"Macofe",
 			"Uostofchuodnego",
-			"Przem(1)s"
+			"Przem(1)s",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Podsztrychniyniy linkōw:",
@@ -1141,7 +1142,7 @@
 	"statistics-files": "Wćepane pliki",
 	"statistics-edits": "Sprowjyńa wykůnane uod powstańo {{grammar:D.lp|{{SITENAME}}}}",
 	"statistics-edits-average": "Strzedńo liczba sprowjyń na zajta",
-	"statistics-users": "Zarejerowanych [[Special:ListUsers|użytkowńikůw]]",
+	"statistics-users": "Zarejerowanych użytkowńikůw",
 	"statistics-users-active": "Aktywnych użytkowńikůw",
 	"statistics-users-active-desc": "Użytkowńiki, kere bůły aktywne bez {{PLURAL:$1|uostatńi dźyń|uostatńich $1 dńi}}",
 	"doubleredirects": "Podwůjne překierowańa",

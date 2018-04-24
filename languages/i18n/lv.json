@@ -26,7 +26,8 @@
 			"Silraks",
 			"Zuiks",
 			"Martinsdzerve",
-			"Nixiéoffset"
+			"Nixiéoffset",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -1510,7 +1511,7 @@
 	"statistics-files": "Augšuplādētie faili",
 	"statistics-edits": "Lapu izmaiņas kopš {{grammar:ģenitīvs{{SITENAME}}}} izveidošanas",
 	"statistics-edits-average": "Vidējais izmaiņu skaits uz lapu",
-	"statistics-users": "Reģistrēti [[Special:ListUsers|dalībnieki]]",
+	"statistics-users": "Reģistrēti dalībnieki",
 	"statistics-users-active": "Aktīvi lietotāji",
 	"statistics-users-active-desc": "Lietotāji, kas ir veikuši jebkādu darbību {{PLURAL:$1|iepriekšējās $1 dienās|iepriekšējā $1 dienā|iepriekšējās $1 dienās}}",
 	"pageswithprop-prop": "Īpašības nosaukums:",

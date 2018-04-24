@@ -6,7 +6,8 @@
 			"محک",
 			"Macofe",
 			"V6rg",
-			"شیخ"
+			"شیخ",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "خالؤنˇ جيره خط کشئن:",
@@ -509,7 +510,7 @@
 	"randomincategory-nopages": "[[:Category:$1|$1]] جرگه مئن هيچ ولگي دننه.",
 	"randomincategory-legend": "جرگه مئنˇ کترئي ولگ",
 	"statistics-header-users": "کارگيرˇ آمار",
-	"statistics-users": "[[Special:ListUsers|کارگيرؤن]] ثبتˇ نام بؤده",
+	"statistics-users": "کارگيرؤن ثبتˇ نام بؤده",
 	"nbytes": "$1 {{PLURAL:$1|باىت|باىتؤن}}",
 	"ncategories": "{{PLURAL:$1|جرگه|جرگهٰ‌ن}}",
 	"nmembers": "$1 {{PLURAL:$1|عۊضو|عۊضو}}",

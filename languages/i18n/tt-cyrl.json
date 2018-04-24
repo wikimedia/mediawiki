@@ -28,7 +28,8 @@
 			"Matma Rex",
 			"Irus",
 			"Ifs",
-			"Khanmarat"
+			"Khanmarat",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Сылтамаларны сызымлау:",
@@ -1242,7 +1243,7 @@
 	"statistics-files": "Йөкләнелгән файллар",
 	"statistics-edits": "{{grammar:genitive|{{SITENAME}}}} проекты ачылганнан бирле булган барлык үзгәртүләр исәбе",
 	"statistics-edits-average": "Бер биткә уртача үзгәртүләр исәбе",
-	"statistics-users": "Теркәлгән [[Special:ListUsers|кулланучылар]]",
+	"statistics-users": "Теркәлгән кулланучылар",
 	"statistics-users-active": "Актив кулланучылар",
 	"statistics-users-active-desc": "{{PLURAL:$1|$1 көн }} өчендә нинди дә булса үзгәртүләр керткән кулланучылар",
 	"pageswithprop": "Үзенчәлекләре кабаттан билгеләнгән битләр",

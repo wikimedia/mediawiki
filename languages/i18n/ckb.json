@@ -20,7 +20,8 @@
 			"Diyariq",
 			"Sarchia",
 			"Lost Whispers",
-			"Épine"
+			"Épine",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -1513,7 +1514,7 @@
 	"statistics-files": "پەڕگە بارکراوەکان",
 	"statistics-edits": "دەستکارییەکانی پەڕەکان لە کاتی دامەزراندنی {{SITENAME}}",
 	"statistics-edits-average": "ناونجیی دەستکارییەکان بۆ ھەر پەڕە",
-	"statistics-users": "[[Special:ListUsers|بەکارھێنەر]]ە تۆمارکراوەکان",
+	"statistics-users": "بەکارھێنەرە تۆمارکراوەکان",
 	"statistics-users-active": "ئەندامە چالاکەکان",
 	"statistics-users-active-desc": "ئەو بەکارھێنەرانەی لە {{PLURAL:$1|ڕۆژ|$1 ڕۆژ}}ی ڕابردوودا کردەوەیەکیان بەڕێوە بردووە",
 	"pageswithprop": "پەڕەکان بە تایبەتمەندیی پەڕە",

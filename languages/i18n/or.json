@@ -15,7 +15,8 @@
 			"Macofe",
 			"Nistha.aslp",
 			"Matma Rex",
-			"Susant purohit"
+			"Susant purohit",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -1495,7 +1496,7 @@
 	"statistics-files": "ଫାଇଲସବୁ ଅପଲୋଡ଼ କରାଗଲା",
 	"statistics-edits": "{{SITENAME}} ତିଆରିହେବା ବେଳରୁ ପୃଷ୍ଠାର ନାମ",
 	"statistics-edits-average": "ପୃଷ୍ଠାପ୍ରତି ହାରାହାରି ସମ୍ପାଦନା",
-	"statistics-users": "ପଞ୍ଜିକରଣ କରିଥିବା [[Special:ListUsers|ସଭ୍ୟଗଣ]]",
+	"statistics-users": "ପଞ୍ଜିକରଣ କରିଥିବା ସଭ୍ୟଗଣ",
 	"statistics-users-active": "ସଚଳ ସଭ୍ୟ",
 	"statistics-users-active-desc": "ବିଗତ {{PLURAL:$1|ଦିନରେ|$1 ଦିନରେ}} କିଛି କାମ କରିଥିବା ସଭ୍ୟଗଣ",
 	"pageswithprop": "ପୃଷ୍ଠା ବିବରଣୀ ଥିବା ପୃଷ୍ଠାମାନ",

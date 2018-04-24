@@ -16,7 +16,8 @@
 			"Macofe",
 			"Karmwiki",
 			"Matma Rex",
-			"Rafaneta"
+			"Rafaneta",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -1811,7 +1812,7 @@
 	"statistics-files": "Files incargate",
 	"statistics-edits": "Modificationes de paginas depost le installation de {{SITENAME}}",
 	"statistics-edits-average": "Media del modificationes per pagina",
-	"statistics-users": "[[Special:ListUsers|Usatores]] registrate",
+	"statistics-users": "Usatores registrate",
 	"statistics-users-active": "Usatores active",
 	"statistics-users-active-desc": "Usatores qui ha facite un action durante le {{PLURAL:$1|die|$1 dies}} passate",
 	"pageswithprop": "Paginas con un proprietate de pagina",

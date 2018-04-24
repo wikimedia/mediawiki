@@ -5,7 +5,8 @@
 			"राम प्रसाद जोशी",
 			"Macofe",
 			"Matma Rex",
-			"Sfic"
+			"Sfic",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "कड़ि अधोरेखन:",
@@ -1419,7 +1420,7 @@
 	"statistics-files": "अपलोड करल फाइल",
 	"statistics-edits": "{{SITENAME}} बनै कय बाद संपादन करल पन्ना",
 	"statistics-edits-average": "प्रति पन्ना औसत संपादन",
-	"statistics-users": "पंजीकृत [[Special:ListUsers|सदस्य]]",
+	"statistics-users": "पंजीकृत सदस्य",
 	"statistics-users-active": "सक्रिय सदस्य",
 	"statistics-users-active-desc": "पिछला {{PLURAL:$1|दिन}} से जवन सदस्य सक्रिय हँय",
 	"pageswithprop": "पन्ना जवनन में पन्ना गुण है",

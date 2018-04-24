@@ -22,7 +22,8 @@
 			"Matma Rex",
 			"V6rg",
 			"C.R.",
-			"Cusolotto"
+			"Cusolotto",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sotołinea i cołegamenti:",
@@ -1381,7 +1382,7 @@
 	"statistics-files": "File cargà",
 	"statistics-edits": "Modifiche a scuminsiar da l'istalassion de {{SITENAME}}",
 	"statistics-edits-average": "Canbiamenti in media par pagina",
-	"statistics-users": "[[Special:ListUsers|Utenti]] registrà",
+	"statistics-users": "Utenti registrà",
 	"statistics-users-active": "Utenti atìvi",
 	"statistics-users-active-desc": "Utenti che gà fato almanco un'azion in {{PLURAL:$1|tel'ultimo zorno|in tei ultimi $1 zorni}}",
 	"pageswithprop": "Pagine co na proprietà de pagina",

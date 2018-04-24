@@ -15,7 +15,8 @@
 			"Nemo bis",
 			"S4b1nuz E.656",
 			"Luensu1959",
-			"Feipìn"
+			"Feipìn",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sotolìnnia i colegaménti",
@@ -1737,7 +1738,7 @@
 	"statistics-files": "File caregæ",
 	"statistics-edits": "Modifiche a partî dal l'installaçion de {{SITENAME}}",
 	"statistics-edits-average": "Meddia de modiffiche pe paggina",
-	"statistics-users": "[[Special:ListUsers|Utenti]] registræ",
+	"statistics-users": "Utenti registræ",
 	"statistics-users-active": "Uténti atîvi",
 	"statistics-users-active-desc": "Utenti che han effettuou un'açion {{PLURAL:$1|inte l'urtimo giorno|inti urtimi $1 giorni}}",
 	"pageswithprop": "Paggine co-ina propietæ de paggina",

@@ -15,7 +15,8 @@
 			"Macofe",
 			"Robin van der Vliet",
 			"Algentem",
-			"Joao Xavier"
+			"Joao Xavier",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sub-strekizez ligili:",
@@ -1058,7 +1059,7 @@
 	"statistics-files": "Adkargita arkivi",
 	"statistics-edits": "Quanto di redakti pos ke {{SITENAME}} kreesis",
 	"statistics-edits-average": "Mezavalora quanto di redakti per pagino",
-	"statistics-users": "Enrejistrita [[Special:ListUsers|uzeri]]",
+	"statistics-users": "Enrejistrita uzeri",
 	"statistics-users-active": "Aktiva uzeri",
 	"statistics-users-active-desc": "Uzeri qui facis ula agado dum la lasta {{PLURAL:$1|dio|$1 dii}}",
 	"pageswithprop": "Pagini kun atributo di pagino",

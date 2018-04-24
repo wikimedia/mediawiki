@@ -33,7 +33,8 @@
 			"Matma Rex",
 			"SusithCM",
 			"Sandaru",
-			1100100
+			1100100,
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -1516,7 +1517,7 @@
 	"statistics-files": "උඩුගතකරන ලද ගොනු",
 	"statistics-edits": "{{SITENAME}} පිහිටුවීමෙන් අනතුරුව සිදුවූ පිටු සංස්කරණයන්",
 	"statistics-edits-average": "එක් පිටුවකට සංස්කරණයන්හි  මධ්‍යක අගය",
-	"statistics-users": "ලේඛනගත  [[Special:ListUsers|පරිශීලකයෝ]]",
+	"statistics-users": "ලේඛනගත පරිශීලකයෝ",
 	"statistics-users-active": "ක්‍රියාශීලි පරිශීලකයන්",
 	"statistics-users-active-desc": "පසුගිය {{PLURAL:$1|දිනය|දින $1}} තුලදී කිසියම් ක්‍රියාවක් සිදු කල පරිශීලකයන්",
 	"pageswithprop": "පිටු දේපලක් සහිත පිටු",

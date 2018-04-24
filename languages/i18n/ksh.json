@@ -10,7 +10,8 @@
 			"아라",
 			"TTO",
 			"Macofe",
-			"Nemo bis"
+			"Nemo bis",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1623,7 +1624,7 @@
 	"statistics-files": "Huhjelade Dateie",
 	"statistics-edits": "Änderonge aan Sigge",
 	"statistics-edits-average": "Aanzahl Änderonge pro Sigg em Dorschschnett",
-	"statistics-users": "[[Special:ListUsers|Metmaacher]] aajemelldt",
+	"statistics-users": "Metmaacher aajemelldt",
 	"statistics-users-active": "Aktive Metmaacher",
 	"statistics-users-active-desc": "Aktiv sin Metmaacher, di {{PLURAL:$1|hück un jesterre|en de läzte $1 Dääsch|hück}} jät jemaat han.",
 	"pageswithprop": "Sigge med en beschtemmpte Eijeschaff",

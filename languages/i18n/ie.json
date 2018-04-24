@@ -15,7 +15,8 @@
 			"Srdjan m",
 			"Macofe",
 			"Stavanger7",
-			"Fanjiayi"
+			"Fanjiayi",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ultracatenun:",
@@ -714,7 +715,7 @@
 	"statistics-files": "Files cargat",
 	"statistics-edits": "Redactiones del págine desde que {{SITENAME}} esset etablisset",
 	"statistics-edits-average": "Valore medial de redactiones per págine",
-	"statistics-users": "[[Special:ListUsers|Usatores]] registrat",
+	"statistics-users": "Usatores registrat",
 	"statistics-users-active": "Usatores activ",
 	"statistics-users-active-desc": "Usatores qui have efectuat un action in li ultim {{PLURAL:$1|die|dies}}",
 	"brokenredirects-edit": "redacter",

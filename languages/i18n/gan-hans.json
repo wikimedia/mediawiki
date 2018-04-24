@@ -17,7 +17,8 @@
 			"Impersonator 1",
 			"Babanwalia",
 			"Macofe",
-			"Fanjiayi"
+			"Fanjiayi",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "下划链接",
@@ -792,7 +793,7 @@
 	"statistics-files": "上载正𠮶档案",
 	"statistics-edits": "自从{{SITENAME}}设定𠮶页面编辑数",
 	"statistics-edits-average": "每页𠮶平均编辑数",
-	"statistics-users": "注册过𠮶[[Special:ListUsers|用户]]",
+	"statistics-users": "注册过𠮶用户",
 	"statistics-users-active": "活跃用户",
 	"statistics-users-active-desc": "头$1日操作过𠮶用户",
 	"doubleredirects": "双重重定向",

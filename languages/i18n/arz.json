@@ -11,7 +11,8 @@
 			"아라",
 			"Oldstoneage",
 			"Macofe",
-			"Abdelrhaman Eid"
+			"Abdelrhaman Eid",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "حط خط تحت اللينكات:",
@@ -1152,7 +1153,7 @@
 	"statistics-files": "الملفات المتحملة",
 	"statistics-edits": "تعديلات الصفحات من بداية {{SITENAME}}",
 	"statistics-edits-average": "متوسط التعديلات لكل صفحة",
-	"statistics-users": "[[Special:ListUsers|يوزرز]] مسجلين",
+	"statistics-users": "يوزرز مسجلين",
 	"statistics-users-active": "يوزرز نشطين",
 	"statistics-users-active-desc": "اليوزرز اللى نفذو عمليه فى الـ {{PLURAL:$1|يوم|$1 ايام}} اللى فاتو",
 	"doubleredirects": "تحويلات مزدوجه",

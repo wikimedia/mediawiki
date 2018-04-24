@@ -896,7 +896,7 @@
 	"statistics-pages": "Páginas",
 	"statistics-pages-desc": "Tolas páginas nel wiki, encruyendu carabas, redirecionis...",
 	"statistics-files": "Archivus empuntaus",
-	"statistics-users": "[[Special:ListUsers|Usuárius rustrius]]",
+	"statistics-users": "Usuárius rustrius",
 	"statistics-users-active": "Ussuárius ativus",
 	"statistics-users-active-desc": "Ussuárius que aigan hechu anguna ación {{PLURAL:$1|nel úrtimu dia|enus úrtimus $1 dias}}",
 	"doubleredirects": "Redirecionis dobris",

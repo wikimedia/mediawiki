@@ -10,7 +10,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Marsitown"
+			"Marsitown",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -800,7 +801,7 @@
 	"statistics-files": "Files cjamâts sù",
 	"statistics-edits": "Cambiaments scomençant de instalazion di {{SITENAME}}",
 	"statistics-edits-average": "Medie dai cambiaments par ogni pagjine",
-	"statistics-users": "[[Special:ListUsers|Utents]] regjistrâts",
+	"statistics-users": "Utents regjistrâts",
 	"statistics-users-active": "Utents atîfs",
 	"statistics-users-active-desc": "Utents che a àn fat une azion {{PLURAL:$1|intal ultin dì|intai ultins $1 dîs}}",
 	"doubleredirects": "Re-indreçaments doplis",

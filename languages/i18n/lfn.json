@@ -9,7 +9,8 @@
 			"아라",
 			"Katxis",
 			"Chabi",
-			"Angel Blaise"
+			"Angel Blaise",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sulini de lias:",
@@ -1799,7 +1800,7 @@
 	"statistics-files": "Fixes cargada",
 	"statistics-edits": "Editas de pajes de pos la inisia de {{SITENAME}}",
 	"statistics-edits-average": "Editas promedia per paje",
-	"statistics-users": "[[Special:ListUsers|Usores]] rejistrada",
+	"statistics-users": "Usores rejistrada",
 	"statistics-users-active": "Usores ativa",
 	"statistics-users-active-desc": "Usores ci ia fa un ata en la {{PLURAL:$1|dia|$1 dias}} la plu resente",
 	"pageswithprop": "Pajes con atribuidas de paje",

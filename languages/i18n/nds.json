@@ -13,7 +13,8 @@
 			"아라",
 			"Kolega2357",
 			"Servien",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -1089,7 +1090,7 @@
 	"statistics-files": "Hoochlaadt Datein",
 	"statistics-edits": "Ännern, siet dat {{SITENAME}} gifft",
 	"statistics-edits-average": "Dörsnittlich Ännern je Sied",
-	"statistics-users": "Anmellt [[Special:ListUsers|Brukers]]",
+	"statistics-users": "Anmellt Brukers",
 	"statistics-users-active": "Aktive Brukers",
 	"statistics-users-active-desc": "Brukers, de {{PLURAL:$1|in de vergahn 24 Stünnen|in de vergahn $1 Daag}} wat daan hebbt",
 	"pageswithprop-submit": "Los",

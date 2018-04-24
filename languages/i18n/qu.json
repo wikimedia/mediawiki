@@ -1376,7 +1376,7 @@
 	"statistics-files": "Churkusqa willañiqikuna",
 	"statistics-edits": "P'anqa llamk'apusqakuna {{SITENAME}}-pa paqarisqanmanta",
 	"statistics-edits-average": "Kuskanchaku llamk'apusqakuna p'anqaman",
-	"statistics-users": "Rakiqunayuq [[Special:ListUsers|ruraqkuna]]",
+	"statistics-users": "Rakiqunayuq ruraqkuna",
 	"statistics-users-active": "Llamk'achkaq ruraqkuna",
 	"statistics-users-active-desc": "Ñaqha {{PLURAL:$1|p'unchawpi|$1 p'unchawkunapi}} llamk'apuq ruraqkuna",
 	"pageswithprop": "Kaqninniyuq p'anqakuna",

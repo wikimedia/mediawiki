@@ -5,7 +5,8 @@
 			"Midnight Gambler",
 			"Macofe",
 			"Matma Rex",
-			"Ghiutun"
+			"Ghiutun",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Links (Verbinnunge) unnerstreiche:",
@@ -1377,7 +1378,7 @@
 	"statistics-files": "Hochgeloodne Dateie",
 	"statistics-edits": "Seitebeoorbeitunge",
 	"statistics-edits-average": "Beoorbeitunge pro Seit im Doorrichschnitt",
-	"statistics-users": "Registrierte [[Special:ListUsers|Benutzer]]",
+	"statistics-users": "Registrierte Benutzer",
 	"statistics-users-active": "Aktive Benutzer",
 	"statistics-users-active-desc": "Benutzer mit Beoorbeitunge {{PLURAL:$1|während (im verloof von) der letzte 24 Stunde|während (im verloof von) der vergangne $1 Tooche}}",
 	"pageswithprop": "Seite mit en Seiteneichenschaft",

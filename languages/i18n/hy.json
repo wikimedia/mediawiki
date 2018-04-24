@@ -30,7 +30,8 @@
 			"Kareyac",
 			"Irus",
 			"Narek",
-			"23artashes"
+			"23artashes",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ընդգծել հղումները՝",
@@ -1240,7 +1241,7 @@
 	"statistics-files": "Բեռնված նիշքեր",
 	"statistics-edits": "Խմբագրումները {{SITENAME}} կայքի տեղադրումից ի վեր",
 	"statistics-edits-average": "Էջի խմբագրումների միջին թիվը",
-	"statistics-users": "Գրանցված [[Special:ListUsers|մասնակիցներ]]",
+	"statistics-users": "Գրանցված մասնակիցներ",
 	"statistics-users-active": "Ակտիվ մասնակիցներ",
 	"statistics-users-active-desc": "Վերջին {{PLURAL:$1|օր|$1 օր}}ում որևէ գործողություն են կատարած մասնակիցներ",
 	"pageswithprop-submit": "Անցնել",

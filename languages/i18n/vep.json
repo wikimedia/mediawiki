@@ -10,7 +10,8 @@
 			"아라",
 			"Macofe",
 			"Sebranik",
-			"Ghiutun"
+			"Ghiutun",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -1135,7 +1136,7 @@
 	"statistics-files": "Jügetoittud failad",
 	"statistics-edits": "Toižetusiden lugu {{SITENAME}}-saitan seižutamižessai.",
 	"statistics-edits-average": "Toižetusiden keskmäine lugu lehtpolel",
-	"statistics-users": "Registriruidud [[Special:ListUsers|kävutajad]]",
+	"statistics-users": "Registriruidud kävutajad",
 	"statistics-users-active": "Activižed kävutajad",
 	"statistics-users-active-desc": "Kävutajad, kudambad ozutiba aktivižut {{PLURAL:$1|jäl’gmäižen päivän|$1 jäl'gmäižil päivil}}",
 	"pageswithprop-submit": "Tege",

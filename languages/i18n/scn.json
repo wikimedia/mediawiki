@@ -15,7 +15,8 @@
 			"아라",
 			"Pippinu",
 			"Macofe",
-			"S4b1nuz E.656"
+			"S4b1nuz E.656",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Suttalìnia li lijami:",
@@ -1479,7 +1480,7 @@
 	"statistics-files": "File carricati",
 	"statistics-edits": "Pàggini canciati di quannu {{SITENAME}} fu armatu",
 	"statistics-edits-average": "Media dî canciamenti pi pàggina",
-	"statistics-users": "[[Special:ListUsers|Utenti]] riggistrati",
+	"statistics-users": "Utenti riggistrati",
 	"statistics-users-active": "Utenti attivi",
 	"statistics-users-active-desc": "Utenti ca fìciru quarchi azzioni {{PLURAL:$1|nta l'ùrtimu jornu|nta l'ùrtimi $1 jorna}}",
 	"pageswithprop": "Pàggini cu na prupità di pàggina",

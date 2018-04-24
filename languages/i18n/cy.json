@@ -19,7 +19,8 @@
 			"Nemo bis",
 			"Dafyddt",
 			"Jdforrester",
-			"Irus"
+			"Irus",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -1683,7 +1684,7 @@
 	"statistics-files": "Ffeiliau wedi eu huwchlwytho",
 	"statistics-edits": "Golygiadau ers y dechrau ar {{SITENAME}}",
 	"statistics-edits-average": "Golygiadau'r dudalen, ar gyfartaledd",
-	"statistics-users": "[[Special:ListUsers|Defnyddwyr]] cofrestredig",
+	"statistics-users": "Defnyddwyr cofrestredig",
 	"statistics-users-active": "Defnyddwyr gweithgar",
 	"statistics-users-active-desc": "Defnyddwyr sydd wedi gweithredu unwaith neu ragor yn ystod y {{PLURAL:$1||diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}} diwethaf",
 	"pageswithprop": "Tudalennau a chanddynt nodwedd arbennig",
