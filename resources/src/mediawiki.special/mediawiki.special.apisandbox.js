@@ -822,19 +822,7 @@
 				ApiSandbox.updateUI();
 			}
 
-			// If the hashchange event exists, use it. Otherwise, fake it.
-			// And, of course, IE has to be dumb.
-			if ( 'onhashchange' in window &&
-				( document.documentMode === undefined || document.documentMode >= 8 )
-			) {
-				$( window ).on( 'hashchange', ApiSandbox.loadFromHash );
-			} else {
-				setInterval( function () {
-					if ( oldhash !== location.hash ) {
-						ApiSandbox.loadFromHash();
-					}
-				}, 1000 );
-			}
+			$( window ).on( 'hashchange', ApiSandbox.loadFromHash );
 
 			$content
 				.empty()
