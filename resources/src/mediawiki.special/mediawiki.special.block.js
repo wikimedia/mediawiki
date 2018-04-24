@@ -19,7 +19,6 @@
 			enableAutoblockField = infuseOrNull( $( '#mw-input-wpAutoBlock' ).closest( '.oo-ui-fieldLayout' ) ),
 			hideUserField = infuseOrNull( $( '#mw-input-wpHideUser' ).closest( '.oo-ui-fieldLayout' ) ),
 			watchUserField = infuseOrNull( $( '#mw-input-wpWatch' ).closest( '.oo-ui-fieldLayout' ) ),
-			// mw.widgets.SelectWithInputWidget
 			expiryWidget = infuseOrNull( 'mw-input-wpExpiry' );
 
 		function updateBlockOptions() {
@@ -28,11 +27,10 @@
 				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
 				isNonEmptyIp = isIp && !isEmpty,
-				expiryValue = expiryWidget.dropdowninput.getValue(),
+				expiryValue = expiryWidget.getValue(),
 				// infinityValues  are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
-				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1 ||
-					( expiryValue === 'other' && infinityValues.indexOf( expiryWidget.textinput.getValue() ) !== -1 );
+				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1;
 
 			if ( enableAutoblockField ) {
 				enableAutoblockField.toggle( !( isNonEmptyIp ) );
@@ -51,8 +49,7 @@
 		if ( blockTargetWidget ) {
 			// Bind functions so they're checked whenever stuff changes
 			blockTargetWidget.on( 'change', updateBlockOptions );
-			expiryWidget.dropdowninput.on( 'change', updateBlockOptions );
-			expiryWidget.textinput.on( 'change', updateBlockOptions );
+			expiryWidget.on( 'change', updateBlockOptions );
 
 			// Call them now to set initial state (ie. Special:Block/Foobar?wpBlockExpiry=2+hours)
 			updateBlockOptions();

@@ -151,11 +151,10 @@ class SpecialBlock extends FormSpecialPage {
 				'validation-callback' => [ __CLASS__, 'validateTargetField' ],
 			],
 			'Expiry' => [
-				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
+				'type' => 'expiry',
 				'label-message' => 'ipbexpiry',
 				'required' => true,
 				'options' => $suggestedDurations,
-				'other' => $this->msg( 'ipbother' )->text(),
 				'default' => $this->msg( 'ipb-default-expiry' )->inContentLanguage()->text(),
 			],
 			'Reason' => [
@@ -876,29 +875,38 @@ class SpecialBlock extends FormSpecialPage {
 			$a[$show] = $value;
 		}
 
+		if ( $a ) {
+			// if options exist, add other to the end instead of the begining (which
+			// is what happens by default).
+			$a[ wfMessage( 'ipbother' )->text() ] = 'other';
+		}
+
 		return $a;
 	}
 
 	/**
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
+	 *
+	 * @todo strtotime() only accepts English strings. This means the expiry input
+	 *       can only be specified in English.
+	 * @see https://secure.php.net/manual/en/function.strtotime.php
+	 *
 	 * @param string $expiry Whatever was typed into the form
-	 * @return string Timestamp or 'infinity'
+	 * @return string|bool Timestamp or 'infinity' or false on error.
 	 */
 	public static function parseExpiryInput( $expiry ) {
 		if ( wfIsInfinity( $expiry ) ) {
-			$expiry = 'infinity';
-		} else {
-			$expiry = strtotime( $expiry );
-
-			if ( $expiry < 0 || $expiry === false ) {
-				return false;
-			}
-
-			$expiry = wfTimestamp( TS_MW, $expiry );
+			return 'infinity';
 		}
 
-		return $expiry;
+		$expiry = strtotime( $expiry );
+
+		if ( $expiry < 0 || $expiry === false ) {
+			return false;
+		}
+
+		return wfTimestamp( TS_MW, $expiry );
 	}
 
 	/**
