@@ -105,9 +105,9 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderWikiModule::isKnownEmpty
 	 * @dataProvider provideIsKnownEmpty
 	 */
-	public function testIsKnownEmpty( $titleInfo, $group, $expected ) {
+	public function testIsKnownEmpty( $titleInfo, $group, $dependencies, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getTitleInfo', 'getGroup' ] )
+			->setMethods( [ 'getTitleInfo', 'getGroup', 'getDependencies' ] )
 			->getMock();
 		$module->expects( $this->any() )
 			->method( 'getTitleInfo' )
@@ -115,6 +115,9 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module->expects( $this->any() )
 			->method( 'getGroup' )
 			->will( $this->returnValue( $group ) );
+		$module->expects( $this->any() )
+			->method( 'getDependencies' )
+			->will( $this->returnValue( $dependencies ) );
 		$context = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -124,29 +127,40 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	public static function provideIsKnownEmpty() {
 		return [
 			// No valid pages
-			[ [], 'test1', true ],
+			[ [], 'test1', [], true ],
 			// 'site' module with a non-empty page
 			[
 				[ 'MediaWiki:Common.js' => [ 'page_len' => 1234 ] ],
 				'site',
+				[],
+				false,
+			],
+			// 'site' module with a non-empty page but dependencies
+			[
+				[],
+				'site',
+				[ 'mobile.css' ],
 				false,
 			],
 			// 'site' module with an empty page
 			[
 				[ 'MediaWiki:Foo.js' => [ 'page_len' => 0 ] ],
 				'site',
+				[],
 				false,
 			],
 			// 'user' module with a non-empty page
 			[
 				[ 'User:Example/common.js' => [ 'page_len' => 25 ] ],
 				'user',
+				[],
 				false,
 			],
 			// 'user' module with an empty page
 			[
 				[ 'User:Example/foo.js' => [ 'page_len' => 0 ] ],
 				'user',
+				[],
 				true,
 			],
 		];
