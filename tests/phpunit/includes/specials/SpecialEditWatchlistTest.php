@@ -42,7 +42,7 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( 'raw', null, 'qqx', $user->getUser() );
 		$this->assertContains(
-			'<textarea id="mw-input-wpTitles"',
+			'<div id=\'mw-input-wpTitles\'',
 			$html
 		);
 	}
