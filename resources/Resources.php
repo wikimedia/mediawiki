@@ -2064,9 +2064,13 @@ return [
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui.styles.icons-editing-core',
+			'oojs-ui.styles.icons-editing-advanced',
 			'mediawiki.widgets.SelectWithInputWidget',
+			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.util',
 			'mediawiki.htmlform',
+			'moment',
 		],
 	],
 	'mediawiki.special.changecredentials.js' => [
@@ -2603,6 +2607,21 @@ return [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-moderation',
 			'oojs-ui.styles.icons-movement',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'mediawiki.widgets.expiry' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/mw.widgets.ExpiryInputWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui-core',
+			'oojs-ui-widgets',
+			'moment',
+			'mediawiki.widgets.datetime'
+		],
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.widgets/mw.widgets.ExpiryInputWidget.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
