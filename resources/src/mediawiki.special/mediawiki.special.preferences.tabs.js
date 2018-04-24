@@ -115,38 +115,16 @@
 			}
 		}
 
-		// In browsers that support the onhashchange event we will not bind click
-		// handlers and instead let the browser do the default behavior (clicking the
-		// <a href="#.."> will naturally set the hash, handled by onhashchange.
-		// But other things that change the hash will also be caught (e.g. using
-		// the Back and Forward browser navigation).
-		// Note the special check for IE "compatibility" mode.
-		if ( 'onhashchange' in window &&
-			( document.documentMode === undefined || document.documentMode >= 8 )
-		) {
-			$( window ).on( 'hashchange', function () {
-				var hash = location.hash;
-				if ( hash.match( /^#mw-[\w-]+/ ) ) {
-					detectHash();
-				} else if ( hash === '' ) {
-					switchPrefTab( 'personal', 'noHash' );
-				}
-			} )
-				// Run the function immediately to select the proper tab on startup.
-				.trigger( 'hashchange' );
-		// In older browsers we'll bind a click handler as fallback.
-		// We must not have onhashchange *and* the click handlers, otherwise
-		// the click handler calls switchPrefTab() which sets the hash value,
-		// which triggers onhashchange and calls switchPrefTab() again.
-		} else {
-			$preftoc.on( 'click', 'li a', function ( e ) {
-				switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
-				e.preventDefault();
-			} );
-			// If we've reloaded the page or followed an open-in-new-window,
-			// make the selected tab visible.
-			detectHash();
-		}
+		$( window ).on( 'hashchange', function () {
+			var hash = location.hash;
+			if ( hash.match( /^#mw-[\w-]+/ ) ) {
+				detectHash();
+			} else if ( hash === '' ) {
+				switchPrefTab( 'personal', 'noHash' );
+			}
+		} )
+			// Run the function immediately to select the proper tab on startup.
+			.trigger( 'hashchange' );
 
 		// Restore the active tab after saving the preferences
 		previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
