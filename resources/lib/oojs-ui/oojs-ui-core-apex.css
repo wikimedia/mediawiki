@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.4
+ * OOUI v0.26.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-17T22:24:02Z
+ * Date: 2018-04-24T23:29:05Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -349,10 +349,13 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   display: table-cell;
+}
+.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   vertical-align: middle;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   width: 1px;
+  vertical-align: top;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
@@ -535,7 +538,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-panelLayout-framed {
   border: 1px solid #ccc;
   border-radius: 0.5em;
-  box-shadow: 0 0.25em 1em rgba(0, 0, 0, 0.25);
 }
 .oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
   margin: 1em 0;
@@ -636,7 +638,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
 .oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
   width: 1px;
@@ -1424,7 +1426,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget,
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {
   width: 1px;
