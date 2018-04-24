@@ -75,7 +75,7 @@ class RevDelLogItem extends RevDelItem {
 		$dbw->update( 'recentchanges',
 			[
 				'rc_deleted' => $bits,
-				'rc_patrolled' => RecentChange::PRC_PATROLLED
+				'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED
 			],
 			[
 				'rc_logid' => $this->row->log_id,
