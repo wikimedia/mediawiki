@@ -15,7 +15,8 @@
 			"Timpul",
 			"Äberlausitzer",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -868,7 +869,7 @@
 	"statistics-files": "Huchgeladene Dateien",
 	"statistics-edits": "Seytabeoarbeetunga",
 	"statistics-edits-average": "Bearbeetunga pro Seite eim Durchschnitt",
-	"statistics-users": "Registrierte [[Special:ListUsers|Nutzer]]",
+	"statistics-users": "Registrierte Nutzer",
 	"statistics-users-active-desc": "Nutzer miet Beoarbeetunga {{PLURAL:$1|enn letzta 24 Stunden|enn vergangenen $1 Tagen}}",
 	"doubleredirects": "Doppelte Weiterleitunga",
 	"doubleredirectstext": "Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.\nJede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Ziel dar zweeta Wetterleitung, welches fier gewehnlich die gewünschte Zielseyte ies, uff de bereits de erschte Wetterleitung zeiga sullte.\n<del>Durchgestrichene</del> Einträge wurden bereits erledigt.",

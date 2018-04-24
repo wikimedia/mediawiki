@@ -40,7 +40,8 @@
 			"Quoclinh94",
 			"Tmp1109",
 			"Phjtieudoc",
-			"Harriettruong3"
+			"Harriettruong3",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1818,7 +1819,7 @@
 	"statistics-files": "Số tập tin đã tải lên",
 	"statistics-edits": "Số sửa đổi trang từ khi {{SITENAME}} được thành lập",
 	"statistics-edits-average": "Số sửa đổi trung bình trên một trang",
-	"statistics-users": "Số [[Special:ListUsers|thành viên]] có tài khoản",
+	"statistics-users": "Số thành viên có tài khoản",
 	"statistics-users-active": "Số thành viên tích cực",
 	"statistics-users-active-desc": "Những thành viên đã hoạt động trong {{PLURAL:$1|ngày|$1 ngày}} qua",
 	"pageswithprop": "Trang có thuộc tính trang",

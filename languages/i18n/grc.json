@@ -19,7 +19,8 @@
 			"Macofe",
 			"Giorgos456",
 			"Gts-tg",
-			"RubatoStuf"
+			"RubatoStuf",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -1018,7 +1019,7 @@
 	"statistics-files": "Ἀρχεῖα ἐπιπεφορτισμένα",
 	"statistics-edits": "Αἱ μεταγραφαὶ τῆς δέλτου ἀφὄτου {{SITENAME}} ἐγκατεστάθησαν",
 	"statistics-edits-average": "Μέσος ἀριθμὸς μεταγραφῶν ἀνὰ δέλτον",
-	"statistics-users": "Ἐγγεγραμμένοι [[Special:ListUsers|χρώμενοι]]",
+	"statistics-users": "Ἐγγεγραμμένοι χρώμενοι",
 	"statistics-users-active": "Ἐνεργοὶ χρώμενοι <small>(χρώμενοι οἳ have edited or performed an action διάφορον τῆς ποιήσεως λογισμοῦ ἐν τῷ παρελθόντι μηνί)</small>",
 	"statistics-users-active-desc": "Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί {{PLURAL:$1|ἡμέρα|$1 ἡμέραι}}",
 	"doubleredirects": "Ἀναδιευθύνσεις διπλότυπαι",

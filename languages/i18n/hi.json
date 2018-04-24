@@ -91,7 +91,8 @@
 			"Bhatakati aatma",
 			"Shypoetess",
 			"Innocentbunny",
-			"TryKid"
+			"TryKid",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "कड़ी रेखांकन:",
@@ -1903,7 +1904,7 @@
 	"statistics-files": "अपलोड की गई फ़ाइलें",
 	"statistics-edits": "{{SITENAME}} बनने के बाद से पृष्ठ संपादन",
 	"statistics-edits-average": "प्रति पृष्ठ औसत संपादन",
-	"statistics-users": "पंजीकृत [[Special:ListUsers|सदस्य]]",
+	"statistics-users": "पंजीकृत सदस्य",
 	"statistics-users-active": "सक्रिय सदस्य",
 	"statistics-users-active-desc": "पिछले {{PLURAL:$1|एक दिन|$1 दिनों}} में कुछ गतिविधि रखने वाले सदस्य",
 	"pageswithprop": "पृष्ठ जिनमें पृष्ठ गुण हैं",

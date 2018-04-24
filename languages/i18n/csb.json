@@ -11,7 +11,8 @@
 			"아라",
 			"Kirsan",
 			"Ankry",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Pòdsztrëchiwùjë lënczi:",
@@ -829,7 +830,7 @@
 	"statistics-files": "Wësłóné lopczi",
 	"statistics-edits": "Edicje wëkònané òd pòwstaniégò {{grammar:genitive|{{SITENAME}}}}",
 	"statistics-edits-average": "Strzédnô lëczba edicji na starnã",
-	"statistics-users": "Zaregistrowónëch [[Special:ListUsers|brëkòwników]]",
+	"statistics-users": "Zaregistrowónëch brëkòwników",
 	"statistics-users-active": "Aktiwnëch brëkòwników",
 	"statistics-users-active-desc": "Brekòwnicë, chtërni bëlë aktiwny {{PLURAL:$1|slédnegò dnia|slédnych $1 dni}}",
 	"doubleredirects": "Dëbeltné przeczérowania",

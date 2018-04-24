@@ -7,7 +7,8 @@
 			"Kaganer",
 			"Riemogerz",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garisi di bawah tautan",
@@ -1196,7 +1197,7 @@
 	"statistics-files": "Barakas nang dihunggahakan",
 	"statistics-edits": "Jumlah babakan tumatan {{SITENAME}} dimulai",
 	"statistics-edits-average": "Rata-rata babakan par tungkaran",
-	"statistics-users": "Jumlah [[Special:ListUsers|pamuruk tadaptar]]",
+	"statistics-users": "Jumlah pamuruk tadaptar",
 	"statistics-users-active": "Jumlah pamuruk aktip",
 	"statistics-users-active-desc": "Pamuruk nang sudah malakukan suatu aksi dalam {{PLURAL:$1|sahari|$1 hari}} tauncit.",
 	"doubleredirects": "Paugahan ganda",

@@ -12,7 +12,8 @@
 			"Matma Rex",
 			"Macofe",
 			"Stephanecbisson",
-			"Yeniesil"
+			"Yeniesil",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -1001,7 +1002,7 @@
 	"statistics-pages-desc": "በዊኪ ላይ ያሉት ገጾች ሁሉ - ከነውይይት፣ መምሪያ መንገድ ወዘተ.",
 	"statistics-files": "የተላኩት ፋይሎች",
 	"statistics-edits": "{{SITENAME}} ከተጀመረ አንሥቶ የተደረጉት ለውጦች",
-	"statistics-users": "አባልነት የገቡ [[Special:ListUsers|ተጠቃሚዎች]]",
+	"statistics-users": "አባልነት የገቡ ተጠቃሚዎች",
 	"statistics-users-active": "ተግባራዊ ተጠቃሚዎች",
 	"statistics-users-active-desc": "ባለፈው {{PLURAL:$1|ቀን|$1 ቀን}} ማንኛውንም ድርጊት የሠሩት ተጠቃሚዎች",
 	"doubleredirects": "ድርብ መምሪያ መንገዶች",

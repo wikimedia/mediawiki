@@ -23,7 +23,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"రహ్మానుద్దీన్"
+			"రహ్మానుద్దీన్",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -1461,7 +1462,7 @@
 	"statistics-files": "उद्भारितसञ्चिकाः",
 	"statistics-edits": "{{SITENAME}} व्यवस्थापनपर्यन्तं पुटसम्पादनानि ।",
 	"statistics-edits-average": "प्रतिपुटं माध्यसम्पादनानि ।",
-	"statistics-users": "पञ्जीकृतः [[Special:ListUsers|सदस्यः]]",
+	"statistics-users": "पञ्जीकृतः सदस्यः",
 	"statistics-users-active": "सक्रियाः सदस्याः",
 	"statistics-users-active-desc": "गतेषु {{PLURAL:$1|day|$1 दिनेषु}} सक्रियाः सदस्याः  ।",
 	"pageswithprop": "प्रगुणविशेषयुतानि पृष्ठानि",

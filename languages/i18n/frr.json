@@ -11,7 +11,8 @@
 			"Purodha",
 			"Macofe",
 			"Matma Rex",
-			"Nemo bis"
+			"Nemo bis",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -1586,7 +1587,7 @@
 	"statistics-files": "Huuchschüürd datein",
 	"statistics-edits": "Feranrangen, sant {{SITENAME}} maaget wurden as",
 	"statistics-edits-average": "Feranrangen per sidj uun't madel",
-	"statistics-users": "Registriaret [[Special:ListUsers|brükern]]",
+	"statistics-users": "Registriaret brükern",
 	"statistics-users-active": "Aktiif brükern",
 	"statistics-users-active-desc": "Brükern, diar wat bewerket haa uun a leetst {{PLURAL:$1|dai|$1 daar}}",
 	"pageswithprop": "Sidjen mä en sidjeneegenoort",

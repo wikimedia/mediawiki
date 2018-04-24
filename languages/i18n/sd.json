@@ -8,7 +8,8 @@
 			"Mehtab ahmed",
 			"Macofe",
 			"Indus Asia",
-			"BukhariSaeed"
+			"BukhariSaeed",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -1174,7 +1175,7 @@
 	"statistics-files": "چاڙھيل فائيل",
 	"statistics-edits": "{{SITENAME}} جي ٺھڻ کان صفحن ۾ ڪيل سموريون ترميمون",
 	"statistics-edits-average": "سراسري ترميمون في صفحو",
-	"statistics-users": "کاتيدار [[Special:ListUsers|واپرائيندڙَ]]",
+	"statistics-users": "کاتيدار واپرائيندڙَ",
 	"statistics-users-active": "سرگرم واپرائيندڙ",
 	"statistics-users-active-desc": "اھي واپرائيندڙ جن پوين {{PLURAL:$1|ڏينھن|$1 ڏينھن}} ۾ ڪو عمل سرانجام ڏنو آهي",
 	"pageswithprop-prop": "خصوصيت نانءُ:",

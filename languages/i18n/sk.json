@@ -36,7 +36,8 @@
 			"Matma Rex",
 			"LacoR",
 			"Xð",
-			"Pmikolas44"
+			"Pmikolas44",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1753,7 +1754,7 @@
 	"statistics-files": "Nahraných súborov",
 	"statistics-edits": "Úprav stránok od založenia {{GRAMMAR:genitív|{{SITENAME}}}}",
 	"statistics-edits-average": "Priemerný počet úprav na stránku",
-	"statistics-users": "Registrovaných [[Special:ListUsers|používateľov]]",
+	"statistics-users": "Registrovaných používateľov",
 	"statistics-users-active": "Aktívnych používateľov",
 	"statistics-users-active-desc": "Používatelia, ktorí za {{PLURAL:$1|posledný deň|posledné $1 dni|posledných $1 dní}} vykonali nejakú operáciu",
 	"pageswithprop": "Stránky s vlastnosťou stránky",

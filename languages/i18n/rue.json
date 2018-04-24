@@ -13,7 +13,8 @@
 			"Macofe",
 			"Matma Rex",
 			"KHMELNYTSKYIA",
-			"Igor Kercsa"
+			"Igor Kercsa",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -1347,7 +1348,7 @@
 	"statistics-files": "Наладованы файлы",
 	"statistics-edits": "Чісло едітованя од основаня вікі {{SITENAME}}",
 	"statistics-edits-average": "Середнє чісло едітовань на сторінку",
-	"statistics-users": "Реґістрованы [[Special:ListUsers|хоснователї]]",
+	"statistics-users": "Реґістрованы хоснователї",
 	"statistics-users-active": "Актівны хоснователї",
 	"statistics-users-active-desc": "Хоснователї, котры в {{PLURAL:$1|минулого дня|минулых  $1 днїв}} провели даяку операцію",
 	"pageswithprop": "Сторінкы з властностями",

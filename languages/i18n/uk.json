@@ -73,7 +73,8 @@
 			"Choomaq",
 			"SimondR",
 			"Renamerr",
-			"Avatar6"
+			"Avatar6",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -1898,7 +1899,7 @@
 	"statistics-files": "Завантажено файлів",
 	"statistics-edits": "Кількість редагувань з моменту установки {{grammar:genitive|{{SITENAME}}}}",
 	"statistics-edits-average": "Середнє число редагувань на сторінку",
-	"statistics-users": "Зареєстрованих [[Special:ListUsers|користувачів]]",
+	"statistics-users": "Зареєстрованих користувачів",
 	"statistics-users-active": "Активні користувачі",
 	"statistics-users-active-desc": "Користувачі, які здійснили якусь дію протягом {{PLURAL:$1|1=минулого дня|$1 минулих днів}}",
 	"pageswithprop": "Сторінки з перевизначеними властивостями",

@@ -20,7 +20,8 @@
 			"IKHazarika",
 			"Dibya Dutta",
 			"Matma Rex",
-			"চাণক্য কুমাৰ দাস"
+			"চাণক্য কুমাৰ দাস",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
@@ -1476,7 +1477,7 @@
 	"statistics-files": "আপল’ড কৰা ফাইলসমূহ",
 	"statistics-edits": "{{SITENAME}} স্থাপন কৰাৰেপৰা পৃষ্ঠা সম্পাদনাসমূহ",
 	"statistics-edits-average": "প্ৰতি পৃষ্ঠাৰ গড় সম্পাদনা",
-	"statistics-users": "পঞ্জীভূত [[Special:ListUsers|সদস্যসমূহ]]",
+	"statistics-users": "পঞ্জীভূত সদস্যসমূহ",
 	"statistics-users-active": "সক্ৰিয় সদস্য",
 	"statistics-users-active-desc": "শেষ {{PLURAL:$1|দিনত|$1 দিনত}} কোনো কাম কৰা সদস্যসমূহ",
 	"pageswithprop": "পৃষ্ঠা উপাদান সম্বলিত পৃষ্ঠাসমূহ",

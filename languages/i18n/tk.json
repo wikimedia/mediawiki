@@ -11,7 +11,8 @@
 			"The Evil IP address",
 			"아라",
 			"Macofe",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -1094,7 +1095,7 @@
 	"statistics-files": "Ýüklenen faýllar",
 	"statistics-edits": "{{SITENAME}} gurulaly bäri edilen sahypa özgerdişleri",
 	"statistics-edits-average": "Sahypa başyna ortaça özgerdiş",
-	"statistics-users": "Hasaba alnan [[Special:ListUsers|ulanyjylar]]",
+	"statistics-users": "Hasaba alnan ulanyjylar",
 	"statistics-users-active": "Işjeň ulanyjylar",
 	"statistics-users-active-desc": "Soňky {{PLURAL:$1|1 günde|$1 günde}} haýsydyr bir iş geçiren ulanyjylar",
 	"doubleredirects": "Jübüt gönükdirmeler",

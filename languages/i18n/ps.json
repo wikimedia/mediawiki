@@ -9,7 +9,8 @@
 			"Amire80",
 			"Matma Rex",
 			"Ibrahim khashrowdi",
-			"Baloch Khan"
+			"Baloch Khan",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -1580,7 +1581,7 @@
 	"statistics-files": "پورته شوې دوتنې",
 	"statistics-edits": "د {{SITENAME}} د جوړېدو راهيسې د مخونو سمون",
 	"statistics-edits-average": "پر يوه مخ د سمون منځوۍ کچه",
-	"statistics-users": "ثبت شوي [[Special:ListUsers|کارنان]]",
+	"statistics-users": "ثبت شوي کارنان",
 	"statistics-users-active": "فعاله کارنان",
 	"statistics-users-active-desc": "هغه کارنان چې په {{PLURAL:$1|وروستۍ ورځ|وروستيو $1 ورځو}} کې فعاله ونډه لرلې",
 	"pageswithprop": "د مخ ځانتياو څخه برخمن مخونه",

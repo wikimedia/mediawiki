@@ -3,7 +3,8 @@
 		"authors": [
 			"Songhay",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -1418,7 +1419,7 @@
 	"statistics-files": "Tuku zijantey",
 	"statistics-edits": "Moo barmawey za {{SITENAME}}  n' ka gorandi",
 	"statistics-edits-average": "Sasawandi barmaney moo foo kul se",
-	"statistics-users": "Maa-hantumante [[Special:ListUsers|goykey]]",
+	"statistics-users": "Maa-hantumante goykey",
 	"statistics-users-active": "Goykaw kaŋ goo mee ra",
 	"statistics-users-active-desc": "Goykey kaŋ na teera foo timmandi {{PLURAL:$1|zaari $1}} koraw ra",
 	"pageswithprop": "Moɲoo kaŋ goo nda moo mayray",

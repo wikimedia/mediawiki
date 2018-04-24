@@ -8,7 +8,8 @@
 			"Macofe",
 			"Hosseinblue",
 			"Dalba",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -1350,7 +1351,7 @@
 	"statistics-files": "بُرز بوته ئین فایلان",
 	"statistics-edits": "تاکدیمانی ایڈیٹ شه وخت که {{SITENAME}} جۆڑ بوته انت",
 	"statistics-edits-average": "متوسطین ایڈیٹ شه هر یکین تاکدیما",
-	"statistics-users": "راجستر بوته ئین [[Special:ListUsers|کار زوروکان]]",
+	"statistics-users": "راجستر بوته ئین کار زوروکان",
 	"statistics-users-active": "پئال ئین کار زوروکان",
 	"statistics-users-active-desc": "آ کار زوروکان که بئ {{PLURAL:$1|رۆچ|$1 رۆچ}} دیما پئالیت شه وت نشان داته انت",
 	"pageswithprop": "تاکدیم گۆ تاکدیمانئ خاصیتا",

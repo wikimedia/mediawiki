@@ -10,7 +10,8 @@
 			"아라",
 			"GunChleoc",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -1509,7 +1510,7 @@
 	"statistics-files": "Faidhlichean a chaidh a luchdadh suas",
 	"statistics-edits": "Deasachaidhean air duilleagan on a chaidh {{SITENAME}} a stèidheachadh",
 	"statistics-edits-average": "Deasachaidhean cuibheasach air duilleag",
-	"statistics-users": "[[Special:ListUsers|Cleachdaichean]] clàraichte",
+	"statistics-users": "Cleachdaichean clàraichte",
 	"statistics-users-active": "Cleachdaichean gnìomhach",
 	"statistics-users-active-desc": "Cleachdaichean a rinn gnìomh rè {{PLURAL:$1|an $1 latha|an $1 latha|nan $1 làithean|an $1 latha}} mu dheireadh",
 	"pageswithprop": "Duilleagan le buadh duilleige",

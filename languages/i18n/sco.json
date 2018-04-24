@@ -25,7 +25,8 @@
 			"V6rg",
 			"C.R.",
 			"Anomie",
-			"Pierpao"
+			"Pierpao",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -1725,7 +1726,7 @@
 	"statistics-files": "Uplaided files",
 	"statistics-edits": "Page eedits sin {{SITENAME}} wis set up",
 	"statistics-edits-average": "Average eedits per page",
-	"statistics-users": "Registered [[Special:ListUsers|uisers]]",
+	"statistics-users": "Registered uisers",
 	"statistics-users-active": "Acteeve uisers",
 	"statistics-users-active-desc": "Uisers that hae performed aen action in the laist {{PLURAL:$1|day|$1 days}}",
 	"pageswithprop": "Pages wi ae page propertie",

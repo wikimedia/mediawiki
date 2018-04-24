@@ -15,7 +15,8 @@
 			"Conquistador",
 			"Xð",
 			"Сербијана",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -1501,7 +1502,7 @@
 	"statistics-files": "Broj postavljenih datoteka",
 	"statistics-edits": "Broj izmjena od kako je instalirana {{SITENAME}}",
 	"statistics-edits-average": "Prosječno izmjena po stranici",
-	"statistics-users": "Registrovani [[Special:ListUsers|korisnici]]",
+	"statistics-users": "Registrovani korisnici",
 	"statistics-users-active": "Aktivni korisnici",
 	"statistics-users-active-desc": "Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}",
 	"pageswithprop": "Stranice sa svojstvom stranice",

@@ -20,7 +20,8 @@
 			"Ninonino",
 			"Macofe",
 			"V6rg",
-			"C.R."
+			"C.R.",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sutulinia i ligam",
@@ -960,7 +961,7 @@
 	"statistics-files": "File caregaa sü",
 	"statistics-edits": "Paginn mudifegaa dal dì che l'è nassüü 'l sit de {{SITENAME}}",
 	"statistics-edits-average": "Mudifegh in média per pagina",
-	"statistics-users": "[[Special:ListUsers|Druvadur]] registraa",
+	"statistics-users": "Druvadur registraa",
 	"statistics-users-active": "Druvadur ativ",
 	"statistics-users-active-desc": "Druvadur che i hann faa un'azión int {{PLURAL:$1|l'ültem dì|i ültem $1 dì}}",
 	"pageswithprop-submit": "Và",

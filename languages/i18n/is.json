@@ -26,7 +26,8 @@
 			"Sveinki",
 			"Nemo bis",
 			"Asmen",
-			"MyraMidnight"
+			"MyraMidnight",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -1740,7 +1741,7 @@
 	"statistics-files": "Innsendar skrár",
 	"statistics-edits": "Síðubreytingar frá því {{SITENAME}} byrjaði",
 	"statistics-edits-average": "Meðal breytingafjöldi á síðu",
-	"statistics-users": "Skráðir  [[Special:ListUsers|notendur]]",
+	"statistics-users": "Skráðir notendur",
 	"statistics-users-active": "Virkir notendur",
 	"statistics-users-active-desc": "Notendur sem hafa framkvæmt aðgerð {{PLURAL:$1|síðusta $1 dag|síðustu $1 daga}}",
 	"pageswithprop": "Síður með eiginleika",

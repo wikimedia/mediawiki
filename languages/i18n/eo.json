@@ -1758,7 +1758,7 @@
 	"statistics-files": "Alŝutitaj dosieroj",
 	"statistics-edits": "Paĝaj redaktoj ekde {{SITENAME}} estis starigita",
 	"statistics-edits-average": "Averaĝa kvanto de redaktoj je paĝo",
-	"statistics-users": "Registritaj [[Special:ListUsers|uzantoj]]",
+	"statistics-users": "Registritaj uzantoj",
 	"statistics-users-active": "Aktivaj uzantoj",
 	"statistics-users-active-desc": "Uzantoj kiuj faris agon en la {{PLURAL:$1|lasta tago|lastaj $1 tagoj}}",
 	"pageswithprop": "Paĝoj kun paĝa atributo",

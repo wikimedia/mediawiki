@@ -12,7 +12,8 @@
 			"Mywood",
 			"Impersonator 1",
 			"LNDDYL",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "下劃連結",
@@ -784,7 +785,7 @@
 	"statistics-files": "上載正嗰檔案",
 	"statistics-edits": "自從{{SITENAME}}設定嗰頁面編輯數",
 	"statistics-edits-average": "每頁嗰平均編輯數",
-	"statistics-users": "註冊過嗰[[Special:ListUsers|用戶]]",
+	"statistics-users": "註冊過嗰用戶",
 	"statistics-users-active": "活躍用戶",
 	"statistics-users-active-desc": "頭$1日操作過嗰用戶",
 	"doubleredirects": "雙重重定向頁面",

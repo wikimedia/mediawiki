@@ -14,7 +14,8 @@
 			"Macofe",
 			"Uchup19",
 			"WikiKaruhun",
-			"Dipusparaga"
+			"Dipusparaga",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -1682,7 +1683,7 @@
 	"statistics-files": "Berkas nu geus diunjal",
 	"statistics-edits": "Ëditan kaca ti saprak {{SITENAME}} mimiti dibuka",
 	"statistics-edits-average": "Rata-rata éditan unggal kaca",
-	"statistics-users": "[[Special:ListUsers|Kontributor]] kadaptar",
+	"statistics-users": "Kontributor kadaptar",
 	"statistics-users-active": "Pamaké getol",
 	"statistics-users-active-desc": "Kontributor nu ngoprék salila {{PLURAL:$1|poé|$1 poé}} panungtung",
 	"pageswithprop": "Kaca ku kaca properti",

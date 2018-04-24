@@ -16,7 +16,8 @@
 			"Matma Rex",
 			"Nemo bis",
 			"Mormegil",
-			"Mirgulkali"
+			"Mirgulkali",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -1509,7 +1510,7 @@
 	"statistics-files": "Жүктелген файлдар",
 	"statistics-edits": "{{SITENAME}} құрылғанан бергі бет өңдеулері",
 	"statistics-edits-average": "Әр бетке шаққандағы өңдеулердің орташа саны",
-	"statistics-users": "Тіркелген қатысушылар [[Special:ListUsers|(тізім)]]",
+	"statistics-users": "Тіркелген қатысушылар",
 	"statistics-users-active": "Белсенді қатысушылар",
 	"statistics-users-active-desc": "Соңғы {{PLURAL:$1|күнде|$1 күнде}} қандай да бір іс-әрекет жасаған қатысушылар",
 	"pageswithprop": "Беттер бет сипатымен",

@@ -1216,7 +1216,7 @@
 	"statistics-files": "Fichers cargatos",
 	"statistics-edits": "Edicions en pachinas dende que se debantó {{SITENAME}}",
 	"statistics-edits-average": "Meya d'edicions por pachina",
-	"statistics-users": "[[Special:ListUsers|Usuarios]] rechistratos",
+	"statistics-users": "Usuarios rechistratos",
 	"statistics-users-active": "Usuarios activos",
 	"statistics-users-active-desc": "Usuarios que han feito qualsiquier acción en {{PLURAL:$1|o zaguer día|os zaguers $1 días}}",
 	"doubleredirects": "Reendreceras dobles",

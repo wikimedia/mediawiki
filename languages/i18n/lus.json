@@ -5,7 +5,8 @@
 			"RMizo",
 			"아라",
 			"Macofe",
-			"Stephanecbisson"
+			"Stephanecbisson",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Zawmna hnuairinna",
@@ -904,7 +905,7 @@
 	"statistics-files": "Taksa hlankaite",
 	"statistics-edits": "{{SITENAME}} din achina phêk khawih danglam zât",
 	"statistics-edits-average": "Phêk khat zëla siamṭhat zât chawhrual",
-	"statistics-users": "[[Special:ListUsers|Hmangtu]] inziaklût zât",
+	"statistics-users": "Hmangtu inziaklût zât",
 	"statistics-users-active": "Hmangtu aktif zât",
 	"statistics-users-active-desc": "Ni {{PLURAL:$1|khat|$1}} kaltâ chhunga thiltih nei hmangtuho",
 	"doubleredirects": "Hruailuhna phír",

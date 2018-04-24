@@ -52,7 +52,8 @@
 			"Matma Rex",
 			"Tiven2240",
 			"Sureshkhole",
-			"Pushkar Ekbote"
+			"Pushkar Ekbote",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "दुव्यांचे अधोरेखन:",
@@ -1754,7 +1755,7 @@
 	"statistics-files": "अपभारीत संचिका",
 	"statistics-edits": "{{SITENAME}} च्या सुरुवातीपासूनची पानांची संपादने",
 	"statistics-edits-average": "प्रतिपान सरासरी संपादने",
-	"statistics-users": "नोंदणीकृत [[Special:ListUsers|सदस्य]]",
+	"statistics-users": "नोंदणीकृत सदस्य",
 	"statistics-users-active": "क्रियाशील सदस्य",
 	"statistics-users-active-desc": "शेवटच्या{{PLURAL:$1|दिवसात|$1 दिवसांत}} एकतरी संपादन केलेले सदस्य",
 	"pageswithprop": "'पृष्ठ गुणधर्म' असणारी पाने",

@@ -1389,7 +1389,7 @@
 	"statistics-files": "Faili zilizopakiwa",
 	"statistics-edits": "Kurasa zilizohaririwa tangu {{SITENAME}} ilivyoanzishwa",
 	"statistics-edits-average": "Wastani wa uhariri kwa kurasa",
-	"statistics-users": "[[Special:ListUsers|Watumiaji]] waliojisajiri",
+	"statistics-users": "Watumiaji waliojisajiri",
 	"statistics-users-active": "Watumiaji wanaofanya kazi",
 	"statistics-users-active-desc": "Watumiaji waliofanya kazi katika siku {{PLURAL:$1|iliyopita|$1 zilizopita}}",
 	"pageswithprop": "Kurasa zenye sifa za ukurasa",

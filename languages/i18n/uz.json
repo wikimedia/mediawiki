@@ -13,7 +13,8 @@
 			"6ahodir",
 			"Таржимон",
 			"Ximik1991",
-			"Bmansurov"
+			"Bmansurov",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Havolaning tagiga chizish:",
@@ -888,7 +889,7 @@
 	"statistics-files": "Yuklangan fayllar",
 	"statistics-edits": "{{SITENAME}}dagi tahrirlarning umumiy soni",
 	"statistics-edits-average": "Oʻrtacha tahrirlar soni (sahifa boshiga)",
-	"statistics-users": "Qayd etilgan [[Special:ListUsers|foydalanuvchilar]]",
+	"statistics-users": "Qayd etilgan foydalanuvchilar",
 	"statistics-users-active": "Faol foydalanuvchilar",
 	"statistics-users-active-desc": "Oxirgi $1 kun ichida kamida bitta amal qilgan foydalanuvchilar",
 	"pageswithprop-prop": "Xossa nomi:",

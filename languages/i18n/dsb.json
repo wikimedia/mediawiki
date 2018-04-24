@@ -19,7 +19,8 @@
 			"아라",
 			"TMg",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -1390,7 +1391,7 @@
 	"statistics-files": "Nagrate dataje",
 	"statistics-edits": "Změny bokow wót załoženja {{SITENAME}}",
 	"statistics-edits-average": "Změny na bok w pśerězku",
-	"statistics-users": "Zregistrěrowane [[Special:ListUsers|wužywarje]]",
+	"statistics-users": "Zregistrěrowane wužywarje",
 	"statistics-users-active": "Aktiwne wužywarje",
 	"statistics-users-active-desc": "Wužywarje, kótarež su {{PLURAL:$1|cora|w slědnyma $1 dnjoma|w slědnych $1 dnjach|w slědnych $1 dnjach}} aktiwne byli",
 	"pageswithprop": "Boki z kakosću boka",

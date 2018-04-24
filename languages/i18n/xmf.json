@@ -17,7 +17,8 @@
 			"David1010",
 			"Macofe",
 			"Nemo bis",
-			"Otogi"
+			"Otogi",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -1354,7 +1355,7 @@
 	"statistics-files": "გეხარგე ფაილეფი",
 	"statistics-edits": "გვერდის შესწორებები მას შემდეგ რაც შეიქმნა პროექტი {{SITENAME}}",
 	"statistics-edits-average": "რედაქტირების საერთო რაოდენობა გვერდზე",
-	"statistics-users": "დარეგისტრირებული [[Special:ListUsers|მომხმარებლები]]",
+	"statistics-users": "დარეგისტრირებული მომხმარებლები",
 	"statistics-users-active": "აქტიური მომხმარებლები",
 	"statistics-users-active-desc": "მომხმარებლები, რომლებმაც განახორციელეს ქმედება {{PLURAL:$1|ბოლო $1 დღის|ბოლო $1 დღის}} განმავლობაში",
 	"pageswithprop": "გვერდები განსაზღვრული თვისებით",

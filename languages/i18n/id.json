@@ -58,7 +58,8 @@
 			"Uchup19",
 			"Archd",
 			"Empu",
-			"Dodolzk"
+			"Dodolzk",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1850,7 +1851,7 @@
 	"statistics-files": "Berkas yang dimuatkan",
 	"statistics-edits": "Jumlah suntingan sejak {{SITENAME}} dimulai",
 	"statistics-edits-average": "Rata-rata suntingan per halaman",
-	"statistics-users": "Jumlah [[Special:ListUsers|pengguna terdaftar]]",
+	"statistics-users": "Jumlah pengguna terdaftar",
 	"statistics-users-active": "Jumlah pengguna aktif",
 	"statistics-users-active-desc": "Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.",
 	"pageswithprop": "Halaman dengan halaman properti",

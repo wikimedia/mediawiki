@@ -25,7 +25,8 @@
 			"Mbrt",
 			"Muhdnurhidayat",
 			"Jeluang Terluang",
-			"Zulfadli51"
+			"Zulfadli51",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Garis bawah pautan:",
@@ -1618,7 +1619,7 @@
 	"statistics-files": "Fail dimuat naik",
 	"statistics-edits": "Suntingan laman sejak {{SITENAME}} dibuka",
 	"statistics-edits-average": "Purata suntingan bagi setiap laman",
-	"statistics-users": "[[Special:ListUsers|Pengguna]] berdaftar",
+	"statistics-users": "Pengguna berdaftar",
 	"statistics-users-active": "Pengguna aktif",
 	"statistics-users-active-desc": "Pengguna yang aktif sejak {{PLURAL:$1|semalam|$1 hari lalu}}",
 	"pageswithprop": "Laman dengan sifat laman",

@@ -1518,7 +1518,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "ウォッチリストを編集",
 	"rcfilters-watchlist-showupdated": "最終訪問以降に変更されたページは、塗りつぶされた丸印と一緒に、<strong>太字</strong>で表示されます。",
 	"rcfilters-preference-label": "最近の更新の改善版を隠す",
-	"rcfilters-preference-help": "2017年のインターフェース更新、当時追加したや以来の新しいツールの使用を断る。",
+	"rcfilters-preference-help": "2017年のインターフェース更新およびそれ以降に追加された新しいツールを無効化します。",
 	"rcfilters-filter-showlinkedfrom-label": "リンク先ページの変更を表示する",
 	"rcfilters-filter-showlinkedfrom-option-label": "選択されているページから<strong>リンクされているページ</strong>",
 	"rcfilters-filter-showlinkedto-label": "リンク先ページの変更を表示する",

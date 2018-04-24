@@ -9,7 +9,8 @@
 			"Reedy",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Siltewdin' astın sız:",
@@ -795,7 +796,7 @@
 	"statistics-files": "Aploud qılıng'an fayllar",
 	"statistics-edits": "{{SITENAME}} ornatılg'anlı beri bettegi o'zgerisler sanı",
 	"statistics-edits-average": "Ha'r bir betke ortasha kiritilgen o'zgerisler sanı",
-	"statistics-users": "Registratsiyadan o'tken [[Special:ListUsers|paydalanıwshılar]]",
+	"statistics-users": "Registratsiyadan o'tken paydalanıwshılar",
 	"statistics-users-active": "Aktiv paydalanıwshılar",
 	"doubleredirects": "Qos burıwshılar",
 	"double-redirect-fixer": "Qayta bag'ıtlawshılardı du'zetiwshi",

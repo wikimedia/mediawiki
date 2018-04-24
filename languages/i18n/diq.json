@@ -29,7 +29,8 @@
 			"1917 Ekim Devrimi",
 			"Gambollar",
 			"Dılmıc",
-			"Archaeodontosaurus"
+			"Archaeodontosaurus",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -1560,7 +1561,7 @@
 	"statistics-files": "Barneyaye dosyey",
 	"statistics-edits": "Ronayen da {{SITENAME}} ra newke amora vıryayışan",
 	"statistics-edits-average": "Her pele sero nısbi vurnayış",
-	"statistics-users": "[[Special:ListUsers|Karber]]ê qeydıni",
+	"statistics-users": "Karberê qeydıni",
 	"statistics-users-active": "Karberê aktifi",
 	"statistics-users-active-desc": "{{PLURAL:$1|roco peyin de|$1 roco peyin de}} karber ê ke kar kerdê.",
 	"pageswithprop": "Perrê kı hendê ju perrer rê",

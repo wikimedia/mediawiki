@@ -1584,7 +1584,7 @@
 	"statistics-files": "Fichiérs tèlèchargiês",
 	"statistics-edits": "Changements de pâges dês l’enstalacion de {{SITENAME}}",
 	"statistics-edits-average": "Nombro moyen de changements per pâge",
-	"statistics-users": "[[Special:ListUsers|Utilisators]] encartâs",
+	"statistics-users": "Utilisators encartâs",
 	"statistics-users-active": "Utilisators actifs",
 	"statistics-users-active-desc": "Utilisators qu’ant fêt por lo muens un’accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}",
 	"pageswithprop": "Pâges avouéc na propriètât de pâge",
