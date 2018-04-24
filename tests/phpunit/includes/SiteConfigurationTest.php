@@ -27,6 +27,8 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 				'default' => 'default',
 				'wiki' => 'wiki',
 				'tag' => 'tag',
+				'frwiki' => 'frwiki',
+				'null_wiki' => null,
 			],
 
 			'WithParams' => [
@@ -182,6 +184,17 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 			'tag',
 			$this->mConf->get( 'Fallback', 'dewiki', 'wiki', [], [ 'tag' ] ),
 			'get(): fallback setting on an existing wiki (with wiki tag)'
+		);
+		$this->assertEquals(
+			'frwiki',
+			$this->mConf->get( 'Fallback', 'frwiki', 'wiki', [], [ 'tag' ] ),
+			'get(): no fallback if wiki has its own setting (matching tag)'
+		);
+		$this->assertSame(
+			// Potential regression test for T192855
+			null,
+			$this->mConf->get( 'Fallback', 'null_wiki', 'wiki', [], [ 'tag' ] ),
+			'get(): no fallback if wiki has its own setting (matching tag and uses null)'
 		);
 		$this->assertEquals(
 			'wiki',
