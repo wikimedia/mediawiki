@@ -180,7 +180,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$called = false;
 		$flagSet = null;
-		$callback = function () use ( $db, &$flagSet, &$called ) {
+		$callback = function ( $trigger, IDatabase $db ) use ( &$flagSet, &$called ) {
 			$called = true;
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
@@ -203,7 +203,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->clearFlag( DBO_TRX );
 		$db->onTransactionIdle(
-			function () use ( $db ) {
+			function ( $trigger, IDatabase $db ) {
 				$db->setFlag( DBO_TRX );
 			},
 			__METHOD__
@@ -274,7 +274,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			function () use ( &$called ) {
+			function ( IDatabase $db ) use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -284,7 +284,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->begin( __METHOD__ );
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			function () use ( &$called ) {
+			function ( IDatabase $db ) use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -314,7 +314,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $lb->hasMasterChanges() );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 		$called = false;
-		$callback = function () use ( &$called ) {
+		$callback = function ( IDatabase $db ) use ( &$called ) {
 			$called = true;
 		};
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
@@ -352,7 +352,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function () use ( $db, &$called ) {
+		$db->onTransactionResolution( function ( $trigger, IDatabase $db ) use ( &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -363,7 +363,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function () use ( $db, &$called ) {
+		$db->onTransactionResolution( function ( $trigger, IDatabase $db ) use ( &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );

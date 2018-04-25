@@ -1434,6 +1434,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			IDatabase::TRIGGER_COMMIT => 'tCommit',
 			IDatabase::TRIGGER_ROLLBACK => 'tRollback'
 		];
+		$pcCallback = function ( IDatabase $db ) use ( $fname ) {
+			$this->database->query( "SELECT 0", $fname );
+		};
 		$callback1 = function ( $trigger = '-' ) use ( $fname, $triggerMap ) {
 			$this->database->query( "SELECT 1, {$triggerMap[$trigger]} AS t", $fname );
 		};
@@ -1445,7 +1448,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
-		$this->database->onTransactionPreCommitOrIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionPreCommitOrIdle( $pcCallback, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
@@ -1460,18 +1463,18 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; ROLLBACK; SELECT 1, tRollback AS t' );
 
 		$this->database->startAtomic( __METHOD__ . '_outer' );
-		$this->database->onTransactionPreCommitOrIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionPreCommitOrIdle( $pcCallback, __METHOD__ );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
-		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
+		$this->database->onTransactionPreCommitOrIdle( $pcCallback, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ );
-		$this->database->onTransactionPreCommitOrIdle( $callback3, __METHOD__ );
+		$this->database->onTransactionPreCommitOrIdle( $pcCallback, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		$this->assertLastSql( implode( "; ", [
 			'BEGIN',
 			'SAVEPOINT wikimedia_rdbms_atomic1',
 			'ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1',
-			'SELECT 1, - AS t',
-			'SELECT 3, - AS t',
+			'SELECT 0',
+			'SELECT 0',
 			'COMMIT'
 		] ) );
 
