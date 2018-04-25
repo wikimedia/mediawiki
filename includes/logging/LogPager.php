@@ -104,8 +104,12 @@ class LogPager extends ReverseChronologicalPager {
 		if ( count( $this->types ) ) {
 			return $filters;
 		}
+
+		$request_filters = $this->getRequest()->getArray( "wpfilters" );
+		$request_filters = $request_filters === null ? [] : $request_filters;
+
 		foreach ( $wgFilterLogTypes as $type => $default ) {
-			$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+			$hide = !in_array( $type, $request_filters );
 
 			$filters[$type] = $hide;
 			if ( $hide ) {

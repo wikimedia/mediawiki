@@ -115,6 +115,7 @@ class LogEventsList extends ContextSource {
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
 
+		// TODO Get rid of this
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
 
 		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
@@ -158,6 +159,62 @@ class LogEventsList extends ContextSource {
 		$html = Xml::tags( 'form', [ 'action' => $wgScript, 'method' => 'get' ], $html );
 
 		$this->getOutput()->addHTML( $html );
+
+		// -- WIP - Converting to HTMLForm --
+		$formDescriptor = [];
+
+		// Basic selectors
+		$formDescriptor['type'] = $this->getTypeMenuDesc( $types );
+		$formDescriptor['user'] = $this->getUserInputDesc( $user );
+		$formDescriptor['page'] = $this->getTitleInputDesc( $title );
+
+		// Add extra inputs if any
+		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
+		if ( !empty( $extraInputsDescriptor ) ) {
+			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
+		}
+
+		// Title pattern, if allowed
+		if ( !$wgMiserMode ) {
+			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
+		}
+
+		// Date menu
+		$formDescriptor['date'] = [
+			'type' => 'date',
+			'label-message' => 'date'
+		];
+		// TODO Use these values
+
+		// Tag filter
+		if ( $tagSelector ) {
+			$formDescriptor['tagfilter'] = [
+				'type' => 'tagfilter',
+				'name' => 'tagfilter',
+				'label-raw' => $this->msg( 'tag-filter' )->parse(),
+			];
+		}
+
+		// Filter links
+		if ( $filter ) {
+			$formDescriptor['filters'] = $this->getFiltersDesc( $filter );
+		}
+
+		// Action filter
+		if (
+			$action !== null &&
+			$this->allowedActions !== null &&
+			count( $this->allowedActions ) > 0
+		) {
+			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types, $action );
+		}
+
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
+			->setWrapperLegendMsg( 'log' );
+
+		$htmlForm->prepareForm()->displayForm( false );
 	}
 
 	/**
@@ -171,6 +228,7 @@ class LogEventsList extends ContextSource {
 		$links = [];
 		$hiddens = ''; // keep track for "go" button
 		$linkRenderer = $this->getLinkRenderer();
+
 		foreach ( $filter as $type => $val ) {
 			// Should the below assignment be outside the foreach?
 			// Then it would have to be copied. Not certain what is more expensive.
@@ -194,6 +252,29 @@ class LogEventsList extends ContextSource {
 
 		// Build links
 		return '<small>' . $this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
+	}
+
+	/**
+	 * @param array $filter
+	 * @return array Form descriptor
+	 */
+	private function getFiltersDesc( $filter ) {
+		$options = [];
+		$default = [];
+		foreach ( $filter as $type => $val) {
+			$options[ $this->msg( "logeventslist-{$type}-log" )->text() ] = $type;
+
+			if ( $val === 0 ) {
+				$default[] = $type;
+			}
+		}
+		return [
+			'class' => 'HTMLMultiSelectField',
+			'label-message' => 'logeventslist-filters',
+			'flatlist' => true,
+			'options' => $options,
+			'default' => $default,
+		];
 	}
 
 	private function getDefaultQuery() {
@@ -256,6 +337,39 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
+	 * @param array $queryTypes
+	 * @return array Form descriptor
+	 */
+	private function getTypeMenuDesc( $queryTypes ) {
+		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
+
+		$typesByName = []; // Temporary array
+		// First pass to load the log names
+		foreach ( LogPage::validTypes() as $type ) {
+			$page = new LogPage( $type );
+			$restriction = $page->getRestriction();
+			if ( $this->getUser()->isAllowed( $restriction ) ) {
+				$typesByName[$type] = $page->getName()->text();
+			}
+		}
+
+		// Second pass to sort by name
+		asort( $typesByName );
+
+		// Always put "All public logs" on top
+		$public = $typesByName[''];
+		unset( $typesByName[''] );
+		$typesByName = [ '' => $public ] + $typesByName;
+
+		return [
+				'class' => 'HTMLSelectField',
+				'name' => 'type',
+				'options' => array_flip( $typesByName ),
+				'default' => $queryType,
+		];
+	}
+
+	/**
 	 * @param string $user
 	 * @return string Formatted HTML
 	 */
@@ -270,6 +384,18 @@ class LogEventsList extends ContextSource {
 		);
 
 		return '<span class="mw-input-with-label">' . $label . '</span>';
+	}
+
+	/**
+	 * @param string $user
+	 * @return array Form descriptor
+	 */
+	private function getUserInputDesc( $user ) {
+		return [
+			'class' => 'HTMLUserTextField',
+			'label-message' => 'specialloguserlabel',
+			'name' => 'user',
+		];
 	}
 
 	/**
@@ -289,6 +415,20 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
+	 * @param string $title
+	 * @return array Form descriptor
+	 */
+	private function getTitleInputDesc( $title ) {
+		return [
+			'class' => 'HTMLTitleTextField',
+			'label-message' => 'speciallogtitlelabel',
+			'name' => 'page',
+			'value' => $title,
+			'required' => false
+		];
+	}
+
+	/**
 	 * @param bool $pattern
 	 * @return string Checkbox
 	 */
@@ -296,6 +436,18 @@ class LogEventsList extends ContextSource {
 		return '<span class="mw-input-with-label">' .
 			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
+	}
+
+	/**
+	 * @param bool $pattern
+	 * @return array Form descriptor
+	 */
+	private function getTitlePatternDesc( $pattern ) {
+		return [
+			'type' => 'check',
+			'label-message' => 'log-title-wildcard',
+			'name' => 'pattern',
+		];
 	}
 
 	/**
@@ -314,6 +466,8 @@ class LogEventsList extends ContextSource {
 					'mw-log-offender', 20, $offender );
 			} else {
 				// Allow extensions to add their own extra inputs
+				// TODO Update current occurences:
+				// https://codesearch.wmflabs.org/search/?q=LogEventsListGetExtraInputs&i=nope&files=&repos=
 				$input = '';
 				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$input ] );
 				return $input;
@@ -321,6 +475,35 @@ class LogEventsList extends ContextSource {
 		}
 
 		return '';
+	}
+
+	/**
+	 * @param array $types
+	 * @return array Form descriptor
+	 */
+	private function getExtraInputsDesc( $types ) {
+		if ( count( $types ) == 1 ) {
+			if ( $types[0] == 'suppress' ) {
+				$offender = $this->getRequest()->getVal( 'offender' );
+				$user = User::newFromName( $offender, false );
+				if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
+					$offender = ''; // Blank field if invalid
+				}
+				return [
+					'type' => 'text',
+					'label-message' => 'revdelete-offender',
+					'name' => 'offender',
+					'value' => $offender,
+				];
+			} else {
+				// Allow extensions to add their own extra inputs
+				$formDescriptor = [];
+				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$formDescriptor ] );
+				return $formDescriptor;
+			}
+		}
+
+		return [];
 	}
 
 	/**
@@ -346,6 +529,29 @@ class LogEventsList extends ContextSource {
 		$select->setDefault( $action );
 		$html .= $select->getHTML();
 		return $html;
+	}
+
+	/**
+	 * Drop down menu for selection of actions that can be used to filter the log
+	 * @param array $types
+	 * @param string $action
+	 * @return array
+	 */
+	private function getActionSelectorDesc( $types, $action ) {
+			$actionOptions = [];
+			$actionOptions[ wfMessage( 'log-action-filter-all' )->text() ] = '';
+
+			foreach ( $this->allowedActions as $value ) {
+				$msgKey = 'log-action-filter-' . $types[0] . '-' . $value;
+				$actionOptions[ wfMessage( $msgKey )->text() ] = $value;
+			}
+			return [
+				'class' => 'HTMLSelectField',
+				'name' => 'subtype',
+				'options' => $actionOptions,
+				'default' => $action,
+				'label' => wfMessage( 'log-action-filter-' . $types[0] )->text(), 'action-filter-' .$types[0] ,
+			];
 	}
 
 	/**
