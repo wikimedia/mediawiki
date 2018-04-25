@@ -1744,8 +1744,6 @@
 	"apihelp-no-such-module": "Lo modul « $1 » es introbable.",
 	"apisandbox": "Nauc de sabla API",
 	"apisandbox-api-disabled": "API es desactivat sus aqueste site.",
-	"apisandbox-fullscreen": "Espandir lo panèl",
-	"apisandbox-unfullscreen": "Afichar la pagina",
 	"apisandbox-submit": "Far la demanda",
 	"apisandbox-reset": "Escafar",
 	"apisandbox-retry": "Ensajar tornarmai",

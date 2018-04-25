@@ -1798,8 +1798,6 @@
 	"apisandbox": "API livadhi",
 	"apisandbox-jsonly": "JavaScript është e domosdoshme që të përdorni API livadhi.",
 	"apisandbox-api-disabled": "API nuk është në dispozicion për këtë faqe.",
-	"apisandbox-fullscreen": "Zgjero panelin",
-	"apisandbox-unfullscreen": "Shfaq faqen",
 	"apisandbox-submit": "Bëj kërkesë",
 	"apisandbox-reset": "Pastro",
 	"apisandbox-retry": "Riprovo",

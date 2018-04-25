@@ -1855,7 +1855,6 @@
 	"querypage-disabled": "หน้าพิเศษนี้ถูกปิดใช้งานด้วยเหตุผลด้านสมรรถภาพ",
 	"apihelp-no-such-module": "ไม่พบมอดูล \"$1\"",
 	"apisandbox-api-disabled": "ไซต์นี้ไม่เปิดใช้ API",
-	"apisandbox-unfullscreen": "แสดงหน้า",
 	"apisandbox-submit": "ส่งคำขอ",
 	"apisandbox-reset": "ล้าง",
 	"apisandbox-retry": "ลองใหม่",

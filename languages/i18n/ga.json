@@ -948,7 +948,6 @@
 	"pager-newer-n": "{{PLURAL:$1|1 níos nuaí|$1 níos nuaí}}",
 	"pager-older-n": "{{PLURAL:$1|1 níos sine|$1 níos sine}}",
 	"apisandbox": "API: bosca gainimh",
-	"apisandbox-unfullscreen": "Taispeáin lch.",
 	"booksources": "Leabharfhoinsí",
 	"booksources-search-legend": "Cuardaigh le foinsí leabhar",
 	"booksources-search": "Cuardaigh",

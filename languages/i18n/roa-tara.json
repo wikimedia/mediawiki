@@ -1805,7 +1805,6 @@
 	"apisandbox": "Sandbox de l'API",
 	"apisandbox-api-disabled": "API non g'è abbiletate sus a stu site.",
 	"apisandbox-intro": "Ause sta pàgene pe sperimendà cu le <strong>API de le web service pe MediaUicchi</strong>.\nFà referimende a [[mw:API:Main page| 'a documendazione de l'API]] pe cchiù dettaglie de l'ause de l'API.\nEsembie: [https://www.mediawiki.org/wiki/API#A_simple_example pigghie 'u condenute d'a Pàgene Prengepàle]. Scacchie 'n'azione pe 'ndrucà otre esembie.\n\nVide ca, pure ca queste jè 'na buatte de sabbie tu puè carrescià le cangiaminde de sta pàgene sus 'a uicchi.",
-	"apisandbox-unfullscreen": "Fà 'ndrucà 'a pàgene",
 	"apisandbox-submit": "Fà 'na richieste",
 	"apisandbox-reset": "Pulizze",
 	"apisandbox-retry": "Pruève arrete",

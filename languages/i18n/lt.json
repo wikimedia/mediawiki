@@ -1909,8 +1909,6 @@
 	"apisandbox": "API smėlio dėžės",
 	"apisandbox-api-disabled": "API yra išjungtas šioje svetainėje.",
 	"apisandbox-intro": "Naudokite šį puslapį norėdami eksperimentuoti su '''MediaWiki API \"„.\n\tIeškokite [https://www.mediawiki.org/wiki/API:Main_page API dokumentacijoje] Išsamesnės informacijos apie API naudojimo.",
-	"apisandbox-fullscreen": "Išplėsti skydelį",
-	"apisandbox-unfullscreen": "Rodyti puslapį",
 	"apisandbox-submit": "Pateikti prašymą",
 	"apisandbox-reset": "Išvalyti",
 	"apisandbox-retry": "Bandykite dar kartą",

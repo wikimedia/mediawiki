@@ -1609,7 +1609,6 @@
 	"pager-newer-n": "{{PLURAL:$1|یەکێکی نوێتر|$1ی نوێتر}}",
 	"pager-older-n": "{{PLURAL:$1|یەکێک کۆنتر|$1ی کۆنتر}}",
 	"suppress": "چاودێری",
-	"apisandbox-unfullscreen": "نیشاندانی پەڕە",
 	"apisandbox-submit": "داواکاری",
 	"apisandbox-reset": "سڕینەوە",
 	"apisandbox-retry": "ھەوڵداناوە",

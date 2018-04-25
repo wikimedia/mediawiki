@@ -115,7 +115,8 @@
 			"Sakretsu",
 			"Yiyi",
 			"Manvydasz",
-			"S4b1nuz E.656"
+			"S4b1nuz E.656",
+			"Daimona Eaytoy"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -932,7 +933,7 @@
 	"revdelete-legend": "Imposta le seguenti limitazioni sulle versioni cancellate:",
 	"revdelete-hide-text": "Testo della versione",
 	"revdelete-hide-image": "Nascondi i contenuti del file",
-	"revdelete-hide-name": "Nascondi obbiettivo e parametri",
+	"revdelete-hide-name": "Nascondi obiettivo e parametri",
 	"revdelete-hide-comment": "Oggetto della modifica o motivazione dell'azione",
 	"revdelete-hide-user": "Nome o indirizzo IP dell'autore",
 	"revdelete-hide-restricted": "Nascondi le informazioni indicate anche agli amministratori",
@@ -2025,10 +2026,6 @@
 	"apisandbox-jsonly": "È richiesto JavaScript per utilizzare la sandbox API.",
 	"apisandbox-api-disabled": "Le funzionalità API sono disabilitate su questo sito.",
 	"apisandbox-intro": "Utilizza questa pagina per fare pratica con le <strong>API web service MediaWiki</strong>.\nPer ulteriori dettagli di utilizzo delle API, fai riferimento alla [[mw:API:Main page|documentazione API]]. Esempio: [https://www.mediawiki.org/wiki/API#A_simple_example ottenere il contenuto della pagina principale]. Seleziona un'azione per vedere altri esempi.\n\nNota che, anche se questa è una pagina per le prove, le azioni che esegui qui potrebbero modificare il wiki.",
-	"apisandbox-fullscreen": "Espandi pannello",
-	"apisandbox-fullscreen-tooltip": "Espandi il pannello sandbox per riempire la finestra del browser.",
-	"apisandbox-unfullscreen": "Mostra la pagina",
-	"apisandbox-unfullscreen-tooltip": "Riduci il pannello sandbox, così che i collegamenti di navigazione MediaWiki siano disponibili.",
 	"apisandbox-submit": "Inoltra richiesta",
 	"apisandbox-reset": "Pulisci",
 	"apisandbox-retry": "Riprova",
