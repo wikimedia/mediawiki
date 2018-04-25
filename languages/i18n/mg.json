@@ -1744,8 +1744,6 @@
 	"apisandbox": "Kianjam-pasika API",
 	"apisandbox-jsonly": "Ilaina amin'ny fampiasana kianjam-pasika API ny JavaScript.",
 	"apisandbox-api-disabled": "Tsy alefa amin'ity tranonkala ity ny API.",
-	"apisandbox-fullscreen": "Hanitatra solaitra",
-	"apisandbox-unfullscreen": "Haneho pejy",
 	"apisandbox-submit": "Hanao hataka",
 	"apisandbox-reset": "Diovina",
 	"apisandbox-retry": "Andramana indray",

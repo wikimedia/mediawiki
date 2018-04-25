@@ -1644,7 +1644,6 @@
 	"querypage-disabled": "ទំព័រពិសេសនេះត្រូវបានបិទមិនអោយប្រើដោយសារមូលហេតុដំណើរការ។",
 	"apihelp": "ជំនួយAPI",
 	"apihelp-no-such-module": "រកមិនឃើញម៉ូឌុល \"$1\" ទេ។",
-	"apisandbox-unfullscreen": "បង្ហាញទំព័រ",
 	"apisandbox-submit": "ដាក់សំណើ",
 	"apisandbox-reset": "ជម្រះ",
 	"apisandbox-examples": "ឧទាហរណ៍",

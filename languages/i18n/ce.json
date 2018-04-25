@@ -1639,8 +1639,6 @@
 	"apihelp-no-such-module": "Модуль «$1» цакарий.",
 	"apisandbox": "Ловзаран майда API",
 	"apisandbox-intro": "Лела йе хӀара агӀо '''MediaWiki API''' зуьйш.\nAPI кхин муха лела йо хьажа [https://www.mediawiki.org/wiki/API:Main_page кхузахь]. Масала, [https://www.mediawiki.org/wiki/API#A_simple_example Коьрта агӀона чулацам схьаэца]. Кхин масалаш ган харжа дийриг.",
-	"apisandbox-fullscreen": "Схьаяста панель",
-	"apisandbox-unfullscreen": "Гайта агӀо",
 	"apisandbox-submit": "Дехар далар",
 	"apisandbox-reset": "ЦӀанъян",
 	"apisandbox-retry": "ЮхагӀорта",

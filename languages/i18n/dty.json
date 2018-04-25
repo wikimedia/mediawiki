@@ -1084,7 +1084,7 @@
 	"statistics-header-pages": "पानानको तथ्याङ्क",
 	"statistics-header-edits": "सम्पादनहरूको तथ्याङ्क",
 	"statistics-files": "अपलोड गर्याका फाइलहरू",
-	"statistics-users": "दर्ता भयाका प्रयोगकर्ताहरू",
+	"statistics-users": "दर्ता भयाऽ प्रयोगकर्ताअन",
 	"statistics-users-active": "सक्रिय प्रयोगकर्ताहरू",
 	"statistics-users-active-desc": "प्रयोगकर्ताहरू जो {{PLURAL:$1|बितेको एक दिन|बितेका $1 दिनहरू}} बठे सक्रिय छन्",
 	"nbytes": "$1 {{PLURAL:$1|बाइट|बाइटहरू}}",

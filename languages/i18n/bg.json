@@ -1846,8 +1846,6 @@
 	"apihelp": "Помощ за API",
 	"apihelp-no-such-module": "Модул \"$1\" не беше намерен.",
 	"apisandbox": "Пясъчник за API",
-	"apisandbox-fullscreen": "Разшири полето",
-	"apisandbox-unfullscreen": "Показване на страница",
 	"apisandbox-submit": "Направи запитване",
 	"apisandbox-reset": "Изчистване",
 	"apisandbox-retry": "Повторен опит",
