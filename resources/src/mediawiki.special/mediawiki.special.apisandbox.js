@@ -1,7 +1,7 @@
 ( function ( $, mw, OO ) {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
-		$content, panel, booklet, oldhash, windowManager, fullscreenButton,
+		$content, panel, booklet, oldhash, windowManager,
 		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
@@ -774,8 +774,6 @@
 		init: function () {
 			var $toolbar;
 
-			ApiSandbox.isFullscreen = false;
-
 			$content = $( '#mw-apisandbox' );
 
 			windowManager = new OO.ui.WindowManager();
@@ -784,15 +782,9 @@
 				errorAlert: new OO.ui.MessageDialog()
 			} );
 
-			fullscreenButton = new OO.ui.ButtonWidget( {
-				label: mw.message( 'apisandbox-fullscreen' ).text(),
-				title: mw.message( 'apisandbox-fullscreen-tooltip' ).text()
-			} ).on( 'click', ApiSandbox.toggleFullscreen );
-
 			$toolbar = $( '<div>' )
 				.addClass( 'mw-apisandbox-toolbar' )
 				.append(
-					fullscreenButton.$element,
 					new OO.ui.ButtonWidget( {
 						label: mw.message( 'apisandbox-submit' ).text(),
 						flags: [ 'primary', 'progressive' ]
@@ -804,6 +796,7 @@
 				);
 
 			booklet = new OO.ui.BookletLayout( {
+				expanded: false,
 				outlined: true,
 				autoFocus: false
 			} );
@@ -832,52 +825,6 @@
 						.append( $toolbar )
 						.append( panel.$element )
 				);
-
-			$( window ).on( 'resize', ApiSandbox.resizePanel );
-
-			ApiSandbox.resizePanel();
-		},
-
-		/**
-		 * Toggle "fullscreen" mode
-		 */
-		toggleFullscreen: function () {
-			var $body = $( document.body ),
-				$ui = $( '#mw-apisandbox-ui' );
-
-			ApiSandbox.isFullscreen = !ApiSandbox.isFullscreen;
-
-			$body.toggleClass( 'mw-apisandbox-fullscreen', ApiSandbox.isFullscreen );
-			$ui.toggleClass( 'mw-body-content', ApiSandbox.isFullscreen );
-			if ( ApiSandbox.isFullscreen ) {
-				fullscreenButton.setLabel( mw.message( 'apisandbox-unfullscreen' ).text() );
-				fullscreenButton.setTitle( mw.message( 'apisandbox-unfullscreen-tooltip' ).text() );
-				OO.ui.getDefaultOverlay().prepend( $ui );
-			} else {
-				fullscreenButton.setLabel( mw.message( 'apisandbox-fullscreen' ).text() );
-				fullscreenButton.setTitle( mw.message( 'apisandbox-fullscreen-tooltip' ).text() );
-				$content.append( $ui );
-			}
-			ApiSandbox.resizePanel();
-		},
-
-		/**
-		 * Set the height of the panel based on the current viewport.
-		 */
-		resizePanel: function () {
-			var height = $( window ).height(),
-				contentTop = $content.offset().top;
-
-			if ( ApiSandbox.isFullscreen ) {
-				height -= panel.$element.offset().top - $( '#mw-apisandbox-ui' ).offset().top;
-				panel.$element.height( height - 1 );
-			} else {
-				// Subtract the height of the intro text
-				height -= panel.$element.offset().top - contentTop;
-
-				panel.$element.height( height - 10 );
-				$( window ).scrollTop( contentTop - 5 );
-			}
 		},
 
 		/**
@@ -1123,7 +1070,7 @@
 				$result = $( '<div>' )
 					.append( progress.$element );
 
-				resultPage = page = new OO.ui.PageLayout( '|results|' );
+				resultPage = page = new OO.ui.PageLayout( '|results|', { expanded: false } );
 				page.setupOutlineItem = function () {
 					this.outlineItem.setLabel( mw.message( 'apisandbox-results' ).text() );
 				};
@@ -1375,7 +1322,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	ApiSandbox.PageLayout = function ( config ) {
-		config = $.extend( { prefix: '' }, config );
+		config = $.extend( { prefix: '', expanded: false }, config );
 		this.displayText = config.key;
 		this.apiModule = config.path;
 		this.prefix = config.prefix;
