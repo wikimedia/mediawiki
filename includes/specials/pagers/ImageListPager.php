@@ -540,16 +540,14 @@ class ImageListPager extends TablePager {
 			];
 		}
 
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 		$fields['user'] = [
-			'type' => 'text',
+			'type' => 'user',
 			'name' => 'user',
 			'id' => 'mw-listfiles-user',
 			'label-message' => 'username',
 			'default' => $this->mUserName,
 			'size' => '40',
 			'maxlength' => '255',
-			'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 		];
 
 		$fields['ilshowall'] = [
