@@ -101,99 +101,94 @@ class LogEventsList extends ContextSource {
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
 	 *  preselected.
+	 * @param int|string $day A day in the 1..31 range. Use 0 to start with no month
+	 *  preselected.
 	 * @param array|null $filter
 	 * @param string $tagFilter Tag to select by default
 	 * @param string|null $action
 	 */
 	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
-		$month = 0, $filter = null, $tagFilter = '', $action = null
+		$month = 0, $day = 0, $filter = null, $tagFilter = '', $action = null
 	) {
-		global $wgScript, $wgMiserMode;
-
 		$title = SpecialPage::getTitleFor( 'Log' );
 
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
 
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter, false, $this->getContext() );
-
-		$html = Html::hidden( 'title', $title->getPrefixedDBkey() );
+		$formDescriptor = [];
 
 		// Basic selectors
-		$html .= $this->getTypeMenu( $types ) . "\n";
-		$html .= $this->getUserInput( $user ) . "\n";
-		$html .= $this->getTitleInput( $page ) . "\n";
-		$html .= $this->getExtraInputs( $types ) . "\n";
+		$formDescriptor['type'] = $this->getTypeMenuDesc( $types );
+		$formDescriptor['user'] = $this->getUserInputDesc( $user );
+		$formDescriptor['page'] = $this->getTitleInputDesc( $title );
+
+		// Add extra inputs if any
+		$extraInputsDescriptor = $this->getExtraInputsDesc( $types );
+		if ( !empty( $extraInputsDescriptor ) ) {
+			$formDescriptor[ 'extra' ] = $extraInputsDescriptor;
+		}
 
 		// Title pattern, if allowed
-		if ( !$wgMiserMode ) {
-			$html .= $this->getTitlePattern( $pattern ) . "\n";
+		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
 		}
 
-		// date menu
-		$html .= Xml::tags( 'p', null, Xml::dateMenu( (int)$year, (int)$month ) );
+		// Date menu
+		$formDescriptor['date'] = [
+			'type' => 'date',
+			'label-message' => 'date'
+		];
 
 		// Tag filter
-		if ( $tagSelector ) {
-			$html .= Xml::tags( 'p', null, implode( "\u{00A0}", $tagSelector ) );
-		}
+		$formDescriptor['tagfilter'] = [
+			'type' => 'tagfilter',
+			'name' => 'tagfilter',
+			'label-raw' => $this->msg( 'tag-filter' )->parse(),
+		];
 
 		// Filter links
 		if ( $filter ) {
-			$html .= Xml::tags( 'p', null, $this->getFilterLinks( $filter ) );
+			$formDescriptor['filters'] = $this->getFiltersDesc( $filter );
 		}
 
 		// Action filter
-		if ( $action !== null ) {
-			$html .= Xml::tags( 'p', null, $this->getActionSelector( $types, $action ) );
+		if (
+			$action !== null &&
+			$this->allowedActions !== null &&
+			count( $this->allowedActions ) > 0
+		) {
+			$formDescriptor['subtype'] = $this->getActionSelectorDesc( $types, $action );
 		}
 
-		// Submit button
-		$html .= Xml::submitButton( $this->msg( 'logeventslist-submit' )->text() );
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
+			->setWrapperLegendMsg( 'log' );
 
-		// Fieldset
-		$html = Xml::fieldset( $this->msg( 'log' )->text(), $html );
-
-		// Form wrapping
-		$html = Xml::tags( 'form', [ 'action' => $wgScript, 'method' => 'get' ], $html );
-
-		$this->getOutput()->addHTML( $html );
+		$htmlForm->prepareForm()->displayForm( false );
 	}
 
 	/**
 	 * @param array $filter
-	 * @return string Formatted HTML
+	 * @return array Form descriptor
 	 */
-	private function getFilterLinks( $filter ) {
-		// show/hide links
-		$messages = [ $this->msg( 'show' )->text(), $this->msg( 'hide' )->text() ];
-		// Option value -> message mapping
-		$links = [];
-		$hiddens = ''; // keep track for "go" button
-		$linkRenderer = $this->getLinkRenderer();
+	private function getFiltersDesc( $filter ) {
+		$options = [];
+		$default = [];
 		foreach ( $filter as $type => $val ) {
-			// Should the below assignment be outside the foreach?
-			// Then it would have to be copied. Not certain what is more expensive.
-			$query = $this->getDefaultQuery();
-			$queryKey = "hide_{$type}_log";
+			$options[ $this->msg( "logeventslist-{$type}-log" )->text() ] = $type;
 
-			$hideVal = $val ? 0 : 1;
-			$query[$queryKey] = $hideVal;
-
-			$link = $linkRenderer->makeKnownLink(
-				$this->getTitle(),
-				$messages[$hideVal],
-				[],
-				$query
-			);
-
-			// Message: log-show-hide-patrol
-			$links[$type] = $this->msg( "log-show-hide-{$type}" )->rawParams( $link )->escaped();
-			$hiddens .= Html::hidden( "hide_{$type}_log", $val ) . "\n";
+			if ( $val === 0 ) {
+				$default[] = $type;
+			}
 		}
-
-		// Build links
-		return '<small>' . $this->getLanguage()->pipeList( $links ) . '</small>' . $hiddens;
+		return [
+			'class' => 'HTMLMultiSelectField',
+			'label-message' => 'logeventslist-more-filters',
+			'flatlist' => true,
+			'options' => $options,
+			'default' => $default,
+		];
 	}
 
 	private function getDefaultQuery() {
@@ -213,22 +208,11 @@ class LogEventsList extends ContextSource {
 
 	/**
 	 * @param array $queryTypes
-	 * @return string Formatted HTML
+	 * @return array Form descriptor
 	 */
-	private function getTypeMenu( $queryTypes ) {
+	private function getTypeMenuDesc( $queryTypes ) {
 		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
-		$selector = $this->getTypeSelector();
-		$selector->setDefault( $queryType );
 
-		return $selector->getHTML();
-	}
-
-	/**
-	 * Returns log page selector.
-	 * @return XmlSelect
-	 * @since 1.19
-	 */
-	public function getTypeSelector() {
 		$typesByName = []; // Temporary array
 		// First pass to load the log names
 		foreach ( LogPage::validTypes() as $type ) {
@@ -247,62 +231,57 @@ class LogEventsList extends ContextSource {
 		unset( $typesByName[''] );
 		$typesByName = [ '' => $public ] + $typesByName;
 
-		$select = new XmlSelect( 'type' );
-		foreach ( $typesByName as $type => $name ) {
-			$select->addOption( $name, $type );
-		}
-
-		return $select;
+		return [
+			'class' => 'HTMLSelectField',
+			'name' => 'type',
+			'options' => array_flip( $typesByName ),
+			'default' => $queryType,
+		];
 	}
 
 	/**
 	 * @param string $user
-	 * @return string Formatted HTML
+	 * @return array Form descriptor
 	 */
-	private function getUserInput( $user ) {
-		$label = Xml::inputLabel(
-			$this->msg( 'specialloguserlabel' )->text(),
-			'user',
-			'mw-log-user',
-			15,
-			$user,
-			[ 'class' => 'mw-autocomplete-user' ]
-		);
-
-		return '<span class="mw-input-with-label">' . $label . '</span>';
+	private function getUserInputDesc( $user ) {
+		return [
+			'class' => 'HTMLUserTextField',
+			'label-message' => 'specialloguserlabel',
+			'name' => 'user',
+		];
 	}
 
 	/**
 	 * @param string $title
-	 * @return string Formatted HTML
+	 * @return array Form descriptor
 	 */
-	private function getTitleInput( $title ) {
-		$label = Xml::inputLabel(
-			$this->msg( 'speciallogtitlelabel' )->text(),
-			'page',
-			'mw-log-page',
-			20,
-			$title
-		);
-
-		return '<span class="mw-input-with-label">' . $label .	'</span>';
+	private function getTitleInputDesc( $title ) {
+		return [
+			'class' => 'HTMLTitleTextField',
+			'label-message' => 'speciallogtitlelabel',
+			'name' => 'page',
+			'value' => $title,
+			'required' => false
+		];
 	}
 
 	/**
 	 * @param bool $pattern
-	 * @return string Checkbox
+	 * @return array Form descriptor
 	 */
-	private function getTitlePattern( $pattern ) {
-		return '<span class="mw-input-with-label">' .
-			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
-			'</span>';
+	private function getTitlePatternDesc( $pattern ) {
+		return [
+			'type' => 'check',
+			'label-message' => 'log-title-wildcard',
+			'name' => 'pattern',
+		];
 	}
 
 	/**
 	 * @param array $types
-	 * @return string
+	 * @return array Form descriptor
 	 */
-	private function getExtraInputs( $types ) {
+	private function getExtraInputsDesc( $types ) {
 		if ( count( $types ) == 1 ) {
 			if ( $types[0] == 'suppress' ) {
 				$offender = $this->getRequest()->getVal( 'offender' );
@@ -310,42 +289,45 @@ class LogEventsList extends ContextSource {
 				if ( !$user || ( $user->getId() == 0 && !IP::isIPAddress( $offender ) ) ) {
 					$offender = ''; // Blank field if invalid
 				}
-				return Xml::inputLabel( $this->msg( 'revdelete-offender' )->text(), 'offender',
-					'mw-log-offender', 20, $offender );
+				return [
+					'type' => 'text',
+					'label-message' => 'revdelete-offender',
+					'name' => 'offender',
+					'value' => $offender,
+				];
 			} else {
 				// Allow extensions to add their own extra inputs
-				$input = '';
-				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$input ] );
-				return $input;
+				$formDescriptor = [];
+				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$formDescriptor ] );
+				return $formDescriptor;
 			}
 		}
 
-		return '';
+		return [];
 	}
 
 	/**
 	 * Drop down menu for selection of actions that can be used to filter the log
 	 * @param array $types
 	 * @param string $action
-	 * @return string
-	 * @since 1.27
+	 * @return array Form descriptor
 	 */
-	private function getActionSelector( $types, $action ) {
-		if ( $this->allowedActions === null || !count( $this->allowedActions ) ) {
-			return '';
-		}
-		$html = '';
-		$html .= Xml::label( wfMessage( 'log-action-filter-' . $types[0] )->text(),
-			'action-filter-' .$types[0] ) . "\n";
-		$select = new XmlSelect( 'subtype' );
-		$select->addOption( wfMessage( 'log-action-filter-all' )->text(), '' );
+	private function getActionSelectorDesc( $types, $action ) {
+		$actionOptions = [];
+		$actionOptions[ 'log-action-filter-all' ] = '';
+
 		foreach ( $this->allowedActions as $value ) {
 			$msgKey = 'log-action-filter-' . $types[0] . '-' . $value;
-			$select->addOption( wfMessage( $msgKey )->text(), $value );
+			$actionOptions[ $msgKey ] = $value;
 		}
-		$select->setDefault( $action );
-		$html .= $select->getHTML();
-		return $html;
+
+		return [
+			'class' => 'HTMLSelectField',
+			'name' => 'subtype',
+			'options-messages' => $actionOptions,
+			'default' => $action,
+			'label' => $this->msg( 'log-action-filter-' . $types[0] )->text(),
+		];
 	}
 
 	/**

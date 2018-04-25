@@ -46,6 +46,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'pattern', false );
 		$opts->add( 'year', null, FormOptions::INTNULL );
 		$opts->add( 'month', null, FormOptions::INTNULL );
+		$opts->add( 'day', null, FormOptions::INTNULL );
 		$opts->add( 'tagfilter', '' );
 		$opts->add( 'offset', '' );
 		$opts->add( 'dir', '' );
@@ -57,6 +58,17 @@ class SpecialLog extends SpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		if ( $par !== null ) {
 			$this->parseParams( $opts, (string)$par );
+		}
+
+		// Set date values
+		$dateString = $this->getRequest()->getVal( 'wpdate' );
+		if ( !empty( $dateString ) ) {
+			$dateStamp = MWTimestamp::getInstance( $dateString . ' 00:00:00' );
+			$dateStamp->setTimezone( $this->getConfig()->get( 'Localtimezone' ) );
+
+			$opts->setValue( 'year', (int)$dateStamp->format( 'Y' ) );
+			$opts->setValue( 'month', (int)$dateStamp->format( 'm' ) );
+			$opts->setValue( 'day', (int)$dateStamp->format( 'd' ) );
 		}
 
 		# Don't let the user get stuck with a certain date
@@ -214,6 +226,7 @@ class SpecialLog extends SpecialPage {
 			$extraConds,
 			$opts->getValue( 'year' ),
 			$opts->getValue( 'month' ),
+			$opts->getValue( 'day' ),
 			$opts->getValue( 'tagfilter' ),
 			$opts->getValue( 'subtype' ),
 			$opts->getValue( 'logid' )
@@ -235,6 +248,7 @@ class SpecialLog extends SpecialPage {
 			$pager->getPattern(),
 			$pager->getYear(),
 			$pager->getMonth(),
+			$pager->getDay(),
 			$pager->getFilterParams(),
 			$pager->getTagFilter(),
 			$pager->getAction()
