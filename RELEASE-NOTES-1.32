@@ -64,6 +64,8 @@ changes to languages because of Phabricator reports.
   configuration in LocalSettings.php.
 
 === Other changes in 1.32 ===
+* HTMLForm::setSubmitProgressive() is deprecated. No need to call. Submit
+  button already has a progressive action form.
 * …
 
 == Compatibility ==
