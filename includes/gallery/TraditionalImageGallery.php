@@ -191,19 +191,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$textlink = $this->mShowFilename ?
-				// Preloaded into LinkCache above
-				Linker::linkKnown(
-					$nt,
-					htmlspecialchars(
-						is_int( $this->getCaptionLength() ) ?
-							$lang->truncate( $nt->getText(), $this->getCaptionLength() ) :
-							$nt->getText()
-					),
-					[
-						'class' => 'galleryfilename' .
-							( $this->getCaptionLength() === true ? ' galleryfilename-truncate' : '' )
-					]
-				) . "\n" :
+				$this->getCaptionHtml( $nt, $lang ) :
 				'';
 
 			$galleryText = $textlink . $text . $meta;
@@ -225,6 +213,27 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$output .= "\n</ul>";
 
 		return $output;
+	}
+
+	/**
+	 * @param Title $nt
+	 * @param Language $lang
+	 * @return string HTML
+	 */
+	protected function getCaptionHtml( Title $nt, Language $lang ) {
+		// Preloaded into LinkCache in toHTML
+		return Linker::linkKnown(
+			$nt,
+			htmlspecialchars(
+				is_int( $this->getCaptionLength() ) ?
+					$lang->truncate( $nt->getText(), $this->getCaptionLength() ) :
+					$nt->getText()
+			),
+			[
+				'class' => 'galleryfilename' .
+					( $this->getCaptionLength() === true ? ' galleryfilename-truncate' : '' )
+			]
+		) . "\n";
 	}
 
 	/**
