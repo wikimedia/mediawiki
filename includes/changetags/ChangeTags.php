@@ -32,6 +32,9 @@ class ChangeTags {
 	 */
 	const MAX_DELETE_USES = 5000;
 
+	/**
+	 * A list of tags defined and used by MediaWiki itself.
+	 */
 	private static $definedSoftwareTags = [
 		'mw-contentmodelchange',
 		'mw-new-redirect',
@@ -474,9 +477,12 @@ class ChangeTags {
 	 * Is it OK to allow the user to apply all the specified tags at the same time
 	 * as they edit/make the change?
 	 *
+	 * Extensions should not use this function, unless directly handling a user
+	 * request to add a tag to a revision or log entry that the user is making.
+	 *
 	 * @param array $tags Tags that you are interested in applying
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
+	 * @param User|null $user User whose permission you wish to check, or null to
+	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status
 	 * @since 1.25
 	 */
@@ -541,10 +547,13 @@ class ChangeTags {
 	 * Is it OK to allow the user to adds and remove the given tags tags to/from a
 	 * change?
 	 *
+	 * Extensions should not use this function, unless directly handling a user
+	 * request to add or remove tags from an existing revision or log entry.
+	 *
 	 * @param array $tagsToAdd Tags that you are interested in adding
 	 * @param array $tagsToRemove Tags that you are interested in removing
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
+	 * @param User|null $user User whose permission you wish to check, or null to
+	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status
 	 * @since 1.25
 	 */
@@ -589,10 +598,14 @@ class ChangeTags {
 	 * Adds and/or removes tags to/from a given change, checking whether it is
 	 * allowed first, and adding a log entry afterwards.
 	 *
-	 * Includes a call to ChangeTag::canUpdateTags(), so your code doesn't need
+	 * Includes a call to ChangeTags::canUpdateTags(), so your code doesn't need
 	 * to do that. However, it doesn't check whether the *_id parameters are a
 	 * valid combination. That is up to you to enforce. See ApiTag::execute() for
 	 * an example.
+	 *
+	 * Extensions should generally avoid this function. Call
+	 * ChangeTags::updateTags() instead, unless directly handling a user request
+	 * to add or remove tags from an existing revision or log entry.
 	 *
 	 * @param array|null $tagsToAdd If none, pass array() or null
 	 * @param array|null $tagsToRemove If none, pass array() or null
@@ -721,7 +734,8 @@ class ChangeTags {
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-										&$join_conds, &$options, $filter_tag = '' ) {
+		&$join_conds, &$options, $filter_tag = ''
+	) {
 		global $wgUseTagFilter;
 
 		// Normalize to arrays
@@ -1057,6 +1071,9 @@ class ChangeTags {
 	/**
 	 * Is it OK to allow the user to create this tag?
 	 *
+	 * Extensions should NOT use this function. In most cases, a tag can be
+	 * defined using the ListDefinedTags hook without any checking.
+	 *
 	 * @param string $tag Tag that you are interested in creating
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
@@ -1091,6 +1108,9 @@ class ChangeTags {
 
 	/**
 	 * Creates a tag by adding a row to the `valid_tag` table.
+	 *
+	 * Extensions should NOT use this function; they can use the ListDefinedTags
+	 * hook instead.
 	 *
 	 * Includes a call to ChangeTag::canDeleteTag(), so your code doesn't need to
 	 * do that.
