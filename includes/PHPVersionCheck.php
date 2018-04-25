@@ -30,7 +30,7 @@ class PHPVersionCheck {
 	var $mwVersion = '1.32';
 	var $functionsExtensionsMapping = array(
 		'mb_substr'   => 'mbstring',
-		'utf8_encode' => 'xml',
+		'xml_parser_create' => 'xml',
 		'ctype_digit' => 'ctype',
 		'json_decode' => 'json',
 		'iconv'       => 'iconv',
