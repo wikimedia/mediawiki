@@ -158,6 +158,24 @@ class LogEventsList extends ContextSource {
 		$html = Xml::tags( 'form', [ 'action' => $wgScript, 'method' => 'get' ], $html );
 
 		$this->getOutput()->addHTML( $html );
+
+		$formDescriptor = [];
+
+		$formDescriptor['type'] = $this->getTypeMenuDesc( $types );
+		$formDescriptor['user'] = $this->getUserInputDesc( $user );
+		$formDescriptor['page'] = $this->getTitleInputDesc( $title );
+		// TODO getExtraInputs
+
+		if ( !$wgMiserMode ) {
+			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
+		}
+
+		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+
+		$htmlForm->setSubmitText( $this->msg( 'logeventslist-submit' )->text() );
+		$htmlForm->setSubmitCallback( [ $this, 'trySubmit' ] );
+
+		$htmlForm->show();
 	}
 
 	/**
@@ -255,6 +273,35 @@ class LogEventsList extends ContextSource {
 		return $select;
 	}
 
+	private function getTypeMenuDesc( $queryTypes ) {
+		$queryType = count( $queryTypes ) == 1 ? $queryTypes[0] : '';
+
+		$typesByName = []; // Temporary array
+		// First pass to load the log names
+		foreach ( LogPage::validTypes() as $type ) {
+			$page = new LogPage( $type );
+			$restriction = $page->getRestriction();
+			if ( $this->getUser()->isAllowed( $restriction ) ) {
+				$typesByName[$type] = $page->getName()->text();
+			}
+		}
+
+		// Second pass to sort by name
+		asort( $typesByName );
+
+		// Always put "All public logs" on top
+		$public = $typesByName[''];
+		unset( $typesByName[''] );
+		$typesByName = [ '' => $public ] + $typesByName;
+
+		return [
+				'class' => 'HTMLSelectField',
+				'name' => 'type',
+				'options' => array_flip( $typesByName ),
+				'default' => $queryType, // TODO: Check if this works
+		];
+	}
+
 	/**
 	 * @param string $user
 	 * @return string Formatted HTML
@@ -270,6 +317,14 @@ class LogEventsList extends ContextSource {
 		);
 
 		return '<span class="mw-input-with-label">' . $label . '</span>';
+	}
+
+	private function getUserInputDesc( $user ) {
+		return [
+			'class' => 'HTMLUserTextField',
+			'label' => $this->msg( 'specialloguserlabel' )->text(), // TODO Isn't there a better way to do this?
+			'name' => 'user',
+		];
 	}
 
 	/**
@@ -288,6 +343,15 @@ class LogEventsList extends ContextSource {
 		return '<span class="mw-input-with-label">' . $label .	'</span>';
 	}
 
+	private function getTitleInputDesc( $title ) {
+		return [
+			'class' => 'HTMLTitleTextField',
+			'label' => $this->msg( 'speciallogtitlelabel' )->text(),
+			'name' => 'page',
+			// TODO Value
+		];
+	}
+
 	/**
 	 * @param string $pattern
 	 * @return string Checkbox
@@ -296,6 +360,15 @@ class LogEventsList extends ContextSource {
 		return '<span class="mw-input-with-label">' .
 			Xml::checkLabel( $this->msg( 'log-title-wildcard' )->text(), 'pattern', 'pattern', $pattern ) .
 			'</span>';
+	}
+
+	private function getTitlePatternDesc( $pattern ) {
+		return [
+			'type' => 'check',
+			'label' => $this->msg( 'log-title-wildcard' )->text(),
+			'name' => 'pattern',
+			// TODO Value
+		];
 	}
 
 	/**
