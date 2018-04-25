@@ -62,10 +62,10 @@ changes to languages because of Phabricator reports.
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
   configuration in LocalSettings.php.
+* HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
+  button is already marked as progressive.
 
 === Other changes in 1.32 ===
-* HTMLForm::setSubmitProgressive() is deprecated. No need to call. Submit
-  button already has a progressive action form.
 * …
 
 == Compatibility ==
