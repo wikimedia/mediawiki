@@ -3893,6 +3893,9 @@ ERROR;
 			$previewHTML = $parserResult['html'];
 			$this->mParserOutput = $parserOutput;
 			$out->addParserOutputMetadata( $parserOutput );
+			if ( $out->userCanPreview() ) {
+				$out->addContentOverride( $this->getTitle(), $content );
+			}
 
 			if ( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );

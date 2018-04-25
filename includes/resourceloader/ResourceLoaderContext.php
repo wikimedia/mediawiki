@@ -342,6 +342,22 @@ class ResourceLoaderContext implements MessageLocalizer {
 	}
 
 	/**
+	 * Return the replaced-content mapping callback
+	 *
+	 * When editing a page that's used to generate the scripts or styles of a
+	 * ResourceLoaderWikiModule, a preview should use the to-be-saved version of
+	 * the page rather than the current version in the database. A context
+	 * supporting such previews should return a callback to return these
+	 * mappings here.
+	 *
+	 * @since 1.32
+	 * @return callable|null Signature is `Content|null func( Title $t )`
+	 */
+	public function getContentOverrideCallback() {
+		return null;
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function shouldIncludeScripts() {
