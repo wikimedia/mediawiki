@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.4
+ * OOUI v0.26.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-17T22:23:58Z
+ * Date: 2018-04-24T23:29:01Z
  */
 ( function ( OO ) {
 
@@ -6828,6 +6828,18 @@ OO.ui.NumberInputWidget.prototype.setStep = function ( step, pageStep ) {
 	}
 	this.step = step;
 	this.pageStep = pageStep;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
+	if ( value === '' ) {
+		// Some browsers allow a value in the input even if there isn't one reported by $input.val()
+		// so here we make sure an 'empty' value is actually displayed as such.
+		this.$input.val( '' );
+	}
+	return OO.ui.NumberInputWidget.parent.prototype.setValue.call( this, value );
 };
 
 /**

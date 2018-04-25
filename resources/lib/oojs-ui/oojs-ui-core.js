@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.4
+ * OOUI v0.26.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-17T22:23:58Z
+ * Date: 2018-04-24T23:29:01Z
  */
 ( function ( OO ) {
 
@@ -7612,11 +7612,11 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	if ( change ) {
 		if ( visible ) {
-			this.bindKeyDownListener();
-			this.bindKeyPressListener();
-
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
+
+			this.bindKeyDownListener();
+			this.bindKeyPressListener();
 
 			if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 				// If opening the menu downwards causes it to be clipped, flip it to open upwards instead

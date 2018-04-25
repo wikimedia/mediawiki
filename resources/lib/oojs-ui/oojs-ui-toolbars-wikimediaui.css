@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.4
+ * OOUI v0.26.5
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-17T22:24:02Z
+ * Date: 2018-04-24T23:29:05Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -76,8 +76,8 @@
 .oo-ui-tool.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.34;
 }
-.oo-ui-popupTool .oo-ui-popupWidget-popup,
-.oo-ui-popupTool .oo-ui-popupWidget-anchor {
+.oo-ui-popupTool-popup .oo-ui-popupWidget-popup,
+.oo-ui-popupTool-popup .oo-ui-popupWidget-anchor {
   z-index: 4;
 }
 .oo-ui-toolGroupTool > .oo-ui-toolGroup {
@@ -89,71 +89,71 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border-right: 1px solid #c8ccd1;
+  border-right: 1px solid #eaecf0;
 }
 .oo-ui-toolGroup-empty {
   display: none;
 }
-.oo-ui-toolGroup .oo-ui-tool-link {
+.oo-ui-toolGroup-tools .oo-ui-tool-link {
   text-decoration: none;
   cursor: pointer;
 }
-.oo-ui-toolGroup.oo-ui-widget-disabled .oo-ui-tool-link,
-.oo-ui-toolGroup .oo-ui-widget-disabled > .oo-ui-tool-link {
+.oo-ui-toolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool-link,
+.oo-ui-toolGroup-tools .oo-ui-widget-disabled > .oo-ui-tool-link {
   outline: 0;
   cursor: default;
 }
 .oo-ui-toolbar-actions .oo-ui-toolGroup {
   border-right: 0;
-  border-left: 1px solid #c8ccd1;
+  border-left: 1px solid #eaecf0;
 }
 .oo-ui-toolGroup.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator,
 .oo-ui-toolGroup.oo-ui-widget-disabled .oo-ui-iconElement-icon {
   opacity: 0.34 !important;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool {
+.oo-ui-barToolGroup-tools > .oo-ui-tool {
   display: inline-block;
   position: relative;
   vertical-align: top;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
+.oo-ui-barToolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
   display: block;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-accel {
+.oo-ui-barToolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-accel {
   display: none;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement > .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-barToolGroup-tools > .oo-ui-tool.oo-ui-iconElement > .oo-ui-tool-link .oo-ui-tool-title {
   display: none;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-iconElement.oo-ui-tool-with-label > .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-barToolGroup-tools > .oo-ui-tool.oo-ui-iconElement.oo-ui-tool-with-label > .oo-ui-tool-link .oo-ui-tool-title {
   display: inline-block;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool.iconElement > .oo-ui-tool-link > .oo-ui-iconElement-icon {
+.oo-ui-barToolGroup-tools > .oo-ui-tool.iconElement > .oo-ui-tool-link > .oo-ui-iconElement-icon {
   display: block;
 }
-.oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool + .oo-ui-tool {
+.oo-ui-barToolGroup-tools > .oo-ui-tool + .oo-ui-tool {
   margin-left: -2px;
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-widget-enabled:hover {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-widget-enabled:hover {
   background-color: #eaecf0;
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-widget-enabled > .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-widget-enabled > .oo-ui-tool-link .oo-ui-tool-title {
   color: #222;
   -webkit-transition: color 100ms;
   -moz-transition: color 100ms;
   transition: color 100ms;
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active {
   background-color: #eaf3ff;
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active:hover {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active:hover {
   background-color: rgba(41, 98, 204, 0.1);
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active > .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool:not( .oo-ui-toolGroupTool ).oo-ui-tool-active > .oo-ui-tool-link .oo-ui-tool-title {
   color: #36c;
 }
-.oo-ui-barToolGroup.oo-ui-widget-enabled .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link .oo-ui-tool-title,
-.oo-ui-barToolGroup.oo-ui-widget-disabled .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool.oo-ui-widget-disabled > .oo-ui-tool-link .oo-ui-tool-title,
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
   color: #72777d;
 }
 .oo-ui-popupToolGroup {
@@ -171,32 +171,26 @@
   outline: 0;
   cursor: default;
 }
-.oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
+.oo-ui-popupToolGroup-tools {
   display: none;
   position: absolute;
   z-index: 4;
 }
-.oo-ui-popupToolGroup-active.oo-ui-widget-enabled > .oo-ui-toolGroup-tools {
+.oo-ui-popupToolGroup-tools.oo-ui-popupToolGroup-active-tools {
   display: block;
 }
-.oo-ui-popupToolGroup-left > .oo-ui-toolGroup-tools {
-  left: 0;
-}
-.oo-ui-popupToolGroup-right > .oo-ui-toolGroup-tools {
-  right: 0;
-}
-.oo-ui-popupToolGroup .oo-ui-tool-link {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link {
   display: table;
   width: 100%;
   vertical-align: middle;
   white-space: nowrap;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel,
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel,
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-title {
   display: table-cell;
   vertical-align: middle;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel {
   text-align: right;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup {
@@ -273,37 +267,31 @@
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-header {
   padding: 0 0.71428571em;
 }
-.oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  margin: 0 -1px;
-  border: 1px solid #c8ccd1;
+.oo-ui-popupToolGroup-tools {
   background-color: #fff;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
   min-width: 16em;
+  margin: 0 -1px;
+  border: 1px solid #eaecf0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
-.oo-ui-toolbar-position-top .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  top: 3em;
-}
-.oo-ui-toolbar-position-bottom .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-  bottom: 3em;
-}
-.oo-ui-popupToolGroup .oo-ui-tool-link {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link {
   padding: 1em 0.85714286em 0.92857143em 2.64285714em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup .oo-ui-tool-link {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
   padding-left: 2.5em;
   padding-right: 0.71428571em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-title {
   color: #222;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel {
   color: #72777d;
   line-height: 1.07142857em;
 }
-.oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 1.28571429em;
 }
-.oo-ui-toolbar-narrow .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 1.14285714em;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
@@ -348,37 +336,37 @@
   background-color: rgba(41, 98, 204, 0.1);
   color: #36c;
 }
-.oo-ui-popupToolGroup.oo-ui-popupToolGroup-active .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
   color: #36c;
 }
-.oo-ui-popupToolGroup .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link:focus {
+.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link:focus {
   outline: 0;
   box-shadow: inset 0 0 0 2px #36c;
 }
-.oo-ui-listToolGroup .oo-ui-tool {
+.oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
+.oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled:hover {
   background-color: #eaecf0;
   color: #000;
 }
-.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled {
+.oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled {
   background-color: #eaf3ff;
 }
-.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled:hover {
+.oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled:hover {
   background-color: rgba(41, 98, 204, 0.1);
 }
-.oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
   color: #36c;
 }
 .oo-ui-listToolGroup.oo-ui-widget-disabled,
-.oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
+.oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
   color: #72777d;
 }
-.oo-ui-menuToolGroup .oo-ui-tool {
+.oo-ui-menuToolGroup-tools .oo-ui-tool {
   display: block;
 }
 .oo-ui-menuToolGroup .oo-ui-popupToolGroup-handle {
@@ -387,20 +375,20 @@
 .oo-ui-toolbar-narrow .oo-ui-menuToolGroup .oo-ui-popupToolGroup-handle {
   min-width: 100px;
 }
-.oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
+.oo-ui-menuToolGroup-tools .oo-ui-tool-link .oo-ui-iconElement-icon {
   left: 0.78571429em;
 }
-.oo-ui-toolbar-narrow .oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
+.oo-ui-toolbar-narrow .oo-ui-menuToolGroup-tools .oo-ui-tool-link .oo-ui-iconElement-icon {
   left: 0.71428571em;
 }
-.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
+.oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled:hover {
   background-color: rgba(41, 98, 204, 0.1);
 }
-.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-tool-active {
+.oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-tool-active {
   background-color: #eaf3ff;
 }
 .oo-ui-menuToolGroup.oo-ui-widget-disabled,
-.oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
+.oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-tool-title {
   color: #72777d;
 }
 .oo-ui-toolbar {
@@ -420,10 +408,22 @@
 }
 .oo-ui-toolbar-tools {
   display: inline;
+}
+.oo-ui-toolbar-popups {
+  position: absolute;
+}
+.oo-ui-toolbar-tools,
+.oo-ui-toolbar-popups {
   white-space: nowrap;
 }
+.oo-ui-toolbar-tools .oo-ui-tool,
+.oo-ui-toolbar-popups .oo-ui-tool,
+.oo-ui-toolbar-tools .oo-ui-popupTool-popup,
+.oo-ui-toolbar-popups .oo-ui-popupTool-popup {
+  white-space: normal;
+}
 .oo-ui-toolbar-narrow .oo-ui-toolbar-tools,
-.oo-ui-toolbar-tools .oo-ui-tool {
+.oo-ui-toolbar-narrow.oo-ui-toolbar-popups {
   white-space: normal;
 }
 .oo-ui-toolbar-actions {
@@ -524,5 +524,5 @@
   box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
 }
 .oo-ui-toolbar-actions > .oo-ui-toolbar:not( :last-child ) {
-  border-right: 1px solid #c8ccd1;
+  border-right: 1px solid #eaecf0;
 }
