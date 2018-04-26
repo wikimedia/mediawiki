@@ -68,18 +68,20 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 			// Note: sha1 has been in XML dumps since 2012. If you have an
 			// older dump, the duplicate detection here won't work.
-			$prior = $dbw->selectField( 'revision', '1',
-				[ 'rev_page' => $pageId,
+			if ( $importableRevision->getSha1Base36() !== false ) {
+				$prior = $dbw->selectField( 'revision', '1',
+					[ 'rev_page' => $pageId,
 					'rev_timestamp' => $dbw->timestamp( $importableRevision->getTimestamp() ),
 					'rev_sha1' => $importableRevision->getSha1Base36() ],
-				__METHOD__
-			);
-			if ( $prior ) {
-				// @todo FIXME: This could fail slightly for multiple matches :P
-				$this->logger->debug( __METHOD__ . ": skipping existing revision for [[" .
-					$importableRevision->getTitle()->getPrefixedText() . "]], timestamp " .
-					$importableRevision->getTimestamp() . "\n" );
-				return false;
+					__METHOD__
+				);
+				if ( $prior ) {
+					// @todo FIXME: This could fail slightly for multiple matches :P
+					$this->logger->debug( __METHOD__ . ": skipping existing revision for [[" .
+						$importableRevision->getTitle()->getPrefixedText() . "]], timestamp " .
+						$importableRevision->getTimestamp() . "\n" );
+					return false;
+				}
 			}
 		}
 
