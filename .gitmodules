@@ -734,3 +734,7 @@
 	path = extensions/CentralNotice
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CentralNotice
 	branch = wmf_deploy
+[submodule "extensions/ArticleCreationWorkflow"]
+	path = extensions/ArticleCreationWorkflow
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ArticleCreationWorkflow
+	branch = wmf/1.32.0-wmf.1
