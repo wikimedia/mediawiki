@@ -166,7 +166,8 @@ abstract class Skin extends ContextSource {
 	 * It is recommended that skins wishing to override call parent::getDefaultModules()
 	 * and substitute out any modules they wish to change by using a key to look them up
 	 *
-	 * For style modules, use setupSkinUserCss() instead.
+	 * Any modules defined with the 'styles' key will be added as render blocking CSS via
+	 * Output::addModuleStyles. Similarly, each key should refer to a list of modules
 	 *
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
@@ -175,6 +176,10 @@ abstract class Skin extends ContextSource {
 		$config = $this->getConfig();
 		$user = $out->getUser();
 		$modules = [
+			// Styles key sets render blocking styles
+			// Unlike other keys in this definition it is an associative array
+			// where each key is the group name and points to a list of modules
+			'styles' => [],
 			// modules not specific to any specific skin or page
 			'core' => [
 				// Enforce various default modules for all pages and all skins
