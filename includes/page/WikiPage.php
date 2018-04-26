@@ -3288,7 +3288,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $wgUseRCPatrol ) {
 			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = RecentChange::PRC_PATROLLED;
+			$set['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
 		}
 
 		if ( count( $set ) ) {
