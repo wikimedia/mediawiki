@@ -90,4 +90,16 @@
 	window.importScript = importScript;
 	window.importStylesheet = importStylesheet;
 
+	/**
+	 * Replace document.write/writeln with basic html parsing that appends
+	 * to the <body> to avoid blanking pages. Added JavaScript will not run.
+	 *
+	 * @deprecated since 1.26
+	 */
+	[ 'write', 'writeln' ].forEach( function ( method ) {
+		mw.log.deprecate( document, method, function () {
+			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
+		}, 'Use jQuery or mw.loader.load instead.', 'document.' + method );
+	} );
+
 }( mediaWiki, jQuery ) );
