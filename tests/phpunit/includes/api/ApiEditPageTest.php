@@ -782,11 +782,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$text = ( new WikiPage( $titleObj ) )->getContent()->getText();
 
-		// This is wrong!  It should be 1.  But let's test for our incorrect
-		// behavior for now, so if someone fixes it they'll fix the test as
-		// well to expect 1.  If we disabled the test, it might stay disabled
-		// even once the bug is fixed, which would be a shame.
-		$this->assertSame( '2', $text );
+		$this->assertSame( '1', $text );
 	}
 
 	public function testUndoWithConflicts() {
@@ -814,10 +810,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( '3', $text );
 	}
 
-	/**
-	 * undoafter is supposed to be less than undo.  If not, we reverse their
-	 * meaning, so that the two are effectively interchangeable.
-	 */
 	public function testReversedUndoAfter() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
@@ -834,7 +826,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
 			->getText();
-		$this->assertSame( '1', $text );
+		$this->assertSame( '2', $text );
 	}
 
 	public function testUndoToRevFromDifferentPage() {

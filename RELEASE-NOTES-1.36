@@ -83,6 +83,11 @@ For notes on 1.35.x and older releases, see HISTORY.
 * …
 
 === Bug fixes in 1.36 ===
+(T190285) ApiEditPage module used to switch 'undo' and 'undoafter' parameters,
+if it founds you reversed them (based on assumption that higher revision ID
+indicates a later revision). The assumption is not always true and is hindering
+proper edit undoing in some cases, hence the logic has been removed.
+Reversing the paramaters will now lead to edit conflict or undefined behavior.
 * …
 
 === Action API changes in 1.36 ===
