@@ -32,6 +32,10 @@ require_once __DIR__ . '/Maintenance.php';
  * @since 1.31
  */
 class PopulateArchiveRevId extends LoggedUpdateMaintenance {
+
+	/** @var array|null Dummy revision row */
+	private static $dummyRev = null;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Populate ar_rev_id in pre-1.5 rows' );
@@ -58,7 +62,6 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		$rev = $this->makeDummyRevisionRow( $dbw );
 		$count = 0;
 		while ( true ) {
 			wfWaitForSlaves();
@@ -75,47 +78,60 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				return true;
 			}
 
-			try {
-				$updates = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $arIds, $rev ) {
-					// Create new rev_ids by inserting dummy rows into revision and then deleting them.
-					$dbw->insert( 'revision', array_fill( 0, count( $arIds ), $rev ), $fname );
-					$revIds = $dbw->selectFieldValues(
-						'revision',
-						'rev_id',
-						[ 'rev_timestamp' => $rev['rev_timestamp'] ],
-						$fname
-					);
-					if ( !is_array( $revIds ) ) {
-						throw new UnexpectedValueException( 'Failed to insert dummy revisions' );
-					}
-					if ( count( $revIds ) !== count( $arIds ) ) {
-						throw new UnexpectedValueException(
-							'Tried to insert ' . count( $arIds ) . ' dummy revisions, but found '
-							. count( $revIds ) . ' matching rows.'
-						);
-					}
-					$dbw->delete( 'revision', [ 'rev_id' => $revIds ], $fname );
+			$count += self::reassignArRevIds( $dbw, $arIds, [ 'ar_rev_id' => null ] );
 
-					return array_combine( $arIds, $revIds );
-				} );
-			} catch ( UnexpectedValueException $ex ) {
-				$this->fatalError( $ex->getMessage() );
-			}
-
-			foreach ( $updates as $arId => $revId ) {
-				$dbw->update(
-					'archive',
-					[ 'ar_rev_id' => $revId ],
-					[ 'ar_id' => $arId, 'ar_rev_id' => null ],
-					__METHOD__
-				);
-				$count += $dbw->affectedRows();
-			}
-
-			$min = min( array_keys( $updates ) );
-			$max = max( array_keys( $updates ) );
+			$min = min( $arIds );
+			$max = max( $arIds );
 			$this->output( " ... $min-$max\n" );
 		}
+	}
+
+	/**
+	 * Assign new ar_rev_ids to a set of ar_ids.
+	 * @param IDatabase $dbw
+	 * @param int[] $arIds
+	 * @param array $conds Extra conditions for the update
+	 * @return int Number of updated rows
+	 */
+	public static function reassignArRevIds( IDatabase $dbw, array $arIds, array $conds = [] ) {
+		if ( !self::$dummyRev ) {
+			self::$dummyRev = self::makeDummyRevisionRow( $dbw );
+		}
+
+		$updates = $dbw->doAtomicSection( __METHOD__, function ( $dbw, $fname ) use ( $arIds ) {
+			// Create new rev_ids by inserting dummy rows into revision and then deleting them.
+			$dbw->insert( 'revision', array_fill( 0, count( $arIds ), self::$dummyRev ), $fname );
+			$revIds = $dbw->selectFieldValues(
+				'revision',
+				'rev_id',
+				[ 'rev_timestamp' => self::$dummyRev['rev_timestamp'] ],
+				$fname
+			);
+			if ( !is_array( $revIds ) ) {
+				throw new UnexpectedValueException( 'Failed to insert dummy revisions' );
+			}
+			if ( count( $revIds ) !== count( $arIds ) ) {
+				throw new UnexpectedValueException(
+					'Tried to insert ' . count( $arIds ) . ' dummy revisions, but found '
+					. count( $revIds ) . ' matching rows.'
+				);
+			}
+			$dbw->delete( 'revision', [ 'rev_id' => $revIds ], $fname );
+
+			return array_combine( $arIds, $revIds );
+		} );
+
+		$count = 0;
+		foreach ( $updates as $arId => $revId ) {
+			$dbw->update(
+				'archive',
+				[ 'ar_rev_id' => $revId ],
+				[ 'ar_id' => $arId ] + $conds,
+				__METHOD__
+			);
+			$count += $dbw->affectedRows();
+		}
+		return $count;
 	}
 
 	/**
@@ -123,31 +139,41 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 	 *
 	 * The row will have a wildly unlikely timestamp, and possibly a generic
 	 * user and comment, but will otherwise be derived from a revision on the
-	 * wiki's main page.
+	 * wiki's main page or some other revision in the database.
 	 *
 	 * @param IDatabase $dbw
 	 * @return array
 	 */
-	private function makeDummyRevisionRow( IDatabase $dbw ) {
+	private static function makeDummyRevisionRow( IDatabase $dbw ) {
 		$ts = $dbw->timestamp( '11111111111111' );
+		$rev = null;
+
 		$mainPage = Title::newMainPage();
-		if ( !$mainPage ) {
-			$this->fatalError( 'Main page does not exist' );
+		$pageId = $mainPage ? $mainPage->getArticleId() : null;
+		if ( $pageId ) {
+			$rev = $dbw->selectRow(
+				'revision',
+				'*',
+				[ 'rev_page' => $pageId ],
+				__METHOD__,
+				[ 'ORDER BY' => 'rev_timestamp ASC' ]
+			);
 		}
-		$pageId = $mainPage->getArticleId();
-		if ( !$pageId ) {
-			$this->fatalError( $mainPage->getPrefixedText() . ' has no ID' );
-		}
-		$rev = $dbw->selectRow(
-			'revision',
-			'*',
-			[ 'rev_page' => $pageId ],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC' ]
-		);
+
 		if ( !$rev ) {
-			$this->fatalError( $mainPage->getPrefixedText() . ' has no revisions' );
+			// No main page? Let's see if there are any revisions at all
+			$rev = $dbw->selectRow(
+				'revision',
+				'*',
+				[],
+				__METHOD__,
+				[ 'ORDER BY' => 'rev_timestamp ASC' ]
+			);
 		}
+		if ( !$rev ) {
+			throw new UnexpectedValueException( 'No revisions are available to copy' );
+		}
+
 		unset( $rev->rev_id );
 		$rev = (array)$rev;
 		$rev['rev_timestamp'] = $ts;
@@ -166,7 +192,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			__METHOD__
 		);
 		if ( $any ) {
-			$this->fatalError( "... Why does your database contain a revision dated $ts?" );
+			throw new UnexpectedValueException( "... Why does your database contain a revision dated $ts?" );
 		}
 
 		return $rev;
