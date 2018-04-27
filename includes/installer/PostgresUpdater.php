@@ -582,6 +582,8 @@ class PostgresUpdater extends DatabaseUpdater {
 				'change_tag_tag_id_id',
 				'( ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id )'
 			],
+			[ 'addPgIndex', 'archive', 'ar_revid_uniq', '(ar_rev_id)', 'unique' ],
+			[ 'dropPgIndex', 'archive', 'ar_revid' ], // Probably doesn't exist, but do it anyway.
 		];
 	}
 
@@ -959,12 +961,13 @@ END;
 		}
 	}
 
-	public function addPgIndex( $table, $index, $type ) {
+	public function addPgIndex( $table, $index, $type, $unique = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table' $type\n" );
-			$this->db->query( "CREATE INDEX $index ON $table $type" );
+			$unique = $unique ? 'UNIQUE' : '';
+			$this->db->query( "CREATE $unique INDEX $index ON $table $type" );
 		}
 	}
 

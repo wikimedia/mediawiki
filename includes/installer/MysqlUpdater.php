@@ -356,6 +356,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-externallinks-el_index_60-drop-default.sql' ],
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 			[ 'addField', 'change_tag', 'ct_tag_id', 'patch-change_tag-tag_id.sql' ],
+			[ 'addIndex', 'archive', 'ar_revid_uniq', 'patch-archive-ar_rev_id-unique.sql' ],
 		];
 	}
 

@@ -24,6 +24,7 @@ production.
 * New configuration variable has been added: $wgCookieSetOnIpBlock.
   This determines whether to set a cookie when an IP user is blocked. Doing so means
   that a blocked user, even after moving to a new IP address, will still be blocked.
+* The archive table's ar_rev_id field is now unique.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
