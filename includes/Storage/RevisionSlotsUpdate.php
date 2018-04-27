@@ -122,6 +122,11 @@ class RevisionSlotsUpdate {
 	/**
 	 * Returns a list of modified slot roles.
 	 *
+	 * Note that slots in modified roles may still be inherited slots. This is for instance
+	 * the case when the RevisionSlotsUpdate objects represents some kind of rollback
+	 * operation, in which slots that existed in an earlier revision are restored in
+	 * a new revision.
+	 *
 	 * @return string[]
 	 */
 	public function getModifiedRoles() {

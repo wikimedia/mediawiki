@@ -227,16 +227,28 @@ abstract class RevisionRecord {
 	}
 
 	/**
-	 * Returns the slots touched by for this revision.
+	 * Returns the slots that originate in this revision.
+	 *
+	 * Note that this does not include any slots inherited from some earlier revision,
+	 * even if they are different from the slots in the immediate parent revision.
+	 * This is the case for rollbacks: slots of a rollback revision are inherited from
+	 * the rollback target, and are different from the slots in the parent revision,
+	 * which was rolled back.
 	 *
 	 * @return RevisionSlots
 	 */
-	public function getTouchedSlots() {
-		return new RevisionSlots( $this->mSlots->getTouchedSlots() );
+	public function getOriginalSlots() {
+		return new RevisionSlots( $this->mSlots->getOriginalSlots() );
 	}
 
 	/**
-	 * Returns the slots inherited by for this revision.
+	 * Returns slots inherited from some previous revision.
+	 *
+	 * "Inherited" slots are all slots that do not originate in this revision.
+	 * Note that these slots may still differ from the one in the parent revision.
+	 * This is the case for rollbacks: slots of a rollback revision are inherited from
+	 * the rollback target, and are different from the slots in the parent revision,
+	 * which was rolled back.
 	 *
 	 * @return RevisionSlots
 	 */

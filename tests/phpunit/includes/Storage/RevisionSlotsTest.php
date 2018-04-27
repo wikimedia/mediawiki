@@ -136,9 +136,9 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionSlots::getTouchedSlots
+	 * @covers \MediaWiki\Storage\RevisionSlots::getOriginalSlots
 	 */
-	public function testGetTouchedSlots() {
+	public function testGetOriginalSlots() {
 		$mainSlot = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
 		$auxSlot = SlotRecord::newInherited(
 			SlotRecord::newSaved(
@@ -149,7 +149,7 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 		$slotsArray = [ $mainSlot, $auxSlot ];
 		$slots = $this->newRevisionSlots( $slotsArray );
 
-		$this->assertEquals( [ 'main' => $mainSlot ], $slots->getTouchedSlots() );
+		$this->assertEquals( [ 'main' => $mainSlot ], $slots->getOriginalSlots() );
 	}
 
 	public function provideComputeSize() {
