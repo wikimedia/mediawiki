@@ -192,7 +192,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater->isContentPublic() );
 
 		$this->assertEquals( [ 'main' ], $updater->getSlots()->getSlotRoles() );
-		$this->assertEquals( [ 'main' ], array_keys( $updater->getSlots()->getTouchedSlots() ) );
+		$this->assertEquals( [ 'main' ], array_keys( $updater->getSlots()->getOriginalSlots() ) );
 
 		$this->assertInstanceOf( SlotRecord::class, $updater->getRawSlot( 'main' ) );
 		$this->assertNotContains( '~~~~', $updater->getRawContent( 'main' )->serialize() );
@@ -278,7 +278,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater1->isContentPublic() );
 
 		$this->assertEquals( [ 'main' ], $updater1->getSlots()->getSlotRoles() );
-		$this->assertEquals( [ 'main' ], array_keys( $updater1->getSlots()->getTouchedSlots() ) );
+		$this->assertEquals( [ 'main' ], array_keys( $updater1->getSlots()->getOriginalSlots() ) );
 
 		$this->assertInstanceOf( SlotRecord::class, $updater1->getRawSlot( 'main' ) );
 		$this->assertNotContains( '~~~~', $updater1->getRawContent( 'main' )->serialize() );
