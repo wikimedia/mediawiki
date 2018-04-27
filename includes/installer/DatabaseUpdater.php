@@ -975,6 +975,28 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Run a maintenance script
+	 *
+	 * @warning This should only be used when later updates will fail if the
+	 *  script is not run! If later updates don't depend on the script at all,
+	 *  add it to DatabaseUpdater::$postDatabaseUpdateMaintenance instead. If
+	 *  later updates will lose data (e.g. drop a column), make a custom
+	 *  function like DatabaseUpdater::migrateArchiveText() instead that
+	 *  predicates the schema change on successful execution of the script.
+	 *
+	 * @since 1.32
+	 * @param string $class Maintenance subclass
+	 * @param string $script Script path and filename, usually "maintenance/fooBar.php"
+	 */
+	public function runMaintenance( $class, $script ) {
+		$this->output( "Running $script...\n" );
+		$task = $this->maintenance->runChild( $class );
+		$ok = $task->execute();
+		$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
+		return $ok;
+	}
+
+	/**
 	 * Set any .htaccess files or equivilent for storage repos
 	 *
 	 * Some zones (e.g. "temp") used to be public and may have been initialized as such

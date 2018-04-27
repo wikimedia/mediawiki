@@ -348,6 +348,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'populateArchiveRevId' ],
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
 				'patch-recentchanges-nttindex.sql' ],
+
+			// 1.32
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 		];
 	}
 
