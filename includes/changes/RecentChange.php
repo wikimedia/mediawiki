@@ -884,7 +884,7 @@ class RecentChange {
 			'rc_last_oldid' => 0,
 			'rc_bot' => $user->isAllowed( 'bot' ) ? (int)$wgRequest->getBool( 'bot', true ) : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => $markPatrolled ? self::PRC_PATROLLED : self::PRC_UNPATROLLED,
+			'rc_patrolled' => $markPatrolled ? self::PRC_AUTOPATROLLED : self::PRC_UNPATROLLED,
 			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,
@@ -970,7 +970,7 @@ class RecentChange {
 			'rc_last_oldid' => $oldRevId,
 			'rc_bot' => $bot ? 1 : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => self::PRC_PATROLLED, // Always patrolled, just like log entries
+			'rc_patrolled' => self::PRC_AUTOPATROLLED, // Always patrolled, just like log entries
 			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,
