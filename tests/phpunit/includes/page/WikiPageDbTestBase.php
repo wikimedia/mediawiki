@@ -995,6 +995,7 @@ more stuff
 		// Use the confirmed group for user2 to make sure the user is different
 		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
+		// TODO: MCR: test rollback of multiple slots!
 		$page = $this->newPage( __METHOD__ );
 
 		// Make some edits
@@ -1050,6 +1051,11 @@ more stuff
 		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(),
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
+
+		// TODO: MCR: assert origin once we write slot data
+		// $mainSlot = $page->getRevision()->getRevisionRecord()->getSlot( 'main' );
+		// $this->assertTrue( $mainSlot->isInherited(), 'isInherited' );
+		// $this->assertSame( $rev2->getId(), $mainSlot->getOrigin(), 'getOrigin' );
 	}
 
 	/**
