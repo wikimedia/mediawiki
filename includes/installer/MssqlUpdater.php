@@ -135,6 +135,7 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'modifyfield', 'externallinks', 'el_index_60',
 				'patch-externallinks-el_index_60-drop-default.sql' ],
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+			[ 'addIndex', 'archive', 'ar_revid_uniq', 'patch-archive-ar_rev_id-unique.sql' ],
 		];
 	}
 

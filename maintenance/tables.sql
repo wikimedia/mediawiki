@@ -667,7 +667,7 @@ CREATE INDEX /*i*/ar_actor_timestamp ON /*_*/archive (ar_actor,ar_timestamp);
 
 -- Index for linking archive rows with tables that normally link with revision
 -- rows, such as change_tag.
-CREATE INDEX /*i*/ar_revid ON /*_*/archive (ar_rev_id);
+CREATE UNIQUE INDEX /*i*/ar_revid_uniq ON /*_*/archive (ar_rev_id);
 
 --
 -- Slots represent an n:m relation between revisions and content objects.
