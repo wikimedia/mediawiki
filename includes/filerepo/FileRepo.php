@@ -1628,7 +1628,11 @@ class FileRepo {
 		$status = $this->newGood();
 		$status->merge( $this->backend->streamFile( $params ) );
 
-		ob_end_flush();
+		// T186565: Close the buffer, unless it has already been closed
+		// in HTTPFileStreamer::resetOutputBuffers().
+		if ( ob_get_status() ) {
+			ob_end_flush();
+		}
 
 		return $status;
 	}
