@@ -802,6 +802,10 @@ Update or replace authentication plugin object ($wgAuth). Gives a chance for an
 extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
+'AutoblockComplete': TEMPORARY! Used on WikimediaEvents extension to keep track of autoblocks.
+This is a temporary hook and should not be used for anything else. It's only purpose
+is to log Autoblock events to make sure there is no unwanted collateral damage
+
 'AutopromoteCondition': Check autopromote condition for user.
 $type: condition type
 $args: arguments

@@ -876,9 +876,12 @@ class Block {
 
 		# Insert the block...
 		$status = $autoblock->insert();
-		return $status
-			? $status['id']
-			: false;
+		if ( !$status ) {
+			return false;
+		}
+
+		Hooks::run( 'AutoblockComplete', [ $autoblock ], '1.32' );
+		return $status['id'];
 	}
 
 	/**
