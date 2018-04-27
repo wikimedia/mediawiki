@@ -184,13 +184,6 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $params['undo'] > 0 ) {
-			if ( $params['undoafter'] > 0 ) {
-				if ( $params['undo'] < $params['undoafter'] ) {
-					list( $params['undo'], $params['undoafter'] ) =
-						[ $params['undoafter'], $params['undo'] ];
-				}
-				$undoafterRev = Revision::newFromId( $params['undoafter'] );
-			}
 			$undoRev = Revision::newFromId( $params['undo'] );
 			if ( is_null( $undoRev ) || $undoRev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
