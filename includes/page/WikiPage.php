@@ -2828,7 +2828,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
 	 *
-	 * @return array
+	 * @return array An array of error messages, as returned by Status::getErrorsArray()
 	 */
 	public function commitRollback( $fromP, $summary, $bot,
 		&$resultDetails, User $guser, $tags = null
@@ -2841,43 +2841,44 @@ class WikiPage implements Page, IDBAccessObject {
 			return [ [ 'readonlytext' ] ];
 		}
 
-		// Get the last editor
-		$current = $this->getRevision();
+		// Begin revision creation cycle by creating a PageUpdater.
+		// If the page is changed concurrently after grabParentRevision(), the rollback will fail.
+		$updater = $this->newPageUpdater( $guser );
+		$current = $updater->grabParentRevision();
+
 		if ( is_null( $current ) ) {
 			// Something wrong... no page?
 			return [ [ 'notanarticle' ] ];
 		}
 
+		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
+		$legacyCurrent = new Revision( $current );
 		$from = str_replace( '_', ' ', $fromP );
+
 		// User name given should match up with the top revision.
-		// If the user was deleted then $from should be empty.
-		if ( $from != $current->getUserText() ) {
-			$resultDetails = [ 'current' => $current ];
+		// If the revision's user is not visible, then $from should be empty.
+		if ( $from !== ( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' ) ) {
+			$resultDetails = [ 'current' => $legacyCurrent ];
 			return [ [ 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText() ),
 				htmlspecialchars( $fromP ),
-				htmlspecialchars( $current->getUserText() )
+				htmlspecialchars( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' )
 			] ];
 		}
 
 		// Get the last edit not by this person...
 		// Note: these may not be public values
-		$userId = intval( $current->getUser( Revision::RAW ) );
-		$userName = $current->getUserText( Revision::RAW );
-		if ( $userId ) {
-			$user = User::newFromId( $userId );
-			$user->setName( $userName );
-		} else {
-			$user = User::newFromName( $current->getUserText( Revision::RAW ), false );
-		}
-
-		$actorWhere = ActorMigration::newMigration()->getWhere( $dbw, 'rev_user', $user );
+		$actorWhere = ActorMigration::newMigration()->getWhere(
+			$dbw,
+			'rev_user',
+			$current->getUser( RevisionRecord::RAW )
+		);
 
 		$s = $dbw->selectRow(
 			[ 'revision' ] + $actorWhere['tables'],
 			[ 'rev_id', 'rev_timestamp', 'rev_deleted' ],
 			[
-				'rev_page' => $current->getPage(),
+				'rev_page' => $current->getPageId(),
 				'NOT(' . $actorWhere['conds'] . ')',
 			],
 			__METHOD__,
@@ -2890,28 +2891,36 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $s === false ) {
 			// No one else ever edited this page
 			return [ [ 'cantrollback' ] ];
-		} elseif ( $s->rev_deleted & Revision::DELETED_TEXT
-			|| $s->rev_deleted & Revision::DELETED_USER
+		} elseif ( $s->rev_deleted & RevisionRecord::DELETED_TEXT
+			|| $s->rev_deleted & RevisionRecord::DELETED_USER
 		) {
 			// Only admins can see this text
 			return [ [ 'notvisiblerev' ] ];
 		}
 
 		// Generate the edit summary if necessary
-		$target = Revision::newFromId( $s->rev_id, Revision::READ_LATEST );
+		$target = $this->getRevisionStore()->getRevisionById(
+			$s->rev_id,
+			RevisionStore::READ_LATEST
+		);
 		if ( empty( $summary ) ) {
-			if ( $from == '' ) { // no public user name
+			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = wfMessage( 'revertpage-nouser' );
 			} else {
 				$summary = wfMessage( 'revertpage' );
 			}
 		}
+		$legacyTarget = new Revision( $target );
+		$targetEditorForPublic = $target->getUser( RevisionRecord::FOR_PUBLIC );
 
 		// Allow the custom summary to use the same args as the default message
 		$args = [
-			$target->getUserText(), $from, $s->rev_id,
+			$targetEditorForPublic ? $targetEditorForPublic->getName() : null,
+			$currentEditorForPublic ? $currentEditorForPublic->getName() : null,
+			$s->rev_id,
 			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
-			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
+			$current->getId(),
+			$wgContLang->timeanddate( $current->getTimestamp() )
 		];
 		if ( $summary instanceof Message ) {
 			$summary = $summary->params( $args )->inContentLanguage()->text();
@@ -2933,22 +2942,38 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
-		$targetContent = $target->getContent();
-		$changingContentModel = $targetContent->getModel() !== $current->getContentModel();
+		// TODO: MCR: also log model changes in other slots, in case that becomes possible!
+		$currentContent = $current->getContent( 'main' );
+		$targetContent = $target->getContent( 'main' );
+		$changingContentModel = $targetContent->getModel() !== $currentContent->getModel();
 
 		if ( in_array( 'mw-rollback', ChangeTags::getSoftwareTags() ) ) {
 			$tags[] = 'mw-rollback';
 		}
 
-		// Actually store the edit
-		$status = $this->doEditContent(
-			$targetContent,
-			$summary,
-			$flags,
-			$target->getId(),
-			$guser,
-			null,
-			$tags
+		// Build rollback revision:
+		// Restore old content
+		// TODO: MCR: test this once we can store multiple slots
+		foreach ( $target->getSlots()->getSlots() as $slot ) {
+			$updater->inheritSlot( $slot );
+		}
+
+		// Remove extra slots
+		// TODO: MCR: test this once we can store multiple slots
+		foreach ( $current->getSlotRoles() as $role ) {
+			if ( !$target->hasSlot( $role ) ) {
+				$updater->removeSlot( $role );
+			}
+		}
+
+		$updater->setOriginalRevisionId( $target->getId() );
+		$updater->setUndidRevisionId( $current->getId() );
+		$updater->addTags( $tags );
+
+		// Actually store the rollback
+		$rev = $updater->saveRevision(
+			CommentStoreComment::newUnsavedComment( $summary ),
+			$flags
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
@@ -2965,10 +2990,15 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( count( $set ) ) {
-			$actorWhere = ActorMigration::newMigration()->getWhere( $dbw, 'rc_user', $user, false );
+			$actorWhere = ActorMigration::newMigration()->getWhere(
+				$dbw,
+				'rc_user',
+				$current->getUser( RevisionRecord::RAW ),
+				false
+			);
 			$dbw->update( 'recentchanges', $set,
 				[ /* WHERE */
-					'rc_cur_id' => $current->getPage(),
+					'rc_cur_id' => $current->getPageId(),
 					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
 					$actorWhere['conds'], // No tables/joins are needed for rc_user
 				],
@@ -2976,18 +3006,17 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		if ( !$status->isOK() ) {
-			return $status->getErrorsArray();
+		if ( !$updater->wasSuccessful() ) {
+			return $updater->getStatus()->getErrorsArray();
 		}
 
-		// raise error, when the edit is an edit without a new version
-		$statusRev = $status->value['revision'] ?? null;
-		if ( !( $statusRev instanceof Revision ) ) {
-			$resultDetails = [ 'current' => $current ];
+		// Report if the edit was not created because it did not change the content.
+		if ( $updater->isUnchanged() ) {
+			$resultDetails = [ 'current' => $legacyCurrent ];
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
 					htmlspecialchars( $fromP ),
-					htmlspecialchars( $current->getUserText() )
+					htmlspecialchars( $targetEditorForPublic ? $targetEditorForPublic->getName() : '' )
 			] ];
 		}
 
@@ -2999,7 +3028,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$log->setTarget( $this->mTitle );
 			$log->setComment( $summary );
 			$log->setParameters( [
-				'4::oldmodel' => $current->getContentModel(),
+				'4::oldmodel' => $currentContent->getModel(),
 				'5::newmodel' => $targetContent->getModel(),
 			] );
 
@@ -3007,18 +3036,19 @@ class WikiPage implements Page, IDBAccessObject {
 			$log->publish( $logId );
 		}
 
-		$revId = $statusRev->getId();
+		$revId = $rev->getId();
 
-		Hooks::run( 'ArticleRollbackComplete', [ $this, $guser, $target, $current ] );
+		Hooks::run( 'ArticleRollbackComplete', [ $this, $guser, $legacyTarget, $legacyCurrent ] );
 
 		$resultDetails = [
 			'summary' => $summary,
-			'current' => $current,
-			'target' => $target,
+			'current' => $legacyCurrent,
+			'target' => $legacyTarget,
 			'newid' => $revId,
 			'tags' => $tags
 		];
 
+		// TODO: make this return a Status object and wrap $resultDetails in that.
 		return [];
 	}
 
