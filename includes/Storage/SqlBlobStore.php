@@ -292,7 +292,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param string $blobAddress
 	 * @param int $queryFlags
 	 *
-	 * @throw BlobAccessException
+	 * @throws BlobAccessException
 	 * @return string|false
 	 */
 	private function fetchBlob( $blobAddress, $queryFlags ) {
