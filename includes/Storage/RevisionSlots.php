@@ -202,13 +202,14 @@ class RevisionSlots {
 	}
 
 	/**
-	 * Return all slots that are not inherited.
+	 * Return all slots that belong to the revision they originate from (that is,
+	 * they are not inherited from some other revision).
 	 *
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
 	 * @return SlotRecord[]
 	 */
-	public function getTouchedSlots() {
+	public function getOriginalSlots() {
 		return array_filter(
 			$this->getSlots(),
 			function ( SlotRecord $slot ) {
@@ -218,7 +219,8 @@ class RevisionSlots {
 	}
 
 	/**
-	 * Return all slots that are inherited.
+	 * Return all slots that are not not originate in the revision they belong to (that is,
+	 * they are inherited from some other revision).
 	 *
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
