@@ -131,6 +131,7 @@ class MssqlUpdater extends DatabaseUpdater {
 
 			// 1.32
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+			[ 'addIndex', 'archive', 'ar_revid_uniq', 'patch-archive-ar_rev_id-unique.sql' ],
 		];
 	}
 
