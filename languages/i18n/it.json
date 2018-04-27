@@ -116,7 +116,8 @@
 			"Yiyi",
 			"Manvydasz",
 			"S4b1nuz E.656",
-			"Daimona Eaytoy"
+			"Daimona Eaytoy",
+			"Sarah Bernabei"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1163,6 +1164,7 @@
 	"prefs-dateformat": "Formato data",
 	"prefs-timeoffset": "Ore di differenza",
 	"prefs-advancedediting": "Opzioni generali",
+	"prefs-developertools": "Strumenti per gli sviluppatori",
 	"prefs-editor": "Editore",
 	"prefs-preview": "Anteprima",
 	"prefs-advancedrc": "Opzioni avanzate",
@@ -1477,6 +1479,7 @@
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Non verificate",
 	"rcfilters-filter-reviewstatus-manual-description": "Modifiche contrassegnate manualmente come verificate.",
 	"rcfilters-filter-reviewstatus-manual-label": "Verificato manualmente",
+	"rcfilters-filter-reviewstatus-auto-description": "Le modifiche degli utenti esperti il cui lavoro sarà automaticamente marcato come esaminato.",
 	"rcfilters-filter-reviewstatus-auto-label": "Autoverificato",
 	"rcfilters-filtergroup-significance": "Significato",
 	"rcfilters-filter-minor-label": "Modifiche minori",
@@ -3459,6 +3462,7 @@
 	"version-specialpages": "Pagine speciali",
 	"version-parserhooks": "Hook del parser",
 	"version-variables": "Variabili",
+	"version-editors": "Editori",
 	"version-antispam": "Prevenzione dello spam",
 	"version-other": "Altro",
 	"version-mediahandlers": "Gestori di contenuti multimediali",
