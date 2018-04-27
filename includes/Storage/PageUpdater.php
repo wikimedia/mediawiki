@@ -327,6 +327,29 @@ class PageUpdater {
 	}
 
 	/**
+	 * Explicitly inherit a slot from some earlier revision.
+	 *
+	 * The primary use case for this is rollbacks, when slots are to be inherited from
+	 * the rollback target, overriding the content from the parent revision (which is the
+	 * revision being rolled back).
+	 *
+	 * This should typically not be used to inherit slots from the parent revision, which
+	 * happens implicitly. Using this method causes the given slot to be treated as "modified"
+	 * during revision creation, even if it has the same content as in the parent revision.
+	 *
+	 * @param SlotRecord $originalSlot A slot already existing in the database, to be inherited
+	 *        by the new revision.
+	 */
+	public function inheritSlot( SlotRecord $originalSlot ) {
+		// FIXME: test me
+		// NOTE: this slot is inherited from some other revision, but it's
+		// a "modified" slot for the RevisionSlotsUpdate and DerivedPageDataUpdater,
+		// since it's not implicitly inherited from the parent revision.
+		$inheritedSlot = SlotRecord::newInherited( $originalSlot );
+		$this->slotsUpdate->modifySlot( $inheritedSlot );
+	}
+
+	/**
 	 * Removes the slot with the given role.
 	 *
 	 * This discontinues the "stream" of slots with this role on the page,
@@ -402,6 +425,20 @@ class PageUpdater {
 	public function addTag( $tag ) {
 		Assert::parameterType( 'string', $tag, '$tag' );
 		$this->tags[] = trim( $tag );
+	}
+
+	/**
+	 * Sets tags to apply to this update.
+	 * Callers are responsible for permission checks,
+	 * using ChangeTags::canAddTagsAccompanyingChange.
+	 * @param string[] $tags
+	 */
+	public function addTags( array $tags ) {
+		// FIXME: test me
+		Assert::parameterElementType( 'string', $tags, '$tags' );
+		foreach ( $tags as $tag ) {
+			$this->addTag( $tag );
+		}
 	}
 
 	/**
@@ -787,9 +824,8 @@ class PageUpdater {
 	) {
 		$wikiPage = $this->getWikiPage();
 
-		$transformedSlots = $this->derivedDataUpdater->getSlots();
-
-		foreach ( $transformedSlots->getTouchedSlots() as $slot ) {
+		foreach ( $this->derivedDataUpdater->getModifiedSlotRoles() as $role ) {
+			$slot = $this->derivedDataUpdater->getRawSlot( $role );
 			$content = $slot->getContent();
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.

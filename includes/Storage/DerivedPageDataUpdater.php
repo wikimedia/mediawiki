@@ -446,7 +446,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			$this->pageState['oldRevision'] = $oldId
 				? $this->revisionStore->getRevisionById( $oldId, $flags )
 				: null;
-
 		}
 
 		return $this->pageState['oldRevision'];
@@ -550,7 +549,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns the slot, new or inherited, with no audience checks applied.
+	 * Returns the slot, modified or inherited, after PST, with no audience checks applied.
 	 *
 	 * @param string $role slot role name
 	 * @return SlotRecord
@@ -750,8 +749,13 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
 			$slot = $slotsUpdate->getModifiedSlot( $role );
-			// TODO: MCR: allow PST content for all slots to be stashed.
-			if ( $role === 'main' && $stashedEdit ) {
+
+			if ( $slot->isInherited() ) {
+				// no PST for inherited slots!
+				// FIXME: test this!
+				$pstContent = $slot->getContent();
+			} elseif ( $role === 'main' && $stashedEdit ) {
+				// TODO: MCR: allow PST content for all slots to be stashed.
 				$pstContent = $stashedEdit->pstContent;
 			} else {
 				$content = $slot->getContent();
@@ -759,6 +763,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			}
 
 			$this->pstContentSlots->setContent( $role, $pstContent );
+		}
+
+		// FIXME: pull up to parent patch, and test there!
+		foreach ( $slotsUpdate->getRemovedRoles() as $role ) {
+			$this->pstContentSlots->removeSlot( $role );
 		}
 
 		$this->options['created'] = ( $parentRevision === null );
@@ -841,15 +850,60 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	}
 
 	/**
-	 * Returns the role names of the slots touched by the target revision.
+	 * Returns the RevisionSlotsUpdate for this updater.
+	 *
+	 * @return RevisionSlotsUpdate
+	 */
+	private function getRevisionSlotsUpdate() {
+		// FIXME: test on-the-fly construction from base revision
+		$this->assertPrepared( __METHOD__ );
+
+		if ( !$this->slotsUpdate ) {
+			if ( !$this->revision ) {
+				// This should not be possible: if assertPrepared() returns true,
+				// at least one of $this->slotsUpdate or $this->revision should be set.
+				throw new LogicException( 'No revision nor a slots update is known!' );
+			}
+
+			$old = $this->getOldRevision();
+			$this->slotsUpdate = RevisionSlotsUpdate::newFromRevisionSlots(
+				$this->revision->getSlots(),
+				$old ? $old->getSlots() : null
+			);
+		}
+		return $this->slotsUpdate;
+	}
+
+	/**
+	 * Returns the role names of the slots touched by the new revision,
+	 * including removed roles.
 	 *
 	 * @return string[]
 	 */
 	public function getTouchedSlotRoles() {
-		$this->assertPrepared( __METHOD__ );
-		$touched = array_keys( $this->getSlots()->getTouchedSlots() );
+		// FIXME: update test to check removed roles, test without prepareContent
+		return $this->getRevisionSlotsUpdate()->getTouchedRoles();
+	}
 
-		return $touched;
+	/**
+	 * Returns the role names of the slots modified by the new revision,
+	 * not including removed roles.
+	 *
+	 * @return string[]
+	 */
+	public function getModifiedSlotRoles() {
+		// FIXME: test me
+		return $this->getRevisionSlotsUpdate()->getModifiedRoles();
+	}
+
+	/**
+	 * Returns the role names of the slots removed by the new revision.
+	 *
+	 * @return string[]
+	 */
+	public function getRemovedSlotRoles() {
+		// FIXME: test me
+		return $this->getRevisionSlotsUpdate()->getRemovedRoles();
 	}
 
 	/**
@@ -1114,14 +1168,15 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	public function getPreparedEdit() {
 		$this->assertPrepared( __METHOD__ );
 
+		$slotsUpdate = $this->getRevisionSlotsUpdate();
 		$preparedEdit = new PreparedEdit();
 
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
 		$preparedEdit->output = $this->getCanonicalParserOutput();
 		$preparedEdit->pstContent = $this->pstContentSlots->getContent( 'main' );
 		$preparedEdit->newContent =
-			( $this->slotsUpdate && $this->slotsUpdate->isModifiedSlot( 'main' ) )
-			? $this->slotsUpdate->getModifiedSlot( 'main' )->getContent()
+			$slotsUpdate->isModifiedSlot( 'main' )
+			? $slotsUpdate->getModifiedSlot( 'main' )->getContent()
 			: null;
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : 0;
@@ -1442,9 +1497,10 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			}
 		}
 
-		$touchedSlots = $this->revision->getTouchedSlots();
-		if ( $title->getNamespace() == NS_MEDIAWIKI && $touchedSlots->hasSlot( 'main' ) ) {
-			$mainContent = $this->isContentPublic() ? $touchedSlots->getContent( 'main' ) : null;
+		if ( $title->getNamespace() == NS_MEDIAWIKI
+			&& $this->getRevisionSlotsUpdate()->isModifiedSlot( 'main' )
+		) {
+			$mainContent = $this->isContentPublic() ? $this->getRawContent( 'main' ) : null;
 
 			$this->messageCache->updateMessageOverride( $title, $mainContent );
 		}

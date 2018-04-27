@@ -210,7 +210,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( $comment, $record->getComment() );
 	}
 
-	public function testSimpleGetTouchedAndInheritedSlots() {
+	public function testSimpleGetOriginalAndInheritedSlots() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$mainSlot = new SlotRecord(
 			(object)[
@@ -240,8 +240,8 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$record->setSlot( $mainSlot );
 		$record->setSlot( $auxSlot );
 
-		$this->assertSame( [ 'main' ], $record->getTouchedSlots()->getSlotRoles() );
-		$this->assertSame( $mainSlot, $record->getTouchedSlots()->getSlot( 'main' ) );
+		$this->assertSame( [ 'main' ], $record->getOriginalSlots()->getSlotRoles() );
+		$this->assertSame( $mainSlot, $record->getOriginalSlots()->getSlot( 'main' ) );
 
 		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
 		$this->assertSame( $auxSlot, $record->getInheritedSlots()->getSlot( 'aux' ) );
@@ -282,7 +282,7 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 
 		$record->applyUpdate( $update );
 
-		$this->assertEquals( [ 'b' ], array_keys( $record->getTouchedSlots()->getSlots() ) );
+		$this->assertEquals( [ 'b' ], array_keys( $record->getOriginalSlots()->getSlots() ) );
 		$this->assertEquals( $a, $record->getSlot( 'a' )->getContent() );
 		$this->assertEquals( $x, $record->getSlot( 'b' )->getContent() );
 		$this->assertFalse( $record->hasSlot( 'c' ) );
