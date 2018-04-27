@@ -148,6 +148,9 @@ class OracleUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
 				'patch-recentchanges-nttindex.sql' ],
 
+			// 1.32
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
 

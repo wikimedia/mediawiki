@@ -128,6 +128,9 @@ class MssqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'recentchanges', 'rc_patrolled', 'patch-rc_patrolled_type.sql' ],
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
 				'patch-recentchanges-nttindex.sql' ],
+
+			// 1.32
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 		];
 	}
 
