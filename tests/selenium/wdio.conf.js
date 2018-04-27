@@ -266,7 +266,7 @@ exports.config = {
 		// save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
-	}
+	},
 
 	/**
 	 * Hook that gets executed after the suite has ended
@@ -310,6 +310,8 @@ exports.config = {
 	 * @param {Object} config wdio configuration object
 	 * @param {Array.<Object>} capabilities list of capabilities details
 	 */
-	// onComplete: function(exitCode, config, capabilities) {
-	// }
+	onComplete: function ( exitCode, config, capabilities ) {
+		console.log( capabilities );
+		console.log( config );
+	}
 };
