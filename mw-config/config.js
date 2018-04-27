@@ -73,7 +73,9 @@
 
 		// Hide "other" textboxes by default
 		// Should not be done in CSS for javascript disabled compatibility
-		$( '.enabledByOther' ).closest( '.config-block' ).hide();
+		if ( !$( '#config__NamespaceType_other' ).is( ':checked' ) ) {
+			$( '.enabledByOther' ).closest( '.config-block' ).hide();
+		}
 
 		// Enable/disable "other" textboxes
 		$( '.enableForOther' ).click( function () {
