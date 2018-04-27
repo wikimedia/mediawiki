@@ -572,6 +572,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.32
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 		];
 	}
 
