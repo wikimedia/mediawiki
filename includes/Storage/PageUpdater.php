@@ -353,6 +353,7 @@ class PageUpdater {
 	 *        by the new revision.
 	 */
 	public function inheritSlot( SlotRecord $originalSlot ) {
+		// FIXME: test me
 		// NOTE: this slot is inherited from some other revision, but it's
 		// a "modified" slot for the RevisionSlotsUpdate and DerivedPageDataUpdater,
 		// since it's not implicitly inherited from the parent revision.
@@ -451,6 +452,7 @@ class PageUpdater {
 	 * @param string[] $tags
 	 */
 	public function addTags( array $tags ) {
+		// FIXME: test me
 		Assert::parameterElementType( 'string', $tags, '$tags' );
 		foreach ( $tags as $tag ) {
 			$this->addTag( $tag );
