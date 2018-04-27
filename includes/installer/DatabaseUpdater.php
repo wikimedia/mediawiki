@@ -975,6 +975,31 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Run a maintenance script
+	 *
+	 * This should only be used when the maintenance script must run before
+	 * later updates. If later updates don't depend on the script, add it to
+	 * DatabaseUpdater::$postDatabaseUpdateMaintenance instead.
+	 *
+	 * The script's execute() method must return true to indicate successful
+	 * completion, and must return false (or throw an exception) to indicate
+	 * unsuccessful completion.
+	 *
+	 * @since 1.32
+	 * @param string $class Maintenance subclass
+	 * @param string $script Script path and filename, usually "maintenance/fooBar.php"
+	 */
+	public function runMaintenance( $class, $script ) {
+		$this->output( "Running $script...\n" );
+		$task = $this->maintenance->runChild( $class );
+		$ok = $task->execute();
+		if ( !$ok ) {
+			throw new RuntimeException( "Execution of $script did not complete successfully." );
+		}
+		$this->output( "done.\n" );
+	}
+
+	/**
 	 * Set any .htaccess files or equivilent for storage repos
 	 *
 	 * Some zones (e.g. "temp") used to be public and may have been initialized as such

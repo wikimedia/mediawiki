@@ -218,6 +218,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'populateExternallinksIndex60' ],
 			[ 'modifyfield', 'externallinks', 'el_index_60',
 				'patch-externallinks-el_index_60-drop-default.sql' ],
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 		];
 	}
 

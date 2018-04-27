@@ -361,6 +361,7 @@ $wgAutoloadLocalClasses = [
 	'DateFormats' => __DIR__ . '/maintenance/language/date-formats.php',
 	'DateFormatter' => __DIR__ . '/includes/parser/DateFormatter.php',
 	'DeadendPagesPage' => __DIR__ . '/includes/specials/SpecialDeadendpages.php',
+	'DeduplicateArchiveRevId' => __DIR__ . '/maintenance/deduplicateArchiveRevId.php',
 	'DeferrableCallback' => __DIR__ . '/includes/deferred/DeferrableCallback.php',
 	'DeferrableUpdate' => __DIR__ . '/includes/deferred/DeferrableUpdate.php',
 	'DeferredStringifier' => __DIR__ . '/includes/libs/DeferredStringifier.php',
