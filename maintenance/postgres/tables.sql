@@ -263,6 +263,7 @@ ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
 CREATE INDEX archive_actor                ON archive (ar_actor);
+CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
 
 CREATE TABLE slots (
