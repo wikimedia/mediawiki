@@ -42,7 +42,6 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'autoblocklist' ) );
 		$this->addHelpLink( 'Autoblock' );
 		$out->addModuleStyles( [ 'mediawiki.special' ] );
@@ -55,13 +54,7 @@ class SpecialAutoblockList extends SpecialPage {
 			'Limit' => [
 				'type' => 'limitselect',
 				'label-message' => 'table_pager_limit_label',
-				'options' => [
-					$lang->formatNum( 20 ) => 20,
-					$lang->formatNum( 50 ) => 50,
-					$lang->formatNum( 100 ) => 100,
-					$lang->formatNum( 250 ) => 250,
-					$lang->formatNum( 500 ) => 500,
-				],
+				'options' => $pager->getLimitSelectList(),
 				'name' => 'limit',
 				'default' => $pager->getLimit(),
 			]
