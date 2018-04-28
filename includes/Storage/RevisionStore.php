@@ -283,7 +283,7 @@ class RevisionStore
 	 * @param mixed $value
 	 * @param string $name
 	 *
-	 * @throw IncompleteRevisionException if $value is null
+	 * @throws IncompleteRevisionException if $value is null
 	 * @return mixed $value, if $value is not null
 	 */
 	private function failOnNull( $value, $name ) {
@@ -300,7 +300,7 @@ class RevisionStore
 	 * @param mixed $value
 	 * @param string $name
 	 *
-	 * @throw IncompleteRevisionException if $value is empty
+	 * @throws IncompleteRevisionException if $value is empty
 	 * @return mixed $value, if $value is not null
 	 */
 	private function failOnEmpty( $value, $name ) {
@@ -889,7 +889,7 @@ class RevisionStore
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
 	 *
-	 * @throw RevisionAccessException
+	 * @throws RevisionAccessException
 	 * @return Content
 	 */
 	private function loadSlotContent(
