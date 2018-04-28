@@ -19,6 +19,7 @@
  * @ingroup Watchlist
  */
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
  * @author Addshore
