@@ -5,11 +5,8 @@
  * - Beware: Do not call mwNow before the isCompatible() check.
  */
 
-/* global mw, mwPerformance, mwNow, isCompatible, $VARS, $CODE */
+/* global mw, mwNow, isCompatible, $VARS, $CODE */
 
-window.mwPerformance = ( window.performance && performance.mark ) ? performance : {
-	mark: function () {}
-};
 // Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
 window.mwNow = ( function () {
 	var perf = window.performance,
@@ -151,8 +148,9 @@ window.isCompatible = function ( str ) {
 	}
 
 	window.mediaWikiLoadStart = mwNow();
-	mwPerformance.mark( 'mwLoadStart' );
-
+	if ( window.performance && performance.mark ) {
+		performance.mark( 'mwStartup' );
+	}
 	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;
 	script.onload = function () {
