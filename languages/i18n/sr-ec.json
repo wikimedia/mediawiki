@@ -1418,7 +1418,7 @@
 	"rcfilters-filtergroup-changetype": "Врста измене",
 	"rcfilters-filter-pageedits-label": "Измене страница",
 	"rcfilters-filter-pageedits-description": "Измене вики садржаја, расправа, описа категорија…",
-	"rcfilters-filter-newpages-label": "Стварање страница",
+	"rcfilters-filter-newpages-label": "Прављење страница",
 	"rcfilters-filter-newpages-description": "Измене којима се стварају нове странице.",
 	"rcfilters-filter-categorization-label": "Измене категорија",
 	"rcfilters-filter-categorization-description": "Записи о страницама додатим или уклоњеним из категорија.",

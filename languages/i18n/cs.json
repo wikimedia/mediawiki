@@ -2489,7 +2489,7 @@
 	"change-blocklink": "změnit blok",
 	"contribslink": "příspěvky",
 	"emaillink": "poslat e-mail",
-	"autoblocker": "Automatické zablokování kvůli tomu, že vaši IP adresu nedávno {{GENDER:$1|používal uživatel|používala uživatelka}} „[[User:$1|$1]]“.\nDůvod zablokování {{GENDER:$1|uživatele $1|uživatelky $1}}: „$2“",
+	"autoblocker": "Automatické zablokování kvůli tomu, že vaši IP adresu nedávno používal uživatel „[[User:$1|$1]]“.\nDůvod zablokování uživatele $1: „$2“",
 	"blocklogpage": "Kniha zablokování",
 	"blocklog-showlog": "{{GENDER:$1|Tento uživatel byl dříve blokován.|Tato uživatelka byla dříve blokována.|Tento uživatel byl dříve blokován.}}\nZde je pro přehled zobrazen výpis z knihy zablokování:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Tento uživatel byl zablokován a skryt|Tato uživatelka byla zablokována a skryta}}. Zde je pro přehled zobrazen výpis záznamu utajení:",
