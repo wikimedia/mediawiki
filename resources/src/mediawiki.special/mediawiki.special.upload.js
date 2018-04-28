@@ -413,7 +413,7 @@
 
 				if ( meta && meta.tiff && meta.tiff.Orientation ) {
 					rotation = ( 360 - ( function () {
-						// See includes/media/Bitmap.php
+						// See BitmapHandler class in PHP
 						switch ( meta.tiff.Orientation.value ) {
 							case 8:
 								return 90;
