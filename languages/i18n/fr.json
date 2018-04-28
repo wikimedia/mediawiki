@@ -994,7 +994,7 @@
 	"revdelete-hide-text": "Texte de la révision",
 	"revdelete-hide-image": "Masquer le contenu du fichier",
 	"revdelete-hide-name": "Masquer la cible et les paramètres",
-	"revdelete-hide-comment": "Modifier le résumé",
+	"revdelete-hide-comment": "Résumé de modification",
 	"revdelete-hide-user": "Nom d’utilisateur/Adresse IP de l’éditeur",
 	"revdelete-hide-restricted": "Supprimer ces données aux administrateurs ainsi qu'aux autres",
 	"revdelete-radio-same": "(ne pas changer)",

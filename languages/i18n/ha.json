@@ -8,7 +8,7 @@
 			"Ammarpad"
 		]
 	},
-	"tog-underline": "A shaya zaruruwa",
+	"tog-underline": "Link underlining:",
 	"tog-hideminor": "A ɓoye ƙananan gyare-gyare na baya-bayan nan",
 	"tog-hidepatrolled": "A ɓoye gyare-gyaren kan ido a cikin gyare-gyare bayan-bayan nan",
 	"tog-newpageshidepatrolled": "A ɓoye shafuna kan ido a cikin sabbin shafuna",
@@ -217,6 +217,11 @@
 	"missingarticle-rev": "(lambar zubi: $1)",
 	"badtitletext": "Kan shafin da aka nema bai da ma'ana, ko kango ne, ko kuma wani kai ne na tsakanin harsuna ko shire-shire da bai da mahaɗi mai kyau.\nTana yiyuwa yana da harafi ko haruffa da ba su karɓuwa cikin kanu.",
 	"viewsource": "Duba tushe",
+	"ns-specialprotected": "Shafuka na musamman ba za a iya gyra su ba.",
+	"logouttext": "Yanzu kun yi login out.",
+	"cannotlogoutnow-title": "Ba za ku iya login out ba yanzu. Ku sake gwadawa.",
+	"welcomeuser": "Barka da zuwa, $1!",
+	"welcomecreation-msg": "Yanzu kayi kirkiri sabon account.",
 	"yourname": "Sunan ma'aikaci:",
 	"userlogin-yourname": "Suna mai amfani",
 	"userlogin-yourname-ph": "Shiga sunanka mai amfani",
@@ -238,6 +243,7 @@
 	"logout": "Fita",
 	"userlogout": "Fita",
 	"createaccount": "ƙirƙira asusu",
+	"userlogin-resetpassword-link": "Ka manta lambobin sirrinka?",
 	"createacct-emailrequired": "adireshin i-mel",
 	"createacct-emailoptional": "adireshin i-mel (zaɓi)",
 	"createacct-email-ph": "shiga adireshinka i-mel",
