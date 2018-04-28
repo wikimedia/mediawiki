@@ -134,7 +134,7 @@ class CommentStore {
 	/**
 	 * Compat method allowing use of self::newKey until removed.
 	 * @param string|null $methodKey
-	 * @throw InvalidArgumentException
+	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	private function getKey( $methodKey = null ) {
