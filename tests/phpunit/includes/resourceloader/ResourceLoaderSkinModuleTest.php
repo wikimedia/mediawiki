@@ -71,8 +71,7 @@ CSS
 
 	/**
 	 * @dataProvider provideGetStyles
-	 * @covers ResourceLoaderSkinModule::normalizeStyles
-	 * @covers ResourceLoaderSkinModule::getStyles
+	 * @covers ResourceLoaderSkinModule
 	 */
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
