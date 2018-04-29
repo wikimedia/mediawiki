@@ -13,6 +13,10 @@
 	line-height: 1.4;
 }
 
+.mw-feedbackDialog-feedback-terms p:first-child {
+	margin-top: 0;
+}
+
 .mw-feedbackDialog-welcome-message {
 	margin-bottom: 1em;
 }
