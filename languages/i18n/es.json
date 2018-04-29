@@ -3011,7 +3011,7 @@
 	"filedelete-archive-read-only": "El servidor web no logra escribir en el directorio archivo \"$1\".",
 	"previousdiff": "← Edición anterior",
 	"nextdiff": "Edición siguiente →",
-	"mediawarning": "<strong>Advertencia:</strong> este archivo puede contener código malicioso.\nEjecutarlo podría comprometer la seguridad de tu equipo.",
+	"mediawarning": "<strong>Atención:</strong> este archivo puede contener código malicioso.\nEjecutarlo podría comprometer la seguridad de tu equipo.",
 	"imagemaxsize": "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 	"thumbsize": "Tamaño de las vistas en miniatura:",
 	"widthheight": "$1 × $2",

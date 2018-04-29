@@ -334,6 +334,7 @@
 	"config-nofile": "ファイル「$1」が見つかりませんでした。削除された可能性があります。",
 	"config-extension-link": "あなたのウィキは[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions 拡張機能]をサポートしていることをご存知ですか?\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category カテゴリ別で拡張機能を見る]か[https://www.mediawiki.org/wiki/Extension_Matrix 拡張機能のマトリックス]で拡張機能すべてのリストをご覧になれます。",
 	"config-skins-screenshots": "$1 (スクリーンショット: $2)",
+	"config-extensions-requires": "$1（$2が必要）",
 	"config-screenshot": "スクリーンショット",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問と回答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki のあなたの言語へのローカライズ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam あなたのウィキでスパムと戦う方法を学ぶ]"
