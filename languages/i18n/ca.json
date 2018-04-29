@@ -2853,7 +2853,7 @@
 	"filedelete-archive-read-only": "El directori d'arxiu «$1» no té permisos d'escriptura per al servidor web.",
 	"previousdiff": "← Edició anterior",
 	"nextdiff": "Edició següent →",
-	"mediawarning": "'''Advertència''': Aquest fitxer podria contenir codi maliciós.\nSi l'executeu, podeu comprometre la seguretat del vostre sistema.",
+	"mediawarning": "<strong>Advertiment</strong>: aquest fitxer podria contenir codi maliciós.\nSi l’executeu, podeu comprometre la seguretat del vostre sistema.",
 	"imagemaxsize": "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 	"thumbsize": "Mida de la miniatura:",
 	"widthheight": "$1 × $2",
