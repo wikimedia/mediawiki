@@ -56,7 +56,7 @@ ie. /wiki/index.php/Article.
   |  will appear. It is common in this case to use w as the folder name and  |
   |  /wiki/ as the virtual article path where your articles pretend to be.   |
   |                                                                          |
-  |    See: https://www.mediawiki.org/wiki/Manual:Short_URL                  |
+  |  See: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Short_URL |
   +--------------------------------------------------------------------------+
 
 Hop into your browser and surf into the wiki directory. It'll direct you into
