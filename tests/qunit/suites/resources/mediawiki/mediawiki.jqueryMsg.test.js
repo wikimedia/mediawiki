@@ -1154,20 +1154,10 @@
 	} );
 
 	QUnit.test( 'Integration', function ( assert ) {
-		var expected, logSpy, msg;
+		var expected, msg;
 
 		expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
 		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
-
-		this.suppressWarnings();
-		logSpy = this.sandbox.spy( mw.log, 'warn' );
-		assert.equal(
-			window.gM( 'integration-test' ),
-			expected,
-			'Global function gM() works correctly'
-		);
-		assert.equal( logSpy.callCount, 1, 'mw.log.warn called' );
-		this.restoreWarnings();
 
 		assert.equal(
 			mw.message( 'integration-test' ).parse(),
