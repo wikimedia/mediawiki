@@ -1479,7 +1479,7 @@
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Non verificate",
 	"rcfilters-filter-reviewstatus-manual-description": "Modifiche contrassegnate manualmente come verificate.",
 	"rcfilters-filter-reviewstatus-manual-label": "Verificato manualmente",
-	"rcfilters-filter-reviewstatus-auto-description": "Le modifiche degli utenti esperti il cui lavoro sarà automaticamente marcato come esaminato.",
+	"rcfilters-filter-reviewstatus-auto-description": "Le modifiche degli utenti esperti saranno automaticamente marcate come verificate.",
 	"rcfilters-filter-reviewstatus-auto-label": "Autoverificato",
 	"rcfilters-filtergroup-significance": "Significato",
 	"rcfilters-filter-minor-label": "Modifiche minori",
