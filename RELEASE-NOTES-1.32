@@ -58,7 +58,9 @@ changes to languages because of Phabricator reports.
   removed (deprecated in 1.31).
 * The EDIT_TOKEN_SUFFIX constant was removed (deprecated in 1.27).
   Use MediaWiki\Session\Token::SUFFIX instead.
-* EditPage::isOouiEnabled(), deprecated in 1.30, was removed.
+* EditPage::isOouiEnabled() was removed (deprecated in 1.30).
+* mw.util.wikiGetlink() was removed (deprecated in 1.23).
+  Use mw.util.getUrl() instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing

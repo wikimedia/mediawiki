@@ -541,13 +541,6 @@
 	};
 
 	/**
-	 * @method wikiGetlink
-	 * @inheritdoc #getUrl
-	 * @deprecated since 1.23 Use #getUrl instead.
-	 */
-	mw.log.deprecate( util, 'wikiGetlink', util.getUrl, 'Use mw.util.getUrl instead.', 'mw.util.wikiGetlink' );
-
-	/**
 	 * Add the appropriate prefix to the accesskey shown in the tooltip.
 	 *
 	 * If the `$nodes` parameter is given, only those nodes are updated;
