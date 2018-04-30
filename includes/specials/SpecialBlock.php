@@ -854,9 +854,11 @@ class SpecialBlock extends FormSpecialPage {
 	 *     to the standard "**<duration>|<displayname>" format?
 	 * @param Language|null $lang The language to get the durations in, or null to use
 	 *     the wiki's content language
+	 * @param boolean $includeOther Whether to include the 'other' option in the list of
+	 *     suggestions
 	 * @return array
 	 */
-	public static function getSuggestedDurations( $lang = null ) {
+	public static function getSuggestedDurations( $lang = null, $includeOther = true ) {
 		$a = [];
 		$msg = $lang === null
 			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
@@ -875,7 +877,7 @@ class SpecialBlock extends FormSpecialPage {
 			$a[$show] = $value;
 		}
 
-		if ( $a ) {
+		if ( $a && $includeOther ) {
 			// if options exist, add other to the end instead of the begining (which
 			// is what happens by default).
 			$a[ wfMessage( 'ipbother' )->text() ] = 'other';
