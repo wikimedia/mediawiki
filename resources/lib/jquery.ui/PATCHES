@@ -16,6 +16,11 @@ jquery.ui.datepicker
 * I717f2580e Avoid deprecated jQuery.expr.filters.
 
 
+jquery.ui.mouse.js
+* Ia49ad6470 Avoid deprecated jQuery.fn.bind().
+* Ia49ad6470 Avoid deprecated jQuery.fn.unbind().
+
+
 jquery.ui.widget.js
 * I7ffbfd2e5 Avoid deprecated jQuery.expr[":"].
 * I717f2580e Avoid deprecated jQuery.fn.bind().
