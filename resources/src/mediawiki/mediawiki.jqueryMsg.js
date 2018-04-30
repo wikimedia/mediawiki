@@ -186,14 +186,15 @@
 	};
 
 	/**
-	 * Returns a function suitable for use as a global, to construct strings from the message key (and optional replacements).
-	 * e.g.
+	 * Returns a function suitable for static use, to construct strings from a message key (and optional replacements).
 	 *
-	 *       window.gM = mediaWiki.jqueryMsg.getMessageFunction( options );
-	 *       $( 'p#headline' ).html( gM( 'hello-user', username ) );
+	 * Example:
 	 *
-	 * Like the old gM() function this returns only strings, so it destroys any bindings. If you want to preserve bindings use the
-	 * jQuery plugin version instead. This is only included for backwards compatibility with gM().
+	 *       var format = mediaWiki.jqueryMsg.getMessageFunction( options );
+	 *       $( '#example' ).text( format( 'hello-user', username ) );
+	 *
+	 * Tthis returns only strings, so it destroys any bindings. If you want to preserve bindings, use the
+	 * jQuery plugin version instead. This is only included for backwards compatibility with `gM()`.
 	 *
 	 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
 	 *    somefunction( a, b, c, d )
@@ -201,7 +202,7 @@
 	 *    somefunction( a, [b, c, d] )
 	 *
 	 * @param {Object} options parser options
-	 * @return {Function} Function suitable for assigning to window.gM
+	 * @return {Function} Function The message formatter
 	 * @return {string} return.key Message key.
 	 * @return {Array|Mixed} return.replacements Optional variable replacements (variadically or an array).
 	 * @return {string} return.return Rendered HTML.
@@ -1340,13 +1341,6 @@
 			return text.charAt( 0 ).toUpperCase() + text.slice( 1 );
 		}
 	};
-
-	// Deprecated! don't rely on gM existing.
-	// The window.gM ought not to be required - or if required, not required here.
-	// But moving it to extensions breaks it (?!)
-	// Need to fix plugin so it could do attributes as well, then will be okay to remove this.
-	// @deprecated since 1.23
-	mw.log.deprecate( window, 'gM', mw.jqueryMsg.getMessageFunction(), 'Use mw.message( ... ).parse() instead.' );
 
 	/**
 	 * @method
