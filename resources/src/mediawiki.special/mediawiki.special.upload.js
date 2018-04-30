@@ -225,9 +225,12 @@
 				) {
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
-						mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
-							return element.toLowerCase();
-						} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
+						$.inArray(
+							fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase(),
+							$.map( mw.config.get( 'wgFileExtensions' ), function ( element ) {
+								return element.toLowerCase();
+							} )
+						) === -1
 					) {
 						// Not a valid extension
 						// Clear the upload and set mw-upload-permitted to error
@@ -241,23 +244,23 @@
 					}
 				}
 
-				// Replace spaces by underscores
-				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed
-				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
-				}
-
-				// Output result
-				if ( $( '#wpDestFile' ).length ) {
+				$destFile = $( '#wpDestFile' );
+				if ( $destFile.length ) {
 					// Call decodeURIComponent function to remove possible URL-encoded characters
-					// from the file name (T32390). Especially likely with upload-form-url.
+					// from the file name (bug 30390). Especially likely with upload-form-url.
 					// decodeURIComponent can throw an exception if input is invalid utf-8
 					try {
-						$( '#wpDestFile' ).val( decodeURIComponent( fname ) );
-					} catch ( err ) {
-						$( '#wpDestFile' ).val( fname );
+						fname = decodeURIComponent( fname );
+					} catch ( ex ) {}
+
+					// Sanitize title, replace spaces by underscores,
+					// capitalise first letter if needed
+					title = mw.Title.newFromFileName( fname );
+					if ( title ) {
+						fname = title.getMain();
 					}
+
+					$destFile.val( fname );
 					uploadWarning.checkNow( fname );
 				}
 			} );
