@@ -1976,6 +1976,7 @@
 	"deadendpages": "Pagina's zonder koppelingen",
 	"deadendpagestext": "De onderstaande pagina's verwijzen niet naar andere pagina's in deze wiki.",
 	"protectedpages": "Beveiligde pagina's",
+	"protectedpages-filters": "Filters:",
 	"protectedpages-indef": "Alleen blokkades zonder vervaldatum",
 	"protectedpages-summary": "Deze pagina bevat een lijst met beveiligde pagina's. Zie [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]] voor een lijst van pagina's die niet aangemaakt mogen worden.",
 	"protectedpages-cascade": "Alleen beveiligingen met de cascade-optie",

@@ -316,6 +316,7 @@
 	"api-help-permissions": "{{PLURAL:$1|權限}}：",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|已授權給}}: $2",
 	"api-help-authmanager-general-usage": "使用此模組的一般程式是：\n# 通過<kbd>amirequestsfor=$4</kbd>取得來自<kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd>的可用欄位，和來自<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>的<kbd>$5</kbd>令牌。\n# 向用戶顯示欄位，並獲得其提交的內容。\n# 提交（POST）至此模組，提供<var>$1returnurl</var>及任何相關欄位。\n# 在回应中檢查<samp>status</samp>。\n#* 如果您收到了<samp>PASS</samp>（成功）或<samp>FAIL</samp>（失敗），則認為操作結束。成功與否如上句所示。\n#* 如果您收到了<samp>UI</samp>，向用戶顯示新欄位，並再次獲取其提交的內容。然後再次使用<var>$1continue</var>，向本模組提交相關欄位，並重復第四步。\n#* 如果您收到了<samp>REDIRECT</samp>，將使用者指向<samp>redirecttarget</samp>中的目標，等待其返回<var>$1returnurl</var>。然後再次使用<var>$1continue</var>，向本模組提交返回URL中提供的一切欄位，並重復第四步。\n#* 如果您收到了<samp>RESTART</samp>，這意味著身份驗證正常運作，但我們沒有連結的使用者賬戶。您可以將此看做<samp>UI</samp>或<samp>FAIL</samp>。",
+	"apierror-missingparam": "<var>$1</var>參數必須被設定。",
 	"apierror-mustbeloggedin-changeauth": "必須登入，才能變更身分核對資取。",
 	"apierror-mustbeloggedin-removeauth": "必須登入，才能移除身分核對資取。",
 	"apierror-permissiondenied": "您沒有權限$1。",
