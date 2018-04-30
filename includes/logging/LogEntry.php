@@ -156,7 +156,8 @@ abstract class LogEntryBase implements LogEntry {
 }
 
 /**
- * This class wraps around database result row.
+ * A value class to process existing log entries. In other words, this class caches a log
+ * entry from the database and provides an immutable object-oriented representation of it.
  *
  * @since 1.19
  */
@@ -361,6 +362,10 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 }
 
+/**
+ * A subclass of DatabaseLogEntry for objects constructed from entries in the
+ * recentchanges table (rather than the logging table).
+ */
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getId() {
@@ -425,7 +430,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 }
 
 /**
- * Class for creating log entries manually, to inject them into the database.
+ * Class for creating new log entries and inserting them into the database.
  *
  * @since 1.19
  */
