@@ -170,7 +170,7 @@ class SpecialStatistics extends SpecialPage {
 			Xml::closeElement( 'tr' ) .
 			$this->formatRow( $this->msg( 'statistics-users' )->parse() . ' ' .
 				$this->getLinkRenderer()->makeKnownLink(
-					SpecialPage::getTitleFor( 'ListUsers' ),
+					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text()
 				),
 				$this->getLanguage()->formatNum( $this->users ),
