@@ -578,7 +578,7 @@ return [
 		);
 	},
 
-	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {throw new Exception();
 		global $wgContLang;
 		$authManager = AuthManager::singleton();
 		$linkRenderer = $services->getLinkRendererFactory()->create();
