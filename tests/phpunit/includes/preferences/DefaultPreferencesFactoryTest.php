@@ -117,7 +117,7 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 		$configMock = new HashConfig( [
 			'HiddenPrefs' => []
 		] );
-		$form = $this->getMockBuilder( PreferencesForm::class )
+		$form = $this->getMockBuilder( PreferencesFormLegacy::class )
 			->disableOriginalConstructor()
 			->getMock();
 
