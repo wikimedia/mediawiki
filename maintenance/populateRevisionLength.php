@@ -103,7 +103,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 						"{$prefix}_len IS NULL",
 						$dbr->makeList( [
 							"{$prefix}_len = 0",
-							"{$prefix}_sha1 != \"phoiac9h4m842xq45sp7s6u21eteeq1\"", // sha1( "" )
+							"{$prefix}_sha1 != " . $dbr->addQuotes( 'phoiac9h4m842xq45sp7s6u21eteeq1' ), // sha1( "" )
 						], IDatabase::LIST_AND )
 					], IDatabase::LIST_OR )
 				],
