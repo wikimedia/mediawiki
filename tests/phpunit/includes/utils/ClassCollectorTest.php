@@ -43,6 +43,10 @@ class ClassCollectorTest extends PHPUnit\Framework\TestCase {
 				"namespace Example;\nclass Foo {}\nclass_alias( Foo::class, 'Bar' );",
 				[ 'Example\Foo', 'Bar' ],
 			],
+			[
+				"new class() extends Foo {}",
+				[]
+			]
 		];
 	}
 
