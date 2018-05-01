@@ -35,6 +35,7 @@ $wgAutoloadLocalClasses = [
 	'ApiContinuationManager' => __DIR__ . '/includes/api/ApiContinuationManager.php',
 	'ApiDelete' => __DIR__ . '/includes/api/ApiDelete.php',
 	'ApiDisabled' => __DIR__ . '/includes/api/ApiDisabled.php',
+	'ApiEcho' => __DIR__ . '/includes/api/ApiEcho.php',
 	'ApiEditPage' => __DIR__ . '/includes/api/ApiEditPage.php',
 	'ApiEmailUser' => __DIR__ . '/includes/api/ApiEmailUser.php',
 	'ApiErrorFormatter' => __DIR__ . '/includes/api/ApiErrorFormatter.php',
