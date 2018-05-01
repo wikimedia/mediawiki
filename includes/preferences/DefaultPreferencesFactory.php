@@ -42,6 +42,7 @@ use MessageLocalizer;
 use MWException;
 use MWNamespace;
 use MWTimestamp;
+use OutputPage;
 use Parser;
 use ParserOptions;
 use PreferencesForm;
@@ -126,6 +127,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	public function getFormDescriptor( User $user, IContextSource $context ) {
 		$preferences = [];
+
+		if ( $context->getConfig()->get( 'OOUIPreferences' ) ) {
+			OutputPage::setupOOUI(
+				strtolower( $context->getSkin()->getSkinName() ),
+				$context->getLanguage()->getDir()
+			);
+		}
 
 		$canIPUseHTTPS = wfCanIPUseHTTPS( $context->getRequest()->getIP() );
 		$this->profilePreferences( $user, $context, $preferences, $canIPUseHTTPS );
@@ -254,6 +262,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function profilePreferences(
 		User $user, IContextSource $context, &$defaultPreferences, $canIPUseHTTPS
 	) {
+		$oouiEnabled = $context->getConfig()->get( 'OOUIPreferences' );
+
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
@@ -365,13 +375,23 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $canEditPrivateInfo && $this->authManager->allowsAuthenticationDataChange(
 			new PasswordAuthenticationRequest(), false )->isGood()
 		) {
-			$link = $this->linkRenderer->makeLink( SpecialPage::getTitleFor( 'ChangePassword' ),
-				$context->msg( 'prefs-resetpass' )->text(), [],
-				[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
+			if ( $oouiEnabled ) {
+				$link = new \OOUI\ButtonWidget( [
+					'href' => SpecialPage::getTitleFor( 'ChangePassword' )->getLinkURL( [
+						'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
+					] ),
+					'label' => $context->msg( 'prefs-resetpass' )->text(),
+				] );
+			} else {
+				$link = $this->linkRenderer->makeLink( SpecialPage::getTitleFor( 'ChangePassword' ),
+					$context->msg( 'prefs-resetpass' )->text(), [],
+					[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
+			}
+
 			$defaultPreferences['password'] = [
 				'type' => 'info',
 				'raw' => true,
-				'default' => $link,
+				'default' => (string)$link,
 				'label-message' => 'yourpassword',
 				'section' => 'personal/info',
 			];
@@ -519,16 +539,28 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 				$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
 				if ( $canEditPrivateInfo && $this->authManager->allowsPropertyChange( 'emailaddress' ) ) {
-					$link = $this->linkRenderer->makeLink(
-						SpecialPage::getTitleFor( 'ChangeEmail' ),
-						$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->text(),
-						[],
-						[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
+					if ( $oouiEnabled ) {
+						$link = new \OOUI\ButtonWidget( [
+							'href' => SpecialPage::getTitleFor( 'ChangeEmail' )->getLinkURL( [
+								'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
+							] ),
+							'label' =>
+								$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->text(),
+						] );
 
-					$emailAddress .= $emailAddress == '' ? $link : (
-						$context->msg( 'word-separator' )->escaped()
-						. $context->msg( 'parentheses' )->rawParams( $link )->escaped()
-					);
+						$emailAddress .= $emailAddress == '' ? $link : ( '<br />' . $link );
+					} else {
+						$link = $this->linkRenderer->makeLink(
+							SpecialPage::getTitleFor( 'ChangeEmail' ),
+							$context->msg( $user->getEmail() ? 'prefs-changeemail' : 'prefs-setemail' )->text(),
+							[],
+							[ 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ] );
+
+						$emailAddress .= $emailAddress == '' ? $link : (
+							$context->msg( 'word-separator' )->escaped()
+							. $context->msg( 'parentheses' )->rawParams( $link )->escaped()
+						);
+					}
 				}
 
 				$defaultPreferences['emailaddress'] = [
@@ -562,11 +594,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						$emailauthenticationclass = 'mw-email-authenticated';
 					} else {
 						$disableEmailPrefs = true;
-						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
-							$this->linkRenderer->makeKnownLink(
-								SpecialPage::getTitleFor( 'Confirmemail' ),
-								$context->msg( 'emailconfirmlink' )->text()
-							) . '<br />';
+						if ( $oouiEnabled ) {
+							$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
+								new \OOUI\ButtonWidget( [
+									'href' => SpecialPage::getTitleFor( 'Confirmemail' )->getLinkURL(),
+									'label' => $context->msg( 'emailconfirmlink' )->text(),
+								] );
+						} else {
+							$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
+								$this->linkRenderer->makeKnownLink(
+									SpecialPage::getTitleFor( 'Confirmemail' ),
+									$context->msg( 'emailconfirmlink' )->text()
+								) . '<br />';
+						}
 						$emailauthenticationclass = "mw-email-not-authenticated";
 					}
 				} else {
@@ -810,6 +850,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'default' => $tzSetting,
 			'size' => 20,
 			'section' => 'rendering/timeoffset',
+			'id' => 'wpTimeCorrection',
 		];
 	}
 
@@ -1048,28 +1089,44 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function watchlistPreferences(
 		User $user, IContextSource $context, &$defaultPreferences
 	) {
+		$oouiEnabled = $context->getConfig()->get( 'OOUIPreferences' );
+
 		$watchlistdaysMax = ceil( $this->config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
 		# # Watchlist #####################################
 		if ( $user->isAllowed( 'editmywatchlist' ) ) {
-			$editWatchlistLinks = [];
+			$editWatchlistLinks = '';
+			$editWatchlistLinksOld = [];
 			$editWatchlistModes = [
-				'edit' => [ 'EditWatchlist', false ],
-				'raw' => [ 'EditWatchlist', 'raw' ],
-				'clear' => [ 'EditWatchlist', 'clear' ],
+				'edit' => [ 'subpage' => false, 'flags' => [] ],
+				'raw' => [ 'subpage' => 'raw', 'flags' => [] ],
+				'clear' => [ 'subpage' => 'clear', 'flags' => [ 'destructive' ] ],
 			];
-			foreach ( $editWatchlistModes as $editWatchlistMode => $mode ) {
+			foreach ( $editWatchlistModes as $mode => $options ) {
 				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
-				$editWatchlistLinks[] = $this->linkRenderer->makeKnownLink(
-					SpecialPage::getTitleFor( $mode[0], $mode[1] ),
-					new HtmlArmor( $context->msg( "prefs-editwatchlist-{$editWatchlistMode}" )->parse() )
-				);
+				if ( $oouiEnabled ) {
+					$editWatchlistLinks .=
+						new \OOUI\ButtonWidget( [
+							'href' => SpecialPage::getTitleFor( 'EditWatchlist', $options['subpage'] )->getLinkURL(),
+							'flags' => $options[ 'flags' ],
+							'label' => new \OOUI\HtmlSnippet(
+								$context->msg( "prefs-editwatchlist-{$mode}" )->parse()
+							),
+						] );
+				} else {
+					$editWatchlistLinksOld[] = $this->linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'EditWatchlist', $options['subpage'] ),
+						new HtmlArmor( $context->msg( "prefs-editwatchlist-{$mode}" )->parse() )
+					);
+				}
 			}
 
 			$defaultPreferences['editwatchlist'] = [
 				'type' => 'info',
 				'raw' => true,
-				'default' => $context->getLanguage()->pipeList( $editWatchlistLinks ),
+				'default' => $oouiEnabled ?
+					$editWatchlistLinks :
+					$context->getLanguage()->pipeList( $editWatchlistLinksOld ),
 				'label-message' => 'prefs-editwatchlist-label',
 				'section' => 'watchlist/editwatchlist',
 			];
@@ -1191,13 +1248,31 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['watchlisttoken'] = [
 			'type' => 'api',
 		];
-		$defaultPreferences['watchlisttoken-info'] = [
-			'type' => 'info',
-			'section' => 'watchlist/tokenwatchlist',
-			'label-message' => 'prefs-watchlist-token',
-			'default' => $user->getTokenFromOption( 'watchlisttoken' ),
-			'help-message' => 'prefs-help-watchlist-token2',
-		];
+
+		if ( $oouiEnabled ) {
+			$tokenButton = new \OOUI\ButtonWidget( [
+				'href' => SpecialPage::getTitleFor( 'ResetTokens' )->getLinkURL( [
+					'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText()
+				] ),
+				'label' => $context->msg( 'prefs-watchlist-managetokens' )->text(),
+			] );
+			$defaultPreferences['watchlisttoken-info'] = [
+				'type' => 'info',
+				'section' => 'watchlist/tokenwatchlist',
+				'label-message' => 'prefs-watchlist-token',
+				'help-message' => 'prefs-help-tokenmanagement',
+				'raw' => true,
+				'default' => (string)$tokenButton,
+			];
+		} else {
+			$defaultPreferences['watchlisttoken-info'] = [
+				'type' => 'info',
+				'section' => 'watchlist/tokenwatchlist',
+				'label-message' => 'prefs-watchlist-token',
+				'default' => $user->getTokenFromOption( 'watchlisttoken' ),
+				'help-message' => 'prefs-help-watchlist-token2',
+			];
+		}
 	}
 
 	/**
@@ -1414,6 +1489,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$formClass = PreferencesForm::class,
 		array $remove = []
 	) {
+		if ( $context->getConfig()->get( 'OOUIPreferences' ) ) {
+			// We use ButtonWidgets in some of the getPreferences() functions
+			$context->getOutput()->enableOOUI();
+		}
+
 		$formDescriptor = $this->getFormDescriptor( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
