@@ -216,6 +216,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( !$ok ) {
+			$cpIndex = null; // nothing saved
 			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
 			$this->logger->warning( __METHOD__ . ": failed to save master pos for " .
@@ -269,14 +270,16 @@ class ChronologyProtector implements LoggerAwareInterface {
 			// already be expired and thus treated as non-existing, maintaining correctness.
 			if ( $this->waitForPosIndex > 0 ) {
 				$data = null;
+				$indexReached = null; // highest index reached in the position store
 				$loop = new WaitConditionLoop(
-					function () use ( &$data ) {
+					function () use ( &$data, &$indexReached ) {
 						$data = $this->store->get( $this->key );
 						if ( !is_array( $data ) ) {
 							return WaitConditionLoop::CONDITION_CONTINUE; // not found yet
 						} elseif ( !isset( $data['writeIndex'] ) ) {
 							return WaitConditionLoop::CONDITION_REACHED; // b/c
 						}
+						$indexReached = max( $data['writeIndex'], $indexReached );
 
 						return ( $data['writeIndex'] >= $this->waitForPosIndex )
 							? WaitConditionLoop::CONDITION_REACHED
@@ -288,11 +291,22 @@ class ChronologyProtector implements LoggerAwareInterface {
 				$waitedMs = $loop->getLastWaitTime() * 1e3;
 
 				if ( $result == $loop::CONDITION_REACHED ) {
-					$msg = "expected and found pos index {$this->waitForPosIndex} ({$waitedMs}ms)";
-					$this->logger->debug( $msg );
+					$this->logger->debug(
+						__METHOD__ . ": expected and found position index.",
+						[
+							'cpPosIndex' => $this->waitForPosIndex,
+							'waitTimeMs' => $waitedMs
+						]
+					);
 				} else {
-					$msg = "expected but missed pos index {$this->waitForPosIndex} ({$waitedMs}ms)";
-					$this->logger->info( $msg );
+					$this->logger->warning(
+						__METHOD__ . ": expected but failed to find position index.",
+						[
+							'cpPosIndex' => $this->waitForPosIndex,
+							'indexReached' => $indexReached,
+							'waitTimeMs' => $waitedMs
+						]
+					);
 				}
 			} else {
 				$data = $this->store->get( $this->key );
