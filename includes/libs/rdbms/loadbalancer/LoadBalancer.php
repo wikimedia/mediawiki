@@ -1424,6 +1424,14 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $conn->writesPending() ) {
 					// A callback from another handle wrote to this one and DBO_TRX is set
 					$this->queryLogger->warning( __METHOD__ . ": found writes pending." );
+					$fnames = implode( ', ', $conn->pendingWriteAndCallbackCallers() );
+					$this->queryLogger->warning(
+						__METHOD__ . ": found writes pending ($fnames).",
+						[
+							'db_server' => $conn->getServer(),
+							'db_name' => $conn->getDBname()
+						]
+					);
 				} elseif ( $conn->trxLevel() ) {
 					// A callback from another handle read from this one and DBO_TRX is set,
 					// which can easily happen if there is only one DB (no replicas)
