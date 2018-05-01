@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * ExtensionRegistry class
  *
@@ -121,7 +119,7 @@ class ExtensionRegistry {
 	 *  be loaded then).
 	 */
 	public function loadFromQueue() {
-		global $wgVersion, $wgDevelopmentWarnings;
+		global $wgVersion, $wgDevelopmentWarnings, $wgObjectCaches;
 		if ( !$this->queued ) {
 			return;
 		}
@@ -142,7 +140,10 @@ class ExtensionRegistry {
 		// We use a try/catch because we don't want to fail here
 		// if $wgObjectCaches is not configured properly for APC setup
 		try {
-			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+			// Don't use MediaWikiServices here to prevent instantiating it before extensions have
+			// been loaded
+			$params = ObjectCache::detectLocalServerCache( $wgObjectCaches );
+			$cache = ObjectCache::newFromParams( $params );
 		} catch ( MWException $e ) {
 			$cache = new EmptyBagOStuff();
 		}

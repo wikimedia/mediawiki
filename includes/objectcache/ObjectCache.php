@@ -413,4 +413,29 @@ class ObjectCache {
 		self::$instances = [];
 		self::$wanInstances = [];
 	}
+
+	/**
+	 * Detects which local server cache library is present and returns a configuration for it
+	 * @since 1.32
+	 *
+	 * @param array $config Cache configuration, e.g. $wgObjectCaches
+	 * @return array Configuration for detected cache type, suitable for this class' newFromParams()
+	 */
+	public static function detectLocalServerCache( array $config ) {
+		if ( function_exists( 'apc_fetch' ) ) {
+			$id = 'apc';
+		} elseif ( function_exists( 'apcu_fetch' ) ) {
+			$id = 'apcu';
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			$id = 'wincache';
+		} else {
+			$id = CACHE_NONE;
+		}
+
+		if ( !isset( $config[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" is not present in \$wgObjectCaches." );
+		}
+		return $config[$id];
+	}
 }
