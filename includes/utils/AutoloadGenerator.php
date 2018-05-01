@@ -396,6 +396,7 @@ class ClassCollector {
 			case T_INTERFACE:
 			case T_TRAIT:
 			case T_DOUBLE_COLON:
+			case T_NEW:
 				$this->startToken = $token;
 				break;
 			case T_STRING:
@@ -417,6 +418,12 @@ class ClassCollector {
 				// Skip over T_CLASS after T_DOUBLE_COLON because this is something like
 				// "self::static" which accesses the class name. It doens't define a new class.
 				$this->startToken = null;
+				break;
+			case T_NEW:
+				// Skip over T_CLASS after T_NEW because this is a PHP 7 anonymous class.
+				if ( !is_array( $token ) || $token[0] !== T_WHITESPACE ) {
+					$this->startToken = null;
+				}
 				break;
 			case T_NAMESPACE:
 				if ( $token === ';' || $token === '{' ) {
