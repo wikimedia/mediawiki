@@ -1,0 +1,47 @@
+/* Reuses colors from mediawiki.legacy/shared.css */
+.mw-email-not-authenticated .mw-input,
+.mw-email-none .mw-input {
+	border: 1px solid #fde29b;
+	background-color: #fdf1d1;
+	color: #000;
+}
+/* Authenticated email field has its own class too. Unstyled by default */
+/*
+.mw-email-authenticated .mw-input { }
+*/
+/* This breaks due to nolabel styling */
+#preferences > fieldset td.mw-label {
+	width: 20%;
+}
+
+#preferences > fieldset table {
+	width: 100%;
+}
+#preferences > fieldset table.mw-htmlform-matrix {
+	width: auto;
+}
+
+/* The CSS below is also for JS enabled version, because we want to prevent FOUC */
+
+/*
+ * Hide, but keep accessible for screen-readers.
+ * Like .mw-jump, #jump-to-nav from shared.css
+ */
+.client-js .mw-navigation-hint {
+	overflow: hidden;
+	height: 0;
+	zoom: 1;
+}
+
+.client-nojs #preftoc {
+	display: none;
+}
+
+.client-js #preferences > fieldset {
+	display: none;
+}
+
+/* Only the 1st tab is shown by default in JS mode */
+.client-js #preferences #mw-prefsection-personal {
+	display: block;
+}
