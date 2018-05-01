@@ -722,12 +722,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Get the list of method names that have pending write queries or callbacks
-	 * for this transaction
+	 * List the methods that have write queries or callbacks for the current transaction
 	 *
-	 * @return array
+	 * This method should not be used outside of Database/LoadBalancer
+	 *
+	 * @return string[]
+	 * @since 1.32
 	 */
-	protected function pendingWriteAndCallbackCallers() {
+	public function pendingWriteAndCallbackCallers() {
 		if ( !$this->trxLevel ) {
 			return [];
 		}
