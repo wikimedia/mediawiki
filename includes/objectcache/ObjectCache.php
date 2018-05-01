@@ -413,4 +413,22 @@ class ObjectCache {
 		self::$instances = [];
 		self::$wanInstances = [];
 	}
+
+	public static function detectLocalCache( $config ) {
+		if ( function_exists( 'apc_fetch' ) ) {
+			$id = 'apc';
+		} elseif ( function_exists( 'apcu_fetch' ) ) {
+			$id = 'apcu';
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			$id = 'wincache';
+		} else {
+			$id = CACHE_NONE;
+		}
+
+		if ( !isset( $config[$id] ) ) {
+			throw new UnexpectedValueException(
+				"Cache type \"$id\" is not present in \$wgObjectCaches." );
+		}
+		return $config[$id];
+	}
 }

@@ -121,7 +121,7 @@ class ExtensionRegistry {
 	 *  be loaded then).
 	 */
 	public function loadFromQueue() {
-		global $wgVersion, $wgDevelopmentWarnings;
+		global $wgVersion, $wgDevelopmentWarnings, $wgObjectCaches;
 		if ( !$this->queued ) {
 			return;
 		}
@@ -142,7 +142,8 @@ class ExtensionRegistry {
 		// We use a try/catch because we don't want to fail here
 		// if $wgObjectCaches is not configured properly for APC setup
 		try {
-			$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
+			$params = ObjectCache::detectLocalCache( $wgObjectCaches );
+			$cache = ObjectCache::newFromParams( $params );
 		} catch ( MWException $e ) {
 			$cache = new EmptyBagOStuff();
 		}

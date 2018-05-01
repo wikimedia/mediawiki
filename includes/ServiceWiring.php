@@ -405,23 +405,9 @@ return [
 
 	'LocalServerObjectCache' => function ( MediaWikiServices $services ) {
 		$mainConfig = $services->getMainConfig();
+		$params = \ObjectCache::detectLocalCache( $mainConfig->get( 'ObjectCaches' ) );
 
-		if ( function_exists( 'apc_fetch' ) ) {
-			$id = 'apc';
-		} elseif ( function_exists( 'apcu_fetch' ) ) {
-			$id = 'apcu';
-		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
-			$id = 'wincache';
-		} else {
-			$id = CACHE_NONE;
-		}
-
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$id] ) ) {
-			throw new UnexpectedValueException(
-				"Cache type \"$id\" is not present in \$wgObjectCaches." );
-		}
-
-		return \ObjectCache::newFromParams( $mainConfig->get( 'ObjectCaches' )[$id] );
+		return \ObjectCache::newFromParams( $params );
 	},
 
 	'VirtualRESTServiceClient' => function ( MediaWikiServices $services ) {
@@ -578,7 +564,7 @@ return [
 		);
 	},
 
-	'PreferencesFactory' => function ( MediaWikiServices $services ) {
+	'PreferencesFactory' => function ( MediaWikiServices $services ) {//throw new Exception('LOCAL');
 		global $wgContLang;
 		$authManager = AuthManager::singleton();
 		$linkRenderer = $services->getLinkRendererFactory()->create();
