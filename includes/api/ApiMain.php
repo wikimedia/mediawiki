@@ -80,6 +80,8 @@ class ApiMain extends ApiBase {
 		'checktoken' => ApiCheckToken::class,
 		'cspreport' => ApiCSPReport::class,
 		'validatepassword' => ApiValidatePassword::class,
+		'echo' => ApiEcho::class,
+		'xxecho' => ApiEcho::class,
 
 		// Write modules
 		'purge' => ApiPurge::class,
