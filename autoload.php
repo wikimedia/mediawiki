@@ -1182,6 +1182,7 @@ $wgAutoloadLocalClasses = [
 	'PostgresUpdater' => __DIR__ . '/includes/installer/PostgresUpdater.php',
 	'Preferences' => __DIR__ . '/includes/Preferences.php',
 	'PreferencesForm' => __DIR__ . '/includes/specials/forms/PreferencesForm.php',
+	'PreferencesFormLegacy' => __DIR__ . '/includes/specials/forms/PreferencesFormLegacy.php',
 	'PrefixSearch' => __DIR__ . '/includes/PrefixSearch.php',
 	'PreprocessDump' => __DIR__ . '/maintenance/preprocessDump.php',
 	'Preprocessor' => __DIR__ . '/includes/parser/Preprocessor.php',
