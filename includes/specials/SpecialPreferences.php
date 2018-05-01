@@ -29,8 +29,15 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
+	/**
+	 * @var bool Whether OOUI should be enabled here
+	 */
+	private $oouiEnabled = false;
+
 	function __construct() {
 		parent::__construct( 'Preferences' );
+
+		$this->oouiEnabled = $this->getContext()->getConfig()->get( 'OOUIPreferences' );
 	}
 
 	public function doesWrites() {
@@ -52,8 +59,13 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.preferences' );
-		$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
+		if ( $this->oouiEnabled ) {
+			$out->addModules( 'mediawiki.special.preferences.ooui' );
+			$out->addModuleStyles( 'mediawiki.special.preferences.styles.ooui' );
+		} else {
+			$out->addModules( 'mediawiki.special.preferences' );
+			$out->addModuleStyles( 'mediawiki.special.preferences.styles' );
+		}
 
 		$session = $this->getRequest()->getSession();
 		if ( $session->get( 'specialPreferencesSaveSuccess' ) ) {
@@ -86,35 +98,51 @@ class SpecialPreferences extends SpecialPage {
 		$htmlForm = $this->getFormObject( $user, $this->getContext() );
 		$sectionTitles = $htmlForm->getPreferenceSections();
 
-		$prefTabs = '';
-		foreach ( $sectionTitles as $key ) {
-			$prefTabs .= Html::rawElement( 'li',
-				[
-					'role' => 'presentation',
-					'class' => ( $key === 'personal' ) ? 'selected' : null
-				],
-				Html::rawElement( 'a',
+		if ( $this->oouiEnabled ) {
+			$prefTabs = [];
+			foreach ( $sectionTitles as $key ) {
+				$prefTabs[] = [
+					'name' => $key,
+					'label' => $htmlForm->getLegend( $key ),
+				];
+			}
+			$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
+
+			// TODO: Render fake tabs here to avoid FOUC.
+			// $out->addHTML( $fakeTabs );
+		} else {
+
+			$prefTabs = '';
+			foreach ( $sectionTitles as $key ) {
+				$prefTabs .= Html::rawElement( 'li',
 					[
-						'id' => 'preftab-' . $key,
-						'role' => 'tab',
-						'href' => '#mw-prefsection-' . $key,
-						'aria-controls' => 'mw-prefsection-' . $key,
-						'aria-selected' => ( $key === 'personal' ) ? 'true' : 'false',
-						'tabIndex' => ( $key === 'personal' ) ? 0 : -1,
+						'role' => 'presentation',
+						'class' => ( $key === 'personal' ) ? 'selected' : null
 					],
-					$htmlForm->getLegend( $key )
-				)
+					Html::rawElement( 'a',
+						[
+							'id' => 'preftab-' . $key,
+							'role' => 'tab',
+							'href' => '#mw-prefsection-' . $key,
+							'aria-controls' => 'mw-prefsection-' . $key,
+							'aria-selected' => ( $key === 'personal' ) ? 'true' : 'false',
+							'tabIndex' => ( $key === 'personal' ) ? 0 : -1,
+						],
+						$htmlForm->getLegend( $key )
+					)
+				);
+			}
+
+			$out->addHTML(
+				Html::rawElement( 'ul',
+					[
+						'id' => 'preftoc',
+						'role' => 'tablist'
+					],
+					$prefTabs )
 			);
 		}
 
-		$out->addHTML(
-			Html::rawElement( 'ul',
-				[
-					'id' => 'preftoc',
-					'role' => 'tablist'
-				],
-				$prefTabs )
-		);
 		$htmlForm->show();
 	}
 
@@ -126,7 +154,11 @@ class SpecialPreferences extends SpecialPage {
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$form = $preferencesFactory->getForm( $user, $context );
+		if ( $this->oouiEnabled ) {
+			$form = $preferencesFactory->getForm( $user, $context );
+		} else {
+			$form = $preferencesFactory->getForm( $user, $context, PreferencesFormLegacy::class );
+		}
 		return $form;
 	}
 
@@ -139,7 +171,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		$htmlForm = new HTMLForm( [], $context, 'prefs-restore' );
+		$htmlForm = HTMLForm::factory( $this->oouiEnabled ? 'ooui' : 'vform', [], $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setSubmitDestructive();
