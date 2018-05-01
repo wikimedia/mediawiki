@@ -667,7 +667,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		];
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
-		$form = new HTMLForm( $fields, $context );
+		$form = new OOUIHTMLForm( $fields, $context );
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );
@@ -686,7 +686,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function getClearForm() {
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
-		$form = new HTMLForm( [], $context );
+		$form = new OOUIHTMLForm( [], $context );
 		$form->setSubmitTextMsg( 'watchlistedit-clear-submit' );
 		# Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
 		$form->setSubmitTooltip( 'watchlistedit-clear-submit' );
