@@ -102,13 +102,14 @@ class JobQueueGroup {
 	 * @return JobQueue
 	 */
 	public function get( $type ) {
-		global $wgJobTypeConf;
+		global $wgConf;
+		$jobTypeConf = $wgConf->getConfig( $this->wiki, 'wgJobTypeConf' );
 
 		$conf = [ 'wiki' => $this->wiki, 'type' => $type ];
-		if ( isset( $wgJobTypeConf[$type] ) ) {
-			$conf = $conf + $wgJobTypeConf[$type];
+		if ( isset( $jobTypeConf[$type] ) ) {
+			$conf = $conf + $jobTypeConf[$type];
 		} else {
-			$conf = $conf + $wgJobTypeConf['default'];
+			$conf = $conf + $jobTypeConf['default'];
 		}
 		$conf['aggregator'] = JobQueueAggregator::singleton();
 		if ( $this->readOnlyReason !== false ) {
@@ -301,10 +302,11 @@ class JobQueueGroup {
 	 * @return void
 	 */
 	public function waitForBackups() {
-		global $wgJobTypeConf;
+		global $wgConf;
+		$jobTypeConf = $wgConf->getConfig( $this->wiki, 'wgJobTypeConf' );
 
 		// Try to avoid doing this more than once per queue storage medium
-		foreach ( $wgJobTypeConf as $type => $conf ) {
+		foreach ( $jobTypeConf as $type => $conf ) {
 			$this->get( $type )->waitForBackups();
 		}
 	}
@@ -401,11 +403,12 @@ class JobQueueGroup {
 	 * @return array
 	 */
 	protected function getCoalescedQueues() {
-		global $wgJobTypeConf;
+		global $wgConf;
+		$jobTypeConf = $wgConf->getConfig( $this->wiki, 'wgJobTypeConf' );
 
 		if ( $this->coalescedQueues === null ) {
 			$this->coalescedQueues = [];
-			foreach ( $wgJobTypeConf as $type => $conf ) {
+			foreach ( $jobTypeConf as $type => $conf ) {
 				$queue = JobQueue::factory(
 					[ 'wiki' => $this->wiki, 'type' => 'null' ] + $conf );
 				$loc = $queue->getCoalesceLocationInternal();
@@ -416,7 +419,7 @@ class JobQueueGroup {
 				if ( $type === 'default' ) {
 					$this->coalescedQueues[$loc]['types'] = array_merge(
 						$this->coalescedQueues[$loc]['types'],
-						array_diff( $this->getQueueTypes(), array_keys( $wgJobTypeConf ) )
+						array_diff( $this->getQueueTypes(), array_keys( $jobTypeConf ) )
 					);
 				} else {
 					$this->coalescedQueues[$loc]['types'][] = $type;
