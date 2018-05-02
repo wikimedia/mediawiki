@@ -316,6 +316,10 @@ class CSSMinTest extends MediaWikiTestCase {
 				[ 'background-image: url("");', false, '/example', false ],
 				'background-image: url("");',
 			],
+			'Single quote with outer spacing' => [
+				[ "background-image: url( '' );", false, '/example', false ],
+				"background-image: url( '' );",
+			],
 		];
 	}
 
@@ -389,6 +393,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Domain-relative URL with query',
 				'foo { background: url(/static/foo.png?query=yes); }',
 				'foo { background: url(https://expand.example/static/foo.png?query=yes); }',
+			],
+			[
+				'Path-relative URL with query',
+				"foo { background: url(?query=yes); }",
+				'foo { background: url(http://localhost/w/?query=yes); }',
 			],
 			[
 				'Remote URL (unnecessary quotes not preserved)',
@@ -533,6 +542,11 @@ class CSSMinTest extends MediaWikiTestCase {
 				'Background URL (double quoted with outer spacing)',
 				'foo { background: url( "http://localhost/styles.css?quoted=double" ) }',
 				'foo { background: url(http://localhost/styles.css?quoted=double) }',
+			],
+			[
+				'Background URL (single quoted, containing spaces, with outer spacing)',
+				"foo { background: url( ' red.gif ' ); }",
+				'foo { background: url("http://localhost/w/ red.gif "); }',
 			],
 			[
 				'Simple case with comments before url',
