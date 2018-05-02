@@ -1,4 +1,3 @@
-'use strict';
 const Page = require( './page' );
 
 class RestorePage extends Page {
@@ -16,6 +15,6 @@ class RestorePage extends Page {
 		this.reason.setValue( reason );
 		this.submit.click();
 	}
-
 }
+
 module.exports = new RestorePage();
