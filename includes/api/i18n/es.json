@@ -131,7 +131,7 @@
 	"apihelp-edit-param-tags": "Cambia las etiquetas para aplicarlas a la revisión.",
 	"apihelp-edit-param-minor": "Edición menor.",
 	"apihelp-edit-param-notminor": "Edición no menor.",
-	"apihelp-edit-param-bot": "Marcar esta edición como edición de bot.",
+	"apihelp-edit-param-bot": "Marcar esta como una edición de robot.",
 	"apihelp-edit-param-basetimestamp": "Marca de tiempo de la revisión base, usada para detectar conflictos de edición. Se puede obtener mediante [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]",
 	"apihelp-edit-param-starttimestamp": "Marca de tiempo de cuando empezó el proceso de edición, usada para detectar conflictos de edición. Se puede obtener un valor apropiado usando <var>[[Special:ApiHelp/main|curtimestamp]]</var> cuando comiences el proceso de edición (por ejemplo, al cargar el contenido de la página por editar).",
 	"apihelp-edit-param-recreate": "Reemplazar los errores acerca de la página de haber sido eliminados en el ínterin.",

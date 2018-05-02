@@ -56,6 +56,7 @@
 	"config-connection-error": "$1.\n\nതാഴെ നൽകിയിരിക്കുന്ന ഹോസ്റ്റ്, ഉപയോക്തൃനാമം, രഹസ്യവാക്ക് എന്നിവ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.",
 	"config-regenerate": "LocalSettings.php പുനഃസൃഷ്ടിക്കുക →",
 	"config-mysql-engine": "സ്റ്റോറേജ് എൻജിൻ:",
+	"config-mysql-utf8": "യു.ടി.എഫ്.-8",
 	"config-site-name": "വിക്കിയുടെ പേര്:",
 	"config-site-name-help": "ഇത് ബ്രൗസറിന്റെ ടൈറ്റിൽ ബാറിലും മറ്റനേകം ഇടങ്ങളിലും പ്രദർശിപ്പിക്കപ്പെടും.",
 	"config-site-name-blank": "സൈറ്റിന്റെ പേര് നൽകുക.",
