@@ -1,4 +1,5 @@
 const assert = require( 'assert' ),
+	Api = require( 'wdio-mediawiki/Api' ),
 	DeletePage = require( '../pageobjects/delete.page' ),
 	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
@@ -39,12 +40,12 @@ describe( 'Page', function () {
 
 		// create
 		browser.call( function () {
-			return EditPage.apiEdit( name, initialContent );
+			return Api.edit( name, initialContent );
 		} );
 
 		// delete
 		browser.call( function () {
-			return DeletePage.apiDelete( name, 'delete prior to recreate' );
+			return Api.delete( name, 'delete prior to recreate' );
 		} );
 
 		// create
@@ -53,13 +54,12 @@ describe( 'Page', function () {
 		// check
 		assert.equal( EditPage.heading.getText(), name );
 		assert.equal( EditPage.displayedContent.getText(), content );
-
 	} );
 
 	it( 'should be editable', function () {
 		// create
 		browser.call( function () {
-			return EditPage.apiEdit( name, content );
+			return Api.edit( name, content );
 		} );
 
 		// edit
@@ -73,7 +73,7 @@ describe( 'Page', function () {
 	it( 'should have history', function () {
 		// create
 		browser.call( function () {
-			return EditPage.apiEdit( name, content );
+			return Api.edit( name, content );
 		} );
 
 		// check
@@ -87,7 +87,7 @@ describe( 'Page', function () {
 
 		// create
 		browser.call( function () {
-			return EditPage.apiEdit( name, content );
+			return Api.edit( name, content );
 		} );
 
 		// delete
@@ -106,12 +106,12 @@ describe( 'Page', function () {
 
 		// create
 		browser.call( function () {
-			return EditPage.apiEdit( name, content );
+			return Api.edit( name, content );
 		} );
 
 		// delete
 		browser.call( function () {
-			return DeletePage.apiDelete( name, content + '-deletereason' );
+			return Api.delete( name, content + '-deletereason' );
 		} );
 
 		// restore
