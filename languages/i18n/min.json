@@ -10,7 +10,8 @@
 			"VoteITP",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"Baloch Khan"
 		]
 	},
 	"tog-underline": "Garih bawahi tautan:",
@@ -119,6 +120,8 @@
 	"october-date": "$1 Oktober",
 	"november-date": "$1 Nopember",
 	"december-date": "$1 Desember",
+	"period-am": "سهار",
+	"period-pm": "ماښام",
 	"pagecategories": "{{PLURAL:$1|Kategori}}",
 	"category_header": "Laman pado kategori \"$1\"",
 	"subcategories": "Subkategori",
@@ -274,6 +277,7 @@
 	"nospecialpagetext": "<strong>Sanak mamintak laman istimewa nan indak sah.</strong>\n\nDaftar laman istimewa nan sah dapek dicaliak di [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Kasalahan",
 	"databaseerror": "Kasalahan basis data",
+	"databaseerror-error": "تېروتنه: $1",
 	"laggedslavemode": "Paringatan: Laman mungkin indak barisi parubahan tabaru.",
 	"readonly": "Basis data dikunci",
 	"enterlockreason": "Masuakkan alasan panguncian, tamasuak pakiraan bilo kunci akan dibuka",
@@ -358,6 +362,7 @@
 	"createacct-reason": "Alasan",
 	"createacct-reason-ph": "Manga Sanak mambuek akun lain",
 	"createacct-submit": "Buek akun Sanak",
+	"createacct-another-submit": "ګڼون جوړول",
 	"createacct-benefit-heading": "{{SITENAME}} dibuek dek urang-urang saroman Sanak.",
 	"createacct-benefit-body1": "{{PLURAL:$1|suntiangan}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|laman}}",
