@@ -1,7 +1,8 @@
 const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
+	Api = require( 'wdio-mediawiki/Api' );
 
 describe( 'User', function () {
 	var password,
@@ -30,7 +31,7 @@ describe( 'User', function () {
 	it( 'should be able to log in', function () {
 		// create
 		browser.call( function () {
-			return CreateAccountPage.apiCreateAccount( username, password );
+			return Api.createAccount( username, password );
 		} );
 
 		// log in
@@ -45,7 +46,7 @@ describe( 'User', function () {
 
 		// create
 		browser.call( function () {
-			return CreateAccountPage.apiCreateAccount( username, password );
+			return Api.createAccount( username, password );
 		} );
 
 		// log in
