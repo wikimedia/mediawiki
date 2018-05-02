@@ -69,7 +69,11 @@ changes to languages because of Phabricator reports.
   button is already marked as progressive.
 
 === Other changes in 1.32 ===
-* …
+* (T61113) The following methods and constants from the Revision class were deprecated in
+  1.25 and have now been removed.
+  * Revision::getRawUser()
+  * Revision::getRawUserText()
+  * Revision::getRawComment()
 
 == Compatibility ==
 MediaWiki 1.32 requires PHP 5.5.9 or later. Although HHVM 3.18.5 or later is supported,
