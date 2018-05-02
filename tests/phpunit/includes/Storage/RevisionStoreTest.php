@@ -614,11 +614,12 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_applied( $encoding, $locale, $row, $text ) {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
-		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
+		$blobStore = new SqlBlobStore( $lb, $cache );
 		$blobStore->setLegacyEncoding( $encoding, Language::factory( $locale ) );
 
-		$store = $this->getRevisionStore( wfGetLB(), $blobStore, $cache );
+		$store = $this->getRevisionStore( $lb, $blobStore, $cache );
 
 		$record = $store->newRevisionFromRow(
 			$this->makeRow( $row ),
@@ -640,11 +641,12 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		];
 
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
-		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
+		$blobStore = new SqlBlobStore( $lb, $cache );
 		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
 
-		$store = $this->getRevisionStore( wfGetLB(), $blobStore, $cache );
+		$store = $this->getRevisionStore( $lb, $blobStore, $cache );
 
 		$record = $store->newRevisionFromRow(
 			$this->makeRow( $row ),
