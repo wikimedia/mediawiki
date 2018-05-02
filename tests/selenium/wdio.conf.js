@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require( 'fs' ),
 	path = require( 'path' ),
 	logPath = process.env.LOG_DIR || './log/';

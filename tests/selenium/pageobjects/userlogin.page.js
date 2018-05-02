@@ -1,8 +1,6 @@
-'use strict';
 const Page = require( './page' );
 
 class UserLoginPage extends Page {
-
 	get username() { return browser.element( '#wpName1' ); }
 	get password() { return browser.element( '#wpPassword1' ); }
 	get loginButton() { return browser.element( '#wpLoginAttempt' ); }
@@ -22,6 +20,6 @@ class UserLoginPage extends Page {
 	loginAdmin() {
 		this.login( browser.options.username, browser.options.password );
 	}
-
 }
+
 module.exports = new UserLoginPage();
