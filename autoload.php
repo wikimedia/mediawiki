@@ -1482,7 +1482,6 @@ $wgAutoloadLocalClasses = [
 	'SpecialWatchlist' => __DIR__ . '/includes/specials/SpecialWatchlist.php',
 	'SpecialWhatLinksHere' => __DIR__ . '/includes/specials/SpecialWhatlinkshere.php',
 	'SqlBagOStuff' => __DIR__ . '/includes/objectcache/SqlBagOStuff.php',
-	'SqlDataUpdate' => __DIR__ . '/includes/deferred/SqlDataUpdate.php',
 	'SqlSearchResultSet' => __DIR__ . '/includes/search/SqlSearchResultSet.php',
 	'Sqlite' => __DIR__ . '/maintenance/sqlite.inc',
 	'SqliteInstaller' => __DIR__ . '/includes/installer/SqliteInstaller.php',
