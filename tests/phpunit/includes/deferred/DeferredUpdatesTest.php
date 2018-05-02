@@ -335,4 +335,47 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 		$this->assertSame( 1, $ran, 'Update ran' );
 	}
+
+	/**
+	 * @covers DeferredUpdates::tryOpportunisticExecute
+	 */
+	public function testTryOpportunisticExecute() {
+		$called1 = 0;
+		$callback1 = function () use ( &$called1 ) {
+			++$called1;
+		};
+		$called2 = 0;
+		$callback2 = function () use ( &$called2 ) {
+			++$called2;
+		};
+		$otiCalled = 0;
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->beginMasterChanges( __METHOD__ );
+
+		DeferredUpdates::addCallableUpdate( $callback1 );
+		$this->assertEquals( 0, $called1 );
+
+		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		$this->assertEquals( 0, $called1 );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->onTransactionIdle( function () use ( &$otiCalled, &$called2, $callback2 ) {
+			++$otiCalled;
+			DeferredUpdates::addCallableUpdate( $callback2 );
+			$this->assertEquals( 0, $called2 );
+		} );
+		$this->assertEquals( 1, $dbw->trxLevel() );
+		$this->assertEquals( 0, $otiCalled );
+		$this->assertEquals( 0, $called2 );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+
+		$this->assertEquals( 1, $otiCalled );
+
+		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		$this->assertEquals( 1, $called1 );
+		$this->assertEquals( 1, $called2 );
+
+	}
 }
