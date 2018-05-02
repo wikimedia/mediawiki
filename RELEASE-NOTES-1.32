@@ -61,6 +61,11 @@ changes to languages because of Phabricator reports.
 * EditPage::isOouiEnabled() was removed (deprecated in 1.30).
 * mw.util.wikiGetlink() was removed (deprecated in 1.23).
   Use mw.util.getUrl() instead.
+* (T61113) The following methods and constants from the Revision class were deprecated in
+  1.25 and have now been removed.
+  * Revision::getRawUser()
+  * Revision::getRawUserText()
+  * Revision::getRawComment()
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
