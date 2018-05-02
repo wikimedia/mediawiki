@@ -41,7 +41,7 @@ exports.config = {
 	],
 	// Patterns to exclude.
 	exclude: [
-		'./extensions/CirrusSearch/tests/selenium/specs/**/*.js'
+		relPath( './extensions/CirrusSearch/tests/selenium/specs/**/*.js' )
 	],
 
 	// ============
