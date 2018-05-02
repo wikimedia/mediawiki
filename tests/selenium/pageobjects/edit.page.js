@@ -1,8 +1,8 @@
-'use strict';
-const Page = require( './page' );
+const Page = require( './page' ),
+	// https://github.com/Fannon/mwbot
+	MWBot = require( 'mwbot' );
 
 class EditPage extends Page {
-
 	get content() { return browser.element( '#wpTextbox1' ); }
 	get displayedContent() { return browser.element( '#mw-content-text' ); }
 	get heading() { return browser.element( '#firstHeading' ); }
@@ -19,21 +19,16 @@ class EditPage extends Page {
 	}
 
 	apiEdit( name, content ) {
-
-		const MWBot = require( 'mwbot' ), // https://github.com/Fannon/mwbot
-			Promise = require( 'bluebird' );
 		let bot = new MWBot();
 
-		return Promise.coroutine( function* () {
-			yield bot.loginGetEditToken( {
-				apiUrl: `${browser.options.baseUrl}/api.php`,
-				username: browser.options.username,
-				password: browser.options.password
-			} );
-			yield bot.edit( name, content, `Created page with "${content}"` );
-		} ).call( this );
-
+		return bot.loginGetEditToken( {
+			apiUrl: `${browser.options.baseUrl}/api.php`,
+			username: browser.options.username,
+			password: browser.options.password
+		} ).then( function () {
+			return bot.edit( name, content, `Created page with "${content}"` );
+		} );
 	}
-
 }
+
 module.exports = new EditPage();
