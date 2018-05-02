@@ -1259,7 +1259,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 */
 	public function testNewMutableRevisionFromArray_legacyEncoding( array $array ) {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$blobStore = new SqlBlobStore( wfGetLB(), $cache );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$blobStore = new SqlBlobStore( $lb, $cache );
 		$blobStore->setLegacyEncoding( 'windows-1252', Language::factory( 'en' ) );
 
 		$factory = $this->getMockBuilder( BlobStoreFactory::class )
