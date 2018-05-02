@@ -1,9 +1,7 @@
-const Page = require( './page' ),
-	// https://github.com/Fannon/mwbot
-	MWBot = require( 'mwbot' );
+const Page = require( 'wdio-mediawiki/Page' ),
+	Api = require( 'wdio-mediawiki/Api' );
 
 class CreateAccountPage extends Page {
-
 	get username() { return browser.element( '#wpName2' ); }
 	get password() { return browser.element( '#wpPassword2' ); }
 	get confirmPassword() { return browser.element( '#wpRetype' ); }
@@ -11,7 +9,7 @@ class CreateAccountPage extends Page {
 	get heading() { return browser.element( '#firstHeading' ); }
 
 	open() {
-		super.open( 'Special:CreateAccount' );
+		super.openTitle( 'Special:CreateAccount' );
 	}
 
 	createAccount( username, password ) {
@@ -22,23 +20,9 @@ class CreateAccountPage extends Page {
 		this.create.click();
 	}
 
+	// @deprecated Use wdio-mediawiki/Api#createAccount() instead.
 	apiCreateAccount( username, password ) {
-		let bot = new MWBot();
-
-		return bot.loginGetCreateaccountToken( {
-			apiUrl: `${browser.options.baseUrl}/api.php`,
-			username: browser.options.username,
-			password: browser.options.password
-		} ).then( function () {
-			return bot.request( {
-				action: 'createaccount',
-				createreturnurl: browser.options.baseUrl,
-				createtoken: bot.createaccountToken,
-				username: username,
-				password: password,
-				retype: password
-			} );
-		} );
+		return Api.createAccount( username, password );
 	}
 }
 
