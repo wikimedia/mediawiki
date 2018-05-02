@@ -1,6 +1,6 @@
 const fs = require( 'fs' ),
 	path = require( 'path' ),
-	logPath = process.env.LOG_DIR || './log/';
+	logPath = process.env.LOG_DIR || __dirname + '/log';
 
 function relPath( foo ) {
 	return path.resolve( __dirname, '../..', foo );
@@ -257,11 +257,16 @@ exports.config = {
 		if ( test.passed ) {
 			return;
 		}
-		// get current test title and clean it, to use it as file name
+		// Create sane file name for current test title
 		filename = encodeURIComponent( test.title.replace( /\s+/g, '-' ) );
-		// build file path
-		filePath = this.screenshotPath + filename + '.png';
-		// save screenshot
+		filePath = `${browser.options.screenshotPath}/${filename}.png`;
+		// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
+		try {
+			fs.statSync( browser.options.screenshotPath );
+		} catch ( err ) {
+			fs.mkdirSync( browser.options.screenshotPath );
+		}
+		// Create and save screenshot
 		browser.saveScreenshot( filePath );
 		console.log( '\n\tScreenshot location:', filePath, '\n' );
 	}
