@@ -108,6 +108,12 @@ class LogFormatter {
 	 */
 	private $linkRenderer;
 
+	/**
+	 * @see LogFormatter::getMessageParameters
+	 * @var array
+	 */
+	protected $parsedParameters;
+
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
