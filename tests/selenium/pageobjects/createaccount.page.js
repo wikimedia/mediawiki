@@ -1,5 +1,6 @@
-'use strict';
-const Page = require( './page' );
+const Page = require( './page' ),
+	// https://github.com/Fannon/mwbot
+	MWBot = require( 'mwbot' );
 
 class CreateAccountPage extends Page {
 
@@ -22,18 +23,14 @@ class CreateAccountPage extends Page {
 	}
 
 	apiCreateAccount( username, password ) {
-
-		const MWBot = require( 'mwbot' ), // https://github.com/Fannon/mwbot
-			Promise = require( 'bluebird' );
 		let bot = new MWBot();
 
-		return Promise.coroutine( function* () {
-			yield bot.loginGetCreateaccountToken( {
-				apiUrl: `${browser.options.baseUrl}/api.php`,
-				username: browser.options.username,
-				password: browser.options.password
-			} );
-			yield bot.request( {
+		return bot.loginGetCreateaccountToken( {
+			apiUrl: `${browser.options.baseUrl}/api.php`,
+			username: browser.options.username,
+			password: browser.options.password
+		} ).then( function () {
+			return bot.request( {
 				action: 'createaccount',
 				createreturnurl: browser.options.baseUrl,
 				createtoken: bot.createaccountToken,
@@ -41,9 +38,8 @@ class CreateAccountPage extends Page {
 				password: password,
 				retype: password
 			} );
-		} ).call( this );
-
+		} );
 	}
-
 }
+
 module.exports = new CreateAccountPage();

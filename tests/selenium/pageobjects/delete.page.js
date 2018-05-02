@@ -1,8 +1,8 @@
-'use strict';
-const Page = require( './page' );
+const Page = require( './page' ),
+	// https://github.com/Fannon/mwbot
+	MWBot = require( 'mwbot' );
 
 class DeletePage extends Page {
-
 	get reason() { return browser.element( '#wpReason' ); }
 	get watch() { return browser.element( '#wpWatch' ); }
 	get submit() { return browser.element( '#wpConfirmB' ); }
@@ -19,21 +19,16 @@ class DeletePage extends Page {
 	}
 
 	apiDelete( name, reason ) {
-
-		const MWBot = require( 'mwbot' ), // https://github.com/Fannon/mwbot
-			Promise = require( 'bluebird' );
 		let bot = new MWBot();
 
-		return Promise.coroutine( function* () {
-			yield bot.loginGetEditToken( {
-				apiUrl: `${browser.options.baseUrl}/api.php`,
-				username: browser.options.username,
-				password: browser.options.password
-			} );
-			yield bot.delete( name, reason );
-		} ).call( this );
-
+		return bot.loginGetEditToken( {
+			apiUrl: `${browser.options.baseUrl}/api.php`,
+			username: browser.options.username,
+			password: browser.options.password
+		} ).then( function () {
+			return bot.delete( name, reason );
+		} );
 	}
-
 }
+
 module.exports = new DeletePage();
