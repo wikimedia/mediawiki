@@ -335,4 +335,42 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 
 		$this->assertSame( 1, $ran, 'Update ran' );
 	}
+
+	/**
+	 * @covers DeferredUpdates::tryOpportunisticExecute
+	 */
+	public function testTryOpportunisticExecute() {
+		$calls = [];
+		$callback1 = function () use ( &$calls ) {
+			$calls[] = 1;
+		};
+		$callback2 = function () use ( &$calls ) {
+			$calls[] = 2;
+		};
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory->beginMasterChanges( __METHOD__ );
+
+		DeferredUpdates::addCallableUpdate( $callback1 );
+		$this->assertEquals( [], $calls );
+
+		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		$this->assertEquals( [], $calls );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->onTransactionIdle( function () use ( &$calls, $callback2 ) {
+			DeferredUpdates::addCallableUpdate( $callback2 );
+			$this->assertEquals( [], $calls );
+			$calls[] = 'oti';
+		} );
+		$this->assertEquals( 1, $dbw->trxLevel() );
+		$this->assertEquals( [], $calls );
+
+		$lbFactory->commitMasterChanges( __METHOD__ );
+
+		$this->assertEquals( [ 'oti' ], $calls );
+
+		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		$this->assertEquals( [ 'oti', 1, 2 ], $calls );
+	}
 }
