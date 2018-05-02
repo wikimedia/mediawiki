@@ -1,0 +1,10 @@
+{
+  "name": "wdio-mediawiki",
+  "private": true,
+  "engines": {
+    "node" : ">=6.0"
+  },
+  "dependencies": {
+    "mwbot": "1.0.10"
+  }
+}

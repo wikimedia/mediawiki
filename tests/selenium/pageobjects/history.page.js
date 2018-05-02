@@ -1,10 +1,10 @@
-const Page = require( './page' );
+const Page = require( 'wdio-mediawiki/Page' );
 
 class HistoryPage extends Page {
 	get comment() { return browser.element( '#pagehistory .comment' ); }
 
-	open( name ) {
-		super.open( name + '&action=history' );
+	open( title ) {
+		super.openTitle( title, { action: 'history' } );
 	}
 }
 
