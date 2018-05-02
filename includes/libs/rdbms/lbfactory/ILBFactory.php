@@ -195,11 +195,21 @@ interface ILBFactory {
 	public function rollbackMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Check if a transaction round is active
+	 * Check if an explicit transaction round is active
 	 * @return bool
 	 * @since 1.29
 	 */
 	public function hasTransactionRound();
+
+	/**
+	 * Check if transaction rounds can be started, committed, or rolled back right now
+	 *
+	 * This can be used as a recusion guard to avoid exceptions in transaction callbacks
+	 *
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isReadyForRoundOperations();
 
 	/**
 	 * Determine if any master connection has pending changes
