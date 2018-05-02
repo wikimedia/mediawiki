@@ -48,6 +48,7 @@ class Names {
 	public static $names = [
 		'aa' => 'Qafár af', # Afar
 		'ab' => 'Аҧсшәа', # Abkhaz
+		'abs' => 'bahasa ambon', # Ambonese Malay, T193566
 		'ace' => 'Acèh', # Aceh
 		'ady' => 'адыгабзэ', # Adyghe
 		'ady-cyrl' => 'адыгабзэ', # Adyghe
