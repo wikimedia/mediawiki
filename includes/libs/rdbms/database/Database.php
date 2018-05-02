@@ -722,15 +722,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * List the methods that have write queries or callbacks for the current transaction
+	 * Get the list of method names that have pending write queries or callbacks
+	 * for this transaction
 	 *
-	 * This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @return string[]
-	 * @since 1.32
+	 * @return array
 	 */
-	public function pendingWriteAndCallbackCallers() {
-		$fnames = $this->pendingWriteCallers();
+	protected function pendingWriteAndCallbackCallers() {
+		if ( !$this->trxLevel ) {
+			return [];
+		}
+
+		$fnames = $this->trxWriteCallers;
 		foreach ( [
 			$this->trxIdleCallbacks,
 			$this->trxPreCommitCallbacks,
@@ -958,10 +960,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Sanity check that no callbacks are dangling
-		$fnames = $this->pendingWriteAndCallbackCallers();
-		if ( $fnames ) {
+		if (
+			$this->trxIdleCallbacks || $this->trxPreCommitCallbacks || $this->trxEndCallbacks
+		) {
 			throw new RuntimeException(
-				"Transaction callbacks are still pending:\n" . implode( ', ', $fnames )
+				"Transaction callbacks are still pending:\n" .
+				implode( ', ', $this->pendingWriteAndCallbackCallers() )
 			);
 		}
 
@@ -3410,25 +3414,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Actually consume and run any "on transaction idle/resolution" callbacks.
+	 * Actually run and consume any "on transaction idle/resolution" callbacks.
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @return int Number of callbacks attempted
 	 * @since 1.20
 	 * @throws Exception
 	 */
 	public function runOnTransactionIdleCallbacks( $trigger ) {
-		if ( $this->trxLevel ) { // sanity
-			throw new DBUnexpectedError( $this, __METHOD__ . ': a transaction is still open.' );
-		}
-
 		if ( $this->trxEndCallbacksSuppressed ) {
-			return 0;
+			return;
 		}
 
-		$count = 0;
 		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
 		/** @var Exception $e */
 		$e = null; // first exception
@@ -3441,7 +3439,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxEndCallbacks = []; // consumed (recursion guard)
 			foreach ( $callbacks as $callback ) {
 				try {
-					++$count;
 					list( $phpCallback ) = $callback;
 					$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 					call_user_func( $phpCallback, $trigger, $this );
@@ -3465,29 +3462,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any first exception
 		}
-
-		return $count;
 	}
 
 	/**
-	 * Actually consume and run any "on transaction pre-commit" callbacks.
+	 * Actually run and consume any "on transaction pre-commit" callbacks.
 	 *
 	 * This method should not be used outside of Database/LoadBalancer
 	 *
 	 * @since 1.22
-	 * @return int Number of callbacks attempted
 	 * @throws Exception
 	 */
 	public function runOnTransactionPreCommitCallbacks() {
-		$count = 0;
-
 		$e = null; // first exception
 		do { // callbacks may add callbacks :)
 			$callbacks = $this->trxPreCommitCallbacks;
 			$this->trxPreCommitCallbacks = []; // consumed (and recursion guard)
 			foreach ( $callbacks as $callback ) {
 				try {
-					++$count;
 					list( $phpCallback ) = $callback;
 					call_user_func( $phpCallback, $this );
 				} catch ( Exception $ex ) {
@@ -3500,8 +3491,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $e instanceof Exception ) {
 			throw $e; // re-throw any first exception
 		}
-
-		return $count;
 	}
 
 	/**
@@ -3602,7 +3591,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$savepointId = $cancelable === self::ATOMIC_CANCELABLE ? self::$NOT_APPLICABLE : null;
 
 		if ( !$this->trxLevel ) {
-			$this->begin( $fname, self::TRANSACTION_INTERNAL ); // sets trxAutomatic
+			$this->begin( $fname, self::TRANSACTION_INTERNAL );
 			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
 			// in all changes being in one transaction to keep requests transactional.
 			if ( $this->getFlag( self::DBO_TRX ) ) {
@@ -3856,11 +3845,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		// With FLUSHING_ALL_PEERS, callbacks will be explicitly run later
-		if ( $flush !== self::FLUSHING_ALL_PEERS ) {
-			$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
-			$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT );
-		}
+		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT );
+		$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT );
 	}
 
 	/**
@@ -3909,8 +3895,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxIdleCallbacks = [];
 		$this->trxPreCommitCallbacks = [];
 
-		// With FLUSHING_ALL_PEERS, callbacks will be explicitly run later
-		if ( $trxActive && $flush !== self::FLUSHING_ALL_PEERS ) {
+		if ( $trxActive ) {
 			try {
 				$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 			} catch ( Exception $e ) {

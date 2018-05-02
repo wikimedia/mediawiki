@@ -88,14 +88,6 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string Agent name for query profiling */
 	protected $agent;
 
-	/** @var string One of the ROUND_* class constants */
-	private $trxRoundStage = self::ROUND_CURSORY;
-
-	const ROUND_CURSORY = 'cursory';
-	const ROUND_BEGINNING = 'within-begin';
-	const ROUND_COMMITTING = 'within-commit';
-	const ROUND_ROLLING_BACK = 'within-rollback';
-
 	private static $loggerFields =
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
 
@@ -214,14 +206,12 @@ abstract class LBFactory implements ILBFactory {
 		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
 	}
 
-	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
+	public function commitAll( $fname = __METHOD__, array $options = [] ) {
 		$this->commitMasterChanges( $fname, $options );
 		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
 	}
 
-	final public function beginMasterChanges( $fname = __METHOD__ ) {
-		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
-		$this->trxRoundStage = self::ROUND_BEGINNING;
+	public function beginMasterChanges( $fname = __METHOD__ ) {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
@@ -231,12 +221,9 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundId = $fname;
 		// Set DBO_TRX flags on all appropriate DBs
 		$this->forEachLBCallMethod( 'beginMasterChanges', [ $fname ] );
-		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
-		$this->trxRoundStage = self::ROUND_COMMITTING;
+	public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			throw new DBTransactionError(
 				null,
@@ -254,33 +241,29 @@ abstract class LBFactory implements ILBFactory {
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
-		// Run all post-commit callbacks until new ones stop getting added
+		// Run all post-commit callbacks
+		/** @var Exception $e */
 		$e = null; // first callback exception
-		do {
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
-				$ex = $lb->runMasterTransactionIdleCallbacks();
-				$e = $e ?: $ex;
-			} );
-		} while ( $this->hasMasterChanges() );
-		// Run all listener callbacks once
 		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e ) {
-			$ex = $lb->runMasterTransactionListenerCallbacks();
+			$ex = $lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_COMMIT );
 			$e = $e ?: $ex;
 		} );
-		$this->trxRoundStage = self::ROUND_CURSORY;
+		// Commit any dangling DBO_TRX transactions from callbacks on one DB to another DB
+		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
 			throw $e;
 		}
 	}
 
-	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
+	public function rollbackMasterChanges( $fname = __METHOD__ ) {
 		$this->trxRoundId = false;
+		$this->forEachLBCallMethod( 'suppressTransactionEndCallbacks' );
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
-		$this->forEachLBCallMethod( 'runMasterTransactionIdleCallbacks' );
-		$this->forEachLBCallMethod( 'runMasterTransactionListenerCallbacks' );
-		$this->trxRoundStage = self::ROUND_CURSORY;
+		// Run all post-rollback callbacks
+		$this->forEachLB( function ( ILoadBalancer $lb ) {
+			$lb->runMasterPostTrxCallbacks( IDatabase::TRIGGER_ROLLBACK );
+		} );
 	}
 
 	public function hasTransactionRound() {
@@ -425,7 +408,7 @@ abstract class LBFactory implements ILBFactory {
 		return $this->ticket;
 	}
 
-	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
+	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
 			$this->perfLogger->error( __METHOD__ . ": $fname does not have outer scope.\n" .
 				( new RuntimeException() )->getTraceAsString() );
@@ -612,18 +595,6 @@ abstract class LBFactory implements ILBFactory {
 		}
 
 		$this->requestInfo = $info + $this->requestInfo;
-	}
-
-	/**
-	 * @param string $stage
-	 */
-	private function assertTransactionRoundStage( $stage ) {
-		if ( $this->trxRoundStage !== $stage ) {
-			throw new DBTransactionError(
-				null,
-				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
-			);
-		}
 	}
 
 	/**
