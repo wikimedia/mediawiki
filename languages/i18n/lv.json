@@ -1228,7 +1228,7 @@
 	"rcfilters-liveupdates-button-title-off": "Rādīt jaunās izmaiņas, tiklīdz tās tiek veiktas",
 	"rcfilters-watchlist-markseen-button": "Atzīmēt visas izmaiņas kā apskatītas",
 	"rcfilters-watchlist-edit-watchlist-button": "Labot manu uzraugāmo lapu sarakstu",
-	"rcfilters-watchlist-showupdated": "Izmaiņas lapās, kuras nav apmeklētas kopš izmaiņu veikšanas ir <strong>trekninātā rakstā</strong>.",
+	"rcfilters-watchlist-showupdated": "Izmaiņas lapās, kuras nav apmeklētas kopš izmaiņu veikšanas, ir <strong>trekninātā rakstā</strong>.",
 	"rcfilters-preference-label": "Paslēpt uzlaboto pēdējo izmaiņu versiju",
 	"rcnotefrom": "Zemāk {{PLURAL:$5|redzamas izmaiņas|redzama izmaiņa|redzamas izmaiņas}} kopš <strong>$3, $4</strong> (parādītas ne vairāk kā <strong>$1</strong>).",
 	"rclistfromreset": "Atiestatīt datuma izvēli",
