@@ -782,7 +782,7 @@
 			 *         'moduleName': {
 			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
-			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
+			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null
@@ -865,8 +865,13 @@
 				 */
 				jobs = [],
 
-				// For getMarker()
-				marker = null,
+				/**
+				 * For #addEmbeddedCSS() and #addLink()
+				 *
+				 * @private
+				 * @property {HTMLElement|null} marker
+				 */
+				marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
 				// For addEmbeddedCSS()
 				cssBuffer = '',
@@ -874,40 +879,24 @@
 				cssCallbacks = [],
 				rAF = window.requestAnimationFrame || setTimeout;
 
-			function getMarker() {
-				if ( !marker ) {
-					// Cache
-					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
-					if ( !marker ) {
-						mw.log( 'Created ResourceLoaderDynamicStyles marker dynamically' );
-						marker = document.createElement( 'meta' );
-						marker.name = 'ResourceLoaderDynamicStyles';
-						document.head.appendChild( marker );
-					}
-				}
-				return marker;
-			}
-
 			/**
 			 * Create a new style element and add it to the DOM.
 			 *
 			 * @private
 			 * @param {string} text CSS text
-			 * @param {Node} [nextNode] The element where the style tag
+			 * @param {Node|null} [nextNode] The element where the style tag
 			 *  should be inserted before
 			 * @return {HTMLElement} Reference to the created style element
 			 */
 			function newStyleTag( text, nextNode ) {
-				var s = document.createElement( 'style' );
-
-				s.appendChild( document.createTextNode( text ) );
+				var el = document.createElement( 'style' );
+				el.appendChild( document.createTextNode( text ) );
 				if ( nextNode && nextNode.parentNode ) {
-					nextNode.parentNode.insertBefore( s, nextNode );
+					nextNode.parentNode.insertBefore( el, nextNode );
 				} else {
-					document.head.appendChild( s );
+					document.head.appendChild( el );
 				}
-
-				return s;
+				return el;
 			}
 
 			/**
@@ -967,7 +956,7 @@
 					cssBuffer = '';
 				}
 
-				$( newStyleTag( cssText, getMarker() ) );
+				newStyleTag( cssText, marker );
 
 				fireCallbacks();
 			}
@@ -1124,14 +1113,6 @@
 					}
 				}
 
-				// Resolves dynamic loader function and replaces it with its own results
-				if ( typeof registry[ module ].dependencies === 'function' ) {
-					registry[ module ].dependencies = registry[ module ].dependencies();
-					// Ensures the module's dependencies are always in an array
-					if ( typeof registry[ module ].dependencies !== 'object' ) {
-						registry[ module ].dependencies = [ registry[ module ].dependencies ];
-					}
-				}
 				if ( resolved.indexOf( module ) !== -1 ) {
 					// Module already resolved; nothing to do
 					return;
@@ -1280,7 +1261,11 @@
 				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
-				$( getMarker() ).before( el );
+				if ( marker && marker.parentNode ) {
+					marker.parentNode.insertBefore( el, marker );
+				} else {
+					document.head.appendChild( el );
+				}
 			}
 
 			/**
@@ -1894,8 +1879,8 @@
 				 *  a list of arguments compatible with this method
 				 * @param {string|number} version Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
-				 * @param {string|Array|Function} dependencies One string or array of strings of module
-				 *  names on which this module depends, or a function that returns that array.
+				 * @param {string|Array} dependencies One string or array of strings of module
+				 *  names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
@@ -1922,8 +1907,8 @@
 					if ( typeof dependencies === 'string' ) {
 						// A single module name
 						deps = [ dependencies ];
-					} else if ( typeof dependencies === 'object' || typeof dependencies === 'function' ) {
-						// Array of module names or a function that returns an array
+					} else if ( typeof dependencies === 'object' ) {
+						// Array of module names
 						deps = dependencies;
 					}
 					// List the module as registered
