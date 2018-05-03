@@ -865,8 +865,13 @@
 				 */
 				jobs = [],
 
-				// For getMarker()
-				marker = null,
+				/**
+				 * For #addEmbeddedCSS() and #addLink()
+				 *
+				 * @private
+				 * @property {HTMLElement|null} marker
+				 */
+				marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
 				// For addEmbeddedCSS()
 				cssBuffer = '',
@@ -874,40 +879,24 @@
 				cssCallbacks = [],
 				rAF = window.requestAnimationFrame || setTimeout;
 
-			function getMarker() {
-				if ( !marker ) {
-					// Cache
-					marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' );
-					if ( !marker ) {
-						mw.log( 'Created ResourceLoaderDynamicStyles marker dynamically' );
-						marker = document.createElement( 'meta' );
-						marker.name = 'ResourceLoaderDynamicStyles';
-						document.head.appendChild( marker );
-					}
-				}
-				return marker;
-			}
-
 			/**
 			 * Create a new style element and add it to the DOM.
 			 *
 			 * @private
 			 * @param {string} text CSS text
-			 * @param {Node} [nextNode] The element where the style tag
+			 * @param {Node|null} [nextNode] The element where the style tag
 			 *  should be inserted before
 			 * @return {HTMLElement} Reference to the created style element
 			 */
 			function newStyleTag( text, nextNode ) {
-				var s = document.createElement( 'style' );
-
-				s.appendChild( document.createTextNode( text ) );
+				var el = document.createElement( 'style' );
+				el.appendChild( document.createTextNode( text ) );
 				if ( nextNode && nextNode.parentNode ) {
-					nextNode.parentNode.insertBefore( s, nextNode );
+					nextNode.parentNode.insertBefore( el, nextNode );
 				} else {
-					document.head.appendChild( s );
+					document.head.appendChild( el );
 				}
-
-				return s;
+				return el;
 			}
 
 			/**
@@ -967,7 +956,7 @@
 					cssBuffer = '';
 				}
 
-				$( newStyleTag( cssText, getMarker() ) );
+				newStyleTag( cssText, marker );
 
 				fireCallbacks();
 			}
@@ -1280,7 +1269,11 @@
 				// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 				el.href = url;
 
-				$( getMarker() ).before( el );
+				if ( marker && marker.parentNode ) {
+					marker.parentNode.insertBefore( el, marker );
+				} else {
+					document.head.appendChild( el );
+				}
 			}
 
 			/**
