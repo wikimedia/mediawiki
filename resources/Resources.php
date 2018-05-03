@@ -1213,11 +1213,6 @@ return [
 			'mediawiki.api',
 		],
 	],
-	'mediawiki.sectionAnchor' => [
-		// Back-compat to hide it on cached pages (T18691; Ie9e334e973; 2015-03-17)
-		'styles' => 'resources/src/mediawiki/mediawiki.sectionAnchor.css',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.storage' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.storage.js',
 		'targets' => [ 'desktop', 'mobile' ],
