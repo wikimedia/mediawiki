@@ -97,6 +97,8 @@ production.
   property in extension.json. See the documentation at
   <https://mediawiki.org/wiki/Manual:Extension.json/Schema#AutoloadNamespaces>
   for more details and an example.
+* (T19099) Tabs which link to pages that don't exist (like those to uncreated
+  discussion pages) now have a tooltip to indicate state, not just colour.
 
 === External library changes in 1.31 ===
 
@@ -129,7 +131,10 @@ production.
 
 === Bug fixes in 1.31 ===
 * (T90902) Non-breaking space in header ID breaks anchor.
-* (T189375) CSSMin now allows quoted urls in `url()` syntax to start with a space.
+* (T189375) CSSMin now allows quoted urls in `url()` syntax to start with a
+  space.
+* (T2087, T10897, T87753, T174639) Whitespace created by category and language
+  links is now stripped rather than leaving blank lines in odd places.
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
