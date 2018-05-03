@@ -59,7 +59,6 @@ class SkinTemplateTest extends MediaWikiTestCase {
 		$defaultStyles = [
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
-			'mediawiki.sectionAnchor',
 		];
 		$buttonStyle = 'mediawiki.ui.button';
 		$feedStyle = 'mediawiki.feedlink';
