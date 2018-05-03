@@ -55,7 +55,7 @@ figure[ typeof*='mw:Audio' ] {
 
 	&.mw-halign-right {
 		/* @noflip */
-		margin: 0.5em 0 1.3em 1.4em;
+		margin: 0 0 0.5em 0.5em;
 		/* @noflip */
 		clear: right;
 		/* @noflip */
@@ -64,7 +64,7 @@ figure[ typeof*='mw:Audio' ] {
 
 	&.mw-halign-left {
 		/* @noflip */
-		margin: 0.5em 1.4em 1.3em 0;
+		margin: 0 0.5em 0.5em 0;
 		/* @noflip */
 		clear: left;
 		/* @noflip */
@@ -115,6 +115,13 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	margin: 0.5em 0 1.3em 1.4em;
 	clear: right;
 	float: right;
+
+	&.mw-halign-left {
+		margin: 0.5em 1.4em 1.3em 0;
+	}
+	&.mw-halign-right {
+		margin: 0.5em 0 1.3em 1.4em;
+	}
 
 	> *:first-child {
 		> img,
