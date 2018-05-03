@@ -17,7 +17,9 @@ class CrhExceptions {
 		$this->loadRegs();
 	}
 
-	public $exceptionMap = [];
+	public $Cyrl2LatnExceptions = [];
+	public $Latn2CyrlExceptions = [];
+
 	public $Cyrl2LatnPatterns = [];
 	public $Latn2CyrlPatterns = [];
 
@@ -59,10 +61,12 @@ class CrhExceptions {
 	private function addMappings( $mapArray, &$A2B, &$B2A, $exactCase = false,
 			$prePat = '', $postPat = '' ) {
 		foreach ( $mapArray as $WordA => $WordB ) {
-			$ucA = $this->myUc( $WordA );
-			$ucWordA = $this->myUcWord( $WordA );
-			$ucB = $this->myUc( $WordB );
-			$ucWordB = $this->myUcWord( $WordB );
+			if ( ! $exactCase ) {
+				$ucA = $this->myUc( $WordA );
+				$ucWordA = $this->myUcWord( $WordA );
+				$ucB = $this->myUc( $WordB );
+				$ucWordB = $this->myUcWord( $WordB );
+			}
 
 			# if there are regexes, only map toward backregs
 			if ( ! preg_match( '/\$[1-9]/', $WordA ) ) {
@@ -86,94 +90,130 @@ class CrhExceptions {
 	function loadExceptions( $lcChars, $ucChars ) {
 		# init lc and uc, as needed
 		$this->initLcUc( $lcChars, $ucChars );
-		# load C2L and L2C whole-word exceptions into the same array, since it's just a look up
-		# no regex prefix/suffix needed
-		$this->addMappings( $this->wordMappings, $this->exceptionMap, $this->exceptionMap );
-		$this->addMappings( $this->exactCaseMappings, $this->exceptionMap, $this->exceptionMap, true );
 
-		# load C2L and L2C bidirectional prefix mappings
+		# no regex prefix/suffix needed
+		$this->addMappings( $this->ManyToOneC2LMappings,
+			// reverse exception mapping order to handle many-to-one C2L mappings
+			$this->Latn2CyrlExceptions, $this->Cyrl2LatnExceptions );
+		$this->addMappings( $this->multiCaseMappings,
+			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions );
+		$this->addMappings( $this->exactCaseMappings,
+			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, true );
+
+		# load C2L and L2C bidirectional affix mappings
 		$this->addMappings( $this->prefixMapping,
-			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/^', '/u' );
+			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/\b', '/u' );
 		$this->addMappings( $this->suffixMapping,
-			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', '$/u' );
+			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', '\b/u' );
 
 		# tack on one-way mappings to the ends of the prefix and suffix patterns
 		$this->Cyrl2LatnPatterns += $this->Cyrl2LatnRegexes;
 		$this->Latn2CyrlPatterns += $this->Latn2CyrlRegexes;
 
-		return [ $this->exceptionMap, $this->Cyrl2LatnPatterns,
+		return [ $this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, $this->Cyrl2LatnPatterns,
 			$this->Latn2CyrlPatterns, $this->CyrlCleanUpRegexes ];
 	}
 
-	# map Cyrillic to Latin and back, whole word match only
+	# map Latin to Cyrillic and back, simple string match only (no regex)
 	# variants: all lowercase, all uppercase, first letter capitalized
-	# items with capture group refs (e.g., $1) are only mapped from the
-	# regex to the reference
-	private $wordMappings = [
+	private $ManyToOneC2LMappings = [
+		# Carefully ordered many-to-one mappings
+		# these are ordered so C2L is correct (the later Latin one)
+		# see also L2C mappings below
+		'fevqülade' => 'февкъульаде', 'fevqulade' => 'февкъульаде',
+		'beyude' => 'бейуде', 'beyüde' => 'бейуде',
+		'curat' => 'джурьат', 'cürat' => 'джурьат',
+		'mesul' => 'месуль', 'mesül' => 'месуль',
+	];
 
-		#### originally Cyrillic to Latin
+	# map Cyrillic to Latin and back, simple string match only (no regex)
+	# variants: all lowercase, all uppercase, first letter capitalized
+	private $multiCaseMappings = [
+
+		#### Cyrillic to Latin
 		'аджыумер' => 'acıümer', 'аджыусеин' => 'acıüsein', 'алейкум' => 'aleyküm',
-		'бейуде' => 'beyüde', 'боливия' => 'boliviya', 'большевик' => 'bolşevik', 'борис' => 'boris',
-		'борнен' => 'bornen', 'бугун' => 'bugün', 'бузкесен' => 'buzkesen', 'буксир' => 'buksir',
-		'бульбуль' => 'bülbül', 'бульвар' => 'bulvar', 'бульдозер' => 'buldozer', 'бульон' => 'bulyon',
+		'бозтюс' => 'boztüs', 'боливия' => 'boliviya', 'большевик' => 'bolşevik', 'борис' => 'boris',
+		'борнен' => 'bornen', 'бублик' => 'bublik', 'буддизм' => 'buddizm', 'буддист' => 'buddist',
+		'буженина' => 'bujenina', 'бузкесен' => 'buzkesen', 'букинист' => 'bukinist',
+		'буксир' => 'buksir', 'бульбул' => 'bülbül', 'бульвар' => 'bulvar', 'бульдог' => 'buldog',
+		'бульдозер' => 'buldozer', 'бульон' => 'bulyon', 'бумеранг' => 'bumerang',
 		'бунен' => 'bunen', 'буннен' => 'bunnen', 'бус-бутюн' => 'büs-bütün',
-		'бутерброд' => 'buterbrod', 'буфер' => 'bufer', 'буфет' => 'bufet', 'гонъюл' => 'göñül',
-		'горизонт' => 'gorizont', 'госпиталь' => 'gospital', 'гуливер' => 'guliver', 'гуна' => 'güna',
-		'гунях' => 'günâh', 'гургуль' => 'gürgül', 'гуя' => 'güya', 'демирёл' => 'demiryol',
-		'джуньджу' => 'cüncü', 'ёлнен' => 'yolnen', 'зумбуль' => 'zümbül', 'ильи' => 'ilyi', 'ишунь' =>
-		'işün', 'кодекс' => 'kodeks', 'кодифик' => 'kodifik', 'койлю' => 'köylü', 'коккоз' =>
-		'kökköz', 'коккозь' => 'kökköz', 'коккозю' => 'kökközü', 'кокос' => 'kokos',
-		'коллег' => 'kolleg', 'коллект' => 'kollekt', 'коллекц' => 'kollekts', 'кольцов' => 'koltsov',
-		'комбин' => 'kombin', 'комедия' => 'komediya', 'коменда' => 'komenda', 'комета' => 'kometa',
-		'комис' => 'komis', 'комит' => 'komit', 'комите' => 'komite', 'коммент' => 'komment',
-		'коммерс' => 'kommers', 'коммерц' => 'kommerts', 'компенс' => 'kompens', 'компил' => 'kompil',
-		'компьютер' => 'kompyuter', 'конвейер' => 'konveyer', 'конвен' => 'konven',
-		'конверт' => 'konvert', 'конденс' => 'kondens', 'кондитер' => 'konditer',
-		'кондиц' => 'kondits', 'коник' => 'konik', 'консерв' => 'konserv', 'контейнер' => 'konteyner',
-		'континент' => 'kontinent', 'конфе' => 'konfe', 'конфискац' => 'konfiskats',
-		'концен' => 'kontsen', 'концерт' => 'kontsert', 'конъюктур' => 'konyuktur',
-		'коньки' => 'konki', 'коньяк' => 'konyak', 'копирле' => 'kopirle', 'копия' => 'kopiya',
-		'корбекул' => 'körbekül', 'кореиз' => 'koreiz', 'коренн' => 'korenn', 'корея' => 'koreya',
-		'коридор' => 'koridor', 'корнеев' => 'korneyev', 'корре' => 'korre', 'корьбекул' =>
-		'körbekül', 'косме' => 'kosme', 'космик' => 'kosmik', 'костюм' => 'kostüm', 'котельн' =>
-		'koteln', 'котировка' => 'kotirovka', 'котлет' => 'kotlet', 'кочергин' => 'koçergin',
-		'коше' => 'köşe', 'кудрин' => 'kudrin', 'кузнец' => 'kuznets', 'кулинар' => 'kulinar',
-		'кулич' => 'kuliç', 'кульминац' => 'kulminats', 'культив' => 'kultiv',
-		'культура' => 'kultura', 'куркулет' => 'kürkület', 'курсив' => 'kursiv', 'кушку' => 'küşkü',
-		'куюк' => 'küyük', 'къарагоз' => 'qaragöz', 'къолязма' => 'qolyazma', 'къуртумер' =>
-		'qurtümer', 'къуртусеин' => 'qurtüsein', 'марьино' => 'maryino', 'медьюн' => 'medyun',
-		'месули' => 'mesüli', 'месуль' => 'mesül', 'мефкуре' => 'mefküre', 'могедек' => 'mögedek',
-		'муур' => 'müür', 'муче' => 'müçe', 'муюз' => 'müyüz', 'огнево' => 'ognevo',
-		'одеколон' => 'odekolon', 'одеса' => 'odesa', 'одесса' => 'odessa', 'озерки' => 'ozerki',
-		'озерн' => 'ozern', 'озёрн' => 'ozörn', 'океан' => 'okean', 'оленев' => 'olenev',
-		'олимп' => 'olimp', 'ольчер' => 'ölçer', 'онен' => 'onen', 'оннен' => 'onnen',
-		'опера' => 'opera', 'оптим' => 'optim', 'опци' => 'optsi', 'опция' => 'optsiya',
-		'орден' => 'orden', 'ордер' => 'order', 'ореанда' => 'oreanda', 'орех' => 'oreh',
-		'оригинал' => 'original', 'ориент' => 'oriyent', 'оркестр' => 'orkestr', 'орлин' => 'orlin',
-		'офис' => 'ofis', 'офицер' => 'ofitser', 'офсет' => 'ofset', 'оюннен' => 'oyunnen', 'побед' =>
-		'pobed', 'полево' => 'polevo', 'поли' => 'poli', 'полюшко' => 'polüşko',
-		'помидор' => 'pomidor', 'пониз' => 'poniz', 'порфир' => 'porfir', 'потелов' => 'potelov',
-		'почетн' => 'poçetn', 'почётн' => 'poçötn', 'публик' => 'publik', 'публиц' => 'publits',
-		'пушкин' => 'puşkin', 'сеитумер' => 'seitümer', 'сеитусеин' => 'seitüsein', 'сеитягъя' =>
-		'seityağya', 'сеитягья' => 'seityagya', 'сеитяхья' => 'seityahya', 'сеитяя' => 'seityaya',
+		'бутерброд' => 'buterbrod', 'бутилен' => 'butilen', 'бутилир' => 'butilir',
+		'буфер' => 'bufer', 'буфет' => 'bufet', 'гобелен' => 'gobelen', 'гомео' => 'gomeo',
+		'горизонт' => 'gorizont', 'госпитал' => 'gospital', 'готтентот' => 'gottentot',
+		'гофрир' => 'gofrir', 'губерн' => 'gubern', 'гуверн' => 'guvern', 'гугенот' => 'gugenot',
+		'гуливер' => 'guliver', 'гуна' => 'güna', 'гунях' => 'günâh', 'гургуль' => 'gürgül',
+		'гуя' => 'güya', 'дёрткуль' => 'dörtkül', 'джуньджу' => 'cüncü', 'ёлнен' => 'yolnen',
+		'зумбуль' => 'zümbül', 'ильи' => 'ilyi', 'ишунь' => 'işün', 'ковер' => 'kover', 'код' => 'kod',
+		'койлю' => 'köylü', 'кокагъач' => 'kökağaç', 'кокбаштанкъара' => 'kökbaştanqara',
+		'кокгогерджин' => 'kökgögercin', 'кокдогъан' => 'kökdoğan', 'коккозю' => 'kökközü',
+		'коккъузгъун' => 'kökquzğun', 'коклюш' => 'koklüş', 'кокташ' => 'köktaş',
+		'коктогъан' => 'köktoğan', 'коктотай' => 'köktotay', 'коллег' => 'kolleg',
+		'коллект' => 'kollekt', 'коллекц' => 'kollekts', 'колье' => 'kolye', 'кольраби' => 'kolrabi',
+		'кольцов' => 'koltsov', 'комби' => 'kombi', 'комеди' => 'komedi', 'коменда' => 'komenda',
+		'комета' => 'kometa', 'комив' => 'komiv', 'комис' => 'komis', 'комит' => 'komit',
+		'комм' => 'komm', 'коммент' => 'komment', 'коммерс' => 'kommers', 'коммерц' => 'kommerts',
+		'комп' => 'komp', 'конве' => 'konve', 'конгени' => 'kongeni', 'конденс' => 'kondens',
+		'кондил' => 'kondil', 'кондитер' => 'konditer', 'кондиц' => 'kondits', 'коник' => 'konik',
+		'конкис' => 'konkis', 'консерв' => 'konserv', 'конси' => 'konsi', 'контейнер' => 'konteyner',
+		'конти' => 'konti', 'конфе' => 'konfe', 'конфи' => 'konfi', 'конце' => 'kontse',
+		'конъю' => 'konyu', 'коньки' => 'konki', 'коньяк' => 'konyak', 'копирле' => 'kopirle',
+		'копия' => 'kopiya', 'корде' => 'korde', 'кореиз' => 'koreiz', 'коренн' => 'korenn',
+		'корея' => 'koreya', 'кориа' => 'koria', 'коридор' => 'koridor', 'корне' => 'korne',
+		'корнеев' => 'korneyev', 'корни' => 'korni', 'корре' => 'korre', 'косме' => 'kosme',
+		'космик' => 'kosmik', 'костюм' => 'kostüm', 'котельн' => 'koteln', 'котир' => 'kotir',
+		'котлет' => 'kotlet', 'кочерг' => 'koçerg', 'коше' => 'köşe', 'куби' => 'kubi',
+		'кудрин' => 'kudrin', 'кузнец' => 'kuznets', 'кулинар' => 'kulinar', 'кулич' => 'kuliç',
+		'кульмин' => 'kulmin', 'культаш' => 'kültaş', 'культе' => 'külte', 'культ' => 'kult',
+		'куркулет' => 'kürkület', 'курсив' => 'kursiv', 'кушет' => 'kuşet', 'кушку' => 'küşkü',
+		'куюк' => 'küyük', 'къолязма' => 'qolyazma', 'къуртумер' => 'qurtümer',
+		'къуртусеин' => 'qurtüsein', 'медьюн' => 'medyun', 'месули' => 'mesüli',
+		'мефкуре' => 'mefküre', 'могедек' => 'mögedek', 'мумиё' => 'mumiyo', 'мумиф' => 'mumif',
+		'муче' => 'müçe', 'муюз' => 'müyüz', 'нумюне' => 'nümüne', 'обел' => 'obel', 'обер' => 'ober',
+		'обли' => 'obli', 'обсе' => 'obse', 'обт' => 'obt', 'огне' => 'ogne', 'одеколон' => 'odekolon',
+		'одеса' => 'odesa', 'одесса' => 'odessa', 'озерки' => 'ozerki', 'озерн' => 'ozern',
+		'озёрн' => 'ozörn', 'озюя' => 'özüya', 'океан' => 'okean', 'окси' => 'oksi',
+		'октет' => 'oktet', 'олеа' => 'olea', 'олеи' => 'olei', 'оленев' => 'olenev', 'олив' => 'oliv',
+		'олиг' => 'olig', 'олимп' => 'olimp', 'олиф' => 'olif', 'ольчер' => 'ölçer', 'омле' => 'omle',
+		'онен' => 'onen', 'оннен' => 'onnen', 'опера' => 'opera', 'опере' => 'opere',
+		'оптим' => 'optim', 'опци' => 'optsi', 'орби' => 'orbi', 'орден' => 'orden',
+		'ордер' => 'order', 'ордин' => 'ordin', 'ореа' => 'orea', 'орех' => 'oreh',
+		'ориент' => 'oriyent', 'оркестр' => 'orkestr', 'орлин' => 'orlin', 'орни' => 'orni',
+		'орхи' => 'orhi', 'осци' => 'ostsi', 'офис' => 'ofis', 'офиц' => 'ofits', 'офсет' => 'ofset',
+		'очерк' => 'oçerk', 'оюннен' => 'oyunnen', 'побед' => 'pobed', 'полево' => 'polevo',
+		'поли' => 'poli', 'полюшко' => 'polüşko', 'помидор' => 'pomidor', 'пониз' => 'poniz',
+		'порфир' => 'porfir', 'потелов' => 'potelov', 'потюк' => 'pötük', 'почетн' => 'poçetn',
+		'почётн' => 'poçötn', 'пукле' => 'pükle', 'пуркю' => 'pürkü', 'пурумют' => 'purümüt',
+		'пускул' => 'püskül', 'пускур' => 'püskür', 'пусюр' => 'püsür', 'пуфле' => 'püfle',
 		'сейитумер' => 'seyitümer', 'сейитусеин' => 'seyitüsein', 'сейитягъя' => 'seyityağya',
 		'сейитягья' => 'seyityagya', 'сейитяхья' => 'seyityahya', 'сейитяя' => 'seyityaya',
-		'ультимат' => 'ultimat', 'ультра' => 'ultra', 'ульянов' => 'ulyanov', 'универ' => 'univer',
-		'уника' => 'unika', 'унтер' => 'unter', 'урьян' => 'uryan', 'уткин' => 'utkin', 'учебн' =>
-		'uçebn', 'шовини' => 'şovini', 'шоссе' => 'şosse', 'шубин' => 'şubin', 'шунен' => 'şunen',
-		'шуннен' => 'şunnen', 'щёлкино' => 'şçolkino', 'эмирусеин' => 'emirüsein',
-		'юзбашы' => 'yüzbaşı', 'юзйыл' => 'yüzyıl', 'юртер' => 'yurter', 'ющенко' => 'yuşçenko',
+		'сеитумер' => 'seitümer', 'сеитусеин' => 'seitüsein', 'сеитягъя' => 'seityağya',
+		'сеитягья' => 'seityagya', 'сеитяхья' => 'seityahya', 'сеитяя' => 'seityaya',
+		'сурет' => 'süret', 'увертюра' => 'uvertüra', 'угле' => 'ugle', 'узвий' => 'uzviy',
+		'улица' => 'ulitsa', 'ультимат' => 'ultimat', 'ультра' => 'ultra', 'ульянов' => 'ulyanov',
+		'универ' => 'univer', 'уник' => 'unik', 'унис' => 'unis', 'унит' => 'unit', 'униф' => 'unif',
+		'унтер' => 'unter', 'урьян' => 'uryan', 'утил' => 'util', 'уткин' => 'utkin',
+		'учебн' => 'uçebn', 'шовини' => 'şovini', 'шоссе' => 'şosse', 'шубин' => 'şubin',
+		'шунен' => 'şunen', 'шуннен' => 'şunnen', 'шунчюн' => 'şunçün', 'щёлкино' => 'şçolkino',
+		'эмирусеин' => 'emirüsein', 'юзбашы' => 'yüzbaşı', 'юзйыл' => 'yüzyıl', 'юртер' => 'yurter',
+		'ющенко' => 'yuşçenko',
 
-		'кою' => 'köyü', 'кок' => 'kök', 'ком-кок' => 'köm-kök', 'коп' => 'köp', 'ог' => 'ög',
-		'юрип' => 'yürip', 'юз' => 'yüz', 'юк' => 'yük', 'буюп' => 'büyüp', 'буюк' => 'büyük',
-		'джонк' => 'cönk', 'джонкю' => 'cönkü', 'устке' => 'üstke', 'устте' => 'üstte',
-		'усттен' => 'üstten',
+		### Carefully ordered many-to-one mappings
+		# these are ordered so L2C is correct (the later Cyrillic one)
+		# see also $ManyToOneC2LMappings above for C2L
+		'шофер' => 'şoför', 'шофёр' => 'şoför',
+		'бугун' => 'bugün', 'бугунь' => 'bugün',
+		'демирёл' => 'demiryol', 'демиръёл' => 'demiryol',
+		'гонъюл' => 'göñül', 'гонъюль' => 'göñül',
+		'коккоз' => 'kökköz', 'коккозь' => 'kökköz',
+		'корбекул' => 'körbekül', 'корьбекул' => 'körbekül', 'корьбекуль' => 'körbekül',
+		'муур' => 'müür', 'муурь' => 'müür',
+		'оригинал' => 'original', 'оригиналь' => 'original',
+		'пускю' => 'püskü', 'пуськю' => 'püskü',
+		'къарагоз' => 'qaragöz', 'къарагозь' => 'qaragöz',
+		'етсин' => 'yetsin', 'етсин' => 'etsin',
 
-		# шофёр needs to come after шофер to override it in the Latin-to-Cyrillic direction
-		'шофер' => 'şoför',
-		'шофёр' => 'şoför',
-
-		#### originally Latin to Cyrillic (deduped from above)
+		#### Latin to Cyrillic (deduped from above)
 
 		# слова на -аль
 		# words in -аль
@@ -184,42 +224,39 @@ class CrhExceptions {
 		'истикъбаль' => 'istiqbal', 'истикъляль' => 'istiqlâl', 'италия' => 'italiya',
 		'италья' => 'italya', 'ишгъаль' => 'işğal', 'кафедраль' => 'kafedral', 'казуаль' => 'kazual',
 		'коллегиаль' => 'kollegial', 'колоссаль' => 'kolossal', 'коммуналь' => 'kommunal',
-		'кординаль' => 'kordinal', 'криминаль' => 'kriminal', 'легаль' => 'legal', 'леталь' => 'letal',
-		'либераль' => 'liberal', 'локаль' => 'lokal', 'магистраль' => 'magistral',
-		'материаль' => 'material', 'машиналь' => 'maşinal', 'меаль' => 'meal',
-		'медальон' => 'medalyon', 'медаль' => 'medal', 'меридиональ' => 'meridional',
-		'мешъаль' => 'meşal', 'минераль' => 'mineral', 'минималь' => 'minimal', 'мисаль' => 'misal',
-		'модаль' => 'modal', 'музыкаль' => 'muzıkal', 'номиналь' => 'nominal', 'нормаль' => 'normal',
-		'оптималь' => 'optimal', 'орбиталь' => 'orbital', 'оригиналь' => 'original',
-		'педаль' => 'pedal', 'пропорциональ' => 'proportsional', 'профессиональ' => 'professional',
-		'радикаль' => 'radikal', 'рациональ' => 'ratsional', 'реаль' => 'real',
-		'региональ' => 'regional', 'суаль' => 'sual', 'шималь' => 'şimal',
+		'кординаль' => 'kordinal', 'криминаль' => 'kriminal', 'легаль' => 'legal',
+		'леталь' => 'letal', 'либераль' => 'liberal', 'локаль' => 'lokal',
+		'магистраль' => 'magistral', 'материаль' => 'material', 'машиналь' => 'maşinal',
+		'меаль' => 'meal', 'медальон' => 'medalyon', 'медаль' => 'medal',
+		'меридиональ' => 'meridional', 'мешъаль' => 'meşal', 'минераль' => 'mineral',
+		'минималь' => 'minimal', 'мисаль' => 'misal', 'модаль' => 'modal', 'музыкаль' => 'muzıkal',
+		'номиналь' => 'nominal', 'нормаль' => 'normal', 'оптималь' => 'optimal',
+		'орбиталь' => 'orbital', 'педаль' => 'pedal', 'пропорциональ' => 'proportsional',
+		'профессиональ' => 'professional', 'радикаль' => 'radikal', 'рациональ' => 'ratsional',
+		'реаль' => 'real', 'региональ' => 'regional', 'суаль' => 'sual', 'шималь' => 'şimal',
 		'территориаль' => 'territorial', 'тимсаль' => 'timsal', 'тоталь' => 'total',
 		'уникаль' => 'unikal', 'универсаль' => 'universal', 'вертикаль' => 'vertikal',
 		'виртуаль' => 'virtual', 'визуаль' => 'vizual', 'вуаль' => 'vual', 'зональ' => 'zonal',
-		'зуаль' => 'zual',
+		'зуаль' => 'zual', 'италь' => 'ital',
 
 		# слова с мягким знаком перед а, о, у, э
 		# Words with a soft sign before а, о, у, э
-		'бильакис' => 'bilakis', 'маальэсеф' => 'maalesef',
-		'мельун' => 'melun', 'озьара' => 'özara', 'вельасыл' => 'velasıl',
-		'ельаякъ' => 'yelayaq',
-		# these are ordered so C2L is correct (the later Latin one)
-		'февкъульаде' => 'fevqülade','февкъульаде' => 'fevqulade',
+		'бильакис' => 'bilakis', 'маальэсеф' => 'maalesef', 'мельун' => 'melun', 'озьара' => 'özara',
+		'вельасыл' => 'velasıl', 'ельаякъ' => 'yelayaq',
 
 		# другие слова с мягким знаком
 		# Other words with a soft sign
 		'альбатрос' => 'albatros', 'альбинос' => 'albinos', 'альбом' => 'albom',
 		'альбумин' => 'albumin', 'алфавит' => 'alfavit', 'альфа' => 'alfa', 'альманах' => 'almanah',
-		'альпинист' => 'alpinist', 'альтерн' => 'altern', 'альтру' => 'altru', 'альвеола' => 'alveola',
-		'ансамбль' => 'ansambl', 'аньане' => 'anane', 'асфальт' => 'asfalt', 'бальнео' => 'balneo',
-		'баарь' => 'baar', 'базальт' => 'bazalt', 'бинокль' => 'binokl', 'джурьат' => 'curat',
-		'джурьат' => 'cürat', 'девальв' => 'devalv', 'факульт' => 'fakult', 'фальсиф' => 'falsif',
-		'фольклор' => 'folklor', 'гальван' => 'galvan', 'геральд' => 'gerald', 'женьшень' => 'jenşen',
+		'альпинист' => 'alpinist', 'альтерн' => 'altern', 'альтру' => 'altru',
+		'альвеола' => 'alveola', 'ансамбль' => 'ansambl', 'аньане' => 'anane', 'асфальт' => 'asfalt',
+		'бальнео' => 'balneo', 'баарь' => 'baar', 'базальт' => 'bazalt', 'бинокль' => 'binokl',
+		'девальв' => 'devalv', 'факульт' => 'fakult', 'фальсиф' => 'falsif', 'фольклор' => 'folklor',
+		'гальван' => 'galvan', 'геральд' => 'gerald', 'женьшень' => 'jenşen',
 		'инвентарь' => 'inventar', 'кальк' => 'kalk', 'кальмар' => 'kalmar', 'консульт' => 'konsult',
-		'контроль' => 'kontrol', 'кульмин' => 'kulmin', 'культур' => 'kultur', 'лагерь' => 'lager',
-		'макъбуль' => 'maqbul', 'макъуль' => 'maqul', 'мальт' => 'malt', 'мальземе' => 'malzeme',
-		'меджуль' => 'mecul', 'мешгуль' => 'meşgül', 'мешгъуль' => 'meşğul', 'мульти' => 'multi',
+		'контроль' => 'kontrol', 'культур' => 'kultur', 'лагерь' => 'lager', 'макъбуль' => 'maqbul',
+		'макъуль' => 'maqul', 'мальт' => 'malt', 'мальземе' => 'malzeme', 'меджуль' => 'mecul',
+		'мешгуль' => 'meşgül', 'мешгъуль' => 'meşğul', 'мульти' => 'multi',
 		'мусульман' => 'musulman', 'нефть' => 'neft', 'пальто' => 'palto', 'пароль' => 'parol',
 		'патруль' => 'patrul', 'пенальти' => 'penalti', 'къальби' => 'qalbi', 'къальпке' => 'qalpke',
 		'къальплер' => 'qalpler', 'къальпни' => 'qalpni', 'къальпте' => 'qalpte', 'къаарь' => 'qaar',
@@ -233,23 +270,23 @@ class CrhExceptions {
 		# слова с твёрдым знаком
 		# Words with a solid sign
 		'бидъат' => 'bidat', 'бузъюрек' => 'buzyürek', 'атешъюрек' => 'ateşyürek',
-		'алъянакъ' => 'alyanaq', 'демиръёл' => 'demiryol', 'деръал' => 'deral', 'инъекц' => 'inyekts',
-		'мефъум' => 'mefum', 'мешъум' => 'meşum', 'объект' => 'obyekt', 'разъезд' => 'razyezd',
-		'субъект' => 'subyekt', 'хавъяр' => 'havyar', 'ямъям' => 'yamyam',
+		'алъянакъ' => 'alyanaq', 'инъекц' => 'inyekts', 'мефъум' => 'mefum', 'мешъум' => 'meşum',
+		'объект' => 'obyekt', 'разъезд' => 'razyezd', 'субъект' => 'subyekt', 'хавъяр' => 'havyar',
+		'ямъям' => 'yamyam',
 
 		# слова с буквой щ
 		# words with щ
 		'ящик' => 'yaşçik', 'мещан' => 'meşçan',
 
-		# слова с буквой ц
+		# слова с ц
 		# words with ц
 		'акциз' => 'aktsiz', 'ацет' => 'atset', 'блиц' => 'blits', 'бруцеллёз' => 'brutsellöz',
 		'доцент' => 'dotsent', 'фармацевт' => 'farmatsevt', 'глицер' => 'glitser',
 		'люцерна' => 'lütserna', 'лицей' => 'litsey', 'меццо' => 'metstso', 'наци' => 'natsi',
 		'проце' => 'protse', 'рецеп' => 'retsep', 'реценз' => 'retsenz', 'теплица' => 'teplitsa',
-		'вице' => 'vitse', 'цепс' => 'tseps', 'швейцар' => 'şveytsar',
+		'вице' => 'vitse', 'швейцар' => 'şveytsar',
 
-		# слова без буквы тс
+		# слова с тс
 		# words with тс
 		'агъартс' => 'ağarts', 'агъыртс' => 'ağırts', 'бильдиртс' => 'bildirts', 'битсин' => 'bitsin',
 		'буюльтс' => 'büyülts', 'буютс' => 'büyüts', 'гебертс' => 'geberts', 'делиртс' => 'delirts',
@@ -259,253 +296,55 @@ class CrhExceptions {
 		'кучертс' => 'küçerts', 'кучюльтс' => 'küçülts', 'пертсин' => 'pertsin', 'къайтс' => 'qayts',
 		'къутсуз' => 'qutsuz', 'орьтс' => 'örts', 'отьс' => 'öts', 'тартс' => 'tarts',
 		'тутсун' => 'tutsun', 'тюнъюльтс' => 'tüñülts', 'тюртс' => 'türts', 'янъартс' => 'yañarts',
-		'ебертс' => 'yeberts', 'етсин' => 'yetsin', 'ешертс' => 'yeşerts', 'йиритс' => 'yirits',
+		'ебертс' => 'yeberts', 'ешертс' => 'yeşerts', 'йиритс' => 'yirits',
 
 		# разные исключения
 		# different exceptions
-		'бейуде' => 'beyude', 'бугунь' => 'bugün', 'бюджет' => 'bücet', 'бюллет' => 'büllet',
-		'бюро' => 'büro', 'бюст' => 'büst', 'джонк' => 'cönk', 'диалог' => 'dialog',
-		'гонъюль' => 'göñül', 'ханымэфенди' => 'hanımefendi', 'каньон' => 'kanyon', 'кирил' => 'kiril',
-		'кирил' => 'kirill', 'кёрджа' => 'körca', 'кой' => 'köy', 'кулеръюзь' => 'küleryüz',
-		'маалле' => 'маальle', 'майор' => 'mayor', 'маниал' => 'manиаль', 'мефкуре' => 'mefküre',
-		'месуль' => 'mesul', 'месуль' => 'mesül', 'муурь' => 'müür',
-		'нормала' => 'нормальa', 'нумюне' => 'nümüne', 'проект' => 'proekt', 'район' => 'rayon',
-		'сойады' => 'soyadı', 'спортсмен' => 'sportsmen', 'услюп' => 'üslüp', 'услюб' => 'üslüb',
-		'вакъиал' => 'vaqиаль', 'юзйыллыкъ' => 'yüzyıllıq',
+		'бюджет' => 'bücet', 'бюллет' => 'büllet', 'бюро' => 'büro', 'бюст' => 'büst',
+		'диалог' => 'dialog', 'ханымэфенди' => 'hanımefendi', 'каньон' => 'kanyon',
+		'кирил' => 'kiril', 'кирилл' => 'kirill', 'кёрджа' => 'körca', 'коy' => 'köy',
+		'кулеръюзь' => 'küleryüz', 'маалле' => 'маальle', 'майор' => 'mayor', 'маниал' => 'manиаль',
+		'нормала' => 'нормальa', 'проект' => 'proekt', 'район' => 'rayon', 'сойады' => 'soyadı',
+		'спортсмен' => 'sportsmen', 'услюп' => 'üslüp', 'услюб' => 'üslüb', 'вакъиал' => 'vaqиаль',
+		'юзйыллыкъ' => 'yüzyıllıq', 'койот' => 'koyot',
 
 		# имена собственные
 		# proper names
-		'адольф' => 'adolf', 'альберт' => 'albert', 'бешуй' => 'beşüy', 'эмирусеин' => 'emirüsein',
-		'флотск' => 'flotsk', 'гайана' => 'gayana', 'грэсовский' => 'gresovskiy', 'гриц' => 'grits',
-		'гурджи' => 'gürci', 'игорь' => 'igor', 'ильич' => 'ilyiç', 'ильин' => 'ilyin',
-		'исмаил' => 'ismail', 'киттс' => 'kitts', 'комсомольск' => 'komsomolsk',
-		'корьбекулю' => 'körbekülü', 'корьбекуль' => 'körbekül', 'куницын' => 'kunitsın',
-		'львив' => 'lviv', 'львов' => 'lvov', 'марьино' => 'maryino', 'махульдюр' => 'mahuldür',
-		'павел' => 'pavel', 'пантикапейон' => 'pantikapeyon', 'къарагозь' => 'qaragöz',
-		'къуртсейит' => 'qurtseyit', 'къуртсеит' => 'qurtseit', 'къуртумер' => 'qurtümer',
-		'сейитумер' => 'seyitümer', 'сеитумер' => 'seitümer', 'смаил' => 'smail',
-		'советск' => 'sovetsk', 'шемьи-заде' => 'şemi-zade', 'щёлкино' => 'şçolkino',
-		'тсвана' => 'tsvana', 'учьэвли' => 'üçevli', 'йохан' => 'yohan', 'йорк' => 'york',
-		'ющенко' => 'yuşçenko', 'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy',
-		'льская' => 'lskaya', 'льский' => 'lskiy', 'льское' => 'lskoye', 'ополь' => 'opol',
+		'адольф' => 'adolf', 'альберт' => 'albert', 'бешуй' => 'beşüy', 'флотск' => 'flotsk',
+		'гайана' => 'gayana', 'грэсовский' => 'gresovskiy', 'гриц' => 'grits', 'гурджи' => 'gürci',
+		'игорь' => 'igor', 'ильич' => 'ilyiç', 'ильин' => 'ilyin', 'исмаил' => 'ismail',
+		'киттс' => 'kitts', 'комсомольск' => 'komsomolsk', 'корьбекулю' => 'körbekülü',
+		'куницын' => 'kunitsın', 'львив' => 'lviv', 'львов' => 'lvov', 'марьино' => 'maryino',
+		'махульдюр' => 'mahuldür', 'павел' => 'pavel', 'пантикапейон' => 'pantikapeyon',
+		'къуртсейит' => 'qurtseyit', 'къуртсеит' => 'qurtseit', 'смаил' => 'smail',
+		'советск' => 'sovetsk', 'шемьи-заде' => 'şemi-zade', 'тсвана' => 'tsvana',
+		'учьэвли' => 'üçevli', 'йохан' => 'yohan', 'йорк' => 'york', 'винныця' => 'vinnıtsâ',
+		'винница' => 'vinnitsa', 'хмельницк' => 'hmelnitsk', 'хмельныцк' => 'hmelnıtsk',
+		'зайце' => 'zaytse', 'чистеньк' => 'çistenk', 'кольчуг' => 'kolçug', 'ручьи' => 'ruçyi',
+		'ботсвана' => 'botsvana', 'большой' => 'bolşoy', 'большое' => 'bolşoye',
+		'большая' => 'bolşaya', 'ущелье' => 'uşçelye', 'ущельное' => 'uşçelnoye',
+		'предущельное' => 'preduşçelnoye', 'новенькое' => 'novenkoye', 'новосельц' => 'novoselts',
+		'мелко' => 'melko', 'овощ' => 'ovoşç', 'перепёлк' => 'perepölk', 'рощин' => 'roşçin',
+		'братск' => 'bratsk', 'краснофлотск' => 'krasnoflotsk', 'синицин' => 'sinitsin',
+		'синицын' => 'sinitsın', 'льгов' => 'lgov', 'желто' => 'jelto', 'жёлт' => 'jölt',
+		'пермь' => 'perm', 'солдатск' => 'soldatsk', 'кольцо' => 'koltso', 'шелко' => 'şelko',
+		'охотск' => 'ohotsk', 'марий эл' => 'mariy el', 'мариуполь' => 'mariupol',
+		'белгород' => 'belgorod', 'иркутск' => 'irkutsk', 'Иркутск' => 'İrkutsk', 'орёл' => 'oröl',
+		'рязанск' => 'râzansk', 'рязань' => 'râzan', 'тверск' => 'tversk', 'тверь' => 'tver',
+		'ярославль' => 'yaroslavl', 'благовеще' => 'blagoveşçe', 'мальдив' => 'maldiv',
+		'бальбек' => 'balbek', 'альчик' => 'alçik', 'харьков' => 'harkov', 'волынск' => 'volınsk',
+		'волынь' => 'volın',
 
-		# originally Latin to Cyrillic, deduped from above
-		'ань' => 'an', 'аньге' => 'ange', 'аньде' => 'ande', 'аньки' => 'anki', 'кёр' => 'kör',
-		'мэр' => 'mer', 'этсин' => 'etsin',
-
-		# exceptions added after speaker review
-		# see https://www.mediawiki.org/wiki/User:TJones_(WMF)/T23582
-		'аджизленювинъиз' => 'acizlenüviñiz', 'акъшам' => 'aqşam', 'алчакъгонъюлли' => 'alçaqgöñülli',
-		'аньанелер' => 'ananeler', 'аньанелеримиз' => 'ananelerimiz',
-		'аньанелеримизден' => 'ananelerimizden', 'аньанелеримизни' => 'ananelerimizni',
-		'аньанели' => 'ananeli', 'асфальтке' => 'asfaltke', 'баарьде' => 'baarde', 'бахтсыз' => 'bahtsız',
-		'берилюви' => 'berilüvi', 'берювден' => 'berüvden', 'берювни' => 'berüvni',
-		'большевиклер' => 'bolşevikler', 'большевиклерге' => 'bolşeviklerge', 'болюк' => 'bölük',
-		'болюнген' => 'bölüngen', 'болюнгенини' => 'bölüngenini', 'болюшип' => 'bölüşip',
-		'бугуннинъ' => 'bugünniñ', 'бугуньден' => 'bugünden', 'бугуньки' => 'bugünki',
-		'букюльген' => 'bükülgen', 'букюльди' => 'büküldi', 'буллюр' => 'büllür',
-		'бурюмчик' => 'bürümçik', 'бурюнген' => 'bürüngen', 'бутюн' => 'bütün', 'бутюнлей' => 'bütünley',
-		'буюген' => 'büyügen', 'буюй' => 'büyüy', 'волость' => 'volost', 'волостьларгъа' => 'volostlarğa',
-		'гонъюлини' => 'göñülini', 'гонъюлли' => 'göñülli', 'гонъюллилер' => 'göñülliler',
-		'госпиталинде' => 'gospitalinde', 'госпитальге' => 'gospitalge', 'госпитальде' => 'gospitalde',
-		'гренадёр' => 'grenadör', 'гугюм' => 'gügüm', 'гугюмлер' => 'gügümler',
-		'гугюмлери' => 'gügümleri', 'гугюмлерини' => 'gügümlerini', 'гурьсюльди' => 'gürsüldi',
-		'гурюльдештилер' => 'gürüldeştiler', 'гурюльти' => 'gürülti', 'гурюльтили' => 'gürültili',
-		'гурюльтисидир' => 'gürültisidir', 'дарульмуаллиминде' => 'darülmualliminde',
-		'дарульмуаллимининде' => 'darülmuallimininde', 'дарульмуаллиминнинъ' => 'darülmualliminniñ',
-		'дёгюльген' => 'dögülgen', 'декабрьде' => 'dekabrde', 'дёндюрилип' => 'döndürilip',
-		'дёнермиз' => 'dönermiz', 'дёнмектелер' => 'dönmekteler', 'денъишюв' => 'deñişüv',
-		'дёрдю' => 'dördü', 'дёрдюмиз' => 'dördümiz', 'дёрдюнджи' => 'dördünci', 'дёрт' => 'dört',
-		'дертлешювге' => 'dertleşüvge', 'джесюр' => 'cesür', 'джесюране' => 'cesürane',
-		'джесюрликлерини' => 'cesürliklerini', 'джонегенлерини' => 'cönegenlerini',
-		'джонедим' => 'cönedim', 'джонейлер' => 'cöneyler', 'джурьатсызлыгъына' => 'cüratsızlığına',
-		'дюгюнлер' => 'dügünler', 'дюгюнлерле' => 'dügünlerle', 'дюдюк' => 'düdük', 'дюльбер' => 'dülber',
-		'дюльбери' => 'dülberi', 'дюльберлер' => 'dülberler', 'дюльберлернинъ' => 'dülberlerniñ',
-		'дюльгер' => 'dülger', 'дюльгерге' => 'dülgerge', 'дюльгерлернинъки' => 'dülgerlerniñki',
-		'дюльгерни' => 'dülgerni', 'дюльгернинъ' => 'dülgerniñ', 'дюмбюрдетти' => 'dümbürdetti',
-		'дюмен' => 'dümen', 'дюмени' => 'dümeni', 'дюнья' => 'dünya', 'дюньявий' => 'dünyaviy',
-		'дюньяда' => 'dünyada', 'дюньяларгъа' => 'dünyalarğa', 'дюньяларда' => 'dünyalarda',
-		'дюньяны' => 'dünyanı', 'дюньянынъ' => 'dünyanıñ', 'дюньясы' => 'dünyası',
-		'ельаякълылар' => 'yelayaqlılar', 'елькъуваны' => 'yelquvanı', 'ильич' => 'i̇liç',
-		'ичюн' => 'içün', 'ичюнми' => 'içünmi', 'келюви' => 'kelüvi', 'келювини' => 'kelüvini',
-		'келювинъизде' => 'kelüviñizde', 'келювни' => 'kelüvni', 'кемирювлер' => 'kemirüvler',
-		'кесювде' => 'kesüvde', 'кетюв' => 'ketüv', 'кетювге' => 'ketüvge', 'кетюви' => 'ketüvi',
-		'кетювимни' => 'ketüvimni', 'кетювлер' => 'ketüvler', 'кетювлери' => 'ketüvleri',
-		'кетювлеринънинъ' => 'ketüvleriñniñ', 'кетювнинъ' => 'ketüvniñ', 'кирюв' => 'kirüv',
-		'князь' => 'knâz', 'козькъапакъларыны' => 'közqapaqlarını', 'козьлю' => 'közlü', 'козю' => 'közü',
-		'козюме' => 'közüme', 'козюнде' => 'közünde', 'козюне' => 'közüne', 'козюнен' => 'közünen',
-		'козюнинъ' => 'közüniñ', 'козюнъни' => 'közüñni', 'койлюде' => 'köylüde',
-		'койлюлер' => 'köylüler', 'койлюлерде' => 'köylülerde', 'койлюлерни' => 'köylülerni',
-		'койлюлернинъ' => 'köylülerniñ', 'койлюнинъ' => 'köylüniñ', 'коккозьге' => 'kökközge',
-		'коккозьде' => 'kökközde', 'коккозьдеки' => 'kökközdeki', 'коккозьден' => 'kökközden',
-		'кокюс' => 'köküs', 'кокюси' => 'köküsi', 'кокюсим' => 'köküsim', 'кокюсиме' => 'köküsime',
-		'кокюсинъе' => 'köküsiñe', 'комиссарлар' => 'komissarlar', 'комиссарлары' => 'komissarları',
-		'комитетининъ' => 'komitetiniñ', 'концлагерь' => 'kontslager', 'копьмеди' => 'köpmedi',
-		'копьти' => 'köpti', 'копюр' => 'köpür', 'копюрге' => 'köpürge', 'копюрден' => 'köpürden',
-		'копюри' => 'köpüri', 'копюрнинъ' => 'köpürniñ', 'коридорда' => 'koridorda',
-		'корьсюн' => 'körsün', 'корюв' => 'körüv', 'корюльген' => 'körülgen', 'корюнди' => 'köründi',
-		'корюндинъ' => 'köründiñ', 'корюне' => 'körüne', 'корюнип' => 'körünip',
-		'корюнмеген' => 'körünmegen', 'корюнмеди' => 'körünmedi', 'корюнмедилер' => 'körünmediler',
-		'корюнмей' => 'körünmey', 'корюнмейсинъиз' => 'körünmeysiñiz', 'корюнмекте' => 'körünmekte',
-		'корюнмектелер' => 'körünmekteler', 'корюнъиз' => 'körüñiz', 'корюше' => 'körüşe',
-		'корюшеджекмиз' => 'körüşecekmiz', 'корюшим' => 'körüşim', 'корюшип' => 'körüşip',
-		'корюширмиз' => 'körüşirmiz', 'корюшкен' => 'körüşken', 'корюшкенде' => 'körüşkende',
-		'корюшмеге' => 'körüşmege', 'корюшмегенимиз' => 'körüşmegenimiz', 'корюштик' => 'körüştik',
-		'корюштим' => 'körüştim', 'корюшюв' => 'körüşüv', 'корюшювде' => 'körüşüvde',
-		'корюшювден' => 'körüşüvden', 'корюшюви' => 'körüşüvi', 'корюшювимден' => 'körüşüvimden',
-		'корюшювимизге' => 'körüşüvimizge', 'корюшювимизден' => 'körüşüvimizden',
-		'костюми' => 'kostümi', 'кузю' => 'küzü', 'кулькюден' => 'külküden', 'кулькюнинъ' => 'külküniñ',
-		'кулькюсининъ' => 'külküsiniñ', 'кулю' => 'külü', 'кулюмсиреген' => 'külümsiregen',
-		'кулюмсиреди' => 'külümsiredi', 'кулюмсиредим' => 'külümsiredim', 'кулюмсирей' => 'külümsirey',
-		'кулюмсирейим' => 'külümsireyim', 'кулюмсиреп' => 'külümsirep', 'кулюни' => 'külüni',
-		'кулюнчли' => 'külünçli', 'кулюшинде' => 'külüşinde', 'кулюштилер' => 'külüştiler',
-		'кумюш' => 'kümüş', 'куньдюз' => 'kündüz', 'куньдюзлери' => 'kündüzleri', 'куньлюк' => 'künlük',
-		'куню' => 'künü', 'кунюмде' => 'künümde', 'кунюнде' => 'kününde', 'кунюндеми' => 'künündemi',
-		'кунюнъ' => 'künüñ', 'курькчю' => 'kürkçü', 'курьсю' => 'kürsü', 'курьсюге' => 'kürsüge',
-		'курьсюлер' => 'kürsüler', 'курючтен' => 'kürüçten', 'кутюклерни' => 'kütüklerni',
-		'кутюкли' => 'kütükli', 'кучьлю' => 'küçlü', 'кучьлюклер' => 'küçlükler',
-		'кучьсюнмезсинъ' => 'küçsünmezsiñ', 'кучюджик' => 'küçücik', 'кучюк' => 'küçük',
-		'кучюм' => 'küçüm', 'кучюмле' => 'küçümle', 'кучюнден' => 'küçünden', 'кучюни' => 'küçüni',
-		'къаарьлене' => 'qaarlene', 'къаарьли' => 'qaarli', 'къальбим' => 'qalbim',
-		'къальбимни' => 'qalbimni', 'къальбинде' => 'qalbinde', 'къальпли' => 'qalpli',
-		'къальптен' => 'qalpten', 'къалюбелядан' => 'qalübelâdan', 'къулюбенъде' => 'qulübeñde',
-		'лёман' => 'löman', 'львованынъ' => 'lvovanıñ', 'лютфи' => 'lütfi', 'лютфиге' => 'lütfige',
-		'лютфини' => 'lütfini', 'мазюн' => 'mazün', 'малюм' => 'malüm', 'малюмат' => 'malümat',
-		'махлюкъаттан' => 'mahlüqattan', 'махлюкътан' => 'mahlüqtan', 'махульдюрге' => 'mahuldürge',
-		'махульдюрде' => 'mahuldürde', 'махульдюрдеки' => 'mahuldürdeki',
-		'махульдюрден' => 'mahuldürden', 'махульдюрли' => 'mahuldürli',
-		'махульдюрлилер' => 'mahuldürliler', 'махульдюрлилермиз' => 'mahuldürlilermiz',
-		'махульдюрми' => 'mahuldürmi', 'махульдюрни' => 'mahuldürni', 'мевджут' => 'mevcut',
-		'мезкюр' => 'mezkür', 'мектюп' => 'mektüp', 'мектюпни' => 'mektüpni', 'мектюпте' => 'mektüpte',
-		'мелитопольге' => 'melitopolge', 'мемнюн' => 'memnün', 'мемнюниетле' => 'memnüniyetle',
-		'мемнюним' => 'memnünim', 'мемнюнмиз' => 'memnünmiz', 'менсюп' => 'mensüp',
-		'мешгъульмиз' => 'meşğulmiz', 'мулькюни' => 'mülküni', 'мумкюн' => 'mümkün',
-		'мумкюнми' => 'mümkünmi', 'мусульманлар' => 'musulmanlar', 'мусульманлармы' => 'musulmanlarmı',
-		'мухкемлендирюв' => 'mühkemlendirüv', 'мушкюль' => 'müşkül', 'ничюн' => 'niçün',
-		'ничюндир' => 'niçündir', 'нумюнеси' => 'nümünesi', 'огю' => 'ögü', 'огюз' => 'ögüz',
-		'огюмде' => 'ögümde', 'огюмдеки' => 'ögümdeki', 'огюме' => 'ögüme', 'огюмизге' => 'ögümizge',
-		'огюмизде' => 'ögümizde', 'огюмиздеки' => 'ögümizdeki', 'огюмни' => 'ögümni',
-		'огюнде' => 'ögünde', 'огюндеки' => 'ögündeki', 'огюндекиси' => 'ögündekisi',
-		'огюнден' => 'ögünden', 'огюне' => 'ögüne', 'огюнъизде' => 'ögüñizde', 'огютини' => 'ögütini',
-		'огютлерини' => 'ögütlerini', 'озю' => 'özü', 'озюм' => 'özüm', 'озюмден' => 'özümden',
-		'озюме' => 'özüme', 'озюмизни' => 'özümizni', 'озюмизнинъ' => 'özümizniñ',
-		'озюмизнинъки' => 'özümizniñki', 'озюмнен' => 'özümnen', 'озюмни' => 'özümni',
-		'озюмнинъ' => 'özümniñ', 'озюнде' => 'özünde', 'озюнден' => 'özünden', 'озюне' => 'özüne',
-		'озюнен' => 'özünen', 'озюни' => 'özüni', 'озюнинъ' => 'özüniñ', 'озюнинъкими' => 'özüniñkimi',
-		'озюнъ' => 'özüñ', 'озюнъе' => 'özüñe', 'озюнъиз' => 'özüñiz', 'озюнъиздеки' => 'özüñizdeki',
-		'озюнъни' => 'özüñni', 'оксюз' => 'öksüz', 'окюндим' => 'ökündim', 'ольдюрип' => 'öldürip',
-		'ольдюрмек' => 'öldürmek', 'ольдюрювде' => 'öldürüvde', 'ольчюде' => 'ölçüde', 'олюм' => 'ölüm',
-		'олюмден' => 'ölümden', 'олюмлер' => 'ölümler', 'омюр' => 'ömür', 'омюрге' => 'ömürge',
-		'омюри' => 'ömüri', 'опькеленюв' => 'öpkelenüv', 'орьтилюви' => 'örtilüvi', 'орьтюли' => 'örtüli',
-		'орюли' => 'örüli', 'орюлип' => 'örülip', 'осюв' => 'ösüv', 'осюмлик' => 'ösümlik',
-		'отькерювни' => 'ötkerüvni', 'отькюр' => 'ötkür', 'офицери' => 'ofitseri',
-		'офицерим' => 'ofitserim', 'офицерлер' => 'ofitserler', 'пальтосыны' => 'paltosını',
-		'пальтосынынъ' => 'paltosınıñ', 'пекинюв' => 'pekinüv', 'пекитювнинъ' => 'pekitüvniñ',
-		'пиширюв' => 'pişirüv', 'повидло' => 'povidlo', 'полис' => 'polis', 'полициясы' => 'politsiyası',
-		'помещик' => 'pomeşçik', 'потюк' => 'potük', 'потюклеринен' => 'potüklerinen',
-		'пулемёт' => 'pülemöt', 'пулемётларны' => 'pülemötlarnı', 'режиссёр' => 'rejissör',
-		'ролюнде' => 'rolünde', 'севастопольнинъ' => 'sevastopolniñ', 'сёгди' => 'sögdi', 'сёз' => 'söz',
-		'сёзлер' => 'sözler', 'сёзлери' => 'sözleri', 'сёзлерим' => 'sözlerim',
-		'сёзлеримден' => 'sözlerimden', 'сёзлериме' => 'sözlerime', 'сёзлеримни' => 'sözlerimni',
-		'сёзлеримнинъ' => 'sözlerimniñ', 'сёзлеринде' => 'sözlerinde', 'сёзлерине' => 'sözlerine',
-		'сёзлерини' => 'sözlerini', 'сёзлерининъ' => 'sözleriniñ', 'сёзлеринъиз' => 'sözleriñiz',
-		'сёзлеринъизни' => 'sözleriñizni', 'сёзлернен' => 'sözlernen', 'сёзлерни' => 'sözlerni',
-		'сёзлернинъ' => 'sözlerniñ', 'сёзнен' => 'söznen', 'сёзни' => 'sözni', 'сёзчиклер' => 'sözçikler',
-		'сёзчиклерден' => 'sözçiklerden', 'сёзю' => 'sözü', 'сёзюмен' => 'sözümen',
-		'сёзюмнинъ' => 'sözümniñ', 'сёзюне' => 'sözüne', 'сёзюни' => 'sözüni', 'сёзюнинъ' => 'sözüniñ',
-		'сёйле' => 'söyle', 'сёйлегенде' => 'söylegende', 'сёйлегенлеринден' => 'söylegenlerinden',
-		'сёйледи' => 'söyledi', 'сёйлей' => 'söyley', 'сёйленди' => 'söylendi',
-		'сёйленмеге' => 'söylenmege', 'сёйленмекте' => 'söylenmekte', 'сёйленъиз' => 'söyleñiz',
-		'сёнген' => 'söngen', 'сёнди' => 'söndi', 'сёндюрди' => 'söndürdi',
-		'сёндюрильген' => 'söndürilgen', 'сёндюрип' => 'söndürip', 'сентябрьнинъ' => 'sentâbrniñ',
-		'сергюзешт' => 'sergüzeşt', 'сергюзештлерни' => 'sergüzeştlerni',
-		'ставропольге' => 'stavropolge', 'сулькевич' => 'sulkeviç', 'сурьат' => 'surat',
-		'суфлёр' => 'suflör', 'сюеги' => 'süyegi', 'сюеклерге' => 'süyeklerge',
-		'сюйрекледи' => 'süyrekledi', 'сюйреле' => 'süyrele', 'сюйрен' => 'süyren',
-		'сюйренге' => 'süyrenge', 'сюйренде' => 'süyrende', 'сюйреп' => 'süyrep', 'сюйрю' => 'süyrü',
-		'сюкюнет' => 'sükünet', 'сюкюнети' => 'süküneti', 'сюкюнетте' => 'sükünette', 'сюкют' => 'süküt',
-		'сюляле' => 'sülâle', 'сюрген' => 'sürgen', 'сюрди' => 'sürdi', 'сюрмеди' => 'sürmedi',
-		'сюрюльмеген' => 'sürülmegen', 'сют' => 'süt', 'тебессюм' => 'tebessüm', 'тёкип' => 'tökip',
-		'тёкти' => 'tökti', 'тёкюльген' => 'tökülgen', 'тёкюльди' => 'töküldi',
-		'тёкюндиси' => 'tökündisi', 'тёле' => 'töle', 'тёледим' => 'töledim', 'телюке' => 'telüke',
-		'телюкели' => 'telükeli', 'тенеффюс' => 'teneffüs', 'тенеффюслер' => 'teneffüsler',
-		'тёпеге' => 'töpege', 'тёпелери' => 'töpeleri', 'тёпелерине' => 'töpelerine',
-		'тёпели' => 'töpeli', 'тёпеси' => 'töpesi', 'тёпесинден' => 'töpesinden',
-		'тёпесини' => 'töpesini', 'тёрге' => 'törge', 'тёрде' => 'törde', 'тёрдеки' => 'tördeki',
-		'тёрюне' => 'törüne', 'тешеббюсим' => 'teşebbüsim', 'тёшегинден' => 'töşeginden',
-		'тёшегине' => 'töşegine', 'тёшек' => 'töşek', 'тешеккюр' => 'teşekkür',
-		'тешеккюрлер' => 'teşekkürler', 'тёшекни' => 'töşekni', 'тёшектен' => 'töşekten',
-		'тёшели' => 'töşeli', 'тёшемек' => 'töşemek', 'тёшеп' => 'töşep', 'теэссюф' => 'teessüf',
-		'тюбю' => 'tübü', 'тюбюнде' => 'tübünde', 'тюбюндеки' => 'tübündeki', 'тюз' => 'tüz',
-		'тюзельгенге' => 'tüzelgenge', 'тюзельтмек' => 'tüzeltmek', 'тюземликлер' => 'tüzemlikler',
-		'тюзетип' => 'tüzetip', 'тюзетирим' => 'tüzetirim', 'тюзеткен' => 'tüzetken',
-		'тюзетмеге' => 'tüzetmege', 'тюзетмесенъ' => 'tüzetmeseñ', 'тюзетти' => 'tüzetti',
-		'тюзетюв' => 'tüzetüv', 'тюкенмез' => 'tükenmez', 'тюкюриктен' => 'tükürikten',
-		'тюкян' => 'tükân', 'тюкяны' => 'tükânı', 'тюкянында' => 'tükânında', 'тюм' => 'tüm',
-		'тюневин' => 'tünevin', 'тюневинки' => 'tünevinki', 'тюпсюз' => 'tüpsüz', 'тюрк' => 'türk',
-		'тюрклернинъ' => 'türklerniñ', 'тюркнинъ' => 'türkniñ', 'тюркче' => 'türkçe', 'тюркю' => 'türkü',
-		'тюркюлерини' => 'türkülerini', 'тюркюнинъ' => 'türküniñ', 'тюрлю' => 'türlü',
-		'тюртип' => 'türtip', 'тюрттинъиз' => 'türttiñiz', 'тютемекте' => 'tütemekte', 'тютюн' => 'tütün',
-		'тютюнджи' => 'tütünci', 'тюфеги' => 'tüfegi', 'тюфегини' => 'tüfegini', 'тюфек' => 'tüfek',
-		'тюфеклеринен' => 'tüfeklerinen', 'тюфеклернен' => 'tüfeklernen', 'тюфеклерни' => 'tüfeklerni',
-		'тюфекнен' => 'tüfeknen', 'тюфексиз' => 'tüfeksiz', 'тюш' => 'tüş', 'тюше' => 'tüşe',
-		'тюшеджек' => 'tüşecek', 'тюшеджексинъми' => 'tüşeceksiñmi', 'тюшем' => 'tüşem',
-		'тюшип' => 'tüşip', 'тюшкен' => 'tüşken', 'тюшкенде' => 'tüşkende', 'тюшкенлер' => 'tüşkenler',
-		'тюшмеге' => 'tüşmege', 'тюшмейим' => 'tüşmeyim', 'тюшмейлер' => 'tüşmeyler',
-		'тюшмек' => 'tüşmek', 'тюшмекте' => 'tüşmekte', 'тюшмеси' => 'tüşmesi', 'тюшсе' => 'tüşse',
-		'тюшти' => 'tüşti', 'тюштик' => 'tüştik', 'тюштилер' => 'tüştiler', 'тюштими' => 'tüştimi',
-		'тюштинъиз' => 'tüştiñiz', 'тюшювден' => 'tüşüvden', 'тюшюджек' => 'tüşücek',
-		'тюшюнген' => 'tüşüngen', 'тюшюнгендже' => 'tüşüngence', 'тюшюндже' => 'tüşünce',
-		'тюшюнджеге' => 'tüşüncege', 'тюшюнджелер' => 'tüşünceler', 'тюшюнджелери' => 'tüşünceleri',
-		'тюшюнджелерим' => 'tüşüncelerim', 'тюшюнджели' => 'tüşünceli', 'тюшюнджеси' => 'tüşüncesi',
-		'тюшюнди' => 'tüşündi', 'тюшюндим' => 'tüşündim', 'тюшюне' => 'tüşüne',
-		'тюшюнелер' => 'tüşüneler', 'тюшюнесинъиз' => 'tüşünesiñiz', 'тюшюнип' => 'tüşünip',
-		'тюшюнмеге' => 'tüşünmege', 'тюшюнмезсинъ' => 'tüşünmezsiñ', 'тюшюнмей' => 'tüşünmey',
-		'тюшюнмемек' => 'tüşünmemek', 'тюшюргенлер' => 'tüşürgenler', 'тюшюрди' => 'tüşürdi',
-		'тюшюрдик' => 'tüşürdik', 'тюшюре' => 'tüşüre', 'тюшюрип' => 'tüşürip', 'тюшюрмек' => 'tüşürmek',
-		'уджюм' => 'ücüm', 'удюр' => 'üdür', 'узюле' => 'üzüle', 'узюлип' => 'üzülip',
-		'узюльгенини' => 'üzülgenini', 'узюльди' => 'üzüldi', 'уйрюлип' => 'üyrülip',
-		'укюмет' => 'ükümet', 'укюмети' => 'ükümeti', 'укюметими' => 'ükümetimi',
-		'укюметимиз' => 'ükümetimiz', 'укюметини' => 'ükümetini', 'укюметининъ' => 'ükümetiniñ',
-		'укюметке' => 'ükümetke', 'укюметкеми' => 'ükümetkemi', 'укюметми' => 'ükümetmi',
-		'укюметнинъ' => 'ükümetniñ', 'укюметтен' => 'ükümetten', 'укюмран' => 'ükümran',
-		'улькюн' => 'ülkün', 'умюдим' => 'ümüdim', 'умют' => 'ümüt', 'умютлери' => 'ümütleri',
-		'умютсизден' => 'ümütsizden', 'усть' => 'üst', 'устьке' => 'üstke', 'устьлеринде' => 'üstlerinde',
-		'устьлериндеки' => 'üstlerindeki', 'устьлерине' => 'üstlerine', 'устьлерини' => 'üstlerini',
-		'устюрткъа' => 'üsturtqa', 'усьнюхаткъа' => 'üsnühatqa', 'усьнюхаты' => 'üsnühatı',
-		'усьтю' => 'üstü', 'усьтюмде' => 'üstümde', 'усьтюмдеки' => 'üstümdeki', 'усьтюме' => 'üstüme',
-		'усьтюнде' => 'üstünde', 'усьтюндеки' => 'üstündeki', 'усьтюндемиз' => 'üstündemiz',
-		'усьтюне' => 'üstüne', 'усьтюни' => 'üstüni', 'усьтюнлик' => 'üstünlik',
-		'усьтюнъизге' => 'üstüñizge', 'утёкунь' => 'ütökün', 'уфюрди' => 'üfürdi', 'учю' => 'üçü',
-		'учюмиз' => 'üçümiz', 'учюн' => 'üçün', 'учюнджи' => 'üçünci', 'учюнджисининъ' => 'üçüncisiniñ',
-		'ушюй' => 'üşüy', 'ушюмез' => 'üşümez', 'ушюмезсинъ' => 'üşümezsiñ',
-		'факультетинде' => 'fakultetinde', 'факультетине' => 'fakultetine',
-		'февральнинъ' => 'fevralniñ', 'харьковдаки' => 'harkovdaki', 'харьковдан' => 'harkovdan',
-		'чёкти' => 'çökti', 'чёкюрли' => 'çökürli', 'чёкюч' => 'çöküç', 'чёллюкке' => 'çöllükke',
-		'чёль' => 'çöl', 'чёльде' => 'çölde', 'чёльмек' => 'çölmek', 'чёткю' => 'çötkü',
-		'чёчамийлер' => 'çöçamiyler', 'чюнки' => 'çünki', 'чюрюди' => 'çürüdi', 'чюрюк' => 'çürük',
-		'шукюр' => 'şükür', 'шукюрлер' => 'şükürler', 'этюв' => 'etüv', 'этювден' => 'etüvden',
-		'этюви' => 'etüvi', 'этюдлар' => 'etüdlar', 'юзден' => 'yüzden', 'юзлеп' => 'yüzlep',
-		'юзлерини' => 'yüzlerini', 'юзлернен' => 'yüzlernen', 'юзлюги' => 'yüzlügi',
-		'юзлюкке' => 'yüzlükke', 'юзю' => 'yüzü', 'юзюм' => 'yüzüm', 'юзюме' => 'yüzüme',
-		'юзюмен' => 'yüzümen', 'юзюмни' => 'yüzümni', 'юзюнде' => 'yüzünde', 'юзюни' => 'yüzüni',
-		'юзюнинъ' => 'yüzüniñ', 'юзюнъ' => 'yüzüñ', 'юзюнъизге' => 'yüzüñizge', 'юклю' => 'yüklü',
-		'юксельтюв' => 'yükseltüv', 'юньлю' => 'yünlü', 'юньлюдже' => 'yünlüce',
-		'юртсеверлик' => 'yurtseverlik', 'юртюде' => 'yürtüde', 'юрьтю' => 'yürtü',
-		'юрьтюге' => 'yürtüge', 'юрьтюнинъ' => 'yürtüniñ', 'юрюльсе' => 'yürülse', 'юрюнъиз' => 'yürüñiz',
-		'юрюш' => 'yürüş', 'юрюши' => 'yürüşi', 'юрюшим' => 'yürüşim', 'юрюшини' => 'yürüşini',
-		'юрюшнен' => 'yürüşnen', 'юрюшни' => 'yürüşni',
 	];
 
-	# map Cyrillic to Latin and back, whole word match only
+	# map Cyrillic to Latin and back, simple string match only (no regex)
 	# no variants: map exactly as is
-	# items with capture group refs (e.g., $1) are only mapped from the
-	# regex to the reference
 	private $exactCaseMappings = [
 		# аббревиатуры
 		# abbreviations
-		'ОБСЕ' => 'OBSE', 'КъМДж' => 'QMC', 'КъАЭ' => 'QAE', 'ГъСМК' => 'ĞSMK', 'ШСДжБ' => 'ŞSCB',
-		'КъМШСДж' => 'QMŞSC', 'КъДМПУ' => 'QDMPU', 'КъМПУ' => 'QMPU', 'КъЮШ' => 'QYŞ', 'ЮШ' => 'YŞ',
+		'ОБСЕ' => 'OBSE', 'КъМДж' => 'QMC', 'КъДж' => 'QC', 'КъАЭ' => 'QAE', 'ГъСМК' => 'ĞSMK',
+		'ШСДжБ' => 'ŞSCB', 'КъМШСДж' => 'QMŞSC', 'КъАССР' => 'QASSR', 'КъДМПУ' => 'QDMPU',
+		'КъМПУ' => 'QMPU',
 	];
 
 	# map Cyrillic to Latin and back, match end of word
@@ -517,10 +356,12 @@ class CrhExceptions {
 		# originally C2L
 		'иаль' => 'ial', 'нуль' => 'nul', 'кой' => 'köy', 'койнинъ' => 'köyniñ', 'койни' => 'köyni',
 		'койге' => 'köyge', 'койде' => 'köyde', 'койдеки' => 'köydeki', 'койден' => 'köyden',
-		'козь' => 'köz',
+		'козь' => 'köz', '-юнджи' => '-ünci', '-юнджиде' => '-üncide', '-юнджиден' => '-ünciden',
 
 		# originally L2C, here swapped
-		'етсин' => 'etsin',
+		'етсин' => 'etsin', 'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy', 'льний' => 'lniy',
+		'льская' => 'lskaya', 'льский' => 'lskiy', 'льское' => 'lskoye', 'ополь' => 'opol',
+		'щее' => 'şçeye', 'щий' => 'şçiy', 'щая' => 'şçaya', 'цепс' => 'tseps',
 
 	];
 
@@ -533,15 +374,18 @@ class CrhExceptions {
 		'буюк([^ъ])' => 'büyük$1', 'бую([гдйлмнпрстчшc])(и)' => 'büyü$1$2',
 		'буют([^ыа])' => 'büyüt$1', 'джонк([^ъ])' => 'cönk$1', 'коюм' => 'köyüm', 'коюнъ' => 'köyüñ',
 		'коюн([ди])' => 'köyün$1', 'куе' => 'küye', 'куркке' => 'kürkke', 'куркни' => 'kürkni',
-		'куркте' => 'kürkte', 'куркчи' => 'kürkçi', 'куркчю' => 'kürkçü',
+		'куркте' => 'kürkte', 'куркчю' => 'kürkçü', 'кою' => 'köyü',
+		'жизнь' => 'jizn',
 
 		# арабизмы на муи- муэ- / Arabic муи- муэ-
 		'му([иэИЭ])' => 'mü$1',
 
 		# originally L2C, here swapped
-		'итъаль' => 'ital',
 		'роль$1' => 'rol([^ü])',
-		'усть$1' => 'üst([knt])',
+		'усть$1' => 'üst([^ü])',
+
+		# more prefixes
+		'ком-кок' => 'köm-kök',
 
 	];
 
@@ -555,8 +399,68 @@ class CrhExceptions {
 			# относятся ко всему слову #
 			# whole words              #
 			############################
-			'/\b([34])(\-)юнджи\b/u' => '$1$2ünci',
-			'/\b([34])(\-)ЮНДЖИ\b/u' => '$1$2ÜNCİ',
+
+			// TODO: refactor upper/lower/first capital whole words without
+			// regexes into simpler list
+
+			'/\bКъЮШ\b/u' => 'QYŞ',
+			'/\bЮШ\b/u' => 'YŞ',
+
+			'/\bкок\b/u' => 'kök',
+			'/\bКок\b/u' => 'Kök',
+			'/\bКОК\b/u' => 'KÖK',
+			'/\bком-кок\b/u' => 'köm-kök',
+			'/\bКом-кок\b/u' => 'Köm-kök',
+			'/\bКОМ-КОК\b/u' => 'KÖM-KÖK',
+
+			'/\bкоп\b/u' => 'köp',
+			'/\bКоп\b/u' => 'Köp',
+			'/\bКОП\b/u' => 'KÖP',
+
+			'/\bкурк\b/u' => 'kürk',
+			'/\bКурк\b/u' => 'Kürk',
+			'/\bКУРК\b/u' => 'KÜRK',
+
+			'/\bог\b/u' => 'ög',
+			'/\bОг\b/u' => 'Ög',
+			'/\bОГ\b/u' => 'ÖG',
+
+			'/\bюрип\b/u' => 'yürip',
+			'/\bЮрип\b/u' => 'Yürip',
+			'/\bЮРИП\b/u' => 'YÜRİP',
+
+			'/\bюз\b/u' => 'yüz',
+			'/\bЮз\b/u' => 'Yüz',
+			'/\bЮЗ\b/u' => 'YÜZ',
+
+			'/\bюк\b/u' => 'yük',
+			'/\bЮк\b/u' => 'Yük',
+			'/\bЮК\b/u' => 'YÜK',
+
+			'/\bбуюп\b/u' => 'büyüp',
+			'/\bБуюп\b/u' => 'Büyüp',
+			'/\bБУЮП\b/u' => 'BÜYÜP',
+
+			'/\bбуюк\b/u' => 'büyük',
+			'/\bБуюк\b/u' => 'Büyük',
+			'/\bБУЮК\b/u' => 'BÜYÜK',
+
+			'/\bджонк\b/u' => 'cönk',
+			'/\bДжонк\b/u' => 'Cönk',
+			'/\bДЖОНК\b/u' => 'CÖNK',
+			'/\bджонкю\b/u' => 'cönkü',
+			'/\bДжонкю\b/u' => 'Cönkü',
+			'/\bДЖОНКЮ\b/u' => 'CÖNKÜ',
+
+			'/\bустке\b/u' => 'üstke',
+			'/\bУстке\b/u' => 'Üstke',
+			'/\bУСТКЕ\b/u' => 'ÜSTKE',
+			'/\bустте\b/u' => 'üstte',
+			'/\bУстте\b/u' => 'Üstte',
+			'/\bУСТТЕ\b/u' => 'ÜSTTE',
+			'/\bусттен\b/u' => 'üstten',
+			'/\bУсттен\b/u' => 'Üstten',
+			'/\bУСТТЕН\b/u' => 'ÜSTTEN',
 
 			# отдельно стоящие Ё и Я
 			# stand-alone Ё and Я
@@ -569,6 +473,16 @@ class CrhExceptions {
 			############################
 			'/\bКъЮШн/u' => 'QYŞn',
 			'/\bЮШн/u' => 'YŞn',
+
+			# need to convert digraphs (гъ, къ, нъ, дж) now to match patterns
+			'/гъ/u' => 'ğ',
+			'/Г[ъЪ]/u' => 'Ğ',
+			'/къ/u' => 'q',
+			'/К[ъЪ]/u' => 'Q',
+			'/нъ/u' => 'ñ',
+			'/Н[ъЪ]/u' => 'Ñ',
+			'/дж/u' => 'c',
+			'/Д[жЖ]/u' => 'C',
 
 			# о => ö
 			'/\b(['.Crh::C_M_CONS.'])о(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьü])/u' => '$1ö$2$3$4',
@@ -662,63 +576,101 @@ class CrhExceptions {
 		];
 
 		$this->Latn2CyrlRegexes = [
+
+			// TODO: refactor upper/lower/first capital whole words without
+			// regexes into simpler list
+
+			'/\ban\b/u' => 'ань',
+			'/\bAn\b/u' => 'Ань',
+			'/\bAN\b/u' => 'АНЬ',
+			'/\bange\b/u' => 'аньге',
+			'/\bAnge\b/u' => 'Аньге',
+			'/\bANGE\b/u' => 'АНЬГЕ',
+			'/\bande\b/u' => 'аньде',
+			'/\bAnde\b/u' => 'Аньде',
+			'/\bANDE\b/u' => 'АНЬДЕ',
+			'/\banki\b/u' => 'аньки',
+			'/\bAnki\b/u' => 'Аньки',
+			'/\bANKİ\b/u' => 'АНЬКИ',
+			'/\bderal\b/u' => 'деръал',
+			'/\bDeral\b/u' => 'Деръал',
+			'/\bDERAL\b/u' => 'ДЕРЪАЛ',
+			'/\bkör\b/u' => 'кёр',
+			'/\bKör\b/u' => 'Кёр',
+			'/\bKÖR\b/u' => 'КЁР',
+			'/\bmer\b/u' => 'мэр',
+			'/\bMer\b/u' => 'Мэр',
+			'/\bMER\b/u' => 'МЭР',
+
+			'/\bджонк/u' => 'cönk',
+			'/\bДжонк/u' => 'Cönk',
+			'/\bДЖОНК/u' => 'CÖNK',
+
+			'/\bкуркчи/u' => 'kürkçi',
+			'/\bКуркчи/u' => 'Kürkçi',
+			'/\bКУРКЧИ/u' => 'KÜRKÇI',
+
 			# буква Ё - первый заход
 			# расставляем Ь после согласных
-			'/^([yY])ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1ö$2ь$3',
-			'/^([yY])Ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^AQŞ(['.Crh::WORD_ENDS.'ngd])/u' => 'АКъШ$1',
+			'/\b([yY])ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1ö$2ь$3',
+			'/\b([yY])Ö(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\bAQŞ([^AEI]|\b)/u' => 'АКъШ$1',
 
 			# буква Ю - первый заход
 			# расставляем Ь после согласных
-			'/^([yY])ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1ü$2ь$3',
-			'/^([yY])Ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
+			'/\b([yY])ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1ü$2ь$3',
+			'/\b([yY])Ü(['.Crh::L_N_CONS.'])([aAuU'.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
 
-			'/^([bcgkpşBCGKPŞ])ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1ö$2ь$3',
-			'/^([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ö$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1ü$2ь$3',
-			'/^([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
-			'/^([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => '$1Ü$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1ö$2ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ö(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ö$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1ü$2ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
+			'/\b([bcgkpşBCGKPŞ])Ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => '$1Ü$2Ь$3',
 
 			 # ö и ü в начале слова
 			 # случаи, когда нужен Ь
-			'/^ö(['.Crh::L_N_CONS.'pP])(['.Crh::L_CONS.']|$)/u' => 'ö$1ь$2',
-			'/^Ö(['.Crh::L_N_CONS_LC.'p])(['.Crh::L_CONS.']|$)/u' => 'Ö$1ь$2',
-			'/^Ö(['.Crh::L_N_CONS_UC.'P])(['.Crh::L_CONS.']|$)/u' => 'Ö$1Ь$2',
-			'/^ü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|$)/u' => 'ü$1ь$2',
-			'/^Ü(['.Crh::L_N_CONS_LC.'])(['.Crh::L_CONS.']|$)/u' => 'Ü$1ь$2',
-			'/^Ü(['.Crh::L_N_CONS_UC.'])(['.Crh::L_CONS.']|$)/u' => 'Ü$1Ь$2',
+			'/\bö(['.Crh::L_N_CONS.'pP])(['.Crh::L_CONS.']|\b)/u' => 'ö$1ь$2',
+			'/\bÖ(['.Crh::L_N_CONS_LC.'p])(['.Crh::L_CONS.']|\b)/u' => 'Ö$1ь$2',
+			'/\bÖ(['.Crh::L_N_CONS_UC.'P])(['.Crh::L_CONS.']|\b)/u' => 'Ö$1Ь$2',
+			'/\bü(['.Crh::L_N_CONS.'])(['.Crh::L_CONS.']|\b)/u' => 'ü$1ь$2',
+			'/\bÜ(['.Crh::L_N_CONS_LC.'])(['.Crh::L_CONS.']|\b)/u' => 'Ü$1ь$2',
+			'/\bÜ(['.Crh::L_N_CONS_UC.'])(['.Crh::L_CONS.']|\b)/u' => 'Ü$1Ь$2',
 
-			'/ts$/u' => 'ц',
-			'/şç$/u' => 'щ',
-			'/Ş[çÇ]$/u' => 'Щ',
-			'/T[sS]$/u' => 'Ц',
+			'/ts\b/u' => 'ц',
+			'/şç\b/u' => 'щ',
+			'/Ş[çÇ]\b/u' => 'Щ',
+			'/T[sS]\b/u' => 'Ц',
 
 			# Ь после Л
 			# add Ь after Л
-			'/(['.Crh::L_F.'])l(['.Crh::L_CONS_LC.']|$)/u' => '$1ль$2',
-			'/(['.Crh::L_F_UC.'])L(['.Crh::L_CONS.']|$)/u' => '$1ЛЬ$2',
+			'/(['.Crh::L_F.'])l(['.Crh::L_CONS_LC.']|\b)/u' => '$1ль$2',
+			'/(['.Crh::L_F_UC.'])L(['.Crh::L_CONS.']|\b)/u' => '$1ЛЬ$2',
+
+			'/etsin\b/u' => 'етсин',
+			'/Etsin\b/u' => 'Етсин',
+			'/ETSİN\b/u' => 'ЕТСИН',
 
 			# относятся к началу слова
-			'/^ts/u' => 'ц',
-			'/^T[sS]/u' => 'Ц',
+			'/\bts/u' => 'ц',
+			'/\bT[sS]/u' => 'Ц',
 
-			'/^şç/u' => 'щ',
-			'/^Ş[çÇ]/u' => 'Щ',
+			'/\bşç/u' => 'щ',
+			'/\bŞ[çÇ]/u' => 'Щ',
 
 			# Э
-			'/(^|['.Crh::L_VOW.'аеэяАЕЭЯ])e/u' => '$1э',
-			'/(^|['.Crh::L_VOW_UC.'АЕЭЯ])E/u' => '$1Э',
+			'/(\b|['.Crh::L_VOW.'аеэяАЕЭЯ])e/u' => '$1э',
+			'/(\b|['.Crh::L_VOW_UC.'АЕЭЯ])E/u' => '$1Э',
 
-			'/^(['.Crh::L_M_CONS.'])ö/u' => '$1о',
-			'/^(['.Crh::L_M_CONS.'])Ö/u' => '$1О',
-			'/^(['.Crh::L_M_CONS.'])ü/u' => '$1у',
-			'/^(['.Crh::L_M_CONS.'])Ü/u' => '$1У',
+			'/\b(['.Crh::L_M_CONS.'])ö/u' => '$1о',
+			'/\b(['.Crh::L_M_CONS.'])Ö/u' => '$1О',
+			'/\b(['.Crh::L_M_CONS.'])ü/u' => '$1у',
+			'/\b(['.Crh::L_M_CONS.'])Ü/u' => '$1У',
 
-			'/^ö/u' => 'о',
-			'/^Ö/u' => 'О',
-			'/^ü/u' => 'у',
-			'/^Ü/u' => 'У',
+			'/\bö/u' => 'о',
+			'/\bÖ/u' => 'О',
+			'/\bü/u' => 'у',
+			'/\bÜ/u' => 'У',
 
 			# некоторые исключения
 			# some exceptions
@@ -780,13 +732,18 @@ class CrhExceptions {
 			'/[ьЬ]([aA])/u' => '$1',
 
 			# дж
-			'/C(['.Crh::L_UC.Crh::C_UC.'Ъ])/u' => 'ДЖ$1',
+			'/C(['.Crh::L_UC.Crh::C_UC.'АЕЁЙОУЭЮЯ])/u' => 'ДЖ$1',
+			'/(['.Crh::L_UC.Crh::C_UC.'АЕЁЙОУЭЮЯ])C/u' => '$1ДЖ',
 
 			# гъ, къ, нъ
-			# гъ, къ, нъ
-			'/Ğ(['.Crh::L_UC.Crh::C_UC.'Ъ])/u' => 'ГЪ$1',
-			'/Q(['.Crh::L_UC.Crh::C_UC.'Ъ])/u' => 'КЪ$1',
-			'/Ñ(['.Crh::L_UC.Crh::C_UC.'Ъ])/u' => 'НЪ$1',
+			'/Ğ(['.Crh::L_UC.Crh::C_UC.'])/u' => 'ГЪ$1',
+			'/(['.Crh::L_UC.Crh::C_UC.'Ъ])Ğ/u' => '$1ГЪ',
+
+			'/Q(['.Crh::L_UC.Crh::C_UC.'])/u' => 'КЪ$1',
+			'/(['.Crh::L_UC.Crh::C_UC.'Ъ])Q/u' => '$1КЪ',
+
+			'/Ñ(['.Crh::L_UC.Crh::C_UC.'])/u' => 'НЪ$1',
+			'/(['.Crh::L_UC.Crh::C_UC.'Ъ])Ñ/u' => '$1НЪ',
 
 		];
 	}
