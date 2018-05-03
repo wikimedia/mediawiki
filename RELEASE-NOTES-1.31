@@ -79,8 +79,8 @@ production.
   * Most code accessing rows for logged actions from the database should use
     the relevant getQueryInfo() methods to get the information needed to build
     the SQL query. The ActorMigration class may also be used to get feature
-	-flagged information needed to access actor-related fields during the
-	migration period.
+    -flagged information needed to access actor-related fields during the
+    migration period.
 * Added Wikimedia\Rdbms\IDatabase::cancelAtomic(), to roll back an atomic
   section without having to roll back the whole transaction.
 * Wikimedia\Rdbms\IDatabase::doAtomicSection(), non-native ::insertSelect(),
@@ -114,11 +114,9 @@ production.
 * Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.6.
 * Updated wikimedia/remex-html from 1.0.2 to 1.0.3.
 * Updated wikimedia/html-formatter from 1.0.1 to 1.0.2.
-* …
 
 ==== New external libraries ====
 * Added wikimedia/object-factory 1.0.0
-* …
 
 ==== Removed and replaced external libraries ====
 * (T17845) The deprecated 'jquery.badge' module was removed.
@@ -146,15 +144,15 @@ production.
   'watchlist' instead.
 
 === Action API internal changes in 1.31 ===
-* ApiBase::getProfileDBTime, deprecated since 1.25,
- was removed
-* ApiBase::getModuleProfileName, deprecated since 1.25, was removed
-* ApiBase::getProfileTime, deprecated since 1.25, was removed
+* ApiBase::getProfileDBTime, deprecated since 1.25, was removed.
+* ApiBase::getModuleProfileName, deprecated since 1.25, was removed.
+* ApiBase::getProfileTime, deprecated since 1.25, was removed.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Phabricator reports.
+
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK.
 * (T182305) New language support: Nyungar (nys).
 * (T186359) New language support: Siberian Tatar [cебертатар] (sty).
