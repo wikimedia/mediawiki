@@ -154,6 +154,8 @@ class SpecialPreferences extends SpecialPage {
 			);
 		}
 
+		$htmlForm->addHiddenField( 'ooui', $this->oouiEnabled ? '1' : '0' );
+
 		$htmlForm->show();
 	}
 
