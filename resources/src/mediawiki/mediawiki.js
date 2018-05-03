@@ -782,7 +782,7 @@
 			 *         'moduleName': {
 			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
-			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
+			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null
@@ -1113,14 +1113,6 @@
 					}
 				}
 
-				// Resolves dynamic loader function and replaces it with its own results
-				if ( typeof registry[ module ].dependencies === 'function' ) {
-					registry[ module ].dependencies = registry[ module ].dependencies();
-					// Ensures the module's dependencies are always in an array
-					if ( typeof registry[ module ].dependencies !== 'object' ) {
-						registry[ module ].dependencies = [ registry[ module ].dependencies ];
-					}
-				}
 				if ( resolved.indexOf( module ) !== -1 ) {
 					// Module already resolved; nothing to do
 					return;
@@ -1887,8 +1879,8 @@
 				 *  a list of arguments compatible with this method
 				 * @param {string|number} version Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
-				 * @param {string|Array|Function} dependencies One string or array of strings of module
-				 *  names on which this module depends, or a function that returns that array.
+				 * @param {string|Array} dependencies One string or array of strings of module
+				 *  names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
 				 * @param {string} [skip=null] Script body of the skip function
@@ -1915,8 +1907,8 @@
 					if ( typeof dependencies === 'string' ) {
 						// A single module name
 						deps = [ dependencies ];
-					} else if ( typeof dependencies === 'object' || typeof dependencies === 'function' ) {
-						// Array of module names or a function that returns an array
+					} else if ( typeof dependencies === 'object' ) {
+						// Array of module names
 						deps = dependencies;
 					}
 					// List the module as registered
