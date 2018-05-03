@@ -998,8 +998,14 @@ class MediaWiki {
 	 * @param LoggerInterface $runJobsLogger
 	 */
 	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
-		$runner = new JobRunner( $runJobsLogger );
-		$runner->run( [ 'maxJobs' => $n ] );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$old = $trxProfiler->setSilenced( true );
+		try {
+			$runner = new JobRunner( $runJobsLogger );
+			$runner->run( [ 'maxJobs' => $n ] );
+		} finally {
+			$trxProfiler->setSilenced( $old );
+		}
 	}
 
 	/**
