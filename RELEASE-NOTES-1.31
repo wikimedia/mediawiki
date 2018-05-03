@@ -87,8 +87,8 @@ production.
   * Most code accessing rows for logged actions from the database should use
     the relevant getQueryInfo() methods to get the information needed to build
     the SQL query. The ActorMigration class may also be used to get feature
-	-flagged information needed to access actor-related fields during the
-	migration period.
+    -flagged information needed to access actor-related fields during the
+    migration period.
 * Added Wikimedia\Rdbms\IDatabase::cancelAtomic(), to roll back an atomic
   section without having to roll back the whole transaction.
 * Wikimedia\Rdbms\IDatabase::doAtomicSection(), non-native ::insertSelect(),
@@ -105,6 +105,8 @@ production.
   property in extension.json. See the documentation at
   <https://mediawiki.org/wiki/Manual:Extension.json/Schema#AutoloadNamespaces>
   for more details and an example.
+* (T19099) Tabs which link to pages that don't exist (like those to uncreated
+  discussion pages) now have a tooltip to indicate state, not just colour.
 
 === External library changes in 1.31 ===
 
@@ -120,11 +122,9 @@ production.
 * Updated wikimedia/php-session-serializer from 1.0.4 to 1.0.6.
 * Updated wikimedia/remex-html from 1.0.2 to 1.0.3.
 * Updated wikimedia/html-formatter from 1.0.1 to 1.0.2.
-* …
 
 ==== New external libraries ====
 * Added wikimedia/object-factory 1.0.0
-* …
 
 ==== Removed and replaced external libraries ====
 * (T17845) The deprecated 'jquery.badge' module was removed.
@@ -137,7 +137,11 @@ production.
 
 === Bug fixes in 1.31 ===
 * (T90902) Non-breaking space in header ID breaks anchor.
-* (T189375) CSSMin now allows quoted urls in `url()` syntax to start with a space.
+* (T189375) CSSMin now allows quoted urls in `url()` syntax to start with a
+  space.
+* (T2087, T10897, T87753, T174639) Whitespace created by category and language
+  links is now stripped rather than leaving blank lines in odd places.
+* (T3780) Uploads with UTF-8 names now work on PHP7.1+ on Windows servers.
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
@@ -148,10 +152,9 @@ production.
   'watchlist' instead.
 
 === Action API internal changes in 1.31 ===
-* ApiBase::getProfileDBTime, deprecated since 1.25,
- was removed
-* ApiBase::getModuleProfileName, deprecated since 1.25, was removed
-* ApiBase::getProfileTime, deprecated since 1.25, was removed
+* ApiBase::getProfileDBTime, deprecated since 1.25, was removed.
+* ApiBase::getModuleProfileName, deprecated since 1.25, was removed.
+* ApiBase::getProfileTime, deprecated since 1.25, was removed.
 
 === Languages updated in 1.31 ===
 MediaWiki supports over 350 languages. Many localisations are updated
@@ -165,6 +168,7 @@ changes to languages because of Phabricator reports.
 * (T186647) New language support: Kumyk [къумукъ] (kum).
 * (T187750) New language support: Spanish formal address (es-formal).
 * (T187824) New language support: Hungarian formal address (hu-formal).
+* (T189127) New language support: Gorontalo (gor).
 
 === Breaking changes in 1.31 ===
 * MessageBlobStore::insertMessageBlob(), deprecated in 1.27, was removed.
@@ -229,12 +233,12 @@ changes to languages because of Phabricator reports.
   * $isCssJsSubpage — use ::isUserConfigPage()
   * $isCssSubpage — use ::isUserCssConfigPage()
   * $isJsSubpage — use ::isUserJsConfigPage()
-  * $isWrongCaseCssJsPage – use ::isWrongCaseUserConfigPage()
-  * ::getSummaryInput() – use ::getSummaryInputWidget()
-  * ::getSummaryInputOOUI() – use ::getSummaryInputWidget()
-  * ::getCheckboxes() – use ::getCheckboxesWidget() or
+  * $isWrongCaseCssJsPage – use ::isWrongCaseUserConfigPage()
+  * ::getSummaryInput() – use ::getSummaryInputWidget()
+  * ::getSummaryInputOOUI() – use ::getSummaryInputWidget()
+  * ::getCheckboxes() – use ::getCheckboxesWidget() or
       ::getCheckboxesDefinition()
-  * ::getCheckboxesOOUI() – use ::getCheckboxesWidget() or
+  * ::getCheckboxesOOUI() – use ::getCheckboxesWidget() or
       ::getCheckboxesDefinition()
 * ResourceLoaderModule::getPosition(), deprecated in 1.29, has been removed.
 * In User, the cookie-related methods which were wrappers for the functions on
@@ -245,8 +249,8 @@ changes to languages because of Phabricator reports.
   Note that User::setCookies() remains, and is not deprecated.
 * Also in User, some auth-related methods which were deprecated in 1.27 have
   been removed:
-  * ::getEditTokenTimestamp() – use MediaWiki\Session\Token::getTimestamp()
-  * ::getPasswordFactory() – create a PasswordFactory directly
+  * ::getEditTokenTimestamp() – use MediaWiki\Session\Token::getTimestamp()
+  * ::getPasswordFactory() – create a PasswordFactory directly
   * ::passwordChangeInputAttribs()
 * The global functions wfProfileIn and wfProfileOut, deprecated in 1.25, have
   been removed.
@@ -365,9 +369,9 @@ changes to languages because of Phabricator reports.
   * CommentStore::insertWithTemplate
 * The following methods in Title have been renamed, and the old ones are
   deprecated:
-  * Title::getSkinFromCssJsSubpage – use ::getSkinFromConfigSubpage
-  * Title::isCssOrJsPage – use ::isSiteConfigPage
-  * Title::isCssJsSubpage – use ::isUserConfigPage
+  * Title::getSkinFromCssJsSubpage – use ::getSkinFromConfigSubpage
+  * Title::isCssOrJsPage – use ::isSiteConfigPage
+  * Title::isCssJsSubpage – use ::isUserConfigPage
   * Title::isCssSubpage – use ::isUserCssConfigPage
   * Title::isJsSubpage – use ::isUserJsConfigPage
 * The following methods related to caching of half-parsed HTML were deprecated:
@@ -384,7 +388,6 @@ changes to languages because of Phabricator reports.
   used instead.
 * The function wfShellWikiCmd() has been deprecated, use
   MediaWiki\Shell::makeScriptCommand().
-
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
 * Browser support for Opera 12 and older was dropped entirely. Opera 15+
