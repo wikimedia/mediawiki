@@ -97,6 +97,8 @@ production.
   property in extension.json. See the documentation at
   <https://mediawiki.org/wiki/Manual:Extension.json/Schema#AutoloadNamespaces>
   for more details and an example.
+* (T19099) Tabs which link to pages that don't exist (like those to uncreated
+  discussion pages) now have a tooltip to indicate state, not just colour.
 
 === External library changes in 1.31 ===
 
