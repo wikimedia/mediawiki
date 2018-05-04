@@ -1091,7 +1091,7 @@ CREATE TABLE /*_*/interwiki (
   -- The URL of the file api.php
   iw_api nvarchar(max) NOT NULL,
 
-  -- The name of the database (for a connection to be established with wfGetLB( 'wikiid' ))
+  -- The name of the database (for a connection to be established with LBFactory::getMainLB( 'wikiid' ))
   iw_wikiid nvarchar(64) NOT NULL,
 
   -- A boolean value indicating whether the wiki is in this project
