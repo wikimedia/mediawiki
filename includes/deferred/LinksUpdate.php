@@ -177,15 +177,16 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 
 		// Commit and release the lock (if set)
 		ScopedCallback::consume( $scopedLock );
-		// Run post-commit hooks without DBO_TRX
-		$this->getDB()->onTransactionIdle(
+		// Run post-commit hook handlers without DBO_TRX
+		DeferredUpdates::addUpdate( new AutoCommitUpdate(
+			$this->getDB(),
+			__METHOD__,
 			function () {
 				// Avoid PHP 7.1 warning from passing $this by reference
 				$linksUpdate = $this;
 				Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate, $this->ticket ] );
-			},
-			__METHOD__
-		);
+			}
+		) );
 	}
 
 	/**
