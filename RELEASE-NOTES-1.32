@@ -71,6 +71,8 @@ because of Phabricator reports.
   * Revision::getRawComment()
 * window.gM() from mediawiki.jqueryMsg, deprecated in 1.23, was removed. Use
   mw.msg() or mw.message() instead.
+* mw.util.escapeId(), deprecated in 1.30, was removed. Use
+  mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
