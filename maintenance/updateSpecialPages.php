@@ -24,6 +24,9 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\DBReplicationWaitError;
+
 /**
  * Maintenance script to update cached special pages.
  *
@@ -119,16 +122,22 @@ class UpdateSpecialPages extends Maintenance {
 	 * mysql connection to "go away"
 	 */
 	private function reopenAndWaitForReplicas() {
-		if ( !wfGetLB()->pingAll() ) {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lb = $lbFactory->getMainLB();
+		if ( !$lb->pingAll() ) {
 			$this->output( "\n" );
 			do {
 				$this->error( "Connection failed, reconnecting in 10 seconds..." );
 				sleep( 10 );
-			} while ( !wfGetLB()->pingAll() );
+			} while ( !$lb->pingAll() );
 			$this->output( "Reconnected\n\n" );
 		}
-		# Wait for the replica DB to catch up
-		wfWaitForSlaves();
+		// Wait for the replica DB to catch up
+		try {
+			$lbFactory->waitForReplication();
+		} catch ( DBReplicationWaitError $e ) {
+			// ignore
+		}
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {

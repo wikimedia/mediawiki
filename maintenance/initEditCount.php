@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 class InitEditCount extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -48,7 +50,8 @@ in the load balancer, usually indicating a replication environment.' );
 		} elseif ( $this->hasOption( 'quick' ) ) {
 			$backgroundMode = false;
 		} else {
-			$backgroundMode = wfGetLB()->getServerCount() > 1;
+			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$backgroundMode = $lb->getServerCount() > 1;
 		}
 
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );

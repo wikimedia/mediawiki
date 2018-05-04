@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Tests for the DBSiteStore class.
  *
@@ -37,7 +39,8 @@ class DBSiteStoreTest extends MediaWikiTestCase {
 	private function newDBSiteStore() {
 		// NOTE: Use the real DB load balancer for now. Eventually, the test framework should
 		// provide a LoadBalancer that is safe to use in unit tests.
-		return new DBSiteStore( wfGetLB() );
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		return new DBSiteStore( $lb );
 	}
 
 	/**
