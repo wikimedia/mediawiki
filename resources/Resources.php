@@ -1670,7 +1670,10 @@ return [
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => [
-		'scripts' => 'resources/src/mediawiki.libs/mediawiki.libs.jpegmeta.js',
+		'scripts' => [
+			'resources/src/mediawiki.libs.jpegmeta/jpegmeta.js',
+			'resources/src/mediawiki.libs.jpegmeta/export.js',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
