@@ -259,6 +259,15 @@ class BotPassword implements IDBAccessObject {
 	}
 
 	/**
+	 * Whether the password is currently invalid
+	 * @since 1.32
+	 * @return bool
+	 */
+	public function isInvalid() {
+		return $this->getPassword() instanceof InvalidPassword;
+	}
+
+	/**
 	 * Save the BotPassword to the database
 	 * @param string $operation 'update' or 'insert'
 	 * @param Password|null $password Password to set.
@@ -488,7 +497,11 @@ class BotPassword implements IDBAccessObject {
 		}
 
 		// Check the password
-		if ( !$bp->getPassword()->equals( $password ) ) {
+		$passwordObj = $bp->getPassword();
+		if ( $passwordObj instanceof InvalidPassword ) {
+			return Status::newFatal( 'botpasswords-needs-reset', $name, $appId );
+		}
+		if ( !$passwordObj->equals( $password ) ) {
 			return Status::newFatal( 'wrongpassword' );
 		}
 

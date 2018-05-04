@@ -20,6 +20,7 @@ This is a security and maintenance release of the MediaWiki 1.27 branch.
 * (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
 * Special:BotPasswords now requires reauthentication.
 * (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
