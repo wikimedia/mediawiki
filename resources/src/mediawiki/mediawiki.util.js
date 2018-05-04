@@ -534,26 +534,6 @@
 	};
 
 	/**
-	 * Add the appropriate prefix to the accesskey shown in the tooltip.
-	 *
-	 * If the `$nodes` parameter is given, only those nodes are updated;
-	 * otherwise we update all elements with accesskeys on the page.
-	 *
-	 * @method updateTooltipAccessKeys
-	 * @param {Array|jQuery} [$nodes] A jQuery object, or array of nodes to update.
-	 * @deprecated since 1.24 Use the module jquery.accessKeyLabel instead.
-	 */
-	mw.log.deprecate( util, 'updateTooltipAccessKeys', function ( $nodes ) {
-		if ( !$nodes ) {
-			$nodes = $( '[accesskey]' );
-		} else if ( !( $nodes instanceof $ ) ) {
-			$nodes = $( $nodes );
-		}
-
-		$nodes.updateTooltipAccessKeys();
-	}, 'Use jquery.accessKeyLabel instead.', 'mw.util.updateTooltipAccessKeys' );
-
-	/**
 	 * Add a little box at the top of the screen to inform the user of
 	 * something, replacing any previous message.
 	 * Calling with no arguments, with an empty string or null will hide the message
