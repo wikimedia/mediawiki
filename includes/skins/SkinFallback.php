@@ -2,8 +2,6 @@
 /**
  * Skin file for the fallback skin.
  *
- * The structure is copied from the example skin (mediawiki/skins/Example).
- *
  * @since 1.24
  * @file
  */
@@ -16,14 +14,10 @@ class SkinFallback extends SkinTemplate {
 	public $skinname = 'fallback';
 	public $template = SkinFallbackTemplate::class;
 
-	/**
-	 * Add CSS via ResourceLoader
-	 *
-	 * @param OutputPage $out
-	 */
-	public function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'mediawiki.skinning.interface' );
+	public function getDefaultModules() {
+		$modules = parent::getDefaultModules();
+		$modules['styles']['skin'][] = 'mediawiki.skinning.interface';
+		return $modules;
 	}
 
 	/**
