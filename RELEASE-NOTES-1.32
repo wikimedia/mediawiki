@@ -75,6 +75,7 @@ because of Phabricator reports.
   mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.
 * mw.util.updateTooltipAccessKeys(), deprecated in 1.24, was removed. Use
   jquery.accessKeyLabel instead.
+* mw.util.jsMessage(), deprecated in 1.20, was removed. Use mw.notify instead.
 * The SqlDataUpdate class, deprecated in 1.28, has been removed.
 
 === Deprecations in 1.32 ===
