@@ -728,7 +728,7 @@ return [
 	'moment' => [
 		'scripts' => [
 			// HACK: For some reason if you don't define window.moment first, loading moment fatals
-			'resources/src/moment-global.js',
+			'resources/src/moment/moment-global.js',
 			'resources/lib/moment/moment.js',
 		],
 		'languageScripts' => [
@@ -755,7 +755,7 @@ return [
 			'de-ch' => 'resources/lib/moment/locale/de-ch.js',
 			'dv' => 'resources/lib/moment/locale/dv.js',
 			'el' => 'resources/lib/moment/locale/el.js',
-			'en' => 'resources/src/moment-dmy.js',
+			'en' => 'resources/src/moment/moment-dmy.js',
 			'en-au' => 'resources/lib/moment/locale/en-au.js',
 			'en-ca' => 'resources/lib/moment/locale/en-ca.js',
 			'en-gb' => 'resources/lib/moment/locale/en-gb.js',
@@ -843,7 +843,7 @@ return [
 		// after locale definitions
 		'skinScripts' => [
 			'default' => [
-				'resources/src/moment-locale-overrides.js',
+				'resources/src/moment/moment-locale-overrides.js',
 			],
 		],
 		'dependencies' => [
