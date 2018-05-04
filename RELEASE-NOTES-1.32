@@ -73,6 +73,8 @@ because of Phabricator reports.
   mw.msg() or mw.message() instead.
 * mw.util.escapeId(), deprecated in 1.30, was removed. Use
   mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.
+* mw.util.updateTooltipAccessKeys(), deprecated in 1.24, was removed. Use
+  jquery.accessKeyLabel instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
