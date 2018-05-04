@@ -152,6 +152,7 @@ because of Phabricator reports.
   * filterIntval()
   * filterTimezoneInput()
   * getTimeZoneList()
+* mw.util.jsMessage(), deprecated in 1.20, was removed. Use mw.notify instead.
 
 === Deprecations in 1.33 ===
 * The configuration option $wgUseESI has been deprecated, and is expected

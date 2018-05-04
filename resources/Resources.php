@@ -1372,7 +1372,6 @@ return [
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',
-			'mediawiki.notify',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

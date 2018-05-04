@@ -517,27 +517,6 @@
 	};
 
 	/**
-	 * Add a little box at the top of the screen to inform the user of
-	 * something, replacing any previous message.
-	 * Calling with no arguments, with an empty string or null will hide the message
-	 *
-	 * @method jsMessage
-	 * @deprecated since 1.20 Use mw#notify
-	 * @param {Mixed} message The DOM-element, jQuery object or HTML-string to be put inside the message box.
-	 *  to allow CSS/JS to hide different boxes. null = no class used.
-	 */
-	mw.log.deprecate( util, 'jsMessage', function ( message ) {
-		if ( !arguments.length || message === '' || message === null ) {
-			return true;
-		}
-		if ( typeof message !== 'object' ) {
-			message = $.parseHTML( message );
-		}
-		mw.notify( message, { autoHide: true, tag: 'legacy' } );
-		return true;
-	}, 'Use mw.notify instead.', 'mw.util.jsMessage' );
-
-	/**
 	 * Initialisation of mw.util.$content
 	 */
 	function init() {
