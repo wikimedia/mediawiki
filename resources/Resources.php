@@ -1627,7 +1627,10 @@ return [
 	],
 
 	'mediawiki.libs.pluralruleparser' => [
-		'scripts' => 'resources/src/mediawiki.libs/CLDRPluralRuleParser.js',
+		'scripts' => [
+			'resources/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js',
+			'resources/src/mediawiki.libs.pluralruleparser/export.js',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
