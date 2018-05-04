@@ -133,6 +133,7 @@ class ApiParseTest extends ApiTestCase {
 				->getMock();
 			$skin->expects( $this->once() )->method( 'getDefaultModules' )
 				->willReturn( [
+					'styles' => [ 'core' => [ 'quux.styles' ] ],
 					'core' => [ 'foo', 'bar' ],
 					'content' => [ 'baz' ]
 				] );
@@ -686,7 +687,7 @@ class ApiParseTest extends ApiTestCase {
 			'resp.parse.modulescripts'
 		);
 		$this->assertSame(
-			[ 'foo.styles' ],
+			[ 'foo.styles', 'quux.styles' ],
 			$res[0]['parse']['modulestyles'],
 			'resp.parse.modulestyles'
 		);
