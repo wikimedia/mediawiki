@@ -3,6 +3,7 @@
 /**
  * @covers LanguageCrh
  * @covers CrhConverter
+ * @covers MediaWiki\Languages\Data\CrhExceptions
  */
 class LanguageCrhTest extends LanguageClassesTestCase {
 	/**
@@ -102,6 +103,14 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 					'crh-latn' => 'CÜRMEK CÜRMEK ketsin ketsin cümlesi cümlesi ilyi ilyi İlyi İlyi',
 				],
 				'ДЖУРЬМЕК CÜRMEK кетсин ketsin джумлеси cümlesi ильи ilyi Ильи İlyi'
+			],
+			[ // recent problem words, part 7
+				[
+					'crh'      => 'бруцел brutsel коцюб kotsüb плацен platsen эпицентр epitsentr',
+					'crh-cyrl' => 'бруцел бруцел коцюб коцюб плацен плацен эпицентр эпицентр',
+					'crh-latn' => 'brutsel brutsel kotsüb kotsüb platsen platsen epitsentr epitsentr',
+				],
+				'бруцел brutsel коцюб kotsüb плацен platsen эпицентр epitsentr'
 			],
 			[ // regex pattern words
 				[
