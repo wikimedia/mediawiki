@@ -251,7 +251,7 @@ class ArchivedFile {
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 			'fa_sha1',
-		] + CommentStore::getStore()->getFields( 'fa_description' );
+		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'fa_description' );
 	}
 
 	/**
@@ -264,7 +264,7 @@ class ArchivedFile {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::getStore()->getJoin( 'fa_description' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'fa_description' );
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'fa_user' );
 		return [
 			'tables' => [ 'filearchive' ] + $commentQuery['tables'] + $actorQuery['tables'],
@@ -310,7 +310,7 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = CommentStore::getStore()
+		$this->description = MediaWikiServices::getInstance()->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
 		$this->user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );

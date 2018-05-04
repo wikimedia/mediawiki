@@ -21,6 +21,7 @@
  * @ingroup FileAbstraction
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**
@@ -150,7 +151,7 @@ class ForeignDBFile extends LocalFile {
 			return false; // no description page
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		return $cache->getWithSetCallback(
 			$this->repo->getLocalCacheKey(
