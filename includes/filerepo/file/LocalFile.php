@@ -226,7 +226,7 @@ class LocalFile extends File {
 			'img_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'img_actor' : null,
 			'img_timestamp',
 			'img_sha1',
-		] + CommentStore::getStore()->getFields( 'img_description' );
+		] + MediaWikiServices::getInstance()->getCommentStore()->getFields( 'img_description' );
 	}
 
 	/**
@@ -241,7 +241,7 @@ class LocalFile extends File {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo( array $options = [] ) {
-		$commentQuery = CommentStore::getStore()->getJoin( 'img_description' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'img_description' );
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
 		$ret = [
 			'tables' => [ 'image' ] + $commentQuery['tables'] + $actorQuery['tables'],
@@ -323,7 +323,7 @@ class LocalFile extends File {
 			return;
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$cachedValues = $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_WEEK,
@@ -388,7 +388,7 @@ class LocalFile extends File {
 
 		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle(
 			function () use ( $key ) {
-				ObjectCache::getMainWANInstance()->delete( $key );
+				MediaWikiServices::getInstance()->getMainWANObjectCache();
 			},
 			__METHOD__
 		);
@@ -579,7 +579,7 @@ class LocalFile extends File {
 	function decodeRow( $row, $prefix = 'img_' ) {
 		$decoded = $this->unprefixRow( $row, $prefix );
 
-		$decoded['description'] = CommentStore::getStore()
+		$decoded['description'] = MediaWikiServices::getInstance()->getCommentStore()
 			->getComment( 'description', (object)$decoded )->text;
 
 		$decoded['user'] = User::newFromAnyId(
@@ -1321,7 +1321,7 @@ class LocalFile extends File {
 			) {
 				$props = $this->repo->getFileProps( $srcPath );
 			} else {
-				$mwProps = new MWFileProps( MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer() );
+				$mwProps = new MWFileProps( MediaWikiServices::getInstance()->getMimeAnalyzer() );
 				$props = $mwProps->getPropsFromPath( $srcPath, true );
 			}
 		}
@@ -1462,7 +1462,7 @@ class LocalFile extends File {
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		list( $commentFields, $commentCallback ) =
 			$commentStore->insertWithTempTable( $dbw, 'img_description', $comment );
 		$actorMigration = ActorMigration::newMigration();
@@ -2470,7 +2470,7 @@ class LocalFileDeleteBatch {
 		$now = time();
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$actorMigration = ActorMigration::newMigration();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
@@ -2830,7 +2830,7 @@ class LocalFileRestoreBatch {
 
 		$dbw = $this->file->repo->getMasterDB();
 
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$actorMigration = ActorMigration::newMigration();
 
 		$status = $this->file->repo->newGood();
