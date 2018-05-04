@@ -22,6 +22,7 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -200,7 +201,7 @@ class LocalRepo extends FileRepo {
 		}
 
 		$method = __METHOD__;
-		$redirDbKey = ObjectCache::getMainWANInstance()->getWithSetCallback(
+		$redirDbKey = MediaWikiServices::getInstance()->getMainWANObjectCache()->getWithSetCallback(
 			$memcKey,
 			$expiry,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $method, $title ) {
@@ -520,7 +521,7 @@ class LocalRepo extends FileRepo {
 		if ( $key ) {
 			$this->getMasterDB()->onTransactionPreCommitOrIdle(
 				function () use ( $key ) {
-					ObjectCache::getMainWANInstance()->delete( $key );
+					MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 				},
 				__METHOD__
 			);
