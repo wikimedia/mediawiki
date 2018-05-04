@@ -1551,7 +1551,7 @@
 	"recentchangeslinked-feed": "Related changes",
 	"recentchangeslinked-toolbox": "Related changes",
 	"recentchangeslinked-title": "Changes related to \"$1\"",
-	"recentchangeslinked-summary": "Enter a page name to see changes on pages linked to or from that page. (To see members of a category, enter Category:Name of category). Changes to pages on [[Special:Watchlist|your Watchlist]] are in <strong>bold</strong>.",
+	"recentchangeslinked-summary": "Enter a page name to see changes on pages linked to or from that page. (To see members of a category, enter {{ns:category}}:Name of category). Changes to pages on [[Special:Watchlist|your Watchlist]] are in <strong>bold</strong>.",
 	"recentchangeslinked-page": "Page name:",
 	"recentchangeslinked-to": "Show changes to pages linked to the given page instead",
 	"recentchanges-page-added-to-category": "[[:$1]] added to category",
