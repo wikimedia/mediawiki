@@ -575,18 +575,6 @@
 	}, 'Use mw.notify instead.', 'mw.util.jsMessage' );
 
 	/**
-	 * Encode the string like Sanitizer::escapeId() in PHP
-	 *
-	 * @method escapeId
-	 * @deprecated since 1.30 use escapeIdForAttribute() or escapeIdForLink()
-	 * @param {string} str String to be encoded.
-	 * @return {string} Encoded string
-	 */
-	mw.log.deprecate( util, 'escapeId', function ( str ) {
-		return escapeIdInternal( str, 'legacy' );
-	}, 'Use mw.util.escapeIdForAttribute or mw.util.escapeIdForLink instead.', 'mw.util.escapeId' );
-
-	/**
 	 * Initialisation of mw.util.$content
 	 */
 	function init() {
