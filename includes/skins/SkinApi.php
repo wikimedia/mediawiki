@@ -32,9 +32,10 @@ class SkinApi extends SkinTemplate {
 	public $skinname = 'apioutput';
 	public $template = SkinApiTemplate::class;
 
-	public function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( 'mediawiki.skinning.interface' );
+	public function getDefaultModules() {
+		$modules = parent::getDefaultModules();
+		$modules['styles']['skin'][] = 'mediawiki.skinning.interface';
+		return $modules;
 	}
 
 	// Skip work and hooks for stuff we don't use
