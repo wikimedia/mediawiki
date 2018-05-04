@@ -93,6 +93,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	}
 
 	/**
+	 * Non-static proxy to ::getLogo (for overloading in sub classes or tests).
+	 *
+	 * @codeCoverageIgnore
 	 * @since 1.31
 	 * @param Config $conf
 	 * @return string|array
