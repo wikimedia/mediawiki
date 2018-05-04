@@ -25,6 +25,7 @@ This is a security and maintenance release of the MediaWiki 1.30 branch.
 * (T193995) Fix undefined patchPath() method call in parser tests.
 * Special:BotPasswords now requires reauthentication.
 * (T191608, T187638) Add 'logid' parameter to Special:Log.
+* (T193829) Indicate when a Bot Password needs reset.
 
 == MediaWiki 1.30 ==
 
