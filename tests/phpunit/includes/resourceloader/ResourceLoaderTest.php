@@ -100,6 +100,22 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::register
+	 */
+	public function testRegisterDuplicate() {
+		$logger = $this->getMockBuilder( Psr\Log\LoggerInterface::class )->getMock();
+		$logger->expects( $this->once() )
+			->method( 'warning' );
+		$resourceLoader = new EmptyResourceLoader( null, $logger );
+
+		$module1 = new ResourceLoaderTestModule();
+		$module2 = new ResourceLoaderTestModule();
+		$resourceLoader->register( 'test', $module1 );
+		$resourceLoader->register( 'test', $module2 );
+		$this->assertSame( $module2, $resourceLoader->getModule( 'test' ) );
+	}
+
+	/**
 	 * @covers ResourceLoader::getModuleNames
 	 */
 	public function testGetModuleNames() {
