@@ -157,12 +157,18 @@ class LBFactoryTest extends MediaWikiTestCase {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$factory = new LBFactoryMulti( [
-			'sectionsByDB' => [],
+			'sectionsByDB' => [
+				's1wiki' => 's1',
+			],
 			'sectionLoads' => [
+				's1' => [
+					'test-db3' => 0,
+					'test-db4' => 100,
+				],
 				'DEFAULT' => [
 					'test-db1' => 0,
 					'test-db2' => 100,
-				],
+				]
 			],
 			'serverTemplate' => [
 				'dbname'      => $wgDBname,
@@ -174,7 +180,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 			],
 			'hostsByName' => [
 				'test-db1'  => $wgDBserver,
-				'test-db2'  => $wgDBserver
+				'test-db2'  => $wgDBserver,
+				'test-db3'  => $wgDBserver,
+				'test-db4'  => $wgDBserver
 			],
 			'loadMonitorClass' => LoadMonitorNull::class
 		] );
@@ -186,8 +194,17 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
 
+		$factory->beginMasterChanges( __METHOD__ );
+		$dbw->onTransactionPreCommitOrIdle( function () use ( $factory ) {
+			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
+			// There is no s1wiki DB to select so it is not in getConnection(),
+			// but this fools getMainLB() at least.
+			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
+		} );
+		$factory->commitMasterChanges( __METHOD__ );
+
 		$factory->shutdown();
-		$lb->closeAll();
+		$factory->closeAll();
 	}
 
 	/**

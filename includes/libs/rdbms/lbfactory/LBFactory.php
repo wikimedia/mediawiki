@@ -246,7 +246,12 @@ abstract class LBFactory implements ILBFactory {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForCommit(); // try to ignore client aborts
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
-		$this->forEachLBCallMethod( 'finalizeMasterChanges' );
+		do {
+			$count = 0; // number of callbacks executed this iteration
+			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$count ) {
+				$count += $lb->finalizeMasterChanges();
+			} );
+		} while ( $count > 0 );
 		$this->trxRoundId = false;
 		// Perform pre-commit checks, aborting on failure
 		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options ] );
