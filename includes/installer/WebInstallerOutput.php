@@ -130,9 +130,9 @@ class WebInstallerOutput {
 		global $wgStyleDirectory;
 
 		$moduleNames = [
-			// See SkinTemplate::setupSkinUserCss
+			// Based on Skin::getDefaultModules
 			'mediawiki.legacy.shared',
-			// See Vector::setupSkinUserCss
+			// Based on Vector::setupSkinUserCss
 			'mediawiki.skinning.interface',
 		];
 

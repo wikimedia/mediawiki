@@ -76,6 +76,9 @@ changes to languages because of Phabricator reports.
   configuration in LocalSettings.php.
 * HTMLForm::setSubmitProgressive() is deprecated. No need to call it. Submit
   button is already marked as progressive.
+* Skin::setupSkinUserCss() is deprecated. Adding of modules to load
+  has been centralised to Skin::getDefaultModules(), which is now capable
+  of queueing style modules as well.
 
 === Other changes in 1.32 ===
 * …
