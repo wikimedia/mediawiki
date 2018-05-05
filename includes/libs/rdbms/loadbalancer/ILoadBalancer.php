@@ -380,6 +380,8 @@ interface ILoadBalancer {
 	 * Run pre-commit callbacks and defer execution of post-commit callbacks
 	 *
 	 * Use this only for mutli-database commits
+	 *
+	 * @return int Number of pre-commit callbacks run (since 1.32)
 	 */
 	public function finalizeMasterChanges();
 
@@ -449,7 +451,7 @@ interface ILoadBalancer {
 	public function hasMasterConnection();
 
 	/**
-	 * Determine if there are pending changes in a transaction by this thread
+	 * Whether there are pending changes or callbacks in a transaction by this thread
 	 * @return bool
 	 */
 	public function hasMasterChanges();

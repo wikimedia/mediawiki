@@ -254,8 +254,15 @@ interface IDatabase {
 	public function writesPending();
 
 	/**
-	 * Returns true if there is a transaction/round open with possible write
-	 * queries or transaction pre-commit/idle callbacks waiting on it to finish.
+	 * @return bool Whether there is a transaction open with pre-commit callbacks pending
+	 * @since 1.32
+	 */
+	public function preCommitCallbacksPending();
+
+	/**
+	 * Whether there is a transaction open with either possible write queries
+	 * or unresolved pre-commit/commit/resolution callbacks pending
+	 *
 	 * This does *not* count recurring callbacks, e.g. from setTransactionListener().
 	 *
 	 * @return bool
