@@ -102,8 +102,10 @@ class SpecialPrefixindex extends SpecialAllPages {
 			'prefix' => [
 				'label-message' => 'allpagesprefix',
 				'name' => 'prefix',
+				'id' => 'nsfrom',
 				'type' => 'text',
 				'size' => '30',
+				'default' => str_replace( '_', ' ', $from ),
 			],
 			'namespace' => [
 				'type' => 'namespaceselect',
