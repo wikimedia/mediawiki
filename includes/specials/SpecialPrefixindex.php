@@ -102,8 +102,10 @@ class SpecialPrefixindex extends SpecialAllPages {
 			'prefix' => [
 				'label-message' => 'allpagesprefix',
 				'name' => 'prefix',
+				'id' => 'nsfrom',
 				'type' => 'text',
 				'size' => '30',
+				'default' => str_replace( '_', ' ', $from ),
 			],
 			'namespace' => [
 				'type' => 'namespaceselect',
@@ -111,7 +113,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'id' => 'namespace',
 				'label-message' => 'namespace',
 				'all' => null,
-				'value' => $namespace,
+				'default' => $namespace,
 			],
 			'hidedirects' => [
 				'class' => 'HTMLCheckField',
@@ -124,7 +126,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'label-message' => 'prefixindex-strip',
 			],
 		];
-		$htmlForm = new HTMLForm( $formDescriptor, $this->getContext() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
+		$htmlForm = new HTMLForm( $formDescriptor, $context );
 		$htmlForm
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
