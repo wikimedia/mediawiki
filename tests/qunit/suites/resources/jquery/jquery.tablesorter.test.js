@@ -954,6 +954,7 @@
 				'<tr><td>B</td></tr>' +
 				'<tr><td>G</td></tr>' +
 				'<tr><td data-sort-value="F">C</td></tr>' +
+				'<tr><td><span data-sort-value="D">H</span></td></tr>' +
 				'</tbody></table>'
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
@@ -976,6 +977,10 @@
 			{
 				data: undefined,
 				text: 'D'
+			},
+			{
+				data: undefined,
+				text: 'H'
 			},
 			{
 				data: 'E',
