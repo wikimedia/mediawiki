@@ -20,7 +20,11 @@
 
 		function updateCount() {
 			var remaining = limit - byteLength( textInputWidget.getValue() );
-			remaining = mw.language.convertNumber( remaining );
+			if ( remaining > 99 ) {
+				remaining = '';
+			} else {
+				remaining = mw.language.convertNumber( remaining );
+			}
 			textInputWidget.setLabel( remaining );
 		}
 		textInputWidget.on( 'change', updateCount );
@@ -44,7 +48,11 @@
 
 		function updateCount() {
 			var remaining = limit - codePointLength( textInputWidget.getValue() );
-			remaining = mw.language.convertNumber( remaining );
+			if ( remaining > 99 ) {
+				remaining = '';
+			} else {
+				remaining = mw.language.convertNumber( remaining );
+			}
 			textInputWidget.setLabel( remaining );
 		}
 		textInputWidget.on( 'change', updateCount );
