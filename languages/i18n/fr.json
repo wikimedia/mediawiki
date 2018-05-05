@@ -1647,7 +1647,7 @@
 	"recentchangeslinked-feed": "Suivi des pages liées",
 	"recentchangeslinked-toolbox": "Suivi des pages liées",
 	"recentchangeslinked-title": "Suivi des pages associées à « $1 »",
-	"recentchangeslinked-summary": "Entrer un nom de page pour voir les modifications faites récemment sur des pages liées depuis ou vers cette page (pour voir les membres d’une catégorie, entrez Catégorie:Nom de catégorie). Les modifications des pages de [[Special:Watchlist|votre liste de suivi]] sont <strong>en gras</strong>.",
+	"recentchangeslinked-summary": "Entrer un nom de page pour voir les modifications faites récemment sur des pages liées vers ou depuis cette page (pour voir les membres d’une catégorie, entrez {{ns:category}}:Nom de catégorie). Les modifications des pages de [[Special:Watchlist|votre liste de suivi]] sont <strong>en gras</strong>.",
 	"recentchangeslinked-page": "Nom de la page :",
 	"recentchangeslinked-to": "Afficher les modifications des pages qui comportent un lien vers la page donnée plutôt que l'inverse",
 	"recentchanges-page-added-to-category": "[[:$1]] ajouté à la catégorie",
