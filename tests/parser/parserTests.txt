@@ -19258,31 +19258,6 @@ Article for special page transclusion test
 !! endarticle
 
 !! test
-Special page transclusion
-!! options
-!! wikitext
-{{Special:Prefixindex/Xyzzyx}}
-!! html
-<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
-</ul>
-
-!! end
-
-!! test
-Special page transclusion twice (T7021)
-!! options
-!! wikitext
-{{Special:Prefixindex/Xyzzyx}}
-{{Special:Prefixindex/Xyzzyx}}
-!! html
-<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
-</ul>
-<ul class="mw-prefixindex-list"><li><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></li>
-</ul>
-
-!! end
-
-!! test
 Transclusion of default MediaWiki message
 !! wikitext
 {{MediaWiki:Mainpage}}
