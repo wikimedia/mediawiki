@@ -86,3 +86,7 @@
 	path = extensions/PdfHandler
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/PdfHandler
 	branch = REL1_31
+[submodule "skins/Timeless"]
+	path = skins/Timeless
+	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
+        branch = REL1_31
