@@ -59,11 +59,23 @@ class SpecialPrefixindex extends SpecialAllPages {
 		# GET values
 		$request = $this->getRequest();
 		$from = $request->getVal( 'from', '' );
-		$prefix = $request->getVal( 'prefix', '' );
 		$ns = $request->getIntOrNull( 'namespace' );
 		$namespace = (int)$ns; // if no namespace given, use 0 (NS_MAIN).
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
+
+		// Fetch the prefix term
+		$prefix = str_replace( "\n", " ", $request->getText( 'prefix' ) );
+
+		if ( strlen( $par ) && !strlen( $prefix ) ) {
+			$query = $request->getValues();
+			unset( $query['title'] );
+			// Strip underscores from title parameter; most of the time we'll want
+			// text form here. But don't strip underscores from actual text params!
+			$query['prefix'] = str_replace( '_', ' ', $par );
+			$this->getOutput()->redirect( $this->getPageTitle()->getFullURL( $query ), 301 );
+			return;
+		}
 
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
@@ -102,8 +114,10 @@ class SpecialPrefixindex extends SpecialAllPages {
 			'prefix' => [
 				'label-message' => 'allpagesprefix',
 				'name' => 'prefix',
+				'id' => 'nsfrom',
 				'type' => 'text',
 				'size' => '30',
+				'default' => str_replace( '_', ' ', $from ),
 			],
 			'namespace' => [
 				'type' => 'namespaceselect',
