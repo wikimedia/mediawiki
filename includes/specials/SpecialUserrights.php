@@ -882,7 +882,7 @@ class UserrightsPage extends SpecialPage {
 						}
 						// T171345: Add a hidden form element so that other groups can still be manipulated,
 						// otherwise saving errors out with an invalid expiry time for this group.
-						$expiryHtml .= Html::Hidden( "wpExpiry-$group",
+						$expiryHtml .= Html::hidden( "wpExpiry-$group",
 							$currentExpiry ? 'existing' : 'infinite' );
 						$expiryHtml .= "<br />\n";
 					} else {

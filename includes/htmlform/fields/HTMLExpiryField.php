@@ -29,7 +29,7 @@ class HTMLExpiryField extends HTMLFormField {
 	 * Use whatever the relative field is as the standard HTML input.
 	 */
 	public function getInputHTML( $value ) {
-		return $this->relativeField->getInputHtml( $value );
+		return $this->relativeField->getInputHTML( $value );
 	}
 
 	protected function shouldInfuseOOUI() {
