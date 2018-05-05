@@ -416,7 +416,7 @@ interface ILoadBalancer {
 	public function commitMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks
+	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks and commit dangling transactions
 	 *
 	 * @return Exception|null The first exception or null if there were none
 	 */

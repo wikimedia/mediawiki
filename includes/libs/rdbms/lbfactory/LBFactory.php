@@ -254,6 +254,29 @@ abstract class LBFactory implements ILBFactory {
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
+		// Run all post-commit callbacks in a separate step
+		$e = $this->executePostTransactionCallbacks();
+		$this->trxRoundStage = self::ROUND_CURSORY;
+		// Throw any last post-commit callback error
+		if ( $e instanceof Exception ) {
+			throw $e;
+		}
+	}
+
+	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
+		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
+		$this->trxRoundId = false;
+		// Actually perform the rollback on all master DB connections and revert DBO_TRX
+		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
+		// Run all post-commit callbacks in a separate step
+		$this->executePostTransactionCallbacks();
+		$this->trxRoundStage = self::ROUND_CURSORY;
+	}
+
+	/**
+	 * @return Exception|null
+	 */
+	private function executePostTransactionCallbacks() {
 		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
 		do {
@@ -267,20 +290,8 @@ abstract class LBFactory implements ILBFactory {
 			$ex = $lb->runMasterTransactionListenerCallbacks();
 			$e = $e ?: $ex;
 		} );
-		$this->trxRoundStage = self::ROUND_CURSORY;
-		// Throw any last post-commit callback error
-		if ( $e instanceof Exception ) {
-			throw $e;
-		}
-	}
 
-	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
-		$this->trxRoundId = false;
-		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
-		$this->forEachLBCallMethod( 'runMasterTransactionIdleCallbacks' );
-		$this->forEachLBCallMethod( 'runMasterTransactionListenerCallbacks' );
-		$this->trxRoundStage = self::ROUND_CURSORY;
+		return $e;
 	}
 
 	public function hasTransactionRound() {
