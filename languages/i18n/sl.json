@@ -1484,7 +1484,7 @@
 	"recentchangeslinked-feed": "Sorodne spremembe",
 	"recentchangeslinked-toolbox": "Sorodne spremembe",
 	"recentchangeslinked-title": "Spremembe, povezane z \"$1\"",
-	"recentchangeslinked-summary": "Vnesite ime strani, da vidite spremembe strani, povezanih na ali s te strani. (Da vidite člane kategorije, vnesite Kategorija:Ime kategorije.)\nStrani z [[Special:Watchlist|vašega spiska nadzorov]] so <strong>odebeljene</strong>.",
+	"recentchangeslinked-summary": "Vnesite ime strani, da vidite spremembe strani, povezanih na ali s te strani. (Da vidite člane kategorije, vnesite {{ns:category}}:Ime kategorije.)\nStrani z [[Special:Watchlist|vašega spiska nadzorov]] so <strong>odebeljene</strong>.",
 	"recentchangeslinked-page": "Naslov strani:",
 	"recentchangeslinked-to": "Prikaži spremembe na določeno stran povezanih strani",
 	"recentchanges-page-added-to-category": "[[:$1]] dodano v kategorijo",

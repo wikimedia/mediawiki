@@ -1536,7 +1536,7 @@
 	"recentchangeslinked-feed": "가리키는 글의 최근 바뀜",
 	"recentchangeslinked-toolbox": "가리키는 글의 최근 바뀜",
 	"recentchangeslinked-title": "\"$1\" 문서에 관련된 문서 바뀜",
-	"recentchangeslinked-summary": "해당 문서에 연결된 문서의 변경사항을 확인하려면 문서 이름을 입력하십시오. (분류에 들어있는 문서를 보려면 분류:분류명으로 입력하십시오). [[Special:Watchlist|내 주시문서 목록]]에 있는 문서의 변경사항은 <strong>굵게</strong> 나타납니다.",
+	"recentchangeslinked-summary": "해당 문서에 연결된 문서의 변경사항을 확인하려면 문서 이름을 입력하십시오. (분류에 들어있는 문서를 보려면 {{ns:category}}:분류명으로 입력하십시오). [[Special:Watchlist|내 주시문서 목록]]에 있는 문서의 변경사항은 <strong>굵게</strong> 나타납니다.",
 	"recentchangeslinked-page": "문서 이름:",
 	"recentchangeslinked-to": "해당 문서를 가리키는 문서의 최근 바뀜 보기",
 	"recentchanges-page-added-to-category": "[[:$1]]에 분류를 추가하였습니다",

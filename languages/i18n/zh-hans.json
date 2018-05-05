@@ -1568,7 +1568,7 @@
 	"recentchangeslinked-feed": "相关更改",
 	"recentchangeslinked-toolbox": "相关更改",
 	"recentchangeslinked-title": "与“$1”有关的更改",
-	"recentchangeslinked-summary": "输入页面名称以查看链入（或链自）相关页面的更改。（要查看分类的成员，请输入Category:分类名称）。对[[Special:Watchlist|您的监视列表]]上页面的更改以<strong>粗体</strong>显示。",
+	"recentchangeslinked-summary": "输入页面名称以查看链入（或链自）相关页面的更改。（要查看分类的成员，请输入{{ns:category}}:分类名称）。对[[Special:Watchlist|您的监视列表]]上页面的更改以<strong>粗体</strong>显示。",
 	"recentchangeslinked-page": "页面名称：",
 	"recentchangeslinked-to": "显示链到所给出的页面",
 	"recentchanges-page-added-to-category": "[[:$1]]已添加至分类",

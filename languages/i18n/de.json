@@ -1565,7 +1565,7 @@
 	"recentchangeslinked-feed": "Änderungen an verlinkten Seiten",
 	"recentchangeslinked-toolbox": "Änderungen an verlinkten Seiten",
 	"recentchangeslinked-title": "Änderungen an Seiten, die von „$1“ verlinkt sind",
-	"recentchangeslinked-summary": "Gib einen Seitennamen ein, um Änderungen auf Seiten zu sehen, die auf oder von dieser Seite verlinkt sind. Um Mitglieder einer Kategorie zu sehen, gib „Kategorie:''Name der Kategorie''“ ein. Änderungen an Seiten auf [[Special:Watchlist|deiner Beobachtungsliste]] sind <strong>fett</strong> hervorgehoben.",
+	"recentchangeslinked-summary": "Gib einen Seitennamen ein, um Änderungen auf Seiten zu sehen, die auf oder von dieser Seite verlinkt sind. Um Mitglieder einer Kategorie zu sehen, gib „{{ns:category}}:''Name der Kategorie''“ ein. Änderungen an Seiten auf [[Special:Watchlist|deiner Beobachtungsliste]] sind <strong>fett</strong> hervorgehoben.",
 	"recentchangeslinked-page": "Seite:",
 	"recentchangeslinked-to": "Zeige nur Änderungen an Seiten, die auf diese Seite verlinken",
 	"recentchanges-page-added-to-category": "[[:$1]] zur Kategorie hinzugefügt",
