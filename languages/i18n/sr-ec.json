@@ -1415,7 +1415,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-description": "Измене страница које нисте посетили од када су направљене измене.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Погледане измене",
 	"rcfilters-filter-watchlistactivity-seen-description": "Измене страница које сте посетили од када су направљене измене.",
-	"rcfilters-filtergroup-changetype": "Врста измене",
+	"rcfilters-filtergroup-changetype": "Тип измене",
 	"rcfilters-filter-pageedits-label": "Измене страница",
 	"rcfilters-filter-pageedits-description": "Измене вики садржаја, расправа, описа категорија…",
 	"rcfilters-filter-newpages-label": "Прављење страница",
