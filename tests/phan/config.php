@@ -72,7 +72,6 @@ return [
 		'maintenance/',
 		'mw-config/',
 		'resources/',
-		'skins/',
 		'vendor/',
 	],
 
@@ -100,8 +99,6 @@ return [
 		'maintenance/language/',
 		// External class
 		'includes/libs/jsminplus.php',
-		// separate repositories
-		'skins/',
 	],
 
 	/**
