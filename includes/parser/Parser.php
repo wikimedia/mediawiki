@@ -3346,6 +3346,9 @@ class Parser {
 			$this->limitationWarn( 'post-expand-template-inclusion' );
 		}
 
+		# Trim whitespaces from the end of the text
+		$text = rtrim( $text );
+
 		if ( $isLocalObj ) {
 			$ret = [ 'object' => $text ];
 		} else {
