@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"apihelp-block-param-hidename": "隱藏封鎖日誌的用戶名稱。 (需要 \"hideuser\" 權限)。",
+	"apihelp-block-param-allowusertalk": "允許用戶編輯自己的對話頁面 (依據 <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> 的設定)。",
+	"apihelp-block-param-reblock": "若用戶已被封鎖，覆寫既有的封鎖設定值。",
+	"apihelp-block-param-watchuser": "監視用戶或 IP 的用戶頁面與對話頁面。",
+	"apihelp-createaccount-summary": "建立一個新用戶戶口。",
+	"apihelp-login-param-name": "用戶名稱。",
+	"apihelp-userrights-param-user": "用戶名稱。",
+	"apihelp-userrights-param-userid": "用戶 ID。"
+}

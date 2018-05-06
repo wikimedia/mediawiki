@@ -3227,6 +3227,7 @@
 	"autoredircomment": "Alidirektigis al [[$1]]",
 	"autosumm-new": "Nova paĝo kun '$1'",
 	"autosumm-newblank": "Kreis nulan paĝon",
+	"size-bytes": "$1 {{PLURAL:$1|bajto|bajtoj}}",
 	"lag-warn-normal": "Ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne estos montrataj en ĉi tiu listo.",
 	"lag-warn-high": "Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne montriĝos en ĉi tiu listo.",
 	"watchlistedit-normal-title": "Redakti atentaron",

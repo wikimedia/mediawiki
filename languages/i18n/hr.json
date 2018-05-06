@@ -1666,7 +1666,7 @@
 	"filepage-nofile-link": "Ne postoji datoteka s ovim imenom, ali možete je [$1 postaviti].",
 	"uploadnewversion-linktext": "Postavi novu inačicu datoteke",
 	"shared-repo-from": "s projekta $1",
-	"shared-repo": "zajednički poslužitelj",
+	"shared-repo": "Zajednički poslužitelj",
 	"shared-repo-name-wikimediacommons": "Zajednički poslužitelj",
 	"upload-disallowed-here": "Ne možete prepisati ovu datoteku.",
 	"filerevert": "Ukloni ← $1",
