@@ -70,6 +70,7 @@ changes to languages because of Phabricator reports.
   * Revision::getRawComment()
 * window.gM() from mediawiki.jqueryMsg was removed (deprecated in 1.23).
   Use mw.msg() or mw.message() instead.
+* The SqlDataUpdate class, deprecated in 1.28, has been removed.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
