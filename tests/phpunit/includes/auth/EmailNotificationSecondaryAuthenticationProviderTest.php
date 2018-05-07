@@ -5,6 +5,9 @@ namespace MediaWiki\Auth;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers \MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider
+ */
 class EmailNotificationSecondaryAuthenticationProviderTest extends \PHPUnit\Framework\TestCase {
 	public function testConstructor() {
 		$config = new \HashConfig( [

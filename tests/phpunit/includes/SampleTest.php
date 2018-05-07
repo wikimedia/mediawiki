@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @coversNothing Just a sample
+ */
 class SampleTest extends MediaWikiLangTestCase {
 
 	/**
