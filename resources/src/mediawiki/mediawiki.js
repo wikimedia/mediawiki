@@ -90,15 +90,17 @@
 			// Override #set to also set the global variable
 			this.set = function ( selection, value ) {
 				var s;
-
-				if ( $.isPlainObject( selection ) ) {
+				if ( arguments.length > 1 ) {
+					if ( typeof selection !== 'string' ) {
+						return false;
+					}
+					setGlobalMapValue( this, selection, value );
+					return true;
+				}
+				if ( typeof selection === 'object' ) {
 					for ( s in selection ) {
 						setGlobalMapValue( this, s, selection[ s ] );
 					}
-					return true;
-				}
-				if ( typeof selection === 'string' && arguments.length ) {
-					setGlobalMapValue( this, selection, value );
 					return true;
 				}
 				return false;
@@ -183,15 +185,18 @@
 		 */
 		set: function ( selection, value ) {
 			var s;
-
-			if ( $.isPlainObject( selection ) ) {
+			// Use `arguments.length` because `undefined` is also a valid value.
+			if ( arguments.length > 1 ) {
+				if ( typeof selection !== 'string' ) {
+					return false;
+				}
+				this.values[ selection ] = value;
+				return true;
+			}
+			if ( typeof selection === 'object' ) {
 				for ( s in selection ) {
 					this.values[ s ] = selection[ s ];
 				}
-				return true;
-			}
-			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.values[ selection ] = value;
 				return true;
 			}
 			return false;
