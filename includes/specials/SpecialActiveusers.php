@@ -80,10 +80,12 @@ class SpecialActiveUsers extends SpecialPage {
 	protected function buildForm() {
 		$groups = User::getAllGroups();
 
+		$options = [];
 		foreach ( $groups as $group ) {
 			$msg = htmlspecialchars( UserGroupMembership::getGroupName( $group ) );
 			$options[$msg] = $group;
 		}
+		asort( $options );
 
 		// Backwards-compatibility with old URLs
 		$req = $this->getRequest();
