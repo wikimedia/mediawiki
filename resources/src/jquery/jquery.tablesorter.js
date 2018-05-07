@@ -829,7 +829,11 @@
 						return;
 					}
 				}
-				$table.addClass( 'jquery-tablesorter' );
+				// The `sortable` class is used to identify tables which will become sortable
+				// If not used it will create a FOUC but it should be added since the sortable class
+				// is responsible for certain crucial style elements. If the class is already present
+				// this action will be harmless.
+				$table.addClass( 'jquery-tablesorter sortable' );
 
 				// Merge and extend
 				config = $.extend( {}, $.tablesorter.defaultOptions, settings );
