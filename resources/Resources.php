@@ -328,6 +328,7 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.tabIndex.js',
 	],
 	'jquery.tablesorter' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/src/jquery/jquery.tablesorter.less',
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
@@ -1654,6 +1655,7 @@ return [
 	],
 
 	'mediawiki.language.months' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.language/mediawiki.language.months.js',
 		'dependencies' => 'mediawiki.language',
 		'messages' => array_merge(
