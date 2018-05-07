@@ -1300,11 +1300,12 @@ class LocalFile extends File {
 	 * @param User|null $user User object or null to use $wgUser
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
+	 * @param bool|null $createNullRevision
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
-		$timestamp = false, $user = null, $tags = []
+		$timestamp = false, $user = null, $tags = [], $createNullRevision = null
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1345,7 +1346,6 @@ class LocalFile extends File {
 
 		$this->lock(); // begin
 		$status = $this->publish( $src, $flags, $options );
-
 		if ( $status->successCount >= 2 ) {
 			// There will be a copy+(one of move,copy,store).
 			// The first succeeding does not commit us to updating the DB
@@ -1361,7 +1361,8 @@ class LocalFile extends File {
 				$props,
 				$timestamp,
 				$user,
-				$tags
+				$tags,
+				$createNullRevision
 			);
 			if ( !$uploadStatus->isOK() ) {
 				if ( $uploadStatus->hasMessage( 'filenotfound' ) ) {
@@ -1419,10 +1420,12 @@ class LocalFile extends File {
 	 * @param string|bool $timestamp
 	 * @param null|User $user
 	 * @param string[] $tags
+	 * @param bool|null $createNullRevision
 	 * @return Status
 	 */
 	function recordUpload2(
-		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = []
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
+		$createNullRevision = null
 	) {
 		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
 
@@ -1662,22 +1665,25 @@ class LocalFile extends File {
 			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
 			$editSummary = $formatter->getPlainActionText();
 
-			$nullRevision = Revision::newNullRevision(
-				$dbw,
-				$descId,
-				$editSummary,
-				false,
-				$user
-			);
-			if ( $nullRevision ) {
-				$nullRevision->insertOn( $dbw );
-				Hooks::run(
-					'NewRevisionFromEditComplete',
-					[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user ]
+			if( $createNullRevision !== false ) {
+				$nullRevision = Revision::newNullRevision(
+					$dbw,
+					$descId,
+					$editSummary,
+					false,
+					$user
 				);
-				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
-				// Associate null revision id
-				$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
+				if ( $nullRevision ) {
+					$nullRevision->insertOn( $dbw );
+					Hooks::run(
+						'NewRevisionFromEditComplete',
+						[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user ]
+					);
+					$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+					// Associate null revision id
+					$logEntry->setAssociatedRevId( $nullRevision->getId() );
+				}
 			}
 
 			$newPageContent = null;

@@ -38,7 +38,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 		return $statusValue;
 	}
 
-	public function import( ImportableUploadRevision $importableRevision ) {
+	public function import( ImportableUploadRevision $importableRevision, $createNullRevision = null ) {
 		# Construct a file
 		$archiveName = $importableRevision->getArchiveName();
 		if ( $archiveName ) {
@@ -100,7 +100,9 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 				$flags,
 				false,
 				$importableRevision->getTimestamp(),
-				$user
+				$user,
+				[],
+				$createNullRevision
 			);
 		}
 
