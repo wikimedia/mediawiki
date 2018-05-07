@@ -1263,10 +1263,11 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function finalizeMasterChanges() {
-		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
+		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Loop until callbacks stop adding callbacks on other connections
+		$total = 0;
 		do {
 			$count = 0; // callbacks execution attempts
 			$this->forEachOpenMasterConnection( function ( Database $conn ) use ( &$count ) {
@@ -1274,12 +1275,15 @@ class LoadBalancer implements ILoadBalancer {
 				// Any error should cause all (peer) transactions to be rolled back together.
 				$count += $conn->runOnTransactionPreCommitCallbacks();
 			} );
+			$total += $count;
 		} while ( $count > 0 );
 		// Defer post-commit callbacks until after COMMIT/ROLLBACK happens on all handles
 		$this->forEachOpenMasterConnection( function ( Database $conn ) {
 			$conn->setTrxEndCallbackSuppression( true );
 		} );
 		$this->trxRoundStage = self::ROUND_FINALIZED;
+
+		return $total;
 	}
 
 	public function approveMasterChanges( array $options ) {
@@ -1494,13 +1498,21 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param string $stage
+	 * @param string|string[] $stage
 	 */
 	private function assertTransactionRoundStage( $stage ) {
-		if ( $this->trxRoundStage !== $stage ) {
+		$stages = (array)$stage;
+
+		if ( !in_array( $this->trxRoundStage, $stages, true ) ) {
+			$stageList = implode(
+				'/',
+				array_map( function ( $v ) {
+					return "'$v'";
+				}, $stages )
+			);
 			throw new DBTransactionError(
 				null,
-				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
+				"Transaction round stage must be $stageList (not '{$this->trxRoundStage}')"
 			);
 		}
 	}

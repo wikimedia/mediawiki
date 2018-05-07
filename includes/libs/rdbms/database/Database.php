@@ -677,6 +677,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
+	public function preCommitCallbacksPending() {
+		return $this->trxLevel && $this->trxPreCommitCallbacks;
+	}
+
 	/**
 	 * @return string|null
 	 */
