@@ -209,7 +209,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 						$out->addHTML( $this->getFilterPanel() );
 					}
 					$errMsg = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
-					$out->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+					// Use redirect=no if the page is a redirect
+					$redir = $this->target->isRedirect() ? [ 'redirect' => 'no' ] : [];
+					$link = Linker::linkKnown(
+						$this->target,
+						null,
+						[],
+						$redir
+					);
+
+					$errMsg = $this->msg( $errMsg )->rawParams( $link )->parseAsBlock();
+					$out->addHTML( $errMsg );
 					$out->setStatusCode( 404 );
 				}
 			}
@@ -273,7 +283,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 				$out->addHTML( $this->getFilterPanel() );
-				$out->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
+				// Use redirect=no if the page is a redirect
+				$redir = $this->target->isRedirect() ? [ 'redirect' => 'no' ] : [];
+				$link = Linker::linkKnown(
+					$this->target,
+					null,
+					[],
+					$redir
+				);
+
+				$msg = $this->msg( 'linkshere' )->rawParams( $link )->parseAsBlock();
+				$out->addHTML( $msg );
 
 				$prevnext = $this->getPrevNext( $prevId, $nextId );
 				$out->addHTML( $prevnext );
