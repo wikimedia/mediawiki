@@ -97,7 +97,7 @@ class LogEventsList extends ContextSource {
 	 * @param array|string $types
 	 * @param string $user
 	 * @param string $page
-	 * @param string $pattern
+	 * @param bool $pattern
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
 	 *  preselected.
@@ -105,7 +105,7 @@ class LogEventsList extends ContextSource {
 	 * @param string $tagFilter Tag to select by default
 	 * @param string $action
 	 */
-	public function showOptions( $types = [], $user = '', $page = '', $pattern = '', $year = 0,
+	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
 		$month = 0, $filter = null, $tagFilter = '', $action = null
 	) {
 		global $wgScript, $wgMiserMode;
@@ -289,7 +289,7 @@ class LogEventsList extends ContextSource {
 	}
 
 	/**
-	 * @param string $pattern
+	 * @param bool $pattern
 	 * @return string Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {
