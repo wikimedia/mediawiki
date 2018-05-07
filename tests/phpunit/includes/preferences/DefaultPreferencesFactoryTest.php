@@ -170,6 +170,8 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 
 	/**
 	 * The rclimit preference should accept non-integer input and filter it to become an integer.
+	 *
+	 * @covers \MediaWiki\Preferences\DefaultPreferencesFactory::saveFormData
 	 */
 	public function testIntvalFilter() {
 		// Test a string with leading zeros (i.e. not octal) and spaces.

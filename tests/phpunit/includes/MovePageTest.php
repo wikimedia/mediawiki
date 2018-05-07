@@ -43,6 +43,8 @@ class MovePageTest extends MediaWikiTestCase {
 	/**
 	 * Integration test to catch regressions like T74870. Taken and modified
 	 * from SemanticMediaWiki
+	 *
+	 * @covers Title::moveTo
 	 */
 	public function testTitleMoveCompleteIntegrationTest() {
 		$oldTitle = Title::newFromText( 'Help:Some title' );

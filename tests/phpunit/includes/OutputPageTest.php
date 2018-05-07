@@ -151,6 +151,7 @@ class OutputPageTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideCdnCacheEpoch
+	 * @covers OutputPage::getCdnCacheEpoch
 	 */
 	public function testCdnCacheEpoch( $params ) {
 		$out = TestingAccessWrapper::newFromObject( $this->newInstance() );
