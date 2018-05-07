@@ -77,7 +77,11 @@
 			if ( !( langData[ langCode ] instanceof mw.Map ) ) {
 				langData[ langCode ] = new mw.Map();
 			}
-			langData[ langCode ].set( dataKey, value );
+			if ( arguments.length > 2 ) {
+				langData[ langCode ].set( dataKey, value );
+			} else {
+				langData[ langCode ].set( dataKey );
+			}
 		}
 	};
 
