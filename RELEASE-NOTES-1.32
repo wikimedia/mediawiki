@@ -15,6 +15,8 @@ production.
   $wgJpegQuality (default 80). This aligns the quality to what ImageMagick uses.
 * $wgExperimentalHtmlIds, deprecated since 1.30, has been removed. The
   'html5-legacy' value for $wgFragmentMode is no longer accepted.
+* The experimental Html5Internal and Html5Depurate tidy drivers were removed. RemexHtml
+  should be used instead.
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
@@ -76,6 +78,9 @@ because of Phabricator reports.
 * mw.util.updateTooltipAccessKeys(), deprecated in 1.24, was removed. Use
   jquery.accessKeyLabel instead.
 * The SqlDataUpdate class, deprecated in 1.28, has been removed.
+* The Html5Internal and Html5Depurate tidy driver classes were removed, along with the
+  Balancer tidy implementation. Both implementations were experimental, and were replaced
+  by RemexHtml.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
