@@ -3490,3 +3490,18 @@ function wfGetRusage() {
 		return getrusage( 0 /* RUSAGE_SELF */ );
 	}
 }
+
+/**
+ * Assign permissions for a user group
+ *
+ * @param string $group
+ * @param array $rights
+ * @since 1.32
+ * @return void
+ */
+function wfAssignRight( $group, $rights ) {
+        global $wgGroupPermissions;
+        foreach ( $rights as $right ) {
+                $wgGroupPermissions[$group][$right] = true;
+        }
+}
