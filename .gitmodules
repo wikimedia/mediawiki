@@ -90,3 +90,7 @@
 	path = skins/Timeless
 	url = https://gerrit.wikimedia.org/r/mediawiki/skins/Timeless
         branch = REL1_31
+[submodule "extensions/ReplaceText"]
+	path = extensions/ReplaceText
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ReplaceText
+	branch = REL1_31
