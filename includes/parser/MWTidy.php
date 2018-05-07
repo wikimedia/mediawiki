@@ -111,12 +111,6 @@ class MWTidy {
 			case 'RaggettExternal':
 				$instance = new MediaWiki\Tidy\RaggettExternal( $config );
 				break;
-			case 'Html5Depurate':
-				$instance = new MediaWiki\Tidy\Html5Depurate( $config );
-				break;
-			case 'Html5Internal':
-				$instance = new MediaWiki\Tidy\Html5Internal( $config );
-				break;
 			case 'RemexHtml':
 				$instance = new MediaWiki\Tidy\RemexDriver( $config );
 				break;
