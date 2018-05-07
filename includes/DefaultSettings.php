@@ -4273,8 +4273,6 @@ $wgAllowImageTag = false;
  *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
  *    - RaggettInternalPHP: Use the PECL extension
  *    - RaggettExternal: Shell out to an external binary (tidyBin)
- *    - Html5Depurate: Use external Depurate service
- *    - Html5Internal: Use the Balancer library in PHP
  *    - RemexHtml: Use the RemexHtml library in PHP
  *
  *  - tidyConfigFile: Path to configuration file for any of the Raggett drivers
