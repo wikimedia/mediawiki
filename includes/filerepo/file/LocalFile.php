@@ -1300,11 +1300,14 @@ class LocalFile extends File {
 	 * @param User|null $user User object or null to use $wgUser
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
+	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
+	 *   upload, see T193621
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
-		$timestamp = false, $user = null, $tags = []
+		$timestamp = false, $user = null, $tags = [],
+		$createNullRevision = true
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1361,7 +1364,8 @@ class LocalFile extends File {
 				$props,
 				$timestamp,
 				$user,
-				$tags
+				$tags,
+				$createNullRevision
 			);
 			if ( !$uploadStatus->isOK() ) {
 				if ( $uploadStatus->hasMessage( 'filenotfound' ) ) {
@@ -1419,10 +1423,13 @@ class LocalFile extends File {
 	 * @param string|bool $timestamp
 	 * @param null|User $user
 	 * @param string[] $tags
+	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
+	 *   upload, see T193621
 	 * @return Status
 	 */
 	function recordUpload2(
-		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = []
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
+		$createNullRevision = true
 	) {
 		global $wgCommentTableSchemaMigrationStage, $wgActorTableSchemaMigrationStage;
 
@@ -1662,7 +1669,7 @@ class LocalFile extends File {
 			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
 			$editSummary = $formatter->getPlainActionText();
 
-			$nullRevision = Revision::newNullRevision(
+			$nullRevision = $createNullRevision === false ? null : Revision::newNullRevision(
 				$dbw,
 				$descId,
 				$editSummary,
