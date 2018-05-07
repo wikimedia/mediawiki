@@ -21,6 +21,8 @@
  * @ingroup FileAbstraction
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Foreign file accessible through api.php requests.
  * Very hacky and inefficient, do not use :D
@@ -360,7 +362,7 @@ class ForeignAPIFile extends File {
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
 		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5( $url ) );
 
-		ObjectCache::getMainWANInstance()->delete( $key );
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 	}
 
 	/**
@@ -368,7 +370,7 @@ class ForeignAPIFile extends File {
 	 */
 	function purgeThumbnails( $options = [] ) {
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
-		ObjectCache::getMainWANInstance()->delete( $key );
+		MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 
 		$files = $this->getThumbnails();
 		// Give media handler a chance to filter the purge list
