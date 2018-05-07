@@ -89,6 +89,8 @@ class WordAccumulator {
 				$this->flushLine( $tag );
 				$word = substr( $word, 1 );
 			}
+			// FIXME: Don't use assert()
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.assert
 			assert( !strstr( $word, "\n" ) );
 			$this->group .= $word;
 		}

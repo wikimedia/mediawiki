@@ -24,6 +24,9 @@
  */
 use MediaWiki\Diff\ComplexityException;
 
+// FIXME: Don't use assert() in this file
+// phpcs:disable MediaWiki.Usage.ForbiddenFunctions.assert
+
 /**
  * This diff implementation is mainly lifted from the LCS algorithm of the Eclipse project which
  * in turn is based on Myers' "An O(ND) difference algorithm and its variations"
