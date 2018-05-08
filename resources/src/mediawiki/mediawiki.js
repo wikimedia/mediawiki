@@ -1188,10 +1188,10 @@
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
-			 * @return {jQuery.Promise}
+			 * @param {Function} [callback] Callback to run after request resolution
 			 */
-			function addScript( src ) {
-				return $.ajax( {
+			function addScript( src, callback ) {
+				var promise = $.ajax( {
 					url: src,
 					dataType: 'script',
 					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
@@ -1202,6 +1202,10 @@
 					crossDomain: true,
 					cache: true
 				} );
+
+				if ( callback ) {
+					promise.always( callback );
+				}
 			}
 
 			/**
@@ -1214,12 +1218,12 @@
 			 */
 			function queueModuleScript( src, moduleName, callback ) {
 				pendingRequests.push( function () {
-					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
+					if ( hasOwn.call( registry, moduleName ) ) {
 						// Emulate runScript() part of execute()
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
 					}
-					addScript( src ).always( function () {
+					addScript( src, function () {
 						// 'module.exports' should not persist after the file is executed to
 						// avoid leakage to unrelated code. 'require' should be kept, however,
 						// as asynchronous access to 'require' is allowed and expected. (T144879)
