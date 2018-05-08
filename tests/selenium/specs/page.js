@@ -1,4 +1,3 @@
-'use strict';
 const assert = require( 'assert' ),
 	DeletePage = require( '../pageobjects/delete.page' ),
 	RestorePage = require( '../pageobjects/restore.page' ),
@@ -7,7 +6,6 @@ const assert = require( 'assert' ),
 	UserLoginPage = require( '../pageobjects/userlogin.page' );
 
 describe( 'Page', function () {
-
 	var content,
 		name;
 
@@ -28,14 +26,12 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be creatable', function () {
-
 		// create
 		EditPage.edit( name, content );
 
 		// check
 		assert.equal( EditPage.heading.getText(), name );
 		assert.equal( EditPage.displayedContent.getText(), content );
-
 	} );
 
 	it( 'should be re-creatable', function () {
@@ -61,7 +57,6 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be editable', function () {
-
 		// create
 		browser.call( function () {
 			return EditPage.apiEdit( name, content );
@@ -73,11 +68,9 @@ describe( 'Page', function () {
 		// check
 		assert.equal( EditPage.heading.getText(), name );
 		assert.equal( EditPage.displayedContent.getText(), content );
-
 	} );
 
 	it( 'should have history', function () {
-
 		// create
 		browser.call( function () {
 			return EditPage.apiEdit( name, content );
@@ -86,11 +79,9 @@ describe( 'Page', function () {
 		// check
 		HistoryPage.open( name );
 		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
-
 	} );
 
 	it( 'should be deletable', function () {
-
 		// login
 		UserLoginPage.loginAdmin();
 
@@ -107,11 +98,9 @@ describe( 'Page', function () {
 			DeletePage.displayedContent.getText(),
 			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\nReturn to Main Page.'
 		);
-
 	} );
 
 	it( 'should be restorable', function () {
-
 		// login
 		UserLoginPage.loginAdmin();
 
@@ -130,7 +119,5 @@ describe( 'Page', function () {
 
 		// check
 		assert.equal( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
-
 	} );
-
 } );
