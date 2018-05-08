@@ -217,7 +217,7 @@
 	 *   expand the element. Default: the 'data-expandtext' attribute of the
 	 *   collapsible element or the content of 'collapsible-expand' message.
 	 * @param {boolean} [options.collapsed] Whether to collapse immediately. By default
-	 *   collapse only if the elements has the 'mw-collapsible' class.
+	 *   collapse only if the element has the 'mw-collapsed' class.
 	 * @param {jQuery} [options.$customTogglers] Elements to be used as togglers
 	 *   for this collapsible element. By default, if the collapsible element
 	 *   has an id attribute like 'mw-customcollapsible-XXX', elements with a
