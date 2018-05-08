@@ -5,6 +5,8 @@
 ( function ( mw, $ ) {
 	var $galleries,
 		bound = false,
+		lastWidth = window.innerWidth,
+		justifyNeeded = false,
 		// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
 		isTouchScreen = !!( window.ontouchstart !== undefined ||
 			window.DocumentTouch !== undefined && document instanceof window.DocumentTouch
@@ -205,6 +207,16 @@
 	}
 
 	function handleResizeStart() {
+		// Only do anything if window width changed. We don't care about the height.
+		if ( lastWidth === window.innerWidth ) {
+			return;
+		}
+
+		justifyNeeded = true;
+		// Temporarily set min-height, so that content following the gallery is not reflowed twice
+		$galleries.css( 'min-height', function () {
+			return $( this ).height();
+		} );
 		$galleries.children( 'li.gallerybox' ).each( function () {
 			var imgWidth = $( this ).data( 'imgWidth' ),
 				imgHeight = $( this ).data( 'imgHeight' ),
@@ -232,7 +244,16 @@
 	}
 
 	function handleResizeEnd() {
-		$galleries.each( justify );
+		// If window width never changed during the resize, don't do anything.
+		if ( justifyNeeded ) {
+			justifyNeeded = false;
+			lastWidth = window.innerWidth;
+			$galleries
+				// Remove temporary min-height
+				.css( 'min-height', '' )
+				// Recalculate layout
+				.each( justify );
+		}
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
