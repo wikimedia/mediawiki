@@ -1191,21 +1191,17 @@
 			 * @param {Function} [callback] Callback to run after request resolution
 			 */
 			function addScript( src, callback ) {
-				var promise = $.ajax( {
-					url: src,
-					dataType: 'script',
-					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
-					// XHR for a same domain request instead of <script>, which changes the request
-					// headers (potentially missing a cache hit), and reduces caching in general
-					// since browsers cache XHR much less (if at all). And XHR means we retrieve
-					// text, so we'd need to $.globalEval, which then messes up line numbers.
-					crossDomain: true,
-					cache: true
-				} );
-
-				if ( callback ) {
-					promise.always( callback );
-				}
+				var script = document.createElement( 'script' );
+				script.src = src;
+				script.onload = script.onerror = function () {
+					// Clean up
+					script.onload = script.onerror = null;
+					script = null;
+					if ( callback ) {
+						callback();
+					}
+				};
+				document.head.appendChild( script );
 			}
 
 			/**
@@ -1213,12 +1209,14 @@
 			 *
 			 * @private
 			 * @param {string} src URL of the script
-			 * @param {string} moduleName Name of currently executing module
-			 * @param {Function} callback Callback to run after addScript() resolution
+			 * @param {string} [moduleName] Name of currently executing module
+			 * @return {jQuery.Promise}
 			 */
-			function queueModuleScript( src, moduleName, callback ) {
+			function queueModuleScript( src, moduleName ) {
+				var r = $.Deferred();
+
 				pendingRequests.push( function () {
-					if ( hasOwn.call( registry, moduleName ) ) {
+					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
 						// Emulate runScript() part of execute()
 						window.require = mw.loader.require;
 						window.module = registry[ moduleName ].module;
@@ -1228,7 +1226,8 @@
 						// avoid leakage to unrelated code. 'require' should be kept, however,
 						// as asynchronous access to 'require' is allowed and expected. (T144879)
 						delete window.module;
-						callback();
+						r.resolve();
+
 						// Start the next one (if any)
 						if ( pendingRequests[ 0 ] ) {
 							pendingRequests.shift()();
@@ -1241,6 +1240,7 @@
 					handlingPendingRequests = true;
 					pendingRequests.shift()();
 				}
+				return r.promise();
 			}
 
 			/**
@@ -1304,7 +1304,7 @@
 							return;
 						}
 
-						queueModuleScript( arr[ i ], module, function () {
+						queueModuleScript( arr[ i ], module ).always( function () {
 							nestedAddScript( arr, callback, i + 1 );
 						} );
 					};
