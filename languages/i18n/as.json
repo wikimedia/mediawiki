@@ -2763,7 +2763,7 @@
 	"table_pager_limit_submit": "যাওক",
 	"table_pager_empty": "ফলাফল নাই",
 	"autosumm-blank": "পৃষ্ঠাটো খালী কৰা হ'ল",
-	"autosumm-replace": "পৄষ্ঠাখনক \"$1\"ৰে সলনি কৰা হ'ল",
+	"autosumm-replace": "পৃষ্ঠাটোক \"$1\"ৰে সলনি কৰা হ'ল",
 	"autoredircomment": "[[$1]]-লৈ পুনৰ্নিৰ্দেশ কৰা হ'ল",
 	"autosumm-new": "\"$1\" দি পৃষ্ঠা সৃষ্টি কৰা হ'ল",
 	"lag-warn-normal": "$1 {{PLURAL:$1|ছেকেণ্ড|ছেকেণ্ড}} তকৈ নতুন পৰিৱৰ্তনসমূহ এই তালিকাত দেখুওৱা নহবও পাৰে।",

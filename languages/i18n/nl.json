@@ -1554,7 +1554,7 @@
 	"recentchangeslinked-feed": "Verwante wijzigingen",
 	"recentchangeslinked-toolbox": "Verwante wijzigingen",
 	"recentchangeslinked-title": "Wijzigingen verwant aan \"$1\"",
-	"recentchangeslinked-summary": "Voer een paginanaam in om bewerkingen te zien van pagina's waarheen vanaf die pagina verwezen wordt of die ernaar verwijzen. (Om leden van een categorie te zien, voert u <kbd>Categorie:''Naam van categorie''</kbd> in.) Bewerkingen van pagina's op [[Special:Watchlist|uw volglijst]] worden <strong>vet</strong> weergegeven.",
+	"recentchangeslinked-summary": "Voer een paginanaam in om bewerkingen te zien van pagina's waarheen vanaf die pagina verwezen wordt of die ernaar verwijzen. (Om leden van een categorie te zien, voert u <kbd>{{ns:category}}:''Naam van categorie''</kbd> in.) Bewerkingen van pagina's op [[Special:Watchlist|uw volglijst]] worden <strong>vet</strong> weergegeven.",
 	"recentchangeslinked-page": "Paginanaam:",
 	"recentchangeslinked-to": "Wijzigingen aan pagina's met koppelingen naar deze pagina bekijken",
 	"recentchanges-page-added-to-category": "[[:$1]] aan categorie toegevoegd",
