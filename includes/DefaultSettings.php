@@ -7855,10 +7855,6 @@ $wgActionFilteredLogs = [
 		'autocreate' => [ 'autocreate' ],
 		'byemail' => [ 'byemail' ],
 	],
-	'patrol' => [
-		'patrol' => [ 'patrol' ],
-		'autopatrol' => [ 'autopatrol' ],
-	],
 	'protect' => [
 		'protect' => [ 'protect' ],
 		'modify' => [ 'modify' ],
