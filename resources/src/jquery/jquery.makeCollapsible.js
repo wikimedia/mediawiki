@@ -190,7 +190,7 @@
 			collapseText = options.toggleText.collapseText;
 			expandText = options.toggleText.expandText;
 
-			$textContainer = $collapsible.find( '.mw-collapsible-text' );
+			$textContainer = $toggle.find( '.mw-collapsible-text' );
 			if ( $textContainer.length ) {
 				$textContainer.text( wasCollapsed ? collapseText : expandText );
 			}
