@@ -25,6 +25,8 @@ class HTMLTitleTextField extends HTMLTextField {
 			'relative' => false,
 			'creatable' => false,
 			'exists' => false,
+			// This overrides the default from HTMLFormField
+			'required' => true,
 		];
 
 		parent::__construct( $params );
@@ -34,8 +36,16 @@ class HTMLTitleTextField extends HTMLTextField {
 		if ( $this->mParent->getMethod() === 'get' && $value === '' ) {
 			// If the form is a GET form and has no value, assume it hasn't been
 			// submitted yet, and skip validation
+			// TODO This doesn't look right, we should be able to tell the difference
+			// between "not submitted" (null) and "submitted but empty" (empty string).
 			return parent::validate( $value, $alldata );
 		}
+
+		if ( !$this->mParams['required'] && $value === '' ) {
+			// If this field is not required and the value is empty, that's okay, skip validation
+			return parent::validate( $value, $alldata );
+		}
+
 		try {
 			if ( !$this->mParams['relative'] ) {
 				$title = Title::newFromTextThrow( $value );
