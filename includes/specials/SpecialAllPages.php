@@ -126,7 +126,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				'id' => 'namespace',
 				'label-message' => 'namespace',
 				'all' => null,
-				'value' => $namespace,
+				'default' => $namespace,
 			],
 			'hideredirects' => [
 				'type' => 'check',
@@ -141,7 +141,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 			unset( $fields['hideredirects'] );
 		}
 
-		$form = HTMLForm::factory( 'table', $fields, $this->getContext() );
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
+		$form = HTMLForm::factory( 'table', $fields, $context );
 		$form->setMethod( 'get' )
 			->setWrapperLegendMsg( 'allpages' )
 			->setSubmitTextMsg( 'allpagessubmit' )
