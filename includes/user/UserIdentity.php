@@ -54,4 +54,12 @@ interface UserIdentity {
 
 	// TODO: we may want to (optionally?) provide a global ID, see CentralIdLookup.
 
+	/**
+	 * @since 1.32
+	 *
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	public function equals( UserIdentity $user );
+
 }

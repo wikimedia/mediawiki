@@ -5663,11 +5663,12 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Checks if two user objects point to the same user.
 	 *
-	 * @since 1.25
-	 * @param User $user
+	 * @since 1.25 ; takes a UserIdentity instead of a User since 1.32
+	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( User $user ) {
+	public function equals( UserIdentity $user ) {
+		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}
 }

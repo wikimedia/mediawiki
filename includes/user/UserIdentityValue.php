@@ -82,4 +82,15 @@ class UserIdentityValue implements UserIdentity {
 		return $this->actor;
 	}
 
+	/**
+	 * @since 1.32
+	 *
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	public function equals( UserIdentity $user ) {
+		// XXX it's not clear whether central ID providers are supposed to obey this
+		return $this->getName() === $user->getName();
+	}
+
 }
