@@ -37,17 +37,6 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	display: none;
 }
 
-/*
- * And if it's enabled, let's optimize the collapsing a little: hide the rows
- * that would be hidden by jquery.makeCollapsible with CSS to save us some
- * reflows and repaints. This doesn't work on browsers that don't fully support
- * CSS2 (IE6), but it's okay, this will be done in JavaScript with old degraded
- * performance instead.
- */
-.client-js table.mw-enhanced-rc.mw-collapsed tr + tr {
-	display: none;
-}
-
 .mw-enhancedchanges-arrow {
 	padding-top: 2px;
 }
