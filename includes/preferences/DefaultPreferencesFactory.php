@@ -1724,17 +1724,25 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$res = $this->saveFormData( $formData, $form );
 
 		if ( $res ) {
+			$context = $form->getContext();
+
 			$urlOptions = [];
 
 			if ( $res === 'eauth' ) {
 				$urlOptions['eauth'] = 1;
 			}
 
+			if (
+				$context->getRequest()->getFuzzyBool( 'ooui' ) !==
+				$context->getConfig()->get( 'OOUIPreferences' )
+			) {
+				$urlOptions[ 'ooui' ] = $context->getRequest()->getFuzzyBool( 'ooui' ) ? 1 : 0;
+			}
+
 			$urlOptions += $form->getExtraSuccessRedirectParameters();
 
 			$url = $form->getTitle()->getFullURL( $urlOptions );
 
-			$context = $form->getContext();
 			// Set session data for the success message
 			$context->getRequest()->getSession()->set( 'specialPreferencesSaveSuccess', 1 );
 
