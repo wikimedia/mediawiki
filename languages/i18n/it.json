@@ -1579,7 +1579,7 @@
 	"recentchangeslinked-feed": "Modifiche correlate",
 	"recentchangeslinked-toolbox": "Modifiche correlate",
 	"recentchangeslinked-title": "Modifiche correlate a \"$1\"",
-	"recentchangeslinked-summary": "Inserisci il nome di una pagina per vedere le modifiche alle pagine che sono collegate o che collegano a quella pagine. (Per vedere i membri una categoria, inserisci Categoria:Nome della categoria). Le modifiche alle pagine contenute nella propria lista degli [[Special:Watchlist|osservati speciali]] sono evidenziate in <strong>grassetto</strong>.",
+	"recentchangeslinked-summary": "Inserisci il nome di una pagina per vedere le modifiche alle pagine che sono collegate o che collegano a quella pagine. (Per vedere i membri una categoria, inserisci {{ns:category}}:Nome della categoria). Le modifiche alle pagine contenute nella propria lista degli [[Special:Watchlist|osservati speciali]] sono evidenziate in <strong>grassetto</strong>.",
 	"recentchangeslinked-page": "Nome della pagina:",
 	"recentchangeslinked-to": "Mostra solo le modifiche alle pagine collegate a quella specificata",
 	"recentchanges-page-added-to-category": "[[:$1]] aggiunta alla categoria",
