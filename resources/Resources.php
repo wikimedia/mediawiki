@@ -2167,7 +2167,7 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.special/mediawiki.special.preferences.confirmClose.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.convertmessagebox.js',
-			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.legacy.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
 			'resources/src/mediawiki.special/mediawiki.special.preferences.personalEmail.js',
 		],
@@ -2184,6 +2184,35 @@ return [
 		],
 	],
 	'mediawiki.special.preferences.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.legacy.css',
+	],
+	'mediawiki.special.preferences.ooui' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'scripts' => [
+			'resources/src/mediawiki.special/mediawiki.special.preferences.confirmClose.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.convertmessagebox.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.editfont.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.tabs.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.timezone.js',
+			'resources/src/mediawiki.special/mediawiki.special.preferences.personalEmail.js',
+		],
+		'messages' => [
+			'prefs-tabs-navigation-hint',
+			'prefswarning-warning',
+			'saveprefs',
+			'savedprefs',
+		],
+		'dependencies' => [
+			'mediawiki.language',
+			'mediawiki.confirmCloseWindow',
+			'mediawiki.notification.convertmessagebox',
+			'oojs-ui-widgets',
+			'mediawiki.widgets.SelectWithInputWidget',
+			'mediawiki.editfont.styles',
+		],
+	],
+	'mediawiki.special.preferences.styles.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
 	],
