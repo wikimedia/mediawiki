@@ -61,6 +61,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$opts->validateIntBounds( 'limit', 0, $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
 
 		if ( $par !== null ) {
+			$par = str_replace( '_', ' ', $par );
 			$opts->setValue( 'target', $par );
 		}
 
