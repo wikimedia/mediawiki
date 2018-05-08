@@ -1209,12 +1209,10 @@
 			 *
 			 * @private
 			 * @param {string} src URL of the script
-			 * @param {string} [moduleName] Name of currently executing module
-			 * @return {jQuery.Promise}
+			 * @param {string} moduleName Name of currently executing module
+			 * @param {Function} callback Callback to run after addScript() resolution
 			 */
-			function queueModuleScript( src, moduleName ) {
-				var r = $.Deferred();
-
+			function queueModuleScript( src, moduleName, callback ) {
 				pendingRequests.push( function () {
 					if ( moduleName && hasOwn.call( registry, moduleName ) ) {
 						// Emulate runScript() part of execute()
@@ -1226,8 +1224,7 @@
 						// avoid leakage to unrelated code. 'require' should be kept, however,
 						// as asynchronous access to 'require' is allowed and expected. (T144879)
 						delete window.module;
-						r.resolve();
-
+						callback();
 						// Start the next one (if any)
 						if ( pendingRequests[ 0 ] ) {
 							pendingRequests.shift()();
@@ -1240,7 +1237,6 @@
 					handlingPendingRequests = true;
 					pendingRequests.shift()();
 				}
-				return r.promise();
 			}
 
 			/**
@@ -1304,7 +1300,7 @@
 							return;
 						}
 
-						queueModuleScript( arr[ i ], module ).always( function () {
+						queueModuleScript( arr[ i ], module, function () {
 							nestedAddScript( arr, callback, i + 1 );
 						} );
 					};
