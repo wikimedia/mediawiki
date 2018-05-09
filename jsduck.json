@@ -16,6 +16,7 @@
 		"resources/src/mediawiki.action",
 		"resources/src/mediawiki.language",
 		"resources/src/mediawiki.messagePoster",
+		"resources/src/mediawiki.notification",
 		"resources/src/mediawiki.rcfilters",
 		"resources/src/mediawiki.special",
 		"resources/src/mediawiki.toolbar",
