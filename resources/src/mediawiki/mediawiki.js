@@ -1191,21 +1191,19 @@
 			 * @param {Function} [callback] Callback to run after request resolution
 			 */
 			function addScript( src, callback ) {
-				var promise = $.ajax( {
-					url: src,
-					dataType: 'script',
-					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
-					// XHR for a same domain request instead of <script>, which changes the request
-					// headers (potentially missing a cache hit), and reduces caching in general
-					// since browsers cache XHR much less (if at all). And XHR means we retrieve
-					// text, so we'd need to $.globalEval, which then messes up line numbers.
-					crossDomain: true,
-					cache: true
-				} );
-
-				if ( callback ) {
-					promise.always( callback );
-				}
+				var script = document.createElement( 'script' );
+				script.src = src;
+				script.onload = script.onerror = function () {
+					if ( script.parentNode ) {
+						script.parentNode.removeChild( script );
+					}
+					script = null;
+					if ( callback ) {
+						callback();
+						callback = null;
+					}
+				};
+				document.head.appendChild( script );
 			}
 
 			/**
