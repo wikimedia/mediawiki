@@ -2691,14 +2691,14 @@ Occurs after signing up or logging in, allows for interception of redirect.
 
 'PreferencesFormPreSave': Override preferences being saved
 $formData: array of user submitted data
-$form: PreferencesForm object, also a ContextSource
+$form: HTMLForm object, also a ContextSource
 $user: User object with preferences to be saved set
 &$result: boolean indicating success
 $oldUserOptions: array with user old options (before save)
 
 'PreferencesGetLegend': Override the text used for the <legend> of a
 preferences section.
-$form: the PreferencesForm object. This is a ContextSource as well
+$form: the HTMLForm object. This is a ContextSource as well
 $key: the section name
 &$legend: the legend text. Defaults to wfMessage( "prefs-$key" )->text() but may
   be overridden
