@@ -30,34 +30,56 @@
 			"file": {
 				"ltr": "../wikimediaui/images/icons/book-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/book-rtl.svg"
-			}
+			},
+			"deprecated": "Moved since v0.27.0 to the 'editing-citation' pack."
 		},
 		"citeArticle": {
-			"file": "../wikimediaui/images/icons/citeArticle.svg"
+			"file": "../wikimediaui/images/icons/reference.svg",
+			"deprecated": "Moved and renamed since v0.27.0. Use 'reference' from 'editing-citation' pack."
 		},
-		"die": { "file": "../wikimediaui/images/icons/die.svg" },
+		"die": {
+			"file": "../wikimediaui/images/icons/die.svg"
+		},
 		"download": {
 			"file": "../wikimediaui/images/icons/download.svg"
 		},
-		"folderPlaceholder": { "file": {
-			"ltr": "../wikimediaui/images/icons/folderPlaceholder-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/folderPlaceholder-rtl.svg"
-		} },
-		"history": { "file": "../wikimediaui/images/icons/history.svg" },
-		"info": { "file": "../wikimediaui/images/icons/info.svg" },
-		"journal": { "file": {
-			"ltr": "../wikimediaui/images/icons/journal-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/journal-rtl.svg"
-		} },
-		"newspaper": { "file": {
-			"ltr": "../wikimediaui/images/icons/newspaper-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/newspaper-rtl.svg"
-		} },
-		"tag": { "file": {
-			"ltr": "../wikimediaui/images/icons/tag-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/tag-rtl.svg"
-		} },
-		"upload": { "file": "../wikimediaui/images/icons/upload.svg" },
-		"window": { "file": "../wikimediaui/images/icons/window.svg" }
+		"folderPlaceholder": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/folderPlaceholder-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/folderPlaceholder-rtl.svg"
+			}
+		},
+		"history": {
+			"file": "../wikimediaui/images/icons/history.svg"
+		},
+		"info": {
+			"file": "../wikimediaui/images/icons/info.svg"
+		},
+		"journal": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/journal-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/journal-rtl.svg"
+			},
+			"deprecated": "Moved since v0.27.0 to the 'editing-citation' pack."
+		},
+		"newspaper": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/newspaper-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/newspaper-rtl.svg"
+			},
+			"deprecated": "Moved since v0.27.0 to the 'editing-citation' pack."
+		},
+		"tag": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/tag-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/tag-rtl.svg"
+			}
+		},
+		"upload": {
+			"file": "../wikimediaui/images/icons/upload.svg"
+		},
+		"window": {
+			"file": "../wikimediaui/images/icons/window.svg"
+		}
 	}
 }

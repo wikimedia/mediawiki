@@ -2,8 +2,12 @@
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
 	"images": {
-		"alert": { "file": "../wikimediaui/images/icons/alert.svg" },
-		"bell": { "file": "../wikimediaui/images/icons/bell.svg" },
+		"alert": {
+			"file": "../wikimediaui/images/icons/alert.svg"
+		},
+		"bell": {
+			"file": "../wikimediaui/images/icons/bell.svg"
+		},
 		"comment": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
@@ -11,20 +15,32 @@
 			},
 			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
 		},
-		"message": { "file": "../wikimediaui/images/icons/message.svg" },
-		"notice": { "file": "../wikimediaui/images/icons/notice.svg" },
-		"speechBubble": { "file": {
-			"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
-		} },
-		"speechBubbleAdd": { "file": {
-			"ltr": "../wikimediaui/images/icons/speechBubbleAdd-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/speechBubbleAdd-rtl.svg"
-		} },
-		"speechBubbles": { "file": {
-			"ltr": "../wikimediaui/images/icons/speechBubbles-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/speechBubbles-rtl.svg"
-		} },
-		"tray": { "file": "../wikimediaui/images/icons/tray.svg" }
+		"message": {
+			"file": "../wikimediaui/images/icons/message.svg"
+		},
+		"notice": {
+			"file": "../wikimediaui/images/icons/notice.svg"
+		},
+		"speechBubble": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/speechBubble-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/speechBubble-rtl.svg"
+			}
+		},
+		"speechBubbleAdd": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/speechBubbleAdd-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/speechBubbleAdd-rtl.svg"
+			}
+		},
+		"speechBubbles": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/speechBubbles-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/speechBubbles-rtl.svg"
+			}
+		},
+		"tray": {
+			"file": "../wikimediaui/images/icons/tray.svg"
+		}
 	}
 }
