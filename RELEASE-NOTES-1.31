@@ -79,6 +79,10 @@ Required PHP version has been increased from 7.0.0 to 7.0.13.
   saveFileDependencies().
 * (T224374) Fix message parameters so that the message that says SQLite is out of date
   makes sense.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 == MediaWiki 1.31.1 ==
 
