@@ -3,7 +3,7 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"build/*/composer.json"
+				"_bluspice/build/*/composer.json"
 			],
 			"merge-extra": true,
 			"merge-scripts": true

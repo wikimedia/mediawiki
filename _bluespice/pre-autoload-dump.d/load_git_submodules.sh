@@ -6,6 +6,8 @@
 # Copyright: 2017
 # License: GPLv3
 
+git submodule update --init --recursive
+
 EXT_PATH_VISUALEDITOR="extensions/VisualEditor"
 
 if [ -d $EXT_PATH_VISUALEDITOR ] ; then
