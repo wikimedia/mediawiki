@@ -417,25 +417,28 @@
 
 	defineFallbacks();
 
-	/* eslint-disable no-console */
 	log = ( function () {
-		/**
-		 * Write a verbose message to the browser's console in debug mode.
-		 *
-		 * This method is mainly intended for verbose logging. It is a no-op in production mode.
-		 * In ResourceLoader debug mode, it will use the browser's console if available, with
-		 * fallback to creating a console interface in the DOM and logging messages there.
-		 *
-		 * See {@link mw.log} for other logging methods.
-		 *
-		 * @member mw
-		 * @param {...string} msg Messages to output to console.
-		 */
-		var log = function () {},
-			console = window.console;
-
-		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
-		// when adding or removing mw.log methods below!
+		/* eslint-disable no-console */
+		var console = window.console,
+			/**
+			 * Write a verbose message to the browser's console in debug mode.
+			 *
+			 * This method is intended for verbose debug logging only.
+			 * It is a no-op in production mode. In debug mode, it will use the
+			 * browser's `console.log()` method (if available).
+			 *
+			 * See {@link mw.log} for other logging methods.
+			 *
+			 * @member mw
+			 * @method log
+			 * @param {...string} msg Messages to output to console.
+			 */
+			log = mw.config.get( 'debug' ) && console && console.log ?
+				Function.prototype.bind.call( console.log, console ) :
+				// Must not use $.noop because below we will attach
+				// additional static methods to mw.log, which should not
+				// pollute $.noop.
+				function () {};
 
 		/**
 		 * Collection of methods to help log messages to the console.
@@ -451,7 +454,7 @@
 		 *
 		 * @param {...string} msg Messages to output to console
 		 */
-		log.warn = console && console.warn && Function.prototype.bind ?
+		log.warn = console && console.warn ?
 			Function.prototype.bind.call( console.warn, console ) :
 			$.noop;
 
@@ -466,7 +469,7 @@
 		 * @since 1.26
 		 * @param {Error|...string} msg Messages to output to console
 		 */
-		log.error = console && console.error && Function.prototype.bind ?
+		log.error = console && console.error ?
 			Function.prototype.bind.call( console.error, console ) :
 			$.noop;
 
