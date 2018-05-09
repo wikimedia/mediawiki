@@ -24,7 +24,7 @@
 		"ext-mbstring": "*",
 		"ext-xml": "*",
 		"liuggio/statsd-php-client": "1.0.18",
-		"oojs/oojs-ui": "0.26.5",
+		"oojs/oojs-ui": "0.27.0",
 		"oyejorge/less.php": "1.7.0.14",
 		"php": ">=5.5.9",
 		"psr/log": "1.0.2",

@@ -9,14 +9,18 @@
 		}
 	},
 	"images": {
-		"alert": {
-			"file": "images/indicators/alert.svg",
-			"deprecated": "This will be removed in v0.27.0."
+		"clear": {
+			"file": "images/indicators/clear.svg"
 		},
-		"clear": { "file": "images/indicators/clear.svg" },
-		"up": { "file": "images/indicators/up.svg" },
-		"down": { "file": "images/indicators/down.svg" },
-		"required": { "file": "images/indicators/required.svg" },
+		"up": {
+			"file": "images/indicators/up.svg"
+		},
+		"down": {
+			"file": "images/indicators/down.svg"
+		},
+		"required": {
+			"file": "images/indicators/required.svg"
+		},
 		"search": {
 			"file": "images/indicators/search.svg"
 		}

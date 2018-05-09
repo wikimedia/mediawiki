@@ -1,4 +1,39 @@
 # OOUI Release History
+## v0.27.0 / 2018-05-08
+### Breaking changes
+* [BREAKING CHANGE] GroupElement: Remove getItem(s)FromData (Prateek Saxena)
+* [BREAKING CHANGE] MultiSelectWidget: Remove getSelectedItems and getSelectedItemsData (Prateek Saxena)
+* [BREAKING CHANGE] SelectWidget: Remove getSelectedItem (Prateek Saxena)
+* [BREAKING CHANGE] TagItemWidget: Replace 'disabled' items with 'fixed' (Moriel Schottlender)
+* [BREAKING CHANGE] indicators: Remove 'alert', deprecated in v0.25.2 (James D. Forrester)
+
+### Deprecations
+* [DEPRECATING CHANGE] icons: Deprecate 'editing-citation' icons from 'content' (Volker E.)
+* [DEPRECATING CHANGE] icons: Rename 'settings' to 'pageSettings' (Volker E.)
+
+### Features
+* Add an infusable PHP implementation of the NumberInputWidget (mainframe98)
+
+### Styles
+* TextInputWidget: Hide IE10+'s clear button when it conflicts with labels (Thiemo Kreuz)
+* WikimediaUI theme: Don't add icon `padding` to menu tools with no icons (Ed Sanders)
+* WikimediaUI theme: Fix TagItem's label and close position (Volker E.)
+* WikimediaUI theme: Fix visual regression on toolbar menu border (Volker E.)
+* Apex theme: Fix position of help icon in FieldLayout align=top (Ed Sanders)
+* icons: Add 'editing-citation' pack (Volker E.)
+* icons: Add `title` elements to new icons in 'editing-citation' pack (Volker E.)
+
+### Code
+* FieldLayout: Provide label to 'help' PopupButtonWidget in JS (Volker E.)
+* MenuTagMultiselect: Use default onTagSelect if allowArbitrary (Daimona Eaytoy)
+* NumberInputWidget: Add `aria-hidden` to buttons (Volker E.)
+* ProcessDialog: Fix footer height when actions or dialog size changes (Bartosz Dziewoński)
+* SelectFileWidget: Use `<label>` for select ButtonElement (Moriel Schottlender)
+* Harmonize icon JSONs code (Volker E.)
+* Improve test output in case of failures (Bartosz Dziewoński)
+* demos: Add ellipsis to “Publish changes” to follow production (Volker E.)
+
+
 ## v0.26.5 / 2018-04-24
 ### Styles
 * Add `overflow:hidden;` to dialog content (Ed Sanders)

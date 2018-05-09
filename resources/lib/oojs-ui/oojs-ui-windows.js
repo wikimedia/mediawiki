@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.5
+ * OOUI v0.27.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-24T23:29:01Z
+ * Date: 2018-05-09T00:44:45Z
  */
 ( function ( OO ) {
 
@@ -2607,6 +2607,10 @@ OO.ui.Dialog.prototype.onActionsChange = function () {
 	this.detachActions();
 	if ( !this.isClosing() ) {
 		this.attachActions();
+		if ( !this.isOpening() ) {
+			// If the dialog is currently opening, this will be called automatically soon.
+			this.updateSize();
+		}
 	}
 };
 
@@ -2858,34 +2862,6 @@ OO.ui.MessageDialog.static.actions = [
 /* Methods */
 
 /**
- * @inheritdoc
- */
-OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
-	OO.ui.MessageDialog.parent.prototype.setManager.call( this, manager );
-
-	// Events
-	this.manager.connect( this, {
-		resize: 'onResize'
-	} );
-
-	return this;
-};
-
-/**
- * Handle window resized events.
- *
- * @private
- */
-OO.ui.MessageDialog.prototype.onResize = function () {
-	var dialog = this;
-	dialog.fitActions();
-	// Wait for CSS transition to finish and do it again :(
-	setTimeout( function () {
-		dialog.fitActions();
-	}, 300 );
-};
-
-/**
  * Toggle action layout between vertical and horizontal.
  *
  * @private
@@ -2985,7 +2961,9 @@ OO.ui.MessageDialog.prototype.getBodyHeight = function () {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
-	var $scrollable = this.container.$element;
+	var
+		dialog = this,
+		$scrollable = this.container.$element;
 	OO.ui.MessageDialog.parent.prototype.setDimensions.call( this, dim );
 
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
@@ -3005,6 +2983,12 @@ OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
 		}
 
 		$scrollable[ 0 ].style.overflow = oldOverflow;
+	}, 300 );
+
+	dialog.fitActions();
+	// Wait for CSS transition to finish and do it again :(
+	setTimeout( function () {
+		dialog.fitActions();
 	}, 300 );
 
 	return this;
@@ -3065,12 +3049,6 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 	if ( special.primary ) {
 		this.$actions.append( special.primary.$element );
 		special.primary.toggleFramed( false );
-	}
-
-	if ( !this.isOpening() ) {
-		// If the dialog is currently opening, this will be called automatically soon.
-		// This also calls #fitActions.
-		this.updateSize();
 	}
 };
 
@@ -3304,9 +3282,6 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
 	if ( special.safe ) {
 		this.$safeActions.append( special.safe.$element );
 	}
-
-	this.fitLabel();
-	this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
 };
 
 /**
@@ -3324,10 +3299,20 @@ OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.setDimensions = function () {
+	var dialog = this;
+
 	// Parent method
 	OO.ui.ProcessDialog.parent.prototype.setDimensions.apply( this, arguments );
 
 	this.fitLabel();
+
+	// If there are many actions, they might be shown on multiple lines. Their layout can change when
+	// resizing the dialog and when changing the actions. Adjust the height of the footer to fit them.
+	dialog.$body.css( 'bottom', dialog.$foot.outerHeight( true ) );
+	// Wait for CSS transition to finish and do it again :(
+	setTimeout( function () {
+		dialog.$body.css( 'bottom', dialog.$foot.outerHeight( true ) );
+	}, 300 );
 };
 
 /**

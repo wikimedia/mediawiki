@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.5
+ * OOUI v0.27.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-24T23:29:01Z
+ * Date: 2018-05-09T00:44:45Z
  */
 ( function ( OO ) {
 
@@ -4513,6 +4513,8 @@ OO.ui.CapsuleMultiselectWidget.prototype.focus = function () {
  * @constructor
  * @param {Object} [config] Configuration object
  * @cfg {boolean} [valid=true] Item is valid
+ * @cfg {boolean} [fixed] Item is fixed. This means the item is
+ *  always included in the values and cannot be removed.
  */
 OO.ui.TagItemWidget = function OoUiTagItemWidget( config ) {
 	config = config || {};
@@ -4528,6 +4530,7 @@ OO.ui.TagItemWidget = function OoUiTagItemWidget( config ) {
 	OO.ui.mixin.DraggableElement.call( this, config );
 
 	this.valid = config.valid === undefined ? true : !!config.valid;
+	this.fixed = !!config.fixed;
 
 	this.closeButton = new OO.ui.ButtonWidget( {
 		framed: false,
@@ -4597,27 +4600,74 @@ OO.mixinClass( OO.ui.TagItemWidget, OO.ui.mixin.DraggableElement );
  */
 
 /**
- * @event disabled
- * @param {boolean} isDisabled Item is disabled
+ * @event fixed
+ * @param {boolean} isFixed Item is fixed
  *
- * Item disabled state has changed
+ * Item fixed state has changed
  */
 
 /* Methods */
 
 /**
+ * Set this item as fixed, meaning it cannot be removed
+ *
+ * @param {string} [state] Item is fixed
+ * @fires fixed
+ */
+OO.ui.TagItemWidget.prototype.setFixed = function ( state ) {
+	state = state === undefined ? !this.fixed : !!state;
+
+	if ( this.fixed !== state ) {
+		this.fixed = state;
+		if ( this.closeButton ) {
+			this.closeButton.toggle( !this.fixed );
+		}
+
+		if ( !this.fixed && this.elementGroup && !this.elementGroup.isDraggable() ) {
+			// Only enable the state of the item if the
+			// entire group is draggable
+			this.toggleDraggable( !this.fixed );
+		}
+		this.$element.toggleClass( 'oo-ui-tagItemWidget-fixed', this.fixed );
+
+		this.emit( 'fixed', this.isFixed() );
+	}
+	return this;
+};
+
+/**
+ * Check whether the item is fixed
+ */
+OO.ui.TagItemWidget.prototype.isFixed = function () {
+	return this.fixed;
+};
+
+/**
  * @inheritdoc
- * @fires disabled
  */
 OO.ui.TagItemWidget.prototype.setDisabled = function ( state ) {
+	if ( state && this.elementGroup && !this.elementGroup.isDisabled() ) {
+		OO.ui.warnDeprecation( 'TagItemWidget#setDisabled: Disabling individual items is deprecated and will result in inconsistent behavior. Use #setFixed instead. See T193571.' );
+	}
 	// Parent method
 	OO.ui.TagItemWidget.parent.prototype.setDisabled.call( this, state );
+	if (
+		!state &&
+		// Verify we have a group, and that the widget is ready
+		this.toggleDraggable && this.elementGroup &&
+		!this.isFixed() &&
+		!this.elementGroup.isDraggable()
+	) {
+		// Only enable the draggable state of the item if the
+		// entire group is draggable to begin with, and if the
+		// item is not fixed
+		this.toggleDraggable( !state );
+	}
 
 	if ( this.closeButton ) {
 		this.closeButton.setDisabled( state );
 	}
 
-	this.emit( 'disabled', this.isDisabled() );
 	return this;
 };
 
@@ -4648,7 +4698,7 @@ OO.ui.TagItemWidget.prototype.remove = function () {
 OO.ui.TagItemWidget.prototype.onKeyDown = function ( e ) {
 	var movement;
 
-	if ( !this.isDisabled() && e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
+	if ( !this.isDisabled() && !this.isFixed() && e.keyCode === OO.ui.Keys.BACKSPACE || e.keyCode === OO.ui.Keys.DELETE ) {
 		this.remove();
 		return false;
 	} else if ( e.keyCode === OO.ui.Keys.ENTER ) {
@@ -4825,12 +4875,12 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 		remove: 'itemRemove',
 		navigate: 'itemNavigate',
 		select: 'itemSelect',
-		disabled: 'itemDisabled'
+		fixed: 'itemFixed'
 	} );
 	this.connect( this, {
 		itemRemove: 'onTagRemove',
 		itemSelect: 'onTagSelect',
-		itemDisabled: 'onTagDisabled',
+		itemFixed: 'onTagFixed',
 		itemNavigate: 'onTagNavigate',
 		change: 'onChangeTags'
 	} );
@@ -5126,7 +5176,7 @@ OO.ui.TagMultiselectWidget.prototype.doInputArrow = function ( e, direction ) {
  * @param {OO.ui.TagItemWidget} item Selected item
  */
 OO.ui.TagMultiselectWidget.prototype.onTagSelect = function ( item ) {
-	if ( this.hasInput && this.allowEditTags ) {
+	if ( this.hasInput && this.allowEditTags && !item.isFixed() ) {
 		if ( this.input.getValue() ) {
 			this.addTagFromInput();
 		}
@@ -5140,16 +5190,21 @@ OO.ui.TagMultiselectWidget.prototype.onTagSelect = function ( item ) {
 };
 
 /**
- * Respond to item disabled state change
+ * Respond to item fixed state change
  *
  * @param {OO.ui.TagItemWidget} item Selected item
- * @param {boolean} isDisabled Item is disabled
  */
-OO.ui.TagMultiselectWidget.prototype.onTagDisabled = function ( item, isDisabled ) {
-	if ( isDisabled ) {
-	// Move item to start if it is disabled
-		this.addItems( item, 0 );
+OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
+	var i,
+		items = this.getItems();
+
+	// Move item to the end of the static items
+	for ( i = 0; i < items.length; i++ ) {
+		if ( items[ i ] !== item && !items[ i ].isFixed() ) {
+			break;
+		}
 	}
+	this.addItems( item, i );
 };
 /**
  * Respond to change event, where items were added, removed, or cleared.
@@ -5858,20 +5913,25 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
 	var menuItem = this.menu.findItemFromData( tagItem.getData() );
-	// Override the base behavior from TagMultiselectWidget; the base behavior
-	// in TagMultiselectWidget is to remove the tag to edit it in the input,
-	// but in our case, we want to utilize the menu selection behavior, and
-	// definitely not remove the item.
+	if ( !this.allowArbitrary ) {
+		// Override the base behavior from TagMultiselectWidget; the base behavior
+		// in TagMultiselectWidget is to remove the tag to edit it in the input,
+		// but in our case, we want to utilize the menu selection behavior, and
+		// definitely not remove the item.
 
-	// If there is an input that is used for filtering, erase the value so we don't filter
-	if ( this.hasInput && this.menu.filterFromInput ) {
-		this.input.setValue( '' );
+		// If there is an input that is used for filtering, erase the value so we don't filter
+		if ( this.hasInput && this.menu.filterFromInput ) {
+			this.input.setValue( '' );
+		}
+
+		// Select the menu item
+		this.menu.selectItem( menuItem );
+
+		this.focus();
+	} else {
+		// Use the default
+		OO.ui.MenuTagMultiselectWidget.parent.prototype.onTagSelect.call( this, tagItem );
 	}
-
-	// Select the menu item
-	this.menu.selectItem( menuItem );
-
-	this.focus();
 };
 
 /**
@@ -6065,6 +6125,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	this.onFileSelectedHandler = this.onFileSelected.bind( this );
 
 	this.selectButton = new OO.ui.ButtonWidget( {
+		$element: $( '<label>' ),
 		classes: [ 'oo-ui-selectFileWidget-selectButton' ],
 		label: OO.ui.msg( 'ooui-selectfile-button-select' ),
 		disabled: this.disabled || !this.isSupported
@@ -6647,366 +6708,6 @@ OO.ui.SearchWidget.prototype.getQuery = function () {
  */
 OO.ui.SearchWidget.prototype.getResults = function () {
 	return this.results;
-};
-
-/**
- * NumberInputWidgets combine a {@link OO.ui.TextInputWidget text input} (where a value
- * can be entered manually) and two {@link OO.ui.ButtonWidget button widgets}
- * (to adjust the value in increments) to allow the user to enter a number.
- *
- *     @example
- *     // Example: A NumberInputWidget.
- *     var numberInput = new OO.ui.NumberInputWidget( {
- *         label: 'NumberInputWidget',
- *         input: { value: 5 },
- *         min: 1,
- *         max: 10
- *     } );
- *     $( 'body' ).append( numberInput.$element );
- *
- * @class
- * @extends OO.ui.TextInputWidget
- *
- * @constructor
- * @param {Object} [config] Configuration options
- * @cfg {Object} [minusButton] Configuration options to pass to the {@link OO.ui.ButtonWidget decrementing button widget}.
- * @cfg {Object} [plusButton] Configuration options to pass to the {@link OO.ui.ButtonWidget incrementing button widget}.
- * @cfg {boolean} [allowInteger=false] Whether the field accepts only integer values.
- * @cfg {number} [min=-Infinity] Minimum allowed value
- * @cfg {number} [max=Infinity] Maximum allowed value
- * @cfg {number} [step=1] Delta when using the buttons or up/down arrow keys
- * @cfg {number|null} [pageStep] Delta when using the page-up/page-down keys. Defaults to 10 times #step.
- * @cfg {boolean} [showButtons=true] Whether to show the plus and minus buttons.
- */
-OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
-	var $field = $( '<div>' )
-		.addClass( 'oo-ui-numberInputWidget-field' );
-
-	// Configuration initialization
-	config = $.extend( {
-		allowInteger: false,
-		min: -Infinity,
-		max: Infinity,
-		step: 1,
-		pageStep: null,
-		showButtons: true
-	}, config );
-
-	// For backward compatibility
-	$.extend( config, config.input );
-	this.input = this;
-
-	// Parent constructor
-	OO.ui.NumberInputWidget.parent.call( this, $.extend( config, {
-		type: 'number'
-	} ) );
-
-	if ( config.showButtons ) {
-		this.minusButton = new OO.ui.ButtonWidget( $.extend(
-			{
-				disabled: this.isDisabled(),
-				tabIndex: -1,
-				classes: [ 'oo-ui-numberInputWidget-minusButton' ],
-				icon: 'subtract'
-			},
-			config.minusButton
-		) );
-		this.plusButton = new OO.ui.ButtonWidget( $.extend(
-			{
-				disabled: this.isDisabled(),
-				tabIndex: -1,
-				classes: [ 'oo-ui-numberInputWidget-plusButton' ],
-				icon: 'add'
-			},
-			config.plusButton
-		) );
-	}
-
-	// Events
-	this.$input.on( {
-		keydown: this.onKeyDown.bind( this ),
-		'wheel mousewheel DOMMouseScroll': this.onWheel.bind( this )
-	} );
-	if ( config.showButtons ) {
-		this.plusButton.connect( this, {
-			click: [ 'onButtonClick', +1 ]
-		} );
-		this.minusButton.connect( this, {
-			click: [ 'onButtonClick', -1 ]
-		} );
-	}
-
-	// Build the field
-	$field.append( this.$input );
-	if ( config.showButtons ) {
-		$field
-			.prepend( this.minusButton.$element )
-			.append( this.plusButton.$element );
-	}
-
-	// Initialization
-	this.setAllowInteger( config.allowInteger || config.isInteger );
-	this.setRange( config.min, config.max );
-	this.setStep( config.step, config.pageStep );
-	// Set the validation method after we set allowInteger and range
-	// so that it doesn't immediately call setValidityFlag
-	this.setValidation( this.validateNumber.bind( this ) );
-
-	this.$element
-		.addClass( 'oo-ui-numberInputWidget' )
-		.toggleClass( 'oo-ui-numberInputWidget-buttoned', config.showButtons )
-		.append( $field );
-};
-
-/* Setup */
-
-OO.inheritClass( OO.ui.NumberInputWidget, OO.ui.TextInputWidget );
-
-/* Methods */
-
-/**
- * Set whether only integers are allowed
- *
- * @param {boolean} flag
- */
-OO.ui.NumberInputWidget.prototype.setAllowInteger = function ( flag ) {
-	this.allowInteger = !!flag;
-	this.setValidityFlag();
-};
-// Backward compatibility
-OO.ui.NumberInputWidget.prototype.setIsInteger = OO.ui.NumberInputWidget.prototype.setAllowInteger;
-
-/**
- * Get whether only integers are allowed
- *
- * @return {boolean} Flag value
- */
-OO.ui.NumberInputWidget.prototype.getAllowInteger = function () {
-	return this.allowInteger;
-};
-// Backward compatibility
-OO.ui.NumberInputWidget.prototype.getIsInteger = OO.ui.NumberInputWidget.prototype.getAllowInteger;
-
-/**
- * Set the range of allowed values
- *
- * @param {number} min Minimum allowed value
- * @param {number} max Maximum allowed value
- */
-OO.ui.NumberInputWidget.prototype.setRange = function ( min, max ) {
-	if ( min > max ) {
-		throw new Error( 'Minimum (' + min + ') must not be greater than maximum (' + max + ')' );
-	}
-	this.min = min;
-	this.max = max;
-	this.setValidityFlag();
-};
-
-/**
- * Get the current range
- *
- * @return {number[]} Minimum and maximum values
- */
-OO.ui.NumberInputWidget.prototype.getRange = function () {
-	return [ this.min, this.max ];
-};
-
-/**
- * Set the stepping deltas
- *
- * @param {number} step Normal step
- * @param {number|null} pageStep Page step. If null, 10 * step will be used.
- */
-OO.ui.NumberInputWidget.prototype.setStep = function ( step, pageStep ) {
-	if ( step <= 0 ) {
-		throw new Error( 'Step value must be positive' );
-	}
-	if ( pageStep === null ) {
-		pageStep = step * 10;
-	} else if ( pageStep <= 0 ) {
-		throw new Error( 'Page step value must be positive' );
-	}
-	this.step = step;
-	this.pageStep = pageStep;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.NumberInputWidget.prototype.setValue = function ( value ) {
-	if ( value === '' ) {
-		// Some browsers allow a value in the input even if there isn't one reported by $input.val()
-		// so here we make sure an 'empty' value is actually displayed as such.
-		this.$input.val( '' );
-	}
-	return OO.ui.NumberInputWidget.parent.prototype.setValue.call( this, value );
-};
-
-/**
- * Get the current stepping values
- *
- * @return {number[]} Step and page step
- */
-OO.ui.NumberInputWidget.prototype.getStep = function () {
-	return [ this.step, this.pageStep ];
-};
-
-/**
- * Get the current value of the widget as a number
- *
- * @return {number} May be NaN, or an invalid number
- */
-OO.ui.NumberInputWidget.prototype.getNumericValue = function () {
-	return +this.getValue();
-};
-
-/**
- * Adjust the value of the widget
- *
- * @param {number} delta Adjustment amount
- */
-OO.ui.NumberInputWidget.prototype.adjustValue = function ( delta ) {
-	var n, v = this.getNumericValue();
-
-	delta = +delta;
-	if ( isNaN( delta ) || !isFinite( delta ) ) {
-		throw new Error( 'Delta must be a finite number' );
-	}
-
-	if ( isNaN( v ) ) {
-		n = 0;
-	} else {
-		n = v + delta;
-		n = Math.max( Math.min( n, this.max ), this.min );
-		if ( this.allowInteger ) {
-			n = Math.round( n );
-		}
-	}
-
-	if ( n !== v ) {
-		this.setValue( n );
-	}
-};
-/**
- * Validate input
- *
- * @private
- * @param {string} value Field value
- * @return {boolean}
- */
-OO.ui.NumberInputWidget.prototype.validateNumber = function ( value ) {
-	var n = +value;
-	if ( value === '' ) {
-		return !this.isRequired();
-	}
-
-	if ( isNaN( n ) || !isFinite( n ) ) {
-		return false;
-	}
-
-	if ( this.allowInteger && Math.floor( n ) !== n ) {
-		return false;
-	}
-
-	if ( n < this.min || n > this.max ) {
-		return false;
-	}
-
-	return true;
-};
-
-/**
- * Handle mouse click events.
- *
- * @private
- * @param {number} dir +1 or -1
- */
-OO.ui.NumberInputWidget.prototype.onButtonClick = function ( dir ) {
-	this.adjustValue( dir * this.step );
-};
-
-/**
- * Handle mouse wheel events.
- *
- * @private
- * @param {jQuery.Event} event
- */
-OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
-	var delta = 0;
-
-	if ( !this.isDisabled() && this.$input.is( ':focus' ) ) {
-		// Standard 'wheel' event
-		if ( event.originalEvent.deltaMode !== undefined ) {
-			this.sawWheelEvent = true;
-		}
-		if ( event.originalEvent.deltaY ) {
-			delta = -event.originalEvent.deltaY;
-		} else if ( event.originalEvent.deltaX ) {
-			delta = event.originalEvent.deltaX;
-		}
-
-		// Non-standard events
-		if ( !this.sawWheelEvent ) {
-			if ( event.originalEvent.wheelDeltaX ) {
-				delta = -event.originalEvent.wheelDeltaX;
-			} else if ( event.originalEvent.wheelDeltaY ) {
-				delta = event.originalEvent.wheelDeltaY;
-			} else if ( event.originalEvent.wheelDelta ) {
-				delta = event.originalEvent.wheelDelta;
-			} else if ( event.originalEvent.detail ) {
-				delta = -event.originalEvent.detail;
-			}
-		}
-
-		if ( delta ) {
-			delta = delta < 0 ? -1 : 1;
-			this.adjustValue( delta * this.step );
-		}
-
-		return false;
-	}
-};
-
-/**
- * Handle key down events.
- *
- * @private
- * @param {jQuery.Event} e Key down event
- */
-OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
-	if ( !this.isDisabled() ) {
-		switch ( e.which ) {
-			case OO.ui.Keys.UP:
-				this.adjustValue( this.step );
-				return false;
-			case OO.ui.Keys.DOWN:
-				this.adjustValue( -this.step );
-				return false;
-			case OO.ui.Keys.PAGEUP:
-				this.adjustValue( this.pageStep );
-				return false;
-			case OO.ui.Keys.PAGEDOWN:
-				this.adjustValue( -this.pageStep );
-				return false;
-		}
-	}
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
-	// Parent method
-	OO.ui.NumberInputWidget.parent.prototype.setDisabled.call( this, disabled );
-
-	if ( this.minusButton ) {
-		this.minusButton.setDisabled( this.isDisabled() );
-	}
-	if ( this.plusButton ) {
-		this.plusButton.setDisabled( this.isDisabled() );
-	}
-
-	return this;
 };
 
 }( OO ) );
