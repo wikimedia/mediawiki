@@ -358,7 +358,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 		$this->assertEquals( [], $calls );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionIdle( function () use ( &$calls, $callback2 ) {
+		$dbw->onTransactionCommitOrIdle( function () use ( &$calls, $callback2 ) {
 			DeferredUpdates::addCallableUpdate( $callback2 );
 			$this->assertEquals( [], $calls );
 			$calls[] = 'oti';

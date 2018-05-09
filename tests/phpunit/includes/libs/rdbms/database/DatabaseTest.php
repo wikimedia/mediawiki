@@ -172,7 +172,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionIdle
+	 * @covers Wikimedia\Rdbms\Database::onTransactionCommitOrIdle
 	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
 	 */
 	public function testTransactionIdle() {
@@ -186,7 +186,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
 
-		$db->onTransactionIdle( $callback, __METHOD__ );
+		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertTrue( $called, 'Callback reached' );
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX still default' );
@@ -194,7 +194,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$flagSet = null;
 		$called = false;
 		$db->startAtomic( __METHOD__ );
-		$db->onTransactionIdle( $callback, __METHOD__ );
+		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Callback not reached during TRX' );
 		$db->endAtomic( __METHOD__ );
 
@@ -203,7 +203,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 
 		$db->clearFlag( DBO_TRX );
-		$db->onTransactionIdle(
+		$db->onTransactionCommitOrIdle(
 			function ( $trigger, IDatabase $db ) {
 				$db->setFlag( DBO_TRX );
 			},
@@ -213,7 +213,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionIdle
+	 * @covers Wikimedia\Rdbms\Database::onTransactionCommitOrIdle
 	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
 	 */
 	public function testTransactionIdle_TRX() {
@@ -237,14 +237,14 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
 
-		$db->onTransactionIdle( $callback, __METHOD__ );
+		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertTrue( $called, 'Called when idle if DBO_TRX is set' );
 		$this->assertFalse( $flagSet, 'DBO_TRX off in callback' );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX still default' );
 
 		$called = false;
 		$lbFactory->beginMasterChanges( __METHOD__ );
-		$db->onTransactionIdle( $callback, __METHOD__ );
+		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 
 		$lbFactory->commitMasterChanges( __METHOD__ );
@@ -252,7 +252,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$called = false;
 		$lbFactory->beginMasterChanges( __METHOD__ );
-		$db->onTransactionIdle( $callback, __METHOD__ );
+		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 
 		$lbFactory->rollbackMasterChanges( __METHOD__ );
