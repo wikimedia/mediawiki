@@ -3292,7 +3292,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
-	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
+	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		if ( !$this->trxLevel && $this->getTransactionRoundId() ) {
 			// Start an implicit transaction similar to how query() does
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
@@ -3303,6 +3303,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$this->trxLevel ) {
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE );
 		}
+	}
+
+	final public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
+		return $this->onTransactionCommitOrIdle( $callback, $fname );
 	}
 
 	final public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
