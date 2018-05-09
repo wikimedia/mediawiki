@@ -112,13 +112,6 @@ return [
 			'resources/src/mediawiki.skinning/interface.css' => [ 'media' => 'screen' ],
 		],
 	],
-
-	'jquery.tablesorter.styles' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => [
-			'resources/src/jquery/jquery.tablesorter.styles.less',
-		],
-	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'class' => ResourceLoaderLessVarFileModule::class,
@@ -335,6 +328,12 @@ return [
 			'jquery.tablesorter.styles',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
+		],
+	],
+	'jquery.tablesorter.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => [
+			'resources/src/jquery/jquery.tablesorter.styles.less',
 		],
 	],
 	'jquery.textSelection' => [
