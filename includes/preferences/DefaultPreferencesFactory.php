@@ -46,7 +46,6 @@ use OutputPage;
 use Parser;
 use ParserOptions;
 use PreferencesForm;
-use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Skin;
@@ -1484,12 +1483,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param IContextSource $context
 	 * @param string $formClass
 	 * @param array $remove Array of items to remove
-	 * @return PreferencesForm
+	 * @return HTMLForm
 	 */
 	public function getForm(
 		User $user,
 		IContextSource $context,
-		$formClass = PreferencesFormOOUI::class,
+		$formClass = PreferencesForm::class,
 		array $remove = []
 	) {
 		if ( SpecialPreferences::isOouiEnabled( $context ) ) {
@@ -1511,7 +1510,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		/**
-		 * @var $htmlForm PreferencesForm
+		 * @var $htmlForm HTMLForm
 		 */
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 
@@ -1522,7 +1521,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
-		$htmlForm->setSubmitCallback( function ( array $formData, PreferencesForm $form ) {
+		$htmlForm->setSubmitCallback( function ( array $formData, HTMLForm $form ) {
 			return $this->submitForm( $formData, $form );
 		} );
 
@@ -1627,10 +1626,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Handle the form submission if everything validated properly
 	 *
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return bool|Status|string
 	 */
-	protected function saveFormData( $formData, PreferencesForm $form ) {
+	protected function saveFormData( $formData, HTMLForm $form ) {
 		$user = $form->getModifiedUser();
 		$hiddenPrefs = $this->config->get( 'HiddenPrefs' );
 		$result = true;
@@ -1707,10 +1706,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @deprecated since 1.31, its inception
 	 *
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return bool|Status|string
 	 */
-	public function legacySaveFormData( $formData, PreferencesForm $form ) {
+	public function legacySaveFormData( $formData, HTMLForm $form ) {
 		return $this->saveFormData( $formData, $form );
 	}
 
@@ -1718,10 +1717,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * Save the form data and reload the page
 	 *
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return Status
 	 */
-	protected function submitForm( array $formData, PreferencesForm $form ) {
+	protected function submitForm( array $formData, HTMLForm $form ) {
 		$res = $this->saveFormData( $formData, $form );
 
 		if ( $res ) {
@@ -1759,10 +1758,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @deprecated since 1.31, its inception
 	 *
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return Status
 	 */
-	public function legacySubmitForm( array $formData, PreferencesForm $form ) {
+	public function legacySubmitForm( array $formData, HTMLForm $form ) {
 		return $this->submitForm( $formData, $form );
 	}
 
