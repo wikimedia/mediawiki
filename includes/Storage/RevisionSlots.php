@@ -54,6 +54,8 @@ class RevisionSlots {
 	 * @param SlotRecord[] $slots
 	 */
 	private function setSlotsInternal( array $slots ) {
+		Assert::parameterElementType( SlotRecord::class, $slots, '$slots' );
+
 		$this->slots = [];
 
 		// re-key the slot array
@@ -197,6 +199,73 @@ class RevisionSlots {
 				? $slot->getSha1()
 				: SlotRecord::base36Sha1( $accu . $slot->getSha1() );
 		}, null );
+	}
+
+	/**
+	 * Return all slots that are not inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getTouchedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return !$slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Return all slots that are inherited.
+	 *
+	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
+	 *
+	 * @return SlotRecord[]
+	 */
+	public function getInheritedSlots() {
+		return array_filter(
+			$this->getSlots(),
+			function ( SlotRecord $slot ) {
+				return $slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Checks whether the other RevisionSlots instance has the same content
+	 * as this instance. Note that this does not mean that the slots have to be the same:
+	 * they could for instance belong to different revisions.
+	 *
+	 * @param RevisionSlots $other
+	 *
+	 * @return bool
+	 */
+	public function hasSameContent( RevisionSlots $other ) {
+		if ( $other === $this ) {
+			return true;
+		}
+
+		$aSlots = $this->getSlots();
+		$bSlots = $other->getSlots();
+
+		ksort( $aSlots );
+		ksort( $bSlots );
+
+		if ( array_keys( $aSlots ) !== array_keys( $bSlots ) ) {
+			return false;
+		}
+
+		foreach ( $aSlots as $role => $s ) {
+			$t = $bSlots[$role];
+
+			if ( !$s->hasSameContent( $t ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 }
