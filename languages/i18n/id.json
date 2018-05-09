@@ -1036,6 +1036,7 @@
 	"prefs-watchlist-edits": "Jumlah maksimum perubahan yang ditampilkan dalam daftar pantauan:",
 	"prefs-watchlist-edits-max": "Nilai maksimum: 1000",
 	"prefs-watchlist-token": "Token daftar pantauan:",
+	"prefs-watchlist-managetokens": "Kelola token",
 	"prefs-misc": "Lain-lain",
 	"prefs-resetpass": "Ganti kata sandi",
 	"prefs-changeemail": "Ubah atau hapus alamat surel",
