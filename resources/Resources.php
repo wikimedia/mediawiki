@@ -1125,7 +1125,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.inspect' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
+		'scripts' => 'resources/src/mediawiki.inspect.js',
 		'dependencies' => [
 			'mediawiki.String',
 			'mediawiki.RegExp',
@@ -1171,7 +1171,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notify' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
+		'scripts' => 'resources/src/mediawiki.notify.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notification.convertmessagebox' => [
@@ -1188,11 +1188,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.RegExp' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',
+		'scripts' => 'resources/src/mediawiki.RegExp.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.String' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.String.js',
+		'scripts' => 'resources/src/mediawiki.String.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.pager.tablePager' => [
@@ -1213,7 +1213,7 @@ return [
 		],
 	],
 	'mediawiki.storage' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.storage.js',
+		'scripts' => 'resources/src/mediawiki.storage.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Title' => [
@@ -1368,7 +1368,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.user' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.user.js',
+		'scripts' => 'resources/src/mediawiki.user.js',
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.api.user',
@@ -1379,7 +1379,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.userSuggest' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.userSuggest.js',
+		'scripts' => 'resources/src/mediawiki.userSuggest.js',
 		'dependencies' => [
 			'jquery.suggestions',
 			'mediawiki.api'
@@ -1387,7 +1387,7 @@ return [
 	],
 	'mediawiki.util' => [
 		'class' => ResourceLoaderMediaWikiUtilModule::class,
-		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
+		'scripts' => 'resources/src/mediawiki.util.js',
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',
@@ -1396,7 +1396,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.viewport' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.viewport.js',
+		'scripts' => 'resources/src/mediawiki.viewport.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.checkboxtoggle' => [
@@ -1406,7 +1406,7 @@ return [
 		'styles' => 'resources/src/mediawiki/mediawiki.checkboxtoggle.css',
 	],
 	'mediawiki.cookie' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
+		'scripts' => 'resources/src/mediawiki.cookie.js',
 		'dependencies' => 'jquery.cookie',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1417,7 +1417,7 @@ return [
 		'dependencies' => 'jquery.textSelection',
 	],
 	'mediawiki.experiments' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
+		'scripts' => 'resources/src/mediawiki.experiments.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.editfont.styles' => [
@@ -1425,7 +1425,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.visibleTimeout' => [
-		'scripts' => 'resources/src/mediawiki/mediawiki.visibleTimeout.js',
+		'scripts' => 'resources/src/mediawiki.visibleTimeout.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
