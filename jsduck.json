@@ -21,7 +21,6 @@
 		"resources/src/mediawiki.legacy",
 		"resources/src/mediawiki.libs.jpegmeta/jpegmeta.js",
 		"resources/src/mediawiki.skinning",
-		"resources/src/mediawiki/mediawiki.Title.phpCharToUpper.js",
 		"resources/src/startup.js"
 	],
 	"--": [
