@@ -439,11 +439,20 @@ interface ILoadBalancer {
 	public function rollbackMasterChanges( $fname = __METHOD__ );
 
 	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
 	 *
 	 * @param string $fname Caller name
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
+
+	/**
+	 * Commit all master DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
+	 *
+	 * An error will be thrown if a connection has pending writes or callbacks
+	 *
+	 * @param string $fname Caller name
+	 */
+	public function flushMasterSnapshots( $fname = __METHOD__ );
 
 	/**
 	 * @return bool Whether a master connection is already open

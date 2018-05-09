@@ -211,6 +211,14 @@ class LBFactoryTest extends MediaWikiTestCase {
 		} );
 		$this->assertEquals( 2, $count );
 
+		// DBTransactionError should not be thrown
+		$ran = 0;
+		$dbw->onTransactionPreCommitOrIdle( function () use ( &$ran ) {
+			++$ran;
+		} );
+		$factory->commitAll( __METHOD__ );
+		$this->assertEquals( 1, $ran );
+
 		$factory->shutdown();
 		$factory->closeAll();
 	}
