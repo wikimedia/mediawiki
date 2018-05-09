@@ -51,7 +51,7 @@ class EmailNotificationSecondaryAuthenticationProvider
 			&& !$this->manager->getAuthenticationSessionData( 'no-email' )
 		) {
 			// TODO show 'confirmemail_oncreate'/'confirmemail_sendfailed' message
-			wfGetDB( DB_MASTER )->onTransactionIdle(
+			wfGetDB( DB_MASTER )->onTransactionCommitOrIdle(
 				function () use ( $user ) {
 					$user = $user->getInstanceForUpdate();
 					$status = $user->sendConfirmationMail();
