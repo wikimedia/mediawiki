@@ -22,8 +22,10 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Form to edit user preferences.
+ *
+ * @since 1.32
  */
-class PreferencesFormLegacy extends HTMLForm implements PreferencesForm {
+class PreferencesFormLegacy extends HTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
 
@@ -141,3 +143,7 @@ class PreferencesFormLegacy extends HTMLForm implements PreferencesForm {
 		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
 	}
 }
+
+// Retain the old class name for backwards compatibility.
+// In the future, this alias will be changed to point to PreferencesFormOOUI.
+class_alias( PreferencesFormLegacy::class, 'PreferencesForm' );

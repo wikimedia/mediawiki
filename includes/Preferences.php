@@ -306,7 +306,7 @@ class Preferences {
 	 * @deprecated since 1.31, use PreferencesFactory
 	 *
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return bool|Status|string
 	 */
 	public static function tryFormSubmit( $formData, $form ) {
@@ -316,7 +316,7 @@ class Preferences {
 
 	/**
 	 * @param array $formData
-	 * @param PreferencesForm $form
+	 * @param HTMLForm $form
 	 * @return Status
 	 */
 	public static function tryUISubmit( $formData, $form ) {
