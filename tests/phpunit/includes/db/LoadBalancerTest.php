@@ -365,13 +365,13 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$tlCalls = 0;
 		$lb->beginMasterChanges( __METHOD__ );
 		$ac = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
-		$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+		$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
 			$ac['a'] = 1;
-			$conn2->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+			$conn2->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
 				$ac['b'] = 1;
-				$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+				$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
 					$ac['c'] = 1;
-					$conn1->onTransactionIdle( function () use ( &$ac, $conn1, $conn2 ) {
+					$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
 						$ac['d'] = 1;
 					} );
 				} );

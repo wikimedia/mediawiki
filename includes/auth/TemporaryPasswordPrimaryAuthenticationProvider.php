@@ -314,7 +314,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $sendMail ) {
 			// Send email after DB commit
-			$dbw->onTransactionIdle(
+			$dbw->onTransactionCommitOrIdle(
 				function () use ( $req ) {
 					/** @var TemporaryPasswordAuthenticationRequest $req */
 					$this->sendPasswordResetEmail( $req );
@@ -388,7 +388,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $mailpassword ) {
 			// Send email after DB commit
-			wfGetDB( DB_MASTER )->onTransactionIdle(
+			wfGetDB( DB_MASTER )->onTransactionCommitOrIdle(
 				function () use ( $user, $creator, $req ) {
 					$this->sendNewAccountEmail( $user, $creator, $req->password );
 				},

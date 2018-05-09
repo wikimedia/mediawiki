@@ -507,7 +507,7 @@ class JobQueueDB extends JobQueue {
 		// jobs to become no-ops without any actual jobs that made them redundant.
 		$dbw = $this->getMasterDB();
 		$cache = $this->dupCache;
-		$dbw->onTransactionIdle(
+		$dbw->onTransactionCommitOrIdle(
 			function () use ( $cache, $params, $key ) {
 				$timestamp = $cache->get( $key ); // current last timestamp of this job
 				if ( $timestamp && $timestamp >= $params['rootJobTimestamp'] ) {
