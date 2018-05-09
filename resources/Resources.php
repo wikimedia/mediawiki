@@ -112,13 +112,6 @@ return [
 			'resources/src/mediawiki.skinning/interface.css' => [ 'media' => 'screen' ],
 		],
 	],
-
-	'jquery.tablesorter.styles' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => [
-			'resources/src/jquery/jquery.tablesorter.styles.less',
-		],
-	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'class' => ResourceLoaderLessVarFileModule::class,
@@ -328,13 +321,19 @@ return [
 		'scripts' => 'resources/src/jquery/jquery.tabIndex.js',
 	],
 	'jquery.tablesorter' => [
-		'scripts' => 'resources/src/jquery/jquery.tablesorter.js',
-		'styles' => 'resources/src/jquery/jquery.tablesorter.less',
+		'scripts' => 'resources/src/jquery.tablesorter/jquery.tablesorter.js',
+		'styles' => 'resources/src/jquery.tablesorter/jquery.tablesorter.less',
 		'messages' => [ 'sort-descending', 'sort-ascending' ],
 		'dependencies' => [
 			'jquery.tablesorter.styles',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
+		],
+	],
+	'jquery.tablesorter.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => [
+			'resources/src/jquery/jquery.tablesorter.styles.less',
 		],
 	],
 	'jquery.textSelection' => [
@@ -1135,8 +1134,8 @@ return [
 	],
 	'mediawiki.messagePoster' => [
 		'scripts' => [
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.factory.js',
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.MessagePoster.js',
+			'resources/src/mediawiki.messagePoster/factory.js',
+			'resources/src/mediawiki.messagePoster/MessagePoster.js',
 		],
 		'dependencies' => [
 			'oojs',
@@ -1147,7 +1146,7 @@ return [
 	],
 	'mediawiki.messagePoster.wikitext' => [
 		'scripts' => [
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.WikitextMessagePoster.js',
+			'resources/src/mediawiki.messagePoster.wikitext/WikitextMessagePoster.js',
 		],
 		'dependencies' => [
 			'mediawiki.api.edit',
