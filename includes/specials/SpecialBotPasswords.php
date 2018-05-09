@@ -51,6 +51,10 @@ class SpecialBotPasswords extends FormSpecialPage {
 		return $this->getConfig()->get( 'EnableBotPasswords' );
 	}
 
+	protected function getLoginSecurityLevel() {
+		return $this->getName();
+	}
+
 	/**
 	 * Main execution point
 	 * @param string|null $par
