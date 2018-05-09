@@ -1157,14 +1157,14 @@ return [
 	],
 	'mediawiki.notification' => [
 		'styles' => [
-			'resources/src/mediawiki/mediawiki.notification.common.css',
-			'resources/src/mediawiki/mediawiki.notification.print.css'
+			'resources/src/mediawiki.notification/common.css',
+			'resources/src/mediawiki.notification/print.css'
 				=> [ 'media' => 'print' ],
 		],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki/mediawiki.notification.css',
+			'default' => 'resources/src/mediawiki.notification/default.css',
 		],
-		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
+		'scripts' => 'resources/src/mediawiki.notification/notification.js',
 		'dependencies' => [
 			'mediawiki.util',
 			'mediawiki.visibleTimeout',
