@@ -353,6 +353,23 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * Record preserved POST data after a reauthentication.
+	 *
+	 * This is called from checkLoginSecurityLevel() when returning from the
+	 * redirect for reauthentication, if the redirect had been served in
+	 * response to a POST request.
+	 *
+	 * The base SpecialPage implementation does nothing. If your subclass uses
+	 * getLoginSecurityLevel() or checkLoginSecurityLevel(), it should probably
+	 * implement this to do something with the data.
+	 *
+	 * @since 1.32
+	 * @param array $data
+	 */
+	protected function setReauthPostData( array $data ) {
+	}
+
+	/**
 	 * Verifies that the user meets the security level, possibly reauthenticating them in the process.
 	 *
 	 * This should be used when the page does something security-sensitive and needs extra defense
@@ -378,16 +395,42 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	protected function checkLoginSecurityLevel( $level = null ) {
 		$level = $level ?: $this->getName();
+		$key = 'SpecialPage:reauth:' . $this->getName();
+		$request = $this->getRequest();
+
 		$securityStatus = AuthManager::singleton()->securitySensitiveOperationStatus( $level );
 		if ( $securityStatus === AuthManager::SEC_OK ) {
+			$uniqueId = $request->getVal( 'postUniqueId' );
+			if ( $uniqueId ) {
+				$key = $key . ':' . $uniqueId;
+				$session = $request->getSession();
+				$data = $session->getSecret( $key );
+				if ( $data ) {
+					$session->remove( $key );
+					$this->setReauthPostData( $data );
+				}
+			}
 			return true;
 		} elseif ( $securityStatus === AuthManager::SEC_REAUTH ) {
-			$request = $this->getRequest();
 			$title = self::getTitleFor( 'Userlogin' );
+			$queryParams = $request->getQueryValues();
+
+			if ( $request->wasPosted() ) {
+				$data = array_diff_assoc( $request->getValues(), $request->getQueryValues() );
+				if ( $data ) {
+					// unique ID in case the same special page is open in multiple browser tabs
+					$uniqueId = MWCryptRand::generateHex( 6 );
+					$key = $key . ':' . $uniqueId;
+					$queryParams['postUniqueId'] = $uniqueId;
+					$session = $request->getSession();
+					$session->persist(); // Just in case
+					$session->setSecret( $key, $data );
+				}
+			}
+
 			$query = [
 				'returnto' => $this->getFullTitle()->getPrefixedDBkey(),
-				'returntoquery' => wfArrayToCgi( array_diff_key( $request->getQueryValues(),
-					[ 'title' => true ] ) ),
+				'returntoquery' => wfArrayToCgi( array_diff_key( $queryParams, [ 'title' => true ] ) ),
 				'force' => $level,
 			];
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
@@ -568,7 +611,10 @@ class SpecialPage implements MessageLocalizer {
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->checkPermissions();
-		$this->checkLoginSecurityLevel( $this->getLoginSecurityLevel() );
+		$securityLevel = $this->getLoginSecurityLevel();
+		if ( $securityLevel !== false && !$this->checkLoginSecurityLevel( $securityLevel ) ) {
+			return;
+		}
 		$this->outputHeader();
 	}
 

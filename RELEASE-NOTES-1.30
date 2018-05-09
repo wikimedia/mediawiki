@@ -27,6 +27,10 @@ THIS IS NOT A RELEASE YET
   saveFileDependencies().
 * (T224374) Fix message parameters so that the message that says SQLite is out of date
   makes sense.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 == MediaWiki 1.30.1 ==
 
