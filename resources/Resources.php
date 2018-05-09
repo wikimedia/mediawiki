@@ -1135,8 +1135,8 @@ return [
 	],
 	'mediawiki.messagePoster' => [
 		'scripts' => [
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.factory.js',
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.MessagePoster.js',
+			'resources/src/mediawiki.messagePoster/factory.js',
+			'resources/src/mediawiki.messagePoster/MessagePoster.js',
 		],
 		'dependencies' => [
 			'oojs',
@@ -1147,7 +1147,7 @@ return [
 	],
 	'mediawiki.messagePoster.wikitext' => [
 		'scripts' => [
-			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.WikitextMessagePoster.js',
+			'resources/src/mediawiki.messagePoster.wikitext/WikitextMessagePoster.js',
 		],
 		'dependencies' => [
 			'mediawiki.api.edit',
