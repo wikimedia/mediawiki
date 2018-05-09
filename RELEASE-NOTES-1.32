@@ -22,6 +22,10 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 === External library changes in 1.32 ===
 * …
@@ -36,7 +40,8 @@ production.
 * …
 
 === Bug fixes in 1.32 ===
-* …
+* SpecialPage::execute() will now only call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 === Action API changes in 1.32 ===
 * …
