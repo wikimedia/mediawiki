@@ -23,6 +23,10 @@ THIS IS NOT A RELEASE YET
   $wgBlockDisablesLogin is true.
 * (T219728) Added support for new Japanese era name "Reiwa".
 * (T25227) SECURITY: action=logout now requires to be posted and have a csrf token.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 == MediaWiki 1.27.5 ==
 
