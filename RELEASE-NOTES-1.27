@@ -10,6 +10,7 @@ THIS IS NOT A RELEASE YET!
 * (T189567) the CLI installer (maintenance/install.php) learned to detect and
   include extensions. Pass --with-extensions to enable that feature.
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* Add default edit rate limit of 90 edits/minute for all users.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
