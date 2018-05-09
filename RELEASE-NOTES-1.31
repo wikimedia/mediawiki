@@ -393,6 +393,9 @@ changes to languages because of Phabricator reports.
   used instead.
 * The function wfShellWikiCmd() has been deprecated, use
   MediaWiki\Shell::makeScriptCommand().
+* In the future, the hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend'
+  will be allowed to provide any HTMLForm object rather than PreferencesForm.
+
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
 * Browser support for Opera 12 and older was dropped entirely. Opera 15+
