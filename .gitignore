@@ -49,6 +49,7 @@ sftp-config.json
 npm-debug.log
 node_modules/
 /tests/phpunit/phpunit.phar
+/tests/selenium/log
 
 # Composer
 /vendor
