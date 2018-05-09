@@ -10,7 +10,8 @@
 			"아라",
 			"Macofe",
 			"MtDu",
-			"Abdeaitali"
+			"Abdeaitali",
+			"Reda Benkhadra"
 		]
 	},
 	"tog-underline": "Ṣetter l-lyanaṫ:",
@@ -848,11 +849,17 @@
 	"rcnotefrom": "hna taghirat mn  '''$2''' (tal '''$1''' maaroda).",
 	"rclistfrom": "Werri ṫeġyiraṫ jdad badyen men $3 $2",
 	"rcshowhideminor": "$1 Ṫeĝdilaṫ ma mohimminċ bezzaf",
+	"rcshowhideminor-hide": "خبي",
 	"rcshowhidebots": "$1 R-Robowaṫ",
+	"rcshowhidebots-show": "وري",
+	"rcshowhidebots-hide": "خبي",
 	"rcshowhideliu": "$1 l-mosṫeĥdimin l-mċejjlin",
+	"rcshowhideliu-hide": "خبي",
 	"rcshowhideanons": "$1 mosṫeĥdimin mĥebbyin",
+	"rcshowhideanons-hide": "خبي",
 	"rcshowhidepatr": "$1  taadilat lmorajaa",
 	"rcshowhidemine": "$1 ṫ-ṫeĝdilaṫ dyawli",
+	"rcshowhidemine-hide": "خبي",
 	"rclinks": "Werri l-$1 dyal ṫ-ṫeġyiraṫ l-leĥĥrin li ṫdaro fe had l-$2 l-iyam l-leĥĥrin",
 	"diff": "ferq",
 	"hist": "Ṫariĥ",

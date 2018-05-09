@@ -973,6 +973,7 @@
 	"prefs-watchlist-edits": "Broj uređivanja koji će se prikazati na proširenom popisu praćenja:",
 	"prefs-watchlist-edits-max": "Maksimalni broj: 1000",
 	"prefs-watchlist-token": "Tajni ključ popisa praćenja:",
+	"prefs-watchlist-managetokens": "Upravljaj tajnim ključevima",
 	"prefs-misc": "Razno",
 	"prefs-resetpass": "promijeni zaporku",
 	"prefs-changeemail": "promijeni ili ukloni adresu e-pošte",

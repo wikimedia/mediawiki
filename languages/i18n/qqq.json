@@ -2053,7 +2053,7 @@
 	"shared-repo-name-wikimediacommons": "{{optional}}\n\nA specific version of {{msg-mw|shared-repo}}; see [[MediaWiki:Shared-repo/qqq]] for more information.\n\n{{Identical|Wikimedia Commons}}",
 	"filepage.css": "{{Optional}}",
 	"upload-disallowed-here": "This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right privilege.",
-	"filerevert": "Used as page title. Parameters:\n* $1 - page title\n{{Identical|Revert}}",
+	"filerevert": "Used as page title. Parameters:\n* $1 - file title (without namespace prefix)\n{{Identical|Revert}}",
 	"filerevert-legend": "{{Identical|Revert}}",
 	"filerevert-intro": "Message displayed when you try to revert a version of a file.\n* $1 is the name of the media\n* $2 is a date\n* $3 is a time\n* $4 is a URL and must follow square bracket: [$4\n{{Identical|Revert}}",
 	"filerevert-comment": "{{Identical|Reason}}",

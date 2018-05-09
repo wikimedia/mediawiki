@@ -996,6 +996,7 @@
 	"prefs-watchlist-edits": "Ikuspen zerrendan erakutsi beharreko aldaketa gehienezko kopurua:",
 	"prefs-watchlist-edits-max": "Gehenezko zenbakia: 1000",
 	"prefs-watchlist-token": "Jarraipen zerrendaren tokena:",
+	"prefs-watchlist-managetokens": "Kudeatu token-ak",
 	"prefs-misc": "Denetarik",
 	"prefs-resetpass": "Pasahitza aldatu",
 	"prefs-changeemail": "Aldatu edo kendu e-mail helbidea",

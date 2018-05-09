@@ -726,6 +726,7 @@
 	"postedit-confirmation-created": "Stranica je napravljena.",
 	"postedit-confirmation-restored": "Stranica je vraćena.",
 	"postedit-confirmation-saved": "Vaša izmjena je sačuvana.",
+	"postedit-confirmation-published": "Vaša izmjena je objavljena.",
 	"edit-already-exists": "Stranica nije mogla biti kreirana.\nIzgleda da već postoji.",
 	"defaultmessagetext": "Uobičajeni tekst poruke",
 	"content-failed-to-parse": "Neuspjeh u parsiranju $2 sadržaja za $1 model: $3",
