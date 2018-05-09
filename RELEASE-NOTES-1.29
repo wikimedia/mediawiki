@@ -17,6 +17,7 @@ THIS IS NOT A RELEASE YET!
   SQLite.
 * (T179190) selenium: Move logic for running tests from package.json to selenium.sh.
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
+* Add default edit rate limit of 90 edits/minute for all users.
 
 == MediaWiki 1.29.2 ==
 
