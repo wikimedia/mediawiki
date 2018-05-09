@@ -5652,6 +5652,7 @@ $wgRateLimits = [
 	'edit' => [
 		'ip' => [ 8, 60 ],
 		'newbie' => [ 8, 60 ],
+		'user' => [ 90, 60 ],
 	],
 	// Page moves
 	'move' => [
