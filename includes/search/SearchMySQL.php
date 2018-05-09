@@ -34,13 +34,13 @@ class SearchMySQL extends SearchDatabase {
 	private static $mMinSearchLength;
 
 	/**
-	 * Parse the user's query and transform it into an SQL fragment which will
-	 * become part of a WHERE clause
+	 * Parse the user's query and transform it into two SQL fragments:
+	 * a WHERE condition and an ORDER BY expression
 	 *
 	 * @param string $filteredText
 	 * @param string $fulltext
 	 *
-	 * @return string
+	 * @return array
 	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
@@ -127,7 +127,10 @@ class SearchMySQL extends SearchDatabase {
 
 		$searchon = $this->db->addQuotes( $searchon );
 		$field = $this->getIndexField( $fulltext );
-		return " MATCH($field) AGAINST($searchon IN BOOLEAN MODE) ";
+		return [
+			" MATCH($field) AGAINST($searchon IN BOOLEAN MODE) ",
+			" MATCH($field) AGAINST($searchon IN NATURAL LANGUAGE MODE) DESC "
+		];
 	}
 
 	function regexTerm( $string, $wildcard ) {
@@ -303,7 +306,8 @@ class SearchMySQL extends SearchDatabase {
 		$query['fields'][] = 'page_namespace';
 		$query['fields'][] = 'page_title';
 		$query['conds'][] = 'page_id=si_page';
-		$query['conds'][] = $match;
+		$query['conds'][] = $match[0];
+		$query['options']['ORDER BY'] = $match[1];
 	}
 
 	/**
@@ -318,7 +322,7 @@ class SearchMySQL extends SearchDatabase {
 		$query = [
 			'tables' => [ 'page', 'searchindex' ],
 			'fields' => [ 'COUNT(*) as c' ],
-			'conds' => [ 'page_id=si_page', $match ],
+			'conds' => [ 'page_id=si_page', $match[0] ],
 			'options' => [],
 			'joins' => [],
 		];
