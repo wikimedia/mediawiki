@@ -36,7 +36,7 @@ module.exports = function ( grunt ) {
 				'!extensions/**/*.js',
 				'!skins/**/*.js',
 				// Skip functions aren't even parseable
-				'!resources/src/mediawiki.hidpi-skip.js'
+				'!resources/src/mediawiki.hidpi/skip.js'
 			]
 		},
 		jsonlint: {
