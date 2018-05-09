@@ -1073,15 +1073,15 @@ return [
 	],
 	'mediawiki.htmlform' => [
 		'scripts' => [
-			'resources/src/mediawiki/htmlform/htmlform.js',
-			'resources/src/mediawiki/htmlform/autocomplete.js',
-			'resources/src/mediawiki/htmlform/autoinfuse.js',
-			'resources/src/mediawiki/htmlform/checkmatrix.js',
-			'resources/src/mediawiki/htmlform/cloner.js',
-			'resources/src/mediawiki/htmlform/hide-if.js',
-			'resources/src/mediawiki/htmlform/multiselect.js',
-			'resources/src/mediawiki/htmlform/selectandother.js',
-			'resources/src/mediawiki/htmlform/selectorother.js',
+			'resources/src/mediawiki.htmlform/htmlform.js',
+			'resources/src/mediawiki.htmlform/autocomplete.js',
+			'resources/src/mediawiki.htmlform/autoinfuse.js',
+			'resources/src/mediawiki.htmlform/checkmatrix.js',
+			'resources/src/mediawiki.htmlform/cloner.js',
+			'resources/src/mediawiki.htmlform/hide-if.js',
+			'resources/src/mediawiki.htmlform/multiselect.js',
+			'resources/src/mediawiki.htmlform/selectandother.js',
+			'resources/src/mediawiki.htmlform/selectorother.js',
 		],
 		'dependencies' => [
 			'mediawiki.RegExp',
@@ -1096,7 +1096,7 @@ return [
 	],
 	'mediawiki.htmlform.checker' => [
 		'scripts' => [
-			'resources/src/mediawiki/htmlform/htmlform.Checker.js',
+			'resources/src/mediawiki.htmlform.checker.js',
 		],
 		'dependencies' => [
 			'jquery.throttle-debounce',
@@ -1105,7 +1105,7 @@ return [
 	],
 	'mediawiki.htmlform.ooui' => [
 		'scripts' => [
-			'resources/src/mediawiki/htmlform/htmlform.Element.js',
+			'resources/src/mediawiki.htmlform.ooui/Element.js',
 		],
 		'dependencies' => [
 			'oojs-ui-core',
@@ -1113,11 +1113,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.styles' => [
-		'styles' => 'resources/src/mediawiki/htmlform/styles.css',
+		'styles' => 'resources/src/mediawiki.htmlform.styles/styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
-		'styles' => 'resources/src/mediawiki/htmlform/ooui.styles.less',
+		'styles' => 'resources/src/mediawiki.htmlform.ooui.styles.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.icon' => [
