@@ -19,21 +19,35 @@
 		}
 	},
 	"images": {
-		"bright": { "file": "images/icons/bright.svg" },
-		"halfBright": { "file": {
-			"ltr": "images/icons/halfBright-ltr.svg",
-			"rtl": "images/icons/halfBright-rtl.svg"
-		} },
-		"notBright": { "file": "images/icons/notBright.svg" },
-		"eye": { "file": "images/icons/eye.svg" },
-		"eyeClosed": { "file": "images/icons/eyeClosed.svg" },
-		"moon": { "file": "images/icons/moon.svg" },
+		"bright": {
+			"file": "images/icons/bright.svg"
+		},
+		"halfBright": {
+			"file": {
+				"ltr": "images/icons/halfBright-ltr.svg",
+				"rtl": "images/icons/halfBright-rtl.svg"
+			}
+		},
+		"notBright": {
+			"file": "images/icons/notBright.svg"
+		},
+		"eye": {
+			"file": "images/icons/eye.svg"
+		},
+		"eyeClosed": {
+			"file": "images/icons/eyeClosed.svg"
+		},
+		"moon": {
+			"file": "images/icons/moon.svg"
+		},
 		"largerText": {
 			"file": "images/icons/largerText.svg"
 		},
 		"smallerText": {
 			"file": "images/icons/smallerText.svg"
 		},
-		"visionSimulator": { "file": "images/icons/visionSimulator.svg" }
+		"visionSimulator": {
+			"file": "images/icons/visionSimulator.svg"
+		}
 	}
 }

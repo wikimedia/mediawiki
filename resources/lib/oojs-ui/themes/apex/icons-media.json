@@ -5,7 +5,9 @@
 		"exitFullscreen": {
 			"file": "../wikimediaui/images/icons/exitFullscreen.svg"
 		},
-		"fullScreen": { "file": "../wikimediaui/images/icons/fullScreen.svg" },
+		"fullScreen": {
+			"file": "../wikimediaui/images/icons/fullScreen.svg"
+		},
 		"image": {
 			"file": "../wikimediaui/images/icons/image.svg"
 		},
@@ -36,6 +38,8 @@
 		"play": {
 			"file": "../wikimediaui/images/icons/play.svg"
 		},
-		"stop": { "file": "../wikimediaui/images/icons/stop.svg" }
+		"stop": {
+			"file": "../wikimediaui/images/icons/stop.svg"
+		}
 	}
 }

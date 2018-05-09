@@ -8,7 +8,9 @@
 		"bookmark": {
 			"file": "../wikimediaui/images/icons/bookmark.svg"
 		},
-		"block": { "file": "../wikimediaui/images/icons/block.svg" },
+		"block": {
+			"file": "../wikimediaui/images/icons/block.svg"
+		},
 		"unBlock": {
 			"file": "../wikimediaui/images/icons/unBlock.svg"
 		},
@@ -20,34 +22,50 @@
 			"file": "../wikimediaui/images/icons/bookmark.svg",
 			"deprecated": "Renamed since v0.26.1, use 'bookmark' instead."
 		},
-		"flag": { "file": {
-			"ltr": "../wikimediaui/images/icons/flag-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/flag-rtl.svg"
-		} },
-		"unFlag": { "file": {
-			"ltr": "../wikimediaui/images/icons/unFlag-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/unFlag-rtl.svg"
-		} },
+		"flag": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/flag-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/flag-rtl.svg"
+			}
+		},
+		"unFlag": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/unFlag-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/unFlag-rtl.svg"
+			}
+		},
 		"lock": {
 			"file": "../wikimediaui/images/icons/lock.svg"
 		},
 		"unLock": {
 			"file": "../wikimediaui/images/icons/unLock.svg"
 		},
-		"star": { "file": "../wikimediaui/images/icons/star.svg" },
-		"halfStar": { "file": {
-			"ltr": "../wikimediaui/images/icons/halfStar-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/halfStar-rtl.svg"
-		} },
-		"unStar": { "file": "../wikimediaui/images/icons/unStar.svg" },
-		"trash": { "file": "../wikimediaui/images/icons/trash.svg" },
+		"star": {
+			"file": "../wikimediaui/images/icons/star.svg"
+		},
+		"halfStar": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/halfStar-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/halfStar-rtl.svg"
+			}
+		},
+		"unStar": {
+			"file": "../wikimediaui/images/icons/unStar.svg"
+		},
+		"trash": {
+			"file": "../wikimediaui/images/icons/trash.svg"
+		},
 		"unTrash": {
 			"file": "../wikimediaui/images/icons/unTrash.svg"
 		},
-		"pushPin": { "file": "../wikimediaui/images/icons/pushPin.svg" },
-		"ongoingConversation": { "file": {
-			"ltr": "../wikimediaui/images/icons/ongoingConversation-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/ongoingConversation-rtl.svg"
-		} }
+		"pushPin": {
+			"file": "../wikimediaui/images/icons/pushPin.svg"
+		},
+		"ongoingConversation": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/ongoingConversation-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/ongoingConversation-rtl.svg"
+			}
+		}
 	}
 }

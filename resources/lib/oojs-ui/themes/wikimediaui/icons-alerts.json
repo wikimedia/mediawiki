@@ -19,8 +19,13 @@
 		}
 	},
 	"images": {
-		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
-		"bell": { "file": "images/icons/bell.svg" },
+		"alert": {
+			"file": "images/icons/alert.svg",
+			"variants": [ "warning" ]
+		},
+		"bell": {
+			"file": "images/icons/bell.svg"
+		},
 		"comment": {
 			"file": {
 				"ltr": "images/icons/speechBubble-ltr.svg",
@@ -28,20 +33,32 @@
 			},
 			"deprecated": "This will be removed in v0.28.0. Use 'speechBubble' instead."
 		},
-		"message": { "file": "images/icons/message.svg" },
-		"notice": { "file": "images/icons/notice.svg" },
-		"speechBubble": { "file": {
-			"ltr": "images/icons/speechBubble-ltr.svg",
-			"rtl": "images/icons/speechBubble-rtl.svg"
-		} },
-		"speechBubbleAdd": { "file": {
-			"ltr": "images/icons/speechBubbleAdd-ltr.svg",
-			"rtl": "images/icons/speechBubbleAdd-rtl.svg"
-		} },
-		"speechBubbles": { "file": {
-			"ltr": "images/icons/speechBubbles-ltr.svg",
-			"rtl": "images/icons/speechBubbles-rtl.svg"
-		} },
-		"tray": { "file": "images/icons/tray.svg" }
+		"message": {
+			"file": "images/icons/message.svg"
+		},
+		"notice": {
+			"file": "images/icons/notice.svg"
+		},
+		"speechBubble": {
+			"file": {
+				"ltr": "images/icons/speechBubble-ltr.svg",
+				"rtl": "images/icons/speechBubble-rtl.svg"
+			}
+		},
+		"speechBubbleAdd": {
+			"file": {
+				"ltr": "images/icons/speechBubbleAdd-ltr.svg",
+				"rtl": "images/icons/speechBubbleAdd-rtl.svg"
+			}
+		},
+		"speechBubbles": {
+			"file": {
+				"ltr": "images/icons/speechBubbles-ltr.svg",
+				"rtl": "images/icons/speechBubbles-rtl.svg"
+			}
+		},
+		"tray": {
+			"file": "images/icons/tray.svg"
+		}
 	}
 }

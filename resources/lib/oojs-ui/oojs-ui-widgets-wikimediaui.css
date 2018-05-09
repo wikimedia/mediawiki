@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.5
+ * OOUI v0.27.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-24T23:29:05Z
+ * Date: 2018-05-09T00:44:50Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -972,12 +972,12 @@
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.oo-ui-tagItemWidget.oo-ui-labelElement:not( .oo-ui-tagItemWidget-fixed ) .oo-ui-labelElement-label {
   cursor: text;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled {
-  background-color: #f8f9fa;
   color: #222;
-  padding-right: 1.5em;
   -webkit-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
   -moz-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
@@ -992,6 +992,10 @@
   box-shadow: inset 0 0 0 1px #36c;
   outline: 0;
 }
+.oo-ui-tagItemWidget.oo-ui-widget-enabled:not( .oo-ui-tagItemWidget-fixed ) {
+  background-color: #f8f9fa;
+  padding-right: 1.5em;
+}
 .oo-ui-tagItemWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid {
   border-color: #d33;
 }
@@ -1001,6 +1005,9 @@
 .oo-ui-tagItemWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid:focus {
   border-color: #d33;
   box-shadow: inset 0 0 0 1px #d33;
+}
+.oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
+  margin-top: -1px;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
   display: block;
@@ -1014,6 +1021,7 @@
   padding-left: 1.42857143em;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-icon-close {
+  left: 0.28571429em;
   min-width: 14px;
   width: 1em;
 }
@@ -1203,6 +1211,9 @@
   box-shadow: inset 0 0 0 1px #36c;
   outline: 0;
 }
+.oo-ui-capsuleItemWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
+  margin-top: -1px;
+}
 .oo-ui-capsuleItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
   display: block;
   position: absolute;
@@ -1215,6 +1226,7 @@
   padding-left: 1.42857143em;
 }
 .oo-ui-capsuleItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-icon-close {
+  left: 0.28571429em;
   min-width: 14px;
   width: 1em;
 }
@@ -1261,49 +1273,4 @@
   top: 4em;
   padding: 1.14285714em;
   line-height: 0;
-}
-.oo-ui-numberInputWidget {
-  display: inline-block;
-  position: relative;
-  max-width: 50em;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget,
-.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
-  display: table-cell;
-  height: 100%;
-}
-.oo-ui-numberInputWidget-field {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget {
-  width: 2.64285714em;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget .oo-ui-buttonElement-button {
-  display: block;
-  min-width: 37px;
-  min-height: 2.28571429em;
-  padding-left: 0;
-  padding-right: 0;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
-  left: 0.57142857em;
-}
-.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
-  border-radius: 0;
-  max-height: 2.28571429em;
-}
-.oo-ui-numberInputWidget-minusButton > .oo-ui-buttonElement-button {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right-width: 0;
-}
-.oo-ui-numberInputWidget-plusButton > .oo-ui-buttonElement-button {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-left-width: 0;
-}
-.oo-ui-numberInputWidget.oo-ui-widget-disabled.oo-ui-numberInputWidget-buttoned .oo-ui-iconElement-icon {
-  opacity: 1;
 }

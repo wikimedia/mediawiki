@@ -22,7 +22,9 @@
 		"exitFullscreen": {
 			"file": "images/icons/exitFullscreen.svg"
 		},
-		"fullScreen": { "file": "images/icons/fullScreen.svg" },
+		"fullScreen": {
+			"file": "images/icons/fullScreen.svg"
+		},
 		"image": {
 			"file": "images/icons/image.svg"
 		},
@@ -53,6 +55,8 @@
 		"play": {
 			"file": "images/icons/play.svg"
 		},
-		"stop": { "file": "images/icons/stop.svg" }
+		"stop": {
+			"file": "images/icons/stop.svg"
+		}
 	}
 }

@@ -25,7 +25,10 @@
 		"bookmark": {
 			"file": "images/icons/bookmark.svg"
 		},
-		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
+		"block": {
+			"file": "images/icons/block.svg",
+			"variants": [ "destructive" ]
+		},
 		"unBlock": {
 			"file": "images/icons/unBlock.svg"
 		},
@@ -37,34 +40,53 @@
 			"file": "images/icons/bookmark.svg",
 			"deprecated": "Renamed since v0.26.1, use 'bookmark' instead."
 		},
-		"flag": { "file": {
-			"ltr": "images/icons/flag-ltr.svg",
-			"rtl": "images/icons/flag-rtl.svg"
-		} },
-		"unFlag": { "file": {
-			"ltr": "images/icons/unFlag-ltr.svg",
-			"rtl": "images/icons/unFlag-rtl.svg"
-		} },
+		"flag": {
+			"file": {
+				"ltr": "images/icons/flag-ltr.svg",
+				"rtl": "images/icons/flag-rtl.svg"
+			}
+		},
+		"unFlag": {
+			"file": {
+				"ltr": "images/icons/unFlag-ltr.svg",
+				"rtl": "images/icons/unFlag-rtl.svg"
+			}
+		},
 		"lock": {
-			"file": "images/icons/lock.svg", "variants": [ "destructive" ]
+			"file": "images/icons/lock.svg",
+			"variants": [ "destructive" ]
 		},
 		"unLock": {
-			"file": "images/icons/unLock.svg", "variants": [ "destructive" ]
+			"file": "images/icons/unLock.svg",
+			"variants": [ "destructive" ]
 		},
-		"star": { "file": "images/icons/star.svg" },
-		"halfStar": { "file": {
-			"ltr": "images/icons/halfStar-ltr.svg",
-			"rtl": "images/icons/halfStar-rtl.svg"
-		} },
-		"unStar": { "file": "images/icons/unStar.svg" },
-		"trash": { "file": "images/icons/trash.svg", "variants": [ "destructive" ] },
+		"star": {
+			"file": "images/icons/star.svg"
+		},
+		"halfStar": {
+			"file": {
+				"ltr": "images/icons/halfStar-ltr.svg",
+				"rtl": "images/icons/halfStar-rtl.svg"
+			}
+		},
+		"unStar": {
+			"file": "images/icons/unStar.svg"
+		},
+		"trash": {
+			"file": "images/icons/trash.svg",
+			"variants": [ "destructive" ]
+		},
 		"unTrash": {
 			"file": "images/icons/unTrash.svg"
 		},
-		"pushPin": { "file": "images/icons/pushPin.svg" },
-		"ongoingConversation": { "file": {
-			"ltr": "images/icons/ongoingConversation-ltr.svg",
-			"rtl": "images/icons/ongoingConversation-rtl.svg"
-		} }
+		"pushPin": {
+			"file": "images/icons/pushPin.svg"
+		},
+		"ongoingConversation": {
+			"file": {
+				"ltr": "images/icons/ongoingConversation-ltr.svg",
+				"rtl": "images/icons/ongoingConversation-rtl.svg"
+			}
+		}
 	}
 }

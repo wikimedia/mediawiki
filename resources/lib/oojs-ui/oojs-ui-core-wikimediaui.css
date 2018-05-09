@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.5
+ * OOUI v0.27.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-24T23:29:05Z
+ * Date: 2018-05-09T00:44:50Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -483,6 +483,18 @@
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help {
   float: right;
 }
+.oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  display: block;
+  position: absolute !important;
+  /* stylelint-disable-line declaration-no-important */
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
 }
@@ -619,6 +631,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help {
   float: right;
+}
+.oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+  display: block;
+  position: absolute !important;
+  /* stylelint-disable-line declaration-no-important */
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
   z-index: 1;
@@ -1416,6 +1440,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
   right: 0;
 }
+.oo-ui-textInputWidget-labelPosition-after.oo-ui-labelElement ::-ms-clear {
+  display: none;
+}
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
   position: absolute;
   top: 0;
@@ -1924,6 +1951,51 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
     -ms-transform: translate(350%);
     transform: translate(350%);
   }
+}
+.oo-ui-numberInputWidget {
+  display: inline-block;
+  position: relative;
+  max-width: 50em;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget,
+.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
+  display: table-cell;
+  height: 100%;
+}
+.oo-ui-numberInputWidget-field {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget {
+  width: 2.64285714em;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget .oo-ui-buttonElement-button {
+  display: block;
+  min-width: 37px;
+  min-height: 2.28571429em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-buttonWidget .oo-ui-buttonElement-button .oo-ui-iconElement-icon {
+  left: 0.57142857em;
+}
+.oo-ui-numberInputWidget-buttoned .oo-ui-inputWidget-input {
+  border-radius: 0;
+  max-height: 2.28571429em;
+}
+.oo-ui-numberInputWidget-minusButton > .oo-ui-buttonElement-button {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+}
+.oo-ui-numberInputWidget-plusButton > .oo-ui-buttonElement-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 0;
+}
+.oo-ui-numberInputWidget.oo-ui-widget-disabled.oo-ui-numberInputWidget-buttoned .oo-ui-iconElement-icon {
+  opacity: 1;
 }
 .oo-ui-defaultOverlay {
   position: absolute;
