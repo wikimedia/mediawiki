@@ -215,7 +215,7 @@ table.toc td {
 }
 
 /* preference page with js-genrated toc */
-/* TODO: Delete #preftoc when Special:Preference's non-OOUI mode is disabled */
+/* TODO: Delete #preftoc when Special:Preferences' non-OOUI mode is disabled */
 #preftoc {
 	float: left;
 	margin: 1em 1em 1em 1em;

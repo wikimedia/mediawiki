@@ -3238,8 +3238,8 @@ $wgHTMLFormAllowTableFormat = true;
 $wgUseMediaWikiUIEverywhere = false;
 
 /**
- * Temporary variable that determines whether the EditPage class should use OOjs UI or not.
- * This will be removed later and OOjs UI will become the only option.
+ * Temporary variable that determines whether Special:Preferences should use OOUI or not.
+ * This will be removed later and OOUI will become the only option.
  *
  * @since 1.32
  */
