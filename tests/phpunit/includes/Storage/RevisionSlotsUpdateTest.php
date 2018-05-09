@@ -1,0 +1,207 @@
+<?php
+
+namespace MediaWiki\Tests\Storage;
+
+use MediaWiki\Storage\RevisionSlots;
+use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Storage\RevisionAccessException;
+use MediaWiki\Storage\SlotRecord;
+use MediaWikiTestCase;
+use WikitextContent;
+
+/**
+ * @covers \MediaWiki\Storage\RevisionSlotsUpdate
+ */
+class RevisionSlotsUpdateTest extends MediaWikiTestCase {
+
+	public function provideNewFromRevisionSlots() {
+		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );
+		$slotB = SlotRecord::newUnsaved( 'B', new WikitextContent( 'B' ) );
+		$slotC = SlotRecord::newUnsaved( 'C', new WikitextContent( 'C' ) );
+
+		$slotB2 = SlotRecord::newUnsaved( 'B', new WikitextContent( 'B2' ) );
+
+		$parentSlots = new RevisionSlots( [
+			'A' => $slotA,
+			'B' => $slotB,
+			'C' => $slotC,
+		] );
+
+		$newSlots = new RevisionSlots( [
+			'A' => $slotA,
+			'B' => $slotB2,
+		] );
+
+		yield [ $newSlots, null, [ 'A', 'B' ], [] ];
+		yield [ $newSlots, $parentSlots, [ 'B' ], [ 'C' ] ];
+	}
+
+	/**
+	 * @dataProvider provideNewFromRevisionSlots
+	 *
+	 * @param RevisionSlots $newSlots
+	 * @param RevisionSlots $parentSlots
+	 * @param $modified
+	 * @param $removed
+	 */
+	public function testNewFromRevisionSlots(
+		RevisionSlots $newSlots,
+		RevisionSlots $parentSlots = null,
+		array $modified = [],
+		array $removed = []
+	) {
+		$update = RevisionSlotsUpdate::newFromRevisionSlots( $newSlots, $parentSlots );
+
+		$this->assertEquals( $modified, $update->getModifiedRoles() );
+		$this->assertEquals( $removed, $update->getRemovedRoles() );
+
+		foreach ( $modified as $role ) {
+			$this->assertSame( $newSlots->getSlot( $role ), $update->getModifiedSlot( $role ) );
+		}
+	}
+
+	public function testConstructor() {
+		$update = new RevisionSlotsUpdate();
+
+		$this->assertEmpty( $update->getModifiedRoles() );
+		$this->assertEmpty( $update->getRemovedRoles() );
+
+		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );
+		$update = new RevisionSlotsUpdate( [ 'A' => $slotA ] );
+
+		$this->assertEquals( [ 'A' ], $update->getModifiedRoles() );
+		$this->assertEmpty( $update->getRemovedRoles() );
+
+		$update = new RevisionSlotsUpdate( [ 'A' => $slotA ], [ 'X' ] );
+
+		$this->assertEquals( [ 'A' ], $update->getModifiedRoles() );
+		$this->assertEquals( [ 'X' ], $update->getRemovedRoles() );
+	}
+
+	public function testModifySlot() {
+		$slots = new RevisionSlotsUpdate();
+
+		$this->assertSame( [], $slots->getModifiedRoles() );
+		$this->assertSame( [], $slots->getRemovedRoles() );
+
+		$slotA = SlotRecord::newUnsaved( 'some', new WikitextContent( 'A' ) );
+		$slots->modifySlot( $slotA );
+		$this->assertTrue( $slots->isModifiedSlot( 'some' ) );
+		$this->assertFalse( $slots->isRemovedSlot( 'some' ) );
+		$this->assertSame( $slotA, $slots->getModifiedSlot( 'some' ) );
+		$this->assertSame( [ 'some' ], $slots->getModifiedRoles() );
+		$this->assertSame( [], $slots->getRemovedRoles() );
+
+		$slotB = SlotRecord::newUnsaved( 'other', new WikitextContent( 'B' ) );
+		$slots->modifySlot( $slotB );
+		$this->assertTrue( $slots->isModifiedSlot( 'other' ) );
+		$this->assertFalse( $slots->isRemovedSlot( 'other' ) );
+		$this->assertSame( $slotB, $slots->getModifiedSlot( 'other' ) );
+		$this->assertSame( [ 'some', 'other' ], $slots->getModifiedRoles() );
+		$this->assertSame( [], $slots->getRemovedRoles() );
+
+		// modify slot A again
+		$slots->modifySlot( $slotA );
+		$this->assertArrayEquals( [ 'some', 'other' ], $slots->getModifiedRoles() );
+
+		// remove modified slot
+		$slots->removeSlot( 'some' );
+		$this->assertSame( [ 'other' ], $slots->getModifiedRoles() );
+		$this->assertSame( [ 'some' ], $slots->getRemovedRoles() );
+
+		// modify removed slot
+		$slots->modifySlot( $slotA );
+		$this->assertArrayEquals( [ 'some', 'other' ], $slots->getModifiedRoles() );
+		$this->assertSame( [], $slots->getRemovedRoles() );
+	}
+
+	public function testRemoveSlot() {
+		$slots = new RevisionSlotsUpdate();
+
+		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slots->modifySlot( $slotA );
+
+		$this->assertSame( [ 'main' ], $slots->getModifiedRoles() );
+
+		$slots->removeSlot( 'main' );
+		$slots->removeSlot( 'other' );
+		$this->assertSame( [], $slots->getModifiedRoles() );
+		$this->assertSame( [ 'main', 'other' ], $slots->getRemovedRoles() );
+		$this->assertTrue( $slots->isRemovedSlot( 'main' ) );
+		$this->assertTrue( $slots->isRemovedSlot( 'other' ) );
+		$this->assertFalse( $slots->isModifiedSlot( 'main' ) );
+
+		// removing the same slot again should not trigger an error
+		$slots->removeSlot( 'main' );
+
+		// getting a slot after removing it should fail
+		$this->setExpectedException( RevisionAccessException::class );
+		$slots->getModifiedSlot( 'main' );
+	}
+
+	public function testGetModifiedRoles() {
+		$slots = new RevisionSlotsUpdate( [], [ 'xyz' ] );
+
+		$this->assertSame( [], $slots->getModifiedRoles() );
+
+		$slots->modifyContent( 'main', new WikitextContent( 'A' ) );
+		$slots->modifyContent( 'foo', new WikitextContent( 'Foo' ) );
+		$this->assertSame( [ 'main', 'foo' ], $slots->getModifiedRoles() );
+
+		$slots->removeSlot( 'main' );
+		$this->assertSame( [ 'foo' ], $slots->getModifiedRoles() );
+	}
+
+	public function testGetRemovedRoles() {
+		$slotA = SlotRecord::newUnsaved( 'main', new WikitextContent( 'A' ) );
+		$slots = new RevisionSlotsUpdate( [ $slotA ] );
+
+		$this->assertSame( [], $slots->getRemovedRoles() );
+
+		$slots->removeSlot( 'main', new WikitextContent( 'A' ) );
+		$slots->removeSlot( 'foo', new WikitextContent( 'Foo' ) );
+
+		$this->assertSame( [ 'main', 'foo' ], $slots->getRemovedRoles() );
+
+		$slots->modifyContent( 'main', new WikitextContent( 'A' ) );
+		$this->assertSame( [ 'foo' ], $slots->getRemovedRoles() );
+	}
+
+	public function provideHasSameUpdates() {
+		$fooX = SlotRecord::newUnsaved( 'x', new WikitextContent( 'Foo' ) );
+		$barZ = SlotRecord::newUnsaved( 'z', new WikitextContent( 'Bar' ) );
+
+		$a = new RevisionSlotsUpdate();
+		$a->modifySlot( $fooX );
+		$a->modifySlot( $barZ );
+		$a->removeSlot( 'Q' );
+
+		$a2 = new RevisionSlotsUpdate();
+		$a2->modifySlot( $fooX );
+		$a2->modifySlot( $barZ );
+		$a2->removeSlot( 'Q' );
+
+		$b = new RevisionSlotsUpdate();
+		$b->modifySlot( $barZ );
+		$b->removeSlot( 'Q' );
+
+		$c = new RevisionSlotsUpdate();
+		$c->modifySlot( $fooX );
+		$c->modifySlot( $barZ );
+
+		yield 'same instance' => [ $a, $a, true ];
+		yield 'same udpates' => [ $a, $a2, true ];
+
+		yield 'different modified' => [ $a, $b, false ];
+		yield 'different removed' => [ $a, $c, false ];
+	}
+
+	/**
+	 * @dataProvider provideHasSameUpdates
+	 */
+	public function testHasSameUpdates( RevisionSlotsUpdate $a, RevisionSlotsUpdate $b, $same ) {
+		$this->assertSame( $same, $a->hasSameUpdates( $b ) );
+		$this->assertSame( $same, $b->hasSameUpdates( $a ) );
+	}
+
+}
