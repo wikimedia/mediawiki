@@ -216,7 +216,8 @@ abstract class LBFactory implements ILBFactory {
 
 	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
 		$this->commitMasterChanges( $fname, $options );
-		$this->forEachLBCallMethod( 'commitAll', [ $fname ] );
+		$this->forEachLBCallMethod( 'flushMasterSnapshots', [ $fname ] );
+		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname ] );
 	}
 
 	final public function beginMasterChanges( $fname = __METHOD__ ) {
