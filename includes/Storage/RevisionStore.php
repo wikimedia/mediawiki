@@ -681,16 +681,21 @@ class RevisionStore
 	 * Such revisions can for instance identify page rename
 	 * operations and other such meta-modifications.
 	 *
+	 * @note: This method grabs a FOR UPDATE lock on the relevant row of the page table,
+	 * to prevent a new revision from being inserted before the null revision has been written
+	 * to the database.
+	 *
 	 * MCR migration note: this replaces Revision::newNullRevision
 	 *
 	 * @todo Introduce newFromParentRevision(). newNullRevision can then be based on that
 	 * (or go away).
 	 *
-	 * @param IDatabase $dbw
+	 * @param IDatabase $dbw used for obtaining the lock on the page table row
 	 * @param Title $title Title of the page to read from
 	 * @param CommentStoreComment $comment RevisionRecord's summary
 	 * @param bool $minor Whether the revision should be considered as minor
 	 * @param User $user The user to attribute the revision to
+	 *
 	 * @return RevisionRecord|null RevisionRecord or null on error
 	 */
 	public function newNullRevision(
@@ -702,62 +707,34 @@ class RevisionStore
 	) {
 		$this->checkDatabaseWikiId( $dbw );
 
-		$fields = [ 'page_latest', 'page_namespace', 'page_title',
-			'rev_id', 'rev_text_id', 'rev_len', 'rev_sha1' ];
-
-		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
-			$fields[] = 'rev_text_id';
-			if ( $this->contentHandlerUseDB ) {
-				$fields[] = 'rev_content_model';
-				$fields[] = 'rev_content_format';
-			}
-		}
-
-		// Don't use getQueryInfo() top avoid locking extra tables, compare T191892.
-		// XXX: perhaps getQueryInfo() could support 'no-comment' and 'no-actor' as options.
-		$current = $dbw->selectRow(
-			[ 'page', 'revision' ],
-			$fields,
-			[
-				'page_id' => $title->getArticleID(),
-			],
+		// T51581: Lock the page table row to ensure no other process
+		// is adding a revision to the page at the same time.
+		// Avoid locking extra tables, compare T191892.
+		$pageLatest = $dbw->selectField(
+			'page',
+			'page_latest',
+			[ 'page_id' => $title->getArticleID() ],
 			__METHOD__,
-			[ 'FOR UPDATE' ], // T51581
-			[ 'page' => [ 'JOIN', 'page_latest=rev_id' ] ]
+			[ 'FOR UPDATE' ]
 		);
 
-		if ( $current ) {
-			$fields = [
-				'page'        => $title->getArticleID(),
-				'user_text'   => $user->getName(),
-				'user'        => $user->getId(),
-				'actor'       => $user->getActorId(),
-				'comment'     => $comment,
-				'minor_edit'  => $minor,
-				'parent_id'   => $current->page_latest,
-				'slot_origin' => $current->page_latest,
-				'len'         => $current->rev_len,
-				'sha1'        => $current->rev_sha1
-			];
-
-			if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
-				$fields['text_id'] = $current->rev_text_id;
-
-				if ( $this->contentHandlerUseDB ) {
-					$fields['content_model'] = $current->rev_content_model;
-					$fields['content_format'] = $current->rev_content_format;
-				}
-			}
-
-			$mainSlot = $this->emulateMainSlot_1_29( $fields, self::READ_LATEST, $title );
-			$revision = new MutableRevisionRecord( $title, $this->wikiId );
-			$this->initializeMutableRevisionFromArray( $revision, $fields );
-			$revision->setSlot( $mainSlot );
-		} else {
-			$revision = null;
+		if ( !$pageLatest ) {
+			return null;
 		}
 
-		return $revision;
+		// Fetch the actual revision row, without locking all extra tables.
+		$oldRevision = $this->loadRevisionFromId( $dbw, $pageLatest );
+
+		// Construct the new revision
+		$timestamp = wfTimestampNow(); // TODO: use a callback, so we can override it for testing.
+		$newRevision = MutableRevisionRecord::newFromParentRevision( $oldRevision );
+
+		$newRevision->setComment( $comment );
+		$newRevision->setUser( $user );
+		$newRevision->setTimestamp( $timestamp );
+		$newRevision->setMinorEdit( $minor );
+
+		return $newRevision;
 	}
 
 	/**
