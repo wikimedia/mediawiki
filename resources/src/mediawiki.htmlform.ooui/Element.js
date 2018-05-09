@@ -1,5 +1,6 @@
 ( function ( mw ) {
 
+	// FIXME: mw.htmlform.Checker also sets this to empty object
 	mw.htmlform = {};
 
 	/**
