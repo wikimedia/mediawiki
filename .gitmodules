@@ -738,3 +738,7 @@
 	path = extensions/CentralNotice
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CentralNotice
 	branch = wmf_deploy
+[submodule "extensions/CongressLookup"]
+	path = extensions/CongressLookup
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CongressLookup
+	branch = wmf/1.32.0-wmf.3
