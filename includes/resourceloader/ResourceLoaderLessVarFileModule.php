@@ -4,11 +4,21 @@
  * Subclass with context specific LESS variables
  */
 class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
-	protected $lessVariables = [
-		'collapsible-collapse',
-		'collapsible-expand',
-	];
+	protected $lessVariables = [];
 
+	/**
+	 * @inheritDoc
+	 */
+	public function __construct(
+		$options = [],
+		$localBasePath = null,
+		$remoteBasePath = null
+	) {
+		if ( isset( $options['lessMessages'] ) ) {
+			$this->lessVariables = $options['lessMessages'];
+		}
+		parent::__construct( $options, $localBasePath, $remoteBasePath );
+	}
 	/**
 	 * @inheritDoc
 	 */

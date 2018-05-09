@@ -113,6 +113,10 @@ return [
 		],
 	],
 	'jquery.makeCollapsible.styles' => [
+		'lessMessages' => [
+			'collapsible-collapse',
+			'collapsible-expand',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'class' => ResourceLoaderLessVarFileModule::class,
 		'styles' => [
@@ -1346,6 +1350,14 @@ return [
 			'upload-form-label-not-own-work-local-generic-foreign',
 		],
 	],
+	'mediawiki.toc.styles' => [
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'styles' => [
+			'resources/src/mediawiki.toc.styles/index.less',
+		],
+		'lessMessages' => [ 'showtoc', 'hidetoc' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.toc' => [
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'styles' => [
@@ -1354,7 +1366,10 @@ return [
 			'resources/src/mediawiki/mediawiki.toc.print.css'
 				=> [ 'media' => 'print' ],
 		],
-		'dependencies' => 'mediawiki.cookie',
+		'dependencies' => [
+			'mediawiki.cookie',
+			'mediawiki.toc.styles',
+		],
 		'messages' => [ 'showtoc', 'hidetoc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

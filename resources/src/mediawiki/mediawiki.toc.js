@@ -45,9 +45,9 @@
 					$tocToggleLink
 						.wrap( '<span class="toctoggle"></span>' )
 						.parent()
-						.prepend( '&nbsp;[' )
-						.append( ']&nbsp;' )
 				);
+				// Retain the correct width whether the TOC is collapsed or expanded
+				$this.addClass( 'toc-js' ).css( 'width', $this.width() );
 
 				if ( hideToc ) {
 					$tocList.hide();

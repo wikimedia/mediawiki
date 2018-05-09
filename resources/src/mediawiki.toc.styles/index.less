@@ -1,0 +1,24 @@
+.client-js .toc {
+	.toctitle:after,
+	.toctoggle {
+		padding-left: 2px;
+		font-size: 94%;
+	}
+
+	.toctoggle {
+		padding-left: 2px;
+
+		&:before {
+			content: '[';
+		}
+		&:after {
+			content: ']';
+		}
+	}
+
+	&:not(.toc-js) {
+		.toctitle:after {
+			content: '[@{msg-hidetoc}]';
+		}
+	}
+}
