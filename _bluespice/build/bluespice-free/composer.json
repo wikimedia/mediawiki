@@ -41,6 +41,8 @@
 		"mediawiki/blue-spice-universal-export": "dev-master",
 		"mediawiki/blue-spice-user-manager": "dev-master",
 		"mediawiki/blue-spice-user-merge-connector": "dev-master",
-		"mediawiki/blue-spice-user-preferences": "dev-master"
+		"mediawiki/blue-spice-user-preferences": "dev-master",
+
+		"mediawiki/blue-spice-calumma-skin": "dev-master"
 	}
 }
