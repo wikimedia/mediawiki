@@ -12,7 +12,8 @@
 			"Meelo",
 			"McAang",
 			"Uğurkent",
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Hedda"
 		]
 	},
 	"ooui-outline-control-move-down": "Ögeyi aşağı taşı",
@@ -21,6 +22,7 @@
 	"ooui-toolbar-more": "Dahası",
 	"ooui-toolgroup-expand": "Dahası",
 	"ooui-toolgroup-collapse": "Daha az",
+	"ooui-item-remove": "Kaldır",
 	"ooui-dialog-message-accept": "Tamam",
 	"ooui-dialog-message-reject": "İptal",
 	"ooui-dialog-process-error": "Bir şeyler yanlış gitti",

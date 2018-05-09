@@ -16,9 +16,11 @@
 			"file": "../wikimediaui/images/icons/userAnonymous.svg",
 			"deprecated": "Renamed since v0.26.2, use 'userAnonymous' instead."
 		},
-		"userTalk": { "file": {
-			"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",
-			"rtl": "../wikimediaui/images/icons/userTalk-rtl.svg"
-		} }
+		"userTalk": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/userTalk-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/userTalk-rtl.svg"
+			}
+		}
 	}
 }

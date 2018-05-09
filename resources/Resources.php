@@ -2880,6 +2880,9 @@ return [
 			'oojs-ui.styles.icons-alerts',
 			'oojs-ui.styles.icons-interactions',
 		],
+		'messages' => [
+			'ooui-field-help'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// This contains only the styles required by core widgets.

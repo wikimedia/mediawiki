@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.26.5
+ * OOUI v0.27.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-04-24T23:29:05Z
+ * Date: 2018-05-09T00:44:50Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -271,14 +271,14 @@
   background-color: #fff;
   min-width: 16em;
   margin: 0 -1px;
-  border: 1px solid #eaecf0;
+  border: 1px solid #c8ccd1;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
-  padding: 1em 0.85714286em 0.92857143em 2.64285714em;
+  padding: 1em 0.85714286em 0.92857143em 0.85714286em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
-  padding-left: 2.5em;
+  padding-left: 0.71428571em;
   padding-right: 0.71428571em;
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-title {
@@ -293,6 +293,12 @@
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 1.14285714em;
+}
+.oo-ui-popupToolGroup-tools .oo-ui-iconElement .oo-ui-tool-link {
+  padding-left: 2.64285714em;
+}
+.oo-ui-toolbar-narrow .oo-ui-popupToolGroup-tools .oo-ui-iconElement .oo-ui-tool-link {
+  padding-left: 2.5em;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
   -webkit-transition: background-color 100ms, box-shadow 100ms;
