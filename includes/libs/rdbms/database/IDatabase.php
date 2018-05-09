@@ -1528,7 +1528,18 @@ interface IDatabase {
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
+	 * @since 1.32
+	 */
+	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ );
+
+	/**
+	 * Alias for onTransactionCommitOrIdle() for backwards-compatibility
+	 *
+	 * @param callable $callback
+	 * @param string $fname
+	 * @return mixed
 	 * @since 1.20
+	 * @deprecated Since 1.32
 	 */
 	public function onTransactionIdle( callable $callback, $fname = __METHOD__ );
 
@@ -1567,7 +1578,7 @@ interface IDatabase {
 	 *
 	 * Registering a callback here will not affect writesOrCallbacks() pending.
 	 *
-	 * Since callbacks from this method or onTransactionIdle() can start and end transactions,
+	 * Since callbacks from this or onTransactionCommitOrIdle() can start and end transactions,
 	 * a single call to IDatabase::commit might trigger multiple runs of the listener callbacks.
 	 *
 	 * @param string $name Callback name

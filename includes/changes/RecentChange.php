@@ -464,7 +464,7 @@ class RecentChange {
 			) {
 				// @FIXME: This would be better as an extension hook
 				// Send emails or email jobs once this row is safely committed
-				$dbw->onTransactionIdle(
+				$dbw->onTransactionCommitOrIdle(
 					function () use ( $editor, $title ) {
 						$enotif = new EmailNotification();
 						$enotif->notifyOnPageChange(
