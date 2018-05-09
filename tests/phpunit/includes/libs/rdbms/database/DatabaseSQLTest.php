@@ -1453,7 +1453,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 
@@ -1479,11 +1479,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		] ) );
 
 		$this->database->startAtomic( __METHOD__ . '_outer' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
-		$this->database->onTransactionIdle( $callback2, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ );
-		$this->database->onTransactionIdle( $callback3, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback3, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		$this->assertLastSql( implode( "; ", [
 			'BEGIN',
@@ -1640,7 +1640,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_inner' );
@@ -1658,7 +1658,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner', IDatabase::ATOMIC_CANCELABLE );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_inner' );
@@ -1676,7 +1676,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$atomicId = $this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__, $atomicId );
@@ -1691,7 +1691,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$atomicId = $this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		try {
@@ -1712,7 +1712,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__ . '_inner' );
@@ -1729,7 +1729,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__ . '_outer' );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__ . '_inner' );
-		$this->database->onTransactionIdle( $callback1, __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( $callback1, __METHOD__ );
 		$this->database->onTransactionPreCommitOrIdle( $callback2, __METHOD__ );
 		$this->database->onTransactionResolution( $callback3, __METHOD__ );
 		$wrapper->trxStatus = Database::STATUS_TRX_ERROR;
@@ -1986,7 +1986,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testPrematureClose1() {
 		$fname = __METHOD__;
 		$this->database->begin( __METHOD__ );
-		$this->database->onTransactionIdle( function () use ( $fname ) {
+		$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
 			$this->database->query( 'SELECT 1', $fname );
 		} );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
@@ -2004,7 +2004,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		try {
 			$fname = __METHOD__;
 			$this->database->startAtomic( __METHOD__ );
-			$this->database->onTransactionIdle( function () use ( $fname ) {
+			$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
 				$this->database->query( 'SELECT 1', $fname );
 			} );
 			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
