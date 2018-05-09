@@ -35,6 +35,10 @@ production.
   temporary user groups.
 * (T152462) A cookie can now be set when an IP user is blocked to track that user if
   they move to a new IP address. This is disabled by default.
+* SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
+  reauthenticating.
+* FormSpecialPage::checkExecutePermissions() will now call
+  checkLoginSecurityLevel() if getLoginSecurityLevel() returns non-false.
 
 === External library changes in 1.32 ===
 * …
@@ -52,7 +56,8 @@ production.
 * …
 
 === Bug fixes in 1.32 ===
-* …
+* SpecialPage::execute() will now only call checkLoginSecurityLevel() if
+  getLoginSecurityLevel() returns non-false.
 
 === Action API changes in 1.32 ===
 * Added templated parameters.
