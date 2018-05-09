@@ -2,6 +2,8 @@
 
 THIS IS NOT A RELEASE YET!
 
+This is a security and maintenance release of the MediaWiki 1.29 branch.
+
 === Changes since 1.29.2 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
@@ -22,6 +24,7 @@ THIS IS NOT A RELEASE YET!
 * (T196672) The mtime of extension.json files is now able to be zero
 * (T180403) Validate $length in padleft/padright parser functions.
 * (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* Special:BotPasswords now requires reauthentication.
 
 == MediaWiki 1.29.2 ==
 
