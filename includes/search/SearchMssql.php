@@ -31,9 +31,8 @@ class SearchMssql extends SearchDatabase {
 	 *
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
-	 * @access public
 	 */
-	function searchText( $term ) {
+	protected function doSearchText( $term ) {
 		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), true ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
@@ -43,9 +42,8 @@ class SearchMssql extends SearchDatabase {
 	 *
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
-	 * @access public
 	 */
-	function searchTitle( $term ) {
+	protected function doSearchTitle( $term ) {
 		$resultSet = $this->db->query( $this->getQuery( $this->filter( $term ), false ) );
 		return new SqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
