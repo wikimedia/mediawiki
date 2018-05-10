@@ -92,6 +92,14 @@ because of Phabricator reports.
   of queueing style modules as well.
 * OutputPage::addModuleScripts() and ParserOutput::addModuleScripts are
   deprecated. Use addModules() instead.
+* Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
+  in extending classes is deprecated.  Extend related doSearch* methods
+  instead.
+* SearchResultSet::{next,rewind} are deprecated. Calling code should
+  use foreach on the SearchResultSet, or the extractResults method. Extending
+  code should override extractResults.
+* Instantiating SearchResultSet directly is deprecated. SearchEngine
+  implementations must subclass SearchResultSet for their purposes.
 
 === Other changes in 1.32 ===
 * …

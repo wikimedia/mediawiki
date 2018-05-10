@@ -56,12 +56,10 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 
 		$iwResults = [];
 		foreach ( $resultSets as $resultSet ) {
-			$result = $resultSet->next();
-			while ( $result ) {
+			foreach ( $resultSet as $result ) {
 				if ( !$result->isBrokenTitle() ) {
 					$iwResults[$result->getTitle()->getInterwiki()][] = $result;
 				}
-				$result = $resultSet->next();
 			}
 		}
 
