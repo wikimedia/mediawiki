@@ -170,6 +170,11 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 * The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
   of the namespaced classes provided by the wikimedia/xmp-reader library.
+* SearchResultSet::{next,rewind} are deprecated. Calling code should
+  use foreach on the SearchResultSet, or the extractResults method. Extending
+  code should override extractResults.
+* Instantiating SearchResultSet directly is deprecated. SearchEngine
+  implementations must subclass SearchResultSet for their purposes.
 
 === Other changes in 1.32 ===
 * …
