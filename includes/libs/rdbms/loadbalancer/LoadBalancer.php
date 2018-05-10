@@ -1565,7 +1565,7 @@ class LoadBalancer implements ILoadBalancer {
 		} );
 	}
 
-	private function flushMasterSnapshots( $fname = __METHOD__ ) {
+	public function flushMasterSnapshots( $fname = __METHOD__ ) {
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
