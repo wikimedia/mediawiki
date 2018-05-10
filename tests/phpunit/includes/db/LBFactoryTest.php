@@ -606,4 +606,38 @@ class LBFactoryTest extends MediaWikiTestCase {
 			return $db->addIdentifierQuotes( $table );
 		}
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\LBFactory::makeCookieValueFromCPIndex()
+	 * @covers \Wikimedia\Rdbms\LBFactory::getCPIndexFromCookieValue()
+	 */
+	public function testCPPosIndexCookieValues() {
+		$this->assertEquals( '3@542', LBFactory::makeCookieValueFromCPIndex( 3, 542 ) );
+
+		$time = 1526522031;
+		$this->assertSame(
+			5,
+			LBFactory::getCPIndexFromCookieValue( "5", $time, 10 )
+		);
+		$this->assertSame(
+			null,
+			LBFactory::getCPIndexFromCookieValue( "0", $time, 10 )
+		);
+		$this->assertSame(
+			2,
+			LBFactory::getCPIndexFromCookieValue( "2@$time", $time, 10 )
+		);
+		$this->assertSame(
+			2,
+			LBFactory::getCPIndexFromCookieValue( "2@$time", $time + 9, 10 )
+		);
+		$this->assertSame(
+			null,
+			LBFactory::getCPIndexFromCookieValue( "0@$time", $time + 9, 10 )
+		);
+		$this->assertSame(
+			null,
+			LBFactory::getCPIndexFromCookieValue( "2@$time", $time + 11, 10 )
+		);
+	}
 }
