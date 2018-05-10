@@ -25,6 +25,7 @@ use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\DBConnectionError;
 use Liuggio\StatsdClient\Sender\SocketSender;
 
@@ -636,7 +637,8 @@ class MediaWiki {
 
 		if ( $cpIndex > 0 ) {
 			if ( $allowHeaders ) {
-				$expires = time() + ChronologyProtector::POSITION_TTL;
+				// T194403: this should be safely less than ChronologyProtector::POSITION_TTL
+				$expires = time() + LoadBalancer::MAX_WAIT_DEFAULT;
 				$options = [ 'prefix' => '' ];
 				$request->response()->setCookie( 'cpPosIndex', $cpIndex, $expires, $options );
 			}
