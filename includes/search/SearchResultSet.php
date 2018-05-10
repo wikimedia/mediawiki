@@ -24,7 +24,7 @@
 /**
  * @ingroup Search
  */
-class SearchResultSet {
+class SearchResultSet implements IteratorAggregate {
 
 	/**
 	 * Types of interwiki results
@@ -54,7 +54,7 @@ class SearchResultSet {
 	 * as an array.
 	 * @var SearchResult[]
 	 */
-	private $results;
+	protected $results;
 
 	/**
 	 * Set of result's extra data, indexed per result id
@@ -64,6 +64,9 @@ class SearchResultSet {
 	 * @var array[]
 	 */
 	protected $extraData = [];
+
+	/** @var ArrayIterator|null Iterator supporting BC iteration methods */
+	private $bcIterator;
 
 	public function __construct( $containedSyntax = false ) {
 		$this->containedSyntax = $containedSyntax;
@@ -173,18 +176,45 @@ class SearchResultSet {
 	 * Fetches next search result, or false.
 	 * STUB
 	 * FIXME: refactor as iterator, so we could use nicer interfaces.
-	 * @deprecated since 1.32; Use self::extractResults()
+	 * @deprecated since 1.32; Use self::extractResults() or foreach
 	 * @return SearchResult|false
 	 */
-	function next() {
-		return false;
+	public function next() {
+		wfDeprecated( __METHOD__, '1.32' );
+		$it = $this->bcIterator();
+		$searchResult = $it->current();
+		$it->next();
+		return $searchResult === null ? false : $searchResult;
 	}
 
 	/**
 	 * Rewind result set back to beginning
-	 * @deprecated since 1.32; Use self::extractResults()
+	 * @deprecated since 1.32; Use self::extractResults() or foreach
 	 */
-	function rewind() {
+	public function rewind() {
+		wfDeprecated( __METHOD__, '1.32' );
+		$this->bcIterator()->rewind();
+	}
+
+	private function bcIterator() {
+		if ( $this->bcIterator === null ) {
+			$this->bcIterator = 'RECURSION';
+			$this->bcIterator = new ArrayIterator( $this->extractResults() );
+		} elseif ( $this->bcIterator === 'RECURSION' ) {
+			// Either next/rewind or extractResults must be implemented.
+			// This class was potentially instantiated directly. It should
+			// be abstract but thats a breaking change...
+			if ( get_class( $this ) === __CLASS__ ) {
+				wfDeprecated( __CLASS__ . ' should not be instantiated directly', '1.32' );
+			} else {
+				wfDeprecated(
+					__CLASS__ . ' subclassing SearchResultSet must implement extractResults()',
+					'1.32'
+				);
+			}
+			$this->bcIterator = new ArrayIterator( [] );
+		}
+		return $this->bcIterator;
 	}
 
 	/**
@@ -262,11 +292,18 @@ class SearchResultSet {
 	 */
 	public function augmentResult( SearchResult $result ) {
 		$id = $result->getTitle()->getArticleID();
-		if ( !$id || !isset( $this->extraData[$id] ) ) {
+		if ( !$id ) {
 			return null;
 		}
-		$result->setExtensionData( $this->extraData[$id] );
-		return $this->extraData[$id];
+		$fn = function () use ( $id ) {
+			if ( isset( $this->extraData[$id] ) ) {
+				return $this->extraData[$id];
+			} else {
+				return null;
+			}
+		};
+		$result->setExtensionData( $fn );
+		return $fn();
 	}
 
 	/**
@@ -277,5 +314,9 @@ class SearchResultSet {
 	 */
 	public function getOffset() {
 		return null;
+	}
+
+	final public function getIterator() {
+		return new ArrayIterator( $this->extractResults() );
 	}
 }
