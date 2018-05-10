@@ -728,7 +728,7 @@
 	"longpageerror": "'''HIBA: Az általad beküldött szöveg {{PLURAL:$1|egy kilobájt|$1 kilobájt}} hosszú, ami több az engedélyezett {{PLURAL:$2|egy kilobájtnál|$2 kilobájtnál}}.\nA szerkesztést nem lehet elmenteni.'''",
 	"readonlywarning": "<strong>FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták, ezért most nem fogod tudni elmenteni a szerkesztéseidet!</strong>\nA lap szövegét másold egy szövegfájlba, amit később felhasználhatsz!\n\nAz adatbázist lezáró rendszeradminisztrátor az alábbi magyarázatot adta: $1",
 	"protectedpagewarning": "<strong>Figyelem: Ez a lap védett, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.</strong>\nA legutolsó ide vonatkozó naplóbejegyzés alább látható:",
-	"semiprotectedpagewarning": "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan vagy újonnan regisztrált szerkesztők nem módosíthatják.",
+	"semiprotectedpagewarning": "<strong>Megjegyzés:</strong> ez a lap védett, így regisztrálatlan vagy újonnan regisztrált szerkesztők nem módosíthatják.\nA lapra vonatkozó utolsó naplóbejegyzés alább látható:",
 	"cascadeprotectedwarning": "<strong>Figyelem:</strong> ez a lap le van zárva, csak [[Special:ListGroupRights|megfelelő jogosultságú]] felhasználók szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} be van illesztve:",
 	"titleprotectedwarning": "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''\nA legutolsó ide vonatkozó naplóbejegyzés alább látható:",
 	"templatesused": "A lapon használt {{PLURAL:$1|sablon|sablonok}}:",
