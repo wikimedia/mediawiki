@@ -57,8 +57,8 @@ class SearchResult {
 	protected $searchEngine;
 
 	/**
-	 * A set of extension data.
-	 * @var array[]
+	 * A function returning a set of extension data.
+	 * @var Closure|null
 	 */
 	protected $extensionData;
 
@@ -267,16 +267,22 @@ class SearchResult {
 	 * @return array[]
 	 */
 	public function getExtensionData() {
-		return $this->extensionData;
+		if ( $this->extensionData ) {
+			$fn = $this->extensionData;
+			return $fn();
+		} else {
+			return [];
+		}
 	}
 
 	/**
 	 * Set extension data for this result.
 	 * The data is:
 	 * augmentor name => data
-	 * @param array[] $extensionData
+	 * @param Closure $extensionData Takes no arguments, returns
+	 *  either array of extension data or null.
 	 */
-	public function setExtensionData( array $extensionData ) {
+	public function setExtensionData( Closure $extensionData ) {
 		$this->extensionData = $extensionData;
 	}
 
