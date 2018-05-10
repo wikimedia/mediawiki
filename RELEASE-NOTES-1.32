@@ -188,6 +188,13 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 * The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
   of the namespaced classes provided by the wikimedia/xmp-reader library.
+* SearchResultSet::{next,rewind} are deprecated. Calling code should
+  use foreach on the SearchResultSet, or the extractResults method. Extending
+  code should override extractResults.
+* Instantiating SearchResultSet directly is deprecated. SearchEngine
+  implementations must subclass SearchResultSet for their purposes.
+* SearchResult::setExtensionData argument has been changed from accepting an
+  array to accepting a Closure that returns the array when called.
 * Class CryptRand, everything in MWCryptRand except generateHex() and function
   MediaWikiServices::getCryptRand() are deprecated, use random_bytes() to
   generate cryptographically secure random byte sequences.
