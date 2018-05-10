@@ -640,6 +640,36 @@ abstract class LBFactory implements ILBFactory {
 		return strpos( $url, '?' ) === false ? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
 	}
 
+	/**
+	 * @param int $index Write index
+	 * @param int $time UNIX timestamp
+	 * @return string Timestamp-qualified write index of the form "<index>.<timestamp>"
+	 * @since 1.32
+	 */
+	public static function makeCookieValueFromCPIndex( $index, $time ) {
+		return $index . '@' . $time;
+	}
+
+	/**
+	 * @param string $value String possibly of the form "<index>" or "<index>@<timestamp>"
+	 * @param int $minTimestamp Lowest UNIX timestamp of non-expired values (if present)
+	 * @return int|null Write index or null if $value is empty or expired
+	 * @since 1.32
+	 */
+	public static function getCPIndexFromCookieValue( $value, $minTimestamp ) {
+		if ( !preg_match( '/^(\d+)(?:@(\d+))?$/', $value, $m ) ) {
+			return null;
+		}
+
+		$index = (int)$m[1];
+
+		if ( isset( $m[2] ) && $m[2] !== '' && (int)$m[2] < $minTimestamp ) {
+			return null; // expired
+		}
+
+		return ( $index > 0 ) ? $index : null;
+	}
+
 	public function setRequestInfo( array $info ) {
 		if ( $this->chronProt ) {
 			throw new LogicException( 'ChronologyProtector already initialized.' );
