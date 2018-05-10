@@ -123,10 +123,8 @@ class BasicSearchResultSetWidget {
 		$terms = $wgContLang->convertForSearchResult( $resultSet->termMatches() );
 
 		$hits = [];
-		$result = $resultSet->next();
-		while ( $result ) {
-			$hits[] .= $this->resultWidget->render( $result, $terms, $offset++ );
-			$result = $resultSet->next();
+		foreach ( $resultSet as $result ) {
+			$hits[] = $this->resultWidget->render( $result, $terms, $offset++ );
 		}
 
 		return "<ul class='mw-search-results'>" . implode( '', $hits ) . "</ul>";
