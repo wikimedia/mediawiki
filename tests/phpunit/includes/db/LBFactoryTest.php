@@ -153,10 +153,91 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb->closeAll();
 	}
 
-	public function testLBFactoryMulti() {
+	public function testLBFactoryMultiConns() {
+		$factory = $this->newLBFactoryMultiLBs();
+
+		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
+
+		$dbr = $factory->getMainLB()->getConnection( DB_REPLICA );
+		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
+
+		// Destructor should trigger without round stage errors
+		unset( $factory );
+	}
+
+	public function testLBFactoryMultiRoundCallbacks() {
+		$called = 0;
+		$countLBsFunc = function ( LBFactoryMulti $factory ) {
+			$count = 0;
+			$factory->forEachLB( function () use ( &$count ) {
+				++$count;
+			} );
+
+			return $count;
+		};
+
+		$factory = $this->newLBFactoryMultiLBs();
+		$this->assertEquals( 0, $countLBsFunc( $factory ) );
+		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$this->assertEquals( 1, $countLBsFunc( $factory ) );
+		// Test that LoadBalancer instances made during pre-commit callbacks in do not
+		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.
+		$factory->beginMasterChanges( __METHOD__ );
+		$dbw->onTransactionPreCommitOrIdle( function () use ( $factory, &$called ) {
+			++$called;
+			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
+			// There is no s1wiki DB to select so it is not in getConnection(),
+			// but this fools getMainLB() at least.
+			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
+		} );
+		$factory->commitMasterChanges( __METHOD__ );
+		$this->assertEquals( 1, $called );
+		$this->assertEquals( 2, $countLBsFunc( $factory ) );
+		$factory->shutdown();
+		$factory->closeAll();
+
+		$called = 0;
+		$factory = $this->newLBFactoryMultiLBs();
+		$this->assertEquals( 0, $countLBsFunc( $factory ) );
+		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$this->assertEquals( 1, $countLBsFunc( $factory ) );
+		// Test that LoadBalancer instances made during pre-commit callbacks in do not
+		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.hrow
+		// DBTransactionError due to transaction ROUND_* stages being mismatched.
+		$factory->beginMasterChanges( __METHOD__ );
+		$dbw->query( "SELECT 1 as t", __METHOD__ );
+		$dbw->onTransactionResolution( function () use ( $factory, &$called ) {
+			++$called;
+			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
+			// There is no s1wiki DB to select so it is not in getConnection(),
+			// but this fools getMainLB() at least.
+			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
+		} );
+		$factory->commitMasterChanges( __METHOD__ );
+		$this->assertEquals( 1, $called );
+		$this->assertEquals( 2, $countLBsFunc( $factory ) );
+		$factory->shutdown();
+		$factory->closeAll();
+
+		$factory = $this->newLBFactoryMultiLBs();
+		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		// DBTransactionError should not be thrown
+		$ran = 0;
+		$dbw->onTransactionPreCommitOrIdle( function () use ( &$ran ) {
+			++$ran;
+		} );
+		$factory->commitAll( __METHOD__ );
+		$this->assertEquals( 1, $ran );
+
+		$factory->shutdown();
+		$factory->closeAll();
+	}
+
+	private function newLBFactoryMultiLBs() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
-		$factory = new LBFactoryMulti( [
+		return new LBFactoryMulti( [
 			'sectionsByDB' => [
 				's1wiki' => 's1',
 			],
@@ -171,56 +252,21 @@ class LBFactoryTest extends MediaWikiTestCase {
 				]
 			],
 			'serverTemplate' => [
-				'dbname'      => $wgDBname,
-				'user'        => $wgDBuser,
-				'password'    => $wgDBpassword,
-				'type'        => $wgDBtype,
+				'dbname' => $wgDBname,
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'type' => $wgDBtype,
 				'dbDirectory' => $wgSQLiteDataDir,
-				'flags'       => DBO_DEFAULT
+				'flags' => DBO_DEFAULT
 			],
 			'hostsByName' => [
-				'test-db1'  => $wgDBserver,
-				'test-db2'  => $wgDBserver,
-				'test-db3'  => $wgDBserver,
-				'test-db4'  => $wgDBserver
+				'test-db1' => $wgDBserver,
+				'test-db2' => $wgDBserver,
+				'test-db3' => $wgDBserver,
+				'test-db4' => $wgDBserver
 			],
 			'loadMonitorClass' => LoadMonitorNull::class
 		] );
-		$lb = $factory->getMainLB();
-
-		$dbw = $lb->getConnection( DB_MASTER );
-		$this->assertTrue( $dbw->getLBInfo( 'master' ), 'master shows as master' );
-
-		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertTrue( $dbr->getLBInfo( 'replica' ), 'slave shows as slave' );
-
-		// Test that LoadBalancer instances made during commitMasterChanges() do not throw
-		// DBTransactionError due to transaction ROUND_* stages being mismatched.
-		$factory->beginMasterChanges( __METHOD__ );
-		$dbw->onTransactionPreCommitOrIdle( function () use ( $factory ) {
-			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
-			// There is no s1wiki DB to select so it is not in getConnection(),
-			// but this fools getMainLB() at least.
-			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
-		} );
-		$factory->commitMasterChanges( __METHOD__ );
-
-		$count = 0;
-		$factory->forEachLB( function () use ( &$count ) {
-			++$count;
-		} );
-		$this->assertEquals( 2, $count );
-
-		// DBTransactionError should not be thrown
-		$ran = 0;
-		$dbw->onTransactionPreCommitOrIdle( function () use ( &$ran ) {
-			++$ran;
-		} );
-		$factory->commitAll( __METHOD__ );
-		$this->assertEquals( 1, $ran );
-
-		$factory->shutdown();
-		$factory->closeAll();
 	}
 
 	/**

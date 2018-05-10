@@ -261,6 +261,14 @@ class LoadBalancer implements ILoadBalancer {
 		if ( isset( $params['chronologyCallback'] ) ) {
 			$this->chronologyCallback = $params['chronologyCallback'];
 		}
+
+		if ( isset( $params['roundStage'] ) ) {
+			if ( $params['roundStage'] === self::STAGE_POSTCOMMIT_CALLBACKS ) {
+				$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
+			} elseif ( $params['roundStage'] === self::STAGE_POSTROLLBACK_CALLBACKS ) {
+				$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
+			}
+		}
 	}
 
 	/**
