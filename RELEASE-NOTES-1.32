@@ -95,6 +95,11 @@ because of Phabricator reports.
 * Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
+* SearchResultSet::{next,rewind} are deprecated. Calling code should
+  use foreach on the SearchResultSet, or the extractResults method. Extending
+  code should override extractResults.
+* Instantiating SearchResultSet directly is deprecated. SearchEngine
+  implementations must subclass SearchResultSet for their purposes.
 
 === Other changes in 1.32 ===
 * …
