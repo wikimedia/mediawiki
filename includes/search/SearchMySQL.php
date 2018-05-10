@@ -167,7 +167,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	function searchText( $term ) {
+	protected function doSearchText( $term ) {
 		return $this->searchInternal( $term, true );
 	}
 
@@ -177,7 +177,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	function searchTitle( $term ) {
+	protected function doSearchTitle( $term ) {
 		return $this->searchInternal( $term, false );
 	}
 
