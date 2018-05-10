@@ -89,6 +89,11 @@ interface ILoadBalancer {
 	/** @var int Alias for CONN_TRX_AUTOCOMMIT for b/c; deprecated since 1.31 */
 	const CONN_TRX_AUTO = 1;
 
+	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
+	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
+	/** @var string Manager of ILoadBalancer instances is running post-rollback callbacks */
+	const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
+
 	/**
 	 * Construct a manager of IDatabase connection objects
 	 *
@@ -112,6 +117,7 @@ interface ILoadBalancer {
 	 *  - perfLogger: PSR-3 logger instance. [optional]
 	 *  - errorLogger : Callback that takes an Exception and logs it. [optional]
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
+	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );

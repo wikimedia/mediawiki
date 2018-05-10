@@ -95,6 +95,8 @@ abstract class LBFactory implements ILBFactory {
 	const ROUND_BEGINNING = 'within-begin';
 	const ROUND_COMMITTING = 'within-commit';
 	const ROUND_ROLLING_BACK = 'within-rollback';
+	const ROUND_COMMIT_CALLBACKS = 'within-commit-callbacks';
+	const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
 
 	private static $loggerFields =
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
@@ -261,6 +263,7 @@ abstract class LBFactory implements ILBFactory {
 		// Actually perform the commit on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname ] );
 		// Run all post-commit callbacks in a separate step
+		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$e = $this->executePostTransactionCallbacks();
 		$this->trxRoundStage = self::ROUND_CURSORY;
 		// Throw any last post-commit callback error
@@ -275,6 +278,7 @@ abstract class LBFactory implements ILBFactory {
 		// Actually perform the rollback on all master DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname ] );
 		// Run all post-commit callbacks in a separate step
+		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
@@ -551,6 +555,14 @@ abstract class LBFactory implements ILBFactory {
 	 * @return array
 	 */
 	final protected function baseLoadBalancerParams() {
+		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
+			$initStage = ILoadBalancer::STAGE_POSTCOMMIT_CALLBACKS;
+		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ){
+			$initStage = ILoadBalancer::STAGE_POSTROLLBACK_CALLBACKS;
+		} else {
+			$initStage = null;
+		}
+
 		return [
 			'localDomain' => $this->localDomain,
 			'readOnlyReason' => $this->readOnlyReason,
@@ -570,7 +582,8 @@ abstract class LBFactory implements ILBFactory {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
 				$this->getChronologyProtector()->initLB( $lb );
-			}
+			},
+			'roundStage' => $initStage
 		];
 	}
 
