@@ -84,10 +84,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->assertTrue( is_object( $results ) );
 
 		$matches = [];
-		$row = $results->next();
-		while ( $row ) {
+		foreach ( $results as $row ) {
 			$matches[] = $row->getTitle()->getPrefixedText();
-			$row = $results->next();
 		}
 		$results->free();
 		# Search is not guaranteed to return results in a certain order;
@@ -173,7 +171,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	public function testPhraseSearchHighlight() {
 		$phrase = "smithee is one who smiths";
 		$res = $this->search->searchText( "\"$phrase\"" );
-		$match = $res->next();
+		$match = $res->getIterator()->current();
 		$snippet = "A <span class='searchmatch'>" . $phrase . "</span>";
 		$this->assertStringStartsWith( $snippet,
 			$match->getTextSnippet( $res->termMatches() ),
@@ -277,7 +275,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgHooks',
 			[ 'SearchResultsAugment' => [ [ $this, 'addAugmentors' ] ] ] );
 		$this->search->augmentSearchResults( $resultSet );
-		for ( $result = $resultSet->next(); $result; $result = $resultSet->next() ) {
+		foreach ( $resultSet as $result ) {
 			$id = $result->getTitle()->getArticleID();
 			$augmentData = "Result:$id:" . $result->getTitle()->getText();
 			$augmentData2 = "Result2:$id:" . $result->getTitle()->getText();
@@ -292,7 +290,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			->method( 'augmentAll' )
 			->willReturnCallback( function ( SearchResultSet $resultSet ) {
 				$data = [];
-				for ( $result = $resultSet->next(); $result; $result = $resultSet->next() ) {
+				foreach ( $resultSet as $result ) {
 					$id = $result->getTitle()->getArticleID();
 					$data[$id] = "Result:$id:" . $result->getTitle()->getText();
 				}

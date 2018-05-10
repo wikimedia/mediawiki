@@ -262,8 +262,8 @@ class SpecialSearchTestMockResultSet extends SearchResultSet {
 		$this->containedSyntax = $containedSyntax;
 	}
 
-	public function numRows() {
-		return count( $this->results );
+	public function expandResults() {
+		return $this->results;
 	}
 
 	public function getTotalHits() {
