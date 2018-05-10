@@ -1,0 +1,9 @@
+DELETE {
+  <http://acme.test/wiki/Special:CategoryDump> schema:dateModified ?o .
+}
+WHERE {
+  <http://acme.test/wiki/Special:CategoryDump> schema:dateModified ?o .
+};
+INSERT DATA {
+  <http://acme.test/wiki/Special:CategoryDump> schema:dateModified "2017-08-25T00:29:09Z"^^xsd:dateTime .
+}

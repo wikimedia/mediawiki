@@ -1,0 +1,19 @@
+# Additions
+INSERT DATA {
+
+<http://acme.test/wiki/Category:New_category> a mediawiki:Category ;
+	rdfs:label "New category" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer .
+
+<http://acme.test/wiki/Category:%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F_%F0%9F%98%83> a mediawiki:Category,
+		mediawiki:HiddenCategory ;
+	rdfs:label "Новая категория 😃" ;
+	mediawiki:pages "7"^^xsd:integer ;
+	mediawiki:subcategories "2"^^xsd:integer .
+
+<http://acme.test/wiki/Category:New_category> mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_20> .
+
+<http://acme.test/wiki/Category:%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F_%F0%9F%98%83> mediawiki:isInCategory <http://acme.test/wiki/Category:Parent_of_21> .
+
+};
