@@ -113,6 +113,8 @@
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
 		assert.strictEqual( conf.set( nummy, 'Nummy' ), false, 'Map.set returns boolean false if key was invalid (Number)' );
+		assert.strictEqual( conf.set( null, 'Null' ), false, 'Map.set returns false if key is invalid (null)' );
+		assert.strictEqual( conf.set( {}, 'Object' ), false, 'Map.set returns false if key is invalid (plain object)' );
 
 		conf.set( String( nummy ), 'I used to be a number' );
 
