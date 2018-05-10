@@ -24,6 +24,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ChronologyProtector;
 
 /**
  * This file is not a valid entry point, perform no further processing unless
@@ -739,8 +740,12 @@ MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
 	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
 	// The cpPosIndex cookie has no prefix and is set by MediaWiki::preOutputCommit()
-	'ChronologyPositionIndex' =>
-		$wgRequest->getInt( 'cpPosIndex', (int)$wgRequest->getCookie( 'cpPosIndex', '' ) )
+	'ChronologyPositionIndex' => LBFactory::getCPIndexFromCookieValue(
+		$wgRequest->getVal( 'cpPosIndex', $wgRequest->getCookie( 'cpPosIndex', '' ) ),
+		time(),
+		// Mitigate broken client-side cookie expiration handling (T190082)
+		ChronologyProtector::POSITION_COOKIE_TTL
+	)
 ] );
 // Make sure that object caching does not undermine the ChronologyProtector improvements
 if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {

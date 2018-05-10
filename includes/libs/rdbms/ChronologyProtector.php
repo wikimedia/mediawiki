@@ -63,6 +63,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/** @var int Seconds to store positions */
 	const POSITION_TTL = 60;
+	/** @var int Suggested seconds to store position write index cookies */
+	const POSITION_COOKIE_TTL = 60;
 	/** @var int Max time to wait for positions to appear */
 	const POS_STORE_WAIT_TIMEOUT = 5;
 
