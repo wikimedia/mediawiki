@@ -64,7 +64,7 @@ class SearchOracle extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	function searchText( $term ) {
+	protected function doSearchText( $term ) {
 		if ( $term == '' ) {
 			return new SqlSearchResultSet( false, '' );
 		}
@@ -79,7 +79,7 @@ class SearchOracle extends SearchDatabase {
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
 	 */
-	function searchTitle( $term ) {
+	protected function doSearchTitle( $term ) {
 		if ( $term == '' ) {
 			return new SqlSearchResultSet( false, '' );
 		}

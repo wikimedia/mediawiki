@@ -71,10 +71,17 @@ abstract class SearchEngine {
 	 * If full text searches are not supported or disabled, return null.
 	 * STUB
 	 *
+	 * As of 1.32 overriding this function is deprecated. It will
+	 * be converted to final in 1.34. Override self::doSearchText().
+	 *
 	 * @param string $term Raw search term
 	 * @return SearchResultSet|Status|null
 	 */
 	function searchText( $term ) {
+		return $this->doSearchText( $term );
+	}
+
+	protected function doSearchText() {
 		return null;
 	}
 
@@ -85,11 +92,18 @@ abstract class SearchEngine {
 	 * The results returned by this methods are only sugegstions and
 	 * may not end up being shown to the user.
 	 *
+	 * As of 1.32 overriding this function is deprecated. It will
+	 * be converted to final in 1.34. Override self::doSearchArchiveTitle().
+	 *
 	 * @param string $term Raw search term
 	 * @return Status<Title[]>
 	 * @since 1.29
 	 */
 	function searchArchiveTitle( $term ) {
+		return $this->doSearchArchiveTitle( $term );
+	}
+
+	protected function doSearchArchiveTitle( $term ) {
 		return Status::newGood( [] );
 	}
 
@@ -98,10 +112,17 @@ abstract class SearchEngine {
 	 * If title searches are not supported or disabled, return null.
 	 * STUB
 	 *
+	 * As of 1.32 overriding this function is deprecated. It will
+	 * be converted to final in 1.34. Override self::doSearchTitle().
+	 *
 	 * @param string $term Raw search term
 	 * @return SearchResultSet|null
 	 */
 	function searchTitle( $term ) {
+		return $this->doSearchTitle( $term );
+	}
+
+	protected function doSearchTitle( $term ) {
 		return null;
 	}
 
