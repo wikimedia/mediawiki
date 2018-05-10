@@ -2001,11 +2001,11 @@ return [
 	],
 	'mediawiki.special.apisandbox.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.top.css',
+		'styles' => 'resources/src/mediawiki.special.apisandbox.styles.css',
 	],
 	'mediawiki.special.apisandbox' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.css',
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.apisandbox.js',
+		'styles' => 'resources/src/mediawiki.special.apisandbox/apisandbox.css',
+		'scripts' => 'resources/src/mediawiki.special.apisandbox/apisandbox.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'mediawiki.api',
@@ -2073,7 +2073,7 @@ return [
 		],
 	],
 	'mediawiki.special.block' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.block.js',
+		'scripts' => 'resources/src/mediawiki.special.block.js',
 		'dependencies' => [
 			'oojs-ui-core',
 			'oojs-ui.styles.icons-editing-core',
@@ -2086,7 +2086,7 @@ return [
 		],
 	],
 	'mediawiki.special.changecredentials.js' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changecredentials.js',
+		'scripts' => 'resources/src/mediawiki.special.changecredentials.js',
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.htmlform.ooui'
@@ -2094,18 +2094,18 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',
+		'styles' => 'resources/src/mediawiki.special.changeslist.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.enhanced' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
+		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.css',
 	],
 	'mediawiki.special.changeslist.legend' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.css',
+		'styles' => 'resources/src/mediawiki.special.changeslist.legend.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.legend.js' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.js',
+		'scripts' => 'resources/src/mediawiki.special.changeslist.legend.js',
 		'dependencies' => [
 			'jquery.makeCollapsible',
 			'mediawiki.cookie',
@@ -2113,20 +2113,20 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.changeslist.visitedstatus' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.visitedstatus.js',
+		'scripts' => 'resources/src/mediawiki.special.changeslist.visitedstatus.js',
 	],
 	'mediawiki.special.comparepages.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.comparepages.styles.less',
+		'styles' => 'resources/src/mediawiki.special.comparepages.styles.less',
 	],
 	'mediawiki.special.contributions' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.contributions.js',
+		'scripts' => 'resources/src/mediawiki.special.contributions.js',
 		'dependencies' => [
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
 		]
 	],
 	'mediawiki.special.edittags' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
+		'scripts' => 'resources/src/mediawiki.special.edittags.js',
 		'dependencies' => [
 			'jquery.chosen',
 			'jquery.lengthLimit',
@@ -2137,29 +2137,29 @@ return [
 		],
 	],
 	'mediawiki.special.edittags.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.edittags.css',
+		'styles' => 'resources/src/mediawiki.special.edittags.styles.css',
 	],
 	'mediawiki.special.import' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
+		'scripts' => 'resources/src/mediawiki.special.import.js',
 	],
 	'mediawiki.special.movePage' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
+		'scripts' => 'resources/src/mediawiki.special.movePage.js',
 		'dependencies' => [
 			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.widgets',
 		],
 	],
 	'mediawiki.special.movePage.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.movePage.css',
+		'styles' => 'resources/src/mediawiki.special.movePage.css',
 	],
 	'mediawiki.special.pageLanguage' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
+		'scripts' => 'resources/src/mediawiki.special.pageLanguage.js',
 		'dependencies' => [
 			'oojs-ui-core',
 		],
 	],
 	'mediawiki.special.pagesWithProp' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.pagesWithProp.css',
+		'styles' => 'resources/src/mediawiki.special.pagesWithProp.css',
 	],
 	'mediawiki.special.preferences' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2213,14 +2213,14 @@ return [
 	],
 	'mediawiki.special.preferences.styles.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.preferences.styles.css',
+		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.css',
 	],
 	'mediawiki.special.recentchanges' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
+		'scripts' => 'resources/src/mediawiki.special.recentchanges.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.revisionDelete' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.revisionDelete.js',
+		'scripts' => 'resources/src/mediawiki.special.revisionDelete.js',
 		'messages' => [
 			// @todo Load this message in content language
 			'colon-separator',
@@ -2231,8 +2231,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.search' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
+		'scripts' => 'resources/src/mediawiki.special.search/search.js',
+		'styles' => 'resources/src/mediawiki.special.search/search.css',
 		'dependencies' => 'mediawiki.widgets.SearchInputWidget',
 		'messages' => [
 			'powersearch-togglelabel',
@@ -2241,7 +2241,7 @@ return [
 		],
 	],
 	'mediawiki.special.search.commonsInterwikiWidget' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.commonsInterwikiWidget.js',
+		'scripts' => 'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.Uri',
@@ -2254,24 +2254,23 @@ return [
 		],
 	],
 	'mediawiki.special.search.interwikiwidget.styles' => [
-		'styles' => 'resources/src/mediawiki.special/'
-			. 'mediawiki.special.search.interwikiwidget.styles.less',
+		'styles' => 'resources/src/mediawiki.special.search.interwikiwidget.styles.less',
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.special.search.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.styles.css',
+		'styles' => 'resources/src/mediawiki.special.search.styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.undelete' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.undelete.js',
+		'scripts' => 'resources/src/mediawiki.special.undelete.js',
 		'dependencies' => [
 			'mediawiki.widgets.visibleLengthLimit',
 			'mediawiki.widgets',
 		],
 	],
 	'mediawiki.special.unwatchedPages' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.js',
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.css',
+		'scripts' => 'resources/src/mediawiki.special.unwatchedPages/unwatchedPages.js',
+		'styles' => 'resources/src/mediawiki.special.unwatchedPages/unwatchedPages.css',
 		'messages' => [
 			'addedwatchtext-short',
 			'removedwatchtext-short',
@@ -2291,9 +2290,9 @@ return [
 	],
 	'mediawiki.special.upload' => [
 		'templates' => [
-			'thumbnail.html' => 'resources/src/mediawiki.special/templates/thumbnail.html',
+			'thumbnail.html' => 'resources/src/mediawiki.special.upload/templates/thumbnail.html',
 		],
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.upload.js',
+		'scripts' => 'resources/src/mediawiki.special.upload/upload.js',
 		'messages' => [
 			'widthheight',
 			'size-bytes',
@@ -2319,21 +2318,21 @@ return [
 		],
 	],
 	'mediawiki.special.upload.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.upload.styles.css',
+		'styles' => 'resources/src/mediawiki.special.upload.styles.css',
 	],
 	'mediawiki.special.userlogin.common.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.common.css',
+			'default' => 'resources/src/mediawiki.special.userlogin.common.styles/userlogin.css',
 		],
 	],
 	'mediawiki.special.userlogin.login.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.special/mediawiki.special.userlogin.login.css',
+			'resources/src/mediawiki.special.userlogin.login.styles/login.css',
 		],
 	],
 	'mediawiki.special.userlogin.signup.js' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
+		'scripts' => 'resources/src/mediawiki.special.userlogin.signup.js',
 		'messages' => [
 			'createacct-emailrequired',
 			'noname',
@@ -2348,18 +2347,18 @@ return [
 	],
 	'mediawiki.special.userlogin.signup.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.css',
+			'resources/src/mediawiki.special.userlogin.signup.styles/signup.css',
 		],
 	],
 	'mediawiki.special.userrights' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userrights.js',
+		'scripts' => 'resources/src/mediawiki.special.userrights.js',
 		'dependencies' => [
 			'mediawiki.notification.convertmessagebox',
 			'jquery.lengthLimit',
 		],
 	],
 	'mediawiki.special.watchlist' => [
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.js',
+		'scripts' => 'resources/src/mediawiki.special.watchlist.js',
 		'messages' => [
 			'addedwatchtext',
 			'addedwatchtext-talk',
@@ -2380,10 +2379,10 @@ return [
 		],
 	],
 	'mediawiki.special.watchlist.styles' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.css',
+		'styles' => 'resources/src/mediawiki.special.watchlist.styles.css',
 	],
 	'mediawiki.special.version' => [
-		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
+		'styles' => 'resources/src/mediawiki.special.version.css',
 	],
 
 	/* MediaWiki Installer */
