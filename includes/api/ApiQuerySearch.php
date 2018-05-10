@@ -142,10 +142,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 		$titles = [];
 		$count = 0;
-		$result = $matches->next();
 		$limit = $params['limit'];
 
-		while ( $result ) {
+		foreach ( $matches as $result ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional items to be had. Stop here...
@@ -172,8 +171,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			} else {
 				$titles[] = $result->getTitle();
 			}
-
-			$result = $matches->next();
 		}
 
 		// Here we assume interwiki results do not count with
