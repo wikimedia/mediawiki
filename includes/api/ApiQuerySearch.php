@@ -142,10 +142,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 		$titles = [];
 		$count = 0;
-		$result = $matches->next();
 		$limit = $params['limit'];
 
-		while ( $result ) {
+		foreach ( $matches as $result ) {
 			if ( ++$count > $limit ) {
 				// We've reached the one extra which shows that there are
 				// additional items to be had. Stop here...
@@ -155,7 +154,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 			// Silently skip broken and missing titles
 			if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
-				$result = $matches->next();
 				continue;
 			}
 
@@ -172,8 +170,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			} else {
 				$titles[] = $result->getTitle();
 			}
-
-			$result = $matches->next();
 		}
 
 		// Here we assume interwiki results do not count with
@@ -301,8 +297,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				// Include number of results if requested
 				$totalhits += $interwikiMatches->getTotalHits();
 
-				$result = $interwikiMatches->next();
-				while ( $result ) {
+				foreach ( $interwikiMatches as $result ) {
 					$title = $result->getTitle();
 					$vals = $this->getSearchResultData( $result, $prop, $terms );
 
@@ -322,8 +317,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						// pagination info so just bail out
 						break;
 					}
-
-					$result = $interwikiMatches->next();
 				}
 			}
 			if ( $totalhits !== null ) {

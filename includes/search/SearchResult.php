@@ -57,8 +57,8 @@ class SearchResult {
 	protected $searchEngine;
 
 	/**
-	 * A set of extension data.
-	 * @var array[]
+	 * A function returning a set of extension data.
+	 * @var Closure|null
 	 */
 	protected $extensionData;
 
@@ -267,17 +267,29 @@ class SearchResult {
 	 * @return array[]
 	 */
 	public function getExtensionData() {
-		return $this->extensionData;
+		if ( $this->extensionData ) {
+			return call_user_func( $this->extensionData );
+		} else {
+			return [];
+		}
 	}
 
 	/**
 	 * Set extension data for this result.
 	 * The data is:
 	 * augmentor name => data
-	 * @param array[] $extensionData
+	 * @param Closure|array $extensionData Takes no arguments, returns
+	 *  either array of extension data or null.
 	 */
-	public function setExtensionData( array $extensionData ) {
-		$this->extensionData = $extensionData;
+	public function setExtensionData( $extensionData ) {
+		if ( $extensionData instanceof Closure ) {
+			$this->extensionData = $extensionData;
+		} elseif ( is_array( $extensionData ) ) {
+			wfDeprecated( __METHOD__ . ' with array argument', 1.32 );
+			$this->extensionData = function () use ( $extensionData ) { return $extensionData; };
+		} else {
+			throw new \InvalidArgumentException( __METHOD__ . " must be called with Closure|array, but received "
+				. ( is_object( $extensionData ) ? get_class( $extensionData ) : gettype( $extensionData ) ) );
+		}
 	}
-
 }
