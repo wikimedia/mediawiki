@@ -739,8 +739,11 @@ MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
 	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
 	'ChronologyProtection' => $wgRequest->getHeader( 'ChronologyProtection' ),
 	// The cpPosIndex cookie has no prefix and is set by MediaWiki::preOutputCommit()
-	'ChronologyPositionIndex' =>
-		$wgRequest->getInt( 'cpPosIndex', (int)$wgRequest->getCookie( 'cpPosIndex', '' ) )
+	'ChronologyPositionIndex' => LBFactory::getCPIndexFromCookieValue(
+		$wgRequest->getVal( 'cpPosIndex', $wgRequest->getCookie( 'cpPosIndex', '' ) ),
+		time(),
+		LoadBalancer::MAX_WAIT_DEFAULT // guard against broken-client cookie handling (T190082)
+	)
 ] );
 // Make sure that object caching does not undermine the ChronologyProtector improvements
 if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
