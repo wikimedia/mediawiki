@@ -3,28 +3,28 @@
  * A SearchResultSet wrapper for SearchNearMatcher
  */
 class SearchNearMatchResultSet extends SearchResultSet {
-	private $fetched = false;
+	/** @var Title|null Title if matched, else null */
+	private $result;
 
 	/**
 	 * @param Title|null $match Title if matched, else null
 	 */
 	public function __construct( $match ) {
-		$this->result = $match;
+		if ( $match === null ) {
+			$this->result = [];
+		} else {
+			$this->result = [ SearchResult::newFromtitle( $this->result, $this ) ];
+		}
 	}
 
 	public function numRows() {
 		return $this->result ? 1 : 0;
 	}
 
-	public function next() {
-		if ( $this->fetched || !$this->result ) {
-			return false;
-		}
-		$this->fetched = true;
-		return SearchResult::newFromTitle( $this->result, $this );
-	}
-
-	public function rewind() {
-		$this->fetched = false;
+	/**
+	 * @return SearchResult[]
+	 */
+	public function extractResults() {
+		return $this->result;
 	}
 }
