@@ -617,6 +617,7 @@
 	"botpasswords-existing": "Senhas de robôs existentes",
 	"botpasswords-createnew": "Crie uma nova senha de robô",
 	"botpasswords-editexisting": "Editar uma senha de robô existente",
+	"botpasswords-label-needsreset": "(senha precisa ser redefinida)",
 	"botpasswords-label-appid": "Nome do robô:",
 	"botpasswords-label-create": "Criar",
 	"botpasswords-label-update": "Atualizar",

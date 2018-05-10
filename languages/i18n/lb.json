@@ -510,6 +510,7 @@
 	"botpasswords-existing": "Aktuell Botpasswierder.",
 	"botpasswords-createnew": "En neit Botpasswuert uleeën",
 	"botpasswords-editexisting": "E Botpasswuert änneren",
+	"botpasswords-label-needsreset": "(Passwuert muss zréckgesat ginn)",
 	"botpasswords-label-appid": "Numm vum Bot:",
 	"botpasswords-label-create": "Uleeën",
 	"botpasswords-label-update": "Aktualiséieren",

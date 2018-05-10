@@ -36,8 +36,8 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string|Title Events limited to those about Title when set */
 	private $title = '';
 
-	/** @var string */
-	private $pattern = '';
+	/** @var bool */
+	private $pattern = false;
 
 	/** @var string */
 	private $typeCGI = '';
@@ -59,7 +59,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string|array $types Log types to show
 	 * @param string $performer The user who made the log entries
 	 * @param string|Title $title The page title the log entries are for
-	 * @param string $pattern Do a prefix search rather than an exact title match
+	 * @param bool $pattern Do a prefix search rather than an exact title match
 	 * @param array $conds Extra conditions for the query
 	 * @param int|bool $year The year to start from. Default: false
 	 * @param int|bool $month The month to start from. Default: false
@@ -68,7 +68,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
-		$pattern = '', $conds = [], $year = false, $month = false, $tagFilter = '',
+		$pattern = false, $conds = [], $year = false, $month = false, $tagFilter = '',
 		$action = '', $logId = false
 	) {
 		parent::__construct( $list->getContext() );
@@ -194,7 +194,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * (For the block and rights logs, this is a user page.)
 	 *
 	 * @param string|Title $page Title name
-	 * @param string $pattern
+	 * @param bool $pattern
 	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
@@ -398,6 +398,9 @@ class LogPager extends ReverseChronologicalPager {
 		return $this->title;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPattern() {
 		return $this->pattern;
 	}

@@ -17,7 +17,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"Notanotheramy"
 		]
 	},
 	"tog-underline": "Garis ngisori pranala:",
@@ -575,6 +576,7 @@
 	"savechanges": "Simpen owahan",
 	"publishpage": "Babar kaca",
 	"publishchanges": "Babar owahan",
+	"publishchanges-start": "Babar owahan...",
 	"preview": "Pratuduh",
 	"showpreview": "Deleng pratuduh",
 	"showdiff": "Tuduhaké owahan",
