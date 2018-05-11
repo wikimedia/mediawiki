@@ -572,6 +572,16 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.32
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
+			[ 'addPgField', 'change_tag', 'ct_tag_id', 'INTEGER NULL' ],
+			[ 'addPgIndex', 'change_tag', 'change_tag_rc_tag_id', '( ct_rc_id, ct_tag )' ],
+			[ 'addPgIndex', 'change_tag', 'change_tag_log_tag_id', '( ct_log_id, ct_tag_id )' ],
+			[ 'addPgIndex', 'change_tag', 'change_tag_rev_tag_id', '( ct_rev_id, ct_tag_id )' ],
+			[
+				'addPgIndex',
+				'change_tag',
+				'change_tag_tag_id_id',
+				'( ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id )'
+			],
 		];
 	}
 
