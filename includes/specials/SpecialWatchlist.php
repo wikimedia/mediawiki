@@ -62,7 +62,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->addHelpLink( 'Help:Watching pages' );
 		$output->addModuleStyles( [ 'mediawiki.special' ] );
 		$output->addModules( [
-			'mediawiki.special.changeslist.visitedstatus',
 			'mediawiki.special.watchlist',
 		] );
 
