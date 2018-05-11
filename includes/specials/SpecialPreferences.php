@@ -36,8 +36,6 @@ class SpecialPreferences extends SpecialPage {
 
 	function __construct() {
 		parent::__construct( 'Preferences' );
-
-		$this->oouiEnabled = self::isOouiEnabled( $this->getContext() );
 	}
 
 	/**
@@ -56,6 +54,8 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->oouiEnabled = static::isOouiEnabled( $this->getContext() );
+
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
