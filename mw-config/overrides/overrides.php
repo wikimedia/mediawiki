@@ -12,10 +12,6 @@ class BSLocalSettingsGenerator extends LocalSettingsGenerator {
 $overrides['CliInstaller'] = 'BSCliInstaller';
 
 class BSCliInstaller extends CliInstaller {
-	public function execute(){
-		$this->setVar( '_Extensions', ["BlueSpiceFoundation"] );
-		parent::execute();
-	}
 	protected function includeExtensions(){
 		global $IP;
 		$exts = $this->getVar( '_Extensions' );
@@ -49,6 +45,9 @@ class BSCliInstaller extends CliInstaller {
 		$registry = new ExtensionRegistry();
 		$data = $registry->readFromQueue( $queue );
 		$wgAutoloadClasses += $data['autoload'];
+		if ( isset( $data['autoloaderNS'] ) ) {
+			AutoLoader::$psr4Namespaces += $data['autoloaderNS'];
+		}
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
 			/** @suppress PhanUndeclaredVariable $wgHooks is set by DefaultSettings */
