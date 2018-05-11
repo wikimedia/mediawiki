@@ -807,13 +807,15 @@ CREATE TABLE change_tag (
   ct_log_id  INTEGER      NULL,
   ct_rev_id  INTEGER      NULL,
   ct_tag     TEXT     NOT NULL,
-  ct_params  TEXT         NULL
+  ct_params  TEXT         NULL,
+  ct_tag_id  INTEGER      NULL
 );
 ALTER SEQUENCE change_tag_ct_id_seq OWNED BY change_tag.ct_id;
 CREATE UNIQUE INDEX change_tag_rc_tag ON change_tag(ct_rc_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_log_tag ON change_tag(ct_log_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_rev_tag ON change_tag(ct_rev_id,ct_tag);
 CREATE INDEX change_tag_tag_id ON change_tag(ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
+CREATE INDEX change_tag_tag_id_id ON change_tag(ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
 CREATE SEQUENCE tag_summary_ts_id_seq;
 CREATE TABLE tag_summary (
