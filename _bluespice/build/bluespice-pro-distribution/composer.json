@@ -1,0 +1,17 @@
+{
+	"repositories": [{
+			"type": "composer",
+			"url": "https://packages.bluespice.com/"
+		}],
+	"require": {
+		"mediawiki/drawio-editor": "dev-master",
+		"mediawiki/duplicator": "dev-master",
+		"mediawiki/multimedia-viewer": "dev-master",
+		"mediawiki/n-s-file-repo": "dev-master",
+		"mediawiki/native-svg-handler": "dev-master",
+		"mediawiki/replace-text": "dev-master",
+		"mediawiki/scribunto": "dev-master",
+		"mediawiki/template-data": "dev-master",
+		"mediawiki/widgets": "dev-master"
+	}
+}

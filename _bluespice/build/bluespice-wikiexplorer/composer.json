@@ -1,0 +1,9 @@
+{
+	"repositories": [{
+			"type": "composer",
+			"url": "https://packages.bluespice.com/"
+		}],
+	"require": {
+		"mediawiki/blue-spice-wiki-explorer": "dev-master"
+	}
+}

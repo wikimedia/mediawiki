@@ -1,0 +1,28 @@
+{
+	"repositories": [{
+			"type": "composer",
+			"url": "https://packages.bluespice.com/"
+		}],
+	"require": {
+		"bluespice/socialwikipage": "dev-master",
+		"mediawiki/blue-spice-social": "dev-master",
+		"mediawiki/blue-spice-social-article-actions": "dev-master",
+		"mediawiki/blue-spice-social-blog": "dev-master",
+		"mediawiki/blue-spice-social-comments": "dev-master",
+		"mediawiki/blue-spice-social-groups": "dev-master",
+		"mediawiki/blue-spice-social-micro-blog": "dev-master",
+		"mediawiki/blue-spice-social-profile": "dev-master",
+		"mediawiki/blue-spice-social-rating": "dev-master",
+		"mediawiki/blue-spice-social-tags": "dev-master",
+		"mediawiki/blue-spice-social-timeline-update": "dev-master",
+		"mediawiki/blue-spice-social-topics": "dev-master",
+		"mediawiki/blue-spice-social-watch": "dev-master"
+	},
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"extensions/BlueSpiceSocial/*/composer.json"
+			]
+		}
+	}
+}
