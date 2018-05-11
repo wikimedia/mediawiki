@@ -76,7 +76,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->outputHeader();
 
 		$this->getOutput()->addModules( [ 'mediawiki.special.edittags',
-			'mediawiki.special.edittags.styles' ] );
+			'mediawiki.special' ] );
 
 		$this->submitClicked = $request->wasPosted() && $request->getBool( 'wpSubmit' );
 

@@ -143,8 +143,8 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
+		$out->addModuleStyles( 'mediawiki.special' );
 		$out->addModules( 'mediawiki.special.movePage' );
-		$out->addModuleStyles( 'mediawiki.special.movePage.styles' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
 		$out->addWikiMsg( $this->getConfig()->get( 'FixDoubleRedirects' ) ?
