@@ -1421,7 +1421,7 @@
 	"recentchangeslinked-feed": "Ännerungen op verlinkt Säiten",
 	"recentchangeslinked-toolbox": "Ännerungen op verlinkt Säiten",
 	"recentchangeslinked-title": "Ännerungen a Verbindung mat \"$1\"",
-	"recentchangeslinked-summary": "Gitt den Numm vun enger Säit a fir Ännerungen Säiten ze gesinn op déi oder vun deene gelinkt gëtt. Ännerungen op Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si <strong>fett</strong> geschriwwen.",
+	"recentchangeslinked-summary": "Gitt den Numm vun enger Säit a fir Ännerungen op Säiten ze gesinn op déi oder vun deene gelinkt gëtt. (Fir d'Membere vun enger Kategorie ze gesinn gitt {{ns:category}}:Numm vun der Kategorie, an.) Ännerungen op Säite vun [[Special:Watchlist|Ärer Iwwerwaachungslëscht]] si <strong>fett</strong> geschriwwen.",
 	"recentchangeslinked-page": "Säitennumm:",
 	"recentchangeslinked-to": "Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit",
 	"recentchanges-page-added-to-category": "[[:$1]] an d'Kategorie dobäigesat",
