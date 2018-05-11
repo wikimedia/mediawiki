@@ -60,7 +60,7 @@ class SpecialPagesWithProp extends QueryPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.pagesWithProp' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		$request = $this->getRequest();
 		$propname = $request->getVal( 'propname', $par );
