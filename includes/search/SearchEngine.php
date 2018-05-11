@@ -335,12 +335,25 @@ abstract class SearchEngine {
 			return false;
 		}
 		$extractedNamespace = null;
+		$allkeywords = [];
 
-		$allkeyword = wfMessage( 'searchall' )->inContentLanguage()->text() . ":";
-		if ( strncmp( $query, $allkeyword, strlen( $allkeyword ) ) == 0 ) {
-			$extractedNamespace = null;
-			$parsed = substr( $query, strlen( $allkeyword ) );
-		} elseif ( strpos( $query, ':' ) !== false ) {
+		$allkeywords[] = wfMessage( 'searchall' )->inContentLanguage()->text() . ":";
+		// force all: so that we have a common syntax for all the wikis
+		if ( !in_array( 'all:', $allkeywords ) ) {
+			$allkeywords[] = 'all:';
+		}
+
+		$allQuery = false;
+		foreach( $allkeywords as $kw ) {
+			if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
+				$extractedNamespace = null;
+				$parsed = substr( $query, strlen( $kw ) );
+				$allQuery = true;
+				break;
+			}
+		}
+
+		if ( !$allQuery && strpos( $query, ':' ) !== false ) {
 			// TODO: should we unify with PrefixSearch::extractNamespace ?
 			$prefix = str_replace( ' ', '_', substr( $query, 0, strpos( $query, ':' ) ) );
 			$index = $wgContLang->getNsIndex( $prefix );
