@@ -1,5 +1,5 @@
 {
-	"name": "hallowelt/bluespice",
+	"name": "bluespice/core",
 	"description": "Free software wiki application developed by the Wikimedia Foundation and others",
 	"type": "mediawiki-core",
 	"keywords": ["mediawiki", "wiki"],
@@ -101,13 +101,10 @@
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall",
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
+		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"test": [
 			"composer lint",
 			"composer phpcs"
-		],
-		"post-update-cmd": [
-			"./load-git-submodules",
-			"ComposerVendorHtaccessCreator::onEvent"
 		]
 	},
 	"config": {
@@ -119,10 +116,8 @@
 			"include": [
 				"composer.local.json"
 			],
-			"merge-dev": false
+			"merge-dev": false,
+			"merge-scripts": true
 		}
-	},
-	"archive": {
-		"exclude": ["!/vendor", "!/composer.local.json", "!/composer.json", "!/composer.lock"]
 	}
 }

@@ -23,24 +23,20 @@ matrix:
     # On Trusty, mysql user 'travis' doesn't have create database rights
     # Postgres has no user called 'root'.
     - env: dbtype=mysql dbuser=root
-      php: 5.5
-    #- env: dbtype=postgres dbuser=travis
-    #  php: 5.5
-    # https://docs.travis-ci.com/user/languages/php#HHVM-versions
-    #- env: dbtype=mysql dbuser=root
-    #  php: hhvm-3.12
-    #- env: dbtype=mysql dbuser=root
-    #  php: hhvm-3.18
+      php: 7.2
     - env: dbtype=mysql dbuser=root
-      php: hhvm-3.21
+      php: 7.1
+    - env: dbtype=postgres dbuser=travis
+      php: 7.1
+    - env: dbtype=mysql dbuser=root
+      php: 7
+    # https://docs.travis-ci.com/user/languages/php#HHVM-versions
     - env: dbtype=mysql dbuser=root
       php: hhvm-3.24
     - env: dbtype=mysql dbuser=root
-      php: 7
-    #- env: dbtype=mysql dbuser=root
-    #  php: 7.1
-    #- env: dbtype=mysql dbuser=root
-    #  php: 7.2
+      php: hhvm-3.21
+    - env: dbtype=mysql dbuser=root
+      php: hhvm-3.18
 
 services:
   - mysql
@@ -59,13 +55,9 @@ addons:
     packages:
     - djvulibre-bin
     - tidy
-    - curl
-    - imagemagick
-    
-before_install: phpenv config-add myconfig.ini
 
 before_script:
-  - composer update --quiet --no-interaction
+  - composer install --prefer-source --quiet --no-interaction
   - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
       php maintenance/install.php traviswiki admin
@@ -83,3 +75,9 @@ script:
 
 notifications:
   email: false
+  irc:
+    channels:
+      - "chat.freenode.net#mediawiki-feed"
+    on_success: change
+    on_failure: change
+    skip_join: true

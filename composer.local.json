@@ -3,10 +3,18 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"build/*/composer.json"
+				"_bluespice/build/*/composer.json"
 			],
 			"merge-extra": true,
 			"merge-scripts": true
 		}
+	},
+	"scripts": {
+		"pre-autoload-dump": [
+			"./_bluespice/pre-autoload-dump.sh"
+		]
+	},
+	"archive": {
+		"exclude": ["!/vendor", "!/composer.local.json", "!/composer.json", "!/composer.lock"]
 	}
 }
