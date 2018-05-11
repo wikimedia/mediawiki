@@ -387,7 +387,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// Add styles for the warning, reused from the live preview
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
 		$linkRenderer = $this->getLinkRenderer();
 		$warningHtml = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n"
