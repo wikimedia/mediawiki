@@ -49,6 +49,7 @@ sftp-config.json
 npm-debug.log
 node_modules/
 /tests/phpunit/phpunit.phar
+/tests/selenium/log
 
 # Composer
 /vendor
@@ -78,3 +79,12 @@ Thumbs.db
 /.htpasswd
 /tests/phan/issues
 *.rej
+
+#bluespice
+/settings.d/*.local.php
+BLUESPICE-INSTALL
+BLUESPICE-LICENCE
+BLUESPICE-RELEASE-HISTORY
+BLUESPICE-RELEASE-NOTES
+dynamic_file.php
+installcheck.php
