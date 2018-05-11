@@ -42,6 +42,7 @@
 		"mediawiki/blue-spice-user-manager": "dev-master",
 		"mediawiki/blue-spice-user-merge-connector": "dev-master",
 		"mediawiki/blue-spice-user-preferences": "dev-master",
+		"mediawiki/extjs-base": "dev-master",
 
 		"mediawiki/chameleon-skin": "~1.0",
 		"mediawiki/blue-spice-calumma-skin": "dev-master"
