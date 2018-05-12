@@ -1174,6 +1174,8 @@
 	"rcfilters-limit-and-date-label": "$1 گۆڕانکاری، $2",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|ڕۆژ}}",
 	"rcfilters-quickfilters": "پاڵوێنە پاشەکەوتکراوەکان",
+	"rcfilters-quickfilters-placeholder-title": "ھیچ پاڵوێنەیەک پاشەکەوت نەکراوە",
+	"rcfilters-quickfilters-placeholder-description": "بۆ پاشەکەوتکردنی ھەڵبژاردەی پاڵوێنەکان و دووبارە بەکارھێنانەوەیان، کرتە لەسەر نیشانی نیشانەی کتێبەکە بکە.",
 	"rcfilters-savedqueries-defaultlabel": "پاڵوێنە پاشەکەوتکراوەکان",
 	"rcfilters-savedqueries-setdefault": "بە بنەڕەتی کارای بکە",
 	"rcfilters-savedqueries-new-name-label": "ناو",
