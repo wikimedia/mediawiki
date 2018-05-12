@@ -124,6 +124,7 @@ class CrhExceptions {
 		'beyude' => 'бейуде', 'beyüde' => 'бейуде',
 		'curat' => 'джурьат', 'cürat' => 'джурьат',
 		'mesul' => 'месуль', 'mesül' => 'месуль',
+		'yetsin' => 'етсин', 'etsin' => 'етсин',
 	];
 
 	# map Cyrillic to Latin and back, simple string match only (no regex)
@@ -211,7 +212,6 @@ class CrhExceptions {
 		'оригинал' => 'original', 'оригиналь' => 'original',
 		'пускю' => 'püskü', 'пуськю' => 'püskü',
 		'къарагоз' => 'qaragöz', 'къарагозь' => 'qaragöz',
-		'етсин' => 'yetsin', 'етсин' => 'etsin',
 
 		#### Latin to Cyrillic (deduped from above)
 
@@ -511,7 +511,7 @@ class CrhExceptions {
 			'/\b(['.Crh::C_M_CONS.'])У(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьüЕИЭЮЬÜ])/u' =>
 				'$1Ü$2$3$4',
 			'/\bУ(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьüЕИЭЮЬÜ])/u' => 'Ü$1$2$3',
-			'/\bУю(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьü])/u' => 'Üyü$1$2$2',
+			'/\bУю(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьü])/u' => 'Üyü$1$2$3',
 			'/\bУЮ(['.Crh::C_CONS.'])(['.Crh::C_CONS.'])([еиэюьü])/u' => 'ÜYÜ$1$2$3',
 
 			'/\b(['.Crh::C_M_CONS.'])у(['.Crh::C_CONS.'])([еиэюьü])/u' => '$1ü$2$3',
@@ -567,12 +567,12 @@ class CrhExceptions {
 
 			# остальные вхождения о, у, ё, ю
 			# other occurences of о, у, ё, ю
-			'/Ё(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'YO$2',
-			'/Ю(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'YU$2',
+			'/Ё(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'YO$1',
+			'/Ю(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'YU$1',
 
 			# Ц & Щ
-			'/Ц(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'TS$2',
-			'/Щ(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'ŞÇ$2',
+			'/Ц(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'TS$1',
+			'/Щ(['.Crh::C_UC.'CĞÑQÖÜ])/u' => 'ŞÇ$1',
 		];
 
 		$this->Latn2CyrlRegexes = [
@@ -685,7 +685,7 @@ class CrhExceptions {
 			'/KÖZ([^EÜ])/u' => 'КОЗЬ$1',
 
 			# Punctuation
-			'/#|No\./' => '№',
+			'/#|No\./u' => '№',
 
 			# некоторые случаи употребления Ц
 			'/tsi([^zñ])/u' => 'ци$1',

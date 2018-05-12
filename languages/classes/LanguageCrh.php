@@ -189,7 +189,7 @@ class CrhConverter extends LanguageConverter {
 
 	/**
 	 *  It translates text into variant, specials:
-	 *    - ommiting roman numbers
+	 *    - omitting roman numbers
 	 *
 	 * @param string $text
 	 * @param bool $toVariant

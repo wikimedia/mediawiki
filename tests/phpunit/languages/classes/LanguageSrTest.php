@@ -68,7 +68,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
-		// A simple convertion of Latin to Cyrillic
+		// A simple conversion of Latin to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'abvg' )
 		);
@@ -76,7 +76,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		$this->assertEquals( 'ljабnjвгdž',
 			$this->convertToCyrillic( '-{lj}-ab-{nj}-vg-{dž}-' )
 		);
-		// A simple convertion of Cyrillic to Cyrillic
+		// A simple conversion of Cyrillic to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'абвг' )
 		);
@@ -110,11 +110,11 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToLatin() {
-		// A simple convertion of Latin to Latin
+		// A simple conversion of Latin to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'abcd' )
 		);
-		// A simple convertion of Cyrillic to Latin
+		// A simple conversion of Cyrillic to Latin
 		$this->assertEquals( 'abcd',
 			$this->convertToLatin( 'абцд' )
 		);
