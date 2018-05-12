@@ -25,7 +25,7 @@
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
-	"tog-hideminor": "সাম্প্ৰতিক সাল-সলনিত অগুৰুত্বপূৰ্ণ সম্পাদনা নেদেখুৱাব",
+	"tog-hideminor": "শেহতীয়া সাল-সলনিত অগুৰুত্বপূৰ্ণ সম্পাদনা নেদেখুৱাব",
 	"tog-hidepatrolled": "সাম্প্ৰতিক সাল-সলনিত তহলদাৰী সম্পাদনা নেদেখুৱাব",
 	"tog-newpageshidepatrolled": "নতুন পৃষ্ঠা তালিকাত তহলদাৰী পৃষ্ঠাসমূহ নেদেখুৱাব",
 	"tog-hidecategorization": "পৃষ্ঠাবোৰৰ শ্ৰেণীকৰণ লুকুৱাওক",
@@ -1151,6 +1151,7 @@
 	"recentchanges-legend-plusminus": "(''±১২৩'')",
 	"rcfilters-legend-heading": "<strong>সংক্ষিপ্ত ৰূপৰ তালিকা:</strong>",
 	"rcfilters-other-review-tools": "আন পুনৰীক্ষণ সঁজুলি",
+	"rcfilters-filter-humans-label": "মানুহ (ব'ট নহয়)",
 	"rcnotefrom": "<strong>$2</strong>ৰ পৰা হোৱা পৰিৱৰ্তনসমূহ (সৰ্বোচ্চ <strong>$1টা</strong> দেখুৱা হৈছে)।",
 	"rclistfrom": "$3 $2ৰ পৰা নতুন সালসলনি দেখুৱাওক",
 	"rcshowhideminor": "$1 -সংখ্যক নগণ্য সম্পাদনা",
