@@ -693,7 +693,7 @@
 	"botpasswords-restriction-failed": "Les restrictions de mot de passe de robots empêchent cette connexion.",
 	"botpasswords-invalid-name": "Le nom d’utilisateur spécifié ne contient pas de séparateur de mot de passe de robots (« $1 »).",
 	"botpasswords-not-exist": "L’{{GENDER:$1|utilisateur|utilisatrice}} « $1 » n’a pas de mot de passe de robot nommé « $2 ».",
-	"botpasswords-needs-reset": "Le mot de passe du robot de nom \"$2\" de l'utilisat{{GENDER:$1|eur}} \"$1\" doit être réinitialisé.",
+	"botpasswords-needs-reset": "Le mot de passe du robot de nom « $2 » de l’utilisat{{GENDER:$1|eur|rice}} « $1 » doit être réinitialisé.",
 	"resetpass_forbidden": "Les mots de passe ne peuvent pas être changés",
 	"resetpass_forbidden-reason": "Les mots de passe ne peuvent pas être modifiés : $1",
 	"resetpass-no-info": "Vous devez être connecté(e) pour accéder directement à cette page.",

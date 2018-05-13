@@ -76,7 +76,8 @@
 			"Ngl2016",
 			"RadiX",
 			"MokaAkashiyaPT",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -607,7 +608,7 @@
 	"botpasswords-restriction-failed": "Restrições da palavra-passe de robô impedem esta autenticação.",
 	"botpasswords-invalid-name": "O nome de utilizador especificado não contém o separador de palavra-passe de robô (\"$1\").",
 	"botpasswords-not-exist": "O utilizador \"$1\" não tem uma palavra-passe para o robô chamado \"$2\".",
-	"botpasswords-needs-reset": "A palavra-passe de robô, para o robô de nome \"$2\" {{GENDER:$1|do utilizador|da utilizadora}} \"$1\" deve ser redefinida.",
+	"botpasswords-needs-reset": "A palavra-passe do robô de nome \"$2\" {{GENDER:$1|do utilizador|da utilizadora}} \"$1\" deve ser redefinida.",
 	"resetpass_forbidden": "As palavras-passe não podem ser alteradas",
 	"resetpass_forbidden-reason": "As palavras-passe não podem ser alteradas: $1",
 	"resetpass-no-info": "Precisa de iniciar sessão para aceder diretamente a esta página.",
@@ -703,8 +704,8 @@
 	"subject-preview": "Antevisão do assunto:",
 	"previewerrortext": "Ocorreu um erro enquanto tentava antever as suas alterações.",
 	"blockedtitle": "O utilizador está bloqueado",
-	"blockedtext": "<strong>O seu nome de utilizador ou endereço IP foram bloqueados.</strong>\n\nO bloqueio foi realizado por $1.\nO motivo apresentado foi <em>$2</em>.\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\nNote que para utilizar a funcionalidade \"Contactar utilizador\" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
-	"autoblockedtext": "O seu endereço IP foi bloqueado de forma automática porque foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.\nO motivo apresentado foi:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\n\nNote que para utilizar a funcionalidade \"Contactar utilizador\" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\n\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
+	"blockedtext": "<strong>O seu nome de utilizador ou endereço IP foram bloqueados.</strong>\n\nO bloqueio foi realizado por $1.\nO motivo apresentado foi <em>$2</em>.\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\nNote que para utilizar a funcionalidade \"{{int:emailuser}}\" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
+	"autoblockedtext": "O seu endereço IP foi bloqueado de forma automática porque foi utilizado recentemente por outro utilizador, o qual foi bloqueado por $1.\nO motivo apresentado foi:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\n\nNote que para utilizar a funcionalidade \"{{int:emailuser}}\" precisa de ter um endereço de correio eletrónico válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\n\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
 	"systemblockedtext": "O seu nome de utilizador ou endereço IP foram bloqueados automaticamente pelo MediaWiki.\nO motivo fornecido é:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nO seu endereço IP atual é $3.\nInclua todos os detalhes acima em quaisquer contactos sobre este assunto, por favor.",
 	"blockednoreason": "sem motivo especificado",
 	"whitelistedittext": "Precisa de $1 para poder editar páginas.",
