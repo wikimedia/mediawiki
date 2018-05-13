@@ -473,6 +473,10 @@ class BotPassword implements IDBAccessObject {
 			return Status::newFatal( 'nosuchuser', $name );
 		}
 
+		if ( $user->isLocked() ) {
+			return Status::newFatal( 'botpasswords-locked' );
+		}
+
 		// Throttle
 		$throttle = null;
 		if ( !empty( $wgPasswordAttemptThrottle ) ) {
