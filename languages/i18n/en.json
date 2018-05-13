@@ -561,6 +561,7 @@
 	"botpasswords-invalid-name": "The username specified does not contain the bot password separator (\"$1\").",
 	"botpasswords-not-exist": "User \"$1\" does not have a bot password named \"$2\".",
 	"botpasswords-needs-reset": "The bot password for bot name \"$2\" of {{GENDER:$1|user}} \"$1\" must be reset.",
+	"botpasswords-locked": "You cannot login with a bot password as your account is locked.",
 	"resetpass_forbidden": "Passwords cannot be changed",
 	"resetpass_forbidden-reason": "Passwords cannot be changed: $1",
 	"resetpass-no-info": "You must be logged in to access this page directly.",
