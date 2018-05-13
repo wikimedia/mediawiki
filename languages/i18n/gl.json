@@ -26,7 +26,8 @@
 			"Luan",
 			"Hamilton Abreu",
 			"Athena in Wonderland",
-			"Navhy"
+			"Navhy",
+			"PokéDex Nacional"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -63,7 +64,7 @@
 	"tog-watchlisthideminor": "Agochar as edicións pequenas na lista de vixilancia",
 	"tog-watchlisthideliu": "Agochar as edicións dos usuarios rexistrados na lista de vixilancia",
 	"tog-watchlistreloadautomatically": "Recargar a lista de vixilancia automaticamente cando se produza un cambio nun filtro (necesítase JavaScript)",
-	"tog-watchlistunwatchlinks": "Engadir ligazóns directos para vixiar ou deixar de vixiar as entradas da lista de páxinas vixiadas (é necesario JavaScript para activar a funcionalidade)",
+	"tog-watchlistunwatchlinks": "Engadir ligazóns directos para vixiar ou deixar de vixiar ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) as entradas da lista de páxinas vixiadas (é preciso JavaScript para activar a funcionalidade)",
 	"tog-watchlisthideanons": "Agochar as edicións dos usuarios anónimos na lista de vixilancia",
 	"tog-watchlisthidepatrolled": "Agochar as edicións patrulladas na lista de vixilancia",
 	"tog-watchlisthidecategorization": "Agochar a categorización das páxinas",
@@ -532,6 +533,7 @@
 	"botpasswords-existing": "Contrasinais de bots existentes",
 	"botpasswords-createnew": "Crear un novo contrasinal de bot",
 	"botpasswords-editexisting": "Editar un contrasinal de bot xa existente",
+	"botpasswords-label-needsreset": "(o contrasinal precisa ser redefinido)",
 	"botpasswords-label-appid": "Nome do bot:",
 	"botpasswords-label-create": "Crear",
 	"botpasswords-label-update": "Actualizar",

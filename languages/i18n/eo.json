@@ -548,6 +548,7 @@
 	"botpasswords-existing": "Ekzistantaj robotaj pasvortoj",
 	"botpasswords-createnew": "Krei novan robotan pasvorton",
 	"botpasswords-editexisting": "Redakti ekzistantan robotan pasvorton",
+	"botpasswords-label-needsreset": "(oni devas rekomencigi la pasvorton)",
 	"botpasswords-label-appid": "Robota nomo:",
 	"botpasswords-label-create": "Krei",
 	"botpasswords-label-update": "Ĝisdatigi",

@@ -586,6 +586,7 @@
 	"botpasswords-restriction-failed": "Les restriccions de contrasenyes de bots impedeixen aquest inici de sessió.",
 	"botpasswords-invalid-name": "El nom d'usuari especificat no conté el separador de contrasenya de bot («$1»).",
 	"botpasswords-not-exist": "L'usuari «$1» no té una contrasenya de bot anomenada «$2».",
+	"botpasswords-needs-reset": "Cal reinicialitzar la contrasenya del robot «$2» que pertany a {{GENDER:$1|l’usuari|la usuària}} «$1».",
 	"resetpass_forbidden": "No poden canviar-se les contrasenyes",
 	"resetpass_forbidden-reason": "Les contrasenyes no es poden canviar: $1",
 	"resetpass-no-info": "Heu d'estar registrats en un compte per a poder accedir directament a aquesta pàgina.",
