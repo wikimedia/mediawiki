@@ -759,6 +759,7 @@
 	"botpasswords-invalid-name": "Error message when a username lacking the separator character is passed to BotPassword. Parameters:\n* $1 - The separator character.",
 	"botpasswords-not-exist": "Error message when a username exists but does not a bot password for the given \"bot name\". Parameters:\n* $1 - username\n* $2 - bot name",
 	"botpasswords-needs-reset": "Error message when a bot password exists but needs to be reset. Parameters:\n* $1 - username\n* $2 - bot name",
+	"botpasswords-locked": "Shown in the event that the underlying account is locked",
 	"resetpass_forbidden": "Used as error message in changing password. Maybe the external auth plugin won't allow local password changes.",
 	"resetpass_forbidden-reason": "Like {{msg-mw|resetpass_forbidden}} but the auth provider gave a reason.\n\nParameters:\n* $1 - reason given by auth provider",
 	"resetpass-no-info": "Error message for [[Special:ChangePassword]].\n\nParameters:\n* $1 (unused) - a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description",
