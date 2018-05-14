@@ -43,8 +43,20 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @return int
+	 */
+	abstract protected function getMcrMigrationStage();
+
+	/**
+	 * @return string[]
+	 */
+	abstract protected function getMcrTablesToReset();
+
 	protected function setUp() {
 		global $wgContLang;
+
+		$this->tablesUsed += $this->getMcrTablesToReset();
 
 		parent::setUp();
 
@@ -72,10 +84,16 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			$this->getMcrMigrationStage()
+		);
 
 		MWNamespace::clearCaches();
 		// Reset namespace cache
 		$wgContLang->resetNamespaces();
+
+		$this->overrideMwServices();
 
 		if ( !$this->testPage ) {
 			/**
@@ -1346,6 +1364,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewKnownCurrent() {
 		// Setup the services
+		$this->resetGlobalServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
 		$db = wfGetDB( DB_MASTER );
