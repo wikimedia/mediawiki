@@ -2174,7 +2174,7 @@
 	"trackingcategories-disabled": "A categoria está desativada.",
 	"mailnologin": "Não existe endereço de envio",
 	"mailnologintext": "Precisa de estar [[Special:UserLogin|autenticado]] e ter um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio eletrónico a outros utilizadores.",
-	"emailuser": "Enviar correio eletrónico a {{GENDER:{{BASEPAGENAME}}|este utilizador|esta utilizadora|este(a) utilizador(a)}}",
+	"emailuser": "Enviar correio eletrónico a {{GENDER:{{BASEPAGENAME}}|este utilizador|esta utilizadora}}",
 	"emailuser-title-target": "Enviar correio eletrónico a {{GENDER:$1|este utilizador|esta utilizadora}}",
 	"emailuser-title-notarget": "Enviar correio eletrónico ao utilizador",
 	"emailpagetext": "Pode usar o formulário abaixo para enviar uma mensagem por correio eletrónico para {{GENDER:$1|este utilizador|esta utilizadora}}.\nO endereço de correio que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo do remetente da mensagem \"De:\", para que o destinatário lhe possa responder diretamente.",
