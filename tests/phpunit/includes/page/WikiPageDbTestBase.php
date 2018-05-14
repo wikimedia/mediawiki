@@ -30,10 +30,29 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				'iwlinks' ] );
 	}
 
+	/**
+	 * @return int
+	 */
+	abstract protected function getMcrMigrationStage();
+
+	/**
+	 * @return string[]
+	 */
+	abstract protected function getMcrTablesToReset();
+
 	protected function setUp() {
 		parent::setUp();
+
+		$this->tablesUsed += $this->getMcrTablesToReset();
+
 		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			$this->getMcrMigrationStage()
+		);
 		$this->pagesToDelete = [];
+
+		$this->overrideMwServices();
 	}
 
 	protected function tearDown() {

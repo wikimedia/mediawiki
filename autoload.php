@@ -853,6 +853,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
 	'MediaWikiVersionFetcher' => __DIR__ . '/includes/MediaWikiVersionFetcher.php',
+	'MediaWiki\\DB\\PatchFileLocation' => __DIR__ . '/includes/db/PatchFileLocation.php',
 	'MediaWiki\\Diff\\ComplexityException' => __DIR__ . '/includes/diff/ComplexityException.php',
 	'MediaWiki\\Diff\\WordAccumulator' => __DIR__ . '/includes/diff/WordAccumulator.php',
 	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/HeaderCallback.php',
