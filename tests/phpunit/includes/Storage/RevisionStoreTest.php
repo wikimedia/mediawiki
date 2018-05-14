@@ -20,13 +20,15 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $WANObjectCache
+	 * @param int $mcrMigrationStage
 	 *
 	 * @return RevisionStore
 	 */
 	private function getRevisionStore(
 		$loadBalancer = null,
 		$blobStore = null,
-		$WANObjectCache = null
+		$WANObjectCache = null,
+		$mcrMigrationStage = MIGRATION_OLD
 	) {
 		return new RevisionStore(
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
@@ -245,87 +247,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$store = $this->getRevisionStore();
 		$store->setContentHandlerUseDB( $contentHandlerUseDb );
 		$this->assertEquals( $expected, $store->getQueryInfo( $options ) );
-	}
-
-	private function getDefaultArchiveFields() {
-		return [
-			'ar_id',
-			'ar_page_id',
-			'ar_namespace',
-			'ar_title',
-			'ar_rev_id',
-			'ar_text_id',
-			'ar_timestamp',
-			'ar_minor_edit',
-			'ar_deleted',
-			'ar_len',
-			'ar_parent_id',
-			'ar_sha1',
-		];
-	}
-
-	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo_contentHandlerDb() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$store = $this->getRevisionStore();
-		$store->setContentHandlerUseDB( true );
-		$this->assertEquals(
-			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-						'ar_content_format',
-						'ar_content_model',
-					]
-				),
-				'joins' => [],
-			],
-			$store->getArchiveQueryInfo()
-		);
-	}
-
-	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo_noContentHandlerDb() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$store = $this->getRevisionStore();
-		$store->setContentHandlerUseDB( false );
-		$this->assertEquals(
-			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-					]
-				),
-				'joins' => [],
-			],
-			$store->getArchiveQueryInfo()
-		);
 	}
 
 	public function testGetTitle_successFromPageId() {
