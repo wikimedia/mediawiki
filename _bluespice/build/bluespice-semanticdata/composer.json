@@ -1,22 +1,22 @@
 {
 	"repositories": [{
-			"type": "composer",
-			"url": "https://packages.bluespice.com/"
-		}],
+		"type": "composer",
+		"url": "https://packages.bluespice.com/"
+	}],
 	"require": {
 		"hallowelt/blue-spice-s-m-w-connector": "dev-master",
-		"mediawiki/semantic-scribunto": "1",
+		"mediawiki/semantic-scribunto": "1.*",
 		"mediawiki/external-data": "dev-master",
 		"mediawiki/header-tabs": "dev-master",
 		"mediawiki/maps": "5.*",
 		"mediawiki/open-layers": "dev-master",
-		"mediawiki/page-forms": "4",
+		"mediawiki/page-forms": "4.*",
 		"mediawiki/page-schemas": "dev-master",
-		"mediawiki/semantic-breadcrumb-links": "1.4",
-		"mediawiki/semantic-compound-queries": "1",
-		"mediawiki/semantic-extra-special-properties": "1.5",
+		"mediawiki/semantic-breadcrumb-links": "1.4.*",
+		"mediawiki/semantic-compound-queries": "1.*",
+		"mediawiki/semantic-extra-special-properties": "1.5.*",
 		"mediawiki/semantic-internal-objects": "dev-master",
-		"mediawiki/semantic-media-wiki": "2.5",
-		"mediawiki/semantic-result-formats": "2.5"
+		"mediawiki/semantic-media-wiki": "2.5.*",
+		"mediawiki/semantic-result-formats": "2.5.*"
 	}
 }
