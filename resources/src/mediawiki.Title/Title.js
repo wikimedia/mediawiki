@@ -731,6 +731,22 @@
 	};
 
 	/**
+	 * Returns a simple regex that will match on characters and sequences invalid in titles.
+	 *
+	 * This regex is meant to be used when exact character(s), which make the title invalid,
+	 * need to be determined and extracted from the title.
+	 *
+	 * See MediaWikiTitleCodec::getTitleInvalidRegex
+	 *
+	 * @static
+	 * @since 1.32
+	 * @return {RegExp} Regex that will match on characters and sequences invalid in titles.
+	 */
+	Title.getTitleInvalidRegex = function () {
+		return rInvalid;
+	};
+
+	/**
 	 * Normalize a file extension to the common form, making it lowercase and checking some synonyms,
 	 * and ensure it's clean. Extensions with non-alphanumeric characters will be discarded.
 	 * Keep in sync with File::normalizeExtension() in PHP.
