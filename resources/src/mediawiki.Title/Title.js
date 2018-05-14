@@ -731,6 +731,13 @@
 	};
 
 	/**
+	 * @return {RegExp} Return rInvalid regular expression.
+	 */
+	Title.getInvalidRegex = function () {
+		return rInvalid;
+	};
+
+	/**
 	 * Normalize a file extension to the common form, making it lowercase and checking some synonyms,
 	 * and ensure it's clean. Extensions with non-alphanumeric characters will be discarded.
 	 * Keep in sync with File::normalizeExtension() in PHP.
