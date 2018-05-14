@@ -610,22 +610,26 @@ abstract class Skin extends ContextSource {
 	function getCategories() {
 		$out = $this->getOutput();
 		$catlinks = $this->getCategoryLinks();
+    
+    // Check if catlinks empty
+    if ($catlinks) {
 
-		// Check what we're showing
-		$allCats = $out->getCategoryLinks();
-		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
-						$this->getTitle()->getNamespace() == NS_CATEGORY;
+      // Check what we're showing
+      $allCats = $out->getCategoryLinks();
+      $showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
+              $this->getTitle()->getNamespace() == NS_CATEGORY;
 
-		$classes = [ 'catlinks' ];
-		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
-			$classes[] = 'catlinks-allhidden';
-		}
+      $classes = [ 'catlinks' ];
+      if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
+        $classes[] = 'catlinks-allhidden';
+      }
 
-		return Html::rawElement(
-			'div',
-			[ 'id' => 'catlinks', 'class' => $classes, 'data-mw' => 'interface' ],
-			$catlinks
-		);
+      return Html::rawElement(
+        'div',
+        [ 'id' => 'catlinks', 'class' => $classes, 'data-mw' => 'interface' ],
+        $catlinks
+      );
+    }
 	}
 
 	/**
