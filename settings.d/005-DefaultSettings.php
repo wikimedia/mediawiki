@@ -25,4 +25,4 @@ $GLOBALS['wgVerifyMimeType'] = false;
 $GLOBALS['wgAllowJavaUploads'] = true;
 
 //Skin specific
-$GLOBALS['wgDefaultSkin'] = 'bluespiceskin';
+$GLOBALS['wgDefaultSkin'] = 'bluespicecalumma';
