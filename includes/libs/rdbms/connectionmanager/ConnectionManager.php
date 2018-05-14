@@ -35,7 +35,7 @@ use InvalidArgumentException;
 class ConnectionManager {
 
 	/**
-	 * @var LoadBalancer
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -52,14 +52,14 @@ class ConnectionManager {
 	private $groups = [];
 
 	/**
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 * @param string|bool $domain Optional logical DB name, defaults to current wiki.
 	 *        This follows the convention for database names used by $loadBalancer.
 	 * @param string[] $groups see LoadBalancer::getConnection
 	 *
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( LoadBalancer $loadBalancer, $domain = false, array $groups = [] ) {
+	public function __construct( ILoadBalancer $loadBalancer, $domain = false, array $groups = [] ) {
 		if ( !is_string( $domain ) && $domain !== false ) {
 			throw new InvalidArgumentException( '$dbName must be a string, or false.' );
 		}
