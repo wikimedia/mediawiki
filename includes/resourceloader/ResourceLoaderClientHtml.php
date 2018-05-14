@@ -248,9 +248,10 @@ class ResourceLoaderClientHtml {
 	 * - Inline scripts can't be asynchronous.
 	 * - For styles, earlier is better.
 	 *
+	 * @param string $nonce From OutputPage::getCSPNonce()
 	 * @return string|WrappedStringList HTML
 	 */
-	public function getHeadHtml() {
+	public function getHeadHtml( $nonce ) {
 		$data = $this->getData();
 		$chunks = [];
 
@@ -259,13 +260,15 @@ class ResourceLoaderClientHtml {
 		// See also #getDocumentAttributes() and /resources/src/startup.js.
 		$chunks[] = Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );',
+			$nonce
 		);
 
 		// Inline RLQ: Set page variables
 		if ( $this->config ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( $this->config )
+				ResourceLoader::makeConfigSetScript( $this->config ),
+				$nonce
 			);
 		}
 
@@ -273,7 +276,8 @@ class ResourceLoaderClientHtml {
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeLoaderStateScript( $states )
+				ResourceLoader::makeLoaderStateScript( $states ),
+				$nonce
 			);
 		}
 
@@ -281,14 +285,16 @@ class ResourceLoaderClientHtml {
 		if ( $data['embed']['general'] ) {
 			$chunks[] = $this->getLoad(
 				$data['embed']['general'],
-				ResourceLoaderModule::TYPE_COMBINED
+				ResourceLoaderModule::TYPE_COMBINED,
+				$nonce
 			);
 		}
 
 		// Inline RLQ: Load general modules
 		if ( $data['general'] ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] )
+				Xml::encodeJsCall( 'mw.loader.load', [ $data['general'] ] ),
+				$nonce
 			);
 		}
 
@@ -296,7 +302,8 @@ class ResourceLoaderClientHtml {
 		if ( $data['scripts'] ) {
 			$chunks[] = $this->getLoad(
 				$data['scripts'],
-				ResourceLoaderModule::TYPE_SCRIPTS
+				ResourceLoaderModule::TYPE_SCRIPTS,
+				$nonce
 			);
 		}
 
@@ -304,7 +311,8 @@ class ResourceLoaderClientHtml {
 		if ( $data['styles'] ) {
 			$chunks[] = $this->getLoad(
 				$data['styles'],
-				ResourceLoaderModule::TYPE_STYLES
+				ResourceLoaderModule::TYPE_STYLES,
+				$nonce
 			);
 		}
 
@@ -312,7 +320,8 @@ class ResourceLoaderClientHtml {
 		if ( $data['embed']['styles'] ) {
 			$chunks[] = $this->getLoad(
 				$data['embed']['styles'],
-				ResourceLoaderModule::TYPE_STYLES
+				ResourceLoaderModule::TYPE_STYLES,
+				$nonce
 			);
 		}
 
@@ -324,6 +333,7 @@ class ResourceLoaderClientHtml {
 		$chunks[] = $this->getLoad(
 			'startup',
 			ResourceLoaderModule::TYPE_SCRIPTS,
+			$nonce,
 			$startupQuery
 		);
 
@@ -341,8 +351,8 @@ class ResourceLoaderClientHtml {
 		return self::makeContext( $this->context, $group, $type );
 	}
 
-	private function getLoad( $modules, $only, array $extraQuery = [] ) {
-		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery );
+	private function getLoad( $modules, $only, $nonce, array $extraQuery = [] ) {
+		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery, $nonce );
 	}
 
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
@@ -369,11 +379,12 @@ class ResourceLoaderClientHtml {
 	 * @param ResourceLoaderContext $mainContext
 	 * @param array $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
-	 * @param array $extraQuery [optional] Array with extra query parameters for the request
+	 * @param array $extraQuery Array with extra query parameters for the request
+	 * @param string $nonce See OutputPage::getCSPNonce() [Since 1.32]
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,
-		array $extraQuery = []
+		array $extraQuery, $nonce
 	) {
 		$rl = $mainContext->getResourceLoader();
 		$chunks = [];
@@ -385,7 +396,7 @@ class ResourceLoaderClientHtml {
 			$chunks = [];
 			// Recursively call us for every item
 			foreach ( $modules as $name ) {
-				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery );
+				$chunks[] = self::makeLoad( $mainContext, [ $name ], $only, $extraQuery, $nonce );
 			}
 			return new WrappedStringList( "\n", $chunks );
 		}
@@ -427,7 +438,8 @@ class ResourceLoaderClientHtml {
 							);
 						} else {
 							$chunks[] = ResourceLoader::makeInlineScript(
-								$rl->makeModuleResponse( $context, $moduleSet )
+								$rl->makeModuleResponse( $context, $moduleSet ),
+								$nonce
 							);
 						}
 					} else {
@@ -461,7 +473,8 @@ class ResourceLoaderClientHtml {
 								] );
 							} else {
 								$chunk = ResourceLoader::makeInlineScript(
-									Xml::encodeJsCall( 'mw.loader.load', [ $url ] )
+									Xml::encodeJsCall( 'mw.loader.load', [ $url ] ),
+									$nonce
 								);
 							}
 						}

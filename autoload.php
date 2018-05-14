@@ -304,6 +304,7 @@ $wgAutoloadLocalClasses = [
 	'Content' => __DIR__ . '/includes/content/Content.php',
 	'ContentHandler' => __DIR__ . '/includes/content/ContentHandler.php',
 	'ContentModelLogFormatter' => __DIR__ . '/includes/logging/ContentModelLogFormatter.php',
+	'ContentSecurityPolicy' => __DIR__ . '/includes/ContentSecurityPolicy.php',
 	'ContextSource' => __DIR__ . '/includes/context/ContextSource.php',
 	'ContribsPager' => __DIR__ . '/includes/specials/pagers/ContribsPager.php',
 	'ConvertExtensionToRegistration' => __DIR__ . '/maintenance/convertExtensionToRegistration.php',

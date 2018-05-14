@@ -785,7 +785,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$out->addHTML(
 				ResourceLoader::makeInlineScript(
-					ResourceLoader::makeMessageSetScript( $messages )
+					ResourceLoader::makeMessageSetScript( $messages ),
+					$out->getCSPNonce()
 				)
 			);
 
