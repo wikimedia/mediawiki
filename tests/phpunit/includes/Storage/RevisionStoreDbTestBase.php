@@ -17,6 +17,7 @@ use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use PHPUnit_Framework_MockObject_MockObject;
 use Revision;
 use TestUserRegistry;
 use Title;
@@ -31,8 +32,30 @@ use WikitextContent;
 
 /**
  * @group Database
+ * @group RevisionStore
  */
-class RevisionStoreDbTest extends MediaWikiTestCase {
+abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
+
+	/**
+	 * @return int
+	 */
+	abstract protected function getMcrMigrationStage();
+
+	/**
+	 * @return bool
+	 */
+	protected function getContentHandlerUseDB() {
+		return true;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	abstract protected function getMcrTablesToReset();
+
+	public function needsDB() {
+		return true;
+	}
 
 	public function setUp() {
 		parent::setUp();
@@ -40,10 +63,24 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
+
+		$this->tablesUsed += $this->getMcrTablesToReset();
+
+		$this->setMwGlobals(
+			'wgMultiContentRevisionSchemaMigrationStage',
+			$this->getMcrMigrationStage()
+		);
+
+		$this->setMwGlobals(
+			'wgContentHandlerUseDB',
+			$this->getContentHandlerUseDB()
+		);
+
+		$this->overrideMwServices();
 	}
 
 	/**
-	 * @return LoadBalancer
+	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getLoadBalancerMock( array $server ) {
 		$lb = $this->getMockBuilder( LoadBalancer::class )
@@ -61,7 +98,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return Database
+	 * @return Database|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private function getDatabaseMock( array $params ) {
 		$db = $this->getMockBuilder( DatabaseSqlite::class )
@@ -128,6 +165,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		);
 		$db = $loadBalancer->getConnection( DB_REPLICA );
 
+		/** @var SqlBlobStore $blobStore */
 		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -241,10 +279,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		return $rev;
 	}
 
-	private function getRandomCommentStoreComment() {
-		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
-	}
-
 	public function provideInsertRevisionOn_successes() {
 		yield 'Bare minimum revision insertion' => [
 			Title::newFromText( 'UTPage' ),
@@ -271,19 +305,43 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		];
 	}
 
+	private function getRandomCommentStoreComment() {
+		return CommentStoreComment::newUnsavedComment( __METHOD__ . '.' . rand( 0, 1000 ) );
+	}
+
 	/**
 	 * @dataProvider provideInsertRevisionOn_successes
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
-	public function testInsertRevisionOn_successes( Title $title, array $revDetails = [] ) {
+	public function testInsertRevisionOn_successes(
+		Title $title,
+		array $revDetails = []
+	) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
+		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
 
 		$this->assertLinkTargetsEqual( $title, $return->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $rev, $return );
 		$this->assertRevisionCompleteness( $return );
+		$this->assertRevisionExistsInDatabase( $return );
+	}
+
+	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		$this->assertSelect(
+			'revision', [ 'count(*)' ], [ 'rev_id' => $rev->getId() ], [ [ '1' ] ]
+		);
+	}
+
+	/**
+	 * @param SlotRecord $a
+	 * @param SlotRecord $b
+	 */
+	protected function assertSameSlotContent( SlotRecord $a, SlotRecord $b ) {
+		// Assert that the same blob address has been used.
+		$this->assertSame( $a->getAddress(), $b->getAddress() );
 	}
 
 	/**
@@ -299,6 +357,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 			'user' => true,
 		];
 
+		$this->overrideMwServices();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Insert the first revision
@@ -314,16 +373,17 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertLinkTargetsEqual( $title, $secondReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revTwo, $secondReturn );
 
-		// Assert that the same blob address has been used.
-		$this->assertEquals(
-			$firstReturn->getSlot( 'main' )->getAddress(),
-			$secondReturn->getSlot( 'main' )->getAddress()
-		);
+		$firstMainSlot = $firstReturn->getSlot( 'main' );
+		$secondMainSlot = $secondReturn->getSlot( 'main' );
+
+		$this->assertSameSlotContent( $firstMainSlot, $secondMainSlot );
+
 		// And that different revisions have been created.
-		$this->assertNotSame(
-			$firstReturn->getId(),
-			$secondReturn->getId()
-		);
+		$this->assertNotSame( $firstReturn->getId(), $secondReturn->getId() );
+
+		// Make sure the slot rows reference the correct revision
+		$this->assertSame( $firstReturn->getId(), $firstMainSlot->getRevision() );
+		$this->assertSame( $secondReturn->getId(), $secondMainSlot->getRevision() );
 	}
 
 	public function provideInsertRevisionOn_failures() {
@@ -382,7 +442,8 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	public function testInsertRevisionOn_failures(
 		Title $title,
 		array $revDetails = [],
-		Exception $exception ) {
+		Exception $exception
+	) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -397,12 +458,12 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 	public function provideNewNullRevision() {
 		yield [
-			Title::newFromText( 'UTPage' ),
+			Title::newFromText( 'UTPage_notAutoCreated' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment1' ),
 			true,
 		];
 		yield [
-			Title::newFromText( 'UTPage' ),
+			Title::newFromText( 'UTPage_notAutoCreated' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment2', [ 'a' => 1 ] ),
 			false,
 		];
@@ -413,10 +474,22 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newNullRevision
 	 */
 	public function testNewNullRevision( Title $title, $comment, $minor ) {
+		$this->overrideMwServices();
+
+		$page = WikiPage::factory( $title );
+		$status = $page->doEditContent(
+			new WikitextContent( __METHOD__ ),
+			__METHOD__,
+			0,
+			false
+		);
+		/** @var Revision $rev */
+		$rev = $status->value['revision'];
+
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
 
-		$parent = $store->getRevisionByTitle( $title );
+		$parent = $store->getRevisionById( $rev->getId() );
 		$record = $store->newNullRevision(
 			wfGetDB( DB_MASTER ),
 			$title,
@@ -437,7 +510,7 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $slot->isInherited(), 'isInherited' );
 		$this->assertSame( $parentSlot->getOrigin(), $slot->getOrigin(), 'getOrigin' );
-		$this->assertSame( $parentSlot->getAddress(), $slot->getAddress(), 'getAddress' );
+		$this->assertSameSlotContent( $parentSlot, $slot );
 	}
 
 	/**
@@ -596,14 +669,14 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
 	}
 
-	private function revisionToRow( Revision $rev ) {
+	protected function revisionToRow( Revision $rev ) {
 		$page = WikiPage::factory( $rev->getTitle() );
 
 		return (object)[
 			'rev_id' => (string)$rev->getId(),
 			'rev_page' => (string)$rev->getPage(),
 			'rev_text_id' => (string)$rev->getTextId(),
-			'rev_timestamp' => (string)$rev->getTimestamp(),
+			'rev_timestamp' => $this->db->timestamp( $rev->getTimestamp() ),
 			'rev_user_text' => (string)$rev->getUserText(),
 			'rev_user' => (string)$rev->getUser(),
 			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
@@ -659,9 +732,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->overrideMwServices();
-
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
@@ -710,9 +780,6 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_WRITE_BOTH );
-		$this->overrideMwServices();
-
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$text = __METHOD__ . 'b-ä';
 		/** @var Revision $rev */
@@ -1277,6 +1344,157 @@ class RevisionStoreDbTest extends MediaWikiTestCase {
 		$this->setService( 'BlobStoreFactory', $factory );
 
 		$this->testNewMutableRevisionFromArray( $array );
+	}
+
+	protected function getDefaultQueryFields( $returnTextIdField = true ) {
+		$fields = [
+			'rev_id',
+			'rev_page',
+			'rev_timestamp',
+			'rev_minor_edit',
+			'rev_deleted',
+			'rev_len',
+			'rev_parent_id',
+			'rev_sha1',
+		];
+		if ( $returnTextIdField ) {
+			$fields[] = 'rev_text_id';
+		}
+		return $fields;
+	}
+
+	protected function getCommentQueryFields() {
+		return [
+			'rev_comment_text' => 'rev_comment',
+			'rev_comment_data' => 'NULL',
+			'rev_comment_cid' => 'NULL',
+		];
+	}
+
+	protected function getActorQueryFields() {
+		return [
+			'rev_user' => 'rev_user',
+			'rev_user_text' => 'rev_user_text',
+			'rev_actor' => 'NULL',
+		];
+	}
+
+	protected function getContentHandlerQueryFields() {
+		return [
+			'rev_content_format',
+			'rev_content_model',
+		];
+	}
+
+	abstract public function provideGetQueryInfo();
+
+	/**
+	 * @dataProvider provideGetQueryInfo
+	 * @covers \MediaWiki\Storage\RevisionStore::getQueryInfo
+	 */
+	public function testGetQueryInfo( $options, $expected ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$queryInfo = $store->getQueryInfo( $options );
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$queryInfo['tables']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$queryInfo['fields']
+		);
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$queryInfo['joins']
+		);
+	}
+
+	protected function getDefaultArchiveFields( $returnTextFields = true ) {
+		$fields = [
+			'ar_id',
+			'ar_page_id',
+			'ar_namespace',
+			'ar_title',
+			'ar_rev_id',
+			'ar_timestamp',
+			'ar_minor_edit',
+			'ar_deleted',
+			'ar_len',
+			'ar_parent_id',
+			'ar_sha1',
+		];
+		if ( $returnTextFields ) {
+			$fields[] = 'ar_text_id';
+		}
+		return $fields;
+	}
+
+	abstract public function provideGetArchiveQueryInfo();
+
+	/**
+	 * @dataProvider provideGetArchiveQueryInfo
+	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
+	 */
+	public function testGetArchiveQueryInfo( $expected ) {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$archiveQueryInfo = $store->getArchiveQueryInfo();
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['tables'],
+			$archiveQueryInfo['tables']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['fields'],
+			$archiveQueryInfo['fields']
+		);
+
+		$this->assertArrayEqualsIgnoringIntKeyOrder(
+			$expected['joins'],
+			$archiveQueryInfo['joins']
+		);
+	}
+
+	/**
+	 * Assert that the two arrays passed are equal, ignoring the order of the values that integer
+	 * keys.
+	 *
+	 * Note: Failures of this assertion can be slightly confusing as the arrays are actually
+	 * split into a string key array and an int key array before assertions occur.
+	 *
+	 * @param array $expected
+	 * @param array $actual
+	 */
+	private function assertArrayEqualsIgnoringIntKeyOrder( array $expected, array $actual ) {
+		$this->objectAssociativeSort( $expected );
+		$this->objectAssociativeSort( $actual );
+
+		// Separate the int key values from the string key values so that assertion failures are
+		// easier to understand.
+		$expectedIntKeyValues = [];
+		$actualIntKeyValues = [];
+
+		// Remove all int keys and re add them at the end after sorting by value
+		// This will result in all int keys being in the same order with same ints at the end of
+		// the array
+		foreach ( $expected as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $expected[$key] );
+				$expectedIntKeyValues[] = $value;
+			}
+		}
+		foreach ( $actual as $key => $value ) {
+			if ( is_int( $key ) ) {
+				unset( $actual[$key] );
+				$actualIntKeyValues[] = $value;
+			}
+		}
+
+		$this->assertArrayEquals( $expected, $actual, false, true );
+		$this->assertArrayEquals( $expectedIntKeyValues, $actualIntKeyValues, false, true );
 	}
 
 }

@@ -2,17 +2,21 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use CommentStore;
 use HashBagOStuff;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionAccessException;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
+use MWException;
 use Title;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 class RevisionStoreTest extends MediaWikiTestCase {
 
@@ -20,19 +24,24 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @param LoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $WANObjectCache
+	 * @param int $mcrMigrationStage
 	 *
 	 * @return RevisionStore
 	 */
 	private function getRevisionStore(
 		$loadBalancer = null,
 		$blobStore = null,
-		$WANObjectCache = null
+		$WANObjectCache = null,
+		$mcrMigrationStage = MIGRATION_OLD
 	) {
 		return new RevisionStore(
 			$loadBalancer ? $loadBalancer : $this->getMockLoadBalancer(),
 			$blobStore ? $blobStore : $this->getMockSqlBlobStore(),
 			$WANObjectCache ? $WANObjectCache : $this->getHashWANObjectCache(),
 			MediaWikiServices::getInstance()->getCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$mcrMigrationStage,
 			MediaWikiServices::getInstance()->getActorMigration()
 		);
 	}
@@ -61,271 +70,53 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			->disableOriginalConstructor()->getMock();
 	}
 
+	/**
+	 * @return \PHPUnit_Framework_MockObject_MockObject|CommentStore
+	 */
+	private function getMockCommentStore() {
+		return $this->getMockBuilder( CommentStore::class )
+			->disableOriginalConstructor()->getMock();
+	}
+
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
 	}
 
+	public function provideSetContentHandlerUseDB() {
+		return [
+			// ContentHandlerUseDB can be true of false pre migration
+			[ false, MIGRATION_OLD, false ],
+			[ true, MIGRATION_OLD, false ],
+			// During migration it can not be false
+			[ false, MIGRATION_WRITE_BOTH, true ],
+			// But it can be true
+			[ true, MIGRATION_WRITE_BOTH, false ],
+		];
+	}
+
 	/**
+	 * @dataProvider provideSetContentHandlerUseDB
 	 * @covers \MediaWiki\Storage\RevisionStore::getContentHandlerUseDB
 	 * @covers \MediaWiki\Storage\RevisionStore::setContentHandlerUseDB
 	 */
-	public function testGetSetContentHandlerDb() {
-		$store = $this->getRevisionStore();
-		$this->assertTrue( $store->getContentHandlerUseDB() );
-		$store->setContentHandlerUseDB( false );
-		$this->assertFalse( $store->getContentHandlerUseDB() );
-		$store->setContentHandlerUseDB( true );
-		$this->assertTrue( $store->getContentHandlerUseDB() );
-	}
+	public function testSetContentHandlerUseDB( $contentHandlerDb, $migrationMode, $expectedFail ) {
+		if ( $expectedFail ) {
+			$this->setExpectedException( MWException::class );
+		}
 
-	private function getDefaultQueryFields() {
-		return [
-			'rev_id',
-			'rev_page',
-			'rev_text_id',
-			'rev_timestamp',
-			'rev_minor_edit',
-			'rev_deleted',
-			'rev_len',
-			'rev_parent_id',
-			'rev_sha1',
-		];
-	}
-
-	private function getCommentQueryFields() {
-		return [
-			'rev_comment_text' => 'rev_comment',
-			'rev_comment_data' => 'NULL',
-			'rev_comment_cid' => 'NULL',
-		];
-	}
-
-	private function getActorQueryFields() {
-		return [
-			'rev_user' => 'rev_user',
-			'rev_user_text' => 'rev_user_text',
-			'rev_actor' => 'NULL',
-		];
-	}
-
-	private function getContentHandlerQueryFields() {
-		return [
-			'rev_content_format',
-			'rev_content_model',
-		];
-	}
-
-	public function provideGetQueryInfo() {
-		yield [
-			true,
-			[],
-			[
-				'tables' => [ 'revision' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields(),
-					$this->getContentHandlerQueryFields()
-				),
-				'joins' => [],
-			]
-		];
-		yield [
-			false,
-			[],
-			[
-				'tables' => [ 'revision' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields()
-				),
-				'joins' => [],
-			]
-		];
-		yield [
-			false,
-			[ 'page' ],
-			[
-				'tables' => [ 'revision', 'page' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields(),
-					[
-						'page_namespace',
-						'page_title',
-						'page_id',
-						'page_latest',
-						'page_is_redirect',
-						'page_len',
-					]
-				),
-				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
-				],
-			]
-		];
-		yield [
-			false,
-			[ 'user' ],
-			[
-				'tables' => [ 'revision', 'user' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields(),
-					[
-						'user_name',
-					]
-				),
-				'joins' => [
-					'user' => [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
-				],
-			]
-		];
-		yield [
-			false,
-			[ 'text' ],
-			[
-				'tables' => [ 'revision', 'text' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields(),
-					[
-						'old_text',
-						'old_flags',
-					]
-				),
-				'joins' => [
-					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
-				],
-			]
-		];
-		yield [
-			true,
-			[ 'page', 'user', 'text' ],
-			[
-				'tables' => [ 'revision', 'page', 'user', 'text' ],
-				'fields' => array_merge(
-					$this->getDefaultQueryFields(),
-					$this->getCommentQueryFields(),
-					$this->getActorQueryFields(),
-					$this->getContentHandlerQueryFields(),
-					[
-						'page_namespace',
-						'page_title',
-						'page_id',
-						'page_latest',
-						'page_is_redirect',
-						'page_len',
-						'user_name',
-						'old_text',
-						'old_flags',
-					]
-				),
-				'joins' => [
-					'page' => [ 'INNER JOIN', [ 'page_id = rev_page' ] ],
-					'user' => [ 'LEFT JOIN', [ 'rev_user != 0', 'user_id = rev_user' ] ],
-					'text' => [ 'INNER JOIN', [ 'rev_text_id=old_id' ] ],
-				],
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetQueryInfo
-	 * @covers \MediaWiki\Storage\RevisionStore::getQueryInfo
-	 */
-	public function testGetQueryInfo( $contentHandlerUseDb, $options, $expected ) {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$store = $this->getRevisionStore();
-		$store->setContentHandlerUseDB( $contentHandlerUseDb );
-		$this->assertEquals( $expected, $store->getQueryInfo( $options ) );
-	}
-
-	private function getDefaultArchiveFields() {
-		return [
-			'ar_id',
-			'ar_page_id',
-			'ar_namespace',
-			'ar_title',
-			'ar_rev_id',
-			'ar_text_id',
-			'ar_timestamp',
-			'ar_minor_edit',
-			'ar_deleted',
-			'ar_len',
-			'ar_parent_id',
-			'ar_sha1',
-		];
-	}
-
-	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo_contentHandlerDb() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$store = $this->getRevisionStore();
-		$store->setContentHandlerUseDB( true );
-		$this->assertEquals(
-			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-						'ar_content_format',
-						'ar_content_model',
-					]
-				),
-				'joins' => [],
-			],
-			$store->getArchiveQueryInfo()
+		$store = new RevisionStore(
+			$this->getMockLoadBalancer(),
+			$this->getMockSqlBlobStore(),
+			$this->getHashWANObjectCache(),
+			$this->getMockCommentStore(),
+			MediaWikiServices::getInstance()->getContentModelStore(),
+			MediaWikiServices::getInstance()->getSlotRoleStore(),
+			$migrationMode,
+			MediaWikiServices::getInstance()->getActorMigration()
 		);
-	}
 
-	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testGetArchiveQueryInfo_noContentHandlerDb() {
-		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
-		$this->overrideMwServices();
-		$store = $this->getRevisionStore();
-		$store->setContentHandlerUseDB( false );
-		$this->assertEquals(
-			[
-				'tables' => [
-					'archive'
-				],
-				'fields' => array_merge(
-					$this->getDefaultArchiveFields(),
-					[
-						'ar_comment_text' => 'ar_comment',
-						'ar_comment_data' => 'NULL',
-						'ar_comment_cid' => 'NULL',
-						'ar_user_text' => 'ar_user_text',
-						'ar_user' => 'ar_user',
-						'ar_actor' => 'NULL',
-					]
-				),
-				'joins' => [],
-			],
-			$store->getArchiveQueryInfo()
-		);
+		$store->setContentHandlerUseDB( $contentHandlerDb );
+		$this->assertSame( $contentHandlerDb, $store->getContentHandlerUseDB() );
 	}
 
 	public function testGetTitle_successFromPageId() {
@@ -687,6 +478,45 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			];
 
 		return (object)$row;
+	}
+
+	public function provideMigrationConstruction() {
+		return [
+			[ MIGRATION_OLD, false ],
+			[ MIGRATION_WRITE_BOTH, false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideMigrationConstruction
+	 */
+	public function testMigrationConstruction( $migration, $expectException ) {
+		if ( $expectException ) {
+			$this->setExpectedException( InvalidArgumentException::class );
+		}
+		$loadBalancer = $this->getMockLoadBalancer();
+		$blobStore = $this->getMockSqlBlobStore();
+		$cache = $this->getHashWANObjectCache();
+		$commentStore = $this->getMockCommentStore();
+		$contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$store = new RevisionStore(
+			$loadBalancer,
+			$blobStore,
+			$cache,
+			$commentStore,
+			MediaWikiServices::getInstance()->getActorMigration()
+		);
+		if ( !$expectException ) {
+			$store = TestingAccessWrapper::newFromObject( $store );
+			$this->assertSame( $loadBalancer, $store->loadBalancer );
+			$this->assertSame( $blobStore, $store->blobStore );
+			$this->assertSame( $cache, $store->cache );
+			$this->assertSame( $commentStore, $store->commentStore );
+			$this->assertSame( $contentModelStore, $store->contentModelStore );
+			$this->assertSame( $slotRoleStore, $store->slotRoleStore );
+			$this->assertSame( $migration, $store->mcrMigrationStage );
+		}
 	}
 
 }
