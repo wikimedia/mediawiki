@@ -6,10 +6,10 @@
 	"require": {
 		"hallowelt/filter-special-pages": "dev-REL1_31",
 		"mediawiki/arrays": "dev-REL1_31",
-		"mediawiki/dynamic-page-list": "3.0",
+		"mediawiki/dynamic-page-list": "3.1.3",
 		"mediawiki/echo": "dev-REL1_31",
 		"mediawiki/edit-notify": "dev-REL1_31",
-		"mediawiki/embed-video": "2.7",
+		"mediawiki/embed-video": "2.7.3",
 		"mediawiki/hit-counters": "dev-REL1_31",
 		"mediawiki/image-map-edit": "dev-REL1_31",
 		"mediawiki/lockdown": "dev-REL1_31",
