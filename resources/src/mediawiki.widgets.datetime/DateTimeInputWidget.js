@@ -353,7 +353,7 @@
 				sz = ( spec.size * 1.15 ) + 'ch';
 			} else {
 				// Add a little for padding
-				sz = ( spec.size * 1.15 ) + 'ch';
+				sz = ( spec.size * 1.5 ) + 'ch';
 			}
 			if ( spec.editable && spec.type !== 'static' ) {
 				if ( spec.type === 'boolean' || spec.type === 'toggleLocal' ) {
