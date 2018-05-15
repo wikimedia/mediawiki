@@ -569,6 +569,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 					'el_from' => $this->mId,
 					'el_to' => $url,
 					'el_index' => $index,
+					'el_index_60' => substr( $index, 0, 60 ),
 				];
 			}
 		}
