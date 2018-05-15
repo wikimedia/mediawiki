@@ -4179,5 +4179,6 @@
 	"gotointerwiki-invalid": "The specified title was invalid.",
 	"gotointerwiki-external": "You are about to leave {{SITENAME}} to visit [[$2]] which is a separate website.\n\n[$1 Click here to continue on to $1].",
 	"undelete-cantedit": "You cannot undelete this page as you are not allowed to edit this page.",
-	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page."
+	"undelete-cantcreate": "You cannot undelete this page as there is no existing page with this name and you are not allowed to create this page.",
+	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users."
 }
