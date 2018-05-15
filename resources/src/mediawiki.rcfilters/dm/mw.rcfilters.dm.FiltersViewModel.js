@@ -394,6 +394,7 @@
 					model.parameterMap[ filterItem.getParamName() ] = filterItem;
 				} );
 			} else if (
+				groupModel.getType() === 'arbitrary_string_options' ||
 				groupModel.getType() === 'string_options' ||
 				groupModel.getType() === 'single_option'
 			) {

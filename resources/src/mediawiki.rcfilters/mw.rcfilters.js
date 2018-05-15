@@ -18,6 +18,26 @@
 
 				return arr;
 			},
+			normalizeArbitraryParamOption: function ( givenOptions ) {
+				var result = [];
+				if ( givenOptions.indexOf( 'all' ) > -1 ) {
+					return [ 'all' ];
+				}
+
+				// Get rid of any dupe parameter, only output unique ones
+				// Example: param=val1,val2,val1
+				// Result: param=val1,val2
+				givenOptions.forEach( function ( value ) {
+					if (
+						result.indexOf( value ) === -1
+					) {
+						result.push( value );
+					}
+				} );
+
+				return result;
+			},
+
 			normalizeParamOptions: function ( givenOptions, legalOptions ) {
 				var result = [];
 

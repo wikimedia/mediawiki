@@ -95,6 +95,17 @@
 				{ name: 'group7option2', label: 'group7option2-label', description: 'group7option2-desc', cssClass: 'group7opt2class' },
 				{ name: 'group7option3', label: 'group7option3-label', description: 'group7option3-desc', cssClass: 'group7opt3class' }
 			]
+		}, {
+			name: 'group8',
+			type: 'arbitrary_string_options',
+			separator: '|',
+			default: 'filter13',
+			filters: [
+				// NOTE: The entire group has no highlight supported				
+				{ name: 'filter13', label: 'group8filter13-label', description: 'group8filter13-desc' },
+				{ name: 'filter14', label: 'group8filter14-label', description: 'group8filter14-desc' },
+				{ name: 'filter15', label: 'group8filter15-label', description: 'group8filter15-desc' }
+			]
 		} ],
 		shortFilterDefinition = [ {
 			name: 'group1',
@@ -140,6 +151,7 @@
 			group3: 'filter8',
 			group4: 'option2',
 			group5: 'option1',
+			group8: 'filter13',
 			namespace: ''
 		},
 		baseParamRepresentation = {
@@ -156,6 +168,7 @@
 			group6option2: '1',
 			group6option3: '1',
 			group7: 'group7option2',
+			group8: '',
 			namespace: ''
 		},
 		emptyParamRepresentation = {
@@ -172,6 +185,7 @@
 			group6option2: '0',
 			group6option3: '0',
 			group7: '',
+			group8: '',
 			namespace: '',
 			// Null highlights
 			group1__filter1_color: null,
@@ -195,6 +209,9 @@
 			group7__group7option1_color: null,
 			group7__group7option2_color: null,
 			group7__group7option3_color: null,
+			group8__filter13_color: null,
+			group8__filter14_color: null,
+			group8__filter15_color: null,
 			namespace__0_color: null,
 			namespace__1_color: null,
 			namespace__2_color: null,
@@ -224,6 +241,9 @@
 			group7__group7option1: false,
 			group7__group7option2: true,
 			group7__group7option3: false,
+			group8__filter13: false,
+			group8__filter14: false,
+			group8__filter15: false,
 			namespace__0: false,
 			namespace__1: false,
 			namespace__2: false,
@@ -251,6 +271,9 @@
 			group7__group7option1: { selected: false, conflicted: false, included: false },
 			group7__group7option2: { selected: true, conflicted: false, included: false },
 			group7__group7option3: { selected: false, conflicted: false, included: false },
+			group8__filter13: { selected: false, conflicted: false, included: false },
+			group8__filter14: { selected: false, conflicted: false, included: false },
+			group8__filter15: { selected: false, conflicted: false, included: false },
 			namespace__0: { selected: false, conflicted: false, included: false },
 			namespace__1: { selected: false, conflicted: false, included: false },
 			namespace__2: { selected: false, conflicted: false, included: false },
@@ -297,14 +320,16 @@
 		model.toggleFiltersSelected( {
 			group1__filter1: true,
 			group2__filter5: true,
-			group3__filter7: true
+			group3__filter7: true,
+			group8__filter13: true
 		} );
 		assert.deepEqual(
 			model.getSelectedState(),
 			$.extend( true, {}, baseFilterRepresentation, {
 				group1__filter1: true,
 				group2__filter5: true,
-				group3__filter7: true
+				group3__filter7: true,
+				group8__filter13: true
 			} ),
 			'Updating filter states correctly'
 		);
@@ -337,7 +362,8 @@
 						filter2: '0',
 						filter3: '0',
 						group3: '',
-						group4: 'option2'
+						group4: 'option2',
+						group8: ''
 					},
 					result: {
 						filter1: '1',
@@ -352,6 +378,7 @@
 						filter3: '0',
 						group3: '',
 						group4: '',
+						group8: '',
 						group1__filter1_color: null
 					},
 					result: {},
@@ -364,6 +391,7 @@
 						filter3: '0',
 						group3: '',
 						group4: '',
+						group8: '',
 						group1__filter1_color: 'c1'
 					},
 					result: {
@@ -418,7 +446,8 @@
 
 		model.toggleFiltersSelected( {
 			group1__filter1: true,
-			group3__filter7: true
+			group3__filter7: true,
+			group8__filter13: true
 		} );
 
 		assert.deepEqual(
@@ -429,7 +458,8 @@
 			$.extend( true, {}, appliedDefaultParameters, {
 				filter2: '1',
 				filter3: '1',
-				group3: 'filter7'
+				group3: 'filter7',
+				group8: 'filter13'
 			} ),
 			'Producing a current parameter state'
 		);

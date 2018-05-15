@@ -1944,6 +1944,8 @@ return [
 			'rcfilters-filter-excluded',
 			'rcfilters-tag-prefix-namespace',
 			'rcfilters-tag-prefix-namespace-inverted',
+			'rcfilters-tag-prefix-category',
+			'rcfilters-tag-prefix-category-inverted',
 			'rcfilters-tag-prefix-tags',
 			'rcfilters-exclude-button-off',
 			'rcfilters-exclude-button-on',

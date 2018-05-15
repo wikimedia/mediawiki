@@ -846,6 +846,7 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isPerGroupRequestParameter = function () {
 		return (
+			this.getType() === 'arbitrary_string_options' ||
 			this.getType() === 'string_options' ||
 			this.getType() === 'single_option'
 		);
