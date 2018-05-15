@@ -1813,14 +1813,14 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$block = new Block( [
 					'byText' => wfMessage( 'proxyblocker' )->text(),
-					'reason' => wfMessage( 'proxyblockreason' )->text(),
+					'reason' => wfMessage( 'proxyblockreason' )->plain(),
 					'address' => $ip,
 					'systemBlock' => 'proxy',
 				] );
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
 				$block = new Block( [
 					'byText' => wfMessage( 'sorbs' )->text(),
-					'reason' => wfMessage( 'sorbsreason' )->text(),
+					'reason' => wfMessage( 'sorbsreason' )->plain(),
 					'address' => $ip,
 					'systemBlock' => 'dnsbl',
 				] );
@@ -1841,7 +1841,7 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( $block instanceof Block ) {
 				# Mangle the reason to alert the user that the block
 				# originated from matching the X-Forwarded-For header.
-				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->text();
+				$block->mReason = wfMessage( 'xffblockreason', $block->mReason )->plain();
 			}
 		}
 
@@ -1853,7 +1853,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$block = new Block( [
 				'address' => $ip,
 				'byText' => 'MediaWiki default',
-				'reason' => wfMessage( 'softblockrangesreason', $ip )->text(),
+				'reason' => wfMessage( 'softblockrangesreason', $ip )->plain(),
 				'anonOnly' => true,
 				'systemBlock' => 'wgSoftBlockRanges',
 			] );
