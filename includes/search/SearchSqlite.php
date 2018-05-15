@@ -42,7 +42,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return string
 	 */
-	function parseQuery( $filteredText, $fulltext ) {
+	private function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX ); // Minus syntax chars (" and *)
 		$searchon = '';
@@ -122,7 +122,7 @@ class SearchSqlite extends SearchDatabase {
 		return " $field MATCH $searchon ";
 	}
 
-	function regexTerm( $string, $wildcard ) {
+	private function regexTerm( $string, $wildcard ) {
 		global $wgContLang;
 
 		$regex = preg_quote( $string, '/' );
@@ -195,7 +195,7 @@ class SearchSqlite extends SearchDatabase {
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 * @return string
 	 */
-	function queryNamespaces() {
+	private function queryNamespaces() {
 		if ( is_null( $this->namespaces ) ) {
 			return '';  # search all
 		}
@@ -212,7 +212,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param string $sql
 	 * @return string
 	 */
-	function limitResult( $sql ) {
+	private function limitResult( $sql ) {
 		return $this->db->limitResult( $sql, $this->limit, $this->offset );
 	}
 
@@ -223,7 +223,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return string
 	 */
-	function getQuery( $filteredTerm, $fulltext ) {
+	private function getQuery( $filteredTerm, $fulltext ) {
 		return $this->limitResult(
 			$this->queryMain( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryNamespaces()
@@ -235,7 +235,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return string
 	 */
-	function getIndexField( $fulltext ) {
+	private function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
 	}
 
@@ -246,7 +246,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return string
 	 */
-	function queryMain( $filteredTerm, $fulltext ) {
+	private function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
@@ -255,7 +255,7 @@ class SearchSqlite extends SearchDatabase {
 			"WHERE page_id=$searchindex.rowid AND $match";
 	}
 
-	function getCountQuery( $filteredTerm, $fulltext ) {
+	private function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );

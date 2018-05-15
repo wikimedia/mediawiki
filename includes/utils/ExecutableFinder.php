@@ -94,6 +94,11 @@ class ExecutableFinder {
 	 * @return bool|string
 	 */
 	public static function findInDefaultPaths( $names, $versionInfo = false ) {
+		if ( Shell::isDisabled() ) {
+			// If we can't shell out, there's no point looking for executables
+			return false;
+		}
+
 		$paths = self::getPossibleBinPaths();
 		foreach ( (array)$names as $name ) {
 			foreach ( $paths as $path ) {
