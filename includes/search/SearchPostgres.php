@@ -61,7 +61,7 @@ class SearchPostgres extends SearchDatabase {
 	 *
 	 * @return string
 	 */
-	function parseQuery( $term ) {
+	private function parseQuery( $term ) {
 		wfDebug( "parseQuery received: $term \n" );
 
 		# # No backslashes allowed
@@ -123,7 +123,7 @@ class SearchPostgres extends SearchDatabase {
 	 * @param string $colname
 	 * @return string
 	 */
-	function searchQuery( $term, $fulltext, $colname ) {
+	private function searchQuery( $term, $fulltext, $colname ) {
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 

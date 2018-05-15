@@ -42,7 +42,7 @@ class SearchMySQL extends SearchDatabase {
 	 *
 	 * @return array
 	 */
-	function parseQuery( $filteredText, $fulltext ) {
+	private function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 
 		$lc = $this->legalSearchChars( self::CHARS_NO_SYNTAX ); // Minus syntax chars (" and *)
@@ -133,7 +133,7 @@ class SearchMySQL extends SearchDatabase {
 		];
 	}
 
-	function regexTerm( $string, $wildcard ) {
+	private function regexTerm( $string, $wildcard ) {
 		global $wgContLang;
 
 		$regex = preg_quote( $string, '/' );
@@ -264,7 +264,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @return array
 	 * @since 1.18 (changed)
 	 */
-	function getQuery( $filteredTerm, $fulltext ) {
+	private function getQuery( $filteredTerm, $fulltext ) {
 		$query = [
 			'tables' => [],
 			'fields' => [],
@@ -286,7 +286,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return string
 	 */
-	function getIndexField( $fulltext ) {
+	private function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
 	}
 
@@ -298,7 +298,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @since 1.18 (changed)
 	 */
-	function queryMain( &$query, $filteredTerm, $fulltext ) {
+	private function queryMain( &$query, $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 		$query['tables'][] = 'page';
 		$query['tables'][] = 'searchindex';
@@ -316,7 +316,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param bool $fulltext
 	 * @return array
 	 */
-	function getCountQuery( $filteredTerm, $fulltext ) {
+	private function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
 
 		$query = [
