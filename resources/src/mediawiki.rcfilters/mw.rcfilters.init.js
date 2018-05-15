@@ -31,6 +31,47 @@
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
+			conditionalViews.category = {
+				title: mw.msg( 'categories' ),
+				trigger: '/',
+				groups: [
+					{
+						// Group definition (single group)
+						name: 'categoryfilter',
+						type: 'any_value', // TODO: Make a new type, of many 'any_value's.
+						title: mw.msg( 'categories' ),
+						labelPrefixKey: { 'default': 'rcfilters-tag-prefix-category', inverted: 'rcfilters-tag-prefix-category-inverted' },
+						separator: '|',
+						fullCoverage: false,
+						filters: 
+						[
+							{
+								name: 'category',
+								label: mw.msg( 'culture' ), 
+							},
+							{
+								label: mw.msg( 'geography' ), 
+							}
+						]
+					},
+					{
+						name: 'string options',
+						type: 'string_options',
+						filters:
+						[
+							{
+								name: 'health',
+								label: mw.msg( 'health' ), 
+								description: 'This one is about health'
+							},
+							{
+								name: 'science',
+								label: mw.msg( 'science' )
+							}
+						]
+					}					
+				]
+			};
 
 			if ( specialPage === 'Recentchanges' ) {
 				$topSection = $( '.mw-recentchanges-toplinks' ).detach();
