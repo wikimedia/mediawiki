@@ -461,6 +461,7 @@ because of Phabricator reports.
 * (T362536) Exempted "deletedhistory", "deletedtext", and "viewsuppressed"
   rights from namespace protection ($wgNamespaceProtection) since that's
   only meant to prevent write actions.
+* Image captions are no longer trimmed.
 * …
 
 == Compatibility ==
