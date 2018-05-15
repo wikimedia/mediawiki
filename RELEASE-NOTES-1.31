@@ -51,7 +51,6 @@ production.
   framework that it enables. Some extensions mistakenly used this to check
   whether any AJAX functionality at all should be enabled, further making this
   problematic to retain.
-* Add default edit rate limit of 90 edits/minute for all users.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that
