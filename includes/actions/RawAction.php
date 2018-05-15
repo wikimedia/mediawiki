@@ -109,13 +109,16 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
+				$elevated = $this->getUser()->isAllowed( 'editinterface' );
+				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(
-					"Unsafe JS/CSS/Json load - {user} loaded {title} with {ctype}",
+					"Unsafe JS/CSS/Json $elevatedText" . "load - {user} loaded {title} with {ctype}",
 					[
 						'user' => $this->getUser()->getName(),
 						'title' => $title->getPrefixedDBKey(),
 						'ctype' => $contentType,
+						'elevated' => $elevated
 					]
 				);
 				$msg = wfMessage( 'unregistered-user-config' );
