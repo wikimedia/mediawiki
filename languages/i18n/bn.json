@@ -2282,7 +2282,7 @@
 	"protect-level-autoconfirmed": "শুধুমাত্র স্বয়ং পরীক্ষিত ব্যবহারকারীদের জন্য",
 	"protect-level-sysop": "কেবল প্রশাসকদের জন্য অনুমতি",
 	"protect-summary-cascade": "প্রপাতাকার",
-	"protect-expiring": "$1 (ইউটিসি) সময়ে মেয়াদোত্তীর্ণ",
+	"protect-expiring": "মেয়াদোত্তীর্ণ হবার তারিখ $1 (ইউটিসি)",
 	"protect-expiring-local": "মেয়াদ উত্তীর্ণের সময় $1",
 	"protect-expiry-indefinite": "অসীম",
 	"protect-cascade": "এই পাতায় অন্তর্ভুক্ত পাতাগুলিও সুরক্ষিত করা হোক (প্রপাতাকার সুরক্ষা)",

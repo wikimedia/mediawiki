@@ -4096,5 +4096,6 @@
 	"pagedata-title": "頁面資料",
 	"pagedata-text": "此頁面提供了至頁面的資料介面。請使用子頁面語法在 URL 裡提供頁面標題。\n* 內容協商會基於您客戶端接受標頭來套用，這代表頁面資料會以由您客戶端所首選格式來提供。",
 	"pagedata-not-acceptable": "查無符合的格式，支援的 MIME 類型有：$1",
-	"pagedata-bad-title": "無效的標題：$1。"
+	"pagedata-bad-title": "無效的標題：$1。",
+	"unregistered-user-config": "基於安全緣故未註冊的使用者不會載入 JavaScript、CSS，以及 JSON 使用者子頁面。"
 }

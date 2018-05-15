@@ -1273,7 +1273,7 @@
 	"recentchangeslinked-feed": "Saistītās izmaiņas",
 	"recentchangeslinked-toolbox": "Saistītās izmaiņas",
 	"recentchangeslinked-title": "Izmaiņas, kas saistītas ar \"$1\"",
-	"recentchangeslinked-summary": "Šiet ir nesen izdarītās izmaiņas lapās, uz kurām ir saites no norādītās lapas (vai norādītajā kategorijā ietilpstošās lapas).\nLapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''treknas'''.",
+	"recentchangeslinked-summary": "Ievadi lapas nosaukumu, lai redzētu izmaiņas lapās, uz kurām vai vai no kuras ir saites ar šo lapu (Lai redzētu kategorijā ietilpstošās, norādi {{ns:category}}:Kategorijas nosaukums).\nIzmaiņas lapās, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir <strong>treknrakstā</strong>.",
 	"recentchangeslinked-page": "Lapas nosaukums:",
 	"recentchangeslinked-to": "Rādīt izmaiņas lapās, kurās ir saites uz šo lapu (nevis lapās uz kurām ir saites no šīs lapas)",
 	"autochange-username": "MediaWiki automātiskā izmaiņa",

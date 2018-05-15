@@ -4114,5 +4114,6 @@
 	"pagedata-title": "Seitendaten",
 	"pagedata-text": "Diese Seite stellt eine Datenschnittstelle für Seiten zur Verfügung. Bitte gib mithilfe der Unterseitensyntax den Seitentitel in der URL an.\n* Übertragungen von Inhalten werden basierend auf dem Accept-Header deines Clients ausgeführt. Das bedeutet, dass die Seitendaten in dem Format zur Verfügung gestellt werden, das von deinem Client bevorzugt wird.",
 	"pagedata-not-acceptable": "Kein passendes Format gefunden. Unterstützte MIME-Typen: $1",
-	"pagedata-bad-title": "Ungültiger Titel: $1."
+	"pagedata-bad-title": "Ungültiger Titel: $1.",
+	"unregistered-user-config": "Aus Sicherheitsgründen können JavaScript-, CSS- und JSON-Benutzerunterseiten nicht für unangemeldete Benutzer geladen werden."
 }
