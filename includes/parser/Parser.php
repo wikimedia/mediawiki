@@ -5041,16 +5041,16 @@ class Parser {
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
-				// FIXME: Doing recursiveTagParse at this stage, and the trim before
-				// splitting on '|' is a bit odd, and different from makeImage.
-				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
+				// FIXME: Doing recursiveTagParse at this stage is a bit odd,
+				// and different from makeImage.
+				$matches[3] = $this->recursiveTagParse( $matches[3] );
 				// Protect LanguageConverter markup
 				$parameterMatches = StringUtils::delimiterExplode(
 					'-{', '}-', '|', $matches[3], true /* nested */
 				);
 
 				foreach ( $parameterMatches as $parameterMatch ) {
-					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( $parameterMatch );
+					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( trim( $parameterMatch ) );
 					if ( $magicName ) {
 						$paramName = $paramMap[$magicName];
 
@@ -5087,17 +5087,15 @@ class Parser {
 								} else {
 									// Guess not, consider it as caption.
 									wfDebug( "$parameterMatch failed parameter validation\n" );
-									$label = '|' . $parameterMatch;
+									$label = $parameterMatch;
 								}
 						}
 
 					} else {
 						// Last pipe wins.
-						$label = '|' . $parameterMatch;
+						$label = $parameterMatch;
 					}
 				}
-				// Remove the pipe.
-				$label = substr( $label, 1 );
 			}
 
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
@@ -5219,8 +5217,7 @@ class Parser {
 			'horizAlign' => [], 'vertAlign' => [] ];
 		$seenformat = false;
 		foreach ( $parts as $part ) {
-			$part = trim( $part );
-			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
+			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( trim( $part ) );
 			$validated = false;
 			if ( isset( $paramMap[$magicName] ) ) {
 				list( $type, $paramName ) = $paramMap[$magicName];

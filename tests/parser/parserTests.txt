@@ -14229,8 +14229,7 @@ thumbsize=220
 !! wikitext
 [[File:Foobar.jpg|thumb|Caption [[Link1]]
 [[]]
-[[Link2]]
-]]
+[[Link2]]]]
 !! html/php
 <div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Caption <a href="/index.php?title=Link1&amp;action=edit&amp;redlink=1" class="new" title="Link1 (page does not exist)">Link1</a> [[]] <a href="/index.php?title=Link2&amp;action=edit&amp;redlink=1" class="new" title="Link2 (page does not exist)">Link2</a></div></div></div>
 
@@ -15212,17 +15211,17 @@ Image: caption containing a newline
 <p><figure-inline class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"This\n*is some text"}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></figure-inline></p>
 !!end
 
-!!test
+## The leading space should not trigger nowiki escaping in wt2wt mode
+!! test
 Image: caption containing leading space
-(The leading space should not trigger nowiki escaping in wt2wt mode)
 !! wikitext
 [[File:Foobar.jpg|thumb| bar]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>bar</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div> bar</div></div></div>
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption> bar</figcaption></figure>
-!!end
+!! end
 
 # html/php output not have newlines after table, td, th, etc. because
 # Linker::makeThumbLink2() replaces the newlines with spaces since
@@ -20351,8 +20350,8 @@ image4    |300px| centre
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="height: 150px;">Image5.svg</div>
 			<div class="gallerytext">
-<p><a rel="nofollow" class="external free" href="http://///////">http://///////</a>
-</p>
+<pre><a rel="nofollow" class="external free" href="http://///////">http://///////</a>
+</pre>
 			</div>
 		</div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
