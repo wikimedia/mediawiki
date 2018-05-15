@@ -373,7 +373,7 @@ CREATE TABLE externallinks (
   el_from     INTEGER     NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   el_to       TEXT        NOT NULL,
   el_index    TEXT        NOT NULL,
-  el_index_60 BYTEA       NOT NULL  DEFAULT ''
+  el_index_60 BYTEA       NOT NULL
 );
 ALTER SEQUENCE externallinks_el_id_seq OWNED BY externallinks.el_id;
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);

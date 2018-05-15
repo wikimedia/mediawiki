@@ -1287,4 +1287,21 @@ abstract class DatabaseUpdater {
 		 }
 	 }
 
+	/**
+	 * Populates the externallinks.el_index_60 field
+	 * @since 1.32
+	 */
+	protected function populateExternallinksIndex60() {
+		if ( !$this->updateRowExists( 'populate externallinks.el_index_60' ) ) {
+			$this->output(
+				"Populating el_index_60 field, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateExternallinksIndex60.php.\n"
+			);
+			$task = $this->maintenance->runChild( 'PopulateExternallinksIndex60',
+				'populateExternallinksIndex60.php' );
+			$task->execute();
+			$this->output( "done.\n" );
+		}
+	}
 }

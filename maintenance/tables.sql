@@ -932,8 +932,7 @@ CREATE TABLE /*_*/externallinks (
 
   -- This is el_index truncated to 60 bytes to allow for sortable queries that
   -- aren't supported by a partial index.
-  -- @todo Drop the default once this is deployed everywhere and code is populating it.
-  el_index_60 varbinary(60) NOT NULL default ''
+  el_index_60 varbinary(60) NOT NULL
 ) /*$wgDBTableOptions*/;
 
 -- Forward index, for page edit, save
