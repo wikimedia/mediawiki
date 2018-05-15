@@ -4664,5 +4664,6 @@
 	"pagedata-title": "Title shown on the special page when a form or text is presented",
 	"pagedata-text": "Error shown when none of the formats acceptable to the client is supported (HTTP error 406). Parameters:\n* $1 - the list of supported MIME types",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
-	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID"
+	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
+	"unregistered-user-config": "Shown when viewing a user JS, CSS or JSON subpage with ?action=raw&ctype=<mime type> where there is no such user. It is shown as a paragraph after a header saying 'Forbidden'."
 }
