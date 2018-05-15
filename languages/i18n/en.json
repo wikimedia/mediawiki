@@ -1489,6 +1489,8 @@
 	"rcfilters-filter-excluded": "Excluded",
 	"rcfilters-tag-prefix-namespace": ":$1",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:not</strong> $1",
+	"rcfilters-tag-prefix-category": "/$1",
+	"rcfilters-tag-prefix-category-inverted": "<strong>/not</strong> $1",
 	"rcfilters-tag-prefix-tags": "#$1",
 	"rcfilters-exclude-button-off": "Exclude selected",
 	"rcfilters-exclude-button-on": "Excluding selected",

@@ -181,6 +181,13 @@
 					return item.getParamName();
 				} )
 			).join( this.getSeparator() );
+		} else if ( this.getType() === 'arbitrary_string_options' ) {
+			this.defaultParams[ this.getName() ] = mw.rcfilters.utils.normalizeArbitraryParamOptions(
+				// Current values
+				groupDefault ?
+					groupDefault.split( this.getSeparator() ) :
+					[]
+			).join( this.getSeparator() );
 		} else if ( this.getType() === 'single_option' ) {
 			defaultParam = groupDefault !== undefined ?
 				groupDefault : this.getItems()[ 0 ].getParamName();
@@ -624,7 +631,8 @@
 					result[ filterParamNames[ name ] ] = value;
 				}
 			} );
-		} else if ( this.getType() === 'string_options' ) {
+		} else if ( this.getType() === 'string_options' ||
+					this.getType() === 'arbitrary_string_options' ) {
 			values = [];
 
 			$.each( filterRepresentation, function ( name, value ) {
@@ -706,7 +714,8 @@
 					result[ filterItem.getName() ] = paramRepresentation[ filterItem.getParamName() ];
 				}
 			} );
-		} else if ( this.getType() === 'string_options' ) {
+		} else if ( this.getType() === 'string_options' ||
+					this.getType() === 'arbitrary_string_options' ) {
 			currentValue = paramRepresentation[ this.getName() ] || '';
 
 			// Normalize the given parameter values
@@ -716,6 +725,7 @@
 					this.getSeparator()
 				),
 				// Allowed values
+				// Only for 'string_options'?
 				this.getItems().map( function ( filterItem ) {
 					return filterItem.getParamName();
 				} )
@@ -846,6 +856,7 @@
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.isPerGroupRequestParameter = function () {
 		return (
+			this.getType() === 'arbitrary_string_options' ||
 			this.getType() === 'string_options' ||
 			this.getType() === 'single_option'
 		);

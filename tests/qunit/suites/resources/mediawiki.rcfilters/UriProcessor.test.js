@@ -34,6 +34,14 @@
 				{ name: 'stickyFilter7', cssClass: 'filter7class' },
 				{ name: 'stickyFilter8', cssClass: 'filter8class' }
 			]
+		}, {
+			name: 'group5',
+			title: 'Group 5',
+			type: 'arbitrary_string_options',
+			filters: [
+				{ name: 'filter9' }, // Not supporting highlights
+				{ name: 'filter10' } // Not supporting highlights
+			]
 		} ],
 		minimalDefaultParams = {
 			filter1: '1',
@@ -85,18 +93,19 @@
 		// Update the model
 		filtersModel.toggleFiltersSelected( {
 			group1__filter1: true, // Param: filter2: '1'
-			group3__filter5: true // Param: group3: 'filter5'
+			group3__filter5: true, // Param: group3: 'filter5'
+			group5__filter9: true, // Param: group5: 'filter9'
 		} );
 
 		assert.deepEqual(
 			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
-			{ urlversion: '2', filter2: '1', group3: 'filter5' },
+			{ urlversion: '2', filter2: '1', group3: 'filter5', group5: 'filter9' },
 			'Model state is reflected in the updated URI'
 		);
 
 		assert.deepEqual(
 			( uriProcessor.getUpdatedUri( makeUri( { foo: 'bar' } ) ) ).query,
-			{ urlversion: '2', filter2: '1', group3: 'filter5', foo: 'bar' },
+			{ urlversion: '2', filter2: '1', group3: 'filter5', group5: 'filter9', foo: 'bar' },
 			'Model state is reflected in the updated URI with existing uri params'
 		);
 	} );
