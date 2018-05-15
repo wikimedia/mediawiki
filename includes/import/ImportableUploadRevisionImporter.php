@@ -18,6 +18,11 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	private $enableUploads;
 
 	/**
+	 * @var bool
+	 */
+	private $shouldCreateNullRevision = true;
+
+	/**
 	 * @param bool $enableUploads
 	 * @param LoggerInterface $logger
 	 */
@@ -27,6 +32,16 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	) {
 		$this->enableUploads = $enableUploads;
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Setting this to false will deactivate the creation of a null revision as part of the upload
+	 * process logging in LocalFile::recordUpload2, see T193621
+	 *
+	 * @param bool $shouldCreateNullRevision
+	 */
+	public function setNullRevisionCreation( $shouldCreateNullRevision ) {
+		$this->shouldCreateNullRevision = $shouldCreateNullRevision;
 	}
 
 	/**
@@ -100,7 +115,9 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 				$flags,
 				false,
 				$importableRevision->getTimestamp(),
-				$user
+				$user,
+				[],
+				$this->shouldCreateNullRevision
 			);
 		}
 
