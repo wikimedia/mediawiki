@@ -33,14 +33,27 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\WaitConditionLoop;
 
 /**
- * interface is intended to be more or less compatible with
- * the PHP memcached client.
+ * Class representing a cache/ephemeral data store
  *
- * backends for local hash array and SQL table included:
- * @code
- *   $bag = new HashBagOStuff();
- *   $bag = new SqlBagOStuff(); # connect to db first
- * @endcode
+ * This interface is intended to be more or less compatible with the PHP memcached client.
+ *
+ * Instances of this class should be created with an intended access scope, such as:
+ *   - a) A single PHP thread on a server (e.g. stored in a PHP variable)
+ *   - b) A single application server (e.g. stored in APC or sqlite)
+ *   - c) All application servers in datacenter (e.g. stored in memcached or mysql)
+ *   - d) All application servers in all datacenters (e.g. stored via mcrouter or dynomite)
+ *
+ * Callers should use the proper factory methods that yield BagOStuff instances. Site admins
+ * should make sure the configuration for those factory methods matches their access scope.
+ * BagOStuff subclasses have widely varying levels of support for replication features.
+ *
+ * For any given instance, methods like lock(), unlock(), merge(), and set() with WRITE_SYNC
+ * should semantically operate over its entire access scope; any nodes/threads in that scope
+ * should serialize appropriately when using them. Likewise, a call to get() with READ_LATEST
+ * from one node in its access scope should reflect the prior changes of any other node its access
+ * scope. Any get() should reflect the changes of any prior set() with WRITE_SYNC.
+ *
+ *
  *
  * @ingroup Cache
  */
@@ -165,7 +178,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * Get an item with the given key
 	 *
-	 * If the key includes a determistic input hash (e.g. the key can only have
+	 * If the key includes a deterministic input hash (e.g. the key can only have
 	 * the correct value) or complete staleness checks are handled by the caller
 	 * (e.g. nothing relies on the TTL), then the READ_VERIFIED flag should be set.
 	 * This lets tiered backends know they can safely upgrade a cached value to
