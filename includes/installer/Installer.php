@@ -990,6 +990,10 @@ abstract class Installer {
 			return true;
 		}
 
+		if ( Shell::isDisabled() ) {
+			return true;
+		}
+
 		# Get a list of available locales.
 		$result = Shell::command( '/usr/bin/locale', '-a' )
 			->execute();
