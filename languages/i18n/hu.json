@@ -669,8 +669,8 @@
 	"subject-preview": "Tárgy előnézete:",
 	"previewerrortext": "Hiba történt a változások előnézetének megjelenítése során.",
 	"blockedtitle": "A szerkesztő blokkolva van",
-	"blockedtext": "<strong>A szerkesztőnevedet vagy az IP-címedet blokkoltuk.</strong>\n\nA blokkolást $1 végezte el.\nAz általa felhozott indok: <em>$2.</em>\n\n* A blokk kezdete: $8\n* A blokk lejárata: $6\n* Blokkolt szerkesztő: $7\n\nKapcsolatba léphetsz $1 szerkesztőnkkel vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.\nAz „E-mail küldése ennek a szerkesztőnek” funkciót csak akkor használhatod, ha érvényes e-mail címet adtál meg [[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\nJelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5.\nKérjük, hogy érdeklődés esetén minden fenti részletet adj meg.",
-	"autoblockedtext": "Az IP-címed automatikusan blokkolva lett, mert korábban egy olyan szerkesztő használta, akit $1 blokkolt, az alábbi indoklással:\n\n:''$2''\n\n*A blokk kezdete: '''$8'''\n*A blokk lejárata: '''$6'''\n*Blokkolt szerkesztő: '''$7'''\n\nKapcsolatba léphetsz $1 szerkesztőnkkel, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.\n\nAz 'E-mail küldése ennek a szerkesztőnek' funkciót csak akkor használhatod, ha érvényes e-mail címet adtál meg\n[[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\n\nJelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5.\nKérjük, hogy érdeklődés esetén mindkettőt add meg.",
+	"blockedtext": "<strong>A szerkesztőnevedet vagy az IP-címedet blokkoltuk.</strong>\n\nA blokkolást $1 végezte el.\nAz általa felhozott indok: <em>$2.</em>\n\n* A blokk kezdete: $8\n* A blokk lejárata: $6\n* Blokkolt szerkesztő: $7\n\nKapcsolatba léphetsz $1 szerkesztőnkkel vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.\nAz „{{int:emailuser}}” funkciót csak akkor használhatod, ha érvényes e-mail címet adtál meg [[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\nJelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5.\nKérjük, hogy érdeklődés esetén minden fenti részletet adj meg.",
+	"autoblockedtext": "Az IP-címed automatikusan blokkolva lett, mert korábban egy olyan szerkesztő használta, akit $1 blokkolt, az alábbi indoklással:\n\n:''$2''\n\n*A blokk kezdete: '''$8'''\n*A blokk lejárata: '''$6'''\n*Blokkolt szerkesztő: '''$7'''\n\nKapcsolatba léphetsz $1 szerkesztőnkkel, vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkolást.\n\nAz „{{int:emailuser}}” funkciót csak akkor használhatod, ha érvényes e-mail címet adtál meg\n[[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\n\nJelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5.\nKérjük, hogy érdeklődés esetén mindkettőt add meg.",
 	"systemblockedtext": "A felhasználónevedet vagy IP-címedet automatikusan blokkolta a MediaWiki.\nA blokkolás indoka:\n\n:<em>$2</em>\n\n* A blokk kezdete: $8\n* A blokk lejárata: $6\n* Blokkolt szerkesztő: $7\n\nA jelenlegi IP-címed: $3.\nKérjük, hogy érdeklődés esetén minden fenti részletet adj meg.",
 	"blockednoreason": "nem adott meg okot",
 	"whitelistedittext": "Lapok szerkesztéséhez $1.",
@@ -1516,7 +1516,7 @@
 	"recentchangeslinked-feed": "Kapcsolódó változtatások",
 	"recentchangeslinked-toolbox": "Kapcsolódó változtatások",
 	"recentchangeslinked-title": "A(z) $1 laphoz kapcsolódó változtatások",
-	"recentchangeslinked-summary": "Alább azon lapoknak a legutóbbi változtatásai láthatóak, amelyekre hivatkozik egy megadott lap. (Ha egy kategória tagjaira vagy kíváncsi, írd be, hogy Kategória:katerógianév.)\nA [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' vannak jelölve.",
+	"recentchangeslinked-summary": "Alább azon lapoknak a legutóbbi változtatásai láthatóak, amelyekre hivatkozik egy megadott lap. (Ha egy kategória tagjaira vagy kíváncsi, írd be, hogy {{ns:category}}:katerógianév.)\nA [[Special:Watchlist|figyelőlistádon]] szereplő lapok <strong>félkövérrel</strong> vannak jelölve.",
 	"recentchangeslinked-page": "Lap neve:",
 	"recentchangeslinked-to": "Inkább az erre linkelő lapok változtatásait mutasd",
 	"recentchanges-page-added-to-category": "[[:$1]] hozzáadva a kategóriához",
@@ -4021,5 +4021,6 @@
 	"undelete-cantcreate": "Nem állíthatod helyre ezt a lapot, mert nem létezik ilyen című lap, és nincs jogosultságod létrehozni azt.",
 	"pagedata-title": "Az oldal adatai",
 	"pagedata-not-acceptable": "Nem található megfelelő formátum. Támogatott MIME-típusok: $1",
-	"pagedata-bad-title": "Érvénytelen cím: $1."
+	"pagedata-bad-title": "Érvénytelen cím: $1.",
+	"unregistered-user-config": "Biztonsági okokból JavaScript, CSS és JSON szerkesztői alapok nem töltődnek be regisztrálatlan felhasználóknak."
 }

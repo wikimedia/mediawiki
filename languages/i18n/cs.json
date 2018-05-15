@@ -541,6 +541,7 @@
 	"botpasswords-existing": "Stávající hesla pro boty",
 	"botpasswords-createnew": "Vytvořit nové heslo pro boty",
 	"botpasswords-editexisting": "Editovat existující heslo pro boty",
+	"botpasswords-label-needsreset": "(heslo se musí resetovat)",
 	"botpasswords-label-appid": "Název bota:",
 	"botpasswords-label-create": "Vytvořit",
 	"botpasswords-label-update": "Aktualizovat",
@@ -564,6 +565,7 @@
 	"botpasswords-restriction-failed": "Toto přihlášení bylo zamítnuto omezením hesel pro boty.",
 	"botpasswords-invalid-name": "Uvedené uživatelské jméno neobsahuje oddělovač hesel pro boty („$1“).",
 	"botpasswords-not-exist": "Uživatel „$1“ nemá heslo pro bota nazvaného „$2“.",
+	"botpasswords-needs-reset": "Heslo pro bota jménem „$2“ {{GENDER:$2|uživatele|uživatelky}} „$1“ se musí resetovat.",
 	"resetpass_forbidden": "Hesla nelze změnit.",
 	"resetpass_forbidden-reason": "Hesla nelze změnit: $1",
 	"resetpass-no-info": "K této stránce mají přímý přístup jen přihlášení uživatelé.",
@@ -4076,5 +4078,6 @@
 	"pagedata-title": "Data stránky",
 	"pagedata-text": "Tato stránka poskytuje datové rozhraní ke stránkám. Uveďte prosím název stránky v URL pomocí syntaxe pro podstránky.\n* Funguje dohadování o obsahu na základě hlavičky Accept vašeho klienta. To znamená, že data stránky budou poskytnuta ve formátu preferovaném vaším klientem.",
 	"pagedata-not-acceptable": "Nenalezen odpovídající formát. Podporované MIME typy: $1",
-	"pagedata-bad-title": "Neplatný název: $1."
+	"pagedata-bad-title": "Neplatný název: $1.",
+	"unregistered-user-config": "Z bezpečnostních důvodů nelze načítat uživatelské podstránky s JavaScriptem, CSS nebo JSONem u neregistrovaných uživatelů."
 }
