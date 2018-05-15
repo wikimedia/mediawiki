@@ -384,9 +384,17 @@ class IcuCollation extends Collation {
 		foreach ( $letters as $letter ) {
 			$key = $this->getPrimarySortKey( $letter );
 			if ( isset( $letterMap[$key] ) ) {
-				// Primary collision
-				// Keep whichever one sorts first in the main collator
-				if ( $this->mainCollator->compare( $letter, $letterMap[$key] ) < 0 ) {
+				// Primary collision (two characters with the same sort position).
+				// Keep whichever one sorts first in the main collator.
+				$comp = $this->mainCollator->compare( $letter, $letterMap[$key] );
+				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)\n" );
+				// If that also has a collision, use codepoint as a tiebreaker.
+				if ( $comp === 0 ) {
+					// TODO Use <=> operator when PHP 7 is allowed.
+					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) -
+						UtfNormal\Utils::utf8ToCodepoint( $letterMap[$key] );
+				}
+				if ( $comp < 0 ) {
 					$letterMap[$key] = $letter;
 				}
 			} else {
