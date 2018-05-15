@@ -26,6 +26,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * A simple method to retrieve the plain source of an article,
  * using "action=raw" in the GET request string.
@@ -86,7 +88,6 @@ class RawAction extends FormlessAction {
 			$response->header( $this->getOutput()->getKeyHeader() );
 		}
 
-		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
 		$privateCache = !User::isEveryoneAllowed( 'read' ) &&
@@ -97,6 +98,33 @@ class RawAction extends FormlessAction {
 		$response->header(
 			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
 		);
+
+		// In the event of user JS, don't allow loading a user JS/CSS/Json
+		// subpage that has no registered user associated with, as
+		// someone could register the account and take control of the
+		// JS/CSS/Json page.
+		$title = $this->getTitle();
+		if ( $title->isCssJsSubpage() && $contentType !== 'text/x-wiki' ) {
+			// not using getRootText() as we want this to work
+			// even if subpages are disabled.
+			$rootPage = strtok( $title->getText(), '/' );
+			$userFromTitle = User::newFromName( $rootPage, 'usable' );
+			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
+				$log = LoggerFactory::getInstance( "security" );
+				$log->warning(
+					"Unsafe JS/CSS/Json load - {user} loaded {title} with {ctype}",
+					[
+						'user' => $this->getUser()->getName(),
+						'title' => $title->getPrefixedDBKey(),
+						'ctype' => $contentType,
+					]
+				);
+				$msg = wfMessage( 'unregistered-user-config' );
+				throw new HttpError( 403, $msg );
+			}
+		}
+
+		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 
 		$text = $this->getRawText();
 
