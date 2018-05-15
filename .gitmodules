@@ -122,6 +122,10 @@
 	path = extensions/ConfirmEdit
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ConfirmEdit
 	branch = wmf/1.32.0-wmf.4
+[submodule "extensions/CongressLookup"]
+	path = extensions/CongressLookup
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/CongressLookup
+        branch = wmf/1.32.0-wmf.4
 [submodule "extensions/ContactPage"]
 	path = extensions/ContactPage
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ContactPage
