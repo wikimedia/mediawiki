@@ -4073,5 +4073,6 @@
 	"pagedata-title": "Siddata",
 	"pagedata-text": "Denna sida tillhandahåller ett datagränssnitt till sidor. Ange sidans titel i webbadressen med hjälp av undersidesyntax.\n* Innehållsförhandling gäller baserat på att din klients Accept-header. Detta innebär att siddatan kommer att tillhandahållas i det format som din klient föredrar.",
 	"pagedata-not-acceptable": "Inga matchande format finns. MIME-typer som stöds:$1",
-	"pagedata-bad-title": "Ogiltig titel: $1."
+	"pagedata-bad-title": "Ogiltig titel: $1.",
+	"unregistered-user-config": "Av säkerhetsskäl kan inte undersidor med JavaScript, CSS och JSON läsas in för oregistrerade användare."
 }

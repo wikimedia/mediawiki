@@ -514,6 +514,7 @@
 	"botpasswords-existing": "Contraseñes de bots esistentes",
 	"botpasswords-createnew": "Crear una contraseña nueva de bot",
 	"botpasswords-editexisting": "Editar una contraseña de bot esistiente",
+	"botpasswords-label-needsreset": "(la contraseña tien de reaniciase)",
 	"botpasswords-label-appid": "Nome del bot:",
 	"botpasswords-label-create": "Crear",
 	"botpasswords-label-update": "Anovar",
@@ -537,6 +538,7 @@
 	"botpasswords-restriction-failed": "Hai torgues de contraseña de bot que torgaron esti aniciu de sesión.",
 	"botpasswords-invalid-name": "El nome d'usuariu especificáu nun contien el separador de contraseña de bot («$1»).",
 	"botpasswords-not-exist": "L'usuariu «$1» nun tien una contraseña de bot llamada «$2».",
+	"botpasswords-needs-reset": "Tien de reniciase la contraseña del robot «$2», propiedá {{GENDER:$1|del usuariu|de la usuaria}} «$1».",
 	"resetpass_forbidden": "Nun puen camudase les contraseñes",
 	"resetpass_forbidden-reason": "Les contraseñes nun pueden camudase: $1",
 	"resetpass-no-info": "Tienes d'aniciar sesión pa entrar direutamente a esta páxina.",
@@ -632,8 +634,8 @@
 	"subject-preview": "Vista previa del asuntu:",
 	"previewerrortext": "Hebo un error al intentar entever los cambios.",
 	"blockedtitle": "L'usuariu ta bloquiáu",
-	"blockedtext": "'''El to nome d'usuariu o direición IP ta bloquiáu.'''\n\nEl bloquéu fexolu $1.\nEl motivu conseñáu ye ''$2''.\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] p'aldericar sobre'l bloquéu.\nNun pues usar la función 'manda-y un corréu electrónicu a esti usuariu' a nun ser que tea especificada una direición de\ncorréu electrónicu válida nes tos [[Special:Preferences|preferencies de cuenta]] y que nun tengas torgao usala.\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
-	"autoblockedtext": "La to direición IP bloquióse automáticamente porque usóla otru usuariu que foi bloquiáu por $1.\nEl motivu conseñáu ye:\n\n:''$2''\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru de los [[{{MediaWiki:Grouppage-sysop}}|alministradores]] p'aldericar sobre'l bloquéu.\n\nTen en cuenta que nun pues usar la función «manda-y un corréu electrónicu a esti usuariu» a nun ser que tengas rexistrada una direición de corréu electrónicu válida nes [[Special:Preferences|preferencies d'usuariu]] y que nun tengas torgao usala.\n\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
+	"blockedtext": "<strong>El to nome d'usuariu o direición IP ta bloquiáu.</strong>\n\nEl bloquéu fexolu $1.\nEl motivu conseñáu ye <em>$2</em>.\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPuedes comunicate con $1 o con otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] p'aldericar sobre'l bloquéu.\nNun puedes usar la función «{{int:emailuser}}» a nun ser que tea especificada una direición de corréu electrónicu válida nes tos [[Special:Preferences|preferencies de cuenta]] y que nun tengas torgao usala.\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
+	"autoblockedtext": "La to direición IP bloquióse automáticamente porque usóla otru usuariu que foi bloquiáu por $1.\nEl motivu conseñáu ye:\n\n:<em>$2</em>\n\n* Principiu del bloquéu: $8\n* Caducidá del bloquéu: $6\n* Usuariu a bloquiar: $7\n\nPues ponete'n contautu con $1 o con otru de los [[{{MediaWiki:Grouppage-sysop}}|alministradores]] p'aldericar sobre'l bloquéu.\n\nTen en cuenta que nun pues usar la función «{{int:emailuser}}» a nun ser que tengas rexistrada una direición de corréu electrónicu válida nes [[Special:Preferences|preferencies d'usuariu]] y que nun tengas torgao usala.\n\nLa to direición IP actual ye $3, y la ID del bloquéu ye #$5.\nPor favor, incluye tolos detalles anteriores nes consultes que faigas.",
 	"systemblockedtext": "El to nome d'usuariu o dirección IP bloquióse automáticamente pol software MediaWiki.\nEl motivu dau ye:\n\n:<em>$2</em>\n\n* Entamu del bloquéu: $8\n* Caducidá de bloquéu: $6\n* Destinatariu del bloquéu: $7\n\nLa to dirección IP actual ye $3.\nPor favor, incluye tolos anteriores en cualquier consulta que faigas.",
 	"blockednoreason": "nun se dio nengún motivu",
 	"whitelistedittext": "Tienes d'$1 pa editar páxines.",
@@ -1485,7 +1487,7 @@
 	"recentchangeslinked-feed": "Cambios rellacionaos",
 	"recentchangeslinked-toolbox": "Cambios rellacionaos",
 	"recentchangeslinked-title": "Cambios rellacionaos con \"$1\"",
-	"recentchangeslinked-summary": "Esscribe'l nome d'una páxina pa ver los cambios nes páxines enllazaes a o dende esa páxina. (Pa ver los miembros d'una categoría, escribe Categoría:Nome de la categoría). Los cambios nes páxines de [[Special:Watchlist|la to llista de siguimientu]] tán en <strong>negrina</strong>.",
+	"recentchangeslinked-summary": "Esscribe'l nome d'una páxina pa ver los cambios nes páxines enllazaes a o dende esa páxina. (Pa ver los miembros d'una categoría, escribe {{ns:category}}:Nome de la categoría). Los cambios nes páxines de [[Special:Watchlist|la to llista de siguimientu]] tán en <strong>negrina</strong>.",
 	"recentchangeslinked-page": "Nome de la páxina:",
 	"recentchangeslinked-to": "Amosar los cambios de les páxines qu'enllacen en cuenta de los de la páxina dada",
 	"recentchanges-page-added-to-category": "[[:$1]] amestóse a la categoría",
@@ -3998,5 +4000,6 @@
 	"pagedata-title": "Datos de la páxina",
 	"pagedata-text": "Esta páxina ufre una interfaz de datos pa les páxines. Escribe'l títulu de la páxina na URL, usando la sintaxis de subpáxina.\n* Aplícase la negociación de conteníu en base a la testera Accept del to cliente. Esto significa que los datos de la páxina van dase nel formatu que prefiera'l to cliente.",
 	"pagedata-not-acceptable": "Nun s'alcontró nengún formatu que coincidiera. Tipos MIME soportaos: $1",
-	"pagedata-bad-title": "Títulu inválidu: $1."
+	"pagedata-bad-title": "Títulu inválidu: $1.",
+	"unregistered-user-config": "Por motivos de seguridá, les subpáxines d'usuariu JavaScript, CSS y JSON nun pueden cargase pa usuarios ensin rexistrar."
 }
