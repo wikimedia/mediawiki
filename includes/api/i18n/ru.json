@@ -856,6 +856,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "Может ли участник просматривать эту страницу.",
 	"apihelp-query+info-paramvalue-prop-preload": "Текст, возвращённый EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Возвращает стиль отображения заголовка страницы.",
+	"apihelp-query+info-paramvalue-prop-varianttitles": "Выдаёт отображаемый заголовок во всех вариантах языка контента сайта.",
 	"apihelp-query+info-param-testactions": "Проверить, может ли текущий участник провести указанные действия над страницей.",
 	"apihelp-query+info-param-token": "Вместо этого используйте [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
 	"apihelp-query+info-example-simple": "Получить информацию о странице <kbd>Main Page</kbd>.",
