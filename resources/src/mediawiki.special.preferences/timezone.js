@@ -18,8 +18,8 @@
 				timezoneWidget = null;
 			}
 		} else {
-			$tzSelect = $( '#mw-input-wptimecorrection' );
-			$tzTextbox = $( '#mw-input-wptimecorrection-other' );
+			$tzSelect = $( '#wpTimeCorrection' );
+			$tzTextbox = $( '#wpTimeCorrection-other' );
 		}
 
 		$localtimeHolder = $( '#wpLocalTime' );
