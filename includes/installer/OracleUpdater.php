@@ -151,6 +151,7 @@ class OracleUpdater extends DatabaseUpdater {
 			// 1.32
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
 			[ 'populateExternallinksIndex60' ],
+			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
