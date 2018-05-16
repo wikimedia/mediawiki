@@ -4694,9 +4694,12 @@ class Title implements LinkTarget {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->onTransactionPreCommitOrIdle( function () {
-			ResourceLoaderWikiModule::invalidateModuleCache( $this, null, null, wfWikiID() );
-		} );
+		$dbw->onTransactionPreCommitOrIdle(
+			function () {
+				ResourceLoaderWikiModule::invalidateModuleCache( $this, null, null, wfWikiID() );
+			},
+			__METHOD__
+		);
 
 		$conds = $this->pageCond();
 		DeferredUpdates::addUpdate(
