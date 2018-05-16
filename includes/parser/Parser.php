@@ -5087,17 +5087,15 @@ class Parser {
 								} else {
 									// Guess not, consider it as caption.
 									wfDebug( "$parameterMatch failed parameter validation\n" );
-									$label = '|' . $parameterMatch;
+									$label = $parameterMatch;
 								}
 						}
 
 					} else {
 						// Last pipe wins.
-						$label = '|' . $parameterMatch;
+						$label = $parameterMatch;
 					}
 				}
-				// Remove the pipe.
-				$label = substr( $label, 1 );
 			}
 
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
