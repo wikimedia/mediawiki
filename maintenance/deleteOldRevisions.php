@@ -90,6 +90,11 @@ class DeleteOldRevisions extends Maintenance {
 			$this->output( "done.\n" );
 		}
 
+		# Update the rev_parent_id field for each page's latest revision
+		if ( $delete ) {
+			$dbw->update( 'revision', [ 'rev_parent_id' => 0 ], [ 'rev_id' => $latestRevs ], __METHOD__ );
+		}
+
 		# This bit's done
 		# Purge redundant text records
 		$this->commitTransaction( $dbw, __METHOD__ );
