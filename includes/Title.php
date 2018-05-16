@@ -2561,7 +2561,7 @@ class Title implements LinkTarget {
 		}
 
 		$useSlave = ( $rigor !== 'secure' );
-		if ( ( $action == 'edit' || $action == 'create' )
+		if ( ( $action == 'edit' || $action == 'create' || $action == 'autopatrol' )
 			&& !$user->isBlockedFrom( $this, $useSlave )
 		) {
 			// Don't block the user from editing their own talk page unless they've been
