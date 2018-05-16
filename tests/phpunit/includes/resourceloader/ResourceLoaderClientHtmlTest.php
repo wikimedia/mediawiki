@@ -72,6 +72,9 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'shouldEmbed' => true,
 				'styles' => '.shouldembed{}',
 			],
+			'test.styles.deprecated' => [
+				'deprecated' => 'Deprecation message.',
+			],
 
 			'test.scripts' => [],
 			'test.scripts.user' => [ 'group' => 'user' ],
@@ -125,6 +128,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'test.styles.private',
 			'test.styles.pure',
 			'test.styles.shouldembed',
+			'test.styles.deprecated',
 			'test.unregistered.styles',
 		] );
 		$client->setModuleScripts( [
@@ -145,6 +149,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'test.styles.user.empty' => 'ready',
 				'test.styles.private' => 'ready',
 				'test.styles.shouldembed' => 'ready',
+				'test.styles.deprecated' => 'ready',
 				'test.scripts' => 'loading',
 				'test.scripts.user' => 'loading',
 				'test.scripts.user.empty' => 'ready',
@@ -168,6 +173,13 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 					'test.shouldembed',
 					'test.user',
 				],
+			],
+			'styledeprecations' => [
+				Xml::encodeJsCall(
+					'mw.log.warn',
+					[ 'This page is using the deprecated ResourceLoader module "test.styles.deprecated".
+Deprecation message.' ]
+				)
 			],
 		];
 
@@ -211,6 +223,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
 			. 'mw.loader.load(["test"]);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
+			. 'mw.log.warn("This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message.");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
