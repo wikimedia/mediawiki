@@ -1272,6 +1272,17 @@
 			}
 
 			/**
+			 * @private
+			 * @param {string} code JavaScript code
+			 */
+			function domEval( code ) {
+				var script = document.createElement( 'script' );
+				script.text = code;
+				document.head.appendChild( script );
+				script.parentNode.removeChild( script );
+			}
+
+			/**
 			 * Executes a loaded module, making it ready to use
 			 *
 			 * @private
@@ -1325,7 +1336,7 @@
 							// Site and user modules are legacy scripts that run in the global scope.
 							// This is transported as a string instead of a function to avoid needing
 							// to use string manipulation to undo the function wrapper.
-							$.globalEval( script );
+							domEval( script );
 							markModuleReady();
 
 						} else {
@@ -1711,7 +1722,7 @@
 				}
 				mw.requestIdleCallback( function () {
 					try {
-						$.globalEval( implementations.join( ';' ) );
+						domEval( implementations.join( ';' ) );
 					} catch ( err ) {
 						cb( err );
 					}
