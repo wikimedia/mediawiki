@@ -186,12 +186,6 @@ class ExtensionProcessor implements Processor {
 	 */
 	public function extractInfo( $path, array $info, $version ) {
 		$dir = dirname( $path );
-		if ( $version === 2 ) {
-			$this->extractConfig2( $info, $dir );
-		} else {
-			// $version === 1
-			$this->extractConfig1( $info );
-		}
 		$this->extractHooks( $info );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
@@ -214,6 +208,15 @@ class ExtensionProcessor implements Processor {
 		$name = $this->extractCredits( $path, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[$name] = $info['callback'];
+		}
+
+		// config should be after all core globals are extracted,
+		// so duplicate setting detection will work fully
+		if ( $version === 2 ) {
+			$this->extractConfig2( $info, $dir );
+		} else {
+			// $version === 1
+			$this->extractConfig1( $info );
 		}
 
 		if ( $version === 2 ) {
@@ -463,7 +466,7 @@ class ExtensionProcessor implements Processor {
 			}
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
-					$this->addConfigGlobal( "$prefix$key", $val );
+					$this->addConfigGlobal( "$prefix$key", $val, $info['name'] );
 				}
 			}
 		}
@@ -491,7 +494,7 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $data['path'] ) && $data['path'] ) {
 					$value = "$dir/$value";
 				}
-				$this->addConfigGlobal( "$prefix$key", $value );
+				$this->addConfigGlobal( "$prefix$key", $value, $info['name'] );
 			}
 		}
 	}
@@ -501,12 +504,13 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @param string $key The config key with the prefix and anything
 	 * @param mixed $value The value of the config
+	 * @param string $extName Name of the extension
 	 */
-	private function addConfigGlobal( $key, $value ) {
+	private function addConfigGlobal( $key, $value, $extName ) {
 		if ( array_key_exists( $key, $this->globals ) ) {
 			throw new RuntimeException(
-				"The configuration setting '$key' was already set by another extension,"
-				. " and cannot be set again." );
+				"The configuration setting '$key' was already set by MediaWiki core or"
+				. " another extension, and cannot be set again by $extName." );
 		}
 		$this->globals[$key] = $value;
 	}
