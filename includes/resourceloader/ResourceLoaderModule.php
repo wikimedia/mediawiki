@@ -139,7 +139,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @return string JavaScript code
 	 */
-	protected function getDeprecationInformation() {
+	public function getDeprecationInformation() {
 		$deprecationInfo = $this->deprecated;
 		if ( $deprecationInfo ) {
 			$name = $this->getName();
