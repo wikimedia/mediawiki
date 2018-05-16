@@ -72,6 +72,10 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'shouldEmbed' => true,
 				'styles' => '.shouldembed{}',
 			],
+			'test.styles.deprecated' => [
+				'type' => ResourceLoaderModule::LOAD_STYLES,
+				'deprecated' => 'Deprecation message.',
+			],
 
 			'test.scripts' => [],
 			'test.scripts.user' => [ 'group' => 'user' ],
@@ -125,6 +129,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			'test.styles.private',
 			'test.styles.pure',
 			'test.styles.shouldembed',
+			'test.styles.deprecated',
 			'test.unregistered.styles',
 		] );
 		$client->setModuleScripts( [
@@ -145,6 +150,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 				'test.styles.user.empty' => 'ready',
 				'test.styles.private' => 'ready',
 				'test.styles.shouldembed' => 'ready',
+				'test.styles.deprecated' => 'ready',
 				'test.scripts' => 'loading',
 				'test.scripts.user' => 'loading',
 				'test.scripts.user.empty' => 'ready',
@@ -155,6 +161,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			],
 			'styles' => [
 				'test.styles.pure',
+				'test.styles.deprecated',
 			],
 			'scripts' => [
 				'test.scripts',
@@ -168,6 +175,13 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 					'test.shouldembed',
 					'test.user',
 				],
+			],
+			'styledeprecations' => [
+				Xml::encodeJsCall(
+					'mw.log.warn',
+					[ 'This page is using the deprecated ResourceLoader module "test.styles.deprecated".
+Deprecation message.' ]
+				)
 			],
 		];
 
@@ -195,6 +209,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 		$client->setModuleStyles( [
 			'test.styles.pure',
 			'test.styles.private',
+			'test.styles.deprecated',
 		] );
 		$client->setModuleScripts( [
 			'test.scripts',
@@ -207,12 +222,13 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
 			. '<script>(window.RLQ=window.RLQ||[]).push(function(){'
 			. 'mw.config.set({"key":"value"});'
-			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.scripts":"loading"});'
+			. 'mw.loader.state({"test.exempt":"ready","test.private":"loading","test.styles.pure":"ready","test.styles.private":"ready","test.styles.deprecated":"ready","test.scripts":"loading"});'
 			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
 			. 'mw.loader.load(["test"]);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
+			. 'mw.log.warn("This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message.");'
 			. '});</script>' . "\n"
-			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles&amp;skin=fallback"/>' . "\n"
+			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
