@@ -341,9 +341,12 @@ class RevisionStore
 		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
 
-		$parentId = $rev->getParentId() === null
-			? $this->getPreviousRevisionId( $dbw, $rev )
-			: $rev->getParentId();
+		$parentId = $this->getPreviousRevisionId( $dbw, $rev );
+		$parentRevRow = $dbw->selectRow( [ 'revision' ], [ 'rev_id' ], [ 'rev_id' => $rev->getParentId() ], __METHOD__ );
+
+		if ( $parentRevRow ) {
+			$parentId = $rev->getParentId();
+		}
 
 		// Record the text (or external storage URL) to the blob store
 		$slot = $rev->getSlot( 'main', RevisionRecord::RAW );
