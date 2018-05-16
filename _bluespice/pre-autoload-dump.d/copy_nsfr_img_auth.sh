@@ -1,2 +1,2 @@
 #!/bin/sh
-cp extensions/NSFRepo/nsfr_img_auth.php .
+cp extensions/NSFileRepo/nsfr_img_auth.php .
