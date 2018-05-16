@@ -173,6 +173,7 @@ class SearchResultSet {
 	 * Fetches next search result, or false.
 	 * STUB
 	 * FIXME: refactor as iterator, so we could use nicer interfaces.
+	 * @deprecated since 1.32; Use self::extractResults()
 	 * @return SearchResult|false
 	 */
 	function next() {
@@ -181,6 +182,7 @@ class SearchResultSet {
 
 	/**
 	 * Rewind result set back to beginning
+	 * @deprecated since 1.32; Use self::extractResults()
 	 */
 	function rewind() {
 	}
