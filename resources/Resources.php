@@ -2034,6 +2034,7 @@ return [
 			'apisandbox-dynamic-parameters-add-label',
 			'apisandbox-dynamic-parameters-add-placeholder',
 			'apisandbox-dynamic-error-exists',
+			'apisandbox-templated-parameter-reason',
 			'apisandbox-deprecated-parameters',
 			'apisandbox-no-parameters',
 			'api-help-param-limit',
@@ -2070,6 +2071,9 @@ return [
 			'apisandbox-multivalue-all-values',
 			'api-format-prettyprint-status',
 			'blanknamespace',
+			'comma-separator',
+			'word-separator',
+			'and'
 		],
 	],
 	'mediawiki.special.block' => [

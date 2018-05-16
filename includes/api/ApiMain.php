@@ -1888,6 +1888,7 @@ class ApiMain extends ApiBase {
 			$help[$k] = $v;
 		}
 		$help['datatypes'] = '';
+		$help['templatedparams'] = '';
 		$help['credits'] = '';
 
 		// Fill 'permissions'
@@ -1920,7 +1921,7 @@ class ApiMain extends ApiBase {
 		$help['permissions'] .= Html::closeElement( 'dl' );
 		$help['permissions'] .= Html::closeElement( 'div' );
 
-		// Fill 'datatypes' and 'credits', if applicable
+		// Fill 'datatypes', 'templatedparams', and 'credits', if applicable
 		if ( empty( $options['nolead'] ) ) {
 			$level = $options['headerlevel'];
 			$tocnumber = &$options['tocnumber'];
@@ -1948,6 +1949,35 @@ class ApiMain extends ApiBase {
 					'toclevel' => count( $tocnumber ),
 					'level' => $level,
 					'anchor' => 'main/datatypes',
+					'line' => $header,
+					'number' => implode( '.', $tocnumber ),
+					'index' => false,
+				];
+			}
+
+			$header = $this->msg( 'api-help-templatedparams-header' )->parse();
+
+			$id = Sanitizer::escapeIdForAttribute( 'main/templatedparams', Sanitizer::ID_PRIMARY );
+			$idFallback = Sanitizer::escapeIdForAttribute( 'main/templatedparams', Sanitizer::ID_FALLBACK );
+			$headline = Linker::makeHeadline( min( 6, $level ),
+				' class="apihelp-header">',
+				$id,
+				$header,
+				'',
+				$idFallback
+			);
+			// Ensure we have a sane anchor
+			if ( $id !== 'main/templatedparams' && $idFallback !== 'main/templatedparams' ) {
+				$headline = '<div id="main/templatedparams"></div>' . $headline;
+			}
+			$help['templatedparams'] .= $headline;
+			$help['templatedparams'] .= $this->msg( 'api-help-templatedparams' )->parseAsBlock();
+			if ( !isset( $tocData['main/templatedparams'] ) ) {
+				$tocnumber[$level]++;
+				$tocData['main/templatedparams'] = [
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => 'main/templatedparams',
 					'line' => $header,
 					'number' => implode( '.', $tocnumber ),
 					'index' => false,
