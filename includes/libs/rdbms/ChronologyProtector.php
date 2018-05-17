@@ -190,13 +190,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
 		);
 
-		// CP-protected writes should overwhemingly go to the master datacenter, so get DC-local
-		// lock to merge the values. Use a DC-local get() and a synchronous all-DC set(). This
-		// makes it possible for the BagOStuff class to write in parallel to all DCs with one RTT.
+		// CP-protected writes should overwhelmingly go to the master datacenter, so use a
+		// DC-local lock to merge the values. Use a DC-local get() and a synchronous all-DC
+		// set(). This makes it possible for the BagOStuff class to write in parallel to all
+		// DCs with one RTT. The use of WRITE_SYNC avoids needing READ_LATEST for the get().
 		if ( $store->lock( $this->key, 3 ) ) {
 			if ( $workCallback ) {
-				// Let the store run the work before blocking on a replication sync barrier. By the
-				// time it's done with the work, the barrier should be fast if replication caught up.
+				// Let the store run the work before blocking on a replication sync barrier.
+				// If replication caught up while the work finished, the barrier will be fast.
 				$store->addBusyCallback( $workCallback );
 			}
 			$ok = $store->set(
