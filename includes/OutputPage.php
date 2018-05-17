@@ -305,11 +305,6 @@ class OutputPage extends ContextSource {
 	private $mLinkHeader = [];
 
 	/**
-	 * @var string The nonce for Content-Security-Policy
-	 */
-	private $CSPNonce;
-
-	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -480,7 +475,7 @@ class OutputPage extends ContextSource {
 		if ( is_null( $version ) ) {
 			$version = $this->getConfig()->get( 'StyleVersion' );
 		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ), $this->getCSPNonce() ) );
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ) ) );
 	}
 
 	/**
@@ -490,7 +485,7 @@ class OutputPage extends ContextSource {
 	 * @param string $script JavaScript text, no script tags
 	 */
 	public function addInlineScript( $script ) {
-		$this->mScripts .= Html::inlineScript( "\n$script\n", $this->getCSPNonce() ) . "\n";
+		$this->mScripts .= Html::inlineScript( $script );
 	}
 
 	/**
@@ -2438,8 +2433,6 @@ class OutputPage extends ContextSource {
 			$response->header( "X-Frame-Options: $frameOptions" );
 		}
 
-		ContentSecurityPolicy::sendHeaders( $this );
-
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
 		} else {
@@ -2907,7 +2900,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
-		$pieces[] = $this->getRlClient()->getHeadHtml( $this->getCSPNonce() );
+		$pieces[] = $this->getRlClient()->getHeadHtml();
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
@@ -2918,8 +2911,7 @@ class OutputPage extends ContextSource {
 				ResourceLoaderContext::newDummyContext(),
 				[ 'html5shiv' ],
 				ResourceLoaderModule::TYPE_SCRIPTS,
-				[ 'sync' => true ],
-				$this->getCSPNonce()
+				[ 'sync' => true ]
 			) .
 			'<![endif]-->';
 
@@ -3000,8 +2992,7 @@ class OutputPage extends ContextSource {
 			$this->getRlClientContext(),
 			$modules,
 			$only,
-			$extraQuery,
-			$this->getCSPNonce()
+			$extraQuery
 		);
 	}
 
@@ -3034,8 +3025,7 @@ class OutputPage extends ContextSource {
 			$chunks[] = ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript(
 					[ 'wgPageParseReport' => $this->limitReportJSData ]
-				),
-				$this->getCSPNonce()
+				)
 			);
 		}
 
@@ -4001,27 +3991,5 @@ class OutputPage extends ContextSource {
 				'<' . $logos[$i]['src'] . '>;rel=preload;as=image;media=' . $media_query
 			);
 		}
-	}
-
-	/**
-	 * Get (and set if not yet set) the CSP nonce.
-	 *
-	 * This value needs to be included in any <script> tags on the
-	 * page.
-	 *
-	 * @return string|bool Nonce or false to mean don't output nonce
-	 * @since 1.32
-	 */
-	public function getCSPNonce() {
-		if ( !ContentSecurityPolicy::isEnabled( $this->getConfig() ) ) {
-			return false;
-		}
-		if ( $this->CSPNonce === null ) {
-			// XXX It might be expensive to generate randomness
-			// on every request, on windows.
-			$rand = MWCryptRand::generate( 15 );
-			$this->CSPNonce = base64_encode( $rand );
-		}
-		return $this->CSPNonce;
 	}
 }
