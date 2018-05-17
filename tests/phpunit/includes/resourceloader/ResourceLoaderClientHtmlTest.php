@@ -186,7 +186,9 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 
-		$client = new ResourceLoaderClientHtml( $context );
+		$client = new ResourceLoaderClientHtml( $context, [
+			'nonce' => false,
+		] );
 		$client->setConfig( [ 'key' => 'value' ] );
 		$client->setModules( [
 			'test',
@@ -218,7 +220,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**
@@ -237,7 +239,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**
@@ -256,7 +258,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**

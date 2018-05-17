@@ -58,11 +58,15 @@ class ResourceLoaderClientHtml {
 	 * @param ResourceLoaderContext $context
 	 * @param array $options [optional] Array of options
 	 *  - 'target': Custom parameter passed to StartupModule.
+	 *  - 'nonce': From OutputPage::getCSPNonce().
 	 */
 	public function __construct( ResourceLoaderContext $context, array $options = [] ) {
 		$this->context = $context;
 		$this->resourceLoader = $context->getResourceLoader();
-		$this->options = $options;
+		$this->options = $options + [
+			'target' => null,
+			'nonce' => null,
+		];
 	}
 
 	/**
@@ -248,10 +252,10 @@ class ResourceLoaderClientHtml {
 	 * - Inline scripts can't be asynchronous.
 	 * - For styles, earlier is better.
 	 *
-	 * @param string $nonce From OutputPage::getCSPNonce()
 	 * @return string|WrappedStringList HTML
 	 */
-	public function getHeadHtml( $nonce ) {
+	public function getHeadHtml() {
+		$nonce = $this->options['nonce'];
 		$data = $this->getData();
 		$chunks = [];
 
@@ -327,7 +331,7 @@ class ResourceLoaderClientHtml {
 
 		// Async scripts. Once the startup is loaded, inline RLQ scripts will run.
 		// Pass-through a custom 'target' from OutputPage (T143066).
-		$startupQuery = isset( $this->options['target'] )
+		$startupQuery = $this->options['target'] !== null
 			? [ 'target' => (string)$this->options['target'] ]
 			: [];
 		$chunks[] = $this->getLoad(
@@ -379,12 +383,12 @@ class ResourceLoaderClientHtml {
 	 * @param ResourceLoaderContext $mainContext
 	 * @param array $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
-	 * @param array $extraQuery Array with extra query parameters for the request
-	 * @param string $nonce See OutputPage::getCSPNonce() [Since 1.32]
+	 * @param array $extraQuery [optional] Array with extra query parameters for the request
+	 * @param string $nonce [optional] Content-Security-Policy nonce (from OutputPage::getCSPNonce)
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,
-		array $extraQuery, $nonce
+		array $extraQuery = [], $nonce = null
 	) {
 		$rl = $mainContext->getResourceLoader();
 		$chunks = [];
