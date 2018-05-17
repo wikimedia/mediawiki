@@ -303,8 +303,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.spinner' => [
-		'scripts' => 'resources/src/jquery/jquery.spinner.js',
-		'styles' => 'resources/src/jquery/jquery.spinner.css',
+		'scripts' => 'resources/src/jquery.spinner/spinner.js',
+		'styles' => 'resources/src/jquery.spinner/spinner.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.jStorage' => [
