@@ -1345,30 +1345,51 @@ class User implements IDBAccessObject, UserIdentity {
 		$user = $session->getUser();
 		if ( $user->isLoggedIn() ) {
 			$this->loadFromUserObject( $user );
-
-			// If this user is autoblocked, set a cookie to track the Block. This has to be done on
-			// every session load, because an autoblocked editor might not edit again from the same
-			// IP address after being blocked.
-			$config = RequestContext::getMain()->getConfig();
-			if ( $config->get( 'CookieSetOnAutoblock' ) === true ) {
-				$block = $this->getBlock();
-				$shouldSetCookie = $this->getRequest()->getCookie( 'BlockID' ) === null
-					&& $block
-					&& $block->getType() === Block::TYPE_USER
-					&& $block->isAutoblocking();
-				if ( $shouldSetCookie ) {
-					wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
-					$block->setCookie( $this->getRequest()->response() );
-				}
+			if ( $user->isBlocked() ) {
+				// If this user is autoblocked, set a cookie to track the Block. This has to be done on
+				// every session load, because an autoblocked editor might not edit again from the same
+				// IP address after being blocked.
+				$this->trackBlockWithCookie();
 			}
 
 			// Other code expects these to be set in the session, so set them.
 			$session->set( 'wsUserID', $this->getId() );
 			$session->set( 'wsUserName', $this->getName() );
 			$session->set( 'wsToken', $this->getToken() );
+
 			return true;
 		}
+
 		return false;
+	}
+
+	/**
+	 * Set the 'BlockID' cookie depending on block type and user authentication status.
+	 */
+	public function trackBlockWithCookie() {
+		$block = $this->getBlock();
+		if ( $block && $this->getRequest()->getCookie( 'BlockID' ) === null ) {
+			$config = RequestContext::getMain()->getConfig();
+			$shouldSetCookie = false;
+
+			if ( $this->isAnon() && $config->get( 'CookieSetOnIpBlock' ) ) {
+				// If user is logged-out, set a cookie to track the Block
+				$shouldSetCookie = in_array( $block->getType(), [
+					Block::TYPE_IP, Block::TYPE_RANGE
+				] );
+				if ( $shouldSetCookie ) {
+					wfDebug( __METHOD__ . ': User is IP blocked, setting cookie to track' );
+					$block->setCookie( $this->getRequest()->response() );
+				}
+			} elseif ( $this->isLoggedIn() && $config->get( 'CookieSetOnAutoblock' ) ) {
+				$shouldSetCookie = $block->getType() === Block::TYPE_USER && $block->isAutoblocking();
+				if ( $shouldSetCookie ) {
+					wfDebug( __METHOD__ . ': User is autoblocked, setting cookie to track' );
+					$block->setCookie( $this->getRequest()->response() );
+				}
+			}
+
+		}
 	}
 
 	/**
@@ -1896,12 +1917,24 @@ class User implements IDBAccessObject, UserIdentity {
 			// An ID was found in the cookie.
 			$tmpBlock = Block::newFromID( $blockCookieId );
 			if ( $tmpBlock instanceof Block ) {
-				// Check the validity of the block.
-				$blockIsValid = $tmpBlock->getType() == Block::TYPE_USER
-					&& !$tmpBlock->isExpired()
-					&& $tmpBlock->isAutoblocking();
 				$config = RequestContext::getMain()->getConfig();
-				$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+
+				switch ( $tmpBlock->getType() ) {
+					case Block::TYPE_USER:
+						$blockIsValid = !$tmpBlock->isExpired() && $tmpBlock->isAutoblocking();
+						$useBlockCookie = ( $config->get( 'CookieSetOnAutoblock' ) === true );
+						break;
+					case Block::TYPE_IP:
+					case Block::TYPE_RANGE:
+						// If block is type IP or IP range, load only if user is not logged in (T152462)
+						$blockIsValid = !$tmpBlock->isExpired() && !$this->isLoggedIn();
+						$useBlockCookie = ( $config->get( 'CookieSetOnIpBlock' ) === true );
+						break;
+					default:
+						$blockIsValid = false;
+						$useBlockCookie = false;
+				}
+
 				if ( $blockIsValid && $useBlockCookie ) {
 					// Use the block.
 					return $tmpBlock;
