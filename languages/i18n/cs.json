@@ -1990,6 +1990,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Přidat parametr:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Jméno parametru",
 	"apisandbox-dynamic-error-exists": "Parametr s názvem „$1“ již existuje.",
+	"apisandbox-templated-parameter-reason": "Tento [[Special:ApiHelp/main#main/templatedparams|šablonovaný parametr]] se nabízí na základě {{PLURAL:$1|hodnoty|hodnot}} parametru $2.",
 	"apisandbox-deprecated-parameters": "Zavržené parametry",
 	"apisandbox-fetch-token": "Automaticky naplnit token",
 	"apisandbox-add-multi": "Přidat",

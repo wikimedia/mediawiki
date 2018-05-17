@@ -1983,6 +1983,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Додај параметар:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Назив на параметарот",
 	"apisandbox-dynamic-error-exists": "Праметарот по име „$1“ веќе постои.",
+	"apisandbox-templated-parameter-reason": "Овој [[Special:ApiHelp/main#main/templatedparams|шаблонизиран параметар]] се нуди според {{PLURAL:$1|вредноста|вредностите}} на $2.",
 	"apisandbox-deprecated-parameters": "Застарени параметри",
 	"apisandbox-fetch-token": "Самопополни ја шифрата",
 	"apisandbox-add-multi": "Додај",

@@ -1092,7 +1092,7 @@
 	"recentchangescount": "Domyślna liczba wyświetlanych edycji w ostatnich zmianach, historii i rejestrach:",
 	"prefs-help-recentchangescount": "Maksymalna liczba: 1000",
 	"prefs-help-watchlist-token2": "To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez ciebie stronach.\nKażdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.\n[[Special:ResetTokens|Kliknij tu, jeśli chcesz go zresetować]].",
-	"prefs-help-tokenmanagement": "Możesz zobaczyć i zresetować sekretny klucz przypisany do konta, służący do uzyskania dostępu do kanału internetowego zmian w obserwowanych przez ciebie stronach. Każdy, kto go zna, będzie mógł je zobaczyć, więc nie udostępniaj go.",
+	"prefs-help-tokenmanagement": "Możesz zobaczyć i zresetować tajny klucz przypisany do Twojego konta, służący do uzyskania dostępu do kanału internetowego zmian w obserwowanych przez ciebie stronach. Każdy, kto go zna, będzie mógł je zobaczyć, więc nie udostępniaj go.",
 	"savedprefs": "Twoje preferencje zostały zapisane.",
 	"savedrights": "Zapisano grupy {{GENDER:$1|użytkownika $1|użytkowniczki $1}}.",
 	"timezonelegend": "Strefa czasowa:",
