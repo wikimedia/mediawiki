@@ -79,7 +79,7 @@ class UploadForm extends HTMLForm {
 
 		# Add a link to edit MediaWiki:Licenses
 		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-			$this->getOutput()->addModuleStyles( 'mediawiki.special.upload.styles' );
+			$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 			$licensesLink = $linkRenderer->makeKnownLink(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
 				$this->msg( 'licenses-edit' )->text(),
