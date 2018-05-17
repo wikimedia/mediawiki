@@ -218,7 +218,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 		// phpcs:enable
 		$expected = self::expandVariables( $expected );
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**
@@ -237,7 +237,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback&amp;target=example"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**
@@ -256,7 +256,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;skin=fallback"></script>';
 		// phpcs:enable
 
-		$this->assertEquals( $expected, $client->getHeadHtml( false ) );
+		$this->assertEquals( $expected, $client->getHeadHtml() );
 	}
 
 	/**
@@ -408,7 +408,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 	public function testMakeLoad( array $extraQuery, array $modules, $type, $expected ) {
 		$context = self::makeContext( $extraQuery );
 		$context->getResourceLoader()->register( self::makeSampleModules() );
-		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery, false );
+		$actual = ResourceLoaderClientHtml::makeLoad( $context, $modules, $type, $extraQuery );
 		$expected = self::expandVariables( $expected );
 		$this->assertEquals( $expected, (string)$actual );
 	}

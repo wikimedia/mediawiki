@@ -2861,6 +2861,7 @@ class OutputPage extends ContextSource {
 
 			$rlClient = new ResourceLoaderClientHtml( $context, [
 				'target' => $this->getTarget(),
+				'nonce' => $this->getCSPNonce(),
 			] );
 			$rlClient->setConfig( $this->getJSVars() );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
@@ -2907,7 +2908,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
-		$pieces[] = $this->getRlClient()->getHeadHtml( $this->getCSPNonce() );
+		$pieces[] = $this->getRlClient()->getHeadHtml();
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
