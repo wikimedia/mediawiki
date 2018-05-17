@@ -1509,7 +1509,7 @@
 	"recentchangeslinked-feed": "Linkitettyjen sivujen muutokset",
 	"recentchangeslinked-toolbox": "Linkitettyjen sivujen muutokset",
 	"recentchangeslinked-title": "Sivulta $1 linkitettyjen sivujen muutokset",
-	"recentchangeslinked-summary": "Kirjoita sivun nimi nähdäksesi muutokset sivuihin jotka on linkitetty tai ovat tältä sivulta. (Nähdäksesi luokan jäsenet, kirjoita {{ns:category}}:Luokan nimi). Muutokset sivuihin [[Special:Watchlist|tarkkailulistallasi]] on <strong>lihavoitu</strong>.",
+	"recentchangeslinked-summary": "Kirjoita sivun nimi nähdäksesi muutokset sivuihin, joista on linkki tähän sivuun tai joihin on linkki tältä sivulta. (Luokan sisällön saat näkyviin kirjoittamalla {{ns:category}}:Luokan nimen). Muutokset [[Special:Watchlist|tarkkailulistallasi]] oleviin sivuihin on <strong>lihavoitu</strong>.",
 	"recentchangeslinked-page": "Sivun nimi:",
 	"recentchangeslinked-to": "Näytä sen sijaan muutokset sivuihin, joista on linkki tähän sivuun",
 	"recentchanges-page-added-to-category": "[[:$1]] lisätty luokkaan",

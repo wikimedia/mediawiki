@@ -3997,5 +3997,6 @@
 	"pagedata-title": "Podatki strani",
 	"pagedata-text": "Ta stran nudi podatkovni vmesnik do strani. Prosimo, navedite naslov strani v URL-ju z uporabo skladnje podstrani.\n* Pogajanje o vsebini se nanaša na glavo Accept vašega odjemalca. To pomeni, da bomo podatke strani posredovali v obliki, ki vašemu odjemalcu bolj ustreza.",
 	"pagedata-not-acceptable": "Nismo našli ujemajoče oblike. Podprte vrste MIME: $1",
-	"pagedata-bad-title": "Neveljaven naslov: $1."
+	"pagedata-bad-title": "Neveljaven naslov: $1.",
+	"unregistered-user-config": "Iz varnostnih razlogov uporabniških podstrani JavaScript, CSS in JSON ne moremo naložiti neregistriranim uporabnikom."
 }

@@ -2049,6 +2049,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Parameter hinzufügen:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Name des Parameters",
 	"apisandbox-dynamic-error-exists": "Ein Parameter mit dem Namen „$1“ ist bereits vorhanden.",
+	"apisandbox-templated-parameter-reason": "Diese [[Special:ApiHelp/main#main/templatedparams|Vorlagenparameter]] werden basierend auf {{PLURAL:$1|dem Wert|den Werten}} von $2 angeboten.",
 	"apisandbox-deprecated-parameters": "Veraltete Parameter",
 	"apisandbox-fetch-token": "Den Token automatisch ausfüllen",
 	"apisandbox-add-multi": "Hinzufügen",

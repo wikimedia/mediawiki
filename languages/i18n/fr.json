@@ -2132,6 +2132,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Ajout du paramètre:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Nom du paramètre",
 	"apisandbox-dynamic-error-exists": "Un paramètre nommé \"$1\" existe déjà.",
+	"apisandbox-templated-parameter-reason": "Ce [[Special:ApiHelp/main#main/templatedparams|paramètre de modèle]] est offert d’après {{PLURAL:$1|la valeur|les valeurs}} de $2.",
 	"apisandbox-deprecated-parameters": "Paramètres désuets",
 	"apisandbox-fetch-token": "Auto-remplissage du jeton",
 	"apisandbox-add-multi": "Ajouter",
