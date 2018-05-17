@@ -173,13 +173,13 @@ class CSSMin {
 
 	/**
 	 * Serialize a string (escape and quote) for use as a CSS string value.
-	 * https://www.w3.org/TR/2016/WD-cssom-1-20160317/#serialize-a-string
+	 * https://drafts.csswg.org/cssom/#serialize-a-string
 	 *
 	 * @param string $value
 	 * @return string
 	 */
 	public static function serializeStringValue( $value ) {
-		$value = strtr( $value, [ "\0" => "\\fffd ", '\\' => '\\\\', '"' => '\\"' ] );
+		$value = strtr( $value, [ "\0" => "\xEF\xBF\xBD", '\\' => '\\\\', '"' => '\\"' ] );
 		$value = preg_replace_callback( '/[\x01-\x1f\x7f]/', function ( $match ) {
 			return '\\' . base_convert( ord( $match[0] ), 10, 16 ) . ' ';
 		}, $value );
