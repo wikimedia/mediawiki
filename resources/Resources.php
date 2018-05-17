@@ -2119,9 +2119,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.special.changeslist.visitedstatus' => [
-		'scripts' => 'resources/src/mediawiki.special.changeslist.visitedstatus.js',
-	],
 	'mediawiki.special.contributions' => [
 		'scripts' => 'resources/src/mediawiki.special.contributions.js',
 		'dependencies' => [
@@ -2352,7 +2349,10 @@ return [
 		],
 	],
 	'mediawiki.special.watchlist' => [
-		'scripts' => 'resources/src/mediawiki.special.watchlist.js',
+		'scripts' => [
+			'resources/src/mediawiki.special.watchlist/watchlist.js',
+			'resources/src/mediawiki.special.watchlist/visitedstatus.js',
+		],
 		'messages' => [
 			'addedwatchtext',
 			'addedwatchtext-talk',
