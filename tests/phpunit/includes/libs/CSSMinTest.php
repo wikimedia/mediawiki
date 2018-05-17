@@ -35,7 +35,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	public static function provideSerializeStringValue() {
 		return [
 			[ 'Hello World!', '"Hello World!"' ],
-			[ "Null\0Null", "\"Null\\fffd Null\"" ],
+			[ "Null\0Null", "\"Null\xEF\xBF\xBDNull\"" ],
 			[ '"', '"\\""' ],
 			[ "'", '"\'"' ],
 			[ "\\", '"\\\\"' ],
