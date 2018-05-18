@@ -56,9 +56,14 @@ require_once "$IP/includes/DefaultSettings.php";
 // Load global functions
 require_once "$IP/includes/GlobalFunctions.php";
 
+# Vendor directory path.
+if ( ! defined( 'MW_VENDOR_DIR' ) ) {
+	define( 'MW_VENDOR_DIR', "$IP/vendor/" );
+}
+
 // Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
+if ( is_readable( MW_VENDOR_DIR . '/autoload.php' ) ) {
+	require_once MW_VENDOR_DIR . '/autoload.php';
 }
 
 // Assert that composer dependencies were successfully loaded
