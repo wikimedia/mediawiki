@@ -329,8 +329,6 @@ return [
 		"PhanTypeComparisonFromArray",
 		// approximate error count: 2
 		"PhanTypeComparisonToArray",
-		// approximate error count: 3
-		"PhanTypeInvalidRightOperand",
 		// approximate error count: 1
 		"PhanTypeMagicVoidWithReturn",
 		// approximate error count: 218
@@ -371,8 +369,6 @@ return [
 		"PhanUndeclaredStaticMethod",
 		// approximate error count: 11
 		"PhanUndeclaredTypeReturnType",
-		// approximate error count: 27
-		"PhanUndeclaredVariable",
 		// approximate error count: 58
 		"PhanUndeclaredVariableDim",
 	],
