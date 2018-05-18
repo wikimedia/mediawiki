@@ -371,8 +371,6 @@ return [
 		"PhanUndeclaredStaticMethod",
 		// approximate error count: 11
 		"PhanUndeclaredTypeReturnType",
-		// approximate error count: 27
-		"PhanUndeclaredVariable",
 		// approximate error count: 58
 		"PhanUndeclaredVariableDim",
 	],
