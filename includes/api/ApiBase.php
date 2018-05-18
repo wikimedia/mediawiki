@@ -1503,9 +1503,9 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
-			$this->addDeprecation(
-				[ 'apiwarn-toomanyvalues', $valueName, $sizeLimit ],
-				"too-many-$valueName-for-{$this->getModulePath()}"
+			$this->dieWithError(
+				[ 'apierror-toomanyvalues', $valueName, $sizeLimit ],
+				"too-many-$valueName"
 			);
 		}
 
