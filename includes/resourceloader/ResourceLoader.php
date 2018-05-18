@@ -1503,7 +1503,7 @@ MESSAGE;
 	 * startup module if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @param string $nonce Content-security-policy nonce, from OutputPage::getCSPNonce()
+	 * @param string $nonce [optional] Content-Security-Policy nonce (from OutputPage::getCSPNonce)
 	 * @return WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {
