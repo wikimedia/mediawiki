@@ -149,7 +149,7 @@
 		rWhitespace = /[ _\u00A0\u1680\u180E\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]+/g,
 
 		// From MediaWikiTitleCodec::splitTitleString() in PHP
-		rUnicodeBidi = /[\u200E\u200F\u202A-\u202E]/g,
+		rStripCharacters = /[\u00AD\u200E\u200F\u202A-\u202E]/g,
 
 		/**
 		 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
@@ -233,8 +233,8 @@
 			namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
 			title = title
-				// Strip Unicode bidi override characters
-				.replace( rUnicodeBidi, '' )
+				// Strip soft hyphens and Unicode bidi override characters
+				.replace( rStripCharacters, '' )
 				// Normalise whitespace to underscores and remove duplicates
 				.replace( rWhitespace, '_' )
 				// Trim underscores
