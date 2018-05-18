@@ -230,9 +230,8 @@ class UserGroupMembership {
 	public function isExpired() {
 		if ( !$this->expiry ) {
 			return false;
-		} else {
-			return wfTimestampNow() > $this->expiry;
 		}
+		return wfTimestampNow() > $this->expiry;
 	}
 
 	/**
@@ -354,9 +353,8 @@ class UserGroupMembership {
 		$ugm = self::newFromRow( $row );
 		if ( !$ugm->isExpired() ) {
 			return $ugm;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -419,9 +417,8 @@ class UserGroupMembership {
 			}
 			return $context->msg( 'group-membership-link-with-expiry' )
 				->params( $groupLink, $expiryDT, $expiryD, $expiryT )->text();
-		} else {
-			return $groupLink;
 		}
+		return $groupLink;
 	}
 
 	/**
