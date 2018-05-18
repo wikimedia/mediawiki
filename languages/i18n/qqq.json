@@ -2237,6 +2237,7 @@
 	"listusers": "{{doc-special|ListUsers}}",
 	"listusers-summary": "{{notranslate}}\nThe summary displayed at the top of [[Special:Listusers]]. [[mw:Manual:Interface/Special pages summary|mw manual]].",
 	"listusers-editsonly": "Option in [[Special:ListUsers]].",
+	"listusers-temporarygroupsonly": "Option in [[Special:ListUsers]].",
 	"listusers-creationsort": "Option in [[Special:ListUsers]].",
 	"listusers-desc": "Used as label for the checkbox on [[Special:ListUsers]].",
 	"usereditcount": "Shown behind every username on [[Special:ListUsers]]. Parameters:\n* $1 - number of edits",
