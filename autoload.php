@@ -280,7 +280,6 @@ $wgAutoloadLocalClasses = [
 	'Collation' => __DIR__ . '/includes/collation/Collation.php',
 	'CollationCkb' => __DIR__ . '/includes/collation/CollationCkb.php',
 	'CollationEt' => __DIR__ . '/includes/collation/CollationEt.php',
-	'CollationFa' => __DIR__ . '/includes/collation/CollationFa.php',
 	'CommandLineInc' => __DIR__ . '/maintenance/commandLine.inc',
 	'CommandLineInstaller' => __DIR__ . '/maintenance/install.php',
 	'CommentStore' => __DIR__ . '/includes/CommentStore.php',

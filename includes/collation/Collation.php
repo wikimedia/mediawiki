@@ -63,8 +63,6 @@ abstract class Collation {
 				return new CollationCkb;
 			case 'xx-uca-et':
 				return new CollationEt;
-			case 'xx-uca-fa':
-				return new CollationFa;
 			case 'uppercase-ab':
 				return new AbkhazUppercaseCollation;
 			case 'uppercase-ba':
