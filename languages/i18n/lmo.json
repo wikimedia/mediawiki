@@ -1179,7 +1179,7 @@
 	"whatlinkshere": "Pagin che se culeghen chì",
 	"whatlinkshere-title": "Paginn che menen a \"$1\"",
 	"whatlinkshere-page": "Pagina:",
-	"linkshere": "I paginn chì de sota gh'hann di ligam che porten a '''[[:$1]]''':",
+	"linkshere-2": "I paginn chì de sota gh'hann di ligam che porten a '''$1''':",
 	"isredirect": "redirezión",
 	"istemplate": "inclüsión",
 	"isimage": "ligam a un archivi",

@@ -398,7 +398,7 @@
 	"sp-contributions-submit": "Cari",
 	"whatlinkshere-title": "Kintal yang ada pranala ka \"$1\"",
 	"whatlinkshere-page": "Kintal",
-	"nolinkshere": "Seng ada halaman yang taika par <strong>[[:$1]]</strong>.",
+	"nolinkshere-2": "Seng ada halaman yang taika par <strong>$1</strong>.",
 	"isredirect": "kintal voor pengalihan",
 	"istemplate": "tranklusi",
 	"whatlinkshere-prev": "{{PLURAL:$1|sabalong $1}}",

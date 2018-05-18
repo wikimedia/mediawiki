@@ -450,7 +450,7 @@
 	"sp-contributions-submit": "Circà",
 	"whatlinkshere": "Pagine chì leganu quì",
 	"whatlinkshere-title": "Pagine ligate à \"$1\"",
-	"linkshere": "E seguente pagine sò culligate à '''[[:$1]]''':",
+	"linkshere-2": "E seguente pagine sò culligate à '''$1''':",
 	"istemplate": "inclusione",
 	"whatlinkshere-prev": "{{PLURAL:$1|precidente|precidenti $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|seguente|seguenti $1}}",

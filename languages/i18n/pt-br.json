@@ -737,8 +737,8 @@
 	"subject-preview": "Previsão do assunto/título:",
 	"previewerrortext": "Ocorreu um erro ao tentar pré-visualizar suas alterações.",
 	"blockedtitle": "O usuário está bloqueado",
-	"blockedtext": "'''O seu nome de usuário ou endereço de IP foi bloqueado.'''\n\nO bloqueio foi realizado por $1.\nO motivo apresentado foi ''$2''.\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destino do bloqueio: $7\n\nVocê pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.\n\nVocê só poderá utilizar a funcionalidade \"Contatar usuário\" se um endereço de ''e-mail'' válido estiver especificado em suas [[Special:Preferences|preferências de usuário]] e você não tiver sido bloqueado de utilizar tal recurso.\nO seu endereço de IP atual é $3 e a ID de bloqueio é #$5.\nPor favor, inclua todos os detalhes acima em quaisquer tentativas de esclarecimento.",
-	"autoblockedtext": "O seu endereço de IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro usuário, o qual foi bloqueado por $1.\nO motivo apresentado foi:\n\n:''$2''\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destino do bloqueio: $7\n\nVocê pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.\n\nNote que não poderá utilizar a funcionalidade \"Contatar usuário\" se não possuir uma conta nesta wiki ({{SITENAME}}) com um endereço de ''e-mail'' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.\n\nSeu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.\nPor favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.",
+	"blockedtext": "<strong>O seu nome de usuário ou endereço IP foram bloqueados.</strong>\n\nO bloqueio foi realizado por $1.\nO motivo apresentado foi <em>$2</em>.\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\nNote que para utilizar a funcionalidade \"{{int:emailuser}}\" precisa de ter um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contatos relacionados com este bloqueio, por favor.",
+	"autoblockedtext": "O seu endereço IP foi bloqueado de forma automática porque foi utilizado recentemente por outro usuário, o qual foi bloqueado por $1.\nO motivo apresentado foi:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nPode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.\n\nNote que para utilizar a funcionalidade \"{{int:emailuser}}\" precisa de ter um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] e de não lhe ter sido bloqueado o uso desta funcionalidade.\n\nO seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.\nInclua todos os detalhes acima em quaisquer contatos relacionados com este bloqueio, por favor.",
 	"systemblockedtext": "O seu nome de usuário ou endereço IP foram bloqueados automaticamente pelo MediaWiki.\nO motivo fornecido é:\n\n:<em>$2</em>\n\n* Início do bloqueio: $8\n* Expiração do bloqueio: $6\n* Destinatário do bloqueio: $7\n\nO seu endereço IP atual é $3.\nInclua todos os detalhes acima em quaisquer contatos sobre este assunto, por favor.",
 	"blockednoreason": "sem motivo especificado",
 	"whitelistedittext": "Você precisa $1 para poder editar páginas.",
@@ -2483,9 +2483,9 @@
 	"whatlinkshere": "Páginas afluentes",
 	"whatlinkshere-title": "Páginas que têm links para \"$1\"",
 	"whatlinkshere-page": "Página:",
-	"linkshere": "As seguintes páginas possuem links para '''[[:$1]]''':",
-	"nolinkshere": "Não há afluentes para '''[[:$1]]''' com as condições especificadas.",
-	"nolinkshere-ns": "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
+	"linkshere-2": "As seguintes páginas possuem links para '''$1''':",
+	"nolinkshere-2": "Não há afluentes para '''$1''' com as condições especificadas.",
+	"nolinkshere-ns-2": "Não há links para '''$1''' no espaço nominal selecionado.",
 	"isredirect": "página de redirecionamento",
 	"istemplate": "transclusão",
 	"isimage": "link para o arquivo",
@@ -4095,5 +4095,6 @@
 	"pagedata-title": "Dados de página",
 	"pagedata-text": "Esta página fornece uma interface de dados para páginas. Forneça o título da página no URL, usando a sintaxe de subpáginas, por favor.\n* Aplica-se a negociação de conteúdo com base no cabeçalho Accept do seu cliente. Isto significa que os dados da página serão fornecidos no formato preferido do seu cliente.",
 	"pagedata-not-acceptable": "Nenhum formato correspondente encontrado. Tipos MIME suportados: $1",
-	"pagedata-bad-title": "Título inválido: $1."
+	"pagedata-bad-title": "Título inválido: $1.",
+	"unregistered-user-config": "Por razões de segurança as subpáginas de utilizador com JavaScript, CSS e JSON não podem ser carregadas para usuários não registados."
 }

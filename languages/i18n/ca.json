@@ -58,7 +58,8 @@
 			"Syum90",
 			"Xð",
 			"Abella",
-			"Pierpao"
+			"Pierpao",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -1034,6 +1035,7 @@
 	"prefs-watchlist-edits": "Nombre màxim de modificacions a mostrar en la llista de seguiment:",
 	"prefs-watchlist-edits-max": "Nombre màxim: 1000",
 	"prefs-watchlist-token": "Testimoni de llista de seguiment:",
+	"prefs-watchlist-managetokens": "Dirigeix testimonis",
 	"prefs-misc": "Altres preferències",
 	"prefs-resetpass": "Canvia la contrasenya",
 	"prefs-changeemail": "Canvia o elimina l’adreça electrònica",
@@ -2374,9 +2376,9 @@
 	"whatlinkshere": "Què hi enllaça",
 	"whatlinkshere-title": "Pàgines que enllacen amb «$1»",
 	"whatlinkshere-page": "Pàgina:",
-	"linkshere": "Les següents pàgines enllacen amb '''[[:$1]]''':",
-	"nolinkshere": "Cap pàgina no enllaça amb '''[[:$1]]'''.",
-	"nolinkshere-ns": "No s'enllaça cap pàgina a '''[[:$1]]''' en l'espai de noms triat.",
+	"linkshere-2": "Les següents pàgines enllacen amb '''$1''':",
+	"nolinkshere-2": "Cap pàgina no enllaça amb '''$1'''.",
+	"nolinkshere-ns-2": "No s'enllaça cap pàgina a '''$1''' en l'espai de noms triat.",
 	"isredirect": "pàgina redirigida",
 	"istemplate": "inclusió",
 	"isimage": "enllaç a fitxer",
