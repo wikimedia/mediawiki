@@ -38,6 +38,6 @@ class ResourceLoaderLessVarFileModuleTest extends ResourceLoaderTestCase {
 	public function testEscapeMessage( $msg, $expected ) {
 		$method = new ReflectionMethod( ResourceLoaderLessVarFileModule::class, 'wrapAndEscapeMessage' );
 		$method->setAccessible( true );
-		$this->assertEquals( $expected, $method->invoke( ResourceLoaderLessVarFileModule::class, $msg ) );
+		$this->assertEquals( $expected, $method->invoke( null, $msg ) );
 	}
 }
