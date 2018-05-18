@@ -329,8 +329,6 @@ return [
 		"PhanTypeComparisonFromArray",
 		// approximate error count: 2
 		"PhanTypeComparisonToArray",
-		// approximate error count: 3
-		"PhanTypeInvalidRightOperand",
 		// approximate error count: 1
 		"PhanTypeMagicVoidWithReturn",
 		// approximate error count: 218
