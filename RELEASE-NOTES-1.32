@@ -52,6 +52,8 @@ production.
     from normal parameters. All parameter definitions now include an "index"
     key to allow clients to maintain parameter ordering when merging normal and
     templated parameters.
+* It is now an error to submit too many values for a multi-valued parameter.
+  This has generated a warning since 2008.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
