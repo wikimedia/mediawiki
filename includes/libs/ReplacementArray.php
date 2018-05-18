@@ -22,14 +22,14 @@
  * Wrapper around strtr() that holds replacements
  */
 class ReplacementArray {
-	private $data = false;
+	private $data = [];
 
 	/**
 	 * Create an object with the specified replacement array
 	 * The array should have the same form as the replacement array for strtr()
 	 * @param array $data
 	 */
-	public function __construct( $data = [] ) {
+	public function __construct( array $data = [] ) {
 		$this->data = $data;
 	}
 
@@ -44,12 +44,12 @@ class ReplacementArray {
 	 * Set the whole replacement array at once
 	 * @param array $data
 	 */
-	public function setArray( $data ) {
+	public function setArray( array $data ) {
 		$this->data = $data;
 	}
 
 	/**
-	 * @return array|bool
+	 * @return array
 	 */
 	public function getArray() {
 		return $this->data;
