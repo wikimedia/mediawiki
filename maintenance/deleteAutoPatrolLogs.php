@@ -156,16 +156,23 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		$autopatrols = [];
 		foreach ( $result as $row ) {
 			$last = $row->log_id;
-			Wikimedia\suppressWarnings();
-			$params = unserialize( $row->log_params );
-			Wikimedia\restoreWarnings();
-
-			// Skipping really old rows, before 2011
-			if ( !is_array( $params ) || !array_key_exists( '6::auto', $params ) ) {
+			$logEntry = DatabaseLogEntry::newFromRow( $row );
+			$params = $logEntry->getParameters();
+			if ( !is_array( $params ) ) {
 				continue;
 			}
 
-			$auto = $params['6::auto'];
+			var_dump( $params );
+			if ( array_key_exists( '6::auto', $params ) ) {
+				// Between 2011-2016 autopatrol logs
+				$auto = $params['6::auto'];
+			} elseif ( $logEntry->isLegacy() === true && array_key_exists( 2, $params ) ) {
+				// Pre-2011 autopatrol logs
+				$auto = $params[2];
+			} else {
+				continue;
+			}
+
 			if ( $auto ) {
 				$autopatrols[] = $row->log_id;
 			}
