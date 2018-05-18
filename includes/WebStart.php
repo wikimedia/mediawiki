@@ -43,6 +43,11 @@ if ( $IP === false ) {
 	$IP = dirname( __DIR__ );
 }
 
+# Vendor directory path.
+if ( ! defined( 'MW_VENDOR_DIR' ) ) {
+	define( 'MW_VENDOR_DIR', "$IP/vendor/" );
+}
+
 // If no LocalSettings file exists, try to display an error page
 // (use a callback because it depends on TemplateParser)
 if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
