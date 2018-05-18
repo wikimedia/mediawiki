@@ -52,6 +52,8 @@ production.
     from normal parameters. All parameter definitions now include an "index"
     key to allow clients to maintain parameter ordering when merging normal and
     templated parameters.
+* It is now an error to submit too many values for a multi-valued parameter.
+  This has generated a warning since MediaWiki 1.14.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
@@ -109,6 +111,8 @@ because of Phabricator reports.
 * Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
+* ApiBase::truncateArray() is deprecated. No replacement, as nothing is known
+  to use it.
 
 === Other changes in 1.32 ===
 * …
