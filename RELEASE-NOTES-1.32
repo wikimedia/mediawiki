@@ -109,6 +109,7 @@ because of Phabricator reports.
 * Overriding SearchEngine::{searchText,searchTitle,searchArchiveTitle}
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
+* CollationFa has been removed completely as it's not needed anymore
 
 === Other changes in 1.32 ===
 * …
