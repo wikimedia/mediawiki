@@ -190,6 +190,35 @@ class UserMailer {
 	}
 
 	/**
+	 * Whether the PEAR Mail_mime library is usable. This will
+	 * try and load it if it is not already.
+	 *
+	 * @return bool
+	 */
+	private static function isMailMimeUsable() {
+		static $usable = null;
+		if ( $usable === null ) {
+			$usable = class_exists( 'Mail_mime' );
+		}
+		return $usable;
+	}
+
+	/**
+	 * Whether the PEAR Mail library is usable. This will
+	 * try and load it if it is not already.
+	 *
+	 * @return bool
+	 */
+	private static function isMailUsable() {
+		static $usable = null;
+		if ( $usable === null ) {
+			$usable = class_exists( 'Mail' );
+		}
+
+		return $usable;
+	}
+
+	/**
 	 * Helper function fo UserMailer::send() which does the actual sending. It expects a $to
 	 * list which the UserMailerSplitTo hook would not split further.
 	 * @param MailAddress[] $to Array of recipients' email addresses
@@ -363,7 +392,7 @@ class UserMailer {
 			Wikimedia\suppressWarnings();
 
 			// Create the mail object using the Mail::factory method
-			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
+			$mail_object = Mail::factory( 'smtp', $wgSMTP );
 			if ( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
 				Wikimedia\restoreWarnings();
