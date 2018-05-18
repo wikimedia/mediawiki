@@ -129,6 +129,8 @@ because of Phabricator reports.
   mediawiki.api.messages, and mediawiki.api.rollback.
 * ApiBase::truncateArray() is deprecated. No replacement, as nothing is known
   to use it.
+* WatchAction::getUnwatchToken is deprecated. Use WatchAction::getWatchToken
+  with the 'unwatch' action parameter instead.
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these

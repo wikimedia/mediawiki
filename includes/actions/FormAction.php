@@ -109,8 +109,13 @@ abstract class FormAction extends Action {
 	 *
 	 * If you don't want to do anything with the form, just return false here.
 	 *
+	 * This method will be passed to the HTMLForm as a submit callback (see
+	 * HTMLForm::setSubmitCallback) and must return as documented for HTMLForm::trySubmit.
+	 *
+	 * @see HTMLForm::setSubmitCallback()
+	 * @see HTMLForm::trySubmit()
 	 * @param array $data
-	 * @return bool|array True for success, false for didn't-try, array of errors on failure
+	 * @return bool|string|array|Status Must return as documented for HTMLForm::trySubmit
 	 */
 	abstract public function onSubmit( $data );
 
