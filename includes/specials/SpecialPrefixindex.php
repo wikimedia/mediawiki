@@ -128,7 +128,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		];
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$htmlForm = new HTMLForm( $formDescriptor, $context );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'prefixindex' )
