@@ -1,0 +1,10 @@
+{
+	"repositories": [{
+			"type": "composer",
+			"url": "https://packages.bluespice.com/"
+		}],
+	"require": {
+		"mediawiki/blue-spice-rated-comments": "dev-master",
+		"mediawiki/blue-spice-rating": "dev-master"
+	}
+}
