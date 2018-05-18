@@ -47,7 +47,7 @@ class ApiCSPReport extends ApiBase {
 
 		$this->verifyPostBodyOk();
 		$report = $this->getReport();
-		$flags = $this->getFlags( $report );
+		$flags = $this->getFlags( $report, $userAgent );
 
 		$warningText = $this->generateLogLine( $flags, $report );
 		$this->logReport( $flags, $warningText, [
@@ -81,9 +81,10 @@ class ApiCSPReport extends ApiBase {
 	 * Get extra notes about the report.
 	 *
 	 * @param array $report The CSP report
+	 * @param string $userAgent
 	 * @return array
 	 */
-	private function getFlags( $report ) {
+	private function getFlags( $report, $userAgent ) {
 		$reportOnly = $this->getParameter( 'reportonly' );
 		$source = $this->getParameter( 'source' );
 		$falsePositives = $this->getConfig()->get( 'CSPFalsePositiveUrls' );
@@ -137,7 +138,7 @@ class ApiCSPReport extends ApiBase {
 	/**
 	 * Get the report from post body and turn into associative array.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	private function getReport() {
 		$postBody = $this->getRequest()->getRawInput();
