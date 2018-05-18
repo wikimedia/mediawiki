@@ -31,8 +31,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		$this->addOption( 'dry-run', 'Print debug info instead of actually deleting' );
 		$this->addOption(
 			'check-old',
-			'Check old patrol logs (for deleting old format autopatrols).' .
-				'Note that this will not delete rows older than 2011 (MediaWiki 1.18).'
+			'Check old patrol logs (for deleting old format autopatrols).'
 		);
 		$this->addOption(
 			'before',
@@ -156,17 +155,27 @@ class DeleteAutoPatrolLogs extends Maintenance {
 		$autopatrols = [];
 		foreach ( $result as $row ) {
 			$last = $row->log_id;
-			Wikimedia\suppressWarnings();
-			$params = unserialize( $row->log_params );
-			Wikimedia\restoreWarnings();
-
-			// Skipping really old rows, before 2011
-			if ( !is_array( $params ) || !array_key_exists( '6::auto', $params ) ) {
+			$logEntry = DatabaseLogEntry::newFromRow( $row );
+			$params = $logEntry->getParameters();
+			if ( !is_array( $params ) ) {
 				continue;
 			}
 
-			$auto = $params['6::auto'];
-			if ( $auto ) {
+			// This logic belongs to PatrolLogFormatter::getMessageKey
+			// and LogFormatter::extractParameters the 'auto' value is logically presented as key [5].
+			// For legacy case the logical key is index + 3, meaning [2].
+			// For the modern case, the logical key is index - 1 meaning [6].
+			if ( array_key_exists( '6::auto', $params ) ) {
+				// Between 2011-2016 autopatrol logs
+				$auto = $params['6::auto'] === true;
+			} elseif ( $logEntry->isLegacy() === true && array_key_exists( 2, $params ) ) {
+				// Pre-2011 autopatrol logs
+				$auto = $params[2] === '1';
+			} else {
+				continue;
+			}
+
+			if ( $auto === true ) {
 				$autopatrols[] = $row->log_id;
 			}
 		}
