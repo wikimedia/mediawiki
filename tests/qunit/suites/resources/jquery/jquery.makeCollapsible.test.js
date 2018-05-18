@@ -374,4 +374,24 @@
 
 		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
 	} );
+
+	QUnit.test( 'T168689 - nested collapsible divs should keep independent state', function ( assert ) {
+		var $collapsible1 = prepareCollapsible(
+				'<div class="mw-collapsible">' + loremIpsum + '</div>'
+			),
+			$collapsible2 = prepareCollapsible(
+				'<div class="mw-collapsible">' + loremIpsum + '</div>'
+			);
+
+		$collapsible1
+			.append( $collapsible2 )
+			.appendTo( '#qunit-fixture' ).makeCollapsible();
+
+		$collapsible1.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $collapsible1.hasClass( 'mw-collapsed' ), 'after collapsing: parent is collapsed' );
+			assert.assertFalse( $collapsible2.hasClass( 'mw-collapsed' ), 'after collapsing: child is not collapsed' );
+			assert.assertTrue( $collapsible1.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
+			assert.assertFalse( $collapsible2.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
+		} ).find( '> .mw-collapsible-toggle a' ).trigger( 'click' );
+	} );
 }( jQuery ) );
