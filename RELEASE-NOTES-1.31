@@ -110,6 +110,9 @@ production.
   discussion pages) now have a tooltip to indicate state, not just colour.
 
 === External library changes in 1.31 ===
+* pear/mail, pear/mail_mime and pear/mail_mime-decode have been moved from
+  suggested to required. These packages now must be installed via composer
+  and not via PEAR itself.
 
 ==== Upgraded external libraries ====
 * Updated jquery.chosen from v0.9.14 to v1.8.2.
