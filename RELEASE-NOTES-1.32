@@ -120,6 +120,8 @@ because of Phabricator reports.
   mediawiki.api.login, mediawiki.api.options, mediawiki.api.parse,
   mediawiki.api.upload, mediawiki.api.user, mediawiki.api.watch,
   mediawiki.api.messages, and mediawiki.api.rollback.
+* WatchAction::getUnwatchToken is deprecated. Use WatchAction::getWatchToken
+  with the 'unwatch' action parameter instead.
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
