@@ -363,8 +363,10 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_ISMULTI => true,
 					ApiBase::PARAM_ISMULTI_LIMIT1 => 2,
 				],
-				[ 'a', 'b' ],
-				[ [ 'apiwarn-toomanyvalues', 'myParam', 2 ] ],
+				ApiUsageException::newWithMessage(
+					null, [ 'apierror-toomanyvalues', 'myParam', 2 ], 'too-many-myParam'
+				),
+				[]
 			],
 			'Multi-valued parameter with exceeded limits for non-bot' => [
 				'a|b|c',
@@ -373,8 +375,10 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_ISMULTI_LIMIT1 => 2,
 					ApiBase::PARAM_ISMULTI_LIMIT2 => 3,
 				],
-				[ 'a', 'b' ],
-				[ [ 'apiwarn-toomanyvalues', 'myParam', 2 ] ],
+				ApiUsageException::newWithMessage(
+					null, [ 'apierror-toomanyvalues', 'myParam', 2 ], 'too-many-myParam'
+				),
+				[]
 			],
 			'Multi-valued parameter with non-exceeded limits for bot' => [
 				'a|b|c',
