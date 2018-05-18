@@ -92,6 +92,24 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_timestamp' => 20091223210426
 		];
 
+		// Autopatrol #4 very old way
+		$logs[] = [
+			'log_type' => 'patrol',
+			'log_action' => 'patrol',
+			'log_user' => 7257,
+			'log_params' => "9227851\n0\n1",
+			'log_timestamp' => 20081223210426
+		];
+
+		// Manual patrol #3 very old way
+		$logs[] = [
+			'log_type' => 'patrol',
+			'log_action' => 'patrol',
+			'log_user' => 7258,
+			'log_params' => "9227851\n0\n0",
+			'log_timestamp' => 20091223210426
+		];
+
 		wfGetDB( DB_MASTER )->insert( 'logging', $logs );
 	}
 
@@ -132,6 +150,16 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 				'log_action' => 'patrol',
 				'log_user' => '7256',
 			],
+			(object)[
+				'log_type' => 'patrol',
+				'log_action' => 'patrol',
+				'log_user' => '7257',
+			],
+			(object)[
+				'log_type' => 'patrol',
+				'log_action' => 'patrol',
+				'log_user' => '7258',
+			],
 		];
 
 		$cases = [
@@ -146,6 +174,8 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 					$allRows[3],
 					$allRows[5],
 					$allRows[6],
+					$allRows[7],
+					$allRows[8],
 				],
 				[ '--sleep', '0', '-q' ]
 			],
@@ -157,6 +187,8 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 					$allRows[4],
 					$allRows[5],
 					$allRows[6],
+					$allRows[7],
+					$allRows[8],
 				],
 				[ '--sleep', '0', '--before', '20060123210426', '-q' ]
 			],
@@ -168,6 +200,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 					$allRows[3],
 					$allRows[4],
 					$allRows[6],
+					$allRows[8],
 				],
 				[ '--sleep', '0', '--check-old', '-q' ]
 			],
