@@ -2888,9 +2888,9 @@ return [
 	'oojs-ui-widgets' => [
 		'class' => ResourceLoaderOOUIFileModule::class,
 		'scripts' => 'resources/lib/oojs-ui/oojs-ui-widgets.js',
-		'themeStyles' => 'widgets',
 		'dependencies' => [
 			'oojs-ui-core',
+			'oojs-ui-widgets.styles',
 			'oojs-ui.styles.icons-interactions',
 			'oojs-ui.styles.icons-content',
 			'oojs-ui.styles.icons-editing-advanced',
@@ -2907,6 +2907,14 @@ return [
 			'ooui-selectfile-not-supported',
 			'ooui-selectfile-placeholder',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	// You should never directly load this module. The CSS classes it defines are not a public API,
+	// they depend on the internal structure of OOUI widgets, which can change at any time. If you
+	// find that you need to load this module, you're probably doing something wrong or very hacky.
+	'oojs-ui-widgets.styles' => [
+		'class' => ResourceLoaderOOUIFileModule::class,
+		'themeStyles' => 'widgets',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Toolbar and tools module.

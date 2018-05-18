@@ -45,35 +45,63 @@
 	transform: none;
 }
 
-#preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
-	border-color: #c8ccd1;
-	border-width: 1px 0 0;
+#preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
+	border-width: 0;
 	border-radius: 0;
+	box-shadow: none;
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.mw-prefs-faketabs > .oo-ui-menuLayout > .oo-ui-menuLayout-menu a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Adjust the borders when JS is disabled: frame each prefsection instead of the
+ * whole tabLayout wrapper */
+.client-nojs #preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
+	border-color: #c8ccd1;
+	border-width: 1px 0 0;
+}
+
+.client-nojs .mw-prefs-faketabs {
+	border-width: 0;
+	border-radius: 0;
 	box-shadow: none;
 }
 
-/* Tweak the margins to reduce the shifting of form contents
- * after JS code loads and rearranges the page */
-.client-js #preferences > .oo-ui-panelLayout {
-	margin: 1em 0;
+.client-nojs .mw-prefs-faketabs > .oo-ui-menuLayout > .oo-ui-menuLayout-content > .oo-ui-stackLayout {
+	margin-bottom: 1em;
 }
 
-.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
-	margin-left: 0.25em;
+/* Hide the tab menu when JS is disabled as we can't use this feature */
+.client-nojs .mw-prefs-faketabs > .oo-ui-menuLayout > .oo-ui-menuLayout-menu {
+	display: none;
+}
+
+.client-nojs #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed:last-child {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+/* Hide top level legends when JS is enabled, as they will not be visible
+ * when the real tabLayout is built */
+.client-js #preferences .oo-ui-tabPanelLayout > fieldset > legend {
+	display: none;
 }
 
 .client-js #preferences .oo-ui-tabPanelLayout {
 	padding-top: 0.5em;
-	padding-bottom: 0.5em;
 }
 
-.client-js #preferences .oo-ui-tabPanelLayout .oo-ui-panelLayout-framed {
+.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
 	margin-left: 0;
 	margin-bottom: 0;
-	border: 0;
-	padding-top: 0;
+	padding: 0;
+	border-width: 0;
+	border-radius: 0;
+	box-shadow: none;
 }
 
 .client-js #preferences > .oo-ui-panelLayout > .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
