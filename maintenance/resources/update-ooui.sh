@@ -43,15 +43,15 @@ rm -r "$REPO_DIR/$TARGET_DIR"
 
 # Core and thematic code and styling
 mkdir -p "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/oojs-ui-core.js{,.map} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-core.js{,.map.json} "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-core-{wikimediaui,apex}.css "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/oojs-ui-widgets.js{,.map} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-widgets.js{,.map.json} "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-widgets-{wikimediaui,apex}.css "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars.js{,.map} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars.js{,.map.json} "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-toolbars-{wikimediaui,apex}.css "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/oojs-ui-windows.js{,.map} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-windows.js{,.map.json} "$REPO_DIR/$TARGET_DIR"
 cp ./node_modules/oojs-ui/dist/oojs-ui-windows-{wikimediaui,apex}.css "$REPO_DIR/$TARGET_DIR"
-cp ./node_modules/oojs-ui/dist/oojs-ui-{wikimediaui,apex}.js{,.map} "$REPO_DIR/$TARGET_DIR"
+cp ./node_modules/oojs-ui/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json} "$REPO_DIR/$TARGET_DIR"
 
 # i18n
 mkdir -p "$REPO_DIR/$TARGET_DIR/i18n"
