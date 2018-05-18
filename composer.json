@@ -108,7 +108,8 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
-		"prepend-autoloader": false
+		"prepend-autoloader": false,
+		"autoloader-suffix": "_mediawiki_vendor"
 	},
 	"extra": {
 		"merge-plugin": {

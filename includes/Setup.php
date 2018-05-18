@@ -54,8 +54,11 @@ require_once "$IP/includes/DefaultSettings.php";
 // Load global functions
 require_once "$IP/includes/GlobalFunctions.php";
 
-// Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
+// Load composer's autoloader if present and not already loaded.
+if (
+	!class_exists( 'ComposerAutoloaderInit_mediawiki_vendor', false )
+	&& is_readable( "$IP/vendor/autoload.php" )
+) {
 	require_once "$IP/vendor/autoload.php";
 }
 
