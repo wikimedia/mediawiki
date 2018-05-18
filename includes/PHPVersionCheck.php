@@ -151,7 +151,8 @@ HTML;
 	 * Displays an error, if the vendor/autoload.php file could not be found.
 	 */
 	function checkVendorExistence() {
-		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
+		$autoload = defined( 'MW_VENDOR_DIR' ) ? MW_VENDOR_DIR . '/autoload.php' : dirname( __FILE__ ) . '/../vendor/autoload.php';
+		if ( !file_exists( $autoload ) ) {
 			$shortText = "Installing some external dependencies (e.g. via composer) is required.";
 
 			$longText = "Error: You are missing some external dependencies. \n"
