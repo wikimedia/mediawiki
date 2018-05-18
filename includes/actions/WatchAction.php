@@ -40,9 +40,12 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		self::doWatch( $this->getTitle(), $this->getUser() );
+		$status = self::doWatch( $this->getTitle(), $this->getUser() );
 
-		return true;
+		if ( $status->isGood() ) {
+			return true;
+		}
+		return [ $status->getErrors()[0]['message'] ];
 	}
 
 	protected function checkCanExecute( User $user ) {
@@ -183,8 +186,10 @@ class WatchAction extends FormAction {
 	 * @param string $action Optionally override the action to 'watch'
 	 * @return string Token
 	 * @since 1.18
+	 * @deprecated Use WatchAction::getWatchToken() with action 'unwatch' directly.
 	 */
 	public static function getUnwatchToken( Title $title, User $user, $action = 'unwatch' ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return self::getWatchToken( $title, $user, $action );
 	}
 
