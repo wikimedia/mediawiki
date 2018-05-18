@@ -995,6 +995,12 @@ class ApiBaseTest extends ApiTestCase {
 				'Foo bar',
 				[],
 			],
+			'User prefixed with "User:"' => [
+				'User:foo_bar',
+				[ ApiBase::PARAM_TYPE => 'user' ],
+				'Foo bar',
+				[],
+			],
 			'Invalid username "|"' => [
 				'|',
 				[ ApiBase::PARAM_TYPE => 'user' ],
