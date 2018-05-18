@@ -469,7 +469,7 @@
 	"whatlinkshere": "Sasītuos nūruodis",
 	"whatlinkshere-title": "Lopys, kuramuos ir saitis iz lopu $1",
 	"whatlinkshere-page": "Puslopa:",
-	"linkshere": "Itamuos lopuos ir nūruodis iz lopu '''[[:$1]]''':",
+	"linkshere-2": "Itamuos lopuos ir nūruodis iz lopu '''$1''':",
 	"isredirect": "puoradresiešonys puslopa",
 	"istemplate": "izsaukts",
 	"isimage": "Faila saita",

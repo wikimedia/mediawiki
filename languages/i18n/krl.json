@@ -438,7 +438,7 @@
 	"whatlinkshere": "Linkit tänne",
 	"whatlinkshere-title": "Šivut, kumpaset viitatah šivulla \"$1\"",
 	"whatlinkshere-page": "Šivu:",
-	"linkshere": "Šeuruavilta šivuilta on linkki šivulla <strong>[[:$1]]</strong>:",
+	"linkshere-2": "Šeuruavilta šivuilta on linkki šivulla <strong>$1</strong>:",
 	"isredirect": "ohjauššivu",
 	"istemplate": "šisällytetty",
 	"isimage": "failin linkki",
