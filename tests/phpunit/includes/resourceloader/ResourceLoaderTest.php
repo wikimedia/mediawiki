@@ -8,9 +8,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgResourceLoaderLESSImportPaths' => [
-				dirname( dirname( __DIR__ ) ) . '/data/less/common',
-			],
+			'wgResourceLoaderLESSImportPaths' => [],
 			'wgResourceLoaderLESSVars' => [
 				'foo'  => '2px',
 				'Foo' => '#eeeeee',
@@ -262,6 +260,20 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$module->setName( 'test.less' );
 		$styles = $module->getStyles( $context );
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
+	}
+
+	/**
+	 * @covers ResourceLoader::getLessCompiler
+	 */
+	public function testLessImportDirs() {
+		$rl = new EmptyResourceLoader();
+		$lc = $rl->getLessCompiler();
+		$basePath = dirname( dirname( __DIR__ ) ) . '/data/less';
+		$lc->SetImportDirs( [
+			 "$basePath/common" => '',
+		] );
+		$css = $lc->parseFile( "$basePath/module/use-import-dir.less" )->getCss();
+		$this->assertStringEqualsFile( "$basePath/module/styles.css", $css );
 	}
 
 	public static function providePackedModules() {
