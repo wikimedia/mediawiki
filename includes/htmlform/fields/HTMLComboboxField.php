@@ -15,7 +15,9 @@
  *   options-message - As for HTMLSelectField
  */
 class HTMLComboboxField extends HTMLTextField {
-	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	/**
+	 * FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	 */
 	public function getAttributes( array $list ) {
 		$attribs = [
 			'type' => 'text',

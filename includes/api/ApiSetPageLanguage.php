@@ -28,7 +28,7 @@
  * @ingroup API
  */
 class ApiSetPageLanguage extends ApiBase {
-	// Check if change language feature is enabled
+	/** Check if change language feature is enabled */
 	protected function getExtendedDescription() {
 		if ( !$this->getConfig()->get( 'PageLanguageUseDB' ) ) {
 			return 'apihelp-setpagelanguage-extended-description-disabled';

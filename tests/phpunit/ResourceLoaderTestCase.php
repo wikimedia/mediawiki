@@ -169,8 +169,10 @@ class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
 }
 
 class EmptyResourceLoader extends ResourceLoader {
-	// TODO: This won't be needed once ResourceLoader is empty by default
-	// and default registrations are done from ServiceWiring instead.
+	/**
+	 * TODO: This won't be needed once ResourceLoader is empty by default
+	 * and default registrations are done from ServiceWiring instead.
+	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->setLogger( $logger ?: new NullLogger() );
 		$this->config = $config ?: MediaWikiServices::getInstance()->getMainConfig();

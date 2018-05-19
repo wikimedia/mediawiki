@@ -195,8 +195,12 @@ class PNGHandler extends BitmapHandler {
 		}
 	}
 
-	// PNGs should be easy to support, but it will need some sharpening applied
-	// and another user test to check if the perceived quality change is noticeable
+	/**
+	 * PNGs should be easy to support, but it will need some sharpening applied
+	 * and another user test to check if the perceived quality change is noticeable
+	 *
+	 * @return bool
+	 */
 	public function supportsBucketing() {
 		return false;
 	}

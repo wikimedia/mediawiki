@@ -714,8 +714,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	// Export information about which page languages will trigger
-	// language conversion. (T153341)
+	/**
+	 * Export information about which page languages will trigger
+	 * language conversion. (T153341)
+	 */
 	public function appendLanguageVariants( $property ) {
 		$langNames = LanguageConverter::$languagesWithVariants;
 		if ( $this->getConfig()->get( 'DisableLangConversion' ) ) {

@@ -147,10 +147,15 @@ abstract class Profiler {
 		}
 	}
 
-	// Kept BC for now, remove when possible
+	/**
+	 * Kept BC for now, remove when possible
+	 */
 	public function profileIn( $functionname ) {
 	}
 
+	/**
+	 * Kept BC for now, remove when possible
+	 */
 	public function profileOut( $functionname ) {
 	}
 
