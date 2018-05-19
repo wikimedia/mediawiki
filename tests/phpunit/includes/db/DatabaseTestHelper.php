@@ -146,7 +146,7 @@ class DatabaseTestHelper extends Database {
 		return in_array( $table, (array)$this->tablesExists );
 	}
 
-	// Redeclare parent method to make it public
+	/** Redeclare parent method to make it public */
 	public function nativeReplace( $table, $rows, $fname ) {
 		return parent::nativeReplace( $table, $rows, $fname );
 	}

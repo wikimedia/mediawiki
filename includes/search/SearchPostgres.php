@@ -174,8 +174,9 @@ class SearchPostgres extends SearchDatabase {
 		return $query;
 	}
 
-	# # Most of the work of these two functions are done automatically via triggers
-
+	/**
+	 * Most of this work is done automatically via triggers
+	 */
 	function update( $pageid, $title, $text ) {
 		# # We don't want to index older revisions
 		$sql = "UPDATE pagecontent SET textvector = NULL WHERE textvector IS NOT NULL and old_id IN " .
@@ -185,6 +186,9 @@ class SearchPostgres extends SearchDatabase {
 		return true;
 	}
 
+	/**
+	 * Most of this work is done automatically via triggers
+	 */
 	function updateTitle( $id, $title ) {
 		return true;
 	}

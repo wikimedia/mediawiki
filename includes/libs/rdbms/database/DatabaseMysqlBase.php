@@ -1572,7 +1572,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
 
-	/*
+	/**
 	 * @return bool Whether GTID support is used (mockable for testing)
 	 */
 	protected function useGTIDs() {

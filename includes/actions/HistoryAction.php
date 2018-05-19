@@ -410,7 +410,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
 
-	// For hook compatibility...
+	/** For hook compatibility... */
 	function getArticle() {
 		return $this->historyPage->getArticle();
 	}
