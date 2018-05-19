@@ -50,6 +50,9 @@ use Wikimedia\ObjectFactory;
  *                             if 'class' is not specified, this is used as a map
  *                             through HTMLForm::$typeMappings to get the class name.
  *    'default'             -- default value when the form is displayed
+ *    'nodata'              -- if set (to any value, which casts to true), the data
+ *                             for this field will not be loaded from the actual request. Instead,
+ *                             always the default data is set as the value of this field.
  *    'id'                  -- HTML id attribute
  *    'cssclass'            -- CSS class
  *    'csshelpclass'        -- CSS class used to style help text
