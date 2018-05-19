@@ -2265,6 +2265,23 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get the MW-Replica-Lag header, which provides a machine-readable
+	 * view of lagged replica mode, as a CDN hint. If lagged replica mode is
+	 * false, this returns false which means that the header should not be
+	 * sent.
+	 *
+	 * @return string|false
+	 */
+	public function getLagHeader() {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		if ( $lb->getLaggedReplicaMode() ) {
+			return $lb->safeGetLag( $lb->getConnection( DB_REPLICA ) );
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Send cache control HTTP headers
 	 */
 	public function sendCacheControl() {
@@ -2439,6 +2456,11 @@ class OutputPage extends ContextSource {
 		}
 
 		ContentSecurityPolicy::sendHeaders( $this );
+
+		$lagHeader = $this->getLagHeader();
+		if ( $lagHeader !== false ) {
+			$response->header( "MW-Replica-Lag: $lagHeader" );
+		}
 
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
