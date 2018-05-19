@@ -22,6 +22,10 @@
  * @author Lupo
  * @since 1.20
  */
+
+// This file doesn't run as part of MediaWiki
+// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+
 header( 'Content-Type: text/javascript; charset=utf-8' );
 
 $moduleImplementations = [

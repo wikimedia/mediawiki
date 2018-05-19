@@ -28,6 +28,9 @@ use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 
+// The point of this class is to be a wrapper around super globals
+// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+
 /**
  * The WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form stripping illegal input characters and
@@ -652,6 +655,18 @@ class WebRequest {
 	 */
 	public function getQueryValues() {
 		return $_GET;
+	}
+
+	/**
+	 * Get the values passed via POST.
+	 * No transformation is performed on the values.
+	 *
+	 * @since 1.32
+	 * @codeCoverageIgnore
+	 * @return array
+	 */
+	public function getPostValues() {
+		return $_POST;
 	}
 
 	/**
