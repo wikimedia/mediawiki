@@ -259,6 +259,25 @@ Deprecation message.' ]
 	}
 
 	/**
+	 * Confirm that 'safemode' is passed down to startup.
+	 *
+	 * @covers ResourceLoaderClientHtml::getHeadHtml
+	 */
+	public function testGetHeadHtmlWithSafemode() {
+		$client = new ResourceLoaderClientHtml(
+			self::makeContext(),
+			[ 'safemode' => '1' ]
+		);
+
+		// phpcs:disable Generic.Files.LineLength
+		$expected = '<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>' . "\n"
+			. '<script async="" src="/w/load.php?debug=false&amp;lang=nl&amp;modules=startup&amp;only=scripts&amp;safemode=1&amp;skin=fallback"></script>';
+		// phpcs:enable
+
+		$this->assertEquals( $expected, $client->getHeadHtml() );
+	}
+
+	/**
 	 * Confirm that a null 'target' is the same as no target.
 	 *
 	 * @covers ResourceLoaderClientHtml::getHeadHtml
