@@ -792,11 +792,11 @@ class Language {
 	/**
 	 * Get an array of language names, indexed by code.
 	 * @param null|string $inLanguage Code of language in which to return the names
-	 *		Use null for autonyms (native names)
+	 * 		Use null for autonyms (native names)
 	 * @param string $include One of:
-	 *		'all' all available languages
-	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
-	 *		'mwfile' only if the language is in 'mw' *and* has a message file
+	 * 		'all' all available languages
+	 * 		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
+	 * 		'mwfile' only if the language is in 'mw' *and* has a message file
 	 * @return array Language code => language name
 	 * @since 1.20
 	 */
@@ -3485,7 +3485,7 @@ class Language {
 	 * @param int $length Maximum length (including ellipsis)
 	 * @param string $ellipsis String to append to the truncated text
 	 * @param bool $adjustLength Subtract length of ellipsis from $length.
-	 *	$adjustLength was introduced in 1.18, before that behaved as if false.
+	 * 	$adjustLength was introduced in 1.18, before that behaved as if false.
 	 * @return string
 	 */
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
