@@ -215,4 +215,80 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$result = $parserOutput->getCategoryLinks();
 		$this->assertEmpty( $result );
 	}
+
+	/**
+	 * @covers Parser::parseLinkParameter
+	 * @dataProvider provideParseLinkParameter
+	 */
+	public function testParseLinkParameter( $input, $expected, $expectedLinks, $desc ) {
+		$this->parser->startExternalParse( Title::newFromText( __FUNCTION__ ),
+			$this->options, Parser::OT_HTML );
+		$output = $this->parser->parseLinkParameter( $input );
+
+		$this->assertEquals( $expected[0], $output[0], "$desc (type)" );
+
+		if ( $expected[0] === 'link-title' ) {
+			$this->assertTrue( $expected[1]->equals( $output[1] ), "$desc (target)" );
+		} else {
+			$this->assertEquals( $expected[1], $output[1], "$desc (target)" );
+		}
+
+		foreach ( $expectedLinks as $func => $expected ) {
+			$output = $this->parser->getOutput()->$func();
+			$this->assertEquals( $expected, $output, "$desc ($func)" );
+		}
+	}
+
+	public static function provideParseLinkParameter() {
+		return [
+			[
+				'',
+				[ 'no-link', false ],
+				[],
+				'Return no link when requested',
+			],
+			[
+				'https://example.com/',
+				[ 'link-url', 'https://example.com/' ],
+				[ 'getExternalLinks' => [ 'https://example.com/' => 1 ] ],
+				'External link',
+			],
+			[
+				'//example.com/',
+				[ 'link-url', '//example.com/' ],
+				[ 'getExternalLinks' => [ '//example.com/' => 1 ] ],
+				'External link',
+			],
+			[
+				'Test',
+				[ 'link-title', Title::newFromText( 'Test' ) ],
+				[ 'getLinks' => [ 0 => [ 'Test' => 0 ] ] ],
+				'Internal link',
+			],
+			[
+				'mw:Test',
+				[ 'link-title', Title::newFromText( 'mw:Test' ) ],
+				[ 'getInterwikiLinks' => [ 'mw' => [ 'Test' => 1 ] ] ],
+				'Internal link (interwiki)',
+			],
+			[
+				'https://',
+				[ null, false ],
+				[],
+				'Invalid link target',
+			],
+			[
+				'<>',
+				[ null, false ],
+				[],
+				'Invalid link target',
+			],
+			[
+				' ',
+				[ null, false ],
+				[],
+				'Invalid link target',
+			],
+		];
+	}
 }
