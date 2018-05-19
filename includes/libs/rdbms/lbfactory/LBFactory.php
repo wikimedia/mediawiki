@@ -139,6 +139,7 @@ abstract class LBFactory implements ILBFactory {
 			'IPAddress' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
 			'UserAgent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '',
 			'ChronologyProtection' => 'true',
+			// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals -- library can't use $wgRequest
 			'ChronologyPositionIndex' => isset( $_GET['cpPosIndex'] ) ? $_GET['cpPosIndex'] : null
 		];
 
