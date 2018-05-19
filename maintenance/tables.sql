@@ -1842,10 +1842,12 @@ CREATE TABLE /*_*/change_tag (
   ct_log_id int unsigned NULL,
   -- REVID for the change
   ct_rev_id int unsigned NULL,
-  -- Tag applied
+  -- Tag applied, this will go away and be replaced with ct_tag_id
   ct_tag varchar(255) NOT NULL,
   -- Parameters for the tag; used by some extensions
-  ct_params blob NULL
+  ct_params blob NULL,
+  -- Foreign key to change_tag_def row, this will be "NOT NULL" once populated
+  ct_tag_id int unsigned NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/change_tag_rc_tag ON /*_*/change_tag (ct_rc_id,ct_tag);
@@ -1853,7 +1855,7 @@ CREATE UNIQUE INDEX /*i*/change_tag_log_tag ON /*_*/change_tag (ct_log_id,ct_tag
 CREATE UNIQUE INDEX /*i*/change_tag_rev_tag ON /*_*/change_tag (ct_rev_id,ct_tag);
 -- Covering index, so we can pull all the info only out of the index.
 CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
-
+CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct_rev_id,ct_log_id);
 
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
 -- that only works on MySQL 4.1+

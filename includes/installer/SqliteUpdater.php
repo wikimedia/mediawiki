@@ -219,6 +219,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyfield', 'externallinks', 'el_index_60',
 				'patch-externallinks-el_index_60-drop-default.sql' ],
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+			[ 'addField', 'change_tag', 'ct_tag_id', 'patch-change_tag-tag_id.sql' ],
 		];
 	}
 

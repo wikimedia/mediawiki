@@ -575,6 +575,13 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'populateExternallinksIndex60' ],
 			[ 'dropDefault', 'externallinks', 'el_index_60' ],
 			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+			[ 'addPgField', 'change_tag', 'ct_tag_id', 'INTEGER NULL' ],
+			[
+				'addPgIndex',
+				'change_tag',
+				'change_tag_tag_id_id',
+				'( ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id )'
+			],
 		];
 	}
 
