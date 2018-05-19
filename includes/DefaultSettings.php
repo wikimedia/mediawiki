@@ -4497,6 +4497,8 @@ $wgCentralIdLookupProvider = 'local';
  *		commonly chosen. Set to integer n to ban the top n passwords.
  *		If you want to ban all common passwords on file, use the
  *		PHP_INT_MAX constant.
+ *	- PasswordStrength - strength of the password as it is used by
+ *		Zxcvbn-php library. This option is added in 1.32.
  * @since 1.26
  */
 $wgPasswordPolicy = [
@@ -4531,7 +4533,8 @@ $wgPasswordPolicy = [
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist'
+		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist',
+		'PasswordStrength' => 'PasswordPolicyChecks::checkPasswordStrength'
 	],
 ];
 
