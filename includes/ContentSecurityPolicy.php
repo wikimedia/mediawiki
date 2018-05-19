@@ -326,7 +326,10 @@ class ContentSecurityPolicy {
 		$reportUri = wfAppendQuery( wfScript( 'api' ), $apiArguments );
 
 		// Per spec, ';' and ',' must be hex-escaped in report uri
-		$reportUri = $this->escapeUrlForCSP( $reportUri );
+		// Also add an & at the end of url to work around bug in hhvm
+		// with handling of POST parameters when always_decode_post_data
+		// is set to true. See hhvm issue 6676.
+		$reportUri = $this->escapeUrlForCSP( $reportUri ) . '&';
 		return $reportUri;
 	}
 
