@@ -77,7 +77,8 @@
 		"pear/mail": "Mail sending support",
 		"pear/mail_mime": "Mail sending support",
 		"pear/mail_mime-decode": "Mail sending support",
-		"wikimedia/avro": "Binary serialization format used with kafka"
+		"wikimedia/avro": "Binary serialization format used with kafka",
+                "bjeavons/zxcvbn-php": "^0.3"
 	},
 	"autoload": {
 		"psr-0": {
