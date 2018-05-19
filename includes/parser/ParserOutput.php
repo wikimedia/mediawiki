@@ -906,8 +906,7 @@ class ParserOutput extends CacheTime {
 	 *   * To implement hidden categories, hiding pages from category listings
 	 *     by storing a property.
 	 *
-	 *   * Overriding the displayed article title.
-	 *   @see ParserOutput::setDisplayTitle()
+	 *   * Overriding the displayed article title (ParserOutput::setDisplayTitle()).
 	 *
 	 *   * To implement image tagging, for example displaying an icon on an
 	 *     image thumbnail to indicate that it is listed for deletion on

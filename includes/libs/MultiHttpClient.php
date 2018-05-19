@@ -107,7 +107,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - error     : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
+	 * 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
 	 * @endcode
 	 * @param array $req HTTP request array
 	 * @param array $opts

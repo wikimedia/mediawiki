@@ -967,11 +967,11 @@ class LanguageConverter {
 	 * Parse the conversion table stored in the cache.
 	 *
 	 * The tables should be in blocks of the following form:
-	 *		-{
-	 *			word => word ;
-	 *			word => word ;
-	 *			...
-	 *		}-
+	 * 		-{
+	 * 			word => word ;
+	 * 			word => word ;
+	 * 			...
+	 * 		}-
 	 *
 	 * To make the tables more manageable, subpages are allowed
 	 * and will be parsed recursively if $recursive == true.
