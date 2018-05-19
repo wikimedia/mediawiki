@@ -143,7 +143,8 @@ class ResourceLoaderClientHtml {
 				'styles' => [],
 				'general' => [],
 			],
-
+			// Deprecations for style-only modules
+			'styledeprecations' => [],
 		];
 
 		foreach ( $this->modules as $name ) {
@@ -207,6 +208,10 @@ class ResourceLoaderClientHtml {
 					// Load from load.php?only=styles via <link rel=stylesheet>
 					$data['styles'][] = $name;
 				}
+			}
+			$deprecation = $module->getDeprecationInformation();
+			if ( $deprecation ) {
+				$data['styledeprecations'][] = $deprecation;
 			}
 		}
 
@@ -311,7 +316,15 @@ class ResourceLoaderClientHtml {
 			);
 		}
 
-		// External stylesheets
+		// Deprecations for only=styles modules
+		if ( $data['styledeprecations'] ) {
+			$chunks[] = ResourceLoader::makeInlineScript(
+				implode( '', $data['styledeprecations'] ),
+				$nonce
+			);
+		}
+
+		// External stylesheets (only=styles)
 		if ( $data['styles'] ) {
 			$chunks[] = $this->getLoad(
 				$data['styles'],
