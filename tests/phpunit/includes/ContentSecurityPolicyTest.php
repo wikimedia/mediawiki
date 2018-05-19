@@ -94,68 +94,68 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			[ false, '', '', '' ],
 			[
 				true,
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			 ],
 			[
 				[ 'script-src' => [ 'http://example.com', 'http://something,else.com' ] ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' http://example.com http://something%2Celse.com 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' http://example.com http://something%2Celse.com sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[ 'unsafeFallback' => false ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[ 'unsafeFallback' => true ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[ 'default-src' => false ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[ 'default-src' => true ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'",
 			],
 			[
 				[ 'default-src' => [ 'https://foo.com', 'http://bar.com', 'baz.de' ] ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org https://foo.com http://bar.com baz.de sister-site.somewhere.com *.wikipedia.org 'unsafe-inline'",
 			],
 			[
 				[ 'includeCORS' => false ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self'; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
 				[ 'includeCORS' => false, 'default-src' => true ],
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self'; default-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org; style-src 'self' data: blob: https://upload.wikimedia.org https://commons.wikimedia.org 'unsafe-inline'",
 			],
 			[
 				[ 'includeCORS' => true ],
 				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
@@ -167,7 +167,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			[
 				[ 'report-uri' => true ],
 				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json",
-				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
+				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
 				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'",
 			],
 			[
@@ -202,7 +202,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			true,
 			ContentSecurityPolicy::REPORT_ONLY_MODE
 		);
-		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1";
+		$expected = "script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&";
 		$this->assertEquals( $expected, $actual );
 		// @codingStandardsIgnoreEnd Generic.Files.LineLength
 	}
