@@ -22,6 +22,11 @@
 			font-weight: bold;
 			font-size: 1.25em;
 			line-height: 1.2;
+			/* Don't copy diff markers (T192526) */
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 		}
 
 		div {
