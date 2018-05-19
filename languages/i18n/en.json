@@ -4469,5 +4469,17 @@
 	"pagedata-text": "This page provides a data interface to pages. Please provide the page title in the URL, using subpage syntax.\n* Content negotiation applies based on your client's Accept header. This means that the page data will be provided in the format preferred by your client.",
 	"pagedata-not-acceptable": "No matching format found. Supported MIME types: $1",
 	"pagedata-bad-title": "Invalid title: $1.",
-	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users."
+	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
+	"passwordpolicies": "Password policies",
+	"passwordpolicies-summary": "This is a list of the effective password policies for the user groups defined in this wiki.",
+	"passwordpolicies-helppage": "Manual:$wgPasswordPolicy",
+	"passwordpolicies-group": "Group",
+	"passwordpolicies-policies": "Policies",
+	"passwordpolicies-policy-display": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span>",
+	"passwordpolicies-policy-minimalpasswordlength": "Password must be at least $1 {{PLURAL:$1|character|characters}} long",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Password must be at least $1 {{PLURAL:$1|character|characters}} long to be able to login",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Password cannot be the same as username",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Password cannot match specifically blacklisted passwords",
+	"passwordpolicies-policy-maximalpasswordlength": "Password must be less than $1 {{PLURAL:$1|character|characters}} long",
+	"passwordpolicies-policy-passwordcannotbepopular": "Password cannot be {{PLURAL:$1|the popular password|in the list of $1 popular passwords}}"
 }
