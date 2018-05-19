@@ -47,7 +47,6 @@
 		};
 
 		// Handle different kinds of elements
-
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
 			// If there is a caption, hide all rows; otherwise, only hide body rows
@@ -61,20 +60,6 @@
 				$containers = $containers.not( $defaultToggle.closest( 'tr' ) );
 			}
 
-			if ( action === 'collapse' ) {
-				// Hide all table rows of this table
-				// Slide doesn't work with tables, but fade does as of jQuery 1.1.3
-				// http://stackoverflow.com/questions/467336#920480
-				if ( options.instantHide ) {
-					$containers.hide();
-					hookCallback();
-				} else {
-					$containers.stop( true, true ).fadeOut().promise().done( hookCallback );
-				}
-			} else {
-				$containers.stop( true, true ).fadeIn().promise().done( hookCallback );
-			}
-
 		} else if ( !options.plainMode && ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) ) {
 			// Lists
 			$containers = $collapsible.find( '> li' );
@@ -82,58 +67,23 @@
 				// Exclude list-item containing togglelink
 				$containers = $containers.not( $defaultToggle.parent() );
 			}
-
-			if ( action === 'collapse' ) {
-				if ( options.instantHide ) {
-					$containers.hide();
-					hookCallback();
-				} else {
-					$containers.stop( true, true ).slideUp().promise().done( hookCallback );
-				}
-			} else {
-				$containers.stop( true, true ).slideDown().promise().done( hookCallback );
-			}
-
 		} else {
 			// Everything else: <div>, <p> etc.
 			$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 
 			// If a collapsible-content is defined, act on it
 			if ( !options.plainMode && $collapsibleContent.length ) {
-				if ( action === 'collapse' ) {
-					if ( options.instantHide ) {
-						$collapsibleContent.hide();
-						hookCallback();
-					} else {
-						$collapsibleContent.slideUp().promise().done( hookCallback );
-					}
-				} else {
-					$collapsibleContent.slideDown().promise().done( hookCallback );
-				}
+				$containers = $collapsibleContent;
 
 			// Otherwise assume this is a customcollapse with a remote toggle
 			// .. and there is no collapsible-content because the entire element should be toggled
 			} else {
-				if ( action === 'collapse' ) {
-					if ( options.instantHide ) {
-						$collapsible.hide();
-						hookCallback();
-					} else {
-						if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-							$collapsible.fadeOut().promise().done( hookCallback );
-						} else {
-							$collapsible.slideUp().promise().done( hookCallback );
-						}
-					}
-				} else {
-					if ( $collapsible.is( 'tr' ) || $collapsible.is( 'td' ) || $collapsible.is( 'th' ) ) {
-						$collapsible.fadeIn().promise().done( hookCallback );
-					} else {
-						$collapsible.slideDown().promise().done( hookCallback );
-					}
-				}
+				$containers = $collapsible;
 			}
 		}
+
+		$containers.toggle( action === 'expand' );
+		hookCallback();
 	}
 
 	/**
@@ -387,10 +337,10 @@
 
 			$( this ).data( 'mw-collapsible', {
 				collapse: function () {
-					actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
+					actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: false } );
 				},
 				expand: function () {
-					actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: true } );
+					actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: true } );
 				},
 				toggle: function () {
 					actionHandler.call( $toggleLink.get( 0 ), null, null );
@@ -401,7 +351,7 @@
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
-				actionHandler.call( $toggleLink.get( 0 ), null, { instantHide: true, wasCollapsed: false } );
+				actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: false } );
 			}
 
 		} );
