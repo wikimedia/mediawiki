@@ -35,7 +35,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	wfThumbHandle404();
 } else {
 	// Called directly, use $_GET params
-	wfStreamThumb( $_GET );
+	wfStreamThumb( $wgRequest->getQueryValues() );
 }
 
 $mediawiki = new MediaWiki();

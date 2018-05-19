@@ -938,7 +938,7 @@ class EditPage {
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
 				wfDebug( __METHOD__ . ": Form data appears to be incomplete\n" );
-				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
+				wfDebug( "POST DATA: " . var_export( $request->getPostValues(), true ) . "\n" );
 				$this->preview = true;
 			} else {
 				$this->preview = $request->getCheck( 'wpPreview' );
