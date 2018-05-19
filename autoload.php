@@ -1445,6 +1445,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',
 	'SpecialPageLanguage' => __DIR__ . '/includes/specials/SpecialPageLanguage.php',
 	'SpecialPagesWithProp' => __DIR__ . '/includes/specials/SpecialPagesWithProp.php',
+	'SpecialPasswordPolicies' => __DIR__ . '/includes/specials/SpecialPasswordPolicies.php',
 	'SpecialPasswordReset' => __DIR__ . '/includes/specials/SpecialPasswordReset.php',
 	'SpecialPermanentLink' => __DIR__ . '/includes/specials/SpecialPermanentLink.php',
 	'SpecialPreferences' => __DIR__ . '/includes/specials/SpecialPreferences.php',
