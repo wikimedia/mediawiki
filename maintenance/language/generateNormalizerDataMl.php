@@ -61,7 +61,11 @@ class GenerateNormalizerDataMl extends Maintenance {
 		}
 
 		global $IP;
-		file_put_contents( "$IP/serialized/normalize-ml.ser", serialize( $pairs ) );
+		file_put_contents( "$IP/languages/data/normalize-ml.php", wfMakeStaticArrayFile(
+			$pairs,
+			'File created by maintenance/generateNormalizerDataMl.php'
+		) );
+
 		echo "ml: " . count( $pairs ) . " pairs written.\n";
 	}
 }

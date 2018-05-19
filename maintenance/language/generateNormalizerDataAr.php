@@ -35,7 +35,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Generate the normalizer data file for Arabic' );
 		$this->addOption( 'unicode-data-file', 'The local location of the data file ' .
-			'from https://unicode.org/Public/UNIDATA/UnicodeData.txt', false, true );
+			'from https://unicode.org/Public/6.0.0/ucd/UnicodeData.txt', false, true );
 	}
 
 	public function getDbType() {
@@ -122,7 +122,11 @@ class GenerateNormalizerDataAr extends Maintenance {
 		}
 
 		global $IP;
-		file_put_contents( "$IP/serialized/normalize-ar.ser", serialize( $pairs ) );
+		file_put_contents( "$IP/languages/data/normalize-ar.php", wfMakeStaticArrayFile(
+			$pairs,
+			'File created by maintenance/generateNormalizerDataAr.php'
+		) );
+
 		echo "ar: " . count( $pairs ) . " pairs written.\n";
 	}
 }
