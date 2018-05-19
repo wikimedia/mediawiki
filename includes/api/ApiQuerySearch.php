@@ -60,6 +60,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Create search engine instance and set options
 		$search = $this->buildSearchEngine( $params );
+		if ( isset( $params['sort'] ) ) {
+			$search->setSort( $params['sort'] );
+		}
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 		$search->setFeatureData( 'interwiki', (bool)$interwiki );
 
@@ -390,6 +393,18 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			'interwiki' => false,
 			'enablerewrites' => false,
 		];
+
+		// If we have more than one engine the list of available sorts is
+		// difficult to represent. For now don't expose it.
+		$alternatives = MediaWiki\MediaWikiServices::getInstance()->getSearchEngineConfig()->getSearchTypes();
+		if ( count( $alternatives ) == 1 ) {
+			$this->allowedParams['sort'] = [
+				ApiBase::PARAM_DFLT => 'relevance',
+				ApiBase::PARAM_TYPE => MediaWiki\MediaWikiServices::getInstance()
+					->newSearchEngine()
+					->getValidSorts(),
+			];
+		}
 
 		return $this->allowedParams;
 	}
