@@ -68,7 +68,7 @@ class UserPasswordPolicy {
 	 * @param User $user who's policy we are checking
 	 * @param string $password the password to check
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
-	 *	indicate the user shouldn't be allowed to login.
+	 * 	indicate the user shouldn't be allowed to login.
 	 */
 	public function checkUserPassword( User $user, $password ) {
 		$effectivePolicy = $this->getPoliciesForUser( $user );
@@ -88,7 +88,7 @@ class UserPasswordPolicy {
 	 * @param string $password the password to check
 	 * @param array $groups list of groups to which we assume the user belongs
 	 * @return Status error to indicate the password didn't meet the policy, or fatal to
-	 *	indicate the user shouldn't be allowed to login.
+	 * 	indicate the user shouldn't be allowed to login.
 	 */
 	public function checkUserPasswordForGroups( User $user, $password, array $groups ) {
 		$effectivePolicy = self::getPoliciesForGroups(

@@ -1221,9 +1221,9 @@ class Linker {
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
 	 *
 	 * @param string $comment Text to format links in. WARNING! Since the output of this
-	 *	function is html, $comment must be sanitized for use as html. You probably want
-	 *	to pass $comment through Sanitizer::escapeHtmlAllowEntities() before calling
-	 *	this function.
+	 * 	function is html, $comment must be sanitized for use as html. You probably want
+	 * 	to pass $comment through Sanitizer::escapeHtmlAllowEntities() before calling
+	 * 	this function.
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
 	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki),

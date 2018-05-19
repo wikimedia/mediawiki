@@ -217,7 +217,7 @@ class CryptHKDF {
 	 * @param string $ikm The input keying material
 	 * @param string $salt The salt to add to the ikm, to get the prk
 	 * @param string $info Optional context (change the output without affecting
-	 *	the randomness properties of the output)
+	 * 	the randomness properties of the output)
 	 * @param int $L Number of bytes to return
 	 * @return string Cryptographically secure pseudorandom binary string
 	 */

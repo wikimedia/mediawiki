@@ -207,8 +207,8 @@ class Title implements LinkTarget {
 	 * Create a new Title from a prefixed DB key
 	 *
 	 * @param string $key The database key, which has underscores
-	 *	instead of spaces, possibly including namespace and
-	 *	interwiki prefixes
+	 * 	instead of spaces, possibly including namespace and
+	 * 	interwiki prefixes
 	 * @return Title|null Title, or null on an error
 	 */
 	public static function newFromDBkey( $key ) {

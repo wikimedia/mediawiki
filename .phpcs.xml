@@ -21,8 +21,6 @@
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.WrongCase" />
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 		<exclude name="MediaWiki.VariableAnalysis.ForbiddenGlobalVariables.ForbiddenGlobal$wgTitle" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocStar" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.SpacingDocTag" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="Squiz.Scope.MemberVarScope.Missing" />
 		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
