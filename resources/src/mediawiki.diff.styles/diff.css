@@ -24,6 +24,13 @@
 	width: 2%;
 }
 
+.diff .diff-marker {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .diff .diff-content {
 	width: 48%;
 }
