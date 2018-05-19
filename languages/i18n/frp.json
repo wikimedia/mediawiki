@@ -3172,6 +3172,7 @@
 	"fileduplicatesearch-noresults": "Nion fichiér apelâ « $1 » est étâ trovâ.",
 	"specialpages": "Pâges spèciâles",
 	"specialpages-note-top": "Lègenda",
+	"specialpages-note-restricted": "* Pâges spèciâles normales.\n* <span class=\"mw-specialpagerestricted\">Pâges spèciâles rètrentes.</span>",
 	"specialpages-group-maintenance": "Rapôrts d’entretin",
 	"specialpages-group-other": "Ôtres pâges spèciâles",
 	"specialpages-group-login": "Sè branchiér / fâre un comptio",

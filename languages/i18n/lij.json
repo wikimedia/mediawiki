@@ -3301,6 +3301,7 @@
 	"fileduplicatesearch-noresults": "Nisciun file de nomme \"$1\" trovou.",
 	"specialpages": "Pàgine speciâli",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Pagine speciali non riservæ.\n* <span class=\"mw-specialpagerestricted\">Pagine speciali riservæ a çerte categorie d'utenti.</span>",
 	"specialpages-group-maintenance": "Raporti de manutençion",
 	"specialpages-group-other": "Atre paggine speciale",
 	"specialpages-group-login": "Intra / Registrite",

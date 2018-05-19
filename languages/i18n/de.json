@@ -2011,6 +2011,7 @@
 	"protectedtitles-submit": "Titel anzeigen",
 	"listusers": "Benutzerverzeichnis",
 	"listusers-editsonly": "Zeige nur Benutzer mit Beiträgen",
+	"listusers-temporarygroupsonly": "Nur Benutzer in temporären Benutzergruppen anzeigen",
 	"listusers-creationsort": "Nach Erstelldatum sortieren",
 	"listusers-desc": "In absteigender Reihenfolge sortieren",
 	"usereditcount": "$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}}",
@@ -4116,5 +4117,15 @@
 	"pagedata-text": "Diese Seite stellt eine Datenschnittstelle für Seiten zur Verfügung. Bitte gib mithilfe der Unterseitensyntax den Seitentitel in der URL an.\n* Übertragungen von Inhalten werden basierend auf dem Accept-Header deines Clients ausgeführt. Das bedeutet, dass die Seitendaten in dem Format zur Verfügung gestellt werden, das von deinem Client bevorzugt wird.",
 	"pagedata-not-acceptable": "Kein passendes Format gefunden. Unterstützte MIME-Typen: $1",
 	"pagedata-bad-title": "Ungültiger Titel: $1.",
-	"unregistered-user-config": "Aus Sicherheitsgründen können JavaScript-, CSS- und JSON-Benutzerunterseiten nicht für unangemeldete Benutzer geladen werden."
+	"unregistered-user-config": "Aus Sicherheitsgründen können JavaScript-, CSS- und JSON-Benutzerunterseiten nicht für unangemeldete Benutzer geladen werden.",
+	"passwordpolicies": "Passwortrichtlinien",
+	"passwordpolicies-summary": "Dies ist eine Liste der wirksamen Passwortrichtlinien für die in diesem Wiki definierten Benutzergruppen.",
+	"passwordpolicies-group": "Gruppe",
+	"passwordpolicies-policies": "Richtlinien",
+	"passwordpolicies-policy-minimalpasswordlength": "Ein Passwort muss mindestens {{PLURAL:$1|ein|$1}} Zeichen lang sein",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Ein Passwort muss mindestens {{PLURAL:$1|ein|$1}} Zeichen zur Anmeldung lang sein",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Ein Passwort kann nicht mit dem Benutzernamen identisch sein",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Ein Passwort kann nicht mit speziellen schwarzgelisteten Passwörtern übereinstimmen",
+	"passwordpolicies-policy-maximalpasswordlength": "Ein Passwort muss weniger als {{PLURAL:$1|ein|$1}} Zeichen lang sein",
+	"passwordpolicies-policy-passwordcannotbepopular": "Ein Passwort kann nicht {{PLURAL:$1|das beliebteste Passwort|in der Liste der $1 beliebtesten Passwörter}} sein"
 }

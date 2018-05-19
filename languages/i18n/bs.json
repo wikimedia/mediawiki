@@ -3428,6 +3428,7 @@
 	"fileduplicatesearch-noresults": "Nije pronađena datoteka s imenom \"$1\".",
 	"specialpages": "Posebne stranice",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normalne posebne stranice.\n* <strong class=\"mw-specialpagerestricted\">Zaštićene posebne stranice.</strong>",
 	"specialpages-group-maintenance": "Izvještaji za održavanje",
 	"specialpages-group-other": "Ostale posebne stranice",
 	"specialpages-group-login": "Prijava / otvaranje računa",

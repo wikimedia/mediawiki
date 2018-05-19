@@ -2817,6 +2817,7 @@
 	"fileduplicatesearch-noresults": "Der is gien bestaand mit de naam \"$1\" evunnen.",
 	"specialpages": "Speciale syden",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normale spesiale ziejen.\n* <span class=\"mw-specialpagerestricted\">Beparkt toegankelike spesiale ziejen.</span>",
 	"specialpages-group-maintenance": "Onderhoudsliesten",
 	"specialpages-group-other": "Aandere spesiale ziejen",
 	"specialpages-group-login": "Anmelden / inschrieven",

@@ -2257,7 +2257,7 @@
 	"whatlinkshere": "Sayfaya bağlantılar",
 	"whatlinkshere-title": "\"$1\" sayfasına bağlantı veren sayfalar",
 	"whatlinkshere-page": "Sayfa:",
-	"linkshere-2": "'''[[:$1]]''' sayfasına bağlantısı olan sayfalar:",
+	"linkshere-2": "'''$1''' sayfasına bağlantısı olan sayfalar:",
 	"nolinkshere-2": "'''$1''' sayfasına bağlantı veren sayfa yok.",
 	"nolinkshere-ns-2": "Seçilen ad alanında hiçbir sayfa '''$1''' sayfasına bağlanmıyor.",
 	"isredirect": "yönlendirme sayfası",

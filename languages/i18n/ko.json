@@ -1982,6 +1982,7 @@
 	"protectedtitles-submit": "제목 표시",
 	"listusers": "사용자 목록",
 	"listusers-editsonly": "기여가 있는 사용자만 보기",
+	"listusers-temporarygroupsonly": "임시 사용자 그룹의 사용자만 표시",
 	"listusers-creationsort": "계정을 만든 날짜순으로 정렬",
 	"listusers-desc": "내림차순으로 정렬",
 	"usereditcount": "{{PLURAL:$1|편집}} $1회",

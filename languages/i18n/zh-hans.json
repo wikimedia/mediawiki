@@ -2053,6 +2053,7 @@
 	"apisandbox-dynamic-parameters-add-label": "添加参数：",
 	"apisandbox-dynamic-parameters-add-placeholder": "参数名称",
 	"apisandbox-dynamic-error-exists": "已存在名为“$1”的参数。",
+	"apisandbox-templated-parameter-reason": "此[[Special:ApiHelp/main#main/templatedparams|模板参数]]已基于$2的{{PLURAL:$1|值}}提供。",
 	"apisandbox-deprecated-parameters": "弃用参数",
 	"apisandbox-fetch-token": "自动填充令牌",
 	"apisandbox-add-multi": "添加",
@@ -2467,9 +2468,9 @@
 	"whatlinkshere": "链入页面",
 	"whatlinkshere-title": "链接至“$1”的页面",
 	"whatlinkshere-page": "页面：",
-	"linkshere": "以下页面链接至<strong>[[:$1]]</strong>：",
-	"nolinkshere": "没有页面链接至'''[[:$1]]'''。",
-	"nolinkshere-ns": "在所选的名字空间内没有页面链接到'''[[:$1]]'''。",
+	"linkshere-2": "以下页面链接至<strong>$1</strong>：",
+	"nolinkshere-2": "没有页面链接至'''$1'''。",
+	"nolinkshere-ns-2": "在所选的名字空间内没有页面链接到'''$1'''。",
 	"isredirect": "重定向页面",
 	"istemplate": "嵌入",
 	"isimage": "文件链接",
@@ -4152,5 +4153,6 @@
 	"pagedata-title": "页面数据",
 	"pagedata-text": "此页面提供相关页面的数据界面。请在URL中，使用子页面语法提供页面标题。\n* 内容协商基于您客户端的接受标头应用。这意味着页面数据将以您客户端首选的格式提供。",
 	"pagedata-not-acceptable": "没有找到匹配的格式。支持的MIME类型：$1",
-	"pagedata-bad-title": "无效标题：$1。"
+	"pagedata-bad-title": "无效标题：$1。",
+	"unregistered-user-config": "由于安全原因，JavaScript、CSS和JSON用户子页面不能为非注册用户加载。"
 }

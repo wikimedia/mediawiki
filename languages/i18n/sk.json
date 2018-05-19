@@ -3284,6 +3284,7 @@
 	"fileduplicatesearch-noresults": "Súbor s názvom „$1“ nebol nájdený.",
 	"specialpages": "Špeciálne stránky",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Bežné špeciálne stránky.\n* <strong class=\"mw-specialpagerestricted\">Špeciálne stránky s obmedzeným prístupom.</strong>",
 	"specialpages-group-maintenance": "Údržbové správy",
 	"specialpages-group-other": "Iné špeciálne stránky",
 	"specialpages-group-login": "Prihlásenie / registrácia",

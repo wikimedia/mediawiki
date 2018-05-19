@@ -2932,6 +2932,7 @@
 	"fileduplicatesearch-noresults": "Nuddu file chiamatu \"$1\" fu attruvatu.",
 	"specialpages": "Pàggini spiciali",
 	"specialpages-note-top": "Liggenna",
+	"specialpages-note-restricted": "* Pàggini spiciali nurmali.\n* <span class=\"mw-specialpagerestricted\">Pàggini spiciali risirvati.</strong>",
 	"specialpages-group-maintenance": "Resucunti di manutinzioni",
 	"specialpages-group-other": "Àutri pàggini spiciali",
 	"specialpages-group-login": "Trasuta / criazzioni di cunti",

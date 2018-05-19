@@ -1874,6 +1874,7 @@
 	"fileduplicatesearch-result-1": "Zūrbrukis \"$1\" ni turri idēntiskan kōpijan.",
 	"fileduplicatesearch-result-n": "Zūrbrukis \"$1\" turri {{PLURAL:$2|1 idēntiskan kōpijan|$2 idēntiskans kōpijans}}.",
 	"specialpages": "Speciālai pāusai",
+	"specialpages-note-restricted": "!!FUZZY!!!!FUZZY!!!!FUZZY!!* Nōrmalai speciālai pāusai.\n* <strong class=\"mw-specialpagerestricted\">Speciālai pāusai sen arāikintan preiēisenin.</strong>",
 	"specialpages-group-maintenance": "Kōnserwaciōnis repōrtai",
 	"specialpages-group-other": "Kitāi speciālai pāusai",
 	"specialpages-group-login": "Enēis / registrīs si",

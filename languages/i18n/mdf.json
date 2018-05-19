@@ -1948,6 +1948,7 @@
 	"fileduplicatesearch-result-1": "Файлть \"$1\" ашет тяконь кафонзамонза.",
 	"fileduplicatesearch-result-n": "Файлть \"$1\" {{PLURAL:$2|1 тяконь кафонзамац|$2 тяконь кафонзаманза}}.",
 	"specialpages": "Башка лопат",
+	"specialpages-note-restricted": "!!FUZZY!!!!FUZZY!!!!FUZZY!!* Кърдань башка лопат.\n* <strong class=\"mw-specialpagerestricted\">Кардаф башка лопат.</strong>",
 	"specialpages-group-maintenance": "Латцема лувоматне",
 	"specialpages-group-other": "Иля башка тевонь лопатне",
 	"specialpages-group-login": "Сувамс / сёрматфтомс",

@@ -2996,6 +2996,7 @@
 	"fileduplicatesearch-noresults": "Cha deach faidhle air a bheil \"$1\" a lorg.",
 	"specialpages": "Duilleagan sònraichte",
 	"specialpages-note-top": "Treòir",
+	"specialpages-note-restricted": "* Duilleagan sònraichte coitcheann.\n* <span class=\"mw-specialpagerestricted\">Duilleagan sònraichte cuingichte.</span>",
 	"specialpages-group-maintenance": "Aithrisean na h-obrach-glèidhidh",
 	"specialpages-group-other": "Duilleagan sònraichte eile",
 	"specialpages-group-login": "Log a-steach / cruthaich cunntas",

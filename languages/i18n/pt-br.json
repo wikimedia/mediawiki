@@ -2032,6 +2032,7 @@
 	"protectedtitles-submit": "Mostrar títulos",
 	"listusers": "Lista de usuários",
 	"listusers-editsonly": "Mostrar apenas usuários com edições",
+	"listusers-temporarygroupsonly": "Mostrar apenas usuários em grupos de usuários temporários",
 	"listusers-creationsort": "Ordenar por data de criação",
 	"listusers-desc": "Listar em ordem decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|edição|edições}}",

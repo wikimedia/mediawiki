@@ -1469,6 +1469,7 @@
 	"apierror-badparameter": "Valor no válido para el parámetro <var>$1</var>.",
 	"apierror-badquery": "La consulta no es válida.",
 	"apierror-badtimestamp": "Valor no válido \"$2\" para el parámetro de marca de tiempo <var>$1</var>.",
+	"apierror-badtoken": "La ficha CSRF no es válida.",
 	"apierror-badupload": "El parámetro de subida de archivo <var>$1</var> no es una subida de archivo. Asegúrate de usar <code>multipart/form-data</code> para tu POST e introduce un nombre de archivo en la cabecera <code>Content-Disposition</code>.",
 	"apierror-badurl": "Valor no válido \"$2\" para el parámetro de URL <var>$1</var>.",
 	"apierror-baduser": "Valor no válido \"$2\" para el parámetro de usuario <var>$1</var>.",

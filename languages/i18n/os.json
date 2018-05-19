@@ -1255,7 +1255,7 @@
 	"whatlinkshere": "Чи æрвиты ардæм",
 	"whatlinkshere-title": "Фæрстæ, кæдон æрвитынц ардæм: «$1»",
 	"whatlinkshere-page": "Фарс:",
-	"linkshere-2": "Ацы фæрстæ æрвитынц '''[[:$1|{{grammar:allative|$1}}]]''':",
+	"linkshere-2": "Ацы фæрстæ æрвитынц '''$1''':",
 	"nolinkshere-2": "Никæцы фарс æрвиты ардæм: '''$1'''.",
 	"nolinkshere-ns-2": "Амынд номдоны мидæг никæцы фарс æрвиты ардæм <strong>$1</strong>.",
 	"isredirect": "æрвитæн фарс",

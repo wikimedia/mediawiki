@@ -3278,6 +3278,7 @@
 	"fileduplicatesearch-noresults": "Et gouf kee Fichier mam Numm \"$1\" fonnt.",
 	"specialpages": "Spezialsäiten",
 	"specialpages-note-top": "Erklärung",
+	"specialpages-note-restricted": "* Normal Spezialsäiten.\n* <span class=\"mw-specialpagerestricted\">Spezialsäite fir Benotzer mat méi Rechter.</span>",
 	"specialpages-group-maintenance": "Maintenance-Rapporten",
 	"specialpages-group-other": "Aner Spezialsäiten",
 	"specialpages-group-login": "Aloggen / Benotzerkont uleeën",
