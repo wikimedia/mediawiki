@@ -23,7 +23,6 @@
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
 		<exclude name="Squiz.Scope.MemberVarScope.Missing" />
 		<exclude name="MediaWiki.Commenting.MissingCovers.MissingCovers" />
-		<exclude name="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
@@ -142,6 +141,9 @@
 	</rule>
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
 		<exclude-pattern>*/includes/StubObject\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">
+		<exclude-pattern>*/tests/phpunit/*\.php</exclude-pattern>
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
