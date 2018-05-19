@@ -4472,7 +4472,7 @@
 	"unregistered-user-config": "For security reasons JavaScript, CSS and JSON user subpages cannot be loaded for unregistered users.",
 	"passwordpolicies": "Password policies",
 	"passwordpolicies-summary": "This is a list of the effective password policies for the user groups defined in this wiki.",
-	"passwordpolicies-helppage": "Manual:$wgPasswordPolicy",
+	"passwordpolicies-helppage": "mw:Special:MyLanguage/Manual:$wgPasswordPolicy",
 	"passwordpolicies-group": "Group",
 	"passwordpolicies-policies": "Policies",
 	"passwordpolicies-policy-display": "<span class=\"passwordpolicies-policy\">$1 <code>($2)</code></span>",
