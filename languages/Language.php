@@ -2990,8 +2990,8 @@ class Language {
 		global $wgAllUnicodeFixes;
 		$s = UtfNormal\Validator::cleanUp( $s );
 		if ( $wgAllUnicodeFixes ) {
-			$s = $this->transformUsingPairFile( 'normalize-ar.ser', $s );
-			$s = $this->transformUsingPairFile( 'normalize-ml.ser', $s );
+			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s );
+			$s = $this->transformUsingPairFile( 'normalize-ml.php', $s );
 		}
 
 		return $s;
@@ -3011,12 +3011,10 @@ class Language {
 	 * @throws MWException
 	 * @return string
 	 */
-	function transformUsingPairFile( $file, $string ) {
+	protected function transformUsingPairFile( $file, $string ) {
 		if ( !isset( $this->transformData[$file] ) ) {
-			$data = wfGetPrecompiledData( $file );
-			if ( $data === false ) {
-				throw new MWException( __METHOD__ . ": The transformation file $file is missing" );
-			}
+			global $IP;
+			$data = require "$IP/languages/data/{$file}";
 			$this->transformData[$file] = new ReplacementArray( $data );
 		}
 		return $this->transformData[$file]->replace( $string );
