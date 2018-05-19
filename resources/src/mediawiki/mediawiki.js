@@ -2813,23 +2813,28 @@
 	 * @member mw.hook
 	 */
 	$( function () {
-		var loading, modules;
-
-		modules = mw.loader.getModuleNames().filter( function ( module ) {
+		// Get a list of modules currently in loading state
+		var modules = mw.loader.getModuleNames().filter( function ( module ) {
 			return mw.loader.getState( module ) === 'loading';
 		} );
-		// We only need a callback, not any actual module. First try a single using()
-		// for all loading modules. If one fails, fall back to tracking each module
-		// separately via $.when(), this is expensive.
-		loading = mw.loader.using( modules ).catch( function () {
-			var all = modules.map( function ( module ) {
-				return mw.loader.using( module ).catch( function () {
-					return $.Deferred().resolve();
-				} );
+		// Wait for them to complete loading (regardles of failures). First, try a single
+		// mw.loader.using() call. That's efficient, but has the drawback of being rejected
+		// upon first failure. Fall back to tracking each module separately. We usually avoid
+		// that because of high overhead for that internally to mw.loader.
+		mw.loader.using( modules ).catch( function () {
+			return $.Deferred( function ( deferred ) {
+				var i, count = modules.length;
+				function decrement() {
+					count--;
+					if ( count === 0 ) {
+						deferred.resolve();
+					}
+				}
+				for ( i = 0; i < modules.length; i++ ) {
+					mw.loader.using( modules[ i ] ).always( decrement );
+				}
 			} );
-			return $.when.apply( $, all );
-		} );
-		loading.then( function () {
+		} ).then( function () {
 			if ( window.performance && performance.mark ) {
 				performance.mark( 'mwLoadEnd' );
 			}
