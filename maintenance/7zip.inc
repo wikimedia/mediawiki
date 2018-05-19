@@ -29,6 +29,10 @@
  * Required since we can't pass an open file resource to XMLReader->open()
  * which is used for the text prefetch.
  *
+ * It would be nice if there was a default class we could extend
+ * for all othe stream_ functions that are wrappers around file
+ * functions.
+ *
  * @ingroup Maintenance
  */
 class SevenZipStream {
@@ -61,8 +65,6 @@ class SevenZipStream {
 	function url_stat( $path, $flags ) {
 		return stat( $this->stripPath( $path ) );
 	}
-
-	// This is all so lame; there should be a default class we can extend
 
 	function stream_close() {
 		return fclose( $this->stream );

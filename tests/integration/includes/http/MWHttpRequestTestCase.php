@@ -29,8 +29,6 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		Http::$httpEngine = $this->oldHttpEngine;
 	}
 
-	// --------------------
-
 	public function testIsRedirect() {
 		$request = MWHttpRequest::factory( 'http://httpbin.org/get' );
 		$status = $request->execute();

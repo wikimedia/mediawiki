@@ -38,32 +38,51 @@ class SkinApi extends SkinTemplate {
 		return $modules;
 	}
 
-	// Skip work and hooks for stuff we don't use
-
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function buildSidebar() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function getNewtalks() {
 		return '';
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function getSiteNotice() {
 		return '';
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	public function getLanguages() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	protected function buildPersonalUrls() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	protected function buildContentNavigationUrls() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	protected function buildNavUrls() {
 		return [];
 	}

@@ -32,7 +32,7 @@ class SpecialRandomrootpage extends RandomPage {
 		$this->extra[] = 'page_title NOT ' . $dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 	}
 
-	// Don't select redirects
+	/** Don't select redirects */
 	public function isRedirect() {
 		return false;
 	}

@@ -48,7 +48,7 @@ class RandomPage extends SpecialPage {
 		$this->namespaces = [ $ns ];
 	}
 
-	// select redirects instead of normal pages?
+	/** select redirects instead of normal pages? */
 	public function isRedirect() {
 		return $this->isRedir;
 	}

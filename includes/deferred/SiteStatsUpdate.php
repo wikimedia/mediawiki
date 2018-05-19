@@ -40,7 +40,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 
 	private static $counters = [ 'edits', 'pages', 'articles', 'users', 'images' ];
 
-	// @todo deprecate this constructor
+	/** @todo deprecate this constructor */
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->edits = $edits;
 		$this->articles = $good;
