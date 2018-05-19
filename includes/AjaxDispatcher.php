@@ -23,6 +23,9 @@
 
 use MediaWiki\MediaWikiServices;
 
+// Use superglobals, but since it's deprecated, it's not worth fixing
+// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+
 /**
  * @defgroup Ajax Ajax
  */

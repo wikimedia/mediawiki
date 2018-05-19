@@ -1089,7 +1089,8 @@ function wfIsDebugRawPage() {
 	if ( $cache !== null ) {
 		return $cache;
 	}
-	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
+	// Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
+	// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
 		|| (
 			isset( $_SERVER['SCRIPT_NAME'] )
