@@ -21,6 +21,7 @@
  */
 
 use Cdb\Reader as CdbReader;
+use ZxcvbnPhp\Zxcvbn;
 
 /**
  * Functions to check passwords against a policy requirement
@@ -160,6 +161,32 @@ class PasswordPolicyChecks {
 				// the max of the policyVal and $db->get( '_TOTALENTRIES' ).
 				$status->error( 'passwordtoopopular' );
 			}
+		}
+		return $status;
+	}
+
+	/**
+	 * Ensure that password is not weak
+	 *
+	 * @param int $policyVal defines the minimum required score of a password
+	 * @param User $user
+	 * @param string $password
+	 * @since 1.32
+	 * @return Status
+	 */
+	public static function checkPasswordStrength( $policyVal, User $user, $password ) {
+		$status = Status::newGood();
+		if ( !class_exists( Zxcvbn::class ) ) {
+			throw new Exception( 'Zxcvbn Class is missing! Password Policies uses Zxcvbn '
+				. 'to validate the password strength. Please install composer package bjeavons/zxcvbn-php'
+				. ' or remove PasswordStrength from $wgPasswordPolicy.' );
+		}
+		$zxcvbn = new Zxcvbn();
+		$maxScore = 4;
+		$strength = $zxcvbn->passwordStrength( $password, [ $user->mName ] );
+		$score = $strength['score'];
+		if ( $score < $policyVal ) {
+			$status->error( "passwordpolicies-policy-passwordstrength", $score, $policyVal, $maxScore );
 		}
 		return $status;
 	}
