@@ -97,7 +97,7 @@ class LogPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
-	// Call ONLY after calling $this->limitType() already!
+	/** Call ONLY after calling $this->limitType() already! */
 	public function getFilterParams() {
 		global $wgFilterLogTypes;
 		$filters = [];

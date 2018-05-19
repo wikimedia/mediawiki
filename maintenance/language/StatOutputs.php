@@ -23,7 +23,11 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
-/** A general output object. Need to be overridden */
+/**
+ * A general output object. Need to be overridden
+ *
+ * TODO: Turn this into a proper abstract class
+ */
 class StatsOutput {
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		Wikimedia\suppressWarnings();
@@ -33,7 +37,6 @@ class StatsOutput {
 		return $return;
 	}
 
-	# Override the following methods
 	function heading() {
 	}
 

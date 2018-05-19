@@ -120,7 +120,9 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return true;
 	}
 
-	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	/**
+	 * FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	 */
 	public function getAttributes( array $list ) {
 		$attribs = [
 			'type' => 'text',

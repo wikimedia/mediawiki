@@ -67,7 +67,7 @@ class CategoryPager extends AlphabeticPager {
 		return $this->mDefaultQuery;
 	}
 
-	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
+	/** Override getBody to apply LinksBatch on resultset before actually outputting anything. */
 	public function getBody() {
 		$batch = new LinkBatch;
 

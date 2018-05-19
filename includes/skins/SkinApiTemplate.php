@@ -45,16 +45,23 @@ class SkinApiTemplate extends BaseTemplate {
 <?php
 	}
 
-	// Skip work and hooks for stuff we don't use
-
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function getToolbox() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function getPersonalTools() {
 		return [];
 	}
 
+	/**
+	 * Override to do nothing since we don't use it
+	 */
 	function getSidebar( $options = [] ) {
 		return [];
 	}
