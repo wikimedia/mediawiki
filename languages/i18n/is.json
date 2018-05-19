@@ -3427,6 +3427,7 @@
 	"fileduplicatesearch-noresults": "Mistókst að finna skrána \"$1\"",
 	"specialpages": "Kerfissíður",
 	"specialpages-note-top": "Fyrirsögn",
+	"specialpages-note-restricted": "* Venjulegar kerfissíður.\n* <span class=\"mw-specialpagerestricted\">Kerfissíður með takmörkuðum aðgangi.</span>",
 	"specialpages-group-maintenance": "Viðhaldsskýrslur",
 	"specialpages-group-other": "Aðrar kerfissíður",
 	"specialpages-group-login": "Skrá inn / Búa til aðgang",

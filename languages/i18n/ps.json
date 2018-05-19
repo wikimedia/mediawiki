@@ -2769,6 +2769,7 @@
 	"fileduplicatesearch-noresults": "د \"$1\" په نوم دوتنه و نه موندل شوه.",
 	"specialpages": "ځانگړي مخونه",
 	"specialpages-note-top": "څرگندونې",
+	"specialpages-note-restricted": "* نورماله ځانگړي مخونه.\n* <strong class=\"mw-specialpagerestricted\">محدوده ځانگړي مخونه.</strong>",
 	"specialpages-group-maintenance": "د څارنې راپورونه",
 	"specialpages-group-other": "نور ځانگړي مخونه",
 	"specialpages-group-login": "ننوتل / گڼون جوړول",

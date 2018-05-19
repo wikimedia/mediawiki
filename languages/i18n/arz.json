@@ -2222,6 +2222,7 @@
 	"fileduplicatesearch-result-1": "الملف \"$1\" ما لهو ش تكرار متطابق.",
 	"fileduplicatesearch-result-n": "الملف \"$1\" فيه {{PLURAL:$2|1 تكرار متطابق|$2 تكرار متطابق}}.",
 	"specialpages": "صفح مخصوصه",
+	"specialpages-note-restricted": "!!FUZZY!!!!FUZZY!!!!FUZZY!!* صفحات خاصة عادية.\n* <strong class=\"mw-specialpagerestricted\">صفحات خاصة للناس اللى مسموح لهم.</strong>",
 	"specialpages-group-maintenance": "تقارير الصيانة",
 	"specialpages-group-other": "صفحات خاصه تا نيه",
 	"specialpages-group-login": "ادخل / سجل",

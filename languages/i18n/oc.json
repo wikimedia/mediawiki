@@ -3176,6 +3176,7 @@
 	"fileduplicatesearch-noresults": "Cap de fichièr nomenat « $1 » es pas estat trobat.",
 	"specialpages": "Paginas especialas",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Paginas especialas normalas.\n* <span class=\"mw-specialpagerestricted\">Paginas especialas restrentas.</span>",
 	"specialpages-group-maintenance": "Rapòrts de mantenença",
 	"specialpages-group-other": "Autras paginas especialas",
 	"specialpages-group-login": "S'identificar / s'inscriure",

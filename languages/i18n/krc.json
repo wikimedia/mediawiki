@@ -2636,6 +2636,7 @@
 	"fileduplicatesearch-result-n": "«$1» файлны {{PLURAL:$2|1 келишген дубликаты|$2 келишген дубликаты}} барды.",
 	"fileduplicatesearch-noresults": "«$1» деген файл табылмады.",
 	"specialpages": "Къуллукъ бетле",
+	"specialpages-note-restricted": "* Тюз къуллукъ бетле.\n* <span class=\"mw-specialpagerestricted\">Кирирге эркинлик чекленнген къуллукъ бетле.</span>",
 	"specialpages-group-maintenance": "Техника баджарыуну отчетлары",
 	"specialpages-group-other": "Башха къуллукъ бетле",
 	"specialpages-group-login": "Системагъа кириу / Аккаунт къурау",

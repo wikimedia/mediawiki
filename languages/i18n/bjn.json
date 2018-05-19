@@ -2456,6 +2456,7 @@
 	"fileduplicatesearch-result-n": "Barakas ''$1'' baisi {{PLURAL:$2|1 panggandaan parsis|$2 papanggandaan parsis}}.",
 	"fileduplicatesearch-noresults": "Kadada barakas bangaran ''$1'' taugai.",
 	"specialpages": "Tungkaran istimiwa",
+	"specialpages-note-restricted": "!!FUZZY!!* Tutungkaran istimiwa normal\n* <span class=\"mw-specialpagerestricted\">Tutungkaran istimiwa tabatas.</span>\n* <span class=\"mw-specialpagecached\">Tutungkaran istimiwa timbuluk (pinanya bakulat).</span>",
 	"specialpages-group-maintenance": "Lapuran pamaliharaan",
 	"specialpages-group-other": "Tungkaran istimiwa lainnya",
 	"specialpages-group-login": "Babuat log / mandaptar",

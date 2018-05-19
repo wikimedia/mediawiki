@@ -2978,6 +2978,7 @@
 	"fileduplicatesearch-noresults": "Žana dataja z mjenom \"$1\" namakana.",
 	"specialpages": "Specialne strony",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normalne specialne strony.\n* <span class=\"mw-specialpagerestricted\">Specialne strony z wobmjezowanym přistupom.</span>",
 	"specialpages-group-maintenance": "Hladanske lisćiny",
 	"specialpages-group-other": "Druhe specialne strony",
 	"specialpages-group-login": "Přizjewić/Konto załožić",

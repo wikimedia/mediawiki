@@ -1001,7 +1001,7 @@
 	"whatlinkshere": "Aniy p’ubuy tay lpgan sqaniy",
 	"whatlinkshere-title": "Aniy ’mubuy sa zngayan tay \"$1\"",
 	"whatlinkshere-page": "Zngayan",
-	"linkshere-2": "Zngayan tay suruw qaniy ga aniy p’ubuy sa <strong>[[:$1]]</strong>：",
+	"linkshere-2": "Zngayan tay suruw qaniy ga aniy p’ubuy sa <strong>$1</strong>：",
 	"nolinkshere-2": "Ungat zngazyan ’mubuy squw <strong>$1</strong>.",
 	"isredirect": "t’ringun pawsa’ sa zngayan",
 	"istemplate": "’nagal sa",

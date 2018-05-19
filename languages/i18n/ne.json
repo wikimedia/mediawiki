@@ -3130,6 +3130,7 @@
 	"fileduplicatesearch-noresults": "\"$1\" नामको फाइल पाइएन।",
 	"specialpages": "विशेष पृष्ठ",
 	"specialpages-note-top": "आदर्श वाक्य",
+	"specialpages-note-restricted": "* साधारण विशेष पृष्ठहरू।\n* <span class=\"mw-specialpagerestricted\">निषेधित विशेष पृष्ठहरू।</span>",
 	"specialpages-group-maintenance": "मर्मत प्रतिवेदनहरू",
 	"specialpages-group-other": "अरू विशेष पृष्ठहरू",
 	"specialpages-group-login": "प्रवेश गर्ने / नयाँ खाता बनाउने",

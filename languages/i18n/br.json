@@ -3342,6 +3342,7 @@
 	"fileduplicatesearch-noresults": "N'eus bet kavet restr ebet anvet \"$1\".",
 	"specialpages": "Pajennoù dibar",
 	"specialpages-note-top": "Alc'hwez",
+	"specialpages-note-restricted": "* Pajennoù dibar ordinal.\n* <span class=\"mw-specialpagerestricted\">Pajennoù dibar miret strizh.</span>",
 	"specialpages-group-maintenance": "Rentaoù-kont trezalc'h",
 	"specialpages-group-other": "Pajennoù dibar all",
 	"specialpages-group-login": "Kevreañ / krouiñ ur gont",

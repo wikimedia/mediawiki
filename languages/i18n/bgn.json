@@ -2599,6 +2599,7 @@
 	"fileduplicatesearch-noresults": "فایلئ گو «$1» ئی ناما ودئ نه بوت.",
 	"specialpages": "خاصین تاکدیمان",
 	"specialpages-note-top": "شرح علائم",
+	"specialpages-note-restricted": "* عادی ئین خاصین تاکدیمان.\n* <span class=\"mw-specialpagerestricted\">خاصین تاکدیمان محدود بوته انت.</span>",
 	"specialpages-group-maintenance": "ساتیتینئ راپور",
 	"specialpages-group-other": "دیگه خاصین تاکدیمان",
 	"specialpages-group-login": "داخل بوتین  / حسابي جوڑ کورتین",

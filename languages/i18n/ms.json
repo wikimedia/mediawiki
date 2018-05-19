@@ -3099,6 +3099,7 @@
 	"fileduplicatesearch-noresults": "Tidak ada gambar-gambar dengan nama \"$1\" dijumpai.",
 	"specialpages": "Laman khas",
 	"specialpages-note-top": "Petunjuk",
+	"specialpages-note-restricted": "* Laman khas biasa.\n* <span class=\"mw-specialpagerestricted\">Laman khas terhad.</span>",
 	"specialpages-group-maintenance": "Laporan penyenggaraan",
 	"specialpages-group-other": "Laman khas lain",
 	"specialpages-group-login": "Log masuk / buka akaun",

@@ -34,7 +34,8 @@
 			"Dgstranz",
 			"Irus",
 			"Tinss",
-			"KATRINE1992"
+			"KATRINE1992",
+			"MarcoAurelio"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -93,7 +94,7 @@
 	"config-apc": "[http://www.php.net/apc APC] está instalado",
 	"config-apcu": "[http://www.php.net/apcu APCu] está instalado",
 	"config-wincache": "[https://www.iis.net/download/WinCacheForPhp WinCache] está instalado",
-	"config-no-cache-apcu": "<strong>Advertencia:</strong> No se pudo encontrar [http://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nEl caché de objetos no está activado.",
+	"config-no-cache-apcu": "<strong>Atención:</strong> no se pudo encontrar [http://www.php.net/apcu APCu] o [http://www.iis.net/download/WinCacheForPhp WinCache].\nEl almacenamiento en antememoria de objetos no está activado.",
 	"config-mod-security": "<strong>Advertencia:</strong> tu servidor web tiene activado [https://modsecurity.org/ mod_security]/mod_security2. Muchas de sus configuraciones comunes pueden causar problemas a MediaWiki u otro software que permita a los usuarios publicar contenido arbitrario. De ser posible, deberías desactivarlo. Si no, consulta la [https://modsecurity.org/documentation/ documentación de mod_security] o contacta con el administrador de tu servidor si encuentras errores aleatorios.",
 	"config-diff3-bad": "GNU diff3 no se encuentra.",
 	"config-git": "Se encontró el software de control de versiones Git: <code>$1</code>.",
@@ -282,7 +283,7 @@
 	"config-cache-options": "Configuración de la antememoria de objetos:",
 	"config-cache-help": "El almacenamiento en caché de objetos se utiliza para mejorar la velocidad de MediaWiki mediante el almacenamiento en caché los datos usados más frecuentemente.\nA los sitios medianos y grandes se les recomienda que permitirlo. También es beneficioso para los sitios pequeños.",
 	"config-cache-none": "Sin almacenamiento en caché (no se pierde ninguna funcionalidad, pero la velocidad puede resentirse en sitios grandes)",
-	"config-cache-accel": "Almacenamiento en caché de objetos PHP (APC, APCu, XCache o WinCache)",
+	"config-cache-accel": "Almacenamiento en antememoria de objetos PHP (APC, APCu o WinCache)",
 	"config-cache-memcached": "Utilizar Memcached (necesita ser instalado y configurado aparte)",
 	"config-memcached-servers": "Servidores Memcached:",
 	"config-memcached-help": "Lista de direcciones IP que serán usadas por Memcached.\nDeben especificarse una por cada línea y especificar el puerto a utilizar. Por ejemplo:\n127.0.0.1:11211\n192.168.1.25:1234",
@@ -346,6 +347,7 @@
 	"config-extension-link": "¿Sabías que tu wiki admite [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar el [https://www.mediawiki.org/wiki/Extension_Matrix centro de extensiones] para ver una lista completa.",
 	"config-skins-screenshots": "$1 (capturas de pantalla: $2)",
 	"config-skins-screenshot": "$1 ($2)",
+	"config-extensions-requires": "$1 (requiere $2)",
 	"config-screenshot": "captura de pantalla",
 	"mainpagetext": "<strong>MediaWiki se ha instalado.</strong>",
 	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki a tu idioma]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprende a combatir el spam en tu wiki]"

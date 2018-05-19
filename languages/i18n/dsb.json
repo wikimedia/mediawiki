@@ -2782,6 +2782,7 @@
 	"fileduplicatesearch-noresults": "Žedna dataja z mjenim \"$1\" namakana.",
 	"specialpages": "Specialne boki",
 	"specialpages-note-top": "Legenda",
+	"specialpages-note-restricted": "* Normalne specialne boki.\n* <span class=\"mw-specialpagerestricted\">Specialne boki z wobgranicowanym pśistupom.</span>",
 	"specialpages-group-maintenance": "Wótwardowańske lisćiny",
 	"specialpages-group-other": "Druge specialne boki",
 	"specialpages-group-login": "Pśizjawiś/Konto załožyś",

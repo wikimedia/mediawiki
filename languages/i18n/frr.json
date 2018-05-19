@@ -3031,6 +3031,7 @@
 	"fileduplicatesearch-noresults": "Nian datei mä di nööm „$1“ fünjen.",
 	"specialpages": "Spezial-sidjen",
 	"specialpages-note-top": "Legend",
+	"specialpages-note-restricted": "* Normool spezial-sidjen\n* <span class=\"mw-specialpagerestricted\">Spezial-sidjen mä tugripsrochten</span>",
 	"specialpages-group-maintenance": "Werksteedsidjen",
 	"specialpages-group-other": "Ööder spezial-sidjen",
 	"specialpages-group-login": "Melde di uun of skriiw di iin",
