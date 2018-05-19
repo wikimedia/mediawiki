@@ -321,10 +321,10 @@ interface ILBFactory {
 	 * Note that unlike cookies, this works accross domains
 	 *
 	 * @param string $url
-	 * @param float $time UNIX timestamp just before shutdown() was called
+	 * @param int $index Write counter index
 	 * @return string
 	 */
-	public function appendShutdownCPIndexAsQuery( $url, $time );
+	public function appendShutdownCPIndexAsQuery( $url, $index );
 
 	/**
 	 * @param array $info Map of fields, including:
