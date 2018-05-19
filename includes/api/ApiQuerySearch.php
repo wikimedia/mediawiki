@@ -60,6 +60,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Create search engine instance and set options
 		$search = $this->buildSearchEngine( $params );
+		$search->setSort( $params['sort'] );
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 		$search->setFeatureData( 'interwiki', (bool)$interwiki );
 
@@ -389,6 +390,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			],
 			'interwiki' => false,
 			'enablerewrites' => false,
+			'sort' => [
+				ApiBase::PARAM_DFLT => 'relevance',
+				ApiBase::PARAM_TYPE => MediaWiki\MediaWikiServices::getInstance()
+					->newSearchEngine()
+					->getValidSorts(),
+			],
 		];
 
 		return $this->allowedParams;
