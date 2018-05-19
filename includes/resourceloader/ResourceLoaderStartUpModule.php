@@ -175,10 +175,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * Optimize the dependency tree in $this->modules.
 	 *
 	 * The optimization basically works like this:
-	 *	Given we have module A with the dependencies B and C
-	 *		and module B with the dependency C.
-	 *	Now we don't have to tell the client to explicitly fetch module
-	 *		C as that's already included in module B.
+	 * 	Given we have module A with the dependencies B and C
+	 * 		and module B with the dependency C.
+	 * 	Now we don't have to tell the client to explicitly fetch module
+	 * 		C as that's already included in module B.
 	 *
 	 * This way we can reasonably reduce the amount of module registration
 	 * data send to the client.

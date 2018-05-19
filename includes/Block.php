@@ -521,7 +521,7 @@ class Block {
 	 *
 	 * @param IDatabase $dbw If you have one available
 	 * @return bool|array False on failure, assoc array on success:
-	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
+	 * 	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function insert( $dbw = null ) {
 		global $wgBlockDisablesLogin;

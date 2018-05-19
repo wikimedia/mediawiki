@@ -2997,7 +2997,7 @@ class Parser {
 	 *       'expansion-depth-exceeded-category')
 	 * @param string|int|null $current Current value
 	 * @param string|int|null $max Maximum allowed, when an explicit limit has been
-	 *	 exceeded, provide the values (optional)
+	 * 	 exceeded, provide the values (optional)
 	 */
 	public function limitationWarn( $limitationType, $current = '', $max = '' ) {
 		# does no harm if $current and $max are present but are unnecessary for the message
