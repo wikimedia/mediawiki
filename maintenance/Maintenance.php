@@ -202,6 +202,11 @@ abstract class Maintenance {
 
 	/**
 	 * Do the actual work. All child classes will need to implement this
+	 *
+	 * @return bool|null True for success, false for failure. Not returning
+	 *   a value, or returning null, is also interpreted as success. Returning
+	 *   false for failure will cause doMaintenance.php to exit the process
+	 *   with a non-zero exit status.
 	 */
 	abstract public function execute();
 
