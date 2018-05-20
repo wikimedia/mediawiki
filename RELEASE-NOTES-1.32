@@ -99,6 +99,7 @@ because of Phabricator reports.
   Balancer tidy implementation. Both implementations were experimental, and were replaced
   by RemexHtml.
 * The jquery.footHovzer module, for mediawiki.debug, was removed.
+* The es5-shim module, empty and deprecated since 1.29, was removed.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
