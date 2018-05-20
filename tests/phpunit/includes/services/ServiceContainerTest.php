@@ -326,6 +326,73 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		} );
 	}
 
+	public function testAddServiceManipulator() {
+		$services = $this->newServiceContainer( [ 'Foo' ] );
+
+		$theService1 = new stdClass();
+		$theService2 = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService(
+			$name,
+			function ( $actualLocator, $extra ) use ( $services, $theService1 ) {
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				return $theService1;
+			}
+		);
+
+		$services->addServiceManipulator(
+			$name,
+			function (
+				&$theService, $actualLocator, $extra
+			) use (
+				$services, $theService1, $theService2
+			) {
+				PHPUnit_Framework_Assert::assertSame( $theService1, $theService );
+				PHPUnit_Framework_Assert::assertSame( $services, $actualLocator );
+				PHPUnit_Framework_Assert::assertSame( 'Foo', $extra );
+				$theService = $theService2;
+			}
+		);
+
+		// force instantiation, check result
+		$this->assertSame( $theService2, $services->getService( $name ) );
+	}
+
+	public function testAddServiceManipulator_fail_undefined() {
+		$services = $this->newServiceContainer();
+
+		$theService = new stdClass();
+		$name = 'TestService92834576';
+
+		$this->setExpectedException( MediaWiki\Services\NoSuchServiceException::class );
+
+		$services->addServiceManipulator( $name, function () use ( $theService ) {
+			return $theService;
+		} );
+	}
+
+	public function testAddServiceManipulator_fail_in_use() {
+		$services = $this->newServiceContainer( [ 'Foo' ] );
+
+		$theService = new stdClass();
+		$name = 'TestService92834576';
+
+		$services->defineService( $name, function () use ( $theService ) {
+			return $theService;
+		} );
+
+		// create the service, so it can no longer be redefined
+		$services->getService( $name );
+
+		$this->setExpectedException( MediaWiki\Services\CannotReplaceActiveServiceException::class );
+
+		$services->addServiceManipulator( $name, function () {
+			return 'Foo';
+		} );
+	}
+
 	public function testDisableService() {
 		$services = $this->newServiceContainer( [ 'Foo' ] );
 
