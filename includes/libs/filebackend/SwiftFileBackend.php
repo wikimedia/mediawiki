@@ -1811,7 +1811,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $code == 401 ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->swiftUser ) );
 		}
-		$msg = "HTTP {code} ({desc}) in '{func}' (given '{params}')";
+		$msg = "HTTP {code} ({desc}) in '{func}' (given '{req_params}')";
 		$msgParams = [
 			'code'   => $code,
 			'desc'   => $desc,
