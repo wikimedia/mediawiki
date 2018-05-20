@@ -52,7 +52,7 @@
 				formatversion: '2',
 
 				// Protect against errors and conflicts
-				assert: mw.user.isAnon() ? undefined : 'user',
+				assert: mw.config.get( 'wgUserName' ) ? 'user' : undefined,
 				createonly: true
 			}, params ) ).then( function ( data ) {
 				return data.edit;
@@ -159,7 +159,7 @@
 						formatversion: '2',
 
 						// Protect against errors and conflicts
-						assert: mw.user.isAnon() ? undefined : 'user',
+						assert: mw.config.get( 'wgUserName' ) ? 'user' : undefined,
 						basetimestamp: basetimestamp,
 						starttimestamp: curtimestamp,
 						nocreate: true
