@@ -266,7 +266,7 @@ class ServiceContainer implements DestructibleService {
 	 * @see resetService()
 	 *
 	 * @param string $name The name of the service to disable.
-	 *
+	 *P
 	 * @throws RuntimeException if $name is not a known service.
 	 */
 	public function disableService( $name ) {
