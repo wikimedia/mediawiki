@@ -112,6 +112,10 @@ because of Phabricator reports.
   in extending classes is deprecated.  Extend related doSearch* methods
   instead.
 * CollationFa has been removed completely as it's not needed anymore
+* The following 'mediawiki.api' plugin modules were merged into 'mediawiki.api' and marked as
+  deprecated aliases: mediawiki.api.category, mediawiki.api.edit, mediawiki.api.login,
+  mediawiki.api.options, mediawiki.api.parse, mediawiki.api.upload, mediawiki.api.user,
+  mediawiki.api.watch, mediawiki.api.messages, and mediawiki.api.rollback.
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
