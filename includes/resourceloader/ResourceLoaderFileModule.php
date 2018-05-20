@@ -978,7 +978,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 		}
 
-		$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
+		$importDirs = [];
+		$skinName = $context->getSkin();
+		$skinImportPaths = $this->getConfig()->get( 'SkinLessVariablesImportPaths' );
+		if ( isset( $skinImportPaths[ $skinName ] ) ) {
+			$importDirs[ $skinImportPaths[ $skinName ] ] = 'mediawiki.variables';
+		}
+		$compiler = $context->getResourceLoader()->getLessCompiler( $vars, $importDirs );
+
 		$css = $compiler->parseFile( $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
