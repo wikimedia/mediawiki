@@ -166,6 +166,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getTouchedSlotRoles()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getSlotParserOutput()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getRevisionRecord()
 	 */
 	public function testPrepareContent() {
 		$user = $this->getTestUser()->getUser();
@@ -224,6 +225,12 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertContains( 'first', $canonicalOutput->getText() );
 		$this->assertContains( '<a ', $canonicalOutput->getText() );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
+
+		$rev = $updater->getRevisionRecord();
+		$this->assertInstanceOf( MutableRevisionRecord::class, $rev );
+		$this->assertSame( $user, $rev->getUser() );
+		$this->assertNull( $rev->getId() );
+		$this->assertSame( 0, $rev->getParentId() );
 	}
 
 	/**
@@ -239,7 +246,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$mainContent1 = new WikitextContent( 'first [[main]] ~~~' );
 		$mainContent2 = new WikitextContent( 'second' );
 
-		$this->createRevision( $page, 'first', $mainContent1 );
+		$rev1 = $this->createRevision( $page, 'first', $mainContent1 );
 
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( 'main', $mainContent1 );
@@ -260,6 +267,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$this->assertFalse( $updater2->isCreation() );
 		$this->assertTrue( $updater2->isChange() );
+
+		$rev = $updater2->getRevisionRecord();
+		$this->assertNull( $rev->getId() );
+		$this->assertSame( $page->getId(), $rev->getPageId() );
+		$this->assertSame( $rev1->getId(), $rev->getParentId() );
 	}
 
 	// TODO: test failure of prepareContent() when called again...
@@ -278,6 +290,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getTouchedSlotRoles()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getSlotParserOutput()
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getRevisionRecord()
 	 */
 	public function testPrepareUpdate() {
 		$page = $this->getPage( __METHOD__ );
@@ -295,6 +308,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater1->isChange() );
 		$this->assertTrue( $updater1->isContentPublic() );
 
+		$this->assertSame( $rev1, $updater1->getRevisionRecord() );
 		$this->assertEquals( [ 'main' ], $updater1->getSlots()->getSlotRoles() );
 		$this->assertEquals( [ 'main' ], array_keys( $updater1->getSlots()->getOriginalSlots() ) );
 		$this->assertEquals( [], array_keys( $updater1->getSlots()->getInheritedSlots() ) );
