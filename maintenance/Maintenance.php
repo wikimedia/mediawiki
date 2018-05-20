@@ -202,6 +202,8 @@ abstract class Maintenance {
 
 	/**
 	 * Do the actual work. All child classes will need to implement this
+	 *
+	 * @return int|null Exit status, or null to cause doMaintenance.php to not exit
 	 */
 	abstract public function execute();
 
