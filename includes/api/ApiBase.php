@@ -1691,32 +1691,30 @@ abstract class ApiBase extends ContextSource {
 			return $value;
 		}
 
-		$titleObj = Title::makeTitleSafe( NS_USER, $value );
-
-		if ( $titleObj ) {
-			$value = $titleObj->getText();
+		$name = User::getCanonicalName( $value, 'valid' );
+		if ( $name !== false ) {
+			return $name;
 		}
 
 		if (
-			!User::isValidUserName( $value ) &&
 			// We allow ranges as well, for blocks.
-			!IP::isIPAddress( $value ) &&
+			IP::isIPAddress( $value ) ||
 			// See comment for User::isIP.  We don't just call that function
 			// here because it also returns true for things like
 			// 300.300.300.300 that are neither valid usernames nor valid IP
 			// addresses.
-			!preg_match(
+			preg_match(
 				'/^' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.xxx$/',
 				$value
 			)
 		) {
-			$this->dieWithError(
-				[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $value ) ],
-				"baduser_{$encParamName}"
-			);
+			return IP::sanitizeIP( $value );
 		}
 
-		return $value;
+		$this->dieWithError(
+			[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $value ) ],
+			"baduser_{$encParamName}"
+		);
 	}
 
 	/**@}*/
