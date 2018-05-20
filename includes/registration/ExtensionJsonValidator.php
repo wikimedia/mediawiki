@@ -89,20 +89,34 @@ class ExtensionJsonValidator {
 			);
 		}
 
-		$licenseError = false;
+		$extraErrors = [];
 		// Check if it's a string, if not, schema validation will display an error
 		if ( isset( $data->{'license-name'} ) && is_string( $data->{'license-name'} ) ) {
 			$licenses = new SpdxLicenses();
 			$valid = $licenses->validate( $data->{'license-name'} );
 			if ( !$valid ) {
-				$licenseError = '[license-name] Invalid SPDX license identifier, '
+				$extraErrors[] = '[license-name] Invalid SPDX license identifier, '
 					. 'see <https://spdx.org/licenses/>';
+			}
+		}
+		if ( isset( $data->url ) && is_string( $data->url ) ) {
+			$parsed = wfParseUrl( $data->url );
+			$mwoUrl = false;
+			if ( $parsed['host'] === 'www.mediawiki.org' ) {
+				$mwoUrl = true;
+			} elseif ( $parsed['host'] === 'mediawiki.org' ) {
+				$mwoUrl = true;
+				$extraErrors[] = '[url] Should use www.mediawiki.org domain';
+			}
+
+			if ( $mwoUrl && $parsed['scheme'] !== 'https' ) {
+				$extraErrors[] = '[url] Should use HTTPS for www.mediawiki.org URLs';
 			}
 		}
 
 		$validator = new Validator;
 		$validator->check( $data, (object)[ '$ref' => 'file://' . $schemaPath ] );
-		if ( $validator->isValid() && !$licenseError ) {
+		if ( $validator->isValid() && !$extraErrors ) {
 			// All good.
 			return true;
 		} else {
@@ -110,8 +124,8 @@ class ExtensionJsonValidator {
 			foreach ( $validator->getErrors() as $error ) {
 				$out .= "[{$error['property']}] {$error['message']}\n";
 			}
-			if ( $licenseError ) {
-				$out .= "$licenseError\n";
+			if ( $extraErrors ) {
+				$out .= implode( "\n", $extraErrors ) . "\n";
 			}
 			throw new ExtensionJsonValidationError( $out );
 		}
