@@ -2102,7 +2102,7 @@
 	"fileduplicatesearch-result-1": "\"$1\" faýlynyň meňzeş dublikaty ýok.",
 	"fileduplicatesearch-result-n": "\"$1\" faýlynyň {{PLURAL:$2|1 sany meňzeş dublikaty|$2 sany meňzeş dublikaty}} bar.",
 	"specialpages": "Ýörite sahypalar",
-	"specialpages-note-restricted": "!!FUZZY!!!!FUZZY!!!!FUZZY!!* Adaty ýörite sahypalar.\n* <strong class=\"mw-specialpagerestricted\">Çäklendirilen ýörite sahypalar.</strong>",
+	"specialpages-note-restricted": "* Adaty ýörite sahypalar.\n* <strong class=\"mw-specialpagerestricted\">Çäklendirilen ýörite sahypalar.</strong>",
 	"specialpages-group-maintenance": "Tehniki abatlaýyş hasabatlary",
 	"specialpages-group-other": "Başga ýörite sahypalar",
 	"specialpages-group-login": "Hasaba gir / täze hasap aç",

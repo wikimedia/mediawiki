@@ -2479,7 +2479,7 @@
 	"fileduplicatesearch-result-n": "فائل ''$1'' چ {{PLURAL:$2|1 رلدی نقل|$2 رلدیاں نقلں}} نیں۔",
 	"fileduplicatesearch-noresults": "\"$1\" ناں دی کوئی فائل نئیں لبی۔",
 	"specialpages": "خاص صفے",
-	"specialpages-note-restricted": "!!FUZZY!!* نارمل خاص صفے.\n* <span class=\"mw-specialpagerestricted\">روکے گۓ خاص صفے.</span>\n* <span class=\"mw-specialpagecached\">کاشے خاص صفے (پرانے ہوگۓ ہون).</span>",
+	"specialpages-note-restricted": "* نارمل خاص صفے.\n* <span class=\"mw-specialpagerestricted\">روکے گۓ خاص صفے.</span>\n* <span class=\"mw-specialpagecached\">کاشے خاص صفے (پرانے ہوگۓ ہون).</span>",
 	"specialpages-group-maintenance": "مرمت رپورٹ",
 	"specialpages-group-other": "ہور خاص صفے",
 	"specialpages-group-login": "لاگان / کھاتہ کھولو",

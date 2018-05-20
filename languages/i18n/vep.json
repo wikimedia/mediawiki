@@ -2190,7 +2190,7 @@
 	"fileduplicatesearch-result-1": "\"$1\"-failal ei ole identižid dublikatoid.",
 	"fileduplicatesearch-result-n": "\"$1\"-failal om {{PLURAL:$2|1 identine kopii|$2 identišt kopijad}}.",
 	"specialpages": "Specialižed lehtpoled",
-	"specialpages-note-restricted": "!!FUZZY!!* Järgeližed specialižed lehtpoled.\n* <span class=\"mw-specialpagerestricted\">Kaitud specialižed lehtpoled.</span>",
+	"specialpages-note-restricted": "* Järgeližed specialižed lehtpoled.\n* <span class=\"mw-specialpagerestricted\">Kaitud specialižed lehtpoled.</span>",
 	"specialpages-group-maintenance": "Tehnižen holitandan satusenladindad",
 	"specialpages-group-other": "Toižed specialižed lehtpoled",
 	"specialpages-group-login": "Kirjutadas sistemha / Sada registracii",

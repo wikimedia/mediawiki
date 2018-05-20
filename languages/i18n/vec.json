@@ -2744,7 +2744,7 @@
 	"fileduplicatesearch-noresults": "Nisun file de nome \"$1\" trovà.",
 	"specialpages": "Pagine speciali",
 	"specialpages-note-top": "Legenda",
-	"specialpages-note-restricted": "!!FUZZY!!* Pàjine speciałi normałi.\n* <span class=\"mw-specialpagerestricted\">Pàjine speciałi a aceso limità.</span>",
+	"specialpages-note-restricted": "* Pàjine speciałi normałi.\n* <span class=\"mw-specialpagerestricted\">Pàjine speciałi a aceso limità.</span>",
 	"specialpages-group-maintenance": "Resoconti de manutenzion",
 	"specialpages-group-other": "Altre pagine speciali",
 	"specialpages-group-login": "Login / registrasion",

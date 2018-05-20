@@ -1994,6 +1994,7 @@
 	"protectedtitles-submit": "Visa titlar",
 	"listusers": "Användarlista",
 	"listusers-editsonly": "Visa endast användare som redigerat",
+	"listusers-temporarygroupsonly": "Visa endast användare i tillfälliga användargrupper",
 	"listusers-creationsort": "Sortera efter datum skapat",
 	"listusers-desc": "Sortera i fallande ordning",
 	"usereditcount": "$1 {{PLURAL:$1|redigering|redigeringar}}",
@@ -2032,6 +2033,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Lägg till parameter:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Parameternamn",
 	"apisandbox-dynamic-error-exists": "En parameter som heter \"$1\" finns redan.",
+	"apisandbox-templated-parameter-reason": "Denna [[Special:ApiHelp/main#main/templatedparams|mallparameter]] erbjuds baserat på {{PLURAL:$1|värdet|värden}} i $2.",
 	"apisandbox-deprecated-parameters": "Föråldrade parametrar",
 	"apisandbox-fetch-token": "Fyll i nyckeln automatiskt",
 	"apisandbox-add-multi": "Lägg till",
@@ -4074,5 +4076,15 @@
 	"pagedata-text": "Denna sida tillhandahåller ett datagränssnitt till sidor. Ange sidans titel i webbadressen med hjälp av undersidesyntax.\n* Innehållsförhandling gäller baserat på att din klients Accept-header. Detta innebär att siddatan kommer att tillhandahållas i det format som din klient föredrar.",
 	"pagedata-not-acceptable": "Inga matchande format finns. MIME-typer som stöds:$1",
 	"pagedata-bad-title": "Ogiltig titel: $1.",
-	"unregistered-user-config": "Av säkerhetsskäl kan inte undersidor med JavaScript, CSS och JSON läsas in för oregistrerade användare."
+	"unregistered-user-config": "Av säkerhetsskäl kan inte undersidor med JavaScript, CSS och JSON läsas in för oregistrerade användare.",
+	"passwordpolicies": "Lösenordspolicyer",
+	"passwordpolicies-summary": "Detta är en lista över effektiva lösenordspolicyer för användargrupper som definieras i denna wiki.",
+	"passwordpolicies-group": "Grupp",
+	"passwordpolicies-policies": "Policyer",
+	"passwordpolicies-policy-minimalpasswordlength": "Lösenordet måste vara minst $1 {{PLURAL:$1|tecken}} långt",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Lösenordet måste vara minst $1 {{PLURAL:$1|tecken}} långt för att kunna logga in",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Lösenordet kan inte vara likadant som användarnamnet",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Lösenordet kan inte matcha specifikt svartlistade lösenord",
+	"passwordpolicies-policy-maximalpasswordlength": "Lösenordet måste vara högst $1 {{PLURAL:$1|tecken}} långt",
+	"passwordpolicies-policy-passwordcannotbepopular": "Lösenordet kan inte vara {{PLURAL:$1|det populäraste lösenordet|i listan över de $1 populäraste lösenorden}}"
 }

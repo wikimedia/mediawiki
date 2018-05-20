@@ -197,7 +197,8 @@
 			"Trizek (WMF)",
 			"Acamicamacaraca",
 			"Avatar6",
-			"Akapochtli"
+			"Akapochtli",
+			"ديفيد"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -418,7 +419,7 @@
 	"pool-servererror": "Error message. Parameters:\n* $1 - list of server addresses\n\nSee e.g. {{msg-mw|Poolcounter-desc}} (and the Pool Counter extension in general) for translation hints for “pool counter service”.",
 	"poolcounter-usage-error": "Used as error message. Parameters:\n* $1 - non-localized string describing usage mistake.",
 	"aboutsite": "Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.\n\n[[mw:Manual:Interface/Aboutsite|MediaWiki manual]].\n\n{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>.}}\n\n{{Identical|About}}",
-	"aboutpage": "Used as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.\n\n{{doc-important|Do not translate \"Project:\" part, for this is the namespace prefix.}}",
+	"aboutpage": "{{doc-important|Do not translate \"Project:\" part, for this is the namespace prefix.}}\n\nUsed as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.",
 	"copyright": "Parameters:\n* $1 - license name\n'''See also'''\n* {{msg-mw|Mobile-frontend-copyright}}",
 	"copyrightpage": "{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}\n\n{{Identical|Copyright}}",
 	"currentevents": "Standard link in the sidebar, for news.\n\nSee also {{msg-mw|Currentevents-url}} for the link URL.\n\nSee also:\n* {{msg-mw|Currentevents}}\n* {{msg-mw|Accesskey-n-currentevents}}\n* {{msg-mw|Tooltip-n-currentevents}}",
@@ -4669,7 +4670,7 @@
 	"pagedata-bad-title": "Error shown when the requested title is invalid. Parameters:\n* $1: the malformed ID",
 	"unregistered-user-config": "Shown when viewing a user JS, CSS or JSON subpage with ?action=raw&ctype=<mime type> where there is no such user. It is shown as a paragraph after a header saying 'Forbidden'.",
 	"passwordpolicies": "The name of the special page [[Special:PasswordPolicies]].",
-	"passwordpolicies-summary": "The description used on [[Special:ListGroupRights]].\n\nRefers to {{msg-mw|Passwordpolicies-helppage}}.",
+	"passwordpolicies-summary": "The description used on [[Special:PasswordPolicies]].\n\nRefers to {{msg-mw|Passwordpolicies-helppage}}.",
 	"passwordpolicies-helppage": "The link used on [[Special:PasswordPolicies]].",
 	"passwordpolicies-group": "The title of the column in the table, about user groups (like you are in the ''translator'' group).\n\n{{Identical|Group}}\n{{Related|Passwordpolicies}}",
 	"passwordpolicies-policies": "The title of the column in the table, about password policies.\n{{Related|Passwordpolicies}}",
