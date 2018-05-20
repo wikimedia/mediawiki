@@ -190,6 +190,10 @@ because of Phabricator reports.
   existing code, but it only supports version 2 of the test file
   specification and may be more strict when parsing invalid input,
   including duplicate tests.
+* The SkinLessImportPaths attribute was added, allowing skins to add a
+  directory to the import path for LESS stylesheets. Skins can use this
+  to provide a custom version of mediawiki.skin.variables.less, setting
+  skin-specific values for certain LESS variables.
 * …
 
 == Compatibility ==
