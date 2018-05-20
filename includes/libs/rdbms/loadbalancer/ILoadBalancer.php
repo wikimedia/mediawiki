@@ -333,6 +333,13 @@ interface ILoadBalancer {
 	public function getServerName( $i );
 
 	/**
+	 * Return the server info structure for a given index, or false if the index is invalid.
+	 * @param int $i
+	 * @return array|bool
+	 */
+	public function getServerInfo( $i );
+
+	/**
 	 * Get DB type of the server with the specified index
 	 *
 	 * @param int $i

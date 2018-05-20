@@ -153,6 +153,7 @@
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/languages.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/minify\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/parse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/rebuildImages\.php</exclude-pattern>
