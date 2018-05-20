@@ -66,6 +66,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T193566) Added language support for Ambonese Malay (abs).
+* (T137491) Added language support for Standard Moroccan Amazigh (zgh).
 
 === Breaking changes in 1.32 ===
 * $wgRequestTime, deprecated in 1.25, was removed. Use
