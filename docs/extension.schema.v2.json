@@ -590,7 +590,13 @@
 		},
 		"AutoloadNamespaces": {
 			"type": "object",
-			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading"
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading",
+			"patternProperties": {
+				"^[A-Za-z0-9\\\\]+\\\\$": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
 		},
 		"AutoloadClasses": {
 			"type": "object"
