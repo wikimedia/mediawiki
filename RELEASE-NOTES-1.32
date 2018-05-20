@@ -21,6 +21,11 @@ production.
   adds a defense-in-depth feature to stop an attacker who has found a bug in
   the parser allowing them to insert malicious attributes. Disabled by default,
   you can configure this via $wgCSPHeader and $wgCSPReportOnlyHeader.
+* (T195029) Structured filters on Recent Changes are now enabled by default, and
+  users can opt out in their preferences. The temporary config setting during
+  development, $wgStructuredChangeFiltersShowPreference, is now ignored, as are
+  ChangesListSpecialPage::isStructuredFilterUiEnabledByDefault() and
+  ChangesListSpecialPage::checkStructuredFilterUiEnabled().
 
 === New features in 1.32 ===
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules

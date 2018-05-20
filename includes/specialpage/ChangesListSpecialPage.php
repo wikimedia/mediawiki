@@ -1876,40 +1876,31 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return true;
 		}
 
-		return static::checkStructuredFilterUiEnabled(
-			$this->getConfig(),
-			$this->getUser()
-		);
+		return !$user->getOption( 'rcenhancedfilters-disable' );
 	}
 
 	/**
 	 * Check whether the structured filter UI is enabled by default (regardless of
 	 * this particular user's setting)
 	 *
-	 * @return bool
+	 * @deprecated Since 1.32, just returns true.
+	 * @return true
 	 */
 	public function isStructuredFilterUiEnabledByDefault() {
-		if ( $this->getConfig()->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$this->getUser()->getDefaultOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $this->getUser()->getDefaultOption( 'rcenhancedfilters' );
-		}
+		return true;
 	}
 
 	/**
 	 * Static method to check whether StructuredFilter UI is enabled for the given user
 	 *
+	 * @deprecated Since 1.32, just use !$user->getOption( 'rcenhancedfilters-disable' ) directly
 	 * @since 1.31
 	 * @param Config $config
 	 * @param User $user
 	 * @return bool
 	 */
 	public static function checkStructuredFilterUiEnabled( Config $config, User $user ) {
-		if ( $config->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			return !$user->getOption( 'rcenhancedfilters-disable' );
-		} else {
-			return $user->getOption( 'rcenhancedfilters' );
-		}
+		return !$user->getOption( 'rcenhancedfilters-disable' );
 	}
 
 	/**

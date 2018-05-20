@@ -1024,6 +1024,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/advancedrc',
 		];
+		$defaultPreferences['rcenhancedfilters-disable'] = [
+			'type' => 'toggle',
+			'section' => 'rc/opt-out',
+			'label-message' => 'rcfilters-preference-label',
+			'help-message' => 'rcfilters-preference-help',
+		];
 		$defaultPreferences['rcfilters-saved-queries'] = [
 			'type' => 'api',
 		];
@@ -1070,15 +1076,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
 				'label-message' => 'tog-shownumberswatching',
-			];
-		}
-
-		if ( $this->config->get( 'StructuredChangeFiltersShowPreference' ) ) {
-			$defaultPreferences['rcenhancedfilters-disable'] = [
-				'type' => 'toggle',
-				'section' => 'rc/opt-out',
-				'label-message' => 'rcfilters-preference-label',
-				'help-message' => 'rcfilters-preference-help',
 			];
 		}
 	}
