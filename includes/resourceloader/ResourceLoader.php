@@ -1706,10 +1706,12 @@ MESSAGE;
 	 * @since 1.27
 	 * @param array $extraVars Associative array of extra (i.e., other than the
 	 *   globally-configured ones) that should be used for compilation.
+	 * @param array $importDirs Array keyed by full path on disk, to
+	 *   a string prefix for importing files from that directory in LESS. (since 1.32)
 	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public function getLessCompiler( $extraVars = [] ) {
+public function getLessCompiler( $extraVars = [], array $importDirs = [] ) {
 		global $IP;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
@@ -1720,9 +1722,12 @@ MESSAGE;
 
 		$parser = new Less_Parser;
 		$parser->ModifyVars( array_merge( $this->getLessVars(), $extraVars ) );
-		$parser->SetImportDirs( [
-			"$IP/resources/src/mediawiki.less/" => '',
-		] );
+		$parser->SetImportDirs( array_merge(
+			$importDirs,
+			[
+				// "$IP/resources/src/mediawiki.less/" => '',
+			]
+		) );
 		$parser->SetOption( 'relativeUrls', false );
 
 		return $parser;

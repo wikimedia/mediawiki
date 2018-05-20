@@ -3790,6 +3790,14 @@ $wgResourceLoaderLESSVars = [
 ];
 
 /**
+ * Keyed by skin.
+ *
+ * @todo Document
+ * @since 1.32
+ */
+$wgSkinLessVariablesImportPaths = [];
+
+/**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
  */

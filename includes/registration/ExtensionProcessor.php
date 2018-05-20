@@ -140,6 +140,7 @@ class ExtensionProcessor implements Processor {
 	protected $globals = [
 		'wgExtensionMessagesFiles' => [],
 		'wgMessagesDirs' => [],
+		'wgSkinLessVariablesImportPaths' => [],
 	];
 
 	/**
@@ -189,6 +190,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractHooks( $info );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
+		$this->extractSkinImportPaths( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		if ( isset( $info['ServiceWiringFiles'] ) ) {
@@ -413,6 +415,18 @@ class ExtensionProcessor implements Processor {
 				foreach ( (array)$files as $file ) {
 					$this->globals["wgMessagesDirs"][$name][] = "$dir/$file";
 				}
+			}
+		}
+	}
+
+	/**
+	 * @param string $dir
+	 * @param array $info
+	 */
+	protected function extractSkinImportPaths( $dir, array $info ) {
+		if ( isset( $info['SkinLessVariablesImportPaths'] ) ) {
+			foreach ( $info['SkinLessVariablesImportPaths'] as $skin => $subpath ) {
+				$this->globals["wgSkinLessVariablesImportPaths"][$skin] = "$dir/$subpath";
 			}
 		}
 	}
