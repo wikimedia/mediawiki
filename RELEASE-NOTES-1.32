@@ -97,6 +97,8 @@ because of Phabricator reports.
 * The Html5Internal and Html5Depurate tidy driver classes were removed, along with the
   Balancer tidy implementation. Both implementations were experimental, and were replaced
   by RemexHtml.
+* (T179624) Job::insert() and ::batchInsert(), deprecated in 1.21, were both
+  removed. Use JobQueueGroup::singleton()->push() instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
