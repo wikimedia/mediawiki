@@ -166,11 +166,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	private $slotsUpdate = null;
 
 	/**
-	 * @var MutableRevisionSlots|null
-	 */
-	private $pstContentSlots = null;
-
-	/**
 	 * @var object[] anonymous objects with two fields, using slot roles as keys:
 	 *  - hasHtml: whether the output contains HTML
 	 *  - ParserOutput: the slot's parser output
@@ -342,7 +337,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			return false;
 		}
 
-		if ( $revision && $this->revision && $this->revision->getId() !== $revision->getId() ) {
+		if ( $revision
+			&& $this->revision
+			&& $this->revision->getId() !== null
+			&& $this->revision->getId() !== $revision->getId()
+		) {
 			return false;
 		}
 
@@ -387,9 +386,9 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			return false;
 		}
 
-		if ( $this->pstContentSlots
+		if ( $this->revision
 			&& $revision
-			&& !$this->pstContentSlots->hasSameContent( $revision->getSlots() )
+			&& !$this->revision->getSlots()->hasSameContent( $revision->getSlots() )
 		) {
 			return false;
 		}
@@ -522,7 +521,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isContentPrepared() {
-		return $this->pstContentSlots !== null;
+		return $this->revision !== null;
 	}
 
 	/**
@@ -531,7 +530,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isUpdatePrepared() {
-		return $this->revision !== null;
+		return $this->revision !== null && $this->revision->getId();
 	}
 
 	/**
@@ -759,11 +758,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		if ( $parentRevision ) {
 			// start out by inheriting all parent slots
-			$this->pstContentSlots = MutableRevisionSlots::newFromParentRevisionSlots(
+			$slots = MutableRevisionSlots::newFromParentRevisionSlots(
 				$parentRevision->getSlots()->getSlots()
 			);
 		} else {
-			$this->pstContentSlots = new MutableRevisionSlots();
+			$slots = new MutableRevisionSlots();
 		}
 
 		foreach ( $slotsUpdate->getModifiedRoles() as $role ) {
@@ -782,18 +781,45 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 				$pstSlot = SlotRecord::newUnsaved( $role, $pstContent );
 			}
 
-			$this->pstContentSlots->setSlot( $pstSlot );
+			$slots->setSlot( $pstSlot );
 		}
 
 		foreach ( $slotsUpdate->getRemovedRoles() as $role ) {
-			$this->pstContentSlots->removeSlot( $role );
+			$slots->removeSlot( $role );
 		}
 
 		$this->options['created'] = ( $parentRevision === null );
 		$this->options['changed'] = ( $parentRevision === null
-			|| !$this->pstContentSlots->hasSameContent( $parentRevision->getSlots() ) );
+			|| !$slots->hasSameContent( $parentRevision->getSlots() ) );
+
+		$this->revision = new MutableRevisionRecord( $title, $this->getWikiId() );
+
+		$this->revision->setUser( $this->user );
+		$this->revision->setParentId( $parentRevision ? $parentRevision->getId() : 0 );
+
+		if ( $this->pageExisted() ) {
+			$this->revision->setPageId( $title->getArticleID() );
+		}
+
+		foreach ( $slots->getSlots() as $slot ) {
+			$this->revision->setSlot( $slot );
+		}
 
 		$this->doTransition( 'has-content' );
+	}
+
+	/**
+	 * Returns the RevisionRecord associated with this DerivedPageDataUpdater.
+	 *
+	 * After calling prepareContent(), this returns an unsaved MutableRevisionRecord.
+	 * After calling prepareUpdate(), it returns the RevisionRecord supplied to that call.
+	 * Before calling either method, calling getRevisionRecord() results in a LogicException.
+	 *
+	 * @return RevisionRecord
+	 */
+	public function getRevisionRecord() {
+		$this->assertPrepared( __METHOD__ );
+		return $this->revision;
 	}
 
 	private function assertHasPageState( $method ) {
@@ -806,7 +832,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	}
 
 	private function assertPrepared( $method ) {
-		if ( !$this->pstContentSlots ) {
+		if ( !$this->revision ) {
 			throw new LogicException(
 				'Must call prepareContent() or prepareUpdate() before calling ' . $method
 			);
@@ -865,7 +891,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 	 */
 	public function getSlots() {
 		$this->assertPrepared( __METHOD__ );
-		return $this->pstContentSlots;
+		return $this->revision->getSlots();
 	}
 
 	/**
@@ -987,7 +1013,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			);
 		}
 
-		if ( $this->revision ) {
+		if ( $this->revision && $this->revision->getId() !== null ) {
 			if ( $this->revision->getId() === $revision->getId() ) {
 				return; // nothing to do!
 			} else {
@@ -1000,8 +1026,8 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 			}
 		}
 
-		if ( $this->pstContentSlots
-			&& !$this->pstContentSlots->hasSameContent( $revision->getSlots() )
+		if ( $this->revision
+			&& !$this->revision->getSlots()->hasSameContent( $revision->getSlots() )
 		) {
 			throw new LogicException(
 				'The Revision provided has mismatching content!'
@@ -1096,7 +1122,6 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		$this->options['created'] = ( $this->pageState['oldId'] === 0 );
 
 		$this->revision = $revision;
-		$this->pstContentSlots = $revision->getSlots();
 
 		$this->doTransition( 'has-revision' );
 
@@ -1187,11 +1212,11 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 
 		$preparedEdit->popts = $this->getCanonicalParserOptions();
 		$preparedEdit->output = $this->getCanonicalParserOutput();
-		$preparedEdit->pstContent = $this->pstContentSlots->getContent( 'main' );
+		$preparedEdit->pstContent = $this->getRawContent( 'main' );
 		$preparedEdit->newContent =
 			$slotsUpdate->isModifiedSlot( 'main' )
 			? $slotsUpdate->getModifiedSlot( 'main' )->getContent()
-			: $this->pstContentSlots->getContent( 'main' ); // XXX: can we just remove this?
+			: $this->getRawContent( 'main' ); // XXX: can we just remove this?
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : null;
 		$preparedEdit->timestamp = $preparedEdit->output->getCacheTime();
@@ -1277,12 +1302,12 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 		// See T190712 for how to fix this for Wikibase.
 		$this->canonicalParserOptions = $this->wikiPage->makeParserOptions( 'canonical' );
 
-		//TODO: if $this->revision is not set but we already know that we pending update is a
+		//TODO: if we already know that we pending update is a
 		// null-edit, we should probably use the page's current revision here.
 		// That would avoid the need for the !$this->options['changed'] branch in
 		// outputVariesOnRevisionMetaData [dk 2018-05]
 
-		if ( $this->revision ) {
+		if ( $this->revision && $this->revision->getId() ) {
 			// Make sure we use the appropriate revision ID when generating output
 			$title = $this->getTitle();
 			$oldCallback = $this->canonicalParserOptions->getCurrentRevisionCallback();
