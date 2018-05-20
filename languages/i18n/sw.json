@@ -2328,7 +2328,7 @@
 	"fileduplicatesearch-noresults": "Faili linaloitwa \"$1\" halikupatikana.",
 	"specialpages": "Kurasa maalum",
 	"specialpages-note-top": "Simulizi",
-	"specialpages-note-restricted": "!!FUZZY!!* Kurasa maalum za kawaida.\n* <span class=\"mw-specialpagerestricted\">Kurasa maalum zisizoonekana na wote.</span>\n* <span class=\"mw-specialpagecached\">Kurasa maalum zinazotoka \"cache\" (might be obsolete).</span>",
+	"specialpages-note-restricted": "* Kurasa maalum za kawaida.\n* <span class=\"mw-specialpagerestricted\">Kurasa maalum zisizoonekana na wote.</span>\n* <span class=\"mw-specialpagecached\">Kurasa maalum zinazotoka \"cache\" (might be obsolete).</span>",
 	"specialpages-group-maintenance": "Ripoti za kurekebisha na kutunza kurasa",
 	"specialpages-group-other": "Kurasa maalum zingine",
 	"specialpages-group-login": "Ingia / sajili akaunti",

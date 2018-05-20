@@ -1755,7 +1755,7 @@
 	"fileduplicatesearch-result-n": "Berkas \"$1\" ado {{PLURAL:$2|$2 duplikat nan samo}}.",
 	"fileduplicatesearch-noresults": "Indak basobok berkas banamo \"$1\".",
 	"specialpages": "Laman istimewa",
-	"specialpages-note-restricted": "!!FUZZY!!* Laman istimewa normal.\n* <span class=\"mw-specialpagerestricted\">Laman istimewa talarang.</span>\n* <span class=\"mw-specialpagecached\">Laman istimewa tasinggah (mungkin usang).</span>",
+	"specialpages-note-restricted": "* Laman istimewa normal.\n* <span class=\"mw-specialpagerestricted\">Laman istimewa talarang.</span>\n* <span class=\"mw-specialpagecached\">Laman istimewa tasinggah (mungkin usang).</span>",
 	"specialpages-group-maintenance": "Laporan pamaliharoan",
 	"specialpages-group-other": "Lain-lain",
 	"specialpages-group-login": "Masuak log / mandaftar",

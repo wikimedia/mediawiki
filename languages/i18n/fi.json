@@ -578,6 +578,7 @@
 	"botpasswords-restriction-failed": "Bottisalasanan rajoitukset estävät tämän sisäänkirjautumisen.",
 	"botpasswords-invalid-name": "Annetussa käyttäjätunnuksessa ei ole bottisalasanan erotinta (\"$1\").",
 	"botpasswords-not-exist": "Käyttäjällä \"$1\" ei ole bottisalasanaa nimellä \"$2\".",
+	"botpasswords-needs-reset": "Bottisalasana {{GENDER:$1|käyttäjän}} \"$1\" bottinimelle \"$2\" täytyy nollata.",
 	"resetpass_forbidden": "Salasanoja ei voi vaihtaa.",
 	"resetpass_forbidden-reason": "Salasanoja ei voi muuttaa: $1",
 	"resetpass-no-info": "Et voi nähdä tätä sivua kirjautumatta sisään.",
@@ -696,6 +697,7 @@
 	"blocked-notice-logextract": "Tämä käyttäjä on tällä hetkellä estetty.\nAlla on viimeisin estolokin tapahtuma:",
 	"clearyourcache": "<strong>Huomautus:</strong> Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan.\n* <strong>Firefox ja Safari:</strong> Napsauta <em>Shift</em>-näppäin pohjassa <em>Päivitä</em>, tai paina <em>Ctrl-F5</em> tai <em>Ctrl-R</em> (<em>⌘-R</em> Macilla)\n* <strong>Google Chrome:</strong> Paina <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> Macilla)\n* <strong>Internet Explorer:</strong> Napsauta <em>Ctrl</em>-näppäin pohjassa <em>Päivitä</em> tai paina <em>Ctrl-F5</em>\n* <strong>Opera:</strong> <em>Menu → Settings</em> (<em>Opera → Preferences</em> Macilla) ja sitten <em>Privacy & security → Clear browsing data → Cached images and files</em>.",
 	"usercssyoucanpreview": "Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.",
+	"userjsonyoucanpreview": "<strong>Vihje:</strong> Käytä \"{{int:showpreview}}\" painiketta testataksesi uutta JSON:iasi ennen tallentamista.",
 	"userjsyoucanpreview": "Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.",
 	"usercsspreview": "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
 	"userjspreview": "'''Tämä on JavaScriptin esikatselu.'''",
@@ -4029,5 +4031,8 @@
 	"undelete-cantcreate": "Et voi palauttaa tätä sivua, koska tällä nimellä ei ole olemassaolevaa sivua eikä sinulla ole oikeutta luoda tätä sivua.",
 	"pagedata-title": "Sivudata",
 	"pagedata-not-acceptable": "Vastaavaa muotoa ei löytynyt. Tuetut MIME-tyypit: $1",
-	"pagedata-bad-title": "Virheellinen otsikko: $1."
+	"pagedata-bad-title": "Virheellinen otsikko: $1.",
+	"passwordpolicies": "Salasanakäytännöt",
+	"passwordpolicies-group": "Ryhmä",
+	"passwordpolicies-policies": "Käytännöt"
 }

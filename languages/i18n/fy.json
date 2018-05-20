@@ -1910,7 +1910,7 @@
 	"fileduplicatesearch-result-n": "De triem \"$1\" hat {{PLURAL:$2|1 duplikaat|$2 duplikaten}}.",
 	"specialpages": "Bysûndere siden",
 	"specialpages-note-top": "Leginda",
-	"specialpages-note-restricted": "!!FUZZY!!* Normale bysûndere siden.\n* <strong class=\"mw-specialpagerestricted\">Beheinde bysûndere siden.</strong>",
+	"specialpages-note-restricted": "* Normale bysûndere siden.\n* <strong class=\"mw-specialpagerestricted\">Beheinde bysûndere siden.</strong>",
 	"specialpages-group-maintenance": "Underhâld siden",
 	"specialpages-group-other": "Oare bysûndere siden",
 	"specialpages-group-login": "Oanmelde / registrearje",

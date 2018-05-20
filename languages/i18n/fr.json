@@ -4279,5 +4279,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Les mots de passe doivent avoir au moins $1 caractère{{PLURAL:$1||s}} de long pour autoriser la connextion",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Le mot de passe ne peut pas être le même que le nom d'utilisateur",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Les mots de passe ne peuvent pas être identiques à ceux qui sont dans la liste noire.",
-	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long"
+	"passwordpolicies-policy-maximalpasswordlength": "Les mots de passe doivent avoir moins de $1 caractère{{PLURAL:$1||s}} de long",
+	"passwordpolicies-policy-passwordcannotbepopular": "Le mot de passe ne peut pas être {{PLURAL:$1|le mot de passe populaire|dans la liste des $1 mots de passe populaires}}"
 }

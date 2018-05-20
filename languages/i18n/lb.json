@@ -3710,5 +3710,6 @@
 	"gotointerwiki-invalid": "De spezifizéierten Titel ass net valabel.",
 	"gotointerwiki-external": "Dir sidd am Gaang {{SITENAME}} ze verloosse fir [[$2]] ze besichen, deen een externen Internetsite ass.\n\n'''[$1 Hei klicke fir op $1 virunzefueren]'''",
 	"undelete-cantedit": "Dir kënnt dës Säit net restauréiere well Dir dës Säit net änneren däerft.",
-	"undelete-cantcreate": "Dir kënnt dës Säit net restauréieren well et elo keng Säit mat deem Numm gëtt a well Dir dës Säit net uleeën däerft."
+	"undelete-cantcreate": "Dir kënnt dës Säit net restauréieren well et elo keng Säit mat deem Numm gëtt a well Dir dës Säit net uleeën däerft.",
+	"passwordpolicies-group": "Grupp"
 }

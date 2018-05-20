@@ -2799,7 +2799,7 @@
 	"fileduplicatesearch-noresults": "Nav atrasts neviens fails ar nosaukumu \"$1\".",
 	"specialpages": "Īpašās lapas",
 	"specialpages-note-top": "Apzīmējumi",
-	"specialpages-note-restricted": "!!FUZZY!!!!FUZZY!!* Normālas īpašās lapas.\n* <span class=\"mw-specialpagerestricted\">Ierobežotas pieejas īpašās lapas.</span>\n* <span class=\"mw-specialpagecached\">Iekešotās īpašās lapas.</span>",
+	"specialpages-note-restricted": "* Normālas īpašās lapas.\n* <span class=\"mw-specialpagerestricted\">Ierobežotas pieejas īpašās lapas.</span>\n* <span class=\"mw-specialpagecached\">Iekešotās īpašās lapas.</span>",
 	"specialpages-group-maintenance": "Uzturēšanas atskaites",
 	"specialpages-group-other": "Citas īpašās lapas",
 	"specialpages-group-login": "Pieslēgties / izveidot kontu",

@@ -456,7 +456,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} kuria tokie žmonės kaip Jūs.",
 	"createacct-benefit-body1": "{{PLURAL:$1|keitimas|keitimai|keitimų}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|puslapis|puslapiai|puslapių}}",
-	"createacct-benefit-body3": "Neseni {{PLURAL:$1|autorius|autoriai|autorių}}",
+	"createacct-benefit-body3": "{{PLURAL:$1|aktyvus naudotojas|aktyvūs naudotojai|aktyvių naudotojų}}",
 	"badretype": "Įvesti slaptažodžiai nesutampa.",
 	"usernameinprogress": "Profilio kūrimas šiam naudotojo vardui jau vyksta.\nPrašome palaukti.",
 	"userexists": "Įvestasis naudotojo vardas jau naudojamas.\nPrašome pasirinkti kitą vardą.",
@@ -1290,6 +1290,7 @@
 	"action-applychangetags": "taikyti žymes kartu su savo pokeitymais",
 	"action-changetags": "pridėti ir ištrinti savavališkas žymes individualiuose pakeitimuose ir žurnalo įrašuose",
 	"action-deletechangetags": "trinti žymes iš duomenų bazės",
+	"action-purge": "išvalyti puslapio podėlį",
 	"nchanges": "$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|nuo paskutinio apsilankymo}}",
 	"enhancedrc-history": "istorija",
@@ -1423,6 +1424,7 @@
 	"rcfilters-watchlist-showupdated": "Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra <strong>paryškinti</strong>.",
 	"rcfilters-preference-label": "Slėpti patobulintą naujausių pakeitimų versiją",
 	"rcfilters-filter-showlinkedfrom-label": "Rodyti pakeitimus puslapiuose, iš kurių esate nukreipti",
+	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Puslapiai su nuorodomis iš</strong> pasirinkto puslapio",
 	"rcfilters-filter-showlinkedto-label": "Rodyti pakeitimus puslapiuose, kurie nurodo į",
 	"rcfilters-filter-showlinkedto-option-label": "<strong>Puslapiai su nuorodomis į</strong> pasirinktą puslapį",
 	"rcfilters-target-page-placeholder": "Įveskite puslapio pavadinimą (arba kategoriją)",
@@ -1468,7 +1470,7 @@
 	"recentchangeslinked-feed": "Susiję keitimai",
 	"recentchangeslinked-toolbox": "Susiję keitimai",
 	"recentchangeslinked-title": "Su „$1“ susiję keitimai",
-	"recentchangeslinked-summary": "Įveskite puslapio pavadinimą, jei norite matyti keitimus, atliktus puslapiuose, į kuriuos yra nuoroda į arba iš nurodyto puslapio. (Jei norite ieškoti nurodytos kategorijos narius, įveskite Kategorija:Kategorijos pavadinimas). Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra <strong>paryškinti</strong>.",
+	"recentchangeslinked-summary": "Įveskite puslapio pavadinimą, jei norite matyti keitimus, atliktus puslapiuose, į kuriuos yra nuoroda į arba iš nurodyto puslapio. (Jei norite ieškoti nurodytos kategorijos narius, įveskite {{ns:category}}:Kategorijos pavadinimas). Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra <strong>paryškinti</strong>.",
 	"recentchangeslinked-page": "Puslapio pavadinimas:",
 	"recentchangeslinked-to": "Rodyti su duotuoju puslapiu susijusių puslapių pakeitimus",
 	"recentchanges-page-added-to-category": "[[:$1]] pridėta prie kategorijos",
@@ -3843,5 +3845,6 @@
 	"gotointerwiki-invalid": "Nurodytas pavadinimas negalimas.",
 	"undelete-cantedit": "Negalite atkurti šio puslapio, nes jums neleidžiama redaguoti šio puslapio.",
 	"pagedata-title": "Puslapio duomenys",
-	"pagedata-bad-title": "Negalimas pavadinimas: $1."
+	"pagedata-bad-title": "Negalimas pavadinimas: $1.",
+	"passwordpolicies-group": "Grupė"
 }

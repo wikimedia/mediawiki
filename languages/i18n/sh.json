@@ -2900,7 +2900,7 @@
 	"fileduplicatesearch-result-n": "Datoteka \"$1\" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.",
 	"fileduplicatesearch-noresults": "Nije pronađena datoteka sa imenom \"$1\".",
 	"specialpages": "Posebne stranice",
-	"specialpages-note-restricted": "!!FUZZY!!* Normalne posebne stranice.\n* <span class=\"mw-specialpagerestricted\">Ograničene posebne stranice.</span>\n* <span class=\"mw-specialpagecached\">Keširane posebne stranice (mogu biti zastarjele).</span>",
+	"specialpages-note-restricted": "* Normalne posebne stranice.\n* <span class=\"mw-specialpagerestricted\">Ograničene posebne stranice.</span>\n* <span class=\"mw-specialpagecached\">Keširane posebne stranice (mogu biti zastarjele).</span>",
 	"specialpages-group-maintenance": "Izvještaji o održavanju / Извјештаји о одржавању",
 	"specialpages-group-other": "Ostale posebne stranice - Остале посебне странице",
 	"specialpages-group-login": "Prijava / Пријава",
