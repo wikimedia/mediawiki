@@ -1,4 +1,5 @@
 /**
+ * @private
  * @class jQuery.plugin.footHovzer
  */
 ( function ( $ ) {
