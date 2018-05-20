@@ -123,13 +123,13 @@ methods:
     getSlots()                   |              prepareUpdate()-|            |
     getTouchedSlotRoles()        |                              |            |
     getCanonicalParserOutput()   |                  +-----------v------------v-----------------+
-                                 |                  |                                          |
-                                 +------------------>                 has revision             |
+    getRevisionRecord()          |                  |                                          |
+                                 +------------------>             has saved revision           |
                                                     |                                          |
   Enables-------------------------------------------+------------------------|-----------------+
     updateParserCache()                                                      |
     runSecondaryDataUpdates()                                                |-doUpdates()
-                                                                             |
+    getRevisionRecord()                                                      |
                                                                  +-----------v---------+
                                                                  |                     |
                                                                  |     updates done    |
