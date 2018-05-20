@@ -851,23 +851,17 @@ class PageUpdater {
 		Status $status
 	) {
 		$wikiPage = $this->getWikiPage();
-		$title = $this->getTitle();
 		$parent = $this->grabParentRevision();
 
-		$rev = new MutableRevisionRecord( $title, $this->getWikiId() );
-		$rev->setPageId( $title->getArticleID() );
-
-		if ( $parent ) {
-			$oldid = $parent->getId();
-			$rev->setParentId( $oldid );
-		} else {
-			$oldid = 0;
-		}
+		/** @var MutableRevisionRecord $rev */
+		$rev = $this->derivedDataUpdater->getRevisionRecord();
 
 		$rev->setComment( $comment );
 		$rev->setUser( $user );
 		$rev->setTimestamp( $timestamp );
 		$rev->setMinorEdit( ( $flags & EDIT_MINOR ) > 0 );
+
+		$oldid = $parent ? $parent->getId() : 0;
 
 		foreach ( $this->derivedDataUpdater->getSlots()->getSlots() as $slot ) {
 			$content = $slot->getContent();
@@ -875,10 +869,6 @@ class PageUpdater {
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			// TODO: change the signature of PrepareSave to not take a WikiPage!
 			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $user );
-
-			if ( $prepStatus->isOK() ) {
-				$rev->setSlot( $slot );
-			}
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );
