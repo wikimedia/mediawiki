@@ -994,6 +994,7 @@ $wgAutoloadLocalClasses = [
 	'MwSql' => __DIR__ . '/maintenance/sql.php',
 	'MySqlLockManager' => __DIR__ . '/includes/filebackend/lockmanager/MySqlLockManager.php',
 	'MysqlInstaller' => __DIR__ . '/includes/installer/MysqlInstaller.php',
+	'MysqlMaintenance' => __DIR__ . '/maintenance/mysql.php',
 	'MysqlUpdater' => __DIR__ . '/includes/installer/MysqlUpdater.php',
 	'NaiveForeignTitleFactory' => __DIR__ . '/includes/title/NaiveForeignTitleFactory.php',
 	'NaiveImportTitleFactory' => __DIR__ . '/includes/title/NaiveImportTitleFactory.php',
