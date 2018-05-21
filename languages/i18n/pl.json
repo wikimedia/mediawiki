@@ -718,8 +718,8 @@
 	"subject-preview": "Podgląd tematu:",
 	"previewerrortext": "Wystąpił błąd podczas próby podglądu Twoich zmian.",
 	"blockedtitle": "Użytkownik jest zablokowany",
-	"blockedtext": "'''Twoje konto lub adres IP zostały zablokowane.'''\n\nBlokada została nałożona przez $1.\nPodany powód to: ''$2''.\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zablokowany został: $7\n\nW celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].\nNie możesz użyć funkcji „Wyślij e‐mail do tego użytkownika”, jeśli brak jest poprawnego adresu e‐mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.\nTwój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.\nProsimy o podanie obu tych informacji przy wyjaśnianiu blokady.",
-	"autoblockedtext": "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.\nPowód blokady:\n\n:''$2''\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zablokowany został: $7\n\nMożesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.\n\nNie możesz użyć funkcji „Wyślij e‐mail do tego użytkownika”, jeśli brak jest poprawnego adresu e‐mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.\n\nTwój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.\nProsimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
+	"blockedtext": "<strong>Twoje konto lub adres IP zostały zablokowane.</strong>\n\nBlokada została nałożona przez $1.\nPodany powód to: <em>$2</em>.\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zablokowany został: $7\n\nW celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].\nNie możesz użyć funkcji „{{int:emailuser}}”, jeśli brak jest poprawnego adresu e‐mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.\nTwój obecny adres IP to $3, a numer identyfikacyjny blokady to #$5.\nProsimy o podanie obu tych informacji przy wyjaśnianiu blokady.",
+	"autoblockedtext": "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.\nPowód blokady:\n\n:<em>$2</em>\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zablokowany został: $7\n\nMożesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.\n\nNie możesz użyć funkcji „{{int:emailuser}}”, jeśli brak jest poprawnego adresu e‐mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.\n\nTwój obecny adres IP to $3, a numer identyfikacyjny blokady to #$5.\nProsimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 	"systemblockedtext": "Twoja nazwa użytkownika lub adres IP zostały automatycznie zablokowane przez MediaWiki.\nPodany powód to:\n\n:<em>$2</em>\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zamierzano zablokować: $7\n\nTwój obecny adres IP to $3.\nProsimy o dołączenie powyższych szczegółów w jakichkolwiek zadawanych pytaniach.",
 	"blockednoreason": "nie podano przyczyny",
 	"whitelistedittext": "Musisz $1, by edytować strony.",
@@ -2011,6 +2011,7 @@
 	"protectedtitles-submit": "Wyświetl tytuły",
 	"listusers": "Lista użytkowników",
 	"listusers-editsonly": "Pokaż tylko użytkowników z edycjami",
+	"listusers-temporarygroupsonly": "Pokaż tylko użytkowników w tymczasowych grupach użytkowników",
 	"listusers-creationsort": "Sortuj według daty utworzenia",
 	"listusers-desc": "Sortuj w kolejności malejącej",
 	"usereditcount": "$1 {{PLURAL:$1|edycja|edycje|edycji}}",
@@ -4111,5 +4112,13 @@
 	"pagedata-title": "Dane ze strony",
 	"pagedata-text": "Ta strona udostępnia interfejs danych do stron. Podaj tytuł strony w adresie URL, używając składni podstrony.\n* Negocjacja treści obowiązuje w oparciu o nagłówek Accept Twojego klienta. Oznacza to, że dane strony będą dostarczane w formacie preferowanym przez klienta.",
 	"pagedata-not-acceptable": "Nie znaleziono pasującego formatu. Obsługiwane typy MIME: $1",
-	"pagedata-bad-title": "Niepoprawny tytuł: $1."
+	"pagedata-bad-title": "Niepoprawny tytuł: $1.",
+	"unregistered-user-config": "Ze względów bezpieczeństwa podstrony użytkownika: JavaScript, CSS i JSON nie mogą być załadowane dla niezarejestrowanych użytkowników.",
+	"passwordpolicies": "Zasady dotyczące haseł",
+	"passwordpolicies-group": "Grupa",
+	"passwordpolicies-policies": "Zasady",
+	"passwordpolicies-policy-minimalpasswordlength": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Aby się zalogować, hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Hasło nie może być takie samo jak nazwa użytkownika",
+	"passwordpolicies-policy-maximalpasswordlength": "Hasło musi mieć mniej niż $1 {{PLURAL:$1|znak|znaki|znaków}}"
 }

@@ -1477,7 +1477,7 @@
 	"recentchangeslinked-feed": "Modificationes ligate",
 	"recentchangeslinked-toolbox": "Modificationes ligate",
 	"recentchangeslinked-title": "Modificationes associate a \"$1\"",
-	"recentchangeslinked-summary": "Entra le nomine de un pagina pro vider le modificationes facite in paginas ligate ab o verso ille pagina. (Pro vider le membros de un categoria, entra Categoria:Nomine del categoria.)\nLe paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras <strong>grasse</strong>.",
+	"recentchangeslinked-summary": "Entra le nomine de un pagina pro vider le modificationes facite in paginas ligate ab o verso ille pagina. (Pro vider le membros de un categoria, entra {{ns:category}}:Nomine del categoria.)\nLe paginas presente in [[Special:Watchlist|tu observatorio]] appare in litteras <strong>grasse</strong>.",
 	"recentchangeslinked-page": "Nomine del pagina:",
 	"recentchangeslinked-to": "Monstrar modificationes in paginas con ligamines al pagina specificate",
 	"recentchanges-page-added-to-category": "[[:$1]] addite al categoria",
