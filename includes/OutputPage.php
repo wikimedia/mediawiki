@@ -471,12 +471,14 @@ class OutputPage extends ContextSource {
 	 * @param string $version Style version of the file. Defaults to $wgStyleVersion
 	 */
 	public function addScriptFile( $file, $version = null ) {
-		// See if $file parameter is an absolute URL or begins with a slash
-		if ( substr( $file, 0, 1 ) == '/' || preg_match( '#^[a-z]*://#i', $file ) ) {
-			$path = $file;
-		} else {
-			$path = $this->getConfig()->get( 'StylePath' ) . "/common/{$file}";
+		if ( substr( $file, 0, 1 ) !== '/' && !preg_match( '#^[a-z]*://#i', $file ) ) {
+			// This is not an absolute path, protocol-relative url, or full scheme url,
+			// presumed to be an old call intended to include a file from /w/skins/common,
+			// which doesn't exist anymore as of MediaWiki 1.24 per T71277. Ignore.
+			wfDeprecated( __METHOD__, '1.24' );
+			return;
 		}
+		$path = $file;
 		if ( is_null( $version ) ) {
 			$version = $this->getConfig()->get( 'StyleVersion' );
 		}
