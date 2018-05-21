@@ -468,9 +468,9 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param string $file Filename in skins/common or complete on-server path
 	 *              (/foo/bar.js)
-	 * @param string $version Style version of the file. Defaults to $wgStyleVersion
+	 * @param string $unused Previously used to change the cache-busting query parameter
 	 */
-	public function addScriptFile( $file, $version = null ) {
+	public function addScriptFile( $file, $unused = null ) {
 		if ( substr( $file, 0, 1 ) !== '/' && !preg_match( '#^[a-z]*://#i', $file ) ) {
 			// This is not an absolute path, protocol-relative url, or full scheme url,
 			// presumed to be an old call intended to include a file from /w/skins/common,
@@ -478,11 +478,7 @@ class OutputPage extends ContextSource {
 			wfDeprecated( __METHOD__, '1.24' );
 			return;
 		}
-		$path = $file;
-		if ( is_null( $version ) ) {
-			$version = $this->getConfig()->get( 'StyleVersion' );
-		}
-		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $version ), $this->getCSPNonce() ) );
+		$this->addScript( Html::linkedScript( $file, $this->getCSPNonce() ) );
 	}
 
 	/**
@@ -3666,8 +3662,11 @@ class OutputPage extends ContextSource {
 			$url = $style;
 		} else {
 			$config = $this->getConfig();
-			$url = $config->get( 'StylePath' ) . '/' . $style . '?' .
-				$config->get( 'StyleVersion' );
+			// Append file hash as query parameter
+			$url = self::transformResourcePath(
+				$config,
+				$config->get( 'StylePath' ) . '/' . $style
+			);
 		}
 
 		$link = Html::linkedStyle( $url, $media );
