@@ -1018,6 +1018,7 @@
 	"recentchanges-label-plusminus": "所改字節量",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}([[Special:NewPages|新灶]])",
 	"recentchanges-submit": "示",
+	"rcfilters-savedqueries-defaultlabel": "所貯條件",
 	"rcfilters-show-new-changes": "知新",
 	"rcnotefrom": "下為自'''$2'''至'''$1'''之易也。",
 	"rclistfrom": "自$3 $2起之易也",

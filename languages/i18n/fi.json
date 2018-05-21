@@ -1942,6 +1942,7 @@
 	"protectedtitles-submit": "Hae sivunimet",
 	"listusers": "Käyttäjien luettelo",
 	"listusers-editsonly": "Näytä vain käyttäjät, joilla on muokkauksia",
+	"listusers-temporarygroupsonly": "Näytä vain väliaikaisten käyttäjäryhmien käyttäjät",
 	"listusers-creationsort": "Lajittele tunnuksen luontipäivämäärän mukaan",
 	"listusers-desc": "Lajittele alenevassa järjestyksessä",
 	"usereditcount": "$1 {{PLURAL:$1|muokkaus|muokkausta}}",
@@ -4034,5 +4035,8 @@
 	"pagedata-bad-title": "Virheellinen otsikko: $1.",
 	"passwordpolicies": "Salasanakäytännöt",
 	"passwordpolicies-group": "Ryhmä",
-	"passwordpolicies-policies": "Käytännöt"
+	"passwordpolicies-policies": "Käytännöt",
+	"passwordpolicies-policy-minimalpasswordlength": "Salasanan on oltava ainakin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Salasana ei voi olla sama kuin käyttäjänimi",
+	"passwordpolicies-policy-maximalpasswordlength": "Salasanan on oltava vähemmän kuin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä"
 }
