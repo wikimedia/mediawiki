@@ -100,6 +100,8 @@ because of Phabricator reports.
   by RemexHtml.
 * The jquery.footHovzer module, for mediawiki.debug, was removed.
 * The es5-shim module, empty and deprecated since 1.29, was removed.
+* The mediawiki.widgets.visibleByteLimit module, deprecated in 1.32, was removed.
+  Use mediawiki.widgets.visibleLengthLimit instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing

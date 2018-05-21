@@ -2550,11 +2550,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.widgets.visibleByteLimit' => [
-		'dependencies' => 'mediawiki.widgets.visibleLengthLimit',
-		'deprecated' => 'Use "mediawiki.widgets.visibleLengthLimit" instead.',
-		'targets' => [ 'desktop', 'mobile' ]
-	],
 	'mediawiki.widgets.visibleLengthLimit' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets.visibleLengthLimit/mediawiki.widgets.visibleLengthLimit.js'
