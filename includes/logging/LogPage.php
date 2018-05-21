@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class to simplify the use of log pages.
  * The logs are now kept in a table which is easier to manage and trim
@@ -292,22 +294,23 @@ class LogPage {
 			return $title->getPrefixedText();
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		if ( $title->isSpecialPage() ) {
 			list( $name, $par ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 
 			# Use the language name for log titles, rather than Log/X
 			if ( $name == 'Log' ) {
 				$logPage = new LogPage( $par );
-				$titleLink = Linker::link( $title, $logPage->getName()->escaped() );
+				$titleLink = $linkRenderer->makeLink( $title, $logPage->getName()->text() );
 				$titleLink = wfMessage( 'parentheses' )
 					->inLanguage( $lang )
 					->rawParams( $titleLink )
 					->escaped();
 			} else {
-				$titleLink = Linker::link( $title );
+				$titleLink = $linkRenderer->makeLink( $title );
 			}
 		} else {
-			$titleLink = Linker::link( $title );
+			$titleLink = $linkRenderer->makeLink( $title );
 		}
 
 		return $titleLink;
