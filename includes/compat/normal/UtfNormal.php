@@ -40,7 +40,7 @@ use UtfNormal\Validator;
  *
  * All functions can be called static.
  *
- * See description of forms at http://www.unicode.org/reports/tr15/
+ * See description of forms at https://www.unicode.org/reports/tr15/
  *
  * @deprecated since 1.25, use UtfNormal\Validator directly
  * @ingroup UtfNormal
