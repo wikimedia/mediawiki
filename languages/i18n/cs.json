@@ -1952,6 +1952,7 @@
 	"protectedtitles-submit": "Zobrazit názvy",
 	"listusers": "Uživatelé",
 	"listusers-editsonly": "Zobrazit pouze uživatele s editacemi",
+	"listusers-temporarygroupsonly": "Zobrazit pouze uživatele v dočasných uživatelských skupinách",
 	"listusers-creationsort": "Seřadit podle data registrace",
 	"listusers-desc": "Řadit sestupně",
 	"usereditcount": "$1 {{PLURAL:$1|editace|editace|editací}}",

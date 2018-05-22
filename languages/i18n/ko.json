@@ -4072,5 +4072,15 @@
 	"pagedata-text": "이 문서는 문서에 대한 데이터 인터페이스를 제공합니다. 하위 문서 문법을 사용하여 URL에 문서 제목을 지정해 주십시오.\n* 클라이언트의 Accept 헤더에 기반하여 내용이 절충됩니다. 즉, 문서 데이터는 클라이언트가 선호하는 형식으로 제공됩니다.",
 	"pagedata-not-acceptable": "일치하는 형식을 찾을 수 없습니다. 지원하는 MIME 형식: $1",
 	"pagedata-bad-title": "유효하지 않은 제목: $1.",
-	"unregistered-user-config": "보안을 이유로 자바스크립트, CSS, JSON 사용자 하위 문서들은 비등록 사용자에게는 불러올 수 없습니다."
+	"unregistered-user-config": "보안을 이유로 자바스크립트, CSS, JSON 사용자 하위 문서들은 비등록 사용자에게는 불러올 수 없습니다.",
+	"passwordpolicies": "비밀번호 정책",
+	"passwordpolicies-summary": "이것은 이 위키에 정의된 사용자 그룹을 위해 시행 중인 비밀번호 정책 목록입니다.",
+	"passwordpolicies-group": "그룹",
+	"passwordpolicies-policies": "정책",
+	"passwordpolicies-policy-minimalpasswordlength": "비밀번호는 적어도 $1 {{PLURAL:$1|자}}여야 합니다",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "로그인하려면 비밀번호는 적어도 {{PLURAL:$1|자}}여야 합니다",
+	"passwordpolicies-policy-passwordcannotmatchusername": "비밀번호는 사용자 이름과 같을 수 없습니다",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "비밀번호는 블랙리스트에 있는 비밀번호와 일치할 수 없습니다",
+	"passwordpolicies-policy-maximalpasswordlength": "비밀번호는 적어도 $1 {{PLURAL:$1|자}} 미만이어야 합니다",
+	"passwordpolicies-policy-passwordcannotbepopular": "비밀번호는 {{PLURAL:$1|저명한 비밀번호가 될|$1개의 저명한 비밀번호에 속할}} 수 없습니다"
 }

@@ -41,7 +41,8 @@
 			"Tmp1109",
 			"Phjtieudoc",
 			"Harriettruong3",
-			"Fitoschido"
+			"Fitoschido",
+			"Leducthn"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1083,6 +1084,7 @@
 	"prefs-dateformat": "Kiểu hiển thị ngày tháng",
 	"prefs-timeoffset": "Chênh lệch giờ",
 	"prefs-advancedediting": "Tùy chọn chung",
+	"prefs-developertools": "Công cụ dành cho lập trình viên",
 	"prefs-editor": "Trình soạn",
 	"prefs-preview": "Xem trước",
 	"prefs-advancedrc": "Tùy chọn nâng cao",
