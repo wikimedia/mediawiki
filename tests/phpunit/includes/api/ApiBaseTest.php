@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -210,6 +211,22 @@ class ApiBaseTest extends ApiTestCase {
 			'There is no page with ID 298401643.' );
 		$mock = new MockApi();
 		$mock->getTitleFromTitleOrPageId( [ 'pageid' => 298401643 ] );
+	}
+
+	public function testGetParamValidator() {
+		$mock = TestingAccessWrapper::newFromObject(
+			$this->getMockBuilder( ApiBase::class )
+				->setConstructorArgs( [ new ApiMain, 'test' ] )
+				->getMockForAbstractClass()
+		);
+		$this->assertInstanceOf(
+			MediaWiki\Api\ParamValidator::class,
+			$mock->getParamValidator()
+		);
+		$this->assertSame(
+			MediaWikiServices::getInstance()->getApiParamValidator(),
+			$mock->getParamValidator()
+		);
 	}
 
 	/**

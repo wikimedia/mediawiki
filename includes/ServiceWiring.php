@@ -37,6 +37,8 @@
  *      MediaWiki code base.
  */
 
+use MediaWiki\Api\ParamValidator as ApiParamValidator;
+use MediaWiki\Api\TypeDefRegistry as ApiTypeDefRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Linker\LinkRendererFactory;
@@ -589,6 +591,35 @@ return [
 		return new ActorMigration(
 			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' )
 		);
+	},
+
+	'ApiTypeDefRegistry' => function ( MediaWikiServices $services ) {
+		$registry = new ApiTypeDefRegistry();
+
+		$stringDef = new MediaWiki\Api\TypeDef\StringDef;
+
+		$registry->registerType( 'boolean', new MediaWiki\Api\TypeDef\BooleanDef );
+		$registry->registerType( 'enum', new MediaWiki\Api\TypeDef\EnumDef );
+		$registry->registerType( 'integer', new MediaWiki\Api\TypeDef\IntegerDef );
+		$registry->registerType( 'limit', new MediaWiki\Api\TypeDef\LimitDef );
+		$registry->registerType( 'namespace', new MediaWiki\Api\TypeDef\NamespaceDef );
+		$registry->registerType(
+			'NULL', new MediaWiki\Api\TypeDef\StringDef( [ 'allowEmptyWhenRequired' => true ] )
+		);
+		$registry->registerType( 'password', new MediaWiki\Api\TypeDef\PasswordDef );
+		$registry->registerType( 'string', $stringDef );
+		$registry->registerType( 'submodule', new MediaWiki\Api\TypeDef\SubmoduleDef );
+		$registry->registerType( 'tags', new MediaWiki\Api\TypeDef\TagsDef );
+		$registry->registerType( 'text', $stringDef );
+		$registry->registerType( 'timestamp', new MediaWiki\Api\TypeDef\TimestampDef );
+		$registry->registerType( 'user', new MediaWiki\Api\TypeDef\UserDef );
+		$registry->registerType( 'upload', new MediaWiki\Api\TypeDef\UploadDef );
+
+		return $registry;
+	},
+
+	'ApiParamValidator' => function ( MediaWikiServices $services ) {
+		return new ApiParamValidator( $services->getApiTypeDefRegistry() );
 	},
 
 	///////////////////////////////////////////////////////////////////////////

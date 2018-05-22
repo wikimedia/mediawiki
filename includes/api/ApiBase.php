@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -244,6 +245,25 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const PARAM_TEMPLATE_VARS = 25;
 
+	/**
+	 * (boolean) Ignore invalid values to multi-valued parameters?
+	 *
+	 * Normally any invalid value causes the whole parameter to be rejected.
+	 * Set this to ignore the invalid values (with a warning) while accepting
+	 * any other values that may be passed.
+	 *
+	 * For enumerated types (PARAM_TYPE being an array, 'namespace', or
+	 * 'submodule') this defaults to true, to match historical behavior.
+	 *
+	 * This also defaults to true for 'integer' when PARAM_RANGE_ENFORCE is
+	 * false, to mostly match historical behavior with the old loose validation
+	 * of integers.
+	 *
+	 * @note This parameter doesn't function yet. That will be added in a future patch.
+	 * @since 1.32
+	 */
+	const PARAM_IGNORE_INVALID_VALUES = 26;
+
 	/**@}*/
 
 	const ALL_DEFAULT_STRING = '*';
@@ -269,6 +289,8 @@ abstract class ApiBase extends ContextSource {
 
 	/** @var ApiMain */
 	private $mMainModule;
+	/** @var MediaWiki\Api\ParamValidator */
+	private $mParamValidator;
 	/** @var string */
 	private $mModuleName, $mModulePrefix;
 	private $mSlaveDB = null;
@@ -289,6 +311,8 @@ abstract class ApiBase extends ContextSource {
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
 		}
+
+		$this->mParamValidator = MediaWikiServices::getInstance()->getApiParamValidator();
 	}
 
 	/************************************************************************//**
@@ -1436,11 +1460,12 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Handle when a parameter was Unicode-normalized
 	 * @since 1.28
+	 * @since 1.32 is public instead of protected
 	 * @param string $paramName Unprefixed parameter name
 	 * @param string $value Input that will be used.
 	 * @param string $rawValue Input before normalization.
 	 */
-	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
+	public function handleParamNormalization( $paramName, $value, $rawValue ) {
 		$encParamName = $this->encodeParamName( $paramName );
 		$this->addWarning( [ 'apiwarn-badutf8', $encParamName ] );
 	}
@@ -1854,6 +1879,15 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 		return $status;
+	}
+
+	/**
+	 * Fetch the param validator
+	 * @since 1.32
+	 * @return MediaWiki\Api\ParamValidator
+	 */
+	protected function getParamValidator() {
+		return $this->mParamValidator;
 	}
 
 	/**@}*/
