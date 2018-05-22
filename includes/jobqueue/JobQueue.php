@@ -472,7 +472,7 @@ abstract class JobQueue {
 		$params = $job->getRootJobParams();
 
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
-		// Callers should call batchInsert() and then this function so that if the insert
+		// Callers should call JobQueueGroup::push() before this method so that if the insert
 		// fails, the de-duplication registration will be aborted. Since the insert is
 		// deferred till "transaction idle", do the same here, so that the ordering is
 		// maintained. Having only the de-duplication registration succeed would cause
