@@ -4270,7 +4270,7 @@
 	"pagedata-text": "Cette page fournit une interface de données aux pages. Veuillez fournir le titre de la page dans l’URL en utilisant la syntaxe de sous-page.\n* La négociation de contenu s’applique d’après l’entête Accept de votre client. Cela veut dire que les données de la page seront fournies dans le format préféré par votre client.",
 	"pagedata-not-acceptable": "Aucun format correspondant trouvé. Types MIME pris en charge : $1",
 	"pagedata-bad-title": "Titre non valide : $1.",
-	"unregistered-user-config": "Pour des raisons de sécurité, les sous-pages utilisateur JavaScript, CSS et JSON ne peuvent pas être chargées pour des utilisateurs non inscrits.",
+	"unregistered-user-config": "Pour des raisons de sécurité, les sous-pages utilisateur JavaScript, CSS et JSON ne peuvent pas être chargées pour les utilisateurs non inscrits.",
 	"passwordpolicies": "Règles concernant le mot de passe",
 	"passwordpolicies-summary": "Voici une liste des politiques des mots de passe effectifs pour les groupes d'utilisateurs de ce wiki.",
 	"passwordpolicies-group": "Groupe",

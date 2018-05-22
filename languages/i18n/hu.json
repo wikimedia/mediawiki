@@ -4022,5 +4022,12 @@
 	"pagedata-title": "Az oldal adatai",
 	"pagedata-not-acceptable": "Nem található megfelelő formátum. Támogatott MIME-típusok: $1",
 	"pagedata-bad-title": "Érvénytelen cím: $1.",
-	"unregistered-user-config": "Biztonsági okokból JavaScript, CSS és JSON szerkesztői alapok nem töltődnek be regisztrálatlan felhasználóknak."
+	"unregistered-user-config": "Biztonsági okokból JavaScript, CSS és JSON szerkesztői alapok nem töltődnek be regisztrálatlan felhasználóknak.",
+	"passwordpolicies": "Jelszóirányelvek",
+	"passwordpolicies-group": "Csoport",
+	"passwordpolicies-policies": "Irányelvek",
+	"passwordpolicies-policy-minimalpasswordlength": "A jelszónak legalább $1 karakterből kell állnia",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "A jelszónak legalább $1 karakterből kell állnia a bejelentkezéshez",
+	"passwordpolicies-policy-passwordcannotmatchusername": "A jelszó nem lehet azonos a felhasználónévvel",
+	"passwordpolicies-policy-maximalpasswordlength": "A jelszó legfeljebb $1 karakter hosszú lehet"
 }

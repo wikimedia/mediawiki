@@ -11,7 +11,8 @@
 			"Chabi",
 			"Angel Blaise",
 			"Fitoschido",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Mafcadio"
 		]
 	},
 	"tog-underline": "Sulini de lias:",
@@ -257,7 +258,7 @@
 	"editold": "edita",
 	"viewsourceold": "regarda vicitesto",
 	"editlink": "edita",
-	"viewsourcelink": "regarda vicitesto",
+	"viewsourcelink": "regarda la fonte",
 	"editsectionhint": "Edita la parte: $1",
 	"toc": "Contenida",
 	"showtoc": "mostra",
@@ -2696,7 +2697,7 @@
 	"tooltip-t-upload": "Carga fixes",
 	"tooltip-t-specialpages": "Un lista de tota pajes spesial",
 	"tooltip-t-print": "Varia primable de esta paje",
-	"tooltip-t-permalink": "Lias permanente a esta revisa de la paje",
+	"tooltip-t-permalink": "Lia permanente a esta revisa de la paje",
 	"tooltip-ca-nstab-main": "Regarda la paje de contenida",
 	"tooltip-ca-nstab-user": "Regarda la paje de usor",
 	"tooltip-ca-nstab-media": "Regarda la paje de media",
@@ -3676,7 +3677,7 @@
 	"feedback-thanks": "Grasias! Tua comenta apare en la paje \"[$2 $1]\".",
 	"feedback-thanks-title": "Grasias!",
 	"feedback-useragent": "Surfador:",
-	"searchsuggest-search": "Xerca {{SITENAME}}",
+	"searchsuggest-search": "Xerca en {{SITENAME}}",
 	"searchsuggest-containing": "conteninte...",
 	"api-error-badtoken": "Era interna: Mal marca.",
 	"api-error-emptypage": "La crea de pajes nova e vacua no es permeteda.",

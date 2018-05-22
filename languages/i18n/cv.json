@@ -539,6 +539,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (пăхăр [[Special:NewPages|çĕнĕ страницăсен списокĕ]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Кăтарт",
+	"rcfilters-legend-heading": "<strong>Кĕскетнисем:</strong>",
 	"rcfilters-filter-user-experience-level-newcomer-label": "Çĕнĕ хутшăнакансем",
 	"rclistfrom": "$2, $3 тытăнса çĕнĕ улăшăнисене кăтартни",
 	"rcshowhideminor": "пĕчĕк тӳрлетнисене $1",
