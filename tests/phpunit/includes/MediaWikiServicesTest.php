@@ -348,6 +348,8 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 			'CommentStore' => [ 'CommentStore', CommentStore::class ],
+			'ApiTypeDefRegistry' => [ 'ApiTypeDefRegistry', MediaWiki\Api\TypeDefRegistry::class ],
+			'ApiParamValidator' => [ 'ApiParamValidator', MediaWiki\Api\ParamValidator::class ],
 		];
 	}
 
