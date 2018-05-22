@@ -34,6 +34,7 @@ use Hooks;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Slots\SlotRoleRegistry;
 use MWException;
 use RecentChange;
 use Revision;
@@ -90,6 +91,11 @@ class PageUpdater {
 	private $revisionStore;
 
 	/**
+	 * @var SlotRoleRegistry
+	 */
+	private $slotRoleRegistry;
+
+	/**
 	 * @var boolean see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
 	 */
@@ -142,13 +148,15 @@ class PageUpdater {
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param LoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 */
 	public function __construct(
 		User $user,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
 		LoadBalancer $loadBalancer,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		SlotRoleRegistry $slotRoleRegistry
 	) {
 		$this->user = $user;
 		$this->wikiPage = $wikiPage;
@@ -158,6 +166,7 @@ class PageUpdater {
 		$this->revisionStore = $revisionStore;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
+		$this->slotRoleRegistry = $slotRoleRegistry;
 	}
 
 	/**
@@ -335,8 +344,7 @@ class PageUpdater {
 	 * @param Content $content
 	 */
 	public function setContent( $role, Content $content ) {
-		// TODO: MCR: check the role and the content's model against the list of supported
-		// roles, see T194046.
+		$this->slotRoleRegistry->getAllowedRoles()...;
 
 		$this->slotsUpdate->modifyContent( $role, $content );
 	}
@@ -356,6 +364,8 @@ class PageUpdater {
 	 *        by the new revision.
 	 */
 	public function inheritSlot( SlotRecord $originalSlot ) {
+		$this->slotRoleRegistry->getAllowedRoles()...;
+
 		// NOTE: this slot is inherited from some other revision, but it's
 		// a "modified" slot for the RevisionSlotsUpdate and DerivedPageDataUpdater,
 		// since it's not implicitly inherited from the parent revision.
@@ -373,9 +383,7 @@ class PageUpdater {
 	 * @param string $role A slot role name (but not "main")
 	 */
 	public function removeSlot( $role ) {
-		if ( $role === 'main' ) {
-			throw new InvalidArgumentException( 'Cannot remove the main slot!' );
-		}
+		$this->slotRoleRegistry->getRequiredRoles()...;
 
 		$this->slotsUpdate->removeSlot( $role );
 	}
@@ -625,8 +633,8 @@ class PageUpdater {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
 
-		// TODO: MCR: check the role and the content's model against the list of supported
-		// and required roles, see T194046.
+		$this->slotRoleRegistry->getRequiredRoles( $this->getTitle() ); // FIXME: check
+		$this->slotRoleRegistry->getAllowedRoles( $this->getTitle() ); // FIXME: check
 
 		// Make sure the given content type is allowed for this page
 		// TODO: decide: Extend check to other slots? Consider the role in check? [PageType]
