@@ -132,7 +132,7 @@ return [
 
 	'mediawiki.skinning.content.externallinks' => [
 		'styles' => [
-			'resources/src/mediawiki.skinning/content.externallinks.css' => [ 'media' => 'screen' ],
+			'resources/src/mediawiki.skinning/content.externallinks.less' => [ 'media' => 'screen' ],
 		],
 	],
 
