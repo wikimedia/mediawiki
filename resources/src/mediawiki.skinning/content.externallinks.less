@@ -2,45 +2,36 @@
  * Icons and colors for external links.
  */
 
-/* T68091 is blocking is from converting this file to LESS
- * and using the .background-image-svg mixin. */
-
-/* SVG support using a transparent gradient to guarantee cross-browser
- * compatibility ( browsers able to understand gradient syntax support also SVG ).
- * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
-
 .mw-parser-output a.external,
 .link-https {
-	background: url( images/external-ltr.png ) center right no-repeat;
-	/* @embed */
-	background-image: -webkit-linear-gradient( transparent, transparent ), url( images/external-ltr.svg );
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/external-ltr.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/external-ltr.svg', 'images/external-ltr.png' );
 	padding-right: 13px;
 }
 
 .mw-parser-output a.external[ href^='mailto:' ],
 .link-mailto {
-	background: url( images/mail.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/mail.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/mail.svg', 'images/mail.png' );
 	padding-right: 13px;
 }
 
 .mw-parser-output a.external[ href^='ftp://' ],
 .link-ftp {
-	background: url( images/ftp-ltr.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/ftp-ltr.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/ftp-ltr.svg', 'images/ftp-ltr.png' );
 	padding-right: 13px;
 }
 
 .mw-parser-output a.external[ href^='irc://' ],
 .mw-parser-output a.external[ href^='ircs://' ],
 .link-irc {
-	background: url( images/chat-ltr.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/chat-ltr.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/chat-ltr.svg', 'images/chat-ltr.png' );
 	padding-right: 13px;
 }
 
@@ -57,9 +48,9 @@
 .mw-parser-output a.external[ href$='.wma' ],
 .mw-parser-output a.external[ href$='.WMA' ],
 .link-audio {
-	background: url( images/audio-ltr.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/audio-ltr.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/audio-ltr.svg', 'images/audio-ltr.png' );
 	padding-right: 13px;
 }
 
@@ -72,9 +63,9 @@
 .mw-parser-output a.external[ href$='.mpg' ],
 .mw-parser-output a.external[ href$='.MPG' ],
 .link-video {
-	background: url( images/video.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/video.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/video.svg', 'images/video.png' );
 	padding-right: 13px;
 }
 
@@ -85,9 +76,9 @@
 .mw-parser-output a.external[ href*='.pdf?' ],
 .mw-parser-output a.external[ href*='.PDF?' ],
 .link-document {
-	background: url( images/document-ltr.png ) center right no-repeat;
-	/* @embed */
-	background-image: linear-gradient( transparent, transparent ), url( images/document-ltr.svg );
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg( 'images/document-ltr.svg', 'images/document-ltr.png' );
 	padding-right: 13px;
 }
 
