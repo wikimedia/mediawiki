@@ -1493,7 +1493,7 @@ class ApiPageSet extends ApiBase {
 		return $result;
 	}
 
-	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
+	public function handleParamNormalization( $paramName, $value, $rawValue ) {
 		parent::handleParamNormalization( $paramName, $value, $rawValue );
 
 		if ( $paramName === 'titles' ) {

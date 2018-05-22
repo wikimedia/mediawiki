@@ -12,6 +12,8 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Api\ParamValidator as ApiParamValidator;
+use MediaWiki\Api\TypeDefRegistry as ApiTypeDefRegistry;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
@@ -818,6 +820,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getActorMigration() {
 		return $this->getService( 'ActorMigration' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return ApiTypeDefRegistry
+	 */
+	public function getApiTypeDefRegistry() {
+		return $this->getService( 'ApiTypeDefRegistry' );
+	}
+
+	/**
+	 * @since 1.32
+	 * @return ApiParamValidator
+	 */
+	public function getApiParamValidator() {
+		return $this->getService( 'ApiParamValidator' );
 	}
 
 	///////////////////////////////////////////////////////////////////////////

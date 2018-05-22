@@ -61,6 +61,12 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * Parameter names may no longer contain '{' or '}', as these are now used for
   templated parameters.
+* ApiBase::handleParamNormalization() is now public. Classes overriding the
+  method will need to be updated to match.
+* Refactored parameter type validation for extensibility, replacing
+  ApiBase::getParameterFromSettings() and methods that support it. See
+  MediaWiki\Api\ParamValidator and MediaWiki\Api\TypeDef and its subclasses and
+  registry.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
