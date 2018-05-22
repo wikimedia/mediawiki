@@ -176,7 +176,7 @@ class ResourceLoaderClientHtmlTest extends PHPUnit\Framework\TestCase {
 					'test.user',
 				],
 			],
-			'styledeprecations' => [
+			'styleDeprecations' => [
 				Xml::encodeJsCall(
 					'mw.log.warn',
 					[ 'This page is using the deprecated ResourceLoader module "test.styles.deprecated".
@@ -228,7 +228,6 @@ Deprecation message.' ]
 			. 'mw.loader.implement("test.private@{blankVer}",function($,jQuery,require,module){},{"css":[]});'
 			. 'mw.loader.load(["test"]);'
 			. 'mw.loader.load("/w/load.php?debug=false\u0026lang=nl\u0026modules=test.scripts\u0026only=scripts\u0026skin=fallback");'
-			. 'mw.log.warn("This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message.");'
 			. '});</script>' . "\n"
 			. '<link rel="stylesheet" href="/w/load.php?debug=false&amp;lang=nl&amp;modules=test.styles.deprecated%2Cpure&amp;only=styles&amp;skin=fallback"/>' . "\n"
 			. '<style>.private{}</style>' . "\n"
@@ -304,18 +303,22 @@ Deprecation message.' ]
 		$context = self::makeContext();
 		$context->getResourceLoader()->register( self::makeSampleModules() );
 
-		$client = new ResourceLoaderClientHtml( $context );
+		$client = new ResourceLoaderClientHtml( $context, [ 'nonce' => false ] );
 		$client->setConfig( [ 'key' => 'value' ] );
 		$client->setModules( [
 			'test',
 			'test.private.bottom',
 		] );
+		$client->setModuleStyles( [
+			'test.styles.deprecated',
+		] );
 		$client->setModuleScripts( [
 			'test.scripts',
 		] );
 
-		$expected = '';
-		$expected = self::expandVariables( $expected );
+		$expected = '<script>(window.RLQ=window.RLQ||[]).push(function(){'
+			. 'mw.log.warn("This page is using the deprecated ResourceLoader module \"test.styles.deprecated\".\nDeprecation message.");'
+			. '});</script>';
 
 		$this->assertEquals( $expected, $client->getBodyHtml() );
 	}
