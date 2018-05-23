@@ -212,11 +212,6 @@ return [
 	'jquery.expandableField' => [
 		'scripts' => 'resources/src/jquery/jquery.expandableField.js',
 	],
-	'jquery.farbtastic' => [
-		'scripts' => 'resources/src/jquery/jquery.farbtastic.js',
-		'styles' => 'resources/src/jquery/jquery.farbtastic.css',
-		'dependencies' => 'jquery.colorUtil',
-	],
 	'jquery.form' => [
 		'scripts' => 'resources/lib/jquery/jquery.form.js',
 	],
