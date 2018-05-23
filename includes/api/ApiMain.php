@@ -1942,7 +1942,25 @@ class ApiMain extends ApiBase {
 				$headline = '<div id="main/datatypes"></div>' . $headline;
 			}
 			$help['datatypes'] .= $headline;
-			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
+			$help['datatypes'] .= $this->msg( 'api-help-datatypes-top' )->parseAsBlock();
+			$help['datatypes'] .= '<dl>';
+			foreach ( MediaWikiServices::getInstance()->getApiTypeDefRegistry()->getKnownTypes() as $type ) {
+				$m = $this->msg( "api-help-datatype-$type" );
+				if ( !$m->isDisabled() ) {
+					$id = "main/datatype/$type";
+					$help['datatypes'] .= '<dt id="' . htmlspecialchars( $id ) . '">';
+					$encId = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_PRIMARY );
+					if ( $encId !== $id ) {
+						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId ) . '"></span>';
+					}
+					$encId2 = Sanitizer::escapeIdForAttribute( $id, Sanitizer::ID_FALLBACK );
+					if ( $encId2 !== $id && $encId2 !== $encId ) {
+						$help['datatypes'] .= '<span id="' . htmlspecialchars( $encId2 ) . '"></span>';
+					}
+					$help['datatypes'] .= htmlspecialchars( $type ) . '</dt><dd>' . $m->parseAsBlock() . "</dd>";
+				}
+			}
+			$help['datatypes'] .= '</dl>';
 			if ( !isset( $tocData['main/datatypes'] ) ) {
 				$tocnumber[$level]++;
 				$tocData['main/datatypes'] = [

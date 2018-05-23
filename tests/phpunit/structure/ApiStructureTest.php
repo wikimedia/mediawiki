@@ -61,6 +61,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 		ApiBase::PARAM_MAX_BYTES => [ 'integer' ],
 		ApiBase::PARAM_MAX_CHARS => [ 'integer' ],
 		ApiBase::PARAM_TEMPLATE_VARS => [ 'array' ],
+		ApiBase::PARAM_IGNORE_INVALID_VALUES => [ 'boolean' ],
 	];
 
 	// param => [ other param that must be present => required value or null ]
@@ -75,6 +76,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 			ApiBase::PARAM_ISMULTI => true,
 			ApiBase::PARAM_ISMULTI_LIMIT1 => null,
 		],
+		ApiBase::PARAM_IGNORE_INVALID_VALUES => [ ApiBase::PARAM_ISMULTI => true ],
 	];
 
 	// param => type(s) allowed for this param ('array' is any array)
@@ -95,6 +97,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 	];
 
 	private static $paramProhibitedTypes = [
+		ApiBase::PARAM_DFLT => [ 'upload' ],
 		ApiBase::PARAM_ISMULTI => [ 'boolean', 'limit', 'upload' ],
 		ApiBase::PARAM_ALL => 'namespace',
 		ApiBase::PARAM_SENSITIVE => 'password',
@@ -247,6 +250,11 @@ class ApiStructureTest extends MediaWikiTestCase {
 	public function testParameterConsistency( $path ) {
 		$main = self::getMain();
 		$module = TestingAccessWrapper::newFromObject( $main->getModuleFromPath( $path ) );
+		$validator = $module->getParamValidator();
+
+		// Normalize without calling any per-type logic, by making a validator
+		// with an empty registry.
+		$normalizer = new MediaWiki\Api\ParamValidator( new MediaWiki\Api\TypeDefRegistry );
 
 		$paramsPlain = $module->getFinalParams();
 		$paramsForHelp = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
@@ -266,14 +274,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 
 		foreach ( [ $paramsPlain, $paramsForHelp ] as $params ) {
 			foreach ( $params as $param => $config ) {
-				if ( !is_array( $config ) ) {
-					$config = [ ApiBase::PARAM_DFLT => $config ];
-				}
-				if ( !isset( $config[ApiBase::PARAM_TYPE] ) ) {
-					$config[ApiBase::PARAM_TYPE] = isset( $config[ApiBase::PARAM_DFLT] )
-						? gettype( $config[ApiBase::PARAM_DFLT] )
-						: 'NULL';
-				}
+				$config = $normalizer->normalizeSettings( $config );
 
 				foreach ( self::$paramTypes as $key => $types ) {
 					if ( !isset( $config[$key] ) ) {
@@ -334,13 +335,38 @@ class ApiStructureTest extends MediaWikiTestCase {
 					);
 				}
 
+				if ( !empty( $config[ApiBase::PARAM_ALL] ) &&
+					is_string( $config[ApiBase::PARAM_ALL] ) &&
+					is_array( $config[ApiBase::PARAM_TYPE] )
+				) {
+					$this->assertNotContains(
+						$config[ApiBase::PARAM_ALL],
+						$config[ApiBase::PARAM_TYPE],
+						"$param: PARAM_ALL collides with a possible value"
+					);
+				}
+
 				if ( isset( $config[ApiBase::PARAM_DFLT] ) ) {
 					$this->assertFalse(
 						isset( $config[ApiBase::PARAM_REQUIRED] ) &&
 							$config[ApiBase::PARAM_REQUIRED],
 						"$param: A required parameter cannot have a default" );
 
-					$this->validateDefault( $param, $config );
+					if ( $config[ApiBase::PARAM_TYPE] === 'boolean' ) {
+						$this->assertSame( false, $config[ApiBase::PARAM_DFLT],
+							"$param: A boolean parameter must default to false" );
+					}
+
+					try {
+						$dflt = $config[ApiBase::PARAM_DFLT];
+						$v = $validator->validateValue( $param, $dflt, $config, $module->object, false );
+						if ( is_array( $v ) ) {
+							$v = count( $v ) === 1 ? $v[0] : implode( '|', $v );
+						}
+						$this->assertSame( $dflt, $v, "$param: Default value must be valid input" );
+					} catch ( ApiUsageException $ex ) {
+						$this->fail( "$param: Default value must be valid input\n" . $ex->getMessage() );
+					}
 				}
 
 				if ( $config[ApiBase::PARAM_TYPE] === 'limit' ) {
@@ -511,109 +537,6 @@ class ApiStructureTest extends MediaWikiTestCase {
 			}
 			// Doesn't match any of them
 			$this->fail( "$param: $desc has incorrect type" );
-		}
-	}
-
-	/**
-	 * Asserts that $default is a valid default for $type.
-	 *
-	 * @param string $param Name of param, for error messages
-	 * @param array $config Array of configuration options for this parameter
-	 */
-	private function validateDefault( $param, $config ) {
-		$type = $config[ApiBase::PARAM_TYPE];
-		$default = $config[ApiBase::PARAM_DFLT];
-
-		if ( !empty( $config[ApiBase::PARAM_ISMULTI] ) ) {
-			if ( $default === '' ) {
-				// The empty array is fine
-				return;
-			}
-			$defaults = explode( '|', $default );
-			$config[ApiBase::PARAM_ISMULTI] = false;
-			foreach ( $defaults as $defaultValue ) {
-				// Only allow integers in their simplest form with no leading
-				// or trailing characters etc.
-				if ( $type === 'integer' && $defaultValue === (string)(int)$defaultValue ) {
-					$defaultValue = (int)$defaultValue;
-				}
-				$config[ApiBase::PARAM_DFLT] = $defaultValue;
-				$this->validateDefault( $param, $config );
-			}
-			return;
-		}
-		switch ( $type ) {
-			case 'boolean':
-				$this->assertFalse( $default,
-					"$param: Boolean params may only default to false" );
-				break;
-
-			case 'integer':
-				$this->assertInternalType( 'integer', $default,
-					"$param: Default $default is not an integer" );
-				break;
-
-			case 'limit':
-				if ( $default === 'max' ) {
-					break;
-				}
-				$this->assertInternalType( 'integer', $default,
-					"$param: Default $default is neither an integer nor \"max\"" );
-				break;
-
-			case 'namespace':
-				$validValues = MWNamespace::getValidNamespaces();
-				if (
-					isset( $config[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
-					is_array( $config[ApiBase::PARAM_EXTRA_NAMESPACES] )
-				) {
-					$validValues = array_merge(
-						$validValues,
-						$config[ApiBase::PARAM_EXTRA_NAMESPACES]
-					);
-				}
-				$this->assertContains( $default, $validValues,
-					"$param: Default $default is not a valid namespace" );
-				break;
-
-			case 'NULL':
-			case 'password':
-			case 'string':
-			case 'submodule':
-			case 'tags':
-			case 'text':
-				$this->assertInternalType( 'string', $default,
-					"$param: Default $default is not a string" );
-				break;
-
-			case 'timestamp':
-				if ( $default === 'now' ) {
-					return;
-				}
-				$this->assertNotFalse( wfTimestamp( TS_MW, $default ),
-					"$param: Default $default is not a valid timestamp" );
-				break;
-
-			case 'user':
-				// @todo Should we make user validation a public static method
-				// in ApiBase() or something so we don't have to resort to
-				// this?  Or in User for that matter.
-				$wrapper = TestingAccessWrapper::newFromObject( new ApiMain() );
-				try {
-					$wrapper->validateUser( $default, '' );
-				} catch ( ApiUsageException $e ) {
-					$this->fail( "$param: Default $default is not a valid username/IP address" );
-				}
-				break;
-
-			default:
-				if ( is_array( $type ) ) {
-					$this->assertContains( $default, $type,
-						"$param: Default $default is not any of " .
-						implode( ', ', $type ) );
-				} else {
-					$this->fail( "Unrecognized type $type" );
-				}
 		}
 	}
 

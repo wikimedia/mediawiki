@@ -126,12 +126,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$this->expandTemplates = $params['expandtemplates'];
 			$this->generateXML = $params['generatexml'];
 			$this->parseContent = $params['parse'];
-			if ( $this->parseContent ) {
-				// Must manually initialize unset limit
-				if ( is_null( $this->limit ) ) {
-					$this->limit = 1;
-				}
-			}
 			if ( isset( $params['section'] ) ) {
 				$this->section = $params['section'];
 			} else {
@@ -139,19 +133,25 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$userMax = $this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 );
-		$botMax = $this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 );
-		if ( $this->limit == 'max' ) {
-			$this->limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			if ( $this->setParsedLimit ) {
-				$this->getResult()->addParsedLimit( $this->getModuleName(), $this->limit );
-			}
-		}
-
 		if ( is_null( $this->limit ) ) {
-			$this->limit = 10;
+			$this->limit = $this->parseContent ? 1 : 10;
+		} else {
+			$this->limit = $this->getParamValidator()->validateValue(
+				'limit',
+				$this->limit,
+				[
+					self::PARAM_TYPE => 'limit',
+					self::PARAM_MIN => 1,
+					self::PARAM_MAX =>
+						$this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1 ),
+					self::PARAM_MAX2 =>
+						$this->parseContent ? 1 : ( $smallLimit ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2 ),
+					self::PARAM_RANGE_ENFORCE => false,
+					'set-parsed-limit' => $this->setParsedLimit,
+				],
+				$this
+			);
 		}
-		$this->validateLimit( 'limit', $this->limit, 1, $userMax, $botMax );
 	}
 
 	/**
