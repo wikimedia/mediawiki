@@ -95,6 +95,8 @@ return [
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.SavedQueryItemModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.SavedQueriesModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/UriProcessor.test.js',
+			'tests/qunit/suites/resources/mediawiki.widgets/' +
+				'MediaSearch/mediawiki.widgets.APIResultsQueue.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
@@ -137,6 +139,7 @@ return [
 			'mediawiki.experiments',
 			'mediawiki.inspect',
 			'mediawiki.visibleTimeout',
+			'mediawiki.widgets.MediaSearch',
 			'test.mediawiki.qunit.testrunner',
 		],
 	]
