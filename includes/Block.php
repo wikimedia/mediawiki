@@ -763,7 +763,7 @@ class Block {
 	 * @return bool
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
-		// Try to get the autoblock_whitelist from the cache, as it's faster
+		// Try to get the autoblock-whitelist from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$lines = $cache->getWithSetCallback(
@@ -773,11 +773,11 @@ class Block {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				return explode( "\n",
-					wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );
+					wfMessage( 'autoblock-whitelist' )->inContentLanguage()->plain() );
 			}
 		);
 
-		wfDebug( "Checking the autoblock whitelist..\n" );
+		wfDebug( "Checking the autoblock-whitelist...\n" );
 
 		foreach ( $lines as $line ) {
 			# List items only

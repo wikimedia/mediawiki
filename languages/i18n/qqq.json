@@ -3878,7 +3878,7 @@
 	"autosumm-changed-redirect-target": "The auto summary when making a redirect. Parameters:\n* $1 - the page where it redirects to\n* $2 - (Optional) the first X number of characters of the redirect ($2 is usually only used when end users customize the message)",
 	"autosumm-new": "The auto summary when creating a new page. $1 are the first X number of characters of the new page.",
 	"autosumm-newblank": "The automatic edit summary when creating a blank page. This is not the same as blanking a page.",
-	"autoblock_whitelist": "{{notranslate}}",
+	"autoblock-whitelist": "{{notranslate}}",
 	"size-bytes": "Size (of a page, typically) in bytes.\n{{Identical|Byte}}",
 	"size-kilobytes": "{{optional}}\nSize (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).",
 	"size-megabytes": "{{optional}}\nSize (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).",
