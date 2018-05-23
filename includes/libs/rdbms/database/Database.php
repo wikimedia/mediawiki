@@ -2060,7 +2060,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $conds !== [] && $conds !== '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
-
 		return (bool)$this->query( $sql, $fname );
 	}
 
