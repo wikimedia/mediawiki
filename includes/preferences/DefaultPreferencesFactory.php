@@ -413,8 +413,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$languageCode = $this->config->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
+			// Sort the array again
+			ksort( $languages );
 		}
-		ksort( $languages );
 
 		$options = [];
 		foreach ( $languages as $code => $name ) {
