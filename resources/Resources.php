@@ -2776,12 +2776,6 @@ return [
 		],
 	],
 
-	/* es5-shim */
-	'es5-shim' => [
-		'deprecated' => 'Use of the "es5-shim" module is deprecated since MediaWiki 1.29.0',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
 	/* dom-level2-shim */
 	'dom-level2-shim' => [
 		'deprecated' => 'Use of the "dom-level2-shim" module is deprecated since MediaWiki 1.29.0',
