@@ -217,10 +217,6 @@ return [
 		'styles' => 'resources/src/jquery/jquery.farbtastic.css',
 		'dependencies' => 'jquery.colorUtil',
 	],
-	'jquery.footHovzer' => [
-		'scripts' => 'resources/src/jquery/jquery.footHovzer.js',
-		'styles' => 'resources/src/jquery/jquery.footHovzer.css',
-	],
 	'jquery.form' => [
 		'scripts' => 'resources/lib/jquery/jquery.form.js',
 	],
@@ -970,13 +966,14 @@ return [
 	],
 	'mediawiki.debug' => [
 		'scripts' => [
+			'resources/src/mediawiki.debug/jquery.footHovzer.js',
 			'resources/src/mediawiki.debug/debug.js',
 		],
 		'styles' => [
+			'resources/src/mediawiki.debug/jquery.footHovzer.css',
 			'resources/src/mediawiki.debug/debug.less',
 		],
 		'dependencies' => [
-			'jquery.footHovzer',
 			'oojs-ui-core',
 		],
 	],
@@ -2777,12 +2774,6 @@ return [
 			'mediawiki.api',
 			'oojs-ui-core',
 		],
-	],
-
-	/* es5-shim */
-	'es5-shim' => [
-		'deprecated' => 'Use of the "es5-shim" module is deprecated since MediaWiki 1.29.0',
-		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* dom-level2-shim */
