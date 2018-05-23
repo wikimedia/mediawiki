@@ -77,12 +77,4 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	public function getGroup() {
 		return 'user';
 	}
-
-	/**
-	 * @param ResourceLoaderContext|null $context
-	 * @return array
-	 */
-	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return [ 'user.styles' ];
-	}
 }
