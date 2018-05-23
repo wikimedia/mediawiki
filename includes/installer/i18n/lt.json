@@ -5,7 +5,8 @@
 			"Mantak111",
 			"Zygimantus",
 			"Hugo.arg",
-			"Homo"
+			"Homo",
+			"Manvydasz"
 		]
 	},
 	"config-desc": "MediaWiki diegimas",
@@ -55,7 +56,7 @@
 	"config-apc": "[https://secure.php.net/apc APC] yra įdiegtas",
 	"config-apcu": "[https://secure.php.net/apcu APCu] yra įdiegtas",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] yra įdiegtas",
-	"config-no-cache-apcu": "<strong>Įspėjimas:</strong> Nepavyko rasti [https://secure.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] or [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObjekto spartinimas neįjungtas.",
+	"config-no-cache-apcu": "<strong>Įspėjimas:</strong> Nepavyko rasti [https://secure.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] ar [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObjekto spartinimas neįjungtas.",
 	"config-diff3-bad": "GNU diff3 nerastas.",
 	"config-git": "Rasta Git versijų kontrolės sistema: <code>$1</code>.",
 	"config-imagemagick": "Rastas „ImageMagick“: <code>$1</code>.\nPaveikslėlių miniatiūrizavimas bus įjungtas, jeigu įgalinsite vaizdų įkėlimą.",

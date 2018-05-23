@@ -86,7 +86,7 @@
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] ass e beléiften Open-Source-Datebanksystem an eng Alternativ zu MySQL. ([Config-dbsupport-oracle/manual/de/pgsql.installation.php Uleedung fir d'Kompilatoun vu PHP mat PostgreSQL-Ënnerstëtzung])",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] ass eng kommerziell Datebank-Software. ([http://www.php.net/manual/en/oci8.installation.php How to compile PHP mat OCI8 Ënnerstëtzung])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] ass eng kommerziell Datebank-Software fir Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Wéi PHP mat SQLSRV Ënnerstëtzung kompiléieren])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] ass eng kommerziell Datebank-Software fir Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Wéi PHP mat SQLSRV Ënnerstëtzung kompiléieren])",
 	"config-header-mysql": "MySQL-Astellungen",
 	"config-header-postgres": "PostgreSQL-Astellungen",
 	"config-header-sqlite": "SQLite-Astellungen",

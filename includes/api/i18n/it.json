@@ -693,5 +693,6 @@
 	"apierror-maxchars": "Il parametro <var>$1</var> non può essere più lungo di $2 {{PLURAL:$2|carattere|caratteri}}",
 	"apierror-nosuchuserid": "Non c'è alcun utente con ID $1.",
 	"apierror-timeout": "Il server non ha risposto entro il tempo previsto.",
+	"apierror-toomanyvalues": "Troppi valori forniti per il parametro <var>$1</ var>. Il limite è $2.",
 	"api-credits-header": "Crediti"
 }

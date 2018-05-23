@@ -4077,7 +4077,7 @@
 	"limitreport-expensivefunctioncount-value": "$1/$2",
 	"limitreport-unstrip-depth": "Глубинная рекурсия Unstrip",
 	"limitreport-unstrip-depth-value": "$1/$2",
-	"limitreport-unstrip-size": "После расширения размер Unstrip",
+	"limitreport-unstrip-size": "Размер Unstrip после раскрытия включений",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|байт|байта|байт}}",
 	"expandtemplates": "Развёртка шаблонов",
 	"expand_templates_intro": "Эта служебная страница преобразует текст, рекурсивно разворачивая все шаблоны в нём.\nТакже развёртке подвергаются функции парсера\n<code><nowiki>{{#language:…}}</nowiki></code> и переменные вида\n<code><nowiki>{{CURRENTDAY}}</nowiki></code> — в общем, всё внутри двойных фигурных скобок.",

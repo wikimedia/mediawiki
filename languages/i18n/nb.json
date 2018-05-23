@@ -551,6 +551,7 @@
 	"botpasswords-existing": "Eksisterende robotpassord",
 	"botpasswords-createnew": "Opprett et nytt robotpassord",
 	"botpasswords-editexisting": "Redigere et eksisterende robotpassord",
+	"botpasswords-label-needsreset": "(passordet må settes på nytt)",
 	"botpasswords-label-appid": "Robotnavn:",
 	"botpasswords-label-create": "Opprett",
 	"botpasswords-label-update": "Oppdater",
@@ -574,6 +575,7 @@
 	"botpasswords-restriction-failed": "Begrensninger for robotpassord tillater ikke denne innloggingen.",
 	"botpasswords-invalid-name": "Det angitte brukernavnet inneholder ikke separasjonstegnet for robotpassord (\"$1\").",
 	"botpasswords-not-exist": "Brukeren \"$1\" har ikke noe robotpassord for \"$2\".",
+	"botpasswords-needs-reset": "Botpassordet for botnavnet «$2» for {{GENDER:$1|brukeren}} «$1» må settes på nytt.",
 	"resetpass_forbidden": "Passord kan ikke endres",
 	"resetpass_forbidden-reason": "Passordene kan ikke endres: $1",
 	"resetpass-no-info": "Du må være logget inn for å gå til denne siden direkte",
@@ -1965,6 +1967,7 @@
 	"protectedtitles-submit": "Vis titler",
 	"listusers": "Brukerliste",
 	"listusers-editsonly": "Vis bare brukere med redigeringer",
+	"listusers-temporarygroupsonly": "Vis kun brukere i midlertidige brukergrupper",
 	"listusers-creationsort": "Sorter etter opprettelsesdato",
 	"listusers-desc": "Sorter i synkende rekkefølge",
 	"usereditcount": "{{PLURAL:$1|én redigering|$1 redigeringer}}",
@@ -4078,5 +4081,12 @@
 	"pagedata-title": "Sidedata",
 	"pagedata-text": "Denne siden gir et datagrensesnitt til sidene. Oppgi en sidetittel i URL-en, med undersidesyntaks.\n* Innholdsforhandlingen er basert på din klients Accept-header. Dette betyr at data for siden blir angitt på formatet som foretrekkes av din klient.",
 	"pagedata-not-acceptable": "Ingen passende format funnet. Støttede MIME-typer: $1",
-	"pagedata-bad-title": "Ugyldig tittel: $1."
+	"pagedata-bad-title": "Ugyldig tittel: $1.",
+	"passwordpolicies-group": "Gruppe",
+	"passwordpolicies-policy-minimalpasswordlength": "Passordet må være på minst $1 {{PLURAL:$1|tegn}}.",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Passordet må være på minst $1 {{PLURAL:$1|tegn}} for å kunne logge inn",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikke være det samme som brukernavnet",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikke matche spesifikt svartelistede passord",
+	"passwordpolicies-policy-maximalpasswordlength": "Passordet må være på minst $1 {{PLURAL:$1|tegn}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "Passordet kan ikke være {{PLURAL:$1|det populære passordet|i lista over $1 populære passord}}"
 }
