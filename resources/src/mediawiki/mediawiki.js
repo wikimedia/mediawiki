@@ -2806,42 +2806,6 @@
 	mw.trackSubscribe( 'resourceloader.exception', logError );
 	mw.trackSubscribe( 'resourceloader.assert', logError );
 
-	/**
-	 * Fired when all modules associated with the page have finished loading.
-	 *
-	 * @event resourceloader_loadEnd
-	 * @member mw.hook
-	 */
-	$( function () {
-		// Get a list of modules currently in loading state
-		var modules = mw.loader.getModuleNames().filter( function ( module ) {
-			return mw.loader.getState( module ) === 'loading';
-		} );
-		// Wait for them to complete loading (regardles of failures). First, try a single
-		// mw.loader.using() call. That's efficient, but has the drawback of being rejected
-		// upon first failure. Fall back to tracking each module separately. We usually avoid
-		// that because of high overhead for that internally to mw.loader.
-		mw.loader.using( modules ).catch( function () {
-			return $.Deferred( function ( deferred ) {
-				var i, count = modules.length;
-				function decrement() {
-					count--;
-					if ( count === 0 ) {
-						deferred.resolve();
-					}
-				}
-				for ( i = 0; i < modules.length; i++ ) {
-					mw.loader.using( modules[ i ] ).always( decrement );
-				}
-			} );
-		} ).then( function () {
-			if ( window.performance && performance.mark ) {
-				performance.mark( 'mwLoadEnd' );
-			}
-			mw.hook( 'resourceloader.loadEnd' ).fire();
-		} );
-	} );
-
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
 }( jQuery ) );
