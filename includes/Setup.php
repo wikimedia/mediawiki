@@ -629,8 +629,6 @@ MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
 
-$ps_validation = Profiler::instance()->scopedProfileIn( $fname . '-validation' );
-
 // T48998: Bail out early if $wgArticlePath is non-absolute
 foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 	if ( $$varName && !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
@@ -642,8 +640,6 @@ foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 		);
 	}
 }
-
-Profiler::instance()->scopedProfileOut( $ps_validation );
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
@@ -705,7 +701,7 @@ if ( $wgMainWANCache === false ) {
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 
-$ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc1' );
+$ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc' );
 
 // Raise the memory limit if it's too low
 wfMemoryLimit();
@@ -774,9 +770,6 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $debug );
 }
 
-Profiler::instance()->scopedProfileOut( $ps_misc );
-$ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
-
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 
@@ -795,7 +788,7 @@ wfDebugLog( 'caches',
 	', session: ' . get_class( ObjectCache::getInstance( $wgSessionCacheType ) )
 );
 
-Profiler::instance()->scopedProfileOut( $ps_memcached );
+Profiler::instance()->scopedProfileOut( $ps_misc );
 
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
@@ -827,8 +820,6 @@ if ( $wgAuth && !$wgAuth instanceof MediaWiki\Auth\AuthManagerAuthPlugin ) {
 	], '$wgAuth is ' . get_class( $wgAuth ) );
 }
 
-// Set up the session
-$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 /**
  * @var MediaWiki\Session\SessionId|null $wgInitialSessionId The persistent
  * session ID (if any) loaded at startup
@@ -892,7 +883,6 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		);
 	}
 }
-Profiler::instance()->scopedProfileOut( $ps_session );
 
 /**
  * @var User $wgUser
@@ -929,22 +919,7 @@ $ps_extensions = Profiler::instance()->scopedProfileIn( $fname . '-extensions' )
 // of the extension file. This allows the extension to perform
 // any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
-	// Allow closures in PHP 5.3+
-	if ( is_object( $func ) && $func instanceof Closure ) {
-		$profName = $fname . '-extensions-closure';
-	} elseif ( is_array( $func ) ) {
-		if ( is_object( $func[0] ) ) {
-			$profName = $fname . '-extensions-' . get_class( $func[0] ) . '::' . $func[1];
-		} else {
-			$profName = $fname . '-extensions-' . implode( '::', $func );
-		}
-	} else {
-		$profName = $fname . '-extensions-' . strval( $func );
-	}
-
-	$ps_ext_func = Profiler::instance()->scopedProfileIn( $profName );
 	call_user_func( $func );
-	Profiler::instance()->scopedProfileOut( $ps_ext_func );
 }
 
 // If the session user has a 0 id but a valid name, that means we need to
@@ -952,13 +927,11 @@ foreach ( $wgExtensionFunctions as $func ) {
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
 	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
-		$ps_autocreate = Profiler::instance()->scopedProfileIn( $fname . '-autocreate' );
 		$res = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
 			$sessionUser,
 			MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
 			true
 		);
-		Profiler::instance()->scopedProfileOut( $ps_autocreate );
 		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Autocreation attempt', [
 			'event' => 'autocreate',
 			'status' => $res,
