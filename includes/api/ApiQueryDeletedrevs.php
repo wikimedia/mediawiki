@@ -154,17 +154,18 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->checkUserRightsAny( [ 'deletedtext', 'undelete' ] );
 		}
 		// Check limits
-		$userMax = $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1;
-		$botMax = $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2;
-
-		$limit = $params['limit'];
-
-		if ( $limit == 'max' ) {
-			$limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$this->getResult()->addParsedLimit( $this->getModuleName(), $limit );
-		}
-
-		$this->validateLimit( 'limit', $limit, 1, $userMax, $botMax );
+		$limit = $this->getParamValidator()->validateValue(
+			'limit',
+			$params['limit'],
+			[
+				self::PARAM_TYPE => 'limit',
+				self::PARAM_MIN => 1,
+				self::PARAM_MAX => $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1,
+				self::PARAM_MAX2 => $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2,
+				self::PARAM_RANGE_ENFORCE => false,
+			],
+			$this
+		);
 
 		if ( $fld_token ) {
 			// Undelete tokens are identical for all pages, so we cache one here
