@@ -35,8 +35,8 @@
  */
 
 /**
- * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @license GFDL-1.3-or-later
+ * @license GPL-2.0-or-later
  *
  * @see https://meta.wikimedia.org/w/index.php?title=LanguageNn.php&action=history
  * @see https://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history

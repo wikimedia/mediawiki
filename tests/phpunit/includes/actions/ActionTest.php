@@ -6,7 +6,7 @@
  * @group Action
  * @group Database
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
 class ActionTest extends MediaWikiTestCase {

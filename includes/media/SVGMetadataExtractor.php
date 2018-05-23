@@ -22,7 +22,7 @@
  * @author "Derk-Jan Hartman <hartman _at_ videolan d0t org>"
  * @author Brion Vibber
  * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @license GPL-2.0-or-later
  */
 
 /**
