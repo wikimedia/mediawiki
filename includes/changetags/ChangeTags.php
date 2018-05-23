@@ -261,6 +261,8 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
 
@@ -342,6 +344,37 @@ class ChangeTags {
 
 		// insert a row into change_tag for each new tag
 		if ( count( $tagsToAdd ) ) {
+
+			$tagDefRows = [];
+			foreach ( $tagsToAdd as $tag ) {
+				$tagDefRows[] = [
+					'ctd_name' => $tag,
+					//TODO: Make user_defined work
+					'ctd_user_defined' => 0,
+					'ctd_count' => 1
+				];
+			}
+
+			$changeTagMapping = [];
+			if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+				$dbw->upsert(
+					'change_tag_def',
+					$tagDefRows,
+					['ctd_name'],
+					['ctd_count = ctd_count + 1'],
+					__METHOD__
+				);
+
+				$res = $dbw->select(
+					'change_tag_def',
+					[ 'ctd_name', 'ctd_id' ],
+					[ 'ctd_name' => $tagsToAdd ]
+				);
+				foreach ( $res as $row ) {
+					$changeTagMapping[$row->ctd_name] = $row->ctd_id;
+				}
+			}
+
 			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
 				// Filter so we don't insert NULLs as zero accidentally.
@@ -354,9 +387,11 @@ class ChangeTags {
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id,
-						'ct_params' => $params
+						'ct_params' => $params,
+						'ct_tag_id' => isset( $changeTagMapping[$tag] ) ? $changeTagMapping[$tag] : null,
 					]
 				);
+
 			}
 
 			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
@@ -374,6 +409,20 @@ class ChangeTags {
 					]
 				);
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+				if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+					$dbw->update(
+						'change_tag_def',
+						[ 'ctd_count = ctd_count - 1' ],
+						[ 'ctd_name' => $tag ],
+						__METHOD__
+					);
+
+					$dbw->delete(
+						'change_tag_def',
+						[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
+						__METHOD__
+					);
+				}
 			}
 		}
 
@@ -1158,6 +1207,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
+		global $wgChangeTagsSchemaMigrationStage;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1179,6 +1229,10 @@ class ChangeTags {
 
 		// delete from change_tag
 		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 
