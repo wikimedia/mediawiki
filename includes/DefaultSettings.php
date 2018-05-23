@@ -8911,6 +8911,20 @@ $wgActorTableSchemaMigrationStage = MIGRATION_OLD;
 $wgExpiryWidgetNoDatePicker = false;
 
 /**
+ * change_tag table schema migration stage.
+ *
+ * - MIGRATION_OLD: Do not use change_tag_def table or ct_tag_id.
+ * - MIGRATION_WRITE_BOTH: Write to the change_tag_def table and ct_tag_id, but read from
+ *   the old schema
+ * - MIGRATION_WRITE_NEW: Behaves the same as MIGRATION_WRITE_BOTH
+ * - MIGRATION_NEW: Use the change_tag_def table and ct_tag_id, do read/write ct_tag
+ *
+ * @since 1.32
+ * @var int One of the MIGRATION_* constants
+ */
+$wgChangeTagsSchemaMigrationStage = MIGRATION_OLD;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
