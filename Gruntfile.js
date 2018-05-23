@@ -27,7 +27,6 @@ module.exports = function ( grunt ) {
 				'!node_modules/**',
 				'!resources/lib/**',
 				'!resources/src/jquery.tipsy/**',
-				'!resources/src/jquery/jquery.farbtastic.js',
 				'!resources/src/mediawiki.libs.jpegmeta/**',
 				// Third-party code of PHPUnit coverage report
 				'!tests/coverage/**',
