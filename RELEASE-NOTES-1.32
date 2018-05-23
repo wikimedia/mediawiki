@@ -106,6 +106,9 @@ because of Phabricator reports.
 * The es5-shim module, empty and deprecated since 1.29, was removed.
 * The mediawiki.widgets.visibleByteLimit module, deprecated in 1.32, was removed.
   Use mediawiki.widgets.visibleLengthLimit instead.
+* (T195353) The Autoblock Whitelist page name has been renamed.
+  Please make sure you move the data contained in MediaWiki:Autoblock_whitelist to
+  Mediawiki:Autoblock-whitelist in order for the functionality to keep working.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing

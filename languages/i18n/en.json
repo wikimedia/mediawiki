@@ -3679,7 +3679,7 @@
 	"autosumm-changed-redirect-target": "Changed redirect target from [[$1]] to [[$2]]",
 	"autosumm-new": "Created page with \"$1\"",
 	"autosumm-newblank": "Created blank page",
-	"autoblock_whitelist": "",
+	"autoblock-whitelist": "",
 	"size-bytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"size-kilobytes": "$1 KB",
 	"size-megabytes": "$1 MB",
