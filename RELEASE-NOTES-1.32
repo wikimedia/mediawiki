@@ -56,6 +56,16 @@ production.
     templated parameters.
 * It is now an error to submit too many values for a multi-valued parameter.
   This has generated a warning since MediaWiki 1.14.
+* Integer-type parameters are now validated for syntax rather than being
+  interpreted in surprising ways. For example, the following will now return a
+  badinteger error:
+  * "1.9" (formerly interpreted as "1")
+  * " 1" (formerly interpreted as "1")
+  * "1e1" (formerly interpreted as "1" or "10", depending on the PHP version)
+  * "1foobar" (formerly interpreted as "1")
+  * "foobar" (formerly intepreted as "0")
+* The "RFC 850" format for timestamp parameters is deprecated. Note the former
+  documentation was incorrect in indicating 4-digit years for the format.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
@@ -67,6 +77,8 @@ production.
   ApiBase::getParameterFromSettings() and methods that support it. See
   MediaWiki\Api\ParamValidator and MediaWiki\Api\TypeDef and its subclasses and
   registry.
+* Added PARAM_IGNORE_INVALID_VALUES flag so modules can control whether
+  multi-valued parameters ignore invalid values or raise an error.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -134,6 +146,12 @@ because of Phabricator reports.
   mediawiki.api.messages, and mediawiki.api.rollback.
 * ApiBase::truncateArray() is deprecated. No replacement, as nothing is known
   to use it.
+* ApiBase::getParameterFromSettings(), ApiBase::explodeMultiValue(),
+  ApiBase::parseMultiValue(), ApiBase::validateLimit(), and
+  ApiBase::validateTimestamp() are deprecated. Use methods on the new
+  MediaWiki\Api\ParamValidator class instead.
+* The "RFC 850" format for action API timestamp parameters is deprecated
+  (and no longer documented as supported).
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these

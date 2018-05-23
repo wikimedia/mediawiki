@@ -309,9 +309,13 @@ class ApiParamInfo extends ApiBase {
 		$params = $module->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		$paramDesc = $module->getFinalParamDescription();
 		$index = 0;
+		$validator = $this->getParamValidator();
 		foreach ( $params as $name => $settings ) {
-			if ( !is_array( $settings ) ) {
-				$settings = [ ApiBase::PARAM_DFLT => $settings ];
+			$settings = $validator->normalizeSettings( $settings );
+
+			if ( $settings[ApiBase::PARAM_TYPE] === 'NULL' ) {
+				// ApiParamInfo has historically not differentiated these two.
+				$settings[ApiBase::PARAM_TYPE] = 'string';
 			}
 
 			$item = [
@@ -338,41 +342,9 @@ class ApiParamInfo extends ApiBase {
 				$item['tokentype'] = $module->needsToken();
 			}
 
-			if ( !isset( $settings[ApiBase::PARAM_TYPE] ) ) {
-				$dflt = isset( $settings[ApiBase::PARAM_DFLT] )
-					? $settings[ApiBase::PARAM_DFLT]
-					: null;
-				if ( is_bool( $dflt ) ) {
-					$settings[ApiBase::PARAM_TYPE] = 'boolean';
-				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
-					$settings[ApiBase::PARAM_TYPE] = 'string';
-				} elseif ( is_int( $dflt ) ) {
-					$settings[ApiBase::PARAM_TYPE] = 'integer';
-				}
-			}
-
-			if ( isset( $settings[ApiBase::PARAM_DFLT] ) ) {
-				switch ( $settings[ApiBase::PARAM_TYPE] ) {
-					case 'boolean':
-						$item['default'] = (bool)$settings[ApiBase::PARAM_DFLT];
-						break;
-					case 'string':
-					case 'text':
-					case 'password':
-						$item['default'] = strval( $settings[ApiBase::PARAM_DFLT] );
-						break;
-					case 'integer':
-					case 'limit':
-						$item['default'] = intval( $settings[ApiBase::PARAM_DFLT] );
-						break;
-					case 'timestamp':
-						$item['default'] = wfTimestamp( TS_ISO_8601, $settings[ApiBase::PARAM_DFLT] );
-						break;
-					default:
-						$item['default'] = $settings[ApiBase::PARAM_DFLT];
-						break;
-				}
-			}
+			$item['type'] = $settings[ApiBase::PARAM_TYPE];
+			$typeDef = $validator->getTypeDef( $settings[ApiBase::PARAM_TYPE] );
+			$item = array_merge( $item, $typeDef->getParamInfo( $name, $settings, $module ) );
 
 			$item['multi'] = !empty( $settings[ApiBase::PARAM_ISMULTI] );
 			if ( $item['multi'] ) {
@@ -391,79 +363,19 @@ class ApiParamInfo extends ApiBase {
 				$item['allowsduplicates'] = true;
 			}
 
-			if ( isset( $settings[ApiBase::PARAM_TYPE] ) ) {
-				if ( $settings[ApiBase::PARAM_TYPE] === 'submodule' ) {
-					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
-						ksort( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
-						$item['type'] = array_keys( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
-						$item['submodules'] = $settings[ApiBase::PARAM_SUBMODULE_MAP];
-					} else {
-						$item['type'] = $module->getModuleManager()->getNames( $name );
-						sort( $item['type'] );
-						$prefix = $module->isMain()
-							? '' : ( $module->getModulePath() . '+' );
-						$item['submodules'] = [];
-						foreach ( $item['type'] as $v ) {
-							$item['submodules'][$v] = $prefix . $v;
-						}
-					}
-					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX] ) ) {
-						$item['submoduleparamprefix'] = $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX];
-					}
-
-					$deprecatedSubmodules = [];
-					foreach ( $item['submodules'] as $v => $submodulePath ) {
-						try {
-							$submod = $this->getModuleFromPath( $submodulePath );
-							if ( $submod && $submod->isDeprecated() ) {
-								$deprecatedSubmodules[] = $v;
-							}
-						} catch ( ApiUsageException $ex ) {
-							// Ignore
-						}
-					}
-					if ( $deprecatedSubmodules ) {
-						$item['type'] = array_merge(
-							array_diff( $item['type'], $deprecatedSubmodules ),
-							$deprecatedSubmodules
-						);
-						$item['deprecatedvalues'] = $deprecatedSubmodules;
-					}
-				} elseif ( $settings[ApiBase::PARAM_TYPE] === 'tags' ) {
-					$item['type'] = ChangeTags::listExplicitlyDefinedTags();
-				} else {
-					$item['type'] = $settings[ApiBase::PARAM_TYPE];
-				}
-				if ( is_array( $item['type'] ) ) {
-					// To prevent sparse arrays from being serialized to JSON as objects
-					$item['type'] = array_values( $item['type'] );
-					ApiResult::setIndexedTagName( $item['type'], 't' );
-				}
-
-				// Add 'allspecifier' if applicable
-				if ( $item['type'] === 'namespace' ) {
-					$allowAll = true;
-					$allSpecifier = ApiBase::ALL_DEFAULT_STRING;
-				} else {
-					$allowAll = isset( $settings[ApiBase::PARAM_ALL] )
-						? $settings[ApiBase::PARAM_ALL]
-						: false;
-					$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
-				}
-				if ( $allowAll && $item['multi'] &&
-					( is_array( $item['type'] ) || $item['type'] === 'namespace' ) ) {
-					$item['allspecifier'] = $allSpecifier;
-				}
-
-				if ( $item['type'] === 'namespace' &&
-					isset( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] ) &&
-					is_array( $settings[ApiBase::PARAM_EXTRA_NAMESPACES] )
-				) {
-					$item['extranamespaces'] = $settings[ApiBase::PARAM_EXTRA_NAMESPACES];
-					ApiResult::setArrayType( $item['extranamespaces'], 'array' );
-					ApiResult::setIndexedTagName( $item['extranamespaces'], 'ns' );
-				}
+			if ( is_array( $item['type'] ) ) {
+				// To prevent sparse arrays from being serialized to JSON as objects
+				$item['type'] = array_values( $item['type'] );
+				ApiResult::setIndexedTagName( $item['type'], 't' );
 			}
+
+			// Add 'allspecifier' if applicable
+			$allowAll = isset( $settings[ApiBase::PARAM_ALL] ) ? $settings[ApiBase::PARAM_ALL] : false;
+			$allSpecifier = ( is_string( $allowAll ) ? $allowAll : ApiBase::ALL_DEFAULT_STRING );
+			if ( $allowAll && $item['multi'] && $typeDef->getEnumValues( $name, $settings, $module ) ) {
+				$item['allspecifier'] = $allSpecifier;
+			}
+
 			if ( isset( $settings[ApiBase::PARAM_MAX] ) ) {
 				$item['max'] = $settings[ApiBase::PARAM_MAX];
 			}
@@ -484,13 +396,8 @@ class ApiParamInfo extends ApiBase {
 			}
 			if ( !empty( $settings[ApiBase::PARAM_DEPRECATED_VALUES] ) ) {
 				$deprecatedValues = array_keys( $settings[ApiBase::PARAM_DEPRECATED_VALUES] );
-				if ( is_array( $item['type'] ) ) {
-					$deprecatedValues = array_intersect( $deprecatedValues, $item['type'] );
-				}
-				if ( $deprecatedValues ) {
-					$item['deprecatedvalues'] = array_values( $deprecatedValues );
-					ApiResult::setIndexedTagName( $item['deprecatedvalues'], 'v' );
-				}
+				$item['deprecatedvalues'] = array_values( $deprecatedValues );
+				ApiResult::setIndexedTagName( $item['deprecatedvalues'], 'v' );
 			}
 
 			if ( !empty( $settings[ApiBase::PARAM_HELP_MSG_INFO] ) ) {

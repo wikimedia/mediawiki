@@ -327,18 +327,21 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$this->params = $this->extractRequestParams( false );
 		$this->redirect = isset( $this->params['redirect'] ) && $this->params['redirect'];
-		$userMax = ( $this->redirect ? ApiBase::LIMIT_BIG1 / 2 : ApiBase::LIMIT_BIG1 );
-		$botMax = ( $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2 );
 
 		$result = $this->getResult();
 
-		if ( $this->params['limit'] == 'max' ) {
-			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$result->addParsedLimit( $this->getModuleName(), $this->params['limit'] );
-		} else {
-			$this->params['limit'] = intval( $this->params['limit'] );
-			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
-		}
+		$this->params['limit'] = $this->getParamValidator()->validateValue(
+			'limit',
+			$this->params['limit'],
+			[
+				self::PARAM_TYPE => 'limit',
+				self::PARAM_MIN => 1,
+				self::PARAM_MAX => $this->redirect ? ApiBase::LIMIT_BIG1 / 2 : ApiBase::LIMIT_BIG1,
+				self::PARAM_MAX2 => $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2,
+				self::PARAM_RANGE_ENFORCE => false,
+			],
+			$this
+		);
 
 		$this->rootTitle = $this->getTitleFromTitleOrPageId( $this->params );
 
