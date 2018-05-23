@@ -1262,7 +1262,7 @@
 	"recentchanges-label-unpatrolled": "呢次編輯重未巡查過",
 	"recentchanges-label-plusminus": "頁面位元組大細變化",
 	"recentchanges-legend-heading": "<strong>標記：</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} （睇埋[[Special:NewPages|新開版]]）",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} （睇埋[[Special:NewPages|新版一覽]]）",
 	"recentchanges-submit": "顯示",
 	"rcfilters-tag-remove": "剷走 $1",
 	"rcfilters-legend-heading": "<strong>縮寫一覽：</strong>",

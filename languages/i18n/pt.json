@@ -4074,5 +4074,8 @@
 	"pagedata-text": "Esta página fornece uma interface de dados para páginas. Forneça o título da página no URL, usando a sintaxe de subpáginas, por favor.\n* Aplica-se a negociação de conteúdo com base no cabeçalho Accept do seu cliente. Isto significa que os dados da página serão fornecidos no formato preferido do seu cliente.",
 	"pagedata-not-acceptable": "Não foi encontrado nenhum formato correspondente. Tipos MIME suportados: $1",
 	"pagedata-bad-title": "Título inválido: $1.",
-	"unregistered-user-config": "Por razões de segurança as subpáginas de utilizador com JavaScript, CSS e JSON não podem ser carregadas para utilizadores não registados."
+	"unregistered-user-config": "Por razões de segurança as subpáginas de utilizador com JavaScript, CSS e JSON não podem ser carregadas para utilizadores não registados.",
+	"passwordpolicies": "Regras para palavras-passe",
+	"passwordpolicies-group": "Grupo",
+	"passwordpolicies-policies": "Normas e recomendações"
 }

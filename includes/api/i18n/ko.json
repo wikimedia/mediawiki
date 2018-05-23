@@ -871,6 +871,7 @@
 	"apierror-stashwrongowner": "잘못된 소유자: $1",
 	"apierror-systemblocked": "당신은 미디어위키에 의해서 자동으로 차단되었습니다.",
 	"apierror-timeout": "서버가 예측된 시간 내에 응답하지 않았습니다.",
+	"apierror-toomanyvalues": "<var>$1</var> 변수에 너무 많은 값이 지정되었습니다. 제한은 $2입니다.",
 	"apierror-unknownerror-editpage": "알 수 없는 EditPage 오류: $1.",
 	"apierror-unknownerror-nocode": "알 수 없는 오류.",
 	"apierror-unknownerror": "알 수 없는 오류: \"$1\"",
