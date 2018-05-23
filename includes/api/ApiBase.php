@@ -1502,10 +1502,10 @@ abstract class ApiBase extends ContextSource {
 			return $allowedValues;
 		}
 
-		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
-			$this->addDeprecation(
-				[ 'apiwarn-toomanyvalues', $valueName, $sizeLimit ],
-				"too-many-$valueName-for-{$this->getModulePath()}"
+		if ( count( $valuesList ) > $sizeLimit ) {
+			$this->dieWithError(
+				[ 'apierror-toomanyvalues', $valueName, $sizeLimit ],
+				"too-many-$valueName"
 			);
 		}
 
@@ -1737,22 +1737,6 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		WatchAction::doWatchOrUnwatch( $value, $titleObj, $this->getUser() );
-	}
-
-	/**
-	 * Truncate an array to a certain length.
-	 * @param array &$arr Array to truncate
-	 * @param int $limit Maximum length
-	 * @return bool True if the array was truncated, false otherwise
-	 */
-	public static function truncateArray( &$arr, $limit ) {
-		$modified = false;
-		while ( count( $arr ) > $limit ) {
-			array_pop( $arr );
-			$modified = true;
-		}
-
-		return $modified;
 	}
 
 	/**
@@ -3037,6 +3021,24 @@ abstract class ApiBase extends ContextSource {
 			"apihelp-{$this->getModulePath()}-description",
 			"apihelp-{$this->getModulePath()}-summary",
 		] ];
+	}
+
+	/**
+	 * Truncate an array to a certain length.
+	 * @deprecated since 1.32, no replacement
+	 * @param array &$arr Array to truncate
+	 * @param int $limit Maximum length
+	 * @return bool True if the array was truncated, false otherwise
+	 */
+	public static function truncateArray( &$arr, $limit ) {
+		wfDeprecated( __METHOD__, '1.32' );
+		$modified = false;
+		while ( count( $arr ) > $limit ) {
+			array_pop( $arr );
+			$modified = true;
+		}
+
+		return $modified;
 	}
 
 	/**@}*/
