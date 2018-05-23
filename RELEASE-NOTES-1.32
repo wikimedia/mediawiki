@@ -102,6 +102,7 @@ because of Phabricator reports.
   by RemexHtml.
 * (T179624) Job::insert() and ::batchInsert(), deprecated in 1.21, were both
   removed. Use JobQueueGroup::singleton()->push() instead.
+* The jquery.footHovzer module, for mediawiki.debug, was removed.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
