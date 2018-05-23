@@ -97,6 +97,7 @@ $specialPageAliases = [
 	'Myuploads'                 => [ 'MisArchivosSubidos', 'Mis_archivos_subidos' ],
 	'Newimages'                 => [ 'NuevasImágenes', 'Nuevas_imágenes' ],
 	'Newpages'                  => [ 'PáginasNuevas', 'Páginas_nuevas' ],
+	'PasswordPolicies'          => [ 'Política_de_contraseñas' ],
 	'PasswordReset'             => [ 'RestablecerContraseña', 'Restablecer_contraseña' ],
 	'PermanentLink'             => [ 'EnlacePermanente', 'Enlace_permanente' ],
 	'Preferences'               => [ 'Preferencias' ],
