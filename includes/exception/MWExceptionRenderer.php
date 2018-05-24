@@ -48,6 +48,7 @@ class MWExceptionRenderer {
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
 			if ( $e instanceof DBConnectionError ) {
+				self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 				self::reportOutageHTML( $e );
 			} else {
 				self::header( "Content-Type: $wgMimeType; charset=utf-8" );
@@ -292,7 +293,7 @@ class MWExceptionRenderer {
 	 * @param Exception|Throwable $e
 	 */
 	private static function reportOutageHTML( $e ) {
-		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors;
+		global $wgShowDBErrorBacktrace, $wgShowHostnames, $wgShowSQLErrors, $wgSitename;
 
 		$sorry = htmlspecialchars( self::msg(
 			'dberr-problems',
@@ -317,8 +318,14 @@ class MWExceptionRenderer {
 		}
 
 		MessageCache::singleton()->disable(); // no DB access
-
-		$html = "<h1>$sorry</h1><p>$again</p><p><small>$info</small></p>";
+		$html = '<!DOCTYPE html>\n' .
+				'<html><head>' .
+				// Mimick OutputPage::setPageTitle behaviour
+				'<title>' .
+				$wgSitename .
+				'</title>' .
+				'<style>body { font-family: sans-serif; margin: 0; padding: 0.5em 2em; }</style>' .
+				'</head><body><h1>$sorry</h1><p>$again</p><p><small>$info</small></p>';
 
 		if ( $wgShowDBErrorBacktrace ) {
 			$html .= '<p>Backtrace:</p><pre>' .
@@ -327,7 +334,7 @@ class MWExceptionRenderer {
 
 		$html .= '<hr />';
 		$html .= self::googleSearchForm();
-
+		$html .= '</body></html>';
 		echo $html;
 	}
 
