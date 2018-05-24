@@ -40,7 +40,6 @@ class MWExceptionHandler {
 	 */
 	protected static $fatalErrorTypes = [
 		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
-		/* HHVM's FATAL_ERROR level */ 16777217,
 	];
 	/**
 	 * @var bool $handledFatalCallback
@@ -154,8 +153,7 @@ class MWExceptionHandler {
 	 *
 	 * Receive a callback from the interpreter for a raised error, create an
 	 * ErrorException, and log the exception to the 'error' logging
-	 * channel(s). If the raised error is a fatal error type (only under HHVM)
-	 * delegate to handleFatalError() instead.
+	 * channel(s).
 	 *
 	 * @since 1.25
 	 *
@@ -238,8 +236,6 @@ class MWExceptionHandler {
 	 * @param string $file File that error was raised in
 	 * @param int $line Line number error was raised at
 	 * @param array $context Active symbol table point of error
-	 * @param array $trace Backtrace at point of error (undocumented HHVM
-	 *     feature)
 	 * @return bool Always returns false
 	 */
 	public static function handleFatalError(
@@ -253,8 +249,7 @@ class MWExceptionHandler {
 		if ( $level === null ) {
 			// Called as a shutdown handler, get data from error_get_last()
 			if ( static::$handledFatalCallback ) {
-				// Already called once (probably as an error handler callback
-				// under HHVM) so don't log again.
+				// Already called once so don't log again.
 				return false;
 			}
 

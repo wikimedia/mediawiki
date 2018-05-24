@@ -76,8 +76,7 @@ return [
 		$rawSiteStore = new DBSiteStore( $services->getDBLoadBalancer() );
 
 		// TODO: replace wfGetCache with a CacheFactory service.
-		// TODO: replace wfIsHHVM with a capabilities service.
-		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
+		$cache = wfGetCache( CACHE_ANYTHING );
 
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},

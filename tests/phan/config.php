@@ -33,14 +33,13 @@ return [
 	 * we augment it here.
 	 */
 	'file_list' => array_merge(
-		function_exists( 'register_postsend_function' ) ? [] : [ 'tests/phan/stubs/hhvm.php' ],
 		function_exists( 'wikidiff2_do_diff' ) ? [] : [ 'tests/phan/stubs/wikidiff.php' ],
 		function_exists( 'tideways_enable' ) ? [] : [ 'tests/phan/stubs/tideways.php' ],
 		class_exists( PEAR::class ) ? [] : [ 'tests/phan/stubs/mail.php' ],
 		class_exists( Memcached::class ) ? [] : [ 'tests/phan/stubs/memcached.php' ],
 		// Per composer.json, PHPUnit 6 is used for PHP 7.0+, PHPUnit 4 otherwise.
 		// Load the interface for the version of PHPUnit that isn't installed.
-		// Phan only supports PHP 7.0+ (and not HHVM), so we only need to stub PHPUnit 4.
+		// Phan only supports PHP 7.0+, so we only need to stub PHPUnit 4.
 		class_exists( PHPUnit_TextUI_Command::class ) ? [] : [ 'tests/phan/stubs/phpunit4.php' ],
 		[
 			'maintenance/7zip.inc',

@@ -975,7 +975,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Storage\\SuppressedDataException' => __DIR__ . '/includes/Storage/SuppressedDataException.php',
 	'MediaWiki\\Tidy\\RaggettBase' => __DIR__ . '/includes/tidy/RaggettBase.php',
 	'MediaWiki\\Tidy\\RaggettExternal' => __DIR__ . '/includes/tidy/RaggettExternal.php',
-	'MediaWiki\\Tidy\\RaggettInternalHHVM' => __DIR__ . '/includes/tidy/RaggettInternalHHVM.php',
 	'MediaWiki\\Tidy\\RaggettInternalPHP' => __DIR__ . '/includes/tidy/RaggettInternalPHP.php',
 	'MediaWiki\\Tidy\\RaggettWrapper' => __DIR__ . '/includes/tidy/RaggettWrapper.php',
 	'MediaWiki\\Tidy\\RemexCompatFormatter' => __DIR__ . '/includes/tidy/RemexCompatFormatter.php',

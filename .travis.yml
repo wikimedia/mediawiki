@@ -13,7 +13,6 @@ language: php
 sudo: false
 # Use Ubuntu 14 Trusty (not Ubuntu 12 Precise)
 # <https://docs.travis-ci.com/user/reference/trusty/>
-# - Required in order to use HHVM 3.6 or higher.
 # - Required for non-buggy xml library for XmlTypeCheck/UploadBaseTest (T75176).
 dist: trusty
 
@@ -30,13 +29,6 @@ matrix:
       php: 7.1
     - env: dbtype=mysql dbuser=root
       php: 7
-    # https://docs.travis-ci.com/user/languages/php#HHVM-versions
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.24
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.21
-    - env: dbtype=mysql dbuser=root
-      php: hhvm-3.18
 
 services:
   - mysql

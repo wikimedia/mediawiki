@@ -226,11 +226,7 @@ class SpecialVersion extends SpecialPage {
 		// wikimarkup can be used.
 		$software = [];
 		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
-		if ( wfIsHHVM() ) {
-			$software['[https://hhvm.com/ HHVM]'] = HHVM_VERSION . " (" . PHP_SAPI . ")";
-		} else {
-			$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
-		}
+		$software['[https://php.net/ PHP]'] = PHP_VERSION . " (" . PHP_SAPI . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		if ( IcuCollation::getICUVersion() ) {

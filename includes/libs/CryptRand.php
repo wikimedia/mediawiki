@@ -248,8 +248,7 @@ class CryptRand {
 			// On other platforms, /dev/urandom will be used.
 			// Avoids polyfills from before php 7.0
 			// All error situations will throw Exceptions and or Errors
-			if ( PHP_VERSION_ID >= 70000
-				|| ( defined( 'HHVM_VERSION_ID' ) && HHVM_VERSION_ID >= 31101 )
+			if ( PHP_VERSION_ID >= 70000 )
 			) {
 				$rem = $bytes - strlen( $buffer );
 				$buffer .= random_bytes( $rem );
