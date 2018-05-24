@@ -164,7 +164,7 @@ class IP {
 		}
 		if ( self::isIPv4( $ip ) ) {
 			// Remove leading 0's from octet representation of IPv4 address
-			$ip = preg_replace( '/(?:^|(?<=\.))0+(?=[1-9]|0\.|0$)/', '', $ip );
+			$ip = preg_replace( '!(?:^|(?<=\.))0+(?=[1-9]|0[./]|0$)!', '', $ip );
 			return $ip;
 		}
 		// Remove any whitespaces, convert to upper case
