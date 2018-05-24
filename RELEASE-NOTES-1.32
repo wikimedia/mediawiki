@@ -26,8 +26,8 @@ production.
 * (T112474) Generalized the ResourceLoader mechanism for overriding modules
   using a particular page during edit previews.
 * Added 'ApiParseMakeOutputPage' hook.
-* (T174313) Added checkbox on Special:ListUsers to display only users in temporary
-  user groups.
+* (T174313) Added checkbox on Special:ListUsers to display only users in
+  temporary user groups.
 
 === External library changes in 1.32 ===
 * …
@@ -97,15 +97,15 @@ because of Phabricator reports.
 * mw.util.updateTooltipAccessKeys(), deprecated in 1.24, was removed. Use
   jquery.accessKeyLabel instead.
 * The SqlDataUpdate class, deprecated in 1.28, has been removed.
-* The Html5Internal and Html5Depurate tidy driver classes were removed, along with the
-  Balancer tidy implementation. Both implementations were experimental, and were replaced
-  by RemexHtml.
+* The Html5Internal and Html5Depurate tidy driver classes were removed, along
+  with the Balancer tidy implementation. Both implementations were experimental,
+  and were replaced by RemexHtml.
 * (T179624) Job::insert() and ::batchInsert(), deprecated in 1.21, were both
   removed. Use JobQueueGroup::singleton()->push() instead.
 * The jquery.footHovzer module, for mediawiki.debug, was removed.
 * The es5-shim module, empty and deprecated since 1.29, was removed.
-* The mediawiki.widgets.visibleByteLimit module, deprecated in 1.32, was removed.
-  Use mediawiki.widgets.visibleLengthLimit instead.
+* The mediawiki.widgets.visibleByteLimit module alias, deprecated in 1.32, was
+  removed. Use mediawiki.widgets.visibleLengthLimit instead.
 * The jquery.farbtastic module, unused since 1.18, was removed.
 
 === Deprecations in 1.32 ===
