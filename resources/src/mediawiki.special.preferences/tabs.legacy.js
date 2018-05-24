@@ -27,8 +27,8 @@
 		$fieldsets.children( 'legend' ).addClass( 'mainLegend' );
 
 		// Make sure the accessibility tip is selectable so that screen reader users take notice,
-		// but hide it per default to reduce interface clutter. Also make sure it becomes visible
-		// when selected. Similar to jquery.mw-jump
+		// but hide it by default to reduce visual clutter.
+		// Make sure it becomes visible when focused.
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
 			.attr( 'tabIndex', 0 )
