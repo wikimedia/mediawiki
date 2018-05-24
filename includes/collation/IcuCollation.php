@@ -333,7 +333,7 @@ class IcuCollation extends Collation {
 				static::class,
 				$this->locale,
 				$this->digitTransformLanguage->getCode(),
-				self::getICUVersion(),
+				INTL_ICU_VERSION,
 				self::FIRST_LETTER_VERSION
 			);
 			$this->firstLetterData = $cache->getWithSetCallback( $cacheKey, $cache::TTL_WEEK, function () {
@@ -528,18 +528,14 @@ class IcuCollation extends Collation {
 	 * can't be determined.
 	 *
 	 * The constant INTL_ICU_VERSION this function refers to isn't really
-	 * documented. It is available since PHP 5.3.7 (see PHP 54561
-	 * https://bugs.php.net/bug.php?id=54561). This function will return
-	 * false on older PHPs.
-	 *
-	 * TODO: Remove the backwards-compatibility as MediaWiki now requires
-	 * higher levels of PHP.
+	 * documented, but see https://bugs.php.net/bug.php?id=54561.
 	 *
 	 * @since 1.21
-	 * @return string|bool
+	 * @deprecated since 1.32, use INTL_ICU_VERSION directly
+	 * @return string
 	 */
 	static function getICUVersion() {
-		return defined( 'INTL_ICU_VERSION' ) ? INTL_ICU_VERSION : false;
+		return INTL_ICU_VERSION;
 	}
 
 	/**
@@ -550,7 +546,7 @@ class IcuCollation extends Collation {
 	 * @return string|bool
 	 */
 	static function getUnicodeVersionForICU() {
-		$icuVersion = self::getICUVersion();
+		$icuVersion = INTL_ICU_VERSION;
 		if ( !$icuVersion ) {
 			return false;
 		}
@@ -558,6 +554,8 @@ class IcuCollation extends Collation {
 		$versionPrefix = substr( $icuVersion, 0, 3 );
 		// Source: http://site.icu-project.org/download
 		$map = [
+			'61.' => '10.0',
+			'60.' => '10.0',
 			'59.' => '9.0',
 			'58.' => '9.0',
 			'57.' => '8.0',

@@ -133,6 +133,8 @@ because of Phabricator reports.
   to use it.
 * WatchAction::getUnwatchToken is deprecated. Use WatchAction::getWatchToken
   with the 'unwatch' action parameter instead.
+* IcuCollation::getICUVersion() is deprecated, as you can just use the PHP
+  constant INTL_ICU_VERSION directly in all versions that MediaWiki supports.
 
 === Other changes in 1.32 ===
 * Soft hyphens (U+00AD) are now automatically removed from titles; these
