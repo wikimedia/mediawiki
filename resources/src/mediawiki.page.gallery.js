@@ -246,7 +246,6 @@
 		} else {
 			// Note use of just `a`, not `a.image`, since we also want this to trigger if a link
 			// within the caption text receives focus.
-			// This is based on code from the 'jquery.mw-jump' module.
 			$content.find( 'ul.mw-gallery-packed-hover li.gallerybox' ).on( 'focus blur', 'a', function ( e ) {
 				// Confusingly jQuery leaves e.type as focusout for delegated blur events
 				var gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
