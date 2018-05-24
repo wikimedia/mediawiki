@@ -132,6 +132,10 @@ class AutoLoader {
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\Linker\\' => __DIR__ .'/linker/',
+			'MediaWiki\\Preferences\\' => __DIR__ .'/preferences/',
+			'MediaWiki\\Services\\' => __DIR__ .'/services/',
+			'MediaWiki\\Session\\' => __DIR__ .'/session/',
+			'MediaWiki\\Shell\\' => __DIR__ .'/shell/',
 		];
 	}
 }
