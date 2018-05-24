@@ -4,7 +4,10 @@
  *
  * @file
  * @author Paul Copperman <paul.copperman@gmail.com>
- * @license Choose any of Apache, MIT, GPL, LGPL
+ * @license Apache-2.0
+ * @license MIT
+ * @license GPL-2.0-or-later
+ * @license LGPL-2.1-or-later
  */
 
 /**

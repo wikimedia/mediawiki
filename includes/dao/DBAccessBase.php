@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @file
  * @ingroup Database
  *
- * @license GNU GPL v2+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 abstract class DBAccessBase implements IDBAccessObject {

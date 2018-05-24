@@ -19,8 +19,8 @@
  *
  * @file
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
- * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
+ * @license GPL-2.0-or-later
+ * @license GFDL-1.3-or-later
  * @ingroup Language
  */
 
