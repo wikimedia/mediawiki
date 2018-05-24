@@ -1009,6 +1009,7 @@
 	"apihelp-query+recentchanges-param-limit": "Quantas alterações a serem retornadas.",
 	"apihelp-query+recentchanges-param-type": "Quais tipos de mudanças mostrar.",
 	"apihelp-query+recentchanges-param-toponly": "Somente lista as alterações que são as últimas revisões.",
+	"apihelp-query+recentchanges-param-title": "Filtre as entradas para aquelas relacionadas a uma página.",
 	"apihelp-query+recentchanges-param-generaterevisions": "Quando usado como gerador, gere IDs de revisão em vez de títulos. As entradas de alterações recentes sem IDs de revisão associadas (por exemplo, a maioria das entradas de log) não gerarão nada.",
 	"apihelp-query+recentchanges-example-simple": "Listar mudanças recentes.",
 	"apihelp-query+recentchanges-example-generator": "Obter informações da página sobre as mudanças recentes não patrulhadas.",
