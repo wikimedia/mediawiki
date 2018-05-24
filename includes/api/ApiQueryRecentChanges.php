@@ -181,6 +181,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
+		$title = $params['title'];
+		if ( !is_null( $title ) ) {
+			$titleObj = Title::newFromText( $title );
+			if ( is_null( $titleObj ) ) {
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
+			}
+			$this->addWhereFld( 'rc_namespace', $titleObj->getNamespace() );
+			$this->addWhereFld( 'rc_title', $titleObj->getDBkey() );
+		}
+
 		if ( !is_null( $params['show'] ) ) {
 			$show = array_flip( $params['show'] );
 
@@ -727,6 +737,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
 			],
 			'toponly' => false,
+			'title' => null,
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
