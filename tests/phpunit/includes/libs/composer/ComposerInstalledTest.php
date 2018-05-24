@@ -193,8 +193,7 @@ class ComposerInstalledTest extends MediaWikiTestCase {
 					'email' => 'sebastian@phpunit.de',
 				],
 			],
-			'description' => 'Provides functionality to handle HHVM/PHP ' .
-				'environments',
+			'description' => 'Provides functionality to handle PHP environments',
 		],
 		'sebastian/diff' => [
 			'version' => '2.0.1',

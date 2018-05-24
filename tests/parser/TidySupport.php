@@ -47,7 +47,7 @@ class TidySupport {
 					'tidyCommandLine' => $wgTidyOpts
 				];
 				if ( $wgTidyInternal ) {
-					$this->config['driver'] = wfIsHHVM() ? 'RaggettInternalHHVM' : 'RaggettInternalPHP';
+					$this->config['driver'] = 'RaggettInternalPHP';
 				} else {
 					$this->config['driver'] = 'RaggettExternal';
 				}

@@ -80,7 +80,7 @@ class WebRequest {
 	/**
 	 * @var SessionId|null Session ID to use for this
 	 *  request. We can't save the session directly due to reference cycles not
-	 *  working too well (slow GC in Zend and never collected in HHVM).
+	 *  working too well (slow GC).
 	 */
 	protected $sessionId = null;
 
