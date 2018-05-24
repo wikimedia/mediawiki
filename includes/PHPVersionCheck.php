@@ -75,66 +75,35 @@ class PHPVersionCheck {
 	}
 
 	/**
-	 * Return the version of the installed PHP implementation.
-	 *
-	 * TODO: Deprecate/remove this workaround now that HHVM isn't supported.
-	 *
-	 * @return array An array of information about the PHP implementation, containing:
-	 *  - 'version': The version of the PHP implementation (specific to the implementation, not
-	 *  the version of the implemented PHP version)
-	 *  - 'implementation': The name of the implementation used
-	 *  - 'vendor': The development group, vendor or developer of the implementation.
-	 *  - 'upstreamSupported': The minimum version of the implementation supported by the named vendor.
-	 *  - 'minSupported': The minimum version supported by MediaWiki
-	 *  - 'upgradeURL': The URL to the website of the implementation that contains
-	 *  upgrade/installation instructions.
-	 */
-	function getPHPInfo() {
-		return array(
-			'implementation' => 'PHP',
-			'version' => PHP_VERSION,
-			'vendor' => 'the PHP Group',
-			'upstreamSupported' => '7.1.0',
-			'minSupported' => '7.2.9',
-			'upgradeURL' => 'https://www.php.net/downloads.php',
-		);
-	}
-
-	/**
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$phpInfo = $this->getPHPInfo();
-		$minimumVersion = $phpInfo['minSupported'];
-		if ( version_compare( $phpInfo['version'], $minimumVersion ) < 0 ) {
-			$shortText = "MediaWiki $this->mwVersion requires at least {$phpInfo['implementation']}"
-				. " version $minimumVersion, you are using {$phpInfo['implementation']} "
-				. "{$phpInfo['version']}.";
+		$minimumVersion = '7.2.9';
 
-			$longText = "Error: You might be using an older {$phpInfo['implementation']} version "
-				. "({$phpInfo['implementation']} {$phpInfo['version']}). \n"
-				. "MediaWiki $this->mwVersion needs {$phpInfo['implementation']}"
-				. " $minimumVersion or higher.\n\nCheck if you have a"
-				. " newer PHP executable with a different name.\n\n";
+		if ( version_compare( PHP_VERSION, $minimumVersion ) < 0 ) {
+			$shortText = "MediaWiki $this->mwVersion requires at least PHP version $minimumVersion; "
+				. "you are using PHP " . PHP_VERSION . ".";
+
+			$longText = "Error: You might be using an older PHP version (PHP " . PHP_VERSION . ").\n"
+				. "MediaWiki $this->mwVersion needs PHP $minimumVersion or higher.\n\nCheck if you "
+				. "have a newer PHP executable with a different name.\n\n";
 
 			// phpcs:disable Generic.Files.LineLength
 			$longHtml = <<<HTML
-			Please consider <a href="{$phpInfo['upgradeURL']}">upgrading your copy of
-			{$phpInfo['implementation']}</a>.
-			{$phpInfo['implementation']} versions less than {$phpInfo['upstreamSupported']} are no
-			longer supported by {$phpInfo['vendor']} and will not receive
+			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
+			PHP versions less than v7.1.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
 		</p>
 		<p>
-			If for some reason you are unable to upgrade your {$phpInfo['implementation']} version,
-			you will need to <a href="https://www.mediawiki.org/wiki/Download">download</a> an
-			older version of MediaWiki from our website.
-			See our <a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
-			for details of which versions are compatible with prior versions of {$phpInfo['implementation']}.
+			If for some reason you are unable to upgrade your PHP version, you will need to
+			<a href="https://www.mediawiki.org/wiki/Download">download</a> an older version of
+			MediaWiki from our website. See our
+			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
+			for details of which versions are compatible with prior versions of PHP.
 HTML;
 			// phpcs:enable Generic.Files.LineLength
 			$this->triggerError(
-				"Supported {$phpInfo['implementation']} versions",
+				"Supported PHP versions",
 				$shortText,
 				$longText,
 				$longHtml
