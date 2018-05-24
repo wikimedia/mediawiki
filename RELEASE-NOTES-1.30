@@ -16,6 +16,7 @@ THIS IS NOT A RELEASE YET
 * Fix addition of ug_expiry column to user_groups table on MSSQL.
 * (T204531) rdbms: reduce LoadBalancer replication log spam.
 * (T213489) Avoid session double-start in Setup.php.
+* (T195525) Fix db error outage page.
 
 == MediaWiki 1.30.1 ==
 
