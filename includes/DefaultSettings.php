@@ -2566,17 +2566,6 @@ $wgCacheEpoch = '20030516000000';
 $wgGitInfoCacheDirectory = false;
 
 /**
- * Bump this number when changing the global style sheets and JavaScript.
- *
- * It should be appended in the query string of static CSS and JS includes,
- * to ensure that client-side caches do not keep obsolete copies of global
- * styles.
- *
- * @deprecated since 1.31
- */
-$wgStyleVersion = '303';
-
-/**
  * This will cache static pages for non-logged-in users to reduce
  * database traffic on public sites. ResourceLoader requests to default
  * language and skins are cached as well as single module requests.
