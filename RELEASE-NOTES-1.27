@@ -2,6 +2,8 @@
 
 THIS IS NOT A RELEASE YET!
 
+TEST
+
 === Changes since 1.27.4 ===
 * Upgraded Moment.js from v2.8.4 to v2.19.3.
 * (T160298) Fixed Special:ActiveUsers due to bad backport.
