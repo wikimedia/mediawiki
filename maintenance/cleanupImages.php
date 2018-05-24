@@ -32,7 +32,7 @@ require_once __DIR__ . '/cleanupTable.inc';
  *
  * @ingroup Maintenance
  */
-class ImageCleanup extends TableCleanup {
+class CleanupImages extends TableCleanup {
 	protected $defaultParams = [
 		'table' => 'image',
 		'conds' => [],
@@ -220,5 +220,5 @@ class ImageCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = ImageCleanup::class;
+$maintClass = CleanupImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

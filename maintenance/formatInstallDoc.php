@@ -28,7 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class MaintenanceFormatInstallDoc extends Maintenance {
+class FormatInstallDoc extends Maintenance {
 	function __construct() {
 		parent::__construct();
 		$this->addArg( 'path', 'The file name to format', false );
@@ -72,5 +72,5 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 	}
 }
 
-$maintClass = MaintenanceFormatInstallDoc::class;
+$maintClass = FormatInstallDoc::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

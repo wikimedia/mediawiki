@@ -37,7 +37,7 @@ require_once __DIR__ . '/cleanupTable.inc';
  *
  * @ingroup Maintenance
  */
-class CapsCleanup extends TableCleanup {
+class CleanupCaps extends TableCleanup {
 
 	private $user;
 	private $namespace;
@@ -86,7 +86,7 @@ class CapsCleanup extends TableCleanup {
 		$target = Title::makeTitle( $row->page_namespace, $upper );
 		if ( $target->exists() ) {
 			// Prefix "CapsCleanup" to bypass the conflict
-			$target = Title::newFromText( __CLASS__ . '/' . $display );
+			$target = Title::newFromText( 'CapsCleanup/' . $display );
 		}
 		$ok = $this->movePage(
 			$current,
@@ -169,5 +169,5 @@ class CapsCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = CapsCleanup::class;
+$maintClass = CleanupCaps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

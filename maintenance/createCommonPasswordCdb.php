@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @since 1.27
  * @ingroup Maintenance
  */
-class GenerateCommonPassword extends Maintenance {
+class CreateCommonPasswordCdb extends Maintenance {
 	public function __construct() {
 		global $IP;
 		parent::__construct();
@@ -114,5 +114,5 @@ class GenerateCommonPassword extends Maintenance {
 	}
 }
 
-$maintClass = GenerateCommonPassword::class;
+$maintClass = CreateCommonPasswordCdb::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
