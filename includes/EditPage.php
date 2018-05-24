@@ -4111,14 +4111,12 @@ ERROR;
 
 		$script .= '});';
 
-		$nonce = $wgOut->getCSPNonce();
-		$wgOut->addScript( ResourceLoader::makeInlineScript( $script, $nonce ) );
-
 		$toolbar = '<div id="toolbar"></div>';
 
 		if ( Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
 			// Only add the old toolbar cruft to the page payload if the toolbar has not
 			// been over-written by a hook caller
+			$nonce = $wgOut->getCSPNonce();
 			$wgOut->addScript( ResourceLoader::makeInlineScript( $script, $nonce ) );
 		};
 
