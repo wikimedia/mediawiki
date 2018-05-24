@@ -109,6 +109,9 @@ because of Phabricator reports.
 * The jquery.farbtastic module, unused since 1.18, was removed.
 * (T181318) The $wgStyleVersion setting and its appendage to various script and
   style URLs in OutputPage, deprecated in 1.31, was removed.
+* The protected methods PHPSessionHandler::returnSuccess() and returnFailure(),
+  only needed for PHP5 compatibility, have been removed. It now uses the boolean
+  values `true` and `false` respectively.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
