@@ -28,7 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @since 1.28
  */
-class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
+class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Add RFC and PMID to the interwiki database table' );
@@ -91,5 +91,5 @@ class AddRFCAndPMIDInterwiki extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = AddRFCAndPMIDInterwiki::class;
+$maintClass = AddRFCandPMIDInterwiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

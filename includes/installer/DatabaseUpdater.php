@@ -82,7 +82,7 @@ abstract class DatabaseUpdater {
 		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
-		AddRFCAndPMIDInterwiki::class,
+		AddRFCandPMIDInterwiki::class,
 		PopulatePPSortKey::class,
 		PopulateIpChanges::class,
 	];

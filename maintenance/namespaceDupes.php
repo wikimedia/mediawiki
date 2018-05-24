@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  *
  * @ingroup Maintenance
  */
-class NamespaceConflictChecker extends Maintenance {
+class NamespaceDupes extends Maintenance {
 
 	/**
 	 * @var IMaintainableDatabase
@@ -616,5 +616,5 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 }
 
-$maintClass = NamespaceConflictChecker::class;
+$maintClass = NamespaceDupes::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

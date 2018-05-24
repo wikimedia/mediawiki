@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup Maintenance
  */
-class GetSlaveServer extends Maintenance {
+class GetReplicaServer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "group", "Query group to check specifically" );
@@ -53,5 +53,5 @@ class GetSlaveServer extends Maintenance {
 	}
 }
 
-$maintClass = GetSlaveServer::class;
+$maintClass = GetReplicaServer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
