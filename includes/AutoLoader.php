@@ -136,6 +136,9 @@ class AutoLoader {
 			'MediaWiki\\Services\\' => __DIR__ .'/services/',
 			'MediaWiki\\Session\\' => __DIR__ .'/session/',
 			'MediaWiki\\Shell\\' => __DIR__ .'/shell/',
+			'MediaWiki\\Sparql\\' => __DIR__ .'/sparql/',
+			'MediaWiki\\Storage\\' => __DIR__ .'/Storage/',
+			'MediaWiki\\Tidy\\' => __DIR__ .'/tidy/',
 		];
 	}
 }
