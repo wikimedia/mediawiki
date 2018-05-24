@@ -36,7 +36,7 @@ require_once __DIR__ . '/cleanupTable.inc';
  *
  * @ingroup Maintenance
  */
-class WatchlistCleanup extends TableCleanup {
+class CleanupWatchlist extends TableCleanup {
 	protected $defaultParams = [
 		'table' => 'watchlist',
 		'index' => [ 'wl_user', 'wl_namespace', 'wl_title' ],
@@ -95,5 +95,5 @@ class WatchlistCleanup extends TableCleanup {
 	}
 }
 
-$maintClass = WatchlistCleanup::class;
+$maintClass = CleanupWatchlist::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

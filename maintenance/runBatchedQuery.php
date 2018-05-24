@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @ingroup Maintenance
  */
-class BatchedQueryRunner extends Maintenance {
+class RunBatchedQuery extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription(
@@ -111,5 +111,5 @@ class BatchedQueryRunner extends Maintenance {
 	}
 }
 
-$maintClass = BatchedQueryRunner::class;
+$maintClass = RunBatchedQuery::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

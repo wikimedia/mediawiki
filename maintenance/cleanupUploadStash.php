@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class UploadStashCleanup extends Maintenance {
+class CleanupUploadStash extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
@@ -152,5 +152,5 @@ class UploadStashCleanup extends Maintenance {
 	}
 }
 
-$maintClass = UploadStashCleanup::class;
+$maintClass = CleanupUploadStash::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
