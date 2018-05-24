@@ -20,7 +20,7 @@
  * @file
  * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
- * @license GNU General Public Licence 2.0 or later
+ * @license GPL-2.0-or-later
  */
 
 use Wikimedia\Rdbms\IDatabase;

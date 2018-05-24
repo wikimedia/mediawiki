@@ -10,7 +10,7 @@ use \OOUI\LabelWidget;
  * Select and input widget.
  *
  * @copyright 2011-2018 MediaWiki Widgets Team and others; see AUTHORS.txt
- * @license The MIT License (MIT); see LICENSE.txt
+ * @license MIT
  */
 class SizeFilterWidget extends \OOUI\Widget {
 
