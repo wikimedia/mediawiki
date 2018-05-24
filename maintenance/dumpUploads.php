@@ -29,7 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class UploadDumper extends Maintenance {
+class DumpUploads extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Generates list of uploaded files which can be fed to tar or similar.
@@ -124,5 +124,5 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	}
 }
 
-$maintClass = UploadDumper::class;
+$maintClass = DumpUploads::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -29,7 +29,7 @@ require_once __DIR__ . '/Maintenance.php';
  *
  * @ingroup Maintenance
  */
-class TestFileOpPerformance extends Maintenance {
+class FileOpPerfTest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Test fileop performance' );
@@ -141,5 +141,5 @@ class TestFileOpPerformance extends Maintenance {
 	}
 }
 
-$maintClass = TestFileOpPerformance::class;
+$maintClass = FileOpPerfTest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
