@@ -1515,7 +1515,7 @@ function wfHostname() {
  * hostname of the server handling the request.
  *
  * @param string $nonce Value from OutputPage::getCSPNonce
- * @return string
+ * @return string|WrappedString HTML
  */
 function wfReportTime( $nonce = null ) {
 	global $wgShowHostnames;

@@ -18,6 +18,7 @@
  * @file
  */
 
+use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
@@ -351,7 +352,7 @@ class ResourceLoaderClientHtml {
 			$startupQuery
 		);
 
-		return WrappedStringList::join( "\n", $chunks );
+		return WrappedString::join( "\n", $chunks );
 	}
 
 	/**
@@ -369,7 +370,7 @@ class ResourceLoaderClientHtml {
 			);
 		}
 
-		return WrappedStringList::join( "\n", $chunks );
+		return WrappedString::join( "\n", $chunks );
 	}
 
 	private function getContext( $group, $type ) {

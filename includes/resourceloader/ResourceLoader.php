@@ -1504,7 +1504,7 @@ MESSAGE;
 	 *
 	 * @param string $script JavaScript code
 	 * @param string $nonce [optional] Content-Security-Policy nonce (from OutputPage::getCSPNonce)
-	 * @return WrappedString HTML
+	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {
 		$js = self::makeLoaderConditionalScript( $script );

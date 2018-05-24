@@ -18,6 +18,9 @@
  * @file
  */
 
+use Wikimedia\WrappedString;
+use Wikimedia\WrappedStringList;
+
 /**
  * New base template for a skin's template extended from QuickTemplate
  * this class features helper methods that provide common ways of interacting
@@ -754,14 +757,14 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * debug stuff. This should be called right before outputting the closing
 	 * body and html tags.
 	 *
-	 * @return string
+	 * @return string|WrappedStringList HTML
 	 * @since 1.29
 	 */
-	function getTrail() {
-		$html = MWDebug::getDebugHTML( $this->getSkin()->getContext() );
-		$html .= $this->get( 'bottomscripts' );
-		$html .= $this->get( 'reporttime' );
-
-		return $html;
+	public function getTrail() {
+		return WrappedString::join( "\n", [
+			MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
+			$this->get( 'bottomscripts' ),
+			$this->get( 'reporttime' )
+		] );
 	}
 }
