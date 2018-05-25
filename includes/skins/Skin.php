@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\WrappedString;
+use Wikimedia\WrappedStringList;
 
 /**
  * @defgroup Skins Skins
@@ -402,7 +404,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * @param array $data
 	 * @param string $nonce OutputPage::getCSPNonce()
-	 * @return string
+	 * @return string|WrappedString HTML
 	 */
 	static function makeVariablesScript( $data, $nonce = null ) {
 		if ( $data ) {
@@ -675,16 +677,22 @@ abstract class Skin extends ContextSource {
 	/**
 	 * This gets called shortly before the "</body>" tag.
 	 *
-	 * @return string HTML-wrapped JS code to be put before "</body>"
+	 * @return string|WrappedStringList HTML containing scripts to put before `</body>`
 	 */
 	function bottomScripts() {
 		// TODO and the suckage continues. This function is really just a wrapper around
 		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
 		// up at some point
-		$bottomScriptText = $this->getOutput()->getBottomScripts();
-		Hooks::run( 'SkinAfterBottomScripts', [ $this, &$bottomScriptText ] );
+		$chunks = [ $this->getOutput()->getBottomScripts() ];
 
-		return $bottomScriptText;
+		// Keep the hook appendage separate to preserve WrappedString objects.
+		// This enables BaseTemplate::getTrail() to merge them where possible.
+		$extraHtml = '';
+		Hooks::run( 'SkinAfterBottomScripts', [ $this, &$extraHtml ] );
+		if ( $extraHtml !== '' ) {
+			$chunks[] = $extraHtml;
+		}
+		return WrappedString::join( "\n", $chunks );
 	}
 
 	/**
