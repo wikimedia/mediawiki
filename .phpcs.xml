@@ -72,7 +72,6 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/api/ApiQueryUserContributions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiMessage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/api/ApiUsageException\.php</exclude-pattern>
 		<exclude-pattern>*/includes/media/XCF\.php</exclude-pattern>
