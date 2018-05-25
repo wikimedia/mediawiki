@@ -40,6 +40,8 @@ class SpecialPreferences extends SpecialPage {
 
 	/**
 	 * Check if OOUI mode is enabled, by config or query string
+	 *
+	 * @since 1.32
 	 * @param IContextSource $context The context.
 	 * @return bool
 	 */
