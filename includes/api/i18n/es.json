@@ -30,7 +30,8 @@
 			"Fortega",
 			"Luzcaru",
 			"Javiersanp",
-			"KATRINE1992"
+			"KATRINE1992",
+			"Adjen"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> Todas las funciones mostradas en esta página deberían estar funcionando, pero la API aún está en desarrollo activo, y puede cambiar en cualquier momento. Suscribase a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] para aviso de actualizaciones.\n\n<strong>Erroneous requests:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave \"MediaWiki-API-Error\" y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para más información ver [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> Para facilitar la comprobación de las solicitudes de API, consulte [[Special:ApiSandbox]].",
@@ -1004,6 +1005,7 @@
 	"apihelp-query+recentchanges-param-limit": "Cuántos cambios en total se devolverán.",
 	"apihelp-query+recentchanges-param-type": "Cuántos tipos de cambios se mostrarán.",
 	"apihelp-query+recentchanges-param-toponly": "Enumerar solo las modificaciones que sean las últimas revisiones.",
+	"apihelp-query+recentchanges-param-title": "Filtrar aquellas entradas que son relacionadas a una página",
 	"apihelp-query+recentchanges-param-generaterevisions": "Cuando se utilice como generador, genera identificadores de revisión en lugar de títulos. Las entradas en la lista de cambios recientes que no tengan identificador de revisión asociado (por ejemplo, la mayoría de las entradas de registro) no generarán nada.",
 	"apihelp-query+recentchanges-example-simple": "Lista de cambios recientes.",
 	"apihelp-query+recentchanges-example-generator": "Obtener información de página de cambios recientes no patrullados.",
