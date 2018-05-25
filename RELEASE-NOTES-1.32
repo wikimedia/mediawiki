@@ -111,6 +111,12 @@ because of Phabricator reports.
   style URLs in OutputPage, deprecated in 1.31, was removed.
 * The hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend' may provide
   any HTMLForm object rather than PreferencesForm.
+* The global functions codepointToUtf8, hexSequenceToUtf8, utf8ToHexSequence,
+  utf8ToCodepoint, and escapeSingleString (deprecated in 1.25) were removed.
+  The UtfNormal\Utils class from the utfnormal library should be used instead.
+* The deprecated UTF8_ and UNICODE_ constants were removed. The class constants
+  from the UtfNormal\Constants class from the utfnormal library should be used
+  instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
