@@ -35,6 +35,96 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function providePSR4Completeness() {
+		foreach ( AutoLoader::$psr4Namespaces as $prefix => $dir ) {
+			foreach ( $this->recurseFiles( $dir ) as $file ) {
+				yield [ $prefix, $file ];
+			}
+		}
+	}
+
+	private function recurseFiles( $dir ) {
+		return ( new File_Iterator_Facade() )->getFilesAsArray( $dir, [ '.php' ] );
+	}
+
+	/**
+	 * @coversNothing
+	 * @dataProvider providePSR4Completeness
+	 */
+	public function testPSR4Completeness( $prefix, $file ) {
+		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
+		$contents = file_get_contents( $file );
+		list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
+		$classes = array_keys( $classesInFile );
+		$this->assertCount( 1, $classes,
+			"Only one class per file in PSR-4 autoloaded classes ($file)" );
+
+		$this->assertStringStartsWith( $prefix, $classes[0] );
+		$this->assertTrue(
+			class_exists( $classes[0] ) || interface_exists( $classes[0] ) || trait_exists( $classes[0] ),
+			"Class {$classes[0]} not autoloaded properly"
+		);
+
+		$otherClasses = $wgAutoloadLocalClasses + $wgAutoloadClasses;
+		foreach ( $aliasesInFile as $alias => $class ) {
+			$this->assertArrayHasKey( $alias, $otherClasses,
+				'Alias must be in the classmap autoloader'
+			);
+		}
+	}
+
+	private static function parseFile( $contents ) {
+		// We could use token_get_all() here, but this is faster
+		// Note: Keep in sync with ClassCollector
+		$matches = [];
+		preg_match_all( '/
+				^ [\t ]* (?:
+					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait) \s+
+					(?P<class> [a-zA-Z0-9_]+)
+				|
+					class_alias \s* \( \s*
+						([\'"]) (?P<original> [^\'"]+) \g{-2} \s* , \s*
+						([\'"]) (?P<alias> [^\'"]+ ) \g{-2} \s*
+					\) \s* ;
+				|
+					class_alias \s* \( \s*
+						(?P<originalStatic> [a-zA-Z0-9_]+)::class \s* , \s*
+						([\'"]) (?P<aliasString> [^\'"]+ ) \g{-2} \s*
+					\) \s* ;
+				)
+			/imx', $contents, $matches, PREG_SET_ORDER );
+
+		$namespaceMatch = [];
+		preg_match( '/
+				^ [\t ]*
+					namespace \s+
+						([a-zA-Z0-9_]+(\\\\[a-zA-Z0-9_]+)*)
+					\s* ;
+			/imx', $contents, $namespaceMatch );
+		$fileNamespace = $namespaceMatch ? $namespaceMatch[1] . '\\' : '';
+
+		$classesInFile = [];
+		$aliasesInFile = [];
+
+		foreach ( $matches as $match ) {
+			if ( !empty( $match['class'] ) ) {
+				// 'class Foo {}'
+				$class = $fileNamespace . $match['class'];
+				$classesInFile[$class] = true;
+			} else {
+				if ( !empty( $match['original'] ) ) {
+					// 'class_alias( "Foo", "Bar" );'
+					$aliasesInFile[$match['alias']] = $match['original'];
+				} else {
+					// 'class_alias( Foo::class, "Bar" );'
+					$aliasesInFile[$match['aliasString']] = $fileNamespace . $match['originalStatic'];
+				}
+			}
+		}
+
+		return [ $classesInFile, $aliasesInFile ];
+	}
+
 	protected static function checkAutoLoadConf() {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
 
@@ -67,53 +157,10 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				continue;
 			}
 
-			// We could use token_get_all() here, but this is faster
-			// Note: Keep in sync with ClassCollector
-			$matches = [];
-			preg_match_all( '/
-				^ [\t ]* (?:
-					(?:final\s+)? (?:abstract\s+)? (?:class|interface|trait) \s+
-					(?P<class> [a-zA-Z0-9_]+)
-				|
-					class_alias \s* \( \s*
-						([\'"]) (?P<original> [^\'"]+) \g{-2} \s* , \s*
-						([\'"]) (?P<alias> [^\'"]+ ) \g{-2} \s*
-					\) \s* ;
-				|
-					class_alias \s* \( \s*
-						(?P<originalStatic> [a-zA-Z0-9_]+)::class \s* , \s*
-						([\'"]) (?P<aliasString> [^\'"]+ ) \g{-2} \s*
-					\) \s* ;
-				)
-			/imx', $contents, $matches, PREG_SET_ORDER );
+			list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
 
-			$namespaceMatch = [];
-			preg_match( '/
-				^ [\t ]*
-					namespace \s+
-						([a-zA-Z0-9_]+(\\\\[a-zA-Z0-9_]+)*)
-					\s* ;
-			/imx', $contents, $namespaceMatch );
-			$fileNamespace = $namespaceMatch ? $namespaceMatch[1] . '\\' : '';
-
-			$classesInFile = [];
-			$aliasesInFile = [];
-
-			foreach ( $matches as $match ) {
-				if ( !empty( $match['class'] ) ) {
-					// 'class Foo {}'
-					$class = $fileNamespace . $match['class'];
-					$actual[$class] = $file;
-					$classesInFile[$class] = true;
-				} else {
-					if ( !empty( $match['original'] ) ) {
-						// 'class_alias( "Foo", "Bar" );'
-						$aliasesInFile[$match['alias']] = $match['original'];
-					} else {
-						// 'class_alias( Foo::class, "Bar" );'
-						$aliasesInFile[$match['aliasString']] = $fileNamespace . $match['originalStatic'];
-					}
-				}
+			foreach ( $classesInFile as $className => $ignore ) {
+				$actual[$className] = $file;
 			}
 
 			// Only accept aliases for classes in the same file, because for correct
