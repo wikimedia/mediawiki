@@ -25,13 +25,14 @@
  *
  * @ingroup API
  */
-class ApiQueryContributions extends ApiQueryBase {
+class ApiQueryUserContributions extends ApiQueryBase {
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
-	private $params, $multiUserMode, $orderBy, $parentLens;
+	private $params, $multiUserMode, $orderBy, $parentLens, $commentStore;
+
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
 		$fld_patrolled = false, $fld_tags = false, $fld_size = false, $fld_sizediff = false;
