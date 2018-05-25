@@ -3448,16 +3448,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxIdleCallbacks = []; // consumed (and recursion guard)
 			$this->trxEndCallbacks = []; // consumed (recursion guard)
 			foreach ( $callbacks as $callback ) {
+				++$count;
+				list( $phpCallback ) = $callback;
+				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
-					++$count;
-					list( $phpCallback ) = $callback;
-					$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 					call_user_func( $phpCallback, $trigger, $this );
-					if ( $autoTrx ) {
-						$this->setFlag( self::DBO_TRX ); // restore automatic begin()
-					} else {
-						$this->clearFlag( self::DBO_TRX ); // restore auto-commit
-					}
 				} catch ( Exception $ex ) {
 					call_user_func( $this->errorLogger, $ex );
 					$e = $e ?: $ex;
@@ -3465,6 +3460,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					// their transactions are ended so other callbacks don't fail
 					if ( $this->trxLevel() ) {
 						$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
+					}
+				} finally {
+					if ( $autoTrx ) {
+						$this->setFlag( self::DBO_TRX ); // restore automatic begin()
+					} else {
+						$this->clearFlag( self::DBO_TRX ); // restore auto-commit
 					}
 				}
 			}
