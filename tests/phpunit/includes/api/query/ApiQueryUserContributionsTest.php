@@ -4,9 +4,9 @@
  * @group API
  * @group Database
  * @group medium
- * @covers ApiQueryContributions
+ * @covers ApiQueryUserContributions
  */
-class ApiQueryContributionsTest extends ApiTestCase {
+class ApiQueryUserContributionsTest extends ApiTestCase {
 	public function addDBDataOnce() {
 		global $wgActorTableSchemaMigrationStage;
 

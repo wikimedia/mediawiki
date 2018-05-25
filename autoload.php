@@ -129,6 +129,7 @@ $wgAutoloadLocalClasses = [
 	'ApiQueryStashImageInfo' => __DIR__ . '/includes/api/ApiQueryStashImageInfo.php',
 	'ApiQueryTags' => __DIR__ . '/includes/api/ApiQueryTags.php',
 	'ApiQueryTokens' => __DIR__ . '/includes/api/ApiQueryTokens.php',
+	'ApiQueryUserContributions' => __DIR__ . '/includes/api/ApiQueryUserContributions.php',
 	'ApiQueryUserInfo' => __DIR__ . '/includes/api/ApiQueryUserInfo.php',
 	'ApiQueryUsers' => __DIR__ . '/includes/api/ApiQueryUsers.php',
 	'ApiQueryWatchlist' => __DIR__ . '/includes/api/ApiQueryWatchlist.php',
