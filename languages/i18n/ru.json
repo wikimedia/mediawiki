@@ -1477,7 +1477,7 @@
 	"rcfilters-restore-default-filters": "Восстановить фильтры по умолчанию",
 	"rcfilters-clear-all-filters": "Очистить все фильтры",
 	"rcfilters-show-new-changes": "Последние изменения",
-	"rcfilters-search-placeholder": "Изменения фильтров (используйте меню или ищите по названию фильтра)",
+	"rcfilters-search-placeholder": "Фильтровать изменения (используйте меню или ищите по названию фильтра)",
 	"rcfilters-invalid-filter": "Недопустимый фильтр",
 	"rcfilters-empty-filter": "Нет активных фильтров. Показываются все правки.",
 	"rcfilters-filterlist-title": "Фильтры",

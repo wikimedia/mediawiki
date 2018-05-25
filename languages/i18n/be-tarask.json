@@ -4014,5 +4014,6 @@
 	"passwordpolicies-summary": "Гэта сьпіс дзейных палітыкаў пароляў для групаў удзельнікаў, вызначаных у гэтай вікі.",
 	"passwordpolicies-group": "Група",
 	"passwordpolicies-policies": "Палітыкі",
-	"passwordpolicies-policy-minimalpasswordlength": "Пароль мусіць мець даўжыню найменей $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}"
+	"passwordpolicies-policy-minimalpasswordlength": "Пароль мусіць мець даўжыню найменей $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль мусіць мець даўжыню найменш $1 {{PLURAL:$1|сымбаль|сымбалі|сымбаляў}}, каб уваходзіць у сыстэму"
 }

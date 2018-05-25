@@ -4015,7 +4015,7 @@
 	"authmanager-password-help": "Passord for autentisering.",
 	"authmanager-domain-help": "Domene for ekstern autentisering.",
 	"authmanager-retype-help": "Passord igjen for å bekrefte.",
-	"authmanager-email-label": "Epost",
+	"authmanager-email-label": "E-post",
 	"authmanager-email-help": "Epostadresse",
 	"authmanager-realname-label": "Virkelig navn",
 	"authmanager-realname-help": "Brukerens virkelige navn",
