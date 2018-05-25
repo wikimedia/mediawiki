@@ -199,7 +199,7 @@ class ThrottlerTest extends \MediaWikiTestCase {
 		$logger->expects( $this->once() )->method( 'log' )->with( $this->anything(), $this->anything(), [
 			'throttle' => 'custom',
 			'index' => 0,
-			'ip' => '1.2.3.4',
+			'ipKey' => '1.2.3.4',
 			'username' => 'SomeUser',
 			'count' => 1,
 			'expiry' => 10,
