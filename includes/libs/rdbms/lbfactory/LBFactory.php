@@ -139,8 +139,9 @@ abstract class LBFactory implements ILBFactory {
 			'IPAddress' => isset( $_SERVER[ 'REMOTE_ADDR' ] ) ? $_SERVER[ 'REMOTE_ADDR' ] : '',
 			'UserAgent' => isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : '',
 			'ChronologyProtection' => 'true',
-			// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals -- library can't use $wgRequest
-			'ChronologyPositionIndex' => isset( $_GET['cpPosIndex'] ) ? $_GET['cpPosIndex'] : null
+			// Headers application can inject via LBFactory::setRequestInfo()
+			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
+			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
 		];
 
 		$this->cliMode = isset( $conf['cliMode'] )
@@ -158,7 +159,10 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function shutdown(
-		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null, &$cpIndex = null
+		$mode = self::SHUTDOWN_CHRONPROT_SYNC,
+		callable $workCallback = null,
+		&$cpIndex = null,
+		&$cpClientId = null
 	) {
 		$chronProt = $this->getChronologyProtector();
 		if ( $mode === self::SHUTDOWN_CHRONPROT_SYNC ) {
@@ -166,6 +170,8 @@ abstract class LBFactory implements ILBFactory {
 		} elseif ( $mode === self::SHUTDOWN_CHRONPROT_ASYNC ) {
 			$this->shutdownChronologyProtector( $chronProt, null, 'async', $cpIndex );
 		}
+
+		$cpClientId = $chronProt->getClientId();
 
 		$this->commitMasterChanges( __METHOD__ ); // sanity
 	}
@@ -498,6 +504,7 @@ abstract class LBFactory implements ILBFactory {
 			[
 				'ip' => $this->requestInfo['IPAddress'],
 				'agent' => $this->requestInfo['UserAgent'],
+				'clientId' => $this->requestInfo['ChronologyClientId']
 			],
 			$this->requestInfo['ChronologyPositionIndex']
 		);
@@ -643,32 +650,38 @@ abstract class LBFactory implements ILBFactory {
 
 	/**
 	 * @param int $index Write index
-	 * @param int $time UNIX timestamp
-	 * @return string Timestamp-qualified write index of the form "<index>.<timestamp>"
+	 * @param int $time UNIX timestamp; can be used to detect stale cookies (T190082)
+	 * @param string $clientId Agent ID hash from ILBFactory::shutdown()
+	 * @return string Timestamp-qualified write index of the form "<index>@<timestamp>#<hash>"
 	 * @since 1.32
 	 */
-	public static function makeCookieValueFromCPIndex( $index, $time ) {
-		return $index . '@' . $time;
+	public static function makeCookieValueFromCPIndex( $index, $time, $clientId ) {
+		return "$index@$time#$clientId";
 	}
 
 	/**
-	 * @param string $value String possibly of the form "<index>" or "<index>@<timestamp>"
+	 * @param string $value Possible result of LBFactory::makeCookieValueFromCPIndex()
 	 * @param int $minTimestamp Lowest UNIX timestamp of non-expired values (if present)
-	 * @return int|null Write index or null if $value is empty or expired
+	 * @return array (index: int or null, clientId: string or null)
 	 * @since 1.32
 	 */
-	public static function getCPIndexFromCookieValue( $value, $minTimestamp ) {
-		if ( !preg_match( '/^(\d+)(?:@(\d+))?$/', $value, $m ) ) {
-			return null;
+	public static function getCPInfoFromCookieValue( $value, $minTimestamp ) {
+		static $placeholder = [ 'index' => null, 'clientId' => null ];
+
+		if ( !preg_match( '/^(\d+)(?:@(\d+))?(?:#([0-9a-f]{32}))?$/', $value, $m ) ) {
+			return $placeholder; // invalid
 		}
 
 		$index = (int)$m[1];
-
-		if ( isset( $m[2] ) && $m[2] !== '' && (int)$m[2] < $minTimestamp ) {
-			return null; // expired
+		if ( $index <= 0 ) {
+			return $placeholder; // invalid
+		} elseif ( isset( $m[2] ) && $m[2] !== '' && (int)$m[2] < $minTimestamp ) {
+			return $placeholder; // expired
 		}
 
-		return ( $index > 0 ) ? $index : null;
+		$clientId = ( isset( $m[3] ) && $m[3] !== '' ) ? $m[3] : null;
+
+		return [ 'index' => $index, 'clientId' => $clientId ];
 	}
 
 	public function setRequestInfo( array $info ) {

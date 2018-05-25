@@ -142,9 +142,13 @@ interface ILBFactory {
 	 * @param int $mode One of the class SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
 	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector
+	 * @param string|null &$cpClientId Client ID hash for ChronologyProtector
 	 */
 	public function shutdown(
-		$mode = self::SHUTDOWN_CHRONPROT_SYNC, callable $workCallback = null, &$cpIndex = null
+		$mode = self::SHUTDOWN_CHRONPROT_SYNC,
+		callable $workCallback = null,
+		&$cpIndex = null,
+		&$cpClientId = null
 	);
 
 	/**

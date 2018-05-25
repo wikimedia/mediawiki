@@ -70,13 +70,15 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	/**
 	 * @param BagOStuff $store
-	 * @param array[] $client Map of (ip: <IP>, agent: <user-agent>)
+	 * @param array[] $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
 	 * @param int|null $posIndex Write counter index [optional]
 	 * @since 1.27
 	 */
 	public function __construct( BagOStuff $store, array $client, $posIndex = null ) {
 		$this->store = $store;
-		$this->clientId = md5( $client['ip'] . "\n" . $client['agent'] );
+		$this->clientId = isset( $client['clientId'] )
+			? $client['clientId']
+			: md5( $client['ip'] . "\n" . $client['agent'] );
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
 		$this->waitForPosIndex = $posIndex;
 		$this->logger = new NullLogger();
@@ -84,6 +86,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @return string Client ID hash
+	 * @since 1.32
+	 */
+	public function getClientId() {
+		return $this->clientId;
 	}
 
 	/**
