@@ -83,10 +83,7 @@
 		"psr-0": {
 			"ComposerHookHandler": "includes/composer",
 			"ComposerVendorHtaccessCreator": "includes/composer"
-		},
-		"files": [
-			"includes/compat/Timestamp.php"
-		]
+		}
 	},
 	"autoload-dev": {
 		"files": [
