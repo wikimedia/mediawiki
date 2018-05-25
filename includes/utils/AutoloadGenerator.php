@@ -389,7 +389,7 @@ class ClassCollector {
 			return;
 		}
 		// Note: When changing class name discovery logic,
-		// AutoLoaderTest.php may also need to be updated.
+		// AutoLoaderStructureTest.php may also need to be updated.
 		switch ( $token[0] ) {
 			case T_NAMESPACE:
 			case T_CLASS:
