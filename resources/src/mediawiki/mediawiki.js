@@ -1578,6 +1578,17 @@
 			}
 
 			/**
+			 * @private
+			 * @param {Object} params Map of parameter names to values
+			 * @return {string}
+			 */
+			function makeQueryString( params ) {
+				return Object.keys( params ).map( function ( key ) {
+					return encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] );
+				} ).join( '&' );
+			}
+
+			/**
 			 * Create network requests for a batch of modules.
 			 *
 			 * This is an internal method for #work(). This must not be called directly
@@ -1610,7 +1621,7 @@
 					// combining versions from the module query string in-order. (T188076)
 					query.version = getCombinedVersion( packed.list );
 					query = sortQuery( query );
-					addScript( sourceLoadScript + '?' + $.param( query ) );
+					addScript( sourceLoadScript + '?' + makeQueryString( query ) );
 				}
 
 				if ( !batch.length ) {
@@ -1666,7 +1677,7 @@
 						// > '&modules='.length === 9
 						// > '&version=1234567'.length === 16
 						// > 9 + 16 = 25
-						currReqBaseLength = $.param( currReqBase ).length + 25;
+						currReqBaseLength = makeQueryString( currReqBase ).length + 25;
 
 						// We may need to split up the request to honor the query string length limit,
 						// so build it piece by piece.
