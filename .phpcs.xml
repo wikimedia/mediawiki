@@ -254,6 +254,7 @@
 		<exclude-pattern>*/includes/search/SearchEngine\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/LoginSignupSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specialpage/RedirectSpecialPage\.php</exclude-pattern>
+		<exclude-pattern>*/includes/specials/forms/PreferencesFormLegacy\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialListusers\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialMyRedirectPages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialUploadStash\.php</exclude-pattern>

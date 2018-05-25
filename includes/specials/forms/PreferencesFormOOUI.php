@@ -20,8 +20,10 @@
 
 /**
  * Form to edit user preferences.
+ *
+ * @since 1.32
  */
-class PreferencesFormOOUI extends OOUIHTMLForm implements PreferencesForm {
+class PreferencesFormOOUI extends OOUIHTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
 
