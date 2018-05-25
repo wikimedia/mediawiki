@@ -138,7 +138,7 @@ class Throttler implements LoggerAwareInterface {
 				$this->logRejection( [
 					'throttle' => $this->type,
 					'index' => $index,
-					'ip' => $ipKey,
+					'ipKey' => $ipKey,
 					'username' => $username,
 					'count' => $count,
 					'expiry' => $expiry,
@@ -193,7 +193,7 @@ class Throttler implements LoggerAwareInterface {
 
 	protected function logRejection( array $context ) {
 		$logMsg = 'Throttle {throttle} hit, throttled for {expiry} seconds due to {count} attempts '
-			. 'from username {username} and IP {ip}';
+			. 'from username {username} and IP {ipKey}';
 
 		// If we are hitting a throttle for >= warningLimit attempts, it is much more likely to be
 		// an attack than someone simply forgetting their password, so log it at a higher level.
