@@ -2671,6 +2671,28 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
+ * @since 1.32
+ * @param string[] $data Array with string keys/values to export
+ * @param string $header
+ * @return string PHP code
+ */
+function wfMakeStaticArrayFile( array $data, $header = 'Automatically generated' ) {
+	$format = "\t%s => %s,\n";
+	$code = "<?php\n"
+		. "// " . implode( "\n// ", explode( "\n", $header ) ) . "\n"
+		. "return [\n";
+	foreach ( $data as $key => $value ) {
+		$code .= sprintf(
+			$format,
+			var_export( $key, true ),
+			var_export( $value, true )
+		);
+	}
+	$code .= "];\n";
+	return $code;
+}
+
+/**
  * Make a cache key for the local wiki.
  *
  * @deprecated since 1.30 Call makeKey on a BagOStuff instance

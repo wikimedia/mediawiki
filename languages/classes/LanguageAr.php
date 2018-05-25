@@ -44,7 +44,7 @@ class LanguageAr extends Language {
 		global $wgFixArabicUnicode;
 		$s = parent::normalize( $s );
 		if ( $wgFixArabicUnicode ) {
-			$s = $this->transformUsingPairFile( 'normalize-ar.ser', $s );
+			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s );
 		}
 		return $s;
 	}
