@@ -233,9 +233,7 @@ class SpecialVersion extends SpecialPage {
 		}
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
-		if ( IcuCollation::getICUVersion() ) {
-			$software['[http://site.icu-project.org/ ICU]'] = IcuCollation::getICUVersion();
-		}
+		$software['[http://site.icu-project.org/ ICU]'] = INTL_ICU_VERSION;
 
 		// Allow a hook to add/remove items.
 		Hooks::run( 'SoftwareInfo', [ &$software ] );

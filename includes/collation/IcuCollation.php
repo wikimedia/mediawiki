@@ -535,6 +535,7 @@ class IcuCollation extends Collation {
 	 * @return string
 	 */
 	static function getICUVersion() {
+		wfDeprecated( __METHOD__, '1.32' );
 		return INTL_ICU_VERSION;
 	}
 
