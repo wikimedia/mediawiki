@@ -1,25 +1,9 @@
 <?php
 
-class AutoLoaderTest extends MediaWikiTestCase {
-	protected function setUp() {
-		parent::setUp();
-
-		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
-		$this->mergeMwGlobalArrayValue( 'wgAutoloadLocalClasses', [
-			'TestAutoloadedLocalClass' =>
-				__DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php',
-			'TestAutoloadedCamlClass' =>
-				__DIR__ . '/../data/autoloader/TestAutoloadedCamlClass.php',
-			'TestAutoloadedSerializedClass' =>
-				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
-		] );
-		AutoLoader::resetAutoloadLocalClassesLower();
-
-		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', [
-			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
-		] );
-	}
-
+/**
+ * @coversNothing
+ */
+class AutoLoaderStructureTest extends MediaWikiTestCase {
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
 	 *
@@ -48,7 +32,6 @@ class AutoLoaderTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @coversNothing
 	 * @dataProvider providePSR4Completeness
 	 */
 	public function testPSR4Completeness( $prefix, $file ) {
@@ -181,30 +164,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		];
 	}
 
-	function testCoreClass() {
-		$this->assertTrue( class_exists( 'TestAutoloadedLocalClass' ) );
-	}
-
-	function testExtensionClass() {
-		$this->assertTrue( class_exists( 'TestAutoloadedClass' ) );
-	}
-
-	function testWrongCaseClass() {
-		$this->setMwGlobals( 'wgAutoloadAttemptLowercase', true );
-
-		$this->assertTrue( class_exists( 'testautoLoadedcamlCLASS' ) );
-	}
-
-	function testWrongCaseSerializedClass() {
-		$this->setMwGlobals( 'wgAutoloadAttemptLowercase', true );
-
-		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
-		$uncerealized = unserialize( $dummyCereal );
-		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
-			"unserialize() can load classes case-insensitively." );
-	}
-
-	function testAutoloadOrder() {
+	public function testAutoloadOrder() {
 		$path = realpath( __DIR__ . '/../../..' );
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
