@@ -742,7 +742,8 @@ class Exif {
 				$ecount = 1; // checking individual elements
 			}
 		}
-		$count = count( $val );
+
+		$count = is_array( $val ) ? count( $val ) : 1;
 		if ( $ecount != $count ) {
 			$this->debug( $val, __FUNCTION__, "Expected $ecount elements for $tag but got $count" );
 
