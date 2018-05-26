@@ -50,8 +50,6 @@
  * @class mw.Uri
  */
 
-/* eslint-disable no-use-before-define */
-
 ( function ( mw, $ ) {
 	var parser, properties;
 
@@ -156,6 +154,7 @@
 					return uri;
 				}
 				href = hrefCur;
+				// eslint-disable-next-line no-use-before-define
 				uri = new Uri( href );
 				return uri;
 			};
