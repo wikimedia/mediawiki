@@ -1435,6 +1435,7 @@ return [
 	'mediawiki.action.delete.file' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.delete.file.js',
 		'dependencies' => [
+			'oojs-ui-core',
 			'jquery.lengthLimit',
 		],
 		'messages' => [
