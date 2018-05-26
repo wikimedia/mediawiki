@@ -2,8 +2,6 @@
  * Implement AJAX navigation for multi-page images so the user may browse without a full page reload.
  */
 
-/* eslint-disable no-use-before-define */
-
 ( function ( mw, $ ) {
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
@@ -86,6 +84,7 @@
 			// Replace table contents
 			$multipageimage.empty().append( $contents.clone() );
 
+			// eslint-disable-next-line no-use-before-define
 			bindPageNavigation( $multipageimage );
 
 			// Fire hook because the page's content has changed
