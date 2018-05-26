@@ -1185,6 +1185,7 @@
 	"rcfilters-invalid-filter": "Ugyldig filter",
 	"rcfilters-empty-filter": "Ingen aktive filter. Alle bidrag er viste.",
 	"rcfilters-filterlist-title": "Filter",
+	"rcfilters-filterlist-whatsthis": "Korleis verkar desse?",
 	"rcfilters-filterlist-feedbacklink": "Gje attendemelding på dei nye (beta)filtera",
 	"rcfilters-highlightbutton-title": "Uthev resultat",
 	"rcfilters-highlightmenu-title": "Vel ein farge",

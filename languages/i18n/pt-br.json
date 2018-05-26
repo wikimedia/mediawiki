@@ -4106,5 +4106,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A senha deve ter pelo menos $1 {{PLURAL:$1|caráter|caracteres}} para poder entrar",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Senha não pode ser o mesmo que nome de usuário",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "A senha não pode corresponder senhas especificamente na lista negra",
-	"passwordpolicies-policy-maximalpasswordlength": "A senha deve ser menor que $1 {{PLURAL:$1|caráter|caracteres}}"
+	"passwordpolicies-policy-maximalpasswordlength": "A senha deve ser menor que $1 {{PLURAL:$1|caráter|caracteres}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "A senha não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}"
 }

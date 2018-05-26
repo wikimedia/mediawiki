@@ -2005,6 +2005,7 @@
 	"protectedtitles-submit": "Mostrar títulos",
 	"listusers": "Utilizadores",
 	"listusers-editsonly": "Mostrar apenas utilizadores com edições",
+	"listusers-temporarygroupsonly": "Mostrar apenas os utilizadores em grupos de utilizadores temporários",
 	"listusers-creationsort": "Ordenar por data de criação",
 	"listusers-desc": "Ordenar de forma decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|edição|edições}}",
@@ -4076,6 +4077,13 @@
 	"pagedata-bad-title": "Título inválido: $1.",
 	"unregistered-user-config": "Por razões de segurança as subpáginas de utilizador com JavaScript, CSS e JSON não podem ser carregadas para utilizadores não registados.",
 	"passwordpolicies": "Regras para palavras-passe",
+	"passwordpolicies-summary": "Esta lista contém as normas efetivas para palavras-passe dos grupos de utilizadores definidos nesta wiki.",
 	"passwordpolicies-group": "Grupo",
-	"passwordpolicies-policies": "Normas e recomendações"
+	"passwordpolicies-policies": "Normas e recomendações",
+	"passwordpolicies-policy-minimalpasswordlength": "A palavra-passe tem de ter pelo menos $1 {{PLURAL:$1|carácter|caracteres}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "A palavra-passe tem de ter pelo menos $1 {{PLURAL:$1|carácter|caracteres}} para poder iniciar sessão",
+	"passwordpolicies-policy-passwordcannotmatchusername": "A palavra-passe não pode ser igual ao nome de utilizador",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "A palavra-passe não pode corresponder às especificamente bloqueadas pela lista negra",
+	"passwordpolicies-policy-maximalpasswordlength": "A palavra-passe tem de ter menos de $1 {{PLURAL:$1|carácter|caracteres}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "A palavra-passe não pode {{PLURAL:$1|ser a mais popular|estar na lista das $1 palavras-passe mais populares}}"
 }

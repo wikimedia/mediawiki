@@ -70,7 +70,8 @@
 			"렌즈",
 			"CYAN",
 			"Nuevo Paso",
-			"Doyoon1995"
+			"Doyoon1995",
+			"Jay94ks"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -687,8 +688,8 @@
 	"subject-preview": "주제 미리 보기:",
 	"previewerrortext": "변경사항을 미리보기하는 도중 오류가 발생했습니다.",
 	"blockedtitle": "사용자가 차단됨",
-	"blockedtext": "'''사용자 계정 또는 IP 주소가 차단되었습니다.'''\n\n차단한 사람은 $1입니다.\n차단한 이유는 다음과 같습니다: $2\n\n* 차단이 시작된 시간: $8\n* 차단이 끝나는 시간: $6\n* 차단된 사용자: $7\n\n$1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.\n[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.\n현재 당신의 IP 주소는 $3이고, 차단 ID는 #$5입니다.\n문의할 때에 이 정보를 같이 알려주세요.",
-	"autoblockedtext": "당신의 IP 주소는 $1님이 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다.\n차단된 이유는 다음과 같습니다:\n\n:$2\n\n* 차단이 시작된 시간: $8\n* 차단이 끝나는 시간: $6\n* 차단된 사용자: $7\n\n$1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.\n\n[[Special:Preferences|사용자 환경 설정]]에 올바른 이메일 주소가 있어야만 \"이메일 보내기\" 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.\n\n현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.\n문의할 때에 이 정보를 같이 알려주세요.",
+	"blockedtext": "'''사용자 계정 또는 IP 주소가 차단되었습니다.'''\n\n차단한 사람은 $1입니다.\n차단한 이유는 다음과 같습니다: <em>$2</em>.\n\n* 차단이 시작된 시간: $8\n* 차단이 끝나는 시간: $6\n* 차단된 사용자: $7\n\n$1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.\n[[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.\n현재 당신의 IP 주소는 $3이고, 차단 ID는 #$5입니다.\n문의할 때에 이 정보를 같이 알려주세요.",
+	"autoblockedtext": "당신의 IP 주소는 $1님이 차단한 사용자가 사용했던 IP이기 때문에 자동으로 차단되었습니다.\n차단된 이유는 다음과 같습니다:\n\n:<em>$2</em>\n\n* 차단이 시작된 시간: $8\n* 차단이 끝나는 시간: $6\n* 차단된 사용자: $7\n\n$1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.\n\n[[Special:Preferences|사용자 환경 설정]]에 올바른 이메일 주소가 있어야만 \"이메일 보내기\" 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.\n\n현재 IP 주소는 $3이고, 차단 ID는 #$5입니다.\n문의할 때에 이 정보를 같이 알려주세요.",
 	"systemblockedtext": "당신의 사용자 이름 또는 IP 주소가 자동으로 미디어위키에 의해 차단되었습니다.\n이유는 다음과 같습니다:\n\n:<em>$2</em>\n\n* 차단 시작: $8\n* 차단 만료: $6\n* 차단 대상: $7\n\n당신의 현재 IP 주소는 $3입니다.\n문의에 대해 상기의 상세 설명을 모두 포함해 주십시오.",
 	"blockednoreason": "이유를 입력하지 않음",
 	"whitelistedittext": "문서를 편집하기 전에 $1해야 합니다.",
@@ -1741,6 +1742,7 @@
 	"uploadstash-bad-path-bad-format": "\"$1\" 키는 적절한 포맷이 아닙니다.",
 	"uploadstash-file-not-found": "저장소에서 \"$1\" 키를 찾지 못했습니다.",
 	"uploadstash-file-not-found-no-thumb": "섬네일을 가져오지 못했습니다.",
+	"uploadstash-file-not-found-no-local-path": "썸네일을 가르키는 로컬 경로가 없습니다.",
 	"uploadstash-file-not-found-no-object": "섬네일을 위한 로컬 파일 객체를 만들 수 없습니다.",
 	"uploadstash-file-not-found-no-remote-thumb": "섬네일 가져오기를 실패했습니다: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "content-type 헤더가 없습니다.",
@@ -2021,6 +2023,7 @@
 	"apisandbox-dynamic-parameters-add-label": "변수 추가:",
 	"apisandbox-dynamic-parameters-add-placeholder": "변수 이름",
 	"apisandbox-dynamic-error-exists": "\"$1\"이라는 변수 이름은 이미 존재합니다.",
+	"apisandbox-templated-parameter-reason": "이 [[Special:ApiHelp/main#main/templatedparams|템플릿 매개 변수]]는 $2의 {{PLURAL:$1|value|values}}에 따라 제공됩니다.",
 	"apisandbox-deprecated-parameters": "앞으로 제거될 변수",
 	"apisandbox-fetch-token": "토큰 자동 채우기",
 	"apisandbox-add-multi": "추가",
