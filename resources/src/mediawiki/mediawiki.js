@@ -9,7 +9,6 @@
  */
 
 /* global mwNow */
-/* eslint-disable no-use-before-define */
 
 ( function ( $ ) {
 	'use strict';
@@ -85,6 +84,27 @@
 	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
 	function Map( global ) {
+
+		/**
+		 * Alias property to the global object.
+		 *
+		 * @private
+		 * @static
+		 * @param {mw.Map} map
+		 * @param {string} key
+		 * @param {Mixed} value
+		 */
+		function setGlobalMapValue( map, key, value ) {
+			map.values[ key ] = value;
+			log.deprecate(
+				window,
+				key,
+				value,
+				// Deprecation notice for mw.config globals (T58550, T72470)
+				map === mw.config && 'Use mw.config instead.'
+			);
+		}
+
 		this.values = {};
 		if ( global === true ) {
 			// Override #set to also set the global variable
@@ -106,26 +126,6 @@
 				return false;
 			};
 		}
-	}
-
-	/**
-	 * Alias property to the global object.
-	 *
-	 * @private
-	 * @static
-	 * @param {mw.Map} map
-	 * @param {string} key
-	 * @param {Mixed} value
-	 */
-	function setGlobalMapValue( map, key, value ) {
-		map.values[ key ] = value;
-		log.deprecate(
-			window,
-			key,
-			value,
-			// Deprecation notice for mw.config globals (T58550, T72470)
-			map === mw.config && 'Use mw.config instead.'
-		);
 	}
 
 	Map.prototype = {
@@ -1078,6 +1078,7 @@
 					mw.loader.store.set( module, registry[ module ] );
 					for ( m in registry ) {
 						if ( registry[ m ].state === 'loaded' && allReady( registry[ m ].dependencies ) ) {
+							// eslint-disable-next-line no-use-before-define
 							execute( m );
 						}
 					}
