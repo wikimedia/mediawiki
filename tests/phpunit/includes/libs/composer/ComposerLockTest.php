@@ -49,7 +49,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 					[
 						'name' => 'Leaf Corcoran',
 						'email' => 'leafot@gmail.com',
-						'homepage' => 'http://leafo.net',
+						'homepage' => 'https://leafo.net',
 					],
 				],
 				'description' => 'lessphp is a compiler for LESS written in PHP.',
@@ -61,7 +61,7 @@ class ComposerLockTest extends MediaWikiTestCase {
 				'authors' => [
 					[
 						'name' => 'PHP-FIG',
-						'homepage' => 'http://www.php-fig.org/',
+						'homepage' => 'https://www.php-fig.org/',
 					],
 				],
 				'description' => 'Common interface for logging libraries',
