@@ -249,101 +249,134 @@ class FileDeleteForm {
 		$conf = RequestContext::getMain()->getConfig();
 		$oldCommentSchema = $conf->get( 'CommentTableSchemaMigrationStage' ) === MIGRATION_OLD;
 
-		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\">
-					<td></td>
-					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
-							'wpSuppress', 'wpSuppress', false, [ 'tabindex' => '3' ] ) .
-					"</strong></td>
-				</tr>";
-		} else {
-			$suppress = '';
-		}
-
 		$wgOut->addModules( 'mediawiki.action.delete.file' );
 
 		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
-		$form = Xml::openElement( 'form', [ 'method' => 'post', 'action' => $this->getAction(),
-			'id' => 'mw-img-deleteconfirm' ] ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMessage( 'filedelete-legend' )->text() ) .
-			Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) ) .
-			$this->prepareMessage( 'filedelete-intro' ) .
-			Xml::openElement( 'table', [ 'id' => 'mw-img-deleteconfirm-table' ] ) .
-			"<tr>
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'filedelete-comment' )->text(), 'wpDeleteReasonList' ) .
-				"</td>
-				<td class='mw-input'>" .
-					Xml::listDropDown(
-						'wpDeleteReasonList',
-						wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
-						wfMessage( 'filedelete-reason-otherlist' )->inContentLanguage()->text(),
-						'',
-						'wpReasonDropDown',
-						1
-					) .
-				"</td>
-			</tr>
-			<tr>
-				<td class='mw-label'>" .
-					Xml::label( wfMessage( 'filedelete-otherreason' )->text(), 'wpReason' ) .
-				"</td>
-				<td class='mw-input'>" .
-					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ), [
-						'type' => 'text',
-						// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-						// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-						// Unicode codepoints (or 255 UTF-8 bytes for old schema).
-						'maxlength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
-						'tabindex' => '2',
-						'id' => 'wpReason'
-					] ) .
-				"</td>
-			</tr>
-			{$suppress}";
-		if ( $wgUser->isLoggedIn() ) {
-			$form .= "
-			<tr>
-				<td></td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
-						'wpWatch', 'wpWatch', $checkWatch, [ 'tabindex' => '3' ] ) .
-				"</td>
-			</tr>";
+
+		$wgOut->enableOOUI();
+
+		$options = Xml::listDropDownOptions(
+			$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
+			[ 'other' => $wgOut->msg( 'filedelete-reason-otherlist' )->inContentLanguage()->text() ]
+		);
+		$options = Xml::listDropDownOptionsOoui( $options );
+
+		$fields[] = new OOUI\LabelWidget( [ 'label' => new OOUI\HtmlSnippet( $this->prepareMessage( 'filedelete-intro' ) ) ] );
+
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\DropdownInputWidget( [
+				'name' => 'wpDeleteReasonList',
+				'inputId' => 'wpDeleteReasonList',
+				'tabIndex' => 1,
+				'infusable' => true,
+				'value' => '',
+				'options' => $options
+			] ),
+			[
+				'label' => $wgOut->msg( 'filedelete-comment' )->text(),
+				'align' => 'top',
+			]
+		);
+
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'name' => 'wpReason',
+				'inputId' => 'wpReason',
+				'tabIndex' => 2,
+				'maxLength' => $oldCommentSchema ? 255 : CommentStore::COMMENT_CHARACTER_LIMIT,
+				'infusable' => true,
+				'value' => $wgRequest->getText( 'wpReason' ),
+				'autofocus' => true,
+			] ),
+			[
+				'label' => $wgOut->msg( 'filedelete-otherreason' )->text(),
+				'align' => 'top',
+			]
+		);
+
+		if ( $wgUser->isAllowed( 'suppressrevision' ) ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpSuppress',
+					'inputId' => 'wpSuppress',
+					'tabIndex' => 3,
+					'selected' => false,
+				] ),
+				[
+					'label' => $wgOut->msg( 'revdelete-suppress' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
 		}
-		$form .= "
-			<tr>
-				<td></td>
-				<td class='mw-submit'>" .
-					Xml::submitButton(
-						wfMessage( 'filedelete-submit' )->text(),
-						[
-							'name' => 'mw-filedelete-submit',
-							'id' => 'mw-filedelete-submit',
-							'tabindex' => '4'
-						]
-					) .
-				"</td>
-			</tr>" .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
 
-			if ( $wgUser->isAllowed( 'editinterface' ) ) {
-				$title = wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle();
-				$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-				$link = $linkRenderer->makeKnownLink(
-					$title,
-					wfMessage( 'filedelete-edit-reasonlist' )->text(),
-					[],
-					[ 'action' => 'edit' ]
-				);
-				$form .= '<p class="mw-filedelete-editreasons">' . $link . '</p>';
-			}
+		if ( $wgUser->isLoggedIn() ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpWatch',
+					'inputId' => 'wpWatch',
+					'tabIndex' => 3,
+					'selected' => $checkWatch,
+				] ),
+				[
+					'label' => $wgOut->msg( 'watchthis' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
+		}
 
-		$wgOut->addHTML( $form );
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\ButtonInputWidget( [
+				'name' => 'mw-filedelete-submit',
+				'inputId' => 'mw-filedelete-submit',
+				'tabIndex' => 4,
+				'value' => $wgOut->msg( 'filedelete-submit' )->text(),
+				'label' => $wgOut->msg( 'filedelete-submit' )->text(),
+				'flags' => [ 'primary', 'destructive' ],
+				'type' => 'submit',
+			] ),
+			[
+				'align' => 'top',
+			]
+		);
+
+		$fieldset = new OOUI\FieldsetLayout( [
+			'label' => $wgOut->msg( 'filedelete-legend' )->text(),
+			'items' => $fields,
+		] );
+
+		$form = new OOUI\FormLayout( [
+			'method' => 'post',
+			'action' => $this->getAction(),
+			'id' => 'mw-img-deleteconfirm',
+		] );
+		$form->appendContent(
+			$fieldset,
+			new OOUI\HtmlSnippet(
+				Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) )
+			)
+		);
+
+		$wgOut->addHTML(
+			new OOUI\PanelLayout( [
+				'classes' => [ 'deletepage-wrapper' ],
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $form,
+			] )
+		);
+
+		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+			$link = Linker::linkKnown(
+				$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
+				wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$wgOut->addHTML( '<p class="mw-delete-editreasons">' . $link . '</p>' );
+		}
 	}
 
 	/**
