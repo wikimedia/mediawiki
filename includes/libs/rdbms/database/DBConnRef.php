@@ -33,7 +33,7 @@ class DBConnRef implements IDatabase {
 		$this->lb = $lb;
 		if ( $conn instanceof Database ) {
 			$this->conn = $conn; // live handle
-		} elseif ( count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
+		} elseif ( is_array( $conn ) && count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
 			$this->params = $conn;
 		} else {
 			throw new InvalidArgumentException( "Missing lazy connection arguments." );
