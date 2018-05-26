@@ -31,7 +31,8 @@
 			"Mouse21",
 			"Happy13241",
 			"Ole Yves",
-			"AttemptToCallNil"
+			"AttemptToCallNil",
+			"Movses"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -1026,6 +1027,7 @@
 	"apihelp-query+recentchanges-param-limit": "Сколько правок вернуть.",
 	"apihelp-query+recentchanges-param-type": "Какие типы правок показать.",
 	"apihelp-query+recentchanges-param-toponly": "Перечислять только последние правки страниц.",
+	"apihelp-query+recentchanges-param-title": "Вернуть записи, связанные со страницей.",
 	"apihelp-query+recentchanges-param-generaterevisions": "При использовании в качестве генератора, генерировать идентификаторы версий вместо их названий. Записи последних изменений без привязанного идентификатора версии (например, большинство записей журналов) не сгенерируют ничего.",
 	"apihelp-query+recentchanges-example-simple": "Список последних изменений.",
 	"apihelp-query+recentchanges-example-generator": "Получить информацию о последних страницах с неотпатрулированными изменениями.",
