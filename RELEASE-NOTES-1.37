@@ -364,6 +364,9 @@ because of Phabricator reports.
   skin registration instead.
 * ParserCache::getKey and ::getEtag, deprecated since 1.36, were removed.
 * BaseTemplateToolboxHook, deprecated since 1.35, was removed.
+* Previously a capitalize-all-nouns class was added to the body element of
+languages where nouns must be capitalized. This class is no longer added to
+the body tag and must be provided by skins.
 * …
 
 === Deprecations in 1.37 ===

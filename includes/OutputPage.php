@@ -3139,11 +3139,6 @@ class OutputPage extends ContextSource {
 			$bodyClasses[] = 'mw-underline-' . ( $underline ? 'always' : 'never' );
 		}
 
-		if ( $this->getLanguage()->capitalizeAllNouns() ) {
-			# A <body> class is probably not the best way to do this . . .
-			$bodyClasses[] = 'capitalize-all-nouns';
-		}
-
 		// Parser feature migration class
 		// The idea is that this will eventually be removed, after the wikitext
 		// which requires it is cleaned up.
