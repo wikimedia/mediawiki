@@ -3138,11 +3138,8 @@ class Parser {
 				for ( $i = 0; $i < $argsLength; $i++ ) {
 					$funcArgs[] = $args->item( $i );
 				}
-				try {
-					$result = $this->callParserFunction( $frame, $func, $funcArgs );
-				} catch ( Exception $ex ) {
-					throw $ex;
-				}
+
+				$result = $this->callParserFunction( $frame, $func, $funcArgs );
 
 				// Extract any forwarded flags
 				if ( isset( $result['title'] ) ) {
