@@ -33,6 +33,12 @@ class HooksTest extends MediaWikiTestCase {
 				'changed-static',
 				'original'
 			],
+			[
+				'Class::method static call as array',
+				[ [ 'NothingClass::someStatic' ] ],
+				'changed-static',
+				'original'
+			],
 			[ 'Global function', [ 'NothingFunction' ], 'changed-func', 'original' ],
 			[ 'Global function with data', [ 'NothingFunctionData', 'data' ], 'data', 'original' ],
 			[ 'Closure', [ function ( &$foo, $bar ) {
@@ -82,9 +88,49 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Hooks::getHandlers
+	 */
+	public function testGetHandlers() {
+		global $wgHooks;
+
+		$this->assertSame(
+			[],
+			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			'No hooks registered'
+		);
+
+		$a = new NothingClass();
+		$b = new NothingClass();
+
+		$wgHooks['MediaWikiHooksTest001'][] = $a;
+
+		$this->assertSame(
+			[ $a ],
+			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			'Hook registered by $wgHooks'
+		);
+
+		Hooks::register( 'MediaWikiHooksTest001', $b );
+		$this->assertSame(
+			[ $b, $a ],
+			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
+		);
+
+		Hooks::clear( 'MediaWikiHooksTest001' );
+		unset( $wgHooks['MediaWikiHooksTest001'] );
+
+		Hooks::register( 'MediaWikiHooksTest001', $b );
+		$this->assertSame(
+			[ $b ],
+			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			'Hook registered by Hook::register'
+		);
+	}
+
+	/**
 	 * @covers Hooks::isRegistered
 	 * @covers Hooks::register
-	 * @covers Hooks::getHandlers
 	 * @covers Hooks::run
 	 * @covers Hooks::callHook
 	 */
@@ -149,6 +195,56 @@ class HooksTest extends MediaWikiTestCase {
 		$foo = 'original';
 		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
 		$this->assertSame( 'original', $foo, 'Hooks abort after a false return.' );
+	}
+
+	/**
+	 * @covers Hooks::run
+	 */
+	public function testNullReturn() {
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			return;
+		} );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			$foo = 'test';
+
+			return true;
+		} );
+		$foo = 'original';
+		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
+		$this->assertSame( 'test', $foo, 'Hooks continue after a null return.' );
+	}
+
+	/**
+	 * @covers Hooks::callHook
+	 */
+	public function testCallHook_FalseHook() {
+		Hooks::register( 'MediaWikiHooksTest001', false );
+		Hooks::register( 'MediaWikiHooksTest001', function ( &$foo ) {
+			$foo = 'test';
+
+			return true;
+		} );
+		$foo = 'original';
+		Hooks::run( 'MediaWikiHooksTest001', [ &$foo ] );
+		$this->assertSame( 'test', $foo, 'Hooks that are falsey are skipped.' );
+	}
+
+	/**
+	 * @covers Hooks::callHook
+	 * @expectedException MWException
+	 */
+	public function testCallHook_UnknownDatatype() {
+		Hooks::register( 'MediaWikiHooksTest001', 12345 );
+		Hooks::run( 'MediaWikiHooksTest001' );
+	}
+
+	/**
+	 * @covers Hooks::callHook
+	 * @expectedException PHPUnit_Framework_Error_Deprecated
+	 */
+	public function testCallHook_Deprecated() {
+		Hooks::register( 'MediaWikiHooksTest001', 'NothingClass::someStatic' );
+		Hooks::run( 'MediaWikiHooksTest001', [], '1.31' );
 	}
 
 	/**

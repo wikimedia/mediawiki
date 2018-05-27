@@ -47,10 +47,6 @@ class Hooks {
 	 * @since 1.18
 	 */
 	public static function register( $name, $callback ) {
-		if ( !isset( self::$handlers[$name] ) ) {
-			self::$handlers[$name] = [];
-		}
-
 		self::$handlers[$name][] = $callback;
 	}
 
@@ -62,6 +58,7 @@ class Hooks {
 	 *
 	 * @since 1.21
 	 * @throws MWException If not in testing mode.
+	 * @codeCoverageIgnore
 	 */
 	public static function clear( $name ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
