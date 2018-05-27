@@ -110,6 +110,9 @@ production.
   discussion pages) now have a tooltip to indicate state, not just colour.
 
 === External library changes in 1.31 ===
+* pear/mail, pear/mail_mime and pear/mail_mime-decode have been moved from
+  suggested to required. These packages now must be installed via composer
+  and not via PEAR itself.
 
 ==== Upgraded external libraries ====
 * Updated jquery.chosen from v0.9.14 to v1.8.2.
@@ -143,6 +146,7 @@ production.
 * (T2087, T10897, T87753, T174639) Whitespace created by category and language
   links is now stripped rather than leaving blank lines in odd places.
 * (T3780) Uploads with UTF-8 names now work on PHP7.1+ on Windows servers.
+* (T186565) Fix PHP Notice from `ob_end_flush()` in `FileRepo::streamFile()`.
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
@@ -389,6 +393,9 @@ changes to languages because of Phabricator reports.
   used instead.
 * The function wfShellWikiCmd() has been deprecated, use
   MediaWiki\Shell::makeScriptCommand().
+* In the future, the hooks 'PreferencesFormPreSave' and 'PreferencesGetLegend'
+  will be allowed to provide any HTMLForm object rather than PreferencesForm.
+
 === Other changes in 1.31 ===
 * Browser support for Internet Explorer 10 was lowered from Grade A to Grade C.
 * Browser support for Opera 12 and older was dropped entirely. Opera 15+
