@@ -47,10 +47,6 @@ class Hooks {
 	 * @since 1.18
 	 */
 	public static function register( $name, $callback ) {
-		if ( !isset( self::$handlers[$name] ) ) {
-			self::$handlers[$name] = [];
-		}
-
 		self::$handlers[$name][] = $callback;
 	}
 
