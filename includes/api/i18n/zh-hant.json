@@ -286,6 +286,7 @@
 	"api-format-title": "MediaWiki API 結果",
 	"api-format-prettyprint-header": "這是$1格式的HTML呈現。HTML適合用於除錯，但不適合應用程式使用。\n\n指定<var>format</var>參數以更改輸出格式。要檢視$1格式的非HTML呈現，設定<kbd>format=$2</kbd>。\n\n參考 [[mw:Special:MyLanguage/API|完整說明文件]] 或 [[Special:ApiHelp/main|API說明]] 以取得更多資訊。",
 	"api-format-prettyprint-header-only-html": "這是用來除錯的HTML呈現，不適合實際應用。\n\n參見[[mw:Special:MyLanguage/API|完整文件]]或[[Special:ApiHelp/main|API幫助]]以取得更多資訊。",
+	"api-format-prettyprint-header-hyperlinked": "這是$1格式的HTML實現。HTML對除錯很有用，但不適合應用程式使用。\n\n指定<var>format</var>參數以更改輸出格式。要查看$1格式的非HTML實現，設置[$3 <kbd>format=$2</kbd>]。\n\n參見[[mw:API|完整文件]]，或[[Special:ApiHelp/main|API幫助]]以獲取更多信息。",
 	"api-format-prettyprint-status": "此回應將會傳回HTTP狀態$1 $2。",
 	"api-pageset-param-titles": "要使用的標題清單。",
 	"api-pageset-param-pageids": "要使用的頁面 ID 清單。",

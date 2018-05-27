@@ -4,6 +4,9 @@
  * @covers AutoLoader
  */
 class AutoLoaderTest extends MediaWikiTestCase {
+
+	private $oldPsr4;
+
 	protected function setUp() {
 		parent::setUp();
 
@@ -21,6 +24,15 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', [
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
 		] );
+
+		$this->oldPsr4 = AutoLoader::$psr4Namespaces;
+		AutoLoader::$psr4Namespaces['Test\\MediaWiki\\AutoLoader\\'] =
+			__DIR__ . '/../data/autoloader/psr4';
+	}
+
+	protected function tearDown() {
+		AutoLoader::$psr4Namespaces = $this->oldPsr4;
+		parent::tearDown();
 	}
 
 	public function testCoreClass() {
@@ -44,5 +56,9 @@ class AutoLoaderTest extends MediaWikiTestCase {
 		$uncerealized = unserialize( $dummyCereal );
 		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
 			"unserialize() can load classes case-insensitively." );
+	}
+
+	public function testPsr4() {
+		$this->assertTrue( class_exists( 'Test\\MediaWiki\\AutoLoader\\TestFooBar' ) );
 	}
 }
