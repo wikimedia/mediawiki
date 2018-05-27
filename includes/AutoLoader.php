@@ -123,6 +123,7 @@ class AutoLoader {
 	 *
 	 * @see <http://www.php-fig.org/psr/psr-4/>
 	 * @private Only public for usage in AutoloadGenerator
+	 * @codeCoverageIgnore
 	 * @since 1.31
 	 * @return string[]
 	 */
