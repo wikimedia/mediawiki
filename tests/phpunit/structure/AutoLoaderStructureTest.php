@@ -39,20 +39,28 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 		$contents = file_get_contents( $file );
 		list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
 		$classes = array_keys( $classesInFile );
-		$this->assertCount( 1, $classes,
-			"Only one class per file in PSR-4 autoloaded classes ($file)" );
+		if ( $classes ) {
+			$this->assertCount( 1, $classes,
+				"Only one class per file in PSR-4 autoloaded classes ($file)" );
 
-		$this->assertStringStartsWith( $prefix, $classes[0] );
-		$this->assertTrue(
-			class_exists( $classes[0] ) || interface_exists( $classes[0] ) || trait_exists( $classes[0] ),
-			"Class {$classes[0]} not autoloaded properly"
-		);
-
-		$otherClasses = $wgAutoloadLocalClasses + $wgAutoloadClasses;
-		foreach ( $aliasesInFile as $alias => $class ) {
-			$this->assertArrayHasKey( $alias, $otherClasses,
-				'Alias must be in the classmap autoloader'
+			$this->assertStringStartsWith( $prefix, $classes[0] );
+			$this->assertTrue(
+				class_exists( $classes[0] ) || interface_exists( $classes[0] ) || trait_exists( $classes[0] ),
+				"Class {$classes[0]} not autoloaded properly"
 			);
+		} else {
+			// Dummy assertion so this test isn't marked in risky
+			// if the file has no classes nor aliases in it
+			$this->assertCount( 0, $classes );
+		}
+
+		if ( $aliasesInFile ) {
+			$otherClasses = $wgAutoloadLocalClasses + $wgAutoloadClasses;
+			foreach ( $aliasesInFile as $alias => $class ) {
+				$this->assertArrayHasKey( $alias, $otherClasses,
+					'Alias must be in the classmap autoloader'
+				);
+			}
 		}
 	}
 
