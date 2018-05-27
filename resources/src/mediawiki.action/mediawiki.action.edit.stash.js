@@ -1,7 +1,7 @@
 /*!
  * Scripts for pre-emptive edit preparing on action=edit
  */
-/* eslint-disable no-use-before-define */
+
 ( function ( mw, $ ) {
 	if ( !mw.config.get( 'wgAjaxEditStash' ) ) {
 		return;
@@ -32,6 +32,16 @@
 			return;
 		}
 
+		// Whether the body text content changed since the last stashEdit()
+		function isTextChanged() {
+			return lastText !== $text.textSelection( 'getContents' );
+		}
+
+		// Whether the edit summary has changed since the last stashEdit()
+		function isSummaryChanged() {
+			return lastSummary !== $summary.textSelection( 'getContents' );
+		}
+
 		// Send a request to stash the edit to the API.
 		// If a request is in progress, abort it since its payload is stale and the API
 		// may limit concurrent stash parses.
@@ -43,6 +53,7 @@
 			if ( stashReq ) {
 				if ( lastPriority > priority ) {
 					// Stash request for summary change should wait on pending text change stash
+					// eslint-disable-next-line no-use-before-define
 					stashReq.then( checkStash );
 					return;
 				}
@@ -89,16 +100,6 @@
 					lastTextHash = null;
 				}
 			} );
-		}
-
-		// Whether the body text content changed since the last stashEdit()
-		function isTextChanged() {
-			return lastText !== $text.textSelection( 'getContents' );
-		}
-
-		// Whether the edit summary has changed since the last stashEdit()
-		function isSummaryChanged() {
-			return lastSummary !== $summary.textSelection( 'getContents' );
 		}
 
 		// Check whether text or summary have changed and call stashEdit()
