@@ -17,7 +17,7 @@ $wgUserMergeProtectedGroups = array();
 $wgUserMergeUnmergeable = array();
 require_once __DIR__ . "/../extensions/Variables/Variables.php";
 require_once __DIR__ . "/../extensions/EditNotify/EditNotify.php";
-require_once __DIR__ . "/../extensions/BlueSpiceEchoConnector/BlueSpiceEchoConnector.php";
+wfLoadExtension( 'BlueSpiceEchoConnector' );
 require_once __DIR__ . "/../extensions/BlueSpiceDistributionConnector/BlueSpiceDistributionConnector.php";
 require_once __DIR__ . "/../extensions/BlueSpiceUserMergeConnector/BlueSpiceUserMergeConnector.php";
 wfLoadExtension( 'BlueSpiceEditNotifyConnector' );
