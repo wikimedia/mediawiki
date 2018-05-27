@@ -109,6 +109,14 @@ Template:echo
 {{{1}}}
 !! endarticle
 
+!! article
+Template:echo3
+!! text
+{{{1}}}
+{{{1}}}
+{{{1}}}
+!! endarticle
+
 // For Serbian; localize Template namespace
 !! article
 Шаблон:Echo
@@ -126,6 +134,12 @@ Template:echo_with_span
 Template:echo_with_div
 !! text
 <div>{{{1}}}</div>
+!! endarticle
+
+!! article
+Template:echo with depth
+!! text
+{{echo|{{{1}}}}}
 !! endarticle
 
 !! article
@@ -1822,6 +1836,28 @@ b
 !! html
 <p>a
 </p><p>b
+</p>
+!! end
+
+!! test
+post-expand include size being exceeded
+!! options
+maxincludesize=20
+!! wikitext
+{{echo3|1234567890}}
+!! html
+<p><a href="/wiki/Template:Echo3" title="Template:Echo3">Template:Echo3</a><!-- WARNING: template omitted, post-expand include size too large -->
+</p>
+!! end
+
+!! test
+max template depth being reached
+!! options
+maxtemplatedepth=1
+!! wikitext
+{{echo with depth|too deep!}}
+!! html
+<p><span class="error">Template recursion depth limit exceeded (1)</span>
 </p>
 !! end
 
@@ -11501,6 +11537,17 @@ Template from main namespace
 {{:Main Page}}
 !! html
 <p>blah blah
+</p>
+!! end
+
+!! test
+Template from non-includable namespace
+!! options
+wgNonincludableNamespaces=10
+!! wikitext
+{{echo|uh oh!}}
+!! html
+<p><a href="/wiki/Template:Echo" title="Template:Echo">Template:Echo</a>
 </p>
 !! end
 
