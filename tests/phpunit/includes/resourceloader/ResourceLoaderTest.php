@@ -596,11 +596,11 @@ mw.example();
 		}
 	}
 
-	protected function getFailFerryMock() {
+	protected function getFailFerryMock( $getter = 'getScript' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getScript' ] )
+			->setMethods( [ $getter ] )
 			->getMock();
-		$mock->method( 'getScript' )->will( $this->throwException(
+		$mock->method( $getter )->will( $this->throwException(
 			new Exception( 'Ferry not found' )
 		) );
 		return $mock;
@@ -611,6 +611,14 @@ mw.example();
 			->setMethods( [ 'getScript' ] )
 			->getMock();
 		$mock->method( 'getScript' )->willReturn( $script );
+		return $mock;
+	}
+
+	protected function getSimpleStyleModuleMock( $styles = '' ) {
+		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->setMethods( [ 'getStyles' ] )
+			->getMock();
+		$mock->method( 'getStyles' )->willReturn( [ '' => $styles ] );
 		return $mock;
 	}
 
@@ -770,6 +778,43 @@ mw.example();
 		);
 	}
 
+	/**
+	 * Verify that exceptions in PHP for one module will not break others
+	 * (stylesheet response).
+	 *
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseErrorCSS() {
+		$modules = [
+			'foo' => self::getSimpleStyleModuleMock( '.foo{}' ),
+			'ferry' => self::getFailFerryMock( 'getStyles' ),
+			'bar' => self::getSimpleStyleModuleMock( '.bar{}' ),
+		];
+		$rl = new EmptyResourceLoader();
+		$rl->register( $modules );
+		$context = $this->getResourceLoaderContext(
+			[
+				'modules' => 'foo|ferry|bar',
+				'only' => 'styles',
+				'debug' => 'false',
+			],
+			$rl
+		);
+
+		// Disable log from makeModuleResponse via outputErrorAndLog
+		$this->setLogger( 'exception', new Psr\Log\NullLogger() );
+
+		$response = $rl->makeModuleResponse( $context, $modules );
+		$errors = $rl->getErrors();
+
+		$this->assertCount( 2, $errors );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertRegExp( '/Problem.+\n\s*"ferry":\s*"error"/m', $errors[1] );
+		$this->assertEquals(
+			'.foo{}.bar{}',
+			$response
+		);
+	}
 	/**
 	 * Verify that when building the startup module response,
 	 * an exception from one module class will not break the entire
