@@ -44,6 +44,24 @@
 	/* Initialization */
 	OO.initClass( mw.rcfilters.Controller );
 
+	mw.rcfilters.Controller.prototype.fetchCategories = function ( value ) {
+		var promise = new mw.Api().get( {
+			action: 'query',
+			list: 'allcategories',
+			acprefix: value
+		} )
+		.then( function ( result ) {
+			//debugger;
+			var fetchedCategories = result.query.allcategories;
+			var categoryArray = [];
+			for( var i=0; i<fetchedCategories.length; i++ ){
+				categoryArray.push( Object.values( fetchedCategories[i] ).toString() );
+			}
+			console.log( 'Fetched categories:', categoryArray );
+			return categoryArray;
+		} );
+	};
+
 	/**
 	 * Initialize the filter and parameter states
 	 *

@@ -28,6 +28,14 @@
 						normalizeTarget: specialPage === 'Recentchangeslinked'
 					}
 				);
+				
+				controller.fetchCategories( 'sci' )
+				.then( function ( categoryArray ) {
+					alert('Hi from rcfilters.init.js');
+					debugger;
+					console.log( 'fetched results: ', categoryArray );
+				} );
+				//return 
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
