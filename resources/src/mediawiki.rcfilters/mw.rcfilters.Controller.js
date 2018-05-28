@@ -54,7 +54,7 @@
 			var fetchedCategories = result.query.allcategories;
 			return fetchedCategories.map( ( fetchedCategory ) => Object.values( fetchedCategory ).toString() );
 
-			//Also possible:
+			/* Also possible */
 			//var getCategoryName = ( fetchedCategory ) => Object.values( fetchedCategory ).toString();
 			//return result.query.allcategories.map(getCategoryName);
 
@@ -1196,7 +1196,12 @@
 	 * @param {string} searchQuery Search query, including triggers
 	 */
 	mw.rcfilters.Controller.prototype.setSearch = function ( searchQuery ) {
-		this.filtersModel.setSearch( searchQuery );
+		if ( this.filtersmodel.getViewTrigger( searchQuery ) === 'category' ) {
+			this.fetchCategories( searchQuery )
+			.then( function ( result ) { console.log( result ); } );
+		} else {
+			this.filtersModel.setSearch( searchQuery );
+		}
 	};
 
 	/**
