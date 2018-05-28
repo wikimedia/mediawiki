@@ -137,7 +137,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] is een populair open source databasesysteem als alternatief voor MySQL.([https://secure.php.net/manual/en/pgsql.installation.php Hoe u PHP kunt compileren met ondersteuning voor PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] is een zeer goed ondersteund lichtgewicht databasesysteem ([http://www.php.net/manual/en/pdo.installation.php hoe PHP gecompileerd moet zijn met ondersteuning voor SQLite]; gebruikt PDO).",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] is een commerciële database voor grote bedrijven ([http://www.php.net/manual/en/oci8.installation.php PHP compileren met ondersteuning voor OCI8]).",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] is een commerciële enterprisedatabase voor Windows ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php PHP compileren met ondersteuning voor SQLSRV]).",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] is een commerciële enterprisedatabase voor Windows ([https://secure.php.net/manual/en/sqlsrv.installation.php PHP compileren met ondersteuning voor SQLSRV]).",
 	"config-header-mysql": "MySQL-instellingen",
 	"config-header-postgres": "PostgreSQL-instellingen",
 	"config-header-sqlite": "SQLite-instellingen",

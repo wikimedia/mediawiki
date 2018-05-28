@@ -120,7 +120,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] es un systema de base de datos popular e open source, alternativa a MySQL. ([https://secure.php.net/manual/en/pgsql.installation.php Como compilar PHP con supporto de PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un base de datos de interprisa commercial pro Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Como compilar PHP con supporto de SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un base de datos de interprisa commercial pro Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Como compilar PHP con supporto de SQLSRV])",
 	"config-header-mysql": "Configuration de MySQL",
 	"config-header-postgres": "Configuration de PostgreSQL",
 	"config-header-sqlite": "Configuration de SQLite",

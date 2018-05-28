@@ -113,7 +113,7 @@
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
 	"config-support-info": "MediaWiki ye compatible colos siguientes sistemes de bases de datos:\n\n$1\n\nSi nun atopes na llista el sistema de base de datos que tas intentando utilizar, sigue les instrucciones enllazaes enriba p'activar la compatibilidá.",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] ye un sistema comercial de base de datos empresariales pa Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Cómo compilar PHP con compatibilidá pa SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] ye un sistema comercial de base de datos empresariales pa Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Cómo compilar PHP con compatibilidá pa SQLSRV])",
 	"config-header-mysql": "Configuración de MySQL",
 	"config-header-postgres": "Configuración de PostgreSQL",
 	"config-header-sqlite": "Configuración de SQLite",

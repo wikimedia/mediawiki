@@ -135,7 +135,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL]是一种流行的开源数据库系统，可作为MySQL的替代。（[https://secure.php.net/manual/en/pgsql.installation.php 如何将对PostgreSQL的支持编译进PHP中]）",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite]是一种轻量级的数据库系统，能被良好地支持。（[https://secure.php.net/manual/en/pdo.installation.php 如何将对SQLite的支持编译进PHP中]，须使用PDO）",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle]是一种商用企业级的数据库。（[https://secure.php.net/manual/en/oci8.installation.php 如何将对OCI8的支持编译进PHP中]）",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server]是一个适用于Windows的商业性企业数据库。（[Config-dbsupport-oracle/manual/en/sqlsrv.installation.php 如何编译带有SQLSRV支持的PHP]）",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server]是一个适用于Windows的商业性企业数据库。（[https://secure.php.net/manual/en/sqlsrv.installation.php 如何编译带有SQLSRV支持的PHP]）",
 	"config-header-mysql": "MySQL设置",
 	"config-header-postgres": "PostgreSQL设置",
 	"config-header-sqlite": "SQLite设置",

@@ -117,7 +117,7 @@
 	"config-dbsupport-postgres": "* Η [{{int:version-db-postgres-url}} PostgreSQL] είναι δημοφιλές σύστημα βάσης δεδομένων ανοικτού κώδικα ως εναλλακτική της MySQL. ([https://secure.php.net/manual/en/pgsql.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη PostgreSQL])",
 	"config-dbsupport-sqlite": "* Η [{{int:version-db-sqlite-url}} SQLite] είναι ένα ελαφρύ σύστημα βάσης δεδομένων που υποστηρίζεται πολύ καλά. ([http://www.php.net/manual/en/pdo.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη SQLite], χρησιμοποιεί PDO)",
 	"config-dbsupport-oracle": "* Η [{{int:version-db-oracle-url}} Oracle] είναι εμπορική βάση δεδομένων για επιχειρήσεις. ([http://www.php.net/manual/en/oci8.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη OCI8])",
-	"config-dbsupport-mssql": "* Ο [{{int:version-db-mssql-url}} Microsoft SQL Server] είναι εμπορική βάση δεδομένων για επιχειρήσεις που λειτουργεί σε Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη SQLSRV])",
+	"config-dbsupport-mssql": "* Ο [{{int:version-db-mssql-url}} Microsoft SQL Server] είναι εμπορική βάση δεδομένων για επιχειρήσεις που λειτουργεί σε Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Πώς να μεταγλωττίσετε την PHP με υποστήριξη SQLSRV])",
 	"config-header-mysql": "Ρυθμίσεις MySQL",
 	"config-header-postgres": "Ρυθμίσεις PostgreSQL",
 	"config-header-sqlite": "Ρυθμίσεις SQLite",

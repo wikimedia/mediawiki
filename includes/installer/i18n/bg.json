@@ -119,7 +119,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] е популярна система за управление на бази от данни, алтернатива на MySQL. ([https://secure.php.net/manual/bg/pgsql.installation.php Как се компилира PHP с поддръжка на PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] е олекотена система за бази от данни, която е много добре поддържана. ([http://www.php.net/manual/bg/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] е комерсиална корпоративна база от данни за Windows. ([Config-dbsupport-oracle/manual/bg/sqlsrv.installation.php Как да се компилира PHP с поддръжка на SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] е комерсиална корпоративна база от данни за Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Как да се компилира PHP с поддръжка на SQLSRV])",
 	"config-header-mysql": "Настройки за MySQL",
 	"config-header-postgres": "Настройки за PostgreSQL",
 	"config-header-sqlite": "Настройки за SQLite",
