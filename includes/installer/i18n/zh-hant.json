@@ -134,7 +134,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] 是一套受歡迎的開源資料庫系統，可用來替代 MySQL。（[https://secure.php.net/manual/en/pgsql.installation.php 如何編譯支援 PostgreSQL 的 PHP]）。",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] 是一套輕量級的資料庫系統，MediaWiki 可在此資料庫系統上良好的運作。([https://secure.php.net/manual/en/pdo.installation.php 如何編譯支援 SQLite 的 PHP]，須透過 PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] 是一套商用企業級的資料庫。([https://secure.php.net/manual/en/oci8.installation.php 如何編譯支援 OCI8 的 PHP])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] 是一套 Windows 專用的商用企業級的資料庫。 ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php 如何編譯支援 SQLSRV 的 PHP])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] 是一套 Windows 專用的商用企業級的資料庫。 ([https://secure.php.net/manual/en/sqlsrv.installation.php 如何編譯支援 SQLSRV 的 PHP])",
 	"config-header-mysql": "MySQL 設定",
 	"config-header-postgres": "PostgreSQL 設定",
 	"config-header-sqlite": "SQLite 設定",

@@ -3325,5 +3325,15 @@
 	"authmanager-email-help": "電郵地址",
 	"authmanager-realname-label": "真名",
 	"authmanager-realname-help": "用戶嘅真名",
-	"authprovider-resetpass-skip-label": "跳過"
+	"authprovider-resetpass-skip-label": "跳過",
+	"passwordpolicies": "密碼政策",
+	"passwordpolicies-summary": "爾度係對爾個wiki定義咗嘅用戶組來講有效嘅密碼政策一覽。",
+	"passwordpolicies-group": "組",
+	"passwordpolicies-policies": "政策",
+	"passwordpolicies-policy-minimalpasswordlength": "密碼一定要有至少$1個{{PLURAL:$1|字元}}長",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "密碼一定要有至少$1個{{PLURAL:$1|字元}}長先可以簽到",
+	"passwordpolicies-policy-passwordcannotmatchusername": "密碼唔可以同用戶名一樣",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "密碼唔可以同列入咗黑名單嘅密碼一樣",
+	"passwordpolicies-policy-maximalpasswordlength": "密碼一定要短過$1個{{PLURAL:$1|字元}}長",
+	"passwordpolicies-policy-passwordcannotbepopular": "密碼唔可以{{PLURAL:$1|係最常見嘅密碼|喺最常見嘅$1個密碼一覽度}}"
 }

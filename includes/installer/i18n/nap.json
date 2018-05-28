@@ -114,7 +114,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] è nu sistema canusciuto 'e database open source ca fosse n'alternativa a MySQL. Putess'avé cocch'errore p'arricettà, e nun è cunzigliato 'e ll'ausà dint'a n'ambiente 'e produziona. ([https://secure.php.net/manual/en/pgsql.installation.php Comme s'avess'a cumpilà PHP cu suppuorto PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite]  è nu sistema 'e database leggero, ca fosse assaje buono suppurtato. ([http://www.php.net/manual/en/pdo.installation.php Comme cumpilà PHP cu suppuorto SQLite], aùsa PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] è nu database 'e na fraveca commerciale. ([http://www.php.net/manual/en/oci8.installation.php Comme cumpilà PHP cu suppuorto OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] è nu database 'e na fraveca commerciale p' 'o Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Comme cumpilà PHP cu suppuorto SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] è nu database 'e na fraveca commerciale p' 'o Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Comme cumpilà PHP cu suppuorto SQLSRV])",
 	"config-header-mysql": "Mpustaziune MySQL",
 	"config-header-postgres": "Mpustaziune PostgreSQL",
 	"config-header-sqlite": "Mpustaziune SQLite",

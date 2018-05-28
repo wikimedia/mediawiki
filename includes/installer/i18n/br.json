@@ -121,7 +121,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] zo anezhi ur reizhiad diaz roadennoù frank a wirioù brudet-mat a c'haller ober gantañ e plas MySQL. ([https://secure.php.net/manual/en/pgsql.installation.php Penaos kempunañ PHP gant skor PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] zo anezhi ur reizhiad diaz roadennoù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
 	"config-dbsupport-oracle": "* Un embregerezh kenwerzhel diaz roadennoù eo [{{int:version-db-oracle-url}} Oracle]. ([http://www.php.net/manual/en/oci8.installation.php Penaos kempunañ PHP gant skor OCI8])",
-	"config-dbsupport-mssql": "* Un embregerezh kenwerzhel diaz roadennoù evit Windows eo [{{int:version-db-mssql-url}} Microsoft SQL Server]. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Penaos kempunañ PHP gant skor SQLSRV])",
+	"config-dbsupport-mssql": "* Un embregerezh kenwerzhel diaz roadennoù evit Windows eo [{{int:version-db-mssql-url}} Microsoft SQL Server]. ([https://secure.php.net/manual/en/sqlsrv.installation.php Penaos kempunañ PHP gant skor SQLSRV])",
 	"config-header-mysql": "Arventennoù MySQL",
 	"config-header-postgres": "Arventennoù PostgreSQL",
 	"config-header-sqlite": "Arventennoù SQLite",

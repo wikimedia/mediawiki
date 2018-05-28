@@ -152,7 +152,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] es un sistema de base de datos popular de código abierto, alternativa a MySQL. ([https://secure.php.net/manual/es/pgsql.installation.php Cómo compilar PHP con compatibilidad PostgreSQL]).",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un sistema de base de datos ligero con gran compatibilidad con MediaWiki. ([https://secure.php.net/manual/en/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite], usando PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] es una base de datos comercial a nivel empresarial. ([https://secure.php.net/manual/en/oci8.installation.php Cómo compilar PHP con compatibilidad con OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un sistema comercial de base de datos empresariales para Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Cómo compilar PHP con compatibilidad con SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un sistema comercial de base de datos empresariales para Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Cómo compilar PHP con compatibilidad con SQLSRV])",
 	"config-header-mysql": "Configuración de MySQL",
 	"config-header-postgres": "Configuración de PostgreSQL",
 	"config-header-sqlite": "Configuración de SQLite",

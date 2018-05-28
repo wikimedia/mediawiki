@@ -88,7 +88,7 @@
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] je primarny cil za MediaWiki a podpěruje so najlěpje. MediaWiki funguje tež z [{{int:version-db-mariadb-url}} MariaDB] a [{{int:version-db-percona-url}} Percona Server], kotrejž stej kompatibelnej z MySQL. ([https://secure.php.net/manual/en/mysqli.installation.php Nawod ke kompilowanju  PHP z  MySQL-podpěru])",
-	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL. Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać. ([Config-dbsupport-oracle/manual/en/pgsql.installation.php Nawod za kompilowanje PHP z podpěru PostgreSQL])",
+	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] je popularny system datoweje banki zjawneho žórła jako alternatiwa k MySQL. Móhło hišće někotre zmylki eksistować, a njeporuča so jón w produktiwnej wokolinje wužiwać. ([https://secure.php.net/manual/en/pgsql.installation.php Nawod za kompilowanje PHP z podpěru PostgreSQL])",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] je komercielna předewzaćelska datowa banka. ([http://www.php.net/manual/en/oci8.installation.php Nawod za kompilowanje PHP z OCI8-podpěru])",
 	"config-header-mysql": "Nastajenja MySQL",
 	"config-header-postgres": "Nastajenja PostgreSQL",

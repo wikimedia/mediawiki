@@ -113,7 +113,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] o l'è un popolare scistema de database open source comme alternativa a MySQL. ([https://secure.php.net/manual/en/pgsql.installation.php Comme compilâ PHP con suporto PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] o l'è un scistema de database leggio, ch'o l'è suportou molto ben. ([http://www.php.net/manual/en/pdo.installation.php Comme compilâ PHP con suporto SQLite], o l'utilizza PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] o l'è un database de un'impreiza comerciâ. ([http://www.php.net/manual/en/oci8.installation.php Comme compilâ PHP con suporto OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] o l'è un database de un'impreiza commerciâ per Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php Comme compilâ PHP con supporto SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] o l'è un database de un'impreiza commerciâ per Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Comme compilâ PHP con supporto SQLSRV])",
 	"config-header-mysql": "Impostaçioin MySQL",
 	"config-header-postgres": "Impostaçioin PostgreSQL",
 	"config-header-sqlite": "Impostaçioin SQLite",

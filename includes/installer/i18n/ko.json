@@ -126,7 +126,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL]은 MySQL의 대안으로서 인기 있는 오픈 소스 데이터베이스 시스템입니다. ([https://secure.php.net/manual/en/pgsql.installation.php PostgreSQL 지원으로 PHP를 컴파일하는 방법])",
 	"config-dbsupport-sqlite": "*  [{{int:version-db-sqlite-url}} SQLite]는 매우 잘 지원되고 가벼운 데이터베이스 시스템입니다. ([http://www.php.net/manual/en/pdo.installation.php SQLite 지원으로 PHP를 컴파일하는 방법], PDO 사용)",
 	"config-dbsupport-oracle": "*  [{{int:version-db-oracle-url}} Oracle]은 상용 기업 데이터베이스입니다. ([http://www.php.net/manual/en/oci8.installation.php OCI8 지원으로 PHP를 컴파일하는 방법])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL 서버]는 Windows용 상용 기업 데이터베이스입니다. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php SQLSRV 지원으로 PHP를 컴파일하는 방법])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL 서버]는 Windows용 상용 기업 데이터베이스입니다. ([https://secure.php.net/manual/en/sqlsrv.installation.php SQLSRV 지원으로 PHP를 컴파일하는 방법])",
 	"config-header-mysql": "MySQL 설정",
 	"config-header-postgres": "PostgreSQL 설정",
 	"config-header-sqlite": "SQLite 설정",

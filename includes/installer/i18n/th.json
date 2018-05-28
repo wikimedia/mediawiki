@@ -116,7 +116,7 @@
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] คือระบบฐานข้อมูลแบบโอเพนซอร์สที่ได้รับความนิยมสูงที่สามารถใช้แทน MySQL ได้ ([https://secure.php.net/manual/en/pgsql.installation.php วิธีการคอมไพล์ PHP ด้วยการสนับสนุน PostgreSQL])",
 	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] คือระบบฐานข้อมูลขนาดเล็กที่ได้รับการสนับสนุนดีมาก ([http://www.php.net/manual/en/pdo.installation.php วิธีการคอมไพล์ PHP ด้วยการสนับสนุน SQLite], ใช้ PDO)",
 	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] คือฐานข้อมูลสำหรับองค์กรพาณิชย์ ([http://www.php.net/manual/en/oci8.installation.php วิธีการคอมไพล์ PHP ด้วยการสนับสนุน OCI8])",
-	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] คือฐานข้อมูลสำหรับองค์กรพาณิชย์สำหรับ Windows. ([Config-dbsupport-oracle/manual/en/sqlsrv.installation.php วิธีการคอมไพล์ PHP ด้วยการสนับสนุน SQLSRV])",
+	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] คือฐานข้อมูลสำหรับองค์กรพาณิชย์สำหรับ Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php วิธีการคอมไพล์ PHP ด้วยการสนับสนุน SQLSRV])",
 	"config-header-mysql": "การตั้งค่า MySQL",
 	"config-header-postgres": "การตั้งค่า PostgreSQL",
 	"config-header-sqlite": "การตั้งค่า SQLite",
