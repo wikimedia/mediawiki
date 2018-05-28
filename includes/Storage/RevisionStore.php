@@ -1123,7 +1123,7 @@ class RevisionStore
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, '', 0 );
+			$user = new UserIdentityValue( 0, '<unknown>', 0 );
 		}
 
 		$comment = $this->commentStore
@@ -1174,7 +1174,7 @@ class RevisionStore
 			);
 		} catch ( InvalidArgumentException $ex ) {
 			wfWarn( __METHOD__ . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, '', 0 );
+			$user = new UserIdentityValue( 0, '<unknown>', 0 );
 		}
 
 		$comment = $this->commentStore
