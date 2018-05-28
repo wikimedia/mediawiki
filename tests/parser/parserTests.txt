@@ -63,6 +63,12 @@ FOO
 !!endarticle
 
 !! article
+Template:redirect to foo
+!! text
+#REDIRECT [[Template:Foo]]
+!! endarticle
+
+!! article
 Template:Blank
 !! text
 !! endarticle
@@ -1858,6 +1864,17 @@ maxtemplatedepth=1
 {{echo with depth|too deep!}}
 !! html
 <p><span class="error">Template recursion depth limit exceeded (1)</span>
+</p>
+!! end
+
+!! test
+multiple templates that are redirects
+!! wikitext
+{{redirect to foo}}
+{{redirect to foo}}
+!! html
+<p>FOO
+FOO
 </p>
 !! end
 
