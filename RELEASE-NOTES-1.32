@@ -113,6 +113,11 @@ because of Phabricator reports.
   any HTMLForm object rather than PreferencesForm.
 * The non namespaced TimestampException class, deprecated in 1.29, was removed.
   Use Wikimedia\Timestamp\TimestampException instead.
+* The global functions codepointToUtf8, hexSequenceToUtf8, utf8ToHexSequence,
+  utf8ToCodepoint, and escapeSingleString (deprecated in 1.25) were removed.
+  The UtfNormal\Utils class from the utfnormal library should be used instead.
+* The deprecated UTF8_ and UNICODE_ constants were removed. The class constants
+  from the UtfNormal\Constants class from the utfnormal library should be used
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing

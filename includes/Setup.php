@@ -627,8 +627,6 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
 
-require_once "$IP/includes/compat/normal/UtfNormalUtil.php";
-
 // T48998: Bail out early if $wgArticlePath is non-absolute
 foreach ( [ 'wgArticlePath', 'wgVariantArticlePath' ] as $varName ) {
 	if ( $$varName && !preg_match( '/^(https?:\/\/|\/)/', $$varName ) ) {
