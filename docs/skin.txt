@@ -58,7 +58,7 @@ These can also be customised on a per-user basis, by editing
 
 Several custom skins are available as of 2014.
 
-https://www.mediawiki.org/wiki/Category:All_skins
+https://www.mediawiki.org/wiki/Special:MyLanguage/Category:All_skins
 
 Installing a skin requires adding its files in a subdirectory under skins/ and
 adding an appropriate require_once line to LocalSettings.php, similarly to how
