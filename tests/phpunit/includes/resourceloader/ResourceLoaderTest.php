@@ -267,7 +267,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testLessImportDirs() {
 		$rl = new EmptyResourceLoader();
-		$lc = $rl->getLessCompiler();
+		$lc = $rl->getLessCompiler( $rl->getLessVars() );
 		$basePath = dirname( dirname( __DIR__ ) ) . '/data/less';
 		$lc->SetImportDirs( [
 			 "$basePath/common" => '',
