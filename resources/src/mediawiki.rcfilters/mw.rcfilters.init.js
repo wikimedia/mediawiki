@@ -28,6 +28,13 @@
 						normalizeTarget: specialPage === 'Recentchangeslinked'
 					}
 				);
+				
+				controller.fetchCategories( 'sci' )
+				.then( function ( categoryArray ) {
+					alert( 'fetched results: ' + categoryArray );
+					//debugger;
+					console.log( 'fetched results:', categoryArray );
+				} )
 
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
