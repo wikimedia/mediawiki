@@ -165,16 +165,6 @@ class DatabaseMssql extends Database {
 	 * @throws DBUnexpectedError
 	 */
 	protected function doQuery( $sql ) {
-		// several extensions seem to think that all databases support limits
-		// via LIMIT N after the WHERE clause, but  MSSQL uses SELECT TOP N,
-		// so to catch any of those extensions we'll do a quick check for a
-		// LIMIT clause and pass $sql through $this->LimitToTopN() which parses
-		// the LIMIT clause and passes the result to $this->limitResult();
-		if ( preg_match( '/\bLIMIT\s*/i', $sql ) ) {
-			// massage LIMIT -> TopN
-			$sql = $this->LimitToTopN( $sql );
-		}
-
 		// MSSQL doesn't have EXTRACT(epoch FROM XXX)
 		if ( preg_match( '#\bEXTRACT\s*?\(\s*?EPOCH\s+FROM\b#i', $sql, $matches ) ) {
 			// This is same as UNIX_TIMESTAMP, we need to calc # of seconds from 1970
@@ -903,78 +893,31 @@ class DatabaseMssql extends Database {
 	 * Construct a LIMIT query with optional offset
 	 * This is used for query pages
 	 *
-	 * @param string $sql SQL query we will append the limit too
+	 * @param string $sql SQL query we will append the limit to
 	 * @param int $limit The SQL limit
 	 * @param bool|int $offset The SQL offset (default false)
 	 * @return array|string
 	 * @throws DBUnexpectedError
 	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
-		if ( $offset === false || $offset == 0 ) {
-			if ( strpos( $sql, "SELECT" ) === false ) {
-				return "TOP {$limit} " . $sql;
-			} else {
-				return preg_replace( '/\bSELECT(\s+DISTINCT)?\b/Dsi',
-					'SELECT$1 TOP ' . $limit, $sql, 1 );
-			}
-		} else {
-			// This one is fun, we need to pull out the select list as well as any ORDER BY clause
-			$select = $orderby = [];
-			$s1 = preg_match( '#SELECT\s+(.+?)\s+FROM#Dis', $sql, $select );
-			$s2 = preg_match( '#(ORDER BY\s+.+?)(\s*FOR XML .*)?$#Dis', $sql, $orderby );
-			$postOrder = '';
-			$first = $offset + 1;
-			$last = $offset + $limit;
-			$sub1 = 'sub_' . $this->subqueryId;
-			$sub2 = 'sub_' . ( $this->subqueryId + 1 );
-			$this->subqueryId += 2;
-			if ( !$s1 ) {
-				// wat
-				throw new DBUnexpectedError( $this, "Attempting to LIMIT a non-SELECT query\n" );
-			}
-			if ( !$s2 ) {
-				// no ORDER BY
-				$overOrder = 'ORDER BY (SELECT 1)';
-			} else {
-				if ( !isset( $orderby[2] ) || !$orderby[2] ) {
-					// don't need to strip it out if we're using a FOR XML clause
-					$sql = str_replace( $orderby[1], '', $sql );
-				}
-				$overOrder = $orderby[1];
-				$postOrder = ' ' . $overOrder;
-			}
-			$sql = "SELECT {$select[1]}
-					FROM (
-						SELECT ROW_NUMBER() OVER({$overOrder}) AS rowNumber, *
-						FROM ({$sql}) {$sub1}
-					) {$sub2}
-					WHERE rowNumber BETWEEN {$first} AND {$last}{$postOrder}";
-
-			return $sql;
+		if ( !is_numeric( $limit ) ) {
+			throw new DBUnexpectedError( $this,
+				"Invalid non-numeric limit passed to limitResult()\n" );
 		}
-	}
 
-	/**
-	 * If there is a limit clause, parse it, strip it, and pass the remaining
-	 * SQL through limitResult() with the appropriate parameters. Not the
-	 * prettiest solution, but better than building a whole new parser. This
-	 * exists becase there are still too many extensions that don't use dynamic
-	 * sql generation.
-	 *
-	 * @param string $sql
-	 * @return array|mixed|string
-	 */
-	public function LimitToTopN( $sql ) {
-		// Matches: LIMIT {[offset,] row_count | row_count OFFSET offset}
-		$pattern = '/\bLIMIT\s+((([0-9]+)\s*,\s*)?([0-9]+)(\s+OFFSET\s+([0-9]+))?)/i';
-		if ( preg_match( $pattern, $sql, $matches ) ) {
-			$row_count = $matches[4];
-			$offset = $matches[3] ?: $matches[6] ?: false;
+		if ( !is_numeric( $offset ) ) {
+			$offset = 0;
+		}
 
-			// strip the matching LIMIT clause out
-			$sql = str_replace( $matches[0], '', $sql );
+		// in mssql, we can only do limits/offsets on queries with an ORDER BY clause
+		if ( !preg_match( '#\bORDER BY\b#i', $sql ) ) {
+			$sql .= ' ORDER BY (SELECT 1)';
+		}
 
-			return $this->limitResult( $sql, $row_count, $offset );
+		$sql .= " OFFSET {$offset} ROWS";
+
+		if ( $limit > 0 ) {
+			$sql .= " FETCH FIRST {$limit} ROWS ONLY";
 		}
 
 		return $sql;
@@ -1196,7 +1139,8 @@ class DatabaseMssql extends Database {
 	 * @return array
 	 */
 	public function makeSelectOptions( $options ) {
-		$tailOpts = '';
+		$preTailOpts = '';
+		$postTailOpts = '';
 		$startOpts = '';
 
 		$noKeyOptions = [];
@@ -1206,9 +1150,9 @@ class DatabaseMssql extends Database {
 			}
 		}
 
-		$tailOpts .= $this->makeGroupByWithHaving( $options );
+		$preTailOpts .= $this->makeGroupByWithHaving( $options );
 
-		$tailOpts .= $this->makeOrderBy( $options );
+		$preTailOpts .= $this->makeOrderBy( $options );
 
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
 			$startOpts .= 'DISTINCT';
@@ -1216,11 +1160,11 @@ class DatabaseMssql extends Database {
 
 		if ( isset( $noKeyOptions['FOR XML'] ) ) {
 			// used in group concat field emulation
-			$tailOpts .= " FOR XML PATH('')";
+			$postTailOpts .= "FOR XML PATH('')";
 		}
 
 		// we want this to be compatible with the output of parent::makeSelectOptions()
-		return [ $startOpts, '', $tailOpts, '', '' ];
+		return [ $startOpts, '', $preTailOpts, $postTailOpts, '' ];
 	}
 
 	public function getType() {

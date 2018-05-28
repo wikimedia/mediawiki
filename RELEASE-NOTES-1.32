@@ -172,7 +172,7 @@ The supported versions are:
 * PostgreSQL 9.2 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
-* Microsoft SQL Server 2005 (9.00.1399)
+* Microsoft SQL Server 2012 or later
 
 == Upgrading ==
 1.32 has several database changes since 1.31, and will not work without schema
