@@ -1199,4 +1199,113 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 	}
 
+	/**
+	 * Block cookie should be set for IP Blocks if
+	 * wgCookieSetOnIpBlock is set to true
+	 */
+	public function testIpBlockCookieSet() {
+		$this->setMwGlobals( [
+			'wgCookieSetOnIpBlock' => true,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 5 * 60 * 60 ) ),
+		] );
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+
+		// get user
+		$user = User::newFromSession( $request );
+		$user->trackBlockWithCookie();
+
+		// test cookie was set
+		$cookies = $request->response()->getCookies();
+		$this->assertArrayHasKey( 'wikiBlockID', $cookies );
+
+		// clean up
+		$block->delete();
+	}
+
+	/**
+	 * Block cookie should NOT be set when wgCookieSetOnIpBlock
+	 * is disabled
+	 */
+	public function testIpBlockCookieNotSet() {
+		$this->setMwGlobals( [
+			'wgCookieSetOnIpBlock' => false,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 5 * 60 * 60 ) ),
+		] );
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+
+		// get user
+		$user = User::newFromSession( $request );
+		$user->trackBlockWithCookie();
+
+		// test cookie was not set
+		$cookies = $request->response()->getCookies();
+		$this->assertArrayNotHasKey( 'wikiBlockID', $cookies );
+
+		// clean up
+		$block->delete();
+	}
+
+	/**
+	 * When an ip user is blocked and then they log in, cookie block
+	 * should be invalid and the cookie removed.
+	 */
+	public function testIpBlockCookieIgnoredWhenUserLoggedIn() {
+		$this->setMwGlobals( [
+			'wgAutoblockExpiry' => 8000,
+			'wgCookieSetOnIpBlock' => true,
+			'wgCookiePrefix' => 'wiki',
+			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
+		] );
+
+		// setup block
+		$block = new Block( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+		] );
+		$block->setTarget( '1.2.3.4' );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		// setup request
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		$request->getSession()->setUser( $this->getTestUser()->getUser() );
+		$request->setCookie( 'BlockID', $block->getCookieValue() );
+
+		// setup user
+		$user = User::newFromSession( $request );
+
+		// logged in users should be inmune to cookie block of type ip/range
+		$this->assertFalse( $user->isBlocked() );
+
+		// cookie is being cleared
+		$cookies = $request->response()->getCookies();
+		$this->assertEquals( '', $cookies['wikiBlockID']['value'] );
+
+		// clean up
+		$block->delete();
+	}
 }
