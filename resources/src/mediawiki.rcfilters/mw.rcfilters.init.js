@@ -29,10 +29,39 @@
 					}
 				);
 				
+				conditionalViews.category = {
+					title: mw.msg( 'categories' ),
+					trigger: '/',
+					groups: [
+						{
+							// Group definition (single group)
+							name: 'category',
+							type: 'arbitrary_string_options', // A new group type
+							title: mw.msg( 'categories' ),
+							labelPrefixKey: { 'default': 'rcfilters-tag-prefix-category', inverted: 'rcfilters-tag-prefix-category-inverted' },
+							separator: '|',
+							fullCoverage: false,
+							filters:
+							// Temp filters, to be removed eventually.
+							// The filters for this group will be fetched from the API upon lookup.
+							[
+								{
+									name: 'category1',
+									label: mw.msg( 'culture' ),
+									description: 'dummy filter1'
+								},
+								{
+									name: 'category2',
+									label: mw.msg( 'geography' ),
+									description: 'dummy filter2'
+								}
+							]
+						}
+					]
+				};
+	
 				controller.fetchCategories( 'sci' )
 				.then( function ( categoryArray ) {
-					alert( 'fetched results: ' + categoryArray );
-					//debugger;
 					console.log( 'fetched results:', categoryArray );
 				} )
 
