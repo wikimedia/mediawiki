@@ -1,4 +1,12 @@
 {
 	"name": "FooBar",
-	"manifest_version": 1
+	"attributes": {
+		"FooBar": {
+			"Attr": [ "test" ]
+		},
+		"NotLoaded": {
+			"Attr": [ "test2" ]
+		}
+	},
+	"manifest_version": 2
 }
