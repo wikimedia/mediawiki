@@ -126,7 +126,6 @@ class CrhExceptions {
 		'beyude' => 'бейуде', 'beyüde' => 'бейуде',
 		'curat' => 'джурьат', 'cürat' => 'джурьат',
 		'mesul' => 'месуль', 'mesül' => 'месуль',
-		'yetsin' => 'етсин', 'etsin' => 'етсин',
 	];
 
 	# map Cyrillic to Latin and back, simple string match only (no regex)
@@ -367,7 +366,7 @@ class CrhExceptions {
 		'козь' => 'köz', '-юнджи' => '-ünci', '-юнджиде' => '-üncide', '-юнджиден' => '-ünciden',
 
 		# originally L2C, here swapped
-		'етсин' => 'etsin', 'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy', 'льний' => 'lniy',
+		'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy', 'льний' => 'lniy',
 		'льская' => 'lskaya', 'льский' => 'lskiy', 'льское' => 'lskoye', 'ополь' => 'opol',
 		'щее' => 'şçeye', 'щий' => 'şçiy', 'щая' => 'şçaya', 'цепс' => 'tseps',
 
@@ -389,8 +388,8 @@ class CrhExceptions {
 		'му([иэИЭ])' => 'mü$1',
 
 		# originally L2C, here swapped
-		'роль$1' => 'rol([^ü])',
-		'усть$1' => 'üst([^ü])',
+		'роль$1' => 'rol([^ü]|'.self::WB.')',
+		'усть$1' => 'üst([^ü]|'.self::WB.')',
 
 		# more prefixes
 		'ком-кок' => 'köm-kök',
@@ -459,6 +458,10 @@ class CrhExceptions {
 			'/'.self::WB.'джонкю'.self::WB.'/u' => 'cönkü',
 			'/'.self::WB.'Джонкю'.self::WB.'/u' => 'Cönkü',
 			'/'.self::WB.'ДЖОНКЮ'.self::WB.'/u' => 'CÖNKÜ',
+
+			'/'.self::WB.'куркчи/u' => 'kürkçi',
+			'/'.self::WB.'Куркчи/u' => 'Kürkçi',
+			'/'.self::WB.'КУРКЧИ/u' => 'KÜRKÇI',
 
 			'/'.self::WB.'устке'.self::WB.'/u' => 'üstke',
 			'/'.self::WB.'Устке'.self::WB.'/u' => 'Üstke',
@@ -615,13 +618,21 @@ class CrhExceptions {
 			'/'.self::WB.'Mer'.self::WB.'/u' => 'Мэр',
 			'/'.self::WB.'MER'.self::WB.'/u' => 'МЭР',
 
-			'/'.self::WB.'джонк/u' => 'cönk',
-			'/'.self::WB.'Джонк/u' => 'Cönk',
-			'/'.self::WB.'ДЖОНК/u' => 'CÖNK',
+			'/'.self::WB.'cönk/u' => 'джонк',
+			'/'.self::WB.'Cönk/u' => 'Джонк',
+			'/'.self::WB.'CÖNK/u' => 'ДЖОНК',
 
-			'/'.self::WB.'куркчи/u' => 'kürkçi',
-			'/'.self::WB.'Куркчи/u' => 'Kürkçi',
-			'/'.self::WB.'КУРКЧИ/u' => 'KÜRKÇI',
+			# (y)etsin -> етсин/этсин
+			# note that target starts with CYRILLIC е/Е!
+			'/yetsin/u' => 'етсин',
+			'/Yetsin/u' => 'Етсин',
+			'/YETSİN/u' => 'ЕТСИН',
+
+			# note that target starts with LATIN e/E!
+			# (other transformations will determine CYRILLIC е/э as needed)
+			'/etsin/u' => 'eтсин',
+			'/Etsin/u' => 'Eтсин',
+			'/ETSİN/u' => 'EТСИН',
 
 			# буква Ё - первый заход
 			# расставляем Ь после согласных
@@ -665,10 +676,6 @@ class CrhExceptions {
 			# add Ь after Л
 			'/(['.Crh::L_F.'])l(['.Crh::L_CONS_LC.']|'.self::WB.')/u' => '$1ль$2',
 			'/(['.Crh::L_F_UC.'])L(['.Crh::L_CONS.']|'.self::WB.')/u' => '$1ЛЬ$2',
-
-			'/etsin'.self::WB.'/u' => 'етсин',
-			'/Etsin'.self::WB.'/u' => 'Етсин',
-			'/ETSİN'.self::WB.'/u' => 'ЕТСИН',
 
 			# относятся к началу слова
 			'/'.self::WB.'ts/u' => 'ц',
