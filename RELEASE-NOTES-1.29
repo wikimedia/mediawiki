@@ -18,6 +18,9 @@ THIS IS NOT A RELEASE YET!
 * (T179190) selenium: Move logic for running tests from package.json to selenium.sh.
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 * Add default edit rate limit of 90 edits/minute for all users.
+* Updated mediawiki/at-ease from v1.1.0 to v1.2.0. This brings in the re-namespacing
+  from medawiki/ to wikimedia/ as done in newer version of MediaWiki, allowing
+  easier backporting of changes, and increasing extension backwards compatability.
 
 == MediaWiki 1.29.2 ==
 
