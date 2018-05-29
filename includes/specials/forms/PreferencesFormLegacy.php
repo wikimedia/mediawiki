@@ -146,7 +146,4 @@ class PreferencesFormLegacy extends HTMLForm {
 
 // Retain the old class name for backwards compatibility.
 // In the future, this alias will be changed to point to PreferencesFormOOUI.
-class PreferencesForm extends PreferencesFormLegacy {
-}
-// Phan doesn't understand class_alias()?
-// class_alias( PreferencesFormLegacy::class, 'PreferencesForm' );
+class_alias( PreferencesFormLegacy::class, 'PreferencesForm' );
