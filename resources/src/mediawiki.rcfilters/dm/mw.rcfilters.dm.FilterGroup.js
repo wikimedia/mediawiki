@@ -44,7 +44,13 @@
 		OO.EmitterList.call( this );
 
 		this.name = name;
-		this.type = config.type || 'send_unselected_if_any';
+		this.searchResults = !!config.isSearchResults;
+		this.dynamic = !!config.isDynamic;
+		this.type = this.searchResults ?
+			'search_results' :
+			config.type || 'send_unselected_if_any';
+		this.mainGroupName = this.searchResults ?
+			config.mainGroupName : this.name;
 		this.view = config.view || 'default';
 		this.sticky = !!config.sticky;
 		this.title = config.title || name;
@@ -53,7 +59,10 @@
 		this.numericRange = config.range;
 		this.separator = config.separator || '|';
 		this.labelPrefixKey = config.labelPrefixKey;
-		this.visible = config.visible === undefined ? true : !!config.visible;
+		// Dynamic groups start invisible
+		this.visible = this.isDynamic() ?
+			false :
+			config.visible === undefined ? true : !!config.visible;
 
 		this.currSelected = null;
 		this.active = !!config.active;
@@ -94,6 +103,7 @@
 		var defaultParam,
 			supersetMap = {},
 			model = this,
+			selectedItems = [],
 			items = [];
 
 		filterDefinition.forEach( function ( filter ) {
@@ -108,6 +118,10 @@
 					identifiers: filter.identifiers,
 					defaultHighlightColor: filter.defaultHighlightColor
 				} );
+
+			if ( filter.selected || filter.value ) {
+				selectedItems.push( filterItem );
+			}
 
 			if ( filter.subset ) {
 				filter.subset = filter.subset.map( function ( el ) {
@@ -159,6 +173,12 @@
 
 		// Add items
 		this.addItems( items );
+
+		// Set value/selected explicitly to items that have that state
+		// so we trigger the update event for the widgets
+		selectedItems.forEach( function ( itemModel ) {
+			itemModel.toggleSelected( true );
+		} );
 
 		// Now that we have all items, we can apply the superset map
 		this.getItems().forEach( function ( filterItem ) {
@@ -233,6 +253,15 @@
 		var changed = false,
 			active = this.areAnySelected(),
 			model = this;
+
+		if ( this.isSearchResults() && item.isSelected() ) {
+			// This is a temporary search results group; if the item is selected,
+			// we need to remove it from this group and have the relevant view
+			// add it directly, and select it.
+			this.removeItems( [ item ] );
+			this.emit( 'searchItemSelected', this, item );
+			return;
+		}
 
 		if ( this.getType() === 'single_option' ) {
 			// This group must have one item selected always
@@ -634,8 +663,14 @@
 				}
 			} );
 
-			result[ this.getName() ] = ( values.length === Object.keys( filterRepresentation ).length ) ?
-				'all' : values.join( this.getSeparator() );
+			result[ this.getName() ] = values.join( this.getSeparator() );
+			if (
+				!this.isDynamic() &&
+				!this.isSearchResults() &&
+				values.length === Object.keys( filterRepresentation ).length
+			) {
+				result[ this.getName() ] = 'all';
+			}
 		} else if ( this.getType() === 'single_option' ) {
 			result[ this.getName() ] = getSelectedParameter( filterRepresentation );
 		}
@@ -948,6 +983,21 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.removeItems = function ( items ) {
+		items = Array.isArray( items ) ? items : [ items ];
+
+		// We need each item to emit a removal event
+		items.forEach( function ( itemModel ) {
+			itemModel.remove();
+		} );
+
+		// Mixing parent
+		OO.EmitterList.prototype.removeItems.call( this, items );
+	};
+
+	/**
 	 * Toggle the visibility of this group
 	 *
 	 * @param {boolean} [isVisible] Item is visible
@@ -957,6 +1007,7 @@
 
 		if ( this.visible !== isVisible ) {
 			this.visible = isVisible;
+
 			this.emit( 'update' );
 		}
 	};
@@ -971,13 +1022,96 @@
 	};
 
 	/**
+	 * @inheritdoc
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.removeAllItems = function () {
+		this.getItems().forEach( function ( itemModel ) {
+			itemModel.remove();
+		} );
+
+		this.emit( 'allremoved', this.getItems() );
+		this.clearItems();
+	};
+
+	mw.rcfilters.dm.FilterGroup.prototype.resetSearchItems = function ( searchResults ) {
+		var items = [],
+			model = this;
+
+		searchResults = searchResults || [];
+
+		this.removeAllItems();
+		searchResults.forEach( function ( paramName ) {
+			// Create dm item
+			items.push(
+				new mw.rcfilters.dm.FilterItem( paramName, model, {
+					group: model.getName(),
+					label: paramName
+				} )
+			);
+		} );
+
+		this.addItems( items );
+	};
+
+	/**
+	 * Check whether the group is a search group that contains temporal
+	 * items
+	 *
+	 * @return {boolean} Group contains only search results
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isSearchResults = function () {
+		return this.searchResults;
+	};
+
+	/**
+	 * Check whether the group is a dynamic group whose items
+	 * are added during the session
+	 *
+	 * @return {boolean} Group adjusts its items dynamically
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.isDynamic = function () {
+		return this.dynamic;
+	};
+
+	/**
+	 * Set the dynamic state of this group
+	 *
+	 * @param {boolean} [isDynamic] Group adjusts its items dynamically
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.setDynamic = function ( isDynamic ) {
+		this.dynamic = !!isDynamic;
+	};
+
+	/**
+	 * For search results group, retain the name of the main group where
+	 * selected search items will be preserved.
+	 *
+	 * @return {string} Name of main group
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.getMainGroupName = function () {
+		return this.mainGroupName;
+	};
+
+	/**
 	 * Set the visibility of the items under this group by the given items array
 	 *
 	 * @param {mw.rcfilters.dm.ItemModel[]} visibleItems An array of visible items
 	 */
 	mw.rcfilters.dm.FilterGroup.prototype.setVisibleItems = function ( visibleItems ) {
+debugger;
 		this.getItems().forEach( function ( itemModel ) {
 			itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
+		} );
+	};
+
+	/**
+	 * Check whether the group has any visible items
+	 *
+	 * @return {boolean} The group has visible items
+	 */
+	mw.rcfilters.dm.FilterGroup.prototype.hasVisibleItems = function () {
+		return this.getItems().some( function ( itemModel ) {
+			return itemModel.isVisible();
 		} );
 	};
 }( mediaWiki ) );

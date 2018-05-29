@@ -128,6 +128,31 @@
 						{ name: 3, label: 'User talk', cssClass: 'namespace-3' }
 					]
 				} ]
+			},
+			asyncGroupView: {
+				label: 'Group fetching results',
+				trigger: '+',
+				async: true,
+				mainGroupName: 'asyncGroup',
+				searchGroupTitle: 'Async group results',
+				getResultCallback: function ( searchQuery ) {
+					// Some fake async lookup
+					// For testing purposes, will return an array
+					// of characters built from the search query
+					// 'abc' => [ 'a', 'b', 'c' ]
+					return $.Deferred().resolve(
+						searchQuery.split( '' )
+					);
+				},
+				groups: [
+					{
+						name: 'asyncGroup',
+						type: 'string_options',
+						separator: '|',
+						fullCoverage: false,
+						filters: []
+					}
+				]
 			}
 		},
 		defaultParameters = {
@@ -140,7 +165,8 @@
 			group3: 'filter8',
 			group4: 'option2',
 			group5: 'option1',
-			namespace: ''
+			namespace: '',
+			asyncGroup: ''
 		},
 		baseParamRepresentation = {
 			filter1: '0',
@@ -156,7 +182,8 @@
 			group6option2: '1',
 			group6option3: '1',
 			group7: 'group7option2',
-			namespace: ''
+			namespace: '',
+			asyncGroup: ''
 		},
 		emptyParamRepresentation = {
 			filter1: '0',
@@ -173,6 +200,7 @@
 			group6option3: '0',
 			group7: '',
 			namespace: '',
+			asyncGroup: '',
 			// Null highlights
 			group1__filter1_color: null,
 			group1__filter2_color: null,
@@ -228,6 +256,7 @@
 			namespace__1: false,
 			namespace__2: false,
 			namespace__3: false
+			// asyncGroup does not have a base filter representation
 		},
 		baseFullFilterState = {
 			group1__filter1: { selected: false, conflicted: false, included: false },
@@ -243,6 +272,7 @@
 			group4__option2: { selected: true, conflicted: false, included: false },
 			group4__option3: { selected: false, conflicted: false, included: false },
 			group5__option1: { selected: true, conflicted: false, included: false },
+
 			group5__option2: { selected: false, conflicted: false, included: false },
 			group5__option3: { selected: false, conflicted: false, included: false },
 			group6__group6option1: { selected: false, conflicted: false, included: false },
@@ -370,6 +400,22 @@
 						group1__filter1_color: 'c1'
 					},
 					msg: 'An all-falsey input with highlight params result in only the highlight param.'
+				},
+				{
+					input: {
+						asyncGroup: 'foo|bar'
+					},
+					result: {
+						asyncGroup: 'foo|bar'
+					},
+					msg: 'Async group parameters are retained if they contain values'
+				},
+				{
+					input: {
+						asyncGroup: ''
+					},
+					result: {},
+					msg: 'Async group parameters are removed if they are empty of values'
 				},
 				{
 					input: {
@@ -548,6 +594,44 @@
 		);
 	} );
 
+	QUnit.test( 'setSearchResultItems & moveSearchItemToMainGroup', function ( assert ) {
+		var item,
+			model = new mw.rcfilters.dm.FiltersViewModel();
+
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		model.setSearchResultItems( 'asyncGroup', [ 'foo', 'bar', 'baz' ] );
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullFilterState, {
+				searchresults_asyncGroup__foo: { selected: false, conflicted: false, included: false },
+				searchresults_asyncGroup__bar: { selected: false, conflicted: false, included: false },
+				searchresults_asyncGroup__baz: { selected: false, conflicted: false, included: false }
+			} ),
+			'Search results inserted to temporal search group'
+		);
+
+		item = model.getGroup( 'searchresults_asyncGroup' ).getItemByParamName( 'foo' );
+		assert.equal(
+			item.getName(),
+			'searchresults_asyncGroup__foo',
+			'Item from temporal search group is fetched successfully'
+		);
+
+		// Move the item to main group
+		model.moveSearchItemToMainGroup( item );
+		assert.deepEqual(
+			model.getFullState(),
+			$.extend( true, {}, baseFullFilterState, {
+				searchresults_asyncGroup__bar: { selected: false, conflicted: false, included: false },
+				searchresults_asyncGroup__baz: { selected: false, conflicted: false, included: false },
+				// 'foo' is now in main group, and is selected
+				asyncGroup__foo: { selected: true, conflicted: false, included: false }
+			} ),
+			'Moving search item to main group results in it being selected'
+		);
+	} );
+
 	QUnit.test( 'getParametersFromFilters', function ( assert ) {
 		var model = new mw.rcfilters.dm.FiltersViewModel();
 
@@ -676,6 +760,16 @@
 				group4: 'option3'
 			} ),
 			'Selecting a different option from "single_option" group changes the selection.'
+		);
+
+		// Reset
+		model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+		model.setSearchResultItems( 'asyncGroup', [ 'foo', 'bar', 'baz' ] );
+		assert.deepEqual(
+			model.getParametersFromFilters(),
+			baseParamRepresentation,
+			'Search results group are not represented in parameter state'
 		);
 	} );
 
@@ -1031,6 +1125,18 @@
 			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'all', 'filter2' ] ),
 			[ 'all' ],
 			'If any value is "all", the only value is "all".'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'group1', [ 'filter1', 'all', 'filter2' ] ),
+			[ 'all' ],
+			'If any value is "all", the only value is "all".'
+		);
+
+		assert.deepEqual(
+			model.sanitizeStringOptionGroup( 'asyncGroup', [ 'some', 'values', 'regardless', 'of', 'of', 'regardless', 'filters' ] ),
+			[ 'some', 'values', 'regardless', 'of', 'filters' ],
+			'For dynamic groups (active async results) there is no validation based on existing filters, only duplicates'
 		);
 	} );
 
@@ -1558,5 +1664,65 @@
 			group1__filter1: true
 		} );
 		assert.notOk( model.areVisibleFiltersEmpty() );
+	} );
+
+	QUnit.test( 'setSearch: item & group visibility', function ( assert ) {
+		var model = new mw.rcfilters.dm.FiltersViewModel();
+		model.initializeFilters( filterDefinition, viewsDefinition );
+
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( false ) ),
+			[ 'namespace', 'searchresults_asyncGroup', 'asyncGroup' ],
+			'For search "" groups that aren\'t in default view are not visible'
+		);
+
+		model.setSearch( model.getViewTrigger( model.getGroup( 'namespace' ).getView() ) ); // namespaces trigger with empty search
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( true ) ),
+			[ 'namespace' ],
+			'For search starting with namespace trigger, only namespace group is visible'
+		);
+
+		model.setSearch( model.getViewTrigger( model.getGroup( 'asyncGroup' ).getView() ) ); // namespaces trigger with empty search
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( true ) ),
+			[],
+			'For search starting with asyncGroup trigger, if both search or dynamic groups have no items, both groups are not visible'
+		);
+
+		// Add some items to dynamic group (this is done by selecting a search item)
+		model.getGroup( 'asyncGroup' ).initializeFilters( [
+			{ name: 'async1', selected: true },
+			{ name: 'async2' }
+		] );
+		// Add some items to search group (this is done by the controller's "setSearch")
+		model.getGroup( 'searchresults_asyncGroup' ).initializeFilters( [
+			{ name: 'search_asyncA' },
+			{ name: 'search_asyncB' }
+		] );
+
+		model.setSearch( model.getViewTrigger( model.getGroup( 'asyncGroup' ).getView() ) ); // asyncGroup trigger with empty search
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( true ) ),
+			[ 'searchresults_asyncGroup', 'asyncGroup' ],
+			'For search starting with asyncGroup trigger, if search or dynamic groups have items, both groups are visible'
+		);
+
+		model.setSearch( model.getViewTrigger( model.getGroup( 'asyncGroup' ).getView() ) + 'search' ); // asyncGroup trigger with empty search
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( true ) ),
+			[ 'searchresults_asyncGroup' ],
+			'String search in dynamic group will only show the group that fits the search'
+			// NOTE: The controller will add items into the searchresults_asyncGroup which will
+			// also be displayed; this is tested separately in the controler tests
+		);
+
+		// General search
+		model.setSearch( 'option1' ); // namespaces trigger with empty search
+		assert.deepEqual(
+			Object.keys( model.getFilterGroupsByVisibility( true ) ),
+			[ 'group4', 'group5', 'group6', 'group7' ],
+			'String search results with only the groups that have matches being visible'
+		);
 	} );
 }( mediaWiki, jQuery ) );
