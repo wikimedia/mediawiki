@@ -761,10 +761,23 @@ abstract class ApiBase extends ContextSource {
 	 * value - validated value from user or default. limits will not be
 	 * parsed if $parseLimit is set to false; use this when the max
 	 * limit is not definitive yet, e.g. when getting revisions.
-	 * @param bool $parseLimit True by default
+	 * @param bool|array $options If a boolean, uses that as the value for 'parseLimit'
+	 *  - parseLimit: (bool, default true) Whether to parse the 'max' value for limit types
+	 *  - safeMode: (bool, default false) If true, avoid throwing for parameter validation errors.
+	 *    Returned parameter values might be ApiUsageException instances.
 	 * @return array
 	 */
-	public function extractRequestParams( $parseLimit = true ) {
+	public function extractRequestParams( $options = [] ) {
+		if ( is_bool( $options ) ) {
+			$options = [ 'parseLimit' => $options ];
+		}
+		$options += [
+			'parseLimit' => true,
+			'safeMode' => false,
+		];
+
+		$parseLimit = (bool)$options['parseLimit'];
+
 		// Cache parameters, for performance and to avoid T26564.
 		if ( !isset( $this->mParamCache[$parseLimit] ) ) {
 			$params = $this->getFinalParams() ?: [];
@@ -778,9 +791,13 @@ abstract class ApiBase extends ContextSource {
 				if ( isset( $paramSettings[self::PARAM_TEMPLATE_VARS] ) ) {
 					$toProcess[] = [ $paramName, $paramSettings[self::PARAM_TEMPLATE_VARS], $paramSettings ];
 				} else {
-					$results[$paramName] = $this->getParameterFromSettings(
-						$paramName, $paramSettings, $parseLimit
-					);
+					try {
+						$results[$paramName] = $this->getParameterFromSettings(
+							$paramName, $paramSettings, $parseLimit
+						);
+					} catch ( ApiUsageException $ex ) {
+						$results[$paramName] = $ex;
+					}
 				}
 			}
 
@@ -826,7 +843,11 @@ abstract class ApiBase extends ContextSource {
 
 						$newName = str_replace( $placeholder, $value, $name );
 						if ( !$targets ) {
-							$results[$newName] = $this->getParameterFromSettings( $newName, $settings, $parseLimit );
+							try {
+								$results[$newName] = $this->getParameterFromSettings( $newName, $settings, $parseLimit );
+							} catch ( ApiUsageException $ex ) {
+								$results[$newName] = $ex;
+							}
 						} else {
 							$newTargets = [];
 							foreach ( $targets as $k => $v ) {
@@ -842,6 +863,15 @@ abstract class ApiBase extends ContextSource {
 			$this->mParamCache[$parseLimit] = $results;
 		}
 
+		$ret = $this->mParamCache[$parseLimit];
+		if ( !$options['safeMode'] ) {
+			foreach ( $ret as $v ) {
+				if ( $v instanceof ApiUsageException ) {
+					throw $v;
+				}
+			}
+		}
+
 		return $this->mParamCache[$parseLimit];
 	}
 
@@ -852,7 +882,14 @@ abstract class ApiBase extends ContextSource {
 	 * @return mixed Parameter value
 	 */
 	protected function getParameter( $paramName, $parseLimit = true ) {
-		return $this->extractRequestParams( $parseLimit )[$paramName];
+		$ret = $this->extractRequestParams( [
+			'parseLimit' => $parseLimit,
+			'safeMode' => true,
+		] )[$paramName];
+		if ( $ret instanceof ApiUsageException ) {
+			throw $ret;
+		}
+		return $ret;
 	}
 
 	/**

@@ -212,6 +212,44 @@ class ApiBaseTest extends ApiTestCase {
 		$mock->getTitleFromTitleOrPageId( [ 'pageid' => 298401643 ] );
 	}
 
+	public function testGetParameter() {
+		$mock = $this->getMockBuilder( MockApi::class )
+			->setMethods( [ 'getAllowedParams' ] )
+			->getMock();
+		$mock->method( 'getAllowedParams' )->willReturn( [
+			'foo' => [
+				ApiBase::PARAM_TYPE => [ 'value' ],
+			],
+			'bar' => [
+				ApiBase::PARAM_TYPE => [ 'value' ],
+			],
+		] );
+		$wrapper = TestingAccessWrapper::newFromObject( $mock );
+
+		$context = new DerivativeContext( $mock );
+		$context->setRequest( new FauxRequest( [ 'foo' => 'bad', 'bar' => 'value' ] ) );
+		$wrapper->mMainModule = new ApiMain( $context );
+
+		// Even though 'foo' is bad, getParameter( 'bar' ) must not fail
+		$this->assertSame( 'value', $wrapper->getParameter( 'bar' ) );
+
+		// But getParameter( 'foo' ) must throw.
+		try {
+			$wrapper->getParameter( 'foo' );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( $this->apiExceptionHasCode( $ex, 'unknown_foo' ) );
+		}
+
+		// And extractRequestParams() must throw too.
+		try {
+			$mock->extractRequestParams();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( $this->apiExceptionHasCode( $ex, 'unknown_foo' ) );
+		}
+	}
+
 	/**
 	 * @dataProvider provideGetParameterFromSettings
 	 * @param string|null $input
