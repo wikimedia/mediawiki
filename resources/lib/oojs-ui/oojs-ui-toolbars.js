@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:45Z
+ * Date: 2018-05-29T23:24:49Z
  */
 ( function ( OO ) {
 
@@ -317,7 +317,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Properties
 	this.toolFactory = toolFactory;
 	this.toolGroupFactory = toolGroupFactory;
-	this.groups = [];
+	this.groupsByName = {};
 	this.tools = {};
 	this.position = config.position || 'top';
 	this.$bar = $( '<div>' );
@@ -447,13 +447,15 @@ OO.ui.Toolbar.prototype.initialize = function () {
  * see {@link OO.ui.ToolGroup toolgroups} for more information about including tools in toolgroups.
  *
  * @param {Object.<string,Array>} groups List of toolgroup configurations
+ * @param {string} [groups.name] Symbolic name for this toolgroup
+ * @param {string} [groups.type] Toolgroup type, should exist in the toolgroup factory
  * @param {Array|string} [groups.include] Tools to include in the toolgroup
  * @param {Array|string} [groups.exclude] Tools to exclude from the toolgroup
  * @param {Array|string} [groups.promote] Tools to promote to the beginning of the toolgroup
  * @param {Array|string} [groups.demote] Tools to demote to the end of the toolgroup
  */
 OO.ui.Toolbar.prototype.setup = function ( groups ) {
-	var i, len, type, group,
+	var i, len, type, toolGroup, groupConfig,
 		items = [],
 		defaultType = 'bar';
 
@@ -462,23 +464,38 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 
 	// Build out new groups
 	for ( i = 0, len = groups.length; i < len; i++ ) {
-		group = groups[ i ];
-		if ( group.include === '*' ) {
+		groupConfig = groups[ i ];
+		if ( groupConfig.include === '*' ) {
 			// Apply defaults to catch-all groups
-			if ( group.type === undefined ) {
-				group.type = 'list';
+			if ( groupConfig.type === undefined ) {
+				groupConfig.type = 'list';
 			}
-			if ( group.label === undefined ) {
-				group.label = OO.ui.msg( 'ooui-toolbar-more' );
+			if ( groupConfig.label === undefined ) {
+				groupConfig.label = OO.ui.msg( 'ooui-toolbar-more' );
 			}
 		}
 		// Check type has been registered
-		type = this.getToolGroupFactory().lookup( group.type ) ? group.type : defaultType;
-		items.push(
-			this.getToolGroupFactory().create( type, this, group )
-		);
+		type = this.getToolGroupFactory().lookup( groupConfig.type ) ? groupConfig.type : defaultType;
+		toolGroup = this.getToolGroupFactory().create( type, this, groupConfig );
+		items.push( toolGroup );
+		if ( groupConfig.name ) {
+			this.groupsByName[ groupConfig.name ] = toolGroup;
+		} else {
+			// Groups without name are deprecated
+			OO.ui.warnDeprecation( 'Toolgroups must have a \'name\' property' );
+		}
 	}
 	this.addItems( items );
+};
+
+/**
+ * Get a toolgroup by name
+ *
+ * @param {string} name Group name
+ * @return {OO.ui.ToolGroup|null} Tool group, or null if none found by that name
+ */
+OO.ui.Toolbar.prototype.getToolGroupByName = function ( name ) {
+	return this.groupsByName[ name ] || null;
 };
 
 /**
@@ -487,7 +504,7 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 OO.ui.Toolbar.prototype.reset = function () {
 	var i, len;
 
-	this.groups = [];
+	this.groupsByName = {};
 	this.tools = {};
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		this.items[ i ].destroy();
@@ -1945,6 +1962,34 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
+	var $focused, $firstFocusable, $lastFocusable;
+	// Shift-Tab on the first tool in the group jumps to the handle.
+	// Tab on the last tool in the group jumps to the next group.
+	if ( !this.isDisabled() && e.which === OO.ui.Keys.TAB ) {
+		// (We can't use this.items because ListToolGroup inserts the extra fake expand/collapse tool.)
+		$focused = $( document.activeElement );
+		$firstFocusable = OO.ui.findFocusable( this.$group );
+		if ( $focused[ 0 ] === $firstFocusable[ 0 ] && e.shiftKey ) {
+			this.$handle.focus();
+			return false;
+		}
+		$lastFocusable = OO.ui.findFocusable( this.$group, true );
+		if ( $focused[ 0 ] === $lastFocusable[ 0 ] && !e.shiftKey ) {
+			// Focus this group's handle and let the browser's tab handling happen (no 'return false').
+			// This way we don't have to fiddle with other ToolGroups' business, or worry what to do
+			// if the next group is not a PopupToolGroup or doesn't exist at all.
+			this.$handle.focus();
+			// Close the popup so that we don't move back inside it (if this is the last group).
+			this.setActive( false );
+		}
+	}
+	return OO.ui.PopupToolGroup.parent.prototype.onMouseKeyDown.call( this, e );
+};
+
+/**
  * Handle mouse up and key up events.
  *
  * @protected
@@ -1966,12 +2011,20 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
  * @param {jQuery.Event} e Mouse down or key down event
  */
 OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
-	if (
-		!this.isDisabled() &&
-		( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
-	) {
-		this.setActive( !this.active );
-		return false;
+	var $focusable;
+	if ( !this.isDisabled() ) {
+		// Tab on the handle jumps to the first tool in the group (if the popup is open).
+		if ( e.which === OO.ui.Keys.TAB && !e.shiftKey ) {
+			$focusable = OO.ui.findFocusable( this.$group );
+			if ( $focusable.length ) {
+				$focusable.focus();
+				return false;
+			}
+		}
+		if ( e.which === OO.ui.MouseButtons.LEFT || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) {
+			this.setActive( !this.active );
+			return false;
+		}
 	}
 };
 
@@ -2025,7 +2078,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 				this.setHorizontalPosition( 'start' );
 
 				this.$clippable.css( {
-					left: -( this.$element.offset().left - containerLeft ),
+					'margin-left': -( this.$element.offset().left - containerLeft ),
 					width: containerWidth
 				} );
 			}
@@ -2430,4 +2483,4 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
 
 }( OO ) );
 
-//# sourceMappingURL=oojs-ui-toolbars.js.map
+//# sourceMappingURL=oojs-ui-toolbars.js.map.json

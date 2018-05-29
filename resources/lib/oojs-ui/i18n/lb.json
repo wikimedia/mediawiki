@@ -26,5 +26,6 @@
 	"ooui-selectfile-button-select": "E Fichier eraussichen",
 	"ooui-selectfile-not-supported": "D'Eraussiche vu Fichiere gëtt net ënnerstëtzt.",
 	"ooui-selectfile-placeholder": "Et ass kee Fichier erausgesicht",
-	"ooui-selectfile-dragdrop-placeholder": "Fichier hei ofleeën"
+	"ooui-selectfile-dragdrop-placeholder": "Fichier hei ofleeën",
+	"ooui-field-help": "Hëllef"
 }

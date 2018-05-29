@@ -29,5 +29,6 @@
 	"ooui-selectfile-button-select": "Επιλέξτε ένα αρχείο",
 	"ooui-selectfile-not-supported": "Επιλογή αρχείου δεν υποστηρίζεται",
 	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο",
-	"ooui-selectfile-dragdrop-placeholder": "Σύρετε το αρχείο εδώ"
+	"ooui-selectfile-dragdrop-placeholder": "Σύρετε το αρχείο εδώ",
+	"ooui-field-help": "Βοήθεια"
 }

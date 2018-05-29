@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:45Z
+ * Date: 2018-05-29T23:24:49Z
  */
 ( function ( OO ) {
 
@@ -1893,8 +1893,9 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	} else {
 		promise = $.Deferred().resolve();
 	}
-	// Focus the first element on the newly selected panel
-	if ( this.autoFocus && !OO.ui.isMobile() ) {
+	// Focus the first element on the newly selected panel.
+	// Don't focus if the page was set by scrolling.
+	if ( this.autoFocus && !OO.ui.isMobile() && !this.scrolling ) {
 		promise.done( function () {
 			layout.focus();
 		} );
@@ -3032,7 +3033,6 @@ OO.ui.ToggleSwitchWidget.prototype.simulateLabelClick = function () {
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.mixin.GroupElement
- * @mixins OO.ui.mixin.IconElement
  *
  * @constructor
  * @param {OO.ui.OutlineSelectWidget} outline Outline to control
@@ -3049,14 +3049,13 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	}
 
 	// Configuration initialization
-	config = $.extend( { icon: 'add' }, config );
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.OutlineControlsWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, config );
-	OO.ui.mixin.IconElement.call( this, config );
 
 	// Properties
 	this.outline = outline;
@@ -3102,7 +3101,6 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 
 OO.inheritClass( OO.ui.OutlineControlsWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.mixin.GroupElement );
-OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.mixin.IconElement );
 
 /* Events */
 
@@ -6712,4 +6710,4 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 
 }( OO ) );
 
-//# sourceMappingURL=oojs-ui-widgets.js.map
+//# sourceMappingURL=oojs-ui-widgets.js.map.json

@@ -11,7 +11,8 @@
 			"Luckas",
 			"Vitorvicentevalente",
 			"SandroHc",
-			"Jkb8"
+			"Jkb8",
+			"Athena in Wonderland"
 		]
 	},
 	"ooui-outline-control-move-down": "Mover item para baixo",
@@ -30,5 +31,6 @@
 	"ooui-selectfile-button-select": "Selecionar ficheiro",
 	"ooui-selectfile-not-supported": "A seleção de ficheiros não é suportada",
 	"ooui-selectfile-placeholder": "Nenhum ficheiro selecionado",
-	"ooui-selectfile-dragdrop-placeholder": "Soltar ficheiro aqui"
+	"ooui-selectfile-dragdrop-placeholder": "Soltar ficheiro aqui",
+	"ooui-field-help": "Ajuda"
 }
