@@ -44,7 +44,8 @@ class SpecialPasswordPolicies extends SpecialPage {
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		$this->addHelpLink( 'Help:Password policies' );
+		// TODO: Have specific user documentation page for this feature
+		$this->addHelpLink( 'Manual:$wgPasswordPolicy' );
 
 		$out->addHTML(
 			Xml::openElement( 'table', [ 'class' => 'wikitable mw-passwordpolicies-table' ] ) .
