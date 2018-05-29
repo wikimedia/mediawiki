@@ -1711,6 +1711,7 @@ MESSAGE;
 	 * @return Less_Parser
 	 */
 	public function getLessCompiler( $vars = [] ) {
+		global $IP;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -1720,9 +1721,9 @@ MESSAGE;
 
 		$parser = new Less_Parser;
 		$parser->ModifyVars( $vars );
-		$parser->SetImportDirs(
-			array_fill_keys( $this->config->get( 'ResourceLoaderLESSImportPaths' ), '' )
-		);
+		$parser->SetImportDirs( [
+			"$IP/resources/src/mediawiki.less/" => '',
+		] );
 		$parser->SetOption( 'relativeUrls', false );
 
 		return $parser;

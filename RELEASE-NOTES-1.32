@@ -123,6 +123,9 @@ because of Phabricator reports.
   The UtfNormal\Utils class from the utfnormal library should be used instead.
 * The deprecated UTF8_ and UNICODE_ constants were removed. The class constants
   from the UtfNormal\Constants class from the utfnormal library should be used
+* (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
+  from ResourceLoader. Instead, use `@import` statements in LESS to import
+  files directly from nearby directories within the same project.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing

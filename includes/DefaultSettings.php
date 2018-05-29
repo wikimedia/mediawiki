@@ -3779,23 +3779,6 @@ $wgResourceLoaderLESSVars = [
 ];
 
 /**
- * Default import paths for LESS modules. LESS files referenced in @import
- * statements will be looked up here first, and relative to the importing file
- * second. To avoid collisions, it's important for the LESS files in these
- * directories to have a common, predictable file name prefix.
- *
- * Extensions need not (and should not) register paths in
- * $wgResourceLoaderLESSImportPaths. The import path includes the path of the
- * currently compiling LESS file, which allows each extension to freely import
- * files from its own tree.
- *
- * @since 1.22
- */
-$wgResourceLoaderLESSImportPaths = [
-	"$IP/resources/src/mediawiki.less/",
-];
-
-/**
  * Whether ResourceLoader should attempt to persist modules in localStorage on
  * browsers that support the Web Storage API.
  */
