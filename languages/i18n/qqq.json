@@ -4671,7 +4671,6 @@
 	"unregistered-user-config": "Shown when viewing a user JS, CSS or JSON subpage with ?action=raw&ctype=<mime type> where there is no such user. It is shown as a paragraph after a header saying 'Forbidden'.",
 	"passwordpolicies": "The name of the special page [[Special:PasswordPolicies]].",
 	"passwordpolicies-summary": "The description used on [[Special:PasswordPolicies]].\n\nRefers to {{msg-mw|Passwordpolicies-helppage}}.",
-	"passwordpolicies-helppage": "The link used on [[Special:PasswordPolicies]].",
 	"passwordpolicies-group": "The title of the column in the table, about user groups (like you are in the ''translator'' group).\n\n{{Identical|Group}}\n{{Related|Passwordpolicies}}",
 	"passwordpolicies-policies": "The title of the column in the table, about password policies.\n{{Related|Passwordpolicies}}",
 	"passwordpolicies-policy-display": "{{optional}}\nParameters:\n* $1 - the text from the \"passwordpolicies-policy-...\" messages, i.e. {{msg-mw|passwordpolicies-policy-minimalpasswordlength}}\n* $2 - the name of this password policy",
