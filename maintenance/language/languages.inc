@@ -508,13 +508,18 @@ class Languages {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
 		$wrongChars = [
+			'[ALM]' => "\xD8\x9C",
 			'[LRM]' => "\xE2\x80\x8E",
 			'[RLM]' => "\xE2\x80\x8F",
 			'[LRE]' => "\xE2\x80\xAA",
 			'[RLE]' => "\xE2\x80\xAB",
 			'[POP]' => "\xE2\x80\xAC",
 			'[LRO]' => "\xE2\x80\xAD",
-			'[RLO]' => "\xE2\x80\xAB",
+			'[RLO]' => "\xE2\x80\xAE",
+			'[LRI]' => "\xE2\x81\xA6",
+			'[RLI]' => "\xE2\x81\xA7",
+			'[FSI]' => "\xE2\x81\xA8",
+			'[PDI]' => "\xE2\x81\xA9",
 			'[ZWSP]' => "\xE2\x80\x8B",
 			'[NBSP]' => "\xC2\xA0",
 			'[WJ]' => "\xE2\x81\xA0",
