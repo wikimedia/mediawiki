@@ -119,4 +119,7 @@ class ResultWrapper implements IResultWrapper {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( ResultWrapper::class, 'ResultWrapper' );

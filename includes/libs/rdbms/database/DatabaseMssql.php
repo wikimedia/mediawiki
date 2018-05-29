@@ -1418,4 +1418,7 @@ class DatabaseMssql extends Database {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( DatabaseMssql::class, 'DatabaseMssql' );

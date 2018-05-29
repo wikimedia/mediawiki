@@ -1580,4 +1580,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( DatabaseMysqlBase::class, 'DatabaseMysqlBase' );

@@ -832,4 +832,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	}
 }
 
+/**
+ * @since 1.9
+ * @deprecated since 1.32
+ */
 class_alias( ApiQueryUserContribs::class, 'ApiQueryContributions' );

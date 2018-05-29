@@ -1444,4 +1444,7 @@ SQL;
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( DatabasePostgres::class, 'DatabasePostgres' );
