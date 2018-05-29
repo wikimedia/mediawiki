@@ -31,5 +31,6 @@
 	"ooui-selectfile-button-select": "נא לבחור קובץ",
 	"ooui-selectfile-not-supported": "בחירת קבצים אינה נתמכת",
 	"ooui-selectfile-placeholder": "לא נבחר שום קובץ",
-	"ooui-selectfile-dragdrop-placeholder": "נא לשחרר את הקובץ כאן"
+	"ooui-selectfile-dragdrop-placeholder": "נא לשחרר את הקובץ כאן",
+	"ooui-field-help": "עזרה"
 }

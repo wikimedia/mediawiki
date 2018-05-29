@@ -3,7 +3,8 @@
 		"authors": [
 			"Candalua",
 			"GatoSelvadego",
-			"Gloria sah"
+			"Gloria sah",
+			"Fitoschido"
 		]
 	},
 	"ooui-outline-control-move-down": "Sposta in baso",
@@ -18,5 +19,6 @@
 	"ooui-dialog-process-retry": "Proa da novo",
 	"ooui-dialog-process-continue": "Và vanti",
 	"ooui-selectfile-button-select": "Siegli un file",
-	"ooui-selectfile-dragdrop-placeholder": "Mola zo el file chì rento"
+	"ooui-selectfile-dragdrop-placeholder": "Mola zo el file chì rento",
+	"ooui-field-help": "Ajuto"
 }

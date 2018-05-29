@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:45Z
+ * Date: 2018-05-29T23:24:49Z
  */
 ( function ( OO ) {
 
@@ -103,4 +103,4 @@ OO.ui.theme = new OO.ui.WikimediaUITheme();
 
 }( OO ) );
 
-//# sourceMappingURL=oojs-ui-wikimediaui.js.map
+//# sourceMappingURL=oojs-ui-wikimediaui.js.map.json

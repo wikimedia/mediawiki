@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:45Z
+ * Date: 2018-05-29T23:24:49Z
  */
 ( function ( OO ) {
 
@@ -7561,15 +7561,10 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 		this.warnedUnattached = true;
 	}
 
-	if ( change ) {
-		if ( visible && ( this.width || this.$floatableContainer ) ) {
-			this.setIdealSize( this.width || this.$floatableContainer.width() );
-		}
-		if ( visible ) {
-			// Reset position before showing the popup again. It's possible we no longer need to flip
-			// (e.g. if the user scrolled).
-			this.setVerticalPosition( 'below' );
-		}
+	if ( change && visible ) {
+		// Reset position before showing the popup again. It's possible we no longer need to flip
+		// (e.g. if the user scrolled).
+		this.setVerticalPosition( 'below' );
 	}
 
 	// Parent method
@@ -7577,6 +7572,21 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 	if ( change ) {
 		if ( visible ) {
+
+			if ( this.width ) {
+				this.setIdealSize( this.width );
+			} else if ( this.$floatableContainer ) {
+				this.$clippable.css( 'width', 'auto' );
+				this.setIdealSize(
+					this.$floatableContainer[ 0 ].offsetWidth > this.$clippable[ 0 ].offsetWidth ?
+						// Dropdown is smaller than handle so expand to width
+						this.$floatableContainer[ 0 ].offsetWidth :
+						// Dropdown is larger than handle so auto size
+						'auto'
+				);
+				this.$clippable.css( 'width', '' );
+			}
+
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
@@ -12342,4 +12352,4 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 
 }( OO ) );
 
-//# sourceMappingURL=oojs-ui-core.js.map
+//# sourceMappingURL=oojs-ui-core.js.map.json

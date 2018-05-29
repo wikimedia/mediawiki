@@ -25,5 +25,6 @@
 	"ooui-selectfile-button-select": "Избиране на файл",
 	"ooui-selectfile-not-supported": "Избраният файл не се поддържа",
 	"ooui-selectfile-placeholder": "Не е избран файл",
-	"ooui-selectfile-dragdrop-placeholder": "Пуснете файла тук"
+	"ooui-selectfile-dragdrop-placeholder": "Пуснете файла тук",
+	"ooui-field-help": "Помощ"
 }

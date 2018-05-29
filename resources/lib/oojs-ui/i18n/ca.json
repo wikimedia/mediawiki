@@ -13,7 +13,8 @@
 			"Davidpar",
 			"Maceleiro",
 			"Kippelboy",
-			"Macofe"
+			"Macofe",
+			"Fitoschido"
 		]
 	},
 	"ooui-outline-control-move-down": "Baixa l'element",
@@ -31,5 +32,6 @@
 	"ooui-selectfile-button-select": "Seleccioneu un fitxer",
 	"ooui-selectfile-not-supported": "El tipus de fitxer no és compatible",
 	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer",
-	"ooui-selectfile-dragdrop-placeholder": "Deseu els arxius aquí"
+	"ooui-selectfile-dragdrop-placeholder": "Deseu els arxius aquí",
+	"ooui-field-help": "Ajuda"
 }
