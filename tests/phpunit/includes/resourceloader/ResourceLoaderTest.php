@@ -738,6 +738,21 @@ mw.example();
 	}
 
 	/**
+	 * @covers ResourceLoader::makeModuleResponse
+	 */
+	public function testMakeModuleResponseEmpty() {
+		$rl = new EmptyResourceLoader();
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => '', 'only' => 'scripts' ],
+			$rl
+		);
+
+		$response = $rl->makeModuleResponse( $context, [] );
+		$this->assertSame( [], $rl->getErrors(), 'Errors' );
+		$this->assertRegExp( '/^\/\*.+no modules were requested.+\*\/$/ms', $response );
+	}
+
+	/**
 	 * Verify that when building module content in a load.php response,
 	 * an exception from one module will not break script output from
 	 * other modules.
@@ -809,7 +824,7 @@ mw.example();
 
 		$this->assertCount( 2, $errors );
 		$this->assertRegExp( '/Ferry not found/', $errors[0] );
-		$this->assertRegExp( '/Problem.+\n\s*"ferry":\s*"error"/m', $errors[1] );
+		$this->assertRegExp( '/Problem.+"ferry":\s*"error"/ms', $errors[1] );
 		$this->assertEquals(
 			'.foo{}.bar{}',
 			$response
