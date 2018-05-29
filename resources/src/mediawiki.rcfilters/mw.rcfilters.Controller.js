@@ -27,6 +27,7 @@
 		this.daysPreferenceName = config.daysPreferenceName;
 		this.limitPreferenceName = config.limitPreferenceName;
 		this.normalizeTarget = !!config.normalizeTarget;
+		this.searchInProgress = false;
 
 		this.requestCounter = {};
 		this.baseFilterState = {};
@@ -200,6 +201,7 @@
 		// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 		// groups; if we ever expand it, this might need further generalization:
 		$.each( views, function ( viewName, viewData ) {
+			var mainGroupData;
 			viewData.groups.forEach( function ( groupData ) {
 				var extraValues = [];
 				if ( groupData.allowArbitrary ) {
@@ -461,6 +463,7 @@
 	 *
 	 * @param {string} filterName Filter name
 	 * @param {boolean} [isSelected] Filter selected state
+	 * @return {mw.rcfilters.dm.FilterItem} The model of the toggled filter item
 	 */
 	mw.rcfilters.Controller.prototype.toggleFilterSelect = function ( filterName, isSelected ) {
 		var filterItem = this.filtersModel.getItemByName( filterName );
@@ -469,17 +472,24 @@
 			// If no filter was found, break
 			return;
 		}
+		if ( filterItem.getGroupModel().isSearchResults() ) {
+			// Move the item from the group results to the main group
+			// This changes its name, but not its reference
+			this.filtersModel.moveSearchItemToMainGroup( filterItem );
+		}
 
 		isSelected = isSelected === undefined ? !filterItem.isSelected() : isSelected;
 
 		if ( filterItem.isSelected() !== isSelected ) {
-			this.filtersModel.toggleFilterSelected( filterName, isSelected );
+			this.filtersModel.toggleFilterSelected( filterItem.getName(), isSelected );
 
 			this.updateChangesList();
 
 			// Check filter interactions
 			this.filtersModel.reassessFilterInteractions( filterItem );
 		}
+
+		return filterItem;
 	};
 
 	/**
@@ -1175,9 +1185,46 @@
 	 * Set the current search for the system.
 	 *
 	 * @param {string} searchQuery Search query, including triggers
+	 * @return {jQuery.Promise} Promise that is resolved when the model
+	 *  has done setting the search
 	 */
 	mw.rcfilters.Controller.prototype.setSearch = function ( searchQuery ) {
-		this.filtersModel.setSearch( searchQuery );
+		var controller = this,
+			promise = $.Deferred().resolve(),
+			view = this.filtersModel.getViewFromString( searchQuery ),
+			viewData = this.filtersModel.views[ view ];
+
+		// Reset all temporary searches
+		this.filtersModel.resetAllSearchItems();
+
+		// TODO: For the moment, we'll block searches until one is done
+		// but the better way is to abort previous searches properly
+		if ( !this.searchInProgress && viewData.async && viewData.getResultCallback ) {
+			// Don't look through the existing model items; instead
+			// call the API, and build temporary widgets for results
+			this.searchInProgress = true;
+			promise = viewData.getResultCallback( this.filtersModel.removeViewTriggers( searchQuery ) )
+				.then( function ( items ) {
+					controller.filtersModel.setSearchResultItems( viewData.mainGroupName, items );
+				} )
+				.then( function () {
+					controller.searchInProgress = false;
+				} );
+		}
+
+		// TODO: This whole mix of promises and events is horrible; we should
+		// figure out how to properly represent async behavior within the different
+		// widgets with the controller making the decisions. Right now, the widgets
+		// are waiting for a "setSeach" event, so we will keep things as-is for
+		// consistency, but ideally, this current method should return its promise
+		// and the behavior should be refactored out of event-hell.
+
+		return promise.then( function () {
+			// After we have temporary data, we also want the search
+			// to give us results from existing data so we can see
+			// selected results that **are** in the model
+			return controller.filtersModel.setSearch( searchQuery );
+		} );
 	};
 
 	/**

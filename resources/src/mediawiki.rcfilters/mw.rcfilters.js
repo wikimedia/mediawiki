@@ -35,7 +35,7 @@
 				// Result: param=valid1,valid2
 				givenOptions.forEach( function ( value ) {
 					if (
-						legalOptions.indexOf( value ) > -1 &&
+						( !legalOptions || legalOptions.length === 0 || legalOptions.indexOf( value ) > -1 ) &&
 						result.indexOf( value ) === -1
 					) {
 						result.push( value );

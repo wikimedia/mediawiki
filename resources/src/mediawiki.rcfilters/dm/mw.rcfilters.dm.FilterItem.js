@@ -59,6 +59,15 @@
 	};
 
 	/**
+	 * Mark this item as removed
+	 *
+	 * @fires remove
+	 */
+	mw.rcfilters.dm.FilterItem.prototype.remove = function () {
+		this.emit( 'removed' );
+	};
+
+	/**
 	 * Get the message for the display area for the currently active conflict
 	 *
 	 * @private
