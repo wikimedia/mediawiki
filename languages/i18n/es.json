@@ -645,7 +645,7 @@
 	"createacct-another-realname-tip": "El nombre real es opcional.\nSi lo proporcionas, se usará para dar atribución al trabajo del usuario.",
 	"pt-login": "Acceder",
 	"pt-login-button": "Acceder",
-	"pt-login-continue-button": "Continuar inicio de sesión",
+	"pt-login-continue-button": "Continuar con el acceso",
 	"pt-createaccount": "Crear una cuenta",
 	"pt-userlogout": "Salir",
 	"php-mail-error-unknown": "Error desconocido en la función mail() de PHP.",

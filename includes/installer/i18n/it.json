@@ -78,7 +78,7 @@
 	"config-memory-raised": "Il valore <code>memory_limit</code> di PHP è $1, aumentato a $2.",
 	"config-memory-bad": "''Attenzione:''' Il valore di <code>memory_limit</code> di PHP è $1.\nProbabilmente è troppo basso.\nL'installazione potrebbe non riuscire!",
 	"config-apc": "[https://secure.php.net/apc APC] è installato",
-	"config-apcu": "[https://secure.php.net/apc APC] è installato",
+	"config-apcu": "[https://secure.php.net/apcu APCu] è installato",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] è installato",
 	"config-no-cache-apcu": "'''Attenzione:''' [https://secure.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] non sono stati trovati.\nLa caching degli oggetti non è attivata.",
 	"config-mod-security": "<strong>Attenzione:</strong> Il tuo server web ha il [https://modsecurity.org/ mod_security] abilitato. Se non correttamente configurato, può creare problemi a MediaWiki o ad altro software che permette agli utenti di pubblicare contenuto.\nFai riferimento alla [https://modsecurity.org/documentation/ documentazione sul mod_security] o contatta il supporto tecnico del tuo provider di hosting se si verificano errori.",
