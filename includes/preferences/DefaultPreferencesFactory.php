@@ -45,7 +45,7 @@ use MWTimestamp;
 use OutputPage;
 use Parser;
 use ParserOptions;
-use PreferencesForm;
+use PreferencesFormLegacy;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use Skin;
@@ -1488,7 +1488,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public function getForm(
 		User $user,
 		IContextSource $context,
-		$formClass = PreferencesForm::class,
+		$formClass = PreferencesFormLegacy::class,
 		array $remove = []
 	) {
 		if ( SpecialPreferences::isOouiEnabled( $context ) ) {
