@@ -14,6 +14,9 @@ THIS IS NOT A RELEASE YET!
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 * Add default edit rate limit of 90 edits/minute for all users.
 * (T186565) Fix PHP Notice from `ob_end_flush()` in `FileRepo::streamFile()`.
+* Updated mediawiki/at-ease from v1.1.0 to v1.2.0. This brings in the re-namespacing
+  from medawiki/ to wikimedia/ as done in newer version of MediaWiki, allowing
+  easier backporting of changes, and increasing extension backwards compatability.
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
