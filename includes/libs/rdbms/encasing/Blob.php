@@ -18,4 +18,7 @@ class Blob implements IBlob {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( Blob::class, 'Blob' );
