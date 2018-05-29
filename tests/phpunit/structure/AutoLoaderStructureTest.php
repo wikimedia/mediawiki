@@ -22,7 +22,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 	public function providePSR4Completeness() {
 		foreach ( AutoLoader::$psr4Namespaces as $prefix => $dir ) {
 			foreach ( $this->recurseFiles( $dir ) as $file ) {
-				yield [ $prefix, $file ];
+				yield [ $prefix, $dir, $file ];
 			}
 		}
 	}
@@ -34,7 +34,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider providePSR4Completeness
 	 */
-	public function testPSR4Completeness( $prefix, $file ) {
+	public function testPSR4Completeness( $prefix, $dir, $file ) {
 		global $wgAutoloadLocalClasses, $wgAutoloadClasses;
 		$contents = file_get_contents( $file );
 		list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
@@ -43,11 +43,18 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 			$this->assertCount( 1, $classes,
 				"Only one class per file in PSR-4 autoloaded classes ($file)" );
 
-			$this->assertStringStartsWith( $prefix, $classes[0] );
-			$this->assertTrue(
-				class_exists( $classes[0] ) || interface_exists( $classes[0] ) || trait_exists( $classes[0] ),
-				"Class {$classes[0]} not autoloaded properly"
+			// Check that the expected class name (based on the filename) is the
+			// same as the one we found.
+			// Strip directory prefix from front of filename, and .php extension
+			$abbrFileName = substr( substr( $file, strlen( $dir ) ), 0, -4 );
+			$expectedClassName = $prefix . str_replace( '/', '\\', $abbrFileName );
+
+			$this->assertSame(
+				$expectedClassName,
+				$classes[0],
+				"Class not autoloaded properly"
 			);
+
 		} else {
 			// Dummy assertion so this test isn't marked in risky
 			// if the file has no classes nor aliases in it
