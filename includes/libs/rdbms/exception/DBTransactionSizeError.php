@@ -30,4 +30,7 @@ class DBTransactionSizeError extends DBTransactionError {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( DBTransactionSizeError::class, 'DBTransactionSizeError' );

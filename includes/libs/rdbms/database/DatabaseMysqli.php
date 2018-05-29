@@ -341,4 +341,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( DatabaseMysqli::class, 'DatabaseMysqli' );
