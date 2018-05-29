@@ -51,6 +51,26 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$registry->loadFromQueue();
 	}
 
+	public function testLoadFromQueue() {
+		$registry = new ExtensionRegistry();
+		$registry->queue( "{$this->dataDir}/good.json" );
+		$registry->loadFromQueue();
+		$this->assertArrayHasKey( 'FooBar', $registry->getAllThings() );
+		$this->assertTrue( $registry->isLoaded( 'FooBar' ) );
+		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
+		$this->assertSame( [], $registry->getAttribute( 'NotLoadedAttr' ) );
+	}
+
+	/**
+	 * @expectedException PHPUnit_Framework_Error
+	 */
+	public function testReadFromQueue_nonexistent() {
+		$registry = new ExtensionRegistry();
+		$registry->readFromQueue( [
+			__DIR__ . '/doesnotexist.json' => 1
+		] );
+	}
+
 	/**
 	 * @dataProvider provideExportExtractedDataGlobals
 	 */

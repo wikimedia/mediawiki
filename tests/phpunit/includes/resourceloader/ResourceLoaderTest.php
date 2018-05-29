@@ -8,7 +8,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
-			'wgResourceLoaderLESSImportPaths' => [],
 			'wgResourceLoaderLESSVars' => [
 				'foo'  => '2px',
 				'Foo' => '#eeeeee',
