@@ -639,4 +639,8 @@ class DBConnRef implements IDatabase {
 	}
 }
 
+/**
+ * @since 1.22
+ * @deprecated since 1.29
+ */
 class_alias( DBConnRef::class, 'DBConnRef' );

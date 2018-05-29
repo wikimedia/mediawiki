@@ -2117,4 +2117,7 @@ interface IDatabase {
 	public function setIndexAliases( array $aliases );
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( IDatabase::class, 'IDatabase' );

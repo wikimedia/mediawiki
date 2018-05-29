@@ -1952,4 +1952,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( LoadBalancer::class, 'LoadBalancer' );

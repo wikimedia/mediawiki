@@ -32,4 +32,7 @@ interface Field {
 	function isNullable();
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( Field::class, 'Field' );

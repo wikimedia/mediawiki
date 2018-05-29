@@ -713,4 +713,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( LBFactory::class, 'LBFactory' );

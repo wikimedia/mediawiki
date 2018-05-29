@@ -62,4 +62,7 @@ class FakeResultWrapper extends ResultWrapper {
 	}
 }
 
+/**
+ * @deprecated since 1.29
+ */
 class_alias( FakeResultWrapper::class, 'FakeResultWrapper' );
