@@ -1106,7 +1106,7 @@
 	"recentchangescount": "Numero di modifiche da mostrare nelle ultime modifiche, cronologie e registri, per impostazione predefinita:",
 	"prefs-help-recentchangescount": "Numero massimo: 1000",
 	"prefs-help-watchlist-token2": "Questa è la chiave segreta per il feed web dei tuoi osservati speciali.\nChiunque la conosce sarà in grado di leggere i tuoi osservati speciali, per cui non condividerla. Se necessario, [[Special:ResetTokens|puoi reimpostarla]].",
-	"prefs-help-tokenmanagement": "Puoi visualizzare e reimpostare la chiave segreta per la tua utenza con cui puoi accedere al feed web dei tuoi osservati speciali. Chiunque conosce la chiave sarà in grado di leggere i tuoi osservati speciali, quindi non condividerla.",
+	"prefs-help-tokenmanagement": "Puoi visualizzare e reimpostare la chiave segreta per la tua utenza con cui puoi accedere al feed web dei tuoi osservati speciali. Chiunque conosca la chiave sarà in grado di leggere i tuoi osservati speciali, quindi non condividerla.",
 	"savedprefs": "Le preferenze sono state salvate.",
 	"savedrights": "I gruppi utente di {{GENDER:$1|$1}} sono stati salvati.",
 	"timezonelegend": "Fuso orario:",
@@ -2005,6 +2005,7 @@
 	"protectedtitles-submit": "Mostra titoli",
 	"listusers": "Elenco degli utenti",
 	"listusers-editsonly": "Mostra solo utenti con dei contributi",
+	"listusers-temporarygroupsonly": "Mostra solo utenti in gruppi utenti temporanei",
 	"listusers-creationsort": "Ordina per data di creazione",
 	"listusers-desc": "Ordina in senso decrescente",
 	"usereditcount": "$1 {{PLURAL:$1|contributo|contributi}}",
@@ -4080,5 +4081,11 @@
 	"pagedata-not-acceptable": "Nessun formato corrispondente trovato. Tipi MIME supportati: $1",
 	"pagedata-bad-title": "Titolo non valido: $1.",
 	"unregistered-user-config": "Per motivi di sicurezza, non è possibile caricare sottopagine utente JavaScript, CSS e JSON per utenti non registrati.",
-	"passwordpolicies-group": "Gruppo"
+	"passwordpolicies-group": "Gruppo",
+	"passwordpolicies-policy-minimalpasswordlength": "La password deve essere lunga almeno $1 {{PLURAL:$1|carattere|caratteri}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "La password deve essere lunga almeno $1 {{PLURAL:$1|carattere|caratteri}} per poter accedere",
+	"passwordpolicies-policy-passwordcannotmatchusername": "La password non può essere uguale al nome utente",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "La password non può corrispondere a password specificate nell'elenco delle password proibite",
+	"passwordpolicies-policy-maximalpasswordlength": "La password deve essere lunga meno di $1 {{PLURAL:$1|carattere|caratteri}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "La password non può essere {{PLURAL:$1|la password più popolare|nell'elenco delle $1 password più popolari}}"
 }
