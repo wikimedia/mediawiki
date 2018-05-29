@@ -262,12 +262,12 @@ class Preferences {
 	 * @param IContextSource $context
 	 * @param string $formClass
 	 * @param array $remove Array of items to remove
-	 * @return PreferencesForm|HTMLForm
+	 * @return PreferencesFormLegacy|HTMLForm
 	 */
 	public static function getFormObject(
 		$user,
 		IContextSource $context,
-		$formClass = PreferencesForm::class,
+		$formClass = PreferencesFormLegacy::class,
 		array $remove = []
 	) {
 		$preferencesFactory = self::getDefaultPreferencesFactory();
