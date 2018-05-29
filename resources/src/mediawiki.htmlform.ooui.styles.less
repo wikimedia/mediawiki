@@ -6,6 +6,8 @@
 
 @ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.8571429em`≈`12px`
 @ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // equals `1.1428571em`≈`16px`
+@ooui-padding-horizontal: 12 / @ooui-font-size-browser / @ooui-font-size-base;
+@ooui-padding-vertical: 4 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0,000285714em`≈`4px`
 
 .mw-htmlform-ooui-wrapper.oo-ui-panelLayout-padded {
 	padding: @ooui-spacing-medium @ooui-spacing-large @ooui-spacing-large;
@@ -23,11 +25,16 @@
 	}
 
 	.mw-htmlform-matrix {
-		border-spacing: 0;
+		border-spacing: 0 2px;
 
 		td {
-			padding: 0.35em 0.7em;
+			padding: @ooui-padding-vertical @ooui-padding-horizontal;
+			text-align: center;
 			.transition( background-color 250ms );
+
+			&:first-child {
+				text-align: left;
+			}
 		}
 
 		tbody tr:nth-child( even ) td {
