@@ -3689,8 +3689,10 @@ class Parser {
 	 * @param Title $title
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
+	 * @deprecated since 1.32, use fetchFileAndTitle instead
 	 */
 	public function fetchFile( $title, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return $this->fetchFileAndTitle( $title, $options )[0];
 	}
 
