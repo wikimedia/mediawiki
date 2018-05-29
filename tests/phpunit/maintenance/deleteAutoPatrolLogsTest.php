@@ -27,6 +27,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	}
 
 	private function insertLoggingData() {
+		$dbw = wfGetDB( DB_MASTER );
 		$logs = [];
 
 		// Manual patrolling
@@ -35,7 +36,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7251,
 			'log_params' => '',
-			'log_timestamp' => 20041223210426
+			'log_timestamp' => $dbw->timestamp( 20041223210426 )
 		];
 
 		// Autopatrol #1
@@ -44,7 +45,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'autopatrol',
 			'log_user' => 7252,
 			'log_params' => '',
-			'log_timestamp' => 20051223210426
+			'log_timestamp' => $dbw->timestamp( 20051223210426 )
 		];
 
 		// Block
@@ -53,7 +54,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'block',
 			'log_user' => 7253,
 			'log_params' => '',
-			'log_timestamp' => 20061223210426
+			'log_timestamp' => $dbw->timestamp( 20061223210426 )
 		];
 
 		// Very old/ invalid patrol
@@ -62,7 +63,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7253,
 			'log_params' => 'nanana',
-			'log_timestamp' => 20061223210426
+			'log_timestamp' => $dbw->timestamp( 20061223210426 )
 		];
 
 		// Autopatrol #2
@@ -71,7 +72,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'autopatrol',
 			'log_user' => 7254,
 			'log_params' => '',
-			'log_timestamp' => 20071223210426
+			'log_timestamp' => $dbw->timestamp( 20071223210426 )
 		];
 
 		// Autopatrol #3 old way
@@ -80,7 +81,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7255,
 			'log_params' => serialize( [ '6::auto' => true ] ),
-			'log_timestamp' => 20081223210426
+			'log_timestamp' => $dbw->timestamp( 20081223210426 )
 		];
 
 		// Manual patrol #2 old way
@@ -89,7 +90,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7256,
 			'log_params' => serialize( [ '6::auto' => false ] ),
-			'log_timestamp' => 20091223210426
+			'log_timestamp' => $dbw->timestamp( 20091223210426 )
 		];
 
 		// Autopatrol #4 very old way
@@ -98,7 +99,7 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7257,
 			'log_params' => "9227851\n0\n1",
-			'log_timestamp' => 20081223210426
+			'log_timestamp' => $dbw->timestamp( 20081223210426 )
 		];
 
 		// Manual patrol #3 very old way
@@ -107,10 +108,10 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 			'log_action' => 'patrol',
 			'log_user' => 7258,
 			'log_params' => "9227851\n0\n0",
-			'log_timestamp' => 20091223210426
+			'log_timestamp' => $dbw->timestamp( 20091223210426 )
 		];
 
-		wfGetDB( DB_MASTER )->insert( 'logging', $logs );
+		$dbw->insert( 'logging', $logs );
 	}
 
 	public function runProvider() {
