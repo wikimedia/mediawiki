@@ -24,6 +24,9 @@
 
 		config = config || {};
 
+		// Mixin constructors
+		OO.ui.mixin.PendingElement.call( this, config );
+
 		this.controller = controller;
 		this.model = model;
 		this.queriesModel = savedQueriesModel;
@@ -217,6 +220,8 @@
 		this.emptyFilterMessage.toggle( this.isEmpty() );
 		this.savedQueryTitle.toggle( false );
 
+		this.setPendingElement( this.menu.$element );
+
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget' );
 
@@ -226,6 +231,7 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
+	OO.mixinClass( mw.rcfilters.ui.FilterTagMultiselectWidget, OO.ui.mixin.PendingElement );
 
 	/* Methods */
 
@@ -255,7 +261,9 @@
 	 * @param {string} value Value of the input
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onInputChange = function ( value ) {
-		this.controller.setSearch( value );
+		this.pushPending();
+		this.controller.setSearch( value )
+			.then( this.popPending.bind( this ) );
 	};
 
 	/**
@@ -473,10 +481,10 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onMenuChoose = function ( item ) {
-		this.controller.toggleFilterSelect( item.model.getName() );
+		var selectedItemModel = this.controller.toggleFilterSelect( item.model.getName() );
 
 		// Select the tag if it exists, or reset selection otherwise
-		this.selectTag( this.findItemFromData( item.model.getName() ) );
+		this.selectTag( this.findItemFromData( selectedItemModel.getName() ) );
 
 		this.focus();
 	};

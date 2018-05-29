@@ -73,6 +73,11 @@
 			model = this,
 			iterationItems = item !== undefined ? [ item ] : this.getItems();
 
+		iterationItems = iterationItems.filter( function ( itemModel ) {
+			// Remove items from search groups
+			return !itemModel.getGroupModel().isSearchResults();
+		} );
+
 		iterationItems.forEach( function ( checkedItem ) {
 			var allCheckedItems = checkedItem.getSubset().concat( [ checkedItem.getName() ] ),
 				groupModel = checkedItem.getGroupModel();
@@ -328,9 +333,11 @@
 		$.each( allViews, function ( viewName, viewData ) {
 			// Define the view
 			model.views[ viewName ] = {
-				name: viewData.name,
+				name: viewData.name || viewName,
 				title: viewData.title,
-				trigger: viewData.trigger
+				trigger: viewData.trigger,
+				async: viewData.async,
+				getResultCallback: viewData.getResultCallback
 			};
 
 			// Go over groups
@@ -342,6 +349,12 @@
 						group,
 						$.extend( true, {}, groupData, { view: viewName } )
 					);
+
+					model.groups[ group ].connect( model, {
+						add: 'onGroupAddItems',
+						remove: 'onGroupRemoveItems',
+						allremoved: 'onGroupRemoveItems'
+					} );
 				}
 
 				model.groups[ group ].initializeFilters( groupData.filters, groupData.default );
@@ -362,9 +375,6 @@
 				} );
 			} );
 		} );
-
-		// Add item references to the model, for lookup
-		this.addItems( items );
 
 		// Expand conflicts
 		groupConflictResult = expandConflictDefinitions( groupConflictMap );
@@ -394,11 +404,22 @@
 					model.parameterMap[ filterItem.getParamName() ] = filterItem;
 				} );
 			} else if (
+				groupModel.getType() === 'arbitrary_string_options' ||
 				groupModel.getType() === 'string_options' ||
 				groupModel.getType() === 'single_option'
 			) {
 				// Group
 				model.parameterMap[ groupModel.getName() ] = groupModel;
+			}
+		} );
+
+		// Set dynamic groups for main group of the search
+		this.getSearchResultsGroups().forEach( function ( groupModel ) {
+			var mainGroupName = groupModel.getMainGroupName(),
+				mainGroupModel = model.getGroup( mainGroupName );
+
+			if ( mainGroupModel ) {
+				mainGroupModel.setDynamic( true );
 			}
 		} );
 
@@ -408,6 +429,88 @@
 
 		// Finish initialization
 		this.emit( 'initialize' );
+	};
+
+	/**
+	 * Respond to group add items event
+	 *
+	 * @param  {mw.rcfilters.dm.FilterItem[]} items Added items
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.onGroupAddItems = function ( items ) {
+		var model = this,
+			groupsInCurrentView = [];
+
+		items = Array.isArray( items ) ? items : [ items ];
+		// Add reference for the view model searches
+		this.addItems( items );
+
+		// Update group visibility
+		items.forEach( function ( itemModel ) {
+			var groupModel = itemModel.getGroupModel();
+			if (
+				model.getCurrentView() === groupModel.getView() &&
+				groupsInCurrentView.indexOf( groupModel ) === -1
+			) {
+				groupModel.toggleVisible( true );
+				groupsInCurrentView.push( groupModel );
+			} else {
+				groupModel.toggleVisible( false );
+			}
+		} );
+	};
+
+	/**
+	 * Respond to group remove items event
+	 *
+	 * @param  {mw.rcfilters.dm.FilterItem[]} items Removed items
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.onGroupRemoveItems = function ( items ) {
+		var groupsInCurrentView = [],
+			model = this;
+
+		items = Array.isArray( items ) ? items : [ items ];
+		// Remove from model's searchable reference
+		this.removeItems( items );
+
+		// Update group visibility
+		items.forEach( function ( itemModel ) {
+			var groupModel = itemModel.getGroupModel();
+			if (
+				model.getCurrentView() === groupModel.getView() &&
+				groupsInCurrentView.indexOf( groupModel ) === -1
+			) {
+				groupModel.toggleVisible( true );
+				groupsInCurrentView.push( groupModel );
+			} else {
+				groupModel.toggleVisible( false );
+			}
+		} );
+	};
+	/**
+	 * Respond to a selection of an item from a temporary search results group
+	 * Move the item from the temporary group to the main group and select it.
+	 *
+	 * @param {mw.rcfilters.dm.FilterItem} item Selected search item
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.moveSearchItemToMainGroup = function ( item ) {
+		var groupModel = item.getGroupModel(),
+			mainGroupName = groupModel.getMainGroupName(),
+			mainGroupModel = this.getGroup( mainGroupName );
+
+		if ( !mainGroupModel ) {
+			// This shouldn't happen if the definition is complete
+			return;
+		}
+
+		// Remove from search group
+		groupModel.removeItems( [ item ] );
+
+		// Add to the main group through the full initialization process
+		mainGroupModel.initializeFilters( [ {
+			// Filter definition (original name is the parameter name)
+			name: item.getParamName(),
+			selected: true
+		} ] );
 	};
 
 	/**
@@ -429,6 +532,13 @@
 			this.getItemByName( filterName ).setValue( filtersValue[ filterName ] );
 		}.bind( this ) );
 
+		// Check if there are any values that belong to a dynamic group
+		Object.values( this.getDynamicGroups() ).forEach( function ( groupModel ) {
+			if ( params[ groupModel.groupName() ] ) {
+				// There are values. Add those values as filters
+			}
+		} );
+
 		// Update highlight state
 		this.getItemsSupportingHighlights().forEach( function ( filterItem ) {
 			var color = params[ filterItem.getName() + '_color' ];
@@ -444,6 +554,36 @@
 		this.reassessFilterInteractions();
 	};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * Get a representation of an empty (falsey) parameter state
 	 *
@@ -458,6 +598,7 @@
 				this.getEmptyHighlightParameters()
 			);
 		}
+
 		return this.emptyParameterState;
 	};
 
@@ -985,6 +1126,34 @@
 	};
 
 	/**
+	 * Get groups that are defined for search result view
+	 *
+	 * @return {mw.rcfilters.dm.FilterGroup[]} Group models for groups that are
+	 *  for search results
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getSearchResultsGroups = function () {
+		return (
+			Object.values( this.getFilterGroups() ).filter( function ( groupModel ) {
+				return groupModel.isSearchResults();
+			} )
+		) || [];
+	};
+
+	/**
+	 * Get groups that are defined for search result view
+	 *
+	 * @return {mw.rcfilters.dm.FilterGroup[]} Group models for groups that are
+	 *  for search results
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.getDynamicGroups = function () {
+		return (
+			Object.values( this.getFilterGroups() ).filter( function ( groupModel ) {
+				return groupModel.isDynamic();
+			} )
+		) || [];
+	};
+
+	/**
 	 * Find items whose labels match the given string
 	 *
 	 * @param {string} query Search string
@@ -1190,6 +1359,40 @@
 		}
 	};
 
+	/**
+	 * Reset a search group to contain the result items given
+	 *
+	 * @param  {string} groupName Group name
+	 * @param  {string[]} results Result array
+	 */
+	mw.rcfilters.dm.FiltersViewModel.prototype.setSearchResultItems = function ( groupName, results ) {
+		var resultsGroup = this.getGroup( 'searchresults_' + groupName ),
+			mainGroupName = resultsGroup.getMainGroupName(),
+			mainGroupModel = this.getGroup( mainGroupName );
+
+		// Remove results that are already in the main group
+		results = results.filter( function ( val ) {
+			return !mainGroupModel.getItemByParamName( val );
+		} );
+
+		resultsGroup.resetSearchItems( results );
+	};
+
+	mw.rcfilters.dm.FiltersViewModel.prototype.resetAllSearchItems = function () {
+		var searchItems = [],
+			searchGroups = Object.values( this.getFilterGroups() )
+				.filter( function ( groupModel ) {
+					return groupModel.isSearchResults();
+				} );
+
+		searchGroups.forEach( function ( groupModel ) {
+			searchItems = searchItems.concat( groupModel.getItems() );
+			groupModel.resetSearchItems();
+		} );
+
+		// Remove from reference
+		this.removeItems( searchItems );
+	};
 	/**
 	 * Get the current search
 	 *

@@ -23,8 +23,13 @@
 		// Parent
 		mw.rcfilters.ui.FilterMenuOptionWidget.parent.call( this, controller, filtersViewModel, this.invertModel, itemModel, config );
 
-		// Event
-		this.model.getGroupModel().connect( this, { update: 'onGroupModelUpdate' } );
+		// Events
+		this.model.connect( this, {
+			removed: 'onItemRemoved'
+		} );
+		this.model.getGroupModel().connect( this, {
+			update: 'onGroupModelUpdate'
+		} );
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-filterMenuOptionWidget' );
@@ -50,6 +55,18 @@
 		this.setCurrentMuteState();
 	};
 
+	/**
+	 * Respond to the model item being removed
+	 *
+	 * @fires removed
+	 */
+	mw.rcfilters.ui.FilterMenuOptionWidget.prototype.onItemRemoved = function () {
+		this.toggle( false );
+		this.model.disconnect( this );
+		this.model.getGroupModel().disconnect( this );
+
+		this.emit( 'removed' );
+	};
 	/**
 	 * Respond to item group model update event
 	 */

@@ -281,7 +281,7 @@
 		var base = this.getVersion( uriQuery ) === 2 ?
 			{} :
 			this.filtersModel.getDefaultParams();
-
+debugger;
 		return $.extend(
 			true,
 			{},
