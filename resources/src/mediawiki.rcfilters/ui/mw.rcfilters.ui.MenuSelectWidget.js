@@ -30,6 +30,7 @@
 		this.model = model;
 		this.currentView = '';
 		this.views = {};
+		this.sectionWidgets = {};
 		this.userSelecting = false;
 
 		this.menuInitialized = false;
@@ -65,10 +66,14 @@
 		} );
 
 		// Events
+		this.aggregate( {
+			removed: 'itemRemoved'
+		} );
 		this.model.connect( this, {
 			initialize: 'onModelInitialize',
 			searchChange: 'onModelSearchChange'
 		} );
+		this.connect( this, { itemRemoved: 'onItemRemoved' } );
 
 		// Initialization
 		this.$element
@@ -120,6 +125,60 @@
 	};
 
 	/**
+	 * Respond to item remove event
+	 *
+	 * @param  {mw.rcfilters.ui.FilterMenuOptionWidget} itemWidget Item that was removed
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onItemRemoved = function ( itemWidget ) {
+		this.removeItems( [ itemWidget ] );
+	};
+
+	/**
+	 * Respond to an event where an item is added to a group model
+	 *
+	 * @param  {mw.rcfilters.dm.FilterGroup} groupModel Group model
+	 * @param  {mw.rcfilters.dm.FilterItem} item Added item
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.onGroupAddItem = function ( groupModel, item ) {
+		var sectionWidget = this.sectionWidgets[ groupModel.getName() ],
+			sectionIndex = sectionWidget && this.getItems().indexOf( sectionWidget ),
+			widget = new mw.rcfilters.ui.FilterMenuOptionWidget(
+				this.controller,
+				this.model,
+				this.model.getInvertModel(),
+				item,
+				{ $overlay: this.$overlay }
+			);
+
+		this.addItems( [ widget ], this.findIndexOfEndOfSection( sectionIndex ) + 1 );
+
+		if ( !groupModel.isSearchResults() ) {
+			sectionWidget.toggle( true );
+		}
+	};
+
+	/**
+	 * Find the index value of the end of the immediately closest next section
+	 *
+	 * @param {number} [startingIndex=0] Starting index
+	 * @return {number} Index of the end of the closest section
+	 */
+	mw.rcfilters.ui.MenuSelectWidget.prototype.findIndexOfEndOfSection = function ( startingIndex ) {
+		var i,
+			items = this.getItems();
+
+		startingIndex = startingIndex || 0;
+
+		for ( i = startingIndex; i < items.length; i++ ) {
+			if ( items[ i ] instanceof mw.rcfilters.ui.FilterMenuSectionOptionWidget ) {
+				break;
+			}
+		}
+
+		return i;
+	};
+
+	/**
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.toggle = function ( show ) {
@@ -153,23 +212,31 @@
 		} );
 
 		$.each( groups, function ( groupName, groupModel ) {
-			var currentItems = [],
+			var sectionWidget,
+				currentItems = [],
 				view = groupModel.getView();
+
+			groupModel.connect( widget, {
+				// TODO: This is really not a very good solution; find a better
+				// way to listen to add/remove items from groups...
+				add: [ 'onGroupAddItem', groupModel ]
+			} );
 
 			if ( !groupModel.isHidden() ) {
 				if ( viewGroupCount[ view ] > 1 ) {
 					// Only add a section header if there is more than
 					// one group
-					currentItems.push(
-						// Group section
-						new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
-							widget.controller,
-							groupModel,
-							{
-								$overlay: widget.$overlay
-							}
-						)
+					// Group section
+					sectionWidget = new mw.rcfilters.ui.FilterMenuSectionOptionWidget(
+						widget.controller,
+						groupModel,
+						{
+							$overlay: widget.$overlay
+						}
 					);
+					// Keep reference of the section widgets
+					widget.sectionWidgets[ groupModel.getName() ] = sectionWidget;
+					currentItems.push( sectionWidget );
 				}
 
 				// Add items

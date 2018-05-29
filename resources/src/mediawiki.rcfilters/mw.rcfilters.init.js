@@ -29,6 +29,47 @@
 					}
 				);
 
+			// TODO: This view and group definition should eventually be added in the backend
+			conditionalViews.categoryView = {
+				title: mw.msg( 'rcfilters-view-categories' ), // TODO: add this to i18n
+				trigger: '/',
+				async: true, // This is new
+				mainGroupName: 'categories',
+				searchGroupTitle: mw.msg( 'rcfilters-view-categories-search' ),
+				// Generalization:
+				// this method should return an array of results that
+				// will represent the param name when/if the item is
+				// selected
+				// TODO: Figure out where/how to document this properly
+				getResultCallback: function ( searchQuery ) {
+					return new mw.Api().get( {
+						action: 'query',
+						list: 'allcategories',
+						acprefix: searchQuery
+					} )
+						.then( function ( result ) {
+							var fetchedCategories = result.query.allcategories;
+							return fetchedCategories.map( function ( data ) {
+								return data[ '*' ];
+							} );
+						} );
+				},
+				groups: [
+					{
+						// NOTE: We currently assume all groups that are async (search)
+						// are string_options.
+						// TODO: Allow for more group types, potentially?
+						name: 'categories', // This is also the parameter name
+						title: mw.msg( 'rcfilters-view-categories-included' ),
+						type: 'string_options',
+						separator: '|',
+						fullCoverage: false,
+						labelPrefixKey: 'rcfilters-tag-prefix-categories',
+						filters: []
+					}
+				]
+			};
+
 			// TODO: The changesListWrapperWidget should be able to initialize
 			// after the model is ready.
 
