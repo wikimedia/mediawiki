@@ -66,7 +66,7 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 	public function testGetForm() {
 		$testUser = $this->getTestUser();
 		$form = $this->getPreferencesFactory()->getForm( $testUser->getUser(), $this->context );
-		$this->assertInstanceOf( PreferencesForm::class, $form );
+		$this->assertInstanceOf( PreferencesFormLegacy::class, $form );
 		$this->assertCount( 5, $form->getPreferenceSections() );
 	}
 
