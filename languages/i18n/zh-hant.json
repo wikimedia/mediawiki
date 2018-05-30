@@ -2499,7 +2499,7 @@
 	"ipboptions": "2 小時:2 hours,1 天:1 day,3 天:3 days,1 週:1 week,2 週:2 weeks,1 個月:1 month,3 個月:3 months,6 個月:6 months,1 年:1 year,無限期:infinite",
 	"ipbhidename": "在編輯及清單中隱藏使用者名稱",
 	"ipbwatchuser": "監視這位使用者的使用者頁面及其對話頁面",
-	"ipb-disableusertalk": "阻止此使用者在封鎖期間編輯自己的對話頁面",
+	"ipb-disableusertalk": "禁止使用者在封鎖期間編輯自己的對話頁面",
 	"ipb-change-block": "使用現有設定重新封鎖使用者",
 	"ipb-confirm": "確認封鎖",
 	"badipaddress": "無效的 IP 位址",
