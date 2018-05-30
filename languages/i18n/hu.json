@@ -1958,6 +1958,7 @@
 	"protectedtitles-submit": "Leírások mutatása",
 	"listusers": "Szerkesztők",
 	"listusers-editsonly": "Csak a szerkesztéssel rendelkező szerkesztők mutatása",
+	"listusers-temporarygroupsonly": "Csak az ideiglenes szerkesztői csoportokban szereplő szerkesztők mutatása",
 	"listusers-creationsort": "Rendezés létrehozási dátum szerint",
 	"listusers-desc": "Rendezés csökkenő sorrendben",
 	"usereditcount": "{{PLURAL:$1|egy|$1}} szerkesztés",
@@ -4005,6 +4006,7 @@
 	"unlinkaccounts-success": "A fiókok szétkapcsolva.",
 	"authenticationdatachange-ignored": "A hitelesítő adatok változtatása nincs kezelve. Talán nincs beállítva szolgáltató?",
 	"userjsispublic": "Figyelem: JavaScript-allapokon ne tárolj bizalmas adatokat, mivel minden felhasználó számára láthatóak.",
+	"userjsonispublic": "Figyelem: JSON-allapokon ne tárolj bizalmas adatokat, mivel minden felhasználó számára láthatóak.",
 	"usercssispublic": "Figyelem: CSS-allapokon ne tárolj bizalmas adatokat, mivel minden felhasználó számára láthatóak.",
 	"restrictionsfield-badip": "Érvénytelen IP-cím vagy -tartomány: $1",
 	"restrictionsfield-label": "Engedélyezett IP-tartományok:",
@@ -4024,10 +4026,12 @@
 	"pagedata-bad-title": "Érvénytelen cím: $1.",
 	"unregistered-user-config": "Biztonsági okokból JavaScript, CSS és JSON szerkesztői alapok nem töltődnek be regisztrálatlan felhasználóknak.",
 	"passwordpolicies": "Jelszóirányelvek",
+	"passwordpolicies-summary": "Ez egy lista a hatékony jelszóirányelvekről a wikin használt felhasználói csoportok szerint.",
 	"passwordpolicies-group": "Csoport",
 	"passwordpolicies-policies": "Irányelvek",
 	"passwordpolicies-policy-minimalpasswordlength": "A jelszónak legalább $1 karakterből kell állnia",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A jelszónak legalább $1 karakterből kell állnia a bejelentkezéshez",
 	"passwordpolicies-policy-passwordcannotmatchusername": "A jelszó nem lehet azonos a felhasználónévvel",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "A jelszó nem lehet azonos a feketelistán szereplő jelszavakkal.",
 	"passwordpolicies-policy-maximalpasswordlength": "A jelszó legfeljebb $1 karakter hosszú lehet"
 }

@@ -2016,7 +2016,7 @@
 	"listusers-submit": "Mostra",
 	"listusers-noresult": "No usor trovada.",
 	"listusers-blocked": "(impedida)",
-	"activeusers": "Lista ativa de usores",
+	"activeusers": "Lista de usores ativa",
 	"activeusers-intro": "Esta es un lista de usores ci ia es ativa en alga modo en la {{PLURAL:$1|dia|dias}} la plu resente.",
 	"activeusers-count": "$1 {{PLURAL:$1|ata|atas}} en la {{PLURAL:$3|dia|$3 dias}} la plu resente.",
 	"activeusers-from": "Mostra usores comensante a:",
