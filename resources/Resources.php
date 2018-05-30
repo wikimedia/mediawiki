@@ -856,6 +856,7 @@ return [
 			'resources/src/mediawiki/mediawiki.js',
 			'resources/src/mediawiki/mediawiki.requestIdleCallback.js',
 			'resources/src/mediawiki/mediawiki.errorLogger.js',
+			'resources/src/mediawiki/mediawiki.base.js',
 		],
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
 		'targets' => [ 'desktop', 'mobile' ],

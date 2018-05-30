@@ -2227,17 +2227,6 @@
 				},
 
 				/**
-				 * @inheritdoc mw.inspect#runReports
-				 * @method
-				 */
-				inspect: function () {
-					var args = slice.call( arguments );
-					mw.loader.using( 'mediawiki.inspect', function () {
-						mw.inspect.runReports.apply( mw.inspect, args );
-					} );
-				},
-
-				/**
 				 * On browsers that implement the localStorage API, the module store serves as a
 				 * smart complement to the browser cache. Unlike the browser cache, the module store
 				 * can slice a concatenated response from ResourceLoader into its constituent
