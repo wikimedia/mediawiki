@@ -246,6 +246,7 @@ class ExtensionRegistry {
 			}
 			if ( isset( $info['AutoloadNamespaces'] ) ) {
 				$autoloadNamespaces += $this->processAutoLoader( $dir, $info['AutoloadNamespaces'] );
+				AutoLoader::$psr4Namespaces += $autoloadNamespaces;
 			}
 
 			// get all requirements/dependencies for this extension
