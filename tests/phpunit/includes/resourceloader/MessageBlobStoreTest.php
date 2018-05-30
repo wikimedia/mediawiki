@@ -106,7 +106,6 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * Seems to fail sometimes (T176097).
 	 *
-	 * @group Broken
 	 */
 	public function testGetBlobCached() {
 		$module = $this->makeModule( [ 'example' ] );
