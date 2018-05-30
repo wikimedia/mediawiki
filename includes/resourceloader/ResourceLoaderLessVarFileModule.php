@@ -4,10 +4,21 @@
  * Subclass with context specific LESS variables
  */
 class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
-	protected $lessVariables = [
-		'collapsible-collapse',
-		'collapsible-expand',
-	];
+	protected $lessVariables = [];
+
+	/**
+	 * @inheritDoc
+	 */
+	public function __construct(
+		$options = [],
+		$localBasePath = null,
+		$remoteBasePath = null
+	) {
+		if ( isset( $options['lessMessages'] ) ) {
+			$this->lessVariables = $options['lessMessages'];
+		}
+		parent::__construct( $options, $localBasePath, $remoteBasePath );
+	}
 
 	/**
 	 * @inheritDoc
@@ -19,6 +30,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 
 	/**
 	 * Exclude a set of messages from a JSON string representation
+	 *
 	 * @param string $blob
 	 * @param array $exclusions
 	 * @return array $blob
@@ -29,7 +41,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 		foreach ( $exclusions as $key ) {
 			unset( $data[$key] );
 		}
-		return $data;
+		return (object)$data;
 	}
 
 	/**
@@ -45,6 +57,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 * (ModifyVars) method so that the variable can be loaded and made available to stylesheets.
 	 * Note this does not take care of CSS escaping. That will be taken care of as part
 	 * of CSS Janus.
+	 *
 	 * @param string $msg
 	 * @return string wrapped LESS variable definition
 	 */
@@ -53,14 +66,16 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @param \ResourceLoaderContext $context
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array LESS variables
 	 */
-	protected function getLessVars( \ResourceLoaderContext $context ) {
+	protected function getLessVars( ResourceLoaderContext $context ) {
 		$blob = parent::getMessageBlob( $context );
 		$lessMessages = $this->excludeMessagesFromBlob( $blob, $this->messages );
 
-		$vars = [];
+		$vars = parent::getLessVars( $context );
 		foreach ( $lessMessages as $msgKey => $value ) {
 			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $value );
 		}
