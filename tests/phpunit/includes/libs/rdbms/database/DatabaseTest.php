@@ -260,6 +260,16 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called in next round commit' );
+
+		$db->setFlag( DBO_TRX );
+		try {
+			$db->onTransactionCommitOrIdle( function () {
+				throw new RuntimeException( 'test' );
+			} );
+			$this->fail( "Exception not thrown" );
+		} catch ( RuntimeException $e ) {
+			$this->assertTrue( $db->getFlag( DBO_TRX ) );
+		}
 	}
 
 	/**
