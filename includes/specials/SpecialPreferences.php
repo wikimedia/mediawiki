@@ -184,9 +184,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		$htmlForm = HTMLForm::factory(
-			$this->oouiEnabled ? 'ooui' : 'vform', [], $context, 'prefs-restore'
-		);
+		$htmlForm = HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' );
 
 		$htmlForm->setSubmitTextMsg( 'restoreprefs' );
 		$htmlForm->setSubmitDestructive();
