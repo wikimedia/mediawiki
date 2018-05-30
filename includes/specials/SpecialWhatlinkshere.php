@@ -209,7 +209,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 						$out->addHTML( $this->getFilterPanel() );
 					}
 					$msgKey = is_int( $namespace ) ? 'nolinkshere-ns-2' : 'nolinkshere-2';
-					$link = $this->getLinkRenderer()->makeKnownLink(
+					$link = $this->getLinkRenderer()->makeLink(
 						$this->target,
 						null,
 						[],
@@ -285,7 +285,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				$out->addHTML( $this->whatlinkshereForm() );
 				$out->addHTML( $this->getFilterPanel() );
 
-				$link = $this->getLinkRenderer()->makeKnownLink(
+				$link = $this->getLinkRenderer()->makeLink(
 					$this->target,
 					null,
 					[],
