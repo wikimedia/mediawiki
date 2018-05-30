@@ -71,6 +71,17 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		] );
 	}
 
+	public function testReadFromQueueInitializeAutoloaderWithPsr4Namespaces() {
+		$registry = new ExtensionRegistry();
+		$registry->readFromQueue( [
+			"{$this->dataDir}/autoload_namespaces.json" => 1
+		] );
+		$this->assertTrue(
+			class_exists( 'Test\\MediaWiki\\AutoLoader\\TestFooBar' ),
+			"Registry initializes Autoloader from AutoloadNamespaces"
+		);
+	}
+
 	/**
 	 * @dataProvider provideExportExtractedDataGlobals
 	 */
