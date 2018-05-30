@@ -962,7 +962,7 @@ mw.example();
 	/**
 	 * @covers ResourceLoader::respond
 	 */
-	public function testRespond() {
+	public function testRespondEmpty() {
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
 			->setMethods( [
 				'tryRespondNotModified',
@@ -974,6 +974,65 @@ mw.example();
 
 		$rl->expects( $this->once() )->method( 'measureResponseTime' );
 		$this->expectOutputRegex( '/no modules were requested/' );
+
+		$rl->respond( $context );
+	}
+
+	/**
+	 * @covers ResourceLoader::respond
+	 */
+	public function testRespondSimple() {
+		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->setMethods( [
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+				'measureResponseTime',
+				'makeModuleResponse',
+			] )
+			->getMock();
+		$rl->register( 'test', $module );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'test', 'only' => null ],
+			$rl
+		);
+
+		$rl->expects( $this->once() )->method( 'makeModuleResponse' )
+			->with( $context, [ 'test' => $module ] )
+			->willReturn( 'implement_foo;' );
+		$this->expectOutputRegex( '/^implement_foo;/' );
+
+		$rl->respond( $context );
+	}
+
+	/**
+	 * @covers ResourceLoader::respond
+	 */
+	public function testRespondInternalFailures() {
+		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->setMethods( [
+				'preloadModuleInfo',
+				'getCombinedVersion',
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+				'measureResponseTime',
+			] )
+			->getMock();
+		$rl->register( 'test', $module );
+		$context = $this->getResourceLoaderContext( [ 'modules' => 'test' ], $rl );
+		// Disable logging from outputErrorAndLog
+		$this->setLogger( 'exception', new Psr\Log\NullLogger() );
+
+		$rl->expects( $this->once() )->method( 'preloadModuleInfo' )
+			->willThrowException( new Exception( 'Preload error' ) );
+		$rl->expects( $this->once() )->method( 'getCombinedVersion' )
+			->willThrowException( new Exception( 'Version error' ) );
+		$rl->expects( $this->once() )->method( 'makeModuleResponse' )
+			->with( $context, [ 'test' => $module ] )
+			->willReturn( 'foo;' );
+		// Internal errors should be caught and logged without affecting module output
+		$this->expectOutputRegex( '/^\/\*.+Preload error.+Version error.+\*\/.*foo;/ms' );
 
 		$rl->respond( $context );
 	}
