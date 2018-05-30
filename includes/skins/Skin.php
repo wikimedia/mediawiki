@@ -1614,14 +1614,12 @@ abstract class Skin extends ContextSource {
 	 *   to be included in the link, like "&section=$section"
 	 * @param string $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param string $lang Language code
+	 * @param Language $lang Language object
 	 * @return string HTML to use for edit link
 	 */
-	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
+	public function doEditSectionLink( Title $nt, $section, $tooltip = null, Language $lang ) {
 		// HTML generated here should probably have userlangattributes
 		// added to it for LTR text on RTL pages
-
-		$lang = wfGetLangObj( $lang );
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
