@@ -127,7 +127,8 @@
 			// we can trim the previous one).
 			// See https://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
-			$el.on( eventKeys, function () {
+
+			function enforceLimit() {
 				var res = trimFn(
 					prevSafeVal,
 					this.value,
@@ -149,6 +150,15 @@
 				// trimFn to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (T42850).
 				prevSafeVal = res.newVal;
+			}
+
+			$el.on( eventKeys, function ( e ) {
+				if ( e.type === 'cut' || e.type === 'paste' ) {
+					// For 'cut'/'paste', the input value is only updated after the event handlers resolve.
+					setTimeout( enforceLimit.bind( this ) );
+				} else {
+					enforceLimit.call( this );
+				}
 			} );
 		} );
 	}
