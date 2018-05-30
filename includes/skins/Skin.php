@@ -1610,15 +1610,20 @@ abstract class Skin extends ContextSource {
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
 	 * @param string|null $tooltip The tooltip to use for the link: will be escaped
-	 *   and wrapped in the 'editsectionhint' message
-	 * @param string $lang Language code
+	 *   and wrapped in the 'editsectionhint' message.
+	 *   Not setting this parameter is deprecated.
+	 * @param Language|string $lang Language object or language code string.
+	 *   Type string is deprecated. Not setting this parameter is deprecated.
 	 * @return string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
 		// HTML generated here should probably have userlangattributes
 		// added to it for LTR text on RTL pages
 
-		$lang = wfGetLangObj( $lang );
+		if ( !$lang instanceof Language ) {
+			wfDeprecated( __METHOD__ . ' with other type than Language for $lang', '1.32' );
+			$lang = wfGetLangObj( $lang );
+		}
 
 		$attribs = [];
 		if ( !is_null( $tooltip ) ) {
