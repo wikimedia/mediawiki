@@ -342,7 +342,21 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		throw new Exception( "CAS is not implemented in " . __CLASS__ );
+		if ( !$this->lock( $key, 0 ) ) {
+			return false; // non-blocking
+		}
+
+		$curCasToken = null; // passed by reference
+		$this->getWithToken( $key, $curCasToken, self::READ_LATEST );
+		if ( $casToken === $curCasToken ) {
+			$success = $this->set( $key, $value, $exptime );
+		} else {
+			$success = false; // mismatched or failed
+		}
+
+		$this->unlock( $key );
+
+		return $success;
 	}
 
 	/**
