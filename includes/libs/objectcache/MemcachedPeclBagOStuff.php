@@ -140,7 +140,19 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		$this->debugLog( "get($key)" );
-		$result = $this->client->get( $this->validateKeyEncoding( $key ), null, $casToken );
+		if ( defined( Memcached::class . '::GET_EXTENDED' ) ) { // v3.0.0
+			$flags = Memcached::GET_EXTENDED;
+			$res = $this->client->get( $this->validateKeyEncoding( $key ), null, $flags );
+			if ( is_array( $res ) ) {
+				$result = $res['value'];
+				$casToken = $res['cas'];
+			} else {
+				$result = false;
+				$casToken = null;
+			}
+		} else {
+			$result = $this->client->get( $this->validateKeyEncoding( $key ), null, $casToken );
+		}
 		$result = $this->checkResult( $key, $result );
 		return $result;
 	}
