@@ -54,7 +54,7 @@ class UDPTransport {
 			// IPv6 bracketed host
 			$host = $m[1];
 			$port = intval( $m[2] );
-			$prefix = isset( $m[3] ) ? $m[3] : false;
+			$prefix = $m[3] ?? false;
 			$domain = AF_INET6;
 		} elseif ( preg_match( '!^udp:(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $info, $m ) ) {
 			$host = $m[1];
@@ -62,7 +62,7 @@ class UDPTransport {
 				$host = gethostbyname( $host );
 			}
 			$port = intval( $m[2] );
-			$prefix = isset( $m[3] ) ? $m[3] : false;
+			$prefix = $m[3] ?? false;
 			$domain = AF_INET;
 		} else {
 			throw new InvalidArgumentException( __METHOD__ . ': Invalid UDP specification' );

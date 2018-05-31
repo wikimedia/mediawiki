@@ -140,7 +140,7 @@ class RepoGroup {
 			&& empty( $options['private'] )
 			&& empty( $options['latest'] )
 		) {
-			$time = isset( $options['time'] ) ? $options['time'] : '';
+			$time = $options['time'] ?? '';
 			if ( $this->cache->has( $dbkey, $time, 60 ) ) {
 				return $this->cache->get( $dbkey, $time );
 			}

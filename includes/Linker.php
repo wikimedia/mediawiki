@@ -338,7 +338,7 @@ class Linker {
 		}
 
 		// Clean up parameters
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = $handlerParams['page'] ?? false;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
 		}
@@ -442,7 +442,7 @@ class Linker {
 			$params = [
 				'alt' => $frameParams['alt'],
 				'title' => $frameParams['title'],
-				'valign' => isset( $frameParams['valign'] ) ? $frameParams['valign'] : false,
+				'valign' => $frameParams['valign'] ?? false,
 				'img-class' => $frameParams['class'] ];
 			if ( isset( $frameParams['border'] ) ) {
 				$params['img-class'] .= ( $params['img-class'] !== '' ? ' ' : '' ) . 'thumbborder';
@@ -535,7 +535,7 @@ class Linker {
 	) {
 		$exists = $file && $file->exists();
 
-		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
+		$page = $handlerParams['page'] ?? false;
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = 'right';
 		}

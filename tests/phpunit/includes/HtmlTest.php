@@ -676,7 +676,7 @@ class HtmlTest extends MediaWikiTestCase {
 			$ret[] = [
 				$case[0],
 				$case[1], $case[2],
-				isset( $case[3] ) ? $case[3] : ''
+				$case[3] ?? ''
 			];
 		}
 

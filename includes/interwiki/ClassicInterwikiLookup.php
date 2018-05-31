@@ -314,10 +314,10 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function loadFromArray( $mc ) {
 		if ( isset( $mc['iw_url'] ) ) {
 			$url = $mc['iw_url'];
-			$local = isset( $mc['iw_local'] ) ? $mc['iw_local'] : 0;
-			$trans = isset( $mc['iw_trans'] ) ? $mc['iw_trans'] : 0;
-			$api = isset( $mc['iw_api'] ) ? $mc['iw_api'] : '';
-			$wikiId = isset( $mc['iw_wikiid'] ) ? $mc['iw_wikiid'] : '';
+			$local = $mc['iw_local'] ?? 0;
+			$trans = $mc['iw_trans'] ?? 0;
+			$api = $mc['iw_api'] ?? '';
+			$wikiId = $mc['iw_wikiid'] ?? '';
 
 			return new Interwiki( null, $url, $api, $wikiId, $local, $trans );
 		}

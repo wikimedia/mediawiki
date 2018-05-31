@@ -164,7 +164,7 @@ class LineFormatter extends MonologLineFormatter {
 						);
 				}
 
-				$prev = isset( $prev['previous'] ) ? $prev['previous'] : null;
+				$prev = $prev['previous'] ?? null;
 			}
 		}
 		return $str;

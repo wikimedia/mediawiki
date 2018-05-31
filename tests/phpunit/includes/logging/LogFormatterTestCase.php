@@ -33,19 +33,19 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			// no log_id because no insert in database
 			'log_type' => $data['type'],
 			'log_action' => $data['action'],
-			'log_timestamp' => isset( $data['timestamp'] ) ? $data['timestamp'] : wfTimestampNow(),
-			'log_user' => isset( $data['user'] ) ? $data['user'] : 0,
-			'log_user_text' => isset( $data['user_text'] ) ? $data['user_text'] : 'User',
-			'log_actor' => isset( $data['actor'] ) ? $data['actor'] : 0,
-			'log_namespace' => isset( $data['namespace'] ) ? $data['namespace'] : NS_MAIN,
-			'log_title' => isset( $data['title'] ) ? $data['title'] : 'Main_Page',
-			'log_page' => isset( $data['page'] ) ? $data['page'] : 0,
-			'log_comment_text' => isset( $data['comment'] ) ? $data['comment'] : '',
+			'log_timestamp' => $data['timestamp'] ?? wfTimestampNow(),
+			'log_user' => $data['user'] ?? 0,
+			'log_user_text' => $data['user_text'] ?? 'User',
+			'log_actor' => $data['actor'] ?? 0,
+			'log_namespace' => $data['namespace'] ?? NS_MAIN,
+			'log_title' => $data['title'] ?? 'Main_Page',
+			'log_page' => $data['page'] ?? 0,
+			'log_comment_text' => $data['comment'] ?? '',
 			'log_comment_data' => null,
 			'log_params' => $legacy
 				? LogPage::makeParamBlob( $data['params'] )
 				: LogEntryBase::makeParamBlob( $data['params'] ),
-			'log_deleted' => isset( $data['deleted'] ) ? $data['deleted'] : 0,
+			'log_deleted' => $data['deleted'] ?? 0,
 		];
 	}
 

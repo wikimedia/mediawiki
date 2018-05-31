@@ -394,7 +394,7 @@ class SpecialVersion extends SpecialPage {
 	public static function getExtensionTypeName( $type ) {
 		$types = self::getExtensionTypes();
 
-		return isset( $types[$type] ) ? $types[$type] : $types['other'];
+		return $types[$type] ?? $types['other'];
 	}
 
 	/**
@@ -830,7 +830,7 @@ class SpecialVersion extends SpecialPage {
 		$description = $out->parseInline( $description );
 
 		// ... now get the authors for this extension
-		$authors = isset( $extension['author'] ) ? $extension['author'] : [];
+		$authors = $extension['author'] ?? [];
 		$authors = $this->listAuthors( $authors, $extension['name'], $extensionPath );
 
 		// Finally! Create the table

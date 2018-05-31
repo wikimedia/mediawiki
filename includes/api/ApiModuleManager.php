@@ -96,7 +96,7 @@ class ApiModuleManager extends ContextSource {
 		foreach ( $modules as $name => $moduleSpec ) {
 			if ( is_array( $moduleSpec ) ) {
 				$class = $moduleSpec['class'];
-				$factory = ( isset( $moduleSpec['factory'] ) ? $moduleSpec['factory'] : null );
+				$factory = ( $moduleSpec['factory'] ?? null );
 			} else {
 				$class = $moduleSpec;
 				$factory = null;

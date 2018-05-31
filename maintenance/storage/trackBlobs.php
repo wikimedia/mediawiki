@@ -122,7 +122,7 @@ class TrackBlobs {
 		return [
 			'cluster' => $m[1],
 			'id' => intval( $m[2] ),
-			'hash' => isset( $m[3] ) ? $m[3] : null
+			'hash' => $m[3] ?? null
 		];
 	}
 

@@ -30,7 +30,7 @@ require_once __DIR__ . '/commandLine.inc';
 
 $debug = isset( $options['debug'] );
 $help = isset( $options['help'] );
-$cache = isset( $options['cache'] ) ? $options['cache'] : null;
+$cache = $options['cache'] ?? null;
 
 if ( $help ) {
 	mccShowUsage();

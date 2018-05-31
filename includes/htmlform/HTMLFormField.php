@@ -546,8 +546,7 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		];
 
-		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
-			? $this->mParams['horizontal-label'] : false;
+		$horizontalLabel = $this->mParams['horizontal-label'] ?? false;
 
 		if ( $horizontalLabel ) {
 			$field = '&#160;' . $inputHtml . "\n$errors";
@@ -950,8 +949,7 @@ abstract class HTMLFormField {
 
 		$displayFormat = $this->mParent->getDisplayFormat();
 		$html = '';
-		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
-			? $this->mParams['horizontal-label'] : false;
+		$horizontalLabel = $this->mParams['horizontal-label'] ?? false;
 
 		if ( $displayFormat === 'table' ) {
 			$html =

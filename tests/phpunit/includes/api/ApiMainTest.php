@@ -491,7 +491,7 @@ class ApiMainTest extends ApiTestCase {
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
 			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
-				return isset( $conditions[$condition] ) ? $conditions[$condition] : null;
+				return $conditions[$condition] ?? null;
 			} ) );
 
 		$ret = $priv->checkConditionalRequestHeaders( $module );
@@ -622,7 +622,7 @@ class ApiMainTest extends ApiTestCase {
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
 			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
-				return isset( $conditions[$condition] ) ? $conditions[$condition] : null;
+				return $conditions[$condition] ?? null;
 			} ) );
 		$priv->mModule = $module;
 
@@ -630,7 +630,7 @@ class ApiMainTest extends ApiTestCase {
 
 		foreach ( [ 'Last-Modified', 'ETag' ] as $header ) {
 			$this->assertEquals(
-				isset( $headers[$header] ) ? $headers[$header] : null,
+				$headers[$header] ?? null,
 				$response->getHeader( $header ),
 				$header
 			);

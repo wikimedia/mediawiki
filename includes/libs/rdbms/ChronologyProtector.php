@@ -330,7 +330,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 */
 	protected function mergePositions( $curValue, array $shutdownPositions, &$cpIndex = null ) {
 		/** @var DBMasterPos[] $curPositions */
-		$curPositions = isset( $curValue['positions'] ) ? $curValue['positions'] : [];
+		$curPositions = $curValue['positions'] ?? [];
 		// Use the newest positions for each DB master
 		foreach ( $shutdownPositions as $db => $pos ) {
 			if (
@@ -342,7 +342,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			}
 		}
 
-		$cpIndex = isset( $curValue['writeIndex'] ) ? $curValue['writeIndex'] : 0;
+		$cpIndex = $curValue['writeIndex'] ?? 0;
 
 		return [
 			'positions' => $curPositions,

@@ -134,7 +134,7 @@ class ApiUserrights extends ApiBase {
 
 		$this->requireOnlyOneParameter( $params, 'user', 'userid' );
 
-		$user = isset( $params['user'] ) ? $params['user'] : '#' . $params['userid'];
+		$user = $params['user'] ?? '#' . $params['userid'];
 
 		$form = $this->getUserRightsPage();
 		$form->setContext( $this->getContext() );

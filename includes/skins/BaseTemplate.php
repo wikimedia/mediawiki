@@ -366,7 +366,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['text'] ) ) {
 			$text = $item['text'];
 		} else {
-			$text = wfMessage( isset( $item['msg'] ) ? $item['msg'] : $key )->text();
+			$text = wfMessage( $item['msg'] ?? $key )->text();
 		}
 
 		$html = htmlspecialchars( $text );
@@ -378,9 +378,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 			while ( count( $wrapper ) > 0 ) {
 				$element = array_pop( $wrapper );
-				$html = Html::rawElement( $element['tag'], isset( $element['attributes'] )
-					? $element['attributes']
-					: null, $html );
+				$html = Html::rawElement( $element['tag'], $element['attributes'] ?? null, $html );
 			}
 		}
 
@@ -517,7 +515,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
-		return Html::rawElement( isset( $options['tag'] ) ? $options['tag'] : 'li', $attrs, $html );
+		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
 	}
 
 	function makeSearchInput( $attrs = [] ) {
@@ -561,11 +559,9 @@ abstract class BaseTemplate extends QuickTemplate {
 				unset( $buttonAttrs['height'] );
 				$imgAttrs = [
 					'src' => $attrs['src'],
-					'alt' => isset( $attrs['alt'] )
-						? $attrs['alt']
-						: wfMessage( 'searchbutton' )->text(),
-					'width' => isset( $attrs['width'] ) ? $attrs['width'] : null,
-					'height' => isset( $attrs['height'] ) ? $attrs['height'] : null,
+					'alt' => $attrs['alt'] ?? wfMessage( 'searchbutton' )->text(),
+					'width' => $attrs['width'] ?? null,
+					'height' => $attrs['height'] ?? null,
 				];
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:
