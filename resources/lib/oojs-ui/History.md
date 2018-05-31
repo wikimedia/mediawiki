@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.27.1 / 2018-05-29
+### Deprecations
+* [DEPRECATING CHANGE] Toolbar: Add a required 'name' property to toolgroup configs (Ed Sanders)
+
+### Styles
+* Add bold icon for Chechen language (Ed Sanders)
+* FieldLayout: Give help icon space when align=left (Prateek Saxena)
+* MenuSelectWidget: Allow dropdown menus to be larger than their handles (Ed Sanders)
+* themes: Clarify and align focus on TabselectWidget's selected tab (Volker E.)
+* WikimediaUI theme: Replace fixed value with dedicated LESS var (Volker E.)
+* WikimediaUI theme: Align DecoratedOptionWidget's icon opacity to other widgets (Volker E.)
+* WikimediaUI theme: Fix PopupButtonWidget position (Volker E.)
+* WikimediaUI theme: Fix regression on Safari bug (Volker E.)
+* WikimediaUI theme: Fix unbalanced focus state in action toolbar (Volker E.)
+* Apex theme: Reduce accumulated white-space in form fields (Volker E.)
+
+### Code
+* Don't auto-focus a booklet layout page when scrolling (Ed Sanders)
+* OutlineControlsWidget: Remove 'add' icon (Bartosz Dziewoński)
+* PopupToolGroup: Allow tabbing to the tools in the popup again (Bartosz Dziewoński)
+* PopupToolGroup: Fix disappearing dropdown on very narrow screens (Bartosz Dziewoński)
+* Toolbar: Remove unused .groups property (Ed Sanders)
+* Toolbar: Rename a variable from 'group' to 'groupConfig' (Ed Sanders)
+* build: Amend 'grunt-svgmin' options and re-crush SVGs (Volker E.)
+* build: Updating mediawiki/mediawiki-codesniffer to 19.0.0 (libraryupgrader)
+* build: Use .map.json extension for source maps (Bartosz Dziewoński)
+* demos: Remove deprecated 'comment' icon (Volker E.)
+
+
 ## v0.27.0 / 2018-05-08
 ### Breaking changes
 * [BREAKING CHANGE] GroupElement: Remove getItem(s)FromData (Prateek Saxena)

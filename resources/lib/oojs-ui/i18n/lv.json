@@ -24,5 +24,6 @@
 	"ooui-selectfile-button-select": "Izvēlies failu",
 	"ooui-selectfile-not-supported": "Failu izvēle nav atbalstīta",
 	"ooui-selectfile-placeholder": "Nav izvēlēts neviens fails",
-	"ooui-selectfile-dragdrop-placeholder": "Nomet failu šeit"
+	"ooui-selectfile-dragdrop-placeholder": "Nomet failu šeit",
+	"ooui-field-help": "Palīdzība"
 }

@@ -43,6 +43,7 @@
 				"lang": {
 					"ar": "images/icons/bold-arab-ain.svg",
 					"be": "images/icons/bold-cyrl-te.svg",
+					"ce": "images/icons/bold-cyrl-palochka.svg",
 					"cs,en,he,ml,pl,sco": "images/icons/bold-b.svg",
 					"da,de,hu,ksh,nn,no,sv": "images/icons/bold-f.svg",
 					"es,gl,pt": "images/icons/bold-n.svg",
@@ -66,7 +67,7 @@
 				"lang": {
 					"ar": "images/icons/italic-arab-meem.svg",
 					"cs,en,fr,he,ml,pl,pt,sco": "images/icons/italic-i.svg",
-					"be,da,de,fi,ky,nn,no,os,sv,ru,uk": "images/icons/italic-k.svg",
+					"be,ce,da,de,fi,ky,nn,no,os,sv,ru,uk": "images/icons/italic-k.svg",
 					"es,gl,it,nl": "images/icons/italic-c.svg",
 					"eu": "images/icons/italic-e.svg",
 					"fa": "images/icons/italic-arab-keheh-jeem.svg",

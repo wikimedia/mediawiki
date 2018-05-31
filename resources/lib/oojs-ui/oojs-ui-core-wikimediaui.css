@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:50Z
+ * Date: 2018-05-29T23:24:53Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -519,8 +519,11 @@
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-  width: 35%;
-  margin-right: 5%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 40%;
+  padding-right: 2.64285714em;
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
@@ -530,7 +533,7 @@
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help {
   margin-right: 0;
-  margin-left: -2.29em;
+  margin-left: -2.35714286em;
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
@@ -548,11 +551,12 @@
   margin-right: 0;
 }
 .oo-ui-fieldLayout .oo-ui-fieldLayout-help .oo-ui-buttonElement-button {
-  padding-top: 1.57142857em;
+  padding-top: 1.42857143em;
+  padding-right: 0;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help,
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline .oo-ui-fieldLayout-help {
-  margin-top: -0.14285714em;
+  margin-top: -0.42857143em;
   margin-right: -0.57142857em;
   margin-left: 0;
 }
@@ -682,7 +686,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-right: -0.57142857em;
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help .oo-ui-buttonElement-button {
-  padding-top: 1.57142857em;
+  padding-top: 1.42857143em;
+  padding-right: 0;
 }
 .oo-ui-formLayout + .oo-ui-fieldsetLayout,
 .oo-ui-formLayout + .oo-ui-formLayout {
@@ -793,6 +798,17 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
   right: 0.85714286em;
+}
+.oo-ui-decoratedOptionWidget.oo-ui-widget-enabled:hover .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget.oo-ui-widget-enabled:hover .oo-ui-indicatorElement-indicator {
+  opacity: 0.73;
+}
+.oo-ui-decoratedOptionWidget.oo-ui-widget-enabled .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget.oo-ui-widget-enabled .oo-ui-indicatorElement-indicator {
+  opacity: 0.87;
+  -webkit-transition: opacity 100ms;
+  -moz-transition: opacity 100ms;
+  transition: opacity 100ms;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
@@ -1159,9 +1175,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox'] + span {
   cursor: pointer;
-  -webkit-transition: background-color 100ms, background-size 100ms, border-color 100ms, box-shadow 100ms;
-  -moz-transition: background-color 100ms, background-size 100ms, border-color 100ms, box-shadow 100ms;
-  transition: background-color 100ms, background-size 100ms, border-color 100ms, box-shadow 100ms;
+  -webkit-transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
+  -moz-transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
+  transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:focus + span {
   border-color: #36c;

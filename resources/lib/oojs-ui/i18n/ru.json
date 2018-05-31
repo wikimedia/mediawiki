@@ -37,5 +37,6 @@
 	"ooui-selectfile-button-select": "Выберите файл",
 	"ooui-selectfile-not-supported": "Выбор файла не поддерживается",
 	"ooui-selectfile-placeholder": "Не выбран файл",
-	"ooui-selectfile-dragdrop-placeholder": "Перетащите файл сюда"
+	"ooui-selectfile-dragdrop-placeholder": "Перетащите файл сюда",
+	"ooui-field-help": "Справка"
 }
