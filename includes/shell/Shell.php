@@ -44,18 +44,6 @@ use MediaWiki\MediaWikiServices;
 class Shell {
 
 	/**
-	 * Apply a default set of restrictions for improved
-	 * security out of the box.
-	 *
-	 * Equal to NO_ROOT | SECCOMP | PRIVATE_DEV | NO_LOCALSETTINGS
-	 *
-	 * @note This value will change over time to provide increased security
-	 *       by default, and is not guaranteed to be backwards-compatible.
-	 * @since 1.31
-	 */
-	const RESTRICT_DEFAULT = 39;
-
-	/**
 	 * Disallow any root access. Any setuid binaries
 	 * will be run without elevated access.
 	 *
@@ -100,6 +88,17 @@ class Shell {
 	 * @since 1.31
 	 */
 	const NO_LOCALSETTINGS = 32;
+
+	/**
+	 * Apply a default set of restrictions for improved
+	 * security out of the box.
+	 *
+	 * @note This value will change over time to provide increased security
+	 *       by default, and is not guaranteed to be backwards-compatible.
+	 * @since 1.31
+	 */
+	const RESTRICT_DEFAULT = self::NO_ROOT | self::SECCOMP | self::PRIVATE_DEV |
+							 self::NO_LOCALSETTINGS;
 
 	/**
 	 * Don't apply any restrictions
