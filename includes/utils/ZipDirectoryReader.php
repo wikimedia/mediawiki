@@ -656,7 +656,7 @@ class ZipDirectoryReader {
 				}
 
 				// Throw an exception if there was loss of precision
-				if ( $value > pow( 2, 52 ) ) {
+				if ( $value > 2 ** 52 ) {
 					$this->error( 'zip-unsupported', 'number too large to be stored in a double. ' .
 						'This could happen if we tried to unpack a 64-bit structure ' .
 						'at an invalid location.' );
