@@ -771,13 +771,6 @@ if ( $wgCommandLineMode ) {
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 
-/**
- * @deprecated since 1.30
- */
-$parserMemc = new DeprecatedGlobal( 'parserMemc', function () {
-	return MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
-}, '1.30' );
-
 wfDebugLog( 'caches',
 	'cluster: ' . get_class( $wgMemc ) .
 	', WAN: ' . ( $wgMainWANCache === CACHE_NONE ? 'CACHE_NONE' : $wgMainWANCache ) .

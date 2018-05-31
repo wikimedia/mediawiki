@@ -61,7 +61,7 @@
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
 		<properties>
-			<property name="ignoreList" type="array" value="$IP,$messageMemc,$parserMemc" />
+			<property name="ignoreList" type="array" value="$IP,$messageMemc" />
 		</properties>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
