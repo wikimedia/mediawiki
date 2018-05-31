@@ -216,7 +216,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 						$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
 					);
 
-					$errMsg = $this->msg( $msgKey )->rawParams( $link )->parseAsBlock();
+					$errMsg = $this->msg( $msgKey )
+						->params( $this->target->getPrefixedText() )
+						->rawParams( $link )
+						->parseAsBlock();
 					$out->addHTML( $errMsg );
 					$out->setStatusCode( 404 );
 				}
@@ -289,7 +292,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
 				);
 
-				$msg = $this->msg( 'linkshere-2' )->rawParams( $link )->parseAsBlock();
+				$msg = $this->msg( 'linkshere-2' )
+					->params( $this->target->getPrefixedText() )
+					->rawParams( $link )
+					->parseAsBlock();
 				$out->addHTML( $msg );
 
 				$prevnext = $this->getPrevNext( $prevId, $nextId );
