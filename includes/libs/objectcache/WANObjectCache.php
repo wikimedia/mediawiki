@@ -118,6 +118,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var int Key fetched */
 	private $warmupKeyMisses = 0;
 
+	/** @var float|null */
+	private $wallClockOverride;
+
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
 	/** Max replication+snapshot lag before applying TTL_LAGGED or disallowing set() */
@@ -2065,14 +2068,6 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	}
 
 	/**
-	 * @return float UNIX timestamp
-	 * @codeCoverageIgnore
-	 */
-	protected function getCurrentTime() {
-		return microtime( true );
-	}
-
-	/**
 	 * @param string $value Wrapped value like "PURGED:<timestamp>:<holdoff>"
 	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
 	 *  or false if value isn't a valid purge value
@@ -2172,5 +2167,22 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 		$warmupCache += array_fill_keys( $keysWarmUp, false );
 
 		return $warmupCache;
+	}
+
+	/**
+	 * @return float UNIX timestamp
+	 * @codeCoverageIgnore
+	 */
+	protected function getCurrentTime() {
+		return $this->wallClockOverride ?: microtime( true );
+	}
+
+	/**
+	 * @param float|null &$time Mock UNIX timestamp for testing
+	 * @codeCoverageIgnore
+	 */
+	public function setMockTime( &$time ) {
+		$this->wallClockOverride =& $time;
+		$this->cache->setMockTime( $time );
 	}
 }

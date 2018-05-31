@@ -70,6 +70,9 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	/** @var callable[] */
 	protected $busyCallbacks = [];
 
+	/** @var float|null */
+	private $wallClockOverride;
+
 	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
 	protected $attrMap = [];
 
@@ -473,11 +476,11 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 			return null;
 		}
 
-		$lSince = microtime( true ); // lock timestamp
+		$lSince = $this->getCurrentTime(); // lock timestamp
 
 		return new ScopedCallback( function () use ( $key, $lSince, $expiry ) {
 			$latency = 0.050; // latency skew (err towards keeping lock present)
-			$age = ( microtime( true ) - $lSince + $latency );
+			$age = ( $this->getCurrentTime() - $lSince + $latency );
 			if ( ( $age + $latency ) >= $expiry ) {
 				$this->logger->warning( "Lock for $key held too long ($age sec)." );
 				return; // expired; it's not "safe" to delete the key
@@ -691,7 +694,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function convertExpiry( $exptime ) {
 		if ( $exptime != 0 && $exptime < ( 10 * self::TTL_YEAR ) ) {
-			return time() + $exptime;
+			return (int)$this->getCurrentTime() + $exptime;
 		} else {
 			return $exptime;
 		}
@@ -706,7 +709,7 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 	 */
 	protected function convertToRelative( $exptime ) {
 		if ( $exptime >= ( 10 * self::TTL_YEAR ) ) {
-			$exptime -= time();
+			$exptime -= (int)$this->getCurrentTime();
 			if ( $exptime <= 0 ) {
 				$exptime = 1;
 			}
@@ -795,5 +798,21 @@ abstract class BagOStuff implements IExpiringStore, LoggerAwareInterface {
 		}
 
 		return $map;
+	}
+
+	/**
+	 * @return float UNIX timestamp
+	 * @codeCoverageIgnore
+	 */
+	protected function getCurrentTime() {
+		return $this->wallClockOverride ?: microtime( true );
+	}
+
+	/**
+	 * @param float|null &$time Mock UNIX timestamp for testing
+	 * @codeCoverageIgnore
+	 */
+	public function setMockTime( &$time ) {
+		$this->wallClockOverride =& $time;
 	}
 }
