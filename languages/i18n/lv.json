@@ -499,6 +499,7 @@
 	"botpasswords-existing": "Esošās botu paroles",
 	"botpasswords-createnew": "Izveidot jaunu bota paroli",
 	"botpasswords-editexisting": "Rediģētu esošu bota paroli",
+	"botpasswords-label-needsreset": "(paroli nepieciešams atiestatīt)",
 	"botpasswords-label-appid": "Bota nosaukums:",
 	"botpasswords-label-create": "Izveidot",
 	"botpasswords-label-update": "Atjaunināt",
