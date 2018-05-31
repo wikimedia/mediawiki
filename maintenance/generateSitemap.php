@@ -177,7 +177,7 @@ class GenerateSitemap extends Maintenance {
 	public function execute() {
 		$this->setNamespacePriorities();
 		$this->url_limit = 50000;
-		$this->size_limit = pow( 2, 20 ) * 10;
+		$this->size_limit = ( 2 ** 20 ) * 10;
 
 		# Create directory if needed
 		$fspath = $this->getOption( 'fspath', getcwd() );

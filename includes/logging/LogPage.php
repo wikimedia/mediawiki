@@ -37,8 +37,8 @@ class LogPage {
 	const DELETED_RESTRICTED = 8;
 
 	// Convenience fields
-	const SUPPRESSED_USER = 12;
-	const SUPPRESSED_ACTION = 9;
+	const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED;
+	const SUPPRESSED_ACTION = self::DELETED_ACTION | self::DELETED_RESTRICTED;
 
 	/** @var bool */
 	public $updateRecentChanges;
