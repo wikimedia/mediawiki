@@ -48,10 +48,8 @@ return [
 			'maintenance/cleanupTable.inc',
 			'maintenance/CodeCleanerGlobalsPass.inc',
 			'maintenance/commandLine.inc',
-			'maintenance/importImages.inc',
 			'maintenance/sqlite.inc',
 			'maintenance/userDupes.inc',
-			'maintenance/userOptions.inc',
 			'maintenance/language/checkLanguage.inc',
 			'maintenance/language/languages.inc',
 		]
