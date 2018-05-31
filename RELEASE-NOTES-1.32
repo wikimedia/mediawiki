@@ -126,6 +126,9 @@ because of Phabricator reports.
 * (T140807) The wgResourceLoaderLESSImportPaths configuration option was removed
   from ResourceLoader. Instead, use `@import` statements in LESS to import
   files directly from nearby directories within the same project.
+* The protected methods PHPSessionHandler::returnSuccess() and returnFailure(),
+  only needed for PHP5 compatibility, have been removed. It now uses the boolean
+  values `true` and `false` respectively.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
