@@ -18,6 +18,7 @@ THIS IS NOT A RELEASE YET!
 * (T179190) selenium: Move logic for running tests from package.json to selenium.sh.
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 * Add default edit rate limit of 90 edits/minute for all users.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 
 == MediaWiki 1.29.2 ==
 
