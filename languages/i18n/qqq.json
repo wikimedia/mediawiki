@@ -1703,6 +1703,8 @@
 	"rcfilters-watchlist-showupdated": "Message at the top of [[Special:Watchlist]] when the Structured filters are enabled that describes what unseen changes look like.\n\nCf. {{msg-mw|wlheader-showupdated}}",
 	"rcfilters-preference-label": "Option in RecentChanges tab of [[Special:Preferences]].",
 	"rcfilters-preference-help": "Explanation for the option in the RecentChanges tab of [[Special:Preferences]].",
+	"rcfilters-preference-label": "Option in Watchlist tab of [[Special:Preferences]].",
+	"rcfilters-preference-help": "Explanation for the option in the Watchlist tab of [[Special:Preferences]].",
 	"rcfilters-filter-showlinkedfrom-label": "Label that indicates that the page is showing changes that link FROM the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",
 	"rcfilters-filter-showlinkedfrom-option-label": "Menu option to show changes FROM the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",
 	"rcfilters-filter-showlinkedto-label": "Label that indicates that the page is showing changes that link TO the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",
