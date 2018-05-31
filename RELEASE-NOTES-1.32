@@ -155,8 +155,6 @@ because of Phabricator reports.
 * Parser::fetchFile() is deprecated. Use ::fetchFileAndTitle() instead.
 
 === Other changes in 1.32 ===
-* Soft hyphens (U+00AD) are now automatically removed from titles; these
-  characters can accidentally end up in copy-and-pasted titles.
 * …
 
 == Compatibility ==
