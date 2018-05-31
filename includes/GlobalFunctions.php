@@ -3151,17 +3151,6 @@ function wfGetMessageCacheStorage() {
 }
 
 /**
- * Get the cache object used by the parser cache
- *
- * @deprecated since 1.30, use MediaWikiServices::getParserCache()->getCacheStorage()
- * @return BagOStuff
- */
-function wfGetParserCacheStorage() {
-	global $wgParserCacheType;
-	return ObjectCache::getInstance( $wgParserCacheType );
-}
-
-/**
  * Call hook functions defined in $wgHooks
  *
  * @param string $event Event name
