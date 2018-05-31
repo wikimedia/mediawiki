@@ -11,6 +11,7 @@ THIS IS NOT A RELEASE YET!
   include extensions. Pass --with-extensions to enable that feature.
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 * Add default edit rate limit of 90 edits/minute for all users.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
