@@ -131,6 +131,8 @@ because of Phabricator reports.
   values `true` and `false` respectively.
 * The $parserMemc global and wfGetParserCacheStorage(), deprecated since 1.30,
   were removed. Use the ParserCache class instead.
+* UtfNormal (deprecated since 1.25) was removed. Use UtfNormal\Validator directly
+  instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
