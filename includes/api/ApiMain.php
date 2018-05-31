@@ -1258,6 +1258,8 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		Hooks::run( 'MaxLagInfo', [ &$lagInfo ] );
+
 		return $lagInfo;
 	}
 
