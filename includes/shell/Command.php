@@ -428,14 +428,7 @@ class Command {
 				}
 			}
 
-			// clear get_last_error without actually raising an error
-			// from https://secure.php.net/manual/en/function.error-get-last.php#113518
-			// TODO replace with clear_last_error when requirements are bumped to PHP7
-			set_error_handler( function () {
-			}, 0 );
-			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			@trigger_error( '' );
-			restore_error_handler();
+			error_clear_last();
 
 			$readPipes = wfArrayFilterByKey( $pipes, function ( $fd ) use ( $desc ) {
 				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'r';
