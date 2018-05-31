@@ -367,11 +367,11 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				if ( $batchSize === 1 ) { // One user, can't be different
 					$ret = 0;
 				} elseif ( $this->orderBy === 'id' ) {
-					$ret = $a[0]->rev_user - $b[0]->rev_user;
+					$ret = $a[0]->rev_user <=> $b[0]->rev_user;
 				} elseif ( $this->orderBy === 'name' ) {
 					$ret = strcmp( $a[0]->rev_user_text, $b[0]->rev_user_text );
 				} else {
-					$ret = $a[0]->rev_actor - $b[0]->rev_actor;
+					$ret = $a[0]->rev_actor <=> $b[0]->rev_actor;
 				}
 
 				if ( !$ret ) {
@@ -382,7 +382,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				}
 
 				if ( !$ret ) {
-					$ret = $a[0]->rev_id - $b[0]->rev_id;
+					$ret = $a[0]->rev_id <=> $b[0]->rev_id;
 				}
 
 				return $neg * $ret;

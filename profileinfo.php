@@ -291,24 +291,26 @@ function compare_point( profile_point $a, profile_point $b ) {
 	global $sort;
 
 	switch ( $sort ) {
+		// Sorted ascending:
 		case 'name':
 			return strcmp( $a->name(), $b->name() );
+		// Sorted descending:
 		case 'time':
-			return $a->time() > $b->time() ? -1 : 1;
+			return $b->time() <=> $a->time();
 		case 'memory':
-			return $a->memory() > $b->memory() ? -1 : 1;
+			return $b->memory() <=> $a->memory();
 		case 'count':
-			return $a->count() > $b->count() ? -1 : 1;
+			return $b->count() <=> $a->count();
 		case 'time_per_call':
-			return $a->timePerCall() > $b->timePerCall() ? -1 : 1;
+			return $b->timePerCall() <=> $a->timePerCall();
 		case 'memory_per_call':
-			return $a->memoryPerCall() > $b->memoryPerCall() ? -1 : 1;
+			return $b->memoryPerCall() <=> $a->memoryPerCall();
 		case 'calls_per_req':
-			return $a->callsPerRequest() > $b->callsPerRequest() ? -1 : 1;
+			return $b->callsPerRequest() <=> $a->callsPerRequest();
 		case 'time_per_req':
-			return $a->timePerRequest() > $b->timePerRequest() ? -1 : 1;
+			return $b->timePerRequest() <=> $a->timePerRequest();
 		case 'memory_per_req':
-			return $a->memoryPerRequest() > $b->memoryPerRequest() ? -1 : 1;
+			return $b->memoryPerRequest() <=> $a->memoryPerRequest();
 	}
 }
 
