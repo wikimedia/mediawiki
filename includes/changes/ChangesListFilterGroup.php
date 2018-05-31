@@ -358,7 +358,7 @@ abstract class ChangesListFilterGroup {
 		}
 
 		usort( $this->filters, function ( $a, $b ) {
-			return $b->getPriority() - $a->getPriority();
+			return $b->getPriority() <=> $a->getPriority();
 		} );
 
 		foreach ( $this->filters as $filterName => $filter ) {
