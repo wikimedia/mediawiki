@@ -245,8 +245,8 @@
 		title = new mw.Title( 'Foo \u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000 bar' );
 		assert.equal( title.getMain(), 'Foo_bar', 'Merge multiple types of whitespace/underscores into a single underscore' );
 
-		title = new mw.Title( 'Foo\u00AD\u061C\u200E\u200F\u202A\u202B\u202C\u202D\u202E\u2066\u2067\u2068\u2069bar' );
-		assert.equal( title.getMain(), 'Foobar', 'Strip soft hyphen and Unicode directional formatting characters' );
+		title = new mw.Title( 'Foo\u00AD\u200E\u200F\u202A\u202B\u202C\u202D\u202Ebar' );
+		assert.equal( title.getMain(), 'Foobar', 'Strip soft hyphen and Unicode bidi override characters' );
 
 		// Regression test: Previously it would only detect an extension if there is no space after it
 		title = new mw.Title( 'Example.js  ' );
@@ -668,7 +668,7 @@
 				},
 				{
 					fileName: 'BI\u200EDI.jpg',
-					typeOfName: 'Name containing Unicode directional formatting characters',
+					typeOfName: 'Name containing BIDI overrides',
 					nameText: 'BIDI',
 					prefixedText: 'File:BIDI.jpg'
 				},
