@@ -56,7 +56,7 @@ class HTMLExpiryField extends HTMLFormField {
 			$this->relativeField->getInputOOUI( $value ),
 			[
 				'id' => $this->mID,
-				'required' => isset( $this->mParams['required'] ) ? $this->mParams['required'] : false,
+				'required' => $this->mParams['required'] ?? false,
 			]
 		);
 	}

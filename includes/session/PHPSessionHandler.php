@@ -256,7 +256,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 		// Now merge the data into the Session object.
 		$changed = false;
-		$cache = isset( $this->sessionFieldCache[$id] ) ? $this->sessionFieldCache[$id] : [];
+		$cache = $this->sessionFieldCache[$id] ?? [];
 		foreach ( $data as $key => $value ) {
 			if ( !array_key_exists( $key, $cache ) ) {
 				if ( $session->exists( $key ) ) {

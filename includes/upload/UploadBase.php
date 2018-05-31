@@ -1864,8 +1864,7 @@ abstract class UploadBase {
 		# look up scanner configuration
 		$command = $wgAntivirusSetup[$wgAntivirus]['command'];
 		$exitCodeMap = $wgAntivirusSetup[$wgAntivirus]['codemap'];
-		$msgPattern = isset( $wgAntivirusSetup[$wgAntivirus]['messagepattern'] ) ?
-			$wgAntivirusSetup[$wgAntivirus]['messagepattern'] : null;
+		$msgPattern = $wgAntivirusSetup[$wgAntivirus]['messagepattern'] ?? null;
 
 		if ( strpos( $command, "%f" ) === false ) {
 			# simple pattern: append file to scan

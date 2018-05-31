@@ -244,10 +244,9 @@ class UserMailer {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams;
 		$mime = null;
 
-		$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
-		$contentType = isset( $options['contentType'] ) ?
-			$options['contentType'] : 'text/plain; charset=UTF-8';
-		$headers = isset( $options['headers'] ) ? $options['headers'] : [];
+		$replyto = $options['replyTo'] ?? null;
+		$contentType = $options['contentType'] ?? 'text/plain; charset=UTF-8';
+		$headers = $options['headers'] ?? [];
 
 		// Allow transformation of content, such as encrypting/signing
 		$error = false;

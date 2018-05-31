@@ -29,15 +29,15 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	public function getCols() {
-		return isset( $this->mParams['cols'] ) ? $this->mParams['cols'] : static::DEFAULT_COLS;
+		return $this->mParams['cols'] ?? static::DEFAULT_COLS;
 	}
 
 	public function getRows() {
-		return isset( $this->mParams['rows'] ) ? $this->mParams['rows'] : static::DEFAULT_ROWS;
+		return $this->mParams['rows'] ?? static::DEFAULT_ROWS;
 	}
 
 	public function getSpellCheck() {
-		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
+		$val = $this->mParams['spellcheck'] ?? null;
 		if ( is_bool( $val ) ) {
 			// "spellcheck" attribute literally requires "true" or "false" to work.
 			return $val === true ? 'true' : 'false';

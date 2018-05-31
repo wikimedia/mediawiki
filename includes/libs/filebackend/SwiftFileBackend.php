@@ -116,24 +116,12 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftUser = $config['swiftUser'];
 		$this->swiftKey = $config['swiftKey'];
 		// Optional settings
-		$this->authTTL = isset( $config['swiftAuthTTL'] )
-			? $config['swiftAuthTTL']
-			: 15 * 60; // some sane number
-		$this->swiftTempUrlKey = isset( $config['swiftTempUrlKey'] )
-			? $config['swiftTempUrlKey']
-			: '';
-		$this->swiftStorageUrl = isset( $config['swiftStorageUrl'] )
-			? $config['swiftStorageUrl']
-			: null;
-		$this->shardViaHashLevels = isset( $config['shardViaHashLevels'] )
-			? $config['shardViaHashLevels']
-			: '';
-		$this->rgwS3AccessKey = isset( $config['rgwS3AccessKey'] )
-			? $config['rgwS3AccessKey']
-			: '';
-		$this->rgwS3SecretKey = isset( $config['rgwS3SecretKey'] )
-			? $config['rgwS3SecretKey']
-			: '';
+		$this->authTTL = $config['swiftAuthTTL'] ?? 15 * 60; // some sane number
+		$this->swiftTempUrlKey = $config['swiftTempUrlKey'] ?? '';
+		$this->swiftStorageUrl = $config['swiftStorageUrl'] ?? null;
+		$this->shardViaHashLevels = $config['shardViaHashLevels'] ?? '';
+		$this->rgwS3AccessKey = $config['rgwS3AccessKey'] ?? '';
+		$this->rgwS3SecretKey = $config['rgwS3SecretKey'] ?? '';
 		// HTTP helper client
 		$this->http = new MultiHttpClient( [] );
 		// Cache container information to mask latency
@@ -148,18 +136,10 @@ class SwiftFileBackend extends FileBackendStore {
 		} else {
 			$this->srvCache = new EmptyBagOStuff();
 		}
-		$this->readUsers = isset( $config['readUsers'] )
-			? $config['readUsers']
-			: [];
-		$this->writeUsers = isset( $config['writeUsers'] )
-			? $config['writeUsers']
-			: [];
-		$this->secureReadUsers = isset( $config['secureReadUsers'] )
-			? $config['secureReadUsers']
-			: [];
-		$this->secureWriteUsers = isset( $config['secureWriteUsers'] )
-			? $config['secureWriteUsers']
-			: [];
+		$this->readUsers = $config['readUsers'] ?? [];
+		$this->writeUsers = $config['writeUsers'] ?? [];
+		$this->secureReadUsers = $config['secureReadUsers'] ?? [];
+		$this->secureWriteUsers = $config['secureWriteUsers'] ?? [];
 	}
 
 	public function getFeatures() {
@@ -299,9 +279,8 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$sha1Hash = Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 );
-		$contentType = isset( $params['headers']['content-type'] )
-			? $params['headers']['content-type']
-			: $this->getContentType( $params['dst'], $params['content'], null );
+		$contentType = $params['headers']['content-type']
+			?? $this->getContentType( $params['dst'], $params['content'], null );
 
 		$reqs = [ [
 			'method' => 'PUT',
@@ -356,9 +335,8 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 		$sha1Hash = Wikimedia\base_convert( $sha1Hash, 16, 36, 31 );
-		$contentType = isset( $params['headers']['content-type'] )
-			? $params['headers']['content-type']
-			: $this->getContentType( $params['dst'], null, $params['src'] );
+		$contentType = $params['headers']['content-type']
+			?? $this->getContentType( $params['dst'], null, $params['src'] );
 
 		$handle = fopen( $params['src'], 'rb' );
 		if ( $handle === false ) { // source doesn't exist?
@@ -1237,7 +1215,7 @@ class SwiftFileBackend extends FileBackendStore {
 				return null;
 			}
 
-			$ttl = isset( $params['ttl'] ) ? $params['ttl'] : 86400;
+			$ttl = $params['ttl'] ?? 86400;
 			$expires = time() + $ttl;
 
 			if ( $this->swiftTempUrlKey != '' ) {
@@ -1325,7 +1303,7 @@ class SwiftFileBackend extends FileBackendStore {
 			foreach ( $reqs as $stage => &$req ) {
 				list( $container, $relPath ) = $req['url'];
 				$req['url'] = $this->storageUrl( $auth, $container, $relPath );
-				$req['headers'] = isset( $req['headers'] ) ? $req['headers'] : [];
+				$req['headers'] = $req['headers'] ?? [];
 				$req['headers'] = $this->authTokenHeaders( $auth ) + $req['headers'];
 				$httpReqsByStage[$stage][$index] = $req;
 			}
@@ -1686,7 +1664,7 @@ class SwiftFileBackend extends FileBackendStore {
 			'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
 			// Empty objects actually return no content-length header in Ceph
 			'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-			'sha1'  => isset( $metadata['sha1base36'] ) ? $metadata['sha1base36'] : null,
+			'sha1'  => $metadata['sha1base36'] ?? null,
 			// Note: manifiest ETags are not an MD5 of the file
 			'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
 			'xattr' => [ 'metadata' => $metadata, 'headers' => $headers ]

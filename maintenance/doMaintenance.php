@@ -91,7 +91,7 @@ $maintenance->checkRequiredExtensions();
 $maintenance->setAgentAndTriggers();
 
 // Do the work
-$maintenance->execute();
+$success = $maintenance->execute();
 
 // Potentially debug globals
 $maintenance->globals();
@@ -110,4 +110,9 @@ if ( isset( $lbFactory ) ) {
 	// Commit and close up!
 	$lbFactory->commitMasterChanges( 'doMaintenance' );
 	$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+}
+
+// Exit with an error status if execute() returned false
+if ( $success === false ) {
+	exit( 1 );
 }

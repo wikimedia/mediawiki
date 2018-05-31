@@ -55,7 +55,7 @@ class DeleteLinksJob extends Job {
 		}
 
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$timestamp = isset( $this->params['timestamp'] ) ? $this->params['timestamp'] : null;
+		$timestamp = $this->params['timestamp'] ?? null;
 		$page = WikiPage::factory( $this->title ); // title when deleted
 
 		$update = new LinksDeletionUpdate( $page, $pageId, $timestamp );

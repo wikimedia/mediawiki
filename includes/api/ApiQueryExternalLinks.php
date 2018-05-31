@@ -66,7 +66,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		}
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$offset = isset( $params['offset'] ) ? $params['offset'] : 0;
+		$offset = $params['offset'] ?? 0;
 		if ( $offset ) {
 			$this->addOption( 'OFFSET', $params['offset'] );
 		}

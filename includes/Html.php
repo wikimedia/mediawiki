@@ -391,8 +391,8 @@ class Html {
 			unset( $attribs['type'] );
 		}
 		if ( $element === 'input' ) {
-			$type = isset( $attribs['type'] ) ? $attribs['type'] : null;
-			$value = isset( $attribs['value'] ) ? $attribs['value'] : null;
+			$type = $attribs['type'] ?? null;
+			$value = $attribs['value'] ?? null;
 			if ( $type === 'checkbox' || $type === 'radio' ) {
 				// The default value for checkboxes and radio buttons is 'on'
 				// not ''. By stripping value="" we break radio boxes that
@@ -925,7 +925,7 @@ class Html {
 		if ( isset( $params['label'] ) ) {
 			$ret .= self::element(
 				'label', [
-					'for' => isset( $selectAttribs['id'] ) ? $selectAttribs['id'] : null,
+					'for' => $selectAttribs['id'] ?? null,
 				], $params['label']
 			) . '&#160;';
 		}

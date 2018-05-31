@@ -81,9 +81,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				__CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
-		$this->logger = isset( $options['logger'] )
-			? $options['logger']
-			: new \Psr\Log\NullLogger();
+		$this->logger = $options['logger'] ?? new \Psr\Log\NullLogger();
 		$this->connectTimeout = $options['connectTimeout'];
 		$this->readTimeout = $options['readTimeout'];
 		$this->persistent = $options['persistent'];

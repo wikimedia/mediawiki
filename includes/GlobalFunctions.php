@@ -1516,7 +1516,7 @@ function wfBacktrace( $raw = null ) {
 
 	$frames = array_map( function ( $frame ) use ( $frameFormat ) {
 		$file = !empty( $frame['file'] ) ? basename( $frame['file'] ) : '-';
-		$line = isset( $frame['line'] ) ? $frame['line'] : '-';
+		$line = $frame['line'] ?? '-';
 		$call = $frame['function'];
 		if ( !empty( $frame['class'] ) ) {
 			$call = $frame['class'] . $frame['type'] . $call;
@@ -2241,7 +2241,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = [],
 	}
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
-	$profileMethod = isset( $options['profileMethod'] ) ? $options['profileMethod'] : wfGetCaller();
+	$profileMethod = $options['profileMethod'] ?? wfGetCaller();
 
 	try {
 		$result = Shell::command( [] )

@@ -54,10 +54,8 @@ class DatabasePostgres extends Database {
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
 	 */
 	public function __construct( array $params ) {
-		$this->port = isset( $params['port'] ) ? $params['port'] : false;
-		$this->keywordTableMap = isset( $params['keywordTableMap'] )
-			? $params['keywordTableMap']
-			: [];
+		$this->port = $params['port'] ?? false;
+		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
 
 		parent::__construct( $params );
 	}
@@ -710,7 +708,7 @@ __INDEXATTR__;
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
 	 */
 	public function remappedTableName( $name ) {
-		return isset( $this->keywordTableMap[$name] ) ? $this->keywordTableMap[$name] : $name;
+		return $this->keywordTableMap[$name] ?? $name;
 	}
 
 	/**

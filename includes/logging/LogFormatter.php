@@ -377,7 +377,7 @@ class LogFormatter {
 						// new key (5::duration/6::flags) or old key (0/optional 1)
 						if ( $entry->isLegacy() ) {
 							$rawDuration = $parameters[0];
-							$rawFlags = isset( $parameters[1] ) ? $parameters[1] : '';
+							$rawFlags = $parameters[1] ?? '';
 						} else {
 							$rawDuration = $parameters['5::duration'];
 							$rawFlags = $parameters['6::flags'];

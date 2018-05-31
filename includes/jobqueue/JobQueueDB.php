@@ -55,7 +55,7 @@ class JobQueueDB extends JobQueue {
 	protected function __construct( array $params ) {
 		parent::__construct( $params );
 
-		$this->cluster = isset( $params['cluster'] ) ? $params['cluster'] : false;
+		$this->cluster = $params['cluster'] ?? false;
 		$this->cache = ObjectCache::getMainWANInstance();
 	}
 
