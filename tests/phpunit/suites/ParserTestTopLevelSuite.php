@@ -29,7 +29,7 @@ class ParserTestTopLevelSuite extends PHPUnit_Framework_TestSuite {
 	/** Include non core files as set in $wgParserTestFiles */
 	const NO_CORE = 2;
 	/** Include anything set via $wgParserTestFiles */
-	const WITH_ALL = 3; # CORE_ONLY | NO_CORE
+	const WITH_ALL = self::CORE_ONLY | self::NO_CORE;
 
 	/** @} */
 
