@@ -2265,6 +2265,16 @@ $wcOnlySysopsCanPatrol: config setting indicating whether the user must be a
   sysop to patrol the edit.
 $auto: true if the edit is being marked as patrolled automatically
 
+'ApiMaxLagInfo': When lag information is being requested via API. Use this to
+override lag information and generally a hook function should only replace
+$lagInfo if the new $lagInfo['lag'] is greater than the current $lagInfo['lag'].
+&$lagInfo: Maximum lag information array. fields in the array are:
+  'lag' is the number of seconds of lag.
+  'host' is the host name on which the lag exists.
+  'type' is an indication of the type of lag,
+    e.g. "db" for database replication lag or "jobqueue" for job queue size
+    converted to pseudo-seconds. 
+
 'MediaWikiPerformAction': Override MediaWiki::performAction(). Use this to do
 something completely different, after the basic globals have been set up, but
 before ordinary actions take place.
