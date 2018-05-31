@@ -91,12 +91,19 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0 ) {
+		$casToken = null;
+
+		return $this->getWithToken( $key, $casToken, $flags );
+	}
+
+	protected function getWithToken( $key, &$casToken, $flags = 0 ) {
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
 		try {
 			$value = $conn->get( $key );
+			$casToken = $value;
 			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -260,6 +267,10 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
+	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
+
 	/**
 	 * Non-atomic implementation of incr().
 	 *
@@ -279,7 +290,7 @@ class RedisBagOStuff extends BagOStuff {
 		}
 		try {
 			if ( !$conn->exists( $key ) ) {
-				return null;
+				return false;
 			}
 			// @FIXME: on races, the key may have a 0 TTL
 			$result = $conn->incrBy( $key, $value );
