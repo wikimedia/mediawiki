@@ -118,6 +118,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/** @var int Key fetched */
 	private $warmupKeyMisses = 0;
 
+	/** @var float|null */
+	private $wallClockOverride;
+
 	/** Max time expected to pass between delete() and DB commit finishing */
 	const MAX_COMMIT_DELAY = 3;
 	/** Max replication+snapshot lag before applying TTL_LAGGED or disallowing set() */
@@ -2069,7 +2072,15 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @codeCoverageIgnore
 	 */
 	protected function getCurrentTime() {
-		return microtime( true );
+		return $this->wallClockOverride ?: microtime( true );
+	}
+
+	/**
+	 * @param float|null &$time Mock UNIX timestamp for testing
+	 */
+	public function setMockTime( &$time ) {
+		$this->wallClockOverride =& $time;
+		$this->cache->setMockTime( $time );
 	}
 
 	/**
