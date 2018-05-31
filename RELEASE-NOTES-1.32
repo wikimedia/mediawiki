@@ -161,10 +161,6 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 
 === Other changes in 1.32 ===
-* Soft hyphens (U+00AD) are now automatically removed from titles; these
-  characters can accidentally end up in copy-and-pasted titles.
-* Strip Unicode 6.3.0 directional formatting characters (U+061C, U+2066,
-  U+2067, U+2068, U+2069) from the title.
 * …
 
 == Compatibility ==

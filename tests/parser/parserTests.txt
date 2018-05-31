@@ -28869,7 +28869,7 @@ foo {{echo|<span>bar</span> [[Category:baz]]}} bar
 # of the categories in wikitext
 # Do not remove these characters in edits.
 #
-# As part of the serialization, these Unicode directional formatting characters will get stripped.
+# As part of the serialization, these bidi characters will get stripped.
 !! test
 RTL (\u200f) and LTR (\u200e) markers around category tags should be stripped
 !! options
@@ -30874,28 +30874,4 @@ footer
 header
 *foo
 footer
-!! end
-
-!! test
-Check soft hyphens as entities (&shy;) in displaytitle (T66528)
-!! options
-showtitle
-title=[[Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon]]
-!! wikitext
-{{DISPLAYTITLE:Lopado&shy;temacho&shy;selacho&shy;galeo&shy;kranio&shy;leipsano&shy;drim&shy;hypo&shy;trimmato&shy;silphio&shy;parao&shy;melito&shy;katakechy&shy;meno&shy;kichl&shy;epi&shy;kossypho&shy;phatto&shy;perister&shy;alektryon&shy;opte&shy;kephallio&shy;kigklo&shy;peleio&shy;lagoio&shy;siraio&shy;baphe&shy;tragano&shy;pterygon}}
-!! html/php
-Lopado&#173;temacho&#173;selacho&#173;galeo&#173;kranio&#173;leipsano&#173;drim&#173;hypo&#173;trimmato&#173;silphio&#173;parao&#173;melito&#173;katakechy&#173;meno&#173;kichl&#173;epi&#173;kossypho&#173;phatto&#173;perister&#173;alektryon&#173;opte&#173;kephallio&#173;kigklo&#173;peleio&#173;lagoio&#173;siraio&#173;baphe&#173;tragano&#173;pterygon
-
-!! end
-
-!! test
-Check soft hyphens as Unicode characters (U+00AD) in displaytitle (T66528)
-!! options
-showtitle
-title=[[Lopadotemachoselachogaleokranioleipsanodrimhypotrimmatosilphioparaomelitokatakechymenokichlepikossyphophattoperisteralektryonoptekephalliokigklopeleiolagoiosiraiobaphetraganopterygon]]
-!! wikitext
-{{DISPLAYTITLE:Lopado­temacho­selacho­galeo­kranio­leipsano­drim­hypo­trimmato­silphio­parao­melito­katakechy­meno­kichl­epi­kossypho­phatto­perister­alektryon­opte­kephallio­kigklo­peleio­lagoio­siraio­baphe­tragano­pterygon}}
-!! html/php
-Lopado­temacho­selacho­galeo­kranio­leipsano­drim­hypo­trimmato­silphio­parao­melito­katakechy­meno­kichl­epi­kossypho­phatto­perister­alektryon­opte­kephallio­kigklo­peleio­lagoio­siraio­baphe­tragano­pterygon
-
 !! end
