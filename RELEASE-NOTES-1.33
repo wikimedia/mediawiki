@@ -54,6 +54,8 @@ because of Phabricator reports.
   The parameters $tooltip and $lang are mandatory. Omitting the parameters is
   deprecated since 1.32.
 * Language::truncate(), deprecated in 1.31, has been removed.
+* UtfNormal, deprecated in 1.25, was removed. Use UtfNormal\Validator directly
+  instead.
 * …
 
 === Deprecations in 1.33 ===
