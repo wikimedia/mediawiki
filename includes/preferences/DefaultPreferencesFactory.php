@@ -1275,6 +1275,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'help-message' => 'prefs-help-watchlist-token2',
 			];
 		}
+
+		if ( $this->config->get( 'StructuredChangeFiltersShowWatchlistPreference' ) ) {
+			$defaultPreferences['wlenhancedfilters-disable'] = [
+				'type' => 'toggle',
+				'section' => 'watchlist/opt-out',
+				'label-message' => 'rcfilters-watchlist-preference-label',
+				'help-message' => 'rcfilters-watchlist-preference-help',
+			];
+		}
 	}
 
 	/**
