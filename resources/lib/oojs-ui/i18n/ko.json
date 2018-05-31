@@ -30,5 +30,6 @@
 	"ooui-selectfile-button-select": "파일을 선택하세요",
 	"ooui-selectfile-not-supported": "파일 선택은 지원하지 않습니다",
 	"ooui-selectfile-placeholder": "선택한 파일 없음",
-	"ooui-selectfile-dragdrop-placeholder": "여기에 파일을 놓으세요"
+	"ooui-selectfile-dragdrop-placeholder": "여기에 파일을 놓으세요",
+	"ooui-field-help": "도움말"
 }

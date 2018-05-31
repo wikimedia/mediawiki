@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.0
+ * OOUI v0.27.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-09T00:44:50Z
+ * Date: 2018-05-29T23:24:53Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -726,7 +726,6 @@
   left: 4.429em;
 }
 .oo-ui-outlineControlsWidget {
-  overflow: hidden;
   background-color: #fff;
 }
 .oo-ui-outlineControlsWidget-items,
@@ -735,10 +734,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-.oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
-  float: left;
-  background-position: right center;
 }
 .oo-ui-outlineControlsWidget-items {
   float: left;
@@ -759,15 +754,14 @@
   margin: 0 !important;
   /* stylelint-disable-line declaration-no-important */
 }
-.oo-ui-outlineControlsWidget > .oo-ui-iconElement-icon {
-  height: 2.28571429em;
-  opacity: 0.2;
-}
 .oo-ui-tabSelectWidget {
   text-align: left;
   overflow-x: auto;
   overflow-y: hidden;
   background-color: #eaecf0;
+}
+.oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus {
+  outline: 0;
 }
 .oo-ui-tabOptionWidget {
   display: inline-block;
@@ -782,19 +776,27 @@
   border-width: 1px 1px 0 1px;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  padding: 0.57142857em 0.92857143em 0.5em;
+  padding: 0 0.57142857em;
   font-weight: bold;
   line-height: 1;
-  -webkit-transition: background-color 100ms, color 100ms;
-  -moz-transition: background-color 100ms, color 100ms;
-  transition: background-color 100ms, color 100ms;
+  -webkit-transition: background-color 100ms, color 100ms, border-color 100ms;
+  -moz-transition: background-color 100ms, color 100ms, border-color 100ms;
+  transition: background-color 100ms, color 100ms, border-color 100ms;
 }
 .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
   background-color: #fff;
   color: #000;
 }
+.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
+  border-bottom-color: #fff;
+}
 .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
+  border-bottom: 2px solid transparent;
+  padding: 0.57142857em 0.35714286em 0.35714286em;
   line-height: 1.07142857em;
+  -webkit-transition: border-color 100ms;
+  -moz-transition: border-color 100ms;
+  transition: border-color 100ms;
 }
 .oo-ui-tabOptionWidget.oo-ui-widget-enabled:hover {
   background-color: rgba(255, 255, 255, 0.3);
@@ -804,6 +806,9 @@
 }
 .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected:hover {
   background-color: #fff;
+}
+.oo-ui-tabSelectWidget.oo-ui-widget-enabled:focus .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected .oo-ui-labelElement-label {
+  border-bottom-color: #36c;
 }
 .oo-ui-tagMultiselectWidget {
   display: inline-block;

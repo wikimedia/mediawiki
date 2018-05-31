@@ -13,7 +13,8 @@
 			"Abanima",
 			"محمد أحمد عبد الفتاح",
 			"Hiba Alshawi",
-			"Meno25"
+			"Meno25",
+			"ديفيد"
 		]
 	},
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
@@ -32,5 +33,6 @@
 	"ooui-selectfile-button-select": "اختر ملفا",
 	"ooui-selectfile-not-supported": "اختيار الملفات غير مدعوم",
 	"ooui-selectfile-placeholder": "لم يتم اختيار أي ملف",
-	"ooui-selectfile-dragdrop-placeholder": "اترك الملف هنا"
+	"ooui-selectfile-dragdrop-placeholder": "اترك الملف هنا",
+	"ooui-field-help": "مساعدة"
 }
