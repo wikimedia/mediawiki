@@ -111,6 +111,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'uploaddialog':
 					$fit = $this->appendUploadDialog( $p );
 					break;
+				case 'autopromote':
+					$fit = $this->appendAutoPromote( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -835,6 +838,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
 
+	private function appendAutoPromote( $property ) {
+		$groups = $this->getConfig()->get( 'Autopromote' );
+		foreach ( $groups as $groupName => $conditions ) {
+			$data[$groupName]['conditions'][] = $conditions;
+		}
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -904,6 +915,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'protocols',
 					'defaultoptions',
 					'uploaddialog',
+					'autopromote'
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
