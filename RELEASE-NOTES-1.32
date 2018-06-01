@@ -41,6 +41,7 @@ production.
 * Updated QUnit from 2.4.0 to 2.6.0.
 * Updated wikimedia/scoped-callback from 1.0.0 to 2.0.0.
 ** ScopedCallback objects can no longer be serialized.
+* Updated composer/spdx-licenses from 1.3.0 to 1.4.0 (development dependency).
 
 ==== New external libraries ====
 * …
