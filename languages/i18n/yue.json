@@ -2177,7 +2177,7 @@
 	"whatlinkshere-page": "頁:",
 	"linkshere-2": "呢啲頁連結到'''$1'''：",
 	"nolinkshere-2": "無一頁連結到'''$1'''。",
-	"nolinkshere-ns-2": "響已經揀咗嘅空間名無嘢連結到'''$1'''。",
+	"nolinkshere-ns-2": "響已經揀咗嘅空間名無嘢連結到'''$2'''。",
 	"isredirect": "跳轉頁",
 	"istemplate": "包含",
 	"isimage": "檔案連結",

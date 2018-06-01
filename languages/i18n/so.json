@@ -943,7 +943,7 @@
 	"whatlinkshere-title": "Boggaga la xiriiro \"$1\"",
 	"whatlinkshere-page": "Bogga:",
 	"linkshere-2": "Bogyaashaan waxey la xiriiraan  '''$1''':",
-	"nolinkshere-2": "Boggag la xiriiro   '''$1''' ma jirto.",
+	"nolinkshere-2": "Boggag la xiriiro   '''$2''' ma jirto.",
 	"isredirect": "bogga loo sii toosiyay",
 	"istemplate": "ku jiri kara",
 	"isimage": "faylka la xiriiro",

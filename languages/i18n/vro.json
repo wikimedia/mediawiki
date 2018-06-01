@@ -1205,7 +1205,7 @@
 	"whatlinkshere-page": "Leht:",
 	"linkshere-2": "Lehe <b>$1</b> pääle näütäseq lingiq lehti päält:",
 	"nolinkshere-2": "Lehe <b>$1</b> pääle näütä-i linke ütegi lehe päält.",
-	"nolinkshere-ns-2": "Valitun nimeruumin näütä-i ütegi lehe päält linke lehe '''$1''' pääle.",
+	"nolinkshere-ns-2": "Valitun nimeruumin näütä-i ütegi lehe päält linke lehe '''$2''' pääle.",
 	"isredirect": "ümbresaatmislehekülg",
 	"istemplate": "pruugit näüdüssen",
 	"isimage": "teedüstülink",

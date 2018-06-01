@@ -2268,7 +2268,7 @@
 	"whatlinkshere-page": "Sayfa:",
 	"linkshere-2": "'''$1''' sayfasına bağlantısı olan sayfalar:",
 	"nolinkshere-2": "'''$1''' sayfasına bağlantı veren sayfa yok.",
-	"nolinkshere-ns-2": "Seçilen ad alanında hiçbir sayfa '''$1''' sayfasına bağlanmıyor.",
+	"nolinkshere-ns-2": "Seçilen ad alanında hiçbir sayfa '''$2''' sayfasına bağlanmıyor.",
 	"isredirect": "yönlendirme sayfası",
 	"istemplate": "dönüştürülme",
 	"isimage": "dosya bağlantısı",

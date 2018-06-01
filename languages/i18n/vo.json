@@ -1395,7 +1395,7 @@
 	"whatlinkshere-page": "Pad:",
 	"linkshere-2": "Pads sököl payümons ko '''$1''':",
 	"nolinkshere-2": "Pads nonik peyümons lü '''$1'''.",
-	"nolinkshere-ns-2": "Pads nonik yumons lü pad: '''$1''' in nemaspad pevälöl.",
+	"nolinkshere-ns-2": "Pads nonik yumons lü pad: '''$2''' in nemaspad pevälöl.",
 	"isredirect": "lüodükömapad",
 	"istemplate": "ninükam",
 	"isimage": "yüm ragiva",

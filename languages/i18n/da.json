@@ -68,7 +68,8 @@
 			"EeveeSylveon",
 			"Kenn.jensen",
 			"Saederup92",
-			"Fitoschido"
+			"Fitoschido",
+			"Jorn Ari"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -2292,9 +2293,9 @@
 	"whatlinkshere": "Hvad henviser hertil",
 	"whatlinkshere-title": "Sider der linker til \"$1\"",
 	"whatlinkshere-page": "Side:",
-	"linkshere-2": "De følgende sider henviser til '''„$1“''':",
-	"nolinkshere-2": "Ingen sider henviser til '''„$1“'''.",
-	"nolinkshere-ns-2": "Ingen side henviser til '''„$1“''' i det valgte navnerum.",
+	"linkshere-2": "De følgende sider henviser til <strong>$2</strong>:",
+	"nolinkshere-2": "Ingen sider henviser til <strong>$2</strong>.",
+	"nolinkshere-ns-2": "Ingen sider henviser til <strong>$2</strong> i det valgte navnerum.",
 	"isredirect": "omdirigeringsside",
 	"istemplate": "indlejring",
 	"isimage": "filhenvisning",

@@ -1452,7 +1452,7 @@
 	"whatlinkshere-page": "Lehtpol’:",
 	"linkshere-2": "Nened lehtpoled kosketadas '''$1''':",
 	"nolinkshere-2": "'''$1'''-lehtpol't ei kosketa ni üks' lehtpol'.",
-	"nolinkshere-ns-2": "'''$1'''-lehtpol't ei kosketa ni üks' lehtpol' valitud nimiavarudes.",
+	"nolinkshere-ns-2": "'''$2'''-lehtpol't ei kosketa ni üks' lehtpol' valitud nimiavarudes.",
 	"isredirect": "Oigendai lehtpol'",
 	"istemplate": "mülütand",
 	"isimage": "Kosketuz failale",
