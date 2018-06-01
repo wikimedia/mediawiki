@@ -111,6 +111,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'uploaddialog':
 					$fit = $this->appendUploadDialog( $p );
 					break;
+				case 'autopromote':
+					$fit = $this->appendAutoPromote( $p );
+					break;
 				default:
 					ApiBase::dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -835,6 +838,38 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $config );
 	}
 
+	private function appendAutoPromote( $property ) {
+		$groups = $this->getConfig()->get( 'Autopromote' );
+		foreach ( get_defined_constants() as $constantName => $constantValue ) {
+			if ( strpos( $constantName, 'APCOND_' ) !== false ) {
+				$allowConditions[$constantName] = $constantValue;
+                        }
+		}
+
+		foreach ( $groups as $groupName => $conditions ) {
+			foreach ( $conditions as $condition ) {
+				if ( $condition === '&' || $condition === '|' || $condition === '^'
+					|| $condition === '!'
+				) {
+					$data[$groupName]['conditions'][$condition] = true;
+					continue;
+                                }
+				if ( is_array( $condition ) ) {
+					$conditionName = array_search( $condition[0], $allowConditions );
+					unset( $condition[0] );
+					if ( count( $condition ) === 1 ) {
+						$condition = $condition[1];
+                                        }
+					$data[$groupName]['conditions'][$conditionName] = $condition;
+					continue;
+				}
+				$conditionName = array_search( $condition, $allowConditions );
+				$data[$groupName]['conditions'][$conditionName] = true;
+			}
+		}
+		return $this->getResult()->addValue( 'query', $property, $data );
+	}
+
 	private function formatParserTags( $item ) {
 		return "<{$item}>";
 	}
@@ -904,6 +939,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'protocols',
 					'defaultoptions',
 					'uploaddialog',
+					'autopromote',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
