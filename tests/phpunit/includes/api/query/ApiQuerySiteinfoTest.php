@@ -756,4 +756,252 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertTrue( $res[0]['batchcomplete'], 'batchcomplete should be true' );
 		$this->assertSame( [ 'siprop' => 'languages', 'continue' => '-||' ], $res[0]['continue'] );
 	}
+
+	/**
+	 * @dataProvider provideAutopromote
+	 */
+	public function testAutopromote( $config, $expected ) {
+		$this->overrideConfigValues( [
+			MainConfigNames::Autopromote => $config,
+			MainConfigNames::AutoConfirmCount => 10,
+			MainConfigNames::AutoConfirmAge => 345600,
+		] );
+		$this->assertSame( $expected, $this->doQuery( 'autopromote' ) );
+	}
+
+	public static function provideAutopromote() {
+		yield 'simple' => [
+			[
+				// edit count >= 10 and age >= 4 days
+				'simple' => [ '&',
+					[ APCOND_EDITCOUNT, 10 ],
+					[ APCOND_AGE, 345600 ],
+				],
+			],
+			[
+				'simple' => [
+					'operand' => '&',
+					0 => [
+						'condname' => 'APCOND_EDITCOUNT',
+						'params' => [ 10 ]
+					],
+					1 => [
+						'condname' => 'APCOND_AGE',
+						'params' => [ 345600 ]
+					]
+				]
+			]
+		];
+
+		// Test case to check default of null is replaced with value of appropriate $wg
+		yield 'simple-use-wg' => [
+			[
+				'simple-use-wg' => [ '&',
+					[ APCOND_EDITCOUNT, null ],
+					[ APCOND_AGE, null ],
+				],
+			],
+			[
+				'simple-use-wg' => [
+					'operand' => '&',
+					0 => [
+						'condname' => 'APCOND_EDITCOUNT',
+						'params' => [ 10 ]
+					],
+					1 => [
+						'condname' => 'APCOND_AGE',
+						'params' => [ 345600 ]
+					]
+				]
+			]
+		];
+
+		yield 'trivial' => [
+			[
+				'trivial' => APCOND_EMAILCONFIRMED,
+			],
+			[
+				'trivial' => [
+					0 => [
+						'condname' => 'APCOND_EMAILCONFIRMED',
+						'params' => []
+					]
+				],
+			]
+		];
+
+		yield 'multiple-copies-of-condition' => [
+			[
+				// In both groups 'foo' and 'bar', or in group 'baz'
+				'multiple-copies-of-condition' => [ '|',
+					[ APCOND_INGROUPS, 'foo', 'bar' ],
+					[ APCOND_INGROUPS, 'baz' ],
+				],
+			],
+			[
+				'multiple-copies-of-condition' => [
+					'operand' => '|',
+					0 => [
+						'condname' => 'APCOND_INGROUPS',
+						'params' => [ 'foo', 'bar' ]
+					],
+					1 => [
+						'condname' => 'APCOND_INGROUPS',
+						'params' => [ 'baz' ]
+					]
+				]
+			]
+		];
+
+		yield 'complicated' => [
+			[
+				// confirmed email, or their edit count >= 100 and either they
+				// created their account a year ago or it has been 10 days since
+				// their first edit, or if they're in both groups 'group1' and
+				// 'group2'. Except for users in the 'bad' group.
+				'complicated' => [ '&',
+					[ '|',
+						APCOND_EMAILCONFIRMED,
+						[ '&',
+							[ APCOND_EDITCOUNT, 100 ],
+							[ '|',
+								[ APCOND_AGE, 525600 * 60 ],
+								[ APCOND_AGE_FROM_EDIT, 864000 ],
+							],
+						],
+						[ APCOND_INGROUPS, 'group1', 'group2' ],
+					],
+					[ '!', [ APCOND_INGROUPS, 'bad' ] ],
+				],
+			],
+			[
+				'complicated' => [
+					'operand' => '&',
+					0 => [
+						'operand' => '|',
+						0 => [
+							'condname' => 'APCOND_EMAILCONFIRMED',
+							'params' => []
+						],
+						1 => [
+							'operand' => '&',
+							0 => [
+								'condname' => 'APCOND_EDITCOUNT',
+								'params' => [ 100 ]
+							],
+							1 => [
+								'operand' => '|',
+								0 => [
+									'condname' => 'APCOND_AGE',
+									'params' => [ 31536000 ]
+								],
+								1 => [
+									'condname' => 'APCOND_AGE_FROM_EDIT',
+									'params' => [ 864000 ]
+								]
+							]
+						],
+						2 => [
+							'condname' => 'APCOND_INGROUPS',
+							'params' => [ 'group1', 'group2' ]
+						]
+					],
+					1 => [
+						'operand' => '!',
+						0 => [
+							'condname' => 'APCOND_INGROUPS',
+							'params' => [ 'bad' ]
+						]
+					]
+				]
+			]
+		];
+
+		// Find an undefined APCOND integer
+		$constants = [];
+		foreach ( get_defined_constants() as $k => $v ) {
+			if ( strpos( $k, 'APCOND_' ) !== false ) {
+				$constants[$v] = $k;
+			}
+		}
+		$bogusCond = 9000;
+		while ( isset( $constants[$bogusCond] ) ) {
+			$bogusCond++;
+		}
+		$bogusCond2 = $bogusCond + 1;
+		while ( isset( $constants[$bogusCond2] ) ) {
+			$bogusCond2++;
+		}
+
+		yield 'bad-cond-1' => [
+			[
+				// unknown APCOND constant. Might be handled by an extension that
+				// didn't define a constant with the expected name.
+				'bad-cond' => 'bogus',
+			],
+			[
+				'bad-cond' => [
+					'bogus'
+				],
+			]
+		];
+		yield 'bad-cond-2' => [
+			[
+				'bad-cond' => $bogusCond,
+			],
+			[
+				'bad-cond' => [
+					0 => [
+						'condname' => false,
+						'params' => []
+					]
+				],
+			]
+		];
+		yield 'bad-cond-3' => [
+			[
+				'bad-cond' => [ 'bogus', 'bogus?', APCOND_EMAILCONFIRMED, $bogusCond, $bogusCond2 ],
+			],
+			[
+				'bad-cond' => [
+					'bogus',
+					'bogus?',
+					APCOND_EMAILCONFIRMED,
+					$bogusCond,
+					$bogusCond2
+				],
+			]
+		];
+		yield 'bad-cond-4' => [
+			[
+				'bad-cond' => [ '&',
+					'bogus1',
+					'bogus2',
+					APCOND_EMAILCONFIRMED,
+					$bogusCond,
+					$bogusCond2,
+				],
+			],
+			[
+				'bad-cond' => [
+					'operand' => '&',
+					0 => 'bogus1',
+					1 => 'bogus2',
+					2 => [
+						'condname' => 'APCOND_EMAILCONFIRMED',
+						'params' => []
+					],
+					3 => [
+						'condname' => false,
+						'params' => []
+					],
+					4 => [
+						'condname' => false,
+						'params' => []
+					]
+				]
+			]
+		];
+	}
+
 }

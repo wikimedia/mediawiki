@@ -524,8 +524,12 @@ class UserGroupManager implements IDBAccessObject {
 	 * This function evaluates the former type recursively, and passes off to
 	 * checkCondition for evaluation of the latter type.
 	 *
+	 * If you change the logic of this method, please update
+	 * ApiQuerySiteinfo::appendAutoPromote(), as it depends on this method.
+	 *
 	 * @param mixed $cond A condition, possibly containing other conditions
 	 * @param User $user The user to check the conditions against
+	 *
 	 * @return bool Whether the condition is true
 	 */
 	private function recCheckCondition( $cond, User $user ): bool {
