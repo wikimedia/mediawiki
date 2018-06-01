@@ -937,6 +937,18 @@ if ( !$wgCommandLineMode ) {
 }
 
 $wgFullyInitialised = true;
+var_dump( 'WORKSPACE' );
+var_dump( getenv( 'WORKSPACE' ) );
+var_dump( 'MW_INSTALL_PATH' );
+var_dump( getenv( 'MW_INSTALL_PATH' ) );
+var_dump( 'MW_LOG_DIR' );
+var_dump( getenv( 'MW_LOG_DIR' ) );
+var_dump( 'LOG_DIR' );
+var_dump( getenv( 'LOG_DIR' ) );
+var_dump( '$wmgJobWorkspace' );
+var_dump( $wmgJobWorkspace );
+var_dump( '$wmgMwLogDir' );
+var_dump( $wmgMwLogDir );
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
