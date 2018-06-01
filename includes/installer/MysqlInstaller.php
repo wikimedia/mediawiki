@@ -40,7 +40,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		'wgDBpassword',
 		'wgDBprefix',
 		'wgDBTableOptions',
-		'wgDBmysql5',
 	];
 
 	protected $internalDefaults = [
@@ -414,20 +413,6 @@ class MysqlInstaller extends DatabaseInstaller {
 			$this->setVar( '_MysqlCharset', reset( $charsets ) );
 		}
 
-		// Do charset selector
-		if ( count( $charsets ) >= 2 ) {
-			// getRadioSet() builds a set of labeled radio buttons.
-			// For grep: The following messages are used as the item labels:
-			// config-mysql-binary, config-mysql-utf8
-			$s .= $this->getRadioSet( [
-				'var' => '_MysqlCharset',
-				'label' => 'config-mysql-charset',
-				'itemLabelPrefix' => 'config-mysql-',
-				'values' => $charsets
-			] );
-			$s .= $this->parent->getHelpBox( 'config-mysql-charset-help' );
-		}
-
 		return $s;
 	}
 
@@ -671,7 +656,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function getLocalSettings() {
-		$dbmysql5 = wfBoolToStr( $this->getVar( 'wgDBmysql5', true ) );
 		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
 		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
 
@@ -679,9 +663,6 @@ class MysqlInstaller extends DatabaseInstaller {
 \$wgDBprefix = \"{$prefix}\";
 
 # MySQL table options to use during installation or update
-\$wgDBTableOptions = \"{$tblOpts}\";
-
-# Experimental charset support for MySQL 5.0.
-\$wgDBmysql5 = {$dbmysql5};";
+\$wgDBTableOptions = \"{$tblOpts}\";";
 	}
 }
