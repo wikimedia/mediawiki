@@ -39,6 +39,8 @@ production.
 
 ==== Upgraded external libraries ====
 * Updated QUnit from 2.4.0 to 2.6.0.
+* Updated wikimedia/scoped-callback from 1.0.0 to 2.0.0.
+** ScopedCallback objects can no longer be serialized.
 
 ==== New external libraries ====
 * …
