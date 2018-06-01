@@ -40,7 +40,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		'wgDBpassword',
 		'wgDBprefix',
 		'wgDBTableOptions',
-		'wgDBmysql5',
 	];
 
 	protected $internalDefaults = [
@@ -671,7 +670,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	public function getLocalSettings() {
-		$dbmysql5 = wfBoolToStr( $this->getVar( 'wgDBmysql5', true ) );
 		$prefix = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgDBprefix' ) );
 		$tblOpts = LocalSettingsGenerator::escapePhpString( $this->getTableOptions() );
 
@@ -679,9 +677,6 @@ class MysqlInstaller extends DatabaseInstaller {
 \$wgDBprefix = \"{$prefix}\";
 
 # MySQL table options to use during installation or update
-\$wgDBTableOptions = \"{$tblOpts}\";
-
-# Experimental charset support for MySQL 5.0.
-\$wgDBmysql5 = {$dbmysql5};";
+\$wgDBTableOptions = \"{$tblOpts}\";";
 	}
 }
