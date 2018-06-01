@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
  * Class to deal with reconciling and extracting metadata from bitmap images.
