@@ -2394,7 +2394,7 @@
 	"whatlinkshere-page": "Trang:",
 	"linkshere-2": "Các trang sau liên kết đến '''$1''':",
 	"nolinkshere-2": "Không có trang nào liên kết đến '''$1'''.",
-	"nolinkshere-ns-2": "Không có trang nào liên kết đến '''$1''' trong không gian tên đã chọn.",
+	"nolinkshere-ns-2": "Không có trang nào liên kết đến '''$2''' trong không gian tên đã chọn.",
 	"isredirect": "trang đổi hướng",
 	"istemplate": "được nhúng vào",
 	"isimage": "liên kết tập tin",

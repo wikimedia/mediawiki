@@ -2471,7 +2471,7 @@
 	"whatlinkshere-page": "页面：",
 	"linkshere-2": "以下页面链接至<strong>$1</strong>：",
 	"nolinkshere-2": "没有页面链接至<strong>$1</strong>。",
-	"nolinkshere-ns-2": "在所选的名字空间内没有页面链接到<strong>$1</strong>。",
+	"nolinkshere-ns-2": "在所选的名字空间内没有页面链接到<strong>$2</strong>。",
 	"isredirect": "重定向页面",
 	"istemplate": "嵌入",
 	"isimage": "文件链接",

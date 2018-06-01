@@ -2468,7 +2468,7 @@
 	"whatlinkshere-page": "頁面：",
 	"linkshere-2": "以下頁面連結至 <strong>$1</strong>：",
 	"nolinkshere-2": "沒有頁面連結至 <strong>$1</strong>。",
-	"nolinkshere-ns-2": "已選擇的命名空間中沒有頁面連結到 $1。",
+	"nolinkshere-ns-2": "已選擇的命名空間中沒有頁面連結到 <strong>$2</strong>。",
 	"isredirect": "重新導向頁面",
 	"istemplate": "引用",
 	"isimage": "檔案連結",

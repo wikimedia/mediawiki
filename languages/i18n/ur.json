@@ -2330,7 +2330,7 @@
 	"whatlinkshere-page": "صفحہ:",
 	"linkshere-2": "<strong>$1</strong> سے درج ذیل صفحات مربوط ہیں:",
 	"nolinkshere-2": "<strong>$1</strong> سے کوئی صفحہ مربوط نہیں ہے۔",
-	"nolinkshere-ns-2": "منتخب نام فضا میں <strong>$1</strong> سے مربوط کوئی صفحہ نہیں ہے۔",
+	"nolinkshere-ns-2": "منتخب نام فضا میں <strong>$2</strong> سے مربوط کوئی صفحہ نہیں ہے۔",
 	"isredirect": "رجوع مکرر صفحہ",
 	"istemplate": "شامل شدہ",
 	"isimage": "فائل کا ربط",

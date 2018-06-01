@@ -1019,6 +1019,7 @@
 	"apihelp-query+recentchanges-param-limit": "返回总计更新数。",
 	"apihelp-query+recentchanges-param-type": "显示的更改类型。",
 	"apihelp-query+recentchanges-param-toponly": "只列举作为最新修订的更改。",
+	"apihelp-query+recentchanges-param-title": "过滤记录至这些与页面相关的。",
 	"apihelp-query+recentchanges-param-generaterevisions": "当作为生成器使用时，生成修订ID而不是标题。不带关联修订ID的最近更改记录（例如大多数日志记录）将不会生成任何东西。",
 	"apihelp-query+recentchanges-example-simple": "最近更改列表。",
 	"apihelp-query+recentchanges-example-generator": "获取有关最近未巡查更改的页面信息。",

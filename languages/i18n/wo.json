@@ -1299,7 +1299,7 @@
 	"whatlinkshere-page": "Xët :",
 	"linkshere-2": "Xët yii ci suuf am nañ ab lëkkalekaay buy jëm <b>$1</b> :",
 	"nolinkshere-2": "Amul wenn xët wu lëkkalook wii <b>$1</b>.",
-	"nolinkshere-ns-2": "Amul wenn xët wu lëkkalook wii '''$1''' ci barabu tur bi nga tànn.",
+	"nolinkshere-ns-2": "Amul wenn xët wu lëkkalook wii '''$2''' ci barabu tur bi nga tànn.",
 	"isredirect": "Xëtu jubluwaat",
 	"istemplate": "mboole",
 	"isimage": "lëkkalekaayu dencukaay bi",
