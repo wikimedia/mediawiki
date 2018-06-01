@@ -326,11 +326,14 @@
 				maxlength = Math.max( maxlength, v );
 			},
 			disabled = this.isDisabled(),
-			specs = this.formatter.getFieldSpec();
+			specs = this.formatter.getFieldSpec(),
+			stack = [ this.$fields ];
 
 		this.$fields.empty();
 		this.clearButton = null;
 		this.fields = [];
+
+		this.$fields.attr( 'dir', this.formatter.getDirection() );
 
 		for ( i = 0; i < specs.length; i++ ) {
 			spec = specs[ i ];
@@ -338,7 +341,20 @@
 				$( '<span>' )
 					.addClass( 'mw-widgets-datetime-dateTimeInputWidget-field' )
 					.text( spec )
-					.appendTo( this.$fields );
+					.appendTo( stack[ 0 ] );
+				continue;
+			}
+
+			if ( spec.type === 'dir' ) {
+				if ( spec.start ) {
+					$field = $( '<span>' )
+						.addClass( 'mw-widgets-datetime-dateTimeInputWidget-dir' )
+						.appendTo( stack[ 0 ] );
+					$field.attr( 'dir', spec.dir );
+					stack.unshift( $field );
+				} else if ( stack.length > 1 ) {
+					stack.shift();
+				}
 				continue;
 			}
 
@@ -355,7 +371,7 @@
 				// Add a little for padding
 				sz = ( spec.size * 1.25 ) + 'ch';
 			}
-			if ( spec.editable && spec.type !== 'static' ) {
+			if ( spec.editable && spec.type !== 'static' && spec.type !== 'dir' ) {
 				if ( spec.type === 'boolean' || spec.type === 'toggleLocal' ) {
 					$field = $( '<span>' )
 						.attr( {
@@ -400,13 +416,13 @@
 				$field = $( '<span>' )
 					.width( sz )
 					.data( 'mw-widgets-datetime-dateTimeInputWidget-placeholder', placeholder );
-				if ( spec.type !== 'static' ) {
+				if ( spec.type !== 'static' && spec.type !== 'dir' ) {
 					$field.prop( 'tabIndex', -1 );
 					$field.on( 'focus', this.onFieldFocus.bind( this, $field ) );
 				}
 				if ( spec.type === 'static' ) {
 					$field.text( spec.value );
-				} else {
+				} else if ( spec.type !== 'dir' ) {
 					$field.val = spanValFunc;
 				}
 			}
@@ -415,7 +431,7 @@
 			$field
 				.addClass( 'mw-widgets-datetime-dateTimeInputWidget-field' )
 				.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec', spec )
-				.appendTo( this.$fields );
+				.appendTo( stack[ 0 ] );
 		}
 
 		if ( this.clearable ) {
@@ -474,7 +490,7 @@
 				$field = this.fields[ i ];
 				$field.removeClass( 'mw-widgets-datetime-dateTimeInputWidget-invalid' );
 				spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
-				if ( spec.type !== 'static' ) {
+				if ( spec.type !== 'static' && spec.type !== 'dir' ) {
 					$field.val( spec.formatValue( this.components[ spec.component ] ) );
 				}
 				if ( spec.intercalarySize ) {

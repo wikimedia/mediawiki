@@ -506,7 +506,8 @@
 				case 'timestamp':
 					widget = new mw.widgets.datetime.DateTimeInputWidget( {
 						formatter: {
-							format: '${year|0}-${month|0}-${day|0}T${hour|0}:${minute|0}:${second|0}${zone|short}'
+							format: '${year|0}-${month|0}-${day|0}T${hour|0}:${minute|0}:${second|0}${zone|short}',
+							dir: 'ltr'
 						},
 						required: Util.apiBool( pi.required ),
 						clearable: false

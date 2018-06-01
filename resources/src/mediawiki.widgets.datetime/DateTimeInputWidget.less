@@ -1,4 +1,5 @@
 /* stylelint-disable no-duplicate-selectors */
+@import 'mediawiki.mixins';
 @import 'mediawiki.widgets.datetime.definitions';
 
 .mw-widgets-datetime-dateTimeInputWidget {
@@ -10,14 +11,19 @@
 	vertical-align: middle;
 
 	&-fields {
+		.flex-display;
 		position: relative;
-		display: table;
 		z-index: 2;
 		.oo-ui-unselectable();
 
-		> .mw-widgets-datetime-dateTimeInputWidget-field {
+		.mw-widgets-datetime-dateTimeInputWidget-dir {
+			.flex-display;
+		}
+
+		.mw-widgets-datetime-dateTimeInputWidget-dir,
+		.mw-widgets-datetime-dateTimeInputWidget-field {
+			.flex( 0, 0 );
 			.oo-ui-box-sizing( border-box );
-			display: table-cell;
 			white-space: pre;
 		}
 	}

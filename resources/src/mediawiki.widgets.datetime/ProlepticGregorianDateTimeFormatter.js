@@ -88,10 +88,10 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.static.formats = {
-		'@time': '${hour|0}:${minute|0}:${second|0}',
+		'@time': '<dir ltr>${hour|0}:${minute|0}:${second|0}</dir>',
 		'@date': '$!{dow|short} ${day|#} ${month|short} ${year|#}',
-		'@datetime': '$!{dow|short} ${day|#} ${month|short} ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}',
-		'@default': '$!{dow|short} ${day|#} ${month|short} ${year|#} ${hour|0}:${minute|0}:${second|0} $!{zone|short}'
+		'@datetime': '$!{dow|short} ${day|#} ${month|short} ${year|#} <dir ltr>${hour|0}:${minute|0}:${second|0}</dir> $!{zone|short}',
+		'@default': '$!{dow|short} ${day|#} ${month|short} ${year|#} <dir ltr>${hour|0}:${minute|0}:${second|0}</dir> $!{zone|short}'
 	};
 
 	/**

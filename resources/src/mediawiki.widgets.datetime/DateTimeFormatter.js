@@ -13,6 +13,7 @@
 	 *  or a format specification as defined by {@link #method-parseFieldSpec parseFieldSpec}
 	 *  and {@link #method-getFieldForTag getFieldForTag}.
 	 * @cfg {boolean} [local=false] Whether dates are local time or UTC
+	 * @cfg {string|undefined} [dir] Directionality: 'ltr', 'rtl', or 'auto'
 	 * @cfg {string[]} [fullZones] Time zone indicators. Array of 2 strings, for
 	 *  UTC and local time.
 	 * @cfg {string[]} [shortZones] Abbreviated time zone indicators. Array of 2
@@ -26,6 +27,7 @@
 		config = $.extend( {
 			format: '@default',
 			local: false,
+			dir: undefined,
 			fullZones: this.constructor.static.fullZones,
 			shortZones: this.constructor.static.shortZones
 		}, config );
@@ -40,6 +42,7 @@
 			this.format = config.format;
 		}
 		this.local = !!config.local;
+		this.dir = config.dir;
 		this.fullZones = config.fullZones;
 		this.shortZones = config.shortZones;
 		if ( config.defaultDate instanceof Date ) {
@@ -147,6 +150,15 @@
 	};
 
 	/**
+	 * Get the base directionality
+	 *
+	 * @return {string|undefined} 'ltr', 'rtl', or 'auto'
+	 */
+	mw.widgets.datetime.DateTimeFormatter.prototype.getDirection = function () {
+		return this.dir;
+	};
+
+	/**
 	 * Get the default date
 	 *
 	 * @return {Date}
@@ -178,8 +190,13 @@
 	 * - ${not-intercalary|X|text}: Text that is displayed unless the 'intercalary'
 	 *   component is X.
 	 *
+	 * The input may also contain a pseudo-HTML tag to specify the
+	 * directionality of the contained content: `<dir ltr>`, `<dir rtl>`, or
+	 * `<dir auto>` (all closed with `</dir>`).
+	 *
 	 * Elements of the returned array are strings or objects. Strings are meant to
-	 * be displayed as-is. Objects are as returned by {@link #getFieldForTag getFieldForTag}.
+	 * be displayed as-is. Objects are as returned by {@link #getFieldForTag getFieldForTag},
+	 * or are `{ type: 'dir', start: <bool>, dir: <string|undefined> }`.
 	 *
 	 * @protected
 	 * @param {string} format
@@ -188,7 +205,7 @@
 	mw.widgets.datetime.DateTimeFormatter.prototype.parseFieldSpec = function ( format ) {
 		var m, last, tag, params, spec,
 			ret = [],
-			re = /(.*?)(\$(!?)\{([^}]+)\})/g;
+			re = /(.*?)(\$(!?)\{([^}]+)\}|<dir(?: ([^>]*))?>|<\/dir>)/g;
 
 		last = 0;
 		while ( ( m = re.exec( format ) ) !== null ) {
@@ -196,6 +213,20 @@
 
 			if ( m[ 1 ] !== '' ) {
 				ret.push( m[ 1 ] );
+			}
+
+			if ( m[ 2 ] === '</dir>' || m[ 2 ].substr( 0, 4 ) === '<dir' ) {
+				ret.push( {
+					type: 'dir',
+					start: m[ 2 ] !== '</dir>',
+					dir: m[ 5 ],
+					component: null,
+					calendarComponent: false,
+					editable: false,
+					size: 0,
+					intercalarySize: {}
+				} );
+				continue;
 			}
 
 			params = m[ 4 ].split( '|' );
