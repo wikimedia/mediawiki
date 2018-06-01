@@ -43,6 +43,7 @@ production.
 ** ScopedCallback objects can no longer be serialized.
 
 ==== New external libraries ====
+* Added wikimedia/xmp-reader 0.5.1
 * …
 
 ==== Removed and replaced external libraries ====
@@ -161,6 +162,8 @@ because of Phabricator reports.
   constant INTL_ICU_VERSION directly in all versions that MediaWiki supports.
 * Parser::fetchFile() is deprecated. Use ::fetchFileAndTitle() instead.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
+* The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
+  of the namespaced classes provided by the wikimedia/xmp-reader library.
 
 === Other changes in 1.32 ===
 * …

@@ -82,6 +82,7 @@
 		<exclude-pattern>*/includes/specials/SpecialMostinterwikis\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
+		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialAncientpages\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialBrokenRedirects\.php</exclude-pattern>
@@ -222,6 +223,7 @@
 		<exclude-pattern>*/includes/AuthPlugin\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheDependency\.php</exclude-pattern>
 		<exclude-pattern>*/includes/cache/CacheHelper\.php</exclude-pattern>
+		<exclude-pattern>*/includes/compat/XMPReader\.php</exclude-pattern>
 		<exclude-pattern>*/includes/deferred/CdnCacheUpdate\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DairikiDiff\.php</exclude-pattern>
 		<exclude-pattern>*/includes/diff/DiffEngine\.php</exclude-pattern>

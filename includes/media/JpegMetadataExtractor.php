@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use Wikimedia\XMPReader\Reader as XMPReader;
+
 /**
  * Class for reading jpegs and extracting metadata.
  * see also BitmapMetadataHandler.
