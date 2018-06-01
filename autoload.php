@@ -1279,7 +1279,6 @@ $wgAutoloadLocalClasses = [
 	'SVGReader' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
 	'SamplingStatsdClient' => __DIR__ . '/includes/libs/stats/SamplingStatsdClient.php',
 	'Sanitizer' => __DIR__ . '/includes/parser/Sanitizer.php',
-	'ScopedCallback' => __DIR__ . '/includes/compat/ScopedCallback.php',
 	'ScopedLock' => __DIR__ . '/includes/libs/lockmanager/ScopedLock.php',
 	'SearchApi' => __DIR__ . '/includes/api/SearchApi.php',
 	'SearchDatabase' => __DIR__ . '/includes/search/SearchDatabase.php',
