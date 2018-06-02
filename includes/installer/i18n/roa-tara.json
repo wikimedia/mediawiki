@@ -53,8 +53,6 @@
 	"config-invalid-db-type": "Tipe de database invalide.",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Binarie",
-	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Proggette",
 	"config-admin-email": "Indirizze e-mail:",
 	"config-install-step-done": "fatte",

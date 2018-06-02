@@ -39,7 +39,6 @@
 	"config-missing-db-server-oracle": "Ахьа тӀеюза езаш ю «{{int:config-db-host-oracle}}»",
 	"config-invalid-db-server-oracle": "Хаамийн базан «$1» нийса йоцу TNS.\nЛелае «TNS Name», я могӀа «Easy Connect» ([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm ЦӀерш техкаран кеп Oracle])",
 	"config-sqlite-fts3-downgrade": "PHPн  гӀо до FTS3 яц — кхуссу таблицаш",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Аутентификацин тайп:",
 	"config-site-name": "Викин цӀе:",
 	"config-site-name-blank": "Язъе сайтан цӀе.",

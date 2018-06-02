@@ -111,8 +111,6 @@
 	"config-db-web-create": "De Kont uleeë wann et e net scho gëtt",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "binär",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Typ vun der Authentifikatioun:",
 	"config-mssql-sqlauth": "SOL-Server-Authentifikatioun",
 	"config-mssql-windowsauth": "Windows-Authentifikatioun",

@@ -40,8 +40,6 @@
 	"config-diff3-bad": "Felënk GNU diff3.",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "binarny",
-	"config-mysql-utf8": "UTF‐8",
 	"config-site-name": "Miono wiki:",
 	"config-site-name-blank": "Wpiszë miono starnów.",
 	"config-ns-other-default": "MòjôWiki",

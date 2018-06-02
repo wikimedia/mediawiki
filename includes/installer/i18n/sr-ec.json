@@ -69,7 +69,6 @@
 	"config-mssql-old": "Потребан је Microsoft SQL Server $1 или новији. Ви имате $2.",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Тип провере идентитета:",
 	"config-mssql-sqlauth": "Провера идентитета SQL Server-а",
 	"config-mssql-windowsauth": "Провера идентитета Виндоуса",

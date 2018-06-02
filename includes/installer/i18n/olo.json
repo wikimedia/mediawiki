@@ -35,7 +35,6 @@
 	"config-header-mssql": "Microsoft SQL Server azetukset",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Wikin nimi:",
 	"config-site-name-blank": "Kirjuta sivun nimi.",
 	"config-project-namespace": "Projektan nimitila:",

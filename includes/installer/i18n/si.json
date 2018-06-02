@@ -63,8 +63,6 @@
 	"config-mysql-engine": "ආචයන එන්ජිම:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "ද්විමය",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-windowsauth": "windows සහතික කිරීම.",
 	"config-site-name": "විකියෙහි නම:",
 	"config-site-name-blank": "අඩවි නාමයක් යොදන්න.",

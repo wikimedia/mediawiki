@@ -44,8 +44,6 @@
 	"config-db-name": "Inoa hōkeo ʻikepili",
 	"config-db-username": "Inoa hōkeo ʻikepili:",
 	"config-db-password": "ʻŌlelo hūnā hōkeo ʻikepili",
-	"config-mysql-binary": "Baineli",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Inoa wiki:",
 	"config-project-namespace": "Lewainoa papahana:",
 	"config-ns-generic": "Papahana",

@@ -53,8 +53,6 @@
 	"config-header-mssql": "د مايکروسافټ SQL پالنگر امستنې",
 	"config-sqlite-readonly": "د <code>$1</code> دوتنه د ليکلو وړ نه ده.",
 	"config-sqlite-cant-create-db": "د توکبنسټ دوتنه <code>$1</code> جوړه نه شوه.",
-	"config-mysql-binary": "دوه ايز",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "د ويکي نوم:",
 	"config-site-name-blank": "د وېبځي نوم وليکۍ.",
 	"config-project-namespace": "د پروژې نوم-تشيال:",

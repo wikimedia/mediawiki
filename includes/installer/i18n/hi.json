@@ -65,8 +65,6 @@
 	"config-regenerate": "LocalSettings.php फिर से निर्मित करें →",
 	"config-db-web-account": "वेब पहुँच हेतु डेटाबेस खाता",
 	"config-mysql-innodb": "इनोडीबी",
-	"config-mysql-binary": "बाइनरी",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "प्रमाणन प्रकार:",
 	"config-mssql-sqlauth": "SQL सर्वर प्रमाणन",
 	"config-site-name": "विकि का नाम:",

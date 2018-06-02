@@ -1888,6 +1888,7 @@
 	"protectedtitles-submit": "Prikaži naslove",
 	"listusers": "Spisak korisnika",
 	"listusers-editsonly": "Prikaži samo korisnike koji su uređivali",
+	"listusers-temporarygroupsonly": "Prikaži samo korisnike u privremenim korisničkim grupama",
 	"listusers-creationsort": "Sortiraj po datumu pravljenja",
 	"listusers-desc": "Sortiraj u opadajućem redoslijedu",
 	"usereditcount": "$1 {{PLURAL:$1|izmjena|izmjene}}",

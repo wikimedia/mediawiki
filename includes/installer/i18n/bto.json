@@ -39,8 +39,6 @@
 	"config-header-mssql": "Microsoft SQL Server settings",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Binary",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Ngaran ka wiki",
 	"config-site-name-blank": "Ibutang a ngaran ka site.",
 	"config-project-namespace": "Bibutangan ka proyekto:",

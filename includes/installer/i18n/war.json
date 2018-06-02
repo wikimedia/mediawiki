@@ -61,8 +61,6 @@
 	"config-db-web-account": "Database account para han web access",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Binary",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Ngaran han wiki:",
 	"config-ns-generic": "Proyekto",
 	"config-ns-site-name": "Kapareho han wiki nga ngaran: $1",
