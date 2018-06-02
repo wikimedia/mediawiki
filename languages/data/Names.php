@@ -104,6 +104,7 @@ class Names {
 		'br' => 'brezhoneg', # Breton
 		'brh' => 'Bráhuí', # Brahui
 		'bs' => 'bosanski', # Bosnian
+		'btm' => 'Batak Mandailing', # Batak Mandailing
 		'bto' => 'Iriga Bicolano', # Rinconada Bikol
 		'bug' => 'ᨅᨔ ᨕᨘᨁᨗ', # Buginese
 		'bxr' => 'буряад', # Buryat (Russia)
