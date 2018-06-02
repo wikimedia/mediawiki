@@ -1555,6 +1555,15 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				$tablesUsed = array_unique( array_merge( $tablesUsed, $pageTables ) );
 			}
 
+			if ( $db->getType() === 'postgres' ) {
+				if ( in_array( 'user', $tablesUsed ) ) {
+					$tablesUsed[] = 'mwuser';
+				}
+				if ( in_array( 'text', $tablesUsed ) ) {
+					$tablesUsed[] = 'pagecontent';
+				}
+			}
+
 			$truncate = in_array( $db->getType(), [ 'oracle', 'mysql' ] );
 			foreach ( $tablesUsed as $tbl ) {
 				// TODO: reset interwiki table to its original content.
