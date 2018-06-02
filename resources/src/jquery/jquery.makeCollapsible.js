@@ -225,8 +225,7 @@
 					.attr( {
 						role: 'button',
 						tabindex: 0
-					} )
-					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+					} );
 			};
 
 			// Check if this element has a custom position for the toggle link
@@ -249,9 +248,7 @@
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
 
-				$toggleLink = $customTogglers
-					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-					.prop( 'tabIndex', 0 );
+				$toggleLink = $customTogglers;
 
 			} else {
 				// If this is not a custom case, do the default: wrap the
@@ -264,26 +261,20 @@
 					// as opposed to the first row
 					$caption = $collapsible.find( '> caption' );
 					if ( $caption.length ) {
-						$toggle = $caption.find( '> .mw-collapsible-toggle' );
+						$toggleLink = $toggle = $caption.find( '> .mw-collapsible-toggle' );
 
 						// If there is no toggle link, add it to the end of the caption
 						if ( !$toggle.length ) {
 							$toggleLink = buildDefaultToggleLink().appendTo( $caption );
-						} else {
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-								.prop( 'tabIndex', 0 );
 						}
 					} else {
 						// The toggle-link will be in one of the cells (td or th) of the first row
 						$firstItem = $collapsible.find( 'tr:first th, tr:first td' );
-						$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
+						$toggleLink = $toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 						// If theres no toggle link, add it to the last cell
 						if ( !$toggle.length ) {
 							$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
-						} else {
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-								.prop( 'tabIndex', 0 );
 						}
 					}
 
@@ -297,7 +288,7 @@
 				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 					// The toggle-link will be in the first list-item
 					$firstItem = $collapsible.find( 'li:first' );
-					$toggle = $firstItem.find( '> .mw-collapsible-toggle' );
+					$toggleLink = $toggle = $firstItem.find( '> .mw-collapsible-toggle' );
 
 					// If theres no toggle link, add it
 					if ( !$toggle.length ) {
@@ -310,15 +301,12 @@
 						}
 						$toggleLink = buildDefaultToggleLink();
 						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
-					} else {
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-							.prop( 'tabIndex', 0 );
 					}
 
 				} else { // <div>, <p> etc.
 
 					// The toggle-link will be the first child of the element
-					$toggle = $collapsible.find( '> .mw-collapsible-toggle' );
+					$toggleLink = $toggle = $collapsible.find( '> .mw-collapsible-toggle' );
 
 					// If a direct child .content-wrapper does not exists, create it
 					if ( !$collapsible.find( '> .mw-collapsible-content' ).length ) {
@@ -328,12 +316,13 @@
 					// If theres no toggle link, add it
 					if ( !$toggle.length ) {
 						$toggleLink = buildDefaultToggleLink().prependTo( $collapsible );
-					} else {
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-							.prop( 'tabIndex', 0 );
 					}
 				}
 			}
+
+			// Attach event handlers to togglelink
+			$toggleLink.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+				.prop( 'tabIndex', 0 );
 
 			$( this ).data( 'mw-collapsible', {
 				collapse: function () {
