@@ -1373,7 +1373,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Undoes the dpecified schema overrides..
+	 * Undoes the specified schema overrides..
 	 * Called once per test class, just before addDataOnce().
 	 *
 	 * @param IMaintainableDatabase $db
@@ -1383,7 +1383,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
 
 		// Drop tables that need to be restored or removed.
 		$tablesToDrop = array_merge( $oldOverrides['create'], $oldOverrides['alter'] );
@@ -1444,7 +1444,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		$this->ensureMockDatabaseConnection( $db );
 
 		// Drop the tables that will be created by the schema scripts.
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
 		$tablesToDrop = array_intersect( $originalTables, $overrides['create'] );
 
 		if ( $tablesToDrop ) {
@@ -1498,14 +1498,25 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Lists all tables in the live database schema.
 	 *
 	 * @param IMaintainableDatabase $db
+	 * @param string $prefix Either 'prefixed' or 'unprefixed'
 	 * @return array
 	 */
-	private function listOriginalTables( IMaintainableDatabase $db ) {
+	private function listOriginalTables( IMaintainableDatabase $db, $prefix = 'prefixed' ) {
 		if ( !isset( $db->_originalTablePrefix ) ) {
 			throw new LogicException( 'No original table prefix know, cannot list tables!' );
 		}
 
 		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		if ( $prefix === 'unprefixed' ) {
+			$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix ) . '/';
+			$originalTables = array_map(
+				function ( $pt ) use ( $originalPrefixRegex ) {
+					return preg_replace( $originalPrefixRegex, '', $pt );
+				},
+				$originalTables
+			);
+		}
+
 		return $originalTables;
 	}
 
@@ -1524,7 +1535,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
-		$originalTables = $this->listOriginalTables( $db );
+		$originalTables = $this->listOriginalTables( $db, 'unprefixed' );
 		$tables = array_intersect( $tables, $originalTables );
 
 		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
