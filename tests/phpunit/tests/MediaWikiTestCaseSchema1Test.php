@@ -11,6 +11,13 @@ class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 
 	public static $hasRun = false;
 
+	public function setUp() {
+		parent::setUp();
+		if ( $this->db->getType() == 'postgres' ) {
+			$this->markTestSkipped( __CLASS__ . ' does not support postgres' );
+		}
+	}
+
 	public function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
 			'create' => [ 'MediaWikiTestCaseTestTable', 'imagelinks' ],
