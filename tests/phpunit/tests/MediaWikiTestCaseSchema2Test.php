@@ -14,6 +14,13 @@
  */
 class MediaWikiTestCaseSchema2Test extends MediaWikiTestCase {
 
+	public function setUp() {
+		parent::setUp();
+		if ( $this->db->getType() == 'postgres' ) {
+			$this->markTestSkipped( __CLASS__ . ' does not support postgres' );
+		}
+	}
+
 	public function testMediaWikiTestCaseSchemaTestOrder() {
 		// The first test must have run before this one
 		$this->assertTrue( MediaWikiTestCaseSchema1Test::$hasRun );
