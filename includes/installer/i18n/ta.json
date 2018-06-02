@@ -43,8 +43,6 @@
 	"config-upgrade-done-no-regenerate": "தரமுயர்த்தல் முழுமையடைந்தது.\nநீங்கள் தற்போது [$1 உங்கள் விக்கியைப் பயன்படுத்தத் துவங்கலாம்].",
 	"config-db-web-account": "வலை அணுகலுக்கான தரவுத் தளக் கணக்கு",
 	"config-mysql-engine": "சேமிப்பு இயந்திரம்:",
-	"config-mysql-charset": "தரவுத் தள வரியுருத் தொகுதி:",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "விக்கியின் பெயர்:",
 	"config-site-name-blank": "ஒரு தளத்தின் பெயரை உள்ளிடுக.",
 	"config-ns-generic": "திட்டம்",

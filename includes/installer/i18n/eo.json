@@ -49,8 +49,6 @@
 	"config-header-sqlite": "SQLite-agordoj",
 	"config-header-oracle": "Oracle-agordoj",
 	"config-header-mssql": "Microsoft SQL Server-agordoj",
-	"config-mysql-binary": "Duuma",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Nomo de vikio:",
 	"config-ns-generic": "Projekto",
 	"config-admin-name": "Via uzantonomo:",

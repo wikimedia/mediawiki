@@ -2672,7 +2672,7 @@
 	"movenosubpage": "Esta página não tem subpáginas.",
 	"movereason": "Motivo:",
 	"revertmove": "reverter",
-	"delete_and_move_text": "A página de destino \"[[:$1]]\" já existe. Deseja excluí-lo para abrir caminho para o movimento?",
+	"delete_and_move_text": "A página de destino \"[[:$1]]\" já existe. Deseja eliminá-la para abrir caminho para o movimento?",
 	"delete_and_move_confirm": "Sim, eliminar a página",
 	"delete_and_move_reason": "Eliminada para mover \"[[$1]]\"",
 	"selfmove": "O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.",

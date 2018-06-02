@@ -41,8 +41,6 @@
 	"config-db-schema": "MediaWiki өчен төзелеш:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Икеле",
-	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Проект",
 	"config-ns-other": "Башка (күрсәтегез)",
 	"config-ns-other-default": "MyWiki",

@@ -41,7 +41,6 @@
 	"config-db-web-account": "Hesabê danegehê bô têgihiştina tora înternetê",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "Navê wîkiyê:",
 	"config-site-name-blank": "Navê malperek têkeve.",
 	"config-ns-generic": "Proje",

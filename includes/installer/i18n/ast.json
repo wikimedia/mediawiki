@@ -152,8 +152,6 @@
 	"config-mysql-engine": "Motor d'almacenamientu:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Binariu",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Triba d'autenticación:",
 	"config-site-name": "Nome de la wiki:",
 	"config-site-name-help": "Esto apaecerá na barra de títulos del navegador y en dellos sitios más.",

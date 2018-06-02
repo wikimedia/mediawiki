@@ -48,8 +48,6 @@
 	"config-header-postgres": "PostgreSQL सेटिङहरू",
 	"config-header-sqlite": "SQLite सेटिङ्हरू",
 	"config-header-oracle": "ओरेकल सेटिङहरू",
-	"config-mysql-binary": "बाइनरी",
-	"config-mysql-utf8": "UTF-8",
 	"config-site-name": "विकीको नाम:",
 	"config-site-name-blank": "साइटको नाम लेख्नुहोस।",
 	"config-project-namespace": "आयोजना नेमस्पेस:",

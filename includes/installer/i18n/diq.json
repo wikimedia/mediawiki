@@ -59,8 +59,6 @@
 	"config-mysql-engine": "Motorë depok kerdışi",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Dılet",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-sqlauth": "SQL Server araştnayış",
 	"config-mssql-windowsauth": "Windows kamiye araştnayış",
 	"config-site-name": "Namey wiki:",

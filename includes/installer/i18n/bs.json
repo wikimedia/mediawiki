@@ -105,8 +105,6 @@
 	"config-mysql-engine": "Skladišni pogon:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Binarni",
-	"config-mysql-utf8": "UTF-8",
 	"config-mssql-auth": "Vrsta autentifikacije:",
 	"config-site-name": "Ime wikija:",
 	"config-site-name-blank": "Upišite ime sajta.",
