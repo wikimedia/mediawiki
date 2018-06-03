@@ -259,9 +259,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * Fetch the value of a key from cache
 	 *
 	 * If supplied, $curTTL is set to the remaining TTL (current time left):
-	 *   - a) INF; if $key exists, has no TTL, and is not expired by $checkKeys
-	 *   - b) float (>=0); if $key exists, has a TTL, and is not expired by $checkKeys
-	 *   - c) float (<0); if $key is tombstoned, stale, or existing but expired by $checkKeys
+	 *   - a) INF; if $key exists, has no TTL, and is not invalidated by $checkKeys
+	 *   - b) float (>=0); if $key exists, has a TTL, and is not invalidated by $checkKeys
+	 *   - c) float (<0); if $key is tombstoned, stale, or existing but invalidated by $checkKeys
 	 *   - d) null; if $key does not exist and is not tombstoned
 	 *
 	 * If a key is tombstoned, $curTTL will reflect the time since delete().
@@ -378,8 +378,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			list( $value, $curTTL ) = $this->unwrap( $wrappedValues[$vKey], $now );
 			if ( $value !== false ) {
 				$result[$key] = $value;
-
-				// Force dependant keys to be invalid for a while after purging
+				// Force dependant keys to be seen as stale for a while after purging
 				// to reduce race conditions involving stale data getting cached
 				$purgeValues = $purgeValuesForAll;
 				if ( isset( $purgeValuesByKey[$key] ) ) {
@@ -388,9 +387,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				foreach ( $purgeValues as $purge ) {
 					$safeTimestamp = $purge[self::FLD_TIME] + $purge[self::FLD_HOLDOFF];
 					if ( $safeTimestamp >= $wrappedValues[$vKey][self::FLD_TIME] ) {
-						// How long ago this value was expired by *this* check key
+						// How long ago this value was invalidated by *this* check key
 						$ago = min( $purge[self::FLD_TIME] - $now, self::TINY_NEGATIVE );
-						// How long ago this value was expired by *any* known check key
+						// How long ago this value was invalidated by *any* known check key
 						$curTTL = min( $curTTL, $ago );
 					}
 				}
@@ -416,7 +415,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				? $this->parsePurgeValue( $wrappedValues[$timeKey] )
 				: false;
 			if ( $purge === false ) {
-				// Key is not set or invalid; regenerate
+				// Key is not set or malformed; regenerate
 				$newVal = $this->makePurgeValue( $now, self::HOLDOFF_TTL );
 				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
 				$purge = $this->parsePurgeValue( $newVal );
@@ -781,7 +780,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * or getWithSetCallback() will be invalidated. The differences are:
 	 *   - a) The "check" key will be deleted from all caches and lazily
 	 *        re-initialized when accessed (rather than set everywhere)
-	 *   - b) Thus, dependent keys will be known to be invalid, but not
+	 *   - b) Thus, dependent keys will be known to be stale, but not
 	 *        for how long (they are treated as "just" purged), which
 	 *        effects any lockTSE logic in getWithSetCallback()
 	 *   - c) Since "check" keys are initialized only on the server the key hashes
@@ -980,23 +979,26 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
 	 * @param callable $callback Value generation function
 	 * @param array $opts Options map:
-	 *   - checkKeys: List of "check" keys. The key at $key will be seen as invalid when either
+	 *   - checkKeys: List of "check" keys. The key at $key will be seen as stale when either
 	 *      touchCheckKey() or resetCheckKey() is called on any of the keys in this list. This
 	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
 	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
-	 *   - graceTTL: Consider reusing expired values instead of refreshing them if they expired
-	 *      less than this many seconds ago. The odds of a refresh becomes more likely over time,
+	 *   - graceTTL: If the key is invalidated (by "checkKeys") less than this many seconds ago,
+	 *      consider reusing the stale value. The odds of a refresh becomes more likely over time,
 	 *      becoming certain once the grace period is reached. This can reduce traffic spikes
-	 *      when millions of keys are compared to the same "check" key and touchCheckKey()
-	 *      or resetCheckKey() is called on that "check" key.
+	 *      when millions of keys are compared to the same "check" key and touchCheckKey() or
+	 *      resetCheckKey() is called on that "check" key. This option is not useful for the
+	 *      case of the key simply expiring on account of its TTL (use "lowTTL" instead).
 	 *      Default: WANObjectCache::GRACE_TTL_NONE.
-	 *   - lockTSE: If the key is tombstoned or expired (by checkKeys) less than this many seconds
-	 *      ago, then try to have a single thread handle cache regeneration at any given time.
+	 *   - lockTSE: If the key is tombstoned or invalidated (by "checkKeys") less than this many
+	 *      seconds ago, try to have a single thread handle cache regeneration at any given time.
 	 *      Other threads will try to use stale values if possible. If, on miss, the time since
 	 *      expiration is low, the assumption is that the key is hot and that a stampede is worth
 	 *      avoiding. Setting this above WANObjectCache::HOLDOFF_TTL makes no difference. The
-	 *      higher this is set, the higher the worst-case staleness can be.
+	 *      higher this is set, the higher the worst-case staleness can be. This option does not
+	 *      by itself handle the case of the key simply expiring on account of its TTL, so make
+	 *      sure that "lowTTL" is not disabled when using this option.
 	 *      Use WANObjectCache::TSE_NONE to disable this logic.
 	 *      Default: WANObjectCache::TSE_NONE.
 	 *   - busyValue: If no value exists and another thread is currently regenerating it, use this
@@ -2004,7 +2006,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 *
 	 * @param array|string|bool $wrapped
 	 * @param float $now Unix Current timestamp (preferrably pre-query)
-	 * @return array (mixed; false if absent/tombstoned/invalid, current time left)
+	 * @return array (mixed; false if absent/tombstoned/malformed, current time left)
 	 */
 	protected function unwrap( $wrapped, $now ) {
 		// Check if the value is a tombstone
