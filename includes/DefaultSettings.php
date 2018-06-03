@@ -7869,9 +7869,15 @@ $wgActionFilteredLogs = [
 ];
 
 /**
- * Maintain a log of newusers at Log/newusers?
+ * Maintain a log of newusers at Special:Log/newusers?
  */
 $wgNewUserLog = true;
+
+/**
+ * Maintain a log of page creations at Special:Log/create?
+ * @since 1.32
+ */
+$wgPageCreationLog = false;
 
 /** @} */ # end logging }
 

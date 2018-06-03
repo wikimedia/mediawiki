@@ -533,7 +533,7 @@ if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 }
 
 if ( $wgNewUserLog ) {
-	// Add a new log type
+	// Add new user log type
 	$wgLogTypes[] = 'newusers';
 	$wgLogNames['newusers'] = 'newuserlogpage';
 	$wgLogHeaders['newusers'] = 'newuserlogpagetext';
@@ -542,6 +542,12 @@ if ( $wgNewUserLog ) {
 	$wgLogActionsHandlers['newusers/create2'] = NewUsersLogFormatter::class;
 	$wgLogActionsHandlers['newusers/byemail'] = NewUsersLogFormatter::class;
 	$wgLogActionsHandlers['newusers/autocreate'] = NewUsersLogFormatter::class;
+}
+
+if ( $wgPageCreationLog ) {
+	// Add page creation log type
+	$wgLogTypes[] = 'create';
+	$wgLogActionsHandlers['create/create'] = LogFormatter::class;
 }
 
 if ( $wgPageLanguageUseDB ) {
