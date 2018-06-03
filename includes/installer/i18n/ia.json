@@ -118,8 +118,8 @@
 	"config-support-info": "MediaWiki supporta le sequente systemas de base de datos:\n\n$1\n\nSi tu non vide hic infra le systema de base de datos que tu tenta usar, alora seque le instructiones ligate hic supra pro activar le supporto.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] es le systema primari pro MediaWiki e le melio supportate. MediaWiki functiona anque con [{{int:version-db-mariadb-url}} MariaDB] e con [{{int:version-db-percona-url}} Percona Server], le quales es compatibile con MySQL. ([https://secure.php.net/manual/en/mysqli.installation.php Como compilar PHP con supporto de MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] es un systema de base de datos popular e open source, alternativa a MySQL. ([https://secure.php.net/manual/en/pgsql.installation.php Como compilar PHP con supporto de PostgreSQL])",
-	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un systema de base de datos legier que es multo ben supportate. ([http://www.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)",
-	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] es un banca de datos commercial pro interprisas. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])",
+	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] es un systema de base de datos legier que es multo ben supportate. ([https://secure.php.net/manual/en/pdo.installation.php Como compilar PHP con supporto de SQLite], usa PDO)",
+	"config-dbsupport-oracle": "* [{{int:version-db-oracle-url}} Oracle] es un banca de datos commercial pro interprisas. ([https://secure.php.net/manual/en/oci8.installation.php Como compilar PHP con supporto de OCI8])",
 	"config-dbsupport-mssql": "* [{{int:version-db-mssql-url}} Microsoft SQL Server] es un base de datos de interprisa commercial pro Windows. ([https://secure.php.net/manual/en/sqlsrv.installation.php Como compilar PHP con supporto de SQLSRV])",
 	"config-header-mysql": "Configuration de MySQL",
 	"config-header-postgres": "Configuration de PostgreSQL",
@@ -311,6 +311,7 @@
 	"config-nofile": "Le file \"$1\" non poteva esser trovate. Ha illo essite delite?",
 	"config-extension-link": "Sapeva tu que tu wiki supporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nTu pote explorar le [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensiones per category] o le [https://www.mediawiki.org/wiki/Extension_Matrix matrice de extensiones] pro vider le lista complete de extensiones.",
 	"config-skins-screenshots": "$1 (capturas de schermo: $2)",
+	"config-extensions-requires": "$1 (require $2)",
 	"config-screenshot": "captura de schermo",
 	"mainpagetext": "<strong>MediaWiki ha essite installate.</strong>",
 	"mainpagedocfooter": "Consulta le [https://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro information sur le uso del software wiki.\n\n== Pro initiar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de configurationes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ a proposito de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducer MediaWiki in tu lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Como combatter le spam in tu wiki]"

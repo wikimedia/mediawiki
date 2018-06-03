@@ -497,6 +497,7 @@
 	"botpasswords-existing": "ពាក្យសម្ងាត់រូបយន្តមានហើយ",
 	"botpasswords-createnew": "បង្កើតពាក្យសម្ងាត់រូបយន្តថ្មី",
 	"botpasswords-editexisting": "កែប្រែពាក្យសម្ងាត់រូបយន្តមានហើយ",
+	"botpasswords-label-needsreset": "(ពាក្យសម្ងាត់ចាំបាច់ត្រូវកំណត់ឡើងវិញ)",
 	"botpasswords-label-appid": "ឈ្មោះរូបយន្ត៖",
 	"botpasswords-label-create": "បង្កើត",
 	"botpasswords-label-update": "បន្ទាន់សម័យ",
