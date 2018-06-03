@@ -2224,6 +2224,9 @@
 	"dellogpage": "Kniha smazaných stránek",
 	"dellogpagetext": "Zde je seznam posledních smazaných stránek.",
 	"deletionlog": "Kniha smazaných stránek",
+	"log-name-create": "Kniha vytvoření stránek",
+	"log-description-create": "Níže se nachází seznam posledních vyvořených stránek.",
+	"logentry-create-create": "$1 {{GENDER:$2|vytvořil|vytvořila|vytvořil(a)}} stránku $3",
 	"reverted": "Obnovení předchozí verze",
 	"deletecomment": "Důvod:",
 	"deleteotherreason": "Jiný/další důvod:",
@@ -4081,5 +4084,12 @@
 	"pagedata-text": "Tato stránka poskytuje datové rozhraní ke stránkám. Uveďte prosím název stránky v URL pomocí syntaxe pro podstránky.\n* Funguje dohadování o obsahu na základě hlavičky Accept vašeho klienta. To znamená, že data stránky budou poskytnuta ve formátu preferovaném vaším klientem.",
 	"pagedata-not-acceptable": "Nenalezen odpovídající formát. Podporované MIME typy: $1",
 	"pagedata-bad-title": "Neplatný název: $1.",
-	"unregistered-user-config": "Z bezpečnostních důvodů nelze načítat uživatelské podstránky s JavaScriptem, CSS nebo JSONem u neregistrovaných uživatelů."
+	"unregistered-user-config": "Z bezpečnostních důvodů nelze načítat uživatelské podstránky s JavaScriptem, CSS nebo JSONem u neregistrovaných uživatelů.",
+	"passwordpolicies-group": "Skupina",
+	"passwordpolicies-policy-minimalpasswordlength": "Heslo musí být alespoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}} dlouhé",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pro přihlášení je vyžadováno alespoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}} dlouhé heslo",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Heslo se nemůže shodovat s uživatelským jménem",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Heslo nesmí být v seznamu určitých zakázaných hesel",
+	"passwordpolicies-policy-maximalpasswordlength": "Heslo musí být kratší než {{PLURAL:$1|$1 znak|$1 znaky|$1 znaků}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "Heslo nesmí být {{PLURAL:$1|dané oblíbené heslo|v seznamu $1 oblíbených hesel}}"
 }
