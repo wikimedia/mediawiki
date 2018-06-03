@@ -19,14 +19,18 @@
  */
 
 /**
- * Extend OOUIHTMLForm purely so we can have a more sane way of getting the section headers
+ * Extend HTMLForm purely so we can have a more sane way of getting the section headers
  */
-class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
+class EditWatchlistNormalHTMLForm extends HTMLForm {
 	public function getLegend( $namespace ) {
 		$namespace = substr( $namespace, 2 );
 
 		return $namespace == NS_MAIN
 			? $this->msg( 'blanknamespace' )->escaped()
 			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
+	}
+
+	public function getBody() {
+		return $this->displaySection( $this->mFieldTree, '', 'editwatchlist-' );
 	}
 }
