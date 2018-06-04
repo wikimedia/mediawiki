@@ -184,8 +184,8 @@
 		options = options || {};
 
 		this.each( function () {
-			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler, buildDefaultToggleLink,
-				$toggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
+			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler,
+				buildDefaultToggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
 
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
 			// is called on element(s) that don't have it yet.
@@ -225,8 +225,7 @@
 					.attr( {
 						role: 'button',
 						tabindex: 0
-					} )
-					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler );
+					} );
 			};
 
 			// Check if this element has a custom position for the toggle link
@@ -249,9 +248,7 @@
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
 
-				$toggleLink = $customTogglers
-					.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-					.prop( 'tabIndex', 0 );
+				$toggle = $customTogglers;
 
 			} else {
 				// If this is not a custom case, do the default: wrap the
@@ -268,10 +265,7 @@
 
 						// If there is no toggle link, add it to the end of the caption
 						if ( !$toggle.length ) {
-							$toggleLink = buildDefaultToggleLink().appendTo( $caption );
-						} else {
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-								.prop( 'tabIndex', 0 );
+							$toggle = buildDefaultToggleLink().appendTo( $caption );
 						}
 					} else {
 						// The toggle-link will be in one of the cells (td or th) of the first row
@@ -280,10 +274,7 @@
 
 						// If theres no toggle link, add it to the last cell
 						if ( !$toggle.length ) {
-							$toggleLink = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
-						} else {
-							$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-								.prop( 'tabIndex', 0 );
+							$toggle = buildDefaultToggleLink().prependTo( $firstItem.eq( -1 ) );
 						}
 					}
 
@@ -292,8 +283,8 @@
 					$collapsible.find( '> .mw-collapsible-toggle' ).length === 0
 				) {
 					// special case of one collapsible in <li> tag
-					$toggleLink = buildDefaultToggleLink();
-					$collapsible.before( $toggleLink );
+					$toggle = buildDefaultToggleLink();
+					$collapsible.before( $toggle );
 				} else if ( $collapsible.is( 'ul' ) || $collapsible.is( 'ol' ) ) {
 					// The toggle-link will be in the first list-item
 					$firstItem = $collapsible.find( 'li:first' );
@@ -308,11 +299,8 @@
 						if ( firstval === undefined || !firstval || firstval === '-1' || firstval === -1 ) {
 							$firstItem.prop( 'value', '1' );
 						}
-						$toggleLink = buildDefaultToggleLink();
-						$toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
-					} else {
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-							.prop( 'tabIndex', 0 );
+						$toggle = buildDefaultToggleLink();
+						$toggle.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent().prependTo( $collapsible );
 					}
 
 				} else { // <div>, <p> etc.
@@ -327,23 +315,24 @@
 
 					// If theres no toggle link, add it
 					if ( !$toggle.length ) {
-						$toggleLink = buildDefaultToggleLink().prependTo( $collapsible );
-					} else {
-						$toggleLink = $toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
-							.prop( 'tabIndex', 0 );
+						$toggle = buildDefaultToggleLink().prependTo( $collapsible );
 					}
 				}
 			}
 
+			// Attach event handlers to togglelink
+			$toggle.on( 'click.mw-collapsible keypress.mw-collapsible', actionHandler )
+				.prop( 'tabIndex', 0 );
+
 			$( this ).data( 'mw-collapsible', {
 				collapse: function () {
-					actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: false } );
+					actionHandler.call( $toggle.get( 0 ), null, { wasCollapsed: false } );
 				},
 				expand: function () {
-					actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: true } );
+					actionHandler.call( $toggle.get( 0 ), null, { wasCollapsed: true } );
 				},
 				toggle: function () {
-					actionHandler.call( $toggleLink.get( 0 ), null, null );
+					actionHandler.call( $toggle.get( 0 ), null, null );
 				}
 			} );
 
@@ -351,7 +340,7 @@
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 				// One toggler can hook to multiple elements, and one element can have
 				// multiple togglers. This is the sanest way to handle that.
-				actionHandler.call( $toggleLink.get( 0 ), null, { wasCollapsed: false } );
+				actionHandler.call( $toggle.get( 0 ), null, { wasCollapsed: false } );
 			}
 
 		} );
