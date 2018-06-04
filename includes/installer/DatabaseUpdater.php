@@ -780,6 +780,38 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Add a new index to an existing table if none of the given indexes exist
+	 *
+	 * @param string $table Name of the table to modify
+	 * @param string[] $indexes Name of the indexes to check. $indexes[0] should
+	 *  be the one actually being added.
+	 * @param string $patch Path to the patch file
+	 * @param bool $fullpath Whether to treat $patch path as a relative or not
+	 * @return bool False if this was skipped because schema changes are skipped
+	 */
+	protected function addIndexIfNoneExist( $table, $indexes, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
+			$this->output( "...skipping: '$table' table doesn't exist yet.\n" );
+		}
+
+		$newIndex = $indexes[0];
+		foreach ( $indexes as $index ) {
+			if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
+				$this->output(
+					"...skipping index $newIndex because index $index already set on $table table.\n"
+				);
+				return true;
+			}
+		}
+
+		return $this->applyPatch( $patch, $fullpath, "Adding index $index to table $table" );
+	}
+
+	/**
 	 * Drop a field from an existing table
 	 *
 	 * @param string $table Name of the table to modify
