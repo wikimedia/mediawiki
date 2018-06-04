@@ -5,6 +5,14 @@ THIS IS NOT A RELEASE YET
 MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
 production.
 
+=== Important pre-upgrade notes for 1.31 ===
+* If you're using MySQL, SQLite, or MSSQL, are not using update.php to apply
+  schema changes, and cannot have downtime to run migrateArchiveText.php and
+  apply patch-drop-ar_text.sql manually, you'll have to apply a default value
+  to the ar_text and ar_flags columns of the archive table or make those
+  columns nullable before upgrading to MediaWiki 1.31.
+  maintenance/archives/patch-nullable-ar_text.sql shows how to do this for MySQL.
+
 === Configuration changes in 1.31 ===
 * $wgEnableAPI and $wgEnableWriteAPI are now deprecated and will be removed in
   a future version. The API is now considered to be stable, secure and
@@ -43,6 +51,7 @@ production.
   framework that it enables. Some extensions mistakenly used this to check
   whether any AJAX functionality at all should be enabled, further making this
   problematic to retain.
+* Add default edit rate limit of 90 edits/minute for all users.
 * $wgDBmysql5 is now deprecated, and will be removed in a future version. It
   has been marked as experimental ever since it was introduced.
 
@@ -139,6 +148,7 @@ production.
 * (T2087, T10897, T87753, T174639) Whitespace created by category and language
   links is now stripped rather than leaving blank lines in odd places.
 * (T3780) Uploads with UTF-8 names now work on PHP7.1+ on Windows servers.
+* (T186565) Fix PHP Notice from `ob_end_flush()` in `FileRepo::streamFile()`.
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
