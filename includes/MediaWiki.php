@@ -631,7 +631,8 @@ class MediaWiki {
 
 		// Record ChronologyProtector positions for DBs affected in this request at this point
 		$cpIndex = null;
-		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex );
+		$cpClientId = null;
+		$lbFactory->shutdown( $flags, $postCommitWork, $cpIndex, $cpClientId );
 		wfDebug( __METHOD__ . ': LBFactory shutdown completed' );
 
 		if ( $cpIndex > 0 ) {
@@ -639,7 +640,7 @@ class MediaWiki {
 				$now = time();
 				$expires = $now + ChronologyProtector::POSITION_COOKIE_TTL;
 				$options = [ 'prefix' => '' ];
-				$value = LBFactory::makeCookieValueFromCPIndex( $cpIndex, $now ); // T190082
+				$value = LBFactory::makeCookieValueFromCPIndex( $cpIndex, $now, $cpClientId );
 				$request->response()->setCookie( 'cpPosIndex', $value, $expires, $options );
 			}
 
