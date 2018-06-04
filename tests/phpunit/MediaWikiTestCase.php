@@ -1543,7 +1543,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( $db ) {
 			$userTables = [ 'user', 'user_groups', 'user_properties', 'actor' ];
 			$pageTables = [ 'page', 'revision', 'ip_changes', 'revision_comment_temp',
-				'revision_actor_temp', 'comment' ];
+				'revision_actor_temp', 'comment', 'archive' ];
 			$coreDBDataTables = array_merge( $userTables, $pageTables );
 
 			// If any of the user or page tables were marked as used, we should clear all of them.
