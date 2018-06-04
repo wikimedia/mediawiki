@@ -2032,6 +2032,8 @@ $wgDBerrorLogTZ = false;
  * Even correct usage may cause failures with Unicode supplementary
  * characters (those not in the Basic Multilingual Plane) unless MySQL
  * has enhanced their Unicode support.
+ *
+ * @deprecated since 1.31
  */
 $wgDBmysql5 = false;
 
