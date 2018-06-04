@@ -1605,8 +1605,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Create a section edit link.  This supersedes editSectionLink() and
-	 * editSectionLinkForOther().
+	 * Create a section edit link.
 	 *
 	 * @param Title $nt The title being linked to (may not be the same as
 	 *   the current page, if the section is included from a template)
