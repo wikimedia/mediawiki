@@ -378,6 +378,7 @@
 	"customcssprotected": "Ez duzu baimenik CSS orrialde hau aldatzeko beste erabiltzaile baten hobespen pertsonalak dituelako.",
 	"customjsprotected": "Ez duzu baimenik JavaScript orrialde hau aldatzeko beste erabiltzaile baten hobespen pertsonalak dituelako.",
 	"mycustomcssprotected": "Ez duzu baimenik CSS orrialde hau aldatzeko.",
+	"mycustomjsonprotected": "Ez duzu baimenik JSON orrialde hau aldatzeko.",
 	"mycustomjsprotected": "Ez duzu baimentik JavaScript orrialdea aldatzeko.",
 	"myprivateinfoprotected": "Ez duzu eskumenik zure informazio pribatua aldatzeko.",
 	"mypreferencesprotected": "Ez daukazu eskumenik zure hobespenak aldatzeko.",
