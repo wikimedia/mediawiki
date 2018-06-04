@@ -7,7 +7,9 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.ExtraParamComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.DefaultNullTypeParam" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations.NotClassTrait" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentStart" />
 		<exclude name="MediaWiki.Commenting.IllegalSingleLineComment.IllegalSingleLineCommentEnd" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
@@ -283,6 +285,62 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">
 		<exclude-pattern>*/tests/phpunit/*\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.escapeshellarg">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
+		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
+		<exclude-pattern>*/includes/shell/Shell\.php</exclude-pattern>
+		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.exec">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>*/tests/phpunit/structure/StructureTest\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>*/includes/GlobalFunctions\.php</exclude-pattern>
+		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/7zip\.inc</exclude-pattern>
+		<exclude-pattern>*/maintenance/populateImageSha1\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.proc_open">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>includes/export/DumpPipeOutput\.php</exclude-pattern>
+		<exclude-pattern>includes/resourceloader/ResourceLoaderImage\.php</exclude-pattern>
+		<exclude-pattern>includes/shell/Command\.php</exclude-pattern>
+		<exclude-pattern>includes/tidy/RaggettExternal\.php</exclude-pattern>
+		<exclude-pattern>maintenance/dumpTextPass\.php</exclude-pattern>
+		<exclude-pattern>maintenance/mysql\.php</exclude-pattern>
+		<exclude-pattern>maintenance/storage/recompressTracked\.php</exclude-pattern>
+		<exclude-pattern>tests/parser/editTests\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.shell_exec">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/updateCredits\.php</exclude-pattern>
+	</rule>
+	<rule ref="MediaWiki.Usage.ForbiddenFunctions.system">
+		<!--
+			Whitelist existing violations, but enable the sniff to prevent
+			any new occurrences.
+		-->
+		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>

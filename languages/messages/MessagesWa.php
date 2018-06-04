@@ -79,7 +79,7 @@ $specialPageAliases = [
 # definixha del cogne po les limeros
 # (number format definition)
 # en: 12,345.67 -> wa: 12 345,67
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
 
 # $linkTrail = '/^([a-zåâêîôûçéèA-ZÅÂÊÎÔÛÇÉÈ]+)(.*)$/sDu';
 $linkTrail = '/^([a-zåâêîôûçéè]+)(.*)$/sDu';

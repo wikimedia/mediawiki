@@ -316,4 +316,4 @@ $dateFormats = [
 	'ymd both' => 'Y F j à H:i',
 ];
 
-$separatorTransformTable = [ ',' => "\xc2\xa0", '.' => ',' ];
+$separatorTransformTable = [ ',' => "\u{00A0}", '.' => ',' ];
