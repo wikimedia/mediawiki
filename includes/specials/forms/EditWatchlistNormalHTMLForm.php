@@ -29,4 +29,10 @@ class EditWatchlistNormalHTMLForm extends OOUIHTMLForm {
 			? $this->msg( 'blanknamespace' )->escaped()
 			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
 	}
+
+	public function displaySection(
+		$fields, $sectionName = '', $fieldsetIDPrefix = '', &$hasUserVisibleFields = false
+	) {
+		return parent::displaySection( $fields, $sectionName, 'editwatchlist-', $hasUserVisibleFields );
+	}
 }
