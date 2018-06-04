@@ -38,9 +38,10 @@ class LinkFilter {
 	 *
 	 * @param Content $content Content to check
 	 * @param string $filterEntry Domainparts, see makeRegex() for more details
+	 * @param string $protocol 'http://' or 'https://'
 	 * @return int 0 if no match or 1 if there's at least one match
 	 */
-	static function matchEntry( Content $content, $filterEntry ) {
+	public static function matchEntry( Content $content, $filterEntry, $protocol = 'http://' ) {
 		if ( !( $content instanceof TextContent ) ) {
 			// TODO: handle other types of content too.
 			//      Maybe create ContentHandler::matchFilter( LinkFilter ).
@@ -50,7 +51,7 @@ class LinkFilter {
 
 		$text = $content->getNativeData();
 
-		$regex = self::makeRegex( $filterEntry );
+		$regex = self::makeRegex( $filterEntry, $protocol );
 		return preg_match( $regex, $text );
 	}
 
@@ -59,10 +60,12 @@ class LinkFilter {
 	 *
 	 * @param string $filterEntry URL, if it begins with "*.", it'll be
 	 *        replaced to match any subdomain
+	 * @param string $protocol 'http://' or 'https://'
+	 *
 	 * @return string Regex pattern, for preg_match()
 	 */
-	private static function makeRegex( $filterEntry ) {
-		$regex = '!http://';
+	private static function makeRegex( $filterEntry, $protocol ) {
+		$regex = '!' . preg_quote( $protocol );
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$regex .= '(?:[A-Za-z0-9.-]+\.|)';
 			$filterEntry = substr( $filterEntry, 2 );
