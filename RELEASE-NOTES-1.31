@@ -52,6 +52,8 @@ production.
   whether any AJAX functionality at all should be enabled, further making this
   problematic to retain.
 * Add default edit rate limit of 90 edits/minute for all users.
+* $wgDBmysql5 is now deprecated, and will be removed in a future version. It
+  has been marked as experimental ever since it was introduced.
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that
