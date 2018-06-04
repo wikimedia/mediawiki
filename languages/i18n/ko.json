@@ -2259,6 +2259,7 @@
 	"dellogpagetext": "아래의 목록은 최근에 삭제된 문서입니다.",
 	"deletionlog": "삭제 기록",
 	"log-name-create": "문서 만들기 기록",
+	"log-description-create": "아래의 목록은 최근에 생성된 문서입니다.",
 	"logentry-create-create": "$1님이 $3 문서를 {{GENDER:$2|만들었습니다}}",
 	"reverted": "이전 판으로 되돌렸습니다",
 	"deletecomment": "이유:",

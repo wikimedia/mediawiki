@@ -176,7 +176,7 @@
 	"config-license-cc-choose": "Escoyer una llicencia Creative Commons  personalizada",
 	"config-email-settings": "Configuración de corréu electrónicu",
 	"config-enable-email": "Activar el corréu electrónicu de salida",
-	"config-enable-email-help": "Si quies que'l corréu electrónicu funcione, les [Config-dbsupport-oracle/manual/en/mail.configuration.php preferencies de corréu de PHP] tienen de tar configuraes correutamente.\nSi nun quies les funciones de corréu electrónicu, puedes desactivales equí.",
+	"config-enable-email-help": "Si quies que'l corréu electrónicu funcione, les [https://secure.php.net/manual/en/mail.configuration.php preferencies de corréu de PHP] tienen de tar configuraes correutamente.\nSi nun quies les funciones de corréu electrónicu, puedes desactivales equí.",
 	"config-email-user": "Activar el corréu electrónicu ente usuarios",
 	"config-logo": "URL del logo:",
 	"config-instantcommons": "Activar Instant Commons",
