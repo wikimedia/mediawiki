@@ -140,6 +140,8 @@ because of Phabricator reports.
   were removed. Use the ParserCache class instead.
 * ScopedCallback (deprecated in 1.28) was removed. Use Wikimedia\ScopedCallback
   instead.
+* Support for ResourceLoaderModule::getModifiedTime() and getModifiedHash(),
+  deprecated since 1.26, was removed. Use getDefinitionSummary() instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
