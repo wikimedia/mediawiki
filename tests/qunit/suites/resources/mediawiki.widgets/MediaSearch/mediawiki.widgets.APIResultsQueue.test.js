@@ -116,9 +116,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				assert.equal( queue.getQueueSize(), 3, 'Query 1: Remaining queue size.' );
 
 				// Check if sources are depleted
-				assert.ok( !providers[ 0 ].isDepleted(), 'Query 1: Full provider not depleted.' );
-				assert.ok( providers[ 1 ].isDepleted(), 'Query 1: Empty provider is depleted.' );
-				assert.ok( providers[ 2 ].isDepleted(), 'Query 1: Single result provider is depleted.' );
+				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 1: Full provider not depleted.' );
+				assert.equal( providers[ 1 ].isDepleted(), true, 'Query 1: Empty provider is depleted.' );
+				assert.equal( providers[ 2 ].isDepleted(), true, 'Query 1: Single result provider is depleted.' );
 
 				// Ask for more results
 				return queue.get( 10 );
@@ -137,9 +137,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				// Change the query
 				queue.setParams( { foo: 'baz' } );
 				// Check if sources are depleted
-				assert.ok( !providers[ 0 ].isDepleted(), 'Query 2: Full provider not depleted.' );
-				assert.ok( !providers[ 1 ].isDepleted(), 'Query 2: Empty provider not depleted.' );
-				assert.ok( !providers[ 2 ].isDepleted(), 'Query 2: Single result provider not depleted.' );
+				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
+				assert.equal( providers[ 1 ].isDepleted(), false, 'Query 2: Empty provider not depleted.' );
+				assert.equal( providers[ 2 ].isDepleted(), false, 'Query 2: Single result provider not depleted.' );
 
 				return queue.get( 10 );
 			} )
@@ -148,9 +148,9 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				assert.equal( data2.length, 10, 'Query 2: Results received.' );
 				assert.equal( queue.getQueueSize(), 3, 'Query 2: Remaining queue size.' );
 				// Check if sources are depleted
-				assert.ok( !providers[ 0 ].isDepleted(), 'Query 2: Full provider not depleted.' );
-				assert.ok( providers[ 1 ].isDepleted(), 'Query 2: Empty provider is not depleted.' );
-				assert.ok( providers[ 2 ].isDepleted(), 'Query 2: Single result provider is not depleted.' );
+				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
+				assert.equal( providers[ 1 ].isDepleted(), true, 'Query 2: Empty provider is not depleted.' );
+				assert.equal( providers[ 2 ].isDepleted(), true, 'Query 2: Single result provider is not depleted.' );
 			} )
 			// Finish the async test
 			.then( done );
@@ -189,7 +189,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		biggerQueue.setParams( { foo: 'baz' } );
 		biggerQueue.get( 10 )
 			.then( function () {
-				assert.ok( !completed, 'Provider promises aborted.' );
+				assert.equal( completed, false, 'Provider promises aborted.' );
 			} )
 			// Finish the async test
 			.then( done );

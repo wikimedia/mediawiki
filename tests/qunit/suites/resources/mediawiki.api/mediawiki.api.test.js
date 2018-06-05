@@ -83,10 +83,10 @@
 
 		this.server.respond( function ( request ) {
 			if ( window.FormData ) {
-				assert.ok( !request.url.match( /action=/ ), 'Request has no query string' );
+				assert.notOk( request.url.match( /action=/ ), 'Request has no query string' );
 				assert.ok( request.requestBody instanceof FormData, 'Request uses FormData body' );
 			} else {
-				assert.ok( !request.url.match( /action=test/ ), 'Request has no query string' );
+				assert.notOk( request.url.match( /action=test/ ), 'Request has no query string' );
 				assert.equal( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 			}
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
@@ -133,7 +133,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.ok( !request.url.match( /foo/ ), 'foo query parameter is not present' );
+			assert.notOk( request.url.match( /foo/ ), 'foo query parameter is not present' );
 			assert.ok( request.url.match( /bar=true/ ), 'bar query parameter is present with value true' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
