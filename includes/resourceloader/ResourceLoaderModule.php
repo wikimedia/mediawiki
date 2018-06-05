@@ -799,11 +799,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * This method should be quick because it is frequently run by ResourceLoaderStartUpModule to
 	 * propagate changes to the client and effectively invalidate cache.
 	 *
-	 * For backward-compatibility, the following optional data providers are automatically included:
-	 *
-	 * - getModifiedTime()
-	 * - getModifiedHash()
-	 *
 	 * @since 1.26
 	 * @param ResourceLoaderContext $context
 	 * @return string Hash (should use ResourceLoader::makeHash)
@@ -833,18 +828,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					throw new LogicException( 'getDefinitionSummary must call parent method' );
 				}
 				$str = json_encode( $summary );
-
-				$mtime = $this->getModifiedTime( $context );
-				if ( $mtime !== null ) {
-					// Support: MediaWiki 1.25 and earlier
-					$str .= strval( $mtime );
-				}
-
-				$mhash = $this->getModifiedHash( $context );
-				if ( $mhash !== null ) {
-					// Support: MediaWiki 1.25 and earlier
-					$str .= strval( $mhash );
-				}
 			}
 
 			$this->versionHash[$contextHash] = ResourceLoader::makeHash( $str );
@@ -913,28 +896,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			'_class' => static::class,
 			'_cacheEpoch' => $this->getConfig()->get( 'CacheEpoch' ),
 		];
-	}
-
-	/**
-	 * Get this module's last modification timestamp for a given context.
-	 *
-	 * @deprecated since 1.26 Use getDefinitionSummary() instead
-	 * @param ResourceLoaderContext $context
-	 * @return int|null UNIX timestamp
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return null;
-	}
-
-	/**
-	 * Helper method for providing a version hash to getVersionHash().
-	 *
-	 * @deprecated since 1.26 Use getDefinitionSummary() instead
-	 * @param ResourceLoaderContext $context
-	 * @return string|null Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return null;
 	}
 
 	/**
