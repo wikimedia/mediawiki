@@ -45,6 +45,7 @@ production.
 * Updated QUnit from 2.4.0 to 2.6.0.
 * Updated wikimedia/scoped-callback from 1.0.0 to 2.0.0.
 ** ScopedCallback objects can no longer be serialized.
+* Updated wikimedia/wrappedstring from 2.3.0 to 3.0.1.
 
 ==== New external libraries ====
 * Added wikimedia/xmp-reader 0.5.1
