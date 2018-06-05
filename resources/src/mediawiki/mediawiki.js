@@ -551,8 +551,13 @@
 		 *
 		 * @return {number} Current time
 		 */
-		now: mwNow,
-		// mwNow is defined in startup.js
+		now: ( function () {
+			var perf = window.performance,
+				navStart = perf && perf.timing && perf.timing.navigationStart;
+			return navStart && typeof perf.now === 'function' ?
+				function () { return navStart + perf.now(); } :
+				function () { return Date.now(); };
+		}() ),
 
 		/**
 		 * Format a string. Replace $1, $2 ... $N with positional arguments.
