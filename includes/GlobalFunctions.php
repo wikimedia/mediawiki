@@ -2196,9 +2196,7 @@ function wfStringToBool( $val ) {
  * @deprecated since 1.30 use MediaWiki\Shell::escape()
  */
 function wfEscapeShellArg( /*...*/ ) {
-	$args = func_get_args();
-
-	return call_user_func_array( Shell::class . '::escape', $args );
+	return Shell::escape( ...func_get_args() );
 }
 
 /**
@@ -2697,10 +2695,7 @@ function wfMakeStaticArrayFile( array $data, $header = 'Automatically generated'
  * @return string
  */
 function wfMemcKey( /*...*/ ) {
-	return call_user_func_array(
-		[ ObjectCache::getLocalClusterInstance(), 'makeKey' ],
-		func_get_args()
-	);
+	return ObjectCache::getLocalClusterInstance()->makeKey( ...func_get_args() );
 }
 
 /**
@@ -2716,10 +2711,7 @@ function wfMemcKey( /*...*/ ) {
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	$keyspace = $prefix ? "$db-$prefix" : $db;
-	return call_user_func_array(
-		[ ObjectCache::getLocalClusterInstance(), 'makeKeyInternal' ],
-		[ $keyspace, $args ]
-	);
+	return ObjectCache::getLocalClusterInstance()->makeKeyInternal( $keyspace, $args );
 }
 
 /**
@@ -2735,10 +2727,7 @@ function wfForeignMemcKey( $db, $prefix /*...*/ ) {
  * @return string
  */
 function wfGlobalCacheKey( /*...*/ ) {
-	return call_user_func_array(
-		[ ObjectCache::getLocalClusterInstance(), 'makeGlobalKey' ],
-		func_get_args()
-	);
+	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...func_get_args() );
 }
 
 /**

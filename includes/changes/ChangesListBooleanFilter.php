@@ -206,18 +206,15 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 			return;
 		}
 
-		call_user_func_array(
-			$this->queryCallable,
-			[
-				get_class( $specialPage ),
-				$specialPage->getContext(),
-				$dbr,
-				&$tables,
-				&$fields,
-				&$conds,
-				&$query_options,
-				&$join_conds
-			]
+		( $this->queryCallable )(
+			get_class( $specialPage ),
+			$specialPage->getContext(),
+			$dbr,
+			&$tables,
+			&$fields,
+			&$conds,
+			&$query_options,
+			&$join_conds
 		);
 	}
 

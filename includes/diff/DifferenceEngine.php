@@ -756,10 +756,7 @@ class DifferenceEngine extends ContextSource {
 			// for backwards-compatibility
 			$key = $this->getDiffBodyCacheKey();
 			if ( $key === null ) {
-				$key = call_user_func_array(
-					[ $cache, 'makeKey' ],
-					$this->getDiffBodyCacheKeyParams()
-				);
+				$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
 			}
 
 			// Try cache

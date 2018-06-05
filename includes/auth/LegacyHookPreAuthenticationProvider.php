@@ -168,7 +168,7 @@ class LegacyHookPreAuthenticationProvider extends AbstractPreAuthenticationProvi
 
 			case LoginForm::USER_MIGRATED:
 				$error = $msg ?: 'login-migrated-generic';
-				return call_user_func_array( 'StatusValue::newFatal', (array)$error );
+				return StatusValue::newFatal( ...(array)$error );
 
 			// @codeCoverageIgnoreStart
 			case LoginForm::CREATE_BLOCKED: // Can never happen

@@ -104,7 +104,7 @@ abstract class Action implements MessageLocalizer {
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
-			return call_user_func_array( $classOrCallable, [ $page, $context ] );
+			return $classOrCallable( $page, $context );
 		}
 
 		return $classOrCallable;
@@ -255,7 +255,7 @@ abstract class Action implements MessageLocalizer {
 	 */
 	final public function msg( $key ) {
 		$params = func_get_args();
-		return call_user_func_array( [ $this->getContext(), 'msg' ], $params );
+		return $this->getContext()->msg( ...$params );
 	}
 
 	/**
