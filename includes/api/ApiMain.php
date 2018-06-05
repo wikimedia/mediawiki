@@ -1258,6 +1258,8 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		Hooks::runWithoutAbort( 'ApiMaxLagInfo', [ &$lagInfo ] );
+
 		return $lagInfo;
 	}
 

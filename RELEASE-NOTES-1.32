@@ -36,6 +36,7 @@ production.
   temporary user groups.
 * (T152462) A cookie can now be set when an IP user is blocked to track that user if
   they move to a new IP address. This is disabled by default.
+* (T194950) Added 'ApiMaxLagInfo' hook.
 
 === External library changes in 1.32 ===
 * …
@@ -72,6 +73,7 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * Parameter names may no longer contain '{' or '}', as these are now used for
   templated parameters.
+* (T194950) Added 'ApiMaxLagInfo' hook.
 
 === Languages updated in 1.32 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
