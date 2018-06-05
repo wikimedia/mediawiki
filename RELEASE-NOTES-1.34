@@ -288,6 +288,9 @@ because of Phabricator reports.
 * (T222637) Passing ResourceLoaderModule objects to ResourceLoader::register()
   or $wgResourceModules is no longer supported.
   Use the 'class' or 'factory' option of the array format instead.
+* The parameter $lang of the functions generateTOC and tocList in Linker and
+  DummyLinker must be in type Language when present. Other types are
+  deprecated since 1.33.
 * …
 
 === Deprecations in 1.34 ===

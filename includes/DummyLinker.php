@@ -345,11 +345,11 @@ class DummyLinker {
 		return Linker::tocLineEnd();
 	}
 
-	public function tocList( $toc, $lang = null ) {
+	public function tocList( $toc, Language $lang = null ) {
 		return Linker::tocList( $toc, $lang );
 	}
 
-	public function generateTOC( $tree, $lang = null ) {
+	public function generateTOC( $tree, Language $lang = null ) {
 		return Linker::generateTOC( $tree, $lang );
 	}
 
