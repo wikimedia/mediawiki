@@ -353,11 +353,11 @@ class DummyLinker {
 		return Linker::tocLineEnd();
 	}
 
-	public function tocList( $toc, $lang = false ) {
+	public function tocList( $toc, Language $lang = null ) {
 		return Linker::tocList( $toc, $lang );
 	}
 
-	public function generateTOC( $tree, $lang = false ) {
+	public function generateTOC( $tree, Language $lang = null ) {
 		return Linker::generateTOC( $tree, $lang );
 	}
 
