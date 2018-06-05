@@ -151,7 +151,7 @@
 			.then( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			}, function ( err ) {
-				assert.equal( '', err, 'API error' );
+				assert.equal( err, '', 'API error' );
 			} )
 			.then( function () {
 				assert.equal( test.server.requests.length, 0, 'Requests made' );
@@ -449,7 +449,7 @@
 	} );
 
 	QUnit.module( 'mediawiki.api (2)', {
-		setup: function () {
+		beforeEach: function () {
 			var self = this,
 				requests = this.requests = [];
 			this.api = new mw.Api();
@@ -471,7 +471,7 @@
 			b: 2
 		} );
 		this.api.abort();
-		assert.ok( this.requests.length === 2, 'Check both requests triggered' );
+		assert.equal( this.requests.length, 2, 'Check both requests triggered' );
 		this.requests.forEach( function ( request, i ) {
 			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
 		} );

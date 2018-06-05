@@ -1,5 +1,9 @@
 {
-	"extends": "../../.eslintrc.json",
+	"extends": [
+		"../../.eslintrc.json",
+		"plugin:qunit/recommended",
+		"plugin:qunit/two"
+	],
 	"env": {
 		"qunit": true
 	},
@@ -9,6 +13,9 @@
 	"rules": {
 		"operator-linebreak": 0,
 		"quote-props": [ "error", "as-needed" ],
-		"valid-jsdoc": 0
-	}
+		"valid-jsdoc": 0,
+		"qunit/require-expect": 0,
+		"qunit/resolve-async": 0
+	},
+	"plugins": [ "qunit" ]
 }
