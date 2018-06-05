@@ -35,7 +35,8 @@
 			"Arianit",
 			"Denisa",
 			"Fanjiayi",
-			"Fitoschido"
+			"Fitoschido",
+			"Luanibraj"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -2185,8 +2186,8 @@
 	"whatlinkshere-title": "Faqe që lidhen tek $1",
 	"whatlinkshere-page": "Faqja:",
 	"linkshere-2": "Faqet e mëposhtme lidhen këtu '''$1''':",
-	"nolinkshere-2": "Asnjë faqe nuk lidhet tek '''$2'''.",
-	"nolinkshere-ns-2": "Nuk ka faqe në hapësirën e zgjedhur që lidhen tek '''$2'''.",
+	"nolinkshere-2": "Asnjë faqe nuk lidhet me <strong>$2</strong>.",
+	"nolinkshere-ns-2": "Asnjë faqe nuk lidhet me<strong>$2</strong> në hapësirën e zgjedhur të emrit.",
 	"isredirect": "faqe përcjellëse",
 	"istemplate": "përfshirë",
 	"isimage": "Lidhja e dokumentit",

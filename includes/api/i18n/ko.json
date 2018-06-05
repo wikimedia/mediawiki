@@ -800,7 +800,7 @@
 	"apierror-articleexists": "작성하려는 문서가 이미 만들어져 있습니다.",
 	"apierror-assertbotfailed": "사용자의 <code>bot</code> 권한 보유 표명이 실패했습니다.",
 	"apierror-assertnameduserfailed": "사용자의 \"$1\" 지정 표명이 실패했습니다.",
-	"apierror-assertuserfailed": "사용자의 로그인 표명이 실패했습니다.",
+	"apierror-assertuserfailed": "사용자의 로그인 실패 표명이 발생했습니다.",
 	"apierror-autoblocked": "사용자의 IP 주소는 차단된 사용자에 의해 사용되었으므로 자동으로 차단된 상태입니다.",
 	"apierror-badgenerator-unknown": "알 수 없는 <kbd>generator=$1</kbd>.",
 	"apierror-badip": "IP 변수가 유효하지 않습니다.",

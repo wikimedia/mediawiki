@@ -1521,6 +1521,8 @@
 	"rcfilters-watchlist-showupdated": "Änderungen an Seiten, die du seit ihrem Auftreten nicht besucht hast, sind <strong>fett</strong> markiert.",
 	"rcfilters-preference-label": "Die neue Version der Letzten Änderungen ausblenden",
 	"rcfilters-preference-help": "Macht die Neugestaltung der Oberfläche aus dem Jahr 2017 und alle seitdem hinzugefügten Werkzeuge wieder rückgängig.",
+	"rcfilters-watchlist-preference-label": "Die verbesserte Version der Beobachtungsliste deaktivieren",
+	"rcfilters-watchlist-preference-help": "Setzt die Neugestaltung der Oberfläche aus dem Jahr 2017 und all die Werkzeuge zurück, die seitdem hinzugefügt wurden.",
 	"rcfilters-filter-showlinkedfrom-label": "Änderungen auf Seiten anzeigen, die verlinkt sind von",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Seiten</strong>, die <strong>von</strong> der ausgewählten Seite <strong>verlinkt</strong> sind",
 	"rcfilters-filter-showlinkedto-label": "Änderungen auf Seiten anzeigen, die verlinken auf",

@@ -3750,6 +3750,15 @@
 	"specialpage-securitylevel-not-allowed-title": "അനുവദിച്ചിട്ടില്ല",
 	"cannotauth-not-allowed-title": "അനുമതി നിഷേധിച്ചിരിക്കുന്നു",
 	"cannotauth-not-allowed": "ഈ താൾ ഉപയോഗിക്കാൻ താങ്കൾക്ക് അനുവാദമില്ല",
+	"changecredentials": "സാധൂകരണ ഇനങ്ങൾ മാറ്റുക",
+	"changecredentials-submit": "സാധൂകരണ ഇനങ്ങൾ മാറ്റുക",
+	"changecredentials-invalidsubpage": "$1 അംഗീകാരമുള്ള സാധൂകരണ രീതിയല്ല.",
+	"changecredentials-success": "താങ്കളുടെ സാധൂകരണ ഇനങ്ങൾ മാറിയിട്ടുണ്ട്.",
+	"removecredentials": "സാധൂകരണ ഇനങ്ങൾ നീക്കംചെയ്യുക",
+	"removecredentials-submit": "സാധൂകരണ ഇനങ്ങൾ നീക്കംചെയ്യുക",
+	"removecredentials-invalidsubpage": "$1 അംഗീകാരമുള്ള സാധൂകരണ രീതിയല്ല.",
+	"removecredentials-success": "താങ്കളുടെ സാധൂകരണ ഇനങ്ങൾ നീക്കംചെയ്തിട്ടുണ്ട്.",
+	"credentialsform-provider": "സാധൂകരണ രീതി:",
 	"credentialsform-account": "അംഗത്വ നാമം:",
 	"cannotlink-no-provider-title": "കണ്ണി ചേർക്കാവുന്ന അംഗത്വങ്ങൾ ഒന്നുമില്ല",
 	"cannotlink-no-provider": "കണ്ണി ചേർക്കാവുന്ന അംഗത്വങ്ങൾ ഒന്നുമില്ല",
@@ -3771,5 +3780,10 @@
 	"undelete-cantedit": "താങ്കൾക്ക് ഈ താൾ തിരുത്താൻ അനുമതി ഇല്ലാത്തതിനാൽ ഈ താൾ താങ്കൾക്ക് പുനഃസ്ഥാപിക്കാനാവില്ല.",
 	"pagedata-title": "താൾ വിവരങ്ങൾ",
 	"pagedata-not-acceptable": "ഒത്തുപോവുന്ന ഫോർമാറ്റ് കണ്ടെത്താനായില്ല. പിന്തുണയുള്ള മൈം തരങ്ങൾ: $1",
-	"pagedata-bad-title": "അസാധുവായ തലക്കെട്ട്: $1."
+	"pagedata-bad-title": "അസാധുവായ തലക്കെട്ട്: $1.",
+	"passwordpolicies-group": "ഗണം",
+	"passwordpolicies-policies": "നയങ്ങൾ",
+	"passwordpolicies-policy-minimalpasswordlength": "രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "പ്രവേശിക്കാനായി രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
+	"passwordpolicies-policy-passwordcannotmatchusername": "ഉപയോക്തൃനാമം തന്നെ രഹസ്യവാക്ക് ആകാൻ പാടില്ല"
 }

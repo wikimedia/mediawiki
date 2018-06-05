@@ -1517,6 +1517,8 @@
 	"rcfilters-watchlist-showupdated": "As mudanças das páginas que ainda não visitou após terem sido alteradas aparecem a <strong>negrito</strong>, com marcadores sólidos.",
 	"rcfilters-preference-label": "Ocultar a versão melhorada das mudanças recentes",
 	"rcfilters-preference-help": "Reverte o redesenho da interface de 2017 e todas as ferramentas adicionadas na altura e desde então.",
+	"rcfilters-watchlist-preference-label": "Ocultar a versão melhorada das páginas vigiadas",
+	"rcfilters-watchlist-preference-help": "Reverte o redesenho da interface em 2017 e todas as ferramentas adicionadas nessa altura e desde então.",
 	"rcfilters-filter-showlinkedfrom-label": "Mostrar mudanças de páginas para as quais esta página contém hiperligações",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Páginas para as quais</strong> a página selecionada contém hiperligações",
 	"rcfilters-filter-showlinkedto-label": "Mostrar mudanças nas páginas que contêm hiperligações para",
