@@ -27,8 +27,20 @@ use MediaWiki\MediaWikiServices;
  * @since 1.31
  */
 class ExternalUserNames {
+
+	/**
+	 * @var string
+	 */
 	private $usernamePrefix = 'imported';
+
+	/**
+	 * @var bool
+	 */
 	private $assignKnownUsers = false;
+
+	/**
+	 * @var bool[]
+	 */
 	private $triedCreations = [];
 
 	/**
@@ -69,8 +81,16 @@ class ExternalUserNames {
 	/**
 	 * Add an interwiki prefix to the username, if appropriate
 	 *
-	 * @param string $name Name being imported
-	 * @return string Name, possibly with the prefix prepended.
+	 * This method does have a side-effect on SUL (single user login) wikis: Calling this calls the
+	 * ImportHandleUnknownUser hook from the CentralAuth extension, which assigns a local ID to the
+	 * global user name, if possible. No prefix is applied if this is successful.
+	 *
+	 * @see https://meta.wikimedia.org/wiki/Help:Unified_login
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ImportHandleUnknownUser
+	 *
+	 * @param string $name
+	 * @return string Either the unchanged username if it's a known local user (or not a valid
+	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
 		if ( !User::isUsableName( $name ) ) {
@@ -99,8 +119,8 @@ class ExternalUserNames {
 	/**
 	 * Add an interwiki prefix to the username regardless of circumstances
 	 *
-	 * @param string $name Name being imported
-	 * @return string Name
+	 * @param string $name
+	 * @return string Prefixed username, using ">" as separator
 	 */
 	public function addPrefix( $name ) {
 		return substr( $this->usernamePrefix . '>' . $name, 0, 255 );
