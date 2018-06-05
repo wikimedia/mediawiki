@@ -1336,21 +1336,19 @@ function wfGetLangObj( $langcode = false ) {
  * This function replaces all old wfMsg* functions.
  *
  * @param string|string[]|MessageSpecifier $key Message key, or array of keys, or a MessageSpecifier
- * @param mixed $params,... Normal message parameters
+ * @param string ...$params Normal message parameters
  * @return Message
  *
  * @since 1.17
  *
  * @see Message::__construct
  */
-function wfMessage( $key /*...*/ ) {
+function wfMessage( $key, ...$params ) {
 	$message = new Message( $key );
 
 	// We call Message::params() to reduce code duplication
-	$params = func_get_args();
-	array_shift( $params );
 	if ( $params ) {
-		call_user_func_array( [ $message, 'params' ], $params );
+		$message->params( ...$params );
 	}
 
 	return $message;
@@ -1361,16 +1359,15 @@ function wfMessage( $key /*...*/ ) {
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
  *
- * @param string|string[] $keys,... Message keys
+ * @param string|string[] ...$keys Message keys
  * @return Message
  *
  * @since 1.18
  *
  * @see Message::newFallbackSequence
  */
-function wfMessageFallback( /*...*/ ) {
-	$args = func_get_args();
-	return call_user_func_array( 'Message::newFallbackSequence', $args );
+function wfMessageFallback( ...$keys ) {
+	return Message::newFallbackSequence( ...$keys );
 }
 
 /**
