@@ -185,7 +185,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doClFieldsUpdate' ],
 			[ 'addTable', 'module_deps', 'patch-module_deps.sql' ],
 			[ 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ],
-			[ 'addIndex', 'archive', 'ar_revid', 'patch-archive_ar_revid.sql' ],
+			[ 'addIndexIfNoneExist',
+				'archive', [ 'ar_revid', 'ar_revid_uniq' ], 'patch-archive_ar_revid.sql' ],
 			[ 'doLangLinksLengthUpdate' ],
 
 			// 1.18
