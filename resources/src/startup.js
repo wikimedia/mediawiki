@@ -2,19 +2,9 @@
  * This file is where we decide whether to initialise the Grade A run-time.
  *
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
- * - Beware: Do not call mwNow before the isCompatible() check.
  */
 
-/* global mw, mwNow, isCompatible, $VARS, $CODE */
-
-// Define now() here to ensure valid comparison with mediaWikiLoadEnd (T153819).
-window.mwNow = ( function () {
-	var perf = window.performance,
-		navStart = perf && perf.timing && perf.timing.navigationStart;
-	return navStart && typeof perf.now === 'function' ?
-		function () { return navStart + perf.now(); } :
-		function () { return Date.now(); };
-}() );
+/* global mw, isCompatible, $VARS, $CODE */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -147,7 +137,6 @@ window.isCompatible = function ( str ) {
 		};
 	}
 
-	window.mediaWikiLoadStart = mwNow();
 	if ( window.performance && performance.mark ) {
 		performance.mark( 'mwStartup' );
 	}
