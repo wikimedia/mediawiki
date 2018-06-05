@@ -83,10 +83,10 @@
 
 		this.server.respond( function ( request ) {
 			if ( window.FormData ) {
-				assert.ok( !request.url.match( /action=/ ), 'Request has no query string' );
+				assert.notOk( request.url.match( /action=/ ), 'Request has no query string' );
 				assert.ok( request.requestBody instanceof FormData, 'Request uses FormData body' );
 			} else {
-				assert.ok( !request.url.match( /action=test/ ), 'Request has no query string' );
+				assert.notOk( request.url.match( /action=test/ ), 'Request has no query string' );
 				assert.equal( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 			}
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
@@ -133,7 +133,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.ok( !request.url.match( /foo/ ), 'foo query parameter is not present' );
+			assert.notOk( request.url.match( /foo/ ), 'foo query parameter is not present' );
 			assert.ok( request.url.match( /bar=true/ ), 'bar query parameter is present with value true' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
@@ -151,7 +151,7 @@
 			.then( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			}, function ( err ) {
-				assert.equal( '', err, 'API error' );
+				assert.equal( err, '', 'API error' );
 			} )
 			.then( function () {
 				assert.equal( test.server.requests.length, 0, 'Requests made' );
@@ -449,7 +449,7 @@
 	} );
 
 	QUnit.module( 'mediawiki.api (2)', {
-		setup: function () {
+		beforeEach: function () {
 			var self = this,
 				requests = this.requests = [];
 			this.api = new mw.Api();
@@ -471,7 +471,7 @@
 			b: 2
 		} );
 		this.api.abort();
-		assert.ok( this.requests.length === 2, 'Check both requests triggered' );
+		assert.equal( this.requests.length, 2, 'Check both requests triggered' );
 		this.requests.forEach( function ( request, i ) {
 			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
 		} );

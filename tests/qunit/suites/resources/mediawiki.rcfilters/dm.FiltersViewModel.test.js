@@ -1426,14 +1426,16 @@
 
 		model.initializeFilters( definition );
 
-		assert.ok(
-			!model.isHighlightEnabled(),
+		assert.equal(
+			model.isHighlightEnabled(),
+			false,
 			'Initially, highlight is disabled.'
 		);
 
 		model.toggleHighlight( true );
-		assert.ok(
+		assert.equal(
 			model.isHighlightEnabled(),
+			true,
 			'Highlight is enabled on toggle.'
 		);
 
@@ -1547,16 +1549,16 @@
 		model.initializeFilters( shortFilterDefinition, null );
 
 		model.emptyAllFilters();
-		assert.ok( model.areVisibleFiltersEmpty() );
+		assert.equal( model.areVisibleFiltersEmpty(), true );
 
 		model.toggleFiltersSelected( {
 			group3__filter5: true // sticky
 		} );
-		assert.ok( model.areVisibleFiltersEmpty() );
+		assert.equal( model.areVisibleFiltersEmpty(), true );
 
 		model.toggleFiltersSelected( {
 			group1__filter1: true
 		} );
-		assert.notOk( model.areVisibleFiltersEmpty() );
+		assert.equal( model.areVisibleFiltersEmpty(), false );
 	} );
 }( mediaWiki, jQuery ) );

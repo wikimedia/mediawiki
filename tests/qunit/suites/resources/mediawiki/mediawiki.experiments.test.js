@@ -34,8 +34,8 @@
 		};
 
 		assert.equal(
-			'A',
 			getBucket( experiment, token ),
+			'A',
 			'It returns the bucket if only one is defined.'
 		);
 
@@ -44,8 +44,8 @@
 		experiment.enabled = false;
 
 		assert.equal(
-			'control',
 			getBucket( experiment, token ),
+			'control',
 			'It returns "control" if the experiment is disabled.'
 		);
 
@@ -54,8 +54,8 @@
 		experiment.buckets = {};
 
 		assert.equal(
-			'control',
 			getBucket( experiment, token ),
+			'control',
 			'It returns "control" if the experiment doesn\'t have any buckets.'
 		);
 	} );

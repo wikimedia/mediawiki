@@ -40,7 +40,7 @@
 	 * Configuration
 	 */
 
-	// For each test() that is asynchronous, allow this time to pass before
+	// For each test that is asynchronous, allow this time to pass before
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
 
@@ -138,7 +138,7 @@
 	}() );
 
 	/**
-	 * Reset mw.config and others to a fresh copy of the live config for each test(),
+	 * Reset mw.config and others to a fresh copy of the live config for each test,
 	 * and restore it back to the live one afterwards.
 	 *
 	 * @param {Object} [localEnv]
@@ -597,9 +597,11 @@
 	} );
 
 	QUnit.module( 'testrunner-each-compat', {
+		// eslint-disable-next-line qunit/no-setup-teardown
 		setup: function () {
 			this.mwHtmlLive = mw.html;
 		},
+		// eslint-disable-next-line qunit/no-setup-teardown
 		teardown: function () {
 			mw.html = this.mwHtmlLive;
 		}

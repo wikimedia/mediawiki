@@ -28,7 +28,7 @@
 	);
 
 	/**
-	 * The sync style load test (for @import). This is, in a way, also an open bug for
+	 * The sync style load test, for @import. This is, in a way, also an open bug for
 	 * ResourceLoader ("execute js after styles are loaded"), but browsers don't offer a
 	 * way to get a callback from when a stylesheet is loaded (that is, including any
 	 * `@import` rules inside). To work around this, we'll have a little time loop to check
@@ -942,7 +942,7 @@
 			try {
 				assert.strictEqual( cb.later(), 'Defined.', 'require works asynchrously in debug mode' );
 			} catch ( e ) {
-				assert.equal( null, String( e ), 'require works asynchrously in debug mode' );
+				assert.equal( String( e ), null, 'require works asynchrously in debug mode' );
 			}
 		} );
 	} );

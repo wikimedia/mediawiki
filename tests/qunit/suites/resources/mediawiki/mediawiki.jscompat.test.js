@@ -20,7 +20,7 @@
 	// Not that we need this. ;)
 	// This fails on IE 6-8
 	// Works on IE 9, Firefox 6, Chrome 14
-	QUnit.test( 'Keyword workaround: "if" as variable name using Unicode escapes', function ( assert ) {
+	...( 'Keyword workaround: "if" as variable name using Unicode escapes', function ( assert ) {
 		var orig = "another token";
 		\u0069\u0066 = orig;
 		assert.deepEqual( \u0069\u0066, orig, '\\u0069\\u0066' );
@@ -31,7 +31,7 @@
 	// Not that we need this. ;)
 	// This fails on IE 6-9
 	// Works on Firefox 6, Chrome 14
-	QUnit.test( 'Keyword workaround: "if" as member variable name using Unicode escapes', function ( assert ) {
+	...( 'Keyword workaround: "if" as member variable name using Unicode escapes', function ( assert ) {
 		var orig = "another token";
 		var foo = {};
 		foo.\u0069\u0066 = orig;

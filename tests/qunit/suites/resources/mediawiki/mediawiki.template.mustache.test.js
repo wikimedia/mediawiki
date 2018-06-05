@@ -1,7 +1,7 @@
 ( function ( mw ) {
 
 	QUnit.module( 'mediawiki.template.mustache', {
-		setup: function () {
+		beforeEach: function () {
 			// Stub register some templates
 			this.sandbox.stub( mw.templates, 'get' ).returns( {
 				'test_greeting.mustache': '<div>{{foo}}{{>suffix}}</div>',

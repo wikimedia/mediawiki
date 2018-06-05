@@ -45,13 +45,13 @@
 	QUnit.test( 'getVersion', function ( assert ) {
 		var uriProcessor = new mw.rcfilters.UriProcessor( new mw.rcfilters.dm.FiltersViewModel() );
 
-		assert.ok(
+		assert.equal(
 			uriProcessor.getVersion( { param1: 'foo', urlversion: '2' } ),
 			2,
 			'Retrieving the version from the URI query'
 		);
 
-		assert.ok(
+		assert.equal(
 			uriProcessor.getVersion( { param1: 'foo' } ),
 			1,
 			'Getting version 1 if no version is specified'

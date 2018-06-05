@@ -155,7 +155,7 @@
 		// Interacting with globals
 		conf.set( 'globalMapChecker', 'Hi' );
 
-		assert.ok( ( 'globalMapChecker' in window ) === false, 'Map does not its store values in the window object by default' );
+		assert.equal( 'globalMapChecker' in window, false, 'Map does not its store values in the window object by default' );
 
 		globalConf = new mw.Map( true );
 		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
