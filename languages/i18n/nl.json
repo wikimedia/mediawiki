@@ -1511,6 +1511,7 @@
 	"rcfilters-watchlist-showupdated": "Wijzigingen aan pagina's die u niet hebt bezocht sinds de wijzigingen zijn aangebracht, worden <strong>vet</strong> en met gevulde opsommingstekens weergeven.",
 	"rcfilters-preference-label": "De verbeterde versie van Recente wijzigingen verbergen",
 	"rcfilters-preference-help": "Zet het oude uiterlijk van de recente wijzigingen-pagina terug, inclusief alle hulpmiddelen die sindsdien zijn toegevoegd.",
+	"rcfilters-watchlist-preference-label": "Verberg de verbeterde versie van de volglijst",
 	"rcfilters-filter-showlinkedfrom-label": "Toon wijzigingen op pagina's gekoppeld aan",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Paginas gekoppeld aan</strong> de geselecteerde pagina",
 	"rcfilters-filter-showlinkedto-label": "Toon wijzigingen op pagina's gekoppeld naar",
