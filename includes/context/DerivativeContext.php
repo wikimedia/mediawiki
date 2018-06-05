@@ -296,6 +296,6 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	public function msg( $key ) {
 		$args = func_get_args();
 
-		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
+		return wfMessage( ...$args )->setContext( $this );
 	}
 }

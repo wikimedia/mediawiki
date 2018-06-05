@@ -200,19 +200,16 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 
 		sort( $selectedValues );
 
-		call_user_func_array(
-			$this->queryCallable,
-			[
-				get_class( $specialPage ),
-				$specialPage->getContext(),
-				$dbr,
-				&$tables,
-				&$fields,
-				&$conds,
-				&$query_options,
-				&$join_conds,
-				$selectedValues
-			]
+		( $this->queryCallable )(
+			get_class( $specialPage ),
+			$specialPage->getContext(),
+			$dbr,
+			$tables,
+			$fields,
+			$conds,
+			$query_options,
+			$join_conds,
+			$selectedValues
 		);
 	}
 

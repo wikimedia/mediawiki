@@ -240,7 +240,7 @@ class AuthManager implements LoggerAwareInterface {
 		global $wgAuth;
 
 		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
-			return call_user_func_array( [ $wgAuth, $method ], $params );
+			return $wgAuth->$method( ...$params );
 		} else {
 			return $return;
 		}
@@ -985,7 +985,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( $permErrors ) {
 			$status = Status::newGood();
 			foreach ( $permErrors as $args ) {
-				call_user_func_array( [ $status, 'fatal' ], $args );
+				$status->fatal( ...$args );
 			}
 			return $status;
 		}
@@ -2427,7 +2427,7 @@ class AuthManager implements LoggerAwareInterface {
 			$providers += $this->getSecondaryAuthenticationProviders();
 		}
 		foreach ( $providers as $provider ) {
-			call_user_func_array( [ $provider, $method ], $args );
+			$provider->$method( ...$args );
 		}
 	}
 

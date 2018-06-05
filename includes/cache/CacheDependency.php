@@ -118,7 +118,7 @@ class DependencyWrapper {
 		if ( is_object( $obj ) && $obj instanceof DependencyWrapper && !$obj->isExpired() ) {
 			$value = $obj->value;
 		} elseif ( $callback ) {
-			$value = call_user_func_array( $callback, $callbackParams );
+			$value = $callback( ...$callbackParams );
 			# Cache the newly-generated value
 			$wrapper = new DependencyWrapper( $value, $deps );
 			$wrapper->storeToCache( $cache, $key, $expiry );

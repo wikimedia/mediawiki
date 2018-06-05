@@ -1819,7 +1819,7 @@ abstract class ApiBase extends ContextSource {
 		if ( is_string( $msg ) ) {
 			$msg = wfMessage( $msg );
 		} elseif ( is_array( $msg ) ) {
-			$msg = call_user_func_array( 'wfMessage', $msg );
+			$msg = wfMessage( ...$msg );
 		}
 		if ( !$msg instanceof Message ) {
 			return null;
@@ -1866,7 +1866,7 @@ abstract class ApiBase extends ContextSource {
 					[ 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) ]
 				) );
 			} else {
-				call_user_func_array( [ $status, 'fatal' ], (array)$error );
+				$status->fatal( ...(array)$error );
 			}
 		}
 		return $status;
@@ -2045,10 +2045,7 @@ abstract class ApiBase extends ContextSource {
 		if ( !$status->getErrorsByType( 'error' ) ) {
 			$newStatus = Status::newGood();
 			foreach ( $status->getErrorsByType( 'warning' ) as $err ) {
-				call_user_func_array(
-					[ $newStatus, 'fatal' ],
-					array_merge( [ $err['message'] ], $err['params'] )
-				);
+				$newStatus->fatal( $err['message'], ...$err['params'] );
 			}
 			if ( !$newStatus->getErrorsByType( 'error' ) ) {
 				$newStatus->fatal( 'unknownerror-nocode' );
@@ -2085,7 +2082,7 @@ abstract class ApiBase extends ContextSource {
 			$user = $this->getUser();
 		}
 		$rights = (array)$rights;
-		if ( !call_user_func_array( [ $user, 'isAllowedAny' ], $rights ) ) {
+		if ( !$user->isAllowedAny( ...$rights ) ) {
 			$this->dieWithError( [ 'apierror-permissiondenied', $this->msg( "action-{$rights[0]}" ) ] );
 		}
 	}
