@@ -41,8 +41,9 @@
 			'Item data is retained'
 		);
 
-		assert.ok(
-			!model.isDefault(),
+		assert.equal(
+			model.isDefault(),
+			false,
 			'Item default state is retained.'
 		);
 	} );
@@ -56,20 +57,23 @@
 			$.extend( true, {}, itemData )
 		);
 
-		assert.ok(
-			!model.isDefault(),
+		assert.equal(
+			model.isDefault(),
+			false,
 			'Default state represented when item initialized with default:false.'
 		);
 
 		model.toggleDefault( true );
-		assert.ok(
+		assert.equal(
 			model.isDefault(),
+			true,
 			'Default state toggles to true successfully'
 		);
 
 		model.toggleDefault( false );
-		assert.ok(
-			!model.isDefault(),
+		assert.equal(
+			model.isDefault(),
+			false,
 			'Default state toggles to false successfully'
 		);
 
@@ -81,8 +85,9 @@
 			{ default: true }
 		);
 
-		assert.ok(
+		assert.equal(
 			model.isDefault(),
+			true,
 			'Default state represented when item initialized with default:true.'
 		);
 	} );
