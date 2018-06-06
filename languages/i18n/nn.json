@@ -830,6 +830,8 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} av den same brukaren er ikkje {{PLURAL:$1|vist|viste}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Éin mellomliggjande versjon|$1 mellomliggjande versjonar}} av {{PLURAL:$2|éin annan brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})",
 	"diff-multi-manyusers": "({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})",
+	"diff-paragraph-moved-tonew": "Avsnittet vart flytt. Klikk for å gå til den nye plasseringa.",
+	"diff-paragraph-moved-toold": "Avsnittet vart flytt. Klikk for å gå til den gamle plasseringa.",
 	"difference-missing-revision": "{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje {{PLURAL:$2|funnen|funne}}.\n\nDette skriv seg som oftast frå at ein har fylgt ei forelda versjonslenkje til ei side som er sletta.\nDetaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"searchresults": "Søkjeresultat",
 	"searchresults-title": "Søkjeresultat for «$1»",
