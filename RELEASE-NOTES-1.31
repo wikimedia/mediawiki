@@ -9,6 +9,7 @@ production.
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
 * (T196092) Hide MySQL binary/utf-8 charset option in the installer.
 * (T196185) Don't allow setting $wgDBmysql5 in the installer.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 
 === Changes since MediaWiki 1.31.0-rc.0 ===
 * (T33223) Drop archive.ar_text and ar_flags.
