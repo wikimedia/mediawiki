@@ -55,7 +55,7 @@
 			// Simulate pressing keys for each of the sample characters
 			addChars( opt.$input, opt.sample );
 
-			assert.equal(
+			assert.strictEqual(
 				opt.$input.val(),
 				opt.expected,
 				'New value matches the expected string'

@@ -14,6 +14,7 @@
 		"operator-linebreak": 0,
 		"quote-props": [ "error", "as-needed" ],
 		"valid-jsdoc": 0,
+		"qunit/no-assert-equal": "error",
 		"qunit/no-early-return": "error",
 		"qunit/no-negated-ok": "error",
 		"qunit/require-expect": 0,

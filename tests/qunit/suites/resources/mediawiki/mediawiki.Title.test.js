@@ -150,14 +150,14 @@
 	QUnit.test( 'newFromText', function ( assert ) {
 		var i;
 		for ( i = 0; i < cases.valid.length; i++ ) {
-			assert.equal(
+			assert.strictEqual(
 				$.type( mw.Title.newFromText( cases.valid[ i ] ) ),
 				'object',
 				cases.valid[ i ]
 			);
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
-			assert.equal(
+			assert.strictEqual(
 				$.type( mw.Title.newFromText( cases.invalid[ i ] ) ),
 				'null',
 				cases.invalid[ i ]
@@ -195,100 +195,100 @@
 		var title;
 		title = new mw.Title( 'File:Foo_bar.JPG' );
 
-		assert.equal( title.getNamespaceId(), 6 );
-		assert.equal( title.getNamespacePrefix(), 'File:' );
-		assert.equal( title.getName(), 'Foo_bar' );
-		assert.equal( title.getNameText(), 'Foo bar' );
-		assert.equal( title.getExtension(), 'JPG' );
-		assert.equal( title.getDotExtension(), '.JPG' );
-		assert.equal( title.getMain(), 'Foo_bar.JPG' );
-		assert.equal( title.getMainText(), 'Foo bar.JPG' );
-		assert.equal( title.getPrefixedDb(), 'File:Foo_bar.JPG' );
-		assert.equal( title.getPrefixedText(), 'File:Foo bar.JPG' );
+		assert.strictEqual( title.getNamespaceId(), 6 );
+		assert.strictEqual( title.getNamespacePrefix(), 'File:' );
+		assert.strictEqual( title.getName(), 'Foo_bar' );
+		assert.strictEqual( title.getNameText(), 'Foo bar' );
+		assert.strictEqual( title.getExtension(), 'JPG' );
+		assert.strictEqual( title.getDotExtension(), '.JPG' );
+		assert.strictEqual( title.getMain(), 'Foo_bar.JPG' );
+		assert.strictEqual( title.getMainText(), 'Foo bar.JPG' );
+		assert.strictEqual( title.getPrefixedDb(), 'File:Foo_bar.JPG' );
+		assert.strictEqual( title.getPrefixedText(), 'File:Foo bar.JPG' );
 
 		title = new mw.Title( 'Foo#bar' );
-		assert.equal( title.getPrefixedText(), 'Foo' );
-		assert.equal( title.getFragment(), 'bar' );
+		assert.strictEqual( title.getPrefixedText(), 'Foo' );
+		assert.strictEqual( title.getFragment(), 'bar' );
 
 		title = new mw.Title( '.foo' );
-		assert.equal( title.getPrefixedText(), '.foo' );
-		assert.equal( title.getName(), '' );
-		assert.equal( title.getNameText(), '' );
-		assert.equal( title.getExtension(), 'foo' );
-		assert.equal( title.getDotExtension(), '.foo' );
-		assert.equal( title.getMain(), '.foo' );
-		assert.equal( title.getMainText(), '.foo' );
-		assert.equal( title.getPrefixedDb(), '.foo' );
-		assert.equal( title.getPrefixedText(), '.foo' );
+		assert.strictEqual( title.getPrefixedText(), '.foo' );
+		assert.strictEqual( title.getName(), '' );
+		assert.strictEqual( title.getNameText(), '' );
+		assert.strictEqual( title.getExtension(), 'foo' );
+		assert.strictEqual( title.getDotExtension(), '.foo' );
+		assert.strictEqual( title.getMain(), '.foo' );
+		assert.strictEqual( title.getMainText(), '.foo' );
+		assert.strictEqual( title.getPrefixedDb(), '.foo' );
+		assert.strictEqual( title.getPrefixedText(), '.foo' );
 	} );
 
 	QUnit.test( 'Transformation', function ( assert ) {
 		var title;
 
 		title = new mw.Title( 'File:quux pif.jpg' );
-		assert.equal( title.getNameText(), 'Quux pif', 'First character of title' );
+		assert.strictEqual( title.getNameText(), 'Quux pif', 'First character of title' );
 
 		title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
-		assert.equal( title.getNameText(), 'Glarg foo glang', 'Underscores' );
+		assert.strictEqual( title.getNameText(), 'Glarg foo glang', 'Underscores' );
 
 		title = new mw.Title( 'User:ABC.DEF' );
-		assert.equal( title.toText(), 'User:ABC.DEF', 'Round trip text' );
-		assert.equal( title.getNamespaceId(), 2, 'Parse canonical namespace prefix' );
+		assert.strictEqual( title.toText(), 'User:ABC.DEF', 'Round trip text' );
+		assert.strictEqual( title.getNamespaceId(), 2, 'Parse canonical namespace prefix' );
 
 		title = new mw.Title( 'Image:quux pix.jpg' );
-		assert.equal( title.getNamespacePrefix(), 'File:', 'Transform alias to canonical namespace' );
+		assert.strictEqual( title.getNamespacePrefix(), 'File:', 'Transform alias to canonical namespace' );
 
 		title = new mw.Title( 'uSEr:hAshAr' );
-		assert.equal( title.toText(), 'User:HAshAr' );
-		assert.equal( title.getNamespaceId(), 2, 'Case-insensitive namespace prefix' );
+		assert.strictEqual( title.toText(), 'User:HAshAr' );
+		assert.strictEqual( title.getNamespaceId(), 2, 'Case-insensitive namespace prefix' );
 
 		title = new mw.Title( 'Foo \u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000 bar' );
-		assert.equal( title.getMain(), 'Foo_bar', 'Merge multiple types of whitespace/underscores into a single underscore' );
+		assert.strictEqual( title.getMain(), 'Foo_bar', 'Merge multiple types of whitespace/underscores into a single underscore' );
 
 		title = new mw.Title( 'Foo\u200E\u200F\u202A\u202B\u202C\u202D\u202Ebar' );
-		assert.equal( title.getMain(), 'Foobar', 'Strip Unicode bidi override characters' );
+		assert.strictEqual( title.getMain(), 'Foobar', 'Strip Unicode bidi override characters' );
 
 		// Regression test: Previously it would only detect an extension if there is no space after it
 		title = new mw.Title( 'Example.js  ' );
-		assert.equal( title.getExtension(), 'js', 'Space after an extension is stripped' );
+		assert.strictEqual( title.getExtension(), 'js', 'Space after an extension is stripped' );
 
 		title = new mw.Title( 'Example#foo' );
-		assert.equal( title.getFragment(), 'foo', 'Fragment' );
+		assert.strictEqual( title.getFragment(), 'foo', 'Fragment' );
 
 		title = new mw.Title( 'Example#_foo_bar baz_' );
-		assert.equal( title.getFragment(), ' foo bar baz', 'Fragment' );
+		assert.strictEqual( title.getFragment(), ' foo bar baz', 'Fragment' );
 	} );
 
 	QUnit.test( 'Namespace detection and conversion', function ( assert ) {
 		var title;
 
 		title = new mw.Title( 'File:User:Example' );
-		assert.equal( title.getNamespaceId(), 6, 'Titles can contain namespace prefixes, which are otherwise ignored' );
+		assert.strictEqual( title.getNamespaceId(), 6, 'Titles can contain namespace prefixes, which are otherwise ignored' );
 
 		title = new mw.Title( 'Example', 6 );
-		assert.equal( title.getNamespaceId(), 6, 'Default namespace passed is used' );
+		assert.strictEqual( title.getNamespaceId(), 6, 'Default namespace passed is used' );
 
 		title = new mw.Title( 'User:Example', 6 );
-		assert.equal( title.getNamespaceId(), 2, 'Included namespace prefix overrides the given default' );
+		assert.strictEqual( title.getNamespaceId(), 2, 'Included namespace prefix overrides the given default' );
 
 		title = new mw.Title( ':Example', 6 );
-		assert.equal( title.getNamespaceId(), 0, 'Colon forces main namespace' );
+		assert.strictEqual( title.getNamespaceId(), 0, 'Colon forces main namespace' );
 
 		title = new mw.Title( 'something.PDF', 6 );
-		assert.equal( title.toString(), 'File:Something.PDF' );
+		assert.strictEqual( title.toString(), 'File:Something.PDF' );
 
 		title = new mw.Title( 'NeilK', 3 );
-		assert.equal( title.toString(), 'User_talk:NeilK' );
-		assert.equal( title.toText(), 'User talk:NeilK' );
+		assert.strictEqual( title.toString(), 'User_talk:NeilK' );
+		assert.strictEqual( title.toText(), 'User talk:NeilK' );
 
 		title = new mw.Title( 'Frobisher', 100 );
-		assert.equal( title.toString(), 'Penguins:Frobisher' );
+		assert.strictEqual( title.toString(), 'Penguins:Frobisher' );
 
 		title = new mw.Title( 'antarctic_waterfowl:flightless_yet_cute.jpg' );
-		assert.equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
+		assert.strictEqual( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 
 		title = new mw.Title( 'Penguins:flightless_yet_cute.jpg' );
-		assert.equal( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
+		assert.strictEqual( title.toString(), 'Penguins:Flightless_yet_cute.jpg' );
 	} );
 
 	QUnit.test( 'Throw error on invalid title', function ( assert ) {
@@ -304,35 +304,35 @@
 		mw.config.set( 'wgCaseSensitiveNamespaces', [] );
 
 		title = new mw.Title( 'article' );
-		assert.equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
+		assert.strictEqual( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
 
 		title = new mw.Title( 'ß' );
-		assert.equal( title.toString(), 'ß', 'Uppercasing matches PHP behaviour (ß -> ß, not SS)' );
+		assert.strictEqual( title.toString(), 'ß', 'Uppercasing matches PHP behaviour (ß -> ß, not SS)' );
 
 		title = new mw.Title( 'ǆ (digraph)' );
-		assert.equal( title.toString(), 'ǅ_(digraph)', 'Uppercasing matches PHP behaviour (ǆ -> ǅ, not Ǆ)' );
+		assert.strictEqual( title.toString(), 'ǅ_(digraph)', 'Uppercasing matches PHP behaviour (ǆ -> ǅ, not Ǆ)' );
 
 		// $wgCapitalLinks = false;
 		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15 ] );
 
 		title = new mw.Title( 'article' );
-		assert.equal( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
+		assert.strictEqual( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
 
 		title = new mw.Title( 'john', 2 );
-		assert.equal( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
+		assert.strictEqual( title.toString(), 'User:John', '$wgCapitalLinks=false: User namespace is insensitive, first-letter becomes uppercase' );
 	} );
 
 	QUnit.test( 'toString / toText', function ( assert ) {
 		var title = new mw.Title( 'Some random page' );
 
-		assert.equal( title.toString(), title.getPrefixedDb() );
-		assert.equal( title.toText(), title.getPrefixedText() );
+		assert.strictEqual( title.toString(), title.getPrefixedDb() );
+		assert.strictEqual( title.toText(), title.getPrefixedText() );
 	} );
 
 	QUnit.test( 'getExtension', function ( assert ) {
 		function extTest( pagename, ext, description ) {
 			var title = new mw.Title( pagename );
-			assert.equal( title.getExtension(), ext, description || pagename );
+			assert.strictEqual( title.getExtension(), ext, description || pagename );
 		}
 
 		extTest( 'MediaWiki:Vector.js', 'js' );
@@ -374,14 +374,14 @@
 		} );
 
 		title = new mw.Title( 'Foobar' );
-		assert.equal( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
-		assert.equal( title.getUrl( { action: 'edit' } ), '/w/index.php?title=Foobar&action=edit', 'Basic functionality, \'params\' parameter' );
+		assert.strictEqual( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
+		assert.strictEqual( title.getUrl( { action: 'edit' } ), '/w/index.php?title=Foobar&action=edit', 'Basic functionality, \'params\' parameter' );
 
 		title = new mw.Title( 'John Doe', 3 );
-		assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
+		assert.strictEqual( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 
 		title = new mw.Title( 'John Cena#And_His_Name_Is', 3 );
-		assert.equal( title.getUrl( { meme: true } ), '/w/index.php?title=User_talk:John_Cena&meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
+		assert.strictEqual( title.getUrl( { meme: true } ), '/w/index.php?title=User_talk:John_Cena&meme=true#And_His_Name_Is', 'title with fragment and query parameter' );
 	} );
 
 	QUnit.test( 'newFromImg', function ( assert ) {
@@ -486,9 +486,9 @@
 				prefix = '[' + thisCase.typeOfUrl + ' URL] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
-				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
-				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
+				assert.strictEqual( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
+				assert.strictEqual( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
 				assert.strictEqual( title, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
 			}
@@ -529,7 +529,7 @@
 			thisCase = cases[ i ];
 
 			title = mw.Title.newFromText( thisCase.text );
-			assert.equal( title.getRelativeText( thisCase.relativeTo ), thisCase.expectedResult );
+			assert.strictEqual( title.getRelativeText( thisCase.relativeTo ), thisCase.expectedResult );
 		}
 	} );
 
@@ -568,7 +568,7 @@
 			extension = mw.Title.normalizeExtension( thisCase.extension );
 
 			prefix = '[' + thisCase.description + '] ';
-			assert.equal( extension, thisCase.expected, prefix + 'Extension as expected' );
+			assert.strictEqual( extension, thisCase.expected, prefix + 'Extension as expected' );
 		}
 	} );
 
@@ -620,7 +620,7 @@
 				prefix = '[' + thisCase.description + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.equal( title.toText(), thisCase.expected, prefix + 'Title as expected' );
+				assert.strictEqual( title.toText(), thisCase.expected, prefix + 'Title as expected' );
 			} else {
 				assert.strictEqual( title, null, thisCase.description + ', should not produce an mw.Title object' );
 			}
@@ -726,9 +726,9 @@
 				prefix = '[' + thisCase.typeOfName + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
-				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
-				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
-				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
+				assert.strictEqual( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
+				assert.strictEqual( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
 				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );
 			}

@@ -59,7 +59,7 @@
 
 		api.get( { action: 'doesntexist' } )
 			.fail( function ( errorCode ) {
-				assert.equal( errorCode, 'unknown_action', 'API error should reject the deferred' );
+				assert.strictEqual( errorCode, 'unknown_action', 'API error should reject the deferred' );
 			} )
 			.always( assert.async() );
 	} );
@@ -73,7 +73,7 @@
 
 		api.get( { action: 'doesntexist' } )
 			.fail( function ( errorCode ) {
-				assert.equal( errorCode, 'unknown_action', 'API error should reject the deferred' );
+				assert.strictEqual( errorCode, 'unknown_action', 'API error should reject the deferred' );
 			} )
 			.always( assert.async() );
 	} );
@@ -87,7 +87,7 @@
 				assert.ok( request.requestBody instanceof FormData, 'Request uses FormData body' );
 			} else {
 				assert.notOk( request.url.match( /action=test/ ), 'Request has no query string' );
-				assert.equal( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
+				assert.strictEqual( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 			}
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
@@ -99,7 +99,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.equal( match( request.url, /test=([^&]+)/ ), 'foo%7Cbar%7Cbaz', 'Pipe-separated value was submitted' );
+			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'foo%7Cbar%7Cbaz', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -110,7 +110,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.equal( match( request.url, /test=([^&]+)/ ), 'Foo%7CBar', 'Pipe-separated value was submitted' );
+			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'Foo%7CBar', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -121,7 +121,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.equal( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1%2E2', 'Pipe-separated value was submitted' );
+			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1%2E2', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -151,10 +151,10 @@
 			.then( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			}, function ( err ) {
-				assert.equal( err, '', 'API error' );
+				assert.strictEqual( err, '', 'API error' );
 			} )
 			.then( function () {
-				assert.equal( test.server.requests.length, 0, 'Requests made' );
+				assert.strictEqual( test.server.requests.length, 0, 'Requests made' );
 			} );
 	} );
 
@@ -172,23 +172,23 @@
 		// be added to user.tokens, use a fake one instead.
 		api.getToken( 'testuncached' )
 			.done( function ( token ) {
-				assert.equal( token, 'good', 'The token' );
+				assert.strictEqual( token, 'good', 'The token' );
 			} )
 			.fail( function ( err ) {
-				assert.equal( err, '', 'API error' );
+				assert.strictEqual( err, '', 'API error' );
 			} )
 			.always( firstDone );
 
 		api.getToken( 'testuncached' )
 			.done( function ( token ) {
-				assert.equal( token, 'good', 'The cached token' );
+				assert.strictEqual( token, 'good', 'The cached token' );
 			} )
 			.fail( function ( err ) {
-				assert.equal( err, '', 'API error' );
+				assert.strictEqual( err, '', 'API error' );
 			} )
 			.always( secondDone );
 
-		assert.equal( this.server.requests.length, 1, 'Requests made' );
+		assert.strictEqual( this.server.requests.length, 1, 'Requests made' );
 	} );
 
 	QUnit.test( 'getToken() - error', function ( assert ) {
@@ -204,12 +204,12 @@
 		// Don't cache error (T67268)
 		return api.getToken( 'testerror' )
 			.catch( function ( err ) {
-				assert.equal( err, 'bite-me', 'Expected error' );
+				assert.strictEqual( err, 'bite-me', 'Expected error' );
 
 				return api.getToken( 'testerror' );
 			} )
 			.then( function ( token ) {
-				assert.equal( token, 'good', 'The token' );
+				assert.strictEqual( token, 'good', 'The token' );
 			} );
 	} );
 
@@ -231,7 +231,7 @@
 		return api.getToken( 'testnoquery' )
 			.then( function () { assert.fail( 'Expected response missing a query to be rejected' ); } )
 			.catch( function ( err, rsp ) {
-				assert.equal( err, 'query-missing', 'Expected no query error code' );
+				assert.strictEqual( err, 'query-missing', 'Expected no query error code' );
 				assert.deepEqual( rsp, serverRsp );
 			} );
 	} );
@@ -248,13 +248,13 @@
 		// Get a token of a type that is in the legacy map.
 		return api.getToken( 'email' )
 			.done( function ( token ) {
-				assert.equal( token, 'csrfgood', 'Token' );
+				assert.strictEqual( token, 'csrfgood', 'Token' );
 			} )
 			.fail( function ( err ) {
-				assert.equal( err, '', 'API error' );
+				assert.strictEqual( err, '', 'API error' );
 			} )
 			.always( function () {
-				assert.equal( test.server.requests.length, 1, 'Requests made' );
+				assert.strictEqual( test.server.requests.length, 1, 'Requests made' );
 			} );
 	} );
 
@@ -275,8 +275,8 @@
 				return api.getToken( 'testbad' );
 			} )
 			.then( function ( token ) {
-				assert.equal( token, 'good', 'The token' );
-				assert.equal( test.server.requests.length, 2, 'Requests made' );
+				assert.strictEqual( token, 'good', 'The token' );
+				assert.strictEqual( test.server.requests.length, 2, 'Requests made' );
 			} );
 
 	} );
@@ -298,8 +298,8 @@
 				return api.getToken( 'options' );
 			} )
 			.then( function ( token ) {
-				assert.equal( token, 'goodlegacy', 'The token' );
-				assert.equal( test.server.requests.length, 2, 'Request made' );
+				assert.strictEqual( token, 'goodlegacy', 'The token' );
+				assert.strictEqual( test.server.requests.length, 2, 'Request made' );
 			} );
 
 	} );
@@ -337,11 +337,11 @@
 			.then( function () {
 				return $.Deferred().reject( 'Unexpected success' );
 			}, function ( errorCode ) {
-				assert.equal( errorCode, 'assertuserfailed', 'getToken fails assert' );
+				assert.strictEqual( errorCode, 'assertuserfailed', 'getToken fails assert' );
 				return $.Deferred().resolve();
 			} )
 			.then( function () {
-				assert.equal( test.server.requests.length, 1, 'Requests made' );
+				assert.strictEqual( test.server.requests.length, 1, 'Requests made' );
 			} );
 	} );
 
@@ -359,7 +359,7 @@
 				}
 			}
 		).then( function () {
-			assert.equal( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
+			assert.strictEqual( test.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 
 			return api.postWithToken( 'csrf',
 				{ action: 'example' },
@@ -368,9 +368,9 @@
 				}
 			);
 		} ).then( function ( data ) {
-			assert.equal( data.example, 'quux' );
+			assert.strictEqual( data.example, 'quux' );
 
-			assert.equal( test.server.requests.length, 2, 'Request made' );
+			assert.strictEqual( test.server.requests.length, 2, 'Request made' );
 		} );
 	} );
 
@@ -471,7 +471,7 @@
 			b: 2
 		} );
 		this.api.abort();
-		assert.equal( this.requests.length, 2, 'Check both requests triggered' );
+		assert.strictEqual( this.requests.length, 2, 'Check both requests triggered' );
 		this.requests.forEach( function ( request, i ) {
 			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
 		} );

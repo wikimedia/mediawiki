@@ -491,17 +491,17 @@
 	} ) );
 
 	QUnit.test( 'Setup', function ( assert ) {
-		assert.equal( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
-		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
-		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
+		assert.strictEqual( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
+		assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
+		assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
 
 		mw.config.set( 'testVar', 'bar' );
 		mw.messages.set( 'testMsg', 'Bar.' );
 	} );
 
 	QUnit.test( 'Teardown', function ( assert ) {
-		assert.equal( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
-		assert.equal( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
+		assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
+		assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
 	} );
 
 	QUnit.test( 'Loader status', function ( assert ) {
@@ -575,9 +575,9 @@
 	QUnit.module( 'testrunner-after', QUnit.newMwEnvironment() );
 
 	QUnit.test( 'Teardown', function ( assert ) {
-		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
-		assert.equal( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
-		assert.equal( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
+		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
+		assert.strictEqual( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
+		assert.strictEqual( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
 	} );
 
 	QUnit.module( 'testrunner-each', {
@@ -593,7 +593,7 @@
 		mw.html = null;
 	} );
 	QUnit.test( 'afterEach', function ( assert ) {
-		assert.equal( mw.html.escape( '<' ), '&lt;', 'afterEach() ran' );
+		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'afterEach() ran' );
 	} );
 
 	QUnit.module( 'testrunner-each-compat', {
@@ -611,7 +611,7 @@
 		mw.html = null;
 	} );
 	QUnit.test( 'teardown', function ( assert ) {
-		assert.equal( mw.html.escape( '<' ), '&lt;', 'teardown() ran' );
+		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'teardown() ran' );
 	} );
 
 	// Regression test for 'this.sandbox undefined' error, fixed by

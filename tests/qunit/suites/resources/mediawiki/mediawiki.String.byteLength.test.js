@@ -10,11 +10,11 @@
 			x = '*',
 			space = '   ';
 
-		assert.equal( byteLength( azLc ), 26, 'Lowercase a-z' );
-		assert.equal( byteLength( azUc ), 26, 'Uppercase A-Z' );
-		assert.equal( byteLength( num ), 10, 'Numbers 0-9' );
-		assert.equal( byteLength( x ), 1, 'An asterisk' );
-		assert.equal( byteLength( space ), 3, '3 spaces' );
+		assert.strictEqual( byteLength( azLc ), 26, 'Lowercase a-z' );
+		assert.strictEqual( byteLength( azUc ), 26, 'Uppercase A-Z' );
+		assert.strictEqual( byteLength( num ), 10, 'Numbers 0-9' );
+		assert.strictEqual( byteLength( x ), 1, 'An asterisk' );
+		assert.strictEqual( byteLength( space ), 3, '3 spaces' );
 
 	} );
 

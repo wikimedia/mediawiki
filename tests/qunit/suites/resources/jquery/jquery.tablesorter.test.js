@@ -514,19 +514,19 @@
 		);
 		$table.data( 'tablesorter' ).sort( [] );
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'th.headerSortUp' ).length + $table.find( 'th.headerSortDown' ).length,
 			0,
 			'No sort specific sort classes addign to header cells'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'th' ).first().attr( 'title' ),
 			mw.msg( 'sort-ascending' ),
 			'First header cell has default title'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'th' ).first().attr( 'title' ),
 			$table.find( 'th' ).last().attr( 'title' ),
 			'Both header cells\' titles match'
@@ -607,13 +607,13 @@
 		$cell = $table.find( 'tr:eq(0) > th:eq(0)' );
 		$table.find( 'tr:eq(0) > th:eq(1)' ).click();
 
-		assert.equal(
+		assert.strictEqual(
 			$cell.hasClass( 'headerSortUp' ) || $cell.hasClass( 'headerSortDown' ),
 			false,
 			'after sort: no class headerSortUp or headerSortDown'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			$cell.attr( 'title' ),
 			undefined,
 			'after sort: no title tag added'
@@ -744,7 +744,7 @@
 
 		$table.tablesorter();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowSpan' ),
 			3,
 			'Rowspan not exploded'
@@ -867,7 +867,7 @@
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.data( 'tablesorter' ).config.parsers[ 0 ].id,
 			'number',
 			'Correctly detected column content skipping sortbottom'
@@ -888,7 +888,7 @@
 		);
 		$table.tablesorter();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.children().get( 0 ).nodeName,
 			'CAPTION',
 			'First element after <thead> must be <caption> (T34047)'
@@ -1090,12 +1090,12 @@
 		);
 		$table.tablesorter();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '> thead:eq(0) > tr > th.headerSort' ).length,
 			1,
 			'Child tables inside a headercell should not interfere with sortable headers (T34888)'
 		);
-		assert.equal(
+		assert.strictEqual(
 			$( '#mw-bug-32888-2' ).find( 'th.headerSort' ).length,
 			0,
 			'The headers of child tables inside a headercell should not be sortable themselves (T34888)'
@@ -1151,7 +1151,7 @@
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'td' ).first().text(),
 			'1',
 			'Applied correct sorting order'
@@ -1172,7 +1172,7 @@
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'td' ).text(),
 			'CDEFCCA',
 			'Applied correct sorting order'
@@ -1191,7 +1191,7 @@
 		);
 		$table.tablesorter().find( '.headerSort:eq(0)' ).click();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( 'td' ).text(),
 			'4517',
 			'Applied correct sorting order'
@@ -1211,17 +1211,17 @@
 		);
 		$table.tablesorter();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '#A1' ).attr( 'class' ),
 			'headerSort',
 			'The first column of the first row should be sortable'
 		);
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '#B2b' ).attr( 'class' ),
 			'headerSort',
 			'The th element of the 2nd row of the 2nd column should be sortable'
 		);
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '#C2b' ).attr( 'class' ),
 			'headerSort',
 			'The th element of the 2nd row of the 3rd column should be sortable'
@@ -1241,12 +1241,12 @@
 		);
 		$table.tablesorter();
 
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '#A1' ).attr( 'class' ),
 			'headerSort',
 			'The first column of the first row should be sortable'
 		);
-		assert.equal(
+		assert.strictEqual(
 			$table.find( '#B2b' ).attr( 'class' ),
 			'headerSort',
 			'The th element of the 2nd row of the 2nd column should be sortable'
@@ -1265,11 +1265,11 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		assert.equal( $table.find( '#A2' ).data( 'headerIndex' ),
+		assert.strictEqual( $table.find( '#A2' ).data( 'headerIndex' ),
 			undefined,
 			'A2 should not be a sort header'
 		);
-		assert.equal( $table.find( '#C1' ).data( 'headerIndex' ),
+		assert.strictEqual( $table.find( '#C1' ).data( 'headerIndex' ),
 			2,
 			'C1 should be a sort header'
 		);
@@ -1286,11 +1286,11 @@
 				'</table>'
 		);
 		$table.tablesorter();
-		assert.equal( $table.find( '#C2' ).data( 'headerIndex' ),
+		assert.strictEqual( $table.find( '#C2' ).data( 'headerIndex' ),
 			2,
 			'C2 should be a sort header'
 		);
-		assert.equal( $table.find( '#C1' ).data( 'headerIndex' ),
+		assert.strictEqual( $table.find( '#C1' ).data( 'headerIndex' ),
 			undefined,
 			'C1 should not be a sort header'
 		);
@@ -1323,7 +1323,7 @@
 				'</tbody></table>' );
 
 			$table.tablesorter();
-			assert.equal( $table.find( 'tr:eq(1) th:eq(1)' ).data( 'headerIndex' ),
+			assert.strictEqual( $table.find( 'tr:eq(1) th:eq(1)' ).data( 'headerIndex' ),
 				2,
 				'Incorrect index of sort header'
 			);
@@ -1446,19 +1446,19 @@
 
 		parsers = $table.data( 'tablesorter' ).config.parsers;
 
-		assert.equal(
+		assert.strictEqual(
 			parsers.length,
 			2,
 			'detectParserForColumn() detect 2 parsers'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			parsers[ 1 ].id,
 			'number',
 			'detectParserForColumn() detect parser.id "number" for second column'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			parsers[ 1 ].format( $table.find( 'tbody > tr > td:eq(1)' ).text() ),
 			-Infinity,
 			'empty cell is sorted as number -Infinity'
@@ -1493,7 +1493,7 @@
 		);
 
 		parsers = $table.data( 'tablesorter' ).config.parsers;
-		assert.equal(
+		assert.strictEqual(
 			parsers[ 1 ].id,
 			'number',
 			'detectParserForColumn() detect parser.id "number" for second column'
@@ -1521,7 +1521,7 @@
 		);
 
 		parsers = $table.data( 'tablesorter' ).config.parsers;
-		assert.equal(
+		assert.strictEqual(
 			parsers[ 0 ].id,
 			'number',
 			'detectParserForColumn() detect parser.id "number"'

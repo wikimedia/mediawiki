@@ -50,8 +50,8 @@
 			$content = $collapsible.find( '.mw-collapsible-content' ),
 			$toggle = $collapsible.find( '.mw-collapsible-toggle' );
 
-		assert.equal( $content.length, 1, 'content is present' );
-		assert.equal( $content.find( $toggle ).length, 0, 'toggle is not a descendant of content' );
+		assert.strictEqual( $content.length, 1, 'content is present' );
+		assert.strictEqual( $content.find( $toggle ).length, 0, 'toggle is not a descendant of content' );
 
 		assert.assertTrue( $content.is( ':visible' ), 'content is visible' );
 
@@ -80,7 +80,7 @@
 			$contentRow = $collapsible.find( 'tr:last' ),
 			$toggle = $headerRow.find( 'td:last .mw-collapsible-toggle' );
 
-		assert.equal( $toggle.length, 1, 'toggle is added to last cell of first row' );
+		assert.strictEqual( $toggle.length, 1, 'toggle is added to last cell of first row' );
 
 		assert.assertTrue( $headerRow.is( ':visible' ), 'headerRow is visible' );
 		assert.assertTrue( $contentRow.is( ':visible' ), 'contentRow is visible' );
@@ -106,7 +106,7 @@
 			$contentRow = $collapsible.find( 'tr:last' ),
 			$toggle = $caption.find( '.mw-collapsible-toggle' );
 
-		assert.equal( $toggle.length, 1, 'toggle is added to the end of the caption' );
+		assert.strictEqual( $toggle.length, 1, 'toggle is added to the end of the caption' );
 
 		assert.assertTrue( $caption.is( ':visible' ), 'caption is visible' );
 		assert.assertTrue( $headerRow.is( ':visible' ), 'headerRow is visible' );
@@ -162,7 +162,7 @@
 			$contentItem = $collapsible.find( 'li:last' ),
 			$toggle = $toggleItem.find( '.mw-collapsible-toggle' );
 
-		assert.equal( $toggle.length, 1, 'toggle is present, added inside new zeroth list item' );
+		assert.strictEqual( $toggle.length, 1, 'toggle is present, added inside new zeroth list item' );
 
 		assert.assertTrue( $toggleItem.is( ':visible' ), 'toggleItem is visible' );
 		assert.assertTrue( $contentItem.is( ':visible' ), 'contentItem is visible' );
@@ -209,7 +209,7 @@
 			'<div>' + loremIpsum + '</div>'
 		);
 
-		assert.equal( $collapsible.data( 'mw-made-collapsible' ), true, 'mw-made-collapsible data present' );
+		assert.strictEqual( $collapsible.data( 'mw-made-collapsible' ), true, 'mw-made-collapsible data present' );
 	} );
 
 	QUnit.test( 'mw-collapsible added when missing', function ( assert ) {
@@ -306,10 +306,10 @@
 			),
 			$toggleText = $collapsible.find( '.mw-collapsible-text' );
 
-		assert.equal( $toggleText.text(), 'Collapse me!', 'data-collapsetext is respected' );
+		assert.strictEqual( $toggleText.text(), 'Collapse me!', 'data-collapsetext is respected' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
-			assert.equal( $toggleText.text(), 'Expand me!', 'data-expandtext is respected' );
+			assert.strictEqual( $toggleText.text(), 'Expand me!', 'data-expandtext is respected' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -322,10 +322,10 @@
 			),
 			$toggleText = $collapsible.find( '.mw-collapsible-text' );
 
-		assert.equal( $toggleText.text(), 'Collapse me!', 'options.collapseText is respected' );
+		assert.strictEqual( $toggleText.text(), 'Collapse me!', 'options.collapseText is respected' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
-			assert.equal( $toggleText.text(), 'Expand me!', 'options.expandText is respected' );
+			assert.strictEqual( $toggleText.text(), 'Expand me!', 'options.expandText is respected' );
 		} );
 
 		$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
@@ -343,13 +343,13 @@
 			),
 			$toggleText = $collapsible.find( '.mw-collapsible-text' );
 
-		assert.equal( $toggleText.text(), 'Toggle', 'predefined text remains' );
+		assert.strictEqual( $toggleText.text(), 'Toggle', 'predefined text remains' );
 
 		$collapsible.on( 'afterCollapse.mw-collapsible', function () {
-			assert.equal( $toggleText.text(), 'Show', 'predefined text is toggled' );
+			assert.strictEqual( $toggleText.text(), 'Show', 'predefined text is toggled' );
 
 			$collapsible.on( 'afterExpand.mw-collapsible', function () {
-				assert.equal( $toggleText.text(), 'Hide', 'predefined text is toggled back' );
+				assert.strictEqual( $toggleText.text(), 'Hide', 'predefined text is toggled back' );
 			} );
 
 			$collapsible.find( '.mw-collapsible-toggle' ).trigger( 'click' );
