@@ -208,7 +208,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
 						$out->addHTML( $this->getFilterPanel() );
 					}
-					$msgKey = is_int( $namespace ) ? 'nolinkshere-ns-2' : 'nolinkshere-2';
+					$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 					$link = $this->getLinkRenderer()->makeLink(
 						$this->target,
 						null,
@@ -292,7 +292,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 					$this->target->isRedirect() ? [ 'redirect' => 'no' ] : []
 				);
 
-				$msg = $this->msg( 'linkshere-2' )
+				$msg = $this->msg( 'linkshere' )
 					->params( $this->target->getPrefixedText() )
 					->rawParams( $link )
 					->parseAsBlock();
