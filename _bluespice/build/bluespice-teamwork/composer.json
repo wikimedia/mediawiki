@@ -4,8 +4,9 @@
 			"url": "https://packages.bluespice.com/"
 		}],
 	"require": {
-		"mediawiki/blue-spice-teamwork": "dev-master",
 		"mediawiki/blue-spice-review": "dev-master",
-		"mediawiki/flagged-revs": "dev-master"
+		"bluespice/reviewextended": "dev-master",
+		"mediawiki/flagged-revs": "dev-master",
+		"mediawiki/blue-spice-flagged-revs-connector": "dev-master"
 	}
 }

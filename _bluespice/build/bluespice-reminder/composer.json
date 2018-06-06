@@ -4,6 +4,7 @@
 			"url": "https://packages.bluespice.com/"
 		}],
 	"require": {
-		"mediawiki/blue-spice-reminder": "dev-master"
+		"mediawiki/blue-spice-reminder": "dev-master",
+		"bluespice/expiry": "dev-master"
 	}
 }
