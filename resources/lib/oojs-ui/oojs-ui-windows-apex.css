@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.1
+ * OOUI v0.27.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-29T23:24:53Z
+ * Date: 2018-06-06T16:16:14Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);

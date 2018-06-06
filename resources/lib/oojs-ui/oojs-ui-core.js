@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.1
+ * OOUI v0.27.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-29T23:24:49Z
+ * Date: 2018-06-06T16:16:10Z
  */
 ( function ( OO ) {
 
@@ -333,11 +333,12 @@ OO.ui.now = Date.now || function () {
  *
  * @param {string|HTMLElement|jQuery} idOrNode
  *   A DOM id (if a string) or node for the widget to infuse.
+ * @param {Object} [config] Configuration options
  * @return {OO.ui.Element}
  *   The `OO.ui.Element` corresponding to this (infusable) document node.
  */
-OO.ui.infuse = function ( idOrNode ) {
-	return OO.ui.Element.static.infuse( idOrNode );
+OO.ui.infuse = function ( idOrNode, config ) {
+	return OO.ui.Element.static.infuse( idOrNode, config );
 };
 
 ( function () {
@@ -685,14 +686,15 @@ OO.ui.Element.static.tagName = 'div';
  *
  * @param {string|HTMLElement|jQuery} idOrNode
  *   A DOM id (if a string) or node for the widget to infuse.
+ * @param {Object} [config] Configuration options
  * @return {OO.ui.Element}
  *   The `OO.ui.Element` corresponding to this (infusable) document node.
  *   For `Tag` objects emitted on the HTML side (used occasionally for content)
  *   the value returned is a newly-created Element wrapping around the existing
  *   DOM node.
  */
-OO.ui.Element.static.infuse = function ( idOrNode ) {
-	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, false );
+OO.ui.Element.static.infuse = function ( idOrNode, config ) {
+	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, config, false );
 	// Verify that the type matches up.
 	// FIXME: uncomment after T89721 is fixed, see T90929.
 	/*
@@ -709,12 +711,13 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
  *
  * @private
  * @param {string|HTMLElement|jQuery} idOrNode
- * @param {jQuery.Promise|boolean} domPromise A promise that will be resolved
+ * @param {Object} [config] Configuration options
+ * @param {jQuery.Promise} [domPromise] A promise that will be resolved
  *     when the top-level widget of this infusion is inserted into DOM,
- *     replacing the original node; or false for top-level invocation.
+ *     replacing the original node; only used internally.
  * @return {OO.ui.Element}
  */
-OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
+OO.ui.Element.static.unsafeInfuse = function ( idOrNode, config, domPromise ) {
 	// look for a cached result of a previous infusion.
 	var id, $elem, error, data, cls, parts, parent, obj, top, state, infusedChildren;
 	if ( typeof idOrNode === 'string' ) {
@@ -772,7 +775,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	}
 	if ( data._ === 'Tag' ) {
 		// Special case: this is a raw Tag; wrap existing node, don't rebuild.
-		return new OO.ui.Element( { $element: $elem } );
+		return new OO.ui.Element( $.extend( {}, config, { $element: $elem } ) );
 	}
 	parts = data._.split( '.' );
 	cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
@@ -796,7 +799,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
 	}
 
-	if ( domPromise === false ) {
+	if ( !domPromise ) {
 		top = $.Deferred();
 		domPromise = top.promise();
 	}
@@ -807,7 +810,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 		var infused;
 		if ( OO.isPlainObject( value ) ) {
 			if ( value.tag ) {
-				infused = OO.ui.Element.static.unsafeInfuse( value.tag, domPromise );
+				infused = OO.ui.Element.static.unsafeInfuse( value.tag, config, domPromise );
 				infusedChildren.push( infused );
 				// Flatten the structure
 				infusedChildren.push.apply( infusedChildren, infused.$element.data( 'ooui-infused-children' ) || [] );
@@ -825,7 +828,7 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
 	// rebuild widget
 	// eslint-disable-next-line new-cap
-	obj = new cls( data );
+	obj = new cls( $.extend( {}, config, data ) );
 	// If anyone is holding a reference to the old DOM element,
 	// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
 	// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
@@ -4118,7 +4121,7 @@ OO.ui.LabelWidget.static.tagName = 'label';
  *
  *     MessageDialog.prototype.initialize = function () {
  *         MessageDialog.parent.prototype.initialize.apply( this, arguments );
- *         this.content = new OO.ui.PanelLayout( { $: this.$, padded: true } );
+ *         this.content = new OO.ui.PanelLayout( { padded: true } );
  *         this.content.$element.append( '<p>Click the \'Done\' action widget to see its pending state. Note that action widgets can be marked pending in message dialogs but not process dialogs.</p>' );
  *         this.$body.append( this.content.$element );
  *     };
@@ -7281,6 +7284,11 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
 	OO.ui.mixin.FloatableElement.call( this, config );
 
+	// Initial vertical positions other than 'center' will result in
+	// the menu being flipped if there is not enough space in the container.
+	// Store the original position so we know what to reset to.
+	this.originalVerticalPosition = this.verticalPosition;
+
 	// Properties
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.hideOnChoose = config.hideOnChoose === undefined || !!config.hideOnChoose;
@@ -7319,6 +7327,21 @@ OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.FloatableElement );
  *
  * The menu is ready: it is visible and has been positioned and clipped.
  */
+
+/* Static properties */
+
+/**
+ * Positions to flip to if there isn't room in the container for the
+ * menu in a specific direction.
+ *
+ * @property {Object.<string,string>}
+ */
+OO.ui.MenuSelectWidget.static.flippedPositions = {
+	below: 'above',
+	above: 'below',
+	top: 'bottom',
+	bottom: 'top'
+};
 
 /* Methods */
 
@@ -7551,7 +7574,7 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
-	var change, belowHeight, aboveHeight;
+	var change, originalHeight, flippedHeight;
 
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
 	change = visible !== this.isVisible();
@@ -7564,7 +7587,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 	if ( change && visible ) {
 		// Reset position before showing the popup again. It's possible we no longer need to flip
 		// (e.g. if the user scrolled).
-		this.setVerticalPosition( 'below' );
+		this.setVerticalPosition( this.originalVerticalPosition );
 	}
 
 	// Parent method
@@ -7593,16 +7616,21 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.bindKeyDownListener();
 			this.bindKeyPressListener();
 
-			if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
-				// If opening the menu downwards causes it to be clipped, flip it to open upwards instead
-				belowHeight = this.$element.height();
-				this.setVerticalPosition( 'above' );
+			if (
+				( this.isClippedVertically() || this.isFloatableOutOfView() ) &&
+				this.originalVerticalPosition !== 'center'
+			) {
+				// If opening the menu in one direction causes it to be clipped, flip it
+				originalHeight = this.$element.height();
+				this.setVerticalPosition(
+					this.constructor.static.flippedPositions[ this.originalVerticalPosition ]
+				);
 				if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
-					// If opening upwards also causes it to be clipped, flip it to open in whichever direction
+					// If flipping also causes it to be clipped, open in whichever direction
 					// we have more space
-					aboveHeight = this.$element.height();
-					if ( aboveHeight < belowHeight ) {
-						this.setVerticalPosition( 'below' );
+					flippedHeight = this.$element.height();
+					if ( originalHeight > flippedHeight ) {
+						this.setVerticalPosition( this.originalVerticalPosition );
 					}
 				}
 			}
@@ -11259,7 +11287,14 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * - **inline**: The label is placed after the field-widget and aligned to the left.
  *   An inline-alignment is best used with checkboxes or radio buttons.
  *
- * Help text is accessed via a help icon that appears in the upper right corner of the rendered field layout.
+ * Help text can either be:
+ *
+ * - accessed via a help icon that appears in the upper right corner of the rendered field layout, or
+ * - shown as a subtle explanation below the label.
+ *
+ * If the help text is brief, or is essential to always espose it, set `helpInline` to `true`. If it
+ * is long or not essential, leave `helpInline` to its default, `false`.
+ *
  * Please see the [OOUI documentation on MediaWiki] [1] for examples and more information.
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Layouts/Fields_and_Fieldsets
@@ -11272,15 +11307,25 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @constructor
  * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {Object} [config] Configuration options
- * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top' or 'inline'
- * @cfg {Array} [errors] Error messages about the widget, which will be displayed below the widget.
+ * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top'
+ *  or 'inline'
+ * @cfg {Array} [errors] Error messages about the widget, which will be
+ *  displayed below the widget.
  *  The array may contain strings or OO.ui.HtmlSnippet instances.
- * @cfg {Array} [notices] Notices about the widget, which will be displayed below the widget.
+ * @cfg {Array} [notices] Notices about the widget, which will be displayed
+ *  below the widget.
  *  The array may contain strings or OO.ui.HtmlSnippet instances.
- * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
- *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
- *  For important messages, you are advised to use `notices`, as they are always shown.
- * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if `help` is given.
+ *  These are more visible than `help` messages when `helpInline` is set, and so
+ *  might be good for transient messages.
+ * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified
+ *  and `helpInline` is `false`, a "help" icon will appear in the upper-right
+ *  corner of the rendered field; clicking it will display the text in a popup.
+ *  If `helpInline` is `true`, then a subtle description will be shown after the
+ *  label.
+ * @cfg {boolean} [helpInline=false] Whether or not the help should be inline,
+ *  or shown when the "help" icon is clicked.
+ * @cfg {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup, if
+ * `help` is given.
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  *
  * @throws {Error} An error is thrown if no widget is specified
@@ -11298,7 +11343,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	}
 
 	// Configuration initialization
-	config = $.extend( { align: 'left' }, config );
+	config = $.extend( { align: 'left', helpInline: false }, config );
 
 	// Parent constructor
 	OO.ui.FieldLayout.parent.call( this, config );
@@ -11318,23 +11363,32 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.$header = $( '<span>' );
 	this.$body = $( '<div>' );
 	this.align = null;
+	this.helpInline = config.helpInline;
+
 	if ( config.help ) {
-		this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
-			$overlay: config.$overlay,
-			popup: {
-				padded: true
-			},
-			classes: [ 'oo-ui-fieldLayout-help' ],
-			framed: false,
-			icon: 'info',
-			label: OO.ui.msg( 'ooui-field-help' )
-		} );
-		if ( config.help instanceof OO.ui.HtmlSnippet ) {
-			this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
+		if ( this.helpInline ) {
+			this.$help = new OO.ui.LabelWidget( {
+				label: config.help,
+				classes: [ 'oo-ui-inline-help' ]
+			} ).$element;
 		} else {
-			this.popupButtonWidget.getPopup().$body.text( config.help );
+			this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
+				$overlay: config.$overlay,
+				popup: {
+					padded: true
+				},
+				classes: [ 'oo-ui-fieldLayout-help' ],
+				framed: false,
+				icon: 'info',
+				label: OO.ui.msg( 'ooui-field-help' )
+			} );
+			if ( config.help instanceof OO.ui.HtmlSnippet ) {
+				this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
+			} else {
+				this.popupButtonWidget.getPopup().$body.text( config.help );
+			}
+			this.$help = this.popupButtonWidget.$element;
 		}
-		this.$help = this.popupButtonWidget.$element;
 	} else {
 		this.$help = $( [] );
 	}
@@ -11343,7 +11397,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
-	if ( config.help ) {
+	if ( config.help && !config.helpInline ) {
 		// Set the 'aria-describedby' attribute on the fieldWidget
 		// Preference given to an input or a button
 		(
@@ -11460,15 +11514,26 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 			value = 'top';
 		}
 		// Reorder elements
-		if ( value === 'top' ) {
-			this.$header.append( this.$help, this.$label );
-			this.$body.append( this.$header, this.$field );
-		} else if ( value === 'inline' ) {
-			this.$header.append( this.$help, this.$label );
-			this.$body.append( this.$field, this.$header );
+
+		if ( this.helpInline ) {
+			if ( value === 'inline' ) {
+				this.$header.append( this.$label, this.$help );
+				this.$body.append( this.$field, this.$header );
+			} else {
+				this.$header.append( this.$label, this.$help );
+				this.$body.append( this.$header, this.$field );
+			}
 		} else {
-			this.$header.append( this.$label );
-			this.$body.append( this.$header, this.$help, this.$field );
+			if ( value === 'top' ) {
+				this.$header.append( this.$help, this.$label );
+				this.$body.append( this.$header, this.$field );
+			} else if ( value === 'inline' ) {
+				this.$header.append( this.$help, this.$label );
+				this.$body.append( this.$field, this.$header );
+			} else {
+				this.$header.append( this.$label );
+				this.$body.append( this.$header, this.$help, this.$field );
+			}
 		}
 		// Set classes. The following classes can be used here:
 		// * oo-ui-fieldLayout-align-left

@@ -14,6 +14,7 @@
 	"ooui-toolbar-more": "കൂടുതൽ",
 	"ooui-toolgroup-expand": "കൂടുതൽ",
 	"ooui-toolgroup-collapse": "കുറച്ച്",
+	"ooui-item-remove": "നീക്കം ചെയ്യുക",
 	"ooui-dialog-message-accept": "ശരി",
 	"ooui-dialog-message-reject": "റദ്ദാക്കുക",
 	"ooui-dialog-process-error": "എന്തോ പ്രശ്നമുണ്ടായി",
@@ -23,5 +24,6 @@
 	"ooui-selectfile-button-select": "പ്രമാണം തിരഞ്ഞെടുക്കുക",
 	"ooui-selectfile-not-supported": "പ്രമാണം തിരഞ്ഞെടുക്കൽ പിന്തുണയ്ക്കുന്നില്ല",
 	"ooui-selectfile-placeholder": "പ്രമാണങ്ങൾ ഒന്നും തിരഞ്ഞെടുത്തിട്ടില്ല",
-	"ooui-selectfile-dragdrop-placeholder": "പ്രമാണം ഇവിടെ ഇടുക"
+	"ooui-selectfile-dragdrop-placeholder": "പ്രമാണം ഇവിടെ ഇടുക",
+	"ooui-field-help": "സഹായം"
 }

@@ -1,4 +1,25 @@
 # OOUI Release History
+## v0.27.2 / 2018-06-05
+### Features
+* Allow passing config objects to OO.ui.infuse (Ed Sanders)
+* FieldLayout: Add 'helpInline' config (Prateek Saxena)
+* LookupElement: Allow menu config to be passed in (Ed Sanders)
+* MenuSelectWidget: Support starting positions other than 'below' (Ed Sanders)
+* MenuTagMultiselectWidget: Allow icons in dropdown menus (Volker E.)
+* TagMultiselectWidget: Make sure 'fixed' items can't be removed (Moriel Schottlender)
+
+### Styles
+* ActionFieldLayout: Visually combine inputs and their buttons (Volker E.)
+* MenuLayout: Avoid `transition: all`, be precise (Bartosz Dziewoński)
+* icons: Make bold-cyrl-palochka.svg perfectly symmetrical (Bartosz Dziewoński)
+* WikimediaUI theme: Apply distinct “pill” appearance to tags (Volker E.)
+* WikimediaUI theme: Improve TagMultiselect spacing & distance code (Volker E.)
+* WikimediaUI theme: Move label `line-height` to LabelElement (Volker E.)
+* WikimediaUI theme: Reduce `line-height` varieties across widgets (Volker E.)
+* WikimediaUI theme: Use 'progressive' icons for pressed/selected MenuOptionWidget (Bartosz Dziewoński)
+* Apex theme: Remove vertical padding from label widget (Ed Sanders)
+
+
 ## v0.27.1 / 2018-05-29
 ### Deprecations
 * [DEPRECATING CHANGE] Toolbar: Add a required 'name' property to toolgroup configs (Ed Sanders)
