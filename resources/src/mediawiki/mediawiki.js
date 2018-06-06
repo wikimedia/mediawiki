@@ -305,11 +305,11 @@
 			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
-		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Add (does not replace) parameters for `$N` placeholder values.
 		 *
 		 * @param {Array} parameters
+		 * @return {mw.Message}
 		 * @chainable
 		 */
 		params: function ( parameters ) {
@@ -2745,11 +2745,11 @@
 					 */
 					remove: list.remove,
 
-					// eslint-disable-next-line valid-jsdoc
 					/**
 					 * Run a hook.
 					 *
 					 * @param {...Mixed} data
+					 * @return {mw.hook}
 					 * @chainable
 					 */
 					fire: function () {
