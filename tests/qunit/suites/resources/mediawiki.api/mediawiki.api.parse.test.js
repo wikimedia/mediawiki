@@ -13,7 +13,7 @@
 		] );
 
 		return new mw.Api().parse( '\'\'\'Hello world\'\'\'' ).done( function ( html ) {
-			assert.equal( html, '<p><b>Hello world</b></p>', 'Parse wikitext by string' );
+			assert.strictEqual( html, '<p><b>Hello world</b></p>', 'Parse wikitext by string' );
 		} );
 	} );
 
@@ -28,7 +28,7 @@
 				return '\'\'\'Hello world\'\'\'';
 			}
 		} ).done( function ( html ) {
-			assert.equal( html, '<p><b>Hello world</b></p>', 'Parse wikitext by toString object' );
+			assert.strictEqual( html, '<p><b>Hello world</b></p>', 'Parse wikitext by toString object' );
 		} );
 	} );
 
@@ -39,7 +39,7 @@
 		] );
 
 		return new mw.Api().parse( new mw.Title( 'Earth' ) ).done( function ( html ) {
-			assert.equal( html, '<p><b>Earth</b> is a planet.</p>', 'Parse page by Title object' );
+			assert.strictEqual( html, '<p><b>Earth</b> is a planet.</p>', 'Parse page by Title object' );
 		} );
 	} );
 }( mediaWiki ) );

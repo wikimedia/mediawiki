@@ -32,7 +32,7 @@
 			assert.propEqual( str.match( new RegExp( mw.RegExp.escape( str ) ) ), [ str ], 'Match ' + str );
 		} );
 
-		assert.equal( mw.RegExp.escape( normal ), normal, 'Alphanumerals are left alone' );
+		assert.strictEqual( mw.RegExp.escape( normal ), normal, 'Alphanumerals are left alone' );
 	} );
 
 }( mediaWiki ) );

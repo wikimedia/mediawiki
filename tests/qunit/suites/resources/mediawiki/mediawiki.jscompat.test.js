@@ -60,10 +60,10 @@
 			expected = repeat( '\n', n ) + 'some text';
 
 			$textarea = $( '<textarea>\n' + expected + '</textarea>' );
-			assert.equal( $textarea.val(), expected, 'Expecting ' + n + ' newlines (HTML contained ' + ( n + 1 ) + ')' );
+			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + n + ' newlines (HTML contained ' + ( n + 1 ) + ')' );
 
 			$textarea = $( '<textarea>' ).val( expected );
-			assert.equal( $textarea.val(), expected, 'Expecting ' + n + ' newlines (from DOM set with ' + n + ')' );
+			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + n + ' newlines (from DOM set with ' + n + ')' );
 		}
 	} );
 }( jQuery ) );

@@ -60,7 +60,7 @@
 			var styleTestSince = new Date().getTime() - styleTestStart;
 			// If it is passing or if we timed out, run the real test and stop the loop
 			if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
-				assert.equal( $element.css( prop ), val,
+				assert.strictEqual( $element.css( prop ), val,
 					'style "' + prop + ': ' + val + '" from url is applied (after ' + styleTestSince + 'ms)'
 				);
 
@@ -267,7 +267,7 @@
 		mw.loader.implement(
 			'test.implement.a',
 			function () {
-				assert.equal(
+				assert.strictEqual(
 					$element.css( 'float' ),
 					'right',
 					'style is applied'
@@ -355,7 +355,7 @@
 		mw.loader.implement(
 			'test.implement.c',
 			function () {
-				assert.equal(
+				assert.strictEqual(
 					$element.css( 'float' ),
 					'right',
 					'style is applied'
@@ -407,8 +407,8 @@
 		mw.loader.implement(
 			'test.implement.order',
 			function () {
-				assert.equal( mw.loader.getState( 'test.implement.order' ), 'executing', 'state during script execution' );
-				assert.equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'messages load before script execution' );
+				assert.strictEqual( mw.loader.getState( 'test.implement.order' ), 'executing', 'state during script execution' );
+				assert.strictEqual( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'messages load before script execution' );
 			},
 			{},
 			{
@@ -417,7 +417,7 @@
 		);
 
 		return mw.loader.using( 'test.implement.order' ).then( function () {
-			assert.equal( mw.loader.getState( 'test.implement.order' ), 'ready', 'final success state' );
+			assert.strictEqual( mw.loader.getState( 'test.implement.order' ), 'ready', 'final success state' );
 		} );
 	} );
 
@@ -432,7 +432,7 @@
 				$element = $( '<div class="mw-test-implement-import">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
 				assertStyleAsync( assert, $element, 'float', 'right', function () {
-					assert.equal( $element.css( 'text-align' ), 'center',
+					assert.strictEqual( $element.css( 'text-align' ), 'center',
 						'CSS styles after the @import rule are working'
 					);
 
@@ -475,7 +475,7 @@
 		mw.loader.implement(
 			'test.implement.e',
 			function () {
-				assert.equal(
+				assert.strictEqual(
 					$element.css( 'float' ),
 					'right',
 					'Depending module\'s style is applied'
@@ -489,7 +489,7 @@
 		mw.loader.implement(
 			'test.implement.e2',
 			function () {
-				assert.equal(
+				assert.strictEqual(
 					$element2.css( 'float' ),
 					'left',
 					'Dependency\'s style is applied'
@@ -686,9 +686,9 @@
 		] );
 
 		function verifyModuleStates() {
-			assert.equal( mw.loader.getState( 'testMissing' ), 'missing', 'Module "testMissing" state' );
-			assert.equal( mw.loader.getState( 'testUsesMissing' ), 'error', 'Module "testUsesMissing" state' );
-			assert.equal( mw.loader.getState( 'testUsesNestedMissing' ), 'error', 'Module "testUsesNestedMissing" state' );
+			assert.strictEqual( mw.loader.getState( 'testMissing' ), 'missing', 'Module "testMissing" state' );
+			assert.strictEqual( mw.loader.getState( 'testUsesMissing' ), 'error', 'Module "testUsesMissing" state' );
+			assert.strictEqual( mw.loader.getState( 'testUsesNestedMissing' ), 'error', 'Module "testUsesNestedMissing" state' );
 		}
 
 		mw.loader.using( [ 'testUsesNestedMissing' ],
@@ -724,9 +724,9 @@
 
 		return mw.loader.using( [ 'testUsesSkippable' ] ).then(
 			function () {
-				assert.equal( mw.loader.getState( 'testSkipped' ), 'ready', 'Skipped module' );
-				assert.equal( mw.loader.getState( 'testNotSkipped' ), 'ready', 'Regular module' );
-				assert.equal( mw.loader.getState( 'testUsesSkippable' ), 'ready', 'Regular module with skippable dependency' );
+				assert.strictEqual( mw.loader.getState( 'testSkipped' ), 'ready', 'Skipped module' );
+				assert.strictEqual( mw.loader.getState( 'testNotSkipped' ), 'ready', 'Regular module' );
+				assert.strictEqual( mw.loader.getState( 'testUsesSkippable' ), 'ready', 'Regular module with skippable dependency' );
 			},
 			function ( e, badmodules ) {
 				// Should not fail and QUnit would already catch this,
@@ -747,7 +747,7 @@
 		);
 		// Ensure a protocol-relative URL for this test
 		target = target.replace( /https?:/, '' );
-		assert.equal( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
+		assert.strictEqual( target.slice( 0, 2 ), '//', 'URL is protocol-relative' );
 
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now
@@ -766,7 +766,7 @@
 
 		// URL to the callback script
 		target = QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/mwLoaderTestCallback.js' );
-		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
+		assert.strictEqual( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
 		mw.loader.testCallback = function () {
 			// Ensure once, delete now
@@ -942,7 +942,7 @@
 			try {
 				assert.strictEqual( cb.later(), 'Defined.', 'require works asynchrously in debug mode' );
 			} catch ( e ) {
-				assert.equal( String( e ), null, 'require works asynchrously in debug mode' );
+				assert.strictEqual( String( e ), null, 'require works asynchrously in debug mode' );
 			}
 		} );
 	} );

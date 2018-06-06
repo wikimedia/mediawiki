@@ -33,11 +33,11 @@
 		mw.config.set( 'wgUserName', 'John' );
 		mw.config.set( 'wgUserId', 123 );
 
-		assert.equal( mw.user.getName(), 'John', 'getName()' );
+		assert.strictEqual( mw.user.getName(), 'John', 'getName()' );
 		assert.strictEqual( mw.user.isAnon(), false, 'isAnon()' );
 		assert.strictEqual( mw.user.getId(), 123, 'getId()' );
 
-		assert.equal( mw.user.id(), 'John', 'user.id()' );
+		assert.strictEqual( mw.user.id(), 'John', 'user.id()' );
 	} );
 
 	QUnit.test( 'getUserInfo', function ( assert ) {
@@ -68,9 +68,9 @@
 		var result, result2;
 
 		result = mw.user.generateRandomSessionId();
-		assert.equal( typeof result, 'string', 'type' );
-		assert.equal( $.trim( result ), result, 'no whitespace at beginning or end' );
-		assert.equal( result.length, 16, 'size' );
+		assert.strictEqual( typeof result, 'string', 'type' );
+		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.length, 16, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
@@ -89,9 +89,9 @@
 		}
 
 		result = mw.user.generateRandomSessionId();
-		assert.equal( typeof result, 'string', 'type' );
-		assert.equal( $.trim( result ), result, 'no whitespace at beginning or end' );
-		assert.equal( result.length, 16, 'size' );
+		assert.strictEqual( typeof result, 'string', 'type' );
+		assert.strictEqual( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.strictEqual( result.length, 16, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
 		assert.notEqual( result, result2, 'different when called multiple times' );
@@ -100,16 +100,16 @@
 	QUnit.test( 'stickyRandomId', function ( assert ) {
 		var result = mw.user.stickyRandomId(),
 			result2 = mw.user.stickyRandomId();
-		assert.equal( typeof result, 'string', 'type' );
+		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( /^[a-f0-9]{16}$/.test( result ), true, '16 HEX symbols string' );
-		assert.equal( result2, result, 'sticky' );
+		assert.strictEqual( result2, result, 'sticky' );
 	} );
 
 	QUnit.test( 'sessionId', function ( assert ) {
 		var result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
-		assert.equal( typeof result, 'string', 'type' );
-		assert.equal( $.trim( result ), result, 'no leading or trailing whitespace' );
-		assert.equal( result2, result, 'retained' );
+		assert.strictEqual( typeof result, 'string', 'type' );
+		assert.strictEqual( $.trim( result ), result, 'no leading or trailing whitespace' );
+		assert.strictEqual( result2, result, 'retained' );
 	} );
 }( mediaWiki, jQuery ) );

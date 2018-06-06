@@ -45,13 +45,13 @@
 	QUnit.test( 'getVersion', function ( assert ) {
 		var uriProcessor = new mw.rcfilters.UriProcessor( new mw.rcfilters.dm.FiltersViewModel() );
 
-		assert.equal(
+		assert.strictEqual(
 			uriProcessor.getVersion( { param1: 'foo', urlversion: '2' } ),
 			2,
 			'Retrieving the version from the URI query'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			uriProcessor.getVersion( { param1: 'foo' } ),
 			1,
 			'Getting version 1 if no version is specified'
@@ -188,7 +188,7 @@
 		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( function ( testCase ) {
-			assert.equal(
+			assert.strictEqual(
 				uriProcessor.isNewState( testCase.states.curr, testCase.states.new ),
 				testCase.result,
 				testCase.message
@@ -231,7 +231,7 @@
 		uriProcessor = new mw.rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( function ( testCase ) {
-			assert.equal(
+			assert.strictEqual(
 				uriProcessor.doesQueryContainRecognizedParams( testCase.query ),
 				testCase.result,
 				testCase.message
@@ -341,7 +341,7 @@
 				}
 			);
 
-			assert.equal(
+			assert.strictEqual(
 				uriProcessor._normalizeTargetInUri(
 					new mw.Uri( testCase.input )
 				).toString(),

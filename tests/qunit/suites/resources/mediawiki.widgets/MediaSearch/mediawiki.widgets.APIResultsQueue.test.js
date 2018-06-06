@@ -107,18 +107,18 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		queue.get( 10 )
 			.then( function ( data ) {
 				// Check that we received all requested results
-				assert.equal( data.length, 10, 'Query 1: Results received.' );
+				assert.strictEqual( data.length, 10, 'Query 1: Results received.' );
 				// We've asked for 10 items + 2 threshold from all providers.
 				// Provider 1 returned 12 results
 				// Provider 2 returned 0 results
 				// Provider 3 returned 1 results
 				// Overall 13 results. 10 were retrieved. 3 left in queue.
-				assert.equal( queue.getQueueSize(), 3, 'Query 1: Remaining queue size.' );
+				assert.strictEqual( queue.getQueueSize(), 3, 'Query 1: Remaining queue size.' );
 
 				// Check if sources are depleted
-				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 1: Full provider not depleted.' );
-				assert.equal( providers[ 1 ].isDepleted(), true, 'Query 1: Empty provider is depleted.' );
-				assert.equal( providers[ 2 ].isDepleted(), true, 'Query 1: Single result provider is depleted.' );
+				assert.strictEqual( providers[ 0 ].isDepleted(), false, 'Query 1: Full provider not depleted.' );
+				assert.strictEqual( providers[ 1 ].isDepleted(), true, 'Query 1: Empty provider is depleted.' );
+				assert.strictEqual( providers[ 2 ].isDepleted(), true, 'Query 1: Single result provider is depleted.' );
 
 				// Ask for more results
 				return queue.get( 10 );
@@ -131,26 +131,26 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				// * The queue queried provider #1 for 12 items
 				// * The queue returned 10 results as requested
 				// * 5 results are now left in the queue.
-				assert.equal( data1.length, 10, 'Query 1: Second set of results received.' );
-				assert.equal( queue.getQueueSize(), 5, 'Query 1: Remaining queue size.' );
+				assert.strictEqual( data1.length, 10, 'Query 1: Second set of results received.' );
+				assert.strictEqual( queue.getQueueSize(), 5, 'Query 1: Remaining queue size.' );
 
 				// Change the query
 				queue.setParams( { foo: 'baz' } );
 				// Check if sources are depleted
-				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
-				assert.equal( providers[ 1 ].isDepleted(), false, 'Query 2: Empty provider not depleted.' );
-				assert.equal( providers[ 2 ].isDepleted(), false, 'Query 2: Single result provider not depleted.' );
+				assert.strictEqual( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
+				assert.strictEqual( providers[ 1 ].isDepleted(), false, 'Query 2: Empty provider not depleted.' );
+				assert.strictEqual( providers[ 2 ].isDepleted(), false, 'Query 2: Single result provider not depleted.' );
 
 				return queue.get( 10 );
 			} )
 			.then( function ( data2 ) {
 				// This should be the same as the very first result
-				assert.equal( data2.length, 10, 'Query 2: Results received.' );
-				assert.equal( queue.getQueueSize(), 3, 'Query 2: Remaining queue size.' );
+				assert.strictEqual( data2.length, 10, 'Query 2: Results received.' );
+				assert.strictEqual( queue.getQueueSize(), 3, 'Query 2: Remaining queue size.' );
 				// Check if sources are depleted
-				assert.equal( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
-				assert.equal( providers[ 1 ].isDepleted(), true, 'Query 2: Empty provider is not depleted.' );
-				assert.equal( providers[ 2 ].isDepleted(), true, 'Query 2: Single result provider is not depleted.' );
+				assert.strictEqual( providers[ 0 ].isDepleted(), false, 'Query 2: Full provider not depleted.' );
+				assert.strictEqual( providers[ 1 ].isDepleted(), true, 'Query 2: Empty provider is not depleted.' );
+				assert.strictEqual( providers[ 2 ].isDepleted(), true, 'Query 2: Single result provider is not depleted.' );
 			} )
 			// Finish the async test
 			.then( done );
@@ -189,7 +189,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		biggerQueue.setParams( { foo: 'baz' } );
 		biggerQueue.get( 10 )
 			.then( function () {
-				assert.equal( completed, false, 'Provider promises aborted.' );
+				assert.strictEqual( completed, false, 'Provider promises aborted.' );
 			} )
 			// Finish the async test
 			.then( done );

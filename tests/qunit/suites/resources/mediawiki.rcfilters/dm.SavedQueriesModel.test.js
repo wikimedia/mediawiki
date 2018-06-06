@@ -286,14 +286,14 @@
 				testCase.msg + ' (itemState)'
 			);
 
-			assert.equal(
+			assert.strictEqual(
 				item.isDefault(),
 				testCase.result.isDefault,
 				testCase.msg + ' (isDefault)'
 			);
 
 			if ( testCase.result.id !== undefined ) {
-				assert.equal(
+				assert.strictEqual(
 					item.getID(),
 					testCase.result.id,
 					testCase.msg + ' (item ID)'
@@ -332,7 +332,7 @@
 		);
 		item1 = queriesModel.getItemByID( id1 );
 
-		assert.equal(
+		assert.strictEqual(
 			item1.getID(),
 			id1,
 			'Item created and its data retained successfully'

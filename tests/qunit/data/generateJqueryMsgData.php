@@ -22,7 +22,7 @@
 			QUnit.stop();
 			getMwLanguage( test.lang, function ( langClass ) {
 				var parser = new mw.jqueryMsg.Parser( { language: langClass } );
-				assert.equal(
+				assert.strictEqual(
 					parser.parse( test.key, test.args ).html(),
 					test.result,
 					test.name

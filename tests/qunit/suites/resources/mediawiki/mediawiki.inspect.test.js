@@ -9,7 +9,7 @@
 		);
 
 		return mw.loader.using( 'test.inspect.script' ).then( function () {
-			assert.equal(
+			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.script' ),
 				// name, script function
 				43,
@@ -26,7 +26,7 @@
 		);
 
 		return mw.loader.using( 'test.inspect.both' ).then( function () {
-			assert.equal(
+			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.both' ),
 				// name, script function, styles object
 				64,
@@ -44,7 +44,7 @@
 		);
 
 		return mw.loader.using( 'test.inspect.scriptmsg' ).then( function () {
-			assert.equal(
+			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.scriptmsg' ),
 				// name, script function, empty styles object, messages object
 				74,
@@ -63,7 +63,7 @@
 		);
 
 		return mw.loader.using( 'test.inspect.all' ).then( function () {
-			assert.equal(
+			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.all' ),
 				// name, script function, styles object, messages object, templates object
 				126,
