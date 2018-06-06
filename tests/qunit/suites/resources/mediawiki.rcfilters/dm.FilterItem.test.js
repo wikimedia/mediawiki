@@ -8,12 +8,12 @@
 			group2 = new mw.rcfilters.dm.FilterGroup( 'group2' );
 
 		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
-		assert.equal(
+		assert.strictEqual(
 			item.getName(),
 			'group1__filter1',
 			'Filter name is retained.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.getGroupName(),
 			'group1',
 			'Group name is retained.'
@@ -27,12 +27,12 @@
 				description: 'test description'
 			}
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.getLabel(),
 			'test label',
 			'Label information is retained.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.getLabel(),
 			'test label',
 			'Description information is retained.'
@@ -45,13 +45,13 @@
 				selected: true
 			}
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.isSelected(),
 			true,
 			'Item can be selected in the config.'
 		);
 		item.toggleSelected( true );
-		assert.equal(
+		assert.strictEqual(
 			item.isSelected(),
 			true,
 			'Item can toggle its selected state.'
@@ -70,24 +70,24 @@
 			[ 'sub1', 'sub2', 'sub3' ],
 			'Subset information is retained.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.existsInSubset( 'sub1' ),
 			true,
 			'Specific item exists in subset.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.existsInSubset( 'sub10' ),
 			false,
 			'Specific item does not exists in subset.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.isIncluded(),
 			false,
 			'Initial state of "included" is false.'
 		);
 
 		item.toggleIncluded( true );
-		assert.equal(
+		assert.strictEqual(
 			item.isIncluded(),
 			true,
 			'Item toggles its included state.'
@@ -114,24 +114,24 @@
 			},
 			'Conflict information is retained.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict1', group2 ) ),
 			true,
 			'Specific item exists in conflicts.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.existsInConflicts( new mw.rcfilters.dm.FilterItem( 'conflict10', group1 ) ),
 			false,
 			'Specific item does not exists in conflicts.'
 		);
-		assert.equal(
+		assert.strictEqual(
 			item.isConflicted(),
 			false,
 			'Initial state of "conflicted" is false.'
 		);
 
 		item.toggleConflicted( true );
-		assert.equal(
+		assert.strictEqual(
 			item.isConflicted(),
 			true,
 			'Item toggles its conflicted state.'
@@ -139,13 +139,13 @@
 
 		// Fully covered
 		item = new mw.rcfilters.dm.FilterItem( 'filter1', group1 );
-		assert.equal(
+		assert.strictEqual(
 			item.isFullyCovered(),
 			false,
 			'Initial state of "full coverage" is false.'
 		);
 		item.toggleFullyCovered( true );
-		assert.equal(
+		assert.strictEqual(
 			item.isFullyCovered(),
 			true,
 			'Item toggles its fully coverage state.'
@@ -191,7 +191,7 @@
 
 		item.setValue( '1' );
 
-		assert.equal( item.getValue(), true, 'Value is coerced to boolean' );
+		assert.strictEqual( item.getValue(), true, 'Value is coerced to boolean' );
 	} );
 
 	QUnit.test( 'get/set any value', function ( assert ) {
@@ -200,6 +200,6 @@
 
 		item.setValue( '1' );
 
-		assert.equal( item.getValue(), '1', 'Value is kept as-is' );
+		assert.strictEqual( item.getValue(), '1', 'Value is kept as-is' );
 	} );
 }( mediaWiki ) );

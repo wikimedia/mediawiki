@@ -224,7 +224,7 @@
 
 		cases.forEach( function ( item ) {
 			$fixture = $( '<p>' ).text( item.text ).highlightText( item.highlight );
-			assert.equal(
+			assert.strictEqual(
 				$fixture.html(),
 				// Re-parse to normalize
 				$( '<p>' ).html( item.expected ).html(),

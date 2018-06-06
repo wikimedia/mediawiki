@@ -51,7 +51,7 @@
 	QUnit.test( 'getAccessKeyPrefix', function ( assert ) {
 		var i;
 		for ( i = 0; i < getAccessKeyPrefixTestData.length; i++ ) {
-			assert.equal( $.fn.updateTooltipAccessKeys.getAccessKeyPrefix( {
+			assert.strictEqual( $.fn.updateTooltipAccessKeys.getAccessKeyPrefix( {
 				userAgent: getAccessKeyPrefixTestData[ i ][ 0 ],
 				platform: getAccessKeyPrefixTestData[ i ][ 1 ]
 			} ), getAccessKeyPrefixTestData[ i ][ 2 ], 'Correct prefix for ' + getAccessKeyPrefixTestData[ i ][ 0 ] );
@@ -75,7 +75,7 @@
 			$input = $( makeInput( oldTitle ) );
 			$( '#qunit-fixture' ).append( $input );
 			newTitle = $input.updateTooltipAccessKeys().prop( 'title' );
-			assert.equal( newTitle, 'Title', 'title="' + oldTitle + '"' );
+			assert.strictEqual( newTitle, 'Title', 'title="' + oldTitle + '"' );
 		}
 	} );
 
@@ -87,7 +87,7 @@
 			$input = $( makeInput( oldTitle, 'a' ) );
 			$( '#qunit-fixture' ).append( $input );
 			newTitle = $input.updateTooltipAccessKeys().prop( 'title' );
-			assert.equal( newTitle, 'Title [test-a]', 'title="' + oldTitle + '"' );
+			assert.strictEqual( newTitle, 'Title [test-a]', 'title="' + oldTitle + '"' );
 		}
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
@@ -100,8 +100,8 @@
 		$label = $( '#qunit-fixture label' );
 		$input = $( '#qunit-fixture input' );
 		$input.updateTooltipAccessKeys();
-		assert.equal( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
-		assert.equal( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );
+		assert.strictEqual( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
+		assert.strictEqual( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
 
@@ -113,8 +113,8 @@
 		$label = $( '#qunit-fixture label' );
 		$input = $( '#qunit-fixture input' );
 		$input.updateTooltipAccessKeys();
-		assert.equal( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
-		assert.equal( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );
+		assert.strictEqual( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
+		assert.strictEqual( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
 

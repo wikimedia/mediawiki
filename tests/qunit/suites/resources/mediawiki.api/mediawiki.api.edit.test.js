@@ -43,7 +43,7 @@
 				return revision.content.replace( 'Sand', 'Box' );
 			} )
 			.then( function ( edit ) {
-				assert.equal( edit.newrevid, 13 );
+				assert.strictEqual( edit.newrevid, 13 );
 			} );
 	} );
 
@@ -84,7 +84,7 @@
 				return revision.content.replace( 'Sand', 'Box' );
 			} )
 			.then( function ( edit ) {
-				assert.equal( edit.newrevid, 13 );
+				assert.strictEqual( edit.newrevid, 13 );
 			} );
 	} );
 
@@ -125,7 +125,7 @@
 				return $.Deferred().resolve( revision.content.replace( 'Async', 'Promise' ) );
 			} )
 			.then( function ( edit ) {
-				assert.equal( edit.newrevid, 23 );
+				assert.strictEqual( edit.newrevid, 23 );
 			} );
 	} );
 
@@ -166,7 +166,7 @@
 				return { text: 'Content', summary: 'Sum' };
 			} )
 			.then( function ( edit ) {
-				assert.equal( edit.newrevid, 33 );
+				assert.strictEqual( edit.newrevid, 33 );
 			} );
 	} );
 
@@ -192,7 +192,7 @@
 			.then( function () {
 				return $.Deferred().reject( 'Unexpected success' );
 			}, function ( reason ) {
-				assert.equal( reason, 'invalidtitle' );
+				assert.strictEqual( reason, 'invalidtitle' );
 			} );
 	} );
 
@@ -213,7 +213,7 @@
 		return new mw.Api()
 			.create( 'Sandbox', { summary: 'Load sand particles.' }, 'Sand.' )
 			.then( function ( page ) {
-				assert.equal( page.newrevid, 41 );
+				assert.strictEqual( page.newrevid, 41 );
 			} );
 	} );
 

@@ -23,13 +23,13 @@
 			$.extend( true, {}, itemData )
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			model.getID(),
 			'randomID',
 			'Item ID is retained'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			model.getLabel(),
 			'Some label',
 			'Item label is retained'
@@ -41,7 +41,7 @@
 			'Item data is retained'
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			model.isDefault(),
 			false,
 			'Item default state is retained.'
@@ -57,21 +57,21 @@
 			$.extend( true, {}, itemData )
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			model.isDefault(),
 			false,
 			'Default state represented when item initialized with default:false.'
 		);
 
 		model.toggleDefault( true );
-		assert.equal(
+		assert.strictEqual(
 			model.isDefault(),
 			true,
 			'Default state toggles to true successfully'
 		);
 
 		model.toggleDefault( false );
-		assert.equal(
+		assert.strictEqual(
 			model.isDefault(),
 			false,
 			'Default state toggles to false successfully'
@@ -85,7 +85,7 @@
 			{ default: true }
 		);
 
-		assert.equal(
+		assert.strictEqual(
 			model.isDefault(),
 			true,
 			'Default state represented when item initialized with default:true.'

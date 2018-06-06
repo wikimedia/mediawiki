@@ -65,7 +65,7 @@
 		QUnit.test( 'Plural Test for ' + langCode, function ( assert ) {
 			var i;
 			for ( i = 0; i < tests.length; i++ ) {
-				assert.equal(
+				assert.strictEqual(
 					mw.language.convertPlural( tests[ i ][ 0 ], tests[ i ][ 1 ] ),
 					tests[ i ][ 2 ],
 					tests[ i ][ 3 ]

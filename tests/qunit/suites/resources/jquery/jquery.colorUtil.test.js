@@ -55,9 +55,9 @@
 	QUnit.test( 'getColorBrightness', function ( assert ) {
 		var a, b;
 		a = $.colorUtil.getColorBrightness( 'red', +0.1 );
-		assert.equal( a, 'rgb(255,50,50)', 'Start with named color "red", brighten 10%' );
+		assert.strictEqual( a, 'rgb(255,50,50)', 'Start with named color "red", brighten 10%' );
 
 		b = $.colorUtil.getColorBrightness( 'rgb(200,50,50)', -0.2 );
-		assert.equal( b, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
+		assert.strictEqual( b, 'rgb(118,29,29)', 'Start with rgb string "rgb(200,50,50)", darken 20%' );
 	} );
 }( jQuery ) );

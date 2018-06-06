@@ -17,7 +17,7 @@
 		} );
 
 		return new mw.Api().watch( 'Foo' ).done( function ( item ) {
-			assert.equal( item.title, 'Foo' );
+			assert.strictEqual( item.title, 'Foo' );
 		} );
 	} );
 
@@ -34,7 +34,7 @@
 		} );
 
 		return new mw.Api().watch( [ 'Foo' ] ).done( function ( items ) {
-			assert.equal( items[ 0 ].title, 'Foo' );
+			assert.strictEqual( items[ 0 ].title, 'Foo' );
 		} );
 	} );
 
@@ -52,8 +52,8 @@
 		} );
 
 		return new mw.Api().watch( [ 'Foo', 'Bar' ] ).done( function ( items ) {
-			assert.equal( items[ 0 ].title, 'Foo' );
-			assert.equal( items[ 1 ].title, 'Bar' );
+			assert.strictEqual( items[ 0 ].title, 'Foo' );
+			assert.strictEqual( items[ 1 ].title, 'Bar' );
 		} );
 	} );
 
