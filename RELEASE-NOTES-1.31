@@ -426,6 +426,7 @@ changes to languages because of Phabricator reports.
   wikitext table captions, wikitext table headings, wikitext table cells. HTML
   headings, HTML list items, HTML table captions, HTML table headings, HTML
   table cells will not have this trimming behavior.
+* (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 
 == Compatibility ==
 MediaWiki 1.31 requires PHP 7.0.0 or later. Although HHVM 3.18.5 or later is
