@@ -6,5 +6,9 @@
 # Copyright: 2017
 # License: GPLv3
 
-git submodule update --init --recursive
+EXT_PATH_VISUALEDITOR="extensions/VisualEditor"
+
+if [ -d $EXT_PATH_VISUALEDITOR ] ; then
+	cd $EXT_PATH_VISUALEDITOR && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive
+fi
 
