@@ -31,8 +31,8 @@ describe( 'Page', function () {
 		EditPage.edit( name, content );
 
 		// check
-		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( EditPage.heading.getText(), name );
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
 	it( 'should be re-creatable', function () {
@@ -52,8 +52,8 @@ describe( 'Page', function () {
 		EditPage.edit( name, content );
 
 		// check
-		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( EditPage.heading.getText(), name );
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
 	it( 'should be editable', function () {
@@ -66,8 +66,8 @@ describe( 'Page', function () {
 		EditPage.edit( name, content );
 
 		// check
-		assert.equal( EditPage.heading.getText(), name );
-		assert.equal( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( EditPage.heading.getText(), name );
+		assert.strictEqual( EditPage.displayedContent.getText(), content );
 	} );
 
 	it( 'should have history', function () {
@@ -78,7 +78,7 @@ describe( 'Page', function () {
 
 		// check
 		HistoryPage.open( name );
-		assert.equal( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+		assert.strictEqual( HistoryPage.comment.getText(), `(Created page with "${content}")` );
 	} );
 
 	it( 'should be deletable', function () {
@@ -94,7 +94,7 @@ describe( 'Page', function () {
 		DeletePage.delete( name, content + '-deletereason' );
 
 		// check
-		assert.equal(
+		assert.strictEqual(
 			DeletePage.displayedContent.getText(),
 			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\nReturn to Main Page.'
 		);
@@ -118,6 +118,6 @@ describe( 'Page', function () {
 		RestorePage.restore( name, content + '-restorereason' );
 
 		// check
-		assert.equal( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
+		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 } );

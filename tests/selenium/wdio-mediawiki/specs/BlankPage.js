@@ -6,6 +6,6 @@ describe( 'BlankPage', function () {
 		BlankPage.open();
 
 		// check
-		assert.equal( BlankPage.heading.getText(), 'Blank page' );
+		assert.strictEqual( BlankPage.heading.getText(), 'Blank page' );
 	} );
 } );

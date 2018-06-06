@@ -25,7 +25,7 @@ describe( 'User', function () {
 		CreateAccountPage.createAccount( username, password );
 
 		// check
-		assert.equal( CreateAccountPage.heading.getText(), `Welcome, ${username}!` );
+		assert.strictEqual( CreateAccountPage.heading.getText(), `Welcome, ${username}!` );
 	} );
 
 	it( 'should be able to log in', function () {
@@ -38,7 +38,7 @@ describe( 'User', function () {
 		UserLoginPage.login( username, password );
 
 		// check
-		assert.equal( UserLoginPage.userPage.getText(), username );
+		assert.strictEqual( UserLoginPage.userPage.getText(), username );
 	} );
 
 	it( 'should be able to change preferences', function () {
@@ -56,6 +56,6 @@ describe( 'User', function () {
 		PreferencesPage.changeRealName( realName );
 
 		// check
-		assert.equal( PreferencesPage.realName.getValue(), realName );
+		assert.strictEqual( PreferencesPage.realName.getValue(), realName );
 	} );
 } );
