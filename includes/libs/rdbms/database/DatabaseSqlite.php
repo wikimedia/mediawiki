@@ -519,6 +519,19 @@ class DatabaseSqlite extends Database {
 		return $this->lastAffectedRowCount;
 	}
 
+	function tableExists( $table, $fname = __METHOD__ ) {
+		$tableRaw = $this->tableName( $table, 'raw' );
+		if ( isset( $this->sessionTempTables[$tableRaw] ) ) {
+			return true; // already known to exist
+		}
+
+		$encTable = $this->addQuotes( $tableRaw );
+		$res = $this->query(
+			"SELECT 1 FROM sqlite_master WHERE type='table' AND name=$encTable" );
+
+		return $res->numRows() ? true : false;
+	}
+
 	/**
 	 * Returns information about an index
 	 * Returns false if the index does not exist
