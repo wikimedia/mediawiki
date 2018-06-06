@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.1
+ * OOUI v0.27.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-29T23:24:53Z
+ * Date: 2018-06-06T16:16:14Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -431,6 +431,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.oo-ui-labelElement .oo-ui-labelElement-label {
+  line-height: 1.42857143em;
+}
 .oo-ui-labelElement .oo-ui-labelElement-label-highlight {
   font-weight: bold;
 }
@@ -510,9 +513,6 @@
 .oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   padding-bottom: 0.28571429em;
 }
-.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
-  line-height: 1.4;
-}
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
   max-width: 50em;
@@ -582,8 +582,7 @@
 }
 .oo-ui-fieldLayout-messages .oo-ui-labelWidget {
   display: table-cell;
-  padding: 1px 0 1px 0.42857143em;
-  line-height: 1.4;
+  padding-left: 0.42857143em;
   vertical-align: middle;
 }
 .oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
@@ -594,15 +593,29 @@
   display: table-cell;
   vertical-align: middle;
 }
-.oo-ui-actionFieldLayout-input {
-  padding-right: 1em;
-}
 .oo-ui-actionFieldLayout-button {
   width: 1%;
   white-space: nowrap;
 }
 .oo-ui-actionFieldLayout.oo-ui-fieldLayout-align-top {
   max-width: 50em;
+}
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget:not( .oo-ui-textInputWidget ) {
+  margin-right: 0.57142857em;
+}
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget.oo-ui-textInputWidget input {
+  border-radius: 2px 0 0 2px;
+}
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget.oo-ui-textInputWidget input:hover,
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-input .oo-ui-widget.oo-ui-textInputWidget input:focus {
+  position: relative;
+  z-index: 1;
+}
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-button .oo-ui-buttonElement-framed {
+  border-radius: 0 2px 2px 0;
+}
+.oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-button .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
+  margin-left: -1px;
 }
 .oo-ui-actionFieldLayout .oo-ui-actionFieldLayout-button .oo-ui-buttonElement-frameless {
   margin-left: 0.14285714em;
@@ -669,11 +682,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-bottom: 0.5em;
   font-size: 1.14285714em;
   font-weight: bold;
-  line-height: 1.4;
 }
 .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
   padding-left: 1.625em;
-  line-height: 1.5;
 }
 .oo-ui-fieldsetLayout .oo-ui-fieldsetLayout-help {
   margin-right: 0;
@@ -771,9 +782,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.oo-ui-optionWidget .oo-ui-labelElement-label {
-  line-height: 1.6;
-}
 .oo-ui-optionWidget-selected .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
   opacity: 1;
 }
@@ -844,6 +852,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-labelWidget {
   display: inline-block;
+}
+.oo-ui-labelWidget.oo-ui-inline-help {
+  display: block;
+  color: #54595d;
+  font-size: 0.92857143em;
 }
 .oo-ui-iconWidget {
   display: inline-block;
@@ -1099,7 +1112,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   right: 0;
 }
 .oo-ui-popupWidget-body {
-  line-height: 1.4;
+  line-height: 1.42857143em;
 }
 .oo-ui-popupWidget-body-padded {
   margin: 0.64285714em 0.85714286em 0.57142857em;
@@ -1211,9 +1224,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
   margin-top: 0.28571429em;
-}
-.oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body .oo-ui-labelElement-label {
-  line-height: 1.5;
 }
 .oo-ui-dropdownInputWidget {
   position: relative;
@@ -1387,9 +1397,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
   margin-top: 0.28571429em;
 }
-.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout .oo-ui-fieldLayout-body .oo-ui-labelElement-label {
-  line-height: 1.5;
-}
 .oo-ui-textInputWidget {
   position: relative;
   vertical-align: middle;
@@ -1484,7 +1491,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   line-height: 1.07142857em;
 }
 .oo-ui-textInputWidget textarea {
-  line-height: 1.275;
+  line-height: 1.286;
 }
 .oo-ui-textInputWidget .oo-ui-pendingElement-pending {
   background-color: transparent;
@@ -1887,7 +1894,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   white-space: normal;
 }
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
-  line-height: 1.5;
   padding-left: 0.42857143em;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {

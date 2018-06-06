@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.1
+ * OOUI v0.27.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-05-29T23:24:49Z
+ * Date: 2018-06-06T16:16:10Z
  */
 ( function ( OO ) {
 
@@ -54,6 +54,7 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
 		isActive = element.supports( [ 'isActive' ] ) && element.isActive();
 		isToolOrGroup =
+			// Check if the class exists, as classes that are not in the 'core' module may not be loaded
 			( OO.ui.Tool && element instanceof OO.ui.Tool ) ||
 			( OO.ui.ToolGroup && element instanceof OO.ui.ToolGroup );
 		if (
@@ -72,9 +73,13 @@ OO.ui.WikimediaUITheme.prototype.getElementClasses = function ( element ) {
 			variants.progressive = element.hasFlag( 'progressive' ) ||
 				// Active tools/toolgroups
 				( isToolOrGroup && isActive ) ||
-				// Pressed or selected outline option widgets
+				// Pressed or selected outline/menu option widgets
 				(
-					OO.ui.OutlineOptionWidget && element instanceof OO.ui.OutlineOptionWidget &&
+					(
+						element instanceof OO.ui.MenuOptionWidget ||
+						// Check if the class exists, as classes that are not in the 'core' module may not be loaded
+						( OO.ui.OutlineOptionWidget && element instanceof OO.ui.OutlineOptionWidget )
+					) &&
 					( element.isPressed() || element.isSelected() )
 				);
 
