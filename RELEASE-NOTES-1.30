@@ -1,7 +1,5 @@
 == MediaWiki 1.30 ==
 
-THIS IS NOT A RELEASE YET!
-
 === Changes since MediaWiki 1.30.0 ===
 * (T87572) Make FormatMetadata::flattenArrayReal() work for an associative array.
 * Updated composer/spdx-licenses from 1.1.4 to 1.3.0 (development dependency).
