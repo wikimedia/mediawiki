@@ -94,3 +94,7 @@
 	path = extensions/ReplaceText
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/ReplaceText
 	branch = REL1_31
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
+	branch = REL1_31
