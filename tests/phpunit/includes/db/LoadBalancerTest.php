@@ -190,32 +190,38 @@ class LoadBalancerTest extends MediaWikiTestCase {
 
 	private function assertWriteAllowed( Database $db ) {
 		$table = $db->tableName( 'some_table' );
+		// Trigger a transaction so that rollback() will remove all the tables.
+		// Don't do this for MySQL/Oracle as they auto-commit transactions for DDL
+		// statements such as CREATE TABLE.
+		$useAtomicSection = in_array( $db->getType(), [ 'sqlite', 'postgres', 'mssql' ], true );
 		try {
 			$db->dropTable( 'some_table' ); // clear for sanity
+			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
 
-			// Trigger DBO_TRX to create a transaction so the flush below will
-			// roll everything here back in sqlite. But don't actually do the
-			// code below inside an atomic section becaue MySQL and Oracle
-			// auto-commit transactions for DDL statements like CREATE TABLE.
-			$db->startAtomic( __METHOD__ );
-			$db->endAtomic( __METHOD__ );
-
+			if ( $useAtomicSection ) {
+				$db->startAtomic( __METHOD__ );
+			}
 			// Use only basic SQL and trivial types for these queries for compatibility
 			$this->assertNotSame(
 				false,
 				$db->query( "CREATE TABLE $table (id INT, time INT)", __METHOD__ ),
 				"table created"
 			);
+			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
 			$this->assertNotSame(
 				false,
 				$db->query( "DELETE FROM $table WHERE id=57634126", __METHOD__ ),
 				"delete query"
 			);
+			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
 		} finally {
-			// Drop the table to clean up, ignoring any error.
-			$db->query( "DROP TABLE $table", __METHOD__, true );
-			// Rollback the DBO_TRX transaction for sqlite's benefit.
+			if ( !$useAtomicSection ) {
+				// Drop the table to clean up, ignoring any error.
+				$db->dropTable( 'some_table' );
+			}
+			// Rollback the atomic section for sqlite's benefit.
 			$db->rollback( __METHOD__, 'flush' );
+			$this->assertNotEquals( $db::STATUS_TRX_ERROR, $db->trxStatus() );
 		}
 	}
 

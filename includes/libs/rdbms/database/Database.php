@@ -1925,18 +1925,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	public function tableExists( $table, $fname = __METHOD__ ) {
-		$tableRaw = $this->tableName( $table, 'raw' );
-		if ( isset( $this->sessionTempTables[$tableRaw] ) ) {
-			return true; // already known to exist
-		}
-
-		$table = $this->tableName( $table );
-		$ignoreErrors = true;
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname, $ignoreErrors );
-
-		return (bool)$res;
-	}
+	abstract public function tableExists( $table, $fname = __METHOD__ );
 
 	public function indexUnique( $table, $index ) {
 		$indexInfo = $this->indexInfo( $table, $index );

@@ -440,6 +440,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'numFields', 'numRows',
 			'open',
 			'strencode',
+			'tableExists'
 		];
 		$db = $this->getMockBuilder( Database::class )
 			->disableOriginalConstructor()
