@@ -6,5 +6,9 @@
 # Copyright: 2017
 # License: GPLv3
 
-git submodule update --init --recursive
+EXT_PATH_WIDGETS="extensions/Widgets"
+
+if [ -d $EXT_PATH_WIDGETS ] ; then
+	cd $EXT_PATH_WIDGETS && git submodule foreach --recursive git reset --hard && git submodule update --init --recursive
+fi
 
