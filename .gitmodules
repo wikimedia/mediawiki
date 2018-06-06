@@ -82,3 +82,7 @@
 	path = extensions/SpamBlacklist
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/SpamBlacklist
 	branch = REL1_29
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
+	branch = REL1_29
