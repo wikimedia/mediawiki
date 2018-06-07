@@ -572,7 +572,6 @@
 	"apihelp-query+filearchive-param-sha1base36": "Däm Beld singe <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"secure hash algorithm\">SHA-1</i>-Pröhvsomm em 36-jer Zahlesüßtehm. Weed em Mehdiajwikki jebruch.",
 	"apihelp-query+filearchive-param-prop": "Wat för en Aanjahbe zom Beld holle:",
 	"apihelp-query+filearchive-paramvalue-prop-sha1": "Deiht dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"secure hash algorithm\">SHA-1 (base 16)</i> vun dä Väsjohn vn däm Beld derbei.",
-	"apihelp-query+filearchive-paramvalue-prop-timestamp": "Adds timestamp for the uploaded version.",
 	"apihelp-query+filearchive-paramvalue-prop-user": "Deiht dä Metmaacher derbei, dä di Väsjohn huhjelahde hät.",
 	"apihelp-query+filearchive-paramvalue-prop-size": "Deiht de Aanzahl <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Bytes</i> vun dä Dattei derbei, un, wann bikannt, de Hühde, de Wiggde, un de Aanzahl Sigge.",
 	"apihelp-query+filearchive-paramvalue-prop-dimensions": "Et sällve, wi <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">size</code>.",
