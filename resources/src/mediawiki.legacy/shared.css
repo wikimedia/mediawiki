@@ -697,14 +697,6 @@ table.floatleft {
 	unicode-bidi: embed;
 }
 
-/* Accessibility */
-.mw-jump,
-#jump-to-nav {
-	overflow: hidden;
-	height: 0;
-	zoom: 1; /* http://webaim.org/techniques/skipnav/#iequirk */
-}
-
 /* Print footer should be hidden by default in screen. */
 .printfooter {
 	display: none;
@@ -716,8 +708,7 @@ table.floatleft {
 	z-index: 99;
 }
 
-.mw-editsection,
-#jump-to-nav {
+.mw-editsection {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
