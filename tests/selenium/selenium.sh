@@ -3,7 +3,7 @@ set -euo pipefail
 # Check the command before running in background so
 # that it can actually fail and have a descriptive error
 hash chromedriver
-chromedriver --url-base=/wd/hub --port=4444 &
+chromedriver --url-base=wd/hub --port=4444 &
 CHROME_DRIVER_PID=$!
 echo chrome driver running with PID $CHROME_DRIVER_PID
 # Make sure it is killed to prevent file descriptors leak
