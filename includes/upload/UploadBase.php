@@ -1397,9 +1397,8 @@ abstract class UploadBase {
 	 */
 	public static function checkXMLEncodingMissmatch( $file ) {
 		global $wgSVGMetadataCutoff;
-		$contents = file_get_contents( $file, false, null, -1, $wgSVGMetadataCutoff );
+		$contents = file_get_contents( $file, false, null, 0, $wgSVGMetadataCutoff );
 		$encodingRegex = '!encoding[ \t\n\r]*=[ \t\n\r]*[\'"](.*?)[\'"]!si';
-
 		if ( preg_match( "!<\?xml\b(.*?)\?>!si", $contents, $matches ) ) {
 			if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 				&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
