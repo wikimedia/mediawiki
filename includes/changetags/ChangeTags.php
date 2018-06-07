@@ -261,6 +261,8 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
 
@@ -342,6 +344,35 @@ class ChangeTags {
 
 		// insert a row into change_tag for each new tag
 		if ( count( $tagsToAdd ) ) {
+			$changeTagMapping = [];
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+				$tagDefRows = [];
+				foreach ( $tagsToAdd as $tag ) {
+					$tagDefRows[] = [
+						'ctd_name' => $tag,
+						'ctd_user_defined' => 0,
+						'ctd_count' => 1
+					];
+				}
+
+				$dbw->upsert(
+					'change_tag_def',
+					$tagDefRows,
+					[ 'ctd_name' ],
+					[ 'ctd_count = ctd_count + 1' ],
+					__METHOD__
+				);
+
+				$res = $dbw->select(
+					'change_tag_def',
+					[ 'ctd_name', 'ctd_id' ],
+					[ 'ctd_name' => $tagsToAdd ]
+				);
+				foreach ( $res as $row ) {
+					$changeTagMapping[$row->ctd_name] = $row->ctd_id;
+				}
+			}
+
 			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
 				// Filter so we don't insert NULLs as zero accidentally.
@@ -354,9 +385,11 @@ class ChangeTags {
 						'ct_rc_id' => $rc_id,
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id,
-						'ct_params' => $params
+						'ct_params' => $params,
+						'ct_tag_id' => isset( $changeTagMapping[$tag] ) ? $changeTagMapping[$tag] : null,
 					]
 				);
+
 			}
 
 			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
@@ -374,6 +407,20 @@ class ChangeTags {
 					]
 				);
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+				if ( $dbw->affectedRows() && $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+					$dbw->update(
+						'change_tag_def',
+						[ 'ctd_count = ctd_count - 1' ],
+						[ 'ctd_name' => $tag ],
+						__METHOD__
+					);
+
+					$dbw->delete(
+						'change_tag_def',
+						[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
+						__METHOD__
+					);
+				}
 			}
 		}
 
@@ -828,8 +875,8 @@ class ChangeTags {
 	}
 
 	/**
-	 * Defines a tag in the valid_tag table, without checking that the tag name
-	 * is valid.
+	 * Defines a tag in the valid_tag table and/or update ctd_user_defined field in change_tag_def,
+	 * without checking that the tag name is valid.
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
 	 *
@@ -837,26 +884,63 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function defineTag( $tag ) {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'valid_tag',
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+			$tagDef = [
+				'ctd_name' => $tag,
+				'ctd_user_defined' => 1,
+				'ctd_count' => 0
+			];
+			$dbw->upsert(
+				'change_tag_def',
+				$tagDef,
+				[ 'ctd_name' ],
+				[ 'ctd_user_defined' => 1 ],
+				__METHOD__
+			);
+		}
+
+		$dbw->replace(
+			'valid_tag',
 			[ 'vt_tag' ],
 			[ 'vt_tag' => $tag ],
-			__METHOD__ );
+			__METHOD__
+		);
 
 		// clear the memcache of defined tags
 		self::purgeTagCacheAll();
 	}
 
 	/**
-	 * Removes a tag from the valid_tag table. The tag may remain in use by
-	 * extensions, and may still show up as 'defined' if an extension is setting
-	 * it from the ListDefinedTags hook.
+	 * Removes a tag from the valid_tag table and/or update ctd_user_defined field in change_tag_def.
+	 * The tag may remain in use by extensions, and may still show up as 'defined'
+	 * if an extension is setting it from the ListDefinedTags hook.
 	 *
 	 * @param string $tag Tag to remove
 	 * @since 1.25
 	 */
 	public static function undefineTag( $tag ) {
+		global $wgChangeTagsSchemaMigrationStage;
+
 		$dbw = wfGetDB( DB_MASTER );
+
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->update(
+				'change_tag_def',
+				[ 'ctd_name' => $tag ],
+				[ 'ctd_user_defined' => 0 ],
+				__METHOD__
+			);
+
+			$dbw->delete(
+				'change_tag_def',
+				[ 'ctd_name' => $tag, 'ctd_count' => 0 ],
+				__METHOD__
+			);
+		}
+
 		$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
 
 		// clear the memcache of defined tags
@@ -1108,6 +1192,7 @@ class ChangeTags {
 
 	/**
 	 * Creates a tag by adding a row to the `valid_tag` table.
+	 * and/or add it to `change_tag_def` table.
 	 *
 	 * Extensions should NOT use this function; they can use the ListDefinedTags
 	 * hook instead.
@@ -1158,10 +1243,11 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
+		global $wgChangeTagsSchemaMigrationStage;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
-		// delete from valid_tag
+		// delete from valid_tag and/or set ctd_user_defined = 0
 		self::undefineTag( $tag );
 
 		// find out which revisions use this tag, so we can delete from tag_summary
@@ -1179,6 +1265,10 @@ class ChangeTags {
 
 		// delete from change_tag
 		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
+			$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 
