@@ -16,6 +16,7 @@ THIS IS NOT A RELEASE YET!
 * (T186565) Fix PHP Notice from `ob_end_flush()` in `FileRepo::streamFile()`.
 * oojs/oojs-ui updated to remove an unnecessary dependancy.
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
