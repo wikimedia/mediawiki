@@ -248,6 +248,35 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Hooks::callHook
+	 */
+	public function testCallHook_DeprecatedPassByRef() {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		Hooks::register(
+			'MediaWikiHooksTest001',
+			function ( &$zero, $one, $two ) {
+			}
+		);
+		try {
+			Hooks::run( 'MediaWikiHooksTest001', [], [ 'deprecatedPassByRef' =>
+				[ 0 => '1.31', 1 => '1.31' ] ]
+			);
+			$this->fail( 'Should have emmitted a notice' );
+		} catch ( PHPUnit_Framework_Error_Deprecated $e ) {
+			$this->assertContains(
+				'Passing argument #0 by reference',
+				$e->getMessage(),
+				'Deprecated pass by ref'
+			);
+			$this->assertNotContains(
+				'Passing argument #1 by reference',
+				$e->getMessage(),
+				'Deprecated pass by ref but the handler does not have &'
+			);
+		}
+	}
+
+	/**
 	 * @covers Hooks::runWithoutAbort
 	 * @covers Hooks::callHook
 	 */

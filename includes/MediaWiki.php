@@ -184,7 +184,11 @@ class MediaWiki {
 		}
 
 		$unused = null; // To pass it by reference
-		Hooks::run( 'BeforeInitialize', [ &$title, &$unused, &$output, &$user, $request, $this ] );
+		Hooks::run(
+			'BeforeInitialize',
+			[ &$title, &$unused, &$output, &$user, $request, $this ],
+			[ 'deprecatedPassByRef' => [ 2, 3 ] ]
+		);
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
