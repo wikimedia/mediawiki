@@ -5,7 +5,7 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "./tests/selenium/selenium.sh",
+    "selenium": "bash ./tests/selenium/selenium.sh",
     "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
