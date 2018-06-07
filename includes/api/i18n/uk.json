@@ -742,7 +742,6 @@
 	"apihelp-query+filearchive-param-dir": "Напрямок, у якому перелічити.",
 	"apihelp-query+filearchive-param-sha1": "SHA1-хеш зображення. Перевизначає $1sha1base36.",
 	"apihelp-query+filearchive-param-sha1base36": "SHA1-хеш зображення у base 36 (використано в MediaWiki).",
-	"apihelp-query+filearchive-param-prop": "Which image information to get:",
 	"apihelp-query+filearchive-paramvalue-prop-sha1": "Додає хеш SHA-1 до зображення.",
 	"apihelp-query+filearchive-paramvalue-prop-timestamp": "Додає часову мітку завантаженої версії.",
 	"apihelp-query+filearchive-paramvalue-prop-user": "Додає користувача, який завантажив версію зображення.",

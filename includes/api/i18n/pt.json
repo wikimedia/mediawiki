@@ -1233,7 +1233,7 @@
 	"apihelp-query+watchlist-param-prop": "As propriedades adicionais que devem ser obtidas:",
 	"apihelp-query+watchlist-paramvalue-prop-ids": "Adiciona identificadores de revisões e de páginas.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Adiciona o título da página.",
-	"apihelp-query+watchlist-paramvalue-prop-flags": "Adiciona etiquetas para a edição.",
+	"apihelp-query+watchlist-paramvalue-prop-flags": "Adiciona as etiquetas da edição.",
 	"apihelp-query+watchlist-paramvalue-prop-user": "Adiciona o utilizador que fez a edição.",
 	"apihelp-query+watchlist-paramvalue-prop-userid": "Adiciona o identificador do utilizador que realizou a edição.",
 	"apihelp-query+watchlist-paramvalue-prop-comment": "Adiciona o comentário da edição.",
