@@ -1708,7 +1708,6 @@ return [
 		'dependencies' => [
 			'jquery.accessKeyLabel',
 			'jquery.checkboxShiftClick',
-			'jquery.mw-jump',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
