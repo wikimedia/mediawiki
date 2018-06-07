@@ -389,23 +389,18 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public function run( PHPUnit_Framework_TestResult $result = null ) {
 		$needsResetDB = false;
 
-		if ( !self::$dbSetup || $this->needsDB() ) {
+		if ( $this->needsDB() ) {
 			// set up a DB connection for this test to use
-
-			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-			self::$reuseDB = $this->getCliArg( 'reuse-db' );
-
 			$this->db = wfGetDB( DB_MASTER );
 
-			$this->checkDbIsSupported();
-
 			if ( !self::$dbSetup ) {
+				$this->checkDbIsSupported();
+
+				self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+				self::$reuseDB = $this->getCliArg( 'reuse-db' );
+
 				$this->setupAllTestDBs();
 				$this->addCoreDBData();
-
-				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-					$this->resetDB( $this->db, $this->tablesUsed );
-				}
 			}
 
 			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
@@ -413,6 +408,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			// This would also remove the need for the HACK that is oncePerClass().
 			if ( $this->oncePerClass() ) {
 				$this->setUpSchema( $this->db );
+				$this->resetDB( $this->db, $this->tablesUsed );
 				$this->addDBDataOnce();
 			}
 
