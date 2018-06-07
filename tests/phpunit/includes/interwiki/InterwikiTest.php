@@ -115,7 +115,7 @@ class InterwikiTest extends MediaWikiTestCase {
 		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
 		$this->assertSame( false, $interwiki->isTranscludable(), 'isTranscludable' );
 
-		Interwiki::invalidateCache( 'de' );
+		$interwikiLookup->invalidateCache( 'de' );
 		$this->assertNotSame( $interwiki, $interwikiLookup->fetch( 'de' ), 'invalidate cache' );
 	}
 

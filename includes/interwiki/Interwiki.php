@@ -66,6 +66,7 @@ class Interwiki {
 	 * @return bool Whether it exists
 	 */
 	public static function isValidInterwiki( $prefix ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getInterwikiLookup()->isValidInterwiki( $prefix );
 	}
 
@@ -78,6 +79,7 @@ class Interwiki {
 	 * @return Interwiki|null|bool
 	 */
 	public static function fetch( $prefix ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getInterwikiLookup()->fetch( $prefix );
 	}
 
@@ -88,6 +90,7 @@ class Interwiki {
 	 * @since 1.26
 	 */
 	public static function invalidateCache( $prefix ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		MediaWikiServices::getInstance()->getInterwikiLookup()->invalidateCache( $prefix );
 	}
 
@@ -101,6 +104,7 @@ class Interwiki {
 	 * @since 1.19
 	 */
 	public static function getAllPrefixes( $local = null ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 	}
 
