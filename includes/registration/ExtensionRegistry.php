@@ -98,7 +98,8 @@ class ExtensionRegistry {
 			} else {
 				throw new Exception( "$path does not exist!" );
 			}
-			if ( !$mtime ) {
+
+			if ( $mtime === false ) {
 				$err = error_get_last();
 				throw new Exception( "Couldn't stat $path: {$err['message']}" );
 			}
