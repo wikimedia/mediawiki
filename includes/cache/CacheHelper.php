@@ -294,7 +294,7 @@ class CacheHelper implements ICacheHelper {
 				$args = [ $args ];
 			}
 
-			$value = call_user_func_array( $computeFunction, $args );
+			$value = $computeFunction( ...$args );
 
 			if ( $this->cacheEnabled ) {
 				if ( is_null( $key ) ) {
@@ -350,7 +350,7 @@ class CacheHelper implements ICacheHelper {
 			throw new MWException( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
 		}
 
-		return call_user_func_array( 'wfMemcKey', $this->cacheKey );
+		return wfMemcKey( ...$this->cacheKey );
 	}
 
 	/**

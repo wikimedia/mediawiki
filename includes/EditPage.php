@@ -3541,7 +3541,7 @@ ERROR;
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		Hooks::run( 'EditPageCopyrightWarning', [ $title, &$copywarnMsg ] );
 
-		$msg = call_user_func_array( 'wfMessage', $copywarnMsg )->title( $title );
+		$msg = wfMessage( ...$copywarnMsg )->title( $title );
 		if ( $langcode ) {
 			$msg->inLanguage( $langcode );
 		}

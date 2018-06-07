@@ -132,9 +132,8 @@ class ForeignDBRepo extends LocalRepo {
 	function getSharedCacheKey( /*...*/ ) {
 		if ( $this->hasSharedCache() ) {
 			$args = func_get_args();
-			array_unshift( $args, $this->dbName, $this->tablePrefix );
 
-			return call_user_func_array( 'wfForeignMemcKey', $args );
+			return wfForeignMemcKey( $this->dbName, $this->tablePrefix, ...$args );
 		} else {
 			return false;
 		}

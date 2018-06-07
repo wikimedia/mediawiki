@@ -199,7 +199,7 @@ class MonologSpi implements Spi {
 
 		if ( isset( $spec['calls'] ) ) {
 			foreach ( $spec['calls'] as $method => $margs ) {
-				call_user_func_array( [ $obj, $method ], $margs );
+				$obj->$method( ...$margs );
 			}
 		}
 

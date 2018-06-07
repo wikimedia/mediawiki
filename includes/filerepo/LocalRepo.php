@@ -507,7 +507,7 @@ class LocalRepo extends FileRepo {
 	function getSharedCacheKey( /*...*/ ) {
 		$args = func_get_args();
 
-		return call_user_func_array( 'wfMemcKey', $args );
+		return wfMemcKey( ...$args );
 	}
 
 	/**
@@ -590,7 +590,7 @@ class LocalRepo extends FileRepo {
 			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths\n" );
 			return Status::newGood();
 		} else {
-			return call_user_func_array( 'parent::' . $function, $args );
+			return parent::$function( ...$args );
 		}
 	}
 }

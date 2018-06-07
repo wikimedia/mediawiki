@@ -39,7 +39,7 @@ class AutoCommitUpdate implements DeferrableUpdate, DeferrableCallback {
 		try {
 			/** @var Exception $e */
 			$e = null;
-			call_user_func_array( $this->callback, [ $this->dbw, $this->fname ] );
+			( $this->callback )( $this->dbw, $this->fname );
 		} catch ( Exception $e ) {
 		}
 		if ( $autoTrx ) {

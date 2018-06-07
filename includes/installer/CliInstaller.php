@@ -197,7 +197,7 @@ class CliInstaller extends Installer {
 
 		if ( count( $warnings ) !== 0 ) {
 			foreach ( $warnings as $w ) {
-				call_user_func_array( [ $this, 'showMessage' ], $w );
+				$this->showMessage( ...$w );
 			}
 		}
 
