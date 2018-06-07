@@ -49,9 +49,6 @@ class HashRing implements Serializable {
 	/** @var array[] Non-empty list of (float, node name, location name) */
 	protected $liveRing;
 
-	/** @var int|null Number of nodes scanned to place an item last time */
-	private $lastNodeScanSize;
-
 	/** @var float Number of positions on the ring */
 	const RING_SIZE = 4294967296.0; // 2^32
 	/** @var integer Overall number of node groups per server */
@@ -133,16 +130,7 @@ class HashRing implements Serializable {
 
 		// Locate this item's position on the hash ring
 		$position = $this->getItemPosition( $item );
-
-		// Guess a nearby node based on the node list being ordered and the probabilistic
-		// expected size of nodes being equal, varying less when with higher node counts
-		$guessIndex = $this->guessNodeIndexForPosition( $position, $ring );
-
-		// Find the index of the node within which this item resides
-		$itemNodeIndex = $this->findNodeIndexForPosition( $position, $guessIndex, $ring );
-		if ( $itemNodeIndex === null ) {
-			throw new RuntimeException( __METHOD__ . ": no place for '$item' ($position)" );
-		}
+		$itemNodeIndex = $this->findNodeIndexForPosition( $position, $ring );
 
 		$locations = [];
 		$currentIndex = $itemNodeIndex;
@@ -159,6 +147,42 @@ class HashRing implements Serializable {
 		}
 
 		return $locations;
+	}
+
+	/**
+	 * @param float $position
+	 * @param array[] $ring Either the base or live ring
+	 * @return int|null
+	 */
+	private function findNodeIndexForPosition( $position, $ring ) {
+		$count = count( $ring );
+		if ( $count === 0 ) {
+			return null;
+		}
+		$lowPos = 0;
+		$highPos = $count;
+		while ( true ) {
+			$midPos = intval( ( $lowPos + $highPos ) / 2 );
+			if ( $midPos === $count ) {
+				return 0;
+			}
+			$midVal = $ring[$midPos][self::KEY_POS];
+			$midMinusOneVal = $midPos === 0 ? 0 : $ring[$midPos - 1][self::KEY_POS];
+
+			if ( $position <= $midVal && $position > $midMinusOneVal ) {
+				return $midPos;
+			}
+
+			if ( $midVal < $position ) {
+				$lowPos = $midPos + 1;
+			} else {
+				$highPos = $midPos - 1;
+			}
+
+			if ( $lowPos > $highPos ) {
+				return 0;
+			}
+		}
 	}
 
 	/**
@@ -232,70 +256,6 @@ class HashRing implements Serializable {
 				}
 			)
 		);
-	}
-
-	/**
-	 * @param float $position
-	 * @param array[] $ring Either the base or live ring
-	 * @return int
-	 */
-	private function guessNodeIndexForPosition( $position, $ring ) {
-		$arcRatio = $position / self::RING_SIZE; // range is [0.0, 1.0)
-		$maxIndex = count( $ring ) - 1;
-		$guessIndex = intval( $maxIndex * $arcRatio );
-
-		$displacement = $ring[$guessIndex][self::KEY_POS] - $position;
-		$aveSize = self::RING_SIZE / count( $ring );
-		$shift = intval( $displacement / $aveSize );
-
-		$guessIndex -= $shift;
-		if ( $guessIndex < 0 ) {
-			$guessIndex = max( $maxIndex + $guessIndex, 0 ); // roll-over
-		} elseif ( $guessIndex > $maxIndex ) {
-			$guessIndex = min( $guessIndex - $maxIndex, 0 ); // roll-over
-		}
-
-		return $guessIndex;
-	}
-
-	/**
-	 * @param float $position
-	 * @param int $guessIndex Node index to start scanning
-	 * @param array[] $ring Either the base or live ring
-	 * @return int|null
-	 */
-	private function findNodeIndexForPosition( $position, $guessIndex, $ring ) {
-		$mainNodeIndex = null; // first matching node index
-
-		$this->lastNodeScanSize = 0;
-
-		if ( $ring[$guessIndex][self::KEY_POS] >= $position ) {
-			// Walk the nodes counter-clockwise until reaching a node at/before $position
-			do {
-				$priorIndex = $guessIndex;
-				$guessIndex = $this->getPrevClockwiseNodeIndex( $guessIndex, $ring );
-				$nodePosition = $ring[$guessIndex][self::KEY_POS];
-				if ( $nodePosition < $position || $guessIndex > $priorIndex ) {
-					$mainNodeIndex = $priorIndex; // includes roll-over case
-				} elseif ( $nodePosition === $position ) {
-					$mainNodeIndex = $guessIndex;
-				}
-				++$this->lastNodeScanSize;
-			} while ( $mainNodeIndex === null );
-		} else {
-			// Walk the nodes clockwise until reaching a node at/after $position
-			do {
-				$priorIndex = $guessIndex;
-				$guessIndex = $this->getNextClockwiseNodeIndex( $guessIndex, $ring );
-				$nodePosition = $ring[$guessIndex][self::KEY_POS];
-				if ( $nodePosition >= $position || $guessIndex < $priorIndex ) {
-					$mainNodeIndex = $guessIndex; // includes roll-over case
-				}
-				++$this->lastNodeScanSize;
-			} while ( $mainNodeIndex === null );
-		}
-
-		return $mainNodeIndex;
 	}
 
 	/**
@@ -400,21 +360,6 @@ class HashRing implements Serializable {
 	}
 
 	/**
-	 * @param int $i Valid index for a node in the ring
-	 * @param array[] $ring Either the base or live ring
-	 * @return int Valid index for a node in the ring
-	 */
-	private function getPrevClockwiseNodeIndex( $i, $ring ) {
-		if ( !isset( $ring[$i] ) ) {
-			throw new UnexpectedValueException( __METHOD__ . ": reference index is invalid." );
-		}
-
-		$prev = $i - 1;
-
-		return ( $prev >= 0 ) ? $prev : count( $ring ) - 1;
-	}
-
-	/**
 	 * Get the "live" hash ring (which does not include ejected locations)
 	 *
 	 * @return array[]
@@ -464,13 +409,6 @@ class HashRing implements Serializable {
 	 */
 	protected function getCurrentTime() {
 		return time();
-	}
-
-	/**
-	 * @return int|null
-	 */
-	public function getLastNodeScanSize() {
-		return $this->lastNodeScanSize;
 	}
 
 	public function serialize() {
