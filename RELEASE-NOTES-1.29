@@ -19,6 +19,7 @@ THIS IS NOT A RELEASE YET!
 * (T192584) Stop incorrectly passing USE INDEX to RecentChange::newFromConds().
 * Add default edit rate limit of 90 edits/minute for all users.
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T196672) The mtime of extension.json files is now able to be zero
 
 == MediaWiki 1.29.2 ==
 
