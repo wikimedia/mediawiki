@@ -46,8 +46,8 @@ $response->header( 'Cache-control: max-age=600' );
 print '<?xml version="1.0"?>';
 print Xml::openElement( 'OpenSearchDescription',
 	[
-		'xmlns' => 'http://www.opensearch.org/Specifications/OpenSearch/1.1',
-		'xmlns:moz' => 'https://www.mozilla.org/2006/browser/search/' ] );
+		'xmlns' => 'http://a9.com/-/spec/opensearch/1.1/',
+		'xmlns:moz' => 'http://www.mozilla.org/2006/browser/search/' ] );
 
 /* The spec says the ShortName must be no longer than 16 characters,
  * but 16 is *realllly* short. In practice, browsers don't appear to care
