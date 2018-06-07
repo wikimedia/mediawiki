@@ -107,7 +107,7 @@ class ExtensionRegistry {
 				throw new Exception( "$path does not exist!" );
 			}
 			// @codeCoverageIgnoreStart
-			if ( !$mtime ) {
+			if ( $mtime === false ) {
 				$err = error_get_last();
 				throw new Exception( "Couldn't stat $path: {$err['message']}" );
 				// @codeCoverageIgnoreEnd
