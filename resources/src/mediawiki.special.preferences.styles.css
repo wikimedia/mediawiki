@@ -25,7 +25,6 @@
 
 /*
  * Hide, but keep accessible for screen-readers.
- * Like .mw-jump, #jump-to-nav from shared.css
  */
 .client-js .mw-navigation-hint {
 	overflow: hidden;
