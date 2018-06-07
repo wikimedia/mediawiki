@@ -14,8 +14,6 @@
 	var mw, StringSet, log,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
-		trackCallbacks = $.Callbacks( 'memory' ),
-		trackHandlers = [],
 		trackQueue = [];
 
 	/**
@@ -360,6 +358,13 @@
 		}() ),
 
 		/**
+		 * List of all analytic events emitted so far.
+		 *
+		 * @property {mw.trackQueue} {Array}
+		 */
+		trackQueue: trackQueue,
+
+		/**
 		 * Track an analytic event.
 		 *
 		 * This method provides a generic means for MediaWiki JavaScript code to capture state
@@ -377,54 +382,19 @@
 		 */
 		track: function ( topic, data ) {
 			trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
-			trackCallbacks.fire( trackQueue );
+			// Fire events in the base module after jQuery loads
 		},
 
 		/**
-		 * Register a handler for subset of analytic events, specified by topic.
+		 * Track an early error event via mw.track and send it to the window console.
 		 *
-		 * Handlers will be called once for each tracked event, including any events that fired before the
-		 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
-		 * the exact time at which the event fired, a string 'topic' property naming the event, and a
-		 * 'data' property which is an object of event-specific data. The event topic and event data are
-		 * also passed to the callback as the first and second arguments, respectively.
-		 *
-		 * @param {string} topic Handle events whose name starts with this string prefix
-		 * @param {Function} callback Handler to call for each matching tracked event
-		 * @param {string} callback.topic
-		 * @param {Object} [callback.data]
+		 * @private
+		 * @param {string} topic Topic name
+		 * @param {Object} [data] Data describing the event, encoded as an object; see mw.logError
 		 */
-		trackSubscribe: function ( topic, callback ) {
-			var seen = 0;
-			function handler( trackQueue ) {
-				var event;
-				for ( ; seen < trackQueue.length; seen++ ) {
-					event = trackQueue[ seen ];
-					if ( event.topic.indexOf( topic ) === 0 ) {
-						callback.call( event, event.topic, event.data );
-					}
-				}
-			}
-
-			trackHandlers.push( [ handler, callback ] );
-
-			trackCallbacks.add( handler );
-		},
-
-		/**
-		 * Stop handling events for a particular handler
-		 *
-		 * @param {Function} callback
-		 */
-		trackUnsubscribe: function ( callback ) {
-			trackHandlers = trackHandlers.filter( function ( fns ) {
-				if ( fns[ 1 ] === callback ) {
-					trackCallbacks.remove( fns[ 0 ] );
-					// Ensure the tuple is removed to avoid holding on to closures
-					return false;
-				}
-				return true;
-			} );
+		trackError: function ( topic, data ) {
+			mw.track( topic, data );
+			logError( topic, data );
 		},
 
 		// Expose Map constructor
@@ -822,7 +792,11 @@
 						} catch ( e ) {
 							// A user-defined callback raised an exception.
 							// Swallow it to protect our state machine!
-							mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'load-callback' } );
+							mw.trackError( 'resourceloader.exception', {
+								exception: e,
+								module: module,
+								source: 'load-callback'
+							} );
 						}
 					}
 				}
@@ -933,7 +907,7 @@
 						// This module is unknown or has unknown dependencies.
 						// Undo any incomplete resolutions made and keep going.
 						resolved = saved;
-						mw.track( 'resourceloader.exception', {
+						mw.trackError( 'resourceloader.exception', {
 							exception: err,
 							source: 'resolve'
 						} );
@@ -1101,7 +1075,10 @@
 						// Use mw.track instead of mw.log because these errors are common in production mode
 						// (e.g. undefined variable), and mw.log is only enabled in debug mode.
 						registry[ module ].state = 'error';
-						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
+						mw.trackError( 'resourceloader.exception', {
+							exception: e, module:
+							module, source: 'module-execute'
+						} );
 						handlePending( module );
 					}
 				};
@@ -1605,7 +1582,10 @@
 							// risks and clear everything in this cache.
 							mw.loader.store.clear();
 
-							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
+							mw.trackError( 'resourceloader.exception', {
+								exception: err,
+								source: 'store-eval'
+							} );
 							// Re-add the failed ones that are still pending back to the batch
 							failed = sourceModules.filter( function ( module ) {
 								return registry[ module ].state === 'loading';
@@ -2085,7 +2065,10 @@
 								return;
 							}
 						} catch ( e ) {
-							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-init' } );
+							mw.trackError( 'resourceloader.exception', {
+								exception: e,
+								source: 'store-localstorage-init'
+							} );
 						}
 
 						if ( raw === undefined ) {
@@ -2166,10 +2149,13 @@
 							// This regex should never match under sane conditions.
 							if ( /^\s*\(/.test( args[ 1 ] ) ) {
 								args[ 1 ] = 'function' + args[ 1 ];
-								mw.track( 'resourceloader.assert', { source: 'bug-T59567' } );
+								mw.trackError( 'resourceloader.assert', { source: 'bug-T59567' } );
 							}
 						} catch ( e ) {
-							mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-json' } );
+							mw.trackError( 'resourceloader.exception', {
+								exception: e,
+								source: 'store-localstorage-json'
+							} );
 							return false;
 						}
 
@@ -2252,7 +2238,10 @@
 								data = JSON.stringify( mw.loader.store );
 								localStorage.setItem( key, data );
 							} catch ( e ) {
-								mw.track( 'resourceloader.exception', { exception: e, source: 'store-localstorage-update' } );
+								mw.trackError( 'resourceloader.exception', {
+									exception: e,
+									source: 'store-localstorage-update'
+								} );
 							}
 
 							hasPendingWrite = false;
@@ -2555,10 +2544,6 @@
 		}
 		/* eslint-enable no-console */
 	}
-
-	// Subscribe to error streams
-	mw.trackSubscribe( 'resourceloader.exception', logError );
-	mw.trackSubscribe( 'resourceloader.assert', logError );
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
