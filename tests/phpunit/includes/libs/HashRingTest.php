@@ -37,8 +37,6 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 			'Normalized location weights'
 		);
 
-		$this->assertEquals( null, $ring->getLastNodeScanSize() );
-
 		$locations = [];
 		for ( $i = 0; $i < 25; $i++ ) {
 			$locations[ "hello$i"] = $ring->getLocation( "hello$i" );
@@ -132,26 +130,6 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	public function testBigHashRingRatios() {
-		$locations = [];
-		for ( $i = 0; $i < 128; ++$i ) {
-			$locations["server$i"] = 100;
-		}
-
-		$ring = new HashRing( $locations, 'md5' );
-
-		$scans = [];
-		for ( $i = 0; $i < 1000; ++$i ) {
-			$ring->getLocation( "item$i" );
-			$scans[] = $ring->getLastNodeScanSize();
-		}
-
-		$this->assertEquals( 1, min( $scans ) );
-		$this->assertEquals( 24, max( $scans ) );
-		// Note: log2( 140 * 128) = 14.129 (e.g. divide & conquer)
-		$this->assertEquals( 4.4, round( array_sum( $scans ) / count( $scans ), 1 ) );
-	}
-
 	public function testHashRingEjection() {
 		$map = [ 's1' => 5, 's2' => 5, 's3' => 10, 's4' => 10, 's5' => 5, 's6' => 5 ];
 		$ring = new HashRing( $map, 'md5' );
@@ -209,8 +187,7 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 				$location = $wrapper->getLocation( $key );
 
 				$itemPos = $wrapper->getItemPosition( $key );
-				$guess = $wrapper->guessNodeIndexForPosition( $itemPos, $baseRing );
-				$nodeIndex = $wrapper->findNodeIndexForPosition( $itemPos, $guess, $baseRing );
+				$nodeIndex = $wrapper->findNodeIndexForPosition( $itemPos, $baseRing );
 				$nodePos = $baseRing[$nodeIndex][HashRing::KEY_POS];
 
 				$lines[] = sprintf( "%u %u %s\n", $itemPos, $nodePos, $location );
