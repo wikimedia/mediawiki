@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.2
+ * OOUI v0.27.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-06T16:16:14Z
+ * Date: 2018-06-07T21:36:35Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -569,8 +569,10 @@
   padding-top: 0.57142857em;
   padding-left: 0.57142857em;
   padding-bottom: 0.5em;
-  line-height: 1.07142857em;
   white-space: nowrap;
+}
+.oo-ui-selectFileWidget.oo-ui-labelElement .oo-ui-selectFileWidget-label {
+  line-height: 1.07142857em;
 }
 .oo-ui-selectFileWidget-fileName {
   display: block;
@@ -1016,9 +1018,6 @@
   border-color: #d33;
   box-shadow: inset 0 0 0 1px #d33;
 }
-.oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
-  margin-top: -1px;
-}
 .oo-ui-tagItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
   display: block;
   position: absolute;
@@ -1236,9 +1235,6 @@
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c;
   outline: 0;
-}
-.oo-ui-capsuleItemWidget.oo-ui-widget-enabled > .oo-ui-labelElement-label {
-  margin-top: -1px;
 }
 .oo-ui-capsuleItemWidget.oo-ui-widget-enabled > .oo-ui-buttonElement {
   display: block;

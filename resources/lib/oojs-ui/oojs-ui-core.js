@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.2
+ * OOUI v0.27.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-06T16:16:10Z
+ * Date: 2018-06-07T21:36:30Z
  */
 ( function ( OO ) {
 
@@ -5822,8 +5822,7 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 
 	// Initialization
 	this.$element
-		.addClass( 'oo-ui-popupButtonWidget' )
-		.attr( 'aria-haspopup', 'true' );
+		.addClass( 'oo-ui-popupButtonWidget' );
 	this.popup.$element
 		.addClass( 'oo-ui-popupButtonWidget-popup' )
 		.toggleClass( 'oo-ui-popupButtonWidget-framed-popup', this.isFramed() )

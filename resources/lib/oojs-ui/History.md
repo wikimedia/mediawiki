@@ -1,4 +1,14 @@
 # OOUI Release History
+## v0.27.3 / 2018-06-07 (special release)
+### Styles
+* ActionFieldLayout: Improve `z-index` overrides on focus/hover (Bartosz Dziewoński)
+* WikimediaUI theme: Remove label baseline dissonance (Volker E.)
+* WikimediaUI theme: Reset SelectFileWidget's LabelElement-label (Volker E.)
+
+### Code
+* PopupButtonWidget: Remove `aria-haspopup` attribute (Volker E.)
+
+
 ## v0.27.2 / 2018-06-05
 ### Features
 * Allow passing config objects to OO.ui.infuse (Ed Sanders)
