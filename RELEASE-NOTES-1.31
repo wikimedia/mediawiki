@@ -10,6 +10,7 @@ production.
 * (T196092) Hide MySQL binary/utf-8 charset option in the installer.
 * (T196185) Don't allow setting $wgDBmysql5 in the installer.
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
+* (T182366) UploadBase::checkXMLEncodingMissmatch() now works on PHP 7.1+
 
 === Changes since MediaWiki 1.31.0-rc.0 ===
 * (T33223) Drop archive.ar_text and ar_flags.
@@ -166,6 +167,7 @@ production.
 * (T2087, T10897, T87753, T174639) Whitespace created by category and language
   links is now stripped rather than leaving blank lines in odd places.
 * (T3780) Uploads with UTF-8 names now work on PHP7.1+ on Windows servers.
+* (T182366) UploadBase::checkXMLEncodingMissmatch() now works on PHP 7.1+
 
 === Action API changes in 1.31 ===
 * (T185058) The 'name' value to tgprop for action=query&list=tags has been
