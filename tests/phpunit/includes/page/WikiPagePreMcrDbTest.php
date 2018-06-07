@@ -1,11 +1,20 @@
 <?php
+use MediaWiki\Tests\Storage\PreMcrSchemaOverride;
 
 /**
+ * Tests WikiPage against the pre-MCR DB schema.
+ *
+ * @covers WikiPage
+ *
+ * @group WikiPage
+ * @group Storage
  * @group ContentHandler
  * @group Database
  * @group medium
  */
-class WikiPageContentHandlerDbTest extends WikiPageDbTestBase {
+class WikiPagePreMcrDbTest extends WikiPageDbTestBase {
+
+	use PreMcrSchemaOverride;
 
 	protected function getContentHandlerUseDB() {
 		return true;
