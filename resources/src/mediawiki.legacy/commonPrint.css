@@ -16,7 +16,6 @@
 .catlinks,
 .magnify,
 .mw-cite-backlink,
-.mw-jump,
 .mw-editsection,
 .mw-editsection-like,
 .mw-hidden-catlinks,
@@ -27,7 +26,6 @@
 /* Various content ids, in alphabetical order */
 #column-one,
 #footer-places,
-#jump-to-nav,
 #mw-navigation,
 #siteNotice,
 /* Deprecated, changed in core */
