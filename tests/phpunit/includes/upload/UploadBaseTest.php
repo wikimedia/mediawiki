@@ -562,7 +562,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 	public function testCheckXMLEncodingMissmatch( $fileContents, $evil ) {
 		$filename = $this->getNewTempFile();
 		file_put_contents( $filename, $fileContents );
-		$this->assertSame( UploadBase::checkXMLEncodingMissmatch( $filename ), $evil );
+		$this->assertSame( $evil, UploadBase::checkXMLEncodingMissmatch( $filename ) );
 	}
 
 	public function provideCheckXMLEncodingMissmatch() {
