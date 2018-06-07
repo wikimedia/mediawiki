@@ -18,7 +18,10 @@
 ( function () {
 	'use strict';
 
-	var slice = Array.prototype.slice;
+	var slice = Array.prototype.slice,
+		mwLoaderTrack = mw.track,
+		trackCallbacks = $.Callbacks( 'memory' ),
+		trackHandlers = [];
 
 	/**
 	 * Object constructor for messages.
@@ -283,4 +286,79 @@
 	mw.msg = function () {
 		return mw.message.apply( mw.message, arguments ).toString();
 	};
+
+	/**
+	 * Track an analytic event.
+	 *
+	 * This method provides a generic means for MediaWiki JavaScript code to capture state
+	 * information for analysis. Each logged event specifies a string topic name that describes
+	 * the kind of event that it is. Topic names consist of dot-separated path components,
+	 * arranged from most general to most specific. Each path component should have a clear and
+	 * well-defined purpose.
+	 *
+	 * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
+	 * events that match their subcription, including those that fired before the handler was
+	 * bound.
+	 *
+	 * @param {string} topic Topic name
+	 * @param {Object} [data] Data describing the event, encoded as an object
+	 */
+	mw.track = function ( topic, data ) {
+		mwLoaderTrack( topic, data );
+		trackCallbacks.fire( mw.trackQueue );
+	};
+
+	/**
+	 * Register a handler for subset of analytic events, specified by topic.
+	 *
+	 * Handlers will be called once for each tracked event, including any events that fired before the
+	 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
+	 * the exact time at which the event fired, a string 'topic' property naming the event, and a
+	 * 'data' property which is an object of event-specific data. The event topic and event data are
+	 * also passed to the callback as the first and second arguments, respectively.
+	 *
+	 * @param {string} topic Handle events whose name starts with this string prefix
+	 * @param {Function} callback Handler to call for each matching tracked event
+	 * @param {string} callback.topic
+	 * @param {Object} [callback.data]
+	 */
+	mw.trackSubscribe = function ( topic, callback ) {
+		var seen = 0;
+		function handler( trackQueue ) {
+			var event;
+			for ( ; seen < trackQueue.length; seen++ ) {
+				event = trackQueue[ seen ];
+				if ( event.topic.indexOf( topic ) === 0 ) {
+					callback.call( event, event.topic, event.data );
+				}
+			}
+		}
+
+		trackHandlers.push( [ handler, callback ] );
+
+		trackCallbacks.add( handler );
+	};
+
+	/**
+	 * Stop handling events for a particular handler
+	 *
+	 * @param {Function} callback
+	 */
+	mw.trackUnsubscribe = function ( callback ) {
+		trackHandlers = trackHandlers.filter( function ( fns ) {
+			if ( fns[ 1 ] === callback ) {
+				trackCallbacks.remove( fns[ 0 ] );
+				// Ensure the tuple is removed to avoid holding on to closures
+				return false;
+			}
+			return true;
+		} );
+	};
+
+	// Subscribe to error streams
+	mw.trackSubscribe( 'resourceloader.exception', mw.logError );
+	mw.trackSubscribe( 'resourceloader.assert', mw.logError );
+
+	// Fire events from before track() triggred fire()
+	trackCallbacks.fire( mw.trackQueue );
 }() );

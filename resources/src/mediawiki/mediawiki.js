@@ -14,8 +14,6 @@
 	var mw, StringSet, log,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
-		trackCallbacks = $.Callbacks( 'memory' ),
-		trackHandlers = [],
 		trackQueue = [];
 
 	/**
@@ -360,6 +358,13 @@
 		}() ),
 
 		/**
+		 * List of all analytic events emitted so far.
+		 *
+		 * @property {mw.trackQueue} {Array}
+		 */
+		trackQueue: trackQueue,
+
+		/**
 		 * Track an analytic event.
 		 *
 		 * This method provides a generic means for MediaWiki JavaScript code to capture state
@@ -377,54 +382,7 @@
 		 */
 		track: function ( topic, data ) {
 			trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
-			trackCallbacks.fire( trackQueue );
-		},
-
-		/**
-		 * Register a handler for subset of analytic events, specified by topic.
-		 *
-		 * Handlers will be called once for each tracked event, including any events that fired before the
-		 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
-		 * the exact time at which the event fired, a string 'topic' property naming the event, and a
-		 * 'data' property which is an object of event-specific data. The event topic and event data are
-		 * also passed to the callback as the first and second arguments, respectively.
-		 *
-		 * @param {string} topic Handle events whose name starts with this string prefix
-		 * @param {Function} callback Handler to call for each matching tracked event
-		 * @param {string} callback.topic
-		 * @param {Object} [callback.data]
-		 */
-		trackSubscribe: function ( topic, callback ) {
-			var seen = 0;
-			function handler( trackQueue ) {
-				var event;
-				for ( ; seen < trackQueue.length; seen++ ) {
-					event = trackQueue[ seen ];
-					if ( event.topic.indexOf( topic ) === 0 ) {
-						callback.call( event, event.topic, event.data );
-					}
-				}
-			}
-
-			trackHandlers.push( [ handler, callback ] );
-
-			trackCallbacks.add( handler );
-		},
-
-		/**
-		 * Stop handling events for a particular handler
-		 *
-		 * @param {Function} callback
-		 */
-		trackUnsubscribe: function ( callback ) {
-			trackHandlers = trackHandlers.filter( function ( fns ) {
-				if ( fns[ 1 ] === callback ) {
-					trackCallbacks.remove( fns[ 0 ] );
-					// Ensure the tuple is removed to avoid holding on to closures
-					return false;
-				}
-				return true;
-			} );
+			// Fire events in the base module after jQuery loads
 		},
 
 		// Expose Map constructor
@@ -2555,10 +2513,6 @@
 		}
 		/* eslint-enable no-console */
 	}
-
-	// Subscribe to error streams
-	mw.trackSubscribe( 'resourceloader.exception', logError );
-	mw.trackSubscribe( 'resourceloader.assert', logError );
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
