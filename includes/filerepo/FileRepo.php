@@ -1735,7 +1735,7 @@ class FileRepo {
 	 * @return Status
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
-		$status = call_user_func_array( [ Status::class, 'newFatal' ], func_get_args() );
+		$status = Status::newFatal( ...func_get_args() );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;
@@ -1840,7 +1840,7 @@ class FileRepo {
 		$args = func_get_args();
 		array_unshift( $args, 'filerepo', $this->getName() );
 
-		return call_user_func_array( 'wfMemcKey', $args );
+		return wfMemcKey( ...$args );
 	}
 
 	/**

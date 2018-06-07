@@ -187,22 +187,19 @@ class CategoryMembershipChange {
 		}
 
 		/** @var RecentChange $rc */
-		$rc = call_user_func_array(
-			$this->newForCategorizationCallback,
-			[
-				$timestamp,
-				$categoryTitle,
-				$user,
-				$comment,
-				$pageTitle,
-				$lastRevId,
-				$newRevId,
-				$lastTimestamp,
-				$bot,
-				$ip,
-				$deleted,
-				$added
-			]
+		$rc = ( $this->newForCategorizationCallback )(
+			$timestamp,
+			$categoryTitle,
+			$user,
+			$comment,
+			$pageTitle,
+			$lastRevId,
+			$newRevId,
+			$lastTimestamp,
+			$bot,
+			$ip,
+			$deleted,
+			$added
 		);
 		$rc->save();
 	}
