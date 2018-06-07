@@ -109,16 +109,25 @@ class Hooks {
 	 * @param string $event Event name
 	 * @param array|callable $hook
 	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion [optional]
+	 * @param array|string|null $options [optional] (see self::run() for details)
 	 * @param string &$fname [optional] Readable name of hook [returned]
 	 * @return null|string|bool
 	 */
-	private static function callHook( $event, $hook, array $args, $deprecatedVersion = null,
+	private static function callHook( $event, $hook, array $args, $options = [],
 		&$fname = null
 	) {
+		global $wgDevelopmentWarnings;
+
 		// Turn non-array values into an array. (Can't use casting because of objects.)
 		if ( !is_array( $hook ) ) {
 			$hook = [ $hook ];
+		}
+
+		// Handle back-compat of $options being a string/null
+		if ( $options === null ) {
+			$options = [];
+		} elseif ( is_string( $options ) ) {
+			$options = [ 'deprecated' => $options ];
 		}
 
 		if ( !array_filter( $hook ) ) {
@@ -133,6 +142,9 @@ class Hooks {
 			$hook = array_merge( $hook[0], array_slice( $hook, 1 ) );
 		}
 
+		// Whether we need to create a ReflectionMethod
+		$checkArguments = $wgDevelopmentWarnings && isset( $options['deprecatedPassByRef'] );
+
 		/**
 		 * $hook can be: a function, an object, an array of $function and
 		 * $data, an array of just a function, an array of object and
@@ -141,6 +153,9 @@ class Hooks {
 		if ( $hook[0] instanceof Closure ) {
 			$fname = "hook-$event-closure";
 			$callback = array_shift( $hook );
+			if ( $checkArguments ) {
+				$reflect = new ReflectionFunction( $callback );
+			}
 		} elseif ( is_object( $hook[0] ) ) {
 			$object = array_shift( $hook );
 			$method = array_shift( $hook );
@@ -152,8 +167,18 @@ class Hooks {
 
 			$fname = get_class( $object ) . '::' . $method;
 			$callback = [ $object, $method ];
+			if ( $checkArguments ) {
+				$reflect = new ReflectionMethod( $callback[0], $callback[1] );
+			}
 		} elseif ( is_string( $hook[0] ) ) {
 			$fname = $callback = array_shift( $hook );
+			if ( $checkArguments ) {
+				if ( strpos( $callback, '::' ) ) {
+					$reflect = new ReflectionMethod( $callback );
+				} else {
+					$reflect = new ReflectionFunction( $callback );
+				}
+			}
 		} else {
 			throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
 		}
@@ -165,8 +190,26 @@ class Hooks {
 		}
 
 		// mark hook as deprecated, if deprecation version is specified
-		if ( $deprecatedVersion !== null ) {
-			wfDeprecated( "$event hook (used in $fname)", $deprecatedVersion );
+		if ( isset( $options['deprecated'] ) ) {
+			wfDeprecated( "$event hook (used in $fname)", $options['deprecated'] );
+		}
+
+		if ( $checkArguments ) {
+			$params = $reflect->getParameters();
+			foreach ( $options['deprecatedPassByRef'] as $index => $version ) {
+				$param = $params[$index + count( $hook )] ?? null;
+				if ( !$param ) {
+					continue;
+				}
+
+				if ( $param->isPassedByReference() ) {
+					wfDeprecated(
+						"$event hook passing argument #$index by reference "
+						. "(used in $fname as &\${$param->getName()})",
+						$version
+					);
+				}
+			}
 		}
 
 		// Call the hook.
@@ -187,7 +230,13 @@ class Hooks {
 	 *
 	 * @param string $event Event name
 	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
+	 * @param array|string|null $options
+	 *        'deprecated': Version the hook was deprecated in
+	 *        'deprecatedPassByRef': Keys are positions of arguments that shouldn't be
+	 *                               passed by reference, values are MediaWiki versions
+	 *                               that those were deprecated in
+	 *        For back-compat, this can be a string of the version the hook was
+	 *        deprecated in ('deprecated').
 	 * @return bool True if no handler aborted the hook
 	 *
 	 * @throws Exception
@@ -197,9 +246,9 @@ class Hooks {
 	 *   processing to continue. Not returning a value (or explicitly
 	 *   returning null) is equivalent to returning true.
 	 */
-	public static function run( $event, array $args = [], $deprecatedVersion = null ) {
+	public static function run( $event, array $args = [], $options = [] ) {
 		foreach ( self::getHandlers( $event ) as $hook ) {
-			$retval = self::callHook( $event, $hook, $args, $deprecatedVersion );
+			$retval = self::callHook( $event, $hook, $args, $options );
 			if ( $retval === null ) {
 				continue;
 			}
@@ -222,16 +271,22 @@ class Hooks {
 	 *
 	 * @param string $event Event name
 	 * @param array $args Array of parameters passed to hook functions
-	 * @param string|null $deprecatedVersion [optional] Mark hook as deprecated with version number
+	 * @param array|string|null $options
+	 *        'deprecated': Version the hook was deprecated in
+	 *        'deprecatedPassByRef': Keys are positions of arguments that shouldn't be
+	 *                               passed by reference, values are MediaWiki versions
+	 *                               that those were deprecated in
+	 *        For back-compat, this can be a string of the version the hook was
+	 *        deprecated in ('deprecated').
 	 * @return bool Always true
 	 * @throws MWException If a callback is invalid, unknown
 	 * @throws UnexpectedValueException If a callback returns an abort value.
 	 * @since 1.30
 	 */
-	public static function runWithoutAbort( $event, array $args = [], $deprecatedVersion = null ) {
+	public static function runWithoutAbort( $event, array $args = [], $options = [] ) {
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			$fname = null;
-			$retval = self::callHook( $event, $hook, $args, $deprecatedVersion, $fname );
+			$retval = self::callHook( $event, $hook, $args, $options, $fname );
 			if ( $retval !== null && $retval !== true ) {
 				throw new UnexpectedValueException( "Invalid return from $fname for unabortable $event." );
 			}

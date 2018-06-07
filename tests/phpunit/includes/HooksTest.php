@@ -248,6 +248,82 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers Hooks::callHook
+	 */
+	public function testCallHook_DeprecatedPassByRef() {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		Hooks::register(
+			'MediaWikiHooksTest001',
+			function ( &$zero, $one, $two ) {
+			}
+		);
+		try {
+			Hooks::run( 'MediaWikiHooksTest001', [], [ 'deprecatedPassByRef' =>
+				[ 0 => '1.31', 1 => '1.31', 3 => '1.31' ] ]
+			);
+			$this->fail( 'Should have emmitted a notice' );
+		} catch ( PHPUnit_Framework_Error_Deprecated $e ) {
+			$this->assertContains(
+				'Use of MediaWikiHooksTest001 hook passing argument #0 by reference '
+				. '(used in hook-MediaWikiHooksTest001-closure as &$zero)',
+				$e->getMessage(),
+				'Deprecated pass by ref'
+			);
+		}
+	}
+
+	/**
+	 * @covers Hooks::callHook
+	 */
+	public function testCallHook_DeprecatedPassByRefOK() {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		Hooks::register(
+			'MediaWikiHooksTest001',
+			function ( $zero, $one, $two ) {
+			}
+		);
+
+		Hooks::run(
+			'MediaWikiHooksTest001',
+			[ '1', '2', '3' ],
+			[ 'deprecatedPassByRef' => [ 0 => '1.31', 1 => '1.31' ] ]
+		);
+		// No warning emitted
+		$this->assertTrue( true );
+	}
+
+	/**
+	 * @covers Hooks::callHook
+	 */
+	public function testCallHook_DeprecatedPassByRefExtraArg() {
+		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->setMwGlobals(
+			'wgHooks',
+			[ 'MediaWikiHooksTest001' => [ [
+				function ( $a, &$b ) {
+				},
+				'AAA'
+			] ] ]
+		);
+		$var = 'VAR';
+		try {
+			Hooks::run(
+				'MediaWikiHooksTest001',
+				[ &$var ],
+				[ 'deprecatedPassByRef' => [ 0 => '1.31' ] ]
+			);
+			$this->fail( 'Should have emmitted a notice' );
+		} catch ( PHPUnit_Framework_Error_Deprecated $e ) {
+			$this->assertContains(
+				'Use of MediaWikiHooksTest001 hook passing argument #0 by reference '
+				. '(used in hook-MediaWikiHooksTest001-closure as &$b)',
+				$e->getMessage(),
+				'Deprecated pass by ref'
+			);
+		}
+	}
+
+	/**
 	 * @covers Hooks::runWithoutAbort
 	 * @covers Hooks::callHook
 	 */
