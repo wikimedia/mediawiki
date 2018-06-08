@@ -92,7 +92,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 *   cascadeOnly, noRedirect
 	 * @return string Input form
 	 */
-	protected function showOptions( $namespace, $type = 'edit', $level, $sizetype,
+	protected function showOptions( $namespace, $type, $level, $sizetype,
 		$size, $filters
 	) {
 		$formDescriptor = [

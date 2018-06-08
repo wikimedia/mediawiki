@@ -112,7 +112,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 * @private
 	 */
-	function showOptions( $namespace, $type = 'edit', $level ) {
+	function showOptions( $namespace, $type, $level ) {
 		$formDescriptor = [
 			'namespace' => [
 				'class' => 'HTMLSelectNamespace',
