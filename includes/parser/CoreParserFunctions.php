@@ -449,7 +449,7 @@ class CoreParserFunctions {
 				$parser->mOutput->setDisplayTitle( $text );
 			}
 			if ( $old !== false && $old !== $text && !$arg ) {
-				$converter = $parser->getConverterLanguage()->getConverter();
+				$converter = $parser->getTargetLanguage()->getConverter();
 				return '<span class="error">' .
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
@@ -461,7 +461,7 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$converter = $parser->getConverterLanguage()->getConverter();
+			$converter = $parser->getTargetLanguage()->getConverter();
 			$parser->getOutput()->addWarning(
 				wfMessage( 'restricted-displaytitle',
 					// Message should be parsed, but this param should only be escaped.
@@ -977,7 +977,7 @@ class CoreParserFunctions {
 		if ( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
-			$converter = $parser->getConverterLanguage()->getConverter();
+			$converter = $parser->getTargetLanguage()->getConverter();
 			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort',
 					// Message should be parsed, but these params should only be escaped.

@@ -175,6 +175,8 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 * The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
   of the namespaced classes provided by the wikimedia/xmp-reader library.
+* Parser::getConverterLanguage() is deprecated.  Use ::getTargetLanguage()
+  instead.
 
 === Other changes in 1.32 ===
 * …
