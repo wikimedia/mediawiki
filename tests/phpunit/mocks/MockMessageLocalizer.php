@@ -30,14 +30,11 @@ class MockMessageLocalizer implements MessageLocalizer {
 	 *
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed $args,...
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg( $key ) {
-		$args = func_get_args();
-
-		/** @var Message $message */
-		$message = wfMessage( ...$args );
+	public function msg( $key, ...$params ) {
+		$message = wfMessage( $key, ...$params );
 
 		if ( $this->languageCode !== null ) {
 			$message->inLanguage( $this->languageCode );

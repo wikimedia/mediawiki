@@ -755,10 +755,11 @@ class LogFormatter {
 	/**
 	 * Shortcut for wfMessage which honors local context.
 	 * @param string $key
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	protected function msg( $key ) {
-		return $this->context->msg( $key );
+	protected function msg( $key, ...$params ) {
+		return $this->context->msg( $key, ...$params );
 	}
 
 	/**

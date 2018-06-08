@@ -215,12 +215,11 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @since 1.27
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed $args,...
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg( $key ) {
-		return wfMessage( ...func_get_args() )
+	public function msg( $key, ...$params ) {
+		return wfMessage( $key, ...$params )
 			->inLanguage( $this->getLanguage() )
 			// Use a dummy title because there is no real title
 			// for this endpoint, and the cache won't vary on it

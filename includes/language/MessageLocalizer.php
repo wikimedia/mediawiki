@@ -35,10 +35,9 @@ interface MessageLocalizer {
 	 *
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed $params,... Normal message parameters
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$params Normal message parameters
 	 * @return Message
 	 */
-	public function msg( $key /*...*/ );
+	public function msg( $key, ...$params );
 
 }
