@@ -23,6 +23,8 @@
  * @file
  * @ingroup Deployment
  */
+
+use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -404,7 +406,7 @@ abstract class Installer {
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
 		// Reset all services and inject config overrides
-		MediaWiki\MediaWikiServices::resetGlobalInstance( $installerConfig );
+		MediaWikiServices::resetGlobalInstance( $installerConfig );
 
 		// Don't attempt to load user language options (T126177)
 		// This will be overridden in the web installer with the user-specified language
@@ -415,12 +417,18 @@ abstract class Installer {
 		Language::getLocalisationCache()->disableBackend();
 
 		// Disable all global services, since we don't have any configuration yet!
-		MediaWiki\MediaWikiServices::disableStorageBackend();
+		MediaWikiServices::disableStorageBackend();
 
+		$mwServices = MediaWikiServices::getInstance();
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$wgObjectCaches = MediaWikiServices::getInstance()->getMainConfig()->get( 'ObjectCaches' );
+		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
 		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
+
+		// Disable interwiki lookup, to avoid database access during parses
+		$mwServices->redefineService( 'InterwikiLookup', function () {
+			return new NullInterwikiLookup();
+		} );
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
