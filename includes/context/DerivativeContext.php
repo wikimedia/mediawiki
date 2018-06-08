@@ -256,14 +256,11 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 *
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
-	 * @param mixed $args,... Arguments to wfMessage
-	 * @suppress PhanCommentParamWithoutRealParam HHVM bug T228695#5450847
+	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg( $key ) {
-		$args = func_get_args();
-
+	public function msg( $key, ...$params ) {
 		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
-		return wfMessage( ...$args )->setContext( $this );
+		return wfMessage( $key, ...$params )->setContext( $this );
 	}
 }
