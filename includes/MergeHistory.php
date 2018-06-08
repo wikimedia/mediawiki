@@ -167,7 +167,7 @@ class MergeHistory {
 		// Convert into a Status object
 		if ( $errors ) {
 			foreach ( $errors as $error ) {
-				call_user_func_array( [ $status, 'fatal' ], $error );
+				$status->fatal( ...$error );
 			}
 		}
 

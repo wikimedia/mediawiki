@@ -1590,7 +1590,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	final protected function newStatus() {
 		$args = func_get_args();
 		if ( count( $args ) ) {
-			$sv = call_user_func_array( [ StatusValue::class, 'newFatal' ], $args );
+			$sv = StatusValue::newFatal( ...$args );
 		} else {
 			$sv = StatusValue::newGood();
 		}

@@ -311,10 +311,10 @@ class ParserOutput extends CacheTime {
 					}
 
 					$skin = $wgOut->getSkin();
-					return call_user_func_array(
-						[ $skin, 'doEditSectionLink' ],
-						[ $editsectionPage, $editsectionSection,
-							$editsectionContent, $wgLang->getCode() ]
+					return $skin->doEditSectionLink( $editsectionPage,
+						$editsectionSection,
+						$editsectionContent,
+						$wgLang->getCode()
 					);
 				},
 				$text

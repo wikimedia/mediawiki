@@ -226,7 +226,7 @@ class RecompressTracked {
 		}
 		$cmd .= ' --child' .
 			' --wiki ' . wfEscapeShellArg( wfWikiID() ) .
-			' ' . call_user_func_array( 'wfEscapeShellArg', $this->destClusters );
+			' ' . wfEscapeShellArg( ...$this->destClusters );
 
 		$this->replicaPipes = $this->replicaProcs = [];
 		for ( $i = 0; $i < $this->numProcs; $i++ ) {
@@ -426,12 +426,12 @@ class RecompressTracked {
 				$args = array_slice( $ids, 0, $this->orphanBatchSize );
 				$ids = array_slice( $ids, $this->orphanBatchSize );
 				array_unshift( $args, 'doOrphanList' );
-				call_user_func_array( [ $this, 'dispatch' ], $args );
+				$this->dispatch( ...$args );
 			}
 			if ( count( $ids ) ) {
 				$args = $ids;
 				array_unshift( $args, 'doOrphanList' );
-				call_user_func_array( [ $this, 'dispatch' ], $args );
+				$this->dispatch( ...$args );
 			}
 
 			$this->report( 'orphans', $i, $numOrphans );

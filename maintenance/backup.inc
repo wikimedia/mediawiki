@@ -142,7 +142,7 @@ class BackupDumper extends Maintenance {
 			require_once $file;
 		}
 		$register = [ $class, 'register' ];
-		call_user_func_array( $register, [ $this ] );
+		$register( $this );
 	}
 
 	function execute() {

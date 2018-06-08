@@ -854,7 +854,7 @@ abstract class UploadBase {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
 			}
-			return call_user_func_array( 'Status::newFatal', $error );
+			return Status::newFatal( ...$error );
 		}
 
 		$status = $this->getLocalFile()->upload(
@@ -1063,7 +1063,7 @@ abstract class UploadBase {
 		if ( !$isPartial ) {
 			$error = $this->runUploadStashFileHook( $user );
 			if ( $error ) {
-				return call_user_func_array( 'Status::newFatal', $error );
+				return Status::newFatal( ...$error );
 			}
 		}
 		try {
