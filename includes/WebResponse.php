@@ -32,6 +32,22 @@ class WebResponse {
 	 */
 	protected static $setCookies = [];
 
+	/** @var bool Used to disable setters before running jobs post-request (T191537) */
+	protected static $disableForPostSend = false;
+
+	/**
+	 * Disable setters for post-send processing
+	 *
+	 * After this call, self::setCookie(), self::header(), and
+	 * self::statusHeader() will log a warning and return without
+	 * setting cookies or headers.
+	 *
+	 * @since 1.31.9
+	 */
+	public static function disableForPostSend() {
+		self::$disableForPostSend = true;
+	}
+
 	/**
 	 * Output an HTTP header, wrapper for PHP's header()
 	 * @param string $string Header to output
@@ -39,6 +55,16 @@ class WebResponse {
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
 	 */
 	public function header( $string, $replace = true, $http_response_code = null ) {
+		if ( self::$disableForPostSend ) {
+			wfDebugLog( 'header', 'ignored post-send header {header}', 'all', [
+				'header' => $string,
+				'replace' => $replace,
+				'http_response_code' => $http_response_code,
+				'exception' => new RuntimeException( 'Ignored post-send header' ),
+			] );
+			return;
+		}
+
 		\MediaWiki\HeaderCallback::warnIfHeadersSent();
 		if ( $http_response_code ) {
 			header( $string, $replace, $http_response_code );
@@ -69,6 +95,14 @@ class WebResponse {
 	 * @param int $code Status code
 	 */
 	public function statusHeader( $code ) {
+		if ( self::$disableForPostSend ) {
+			wfDebugLog( 'header', 'ignored post-send status header {code}', 'all', [
+				'code' => $code,
+				'exception' => new RuntimeException( 'Ignored post-send status header' ),
+			] );
+			return;
+		}
+
 		HttpStatus::header( $code );
 	}
 
@@ -117,20 +151,29 @@ class WebResponse {
 			$expire = time() + $wgCookieExpiration;
 		}
 
+		$cookie = $options['prefix'] . $name;
+		$data = [
+			'name' => (string)$cookie,
+			'value' => (string)$value,
+			'expire' => (int)$expire,
+			'path' => (string)$options['path'],
+			'domain' => (string)$options['domain'],
+			'secure' => (bool)$options['secure'],
+			'httpOnly' => (bool)$options['httpOnly'],
+		];
+
+		if ( self::$disableForPostSend ) {
+			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
+				'cookie' => $cookie,
+				'data' => $data,
+				'exception' => new RuntimeException( 'Ignored post-send cookie' ),
+			] );
+			return;
+		}
+
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
 		if ( Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
-			$cookie = $options['prefix'] . $name;
-			$data = [
-				'name' => (string)$cookie,
-				'value' => (string)$value,
-				'expire' => (int)$expire,
-				'path' => (string)$options['path'],
-				'domain' => (string)$options['domain'],
-				'secure' => (bool)$options['secure'],
-				'httpOnly' => (bool)$options['httpOnly'],
-			];
-
 			// Per RFC 6265, key is name + domain + path
 			$key = "{$data['name']}\n{$data['domain']}\n{$data['path']}";
 

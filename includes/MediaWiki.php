@@ -720,6 +720,9 @@ class MediaWiki {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 		}
 
+		// Disable WebResponse setters for post-send processing (T191537).
+		WebResponse::disableForPostSend();
+
 		$blocksHttpClient = true;
 		// Defer everything else if possible...
 		$callback = function () use ( $mode, &$blocksHttpClient ) {
