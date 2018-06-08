@@ -121,4 +121,34 @@ describe( 'Page', function () {
 		// check
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
+
+	it( 'should allow individual revision restoration', function () {
+		// login
+		UserLoginPage.loginAdmin();
+
+		// create
+		browser.call( function () {
+			return Api.edit( name, content );
+		} );
+
+		// edit
+		let secondContent = getTestString( 'secondRevision' );
+		EditPage.edit( name, secondContent );
+
+		// delete
+		browser.call( function () {
+			return Api.delete( name, content + '-deletereason' );
+		} );
+
+		// restore the first revision
+		RestorePage.restore( name, content + '-restorereason', [ 2 ] );
+
+		// check the success
+		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
+
+		// check the single expected revision appears on the history page
+		HistoryPage.open( name );
+		// TODO fix history page check..
+		//assert.strictEqual( HistoryPage.comment.getText(), `(Created page with "${content}")` );
+	} );
 } );
