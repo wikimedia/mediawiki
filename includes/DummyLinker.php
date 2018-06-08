@@ -107,7 +107,7 @@ class DummyLinker {
 		Title $title,
 		$file,
 		$label = '',
-		$alt,
+		$alt = '',
 		$align = 'right',
 		$params = [],
 		$framed = false,
