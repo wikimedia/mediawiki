@@ -415,7 +415,9 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $params ) {
+				// Hold onto $user to avoid HHVM bug where it no longer
+				// becomes a reference (T118683)
+				function () use ( $params, &$user ) {
 					Hooks::run( 'TitleMoveComplete', $params );
 				}
 			)
