@@ -1083,7 +1083,7 @@
 						} else if ( typeof script === 'function' ) {
 							// Pass jQuery twice so that the signature of the closure which wraps
 							// the script can bind both '$' and 'jQuery'.
-							script( $, $, mw.loader.require, registry[ module ].module );
+							script( window.$, window.$, mw.loader.require, registry[ module ].module );
 							markModuleReady();
 
 						} else if ( typeof script === 'string' ) {
