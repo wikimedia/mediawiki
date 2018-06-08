@@ -30,7 +30,18 @@ class RevDelFileItem extends RevDelItem {
 
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
-		$this->file = RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
+		$this->file = static::initFile( $list, $row );
+	}
+
+	/**
+	 * Create file object from $row sourced from $list
+	 *
+	 * @param RevDelFileList $list
+	 * @param mixed $row
+	 * @return mixed
+	 */
+	protected static function initFile( $list, $row ) {
+		return RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
 	}
 
 	public function getIdField() {

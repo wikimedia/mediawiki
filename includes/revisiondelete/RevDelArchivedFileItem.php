@@ -29,9 +29,12 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 	protected $lockFile;
 
 	public function __construct( $list, $row ) {
-		RevDelItem::__construct( $list, $row );
-		$this->file = ArchivedFile::newFromRow( $row );
+		parent::__construct( $list, $row );
 		$this->lockFile = RepoGroup::singleton()->getLocalRepo()->newFile( $row->fa_name );
+	}
+
+	protected static function initFile( $list, $row ) {
+		return ArchivedFile::newFromRow( $row );
 	}
 
 	public function getIdField() {
