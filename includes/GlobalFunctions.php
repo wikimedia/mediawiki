@@ -1336,7 +1336,7 @@ function wfGetLangObj( $langcode = false ) {
  * This function replaces all old wfMsg* functions.
  *
  * @param string|string[]|MessageSpecifier $key Message key, or array of keys, or a MessageSpecifier
- * @param string[]|string[][] ...$params Normal message parameters
+ * @param string|string[] ...$params Normal message parameters
  * @return Message
  *
  * @since 1.17
@@ -1359,7 +1359,7 @@ function wfMessage( $key, ...$params ) {
  * for the first message which is non-empty. If all messages are empty then an
  * instance of the first message key is returned.
  *
- * @param string[] ...$keys Message keys
+ * @param string ...$keys Message keys
  * @return Message
  *
  * @since 1.18
