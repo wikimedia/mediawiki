@@ -90,14 +90,14 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		} elseif ( is_string( $data['label'] ) ) {
 			$data['label'] = new \Message( $data['label'] );
 		} elseif ( is_array( $data['label'] ) ) {
-			$data['label'] = call_user_func_array( 'Message::newFromKey', $data['label'] );
+			$data['label'] = Message::newFromKey( ...$data['label'] );
 		}
 		if ( !isset( $data['help'] ) ) {
 			$data['help'] = new \RawMessage( '$1', $data['name'] );
 		} elseif ( is_string( $data['help'] ) ) {
 			$data['help'] = new \Message( $data['help'] );
 		} elseif ( is_array( $data['help'] ) ) {
-			$data['help'] = call_user_func_array( 'Message::newFromKey', $data['help'] );
+			$data['help'] = Message::newFromKey( ...$data['help'] );
 		}
 		$ret = new static( $data['name'], $data['label'], $data['help'] );
 		foreach ( $data as $k => $v ) {

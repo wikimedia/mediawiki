@@ -432,11 +432,11 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				$status = Status::newFatal( new RawMessage( '$1', $status ) );
 			} elseif ( is_array( $status ) ) {
 				if ( is_string( reset( $status ) ) ) {
-					$status = call_user_func_array( 'Status::newFatal', $status );
+					$status = Status::newFatal( ...$status );
 				} elseif ( is_array( reset( $status ) ) ) {
 					$status = Status::newGood();
 					foreach ( $status as $message ) {
-						call_user_func_array( [ $status, 'fatal' ], $message );
+						$status->fatal( ...$message );
 					}
 				} else {
 					throw new UnexpectedValueException( 'invalid HTMLForm::trySubmit() return value: '

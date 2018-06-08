@@ -717,7 +717,7 @@ class WebInstaller extends Installer {
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
-		$html = call_user_func_array( [ $this, 'getHelpBox' ], $args );
+		$html = $this->getHelpBox( ...$args );
 		$this->output->addHTML( $html );
 	}
 
@@ -742,7 +742,7 @@ class WebInstaller extends Installer {
 	public function showStatusMessage( Status $status ) {
 		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
 		foreach ( $errors as $error ) {
-			call_user_func_array( [ $this, 'showMessage' ], $error );
+			$this->showMessage( ...$error );
 		}
 	}
 

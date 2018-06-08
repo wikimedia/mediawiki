@@ -607,7 +607,7 @@ class HTMLForm extends ContextSource {
 		$hoistedErrors = Status::newGood();
 		if ( $this->mValidationErrorMessage ) {
 			foreach ( (array)$this->mValidationErrorMessage as $error ) {
-				call_user_func_array( [ $hoistedErrors, 'fatal' ], $error );
+				$hoistedErrors->fatal( ...$error );
 			}
 		} else {
 			$hoistedErrors->fatal( 'htmlform-invalid-input' );

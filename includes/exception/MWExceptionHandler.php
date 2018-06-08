@@ -173,9 +173,7 @@ class MWExceptionHandler {
 		global $wgPropagateErrors;
 
 		if ( in_array( $level, self::$fatalErrorTypes ) ) {
-			return call_user_func_array(
-				'MWExceptionHandler::handleFatalError', func_get_args()
-			);
+			return MWExceptionHandler::handleFatalError( ...func_get_args() );
 		}
 
 		// Map error constant to error name (reverse-engineer PHP error
