@@ -4321,11 +4321,15 @@ class Language {
 	 * the "raw" tag (-{R| }-) to prevent conversion.
 	 *
 	 * This function is called "markNoConversion" for historical
-	 * reasons.
+	 * reasons *BUT DIFFERS SIGNIFICANTLY* from
+	 * LanguageConverter::markNoConversion(), with which it is easily
+	 * confused.
 	 *
 	 * @param string $text Text to be used for external link
 	 * @param bool $noParse Wrap it without confirming it's a real URL first
 	 * @return string The tagged text
+	 * @deprecated since 1.32, use LanguageConverter::markNoConversion()
+	 *  instead.
 	 */
 	public function markNoConversion( $text, $noParse = false ) {
 		// Excluding protocal-relative URLs may avoid many false positives.

@@ -177,6 +177,10 @@ because of Phabricator reports.
   of the namespaced classes provided by the wikimedia/xmp-reader library.
 * Parser::getConverterLanguage() is deprecated.  Use ::getTargetLanguage()
   instead.
+* Language::markNoConversion() is deprecated.  It confused readers because
+  it had unexpected behavior (only marked text if it looked like a URL)
+  and was only used in a single place in the code.  Use
+  LanguageConverter::markNoConversion() instead.
 
 === Other changes in 1.32 ===
 * …

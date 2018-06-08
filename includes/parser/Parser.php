@@ -1606,7 +1606,7 @@ class Parser {
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = Linker::makeExternalLink( $url,
-				$this->getTargetLanguage()->markNoConversion( $url, true ),
+				$this->getTargetLanguage()->getConverter()->markNoConversion( $url ),
 				true, 'free',
 				$this->getExternalLinkAttribs( $url ), $this->mTitle );
 			# Register it in the output object...
@@ -1895,7 +1895,10 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $this->getTargetLanguage()->markNoConversion( $text );
+			// Excluding protocol-relative URLs may avoid many false positives.
+			if ( preg_match( '/^(?:' . wfUrlProtocolsWithoutProtRel() . ')/', $text ) ) {
+				$text = $this->getTargetLanguage()->getConverter()->markNoConversion( $text );
+			}
 
 			$url = Sanitizer::cleanUrl( $url );
 
