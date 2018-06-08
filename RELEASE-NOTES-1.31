@@ -12,6 +12,7 @@ production.
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 * (T182366) UploadBase::checkXMLEncodingMissmatch() now works on PHP 7.1+
 * (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
+* (T196672) The mtime of extension.json files is now able to be zero
 
 === Changes since MediaWiki 1.31.0-rc.0 ===
 * (T33223) Drop archive.ar_text and ar_flags.
