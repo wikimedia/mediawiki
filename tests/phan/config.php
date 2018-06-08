@@ -305,8 +305,6 @@ return [
 		"PhanDeprecatedProperty",
 		// approximate error count: 17
 		"PhanNonClassMethodCall",
-		// approximate error count: 11
-		"PhanParamReqAfterOpt",
 		// approximate error count: 888
 		"PhanParamSignatureMismatch",
 		// approximate error count: 7
