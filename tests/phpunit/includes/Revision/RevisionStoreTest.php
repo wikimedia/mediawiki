@@ -16,7 +16,7 @@ use MediaWikiTestCase;
 use MWException;
 use Title;
 use WANObjectCache;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
@@ -70,10 +70,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return \PHPUnit_Framework_MockObject_MockObject|Database
+	 * @return \PHPUnit_Framework_MockObject_MockObject|IDatabase
 	 */
 	private function getMockDatabase() {
-		return $this->getMockBuilder( Database::class )
+		return $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()->getMock();
 	}
 

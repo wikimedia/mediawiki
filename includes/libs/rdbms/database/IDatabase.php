@@ -1220,9 +1220,10 @@ interface IDatabase {
 	 *   $query .= $dbr->buildLike( $pattern );
 	 *
 	 * @since 1.16
+	 * @param array[]|string|LikeMatch $param
 	 * @return string Fully built LIKE statement
 	 */
-	public function buildLike();
+	public function buildLike( $param );
 
 	/**
 	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
