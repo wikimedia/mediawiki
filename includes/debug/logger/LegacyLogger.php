@@ -270,7 +270,7 @@ class LegacyLogger extends AbstractLogger {
 			}
 		}
 
-		return self::interpolate( $text, $context );
+		return \WebRequest::getRequestId() . " ". self::interpolate( $text, $context );
 	}
 
 	/**
