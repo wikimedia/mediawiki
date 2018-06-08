@@ -5,6 +5,7 @@
 		}],
 	"require": {
 		"mediawiki/blue-spice-service-center": "dev-master",
+		"bluespice/categorycheck": "dev-master",
 		"bluespice/tagsearch": "dev-master"
 	}
 }
