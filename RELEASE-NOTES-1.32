@@ -200,6 +200,8 @@ because of Phabricator reports.
 * Class CryptRand, everything in MWCryptRand except generateHex() and function
   MediaWikiServices::getCryptRand() are deprecated, use random_bytes() to
   generate cryptographically secure random byte sequences.
+* Parser::getConverterLanguage() is deprecated.  Use ::getTargetLanguage()
+  instead.
 
 === Other changes in 1.32 ===
 * …

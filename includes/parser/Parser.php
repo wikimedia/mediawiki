@@ -460,11 +460,11 @@ class Parser {
 			|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 			|| $this->mOutput->getDisplayTitle() !== false )
 		) {
-			$convruletitle = $this->getConverterLanguage()->getConvRuleTitle();
+			$convruletitle = $this->getTargetLanguage()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getConverterLanguage()->convertTitle( $title );
+				$titleText = $this->getTargetLanguage()->convertTitle( $title );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -897,6 +897,7 @@ class Parser {
 
 	/**
 	 * Get the language object for language conversion
+	 * @deprecated since 1.32, just use getTargetLanguage()
 	 * @return Language|null
 	 */
 	public function getConverterLanguage() {
@@ -1380,7 +1381,7 @@ class Parser {
 				# The position of the convert() call should not be changed. it
 				# assumes that the links are all replaced and the only thing left
 				# is the <nowiki> mark.
-				$text = $this->getConverterLanguage()->convert( $text );
+				$text = $this->getTargetLanguage()->convert( $text );
 			}
 		}
 
@@ -1605,7 +1606,7 @@ class Parser {
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = Linker::makeExternalLink( $url,
-				$this->getConverterLanguage()->markNoConversion( $url, true ),
+				$this->getTargetLanguage()->markNoConversion( $url, true ),
 				true, 'free',
 				$this->getExternalLinkAttribs( $url ), $this->mTitle );
 			# Register it in the output object...
@@ -1894,7 +1895,7 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $this->getConverterLanguage()->markNoConversion( $text );
+			$text = $this->getTargetLanguage()->markNoConversion( $text );
 
 			$url = Sanitizer::cleanUrl( $url );
 
@@ -2360,7 +2361,7 @@ class Parser {
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getConverterLanguage()->convertCategoryKey( $sortkey );
+					$sortkey = $this->getTargetLanguage()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					continue;
@@ -3185,8 +3186,8 @@ class Parser {
 			if ( $title ) {
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
-				if ( $this->getConverterLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
-					$this->getConverterLanguage()->findVariantLink( $part1, $title, true );
+				if ( $this->getTargetLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
+					$this->getTargetLanguage()->findVariantLink( $part1, $title, true );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();
