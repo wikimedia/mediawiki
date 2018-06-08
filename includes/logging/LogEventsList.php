@@ -177,7 +177,7 @@ class LogEventsList extends ContextSource {
 			$query = $this->getDefaultQuery();
 			$queryKey = "hide_{$type}_log";
 
-			$hideVal = 1 - intval( $val );
+			$hideVal = $val ? 0 : 1;
 			$query[$queryKey] = $hideVal;
 
 			$link = $linkRenderer->makeKnownLink(

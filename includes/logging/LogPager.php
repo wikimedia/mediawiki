@@ -105,7 +105,7 @@ class LogPager extends ReverseChronologicalPager {
 			return $filters;
 		}
 		foreach ( $wgFilterLogTypes as $type => $default ) {
-			$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
+			$hide = $this->getRequest()->getBool( "hide_{$type}_log", $default );
 
 			$filters[$type] = $hide;
 			if ( $hide ) {
