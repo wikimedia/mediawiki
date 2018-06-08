@@ -43,6 +43,8 @@ class ChronologyProtector implements LoggerAwareInterface {
 	protected $key;
 	/** @var string Hash of client parameters */
 	protected $clientId;
+	/** @var string[] Map of client information fields for logging */
+	protected $clientInfo;
 	/** @var int|null Expected minimum index of the last write to the position store */
 	protected $waitForPosIndex;
 	/** @var int Max seconds to wait on positions to appear */
@@ -81,6 +83,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 			: md5( $client['ip'] . "\n" . $client['agent'] );
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
 		$this->waitForPosIndex = $posIndex;
+
+		$this->clientInfo = $client + [ 'clientId' => '' ];
+
 		$this->logger = new NullLogger();
 	}
 
@@ -308,7 +313,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 						[
 							'cpPosIndex' => $this->waitForPosIndex,
 							'waitTimeMs' => $waitedMs
-						]
+						] + $this->clientInfo
 					);
 				} else {
 					$this->logger->warning(
@@ -317,7 +322,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 							'cpPosIndex' => $this->waitForPosIndex,
 							'indexReached' => $indexReached,
 							'waitTimeMs' => $waitedMs
-						]
+						] + $this->clientInfo
 					);
 				}
 			} else {
