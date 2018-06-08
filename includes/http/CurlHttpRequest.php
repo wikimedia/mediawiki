@@ -149,13 +149,6 @@ class CurlHttpRequest extends MWHttpRequest {
 			return false;
 		}
 
-		if ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
-			if ( strval( ini_get( 'open_basedir' ) ) !== '' ) {
-				$this->logger->debug( "Cannot follow redirects when open_basedir is set\n" );
-				return false;
-			}
-		}
-
 		return true;
 	}
 }
