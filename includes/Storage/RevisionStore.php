@@ -1666,6 +1666,7 @@ class RevisionStore
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
+			wfDeprecated( __METHOD__ . ' with text option' );
 			$ret['tables'][] = 'text';
 			$ret['fields'] = array_merge( $ret['fields'], [
 				'old_text',
