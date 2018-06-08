@@ -7,7 +7,7 @@ require_once __DIR__ . "/../extensions/HitCounters/HitCounters.php";
 require_once __DIR__ . "/../extensions/ImageMapEdit/ImageMapEdit.php";
 wfLoadExtension( 'Lockdown' );
 require_once __DIR__ . "/../extensions/Quiz/Quiz.php";
-wfLoadExtension( 'Rss' );
+wfLoadExtension( 'RSS' );
 wfLoadExtension( 'Echo');
 require_once __DIR__ . "/../extensions/TitleKey/TitleKey.php";
 require_once __DIR__ . "/../extensions/EmbedVideo/EmbedVideo.php";
