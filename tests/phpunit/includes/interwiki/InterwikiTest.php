@@ -56,8 +56,6 @@ class InterwikiTest extends MediaWikiTestCase {
 	}
 
 	public function testDatabaseStorage() {
-		$this->markTestSkipped( 'Needs I37b8e8018b3 <https://gerrit.wikimedia.org/r/#/c/270555/>' );
-
 		// NOTE: database setup is expensive, so we only do
 		//  it once and run all the tests in one go.
 		$dewiki = [
