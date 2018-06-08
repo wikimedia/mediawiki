@@ -3739,57 +3739,68 @@ class Parser {
 	 * Transclude an interwiki link.
 	 *
 	 * @param Title $title
-	 * @param string $action
+	 * @param string $action Usually one of (raw, render)
 	 *
 	 * @return string
 	 */
 	public function interwikiTransclude( $title, $action ) {
-		global $wgEnableScaryTranscluding;
+		global $wgEnableScaryTranscluding, $wgTranscludeCacheExpiry;
 
 		if ( !$wgEnableScaryTranscluding ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
 		$url = $title->getFullURL( [ 'action' => $action ] );
-
-		if ( strlen( $url ) > 255 ) {
+		if ( strlen( $url ) > 1024 ) {
 			return wfMessage( 'scarytranscludetoolong' )->inContentLanguage()->text();
 		}
-		return $this->fetchScaryTemplateMaybeFromCache( $url );
-	}
 
-	/**
-	 * @param string $url
-	 * @return mixed|string
-	 */
-	public function fetchScaryTemplateMaybeFromCache( $url ) {
-		global $wgTranscludeCacheExpiry;
-		$dbr = wfGetDB( DB_REPLICA );
-		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
-		$obj = $dbr->selectRow( 'transcache', [ 'tc_time', 'tc_contents' ],
-				[ 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ] );
-		if ( $obj ) {
-			return $obj->tc_contents;
-		}
+		$wikiId = $title->getTransWikiID(); // remote wiki ID or false
 
-		$req = MWHttpRequest::factory( $url, [], __METHOD__ );
-		$status = $req->execute(); // Status object
-		if ( $status->isOK() ) {
-			$text = $req->getContent();
-		} elseif ( $req->getStatus() != 200 ) {
+		$fname = __METHOD__;
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+
+		$data = $cache->getWithSetCallback(
+			$cache->makeGlobalKey(
+				'interwiki-transclude',
+				( $wikiId !== false ) ? $wikiId : 'external',
+				sha1( $url )
+			),
+			$wgTranscludeCacheExpiry,
+			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
+				$req = MWHttpRequest::factory( $url, [], $fname );
+
+				$status = $req->execute(); // Status object
+				if ( !$status->isOK() ) {
+					$ttl = $cache::TTL_UNCACHEABLE;
+				} elseif ( $req->getResponseHeader( 'X-Database-Lagged' ) !== null ) {
+					$ttl = min( $cache::TTL_LAGGED, $ttl );
+				}
+
+				return [
+					'text' => $status->isOK() ? $req->getContent() : null,
+					'code' => $req->getStatus()
+				];
+			},
+			[
+				'checkKeys' => ( $wikiId !== false )
+					? [ $cache->makeGlobalKey( 'interwiki-page', $wikiId, $title->getDBkey() ) ]
+					: [],
+				'pcGroup' => 'interwiki-transclude:5',
+				'pcTTL' => $cache::TTL_PROC_LONG
+			]
+		);
+
+		if ( is_string( $data['text'] ) ) {
+			$text = $data['text'];
+		} elseif ( $data['code'] != 200 ) {
 			// Though we failed to fetch the content, this status is useless.
-			return wfMessage( 'scarytranscludefailed-httpstatus' )
-				->params( $url, $req->getStatus() /* HTTP status */ )->inContentLanguage()->text();
+			$text = wfMessage( 'scarytranscludefailed-httpstatus' )
+				->params( $url, $data['code'] )->inContentLanguage()->text();
 		} else {
-			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
+			$text = wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'transcache', [ 'tc_url' ], [
-			'tc_url' => $url,
-			'tc_time' => $dbw->timestamp( time() ),
-			'tc_contents' => $text
-		] );
 		return $text;
 	}
 
