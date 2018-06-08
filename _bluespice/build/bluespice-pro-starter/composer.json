@@ -9,7 +9,7 @@
 		"mediawiki/blue-spice-category-manager": "dev-master",
 		"mediawiki/blue-spice-drawio-connector": "dev-master",
 		"mediawiki/blue-spice-export-tables": "dev-master",
-		"mediawiki/blue-spice-ue-module-table-2-excel": "dev-master",
+		"bluespice/ue-module-table2excel": "dev-master",
 		"bluespice/phpexcel": "dev-master",
 		"mediawiki/blue-spice-extended-filelist": "dev-master",
 		"mediawiki/blue-spice-insert-template": "dev-master",
