@@ -38,6 +38,9 @@ $wgShowExceptionDetails = true;
 $wgShowSQLErrors = true;
 $wgDebugRawPage = true; // T49960
 
+// Make sure a web request exhausts all the available jobs.
+$wgJobRunRate = PHP_INT_MAX;
+
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
 if ( $logDir ) {
