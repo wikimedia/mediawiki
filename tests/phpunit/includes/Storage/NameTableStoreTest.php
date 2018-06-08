@@ -10,7 +10,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWikiTestCase;
 use Psr\Log\NullLogger;
 use WANObjectCache;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -57,37 +57,25 @@ class NameTableStoreTest extends MediaWikiTestCase {
 	}
 
 	private function getCallCheckingDb( $insertCalls, $selectCalls ) {
-		$mock = $this->getMockBuilder( Database::class )
+		$proxiedMethods = [
+			'select' => $selectCalls,
+			'insert' => $insertCalls,
+			'affectedRows' => null,
+			'insertId' => null,
+			'getSessionLagStatus' => null,
+			'writesPending' => null,
+			'onTransactionPreCommitOrIdle' => null
+		];
+		$mock = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->exactly( $insertCalls ) )
-			->method( 'insert' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insert' ], func_get_args() );
-			} );
-		$mock->expects( $this->exactly( $selectCalls ) )
-			->method( 'select' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'select' ], func_get_args() );
-			} );
-		$mock->expects( $this->exactly( $insertCalls ) )
-			->method( 'affectedRows' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'affectedRows' ], func_get_args() );
-			} );
-		$mock->expects( $this->any() )
-			->method( 'insertId' )
-			->willReturnCallback( function () {
-				return call_user_func_array( [ $this->db, 'insertId' ], func_get_args() );
-			} );
-		$mock->expects( $this->any() )
-			->method( 'query' )
-			->willReturn( [] );
-		$mock->expects( $this->any() )
-			->method( 'isOpen' )
-			->willReturn( true );
-		$wrapper = TestingAccessWrapper::newFromObject( $mock );
-		$wrapper->queryLogger = new NullLogger();
+		foreach ( $proxiedMethods as $method => $count ) {
+			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
+				->method( $method )
+				->willReturnCallback( function ( ...$args ) use ( $method ) {
+					return call_user_func_array( [ $this->db, $method ], $args );
+				} );
+		}
 		return $mock;
 	}
 
