@@ -390,7 +390,9 @@ class MovePage {
 			$reason,
 			$nullRevision
 		];
-		$dbw->onTransactionIdle( function () use ( $params, $dbw ) {
+		// Hold onto $user to avoid HHVM bug where it no longer
+		// becomes a reference (T118683)
+		$dbw->onTransactionIdle( function () use ( $params, $dbw, &$user ) {
 			// Keep each single hook handler atomic
 			$dbw->setFlag( DBO_TRX ); // flag is automatically reset by DB layer
 			Hooks::run( 'TitleMoveComplete', $params );
