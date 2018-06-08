@@ -63,11 +63,12 @@ describe( 'Page', function () {
 		} );
 
 		// edit
-		EditPage.edit( name, content );
+		let editContent = getTestString( 'editContent' );
+		EditPage.edit( name, editContent );
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( EditPage.displayedContent.getText(), editContent );
 	} );
 
 	it( 'should have history', function () {
