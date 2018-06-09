@@ -1062,7 +1062,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					// 'id' => 'mw-userlogin-help', // FIXME HTMLInfoField ignores this
 					'raw' => true,
 					'default' => Html::element( 'a', [
-						'href' => Skin::makeInternalOrExternalUrl( wfMessage( 'helplogin-url' )
+						'href' => Skin::makeInternalOrExternalUrl( $this->msg( 'helplogin-url' )
 							->inContentLanguage()
 							->text() ),
 					], $this->msg( 'userlogin-helplink2' )->text() ),
