@@ -3435,7 +3435,7 @@ class Parser {
 			}
 		}
 
-		$result = call_user_func_array( $callback, $allArgs );
+		$result = $callback( ...$allArgs );
 
 		# The interface for function hooks allows them to return a wikitext
 		# string or an array containing the string and any flags. This mungs

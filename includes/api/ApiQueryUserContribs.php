@@ -306,9 +306,11 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				foreach ( $res as $row ) {
 					$names[$row->user_name] = $row;
 				}
-				call_user_func_array(
-					$this->params['dir'] == 'newer' ? 'ksort' : 'krsort', [ &$names, SORT_STRING ]
-				);
+				if ( $this->params['dir'] == 'newer' ) {
+					ksort( $names, SORT_STRING );
+				} else {
+					krsort( $names, SORT_STRING );
+				}
 				$neg = $op === '>' ? -1 : 1;
 				$userIter = call_user_func( function () use ( $names, $fromName, $neg ) {
 					foreach ( $names as $name => $row ) {

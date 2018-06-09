@@ -226,7 +226,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @return Message
 	 */
 	public function msg( $key ) {
-		return call_user_func_array( 'wfMessage', func_get_args() )
+		return wfMessage( ...func_get_args() )
 			->inLanguage( $this->getLanguage() )
 			// Use a dummy title because there is no real title
 			// for this endpoint, and the cache won't vary on it

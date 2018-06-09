@@ -704,9 +704,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 
-		$knownParams = call_user_func_array(
-			[ $this->getRequest(), 'getValues' ],
-			array_keys( $this->getOptions()->getAllValues() )
+		$knownParams = $this->getRequest()->getValues(
+			...array_keys( $this->getOptions()->getAllValues() )
 		);
 
 		// HACK: Temporarily until we can properly define "sticky" filters and parameters,

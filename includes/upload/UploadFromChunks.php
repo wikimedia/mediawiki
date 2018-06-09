@@ -210,7 +210,7 @@ class UploadFromChunks extends UploadFromFile {
 		// override doStashFile() with completely different functionality in this class...
 		$error = $this->runUploadStashFileHook( $this->user );
 		if ( $error ) {
-			call_user_func_array( [ $status, 'fatal' ], $error );
+			$status->fatal( ...$error );
 			return $status;
 		}
 		try {
@@ -422,9 +422,9 @@ class UploadChunkFileException extends MWException {
 
 class UploadChunkVerificationException extends MWException {
 	public $msg;
-	public function __construct( $res ) {
-		$this->msg = call_user_func_array( 'wfMessage', $res );
-		parent::__construct( call_user_func_array( 'wfMessage', $res )
+	public function __construct( array $res ) {
+		$this->msg = wfMessage( ...$res );
+		parent::__construct( wfMessage( ...$res )
 			->inLanguage( 'en' )->useDatabase( false )->text() );
 	}
 }
