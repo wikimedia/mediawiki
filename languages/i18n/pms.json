@@ -19,7 +19,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Paolo Castellina"
+			"Paolo Castellina",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -1237,7 +1238,7 @@
 	"largefileserver": "St'archivi-sì a resta pì gròss che lòn che la màchina sentral a përmet.",
 	"emptyfile": "L'archivi che a l'ha pen-a carià a smija veujd.\nSòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.\nPër piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
 	"windows-nonascii-filename": "Sta wiki-sì a manten pa ij nòm d'archivi con caràter speciaj.",
-	"fileexists": "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla <strong>[[:$1]]</strong> se {{GENDER|a}} l'é pa sigur dë vorèj cangelo.\n[[$1|thumb]]",
+	"fileexists": "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla <strong>[[:$1]]</strong> se {{GENDER:|a}} l'é pa sigur dë vorèj cangelo.\n[[$1|thumb]]",
 	"filepageexists": "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an <strong>[[:$1]]</strong>, mach ch'a-i é gnun archivi ch'as ciama parèj.\nLòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission.\nPër podèj buté sò somari a l'ha da modifichesse la pàgina a man.\n[[$1|thumb]]",
 	"fileexists-extension": "N'archivi con ës nòm-sì a-i é già: [[$2|thumb]]\n* Nòm dl'archivi ch'as carìa: <strong>[[:$1]]</strong>\n* Nòm dl'archivi ch'a-i é già: <strong>[[:$2]]</strong>\nVeul-lo dle vire dovré un nòm pi esplìssit?",
 	"fileexists-thumbnail-yes": "L'archivi a jë smija a na ''figurin-a''. [[$1|thumb]]\nPër piasì, ch'a contròla l'archivi <strong>[[:$1]]</strong>.\nS'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",

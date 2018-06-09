@@ -574,6 +574,7 @@
 	"botpasswords-restriction-failed": "A botjelszó-korlátozások megakadályozzák ezt a bejelentkezést.",
 	"botpasswords-invalid-name": "A megadott felhasználónév nem tartalmazza a botjelszó-elválasztót („$1”).",
 	"botpasswords-not-exist": "A(z) „$1” felhasználó nem rendelkezik „$2” nevű botjelszóval.",
+	"botpasswords-needs-reset": "„$1” {{GENDER:$1|felhasználó}} „$2” botjának jelszavát vissza kell állítani.",
 	"resetpass_forbidden": "A jelszavak nem változtathatók meg",
 	"resetpass_forbidden-reason": "A jelszavakat nem változtathatóak meg: $1",
 	"resetpass-no-info": "Be kell jelentkezned, hogy közvetlenül elérd ezt a lapot.",
@@ -1469,6 +1470,8 @@
 	"rcfilters-watchlist-showupdated": "Az újabb változtatások, amiket még nem néztél meg, <strong>vastagítva</strong> láthatók, kitöltött jelzőkkel.",
 	"rcfilters-preference-label": "A friss változtatások fejlesztett változatának elrejtése",
 	"rcfilters-preference-help": "A 2017-es felületátdolgozás és minden azóta hozzáadott eszköz visszaállítása.",
+	"rcfilters-watchlist-preference-label": "A Figyelőlista fejlesztett változatának elrejtése",
+	"rcfilters-watchlist-preference-help": "A 2017-es felületátdolgozás és minden azóta hozzáadott eszköz visszaállítása.",
 	"rcfilters-filter-showlinkedfrom-label": "A következő lapra hivatkozó lapok változtatásainak megjelenítése",
 	"rcfilters-filter-showlinkedfrom-option-label": "A kiválasztott <strong>lapról</strong> hivatkozott lapok",
 	"rcfilters-filter-showlinkedto-label": "A következő lapról hivatkozott lapok változtatásainak megjelenítése",
@@ -2228,6 +2231,9 @@
 	"dellogpage": "Törlési napló",
 	"dellogpagetext": "Itt láthatók a legutóbb törölt lapok.",
 	"deletionlog": "törlési napló",
+	"log-name-create": "Laplétrehozási napló",
+	"log-description-create": "Itt láthatók a legutóbb létrehozott lapok.",
+	"logentry-create-create": "$1 {{GENDER:$2|létrehozta}} a következő lapot: $3",
 	"reverted": "Visszaállítva a korábbi változatra",
 	"deletecomment": "Ok:",
 	"deleteotherreason": "További indoklás:",
@@ -4033,5 +4039,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "A jelszónak legalább $1 karakterből kell állnia a bejelentkezéshez",
 	"passwordpolicies-policy-passwordcannotmatchusername": "A jelszó nem lehet azonos a felhasználónévvel",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "A jelszó nem lehet azonos a feketelistán szereplő jelszavakkal.",
-	"passwordpolicies-policy-maximalpasswordlength": "A jelszó legfeljebb $1 karakter hosszú lehet"
+	"passwordpolicies-policy-maximalpasswordlength": "A jelszó legfeljebb $1 karakter hosszú lehet",
+	"passwordpolicies-policy-passwordcannotbepopular": "A jelszó nem {{PLURAL:$1|lehet a gyakran használt jelszó|szerepelhet a(z) $1 leggyakrabban használt jelszó listáján}}"
 }

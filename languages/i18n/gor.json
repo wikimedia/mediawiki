@@ -7,7 +7,8 @@
 			"Matma Rex",
 			"NoiX180",
 			"Zhoelyakin",
-			"Amire80"
+			"Amire80",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Garisiyi totibawa wumbuta",
@@ -133,7 +134,7 @@
 	"hidden-category-category": "Dalala wanto-wanto'o",
 	"category-subcat-count": "{{PLURAL:$2|Kategori boti woluwo subkategori|Kategori boti woluwo {{PLURAL:$1|subkategori|$1 subkategori}} lonto nga'amila $2.}}",
 	"category-subcat-count-limited": "Kategori boti woluwo {{PLURAL:$1|subkategori|$1 subkategori}}",
-	"category-article-count": "{{PLURAL:$2|Kategori botiye o tuwango halaman.|Woluwo {{PLURAL:$|$1 halaman}} to delomo kategori, lonto $2 nga'amila.}}",
+	"category-article-count": "{{PLURAL:$2|Kategori botiye o tuwango halaman.|Woluwo {{PLURAL:$1|$1 halaman}} to delomo kategori, lonto $2 nga'amila.}}",
 	"category-article-count-limited": "Kategori boti woluwo {{PLURAL:$1|halaman|$1 halaman}} to delomo kategori",
 	"category-file-count": "{{PLURAL:$2|To kategori boti woluwo berkas {{PLURAL:$1|berkas|$1 berkas}} to delomo kategori, lonto nga'amila $2}}",
 	"category-file-count-limited": "Woluwo {{PLURAL:$1|berkas|S1 berkas}} to delomo kategori.",

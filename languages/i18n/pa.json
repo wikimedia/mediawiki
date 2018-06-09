@@ -26,7 +26,8 @@
 			"Tow",
 			"Sony dandiwal",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -1068,7 +1069,7 @@
 	"newpageletter": "ਨ",
 	"boteditletter": "ਬੋਟ",
 	"number_of_watching_users_pageview": "[$1 ਵੇਖ ਰਹੇ ਹਨ {{PLURAL:$1|ਯੂਜ਼ਰ}}]",
-	"rc-change-size-new": "$1 {{PLURAL:$|ਬਾਈਟ|ਬਾਈਟਾਂ}} ਤਬਦੀਲੀ ਤੋਂ ਬਾਅਦ",
+	"rc-change-size-new": "$1 {{PLURAL:$1|ਬਾਈਟ|ਬਾਈਟਾਂ}} ਤਬਦੀਲੀ ਤੋਂ ਬਾਅਦ",
 	"newsectionsummary": "/* $1 */ ਨਵਾਂ ਭਾਗ",
 	"rc-enhanced-expand": "ਵੇਰਵੇ ਵੇਖਾਓ",
 	"rc-enhanced-hide": "ਵੇਰਵਾ ਲੁਕਾਓ",

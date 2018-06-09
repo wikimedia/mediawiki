@@ -20,7 +20,8 @@
 			"Fitoschido",
 			"Vriullop",
 			"Unuaiga",
-			"Guilhelma"
+			"Guilhelma",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -344,7 +345,7 @@
 	"title-invalid-characters": "Lo títol  de la pagina demandada conten de caractèrs invalids : « $1 ».",
 	"title-invalid-relative": "Lo títol conten un camin relatiu. Los títols relatius (./, ../) son pas valids perque los navigadors web pòdon pas sovent i arribar.",
 	"title-invalid-magic-tilde": "Lo títol de la pagina sollicitada conten una sequéncia de tildas pas valida (<nowiki>~~~</nowiki>).",
-	"title-invalid-too-long": "Lo títol de la pagina sollicitada es tròp long. A pas d’excedir  $ 1  {{PLURALA:$1|byte|bytes}} en codificacion UTF-8.",
+	"title-invalid-too-long": "Lo títol de la pagina sollicitada es tròp long. A pas d’excedir $1 {{PLURAL:$1|byte|bytes}} en codificacion UTF-8.",
 	"title-invalid-leading-colon": "Lo títol de la pagina sollicitada conten dos ponches a la debuta.",
 	"perfcached": "Las donadas seguendas son en cache e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins lo cache.",
 	"perfcachedts": "Las donadas seguendas son en cache e benlèu, son pas a jorn. Un maximum de {{PLURAL:$1|un resultat|$1 resultats}} es disponible dins lo cache.",
