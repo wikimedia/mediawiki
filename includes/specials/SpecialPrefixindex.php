@@ -138,11 +138,11 @@ class SpecialPrefixindex extends SpecialAllPages {
 	}
 
 	/**
-	 * @param int $namespace Default NS_MAIN
+	 * @param int $namespace
 	 * @param string $prefix
 	 * @param string $from List all pages from this name (default false)
 	 */
-	protected function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
+	protected function showPrefixChunk( $namespace, $prefix, $from = null ) {
 		global $wgContLang;
 
 		if ( $from === null ) {

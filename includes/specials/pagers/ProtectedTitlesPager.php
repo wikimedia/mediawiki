@@ -26,7 +26,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds = [], $type, $level, $namespace,
+	function __construct( $form, $conds, $type, $level, $namespace,
 		$sizetype = '', $size = 0
 	) {
 		$this->mForm = $form;
