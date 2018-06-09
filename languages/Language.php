@@ -3554,7 +3554,7 @@ class Language {
 	 * @return string
 	 */
 	private function truncateInternal(
-		$string, $length, $ellipsis = '...', $adjustLength = true, $measureLength, $getSubstring
+		$string, $length, $ellipsis, $adjustLength, $measureLength, $getSubstring
 	) {
 		if ( !is_callable( $measureLength ) || !is_callable( $getSubstring ) ) {
 			throw new InvalidArgumentException( 'Invalid callback provided' );
@@ -4471,7 +4471,7 @@ class Language {
 	 * @throws MWException
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
-	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
+	public static function getFileName( $prefix, $code, $suffix = '.php' ) {
 		if ( !self::isValidBuiltInCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}
