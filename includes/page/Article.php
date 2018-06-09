@@ -279,8 +279,8 @@ class Article implements Page {
 				if ( $this->mRevision !== null ) {
 					// Revision title doesn't match the page title given?
 					if ( $this->mPage->getId() != $this->mRevision->getPage() ) {
-						$function = [ get_class( $this->mPage ), 'newFromID' ];
-						$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
+						$function = get_class( $this->mPage ). '::newFromID';
+						$this->mPage = $function( $this->mRevision->getPage() );
 					}
 				}
 			}

@@ -149,10 +149,10 @@ class LBFactorySimple extends LBFactory {
 	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		if ( isset( $this->mainLB ) ) {
-			call_user_func_array( $callback, array_merge( [ $this->mainLB ], $params ) );
+			$callback( $this->mainLB, ...$params );
 		}
 		foreach ( $this->extLBs as $lb ) {
-			call_user_func_array( $callback, array_merge( [ $lb ], $params ) );
+			$callback( $lb, ...$params );
 		}
 	}
 }

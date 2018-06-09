@@ -865,7 +865,7 @@ class DatabaseSqlite extends Database {
 		$args = func_get_args();
 		$function = array_shift( $args );
 
-		return call_user_func_array( $function, $args );
+		return $function( ...$args );
 	}
 
 	/**

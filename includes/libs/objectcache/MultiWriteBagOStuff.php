@@ -195,16 +195,15 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 			if ( $i == 0 || !$asyncWrites ) {
 				// First store or in sync mode: write now and get result
-				if ( !call_user_func_array( [ $cache, $method ], $args ) ) {
+				if ( !$cache->$method( ...$args ) ) {
 					$ret = false;
 				}
 			} else {
 				// Secondary write in async mode: do not block this HTTP request
 				$logger = $this->logger;
-				call_user_func(
-					$this->asyncHandler,
+				( $this->asyncHandler )(
 					function () use ( $cache, $method, $args, $logger ) {
-						if ( !call_user_func_array( [ $cache, $method ], $args ) ) {
+						if ( !$cache->$method( ...$args ) ) {
 							$logger->warning( "Async $method op failed" );
 						}
 					}
@@ -235,10 +234,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	public function makeKey( $class, $component = null ) {
-		return call_user_func_array( [ $this->caches[0], __FUNCTION__ ], func_get_args() );
+		return $this->caches[0]->makeKey( ...func_get_args() );
 	}
 
 	public function makeGlobalKey( $class, $component = null ) {
-		return call_user_func_array( [ $this->caches[0], __FUNCTION__ ], func_get_args() );
+		return $this->caches[0]->makeGlobalKey( ...func_get_args() );
 	}
 }
