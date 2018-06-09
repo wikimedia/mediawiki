@@ -1128,7 +1128,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @return string
 	 */
-	protected function replaceParameters( $message, $type = 'before', $format ) {
+	protected function replaceParameters( $message, $type, $format ) {
 		// A temporary marker for $1 parameters that is only valid
 		// in non-attribute contexts. However if the entire message is escaped
 		// then we don't want to use it because it will be mangled in all contexts

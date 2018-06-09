@@ -245,7 +245,7 @@ class LinkRenderer {
 	 * @return string
 	 */
 	public function makePreloadedLink(
-		LinkTarget $target, $text = null, $classes, array $extraAttribs = [], array $query = []
+		LinkTarget $target, $text = null, $classes = '', array $extraAttribs = [], array $query = []
 	) {
 		// Run begin hook
 		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query, true );
