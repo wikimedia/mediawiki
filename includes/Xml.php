@@ -124,11 +124,11 @@ class Xml {
 	 * content you have is already valid xml.
 	 *
 	 * @param string $element Element name
-	 * @param array $attribs Array of attributes
+	 * @param array|null $attribs Array of attributes
 	 * @param string $contents Content of the element
 	 * @return string
 	 */
-	public static function tags( $element, $attribs = null, $contents ) {
+	public static function tags( $element, $attribs, $contents ) {
 		return self::openElement( $element, $attribs ) . $contents . "</$element>";
 	}
 
