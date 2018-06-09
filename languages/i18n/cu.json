@@ -8,7 +8,8 @@
 			"ОйЛ",
 			"아라",
 			"Илья Драконов",
-			"Vvs-dm"
+			"Vvs-dm",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-oldsig": "твои нꙑнѣшьн҄ь аѵтографъ :",
@@ -237,7 +238,7 @@
 	"userexists": "сѫщє польꙃєватєлꙗ имѧ пьса ⁙\nбѫди добръ · ино сѥ иꙁобрѧщи",
 	"loginerror": "въхода блаꙁна",
 	"createacct-error": "мѣста сътворѥниꙗ блаꙁна",
-	"loginsuccess": "'''нꙑнѣ тꙑ {{GENDER|въшьлъ|въшьла}} въ {{grammar:locative|{{SITENAME}}}} подь имьньмъ ⁖ $1 ⁖.'''",
+	"loginsuccess": "'''нꙑнѣ тꙑ {{GENDER:|въшьлъ|въшьла}} въ {{grammar:locative|{{SITENAME}}}} подь имьньмъ ⁖ $1 ⁖.'''",
 	"mailmypassword": "нова таина слова оуставлѥниѥ",
 	"accountcreated": "мѣсто сътворєно ѥстъ",
 	"accountcreatedtext": "польꙃєватєльско мѣсто [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|бєсѣда]]) сътворєно бѣ",

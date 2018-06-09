@@ -12,7 +12,8 @@
 			"Angel Blaise",
 			"Fitoschido",
 			"Robin van der Vliet",
-			"Mafcadio"
+			"Mafcadio",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Sulini de lias:",
@@ -3590,7 +3591,7 @@
 	"logentry-delete-restore": "$1 {{GENDER:$2|restora}} paje $3 ($4)",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|restora}} paje $3",
 	"restore-count-revisions": "{{PLURAL:$|1 revisa|$1 revisas}}",
-	"restore-count-files": "{{PLURAL:$|1 fix|$1 fixes}}",
+	"restore-count-files": "{{PLURAL:$1|1 fix|$1 fixes}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|cambia}} la vidablia de {{PLURAL:$5|un entrada|$5 entradas}} de rejistra en $3: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|cambia}} la vidablia de {{PLURAL:$5|un revisa|$5 revisas}} en paje $3: $4",
 	"logentry-delete-event-legacy": "$1 {{GENDER:$2|cambia}} la vidablia de entradas de rejistra en $3",

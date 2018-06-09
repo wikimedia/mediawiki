@@ -36,7 +36,8 @@
 			"Denisa",
 			"Fanjiayi",
 			"Fitoschido",
-			"Luanibraj"
+			"Luanibraj",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -2477,7 +2478,7 @@
 	"importlogpage": "Regjistri i importeve",
 	"importlogpagetext": "Importimet administrative të faqeve me historik redaktimi nga wiki-t e tjera.",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versione}} u importuan",
-	"import-logentry-interwiki-detail": "$1 {{PLURAL:$!1|version|versione}} u importuan nga $2",
+	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|version|versione}} u importuan nga $2",
 	"javascripttest": "Duke testuar JavaScript",
 	"javascripttest-pagetext-unknownaction": "Veprim i panjohur \"$1\".",
 	"javascripttest-qunit-intro": "Shiko [$1 dokumentacionin e testimit] në mediawiki.org.",
