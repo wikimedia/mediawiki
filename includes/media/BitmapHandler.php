@@ -228,7 +228,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
-		$cmd = call_user_func_array( 'wfEscapeShellArg', array_merge(
+		$cmd = wfEscapeShellArg( ...array_merge(
 			[ $wgImageMagickConvertCommand ],
 			$quality,
 			// Specify white background color, will be used for transparent images

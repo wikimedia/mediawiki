@@ -68,7 +68,7 @@ class StatusValue {
 	public static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
 		$result = new static();
-		call_user_func_array( [ &$result, 'fatal' ], $params );
+		$result->fatal( ...$params );
 		return $result;
 	}
 

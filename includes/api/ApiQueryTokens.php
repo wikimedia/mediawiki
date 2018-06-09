@@ -94,7 +94,7 @@ class ApiQueryTokens extends ApiQueryBase {
 	public static function getToken( User $user, MediaWiki\Session\Session $session, $salt ) {
 		if ( is_array( $salt ) ) {
 			$session->persist();
-			return call_user_func_array( [ $session, 'getToken' ], $salt );
+			return $session->getToken( ...$salt );
 		} else {
 			return $user->getEditTokenObject( $salt, $session->getRequest() );
 		}

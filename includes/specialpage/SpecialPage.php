@@ -791,10 +791,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @see wfMessage
 	 */
 	public function msg( $key /* $args */ ) {
-		$message = call_user_func_array(
-			[ $this->getContext(), 'msg' ],
-			func_get_args()
-		);
+		$message = $this->getContext()->msg( ...func_get_args() );
 		// RequestContext passes context to wfMessage, and the language is set from
 		// the context, but setting the language for Message class removes the
 		// interface message status, which breaks for example usernameless gender

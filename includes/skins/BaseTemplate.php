@@ -36,7 +36,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return Message
 	 */
 	public function getMsg( $name /* ... */ ) {
-		return call_user_func_array( [ $this->getSkin(), 'msg' ], func_get_args() );
+		return $this->getSkin()->msg( ...func_get_args() );
 	}
 
 	function msg( $str ) {

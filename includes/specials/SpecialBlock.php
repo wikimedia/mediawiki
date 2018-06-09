@@ -553,7 +553,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( !$status->isOK() ) {
 			$errors = $status->getErrorsArray();
 
-			return call_user_func_array( [ $form, 'msg' ], $errors[0] );
+			return $form->msg( ...$errors[0] );
 		} else {
 			return true;
 		}

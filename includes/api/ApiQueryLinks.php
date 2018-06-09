@@ -103,7 +103,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			if ( $cond ) {
 				$this->addWhere( $cond );
 				$multiNS = count( $lb->data ) !== 1;
-				$multiTitle = count( call_user_func_array( 'array_merge', $lb->data ) ) !== 1;
+				$multiTitle = count( array_merge( ...$lb->data ) ) !== 1;
 			} else {
 				// No titles so no results
 				return;

@@ -76,7 +76,7 @@ class RedisLockManager extends QuorumLockManager {
 	protected function getLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 
-		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
+		$pathList = array_merge( ...array_values( $pathsByType ) );
 
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server, $this->logger );
@@ -171,7 +171,7 @@ LUA;
 	protected function freeLocksOnServer( $lockSrv, array $pathsByType ) {
 		$status = StatusValue::newGood();
 
-		$pathList = call_user_func_array( 'array_merge', array_values( $pathsByType ) );
+		$pathList = array_merge( ...array_values( $pathsByType ) );
 
 		$server = $this->lockServers[$lockSrv];
 		$conn = $this->redisPool->getConnection( $server, $this->logger );
