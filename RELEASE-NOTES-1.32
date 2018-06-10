@@ -160,6 +160,8 @@ because of Phabricator reports.
   or refer to T195256 for details on how to make the same change.
 * Hook 'EditPageBeforeEditChecks' was removed;
   use 'EditPageGetCheckboxesDefinition' instead.
+* Linker::getLinkColour() and DummyLinker::getLinkColour(), deprecated since
+  1.28, were removed. LinkRenderer::getLinkClasses() should be used instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
