@@ -1121,13 +1121,13 @@ class WebInstaller extends Installer {
 	 * @return string
 	 */
 	protected function getDocUrl( $page ) {
-		$url = "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
+		$query = [ 'page' => $page ];
 
 		if ( in_array( $this->currentPageName, $this->pageSequence ) ) {
-			$url .= '&lastPage=' . urlencode( $this->currentPageName );
+			$query['lastPage'] = $this->currentPageName;
 		}
 
-		return $url;
+		return $this->getUrl( $query );
 	}
 
 	/**
@@ -1142,9 +1142,7 @@ class WebInstaller extends Installer {
 	public function docLink( $linkText, $attribs, $parser ) {
 		$url = $this->getDocUrl( $attribs['href'] );
 
-		return '<a href="' . htmlspecialchars( $url ) . '">' .
-			htmlspecialchars( $linkText ) .
-			'</a>';
+		return Html::element( 'a', [ 'href' => $url ], $linkText );
 	}
 
 	/**
