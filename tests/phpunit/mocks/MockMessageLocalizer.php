@@ -37,7 +37,7 @@ class MockMessageLocalizer implements MessageLocalizer {
 		$args = func_get_args();
 
 		/** @var Message $message */
-		$message = call_user_func_array( 'wfMessage', $args );
+		$message = wfMessage( ...$args );
 
 		if ( $this->languageCode !== null ) {
 			$message->inLanguage( $this->languageCode );

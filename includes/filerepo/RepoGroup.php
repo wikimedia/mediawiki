@@ -372,8 +372,7 @@ class RepoGroup {
 			$this->initialiseRepos();
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			$args = array_merge( [ $repo ], $params );
-			if ( call_user_func_array( $callback, $args ) ) {
+			if ( $callback( $repo, ...$params ) ) {
 				return true;
 			}
 		}

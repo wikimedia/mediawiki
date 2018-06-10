@@ -202,7 +202,7 @@ abstract class LBFactory implements ILBFactory {
 	protected function forEachLBCallMethod( $methodName, array $args = [] ) {
 		$this->forEachLB(
 			function ( ILoadBalancer $loadBalancer, $methodName, array $args ) {
-				call_user_func_array( [ $loadBalancer, $methodName ], $args );
+				$loadBalancer->$methodName( ...$args );
 			},
 			[ $methodName, $args ]
 		);

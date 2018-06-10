@@ -61,12 +61,9 @@ class ParserDiffTest {
 		$results = [];
 		$mismatch = false;
 		$lastResult = null;
-		$first = true;
-		foreach ( $this->parsers as $i => $parser ) {
-			$currentResult = call_user_func_array( [ &$this->parsers[$i], $name ], $args );
-			if ( $first ) {
-				$first = false;
-			} else {
+		foreach ( $this->parsers as $parser ) {
+			$currentResult = $parser->$name( ...$args );
+			if ( count( $results ) > 0 ) {
 				if ( is_object( $lastResult ) ) {
 					if ( $lastResult != $currentResult ) {
 						$mismatch = true;
@@ -77,7 +74,7 @@ class ParserDiffTest {
 					}
 				}
 			}
-			$results[$i] = $currentResult;
+			$results[] = $currentResult;
 			$lastResult = $currentResult;
 		}
 		if ( $mismatch ) {

@@ -120,8 +120,8 @@ class ArrayUtils {
 		$max = $valueCount;
 		do {
 			$mid = $min + ( ( $max - $min ) >> 1 );
-			$item = call_user_func( $valueCallback, $mid );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
+			$item = $valueCallback( $mid );
+			$comparison = $comparisonCallback( $target, $item );
 			if ( $comparison > 0 ) {
 				$min = $mid;
 			} elseif ( $comparison == 0 ) {
@@ -133,8 +133,8 @@ class ArrayUtils {
 		} while ( $min < $max - 1 );
 
 		if ( $min == 0 ) {
-			$item = call_user_func( $valueCallback, $min );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
+			$item = $valueCallback( $min );
+			$comparison = $comparisonCallback( $target, $item );
 			if ( $comparison < 0 ) {
 				// Before the first item
 				return false;
@@ -168,7 +168,7 @@ class ArrayUtils {
 						$args[] = $array[$key];
 					}
 				}
-				$valueret = call_user_func_array( __METHOD__, $args );
+				$valueret = self::arrayDiffAssocRecursive( ...$args );
 				if ( count( $valueret ) ) {
 					$ret[$key] = $valueret;
 				}

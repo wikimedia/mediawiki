@@ -46,7 +46,7 @@ class DBConnRef implements IDatabase {
 			$this->conn = $this->lb->getConnection( $db, $groups, $wiki, $flags );
 		}
 
-		return call_user_func_array( [ $this->conn, $name ], $arguments );
+		return $this->conn->$name( ...$arguments );
 	}
 
 	public function getServerInfo() {

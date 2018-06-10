@@ -1603,7 +1603,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.27
 	 */
 	public function makeKey( $class, $component = null ) {
-		return call_user_func_array( [ $this->cache, __FUNCTION__ ], func_get_args() );
+		return $this->cache->makeKey( ...func_get_args() );
 	}
 
 	/**
@@ -1614,7 +1614,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @since 1.27
 	 */
 	public function makeGlobalKey( $class, $component = null ) {
-		return call_user_func_array( [ $this->cache, __FUNCTION__ ], func_get_args() );
+		return $this->cache->makeGlobalKey( ...func_get_args() );
 	}
 
 	/**

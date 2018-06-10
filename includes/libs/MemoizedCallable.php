@@ -123,7 +123,7 @@ class MemoizedCallable {
 		$success = false;
 		$result = $this->fetchResult( $key, $success );
 		if ( !$success ) {
-			$result = call_user_func_array( $this->callable, $args );
+			$result = ( $this->callable )( ...$args );
 			$this->storeResult( $key, $result );
 		}
 

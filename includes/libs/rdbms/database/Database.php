@@ -1214,13 +1214,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$startTime = microtime( true );
 		if ( $this->profiler ) {
-			call_user_func( [ $this->profiler, 'profileIn' ], $queryProf );
+			$this->profiler->profileIn( $queryProf );
 		}
 		$this->affectedRowCount = null;
 		$ret = $this->doQuery( $commentedSql );
 		$this->affectedRowCount = $this->affectedRows();
 		if ( $this->profiler ) {
-			call_user_func( [ $this->profiler, 'profileOut' ], $queryProf );
+			$this->profiler->profileOut( $queryProf );
 		}
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
@@ -3230,7 +3230,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$e = null;
 		do {
 			try {
-				$retVal = call_user_func_array( $function, $args );
+				$retVal = $function( ...$args );
 				break;
 			} catch ( DBQueryError $e ) {
 				if ( $this->wasDeadlock() ) {
@@ -3310,7 +3310,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
 			try {
-				call_user_func( $callback, $this );
+				$callback( $this );
 				$this->endAtomic( __METHOD__ );
 			} catch ( Exception $e ) {
 				$this->cancelAtomic( __METHOD__ );
@@ -3486,9 +3486,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				try {
 					++$count;
 					list( $phpCallback ) = $callback;
-					call_user_func( $phpCallback, $this );
+					$phpCallback( $this );
 				} catch ( Exception $ex ) {
-					call_user_func( $this->errorLogger, $ex );
+					$this->errorLogger( $ex );
 					$e = $e ?: $ex;
 				}
 			}
@@ -3522,7 +3522,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			try {
 				$phpCallback( $trigger, $this );
 			} catch ( Exception $ex ) {
-				call_user_func( $this->errorLogger, $ex );
+				( $this->errorLogger )( $ex );
 				$e = $e ?: $ex;
 			}
 		}
@@ -3723,7 +3723,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$sectionId = $this->startAtomic( $fname, $cancelable );
 		try {
-			$res = call_user_func_array( $callback, [ $this, $fname ] );
+			$res = $callback( $this, $fname );
 		} catch ( Exception $e ) {
 			$this->cancelAtomic( $fname, $sectionId );
 
@@ -4249,7 +4249,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$cmd = $this->replaceVars( $cmd );
 
 				if ( $inputCallback ) {
-					$callbackResult = call_user_func( $inputCallback, $cmd );
+					$callbackResult = $inputCallback( $cmd );
 
 					if ( is_string( $callbackResult ) || !$callbackResult ) {
 						$cmd = $callbackResult;
@@ -4260,7 +4260,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$res = $this->query( $cmd, $fname );
 
 					if ( $resultCallback ) {
-						call_user_func( $resultCallback, $res, $this );
+						$resultCallback( $res, $this );
 					}
 
 					if ( false === $res ) {

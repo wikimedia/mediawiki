@@ -422,10 +422,10 @@ class LBFactoryMulti extends LBFactory {
 	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		foreach ( $this->mainLBs as $lb ) {
-			call_user_func_array( $callback, array_merge( [ $lb ], $params ) );
+			$callback( $lb, ...$params );
 		}
 		foreach ( $this->extLBs as $lb ) {
-			call_user_func_array( $callback, array_merge( [ $lb ], $params ) );
+			$callback( $lb, ...$params );
 		}
 	}
 }

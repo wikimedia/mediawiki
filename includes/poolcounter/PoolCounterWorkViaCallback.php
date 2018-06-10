@@ -66,26 +66,26 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 	}
 
 	public function doWork() {
-		return call_user_func_array( $this->doWork, [] );
+		return ( $this->doWork )();
 	}
 
 	public function getCachedWork() {
 		if ( $this->doCachedWork ) {
-			return call_user_func_array( $this->doCachedWork, [] );
+			return ( $this->doCachedWork )();
 		}
 		return false;
 	}
 
 	public function fallback() {
 		if ( $this->fallback ) {
-			return call_user_func_array( $this->fallback, [] );
+			return ( $this->fallback )();
 		}
 		return false;
 	}
 
 	public function error( $status ) {
 		if ( $this->error ) {
-			return call_user_func_array( $this->error, [ $status ] );
+			return ( $this->error )( $status );
 		}
 		return false;
 	}

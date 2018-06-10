@@ -432,7 +432,7 @@ class SiteConfiguration {
 			return $default;
 		}
 
-		$ret = call_user_func_array( $this->siteParamsCallback, [ $this, $wiki ] );
+		$ret = ( $this->siteParamsCallback )( $this, $wiki );
 		# Validate the returned value
 		if ( !is_array( $ret ) ) {
 			return $default;
@@ -606,7 +606,7 @@ class SiteConfiguration {
 
 	public function loadFullData() {
 		if ( $this->fullLoadCallback && !$this->fullLoadDone ) {
-			call_user_func( $this->fullLoadCallback, $this );
+			( $this->fullLoadCallback )( $this );
 			$this->fullLoadDone = true;
 		}
 	}

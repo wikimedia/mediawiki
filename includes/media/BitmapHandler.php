@@ -449,7 +449,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
-		$src_image = call_user_func( $loader, $params['srcPath'] );
+		$src_image = $loader( $params['srcPath'] );
 
 		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] ) ?
 			$this->getRotation( $image ) :
@@ -489,7 +489,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		if ( $useQuality && isset( $params['quality'] ) ) {
 			$funcParams[] = $params['quality'];
 		}
-		call_user_func_array( $saveType, $funcParams );
+		$saveType( ...$funcParams );
 
 		imagedestroy( $dst_image );
 		imagedestroy( $src_image );
