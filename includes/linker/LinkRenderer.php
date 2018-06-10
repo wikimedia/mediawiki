@@ -204,7 +204,7 @@ class LinkRenderer {
 			$realHtml = $html = null;
 		}
 		if ( !Hooks::run( 'LinkBegin',
-			[ $dummy, $title, &$html, &$extraAttribs, &$query, &$options, &$ret ] )
+			[ $dummy, $title, &$html, &$extraAttribs, &$query, &$options, &$ret ], '1.28' )
 		) {
 			return $ret;
 		}
@@ -373,7 +373,7 @@ class LinkRenderer {
 			$title = Title::newFromLinkTarget( $target );
 			$options = $this->getLegacyOptions( $isKnown );
 			if ( !Hooks::run( 'LinkEnd',
-				[ $dummy, $title, $options, &$html, &$attribs, &$ret ] )
+				[ $dummy, $title, $options, &$html, &$attribs, &$ret ], '1.28' )
 			) {
 				return $ret;
 			}
