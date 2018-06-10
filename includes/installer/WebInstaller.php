@@ -1142,9 +1142,7 @@ class WebInstaller extends Installer {
 	public function docLink( $linkText, $attribs, $parser ) {
 		$url = $this->getDocUrl( $attribs['href'] );
 
-		return '<a href="' . htmlspecialchars( $url ) . '">' .
-			htmlspecialchars( $linkText ) .
-			'</a>';
+		return Html::element( 'a', [ 'href' => $url ], $linkText );
 	}
 
 	/**
