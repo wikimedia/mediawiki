@@ -290,7 +290,6 @@
 	"config-install-interwiki-exists": "<strong>Varoitus:</strong> interwiki-taulussa on jo tietueita, ohitetaan oletuslista.",
 	"config-install-stats": "Alustetaan tilastoja",
 	"config-install-keys": "Muodostetaan salausavaimia",
-	"config-insecure-keys": "<strong>Varoitus:</strong> Asennuksen aikana {{PLURAL:$2|luotu turva-avain|luodut turva-avaimet}} ($1) {{PLURAL:$2|ei|eivät}} ole täysin {{PLURAL:$2|turvallinen|turvallisia}}. Harkitse {{PLURAL:$2|sen|niiden}} muuttamista manuaalisesti.",
 	"config-install-updates": "Estä tarpeettomien päivitysten asennus",
 	"config-install-updates-failed": "<strong>Virhe:</strong> Päivitysavainten lisääminen taulukoihin epäonnistui seuraavalla virheellä: $1",
 	"config-install-sysop": "Luodaan ylläpitäjän tiliä",

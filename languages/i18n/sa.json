@@ -24,7 +24,8 @@
 			"Macofe",
 			"Matma Rex",
 			"రహ్మానుద్దీన్",
-			"Fitoschido"
+			"Fitoschido",
+			"Charunandan16"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -1746,6 +1747,7 @@
 	"dellogpage": "अपाकरणानाम् आवलिः",
 	"dellogpagetext": "सद्यः कालीनापमर्जितपुटानाम् आवली अधः अस्ति ।",
 	"deletionlog": "अपमर्जनसूचिका ।",
+	"log-description-create": "नवीनतमानां पृष्ठरचनानाम् इयम् आवली",
 	"reverted": "प्राचीनपुनरावृत्तिः पूर्ववत् कृता ।",
 	"deletecomment": "कारणम् :",
 	"deleteotherreason": "अपरं/अतिरिक्तं कारणम् :",

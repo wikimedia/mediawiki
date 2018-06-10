@@ -295,7 +295,6 @@
 	"config-install-interwiki-exists": "<strong>Atención:</strong> Semella que a táboa de interwiki xa contén entradas.\nSaltando a lista por defecto.",
 	"config-install-stats": "Iniciando as estatísticas",
 	"config-install-keys": "Xerando as claves secretas",
-	"config-insecure-keys": "<strong>Atención:</strong> {{PLURAL:$2|A clave de seguridade|As claves de seguridade}} ($1) {{PLURAL:$2|xerada|xeradas}} durante a instalación non {{PLURAL:$2|é|son}} completamente {{PLURAL:$2|segura|seguras}}. Considere a posibilidade de {{PLURAL:$2|cambiala|cambialas}} manualmente.",
 	"config-install-updates": "Evitar executar actualizacións innecesarias",
 	"config-install-updates-failed": "<strong>Error:</strong> a inserción de claves de actualización nas táboas fallou co seguinte erro: $1",
 	"config-install-sysop": "Creando a conta de usuario de administrador",

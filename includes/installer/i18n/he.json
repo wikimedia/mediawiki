@@ -295,7 +295,6 @@
 	"config-install-interwiki-exists": "'''אזהרה:''' נראה שבטבלת הבינוויקי כבר יש רשומות.\nמדלג על הרשומה ההתחלתית.",
 	"config-install-stats": "אתחול סטטיסטיקות",
 	"config-install-keys": "יצירת מפתחות סודיים",
-	"config-insecure-keys": "'''אזהרה''': {{PLURAL:$2|מפתח|מפתחות}} אבטחה ($1) {{PLURAL:$2|שנוצר|שנוצרו}} במהלך ההתקנה {{PLURAL:$2|אינו בטוח|אינם בטוחים}} מספיק. מומלץ לשקול לשנות {{PLURAL:$2|אותו|אותם}} ידנית.",
 	"config-install-updates": "למנוע הרצת עדכונים מיותרים",
 	"config-install-updates-failed": "<strong>שגיאה:</strong> הוספת מפתחות עדכון לטבלאות נכשל עם השגיאה הבאה: $1",
 	"config-install-sysop": "יצירת חשבון מפעיל",

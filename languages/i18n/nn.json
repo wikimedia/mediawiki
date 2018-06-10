@@ -883,6 +883,7 @@
 	"search-external": "Eksternt søk",
 	"searchdisabled": "Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.\nI mellomtida kan du søkje gjennom Google.\nVer merksam på at registra deira kan vera utdaterte.",
 	"search-error": "Det oppstod ein feil under søket: $1",
+	"search-warning": "Det vart gjeve ei åtvaring under søket: $1",
 	"preferences": "Innstillingar",
 	"mypreferences": "Innstillingar",
 	"prefs-edits": "Tal på endringar:",

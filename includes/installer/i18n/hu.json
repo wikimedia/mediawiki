@@ -287,7 +287,6 @@
 	"config-install-interwiki-exists": "'''Figyelmeztetés''': Úgy tűnik, hogy az interwiki táblában már vannak bejegyzések.\nAlapértelmezett lista kihagyása.",
 	"config-install-stats": "Statisztika inicializálása",
 	"config-install-keys": "Titkos kulcsok generálása",
-	"config-insecure-keys": "'''Figyelmeztetés:''' A telepítés során generált $1 {{PLURAL:$2|biztonsági kulcs|biztonsági kulcsok}} nem teljesen $1 {{PLURAL:$2|biztonságos|biztonságosak}}. Érdemes {{PLURAL:$2||őket}} manuálisan megváltoztatni.",
 	"config-install-updates": "Nem szükséges frissítések futtatásának megakadályozása",
 	"config-install-sysop": "Az adminisztrátor felhasználói fiókjának létrehozása",
 	"config-install-subscribe-fail": "Nem sikerült feliratkozni a mediawiki-announce levelezőlistára: $1",

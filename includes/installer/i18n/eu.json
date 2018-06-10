@@ -293,7 +293,6 @@
 	"config-install-interwiki-exists": "<strong>Oharra:</strong> Interwikiko taula badirudi sarrerak dituela. \nTaula estandarra saltatzen.",
 	"config-install-stats": "Estatistikak hasten",
 	"config-install-keys": "Gako sekretuak sortzen",
-	"config-insecure-keys": "<strong>Oharra:</strong> ($1) instalazioan zehar sortu {{PLURAL:$2|den|diren}} {{PLURAL:$2|gako segurua|gako seguruak}}ez d(ir)a guztiz segurua(k). Kontuan hartu {{PLURAL:$2|hau|hauek}} eskuz aldatzeko aukera.",
 	"config-install-updates": "Saihestu egikaratzen behar ez diren aktualizazioak",
 	"config-install-updates-failed": "<strong>Errore</strong> Sartzea eguneratze-gakoak taulen barruan huts egin du hurrengo errorearekin: $1",
 	"config-install-sysop": "Administratzaile kontua sortzen",

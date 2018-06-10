@@ -267,7 +267,6 @@
 	"config-install-interwiki-exists": "'''Avis''': La tàula interwiki a smija ch'a l'abia già dj'element.\nPër stàndard, la lista a sarà sautà.",
 	"config-install-stats": "Inissialisassion dle statìstiche",
 	"config-install-keys": "Generassion ëd le ciav segrete",
-	"config-insecure-keys": "'''Avis:''' {{PLURAL:$2|Na ciav sigura|Dle ciav sigure}} ($1) generà durant l'istalassion {{PLURAL:$2|a l'é|a son}} pa completament sigure. Ch'a consìdera ëd modifiche{{PLURAL:$2|la|je}} manualment.",
 	"config-install-sysop": "Creassion dël cont ëd l'utent aministrator",
 	"config-install-subscribe-fail": "As peul pa sot-scrivse mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "cURL a l'é pa istalà e <code>allow_url_fopen</code> a l'é pa disponìbil.",

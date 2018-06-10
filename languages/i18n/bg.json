@@ -3693,5 +3693,13 @@
 	"edit-error-short": "Грешка: $1",
 	"edit-error-long": "Грешки:\n\n$1",
 	"revid": "версия $1",
-	"pagedata-bad-title": "Невалидно заглавие: $1."
+	"pagedata-bad-title": "Невалидно заглавие: $1.",
+	"passwordpolicies": "Правила за паролите",
+	"passwordpolicies-summary": "Това е списъкът на действащите правила за паролите на потребителските групи дефинирани в това уики.",
+	"passwordpolicies-policy-minimalpasswordlength": "Паролата трябва да бъде от поне $1 {{PLURAL:$1|знак|знака}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Паролата трябва да бъде поне $1 {{PLURAL:$1|знак|знака}} за да можете да влезете",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Паролата не може да бъде същата като потребителското име",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Паролата не може да съвпада с пароли от черния списък",
+	"passwordpolicies-policy-maximalpasswordlength": "Паролата трябва да бъде по-малко от $1 {{PLURAL:$1|знак|знака}}",
+	"passwordpolicies-policy-passwordcannotbepopular": "Паролата не може да бъде {{PLURAL:$1|най-популярната такава|от списъка на най-популярните $1 пароли}}"
 }
