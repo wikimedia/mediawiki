@@ -131,6 +131,11 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			. '(page does not exist)"><script>evil()</script></a>',
 			$linkRenderer->makeLink( $foobar, new HtmlArmor( '<script>evil()</script>' ) )
 		);
+
+		$this->assertEquals(
+			'<a href="#fragment">fragment</a>',
+			$linkRenderer->makeLink( Title::newFromText( '#fragment' ) )
+		);
 	}
 
 	public function testGetLinkClasses() {
