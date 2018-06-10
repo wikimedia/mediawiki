@@ -826,7 +826,7 @@ class Linker {
 			$key = strtolower( $name );
 		}
 
-		return self::linkKnown( SpecialPage::getTitleFor( $name ), wfMessage( $key )->text() );
+		return self::linkKnown( SpecialPage::getTitleFor( $name ), wfMessage( $key )->escaped() );
 	}
 
 	/**

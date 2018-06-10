@@ -38,7 +38,7 @@ class FormatJson {
 	 * HTML and XML.
 	 *
 	 * @warning Do not use this option for JSON that could end up in inline scripts.
-	 * - HTML5, §4.3.1.2 Restrictions for contents of script elements
+	 * - HTML 5.2, §4.12.1.3 Restrictions for contents of script elements
 	 * - XML 1.0 (5th Ed.), §2.4 Character Data and Markup
 	 *
 	 * @since 1.22
@@ -52,19 +52,18 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const ALL_OK = 3;
+	const ALL_OK = self::UTF8_OK | self::XMLMETA_OK;
 
 	/**
-	 * If set, treat json objects '{...}' as associative arrays. Without this option,
-	 * json objects will be converted to stdClass.
-	 * The value is set to 1 to be backward compatible with 'true' that was used before.
+	 * If set, treat JSON objects '{...}' as associative arrays. Without this option,
+	 * JSON objects will be converted to stdClass.
 	 *
 	 * @since 1.24
 	 */
 	const FORCE_ASSOC = 0x100;
 
 	/**
-	 * If set, attempts to fix invalid json.
+	 * If set, attempt to fix invalid JSON.
 	 *
 	 * @since 1.24
 	 */
@@ -130,18 +129,16 @@ class FormatJson {
 			return false;
 		}
 
-		if ( $pretty !== false ) {
-			if ( $pretty !== '    ' ) {
-				// Change the four-space indent to a tab indent
-				$json = str_replace( "\n    ", "\n\t", $json );
-				while ( strpos( $json, "\t    " ) !== false ) {
-					$json = str_replace( "\t    ", "\t\t", $json );
-				}
+		if ( $pretty !== false && $pretty !== '    ' ) {
+			// Change the four-space indent to a tab indent
+			$json = str_replace( "\n    ", "\n\t", $json );
+			while ( strpos( $json, "\t    " ) !== false ) {
+				$json = str_replace( "\t    ", "\t\t", $json );
+			}
 
-				if ( $pretty !== "\t" ) {
-					// Change the tab indent to the provided indent
-					$json = str_replace( "\t", $pretty, $json );
-				}
+			if ( $pretty !== "\t" ) {
+				// Change the tab indent to the provided indent
+				$json = str_replace( "\t", $pretty, $json );
 			}
 		}
 		if ( $escaping & self::UTF8_OK ) {
@@ -243,7 +240,7 @@ class FormatJson {
 
 	/**
 	 * Remove multiline and single line comments from an otherwise valid JSON
-	 * input string. This can be used as a preprocessor for to allow JSON
+	 * input string. This can be used as a preprocessor, to allow JSON
 	 * formatted configuration files to contain comments.
 	 *
 	 * @param string $json
