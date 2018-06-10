@@ -186,6 +186,9 @@ because of Phabricator reports.
 * The ApiQueryContributions class has been renamed to ApiQueryUserContribs.
 * The XMPInfo, XMPReader, and XMPValidate classes have been deprecated in favor
   of the namespaced classes provided by the wikimedia/xmp-reader library.
+* Class CryptRand, everything in MWCryptRand except generateHex() and function
+  MediaWikiServices::getCryptRand() are deprecated, use random_bytes() to
+  generate cryptographically secure random byte sequences.
 
 === Other changes in 1.32 ===
 * …
