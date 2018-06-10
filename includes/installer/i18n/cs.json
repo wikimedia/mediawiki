@@ -299,7 +299,6 @@
 	"config-install-interwiki-exists": "'''Upozornění''': Vypadá to, že tabulka interwiki již obsahuje nějaké záznamy.\nPřeskakuje se implicitní seznam.",
 	"config-install-stats": "Inicializují se statistiky",
 	"config-install-keys": "Vytvářejí se tajné klíče",
-	"config-insecure-keys": "'''Upozornění:''' {{PLURAL:$2|Tajný klíč|Tajné klíče}} ($1) vytvořené v průběhu instalace {{PLURAL:$2|není|nejsou}} zcela {{PLURAL:$2|bezpečný|bezpečné}}. Zvažte {{PLURAL:$2|jeho|jejich}} ruční změnu.",
 	"config-install-updates": "Ruší se spuštění nepotřebných aktualizací",
 	"config-install-updates-failed": "<strong>Chyba:</strong> Vložení aktualizačních klíčů do tabulek selhalo s následující chybou: $1",
 	"config-install-sysop": "Zakládá se uživatelský účet správce",

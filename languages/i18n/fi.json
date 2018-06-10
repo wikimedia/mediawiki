@@ -1469,6 +1469,10 @@
 	"rcfilters-watchlist-showupdated": "Muutokset sivuihin, joilla et ole vieraillut sen jälkeen kun muutokset on tehty, on <strong>lihavoitu</strong> ja värimerkitty.",
 	"rcfilters-preference-label": "Piilota tuoreiden muutosten parannettu versio",
 	"rcfilters-preference-help": "Peruuttaa vuoden 2017 käyttöliittymän uudistuksen ja kaikki sen jälkeen lisätyt työkalut.",
+	"rcfilters-watchlist-preference-label": "Piilota tarkkailulistan parannettu versio",
+	"rcfilters-watchlist-preference-help": "Poistaa käytöstä vuoden 2017 ulkoasun uudistuksen ja kaikki sen jälkeen lisätyt työkalut.",
+	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Sivut, joihin linkitetään</strong> valitulta sivulta",
+	"rcfilters-filter-showlinkedto-option-label": "<strong>Sivut, jotka linkittävät</strong> valitulle sivulle",
 	"rcfilters-target-page-placeholder": "Anna sivun nimi (tai luokka)",
 	"rcnotefrom": "Alla ovat muutokset <strong>$3, $4</strong> lähtien. (Enintään <strong>$1</strong> näytetään.)",
 	"rclistfromreset": "Tyhjennä ajankohdan valinta",
@@ -4034,9 +4038,13 @@
 	"pagedata-not-acceptable": "Vastaavaa muotoa ei löytynyt. Tuetut MIME-tyypit: $1",
 	"pagedata-bad-title": "Virheellinen otsikko: $1.",
 	"passwordpolicies": "Salasanakäytännöt",
+	"passwordpolicies-summary": "Tämä on luettelo käytössä olevista salasanakäytännöistä tämän wikin käyttäjäryhmille.",
 	"passwordpolicies-group": "Ryhmä",
 	"passwordpolicies-policies": "Käytännöt",
 	"passwordpolicies-policy-minimalpasswordlength": "Salasanan on oltava ainakin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Salasanassa on oltava vähintään $1 {{PLURAL:$1|merkki|merkkiä}} pystyäksesi kirjautumaan",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Salasana ei voi olla sama kuin käyttäjänimi",
-	"passwordpolicies-policy-maximalpasswordlength": "Salasanan on oltava vähemmän kuin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä"
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Salasana ei voi vastata mustalla listalla olevia salasanoja",
+	"passwordpolicies-policy-maximalpasswordlength": "Salasanan on oltava vähemmän kuin $1 {{PLURAL:$1|merkki|merkkiä}} pitkä",
+	"passwordpolicies-policy-passwordcannotbepopular": "Salasana ei voi olla {{PLURAL:$1|suosittu salasana|$1 suositun salasanan listalla}}"
 }

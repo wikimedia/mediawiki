@@ -308,7 +308,6 @@
 	"config-install-interwiki-exists": "<strong>Aviso:</strong> A tabela de interwikis parece já conter entradas.\nO preenchimento padrão desta tabela será saltado.",
 	"config-install-stats": "A inicializar as estatísticas",
 	"config-install-keys": "A gerar as chaves secretas",
-	"config-insecure-keys": "<strong>Aviso:</strong> {{PLURAL:$2|Uma chave segura|Chaves seguras}} ($1) {{PLURAL:$2|gerada durante a instalação não é completamente segura|geradas durante a instalação não são completamente seguras}}. Considere a possibilidade de {{PLURAL:$2|alterá-la|alterá-las}} manualmente.",
 	"config-install-updates": "Evitar executar atualizações desnecessárias",
 	"config-install-updates-failed": "<strong>Erro:</strong> A inserção de chaves de atualização nas tabelas falhou com o seguinte erro: $1",
 	"config-install-sysop": "A criar a conta de administrador",

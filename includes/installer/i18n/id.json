@@ -300,7 +300,6 @@
 	"config-install-interwiki-exists": "'''Peringatan''': Tabel antarwiki tampaknya sudah memiliki entri.\nMengabaikan daftar bawaan.",
 	"config-install-stats": "Inisialisasi statistik",
 	"config-install-keys": "Membuat kunci rahasia",
-	"config-insecure-keys": "'''Peringatan:''' {{PLURAL:$2|Suatu|Beberapa}} kunci aman ($1) yang dibuat selama instalasi {{PLURAL:$2|tidak|tidak}} benar-benar aman. Pertimbangkan untuk mengubah {{PLURAL:$2|kunci|kunci-kunci}} tersebut secara manual.",
 	"config-install-updates": "Cegah jalannya pembaruan yang tidak dibutuhkan",
 	"config-install-updates-failed": "<strong>Kesalahan:</strong> Memasukkan kunci pembaruan ke dalam tabel gagal dengan kode kesalahan: $1",
 	"config-install-sysop": "Membuat akun pengguna pengurus",

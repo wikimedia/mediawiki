@@ -304,7 +304,6 @@
 	"config-install-interwiki-exists": "'''Warnung:'''  Es wurden Interwikitabellen mit Daten gefunden.\nDie Standardliste wird übersprungen.",
 	"config-install-stats": "Statistiken werden initialisiert",
 	"config-install-keys": "Geheimschlüssel werden erstellt",
-	"config-insecure-keys": "'''Warnung:''' {{PLURAL:$2|Der Geheimschlüssel|Die Geheimschlüssel}} $1, {{PLURAL:$2|der|die}} während des Installationsvorgangs generiert {{PLURAL:$2|wurde, ist|wurden, sind}} nicht sehr sicher. {{PLURAL:$2|Er sollte|Sie sollten}} manuell geändert werden.",
 	"config-install-updates": "Unnötige Aktualisierungen nicht ausführen",
 	"config-install-updates-failed": "<strong>Fehler:</strong> Das Einfügen von Aktualisierungsschlüssel in die Tabellen ist mit dem folgenden Fehler fehlgeschlagen: $1",
 	"config-install-sysop": "Administratorkonto wird erstellt",

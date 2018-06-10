@@ -272,7 +272,6 @@
 	"config-install-interwiki-exists": "'''Babala''': Tila may mga laman na ang talahanayan ng interwiki.\nNilalaktawan ang likas na nakatakdang talaan.",
 	"config-install-stats": "Sinisimulan ang estadistika",
 	"config-install-keys": "Ginagawa ang lihim na mga susi",
-	"config-insecure-keys": "'''Babala:''' Nalikha ang {{PLURAL:$2|A secure key|ligtas na mga susi}} ($1) habang ang pagluluklok {{PLURAL:$2|ay|ay}} hindi pa lubos na ligtas. Isaalang-alang ang kinakamay na pagbago {{PLURAL:$2|nito|ng mga ito}}.",
 	"config-install-sysop": "Nililikha ang account ng tagagamit na tagapangasiwa",
 	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce: $1",
 	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang <code>allow_url_fopen</code>",

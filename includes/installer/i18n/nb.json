@@ -297,7 +297,6 @@
 	"config-install-interwiki-exists": "<strong>Advarsel:</strong> Interwiki-tabellen ser allerede ut til å ha innhold.\nLegger derfor ikke inn standardlisten.",
 	"config-install-stats": "Initialiserer statisikk",
 	"config-install-keys": "Genererer hemmelige nøkler",
-	"config-insecure-keys": "<strong>Advarsel:</strong> {{PLURAL:$2|En sikker nøkkel|Sikre nøkler}} ($1) generert under installeringen er ikke helt {{PLURAL:$2|trygg|trygge}}. Vurder å endre {{PLURAL:$2|den|dem}} manuelt.",
 	"config-install-updates": "Forhindre unødvendige oppdateringer",
 	"config-install-updates-failed": "<strong>Feil:</strong> Innsetting av oppdateringsnøkler i tabellene mislyktes med følgende feilmelding: $1",
 	"config-install-sysop": "Oppretter brukerkonto for administrator",

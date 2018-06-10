@@ -305,7 +305,6 @@
 	"config-install-interwiki-exists": "'''Attenzione:''' la tabella interwiki sembra che contiene già elementi.\nSalto l'elenco predefinito.",
 	"config-install-stats": "Inizializzazione delle statistiche",
 	"config-install-keys": "Generazione delle chiavi segrete",
-	"config-insecure-keys": "'''Attenzione:''' {{PLURAL:$2|Una chiave sicura|Delle chiavi sicure}} ($1) {{PLURAL:$2|generata|generate}} durante l'installazione non {{PLURAL:$2|è|sono}} completamente {{PLURAL:$2|sicura|sicure}}. Considera di {{PLURAL:$2|cambiarla|cambiarle}} manualmente.",
 	"config-install-updates": "Impedire l'esecuzione di aggiornamenti non necessari",
 	"config-install-updates-failed": "<strong>Errore:</strong> l'inserimento delle chiavi di aggiornamento nelle tabelle non è riuscito con il seguente errore: $1",
 	"config-install-sysop": "Creazione dell'account utente per l'amministratore",

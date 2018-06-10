@@ -294,7 +294,6 @@
 	"config-install-interwiki-exists": "<strong>Varning:</strong> Interwiki-tabellen verkar redan innehålla poster.\nHoppar över standardlistan.",
 	"config-install-stats": "Initierar statistik",
 	"config-install-keys": "Genererar hemliga nycklar",
-	"config-insecure-keys": "'''Varning:''' {{PLURAL:$2|En säkerhetsnyckel|Säkerhetsnycklar}} ($1) som generades under installationen är inte helt {{PLURAL:$2|säker|säkra}} . Överväg att ändra {{PLURAL:$2|den|dem}} manuellt.",
 	"config-install-updates": "Förhindra att onödiga uppdateringar körs",
 	"config-install-updates-failed": "<strong>Fel:</strong> Infogning av uppdateringsnycklar i tabeller misslyckades med följande fel:$1",
 	"config-install-sysop": "Skapar administratörskonto",

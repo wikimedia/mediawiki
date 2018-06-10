@@ -284,7 +284,6 @@
 	"config-install-interwiki-exists": "'''Attenziò:''' 'a tabbella interwiki pare ca cuntenesse già elemente.\nZumpann' 'a lista predefinita.",
 	"config-install-stats": "Inizializzaziona d' 'e statistiche",
 	"config-install-keys": "Generaziona d' 'e chiave segrete",
-	"config-insecure-keys": "'''Attenziò:''' {{PLURAL:$2|Na chiave sicura|'E chiave sicure}} ($1) {{PLURAL:$2|generata|generate}} pe' tramente ca se fà l'installazione nun {{PLURAL:$2|è|songo}} completamente {{PLURAL:$2|sicura|sicure}}. Cunziderate d' {{PLURAL:$2|'a|'e}} cagnà manualmente.",
 	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie",
 	"config-install-updates-failed": "<strong>Errore:</strong> l'inserimento d' 'e chiave 'agghiurnamiento dint' 'e tabbelle nun è asciuto pecché se cunfermaje l'errore ccà annanze: $1",
 	"config-install-sysop": "Crianno nu cunto utente ammenistratore",

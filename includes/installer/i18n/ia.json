@@ -292,7 +292,6 @@
 	"config-install-interwiki-exists": "'''Aviso''': Le tabella interwiki pare jam haber entratas.\nLe lista predefinite es saltate.",
 	"config-install-stats": "Initialisation del statisticas",
 	"config-install-keys": "Generation de claves secrete",
-	"config-insecure-keys": "'''Attention:''' {{PLURAL:$2|Un clave|Alcun claves}} secur ($1) generate durante le installation non es completemente secur. Considera cambiar {{PLURAL:$2|lo|los}} manualmente.",
 	"config-install-updates": "Impedir le execution de actualisationes innecessari",
 	"config-install-updates-failed": "<strong>Error:</strong> Le insertion de claves de actualisation in le tabellas ha fallite con le error sequente: $1",
 	"config-install-sysop": "Crea conto de usator pro administrator",

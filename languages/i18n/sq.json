@@ -37,7 +37,8 @@
 			"Fanjiayi",
 			"Fitoschido",
 			"Luanibraj",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Bjakupi"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -1360,6 +1361,8 @@
 	"rcfilters-watchlist-markseen-button": "Shenjo të gjitha ndryshimet si të para",
 	"rcfilters-watchlist-edit-watchlist-button": "Redakto listën tuaj të faqeve të mbikëqyrura",
 	"rcfilters-preference-label": "Fshih versionin e përmirësuar të Ndryshimeve të Fundit",
+	"rcfilters-watchlist-preference-label": "Fshehni versionin e permiresuar te Listes-vrojtuese",
+	"rcfilters-watchlist-preference-help": "E kthen nderfaqen e ri-dizajnit te 2017 dhe te gjitha mjetet atehere dhe qe nga ai moment.",
 	"rcfilters-target-page-placeholder": "Shto një emër faqeje (ose kategorie)",
 	"rcnotefrom": "Më poshtë {{PLURAL:$5|është shfaqur ndryshimi|janë shfaqur ndryshimet}} që nga <strong>$3, $4</strong> (deri në <strong>$1</strong>).",
 	"rclistfromreset": "Anulo përzgjedhjen e datës",
@@ -2016,6 +2019,9 @@
 	"dellogpage": "Regjistri i grisjeve",
 	"dellogpagetext": "Më poshtë është një listë e grisjeve më të fundit.",
 	"deletionlog": "regjistrin e grisjeve",
+	"log-name-create": "Krijimi i faqes logjike",
+	"log-description-create": "Me poshte eshte nje liste e krimit te faqeve me te fundit",
+	"logentry-create-create": "$1{{GENDER:$2|created}} faqe $3",
 	"reverted": "Kthehu tek një version i vjetër",
 	"deletecomment": "Arsyeja:",
 	"deleteotherreason": "Arsye tjetër:",

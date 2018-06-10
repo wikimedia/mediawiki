@@ -285,7 +285,6 @@
 	"config-install-interwiki-exists": "'''Atençion:''' pâ che inta tabella interwiki ghe segge za di elementi.\nA lista predefinia a se sata.",
 	"config-install-stats": "Iniçializaçion de statisteghe",
 	"config-install-keys": "Generaçion de ciave segrette",
-	"config-insecure-keys": "'''Atençion:''' {{PLURAL:$2|Una ciave segûa|De ciave segûe}} ($1) {{PLURAL:$2|generâ|generæ}} durante l'instalaçion {{PLURAL:$2|a|}} no {{PLURAL:$2|l'è|son}} completamente {{PLURAL:$2|segûa|segûe}}. Consciddera de cangiâ{{PLURAL:$2|la|le}} manoalmente.",
 	"config-install-updates": "Impedî l'esecuçion di agiornamenti non necessai",
 	"config-install-updates-failed": "<strong>Erô:</strong> l'inseimento de ciave de agiornamento inte tabelle o no l'è ariescio pe-o seguente erô: $1",
 	"config-install-sysop": "Creaçion de l'utença pe l'aministratô",

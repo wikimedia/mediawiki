@@ -311,7 +311,6 @@
 	"config-install-interwiki-exists": "<strong>警告:</strong> ウィキ間テーブルは既に登録されているようです。\n既定のテーブルを無視します。",
 	"config-install-stats": "統計情報の初期化",
 	"config-install-keys": "秘密鍵の生成",
-	"config-insecure-keys": "<strong>警告:</strong> インストール中に生成されたセキュアキー ($1) は完璧に安全ではありません。手動で変更することを検討してください。",
 	"config-install-updates": "不要な更新を実行するのを防ぐ",
 	"config-install-updates-failed": "<strong>エラー:</strong> 更新キーをテーブルに挿入する際に失敗しました。以下のエラーが起こっています: $1",
 	"config-install-sysop": "管理者アカウントの作成",

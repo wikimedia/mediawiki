@@ -286,7 +286,6 @@
 	"config-install-interwiki-exists": "<strong>Warnishment:</strong> The interwiki buird awreadie seems tae hae entries.\nSkippin defaut let.",
 	"config-install-stats": "Ineetializin stateestics",
 	"config-install-keys": "Generatin hidlins keys",
-	"config-insecure-keys": "<strong>Warnishment:</strong> {{PLURAL:$2|Ae secure key|Secure keys}} ($1) generated durin instawation {{PLURAL:$2|is|ar}} naw compleatelie safe. Consider chyngin {{PLURAL:$2|it|theim}} manuallie.",
 	"config-install-updates": "Hinder the runnin o onneedit updates.",
 	"config-install-updates-failed": "<strong>Mistak:</strong> Insertin update keys intae the buirds failed wi the folleain mistak: $1",
 	"config-install-sysop": "Makin admeenistrâter uiser accoont",
