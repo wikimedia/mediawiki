@@ -21530,6 +21530,17 @@ abc
 </p>
 !! end
 
+!! test
+Padleft and padright with non-numerical length (T180403)
+!! wikitext
+{{padleft:abcdef|junk}}
+{{padright:abcdef|junk}}
+!! html/php
+<p>abcdef
+abcdef
+</p>
+!! end
+
 !!test
 Special parser function
 !! wikitext
