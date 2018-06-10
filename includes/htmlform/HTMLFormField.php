@@ -81,12 +81,9 @@ abstract class HTMLFormField {
 		$args = func_get_args();
 
 		if ( $this->mParent ) {
-			$callback = [ $this->mParent, 'msg' ];
-		} else {
-			$callback = 'wfMessage';
+			return $this->mParent->msg( ...$args );
 		}
-
-		return call_user_func_array( $callback, $args );
+		return wfMessage( ...$args );
 	}
 
 	/**
@@ -315,7 +312,7 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {
-			return call_user_func( $this->mValidationCallback, $value, $alldata, $this->mParent );
+			return ( $this->mValidationCallback )( $value, $alldata, $this->mParent );
 		}
 
 		return true;
@@ -323,7 +320,7 @@ abstract class HTMLFormField {
 
 	public function filter( $value, $alldata ) {
 		if ( isset( $this->mFilterCallback ) ) {
-			$value = call_user_func( $this->mFilterCallback, $value, $alldata, $this->mParent );
+			$value = ( $this->mFilterCallback )( $value, $alldata, $this->mParent );
 		}
 
 		return $value;

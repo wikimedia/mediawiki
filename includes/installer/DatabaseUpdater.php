@@ -410,9 +410,9 @@ abstract class DatabaseUpdater {
 
 		foreach ( $updates as $funcList ) {
 			$func = $funcList[0];
-			$arg = $funcList[1];
+			$args = $funcList[1];
 			$origParams = $funcList[2];
-			call_user_func_array( $func, $arg );
+			$func( ...$args );
 			flush();
 			$this->updatesSkipped[] = $origParams;
 		}
@@ -479,7 +479,7 @@ abstract class DatabaseUpdater {
 			} elseif ( $passSelf ) {
 				array_unshift( $params, $this );
 			}
-			$ret = call_user_func_array( $func, $params );
+			$ret = $func( ...$params );
 			flush();
 			if ( $ret !== false ) {
 				$updatesDone[] = $origParams;

@@ -291,12 +291,16 @@ class SvgHandler extends ImageHandler {
 			if ( is_array( $wgSVGConverters[$wgSVGConverter] ) ) {
 				// This is a PHP callable
 				$func = $wgSVGConverters[$wgSVGConverter][0];
-				$args = array_merge( [ $srcPath, $dstPath, $width, $height, $lang ],
-					array_slice( $wgSVGConverters[$wgSVGConverter], 1 ) );
 				if ( !is_callable( $func ) ) {
 					throw new MWException( "$func is not callable" );
 				}
-				$err = call_user_func_array( $func, $args );
+				$err = $func( $srcPath,
+					$dstPath,
+					$width,
+					$height,
+					$lang,
+					...array_slice( $wgSVGConverters[$wgSVGConverter], 1 )
+				);
 				$retval = (bool)$err;
 			} else {
 				// External command

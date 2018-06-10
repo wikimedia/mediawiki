@@ -103,7 +103,7 @@ class LBFactorySingle extends LBFactory {
 	 */
 	public function forEachLB( $callback, array $params = [] ) {
 		if ( isset( $this->lb ) ) { // may not be set during _destruct()
-			call_user_func_array( $callback, array_merge( [ $this->lb ], $params ) );
+			$callback( $this->lb, ...$params );
 		}
 	}
 }

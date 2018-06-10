@@ -133,10 +133,10 @@ class RedisConnRef implements LoggerAwareInterface {
 	private function tryCall( $method, $arguments ) {
 		$this->conn->clearLastError();
 		try {
-			$res = call_user_func_array( [ $this->conn, $method ], $arguments );
+			$res = $this->conn->$method( ...$arguments );
 			$authError = $this->checkAuthentication();
 			if ( $authError === self::AUTH_ERROR_TEMPORARY ) {
-				$res = call_user_func_array( [ $this->conn, $method ], $arguments );
+				$res = $this->conn->$method( ...$arguments );
 			}
 			if ( $authError === self::AUTH_ERROR_PERMANENT ) {
 				throw new RedisException( "Failure reauthenticating to Redis." );

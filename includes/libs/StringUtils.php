@@ -206,7 +206,7 @@ class StringUtils {
 			} elseif ( $tokenType == 'end' ) {
 				if ( $foundStart ) {
 					# Found match
-					$output .= call_user_func( $callback, [
+					$output .= $callback( [
 						substr( $subject, $outputPos, $tokenOffset + $tokenLength - $outputPos ),
 						substr( $subject, $contentPos, $tokenOffset - $contentPos )
 					] );

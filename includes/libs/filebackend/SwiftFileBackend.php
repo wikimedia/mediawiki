@@ -1103,7 +1103,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		if ( empty( $params['allowOB'] ) ) {
 			// Cancel output buffering and gzipping if set
-			call_user_func( $this->obResetFunc );
+			( $this->obResetFunc )();
 		}
 
 		$handle = fopen( 'php://output', 'wb' );
@@ -1317,7 +1317,7 @@ class SwiftFileBackend extends FileBackendStore {
 			foreach ( $httpReqs as $index => $httpReq ) {
 				// Run the callback for each request of this operation
 				$callback = $fileOpHandles[$index]->callback;
-				call_user_func_array( $callback, [ $httpReq, $statuses[$index] ] );
+				$callback( $httpReq, $statuses[$index] );
 				// On failure, abort all remaining requests for this operation
 				// (e.g. abort the DELETE request if the COPY request fails for a move)
 				if ( !$statuses[$index]->isOK() ) {
