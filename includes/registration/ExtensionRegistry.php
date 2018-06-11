@@ -144,7 +144,7 @@ class ExtensionRegistry {
 			// been loaded
 			$cacheId = ObjectCache::detectLocalServerCache();
 			$cache = ObjectCache::newFromId( $cacheId );
-		} catch ( MWException $e ) {
+		} catch ( InvalidArgumentException $e ) {
 			$cache = new EmptyBagOStuff();
 		}
 		// See if this queue is in APC
