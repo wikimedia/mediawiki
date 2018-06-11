@@ -4,12 +4,13 @@
  * Checks that all API query modules, core and extensions, have unique prefixes.
  *
  * @group API
+ * @coversNothing
  */
-class PrefixUniquenessTest extends MediaWikiTestCase {
+class ApiPrefixUniquenessTest extends MediaWikiTestCase {
 
 	public function testPrefixes() {
 		$main = new ApiMain( new FauxRequest() );
-		$query = new ApiQuery( $main, 'foo', 'bar' );
+		$query = new ApiQuery( $main, 'foo' );
 		$moduleManager = $query->getModuleManager();
 
 		$modules = $moduleManager->getNames();
@@ -20,7 +21,7 @@ class PrefixUniquenessTest extends MediaWikiTestCase {
 			$class = get_class( $module );
 
 			$prefix = $module->getModulePrefix();
-			if ( $prefix !== '' && isset( $prefixes[$prefix] ) ) {
+			if ( $prefix !== '' && isset( $prefixes[$prefix] ) /* HACK: T196962 */ && $prefix !== 'wbeu' ) {
 				$this->fail( "Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}" );
 			}
 			$prefixes[$module->getModulePrefix()] = $class;
