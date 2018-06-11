@@ -31,10 +31,10 @@ class DjVuSupport {
 	public function __construct() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML, $wgFileExtensions, $wgDjvuTxt;
 
-		$wgDjvuRenderer = $wgDjvuRenderer ? $wgDjvuRenderer : '/usr/bin/ddjvu';
-		$wgDjvuDump = $wgDjvuDump ? $wgDjvuDump : '/usr/bin/djvudump';
-		$wgDjvuToXML = $wgDjvuToXML ? $wgDjvuToXML : '/usr/bin/djvutoxml';
-		$wgDjvuTxt = $wgDjvuTxt ? $wgDjvuTxt : '/usr/bin/djvutxt';
+		$wgDjvuRenderer = $wgDjvuRenderer ?: '/usr/bin/ddjvu';
+		$wgDjvuDump = $wgDjvuDump ?: '/usr/bin/djvudump';
+		$wgDjvuToXML = $wgDjvuToXML ?: '/usr/bin/djvutoxml';
+		$wgDjvuTxt = $wgDjvuTxt ?: '/usr/bin/djvutxt';
 
 		if ( !in_array( 'djvu', $wgFileExtensions ) ) {
 			$wgFileExtensions[] = 'djvu';

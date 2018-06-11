@@ -825,7 +825,7 @@ $wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
-		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+		session_name( $wgSessionName ?: $wgCookiePrefix . '_session' );
 	}
 
 	// Create the SessionManager singleton and set up our session handler,

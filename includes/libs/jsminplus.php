@@ -909,7 +909,7 @@ class JSParser
 				}
 				else
 				{
-					$n->setup = $n2 ? $n2 : null;
+					$n->setup = $n2 ?: null;
 					$this->t->mustMatch(OP_SEMICOLON);
 					$n->condition = $this->t->peek() == OP_SEMICOLON ? null : $this->Expression($x);
 					$this->t->mustMatch(OP_SEMICOLON);
@@ -1656,7 +1656,7 @@ class JSNode
 	{
 		if ($token = $t->currentToken())
 		{
-			$this->type = $type ? $type : $token->type;
+			$this->type = $type ?: $token->type;
 			$this->value = $token->value;
 			$this->lineno = $token->lineno;
 			$this->start = $token->start;
@@ -1752,7 +1752,7 @@ class JSTokenizer
 	public function init($source, $filename = '', $lineno = 1)
 	{
 		$this->source = $source;
-		$this->filename = $filename ? $filename : '[inline]';
+		$this->filename = $filename ?: '[inline]';
 		$this->lineno = $lineno;
 
 		$this->cursor = 0;

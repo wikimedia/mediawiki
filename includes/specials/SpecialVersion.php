@@ -1134,7 +1134,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function getEntryPointInfo() {
 		global $wgArticlePath, $wgScriptPath;
-		$scriptPath = $wgScriptPath ? $wgScriptPath : "/";
+		$scriptPath = $wgScriptPath ?: "/";
 		$entryPoints = [
 			'version-entrypoints-articlepath' => $wgArticlePath,
 			'version-entrypoints-scriptpath' => $scriptPath,
