@@ -675,7 +675,7 @@ class DatabaseOracle extends Database {
 		}
 		$table = strtolower( $this->removeIdentifierQuotes( $this->tableName( $table ) ) );
 
-		return ( isset( $this->sequenceData[$table] ) ) ? $this->sequenceData[$table] : false;
+		return $this->sequenceData[$table] ?? false;
 	}
 
 	/**

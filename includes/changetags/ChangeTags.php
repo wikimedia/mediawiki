@@ -386,7 +386,7 @@ class ChangeTags {
 						'ct_log_id' => $log_id,
 						'ct_rev_id' => $rev_id,
 						'ct_params' => $params,
-						'ct_tag_id' => isset( $changeTagMapping[$tag] ) ? $changeTagMapping[$tag] : null,
+						'ct_tag_id' => $changeTagMapping[$tag] ?? null,
 					]
 				);
 
