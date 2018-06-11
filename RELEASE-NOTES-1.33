@@ -97,6 +97,9 @@ because of Phabricator reports.
   that LoginSignupSpecialPage->getBCFieldDefinitions() is removed.
 * The 'jquery.localize' module, deprecated in 1.32, has been removed. Instead,
   use 'jquery.i18n'.
+* The hooks LanguageGetSpecialPageAliases and LanguageGetMagic, deprecated since
+  1.16, have now been removed. Instead, use $specialPageAliases or $magicWords
+  respectively in a $wgExtensionMessagesFiles file.
 * …
 
 === Deprecations in 1.33 ===

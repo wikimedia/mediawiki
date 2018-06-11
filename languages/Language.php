@@ -58,7 +58,7 @@ class Language {
 	public $mConverter;
 
 	public $mVariants, $mCode, $mLoaded = false;
-	public $mMagicExtensions = [], $mMagicHookDone = false;
+	public $mMagicExtensions = [];
 	private $mHtmlCode = null, $mParentLanguage = false;
 
 	public $dateFormatStrings = [];
@@ -3206,27 +3206,11 @@ class Language {
 	}
 
 	/**
-	 * Run the LanguageGetMagic hook once.
-	 */
-	protected function doMagicHook() {
-		if ( $this->mMagicHookDone ) {
-			return;
-		}
-		$this->mMagicHookDone = true;
-		Hooks::run( 'LanguageGetMagic', [ &$this->mMagicExtensions, $this->getCode() ], '1.16' );
-	}
-
-	/**
 	 * Fill a MagicWord object with data from here
 	 *
 	 * @param MagicWord $mw
 	 */
 	function getMagic( $mw ) {
-		// Saves a function call
-		if ( !$this->mMagicHookDone ) {
-			$this->doMagicHook();
-		}
-
 		$rawEntry = $this->mMagicExtensions[$mw->mId] ??
 			self::$dataCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
 
@@ -3264,8 +3248,6 @@ class Language {
 			// Initialise array
 			$this->mExtendedSpecialPageAliases =
 				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
-			Hooks::run( 'LanguageGetSpecialPageAliases',
-				[ &$this->mExtendedSpecialPageAliases, $this->getCode() ], '1.16' );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
