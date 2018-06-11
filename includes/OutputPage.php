@@ -1368,7 +1368,8 @@ class OutputPage extends ContextSource {
 		);
 
 		# Add the results to the link cache
-		$lb->addResultToCache( LinkCache::singleton(), $res );
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$lb->addResultToCache( $linkCache, $res );
 
 		return $res;
 	}

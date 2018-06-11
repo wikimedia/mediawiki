@@ -20,6 +20,8 @@
  * @file
  * @ingroup Parser
  */
+
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1386,11 +1388,12 @@ class ParserOptions {
 			};
 		end( $wgHooks['TitleExists'] );
 		$key = key( $wgHooks['TitleExists'] );
-		LinkCache::singleton()->clearBadLink( $title->getPrefixedDBkey() );
-		return new ScopedCallback( function () use ( $title, $key ) {
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$linkCache->clearBadLink( $title->getPrefixedDBkey() );
+		return new ScopedCallback( function () use ( $title, $key, $linkCache ) {
 			global $wgHooks;
 			unset( $wgHooks['TitleExists'][$key] );
-			LinkCache::singleton()->clearLink( $title );
+			$linkCache->clearLink( $title );
 		} );
 	}
 }

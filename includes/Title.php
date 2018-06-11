@@ -979,7 +979,7 @@ class Title implements LinkTarget {
 			&& ( !$this->mContentModel || $flags === self::GAID_FOR_UPDATE )
 			&& $this->getArticleID( $flags )
 		) {
-			$linkCache = LinkCache::singleton();
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->addLinkObj( $this ); # in case we already had an article ID
 			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
 		}
@@ -3430,7 +3430,7 @@ class Title implements LinkTarget {
 			$this->mArticleID = 0;
 			return $this->mArticleID;
 		}
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
 			$linkCache->clearLink( $this );
@@ -3460,7 +3460,7 @@ class Title implements LinkTarget {
 			return $this->mRedirect;
 		}
 
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 		if ( $cached === null ) {
@@ -3494,7 +3494,7 @@ class Title implements LinkTarget {
 			$this->mLength = 0;
 			return $this->mLength;
 		}
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
 		if ( $cached === null ) {
@@ -3522,7 +3522,7 @@ class Title implements LinkTarget {
 			$this->mLatestID = 0;
 			return $this->mLatestID;
 		}
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
 		if ( $cached === null ) {
@@ -3547,7 +3547,7 @@ class Title implements LinkTarget {
 	 * @param int $newid The new Article ID
 	 */
 	public function resetArticleID( $newid ) {
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clearLink( $this );
 
 		if ( $newid === false ) {
@@ -3569,7 +3569,7 @@ class Title implements LinkTarget {
 	}
 
 	public static function clearCaches() {
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clear();
 
 		$titleCache = self::getTitleCache();
@@ -3673,7 +3673,7 @@ class Title implements LinkTarget {
 
 		$retVal = [];
 		if ( $res->numRows() ) {
-			$linkCache = LinkCache::singleton();
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			foreach ( $res as $row ) {
 				$titleObj = self::makeTitle( $row->page_namespace, $row->page_title );
 				if ( $titleObj ) {
@@ -3741,7 +3741,7 @@ class Title implements LinkTarget {
 		);
 
 		$retVal = [];
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		foreach ( $res as $row ) {
 			if ( $row->page_id ) {
 				$titleObj = self::newFromRow( $row );
@@ -4940,7 +4940,7 @@ class Title implements LinkTarget {
 		// check, if the page language could be saved in the database, and if so and
 		// the value is not requested already, lookup the page language using LinkCache
 		if ( $wgPageLanguageUseDB && $this->mDbPageLanguage === false ) {
-			$linkCache = LinkCache::singleton();
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->addLinkObj( $this );
 			$this->mDbPageLanguage = $linkCache->getGoodLinkFieldObj( $this, 'lang' );
 		}

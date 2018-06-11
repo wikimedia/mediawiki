@@ -468,7 +468,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *          the master DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
-		$lc = LinkCache::singleton();
+		$lc = MediaWikiServices::getInstance()->getLinkCache();
 		$lc->clearLink( $this->mTitle );
 
 		if ( $data ) {
@@ -1297,7 +1297,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			// Update the LinkCache.
-			LinkCache::singleton()->addGoodLinkObj(
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+			$linkCache->addGoodLinkObj(
 				$this->getId(),
 				$this->mTitle,
 				$len,

@@ -1281,7 +1281,7 @@ class ParserTestRunner {
 
 		// Wipe some DB query result caches on setup and teardown
 		$reset = function () {
-			LinkCache::singleton()->clear();
+			MediaWikiServices::getInstance()->getLinkCache()->clear();
 
 			// Clear the message cache
 			MessageCache::singleton()->clear();

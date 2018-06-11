@@ -1162,7 +1162,7 @@ class CoreParserFunctions {
 		}
 
 		// Check the link cache, maybe something already looked it up.
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$pdbk = $t->getPrefixedDBkey();
 		$id = $linkCache->getGoodLinkID( $pdbk );
 		if ( $id != 0 ) {

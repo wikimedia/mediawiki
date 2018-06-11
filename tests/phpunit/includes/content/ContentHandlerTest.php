@@ -101,7 +101,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testGetForTitle( $title, $expectedContentModel ) {
 		$title = Title::newFromText( $title );
-		LinkCache::singleton()->addBadLinkObj( $title );
+		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
 		$handler = ContentHandler::getForTitle( $title );
 		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
 	}
@@ -158,7 +158,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	public function testGetPageLanguage( $title, $expected ) {
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
-			LinkCache::singleton()->addBadLinkObj( $title );
+			MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
 		}
 
 		$expected = wfGetLangObj( $expected );
@@ -308,7 +308,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$expectedModelId, $expectedNativeData, $shouldFail
 	) {
 		$title = Title::newFromText( $title );
-		LinkCache::singleton()->addBadLinkObj( $title );
+		MediaWikiServices::getInstance()->getLinkCache()->addBadLinkObj( $title );
 		try {
 			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 

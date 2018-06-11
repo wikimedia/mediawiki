@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group ContentHandler
  * @group Database
@@ -353,7 +355,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 * @covers Title::clearCaches
 	 */
 	public function testClearCaches() {
-		$linkCache = LinkCache::singleton();
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 		$title1 = Title::newFromText( 'Foo' );
 		$linkCache->addGoodLinkObj( 23, $title1 );
