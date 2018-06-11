@@ -1599,7 +1599,7 @@
 	"rcfilters-savedqueries-rename": "Label for the menu option that edits a quick filter in [[Special:RecentChanges]]\n{{Identical|Rename}}",
 	"rcfilters-savedqueries-setdefault": "Label for the menu option that sets a quick filter as default in [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-unsetdefault": "Label for the menu option that unsets a quick filter as default in [[Special:RecentChanges]]",
-	"rcfilters-savedqueries-remove": "Label for the menu option that removes a quick filter as default in [[Special:RecentChanges]]\n{{Identical|Remove}}",
+	"rcfilters-savedqueries-remove": "Label for the menu option that removes a quick filter as default in [[Special:RecentChanges]]\n{{Identical|Delete}}",
 	"rcfilters-savedqueries-new-name-label": "Label for the input that holds the name of the new saved filters in [[Special:RecentChanges]]\n{{Identical|Name}}",
 	"rcfilters-savedqueries-new-name-placeholder": "Placeholder for the input that holds the name of the new saved filters in [[Special:RecentChanges]]",
 	"rcfilters-savedqueries-apply-label": "Label for the button to apply saving a new filter setting in [[Special:RecentChanges]]. This is for a small popup, please try to use a short string.",

@@ -1400,7 +1400,7 @@
 	"rcfilters-savedqueries-rename": "Rename",
 	"rcfilters-savedqueries-setdefault": "Set as default",
 	"rcfilters-savedqueries-unsetdefault": "Remove as default",
-	"rcfilters-savedqueries-remove": "Remove",
+	"rcfilters-savedqueries-remove": "Delete",
 	"rcfilters-savedqueries-new-name-label": "Name",
 	"rcfilters-savedqueries-new-name-placeholder": "Describe the purpose of the filter",
 	"rcfilters-savedqueries-apply-label": "Create filter",
