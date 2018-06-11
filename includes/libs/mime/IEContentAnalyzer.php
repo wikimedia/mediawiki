@@ -500,13 +500,13 @@ class IEContentAnalyzer {
 			< ( $counters['ctrl'] + $counters['high'] ) * 16
 		) {
 			$kindOfBinary = true;
-			$type = $binaryType ? $binaryType : $textType;
+			$type = $binaryType ?: $textType;
 			if ( $type === false ) {
 				$type = 'application/octet-stream';
 			}
 		} else {
 			$kindOfBinary = false;
-			$type = $textType ? $textType : $binaryType;
+			$type = $textType ?: $binaryType;
 			if ( $type === false ) {
 				$type = 'text/plain';
 			}

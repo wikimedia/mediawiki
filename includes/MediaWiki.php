@@ -104,7 +104,7 @@ class MediaWiki {
 		if ( $ret === null || !$ret->isSpecialPage() ) {
 			// We can have urls with just ?diff=,?oldid= or even just ?diff=
 			$oldid = $request->getInt( 'oldid' );
-			$oldid = $oldid ? $oldid : $request->getInt( 'diff' );
+			$oldid = $oldid ?: $request->getInt( 'diff' );
 			// Allow oldid to override a changed or missing title
 			if ( $oldid ) {
 				$rev = Revision::newFromId( $oldid );
@@ -426,7 +426,7 @@ class MediaWiki {
 			// If $target is set, then a hook wanted to redirect.
 			if ( !$ignoreRedirect && ( $target || $page->isRedirect() ) ) {
 				// Is the target already set by an extension?
-				$target = $target ? $target : $page->followRedirect();
+				$target = $target ?: $page->followRedirect();
 				if ( is_string( $target ) ) {
 					if ( !$this->config->get( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect

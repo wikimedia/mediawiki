@@ -396,8 +396,8 @@ if ( isset( $_REQUEST['filter'] ) ) {
 		return htmlspecialchars(
 			'?' .
 				wfArrayToCgi( [
-					'filter' => $_filter ? $_filter : $filter,
-					'sort' => $_sort ? $_sort : $sort,
+					'filter' => $_filter ?: $filter,
+					'sort' => $_sort ?: $sort,
 					'expand' => implode( ',', array_keys( $_expand ) )
 				] )
 		);
