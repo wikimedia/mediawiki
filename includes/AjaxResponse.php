@@ -242,7 +242,7 @@ class AjaxResponse {
 			# this breaks strtotime().
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 			$modsinceTime = strtotime( $modsince );
-			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
+			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ?: 1 );
 			wfDebug( "$fname: -- client send If-Modified-Since: $modsince", 'private' );
 			wfDebug( "$fname: --  we might send Last-Modified : $lastmod", 'private' );
 

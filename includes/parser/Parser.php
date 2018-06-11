@@ -2641,7 +2641,7 @@ class Parser {
 					$this->mOutput->setFlag( 'vary-revision' );
 					wfDebug( __METHOD__ . ": {{PAGEID}} used in a new page, setting vary-revision...\n" );
 				}
-				$value = $pageid ? $pageid : null;
+				$value = $pageid ?: null;
 				break;
 			case 'revisionid':
 				# Let the edit saving system know we should parse the page

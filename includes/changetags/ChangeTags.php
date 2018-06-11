@@ -466,7 +466,7 @@ class ChangeTags {
 		// $prevTags can be out of date on replica DBs, especially when addTags is called consecutively,
 		// causing loss of tags added recently in tag_summary table.
 		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
-		$prevTags = $prevTags ? $prevTags : '';
+		$prevTags = $prevTags ?: '';
 		$prevTags = array_filter( explode( ',', $prevTags ) );
 
 		// add tags

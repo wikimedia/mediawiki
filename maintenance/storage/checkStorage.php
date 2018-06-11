@@ -502,7 +502,7 @@ class CheckStorage {
 	function importRevision( &$revision, &$importer ) {
 		$id = $revision->getID();
 		$content = $revision->getContent( Revision::RAW );
-		$id = $id ? $id : '';
+		$id = $id ?: '';
 
 		if ( $content === null ) {
 			echo "Revision $id is broken, we have no content available\n";

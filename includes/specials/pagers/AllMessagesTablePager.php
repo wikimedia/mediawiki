@@ -58,7 +58,7 @@ class AllMessagesTablePager extends TablePager {
 
 		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
 
-		$this->lang = ( $langObj ? $langObj : $wgContLang );
+		$this->lang = $langObj ?: $wgContLang;
 		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $wgContLang );
 

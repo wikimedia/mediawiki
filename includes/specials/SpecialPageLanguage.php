@@ -224,8 +224,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Hardcoded [def] if the language is set to null
-		$logOld = $oldLanguage ? $oldLanguage : $defLang . '[def]';
-		$logNew = $newLanguage ? $newLanguage : $defLang . '[def]';
+		$logOld = $oldLanguage ?: $defLang . '[def]';
+		$logNew = $newLanguage ?: $defLang . '[def]';
 
 		// Writing new page language to database
 		$dbw->update(

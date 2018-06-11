@@ -171,7 +171,7 @@ class GenderCache {
 		$res = $dbr->select( $table, $fields, $conds, $comment, [], $joins );
 
 		foreach ( $res as $row ) {
-			$this->cache[$row->user_name] = $row->up_value ? $row->up_value : $default;
+			$this->cache[$row->user_name] = $row->up_value ?: $default;
 		}
 	}
 

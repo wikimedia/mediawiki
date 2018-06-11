@@ -160,7 +160,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	public function execute( $par ) {
-		$this->mime = $par ? $par : $this->getRequest()->getText( 'mime' );
+		$this->mime = $par ?: $this->getRequest()->getText( 'mime' );
 		$this->mime = trim( $this->mime );
 		list( $this->major, $this->minor ) = File::splitMime( $this->mime );
 

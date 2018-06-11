@@ -204,7 +204,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$nu = User::newFromName( $target );
 		$error = self::validateTarget( $nu, $sender );
 
-		return $error ? $error : $nu;
+		return $error ?: $nu;
 	}
 
 	/**
