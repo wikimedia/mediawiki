@@ -3152,7 +3152,7 @@ class Language {
 			return;
 		}
 		$this->mMagicHookDone = true;
-		Hooks::run( 'LanguageGetMagic', [ &$this->mMagicExtensions, $this->getCode() ] );
+		Hooks::run( 'LanguageGetMagic', [ &$this->mMagicExtensions, $this->getCode() ], '1.16' );
 	}
 
 	/**
@@ -3208,7 +3208,7 @@ class Language {
 			$this->mExtendedSpecialPageAliases =
 				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
 			Hooks::run( 'LanguageGetSpecialPageAliases',
-				[ &$this->mExtendedSpecialPageAliases, $this->getCode() ] );
+				[ &$this->mExtendedSpecialPageAliases, $this->getCode() ], '1.16' );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
