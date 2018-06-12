@@ -3208,7 +3208,7 @@ class Language {
 			$this->mExtendedSpecialPageAliases =
 				self::$dataCache->getItem( $this->mCode, 'specialPageAliases' );
 			Hooks::run( 'LanguageGetSpecialPageAliases',
-				[ &$this->mExtendedSpecialPageAliases, $this->getCode() ] );
+				[ &$this->mExtendedSpecialPageAliases, $this->getCode() ], '1.16' );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
