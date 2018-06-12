@@ -76,6 +76,9 @@ use Wikimedia\ObjectFactory;
  *    'help-messages'       -- array of message keys/objects. As above, each item can
  *                             be an array of msg key and then parameters.
  *                             Overwrites 'help'.
+ *    'help-inline'         -- Whether help text (defined using options above) will be shown
+ *                             inline after the input field, rather than in a popup.
+ *                             Defaults to true. Only used by OOUI form fields.
  *    'notice'              -- message text for a message to use as a notice in the field.
  *                             Currently used by OOUI form fields only.
  *    'notice-messages'     -- array of message keys/objects to use for notice.
