@@ -20,6 +20,8 @@ THIS IS NOT A RELEASE YET!
 * Add default edit rate limit of 90 edits/minute for all users.
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 * (T196672) The mtime of extension.json files is now able to be zero
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
 
 == MediaWiki 1.29.2 ==
 
