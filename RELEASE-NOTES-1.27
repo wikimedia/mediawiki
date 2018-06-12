@@ -14,6 +14,8 @@ THIS IS NOT A RELEASE YET!
 * (T196125) php-memcached 3.0 (provided with PHP 7.0) is now supported.
 * (T196672) The mtime of extension.json files is now able to be zero.
 * (T118683) Fix exception from &$user deref on HHVM in the TitleMoveComplete hook.
+* (T180403) Validate $length in padleft/padright parser functions.
+* (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
 
 == MediaWiki 1.27.4 ==
 This is a security and maintenance release of the MediaWiki 1.27 branch.
