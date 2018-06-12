@@ -26,8 +26,12 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		$this->wanCache->expects( $this->any() )
 			->method( 'makePurgeValue' )
 			->will( $this->returnCallback( function ( $timestamp, $holdoff ) {
-				// Disable holdoff as it messes with testing
-				return WANObjectCache::PURGE_VAL_PREFIX . (float)$timestamp . ':0';
+				// Disable holdoff as it messes with testing. Aside from a 0-second holdoff,
+				// make sure that "time" passes between getMulti() check init and the set()
+				// in recacheMessageBlob(). This especially matters for Windows clocks.
+				$ts = (float)$timestamp - 0.0001;
+
+				return WANObjectCache::PURGE_VAL_PREFIX . $ts . ':0';
 			} ) );
 	}
 
@@ -202,12 +206,16 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 			->method( 'fetchMessage' )
 			->will( $this->onConsecutiveCalls( 'First', 'Second' ) );
 
+		$now = microtime( true );
+		$this->wanCache->setMockTime( $now );
+
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"First"}', $blob, 'Generated blob' );
 
 		$blob = $blobStore->getBlob( $module, 'en' );
 		$this->assertEquals( '{"example":"First"}', $blob, 'Cache-hit' );
 
+		$now += 1;
 		$blobStore->clear();
 
 		$blob = $blobStore->getBlob( $module, 'en' );
