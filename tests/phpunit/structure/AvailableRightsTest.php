@@ -35,6 +35,9 @@ class AvailableRightsTest extends PHPUnit\Framework\TestCase {
 		return $rights;
 	}
 
+	/**
+	 * @coversNothing
+	 */
 	public function testAvailableRights() {
 		$missingRights = array_diff(
 			$this->getAllVisibleRights(),
