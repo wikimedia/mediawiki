@@ -3152,7 +3152,7 @@ class Language {
 			return;
 		}
 		$this->mMagicHookDone = true;
-		Hooks::run( 'LanguageGetMagic', [ &$this->mMagicExtensions, $this->getCode() ] );
+		Hooks::run( 'LanguageGetMagic', [ &$this->mMagicExtensions, $this->getCode() ], '1.16' );
 	}
 
 	/**
