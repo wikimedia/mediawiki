@@ -96,11 +96,7 @@ class AuthPlugin {
 	 * @return string
 	 */
 	public function getDomain() {
-		if ( isset( $this->domain ) ) {
-			return $this->domain;
-		} else {
-			return 'invaliddomain';
-		}
+		return $this->domain ?? 'invaliddomain';
 	}
 
 	/**

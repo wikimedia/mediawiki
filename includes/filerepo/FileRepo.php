@@ -1177,11 +1177,7 @@ class FileRepo {
 		if ( $status->successCount == 0 ) {
 			$status->setOK( false );
 		}
-		if ( isset( $status->value[0] ) ) {
-			$status->value = $status->value[0];
-		} else {
-			$status->value = false;
-		}
+		$status->value = $status->value[0] ?? false;
 
 		return $status;
 	}

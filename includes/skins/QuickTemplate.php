@@ -77,11 +77,7 @@ abstract class QuickTemplate {
 	 * @return mixed The value of the data requested or the deafult
 	 */
 	public function get( $name, $default = null ) {
-		if ( isset( $this->data[$name] ) ) {
-			return $this->data[$name];
-		} else {
-			return $default;
-		}
+		return $this->data[$name] ?? $default;
 	}
 
 	/**
