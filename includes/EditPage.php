@@ -4226,28 +4226,6 @@ ERROR;
 			);
 		}
 
-		// Backwards-compatibility hack to run the EditPageBeforeEditChecks hook. It's important,
-		// people have used it for the weirdest things completely unrelated to checkboxes...
-		// And if we're gonna run it, might as well allow its legacy checkboxes to be shown.
-		$legacyCheckboxes = [];
-		if ( !$this->isNew ) {
-			$legacyCheckboxes['minor'] = '';
-		}
-		$legacyCheckboxes['watch'] = '';
-		// Copy new-style checkboxes into an old-style structure
-		foreach ( $checkboxes as $name => $oouiLayout ) {
-			$legacyCheckboxes[$name] = (string)$oouiLayout;
-		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$ep = $this;
-		Hooks::run( 'EditPageBeforeEditChecks', [ &$ep, &$legacyCheckboxes, &$tabindex ], '1.29' );
-		// Copy back any additional old-style checkboxes into the new-style structure
-		foreach ( $legacyCheckboxes as $name => $html ) {
-			if ( $html && !isset( $checkboxes[$name] ) ) {
-				$checkboxes[$name] = new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $html ) ] );
-			}
-		}
-
 		return $checkboxes;
 	}
 

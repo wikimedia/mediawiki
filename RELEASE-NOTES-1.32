@@ -158,6 +158,8 @@ because of Phabricator reports.
   minor change to implement the toggle feature with CSS instead. To restore
   prior functionality, either explicitly load "jquery.mw-jump" in your skin
   or refer to T195256 for details on how to make the same change.
+* Hook 'EditPageBeforeEditChecks' was removed;
+  use 'EditPageGetCheckboxesDefinition' instead.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
