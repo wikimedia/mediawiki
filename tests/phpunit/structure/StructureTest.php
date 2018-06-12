@@ -9,6 +9,7 @@ class StructureTest extends MediaWikiTestCase {
 	 * Verify all files that appear to be tests have file names ending in
 	 * Test.  If the file names do not end in Test, they will not be run.
 	 * @group medium
+	 * @coversNothing
 	 */
 	public function testUnitTestFileNamesEndWithTest() {
 		if ( wfIsWindows() ) {

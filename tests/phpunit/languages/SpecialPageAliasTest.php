@@ -7,12 +7,14 @@
  * @group SpecialPageAliases
  * @group SystemTest
  * @group medium
+ * @todo This should be a structure test
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class SpecialPageAliasTest extends MediaWikiTestCase {
 
 	/**
+	 * @coversNothing
 	 * @dataProvider validSpecialPageAliasesProvider
 	 */
 	public function testValidSpecialPageAliases( $code, $specialPageAliases ) {
