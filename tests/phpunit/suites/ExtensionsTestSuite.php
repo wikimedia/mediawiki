@@ -45,6 +45,9 @@ class ExtensionsTestSuite extends PHPUnit_Framework_TestSuite {
  * when no extensions with tests are used.
  */
 class DummyExtensionsTest extends MediaWikiTestCase {
+	/**
+	 * @coversNothing
+	 */
 	public function testNothing() {
 		$this->assertTrue( true );
 	}
