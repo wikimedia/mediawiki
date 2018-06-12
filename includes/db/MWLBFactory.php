@@ -65,6 +65,7 @@ abstract class MWLBFactory {
 			'cliMode' => $wgCommandLineMode,
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
+			'defaultGroup' => $mainConfig->get( 'DBDefaultGroup' ),
 		];
 
 		// When making changes here, remember to also specify MediaWiki-specific options

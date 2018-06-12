@@ -538,6 +538,7 @@ abstract class Maintenance {
 		if ( $this->getDbType() > 0 ) {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
 			$this->addOption( 'dbpass', 'The password to use for this script', false, true );
+			$this->addOption( 'dbgroupdefault', 'The default DB group to use.', false, true );
 		}
 
 		# Save additional script dependant options to display
@@ -1118,7 +1119,7 @@ abstract class Maintenance {
 	 */
 	public function finalSetup() {
 		global $wgCommandLineMode, $wgShowSQLErrors, $wgServer;
-		global $wgDBadminuser, $wgDBadminpassword;
+		global $wgDBadminuser, $wgDBadminpassword, $wgDBDefaultGroup;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
@@ -1139,6 +1140,9 @@ abstract class Maintenance {
 		}
 		if ( $this->mDbPass ) {
 			$wgDBadminpassword = $this->mDbPass;
+		}
+		if ( $this->hasOption( 'dbgroupdefault' ) ) {
+			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
 		}
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {

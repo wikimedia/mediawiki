@@ -123,6 +123,9 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
 
+	/** @var string|null */
+	private $defaultGroup = null;
+
 	/** @var int Warn when this many connection are held */
 	const CONN_HELD_WARN_THRESHOLD = 10;
 
@@ -259,6 +262,8 @@ class LoadBalancer implements ILoadBalancer {
 				$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 			}
 		}
+
+		$this->defaultGroup = $params['defaultGroup'] ?? null;
 	}
 
 	/**
@@ -717,8 +722,11 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
+		// Check one "group" per default: the generic pool
+		$defaultGroups = $this->defaultGroup ? [ $this->defaultGroup ] : [ false ];
+
 		$groups = ( $groups === false || $groups === [] )
-			? [ false ] // check one "group": the generic pool
+			? $defaultGroups
 			: (array)$groups;
 
 		$masterOnly = ( $i == self::DB_MASTER || $i == $this->getWriterIndex() );

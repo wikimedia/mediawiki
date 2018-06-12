@@ -1895,6 +1895,11 @@ $wgSQLMode = '';
 $wgDBmwschema = null;
 
 /**
+ * Default group to use when getting database connections.
+ */
+$wgDBDefaultGroup = null;
+
+/**
  * To override default SQLite data directory ($docroot/../data)
  */
 $wgSQLiteDataDir = '';
