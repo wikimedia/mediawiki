@@ -1023,7 +1023,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Should be called from addDBData().
 	 *
 	 * @since 1.25 ($namespace in 1.28)
-	 * @param string|title $pageName Page name or title
+	 * @param string|Title $pageName Page name or title
 	 * @param string $text Page's content
 	 * @param int $namespace Namespace id (name cannot already contain namespace)
 	 * @return array Title object and page id
