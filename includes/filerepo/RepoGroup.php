@@ -324,11 +324,8 @@ class RepoGroup {
 		}
 		if ( $index === 'local' ) {
 			return $this->localRepo;
-		} elseif ( isset( $this->foreignRepos[$index] ) ) {
-			return $this->foreignRepos[$index];
-		} else {
-			return false;
 		}
+		return $this->foreignRepos[$index] ?? false;
 	}
 
 	/**

@@ -520,11 +520,7 @@ class RecentChange {
 				continue;
 			}
 
-			if ( isset( $this->mExtra['actionCommentIRC'] ) ) {
-				$actionComment = $this->mExtra['actionCommentIRC'];
-			} else {
-				$actionComment = null;
-			}
+			$actionComment = $this->mExtra['actionCommentIRC'] ?? null;
 
 			$feed = RCFeed::factory( $params );
 			$feed->notify( $this, $actionComment );

@@ -234,10 +234,7 @@ class FauxResponse extends WebResponse {
 	public function getHeader( $key ) {
 		$key = strtoupper( $key );
 
-		if ( isset( $this->headers[$key] ) ) {
-			return $this->headers[$key];
-		}
-		return null;
+		return $this->headers[$key] ?? null;
 	}
 
 	/**
@@ -303,10 +300,7 @@ class FauxResponse extends WebResponse {
 	 * @return array|null
 	 */
 	public function getCookieData( $name ) {
-		if ( isset( $this->cookies[$name] ) ) {
-			return $this->cookies[$name];
-		}
-		return null;
+		return $this->cookies[$name] ?? null;
 	}
 
 	/**

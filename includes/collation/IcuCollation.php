@@ -577,10 +577,6 @@ class IcuCollation extends Collation {
 			'3.4' => '4.1',
 		];
 
-		if ( isset( $map[$versionPrefix] ) ) {
-			return $map[$versionPrefix];
-		} else {
-			return false;
-		}
+		return $map[$versionPrefix] ?? false;
 	}
 }

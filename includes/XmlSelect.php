@@ -70,11 +70,7 @@ class XmlSelect {
 	 * @return string|null
 	 */
 	public function getAttribute( $name ) {
-		if ( isset( $this->attributes[$name] ) ) {
-			return $this->attributes[$name];
-		} else {
-			return null;
-		}
+		return $this->attributes[$name] ?? null;
 	}
 
 	/**

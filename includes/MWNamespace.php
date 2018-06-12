@@ -254,11 +254,7 @@ class MWNamespace {
 	 */
 	public static function getCanonicalName( $index ) {
 		$nslist = self::getCanonicalNamespaces();
-		if ( isset( $nslist[$index] ) ) {
-			return $nslist[$index];
-		} else {
-			return false;
-		}
+		return $nslist[$index] ?? false;
 	}
 
 	/**

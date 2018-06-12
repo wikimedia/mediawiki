@@ -292,11 +292,7 @@ class LocalisationCache {
 			$this->loadSubitem( $code, $key, $subkey );
 		}
 
-		if ( isset( $this->data[$code][$key][$subkey] ) ) {
-			return $this->data[$code][$key][$subkey];
-		} else {
-			return null;
-		}
+		return $this->data[$code][$key][$subkey] ?? null;
 	}
 
 	/**
@@ -603,11 +599,7 @@ class LocalisationCache {
 		if ( $this->pluralRules === null ) {
 			$this->loadPluralFiles();
 		}
-		if ( !isset( $this->pluralRules[$code] ) ) {
-			return null;
-		} else {
-			return $this->pluralRules[$code];
-		}
+		return $this->pluralRules[$code] ?? null;
 	}
 
 	/**
@@ -621,11 +613,7 @@ class LocalisationCache {
 		if ( $this->pluralRuleTypes === null ) {
 			$this->loadPluralFiles();
 		}
-		if ( !isset( $this->pluralRuleTypes[$code] ) ) {
-			return null;
-		} else {
-			return $this->pluralRuleTypes[$code];
-		}
+		return $this->pluralRuleTypes[$code] ?? null;
 	}
 
 	/**
@@ -1047,11 +1035,7 @@ class LocalisationCache {
 		}
 
 		foreach ( $data['preloadedMessages'] as $subkey ) {
-			if ( isset( $data['messages'][$subkey] ) ) {
-				$subitem = $data['messages'][$subkey];
-			} else {
-				$subitem = null;
-			}
+			$subitem = $data['messages'][$subkey] ?? null;
 			$preload['messages'][$subkey] = $subitem;
 		}
 
