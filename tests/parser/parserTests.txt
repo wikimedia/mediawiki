@@ -24585,6 +24585,17 @@ abc
 <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"padright:","function":"padright"},"params":{"1":{"wt":"3"},"2":{"wt":"abcde"}},"i":0}}]}'>abc</span></p>
 !! end
 
+!! test
+Padleft and padright with non-numerical length (T180403)
+!! wikitext
+{{padleft:abcdef|junk}}
+{{padright:abcdef|junk}}
+!! html/php
+<p>abcdef
+abcdef
+</p>
+!! end
+
 !!test
 Special parser function
 !! wikitext
