@@ -630,35 +630,41 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'1@542#c47dcfb0566e7d7bc110a6128a45c93a',
 			LBFactory::makeCookieValueFromCPIndex( 1, 542, $agentId )
 		);
+
 		$this->assertSame(
-			5,
-			LBFactory::getCPInfoFromCookieValue( "5", $time - 10 )['index'],
+			null,
+			LBFactory::getCPInfoFromCookieValue( "5#$agentId", $time - 10 )['index'],
 			'No time set'
 		);
 		$this->assertSame(
 			null,
-			LBFactory::getCPInfoFromCookieValue( "0", $time - 10 )['index'],
+			LBFactory::getCPInfoFromCookieValue( "5@$time", $time - 10 )['index'],
+			'No agent set'
+		);
+		$this->assertSame(
+			null,
+			LBFactory::getCPInfoFromCookieValue( "0@$time#$agentId", $time - 10 )['index'],
 			'Bad index'
 		);
 
 		$this->assertSame(
 			2,
-			LBFactory::getCPInfoFromCookieValue( "2@$time", $time - 10 )['index'],
+			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time - 10 )['index'],
 			'Fresh'
 		);
 		$this->assertSame(
 			2,
-			LBFactory::getCPInfoFromCookieValue( "2@$time", $time + 9 - 10 )['index'],
+			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time + 9 - 10 )['index'],
 			'Almost stale'
 		);
 		$this->assertSame(
 			null,
-			LBFactory::getCPInfoFromCookieValue( "0@$time", $time + 9 - 10 )['index'],
+			LBFactory::getCPInfoFromCookieValue( "0@$time#$agentId", $time + 9 - 10 )['index'],
 			'Almost stale; bad index'
 		);
 		$this->assertSame(
 			null,
-			LBFactory::getCPInfoFromCookieValue( "2@$time", $time + 11 - 10 )['index'],
+			LBFactory::getCPInfoFromCookieValue( "2@$time#$agentId", $time + 11 - 10 )['index'],
 			'Stale'
 		);
 
@@ -669,7 +675,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		);
 		$this->assertSame(
 			null,
-			LBFactory::getCPInfoFromCookieValue( "5@$time", $time + 11 - 10 )['clientId'],
+			LBFactory::getCPInfoFromCookieValue( "5@$time#$agentId", $time + 11 - 10 )['clientId'],
 			'Stale (client ID)'
 		);
 	}
