@@ -240,8 +240,8 @@ MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
 
-'AbortAutoAccount': DEPRECATED! Create a PreAuthenticationProvider instead.
-Return false to cancel automated local account creation, where normally
+'AbortAutoAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
+instead. Return false to cancel automated local account creation, where normally
 authentication against an external auth plugin would be creating a local
 account.
 $user: the User object about to be created (read-only, incomplete)
@@ -259,7 +259,7 @@ $editor: The User who made the change.
 $title: The Title of the page that was edited.
 $rc: The current RecentChange object.
 
-'AbortLogin': DEPRECATED! Create a PreAuthenticationProvider instead.
+'AbortLogin': DEPRECATED since 1.27! Create a PreAuthenticationProvider instead.
 Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity
@@ -269,8 +269,8 @@ $password: the password being submitted, not yet checked for validity
 &$msg: the message identifier for abort reason (new in 1.18, not available
   before 1.18)
 
-'AbortNewAccount': DEPRECATED! Create a PreAuthenticationProvider instead.
-Return false to cancel explicit account creation.
+'AbortNewAccount': DEPRECATED since 1.27! Create a PreAuthenticationProvider
+instead. Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: HTML to display on abort
 &$status: out parameter: Status object to return, replaces the older $msg param
@@ -294,7 +294,7 @@ $name: name of the action
 &$fields: HTMLForm descriptor array
 $article: Article object
 
-'AddNewAccount': DEPRECATED! Use LocalUserCreated.
+'AddNewAccount': DEPRECATED since 1.27! Use LocalUserCreated.
 After a user account is created.
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
@@ -372,7 +372,7 @@ from ApiBase::addDeprecation().
 &$msgs: Message[] Messages to include in the help. Multiple messages will be
   joined with spaces.
 
-'APIEditBeforeSave': DEPRECATED! Use EditFilterMergedContent instead.
+'APIEditBeforeSave': DEPRECATED since 1.28! Use EditFilterMergedContent instead.
 Before saving a page with api.php?action=edit, after
 processing request parameters. Return false to let the request fail, returning
 an error message or an <edit result="Failure"> tag if $resultArr was filled.
@@ -409,8 +409,8 @@ $format: API format code for $text.
 &$params: Array of parameters
 $flags: int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 
-'APIGetDescription': DEPRECATED! Use APIGetDescriptionMessages instead.
-Use this hook to modify a module's description.
+'APIGetDescription': DEPRECATED since 1.25! Use APIGetDescriptionMessages
+instead. Use this hook to modify a module's description.
 &$module: ApiBase Module object
 &$desc: String description, or array of description strings
 
@@ -418,8 +418,8 @@ Use this hook to modify a module's description.
 $module: ApiBase Module object
 &$msg: Array of Message objects
 
-'APIGetParamDescription': DEPRECATED! Use APIGetParamDescriptionMessages
-instead.
+'APIGetParamDescription': DEPRECATED since 1.25! Use
+APIGetParamDescriptionMessages instead.
 Use this hook to modify a module's parameter descriptions.
 &$module: ApiBase Module object
 &$desc: Array of parameter descriptions
@@ -521,9 +521,9 @@ an action=query submodule. Use this to extend core API modules.
 &$module: Module object
 &$resultPageSet: ApiPageSet object
 
-'APIQueryInfoTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
-Use this hook to add custom tokens to prop=info. Every token has an action,
-which will be used in the intoken parameter and in the output
+'APIQueryInfoTokens': DEPRECATED since 1.24! Use ApiQueryTokensRegisterTypes
+instead. Use this hook to add custom tokens to prop=info. Every token has an
+action, which will be used in the intoken parameter and in the output
 (actiontoken="..."), and a callback function which should return the token, or
 false if the user isn't allowed to obtain it. The prototype of the callback
 function is func($pageid, $title), where $pageid is the page ID of the page the
@@ -532,8 +532,8 @@ just add your callback to the $tokenFunctions array and return true (returning
 false makes no sense).
 &$tokenFunctions: array(action => callback)
 
-'APIQueryRecentChangesTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes
-instead.
+'APIQueryRecentChangesTokens': DEPRECATED since 1.24! Use
+ApiQueryTokensRegisterTypes instead.
 Use this hook to add custom tokens to list=recentchanges. Every token has an
 action, which will be used in the rctoken parameter and in the output
 (actiontoken="..."), and a callback function which should return the token, or
@@ -545,7 +545,8 @@ hook, just add your callback to the $tokenFunctions array and return true
 (returning false makes no sense).
 &$tokenFunctions: array(action => callback)
 
-'APIQueryRevisionsTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+'APIQueryRevisionsTokens': DEPRECATED since 1.24! Use
+ApiQueryTokensRegisterTypes instead.
 Use this hook to add custom tokens to prop=revisions. Every token has an
 action, which will be used in the rvtoken parameter and in the output
 (actiontoken="..."), and a callback function which should return the token, or
@@ -572,7 +573,8 @@ the 'csrf' token instead of creating their own token types.
 &$salts: array( type => salt to pass to User::getEditToken() or array of salt
   and key to pass to Session::getToken() )
 
-'APIQueryUsersTokens': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+'APIQueryUsersTokens': DEPRECATED since 1.24! Use ApiQueryTokensRegisterTypes
+instead.
 Use this hook to add custom token to list=users. Every token has an action,
 which will be used in the ustoken parameter and in the output
 (actiontoken="..."), and a callback function which should return the token, or
@@ -600,7 +602,7 @@ key for the array that represents the service data. In this data array, the
 key-value-pair identified by the apiLink key is required.
 &$apis: array of services
 
-'ApiTokensGetTokenTypes': DEPRECATED! Use ApiQueryTokensRegisterTypes instead.
+'ApiTokensGetTokenTypes': DEPRECATED since 1.24! Use ApiQueryTokensRegisterTypes instead.
 Use this hook to extend action=tokens with new token types.
 &$tokenTypes: supported token types in format 'type' => callback function
   used to retrieve this type of tokens.
@@ -786,20 +788,21 @@ $action: one of the AuthManager::ACTION_* constants.
 'AuthManagerLoginAuthenticateAudit': A login attempt either succeeded or failed
 for a reason other than misconfiguration or session loss. No return data is
 accepted; this hook is for auditing only.
-$response: The MediaWiki\Auth\AuthenticationResponse in either a PASS or FAIL state.
+$response: The MediaWiki\Auth\AuthenticationResponse in either a PASS or FAIL
+  state.
 $user: The User object being authenticated against, or null if authentication
   failed before getting that far.
 $username: A guess at the user name being authenticated, or null if we can't
   even determine that.
 
-'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
-Called when creating a local account for an user logged in from an external
-authentication method.
+'AuthPluginAutoCreate': DEPRECATED since 1.27! Use the 'LocalUserCreated' hook
+instead. Called when creating a local account for an user logged in from an
+external authentication method.
 $user: User object created locally
 
-'AuthPluginSetup': DEPRECATED! Extensions should be updated to use AuthManager.
-Update or replace authentication plugin object ($wgAuth). Gives a chance for an
-extension to set it programmatically to a variable class.
+'AuthPluginSetup': DEPRECATED since 1.27! Extensions should be updated to use
+AuthManager. Update or replace authentication plugin object ($wgAuth). Gives a
+chance for an extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
 'AutopromoteCondition': Check autopromote condition for user.
@@ -972,9 +975,9 @@ No return data is accepted; this hook is for auditing only.
 $req: AuthenticationRequest object describing the change (and target user)
 $status: StatusValue with the result of the action
 
-'ChangePasswordForm': DEPRECATED! Use AuthChangeFormFields or security levels.
-For extensions that need to add a field to the ChangePassword form via the
-Preferences form.
+'ChangePasswordForm': DEPRECATED since 1.27! Use AuthChangeFormFields or
+security levels. For extensions that need to add a field to the ChangePassword
+form via the Preferences form.
 &$extraFields: An array of arrays that hold fields like would be passed to the
   pretty function.
 
@@ -991,8 +994,8 @@ $rows: The data that will be rendered. May be a ResultWrapper instance or
 $unpatrolled: Whether or not we are showing unpatrolled changes.
 $watched: Whether or not the change is watched by the user.
 
-'ChangesListSpecialPageFilters': DEPRECATED! Use 'ChangesListSpecialPageStructuredFilters'
-instead.
+'ChangesListSpecialPageFilters': DEPRECATED since 1.29! Use
+'ChangesListSpecialPageStructuredFilters' instead.
 Called after building form options on pages
 inheriting from ChangesListSpecialPage (in core: RecentChanges,
 RecentChangesLinked and Watchlist).
@@ -1361,7 +1364,7 @@ an article
 &$article: article (object) being viewed
 &$oldid: oldid (int) being viewed
 
-'DoEditSectionLink': DEPRECATED! Use SkinEditSectionLinks instead.
+'DoEditSectionLink': DEPRECATED since 1.25! Use SkinEditSectionLinks instead.
 Override the HTML generated for section edit links
 $skin: Skin object rendering the UI
 $title: Title object for the title being linked to (may not be the same as
@@ -1380,7 +1383,6 @@ $text: Contents of the edit box
 $section: Section being edited
 &$error: Error message to return
 $summary: Edit summary for page
-
 
 'EditFilterMergedContent': Post-section-merge edit filter.
 This may be triggered by the EditPage or any other facility that modifies page
@@ -1964,7 +1966,7 @@ $user: User the password is being validated for
 $code: The language code or the language we're looking for a messages file for
 &$file: The messages file path, you can override this to change the location.
 
-'LanguageGetMagic': DEPRECATED! Use $magicWords in a file listed in
+'LanguageGetMagic': DEPRECATED since 1.16! Use $magicWords in a file listed in
 $wgExtensionMessagesFiles instead.
 Use this to define synonyms of magic words depending of the language
 &$magicExtensions: associative array of magic words synonyms
@@ -1999,11 +2001,11 @@ $title: The page's Title.
 $out: The output page.
 $cssClassName: CSS class name of the language selector.
 
-'LinkBegin': DEPRECATED! Use HtmlPageLinkRendererBegin instead.
-Used when generating internal and interwiki links in
-Linker::link(), before processing starts.  Return false to skip default
-processing and return $ret. See documentation for Linker::link() for details on
-the expected meanings of parameters.
+'LinkBegin': DEPRECATED since 1.28! Use HtmlPageLinkRendererBegin instead.
+Used when generating internal and interwiki links in Linker::link(), before
+processing starts.  Return false to skip default processing and return $ret. See
+documentation for Linker::link() for details on the expected meanings of
+parameters.
 $skin: the Skin object
 $target: the Title that the link is pointing to
 &$html: the contents that the <a> tag should have (raw HTML); null means
@@ -2017,7 +2019,7 @@ $target: the Title that the link is pointing to
 &$options: array of options.  Can include 'known', 'broken', 'noclasses'.
 &$ret: the value to return if your hook returns false.
 
-'LinkEnd': DEPRECATED! Use HtmlPageLinkRendererEnd hook instead
+'LinkEnd': DEPRECATED since 1.28! Use HtmlPageLinkRendererEnd hook instead
 Used when generating internal and interwiki links in Linker::link(),
 just before the function returns a value.  If you return true, an <a> element
 with HTML attributes $attribs and contents $html will be returned.  If you
@@ -2199,11 +2201,11 @@ in LoginForm::$validErrorMessages).
 &$messages: Already added messages (inclusive messages from
   LoginForm::$validErrorMessages)
 
-'LoginUserMigrated': DEPRECATED! Create a PreAuthenticationProvider instead.
-Called during login to allow extensions the opportunity to inform a user that
-their username doesn't exist for a specific reason, instead of letting the
-login form give the generic error message that the account does not exist. For
-example, when the account has been renamed or deleted.
+'LoginUserMigrated': DEPRECATED since 1.27! Create a PreAuthenticationProvider
+instead. Called during login to allow extensions the opportunity to inform a
+user that their username doesn't exist for a specific reason, instead of letting
+the login form give the generic error message that the account does not exist.
+For example, when the account has been renamed or deleted.
 $user: the User object being authenticated against.
 &$msg: the message identifier for abort reason, or an array to pass a message
   key and parameters.
@@ -2603,7 +2605,7 @@ cache or return false to not use it.
 &$parser: Parser object
 &$varCache: variable cache (array)
 
-'ParserLimitReport': DEPRECATED! Use ParserLimitReportPrepare and
+'ParserLimitReport': DEPRECATED since 1.22! Use ParserLimitReportPrepare and
 ParserLimitReportFormat instead.
 Called at the end of Parser:parse() when the parser will
 include comments about size of the text parsed.
@@ -2732,7 +2734,8 @@ $key: the section name
 &$legend: the legend text. Defaults to wfMessage( "prefs-$key" )->text() but may
   be overridden
 
-'PrefixSearchBackend': DEPRECATED! Override SearchEngine::completionSearchBackend instead.
+'PrefixSearchBackend': DEPRECATED since 1.27! Override
+SearchEngine::completionSearchBackend instead.
 Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns: array of int namespace keys to search in
@@ -2858,8 +2861,8 @@ called after the addition of 'qunit' and MediaWiki testing resources.
 'RevisionRecordInserted': Called after a revision is inserted into the database.
 $revisionRecord: the RevisionRecord that has just been inserted.
 
-'RevisionInsertComplete': DEPRECATED! Use RevisionRecordInserted hook instead.
-Called after a revision is inserted into the database.
+'RevisionInsertComplete': DEPRECATED since 1.31! Use RevisionRecordInserted hook
+instead. Called after a revision is inserted into the database.
 $revision: the Revision
 $data: DEPRECATED! Always null!
 $flags: DEPRECATED! Always null!
@@ -3252,8 +3255,8 @@ use this to change some selection criteria or substitute a different title.
 &$title: If the hook returns false, a Title object to use instead of the
   result from the normal query
 
-'SpecialRecentChangesFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
-instead.
+'SpecialRecentChangesFilters': DEPRECATED since 1.23! Use
+ChangesListSpecialPageStructuredFilters instead.
 Called after building form options at RecentChanges.
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML
@@ -3265,8 +3268,8 @@ SpecialRecentChanges.
 &$extraOpts: array of added items, to which can be added
 $opts: FormOptions for this request
 
-'SpecialRecentChangesQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
-or ChangesListSpecialPageQuery instead.
+'SpecialRecentChangesQuery': DEPRECATED since 1.23! Use
+ChangesListSpecialPageStructuredFilters or ChangesListSpecialPageQuery instead.
 Called when building SQL query for SpecialRecentChanges and
 SpecialRecentChangesLinked.
 &$conds: array of WHERE conditionals for query
@@ -3370,8 +3373,8 @@ Special:Upload.
 $wgVersion: Current $wgVersion for you to use
 &$versionUrl: Raw url to link to (eg: release notes)
 
-'SpecialWatchlistFilters': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
-instead.
+'SpecialWatchlistFilters': DEPRECATED since 1.23! Use
+ChangesListSpecialPageStructuredFilters instead.
 Called after building form options at Watchlist.
 $special: the special page object
 &$filters: associative array of filter definitions. The keys are the HTML
@@ -3383,8 +3386,8 @@ SpecialWatchlist. Allows extensions to register custom values they have
 inserted to rc_type so they can be returned as part of the watchlist.
 &$nonRevisionTypes: array of values in the rc_type field of recentchanges table
 
-'SpecialWatchlistQuery': DEPRECATED! Use ChangesListSpecialPageStructuredFilters
-or ChangesListSpecialPageQuery instead.
+'SpecialWatchlistQuery': DEPRECATED since 1.23! Use
+ChangesListSpecialPageStructuredFilters or ChangesListSpecialPageQuery instead.
 Called when building sql query for SpecialWatchlist.
 &$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
@@ -3533,7 +3536,7 @@ Since 1.24: Paths pointing to a directory will be recursively scanned for
 test case files matching the suffix "Test.php".
 &$paths: list of test cases and directories to search.
 
-'UnknownAction': DEPRECATED! To add an action in an extension,
+'UnknownAction': DEPRECATED since 1.19! To add an action in an extension,
 create a subclass of Action, and add a new key to $wgActions.
 An unknown "action" has occurred (useful for defining your own actions).
 $action: action name
@@ -3599,7 +3602,7 @@ $props: (array) File properties, as returned by FSFile::getPropsFromPath()
   instance (you might want to use ApiMessage to provide machine-readable details
   for the API).
 
-'UploadVerification': DEPRECATED! Use UploadVerifyFile instead.
+'UploadVerification': DEPRECATED since 1.28! Use UploadVerifyFile instead.
 Additional chances to reject an uploaded file.
 $saveName: (string) destination file name
 $tempName: (string) filesystem path to the temporary file for checks
@@ -3669,8 +3672,8 @@ messages!" message, return false to not delete it.
 &$user: User (object) that will clear the message
 $oldid: ID of the talk page revision being viewed (0 means the most recent one)
 
-'UserCreateForm': DEPRECATED! Create an AuthenticationProvider instead.
-Manipulate the login form.
+'UserCreateForm': DEPRECATED since 1.27! Create an AuthenticationProvider
+instead. Manipulate the login form.
 &$template: SimpleTemplate instance for the form
 
 'UserEffectiveGroups': Called in User::getEffectiveGroups().
@@ -3697,7 +3700,7 @@ $user: User object
 &$timestamp: timestamp, change this to override local email authentication
   timestamp
 
-'UserGetImplicitGroups': DEPRECATED!
+'UserGetImplicitGroups': DEPRECATED since 1.25!
 Called in User::getImplicitGroups().
 &$groups: List of implicit (automatically-assigned) groups
 
@@ -3763,7 +3766,8 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': DEPRECATED! Create a MediaWiki\Session\SessionProvider instead.
+'UserLoadFromSession': DEPRECATED since 1.27! Create a
+MediaWiki\Session\SessionProvider instead.
 Called to authenticate users on external/environmental means; occurs before
 session is loaded.
 $user: user object being loaded
@@ -3786,8 +3790,8 @@ $direct: (bool) The hook is called directly after a successful login. This will 
   per login. A UserLoginComplete call with direct=false can happen when the user visits the login
   page while already logged in.
 
-'UserLoginForm': DEPRECATED! Create an AuthenticationProvider instead.
-Manipulate the login form.
+'UserLoginForm': DEPRECATED since 1.27! Create an AuthenticationProvider
+instead. Manipulate the login form.
 &$template: QuickTemplate instance for the form
 
 'UserLogout': Before a user logs out.
@@ -3848,7 +3852,7 @@ message(s).
 &$user: user retrieving new talks messages
 &$talks: array of new talks page(s)
 
-'UserRights': DEPRECATED! Use UserGroupsChanged instead.
+'UserRights': DEPRECATED since 1.26! Use UserGroupsChanged instead.
 After a user's group memberships are changed.
 &$user: User object that was changed
 $add: Array of strings corresponding to groups added
@@ -3865,10 +3869,10 @@ $user: The User for which the options are going to be saved
 been saved. Compare to the UserSaveOptions hook, which is called before.
 $user: The User for which the options have been saved
 
-'UserSetCookies': DEPRECATED! If you're trying to replace core session cookie
-handling, you want to create a subclass of MediaWiki\Session\CookieSessionProvider
-instead. Otherwise, you can no longer count on user data being saved to cookies
-versus some other mechanism.
+'UserSetCookies': DEPRECATED since 1.27! If you're trying to replace core
+session cookie handling, you want to create a subclass of
+MediaWiki\Session\CookieSessionProvider instead. Otherwise, you can no longer
+count on user data being saved to cookies versus some other mechanism.
 Called when setting user cookies.
 $user: User object
 &$session: session array, will be added to the session
