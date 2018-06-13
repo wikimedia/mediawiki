@@ -56,7 +56,7 @@
 				} ),
 				new OO.ui.MenuOptionWidget( {
 					data: 'delete',
-					icon: 'close',
+					icon: 'trash',
 					label: mw.msg( 'rcfilters-savedqueries-remove' )
 				} ),
 				new OO.ui.MenuOptionWidget( {
