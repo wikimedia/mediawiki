@@ -370,6 +370,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideLinkBeginHook
 	 */
 	public function testLinkBeginHook( $callback, $expected ) {
+		$this->hideDeprecated( 'LinkBegin hook (used in hook-LinkBegin-closure)' );
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
 			'wgServer' => '//example.org',
@@ -417,6 +418,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideLinkEndHook
 	 */
 	public function testLinkEndHook( $callback, $expected ) {
+		$this->hideDeprecated( 'LinkEnd hook (used in hook-LinkEnd-closure)' );
 		$this->setMwGlobals( [
 			'wgArticlePath' => '/wiki/$1',
 		] );
