@@ -13,6 +13,7 @@ class MockSearchResultSet extends SearchResultSet {
 	 *  to list of results for that type.
 	 */
 	public function __construct( array $results, array $interwikiResults = [] ) {
+		parent::__construct( false, false );
 		$this->results = $results;
 		$this->interwikiResults = $interwikiResults;
 	}

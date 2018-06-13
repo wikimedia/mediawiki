@@ -144,14 +144,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$count = 0;
 		$limit = $params['limit'];
 
-		foreach ( $matches as $result ) {
-			if ( ++$count > $limit ) {
-				// We've reached the one extra which shows that there are
-				// additional items to be had. Stop here...
-				$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );
-				break;
-			}
+		if ( $matches->hasMoreResults() ) {
+			$this->setContinueEnumParameter( 'offset', $params['offset'] + $params['limit'] );
+		}
 
+		foreach ( $matches as $result ) {
+			$count++;
 			// Silently skip broken and missing titles
 			if ( $result->isBrokenTitle() || $result->isMissingRevision() ) {
 				continue;

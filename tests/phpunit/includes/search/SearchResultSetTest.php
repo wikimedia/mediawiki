@@ -42,4 +42,20 @@ class SearchResultSetTest extends MediaWikiTestCase {
 		] );
 		$this->assertEquals( [ 'foo' => 'bar' ], $result->getExtensionData() );
 	}
+
+	/**
+	 * @covers SearchResultSet::shrink
+	 * @covers SearchResultSet::count
+	 * @covers SearchResultSet::hasMoreResults
+	 */
+	public function testHasMoreResults() {
+		$result = SearchResult::newFromTitle( Title::newMainPage() );
+		$resultSet = new MockSearchResultSet( array_fill( 0, 3, $result ) );
+		$this->assertEquals( 3, count( $resultSet ) );
+		$this->assertFalse( $resultSet->hasMoreResults() );
+		$resultSet->shrink( 3 );
+		$this->assertFalse( $resultSet->hasMoreResults() );
+		$resultSet->shrink( 2 );
+		$this->assertTrue( $resultSet->hasMoreResults() );
+	}
 }
