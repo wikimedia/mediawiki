@@ -1603,6 +1603,7 @@
 	"rcfilters-preference-label": "Masquer la version améliorée des modifications récentes",
 	"rcfilters-preference-help": "Désactive la version 2017 de l'interface ainsi que de tous les outils ajoutés alors et depuis.",
 	"rcfilters-watchlist-preference-label": "Masquer la version améliorée de la liste de suivi",
+	"rcfilters-watchlist-preference-help": "Annuler la nouvelle conception de l’interface 2017 et tous les outils ajoutés alors et depuis.",
 	"rcfilters-filter-showlinkedfrom-label": "Montrer les modifications des pages liées depuis",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Pages liées depuis</strong> la page sélectionnée",
 	"rcfilters-filter-showlinkedto-label": "Montrer les modifications des pages pointant vers",

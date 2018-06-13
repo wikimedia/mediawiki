@@ -694,7 +694,7 @@
 	"explainconflict": "Zu orrialdea aldatzen hasi ondoren beste norbaitek ere aldaketak egin ditu.\nGoiko testu koadroan ikus daiteke orrialdeak uneotan duen edukia.\nZure aldaketak beheko testu koadroan ikus daitezke.\nZure testua dagoenarekin elkartu beharko duzu.\nOrrialdea gordetzeko erabakitzen duzun unean goiko koadroko edukia '''bakarrik''' gordeko da.",
 	"yourtext": "Zure testua",
 	"storedversion": "Gordetako bertsioa",
-	"editingold": "'''KONTUZ: Artikulu honen bertsio zahar bat aldatzen ari zara. Gorde egiten baduzu, azkenengo aldaketa baino lehenagoko aldakuntzak, ezabatuak izango dira.'''",
+	"editingold": "<strong>KONTUZ: Artikulu honen bertsio zahar bat aldatzen ari zara.</strong> Gordetzen baduzu, bertsio hau baino geroago egindako aldaketa guztiak ezabatuko dira.",
 	"unicode-support-fail": "Zure nabigatzaileak Unicode onartzen ez duela dirudi. Orrialdeak editatu behar dira, beraz, edizioa ez da gorde.",
 	"yourdiff": "Ezberdintasunak",
 	"copyrightwarning": "Kontuan izan ezazu {{SITENAME}} webgunean egindako ekarpen guztiak $2 lizentziaren pean argitaratzen direla (xehetasunetarako, ikus $1). Zuk idatzitakoa libreki aldatua eta banatua izatea nahi ez baduzu, ez ezazu hemen jarri.<br />\nEra berean, hitzematen ari zara hau zuk zeuk idatzia dela, edo jabari publikotik nahiz askea den beste ituri batetik kopiatu duzula.\n'''Ez erabili copyright eskubideek babestutako lanik, baimenik gabe!'''",
