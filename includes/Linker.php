@@ -431,7 +431,11 @@ class Linker {
 			$s = $thumb->toHtml( $params );
 		}
 		if ( $frameParams['align'] != '' ) {
-			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
+			$s = Html::rawElement(
+				'div',
+				[ 'class' => 'float' . $frameParams['align'] ],
+				$s
+			);
 		}
 		return str_replace( "\n", ' ', $prefix . $s . $postfix );
 	}
