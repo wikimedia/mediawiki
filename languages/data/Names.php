@@ -148,6 +148,7 @@ class Names {
 		'en-gb' => 'British English', # British English
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
+		'es-419' => 'español de América Latina', # Spanish for the Latin America and Caribbean region
 		'es-formal' => 'español (formal)', # Spanish formal address
 		'et' => 'eesti', # Estonian
 		'eu' => 'euskara', # Basque
