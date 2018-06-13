@@ -1835,6 +1835,9 @@ just modify a few things using call-by-reference.
   includes/Linker.php for Linker::makeImageLink
 &$time: Timestamp of file in 'YYYYMMDDHHIISS' string form, or false for current
 &$res: Final HTML output, used if you return false
+$parser: Parser instance
+&$query: Query params for desc URL
+&$widthOption: Used by the parser to remember the user preference thumbnailsize
 
 'ImageOpenShowImageInlineBefore': Call potential extension just before showing
 the image on an image page.

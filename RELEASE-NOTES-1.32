@@ -42,6 +42,9 @@ production.
   reauthenticating.
 * FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
   getLoginSecurityLevel() returns non-false.
+* The 'ImageBeforeProduceHTML' hook is now passed three new parameters, $parser,
+  &$query and &$widthOption, allowing extensions even finer control over the resulting
+  HTML code.
 
 === External library changes in 1.32 ===
 * …

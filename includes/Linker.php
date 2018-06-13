@@ -305,7 +305,9 @@ class Linker {
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !Hooks::run( 'ImageBeforeProduceHTML', [ &$dummy, &$title,
-			&$file, &$frameParams, &$handlerParams, &$time, &$res ] ) ) {
+			&$file, &$frameParams, &$handlerParams, &$time, &$res,
+			$parser, &$query, &$widthOption
+		] ) ) {
 			return $res;
 		}
 
