@@ -891,7 +891,7 @@
 	"revdelete-edit-reasonlist": "Redakti kialojn por forigo",
 	"revdelete-offender": "Aŭtoro de revizio:",
 	"suppressionlog": "Protokolo pri subigado",
-	"suppressionlogtext": "Malsupre estas listo de forigoj kaj forbaroj pri enhavo kaŝita de administrantoj.\nRigardu la [[Special:BlockList|forbarliston]] por la listo de nune operaciaj forbaroj kaj forigoj.",
+	"suppressionlogtext": "Jen listo de forigoj kaj forbaroj pri enhavo kaŝita per administrantoj.\nVidi la [[Special:BlockList|forbarliston]] por la listo de forigoj kaj forbaroj aktuale operaciaj.",
 	"mergehistory": "Kunigi historiojn de paĝoj",
 	"mergehistory-header": "Ĉi tiu paĝo permesas al vi kunigi versiojn de la historio de unu fonta paĝo en pli novan paĝon.\nCertigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.",
 	"mergehistory-box": "Kunigi versiojn de du paĝoj:",

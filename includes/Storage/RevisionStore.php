@@ -47,6 +47,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChange;
+use Revision;
 use stdClass;
 use Title;
 use User;
@@ -488,6 +489,10 @@ class RevisionStore
 		);
 
 		Hooks::run( 'RevisionRecordInserted', [ $rev ] );
+
+		// TODO: deprecate in 1.32!
+		$legacyRevision = new Revision( $rev );
+		Hooks::run( 'RevisionInsertComplete', [ &$legacyRevision, null, null ] );
 
 		return $rev;
 	}
