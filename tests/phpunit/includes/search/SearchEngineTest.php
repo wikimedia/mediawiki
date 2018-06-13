@@ -307,4 +307,37 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			} );
 		$rowAugmentors['testRow'] = $rowAugmentor;
 	}
+
+	public function testFiltersMissing() {
+		$availableResults = [];
+		foreach ( range( 0, 11 ) as $i ) {
+			$title = "Search_Result_$i";
+			$availableResults[] = $title;
+			// pages not created must be filtered
+			if ( $i % 2 == 0 ) {
+				$this->editPage( $title );
+			}
+		}
+		MockCompletionSearchEngine::addMockResults( 'foo', $availableResults );
+
+		$engine = new MockCompletionSearchEngine();
+		$engine->setLimitOffset( 10, 0 );
+		$results = $engine->completionSearch( 'foo' );
+		$this->assertEquals( 5, $results->getSize() );
+		$this->assertTrue( $results->hasMoreResults() );
+
+		$engine->setLimitOffset( 10, 10 );
+		$results = $engine->completionSearch( 'foo' );
+		$this->assertEquals( 1, $results->getSize() );
+		$this->assertFalse( $results->hasMoreResults() );
+	}
+
+	private function editPage( $title ) {
+		$page = WikiPage::factory( Title::newFromText( $title ) );
+		$page->doEditContent(
+			new WikitextContent( 'UTContent' ),
+			'UTPageSummary',
+			EDIT_NEW | EDIT_SUPPRESS_RC
+		);
+	}
 }
