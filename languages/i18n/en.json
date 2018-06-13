@@ -1384,6 +1384,8 @@
 	"rcfilters-other-review-tools": "Other review tools",
 	"rcfilters-group-results-by-page": "Group results by page",
 	"rcfilters-activefilters": "Active filters",
+	"rcfilters-activefilters-hide": "Hide",
+	"rcfilters-activefilters-show": "Show",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Results to show",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|change|changes}}, $2",

@@ -17,9 +17,35 @@
 		border-bottom: 0;
 		background-color: @colorGray15;
 		border-radius: 2px 2px 0 0;
-		padding: 0.6em;
+		padding: 0 0.6em 0.6em 0.6em;
 		margin-top: 1em;
 		line-height: normal;
+	}
+
+	&-collapsed {
+		// Taking from the handle, since border-bottom is set on the
+		// filters view which is hidden when collapsed
+		border-bottom: 1px solid @colorGray10;
+
+		&.mw-rcfilters-ui-filterTagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
+			padding-bottom: 0;
+			padding-top: 0;
+		}
+
+		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-hideshow {
+			border-left: 1px solid @colorGray10;
+		}
+
+		&.oo-ui-tagMultiselectWidget-outlined {
+			width: unset;
+			max-width: 100%;
+		}
+
+		// Hide inner elements
+		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters,
+		.mw-rcfilters-ui-filterTagMultiselectWidget-views {
+			display: none;
+		}
 	}
 
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-animate.oo-ui-tagMultiselectWidget-handle {
@@ -30,23 +56,43 @@
 		background-color: @background-color-primary;
 	}
 
+	&-hideshowButton.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+		// Override the OOUI default for buttons
+		font-weight: normal;
+	}
+
 	&-wrapper {
-		.mw-rcfilters-ui-table {
-			margin-top: 0.3em;
+		&-top {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+		}
+
+		&-title {
+			padding: 0.6em 0; // Same top padding as the handle
+			white-space: nowrap;
+			min-width: 0; // This has to be here to enable the text truncation
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&-hideshow {
+			margin-left: 0.5em;
+			padding-left: 0.5em;
 		}
 
 		&-content {
 			&-title {
 				font-weight: bold;
 				color: @colorGray5;
+				white-space: nowrap;
 			}
 
 			&-savedQueryTitle {
 				color: @colorGray2;
+				padding-left: 1em;
 				font-weight: bold;
 				vertical-align: top;
-				margin-left: 1em;
-				width: ~'calc( 100% - 10em )';
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
