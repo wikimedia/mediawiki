@@ -207,6 +207,10 @@ because of Phabricator reports.
   generate cryptographically secure random byte sequences.
 * Parser::getConverterLanguage() is deprecated.  Use ::getTargetLanguage()
   instead.
+* Language::markNoConversion() is deprecated.  It confused readers because
+  it had unexpected behavior (only marking text if it looked like a URL)
+  and was only used in a single place in the code.  Use
+  LanguageConverter::markNoConversion() instead.
 
 === Other changes in 1.32 ===
 * …
