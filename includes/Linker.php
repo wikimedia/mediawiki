@@ -39,29 +39,6 @@ class Linker {
 	const TOOL_LINKS_EMAIL = 2;
 
 	/**
-	 * Return the CSS colour of a known link
-	 *
-	 * @deprecated since 1.28, use LinkRenderer::getLinkClasses() instead
-	 *
-	 * @since 1.16.3
-	 * @param LinkTarget $t
-	 * @param int $threshold User defined threshold
-	 * @return string CSS class
-	 */
-	public static function getLinkColour( LinkTarget $t, $threshold ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		$services = MediaWikiServices::getInstance();
-		$linkRenderer = $services->getLinkRenderer();
-		if ( $threshold !== $linkRenderer->getStubThreshold() ) {
-			// Need to create a new instance with the right stub threshold...
-			$linkRenderer = $services->getLinkRendererFactory()->create();
-			$linkRenderer->setStubThreshold( $threshold );
-		}
-
-		return $linkRenderer->getLinkClasses( $t );
-	}
-
-	/**
 	 * This function returns an HTML link to the given target.  It serves a few
 	 * purposes:
 	 *   1) If $target is a Title, the correct URL to link to will be figured
