@@ -154,4 +154,53 @@ class MediaWikiTest extends MediaWikiTestCase {
 			$context->getOutput()->getRedirect()
 		);
 	}
+
+	/**
+	 * Test a post-send job can not set cookies (T191537).
+	 */
+	public function testPostSendJobDoesNotSetCookie() {
+		// Prevent updates from running
+		$this->setMwGlobals( 'wgCommandLineMode', false );
+
+		$response = new WebResponse;
+
+		// A job that attempts to set a cookie
+		$jobHasRun = false;
+		DeferredUpdates::addCallableUpdate( function () use ( $response, &$jobHasRun ) {
+			$jobHasRun = true;
+			$response->setCookie( 'JobCookie', 'yes' );
+			$response->header( 'Foo: baz' );
+		} );
+
+		$hookWasRun = false;
+		$this->setTemporaryHook( 'WebResponseSetCookie', function () use ( &$hookWasRun ) {
+			$hookWasRun = true;
+			return true;
+		} );
+
+		$logger = new TestLogger();
+		$logger->setCollect( true );
+		$this->setLogger( 'cookie', $logger );
+		$this->setLogger( 'header', $logger );
+
+		$mw = new MediaWiki();
+		$mw->doPostOutputShutdown();
+		// restInPeace() might have been registered to a callback of
+		// register_postsend_function() and thus can not be triggered from
+		// PHPUnit.
+		if ( $jobHasRun === false ) {
+			$mw->restInPeace();
+		}
+
+		$this->assertTrue( $jobHasRun, 'post-send job has run' );
+		$this->assertFalse( $hookWasRun,
+			'post-send job must not trigger WebResponseSetCookie hook' );
+		$this->assertEquals(
+			[
+				[ 'info', 'ignored post-send cookie {cookie}' ],
+				[ 'info', 'ignored post-send header {header}' ],
+			],
+			$logger->getBuffer()
+		);
+	}
 }
