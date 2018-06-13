@@ -675,12 +675,19 @@ abstract class SearchEngine {
 
 		$search = trim( $search );
 		// preload the titles with LinkBatch
-		$titles = $suggestions->map( function ( SearchSuggestion $sugg ) {
+		$lb = new LinkBatch( $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
-		} );
-		$lb = new LinkBatch( $titles );
+		} ) );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
+
+		$diff = $suggestions->filter( function ( SearchSuggestion $sugg ) {
+			return $sugg->getSuggestedTitle()->isKnown();
+		} );
+		if ( $diff > 0 ) {
+			MediaWikiServices::getInstance()->getStatsdDataFactory()
+				->updateCount( 'search.completion.missing', $diff );
+		}
 
 		$results = $suggestions->map( function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle()->getPrefixedText();

@@ -7,6 +7,23 @@
  * @covers ApiQueryPrefixSearch
  */
 class ApiQueryPrefixSearchTest extends ApiTestCase {
+	const TEST_QUERY = 'unittest';
+
+	public function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( [
+			'wgSearchType' => MockCompletionSearchEngine::class,
+		] );
+		MockCompletionSearchEngine::clearMockResults();
+		$results = [];
+		foreach ( range( 0, 10 ) as $i ) {
+			$title = "Search_Result_$i";
+			$results[] = $title;
+			$this->editPage( $title, 'hi there' );
+		}
+		MockCompletionSearchEngine::addMockResults( self::TEST_QUERY, $results );
+	}
+
 	public function offsetContinueProvider() {
 		return [
 			'no offset' => [ 2, 2, 0, 2 ],
@@ -20,11 +37,10 @@ class ApiQueryPrefixSearchTest extends ApiTestCase {
 	 * @dataProvider offsetContinueProvider
 	 */
 	public function testOffsetContinue( $expectedOffset, $expectedResults, $offset, $limit ) {
-		$this->registerMockSearchEngine();
 		$response = $this->doApiRequest( [
 			'action' => 'query',
 			'list' => 'prefixsearch',
-			'pssearch' => 'example query terms',
+			'pssearch' => self::TEST_QUERY,
 			'psoffset' => $offset,
 			'pslimit' => $limit,
 		] );
@@ -38,11 +54,5 @@ class ApiQueryPrefixSearchTest extends ApiTestCase {
 			$this->assertArrayHasKey( 'continue', $result );
 			$this->assertEquals( $expectedOffset, $result['continue']['psoffset'] );
 		}
-	}
-
-	private function registerMockSearchEngine() {
-		$this->setMwGlobals( [
-			'wgSearchType' => MockCompletionSearchEngine::class,
-		] );
 	}
 }
