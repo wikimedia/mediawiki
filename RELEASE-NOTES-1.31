@@ -1,10 +1,5 @@
 == MediaWiki 1.31 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.31 is an alpha-quality branch and is not recommended for use in
-production.
-
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
 * (T196092) Hide MySQL binary/utf-8 charset option in the installer.
