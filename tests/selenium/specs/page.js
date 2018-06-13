@@ -10,8 +10,8 @@ describe( 'Page', function () {
 	var content,
 		name;
 
-	function getTestString() {
-		return Math.random().toString() + '-öäü-♠♣♥♦';
+	function getTestString( suffix = 'defaultsuffix' ) {
+		return Math.random().toString() + '-öäü-♠♣♥♦-' + suffix;
 	}
 
 	before( function () {
@@ -22,8 +22,8 @@ describe( 'Page', function () {
 
 	beforeEach( function () {
 		browser.deleteCookie();
-		content = getTestString();
-		name = getTestString();
+		content = getTestString( 'beforeEach-content' );
+		name = getTestString( 'beforeEach-name' );
 	} );
 
 	it( 'should be creatable', function () {
@@ -36,7 +36,7 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be re-creatable', function () {
-		let initialContent = getTestString();
+		let initialContent = getTestString( 'initialContent' );
 
 		// create
 		browser.call( function () {
@@ -63,11 +63,12 @@ describe( 'Page', function () {
 		} );
 
 		// edit
-		EditPage.edit( name, content );
+		let editContent = getTestString( 'editContent' );
+		EditPage.edit( name, editContent );
 
 		// check
 		assert.strictEqual( EditPage.heading.getText(), name );
-		assert.strictEqual( EditPage.displayedContent.getText(), content );
+		assert.strictEqual( EditPage.displayedContent.getText(), editContent );
 	} );
 
 	it( 'should have history', function () {
