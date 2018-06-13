@@ -11,7 +11,7 @@ describe( 'Page', function () {
 		name;
 
 	function getTestString( suffix = 'defaultsuffix' ) {
-		return Math.random().toString() + '-öäü-♠♣♥♦-' + suffix;
+		return Math.random().toString() + '-Iñtërnâtiônàlizætiøn☃-' + suffix;
 	}
 
 	before( function () {
