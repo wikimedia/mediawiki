@@ -17,8 +17,8 @@ Required software:
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
 work on Windows as well.
 
-Support for rendering mathematical formulas requires installing the Math extension,
-see https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Math
+Support for specialised content requires installing the relevant extension. For
+formulæ, see https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Math
 
 Don't forget to check the RELEASE-NOTES file...
 
@@ -67,8 +67,8 @@ available to download from the installer. Download this now, there is not a
 way (yet) to get it after you exit the installer. Place it in the main wiki
 directory, and the wiki should now be working.
 
-Once the wiki is set up, you should remove the mw-config directory (though it will
-refuse to config again if the wiki is set up).
+Once the wiki is set up, you should remove the mw-config directory (though it
+will refuse to config again if the wiki is set up).
 
 ----
 
