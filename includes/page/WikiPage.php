@@ -2410,7 +2410,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$tags = [], $logsubtype = 'delete'
 	) {
 		global $wgUser, $wgContentHandlerUseDB, $wgCommentTableSchemaMigrationStage,
-			$wgActorTableSchemaMigrationStage;
+			$wgActorTableSchemaMigrationStage, $wgMultiContentRevisionSchemaMigrationStage;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2497,9 +2497,17 @@ class WikiPage implements Page, IDBAccessObject {
 		// Note array_intersect() preserves keys from the first arg, and we're
 		// assuming $revQuery has `revision` primary and isn't using subtables
 		// for anything we care about.
+		$tablesFlat = [];
+		array_walk_recursive(
+			$revQuery['tables'],
+			function ( $a ) use ( &$tablesFlat ) {
+				$tablesFlat[] = $a;
+			}
+		);
+
 		$res = $dbw->select(
 			array_intersect(
-				$revQuery['tables'],
+				$tablesFlat,
 				[ 'revision', 'revision_comment_temp', 'revision_actor_temp' ]
 			),
 			'1',
@@ -2539,6 +2547,14 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_minor_edit' => $row->rev_minor_edit,
 				'ar_rev_id'     => $row->rev_id,
 				'ar_parent_id'  => $row->rev_parent_id,
+					/**
+					 * ar_text_id should probably not be written to when the multi content schema has
+					 * been migrated to (wgMultiContentRevisionSchemaMigrationStage) however there is no
+					 * default for the field in WMF production currently so we must keep writing
+					 * writing until a default of 0 is set.
+					 * Task: https://phabricator.wikimedia.org/T190148
+					 * Copying the value from the revision table should not lead to any issues for now.
+					 */
 				'ar_text_id'    => $row->rev_text_id,
 				'ar_len'        => $row->rev_len,
 				'ar_page_id'    => $id,
@@ -2546,7 +2562,10 @@ class WikiPage implements Page, IDBAccessObject {
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
-			if ( $wgContentHandlerUseDB ) {
+			if (
+				$wgContentHandlerUseDB &&
+				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH
+			) {
 				$rowInsert['ar_content_model'] = $row->rev_content_model;
 				$rowInsert['ar_content_format'] = $row->rev_content_format;
 			}

@@ -36,6 +36,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$record = new SlotRecord( $row, new WikitextContent( 'A' ) );
 
 		$this->assertTrue( $record->hasAddress() );
+		$this->assertTrue( $record->hasContentId() );
 		$this->assertTrue( $record->hasRevision() );
 		$this->assertTrue( $record->isInherited() );
 		$this->assertSame( 'A', $record->getContent()->getNativeData() );
@@ -59,6 +60,9 @@ class SlotRecordTest extends MediaWikiTestCase {
 			},
 			'slot_revision_id' => '2',
 			'slot_origin' => '2',
+			'slot_content_id' => function () {
+				return null;
+			},
 		] );
 
 		$content = function () {
@@ -69,6 +73,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 		$this->assertTrue( $record->hasAddress() );
 		$this->assertTrue( $record->hasRevision() );
+		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->isInherited() );
 		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 1, $record->getSize() );
@@ -77,7 +82,6 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 2, $record->getRevision() );
 		$this->assertSame( 'tt:456', $record->getAddress() );
-		$this->assertSame( 33, $record->getContentId() );
 		$this->assertSame( CONTENT_FORMAT_WIKITEXT, $record->getFormat() );
 		$this->assertSame( 'myRole', $record->getRole() );
 	}
@@ -86,8 +90,10 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$record = SlotRecord::newUnsaved( 'myRole', new WikitextContent( 'A' ) );
 
 		$this->assertFalse( $record->hasAddress() );
+		$this->assertFalse( $record->hasContentId() );
 		$this->assertFalse( $record->hasRevision() );
 		$this->assertFalse( $record->isInherited() );
+		$this->assertFalse( $record->hasOrigin() );
 		$this->assertSame( 'A', $record->getContent()->getNativeData() );
 		$this->assertSame( 1, $record->getSize() );
 		$this->assertNotNull( $record->getSha1() );
@@ -190,6 +196,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 		$this->assertSame( $parent->getAddress(), $inherited->getAddress() );
 		$this->assertSame( $parent->getContent(), $inherited->getContent() );
 		$this->assertTrue( $inherited->isInherited() );
+		$this->assertTrue( $inherited->hasOrigin() );
 		$this->assertFalse( $inherited->hasRevision() );
 
 		// make sure we didn't mess with the internal state of $parent
@@ -224,8 +231,10 @@ class SlotRecordTest extends MediaWikiTestCase {
 		// and content meta-data.
 		$saved = SlotRecord::newSaved( 10, 20, 'theNewAddress', $unsaved );
 		$this->assertFalse( $saved->isInherited() );
+		$this->assertTrue( $saved->hasOrigin() );
 		$this->assertTrue( $saved->hasRevision() );
 		$this->assertTrue( $saved->hasAddress() );
+		$this->assertTrue( $saved->hasContentId() );
 		$this->assertSame( 'theNewAddress', $saved->getAddress() );
 		$this->assertSame( 20, $saved->getContentId() );
 		$this->assertSame( 'A', $saved->getContent()->getNativeData() );
@@ -234,6 +243,7 @@ class SlotRecordTest extends MediaWikiTestCase {
 
 		// make sure we didn't mess with the internal state of $unsaved
 		$this->assertFalse( $unsaved->hasAddress() );
+		$this->assertFalse( $unsaved->hasContentId() );
 		$this->assertFalse( $unsaved->hasRevision() );
 	}
 
