@@ -71,7 +71,7 @@ $ git remote update
 $ git checkout -B release -t origin/master
 
 # Ensure tests pass
-$ npm install && npm test
+$ npm install-test
 
 # Avoid using "npm version patch" because that creates
 # both a commit and a tag, and we shouldn't tag until after

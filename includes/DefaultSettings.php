@@ -4731,10 +4731,10 @@ $wgPasswordDefault = 'pbkdf2';
  * $wgPasswordConfig['bcrypt-peppered'] = [
  *     'class' => EncryptedPassword::class,
  *     'underlying' => 'bcrypt',
- *     'secrets' => [],
- *     'cipher' => MCRYPT_RIJNDAEL_256,
- *     'mode' => MCRYPT_MODE_CBC,
- *     'cost' => 5,
+ *     'secrets' => [
+ *         hash( 'sha256', 'secret', true ),
+ *     ],
+ *     'cipher' => 'aes-256-cbc',
  * ];
  * @endcode
  *
