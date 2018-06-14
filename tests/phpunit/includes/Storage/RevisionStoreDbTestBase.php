@@ -732,6 +732,26 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $rev->getContentFormat(), $record->getContent( 'main' )->getDefaultFormat() );
 		$this->assertSame( $rev->getContentModel(), $record->getContent( 'main' )->getModel() );
 		$this->assertLinkTargetsEqual( $rev->getTitle(), $record->getPageAsLinkTarget() );
+
+		$revRec = $rev->getRevisionRecord();
+		$revMain = $revRec->getSlot( 'main' );
+		$recMain = $record->getSlot( 'main' );
+
+		$this->assertSame( $revMain->hasOrigin(), $recMain->hasOrigin(), 'hasOrigin' );
+		$this->assertSame( $revMain->hasAddress(), $recMain->hasAddress(), 'hasAddress' );
+		$this->assertSame( $revMain->hasContentId(), $recMain->hasContentId(), 'hasContentId' );
+
+		if ( $revMain->hasOrigin() ) {
+			$this->assertSame( $revMain->getOrigin(), $recMain->getOrigin(), 'getOrigin' );
+		}
+
+		if ( $revMain->hasAddress() ) {
+			$this->assertSame( $revMain->getAddress(), $recMain->getAddress(), 'getAddress' );
+		}
+
+		if ( $revMain->hasContentId() ) {
+			$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
+		}
 	}
 
 	/**
@@ -869,6 +889,58 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		$this->assertRevisionRecordMatchesRevision( $orig, $record );
 		$this->assertSame( $text, $record->getContent( 'main' )->serialize() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
+	 */
+	public function testInsertRevisionOn_archive() {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$title = Title::newFromText( __METHOD__ );
+
+		$page = WikiPage::factory( $title );
+		/** @var Revision $origRev */
+		$page->doEditContent( new WikitextContent( "First" ), __METHOD__ . '-first' );
+		$origRev = $page->doEditContent( new WikitextContent( "Foo" ), __METHOD__ )
+			->value['revision'];
+		$orig = $origRev->getRevisionRecord();
+		$page->doDeleteArticle( __METHOD__ );
+
+		$db = wfGetDB( DB_MASTER );
+		$arQuery = $store->getArchiveQueryInfo();
+		$row = $db->selectRow(
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
+		);
+
+		$record = $store->newRevisionFromArchiveRow( $row );
+
+		$restored = $store->insertRevisionOn( $record, $db );
+		$this->assertSame( $orig->getPageId(), $restored->getPageId() );
+		$this->assertSame( $orig->getId(), $restored->getId() );
+		$this->assertSame( $orig->getComment()->text, $restored->getComment()->text );
+
+		$origMain = $orig->getSlot( 'main' );
+		$restoredMain = $restored->getSlot( 'main' );
+		$this->assertSame(
+			$origMain->getOrigin(),
+			$restoredMain->getOrigin()
+		);
+
+		if ( $origMain->hasContentId() ) {
+			$this->assertSame(
+				$origMain->getContentId(),
+				$restoredMain->getContentId()
+			);
+		}
+
+		// NOTE: we didn't restore the page row, so we can't use RevisionStore::getRevisionById
+		$this->assertSelect(
+			'revision',
+			[ 'rev_id' ],
+			[ 'rev_id' => $orig->getId() ],
+			[ [ $orig->getId() ] ]
+		);
 	}
 
 	/**
