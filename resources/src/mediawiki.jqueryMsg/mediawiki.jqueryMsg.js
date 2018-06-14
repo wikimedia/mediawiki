@@ -237,8 +237,8 @@
 	 * e.g.
 	 *
 	 *        $.fn.msg = mediaWiki.jqueryMsg.getPlugin( options );
-	 *        var userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
-	 *        $( 'p#headline' ).msg( 'hello-user', userlink );
+	 *        var $userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
+	 *        $( 'p#headline' ).msg( 'hello-user', $userlink );
 	 *
 	 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
 	 *    somefunction( a, b, c, d )
@@ -1379,9 +1379,9 @@
 	 * @return {jQuery}
 	 */
 	mw.Message.prototype.parseDom = ( function () {
-		var reusableParent = $( '<div>' );
+		var $wrapper = $( '<div>' );
 		return function () {
-			return reusableParent.msg( this.key, this.parameters ).contents().detach();
+			return $wrapper.msg( this.key, this.parameters ).contents().detach();
 		};
 	}() );
 
