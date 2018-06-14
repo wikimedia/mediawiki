@@ -1,17 +1,18 @@
 /*!
- * OOjs v2.2.0 optimised for jQuery
+ * OOjs v2.2.2 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2018 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2018-04-03T19:45:13Z
+ * Date: 2018-06-14T20:13:14Z
  */
 ( function ( global ) {
 
 'use strict';
 
+/* exported toString */
 var
 	/**
 	 * Namespace for all classes, static methods and static properties.
@@ -21,8 +22,6 @@ var
 	oo = {},
 	// Optimisation: Local reference to Object.prototype.hasOwnProperty
 	hasOwn = oo.hasOwnProperty,
-	// Marking this as "exported" doesn't work when parserOptions.sourceType is module
-	// eslint-disable-next-line no-unused-vars
 	toString = oo.toString;
 
 /* Class Methods */
