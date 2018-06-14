@@ -164,10 +164,14 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleOrPageIdPageId() {
+		$page = $this->getExistingTestPage();
 		$result = ( new MockApi() )->getTitleOrPageId(
-			[ 'pageid' => Title::newFromText( 'UTPage' )->getArticleId() ] );
+			[ 'pageid' => $page->getId() ] );
 		$this->assertInstanceOf( WikiPage::class, $result );
-		$this->assertSame( 'UTPage', $result->getTitle()->getPrefixedText() );
+		$this->assertSame(
+			$page->getTitle()->getPrefixedText(),
+			$result->getTitle()->getPrefixedText()
+		);
 	}
 
 	public function testGetTitleOrPageIdInvalidPageId() {
@@ -199,10 +203,11 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testGetTitleFromTitleOrPageIdPageId() {
+		$page = $this->getExistingTestPage();
 		$result = ( new MockApi() )->getTitleFromTitleOrPageId(
-			[ 'pageid' => Title::newFromText( 'UTPage' )->getArticleId() ] );
+			[ 'pageid' => $page->getId() ] );
 		$this->assertInstanceOf( Title::class, $result );
-		$this->assertSame( 'UTPage', $result->getPrefixedText() );
+		$this->assertSame( $page->getTitle()->getPrefixedText(), $result->getPrefixedText() );
 	}
 
 	public function testGetTitleFromTitleOrPageIdInvalidPageId() {

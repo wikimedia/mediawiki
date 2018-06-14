@@ -79,6 +79,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->overrideMwServices();
 	}
 
+	protected function addCoreDBData() {
+		// Blank out. This would fail with a modified schema, and we don't need it.
+	}
+
 	/**
 	 * @return LoadBalancer|PHPUnit_Framework_MockObject_MockObject
 	 */
@@ -317,6 +321,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		Title $title,
 		array $revDetails = []
 	) {
+		$this->getExistingTestPage( $title );
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
 		$this->overrideMwServices();
@@ -348,7 +353,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_blobAddressExists() {
-		$title = Title::newFromText( 'UTPage' );
+		$page = $this->getExistingTestPage();
+		$title = $page->getTitle();
 		$revDetails = [
 			'slot' => SlotRecord::newUnsaved( 'main', new WikitextContent( 'Chicken' ) ),
 			'parent' => true,
@@ -444,6 +450,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		array $revDetails = [],
 		Exception $exception
 	) {
+		$page = $this->getExistingTestPage( $title );
+
 		$rev = $this->getRevisionRecordFromDetailsArray( $title, $revDetails );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -458,12 +466,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	public function provideNewNullRevision() {
 		yield [
-			Title::newFromText( 'UTPage_notAutoCreated' ),
+			Title::newFromText( __METHOD__ ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment1' ),
 			true,
 		];
 		yield [
-			Title::newFromText( 'UTPage_notAutoCreated' ),
+			Title::newFromText( __METHOD__ ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment2', [ 'a' => 1 ] ),
 			false,
 		];
@@ -476,15 +484,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testNewNullRevision( Title $title, $comment, $minor ) {
 		$this->overrideMwServices();
 
-		$page = WikiPage::factory( $title );
-		$status = $page->doEditContent(
-			new WikitextContent( __METHOD__ ),
-			__METHOD__,
-			0,
-			false
-		);
-		/** @var Revision $rev */
-		$rev = $status->value['revision'];
+		$page = $this->getExistingTestPage( $title );
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
@@ -532,7 +533,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getRcIdIfUnpatrolled
 	 */
 	public function testGetRcIdIfUnpatrolled_returnsRecentChangesId() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$status = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		/** @var Revision $rev */
 		$rev = $status->value['revision'];
@@ -554,7 +555,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testGetRcIdIfUnpatrolled_returnsZeroIfPatrolled() {
 		// This assumes that sysops are auto patrolled
 		$sysop = $this->getTestSysop()->getUser();
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$status = $page->doEditContent(
 			new WikitextContent( __METHOD__ ),
 			__METHOD__,
@@ -576,7 +577,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getRecentChange
 	 */
 	public function testGetRecentChange() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -594,7 +595,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionById
 	 */
 	public function testGetRevisionById() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -612,7 +613,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByTitle
 	 */
 	public function testGetRevisionByTitle() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -630,7 +631,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getRevisionByPageId
 	 */
 	public function testGetRevisionByPageId() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -651,8 +652,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		// Make sure there is 1 second between the last revision and the rev we create...
 		// Otherwise we might not get the correct revision and the test may fail...
 		// :(
+		$page = $this->getExistingTestPage();
 		sleep( 1 );
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -732,7 +733,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
+
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
@@ -757,7 +759,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
 		$this->overrideMwServices();
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
+
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
@@ -780,7 +783,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_userEdit() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
+
 		$text = __METHOD__ . 'b-ä';
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
@@ -808,7 +812,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
-		$page = WikiPage::factory( $title );
+		$page = $this->getExistingTestPage( $title );
 		/** @var Revision $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision'];
@@ -839,7 +843,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
-		$page = WikiPage::factory( $title );
+		$page = $this->getExistingTestPage( $title );
 		/** @var Revision $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision'];
@@ -866,10 +870,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testLoadRevisionFromId() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
+		$page = $this->getExistingTestPage( $title );
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->loadRevisionFromId( wfGetDB( DB_MASTER ), $rev->getId() );
@@ -881,10 +883,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testLoadRevisionFromPageId() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
+		$page = $this->getExistingTestPage( $title );
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->loadRevisionFromPageId( wfGetDB( DB_MASTER ), $page->getId() );
@@ -896,10 +896,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testLoadRevisionFromTitle() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
+		$page = $this->getExistingTestPage( $title );
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->loadRevisionFromTitle( wfGetDB( DB_MASTER ), $title );
@@ -910,8 +908,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::loadRevisionFromTimestamp
 	 */
 	public function testLoadRevisionFromTimestamp() {
-		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$title = $page->getTitle();
 		/** @var Revision $revOne */
 		$revOne = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
 			->value['revision'];
@@ -947,7 +945,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::listRevisionSizes
 	 */
 	public function testGetParentLengths() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
 		/** @var Revision $revOne */
 		$revOne = $page->doEditContent(
 			new WikitextContent( __METHOD__ ), __METHOD__
@@ -983,7 +981,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getPreviousRevision
 	 */
 	public function testGetPreviousRevision() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
 		/** @var Revision $revOne */
 		$revOne = $page->doEditContent(
 			new WikitextContent( __METHOD__ ), __METHOD__
@@ -1007,7 +1005,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getNextRevision
 	 */
 	public function testGetNextRevision() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
 		/** @var Revision $revOne */
 		$revOne = $page->doEditContent(
 			new WikitextContent( __METHOD__ ), __METHOD__
@@ -1031,10 +1029,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getTimestampFromId
 	 */
 	public function testGetTimestampFromId_found() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
+		$page = $this->getExistingTestPage();
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->getTimestampFromId(
@@ -1049,10 +1045,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getTimestampFromId
 	 */
 	public function testGetTimestampFromId_notFound() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
+		$page = $this->getExistingTestPage();
+		$rev = $page->getRevision();
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->getTimestampFromId(
@@ -1068,7 +1062,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testCountRevisionsByPageId() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
 
 		$this->assertSame(
 			0,
@@ -1091,7 +1085,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testCountRevisionsByTitle() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
 
 		$this->assertSame(
 			0,
@@ -1114,7 +1108,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testUserWasLastToEdit_false() {
 		$sysop = $this->getTestSysop()->getUser();
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -1133,7 +1127,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testUserWasLastToEdit_true() {
 		$startTime = wfTimestampNow();
 		$sysop = $this->getTestSysop()->getUser();
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		$page->doEditContent(
 			new WikitextContent( __METHOD__ ),
 			__METHOD__,
@@ -1156,7 +1150,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Storage\RevisionStore::getKnownCurrentRevision
 	 */
 	public function testGetKnownCurrentRevision() {
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = $this->getExistingTestPage();
 		/** @var Revision $rev */
 		$rev = $page->doEditContent(
 			new WikitextContent( __METHOD__ . 'b' ),
@@ -1285,6 +1279,16 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewMutableRevisionFromArray( array $array ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		// HACK: if $array['page'] is given, make sure that the page exists
+		if ( isset( $array['page'] ) ) {
+			$t = Title::newFromID( $array['page'] );
+			if ( !$t || !$t->exists() ) {
+				$t = Title::makeTitle( NS_MAIN, __METHOD__ );
+				$info = $this->insertPage( $t );
+				$array['page'] = $info['id'];
+			}
+		}
 
 		$result = $store->newMutableRevisionFromArray( $array );
 
