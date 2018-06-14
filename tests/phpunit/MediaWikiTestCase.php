@@ -1540,7 +1540,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			if ( $tbl === 'page' ) {
 				// Forget about the pages since they don't
 				// exist in the DB.
-				LinkCache::singleton()->clear();
+				MediaWikiServices::getInstance()->getLinkCache()->clear();
 			}
 		}
 	}
@@ -1657,7 +1657,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 				if ( $tbl === 'page' ) {
 					// Forget about the pages since they don't
 					// exist in the DB.
-					LinkCache::singleton()->clear();
+					MediaWikiServices::getInstance()->getLinkCache()->clear();
 				}
 			}
 
