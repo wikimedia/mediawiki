@@ -372,7 +372,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
-		// these are no errors mysql_num_rows can cause.
+		// there are no errors mysql_num_rows can cause.
 		// See https://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
 		// See https://phabricator.wikimedia.org/T44430
 		return $n;
