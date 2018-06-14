@@ -21,7 +21,9 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableStore;
 use Wikimedia\Rdbms\Database;
 
 class ChangeTags {
@@ -346,31 +348,32 @@ class ChangeTags {
 		if ( count( $tagsToAdd ) ) {
 			$changeTagMapping = [];
 			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
-				$tagDefRows = [];
+				$changeTagDefStore = new NameTableStore(
+					MediaWikiServices::getInstance()->getDBLoadBalancer(),
+					MediaWikiServices::getInstance()->getMainWANObjectCache(),
+					LoggerFactory::getInstance( 'NameTableSqlStore' ),
+					'change_tag_def',
+					'ctd_id',
+					'ctd_name',
+					null,
+					false,
+					function ( $insertFields ) {
+						$insertFields['ctd_user_defined'] = 0;
+						$insertFields['ctd_count'] = 0;
+						return $insertFields;
+					}
+				);
+
 				foreach ( $tagsToAdd as $tag ) {
-					$tagDefRows[] = [
-						'ctd_name' => $tag,
-						'ctd_user_defined' => 0,
-						'ctd_count' => 1
-					];
+					$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
 				}
 
-				$dbw->upsert(
+				$dbw->update(
 					'change_tag_def',
-					$tagDefRows,
-					[ 'ctd_name' ],
 					[ 'ctd_count = ctd_count + 1' ],
+					[ 'ctd_name' => $tagsToAdd ],
 					__METHOD__
 				);
-
-				$res = $dbw->select(
-					'change_tag_def',
-					[ 'ctd_name', 'ctd_id' ],
-					[ 'ctd_name' => $tagsToAdd ]
-				);
-				foreach ( $res as $row ) {
-					$changeTagMapping[$row->ctd_name] = $row->ctd_id;
-				}
 			}
 
 			$tagsRows = [];
