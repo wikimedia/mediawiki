@@ -181,6 +181,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Returns a WikiPage representing an existing page.
 	 *
+	 * @since 1.32
+	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
 	 * @throws MWException
@@ -206,6 +208,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Returns a WikiPage representing a non-existing page.
+	 *
+	 * @since 1.32
 	 *
 	 * @param Title|string|null $title
 	 * @return WikiPage
@@ -1126,6 +1130,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public function addDBData() {
 	}
 
+	/**
+	 * @since 1.32
+	 */
 	protected function addCoreDBData() {
 		if ( $this->db->getType() == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
