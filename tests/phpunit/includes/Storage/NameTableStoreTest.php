@@ -83,14 +83,17 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		BagOStuff $cacheBag,
 		$insertCalls,
 		$selectCalls,
-		$normalizationCallback = null
+		$normalizationCallback = null,
+		$insertCallback = null
 	) {
 		return new NameTableStore(
 			$this->getMockLoadBalancer( $this->getCallCheckingDb( $insertCalls, $selectCalls ) ),
 			$this->getHashWANObjectCache( $cacheBag ),
 			new NullLogger(),
 			'slot_roles', 'role_id', 'role_name',
-			$normalizationCallback
+			$normalizationCallback,
+			false,
+			$insertCallback
 		);
 	}
 
@@ -293,6 +296,20 @@ class NameTableStoreTest extends MediaWikiTestCase {
 		// If a store with old cached data tries to acquire these we will get the same ids.
 		$this->assertSame( $fooId, $store3->acquireId( 'foo' ) );
 		$this->assertSame( $barId, $store3->acquireId( 'bar' ) );
+	}
+
+	public function testGetAndAcquireIdInsertCallback() {
+		$store = $this->getNameTableSqlStore(
+			new EmptyBagOStuff(),
+			1,
+			1,
+			null,
+			function ( $insertFields ) {
+				$insertFields['role_id'] = 7251;
+				return $insertFields;
+			}
+		);
+		$this->assertSame( 7251, $store->acquireId( 'A' ) );
 	}
 
 }
