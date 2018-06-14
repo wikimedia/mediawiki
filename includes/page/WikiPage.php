@@ -2555,13 +2555,17 @@ class WikiPage implements Page, IDBAccessObject {
 					 * Task: https://phabricator.wikimedia.org/T190148
 					 * Copying the value from the revision table should not lead to any issues for now.
 					 */
-				'ar_text_id'    => $row->rev_text_id,
 				'ar_len'        => $row->rev_len,
 				'ar_page_id'    => $id,
 				'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
 				'ar_sha1'       => $row->rev_sha1,
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
+
+			if ( $wgMultiContentRevisionSchemaMigrationStage < MIGRATION_NEW ) {
+				$rowInsert['ar_text_id'] = $row->rev_text_id;
+			}
+
 			if (
 				$wgContentHandlerUseDB &&
 				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH

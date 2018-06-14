@@ -403,7 +403,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 	 * @dataProvider provideNewRevisionFromRow_legacyEncoding_applied
 	 *
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_applied( $encoding, $locale, $row, $text ) {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
@@ -425,7 +424,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow
-	 * @covers \MediaWiki\Storage\RevisionStore::newRevisionFromRow_1_29
 	 */
 	public function testNewRevisionFromRow_legacyEncoding_ignored() {
 		$row = [
