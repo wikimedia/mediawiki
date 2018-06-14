@@ -2208,7 +2208,7 @@ class LocalFile extends File {
 
 		// If extra data (metadata) was not loaded then it must have been large
 		return $this->extraDataLoaded
-		&& strlen( serialize( $this->metadata ) ) <= self::CACHE_FIELD_MAX_LEN;
+			&& strlen( serialize( $this->metadata ) ) <= self::CACHE_FIELD_MAX_LEN;
 	}
 
 	/**
@@ -2216,9 +2216,9 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function acquireFileLock() {
-		return $this->getRepo()->getBackend()->lockFiles(
+		return Status::wrap( $this->getRepo()->getBackend()->lockFiles(
 			[ $this->getPath() ], LockManager::LOCK_EX, 10
-		);
+		) );
 	}
 
 	/**
@@ -2226,9 +2226,9 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function releaseFileLock() {
-		return $this->getRepo()->getBackend()->unlockFiles(
+		return Status::wrap( $this->getRepo()->getBackend()->unlockFiles(
 			[ $this->getPath() ], LockManager::LOCK_EX
-		);
+		) );
 	}
 
 	/**
