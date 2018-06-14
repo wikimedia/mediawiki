@@ -44,25 +44,13 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * the new revision will act as a null-revision.
 	 *
 	 * @param RevisionRecord $parent
-	 * @param CommentStoreComment $comment
-	 * @param UserIdentity $user
-	 * @param string $timestamp
 	 *
 	 * @return MutableRevisionRecord
 	 */
-	public static function newFromParentRevision(
-		RevisionRecord $parent,
-		CommentStoreComment $comment,
-		UserIdentity $user,
-		$timestamp
-	) {
+	public static function newFromParentRevision( RevisionRecord $parent ) {
 		// TODO: ideally, we wouldn't need a Title here
 		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
 		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
-
-		$rev->setComment( $comment );
-		$rev->setUser( $user );
-		$rev->setTimestamp( $timestamp );
 
 		foreach ( $parent->getSlotRoles() as $role ) {
 			$slot = $parent->getSlot( $role, self::RAW );
@@ -140,8 +128,8 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param SlotRecord $parentSlot
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
-		$slot = SlotRecord::newInherited( $parentSlot );
-		$this->setSlot( $slot );
+		$this->mSlots->inheritSlot( $parentSlot );
+		$this->resetAggregateValues();
 	}
 
 	/**
@@ -178,6 +166,15 @@ class MutableRevisionRecord extends RevisionRecord {
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
 		$this->resetAggregateValues();
+	}
+
+	/**
+	 * Applies the given update to the slots of this revision.
+	 *
+	 * @param RevisionSlotsUpdate $update
+	 */
+	public function applyUpdate( RevisionSlotsUpdate $update ) {
+		$update->apply( $this->mSlots );
 	}
 
 	/**
