@@ -856,6 +856,7 @@
 	"apihelp-query+search-paramvalue-prop-wordcount": "Ergänzt den Wortzähler der Seite.",
 	"apihelp-query+search-paramvalue-prop-extensiondata": "Ergänzt zusätzliche von Erweiterungen erzeugte Daten.",
 	"apihelp-query+search-param-limit": "Wie viele Seiten insgesamt zurückgegeben werden sollen.",
+	"apihelp-query+search-param-sort": "Legt die Sortierreihenfolge der zurückgegebenen Ergebnisse fest.",
 	"apihelp-query+search-example-simple": "Nach <kbd>meaning</kbd> suchen.",
 	"apihelp-query+search-example-text": "Texte nach <kbd>meaning</kbd> durchsuchen.",
 	"apihelp-query+siteinfo-paramvalue-prop-specialpagealiases": "Liste von Spezialseiten-Aliasse.",
