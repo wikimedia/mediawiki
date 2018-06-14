@@ -232,7 +232,7 @@ wfRunHooks must be used, which was deprecated in MediaWiki 1.25.
 Note that hook parameters are passed in an array; this is a necessary
 inconvenience to make it possible to pass reference values (that can be changed)
 into the hook code. Also note that earlier versions of wfRunHooks took a
-variable number of arguments; the [] calling protocol came about after
+variable number of arguments; the array calling protocol came about after
 MediaWiki 1.4rc1.
 
 ==Events and parameters==
