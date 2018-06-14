@@ -38,7 +38,9 @@ use Wikimedia\Assert\Assert;
 class SlotRecord {
 
 	/**
-	 * @var object database result row, as a raw object
+	 * @var object database result row, as a raw object. Callbacks are supported for field values,
+	 *      to enable on-demand emulation of these values. This is primarily intended for use
+	 *      during schema migration.
 	 */
 	private $row;
 
@@ -142,11 +144,11 @@ class SlotRecord {
 	/**
 	 * Constructs a complete SlotRecord for a newly saved revision, based on the incomplete
 	 * proto-slot. This adds information that has only become available during saving,
-	 * particularly the revision ID and content address.
+	 * particularly the revision ID, content ID and content address.
 	 *
 	 * @param int $revisionId the revision the slot is to be associated with (field slot_revision_id).
 	 *        If $protoSlot already has a revision, it must be the same.
-	 * @param int $contentId the ID of the row in the content table describing the content
+	 * @param int|null $contentId the ID of the row in the content table describing the content
 	 *        referenced by $contentAddress (field slot_content_id).
 	 *        If $protoSlot already has a content ID, it must be the same.
 	 * @param string $contentAddress the slot's content address (field content_address).
@@ -163,7 +165,8 @@ class SlotRecord {
 		SlotRecord $protoSlot
 	) {
 		Assert::parameterType( 'integer', $revisionId, '$revisionId' );
-		Assert::parameterType( 'integer', $contentId, '$contentId' );
+		// TODO once migration is over $contentId must be an integer
+		Assert::parameterType( 'integer|null', $contentId, '$contentId' );
 		Assert::parameterType( 'string', $contentAddress, '$contentAddress' );
 
 		if ( $protoSlot->hasRevision() && $protoSlot->getRevision() !== $revisionId ) {
@@ -181,7 +184,7 @@ class SlotRecord {
 			);
 		}
 
-		if ( $protoSlot->hasAddress() && $protoSlot->getContentId() !== $contentId ) {
+		if ( $protoSlot->hasContentId() && $protoSlot->getContentId() !== $contentId ) {
 			throw new LogicException(
 				"Mismatching content ID $contentId: "
 				. "The slot already has content row {$protoSlot->getContentId()} associated."
@@ -379,6 +382,13 @@ class SlotRecord {
 	 * @return bool whether this record contains the given field
 	 */
 	private function hasField( $name ) {
+		if ( isset( $this->row->$name ) ) {
+			// if the field is a callback, resolve first, then re-check
+			if ( !is_string( $this->row->$name ) && is_callable( $this->row->$name ) ) {
+				$this->getField( $name );
+			}
+		}
+
 		return isset( $this->row->$name );
 	}
 
@@ -428,6 +438,30 @@ class SlotRecord {
 	 */
 	public function hasAddress() {
 		return $this->hasField( 'content_address' );
+	}
+
+	/**
+	 * Whether this slot has an origin (revision ID that originated the slot's content.
+	 *
+	 * @since 1.32
+	 *
+	 * @return bool
+	 */
+	public function hasOrigin() {
+		return $this->hasField( 'slot_origin' );
+	}
+
+	/**
+	 * Whether this slot has a content ID. Slots will have a content ID if their
+	 * content has been stored in the content table. While building a new revision,
+	 * SlotRecords will not have an ID associated.
+	 *
+	 * @since 1.32
+	 *
+	 * @return bool
+	 */
+	public function hasContentId() {
+		return $this->hasField( 'slot_content_id' );
 	}
 
 	/**
