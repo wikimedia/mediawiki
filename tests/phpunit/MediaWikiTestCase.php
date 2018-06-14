@@ -179,6 +179,51 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Returns a WikiPage representing an existing page.
+	 *
+	 * @param Title|string|null $title
+	 * @return WikiPage
+	 * @throws MWException
+	 */
+	protected function getExistingTestPage( $title = null ) {
+		$title = ( $title === null ) ? 'UTPage' : $title;
+		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
+		$page = WikiPage::factory( $title );
+
+		if ( !$page->exists() ) {
+			$user = self::getTestSysop()->getUser();
+			$page->doEditContent(
+				new WikitextContent( 'UTContent' ),
+				'UTPageSummary',
+				EDIT_NEW | EDIT_SUPPRESS_RC,
+				false,
+				$user
+			);
+		}
+
+		return $page;
+	}
+
+	/**
+	 * Returns a WikiPage representing a non-existing page.
+	 *
+	 * @param Title|string|null $title
+	 * @return WikiPage
+	 * @throws MWException
+	 */
+	protected function getNonexistingTestPage( $title = null ) {
+		$title = ( $title === null ) ? 'UTPage-' . rand( 0, 100000 ) : $title;
+		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
+		$page = WikiPage::factory( $title );
+
+		if ( $page->exists() ) {
+			$page->doDeleteArticle( 'Testing' );
+		}
+
+		return $page;
+	}
+
+	/**
 	 * Prepare service configuration for unit testing.
 	 *
 	 * This calls MediaWikiServices::resetGlobalInstance() to allow some critical services
@@ -1081,7 +1126,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	public function addDBData() {
 	}
 
-	private function addCoreDBData() {
+	protected function addCoreDBData() {
 		if ( $this->db->getType() == 'oracle' ) {
 			# Insert 0 user to prevent FK violations
 			# Anonymous user

@@ -43,6 +43,10 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 	}
 
+	protected function addCoreDBData() {
+		// Blank out. This would fail with a modified schema, and we don't need it.
+	}
+
 	/**
 	 * @return int
 	 */
