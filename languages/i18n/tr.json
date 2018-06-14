@@ -3698,6 +3698,7 @@
 	"mw-widgets-titleinput-description-new-page": "sayfa henüz mevcut değil",
 	"mw-widgets-titleinput-description-redirect": "$1'e yönlendirildi",
 	"mw-widgets-categoryselector-add-category-placeholder": "Bir kategori ekle...",
+	"mw-widgets-usersmultiselect-placeholder": "Daha fazla ekle...",
 	"date-range-from": "Şu tarihten:",
 	"date-range-to": "Bu güne kadar:",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "çerez tabanlı oturumlar",

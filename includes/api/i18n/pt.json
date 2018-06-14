@@ -1083,6 +1083,7 @@
 	"apihelp-query+search-param-interwiki": "Incluir resultados interwikis na pesquisa, se disponíveis.",
 	"apihelp-query+search-param-backend": "O servidor de pesquisas a ser usado, se diferente do servidor padrão.",
 	"apihelp-query+search-param-enablerewrites": "Ativar a reescrita da pesquisa interna. Alguns motores de pesquisa podem reescrever a pesquisa substituindo-a por outra que consideram que dará melhores resultados, por exemplo, por corrigir erros de ortografia.",
+	"apihelp-query+search-param-sort": "Definir o ordenamento dos resultados devolvidos.",
 	"apihelp-query+search-example-simple": "Pesquisar <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Pesquisar <kbd>meaning</kbd> nos textos.",
 	"apihelp-query+search-example-generator": "Obter informação sobre as páginas devolvidas por uma pesquisa do termo <kbd>meaning</kbd>.",

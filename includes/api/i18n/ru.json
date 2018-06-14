@@ -1106,6 +1106,7 @@
 	"apihelp-query+search-param-interwiki": "Включить результаты из других вики, если доступны.",
 	"apihelp-query+search-param-backend": "Какой поисковый движок использовать, если не стандартный.",
 	"apihelp-query+search-param-enablerewrites": "Разрешить редактирование запроса. Некоторые поисковые движки могут отредактировать запрос, например, исправив опечатку, если посчитают, что это приведёт к лучшим результатам.",
+	"apihelp-query+search-param-sort": "Задаёт порядок сортировки возвращаемых результатов.",
 	"apihelp-query+search-example-simple": "Найти <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Найти тексты, содержащие <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "Получить информацию о страницах, возвращённых по поисковому запросу <kbd>meaning</kbd>.",

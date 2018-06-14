@@ -1088,6 +1088,7 @@
 	"apihelp-query+search-param-interwiki": "לכלול תוצאות בינוויקי בחיפוש, אם זמין.",
 	"apihelp-query+search-param-backend": "באיזה שרת חיפוש להשתמש אם לא בבררת המחדל.",
 	"apihelp-query+search-param-enablerewrites": "הפעלת שכתוב שאילתות פנימי. שרתי חיפוש אחדים יכולים לשכתב את השאילתה לצורה אחרת שנחשבת לכזאת שמספקת תוצאות טובות יותר, למשל באמצעות תיקון שגיאות כתיב.",
+	"apihelp-query+search-param-sort": "קביעת סדר המיון של התוצאות המוחזרות.",
 	"apihelp-query+search-example-simple": "חיפוש <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "חיפוש טקסטים עבור <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "קבלת מידע על הדף עבור שמוחזרים מחיפוש אחרי <kbd>meaning</kbd>.",

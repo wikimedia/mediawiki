@@ -528,6 +528,7 @@
 	"apihelp-query+search-paramvalue-prop-score": "Ignorato.",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Ignorato.",
 	"apihelp-query+search-param-limit": "Quante pagine totali restituire.",
+	"apihelp-query+search-param-sort": "Imposta l'ordinamento dei risultati restituiti.",
 	"apihelp-query+siteinfo-param-prop": "Quali informazioni ottenere:",
 	"apihelp-query+siteinfo-paramvalue-prop-statistics": "Restituisce le statistiche del sito.",
 	"apihelp-query+siteinfo-paramvalue-prop-libraries": "Restituisci librerie installate sul wiki.",

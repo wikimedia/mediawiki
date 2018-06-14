@@ -37,7 +37,8 @@
 			"Zainab Meher",
 			"Sayam Asjad",
 			"Abdulq",
-			"Fitoschido"
+			"Fitoschido",
+			"Dcljr"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -2122,7 +2123,7 @@
 	"enotif_subject_moved": "{{SITENAME}} میں صفحہ $1 کو $2 نے {{GENDER:$2|منتقل کیا}}",
 	"enotif_subject_restored": "{{SITENAME}} میں صفحہ $1 کو $2 نے {{GENDER:$2|بحال کیا}}",
 	"enotif_subject_changed": "{{SITENAME}} کے صفحہ $1 میں $2 نے {{GENDER:$2|تبدیلی کی}}",
-	"enotif_body_intro_deleted": "{{SITENAME}} میں صفحہ $1 کو بتاریخ $PAGEEDITDATE صارف $2 نے {{GENDER:$2|حذف کر دیا}} ہے، ملاحظہ فرمائیں $3۔",
+	"enotif_body_intro_deleted": "{{SITENAME}} میں صفحہ $1 کو بتاریخ $PAGEEDITDATE صارف $2 نے {{GENDER:$2|حذف کر دیا}} ہے، ملاحظہ فرمائیں $3 ۔",
 	"enotif_body_intro_created": "{{SITENAME}} میں صفحہ $1 کو بتاریخ $PAGEEDITDATE صارف $2 نے {{GENDER:$2|تخلیق کیا}}، موجودہ نسخہ دیکھنے کے لیے $3 ملاحظہ فرمائیں۔",
 	"enotif_body_intro_moved": "{{SITENAME}} میں صفحہ $1 کو بتاریخ $PAGEEDITDATE صارف $2 نے {{GENDER:$2|منتقل کر دیا}} ہے، موجودہ نسخہ دیکھنے کے لیے $3 ملاحظہ فرمائیں۔",
 	"enotif_body_intro_restored": "{{SITENAME}} میں صفحہ $1 کو بتاریخ $PAGEEDITDATE صارف $2 نے {{GENDER:$2|بحال کیا}}، موجودہ نسخہ دیکھنے کے لیے $3 ملاحظہ فرمائیں۔",

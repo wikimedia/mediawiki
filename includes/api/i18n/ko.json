@@ -513,6 +513,7 @@
 	"apihelp-query+search-paramvalue-prop-timestamp": "문서가 마지막으로 편집된 시기의 타임스탬프를 추가합니다.",
 	"apihelp-query+search-paramvalue-prop-score": "무시됨.",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "무시됨.",
+	"apihelp-query+search-param-sort": "반환된 결과의 정렬 순서를 설정합니다.",
 	"apihelp-query+search-example-simple": "<kbd>meaning</kbd>을 검색합니다.",
 	"apihelp-query+search-example-text": "<kbd>meaning</kbd>의 텍스트를 검색합니다.",
 	"apihelp-query+siteinfo-summary": "사이트의 전반적인 정보를 반환합니다.",
