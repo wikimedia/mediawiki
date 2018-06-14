@@ -466,6 +466,10 @@ abstract class LBFactory implements ILBFactory {
 			// Request opted out of using position wait logic. This is useful for requests
 			// done by the job queue or background ETL that do not have a meaningful session.
 			$this->chronProt->setWaitEnabled( false );
+		} elseif ( $this->memStash instanceof EmptyBagOStuff ) {
+			// No where to store any DB positions and wait for them to appear
+			$this->chronProt->setEnabled( false );
+			$this->replLogger->info( 'Cannot use ChronologyProtector with EmptyBagOStuff.' );
 		}
 
 		$this->replLogger->debug( __METHOD__ . ': using request info ' .
