@@ -42,6 +42,10 @@
 	path = extensions/MultimediaViewer
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/MultimediaViewer
 	branch = REL1_31
+[submodule "extensions/Nuke"]
+	path = extensions/Nuke
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/Nuke
+	branch = REL1_31
 [submodule "extensions/OATHAuth"]
 	path = extensions/OATHAuth
 	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/OATHAuth
