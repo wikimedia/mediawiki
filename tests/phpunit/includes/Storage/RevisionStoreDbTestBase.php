@@ -274,7 +274,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertEquals( $r1->getSha1(), $r2->getSha1() );
 		$this->assertEquals( $r1->getSize(), $r2->getSize() );
 		$this->assertEquals( $r1->getPageId(), $r2->getPageId() );
-		$this->assertEquals( $r1->getSlotRoles(), $r2->getSlotRoles() );
+		$this->assertArrayEqualsIgnoringIntKeyOrder( $r1->getSlotRoles(), $r2->getSlotRoles() );
 		$this->assertEquals( $r1->getWikiId(), $r2->getWikiId() );
 		$this->assertEquals( $r1->isMinor(), $r2->isMinor() );
 		foreach ( $r1->getSlotRoles() as $role ) {
