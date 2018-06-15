@@ -352,14 +352,9 @@ class NameTableStore {
 
 		$dbw = $this->getDBConnection( DB_MASTER );
 
-		$insertFields = [ $this->nameField => $name ];
-		if ( $this->insertCallback !== null ) {
-			$insertFields = call_user_func( $this->insertCallback, $insertFields );
-		}
-
 		$dbw->insert(
 			$this->table,
-			$insertFields,
+			$this->getFieldsToStore( $name ),
 			__METHOD__,
 			[ 'IGNORE' ]
 		);
@@ -372,6 +367,18 @@ class NameTableStore {
 		}
 
 		return $dbw->insertId();
+	}
+
+	/**
+	 * @param string $name
+	 * @return array
+	 */
+	private function getFieldsToStore( $name ) {
+		$fields = [ $this->nameField => $name ];
+		if ( $this->insertCallback !== null ) {
+			$fields = call_user_func( $this->insertCallback, $fields );
+		}
+		return $fields;
 	}
 
 }
