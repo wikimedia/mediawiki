@@ -1894,6 +1894,8 @@ return [
 		'messages' => [
 			'rcfilters-tag-remove',
 			'rcfilters-activefilters',
+			'rcfilters-activefilters-hide',
+			'rcfilters-activefilters-show',
 			'rcfilters-advancedfilters',
 			'rcfilters-group-results-by-page',
 			'rcfilters-limit-title',
