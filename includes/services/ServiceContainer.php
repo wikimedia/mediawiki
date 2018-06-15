@@ -359,7 +359,7 @@ class ServiceContainer implements DestructibleService {
 				$this,
 				...$this->extraInstantiationParams
 			);
-			// NOTE: when adding more wiring logic here, make sure copyWiring() is kept in sync!
+			// NOTE: when adding more wiring logic here, make sure importWiring() is kept in sync!
 		} else {
 			throw new NoSuchServiceException( $name );
 		}
