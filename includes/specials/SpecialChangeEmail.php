@@ -55,12 +55,14 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @param string $par
 	 */
 	function execute( $par ) {
-		$this->checkLoginSecurityLevel();
-
 		$out = $this->getOutput();
 		$out->disallowUserJs();
 
 		parent::execute( $par );
+	}
+
+	protected function getLoginSecurityLevel() {
+		return $this->getName();
 	}
 
 	protected function checkExecutePermissions( User $user ) {
