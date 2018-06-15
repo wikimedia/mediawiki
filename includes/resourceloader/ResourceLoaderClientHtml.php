@@ -95,7 +95,6 @@ class ResourceLoaderClientHtml {
 	/**
 	 * Ensure the styles of one or more modules are loaded.
 	 *
-	 * @deprecated since 1.28
 	 * @param array $modules Array of module names
 	 */
 	public function setModuleStyles( array $modules ) {
