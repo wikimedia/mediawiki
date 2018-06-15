@@ -1322,6 +1322,8 @@
 	"rcfilters-other-review-tools": "Druga orodja za pregled",
 	"rcfilters-group-results-by-page": "Združi rezultate po strani",
 	"rcfilters-activefilters": "Dejavni filtri",
+	"rcfilters-activefilters-hide": "Skrij",
+	"rcfilters-activefilters-show": "Prikaži",
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-limit-title": "Rezultati za prikaz",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}}, $2",

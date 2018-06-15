@@ -1098,6 +1098,7 @@
 	"apihelp-query+search-param-interwiki": "搜索结果中包含跨wiki结果，如果可用。",
 	"apihelp-query+search-param-backend": "要使用的搜索后端，如果没有则为默认。",
 	"apihelp-query+search-param-enablerewrites": "启用内部查询重写。一些搜索后端可以重写查询到另一个被认为能提供更好结果的位置，例如纠正拼写错误。",
+	"apihelp-query+search-param-sort": "设置返回结果的排序。",
 	"apihelp-query+search-example-simple": "搜索<kbd>meaning</kbd>。",
 	"apihelp-query+search-example-text": "搜索文本<kbd>meaning</kbd>。",
 	"apihelp-query+search-example-generator": "获取有关搜索<kbd>meaning</kbd>返回页面的页面信息。",

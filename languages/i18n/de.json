@@ -1402,6 +1402,8 @@
 	"rcfilters-other-review-tools": "Andere Überprüfungswerkzeuge",
 	"rcfilters-group-results-by-page": "Ergebnisse nach Seite gruppieren",
 	"rcfilters-activefilters": "Aktive Filter",
+	"rcfilters-activefilters-hide": "Ausblenden",
+	"rcfilters-activefilters-show": "Anzeigen",
 	"rcfilters-advancedfilters": "Erweiterte Filter",
 	"rcfilters-limit-title": "Anzuzeigende Ergebnisse",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Eine Änderung|$1 Änderungen}}, $2",
