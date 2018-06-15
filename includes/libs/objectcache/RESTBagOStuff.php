@@ -1,5 +1,7 @@
 <?php
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Interface to key-value storage behind an HTTP server.
  *
@@ -27,6 +29,17 @@
  * @endcode
  */
 class RESTBagOStuff extends BagOStuff {
+	/**
+	 * Default connection timeout in seconds. The kernel retransmits the SYN
+	 * packet after 1 second, so 1.2 seconds allows for 1 retransmit without
+	 * permanent failure.
+	 */
+	const DEFAULT_CONN_TIMEOUT = 1.2;
+
+	/**
+	 * Default request timeout
+	 */
+	const DEFAULT_REQ_TIMEOUT = 3.0;
 
 	/**
 	 * @var MultiHttpClient
@@ -43,16 +56,32 @@ class RESTBagOStuff extends BagOStuff {
 		if ( empty( $params['url'] ) ) {
 			throw new InvalidArgumentException( 'URL parameter is required' );
 		}
-		parent::__construct( $params );
 		if ( empty( $params['client'] ) ) {
-			$this->client = new MultiHttpClient( [] );
+			// Pass through some params to the HTTP client.
+			$clientParams = [
+				'connTimeout' => $params['connTimeout'] ?? self::DEFAULT_CONN_TIMEOUT,
+				'reqTimeout' => $params['reqTimeout'] ?? self::DEFAULT_REQ_TIMEOUT,
+			];
+			foreach ( [ 'caBundlePath', 'proxy' ] as $key ) {
+				if ( isset( $params[$key] ) ) {
+					$clientParams[$key] = $params[$key];
+				}
+			}
+			$this->client = new MultiHttpClient( $clientParams );
 		} else {
 			$this->client = $params['client'];
 		}
+		// The parent constructor calls setLogger() which sets the logger in $this->client
+		parent::__construct( $params );
 		// Make sure URL ends with /
 		$this->url = rtrim( $params['url'], '/' ) . '/';
 		// Default config, R+W > N; no locks on reads though; writes go straight to state-machine
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_QC;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		parent::setLogger( $logger );
+		$this->client->setLogger( $logger );
 	}
 
 	/**
@@ -111,7 +140,7 @@ class RESTBagOStuff extends BagOStuff {
 			'body' => serialize( $value )
 		];
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
-		if ( $rcode === 200 || $rcode === 201 ) {
+		if ( $rcode === 200 || $rcode === 201 || $rcode === 204 ) {
 			return true;
 		}
 		return $this->handleError( "Failed to store $key", $rcode, $rerr );
@@ -129,7 +158,7 @@ class RESTBagOStuff extends BagOStuff {
 			'url' => $this->url . rawurlencode( $key ),
 		];
 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
-		if ( $rcode === 200 || $rcode === 204 || $rcode === 205 ) {
+		if ( in_array( $rcode, [ 200, 204, 205, 404, 410 ] ) ) {
 			return true;
 		}
 		return $this->handleError( "Failed to delete $key", $rcode, $rerr );
