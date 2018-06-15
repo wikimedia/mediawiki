@@ -92,10 +92,11 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	}
 
 	/**
-	 * @deprecated Use getData()
+	 * @deprecated since 1.30 Use getData() instead
 	 * @return StatsdData[]
 	 */
 	public function getBuffer() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return $this->buffer;
 	}
 
@@ -103,6 +104,10 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		return !empty( $this->buffer );
 	}
 
+	/**
+	 * @since 1.30
+	 * @return StatsdData[]
+	 */
 	public function getData() {
 		return $this->buffer;
 	}
