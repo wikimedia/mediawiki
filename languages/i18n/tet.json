@@ -5,7 +5,8 @@
 			"Nemo bis",
 			"Reedy",
 			"아라",
-			"Matma Rex"
+			"Matma Rex",
+			"Raphael Merx"
 		]
 	},
 	"tog-underline": "Subliña ligasaun sira:",
@@ -369,6 +370,9 @@
 	"recentchanges-label-newpage": "Pájina foun",
 	"recentchanges-label-minor": "Ne'e mudansa ki'ik",
 	"recentchanges-label-bot": "Edita husi prosesu automátiku (\"bot\")",
+	"rcfilters-activefilters-hide": "Subar",
+	"rcfilters-activefilters-show": "Hatudu",
+	"rcfilters-savedqueries-remove": "Hapus",
 	"rcshowhideminor": "$1 muda ki-ki'ik",
 	"rcshowhideminor-show": "Hatudu",
 	"rcshowhidebots": "$1 bot sira",

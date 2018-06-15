@@ -1375,6 +1375,8 @@
 	"rcfilters-other-review-tools": "다른 검토 도구",
 	"rcfilters-group-results-by-page": "문서별로 묶음",
 	"rcfilters-activefilters": "사용 중인 필터",
+	"rcfilters-activefilters-hide": "숨기기",
+	"rcfilters-activefilters-show": "보이기",
 	"rcfilters-advancedfilters": "고급 필터",
 	"rcfilters-limit-title": "표시할 결과 수",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|변경사항}} $1개, $2",

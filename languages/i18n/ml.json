@@ -1292,7 +1292,7 @@
 	"rcfilters-savedqueries-rename": "പേരുമാറ്റുക",
 	"rcfilters-savedqueries-setdefault": "സ്വതേയുള്ളതാക്കുക",
 	"rcfilters-savedqueries-unsetdefault": "സ്വതേയുള്ളതെന്നത് ഒഴിവാക്കുക",
-	"rcfilters-savedqueries-remove": "നീക്കം ചെയ്യുക",
+	"rcfilters-savedqueries-remove": "മായ്ക്കുക",
 	"rcfilters-savedqueries-new-name-label": "പേര്‌",
 	"rcfilters-savedqueries-new-name-placeholder": "അരിപ്പയുടെ ഉപയോഗം വിവരിക്കുക",
 	"rcfilters-savedqueries-apply-label": "അരിപ്പ സൃഷ്ടിക്കുക",
@@ -1821,6 +1821,7 @@
 	"deadendpages": "അന്തർ വിക്കി കണ്ണിയാൽ ബന്ധിപ്പിക്കപ്പെടാത്ത താളുകൾ",
 	"deadendpagestext": "താഴെക്കാണുന്ന താളുകളിൽനിന്ന് {{SITENAME}} സം‌രംഭത്തിലെ മറ്റൊരു താളിലേയ്ക്കും കണ്ണി ചേർത്തിട്ടില്ല.",
 	"protectedpages": "സംരക്ഷിക്കപ്പെട്ടിരിക്കുന്ന താളുകൾ",
+	"protectedpages-filters": "അരിപ്പകൾ:",
 	"protectedpages-indef": "അനന്തകാലത്തേയ്ക്ക് സംരക്ഷിക്കപ്പെട്ടവ മാത്രം",
 	"protectedpages-summary": "ഇപ്പോൾ നിലവിലുള്ള സംരക്ഷിക്കപ്പെട്ടിട്ടുള്ള താളുകളുടെ പട്ടിക ഈ താളിൽ കാണാം. സൃഷ്ടിക്കുന്നതിൽ നിന്നും സംരക്ഷിക്കപ്പെട്ടിട്ടുള്ള തലക്കെട്ടുകൾക്കായി [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]] കാണുക.",
 	"protectedpages-cascade": "നിർഝരിത സംരക്ഷണങ്ങൾ മാത്രം",
@@ -3781,9 +3782,15 @@
 	"pagedata-title": "താൾ വിവരങ്ങൾ",
 	"pagedata-not-acceptable": "ഒത്തുപോവുന്ന ഫോർമാറ്റ് കണ്ടെത്താനായില്ല. പിന്തുണയുള്ള മൈം തരങ്ങൾ: $1",
 	"pagedata-bad-title": "അസാധുവായ തലക്കെട്ട്: $1.",
+	"unregistered-user-config": "സുരക്ഷാകാരണങ്ങളാൽ രജിസ്റ്റർ ചെയ്യാത്ത ഉപയോക്താക്കൾക്ക് ജാവാസ്ക്രിപ്റ്റ്, സി.എസ്.എസ്., ജെസൺ ഉപയോക്തൃ ഉപതാളുകൾ എടുക്കാൻ കഴിയില്ല.",
+	"passwordpolicies": "രഹസ്യവാക്ക് നയങ്ങൾ",
+	"passwordpolicies-summary": "ഉപയോക്തൃ ഗണത്തിനായി ഈ വിക്കിയിൽ നടപ്പിലുള്ള രഹസ്യവാക്ക് നയങ്ങളുടെ പട്ടികയാണ് ഇത്.",
 	"passwordpolicies-group": "ഗണം",
 	"passwordpolicies-policies": "നയങ്ങൾ",
 	"passwordpolicies-policy-minimalpasswordlength": "രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "പ്രവേശിക്കാനായി രഹസ്യവാക്ക് കുറഞ്ഞത് {{PLURAL:$1|ഒരു അക്ഷരം|$1 അക്ഷരങ്ങൾ}} നീളമുള്ളതാവണം.",
-	"passwordpolicies-policy-passwordcannotmatchusername": "ഉപയോക്തൃനാമം തന്നെ രഹസ്യവാക്ക് ആകാൻ പാടില്ല"
+	"passwordpolicies-policy-passwordcannotmatchusername": "ഉപയോക്തൃനാമം തന്നെ രഹസ്യവാക്ക് ആകാൻ പാടില്ല",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "രഹസ്യവാക്ക് കരിമ്പട്ടികയിൽ ഉള്ള രഹസ്യവാക്കുകൾക്ക് സമാനമാകരുത്",
+	"passwordpolicies-policy-maximalpasswordlength": "രഹസ്യവാക്കിന് കുറഞ്ഞത് $1 {{PLURAL:$1|അക്ഷരം|അക്ഷരങ്ങൾ}} നീളമുണ്ടാവണം",
+	"passwordpolicies-policy-passwordcannotbepopular": "രഹസ്യവാക്ക് {{PLURAL:$1|പ്രചുരപ്രചാരത്തിൽ ഉള്ളത്|പ്രചുരപ്രചാരത്തിലുള്ള $1 രഹസ്യവാക്കുകളുടെ പട്ടികയിൽ ഉള്ളത്}} ആകരുത്."
 }
