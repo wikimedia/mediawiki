@@ -356,7 +356,8 @@ class ServiceContainer implements DestructibleService {
 	private function createService( $name ) {
 		if ( isset( $this->serviceInstantiators[$name] ) ) {
 			$service = ( $this->serviceInstantiators[$name] )(
-				$this, ...$this->extraInstantiationParams
+				$this,
+				...$this->extraInstantiationParams
 			);
 			// NOTE: when adding more wiring logic here, make sure copyWiring() is kept in sync!
 		} else {
