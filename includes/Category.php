@@ -48,7 +48,7 @@ class Category {
 
 	/**
 	 * Set up all member variables using a database query.
-	 * @param int $mode
+	 * @param int $mode One of (Category::LOAD_ONLY, Category::LAZY_INIT_ROW)
 	 * @throws MWException
 	 * @return bool True on success, false on failure.
 	 */
