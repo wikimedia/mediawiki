@@ -771,7 +771,12 @@ class AuthManager implements LoggerAwareInterface {
 			$status = self::SEC_FAIL;
 		}
 
-		$this->logger->info( __METHOD__ . ": $operation is $status" );
+		$this->logger->info( __METHOD__ . ": $operation is $status for '{user}'",
+			[
+				'user' => $session->getUser()->getName(),
+				'clientip' => $this->getRequest()->getIP(),
+			]
+		);
 
 		return $status;
 	}
