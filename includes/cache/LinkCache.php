@@ -321,7 +321,7 @@ class LinkCache {
 	 */
 	public function invalidateTitle( LinkTarget $title ) {
 		if ( $this->isCacheable( $title ) ) {
-			$cache = ObjectCache::getMainWANInstance();
+			$cache = $this->wanCache;
 			$cache->delete(
 				$cache->makeKey( 'page', $title->getNamespace(), sha1( $title->getDBkey() ) )
 			);
