@@ -50,9 +50,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $multiHandle = null; // curl_multi handle
 	/** @var string|null SSL certificates path */
 	protected $caBundlePath;
-	/** @var int */
+	/** @var float */
 	protected $connTimeout = 10;
-	/** @var int */
+	/** @var float */
 	protected $reqTimeout = 300;
 	/** @var bool */
 	protected $usePipelining = false;
@@ -64,6 +64,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 	/** @var LoggerInterface */
 	protected $logger;
+
+	// In PHP 7 due to https://bugs.php.net/bug.php?id=76480 the request/connect
+	// timeouts are periodically polled instead of being accurately respected.
+	// The select timeout is set to the minimum timeout multiplied by this factor.
+	const TIMEOUT_ACCURACY_FACTOR = 0.1;
 
 	/**
 	 * @param array $options
@@ -148,6 +153,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	public function runMulti( array $reqs, array $opts = [] ) {
 		$chm = $this->getCurlMulti();
 
+		$selectTimeout = $this->getSelectTimeout( $opts );
+
 		// Normalize $reqs and add all of the required cURL handles...
 		$handles = [];
 		foreach ( $reqs as $index => &$req ) {
@@ -224,7 +231,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
 				// Wait (if possible) for available work...
 				if ( $active > 0 && $mrc == CURLM_OK ) {
-					if ( curl_multi_select( $chm, 10 ) == -1 ) {
+					if ( curl_multi_select( $chm, $selectTimeout ) == -1 ) {
 						// PHP bug 63411; https://curl.haxx.se/libcurl/c/curl_multi_fdset.html
 						usleep( 5000 ); // 5ms
 					}
@@ -285,11 +292,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected function getCurlHandle( array &$req, array $opts = [] ) {
 		$ch = curl_init();
 
-		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT,
-			$opts['connTimeout'] ?? $this->connTimeout );
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT_MS,
+			( $opts['connTimeout'] ?? $this->connTimeout ) * 1000 );
 		curl_setopt( $ch, CURLOPT_PROXY, $req['proxy'] ?? $this->proxy );
-		curl_setopt( $ch, CURLOPT_TIMEOUT,
-			$opts['reqTimeout'] ?? $this->reqTimeout );
+		curl_setopt( $ch, CURLOPT_TIMEOUT_MS,
+			( $opts['reqTimeout'] ?? $this->reqTimeout ) * 1000 );
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 		curl_setopt( $ch, CURLOPT_MAXREDIRS, 4 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
@@ -408,6 +415,28 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 
 		return $ch;
+	}
+
+	/**
+	 * Get a suitable select timeout for the given options.
+	 *
+	 * @param array $opts
+	 * @return float
+	 */
+	private function getSelectTimeout( $opts ) {
+		$connTimeout = $opts['connTimeout'] ?? $this->connTimeout;
+		$reqTimeout = $opts['reqTimeout'] ?? $this->reqTimeout;
+		$timeouts = array_filter( [ $connTimeout, $reqTimeout ] );
+		if ( count( $timeouts ) === 0 ) {
+			return 1;
+		}
+
+		$selectTimeout = min( $timeouts ) * self::TIMEOUT_ACCURACY_FACTOR;
+		// Minimum 10us for sanity
+		if ( $selectTimeout < 10e-6 ) {
+			$selectTimeout = 10e-6;
+		}
+		return $selectTimeout;
 	}
 
 	/**
