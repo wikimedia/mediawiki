@@ -17,8 +17,7 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 			'FakeExtension' => [
 				'MediaWiki' => $constraint,
 			],
-		] )
-		);
+		] ) );
 	}
 
 	public static function provideCheck() {
@@ -50,8 +49,7 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testType( $given, $expected ) {
 		$checker = new VersionChecker( '1.0.0' );
-		$checker
-			->setLoadedExtensionsAndSkins( [
+		$checker->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => '1.0.0',
 				],
@@ -59,8 +57,7 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 			] );
 		$this->assertEquals( $expected, $checker->checkArray( [
 			'FakeExtension' => $given,
-		] )
-		);
+		] ) );
 	}
 
 	public static function provideType() {
@@ -69,22 +66,22 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'extensions' => [
-						'FakeDependency' => '1.0.0'
-					]
+						'FakeDependency' => '1.0.0',
+					],
 				],
-				[]
+				[],
 			],
 			[
 				[
-					'MediaWiki' => '1.0.0'
+					'MediaWiki' => '1.0.0',
 				],
-				[]
+				[],
 			],
 			[
 				[
 					'extensions' => [
-						'NoVersionGiven' => '*'
-					]
+						'NoVersionGiven' => '*',
+					],
 				],
 				[],
 			],
@@ -92,39 +89,59 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 				[
 					'extensions' => [
 						'NoVersionGiven' => '1.0',
-					]
+					],
 				],
-				[ [
-					'incompatible' => 'FakeExtension',
-					'type' => 'incompatible-extensions',
-					'msg' => 'NoVersionGiven does not expose its version, but FakeExtension requires: 1.0.'
-				] ],
+				[
+					[
+						'incompatible' => 'FakeExtension',
+						'type' => 'incompatible-extensions',
+						'msg' => 'NoVersionGiven does not expose its version, but FakeExtension requires: 1.0.',
+					],
+				],
 			],
 			[
 				[
 					'extensions' => [
 						'Missing' => '*',
-					]
+					],
 				],
-				[ [
-					'missing' => 'Missing',
-					'type' => 'missing-extensions',
-					'msg' => 'FakeExtension requires Missing to be installed.',
-				] ],
+				[
+					[
+						'missing' => 'Missing',
+						'type' => 'missing-extensions',
+						'msg' => 'FakeExtension requires Missing to be installed.',
+					],
+				],
 			],
 			[
 				[
 					'extensions' => [
 						'FakeDependency' => '2.0.0',
-					]
+					],
 				],
-				[ [
-					'incompatible' => 'FakeExtension',
-					'type' => 'incompatible-extensions',
-					// phpcs:ignore Generic.Files.LineLength.TooLong
-					'msg' => 'FakeExtension is not compatible with the current installed version of FakeDependency (1.0.0), it requires: 2.0.0.'
-				] ],
-			]
+				[
+					[
+						'incompatible' => 'FakeExtension',
+						'type' => 'incompatible-extensions',
+						// phpcs:ignore Generic.Files.LineLength.TooLong
+						'msg' => 'FakeExtension is not compatible with the current installed version of FakeDependency (1.0.0), it requires: 2.0.0.',
+					],
+				],
+			],
+			[
+				[
+					'skins' => [
+						'FakeSkin' => '*',
+					],
+				],
+				[
+					[
+						'missing' => 'FakeSkin',
+						'type' => 'missing-skins',
+						'msg' => 'FakeExtension requires FakeSkin to be installed.',
+					],
+				],
+			],
 		];
 	}
 
@@ -134,29 +151,26 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testInvalidConstraint() {
 		$checker = new VersionChecker( '1.0.0' );
-		$checker
-			->setLoadedExtensionsAndSkins( [
+		$checker->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => 'not really valid',
 				],
 			] );
-		$this->assertEquals(
-			[ [
+		$this->assertEquals( [
+			[
 				'type' => 'invalid-version',
-				'msg' => "FakeDependency does not have a valid version string."
-			] ],
-			$checker->checkArray( [
-				'FakeExtension' => [
-					'extensions' => [
-						'FakeDependency' => '1.24.3',
-					],
+				'msg' => "FakeDependency does not have a valid version string.",
+			],
+		], $checker->checkArray( [
+			'FakeExtension' => [
+				'extensions' => [
+					'FakeDependency' => '1.24.3',
 				],
-			] )
-		);
+			],
+		] ) );
 
 		$checker = new VersionChecker( '1.0.0' );
-		$checker
-			->setLoadedExtensionsAndSkins( [
+		$checker->setLoadedExtensionsAndSkins( [
 				'FakeDependency' => [
 					'version' => '1.24.3',
 				],
@@ -166,7 +180,28 @@ class VersionCheckerTest extends PHPUnit\Framework\TestCase {
 		$checker->checkArray( [
 			'FakeExtension' => [
 				'FakeDependency' => 'not really valid',
-			]
+			],
 		] );
+	}
+
+	/**
+	 * T197478
+	 */
+	public function testInvalidDependency() {
+		$checker = new VersionChecker( '1.0.0' );
+		$this->setExpectedException( UnexpectedValueException::class,
+			'Dependency type skin unknown in FakeExtension' );
+		$this->assertEquals( [
+			[
+				'type' => 'invalid-version',
+				'msg' => 'FakeDependency does not have a valid version string.',
+			],
+		], $checker->checkArray( [
+			'FakeExtension' => [
+				'skin' => [
+					'FakeSkin' => '*',
+				],
+			],
+		] ) );
 	}
 }
