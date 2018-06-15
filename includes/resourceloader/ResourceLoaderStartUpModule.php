@@ -324,48 +324,64 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getPreloadLinks( ResourceLoaderContext $context ) {
-		$url = self::getStartupModulesUrl( $context );
+		$url = $this->getBaseModulesUrl( $context );
 		return [
 			$url => [ 'as' => 'script' ]
 		];
 	}
 
 	/**
-	 * Base modules required for the base environment of ResourceLoader
+	 * Internal modules used by ResourceLoader that cannot be depended on.
 	 *
+	 * These module(s) should have isRaw() return true, and are not
+	 * legal dependencies (enforced by structure/ResourcesTest).
+	 *
+	 * @deprecated since 1.32 No longer used.
 	 * @return array
 	 */
 	public static function getStartupModules() {
-		return [ 'jquery', 'mediawiki', 'mediawiki.base' ];
+		wfDeprecated( __METHOD__, '1.32' );
+		return [];
 	}
 
+	/**
+	 * @deprecated since 1.32 No longer used.
+	 * @return array
+	 */
 	public static function getLegacyModules() {
+		wfDeprecated( __METHOD__, '1.32' );
+		return [];
+	}
+
+	/**
+	 * Base modules implicitly available to all modules.
+	 *
+	 * @since 1.32
+	 * @return array
+	 */
+	private function getBaseModules() {
 		global $wgIncludeLegacyJavaScript;
 
-		$legacyModules = [];
+		$baseModules = [ 'jquery', 'mediawiki.base' ];
 		if ( $wgIncludeLegacyJavaScript ) {
-			$legacyModules[] = 'mediawiki.legacy.wikibits';
+			$baseModules[] = 'mediawiki.legacy.wikibits';
 		}
 
-		return $legacyModules;
+		return $baseModules;
 	}
 
 	/**
 	 * Get the load URL of the startup modules.
 	 *
-	 * This is a helper for getScript(), but can also be called standalone, such
-	 * as when generating an AppCache manifest.
+	 * This is a helper for getScript().
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
-	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
+	private function getBaseModulesUrl( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
 		$derivative = new DerivativeResourceLoaderContext( $context );
-		$derivative->setModules( array_merge(
-			self::getStartupModules(),
-			self::getLegacyModules()
-		) );
+		$derivative->setModules( $this->getBaseModules() );
 		$derivative->setOnly( 'scripts' );
 		// Must setModules() before makeVersionQuery()
 		$derivative->setVersion( $rl->makeVersionQuery( $derivative ) );
@@ -383,7 +399,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return '/* Requires only=script */';
 		}
 
-		$out = file_get_contents( "$IP/resources/src/startup.js" );
+		$out = file_get_contents( "$IP/resources/src/startup/startup.js" );
+
+		// Keep in sync with maintenance/jsduck/eg-iframe.html and,
+		// keep in sync with 'fileHashes' in StartUpModule::getDefinitionSummary().
+		$mwLoaderCode = file_get_contents( "$IP/resources/src/startup/mediawiki.js" ) .
+			file_get_contents( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" );
+		if ( $context->getDebug() ) {
+			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/mediawiki.log.js" );
+		}
 
 		$pairs = array_map( function ( $value ) {
 			$value = FormatJson::encode( $value, ResourceLoader::inDebugMode(), FormatJson::ALL_OK );
@@ -394,13 +418,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
 			// This url may be preloaded. See getPreloadLinks().
-			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
+			'$VARS.baseModulesUri' => $this->getBaseModulesUrl( $context ),
 		] );
 		$pairs['$CODE.registrations();'] = str_replace(
 			"\n",
 			"\n\t",
 			trim( $this->getModuleRegistrations( $context ) )
 		);
+		$pairs['$CODE.defineLoader();'] = $mwLoaderCode;
 
 		return strtr( $out, $pairs );
 	}
@@ -430,7 +455,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'moduleHashes' => $this->getAllModuleHashes( $context ),
 
 			'fileHashes' => [
-				$this->safeFileHash( "$IP/resources/src/startup.js" ),
+				$this->safeFileHash( "$IP/resources/src/startup/startup.js" ),
+				$this->safeFileHash( "$IP/resources/src/startup/mediawiki.js" ),
+				$this->safeFileHash( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" ),
 			],
 		];
 		return $summary;

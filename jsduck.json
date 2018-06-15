@@ -19,7 +19,7 @@
 		"resources/src/mediawiki.legacy",
 		"resources/src/mediawiki.libs.jpegmeta/jpegmeta.js",
 		"resources/src/mediawiki.skinning",
-		"resources/src/startup.js"
+		"resources/src/startup/startup.js"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",
