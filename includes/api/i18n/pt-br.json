@@ -1088,6 +1088,7 @@
 	"apihelp-query+search-param-interwiki": "Inclua resultados de interwiki na pesquisa, se disponível.",
 	"apihelp-query+search-param-backend": "Qual o backend de pesquisa a ser usado, se não for o padrão.",
 	"apihelp-query+search-param-enablerewrites": "Habilita a reescrita de consulta interna. Alguns backends de pesquisa podem reescrever a consulta em outro que é pensado para fornecer melhores resultados, por exemplo, corrigindo erros de ortografia.",
+	"apihelp-query+search-param-sort": "Definir o ordenamento dos resultados devolvidos.",
 	"apihelp-query+search-example-simple": "Procurar por <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Procurar textos para <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "Obter informações da página sobre as páginas retornadas para uma pesquisa por <kbd>meaning</kbd>.",

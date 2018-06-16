@@ -1405,6 +1405,8 @@
 	"rcfilters-other-review-tools": "其他檢閱工具",
 	"rcfilters-group-results-by-page": "按頁面分組結果",
 	"rcfilters-activefilters": "使用的篩選器",
+	"rcfilters-activefilters-hide": "隱藏",
+	"rcfilters-activefilters-show": "顯示",
 	"rcfilters-advancedfilters": "進階查詢條件",
 	"rcfilters-limit-title": "要顯示的結果",
 	"rcfilters-limit-and-date-label": "$1次{{PLURAL:$1|變更}}，$2",

@@ -511,6 +511,7 @@
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Zignorowano",
 	"apihelp-query+search-param-limit": "Łączna liczba stron do zwrócenia.",
 	"apihelp-query+search-param-interwiki": "Dołączaj wyniki wyszukiwań interwiki w wyszukiwarce, jeśli możliwe.",
+	"apihelp-query+search-param-sort": "Ustaw porządek sortowania zwracanych wyników.",
 	"apihelp-query+search-example-simple": "Szukaj <kbd>meaning</kbd>.",
 	"apihelp-query+siteinfo-paramvalue-prop-general": "Ogólne informacje o systemie.",
 	"apihelp-query+siteinfo-paramvalue-prop-namespaces": "Lista zarejestrowanych przestrzeni nazw i ich nazwy kanoniczne.",
