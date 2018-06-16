@@ -1271,6 +1271,8 @@
 	"rcfilters-other-review-tools": "Aner Méiglechkeete fir z'iwwerliesen",
 	"rcfilters-group-results-by-page": "Resultater no de Säite gruppéieren",
 	"rcfilters-activefilters": "Aktiv Filteren",
+	"rcfilters-activefilters-hide": "Verstoppen",
+	"rcfilters-activefilters-show": "Weisen",
 	"rcfilters-advancedfilters": "Erweidert Filteren",
 	"rcfilters-limit-title": "Resultater fir ze weisen",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}}, $2",

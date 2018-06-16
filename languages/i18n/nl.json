@@ -1392,6 +1392,8 @@
 	"rcfilters-other-review-tools": "Andere controlehulpmiddelen",
 	"rcfilters-group-results-by-page": "Resultaten per pagina groeperen",
 	"rcfilters-activefilters": "Actieve filters",
+	"rcfilters-activefilters-hide": "Verbergen",
+	"rcfilters-activefilters-show": "Weergeven",
 	"rcfilters-advancedfilters": "Geavanceerde filters",
 	"rcfilters-limit-title": "Resultaten om te tonen",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|wijziging|wijzigingen}}, $2",

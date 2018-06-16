@@ -1406,6 +1406,8 @@
 	"rcfilters-other-review-tools": "其他复核工具",
 	"rcfilters-group-results-by-page": "按页面分组结果",
 	"rcfilters-activefilters": "应用的过滤器",
+	"rcfilters-activefilters-hide": "隐藏",
+	"rcfilters-activefilters-show": "显示",
 	"rcfilters-advancedfilters": "高级过滤器",
 	"rcfilters-limit-title": "要显示的结果",
 	"rcfilters-limit-and-date-label": "$1次{{PLURAL:$1|更改}}，$2",
