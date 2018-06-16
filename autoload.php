@@ -1103,6 +1103,7 @@ $wgAutoloadLocalClasses = [
 	'PopulateArchiveRevId' => __DIR__ . '/maintenance/populateArchiveRevId.php',
 	'PopulateBacklinkNamespace' => __DIR__ . '/maintenance/populateBacklinkNamespace.php',
 	'PopulateCategory' => __DIR__ . '/maintenance/populateCategory.php',
+	'PopulateChangeTagDef' => __DIR__ . '/maintenance/populateChangeTagDef.php',
 	'PopulateContentModel' => __DIR__ . '/maintenance/populateContentModel.php',
 	'PopulateExternallinksIndex60' => __DIR__ . '/maintenance/populateExternallinksIndex60.php',
 	'PopulateFilearchiveSha1' => __DIR__ . '/maintenance/populateFilearchiveSha1.php',
