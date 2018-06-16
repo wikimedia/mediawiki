@@ -16,7 +16,9 @@
 		"mediawiki/blue-spice-social-tags": "dev-master",
 		"mediawiki/blue-spice-social-timeline-update": "dev-master",
 		"mediawiki/blue-spice-social-topics": "dev-master",
-		"mediawiki/blue-spice-social-watch": "dev-master"
+		"mediawiki/blue-spice-social-watch": "dev-master",
+		"mediawiki/bluespice-userinfo": "dev-master",
+		"bluespice/socialresolve": "dev-master"
 	},
 	"extra": {
 		"merge-plugin": {
