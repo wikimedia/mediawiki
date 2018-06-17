@@ -1096,7 +1096,7 @@
 	"recentchangeslinked-feed": "Mga may kalabotan nga binag-o",
 	"recentchangeslinked-toolbox": "Mga may kalabotan nga binag-o",
 	"recentchangeslinked-title": "Mga pagbag-o kasumpay ha ''$1''",
-	"recentchangeslinked-summary": "Ini nga taramdan hin pagbag-o nga lab-as nga hinimo ha mga pakli nga nakasumpay tikang a naka-specifico nga pakli (o ha api han uska specifico nga kaarangay).\nMga pakli ha [[Special:Watchlist|imo angay timan-an]] in naka-'''bold'''.",
+	"recentchangeslinked-summary": "Ibutang an ngaran han pakli basi maipakita an mga pakli nga nakasumapy pakadto o pakadi hinin nga pakli. (Basi makit-an an mga api hini nga kaarangay, ibutang an {{ns:category}}:Ngaran han kaarangay). An mga binalyuan ha mga pakli ha [[Special:Watchlist|your Watchlist]] nakasurat nga <strong>madakmol</strong>.",
 	"recentchangeslinked-page": "Ngaran han pakli:",
 	"recentchangeslinked-to": "Igpakita lugod an mga pagbabag-o han mga pakli nga nahisumpay ha ginhatag nga pakli",
 	"upload": "Pagkarga hin file",
