@@ -3250,5 +3250,6 @@
 	"log-action-filter-protect-unprotect": "אראפנעמען שיץ",
 	"authmanager-userdoesnotexist": "באניצער קאנטע \"$1\" איז נישט איינגעשריבן.",
 	"authmanager-realname-label": "עכטער נאָמען",
+	"authprovider-resetpass-skip-label": "איבערהיפן",
 	"revid": "רעוויזיע $1"
 }
