@@ -421,7 +421,9 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
 
 		$rcId = 124;
-		ChangeTags::updateTags( [ 'tag1', 'tag3' ], [], $rcId );
+		ChangeTags::updateTags( [ 'tag1' ], [], $rcId );
+
+		ChangeTags::updateTags( [ 'tag3' ], [], $rcId );
 
 		$dbr = wfGetDB( DB_REPLICA );
 
