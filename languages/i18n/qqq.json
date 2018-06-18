@@ -1586,6 +1586,8 @@
 	"rcfilters-activefilters": "{{doc-important|Translations of this message should not more than 3 cm long, otherwise it will make bad user experiences for potential mobile users.}}\nTitle for the filters selection showing the active filters.",
 	"rcfilters-activefilters-hide": "Label for the button that hides the active filters list and dropdown in [[Special:RecentChanges]].\n{{Identical|Hide}}",
 	"rcfilters-activefilters-show": "Label for the button that shows the active filters list and dropdown in [[Special:RecentChanges]].\n{{Identical|Show}}",
+	"rcfilters-activefilters-hide-tooltip": "Tooltip for the button that hides the active filters list and dropdown in [[Special:RecentChanges]].",
+	"rcfilters-activefilters-show-tooltip": "Tooltip for the button that shows the active filters list and dropdown in [[Special:RecentChanges]].",
 	"rcfilters-advancedfilters": "Title for the buttons allowing the user to switch to the various advanced filters views.",
 	"rcfilters-limit-title": "Title for the options to change the number of results shown.",
 	"rcfilters-limit-and-date-label": "Title for the button that opens the operation to control how many results to show and in which time period to search. \n\nParameters: $1 - Number of results shown\n\n$2 - Time period to search. One of {{msg-mw|rcfilters-days-title}} or {{msg-mw|rcfilters-hours-title}} is used as $2\n{{Identical|Change}}",

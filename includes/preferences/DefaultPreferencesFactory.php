@@ -1022,6 +1022,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/advancedrc',
 		];
+		$defaultPreferences['rcfilters-rc-collapsed'] = [
+			'type' => 'api',
+		];
+		$defaultPreferences['rcfilters-wl-collapsed'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-saved-queries'] = [
 			'type' => 'api',
 		];
