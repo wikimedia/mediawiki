@@ -34,6 +34,25 @@ use CLDRPluralRuleParser\Evaluator;
  */
 class Language {
 	/**
+	 * Return autonyms in fetchLanguageName(s).
+	 * @since 1.32
+	 */
+	const AS_AUTONYMS = null;
+
+	/**
+	 * Return all known languages in fetchLanguageName(s).
+	 * @since 1.32
+	 */
+	const ALL = 'all';
+
+	/**
+	 * Return in fetchLanguageName(s) only the languages for which we have at
+	 * least some localisation.
+	 * @since 1.32
+	 */
+	const SUPPORTED = 'mwfile';
+
+	/**
 	 * @var LanguageConverter
 	 */
 	public $mConverter;
@@ -790,16 +809,16 @@ class Language {
 	/**
 	 * Get an array of language names, indexed by code.
 	 * @param null|string $inLanguage Code of language in which to return the names
-	 * 		Use null for autonyms (native names)
+	 * 		Use self::AS_AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
-	 * 		'all' all available languages
+	 * 		self::ALL all available languages
 	 * 		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
-	 * 		'mwfile' only if the language is in 'mw' *and* has a message file
+	 * 		self::SUPPORTED only if the language is in 'mw' *and* has a message file
 	 * @return array Language code => language name (sorted by key)
 	 * @since 1.20
 	 */
-	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
-		$cacheKey = $inLanguage === null ? 'null' : $inLanguage;
+	public static function fetchLanguageNames( $inLanguage = self::AS_AUTONYMS, $include = 'mw' ) {
+		$cacheKey = $inLanguage === self::AS_AUTONYMS ? 'null' : $inLanguage;
 		$cacheKey .= ":$include";
 		if ( self::$languageNameCache === null ) {
 			self::$languageNameCache = new HashBagOStuff( [ 'maxKeys' => 20 ] );
@@ -816,18 +835,21 @@ class Language {
 	/**
 	 * Uncached helper for fetchLanguageNames
 	 * @param null|string $inLanguage Code of language in which to return the names
-	 *		Use null for autonyms (native names)
+	 *		Use self::AS_AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
-	 *		'all' all available languages
+	 *		self::ALL all available languages
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
-	 *		'mwfile' only if the language is in 'mw' *and* has a message file
+	 *		self::SUPPORTED only if the language is in 'mw' *and* has a message file
 	 * @return array Language code => language name (sorted by key)
 	 */
-	private static function fetchLanguageNamesUncached( $inLanguage = null, $include = 'mw' ) {
+	private static function fetchLanguageNamesUncached(
+		$inLanguage = self::AS_AUTONYMS,
+		$include = 'mw'
+	) {
 		global $wgExtraLanguageNames, $wgUsePigLatinVariant;
 
 		// If passed an invalid language code to use, fallback to en
-		if ( $inLanguage !== null && !self::isValidCode( $inLanguage ) ) {
+		if ( $inLanguage !== self::AS_AUTONYMS && !self::isValidCode( $inLanguage ) ) {
 			$inLanguage = 'en';
 		}
 
@@ -852,7 +874,7 @@ class Language {
 			}
 		}
 
-		if ( $include === 'all' ) {
+		if ( $include === self::ALL ) {
 			ksort( $names );
 			return $names;
 		}
@@ -863,7 +885,7 @@ class Language {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if ( $include === 'mwfile' ) {
+		if ( $include === self::SUPPORTED ) {
 			$namesMwFile = [];
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -886,12 +908,17 @@ class Language {
 
 	/**
 	 * @param string $code The code of the language for which to get the name
-	 * @param null|string $inLanguage Code of language in which to return the name (null for autonyms)
-	 * @param string $include 'all', 'mw' or 'mwfile'; see fetchLanguageNames()
+	 * @param null|string $inLanguage Code of language in which to return the name
+	 *   (SELF::AS_AUTONYMS for autonyms)
+	 * @param string $include See fetchLanguageNames()
 	 * @return string Language name or empty
 	 * @since 1.20
 	 */
-	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+	public static function fetchLanguageName(
+		$code,
+		$inLanguage = self::AS_AUTONYMS,
+		$include = self::ALL
+	) {
 		$code = strtolower( $code );
 		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
