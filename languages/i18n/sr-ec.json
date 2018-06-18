@@ -3569,7 +3569,7 @@
 	"tags": "Важеће ознаке измена",
 	"tag-filter": "Филтер за [[Special:Tags|ознаке]]:",
 	"tag-filter-submit": "Филтрирај",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|ознака|ознаке}}]]: $2)",
+	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Ознака|Ознаке}}]]: $2)",
 	"tag-mw-contentmodelchange": "промена модела садржаја",
 	"tag-mw-contentmodelchange-description": "Измене које мењају модел садржаја странице",
 	"tag-mw-new-redirect": "ново преусмерење",

@@ -1356,7 +1356,7 @@
 	"recentchanges": "최근 바뀜",
 	"recentchanges-legend": "최근 바뀜 설정",
 	"recentchanges-summary": "이 페이지에서 위키의 최근 바뀜을 추적합니다.",
-	"recentchanges-noresult": "지정한 조건과 일치하는 주어진 기간 동안 바뀜이 없습니다.",
+	"recentchanges-noresult": "주어진 기간 동안에 이 조건들에 맞는 바뀜이 없습니다.",
 	"recentchanges-timeout": "이 검색의 시간이 초과되었습니다. 다른 검색 변수를 사용할 수 있습니다.",
 	"recentchanges-network": "기술적인 문제로 결과를 불러올 수 없습니다. 페이지를 다시 새로 고침해 주십시오.",
 	"recentchanges-notargetpage": "해당 문서에 관한 변경사항을 보려면 상단에 문서 제목을 입력하십시오.",
