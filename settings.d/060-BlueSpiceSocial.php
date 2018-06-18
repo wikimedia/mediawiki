@@ -24,4 +24,4 @@ wfLoadExtension( 'BlueSpiceSocialTags' );
 wfLoadExtension( 'BlueSpiceSocialWatch' );
 wfLoadExtension( 'BlueSpiceSocialTopics' );
 wfLoadExtension( 'BlueSpiceSocialResolve' );
-wfLoadExtension( 'BlueSpiceSocialUserInfo' );
+wfLoadExtension( 'BlueSpiceUserInfo' );
