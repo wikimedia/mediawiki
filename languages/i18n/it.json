@@ -1418,6 +1418,8 @@
 	"rcfilters-other-review-tools": "Altri strumenti di revisione",
 	"rcfilters-group-results-by-page": "Raggruppa risultati per pagina",
 	"rcfilters-activefilters": "Filtri attivi",
+	"rcfilters-activefilters-hide": "Nascondi",
+	"rcfilters-activefilters-show": "Mostra",
 	"rcfilters-advancedfilters": "Filtri avanzati",
 	"rcfilters-limit-title": "Risultati da mostrare",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|modifica|modifiche}}, $2",

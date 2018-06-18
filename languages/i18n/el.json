@@ -3272,6 +3272,7 @@
 	"confirm-unwatch-top": "Κατάργηση αυτής της σελίδας από τη λίστα παρακολούθησης σας;",
 	"confirm-rollback-button": "Εντάξει",
 	"confirm-rollback-top": "Επαναφέρετε τις επεξεργασίες σε αυτή τη σελίδα;",
+	"semicolon-separator": ",&#32,",
 	"quotation-marks": "«$1»",
 	"imgmultipageprev": "← προηγούμενη σελίδα",
 	"imgmultipagenext": "επόμενη σελίδα →",

@@ -1321,6 +1321,8 @@
 	"rcfilters-other-review-tools": "Іншыя інструмэнты праверкі",
 	"rcfilters-group-results-by-page": "Групаваць вынікі паводле старонак",
 	"rcfilters-activefilters": "Актыўныя фільтры",
+	"rcfilters-activefilters-hide": "Схаваць",
+	"rcfilters-activefilters-show": "Паказаць",
 	"rcfilters-advancedfilters": "Пашыраныя фільтры",
 	"rcfilters-limit-title": "Паказаць вынікаў",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}, $2",

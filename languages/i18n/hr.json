@@ -3153,7 +3153,7 @@
 	"lag-warn-normal": "Promjene načinjene prije manje od $1 {{PLURAL:$1|sekunde|sekundi}} možda ne će biti prikazane na ovom popisu.",
 	"lag-warn-high": "Zbog preopterećenosti poslužitelja na kom je baza podataka, izmjene novije od $1 {{PLURAL:$1|sekunde|sekundi}} možda ne će biti prikazane na ovom popisu.",
 	"watchlistedit-normal-title": "Uredi popis praćenja",
-	"watchlistedit-normal-legend": "Ukloni stranice iz popisa praćenja",
+	"watchlistedit-normal-legend": "Uklanjanje naslova s popisa praćenja",
 	"watchlistedit-normal-explain": "Prikazane su stranice na Vašem popisu praćenja.\nDa uklonite stranicu s popisa praćenja, označite kućicu kraj nje i kliknite gumb \"{{int:Watchlistedit-normal-submit}}\".\nMožete također [[Special:EditWatchlist/raw|uređivati ovaj popis u okviru za uređivanje]].",
 	"watchlistedit-normal-submit": "Ukloni stranice",
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 stranica je uklonjena|$1 stranice su uklonjene|$1 stranica je uklonjeno}} iz Vašeg popisa praćenja:",
