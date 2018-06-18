@@ -511,6 +511,7 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_block_email       CHAR(1)      DEFAULT '0' NOT NULL,
   ipb_allow_usertalk    CHAR(1)      DEFAULT '0' NOT NULL,
   ipb_parent_block_id             NUMBER       DEFAULT NULL
+  ipb_sitewide          CHAR(1)      DEFAULT '1' NOT NULL
 );
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_pk PRIMARY KEY (ipb_id);
 ALTER TABLE &mw_prefix.ipblocks ADD CONSTRAINT &mw_prefix.ipblocks_fk1 FOREIGN KEY (ipb_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
@@ -529,6 +530,14 @@ BEGIN
 	&mw_prefix.lastval_pkg.setLastval(ipblocks_ipb_id_seq.nextval, :new.ipb_id);
 END;
 /*$mw$*/
+
+CREATE TABLE &mw_prefix.ipblocks_restrictions (
+  ir_ipb_id NUMBER NOT NULL,
+  ir_type NUMBER NOT NULL,
+  ir_value NUMBER NOT NULL
+);
+ALTER TABLE &mw_prefix.ipblocks_restrictions ADD CONSTRAINT ipblocks_restrictions_pk PRIMARY KEY (ir_ipb_id, ir_type, ir_value);
+CREATE INDEX &mw_prefix.ir_type_value ON &mw_prefix.ipblocks_restrictions (ir_type, ir_value);
 
 CREATE TABLE &mw_prefix.image (
   img_name         VARCHAR2(255)      NOT NULL,
