@@ -4983,7 +4983,7 @@ class Title implements LinkTarget {
 			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = [ $langObj->getCode(), $wgLanguageCode ];
 		} else {
-			$langObj = wfGetLangObj( $this->mPageLanguage[0] );
+			$langObj = Language::factory( $this->mPageLanguage[0] );
 		}
 
 		return $langObj;

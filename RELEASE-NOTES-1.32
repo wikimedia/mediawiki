@@ -165,6 +165,7 @@ because of Phabricator reports.
   use 'EditPageGetCheckboxesDefinition' instead.
 * Linker::getLinkColour() and DummyLinker::getLinkColour(), deprecated since
   1.28, were removed. LinkRenderer::getLinkClasses() should be used instead.
+* Skin::doEditSectionLink requires type Language for optional parameter $lang.
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
