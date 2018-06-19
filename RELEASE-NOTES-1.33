@@ -47,6 +47,8 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.33 ===
+* The parameteter $lang in DifferenceEngine::setTextLanguage must be of type
+  Language. Other types are deprecated since 1.32.
 * …
 
 === Deprecations in 1.33 ===
