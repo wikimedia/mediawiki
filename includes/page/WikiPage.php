@@ -1742,9 +1742,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param bool|int $baseRevId The revision ID this edit was based off, if any.
-	 *   This is not the parent revision ID, rather the revision ID for older
-	 *   content used as the source for a rollback, for example.
+	 * @param bool|int $originalRevId: The ID of an original revision that the edit
+	 * restores or repeats. The new revision is expected to have the exact same content as
+	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
+	 * which are created to record things like page moves.
 	 * @param User $user The user doing the edit
 	 * @param string $serialFormat IGNORED.
 	 * @param array|null $tags Change tags to apply to this edit
@@ -1771,7 +1772,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function doEditContent(
-		Content $content, $summary, $flags = 0, $baseRevId = false,
+		Content $content, $summary, $flags = 0, $originalRevId = false,
 		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
 		global $wgUser, $wgUseNPPatrol, $wgUseRCPatrol;
@@ -1796,7 +1797,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $user );
 		$updater->setContent( 'main', $content );
-		$updater->setBaseRevisionId( $baseRevId );
+		$updater->setOriginalRevisionId( $originalRevId );
 		$updater->setUndidRevisionId( $undidRevId );
 
 		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->exists() );
