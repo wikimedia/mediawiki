@@ -349,7 +349,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$blob = $this->expandBlob( $row->old_text, $row->old_flags, $blobAddress );
 
 		if ( $blob === false ) {
-			wfWarn( __METHOD__ . ": Bad data in text row $textId." );
+			wfLogWarning( __METHOD__ . ": Bad data in text row $textId." );
 			return false;
 		}
 
@@ -486,7 +486,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$blob = gzinflate( $blob );
 
 			if ( $blob === false ) {
-				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
+				wfWarn( __METHOD__ . ': gzinflate() failed' );
 				return false;
 			}
 		}

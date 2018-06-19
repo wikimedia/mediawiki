@@ -439,6 +439,31 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->testGetRevisionText( $expected, $rowData );
 	}
 
+	public function provideGetRevisionTextWithZlibExtension_badData() {
+		yield 'Generic gzip test' => [
+			'This is a small goat of revision text.',
+			[
+				'old_flags' => 'gzip',
+				'old_text' => 'DEAD BEEF',
+			],
+		];
+	}
+
+	/**
+	 * @covers Revision::getRevisionText
+	 * @dataProvider provideGetRevisionTextWithZlibExtension_badData
+	 */
+	public function testGetRevisionWithZlibExtension_badData( $expected, $rowData ) {
+		$this->checkPHPExtension( 'zlib' );
+		Wikimedia\suppressWarnings();
+		$this->assertFalse(
+			Revision::getRevisionText(
+				(object)$rowData
+			)
+		);
+		Wikimedia\suppressWarnings( true );
+	}
+
 	private function getWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 	}
@@ -802,6 +827,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts(
 		$text
 	) {
+		Wikimedia\suppressWarnings();
 		$this->assertFalse(
 			Revision::getRevisionText(
 				(object)[
@@ -810,6 +836,7 @@ class RevisionTest extends MediaWikiTestCase {
 				]
 			)
 		);
+		Wikimedia\suppressWarnings( true );
 	}
 
 	/**
