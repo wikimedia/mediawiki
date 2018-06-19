@@ -132,6 +132,8 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Get the language of the difference engine, defaults to page content language
+	 *
 	 * @return Language
 	 */
 	public function getDiffLang() {
@@ -1343,11 +1345,14 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Set the language in which the diff text is written
-	 * (Defaults to page content language).
-	 * @param Language|string $lang
+	 *
+	 * @param Language $lang
 	 * @since 1.19
 	 */
 	public function setTextLanguage( $lang ) {
+		if ( !$lang instanceof Language ) {
+			wfDeprecated( __METHOD__ . ' with other type than Language for $lang', '1.32' );
+		}
 		$this->mDiffLang = wfGetLangObj( $lang );
 	}
 
