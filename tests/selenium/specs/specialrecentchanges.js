@@ -23,7 +23,7 @@ describe( 'Special:RecentChanges', function () {
 
 		RecentChangesPage.open();
 
-		assert.strictEqual( name, RecentChangesPage.titles[ 0 ] );
+		assert.strictEqual( RecentChangesPage.titles[ 0 ].getText(), name );
 	} );
 
 } );
