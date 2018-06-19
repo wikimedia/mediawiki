@@ -270,4 +270,43 @@ class RevisionSlots {
 		return true;
 	}
 
+	/**
+	 * Find roles for which the $other RevisionSlots object has different content
+	 * as this RevisionSlots object, including any roles that are present in one
+	 * but not the other.
+	 *
+	 * @param RevisionSlots $other
+	 *
+	 * @return string[] a list of slot roles that are different.
+	 */
+	public function getRolesWithDifferentContent( RevisionSlots $other ) {
+		if ( $other === $this ) {
+			return [];
+		}
+
+		$aSlots = $this->getSlots();
+		$bSlots = $other->getSlots();
+
+		ksort( $aSlots );
+		ksort( $bSlots );
+
+		$different = array_keys( array_merge(
+			array_diff_key( $aSlots, $bSlots ),
+			array_diff_key( $bSlots, $aSlots )
+		) );
+
+		/** @var SlotRecord[] $common */
+		$common = array_intersect_key( $aSlots, $bSlots );
+
+		foreach ( $common as $role => $s ) {
+			$t = $bSlots[$role];
+
+			if ( !$s->hasSameContent( $t ) ) {
+				$different[] = $role;
+			}
+		}
+
+		return $different;
+	}
+
 }

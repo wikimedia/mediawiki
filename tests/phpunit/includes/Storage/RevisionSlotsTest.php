@@ -224,4 +224,34 @@ class RevisionSlotsTest extends MediaWikiTestCase {
 		$this->assertSame( $same, $b->hasSameContent( $a ) );
 	}
 
+	public function provideGetRolesWithDifferentContent() {
+		$fooX = SlotRecord::newUnsaved( 'x', new TextContent( 'Foo' ) );
+		$barZ = SlotRecord::newUnsaved( 'z', new TextContent( 'Bar' ) );
+		$fooY = SlotRecord::newUnsaved( 'y', new TextContent( 'Foo' ) );
+		$barZS = SlotRecord::newSaved( 7, 7, 'xyz', $barZ );
+		$barZ2 = SlotRecord::newUnsaved( 'z', new TextContent( 'Baz' ) );
+
+		$a = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
+		$a2 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
+		$a3 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZS ] );
+		$b = $this->newRevisionSlots( [ 'y' => $fooY, 'z' => $barZ ] );
+		$c = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ2 ] );
+
+		yield 'same instance' => [ $a, $a, [] ];
+		yield 'same slots' => [ $a, $a2, [] ];
+		yield 'same content' => [ $a, $a3, [] ];
+
+		yield 'different roles' => [ $a, $b, [ 'x', 'y' ] ];
+		yield 'different content' => [ $a, $c, [ 'z' ] ];
+	}
+
+	/**
+	 * @dataProvider provideGetRolesWithDifferentContent
+	 * @covers \MediaWiki\Storage\RevisionSlots::getRolesWithDifferentContent
+	 */
+	public function testGetRolesWithDifferentContent( RevisionSlots $a, RevisionSlots $b, $roles ) {
+		$this->assertArrayEquals( $roles, $a->getRolesWithDifferentContent( $b ) );
+		$this->assertArrayEquals( $roles, $b->getRolesWithDifferentContent( $a ) );
+	}
+
 }

@@ -1007,6 +1007,7 @@
 	"converter-manual-rule-error": "Used as error message when a manual conversion rule for the [[mw:Language_converter|language converter]] has errors. For example it's not using the correct syntax, or not supplying text in all variants.",
 	"undo-success": "Text on special page to confirm edit revert. You arrive on this page by clicking on the \"undo\" link on a revision history special page.\n\n{{Identical|Undo}}",
 	"undo-failure": "Message appears if an attempt to revert an edit by clicking the \"undo\" link on the page history fails.\n\nSee also:\n* {{msg-mw|Undo-norev}}\n* {{msg-mw|Undo-nochange}}\n{{Identical|Undo}}",
+	"undo-main-slot-only": "Message appears if an attempt to revert an edit by clicking the \"undo\" link on the page history fails because it involves content outside the page's main slot, which is not yet supported.\nThis message is temporary, see https://phabricator.wikimedia.org/T189808\n\nSee also:\n* {{msg-mw|Undo-failure}}\n{{Identical|Undo}}",
 	"undo-norev": "Message appears if an attempt to revert an edit by clicking the \"undo\" link on the page history fails.\n\nSee also:\n* {{msg-mw|Undo-failure}}\n* {{msg-mw|Undo-nochange}}\n{{Identical|Undo}}",
 	"undo-nochange": "Message appears if an attempt to revert an edit by clicking the \"undo\" link results in an edit making no change to the current version of the page.\n\nSee also:\n* {{msg-mw|Undo-failure}}\n* {{msg-mw|Undo-norev}}",
 	"undo-summary": "Edit summary for an undo action. Parameters:\n* $1 - revision ID\n* $2 - username\n{{Identical|Undo}}",

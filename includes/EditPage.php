@@ -1184,6 +1184,7 @@ class EditPage {
 				if ( $undo > 0 && $undoafter > 0 ) {
 					$undorev = Revision::newFromId( $undo );
 					$oldrev = Revision::newFromId( $undoafter );
+					$undoMsg = null;
 
 					# Sanity check, make sure it's the right page,
 					# the revisions exist and they were not deleted.
@@ -1192,12 +1193,19 @@ class EditPage {
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT )
 					) {
-						$content = $this->page->getUndoContent( $undorev, $oldrev );
-
-						if ( $content === false ) {
-							# Warn the user that something went wrong
-							$undoMsg = 'failure';
+						if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev ) ) {
+							// Cannot yet undo edits that involve anything other the main slot.
+							$undoMsg = 'main-slot-only';
 						} else {
+							$content = $this->page->getUndoContent( $undorev, $oldrev );
+
+							if ( $content === false ) {
+								# Warn the user that something went wrong
+								$undoMsg = 'failure';
+							}
+						}
+
+						if ( $undoMsg === null ) {
 							$oldContent = $this->page->getContent( Revision::RAW );
 							$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 							$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
@@ -1254,7 +1262,8 @@ class EditPage {
 					}
 
 					$out = $this->context->getOutput();
-					// Messages: undo-success, undo-failure, undo-norev, undo-nochange
+					// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
+					// undo-nochange.
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $out->parse( "<div class=\"{$class}\">" .
 						$this->context->msg( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
