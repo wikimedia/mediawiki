@@ -1703,6 +1703,7 @@
 	"activeusers-submit": "Parādīt aktīvos dalībniekus",
 	"listgrouprights": "Dalībnieku grupu tiesības",
 	"listgrouprights-summary": "Šis ir šajā viki definēto dalībnieku grupu uzskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.\nPapildu informāciju par katru individuālu piekļuves tiesību veidu, iespējams, var atrast [[{{MediaWiki:Listgrouprights-helppage}}|šeit]].",
+	"listgrouprights-key": "Apzīmējumi:\n* <span class=\"listgrouprights-granted\">Piešķirtās tiesības</span>\n* <span class=\"listgrouprights-revoked\">Atceltās tiesības</span>",
 	"listgrouprights-group": "Grupa",
 	"listgrouprights-rights": "Tiesības",
 	"listgrouprights-helppage": "Help:Grupu tiesības",
