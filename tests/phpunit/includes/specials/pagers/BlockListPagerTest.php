@@ -1,0 +1,236 @@
+<?php
+
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
+
+/**
+ * @group Database
+ * @coversDefaultClass BlockListPager
+ */
+class BlockListPagerTest extends MediaWikiTestCase {
+
+	/**
+	 * @covers ::formatValue
+	 * @dataProvider formatValueEmptyProvider
+	 * @dataProvider formatValueDefaultProvider
+	 * @param string $name
+	 * @param string $value
+	 * @param string $expected
+	 */
+	public function testFormatValue( $name, $value, $expected, $row = null ) {
+		$this->setMwGlobals( [
+			'wgEnablePartialBlocks' => false,
+		] );
+		$row = $row ?: new stdClass;
+		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
+		$wrappedPager->mCurrentRow = $row;
+
+		$formatted = $pager->formatValue( $name, $value );
+		$this->assertEquals( $expected, $formatted );
+	}
+
+	/**
+	 * Test empty values.
+	 */
+	public function formatValueEmptyProvider() {
+		return [
+			[
+				'test',
+				'',
+				'Unable to format test',
+			],
+			[
+				'ipb_timestamp',
+				wfTimestamp( TS_UNIX ),
+				date( 'H:i, j F Y' ),
+			],
+			[
+				'ipb_expiry',
+				'',
+				'infinite<br />0 minutes left',
+			],
+		];
+	}
+
+	/**
+	 * Test the default row values.
+	 */
+	public function formatValueDefaultProvider() {
+		$row = (object)[
+			'ipb_user' => 0,
+			'ipb_address' => '127.0.0.1',
+			'ipb_by_text' => 'Admin',
+			'ipb_create_account' => 1,
+			'ipb_auto' => 0,
+			'ipb_anon_only' => 0,
+			'ipb_create_account' => 1,
+			'ipb_enable_autoblock' => 1,
+			'ipb_deleted' => 0,
+			'ipb_block_email' => 0,
+			'ipb_allow_usertalk' => 0,
+			'ipb_sitewide' => 1,
+		];
+
+		return [
+			[
+				'test',
+				'',
+				'Unable to format test',
+				$row,
+			],
+			[
+				'ipb_timestamp',
+				wfTimestamp( TS_UNIX ),
+				date( 'H:i, j F Y' ),
+				$row,
+			],
+			[
+				'ipb_expiry',
+				'',
+				'infinite<br />0 minutes left',
+				$row,
+			],
+			[
+				'ipb_by',
+				'',
+				$row->ipb_by_text,
+				$row,
+			],
+			[
+				'ipb_params',
+				'',
+				'<ul><li>account creation disabled</li><li>cannot edit own talk page</li></ul>',
+				$row,
+			]
+		];
+	}
+
+	/**
+	 * @covers ::formatValue
+	 */
+	public function testFormatValueRestrictions() {
+		$pager = new BlockListPager( new SpecialPage(),  [] );
+
+		$row = (object)[
+			'ipb_id' => 0,
+			'ipb_user' => 0,
+			'ipb_anon_only' => 0,
+			'ipb_enable_autoblock' => 0,
+			'ipb_create_account' => 0,
+			'ipb_block_email' => 0,
+			'ipb_allow_usertalk' => 1,
+			'ipb_sitewide' => 0,
+		];
+		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
+		$wrappedPager->mCurrentRow = $row;
+
+		$pageName = 'Victor Frankenstein';
+		$page = $this->insertPage( $pageName );
+		$title = $page['title'];
+		$pageId = $page['id'];
+
+		$restrictions = [
+			( new PageRestriction( 0, $pageId ) )->setTitle( $title )
+		];
+
+		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
+		$wrappedPager->restrictions = $restrictions;
+
+		$formatted = $pager->formatValue( 'ipb_params', '' );
+		$this->assertEquals( '<ul><li>'
+			. wfMessage( 'blocklist-editing' )->text()
+			. '<ul><li><a href="/index.php/'
+			. $title->getDBKey()
+			. '" title="'
+			. $pageName
+			. '">'
+			. $pageName
+			. '</a></li></ul></li></ul>',
+			$formatted
+		);
+	}
+
+	/**
+	 * @covers ::preprocessResults
+	 */
+	public function testPreprocessResults() {
+		// Test the Link Cache.
+		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$wrappedlinkCache = TestingAccessWrapper::newFromObject( $linkCache );
+
+		$links = [
+			'User:127.0.0.1',
+			'User_talk:127.0.0.1',
+			'User:Admin',
+			'User_talk:Admin',
+		];
+
+		foreach ( $links as $link ) {
+			$this->assertNull( $wrappedlinkCache->badLinks->get( $link ) );
+		}
+
+		$row = (object)[
+			'ipb_address' => '127.0.0.1',
+			'by_user_name' => 'Admin',
+			'ipb_sitewide' => 1,
+			'ipb_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
+		];
+		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager->preprocessResults( [ $row ] );
+
+		foreach ( $links as $link ) {
+			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ) );
+		}
+
+		// Test Sitewide Blocks.
+		$row = (object)[
+			'ipb_address' => '127.0.0.1',
+			'by_user_name' => 'Admin',
+			'ipb_sitewide' => 1,
+		];
+		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager->preprocessResults( [ $row ] );
+
+		$this->assertObjectNotHasAttribute( 'ipb_restrictions', $row );
+
+		$pageName = 'Victor Frankenstein';
+		$page = $this->getExistingTestPage( 'Victor Frankenstein' );
+		$title = $page->getTitle();
+
+		$target = '127.0.0.1';
+
+		// Test Partial Blocks Blocks.
+		$block = new Block( [
+			'address' => $target,
+			'by' => $this->getTestSysop()->getUser()->getId(),
+			'reason' => 'Parce que',
+			'expiry' => $this->db->getInfinity(),
+			'sitewide' => false,
+		] );
+		$block->setRestrictions( [
+			new PageRestriction( 0, $page->getId() ),
+		] );
+		$block->insert();
+
+		$result = $this->db->select( 'ipblocks', [ '*' ], [ 'ipb_id' => $block->getId() ] );
+
+		$pager = new BlockListPager( new SpecialPage(),  [] );
+		$pager->preprocessResults( $result );
+
+		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
+
+		$restrictions = $wrappedPager->restrictions;
+		$this->assertInternalType( 'array', $restrictions );
+
+		$restriction = $restrictions[0];
+		$this->assertEquals( $page->getId(), $restriction->getValue() );
+		$this->assertEquals( $page->getId(), $restriction->getTitle()->getArticleId() );
+		$this->assertEquals( $title->getDBKey(), $restriction->getTitle()->getDBKey() );
+		$this->assertEquals( $title->getNamespace(), $restriction->getTitle()->getNamespace() );
+
+		// Delete the block and the restrictions.
+		$block->delete();
+	}
+}
