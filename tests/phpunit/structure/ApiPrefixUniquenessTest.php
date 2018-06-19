@@ -21,10 +21,28 @@ class ApiPrefixUniquenessTest extends MediaWikiTestCase {
 			$class = get_class( $module );
 
 			$prefix = $module->getModulePrefix();
-			if ( $prefix !== '' && isset( $prefixes[$prefix] ) /* HACK: T196962 */ && $prefix !== 'wbeu' ) {
-				$this->fail( "Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}" );
+			if ( $prefix === '' /* HACK: T196962 */ || $prefix === 'wbeu' ) {
+				continue;
+			}
+
+			if ( isset( $prefixes[$prefix] ) ) {
+				$this->fail(
+					"Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}"
+				);
 			}
 			$prefixes[$module->getModulePrefix()] = $class;
+
+			if ( $module instanceof ApiQueryGeneratorBase ) {
+				// namespace with 'g', a generator can share a prefix with a module
+				$prefix = 'g' . $prefix;
+				if ( isset( $prefixes[$prefix] ) ) {
+					$this->fail(
+						"Module prefix '{$prefix}' is shared between {$class} and {$prefixes[$prefix]}" .
+							" (as a generator)"
+					);
+				}
+				$prefixes[$module->getModulePrefix()] = $class;
+			}
 		}
 		$this->assertTrue( true ); // dummy call to make this test non-incomplete
 	}
