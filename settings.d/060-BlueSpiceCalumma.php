@@ -7,3 +7,5 @@ global $wgLogo;
 if( $wgLogo == "$wgResourceBasePath/resources/assets/wiki.png" ){
     $wgLogo = "$IP/extensions/BlueSpiceFoundation/resources/bluespice/images/bs-logo.png";
 }
+
+$GLOBALS[ 'wgVisualEditorSkinToolbarScrollOffset' ][ 'bluespicecalumma' ] = 65;
