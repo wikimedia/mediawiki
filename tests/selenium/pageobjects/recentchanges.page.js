@@ -2,12 +2,7 @@ const Page = require( 'wdio-mediawiki/Page' );
 
 class RecentChangesPage extends Page {
 	get changesList() { return browser.element( '.mw-changeslist' ); }
-	get changesListTitles() { return this.changesList.$$( '.mw-changeslist-title' ); }
-	get titles() {
-		return this.changesListTitles.map( function ( element ) {
-			return element.getText();
-		} );
-	}
+	get titles() { return this.changesList.$$( '.mw-changeslist-title' ); }
 
 	open() {
 		super.openTitle( 'Special:RecentChanges' );
