@@ -91,6 +91,9 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
 
+	/** @var string|null */
+	private $defaultGroup = null;
+
 	const ROUND_CURSORY = 'cursory';
 	const ROUND_BEGINNING = 'within-begin';
 	const ROUND_COMMITTING = 'within-commit';
@@ -138,6 +141,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->hostname = $conf['hostname'] ?? gethostname();
 		$this->agent = $conf['agent'] ?? '';
+		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 
 		$this->ticket = mt_rand();
 	}
@@ -579,6 +583,7 @@ abstract class LBFactory implements ILBFactory {
 			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
+			'defaultGroup' => $this->defaultGroup,
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
