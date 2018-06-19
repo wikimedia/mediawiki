@@ -2302,10 +2302,6 @@
 
 	};
 
-	// Alias $j to jQuery for backwards compatibility
-	// @deprecated since 1.23 Use $ or jQuery instead
-	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
-
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
 }( jQuery ) );
