@@ -5,9 +5,9 @@
 @rcfilters-spinner-size: 12px;
 @rcfilters-head-min-height: 210px;
 @rcfilters-head-margin-bottom: 20px;
-@rcfilters-wl-head-min-height: 270px;
+@rcfilters-wl-head-min-height: 295px;
 @rcfilters-head-min-height-collapsed: 130px;
-@rcfilters-wl-head-min-height-collapsed: 200px;
+@rcfilters-wl-head-min-height-collapsed: 220px;
 
 // Corrections for the standard special page
 .client-js {
@@ -24,6 +24,7 @@
 	// On the watchlist, reserve a bit more
 	.mw-special-Watchlist .rcfilters-head {
 		min-height: @rcfilters-wl-head-min-height;
+
 	}
 
 	.mw-rcfilters-collapsed {
@@ -160,6 +161,10 @@
 	// space. This makes the min-height trick work better.
 	.watchlistDetails {
 		float: left;
+		// The 20em should match the min-width we are setting up
+		// for the .mw-rcfilters-ui-watchlistTopSectionWidget-editWatchlistButton
+		// in mw.rcfilters.ui.WatchlistTopSectionWidget.less
+		width: ~'calc( 100% - 20em )';
 	}
 }
 
