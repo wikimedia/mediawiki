@@ -1034,6 +1034,77 @@
 			}
 
 			/**
+			 * Add one or more modules to the module load queue.
+			 *
+			 * See also #work().
+			 *
+			 * @private
+			 * @param {string|string[]} dependencies Module name or array of string module names
+			 * @param {Function} [ready] Callback to execute when all dependencies are ready
+			 * @param {Function} [error] Callback to execute when any dependency fails
+			 */
+			function enqueue( dependencies, ready, error ) {
+				// Allow calling by single module name
+				if ( typeof dependencies === 'string' ) {
+					dependencies = [ dependencies ];
+				}
+
+				if ( allReady( dependencies ) ) {
+					// Run ready immediately
+					if ( ready !== undefined ) {
+						ready();
+					}
+
+					return;
+				}
+
+				if ( anyFailed( dependencies ) ) {
+					if ( error !== undefined ) {
+						// Execute error immediately if any dependencies have errors
+						error(
+							new Error( 'One or more dependencies failed to load' ),
+							dependencies
+						);
+					}
+
+					return;
+				}
+
+				// Not all dependencies are ready, add to the load queue...
+
+				// Add ready and error callbacks if they were given
+				if ( ready !== undefined || error !== undefined ) {
+					jobs.push( {
+						// Narrow down the list to modules that are worth waiting for
+						dependencies: dependencies.filter( function ( module ) {
+							var state = mw.loader.getState( module );
+							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
+						} ),
+						ready: ready,
+						error: error
+					} );
+				}
+
+				dependencies.forEach( function ( module ) {
+					var state = mw.loader.getState( module );
+					// Only queue modules that are still in the initial 'registered' state
+					// (not ones already loading, ready or error).
+					if ( state === 'registered' && queue.indexOf( module ) === -1 ) {
+						// Private modules must be embedded in the page. Don't bother queuing
+						// these as the server will deny them anyway (T101806).
+						if ( registry[ module ].group === 'private' ) {
+							registry[ module ].state = 'error';
+							handlePending( module );
+							return;
+						}
+						queue.push( module );
+					}
+				} );
+
+				mw.loader.work();
+			}
+
+			/**
 			 * Executes a loaded module, making it ready to use
 			 *
 			 * @private
@@ -1120,13 +1191,24 @@
 				( function () {
 					var pending = 0;
 					checkCssHandles = function () {
+						var ex, dependencies;
 						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
 						// one of the cssHandles is fired while we're still creating more handles.
 						if ( cssHandlesRegistered && pending === 0 && runScript ) {
 							if ( module === 'user' ) {
 								// Implicit dependency on the site module. Not real dependency because
 								// it should run after 'site' regardless of whether it succeeds or fails.
-								mw.loader.using( [ 'site' ] ).always( runScript );
+								// Note: This is a simplified version of mw.loader.using(), inlined here
+								// as using() depends on jQuery (T192623).
+								try {
+									dependencies = resolve( [ 'site' ] );
+								} catch ( e ) {
+									ex = e;
+									runScript();
+								}
+								if ( ex === undefined ) {
+									enqueue( dependencies, runScript, runScript );
+								}
 							} else {
 								runScript();
 							}
@@ -1201,54 +1283,6 @@
 				// Kick off.
 				cssHandlesRegistered = true;
 				checkCssHandles();
-			}
-
-			/**
-			 * Add one or more modules to the module load queue.
-			 *
-			 * See also #work().
-			 *
-			 * @private
-			 * @param {string|string[]} dependencies Module name or array of string module names
-			 * @param {Function} [ready] Callback to execute when all dependencies are ready
-			 * @param {Function} [error] Callback to execute when any dependency fails
-			 */
-			function enqueue( dependencies, ready, error ) {
-				// Allow calling by single module name
-				if ( typeof dependencies === 'string' ) {
-					dependencies = [ dependencies ];
-				}
-
-				// Add ready and error callbacks if they were given
-				if ( ready !== undefined || error !== undefined ) {
-					jobs.push( {
-						// Narrow down the list to modules that are worth waiting for
-						dependencies: dependencies.filter( function ( module ) {
-							var state = mw.loader.getState( module );
-							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
-						} ),
-						ready: ready,
-						error: error
-					} );
-				}
-
-				dependencies.forEach( function ( module ) {
-					var state = mw.loader.getState( module );
-					// Only queue modules that are still in the initial 'registered' state
-					// (not ones already loading, ready or error).
-					if ( state === 'registered' && queue.indexOf( module ) === -1 ) {
-						// Private modules must be embedded in the page. Don't bother queuing
-						// these as the server will deny them anyway (T101806).
-						if ( registry[ module ].group === 'private' ) {
-							registry[ module ].state = 'error';
-							handlePending( module );
-							return;
-						}
-						queue.push( module );
-					}
-				} );
-
-				mw.loader.work();
 			}
 
 			function sortQuery( o ) {
@@ -1817,21 +1851,10 @@
 					} catch ( e ) {
 						return deferred.reject( e ).promise();
 					}
-					if ( allReady( dependencies ) ) {
-						// Run ready immediately
+
+					enqueue( dependencies, function () {
 						deferred.resolve( mw.loader.require );
-					} else if ( anyFailed( dependencies ) ) {
-						// Execute error immediately if any dependencies have errors
-						deferred.reject(
-							new Error( 'One or more dependencies failed to load' ),
-							dependencies
-						);
-					} else {
-						// Not all dependencies are ready, add to the load queue
-						enqueue( dependencies, function () {
-							deferred.resolve( mw.loader.require );
-						}, deferred.reject );
-					}
+					}, deferred.reject );
 
 					return deferred.promise();
 				},
@@ -1887,13 +1910,6 @@
 					// Resolve remaining list using the known dependency tree.
 					// This also filters out modules with unknown dependencies. (T36853)
 					filtered = resolveStubbornly( filtered );
-					// If all modules are ready, or if any modules have errors, nothing to be done.
-					if ( allReady( filtered ) || anyFailed( filtered ) ) {
-						return;
-					}
-					if ( filtered.length === 0 ) {
-						return;
-					}
 					// Some modules are not yet ready, add to module load queue.
 					enqueue( filtered, undefined, undefined );
 				},
