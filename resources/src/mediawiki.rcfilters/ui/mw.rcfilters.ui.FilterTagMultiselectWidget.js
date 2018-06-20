@@ -12,6 +12,9 @@
 	 * @param {mw.rcfilters.dm.SavedQueriesModel} savedQueriesModel Saved queries model
 	 * @param {Object} config Configuration object
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+	 *  system. If not given, falls back to this widget's $element
+	 * @cfg {boolean} [collapsed] Filter area is collapsed
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
 		var rcFiltersRow,
@@ -28,8 +31,10 @@
 		this.model = model;
 		this.queriesModel = savedQueriesModel;
 		this.$overlay = config.$overlay || this.$element;
+		this.$wrapper = config.$wrapper || this.$element;
 		this.matchingQuery = null;
 		this.currentView = this.model.getCurrentView();
+		this.collapsed = false;
 
 		// Parent
 		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
@@ -90,10 +95,9 @@
 		this.hideShowButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			flags: [ 'progressive' ],
-			label: mw.msg( 'rcfilters-activefilters-hide' ),
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-hideshowButton' ]
 		} );
-		this.collapsed = false;
+		this.toggleCollapsed( !!config.collapsed );
 
 		if ( !mw.user.isAnon() ) {
 			this.saveQueryButton = new mw.rcfilters.ui.SaveFiltersPopupButtonWidget(
@@ -605,23 +609,28 @@
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.toggleCollapsed = function ( isCollapsed ) {
 		isCollapsed = isCollapsed === undefined ? !this.collapsed : !!isCollapsed;
 
-		if ( this.collapsed !== isCollapsed ) {
-			this.collapsed = isCollapsed;
+		this.collapsed = isCollapsed;
 
-			if ( isCollapsed ) {
-				// If we are collapsing, close the menu, in case it was open
-				// We should make sure the menu closes before the rest of the elements
-				// are hidden, otherwise there is an unknown error in jQuery as ooui
-				// sets and unsets properties on the input (which is hidden at that point)
-				this.menu.toggle( false );
-			}
-			this.input.setDisabled( isCollapsed );
-			this.hideShowButton.setLabel( mw.msg(
-				isCollapsed ? 'rcfilters-activefilters-show' : 'rcfilters-activefilters-hide'
-			) );
-
-			this.$element.toggleClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-collapsed', isCollapsed );
+		if ( isCollapsed ) {
+			// If we are collapsing, close the menu, in case it was open
+			// We should make sure the menu closes before the rest of the elements
+			// are hidden, otherwise there is an unknown error in jQuery as ooui
+			// sets and unsets properties on the input (which is hidden at that point)
+			this.menu.toggle( false );
 		}
+		this.input.setDisabled( isCollapsed );
+		this.hideShowButton.setLabel( mw.msg(
+			isCollapsed ? 'rcfilters-activefilters-show' : 'rcfilters-activefilters-hide'
+		) );
+		this.hideShowButton.setTitle( mw.msg(
+			isCollapsed ? 'rcfilters-activefilters-show-tooltip' : 'rcfilters-activefilters-hide-tooltip'
+		) );
+
+		// Toggle the wrapper class, so we have min height values correctly throughout
+		this.$wrapper.toggleClass( 'mw-rcfilters-collapsed', isCollapsed );
+
+		// Save the state
+		this.controller.updateCollapsedState( isCollapsed );
 	};
 
 	/**

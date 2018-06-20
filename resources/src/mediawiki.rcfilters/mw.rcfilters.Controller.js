@@ -15,6 +15,8 @@
 	 * @cfg {string} savedQueriesPreferenceName Where to save the saved queries
 	 * @cfg {string} daysPreferenceName Preference name for the days filter
 	 * @cfg {string} limitPreferenceName Preference name for the limit filter
+	 * @cfg {string} collapsedPreferenceName Preference name for collapsing and showing
+	 *  the active filters area
 	 * @cfg {boolean} [normalizeTarget] Dictates whether or not to go through the
 	 *  title normalization to separate title subpage/parts into the target= url
 	 *  parameter
@@ -26,6 +28,7 @@
 		this.savedQueriesPreferenceName = config.savedQueriesPreferenceName;
 		this.daysPreferenceName = config.daysPreferenceName;
 		this.limitPreferenceName = config.limitPreferenceName;
+		this.collapsedPreferenceName = config.collapsedPreferenceName;
 		this.normalizeTarget = !!config.normalizeTarget;
 
 		this.requestCounter = {};
@@ -872,6 +875,15 @@
 	 */
 	mw.rcfilters.Controller.prototype.updateGroupByPageDefault = function ( newValue ) {
 		this.updateNumericPreference( 'usenewrc', Number( newValue ) );
+	};
+
+	/**
+	 * Update the collapsed state value
+	 *
+	 * @param {boolean} isCollapsed Filter area is collapsed
+	 */
+	mw.rcfilters.Controller.prototype.updateCollapsedState = function ( isCollapsed ) {
+		this.updateNumericPreference( this.collapsedPreferenceName, Number( isCollapsed ) );
 	};
 
 	/**

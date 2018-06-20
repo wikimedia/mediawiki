@@ -14,6 +14,9 @@
 	 * @cfg {jQuery} $filtersContainer
 	 * @cfg {jQuery} $changesListContainer
 	 * @cfg {jQuery} $formContainer
+	 * @cfg {boolean} [collapsed] Filter area is collapsed
+	 * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+	 *  system. If not given, falls back to this widget's $element
 	 */
 	mw.rcfilters.ui.MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 		controller, model, savedQueriesModel, changesListModel, config
@@ -31,6 +34,7 @@
 		this.$changesListContainer = config.$changesListContainer;
 		this.$formContainer = config.$formContainer;
 		this.$overlay = $( '<div>' ).addClass( 'mw-rcfilters-ui-overlay' );
+		this.$wrapper = config.$wrapper || this.$element;
 
 		this.savedLinksListWidget = new mw.rcfilters.ui.SavedLinksListWidget(
 			controller, savedQueriesModel, { $overlay: this.$overlay }
@@ -42,7 +46,9 @@
 			savedQueriesModel,
 			changesListModel,
 			{
-				$overlay: this.$overlay
+				$overlay: this.$overlay,
+				$wrapper: this.$wrapper,
+				collapsed: config.collapsed
 			}
 		);
 

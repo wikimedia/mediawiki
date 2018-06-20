@@ -1386,6 +1386,8 @@
 	"rcfilters-activefilters": "Active filters",
 	"rcfilters-activefilters-hide": "Hide",
 	"rcfilters-activefilters-show": "Show",
+	"rcfilters-activefilters-hide-tooltip": "Hide Active Filters area",
+	"rcfilters-activefilters-show-tooltip": "Show Active Filters area",
 	"rcfilters-advancedfilters": "Advanced filters",
 	"rcfilters-limit-title": "Results to show",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|change|changes}}, $2",
