@@ -222,13 +222,13 @@
 				.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-top' )
 				.append(
 					$( '<div>' )
-						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-title' )
-						.append(
-							title.$element,
-							this.savedQueryTitle.$element
-						),
+						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-top-title' )
+						.append( title.$element ),
 					$( '<div>' )
-						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-hideshow' )
+						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-top-queryName' )
+						.append( this.savedQueryTitle.$element ),
+					$( '<div>' )
+						.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-top-hideshow' )
 						.append(
 							this.hideShowButton.$element
 						)
