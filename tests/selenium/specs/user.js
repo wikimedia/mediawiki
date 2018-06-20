@@ -2,7 +2,8 @@ const assert = require( 'assert' ),
 	CreateAccountPage = require( '../pageobjects/createaccount.page' ),
 	PreferencesPage = require( '../pageobjects/preferences.page' ),
 	UserLoginPage = require( 'wdio-mediawiki/LoginPage' ),
-	Api = require( 'wdio-mediawiki/Api' );
+	Api = require( 'wdio-mediawiki/Api' ),
+	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'User', function () {
 	var password,
@@ -16,8 +17,8 @@ describe( 'User', function () {
 
 	beforeEach( function () {
 		browser.deleteCookie();
-		username = `User-${Math.random().toString()}`;
-		password = Math.random().toString();
+		username = Util.getTestString( 'User-' );
+		password = Util.getTestString();
 	} );
 
 	it( 'should be able to create account', function () {
@@ -42,7 +43,7 @@ describe( 'User', function () {
 	} );
 
 	it( 'should be able to change preferences', function () {
-		var realName = Math.random().toString();
+		var realName = Util.getTestString();
 
 		// create
 		browser.call( function () {
