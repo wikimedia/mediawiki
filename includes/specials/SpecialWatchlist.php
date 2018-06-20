@@ -35,6 +35,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
 	protected static $daysPreferenceName = 'watchlistdays';
 	protected static $limitPreferenceName = 'wllimit';
+	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
 	private $maxDays;
 

@@ -1889,6 +1889,8 @@ return [
 			'rcfilters-activefilters',
 			'rcfilters-activefilters-hide',
 			'rcfilters-activefilters-show',
+			'rcfilters-activefilters-hide-tooltip',
+			'rcfilters-activefilters-show-tooltip',
 			'rcfilters-advancedfilters',
 			'rcfilters-group-results-by-page',
 			'rcfilters-limit-title',

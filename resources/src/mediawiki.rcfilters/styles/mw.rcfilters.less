@@ -6,6 +6,8 @@
 @rcfilters-head-min-height: 210px;
 @rcfilters-head-margin-bottom: 20px;
 @rcfilters-wl-head-min-height: 270px;
+@rcfilters-head-min-height-collapsed: 130px;
+@rcfilters-wl-head-min-height-collapsed: 200px;
 
 // Corrections for the standard special page
 .client-js {
@@ -22,6 +24,17 @@
 	// On the watchlist, reserve a bit more
 	.mw-special-Watchlist .rcfilters-head {
 		min-height: @rcfilters-wl-head-min-height;
+	}
+
+	.mw-rcfilters-collapsed {
+		.rcfilters-head {
+			min-height: @rcfilters-head-min-height-collapsed;
+		}
+
+		// On the watchlist, reserve a bit more
+		&.mw-special-Watchlist .rcfilters-head {
+			min-height: @rcfilters-wl-head-min-height-collapsed;
+		}
 	}
 
 	.mw-recentchanges-toplinks {

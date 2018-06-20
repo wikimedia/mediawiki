@@ -57,6 +57,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected static $limitPreferenceName;
 
+	/**
+	 * Preference name for collapsing the active filter display. Subclasses should override this.
+	 * @var string
+	 */
+	protected static $collapsedPreferenceName;
+
 	/** @var string */
 	protected $rcSubpage;
 
@@ -779,8 +785,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			foreach ( $jsData['messageKeys'] as $key ) {
 				$messages[$key] = $this->msg( $key )->plain();
 			}
-
 			$out->addBodyClasses( 'mw-rcfilters-enabled' );
+
+			$collapsed = $this->getUser()->getBoolOption( static::$collapsedPreferenceName );
+			if ( $collapsed ) {
+				$out->addBodyClasses( 'mw-rcfilters-collapsed' );
+			}
 
 			$out->addHTML(
 				ResourceLoader::makeInlineScript(
@@ -790,6 +800,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			);
 
 			$out->addJsConfigVars( 'wgStructuredChangeFilters', $jsData['groups'] );
+			$out->addJsConfigVars( 'wgStructuredChangeFiltersCollapsedState', $collapsed );
 
 			$out->addJsConfigVars(
 				'wgRCFiltersChangeTags',
@@ -817,6 +828,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersDaysPreferenceName',
 				static::$daysPreferenceName
+			);
+			$out->addJsConfigVars(
+				'wgStructuredChangeFiltersCollapsedPreferenceName',
+				static::$collapsedPreferenceName
 			);
 
 			$out->addJsConfigVars(

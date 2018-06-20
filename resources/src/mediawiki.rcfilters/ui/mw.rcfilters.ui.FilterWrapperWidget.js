@@ -13,6 +13,9 @@
 	 * @param {Object} [config] Configuration object
 	 * @cfg {Object} [filters] A definition of the filter groups in this list
 	 * @cfg {jQuery} [$overlay] A jQuery object serving as overlay for popups
+	 * @cfg {jQuery} [$wrapper] A jQuery object for the wrapper of the general
+	 *  system. If not given, falls back to this widget's $element
+	 * @cfg {boolean} [collapsed] Filter area is collapsed
 	 */
 	mw.rcfilters.ui.FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 		controller, model, savedQueriesModel, changesListModel, config
@@ -30,12 +33,17 @@
 		this.queriesModel = savedQueriesModel;
 		this.changesListModel = changesListModel;
 		this.$overlay = config.$overlay || this.$element;
+		this.$wrapper = config.$wrapper || this.$element;
 
 		this.filterTagWidget = new mw.rcfilters.ui.FilterTagMultiselectWidget(
 			this.controller,
 			this.model,
 			this.queriesModel,
-			{ $overlay: this.$overlay }
+			{
+				$overlay: this.$overlay,
+				collapsed: config.collapsed,
+				$wrapper: this.$wrapper
+			}
 		);
 
 		this.liveUpdateButton = new mw.rcfilters.ui.LiveUpdateButtonWidget(
