@@ -86,9 +86,9 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	public function provideDecompress() {
-		yield '(no legacy encoding), false in false out' => [ false, false, [], false ];
 		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
 		yield '(no legacy encoding), empty in empty out' => [ false, 'A', [], 'A' ];
+		yield '(no legacy encoding), error flag -> false' => [ false, 'X', [ 'error' ], false ];
 		yield '(no legacy encoding), string in with gzip flag returns string' => [
 			// gzip string below generated with gzdeflate( 'AAAABBAAA' )
 			false, "sttttr\002\022\000", [ 'gzip' ], 'AAAABBAAA',
@@ -164,6 +164,16 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 			$expected,
 			$store->decompressData( $data, $flags )
 		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::decompressData
+	 */
+	public function testDecompressData_InvalidArgumentException() {
+		$store = $this->getBlobStore();
+
+		$this->setExpectedException( InvalidArgumentException::class );
+		$store->decompressData( false, [] );
 	}
 
 	/**

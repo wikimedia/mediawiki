@@ -399,13 +399,13 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 						// No negative caching per BlobStore::getBlob()
 						$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
 
-						return $this->decompressData( $blob, $flags );
+						return $blob === false ? false : $this->decompressData( $blob, $flags );
 					},
 					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
 				);
 			} else {
 				$blob = ExternalStore::fetchFromURL( $url, [ 'wiki' => $this->wikiId ] );
-				return $this->decompressData( $blob, $flags );
+				return $blob === false ? false : $this->decompressData( $blob, $flags );
 			}
 		} else {
 			return $this->decompressData( $raw, $flags );
@@ -461,7 +461,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @note direct use is deprecated, use getBlob() or SlotRecord::getContent() instead.
 	 * @todo make this private, there should be no need to use this method outside this class.
 	 *
-	 * @param mixed $blob Reference to a text
+	 * @param string $blob Blob in compressed/encoded form.
 	 * @param array $blobFlags Compression flags, such as 'gzip'.
 	 *   Note that not including 'utf-8' in $blobFlags will cause the data to be decoded
 	 *   according to the legacy encoding specified via setLegacyEncoding.
@@ -469,10 +469,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public function decompressData( $blob, array $blobFlags ) {
-		if ( $blob === false ) {
-			// Text failed to be fetched; nothing to do
-			return false;
-		}
+		// Revision::decompressRevisionText accepted false here, so defend against that
+		Assert::parameterType( 'string', $blob, '$blob' );
 
 		if ( in_array( 'error', $blobFlags ) ) {
 			// Error row, return false
