@@ -1143,6 +1143,8 @@ abstract class Maintenance {
 		}
 		if ( $this->hasOption( 'dbgroupdefault' ) ) {
 			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
+
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
 		}
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
