@@ -583,6 +583,61 @@
 		};
 	}() );
 
+	/**
+	 * Execute a function as soon as one or more required modules are ready.
+	 *
+	 * Example of inline dependency on OOjs:
+	 *
+	 *     mw.loader.using( 'oojs', function () {
+	 *         OO.compare( [ 1 ], [ 1 ] );
+	 *     } );
+	 *
+	 * Example of inline dependency obtained via `require()`:
+	 *
+	 *     mw.loader.using( [ 'mediawiki.util' ], function ( require ) {
+	 *         var util = require( 'mediawiki.util' );
+	 *     } );
+	 *
+	 * Since MediaWiki 1.23 this also returns a promise.
+	 *
+	 * Since MediaWiki 1.28 the promise is resolved with a `require` function.
+	 *
+	 * @member mw.loader
+	 * @param {string|Array} dependencies Module name or array of modules names the
+	 *  callback depends on to be ready before executing
+	 * @param {Function} [ready] Callback to execute when all dependencies are ready
+	 * @param {Function} [error] Callback to execute if one or more dependencies failed
+	 * @return {jQuery.Promise} With a `require` function
+	 */
+	mw.loader.using = function ( dependencies, ready, error ) {
+		var deferred = $.Deferred();
+
+		// Allow calling with a single dependency as a string
+		if ( typeof dependencies === 'string' ) {
+			dependencies = [ dependencies ];
+		}
+
+		if ( ready ) {
+			deferred.done( ready );
+		}
+		if ( error ) {
+			deferred.fail( error );
+		}
+
+		try {
+			// Resolve entire dependency map
+			dependencies = mw.loader.resolve( dependencies );
+		} catch ( e ) {
+			return deferred.reject( e ).promise();
+		}
+
+		mw.loader.enqueue( dependencies, function () {
+			deferred.resolve( mw.loader.require );
+		}, deferred.reject );
+
+		return deferred.promise();
+	};
+
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );

@@ -1578,6 +1578,10 @@
 				 */
 				addStyleTag: newStyleTag,
 
+				enqueue: enqueue,
+
+				resolve: resolve,
+
 				/**
 				 * Start loading of all queued module dependencies.
 				 *
@@ -1803,60 +1807,6 @@
 							execute( name );
 						}
 					}
-				},
-
-				/**
-				 * Execute a function as soon as one or more required modules are ready.
-				 *
-				 * Example of inline dependency on OOjs:
-				 *
-				 *     mw.loader.using( 'oojs', function () {
-				 *         OO.compare( [ 1 ], [ 1 ] );
-				 *     } );
-				 *
-				 * Example of inline dependency obtained via `require()`:
-				 *
-				 *     mw.loader.using( [ 'mediawiki.util' ], function ( require ) {
-				 *         var util = require( 'mediawiki.util' );
-				 *     } );
-				 *
-				 * Since MediaWiki 1.23 this also returns a promise.
-				 *
-				 * Since MediaWiki 1.28 the promise is resolved with a `require` function.
-				 *
-				 * @param {string|Array} dependencies Module name or array of modules names the
-				 *  callback depends on to be ready before executing
-				 * @param {Function} [ready] Callback to execute when all dependencies are ready
-				 * @param {Function} [error] Callback to execute if one or more dependencies failed
-				 * @return {jQuery.Promise} With a `require` function
-				 */
-				using: function ( dependencies, ready, error ) {
-					var deferred = $.Deferred();
-
-					// Allow calling with a single dependency as a string
-					if ( typeof dependencies === 'string' ) {
-						dependencies = [ dependencies ];
-					}
-
-					if ( ready ) {
-						deferred.done( ready );
-					}
-					if ( error ) {
-						deferred.fail( error );
-					}
-
-					try {
-						// Resolve entire dependency map
-						dependencies = resolve( dependencies );
-					} catch ( e ) {
-						return deferred.reject( e ).promise();
-					}
-
-					enqueue( dependencies, function () {
-						deferred.resolve( mw.loader.require );
-					}, deferred.reject );
-
-					return deferred.promise();
 				},
 
 				/**
