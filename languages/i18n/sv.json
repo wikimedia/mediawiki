@@ -3567,7 +3567,7 @@
 	"tag-mw-undo": "Ångra",
 	"tag-mw-undo-description": "Redigeringar som ångrar föregående redigeringar med ångralänken",
 	"tags-title": "Märken",
-	"tags-intro": "Denna sida listar de märken som programvaran kan markera en redigering med, och deras betydelse.",
+	"tags-intro": "Denna sida listar de märken som programvaran kan markera en redigering med, samt deras betydelse.",
 	"tags-tag": "Märkesnamn",
 	"tags-display-header": "Utseende på listor över ändringar",
 	"tags-description-header": "Full beskrivning av betydelse",
