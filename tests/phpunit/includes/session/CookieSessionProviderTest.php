@@ -519,7 +519,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 
 		$normalExpiry = $config->get( 'CookieExpiration' );
 		$extendedExpiry = $config->get( 'ExtendedLoginCookieExpiration' );
-		$extendedExpiry = (int)( $extendedExpiry === null ? 0 : $extendedExpiry );
+		$extendedExpiry = (int)( $extendedExpiry ?? 0 );
 		$expect = [
 			'MySessionName' => [
 				'value' => (string)$sessionId,

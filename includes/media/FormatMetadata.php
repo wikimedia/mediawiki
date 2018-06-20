@@ -971,11 +971,7 @@ class FormatMetadata extends ContextSource {
 
 					case 'LanguageCode':
 						$lang = Language::fetchLanguageName( strtolower( $val ), $this->getLanguage()->getCode() );
-						if ( $lang ) {
-							$val = htmlspecialchars( $lang );
-						} else {
-							$val = htmlspecialchars( $val );
-						}
+						$val = htmlspecialchars( $lang ?: $val );
 						break;
 
 					default:

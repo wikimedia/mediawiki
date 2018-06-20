@@ -87,11 +87,7 @@ class UserrightsPage extends SpecialPage {
 
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 
-		if ( $par !== null ) {
-			$this->mTarget = $par;
-		} else {
-			$this->mTarget = $request->getVal( 'user' );
-		}
+		$this->mTarget = $par ?? $request->getVal( 'user' );
 
 		if ( is_string( $this->mTarget ) ) {
 			$this->mTarget = trim( $this->mTarget );

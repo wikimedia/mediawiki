@@ -149,11 +149,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		$miser_ns = null;
 
 		if ( $mode == 'all' ) {
-			if ( $params['namespace'] !== null ) {
-				$namespaces = $params['namespace'];
-			} else {
-				$namespaces = MWNamespace::getValidNamespaces();
-			}
+			$namespaces = $params['namespace'] ?? MWNamespace::getValidNamespaces();
 			$this->addWhereFld( 'ar_namespace', $namespaces );
 
 			// For from/to/prefix, we have to consider the potential

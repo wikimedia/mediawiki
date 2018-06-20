@@ -55,7 +55,7 @@ class CloneDatabase {
 		$this->db = $db;
 		$this->tablesToClone = $tablesToClone;
 		$this->newTablePrefix = $newTablePrefix;
-		$this->oldTablePrefix = $oldTablePrefix !== null ? $oldTablePrefix : $this->db->tablePrefix();
+		$this->oldTablePrefix = $oldTablePrefix ?? $this->db->tablePrefix();
 		$this->dropCurrentTables = $dropCurrentTables;
 	}
 

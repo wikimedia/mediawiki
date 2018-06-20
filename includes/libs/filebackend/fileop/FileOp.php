@@ -115,7 +115,7 @@ abstract class FileOp {
 		if ( FileBackend::isStoragePath( $path ) ) {
 			$res = FileBackend::normalizeStoragePath( $path );
 
-			return ( $res !== null ) ? $res : $path;
+			return $res ?? $path;
 		}
 
 		return $path;

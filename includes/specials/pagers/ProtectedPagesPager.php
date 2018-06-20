@@ -235,7 +235,7 @@ class ProtectedPagesPager extends TablePager {
 						$this->getUser()
 					) ) {
 						$value = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
-						$formatted = Linker::formatComment( $value !== null ? $value : '' );
+						$formatted = Linker::formatComment( $value ?? '' );
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
 					}

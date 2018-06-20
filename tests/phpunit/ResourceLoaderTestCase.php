@@ -143,7 +143,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 
 	public function shouldEmbedModule( ResourceLoaderContext $context ) {
-		return $this->shouldEmbed !== null ? $this->shouldEmbed : parent::shouldEmbedModule( $context );
+		return $this->shouldEmbed ?? parent::shouldEmbedModule( $context );
 	}
 
 	public function enableModuleContentVersion() {

@@ -50,11 +50,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts = [];
 		$request = $this->getRequest();
 
-		if ( $par !== null ) {
-			$target = $par;
-		} else {
-			$target = $request->getVal( 'target' );
-		}
+		$target = $par ?? $request->getVal( 'target' );
 
 		if ( $request->getVal( 'contribs' ) == 'newbie' || $par === 'newbies' ) {
 			$target = 'newbies';

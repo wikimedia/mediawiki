@@ -1641,7 +1641,7 @@ class Block {
 			$reason,
 			$context->getRequest()->getIP(),
 			$this->getByName(),
-			$systemBlockType !== null ? $systemBlockType : $this->getId(),
+			$systemBlockType ?? $this->getId(),
 			$lang->formatExpiry( $this->mExpiry ),
 			(string)$intended,
 			$lang->userTimeAndDate( $this->mTimestamp, $context->getUser() ),

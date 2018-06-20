@@ -84,7 +84,7 @@ class UpdateSpecialPages extends Maintenance {
 				if ( $queryPage->isExpensive() ) {
 					$t1 = microtime( true );
 					# Do the query
-					$num = $queryPage->recache( $limit === null ? $wgQueryCacheLimit : $limit );
+					$num = $queryPage->recache( $limit ?? $wgQueryCacheLimit );
 					$t2 = microtime( true );
 					if ( $num === false ) {
 						$this->output( "FAILED: database error\n" );
