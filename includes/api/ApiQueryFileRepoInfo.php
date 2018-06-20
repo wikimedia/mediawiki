@@ -81,6 +81,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => implode( '|', $props ),
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => $props,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];
 	}
@@ -100,14 +101,20 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		$propValues[] = 'canUpload';
 
+		sort( $propValues );
 		return $propValues;
 	}
 
 	protected function getExamplesMessages() {
-		return [
-			'action=query&meta=filerepoinfo&friprop=apiurl|name|displayname'
-				=> 'apihelp-query+filerepoinfo-example-simple',
-		];
+		$examples = [];
+
+		$props = array_intersect( [ 'apiurl', 'name', 'displayname' ], $this->getProps() );
+		if ( $props ) {
+			$examples['action=query&meta=filerepoinfo&friprop=' . implode( '|', $props )] =
+				'apihelp-query+filerepoinfo-example-simple';
+		}
+
+		return $examples;
 	}
 
 	public function getHelpUrls() {

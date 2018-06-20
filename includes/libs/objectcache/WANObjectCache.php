@@ -1223,7 +1223,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 				}
 				// Use the busy fallback value if nothing else
 				if ( $busyValue !== null ) {
-					$this->stats->increment( "wanobjectcache.$kClass.miss.busy" );
+					$miss = is_infinite( $minTime ) ? 'renew' : 'miss';
+					$this->stats->increment( "wanobjectcache.$kClass.$miss.busy" );
 
 					return is_callable( $busyValue ) ? $busyValue() : $busyValue;
 				}
@@ -1268,7 +1269,8 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 			$this->cache->changeTTL( self::MUTEX_KEY_PREFIX . $key, (int)$preCallbackTime - 60 );
 		}
 
-		$this->stats->increment( "wanobjectcache.$kClass.miss.compute" );
+		$miss = is_infinite( $minTime ) ? 'renew' : 'miss';
+		$this->stats->increment( "wanobjectcache.$kClass.$miss.compute" );
 
 		return $value;
 	}
