@@ -540,6 +540,24 @@ return [
 		);
 	},
 
+	'ChangeTagDefStore' => function ( MediaWikiServices $services ) {
+		return new NameTableStore(
+			$services->getDBLoadBalancer(),
+			$services->getMainWANObjectCache(),
+			LoggerFactory::getInstance( 'NameTableSqlStore' ),
+			'change_tag_def',
+			'ctd_id',
+			'ctd_name',
+			null,
+			false,
+			function ( $insertFields ) {
+				$insertFields['ctd_user_defined'] = 0;
+				$insertFields['ctd_count'] = 0;
+				return $insertFields;
+			}
+		);
+	},
+
 	'PreferencesFactory' => function ( MediaWikiServices $services ) {
 		global $wgContLang;
 		$authManager = AuthManager::singleton();

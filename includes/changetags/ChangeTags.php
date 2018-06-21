@@ -21,9 +21,7 @@
  * @ingroup Change tagging
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\NameTableStore;
 use Wikimedia\Rdbms\Database;
 
 class ChangeTags {
@@ -348,21 +346,7 @@ class ChangeTags {
 		if ( count( $tagsToAdd ) ) {
 			$changeTagMapping = [];
 			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_OLD ) {
-				$changeTagDefStore = new NameTableStore(
-					MediaWikiServices::getInstance()->getDBLoadBalancer(),
-					MediaWikiServices::getInstance()->getMainWANObjectCache(),
-					LoggerFactory::getInstance( 'NameTableSqlStore' ),
-					'change_tag_def',
-					'ctd_id',
-					'ctd_name',
-					null,
-					false,
-					function ( $insertFields ) {
-						$insertFields['ctd_user_defined'] = 0;
-						$insertFields['ctd_count'] = 0;
-						return $insertFields;
-					}
-				);
+				$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 
 				foreach ( $tagsToAdd as $tag ) {
 					$changeTagMapping[$tag] = $changeTagDefStore->acquireId( $tag );
