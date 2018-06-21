@@ -12670,10 +12670,13 @@ parsoid=wt2html
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi {{}}"}},"i":0}}]}'>hi {{}}</p>
 !! end
 
+# Ensure we're using a language without variants for this test; even
+# if $wgUsePigLatinVariant is true.  We've picked `de` arbitrarily.
 !! test
 Preprocessor precedence 18: another rightmost wins scenario
 !! options
 parsoid=wt2html
+language=de
 !! wikitext
 {{ -{{{{1|tplarg}}} }} }-
 !! html/php
