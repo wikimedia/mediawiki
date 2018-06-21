@@ -43,28 +43,28 @@ class EnConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
-		if ( $toVariant === 'en-x-piglatin' ) {
-			// Only process words composed of standard English alphabet, leave the rest unchanged.
-			// This skips some English words like 'naïve' or 'résumé', but we can live with that.
-			// Ignore single letters and words which aren't lowercase or uppercase-first.
-			return preg_replace_callback( '/[A-Za-z][a-z\']+/', function ( $matches ) {
-				$word = $matches[0];
-				if ( preg_match( '/^[aeiou]/i', $word ) ) {
-					return $word . 'way';
-				} else {
-					return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', function ( $m ) {
-						$ucfirst = strtoupper( $m[1][0] ) === $m[1][0];
-						if ( $ucfirst ) {
-							return ucfirst( $m[2] ) . lcfirst( $m[1] ) . 'ay';
-						} else {
-							return $m[2] . $m[1] . 'ay';
-						}
-					}, $word );
-				}
-			}, $text );
-		} else {
+		if ( $toVariant !== 'en-x-piglatin' ) {
 			return $text;
 		}
+
+		// Only process words composed of standard English alphabet, leave the rest unchanged.
+		// This skips some English words like 'naïve' or 'résumé', but we can live with that.
+		// Ignore single letters and words which aren't lowercase or uppercase-first.
+		return preg_replace_callback( '/[A-Za-z][a-z\']+/', function ( $matches ) {
+			$word = $matches[0];
+			if ( preg_match( '/^[aeiou]/i', $word ) ) {
+				return $word . 'way';
+			}
+
+			return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', function ( $m ) {
+				$ucfirst = strtoupper( $m[1][0] ) === $m[1][0];
+				if ( $ucfirst ) {
+					return ucfirst( $m[2] ) . lcfirst( $m[1] ) . 'ay';
+				}
+
+				return $m[2] . $m[1] . 'ay';
+			}, $word );
+		}, $text );
 	}
 }
 
@@ -75,13 +75,12 @@ class EnConverter extends LanguageConverter {
  */
 class LanguageEn extends Language {
 	function __construct() {
-		global $wgUsePigLatinVariant, $wgHooks;
+		global $wgUsePigLatinVariant;
 
 		parent::__construct();
 
 		if ( $wgUsePigLatinVariant ) {
 			$this->mConverter = new EnConverter( $this, 'en', [ 'en', 'en-x-piglatin' ] );
-			$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 		}
 	}
 }
