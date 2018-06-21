@@ -1408,6 +1408,8 @@
 	"rcfilters-activefilters": "应用的过滤器",
 	"rcfilters-activefilters-hide": "隐藏",
 	"rcfilters-activefilters-show": "显示",
+	"rcfilters-activefilters-hide-tooltip": "隐藏激活过滤器区域",
+	"rcfilters-activefilters-show-tooltip": "显示激活过滤器区域",
 	"rcfilters-advancedfilters": "高级过滤器",
 	"rcfilters-limit-title": "要显示的结果",
 	"rcfilters-limit-and-date-label": "$1次{{PLURAL:$1|更改}}，$2",

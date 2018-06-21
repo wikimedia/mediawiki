@@ -400,6 +400,7 @@
 	"apihelp-xml-summary": "Toon de data in het XML formaat.",
 	"apihelp-xmlfm-summary": "Toon de data in het XML formaat (opgemaakt in HTML).",
 	"api-format-title": "MediaWiki API resultaat.",
+	"api-format-prettyprint-header-hyperlinked": "Dit is de HTML uitvoer van het $1 formaat. HTML is geschikt voor het debuggen, maar ongeschikt voor applicatiegebruik.\n\nGeef de parameter <var>format</var> mee om het uitvoerformaat te wijzigen. Geef [$3 <kbd>format=$2</kbd>] mee om de niet-HTML uitvoer van het $1 formaat te zien.\n\nBekijk de [[mw:API|volledige documentatie]], of de [[Special:ApiHelp/main|API hulp]] voor meer informatie.",
 	"api-help-title": "MediaWiki API hulp",
 	"api-help-undocumented-module": "Er is geen documentatie voor de module $1.",
 	"api-help-flag-internal": "<strong>Deze module is voor intern gebruik of nog niet stabiel.</strong> De functionaliteit kan zonder enige voorafgaande melding wijzigen.",

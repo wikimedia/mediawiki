@@ -1381,6 +1381,8 @@
 	"rcfilters-activefilters": "المرشحات النشطة",
 	"rcfilters-activefilters-hide": "إخفاء",
 	"rcfilters-activefilters-show": "عرض",
+	"rcfilters-activefilters-hide-tooltip": "إخفاء منطقة المرشحات النشطة",
+	"rcfilters-activefilters-show-tooltip": "إظهار منطقة المرشحات النشطة",
 	"rcfilters-advancedfilters": "مرشحات متقدمة",
 	"rcfilters-limit-title": "النتائج للعرض",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|تغيير|تغييرات}}، $2",

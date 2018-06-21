@@ -1337,6 +1337,8 @@
 	"rcfilters-activefilters": "Активни филтри",
 	"rcfilters-activefilters-hide": "Скриј",
 	"rcfilters-activefilters-show": "Прикажи",
+	"rcfilters-activefilters-hide-tooltip": "Скриј го подрачјето за активни филтри",
+	"rcfilters-activefilters-show-tooltip": "Покажи го подрачјето за активни филтри",
 	"rcfilters-advancedfilters": "Напредни филтри",
 	"rcfilters-limit-title": "Ставки за приказ",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|промена|промени}}, $2",
