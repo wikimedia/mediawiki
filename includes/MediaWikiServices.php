@@ -790,6 +790,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.32
+	 * @return NameTableStore
+	 */
+	public function getChangeTagDefStore() {
+		return $this->getService( 'ChangeTagDefStore' );
+	}
+
+	/**
 	 * @since 1.31
 	 * @return PreferencesFactory
 	 */
