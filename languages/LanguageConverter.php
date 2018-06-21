@@ -224,7 +224,7 @@ class LanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
-	 * @return mixed Variant if one found, false otherwise.
+	 * @return mixed Variant if one found, null otherwise
 	 */
 	public function getURLVariant() {
 		global $wgRequest;
@@ -247,7 +247,7 @@ class LanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
-	 * @return mixed Variant if one found, false otherwise.
+	 * @return mixed Variant if one found, null otherwise
 	 */
 	protected function getUserVariant() {
 		global $wgUser, $wgContLang;
@@ -284,7 +284,7 @@ class LanguageConverter {
 	/**
 	 * Determine the language variant from the Accept-Language header.
 	 *
-	 * @return mixed Variant if one found, false otherwise.
+	 * @return mixed Variant if one found, null otherwise
 	 */
 	protected function getHeaderVariant() {
 		global $wgRequest;
