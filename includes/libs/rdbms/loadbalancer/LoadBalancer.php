@@ -38,10 +38,39 @@ use Exception;
  * @ingroup Database
  */
 class LoadBalancer implements ILoadBalancer {
-	/** @var array[] Map of (server index => server config array) */
-	private $servers;
+	/** @var ILoadMonitor */
+	private $loadMonitor;
+	/** @var callable|null Callback to run before the first connection attempt */
+	private $chronologyCallback;
+	/** @var BagOStuff */
+	private $srvCache;
+	/** @var WANObjectCache */
+	private $wanCache;
+	/** @var object|string Class name or object With profileIn/profileOut methods */
+	private $profiler;
+	/** @var TransactionProfiler */
+	private $trxProfiler;
+	/** @var LoggerInterface */
+	private $replLogger;
+	/** @var LoggerInterface */
+	private $connLogger;
+	/** @var LoggerInterface */
+	private $queryLogger;
+	/** @var LoggerInterface */
+	private $perfLogger;
+	/** @var callable Exception logger */
+	private $errorLogger;
+	/** @var callable Deprecation logger */
+	private $deprecationLogger;
+
+	/** @var DatabaseDomain Local Domain ID and default for selectDB() calls */
+	private $localDomain;
+
 	/** @var Database[][][] Map of (connection category => server index => IDatabase[]) */
 	private $conns;
+
+	/** @var array[] Map of (server index => server config array) */
+	private $servers;
 	/** @var float[] Map of (server index => weight) */
 	private $loads;
 	/** @var array[] Map of (group => server index => weight) */
@@ -52,31 +81,24 @@ class LoadBalancer implements ILoadBalancer {
 	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
+	/** @var string Alternate ID string for the domain instead of DatabaseDomain::getId() */
+	private $localDomainIdAlias;
+	/** @var int */
+	private $maxLag = self::MAX_LAG_DEFAULT;
+
+	/** @var string Current server name */
+	private $hostname;
+	/** @var bool Whether this PHP instance is for a CLI script */
+	private $cliMode;
+	/** @var string Agent name for query profiling */
+	private $agent;
+
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
 	private $tableAliases = [];
 	/** @var string[] Map of (index alias => index) */
 	private $indexAliases = [];
-
-	/** @var ILoadMonitor */
-	private $loadMonitor;
-	/** @var callable|null Callback to run before the first connection attempt */
-	private $chronologyCallback;
-	/** @var BagOStuff */
-	private $srvCache;
-	/** @var WANObjectCache */
-	private $wanCache;
-	/** @var object|string Class name or object With profileIn/profileOut methods */
-	protected $profiler;
-	/** @var TransactionProfiler */
-	protected $trxProfiler;
-	/** @var LoggerInterface */
-	protected $replLogger;
-	/** @var LoggerInterface */
-	protected $connLogger;
-	/** @var LoggerInterface */
-	protected $queryLogger;
-	/** @var LoggerInterface */
-	protected $perfLogger;
+	/** @var array[] Map of (name => callable) */
+	private $trxRecurringCallbacks = [];
 
 	/** @var Database DB connection object that caused a problem */
 	private $errorConnection;
@@ -94,32 +116,13 @@ class LoadBalancer implements ILoadBalancer {
 	private $readOnlyReason = false;
 	/** @var int Total connections opened */
 	private $connsOpened = 0;
-	/** @var string|bool String if a requested DBO_TRX transaction round is active */
-	private $trxRoundId = false;
-	/** @var array[] Map of (name => callable) */
-	private $trxRecurringCallbacks = [];
-	/** @var DatabaseDomain Local Domain ID and default for selectDB() calls */
-	private $localDomain;
-	/** @var string Alternate ID string for the domain instead of DatabaseDomain::getId() */
-	private $localDomainIdAlias;
-	/** @var string Current server name */
-	private $host;
-	/** @var bool Whether this PHP instance is for a CLI script */
-	protected $cliMode;
-	/** @var string Agent name for query profiling */
-	protected $agent;
-
-	/** @var callable Exception logger */
-	private $errorLogger;
-	/** @var callable Deprecation logger */
-	private $deprecationLogger;
-
 	/** @var bool */
 	private $disabled = false;
 	/** @var bool Whether any connection has been attempted yet */
 	private $connectionAttempted = false;
-	/** @var int */
-	private $maxLag = self::MAX_LAG_DEFAULT;
+
+	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
 
@@ -247,7 +250,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->$key = $params[$key] ?? new NullLogger();
 		}
 
-		$this->host = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
+		$this->hostname = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
 		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $params['agent'] ?? '';
 
@@ -983,7 +986,7 @@ class LoadBalancer implements ILoadBalancer {
 			$oldDomain = key( $this->conns[$connFreeKey][$i] );
 			if ( strlen( $dbName ) && !$conn->selectDB( $dbName ) ) {
 				$this->lastError = "Error selecting database '$dbName' on server " .
-					$conn->getServer() . " from client host {$this->host}";
+					$conn->getServer() . " from client host {$this->hostname}";
 				$this->errorConnection = $conn;
 				$conn = false;
 			} else {
