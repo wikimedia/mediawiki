@@ -38,23 +38,24 @@ use LogicException;
  */
 abstract class LBFactory implements ILBFactory {
 	/** @var ChronologyProtector */
-	protected $chronProt;
+	private $chronProt;
 	/** @var object|string Class name or object With profileIn/profileOut methods */
-	protected $profiler;
+	private $profiler;
 	/** @var TransactionProfiler */
-	protected $trxProfiler;
+	private $trxProfiler;
 	/** @var LoggerInterface */
-	protected $replLogger;
+	private $replLogger;
 	/** @var LoggerInterface */
-	protected $connLogger;
+	private $connLogger;
 	/** @var LoggerInterface */
-	protected $queryLogger;
+	private $queryLogger;
 	/** @var LoggerInterface */
-	protected $perfLogger;
+	private $perfLogger;
 	/** @var callable Error logger */
-	protected $errorLogger;
+	private $errorLogger;
 	/** @var callable Deprecation logger */
-	protected $deprecationLogger;
+	private $deprecationLogger;
+
 	/** @var BagOStuff */
 	protected $srvCache;
 	/** @var BagOStuff */
@@ -64,32 +65,32 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
-	/** @var string Local hostname of the app server */
-	protected $hostname;
-	/** @var array Web request information about the client */
-	protected $requestInfo;
 
-	/** @var mixed */
-	protected $ticket;
-	/** @var string|bool String if a requested DBO_TRX transaction round is active */
-	protected $trxRoundId = false;
-	/** @var string|bool Reason all LBs are read-only or false if not */
-	protected $readOnlyReason = false;
-	/** @var callable[] */
-	protected $replicationWaitCallbacks = [];
+	/** @var string Local hostname of the app server */
+	private $hostname;
+	/** @var array Web request information about the client */
+	private $requestInfo;
+	/** @var bool Whether this PHP instance is for a CLI script */
+	private $cliMode;
+	/** @var string Agent name for query profiling */
+	private $agent;
 
 	/** @var array[] $aliases Map of (table => (dbname, schema, prefix) map) */
-	protected $tableAliases = [];
+	private $tableAliases = [];
 	/** @var string[] Map of (index alias => index) */
-	protected $indexAliases = [];
+	private $indexAliases = [];
+	/** @var callable[] */
+	private $replicationWaitCallbacks = [];
 
-	/** @var bool Whether this PHP instance is for a CLI script */
-	protected $cliMode;
-	/** @var string Agent name for query profiling */
-	protected $agent;
-
+	/** @var mixed */
+	private $ticket;
+	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	private $trxRoundId = false;
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
+
+	/** @var string|bool Reason all LBs are read-only or false if not */
+	protected $readOnlyReason = false;
 
 	/** @var string|null */
 	private $defaultGroup = null;
