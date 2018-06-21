@@ -522,7 +522,7 @@
 	"whatlinkshere-title": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⵉⵣⴷⵉⵏ ⵖⵔ $1",
 	"whatlinkshere-page": "ⵜⴰⵙⵏⴰ:",
 	"linkshere": "ⵜⴰⵙⵏⵉⵡⵉⵏ ⴰⴷ ⵣⴷⵉⵏ ⵖⵔ <strong>$1</strong>:",
-	"nolinkshere": "ⵓⵔ ⵍⵍⵉⵏ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵉⵣⴷⵉⵏ ⵖⵔ <strong>$1</strong>",
+	"nolinkshere": "ⵓⵔ ⵍⵍⵉⵏ ⵜⴰⵙⵏⵉⵡⵉⵏ ⵉⵣⴷⵉⵏ ⵖⵔ <strong>$2</strong>",
 	"isredirect": "ⵙⵡⴰⵍⴰ ⵜⴰⵙⵏⴰ",
 	"istemplate": "ⴰⵙⵙⵓⵎⵢ",
 	"isimage": "ⴰⵙⵖⵓⵏ ⵏ ⵓⴼⴰⵢⵍⵓ",

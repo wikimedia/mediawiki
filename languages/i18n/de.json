@@ -1404,6 +1404,8 @@
 	"rcfilters-activefilters": "Aktive Filter",
 	"rcfilters-activefilters-hide": "Ausblenden",
 	"rcfilters-activefilters-show": "Anzeigen",
+	"rcfilters-activefilters-hide-tooltip": "Bereich der aktiven Filter ausblenden",
+	"rcfilters-activefilters-show-tooltip": "Bereich der aktiven Filter anzeigen",
 	"rcfilters-advancedfilters": "Erweiterte Filter",
 	"rcfilters-limit-title": "Anzuzeigende Ergebnisse",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|Eine Änderung|$1 Änderungen}}, $2",

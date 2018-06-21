@@ -1486,6 +1486,8 @@
 	"rcfilters-activefilters": "Filtres actifs",
 	"rcfilters-activefilters-hide": "Masquer",
 	"rcfilters-activefilters-show": "Afficher",
+	"rcfilters-activefilters-hide-tooltip": "Masquer la zone des Filtres actifs",
+	"rcfilters-activefilters-show-tooltip": "Afficher la zone des Filtres actifs",
 	"rcfilters-advancedfilters": "Filtres avancés",
 	"rcfilters-limit-title": "Résultats à afficher",
 	"rcfilters-limit-and-date-label": "$1 modification{{PLURAL:$1||s}}, $2",
