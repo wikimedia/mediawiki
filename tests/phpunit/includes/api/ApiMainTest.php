@@ -435,6 +435,35 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
+	 * Test that 'assert' is processed before module errors
+	 */
+	public function testAssertBeforeModule() {
+		// Sanity check that the query without assert throws too-many-titles
+		try {
+			$this->doApiRequest( [
+				'action' => 'query',
+				'titles' => implode( '|', range( 1, ApiBase::LIMIT_SML1 + 1 ) ),
+			], null, null, new User );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'too-many-titles' ), 'sanity check' );
+		}
+
+		// Now test that the assert happens first
+		try {
+			$this->doApiRequest( [
+				'action' => 'query',
+				'titles' => implode( '|', range( 1, ApiBase::LIMIT_SML1 + 1 ) ),
+				'assert' => 'user',
+			], null, null, new User );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'assertuserfailed' ),
+				"Error '{$e->getMessage()}' matched expected 'assertuserfailed'" );
+		}
+	}
+
+	/**
 	 * Test if all classes in the main module manager exists
 	 */
 	public function testClassNamesInModuleManager() {
