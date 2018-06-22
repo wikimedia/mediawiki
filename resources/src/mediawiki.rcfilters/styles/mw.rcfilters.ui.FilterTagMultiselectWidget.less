@@ -66,19 +66,25 @@
 			display: flex;
 			flex-wrap: nowrap;
 			justify-content: space-between;
-		}
 
-		&-title {
-			padding: 0.6em 0; // Same top padding as the handle
-			white-space: nowrap;
-			min-width: 0; // This has to be here to enable the text truncation
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+			&-title {
+				padding: 0.6em 0; // Same top padding as the handle
+				flex: 0 0 auto;
+			}
+			&-queryName {
+				flex: 1 1 auto;
+				padding: 0.6em 0; // Same top padding as the handle
+				white-space: nowrap;
+				min-width: 0; // This has to be here to enable the text truncation
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 
-		&-hideshow {
-			margin-left: 0.5em;
-			padding-left: 0.5em;
+			&-hideshow {
+				flex: 0 0 auto;
+				margin-left: 0.5em;
+				padding-left: 0.5em;
+			}
 		}
 
 		&-content {
@@ -96,6 +102,14 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				// This is necessary for Firefox to be able to
+				// truncate the text. Without this rule, the label
+				// is treated as if it's full-width, and while it is
+				// being truncated with the overflow:hidden,
+				// the ellipses isn't showing properly.
+				// This rule seems to convince Firefox to re-render,
+				// fix the label's width properly, and add the ellipses
+				max-width: 100%;
 			}
 		}
 	}
