@@ -112,15 +112,9 @@ class PageUpdater {
 	private $ajaxEditStash = true;
 
 	/**
-	 * The ID of the logical base revision the content of the new revision is based on.
-	 * Not to be confused with the immediate parent revision (the current revision before the
-	 * new revision is created).
-	 * The base revision is the last revision known to the client, while the parent revision
-	 * is determined on the server by grabParentRevision().
-	 *
 	 * @var bool|int
 	 */
-	private $baseRevId = false;
+	private $originalRevId = false;
 
 	/**
 	 * @var array
@@ -247,19 +241,19 @@ class PageUpdater {
 	}
 
 	/**
-	 * Checks whether this update conflicts with another update performed since the specified base
-	 * revision. A user level "edit conflict" is detected when the base revision known to the client
-	 * and specified via setBaseRevisionId() is not the ID of the current revision before the
-	 * update. If setBaseRevisionId() was not called, this method always returns false.
+	 * Checks whether this update conflicts with another update performed between the client
+	 * loading data to prepare an edit, and the client committing the edit. This is intended to
+	 * detect user level "edit conflict" when the latest revision known to the client
+	 * is no longer the current revision when processing the update.
 	 *
-	 * Note that an update expected to be based on a non-existing page will have base revision ID 0,
-	 * and is considered to have a conflict if a current revision exists (that is, the page was
-	 * created since the base revision was determined by the client).
+	 * An update expected to create a new page can be checked by setting $expectedParentRevision = 0.
+	 * Such an update is considered to have a conflict if a current revision exists (that is,
+	 * the page was created since the edit was initiated on the client).
 	 *
 	 * This method returning true indicates to calling code that edit conflict resolution should
 	 * be applied before saving any data. It does not prevent the update from being performed, and
 	 * it should not be confused with a "late" conflict indicated by the "edit-conflict" status.
-	 * A "late" conflict is a CAS failure caused by an update being performed concurrently, between
+	 * A "late" conflict is a CAS failure caused by an update being performed concurrently between
 	 * the time grabParentRevision() was called and the time saveRevision() trying to insert the
 	 * new revision.
 	 *
@@ -269,22 +263,21 @@ class PageUpdater {
 	 * for the update to be fixed to the page's current revision at this point in time.
 	 * It acts as a compare-and-swap (CAS) token in that it is guaranteed that saveRevision()
 	 * will fail with the "edit-conflict" status if the current revision of the page changes after
-	 * hasEditConflict() was called and before saveRevision() could insert a new revision.
+	 * hasEditConflict() (or grabParentRevision()) was called and before saveRevision() could insert
+	 * a new revision.
 	 *
 	 * @see grabParentRevision()
 	 *
+	 * @param int $expectedParentRevision The ID of the revision the client expects to be the
+	 *        current one. Use 0 to indicate that the page is expected to not yet exist.
+	 *
 	 * @return bool
 	 */
-	public function hasEditConflict() {
-		$baseId = $this->getBaseRevisionId();
-		if ( $baseId === false ) {
-			return false;
-		}
-
+	public function hasEditConflict( $expectedParentRevision ) {
 		$parent = $this->grabParentRevision();
 		$parentId = $parent ? $parent->getId() : 0;
 
-		return $parentId !== $baseId;
+		return $parentId !== $expectedParentRevision;
 	}
 
 	/**
@@ -328,18 +321,13 @@ class PageUpdater {
 
 	/**
 	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
-	 * This also performs sanity checks against the base revision specified via setBaseRevisionId().
 	 *
 	 * @param int $flags
 	 * @return int Updated $flags
 	 */
 	private function checkFlags( $flags ) {
 		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
-			if ( $this->baseRevId === false ) {
-				$flags |= ( $this->derivedDataUpdater->pageExisted() ) ? EDIT_UPDATE : EDIT_NEW;
-			} else {
-				$flags |= ( $this->baseRevId > 0 ) ? EDIT_UPDATE : EDIT_NEW;
-			}
+			$flags |= ( $this->derivedDataUpdater->pageExisted() ) ? EDIT_UPDATE : EDIT_NEW;
 		}
 
 		return $flags;
@@ -398,37 +386,29 @@ class PageUpdater {
 	}
 
 	/**
-	 * Returns the ID of the logical base revision of the update. Not to be confused with the
-	 * immediate parent revision. The base revision is set via setBaseRevisionId(),
-	 * the parent revision is determined by grabParentRevision().
+	 * Returns the ID of an earlier revision that is being repeated or restored by this update.
 	 *
-	 * Application may use this information to detect user level edit conflicts. Edit conflicts
-	 * can be resolved by performing a 3-way merge, using the revision returned by this method as
-	 * the common base of the conflicting revisions, namely the new revision being saved,
-	 * and the revision returned by grabParentRevision().
-	 *
-	 * @return bool|int The ID of the base revision, 0 if the base is a non-existing page, false
-	 *         if no base revision was specified.
+	 * @return bool|int The original revision id, or false if no earlier revision is known to be
+	 * repeated or restored by this update.
 	 */
-	public function getBaseRevisionId() {
-		return $this->baseRevId;
+	public function getOriginalRevisionId() {
+		return $this->originalRevId;
 	}
 
 	/**
-	 * Sets the ID of the revision the content of this update is based on, if any.
-	 * The base revision ID is not to be confused with the new revision's parent revision:
-	 * the parent revision is the page's current revision immediately before the new revision
-	 * is created; the base revision indicates what revision the client based the content of
-	 * the new revision on. If base revision and parent revision are not the same, the update is
-	 * considered to require edit conflict resolution.
+	 * Sets the ID of an earlier revision that is being repeated or restored by this update.
+	 * The new revision is expected to have the exact same content as the given original revision.
+	 * This is used with rollbacks and with dummy "null" revisions which are created to record
+	 * things like page moves.
 	 *
-	 * @param int|bool $baseRevId The ID of the base revision, or 0 if the update is expected to be
-	 *        performed on a non-existing page. false can be used to indicate that the caller
-	 *        doesn't care about the base revision.
+	 * This value is passed to the PageContentSaveComplete and NewRevisionFromEditComplete hooks.
+	 *
+	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
+	 * is known to be repeated or restored by this update.
 	 */
-	public function setBaseRevisionId( $baseRevId ) {
-		Assert::parameterType( 'integer|boolean', $baseRevId, '$baseRevId' );
-		$this->baseRevId = $baseRevId;
+	public function setOriginalRevisionId( $originalRevId ) {
+		Assert::parameterType( 'integer|boolean', $originalRevId, '$originalRevId' );
+		$this->originalRevId = $originalRevId;
 	}
 
 	/**
@@ -589,10 +569,9 @@ class PageUpdater {
 	 * changes after grabParentRevision() was called and before saveRevision() can insert
 	 * a new revision, as per the CAS mechanism described above.
 	 *
-	 * However, the actual parent revision is allowed to be different from the revision set
-	 * with setBaseRevisionId(). The caller is responsible for checking this via
-	 * hasEditConflict() and adjusting the content of the new revision accordingly,
-	 * using a 3-way-merge if desired.
+	 * The caller is however responsible for calling hasEditConflict() to detect a
+	 * user-level edit conflict, and to adjust the content of the new revision accordingly,
+	 * e.g. by using a 3-way-merge.
 	 *
 	 * MCR migration note: this replaces WikiPage::doEditContent. Callers that change to using
 	 * saveRevision() now need to check the "minoredit" themselves before using EDIT_MINOR.
@@ -660,9 +639,7 @@ class PageUpdater {
 		// NOTE: This grabs the parent revision as the CAS token, if grabParentRevision
 		// wasn't called yet. If the page is modified by another process before we are done with
 		// it, this method must fail (with status 'edit-conflict')!
-		// NOTE: The actual parent revision may be different from $this->baseRevisionId.
-		// The caller is responsible for checking this via hasEditConflict and adjusting the
-		// content of the new revision accordingly, using a 3-way-merge.
+		// NOTE: The parent revision may be different from $this->baseRevisionId.
 		$this->grabParentRevision();
 		$flags = $this->checkFlags( $flags );
 
@@ -987,7 +964,7 @@ class PageUpdater {
 			$tags = $this->computeEffectiveTags( $flags );
 			Hooks::run(
 				'NewRevisionFromEditComplete',
-				[ $wikiPage, $newLegacyRevision, $this->baseRevId, $user, &$tags ]
+				[ $wikiPage, $newLegacyRevision, $this->getOriginalRevisionId(), $user, &$tags ]
 			);
 
 			// Update recentchanges
@@ -1064,7 +1041,7 @@ class PageUpdater {
 					// TODO: replace legacy hook!
 					// TODO: avoid pass-by-reference, see T193950
 					$params = [ &$wikiPage, &$user, $mainContent, $summary->text, $flags & EDIT_MINOR,
-						null, null, &$flags, $newLegacyRevision, &$status, $this->baseRevId,
+						null, null, &$flags, $newLegacyRevision, &$status, $this->getOriginalRevisionId(),
 						$this->undidRevId ];
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
@@ -1218,7 +1195,7 @@ class PageUpdater {
 					Hooks::run( 'PageContentInsertComplete', $params );
 					// Trigger post-save hook
 					// TODO: replace legacy hook!
-					$params = array_merge( $params, [ &$status, $this->baseRevId, 0 ] );
+					$params = array_merge( $params, [ &$status, $this->getOriginalRevisionId(), 0 ] );
 					Hooks::run( 'PageContentSaveComplete', $params );
 				}
 			),
