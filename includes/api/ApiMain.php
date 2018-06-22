@@ -1554,6 +1554,11 @@ class ApiMain extends ApiBase {
 	 */
 	protected function executeAction() {
 		$params = $this->setupExecuteAction();
+
+		// Check asserts early so e.g. errors in parsing a module's parameters due to being
+		// logged out don't override the client's intended "am I logged in?" check.
+		$this->checkAsserts( $params );
+
 		$module = $this->setupModule();
 		$this->mModule = $module;
 
@@ -1574,8 +1579,6 @@ class ApiMain extends ApiBase {
 		if ( !$this->mInternalMode ) {
 			$this->setupExternalResponse( $module, $params );
 		}
-
-		$this->checkAsserts( $params );
 
 		// Execute
 		$module->execute();

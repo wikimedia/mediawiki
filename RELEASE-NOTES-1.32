@@ -78,6 +78,9 @@ production.
     templated parameters.
 * It is now an error to submit too many values for a multi-valued parameter.
   This has generated a warning since MediaWiki 1.14.
+* Assertion failures from the 'assert' and 'assertuser' parameters will no
+  longer use the action module's custom response format, for the few modules
+  that use custom formatters that handle errors.
 
 === Action API internal changes in 1.32 ===
 * Added 'ApiParseMakeOutputPage' hook.
