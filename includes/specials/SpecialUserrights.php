@@ -658,7 +658,7 @@ class UserrightsPage extends SpecialPage {
 			)->escaped();
 
 		$grouplist = '';
-		$count = count( $list );
+		$count = count( $list ) + count( $tempList );
 		if ( $count > 0 ) {
 			$grouplist = $this->msg( 'userrights-groupsmember' )
 				->numParams( $count )
