@@ -58,11 +58,8 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
 
 		$this->assertFalse( $updater->wasCommitted(), 'wasCommitted' );
-		$this->assertFalse( $updater->getBaseRevisionId(), 'getBaseRevisionId' );
+		$this->assertFalse( $updater->getOriginalRevisionId(), 'getOriginalRevisionId' );
 		$this->assertSame( 0, $updater->getUndidRevisionId(), 'getUndidRevisionId' );
-
-		$updater->setBaseRevisionId( 0 );
-		$this->assertSame( 0, $updater->getBaseRevisionId(), 'getBaseRevisionId' );
 
 		$updater->addTag( 'foo' );
 		$updater->addTags( [ 'bar', 'qux' ] );
@@ -77,10 +74,12 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$parent = $updater->grabParentRevision();
 
-		// TODO: test that hasEditConflict() grabs the parent revision
 		$this->assertNull( $parent, 'getParentRevision' );
 		$this->assertFalse( $updater->wasCommitted(), 'wasCommitted' );
-		$this->assertFalse( $updater->hasEditConflict(), 'hasEditConflict' );
+
+		// TODO: test that hasEditConflict() grabs the parent revision
+		$this->assertFalse( $updater->hasEditConflict( 0 ), 'hasEditConflict' );
+		$this->assertTrue( $updater->hasEditConflict( 1 ), 'hasEditConflict' );
 
 		// TODO: test failure with EDIT_UPDATE
 		// TODO: test EDIT_MINOR, EDIT_BOT, etc
@@ -158,10 +157,12 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
 
-		// TODO: test page update does not fail with mismatching base rev ID
-		$baseRev = $title->getLatestRevID( Title::GAID_FOR_UPDATE );
-		$updater->setBaseRevisionId( $baseRev );
-		$this->assertSame( $baseRev, $updater->getBaseRevisionId(), 'getBaseRevisionId' );
+		$updater->setOriginalRevisionId( 7 );
+		$this->assertSame( 7, $updater->getOriginalRevisionId(), 'getOriginalRevisionId' );
+
+		$this->assertFalse( $updater->hasEditConflict( $parentId ), 'hasEditConflict' );
+		$this->assertTrue( $updater->hasEditConflict( $parentId - 1 ), 'hasEditConflict' );
+		$this->assertTrue( $updater->hasEditConflict( 0 ), 'hasEditConflict' );
 
 		// TODO: MCR: test additional slots
 		$updater->setContent( 'main', new TextContent( 'Lorem Ipsum' ) );
@@ -324,48 +325,6 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$updater = $page->newPageUpdater( $user );
 		$updater->setContent( 'main', new TextContent( 'dolor sit amet' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
-		$status = $updater->getStatus();
-
-		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );
-		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertFalse( $status->isOK(), 'getStatus()->isOK()' );
-		$this->assertTrue( $status->hasMessage( 'edit-already-exists' ), 'edit-already-exists' );
-	}
-
-	/**
-	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
-	 * @covers \MediaWiki\Storage\PageUpdater::setBaseRevisionId()
-	 */
-	public function testFailureOnBaseRevision() {
-		$user = $this->getTestUser()->getUser();
-
-		$title = $this->getDummyTitle( __METHOD__ );
-
-		// start editing non-existing page
-		$page = WikiPage::factory( $title );
-		$updater = $page->newPageUpdater( $user );
-
-		// update for base revision 7 should fail
-		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
-		$updater->setBaseRevisionId( 7 ); // expect page to exist
-		$updater->setContent( 'main', new TextContent( 'Lorem ipsum' ) );
-		$updater->saveRevision( $summary );
-		$status = $updater->getStatus();
-
-		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );
-		$this->assertNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertFalse( $status->isOK(), 'getStatus()->isOK()' );
-		$this->assertTrue( $status->hasMessage( 'edit-gone-missing' ), 'edit-gone-missing' );
-
-		// create the page
-		$this->createRevision( $page, __METHOD__ );
-
-		// update for base revision 0 should fail
-		$summary = CommentStoreComment::newUnsavedComment( 'create?!' );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setBaseRevisionId( 0 ); // expect page to not exist
-		$updater->setContent( 'main', new TextContent( 'dolor sit amet' ) );
-		$updater->saveRevision( $summary );
 		$status = $updater->getStatus();
 
 		$this->assertFalse( $updater->wasSuccessful(), 'wasSuccessful()' );

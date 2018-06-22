@@ -2394,7 +2394,9 @@ $row: the database row for this page (the recentchanges record and a few extras
 edit.
 $wikiPage: the WikiPage edited
 $rev: the new revision
-$baseID: the revision ID this was based off, if any
+$originalRevId: if the edit restores or repeats an earlier revision (such as a
+  rollback or a null revision), the ID of that earlier revision. False otherwise.
+  (Used to be called $baseID.)
 $user: the editing user
 &$tags: tags to apply to the edit and recent change
 
@@ -2502,7 +2504,9 @@ $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article (can be null for edits that change
   nothing)
 $status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
+$originalRevId: if the edit restores or repeats an earlier revision (such as a
+  rollback or a null revision), the ID of that earlier revision. False otherwise.
+  (Used to be called $baseRevId.)
 $undidRevId: the rev ID (or 0) this edit undid
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
