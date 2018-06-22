@@ -529,6 +529,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				null,
 			],
 			[
+				'[[Foo<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
+				'[[Foo[[Special:BlankPage]]',
+				null,
+			],
+			[
 				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo%27bar">Foo\'bar</a>',
 				"[[Foo'bar]]",
 				'enwiki',
