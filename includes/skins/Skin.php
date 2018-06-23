@@ -212,11 +212,6 @@ abstract class Skin extends ContextSource {
 			'syndicate' => [],
 		];
 
-		// Support for high-density display images if enabled
-		if ( $config->get( 'ResponsiveImages' ) ) {
-			$modules['core'][] = 'mediawiki.hidpi';
-		}
-
 		// Preload jquery.tablesorter for mediawiki.page.ready
 		if ( strpos( $out->getHTML(), 'sortable' ) !== false ) {
 			$modules['content'][] = 'jquery.tablesorter';

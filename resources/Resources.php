@@ -228,6 +228,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.hidpi' => [
+		'deprecated' => 'Use of the srcset polyfill is deprecated since MediaWiki 1.32.0',
 		'scripts' => 'resources/src/jquery/jquery.hidpi.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1049,12 +1050,6 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.helplink/helplink.less',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.hidpi' => [
-		'scripts' => 'resources/src/mediawiki.hidpi/hidpi.js',
-		'dependencies' => 'jquery.hidpi',
-		'skipFunction' => 'resources/src/mediawiki.hidpi/skip.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
