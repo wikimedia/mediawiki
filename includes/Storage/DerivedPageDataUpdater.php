@@ -243,6 +243,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	private $slotRoleRegistry;
 
 	/**
+	 * @var bool Whether null-edits create a revision.
+	 */
+	private $forceEmptyRevision = false;
+
+	/**
 	 * A stage identifier for managing the life cycle of this instance.
 	 * Possible stages are 'new', 'knows-current', 'has-content', 'has-revision', and 'done'.
 	 *
@@ -480,6 +485,25 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 
 		return true;
+	}
+
+	/**
+	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
+	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 *
+	 * Must not be called once prepareContent() or prepareUpdate() have been called.
+	 *
+	 * @since 1.38
+	 * @see PageUpdater setForceEmptyRevision
+	 *
+	 * @param bool $forceEmptyRevision
+	 */
+	public function setForceEmptyRevision( bool $forceEmptyRevision ) {
+		if ( $this->revision ) {
+			throw new LogicException( 'prepareContent() or prepareUpdate() was already called.' );
+		}
+
+		$this->forceEmptyRevision = $forceEmptyRevision;
 	}
 
 	/**
@@ -910,21 +934,27 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->doTransition( 'has-content' );
 
 		if ( !$this->options['changed'] ) {
-			// null-edit!
+			if ( $this->forceEmptyRevision ) {
+				// dummy revision, inherit all slots
+				foreach ( $parentRevision->getSlotRoles() as $role ) {
+					$this->revision->inheritSlot( $parentRevision->getSlot( $role ) );
+				}
+			} else {
+				// null-edit, the new revision *is* the old revision.
 
-			// TODO: move this into MutableRevisionRecord
-			// TODO: This needs to behave differently for a forced dummy edit!
-			$this->revision->setId( $parentRevision->getId() );
-			$this->revision->setTimestamp( $parentRevision->getTimestamp() );
-			$this->revision->setPageId( $parentRevision->getPageId() );
-			$this->revision->setParentId( $parentRevision->getParentId() );
-			$this->revision->setUser( $parentRevision->getUser( RevisionRecord::RAW ) );
-			$this->revision->setComment( $parentRevision->getComment( RevisionRecord::RAW ) );
-			$this->revision->setMinorEdit( $parentRevision->isMinor() );
-			$this->revision->setVisibility( $parentRevision->getVisibility() );
+				// TODO: move this into MutableRevisionRecord
+				$this->revision->setId( $parentRevision->getId() );
+				$this->revision->setTimestamp( $parentRevision->getTimestamp() );
+				$this->revision->setPageId( $parentRevision->getPageId() );
+				$this->revision->setParentId( $parentRevision->getParentId() );
+				$this->revision->setUser( $parentRevision->getUser( RevisionRecord::RAW ) );
+				$this->revision->setComment( $parentRevision->getComment( RevisionRecord::RAW ) );
+				$this->revision->setMinorEdit( $parentRevision->isMinor() );
+				$this->revision->setVisibility( $parentRevision->getVisibility() );
 
-			// prepareUpdate() is redundant for null-edits
-			$this->doTransition( 'has-revision' );
+				// prepareUpdate() is redundant for null-edits (but not for dummy revisions)
+				$this->doTransition( 'has-revision' );
+			}
 		} else {
 			$this->parentRevision = $parentRevision;
 		}
@@ -1019,11 +1049,14 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	}
 
 	/**
-	 * Whether the edit created, or should create, a new revision (that is, it's not a null-edit).
+	 * Whether the content of the current revision after the edit is different from the content of the
+	 * current revision before the edit. This will return false for a null-edit (no revision created),
+	 * as well as for a dummy revision (a "null-revision" that has the same content as its parent).
 	 *
-	 * @warning at present, "null-revisions" that do not change content but do have a revision
-	 * record would return false after prepareContent(), but true after prepareUpdate()!
-	 * This should probably be fixed.
+	 * @warning at present, dummy revision would return false after prepareContent(),
+	 * but true after prepareUpdate()!
+	 *
+	 * @todo This should probably be fixed.
 	 *
 	 * @return bool
 	 */
