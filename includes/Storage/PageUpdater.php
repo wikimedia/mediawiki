@@ -45,6 +45,7 @@ use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use WikiPage;
 
@@ -639,7 +640,7 @@ class PageUpdater {
 		// NOTE: This grabs the parent revision as the CAS token, if grabParentRevision
 		// wasn't called yet. If the page is modified by another process before we are done with
 		// it, this method must fail (with status 'edit-conflict')!
-		// NOTE: The parent revision may be different from $this->baseRevisionId.
+		// NOTE: The parent revision may be different from $this->originalRevisionId.
 		$this->grabParentRevision();
 		$flags = $this->checkFlags( $flags );
 
@@ -922,7 +923,6 @@ class PageUpdater {
 
 		// XXX: we may want a flag that allows a null revision to be forced!
 		$changed = $this->derivedDataUpdater->isChange();
-		$mainContent = $newRevisionRecord->getContent( 'main' );
 
 		$dbw = $this->getDBConnectionRef( DB_MASTER );
 
@@ -991,22 +991,19 @@ class PageUpdater {
 			$user->incEditCount();
 
 			$dbw->endAtomic( __METHOD__ );
-		} else {
-			// T34948: revision ID must be set to page {{REVISIONID}} and
-			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
-			// Since we don't insert a new revision into the database, the least
-			// error-prone way is to reuse given old revision.
-			$newRevisionRecord = $oldRev;
-			$newLegacyRevision = new Revision( $newRevisionRecord );
-		}
 
-		if ( $changed ) {
 			// Return the new revision to the caller
 			$status->value['revision-record'] = $newRevisionRecord;
 
 			// TODO: globally replace usages of 'revision' with getNewRevision()
 			$status->value['revision'] = $newLegacyRevision;
 		} else {
+			// T34948: revision ID must be set to page {{REVISIONID}} and
+			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
+			// Since we don't insert a new revision into the database, the least
+			// error-prone way is to reuse given old revision.
+			$newRevisionRecord = $oldRev;
+
 			$status->warning( 'edit-no-change' );
 			// Update page_touched as updateRevisionOn() was not called.
 			// Other cache updates are managed in WikiPage::onArticleEdit()
@@ -1021,30 +1018,15 @@ class PageUpdater {
 		// importantly, before the parser cache has been updated. This would cause the
 		// content to be parsed a second time, or may cause stale content to be shown.
 		DeferredUpdates::addUpdate(
-			new AtomicSectionUpdate(
+			$this->getAtomicSectionUpdate(
 				$dbw,
-				__METHOD__,
-				function () use (
-					$wikiPage, $newRevisionRecord, $newLegacyRevision, $user, $mainContent,
-					$summary, $flags, $changed, $status
-				) {
-					// Update links tables, site stats, etc.
-					$this->derivedDataUpdater->prepareUpdate(
-						$newRevisionRecord,
-						[
-							'changed' => $changed,
-						]
-					);
-					$this->derivedDataUpdater->doUpdates();
-
-					// Trigger post-save hook
-					// TODO: replace legacy hook!
-					// TODO: avoid pass-by-reference, see T193950
-					$params = [ &$wikiPage, &$user, $mainContent, $summary->text, $flags & EDIT_MINOR,
-						null, null, &$flags, $newLegacyRevision, &$status, $this->getOriginalRevisionId(),
-						$this->undidRevId ];
-					Hooks::run( 'PageContentSaveComplete', $params );
-				}
+				$wikiPage,
+				$newRevisionRecord,
+				$user,
+				$summary,
+				$flags,
+				$status,
+				[ 'changed' => $changed, ]
 			),
 			DeferredUpdates::PRESEND
 		);
@@ -1162,47 +1144,65 @@ class PageUpdater {
 		$status->value['revision'] = $newLegacyRevision;
 		$status->value['revision-record'] = $newRevisionRecord;
 
-		// XXX: make sure we are not loading the Content from the DB
-		$mainContent = $newRevisionRecord->getContent( 'main' );
-
 		// Do secondary updates once the main changes have been committed...
 		DeferredUpdates::addUpdate(
-			new AtomicSectionUpdate(
+			$this->getAtomicSectionUpdate(
 				$dbw,
-				__METHOD__,
-				function () use (
-					$wikiPage,
-					$newRevisionRecord,
-					$newLegacyRevision,
-					$user,
-					$mainContent,
-					$summary,
-					$flags,
-					$status
-				) {
-					// Update links, etc.
-					$this->derivedDataUpdater->prepareUpdate(
-						$newRevisionRecord,
-						[ 'created' => true ]
-					);
-					$this->derivedDataUpdater->doUpdates();
-
-					// Trigger post-create hook
-					// TODO: replace legacy hook!
-					// TODO: avoid pass-by-reference, see T193950
-					$params = [ &$wikiPage, &$user, $mainContent, $summary->text,
-						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision ];
-					Hooks::run( 'PageContentInsertComplete', $params );
-					// Trigger post-save hook
-					// TODO: replace legacy hook!
-					$params = array_merge( $params, [ &$status, $this->getOriginalRevisionId(), 0 ] );
-					Hooks::run( 'PageContentSaveComplete', $params );
-				}
+				$wikiPage,
+				$newRevisionRecord,
+				$user,
+				$summary,
+				$flags,
+				$status,
+				[ 'created' => true ]
 			),
 			DeferredUpdates::PRESEND
 		);
 
 		return $status;
+	}
+
+	private function getAtomicSectionUpdate(
+		IDatabase $dbw,
+		WikiPage $wikiPage,
+		RevisionRecord $newRevisionRecord,
+		User $user,
+		CommentStoreComment $summary,
+		$flags,
+		Status $status,
+		$hints = []
+	) {
+		return new AtomicSectionUpdate(
+			$dbw,
+			__METHOD__,
+			function () use (
+				$wikiPage, $newRevisionRecord, $user,
+				$summary, $flags, $status, $hints
+			) {
+				$newLegacyRevision = new Revision( $newRevisionRecord );
+				$mainContent = $newRevisionRecord->getContent( 'main', RevisionRecord::RAW );
+
+				// Update links tables, site stats, etc.
+				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
+				$this->derivedDataUpdater->doUpdates();
+
+				// TODO: replace legacy hook!
+				// TODO: avoid pass-by-reference, see T193950
+
+				if ( $hints['created'] ?? false ) {
+					// Trigger post-create hook
+					$params = [ &$wikiPage, &$user, $mainContent, $summary->text,
+						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision ];
+					Hooks::run( 'PageContentInsertComplete', $params );
+				}
+
+				// Trigger post-save hook
+				$params = [ &$wikiPage, &$user, $mainContent, $summary->text,
+						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision,
+						&$status, $this->getOriginalRevisionId(), $this->undidRevId ];
+				Hooks::run( 'PageContentSaveComplete', $params );
+			}
+		);
 	}
 
 }
