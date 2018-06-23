@@ -1454,16 +1454,44 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * Helper method for checking whether two revisions have differences that go
+	 * beyond the main slot.
+	 *
+	 * MCR migration note: this method should go away!
+	 *
+	 * @deprecated Use only as a stop-gap before refactoring to support MCR.
+	 *
+	 * @param Revision $a
+	 * @param Revision $b
+	 * @return bool
+	 */
+	public static function hasDifferencesOutsideMainSlot( Revision $a, Revision $b ) {
+		$aSlots = $a->getRevisionRecord()->getSlots();
+		$bSlots = $b->getRevisionRecord()->getSlots();
+		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
+
+		return ( $changedRoles !== [ 'main' ] );
+	}
+
+	/**
 	 * Get the content that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted
+	 *
 	 * @param Revision $undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
 	 * @return Content|bool Content on success, false on failure
 	 * @since 1.21
 	 * Before we had the Content object, this was done in getUndoText
 	 */
-	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+	public function getUndoContent( Revision $undo, Revision $undoafter ) {
+		// TODO: MCR: replace this with a method that returns a RevisionSlotsUpdate
+
+		if ( self::hasDifferencesOutsideMainSlot( $undo, $undoafter ) ) {
+			// Cannot yet undo edits that involve anything other the main slot.
+			return false;
+		}
+
 		$handler = $undo->getContentHandler();
 		return $handler->getUndoContent( $this->getRevision(), $undo, $undoafter );
 	}

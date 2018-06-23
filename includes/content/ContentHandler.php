@@ -1069,7 +1069,7 @@ abstract class ContentHandler {
 	 * @param Revision $undo The revision to undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
 	 *
-	 * @return mixed String on success, false on failure
+	 * @return mixed Content on success, false on failure
 	 */
 	public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
 		$cur_content = $current->getContent();
