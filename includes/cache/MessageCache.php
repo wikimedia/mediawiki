@@ -32,7 +32,8 @@ use Wikimedia\Rdbms\Database;
 define( 'MSG_CACHE_VERSION', 2 );
 
 /**
- * Message cache
+ * Cache of messages that are defined by MediaWiki namespace pages or by hooks
+ *
  * Performs various MediaWiki namespace-related functions
  * @ingroup Cache
  */
@@ -980,14 +981,15 @@ class MessageCache {
 			}
 			// Fall through and try invididual message cache below
 		} else {
-			// XXX: This is not cached in process cache, should it?
 			$message = false;
 			Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
 			if ( $message !== false ) {
-				return $message;
+				$this->mCache[$code][$title] = ' ' . $message;
+			} else {
+				$this->mCache[$code][$title] = '!NONEXISTENT';
 			}
 
-			return false;
+			return $message;
 		}
 
 		// Individual message cache key
