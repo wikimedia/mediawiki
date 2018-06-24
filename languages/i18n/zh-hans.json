@@ -98,7 +98,8 @@
 			"逆襲的天邪鬼",
 			"WhitePhosphorus",
 			"A2093064",
-			"EagerLin"
+			"EagerLin",
+			"Deathkon"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -630,7 +631,7 @@
 	"resetpass-submit-loggedin": "更改密码",
 	"resetpass-submit-cancel": "取消",
 	"resetpass-wrong-oldpass": "临时密码或当前密码无效。您可能已经更改了您的密码，或者请求了新的临时密码。",
-	"resetpass-recycled": "请更改您的密码为与当前密码不同的密码。",
+	"resetpass-recycled": "请将您的密码更改为除当前密码以外的其他密码。",
 	"resetpass-temp-emailed": "您使用了通过电子邮件发送的临时密码登录。要完成登录，您必须在此设置一个新密码：",
 	"resetpass-temp-password": "临时密码：",
 	"resetpass-abort-generic": "密码更改已经被扩展程序中止。",
@@ -855,6 +856,7 @@
 	"converter-manual-rule-error": "在手动语言转换规则中检测到错误",
 	"undo-success": "该编辑可以被撤销。请检查下面的对比以核实您想要撤销的内容，然后保存下面的更改以完成撤销。",
 	"undo-failure": "因存在冲突的中间编辑，本编辑不能撤销。",
+	"undo-main-slot-only": "编辑无法撤销，因为其涉及主位置以外的内容。",
 	"undo-norev": "该编辑无法撤消，因为它不存在或已被删除。",
 	"undo-nochange": "这次编辑似乎已被撤销。",
 	"undo-summary": "撤销[[Special:Contributions/$2|$2]]（[[User talk:$2|讨论]]）的版本$1",

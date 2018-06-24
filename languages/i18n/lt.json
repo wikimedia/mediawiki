@@ -38,7 +38,8 @@
 			"Nemo bis",
 			"Nersip",
 			"Manvydasz",
-			"Fitoschido"
+			"Fitoschido",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Nuorodos pabraukimas:",
@@ -211,7 +212,7 @@
 	"create": "Sukurti",
 	"create-local": "Pridėti vietos aprašymą",
 	"delete": "Trinti",
-	"undelete_short": "Atkurti $1 {{PLURAL:$1:redagavimą|redagavimus|redagavimų}}",
+	"undelete_short": "Atkurti $1 {{PLURAL:$1|redagavimą|redagavimus|redagavimų}}",
 	"viewdeleted_short": "Peržiūrėti $1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}",
 	"protect": "Užrakinti",
 	"protect_change": "keisti",

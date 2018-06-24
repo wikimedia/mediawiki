@@ -199,7 +199,7 @@
 	"apihelp-opensearch-summary": "In de wiki zoeken met behulp het OpenSearchprotocol.",
 	"apihelp-opensearch-param-search": "Zoektekst.",
 	"apihelp-opensearch-param-limit": "Het maximale aantal weer te geven resultaten.",
-	"apihelp-opensearch-param-namespace": "Te doorzoeken naamruimten.",
+	"apihelp-opensearch-param-namespace": "Te doorzoeken naamruimten. Wordt genegeerd indien <var>$1search</var> met een geldige naamruimte voorvoegsel begint.",
 	"apihelp-opensearch-param-suggest": "Niets doen als <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> onwaar is.",
 	"apihelp-opensearch-param-redirects": "Hoe om te gaan met doorverwijzingen:\n;return:Retourneer de doorverwijzing.\n;resolve:Retourneer de doelpagina. Retourneert mogelijk minder dan $1limit resultaten.\nOm historische redenen is \"return\" de standaardinstelling voor <code>$1format=json</code>, en \"resolve\" voor andere formaten.",
 	"apihelp-opensearch-param-format": "Het uitvoerformaat.",

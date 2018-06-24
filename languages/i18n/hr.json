@@ -38,7 +38,8 @@
 			"Сербијана",
 			"Wumbolo",
 			"Fitoschido",
-			"Hamster"
+			"Hamster",
+			"BadDog"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -2439,7 +2440,7 @@
 	"allmessagesname": "Ime",
 	"allmessagesdefault": "Prvotni tekst",
 	"allmessagescurrent": "Trenutačni tekst",
-	"allmessagestext": "Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation lokalizaciju MediaWikija] i [https://translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.",
+	"allmessagestext": "Ovo je popis sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation lokalizaciju MediaWikija] i [https://translatewiki.net translatewiki.net] ako želite doprinijeti lokalizaciji MediaWiki softvera.",
 	"allmessagesnotsupportedDB": "Ova stranica ne može biti korištena jer je isključen parametar '''$wgUseDatabaseMessages'''.",
 	"allmessages-filter-legend": "Filtriraj",
 	"allmessages-filter": "Filtriraj prema prilagođenom obliku:",
@@ -3682,5 +3683,12 @@
 	"gotointerwiki-invalid": "Navedeni naslov nije valjan.",
 	"gotointerwiki-external": "Napuštate projekt {{SITENAME}} da biste posjetili zasebno mrežno mjesto [[$2]].\n\n<strong>[$1 Nastavljate na $1]</strong>",
 	"pagedata-title": "Podatci o stranici",
-	"pagedata-bad-title": "Naslov nije valjan: $1."
+	"pagedata-bad-title": "Naslov nije valjan: $1.",
+	"passwordpolicies": "Pravila za zaporke",
+	"passwordpolicies-summary": "Ovo je popis pravila za zaporke za suradničke grupe definirane na ovom wikiju.",
+	"passwordpolicies-policy-minimalpasswordlength": "Zaporka mora sadržavati najmanje {{PLURAL:$1|1 znak|$1 znaka|$1 znakova}}",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Da biste se prijavili, zaporka mora sadržavati najmanje {{PLURAL:$1|1 znak|$1 znaka|$1 znakova}}",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Zaporka ne može biti ista kao i suradničko ime",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Zaporka se ne može podudarati sa zaporkama na crnoj listi",
+	"passwordpolicies-policy-maximalpasswordlength": "Zaporka mora biti kraća od {{PLURAL:$1|1 znaka|$1 znaka|$1 znakova}}"
 }

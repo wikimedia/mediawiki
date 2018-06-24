@@ -8,7 +8,8 @@
 			"아라",
 			"Macofe",
 			"Matma Rex",
-			"Reptilien.19831209BE1"
+			"Reptilien.19831209BE1",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Sorlignî les loyéns:",
@@ -679,7 +680,7 @@
 	"saveusergroups": "Schaper les groupes d' uzeus",
 	"userrights-groupsmember": "Mimbe di:",
 	"userrights-groupsmember-auto": "Mimbe implicite di:",
-	"userrights-groups-help": "Vos ploz candjî les groupes ki {{GENDER:$1|cist uzeu|ciste uzeuse}} apårtént:\n* Ene boesse clitcheye c' est k' {{GENDER:$|il|elle}} est mimbe do groupe.\n* Ene boesse disclitcheye c' est k' {{GENDER:$|i|ele}} n' end est nén mimbe.\n* Ene sitoele (*) mostere k' on n' pout nén rsaetchî l' groupe on côp k' il a stî radjouté, ou årvierdimint.",
+	"userrights-groups-help": "Vos ploz candjî les groupes ki {{GENDER:$1|cist uzeu|ciste uzeuse}} apårtént:\n* Ene boesse clitcheye c' est k' {{GENDER:$1|il|elle}} est mimbe do groupe.\n* Ene boesse disclitcheye c' est k' {{GENDER:$1|i|ele}} n' end est nén mimbe.\n* Ene sitoele (*) mostere k' on n' pout nén rsaetchî l' groupe on côp k' il a stî radjouté, ou årvierdimint.",
 	"userrights-reason": "Råjhon:",
 	"userrights-no-interwiki": "Vos n' avoz nén les permissions po candjî les droets des uzeus so ds ôtes wikis.",
 	"userrights-nodatabase": "Li båze di dnêyes «$1» n' egzistêye nén ou n' est nén locåle.",

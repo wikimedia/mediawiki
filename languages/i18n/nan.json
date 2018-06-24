@@ -10,7 +10,8 @@
 			"Macofe",
 			"進也",
 			"Liuxinyu970226",
-			"Yoxem"
+			"Yoxem",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -997,7 +998,7 @@
 	"filemissing": "Bô tóng-àn",
 	"import": "Su-ji̍p ia̍h",
 	"tooltip-pt-userpage": "{{GENDER:|Lí ê iōng-chiá}} ê ia̍h",
-	"tooltip-pt-mytalk": "{{GENDER:Lí}} ê thó-lūn ia̍h",
+	"tooltip-pt-mytalk": "{{GENDER:|Lí}} ê thó-lūn ia̍h",
 	"tooltip-pt-preferences": "{{GENDER:|Lí ê}} siat-tēng",
 	"tooltip-pt-watchlist": "你監視的頁有改過的清單",
 	"tooltip-pt-mycontris": "{{GENDER:|Lí}} ê kòng-hiàn lia̍t-toaⁿ",

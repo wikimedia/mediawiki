@@ -1377,6 +1377,8 @@
 	"rcfilters-activefilters": "사용 중인 필터",
 	"rcfilters-activefilters-hide": "숨기기",
 	"rcfilters-activefilters-show": "보이기",
+	"rcfilters-activefilters-hide-tooltip": "사용 중인 필터 영역 숨기기",
+	"rcfilters-activefilters-show-tooltip": "사용 중인 필터 영역 표시",
 	"rcfilters-advancedfilters": "고급 필터",
 	"rcfilters-limit-title": "표시할 결과 수",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|변경사항}} $1개, $2",
