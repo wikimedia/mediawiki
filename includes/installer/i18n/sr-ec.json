@@ -8,7 +8,8 @@
 			"Сербијана",
 			"Zoranzoki21",
 			"Acamicamacaraca",
-			"Obsuser"
+			"Obsuser",
+			"BadDog"
 		]
 	},
 	"config-desc": "Инсталација за Медијавики",
@@ -32,7 +33,7 @@
 	"config-page-upgrade": "Надоградња постојеће инсталације",
 	"config-page-dbsettings": "Подешавања базе података",
 	"config-page-name": "Назив",
-	"config-page-options": "Подешавања",
+	"config-page-options": "Опције",
 	"config-page-install": "Инсталирај",
 	"config-page-complete": "Завршено!",
 	"config-page-restart": "Поновно покретање инсталације",

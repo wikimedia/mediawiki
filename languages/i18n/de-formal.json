@@ -216,7 +216,7 @@
 	"prefs-help-email": "Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern Sie Ihr Passwort vergessen haben.",
 	"prefs-help-email-others": "Mit anderen Benutzern können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.",
 	"prefs-help-prefershttps": "Diese Einstellung wird bei Ihrer nächsten Anmeldung wirksam.",
-	"userrights-groups-help": "Sie können die Gruppenzugehörigkeit dieses Benutzers ändern:\n* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.\n* Ein nichtmarkiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist.\n* Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).",
+	"userrights-groups-help": "Sie können die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:\n* Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.\n* Ein nicht markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht dieser Gruppe angehört.\n* Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können, oder umgekehrt.\n* Ein # bedeutet, dass Sie den Zeitpunkt des Ablaufs dieser Gruppenzugehörigkeit nur nach hinten verlegen können. Sie können ihn nicht vorverlegen.",
 	"userrights-no-interwiki": "Sie haben nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.",
 	"userrights-changeable-col": "Gruppenzugehörigkeit, die Sie ändern dürfen",
 	"userrights-unchangeable-col": "Gruppenzugehörigkeit, die Sie nicht ändern dürfen",

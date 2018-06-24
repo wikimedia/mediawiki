@@ -15,7 +15,8 @@
 			"Matma Rex",
 			"NegativeTwelveDollars",
 			"Xð",
-			"HairyFotr"
+			"HairyFotr",
+			"Upwinxp"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -771,6 +772,7 @@
 	"converter-manual-rule-error": "Odkril sem napako v ročnem pravilu pretvorbe jezikov",
 	"undo-success": "Urejanje ste razveljavili. Prosimo, preverite prikazano primerjavo redakcij in, če ustrezajo, shranite spremembe.",
 	"undo-failure": "Zaradi navzkrižij urejanj, ki so se vmes pojavila, tega urejanja ni moč razveljaviti.",
+	"undo-main-slot-only": "Urejanja nismo mogli razveljaviti, ker vključuje vsebino zunaj glavne reže.",
 	"undo-norev": "Urejanja ni mogoče razveljaviti, ker ne obstaja ali je bilo izbrisano.",
 	"undo-nochange": "Zdi se, da je urejanje nekdo že razveljavil.",
 	"undo-summary": "Redakcija $1 uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) razveljavljena",
@@ -1324,6 +1326,8 @@
 	"rcfilters-activefilters": "Dejavni filtri",
 	"rcfilters-activefilters-hide": "Skrij",
 	"rcfilters-activefilters-show": "Prikaži",
+	"rcfilters-activefilters-hide-tooltip": "Skrij območje Aktivnih filtrov",
+	"rcfilters-activefilters-show-tooltip": "Pokaži območje Aktivnih filtrov",
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-limit-title": "Rezultati za prikaz",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}}, $2",
@@ -3170,8 +3174,8 @@
 	"exif-lightsource-19": "Običajna svetloba C",
 	"exif-lightsource-24": "ISO-ateljejski volfram",
 	"exif-lightsource-255": "Drugačen",
-	"exif-flash-fired-0": "Flash se ni sprožil",
-	"exif-flash-fired-1": "Flash se je sprožil",
+	"exif-flash-fired-0": "Bliskavica se ni sprožila",
+	"exif-flash-fired-1": "Bliskavica se je sprožila",
 	"exif-flash-return-0": "stroboskop ni uporabil funkcije zaznavanja",
 	"exif-flash-return-2": "stroboskop ni zaznal svetlobe",
 	"exif-flash-return-3": "stroboskop je zaznal svetlobo",

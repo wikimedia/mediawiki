@@ -32,7 +32,8 @@
 			"Mikel Ibaiba",
 			"MarcoAurelio",
 			"Iñaki LL",
-			"Amaia"
+			"Amaia",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -2220,6 +2221,8 @@
 	"dellogpage": "Ezabaketa erregistroa",
 	"dellogpagetext": "Behean ageri da azken ezabaketen zerrenda.",
 	"deletionlog": "ezabaketa erregistroa",
+	"log-name-create": "Orri sorkuntzaren erregistroa",
+	"log-description-create": "Azpian, sortutako azken orrien zerrenda ageri da.",
 	"reverted": "Lehenagoko berrikuspen batera itzuli da",
 	"deletecomment": "Arrazoia:",
 	"deleteotherreason": "Arrazoi gehigarria:",
@@ -3686,7 +3689,7 @@
 	"logentry-move-move": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketarik utzi gabe",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birzuzenketaren gainetik",
-	"logentry-move-move_redir-noredirect": "$1 {{GENDER:wikilariak}} «$3» orria «$4» izenera aldatu du, birbideratze bat gainidatzita, birbideratzerik utzi gabe",
+	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|wikilariak}} «$3» orria «$4» izenera aldatu du, birbideratze bat gainidatzita, birbideratzerik utzi gabe",
 	"logentry-patrol-patrol": "$1(e)k $3 orrialdearen $4 berrikuspena patruilatutzat {{GENDER:$2|markatu}} du",
 	"logentry-patrol-patrol-auto": "$1(e)k $3 orrialdearen $4 berrikuspena patruilatutzat {{GENDER:$2|markatu}} du",
 	"logentry-newusers-newusers": "$1 erabiltzaile kontua {{GENDER:$2|sortu da}}",
@@ -4021,5 +4024,14 @@
 	"pagedata-title": "Orri data",
 	"pagedata-text": "Orrialde honek orrien interfaze datuak eskaintzen ditu. Eman orrialdearen izenburua URLan, azpiorri sintaxia erabiliz.\n*Edukiaren negoziazioa zure bezeroaren onarpen goiburuan oinarritzen erabiltzen da. Horrek esan nahi du orriaren datuak zure bezeroak nahiago duen formatuan emango direla.",
 	"pagedata-not-acceptable": "Bat egiten duen formaturik ez da aurkitu. Onartutako MIME motak: $1",
-	"pagedata-bad-title": "Izenburu baliogabea: $1"
+	"pagedata-bad-title": "Izenburu baliogabea: $1",
+	"unregistered-user-config": "Segurtasun arrazoiengatik JavaScript, CSS eta JSON erabiltzaile azpiorriak ezin dira kargatu erregistratu gabeko erabiltzaileen orrietan.",
+	"passwordpolicies": "Pasahitzen inguruko politika",
+	"passwordpolicies-summary": "Hona wiki honetako erabiltzaile taldeentzako pasahitzen politikaren zerrenda.",
+	"passwordpolicies-group": "Taldea",
+	"passwordpolicies-policies": "Politikak",
+	"passwordpolicies-policy-minimalpasswordlength": "Pasahitzak gutxienez {{PLURAL:$1|kraktere $1eko|$1 karaktereko}} luzera izan behar du",
+	"passwordpolicies-policy-minimumpasswordlengthtologin": "Pasahitzak gutxienez {{PLURAL:$1|kraktere $1eko|$1 karaktereko}} luzera izan behar du saioa hasi ahal izateko",
+	"passwordpolicies-policy-passwordcannotmatchusername": "Pasahitza ezin da erabiltzaile izenaren berdina izan",
+	"passwordpolicies-policy-passwordcannotmatchblacklist": "Pasahitza ezin da zerrenda beltzean zehaztutakoren bat izan"
 }

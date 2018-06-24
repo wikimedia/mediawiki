@@ -27,7 +27,8 @@
 			"Сербијана",
 			"Asmen",
 			"Obsuser",
-			"Fitoschido"
+			"Fitoschido",
+			"BadDog"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -2549,7 +2550,7 @@
 	"allmessagesname": "Naziv",
 	"allmessagesdefault": "Predodređeni tekst",
 	"allmessagescurrent": "Trenutni tekst",
-	"allmessagestext": "Ovo je spisak svih sistemskih poruka u dostupnih u imenskom prostoru MediaWiki.\nPosjetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation lokalizaciju MediaWikija] i [https://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.",
+	"allmessagestext": "Ovo je spisak sistemskih poruka u dostupnih u imenskom prostoru MediaWiki.\nPosjetite [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation lokalizaciju MediaWikija] i [https://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.",
 	"allmessagesnotsupportedDB": "Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.",
 	"allmessages-filter-legend": "Filter",
 	"allmessages-filter": "Filter po stanju podešavanja:",

@@ -928,6 +928,7 @@
 	"converter-manual-rule-error": "Erreur détectée dans la règle manuelle de conversion de langue",
 	"undo-success": "Cette modification va être annulée.\nVeuillez vérifier les différences ci-dessous, puis publier l’annulation si c’est bien ce que vous voulez faire.",
 	"undo-failure": "Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.",
+	"undo-main-slot-only": "La modification n'a pas pu être annulée car elle implique un contenu en dehors de la tranche principale.",
 	"undo-norev": "La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.",
 	"undo-nochange": "Il semblerait que la modification ait déjà été annulée.",
 	"undo-summary": "Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",

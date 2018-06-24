@@ -20,7 +20,8 @@
 			"Macofe",
 			"Uostofchuodnego",
 			"Przem(1)s",
-			"Fitoschido"
+			"Fitoschido",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Podsztrychniyniy linkōw:",
@@ -1196,7 +1197,7 @@
 	"listusers": "Lista užytkowńikůw",
 	"listusers-editsonly": "Pokoż yno użytkowńikůw kere majům sprowjyńa",
 	"usereditcount": "$1 {{PLURAL:$1|sprowjyńe|sprowjyńa|sprowjyń}}",
-	"usercreated": "{{GENDER:$3:Utworzono}} $1 uo $2",
+	"usercreated": "{{GENDER:$3|Utworzono}} $1 uo $2",
 	"newpages": "Nowe zajty",
 	"newpages-username": "Mjano użytkowńika:",
 	"ancientpages": "Nojstarše artikle",

@@ -424,6 +424,8 @@
 	"apihelp-query+filearchive-paramvalue-prop-metadata": "그림의 버전에 대한 Exif 메타데이터를 나열합니다.",
 	"apihelp-query+filearchive-example-simple": "삭제된 모든 파일의 목록을 표시합니다.",
 	"apihelp-query+filerepoinfo-summary": "위키에 구성된 그림 저장소에 대한 메타 정보를 반환합니다.",
+	"apihelp-query+filerepoinfo-paramvalue-prop-displayname": "사람이 식별할 수 있는 저장소 위키의 이름입니다.",
+	"apihelp-query+filerepoinfo-paramvalue-prop-local": "해당 저장소가 로컬인지 아닌지의 여부입니다.",
 	"apihelp-query+filerepoinfo-example-simple": "파일 저장소의 정보를 가져옵니다.",
 	"apihelp-query+fileusage-summary": "제시된 파일을 사용하는 모든 문서를 찾습니다.",
 	"apihelp-query+fileusage-param-prop": "얻고자 하는 속성:",

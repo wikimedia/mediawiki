@@ -114,7 +114,8 @@
 			"Trigonometria87",
 			"RadiX",
 			"Fitoschido",
-			"Ed g2s"
+			"Ed g2s",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Ligação sublinhada:",
@@ -552,7 +553,7 @@
 	"createacct-loginerror": "A conta foi criada com êxito, mas não pôde ser autenticado automaticamente. Por favor, faça o [[Special:UserLogin|início de sessão manualmente]].",
 	"noname": "Você não colocou um nome de usuário válido.",
 	"loginsuccesstitle": "Autenticado",
-	"loginsuccess": "'''Agora você está {{GENDER:autenticado|autenticada}} ao wiki {{SITENAME}} como \"$1\"'''.",
+	"loginsuccess": "'''Agora você está {{GENDER:|autenticado|autenticada}} ao wiki {{SITENAME}} como \"$1\"'''.",
 	"nosuchuser": "Não existe nenhum usuário com o nome \"$1\".\nOs nomes de usuário são sensíveis a letras maiúsculas.\nVerifique se digitou corretamente ou [[Special:CreateAccount|crie uma nova conta]].",
 	"nosuchusershort": "Não existe um usuário com o nome \"$1\". Verifique o nome que introduziu.",
 	"nouserspecified": "Você precisa especificar um nome de usuário.",
@@ -1426,6 +1427,8 @@
 	"rcfilters-activefilters": "Filtros ativos",
 	"rcfilters-activefilters-hide": "Ocultar",
 	"rcfilters-activefilters-show": "Exibir",
+	"rcfilters-activefilters-hide-tooltip": "Ocultar a área dos filtros ativos",
+	"rcfilters-activefilters-show-tooltip": "Mostrar a área dos filtros ativos",
 	"rcfilters-advancedfilters": "Filtros avançados",
 	"rcfilters-limit-title": "Resultados para mostrar",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|mudança|mudanças}}, $2",

@@ -841,6 +841,7 @@
 	"converter-manual-rule-error": "Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.",
 	"undo-success": "Deze bewerking kan ongedaan gemaakt worden.\nHieronder staat de tekst waarin de wijziging ongedaan is gemaakt.\nControleer voor het opslaan of het resultaat gewenst is.",
 	"undo-failure": "De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.",
+	"undo-main-slot-only": "De wijziging kan niet ongedaan gemaakt wordenomdat deze inhoud bevat die niet in het hoofdslot bevind.",
 	"undo-norev": "De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.",
 	"undo-nochange": "De bewerking lijkt al ongedaan gemaakt te zijn.",
 	"undo-summary": "Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt",

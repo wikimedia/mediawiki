@@ -10,7 +10,8 @@
 			"Macofe",
 			"Purodha",
 			"Fitoschido",
-			"Ruthven"
+			"Ruthven",
+			"Matěj Suchánek"
 		]
 	},
 	"tog-underline": "Collegaminde sottolinèate:",
@@ -977,7 +978,7 @@
 	"prefs-help-recentchangescount": "Quiste 'nglude le urteme cangiaminde, le storie de le pàggene e le archivije.",
 	"prefs-help-watchlist-token2": "Queste jè 'a chiave segrete a le feed d'u web de l'elenghe de le pàggene condrollate tune.\nCengate vò ccu canosce ce pò leggere l'elenghe de le pàggene condrollate tune, accussì non g'ù pò condividere.\nCe è abbesogne, [[Special:ResetTokens|'u puè azzerà]].",
 	"savedprefs": "Le preferenze tue onne state aggiornete.",
-	"savedrights": "Le gruppe utinde de {{GENDER:$1$1}} onne state reggistrate.",
+	"savedrights": "Le gruppe utinde de {{GENDER:$1|$1}} onne state reggistrate.",
 	"timezonelegend": "Orarie d'a zone:",
 	"localtime": "Orarie lochele:",
 	"timezoneuseserverdefault": "Ause 'u valore de default de uicchi ($1)",
@@ -2523,7 +2524,7 @@
 	"tooltip-feed-rss": "RSS feed pe sta pàgene",
 	"tooltip-feed-atom": "Atom feed pe sta pàgene",
 	"tooltip-t-contributions": "Vide l'elenghe de le condrebbute de {{GENDER:$1|stu utende}}",
-	"tooltip-t-emailuser": "Manne n'e-mail a {{GENDER:$1stu utende}}",
+	"tooltip-t-emailuser": "Manne n'e-mail a {{GENDER:$1|stu utende}}",
 	"tooltip-t-info": "Cchiù 'mbormaziune sus a sta pàgene",
 	"tooltip-t-upload": "Careche le file",
 	"tooltip-t-specialpages": "Liste de tutte le pàggene speciale",
