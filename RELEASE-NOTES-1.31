@@ -11,6 +11,7 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
 * Special:BotPasswords now requires reauthentication.
 * (T191608, T187638) Add 'logid' parameter to Special:Log.
 * (T193829) Indicate when a Bot Password needs reset.
+* (T198037) GitInfo: Don't try shelling out if it's disabled.
 
 == MediaWiki 1.31 ==
 
