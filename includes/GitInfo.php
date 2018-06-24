@@ -227,6 +227,7 @@ class GitInfo {
 			$date = false;
 			if ( is_file( $wgGitBin ) &&
 				is_executable( $wgGitBin ) &&
+				!Shell::isDisabled() &&
 				$this->getHead() !== false
 			) {
 				$cmd = [
