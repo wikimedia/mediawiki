@@ -1606,6 +1606,9 @@ abstract class Maintenance {
 		if ( wfIsWindows() ) {
 			return $default;
 		}
+		if ( Shell::isDisabled() ) {
+			return $default;
+		}
 		// It's possible to get the screen size with VT-100 terminal escapes,
 		// but reading the responses is not possible without setting raw mode
 		// (unless you want to require the user to press enter), and that
