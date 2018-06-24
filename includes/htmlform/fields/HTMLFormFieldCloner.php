@@ -296,7 +296,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				$html .= $field->$getFieldHtmlMethod( $v );
 
 				$labelValue = trim( $field->getLabel() );
-				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
+				if ( $labelValue != "\u{00A0}" && $labelValue !== '' ) {
 					$hasLabel = true;
 				}
 			}

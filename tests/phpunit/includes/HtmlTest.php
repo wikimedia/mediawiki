@@ -331,7 +331,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label for="mw-test-namespace">Select a namespace:</label>&#160;' .
+			'<label for="mw-test-namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="mw-test-namespace" name="wpNamespace">' . "\n" .
 				'<option value="all">all</option>' . "\n" .
 				'<option value="0">(Main)</option>' . "\n" .
@@ -359,7 +359,7 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label for="namespace">Select a namespace:</label>&#160;' .
+			'<label for="namespace">Select a namespace:</label>' . "\u{00A0}" .
 				'<select id="namespace" name="namespace">' . "\n" .
 				'<option value="0">(Main)</option>' . "\n" .
 				'<option value="1">Talk</option>' . "\n" .

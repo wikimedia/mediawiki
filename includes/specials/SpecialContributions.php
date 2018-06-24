@@ -556,7 +556,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$filterSelection = Html::rawElement(
 				'div',
 				[],
-				implode( '&#160;', $tagFilter )
+				implode( "\u{00A0}", $tagFilter )
 			);
 		} else {
 			$filterSelection = Html::rawElement( 'div', [], '' );
@@ -609,7 +609,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->msg( 'namespace' )->text(),
 				'namespace',
 				''
-			) . '&#160;' .
+			) . "\u{00A0}" .
 			Html::namespaceSelector(
 				[ 'selected' => $this->opts['namespace'], 'all' => '' ],
 				[
@@ -617,7 +617,7 @@ class SpecialContributions extends IncludableSpecialPage {
 					'id' => 'namespace',
 					'class' => 'namespaceselector',
 				]
-			) . '&#160;' .
+			) . "\u{00A0}" .
 				Html::rawElement(
 					'span',
 					[ 'class' => 'mw-input-with-label' ],
@@ -630,7 +630,7 @@ class SpecialContributions extends IncludableSpecialPage {
 							'title' => $this->msg( 'tooltip-invert' )->text(),
 							'class' => 'mw-input'
 						]
-					) . '&#160;'
+					) . "\u{00A0}"
 				) .
 				Html::rawElement( 'span', [ 'class' => 'mw-input-with-label' ],
 					Xml::checkLabel(
@@ -642,7 +642,7 @@ class SpecialContributions extends IncludableSpecialPage {
 							'title' => $this->msg( 'tooltip-namespace_association' )->text(),
 							'class' => 'mw-input'
 						]
-					) . '&#160;'
+					) . "\u{00A0}"
 				)
 		);
 
