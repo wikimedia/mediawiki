@@ -33,9 +33,7 @@ module.exports = function ( grunt ) {
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
 				'!extensions/**/*.js',
-				'!skins/**/*.js',
-				// Skip functions aren't even parseable
-				'!resources/src/mediawiki.hidpi/skip.js'
+				'!skins/**/*.js'
 			]
 		},
 		jsonlint: {
