@@ -1395,6 +1395,8 @@
 	"rcfilters-activefilters": "Actieve filters",
 	"rcfilters-activefilters-hide": "Verbergen",
 	"rcfilters-activefilters-show": "Weergeven",
+	"rcfilters-activefilters-hide-tooltip": "Verberg actieve filters",
+	"rcfilters-activefilters-show-tooltip": "Toon active filters",
 	"rcfilters-advancedfilters": "Geavanceerde filters",
 	"rcfilters-limit-title": "Resultaten om te tonen",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|wijziging|wijzigingen}}, $2",
