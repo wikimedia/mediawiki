@@ -4,6 +4,7 @@ THIS IS NOT A RELEASE YET!
 
 === Changes since MediaWiki 1.31.0 ===
 * (T197229) Bundle Nuke extension, it was accidentally omitted.
+* (T193995) Fix undefined patchPath() method call in parser tests.
 
 === Changes since MediaWiki 1.31.0-rc.2 ===
 * (T195783) Initialize PSR-4 namespaces at same stage as normal autoloader.
