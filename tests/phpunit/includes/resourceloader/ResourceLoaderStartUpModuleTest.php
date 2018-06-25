@@ -561,4 +561,32 @@ mw.loader.register( [
 		);
 	}
 
+	/**
+	 * @covers ResourceLoaderStartupModule::getDefinitionSummary
+	 */
+	public function testGetVersionHash_varyConfig() {
+		$context = $this->getResourceLoaderContext();
+
+		$this->setMwGlobals( 'wgArticlePath', '/w1' );
+		$module = new ResourceLoaderStartupModule();
+		$version1 = $module->getVersionHash( $context );
+		$module = new ResourceLoaderStartupModule();
+		$version2 = $module->getVersionHash( $context );
+		$this->setMwGlobals( 'wgArticlePath', '/w3' );
+		$module = new ResourceLoaderStartupModule();
+		$version3 = $module->getVersionHash( $context );
+
+		$this->assertEquals(
+			$version1,
+			$version2,
+			'Deterministic version hash'
+		);
+
+		$this->assertNotEquals(
+			$version1,
+			$version3,
+			'Config change impacts version hash'
+		);
+	}
+
 }
