@@ -2767,12 +2767,6 @@ return [
 		],
 	],
 
-	/* dom-level2-shim */
-	'dom-level2-shim' => [
-		'deprecated' => 'Use of the "dom-level2-shim" module is deprecated since MediaWiki 1.29.0',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
 	/**
 	 * html5shiv
 	 *
