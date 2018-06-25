@@ -297,6 +297,7 @@ class Names {
 		'mk' => 'македонски', # Macedonian
 		'ml' => 'മലയാളം', # Malayalam
 		'mn' => 'монгол', # Halh Mongolian (Cyrillic) (ISO 639-3: khk)
+		'mni' => 'মেইতেই লোন্', # Manipuri/Meitei
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated
 		'mr' => 'मराठी', # Marathi
 		'mrj' => 'кырык мары', # Hill Mari
