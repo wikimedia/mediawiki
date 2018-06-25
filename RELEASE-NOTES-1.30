@@ -20,6 +20,7 @@ THIS IS NOT A RELEASE YET!
 * (T196672) The mtime of extension.json files is now able to be zero
 * (T180403) Validate $length in padleft/padright parser functions.
 * (T143790) Make $wgEmailConfirmToEdit only affect edit actions.
+* (T193995) Fix undefined patchPath() method call in parser tests.
 
 === Changes since MediaWiki 1.30.0-rc.0 ===
 * Upgraded Moment.js from v2.15.0 to v2.19.3.
