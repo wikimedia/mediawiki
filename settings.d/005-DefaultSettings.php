@@ -23,3 +23,4 @@ $GLOBALS['wgRestrictDisplayTitle'] = false; //Otherwise only titles that normali
 $GLOBALS['wgUrlProtocols'][] = "file://";
 $GLOBALS['wgVerifyMimeType'] = false;
 $GLOBALS['wgAllowJavaUploads'] = true;
+
