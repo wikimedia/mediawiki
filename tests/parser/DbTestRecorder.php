@@ -41,7 +41,8 @@ class DbTestRecorder extends TestRecorder {
 			|| !$this->db->tableExists( 'testitem' )
 		) {
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
-			$this->db->sourceFile( $this->db->patchPath( 'patch-testrun.sql' ) );
+			$updater = DatabaseUpdater::newForDB( $this->db );
+			$this->db->sourceFile( $updater->patchPath( $this->db, 'patch-testrun.sql' ) );
 			echo "OK, resuming.\n";
 		}
 
