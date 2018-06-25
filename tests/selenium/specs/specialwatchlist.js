@@ -2,18 +2,15 @@ const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	WatchlistPage = require( '../pageobjects/watchlist.page' ),
 	WatchablePage = require( '../pageobjects/watchable.page' ),
-	LoginPage = require( 'wdio-mediawiki/LoginPage' );
+	LoginPage = require( 'wdio-mediawiki/LoginPage' ),
+	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:Watchlist', function () {
 	let username, password;
 
-	function getTestString( prefix = '' ) {
-		return prefix + Math.random().toString() + '-öäü-♠♣♥♦';
-	}
-
 	before( function () {
-		username = getTestString( 'user-' );
-		password = getTestString( 'password-' );
+		username = Util.getTestString( 'user-' );
+		password = Util.getTestString( 'password-' );
 
 		browser.call( function () {
 			return Api.createAccount( username, password );
@@ -26,14 +23,14 @@ describe( 'Special:Watchlist', function () {
 	} );
 
 	it( 'should show page with new edit', function () {
-		const title = getTestString( 'Title-' );
+		const title = Util.getTestString( 'Title-' );
 
 		browser.call( function () {
-			return Api.edit( title, getTestString() ); // create
+			return Api.edit( title, Util.getTestString() ); // create
 		} );
 		WatchablePage.watch( title );
 		browser.call( function () {
-			return Api.edit( title, getTestString() ); // edit
+			return Api.edit( title, Util.getTestString() ); // edit
 		} );
 
 		WatchlistPage.open();
