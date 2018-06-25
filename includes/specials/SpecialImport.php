@@ -526,7 +526,7 @@ class SpecialImport extends SpecialPage {
 					Xml::checkLabel(
 						$this->msg( 'import-assign-known-users' )->text(),
 						'assignKnownUsers',
-						'assignKnownUsers',
+						'interwikiAssignKnownUsers',
 						$this->assignKnownUsers
 					) .
 					"</td>
