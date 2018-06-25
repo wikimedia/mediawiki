@@ -396,7 +396,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// This url may be preloaded. See getPreloadLinks().
 			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
 		] );
-		$pairs['$CODE.registrations()'] = str_replace(
+		$pairs['$CODE.registrations();'] = str_replace(
 			"\n",
 			"\n\t",
 			trim( $this->getModuleRegistrations( $context ) )
