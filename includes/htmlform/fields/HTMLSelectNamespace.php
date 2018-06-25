@@ -3,6 +3,10 @@
  * Wrapper for Html::namespaceSelector to use in HTMLForm
  */
 class HTMLSelectNamespace extends HTMLFormField {
+
+	/** @var string|null */
+	protected $mAllValue;
+
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
