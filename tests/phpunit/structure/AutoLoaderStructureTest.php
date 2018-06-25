@@ -46,7 +46,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 			// Check that the expected class name (based on the filename) is the
 			// same as the one we found.
 			// Strip directory prefix from front of filename, and .php extension
-			$abbrFileName = substr( substr( $file, strlen( $dir ) ), 0, -4 );
+			$abbrFileName = pathinfo( $file, PATHINFO_FILENAME );
 			$expectedClassName = $prefix . str_replace( '/', '\\', $abbrFileName );
 
 			$this->assertSame(
