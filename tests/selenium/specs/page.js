@@ -4,15 +4,12 @@ const assert = require( 'assert' ),
 	RestorePage = require( '../pageobjects/restore.page' ),
 	EditPage = require( '../pageobjects/edit.page' ),
 	HistoryPage = require( '../pageobjects/history.page' ),
-	UserLoginPage = require( '../pageobjects/userlogin.page' );
+	UserLoginPage = require( '../pageobjects/userlogin.page' ),
+	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', function () {
 	var content,
 		name;
-
-	function getTestString( suffix = 'defaultsuffix' ) {
-		return Math.random().toString() + '-Iñtërnâtiônàlizætiøn☃-' + suffix;
-	}
 
 	before( function () {
 		// disable VisualEditor welcome dialog
@@ -22,8 +19,8 @@ describe( 'Page', function () {
 
 	beforeEach( function () {
 		browser.deleteCookie();
-		content = getTestString( 'beforeEach-content' );
-		name = getTestString( 'beforeEach-name' );
+		content = Util.getTestString( 'beforeEach-content-' );
+		name = Util.getTestString( 'BeforeEach-name-' );
 	} );
 
 	it( 'should be creatable', function () {
@@ -36,7 +33,7 @@ describe( 'Page', function () {
 	} );
 
 	it( 'should be re-creatable', function () {
-		let initialContent = getTestString( 'initialContent' );
+		let initialContent = Util.getTestString( 'initialContent-' );
 
 		// create
 		browser.call( function () {
@@ -63,7 +60,7 @@ describe( 'Page', function () {
 		} );
 
 		// edit
-		let editContent = getTestString( 'editContent' );
+		let editContent = Util.getTestString( 'editContent-' );
 		EditPage.edit( name, editContent );
 
 		// check

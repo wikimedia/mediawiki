@@ -1,19 +1,16 @@
 const assert = require( 'assert' ),
 	Api = require( 'wdio-mediawiki/Api' ),
-	RecentChangesPage = require( '../pageobjects/recentchanges.page' );
+	RecentChangesPage = require( '../pageobjects/recentchanges.page' ),
+	Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:RecentChanges', function () {
 	let content,
 		name;
 
-	function getTestString() {
-		return Math.random().toString() + '-öäü-♠♣♥♦';
-	}
-
 	beforeEach( function () {
 		browser.deleteCookie();
-		content = getTestString();
-		name = getTestString();
+		content = Util.getTestString();
+		name = Util.getTestString();
 	} );
 
 	it( 'shows page creation', function () {
