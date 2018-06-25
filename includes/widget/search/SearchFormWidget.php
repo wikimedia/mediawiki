@@ -100,6 +100,10 @@ class SearchFormWidget {
 
 		$html .= $layout;
 
+		if ( $this->specialSearch->getPrefix() !== '' ) {
+			$html .= Html::hidden( 'prefix', $this->specialSearch->getPrefix() );
+		}
+
 		if ( $totalResults > 0 && $offset < $totalResults ) {
 			$html .= Xml::tags(
 				'div',

@@ -964,6 +964,8 @@
 	"difference-missing-revision": "{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.\n\nThis is usually caused by following an outdated diff link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 	"search-summary": "",
 	"searchresults": "Search results",
+	"search-filter-title-prefix": "Only searching in pages whose title starts with \"$1\"",
+	"search-filter-title-prefix-reset": "Search all pages",
 	"searchresults-title": "Search results for \"$1\"",
 	"titlematches": "Page title matches",
 	"textmatches": "Page text matches",

@@ -267,6 +267,12 @@ because of Phabricator reports.
   the Parsoid v3 API in May 2015.
 * $input is deprecated in hook 'LogEventsListGetExtraInputs'. Use
   $formDescriptor instead.
+* SearchEngine::transformSearchTerm( $term ) should no longer be called prior
+  to running searchText. This method was mainly implemented to support the
+  'prefix' URI param in SpecialSearch, but there are no reasons to expose this
+  logic as it should be handled internally by SearchEngine implementations
+  supporting this feature. SearchEngine implementations should no longer
+  override this methods.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into
