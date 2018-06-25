@@ -137,12 +137,12 @@
 	body:not( .mw-rcfilters-ui-initialized ) .rcfilters-spinner {
 		display: block;
 		// When initializing, display the spinner on top of the area where the UI will appear
-		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 2;
+		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 1.5;
 	}
 	body.mw-rcfilters-ui-loading .rcfilters-spinner {
 		display: block;
 		// When loading new results, display the spinner on top of the results area
-		margin-top: 2em;
+		margin-top: -( @rcfilters-head-min-height + @rcfilters-head-margin-bottom ) / 8;
 	}
 
 	#contentSub,
