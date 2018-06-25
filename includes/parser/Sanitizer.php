@@ -1142,6 +1142,27 @@ class Sanitizer {
 	}
 
 	/**
+	 * Armor French spaces with a replacement character
+	 *
+	 * @since 1.32
+	 * @param string $text Text to armor
+	 * @param string $space Space character for the French spaces, defaults to '&#160;'
+	 * @return string Armored text
+	 */
+	public static function armorFrenchSpaces( $text, $space = '&#160;' ) {
+		// Replace $ with \$ and \ with \\
+		$space = preg_replace( '#(?<!\\\\)(\\$|\\\\)#', '\\\\$1', $space );
+		$fixtags = [
+			# French spaces, last one Guillemet-left
+			# only if there is something before the space
+			'/(.) (?=\\?|:|;|!|%|\\302\\273)/' => "\\1$space",
+			# French spaces, Guillemet-right
+			'/(\\302\\253) /' => "\\1$space",
+		];
+		return preg_replace( array_keys( $fixtags ), array_values( $fixtags ), $text );
+	}
+
+	/**
 	 * Encode an attribute value for HTML tags, with extra armoring
 	 * against further wiki processing.
 	 * @param string $text
@@ -1167,6 +1188,9 @@ class Sanitizer {
 			'|'    => '&#124;',
 			'__'   => '&#95;_',
 		] );
+
+		# Armor against French spaces detection (T5158)
+		$encValue = self::armorFrenchSpaces( $encValue, '&#32;' );
 
 		# Stupid hack
 		$encValue = preg_replace_callback(
