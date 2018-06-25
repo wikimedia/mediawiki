@@ -30,7 +30,8 @@
 			"Prevodim",
 			"Bugoslav",
 			"Acamicamacaraca",
-			"Fitoschido"
+			"Fitoschido",
+			"BadDog"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -2350,7 +2351,7 @@
 	"tooltip-ca-talk": "Razgovor o stranici sa sadržajem",
 	"tooltip-ca-edit": "Uredi ovu stranicu",
 	"tooltip-ca-addsection": "Započnite novi odeljak",
-	"tooltip-ca-viewsource": "Ова страница је закључана. \nМожете погледати изворни текст.",
+	"tooltip-ca-viewsource": "Ova stranica je zaključana. \nMožete da pogledate njen izvorni kôd",
 	"tooltip-ca-history": "Prethodne verzije ove stranice",
 	"tooltip-ca-protect": "Zaštitite ovu stranicu",
 	"tooltip-ca-unprotect": "Promeni zaštitu ove stranice",

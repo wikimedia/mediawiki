@@ -429,8 +429,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Detect changes to the module registrations
 			'moduleHashes' => $this->getAllModuleHashes( $context ),
 
-			'fileMtimes' => [
-				filemtime( "$IP/resources/src/startup.js" ),
+			'fileHashes' => [
+				$this->safeFileHash( "$IP/resources/src/startup.js" ),
 			],
 		];
 		return $summary;
