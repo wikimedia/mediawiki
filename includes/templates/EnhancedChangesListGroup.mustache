@@ -1,10 +1,20 @@
 <table class="{{# tableClasses }}{{ . }} {{/ tableClasses }}" data-mw-ts="{{{ fullTimestamp }}}">
-	<tr>
+	<tr class="mw-rcfilters-ui-highlights-enhanced-toplevel">
+		<td>
+			<div class="mw-rcfilters-ui-highlights">
+				<div class="mw-rcfilters-ui-highlights-color-none" data-color="none"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c1" data-color="c1"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c2" data-color="c2"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c3" data-color="c3"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c4" data-color="c4"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c5" data-color="c5"></div>
+			</div>
+		</td>
 		<td>
 			<span class="mw-collapsible-toggle mw-collapsible-arrow mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>
 		</td>
 		<td class="mw-changeslist-line-prefix">{{{ prefix }}}</td>
-		<td class="mw-enhanced-rc">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
+		<td class="mw-enhanced-rc" colspan="2">{{{ collectedRcFlags }}}&#160;{{ timestamp }}&#160;</td>
 		<td class="mw-changeslist-line-inner">
 			{{# rev-deleted-event }}<span class="history-deleted">{{{ . }}}</span>{{/ rev-deleted-event }}
 			{{{ articleLink }}}{{{ languageDirMark }}}{{{ logText }}}
@@ -15,10 +25,21 @@
 		</td>
 	</tr>
 	{{# lines }}
-	<tr class="{{# classes }}{{ . }} {{/ classes }}"{{{ attribs }}}>
+	<tr class="mw-rcfilters-ui-highlights-enhanced-nested {{# classes }}{{ . }} {{/ classes }}"{{{ attribs }}}>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td class="mw-enhanced-rc">{{{ recentChangesFlags }}}&#160;</td>
+		<td>
+			<div class="mw-rcfilters-ui-highlights mw-enhanced-rc-nested">
+				<div class="mw-rcfilters-ui-highlights-color-none" data-color="none"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c1" data-color="c1"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c2" data-color="c2"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c3" data-color="c3"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c4" data-color="c4"></div>
+				<div class="mw-rcfilters-ui-highlights-color-c5" data-color="c5"></div>
+			</div>
+		</td>
 		<td class="mw-enhanced-rc-nested" data-target-page="{{ targetTitle }}">
 			{{# timestampLink }}
 			<span class="mw-enhanced-rc-time">{{{ . }}}</span>

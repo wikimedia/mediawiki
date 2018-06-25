@@ -53,11 +53,11 @@
 // so it is before the rest of the rule; we need the li& to be in
 // between the wrapper scope and the color-cX class, which doesn't
 // work if the rules are inside the above widget LESS scope
-.highlight-changesListWrapperWidget( @bgcolor ) {
+.highlight-results( @bgcolor ) {
 	.mw-rcfilters-ui-changesListWrapperWidget li&,
 	.mw-rcfilters-ui-changesListWrapperWidget & tr:first-child,
-	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-changesListWrapperWidget-enhanced-toplevel:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+2 ) ),
-	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-changesListWrapperWidget-enhanced-nested:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+4 ) ) {
+	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-highlights-enhanced-toplevel:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+2 ) ),
+	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-highlights-enhanced-nested:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+4 ) ) {
 		background-color: @bgcolor;
 	}
 }
@@ -76,18 +76,18 @@
 
 	// Two colors
 	@{highlight-color-class-var} when ( @color3 = false ) and ( @color4 = false ) and not ( @color1 = false ), ( @color2 = false ) {
-		.highlight-changesListWrapperWidget( tint( average( @@c1var, @@c2var ), 50% ) );
+		.highlight-results( tint( average( @@c1var, @@c2var ), 50% ) );
 	}
 	// Three colors
 	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3} when ( @color4 = false ) and not ( @color3 = false ) {
 		@c3var: ~'highlight-@{color3}';
-		.highlight-changesListWrapperWidget( tint( mix( @@c1var, average( @@c2var, @@c3var ), 33% ), 30% ) );
+		.highlight-results( tint( mix( @@c1var, average( @@c2var, @@c3var ), 33% ), 30% ) );
 	}
 
 	// Four colors
 	@{highlight-color-class-var}.mw-rcfilters-highlight-color-@{color3}.mw-rcfilters-highlight-color-@{color4} when not ( @color4 = false ) {
 		@c3var: ~'highlight-@{color3}';
 		@c4var: ~'highlight-@{color4}';
-		.highlight-changesListWrapperWidget( tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% ) );
+		.highlight-results( tint( mix( @@c1var, mix( @@c2var, average( @@c3var, @@c4var ), 25% ), 25% ), 25% ) );
 	}
 }

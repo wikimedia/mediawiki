@@ -116,6 +116,31 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Get the container for highlights that are used in the new StructuredFilters
+	 * system
+	 *
+	 * @return string HTML structure of the highlight container div
+	 */
+	protected function getHighlightsContainerDiv() {
+		$highlightColorDivs = '';
+		foreach ( [ 'none', 'c1', 'c2', 'c3', 'c4', 'c5' ] as $color ) {
+			$highlightColorDivs .= Html::rawElement(
+				'div',
+				[
+					'class' => 'mw-rcfilters-ui-highlights-color-' . $color,
+					'data-color' => $color
+				]
+			);
+		}
+
+		return Html::rawElement(
+			'div',
+			[ 'class' => 'mw-rcfilters-ui-highlights' ],
+			$highlightColorDivs
+		);
+	}
+
+	/**
 	 * Sets the list to use a "<li class='watchlist-(namespace)-(page)'>" tag
 	 * @param bool $value
 	 */
