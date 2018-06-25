@@ -1500,10 +1500,6 @@ $wgDirectoryMode = 0777;
  *
  * This means a 320x240 use of an image on the wiki will also generate 480x360 and 640x480
  * thumbnails, output via the srcset attribute.
- *
- * On older browsers, a JavaScript polyfill switches the appropriate images in after loading
- * the original low-resolution versions depending on the reported window.devicePixelRatio.
- * The polyfill can be found in the jquery.hidpi module.
  */
 $wgResponsiveImages = true;
 
