@@ -271,10 +271,33 @@ define( 'SHELL_MAX_ARG_STRLEN', '100000' );
 /**@}*/
 
 /**@{
+ * Schema compatibility flags.
+ *
+ * Used as flags in a bit field that indicates whether the old or new schema (or both)
+ * are read or written.
+ *
+ * - SCHEMA_COMPAT_WRITE_OLD: Whether information is written to the old schema.
+ * - SCHEMA_COMPAT_READ_OLD: Whether information stored in the old schema is read.
+ * - SCHEMA_COMPAT_WRITE_NEW: Whether information is written to the new schema.
+ * - SCHEMA_COMPAT_READ_NEW: Whether information stored in the new schema is read.
+ */
+define( 'SCHEMA_COMPAT_WRITE_OLD', 0x01 );
+define( 'SCHEMA_COMPAT_READ_OLD', 0x02 );
+define( 'SCHEMA_COMPAT_WRITE_NEW', 0x10 );
+define( 'SCHEMA_COMPAT_READ_NEW', 0x20 );
+define( 'SCHEMA_COMPAT_WRITE_BOTH', SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_WRITE_NEW );
+define( 'SCHEMA_COMPAT_READ_BOTH', SCHEMA_COMPAT_READ_OLD | SCHEMA_COMPAT_READ_NEW );
+define( 'SCHEMA_COMPAT_OLD', SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD );
+define( 'SCHEMA_COMPAT_NEW', SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW );
+/**@}*/
+
+/**@{
  * Schema change migration flags.
  *
  * Used as values of a feature flag for an orderly transition from an old
- * schema to a new schema.
+ * schema to a new schema. The numeric values of these constants are compatible with the
+ * SCHEMA_COMPAT_XXX bitfield semantics. High bits are used to ensure that the numeric
+ * ordering follows the order in which the migration stages should be used.
  *
  * - MIGRATION_OLD: Only read and write the old schema. The new schema need not
  *   even exist. This is used from when the patch is merged until the schema
@@ -289,8 +312,8 @@ define( 'SHELL_MAX_ARG_STRLEN', '100000' );
  * - MIGRATION_NEW: Only read and write the new schema. The old schema (and the
  *   feature flag) may now be removed.
  */
-define( 'MIGRATION_OLD', 0 );
-define( 'MIGRATION_WRITE_BOTH', 1 );
-define( 'MIGRATION_WRITE_NEW', 2 );
-define( 'MIGRATION_NEW', 3 );
+define( 'MIGRATION_OLD', 0x00000000 | SCHEMA_COMPAT_OLD );
+define( 'MIGRATION_WRITE_BOTH', 0x10000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_COMPAT_WRITE_BOTH );
+define( 'MIGRATION_WRITE_NEW', 0x20000000 | SCHEMA_COMPAT_READ_BOTH | SCHEMA_COMPAT_WRITE_NEW );
+define( 'MIGRATION_NEW', 0x30000000 | SCHEMA_COMPAT_NEW );
 /**@}*/

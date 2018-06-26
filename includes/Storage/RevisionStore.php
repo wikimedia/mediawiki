@@ -121,7 +121,7 @@ class RevisionStore
 	 */
 	private $slotRoleStore;
 
-	/** @var int One of the MIGRATION_* constants */
+	/** @var int An appropriate combination of SCHEMA_COMPAT_XXX flags. */
 	private $mcrMigrationStage;
 
 	/**
@@ -133,9 +133,11 @@ class RevisionStore
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
-	 * @param int $migrationStage
+	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
 	 * @param bool|string $wikiId
+	 *
+	 * @throws MWException if $mcrMigrationStage or $wikiId is invalid.
 	 */
 	public function __construct(
 		LoadBalancer $loadBalancer,
@@ -144,12 +146,39 @@ class RevisionStore
 		CommentStore $commentStore,
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
-		$migrationStage,
+		$mcrMigrationStage,
 		ActorMigration $actorMigration,
 		$wikiId = false
 	) {
 		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-		Assert::parameterType( 'integer', $migrationStage, '$migrationStage' );
+		Assert::parameterType( 'integer', $mcrMigrationStage, '$mcrMigrationStage' );
+		Assert::parameter(
+			( $mcrMigrationStage & SCHEMA_COMPAT_READ_BOTH ) !== SCHEMA_COMPAT_READ_BOTH,
+			'$mcrMigrationStage',
+			'Reading from the old and the new schema at the same time is not supported.'
+		);
+		Assert::parameter(
+			( $mcrMigrationStage & SCHEMA_COMPAT_READ_BOTH ) !== 0,
+			'$mcrMigrationStage',
+			'Reading needs to be enabled for the old or the new schema.'
+		);
+		Assert::parameter(
+			( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_BOTH ) !== 0,
+			'$mcrMigrationStage',
+			'Writing needs to be enabled for the old or the new schema.'
+		);
+		Assert::parameter(
+			( $mcrMigrationStage & SCHEMA_COMPAT_READ_OLD ) === 0
+			|| ( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) !== 0,
+			'$mcrMigrationStage',
+			'Cannot read the old schema when not also writing it.'
+		);
+		Assert::parameter(
+			( $mcrMigrationStage & SCHEMA_COMPAT_READ_NEW ) === 0
+			|| ( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) !== 0,
+			'$mcrMigrationStage',
+			'Cannot read the new schema when not also writing it.'
+		);
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
@@ -157,10 +186,19 @@ class RevisionStore
 		$this->commentStore = $commentStore;
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
-		$this->mcrMigrationStage = $migrationStage;
+		$this->mcrMigrationStage = $mcrMigrationStage;
 		$this->actorMigration = $actorMigration;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
+	}
+
+	/**
+	 * @param int $flags A combination of SCHEMA_COMPAT_XXX flags.
+	 * @return bool True if all the given flags were set in the $mcrMigrationStage
+	 *         parameter passed to the constructor.
+	 */
+	private function hasMcrSchemaFlags( $flags ) {
+		return ( $this->mcrMigrationStage & $flags ) === $flags;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -186,10 +224,14 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	public function setContentHandlerUseDB( $contentHandlerUseDB ) {
-		if ( !$contentHandlerUseDB && $this->mcrMigrationStage > MIGRATION_OLD ) {
-			throw new MWException(
-				'Content model must be stored in the database for multi content revision migration.'
-			);
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW )
+			|| $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW )
+		) {
+			if ( !$contentHandlerUseDB ) {
+				throw new MWException(
+					'Content model must be stored in the database for multi content revision migration.'
+				);
+			}
 		}
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
@@ -371,10 +413,9 @@ class RevisionStore
 		}
 
 		// While inserting into the old schema make sure only the main slot is allowed.
-		// TODO: support extra slots in MIGRATION_WRITE_BOTH mode!
-		if ( $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH && $slotRoles !== [ 'main' ] ) {
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) && $slotRoles !== [ 'main' ] ) {
 			throw new InvalidArgumentException(
-				'Only the main slot is supported with MCR migration mode <= MIGRATION_WRITE_BOTH!'
+				'Only the main slot is supported when writing to the pre-MCR schema!'
 			);
 		}
 
@@ -431,7 +472,7 @@ class RevisionStore
 		);
 
 		// Trigger exception if the main slot is missing.
-		// Technically, this could go away with MIGRATION_NEW: while
+		// Technically, this could go away after MCR migration: while
 		// calling code may require a main slot to exist, RevisionStore
 		// really should not know or care about that requirement.
 		$rev->getSlot( 'main', RevisionRecord::RAW );
@@ -504,7 +545,9 @@ class RevisionStore
 				$newSlots[$role] = $slot;
 
 				// Write the main slot's text ID to the revision table for backwards compatibility
-				if ( $slot->getRole() === 'main' && $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH ) {
+				if ( $slot->getRole() === 'main'
+					&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
+				) {
 					$blobAddress = $slot->getAddress();
 					$this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
 				}
@@ -574,11 +617,13 @@ class RevisionStore
 		}
 
 		// Write the main slot's text ID to the revision table for backwards compatibility
-		if ( $protoSlot->getRole() === 'main' && $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH ) {
+		if ( $protoSlot->getRole() === 'main'
+			&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
+		) {
 			$this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
 		}
 
-		if ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
 			if ( $protoSlot->hasContentId() ) {
 				$contentId = $protoSlot->getContentId();
 			} else {
@@ -703,8 +748,8 @@ class RevisionStore
 			$revisionRow['rev_id'] = $rev->getId();
 		}
 
-		if ( $this->mcrMigrationStage <= MIGRATION_WRITE_BOTH ) {
-			// In non MCR more this IF section will relate to the main slot
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) ) {
+			// In non MCR mode this IF section will relate to the main slot
 			$mainSlot = $rev->getSlot( 'main' );
 			$model = $mainSlot->getModel();
 			$format = $mainSlot->getFormat();
@@ -1040,7 +1085,7 @@ class RevisionStore
 		$blobFlags = null;
 
 		if ( is_object( $row ) ) {
-			if ( $this->mcrMigrationStage >= MIGRATION_NEW ) {
+			if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
 				// Don't emulate from a row when using the new schema.
 				// Emulating from an array is still OK.
 				throw new LogicException( 'Can\'t emulate the main slot when using MCR schema.' );
@@ -1423,10 +1468,7 @@ class RevisionStore
 		$queryFlags,
 		Title $title
 	) {
-		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
-			// TODO: in MIGRATION_WRITE_BOTH, we could use the old and the new method:
-			// e.g. call emulateMainSlot_1_29() if loadSlotRecords() fails.
-
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
 			$mainSlot = $this->emulateMainSlot_1_29( $revisionRow, $queryFlags, $title );
 			$slots = new RevisionSlots( [ 'main' => $mainSlot ] );
 		} else {
@@ -1608,8 +1650,8 @@ class RevisionStore
 		}
 
 		if ( !empty( $fields['text_id'] ) ) {
-			if ( $this->mcrMigrationStage >= MIGRATION_NEW ) {
-				throw new MWException( "Cannot use text_id field with MCR schema" );
+			if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+				throw new MWException( "The text_id field is only available in the pre-MCR schema" );
 			}
 
 			if ( !empty( $fields['content'] ) ) {
@@ -1965,7 +2007,8 @@ class RevisionStore
 	/**
 	 * Finds the ID of a content row for a given revision and slot role.
 	 * This can be used to re-use content rows even while the content ID
-	 * is still missing from SlotRecords, in MIGRATION_WRITE_BOTH mode.
+	 * is still missing from SlotRecords, when writing to both the old and
+	 * the new schema during MCR schema migration.
 	 *
 	 * @todo remove after MCR schema migration is complete.
 	 *
@@ -1976,7 +2019,7 @@ class RevisionStore
 	 * @return int|null
 	 */
 	private function findSlotContentId( IDatabase $db, $revId, $role ) {
-		if ( $this->mcrMigrationStage < MIGRATION_WRITE_BOTH ) {
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
 			return null;
 		}
 
@@ -2012,8 +2055,8 @@ class RevisionStore
 	 *  - 'page': Join with the page table, and select fields to identify the page
 	 *  - 'user': Join with the user table, and select the user name
 	 *  - 'text': Join with the text table, and select fields to load page text. This
-	 *    option is deprecated in MW 1.32 with MCR migration stage MIGRATION_WRITE_BOTH,
-	 *    and disallowed with MIGRATION_MEW.
+	 *    option is deprecated in MW 1.32 when the MCR migration flag SCHEMA_COMPAT_WRITE_NEW
+	 *    is set, and disallowed when SCHEMA_COMPAT_READ_OLD is not set.
 	 *
 	 * @return array With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -2049,7 +2092,7 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
-		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			$ret['fields'][] = 'rev_text_id';
 
 			if ( $this->contentHandlerUseDB ) {
@@ -2081,9 +2124,12 @@ class RevisionStore
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
-			if ( $this->mcrMigrationStage === MIGRATION_NEW ) {
+			if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) ) {
 				throw new InvalidArgumentException( 'text table can no longer be joined directly' );
-			} elseif ( $this->mcrMigrationStage >= MIGRATION_WRITE_BOTH ) {
+			} elseif ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+				// NOTE: even when this class is set to not read from the old schema, callers
+				// should still be able to join against the text table, as long as we are still
+				// writing the old schema for compatibility.
 				wfDeprecated( __METHOD__ . ' with `text` option', '1.32' );
 			}
 
@@ -2119,7 +2165,7 @@ class RevisionStore
 			'joins'  => [],
 		];
 
-		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			$db = $this->getDBConnectionRef( DB_REPLICA );
 			$ret['tables']['slots'] = 'revision';
 
@@ -2140,10 +2186,6 @@ class RevisionStore
 					$ret['fields']['model_name'] = 'NULL';
 				}
 			}
-
-			// XXX: in MIGRATION_WRITE_BOTH mode, emulate *and* select - using a UNION?
-			// See Anomie's idea at <https://gerrit.wikimedia.org/r/c/416465/
-			// 8..10/includes/Storage/RevisionStore.php#2113>
 		} else {
 			$ret['tables'][] = 'slots';
 			$ret['tables'][] = 'slot_roles';
@@ -2206,7 +2248,7 @@ class RevisionStore
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
 
-		if ( $this->mcrMigrationStage < MIGRATION_NEW ) {
+		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
 			$ret['fields'][] = 'ar_text_id';
 
 			if ( $this->contentHandlerUseDB ) {

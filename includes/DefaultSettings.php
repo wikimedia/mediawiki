@@ -8897,13 +8897,23 @@ $wgInterwikiPrefixDisplayTypes = [];
 $wgCommentTableSchemaMigrationStage = MIGRATION_OLD;
 
 /**
- * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables)
+ * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables).
+ * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+ *
+ * - SCHEMA_COMPAT_OLD
+ * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+ * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+ * - SCHEMA_COMPAT_OLD
+ *
+ * Note that reading the old and new schema at the same time is not supported.
+ * Attempting to set both read bits in $wgMultiContentRevisionSchemaMigrationStage
+ * will result in an InvalidArgumentException.
  *
  * @see Task: https://phabricator.wikimedia.org/T174028
  * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
  *
  * @since 1.32
- * @var int One of the MIGRATION_* constants
+ * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
 $wgMultiContentRevisionSchemaMigrationStage = MIGRATION_OLD;
 

@@ -8,7 +8,7 @@ use MediaWiki\DB\PatchFileLocation;
  * Trait providing schema overrides that allow tests to run against the intermediate MCR database
  * schema for use during schema migration.
  */
-trait McrWriteBothSchemaOverride {
+trait McrReadNewSchemaOverride {
 
 	use PatchFileLocation;
 	use McrSchemaDetection;
@@ -17,7 +17,7 @@ trait McrWriteBothSchemaOverride {
 	 * @return int
 	 */
 	protected function getMcrMigrationStage() {
-		return SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD;
+		return SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
 	}
 
 	/**

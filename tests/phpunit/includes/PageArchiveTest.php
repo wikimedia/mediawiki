@@ -52,6 +52,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
 		$this->setMwGlobals( 'wgActorTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', SCHEMA_COMPAT_OLD );
 		$this->overrideMwServices();
 
 		// First create our dummy page
@@ -135,6 +136,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 */
 	public function testListRevisions() {
 		$this->setMwGlobals( 'wgCommentTableSchemaMigrationStage', MIGRATION_OLD );
+		$this->setMwGlobals( 'wgMultiContentRevisionSchemaMigrationStage', SCHEMA_COMPAT_OLD );
 		$this->overrideMwServices();
 
 		$revisions = $this->archivedPage->listRevisions();
