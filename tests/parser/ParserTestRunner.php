@@ -1136,6 +1136,12 @@ class ParserTestRunner {
 		} else {
 			$tidy = false;
 		}
+
+		# Suppress warnings about running tests without tidy
+		Wikimedia\suppressWarnings();
+		wfDeprecated( 'disabling tidy' );
+		Wikimedia\restoreWarnings();
+
 		MWTidy::setInstance( $tidy );
 		$teardown[] = function () {
 			MWTidy::destroySingleton();

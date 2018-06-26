@@ -100,6 +100,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
+		$this->hideDeprecated( 'disabling tidy' );
 		MWTidy::setInstance( false );
 
 		if ( $escaped ) {
@@ -162,6 +163,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::removeHTMLtags
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
+		$this->hideDeprecated( 'disabling tidy' );
 		MWTidy::setInstance( false );
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
