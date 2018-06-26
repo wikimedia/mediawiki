@@ -460,10 +460,10 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $languageCode
+	 * @param string|null $languageCode
 	 */
 	public function setLanguageCode( $languageCode ) {
-		if ( !Language::isValidCode( $languageCode ) ) {
+		if ( $languageCode !== null && !Language::isValidCode( $languageCode ) ) {
 			throw new InvalidArgumentException( "$languageCode is not a valid language code." );
 		}
 		$this->languageCode = $languageCode;
