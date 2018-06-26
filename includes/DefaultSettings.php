@@ -1892,6 +1892,8 @@ $wgDBmwschema = null;
 
 /**
  * Default group to use when getting database connections.
+ * Will be used as default query group in ILoadBalancer::getConnection.
+ * @since 1.32
  */
 $wgDBDefaultGroup = null;
 
