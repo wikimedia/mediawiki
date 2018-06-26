@@ -183,6 +183,9 @@ because of Phabricator reports.
   * getItemsData: Use getItems instead and get the data property
 * The hook 'LogEventsListGetExtraInputs' now needs a form descriptor array
   and not plain HTML.
+* LanguageCode::bcp47() now always returns a valid BCP 47 code.  This means
+  that some MediaWiki-specific language codes, such as `simple`, are mapped
+  into valid BCP 47 codes (eg `en-simple`).
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
