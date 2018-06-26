@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Tidy;
 
+/**
+ * @deprecated since 1.32, use RemexDriver
+ */
 class RaggettInternalHHVM extends RaggettBase {
 	/**
 	 * Use the HTML tidy extension to use the tidy library in-process,

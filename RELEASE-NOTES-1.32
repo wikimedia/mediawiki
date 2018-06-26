@@ -449,6 +449,8 @@ because of Phabricator reports.
   in MediaWiki 1.26, have now been hard deprecated. This affects $wgUseTidy,
   $wgTidyBin, $wgTidyConf, $wgTidyOpts, $wgTidyInternal, and $wgDebugTidy. Use
   $wgTidyConfig instead.
+* All Tidy configurations other than Remex have been deprecated; future parsers
+  will not emit compatible output for these configurations.
 
 === Other changes in 1.32 ===
 * (T198811) The following tables have had their UNIQUE indexes turned into

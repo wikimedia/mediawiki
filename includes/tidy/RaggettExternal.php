@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Tidy;
 
+/**
+ * @deprecated since 1.32, use RemexDriver
+ */
 class RaggettExternal extends RaggettBase {
 	/**
 	 * Spawn an external HTML tidy process and get corrected markup back from it.
