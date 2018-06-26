@@ -802,7 +802,7 @@
 	"currentrevisionlink": "Тренутна измена",
 	"cur": "трен",
 	"next": "след",
-	"last": "претх",
+	"last": "разл",
 	"page_first": "прва",
 	"page_last": "последња",
 	"histlegend": "Избор разлика: изаберите кутијице измена за упоређивање и притисните ентер или дугме на дну.<br />\nОбјашњење: <strong>({{int:cur}})</strong> = разлика с тренутном изменом, <strong>({{int:last}})</strong> = разлика с претходном изменом, <strong>{{int:minoreditletter}}</strong> = мања измена",
