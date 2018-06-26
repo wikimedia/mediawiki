@@ -137,7 +137,8 @@ class PopulateChangeTagDef extends Maintenance {
 			'change_tag_def',
 			[ 'ctd_name', 'ctd_id' ],
 			[],
-			__METHOD__
+			__METHOD__,
+			[ 'ORDER BY' => 'ctd_id' ]
 		);
 
 		foreach ( $changeTagDefs as $row ) {
@@ -150,6 +151,7 @@ class PopulateChangeTagDef extends Maintenance {
 		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_MASTER );
 		$sleep = (int)$this->getOption( 'sleep', 10 );
 		$lastId = 0;
+		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}" );
 		while ( true ) {
 			// Given that indexes might not be there, it's better to use replica
 			$ids = $dbr->selectFieldValues(
@@ -157,7 +159,7 @@ class PopulateChangeTagDef extends Maintenance {
 				'ct_id',
 				[ 'ct_tag' => $tagName, 'ct_tag_id' => null, 'ct_id > ' . $lastId ],
 				__METHOD__,
-				[ 'LIMIT' => $this->getBatchSize() ]
+				[ 'LIMIT' => $this->getBatchSize(), 'ORDER BY' => 'ct_id' ]
 			);
 
 			if ( !$ids ) {
@@ -170,6 +172,8 @@ class PopulateChangeTagDef extends Maintenance {
 					"These ids will be changed to have \"{$tagId}\" as tag id: " . implode( ', ', $ids ) . "\n"
 				);
 				continue;
+			} else {
+				$this->output( "Updating ct_tag_id = {$tagId} up to row ct_id = {$lastId}" );
 			}
 
 			$dbw->update(
@@ -184,6 +188,8 @@ class PopulateChangeTagDef extends Maintenance {
 				sleep( $sleep );
 			}
 		}
+
+		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}" );
 	}
 
 }
