@@ -213,6 +213,40 @@
 	};
 
 	/**
+	 * Perform a string search across the JavaScript and CSS source code
+	 * of all loaded modules and return an array of the names of the
+	 * modules that matched.
+	 *
+	 * @param {string|RegExp} pattern String or regexp to match.
+	 * @return {Array} Array of the names of modules that matched.
+	 */
+	inspect.grep = function ( pattern ) {
+		if ( typeof pattern.test !== 'function' ) {
+			pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
+		}
+
+		return inspect.getLoadedModules().filter( function ( moduleName ) {
+			var module = mw.loader.moduleRegistry[ moduleName ];
+
+			// Grep module's JavaScript
+			if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {
+				return true;
+			}
+
+			// Grep module's CSS
+			if (
+				$.isPlainObject( module.style ) && Array.isArray( module.style.css ) &&
+				pattern.test( module.style.css.join( '' ) )
+			) {
+				// Module's CSS source matches
+				return true;
+			}
+
+			return false;
+		} );
+	};
+
+	/**
 	 * @class mw.inspect.reports
 	 * @singleton
 	 */
@@ -292,40 +326,6 @@
 			}
 			return [ stats ];
 		}
-	};
-
-	/**
-	 * Perform a string search across the JavaScript and CSS source code
-	 * of all loaded modules and return an array of the names of the
-	 * modules that matched.
-	 *
-	 * @param {string|RegExp} pattern String or regexp to match.
-	 * @return {Array} Array of the names of modules that matched.
-	 */
-	inspect.grep = function ( pattern ) {
-		if ( typeof pattern.test !== 'function' ) {
-			pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
-		}
-
-		return inspect.getLoadedModules().filter( function ( moduleName ) {
-			var module = mw.loader.moduleRegistry[ moduleName ];
-
-			// Grep module's JavaScript
-			if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {
-				return true;
-			}
-
-			// Grep module's CSS
-			if (
-				$.isPlainObject( module.style ) && Array.isArray( module.style.css ) &&
-				pattern.test( module.style.css.join( '' ) )
-			) {
-				// Module's CSS source matches
-				return true;
-			}
-
-			return false;
-		} );
 	};
 
 	if ( mw.config.get( 'debug' ) ) {
