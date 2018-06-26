@@ -35,10 +35,8 @@
 }
 
 // We use the `:not` selector to cancel out styling on IE 8 and below
-// We also disable this styling on JavaScript disabled devices. This fixes the issue with
-// Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
-// more capable browsers with unstyled checkboxes.
-.client-js .mw-ui-checkbox:not( #noop ) {
+// Note: This may be broken on older Opera Mini devices.
+.mw-ui-checkbox:not( #noop ) {
 	display: table;
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
