@@ -20,6 +20,9 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IResultWrapper;
+use MediaWiki\Block\BlockRestriction;
+
 /**
  * Query module to enumerate all user blocks
  *
@@ -48,6 +51,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$fld_reason = isset( $prop['reason'] );
 		$fld_range = isset( $prop['range'] );
 		$fld_flags = isset( $prop['flags'] );
+		$fld_restrictions = isset( $prop['restrictions'] );
 
 		$result = $this->getResult();
 
@@ -64,8 +68,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addFieldsIf( 'ipb_expiry', $fld_expiry );
 		$this->addFieldsIf( [ 'ipb_range_start', 'ipb_range_end' ], $fld_range );
 		$this->addFieldsIf( [ 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock',
-			'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk' ],
+			'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk', 'ipb_sitewide' ],
 			$fld_flags );
+		$this->addFieldsIf( 'ipb_sitewide', $fld_restrictions );
 
 		if ( $fld_reason ) {
 			$commentQuery = $commentStore->getJoin( 'ipb_reason' );
@@ -180,6 +185,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
+		$restrictions = [];
+		if ( $fld_restrictions ) {
+			$restrictions = $this->getRestrictionData( $res, $params['limit'] );
+		}
+
 		$count = 0;
 		foreach ( $res as $row ) {
 			if ( ++$count > $params['limit'] ) {
@@ -227,7 +237,16 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['noemail'] = (bool)$row->ipb_block_email;
 				$block['hidden'] = (bool)$row->ipb_deleted;
 				$block['allowusertalk'] = (bool)$row->ipb_allow_usertalk;
+				$block['partial'] = !(bool)$row->ipb_sitewide;
 			}
+
+			if ( $fld_restrictions ) {
+				$block['restrictions'] = [];
+				if ( !$row->ipb_sitewide && isset( $restrictions[$row->ipb_id] ) ) {
+					$block['restrictions'] = $restrictions[$row->ipb_id];
+				}
+			}
+
 			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $block );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
@@ -254,6 +273,52 @@ class ApiQueryBlocks extends ApiQueryBase {
 			);
 		}
 		return $name;
+	}
+
+	/**
+	 * Retrieves the restrictions based on the query result.
+	 *
+	 * @param IResultWrapper $result
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	private static function getRestrictionData( IResultWrapper $result, $limit ) {
+		$partialIds = [];
+		$count = 0;
+		foreach ( $result as $row ) {
+			if ( ++$count <= $limit && !$row->ipb_sitewide ) {
+				$partialIds[] = (int)$row->ipb_id;
+			}
+		}
+
+		$restrictions = BlockRestriction::loadByBlockId( $partialIds );
+
+		$data = [];
+		$keys = [
+			'page' => 'pages',
+			'ns' => 'namespaces',
+		];
+		foreach ( $restrictions as $restriction ) {
+			$key = $keys[$restriction->getType()];
+			$id = $restriction->getBlockId();
+			switch ( $restriction->getType() ) {
+				case 'page':
+					$value = [ 'id' => $restriction->getValue() ];
+					self::addTitleInfo( $value, $restriction->getTitle() );
+					break;
+				default:
+					$value = $restriction->getValue();
+			}
+
+			if ( !isset( $data[$id][$key] ) ) {
+				$data[$id][$key] = [];
+				ApiResult::setIndexedTagName( $data[$id][$key], $restriction->getType() );
+			}
+			$data[$id][$key][] = $value;
+		}
+
+		return $data;
 	}
 
 	public function getAllowedParams() {
@@ -308,7 +373,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 					'expiry',
 					'reason',
 					'range',
-					'flags'
+					'flags',
+					'restrictions',
 				],
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
