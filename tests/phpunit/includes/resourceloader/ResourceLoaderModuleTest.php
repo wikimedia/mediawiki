@@ -65,6 +65,19 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoaderModule::getVersionHash
+	 */
+	public function testGetVersionHash_parentDefinition() {
+		$context = $this->getResourceLoaderContext();
+		$module = $this->getMockBuilder( ResourceLoaderModule::class )
+			->setMethods( [ 'getDefinitionSummary' ] )->getMock();
+		$module->method( 'getDefinitionSummary' )->willReturn( [ 'a' => 'summary' ] );
+
+		$this->setExpectedException( LogicException::class, 'must call parent' );
+		$module->getVersionHash( $context );
+	}
+
+	/**
 	 * @covers ResourceLoaderModule::validateScriptFile
 	 */
 	public function testValidateScriptFile() {
