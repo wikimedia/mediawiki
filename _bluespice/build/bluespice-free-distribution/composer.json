@@ -4,7 +4,7 @@
 		"url": "https://packages.bluespice.com/"
 	}],
 	"require": {
-		"bluespice/visual-editor-connector": "dev-master",
+		"bluespice/visualeditorconnector": "dev-master",
 		"hallowelt/filter-special-pages": "dev-master",
 		"mediawiki/arrays": "dev-master",
 		"mediawiki/dynamic-page-list": "dev-master",
