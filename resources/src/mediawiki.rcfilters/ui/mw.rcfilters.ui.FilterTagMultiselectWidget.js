@@ -476,7 +476,10 @@
 			) {
 				this.addTag( item.getName(), item.getLabel() );
 			} else {
-				this.removeTagByData( item.getName() );
+				// Only attempt to remove the tag if we can find an item for it (T198140, T198231)
+				if ( this.findItemFromData( item.getName() ) !== null ) {
+					this.removeTagByData( item.getName() );
+				}
 			}
 		}
 
@@ -525,7 +528,10 @@
 			// Remove capsule widgets if they're not selected
 			highlightedItems.forEach( function ( filterItem ) {
 				if ( !filterItem.isSelected() ) {
-					this.removeTagByData( filterItem.getName() );
+					// Only attempt to remove the tag if we can find an item for it (T198140, T198231)
+					if ( this.findItemFromData( filterItem.getName() ) !== null ) {
+						this.removeTagByData( filterItem.getName() );
+					}
 				}
 			}.bind( this ) );
 		}
