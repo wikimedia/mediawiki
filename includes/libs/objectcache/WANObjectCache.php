@@ -291,9 +291,9 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * That method has cache slam avoiding features for hot/expensive keys.
 	 *
 	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
-	 * @param mixed &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
+	 * @param mixed|null &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param array $checkKeys List of "check" keys
-	 * @param float &$asOf UNIX timestamp of cached value; null on failure [returned]
+	 * @param float|null &$asOf UNIX timestamp of cached value; null on failure [returned]
 	 * @return mixed Value of cache key or false on failure
 	 */
 	final public function get( $key, &$curTTL = null, array $checkKeys = [], &$asOf = null ) {
@@ -1133,7 +1133,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	 * @param int $ttl
 	 * @param callback $callback
 	 * @param array $opts Options map for getWithSetCallback()
-	 * @param float &$asOf Cache generation timestamp of returned value [returned]
+	 * @param float|null &$asOf Cache generation timestamp of returned value [returned]
 	 * @return mixed
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
@@ -1600,7 +1600,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @see BagOStuff::makeKey()
 	 * @param string $class Key class
-	 * @param string $component [optional] Key component (starting with a key collection name)
+	 * @param string|null $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */
@@ -1611,7 +1611,7 @@ class WANObjectCache implements IExpiringStore, LoggerAwareInterface {
 	/**
 	 * @see BagOStuff::makeGlobalKey()
 	 * @param string $class Key class
-	 * @param string $component [optional] Key component (starting with a key collection name)
+	 * @param string|null $component [optional] Key component (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components of $args
 	 * @since 1.27
 	 */

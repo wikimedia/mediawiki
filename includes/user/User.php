@@ -759,7 +759,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * will be loaded once more from the database when accessing them.
 	 *
 	 * @param stdClass $row A row from the user table
-	 * @param array $data Further data to load into the object (see User::loadFromRow for valid keys)
+	 * @param array|null $data Further data to load into the object
+	 *  (see User::loadFromRow for valid keys)
 	 * @return User
 	 */
 	public static function newFromRow( $row, $data = null ) {
@@ -1062,7 +1063,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string|array $groups A single group name or an array of group names
 	 * @param int $limit Max number of users to return. The actual limit will never exceed 5000
 	 *   records; larger values are ignored.
-	 * @param int $after ID the user to start after
+	 * @param int|null $after ID the user to start after
 	 * @return UserArrayFromResult
 	 */
 	public static function findUsersByGroup( $groups, $limit = 5000, $after = null ) {
@@ -1465,7 +1466,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Initialize this object from a row from the user table.
 	 *
 	 * @param stdClass $row Row from the user table to load.
-	 * @param array $data Further user data to load into the object
+	 * @param array|null $data Further user data to load into the object
 	 *
 	 *  user_groups   Array of arrays or stdClass result rows out of the user_groups
 	 *                table. Previously you were supposed to pass an array of strings
@@ -2692,7 +2693,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val Whether the user has new messages
-	 * @param Revision $curRev New, as yet unseen revision of the user talk
+	 * @param Revision|null $curRev New, as yet unseen revision of the user talk
 	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
@@ -3133,7 +3134,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user's current setting for a given option.
 	 *
 	 * @param string $oname The option to check
-	 * @param string|array $defaultOverride A default value returned if the option does not exist
+	 * @param string|array|null $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
 	 * @return string|array|int|null User's current value for the option
 	 * @see getBoolOption()
@@ -3328,7 +3329,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @see User::listOptionKinds
 	 * @param IContextSource $context
-	 * @param array $options Assoc. array with options keys to check as keys.
+	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
 	 * @return array The key => kind mapping data
 	 */
@@ -3690,7 +3691,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * never expire.)
 	 *
 	 * @param string $group Name of the group to add
-	 * @param string $expiry Optional expiry timestamp in any format acceptable to
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
 	 *   wfTimestamp(), or null if the group assignment should not expire
 	 * @return bool
 	 */
@@ -4068,7 +4069,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
-	 * @param bool $secure Whether to force secure/insecure cookies or use default
+	 * @param bool|null $secure Whether to force secure/insecure cookies or use default
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
 	public function setCookies( $request = null, $secure = null, $rememberMe = false ) {
@@ -4617,7 +4618,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
-	 * @param int $maxage Fail tokens older than this, in seconds
+	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditToken( $val, $salt = '', $request = null, $maxage = null ) {
@@ -4631,7 +4632,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use or null to use $wgRequest
-	 * @param int $maxage Fail tokens older than this, in seconds
+	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
@@ -4682,7 +4683,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $body Message body
 	 * @param User|null $from Optional sending user; if unspecified, default
 	 *   $wgPasswordSender will be used.
-	 * @param string $replyto Reply-To address
+	 * @param string|null $replyto Reply-To address
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
@@ -5446,7 +5447,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Load the user options either from cache, the database or an array
 	 *
-	 * @param array $data Rows for the current user out of the user_properties table
+	 * @param array|null $data Rows for the current user out of the user_properties table
 	 */
 	protected function loadOptions( $data = null ) {
 		global $wgContLang;

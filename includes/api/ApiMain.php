@@ -165,7 +165,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
-	 * @param IContextSource|WebRequest $context If this is an instance of
+	 * @param IContextSource|WebRequest|null $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data
 	 */
@@ -1616,7 +1616,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Log the preceding request
 	 * @param float $time Time in seconds
-	 * @param Exception $e Exception caught while processing the request
+	 * @param Exception|null $e Exception caught while processing the request
 	 */
 	protected function logRequest( $time, $e = null ) {
 		$request = $this->getRequest();

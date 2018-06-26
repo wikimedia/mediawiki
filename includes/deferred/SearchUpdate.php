@@ -113,7 +113,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * If you're using a real search engine, you'll probably want to override
 	 * this behavior and do something nicer with the original wikitext.
 	 * @param string $text
-	 * @param SearchEngine $se Search engine
+	 * @param SearchEngine|null $se Search engine
 	 * @return string
 	 */
 	public function updateText( $text, SearchEngine $se = null ) {

@@ -171,7 +171,7 @@ class Category {
 	 *   fields are null, the resulting Category object will represent an empty
 	 *   category if a title object was given. If the fields are null and no
 	 *   title was given, this method fails and returns false.
-	 * @param Title $title Optional title object for the category represented by
+	 * @param Title|null $title Optional title object for the category represented by
 	 *   the given row. May be provided if it is already known, to avoid having
 	 *   to re-create a title object later.
 	 * @return Category|false

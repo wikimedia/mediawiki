@@ -66,7 +66,7 @@ abstract class DiffOp {
 	}
 
 	/**
-	 * @param int $i
+	 * @param int|null $i
 	 * @return string[]|string|null
 	 */
 	public function getClosing( $i = null ) {

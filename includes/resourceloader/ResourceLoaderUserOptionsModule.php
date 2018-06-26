@@ -32,7 +32,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
-	 * @param ResourceLoaderContext $context
+	 * @param ResourceLoaderContext|null $context
 	 * @return array List of module names as strings
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {

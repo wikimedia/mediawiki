@@ -405,7 +405,8 @@ class ResourceLoaderClientHtml {
 	 * @param array $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
-	 * @param string $nonce [optional] Content-Security-Policy nonce (from OutputPage::getCSPNonce)
+	 * @param string|null $nonce [optional] Content-Security-Policy nonce
+	 *  (from OutputPage::getCSPNonce)
 	 * @return string|WrappedStringList HTML
 	 */
 	public static function makeLoad( ResourceLoaderContext $mainContext, array $modules, $only,

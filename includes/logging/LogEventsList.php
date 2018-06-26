@@ -101,9 +101,9 @@ class LogEventsList extends ContextSource {
 	 * @param int|string $year Use 0 to start with no year preselected.
 	 * @param int|string $month A month in the 1..12 range. Use 0 to start with no month
 	 *  preselected.
-	 * @param array $filter
+	 * @param array|null $filter
 	 * @param string $tagFilter Tag to select by default
-	 * @param string $action
+	 * @param string|null $action
 	 */
 	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
 		$month = 0, $filter = null, $tagFilter = '', $action = null
@@ -524,7 +524,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser
 	 * @return bool
 	 */
 	public static function userCan( $row, $field, User $user = null ) {
@@ -537,7 +537,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field
-	 * @param User $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser
 	 * @return bool
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
@@ -745,7 +745,7 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser
 	 * @return string|bool String on success, false on failure.
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {

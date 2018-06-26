@@ -33,7 +33,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {

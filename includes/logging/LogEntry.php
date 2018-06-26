@@ -625,7 +625,7 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Insert the entry into the `logging` table.
 	 *
-	 * @param IDatabase $dbw
+	 * @param IDatabase|null $dbw
 	 * @return int ID of the log entry
 	 * @throws MWException
 	 */

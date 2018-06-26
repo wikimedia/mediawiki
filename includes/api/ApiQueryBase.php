@@ -320,7 +320,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add an option such as LIMIT or USE INDEX. If an option was set
 	 * before, the old value will be overwritten
 	 * @param string $name Option name
-	 * @param string|string[] $value Option value
+	 * @param string|string[]|null $value Option value
 	 */
 	protected function addOption( $name, $value = null ) {
 		if ( is_null( $value ) ) {
@@ -402,8 +402,8 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * @param string $query
-	 * @param string $protocol
+	 * @param string|null $query
+	 * @param string|null $protocol
 	 * @return null|string
 	 */
 	public function prepareUrlQuerySearchString( $query = null, $protocol = null ) {
@@ -503,7 +503,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Same as addPageSubItems(), but one element of $data at a time
 	 * @param int $pageId Page ID
 	 * @param array $item Data array à la ApiResult
-	 * @param string $elemname XML element name. If null, getModuleName()
+	 * @param string|null $elemname XML element name. If null, getModuleName()
 	 *  is used
 	 * @return bool Whether the element fit in the result
 	 */

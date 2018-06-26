@@ -498,7 +498,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Returns the text of the error message from previous MySQL operation
 	 *
-	 * @param resource $conn Raw connection
+	 * @param resource|null $conn Raw connection
 	 * @return string
 	 */
 	abstract protected function mysqlError( $conn = null );
@@ -1457,7 +1457,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string|null $prefix Only show tables with this prefix, e.g. mw_
 	 * @param string $fname Calling function name
 	 * @return array
 	 */
@@ -1511,7 +1511,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Lists VIEWs in the database
 	 *
-	 * @param string $prefix Only show VIEWs with this prefix, eg.
+	 * @param string|null $prefix Only show VIEWs with this prefix, eg.
 	 * unit_test_, or $wgDBprefix. Default: null, would return all views.
 	 * @param string $fname Name of calling function
 	 * @return array
@@ -1547,7 +1547,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Differentiates between a TABLE and a VIEW.
 	 *
 	 * @param string $name Name of the TABLE/VIEW to test
-	 * @param string $prefix
+	 * @param string|null $prefix
 	 * @return bool
 	 * @since 1.22
 	 */

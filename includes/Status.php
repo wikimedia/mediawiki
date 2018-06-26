@@ -171,7 +171,7 @@ class Status extends StatusValue {
 	 * @param string|bool $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
 	 * @param string|bool $longContext A long enclosing context message name, for a list
-	 * @param string|Language $lang Language to use for processing messages
+	 * @param string|Language|null $lang Language to use for processing messages
 	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
@@ -227,7 +227,7 @@ class Status extends StatusValue {
 	 *
 	 * @param string|string[]|bool $shortContext A message name or an array of message names.
 	 * @param string|string[]|bool $longContext A message name or an array of message names.
-	 * @param string|Language $lang Language to use for processing messages
+	 * @param string|Language|null $lang Language to use for processing messages
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false, $lang = null ) {
@@ -279,7 +279,7 @@ class Status extends StatusValue {
 	 * If $error is an array, the "params" field is a list of parameters for the message.
 	 *
 	 * @param array|string $error Code string or (key: code string, params: string[]) map
-	 * @param string|Language $lang Language to use for processing messages
+	 * @param string|Language|null $lang Language to use for processing messages
 	 * @return Message
 	 */
 	protected function getErrorMessage( $error, $lang = null ) {
@@ -324,7 +324,7 @@ class Status extends StatusValue {
 	/**
 	 * Return an array with a Message object for each error.
 	 * @param array $errors
-	 * @param string|Language $lang Language to use for processing messages
+	 * @param string|Language|null $lang Language to use for processing messages
 	 * @return Message[]
 	 */
 	protected function getErrorMessageArray( $errors, $lang = null ) {

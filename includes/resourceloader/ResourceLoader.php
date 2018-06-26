@@ -238,8 +238,8 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * Register core modules and runs registration hooks.
-	 * @param Config $config [optional]
-	 * @param LoggerInterface $logger [optional]
+	 * @param Config|null $config [optional]
+	 * @param LoggerInterface|null $logger [optional]
 	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		global $IP;
@@ -317,7 +317,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Register a module with the ResourceLoader system.
 	 *
 	 * @param mixed $name Name of module as a string or List of name/object pairs as an array
-	 * @param array $info Module info array. For backwards compatibility with 1.17alpha,
+	 * @param array|null $info Module info array. For backwards compatibility with 1.17alpha,
 	 *   this may also be a ResourceLoaderModule object. Optional when using
 	 *   multiple-registration calling style.
 	 * @throws MWException If a duplicate module registration is attempted
@@ -446,7 +446,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Source IDs are typically the same as the Wiki ID or database name (e.g. lowercase a-z).
 	 *
 	 * @param array|string $id Source ID (string), or [ id1 => loadUrl, id2 => loadUrl, ... ]
-	 * @param string|array $loadUrl load.php url (string), or array with loadUrl key for
+	 * @param string|array|null $loadUrl load.php url (string), or array with loadUrl key for
 	 *  backwards-compatibility.
 	 * @throws MWException
 	 */
@@ -1308,7 +1308,7 @@ MESSAGE;
 	 *         Set the state of modules with the given names to the given states
 	 *
 	 * @param string $name
-	 * @param string $state
+	 * @param string|null $state
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderStateScript( $name, $state = null ) {
@@ -1406,11 +1406,11 @@ MESSAGE;
 	 *        Registers modules with the given names and parameters.
 	 *
 	 * @param string $name Module name
-	 * @param string $version Module version hash
-	 * @param array $dependencies List of module names on which this module depends
-	 * @param string $group Group which the module is in
-	 * @param string $source Source of the module, or 'local' if not foreign
-	 * @param string $skip Script body of the skip function
+	 * @param string|null $version Module version hash
+	 * @param array|null $dependencies List of module names on which this module depends
+	 * @param string|null $group Group which the module is in
+	 * @param string|null $source Source of the module, or 'local' if not foreign
+	 * @param string|null $skip Script body of the skip function
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderRegisterScript( $name, $version = null,
@@ -1464,7 +1464,7 @@ MESSAGE;
 	 *       Register sources with the given IDs and properties.
 	 *
 	 * @param string $id Source ID
-	 * @param string $loadUrl load.php url
+	 * @param string|null $loadUrl load.php url
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderSourcesScript( $id, $loadUrl = null ) {
@@ -1501,7 +1501,8 @@ MESSAGE;
 	 * startup module if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @param string $nonce [optional] Content-Security-Policy nonce (from OutputPage::getCSPNonce)
+	 * @param string|null $nonce [optional] Content-Security-Policy nonce
+	 *  (from OutputPage::getCSPNonce)
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {
@@ -1643,10 +1644,10 @@ MESSAGE;
 	 * @param array $modules
 	 * @param string $lang
 	 * @param string $skin
-	 * @param string $user
-	 * @param string $version
+	 * @param string|null $user
+	 * @param string|null $version
 	 * @param bool $debug
-	 * @param string $only
+	 * @param string|null $only
 	 * @param bool $printable
 	 * @param bool $handheld
 	 * @param array $extraQuery

@@ -904,7 +904,7 @@ class Linker {
 	 *   red if the user has no edits?
 	 * @param int $flags Customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK
 	 *   and Linker::TOOL_LINKS_EMAIL).
-	 * @param int $edits User edit count (optional, for performance)
+	 * @param int|null $edits User edit count (optional, for performance)
 	 * @return string HTML fragment
 	 */
 	public static function userToolLinks(
@@ -966,7 +966,7 @@ class Linker {
 	 * @since 1.16.3
 	 * @param int $userId User identifier
 	 * @param string $userText User name or IP address
-	 * @param int $edits User edit count (optional, for performance)
+	 * @param int|null $edits User edit count (optional, for performance)
 	 * @return string
 	 */
 	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
@@ -1678,7 +1678,7 @@ class Linker {
 	 * @since 1.16.3. $context added in 1.20. $options added in 1.21
 	 *
 	 * @param Revision $rev
-	 * @param IContextSource $context Context to use or null for the main context.
+	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param array $options
 	 * @return string
 	 */

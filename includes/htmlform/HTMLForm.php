@@ -301,7 +301,7 @@ class HTMLForm extends ContextSource {
 	 * Build a new HTMLForm from an array of field attributes
 	 *
 	 * @param array $descriptor Array of Field constructs, as described above
-	 * @param IContextSource $context Available since 1.18, will become compulsory in 1.18.
+	 * @param IContextSource|null $context Available since 1.18, will become compulsory in 1.18.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 */

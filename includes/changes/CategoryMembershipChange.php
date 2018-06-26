@@ -59,7 +59,7 @@ class CategoryMembershipChange {
 
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
-	 * @param Revision $revision Latest Revision instance of the categorized page
+	 * @param Revision|null $revision Latest Revision instance of the categorized page
 	 *
 	 * @throws MWException
 	 */
@@ -142,7 +142,7 @@ class CategoryMembershipChange {
 	/**
 	 * @param string $timestamp Timestamp of the recent change to occur in TS_MW format
 	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
-	 * @param User $user User object of the user that made the change
+	 * @param User|null $user User object of the user that made the change
 	 * @param string $comment Change summary
 	 * @param Title $pageTitle Title of the page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format

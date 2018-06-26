@@ -472,7 +472,7 @@ class WebInstaller extends Installer {
 	 * Get a session variable.
 	 *
 	 * @param string $name
-	 * @param array $default
+	 * @param array|null $default
 	 *
 	 * @return array
 	 */

@@ -568,7 +568,7 @@ class MediaWiki {
 
 	/**
 	 * @see MediaWiki::preOutputCommit()
-	 * @param callable $postCommitWork [default: null]
+	 * @param callable|null $postCommitWork [default: null]
 	 * @since 1.26
 	 */
 	public function doPreOutputCommit( callable $postCommitWork = null ) {
@@ -580,7 +580,7 @@ class MediaWiki {
 	 * the user can receive a response (in case commit fails)
 	 *
 	 * @param IContextSource $context
-	 * @param callable $postCommitWork [default: null]
+	 * @param callable|null $postCommitWork [default: null]
 	 * @since 1.27
 	 */
 	public static function preOutputCommit(

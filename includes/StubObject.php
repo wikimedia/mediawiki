@@ -56,8 +56,8 @@ class StubObject {
 	protected $params;
 
 	/**
-	 * @param string $global Name of the global variable.
-	 * @param string|callable $class Name of the class of the real object
+	 * @param string|null $global Name of the global variable.
+	 * @param string|callable|null $class Name of the class of the real object
 	 *                               or a factory function to call
 	 * @param array $params Parameters to pass to constructor of the real object.
 	 */

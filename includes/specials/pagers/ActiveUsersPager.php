@@ -44,7 +44,7 @@ class ActiveUsersPager extends UsersPager {
 	private $blockStatusByUid;
 
 	/**
-	 * @param IContextSource $context
+	 * @param IContextSource|null $context
 	 * @param FormOptions $opts
 	 */
 	function __construct( IContextSource $context = null, FormOptions $opts ) {

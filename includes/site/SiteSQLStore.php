@@ -39,7 +39,7 @@ class SiteSQLStore {
 	 *             or MediaWikiServices::getSiteLookup() instead.
 	 *
 	 * @param null $sitesTable IGNORED
-	 * @param null $cache IGNORED
+	 * @param BagOStuff|null $cache IGNORED
 	 *
 	 * @return SiteStore
 	 */

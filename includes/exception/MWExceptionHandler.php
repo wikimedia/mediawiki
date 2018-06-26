@@ -161,8 +161,8 @@ class MWExceptionHandler {
 	 *
 	 * @param int $level Error level raised
 	 * @param string $message
-	 * @param string $file
-	 * @param int $line
+	 * @param string|null $file
+	 * @param int|null $line
 	 * @return bool
 	 *
 	 * @see logError()
@@ -231,12 +231,12 @@ class MWExceptionHandler {
 	 *
 	 * @since 1.25
 	 *
-	 * @param int $level Error level raised
-	 * @param string $message Error message
-	 * @param string $file File that error was raised in
-	 * @param int $line Line number error was raised at
-	 * @param array $context Active symbol table point of error
-	 * @param array $trace Backtrace at point of error (undocumented HHVM
+	 * @param int|null $level Error level raised
+	 * @param string|null $message Error message
+	 * @param string|null $file File that error was raised in
+	 * @param int|null $line Line number error was raised at
+	 * @param array|null $context Active symbol table point of error
+	 * @param array|null $trace Backtrace at point of error (undocumented HHVM
 	 *     feature)
 	 * @return bool Always returns false
 	 */

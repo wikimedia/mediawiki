@@ -109,7 +109,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * @param Database &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
-	 * @param Maintenance $maintenance Maintenance object which created us
+	 * @param Maintenance|null $maintenance Maintenance object which created us
 	 */
 	protected function __construct( Database &$db, $shared, Maintenance $maintenance = null ) {
 		$this->db = $db;
@@ -516,7 +516,7 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param string $key Name of key to insert
-	 * @param string $val [optional] Value to insert along with the key
+	 * @param string|null $val [optional] Value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
 		$this->db->clearFlag( DBO_DDLMODE );
@@ -659,7 +659,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param string $path Path to the patch file
 	 * @param bool $isFullPath Whether to treat $path as a relative or not
-	 * @param string $msg Description of the patch
+	 * @param string|null $msg Description of the patch
 	 * @return bool False if patch is skipped.
 	 */
 	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {

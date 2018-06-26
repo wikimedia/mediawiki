@@ -33,8 +33,8 @@ class PatrolLog {
 	 *
 	 * @param int|RecentChange $rc Change identifier or RecentChange object
 	 * @param bool $auto Was this patrol event automatic?
-	 * @param User $user User performing the action or null to use $wgUser
-	 * @param string|string[] $tags Change tags to add to the patrol log entry
+	 * @param User|null $user User performing the action or null to use $wgUser
+	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 *
 	 * @return bool

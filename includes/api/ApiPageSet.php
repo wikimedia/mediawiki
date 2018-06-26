@@ -460,7 +460,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
 	 * target. Includes generator data for redirect source when available.
-	 * @param ApiResult $result
+	 * @param ApiResult|null $result
 	 * @return array Array of prefixed_title (string) => Title object
 	 * @since 1.21
 	 */
@@ -507,7 +507,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title normalizations - maps a title to its normalized
 	 * version in the form of result array.
-	 * @param ApiResult $result
+	 * @param ApiResult|null $result
 	 * @return array Array of raw_prefixed_title (string) => prefixed_title (string)
 	 * @since 1.21
 	 */
@@ -542,7 +542,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of title conversions - maps a title to its converted
 	 * version as a result array.
-	 * @param ApiResult $result
+	 * @param ApiResult|null $result
 	 * @return array Array of (from, to) strings
 	 * @since 1.21
 	 */
@@ -573,7 +573,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Get a list of interwiki titles - maps a title to its interwiki
 	 * prefix as result.
-	 * @param ApiResult $result
+	 * @param ApiResult|null $result
 	 * @param bool $iwUrl
 	 * @return array Array of raw_prefixed_title (string) => interwiki_prefix (string)
 	 * @since 1.21
@@ -692,7 +692,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Revision IDs that were not found in the database as result array.
-	 * @param ApiResult $result
+	 * @param ApiResult|null $result
 	 * @return array Array of revision IDs
 	 * @since 1.21
 	 */

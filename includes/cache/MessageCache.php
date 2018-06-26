@@ -239,7 +239,7 @@ class MessageCache {
 	 * is disabled.
 	 *
 	 * @param string $code Language to which load messages
-	 * @param int $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
 	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
@@ -383,7 +383,7 @@ class MessageCache {
 	/**
 	 * @param string $code
 	 * @param array &$where List of wfDebug() comments
-	 * @param int $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
 	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
@@ -445,7 +445,7 @@ class MessageCache {
 	 * on-demand from the database later.
 	 *
 	 * @param string $code Language code
-	 * @param int $mode Use MessageCache::FOR_UPDATE to skip process cache
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
@@ -1063,8 +1063,8 @@ class MessageCache {
 	/**
 	 * @param string $message
 	 * @param bool $interface
-	 * @param Language $language
-	 * @param Title $title
+	 * @param Language|null $language
+	 * @param Title|null $title
 	 * @return string
 	 */
 	public function transform( $message, $interface = false, $language = null, $title = null ) {
@@ -1117,10 +1117,10 @@ class MessageCache {
 
 	/**
 	 * @param string $text
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param bool $linestart Whether or not this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
-	 * @param Language|string $language Language code
+	 * @param Language|string|null $language Language code
 	 * @return ParserOutput|string
 	 */
 	public function parse( $text, $title = null, $linestart = true,

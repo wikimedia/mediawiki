@@ -40,7 +40,7 @@ class DBQueryError extends DBExpectedError {
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param string $message Optional message, intended for subclases (optional)
+	 * @param string|null $message Optional message, intended for subclases (optional)
 	 */
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
 		if ( $message === null ) {

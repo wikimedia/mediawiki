@@ -211,7 +211,7 @@ class LanguageConverter {
 
 	/**
 	 * Validate the variant
-	 * @param string $variant The variant to validate
+	 * @param string|null $variant The variant to validate
 	 * @return mixed Returns the variant if it is valid, null otherwise
 	 */
 	public function validateVariant( $variant = null ) {

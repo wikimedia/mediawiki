@@ -257,7 +257,7 @@ class MagicWord {
 	 *
 	 * Use factory instead: MagicWord::get
 	 *
-	 * @param string $id The internal name of the magic word
+	 * @param string|null $id The internal name of the magic word
 	 * @param string[]|string $syn synonyms for the magic word
 	 * @param bool $cs If magic word is case sensitive
 	 */

@@ -129,7 +129,7 @@ class SpecialUndelete extends SpecialPage {
 	 * specific title if one is set.
 	 *
 	 * @param string $permission
-	 * @param User $user
+	 * @param User|null $user
 	 * @return bool
 	 */
 	protected function isAllowed( $permission, User $user = null ) {

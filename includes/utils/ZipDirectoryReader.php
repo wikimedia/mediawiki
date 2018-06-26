@@ -511,7 +511,7 @@ class ZipDirectoryReader {
 	 * in the file to satisfy the request, an exception will be thrown.
 	 *
 	 * @param int $start The byte offset of the start of the block.
-	 * @param int $length The number of bytes to return. If omitted, the remainder
+	 * @param int|null $length The number of bytes to return. If omitted, the remainder
 	 *    of the file will be returned.
 	 *
 	 * @return string

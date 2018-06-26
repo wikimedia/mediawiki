@@ -1491,7 +1491,7 @@ class LoginForm extends SpecialPage {
 	];
 
 	/**
-	 * @param WebRequest $request
+	 * @param WebRequest|null $request
 	 */
 	public function __construct( $request = null ) {
 		wfDeprecated( 'LoginForm', '1.27' );

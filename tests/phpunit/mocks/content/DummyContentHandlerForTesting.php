@@ -10,7 +10,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @see ContentHandler::serializeContent
 	 *
 	 * @param Content $content
-	 * @param string $format
+	 * @param string|null $format
 	 *
 	 * @return string
 	 */
@@ -22,7 +22,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @see ContentHandler::unserializeContent
 	 *
 	 * @param string $blob
-	 * @param string $format Unused.
+	 * @param string|null $format Unused.
 	 *
 	 * @return Content
 	 */

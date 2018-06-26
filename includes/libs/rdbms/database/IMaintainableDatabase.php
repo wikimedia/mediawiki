@@ -183,7 +183,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Lists all the VIEWs in the database
 	 *
-	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
+	 * @param string|null $prefix Only show VIEWs with this prefix, eg. unit_test_
 	 * @param string $fname Name of calling function
 	 * @throws RuntimeException
 	 * @return array
@@ -279,7 +279,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param string $prefix Only show tables with this prefix, e.g. mw_
+	 * @param string|null $prefix Only show tables with this prefix, e.g. mw_
 	 * @param string $fname Calling function name
 	 * @throws DBError
 	 * @return array

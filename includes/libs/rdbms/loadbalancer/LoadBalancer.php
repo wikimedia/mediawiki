@@ -603,7 +603,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Wait for a given replica DB to catch up to the master pos stored in $this
 	 * @param int $index Server index
 	 * @param bool $open Check the server even if a new connection has to be made
-	 * @param int $timeout Max seconds to wait; default is "waitTimeout" given to __construct()
+	 * @param int|null $timeout Max seconds to wait; default is "waitTimeout" given to __construct()
 	 * @return bool
 	 */
 	protected function doWait( $index, $open = false, $timeout = null ) {

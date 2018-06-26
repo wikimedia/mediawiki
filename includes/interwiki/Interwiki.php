@@ -111,7 +111,7 @@ class Interwiki {
 	/**
 	 * Get the URL for a particular title (or with $1 if no title given)
 	 *
-	 * @param string $title What text to put for the article name
+	 * @param string|null $title What text to put for the article name
 	 * @return string The URL
 	 * @note Prior to 1.19 The getURL with an argument was broken.
 	 *       If you if you use this arg in an extension that supports MW earlier

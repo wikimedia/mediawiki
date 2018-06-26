@@ -626,7 +626,7 @@ function wfThumbErrorText( $status, $msgText ) {
  *
  * @param int $status
  * @param string $msgHtml HTML
- * @param string $msgText Short error description, for internal logging. Defaults to $msgHtml.
+ * @param string|null $msgText Short error description, for internal logging. Defaults to $msgHtml.
  *   Only used for HTTP 500 errors.
  * @param array $context Error context, for internal logging. Only used for HTTP 500 errors.
  * @return void

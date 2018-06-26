@@ -83,7 +83,7 @@ class ProcessCacheLRU {
 	/**
 	 * Clear one or several cache entries, or all cache entries.
 	 *
-	 * @param string|array $keys
+	 * @param string|array|null $keys
 	 * @return void
 	 */
 	public function clear( $keys = null ) {

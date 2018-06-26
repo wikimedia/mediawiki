@@ -387,8 +387,8 @@ class PageArchive {
 	 * @param string $comment
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
-	 * @param User $user User performing the action, or null to use $wgUser
-	 * @param string|string[] $tags Change tags to add to log entry
+	 * @param User|null $user User performing the action, or null to use $wgUser
+	 * @param string|string[]|null $tags Change tags to add to log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array|bool array(number of file revisions restored, number of image revisions
 	 *   restored, log message) on success, false on failure.

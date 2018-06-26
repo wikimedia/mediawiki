@@ -29,7 +29,7 @@ class MalformedTitleException extends Exception implements ILocalizedException {
 
 	/**
 	 * @param string $errorMessage Localisation message describing the error (since MW 1.26)
-	 * @param string $titleText The invalid title text (since MW 1.26)
+	 * @param string|null $titleText The invalid title text (since MW 1.26)
 	 * @param string[] $errorMessageParameters Additional parameters for the error message.
 	 * $titleText will be appended if it's not null. (since MW 1.26)
 	 */

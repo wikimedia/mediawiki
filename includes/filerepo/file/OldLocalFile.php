@@ -41,7 +41,7 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @param Title $title
 	 * @param FileRepo $repo
-	 * @param string|int $time
+	 * @param string|int|null $time
 	 * @return self
 	 * @throws MWException
 	 */

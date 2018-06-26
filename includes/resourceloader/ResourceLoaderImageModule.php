@@ -51,7 +51,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *
 	 * @param array $options List of options; if not given or empty, an empty module will be
 	 *     constructed
-	 * @param string $localBasePath Base path to prepend to all local paths in $options. Defaults
+	 * @param string|null $localBasePath Base path to prepend to all local paths in $options. Defaults
 	 *     to $IP
 	 *
 	 * Below is a description for the $options array:
@@ -443,7 +443,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * Extract a local base path from module definition information.
 	 *
 	 * @param array $options Module definition
-	 * @param string $localBasePath Path to use if not provided in module definition. Defaults
+	 * @param string|null $localBasePath Path to use if not provided in module definition. Defaults
 	 *     to $IP
 	 * @return string Local base path
 	 */

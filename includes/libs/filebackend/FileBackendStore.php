@@ -1299,7 +1299,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @see FileBackend::clearCache()
 	 *
-	 * @param array $paths Storage paths (optional)
+	 * @param array|null $paths Storage paths (optional)
 	 */
 	protected function doClearCache( array $paths = null ) {
 	}

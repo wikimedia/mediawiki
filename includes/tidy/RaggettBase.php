@@ -41,7 +41,7 @@ abstract class RaggettBase extends TidyDriverBase {
 	 * Perform a clean/repair operation
 	 * @param string $text HTML to check
 	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
-	 * @param int &$retval Exit code (-1 on internal error)
+	 * @param int|null &$retval Exit code (-1 on internal error)
 	 * @return null|string
 	 * @throws MWException
 	 */

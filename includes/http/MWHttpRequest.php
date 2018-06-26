@@ -87,7 +87,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see Http::request())
 	 * @param string $caller The method making this request, for profiling
-	 * @param Profiler $profiler An instance of the profiler for profiling, or null
+	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 */
 	public function __construct(
 		$url, array $options = [], $caller = __METHOD__, $profiler = null

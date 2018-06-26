@@ -213,7 +213,7 @@ class ChangeTags {
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
-	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 * @param string|null $params Params to put in the ct_params field of table 'change_tag'
 	 * @param RecentChange|null $rc Recent change, in case the tagging accompanies the action
 	 * (this should normally be the case)
 	 *
@@ -244,7 +244,7 @@ class ChangeTags {
 	 * Pass a variable whose value is null if the rev_id is not relevant or unknown.
 	 * @param int|null &$log_id The log_id of the change to add the tags to.
 	 * Pass a variable whose value is null if the log_id is not relevant or unknown.
-	 * @param string $params Params to put in the ct_params field of table
+	 * @param string|null $params Params to put in the ct_params field of table
 	 * 'change_tag' when adding tags
 	 * @param RecentChange|null $rc Recent change being tagged, in case the tagging accompanies
 	 * the action
@@ -941,7 +941,7 @@ class ChangeTags {
 	 * @param string $tag
 	 * @param string $reason
 	 * @param User $user Who to attribute the action to
-	 * @param int $tagCount For deletion only, how many usages the tag had before
+	 * @param int|null $tagCount For deletion only, how many usages the tag had before
 	 * it was deleted.
 	 * @param array $logEntryTags Change tags to apply to the entry
 	 * that will be created in the tag management log

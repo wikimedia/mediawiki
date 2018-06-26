@@ -61,7 +61,7 @@ class TiffHandler extends ExifBitmapHandler {
 	/**
 	 * @param string $ext
 	 * @param string $mime
-	 * @param array $params
+	 * @param array|null $params
 	 * @return bool
 	 */
 	function getThumbType( $ext, $mime, $params = null ) {

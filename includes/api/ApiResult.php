@@ -723,7 +723,7 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.25
 	 * @param array &$arr
 	 * @param string $type See ApiResult::META_TYPE
-	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 * @param string|null $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public static function setArrayType( array &$arr, $type, $kvpKeyName = null ) {
 		if ( !in_array( $type, [
@@ -742,7 +742,7 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
 	 * @param string $tag See ApiResult::META_TYPE
-	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 * @param string|null $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayType( $path, $tag, $kvpKeyName = null ) {
 		$arr = &$this->path( $path );
@@ -754,7 +754,7 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.25
 	 * @param array &$arr
 	 * @param string $type See ApiResult::META_TYPE
-	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 * @param string|null $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public static function setArrayTypeRecursive( array &$arr, $type, $kvpKeyName = null ) {
 		self::setArrayType( $arr, $type, $kvpKeyName );
@@ -770,7 +770,7 @@ class ApiResult implements ApiSerializable {
 	 * @since 1.25
 	 * @param array|string|null $path See ApiResult::addValue()
 	 * @param string $tag See ApiResult::META_TYPE
-	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 * @param string|null $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public function addArrayTypeRecursive( $path, $tag, $kvpKeyName = null ) {
 		$arr = &$this->path( $path );
@@ -1050,7 +1050,7 @@ class ApiResult implements ApiSerializable {
 	 *
 	 * @since 1.25
 	 * @param array|object $data
-	 * @param array &$metadata Store metadata here, if provided
+	 * @param array|null &$metadata Store metadata here, if provided
 	 * @return array|object
 	 */
 	public static function stripMetadataNonRecursive( $data, &$metadata = null ) {

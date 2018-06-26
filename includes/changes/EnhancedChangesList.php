@@ -93,7 +93,7 @@ class EnhancedChangesList extends ChangesList {
 	 *
 	 * @param RecentChange &$rc
 	 * @param bool $watched
-	 * @param int $linenumber (default null)
+	 * @param int|null $linenumber (default null)
 	 *
 	 * @return string
 	 */

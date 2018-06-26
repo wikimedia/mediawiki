@@ -27,7 +27,7 @@ class OldChangesList extends ChangesList {
 	 *
 	 * @param RecentChange &$rc Passed by reference
 	 * @param bool $watched (default false)
-	 * @param int $linenumber (default null)
+	 * @param int|null $linenumber (default null)
 	 *
 	 * @return string|bool
 	 */

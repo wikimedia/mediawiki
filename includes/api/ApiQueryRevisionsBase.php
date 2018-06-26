@@ -44,7 +44,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	abstract protected function run( ApiPageSet $resultPageSet = null );

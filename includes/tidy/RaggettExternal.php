@@ -9,7 +9,7 @@ class RaggettExternal extends RaggettBase {
 	 *
 	 * @param string $text HTML to check
 	 * @param bool $stderr Whether to read result from STDERR rather than STDOUT
-	 * @param int &$retval Exit code (-1 on internal error)
+	 * @param int|null &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
 	protected function cleanWrapped( $text, $stderr = false, &$retval = null ) {

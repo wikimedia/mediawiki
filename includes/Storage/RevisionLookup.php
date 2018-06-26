@@ -84,7 +84,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param Title|null $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */
@@ -96,7 +96,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
-	 * @param Title $title if known (optional)
+	 * @param Title|null $title if known (optional)
 	 *
 	 * @return RevisionRecord|null
 	 */

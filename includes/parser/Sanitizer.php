@@ -463,12 +463,12 @@ class Sanitizer {
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
 	 * @param string $text
-	 * @param callable $processCallback Callback to do any variable or parameter
+	 * @param callable|null $processCallback Callback to do any variable or parameter
 	 *   replacements in HTML attribute values
 	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
-	 * @param callable $warnCallback (Deprecated) Callback allowing the
+	 * @param callable|null $warnCallback (Deprecated) Callback allowing the
 	 *   addition of a tracking category when bad input is encountered.
 	 *   DO NOT ADD NEW PARAMETERS AFTER $warnCallback, since it will be
 	 *   removed shortly.

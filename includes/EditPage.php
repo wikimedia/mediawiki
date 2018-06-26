@@ -3193,8 +3193,8 @@ ERROR;
 	 * Builds a standard summary input with a label.
 	 *
 	 * @param string $summary The value of the summary input
-	 * @param string $labelText The html to place inside the label
-	 * @param array $inputAttrs Array of attrs to use on the input
+	 * @param string|null $labelText The html to place inside the label
+	 * @param array|null $inputAttrs Array of attrs to use on the input
 	 *
 	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
 	 */
@@ -3327,8 +3327,8 @@ ERROR;
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
 	 *
-	 * @param array $customAttribs Array of html attributes to use in the textarea
-	 * @param string $textoverride Optional text to override $this->textarea1 with
+	 * @param array|null $customAttribs Array of html attributes to use in the textarea
+	 * @param string|null $textoverride Optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
@@ -4026,7 +4026,7 @@ ERROR;
 	 * Shows a bulletin board style toolbar for common editing functions.
 	 * It can be disabled in the user preferences.
 	 *
-	 * @param Title $title Title object for the page being edited (optional)
+	 * @param Title|null $title Title object for the page being edited (optional)
 	 * @return string
 	 */
 	public static function getEditToolbar( $title = null ) {

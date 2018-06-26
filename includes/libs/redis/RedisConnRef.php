@@ -154,8 +154,8 @@ class RedisConnRef implements LoggerAwareInterface {
 	 * See: https://github.com/phpredis/phpredis#scan
 	 *
 	 * @param int &$iterator
-	 * @param string $pattern
-	 * @param int $count
+	 * @param string|null $pattern
+	 * @param int|null $count
 	 * @return array $res
 	 */
 	public function scan( &$iterator, $pattern = null, $count = null ) {
@@ -169,8 +169,8 @@ class RedisConnRef implements LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int &$iterator
-	 * @param string $pattern
-	 * @param int $count
+	 * @param string|null $pattern
+	 * @param int|null $count
 	 * @return array $res
 	 */
 	public function sScan( $key, &$iterator, $pattern = null, $count = null ) {
@@ -184,8 +184,8 @@ class RedisConnRef implements LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int &$iterator
-	 * @param string $pattern
-	 * @param int $count
+	 * @param string|null $pattern
+	 * @param int|null $count
 	 * @return array $res
 	 */
 	public function hScan( $key, &$iterator, $pattern = null, $count = null ) {
@@ -199,8 +199,8 @@ class RedisConnRef implements LoggerAwareInterface {
 	 *
 	 * @param string $key
 	 * @param int &$iterator
-	 * @param string $pattern
-	 * @param int $count
+	 * @param string|null $pattern
+	 * @param int|null $count
 	 * @return array $res
 	 */
 	public function zScan( $key, &$iterator, $pattern = null, $count = null ) {

@@ -46,7 +46,7 @@ class UserGroupMembership {
 
 	/**
 	 * @param int $userId The ID of the user who belongs to the group
-	 * @param string $group The internal group name
+	 * @param string|null $group The internal group name
 	 * @param string|null $expiry Timestamp of expiry in TS_MW format, or null if no expiry
 	 */
 	public function __construct( $userId = 0, $group = null, $expiry = null ) {

@@ -136,7 +136,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/**
 	 * Generates and outputs the result of this query based upon the provided parameters.
 	 *
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
 		$user = $this->getUser();

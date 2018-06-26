@@ -296,7 +296,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param mysqli $conn Optional connection object
+	 * @param mysqli|null $conn Optional connection object
 	 * @return string
 	 */
 	protected function mysqlError( $conn = null ) {

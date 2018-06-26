@@ -94,7 +94,7 @@ class DummyContentForTesting extends AbstractContent {
 
 	/**
 	 * @param Title $title
-	 * @param int $revId Unused.
+	 * @param int|null $revId Unused.
 	 * @param null|ParserOptions $options
 	 * @param bool $generateHtml Whether to generate Html (default: true). If false, the result
 	 *  of calling getText() on the ParserOutput object returned by this method is undefined.

@@ -557,7 +557,7 @@ class Html {
 	 * literal "</script>" or (for XML) literal "]]>".
 	 *
 	 * @param string $contents JavaScript
-	 * @param string $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents, $nonce = null ) {
@@ -582,7 +582,7 @@ class Html {
 	 * "<script src=foo.js></script>".
 	 *
 	 * @param string $url
-	 * @param string $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
+	 * @param string|null $nonce Nonce for CSP header, from OutputPage::getCSPNonce()
 	 * @return string Raw HTML
 	 */
 	public static function linkedScript( $url, $nonce = null ) {

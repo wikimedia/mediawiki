@@ -2249,7 +2249,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * Fetch authentication data from the current session
 	 * @protected For use by AuthenticationProviders
 	 * @param string $key
-	 * @param mixed $default
+	 * @param mixed|null $default
 	 * @return mixed
 	 */
 	public function getAuthenticationSessionData( $key, $default = null ) {

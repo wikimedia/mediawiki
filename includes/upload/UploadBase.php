@@ -247,7 +247,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $tempPath File system path to temporary file containing the upload
-	 * @param int $fileSize
+	 * @param int|null $fileSize
 	 */
 	protected function setTempFile( $tempPath, $fileSize = null ) {
 		$this->mTempPath = $tempPath;
@@ -1103,7 +1103,7 @@ abstract class UploadBase {
 	 * file again.
 	 *
 	 * @deprecated since 1.28 Use tryStashFile() instead
-	 * @param User $user
+	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
@@ -1116,7 +1116,7 @@ abstract class UploadBase {
 	/**
 	 * Implementation for stashFile() and tryStashFile().
 	 *
-	 * @param User $user
+	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */
 	protected function doStashFile( User $user = null ) {
@@ -1529,7 +1529,7 @@ abstract class UploadBase {
 	 * @todo Replace this with a whitelist filter!
 	 * @param string $element
 	 * @param array $attribs
-	 * @param array $data
+	 * @param array|null $data
 	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {

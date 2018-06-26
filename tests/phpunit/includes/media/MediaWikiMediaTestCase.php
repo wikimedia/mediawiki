@@ -70,7 +70,7 @@ abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
 	 *
 	 * File must be in the path returned by getFilePath()
 	 * @param string $name File name
-	 * @param string $type MIME type [optional]
+	 * @param string|null $type MIME type [optional]
 	 * @return UnregisteredLocalFile
 	 */
 	protected function dataFile( $name, $type = null ) {

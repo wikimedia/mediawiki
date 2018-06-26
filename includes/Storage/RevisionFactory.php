@@ -77,7 +77,7 @@ interface RevisionFactory {
 	 *        Use RevisionStore::getArchiveQueryInfo() to build a query that yields the
 	 *        required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param array $overrides An associative array that allows fields in $row to be overwritten.
 	 *        Keys in this array correspond to field names in $row without the "ar_" prefix, so
 	 *        $overrides['user'] will override $row->ar_user, etc.

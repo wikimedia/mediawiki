@@ -715,7 +715,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param array|string $pairs Key to the global variable, or an array
 	 *  of key/value pairs.
-	 * @param mixed $value Value to set the global to (ignored
+	 * @param mixed|null $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
 	 *
 	 * @note To allow changes to global variables to take effect on global service instances,
@@ -883,7 +883,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @since 1.27
 	 *
-	 * @param Config $configOverrides Configuration overrides for the new MediaWikiServices instance.
+	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
+	 *        instance.
 	 * @param callable[] $services An associative array of services to re-define. Keys are service
 	 *        names, values are callables.
 	 *
@@ -963,7 +964,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 *   in which case the next two parameters are ignored; or a single string
 	 *   identifying a group, to use with the next two parameters.
 	 * @param string|null $newKey
-	 * @param mixed $newValue
+	 * @param mixed|null $newValue
 	 */
 	public function setGroupPermissions( $newPerms, $newKey = null, $newValue = null ) {
 		global $wgGroupPermissions;
@@ -1083,8 +1084,8 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.25 ($namespace in 1.28)
 	 * @param string|Title $pageName Page name or title
 	 * @param string $text Page's content
-	 * @param int $namespace Namespace id (name cannot already contain namespace)
-	 * @param User $user If null, static::getTestSysop()->getUser() is used.
+	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
+	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
 	 * @return array Title object and page id
 	 */
 	protected function insertPage(
@@ -1287,7 +1288,7 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * Otherwise, it will clone the tables and change the prefix.
 	 *
 	 * @param IMaintainableDatabase $db Database to use
-	 * @param string $prefix Prefix to use for test tables. If not given, the prefix is determined
+	 * @param string|null $prefix Prefix to use for test tables. If not given, the prefix is determined
 	 *        automatically for $db.
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */

@@ -76,7 +76,7 @@ class BackupDumper extends Maintenance {
 	private $stubText = false; // include rev_text_id instead of text; for 2-pass dump
 
 	/**
-	 * @param array $args For backward compatibility
+	 * @param array|null $args For backward compatibility
 	 */
 	function __construct( $args = null ) {
 		parent::__construct();

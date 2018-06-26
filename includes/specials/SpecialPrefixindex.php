@@ -140,7 +140,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 	/**
 	 * @param int $namespace
 	 * @param string $prefix
-	 * @param string $from List all pages from this name (default false)
+	 * @param string|null $from List all pages from this name (default false)
 	 */
 	protected function showPrefixChunk( $namespace, $prefix, $from = null ) {
 		global $wgContLang;

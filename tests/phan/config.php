@@ -327,10 +327,6 @@ return [
 		"PhanTypeMismatchArgument",
 		// approximate error count: 13
 		"PhanTypeMismatchArgumentInternal",
-		// approximate error count: 6
-		"PhanTypeMismatchDeclaredParam",
-		// approximate error count: 111
-		"PhanTypeMismatchDeclaredParamNullable",
 		// approximate error count: 5
 		"PhanTypeMismatchDimAssignment",
 		// approximate error count: 2

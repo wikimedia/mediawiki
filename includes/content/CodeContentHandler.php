@@ -32,7 +32,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 * Returns the English language, because code is English, and should be handled as such.
 	 *
 	 * @param Title $title
-	 * @param Content $content
+	 * @param Content|null $content
 	 *
 	 * @return Language
 	 *
@@ -46,7 +46,7 @@ abstract class CodeContentHandler extends TextContentHandler {
 	 * Returns the English language, because code is English, and should be handled as such.
 	 *
 	 * @param Title $title
-	 * @param Content $content
+	 * @param Content|null $content
 	 *
 	 * @return Language
 	 *

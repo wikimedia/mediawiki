@@ -359,7 +359,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param File $file
 	 * @param array $prop Array of properties to get (in the keys)
 	 * @param ApiResult $result
-	 * @param array $thumbParams Containing 'width' and 'height' items, or null
+	 * @param array|null $thumbParams Containing 'width' and 'height' items, or null
 	 * @param array|bool|string $opts Options for data fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option

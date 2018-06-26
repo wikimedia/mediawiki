@@ -81,7 +81,7 @@ class UploadStash {
 	 * (should replace it eventually).
 	 *
 	 * @param FileRepo $repo
-	 * @param User $user (default null)
+	 * @param User|null $user
 	 */
 	public function __construct( FileRepo $repo, $user = null ) {
 		// this might change based on wiki's configuration.
@@ -202,7 +202,7 @@ class UploadStash {
 	 * database, along with other metadata.
 	 *
 	 * @param string $path Path to file you want stashed
-	 * @param string $sourceType The type of upload that generated this file
+	 * @param string|null $sourceType The type of upload that generated this file
 	 *   (currently, I believe, 'file' or null)
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
@@ -777,7 +777,8 @@ class UploadStashException extends MWException implements ILocalizedException {
 	/**
 	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
 	 * @param int $code Exception code
-	 * @param Exception|Throwable $previous The previous exception used for the exception chaining.
+	 * @param Exception|Throwable|null $previous The previous exception used for the exception
+	 *  chaining.
 	 */
 	public function __construct( $messageSpec, $code = 0, $previous = null ) {
 		$this->messageSpec = $messageSpec;

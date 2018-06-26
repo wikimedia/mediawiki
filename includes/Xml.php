@@ -31,7 +31,7 @@ class Xml {
 	 * characters (<, >, &) are escaped but illegals are not touched.
 	 *
 	 * @param string $element Element name
-	 * @param array $attribs Name=>value pairs. Values will be escaped.
+	 * @param array|null $attribs Name=>value pairs. Values will be escaped.
 	 * @param string $contents Null to make an open tag only; '' for a contentless closed tag (default)
 	 * @param bool $allowShortTag Whether '' in $contents will result in a contentless closed tag
 	 * @return string
@@ -103,7 +103,7 @@ class Xml {
 	 * This opens an XML element
 	 *
 	 * @param string $element Name of the element
-	 * @param array $attribs Array of attributes, see Xml::expandAttributes()
+	 * @param array|null $attribs Array of attributes, see Xml::expandAttributes()
 	 * @return string
 	 */
 	public static function openElement( $element, $attribs = null ) {
@@ -136,7 +136,7 @@ class Xml {
 	 * Create a date selector
 	 *
 	 * @param string $selected The month which should be selected, default ''.
-	 * @param string $allmonths Value of a special item denoting all month.
+	 * @param string|null $allmonths Value of a special item denoting all month.
 	 *   Null to not include (default).
 	 * @param string $id Element identifier
 	 * @return string Html string containing the month selector
@@ -197,7 +197,7 @@ class Xml {
 	 *
 	 * @param string $selected The language code of the selected language
 	 * @param bool $customisedOnly If true only languages which have some content are listed
-	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
+	 * @param string|null $inLanguage The ISO code of the language to display the select list in
 	 * @param array $overrideAttrs Override the attributes of the select tag (since 1.20)
 	 * @param Message|null $msg Label message key (since 1.20)
 	 * @return array Array containing 2 items: label HTML and select list HTML
@@ -477,7 +477,7 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML drop-down list item.
 	 * @param string $text Text for this item. Will be HTML escaped
-	 * @param string $value Form submission value; if empty, use text
+	 * @param string|null $value Form submission value; if empty, use text
 	 * @param bool $selected If true, will be the default selected item
 	 * @param array $attribs Optional additional HTML attributes
 	 * @return string HTML
@@ -503,7 +503,7 @@ class Xml {
 	 * @param string $other Text for the "Other reasons" option
 	 * @param string $selected Option which should be pre-selected
 	 * @param string $class CSS classes for the drop-down
-	 * @param int $tabindex Value of the tabindex attribute
+	 * @param int|null $tabindex Value of the tabindex attribute
 	 * @return string
 	 */
 	public static function listDropDown( $name = '', $list = '', $other = '',
@@ -758,7 +758,7 @@ class Xml {
 	 * @param array $fields Associative array, key is the name of a message that
 	 *   contains a description for the field, value is an HTML string
 	 *   containing the appropriate input.
-	 * @param string $submitLabel The name of a message containing a label for
+	 * @param string|null $submitLabel The name of a message containing a label for
 	 *   the submit button.
 	 * @param array $submitAttribs The attributes to add to the submit button
 	 * @return string HTML form.
@@ -799,7 +799,7 @@ class Xml {
 	 * Build a table of data
 	 * @param array $rows An array of arrays of strings, each to be a row in a table
 	 * @param array $attribs An array of attributes to apply to the table tag [optional]
-	 * @param array $headers An array of strings to use as table headers [optional]
+	 * @param array|null $headers An array of strings to use as table headers [optional]
 	 * @return string
 	 */
 	public static function buildTable( $rows, $attribs = [], $headers = null ) {

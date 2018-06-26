@@ -336,7 +336,7 @@ class FormOptions implements ArrayAccess {
 	 * available for accessing with getValue() or consumeValue() etc.
 	 *
 	 * @param WebRequest $r The request to fetch values from
-	 * @param array $optionKeys Which options to fetch the values for (default:
+	 * @param array|null $optionKeys Which options to fetch the values for (default:
 	 *     all of them). Note that passing an empty array will also result in
 	 *     values for all keys being fetched.
 	 * @throws MWException If the type of any option is invalid

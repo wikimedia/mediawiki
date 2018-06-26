@@ -267,7 +267,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 *
 	 * @param User $user
 	 * @param string $editToken Edit token
-	 * @param Config $config optional for backwards compatibility
+	 * @param Config|null $config optional for backwards compatibility
 	 * @return string|null Null on success or string on error
 	 */
 	public static function getPermissionsError( $user, $editToken, Config $config = null ) {
