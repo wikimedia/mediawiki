@@ -54,14 +54,18 @@ class LanguageCodeTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideLanguageCodes()
 	 */
 	public function testBcp47( $code, $expected ) {
+		$this->assertEquals( $expected, LanguageCode::bcp47( $code ),
+			"Applying BCP 47 standard to '$code'"
+		);
+
 		$code = strtolower( $code );
 		$this->assertEquals( $expected, LanguageCode::bcp47( $code ),
-			"Applying BCP47 standard to lower case '$code'"
+			"Applying BCP 47 standard to lower case '$code'"
 		);
 
 		$code = strtoupper( $code );
 		$this->assertEquals( $expected, LanguageCode::bcp47( $code ),
-			"Applying BCP47 standard to upper case '$code'"
+			"Applying BCP 47 standard to upper case '$code'"
 		);
 	}
 
@@ -155,6 +159,41 @@ class LanguageCodeTest extends PHPUnit\Framework\TestCase {
 			// de-419-DE
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
+
+			# Non-standard and deprecated language codes used by MediaWiki
+			[ 'als', 'gsw' ],
+			[ 'bat-smg', 'sgs' ],
+			[ 'be-x-old', 'be-tarask' ],
+			[ 'fiu-vro', 'vro' ],
+			[ 'roa-rup', 'rup' ],
+			[ 'zh-classical', 'lzh' ],
+			[ 'zh-min-nan', 'nan' ],
+			[ 'zh-yue', 'yue' ],
+			[ 'cbk-zam', 'cbk' ],
+			[ 'de-formal', 'de-x-formal' ],
+			[ 'eml', 'egl' ],
+			[ 'en-rtl', 'en-x-rtl' ],
+			[ 'es-formal', 'es-x-formal' ],
+			[ 'hu-formal', 'hu-x-formal' ],
+			[ 'kk-Arab', 'kk-Arab' ],
+			[ 'kk-Cyrl', 'kk-Cyrl' ],
+			[ 'kk-Latn', 'kk-Latn' ],
+			[ 'map-bms', 'jv-x-bms' ],
+			[ 'mo', 'ro-Cyrl-MD' ],
+			[ 'nrm', 'nrf' ],
+			[ 'nl-informal', 'nl-x-informal' ],
+			[ 'roa-tara', 'nap-x-tara' ],
+			[ 'simple', 'en-simple' ],
+			[ 'sr-ec', 'sr-Cyrl' ],
+			[ 'sr-el', 'sr-Latn' ],
+			[ 'zh-cn', 'zh-Hans-CN' ],
+			[ 'zh-sg', 'zh-Hans-SG' ],
+			[ 'zh-my', 'zh-Hans-MY' ],
+			[ 'zh-tw', 'zh-Hant-TW' ],
+			[ 'zh-hk', 'zh-Hant-HK' ],
+			[ 'zh-mo', 'zh-Hant-MO' ],
+			[ 'zh-hans', 'zh-Hans' ],
+			[ 'zh-hant', 'zh-Hant' ],
 		];
 	}
 
