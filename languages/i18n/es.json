@@ -168,7 +168,8 @@
 			"KATRINE1992",
 			"Athena in Wonderland",
 			"Truebamateo",
-			"La Mantis"
+			"La Mantis",
+			"Amaia"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -924,6 +925,7 @@
 	"converter-manual-rule-error": "Se ha detectado un error en una regla manual de conversión de idioma",
 	"undo-success": "Puedes deshacer la edición. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así efectuar la reversión.",
 	"undo-failure": "No se ha podido deshacer la edición ya que otro usuario ha realizado una edición intermedia.",
+	"undo-main-slot-only": "Aldaketa ezin da desegin, slot nagusitik kanpoko edukia daukalako.",
 	"undo-norev": "No se ha podido deshacer la edición porque no existe o ha sido borrada.",
 	"undo-nochange": "Parece que ya se había deshecho la edición.",
 	"undo-summary": "Se ha deshecho la revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]])",

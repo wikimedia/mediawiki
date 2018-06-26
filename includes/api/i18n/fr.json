@@ -783,7 +783,7 @@
 	"apihelp-query+filerepoinfo-param-prop": "Quelles propriétés récupérer du référentiel (les propriétés disponibles peuvent varier sur les autres wikis).",
 	"apihelp-query+filerepoinfo-paramvalue-prop-apiurl": "URL vers l’API du dépôt — utile pour obtenir des informations sur l’image depuis l’hôte.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-articlepath": "<var>[[mw:Special:MyLanguage/Manual:$wgArticlePath|$wgArticlePath]]</var> du wiki du dépôt, ou équivalent.",
-	"apihelp-query+filerepoinfo-paramvalue-prop-canUpload": "Si les fichiers peuvent être téléchargés sur ce dépôt, par ex. via CORS et l’authentification partagée.",
+	"apihelp-query+filerepoinfo-paramvalue-prop-canUpload": "Si les fichiers peuvent être téléversés sur ce dépôt, par exemple via CORS et l’authentification partagée.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-displayname": "Le nom lisible du wiki du dépôt.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-favicon": "URL de l'icône favorite du dépôt du wiki, depuis <var>[[mw:Special:MyLanguage/Manual:$wgFavicon|$wgFavicon]]</var>.",
 	"apihelp-query+filerepoinfo-paramvalue-prop-fetchDescription": "Si les pages de description de fichier sont récupérées de ce dépôt lors de l’affichage des pages de description de fichier locales.",
