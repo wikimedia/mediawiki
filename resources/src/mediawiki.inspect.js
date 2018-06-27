@@ -1,5 +1,5 @@
 /*!
- * Tools for inspecting page composition and performance.
+ * The mediawiki.inspect module.
  *
  * @author Ori Livneh
  * @since 1.22
@@ -9,7 +9,19 @@
 
 ( function ( mw, $ ) {
 
-	var inspect,
+	// mw.inspect is a singleton class with static methods
+	// that itself can also be invoked as a function (mediawiki.base/mw#inspect).
+	// In JavaScript, that is implemented by starting with a function,
+	// and subsequently setting additional properties on the function object.
+
+	/**
+	 * Tools for inspecting page composition and performance.
+	 *
+	 * @class mw.inspect
+	 * @singleton
+	 */
+
+	var inspect = mw.inspect,
 		byteLength = require( 'mediawiki.String' ).byteLength,
 		hasOwn = Object.prototype.hasOwnProperty;
 
@@ -31,12 +43,6 @@
 		// add ".0" for bytes.
 		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
 	}
-
-	/**
-	 * @class mw.inspect
-	 * @singleton
-	 */
-	inspect = {};
 
 	/**
 	 * Return a map of all dependency relationships between loaded modules.
@@ -331,7 +337,5 @@
 	if ( mw.config.get( 'debug' ) ) {
 		mw.log( 'mw.inspect: reports are not available in debug mode.' );
 	}
-
-	mw.inspect = inspect;
 
 }( mediaWiki, jQuery ) );
