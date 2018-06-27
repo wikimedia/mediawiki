@@ -92,7 +92,8 @@
 			"Osnard",
 			"Suriyaa Kudo",
 			"KPFC",
-			"ToBeFree"
+			"ToBeFree",
+			"PerfektesChaos"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -2475,8 +2476,8 @@
 	"whatlinkshere-title": "Seiten, die auf „$1“ verlinken",
 	"whatlinkshere-page": "Seite:",
 	"linkshere": "Die folgenden Seiten verlinken auf <strong>$2</strong>:",
-	"nolinkshere": "Keine Seiten verlinken auf <strong>$2</strong>.",
-	"nolinkshere-ns": "Keine Seiten verlinken auf <strong>$2</strong> in dem ausgewählten Namensraum.",
+	"nolinkshere": "Keine Seite verlinkt auf <strong>$2</strong>.",
+	"nolinkshere-ns": "Keine Seite in dem ausgewählten Namensraum verlinkt auf <strong>$2</strong>.",
 	"isredirect": "Weiterleitungsseite",
 	"istemplate": "Vorlageneinbindung",
 	"isimage": "Dateilink",
