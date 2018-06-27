@@ -233,6 +233,7 @@
 	 */
 	mw.inspect = function () {
 		var args = arguments;
+		// Lazy-load
 		mw.loader.using( 'mediawiki.inspect', function () {
 			mw.inspect.runReports.apply( mw.inspect, args );
 		} );
