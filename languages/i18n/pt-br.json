@@ -874,6 +874,7 @@
 	"converter-manual-rule-error": "Erro detectado na regra de conversão de língua manual",
 	"undo-success": "A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.",
 	"undo-failure": "A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.",
+	"undo-main-slot-only": "A edição não pode ser desfeita porque envolve conteúdo fora do espaço principal.",
 	"undo-norev": "A edição não pôde ser desfeita porque não existe ou foi apagada.",
 	"undo-nochange": "Parece que a edição já foi desfeita.",
 	"undo-summary": "Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])",
