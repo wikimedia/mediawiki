@@ -24,5 +24,6 @@
 	"ooui-selectfile-button-select": "Diuzañ ur restr",
 	"ooui-selectfile-not-supported": "N'eo ket skoret an diuzañ restroù",
 	"ooui-selectfile-placeholder": "N'eus bet diuzet restr ebet",
-	"ooui-selectfile-dragdrop-placeholder": "Lezel ar restr amañ"
+	"ooui-selectfile-dragdrop-placeholder": "Lezel ar restr amañ",
+	"ooui-field-help": "Skoazell"
 }

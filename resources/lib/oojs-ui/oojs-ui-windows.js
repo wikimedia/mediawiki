@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:30Z
+ * Date: 2018-06-27T17:25:08Z
  */
 ( function ( OO ) {
 
@@ -1034,8 +1034,10 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-windowManager' )
-		.attr( 'aria-hidden', true )
 		.toggleClass( 'oo-ui-windowManager-modal', this.modal );
+	if ( this.modal ) {
+		this.$element.attr( 'aria-hidden', true );
+	}
 };
 
 /* Setup */
@@ -2709,11 +2711,33 @@ OO.ui.Dialog.prototype.initialize = function () {
 OO.ui.Dialog.prototype.getActionWidgets = function ( actions ) {
 	var i, len, widgets = [];
 	for ( i = 0, len = actions.length; i < len; i++ ) {
-		widgets.push(
-			new OO.ui.ActionWidget( actions[ i ] )
-		);
+		widgets.push( this.getActionWidget( actions[ i ] ) );
 	}
 	return widgets;
+};
+
+/**
+ * Get action widget from config
+ *
+ * Override this method to change the action widget class used.
+ *
+ * @param {Object} config Action widget config
+ * @return {OO.ui.ActionWidget} Action widget
+ */
+OO.ui.Dialog.prototype.getActionWidget = function ( config ) {
+	return new OO.ui.ActionWidget( this.getActionWidgetConfig( config ) );
+};
+
+/**
+ * Get action widget config
+ *
+ * Override this method to modify the action widget config
+ *
+ * @param {Object} config Initial action widget config
+ * @return {Object} Action widget config
+ */
+OO.ui.Dialog.prototype.getActionWidgetConfig = function ( config ) {
+	return config;
 };
 
 /**
@@ -3026,8 +3050,16 @@ OO.ui.MessageDialog.prototype.initialize = function () {
 /**
  * @inheritdoc
  */
+OO.ui.MessageDialog.prototype.getActionWidgetConfig = function ( config ) {
+	// Force unframed
+	return $.extend( {}, config, { framed: false } );
+};
+
+/**
+ * @inheritdoc
+ */
 OO.ui.MessageDialog.prototype.attachActions = function () {
-	var i, len, other, special, others;
+	var i, len, special, others;
 
 	// Parent method
 	OO.ui.MessageDialog.parent.prototype.attachActions.call( this );
@@ -3037,18 +3069,12 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 
 	if ( special.safe ) {
 		this.$actions.append( special.safe.$element );
-		special.safe.toggleFramed( false );
 	}
-	if ( others.length ) {
-		for ( i = 0, len = others.length; i < len; i++ ) {
-			other = others[ i ];
-			this.$actions.append( other.$element );
-			other.toggleFramed( false );
-		}
+	for ( i = 0, len = others.length; i < len; i++ ) {
+		this.$actions.append( others[ i ].$element );
 	}
 	if ( special.primary ) {
 		this.$actions.append( special.primary.$element );
-		special.primary.toggleFramed( false );
 	}
 };
 
@@ -3239,26 +3265,23 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 /**
  * @inheritdoc
  */
-OO.ui.ProcessDialog.prototype.getActionWidgets = function ( actions ) {
-	var i, len, config,
-		isMobile = OO.ui.isMobile(),
-		widgets = [];
+OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
+	var isMobile = OO.ui.isMobile();
 
-	for ( i = 0, len = actions.length; i < len; i++ ) {
-		config = $.extend( { framed: !OO.ui.isMobile() }, actions[ i ] );
-		if ( isMobile &&
-			( config.flags === 'back' || ( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 ) )
-		) {
-			$.extend( config, {
-				icon: 'previous',
-				label: ''
-			} );
-		}
-		widgets.push(
-			new OO.ui.ActionWidget( config )
-		);
+	// Default to unframed on mobile
+	config = $.extend( { framed: !isMobile }, config );
+	// Change back buttons to icon only on mobile
+	if (
+		isMobile &&
+		( config.flags === 'back' || ( Array.isArray( config.flags ) && config.flags.indexOf( 'back' ) !== -1 ) )
+	) {
+		$.extend( config, {
+			icon: 'previous',
+			label: ''
+		} );
 	}
-	return widgets;
+
+	return config;
 };
 
 /**

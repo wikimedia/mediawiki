@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:35Z
+ * Date: 2018-06-27T17:25:12Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -269,7 +269,6 @@
   background-image: -webkit-linear-gradient(top, #ddd 0, #fff 100%);
   background-image: -moz-linear-gradient(top, #ddd 0, #fff 100%);
   background-image: linear-gradient(to bottom, #ddd 0, #fff 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdddddd', endColorstr='#ffffffff' )";
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled {
   cursor: pointer;
@@ -316,7 +315,6 @@
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
 .oo-ui-toggleSwitchWidget-glow {
   position: absolute;
@@ -334,7 +332,6 @@
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -887,7 +884,6 @@
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
   border: 1px solid #ccc;
   color: #333;
   border-radius: 0.25em;
@@ -1073,7 +1069,6 @@
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
   border: 1px solid #ccc;
   color: #333;
   border-radius: 0.25em;

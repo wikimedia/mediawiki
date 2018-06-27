@@ -4,7 +4,8 @@
 			"Dbc334",
 			"Eleassar",
 			"Pinky sl",
-			"Yerpo"
+			"Yerpo",
+			"Upwinxp"
 		]
 	},
 	"ooui-outline-control-move-down": "Prestavi predmet nižje",
@@ -23,5 +24,6 @@
 	"ooui-selectfile-button-select": "Izberite datoteko",
 	"ooui-selectfile-not-supported": "Izbira datoteke ni podprta",
 	"ooui-selectfile-placeholder": "Nobena datoteka ni izbrana",
-	"ooui-selectfile-dragdrop-placeholder": "Tukaj spustite datoteko"
+	"ooui-selectfile-dragdrop-placeholder": "Tukaj spustite datoteko",
+	"ooui-field-help": "Pomoč"
 }

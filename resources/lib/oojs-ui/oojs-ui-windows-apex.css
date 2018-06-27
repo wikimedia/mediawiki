@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:35Z
+ * Date: 2018-06-27T17:25:12Z
  */
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
   background-image: /* @embed */ url(themes/wikimediaui/images/textures/pending.gif);
@@ -113,20 +113,15 @@
 .oo-ui-messageDialog-title,
 .oo-ui-messageDialog-message {
   display: block;
+  line-height: 1.5em;
   text-align: center;
-}
-.oo-ui-messageDialog-title.oo-ui-labelElement,
-.oo-ui-messageDialog-message.oo-ui-labelElement {
-  padding-top: 0.5em;
 }
 .oo-ui-messageDialog-title {
   font-size: 1.5em;
-  line-height: 1em;
   color: #000;
 }
 .oo-ui-messageDialog-message {
   font-size: 1.1em;
-  line-height: 1.5em;
   color: #666;
   text-align: left;
 }

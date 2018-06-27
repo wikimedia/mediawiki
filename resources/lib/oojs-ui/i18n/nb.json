@@ -8,7 +8,8 @@
 			"Njardarlogar",
 			"Jdforrester",
 			"Apple farmer",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Orf3us"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytt ned",
@@ -27,5 +28,6 @@
 	"ooui-selectfile-button-select": "Velg en fil",
 	"ooui-selectfile-not-supported": "Filvalg er ikke støttet",
 	"ooui-selectfile-placeholder": "Ingen fil er valgt",
-	"ooui-selectfile-dragdrop-placeholder": "Slipp fil her"
+	"ooui-selectfile-dragdrop-placeholder": "Slipp fil her",
+	"ooui-field-help": "Hjelp"
 }

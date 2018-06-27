@@ -1,14 +1,14 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:35Z
+ * Date: 2018-06-27T17:25:12Z
  */
-.oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconWidget.oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+.oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
 }
 .oo-ui-popupTool-popup .oo-ui-popupWidget-popup,
@@ -108,6 +108,9 @@
   display: inline-block;
   vertical-align: top;
 }
+.oo-ui-barToolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-checkIcon {
+  display: none;
+}
 .oo-ui-barToolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
   line-height: 2.1em;
 }
@@ -122,7 +125,6 @@
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
   border-left-color: rgba(0, 0, 0, 0.1);
@@ -278,7 +280,6 @@
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
@@ -289,27 +290,30 @@
   background-color: #fff;
   box-shadow: 0 0.3125em 1.25em rgba(0, 0, 0, 0.25);
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link {
   padding: 0.3125em 0 0.3125em 0.3125em;
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-iconElement-icon {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-iconElement-icon {
   display: table-cell;
   min-width: 1.5625em;
   width: 1.5625em;
   height: 1.5625em;
   vertical-align: middle;
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-checkIcon {
+  display: none;
+}
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-title {
   padding-left: 0.5em;
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel,
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-title {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel,
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-title {
   line-height: 2em;
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel {
   color: #767676;
 }
-.oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
+.oo-ui-popupToolGroup-tools .oo-ui-tool-link .oo-ui-tool-accel:not( :empty ) {
   padding-left: 3em;
 }
 .oo-ui-listToolGroup-tools .oo-ui-tool {
@@ -337,7 +341,6 @@
   background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: -moz-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff1f7fb', endColorstr='#ffffffff' )";
 }
 .oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
   border-top-color: rgba(0, 0, 0, 0.1);
@@ -391,18 +394,14 @@
 .oo-ui-menuToolGroup-tools .oo-ui-tool {
   padding: 0 1.25em 0 0.3125em;
 }
-.oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon {
-  opacity: 0;
-}
-.oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+.oo-ui-menuToolGroup-tools .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
 }
-.oo-ui-menuToolGroup-tools .oo-ui-tool-active.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon {
+.oo-ui-menuToolGroup-tools .oo-ui-tool-active > .oo-ui-tool-link > .oo-ui-iconElement-icon {
   display: none;
 }
-.oo-ui-menuToolGroup-tools .oo-ui-tool-active.oo-ui-widget > .oo-ui-tool-link > .oo-ui-iconElement-icon.oo-ui-tool-checkIcon {
+.oo-ui-menuToolGroup-tools .oo-ui-tool-active > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: table-cell;
-  opacity: 1;
 }
 .oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled:hover {
   background-color: #e1f3ff;
@@ -474,7 +473,6 @@
   background-image: -webkit-linear-gradient(top, #fff 0, #f1f7fb 100%);
   background-image: -moz-linear-gradient(top, #fff 0, #f1f7fb 100%);
   background-image: linear-gradient(to bottom, #fff 0, #f1f7fb 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#fff1f7fb' )";
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
   border-bottom: 1px solid #ccc;
@@ -522,7 +520,6 @@
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
   border: 1px solid #a6cee1;
 }
 .oo-ui-toolbar-actions > .oo-ui-buttonGroupWidget > .oo-ui-popupToolGroup.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:hover {
@@ -534,5 +531,4 @@
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
 }
