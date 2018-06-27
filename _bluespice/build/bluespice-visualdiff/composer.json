@@ -1,9 +1,0 @@
-{
-	"repositories": [{
-			"type": "composer",
-			"url": "https://packages.bluespice.com/"
-		}],
-	"require": {
-		"mediawiki/blue-spice-visual-diff": "dev-master"
-	}
-}
