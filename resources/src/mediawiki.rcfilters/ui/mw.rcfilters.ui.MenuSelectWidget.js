@@ -144,6 +144,10 @@
 
 		this.menuInitialized = true;
 
+		// Create shared popup for highlight buttons
+		this.highlightPopup = new mw.rcfilters.ui.HighlightPopupWidget( this.controller );
+		this.$overlay.append( this.highlightPopup.$element );
+
 		// Count groups per view
 		$.each( groups, function ( groupName, groupModel ) {
 			if ( !groupModel.isHidden() ) {
@@ -180,6 +184,7 @@
 							widget.model,
 							widget.model.getInvertModel(),
 							filterItem,
+							widget.highlightPopup,
 							{
 								$overlay: widget.$overlay
 							}
