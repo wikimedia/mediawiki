@@ -29,13 +29,11 @@
 		this.changesListViewModel = changesListViewModel;
 		this.controller = controller;
 		this.highlightClasses = null;
-		this.filtersModelInitialized = false;
 
 		// Events
 		this.filtersViewModel.connect( this, {
 			itemUpdate: 'onItemUpdate',
-			highlightChange: 'onHighlightChange',
-			initialize: 'onFiltersModelInitialize'
+			highlightChange: 'onHighlightChange'
 		} );
 		this.changesListViewModel.connect( this, {
 			invalidate: 'onModelInvalidate',
@@ -53,13 +51,6 @@
 	/* Initialization */
 
 	OO.inheritClass( mw.rcfilters.ui.ChangesListWrapperWidget, OO.ui.Widget );
-
-	/**
-	 * Respond to filters model initialize event
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onFiltersModelInitialize = function () {
-		this.filtersModelInitialized = true;
-	};
 
 	/**
 	 * Get all available highlight classes
@@ -94,7 +85,9 @@
 	 * Respond to a filter item model update
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onItemUpdate = function () {
-		if ( this.filtersModelInitialized && this.filtersViewModel.isHighlightEnabled() ) {
+		if ( this.controller.isInitialized() && this.filtersViewModel.isHighlightEnabled() ) {
+			// this.controller.isInitialized() is still false during page load,
+			// we don't want to clear/apply highlights at this stage.
 			this.clearHighlight();
 			this.applyHighlight();
 		}
