@@ -128,4 +128,12 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->writeStore->clearLastError();
 		$this->readStore->clearLastError();
 	}
+
+	public function makeKey( $class, $component = null ) {
+		return $this->writeStore->makeKey( ...func_get_args() );
+	}
+
+	public function makeGlobalKey( $class, $component = null ) {
+		return $this->writeStore->makeGlobalKey( ...func_get_args() );
+	}
 }
