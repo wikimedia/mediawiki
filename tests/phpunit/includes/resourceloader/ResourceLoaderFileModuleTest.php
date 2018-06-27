@@ -140,6 +140,8 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoaderFileModule::getScript
+	 * @covers ResourceLoaderFileModule::getScriptFiles
+	 * @covers ResourceLoaderFileModule::readScriptFiles
 	 */
 	public function testGetScript() {
 		$module = new ResourceLoaderFileModule( [
@@ -220,6 +222,8 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 *
 	 * @covers ResourceLoaderFileModule::getStyles
 	 * @covers ResourceLoaderFileModule::getStyleFiles
+	 * @covers ResourceLoaderFileModule::readStyleFiles
+	 * @covers ResourceLoaderFileModule::readStyleFile
 	 */
 	public function testMixedCssAnnotations() {
 		$basePath = __DIR__ . '/../../data/css';
@@ -334,6 +338,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @covers ResourceLoaderFileModule::getDefinitionSummary
+	 * @covers ResourceLoaderFileModule::getFileHashes
 	 */
 	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext();

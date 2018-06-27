@@ -486,16 +486,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Helper method to gather file hashes for getDefinitionSummary.
-	 *
-	 * This function is context-sensitive, only computing hashes of files relevant to the
-	 * given language, skin, etc.
+	 * Helper method for getDefinitionSummary.
 	 *
 	 * @see ResourceLoaderModule::getFileDependencies
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getFileHashes( ResourceLoaderContext $context ) {
+	private function getFileHashes( ResourceLoaderContext $context ) {
 		$files = [];
 
 		// Flatten style files into $files
@@ -673,12 +670,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get a list of file paths for all scripts in this module, in order of proper execution.
+	 * Get a list of script file paths for this module, in order of proper execution.
 	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
 	 */
-	protected function getScriptFiles( ResourceLoaderContext $context ) {
+	private function getScriptFiles( ResourceLoaderContext $context ) {
 		$files = array_merge(
 			$this->scripts,
 			$this->getLanguageScripts( $context->getLanguage() ),
@@ -717,6 +714,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get a list of file paths for all styles in this module, in order of proper inclusion.
 	 *
+	 * This is considered a private method. Exposed for internal use by WebInstallerOutput.
+	 *
+	 * @private
 	 * @param ResourceLoaderContext $context
 	 * @return array List of file paths
 	 */
@@ -790,13 +790,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets the contents of a list of JavaScript files.
+	 * Get the contents of a list of JavaScript files. Helper for getScript().
 	 *
 	 * @param array $scripts List of file paths to scripts to read, remap and concetenate
-	 * @throws MWException
 	 * @return string Concatenated and remapped JavaScript data from $scripts
+	 * @throws MWException
 	 */
-	protected function readScriptFiles( array $scripts ) {
+	private function readScriptFiles( array $scripts ) {
 		if ( empty( $scripts ) ) {
 			return '';
 		}
@@ -819,17 +819,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Gets the contents of a list of CSS files.
+	 * Get the contents of a list of CSS files.
 	 *
-	 * @param array $styles List of media type/list of file paths pairs, to read, remap and
-	 * concetenate
+	 * This is considered a private method. Exposed for internal use by WebInstallerOutput.
+	 *
+	 * @private
+	 * @param array $styles Map of media type to file paths to read, remap, and concatenate
 	 * @param bool $flip
 	 * @param ResourceLoaderContext $context
-	 *
-	 * @throws MWException
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
-	 *
+	 * @throws MWException
 	 * @since 1.27 Calling this method without a ResourceLoaderContext instance
 	 *   is deprecated.
 	 */
