@@ -34,7 +34,7 @@
 		this.requestCounter = {};
 		this.baseFilterState = {};
 		this.uriProcessor = null;
-		this.initializing = false;
+		this.initialized = false;
 		this.wereSavedQueriesSaved = false;
 
 		this.prevLoggedItems = [];
@@ -243,16 +243,6 @@
 			}
 		}
 
-		// Check whether we need to load defaults.
-		// We do this by checking whether the current URI query
-		// contains any parameters recognized by the system.
-		// If it does, we load the given state.
-		// If it doesn't, we have no values at all, and we assume
-		// the user loads the base-page and we load defaults.
-		// Defaults should only be applied on load (if necessary)
-		// or on request
-		this.initializing = true;
-
 		if ( defaultSavedQueryExists ) {
 			// This came from the server, meaning that we have a default
 			// saved query, but the server could not load it, probably because
@@ -279,13 +269,21 @@
 			);
 		}
 
-		this.initializing = false;
+		this.initialized = true;
 		this.switchView( 'default' );
 
 		this.pollingRate = mw.config.get( 'StructuredChangeFiltersLiveUpdatePollingRate' );
 		if ( this.pollingRate ) {
 			this._scheduleLiveUpdate();
 		}
+	};
+
+	/**
+	 * Check if the controller has finished initializing.
+	 * @return {boolean} Controller is initialized
+	 */
+	mw.rcfilters.Controller.prototype.isInitialized = function () {
+		return this.initialized;
 	};
 
 	/**
