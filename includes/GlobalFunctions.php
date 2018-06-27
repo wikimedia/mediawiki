@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\DBReplicationWaitError;
+use Wikimedia\WrappedString;
 
 /**
  * Load an extension

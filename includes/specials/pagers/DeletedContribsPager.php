@@ -23,6 +23,7 @@
  * @ingroup Pager
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
