@@ -426,7 +426,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getFileHashes( ResourceLoaderContext $context ) {
+	private function getFileHashes( ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
 		$files = [];
 		foreach ( $this->getImages( $context ) as $name => $image ) {
