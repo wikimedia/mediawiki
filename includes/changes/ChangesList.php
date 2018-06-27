@@ -208,8 +208,6 @@ class ChangesList extends ContextSource {
 			$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns' .
 				$rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
-		$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
-			$rc->mAttribs['rc_namespace'] );
 
 		// Indicate watched status on the line to allow for more
 		// comprehensive styling.
@@ -223,13 +221,17 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * Get an array of CSS classes attributed to filters for this row
+	 * Get an array of CSS classes attributed to filters for this row. Used for highlighting
+	 * in the front-end.
 	 *
 	 * @param RecentChange $rc
 	 * @return array Array of CSS classes
 	 */
 	protected function getHTMLClassesForFilters( $rc ) {
 		$classes = [];
+
+		$classes[] = Sanitizer::escapeClass( self::CSS_CLASS_PREFIX . 'ns-' .
+			$rc->mAttribs['rc_namespace'] );
 
 		if ( $this->filterGroups !== null ) {
 			foreach ( $this->filterGroups as $filterGroup ) {

@@ -59,10 +59,6 @@
 	 */
 	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.onFiltersModelInitialize = function () {
 		this.filtersModelInitialized = true;
-		// Set up highlight containers. We need to wait for the filters model
-		// to be initialized, so we can make sure we have all the css class definitions
-		// we get from the server with our filters
-		this.setupHighlightContainers( this.$element );
 	};
 
 	/**
@@ -179,9 +175,6 @@
 				}
 			}
 
-			// Set up highlight containers
-			this.setupHighlightContainers( this.$element );
-
 			// Apply highlight
 			this.applyHighlight();
 
@@ -264,34 +257,6 @@
 		$newChanges
 			.hide()
 			.fadeIn( 1000 );
-	};
-
-	/**
-	 * Set up the highlight containers with all color circle indicators.
-	 *
-	 * @param {jQuery|string} $content The content of the updated changes list
-	 */
-	mw.rcfilters.ui.ChangesListWrapperWidget.prototype.setupHighlightContainers = function ( $content ) {
-		var $enhancedTopPageCell,
-			widget = this;
-
-		if ( this.inEnhancedMode() ) {
-			$enhancedTopPageCell = $content.find( 'table.mw-enhanced-rc.mw-collapsible' );
-			// Go over pages that have sub results
-			// HACK: We really only can collect those by targetting the collapsible class
-			$enhancedTopPageCell.each( function () {
-				var collectedClasses,
-					$table = $( this );
-
-				// Go over <tr>s and pick up all recognized classes
-				collectedClasses = widget.getHighlightClasses().filter( function ( className ) {
-					return $table.find( 'tr' ).hasClass( className );
-				} );
-
-				$table.find( 'tr:first-child' )
-					.addClass( collectedClasses.join( ' ' ) );
-			} );
-		}
 	};
 
 	/**

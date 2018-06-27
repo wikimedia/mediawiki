@@ -266,6 +266,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Sub-entries
 		$lines = [];
+		$filterClasses = [];
 		foreach ( $block as $i => $rcObj ) {
 			$line = $this->getLineData( $block, $rcObj, $queryParams );
 			if ( !$line ) {
@@ -293,12 +294,19 @@ class EnhancedChangesList extends ChangesList {
 				}
 			}
 
+			// Roll up filter-based CSS classes
+			$filterClasses = array_merge( $filterClasses, $this->getHTMLClassesForFilters( $rcObj ) );
+			// Add classes for change tags separately, getHTMLClassesForFilters() doesn't add them
+			$this->getTags( $rcObj, $filterClasses );
+			$filterClasses = array_unique( $filterClasses );
+
 			$lines[] = $line;
 		}
 
 		// Further down are some assumptions that $block is a 0-indexed array
 		// with (count-1) as last key. Let's make sure it is.
 		$block = array_values( $block );
+		$filterClasses = array_values( $filterClasses );
 
 		if ( empty( $block ) || !$lines ) {
 			// if we can't show anything, don't display this block altogether
@@ -339,6 +347,7 @@ class EnhancedChangesList extends ChangesList {
 			'articleLink' => $articleLink,
 			'charDifference' => $charDifference,
 			'collectedRcFlags' => $this->recentChangesFlags( $collectedRcFlags ),
+			'filterClasses' => $filterClasses,
 			'languageDirMark' => $this->getLanguage()->getDirMark(),
 			'lines' => $lines,
 			'logText' => $logText,
