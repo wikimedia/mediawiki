@@ -285,6 +285,9 @@
 								"class": {
 									"enum": ["ResourceLoaderImageModule"]
 								},
+								"defaultColor": {
+									"type": "string"
+								},
 								"data": {
 									"type": "string"
 								},

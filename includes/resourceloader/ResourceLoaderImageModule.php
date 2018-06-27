@@ -39,6 +39,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
 	protected $images = [];
+	protected $defaultColor = null;
 	protected $variants = [];
 	protected $prefix = null;
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
@@ -182,6 +183,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 
+				case 'defaultColor':
 				case 'prefix':
 				case 'selectorWithoutVariant':
 				case 'selectorWithVariant':
@@ -264,7 +266,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->getName(),
 					$fileDescriptor,
 					$this->localBasePath,
-					$variantConfig
+					$variantConfig,
+					$this->defaultColor
 				);
 				$this->imageObjects[$skin][$image->getName()] = $image;
 			}
