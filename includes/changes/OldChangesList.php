@@ -63,6 +63,7 @@ class OldChangesList extends ChangesList {
 		$dateheader = ''; // $html now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
+		$html = $this->getHighlightsContainerDiv() . $html;
 		$attribs['class'] = implode( ' ', $classes );
 
 		return $dateheader . Html::rawElement( 'li', $attribs,  $html ) . "\n";

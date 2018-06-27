@@ -7,10 +7,9 @@
 	 *
 	 * @constructor
 	 * @param {mw.rcfilters.Controller} controller RCFilters controller
-	 * @param {mw.rcfilters.dm.FilterItem} model Filter item model
 	 * @param {Object} [config] Configuration object
 	 */
-	mw.rcfilters.ui.HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidget( controller, model, config ) {
+	mw.rcfilters.ui.HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidget( controller, config ) {
 		var colors = [ 'none' ].concat( mw.rcfilters.HighlightColors );
 		config = config || {};
 
@@ -22,7 +21,6 @@
 		} ) );
 
 		this.controller = controller;
-		this.model = model;
 
 		this.currentSelection = 'none';
 		this.buttonSelect = new OO.ui.ButtonSelectWidget( {
@@ -41,10 +39,7 @@
 		} );
 
 		// Event
-		this.model.connect( this, { update: 'updateUiBasedOnModel' } );
 		this.buttonSelect.connect( this, { choose: 'onChooseColor' } );
-
-		this.updateUiBasedOnModel();
 
 		this.$element
 			.addClass( 'mw-rcfilters-ui-highlightColorPickerWidget' )
@@ -72,10 +67,24 @@
 	/* Methods */
 
 	/**
+	 * Bind the color picker to an item
+	 * @param {mw.rcfilters.dm.FilterItem} filterItem
+	 */
+	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.setFilterItem = function ( filterItem ) {
+		if ( this.filterItem ) {
+			this.filterItem.disconnect( this );
+		}
+
+		this.filterItem = filterItem;
+		this.filterItem.connect( this, { update: 'updateUiBasedOnModel' } );
+		this.updateUiBasedOnModel();
+	};
+
+	/**
 	 * Respond to item model update event
 	 */
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.updateUiBasedOnModel = function () {
-		this.selectColor( this.model.getHighlightColor() || 'none' );
+		this.selectColor( this.filterItem.getHighlightColor() || 'none' );
 	};
 
 	/**
@@ -104,9 +113,9 @@
 	mw.rcfilters.ui.HighlightColorPickerWidget.prototype.onChooseColor = function ( button ) {
 		var color = button.data;
 		if ( color === 'none' ) {
-			this.controller.clearHighlightColor( this.model.getName() );
+			this.controller.clearHighlightColor( this.filterItem.getName() );
 		} else {
-			this.controller.setHighlightColor( this.model.getName(), color );
+			this.controller.setHighlightColor( this.filterItem.getName(), color );
 		}
 		this.emit( 'chooseColor', color );
 	};
