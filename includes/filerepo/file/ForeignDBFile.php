@@ -155,10 +155,9 @@ class ForeignDBFile extends LocalFile {
 
 		return $cache->getWithSetCallback(
 			$this->repo->getLocalCacheKey(
-				'RemoteFileDescription',
-				'url',
+				'ForeignFileDescription',
 				$lang->getCode(),
-				$this->getName(),
+				md5( $this->getName() ),
 				$touched
 			),
 			$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,

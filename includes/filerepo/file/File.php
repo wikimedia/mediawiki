@@ -2068,9 +2068,8 @@ abstract class File implements IDBAccessObject {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$key = $this->repo->getLocalCacheKey(
 				'RemoteFileDescription',
-				'url',
 				$lang->getCode(),
-				$this->getName()
+				md5( $this->getName() )
 			);
 
 			return $cache->getWithSetCallback(
