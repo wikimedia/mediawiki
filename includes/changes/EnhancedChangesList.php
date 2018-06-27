@@ -705,9 +705,14 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$line = Html::openElement( 'table', $attribs ) . Html::openElement( 'tr' );
+		// Highlight block
+		$line .= Html::rawElement( 'td', [],
+			$this->getHighlightsContainerDiv()
+		);
+
 		$line .= Html::rawElement( 'td', [], '<span class="mw-enhancedchanges-arrow-space"></span>' );
 		$line .= Html::rawElement( 'td', [ 'class' => 'mw-changeslist-line-prefix' ], $prefix );
-		$line .= '<td class="mw-enhanced-rc">';
+		$line .= '<td class="mw-enhanced-rc" colspan="2">';
 
 		if ( isset( $data['recentChangesFlags'] ) ) {
 			$line .= $this->recentChangesFlags( $data['recentChangesFlags'] );
