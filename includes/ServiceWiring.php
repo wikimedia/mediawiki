@@ -46,7 +46,7 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
-use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\ObjectFactory;
 
@@ -463,10 +463,15 @@ return [
 	},
 
 	'RevisionStore' => function ( MediaWikiServices $services ) {
+		return $services->getRevisionStoreFactory()->getRevisionStore();
+	},
+
+	'RevisionStoreFactory' => function ( MediaWikiServices $services ) {
 		/** @var SqlBlobStore $blobStore */
 		$blobStore = $services->getService( '_SqlBlobStore' );
+		$config = $services->getMainConfig();
 
-		$store = new RevisionStore(
+		$store = new RevisionStoreFactory(
 			$services->getDBLoadBalancer(),
 			$blobStore,
 			$services->getMainWANObjectCache(),
@@ -474,13 +479,10 @@ return [
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
 			$services->getMainConfig()->get( 'MultiContentRevisionSchemaMigrationStage' ),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			LoggerFactory::getInstance( 'RevisionStore' ),
+			$config->get( 'ContentHandlerUseDB' )
 		);
-
-		$store->setLogger( LoggerFactory::getInstance( 'RevisionStore' ) );
-
-		$config = $services->getMainConfig();
-		$store->setContentHandlerUseDB( $config->get( 'ContentHandlerUseDB' ) );
 
 		return $store;
 	},
