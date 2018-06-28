@@ -4399,7 +4399,7 @@ class Language {
 	 * @return bool
 	 */
 	public function equals( Language $lang ) {
-		return $lang->getCode() === $this->mCode;
+		return $lang === $this || $lang->getCode() === $this->mCode;
 	}
 
 	/**
