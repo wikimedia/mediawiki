@@ -2294,6 +2294,8 @@
 	"dellogpage": "削除記録",
 	"dellogpagetext": "以下は最近の削除と復元の一覧です。",
 	"deletionlog": "削除記録",
+	"log-name-create": "ページ作成記録",
+	"log-description-create": "以下はページ作成の最近の記録です。",
 	"logentry-create-create": "$1 がページ「$3」を{{GENDER:$2|作成しました}}",
 	"reverted": "以前の版への差し戻し",
 	"deletecomment": "理由:",
