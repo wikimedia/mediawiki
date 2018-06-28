@@ -219,6 +219,8 @@ because of Phabricator reports.
   context title is unset is now deprecated; anything creating an EditPage
   instance should set the context title via ::setContextTitle().
 * The 'jquery.hidpi' module (polyfill for IMG srcset) is deprecated.
+* ResourceLoaderStartUpModule::getStartupModules() and ::getLegacyModules()
+  are deprecated. These concepts are obsolete and have no replacement.
 
 === Other changes in 1.32 ===
 * …

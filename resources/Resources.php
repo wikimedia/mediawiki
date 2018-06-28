@@ -843,16 +843,6 @@ return [
 
 	/* MediaWiki */
 
-	'mediawiki' => [
-		'class' => ResourceLoaderRawFileModule::class,
-		// Keep in sync with maintenance/jsduck/eg-iframe.html
-		'scripts' => [
-			'resources/src/mediawiki/mediawiki.js',
-			'resources/src/mediawiki/mediawiki.requestIdleCallback.js',
-		],
-		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.base' => [
 		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => [
