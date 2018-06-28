@@ -169,6 +169,10 @@ because of Phabricator reports.
   use 'EditPageGetCheckboxesDefinition' instead.
 * Linker::getLinkColour() and DummyLinker::getLinkColour(), deprecated since
   1.28, were removed. LinkRenderer::getLinkClasses() should be used instead.
+* mw.widgets.CategoryMultiselectWidget now uses TagMultiselectWidget instead of
+  CapsuleMultiselectWidget. The following methods may no longer be used:
+  * setItemsFromData: Use setValue instead
+  * getItemsData: Use getItems instead and get the data property
 
 === Deprecations in 1.32 ===
 * Use of a StartProfiler.php file is deprecated in favour of placing
