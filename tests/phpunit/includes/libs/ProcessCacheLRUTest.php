@@ -18,7 +18,7 @@ class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * Compare against an array so we get the cache content difference.
 	 */
 	protected function assertCacheEmpty( $cache, $msg = 'Cache should be empty' ) {
-		$this->assertAttributeEquals( [], 'cache', $cache, $msg );
+		$this->assertEquals( 0, $cache->getEntriesCount(), $msg );
 	}
 
 	/**
@@ -256,13 +256,11 @@ class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
  * Overrides some ProcessCacheLRU methods and properties accessibility.
  */
 class ProcessCacheLRUTestable extends ProcessCacheLRU {
-	public $cache = [];
-
 	public function getCache() {
-		return $this->cache;
+		return $this->cache->toArray();
 	}
 
 	public function getEntriesCount() {
-		return count( $this->cache );
+		return count( $this->cache->toArray() );
 	}
 }
