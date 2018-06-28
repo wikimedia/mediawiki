@@ -42,7 +42,7 @@
 		"bluespice/usermanager": "dev-master",
 		"bluespice/usermergeconnector": "dev-master",
 		"bluespice/userpreferences": "dev-master",
-		"mediawiki/extjs-base": "dev-master",
+		"mediawiki/extjs-base": "dev-REL1_31",
 
 		"mediawiki/chameleon-skin": "~1.0",
 		"bluespice/calumma": "dev-master"
