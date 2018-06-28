@@ -388,8 +388,10 @@
 	 * @inheritdoc
 	 */
 	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.onChangeTags = function () {
-		// Parent method
-		mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onChangeTags.call( this );
+		// If initialized, call parent method.
+		if ( this.controller.isInitialized() ) {
+			mw.rcfilters.ui.FilterTagMultiselectWidget.parent.prototype.onChangeTags.call( this );
+		}
 
 		this.emptyFilterMessage.toggle( this.isEmpty() );
 	};
