@@ -32,6 +32,7 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	}
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		// New schema is being written
 		$this->assertSelect(
 			'slots',
 			[ 'count(*)' ],
@@ -44,6 +45,16 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			[ 'count(*)' ],
 			[ 'content_address' => $rev->getSlot( 'main' )->getAddress() ],
 			[ [ '1' ] ]
+		);
+
+		// Legacy schema is still being written
+		$this->assertSelect(
+			[ 'revision', 'text' ],
+			[ 'count(*)' ],
+			[ 'rev_id' => $rev->getId(), 'rev_text_id > 0' ],
+			[ [ 1 ] ],
+			[],
+			[ 'text' => [ 'INNER JOIN', [ 'rev_text_id = old_id' ] ] ]
 		);
 
 		parent::assertRevisionExistsInDatabase( $rev );

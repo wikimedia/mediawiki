@@ -343,6 +343,10 @@ class PageUpdater {
 		// TODO: MCR: check the role and the content's model against the list of supported
 		// roles, see T194046.
 
+		if ( $role !== 'main' ) {
+			throw new InvalidArgumentException( 'Only the main slot is presently supported' );
+		}
+
 		$this->slotsUpdate->modifyContent( $role, $content );
 	}
 

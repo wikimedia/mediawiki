@@ -1,11 +1,12 @@
 <?php
 namespace MediaWiki\Tests\Storage;
 
-use InvalidArgumentException;
+use CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use TextContent;
+use Title;
 use WikitextContent;
 
 /**
@@ -23,18 +24,38 @@ class McrReadNewRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	use McrReadNewSchemaOverride;
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		$numberOfSlots = count( $rev->getSlotRoles() );
+
+		// new schema is written
 		$this->assertSelect(
 			'slots',
 			[ 'count(*)' ],
 			[ 'slot_revision_id' => $rev->getId() ],
-			[ [ '1' ] ]
+			[ [ (string)$numberOfSlots ] ]
 		);
 
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$revQuery = $store->getSlotsQueryInfo( [ 'content' ] );
+
 		$this->assertSelect(
-			'content',
+			$revQuery['tables'],
 			[ 'count(*)' ],
-			[ 'content_address' => $rev->getSlot( 'main' )->getAddress() ],
-			[ [ '1' ] ]
+			[
+				'slot_revision_id' => $rev->getId(),
+			],
+			[ [ (string)$numberOfSlots ] ],
+			[],
+			$revQuery['joins']
+		);
+
+		// Legacy schema is still being written
+		$this->assertSelect(
+			[ 'revision', 'text' ],
+			[ 'count(*)' ],
+			[ 'rev_id' => $rev->getId(), 'rev_text_id > 0' ],
+			[ [ 1 ] ],
+			[],
+			[ 'text' => [ 'INNER JOIN', [ 'rev_text_id = old_id' ] ] ]
 		);
 
 		parent::assertRevisionExistsInDatabase( $rev );
@@ -49,6 +70,42 @@ class McrReadNewRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 		// Assert that the same content ID has been used
 		$this->assertSame( $a->getContentId(), $b->getContentId() );
+	}
+
+	public function provideInsertRevisionOn_successes() {
+		foreach ( parent::provideInsertRevisionOn_successes() as $case ) {
+			yield $case;
+		}
+
+		yield 'Multi-slot revision insertion' => [
+			[
+				'content' => [
+					'main' => new WikitextContent( 'Chicken' ),
+					'aux' => new TextContent( 'Egg' ),
+				],
+				'page' => true,
+				'comment' => $this->getRandomCommentStoreComment(),
+				'timestamp' => '20171117010101',
+				'user' => true,
+			],
+		];
+	}
+
+	public function provideNewNullRevision() {
+		foreach ( parent::provideNewNullRevision() as $case ) {
+			yield $case;
+		}
+
+		yield [
+			Title::newFromText( 'UTPage_notAutoCreated' ),
+			[
+				'content' => [
+					'main' => new WikitextContent( 'Chicken' ),
+					'aux' => new WikitextContent( 'Omelet' ),
+				],
+			],
+			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment multi' ),
+		];
 	}
 
 	public function testGetQueryInfo_NoSlotDataJoin() {
@@ -163,25 +220,6 @@ class McrReadNewRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					'content_models' => [ 'INNER JOIN', [ 'content_model = model_id' ] ],
 				],
 			]
-		];
-	}
-
-	public function provideInsertRevisionOn_failures() {
-		foreach ( parent::provideInsertRevisionOn_failures() as $case ) {
-			yield $case;
-		}
-
-		yield 'slot that is not main slot' => [
-			[
-				'content' => [
-					'main' => new WikitextContent( 'Chicken' ),
-					'lalala' => new WikitextContent( 'Duck' ),
-				],
-				'comment' => $this->getRandomCommentStoreComment(),
-				'timestamp' => '20171117010101',
-				'user' => true,
-			],
-			new InvalidArgumentException( 'Only the main slot is supported' )
 		];
 	}
 
