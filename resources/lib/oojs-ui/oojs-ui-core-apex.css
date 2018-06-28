@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:35Z
+ * Date: 2018-06-27T17:25:12Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -159,7 +159,6 @@
   background-image: -webkit-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: -moz-linear-gradient(top, #fff 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fff 0, #ddd 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffffff', endColorstr='#ffdddddd' )";
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover {
   border-color: #aaa;
@@ -183,7 +182,6 @@
   background-image: -webkit-linear-gradient(top, #ddd 0, #fff 100%);
   background-image: -moz-linear-gradient(top, #ddd 0, #fff 100%);
   background-image: linear-gradient(to bottom, #ddd 0, #fff 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdddddd', endColorstr='#ffffffff' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active:focus,
 .oo-ui-buttonElement-framed.oo-ui-buttonElement-active > .oo-ui-buttonElement-button:focus,
@@ -216,7 +214,6 @@
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
   border-color: #9dc2d4;
@@ -230,7 +227,6 @@
   background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: -moz-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb0d9ee', endColorstr='#ffeaf4fa' )";
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
   color: #d45353;
@@ -264,8 +260,7 @@
 .oo-ui-floatableElement {
   position: absolute;
 }
-.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-iconElement.oo-ui-iconElement-icon {
+.oo-ui-iconElement-icon {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -276,8 +271,10 @@
   min-height: 20px;
   height: 100%;
 }
-.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-iconElement.oo-ui-iconElement-icon {
+.oo-ui-iconElement-noIcon {
+  display: none;
+}
+.oo-ui-iconElement-icon {
   position: static;
   top: auto;
   width: 1.5625em;
@@ -287,8 +284,7 @@
   margin: 0.15625em;
   opacity: 0.8;
 }
-.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
-.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+.oo-ui-indicatorElement-indicator {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -299,8 +295,10 @@
   min-height: 12px;
   height: 100%;
 }
-.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
-.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+.oo-ui-indicatorElement-noIndicator {
+  display: none;
+}
+.oo-ui-indicatorElement-indicator {
   position: static;
   top: auto;
   height: 0.9375em;
@@ -606,20 +604,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-horizontalLayout > .oo-ui-widget {
   margin-bottom: 0.5em;
 }
-.oo-ui-widget .oo-ui-iconElement-icon,
-.oo-ui-widget .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-iconElement .oo-ui-widget .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-indicatorElement .oo-ui-widget .oo-ui-indicatorElement-indicator {
-  display: none;
-}
-.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-iconElement > * > .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-indicatorElement > * > .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-indicatorElement .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  display: block;
-}
 .oo-ui-optionWidget {
   position: relative;
   display: block;
@@ -657,16 +641,17 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-decoratedOptionWidget {
   padding: 0.5em 2em 0.5em 3em;
 }
-.oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+.oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
   position: absolute;
   top: 0;
   height: 100%;
 }
-.oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+.oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
   left: 0.5em;
+  margin: 0;
 }
-.oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+.oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
   right: 0.5em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
@@ -707,11 +692,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: 0.9375em;
 }
 .oo-ui-iconWidget {
-  display: inline-block;
   vertical-align: middle;
   line-height: 2.5em;
-}
-.oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
   display: inline-block;
   position: static;
   top: auto;
@@ -722,12 +704,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.2;
 }
 .oo-ui-indicatorWidget {
-  display: inline-block;
   vertical-align: middle;
   line-height: 2.5em;
   margin: 0.46875em;
-}
-.oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
   display: inline-block;
   position: static;
   top: auto;
@@ -983,7 +962,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border: 0;
   padding: 0;
 }
-.oo-ui-checkboxInputWidget .oo-ui-checkboxInputWidget-checkIcon.oo-ui-iconElement-icon {
+.oo-ui-checkboxInputWidget-checkIcon {
   display: none;
 }
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
@@ -1260,7 +1239,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSelectWidget-invisible {
   display: none;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
+.oo-ui-menuOptionWidget .oo-ui-menuOptionWidget-checkIcon {
   display: none;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget > .oo-ui-indicatorElement-indicator {
@@ -1269,18 +1248,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected.oo-ui-optionWidget .oo-ui-iconElement-icon {
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected > .oo-ui-iconElement-icon {
   display: none;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-menuOptionWidget-checkIcon {
   display: block;
-  position: absolute;
-  left: 0.5em;
-  top: 0;
-  min-width: 20px;
-  width: 1.5625em;
-  min-height: 20px;
-  height: 100%;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted,
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted.oo-ui-optionWidget-selected {
@@ -1432,11 +1404,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   visibility: visible;
   margin: 0.775em;
 }
-.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
-  display: block;
-  position: absolute;
-  top: 0;
-  height: 100%;
+.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
   right: 0;
   max-height: 2.5em;
   margin: 0;
@@ -1511,7 +1479,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: -moz-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeaf4fa', endColorstr='#ffb0d9ee' )";
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   -webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;

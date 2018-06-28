@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:35Z
+ * Date: 2018-06-27T17:25:12Z
  */
 /**
  * WikimediaUI Base v0.10.0
@@ -401,8 +401,7 @@
 .oo-ui-floatableElement {
   position: absolute;
 }
-.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-iconElement.oo-ui-iconElement-icon {
+.oo-ui-iconElement-icon {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -413,8 +412,10 @@
   min-height: 20px;
   height: 100%;
 }
-.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
-.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
+.oo-ui-iconElement-noIcon {
+  display: none;
+}
+.oo-ui-indicatorElement-indicator {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -424,6 +425,9 @@
   width: 0.85714286em;
   min-height: 12px;
   height: 100%;
+}
+.oo-ui-indicatorElement-noIndicator {
+  display: none;
 }
 .oo-ui-labelElement .oo-ui-labelElement-label,
 .oo-ui-labelElement.oo-ui-labelElement-label {
@@ -756,20 +760,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-horizontalLayout > .oo-ui-widget {
   margin-bottom: 0.5em;
 }
-.oo-ui-widget .oo-ui-iconElement-icon,
-.oo-ui-widget .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-iconElement .oo-ui-widget .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-indicatorElement .oo-ui-widget .oo-ui-indicatorElement-indicator {
-  display: none;
-}
-.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-iconElement > * > .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-iconElement .oo-ui-iconElement .oo-ui-iconElement-icon,
-.oo-ui-widget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-indicatorElement > * > .oo-ui-indicatorElement-indicator,
-.oo-ui-widget.oo-ui-indicatorElement .oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
-  display: block;
-}
 .oo-ui-optionWidget {
   position: relative;
   display: block;
@@ -799,7 +789,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-decoratedOptionWidget.oo-ui-iconElement {
   padding-left: 2.64285714em;
 }
-.oo-ui-decoratedOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
+.oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
   left: 0.78571429em;
 }
 .oo-ui-decoratedOptionWidget .oo-ui-labelElement-label {
@@ -808,7 +798,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement {
   padding-right: 2.28571429em;
 }
-.oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+.oo-ui-decoratedOptionWidget .oo-ui-indicatorElement-indicator {
   right: 0.85714286em;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-widget-enabled:hover .oo-ui-iconElement-icon,
@@ -863,11 +853,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: 0.92857143em;
 }
 .oo-ui-iconWidget {
-  display: inline-block;
   vertical-align: middle;
   line-height: 2.5;
-}
-.oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
   display: inline-block;
   position: static;
   top: auto;
@@ -877,12 +864,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.51;
 }
 .oo-ui-indicatorWidget {
-  display: inline-block;
   vertical-align: middle;
   line-height: 2.5;
   margin: 0.42857143em;
-}
-.oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
   display: inline-block;
   position: static;
   top: auto;
@@ -1171,14 +1155,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  position: absolute;
   left: 0;
   width: 1.42857143em;
   height: 1.42857143em;
   border: 1px solid #72777d;
   border-radius: 2px;
-}
-.oo-ui-checkboxInputWidget [type='checkbox'] + span.oo-ui-iconWidget.oo-ui-iconElement.oo-ui-iconElement-icon {
-  position: absolute;
 }
 .oo-ui-checkboxInputWidget [type='checkbox']:checked + span {
   background-size: 1em 1em;
@@ -1640,7 +1622,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
 }
-.oo-ui-menuOptionWidget.oo-ui-optionWidget .oo-ui-iconElement-icon.oo-ui-menuOptionWidget-checkIcon {
+.oo-ui-menuOptionWidget-checkIcon {
   display: none;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
@@ -1845,11 +1827,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget.oo-ui-indicatorElement.oo-ui-indicatorElement-indicator {
-  display: block;
-  position: absolute;
-  top: 0;
-  height: 100%;
+.oo-ui-comboBoxInputWidget-php .oo-ui-indicatorWidget {
   right: 0.85714286em;
   margin: 0;
 }
