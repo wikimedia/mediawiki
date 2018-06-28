@@ -1,4 +1,33 @@
 # OOUI Release History
+## v0.27.4 / 2018-06-27
+### Styles
+* icons: Add destructive variant for subtract icon (Sam Wilson)
+* WikimediaUI theme: Remove some unused CSS (Bartosz Dziewoński)
+* Apex theme: Actually display the icon of MenuToolGroup tools (Bartosz Dziewoński)
+* Apex theme: Don't hide icons in elements nested in selected MenuOptionWidget (Bartosz Dziewoński)
+* Apex theme: Fix placement of icon in DecoratedOptionWidget (Bartosz Dziewoński)
+
+### Code
+* Allow JS/PHP comparison tests for FieldLayout 'help' config option (Bartosz Dziewoński)
+* Avoid mentioning 'iconTitle' config option in doc examples (Bartosz Dziewoński)
+* Dialog: Create getActionWidget(Config) to simplify customisation (Ed Sanders)
+* FieldLayout: Add `for` attribute to inline help label (Prateek Saxena)
+* FieldLayout: Reduce clutter in initialization function (Prateek Saxena)
+* Follow-up I90a0a787: Add 'helpInline' to PHP FieldLayout (Ed Sanders)
+* IconElement/IndicatorElement: Reduce specificity of basic styles (Bartosz Dziewoński)
+* MenuSelectWidget: Move 'highlight first item' to end of operation (Moriel Schottlender)
+* PopupWidget: Add setter for $autoCloseIgnore (Roan Kattouw)
+* PopupWidget: Allow automatic width (not hardcoded) (Bartosz Dziewoński)
+* PopupWidget: Listen to 'click' for 'mousedown' events in iOS (Moriel Schottlender)
+* ProcessDialog: Use cached value of isMobile (Ed Sanders)
+* Refactor how we apply `display: none` to unused icons and indicators (Bartosz Dziewoński)
+* WindowManager: Only set `aria-hidden="true"` for modal managers (Bartosz Dziewoński)
+* build: Exclude 'demos/vendor' from stylelint (Volker E.)
+* build: Fix 'copy:fastcomposerdemos' task (Bartosz Dziewoński)
+* styles: Remove proprietary IE 8 & 9 `-ms-filter` properties (Volker E.)
+* themes: Improve top `padding` and `line-height` in MessageDialogs (Volker E.)
+
+
 ## v0.27.3 / 2018-06-07 (special release)
 ### Styles
 * ActionFieldLayout: Improve `z-index` overrides on focus/hover (Bartosz Dziewoński)

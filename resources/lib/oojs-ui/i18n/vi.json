@@ -24,5 +24,6 @@
 	"ooui-selectfile-button-select": "Chọn tập tin",
 	"ooui-selectfile-not-supported": "Không hỗ trợ việc chọn tập tin",
 	"ooui-selectfile-placeholder": "Không có tập tin nào được chọn",
-	"ooui-selectfile-dragdrop-placeholder": "Thả tập tin vào đây"
+	"ooui-selectfile-dragdrop-placeholder": "Thả tập tin vào đây",
+	"ooui-field-help": "Trợ giúp"
 }

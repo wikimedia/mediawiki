@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.27.3
+ * OOUI v0.27.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2018 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2018-06-07T21:36:30Z
+ * Date: 2018-06-27T17:25:08Z
  */
 ( function ( OO ) {
 
@@ -2672,6 +2672,7 @@ OO.ui.mixin.IconElement.prototype.setIconElement = function ( $icon ) {
 
 	this.$icon = $icon
 		.addClass( 'oo-ui-iconElement-icon' )
+		.toggleClass( 'oo-ui-iconElement-noIcon', !this.icon )
 		.toggleClass( 'oo-ui-icon-' + this.icon, !!this.icon );
 	if ( this.iconTitle !== null ) {
 		this.$icon.attr( 'title', this.iconTitle );
@@ -2706,6 +2707,9 @@ OO.ui.mixin.IconElement.prototype.setIcon = function ( icon ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-iconElement', !!this.icon );
+	if ( this.$icon ) {
+		this.$icon.toggleClass( 'oo-ui-iconElement-noIcon', !this.icon );
+	}
 	this.updateThemeClasses();
 
 	return this;
@@ -2843,6 +2847,7 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicatorElement = function ( $indicat
 
 	this.$indicator = $indicator
 		.addClass( 'oo-ui-indicatorElement-indicator' )
+		.toggleClass( 'oo-ui-indicatorElement-noIndicator', !this.indicator )
 		.toggleClass( 'oo-ui-indicator-' + this.indicator, !!this.indicator );
 	if ( this.indicatorTitle !== null ) {
 		this.$indicator.attr( 'title', this.indicatorTitle );
@@ -2873,6 +2878,9 @@ OO.ui.mixin.IndicatorElement.prototype.setIndicator = function ( indicator ) {
 	}
 
 	this.$element.toggleClass( 'oo-ui-indicatorElement', !!this.indicator );
+	if ( this.$indicator ) {
+		this.$indicator.toggleClass( 'oo-ui-indicatorElement-noIndicator', !this.indicator );
+	}
 	this.updateThemeClasses();
 
 	return this;
@@ -3605,7 +3613,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( t
  *     var button = new OO.ui.ButtonWidget( {
  *         label: 'Button with Icon',
  *         icon: 'trash',
- *         iconTitle: 'Remove'
+ *         title: 'Remove'
  *     } );
  *     $( 'body' ).append( button.$element );
  *
@@ -3910,7 +3918,7 @@ OO.ui.ButtonGroupWidget.prototype.simulateLabelClick = function () {
  *     // An icon widget with a label
  *     var myIcon = new OO.ui.IconWidget( {
  *         icon: 'help',
- *         iconTitle: 'Help'
+ *         title: 'Help'
  *      } );
  *      // Create a label.
  *      var iconLabel = new OO.ui.LabelWidget( {
@@ -5074,8 +5082,8 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {number} [width=320] Width of popup in pixels
- * @cfg {number} [height] Height of popup in pixels. Omit to use the automatic height.
+ * @cfg {number|null} [width=320] Width of popup in pixels. Pass `null` to use automatic width.
+ * @cfg {number|null} [height=null] Height of popup in pixels. Pass `null` to use automatic height.
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
  * @cfg {string} [position='below'] Where to position the popup relative to $floatableContainer
  *  'above': Put popup above $floatableContainer; anchor points down to the horizontal center
@@ -5140,19 +5148,18 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.$container = config.$container;
 	this.containerPadding = config.containerPadding !== undefined ? config.containerPadding : 10;
 	this.autoClose = !!config.autoClose;
-	this.$autoCloseIgnore = config.$autoCloseIgnore;
 	this.transitionTimeout = null;
 	this.anchored = false;
-	this.width = config.width !== undefined ? config.width : 320;
-	this.height = config.height !== undefined ? config.height : null;
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
 
 	// Initialization
+	this.setSize( config.width, config.height );
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
 	this.setAlignment( config.align || 'center' );
 	this.setPosition( config.position || 'below' );
 	this.setAutoFlip( config.autoFlip === undefined || config.autoFlip );
+	this.setAutoCloseIgnore( config.$autoCloseIgnore );
 	this.$body.addClass( 'oo-ui-popupWidget-body' );
 	this.$anchor.addClass( 'oo-ui-popupWidget-anchor' );
 	this.$popup
@@ -5234,6 +5241,13 @@ OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
 OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
 	// Capture clicks outside popup
 	this.getElementWindow().addEventListener( 'mousedown', this.onMouseDownHandler, true );
+	// We add 'click' event because iOS safari needs to respond to this event.
+	// We can't use 'touchstart' (as is usually the equivalent to 'mousedown') because
+	// then it will trigger when scrolling. While iOS Safari has some reported behavior
+	// of occasionally not emitting 'click' properly, that event seems to be the standard
+	// that it should be emitting, so we add it to this and will operate the event handler
+	// on whichever of these events was triggered first
+	this.getElementDocument().addEventListener( 'click', this.onMouseDownHandler, true );
 };
 
 /**
@@ -5254,6 +5268,7 @@ OO.ui.PopupWidget.prototype.onCloseButtonClick = function () {
  */
 OO.ui.PopupWidget.prototype.unbindMouseDownListener = function () {
 	this.getElementWindow().removeEventListener( 'mousedown', this.onMouseDownHandler, true );
+	this.getElementDocument().removeEventListener( 'click', this.onMouseDownHandler, true );
 };
 
 /**
@@ -5450,13 +5465,13 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
  *
  * Changing the size may also change the popup's position depending on the alignment.
  *
- * @param {number} width Width in pixels
- * @param {number} height Height in pixels
+ * @param {number|null} [width=320] Width in pixels. Pass `null` to use automatic width.
+ * @param {number|null} [height=null] Height in pixels. Pass `null` to use automatic height.
  * @param {boolean} [transition=false] Use a smooth transition
  * @chainable
  */
 OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
-	this.width = width;
+	this.width = width !== undefined ? width : 320;
 	this.height = height !== undefined ? height : null;
 	if ( this.isVisible() ) {
 		this.updateDimensions( transition );
@@ -5546,7 +5561,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	// Set height and width before we do anything else, since it might cause our measurements
 	// to change (e.g. due to scrollbars appearing or disappearing), and it also affects centering
 	this.$popup.css( {
-		width: this.width,
+		width: this.width !== null ? this.width : 'auto',
 		height: this.height !== null ? this.height : 'auto'
 	} );
 
@@ -5563,7 +5578,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	near = vertical ? 'top' : 'left';
 	far = vertical ? 'bottom' : 'right';
 	sizeProp = vertical ? 'Height' : 'Width';
-	popupSize = vertical ? ( this.height || this.$popup.height() ) : this.width;
+	popupSize = vertical ? ( this.height || this.$popup.height() ) : ( this.width || this.$popup.width() );
 
 	this.setAnchorEdge( anchorEdgeMap[ popupPosition ] );
 	this.horizontalPosition = vertical ? popupPosition : hPosMap[ align ];
@@ -5716,6 +5731,17 @@ OO.ui.PopupWidget.prototype.setAutoFlip = function ( autoFlip ) {
 	if ( this.autoFlip !== autoFlip ) {
 		this.autoFlip = autoFlip;
 	}
+};
+
+/**
+ * Set which elements will not close the popup when clicked.
+ *
+ * For auto-closing popups, clicks on these elements will not cause the popup to auto-close.
+ *
+ * @param {jQuery} $autoCloseIgnore Elements to ignore for auto-closing
+ */
+OO.ui.PopupWidget.prototype.setAutoCloseIgnore = function ( $autoCloseIgnore ) {
+	this.$autoCloseIgnore = $autoCloseIgnore;
 };
 
 /**
@@ -7299,6 +7325,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.onInputEditHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
 	this.highlightOnFilter = !!config.highlightOnFilter;
 	this.width = config.width;
+	this.filterQuery = '';
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSelectWidget' );
@@ -7404,17 +7431,16 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
-	var i, item, visible, section, sectionEmpty, filter, exactFilter,
-		firstItemFound = false,
+	var i, item, items, visible, section, sectionEmpty, filter, exactFilter,
 		anyVisible = false,
 		len = this.items.length,
 		showAll = !this.isVisible(),
 		exactMatch = false;
 
-	if ( this.$input && this.filterFromInput ) {
+	if ( this.$input && this.filterFromInput && this.filterQuery !== this.$input.val() ) {
 		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
 		exactFilter = this.getItemMatcher( this.$input.val(), true );
-
+		this.filterQuery = this.$input.val();
 		// Hide non-matching options, and also hide section headers if all options
 		// in their section are hidden.
 		for ( i = 0; i < len; i++ ) {
@@ -7432,11 +7458,6 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 				anyVisible = anyVisible || visible;
 				sectionEmpty = sectionEmpty && !visible;
 				item.toggle( visible );
-				if ( this.highlightOnFilter && visible && !firstItemFound ) {
-					// Highlight the first item in the list
-					this.highlightItem( item );
-					firstItemFound = true;
-				}
 			}
 		}
 		// Process the final section
@@ -7449,6 +7470,20 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		}
 
 		this.$element.toggleClass( 'oo-ui-menuSelectWidget-invisible', !anyVisible );
+
+		if ( this.highlightOnFilter ) {
+			// Highlight the first item on the list
+			item = null;
+			items = this.getItems();
+			for ( i = 0; i < items.length; i++ ) {
+				if ( items[ i ].isVisible() ) {
+					item = items[ i ];
+					break;
+				}
+			}
+			this.highlightItem( item );
+		}
+
 	}
 
 	// Reevaluate clipping
@@ -11364,56 +11399,27 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.align = null;
 	this.helpInline = config.helpInline;
 
-	if ( config.help ) {
-		if ( this.helpInline ) {
-			this.$help = new OO.ui.LabelWidget( {
-				label: config.help,
-				classes: [ 'oo-ui-inline-help' ]
-			} ).$element;
-		} else {
-			this.popupButtonWidget = new OO.ui.PopupButtonWidget( {
-				$overlay: config.$overlay,
-				popup: {
-					padded: true
-				},
-				classes: [ 'oo-ui-fieldLayout-help' ],
-				framed: false,
-				icon: 'info',
-				label: OO.ui.msg( 'ooui-field-help' )
-			} );
-			if ( config.help instanceof OO.ui.HtmlSnippet ) {
-				this.popupButtonWidget.getPopup().$body.html( config.help.toString() );
-			} else {
-				this.popupButtonWidget.getPopup().$body.text( config.help );
-			}
-			this.$help = this.popupButtonWidget.$element;
-		}
-	} else {
-		this.$help = $( [] );
-	}
-
 	// Events
 	this.fieldWidget.connect( this, { disable: 'onFieldDisable' } );
 
 	// Initialization
-	if ( config.help && !config.helpInline ) {
-		// Set the 'aria-describedby' attribute on the fieldWidget
-		// Preference given to an input or a button
-		(
-			this.fieldWidget.$input ||
-			this.fieldWidget.$button ||
-			this.fieldWidget.$element
-		).attr(
-			'aria-describedby',
-			this.popupButtonWidget.getPopup().getBodyId()
-		);
-	}
+	this.$help = config.help ?
+		this.createHelpElement( config.help, config.$overlay ) :
+		$( [] );
 	if ( this.fieldWidget.getInputId() ) {
 		this.$label.attr( 'for', this.fieldWidget.getInputId() );
+		if ( this.helpInline ) {
+			this.$help.attr( 'for', this.fieldWidget.getInputId() );
+		}
 	} else {
 		this.$label.on( 'click', function () {
 			this.fieldWidget.simulateLabelClick();
 		}.bind( this ) );
+		if ( this.helpInline ) {
+			this.$help.on( 'click', function () {
+				this.fieldWidget.simulateLabelClick();
+			}.bind( this ) );
+		}
 	}
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
@@ -11612,6 +11618,56 @@ OO.ui.FieldLayout.prototype.formatTitleWithAccessKey = function ( title ) {
 		return this.fieldWidget.formatTitleWithAccessKey( title );
 	}
 	return title;
+};
+
+/**
+ * Creates and returns the help element. Also sets the `aria-describedby`
+ * attribute on the main element of the `fieldWidget`.
+ *
+ * @private
+ * @param {string|OO.ui.HtmlSnippet} [help] Help text.
+ * @param {jQuery} [$overlay] Passed to OO.ui.PopupButtonWidget for help popup.
+ * @return {jQuery} The element that should become `this.$help`.
+ */
+OO.ui.FieldLayout.prototype.createHelpElement = function ( help, $overlay ) {
+	var helpId, helpWidget;
+
+	if ( this.helpInline ) {
+		helpWidget = new OO.ui.LabelWidget( {
+			label: help,
+			classes: [ 'oo-ui-inline-help' ]
+		} );
+
+		helpId = helpWidget.getElementId();
+	} else {
+		helpWidget = new OO.ui.PopupButtonWidget( {
+			$overlay: $overlay,
+			popup: {
+				padded: true
+			},
+			classes: [ 'oo-ui-fieldLayout-help' ],
+			framed: false,
+			icon: 'info',
+			label: OO.ui.msg( 'ooui-field-help' )
+		} );
+		if ( help instanceof OO.ui.HtmlSnippet ) {
+			helpWidget.getPopup().$body.html( help.toString() );
+		} else {
+			helpWidget.getPopup().$body.text( help );
+		}
+
+		helpId = helpWidget.getPopup().getBodyId();
+	}
+
+	// Set the 'aria-describedby' attribute on the fieldWidget
+	// Preference given to an input or a button
+	(
+		this.fieldWidget.$input ||
+		this.fieldWidget.$button ||
+		this.fieldWidget.$element
+	).attr( 'aria-describedby', helpId );
+
+	return helpWidget.$element;
 };
 
 /**
