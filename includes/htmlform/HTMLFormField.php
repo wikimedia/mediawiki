@@ -630,7 +630,7 @@ abstract class HTMLFormField {
 
 		// the element could specify, that the label doesn't need to be added
 		$label = $this->getLabel();
-		if ( $label && $label !== "\u{00A0}" ) {
+		if ( $label && $label !== "\u{00A0}" && $label !== '&#160;' ) {
 			$config['label'] = new OOUI\HtmlSnippet( $label );
 		}
 
@@ -926,13 +926,7 @@ abstract class HTMLFormField {
 	 * @return string HTML
 	 */
 	public function getLabel() {
-		if ( is_null( $this->mLabel ) ) {
-			return '';
-		}
-		if ( $this->mLabel === '&#160;' ) {
-			return "\u{00A0}";
-		}
-		return $this->mLabel;
+		return $this->mLabel ?? '';
 	}
 
 	public function getLabelHtml( $cellAttributes = [] ) {
@@ -946,7 +940,7 @@ abstract class HTMLFormField {
 
 		$labelValue = trim( $this->getLabel() );
 		$hasLabel = false;
-		if ( $labelValue !== "\u{00A0}" && $labelValue !== '' ) {
+		if ( $labelValue !== "\u{00A0}" && $labelValue !== '&#160;' && $labelValue !== '' ) {
 			$hasLabel = true;
 		}
 
