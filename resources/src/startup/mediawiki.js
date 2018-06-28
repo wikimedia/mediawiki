@@ -8,7 +8,7 @@
  * @singleton
  */
 
-( function ( $ ) {
+( function () {
 	'use strict';
 
 	var mw, StringSet, log,
@@ -294,7 +294,7 @@
 		 */
 		log.warn = console && console.warn && Function.prototype.bind ?
 			Function.prototype.bind.call( console.warn, console ) :
-			$.noop;
+			function () {};
 
 		/**
 		 * Write a message to the browser console's error channel.
@@ -305,11 +305,11 @@
 		 * This method is a no-op in browsers that don't implement the Console API.
 		 *
 		 * @since 1.26
-		 * @param {Error|...string} msg Messages to output to console
+		 * @param {...Mixed} msg Messages to output to console
 		 */
 		log.error = console && console.error && Function.prototype.bind ?
 			Function.prototype.bind.call( console.error, console ) :
-			$.noop;
+			function () {};
 
 		/**
 		 * Create a property on a host object that, when accessed, will produce
@@ -2270,4 +2270,4 @@
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
-}( jQuery ) );
+}() );

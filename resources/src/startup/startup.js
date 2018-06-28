@@ -140,6 +140,10 @@ window.isCompatible = function ( str ) {
 	if ( window.performance && performance.mark ) {
 		performance.mark( 'mwStartup' );
 	}
+
+	// This embeds mediawiki.js, which defines 'mw' and 'mw.loader'.
+	$CODE.defineLoader();
+
 	script = document.createElement( 'script' );
 	script.src = $VARS.baseModulesUri;
 	script.onload = function () {
