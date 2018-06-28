@@ -2527,17 +2527,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Note array_intersect() preserves keys from the first arg, and we're
 		// assuming $revQuery has `revision` primary and isn't using subtables
 		// for anything we care about.
-		$tablesFlat = [];
-		array_walk_recursive(
-			$revQuery['tables'],
-			function ( $a ) use ( &$tablesFlat ) {
-				$tablesFlat[] = $a;
-			}
-		);
-
 		$res = $dbw->select(
 			array_intersect(
-				$tablesFlat,
+				$revQuery['tables'],
 				[ 'revision', 'revision_comment_temp', 'revision_actor_temp' ]
 			),
 			'1',
