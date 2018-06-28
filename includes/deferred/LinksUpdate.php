@@ -593,13 +593,7 @@ class LinksUpdate extends DataUpdate implements EnqueueableDataUpdate {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
 
-			if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
-				$type = 'subcat';
-			} elseif ( $this->mTitle->getNamespace() == NS_FILE ) {
-				$type = 'file';
-			} else {
-				$type = 'page';
-			}
+			$type = MWNamespace::getCategoryLinkType( $this->mTitle->getNamespace() );
 
 			# Treat custom sortkeys as a prefix, so that if multiple
 			# things are forced to sort as '*' or something, they'll

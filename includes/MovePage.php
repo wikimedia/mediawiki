@@ -280,13 +280,7 @@ class MovePage {
 			[ 'cl_from' => $pageid ],
 			__METHOD__
 		);
-		if ( $this->newTitle->getNamespace() == NS_CATEGORY ) {
-			$type = 'subcat';
-		} elseif ( $this->newTitle->getNamespace() == NS_FILE ) {
-			$type = 'file';
-		} else {
-			$type = 'page';
-		}
+		$type = MWNamespace::getCategoryLinkType( $this->newTitle->getNamespace() );
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
