@@ -11,11 +11,14 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::toArray()
 	 * @covers MapCacheLRU::getAllKeys()
 	 * @covers MapCacheLRU::clear()
+	 * @covers MapCacheLRU::getMaxSize()
+	 * @covers MapCacheLRU::setMaxSize()
 	 */
 	function testArrayConversion() {
 		$raw = [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ];
 		$cache = MapCacheLRU::newFromArray( $raw, 3 );
 
+		$this->assertEquals( 3, $cache->getMaxSize() );
 		$this->assertSame( true, $cache->has( 'a' ) );
 		$this->assertSame( true, $cache->has( 'b' ) );
 		$this->assertSame( true, $cache->has( 'c' ) );
@@ -42,6 +45,27 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame(
 			[],
 			$cache->toArray()
+		);
+
+		$cache = MapCacheLRU::newFromArray( [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ], 4 );
+		$cache->setMaxSize( 3 );
+		$this->assertSame(
+			[ 'c' => 3, 'b' => 2, 'a' => 1 ],
+			$cache->toArray()
+		);
+	}
+
+	/**
+	 * @covers MapCacheLRU::serialize()
+	 * @covers MapCacheLRU::unserialize()
+	 */
+	function testSerialize() {
+		$cache = MapCacheLRU::newFromArray( [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ], 10 );
+		$string = serialize( $cache );
+		$ncache = unserialize( $string );
+		$this->assertSame(
+			[ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ],
+			$ncache->toArray()
 		);
 	}
 
@@ -113,5 +137,76 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 			[ 'f' => 6, 'd' => 4, 'g' => 7 ],
 			$cache->toArray()
 		);
+	}
+
+	/**
+	 * @covers MapCacheLRU::has()
+	 * @covers MapCacheLRU::get()
+	 * @covers MapCacheLRU::set()
+	 */
+	public function testExpiry() {
+		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
+		$cache = MapCacheLRU::newFromArray( $raw, 3 );
+
+		$now = microtime( true );
+		$cache->setMockTime( $now );
+
+		$cache->set( 'd', 'xxx' );
+		$this->assertTrue( $cache->has( 'd', 30 ) );
+		$this->assertEquals( 'xxx', $cache->get( 'd' ) );
+
+		$now += 29;
+		$this->assertTrue( $cache->has( 'd', 30 ) );
+		$this->assertEquals( 'xxx', $cache->get( 'd' ) );
+
+		$now += 1.5;
+		$this->assertFalse( $cache->has( 'd', 30 ) );
+		$this->assertEquals( 'xxx', $cache->get( 'd' ) );
+	}
+
+	/**
+	 * @covers MapCacheLRU::hasField()
+	 * @covers MapCacheLRU::getField()
+	 * @covers MapCacheLRU::setField()
+	 */
+	public function testFields() {
+		$raw = [ 'a' => 1, 'b' => 2, 'c' => 3 ];
+		$cache = MapCacheLRU::newFromArray( $raw, 3 );
+
+		$now = microtime( true );
+		$cache->setMockTime( $now );
+
+		$cache->setField( 'PMs', 'Tony Blair', 'Labour' );
+		$cache->setField( 'PMs', 'Margaret Thatcher', 'Tory' );
+		$this->assertTrue( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
+		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+
+		$now += 29;
+		$this->assertTrue( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
+		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+
+		$now += 1.5;
+		$this->assertFalse( $cache->hasField( 'PMs', 'Tony Blair', 30 ) );
+		$this->assertEquals( 'Labour', $cache->getField( 'PMs', 'Tony Blair' ) );
+
+		$this->assertEquals(
+			[ 'Tony Blair' => 'Labour', 'Margaret Thatcher' => 'Tory' ],
+			$cache->get( 'PMs' )
+		);
+
+		$cache->set( 'MPs', [
+			'Edwina Currie' => 1983,
+			'Neil Kinnock' => 1970
+		] );
+		$this->assertEquals(
+			[
+				'Edwina Currie' => 1983,
+				'Neil Kinnock' => 1970
+			],
+			$cache->get( 'MPs' )
+		);
+
+		$this->assertEquals( 1983, $cache->getField( 'MPs', 'Edwina Currie' ) );
+		$this->assertEquals( 1970, $cache->getField( 'MPs', 'Neil Kinnock' ) );
 	}
 }
