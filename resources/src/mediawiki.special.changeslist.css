@@ -54,3 +54,9 @@
 .mw-changeslist-legend.mw-collapsed + h4 + div > table.mw-changeslist-line:first-child {
 	clear: right;
 }
+
+/* Hide RCFilters highlight containers if RCFilters is not enabled.
+   This is overridden in mw.ui.rcfilters.ChangesListWrapperWidget.less if RCFilters is enabled. */
+.mw-rcfilters-ui-highlights {
+	display: none;
+}
