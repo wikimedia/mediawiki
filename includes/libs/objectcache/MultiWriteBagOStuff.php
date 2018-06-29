@@ -34,9 +34,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	protected $caches;
 	/** @var bool Use async secondary writes */
 	protected $asyncWrites = false;
-
-	/** Idiom for "write to all backends" */
-	const ALL = INF;
+	/** @var int[] List of all backing cache indexes */
+	protected $cacheIndexes = [];
 
 	const UPGRADE_TTL = 3600; // TTL when a key is copied to a higher cache tier
 
@@ -91,6 +90,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 			$params['replication'] === 'async' &&
 			is_callable( $this->asyncHandler )
 		);
+
+		$this->cacheIndexes = array_keys( $this->caches );
 	}
 
 	public function setDebug( $debug ) {
@@ -107,21 +108,24 @@ class MultiWriteBagOStuff extends BagOStuff {
 			return $this->caches[0]->get( $key, $flags );
 		}
 
-		$misses = 0; // number backends checked
 		$value = false;
-		foreach ( $this->caches as $cache ) {
+		$missIndexes = []; // backends checked
+		foreach ( $this->caches as $i => $cache ) {
 			$value = $cache->get( $key, $flags );
 			if ( $value !== false ) {
 				break;
 			}
-			++$misses;
+			$missIndexes[] = $i;
 		}
 
 		if ( $value !== false
-			&& $misses > 0
+			&& $missIndexes
 			&& ( $flags & self::READ_VERIFIED ) == self::READ_VERIFIED
 		) {
-			$this->doWrite( $misses, $this->asyncWrites, 'set', $key, $value, self::UPGRADE_TTL );
+			// Backfill the value to the lower (and often larger) cache tiers
+			$this->doWrite(
+				$missIndexes, $this->asyncWrites, 'set', $key, $value, self::UPGRADE_TTL
+			);
 		}
 
 		return $value;
@@ -132,23 +136,39 @@ class MultiWriteBagOStuff extends BagOStuff {
 			? false
 			: $this->asyncWrites;
 
-		return $this->doWrite( self::ALL, $asyncWrites, 'set', $key, $value, $exptime );
+		return $this->doWrite( $this->cacheIndexes, $asyncWrites, 'set', $key, $value, $exptime );
 	}
 
 	public function delete( $key ) {
-		return $this->doWrite( self::ALL, $this->asyncWrites, 'delete', $key );
+		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'delete', $key );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
-		return $this->doWrite( self::ALL, $this->asyncWrites, 'add', $key, $value, $exptime );
+		// Try the write to the top-tier cache
+		$ok = $this->doWrite( [ 0 ], $this->asyncWrites, 'add', $key, $value, $exptime );
+		if ( $ok ) {
+			// Relay the add() using set() if it succeeded. This is meant to handle certain
+			// migration scenarios where the same store might get written to twice for certain
+			// keys. In that case, it does not make sense to return false due to "self-conflicts".
+			return $this->doWrite(
+				array_slice( $this->cacheIndexes, 1 ),
+				$this->asyncWrites,
+				'set',
+				$key,
+				$value,
+				$exptime
+			);
+		}
+
+		return false;
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return $this->doWrite( self::ALL, $this->asyncWrites, 'incr', $key, $value );
+		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'incr', $key, $value );
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return $this->doWrite( self::ALL, $this->asyncWrites, 'decr', $key, $value );
+		return $this->doWrite( $this->cacheIndexes, $this->asyncWrites, 'decr', $key, $value );
 	}
 
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
@@ -170,29 +190,26 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Apply a write method to the first $count backing caches
+	 * Apply a write method to the backing caches specified by $indexes (in order)
 	 *
-	 * @param int $count
+	 * @param int[] $indexes List of backing cache indexes
 	 * @param bool $asyncWrites
 	 * @param string $method
 	 * @param mixed $args,...
 	 * @return bool
 	 */
-	protected function doWrite( $count, $asyncWrites, $method /*, ... */ ) {
+	protected function doWrite( $indexes, $asyncWrites, $method /*, ... */ ) {
 		$ret = true;
 		$args = array_slice( func_get_args(), 3 );
 
-		if ( $count > 1 && $asyncWrites ) {
+		if ( count( $indexes ) > 1 && $asyncWrites ) {
 			// Deep-clone $args to prevent misbehavior when something writes an
 			// object to the BagOStuff then modifies it afterwards, e.g. T168040.
 			$args = unserialize( serialize( $args ) );
 		}
 
-		foreach ( $this->caches as $i => $cache ) {
-			if ( $i >= $count ) {
-				break; // ignore the lower tiers
-			}
-
+		foreach ( $indexes as $i ) {
+			$cache = $this->caches[$i];
 			if ( $i == 0 || !$asyncWrites ) {
 				// First store or in sync mode: write now and get result
 				if ( !$cache->$method( ...$args ) ) {
