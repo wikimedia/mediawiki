@@ -540,4 +540,26 @@ class MWNamespace {
 
 		return $usableLevels;
 	}
+
+	/**
+	 * Returns the link type to be used for categories.
+	 *
+	 * This determines which section of a category page titles
+	 * in the namespace will appear within.
+	 *
+	 * @since 1.32
+	 * @param int $index Namespace index
+	 * @return string One of 'subcat', 'file', 'page'
+	 */
+	public static function getCategoryLinkType( $index ) {
+		self::isMethodValidFor( $index, __METHOD__ );
+
+		if ( $index == NS_CATEGORY ) {
+			return 'subcat';
+		} elseif ( $index == NS_FILE ) {
+			return 'file';
+		} else {
+			return 'page';
+		}
+	}
 }

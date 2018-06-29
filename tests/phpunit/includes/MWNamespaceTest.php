@@ -575,4 +575,34 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	private function assertDifferentSubject( $ns1, $ns2, $msg = '' ) {
 		$this->assertFalse( MWNamespace::subjectEquals( $ns1, $ns2 ), $msg );
 	}
+
+	public function provideGetCategoryLinkType() {
+		return [
+			[ NS_MAIN, 'page' ],
+			[ NS_TALK, 'page' ],
+			[ NS_USER, 'page' ],
+			[ NS_USER_TALK, 'page' ],
+
+			[ NS_FILE, 'file' ],
+			[ NS_FILE_TALK, 'page' ],
+
+			[ NS_CATEGORY, 'subcat' ],
+			[ NS_CATEGORY_TALK, 'page' ],
+
+			[ 100, 'page' ],
+			[ 101, 'page' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetCategoryLinkType
+	 * @covers MWNamespace::getCategoryLinkType
+	 *
+	 * @param int $index
+	 * @param string $expected
+	 */
+	public function testGetCategoryLinkType( $index, $expected ) {
+		$actual = MWNamespace::getCategoryLinkType( $index );
+		$this->assertSame( $expected, $actual, "NS $index" );
+	}
 }

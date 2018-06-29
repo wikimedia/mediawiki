@@ -3258,16 +3258,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
 		$id = $id ?: $this->getId();
-		$ns = $this->getTitle()->getNamespace();
+		$type = MWNamespace::getCategoryLinkType( $this->getTitle()->getNamespace() );
 
 		$addFields = [ 'cat_pages = cat_pages + 1' ];
 		$removeFields = [ 'cat_pages = cat_pages - 1' ];
-		if ( $ns == NS_CATEGORY ) {
-			$addFields[] = 'cat_subcats = cat_subcats + 1';
-			$removeFields[] = 'cat_subcats = cat_subcats - 1';
-		} elseif ( $ns == NS_FILE ) {
-			$addFields[] = 'cat_files = cat_files + 1';
-			$removeFields[] = 'cat_files = cat_files - 1';
+		if ( $type !== 'page' ) {
+			$addFields[] = "cat_{$type}s = cat_{$type}s + 1";
+			$removeFields[] = "cat_{$type}s = cat_{$type}s - 1";
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -3299,8 +3296,8 @@ class WikiPage implements Page, IDBAccessObject {
 					$insertRows[] = [
 						'cat_title'   => $cat,
 						'cat_pages'   => 1,
-						'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
-						'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
+						'cat_subcats' => ( $type === 'subcat' ) ? 1 : 0,
+						'cat_files'   => ( $type === 'file' ) ? 1 : 0,
 					];
 				}
 				$dbw->upsert(

@@ -187,13 +187,7 @@ TEXT
 				}
 				# cl_type will be wrong for lots of pages if cl_collation is 0,
 				# so let's update it while we're here.
-				if ( $title->getNamespace() == NS_CATEGORY ) {
-					$type = 'subcat';
-				} elseif ( $title->getNamespace() == NS_FILE ) {
-					$type = 'file';
-				} else {
-					$type = 'page';
-				}
+				$type = MWNamespace::getCategoryLinkType( $title->getNamespace() );
 				$newSortKey = $collation->getSortKey(
 					$title->getCategorySortkey( $prefix ) );
 				if ( $verboseStats ) {
