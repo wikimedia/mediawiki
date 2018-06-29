@@ -370,12 +370,15 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getText = function () {
-		var language = mw.config.get( 'wgContentLanguage' );
+		var language = mw.config.get( 'wgContentLanguage' ),
+			categories = this.categoriesWidget.getItems().map( function ( item ) {
+				return item.data;
+			} );
 		this.upload.clearDescriptions();
 		this.upload.addDescription( language, this.descriptionWidget.getValue() );
 		this.upload.setDate( this.dateWidget.getValue() );
 		this.upload.clearCategories();
-		this.upload.addCategories( this.categoriesWidget.getItemsData() );
+		this.upload.addCategories( categories );
 		return this.upload.getText();
 	};
 
@@ -454,7 +457,7 @@
 		mw.ForeignStructuredUpload.BookletLayout.parent.prototype.clear.call( this );
 
 		this.ownWorkCheckbox.setSelected( false );
-		this.categoriesWidget.setItemsFromData( [] );
+		this.categoriesWidget.setValue( [] );
 		this.dateWidget.setValue( '' ).setValidityFlag( true );
 	};
 
