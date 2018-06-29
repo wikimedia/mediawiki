@@ -306,8 +306,6 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 	public function provideGetService() {
 		// NOTE: This should list all service getters defined in ServiceWiring.php.
-		// NOTE: For every test case defined here there should be a corresponding
-		// test case defined in provideGetters().
 		return [
 			'BootstrapConfig' => [ 'BootstrapConfig', Config::class ],
 			'ConfigFactory' => [ 'ConfigFactory', ConfigFactory::class ],
