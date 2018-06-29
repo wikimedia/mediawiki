@@ -14,6 +14,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
+use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 
 /**
@@ -305,8 +306,6 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 
 	public function provideGetService() {
 		// NOTE: This should list all service getters defined in ServiceWiring.php.
-		// NOTE: For every test case defined here there should be a corresponding
-		// test case defined in provideGetters().
 		return [
 			'BootstrapConfig' => [ 'BootstrapConfig', Config::class ],
 			'ConfigFactory' => [ 'ConfigFactory', ConfigFactory::class ],
@@ -346,6 +345,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
+			'RevisionStoreFactory' => [ 'RevisionStoreFactory', RevisionStoreFactory::class ],
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 			'CommentStore' => [ 'CommentStore', CommentStore::class ],
