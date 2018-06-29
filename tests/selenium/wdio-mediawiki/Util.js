@@ -1,5 +1,5 @@
 module.exports = {
 	getTestString( prefix = '' ) {
-		return prefix + Math.random().toString() + '-Iñtërnâtiônàlizætiøn☃';
+		return prefix + Math.random().toString() + '-Iñtërnâtiônàlizætiøn';
 	}
 };
