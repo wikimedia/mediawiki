@@ -83,6 +83,7 @@ class RevisionStore
 
 	/**
 	 * @var boolean
+	 * @see $wgContentHandlerUseDB
 	 */
 	private $contentHandlerUseDB = true;
 
@@ -182,6 +183,7 @@ class RevisionStore
 	}
 
 	/**
+	 * @see $wgContentHandlerUseDB
 	 * @param bool $contentHandlerUseDB
 	 * @throws MWException
 	 */
