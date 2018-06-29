@@ -80,7 +80,8 @@ Thumbs.db
 /tests/phan/issues
 *.rej
 
-#bluespice
+#bluespice free
+/images/bluespice
 /settings.d/*.local.php
 BLUESPICE-INSTALL
 BLUESPICE-LICENCE
