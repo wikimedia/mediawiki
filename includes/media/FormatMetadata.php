@@ -271,7 +271,7 @@ class FormatMetadata extends ContextSource {
 					// TODO: YCbCrCoefficients  #p27 (see annex E)
 					case 'ExifVersion':
 					case 'FlashpixVersion':
-						$val = "$val" / 100;
+						$val = (int)$val / 100;
 						break;
 
 					case 'ColorSpace':
