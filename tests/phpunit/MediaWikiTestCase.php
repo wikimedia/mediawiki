@@ -1075,12 +1075,14 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|Title $pageName Page name or title
 	 * @param string $text Page's content
 	 * @param int $namespace Namespace id (name cannot already contain namespace)
+	 * @param User $user If null, static::getTestSysop()->getUser() is used.
 	 * @return array Title object and page id
 	 */
 	protected function insertPage(
 		$pageName,
 		$text = 'Sample page for unit test.',
-		$namespace = null
+		$namespace = null,
+		User $user = null
 	) {
 		if ( is_string( $pageName ) ) {
 			$title = Title::newFromText( $pageName, $namespace );
@@ -1088,7 +1090,9 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 			$title = $pageName;
 		}
 
-		$user = static::getTestSysop()->getUser();
+		if ( !$user ) {
+			$user = static::getTestSysop()->getUser();
+		}
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		$page = WikiPage::factory( $title );
