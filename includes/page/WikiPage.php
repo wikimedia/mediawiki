@@ -2962,6 +2962,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater->setUndidRevisionId( $current->getId() );
 		$updater->addTags( $tags );
 
+		// TODO: this logic should not be in the storage layer, it's here for compatibility
+		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
+		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
+		if ( $wgUseRCPatrol && $this->getTitle()->userCan( 'autopatrol', $guser ) ) {
+			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
+		}
+
 		// Actually store the rollback
 		$rev = $updater->saveRevision(
 			CommentStoreComment::newUnsavedComment( $summary ),
