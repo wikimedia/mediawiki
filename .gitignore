@@ -49,11 +49,11 @@ sftp-config.json
 npm-debug.log
 node_modules/
 /tests/phpunit/phpunit.phar
-/tests/selenium/log
 
 # Composer
 /vendor
 /composer.lock
+/composer.local.json
 /composer.phar
 
 # MediaWiki UI documentation
@@ -82,6 +82,7 @@ Thumbs.db
 #bluespice free
 /images/bluespice
 /settings.d/*.local.php
+LocalSettings.local.php
 BLUESPICE-INSTALL
 BLUESPICE-LICENCE
 BLUESPICE-RELEASE-HISTORY
