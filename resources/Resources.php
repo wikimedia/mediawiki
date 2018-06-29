@@ -706,12 +706,6 @@ return [
 		'group' => 'jquery.ui',
 	],
 
-	/* json2 */
-	'json' => [
-		'deprecated' => 'Use of the "json" module is deprecated since MediaWiki 1.29.0',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-
 	/* Moment.js */
 
 	'moment' => [

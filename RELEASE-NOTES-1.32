@@ -133,6 +133,7 @@ because of Phabricator reports.
 * The jquery.footHovzer module, for mediawiki.debug, was removed.
 * The es5-shim module, empty and deprecated since 1.29, was removed.
 * the dom-level2-shim module, empty and deprecated since 1.29, was removed.
+* the json module, empty and deprecated since 1.29, was removed.
 * The mediawiki.widgets.visibleByteLimit module alias, deprecated in 1.32, was
   removed. Use mediawiki.widgets.visibleLengthLimit instead.
 * The jquery.farbtastic module, unused since 1.18, was removed.
