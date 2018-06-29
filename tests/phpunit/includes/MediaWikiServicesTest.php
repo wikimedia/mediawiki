@@ -5,6 +5,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Services\DestructibleService;
 use MediaWiki\Services\SalvageableService;
 use MediaWiki\Services\ServiceDisabledException;
@@ -12,6 +13,7 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
 use MediaWiki\Storage\RevisionStoreFactory;
@@ -347,9 +349,21 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
 			'RevisionStoreFactory' => [ 'RevisionStoreFactory', RevisionStoreFactory::class ],
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
+			'RevisionFactory' => [ 'RevisionFactory', RevisionFactory::class ],
+			'ContentModelStore' => [ 'ContentModelStore', NameTableStore::class ],
+			'SlotRoleStore' => [ 'SlotRoleStore', NameTableStore::class ],
 			'HttpRequestFactory' => [ 'HttpRequestFactory', HttpRequestFactory::class ],
 			'CommentStore' => [ 'CommentStore', CommentStore::class ],
 			'ChangeTagDefStore' => [ 'ChangeTagDefStore', NameTableStore::class ],
+			'ConfiguredReadOnlyMode' => [ 'ConfiguredReadOnlyMode', ConfiguredReadOnlyMode::class ],
+			'ReadOnlyMode' => [ 'ReadOnlyMode', ReadOnlyMode::class ],
+			'UploadRevisionImporter' => [ 'UploadRevisionImporter', UploadRevisionImporter::class ],
+			'OldRevisionImporter' => [ 'OldRevisionImporter', OldRevisionImporter::class ],
+			'WikiRevisionOldRevisionImporterNoUpdates' =>
+				[ 'WikiRevisionOldRevisionImporterNoUpdates', ImportableOldRevisionImporter::class ],
+			'ExternalStoreFactory' => [ 'ExternalStoreFactory', ExternalStoreFactory::class ],
+			'PreferencesFactory' => [ 'PreferencesFactory', PreferencesFactory::class ],
+			'ActorMigration' => [ 'ActorMigration', ActorMigration::class ],
 		];
 	}
 
@@ -376,6 +390,17 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			$service = $services->getService( $name );
 			$this->assertInternalType( 'object', $service );
 		}
+	}
+
+	public function testDefaultServiceWiringServicesHaveTests() {
+		global $IP;
+		$testedServices = array_keys( $this->provideGetService() );
+		$allServices = array_keys( include $IP . '/includes/ServiceWiring.php' );
+		$this->assertEquals(
+			[],
+			array_diff( $allServices, $testedServices ),
+			'The following services have not been added to MediaWikiServicesTest::provideGetService'
+		);
 	}
 
 }
