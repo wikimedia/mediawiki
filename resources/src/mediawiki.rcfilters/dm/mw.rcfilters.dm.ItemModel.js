@@ -207,6 +207,10 @@
 		if ( !this.isHighlightSupported() ) {
 			return;
 		}
+		// If the highlight color on the item and in the parameter is null/undefined, return early.
+		if ( !this.highlightColor && !highlightColor ) {
+			return;
+		}
 
 		if ( this.highlightColor !== highlightColor ) {
 			this.highlightColor = highlightColor;
