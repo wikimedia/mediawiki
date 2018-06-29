@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1028,6 +1029,9 @@ more stuff
 		// Use the confirmed group for user2 to make sure the user is different
 		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
+		// make sure we can test autopatrolling
+		$this->setMwGlobals( 'wgUseRCPatrol', true );
+
 		// TODO: MCR: test rollback of multiple slots!
 		$page = $this->newPage( __METHOD__ );
 
@@ -1085,61 +1089,21 @@ more stuff
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
 
+		$rc = MediaWikiServices::getInstance()->getRevisionStore()->getRecentChange(
+			$page->getRevision()->getRevisionRecord()
+		);
+
+		$this->assertNotNull( $rc, 'RecentChanges entry' );
+		$this->assertEquals(
+			RecentChange::PRC_AUTOPATROLLED,
+			$rc->getAttribute( 'rc_patrolled' ),
+			'rc_patrolled'
+		);
+
 		// TODO: MCR: assert origin once we write slot data
 		// $mainSlot = $page->getRevision()->getRevisionRecord()->getSlot( 'main' );
 		// $this->assertTrue( $mainSlot->isInherited(), 'isInherited' );
 		// $this->assertSame( $rev2->getId(), $mainSlot->getOrigin(), 'getOrigin' );
-	}
-
-	/**
-	 * @covers WikiPage::doRollback
-	 * @covers WikiPage::commitRollback
-	 */
-	public function testDoRollback_simple() {
-		$admin = $this->getTestSysop()->getUser();
-
-		$text = "one";
-		$page = $this->newPage( __METHOD__ );
-		$page->doEditContent(
-			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			"section one",
-			EDIT_NEW,
-			false,
-			$admin
-		);
-		$rev1 = $page->getRevision();
-
-		$user1 = $this->getTestUser()->getUser();
-		$text .= "\n\ntwo";
-		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent(
-			ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
-			"adding section two",
-			0,
-			false,
-			$user1
-		);
-
-		# now, try the rollback
-		$token = $admin->getEditToken( 'rollback' );
-		$errors = $page->doRollback(
-			$user1->getName(),
-			"testing revert",
-			$token,
-			false,
-			$details,
-			$admin
-		);
-
-		if ( $errors ) {
-			$this->fail( "Rollback failed:\n" . print_r( $errors, true )
-				. ";\n" . print_r( $details, true ) );
-		}
-
-		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
-			"rollback did not revert to the correct revision" );
-		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
 	/**
