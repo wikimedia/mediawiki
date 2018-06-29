@@ -2675,16 +2675,14 @@ abstract class ApiBase extends ContextSource {
 	 * @deprecated since 1.25
 	 */
 	public function profileIn() {
-		// No wfDeprecated() yet because extensions call this and might need to
-		// keep doing so for BC.
+		wfDeprecated( __METHOD__, '1.25' );
 	}
 
 	/**
 	 * @deprecated since 1.25
 	 */
 	public function profileOut() {
-		// No wfDeprecated() yet because extensions call this and might need to
-		// keep doing so for BC.
+		wfDeprecated( __METHOD__, '1.25' );
 	}
 
 	/**
