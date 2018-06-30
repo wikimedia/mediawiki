@@ -2184,7 +2184,7 @@ return [
 	],
 	'mediawiki.special.preferences.styles.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.css',
+		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.less',
 	],
 	'mediawiki.special.recentchanges' => [
 		'scripts' => 'resources/src/mediawiki.special.recentchanges.js',
