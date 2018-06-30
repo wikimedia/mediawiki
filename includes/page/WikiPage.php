@@ -2959,7 +2959,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$updater->setOriginalRevisionId( $target->getId() );
-		$updater->setUndidRevisionId( $current->getId() );
+		// Do not call setUndidRevisionId(), that causes an extra "mw-undo" tag to be added (T190374)
 		$updater->addTags( $tags );
 
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
