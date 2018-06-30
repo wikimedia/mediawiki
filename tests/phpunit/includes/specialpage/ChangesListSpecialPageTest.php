@@ -116,7 +116,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	/** return false if condition begins with 'rc_timestamp ' */
 	private static function filterOutRcTimestampCondition( $var ) {
-		return ( is_array( $var ) || false === strpos( $var, 'rc_timestamp ' ) );
+		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
 
 	public function testRcNsFilter() {

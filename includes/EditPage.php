@@ -680,7 +680,7 @@ class EditPage {
 		# that edit() already checked just in case someone tries to sneak
 		# in the back door with a hand-edited submission URL.
 
-		if ( 'save' == $this->formtype ) {
+		if ( $this->formtype == 'save' ) {
 			$resultDetails = null;
 			$status = $this->attemptSave( $resultDetails );
 			if ( !$this->handleStatus( $status, $resultDetails ) ) {
@@ -690,7 +690,7 @@ class EditPage {
 
 		# First time through: get contents, set time for conflict
 		# checking, etc.
-		if ( 'initial' == $this->formtype || $this->firsttime ) {
+		if ( $this->formtype == 'initial' || $this->firsttime ) {
 			if ( $this->initialiseForm() === false ) {
 				$out = $this->context->getOutput();
 				if ( $out->getRedirect() === '' ) { // mcrundo hack redirects, don't override it
@@ -2849,7 +2849,7 @@ ERROR;
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
 
-		if ( $this->wasDeletedSinceLastEdit() && 'save' == $this->formtype ) {
+		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
 			$username = $this->lastDelete->user_name;
 			$comment = CommentStore::getStore()
 				->getComment( 'log_comment', $this->lastDelete )->text;

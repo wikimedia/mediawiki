@@ -471,7 +471,7 @@ function wfAppendQuery( $url, $query ) {
 		}
 
 		// Add parameter
-		if ( false === strpos( $url, '?' ) ) {
+		if ( strpos( $url, '?' ) === false ) {
 			$url .= '?';
 		} else {
 			$url .= '&';

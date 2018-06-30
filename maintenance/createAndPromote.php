@@ -66,7 +66,7 @@ class CreateAndPromote extends Maintenance {
 			$this->fatalError( "invalid username." );
 		}
 
-		$exists = ( 0 !== $user->idForName() );
+		$exists = ( $user->idForName() !== 0 );
 
 		if ( $exists && !$force ) {
 			$this->fatalError( "Account exists. Perhaps you want the --force option?" );

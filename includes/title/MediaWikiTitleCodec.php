@@ -325,7 +325,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 
 					# Redundant interwiki prefix to the local wiki
 					foreach ( $this->localInterwikis as $localIW ) {
-						if ( 0 == strcasecmp( $parts['interwiki'], $localIW ) ) {
+						if ( strcasecmp( $parts['interwiki'], $localIW ) == 0 ) {
 							if ( $dbkey == '' ) {
 								# Empty self-links should point to the Main Page, to ensure
 								# compatibility with cross-wiki transclusions and the like.
@@ -363,7 +363,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		} while ( true );
 
 		$fragment = strstr( $dbkey, '#' );
-		if ( false !== $fragment ) {
+		if ( $fragment !== false ) {
 			$parts['fragment'] = str_replace( '_', ' ', substr( $fragment, 1 ) );
 			$dbkey = substr( $dbkey, 0, strlen( $dbkey ) - strlen( $fragment ) );
 			# remove whitespace again: prevents "Foo_bar_#"
@@ -438,7 +438,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		}
 
 		// Any remaining initial :s are illegal.
-		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
+		if ( $dbkey !== '' && $dbkey[0] == ':' ) {
 			throw new MalformedTitleException( 'title-invalid-leading-colon', $text );
 		}
 

@@ -88,7 +88,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 		$pairs = [];
 
 		$lineNum = 0;
-		while ( false !== ( $line = fgets( $file ) ) ) {
+		while ( ( $line = fgets( $file ) ) !== false ) {
 			++$lineNum;
 
 			# Strip comments

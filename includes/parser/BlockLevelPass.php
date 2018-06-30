@@ -105,13 +105,13 @@ class BlockLevelPass {
 	private function openList( $char ) {
 		$result = $this->closeParagraph();
 
-		if ( '*' === $char ) {
+		if ( $char === '*' ) {
 			$result .= "<ul><li>";
-		} elseif ( '#' === $char ) {
+		} elseif ( $char === '#' ) {
 			$result .= "<ol><li>";
-		} elseif ( ':' === $char ) {
+		} elseif ( $char === ':' ) {
 			$result .= "<dl><dd>";
-		} elseif ( ';' === $char ) {
+		} elseif ( $char === ';' ) {
 			$result .= "<dl><dt>";
 			$this->DTopen = true;
 		} else {
@@ -128,14 +128,14 @@ class BlockLevelPass {
 	 * @return string
 	 */
 	private function nextItem( $char ) {
-		if ( '*' === $char || '#' === $char ) {
+		if ( $char === '*' || $char === '#' ) {
 			return "</li>\n<li>";
-		} elseif ( ':' === $char || ';' === $char ) {
+		} elseif ( $char === ':' || $char === ';' ) {
 			$close = "</dd>\n";
 			if ( $this->DTopen ) {
 				$close = "</dt>\n";
 			}
-			if ( ';' === $char ) {
+			if ( $char === ';' ) {
 				$this->DTopen = true;
 				return $close . '<dt>';
 			} else {
@@ -153,11 +153,11 @@ class BlockLevelPass {
 	 * @return string
 	 */
 	private function closeList( $char ) {
-		if ( '*' === $char ) {
+		if ( $char === '*' ) {
 			$text = "</li></ul>";
-		} elseif ( '#' === $char ) {
+		} elseif ( $char === '#' ) {
 			$text = "</li></ol>";
-		} elseif ( ':' === $char ) {
+		} elseif ( $char === ':' ) {
 			if ( $this->DTopen ) {
 				$this->DTopen = false;
 				$text = "</dt></dl>";
@@ -271,7 +271,7 @@ class BlockLevelPass {
 					$char = $prefix[$commonPrefixLength];
 					$output .= $this->openList( $char );
 
-					if ( ';' === $char ) {
+					if ( $char === ';' ) {
 						# @todo FIXME: This is dupe of code above
 						if ( $this->findColonNoLinks( $t, $term, $t2 ) !== false ) {
 							$t = $t2;
@@ -288,7 +288,7 @@ class BlockLevelPass {
 			}
 
 			# If we have no prefixes, go to paragraph mode.
-			if ( 0 == $prefixLength ) {
+			if ( $prefixLength == 0 ) {
 				# No prefix (not in list)--go to paragraph mode
 				# @todo consider using a stack for nestable elements like span, table and div
 
@@ -339,7 +339,7 @@ class BlockLevelPass {
 					}
 					$inBlockElem = !$closeMatch;
 				} elseif ( !$inBlockElem && !$this->inPre ) {
-					if ( ' ' == substr( $t, 0, 1 )
+					if ( substr( $t, 0, 1 ) == ' '
 						&& ( $this->lastSection === 'pre' || trim( $t ) != '' )
 						&& !$inBlockquote
 					) {

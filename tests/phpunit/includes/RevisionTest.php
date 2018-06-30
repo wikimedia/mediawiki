@@ -560,9 +560,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
+		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
-		$this->assertFalse( false !== strpos( $row->old_flags, 'gzip' ),
+		$this->assertFalse( strpos( $row->old_flags, 'gzip' ) !== false,
 			"Flags should not contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			$row->old_text, "Direct check" );
@@ -583,9 +583,9 @@ class RevisionTest extends MediaWikiTestCase {
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
+		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
-		$this->assertTrue( false !== strpos( $row->old_flags, 'gzip' ),
+		$this->assertTrue( strpos( $row->old_flags, 'gzip' ) !== false,
 			"Flags should contain 'gzip'" );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
 			gzinflate( $row->old_text ), "Direct check" );

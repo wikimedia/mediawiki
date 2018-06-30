@@ -2192,7 +2192,7 @@ class Language {
 		}
 
 		# No difference ? Return time unchanged
-		if ( 0 == $minDiff ) {
+		if ( $minDiff == 0 ) {
 			return $ts;
 		}
 

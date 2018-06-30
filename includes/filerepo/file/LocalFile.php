@@ -1242,7 +1242,7 @@ class LocalFile extends File {
 				$fileQuery['joins']
 			);
 
-			if ( 0 == $dbr->numRows( $this->historyRes ) ) {
+			if ( $dbr->numRows( $this->historyRes ) == 0 ) {
 				$this->historyRes = null;
 
 				return false;

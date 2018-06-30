@@ -689,7 +689,7 @@ class SqlBagOStuff extends BagOStuff {
 			$decomp = gzinflate( $serial );
 			Wikimedia\restoreWarnings();
 
-			if ( false !== $decomp ) {
+			if ( $decomp !== false ) {
 				$serial = $decomp;
 			}
 		}

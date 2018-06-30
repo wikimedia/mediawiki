@@ -227,7 +227,7 @@ class Linker {
 	 */
 	private static function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
-		if ( false === $basename ) {
+		if ( $basename === false ) {
 			$basename = $url;
 		} else {
 			$basename = substr( $basename, 1 );
@@ -334,7 +334,7 @@ class Linker {
 
 		$prefix = $postfix = '';
 
-		if ( 'center' == $frameParams['align'] ) {
+		if ( $frameParams['align'] == 'center' ) {
 			$prefix = '<div class="center">';
 			$postfix = '</div>';
 			$frameParams['align'] = 'none';
@@ -916,7 +916,7 @@ class Linker {
 		$userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits = null
 	) {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
-		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
+		$talkable = !( $wgDisableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
 

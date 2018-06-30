@@ -972,7 +972,7 @@ class DatabaseOracle extends Database {
 			if ( $sl < 0 ) {
 				continue;
 			}
-			if ( '-' == $line[0] && '-' == $line[1] ) {
+			if ( $line[0] == '-' && $line[1] == '-' ) {
 				continue;
 			}
 
@@ -986,7 +986,7 @@ class DatabaseOracle extends Database {
 					$dollarquote = true;
 				}
 			} elseif ( !$dollarquote ) {
-				if ( ';' == $line[$sl] && ( $sl < 2 || ';' != $line[$sl - 1] ) ) {
+				if ( $line[$sl] == ';' && ( $sl < 2 || $line[$sl - 1] != ';' ) ) {
 					$done = true;
 					$line = substr( $line, 0, $sl );
 				}
@@ -1017,7 +1017,7 @@ class DatabaseOracle extends Database {
 						call_user_func( $resultCallback, $res, $this );
 					}
 
-					if ( false === $res ) {
+					if ( $res === false ) {
 						$err = $this->lastError();
 
 						return "Query \"{$cmd}\" failed with error code \"$err\".\n";
