@@ -14,6 +14,7 @@ production.
 * (T210307) Fix the cache timestamp for forced updates.
 * (T210621) User: Bypass repeatable-read when creating an actor_id.
 * (T188327) Fix slow queries in migrateActors.php.
+* (T102320) Fix $magicWords for the Sanskrit language.
 
 === Configuration changes in 1.32 ===
 
