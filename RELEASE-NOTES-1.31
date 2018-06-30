@@ -151,6 +151,7 @@ This is a security and maintenance release of the MediaWiki 1.31 branch.
   problematic to retain.
 * $wgDBmysql5 is now deprecated, and will be removed in a future version. It
   has been marked as experimental ever since it was introduced.
+* Fix $magicWords for the Sanskrit language
 
 === New features in 1.31 ===
 * (T76554) User sub-pages named ….json are now protected in the same way that
