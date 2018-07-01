@@ -756,45 +756,36 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	function cutoffselector( $options ) {
-		// Cast everything to strings immediately, so that we know all of the values have the same
-		// precision, and can be compared with '==='. 2/24 has a few more decimal places than its
-		// default string representation, for example, and would confuse comparisons.
-
-		// Misleadingly, the 'days' option supports hours too.
-		$days = array_map( 'strval', [ 1 / 24, 2 / 24, 6 / 24, 12 / 24, 1, 3, 7 ] );
-
-		$userWatchlistOption = (string)$this->getUser()->getOption( 'watchlistdays' );
-		// add the user preference, if it isn't available already
-		if ( !in_array( $userWatchlistOption, $days ) && $userWatchlistOption !== '0' ) {
-			$days[] = $userWatchlistOption;
-		}
-
-		$maxDays = (string)$this->maxDays;
-		// add the maximum possible value, if it isn't available already
-		if ( !in_array( $maxDays, $days ) ) {
-			$days[] = $maxDays;
-		}
-
-		$selected = (string)$options['days'];
+		$selected = (float)$options['days'];
 		if ( $selected <= 0 ) {
-			$selected = $maxDays;
+			$selected = $this->maxDays;
 		}
 
-		// add the currently selected value, if it isn't available already
-		if ( !in_array( $selected, $days ) ) {
-			$days[] = $selected;
-		}
+		$selectedHours = round( $selected * 24 );
 
-		$select = new XmlSelect( 'days', 'days', $selected );
+		$hours = array_unique( array_filter( [
+			1,
+			2,
+			6,
+			12,
+			24,
+			72,
+			168,
+			24 * (float)$this->getUser()->getOption( 'watchlistdays', 0 ),
+			24 * $this->maxDays,
+			$selectedHours
+		] ) );
+		asort( $hours );
 
-		asort( $days );
-		foreach ( $days as $value ) {
-			if ( $value < 1 ) {
-				$name = $this->msg( 'hours' )->numParams( $value * 24 )->text();
+		$select = new XmlSelect( 'days', 'days', $selectedHours / 24 );
+
+		foreach ( $hours as $value ) {
+			if ( $value < 24 ) {
+				$name = $this->msg( 'hours' )->numParams( $value )->text();
 			} else {
-				$name = $this->msg( 'days' )->numParams( $value )->text();
+				$name = $this->msg( 'days' )->numParams( $value / 24 )->text();
 			}
-			$select->addOption( $name, $value );
+			$select->addOption( $name, $value / 24 );
 		}
 
 		return $select->getHTML() . "\n<br />\n";
