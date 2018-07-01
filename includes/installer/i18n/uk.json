@@ -227,7 +227,7 @@
 	"config-license-help": "Чимало загальнодоступних вікі публікують увесь свій вміст під [https://freedomdefined.org/Definition вільною ліцензією]. Це розвиває відчуття спільної власності і заохочує довготривалу участь. У загальному випадку для приватної чи корпоративної вікі у цьому немає необхідності.\n\nЯкщо Ви хочете мати змогу використовувати текст з Вікіпедії і дати Вікіпедії змогу використовувати текст, скопійований з Вашої вікі, вам необхідно обрати <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nРаніше Вікіпедія використовувала GNU Free Documentation License.\nGFDL — допустима ліцензія, але у ній важко розібратися, а контент під GFDL важко використовувати повторно.",
 	"config-email-settings": "Налаштування електронної пошти",
 	"config-enable-email": "Увімкнути вихідну електронну пошту",
-	"config-enable-email-help": "Якщо Ви хочете, що електронна пошта працювала, необхідно виставити коректні [Config-dbsupport-oracle/manual/en/mail.configuration.php налаштування пошти у PHP].\nЯкщо Вам не потрібні жодні можливості електронної пошти у вікі, можете тут їх відключити.",
+	"config-enable-email-help": "Якщо Ви хочете, що електронна пошта працювала, необхідно виставити коректні [Config-dbsupport-oracle/manual/en/mail.configuration.php налаштування пошти у PHP].\nЯкщо Вам не потрібні жодні можливості електронної пошти у вікі, можете тут їх відімкнути.",
 	"config-email-user": "Увімкнути електронну пошту користувач-користувачеві",
 	"config-email-user-help": "Дозволити усім користувачам надсилати один одному електронну пошту, якщо вони увімкнули цю можливість у своїх налаштуваннях.",
 	"config-email-usertalk": "Увімкнути сповіщення про повідомлення на сторінці обговорення користувача",
@@ -316,6 +316,7 @@
 	"config-nofile": "Файл \"$1\" не знайдено. Його видалено?",
 	"config-extension-link": "Чи знаєте ви, що ваше вікі підтримує [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions розширення]?\n\nВи можете переглядати [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category розширення по категорії] або в [https://www.mediawiki.org/wiki/Extension_Matrix матрицю розширень] щоб побачити повний список розширень.",
 	"config-skins-screenshots": "$1 (скріншоти: $2)",
+	"config-extensions-requires": "$1 (вимагає $2)",
 	"config-screenshot": "скріншот",
 	"mainpagetext": "<strong>Програмне забезпечення «MediaWiki» встановлено.</strong>",
 	"mainpagedocfooter": "Інформацію про роботу з цією вікі можна знайти на сторінці [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Довідка:Вміст].\n\n== Деякі корисні ресурси ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список налаштувань];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часті питання з приводу MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локалізувати MediaWiki своєю мовою]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дізнатися, як боротися зі спамом у своїй вікі]"

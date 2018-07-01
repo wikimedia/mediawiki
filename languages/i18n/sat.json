@@ -784,7 +784,7 @@
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|ᱢᱟᱦᱟ|ᱢᱟᱦᱟᱸ}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|ᱴᱟᱲᱟᱝ|ᱴᱟᱬᱟᱝ}}",
 	"rcfilters-savedqueries-rename": "ᱧᱩᱢ-ᱟᱹᱨᱩ",
-	"rcfilters-savedqueries-remove": "ᱚᱪᱚᱜ",
+	"rcfilters-savedqueries-remove": "ᱜᱮᱫ ᱜᱤᱰᱤ",
 	"rcfilters-savedqueries-new-name-label": "ᱧᱩᱛᱩᱢ",
 	"rcfilters-savedqueries-cancel-label": "ᱵᱟᱹᱜᱤ",
 	"rcnotefrom": "ᱞᱟᱛᱟᱨ {{PLURAL:$5|ᱵᱚᱫᱚᱞ|ᱵᱚᱫᱚᱞ ᱠᱚ}} <strong>$3, $4</strong> ᱠᱷᱚᱱ (<strong>$1</strong> ᱦᱟᱹᱵᱤᱡ ᱩᱫᱩᱜ-ᱮᱱᱟ)",
