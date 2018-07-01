@@ -7892,7 +7892,7 @@ $wgNewUserLog = true;
  * Maintain a log of page creations at Special:Log/create?
  * @since 1.32
  */
-$wgPageCreationLog = false;
+$wgPageCreationLog = true;
 
 /** @} */ # end logging }
 
