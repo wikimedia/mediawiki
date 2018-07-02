@@ -220,7 +220,8 @@ class Language {
 
 		// Check if there is a language class for the code
 		$class = self::classFromCode( $code, $fallback );
-		if ( class_exists( $class ) ) {
+		// LanguageCode does not inherit Language
+		if ( class_exists( $class ) && is_a( $class, 'Language', true ) ) {
 			$lang = new $class;
 			return $lang;
 		}
