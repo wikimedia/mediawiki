@@ -110,6 +110,7 @@ class Shell {
 	/**
 	 * Returns a new instance of Command class
 	 *
+	 * @note You should check Shell::isDisabled() before calling this
 	 * @param string|string[] ...$commands String or array of strings representing the command to
 	 * be executed, each value will be escaped.
 	 *   Example:   [ 'convert', '-font', 'font name' ] would produce "'convert' '-font' 'font name'"
@@ -223,6 +224,7 @@ class Shell {
 	 * Note that $parameters should be a flat array and an option with an argument
 	 * should consist of two consecutive items in the array (do not use "--option value").
 	 *
+	 * @note You should check Shell::isDisabled() before calling this
 	 * @param string $script MediaWiki CLI script with full path
 	 * @param string[] $parameters Arguments and options to the script
 	 * @param array $options Associative array of options:

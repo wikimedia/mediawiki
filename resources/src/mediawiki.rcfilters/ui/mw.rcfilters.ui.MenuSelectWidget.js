@@ -209,6 +209,8 @@
 	 */
 	mw.rcfilters.ui.MenuSelectWidget.prototype.onModelInitialize = function () {
 		this.menuInitialized = false;
+		// Set timeout for the menu to lazy build.
+		setTimeout( this.lazyMenuCreation.bind( this ) );
 	};
 
 	/**

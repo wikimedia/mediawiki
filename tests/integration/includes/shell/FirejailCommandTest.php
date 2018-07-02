@@ -16,7 +16,9 @@ class FirejailCommandIntegrationTest extends PHPUnit\Framework\TestCase {
 
 	public function setUp() {
 		parent::setUp();
-		if ( Shell::command( 'which', 'firejail' )->execute()->getExitCode() ) {
+		if ( Shell::isDisabled() ) {
+			$this->markTestSkipped( 'shelling out is disabled' );
+		} elseif ( Shell::command( 'which', 'firejail' )->execute()->getExitCode() ) {
 			$this->markTestSkipped( 'firejail not installed' );
 		} elseif ( wfIsWindows() ) {
 			$this->markTestSkipped( 'test supports POSIX environments only' );
