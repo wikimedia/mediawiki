@@ -24711,6 +24711,27 @@ __TOC__
 !! end
 
 !! test
+T198618: style element in ToC
+!! options
+styletag=1
+!! wikitext
+__TOC__
+==<style>.foo {}</style>Style<style>.bar {}</style>==
+!! html/php
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Style"><span class="tocnumber">1</span> <span class="toctext">Style</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Style"><style>.foo {}</style>Style<style>.bar {}</style></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Style">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! html/parsoid
+<meta property="mw:PageProp/toc" data-parsoid='{}'/>
+<h2 id="Style" data-parsoid='{}'><style>.foo {}</style>Style<style>.bar {}</style></h2>
+!! end
+
+!! test
 Empty <p> tag in TOC, removed by Sanitizer (T92892)
 !! wikitext
 __TOC__
