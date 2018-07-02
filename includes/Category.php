@@ -337,13 +337,7 @@ class Category {
 
 		// Lock the `category` row before locking `categorylinks` rows to try
 		// to avoid deadlocks with LinksDeletionUpdate (T195397)
-		$dbw->selectField(
-			'category',
-			1,
-			[ 'cat_title' => $this->mName ],
-			__METHOD__,
-			[ 'FOR UPDATE' ]
-		);
+		$dbw->lockForUpdate( 'category', [ 'cat_title' => $this->mName ], __METHOD__ );
 
 		// Lock all the `categorylinks` records and gaps for this category;
 		// this is a separate query due to postgres/oracle limitations

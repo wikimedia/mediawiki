@@ -1876,6 +1876,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $column;
 	}
 
+	public function lockForUpdate(
+		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		if ( !$this->trxLevel && !$this->getFlag( self::DBO_TRX ) ) {
+			throw new DBUnexpectedError(
+				$this,
+				__METHOD__ . ': no transaction is active nor is DBO_TRX set'
+			);
+		}
+
+		$options = (array)$options;
+		$options[] = 'FOR UPDATE';
+
+		return $this->selectRowCount( $table, '*', $conds, $fname, $options, $join_conds );
+	}
+
 	/**
 	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
 	 * It's only slightly flawed. Don't use for anything important.

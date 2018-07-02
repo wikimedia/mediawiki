@@ -849,6 +849,21 @@ interface IDatabase {
 	);
 
 	/**
+	 * Lock all rows meeting the given conditions/options FOR UPDATE
+	 *
+	 * @param array|string $table Table names
+	 * @param array|string $conds Filters on the table
+	 * @param string $fname Function name for profiling
+	 * @param array $options Options for select ("FOR UPDATE" is added automatically)
+	 * @param array $join_conds Join conditions
+	 * @return int Number of matching rows found (and locked)
+	 * @since 1.32
+	 */
+	public function lockForUpdate(
+		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	);
+
+	/**
 	 * Determines whether a field exists in a table
 	 *
 	 * @param string $table Table name

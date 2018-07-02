@@ -257,6 +257,58 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideLockForUpdate
+	 * @covers Wikimedia\Rdbms\Database::lockForUpdate
+	 */
+	public function testLockForUpdate( $sql, $sqlText ) {
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->lockForUpdate(
+			$sql['tables'],
+			$sql['conds'] ?? [],
+			__METHOD__,
+			$sql['options'] ?? [],
+			$sql['join_conds'] ?? []
+		);
+		$this->database->endAtomic( __METHOD__ );
+
+		$this->assertLastSql( "BEGIN; $sqlText; COMMIT" );
+	}
+
+	public static function provideLockForUpdate() {
+		return [
+			[
+				[
+					'tables' => [ 'table' ],
+					'conds' => [ 'field' => [ 1, 2, 3, 4 ] ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table WHERE field IN ('1','2','3','4')    " .
+				"FOR UPDATE) tmp_count"
+			],
+			[
+				[
+					'tables' => [ 'table', 't2' => 'table2' ],
+					'conds' => [ 'field' => 'text' ],
+					'options' => [ 'LIMIT' => 1, 'ORDER BY' => 'field' ],
+					'join_conds' => [ 't2' => [
+						'LEFT JOIN', 'tid = t2.id'
+					] ],
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table LEFT JOIN table2 t2 ON ((tid = t2.id)) " .
+				"WHERE field = 'text' ORDER BY field LIMIT 1   FOR UPDATE) tmp_count"
+			],
+			[
+				[
+					'tables' => 'table',
+				],
+				"SELECT COUNT(*) AS rowcount FROM " .
+				"(SELECT 1 FROM table      FOR UPDATE) tmp_count"
+			],
+		];
+	}
+
+	/**
 	 * @covers Wikimedia\Rdbms\Subquery
 	 * @dataProvider provideSelectRowCount
 	 * @param $sql

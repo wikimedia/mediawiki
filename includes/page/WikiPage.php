@@ -2527,20 +2527,16 @@ class WikiPage implements Page, IDBAccessObject {
 		// Note array_intersect() preserves keys from the first arg, and we're
 		// assuming $revQuery has `revision` primary and isn't using subtables
 		// for anything we care about.
-		$res = $dbw->select(
+		$dbw->lockForUpdate(
 			array_intersect(
 				$revQuery['tables'],
 				[ 'revision', 'revision_comment_temp', 'revision_actor_temp' ]
 			),
-			'1',
 			[ 'rev_page' => $id ],
 			__METHOD__,
-			'FOR UPDATE',
+			[],
 			$revQuery['joins']
 		);
-		foreach ( $res as $row ) {
-			// Fetch all rows in case the DB needs that to properly lock them.
-		}
 
 		// Get all of the page revisions
 		$res = $dbw->select(
