@@ -925,6 +925,7 @@
 	"timezoneregion-indian": "Индин океан",
 	"timezoneregion-pacific": "Тийна океан",
 	"allowemail": "Магийта декъашхошна хьайга электронан поштехула кехат кхехьийта",
+	"email-allow-new-users-label": "Магийта керла декъашхошна хьайга электронан поштехула кехат кхехьийта",
 	"email-blacklist-label": "ХӀокху декъашхошна электронан пошт соьга яийта бехкам-бе:",
 	"prefs-searchoptions": "Лахар",
 	"prefs-namespaces": "ЦӀерийн меттигаш",

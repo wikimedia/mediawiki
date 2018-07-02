@@ -1339,6 +1339,7 @@
 	"rcfilters-activefilters-hide": "Peida",
 	"rcfilters-activefilters-show": "Näita",
 	"rcfilters-activefilters-hide-tooltip": "Peida aktiivsete filtrite ala",
+	"rcfilters-activefilters-show-tooltip": "Kuva aktiivsete filtrite ala",
 	"rcfilters-advancedfilters": "Täpsemad filtrid",
 	"rcfilters-limit-title": "Näita nii mitut tulemust",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|muudatus|muudatust}}, $2",
