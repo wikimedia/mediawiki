@@ -171,7 +171,6 @@ class ContentSecurityPolicy {
 
 		$additionalSelfUrls = $this->getAdditionalSelfUrls();
 		$additionalSelfUrlsScript = $this->getAdditionalSelfUrlsScript();
-		$nonceSrc = "'nonce-" . $this->nonce . "'";
 
 		// If no default-src is sent at all, it
 		// seems browsers (or at least some), interpret
@@ -183,7 +182,11 @@ class ContentSecurityPolicy {
 		$cssSrc = false;
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "'self'" ];
-		if ( $mode !== self::FULL_MODE_RESTRICTED ) {
+		if (
+			$mode !== self::FULL_MODE_RESTRICTED &&
+			( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] )
+		) {
+			$nonceSrc = "'nonce-" . $this->nonce . "'";
 			$scriptSrc[] = $nonceSrc;
 		}
 		$scriptSrc = array_merge( $scriptSrc, $additionalSelfUrlsScript );
@@ -518,13 +521,28 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * Is CSP currently enabled (i.e. Should we set nonce attribute)
+	 * Should we set nonce attribute
 	 *
 	 * @param Config $config Configuration object
 	 * @return bool
 	 */
-	public static function isEnabled( Config $config ) {
-		return $config->get( 'CSPHeader' ) !== false
-			|| $config->get( 'CSPReportOnlyHeader' ) !== false;
+	public static function isNonceRequired( Config $config ) {
+		$configs = [
+			$config->get( 'CSPHeader' ),
+			$config->get( 'CSPReportOnlyHeader' )
+		];
+		foreach ( $configs as $headerConfig ) {
+			if (
+				$headerConfig === true ||
+				( is_array( $headerConfig ) &&
+				!isset( $headerConfig['useNonces'] ) ) ||
+				( is_array( $headerConfig ) &&
+				isset( $headerConfig['useNonces'] ) &&
+				$headerConfig['useNonces'] )
+			) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

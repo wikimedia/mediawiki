@@ -4011,7 +4011,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.32
 	 */
 	public function getCSPNonce() {
-		if ( !ContentSecurityPolicy::isEnabled( $this->getConfig() ) ) {
+		if ( !ContentSecurityPolicy::isNonceRequired( $this->getConfig() ) ) {
 			return false;
 		}
 		if ( $this->CSPNonce === null ) {

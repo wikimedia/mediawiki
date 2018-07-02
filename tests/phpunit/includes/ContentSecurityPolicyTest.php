@@ -93,6 +93,12 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		return [
 			[ false, '', '', '' ],
 			[
+				[ 'useNonces' => false ],
+				"script-src 'unsafe-eval' 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
+				"script-src 'unsafe-eval' 'self' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
+				"script-src 'unsafe-eval' 'self' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'"
+			],
+			[
 				true,
 				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&",
 				"script-src 'unsafe-eval' 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1&",
@@ -283,14 +289,14 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providerCSPIsEnabled
-	 * @covers ContentSecurityPolicy::isEnabled
+	 * @covers ContentSecurityPolicy::isNonceRequired
 	 */
 	public function testCSPIsEnabled( $main, $reportOnly, $expected ) {
 		global $wgCSPReportOnlyHeader, $wgCSPHeader;
 		global $wgCSPHeader;
 		$oldReport = wfSetVar( $wgCSPReportOnlyHeader, $reportOnly );
 		$oldMain = wfSetVar( $wgCSPHeader, $main );
-		$res = ContentSecurityPolicy::isEnabled( RequestContext::getMain()->getConfig() );
+		$res = ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() );
 		wfSetVar( $wgCSPReportOnlyHeader, $oldReport );
 		wfSetVar( $wgCSPHeader, $oldMain );
 		$this->assertEquals( $res, $expected );
@@ -305,6 +311,9 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 			[ false, [], true ],
 			[ [], false, true ],
 			[ [ 'default-src' => [ 'foo.example.com' ] ], false, true ],
+			[ [ 'useNonces' => false ], [ 'useNonces' => false ], false ],
+			[ [ 'useNonces' => true ], [ 'useNonces' => false ], true ],
+			[ [ 'useNonces' => false ], [ 'useNonces' => true ], true ],
 		];
 	}
 }

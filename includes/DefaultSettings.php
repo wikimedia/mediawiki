@@ -8759,6 +8759,8 @@ $wgMaxJobDBWriteDuration = false;
  *    $wgCrossSiteAJAXdomains as an allowed load sources.
  *  'unsafeFallback' Add unsafe-inline as a script source, as a fallback for
  *    browsers that do not understand nonce-sources [default on].
+ *  'useNonces' Require nonces on all inline scripts. If disabled and 'unsafeFallback'
+ *    is on, then all inline scripts will be allowed [default true].
  *  'script-src' Array of additional places that are allowed to have JS be loaded from.
  *  'report-uri' true to use MW api [default], false to disable, string for alternate uri
  * @warning May cause slowness on windows due to slow random number generator.
