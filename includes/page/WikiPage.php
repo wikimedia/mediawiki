@@ -1935,7 +1935,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater = $this->getDerivedDataUpdater( $user, $revision, $slots );
 
 		if ( !$updater->isUpdatePrepared() ) {
-			$updater->prepareContent( $user, $slots, [], $useCache );
+			$updater->prepareContent( $user, $slots, $useCache );
 
 			if ( $revision ) {
 				$updater->prepareUpdate( $revision );
