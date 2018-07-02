@@ -12,7 +12,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Nemo bis",
-			"Fitoschido"
+			"Fitoschido",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -134,7 +135,7 @@
 	"category_header": "Sidjen uun kategorii \"$1\"",
 	"subcategories": "Onerkategoriin",
 	"category-media-header": "Meedien uun kategorii \"$1\"",
-	"category-empty": "\"Uun detdiar kategorii san uun uugenblak nian sidjen of meedien.\"",
+	"category-empty": "<em>Uun detdiar kategorii san uun uugenblak nian sidjen of meedien.</em>",
 	"hidden-categories": "{{PLURAL:$1|Ferbürgen kategorii|Ferbürgen kategoriin}}",
 	"hidden-category-category": "Ferbürgen kategoriin",
 	"category-subcat-count": "{{PLURAL:$2|Detdiar kategorii hää ian onerkategorii.|Uun detdiar kategorii {{PLURAL:$1|stäänt ian onerkategorii|stun $1 onerkategoriin}} faan $2 uun't gehial.}}",
