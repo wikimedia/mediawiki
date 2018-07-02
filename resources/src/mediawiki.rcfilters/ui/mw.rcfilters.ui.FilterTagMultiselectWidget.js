@@ -257,6 +257,11 @@
 	/* Methods */
 
 	/**
+	 * Override parent method to avoid unnecessary resize events.
+	 */
+	mw.rcfilters.ui.FilterTagMultiselectWidget.prototype.updateIfHeightChanged = function () { };
+
+	/**
 	 * Respond to view select widget choose event
 	 *
 	 * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
