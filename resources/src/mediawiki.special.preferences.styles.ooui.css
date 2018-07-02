@@ -59,7 +59,7 @@
 
 /* Adjust the borders when JS is disabled: frame each prefsection instead of the
  * whole tabLayout wrapper */
-.client-nojs #preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
+.client-nojs #preferences .oo-ui-menuLayout .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed:first-child {
 	border-color: #c8ccd1;
 	border-width: 1px 0 0;
 }
@@ -95,12 +95,16 @@
 }
 
 .client-js #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed {
-	margin-left: 0;
+	margin-top: 2.286em; /* equals `32px` at `font-size: 14px;` */
 	margin-bottom: 0;
-	padding: 0;
 	border-width: 0;
 	border-radius: 0;
+	padding: 0;
 	box-shadow: none;
+}
+
+.client-js #preferences .oo-ui-panelLayout-framed .oo-ui-panelLayout-framed:first-child {
+	margin-top: 0.85714286em;
 }
 
 .client-js #preferences > .oo-ui-panelLayout > .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header {
