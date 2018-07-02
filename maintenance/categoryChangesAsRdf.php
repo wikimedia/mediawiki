@@ -220,7 +220,7 @@ SPARQL;
 	) {
 		$tables = [ 'recentchanges', 'page_props', 'category' ];
 		if ( $extra_tables ) {
-			$tables += $extra_tables;
+			$tables = array_merge( $tables, $extra_tables );
 		}
 		$it = new BatchRowIterator( $dbr,
 			$tables,
