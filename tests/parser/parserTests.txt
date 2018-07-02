@@ -22099,11 +22099,11 @@ conversion:
 
 ==Latinski==
 !! html/php
-<h2><span id="-.7BNaslov.7D-"></span><span class="mw-headline" id="-{Naslov}-">Naslov</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди одељак „Naslov“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span id="-.7BNaslov.7D-"></span><span class="mw-headline" id="-{Naslov}-">Naslov</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уредите одељак „Naslov“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
 <p>Ноте тхат евен ан унпротецтед хеадлине ИД ис нот аффецтед бy лангуаге
 цонверсион:
 </p>
-<h2><span class="mw-headline" id="Latinski">Латински</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Уреди одељак „Латински“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Latinski">Латински</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Уредите одељак „Латински“">уреди</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html/parsoid
 <h2 id="-{Naslov}-"><span id="-.7BNaslov.7D-" typeof="mw:FallbackId"></span><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"Naslov"}}'></span></h2>
@@ -22871,7 +22871,7 @@ language=sr
 !! wikitext
 [[Датотека:Foobar.jpg|thumb|-{R|caption:}-]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="internal" title="Повећај"></a></div>caption:</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="internal" title="Повећајте"></a></div>caption:</div></div></div>
 
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"}]}'><a href="./Датотека:Foobar.jpg"><img resource="./Датотека:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"caption:"}}' data-parsoid='{"fl":["R"]}'></span></figcaption></figure>
