@@ -399,13 +399,14 @@ class DatabaseSqlite extends Database {
 	/**
 	 * The PDO::Statement class implements the array interface so count() will work
 	 *
-	 * @param ResultWrapper|array $res
+	 * @param ResultWrapper|array|false $res
 	 * @return int
 	 */
 	function numRows( $res ) {
+		// false does not implement Countable
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 
-		return count( $r );
+		return is_array( $r ) ? count( $r ) : 0;
 	}
 
 	/**

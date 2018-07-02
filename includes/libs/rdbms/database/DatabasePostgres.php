@@ -299,6 +299,10 @@ class DatabasePostgres extends Database {
 	}
 
 	public function numRows( $res ) {
+		if ( $res === false ) {
+			return 0;
+		}
+
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}

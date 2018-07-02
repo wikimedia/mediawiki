@@ -6189,24 +6189,28 @@ $wgTrxProfilerLimits = [
 	'GET' => [
 		'masterConns' => 0,
 		'writes' => 0,
-		'readQueryTime' => 5
+		'readQueryTime' => 5,
+		'readQueryRows' => 10000
 	],
 	// HTTP POST requests.
 	// Master reads and writes will happen for a subset of these.
 	'POST' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
+		'readQueryRows' => 100000,
 		'maxAffected' => 1000
 	],
 	'POST-nonwrite' => [
 		'masterConns' => 0,
 		'writes' => 0,
-		'readQueryTime' => 5
+		'readQueryTime' => 5,
+		'readQueryRows' => 10000
 	],
 	// Deferred updates that run after HTTP response is sent for GET requests
 	'PostSend-GET' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
+		'readQueryRows' => 10000,
 		'maxAffected' => 1000,
 		// Log master queries under the post-send entry point as they are discouraged
 		'masterConns' => 0,
@@ -6216,12 +6220,14 @@ $wgTrxProfilerLimits = [
 	'PostSend-POST' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
+		'readQueryRows' => 100000,
 		'maxAffected' => 1000
 	],
 	// Background job runner
 	'JobRunner' => [
 		'readQueryTime' => 30,
 		'writeQueryTime' => 5,
+		'readQueryRows' => 100000,
 		'maxAffected' => 500 // ballpark of $wgUpdateRowsPerQuery
 	],
 	// Command-line scripts

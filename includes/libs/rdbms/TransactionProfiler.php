@@ -62,6 +62,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		'conns'          => INF,
 		'masterConns'    => INF,
 		'maxAffected'    => INF,
+		'readQueryRows'  => INF,
 		'readQueryTime'  => INF,
 		'writeQueryTime' => INF
 	];
@@ -199,7 +200,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $query Function name or generalized SQL
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
-	 * @param int $n Number of affected rows
+	 * @param int $n Number of affected/read rows
 	 */
 	public function recordQueryCompletion( $query, $sTime, $isWrite = false, $n = 0 ) {
 		$eTime = microtime( true );
@@ -208,6 +209,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
 			$this->logger->warning(
 				"Query affected $n row(s):\n" . $query . "\n" .
+				( new RuntimeException() )->getTraceAsString() );
+		} elseif ( !$isWrite && $n > $this->expect['readQueryRows'] ) {
+			$this->logger->warning(
+				"Query returned $n row(s):\n" . $query . "\n" .
 				( new RuntimeException() )->getTraceAsString() );
 		}
 
