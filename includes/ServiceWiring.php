@@ -128,6 +128,14 @@ return [
 		);
 	},
 
+	'PerDbNameStatsdDataFactory' => function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		$wiki = $config->get( 'DBname' );
+		return new BufferingStatsdDataFactory(
+			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' ) . $wiki
+		);
+	},
+
 	'EventRelayerGroup' => function ( MediaWikiServices $services ) {
 		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
 	},
