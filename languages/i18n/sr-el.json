@@ -1891,6 +1891,7 @@
 	"dellogpage": "Dnevnik brisanja",
 	"dellogpagetext": "Ispod je spisak poslednjih brisanja.",
 	"deletionlog": "dnevnik brisanja",
+	"logentry-create-create": "$1 {{GENDER:$2|kreirao je|kreirala je}} stranicu $3",
 	"reverted": "Vraćeno na raniju izmenu",
 	"deletecomment": "Razlog:",
 	"deleteotherreason": "Drugi/dodatni razlog:",

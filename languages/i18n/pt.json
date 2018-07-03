@@ -1983,7 +1983,7 @@
 	"mostinterwikis": "Páginas com mais hiperligações interwikis",
 	"mostrevisions": "Páginas com mais revisões",
 	"prefixindex": "Todas as páginas iniciadas por",
-	"prefixindex-namespace": "Todas as páginas com prefixo (domínio $1)",
+	"prefixindex-namespace": "Todas as páginas com prefixo (espaço nominal $1)",
 	"prefixindex-submit": "Mostrar",
 	"prefixindex-strip": "Remover prefixo",
 	"shortpages": "Páginas curtas",
