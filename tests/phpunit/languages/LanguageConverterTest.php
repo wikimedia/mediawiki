@@ -20,7 +20,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->lang = new LanguageToTest();
 		$this->lc = new TestConverter(
 			$this->lang, 'tg',
-			[ 'tg', 'tg-latn' ]
+			# Adding 'sgs' as a variant to ensure we handle deprecated codes
+			# adding 'simple' as a variant to ensure we handle non BCP 47 codes
+			[ 'tg', 'tg-latn', 'sgs', 'simple' ]
 		);
 	}
 
@@ -40,6 +42,39 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
+	public function testGetPreferredVariantUrl() {
+		global $wgRequest;
+		$wgRequest->setVal( 'variant', 'tg-latn' );
+
+		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
+	public function testGetPreferredVariantUrlDeprecated() {
+		global $wgRequest;
+		$wgRequest->setVal( 'variant', 'bat-smg' );
+
+		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getURLVariant
+	 */
+	public function testGetPreferredVariantUrlBCP47() {
+		global $wgRequest;
+		$wgRequest->setVal( 'variant', 'en-simple' );
+
+		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
 	 * @covers LanguageConverter::getHeaderVariant
 	 */
 	public function testGetPreferredVariantHeaders() {
@@ -47,6 +82,17 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgRequest->setHeader( 'Accept-Language', 'tg-latn' );
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getHeaderVariant
+	 */
+	public function testGetPreferredVariantHeadersBCP47() {
+		global $wgRequest;
+		$wgRequest->setHeader( 'Accept-Language', 'en-simple' );
+
+		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
 
 	/**
@@ -100,6 +146,38 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers LanguageConverter::getPreferredVariant
+	 */
+	public function testGetPreferredVariantUserOptionDeprecated() {
+		global $wgUser;
+
+		$wgUser = new User;
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
+		$wgUser->setOption( 'variant', 'bat-smg' );
+
+		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
+	public function testGetPreferredVariantUserOptionBCP47() {
+		global $wgUser;
+
+		$wgUser = new User;
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
+		$wgUser->setOption( 'variant', 'en-simple' );
+
+		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
 	 * @covers LanguageConverter::getUserVariant
 	 */
 	public function testGetPreferredVariantUserOptionForForeignLanguage() {
@@ -114,6 +192,42 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgUser->setOption( 'variant-tg', 'tg-latn' );
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getUserVariant
+	 */
+	public function testGetPreferredVariantUserOptionForForeignLanguageDeprecated() {
+		global $wgUser;
+
+		$this->setContentLang( 'en' );
+		$wgUser = new User;
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
+		$wgUser->setOption( 'variant-tg', 'bat-smg' );
+
+		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 * @covers LanguageConverter::getUserVariant
+	 */
+	public function testGetPreferredVariantUserOptionForForeignLanguageBCP47() {
+		global $wgUser;
+
+		$this->setContentLang( 'en' );
+		$wgUser = new User;
+		$wgUser->load(); // from 'defaults'
+		$wgUser->mId = 1;
+		$wgUser->mDataLoaded = true;
+		$wgUser->mOptionsLoaded = true;
+		$wgUser->setOption( 'variant-tg', 'en-simple' );
+
+		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
 
 	/**
@@ -143,6 +257,26 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$wgDefaultLanguageVariant = 'tg-latn';
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
+	public function testGetPreferredVariantDefaultLanguageVariantDeprecated() {
+		global $wgDefaultLanguageVariant;
+
+		$wgDefaultLanguageVariant = 'bat-smg';
+		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
+	}
+
+	/**
+	 * @covers LanguageConverter::getPreferredVariant
+	 */
+	public function testGetPreferredVariantDefaultLanguageVariantBCP47() {
+		global $wgDefaultLanguageVariant;
+
+		$wgDefaultLanguageVariant = 'en-simple';
+		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
 
 	/**
@@ -192,6 +326,8 @@ class TestConverter extends LanguageConverter {
 
 	function loadDefaultTables() {
 		$this->mTables = [
+			'sgs' => new ReplacementArray(),
+			'simple' => new ReplacementArray(),
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()
 		];
