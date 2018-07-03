@@ -136,7 +136,7 @@ class OldLocalFile extends LocalFile {
 			'oi_minor_mime',
 			'oi_user',
 			'oi_user_text',
-			'oi_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'oi_actor' : null,
+			'oi_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'oi_actor' : 'NULL',
 			'oi_timestamp',
 			'oi_deleted',
 			'oi_sha1',

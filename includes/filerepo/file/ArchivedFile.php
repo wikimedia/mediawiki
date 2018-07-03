@@ -246,7 +246,7 @@ class ArchivedFile {
 			'fa_minor_mime',
 			'fa_user',
 			'fa_user_text',
-			'fa_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'fa_actor' : null,
+			'fa_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'fa_actor' : 'NULL',
 			'fa_timestamp',
 			'fa_deleted',
 			'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */

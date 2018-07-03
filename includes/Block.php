@@ -224,7 +224,7 @@ class Block {
 			'ipb_address',
 			'ipb_by',
 			'ipb_by_text',
-			'ipb_by_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'ipb_by_actor' : null,
+			'ipb_by_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'ipb_by_actor' : 'NULL',
 			'ipb_timestamp',
 			'ipb_auto',
 			'ipb_anon_only',
