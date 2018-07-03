@@ -6,6 +6,7 @@
 	"require": {
 		"bluespice/foundation": "dev-master",
 		"bluespice/about": "dev-master",
+		"bluespice/articleinfo": "dev-master",
 		"bluespice/authors": "dev-master",
 		"bluespice/avatars": "dev-master",
 		"bluespice/checklist": "dev-master",
