@@ -322,10 +322,7 @@ class WikiExporter {
 		}
 
 		$revOpts = [ 'page' ];
-		if ( $this->text != self::STUB ) {
-			// TODO: remove the text and make XmlDumpWriter use a RevisionStore instead! (T198706)
-			$revOpts[] = 'text';
-		}
+
 		$revQuery = Revision::getQueryInfo( $revOpts );
 
 		// We want page primary rather than revision
@@ -335,8 +332,12 @@ class WikiExporter {
 			];
 		unset( $join['page'] );
 
-		// TODO: remove rev_text_id and make XmlDumpWriter use a RevisionStore instead! (T198706)
-		$fields = array_merge( $revQuery['fields'], [ 'page_restrictions, rev_text_id' ] );
+		$fields = $revQuery['fields'];
+		$fields[] = 'page_restrictions';
+
+		if ( $this->text != self::STUB ) {
+			$fields['_load_content'] = '1';
+		}
 
 		$conds = [];
 		if ( $cond !== '' ) {

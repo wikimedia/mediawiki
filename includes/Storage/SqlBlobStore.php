@@ -609,12 +609,14 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * Splits a blob address into three parts: the schema, the ID, and parameters/flags.
 	 *
+	 * @since 1.33
+	 *
 	 * @param string $address
 	 *
 	 * @throws InvalidArgumentException
 	 * @return array [ $schema, $id, $parameters ], with $parameters being an assoc array.
 	 */
-	private static function splitBlobAddress( $address ) {
+	public static function splitBlobAddress( $address ) {
 		if ( !preg_match( '/^(\w+):(\w+)(\?(.*))?$/', $address, $m ) ) {
 			throw new InvalidArgumentException( "Bad blob address: $address" );
 		}
