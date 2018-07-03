@@ -26,8 +26,8 @@
 	 * @cfg {boolean} [showMissing=true] Show missing pages
 	 * @cfg {boolean} [addQueryInput=true] Add exact user's input query to results
 	 * @cfg {boolean} [excludeCurrentPage] Exclude the current page from suggestions
-	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title (if set to true,
-	 *  the widget will marks itself red for invalid inputs, including an empty query).
+	 * @cfg {boolean} [validateTitle=true] Whether the input must be a valid title
+	 * @cfg {boolean} [required=false] Whether the input must not be empty
 	 * @cfg {Object} [cache] Result cache which implements a 'set' method, taking keyed values as an argument
 	 * @cfg {mw.Api} [api] API object to use, creates a default mw.Api instance if not specified
 	 */
@@ -369,7 +369,13 @@
 	 * @return {boolean} The query is valid
 	 */
 	mw.widgets.TitleWidget.prototype.isQueryValid = function () {
-		return this.validateTitle ? !!this.getMWTitle() : true;
+		if ( !this.validateTitle ) {
+			return true;
+		}
+		if ( !this.required && this.getQueryValue() === '' ) {
+			return true;
+		}
+		return !!this.getMWTitle();
 	};
 
 }( jQuery, mediaWiki ) );
