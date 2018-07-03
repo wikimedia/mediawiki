@@ -3103,6 +3103,7 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
  * @return string The language code which complying with BCP 47 standards.
  */
 function wfBCP47( $code ) {
+	wfDeprecated( __METHOD__, '1.31' );
 	return LanguageCode::bcp47( $code );
 }
 
