@@ -55,6 +55,9 @@
 			<file>suites/ExtensionsParserTestSuite.php</file>
 			<file>suites/LessTestSuite.php</file>
 		</testsuite>
+		<testsuite name="documentation">
+			<directory>documentation</directory>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>
