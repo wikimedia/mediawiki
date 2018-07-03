@@ -86,8 +86,6 @@ interface ILoadBalancer {
 
 	/** @var int DB handle should have DBO_TRX disabled and the caller will leave it as such */
 	const CONN_TRX_AUTOCOMMIT = 1;
-	/** @var int Alias for CONN_TRX_AUTOCOMMIT for b/c; deprecated since 1.31 */
-	const CONN_TRX_AUTO = 1;
 
 	/** @var string Manager of ILoadBalancer instances is running post-commit callbacks */
 	const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
