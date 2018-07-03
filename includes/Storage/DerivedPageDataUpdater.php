@@ -1310,7 +1310,7 @@ class DerivedPageDataUpdater implements IDBAccessObject {
 					// stale data from REPEATABLE-READ snapshots.
 					// HACK: But don't use a fresh connection in unit tests, since it would not have
 					// the fake tables. This should be handled by the LoadBalancer!
-					$flags = defined( 'MW_PHPUNIT_TEST' ) ? 0 : $lb::CONN_TRX_AUTO;
+					$flags = defined( 'MW_PHPUNIT_TEST' ) ? 0 : $lb::CONN_TRX_AUTOCOMMIT;
 					$db = $lb->getConnectionRef( $dbIndex, [], $this->getWikiId(), $flags );
 
 					return 1 + (int)$db->selectField(
