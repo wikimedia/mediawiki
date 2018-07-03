@@ -468,6 +468,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.32
+	 * @return IBufferingStatsdDataFactory
+	 */
+	public function getPerDbNameStatsdDataFactory() {
+		return $this->getService( 'PerDbNameStatsdDataFactory' );
+	}
+
+	/**
 	 * @since 1.27
 	 * @return EventRelayerGroup
 	 */
