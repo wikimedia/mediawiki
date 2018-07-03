@@ -570,8 +570,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Return whether the definition of a module corresponds to a simple ResourceLoaderFileModule
-	 * or one of its subclasses.
+	 * Whether the module is a ResourceLoaderFileModule (including subclasses).
 	 *
 	 * @param string $name Module name
 	 * @return bool
@@ -584,14 +583,13 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( isset( $info['object'] ) ) {
 			return false;
 		}
-		if (
-			isset( $info['class'] ) &&
-			$info['class'] !== ResourceLoaderFileModule::class &&
-			!is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
-		) {
-			return false;
-		}
-		return true;
+		return (
+			// The implied default for 'class' is ResourceLoaderFileModule
+			!isset( $info['class'] ) ||
+			// Explicit default
+			$info['class'] === ResourceLoaderFileModule::class ||
+			is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
+		);
 	}
 
 	/**
