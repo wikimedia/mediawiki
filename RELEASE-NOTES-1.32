@@ -22,8 +22,9 @@ production.
   the parser allowing them to insert malicious attributes. Disabled by default,
   you can configure this via $wgCSPHeader and $wgCSPReportOnlyHeader.
 * New configuration variable has been added: $wgCookieSetOnIpBlock.
-  This determines whether to set a cookie when an IP user is blocked. Doing so means
-  that a blocked user, even after moving to a new IP address, will still be blocked.
+  This determines whether to set a cookie when an IP user is blocked. Doing so
+  means that a blocked user, even after moving to a new IP address, will still
+  be blocked.
 * The archive table's ar_rev_id field is now unique.
 * Special:BotPasswords now requires reauthentication.
 
@@ -35,16 +36,16 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in
   temporary user groups.
-* (T152462) A cookie can now be set when an IP user is blocked to track that user if
-  they move to a new IP address. This is disabled by default.
+* (T152462) A cookie can now be set when an IP user is blocked to track that
+  user if they move to a new IP address. This is disabled by default.
 * (T194950) Added 'ApiMaxLagInfo' hook.
 * SpecialPage::checkLoginSecurityLevel() will now preserve POST data when
   reauthenticating.
 * FormSpecialPage::execute() will now call checkLoginSecurityLevel() if
   getLoginSecurityLevel() returns non-false.
 * The 'ImageBeforeProduceHTML' hook is now passed three new parameters, $parser,
-  &$query and &$widthOption, allowing extensions even finer control over the resulting
-  HTML code.
+  &$query and &$widthOption, allowing extensions even finer control over the
+  resulting HTML code.
 
 === External library changes in 1.32 ===
 * …
