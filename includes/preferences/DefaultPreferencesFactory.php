@@ -444,12 +444,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( !$this->config->get( 'DisableLangConversion' ) ) {
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
-					$variants = $this->contLang->getVariants();
-
-					if ( count( $variants ) <= 1 ) {
+					if ( !$this->contLang->hasVariants() ) {
 						continue;
 					}
 
+					$variants = $this->contLang->getVariants();
 					$variantArray = [];
 					foreach ( $variants as $v ) {
 						$v = str_replace( '_', '-', strtolower( $v ) );
