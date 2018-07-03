@@ -76,7 +76,8 @@
 			"Avatar6",
 			"Fitoschido",
 			"Movses",
-			"Esk78"
+			"Esk78",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -1238,7 +1239,7 @@
 	"right-browsearchive": "пошук вилучених сторінок",
 	"right-undelete": "відновлення сторінок",
 	"right-suppressrevision": "перегляд, приховування та відновлення конкретних змін сторінок від будь-якого користувача",
-	"right-viewsuppressed": "Перегляд змін, приховаих від усіх користувачів",
+	"right-viewsuppressed": "перегляд змін, прихованих від усіх користувачів",
 	"right-suppressionlog": "перегляд приватних журналів",
 	"right-block": "заборона редагувань для інших дописувачів",
 	"right-blockemail": "блокування користувача від надсилання електронної пошти",
@@ -1248,7 +1249,7 @@
 	"right-protect": "зміна рівнів захисту та редагування каскадно захищених сторінок",
 	"right-editprotected": "редагування сторінок з рівнем захисту «{{int:protect-level-sysop}}»",
 	"right-editsemiprotected": "редагування сторінок з рівнем захисту «{{int:protect-level-autoconfirmed}}»",
-	"right-editcontentmodel": "Редагувати модель вмісту сторінки",
+	"right-editcontentmodel": "редагування моделі вмісту сторінки",
 	"right-editinterface": "редагування інтерфейсу користувача",
 	"right-editusercss": "редагування CSS-файлів інших користувачів",
 	"right-edituserjson": "редагування JSON-файлів інших користувачів",
@@ -1362,7 +1363,7 @@
 	"action-viewmywatchlist": "перегляд власного списку спостереження",
 	"action-viewmyprivateinfo": "перегляд своєї приватної інформації",
 	"action-editmyprivateinfo": "редагування своєї приватної інформації",
-	"action-editcontentmodel": "редагувати модель вмісту сторінки",
+	"action-editcontentmodel": "редагування моделі вмісту сторінки",
 	"action-managechangetags": "створення та (де)активування міток",
 	"action-applychangetags": "додавання міток разом зі змінами",
 	"action-changetags": "додавання або вилучення будь-яких міток для певних версій сторінок або записів журналів",
