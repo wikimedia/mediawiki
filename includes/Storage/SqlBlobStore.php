@@ -267,8 +267,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 		$blob = $this->cache->getWithSetCallback(
-			// TODO: change key, since this is not necessarily revision text!
-			$this->cache->makeKey( 'revisiontext', 'textid', $blobAddress ),
+			$this->getCacheKey( $blobAddress ),
 			$this->getCacheTTL(),
 			function ( $unused, &$ttl, &$setOpts ) use ( $blobAddress, $queryFlags ) {
 				list( $index ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
@@ -357,6 +356,25 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
+	 * Get a cache key for a given Blob address.
+	 *
+	 * The cache key is constructed in a way that allows cached blobs from the same database
+	 * to be re-used between wikis. For example, enwiki and frwiki will use the same cache keys
+	 * for blobs from the wikidatawiki database.
+	 *
+	 * @param string $blobAddress
+	 * @return string
+	 */
+	private function getCacheKey( $blobAddress ) {
+		return $this->cache->makeGlobalKey(
+			'BlobStore',
+			'address',
+			$this->dbLoadBalancer->resolveDomainID( $this->wikiId ),
+			$blobAddress
+		);
+	}
+
+	/**
 	 * Expand a raw data blob according to the flags given.
 	 *
 	 * MCR migration note: this replaces Revision::getRevisionText
@@ -370,7 +388,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param string|string[] $flags Blob flags, such as 'external' or 'gzip'.
 	 *   Note that not including 'utf-8' in $flags will cause the data to be decoded
 	 *   according to the legacy encoding specified via setLegacyEncoding.
-	 * @param string|null $cacheKey May be used for caching if given
+	 * @param string|null $cacheKey A blob address for use in the cache key. If not given,
+	 *   caching is disabled.
 	 *
 	 * @return false|string The expanded blob or false on failure
 	 */
@@ -387,13 +406,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				return false;
 			}
 
-			if ( $cacheKey && $this->wikiId === false ) {
-				// Make use of the wiki-local revision text cache.
+			if ( $cacheKey ) {
 				// The cached value should be decompressed, so handle that and return here.
-				// NOTE: we rely on $this->cache being the right cache for $this->wikiId!
 				return $this->cache->getWithSetCallback(
-					// TODO: change key, since this is not necessarily revision text!
-					$this->cache->makeKey( 'revisiontext', 'textid', $cacheKey ),
+					$this->getCacheKey( $cacheKey ),
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
 						// No negative caching per BlobStore::getBlob()

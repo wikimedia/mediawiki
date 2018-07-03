@@ -1412,7 +1412,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$rev = $this->testPage->getRevision();
 
 		// Clear any previous cache for the revision during creation
-		$key = $cache->makeGlobalKey( RevisionStore::ROW_CACHE_KEY,
+		$key = $cache->makeGlobalKey(
+			RevisionStore::ROW_CACHE_KEY,
 			$db->getDomainID(),
 			$rev->getPage(),
 			$rev->getId()

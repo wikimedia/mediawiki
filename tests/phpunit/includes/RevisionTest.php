@@ -895,7 +895,12 @@ class RevisionTest extends MediaWikiTestCase {
 			)
 		);
 
-		$cacheKey = $cache->makeKey( 'revisiontext', 'textid', 'tt:7777' );
+		$cacheKey = $cache->makeGlobalKey(
+			'BlobStore',
+			'address',
+			$lb->getLocalDomainID(),
+			'tt:7777'
+		);
 		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
 	}
 
