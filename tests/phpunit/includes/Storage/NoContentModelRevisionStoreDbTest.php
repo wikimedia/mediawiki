@@ -156,7 +156,7 @@ class NoContentModelRevisionStoreDbTest extends RevisionStoreDbTestBase {
 						'content_size' => 'slots.rev_len',
 						'content_sha1' => 'slots.rev_sha1',
 						'content_address' =>
-							'CONCAT(' . $db->addQuotes( 'tt:' ) . ',slots.rev_text_id)',
+							$db->buildConcat( [ $db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] ),
 						'model_name' => 'NULL',
 					]
 				),
