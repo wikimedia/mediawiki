@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use Language;
+use Message;
 
 /**
  * This exists to make IDEs happy, so they don't see the
