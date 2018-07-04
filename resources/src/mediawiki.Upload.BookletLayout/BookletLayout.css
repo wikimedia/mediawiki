@@ -4,9 +4,11 @@
 	background-color: #eaecf0;
 	background-size: cover;
 	background-position: center center;
-	padding: 1.5em;
-	margin: -1.5em;
-	margin-bottom: 1.5em;
+	/* Same as padding on `.oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout`,
+	 * equals 20px at default font size */
+	padding: 1.42857143em;
+	margin: -1.42857143em;
+	margin-bottom: 1.42857143em;
 	position: relative;
 }
 
