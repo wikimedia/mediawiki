@@ -159,8 +159,8 @@ class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 						'role_name' => $db->addQuotes( 'main' ),
 						'content_size' => 'slots.rev_len',
 						'content_sha1' => 'slots.rev_sha1',
-						'content_address' =>
-							'CONCAT(' . $db->addQuotes( 'tt:' ) . ',slots.rev_text_id)',
+						'content_address' => $db->buildConcat( [
+							$db->addQuotes( 'tt:' ), 'slots.rev_text_id' ] ),
 						'model_name' => 'slots.rev_content_model',
 					]
 				),
