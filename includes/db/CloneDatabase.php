@@ -82,10 +82,10 @@ class CloneDatabase {
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
 
-			self::changePrefix( $this->oldTablePrefix );
+			$this->db->tablePrefix( $this->oldTablePrefix );
 			$oldTableName = $this->db->tableName( $tbl, 'raw' );
 
-			self::changePrefix( $this->newTablePrefix );
+			$this->db->tablePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl, 'raw' );
 
 			// Postgres: Temp tables are automatically deleted upon end of session
@@ -116,12 +116,12 @@ class CloneDatabase {
 	 */
 	public function destroy( $dropTables = false ) {
 		if ( $dropTables ) {
-			self::changePrefix( $this->newTablePrefix );
+			$this->db->tablePrefix( $this->newTablePrefix );
 			foreach ( $this->tablesToClone as $tbl ) {
 				$this->db->dropTable( $tbl );
 			}
 		}
-		self::changePrefix( $this->oldTablePrefix );
+		$this->db->tablePrefix( $this->oldTablePrefix );
 	}
 
 	/**
