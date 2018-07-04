@@ -1354,6 +1354,8 @@
 	"rcfilters-activefilters": "Aktív szűrők",
 	"rcfilters-activefilters-hide": "Elrejt",
 	"rcfilters-activefilters-show": "Mutat",
+	"rcfilters-activefilters-hide-tooltip": "Aktív szűrők dobozának elrejtése",
+	"rcfilters-activefilters-show-tooltip": "Aktív szűrők dobozának megjelenítése",
 	"rcfilters-advancedfilters": "Haladó szűrők",
 	"rcfilters-limit-title": "Megjelenítendő találatok száma",
 	"rcfilters-limit-and-date-label": "$1 változtatás, $2",
