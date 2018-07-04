@@ -350,6 +350,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function selectFields() {
 		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
+		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
 			// If code is using this instead of self::getQueryInfo(), there's a
@@ -358,6 +359,18 @@ class Revision implements IDBAccessObject {
 			// useful values here once those aren't being written anymore.
 			throw new BadMethodCallException(
 				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
+		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->rev_text_id or $row->rev_content_model and we can't give it
+			// useful values here once those aren't being written anymore,
+			// and may not exist at all.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgMultiContentRevisionSchemaMigrationStage '
+				. 'does not have SCHEMA_COMPAT_WRITE_OLD set.'
 			);
 		}
 
@@ -396,6 +409,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function selectArchiveFields() {
 		global $wgContentHandlerUseDB, $wgActorTableSchemaMigrationStage;
+		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		if ( $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
 			// If code is using this instead of self::getQueryInfo(), there's a
@@ -404,6 +418,18 @@ class Revision implements IDBAccessObject {
 			// useful values here once those aren't being written anymore.
 			throw new BadMethodCallException(
 				'Cannot use ' . __METHOD__ . ' when $wgActorTableSchemaMigrationStage > MIGRATION_WRITE_BOTH'
+			);
+		}
+
+		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			// If code is using this instead of self::getQueryInfo(), there's a
+			// decent chance it's going to try to directly access
+			// $row->ar_text_id or $row->ar_content_model and we can't give it
+			// useful values here once those aren't being written anymore,
+			// and may not exist at all.
+			throw new BadMethodCallException(
+				'Cannot use ' . __METHOD__ . ' when $wgMultiContentRevisionSchemaMigrationStage '
+				. 'does not have SCHEMA_COMPAT_WRITE_OLD set.'
 			);
 		}
 
