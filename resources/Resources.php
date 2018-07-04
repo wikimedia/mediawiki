@@ -84,8 +84,7 @@ return [
 	 *     The highest level, this stylesheet contains extra common styles for classes like
 	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
 	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
-	 *     common to MonoBook clones. And since practically every skin that currently exists within
-	 *     core is a MonoBook clone, all our core skins currently use this level.
+	 *     common to MonoBook clones.
 	 *
 	 * These modules are typically loaded by addModuleStyles(), which has absolutely no concept of
 	 * dependency management. As a result they contain duplicate stylesheet references instead of
