@@ -21,6 +21,8 @@
  * @ingroup Search
  */
 
+use Wikimedia\Rdbms\IResultWrapper;
+
 /**
  * Search engine hook base class for Mssql (ConText).
  * @ingroup Search
@@ -168,7 +170,7 @@ class SearchMssql extends SearchDatabase {
 	 * @param int $id
 	 * @param string $title
 	 * @param string $text
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	function update( $id, $title, $text ) {
 		// We store the column data as UTF-8 byte order marked binary stream
@@ -191,7 +193,7 @@ class SearchMssql extends SearchDatabase {
 	 *
 	 * @param int $id
 	 * @param string $title
-	 * @return bool|ResultWrapper
+	 * @return bool|IResultWrapper
 	 */
 	function updateTitle( $id, $title ) {
 		$table = $this->db->tableName( 'searchindex' );
