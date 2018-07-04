@@ -1098,7 +1098,7 @@ CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
 --
 CREATE TABLE /*_*/interwiki (
   -- The interwiki prefix, (e.g. "Meatball", or the language prefix "de")
-  iw_prefix nvarchar(32) NOT NULL,
+  iw_prefix nvarchar(32) NOT NULL CONSTRAINT PK_interwiki PRIMARY KEY,
 
   -- The URL of the wiki, with "$1" as a placeholder for an article name.
   -- Any spaces in the name will be transformed to underscores before
@@ -1118,9 +1118,6 @@ CREATE TABLE /*_*/interwiki (
   -- Boolean value indicating whether interwiki transclusions are allowed.
   iw_trans bit NOT NULL default 0
 );
-
-CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki (iw_prefix);
-
 
 --
 -- Used for caching expensive grouped queries
@@ -1364,10 +1361,10 @@ CREATE TABLE /*_*/protected_titles (
   pt_reason_id bigint unsigned NOT NULL CONSTRAINT DF_pt_reason_id DEFAULT 0 CONSTRAINT FK_pt_reason_id FOREIGN KEY REFERENCES /*_*/comment(comment_id),
   pt_timestamp varchar(14) NOT NULL,
   pt_expiry varchar(14) NOT NULL,
-  pt_create_perm nvarchar(60) NOT NULL
+  pt_create_perm nvarchar(60) NOT NULL,
+  CONSTRAINT PK_protected_titles PRIMARY KEY(pt_namespace,pt_title)
 );
 
-CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles (pt_namespace,pt_title);
 CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
 
 
@@ -1376,10 +1373,10 @@ CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
   pp_propname nvarchar(60) NOT NULL,
   pp_value nvarchar(max) NOT NULL,
-  pp_sortkey float DEFAULT NULL
+  pp_sortkey float DEFAULT NULL,
+  CONSTRAINT PK_page_props PRIMARY KEY(pp_page,pp_propname)
 );
 
-CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propname);
 CREATE UNIQUE INDEX /*i*/pp_propname_page ON /*_*/page_props (pp_propname,pp_page);
 CREATE UNIQUE INDEX /*i*/pp_propname_sortkey_page ON /*_*/page_props (pp_propname,pp_sortkey,pp_page);
 
@@ -1520,9 +1517,10 @@ CREATE TABLE /*_*/site_identifiers (
   si_type                    nvarchar(32)       NOT NULL,
 
   -- local key value, ie 'en' or 'wiktionary'
-  si_key                     nvarchar(32)       NOT NULL
+  si_key                     nvarchar(32)       NOT NULL,
+
+  CONSTRAINT PK_site_identifiers PRIMARY KEY(si_type, si_key)
 );
 
-CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key);
 CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
 CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
