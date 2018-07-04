@@ -15,6 +15,7 @@
 		"mediawiki/interwiki": "dev-master",
 		"mediawiki/localisation-update": "dev-master",
 		"mediawiki/multimedia-viewer": "dev-master",
+		"mediawiki/nuke": "dev-master",
 		"mediawiki/o-a-t-h-auth": "dev-master",
 		"mediawiki/parser-functions": "dev-master",
 		"mediawiki/pdf-handler": "dev-master",
