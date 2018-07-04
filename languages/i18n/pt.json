@@ -77,7 +77,8 @@
 			"RadiX",
 			"MokaAkashiyaPT",
 			"Athena in Wonderland",
-			"Fitoschido"
+			"Fitoschido",
+			"Ldacosta"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -274,7 +275,7 @@
 	"viewhelppage": "Ver página de ajuda",
 	"categorypage": "Ver página de categoria",
 	"viewtalkpage": "Ver discussão",
-	"otherlanguages": "Noutras línguas",
+	"otherlanguages": "Em outros idiomas",
 	"redirectedfrom": "(Redirecionado de $1)",
 	"redirectpagesub": "Página de redirecionamento",
 	"redirectto": "Redireciona para:",
@@ -2195,7 +2196,7 @@
 	"nowikiemailtext": "Este utilizador optou por não receber correio eletrónico de outros utilizadores.",
 	"emailnotarget": "O nome do destinatário não existe ou é inválido.",
 	"emailtarget": "Introduza o nome do destinatário",
-	"emailusername": "Utilizador:",
+	"emailusername": "Nome de Utilizador:",
 	"emailusernamesubmit": "Enviar",
 	"email-legend": "Enviar uma mensagem a outro utilizador da wiki {{SITENAME}}",
 	"emailfrom": "De:",

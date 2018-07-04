@@ -2195,7 +2195,7 @@
 	"dellogpage": "Дневник брисања",
 	"dellogpagetext": "Испод је списак последњих брисања.",
 	"deletionlog": "дневник брисања",
-	"logentry-create-create": "$1 {{GENDER:$2|креирао је|креирала је}} страницу $3",
+	"logentry-create-create": "$1 {{GENDER:$2|је направио|је направила}} страницу $3",
 	"reverted": "Враћено на ранију измену",
 	"deletecomment": "Разлог:",
 	"deleteotherreason": "Други/додатни разлог:",

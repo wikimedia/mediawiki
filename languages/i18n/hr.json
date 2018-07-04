@@ -1273,6 +1273,8 @@
 	"rcfilters-other-review-tools": "Ostali alati za pregledavanje:",
 	"rcfilters-group-results-by-page": "Grupiranje rezultata po stranici",
 	"rcfilters-activefilters": "Aktivni filtri",
+	"rcfilters-activefilters-hide": "Skrij",
+	"rcfilters-activefilters-show": "Pokaži",
 	"rcfilters-advancedfilters": "Napredni filtri",
 	"rcfilters-limit-title": "Rezultata za prikaz",
 	"rcfilters-limit-and-date-label": "{{PLURAL:$1|$1 izmjena|$1 izmjene|$1 izmjena}}, $2",
