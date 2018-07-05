@@ -151,7 +151,7 @@ class PopulateChangeTagDef extends Maintenance {
 		$dbw = $this->lbFactory->getMainLB()->getConnection( DB_MASTER );
 		$sleep = (int)$this->getOption( 'sleep', 10 );
 		$lastId = 0;
-		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}" );
+		$this->output( "Starting to add ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 		while ( true ) {
 			// Given that indexes might not be there, it's better to use replica
 			$ids = $dbr->selectFieldValues(
@@ -173,7 +173,7 @@ class PopulateChangeTagDef extends Maintenance {
 				);
 				continue;
 			} else {
-				$this->output( "Updating ct_tag_id = {$tagId} up to row ct_id = {$lastId}" );
+				$this->output( "Updating ct_tag_id = {$tagId} up to row ct_id = {$lastId}\n" );
 			}
 
 			$dbw->update(
@@ -189,7 +189,7 @@ class PopulateChangeTagDef extends Maintenance {
 			}
 		}
 
-		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}" );
+		$this->output( "Finished adding ct_tag_id = {$tagId} for ct_tag = {$tagName}\n" );
 	}
 
 }
