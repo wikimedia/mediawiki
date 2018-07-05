@@ -3004,11 +3004,6 @@ $wgAllUnicodeFixes = false;
 $wgLegacyEncoding = false;
 
 /**
- * @deprecated since 1.30, does nothing
- */
-$wgBrowserBlackList = [];
-
-/**
  * If set to true, the MediaWiki 1.4 to 1.5 schema conversion will
  * create stub reference rows in the text table instead of copying
  * the full text of all current entries from 'cur' to 'text'.
