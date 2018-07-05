@@ -65,7 +65,8 @@
 			"Alp Er Tunqa",
 			"Baloch Khan",
 			"Fitoschido",
-			"Alireza Ivaz"
+			"Alireza Ivaz",
+			"Iriman"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -1796,7 +1797,7 @@
 	"filehist-dimensions": "ابعاد",
 	"filehist-filesize": "اندازهٔ پرونده",
 	"filehist-comment": "توضیح",
-	"imagelinks": "به‌کاررفتن پرونده",
+	"imagelinks": "کاربرد پرونده",
 	"linkstoimage": "{{PLURAL:$1|صفحهٔ|صفحه‌های}} زیر به این تصویر پیوند {{PLURAL:$1|دارد|دارند}}:",
 	"linkstoimage-more": "بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|دارد|دارند}}.\nفهرست زیر تنها {{PLURAL:$1|اولین پیوند|اولین $1 پیوند}} به این صفحه را نشان می‌دهد.\n[[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.",
 	"nolinkstoimage": "این پرونده در هیچ صفحه‌ای به کار نرفته‌است.",
