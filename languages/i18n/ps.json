@@ -1216,6 +1216,7 @@
 	"rcfilters-savedqueries-apply-and-setdefault-label": "د فرض په ډول د فيلټر جوړول",
 	"rcfilters-savedqueries-cancel-label": "ناگارل",
 	"rcfilters-savedqueries-add-new-title": "د امستنې اوسنۍ فيلټر خوندي کړي",
+	"rcfilters-restore-default-filters": "د ډيفاولټ فلټرونه بیا تازه کول",
 	"rcfilters-search-placeholder": "د فلټر بدلونونه (د مینو کارول یا د فلټر نوم لټونه)",
 	"rcfilters-invalid-filter": "غلط فلټر",
 	"rcfilters-empty-filter": "هيڅ فعال فلټر نشته. ټولي سمونې ښکاره شوي.",
