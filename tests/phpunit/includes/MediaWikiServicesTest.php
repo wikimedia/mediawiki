@@ -16,7 +16,6 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 
 /**
@@ -349,7 +348,6 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			'BlobStore' => [ 'BlobStore', BlobStore::class ],
 			'_SqlBlobStore' => [ '_SqlBlobStore', SqlBlobStore::class ],
 			'RevisionStore' => [ 'RevisionStore', RevisionStore::class ],
-			'RevisionStoreFactory' => [ 'RevisionStoreFactory', RevisionStoreFactory::class ],
 			'RevisionLookup' => [ 'RevisionLookup', RevisionLookup::class ],
 			'RevisionFactory' => [ 'RevisionFactory', RevisionFactory::class ],
 			'ContentModelStore' => [ 'ContentModelStore', NameTableStore::class ],
