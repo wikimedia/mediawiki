@@ -40,6 +40,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	protected $images = [];
 	protected $defaultColor = null;
+	protected $useDataURI = true;
 	protected $variants = [];
 	protected $prefix = null;
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
@@ -183,6 +184,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 
+				case 'useDataURI':
+					$this->{$member} = (bool)$option;
+					break;
 				case 'defaultColor':
 				case 'prefix':
 				case 'selectorWithoutVariant':
@@ -358,7 +362,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$script,
 		$variant = null
 	) {
-		$imageDataUri = $image->getDataUri( $context, $variant, 'original' );
+		$imageDataUri = $this->useDataURI ? $image->getDataUri( $context, $variant, 'original' ) : false;
 		$primaryUrl = $imageDataUri ?: $image->getUrl( $context, $script, $variant, 'original' );
 		$declarations = $this->getCssDeclarations(
 			$primaryUrl,
