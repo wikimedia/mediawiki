@@ -21,7 +21,6 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionFactory;
 use MediaWiki\Storage\RevisionLookup;
 use MediaWiki\Storage\RevisionStore;
-use MediaWiki\Storage\RevisionStoreFactory;
 use OldRevisionImporter;
 use UploadRevisionImporter;
 use Wikimedia\Rdbms\LBFactory;
@@ -766,14 +765,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionStore() {
 		return $this->getService( 'RevisionStore' );
-	}
-
-	/**
-	 * @since 1.32
-	 * @return RevisionStoreFactory
-	 */
-	public function getRevisionStoreFactory() {
-		return $this->getService( 'RevisionStoreFactory' );
 	}
 
 	/**

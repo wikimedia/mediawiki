@@ -171,6 +171,9 @@ because of Phabricator reports.
   use 'EditPageGetCheckboxesDefinition' instead.
 * Linker::getLinkColour() and DummyLinker::getLinkColour(), deprecated since
   1.28, were removed. LinkRenderer::getLinkClasses() should be used instead.
+* Wikimedia\Rdbms\LoadBalancer::getLaggedSlaveMode(), deprecated in 1.28, has
+  been removed. Use Wikimedia\Rdbms\LoadBalancer::getLaggedReplicaMode()
+  instead.
 * mw.widgets.CategoryMultiselectWidget now uses TagMultiselectWidget instead of
   CapsuleMultiselectWidget. The following methods may no longer be used:
   * setItemsFromData: Use setValue instead
