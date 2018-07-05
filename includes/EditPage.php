@@ -948,12 +948,7 @@ class EditPage {
 			} else {
 				// If we receive the last parameter of the request, we can fairly
 				// claim the POST request has not been truncated.
-
-				// TODO: softened the check for cutover.  Once we determine
-				// that it is safe, we should complete the transition by
-				// removing the "edittime" clause.
-				$this->incompleteForm = ( !$request->getVal( 'wpUltimateParam' )
-					&& is_null( $this->edittime ) );
+				$this->incompleteForm = !$request->getVal( 'wpUltimateParam' );
 			}
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
