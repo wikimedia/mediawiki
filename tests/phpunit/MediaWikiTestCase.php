@@ -1043,7 +1043,16 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.18
 	 */
 	public function dbPrefix() {
-		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
+		return self::getTestPrefixFor( $this->db );
+	}
+
+	/**
+	 * @param IDatabase $db
+	 * @return string
+	 * @since 1.32
+	 */
+	public static function getTestPrefixFor( IDatabase $db ) {
+		return $db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
 
 	/**
@@ -1226,33 +1235,95 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Setups a database with the given prefix.
+	 * Prepares the given database connection for usage in the context of usage tests.
+	 * This sets up clones database tables and changes the table prefix as appropriate.
+	 * If the database connection already has cloned tables, calling this method has no
+	 * effect. The tables are not re-cloned or reset in that case.
+	 *
+	 * @param IMaintainableDatabase $db
+	 */
+	protected function prepareConnectionForTesting( IMaintainableDatabase $db ) {
+		if ( !self::$dbSetup ) {
+			throw new LogicException(
+				'Cannot use prepareConnectionForTesting()'
+				. ' if the test case is not defined to use the database!'
+			);
+		}
+
+		if ( isset( $db->_originalTablePrefix ) ) {
+			// The DB connection was already prepared for testing.
+			return;
+		}
+
+		$testPrefix = self::getTestPrefixFor( $db );
+		$oldPrefix = $db->tablePrefix();
+
+		$tablesCloned = self::listTables( $db );
+
+		if ( $oldPrefix === $testPrefix ) {
+			// The database connection already has the test prefix, but presumably not
+			// the cloned tables. This is the typical case, since the LBFactory will
+			// have the prefix set during testing, but LoadBalancers will still return
+			// connections that don't have the cloned table structure.
+			$oldPrefix = self::$oldTablePrefix;
+		}
+
+		$dbClone = new CloneDatabase( $db, $tablesCloned, $testPrefix, $oldPrefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+		$db->_originalTablePrefix = $oldPrefix;
+
+		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
+			throw new LogicException( 'Cannot clone database tables' );
+		} else {
+			$dbClone->cloneTableStructure();
+		}
+	}
+
+	/**
+	 * Setups a database with cloned tables using the given prefix.
 	 *
 	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
 	 * Otherwise, it will clone the tables and change the prefix.
 	 *
-	 * Clones all tables in the given database (whatever database that connection has
-	 * open), to versions with the test prefix.
-	 *
 	 * @param IMaintainableDatabase $db Database to use
-	 * @param string $prefix Prefix to use for test tables
+	 * @param string $prefix Prefix to use for test tables. If not given, the prefix is determined
+	 *        automatically for $db.
 	 * @return bool True if tables were cloned, false if only the prefix was changed
 	 */
-	protected static function setupDatabaseWithTestPrefix( IMaintainableDatabase $db, $prefix ) {
-		$tablesCloned = self::listTables( $db );
-		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-
-		$db->_originalTablePrefix = $db->tablePrefix();
+	protected static function setupDatabaseWithTestPrefix(
+		IMaintainableDatabase $db,
+		$prefix = null
+	) {
+		if ( $prefix === null ) {
+			$prefix = self::getTestPrefixFor( $db );
+		}
 
 		if ( ( $db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
-			CloneDatabase::changePrefix( $prefix );
-
+			$db->tablePrefix( $prefix );
 			return false;
-		} else {
-			$dbClone->cloneTableStructure();
-			return true;
 		}
+
+		if ( !isset( $db->_originalTablePrefix ) ) {
+			$oldPrefix = $db->tablePrefix();
+
+			if ( $oldPrefix === $prefix ) {
+				// table already has the correct prefix, but presumably no cloned tables
+				$oldPrefix = self::$oldTablePrefix;
+			}
+
+			$db->tablePrefix( $oldPrefix );
+			$tablesCloned = self::listTables( $db );
+			$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
+			$dbClone->useTemporaryTables( self::$useTemporaryTables );
+
+			$dbClone->cloneTableStructure();
+
+			$db->tablePrefix( $prefix );
+			$db->_originalTablePrefix = $oldPrefix;
+		}
+
+		return true;
 	}
 
 	/**
@@ -1271,6 +1342,10 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		if ( self::isUsingExternalStoreDB() ) {
 			self::setupExternalStoreTestDBs( $testPrefix );
 		}
+
+		// NOTE: Change the prefix in the LBFactory and $wgDBprefix, to prevent
+		// *any* database connections to operate on live data.
+		CloneDatabase::changePrefix( $testPrefix );
 	}
 
 	/**
@@ -1325,19 +1400,12 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Clones the External Store database(s) for testing
 	 *
-	 * @param string $testPrefix Prefix for test tables
+	 * @param string|null $testPrefix Prefix for test tables. Will be determined automatically
+	 *        if not given.
 	 */
-	protected static function setupExternalStoreTestDBs( $testPrefix ) {
+	protected static function setupExternalStoreTestDBs( $testPrefix = null ) {
 		$connections = self::getExternalStoreDatabaseConnections();
 		foreach ( $connections as $dbw ) {
-			// Hack: cloneTableStructure sets $wgDBprefix to the unit test
-			// prefix,.  Even though listTables now uses tablePrefix, that
-			// itself is populated from $wgDBprefix by default.
-
-			// We have to set it back, or we won't find the original 'blobs'
-			// table to copy.
-
-			$dbw->tablePrefix( self::$oldTablePrefix );
 			self::setupDatabaseWithTestPrefix( $dbw, $testPrefix );
 		}
 	}
@@ -1714,6 +1782,29 @@ abstract class MediaWikiTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		return $tables;
+	}
+
+	/**
+	 * Copy test data from one database connection to another.
+	 *
+	 * This should only be used for small data sets.
+	 *
+	 * @param IDatabase $source
+	 * @param IDatabase $target
+	 */
+	public function copyTestData( IDatabase $source, IDatabase $target ) {
+		$tables = self::listOriginalTables( $source, 'unprefixed' );
+
+		foreach ( $tables as $table ) {
+			$res = $source->select( $table, '*', [], __METHOD__ );
+			$allRows = [];
+
+			foreach ( $res as $row ) {
+				$allRows[] = (array)$row;
+			}
+
+			$target->insert( $table, $allRows, __METHOD__, [ 'IGNORE' ] );
+		}
 	}
 
 	/**
