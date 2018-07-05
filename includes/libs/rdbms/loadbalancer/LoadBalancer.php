@@ -269,15 +269,12 @@ class LoadBalancer implements ILoadBalancer {
 		$this->defaultGroup = $params['defaultGroup'] ?? null;
 	}
 
-	/**
-	 * Get the local (and default) database domain ID of connection handles
-	 *
-	 * @see DatabaseDomain
-	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
-	 * @since 1.31
-	 */
 	public function getLocalDomainID() {
 		return $this->localDomain->getId();
+	}
+
+	public function resolveDomainID( $domain ) {
+		return ( $domain !== false ) ? (string)$domain : $this->getLocalDomainID();
 	}
 
 	/**
@@ -848,19 +845,19 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
-		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
+		$domain = $this->resolveDomainID( $domain );
 
 		return new DBConnRef( $this, $this->getConnection( $db, $groups, $domain, $flags ) );
 	}
 
 	public function getLazyConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
-		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
+		$domain = $this->resolveDomainID( $domain );
 
 		return new DBConnRef( $this, [ $db, $groups, $domain, $flags ] );
 	}
 
 	public function getMaintenanceConnectionRef( $db, $groups = [], $domain = false, $flags = 0 ) {
-		$domain = ( $domain !== false ) ? $domain : $this->localDomain;
+		$domain = $this->resolveDomainID( $domain );
 
 		return new MaintainableDBConnRef(
 			$this, $this->getConnection( $db, $groups, $domain, $flags ) );

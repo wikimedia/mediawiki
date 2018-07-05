@@ -74,6 +74,10 @@ class LBFactoryTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @covers LBFactory::getLocalDomainID()
+	 * @covers LBFactory::resolveDomainID()
+	 */
 	public function testLBFactorySimpleServer() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
@@ -98,6 +102,9 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getLBInfo( 'master' ), 'DB_REPLICA also gets the master' );
+
+		$this->assertSame( 'my_test_wiki', $factory->resolveDomainID( 'my_test_wiki' ) );
+		$this->assertSame( $factory->getLocalDomainID(), $factory->resolveDomainID( false ) );
 
 		$factory->shutdown();
 		$lb->closeAll();

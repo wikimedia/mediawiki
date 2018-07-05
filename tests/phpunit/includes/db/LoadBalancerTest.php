@@ -48,6 +48,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @covers LoadBalancer::getLocalDomainID()
+	 * @covers LoadBalancer::resolveDomainID()
+	 */
 	public function testWithoutReplica() {
 		global $wgDBname;
 
@@ -64,6 +68,9 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
 		$this->assertEquals( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
 		$this->assertEquals( $this->dbPrefix(), $ld->getTablePrefix(), 'local domain prefix set' );
+		$this->assertSame( 'my_test_wiki', $lb->resolveDomainID( 'my_test_wiki' ) );
+		$this->assertSame( $ld->getId(), $lb->resolveDomainID( false ) );
+		$this->assertSame( $ld->getId(), $lb->resolveDomainID( $ld ) );
 
 		$this->assertFalse( $called );
 		$dbw = $lb->getConnection( DB_MASTER );
