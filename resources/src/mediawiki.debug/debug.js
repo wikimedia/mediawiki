@@ -221,7 +221,7 @@
 			};
 
 			for ( id in panes ) {
-				if ( !panes.hasOwnProperty( id ) ) {
+				if ( !Object.prototype.hasOwnProperty.call( panes, id ) ) {
 					continue;
 				}
 
@@ -350,7 +350,7 @@
 					.appendTo( $table );
 
 				for ( key in data ) {
-					if ( !data.hasOwnProperty( key ) ) {
+					if ( !Object.prototype.hasOwnProperty.call( data, key ) ) {
 						continue;
 					}
 

@@ -195,7 +195,7 @@
 					// Copy data over from existing URI object
 					for ( prop in uri ) {
 						// Only copy direct properties, not inherited ones
-						if ( uri.hasOwnProperty( prop ) ) {
+						if ( Object.prototype.hasOwnProperty.call( uri, prop ) ) {
 							// Deep copy object properties
 							if ( Array.isArray( uri[ prop ] ) || $.isPlainObject( uri[ prop ] ) ) {
 								this[ prop ] = $.extend( true, {}, uri[ prop ] );

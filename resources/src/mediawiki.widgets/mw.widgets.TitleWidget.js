@@ -102,7 +102,7 @@
 		var api = this.getApi(),
 			cache = this.constructor.static.interwikiPrefixesPromiseCache,
 			key = api.defaults.ajax.url;
-		if ( !cache.hasOwnProperty( key ) ) {
+		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
 			cache[ key ] = api.get( {
 				action: 'query',
 				meta: 'siteinfo',

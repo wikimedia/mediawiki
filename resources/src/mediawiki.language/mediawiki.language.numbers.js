@@ -179,7 +179,7 @@
 		for ( i = 0; i < arguments.length; i++ ) {
 			table = arguments[ i ];
 			for ( key in table ) {
-				if ( table.hasOwnProperty( key ) ) {
+				if ( Object.prototype.hasOwnProperty.call( table, key ) ) {
 					// The thousand separator should be deleted
 					flipped[ table[ key ] ] = key === ',' ? '' : key;
 				}
@@ -234,7 +234,7 @@
 			if ( transformTable ) {
 				convertedNumber = '';
 				for ( i = 0; i < numberString.length; i++ ) {
-					if ( transformTable.hasOwnProperty( numberString[ i ] ) ) {
+					if ( Object.prototype.hasOwnProperty.call( transformTable, numberString[ i ] ) ) {
 						convertedNumber += transformTable[ numberString[ i ] ];
 					} else {
 						convertedNumber += numberString[ i ];

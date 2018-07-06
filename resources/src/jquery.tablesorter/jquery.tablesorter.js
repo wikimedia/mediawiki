@@ -724,7 +724,7 @@
 			// Build array of key names
 			for ( key in ts.collationTable ) {
 				// Check hasOwn to be safe
-				if ( ts.collationTable.hasOwnProperty( key ) ) {
+				if ( Object.prototype.hasOwnProperty.call( ts.collationTable, key ) ) {
 					keys.push( mw.RegExp.escape( key ) );
 				}
 			}

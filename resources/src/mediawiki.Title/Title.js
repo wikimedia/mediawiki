@@ -748,7 +748,7 @@
 				tiff: 'tif',
 				ogv: 'ogg'
 			};
-		if ( squish.hasOwnProperty( lower ) ) {
+		if ( Object.prototype.hasOwnProperty.call( squish, lower ) ) {
 			return squish[ lower ];
 		} else if ( /^[0-9a-z]+$/.test( lower ) ) {
 			return lower;
