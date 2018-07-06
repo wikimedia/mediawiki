@@ -311,7 +311,7 @@
 		getAst: function ( key ) {
 			var wikiText;
 
-			if ( !this.astCache.hasOwnProperty( key ) ) {
+			if ( !Object.prototype.hasOwnProperty.call( this.astCache, key ) ) {
 				wikiText = this.settings.messages.get( key );
 				if ( typeof wikiText !== 'string' ) {
 					wikiText = '⧼' + key + '⧽';
@@ -1358,7 +1358,7 @@
 			return oldParser.apply( this );
 		}
 
-		if ( !this.map.hasOwnProperty( this.format ) ) {
+		if ( !Object.prototype.hasOwnProperty.call( this.map, this.format ) ) {
 			this.map[ this.format ] = mw.jqueryMsg.getMessageFunction( {
 				messages: this.map,
 				// For format 'escaped', escaping part is handled by mediawiki.js

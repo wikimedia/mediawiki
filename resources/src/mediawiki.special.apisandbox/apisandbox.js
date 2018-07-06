@@ -318,7 +318,7 @@
 			var apiPromise,
 				deferred = $.Deferred();
 
-			if ( moduleInfoCache.hasOwnProperty( module ) ) {
+			if ( Object.prototype.hasOwnProperty.call( moduleInfoCache, module ) ) {
 				return deferred
 					.resolve( moduleInfoCache[ module ] )
 					.promise( { abort: function () {} } );
@@ -373,7 +373,7 @@
 
 				subpages = page.getSubpages();
 				for ( i = 0; i < subpages.length; i++ ) {
-					if ( pages.hasOwnProperty( subpages[ i ].key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( pages, subpages[ i ].key ) ) {
 						checkPages.push( pages[ subpages[ i ].key ] );
 					}
 				}
@@ -917,7 +917,7 @@
 					if ( page.getSubpages ) {
 						subpages = page.getSubpages();
 						for ( j = 0; j < subpages.length; j++ ) {
-							if ( !pages.hasOwnProperty( subpages[ j ].key ) ) {
+							if ( !Object.prototype.hasOwnProperty.call( pages, subpages[ j ].key ) ) {
 								subpages[ j ].indentLevel = page.indentLevel + 1;
 								pages[ subpages[ j ].key ] = new ApiSandbox.PageLayout( subpages[ j ] );
 							}
@@ -993,7 +993,7 @@
 				page.getQueryParams( params, displayParams );
 				subpages = page.getSubpages();
 				for ( i = 0; i < subpages.length; i++ ) {
-					if ( pages.hasOwnProperty( subpages[ i ].key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( pages, subpages[ i ].key ) ) {
 						checkPages.push( pages[ subpages[ i ].key ] );
 					}
 				}
@@ -1069,7 +1069,7 @@
 
 				// Force a 'fm' format with wrappedhtml=1, if available
 				if ( params.format !== undefined ) {
-					if ( availableFormats.hasOwnProperty( params.format + 'fm' ) ) {
+					if ( Object.prototype.hasOwnProperty.call( availableFormats, params.format + 'fm' ) ) {
 						params.format = params.format + 'fm';
 					}
 					if ( params.format.substr( -2 ) === 'fm' ) {
@@ -1300,7 +1300,7 @@
 
 				subpages = page.getSubpages();
 				for ( i = 0; i < subpages.length; i++ ) {
-					if ( pages.hasOwnProperty( subpages[ i ].key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( pages, subpages[ i ].key ) ) {
 						checkPages.push( pages[ subpages[ i ].key ] );
 					}
 				}
@@ -1321,7 +1321,7 @@
 				page.apiCheckValid();
 				subpages = page.getSubpages();
 				for ( i = 0; i < subpages.length; i++ ) {
-					if ( pages.hasOwnProperty( subpages[ i ].key ) ) {
+					if ( Object.prototype.hasOwnProperty.call( pages, subpages[ i ].key ) ) {
 						checkPages.push( pages[ subpages[ i ].key ] );
 					}
 				}
@@ -1678,7 +1678,7 @@
 						}
 					}
 					if ( params ) {
-						tmp.widget.setApiValue( params.hasOwnProperty( name ) ? params[ name ] : undefined );
+						tmp.widget.setApiValue( Object.prototype.hasOwnProperty.call( params, name ) ? params[ name ] : undefined );
 					}
 				} else {
 					newVars = {};
@@ -1785,7 +1785,7 @@
 					buttons = [],
 					filterFmModules = function ( v ) {
 						return v.substr( -2 ) !== 'fm' ||
-							!availableFormats.hasOwnProperty( v.substr( 0, v.length - 2 ) );
+							!Object.prototype.hasOwnProperty.call( availableFormats, v.substr( 0, v.length - 2 ) );
 					};
 
 				// This is something of a hack. We always want the 'format' and
@@ -2017,7 +2017,7 @@
 			this.loadFromQueryParams = params;
 		} else {
 			$.each( this.widgets, function ( name, widget ) {
-				var v = params.hasOwnProperty( name ) ? params[ name ] : undefined;
+				var v = Object.prototype.hasOwnProperty.call( params, name ) ? params[ name ] : undefined;
 				widget.setApiValue( v );
 			} );
 			this.updateTemplatedParameters( params );
