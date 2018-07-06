@@ -26,6 +26,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		$numberOfSlots = count( $rev->getSlotRoles() );
 
+		// new schema is written
 		$this->assertSelect(
 			'slots',
 			[ 'count(*)' ],
@@ -45,13 +46,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			[ [ (string)$numberOfSlots ] ],
 			[],
 			$revQuery['joins']
-		);
-
-		$this->assertSelect(
-			'content',
-			[ 'count(*)' ],
-			[ 'content_address' => $rev->getSlot( 'main' )->getAddress() ],
-			[ [ 1 ] ]
 		);
 
 		parent::assertRevisionExistsInDatabase( $rev );

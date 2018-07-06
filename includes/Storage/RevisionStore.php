@@ -414,10 +414,17 @@ class RevisionStore
 			);
 		}
 
-		// While inserting into the old schema make sure only the main slot is allowed.
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) && $slotRoles !== [ 'main' ] ) {
+		// If we are not writing into the new schema, we can't support extra slots.
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) && $slotRoles !== [ 'main' ] ) {
 			throw new InvalidArgumentException(
-				'Only the main slot is supported when writing to the pre-MCR schema!'
+				'Only the main slot is supported when not writing to the MCR enabled schema!'
+			);
+		}
+
+		// As long as we are not reading from the new schema, we don't want to write extra slots.
+		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) && $slotRoles !== [ 'main' ] ) {
+			throw new InvalidArgumentException(
+				'Only the main slot is supported when not reading from the MCR enabled schema!'
 			);
 		}
 

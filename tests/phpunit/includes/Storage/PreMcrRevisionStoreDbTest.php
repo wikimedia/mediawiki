@@ -2,6 +2,7 @@
 namespace MediaWiki\Tests\Storage;
 
 use InvalidArgumentException;
+use MediaWiki\Storage\RevisionRecord;
 use Revision;
 use WikitextContent;
 
@@ -27,6 +28,20 @@ class PreMcrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$row->rev_content_model = (string)$rev->getContentModel();
 
 		return $row;
+	}
+
+	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
+		// Legacy schema is still being written
+		$this->assertSelect(
+			[ 'revision', 'text' ],
+			[ 'count(*)' ],
+			[ 'rev_id' => $rev->getId(), 'rev_text_id > 0' ],
+			[ [ 1 ] ],
+			[],
+			[ 'text' => [ 'INNER JOIN', [ 'rev_text_id = old_id' ] ] ]
+		);
+
+		parent::assertRevisionExistsInDatabase( $rev );
 	}
 
 	public function provideGetArchiveQueryInfo() {
