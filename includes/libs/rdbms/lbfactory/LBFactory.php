@@ -152,6 +152,14 @@ abstract class LBFactory implements ILBFactory {
 		$this->forEachLBCallMethod( 'disable' );
 	}
 
+	public function getLocalDomainID() {
+		return $this->localDomain->getId();
+	}
+
+	public function resolveDomainID( $domain ) {
+		return ( $domain !== false ) ? (string)$domain : $this->getLocalDomainID();
+	}
+
 	public function shutdown(
 		$mode = self::SHUTDOWN_CHRONPROT_SYNC,
 		callable $workCallback = null,

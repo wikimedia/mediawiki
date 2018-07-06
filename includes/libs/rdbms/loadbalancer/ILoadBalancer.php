@@ -121,6 +121,22 @@ interface ILoadBalancer {
 	public function __construct( array $params );
 
 	/**
+	 * Get the local (and default) database domain ID of connection handles
+	 *
+	 * @see DatabaseDomain
+	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
+	 * @since 1.31
+	 */
+	public function getLocalDomainID();
+
+	/**
+	 * @param DatabaseDomain|string|bool $domain Database domain
+	 * @return string Value of $domain if provided or the local domain otherwise
+	 * @since 1.32
+	 */
+	public function resolveDomainID( $domain );
+
+	/**
 	 * Get the index of the reader connection, which may be a replica DB
 	 *
 	 * This takes into account load ratios and lag times. It should
