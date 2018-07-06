@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Preferences;
 
-use CentralIdLookup;
 use Config;
 use DateTime;
 use DateTimeZone;
@@ -53,6 +52,7 @@ use SpecialPage;
 use SpecialPreferences;
 use Status;
 use Title;
+use UnexpectedValueException;
 use User;
 use UserGroupMembership;
 use Xml;
@@ -92,22 +92,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->authManager = $authManager;
 		$this->linkRenderer = $linkRenderer;
 		$this->logger = new NullLogger();
-	}
-
-	/**
-	 * @return callable[]
-	 */
-	protected function getSaveFilters() {
-		// Wrap intval() so that we can pass it multiple parameters and treat all filters the same.
-		$intvalFilter = function ( $value, $alldata ) {
-			return intval( $value );
-		};
-		return [
-			'timecorrection' => [ $this, 'filterTimezoneInput' ],
-			'rclimit' => $intvalFilter,
-			'wllimit' => $intvalFilter,
-			'searchlimit' => $intvalFilter,
-		];
 	}
 
 	/**
@@ -178,9 +162,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
 		$defaultOptions = User::getDefaultOptions();
+		$userOptions = $user->getOptions();
+		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		# # Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
-			$prefFromUser = $this->getOptionFromUser( $name, $info, $user );
+			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
 			if ( $disable && !in_array( $name, $this->getSaveBlacklist() ) ) {
 				$info['disabled'] = 'disabled';
 			}
@@ -209,11 +195,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 *
 	 * @param string $name
 	 * @param array $info
-	 * @param User $user
+	 * @param array $userOptions
 	 * @return array|string
 	 */
-	protected function getOptionFromUser( $name, $info, User $user ) {
-		$val = $user->getOption( $name );
+	protected function getOptionFromUser( $name, $info, array $userOptions ) {
+		$val = $userOptions[$name] ?? null;
 
 		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
@@ -223,7 +209,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$val = [];
 
 			foreach ( $options as $value ) {
-				if ( $user->getOption( "$prefix$value" ) ) {
+				if ( $userOptions["$prefix$value"] ?? false ) {
 					$val[] = $value;
 				}
 			}
@@ -239,7 +225,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 			foreach ( $columns as $column ) {
 				foreach ( $rows as $row ) {
-					if ( $user->getOption( "$prefix$column-$row" ) ) {
+					if ( $userOptions["$prefix$column-$row"] ?? false ) {
 						$val[] = "$column-$row";
 					}
 				}
@@ -653,16 +639,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				];
 
 				if ( $this->config->get( 'EnableUserEmailBlacklist' ) ) {
-					$lookup = CentralIdLookup::factory();
-					$ids = $user->getOption( 'email-blacklist', [] );
-					$names = $ids ? $lookup->namesFromCentralIds( $ids, $user ) : [];
-
 					$defaultPreferences['email-blacklist'] = [
 						'type' => 'usersmultiselect',
 						'label-message' => 'email-blacklist-label',
 						'section' => 'personal/email',
-						'default' => implode( "\n", $names ),
 						'disabled' => $disableEmailPrefs,
+						'filter' => MultiUsernameFilter::class,
 					];
 				}
 			}
@@ -850,6 +832,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'size' => 20,
 			'section' => 'rendering/timeoffset',
 			'id' => 'wpTimeCorrection',
+			'filter' => TimezoneFilter::class,
 		];
 	}
 
@@ -1010,6 +993,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'recentchangescount',
 			'help-message' => 'prefs-help-recentchangescount',
 			'section' => 'rc/displayrc',
+			'filter' => IntvalFilter::class,
 		];
 		$defaultPreferences['usenewrc'] = [
 			'type' => 'toggle',
@@ -1153,6 +1137,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'prefs-watchlist-edits',
 			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
 			'section' => 'watchlist/displaywatchlist',
+			'filter' => IntvalFilter::class,
 		];
 		$defaultPreferences['extendwatchlist'] = [
 			'type' => 'toggle',
@@ -1533,9 +1518,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
-		$htmlForm->setSubmitCallback( function ( array $formData, HTMLForm $form ) {
-			return $this->submitForm( $formData, $form );
-		} );
+		$htmlForm->setSubmitCallback(
+			function ( array $formData, HTMLForm $form ) use ( $formDescriptor ) {
+				return $this->submitForm( $formData, $form, $formDescriptor );
+			}
+		);
 
 		return $htmlForm;
 	}
@@ -1585,63 +1572,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * @param string $tz
-	 * @param array $alldata
-	 * @return string
-	 */
-	protected function filterTimezoneInput( $tz, array $alldata ) {
-		$data = explode( '|', $tz, 3 );
-		switch ( $data[0] ) {
-			case 'ZoneInfo':
-				$valid = false;
-
-				if ( count( $data ) === 3 ) {
-					// Make sure this timezone exists
-					try {
-						new DateTimeZone( $data[2] );
-						// If the constructor didn't throw, we know it's valid
-						$valid = true;
-					} catch ( Exception $e ) {
-						// Not a valid timezone
-					}
-				}
-
-				if ( !$valid ) {
-					// If the supplied timezone doesn't exist, fall back to the encoded offset
-					return 'Offset|' . intval( $tz[1] );
-				}
-				return $tz;
-			case 'System':
-				return $tz;
-			default:
-				$data = explode( ':', $tz, 2 );
-				if ( count( $data ) == 2 ) {
-					$data[0] = intval( $data[0] );
-					$data[1] = intval( $data[1] );
-					$minDiff = abs( $data[0] ) * 60 + $data[1];
-					if ( $data[0] < 0 ) {
-						$minDiff = - $minDiff;
-					}
-				} else {
-					$minDiff = intval( $data[0] ) * 60;
-				}
-
-				# Max is +14:00 and min is -12:00, see:
-				# https://en.wikipedia.org/wiki/Timezone
-				$minDiff = min( $minDiff, 840 );  # 14:00
-				$minDiff = max( $minDiff, -720 ); # -12:00
-				return 'Offset|' . $minDiff;
-		}
-	}
-
-	/**
 	 * Handle the form submission if everything validated properly
 	 *
 	 * @param array $formData
 	 * @param HTMLForm $form
+	 * @param array[] $formDescriptor
 	 * @return bool|Status|string
 	 */
-	protected function saveFormData( $formData, HTMLForm $form ) {
+	protected function saveFormData( $formData, HTMLForm $form, array $formDescriptor ) {
+		/** @var \User $user */
 		$user = $form->getModifiedUser();
 		$hiddenPrefs = $this->config->get( 'HiddenPrefs' );
 		$result = true;
@@ -1651,12 +1590,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// Filter input
-		foreach ( array_keys( $formData ) as $name ) {
-			$filters = $this->getSaveFilters();
-			if ( isset( $filters[$name] ) ) {
-				$formData[$name] = call_user_func( $filters[$name], $formData[$name], $formData );
-			}
-		}
+		$this->applyFilters( $formData, $formDescriptor, 'filterFromForm' );
 
 		// Fortunately, the realname field is MUCH simpler
 		// (not really "private", but still shouldn't be edited without permission)
@@ -1713,16 +1647,32 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * DO NOT USE. Temporary function to punch hole for the Preferences class.
+	 * Applies filters to preferences either before or after form usage
 	 *
-	 * @deprecated since 1.31, its inception
-	 *
-	 * @param array $formData
-	 * @param HTMLForm $form
-	 * @return bool|Status|string
+	 * @param array &$preferences
+	 * @param array $formDescriptor
+	 * @param string $verb Name of the filter method to call, either 'filterFromForm' or
+	 * 		'filterForForm'
 	 */
-	public function legacySaveFormData( $formData, HTMLForm $form ) {
-		return $this->saveFormData( $formData, $form );
+	protected function applyFilters( array &$preferences, array $formDescriptor, $verb ) {
+		foreach ( $formDescriptor as $preference => $desc ) {
+			if ( !isset( $desc['filter'] ) || !isset( $preferences[$preference] ) ) {
+				continue;
+			}
+			$filterDesc = $desc['filter'];
+			if ( $filterDesc instanceof Filter ) {
+				$filter = $filterDesc;
+			} elseif ( class_exists( $filterDesc ) ) {
+				$filter = new $filterDesc();
+			} elseif ( is_callable( $filterDesc ) ) {
+				$filter = $filterDesc();
+			} else {
+				throw new UnexpectedValueException(
+					"Unrecognized filter type for preference '$preference'"
+				);
+			}
+			$preferences[$preference] = $filter->$verb( $preferences[$preference] );
+		}
 	}
 
 	/**
@@ -1730,10 +1680,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 *
 	 * @param array $formData
 	 * @param HTMLForm $form
+	 * @param array $formDescriptor
 	 * @return Status
 	 */
-	protected function submitForm( array $formData, HTMLForm $form ) {
-		$res = $this->saveFormData( $formData, $form );
+	protected function submitForm( array $formData, HTMLForm $form, array $formDescriptor ) {
+		$res = $this->saveFormData( $formData, $form, $formDescriptor );
 
 		if ( $res === true ) {
 			$context = $form->getContext();
@@ -1761,19 +1712,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		return ( $res === true ? Status::newGood() : $res );
-	}
-
-	/**
-	 * DO NOT USE. Temporary function to punch hole for the Preferences class.
-	 *
-	 * @deprecated since 1.31, its inception
-	 *
-	 * @param array $formData
-	 * @param HTMLForm $form
-	 * @return Status
-	 */
-	public function legacySubmitForm( array $formData, HTMLForm $form ) {
-		return $this->submitForm( $formData, $form );
 	}
 
 	/**

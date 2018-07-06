@@ -164,8 +164,9 @@ class DefaultPreferencesFactoryTest extends MediaWikiTestCase {
 			}
 		);
 
+		/** @var DefaultPreferencesFactory $factory */
 		$factory = TestingAccessWrapper::newFromObject( $this->getPreferencesFactory() );
-		$factory->saveFormData( $newOptions, $form );
+		$factory->saveFormData( $newOptions, $form, [] );
 	}
 
 	/**
