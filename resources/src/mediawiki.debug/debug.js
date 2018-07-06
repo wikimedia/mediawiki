@@ -221,10 +221,6 @@
 			};
 
 			for ( id in panes ) {
-				if ( !Object.prototype.hasOwnProperty.call( panes, id ) ) {
-					continue;
-				}
-
 				$( '<div>' )
 					.prop( {
 						className: 'mw-debug-pane',
@@ -350,10 +346,6 @@
 					.appendTo( $table );
 
 				for ( key in data ) {
-					if ( !Object.prototype.hasOwnProperty.call( data, key ) ) {
-						continue;
-					}
-
 					$( '<tr>' )
 						.append( $( '<th>' ).text( key ) )
 						.append( $( '<td>' ).text( data[ key ] ) )

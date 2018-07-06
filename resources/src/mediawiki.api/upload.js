@@ -40,9 +40,7 @@
 	function getFirstKey( obj ) {
 		var key;
 		for ( key in obj ) {
-			if ( Object.prototype.hasOwnProperty.call( obj, key ) ) {
-				return key;
-			}
+			return key;
 		}
 	}
 

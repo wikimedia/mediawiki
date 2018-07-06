@@ -179,10 +179,8 @@
 		for ( i = 0; i < arguments.length; i++ ) {
 			table = arguments[ i ];
 			for ( key in table ) {
-				if ( Object.prototype.hasOwnProperty.call( table, key ) ) {
-					// The thousand separator should be deleted
-					flipped[ table[ key ] ] = key === ',' ? '' : key;
-				}
+				// The thousand separator should be deleted
+				flipped[ table[ key ] ] = key === ',' ? '' : key;
 			}
 		}
 
