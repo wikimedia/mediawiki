@@ -86,13 +86,17 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	public function provideSetContentHandlerUseDB() {
 		return [
-			// ContentHandlerUseDB can be true of false pre migration
-			[ false, MIGRATION_OLD, false ],
-			[ true, MIGRATION_OLD, false ],
-			// During migration it can not be false
-			[ false, MIGRATION_WRITE_BOTH, true ],
-			// But it can be true
-			[ true, MIGRATION_WRITE_BOTH, false ],
+			// ContentHandlerUseDB can be true of false pre migration.
+			[ false, SCHEMA_COMPAT_OLD, false ],
+			[ true, SCHEMA_COMPAT_OLD, false ],
+			// During and after migration it can not be false...
+			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, true ],
+			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, true ],
+			[ false, SCHEMA_COMPAT_NEW, true ],
+			// ...but it can be true.
+			[ true, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, false ],
+			[ true, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, false ],
+			[ true, SCHEMA_COMPAT_NEW, false ],
 		];
 	}
 
@@ -482,8 +486,13 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	public function provideMigrationConstruction() {
 		return [
-			[ MIGRATION_OLD, false ],
-			[ MIGRATION_WRITE_BOTH, false ],
+			[ SCHEMA_COMPAT_OLD, false ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, false ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, false ],
+			[ SCHEMA_COMPAT_NEW, false ],
+			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, true ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, true ],
+			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, true ],
 		];
 	}
 

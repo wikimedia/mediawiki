@@ -367,13 +367,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		];
 
 		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
+			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
+			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
+				MIGRATION_NEW ],
+			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
 		];
 
-		foreach ( $stages as $writeStage => $readRange ) {
+		foreach ( $stages as $writeStage => $possibleReadStages ) {
 			if ( $key === 'ipb_reason' ) {
 				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
 			}
@@ -406,7 +407,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$callback( $id );
 			}
 
-			for ( $readStage = $readRange[0]; $readStage <= $readRange[1]; $readStage++ ) {
+			foreach ( $possibleReadStages as $readStage ) {
 				$rstore = $this->makeStore( $readStage );
 
 				$fieldRow = $this->db->selectRow(
@@ -460,13 +461,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		];
 
 		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
+			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
+			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
+				MIGRATION_NEW ],
+			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
 		];
 
-		foreach ( $stages as $writeStage => $readRange ) {
+		foreach ( $stages as $writeStage => $possibleReadStages ) {
 			if ( $key === 'ipb_reason' ) {
 				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
 			}
@@ -499,7 +501,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				$callback( $id );
 			}
 
-			for ( $readStage = $readRange[0]; $readStage <= $readRange[1]; $readStage++ ) {
+			foreach ( $possibleReadStages as $readStage ) {
 				$rstore = $this->makeStoreWithKey( $readStage, $key );
 
 				$fieldRow = $this->db->selectRow(
