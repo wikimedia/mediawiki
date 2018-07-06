@@ -723,10 +723,7 @@
 		if ( ts.collationTable ) {
 			// Build array of key names
 			for ( key in ts.collationTable ) {
-				// Check hasOwn to be safe
-				if ( Object.prototype.hasOwnProperty.call( ts.collationTable, key ) ) {
-					keys.push( mw.RegExp.escape( key ) );
-				}
+				keys.push( mw.RegExp.escape( key ) );
 			}
 			if ( keys.length ) {
 				ts.collationRegex = new RegExp( keys.join( '|' ), 'ig' );

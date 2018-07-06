@@ -90,14 +90,11 @@
 
 		actionPaths = mw.config.get( 'wgActionPaths' );
 		for ( key in actionPaths ) {
-			if ( Object.prototype.hasOwnProperty.call( actionPaths, key ) ) {
-				parts = actionPaths[ key ].split( '$1' );
-				parts = parts.map( mw.RegExp.escape );
-				m = new RegExp( parts.join( '(.+)' ) ).exec( url );
-				if ( m && m[ 1 ] ) {
-					return key;
-				}
-
+			parts = actionPaths[ key ].split( '$1' );
+			parts = parts.map( mw.RegExp.escape );
+			m = new RegExp( parts.join( '(.+)' ) ).exec( url );
+			if ( m && m[ 1 ] ) {
+				return key;
 			}
 		}
 
