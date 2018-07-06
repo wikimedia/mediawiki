@@ -368,7 +368,7 @@
 	"pagetitle": "$1 — {{SITENAME}}",
 	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"backlinksubtitle": "← $1",
-	"retrievedfrom": "Источник — «$1»",
+	"retrievedfrom": "Источник — $1",
 	"youhavenewmessages": "{{PLURAL:$3|Вы получили}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Вы получили}} $1 от {{PLURAL:$3|$3 участника|$3 участников|1=другого участника}} ($2).",
 	"youhavenewmessagesmanyusers": "Вы получили $1 от множества пользователей ($2).",
