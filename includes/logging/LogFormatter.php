@@ -189,6 +189,7 @@ class LogFormatter {
 	 * to avoid formatting for any particular user.
 	 * @see getActionText()
 	 * @return string Plain text
+	 * @return-taint tainted
 	 */
 	public function getPlainActionText() {
 		$this->plaintext = true;
@@ -436,6 +437,8 @@ class LogFormatter {
 	/**
 	 * Gets the log action, including username.
 	 * @return string HTML
+	 * phan-taint-check gets very confused by $this->plaintext, so disable.
+	 * @return-taint onlysafefor_html
 	 */
 	public function getActionText() {
 		if ( $this->canView( LogPage::DELETED_ACTION ) ) {
@@ -702,6 +705,7 @@ class LogFormatter {
 	 * Helper method for displaying restricted element.
 	 * @param string $message
 	 * @return string HTML or wiki text
+	 * @return-taint onlysafefor_html
 	 */
 	protected function getRestrictedElement( $message ) {
 		if ( $this->plaintext ) {
@@ -737,6 +741,12 @@ class LogFormatter {
 		return $this->context->msg( $key );
 	}
 
+	/**
+	 * @param User $user
+	 * @param int $toolFlags Combination of Linker::TOOL_LINKS_* flags
+	 * @return string wikitext or html
+	 * @return-taint onlysafefor_html
+	 */
 	protected function makeUserLink( User $user, $toolFlags = 0 ) {
 		if ( $this->plaintext ) {
 			$element = $user->getName();
@@ -938,6 +948,10 @@ class LegacyLogFormatter extends LogFormatter {
 		return $this->comment;
 	}
 
+	/**
+	 * @return string
+	 * @return-taint onlysafefor_html
+	 */
 	protected function getActionMessage() {
 		$entry = $this->entry;
 		$action = LogPage::actionText(
