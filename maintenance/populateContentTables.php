@@ -72,9 +72,10 @@ class PopulateContentTables extends Maintenance {
 
 		$t0 = microtime( true );
 
-		if ( $wgMultiContentRevisionSchemaMigrationStage < MIGRATION_WRITE_BOTH ) {
+		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) === 0 ) {
 			$this->writeln(
-				"...cannot update while \$wgMultiContentRevisionSchemaMigrationStage < MIGRATION_WRITE_BOTH"
+				'...cannot update while \$wgMultiContentRevisionSchemaMigrationStage '
+				. 'does not have the SCHEMA_COMPAT_WRITE_NEW bit set.'
 			);
 			return false;
 		}

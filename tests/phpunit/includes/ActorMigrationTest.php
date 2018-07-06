@@ -470,16 +470,17 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		}
 
 		$stages = [
-			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_NEW ],
-			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_NEW ],
-			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
-			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_NEW ],
+			MIGRATION_OLD => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW ],
+			MIGRATION_WRITE_BOTH => [ MIGRATION_OLD, MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW,
+				MIGRATION_NEW ],
+			MIGRATION_WRITE_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
+			MIGRATION_NEW => [ MIGRATION_WRITE_BOTH, MIGRATION_WRITE_NEW, MIGRATION_NEW ],
 		];
 
 		$nameKey = $key . '_text';
 		$actorKey = $key === 'ipb_by' ? 'ipb_by_actor' : substr( $key, 0, -5 ) . '_actor';
 
-		foreach ( $stages as $writeStage => $readRange ) {
+		foreach ( $stages as $writeStage => $possibleReadStages ) {
 			if ( $key === 'ipb_by' ) {
 				$extraFields['ipb_address'] = __CLASS__ . "#$writeStage";
 			}
@@ -512,7 +513,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$callback( $id, $extraFields );
 			}
 
-			for ( $readStage = $readRange[0]; $readStage <= $readRange[1]; $readStage++ ) {
+			foreach ( $possibleReadStages as $readStage ) {
 				$r = $this->makeMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );

@@ -2542,7 +2542,19 @@ class WikiPage implements Page, IDBAccessObject {
 			// Fetch all rows in case the DB needs that to properly lock them.
 		}
 
-		// Get all of the page revisions
+		// If SCHEMA_COMPAT_WRITE_OLD is set, also select all extra fields we still write,
+		// so we can copy it to the archive table.
+		// We know the fields exist, otherwise SCHEMA_COMPAT_WRITE_OLD could not function.
+		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
+			$revQuery['fields'][] = 'rev_text_id';
+
+			if ( $wgContentHandlerUseDB ) {
+				$revQuery['fields'][] = 'rev_content_model';
+				$revQuery['fields'][] = 'rev_content_format';
+			}
+		}
+
+			// Get all of the page revisions
 		$res = $dbw->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
@@ -2584,17 +2596,15 @@ class WikiPage implements Page, IDBAccessObject {
 			] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
 
-			if ( $wgMultiContentRevisionSchemaMigrationStage < MIGRATION_NEW ) {
+			if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$rowInsert['ar_text_id'] = $row->rev_text_id;
+
+				if ( $wgContentHandlerUseDB ) {
+					$rowInsert['ar_content_model'] = $row->rev_content_model;
+					$rowInsert['ar_content_format'] = $row->rev_content_format;
+				}
 			}
 
-			if (
-				$wgContentHandlerUseDB &&
-				$wgMultiContentRevisionSchemaMigrationStage <= MIGRATION_WRITE_BOTH
-			) {
-				$rowInsert['ar_content_model'] = $row->rev_content_model;
-				$rowInsert['ar_content_format'] = $row->rev_content_format;
-			}
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;
 

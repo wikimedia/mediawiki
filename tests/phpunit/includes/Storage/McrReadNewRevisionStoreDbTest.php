@@ -10,7 +10,7 @@ use Title;
 use WikitextContent;
 
 /**
- * Tests RevisionStore against the post-migration MCR DB schema.
+ * Tests RevisionStore against the intermediate MCR DB schema for use during schema migration.
  *
  * @covers \MediaWiki\Storage\RevisionStore
  *
@@ -19,9 +19,9 @@ use WikitextContent;
  * @group Database
  * @group medium
  */
-class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
+class McrReadNewRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
-	use McrSchemaOverride;
+	use McrReadNewSchemaOverride;
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		$numberOfSlots = count( $rev->getSlotRoles() );
@@ -46,6 +46,16 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			[ [ (string)$numberOfSlots ] ],
 			[],
 			$revQuery['joins']
+		);
+
+		// Legacy schema is still being written
+		$this->assertSelect(
+			[ 'revision', 'text' ],
+			[ 'count(*)' ],
+			[ 'rev_id' => $rev->getId(), 'rev_text_id > 0' ],
+			[ [ 1 ] ],
+			[],
+			[ 'text' => [ 'INNER JOIN', [ 'rev_text_id = old_id' ] ] ]
 		);
 
 		parent::assertRevisionExistsInDatabase( $rev );
@@ -95,32 +105,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 				],
 			],
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment multi' ),
-		];
-	}
-
-	public function provideNewMutableRevisionFromArray() {
-		foreach ( parent::provideNewMutableRevisionFromArray() as $case ) {
-			yield $case;
-		}
-
-		yield 'Basic array, multiple roles' => [
-			[
-				'id' => 2,
-				'page' => 1,
-				'timestamp' => '20171017114835',
-				'user_text' => '111.0.1.2',
-				'user' => 0,
-				'minor_edit' => false,
-				'deleted' => 0,
-				'len' => 29,
-				'parent_id' => 1,
-				'sha1' => '89qs83keq9c9ccw9olvvm4oc9oq50ii',
-				'comment' => 'Goat Comment!',
-				'content' => [
-					'main' => new WikitextContent( 'Söme Cöntent' ),
-					'aux' => new TextContent( 'Öther Cöntent' ),
-				]
-			]
 		];
 	}
 
@@ -235,6 +219,32 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 					'content' => [ 'INNER JOIN', [ 'slot_content_id = content_id' ] ],
 					'content_models' => [ 'INNER JOIN', [ 'content_model = model_id' ] ],
 				],
+			]
+		];
+	}
+
+	public function provideNewMutableRevisionFromArray() {
+		foreach ( parent::provideNewMutableRevisionFromArray() as $case ) {
+			yield $case;
+		}
+
+		yield 'Basic array, multiple roles' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 29,
+				'parent_id' => 1,
+				'sha1' => '89qs83keq9c9ccw9olvvm4oc9oq50ii',
+				'comment' => 'Goat Comment!',
+				'content' => [
+					'main' => new WikitextContent( 'Söme Cöntent' ),
+					'aux' => new TextContent( 'Öther Cöntent' ),
+				]
 			]
 		];
 	}
