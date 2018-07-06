@@ -258,7 +258,7 @@ class PathRouter {
 
 	/**
 	 * @param string $path
-	 * @param string $pattern
+	 * @param object $pattern
 	 * @return array|null
 	 */
 	protected static function extractTitle( $path, $pattern ) {
@@ -319,13 +319,8 @@ class PathRouter {
 					$value = $paramData['value'];
 				} elseif ( isset( $paramData['pattern'] ) ) {
 					// For patterns we have to make value replacements on the string
-					$value = $paramData['pattern'];
-					$replacer = new PathRouterPatternReplacer;
-					$replacer->params = $m;
-					if ( isset( $pattern->key ) ) {
-						$replacer->key = $pattern->key;
-					}
-					$value = $replacer->replace( $value );
+					$value = self::expandParamValue( $m, $pattern->key ?? null,
+						$paramData['pattern'] );
 					if ( $value === false ) {
 						// Pattern required data that wasn't available, abort
 						return null;
@@ -352,48 +347,43 @@ class PathRouter {
 		return $matches;
 	}
 
-}
-
-class PathRouterPatternReplacer {
-
-	public $key, $params, $error;
-
 	/**
-	 * Replace keys inside path router patterns with text.
-	 * We do this inside of a replacement callback because after replacement we can't tell the
-	 * difference between a $1 that was not replaced and a $1 that was part of
-	 * the content a $1 was replaced with.
-	 * @param string $value
+	 * Replace $key etc. in param values with the matched strings from the path.
+	 *
+	 * @param array $pathMatches The match results from the path
+	 * @param string|null $key The key of the matching pattern
+	 * @param string $value The param value to be expanded
 	 * @return string|false
 	 */
-	public function replace( $value ) {
-		$this->error = false;
-		$value = preg_replace_callback( '/\$(\d+|key)/u', [ $this, 'callback' ], $value );
-		if ( $this->error ) {
+	protected static function expandParamValue( $pathMatches, $key, $value ) {
+		$error = false;
+
+		$replacer = function ( $m ) use ( $pathMatches, $key, &$error ) {
+			if ( $m[1] == "key" ) {
+				if ( is_null( $key ) ) {
+					$error = true;
+
+					return '';
+				}
+
+				return $key;
+			} else {
+				$d = $m[1];
+				if ( !isset( $pathMatches["par$d"] ) ) {
+					$error = true;
+
+					return '';
+				}
+
+				return rawurldecode( $pathMatches["par$d"] );
+			}
+		};
+
+		$value = preg_replace_callback( '/\$(\d+|key)/u', $replacer, $value );
+		if ( $error ) {
 			return false;
 		}
+
 		return $value;
 	}
-
-	/**
-	 * @param array $m
-	 * @return string
-	 */
-	protected function callback( $m ) {
-		if ( $m[1] == "key" ) {
-			if ( is_null( $this->key ) ) {
-				$this->error = true;
-				return '';
-			}
-			return $this->key;
-		} else {
-			$d = $m[1];
-			if ( !isset( $this->params["par$d"] ) ) {
-				$this->error = true;
-				return '';
-			}
-			return rawurldecode( $this->params["par$d"] );
-		}
-	}
-
 }
