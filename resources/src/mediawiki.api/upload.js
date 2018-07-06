@@ -40,9 +40,7 @@
 	function getFirstKey( obj ) {
 		var key;
 		for ( key in obj ) {
-			if ( obj.hasOwnProperty( key ) ) {
-				return key;
-			}
+			return key;
 		}
 	}
 

@@ -101,7 +101,7 @@
 		 *  corresponding call to set().
 		 */
 		clear: function ( visibleTimeoutId ) {
-			if ( activeTimeouts.hasOwnProperty( visibleTimeoutId ) ) {
+			if ( Object.prototype.hasOwnProperty.call( activeTimeouts, visibleTimeoutId ) ) {
 				activeTimeouts[ visibleTimeoutId ]();
 			}
 		}

@@ -37,7 +37,7 @@
 				clearTimeout( this.timeoutID );
 			}
 			// Check response cache
-			if ( this.responseCache.hasOwnProperty( this.nameToCheck ) ) {
+			if ( Object.prototype.hasOwnProperty.call( this.responseCache, this.nameToCheck ) ) {
 				this.setWarning( this.responseCache[ this.nameToCheck ] );
 				return;
 			}
@@ -126,7 +126,7 @@
 			var template = $element.val(),
 				$spinner;
 
-			if ( this.responseCache.hasOwnProperty( template ) ) {
+			if ( Object.prototype.hasOwnProperty.call( this.responseCache, template ) ) {
 				this.showPreview( this.responseCache[ template ], $previewContainer );
 				return;
 			}

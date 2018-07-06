@@ -109,8 +109,20 @@ class NameTableStore {
 		return $this->loadBalancer->getConnection( $index, [], $this->wikiId, $flags );
 	}
 
+	/**
+	 * Gets the cache key for names.
+	 *
+	 * The cache key is constructed based on the wiki ID passed to the constructor, and allows
+	 * sharing of name tables cached for a specific database between wikis.
+	 *
+	 * @return string
+	 */
 	private function getCacheKey() {
-		return $this->cache->makeKey( 'NameTableSqlStore', $this->table, $this->wikiId );
+		return $this->cache->makeGlobalKey(
+			'NameTableSqlStore',
+			$this->table,
+			$this->loadBalancer->resolveDomainID( $this->wikiId )
+		);
 	}
 
 	/**
