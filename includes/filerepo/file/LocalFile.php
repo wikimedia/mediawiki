@@ -223,7 +223,7 @@ class LocalFile extends File {
 			'img_minor_mime',
 			'img_user',
 			'img_user_text',
-			'img_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'img_actor' : null,
+			'img_actor' => $wgActorTableSchemaMigrationStage > MIGRATION_OLD ? 'img_actor' : 'NULL',
 			'img_timestamp',
 			'img_sha1',
 		] + CommentStore::getStore()->getFields( 'img_description' );
